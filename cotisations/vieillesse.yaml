@@ -1,0 +1,58 @@
+- variable: vieillesse
+  linear:
+    base: assiette_cotisations_sociales
+
+- variable: vieillesse
+  au nom de: salarié
+  plafonnée: non
+  linear:
+    values:
+      2018-01-01: .004
+      2017-01-01: .004
+      2016-01-01: .0035
+      2015-01-01: .003
+      2014-01-01: .0025
+      2004-07-01: .001
+
+- variable: vieillesse
+  au nom de: employeur
+  plafonnée: non
+  linear:
+    values:
+      2018-01-01: 0.019
+      2017-01-01: 0.019
+      2016-01-01: 0.0185
+      2015-01-01: 0.018
+      2014-01-01: 0.0175
+      1991-02-01: 0.016
+
+- variable: vieillesse
+  plafonnée: oui
+  linear:
+    limit: plafond_securite_sociale
+
+- variable: vieillesse
+  au nom de: salarié
+  plafonnée: oui
+  linear:
+    values:
+      2017-01-01: .0690
+      2016-01-01: .0690
+      2015-01-01: .0685
+      2014-01-01: .0680
+      2012-11-01: .0675
+      2006-01-01: .0665
+      1993-07-01: .0655
+
+- variable: vieillesse
+  au nom de: employeur
+  plafonnée: oui
+  linear:
+    values:
+      2017-01-01: .0855
+      2016-01-01: .0855
+      2015-01-01: .085
+      2014-01-01: .0845
+      2012-11-01: .084
+      2006-01-01: .083
+      1979-01-01: .082
