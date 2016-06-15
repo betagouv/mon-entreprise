@@ -12,7 +12,7 @@
       1992-07-01: 0.128
 
 - variable: maladie
-  au nom de: employeur
+  au nom de: salarié
   linear:
     values:
       2014-01-01: .0075

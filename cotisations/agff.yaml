@@ -1,0 +1,80 @@
+- variable: agff
+  description: |
+    Cotisation de retraite complémentaire
+    (Association pour la gestion du fonds de financement de l’AGIRC et de l’ARRCO)
+  branche: retraite
+  reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  commentaires: |
+    Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
+  marginalRateTaxScale:
+    base: plafond_securite_sociale
+
+- variable: agff
+  categorie_salarie: non_cadre
+  au nom de: employeur
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2001-04-01: .008
+    - threshold: 1
+      rate:
+        values:
+          2001-04-01: .009
+    - threshold: 3
+      rate: 0
+
+- variable: agff
+  categorie_salarie: non_cadre
+  au nom de: salarié
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2001-04-01: .008
+    - threshold: 1
+      rate:
+        values:
+          2001-04-01: .009
+    - threshold: 3
+      rate: 0
+
+- variable: agff
+  categorie_salarie: cadre
+  au nom de: salarié
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2001-04-01: .008
+    - threshold: 1
+      rate:
+        values:
+          2001-04-01: .009
+    - threshold: 4
+      rate:
+        values:
+          2016-01-01: .009
+          2001-04-01: 0
+    - threshold: 8
+      rate: 0
+
+- variable: agff
+  categorie_salarie: cadre
+  au nom de: employeur
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2001-04-01: .012
+    - threshold: 1
+      rate:
+        values:
+          2001-04-01: .013
+    - threshold: 4
+      rate:
+        values:
+          2016-01-01: .013
+          2001-04-01: 0
+    - threshold: 8
+      rate: 0
