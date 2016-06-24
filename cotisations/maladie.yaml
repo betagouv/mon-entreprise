@@ -1,10 +1,12 @@
 - variable: maladie
-  branche: maladie
+  @:
+    branche: maladie
   linear:
     base: assiette_cotisations_sociales
 
 - variable: maladie
-  au nom de: employeur
+  @:
+    au nom de: employeur
   linear:
     values:
       2017-01-01: 0.1284
@@ -12,7 +14,8 @@
       1992-07-01: 0.128
 
 - variable: maladie
-  au nom de: salarié
+  @:
+    au nom de: salarié
   linear:
     values:
       2014-01-01: .0075

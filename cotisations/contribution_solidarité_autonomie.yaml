@@ -1,8 +1,10 @@
 - variable: contribution solidarité autonomie
   abbreviation: CSA
-  au nom de: employeur
-  contribution: oui
-  branche: vieillesse
+  @:
+    au nom de: employeur
+    contribution: oui
+    branche: vieillesse
+
   linear:
     base: assiette_cotisations_sociales
     values:
