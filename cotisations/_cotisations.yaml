@@ -1,0 +1,7 @@
+# Les tags communs à toutes les variables de ce répertoire sont renseignés
+# dans ce fichier du même nom,
+# pour éviter de polluer les déclarations de variables.
+
+domaine: prélèvements sociaux
+revenus: salaires
+type: cotisation sociale
