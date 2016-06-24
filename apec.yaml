@@ -1,0 +1,46 @@
+- variable: apec
+  description: |
+    Cotisation de retraite complémentaire cadre, pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+  @:
+    branche: retraite
+    type de retraite: complémentaire
+  reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  avertissements: |
+    Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
+
+- variable: apec
+  @:
+    au nom de: employeur
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: 0.00036
+          2011-01-01: 0.00036
+          1993-07-01: 0
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: 0.00036
+          1993-07-01: 0.00036
+    - threshold: 4
+      rate: 0
+
+- variable: apec
+  @:
+    au nom de: salarié
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: 0.00024
+          2011-01-01: 0.00024
+          1993-07-01: 0
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: 0.00024
+          1993-07-01: 0.00024
+    - threshold: 4
+      rate: 0
