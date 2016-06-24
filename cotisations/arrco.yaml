@@ -1,0 +1,111 @@
+- variable: arrco
+  description: |
+    Cotisation de retraite complémentaire pour tous les salariés du secteur privé,
+    (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
+  reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  @:
+    branche: retraite
+    type de retraite: complémentaire
+
+  marginalRateTaxScale:
+    base: plafond_securite_sociale
+
+
+- variable: arrco
+  @:
+    au nom de: employeur
+  ?:
+    categorie_salarié: privé cadre
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: .0465
+          2015-01-01: .0465
+          2014-01-01: .0458
+          1999-01-01: .045
+          1998-01-01: .04125
+          1997-01-01: .0375
+          1996-01-01: .03375
+          1993-01-01: .02952
+    - threshold: 1
+      rate: 0
+
+- variable: arrco
+  @:
+    au nom de: salarié
+  ?:
+    categorie_salarié: privé cadre
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: .031
+          2015-01-01: .031
+          2014-01-01: .0305
+          1999-01-01: .03
+          1998-01-01: .0275
+          1997-01-01: .025
+          1996-01-01: .0225
+          1993-01-01: .01968
+    - threshold: 1
+      rate: 0
+
+- variable: arrco
+  @:
+    au nom de: employeur
+  ?:
+    categorie_salarié: privé non cadre
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: .0465
+          2015-01-01: .0465
+          2014-01-01: .0458
+          1999-01-01: .045
+          1998-01-01: .04125
+          1997-01-01: .0375
+          1996-01-01: .03375
+          1993-07-01: .02952
+    - threshold: 1
+      rate:
+        values:
+          2016-01-01: .1215
+          2015-01-01: .1215
+          2014-01-01: .1208
+          2005-01-01: .12
+          2004-01-01: .105
+          2002-01-01: .09
+          2000-01-01: .075
+    - threshold: 3
+      rate: 0
+
+  @:
+    au nom de: salarié
+  ?:
+    categorie_salarié: privé non cadre
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2016-01-01: .031
+          2015-01-01: .031
+          2014-01-01: .0305
+          1999-01-01: .03
+          1998-01-01: .0275
+          1997-01-01: .025
+          1996-01-01: .0225
+          1993-01-01: .01968
+    - threshold: 1
+      rate:
+        values:
+          2016-01-01: .081
+          2015-01-01: .081
+          2014-01-01: .0805
+          2005-01-01: .08
+          2004-01-01: .07
+          2002-01-01: .06
+          1993-01-01: .05
+    - threshold: 3
+      rate: 0

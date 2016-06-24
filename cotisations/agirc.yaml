@@ -7,7 +7,7 @@
     type de retraite: complémentaire
   reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
   ?:
-    categorie_salarié: cadre
+    categorie_salarié: privé cadre
   commentaires: |
     Il éxiste une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
 

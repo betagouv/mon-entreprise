@@ -14,7 +14,7 @@
 
 - variable: agff
   ?:
-    categorie_salarié: non_cadre
+    categorie_salarié: privé non cadre
   @:
     au nom de: employeur
   marginalRateTaxScale:
@@ -33,7 +33,7 @@
   @:
     au nom de: salarié
   ?:
-    categorie_salarié: non_cadre
+    categorie_salarié: privé non cadre
 
   marginalRateTaxScale:
     - threshold: 0
@@ -51,7 +51,7 @@
   @:
     au nom de: salarié
   ?:
-    categorie_salarié: cadre
+    categorie_salarié: privé cadre
 
   marginalRateTaxScale:
     - threshold: 0
@@ -74,7 +74,7 @@
   @:
     au nom de: employeur
   ?:
-    categorie_salarié: cadre
+    categorie_salarié: privé cadre
 
   marginalRateTaxScale:
     - threshold: 0
