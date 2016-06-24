@@ -1,6 +1,8 @@
 - variable: vieillesse
   @:
-    branche: vieillesse
+    branche: retraite
+    type de retraite: base
+
   linear:
     base: assiette_cotisations_sociales
 
