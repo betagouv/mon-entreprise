@@ -1,10 +1,11 @@
-- variable: agirc
+- variable: AGIRC
   description: |
     Cotisation de retraite complémentaire cadre, complémentant le régime ARRCO
     (pour l'Association Générale des Institutions de Retraite des Cadres)
   @:
     branche: retraite
     type de retraite: complémentaire
+    destinataire: AGIRC
   reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
   ?:
     categorie_salarié: privé cadre

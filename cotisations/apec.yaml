@@ -1,10 +1,12 @@
-- variable: apec
+- variable: APEC
   description: |
     Cotisation de retraite complémentaire cadre, pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
   @:
     branche: retraite
     type de retraite: complémentaire
+    destinataire: APEC
+
   reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
   avertissements: |
     Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A

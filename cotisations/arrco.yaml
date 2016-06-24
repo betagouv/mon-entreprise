@@ -1,4 +1,4 @@
-- variable: arrco
+- variable: ARRCO
   description: |
     Cotisation de retraite complémentaire pour tous les salariés du secteur privé,
     (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
@@ -6,6 +6,7 @@
   @:
     branche: retraite
     type de retraite: complémentaire
+    destinataire: ARRCO
 
   marginalRateTaxScale:
     base: plafond_securite_sociale

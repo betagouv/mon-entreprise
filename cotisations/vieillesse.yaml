@@ -2,6 +2,8 @@
   @:
     branche: retraite
     type de retraite: base
+    recouvreur: URSSAF
+    destinataire: CNAV
 
   linear:
     base: assiette_cotisations_sociales
@@ -36,7 +38,7 @@
   @:
     plafonnée: oui
   linear:
-    limit: plafond_securite_sociale
+    limit: 4
 
 - variable: vieillesse
   @:

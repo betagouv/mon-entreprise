@@ -1,10 +1,11 @@
-- variable: agff
+- variable: AGFF
   description: |
     Cotisation de retraite complémentaire
     (Cotisation pour l'Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO)
   @:
     branche: retraite
     type de retraite: complémentaire
+    destinataire: AGFF
   reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
   commentaires: |
     Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.

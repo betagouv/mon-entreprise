@@ -1,0 +1,27 @@
+- variable: chomage
+  @:
+    branche: chomage
+    recouvreur: URSSAF
+    destinataire: Pôle emploi
+
+  linear:
+    base: assiette_cotisations_sociales
+
+- variable: chomage
+  @:
+    au nom de: employeur
+  linear:
+    values:
+      2017-01-01: 0.1284
+      2016-01-01: 0.1284
+      1992-07-01: 0.128
+
+- variable: chomage
+  @:
+    au nom de: salarié
+  linear:
+    values:
+      2014-01-01: .0075
+      1998-01-01: .0075
+      1997-01-01: .055
+      1993-07-01: .068
