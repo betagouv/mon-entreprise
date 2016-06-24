@@ -1,9 +1,10 @@
 - variable: agff
   description: |
     Cotisation de retraite complémentaire
-    (Association pour la gestion du fonds de financement de l’AGIRC et de l’ARRCO)
+    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO)
   @:
     branche: retraite
+    type de retraite: complémentaire
   reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
   commentaires: |
     Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
@@ -13,7 +14,7 @@
 
 - variable: agff
   ?:
-    categorie_salarie: non_cadre
+    categorie_salarié: non_cadre
   @:
     au nom de: employeur
   marginalRateTaxScale:
@@ -32,7 +33,7 @@
   @:
     au nom de: salarié
   ?:
-    categorie_salarie: non_cadre
+    categorie_salarié: non_cadre
 
   marginalRateTaxScale:
     - threshold: 0
@@ -50,7 +51,7 @@
   @:
     au nom de: salarié
   ?:
-    categorie_salarie: cadre
+    categorie_salarié: cadre
 
   marginalRateTaxScale:
     - threshold: 0
@@ -73,7 +74,7 @@
   @:
     au nom de: employeur
   ?:
-    categorie_salarie: cadre
+    categorie_salarié: cadre
 
   marginalRateTaxScale:
     - threshold: 0
