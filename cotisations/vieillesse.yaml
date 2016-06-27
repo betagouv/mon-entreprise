@@ -38,7 +38,7 @@
   @:
     plafonnée: oui
   linear:
-    limit: 4
+    limit: 4 * plafond_securite_sociale
 
 - variable: vieillesse
   @:
