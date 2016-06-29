@@ -40,8 +40,24 @@ let
 				},
 				[items[0]])
 				return [...variableList, ...list]
-			}, [])
-	console.log('groupedMergedVariables', groupedMergedVariables)
+			}, []),
+
+	tagFrequency =
+		groupedMergedVariables
+			.reduce((stats, variable) => {
+				Object.keys(variable.tags).map(
+					k => {
+						stats[k] = stats[k] || {number: 0, choices: new Set()}
+						stats[k].number = stats[k].number + 1
+						stats[k].choices.add(variable.tags[k])
+					}
+				)
+				return stats
+			}
+		, {})
+
+
+	console.log('YOUYOU', tagFrequency)
 
 
 
