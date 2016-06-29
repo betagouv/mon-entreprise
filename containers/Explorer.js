@@ -57,12 +57,16 @@ let
 		, {})
 
 
-	console.log('YOUYOU', tagFrequency)
-
-
+console.log('YOUYOU', tagFrequency)
 
 export default class Explorer extends React.Component {
 	render() {
-		return <div>{JSON.stringify(groupedMergedVariables['agff'], null, 2)}</div>
+		return (
+			<ul id="tags">
+				{Object.keys(tagFrequency).map(tag =>
+					<li key={tag}>{tag}</li>
+				)}
+			</ul>
+		)
 	}
 }
