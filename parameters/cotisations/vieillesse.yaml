@@ -1,5 +1,5 @@
 - variable: vieillesse
-  @:
+  tags:
     branche: retraite
     type de retraite: base
     recouvreur: URSSAF
@@ -9,7 +9,7 @@
     base: assiette_cotisations_sociales
 
 - variable: vieillesse
-  @:
+  tags:
     au nom de: salarié
     plafonnée: non
   linear:
@@ -22,7 +22,7 @@
       2004-07-01: .001
 
 - variable: vieillesse
-  @:
+  tags:
     au nom de: employeur
     plafonnée: non
   linear:
@@ -35,13 +35,13 @@
       1991-02-01: 0.016
 
 - variable: vieillesse
-  @:
+  tags:
     plafonnée: oui
   linear:
     limit: 4 * plafond_securite_sociale
 
 - variable: vieillesse
-  @:
+  tags:
     au nom de: salarié
     plafonnée: oui
   linear:
@@ -55,7 +55,7 @@
       1993-07-01: .0655
 
 - variable: vieillesse
-  @:
+  tags:
     au nom de: employeur
     plafonnée: oui
   linear:

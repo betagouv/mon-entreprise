@@ -1,5 +1,5 @@
 - variable: maladie
-  @:
+  tags:
     branche: maladie
     plafonnée: oui
   linear:
@@ -7,7 +7,7 @@
     limit: 4
 
 - variable: maladie
-  @:
+  tags:
     au nom de: employeur
   linear:
     values:
@@ -25,7 +25,7 @@
       1993-07-01: 0.0483
 
 - variable: maladie
-  @:
+  tags:
     au nom de: salarié
   linear:
     values:
@@ -46,9 +46,9 @@
   complete la variable: maladie
   # Ceci signifie que cette spécification ne remplace pas
   # la variable de base du même nom, mais s'y ajoute !
-  @:
+  tags:
     au nom de: salarié
-  ?:
+  conditions:
     régime géographique: Alsace-Moselle
   linear:
     values:
@@ -63,9 +63,9 @@
       1989-09-01: 0.75
 
 - variable: maladie alsace moselle
-  @:
+  tags:
     au nom de: salarié
-  ?:
+  conditions:
     régime géographique: Alsace-Moselle
     régime: agricole
   linear:

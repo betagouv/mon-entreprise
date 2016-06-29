@@ -2,7 +2,7 @@
   description: |
     Cotisation de retraite complémentaire
     (Cotisation pour l'Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO)
-  @:
+  tags:
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGFF
@@ -13,27 +13,10 @@
   marginalRateTaxScale:
     base: plafond_securite_sociale
 
-- variable: agff
-  ?:
-    categorie_salarié: privé non cadre
-  @:
+- variable: AGFF
+  tags:
     au nom de: employeur
-  marginalRateTaxScale:
-    - threshold: 0
-      rate:
-        values:
-          2001-04-01: .008
-    - threshold: 1
-      rate:
-        values:
-          2001-04-01: .009
-    - threshold: 3
-      rate: 0
-
-- variable: agff
-  @:
-    au nom de: salarié
-  ?:
+  conditions:
     categorie_salarié: privé non cadre
 
   marginalRateTaxScale:
@@ -48,10 +31,28 @@
     - threshold: 3
       rate: 0
 
-- variable: agff
-  @:
+- variable: AGFF
+  tags:
     au nom de: salarié
-  ?:
+  conditions:
+    categorie_salarié: privé non cadre
+
+  marginalRateTaxScale:
+    - threshold: 0
+      rate:
+        values:
+          2001-04-01: .008
+    - threshold: 1
+      rate:
+        values:
+          2001-04-01: .009
+    - threshold: 3
+      rate: 0
+
+- variable: AGFF
+  tags:
+    au nom de: salarié
+  conditions:
     categorie_salarié: privé cadre
 
   marginalRateTaxScale:
@@ -71,10 +72,10 @@
     - threshold: 8
       rate: 0
 
-- variable: agff
-  @:
+- variable: AGFF
+  tags:
     au nom de: employeur
-  ?:
+  conditions:
     categorie_salarié: privé cadre
 
   marginalRateTaxScale:

@@ -2,12 +2,12 @@
   description: |
     Cotisation de retraite complémentaire cadre, complémentant le régime ARRCO
     (pour l'Association Générale des Institutions de Retraite des Cadres)
-  @:
+  tags:
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC
   reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
-  ?:
+  conditions:
     categorie_salarié: privé cadre
   commentaires: |
     Il éxiste une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
@@ -15,8 +15,8 @@
   marginalRateTaxScale:
     base: plafond_securite_sociale
 
-- variable: agirc
-  @:
+- variable: AGIRC
+  tags:
     au nom de: employeur
   marginalRateTaxScale:
     - threshold: 0
@@ -38,8 +38,8 @@
     - threshold: 8
       rate: 0
 
-- variable: agirc
-  @:
+- variable: AGIRC
+  tags:
     au nom de: salarié
   marginalRateTaxScale:
     - threshold: 0

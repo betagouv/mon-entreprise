@@ -2,7 +2,7 @@
   description: |
     Cotisation de retraite complémentaire cadre, pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
-  @:
+  tags:
     branche: retraite
     type de retraite: complémentaire
     destinataire: APEC
@@ -11,8 +11,8 @@
   avertissements: |
     Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
 
-- variable: apec
-  @:
+- variable: APEC
+  tags:
     au nom de: employeur
   marginalRateTaxScale:
     - threshold: 0
@@ -29,8 +29,8 @@
     - threshold: 4
       rate: 0
 
-- variable: apec
-  @:
+- variable: APEC
+  tags:
     au nom de: salarié
   marginalRateTaxScale:
     - threshold: 0

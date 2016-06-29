@@ -1,6 +1,6 @@
 - variable: contribution solidarité autonomie
   abbreviation: CSA
-  @:
+  tags:
     au nom de: employeur
     contribution: oui
     branche: vieillesse

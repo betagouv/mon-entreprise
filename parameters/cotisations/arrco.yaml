@@ -3,7 +3,7 @@
     Cotisation de retraite complémentaire pour tous les salariés du secteur privé,
     (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
   reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
-  @:
+  tags:
     branche: retraite
     type de retraite: complémentaire
     destinataire: ARRCO
@@ -12,10 +12,10 @@
     base: plafond_securite_sociale
 
 
-- variable: arrco
-  @:
+- variable: ARRCO
+  tags:
     au nom de: employeur
-  ?:
+  conditions:
     categorie_salarié: privé cadre
   marginalRateTaxScale:
     - threshold: 0
@@ -32,10 +32,10 @@
     - threshold: 1
       rate: 0
 
-- variable: arrco
-  @:
+- variable: ARRCO
+  tags:
     au nom de: salarié
-  ?:
+  conditions:
     categorie_salarié: privé cadre
   marginalRateTaxScale:
     - threshold: 0
@@ -52,10 +52,10 @@
     - threshold: 1
       rate: 0
 
-- variable: arrco
-  @:
+- variable: ARRCO
+  tags:
     au nom de: employeur
-  ?:
+  conditions:
     categorie_salarié: privé non cadre
   marginalRateTaxScale:
     - threshold: 0
@@ -82,9 +82,10 @@
     - threshold: 3
       rate: 0
 
-  @:
+- variable: ARRCO
+  tags:
     au nom de: salarié
-  ?:
+  conditions:
     categorie_salarié: privé non cadre
   marginalRateTaxScale:
     - threshold: 0

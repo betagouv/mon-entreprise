@@ -1,5 +1,5 @@
 - variable: chomage
-  @:
+  tags:
     branche: chomage
     recouvreur: URSSAF
     destinataire: Pôle emploi
@@ -8,7 +8,7 @@
     base: assiette_cotisations_sociales
 
 - variable: chomage
-  @:
+  tags:
     au nom de: employeur
   linear:
     values:
@@ -17,7 +17,7 @@
       1992-07-01: 0.128
 
 - variable: chomage
-  @:
+  tags:
     au nom de: salarié
   linear:
     values:

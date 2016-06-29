@@ -1,12 +1,12 @@
 - variable: cotisation exceptionnelle temporaire
-  ?:
+  conditions:
     categorie salarie: prive cadre
   linear:
     base: assiette cotisations sociales
     limit: 8 * plafond_securite_sociale
 
 - variable: cotisation exceptionnelle temporaire
-  @:
+  tags:
     au nom de: employeur
   linear:
     values:
@@ -18,7 +18,7 @@
       1997-01-01: .00044
 
 - variable: cotisation exceptionnelle temporaire
-  @:
+  tags:
     au nom de: salarié
   linear:
     values:
