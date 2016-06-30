@@ -3,17 +3,36 @@ body {
 	color: #333;
 }
 
-#tags {
+ul {
 	list-style: none;
-	text-transform: uppercase;
-	font-size: 300%;
-	font-weight: 200;
+	padding: 0
+}
 
-	text-align: center;
+#tags {
+
+	text-transform: capitalize;
+	font-size: 140%;
+	font-weight: 300;
+	width: 20%;
+	border-right: 1px solid #aaa;
 }
 
 #tags li {
-	width: 12em;
 	margin-top: 1em;
-	border: 1px solid #bbb;
+}
+
+.choices {
+
+}
+.choices li {
+	font-size: 75%;
+	font-weight: 400;
+	display: inline-block;
+	text-align: right;
+	margin-left: 1em;
+	background: #16a085;
+	color: white;
+	padding: .05em .5em;
+	cursor: pointer;
+	border-radius: .1em
 }

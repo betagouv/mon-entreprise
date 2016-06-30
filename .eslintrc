@@ -14,7 +14,6 @@ rules:
  curly:
   - 2
   - multi-or-nest
- space-before-blocks: 2
  no-console: 1
  react/prop-types: 0
  react/display-name: 0
