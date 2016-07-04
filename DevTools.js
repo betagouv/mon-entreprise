@@ -15,7 +15,7 @@ const DevTools = createDevTools(
   // Note: DockMonitor is visible by default.
   <DockMonitor toggleVisibilityKey='ctrl-h'
                changePositionKey='ctrl-q'
-               defaultPosition='left'
+               defaultPosition='right'
                defaultIsVisible={false}>
     <LogMonitor theme='tomorrow' />
   </DockMonitor>
