@@ -1,7 +1,7 @@
 - variable: vieillesse
   tags:
     branche: retraite
-    type de retraite: base
+    type de retraite: de base
     recouvreur: URSSAF
     destinataire: CNAV
 

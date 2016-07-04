@@ -1,14 +1,28 @@
 import React from 'react'
-import data from '../model'
-console.log(data)
-export default class Explorer extends React.Component {
+import {selectVariables, selectTagStats} from '../selectors'
+import {connect} from 'react-redux'
+
+const Variable = ({data: {variable, tags}}) => <li className="variable">
+	<h3>{variable}</h3>
+	<ul>{Object.keys(tags).map(name => <li>
+			{name + ': ' + tags[name]}
+	</li>)}</ul>
+</li>
+
+class Explorer extends React.Component {
 	render() {
 		return (
-			<ul id="tags">
-				{data.map(tag =>
-					<TagSelect key={tag.name} tag={tag} />
-				)}
-			</ul>
+			<div>
+				<h1>Les prélèvements sociaux sur les salaires</h1>
+				<ul id="tags">
+					{this.props.tags.map(tag =>
+						<TagSelect key={tag.name} tag={tag} />
+					)}
+				</ul>
+				<ul id="variables">
+					{this.props.variables.map((v, i) => <Variable key={i} data={v}/>)}
+				</ul>
+			</div>
 		)
 	}
 }
@@ -26,3 +40,14 @@ class TagSelect extends React.Component {
 		</li>)
 	}
 }
+
+const mapStateToProps = (state) => (
+	{
+		variables: selectVariables(state),
+		tags: selectTagStats(state)
+	}
+)
+
+const VariableExplorer = connect(mapStateToProps)(Explorer)
+
+export default VariableExplorer

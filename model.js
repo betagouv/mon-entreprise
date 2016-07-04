@@ -20,7 +20,7 @@ let
 			return conflicts
 		}, []),
 
-	list =
+	finalVariables =
 		Object.keys(groupedByVariableName)
 			.reduce((list, name) => {
 				let items = groupedByVariableName[name]
@@ -47,25 +47,6 @@ let
 					implémentation : capable de faire un calcul */
 					...newItems.filter(i => JSON.stringify(i).indexOf('values') + 1),
 					...list]
-			}, []),
+			}, [])
 
-	tagFrequencies =
-		list
-			.reduce((stats, variable) => {
-				Object.keys(variable.tags).map(
-					k => {
-						stats[k] = stats[k] || {number: 0, choices: new Set()}
-						stats[k].number = stats[k].number + 1
-						stats[k].choices.add(variable.tags[k])
-					}
-				)
-				return stats
-			}
-		, {}),
-
-	data =
-		Object.keys(tagFrequencies)
-			.reduce((acc, n) => ([...acc, {name: n, ...tagFrequencies[n]}]), [])
-			.sort((a, b) => b.number - a.number)
-
-export default data
+export default finalVariables

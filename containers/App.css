@@ -3,18 +3,26 @@ body {
 	color: #333;
 }
 
+h1 {
+	text-align: center;
+	font-weight: 200;
+	font-size: 200%;
+}
+
 ul {
 	list-style: none;
-	padding: 0
+	padding: 0;
+	margin: 0;
 }
 
 #tags {
-
 	text-transform: capitalize;
 	font-size: 140%;
 	font-weight: 300;
 	width: 20%;
-	border-right: 1px solid #aaa;
+	border-right: 1px solid #ccc;
+	padding: 1em;
+	display: inline-block;
 }
 
 #tags li {
@@ -35,4 +43,15 @@ ul {
 	padding: .05em .5em;
 	cursor: pointer;
 	border-radius: .1em
+}
+
+#variables {
+	width: 70%;
+	display: inline-block;
+	padding: 3%;
+}
+
+.variable {
+	width: 12em;
+	display: inline-block;
 }

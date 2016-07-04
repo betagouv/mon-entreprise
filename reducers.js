@@ -14,6 +14,7 @@ function selectTag(state = {}, action) {
 }
 
 
+
 export default combineReducers({
 	selectTag
 })
