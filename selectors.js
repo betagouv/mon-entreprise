@@ -20,7 +20,7 @@ const unorderedTagStats = finalVariables =>
 			.sort((a, b) => b.number - a.number)
 
 
-export const selectVariables = createSelector(
+export const getVariables = createSelector(
 	[state => state.selectedTags],
 	tags =>
 		finalVariables.filter(variable =>
@@ -29,9 +29,13 @@ export const selectVariables = createSelector(
 		)
 )
 
-export const selectTagStats = createSelector(
-	[selectVariables],
-	variables => {
-		return tagStats(unorderedTagStats(variables))
-	}
+const getTagStats = createSelector(
+	[getVariables],
+	variables => tagStats(unorderedTagStats(variables))
+)
+
+export const getTagsToSelect = createSelector(
+	[getTagStats, state => state.selectedTags],
+	(availableTags, selectedTags) =>
+		availableTags.filter(t => !selectedTags.find(([name]) => t.name === name))
 )

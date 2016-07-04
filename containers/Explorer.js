@@ -1,8 +1,7 @@
 import React from 'react'
-import {selectVariables, selectTagStats} from '../selectors'
 import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import * as actions from '../actions'
+import {getVariables} from '../selectors'
+import TagNavigation from '../components/TagNavigation'
 
 const Variable = ({data: {variable, tags}}) => <li className="variable">
 	<h3>{variable}</h3>
@@ -17,11 +16,7 @@ class Explorer extends React.Component {
 		return (
 			<div>
 				<h1>Les prélèvements sociaux sur les salaires</h1>
-				<ul id="tags">
-					{tags.map(tag =>
-						<TagSelect selectTag={actions.selectTag} key={tag.name} tag={tag} />
-					)}
-				</ul>
+				<TagNavigation tags={tags} />
 				<ul id="variables">
 					{variables.map((v, i) => <Variable key={i} data={v}/>)}
 				</ul>
@@ -30,33 +25,13 @@ class Explorer extends React.Component {
 	}
 }
 
-class TagSelect extends React.Component {
-	render(){
-		let {tag: {name, choices, number}, selectTag} = this.props
-		return (<li>
-			<span className="name">{`${name} (${number} variables)`}</span>
-			<ul className="choices">
-				{[...choices].map(c =>
-					<li key={c} onClick={() => selectTag(name, c)}>
-					{c}
-					</li>
-				)}
-			</ul>
-		</li>)
-	}
-}
 
 const mapStateToProps = state => (
 	{
-		variables: selectVariables(state),
-		tags: selectTagStats(state)
+		variables: getVariables(state)
 	}
 )
 
-const actionsToProps = dispatch => ({
-	actions: bindActionCreators(actions, dispatch),
-})
-
-const VariableExplorer = connect(mapStateToProps, actionsToProps)(Explorer)
+const VariableExplorer = connect(mapStateToProps)(Explorer)
 
 export default VariableExplorer

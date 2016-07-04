@@ -15,7 +15,11 @@ ul {
 	margin: 0;
 }
 
-#tags {
+li {
+	margin: 0;
+}
+
+#tag-navigation {
 	text-transform: capitalize;
 	font-size: 140%;
 	font-weight: 300;
@@ -25,30 +29,37 @@ ul {
 	display: inline-block;
 }
 
-#tags li {
-	margin-top: 1em;
+#to-select > li {
+	margin-bottom: 1.5em;
 }
 
 .choices {
-
+	margin-top: .6em;
 }
 .choices li {
 	font-size: 75%;
 	font-weight: 400;
 	display: inline-block;
 	text-align: right;
-	margin-left: 1em;
+	margin-right: 1em;
 	background: #16a085;
 	color: white;
-	padding: .05em .5em;
+	padding: .05em .6em;
 	cursor: pointer;
 	border-radius: .1em
+}
+
+#selected {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: .6em;
+	margin-bottom: 2em;
 }
 
 #variables {
 	width: 70%;
 	display: inline-block;
 	padding: 3%;
+	position: absolute;
 }
 
 .variable {
