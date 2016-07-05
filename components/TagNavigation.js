@@ -1,13 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import * as actions from '../actions'
-import {bindActionCreators} from 'redux'
-import {getSelectedTags, getTagsToSelect} from '../selectors'
 
 
 export default class TagNavigation extends React.Component {
 	render(){
-		let {tagsToSelect, selectedTags, actions: {selectTag}} = this.props
+		let {tagsToSelect, selectedTags, selectTag} = this.props
 		return (
 			<section id="tag-navigation">
 				<ul id="selected">
@@ -43,18 +39,4 @@ class Tag extends React.Component {
 	}
 }
 
-
-
-
-const mapStateToProps = state => (
-	{
-		selectedTags: state.selectedTags,
-		tagsToSelect: getTagsToSelect(state)
-	}
-)
-
-const actionsToProps = dispatch => ({
-	actions: bindActionCreators(actions, dispatch)
-})
-
-export default connect(mapStateToProps, actionsToProps)(TagNavigation)
+export default TagNavigation
