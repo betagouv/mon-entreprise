@@ -63,6 +63,15 @@ li {
 }
 
 .variable {
-	width: 12em;
+	width: 13em;
 	display: inline-block;
+	margin-bottom: 1em;
+	margin-right: 1em;
+	padding: .6em;
+	vertical-align: top;
+  height: 13em;
+}
+
+.variable ul {
+	padding-left: .6em
 }
