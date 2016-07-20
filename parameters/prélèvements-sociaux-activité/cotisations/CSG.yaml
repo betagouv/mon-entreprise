@@ -1,0 +1,11 @@
+- variable: CSG
+  tags:
+    déductible: non
+  calc:
+    ad hoc: CSG imposable salaire
+
+- variable: CSG
+  tags:
+    déductible: oui
+  calc:
+    ad hoc: CSG déductible salaire

@@ -6,12 +6,14 @@ export default class TagNavigation extends React.Component {
 		let {tagsToSelect, selectedTags, selectTag} = this.props
 		return (
 			<section id="tag-navigation">
-				<ul id="selected">
-					{selectedTags.map(([name, value]) => <li>
-						{name + ': ' + value}
-					</li>)
-					}
-				</ul>
+				{selectedTags.length > 0 &&
+					<ul id="selected">
+						{selectedTags.map(([name, value]) => <li>
+							{name + ': ' + value}
+						</li>)
+						}
+					</ul>
+				}
 				<ul id="to-select">
 					{tagsToSelect.map(tag =>
 						<Tag selectTag={selectTag} key={tag.name} tag={tag} />

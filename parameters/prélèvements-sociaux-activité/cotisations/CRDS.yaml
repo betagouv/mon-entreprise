@@ -1,0 +1,3 @@
+- variable: CRDS
+  calc:
+    ad hoc: crds_salaire

@@ -1,7 +1,7 @@
 - variable: maladie
   tags:
-    branche: maladie
-    plafonnée: oui
+    - plafonnée
+    - branche: maladie
   linear:
     base: assiette_cotisations_sociales
     limit: 4
@@ -42,10 +42,14 @@
       1994-01-01: .0386
       1993-07-01: .03770
 
-- variable: maladie alsace moselle
-  complete la variable: maladie
+- variable: maladie
+  complément: oui
   # Ceci signifie que cette spécification ne remplace pas
   # la variable de base du même nom, mais s'y ajoute !
+  # Pourrait aussi être exprimé comme
+  # règle: +
+  # par opposition au défaut d'écrasement par spécificité de tags
+  description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
   tags:
     au nom de: salarié
   conditions:
@@ -63,6 +67,7 @@
       1989-09-01: 0.75
 
 - variable: maladie alsace moselle
+  complément: oui
   tags:
     au nom de: salarié
   conditions:

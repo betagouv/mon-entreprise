@@ -1,0 +1,16 @@
+- variable: crédit impot compétitivité emploi
+  initiales: CICE
+  depuis: 2013-1-1
+  calc: ad hoc
+
+- variable: aide premier salarie
+  tags:
+    type aide: aide embauche
+  depuis: 2015-6-9
+  calc: ad hoc
+
+- variable: aide embauche pme
+  tags:
+    type aide: aide embauche
+  depuis: 2015-1-18
+  calc: ad hoc
