@@ -6,7 +6,7 @@
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC
-  reference: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  référence: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
   conditions:
     categorie_salarié: privé cadre
   commentaires: |

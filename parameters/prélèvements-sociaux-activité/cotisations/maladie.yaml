@@ -48,6 +48,7 @@
   # règle: +
   # par opposition au défaut d'écrasement par spécificité de tags
   description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
+  référence: https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
   tags:
     dû par: salarié
   conditions:

@@ -1,5 +1,6 @@
 - variable: apprentissage
   description: Taxes d'apprentissage
+  référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
   tags:
     branche: ?
   conditions:
@@ -10,6 +11,8 @@
 - variable: apprentissage
   tags:
     apprentissage: taxe de base
+  # TODO introduire la répartition entre part régionale, quota d'app., hors quota
+  # https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
   linear:
     values:
       2017-01-01: 0.0068

@@ -1,0 +1,20 @@
+- variable: participation effort construction
+  description:
+    - Participation des employeurs à l'effort de construction
+    - Dispositif du 1 % logement
+
+  référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
+  # TODO c'est une cotisation à versement particulier : plusieurs possibilités
+  tags:
+    branche: ?
+    dû par: employeur
+  une des conditions:
+    - "régime = général et effectif_entreprise >= 20"
+    - "régime = agricole et effectif_entreprise >= 50"
+  linear:
+    base: assiette_cotisations_sociales
+    var:
+      - condition: "régime = agricole"
+    values:
+      2015-01-01: 0.0045
+      1992-01-01: 0.0045
