@@ -15,7 +15,7 @@
 
 - variable: AGFF
   tags:
-    au nom de: employeur
+    dû par: employeur
   conditions:
     categorie_salarié: privé non cadre
 
@@ -33,7 +33,7 @@
 
 - variable: AGFF
   tags:
-    au nom de: salarié
+    dû par: salarié
   conditions:
     categorie_salarié: privé non cadre
 
@@ -51,7 +51,7 @@
 
 - variable: AGFF
   tags:
-    au nom de: salarié
+    dû par: salarié
   conditions:
     categorie_salarié: privé cadre
 
@@ -74,7 +74,7 @@
 
 - variable: AGFF
   tags:
-    au nom de: employeur
+    dû par: employeur
   conditions:
     categorie_salarié: privé cadre
 

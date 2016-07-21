@@ -17,7 +17,7 @@
 
 - variable: AGIRC
   tags:
-    au nom de: employeur
+    dû par: employeur
   marginalRateTaxScale:
     - threshold: 0
       rate: 0
@@ -40,7 +40,7 @@
 
 - variable: AGIRC
   tags:
-    au nom de: salarié
+    dû par: salarié
   marginalRateTaxScale:
     - threshold: 0
       rate: 0

@@ -13,7 +13,7 @@
 
 - variable: APEC
   tags:
-    au nom de: employeur
+    dû par: employeur
   marginalRateTaxScale:
     - threshold: 0
       rate:
@@ -31,7 +31,7 @@
 
 - variable: APEC
   tags:
-    au nom de: salarié
+    dû par: salarié
   marginalRateTaxScale:
     - threshold: 0
       rate:

@@ -9,7 +9,7 @@
 
 - variable: chomage
   tags:
-    au nom de: employeur
+    dû par: employeur
   linear:
     values:
       2017-01-01: 0.1284
@@ -18,7 +18,7 @@
 
 - variable: chomage
   tags:
-    au nom de: salarié
+    dû par: salarié
   linear:
     values:
       2014-01-01: .0075

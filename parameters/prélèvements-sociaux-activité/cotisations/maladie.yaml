@@ -8,7 +8,7 @@
 
 - variable: maladie
   tags:
-    au nom de: employeur
+    dû par: employeur
   linear:
     values:
       2016-01-01: 0.04
@@ -26,7 +26,7 @@
 
 - variable: maladie
   tags:
-    au nom de: salarié
+    dû par: salarié
   linear:
     values:
       2016-01-01: .024
@@ -51,7 +51,7 @@
   # par opposition au défaut d'écrasement par spécificité de tags
   description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
   tags:
-    au nom de: salarié
+    dû par: salarié
   conditions:
     régime géographique: Alsace-Moselle
   linear:
@@ -69,7 +69,7 @@
 - variable: maladie alsace moselle
   complément: oui
   tags:
-    au nom de: salarié
+    dû par: salarié
   conditions:
     régime géographique: Alsace-Moselle
     régime: agricole

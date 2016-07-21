@@ -30,4 +30,4 @@
   +: @rémunérations + @primes et indémnités
   +:
     type: cotisations
-    au nom de: employeur
+    dû par: employeur

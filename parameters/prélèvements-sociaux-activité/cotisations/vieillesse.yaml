@@ -10,7 +10,7 @@
 
 - variable: vieillesse
   tags:
-    au nom de: salarié
+    dû par: salarié
     plafonnée: non
   linear:
     values:
@@ -23,7 +23,7 @@
 
 - variable: vieillesse
   tags:
-    au nom de: employeur
+    dû par: employeur
     plafonnée: non
   linear:
     values:
@@ -42,7 +42,7 @@
 
 - variable: vieillesse
   tags:
-    au nom de: salarié
+    dû par: salarié
     plafonnée: oui
   linear:
     values:
@@ -56,7 +56,7 @@
 
 - variable: vieillesse
   tags:
-    au nom de: employeur
+    dû par: employeur
     plafonnée: oui
   linear:
     values:
