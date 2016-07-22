@@ -3,7 +3,8 @@
     branche: chomage
     recouvreur: URSSAF
     destinataire: Pôle emploi
-
+  conditions:
+    assimilé salarié:  non
   linear:
     base: assiette_cotisations_sociales
 

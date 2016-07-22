@@ -8,9 +8,8 @@
   tags:
     branche: ?
     dû par: employeur
-  une des conditions:
-    - "régime = général et effectif_entreprise >= 20"
-    - "régime = agricole et effectif_entreprise >= 50"
+  conditions:
+    - redevable effort construction
   linear:
     base: assiette_cotisations_sociales
     var:
@@ -18,3 +17,12 @@
     values:
       2015-01-01: 0.0045
       1992-01-01: 0.0045
+
+- variable: redevable effort construction
+  conditions:
+    - régime général: effectif_entreprise >= 20
+    - régime agricole: effectif_entreprise >= 50
+  # Cette syntaxe (retour à la ligne pour un OU et indentation pour un ET) permet d'exprimer :
+  # l'une des conditions:
+  #   - "régime = général et effectif_entreprise >= 20"
+  #   - "régime = agricole et effectif_entreprise >= 50"

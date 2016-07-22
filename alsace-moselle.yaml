@@ -1,0 +1,7 @@
+- variable: régime Alsace-Moselle
+  conditions:
+    - affiliation 2012 conservée
+    - département activité salarié ⊂ [57 67 68]
+    - itinérance en Alsace-Moselle:
+      - département établissement ⊂ [57 67 68]
+      - itinérance en Alsace-Moselle contractualisée

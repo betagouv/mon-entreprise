@@ -21,7 +21,7 @@
 
 - variable: apprentissage
   tags:
-    régime géographique: Alsace-Moselle
+    - régime Alsace-Moselle
   linear:
     values:
       2017-01-01: 0.0044
