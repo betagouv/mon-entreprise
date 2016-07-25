@@ -1,0 +1,34 @@
+- variable: contribution formation professionnelle
+  tags:
+    dû par: employeur
+    collecteur: OPCA
+  notes: |
+    - Le seuil supérieur disparaît en 2016 et se confond avec le seuil des TPE
+    - A faire : majoration pour les entreprises de travail temporaire
+  local:
+    seuil:
+      historique:
+        2016-01-01: 11
+        passé: 10
+  conditions:
+    effectif entreprise >= 20:
+      historique:
+        2016-01-01: 0.01
+        2015-01-01: 0.01
+        2004-01-01: 0.016
+        1993-01-01: 0.015
+        1992-01-01: 0.014
+    effectif entreprise >= seuil:
+      historique:
+        2016-01-01: 0.01
+        2015-01-01: 0.01
+        2005-01-01: 0.0105
+        2004-01-01: 0.016
+        1993-01-01: 0.015
+        1992-01-01: 0.014
+    effectif entreprise < seuil::
+      historique:
+        2016-01-01: 0.0055
+        2005-01-01: 0.0055
+        2004-01-01: 0.004
+        1993-01-01: 0.0015
