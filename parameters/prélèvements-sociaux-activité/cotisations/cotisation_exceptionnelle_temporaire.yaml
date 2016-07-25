@@ -9,7 +9,7 @@
   tags:
     dû par: employeur
   linear:
-    values:
+    historique:
       2016-01-01: .0022
       2001-01-01: .0022
       2000-01-01: .0017
@@ -21,7 +21,7 @@
   tags:
     dû par: salarié
   linear:
-    values:
+    historique:
       2016-01-01: .0013
       2001-01-01: .0013
       2000-01-01: .0011

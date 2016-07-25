@@ -14,7 +14,7 @@
     base: assiette_cotisations_sociales
     var:
       - condition: "régime = agricole"
-    values:
+    historique:
       2015-01-01: 0.0045
       1992-01-01: 0.0045
 

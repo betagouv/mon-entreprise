@@ -1,10 +1,11 @@
 - variable: vieillesse
+  description: Cotisation au régime de retraite de base des salariés.
   tags:
     branche: retraite
     type de retraite: de base
-    recouvreur: URSSAF
+    collecteur: URSSAF
     destinataire: CNAV
-
+  # CTP: 100
   linear:
     base: assiette_cotisations_sociales
 
@@ -13,7 +14,7 @@
     dû par: salarié
     plafonnée: non
   linear:
-    values:
+    historique:
       2018-01-01: .004
       2017-01-01: .004
       2016-01-01: .0035
@@ -26,7 +27,7 @@
     dû par: employeur
     plafonnée: non
   linear:
-    values:
+    historique:
       2018-01-01: 0.019
       2017-01-01: 0.019
       2016-01-01: 0.0185
@@ -45,7 +46,7 @@
     dû par: salarié
     plafonnée: oui
   linear:
-    values:
+    historique:
       2017-01-01: .0690
       2016-01-01: .0690
       2015-01-01: .0685
@@ -59,7 +60,7 @@
     dû par: employeur
     plafonnée: oui
   linear:
-    values:
+    historique:
       2017-01-01: .0855
       2016-01-01: .0855
       2015-01-01: .085

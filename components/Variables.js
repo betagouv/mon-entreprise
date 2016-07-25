@@ -1,6 +1,8 @@
 import React from 'react'
 
+import SelectedVariable from './SelectedVariable'
 import colors from './variable-colors.yaml'
+import R from 'ramda'
 
 function convertHex(hex,opacity){
 	let	r = parseInt(hex.substring(0,2), 16),
@@ -11,29 +13,36 @@ function convertHex(hex,opacity){
 	return result
 }
 
-const Variable = ({variable: {variable, tags}, selectedTags, variableColors}) =>
-	<li className="variable" style={{background: convertHex(variableColors[variable], .15)}}>
-		<h3>{variable}</h3>
-		<ul>
-			{Object.keys(tags)
-					.filter(name => !selectedTags.find(([n]) => name == n))
-					.map(name =>
-						<li key={name}>
-							{name + ': ' + tags[name]}
-						</li>
-					)}
-		</ul>
+const Variable = ({color, name, selectVariable}) =>
+	<li
+		className="variable" style={{background: convertHex(color, .15)}}
+		onClick={() => selectVariable(name)} >
+		<h3>{name}</h3>
 	</li>
 
 export default class Variables extends React.Component {
 	render(){
-		let {variables, selectedTags} = this.props,
-			variableSet =
-				variables.reduce((set, {variable}) => set.add(variable), new Set()), // get unique variable names
-			variableColors = [...variableSet].reduce((correspondance, v, i) => Object.assign(correspondance, {[v]: colors[i]}), {})
+		let {variables, selectedTags, selectedVariable, selectVariable} = this.props
+		console.log('variables prop in <Variables', variables)
+		// let
+		// 	variableSet =
+		// 		variables.reduce((set, {variable}) => set.add(variable), new Set()), // get unique variable names
+		// 	variableColors = [...variableSet].reduce((correspondance, v, i) => Object.assign(correspondance, {[v]: colors[i]}), {})
+
+		console.log('selectedVariable',selectedVariable)
+		if (selectedVariable != null)
+			return <SelectedVariable
+				variable={R.find(R.propEq('name', selectedVariable))(variables)}
+				selectedTags={selectedTags}
+			/>
 
 		return <ul id="variables">
-			{variables.map((v, i) => <Variable variableColors={variableColors} key={i} variable={v} selectedTags={selectedTags}/>)}
+			{variables.map((v, i) =>
+				<Variable key={i}
+					color={colors[i]} name={v.name}
+					selectVariable={selectVariable}
+					/>
+			)}
 		</ul>
 	}
 }

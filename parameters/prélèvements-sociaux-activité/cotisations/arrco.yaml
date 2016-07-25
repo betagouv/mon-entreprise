@@ -1,5 +1,5 @@
 - variable: ARRCO
-  description: |
+  description: >
     Cotisation de retraite complémentaire pour tous les salariés du secteur privé,
     (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
   référence: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
@@ -20,7 +20,7 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: .0465
           2015-01-01: .0465
           2014-01-01: .0458
@@ -40,7 +40,7 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: .031
           2015-01-01: .031
           2014-01-01: .0305
@@ -60,7 +60,7 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: .0465
           2015-01-01: .0465
           2014-01-01: .0458
@@ -71,7 +71,7 @@
           1993-07-01: .02952
     - threshold: 1
       rate:
-        values:
+        historique:
           2016-01-01: .1215
           2015-01-01: .1215
           2014-01-01: .1208
@@ -90,7 +90,7 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: .031
           2015-01-01: .031
           2014-01-01: .0305
@@ -101,7 +101,7 @@
           1993-01-01: .01968
     - threshold: 1
       rate:
-        values:
+        historique:
           2016-01-01: .081
           2015-01-01: .081
           2014-01-01: .0805

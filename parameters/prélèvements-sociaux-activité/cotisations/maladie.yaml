@@ -8,7 +8,7 @@
   tags:
     dû par: employeur
   linear:
-    values:
+    historique:
       2016-01-01: 0.04
       2007-01-01: 0.04
       2006-01-01: 0.0404
@@ -26,7 +26,7 @@
   tags:
     dû par: salarié
   linear:
-    values:
+    historique:
       2016-01-01: .024
       2007-01-01: .024
       2006-01-01: .0244
@@ -56,7 +56,7 @@
   linear:
     # base: selon cette source, la base est l'assiette de la CSG : https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
     # information non retrouvée ailleurs
-    values:
+    historique:
       2012-01-01: 1.5
       2008-01-01: 1.6
       2007-07-01: 1.7
@@ -75,7 +75,7 @@
     - régime Alsace-Moselle
     - régime: agricole
   linear:
-    values:
+    historique:
       2014-01-01: 1.1
       2011-07-01: 1.2
       2008-07-01: 1.3

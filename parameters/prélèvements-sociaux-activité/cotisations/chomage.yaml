@@ -1,19 +1,26 @@
 - variable: chomage
+  description: Cotisation d’assurance chômage
   tags:
-    - plafonnée
-    - branche: chomage
-      recouvreur: URSSAF
-      destinataire: Pôle emploi
+    plafonnée: oui
+    branche: chomage
+    collecteur: URSSAF
+    destinataire: Pôle emploi
+    # Devrait être :
+    # - plafonnée
+    # - branche: chomage
+    #   collecteur: URSSAF
+    #   destinataire: Pôle emploi
   conditions:
     assimilé salarié:  non
   linear:
     base: assiette cotisations sociales
     limit: 4 * plafond sécurité sociale
+
 - variable: chomage
   tags:
     dû par: employeur
   linear:
-    values:
+    historique:
       2015-01-01: 0.04
       2007-01-01: 0.04
       2006-01-01: 0.0404
@@ -31,7 +38,7 @@
   tags:
     dû par: salarié
   linear:
-    values:
+    historique:
       2015-01-01: .024
       2007-01-01: .024
       2006-01-01: .0244

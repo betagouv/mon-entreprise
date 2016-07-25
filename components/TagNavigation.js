@@ -8,7 +8,7 @@ export default class TagNavigation extends React.Component {
 			<section id="tag-navigation">
 				{selectedTags.length > 0 &&
 					<ul id="selected">
-						{selectedTags.map(([name, value]) => <li>
+						{selectedTags.map(([name, value]) => <li key={name}>
 							{name + ': ' + value}
 						</li>)
 						}

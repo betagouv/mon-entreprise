@@ -17,13 +17,13 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: 0.00036
           2011-01-01: 0.00036
           1993-07-01: 0
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: 0.00036
           1993-07-01: 0.00036
     - threshold: 4
@@ -35,13 +35,13 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: 0.00024
           2011-01-01: 0.00024
           1993-07-01: 0
     - threshold: 0
       rate:
-        values:
+        historique:
           2016-01-01: 0.00024
           1993-07-01: 0.00024
     - threshold: 4

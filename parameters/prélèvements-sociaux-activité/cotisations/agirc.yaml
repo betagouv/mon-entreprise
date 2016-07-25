@@ -23,7 +23,7 @@
       rate: 0
     - threshold: 1
       rate:
-        values:
+        historique:
           2016-01-01: .1275
           2015-01-01: .1275
           2014-01-01: .1268
@@ -46,7 +46,7 @@
       rate: 0
     - threshold: 1
       rate:
-        values:
+        historique:
           2016-01-01: .078
           2015-01-01: .078
           2014-01-01: .0775

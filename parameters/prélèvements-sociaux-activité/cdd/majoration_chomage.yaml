@@ -1,4 +1,4 @@
-- variable: chomage
+- variable: majorationchomage #Devrait être chomage
   alias: majoration chomage
   description: Majoration des contributions patronales d’assurance chômage
   complément: oui

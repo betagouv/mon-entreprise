@@ -1,52 +1,68 @@
 import parameters from './load-parameters'
 import deepAssign from 'deep-assign'
-
-let
-	groupedByVariableName = parameters
-		.filter(p => p && p.variable)
-		.reduce((acc, p) => {
-			let variableName = p.variable
-			if (acc[variableName])
-				acc[variableName].push(p)
-			else
-				acc[variableName] = [p]
-			return acc
-		}, {}),
-
-	conflictingTags = (tags1, tags2) =>
-		Object.keys(tags1).reduce((conflicts, k) => {
-			if (typeof tags2[k] != 'undefined' && tags2[k] !== tags1[k])
-				conflicts.push(k)
-			return conflicts
-		}, []),
-
-	finalVariables =
-		Object.keys(groupedByVariableName)
-			.reduce((list, name) => {
-				let items = groupedByVariableName[name]
-				/* 	Les items sont des fragments de variables.
-						Les premiers fragments vont être fusionnés dans les suivants,
-						sauf s'il introduit un écrasement d'un tag */
-				let newItems = items.slice(1).reduce((mergedItems, item) => {
-					let mergedItem = mergedItems.reduce((final, itemBefore) => {
-						let oups = conflictingTags(itemBefore.tags, item.tags)
-						//console.log('conflicts for ', itemBefore.tags, item.tags)
-						return oups.length ? item : deepAssign({}, item, itemBefore)
-					},
-					item)
-					mergedItems.push(mergedItem)
-					return mergedItems
-				},
-				[items[0]])
+import R from 'ramda'
 
 
+let	groupedItemsByVariable = R.groupBy(R.prop('variable'))(parameters),
+	higherOrderVariables = R.pipe(
+		R.keys,
+		R.map(R.pipe(
+				R.propEq('variable'),
+				R.flip(R.find)(parameters)
+		))
+	)(groupedItemsByVariable),
 
+	hasHistoryProp = R.pipe(JSON.stringify, R.contains('"historique":')),
+	itemHasHistoricProp = (item, prop) => R.has(prop)(item) && hasHistoryProp(item[prop]),
+	itemIsCalculable = item =>
+		itemHasHistoricProp(item, 'linear') || itemHasHistoricProp(item, 'marginalRateTaxScale'),
 
-				return [
-					/* Gardons seulement les variables ayant une
-					implémentation : capable de faire un calcul */
-					...newItems.filter(i => JSON.stringify(i).indexOf('values') + 1),
-					...list]
-			}, [])
+	tagsConflict = (tags1, tags2) =>
+		R.compose(
+			R.any(R.identity),
+			R.values,
+			R.mapObjIndexed((tagValue, tag) => tags2[tag] != undefined && tags2[tag] !== tagValue)
+		)(tags1),
 
-export default finalVariables
+	mergedItemsByVariable =
+		R.mapObjIndexed((variableItems, name) => {
+			/* 	Les items sont des fragments de variables.
+					Les premiers fragments vont être fusionnés dans les suivants,
+					sauf s'ils provoquent l'écrasement d'un tag */
+			let mergedVariableItems = R.tail(variableItems) // Le premier ne peut être étendu
+			.reduce((mergedItems, item) =>
+				[	...mergedItems,
+					mergedItems.reduce((final, higherLevelItem) => {
+						let oups = tagsConflict(higherLevelItem.tags, item.tags)
+						return oups ? item : deepAssign({}, item, higherLevelItem)
+					}, item)
+				], R.of(R.head(variableItems)))
+
+			return {
+				name,
+				// La variable de haut niveau, contenant la plupart du temps une description, etc.
+				first: R.head(variableItems),
+				// Tous les tags qui peuvent être trouvés dans les items de cette variable
+				tags: R.pipe(
+					R.pluck('tags'),
+					R.map(R.map(R.of)),
+					R.reduce(R.mergeWith(R.union), {})
+				)(variableItems),
+				// Gardons seulement les variables ayant une implémentation : capable de faire un calcul
+				calculable: R.filter(itemIsCalculable)(mergedVariableItems)
+			}}
+		)(groupedItemsByVariable)
+
+let	calculableItems =
+		R.pipe(
+			R.values,
+			R.pluck('calculable'),
+			R.unnest
+		)(mergedItemsByVariable),
+	mergedItems = R.values(mergedItemsByVariable)
+
+export {
+	groupedItemsByVariable,
+	calculableItems,
+	mergedItems
+}

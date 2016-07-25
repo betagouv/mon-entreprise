@@ -9,7 +9,7 @@
   linear:
     base: assiette_cotisations_sociales
     limit: 4 * plafond_securite_sociale
-    values:
+    historique:
       2017-01-01: 0.0025
       2016-01-01: 0.0025
       2011-04-01: 0.003

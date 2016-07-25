@@ -22,11 +22,11 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2001-04-01: .008
     - threshold: 1
       rate:
-        values:
+        historique:
           2001-04-01: .009
     - threshold: 3
       rate: 0
@@ -40,11 +40,11 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2001-04-01: .008
     - threshold: 1
       rate:
-        values:
+        historique:
           2001-04-01: .009
     - threshold: 3
       rate: 0
@@ -58,15 +58,15 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2001-04-01: .008
     - threshold: 1
       rate:
-        values:
+        historique:
           2001-04-01: .009
     - threshold: 4
       rate:
-        values:
+        historique:
           2016-01-01: .009
           2001-04-01: 0
     - threshold: 8
@@ -81,15 +81,15 @@
   marginalRateTaxScale:
     - threshold: 0
       rate:
-        values:
+        historique:
           2001-04-01: .012
     - threshold: 1
       rate:
-        values:
+        historique:
           2001-04-01: .013
     - threshold: 4
       rate:
-        values:
+        historique:
           2016-01-01: .013
           2001-04-01: 0
     - threshold: 8

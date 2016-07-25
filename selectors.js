@@ -1,6 +1,22 @@
 import { createSelector } from 'reselect'
-import finalVariables from './model'
+import {calculableItems, higherOrderVariables, mergedItems} from './model'
+import R from 'ramda'
 
+let
+	// variableHasTagValue = variable => ([tag, value]) => console.log('tv', variable.tags, tag, value),
+	variableHasTagValue = variable => ([osef, [tag, value]]) => R.pathEq(['tags', tag], value)(variable),
+	variableHasSelectedTags = variable => R.compose(
+		R.all(variableHasTagValue(variable)),
+		R.toPairs
+	),
+	filterVariables = variables => tags => R.filter(item => variableHasSelectedTags(item)(tags))(variables)
+
+export const finalVariablesSelector = createSelector(
+	[state => state.selectedTags],
+	filterVariables(calculableItems)
+)
+
+/* Tag names, values, and number of variables per tag */
 const unorderedTagStats = finalVariables =>
 	finalVariables
 		.reduce((stats, variable) => {
@@ -19,23 +35,23 @@ const unorderedTagStats = finalVariables =>
 			.reduce((acc, n) => ([...acc, {name: n, ...stats[n]}]), [])
 			.sort((a, b) => b.number - a.number)
 
-
-export const getVariables = createSelector(
-	[state => state.selectedTags],
-	tags =>
-		finalVariables.filter(variable =>
-			//This variable must be tagged as described in the selected tags array
-			tags == null ? true : tags.reduce((result, [k, v]) => result && variable.tags && variable.tags[k] === v, true)
-		)
-)
-
-const getTagStats = createSelector(
-	[getVariables],
+let tagStatsSelector = createSelector(
+	[finalVariablesSelector],
 	variables => tagStats(unorderedTagStats(variables))
 )
 
-export const getTagsToSelect = createSelector(
-	[getTagStats, state => state.selectedTags],
-	(availableTags, selectedTags) =>
+export let tagsToSelectSelector = createSelector(
+	[state => state.selectedTags, tagStatsSelector],
+	(selectedTags, availableTags) =>
 		availableTags.filter(t => !selectedTags.find(([name]) => t.name === name))
+)
+
+export let variablesSelector = createSelector(
+	[state => state.selectedTags],
+	selectedTags =>	R.filter(
+		({tags}) =>
+			R.all(
+				([tag, value]) => R.contains(value, tags[tag]),
+			)(selectedTags)
+	)(mergedItems)
 )

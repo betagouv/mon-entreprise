@@ -7,6 +7,6 @@
 
   linear:
     base: assiette_cotisations_sociales
-    values:
+    historique:
       2015-01-01: .003
       2004-07-01: .003

@@ -6,7 +6,7 @@ body {
 h1 {
 	text-align: center;
 	font-weight: 200;
-	font-size: 200%;
+	font-size: 215%;
 }
 
 ul {
@@ -63,15 +63,35 @@ li {
 }
 
 .variable {
-	width: 13em;
+	width: 6em;
 	display: inline-block;
 	margin-bottom: 1em;
 	margin-right: 1em;
-	padding: .6em;
-	vertical-align: top;
-  height: 13em;
+	padding: 1em 2em;
+	text-align: center;
+	text-transform: capitalize;
 }
 
 .variable ul {
 	padding-left: .6em
+}
+
+#selected-variable {
+	width: 70%;
+	display: inline-block;
+	position: absolute;
+}
+
+#selected-variable h1 {
+	text-transform: capitalize;
+	font-size: 180%;
+}
+
+#selected-variable p {
+	width: 50%;
+	margin: 0 auto;
+	border: 1px solid #ddd;
+	border-left: 2px solid #ddd;
+	padding: 1em 2em;
+
 }
