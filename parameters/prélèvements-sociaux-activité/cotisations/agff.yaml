@@ -7,7 +7,7 @@
     type de retraite: complémentaire
     destinataire: AGFF
   référence: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
-  commentaires: |
+  notes: |
     Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
 
   marginalRateTaxScale:

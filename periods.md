@@ -59,6 +59,9 @@ Donc selon l'URSSAF le calcul des cotisations se fait sur l'année !
 Et puis :
 > Vous pouvez, si vous le souhaitez, effectuer tous les mois une régularisation des plafonds de Sécurité sociale. Cette méthode permet d’éviter des régularisations trop importantes (en positif ou en négatif) en fin d’année.
 
+BILAN
+-------
+
 Cette *régularisation progressive* n'est pas implémenté aujourd'hui
 Elle est pourtant **obligatoire pour la DSN** !!
-Je crois bien que c'est exactement ça qui est implémenté pour les deux réductions fillon et allocs. Il faut le refaire pour toutes les cotisations non comportant des tranches. 
+Je crois bien que c'est exactement ça qui est implémenté pour les deux réductions fillon et allocs. Il faut le refaire pour toutes les cotisations non comportant des tranches.

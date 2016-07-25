@@ -1,0 +1,20 @@
+- variable: indemnité compensatrice congés payés
+  references:
+    - https://www.service-public.fr/particuliers/vosdroits/F2931
+    - https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
+  notes: |
+    - Selon service public :
+
+      Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+      Toutefois, si le salarié ne peut pas prendre tous ses congés avant le terme de son contrat, il bénéficie d'une indemnité compensatrice de congés payés.
+
+      Son montant, calculé en fonction de la durée effective du contrat, est au moins égal à 10 % de la rémunération totale brute perçue par le salarié. L'indemnité est également due en cas de rupture du CDD pendant la période d'essai.
+
+      L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
+
+    Mais, la loi El Khomri modifie l'article L3141-12:
+      avant : Les congés peuvent être pris dès l'ouverture des droits [...]
+      maintenant : Les congés peuvent être pris dès l’embauche [...]
+
+    En quoi cela modifie l'actuel ?

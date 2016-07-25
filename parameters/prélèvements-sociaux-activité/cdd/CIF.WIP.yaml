@@ -1,0 +1,12 @@
+- variable: CIF CDD
+  description: Conrtibution au financement du congé individuel de formation spécifique aux CDD
+  tags:
+    collecteur: OPCA
+  reference:  Code du travail - Article L6322-37
+  exclusions:
+    - CDD type saisonnier
+    - contrat jeune vacances
+    - contrat aidé
+    - contrat professionnalisation
+    - contrats d'apprentissage
+    - embauche en CDI suivant le CDD

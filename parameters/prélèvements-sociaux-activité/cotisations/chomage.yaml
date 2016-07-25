@@ -1,28 +1,46 @@
 - variable: chomage
   tags:
-    branche: chomage
-    recouvreur: URSSAF
-    destinataire: Pôle emploi
+    - plafonnée
+    - branche: chomage
+      recouvreur: URSSAF
+      destinataire: Pôle emploi
   conditions:
     assimilé salarié:  non
   linear:
-    base: assiette_cotisations_sociales
-
+    base: assiette cotisations sociales
+    limit: 4 * plafond sécurité sociale
 - variable: chomage
   tags:
     dû par: employeur
   linear:
     values:
-      2017-01-01: 0.1284
-      2016-01-01: 0.1284
-      1992-07-01: 0.128
+      2015-01-01: 0.04
+      2007-01-01: 0.04
+      2006-01-01: 0.0404
+      2003-01-01: 0.04
+      2002-07-01: 0.037
+      2002-01-01: 0.036
+      2001-04-01: 0.037
+      2001-01-01: 0.0499
+      1997-01-01: 0.0526
+      1994-01-01: 0.0547
+      1993-08-01: 0.0538
+      1993-07-01: 0.0483
 
 - variable: chomage
   tags:
     dû par: salarié
   linear:
     values:
-      2014-01-01: .0075
-      1998-01-01: .0075
-      1997-01-01: .055
-      1993-07-01: .068
+      2015-01-01: .024
+      2007-01-01: .024
+      2006-01-01: .0244
+      2003-01-01: .024
+      2002-07-01: .021
+      2002-01-01: .02
+      2001-07-01: .021
+      2001-04-01: .026
+      2001-01-01: .0349
+      1997-01-01: .036
+      1994-01-01: .0386
+      1993-07-01: .03770
