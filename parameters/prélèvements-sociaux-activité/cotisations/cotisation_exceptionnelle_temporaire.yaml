@@ -1,4 +1,8 @@
 - variable: cotisation exceptionnelle temporaire
+  tags:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC
   conditions:
     categorie salarie: prive cadre
   linear:

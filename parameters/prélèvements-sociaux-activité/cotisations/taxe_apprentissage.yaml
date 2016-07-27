@@ -29,7 +29,7 @@
 
 - variable: apprentissage
   description: Contribution supplémentaire à l'apprentissage
-  initiales: CSA
+  abbreviation: CSA
   tags:
     apprentissage: contribution supplémentaire
   linear:

@@ -1,5 +1,5 @@
 - variable: crédit impot compétitivité emploi
-  initiales: CICE
+  abbreviation: CICE
   depuis: 2013-1-1
   calc: ad hoc
 

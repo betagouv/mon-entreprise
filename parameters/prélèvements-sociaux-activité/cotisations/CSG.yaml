@@ -1,4 +1,5 @@
 - variable: CSG
+  description: Contribution sociale généralisée. Prélèvement obligatoire qui participe au financement de la sécurité sociale.
   tags:
     déductible: non
   calc:
@@ -6,6 +7,6 @@
 
 - variable: CSG
   tags:
-    déductible: oui
+    - déductible
   calc:
     ad hoc: CSG déductible salaire

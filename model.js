@@ -33,7 +33,7 @@ let
 let
 	groupedItemsByVariable = R.pipe(
 		// Desugar tags
-		R.map(p => R.merge(p, {tags: handleHybridTags(p.tags)})),
+		R.map(p => R.merge(p, {tags: handleHybridTags(p.tags) || {}})),
 		R.groupBy(R.prop('variable'))
 	)(parameters),
 	mergedItemsByVariable =

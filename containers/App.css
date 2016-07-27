@@ -1,4 +1,3 @@
-t
 body {
 	font-family: Open Sans;
 	color: #333;
@@ -64,13 +63,19 @@ li {
 }
 
 .variable {
-	width: 6em;
+	width: 8em;
+	min-height: 7em;
 	display: inline-block;
+	vertical-align: middle;
 	margin-bottom: 1em;
 	margin-right: 1em;
 	padding: 1em 2em;
 	text-align: center;
 	text-transform: capitalize;
+}
+.variable h3 {
+	font-weight: 400;
+	font-size: 120%;
 }
 
 .variable ul {
