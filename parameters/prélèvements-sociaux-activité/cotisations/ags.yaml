@@ -1,8 +1,8 @@
 - variable: AGS
   description: Cotisation au Régime de Garantie des Salaires
   tags:
-    dû par: employeur
-    plafonnée: oui
+    - plafonnée
+    - dû par: employeur
   conditions:
     assimilé salarié:  non
   reference: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409

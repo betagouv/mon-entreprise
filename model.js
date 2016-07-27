@@ -2,28 +2,40 @@ import parameters from './load-parameters'
 import deepAssign from 'deep-assign'
 import R from 'ramda'
 
-
-let	groupedItemsByVariable = R.groupBy(R.prop('variable'))(parameters),
-	higherOrderVariables = R.pipe(
-		R.keys,
-		R.map(R.pipe(
-				R.propEq('variable'),
-				R.flip(R.find)(parameters)
-		))
-	)(groupedItemsByVariable),
-
+/* Fonctions utiles */
+let
 	hasHistoryProp = R.pipe(JSON.stringify, R.contains('"historique":')),
 	itemHasHistoricProp = (item, prop) => R.has(prop)(item) && hasHistoryProp(item[prop]),
 	itemIsCalculable = item =>
 		itemHasHistoricProp(item, 'linear') || itemHasHistoricProp(item, 'marginalRateTaxScale'),
+
+	/*
+		L'attribut tags est une hash map,
+		ou une liste
+		- de clés, qui sont un moyen courant d'exprimer [clef]: oui
+		- de hash maps.
+		Cette fonction fusionne tout ceci dans un objet
+
+	*/
+	handleHybridTags = R.when(R.isArrayLike,
+		R.reduce((final, tag) =>
+			R.merge(final, R.is(Object, tag) ? tag : {[tag]: 'oui'})
+		, {})
+	),
 
 	tagsConflict = (tags1, tags2) =>
 		R.compose(
 			R.any(R.identity),
 			R.values,
 			R.mapObjIndexed((tagValue, tag) => tags2[tag] != undefined && tags2[tag] !== tagValue)
-		)(tags1),
+		)(tags1)
 
+let
+	groupedItemsByVariable = R.pipe(
+		// Desugar tags
+		R.map(p => R.merge(p, {tags: handleHybridTags(p.tags)})),
+		R.groupBy(R.prop('variable'))
+	)(parameters),
 	mergedItemsByVariable =
 		R.mapObjIndexed((variableItems, name) => {
 			/* 	Les items sont des fragments de variables.

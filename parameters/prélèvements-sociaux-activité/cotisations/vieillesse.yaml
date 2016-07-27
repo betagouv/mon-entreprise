@@ -37,14 +37,14 @@
 
 - variable: vieillesse
   tags:
-    plafonnée: oui
+    - plafonnée
   linear:
     limit: 4 * plafond_securite_sociale
 
 - variable: vieillesse
   tags:
-    dû par: salarié
-    plafonnée: oui
+    - plafonnée
+    - dû par: salarié
   linear:
     historique:
       2017-01-01: .0690
@@ -57,8 +57,8 @@
 
 - variable: vieillesse
   tags:
-    dû par: employeur
-    plafonnée: oui
+    - plafonnée
+    - dû par: employeur
   linear:
     historique:
       2017-01-01: .0855

@@ -1,15 +1,10 @@
 - variable: chomage
   description: Cotisation d’assurance chômage
   tags:
-    plafonnée: oui
-    branche: chomage
-    collecteur: URSSAF
-    destinataire: Pôle emploi
-    # Devrait être :
-    # - plafonnée
-    # - branche: chomage
-    #   collecteur: URSSAF
-    #   destinataire: Pôle emploi
+    - plafonnée
+    - branche: chomage
+      collecteur: URSSAF
+      destinataire: Pôle emploi
   conditions:
     assimilé salarié:  non
   linear:

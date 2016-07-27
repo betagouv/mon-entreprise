@@ -15,7 +15,7 @@ function convertHex(hex,opacity){
 
 const Variable = ({color, name, selectVariable}) =>
 	<li
-		className="variable" style={{background: convertHex(color, .15)}}
+		className="variable" style={{background: convertHex(color, .2)}}
 		onClick={() => selectVariable(name)} >
 		<h3>{name}</h3>
 	</li>
