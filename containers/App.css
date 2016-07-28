@@ -73,11 +73,13 @@ li {
 	color: #16a085;
 }
 
-#selected .tag-value {
+.tag-map .tag-value {
 	margin-left: 1em;
-	border: 1px solid #16a085;
-	color: #16a085;
+	background: #16a085;
+	border: none;
+	color: white;
 	margin-bottom: .5em;
+	cursor: default;
 }
 
 #selected button {
@@ -132,5 +134,4 @@ li {
 	border: 1px solid #ddd;
 	border-left: 2px solid #ddd;
 	padding: 1em 2em;
-
 }

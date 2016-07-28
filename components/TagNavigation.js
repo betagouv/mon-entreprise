@@ -1,5 +1,5 @@
 import React from 'react'
-
+import TagMap from './TagMap'
 
 export default class TagNavigation extends React.Component {
 	render(){
@@ -10,13 +10,7 @@ export default class TagNavigation extends React.Component {
 				<div className="content">
 					{selectedTags.length > 0 &&
 						<div id="selected">
-							<ul>
-								{selectedTags.map(([name, value]) => <li key={name}>
-									<span>{name}</span>:
-									<span className="tag-value">{value}</span>
-								</li>)
-								}
-							</ul>
+							<TagMap data={selectedTags} />
 							<button onClick={resetTags}>Effacer ma sélection ✕</button>
 						</div>
 					}
@@ -38,7 +32,7 @@ class Tag extends React.Component {
 			<span className="name">
 				{name}
 				<span className="nb">
-					({number} variables)
+					({number} variable{number > 1 ? 's' : ''})
 				</span>
 			</span>
 			<ul className="choices">

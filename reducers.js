@@ -13,7 +13,7 @@ function selectedTags(state = [], {type, tagName, tagValue}) {
 	}
 }
 
-function selectedVariable(state = null, {type, name}) {
+function selectedVariable(state = 'chomage', {type, name}) {
 	switch (type) {
 	case SELECT_VARIABLE:
 		return name
