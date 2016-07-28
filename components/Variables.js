@@ -2,6 +2,7 @@ import React from 'react'
 
 import SelectedVariable from './SelectedVariable'
 import colors from './variable-colors.yaml'
+console.log(colors.length);
 import R from 'ramda'
 
 function convertHex(hex,opacity){

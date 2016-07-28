@@ -9,11 +9,11 @@ import {tagsToSelectSelector, variablesSelector} from '../selectors'
 
 class Explorer extends React.Component {
 	render() {
-		let {variables, selectedTags, selectedVariable, tagsToSelect, actions: {selectTag, selectVariable}} = this.props
+		let {variables, selectedTags, selectedVariable, tagsToSelect, actions: {selectTag, resetTags, selectVariable}} = this.props
 		return (
 			<div>
 				<h1>Les prélèvements sociaux sur les salaires en France</h1>
-				<TagNavigation selectedTags={selectedTags} tagsToSelect={tagsToSelect} selectTag={selectTag}/>
+				<TagNavigation selectedTags={selectedTags} tagsToSelect={tagsToSelect} selectTag={selectTag} resetTags={resetTags}/>
 				<Variables variables={variables}
 					selectedTags={selectedTags} selectedVariable={selectedVariable}
 					selectVariable={selectVariable}/>

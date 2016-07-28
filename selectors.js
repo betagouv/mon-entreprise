@@ -51,7 +51,7 @@ export let variablesSelector = createSelector(
 	selectedTags =>	R.filter(
 		({tags}) =>
 			R.all(
-				([tag, value]) => R.contains(value, tags[tag]),
+				([tag, value]) => tags[tag] && R.contains(value, tags[tag]),
 			)(selectedTags)
 	)(mergedItems)
 )

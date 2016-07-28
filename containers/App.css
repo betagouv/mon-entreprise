@@ -20,13 +20,25 @@ li {
 }
 
 #tag-navigation {
-	text-transform: capitalize;
-	font-size: 140%;
+	font-size: 130%;
 	font-weight: 300;
 	width: 20%;
-	border-right: 1px solid #ccc;
 	padding: 1em;
 	display: inline-block;
+}
+#tag-navigation h2 {
+	font-size: 120%;
+	font-weight: 300;
+	margin-top: 0;
+	opacity: .65;
+	padding-bottom: .3em;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 0
+}
+#tag-navigation .content {
+	padding-top: 1.5em;
+	border-right: 1px solid #ccc;
+
 }
 
 #to-select > li {
@@ -36,23 +48,44 @@ li {
 .choices {
 	margin-top: .6em;
 }
-.choices li {
+.tag-value {
 	font-size: 75%;
 	font-weight: 400;
 	display: inline-block;
 	text-align: right;
 	margin-right: 1em;
-	background: #16a085;
-	color: white;
+	color: #2980b9;
+	border: 1px solid #2980b9;
 	padding: .05em .6em;
 	cursor: pointer;
 	border-radius: .1em
 }
+#to-select span.nb {
+	font-size: 60%;
+	margin-left: 2em;
+}
 
 #selected {
 	border-bottom: 1px solid #ccc;
-	padding-bottom: .6em;
-	margin-bottom: 2em;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+	font-weight: 500;
+	color: #16a085;
+}
+
+#selected .tag-value {
+	margin-left: 1em;
+	border: 1px solid #16a085;
+	color: #16a085;
+	margin-bottom: .5em;
+}
+
+#selected button {
+	background: none;
+	border: none;
+	float: right;
+	cursor: pointer;
+	color: #16a085;
 }
 
 #variables {
@@ -71,11 +104,11 @@ li {
 	margin-right: 1em;
 	padding: 1em 2em;
 	text-align: center;
-	text-transform: capitalize;
 }
 .variable h3 {
 	font-weight: 400;
 	font-size: 120%;
+	text-transform: capitalize;
 }
 
 .variable ul {

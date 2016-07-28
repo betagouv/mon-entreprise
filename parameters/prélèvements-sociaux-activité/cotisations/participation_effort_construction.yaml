@@ -6,7 +6,7 @@
   référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
   # TODO c'est une cotisation à versement particulier : plusieurs possibilités
   tags:
-    branche: ?
+    branche: aucune idée
     dû par: employeur
   conditions:
     - redevable effort construction

@@ -40,6 +40,7 @@
       1994-01-01: .0386
       1993-07-01: .03770
 
+# TODO pourquoi pas "s'ajoute à : maladie" ?
 - variable: maladie
   complément: oui
   # Ceci signifie que cette spécification ne remplace pas
@@ -67,7 +68,7 @@
       1994-01-01: 1
       1989-09-01: 0.75
 
-- variable: maladie alsace moselle
+- variable: maladie
   complément: oui
   tags:
     dû par: salarié

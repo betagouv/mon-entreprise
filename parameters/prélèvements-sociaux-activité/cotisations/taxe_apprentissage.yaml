@@ -2,7 +2,7 @@
   description: Taxes d'apprentissage
   référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
   tags:
-    branche: ?
+    branche: aucune idée
   conditions:
     entreprise_est_association_non_lucrative: non
   linear:

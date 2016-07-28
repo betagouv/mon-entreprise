@@ -25,9 +25,7 @@ sagaMiddleware.run(rootSaga)
 let anchor = document.querySelector('#js')
 
 render(
-	<AppContainer>
-		<App store={store}/>
-	</AppContainer>,
+		<App store={store}/>,
 	anchor
 )
 

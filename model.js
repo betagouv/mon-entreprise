@@ -73,6 +73,7 @@ let	calculableItems =
 		)(mergedItemsByVariable),
 	mergedItems = R.values(mergedItemsByVariable)
 
+console.log('LA', mergedItems)
 export {
 	groupedItemsByVariable,
 	calculableItems,
