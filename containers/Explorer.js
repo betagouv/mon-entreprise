@@ -12,7 +12,7 @@ class Explorer extends React.Component {
 		let {variables, selectedTags, selectedVariable, tagsToSelect, actions: {selectTag, resetTags, selectVariable}} = this.props
 		return (
 			<div>
-				<h1>Les prélèvements sociaux sur les salaires en France</h1>
+				<h1>Les prélèvements sociaux sur les salaires</h1>
 				<TagNavigation selectedTags={selectedTags} tagsToSelect={tagsToSelect} selectTag={selectTag} resetTags={resetTags}/>
 				<Variables variables={variables}
 					selectedTags={selectedTags} selectedVariable={selectedVariable}

@@ -1,33 +1,35 @@
-- variable: cout du travail
+- variable: coût du travail
   description: Coût du travail à long terme. Inclut les charges, aides et crédits différés
   +: salaire super brut
-  -: cout differe
+  -: cout différé
 
 # Ecriture alternative :
-- variable: cout du travail
-  somme: salaire super brut - cout différé
+  # somme: salaire super brut - cout différé
 
-# Définition d'une somme sur des tags plutôt que d'une liste de variables
-- variable: cout différé
-  description: Charges, aides et crédits différées ou particulières
+# Définition d'une somme sur des tags plutôt qu'une liste de variables
+- variable: coût différé
+  description: Charges, aides et crédits différés ou particuliers
   +:
-    - aide
-    - domaine: prélèvements sociaux
-      revenu: activité
+    tags:
+      - aide
+      - domaine: prélèvements sociaux
+        revenu: activité
+
 
 - variable: éxonérations et allègements
 
 
 - variable: salaire super brut
   description: Coût du travail à court terme. Inclut les exonérations et allègements de charges
-  somme: salaire super brut hors allegements - éxonérations et allègements
+  +: salaire super brut hors allegements
+  -: éxonérations et allègements
+
 
 - variable: salaire super brut hors allegements
   description: Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur
   tags:
     - salaire
-
   +: @rémunérations + @primes et indémnités
-  +:
-    type: cotisations
+  -:
+    type: cotisation
     dû par: employeur

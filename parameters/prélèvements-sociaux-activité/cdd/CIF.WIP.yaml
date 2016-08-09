@@ -3,10 +3,11 @@
   tags:
     collecteur: OPCA
   reference:  Code du travail - Article L6322-37
-  exclusions:
+  ne concerne pas:
     - CDD type saisonnier
     - contrat jeune vacances
     - contrat aidé
     - contrat professionnalisation
     - contrats d'apprentissage
     - embauche en CDI suivant le CDD
+    # - OU CDD prolongé en CDI

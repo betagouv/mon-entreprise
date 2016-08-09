@@ -13,7 +13,7 @@
     - Depuis le 1er juillet 2013
     - l'URSSAF explique longuement la notion de durée du CDD : "Comment déterminer la durée du CDD ?"
 
-  conditions: # première valeur trouvée, sinon 0
+  logique: # première valeur trouvée, sinon 0
     contrat_de_travail_duree = CDD:
       - embauche en CDI suivant le CDD: 0
       - CDD type accroissement temporaire d'activité:
