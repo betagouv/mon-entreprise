@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 
-import Explorer from './Explorer'
 import { Provider } from 'react-redux'
+import routes from '../routes'
+import Router from 'react-router'
+
 
 import './App.css'
 
@@ -10,7 +12,7 @@ export default class App extends Component {
 		const { store } = this.props
 		return (
 			<Provider store={store}>
-				<Explorer />
+				<Router routes={routes} history={history} />
 			</Provider>
 		)
 	}

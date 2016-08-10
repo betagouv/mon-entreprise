@@ -46,4 +46,3 @@ class Tag extends React.Component {
 	}
 }
 
-export default TagNavigation

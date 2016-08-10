@@ -11,3 +11,7 @@
     - contrats d'apprentissage
     - embauche en CDI suivant le CDD
     # - OU CDD prolongé en CDI
+
+  linéaire:
+    base: assiette cotisations sociales
+    historique: 9.999999

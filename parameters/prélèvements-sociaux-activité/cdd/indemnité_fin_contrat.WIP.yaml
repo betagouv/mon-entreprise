@@ -17,3 +17,7 @@ ne concerne pas :
 	- CDD senior
 - engagement employeur complément formation professionnelle
 - contrat jeune vacances (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
+
+linéaire:
+  base: salaire brut
+  historique: .1
