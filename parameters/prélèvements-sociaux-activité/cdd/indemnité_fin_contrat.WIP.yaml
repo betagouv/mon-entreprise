@@ -18,6 +18,6 @@ ne concerne pas :
 - engagement employeur complément formation professionnelle
 - contrat jeune vacances (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
 
-linéaire:
+linear:
   base: salaire brut
   historique: .1

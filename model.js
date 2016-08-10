@@ -63,17 +63,16 @@ let
 				// Gardons seulement les variables ayant une implémentation : capable de faire un calcul
 				calculable: R.filter(itemIsCalculable)(mergedVariableItems)
 			}}
-		)(groupedItemsByVariable)
-
-let	calculableItems =
+		)(groupedItemsByVariable),
+	mergedItems = R.values(mergedItemsByVariable),
+	calculableItems =
 		R.pipe(
 			R.values,
 			R.pluck('calculable'),
 			R.unnest
-		)(mergedItemsByVariable),
-	mergedItems = R.values(mergedItemsByVariable)
+		)(mergedItemsByVariable)
 
-console.log('LA', mergedItems)
+
 export {
 	groupedItemsByVariable,
 	calculableItems,

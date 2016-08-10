@@ -55,3 +55,8 @@ export let variablesSelector = createSelector(
 			)(selectedTags)
 	)(mergedItems)
 )
+
+export let usedVariables = createSelector(
+	[variablesSelector],
+	variables => variables
+)
