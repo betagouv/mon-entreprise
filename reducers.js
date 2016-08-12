@@ -22,9 +22,14 @@ function selectedVariable(state = null, {type, name}) {
 	}
 }
 
+function rootVariables(state = ['cout du travail']) {
+	return state
+}
+
 
 
 export default combineReducers({
 	selectedTags,
-	selectedVariable
+	selectedVariable,
+	rootVariables
 })

@@ -11,9 +11,6 @@ rules:
  semi:
   - 2
   - never
- curly:
-  - 2
-  - multi-or-nest
  no-unused-vars: 1
  no-console: 1
  react/prop-types: 0

@@ -6,7 +6,7 @@
       branche: vieillesse
 
   linear:
-    base: assiette_cotisations_sociales
+    base: assiette cotisations sociales
     historique:
       2015-01-01: .003
       2004-07-01: .003

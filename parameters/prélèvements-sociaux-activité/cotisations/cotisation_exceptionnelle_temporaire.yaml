@@ -3,11 +3,11 @@
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC
-  conditions:
-    categorie salarie: prive cadre
+  concerne:
+    - categorie salarié = privé cadre
   linear:
     base: assiette cotisations sociales
-    limit: 8 * plafond_securite_sociale
+    limit: 8 * plafond sécurité sociale
 
 - variable: cotisation exceptionnelle temporaire
   tags:

@@ -4,7 +4,7 @@ import TagNavigation from '../components/TagNavigation'
 import Variables from '../components/Variables'
 import * as actions from '../actions'
 import {bindActionCreators} from 'redux'
-import {tagsToSelectSelector, variablesSelector} from '../selectors'
+import {tagsToSelectSelector, variablesSelector} from '../selectors/selectors'
 
 
 class Explorer extends React.Component {

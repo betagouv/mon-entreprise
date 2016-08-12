@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import {calculableItems, higherOrderVariables, mergedItems} from './model'
+import {calculableItems, higherOrderVariables, mergedItems} from '../model'
 import R from 'ramda'
 
 let
@@ -54,9 +54,4 @@ export let variablesSelector = createSelector(
 				([tag, value]) => tags[tag] && R.contains(value, tags[tag]),
 			)(selectedTags)
 	)(mergedItems)
-)
-
-export let usedVariables = createSelector(
-	[variablesSelector],
-	variables => variables
 )

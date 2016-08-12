@@ -7,7 +7,7 @@
     destinataire: CNAV
   # CTP: 100
   linear:
-    base: assiette_cotisations_sociales
+    base: assiette cotisations sociales
 
 - variable: vieillesse
   tags:
@@ -39,7 +39,7 @@
   tags:
     - plafonnée
   linear:
-    limit: 4 * plafond_securite_sociale
+    limit: 4 * plafond sécurité sociale
 
 - variable: vieillesse
   tags:

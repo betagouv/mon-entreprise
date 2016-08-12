@@ -11,13 +11,13 @@
     Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
 
   marginalRateTaxScale:
-    base: plafond_securite_sociale
+    base: plafond sécurité sociale
 
 - variable: AGFF
   tags:
     dû par: employeur
-  conditions:
-    categorie_salarié: privé non cadre
+  concerne:
+    - categorie salarié = privé non cadre
 
   marginalRateTaxScale:
     - threshold: 0
@@ -34,8 +34,8 @@
 - variable: AGFF
   tags:
     dû par: salarié
-  conditions:
-    categorie_salarié: privé non cadre
+  concerne:
+    - categorie salarié = privé non cadre
 
   marginalRateTaxScale:
     - threshold: 0
@@ -52,8 +52,8 @@
 - variable: AGFF
   tags:
     dû par: salarié
-  conditions:
-    categorie_salarié: privé cadre
+  concerne:
+    - categorie salarié = privé cadre
 
   marginalRateTaxScale:
     - threshold: 0
@@ -75,8 +75,8 @@
 - variable: AGFF
   tags:
     dû par: employeur
-  conditions:
-    categorie_salarié: privé cadre
+  concerne:
+    - categorie salarié = privé cadre
 
   marginalRateTaxScale:
     - threshold: 0

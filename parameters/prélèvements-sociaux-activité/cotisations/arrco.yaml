@@ -1,6 +1,6 @@
 - variable: ARRCO
   description: >
-    Cotisation de retraite complémentaire pour tous les salariés du secteur privé,
+    Cotisation de retraite complémentaire pour tous les salariés du secteur prive,
     (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
   référence: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
   tags:
@@ -9,14 +9,14 @@
     destinataire: ARRCO
 
   marginalRateTaxScale:
-    base: plafond_securite_sociale
+    base: plafond sécurité sociale
 
 
 - variable: ARRCO
   tags:
     dû par: employeur
-  conditions:
-    categorie_salarié: privé cadre
+  concerne:
+    - categorie salarié = privé cadre
   marginalRateTaxScale:
     - threshold: 0
       rate:
@@ -35,8 +35,8 @@
 - variable: ARRCO
   tags:
     dû par: salarié
-  conditions:
-    categorie_salarié: privé cadre
+  concerne:
+    - categorie salarié = privé cadre
   marginalRateTaxScale:
     - threshold: 0
       rate:
@@ -55,8 +55,8 @@
 - variable: ARRCO
   tags:
     dû par: employeur
-  conditions:
-    categorie_salarié: privé non cadre
+  concerne:
+    - categorie salarié = privé non cadre
   marginalRateTaxScale:
     - threshold: 0
       rate:
@@ -85,8 +85,8 @@
 - variable: ARRCO
   tags:
     dû par: salarié
-  conditions:
-    categorie_salarié: privé non cadre
+  concerne:
+    - categorie salarié = privé non cadre
   marginalRateTaxScale:
     - threshold: 0
       rate:

@@ -3,8 +3,8 @@
   référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
   tags:
     branche: aucune idée
-  conditions:
-    entreprise_est_association_non_lucrative: non
+  ne concerne pas:
+    - entreprise_est_association_non_lucrative
   linear:
     base: assiette cotisations sociales
 
@@ -21,7 +21,7 @@
 
 - variable: apprentissage
   tags:
-    - régime Alsace-Moselle
+    - régime géographique = Alsace Moselle
   linear:
     historique:
       2017-01-01: 0.0044

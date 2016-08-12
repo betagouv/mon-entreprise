@@ -17,7 +17,7 @@
     contrat_de_travail_duree = CDD:
       - embauche en CDI suivant le CDD: 0
       - CDD type accroissement temporaire d'activité:
-          ≤ 1 mois: 0.03
-          ≤ 3 mois: 0.015
+          durée ≤ 1 mois: 0.03
+          durée ≤ 3 mois: 0.015
       - CDD type usage (faire le calcul !):
-          ≤ 3 mois: 0.005
+          durée ≤ 3 mois: 0.005

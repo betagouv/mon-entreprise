@@ -1,6 +1,6 @@
 - variable: maladie
   tags:
-    - branche: maladie
+    branche: maladie
   linear:
     base: assiette cotisations sociales
 
@@ -48,12 +48,12 @@
   # Pourrait aussi être exprimé comme
   # règle: +
   # par opposition au défaut d'écrasement par spécificité de tags
-  description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
-  référence: https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
+  # description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
+  # référence: https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
   tags:
     dû par: salarié
-  conditions:
-    - régime Alsace-Moselle
+  concerne:
+    - régime géographique = Alsace Moselle
   linear:
     # base: selon cette source, la base est l'assiette de la CSG : https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
     # information non retrouvée ailleurs
@@ -67,18 +67,12 @@
       1998-01-07: 1.25
       1994-01-01: 1
       1989-09-01: 0.75
-
-- variable: maladie
-  complément: oui
-  tags:
-    dû par: salarié
-  conditions:
-    - régime Alsace-Moselle
-    - régime: agricole
-  linear:
-    historique:
-      2014-01-01: 1.1
-      2011-07-01: 1.2
-      2008-07-01: 1.3
-      2007-01-01: 1.4
-      2003-01-01: 1.5
+    #
+    # exception:
+    #   si: régime = agricole
+    #   historique:
+    #     2014-01-01: 1.1
+    #     2011-07-01: 1.2
+    #     2008-07-01: 1.3
+    #     2007-01-01: 1.4
+    #     2003-01-01: 1.5

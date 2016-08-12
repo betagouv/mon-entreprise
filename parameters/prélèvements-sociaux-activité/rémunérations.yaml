@@ -8,15 +8,15 @@
   tags:
     - rémunération
     - brut
-  conditions:
-    categorie salarie: public*
+  concerne:
+    categorie salarié: public*
   calc: ad hoc
 
 - variable: rémunération apprenti
   tags:
     - rémunération
     - brut
-  conditions:
+  concerne:
     apprenti: oui
   calc: ad hoc
 

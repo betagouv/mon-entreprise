@@ -6,8 +6,12 @@ import R from 'ramda'
 let
 	hasHistoryProp = R.pipe(JSON.stringify, R.contains('"historique":')),
 	itemHasHistoricProp = (item, prop) => R.has(prop)(item) && hasHistoryProp(item[prop]),
-	itemIsCalculable = item =>
-		itemHasHistoricProp(item, 'linear') || itemHasHistoricProp(item, 'marginalRateTaxScale'),
+	itemIsCalculable = item => false
+		|| itemHasHistoricProp(item, 'linear')
+		|| itemHasHistoricProp(item, 'marginalRateTaxScale')
+		|| item['+'] || item['-']
+		|| item['logique'] || item['logique numérique']
+		,
 
 	/*
 		L'attribut tags est une hash map,
@@ -71,7 +75,6 @@ let
 			R.pluck('calculable'),
 			R.unnest
 		)(mergedItemsByVariable)
-
 
 export {
 	groupedItemsByVariable,

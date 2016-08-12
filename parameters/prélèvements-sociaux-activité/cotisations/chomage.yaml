@@ -5,8 +5,8 @@
     - branche: chomage
       collecteur: URSSAF
       destinataire: Pôle emploi
-  conditions:
-    assimilé salarié:  non
+  ne concerne pas:
+    - assimilé salarié
   linear:
     base: assiette cotisations sociales
     limit: 4 * plafond sécurité sociale

@@ -10,7 +10,7 @@
       historique:
         2016-01-01: 11
         passé: 10
-  conditions:
+  concerne:
     effectif entreprise >= 20:
       historique:
         2016-01-01: 0.01
