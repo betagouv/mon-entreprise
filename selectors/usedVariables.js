@@ -11,11 +11,64 @@ Rank the results by count. */
 
 // Use http://regexr.com/ to understand and write regexps !!
 
+let credits = 3 // 5 complex variables
+
+// let GETAdHocVariable = id =>
+// 	new Promise((resolve, reject) =>
+// 		setTimeout(() =>
+// 			resolve(
+// 				Math.random() > 0.6 && credits ?
+// 					credits -- && {calls: ['myVar' + Math.random(), 'myVar2' + Math.random()]}
+// 				:	'myInputVariable' + Math.random()
+// 			),
+// 			Math.random() * 2000 + 1000
+// 		)
+// 	)
+
+let GETAdHocVariable = name =>
+	new Promise(resolve =>
+		window.fetch('https://api.openfisca.fr/api/1/variables/?name=' + name.trim().replace(/\s/g, '_'))
+			.then(res => res.json())
+			.then(json => {
+				let {error, variables} = json
+				if (error && JSON.stringify(error).indexOf('Variable does not exist') + 1){
+					resolve('TODO ' + name)
+				}
+				if (variables) {
+					let {name, formula} = variables[0]
+					if (formula && formula['input_variables']) {
+						resolve({calls: formula['input_variables']})
+					} else {
+						resolve(name)
+					}
+				}
+			})
+		)
 
 
-// Returns a list of used variables
-let findUsedVariables = (schema, toAnalyse, variables) =>
+async function getAdHocVariables(id) {
+	let variable = await GETAdHocVariable(id)
+	if (R.is(String, variable))
+		return variable
+	else
+		return Promise.all(
+			variable.calls.map(getAdHocVariables)
+		)
+}
+
+// Returns a list of list of used variables
+// recursive function
+let findUsedVariables = (variables, schema, toAnalyse) =>
+	/*TODO
+	If instruction of GET call -> return Promise
+	1) input var OK return string
+	2) call to other variables -> list of promises
+	*/
 	R.cond([
+		[R.isNil, () => []],
+		[R.has('adHoc'), ({id}) => getAdHocVariables(id)],
+		// The traversal of variables has found a parsable variable attribute.
+		// Parse it to extract variables
 		[R.is(Function), extractor =>
 			R.pipe(
 				extractor,
@@ -25,34 +78,29 @@ let findUsedVariables = (schema, toAnalyse, variables) =>
 					[R.is(Object), tags => findVariables(variables, null, tags)]
 				])),
 				R.unnest,
-				R.map(R.unless(R.is(String), found => findUsedVariables(traversalGuide, found, variables)))
+				R.map(
+					/*TODO
+					if instruction of GET call findUsedVariables(GET CALL)
+						*/
+					R.cond([
+						[R.has('adHoc'), adHocSpec => findUsedVariables(variables, adHocSpec)],
+						[R.is(String), R.identity],
+						[R.T, found => findUsedVariables(variables, traversalGuide, found)]
+					])
+				)
 			)(toAnalyse)
 		],
+		// Walk the graph using the guiding object until you find a parsable attribute
 		[R.is(Object), traversalObject =>
 			R.toPairs(traversalObject).reduce(
 				(res, [key, value]) => {
 					return toAnalyse[key] != null ?
-						[...res, ...findUsedVariables(value, toAnalyse[key], variables)] :
+						[...res, ...findUsedVariables(variables, value, toAnalyse[key])] :
 						res
 				}, []
 		)],
-		[R.T, yo => []]
+		[R.T, () => []]
 	])(schema)
-
-		// R.cond([
-		// 	[R.isArrayLike, R.map(name => {
-		// 		let found = findVariables(variables, name)
-		// 		return typeof found == 'object' ?
-		// 			findUsedVariables(traversalGuide, found, variables)
-		// 		: found
-		// 	})],
-		// 	[R.is(Object), tags => {
-		// 		let found = findVariables(variables, null, tags)
-		// 		return typeof found == 'object' ?
-		// 			findUsedVariables(traversalGuide, found, variables)
-		// 		: found
-		// 	}]
-		// ])(schema(toAnalyse))
 
 
 let calculableVariables = createSelector(
@@ -60,17 +108,8 @@ let calculableVariables = createSelector(
 	R.pipe(R.pluck('calculable'), R.unnest)
 )
 
-
-// let data = require('../sertarien.yaml')
-// let getAllUsedVariables = R.pipe(
-// 	R.map(findUsedVariables(traversalGuide)),
-// 	R.flatten,
-// 	R.countBy(R.identity),
-// 	R.toPairs,
-// 	R.sortBy(R.last),
-// 	R.reverse,
-// 	R.map(R.join(': '))
-// )
+/************************************
+ Functions to find variables */
 
 let findVariablesByName = name =>
 	R.filter(variable => removeDiacritics(variable.variable) == name)
@@ -80,25 +119,6 @@ let findVariablesByTags = tags =>
 		R.prop('tags'),
 		R.whereEq(tags)
 	))
-//
-// let findVariables = (variables, name, tags) => {
-// 	// Raise error if searching on both name and tags provided gives multiple results
-// 	let results = variables
-// 	if (R.is(String, name)) {
-// 		results = findVariablesByName(name)(variables)
-// 		if (!results.length)
-// 			return `Final variable ${name}`
-// 	}
-// 	if (tags != null) {
-// 		results = findVariablesByTags(tags)(variables)
-// 	}
-// 	if (results.length == 0)
-// 		return `Final variable ${name}`
-// 	if (name != null && results.length > 1)
-// 		return `More than one variable corresponds to this name, tags tuple : ${name}, ${tags}`
-//
-// 	return results
-// }
 
 let findVariables = (variables, name, tags) =>
 	R.pipe(
@@ -118,31 +138,38 @@ let findVariables = (variables, name, tags) =>
 	)(variables)
 
 let variableNotFound = name =>
-	`Final variable ${name}`
 	// Should do a query to openfisca web api
-	// - input var -> end with an input var object
-	// - var calling other vars -> recursively call
+	({adHoc: true, id: name})
 
 let variableNameCollision = (name, tags) =>
 	`More than one variable corresponds to this name, tags tuple : ${name}, ${tags}`
 
+/*****************************************/
+
+let accum = [] //aaw
+
+setTimeout(() => console.log(R.countBy(R.identity)(accum)), 10000)
+
+let resolvePromisesRec =
+	R.pipe(
+		R.unless(R.isArrayLike, R.of),
+		R.map(R.cond([
+			[R.is(Promise), p => p.then(resolvePromisesRec)],
+			[R.is(String), string => accum.push(string)]
+		]))
+	)
 
 export let usedVariables = createSelector(
 	[state => state.rootVariables, calculableVariables],
 	(roots, variables) => {
 		// get all variables from these roots, rec !
 		return R.compose(
-			R.uniq,
+			// R.uniq,
+			resolvePromisesRec,
 			R.flatten,
-			R.map(rootObject => findUsedVariables(traversalGuide, rootObject, variables)),
+			R.map(rootObject => findUsedVariables(variables, traversalGuide, rootObject)),
 			R.map(root => findVariables(variables, removeDiacritics(root))[0])
 		)(roots)
 
 	}
 )
-
-
-// export let usedVariables = createSelector(
-// 	[calculableVariables],
-// 	getAllUsedVariables
-// )
