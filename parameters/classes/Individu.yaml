@@ -1,0 +1,7 @@
+classe: Individu
+
+date de naissance: Date
+contrats de travail: [Contrat]
+
+
+# famille: Famille etc

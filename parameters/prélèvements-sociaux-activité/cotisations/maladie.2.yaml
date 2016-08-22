@@ -1,0 +1,70 @@
+- nom: maladie
+  Cotisation:
+    branche: maladie
+
+  formule:
+    type: linéaire
+    base: assiette cotisations sociales
+
+- variation:
+    dû par: employeur
+  formule:
+    taux:
+      2016-01-01: 0.04
+      2007-01-01: 0.04
+      2006-01-01: 0.0404
+      2003-01-01: 0.04
+      2002-07-01: 0.037
+      2002-01-01: 0.036
+      2001-04-01: 0.037
+      2001-01-01: 0.0499
+      1997-01-01: 0.0526
+      1994-01-01: 0.0547
+      1993-08-01: 0.0538
+      1993-07-01: 0.0483
+
+- variation:
+    dû par: salarié
+  formule:
+    taux:
+      2016-01-01: .024
+      2007-01-01: .024
+      2006-01-01: .0244
+      2003-01-01: .024
+      2002-07-01: .021
+      2002-01-01: .02
+      2001-07-01: .021
+      2001-04-01: .026
+      2001-01-01: .0349
+      1997-01-01: .036
+      1994-01-01: .0386
+      1993-07-01: .03770
+
+- complément: # Ceci est une exception qui s'ajoute au cas plus général ci-dessus
+    dû par: salarié
+
+  si: régime géographique = Alsace Moselle
+
+  description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
+  référence: https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
+
+  formule:
+    # base: selon cette source, la base est l'assiette de la CSG : https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
+    # information non retrouvée ailleurs
+    taux:
+      2012-01-01: 1.5
+      2008-01-01: 1.6
+      2007-07-01: 1.7
+      2006-01-01: 1.8
+      2003-01-01: 1.7
+      1999-07-01: 1.5
+      1998-01-07: 1.25
+      1994-01-01: 1
+      1989-09-01: 0.75
+
+    exception: régime = agricole
+      2014-01-01: 1.1
+      2011-07-01: 1.2
+      2008-07-01: 1.3
+      2007-01-01: 1.4
+      2003-01-01: 1.5

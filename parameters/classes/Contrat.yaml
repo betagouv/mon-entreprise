@@ -1,0 +1,18 @@
+classe: Contrat
+description:
+  - Contrat de travail entre un individu et une entreprise (à travers son Établissement)
+# Faut-il inclure ici le cas du contractuel de la fonction publique ?
+type durée: CDI | CDD
+alternance: apprentissage | contrat de professionnalisation
+stage: booléen
+statut: cadre | non cadre
+établissement: Établissement
+
+salaire de base: entier positif (0)
+
+# Des formules seront définies sur cette classe :
+  # coût du travail
+  # salaire net
+  # cotisations sociales
+  # taxe sur les salaires (individuelle)
+  # ...
