@@ -5,7 +5,7 @@ import R from 'ramda'
 
 let cotisationsContext = require.context(
   './parameters/prélèvements-sociaux-activité/cotisations', false,
-  /.yaml$/)
+  /([a-zA-Z]|\.|-|_)+.yaml$/)
 let cotisationsTags = require('./parameters/prélèvements-sociaux-activité/cotisations/_cotisations.yaml')
 let cotisations = R.pipe(
   R.map(cotisationsContext),

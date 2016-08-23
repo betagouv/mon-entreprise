@@ -1,3 +1,12 @@
+# Malheureusement Contrat n'est pas adapté à toutes les situations
+# - il semble possible d'employeur quelqu'un sans emploi
+#    - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+#    - La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+# - un assimilé salarié peut sûrement ne pas avoir de contrat
+
+# Cela dit, un contrat pourrait être noté "virtuel" pour ces cas là.
+# Mais une meilleure entité sera peut-être "Salarié".
+
 classe: Contrat
 description:
   - Contrat de travail entre un individu et une entreprise (à travers son Établissement)
