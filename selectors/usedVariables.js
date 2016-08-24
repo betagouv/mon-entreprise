@@ -6,44 +6,48 @@ import { createSelector } from 'reselect'
 import {variablesSelector} from './selectors'
 import traversalGuide from './traversalGuide'
 
+import dump from 'json!../adhoc-variable-dump/variables.json'
+
 /* AIM : Parse all the variables and extract their references to other variables.
 Rank the results by count. */
 
 // Use http://regexr.com/ to understand and write regexps !!
+let fetchVariables = false
 
-let credits = 3 // 5 complex variables
+let resolveVariable = (variable, name, callback) => {
+	if (variable == null) return callback('TODO ' + name)
+	let {formula} = variable
+	if (formula && formula['input_variables']) {
+		return callback({calls: formula['input_variables']})
+	} else {
+		return callback(name)
+	}
+}
 
-// let GETAdHocVariable = id =>
-// 	new Promise((resolve, reject) =>
-// 		setTimeout(() =>
-// 			resolve(
-// 				Math.random() > 0.6 && credits ?
-// 					credits -- && {calls: ['myVar' + Math.random(), 'myVar2' + Math.random()]}
-// 				:	'myInputVariable' + Math.random()
-// 			),
-// 			Math.random() * 2000 + 1000
-// 		)
-// 	)
-
-let GETAdHocVariable = name =>
-	new Promise(resolve =>
-		window.fetch('https://api.openfisca.fr/api/1/variables/?name=' + name.trim().replace(/\s/g, '_'))
+let GETAdHocVariable = name => {
+	let obscureName = name.trim().replace(/\s/g, '_')
+	if (!fetchVariables){
+		return new Promise(
+			resolve => resolveVariable(
+				dump.variables.find(v => v.name === obscureName),
+				name,
+				resolve)
+		)
+	}
+	return new Promise(resolve =>
+		window.fetch('https://api.openfisca.fr/api/1/variables/?name=' + obscureName)
 			.then(res => res.json())
 			.then(json => {
 				let {error, variables} = json
 				if (error && JSON.stringify(error).indexOf('Variable does not exist') + 1){
-					resolve('TODO ' + name)
+					resolveVariable(null, name, resolve)
 				}
 				if (variables) {
-					let {name, formula} = variables[0]
-					if (formula && formula['input_variables']) {
-						resolve({calls: formula['input_variables']})
-					} else {
-						resolve(name)
-					}
+					resolveVariable(variables[0], name, resolve)
 				}
 			})
 		)
+}
 
 
 async function getAdHocVariables(id) {
@@ -146,26 +150,21 @@ let variableNameCollision = (name, tags) =>
 
 /*****************************************/
 
-let accum = [] //aaw
-
-setTimeout(() => console.log(R.countBy(R.identity)(accum)), 10000)
-
-let resolvePromisesRec =
-	R.pipe(
-		R.unless(R.isArrayLike, R.of),
-		R.map(R.cond([
-			[R.is(Promise), p => p.then(resolvePromisesRec)],
-			[R.is(String), string => accum.push(string)]
-		]))
-	)
-
 export let usedVariables = createSelector(
 	[state => state.rootVariables, calculableVariables],
 	(roots, variables) => {
 		// get all variables from these roots, rec !
 		return R.compose(
-			// R.uniq,
-			resolvePromisesRec,
+			promises =>
+				Promise.all(promises).then(
+					R.pipe(
+						R.flatten,
+						R.countBy(R.identity),
+						R.toPairs,
+						R.sortBy(R.last),
+						R.reverse
+					)
+				),
 			R.flatten,
 			R.map(rootObject => findUsedVariables(variables, traversalGuide, rootObject)),
 			R.map(root => findVariables(variables, removeDiacritics(root))[0])

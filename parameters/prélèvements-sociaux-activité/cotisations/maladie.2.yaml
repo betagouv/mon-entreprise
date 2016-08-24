@@ -1,4 +1,4 @@
-- nom: maladie
+- variable: maladie
   Cotisation:
     branche: maladie
 

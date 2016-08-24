@@ -31,7 +31,9 @@
   tags:
     - salaire
   # +: @rémunérations + @primes et indémnités
-  +: salaire de base
+  +:
+    - salaire de base
+    - indemnité fin de contrat
   -:
     type: cotisation
     dû par: employeur

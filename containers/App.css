@@ -3,6 +3,14 @@ body {
 	color: #333;
 }
 
+#header {
+	text-align: center;
+	background: blue;
+	color: red;
+	font-weight: 600;
+	margin-bottom: 2em;
+}
+
 h1 {
 	text-align: center;
 	font-weight: 200;

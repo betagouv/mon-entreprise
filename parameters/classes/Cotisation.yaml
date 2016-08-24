@@ -4,7 +4,7 @@ description:
   - Prélèvement social sur les revenus du travail
   - Prélèvement ayant pour base l'assiette des cotisations sociales
 
-contrat: Contrat
+# contrat: Contrat
 dû par: salarié | employeur
 branche: maladie | chômage | vieillesse | famille | AT-MP
 # D'autres attributs peuvent être ajoutés directement dans les instances de cette classe.

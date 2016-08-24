@@ -8,6 +8,10 @@ Régimes juridiques du travail
 ---------------------------------
 objectif: Hiérarchie du travail en France, dans le but de calculer les cotisations sociales. Ce qui nous intéresse, c'est toutes les exceptions qui impactent les cotisations. Vue employé. Il manque toute la partie entreprise.
 
+Questions:
+  - Comment exprimer l'exclusivité des différents propriétés quand il le faut ?
+  Ex. choisissez votre statut : salarié classique | apprenti | stagiaire | employé services à la personne
+  Peut-on coder tout ça grâce à des union types ?
 
 - Salariat
 # http://francestrategie1727.fr/thematiques/nouvelles-formes-du-travail-et-de-la-protection-sociale/
@@ -51,7 +55,7 @@ objectif: Hiérarchie du travail en France, dans le but de calculer les cotisati
   - artiste (inscrit à la maison des artistes)
 
 - Fonction publique (subordination à l'une des institutions suivantes)
-  - État | Collectivités | Hospitalière
+  - Fonctions: État | Collectivités | Hospitalière
   - Fonctionnaire (traitement)
   - Non-titulaire
     - Agents contractuels

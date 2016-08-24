@@ -1,0 +1,14 @@
+- variable: contrat aidé
+  description: Contrat aidé dans le cadre de la polotique pour l'emploi
+  notes: Il est assez difficile de déterminer ce que le terme contrat aidé regroupe
+  logique:
+    - contrat unique insertion # (CUI)
+    - contrat de professionnalisation
+    - emploi avenir
+    - étudiant apprenti professeur
+    - CDD sénior
+
+- variable: CDD transformé en CDI
+  logique:
+    - embauche en CDI suivant le CDD
+    - CDD requalifié en CDI # quand ça arrive ?
