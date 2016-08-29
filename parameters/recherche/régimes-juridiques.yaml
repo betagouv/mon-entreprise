@@ -50,8 +50,29 @@ Questions:
   - auto-entreprise ?
   - agriculteur (inscrit à la chambre d'agriculture)
   - commerçant (inscrit à la chambre de commerce et d'industrie)
+  - industriels ?
   - artisan (inscrit à la chambre des métiers)
   - libéral (inscrit à l'URSSAF)
+    - professions libérales reglementées
+    # Une profession libérale réglementée est celle exercée par des personnes ayant reçu un diplôme (généralement de l'enseignement supérieur) reconnu dans leur métier, qui sont tenues par un code de déontologie, et qui sont soumises au contrôle d'instances professionnelles.
+      - santé
+        - médicales
+        - paramédicales
+        ...
+      - juridiques
+        - avocat
+        - notaire
+        ...
+      - économiques
+        - expert-comptable
+        - conseiller fiscal
+      - techniques
+        - architecte
+        ...
+      ...
+    - non reglementées
+    # https://travailleur-independant.ooreka.fr/comprendre/profession-liberale-non-reglementee
+
   - artiste (inscrit à la maison des artistes)
 
 - Fonction publique (subordination à l'une des institutions suivantes)

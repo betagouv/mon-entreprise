@@ -1,0 +1,12 @@
+- variable: indemnités journalières
+  si: Activité = Indépendant & catégorie Indépendant ⊂ [Commerçant, Artisan, Industriel]
+  Cotisation:
+    branche: ?
+    collecteur: RSI
+  référence: https://www.rsi.fr/ij.html
+
+  formule*:
+    type: linéaire
+    base: revenus professionnels
+    taux: 0.007
+    limite: 193080

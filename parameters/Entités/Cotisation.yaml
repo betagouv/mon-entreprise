@@ -1,4 +1,5 @@
 classe: Cotisation
+domaine: Activité
 description:
   - Cotisation sociale
   - Prélèvement social sur les revenus du travail
@@ -6,7 +7,8 @@ description:
 
 # contrat: Contrat
 dû par: salarié | employeur
-branche: maladie | chômage | vieillesse | famille | AT-MP
+branche: maladie | chômage | vieillesse | famille
+collecteur: URSSAF | RSI # | ...
 # D'autres attributs peuvent être ajoutés directement dans les instances de cette classe.
 # Ils ne sont alors pas contraints ni obligatoires
 # Example : type de retraite: base | complémentaire

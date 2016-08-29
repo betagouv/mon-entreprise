@@ -1,70 +1,89 @@
 - variable: maladie
+  initiales: MMID-CSA
   Cotisation:
     branche: maladie
+  description: Cotisations de la branche maladie
 
-  formule:
-    type: linéaire
-    base: assiette cotisations sociales
+  variation:
+    si *: Activité = Salariat
+    initiales: MMID-CSA
+    références: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
+    formule *:
+      type: linéaire
+      base: assiette cotisations sociales
 
-- variation:
-    dû par: employeur
-  formule:
-    taux:
-      2016-01-01: 0.04
-      2007-01-01: 0.04
-      2006-01-01: 0.0404
-      2003-01-01: 0.04
-      2002-07-01: 0.037
-      2002-01-01: 0.036
-      2001-04-01: 0.037
-      2001-01-01: 0.0499
-      1997-01-01: 0.0526
-      1994-01-01: 0.0547
-      1993-08-01: 0.0538
-      1993-07-01: 0.0483
+    variation:
+      Cotisation:
+        composante: maladie, maternité, invalidité, décès
+        dû par: employeur
+      formule:
+        taux:
+          2017-01-01: 0.1284
+          2016-01-01: 0.1284
+          1992-07-01: 0.128
 
-- variation:
-    dû par: salarié
-  formule:
-    taux:
-      2016-01-01: .024
-      2007-01-01: .024
-      2006-01-01: .0244
-      2003-01-01: .024
-      2002-07-01: .021
-      2002-01-01: .02
-      2001-07-01: .021
-      2001-04-01: .026
-      2001-01-01: .0349
-      1997-01-01: .036
-      1994-01-01: .0386
-      1993-07-01: .03770
+    variation:
+      Cotisation:
+        composante: CSA
+        dû par: employeur
+      références:
+        - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
+        - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
+      formule:
+        taux:
+          2016-01-01: 0.03
+          2004-07-01: 0.03
 
-- complément: # Ceci est une exception qui s'ajoute au cas plus général ci-dessus
-    dû par: salarié
+    variation:
+      Cotisation:
+        composante: maladie, maternité, invalidité, décès
+        dû par: salarié
+      formule:
+        taux:
+          2014-01-01: .0075
+          1998-01-01: .0075
+          1997-01-01: .055
+          1993-07-01: .068
 
-  si: régime géographique = Alsace Moselle
+    complément: # Ceci est une exception qui s'ajoute au cas plus général ci-dessus
+      si: régime géographique = Alsace-Moselle
+      # Sous entendu Activité = Salariat && Salariat.régime géographique = Alsace-Moselle
+      Cotisation:
+        composante: maladie, maternité, invalidité, décès
+        dû par: salarié
 
-  description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
-  référence: https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
+      description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
+      référence: https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
 
-  formule:
-    # base: selon cette source, la base est l'assiette de la CSG : https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
-    # information non retrouvée ailleurs
-    taux:
-      2012-01-01: 1.5
-      2008-01-01: 1.6
-      2007-07-01: 1.7
-      2006-01-01: 1.8
-      2003-01-01: 1.7
-      1999-07-01: 1.5
-      1998-01-07: 1.25
-      1994-01-01: 1
-      1989-09-01: 0.75
+      formule:
+        # base: selon cette source, la base est l'assiette de la CSG : https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
+        # information non retrouvée ailleurs
+        taux:
+          2012-01-01: 0.015
+          2008-01-01: 0.016
+          2007-07-01: 0.017
+          2006-01-01: 0.018
+          2003-01-01: 0.017
+          1999-07-01: 0.015
+          1998-01-07: 0.0125
+          1994-01-01: 0.01
+          1989-09-01: 0.0075
 
-    exception: régime = agricole
-      2014-01-01: 1.1
-      2011-07-01: 1.2
-      2008-07-01: 1.3
-      2007-01-01: 1.4
-      2003-01-01: 1.5
+        exception: régime = agricole
+          2014-01-01: 0.011
+          2011-07-01: 0.012
+          2008-07-01: 0.013
+          2007-01-01: 0.014
+          2003-01-01: 0.015
+
+  variation:
+    si: Activité = Indépendant
+    description: Cotisations maladie et maternité
+    Cotisation:
+      branche: maladie
+      collecteur: RSI
+
+    formule*:
+      type: linéaire
+      base: revenus professionnels
+      taux: 0.065

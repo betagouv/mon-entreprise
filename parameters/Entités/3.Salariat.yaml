@@ -6,7 +6,6 @@ Salariat
   salaire brut: salaire de base + primes + indemnités
   salaire net: calc()
   cout du travail: calc()
-  terme Contrat: CDI | CDD
   statut: Cadre | Non cadre
   # Cette propriété a pour type une énumération, mais peut-être calculée.
   régime géographique:

@@ -1,7 +1,10 @@
 Activité
   # L'activité d'un individu, souvent rémunérée.
 
-    Salariat
+  durée déterminée: Booléen (Non)
+
+  type:
+  | Salariat
   | Indépendant
   | Fonction publique
   | Stage
@@ -11,4 +14,4 @@ Activité
   # Ce qui ne veux pas dire que le cumul de plusieurs activités est impossible (etc. Salariat et Indépendant), mais celui-ci est défini en amont dans le concept d'Individu.
 
   # C'est aux TODO fonctions de contrôle que revient la tâche de vérifier la cohérence des données
-  # Par exemple, un on peut cumuler un emploi dans la fonction publique et une activité d'indépendant que sous certaines conditions. 
+  # Par exemple, un on peut cumuler un emploi dans la fonction publique et une activité d'indépendant que sous certaines conditions.
