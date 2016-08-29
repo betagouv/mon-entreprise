@@ -1,0 +1,22 @@
+# Le nom de ce fichier n'est qu'un guide : plusieurs concepts sont ici définis
+
+Établissement
+  Entreprise
+  effectif: nombre positif
+  code INSEE: entier à 5 chiffres
+  code Postal = calc(code INSEE) : entier à 5 chiffres
+  compte AT/MP: Compte AT/MP
+
+Compte AT/MP
+  code risque: caractères
+  appréciation du risque: très élevé | élevé | moyen | bureau
+  taux de risque: calc(code risque) nombre positif
+
+Entreprise
+  # l'effectif est par défaut automatiquement rempli de cette façon
+  effectif: (sum(Établissements.effectif)): nombre positif
+  employés: liste Individus
+  établissements: liste Établissements
+  nombre apprenti: nombre positif
+
+  taxe sur les salaires(Cotisation, Impôt) = sum(Employés.Taxe sur les salaires)

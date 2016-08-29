@@ -1,0 +1,52 @@
+Salariat
+  # Sur ce concept de Salariat sont définies une liste de propriétés.
+  # Le salarié est embauché dans un établissement, lui même rattaché à une entreprise
+  établissement: Établissement
+  salaire de base: nombre positif (0)
+  salaire brut: salaire de base + primes + indemnités
+  salaire net: calc()
+  cout du travail: calc()
+  terme Contrat: CDI | CDD
+  statut: Cadre | Non cadre
+  # Cette propriété a pour type une énumération, mais peut-être calculée.
+  régime géographique:
+    calc() :
+      | Alsace-Moselle
+      | Outre-Mer
+
+  # les variables contenues dans le concept Régime Alsace Moselle (précisé plus loin) servent au calcul ci-dessus
+  régime alsace moselle: Régime Alsace Moselle
+
+  # Une instance de Salariat peut préciser le type de contrat.
+
+  contrat: Contrat
+    Aidé:
+    | Contrat unique insertion
+    | Contrat professionnalisation
+    | Emploi avenir
+    | Étudiant apprenti professeur
+    | CDD sénior
+    Alternance:
+    | Apprentissage
+    | Contrat professionnalisation
+
+# Ce type Contrat n'est pas exactement une hiérarchie : on observe que Contrat Professionnalisation est à la fois un contrat aidé et un contrat d'alternance. Ce type de définition revient à combiner ces deux tâches :
+# - écrire une liste de possibilités exclusives pour les contrats
+# - définir des variables de calcul d'appartenance à une catégorie : aidé = contrat est (CUI ou Contrat Pro ou ...)
+Contrat
+  Aidé:
+  | Contrat unique insertion
+  | Contrat professionnalisation
+  | Emploi avenir
+  | Étudiant apprenti professeur
+  | CDD sénior
+  Alternance:
+  | Apprentissage
+  | Contrat professionnalisation
+
+# Il aurait été possible d'attacher ces propriétés directement au concept Salariat, mais la définition de sous-concepts nous donne de l'ordre. C'est en quelque sorte un espace de nom ('namespace').
+Régime Alsace Moselle
+  affiliation 2012 conservée: Booléen
+  département activité salarié: code département
+  itinérance en Alsace Moselle: Booléen
+  itinérance en Alsace Moselle contractualisée: Booléen
