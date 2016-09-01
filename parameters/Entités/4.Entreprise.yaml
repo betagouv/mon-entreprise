@@ -3,9 +3,11 @@
 Établissement
   Entreprise
   effectif: nombre positif
-  code INSEE: entier à 5 chiffres
-  code Postal = calc(code INSEE) : entier à 5 chiffres
+  SIRET: entier à
+  code commune: entier à 5 chiffres
+  code Postal = calc(code commune) : entier à 5 chiffres
   compte AT/MP: Compte AT/MP
+  salariés: liste Salariat
 
 Compte AT/MP
   code risque: caractères
@@ -14,9 +16,13 @@ Compte AT/MP
 
 Entreprise
   # l'effectif est par défaut automatiquement rempli de cette façon
-  effectif: (sum(Établissements.effectif)): nombre positif
-  employés: liste Individus
+  effectif: (sum(Établissements.effectif) | count(Individus)): nombre positif
+  employés: join(établissements.salariés)
   établissements: liste Établissements
   nombre apprenti: nombre positif
+  masse salariale: sum(employés.salaire brut)
 
   taxe sur les salaires(Cotisation, Impôt) = sum(Employés.Taxe sur les salaires)
+    calcule la taxe sur les salaires de mes employés
+    si resultat < franchise (2000) : 0
+    si résultat < abattement (20 000): lissage

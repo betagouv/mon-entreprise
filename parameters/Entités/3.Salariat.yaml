@@ -1,7 +1,9 @@
 Salariat
   # Sur ce concept de Salariat sont définies une liste de propriétés.
   # Le salarié est embauché dans un établissement, lui même rattaché à une entreprise
+  individu: Individu
   établissement: Établissement
+
   salaire de base: nombre positif (0)
   salaire brut: salaire de base + primes + indemnités
   salaire net: calc()
@@ -16,18 +18,9 @@ Salariat
   # les variables contenues dans le concept Régime Alsace Moselle (précisé plus loin) servent au calcul ci-dessus
   régime alsace moselle: Régime Alsace Moselle
 
-  # Une instance de Salariat peut préciser le type de contrat.
+  taxe sur les salaires: calc(): Float
 
-  contrat: Contrat
-    Aidé:
-    | Contrat unique insertion
-    | Contrat professionnalisation
-    | Emploi avenir
-    | Étudiant apprenti professeur
-    | CDD sénior
-    Alternance:
-    | Apprentissage
-    | Contrat professionnalisation
+# Une instance de Salariat peut préciser le type de contrat.
 
 # Ce type Contrat n'est pas exactement une hiérarchie : on observe que Contrat Professionnalisation est à la fois un contrat aidé et un contrat d'alternance. Ce type de définition revient à combiner ces deux tâches :
 # - écrire une liste de possibilités exclusives pour les contrats

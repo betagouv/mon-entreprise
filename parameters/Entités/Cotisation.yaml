@@ -1,14 +1,31 @@
-classe: Cotisation
-domaine: Activité
-description:
-  - Cotisation sociale
-  - Prélèvement social sur les revenus du travail
-  - Prélèvement ayant pour base l'assiette des cotisations sociales
+Cotisation
+  domaine: Activité
+  description:
+    - Cotisation sociale
+    - Prélèvement social sur les revenus du travail
+    - Prélèvement ayant pour base l'assiette des cotisations sociales
 
-# contrat: Contrat
-dû par: salarié | employeur
-branche: maladie | chômage | vieillesse | famille
-collecteur: URSSAF | RSI # | ...
-# D'autres attributs peuvent être ajoutés directement dans les instances de cette classe.
-# Ils ne sont alors pas contraints ni obligatoires
-# Example : type de retraite: base | complémentaire
+  # contrat: Contrat
+  dû par: salarié | employeur
+  branche: maladie | chômage | vieillesse | famille
+  collecteur: URSSAF | RSI # | ...
+  # D'autres attributs peuvent être ajoutés directement dans les instances de cette classe.
+  # Ils ne sont alors pas contraints ni obligatoires
+  # Example : type de retraite: base | complémentaire
+
+
+new Cotisation "taxe sur les salaires"
+  dû par: employeur
+  formule:
+    Activité.Individu.salaire
+    azdazdazd
+
+new Cotisation "taxe sur les salaires"
+  dû par: employeur
+  formule:
+    Activité.Individu.salaire
+    azdazdazd
+
+new Formule "cotisations employeur"
+  formule:
+    sum(Cotisations[@dû par = employeur])

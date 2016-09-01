@@ -1,0 +1,11 @@
+Variable
+  | Formule
+  | Entrée
+
+Variable
+  | Cotisation
+  | Prestation
+  | Rémunération
+
+Formule
+  expression: Expression

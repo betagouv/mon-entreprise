@@ -1,70 +1,64 @@
 - Cotisation: vieillesse
-  description: Cotisation au régime de retraite de base des salariés.
-  tags:
+  attributs:
     branche: retraite
     type de retraite: de base
     collecteur: URSSAF
     destinataire: CNAV
-  # CTP: 100
-  linear:
+    # CTP: 100
+  description: Cotisation au régime de retraite de base des salariés.
+  formule:
+    type: linéaire
     base: assiette cotisations sociales
 
-- variable: vieillesse
-  tags:
-    dû par: salarié
-    plafonnée: non
-  linear:
-    historique:
-      2018-01-01: .004
-      2017-01-01: .004
-      2016-01-01: .0035
-      2015-01-01: .003
-      2014-01-01: .0025
-      2004-07-01: .001
+  +:
+    Cotisation:
+      dû par: salarié
+    formule:
+      taux:
+        2018-01-01: .004
+        2017-01-01: .004
+        2016-01-01: .0035
+        2015-01-01: .003
+        2014-01-01: .0025
+        2004-07-01: .001
+  +:
+    Cotisation:
+      dû par: salarié
+      plafonnée: oui
+    formule:
+      plafond: 4 * plafond sécurité sociale
+      taux:
+          2017-01-01: .0690
+          2016-01-01: .0690
+          2015-01-01: .0685
+          2014-01-01: .0680
+          2012-11-01: .0675
+          2006-01-01: .0665
+          1993-07-01: .0655
+  +:
+    Cotisation:
+      dû par: employeur
+      plafonnée: non
+    formule:
+      taux:
+        2018-01-01: 0.019
+        2017-01-01: 0.019
+        2016-01-01: 0.0185
+        2015-01-01: 0.018
+        2014-01-01: 0.0175
+        1991-02-01: 0.016
 
-- variable: vieillesse
-  tags:
-    dû par: employeur
-    plafonnée: non
-  linear:
-    historique:
-      2018-01-01: 0.019
-      2017-01-01: 0.019
-      2016-01-01: 0.0185
-      2015-01-01: 0.018
-      2014-01-01: 0.0175
-      1991-02-01: 0.016
-
-- variable: vieillesse
-  tags:
-    - plafonnée
-  linear:
-    limit: 4 * plafond sécurité sociale
-
-- variable: vieillesse
-  tags:
-    - plafonnée
-    - dû par: salarié
-  linear:
-    historique:
-      2017-01-01: .0690
-      2016-01-01: .0690
-      2015-01-01: .0685
-      2014-01-01: .0680
-      2012-11-01: .0675
-      2006-01-01: .0665
-      1993-07-01: .0655
-
-- variable: vieillesse
-  tags:
-    - plafonnée
-    - dû par: employeur
-  linear:
-    historique:
-      2017-01-01: .0855
-      2016-01-01: .0855
-      2015-01-01: .085
-      2014-01-01: .0845
-      2012-11-01: .084
-      2006-01-01: .083
-      1979-01-01: .082
+  +:
+    Cotisation:
+      dû par: employeur
+      plafonnée: oui
+    formule:
+      plafond: 4 * plafond sécurité sociale
+      taux:
+        2017-01-01: .0855
+        2016-01-01: .0855
+        2015-01-01: .085
+        2014-01-01: .0845
+        2012-11-01: .084
+        2006-01-01: .083
+        1979-01-01: .082
