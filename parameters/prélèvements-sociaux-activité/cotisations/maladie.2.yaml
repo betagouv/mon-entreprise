@@ -16,7 +16,7 @@
       Cotisation:
         composante: maladie, maternité, invalidité, décès
         dû par: employeur
-      formule:
+      formule *:
         taux:
           2017-01-01: 0.1284
           2016-01-01: 0.1284
@@ -82,7 +82,7 @@
     Cotisation:
       branche: maladie
       collecteur: RSI
-
+    calendrier: RSI
     formule*:
       type: linéaire
       base: revenus professionnels

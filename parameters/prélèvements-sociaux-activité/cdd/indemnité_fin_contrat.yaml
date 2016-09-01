@@ -20,11 +20,13 @@
     - apprentissage
     - contrat jeune vacances # (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
     - engagement employeur complément formation professionnelle
-
+    - saisonnier
   linear:
     base: salaire brut
     taux: .1
 
   références:
-    Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40
-    La prime de précarité est-elle due [...]:  https://www.service-public.fr/particuliers/vosdroits/F803
+    - Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40
+    - La prime de précarité est-elle due [...]:  https://www.service-public.fr/particuliers/vosdroits/F803
+    - saisonnier: http://travail-emploi.gouv.fr/droit-du-travail/contrats-et-carriere/contrats-de-travail/article/le-travail-saisonnier
+    - Liste sympa: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si

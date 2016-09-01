@@ -14,4 +14,4 @@
 
   linear:
     base: assiette cotisations sociales
-    historique: .1
+    historique: 0.01

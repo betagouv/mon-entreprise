@@ -12,3 +12,30 @@
   logique:
     - embauche en CDI suivant le CDD
     - CDD requalifié en CDI # quand ça arrive ?
+
+- variable: CDD usage # Similaire pour intérim, mais domaines différents
+  référence: https://www.service-public.fr/particuliers/vosdroits/F32476
+  si: emploi temporaire par nature
+  inclusion logique:
+    variable: secteur activité entreprise
+    possibilités:
+      - Déménagement
+      - Services à la personne
+      - Hôtellerie, restauration
+      - Centre de loisirs et de vacances
+      - Activité foraine
+      - Sport professionnel
+      - Enseignement
+      - Spectacle
+      - Action culturelle
+      - Audiovisuel, production cinématographique, édition phonographique
+      - Exploitation forestière
+      - Réparation navale
+      - Information
+      - Enquêtes, sondages
+      - Entreposage et stockage de la viande
+      - Bâtiment et travaux publics pour les chantiers à l'étranger
+      - Coopération, assistance technique d'ingénierie et de recherche à l'étranger
+      - Recherche scientifique dans le cadre d'un accord international (convention, arrangement administratif)
+      - Assistance technique ou logistique dans les institutions internationales ou dans l'Union européenne prévu par les traités
+      -
