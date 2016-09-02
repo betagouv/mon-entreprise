@@ -1,3 +1,22 @@
+Variable
+  | Cotisation
+  | Réduction de Cotisation
+  | Prestation
+  | Rémunération
+
+Rémunération
+  | Rémunération salarié
+  | Avantage en nature
+  | ? pour les TNS
+  | Indemnité de stage
+  | ?
+
+Rémunération salarié
+  domaine: Salariat
+  type:
+    | Salaire
+    | Prime
+
 Cotisation
   domaine: Activité
   description:
@@ -12,20 +31,3 @@ Cotisation
   # D'autres attributs peuvent être ajoutés directement dans les instances de cette classe.
   # Ils ne sont alors pas contraints ni obligatoires
   # Example : type de retraite: base | complémentaire
-
-
-new Cotisation "taxe sur les salaires"
-  dû par: employeur
-  formule:
-    Activité.Individu.salaire
-    azdazdazd
-
-new Cotisation "taxe sur les salaires"
-  dû par: employeur
-  formule:
-    Activité.Individu.salaire
-    azdazdazd
-
-new Formule "cotisations employeur"
-  formule:
-    sum(Cotisations[@dû par = employeur])

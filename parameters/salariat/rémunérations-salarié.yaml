@@ -1,0 +1,13 @@
+- Salaire: salaire de base
+
+- Salaire: salaire apprentis
+
+- Salaire: salaire contrat professionnalisation
+
+- Prime: primes salarié
+  description: Indemnités, primes et avantages en argent
+
+# depense_cantine_titre_restaurant_employeur = simulation.calculate(
+#             'depense_cantine_titre_restaurant_employeur', period)
+# reintegration_titre_restaurant_employeur = simulation.calculate(
+#     'reintegration_titre_restaurant_employeur', period)

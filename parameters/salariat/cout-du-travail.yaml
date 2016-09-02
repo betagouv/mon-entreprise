@@ -1,0 +1,29 @@
+- Variable: coût du travail (Salariat)
+  description: Coût du travail à long terme. Inclut les charges, aides et crédits différés
+  +: salaire super brut
+  # Définition d'une somme sur de variables plutôt qu'une liste finie
+  -:
+    Réduction de Cotisation:
+      automatique: non
+
+
+- Variable: salaire super brut (Salariat)
+  description: Coût du travail à court terme. Inclut les exonérations et allègements de charges
+  +: salaire super brut hors allegements
+  -:
+    Réduction de Cotisation:
+      automatique: oui
+
+- Variable: salaire super brut hors allegements (Salariat)
+  description: Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur
+  # +: @rémunérations + @primes et indémnités
+  +: salaire brut
+  +:
+    Cotisation:
+      dû par: employeur
+
+- Variable: salaire brut (Salariat)
+  description: Le salaire brut est l'ensemble des revenus du salarié (salaires) avant cotisations
+  +: Salaire
+  # TODO pourquoi le salaire brut est-il dans OF différent de l'assiette des cotsoc ? pas de primes_salaires
+  # Refaire la part des choses

@@ -1,26 +1,3 @@
-- variable: salaire de base
-  tags:
-    - rémunération
-    - brut
-  entrée: nombre
-
-- variable: rémunération principale
-  tags:
-    - rémunération
-    - brut
-  concerne:
-    categorie salarié: public*
-  calc: ad hoc
-
-- variable: rémunération apprenti
-  tags:
-    - rémunération
-    - brut
-  concerne:
-    apprenti: oui
-  calc: ad hoc
-
-
 - variable: salaire net à payer
   description: Salaire net à payer (fiche de paie)
   tags:
