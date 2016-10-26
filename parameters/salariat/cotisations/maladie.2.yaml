@@ -13,7 +13,7 @@
         base: assiette cotisations sociales
 
       +:
-        Cotisation:
+        Cotisation: # On va ici surcharger la Cotisation incomplète définie plus haut
           composante: maladie, maternité, invalidité, décès
           dû par: employeur
         formule:
@@ -45,7 +45,7 @@
             1997-01-01: .055
             1993-07-01: .068
 
-      +: # Ceci est une exception qui s'ajoute au cas plus général ci-dessus
+      +: # Un '+' et un 'si': une exception qui s'ajoute au cas plus général ci-dessus plutôt que de s'y substituer.
         si: régime géographique = Alsace-Moselle
         # Sous entendu Activité = Salariat && Salariat.régime géographique = Alsace-Moselle
         Cotisation:
