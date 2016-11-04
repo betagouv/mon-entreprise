@@ -8,10 +8,11 @@
     Aide à l'embauche d'un premier salarié d'un montant maximal de 4 000 € pour toute embauche en CDI ou en CDD de plus de 6 mois comprise entre le 9 juin 2015 et le 31 décembre 2016.
   référence: https://www.service-public.fr/professionnels-entreprises/actualites/008168
 
+  concerne: Activité = Salariat
   conditions:
     - effectif entreprise <= 250
     - 2015-06-09 < début contrat <= 2016
-    - durée contrat > 6 mois # CD OK, pas cumul avec apprentissage, donc alternance seulement en Contrat Pro
+    - durée contrat > 6 mois # CDD OK, pas cumul avec apprentissage, donc alternance seulement en Contrat Pro
     - salaire de base < 1,3 * SMIC
     - entreprise de droit privé
     #TODO Le ministère du Travail indique dans son questions-réponses que les comités d'entreprise sont également éligibles à cette aide, tout comme les groupements d'employeurs au titre de l'embauche d'un salarié permanent, mais aussi d'un salarié mis à disposition des entreprises adhérentes.
@@ -28,7 +29,6 @@
     # Dans ce cas, l’aide totale versée à l’employeur (pour les 2 contrats) ne peut pas dépasser 4 000 €.
 
 
-
   non-cumul:
     # Cette prime est cumulable avec certains dispositifs existants : réduction générale des cotisations patronales sur les bas salaires, CICE, Accre
     # L'aide n'est pas cumulable avec une autre aide de l'État à l'insertion, à l'accès ou au retour à l'emploi versée au titre du même salarié : contrat de génération, contrat d'apprentissage (sauf si l'embauche a lieu à l'issue de l'apprentissage), aide à l'embauche d'un premier salarié...
@@ -38,9 +38,7 @@
   # Le montant de l'aide pour 2 ans est égal à 4 000 € maximum pour un même salarié.
   # L'aide est versée sous la forme d'une prime trimestrielle de 500 €.
   # Si le salarié est embauché à temps partiel, l'aide est proratisée en fonction de sa durée de travail. Par exemple, pour un CDI à temps partiel (à 80 % d'un temps plein), la prime est de 400 € par trimestre ( 3 200 € sur 2 ans).
-  formule:
-    montant étalé:
-  # somme échelonnée:
-      total: 4000
-      versement: trimestriel
-      proratisation: temps de travail
+  périodicité: trimestrielle
+  proratisation: temps de travail
+  durée: 2 ans
+  formule: 500

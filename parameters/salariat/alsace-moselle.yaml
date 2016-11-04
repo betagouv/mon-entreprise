@@ -1,4 +1,6 @@
 - variable: régime géographique = Alsace Moselle
+  description: Appartenance au régime local de sécurité sociale Alsace-Moselle
+  référence: http://regime-local.fr/salaries/
   logique:
     - affiliation 2012 conservée
     - département activité salarié ⊂ [57 67 68]

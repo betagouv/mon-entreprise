@@ -1,0 +1,77 @@
+- Aide: réduction générale bas salaires
+
+  attributs:
+    type: réduction de cotisations
+    thème: aide bas salaires
+    démarches: non
+  nom: Réduction générale des cotisations patronales sur les bas salaires
+  alias: réduction fillon
+
+  description: |
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation, hormis l'assurance chômage. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
+  références:
+    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
+    - https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
+
+  concerne: Activité = Salariat # Ceci exclut notamment les stagiaires
+
+  #TODO implémenter "Les salariés visés" de l'URSSAF
+  # Tout salarié dont la rémunération est inférieure à 1,6 , relevant à titre obligatoire du régime d’assurance chômage ou dont l’emploi ouvre droit à l’allocation d’assurance chômage, peut ouvrir droit à cet allégement, quelles que soient la forme ou la nature de son contrat de travail et la durée de travail à laquelle il est soumis.
+
+  #TODO règles de non-cumul et d'exceptions au non-cumul sur service-public...
+  # non-cumul:
+  #   - Aide:
+  #       type: réduction de cotisations
+
+
+  #TODO cette exonération ne peut être imputée à toutes les cotisations sociales. Voir s'il faut l'implémenter
+
+  cibles de la réduction:
+    filtre:
+      Cotisation:
+        dû par: employeur
+    cibles:
+      - fnal
+      - allocation familiale
+      - contribution solidarité autonomie
+      - maladie
+      - variable: ATMP
+        limite: .01 * assiette cotisations sociales
+        prioritaire: non
+
+  périodicité: mensuelle
+  période de référence: annuelle
+  #https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-2--le-calcul-de-la-reducti/la-regularisation.html
+  modes de régularisation:
+    - fin d'année
+      # - Chaque mois, la réduction est calculée sur le salaire du mois
+      # - en fin d'année, la réduction est calculée sur l'année. C'est cette valeur qui fait référence, pour absorber les variations mensuelles de salaire.
+      # -> la différence est régularisée sur les cotisations sociales du dernier mois
+    - progressive
+      # - Le principe de la régularisation "fin d'année" est appliqué chaque mois, à chaque versement.
+      # Cela évite une suprise de fin d'année, par exemple si le salaire pendant le deuxième semestre a été doublé et
+      # fait sortir le salrié du champ de la réduction !
+
+  formule:
+    #TODO la formule d'OpenFisca (allègements.py) à base de min et max semble plus compréhensible
+    variables de calcul:
+      coefficient de réduction:
+        #TODO implémenter la section "Comment calculer l'effectif" de service public
+        variations:
+          - si: effectif entreprise >= 20
+            - 2017: .2850
+            - 2016: .2842
+            - 2015: .2835
+            - 2005-07-01: .26
+          - si: effectif entreprise < 20
+            - 2017: .2810
+            - 2016: .2802
+            - 2015: .2795
+            - 2007-07-01: .281
+            - 2005-07-01: .26
+      seuil de réduction: 1.6 * smic proratisé
+      écart assiette: (seuil de réduction - assiette cotisations sociales) / assiette cotisations sociales
+    calcul final:
+      (coefficient de réduction * écart assiette) / 0.6
+
+  #TODO lire la page service-public et URSSAF pour voir ce qui nous manque
