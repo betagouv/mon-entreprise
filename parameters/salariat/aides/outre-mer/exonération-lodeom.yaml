@@ -1,0 +1,61 @@
+- Aide: Exonération Lodeom
+  attributs:
+    type: exonération
+    thème:
+      - aide territoriale
+      - aide TPE
+  description: |
+    Une exonération de cotisations patronales d’assurances sociales et d’allocations familiales dite « exonération Lodeom » est ouverte aux employeurs situés dans les départements d'Outre-mer (Guadeloupe, Guyane, Martinique, la Réunion) ainsi qu'à Saint-Barthélemy et Saint-Martin.
+    Elle est accordée aux employeurs qui occupent moins de 11 salariés et aux employeurs de certains secteurs d’activité, quel que soit leur effectif.
+  référence: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-dite.html
+
+  concerne:
+    - Établissement . territoire outre-mer ⊂ : # As-t-on besoin de spécifier l'entité ? Quelle syntaxe ?
+        - Guadeloupe
+        - Guyane
+        - Martinique
+        - la Réunion
+        - Saint-Barthélemy
+        - Saint-Martin
+
+  #TODO voir : https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-dite/les-cotisations-exonerees.html
+  # Subtilité (sérieux !?):
+
+  # Méchanisme de calcul #TODO IMPORTANT
+  # Faire un truc conditionnel : effectif vs secteur + CICE ou non
+  # intervalle de salaire -> exonération[totale, #TODO? totale sur partie du salaire, coefficient * salaire, nulle]
+  #TODO système de neutralisation d'autres variables
+  # totale sur partie du salaire -> les cotisations en question étant linéaires du salaire sur les montants concernés,
+  # cela consiste à retrancher la cotisation qui aurait été payée si le salaire était ex. 1.4 * SMIC
+  +:
+    Aide:
+      variante: exonération de droit commun
+
+    concerne:
+      - effectif entreprise < 11
+      #TODO règles de calcul de l'effectif, maintien partiel de l'éxo en cas de croissance : https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-dite/les-employeurs-concernes-par-lex/lexoneration-de-droit-commun-pou.html
+      - secteur Salariat ⊂ : # Voir la remarque "Bon à savoir" de l'URSSAF : c'est bien le secteur d'activité du salarié qui importe
+        - Bâtiment et travaux publics, industrie
+        - Restauration
+        - Presse, production audiovisuelle
+        - Energies renouvelables
+        - Nouvelles technologies de l'information, de la communication et centres d'appel
+        - Pêche, cultures marines, aquaculture
+        - Agriculture y compris les coopératives agricoles et les SICA et leurs unions, coopératives maritimes et leurs unions
+        - Tourisme, restauration de tourisme y compris les activités de loisirs s'y rapportant et hôtellerie
+        - Transport aérien #TODO conditionné
+        - Transport maritime ou fluvial #TODO conditionné
+
+
+  +:
+    Aide:
+      variante: exonération renforcée
+    # Complexité énorme pour 'concerne' !!!!!!!!!!!!!!
+    concerne:
+      - effectif < 250 && CA < 50 000 000
+      - condition complexe ...
+      - soumis de plein droit ou sur option à un régime réel d’imposition
+    #TODO IMPORTANT résoudre la syntaxe ET OU...
+    # si machin alors condition suppl
+
+    # méchanisme de calcul : IDEM exo droit commun

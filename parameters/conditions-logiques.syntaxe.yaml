@@ -1,0 +1,72 @@
+- Variable: ma variable
+
+  concerne:
+    - ma condition 1
+    - ma condition 2
+
+
+# Une liste c'est des OU par défaut
+# Une :indentation c'est un ET par défaut
+  concerne:
+    - ma condition 1:
+      - ma condition 1.1
+    - ma condition 2
+    - ma condition 3:
+      - ma condition 3.1:
+        - ou ma condition 3.2
+
+# Une liste est OU par défaut
+# Un &: transforme une liste en ET
+# C'est complexe !
+  concerne:
+    - ma condition 1:
+      - ma condition 1.1
+    - ma condition 2
+    - ma condition 3 &:
+      - ma condition 3.1
+      - ou ma condition 3.2
+
+# Essai dans la vrai vie
+
+  concerne & :
+    - effectif entreprise <= 200
+    - chiffre d'affaires < 50 000 000
+    - établissement . région ⊂ :
+      - Alsace
+      - Pays-Basque
+      - Bretagne
+      - Îles Kerguelen
+    - établissement . secteur ⊂ :
+      - industrie aéronautique
+      - industrie pharmaceutique
+      - agriculture biologique
+
+  # Intégrer un OU dans une liste de ET (le & initial ne se transfère pas !)
+  concerne & :
+    - effectif entreprise <= 200
+    - chiffre d'affaires < 50 000 000
+    -
+      - établissement . région = Alsace
+      - établissement . secteur = éducation
+
+
+# PAS POSSIBLE : | est réservé au strings multilignes
+  # concerne:
+  #   - | ma condition 1:
+  #     - ma condition 1.1
+  #   - | ma condition 2
+  #   - | ma condition 3:
+  #       - & ma condition 3.1
+  #       - & ma condition 3.2
+
+# Lourd visuellement
+  concerne:
+    - :OU ma condition 1:
+      - ma condition 1.1
+    - :OU ma condition 2
+    - :OU ma condition 3:
+        - :ET ma condition 3.1
+        - :ET ma condition 3.2
+
+
+# Puis tester avec des calculs (inclus) et &
