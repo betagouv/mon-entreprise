@@ -52,27 +52,21 @@
       # Cela évite une suprise de fin d'année, par exemple si le salaire pendant le deuxième semestre a été doublé et
       # fait sortir le salrié du champ de la réduction !
 
-  #TODO s'inspirer de la formule de calcul de lodéom :
-  # c'est exactement le même principe avec des taux et tranches différentes
+  # Voir calcul similaire documenté pour lodéom
+  # TODO vérifier que les taux donnés par l'URSSAF / SP
+  # correspondent à cette formule affine
+  # notamment sur l'histoire de l'AT/MP à hauteur de 1%
+  # Peut être est-ce pour une question d'arrondi reporté sur elle ?
 
-  formule:
-    variables de calcul:
-      coefficient de réduction:
-        variations:
-          - si: effectif entreprise >= 20
-            2017: .2850
-            2016: .2842
-            2015: .2835
-            2005-07-01: .26
-          - si: effectif entreprise < 20
-            2017: .2810
-            2016: .2802
-            2015: .2795
-            2007-07-01: .281
-            2005-07-01: .26
-      seuil de réduction: 1.6 * smic proratisé
-      écart assiette: (seuil de réduction - assiette cotisations sociales) / assiette cotisations sociales
-    calcul final:
-      (coefficient de réduction * écart assiette) / 0.6
+  coefficient de réduction:
+    affine par morceaux:
+      base: smic proratisé
+      tranches:
+        - seuil: 0
+          coefficient: 1
+        - seuil: 1
+          coefficient: linéaire
+        - seuil: 1.6
+          exonération: 0
 
   #TODO lire la page service-public et URSSAF pour voir ce qui nous manque
