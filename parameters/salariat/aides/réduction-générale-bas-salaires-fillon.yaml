@@ -26,13 +26,13 @@
 
   #TODO cette exonération ne peut être imputée à toutes les cotisations sociales. Voir s'il faut l'implémenter
 
-  cibles de la réduction:
+  variables ciblées:
     filtre:
       Cotisation:
         dû par: employeur
     cibles:
       - fnal
-      - allocation familiale
+      - allocations familiales
       - contribution solidarité autonomie
       - maladie
       - variable: ATMP
@@ -52,23 +52,24 @@
       # Cela évite une suprise de fin d'année, par exemple si le salaire pendant le deuxième semestre a été doublé et
       # fait sortir le salrié du champ de la réduction !
 
+  #TODO s'inspirer de la formule de calcul de lodéom :
+  # c'est exactement le même principe avec des taux et tranches différentes
+
   formule:
-    #TODO la formule d'OpenFisca (allègements.py) à base de min et max semble plus compréhensible
     variables de calcul:
       coefficient de réduction:
-        #TODO implémenter la section "Comment calculer l'effectif" de service public
         variations:
           - si: effectif entreprise >= 20
-            - 2017: .2850
-            - 2016: .2842
-            - 2015: .2835
-            - 2005-07-01: .26
+            2017: .2850
+            2016: .2842
+            2015: .2835
+            2005-07-01: .26
           - si: effectif entreprise < 20
-            - 2017: .2810
-            - 2016: .2802
-            - 2015: .2795
-            - 2007-07-01: .281
-            - 2005-07-01: .26
+            2017: .2810
+            2016: .2802
+            2015: .2795
+            2007-07-01: .281
+            2005-07-01: .26
       seuil de réduction: 1.6 * smic proratisé
       écart assiette: (seuil de réduction - assiette cotisations sociales) / assiette cotisations sociales
     calcul final:

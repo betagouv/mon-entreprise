@@ -10,51 +10,78 @@
   référence: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-dite.html
 
   concerne:
-    - Établissement . territoire outre-mer ⊂ : # As-t-on besoin de spécifier l'entité ? Quelle syntaxe ?
-        - Guadeloupe
-        - Guyane
-        - Martinique
-        - la Réunion
-        - Saint-Barthélemy
-        - Saint-Martin
+    - Établissement . territoire outre-mer ⊂ :
+      - Guadeloupe
+      - Guyane
+      - Martinique
+      - la Réunion
+      - Saint-Barthélemy
+      - Saint-Martin
 
-  #TODO voir : https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-dite/les-cotisations-exonerees.html
-  # Subtilité (sérieux !?):
+  variables ciblées:
+    filtre:
+      Cotisation:
+        dû par: employeur
+    cibles:
+      - Cotisation: maladie
+        composante: maladie, maternité, invalidité, décès
+      - vieillesse
+      - allocations familiales
 
-  # Méchanisme de calcul #TODO IMPORTANT
-  # Faire un truc conditionnel : effectif vs secteur + CICE ou non
-  # intervalle de salaire -> exonération[totale, #TODO? totale sur partie du salaire, coefficient * salaire, nulle]
-  #TODO système de neutralisation d'autres variables
-  # totale sur partie du salaire -> les cotisations en question étant linéaires du salaire sur les montants concernés,
-  # cela consiste à retrancher la cotisation qui aurait été payée si le salaire était ex. 1.4 * SMIC
   +:
     Aide:
       variante: exonération de droit commun
 
-    concerne:
-      - effectif entreprise < 11
-      #TODO règles de calcul de l'effectif, maintien partiel de l'éxo en cas de croissance : https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-dite/les-employeurs-concernes-par-lex/lexoneration-de-droit-commun-pou.html
-      - secteur Salariat ⊂ : # Voir la remarque "Bon à savoir" de l'URSSAF : c'est bien le secteur d'activité du salarié qui importe
-        - Bâtiment et travaux publics, industrie
-        - Restauration
-        - Presse, production audiovisuelle
-        - Energies renouvelables
-        - Nouvelles technologies de l'information, de la communication et centres d'appel
-        - Pêche, cultures marines, aquaculture
-        - Agriculture y compris les coopératives agricoles et les SICA et leurs unions, coopératives maritimes et leurs unions
-        - Tourisme, restauration de tourisme y compris les activités de loisirs s'y rapportant et hôtellerie
-        - Transport aérien #TODO conditionné
-        - Transport maritime ou fluvial #TODO conditionné
+    conditions à remplir:
+      toutes ces conditions:
+        - effectif entreprise < 11
+        #TODO règles de calcul de l'effectif, maintien partiel de l'éxo en cas de croissance : https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-dite/les-employeurs-concernes-par-lex/lexoneration-de-droit-commun-pou.html
+        - secteur Salariat ⊂ : # Voir la remarque "Bon à savoir" de l'URSSAF : c'est bien le secteur d'activité du salarié qui importe
+          - Bâtiment et travaux publics, industrie
+          - Restauration
+          - Presse, production audiovisuelle
+          - Energies renouvelables
+          - Nouvelles technologies de l'information, de la communication et centres d'appel
+          - Pêche, cultures marines, aquaculture
+          - Agriculture y compris les coopératives agricoles et les SICA et leurs unions, coopératives maritimes et leurs unions
+          - Tourisme, restauration de tourisme y compris les activités de loisirs s'y rapportant et hôtellerie
+          - Transport aérien #TODO conditionné
+          - Transport maritime ou fluvial #TODO conditionné
 
+    # Méchanisme de calcul assez original
+    coefficient de réduction:
+      # Le principe de cette exonération :
+      # les cotisations cibles vont être rejouées,
+      # mais avec une assiette réduite à un coefficient * le smic, puis retranchées.
+      # la formule ci-dessous donne le coefficient qui varie sur des tranches
+      affine par morceaux:
+        base: smic proratisé
+        tranches:
+          - seuil: 0
+            # Exonération totale des cotisations d’assurances sociales et d’allocations familiales
+            coefficient: 1
+          - seuil: 1.4
+            # Exonération sur la partie du salaire horaire brut limitée à 1.4
+            coefficient: 1.4
+          - seuil: 2
+            # le coefficient suit une fonction linéaire passant par la borne précédente et la borne suivante
+            #TODO est-ce clair ?
+            coefficient: linéaire
+          - seuil: 3
+            # Pas d’exonération dès le 1er euro versé
+            exonération: 0
+
+    # Faire le même pour les autres conditions : CICE: [oui, non], type de réduction: [effectif, secteur]
 
   +:
     Aide:
       variante: exonération renforcée
     # Complexité énorme pour 'concerne' !!!!!!!!!!!!!!
-    concerne:
-      - effectif < 250 && CA < 50 000 000
-      - condition complexe ...
-      - soumis de plein droit ou sur option à un régime réel d’imposition
+    conditions à remlir:
+      toutes ces conditions:
+        - effectif < 250 && CA < 50 000 000
+        - condition complexe ...
+        - soumis de plein droit ou sur option à un régime réel d’imposition
     #TODO IMPORTANT résoudre la syntaxe ET OU...
     # si machin alors condition suppl
 

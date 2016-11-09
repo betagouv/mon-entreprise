@@ -3,18 +3,20 @@
     type: prime
     thème: aide à l'embauche
     par: État
-    démarches: demande rapide
+    démarches: demande
   description: |
     Aide à l'embauche d'un premier salarié d'un montant maximal de 4 000 € pour toute embauche en CDI ou en CDD de plus de 6 mois comprise entre le 9 juin 2015 et le 31 décembre 2016.
   référence: https://www.service-public.fr/professionnels-entreprises/actualites/008168
 
-  concerne: Activité = Salariat
-  conditions:
-    - effectif entreprise <= 250
-    - 2015-06-09 < début contrat <= 2016
-    - durée contrat > 6 mois # CDD OK, pas cumul avec apprentissage, donc alternance seulement en Contrat Pro
-    - salaire de base < 1,3 * SMIC
-    - entreprise de droit privé
+  conditions à remplir:
+    toutes ces conditions:
+      - Activité = Salariat
+      - effectif entreprise = 0
+      - 2015-06-09 < début contrat <= 2016
+      - durée contrat > 6 mois # CDD OK, pas cumul avec apprentissage, donc alternance seulement en Contrat Pro
+      - salaire de base < 1.3 * SMIC
+      - entreprise de droit privé
+
     #TODO Le ministère du Travail indique dans son questions-réponses que les comités d'entreprise sont également éligibles à cette aide, tout comme les groupements d'employeurs au titre de l'embauche d'un salarié permanent, mais aussi d'un salarié mis à disposition des entreprises adhérentes.
 
     #TODO l’entreprise n’a pas conclu de contrat de travail avec un salarié, au-delà de la période d’essai, dans les 12 mois précédant la nouvelle embauche

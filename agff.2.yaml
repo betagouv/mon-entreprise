@@ -13,58 +13,61 @@
   formule:
     barème à taux marginaux:
       base: plafond sécurité sociale
-
       +:
-        Cotisation:
-          dû par: employeur
-        variations:
-          - si: categorie salarié = privé non cadre
-            - seuil: 0
-              taux:
-                2001-04-01: .008
-            - seuil: 1
-              taux:
-                2001-04-01: .009
-            - seuil: 3
-              taux: 0
-          - si: categorie_salarie = privé cadre
-            - seuil: 0
-              taux:
-                2001-04-01: .012
-            - seuil: 1
-              taux:
-                2001-04-01: .013
-            - seuil: 4
-              taux:
-                2016-01-01: .013
-                2001-04-01: 0
-            - seuil: 8
-              taux: 0
+        - Cotisation:
+            dû par: employeur
+          variations:
+            - si: categorie salarié = privé non cadre
+              tranches:
+                - seuil: 0
+                  taux:
+                    2001-04-01: .008
+                - seuil: 1
+                  taux:
+                    2001-04-01: .009
+                - seuil: 3
+                  taux: 0
 
-      +:
-        Cotisation:
-          dû par: salarié
-        variations:
-          - si: categorie salarié = privé non cadre
-            - seuil: 0
-              taux:
-                2001-04-01: .008
-            - seuil: 1
-              taux:
-                2001-04-01: .009
-            - seuil: 3
-              taux: 0
+            - si: categorie_salarie = privé cadre
+              tranches:
+                - seuil: 0
+                  taux:
+                    2001-04-01: .012
+                - seuil: 1
+                  taux:
+                    2001-04-01: .013
+                - seuil: 4
+                  taux:
+                  2016-01-01: .013
+                  2001-04-01: 0
+                - seuil: 8
+                  taux: 0
 
-          - si: categorie salarié = privé cadre
-            - seuil: 0
-              taux:
-                2001-04-01: .008
-            - seuil: 1
-              taux:
-                2001-04-01: .009
-            - seuil: 4
-              taux:
-                2016-01-01: .009
-                2001-04-01: 0
-            - seuil: 8
-              taux: 0
+        - Cotisation:
+            dû par: salarié
+          variations:
+            - si: categorie salarié = privé non cadre
+              tranches:
+                - seuil: 0
+                  taux:
+                    2001-04-01: .008
+                - seuil: 1
+                  taux:
+                    2001-04-01: .009
+                - seuil: 3
+                  taux: 0
+
+            - si: categorie salarié = privé cadre
+              tranches:
+                - seuil: 0
+                  taux:
+                    2001-04-01: .008
+                - seuil: 1
+                  taux:
+                    2001-04-01: .009
+                - seuil: 4
+                  taux:
+                  2016-01-01: .009
+                  2001-04-01: 0
+                - seuil: 8
+                  taux: 0

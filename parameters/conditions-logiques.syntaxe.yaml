@@ -1,10 +1,14 @@
 - Variable: ma variable
 
+# Cette variable est valable quand les conditions de la liste 'concerne'
+# sont vérifiées
   concerne:
     - ma condition 1
     - ma condition 2
 
+# Mais comment faire des & ? Comment dire : condition1 ET condition2 ?
 
+# Première idée :
 # Une liste c'est des OU par défaut
 # Une :indentation c'est un ET par défaut
   concerne:
@@ -15,9 +19,10 @@
       - ma condition 3.1:
         - ou ma condition 3.2
 
+# Cela multiplie les indentations dans le cas de ET en série... trouvons mieux.
+
 # Une liste est OU par défaut
-# Un &: transforme une liste en ET
-# C'est complexe !
+# Un &: transforme transforme la liste suivant en ET
   concerne:
     - ma condition 1:
       - ma condition 1.1
@@ -41,16 +46,31 @@
       - industrie pharmaceutique
       - agriculture biologique
 
-  # Intégrer un OU dans une liste de ET (le & initial ne se transfère pas !)
-  concerne & :
+  # Et l'inverse ? Intégrer un OU dans une liste de ET (le & initial ne se transfère pas !)
+  conditions & :
     - effectif entreprise <= 200
     - chiffre d'affaires < 50 000 000
     -
-      - établissement . région = Alsace
+      - entreprise . région = Alsace
       - établissement . secteur = éducation
 
+  # On peut aussi partir sur des phrases qui enlèvent toute ambiguité
+  toutes ces conditions:
+    - effectif entreprise <= 200
+    - chiffre d'affaires < 50 000 000
+    - et l'une de ces conditions:
+      - entreprise . région = Alsace
+      - établissement . secteur = éducation
 
-# PAS POSSIBLE : | est réservé au strings multilignes
+  # On peut imaginer que 'toutes ces conditions' devienne en fonction du contexte:
+  toutes ces situations:
+  # On peut aussi légèrement adapter par exemple:
+  l'une de ces conditions: # devient :
+  et l'une de ces conditions:
+
+# OPTIONS ABANDONNÉES
+
+# alternative PAS POSSIBLE : | est réservé au strings multilignes
   # concerne:
   #   - | ma condition 1:
   #     - ma condition 1.1
@@ -58,6 +78,7 @@
   #   - | ma condition 3:
   #       - & ma condition 3.1
   #       - & ma condition 3.2
+
 
 # Lourd visuellement
   concerne:
