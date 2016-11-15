@@ -1,0 +1,65 @@
+- Cotisation: apprentissage
+  attributs:
+    branche: aucune idée
+    collecteur: Organisme Collecteur de Taxe d'Apprentissage (OCTA)
+  description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
+
+  référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
+
+  ne concerne pas:
+    - Entreprise . association non lucrative
+
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      +:
+        - Cotisation:
+            composante: base
+          taux:
+            2017: 0.0068
+            2014: 0.0068
+            1993-07: 0.005
+            exception:
+              si: régime géographique = Alsace-Moselle
+              2016: 0.0044
+        - Cotisation:
+            composante: supplémentaire
+          description: Contribution supplémentaire à l'apprentissage
+          abbreviation: CSA
+
+          variations:
+            - si: ratio alternants < 0.01
+              taux:
+                2016: .005
+                2013: .004
+                exception:
+                  si: effectif entreprise >= 2000
+                  2016: .006
+                  2014: .006
+                  2013: .005
+            - si: ratio alternants < 0.02
+              taux:
+                2016: .002
+                2015: .002
+                2013: .001
+            - si: ratio alternants < 0.03
+              taux:
+                2016: .0005
+                2015: .0005
+            - si: ratio alternants < 0.05
+              taux:
+                2016: .0005
+                2015: 0
+
+        - Cotisation:
+            composante: additionnelle
+          description: Contribution additionnelle au développement de l'apprentissage
+          variations:
+            - si: période < 2014 # obsolète
+              taux:
+                2006: 0.0018
+                2005: 0.0012
+                2004: 0.0006
+
+# TODO chantier droits: introduire la répartition entre part régionale, quota d'app., hors quota
+# https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574

@@ -1,0 +1,33 @@
+- Cotisation: cotisation exceptionnelle temporaire
+  attributs:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC
+  description: |
+    Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points supplémentaires au salarié.
+  concerne: categorie salarié = privé cadre
+  référence: http://www.agirc-arrco.fr/qui-sommes-nous/chiffres-cles
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      plafond: 8 * plafond sécurité sociale
+    +:
+      - Cotisation:
+          dû par: employeur
+        taux:
+          2016-01-01: .0022
+          2001-01-01: .0022
+          2000-01-01: .0017
+          1999-01-01: .0013
+          1998-01-01: .0009
+          1997-01-01: .00044
+
+      - Cotisation:
+          dû par: salarié
+        taux:
+          2016-01-01: .0013
+          2001-01-01: .0013
+          2000-01-01: .0011
+          1999-01-01: .0008
+          1998-01-01: .0005
+          1997-01-01: .00026

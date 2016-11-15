@@ -1,0 +1,45 @@
+- Cotisation: APEC
+  attributs:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: APEC
+  description: |
+    Cotisation de retraite complémentaire cadre, pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+  référence: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  notes: |
+    Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
+
+  formule:
+    barème en taux marginaux:
+      +:
+        - Cotisation:
+            dû par: employeur
+          tranches:
+            - seuil: 0
+              taux:
+                2016-01-01: 0.00036
+                2011-01-01: 0.00036
+                1993-07-01: 0
+            - seuil: 0
+              taux:
+                2016-01-01: 0.00036
+                1993-07-01: 0.00036
+            - seuil: 4
+              taux: 0
+        - Cotisation:
+            dû par: salarié
+          tranches:
+            - seuil: 0
+              taux:
+                historique:
+                  2016-01-01: 0.00024
+                  2011-01-01: 0.00024
+                  1993-07-01: 0
+            - seuil: 0
+              taux:
+                historique:
+                  2016-01-01: 0.00024
+                  1993-07-01: 0.00024
+            - seuil: 4
+              taux: 0

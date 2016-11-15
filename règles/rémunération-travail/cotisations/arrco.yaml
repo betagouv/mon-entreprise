@@ -1,0 +1,95 @@
+- Cotisation: ARRCO
+  attributs:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: ARRCO
+  description: >
+    Cotisation de retraite complémentaire pour tous les salariés du secteur prive,
+    (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
+  référence: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+
+  formule:
+    barème en taux marginaux:
+      base: plafond sécurité sociale
+      +:
+        - Cotisation:
+            dû par: employeur
+            variations:
+              - si: categorie salarié = privé cadre
+                tranches:
+                  - seuil: 0
+                    taux:
+                      2016-01-01: .0465
+                      2015-01-01: .0465
+                      2014-01-01: .0458
+                      1999-01-01: .045
+                      1998-01-01: .04125
+                      1997-01-01: .0375
+                      1996-01-01: .03375
+                      1993-01-01: .02952
+                  - seuil: 1
+                    taux: 0
+              - si: categorie salarié = privé non cadre
+                tranches:
+                  - seuil: 0
+                    taux:
+                      2016-01-01: .0465
+                      2015-01-01: .0465
+                      2014-01-01: .0458
+                      1999-01-01: .045
+                      1998-01-01: .04125
+                      1997-01-01: .0375
+                      1996-01-01: .03375
+                      1993-07-01: .02952
+                  - seuil: 1
+                    taux:
+                      2016-01-01: .1215
+                      2015-01-01: .1215
+                      2014-01-01: .1208
+                      2005-01-01: .12
+                      2004-01-01: .105
+                      2002-01-01: .09
+                      2000-01-01: .075
+                  - seuil: 3
+                    taux: 0
+
+        - Cotisation:
+            dû par: salarié
+          variations:
+            - si: categorie salarié = privé cadre
+              tranches:
+                - seuil: 0
+                  taux:
+                    2016-01-01: .031
+                    2015-01-01: .031
+                    2014-01-01: .0305
+                    1999-01-01: .03
+                    1998-01-01: .0275
+                    1997-01-01: .025
+                    1996-01-01: .0225
+                    1993-01-01: .01968
+                - seuil: 1
+                  taux: 0
+            - si: catégorie salarié = privé non cadre
+              tranches:
+                - seuil: 0
+                  taux:
+                    2016-01-01: .031
+                    2015-01-01: .031
+                    2014-01-01: .0305
+                    1999-01-01: .03
+                    1998-01-01: .0275
+                    1997-01-01: .025
+                    1996-01-01: .0225
+                    1993-01-01: .01968
+                - seuil: 1
+                  taux:
+                    2016-01-01: .081
+                    2015-01-01: .081
+                    2014-01-01: .0805
+                    2005-01-01: .08
+                    2004-01-01: .07
+                    2002-01-01: .06
+                    1993-01-01: .05
+                - seuil: 3
+                  taux: 0

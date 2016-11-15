@@ -11,7 +11,7 @@
     Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
 
   formule:
-    barème à taux marginaux:
+    barème en taux marginaux:
       base: plafond sécurité sociale
       +:
         - Cotisation:
