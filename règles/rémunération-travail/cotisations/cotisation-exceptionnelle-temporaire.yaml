@@ -6,7 +6,7 @@
   description: |
     Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points supplémentaires au salarié.
   concerne: categorie salarié = privé cadre
-  référence: http://www.agirc-arrco.fr/qui-sommes-nous/chiffres-cles
+  référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
   formule:
     linéaire:
       base: assiette cotisations sociales

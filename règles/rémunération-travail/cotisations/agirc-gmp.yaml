@@ -1,0 +1,78 @@
+
+
+- Cotisation: GMP
+  attributs:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC
+  description: |
+    Les salariés relevant du régime Agirc et travaillant à temps plein dont le salaire ne permet pas d'obtenir le nombre minimum de 120 points Agirc, ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+  référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+  note: |
+    Méchanisme:
+    si < PSS -> cotisation forfaitaire GMP
+    si > PSS alors le mec va payer une cotisation AGIRC sur la tranche B, et la GMP sera le complément pour arriver à un montant total = cotisation #forfaitaire GMP
+    Autrement dit, si agirc < cotisation forfaitaire, GMP = complément
+
+  concerne: catégorie salarié = cadre
+
+  formule:
+    complément:
+    # cette cotisation vient compléter la cotisation cible, à hauteur du montant spécifié
+      cible: agirc
+      +:
+        - Cotisation:
+            dû par: employeur
+          montant:
+            2017: 43.67
+            2016: 42.23
+            2014: 41.17
+            2013: 41.13
+            2012: 40.74
+            2011: 39.84
+            2010: 38.99
+            2009: 38.48
+            2008: 37.81
+            2007: 36.57
+            2006: 35.27
+            2005: 34.58
+            2004: 33.75
+            2003: 32.97
+            2002: 32.42
+        - Cotisation:
+            dû par: salarié
+          montant:
+            2017: 26.71
+            2016: 25.84
+            2014: 25.17
+            2013: 25.13
+            2012: 24.90
+            2011: 24.35
+            2010: 23.82
+            2009: 23.52
+            2008: 23.11
+            2007: 22.35
+            2006: 21.56
+            2005: 20.75
+            2004: 20.25
+            2003: 19.78
+            2002: 19.45
+
+# salaire charnière, inutile avec le méchanisme de complément.
+# C'est le salaire pour lequel le salarié acquiert 120 points AGIRC
+#         2017: 42590.88
+#         2016: 42590.88
+#         2015: 41913.84
+#         2014: 41444.64
+#         2013: 40948.70
+#         2012: 40251.98
+#         2011: 39146.63
+#         2010: 38332.92
+#         2009: 37973.00
+#         2008: 36877.00
+#         2007: 35666.00
+#         2006: 34428.00
+#         2005: 33512.00
+#         2004: 32952.00
+#         2003: 32349.00
+#         2002: 31337.00

@@ -6,7 +6,9 @@
   description: |
     Cotisation de retraite complémentaire cadre, complémentant le régime ARRCO
     (pour l'Association Générale des Institutions de Retraite des Cadres)
-  référence: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  références:
+    - http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+    - http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
   concerne:
     - categorie salarié = privé cadre
   notes: |
