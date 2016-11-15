@@ -1,0 +1,58 @@
+#home {
+	height: 400px;
+	/*display:flex;
+	justify-content: center;
+	align-items: center;*/
+}
+
+#brand {
+	position: relative;
+	color: #333350;
+	width: 160px;
+	margin: 6em auto;
+}
+
+#brand img {
+	display: block;
+	width: 160px;
+	margin-bottom: .6em;
+}
+
+#brand #name {
+	font-size: 250%;
+	line-height: .9em;
+}
+#brand #version {
+	font-style: italic;
+	font-size: 110%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+
+#warning {
+	padding: 1em 0;
+	background: #8a1c1c;
+	color: white;
+	font-style: italic;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+
+#search {
+	width: 400px;
+	margin: 4em auto;
+}
+
+#search input {
+	font-weight: 300;
+	text-align: center;
+	font-size: 2em;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #333350
+}

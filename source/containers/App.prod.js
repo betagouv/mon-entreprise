@@ -4,9 +4,6 @@ import { Provider } from 'react-redux'
 import routes from '../routes'
 import Router from 'react-router'
 
-
-import './App.css'
-
 export default class App extends Component {
 	render() {
 		const { store } = this.props

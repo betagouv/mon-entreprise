@@ -8,7 +8,7 @@ module.exports = {
 		'webpack/hot/only-dev-server',
 		'react-hot-loader/patch',
 		'babel-polyfill',
-		'./entry.js'
+		'./source/entry.js'
 	],
 	output: {
 		path: require('path').resolve('./dist/'),

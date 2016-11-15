@@ -29,6 +29,7 @@ render(
 	anchor
 )
 
+// Hot react component reloading. Unstable but helpful. 
 if (module.hot) {
 	module.hot.accept('./containers/App', () => {
 	// If you use Webpack 2 in ES modules mode, you can
