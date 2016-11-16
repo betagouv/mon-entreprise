@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Home.css'
-import rules from '../load-rules'
 
 console.log('rules', rules.length)
 
