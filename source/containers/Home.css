@@ -8,40 +8,28 @@
 #brand {
 	position: relative;
 	color: #333350;
-	width: 160px;
-	margin: 6em auto;
+	width: 120px;
+	margin: 4em auto;
 }
 
 #brand img {
 	display: block;
-	width: 160px;
+	width: 120px;
 	margin-bottom: .6em;
 }
 
 #brand #name {
-	font-size: 250%;
+	font-size: 180%;
 	line-height: .9em;
 }
 #brand #version {
 	font-style: italic;
-	font-size: 110%;
+	font-size: 90%;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
 
-
-#warning {
-	padding: 1em 0;
-	background: #8a1c1c;
-	color: white;
-	font-style: italic;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	text-align: center;
-}
 
 #search {
 	width: 400px;
@@ -51,8 +39,14 @@
 #search input {
 	font-weight: 300;
 	text-align: center;
-	font-size: 2em;
+	font-size: 120%;
 	width: 100%;
 	border: none;
 	border-bottom: 1px solid #333350
+}
+
+#search-results ul {
+	width: 30%;
+	margin: 0 auto;
+	list-style: none;
 }

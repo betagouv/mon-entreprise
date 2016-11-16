@@ -1,3 +1,16 @@
 body {
 	font-family: 'Open Sans';
 }
+
+
+#warning {
+	padding: .2em 0;
+	background: #8a1c1c;
+	color: white;
+	font-style: italic;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}

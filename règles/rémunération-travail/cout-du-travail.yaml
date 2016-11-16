@@ -15,12 +15,13 @@
       automatique: oui
 
 - Variable: salaire super brut hors allegements (Salariat)
-  description: Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur
+  description: 'Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur'
   # +: @rémunérations + @primes et indémnités
-  +: salaire brut
   +:
-    Cotisation:
-      dû par: employeur
+    - salaire brut
+    - Cotisation:
+        dû par: employeur
+
 
 - Variable: salaire brut (Salariat)
   description: Le salaire brut est l'ensemble des revenus du salarié (salaires) avant cotisations
