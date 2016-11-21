@@ -1,4 +1,0 @@
-- variable: CRDS
-  description: Contribution pour le remboursement de la dette sociale
-  calc:
-    ad hoc: crds_salaire

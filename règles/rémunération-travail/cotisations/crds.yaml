@@ -1,0 +1,9 @@
+- Cotisation: CRDS
+  attributs:
+    impôt: oui
+    dû par: salarié
+  description: Contribution pour le remboursement de la dette sociale
+  formule:
+    linéaire:
+      base: assiette CSG - CRDS
+      taux: 0.005

@@ -1,0 +1,18 @@
+- Cotisation: CSG
+  attributs:
+    impôt: oui
+    dû par: salarié
+  description: |
+    Contribution sociale généralisée.
+    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+  formule:
+    linéaire:
+      base: assiette CSG - CRDS
+      +:
+        - Cotisation:
+            déductible des impôts: oui
+          taux: 0.024
+
+        - Cotisation:
+            déductible des impôts: non
+          taux: 0.051
