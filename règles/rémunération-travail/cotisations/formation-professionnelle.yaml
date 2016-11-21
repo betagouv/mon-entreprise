@@ -10,7 +10,7 @@
     linéaire:
       base: assiette cotisations sociales
       variations:
-        - si: période > 2016
+        - si: période >= 2016
           variations:
             - si: effectif entreprise >= 11
               taux: 0.01

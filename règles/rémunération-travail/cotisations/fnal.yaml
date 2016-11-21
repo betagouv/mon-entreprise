@@ -1,0 +1,16 @@
+- Cotisation: FNAL
+  description: Fonds national d'aide au logement
+  référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
+  attributs:
+    dû par: employeur
+    collecteur: URSSAF
+  note: Il y avait une cotisation supplémentaire pour les entreprises de >= 20 employés avant 2015, mais le résultat était le même.
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      variations:
+        - si: effectif entreprise < 20
+          taux: 0.001
+          plafond: plafond de la sécurité sociale
+        - si: effectif entreprise >= 20
+          taux: 0.005
