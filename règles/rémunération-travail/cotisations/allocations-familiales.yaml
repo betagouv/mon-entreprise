@@ -1,0 +1,12 @@
+- Cotisation: allocations familiales
+  attributes:
+    dû par: employeur
+    branche: famille
+  référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      taux:
+        2014: 0.0525
+        1993-07: 0.054
