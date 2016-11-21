@@ -1,0 +1,9 @@
+- Cotisation: Prévoyance obligatoire cadre
+  attributs:
+    dû par: employeur
+  concerne: catégorie salarié = cadre
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      plafond: plafond sécurité sociale
+      taux: 0.015
