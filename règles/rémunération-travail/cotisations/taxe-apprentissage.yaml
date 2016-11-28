@@ -4,7 +4,11 @@
     collecteur: Organisme Collecteur de Taxe d'Apprentissage (OCTA)
   description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
 
-  référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
+  références:
+    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
+    - http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
+
+  notes: Taxe complexe, comportant notamment des exonérations non prises en compte ici. 
 
   ne concerne pas:
     - Entreprise . association non lucrative
@@ -22,34 +26,70 @@
             exception:
               si: régime géographique = Alsace-Moselle
               2016: 0.0044
+
         - Cotisation:
             composante: supplémentaire
           description: Contribution supplémentaire à l'apprentissage
           abbreviation: CSA
 
+          concerne: effectif entreprise >= 250
+          concerne: ratio alternants < 0.05
+
           variations:
-            - si: ratio alternants < 0.01
-              taux:
-                2016: .005
-                2013: .004
-                exception:
-                  si: effectif entreprise >= 2000
-                  2016: .006
-                  2014: .006
-                  2013: .005
-            - si: ratio alternants < 0.02
-              taux:
-                2016: .002
-                2015: .002
-                2013: .001
-            - si: ratio alternants < 0.03
-              taux:
-                2016: .0005
-                2015: .0005
-            - si: ratio alternants < 0.05
-              taux:
-                2016: .0005
-                2015: 0
+            - si: régime géographique = général
+              variations:
+              - si: ratio alternants < 0.01
+                taux:
+                  2016: ?
+                  2014: .004
+                  exception:
+                    si: effectif entreprise >= 2000
+                    2016: ?
+                    2014: .006
+              - si: 0.01 <= ratio alternants < 0.02
+                taux:
+                  2016: ?
+                  2015: .002
+                  2014: .001
+              - si: 0.02 <= ratio alternants < 0.03
+                taux:
+                  2016: ?
+                  2014: .001
+              - si: 0.03 <= ratio alternants < 0.04
+                taux:
+                  2016: ?
+                  2014: .0005
+              - si: 0.04 <= ratio alternants < 0.05
+                taux:
+                  2016: ?
+                  2015: .0005
+                  2014: 0
+            - si: régime géographique = Alsace-Moselle
+              variations:
+              - si: ratio alternants < 0.01
+                taux:
+                  2016: ?
+                  2015: .00208
+                  exception:
+                    si: effectif entreprise >= 2000
+                    2016: ?
+                    2015: .00312
+              - si: 0.01 <= ratio alternants < 0.02
+                taux:
+                  2016: ?
+                  2015: .00104
+              - si: 0.02 <= ratio alternants < 0.03
+                taux:
+                  2016: ?
+                  2015: .00052
+              - si: 0.03 <= ratio alternants < 0.04
+                taux:
+                  2016: ?
+                  2015: .00026
+              - si: 0.04 <= ratio alternants < 0.05
+                taux:
+                  2016: ?
+                  2015: .00026
 
         - Cotisation:
             composante: additionnelle
