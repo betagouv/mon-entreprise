@@ -1,4 +1,4 @@
-- Cotisation: apprentissage
+- Cotisation: Taxe pour l'Apprentissage
   attributs:
     branche: aucune idée
     collecteur: Organisme Collecteur de Taxe d'Apprentissage (OCTA)
@@ -8,7 +8,7 @@
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
     - http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
 
-  notes: Taxe complexe, comportant notamment des exonérations non prises en compte ici. 
+  notes: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
 
   ne concerne pas:
     - Entreprise . association non lucrative
@@ -32,8 +32,10 @@
           description: Contribution supplémentaire à l'apprentissage
           abbreviation: CSA
 
-          concerne: effectif entreprise >= 250
-          concerne: ratio alternants < 0.05
+          conditions à remplir:
+            toutes ces conditions:
+              - effectif entreprise >= 250
+              - ratio alternants < 0.05
 
           variations:
             - si: régime géographique = général

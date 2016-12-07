@@ -1,6 +1,6 @@
-- variable: CIF CDD
+- Cotisation: CIF CDD
   description: Conrtibution au financement du congé individuel de formation spécifique aux CDD
-  tags:
+  attributs:
     collecteur: OPCA
   reference:  Code du travail - Article L6322-37
   ne concerne pas:
@@ -12,6 +12,7 @@
     - contrat aidé # voir la définition précise dans indemnité de fin de contrat
     - apprentissage
 
-  linear:
-    base: assiette cotisations sociales
-    historique: 0.01
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      historique: 0.01

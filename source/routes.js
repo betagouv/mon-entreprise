@@ -6,7 +6,7 @@ import Rule from './components/Rule'
 
 export default (
   <Route path="/" component={Layout}>
-    <Route path="règle" component={Rule} />
+    <Route path="regle/:name" component={Rule} />
     <IndexRoute component={Home} />
     <Route path="*" component={() => <h2>On vous a perdu !</h2>} />
   </Route>

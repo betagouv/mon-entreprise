@@ -1,7 +1,7 @@
-- variable: indemnité de fin de contrat
-  tags:
-    - indemnité
-  alias: prime de précarité
+- Cotisation: Indemnité de Fin de Contrat
+  attributs:
+    type: indemnité
+  alias: Prime de précarité
   description: Somme versée en fin de CDD comme compensation de précarité.
   notes: Attention, les exceptions sont légion. Conventions collectives.
   concerne:
@@ -21,9 +21,10 @@
     - contrat jeune vacances # (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
     - engagement employeur complément formation professionnelle
     - saisonnier
-  linear:
-    base: salaire brut
-    taux: .1
+  formule:
+    linéaire:
+      base: salaire brut
+      taux: .1
 
   références:
     - Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40

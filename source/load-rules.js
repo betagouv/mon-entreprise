@@ -3,8 +3,8 @@ import R from 'ramda'
 /* Load yaml files */
 
 let context = require.context(
-  '../règles/rémunération-travail/cotisations', false,
-  /([a-zA-Z]|\.|-|_)+.yaml$/)
+  '../règles/rémunération-travail', true,
+  /([a-zA-Z]|-|_)+.yaml$/)
 
 
 let rules = R.pipe(
@@ -13,4 +13,5 @@ let rules = R.pipe(
   R.unnest,
 )(context.keys())
 
-export default rules
+
+export default rules.filter(r => r != null)

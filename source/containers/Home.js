@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Home.css'
-
-console.log('rules', rules.length)
+import {searchRules} from '../model.js'
+import {Link} from 'react-router'
 
 export default class Home extends Component {
 	state = {
@@ -27,13 +27,19 @@ export default class Home extends Component {
 			</section>
 			<section id="search-results">
 				<ul>
-				{this.state.userSearch != null && rules
-					.filter( rule =>
-						rule && rule.Cotisation &&
-						JSON.stringify(rule).indexOf(this.state.userSearch) > -1)
-					.map( ({Cotisation}) => console.log(Cotisation) ||
-						<li key={Cotisation}>{Cotisation}</li>
-					)
+				{this.state.userSearch != null &&
+					searchRules(this.state.userSearch)
+						.map(([type, name, rule]) =>
+							// console.log(rule) ||
+							<li key={name}>
+								<span className="rule-type">
+									{type}
+								</span>
+								<span className="rule-name">
+									<Link to={`/regle/${name}`}>{name}</Link>
+								</span>
+							</li>
+						)
 				}</ul>
 			</section>
 		</div>)
