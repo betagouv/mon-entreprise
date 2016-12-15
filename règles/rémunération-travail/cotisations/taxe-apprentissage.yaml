@@ -37,61 +37,41 @@
               - effectif entreprise >= 250
               - ratio alternants < 0.05
 
+          exception:
+            si: régime géographique = Alsace-Moselle
+            références:
+              - http://circulaires.legifrance.gouv.fr/pdf/2012/03/cir_34909.pdf
+              - http://bofip.impots.gouv.fr/bofip/6325-PGP.html
+              # Toutefois, en application du IV de l’article 1609 quinvicies du CGI , dans les départements du Haut-Rhin, du Bas-Rhin et de la Moselle, les taux précités sont réduits à 52 % de leur montant, soit :
+            multiplicateur: 0.52
+
           variations:
-            - si: régime géographique = général
-              variations:
-              - si: ratio alternants < 0.01
-                taux:
-                  2016: ?
-                  2014: .004
-                  exception:
-                    si: effectif entreprise >= 2000
-                    2016: ?
-                    2014: .006
-              - si: 0.01 <= ratio alternants < 0.02
-                taux:
-                  2016: ?
-                  2015: .002
-                  2014: .001
-              - si: 0.02 <= ratio alternants < 0.03
-                taux:
-                  2016: ?
-                  2014: .001
-              - si: 0.03 <= ratio alternants < 0.04
-                taux:
-                  2016: ?
-                  2014: .0005
-              - si: 0.04 <= ratio alternants < 0.05
-                taux:
-                  2016: ?
-                  2015: .0005
-                  2014: 0
-            - si: régime géographique = Alsace-Moselle
-              variations:
-              - si: ratio alternants < 0.01
-                taux:
-                  2016: ?
-                  2015: .00208
-                  exception:
-                    si: effectif entreprise >= 2000
-                    2016: ?
-                    2015: .00312
-              - si: 0.01 <= ratio alternants < 0.02
-                taux:
-                  2016: ?
-                  2015: .00104
-              - si: 0.02 <= ratio alternants < 0.03
-                taux:
-                  2016: ?
-                  2015: .00052
-              - si: 0.03 <= ratio alternants < 0.04
-                taux:
-                  2016: ?
-                  2015: .00026
-              - si: 0.04 <= ratio alternants < 0.05
-                taux:
-                  2016: ?
-                  2015: .00026
+          - si: ratio alternants < 0.01
+            taux:
+              2016: ?
+              2014: .004
+              exception:
+                si: effectif entreprise >= 2000
+                2016: ?
+                2014: .006
+          - si: 0.01 <= ratio alternants < 0.02
+            taux:
+              2016: ?
+              2015: .002
+              2014: .001
+          - si: 0.02 <= ratio alternants < 0.03
+            taux:
+              2016: ?
+              2014: .001
+          - si: 0.03 <= ratio alternants < 0.04
+            taux:
+              2016: ?
+              2014: .0005
+          - si: 0.04 <= ratio alternants < 0.05
+            taux:
+              2016: ?
+              2015: .0005
+              2014: 0
 
         - Cotisation:
             composante: additionnelle
