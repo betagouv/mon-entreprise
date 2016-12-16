@@ -55,7 +55,7 @@
         # mais avec une assiette réduite à un coefficient * le smic, puis retranchées.
         # la formule ci-dessous donne le coefficient qui varie sur des tranches
         affine par morceaux:
-          base: smic proratisé
+          multiplicateur: smic proratisé
           tranches:
             - seuil: 0
               # Exonération totale des cotisations d’assurances sociales et d’allocations familiales

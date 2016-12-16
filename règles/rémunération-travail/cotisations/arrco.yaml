@@ -4,13 +4,14 @@
     type de retraite: complémentaire
     destinataire: ARRCO
   description: >
-    Cotisation de retraite complémentaire pour tous les salariés du secteur prive,
+    Cotisation de retraite complémentaire pour tous les salariés du secteur privé,
     (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
   formule:
     barème en taux marginaux:
-      base: plafond sécurité sociale
+      base: assiette sécurité sociale
+      multiplicateur: plafond sécurité sociale
       +:
         - Cotisation:
             dû par: employeur
@@ -19,37 +20,37 @@
                 tranches:
                   - seuil: 0
                     taux:
-                      2016-01-01: .0465
-                      2015-01-01: .0465
-                      2014-01-01: .0458
-                      1999-01-01: .045
-                      1998-01-01: .04125
-                      1997-01-01: .0375
-                      1996-01-01: .03375
-                      1993-01-01: .02952
+                      2016: 4.65%
+                      2015: 4.65%
+                      2014: 4.58%
+                      1999: 4.5%
+                      1998: 4.125%
+                      1997: 3.75%
+                      1996: 3.375%
+                      1993: 2.952%
                   - seuil: 1
                     taux: 0
               - si: categorie salarié = privé non cadre
                 tranches:
                   - seuil: 0
                     taux:
-                      2016-01-01: .0465
-                      2015-01-01: .0465
-                      2014-01-01: .0458
-                      1999-01-01: .045
-                      1998-01-01: .04125
-                      1997-01-01: .0375
-                      1996-01-01: .03375
-                      1993-07-01: .02952
+                      2016-01: 4.65%
+                      2015-01: 4.65%
+                      2014-01: 4.58%
+                      1999-01: 4.5%
+                      1998-01: 4.125%
+                      1997-01: 3.75%
+                      1996-01: 3.375%
+                      1993-07: 2.952%
                   - seuil: 1
                     taux:
-                      2016-01-01: .1215
-                      2015-01-01: .1215
-                      2014-01-01: .1208
-                      2005-01-01: .12
-                      2004-01-01: .105
-                      2002-01-01: .09
-                      2000-01-01: .075
+                      2016: 12.15%
+                      2015: 12.15%
+                      2014: 12.08%
+                      2005: 12.%
+                      2004: 10.5%
+                      2002: 9%
+                      2000: 7.5%
                   - seuil: 3
                     taux: 0
 
@@ -60,36 +61,36 @@
               tranches:
                 - seuil: 0
                   taux:
-                    2016-01-01: .031
-                    2015-01-01: .031
-                    2014-01-01: .0305
-                    1999-01-01: .03
-                    1998-01-01: .0275
-                    1997-01-01: .025
-                    1996-01-01: .0225
-                    1993-01-01: .01968
+                    2016: 3.1%
+                    2015: 3.1%
+                    2014: 3.05%
+                    1999: 3.%
+                    1998: 2.75%
+                    1997: 2.5%
+                    1996: 2.25%
+                    1993: 1.968%
                 - seuil: 1
                   taux: 0
             - si: catégorie salarié = privé non cadre
               tranches:
                 - seuil: 0
                   taux:
-                    2016-01-01: .031
-                    2015-01-01: .031
-                    2014-01-01: .0305
-                    1999-01-01: .03
-                    1998-01-01: .0275
-                    1997-01-01: .025
-                    1996-01-01: .0225
-                    1993-01-01: .01968
+                    2016: 3.1%
+                    2015: 3.1%
+                    2014: 3.05%
+                    1999: 3.%
+                    1998: 2.75%
+                    1997: 2.5%
+                    1996: 2.25%
+                    1993: 1.968%
                 - seuil: 1
                   taux:
-                    2016-01-01: .081
-                    2015-01-01: .081
-                    2014-01-01: .0805
-                    2005-01-01: .08
-                    2004-01-01: .07
-                    2002-01-01: .06
-                    1993-01-01: .05
+                    2016: 8.1%
+                    2015: 8.1%
+                    2014: 8.05%
+                    2005: 8%
+                    2004: 7%
+                    2002: 6%
+                    1993: 5%
                 - seuil: 3
                   taux: 0

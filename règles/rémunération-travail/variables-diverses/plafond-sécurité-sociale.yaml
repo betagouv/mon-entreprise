@@ -1,6 +1,7 @@
 - Variable: plafond sécurité sociale
   type de période: mensuel
   formule:
+    2017: 3269
     2016: 3218
     2015: 3170
     2014: 3129
