@@ -1,4 +1,4 @@
-- variable: salaire net à payer
+- Somme: salaire net à payer
   description: Salaire net à payer (fiche de paie)
   tags:
     - rémunération
@@ -10,7 +10,7 @@
     + remuneration_apprenti
     + stage_gratification
 
-- variable: salaire net
+- Somme: salaire net
   description: Salaire net d'après définition INSEE
   tags:
     - rémunération
@@ -20,7 +20,7 @@
     + CRDS@revenu=activité
     + CSG@revenu=activité&déductible=non
 
-- variable: salaire imposable
+- Somme: salaire imposable
   # TODO cerfa_field
   somme: |
     + salaire de base

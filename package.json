@@ -60,6 +60,7 @@
   },
   "scripts": {
     "start": "node source/server.js",
-    "compile": "NODE_ENV='production' webpack --config source/webpack.config.js --optimize-minimize --optimize-dedupe --optimize-occurrence-order"
+    "compile": "NODE_ENV='production' webpack --config source/webpack.config.js --optimize-minimize --optimize-dedupe --optimize-occurrence-order",
+    "surge": "npm run compile && surge --domain scientific-wish.surge.sh -p ./ && rm -rf dist/"
   }
 }
