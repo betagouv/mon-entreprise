@@ -11,7 +11,7 @@
     Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
 
   marginalRateTaxScale:
-    base: plafond sécurité sociale
+    base: assiette sécurité sociale
 
 - variable: AGFF
   tags:

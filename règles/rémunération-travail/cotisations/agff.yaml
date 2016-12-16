@@ -12,7 +12,8 @@
 
   formule:
     barème en taux marginaux:
-      base: plafond sécurité sociale
+      base: assiette sécurité sociale
+      multiplicateur: plafond sécurité sociale
       composantes:
         - Cotisation:
             dû par: employeur
