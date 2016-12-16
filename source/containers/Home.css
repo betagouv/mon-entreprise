@@ -30,6 +30,18 @@
 	right: 0;
 }
 
+#description p {
+	font-size: 140%;
+	width: 50%;
+	margin: 0 auto;
+}
+
+#description #about {
+	font-size: 100%;
+	text-align: right;
+	font-size:
+}
+
 
 #search {
 	width: 400px;

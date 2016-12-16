@@ -19,9 +19,15 @@ export default class Home extends Component {
 				</span>
 				<span id="version">alpha</span>
 			</section>
+			<section id="description">
+				<p>
+				Les règles des taxes et cotisations sur le travail <em>lisibles</em> par un humain et <em>interprétables</em> par un programme.
+				</p>
+				<p id="about"><Link to="/a-propos">En savoir plus</Link></p>
+			</section>
 			<section id="search">
 				<input
-					placeholder="ex. retraite"
+					placeholder="chercher par ex. retraite"
 					onChange={e => this.setState({userSearch: e.target.value})}
 					/>
 			</section>
