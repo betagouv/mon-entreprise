@@ -5,10 +5,14 @@ import JSONTree from 'react-json-tree'
 
 export default class Rule extends Component {
 	render() {
-		let json = findRuleByName(this.props.params.name)[2]
+		let {
+			name
+		} = this.props.params,
+			json = findRuleByName(name)[2]
 
 		return (
 			<div id="variable">
+				<h1>{name}</h1>
 				<pre>
 					<code className="yaml">
 						<JSONTree getItemString={() => ''} theme={theme} hideRoot="true" shouldExpandNode={() => true} data={json} />

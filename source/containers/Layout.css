@@ -2,6 +2,11 @@ body {
 	font-family: 'Open Sans';
 }
 
+#site-logo {
+	position: fixed;
+	left: 1em;
+	top: 1.5em;
+}
 
 #warning {
 	padding: .2em 0;

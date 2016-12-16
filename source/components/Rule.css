@@ -1,3 +1,11 @@
 #variable {
 	font-size: 150%;
 }
+
+#variable h1 {
+	padding: 0 3em;
+}
+
+#variable pre {
+	padding: 1em 2em;
+}
