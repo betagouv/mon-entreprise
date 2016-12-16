@@ -11,7 +11,7 @@
     linéaire:
       base: assiette cotisations sociales
       plafond: 8 * plafond sécurité sociale
-    +:
+    composantes:
       - Cotisation:
           dû par: employeur
         taux:

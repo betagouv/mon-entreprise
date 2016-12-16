@@ -12,7 +12,7 @@
         type: linéaire
         base: assiette cotisations sociales
 
-      +:
+      composantes:
         - Cotisation: # On va ici surcharger la Cotisation incomplète définie plus haut
             composante: maladie, maternité, invalidité, décès
             dû par: employeur

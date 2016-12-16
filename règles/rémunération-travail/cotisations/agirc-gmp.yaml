@@ -20,7 +20,7 @@
     complément:
     # cette cotisation vient compléter la cotisation cible, à hauteur du montant spécifié
       cible: agirc
-      +:
+      composantes:
         - Cotisation:
             dû par: employeur
           montant:

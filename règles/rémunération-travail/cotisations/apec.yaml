@@ -12,7 +12,7 @@
 
   formule:
     barème en taux marginaux:
-      +:
+      composantes:
         - Cotisation:
             dû par: employeur
           tranches:

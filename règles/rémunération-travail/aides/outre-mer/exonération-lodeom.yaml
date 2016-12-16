@@ -28,7 +28,7 @@
       - vieillesse
       - allocations familiales
 
-  +:
+  composantes:
     - Aide:
         variante: exonération de droit commun
 

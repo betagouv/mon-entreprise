@@ -8,7 +8,7 @@
   formule:
     linéaire:
       base: assiette CSG - CRDS
-      +:
+      composantes:
         - Cotisation:
             déductible des impôts: oui
           taux: 0.024

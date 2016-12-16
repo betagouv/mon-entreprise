@@ -14,7 +14,7 @@
       base: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
 
-    +:
+    composantes:
       - Cotisation:
           dû par: employeur
         taux:

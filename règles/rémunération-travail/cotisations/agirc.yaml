@@ -17,7 +17,7 @@
   formule:
     barème en taux marginaux:
       base: plafond sécurité sociale
-      +:
+      composantes:
         - Cotisation:
             dû par: employeur
           tranches:

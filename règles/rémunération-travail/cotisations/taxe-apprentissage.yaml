@@ -16,7 +16,7 @@
   formule:
     linéaire:
       base: assiette cotisations sociales
-      +:
+      composantes:
         - Cotisation:
             composante: base
           taux:

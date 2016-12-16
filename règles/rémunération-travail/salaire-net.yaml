@@ -34,6 +34,6 @@
     + indemnite_fin_contrat
     + complementaire_sante_salarie
     - hsup
-  +:
+  plus:
     type: cotisations
     dû par: salarié

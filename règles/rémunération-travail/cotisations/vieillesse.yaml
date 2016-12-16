@@ -10,7 +10,7 @@
     type: linéaire
     base: assiette cotisations sociales
 
-  +:
+  composantes:
     - Cotisation:
         dû par: salarié
       formule:
