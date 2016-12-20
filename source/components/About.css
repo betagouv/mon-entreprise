@@ -1,8 +1,9 @@
-#about section {
+#about {
 	font-size: 120%;
 	padding-top: 4em;
 	width: 50%;
 	margin: 0 auto;
+	margin-bottom: 5em;
 }
 
 #notes {
