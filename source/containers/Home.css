@@ -60,6 +60,7 @@
 #search-results ul {
 	width: 30%;
 	margin: 0 auto;
+	margin-bottom: 5em;
 	list-style: none;
 }
 
@@ -68,8 +69,25 @@
 }
 
 #search-results .rule-type {
-	border: 1px solid lightGrey;
 	padding: 0 .5em;
 	font-size: 75%;
 	margin-right: 1em;
+	display: inline-block;
+	width: 7em;
+	text-align: center;
+	color: #4B4B66;
+	border: 2px solid #4B4B66;
+	border-radius: 3px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+
+#search-results a {
+	font-size: 120%;
+	color: #333350;
+	font-weight: 500;
+	text-decoration: none;
+	border-bottom: 1px solid #333350;
+	padding: 0 1em 0 .2em;
 }
