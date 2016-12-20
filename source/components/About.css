@@ -1,0 +1,13 @@
+#about section {
+	font-size: 120%;
+	padding-top: 4em;
+	width: 50%;
+	margin: 0 auto;
+}
+
+#notes {
+	padding-top: 3em;
+	color: #555;
+	font-size: 90%;
+	font-style: italic;
+}
