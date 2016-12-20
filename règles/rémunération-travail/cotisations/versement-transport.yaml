@@ -1,0 +1,25 @@
+- Cotisation: Versement transport
+
+  concerne:
+    variations:
+      - si: période >= 2016
+        condition: Entreprise . effectif >= 11
+      - si: période < 2016
+        condition: Entreprise . effectif >= 10
+
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      taux: Établissement . taux versement transport
+
+- Variable: Taux versement transport
+  entité: Établissement
+
+  saisie:
+    sélection:
+    # On est ici sur l'option d'une recherche par mots clefs dans toutes les colonnes du tableau (ville par nom, par code postal, par code INSEE). On peut imaginer restreindre la recherche à l'une de ces clefs.
+      données: https://raw.githubusercontent.com/openfisca/openfisca-france/master/openfisca_france/assets/versement_transport/taux.csv
+      valeur clef:
+        composantes:
+          - taux # taux AOT
+          - taux additionnel # taux SMT
