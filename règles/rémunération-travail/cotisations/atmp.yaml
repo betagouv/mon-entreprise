@@ -1,0 +1,56 @@
+- Cotisation: ATMP
+  nom: Cotisation d'Accidents du Travail et Maladies Professionnelles
+  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
+  attributs:
+    branche: maladie
+    collecteur: URSSAF
+    responsable: CARSAT
+
+  notes: |
+    Cette cotisation est particulière. Elle est calculée pour chaque établissement.
+    - Pour les petites entreprises, un taux par secteur.
+    - Pour les grandes, un taux individuel basé sur les sinistres passés.
+    - Pour les entreprise intermédiaires, un taux mixte.
+
+    Il nous faut arriver à exprimer à exprimer une première version du calcul de façon progressive : en prenant en main l'utilisateur.
+
+
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      variations:
+        - si: Entreprise . effectif >= 150
+          message: |
+            L'entreprise relève de la tarification individuelle.
+            Le taux AT/MP de l'établissement, privé, est accessible en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm) ou reçu par courrier.
+          taux:
+            variable: Établissement . taux ATMP
+            alternative:
+            # mécanisme à utiliser quand la probabilité est forte pour que
+            # l'utilisateur ne connaisse pas cette information
+              message: En l'absence de cette information, estimez-le avec votre taux collectif
+            # il est ici redirigé vers une variable qui permet une approximation
+              variable: Établissement . taux collectif ATMP
+
+        - si: Entreprise . effectif >= 20
+          message: |
+            L'entreprise relève de la tarification mixte, une combinaison du taux individuel de l'établissement et du taux collectif du secteur de l'établissement.
+            Ce taux mixte est accessible en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm) ou reçu par courrier.
+          taux:
+            variable: Établissement . taux ATMP
+            alternative:
+              message: En l'absence de cette information, estimez-le avec votre taux collectif
+              variable: Établissement . taux collectif ATMP
+
+        - si: Entreprise . effectif < 20
+          message: |
+            Votre entreprise relève du taux individuel, qui est privé.
+            Il est accessible en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm) ou reçu par courrier.
+          taux: Établissement . taux collectif ATMP
+
+- Variable: taux collectif ATMP
+  entité: Établissement
+  saisie:
+    selection: # affichera une saisie utilisateur de type <select> avec champ de recherche par mots clefs
+      données: https://raw.githubusercontent.com/sgmap/taux-collectifs-cotisation-atmp/master/taux-2016.csv
+      valeur clef: Taux net
