@@ -4,23 +4,23 @@
   alias: Prime de précarité
   description: Somme versée en fin de CDD comme compensation de précarité.
   notes: Attention, les exceptions sont légion. Conventions collectives.
-  concerne:
-    - contrat de travail durée = CDD
-  ne concerne pas:
+  concerne: contrat de travail durée = CDD
+  non applicable si:
+    l'une des conditions:
       # Evènements particuliers
-    - CDD transformé en CDI
-    - refus CDI avantageux # (emploi similaire, rémunération >=)
-      # Evènements particuliers - Rupture
-    - rupture anticipée salarié
-    - rupture pour faute grave, lourde, cas de force majeure
-    - rupture CDD pendant période essai
-      # Différents types de CDD
-    - CDD type usage # faire le calcul !!
-    - contrat aidé #
-    - apprentissage
-    - contrat jeune vacances # (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
-    - engagement employeur complément formation professionnelle
-    - saisonnier
+      - CDD transformé en CDI
+      - refus CDI avantageux # (emploi similaire, rémunération >=)
+      - engagement employeur complément formation professionnelle
+        # Evènements particuliers - Rupture
+      - rupture anticipée salarié
+      - rupture pour faute grave, lourde, cas de force majeure
+      - rupture CDD pendant période essai
+        # Différents types de CDD
+      - CDD type usage # faire le calcul !!
+      - contrat aidé #
+      - apprentissage
+      - contrat jeune vacances # (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
+      - saisonnier
   formule:
     linéaire:
       base: salaire brut

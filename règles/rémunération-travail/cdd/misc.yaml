@@ -1,5 +1,5 @@
 - Variable: Contrat Aidé
-  description: Contrat aidé dans le cadre de la polotique pour l'emploi
+  description: Contrat aidé dans le cadre de la politique pour l'emploi
   notes: Il est assez difficile de déterminer ce que le terme contrat aidé regroupe
   logique:
     - contrat unique insertion # (CUI)
@@ -18,7 +18,7 @@
   référence: https://www.service-public.fr/particuliers/vosdroits/F32476
   concerne: emploi temporaire par nature
   formule:
-    inclusion logique:
+    test d'inclusion:
       variable: secteur activité entreprise
       possibilités:
         - Déménagement
