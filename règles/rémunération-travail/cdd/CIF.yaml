@@ -3,14 +3,16 @@
   attributs:
     collecteur: OPCA
   reference:  Code du travail - Article L6322-37
-  ne concerne pas:
-      # Evènements
-    - CDD transformé en CDI
-      # Types de CDD
-    - CDD type saisonnier
-    - contrat jeune vacances
-    - contrat aidé # voir la définition précise dans indemnité de fin de contrat
-    - apprentissage
+
+  non applicable si:
+    l'une de ces conditions:
+        # Evènements
+      - CDD transformé en CDI
+        # Types de CDD
+      - CDD type saisonnier
+      - contrat jeune vacances
+      - contrat aidé # voir la définition précise dans indemnité de fin de contrat
+      - apprentissage
 
   formule:
     linéaire:
