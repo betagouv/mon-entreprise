@@ -1,0 +1,29 @@
+- Cotisation: pénibilité
+  attributs:
+    branche: santé # ou vieillesse car ouvrant droit à une retraite anticipée ?
+  description: Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur
+  références:
+    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
+    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html
+    - Code du travail - Article L4162-19
+
+  formule:
+    linéaire:
+      base: assiette cotisations sociales
+      composantes:
+        - Cotisation:
+            composante: base
+          taux:
+            2017: 0.001
+        - Cotisation:
+            composante: additionnelle
+          applicable si:
+            toutes ces conditionns:
+              - Salariat . exposition pénibilité
+              - Activité . durée < 1 mois
+          taux:
+            2017: 0.002
+            2015: 0.001
+          exception:
+            si: Salariat . exposition pénibilité multiple
+            multiplicateur: 2
