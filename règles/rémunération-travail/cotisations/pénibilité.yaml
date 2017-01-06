@@ -9,21 +9,20 @@
 
   formule:
     linéaire:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       composantes:
-        - Cotisation:
+        - attributs:
             composante: base
           taux:
-            2017: 0.001
-        - Cotisation:
+            2017: 0.01%
+        - attributs:
             composante: additionnelle
-          applicable si:
-            toutes ces conditionns:
-              - Salariat . exposition pénibilité
-              - Activité . durée < 1 mois
+          concerne: Activité . durée < 1 mois
           taux:
-            2017: 0.002
-            2015: 0.001
-          exception:
-            si: Salariat . exposition pénibilité multiple
-            multiplicateur: 2
+            variations:
+              - si: Salariat . exposition pénibilité simple
+                2017: 0.2%
+                2015: 0.1%
+              - si: Salariat . exposition pénibilité multiple
+                2017: 0.4%
+                2015: 0.2%
