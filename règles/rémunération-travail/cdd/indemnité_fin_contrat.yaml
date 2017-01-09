@@ -4,11 +4,13 @@
   alias: Prime de précarité
   description: Somme versée en fin de CDD comme compensation de précarité.
   notes: Attention, les exceptions sont légion. Conventions collectives.
-  concerne: contrat de travail durée = CDD
+  concerne: durée determinée
+  # concerne: Activité . durée déterminée
+
   non applicable si:
-    l'une des conditions:
+    l'une de ces conditions:
       # Evènements particuliers
-      - CDD transformé en CDI
+      - CDD poursuivi en CDI
       - refus CDI avantageux # (emploi similaire, rémunération >=)
       - engagement employeur complément formation professionnelle
         # Evènements particuliers - Rupture
@@ -23,8 +25,8 @@
       - saisonnier
   formule:
     linéaire:
-      base: salaire brut
-      taux: .1
+      assiette: salaire brut
+      taux: 10%
 
   références:
     - Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40

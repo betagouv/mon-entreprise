@@ -2,12 +2,12 @@
   description: Conrtibution au financement du congé individuel de formation spécifique aux CDD
   attributs:
     collecteur: OPCA
-  reference:  Code du travail - Article L6322-37
-
+  référence:  Code du travail - Article L6322-37
+  concerne: durée determinée
   non applicable si:
     l'une de ces conditions:
         # Evènements
-      - CDD transformé en CDI
+      - CDD poursuivi en CDI
         # Types de CDD
       - CDD type saisonnier
       - contrat jeune vacances
@@ -16,5 +16,5 @@
 
   formule:
     linéaire:
-      base: assiette cotisations sociales
-      historique: 0.01
+      assiette: assiette cotisations sociales
+      taux: 1%

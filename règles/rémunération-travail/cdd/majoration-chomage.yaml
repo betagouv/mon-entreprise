@@ -1,0 +1,34 @@
+- Cotisation: majoration chômage CDD
+  attributs:
+    dû par: employeur
+    type: majoration
+
+  description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée (CDD)
+
+  concerne: durée déterminée
+
+  formule: #TODO pseudo code pour l'instant
+    linéaire:
+      assiette: assiette cotisations sociales
+      taux:
+        logique numérique: # première valeur trouvée, sinon 0
+          - CDD poursuivi en CDI: 0%
+          # - Contrat . type : # mécanisme à introduire une fois les entités gérées
+          - conditions exclusives:
+            # ce n'est pas évident de savoir le type d'un CDD, proposer le calcul dans une autre variable !!
+            - CDD type accroissement temporaire d'activité:
+                - contrat de travail durée ≤ 1 mois: 3%
+                - contrat de travail durée ≤ 3 mois: 1.5%
+            - CDD type usage:
+                - contrat de travail durée ≤ 3 mois: 0.5%
+          # - True: 0% # Ce mécanisme ajoute automatiquement cette ligne :)
+
+
+  références:
+    - circulaire Unédic du 29 juillet 2013 précise les modalités d’application du dispositif
+    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html
+
+  notes: |
+    - L'URSSAF liste à la fois des conditions pour "Les CDD concernés par l’application de la majoration" et pour "Les contrats de travail exclus de la majoration". Un doute persiste : difficile de savoir si les premières suffisent au calcul (donc que les deuxièmes sont là pour enlever les doutes) ou si les deuxièmes peuvent faire exception...
+    - Depuis le 1er juillet 2013
+    - l'URSSAF explique longuement la notion de durée du CDD : "Comment déterminer la durée du CDD ?"

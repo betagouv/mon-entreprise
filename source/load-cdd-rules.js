@@ -3,7 +3,7 @@ import R from 'ramda'
 /* Load yaml files */
 
 let context = require.context(
-  '../règles/rémunération-travail/cdd', true,
+  '../règles/rémunération-travail/cdd/simples', true,
   /([a-zA-Z]|-|_)+.yaml$/)
 
 

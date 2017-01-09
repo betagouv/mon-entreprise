@@ -1,6 +1,8 @@
 - Variable: Contrat Aidé
   description: Contrat aidé dans le cadre de la politique pour l'emploi
   notes: Il est assez difficile de déterminer ce que le terme contrat aidé regroupe
+  concerne: durée determinée
+
   logique:
     - contrat unique insertion # (CUI)
     - contrat de professionnalisation
@@ -8,7 +10,8 @@
     - étudiant apprenti professeur
     - CDD sénior
 
-- Variable: CDD transformé en CDI
+- Variable: CDD poursuivi en CDI
+  concerne: durée determinée
   formule:
     logique:
       - embauche en CDI suivant le CDD

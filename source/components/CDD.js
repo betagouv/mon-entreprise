@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
-import rules from '../load-cdd-rules'
+import traverse from '../traverse'
 
+/*  Problèmes à résoudre :
 
+- exprimer la justification du CDD d'usage au delà des secteurs.
+" l'usage exclut le recours au CDI en raison de la nature de l'activité et du caractère temporaire de ces emplois."
++ interdictions explicites (grève et travaux dangereux)
+
+*/
 
 
 
@@ -14,7 +20,6 @@ import rules from '../load-cdd-rules'
 
 export default class CDD extends Component {
 	render() {
-		console.log(rules)
 		return (
 			<div>CDD</div>
 		)
