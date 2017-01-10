@@ -10,9 +10,10 @@
       - CDD poursuivi en CDI
         # Types de CDD
       - CDD type saisonnier
-      - contrat jeune vacances
-      - contrat aidé # voir la définition précise dans indemnité de fin de contrat
-      - apprentissage
+      # TODO Commentés pour le développement de la démo CDD seulement
+      # - contrat jeune vacances
+      # - contrat aidé # voir la définition précise dans indemnité de fin de contrat
+      # - apprentissage
 
   formule:
     linéaire:

@@ -1,0 +1,358 @@
+.step {
+	position: relative;
+	margin-bottom: 4.5em;
+}
+
+
+.form-group {
+	position: relative;
+	margin-bottom: 4.5em;
+}
+
+.form-group.explicit > .group-content {
+	margin-left: 1em;
+	padding: .8em 0 0 1.3em;
+}
+
+.form-group.folded .group-content {
+	border: none;
+}
+
+.form-group .header {
+	margin: 4em 0 .6em 0;
+}
+
+.group-items {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Group items animation */
+
+.group-animated-enter {
+	opacity: 0;
+}
+
+.group-animated-enter.group-animated-enter-active {
+	opacity: 1;
+ 	transition: opacity 300ms ease-in;
+}
+
+.group-animated-leave {
+	opacity: 1;
+	transform: scaleY(1);
+}
+
+.group-animated-leave.group-animated-leave-active {
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: top;
+  transition: opacity 200ms ease, transform 200ms ease-out;
+}
+
+/* END Group items animation */
+
+/* Group ignore buttons */
+.form-group .header .ignore {
+	margin-left: 3em;
+}
+
+.group-title {
+	position: relative;
+	display: inline-block;
+}
+.group-title h1 {
+	font-size: 100%;
+	font-weight: 400;
+	padding: .5em .8em;
+	margin: 0;
+	border-radius: 1em;
+	position: relative;
+	width: 100%;
+	border: 1px solid rgba(0,0,0,.3);
+}
+
+.step h1 {
+	display: inline-block;
+	max-width: 55%;
+	font-size: 100%;
+	font-weight: 400;
+	padding: .5em 1em;
+	margin: 0;
+	border-radius: 1.4em;
+	position: relative;
+	cursor: pointer;
+	border: 1px solid #aaa;
+}
+/* The unfolded step is the currently focused
+question : make it visible with colors */
+.step.unfolded h1 {
+	cursor: default;
+}
+
+/* Our little help icon */
+.help-button {
+	display: inline-block;
+	float: right;
+	margin-top: .5em;
+	line-height: 1.1em;
+	border-radius: 1em;
+	font-size: 90%;
+	color: #777;
+	border: 1px solid;
+	background: none;
+	text-align: center;
+	cursor: pointer;
+	color: #aaa;
+	text-transform: uppercase;
+  font-size: 60%;
+  padding: .25em .6em;
+}
+.help-button:hover {
+	color: #333;
+	border: 1px solid #333;
+}
+
+.step fieldset {
+	margin: .8em 0;
+}
+
+.step label.radio,
+/* A resume of what's been answered */
+.resume {
+	text-align: center;
+	margin-left: 1em;
+	margin-top: 2em;
+	cursor: pointer;
+	background: none;
+	padding: 0 .8em;
+	line-height: 1.8em;
+	border-radius: 1em;
+	float: right;
+}
+
+.resume {
+	transition: 1s display;
+}
+
+.answer-ignored {
+	font-size: 80%;
+	opacity: .8;
+	margin-left: .4em;
+	vertical-align: middle;
+}
+
+.ignore, .ignore:visited {
+	cursor: pointer;
+	color: #888;
+	font-weight: 200;
+	text-decoration: none;
+	border-bottom: 1px solid #ccc;
+	font-size: 80%;
+	line-height: 1.2em;
+	font-style: italic;
+}
+
+/* step ignore buttons */
+fieldset > .ignore {
+	position: absolute;
+	bottom: 0em;
+}
+
+.step input[type=radio] {
+	display : none;
+}
+
+.step input[type=text] {
+	border-bottom: 1px solid;
+	display: inline-block;
+	line-height: 1.6em;
+	height: 1.6em; /* IE 11 needs this */
+	font-size: 100%;
+	padding: 0;
+	padding-right: .4em;
+	width: 8em;
+	text-align: right;
+	padding-left: .2em;
+}
+
+/* Remove IE's clear button the appears before our suffix */
+.step input::-ms-clear {
+  width : 0;
+  height: 0;
+}
+
+.step input::placeholder {
+   font-style: italic;
+}
+
+.step input.suffixed {
+	padding-right: 1.5em;
+}
+
+.step label.suffix {
+	position: relative;
+	left: -1.5em;
+	font-size: 85%;
+	vertical-align: middle;
+	transition: color .1s;
+}
+
+.step input[type=text]:focus,
+.step input[type=number]:focus {
+	border-color: #D0D4D8;
+	outline: none;
+}
+
+.help-box {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	text-align: center;
+}
+
+.help-box p {
+	padding: 1em;
+	font-size: 90%;
+	font-style: italic;
+}
+
+.close-help {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 105%;
+}
+.close-text {
+	text-transform: uppercase;
+	font-size: 60%;
+}
+
+.close-text .icon {
+	font-size: 150%;
+	vertical-align: middle;
+}
+
+
+.step .send {
+	padding: 0 .1em 0 .5em;
+	background: none;
+	cursor: pointer;
+	border: 1px solid;
+	border-radius: .2em;
+	line-height: 0em;
+}
+
+.step .send .icon {
+	margin-left: .3em;
+	font-size: 135%;
+	vertical-align: middle;
+}
+
+.step .send .text {
+	text-transform: uppercase;
+	font-size: 90%;
+	line-height: 2em;
+}
+
+.answer {
+	float: right;
+}
+
+.step-input-error {
+	position: absolute;
+	right: 0;
+	bottom: -1.5em;
+	font-size: .8em;
+	font-style: italic;
+}
+
+.step textarea {
+	vertical-align: middle;
+	margin-right: 1em;
+}
+
+#share-link {
+	color: white;
+	padding: .3em .3em;
+	display: inline-block;
+	margin-top: .3em;
+	border-radius: .25em;
+}
+#share-icon {
+	font-size: 200%;
+	vertical-align: middle;
+	line-height: 0em;
+	margin-left: .3em;
+}
+
+.select-answer.commune .Select {
+	width: 50%;
+}
+
+
+.info-zone {
+	font-size: 65%;
+	text-align: center;
+	font-style: italic;
+	color: #666;
+	line-height: 1.6em;
+}
+
+.input-tip {
+	height: 2em;
+}
+
+.input-tip p {
+	margin: .1em;
+}
+
+#show-advanced {
+	font-weight: bold;
+}
+
+/* Positioning the animated elements absolutely + transition-delay will make it possible
+for the appearing element to appear without stacking up below the first one */
+#user-next-action {
+	position: relative;
+	height: 2em;
+	margin-bottom: 3em;
+}
+
+.input-tip {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+#reinit {
+	position: static;
+	display: block;
+	text-align: center;
+	font-size: 65%;
+}
+
+.user-next-action-animation-enter {
+	opacity: 0;
+}
+
+.user-next-action-animation-enter.user-next-action-animation-enter-active {
+	opacity: 1;
+	transition: opacity 700ms;
+	transition-delay: 700ms;
+}
+
+.user-next-action-animation-leave {
+  opacity: 1;
+}
+
+.user-next-action-animation-leave.user-next-action-animation-leave-active {
+  opacity: 0;
+  transition: opacity 700ms ease;
+}

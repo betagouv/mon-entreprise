@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Layout.css'
+import './reset.css'
 import {Link} from 'react-router'
 
 export default class Layout extends Component {

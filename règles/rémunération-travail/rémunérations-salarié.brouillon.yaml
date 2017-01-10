@@ -10,6 +10,6 @@
 - Variable: assiette cotisations sociales
   description: L'assiette de la plupart des cotisations sociales pour le calcul des cotisations sociales sur le travail salarié.
   formule:
-    somme: ? # donc type numérique
+    somme: ? # juste pour le type numérique
       # - salaire brut
       # - primes etc.

@@ -1,0 +1,45 @@
+.step .select-answer {
+  margin-top: 1em;
+}
+
+.select-answer .Select {
+  width: 90%;
+  display: inline-block;
+  float: right;
+}
+
+
+
+/* TODO : should probably use tables here to center
+spans vertically */
+
+.select-option {
+}
+
+.select-option span {
+  display: inline-block;
+}
+
+.option-title-container {
+  width: 65%;
+  font-size: 85%;
+}
+
+.option-secondary-container {
+  width: 10%;
+  min-width: 3em;
+}
+
+.option-secondary-container span {
+  color: #333;
+}
+
+.option-label-container {
+  width: 20%;
+  font-size: 85%;
+  background-color: #ddd;
+  color: #333;
+  border-radius: .25em;
+  padding: .5em;
+  text-align: center;
+}

@@ -2,20 +2,22 @@
 	padding: 2em;
 }
 
-
 #sim section {
 	padding: 2em;
 }
 
 #conversation {
+	margin: 3em auto;
+	font-size: 120%;
+	line-height: normal;
 	display: flex;
 	justify-content: space-around;
 	min-height: 10em;
 	margin: 3em 0;
+	max-width: 80%;
 }
 
 #questions-answers {
-	background: blue;
 	min-width: 50%;
 }
 
@@ -25,6 +27,16 @@
 }
 
 #results {
-	width: 100%;
+	width: 90%;
 	background: purple;
+}
+
+#results ul {
+	list-style: none;
+}
+
+#results li {
+	display: inline-block;
+	border: 1px solid;
+	padding: .6em 2em;
 }

@@ -5,7 +5,6 @@ import Promise from 'core-js/fn/promise'
 //  Nothing happening here !
 
 function* handleSubmitStep() {
-	console.log('salut')
 }
 
 function* watchSteps() {

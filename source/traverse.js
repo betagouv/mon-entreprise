@@ -1,7 +1,7 @@
 import removeDiacritics from './utils/remove-diacritics'
 import R from 'ramda'
 import rules from './load-rules'
-import initialSituation from './initialSituation'
+// import initialSituation from './initialSituation'
 import {findRuleByName, extractRuleTypeAndName} from './model'
 
 /*
@@ -53,126 +53,147 @@ let recognizeExpression = rawValue => {
 	match = expressionTests['negatedVariable'](value)
 	if (match) {
 		let [, variableName] = match
-		return [variableName, `!${variableName}`]
+		// return [variableName, `!${variableName}`]
+		return [variableName, situation => situation(variableName) == 'non']
+
 	}
 
 	match = expressionTests['variableComparedToNumber'](value)
 	if (match) {
 		let [, variableName, symbol, number] = match
-		return [variableName, `situation[${variableName}] ${symbol} ${number}`]
+		return [variableName, situation => eval(`situation("${variableName}") ${symbol} ${number}`)] //eslint-disable-line no-unused-vars
 	}
 
 	match = expressionTests['numberComparedToVariable'](value)
 	if (match) {
 		let [, number, symbol, variableName] = match
-		return [variableName, `${number} ${symbol} situation[${variableName}]`]
+		return [variableName, situation => eval(`${number} ${symbol} situation("${variableName}")`)] //eslint-disable-line no-unused-vars
 	}
 
 	match = expressionTests['variableEqualsNumber'](value)
 	if (match) {
 		let [, variableName, number] = match
-		return [variableName, `situation[${variableName}] == ${number}`]
+		return [variableName, situation => situation(variableName) == number]
 	}
 
 
 	match = expressionTests['variable'](value)
 	if (match) {
 		let [variableName] = match
-		return [variableName, `situation["${variableName}"]`]
+		return [variableName, situation => situation(variableName) == 'oui']
 	}
 }
+
+let knownVariable = (situation, variableName) => (typeof situation(variableName) !== 'undefined')
+
+let deriveRule = situation => R.pipe(
+	R.toPairs,
+	// Reduce to [variables needed to compute that variable, computed variable value]
+	R.reduce(([variableNames, result], [key, value]) => {
+		if (key === 'concerne'){
+			let [variableName, evaluation] = recognizeExpression(value)
+			// Si cette variable a été renseignée
+			if (knownVariable(situation, variableName)){
+				// Si l'expression n'est pas vraie...
+				if (!evaluation(situation)){
+					// On court-circuite toute la variable, et on n'a besoin d'aucune information !
+					return R.reduced([[]])
+				} else {
+					// Sinon, on continue
+					return [variableNames]
+				}
+			// sinon on demande la valeur de cette variable
+			} else return [[...variableNames, variableName]]
+		}
+
+		if (key === 'non applicable si') {
+			let conditions = value['l\'une de ces conditions']
+			let [subVariableNames, reduced] = R.reduce(([variableNames], expression) => {
+				let [variableName, evaluation] = recognizeExpression(expression)
+
+				if (knownVariable(situation, variableName)){
+					if (evaluation(situation)) {
+						return R.reduced([[], true])
+					} else {
+						return [variableNames]
+					}
+				}
+				return [[...variableNames, variableName]]
+			}, [[], null])(conditions)
+			if (reduced) return R.reduced([[]])
+			else return [variableNames.concat(subVariableNames)]
+		}
+
+		if (key === 'formule'){
+			if (value['linéaire']){
+				let {assiette, taux} = value['linéaire']
+
+				// A propos de l'assiette
+				let assietteVariableName = removeDiacritics(assiette),
+					assietteValue = situation(assietteVariableName),
+					unknownAssiette = assietteValue == undefined
+
+				if (unknownAssiette){
+					return [[...variableNames, assietteVariableName]]
+				} else {
+					if (variableNames.length > 0) {
+						return [variableNames]
+					}
+				}
+
+				// Arrivés là, cette formule devrait être calculable !
+
+				// A propos du taux
+				if (typeof taux !== 'string' && typeof taux !== 'number'){
+					throw 'Oups, pas de taux compliqués s\'il-vous-plaît'
+				}
+				let tauxValue = taux.indexOf('%') > -1 ?
+					+taux.replace('%', '')/100 :
+					+taux
+
+				return R.reduced([null, assietteValue * tauxValue])
+			}
+		}
+
+		return [variableNames]
+		}, [[], null])
+	)
 
 
 
 let analyseVariable = situation =>
 	R.pipe(
-		R.toPairs,
-		R.reduce(([variableNames, result], [key, value]) => {
-			if (key === 'concerne'){
-				let [variableName, evaluation] = recognizeExpression(value)
-				if (typeof situation[variableName] !== 'undefined'){
-					if (!eval(evaluation)){
-						return R.reduced([[]])
-					} else {
-						return [variableNames, null]
-					}
-				}
-				return [[...variableNames, variableName]]
-			}
-
-			if (key === 'non applicable si') {
-				let conditions = value['l\'une de ces conditions']
-				let subVariableNames = R.reduce((variableNames, expression) => {
-					let [variableName, evaluation] = recognizeExpression(expression)
-					// console.log('evaluation', variableName, evaluation)
-					if (typeof situation[variableName] !== 'undefined'){
-						if (eval(evaluation)){
-							return R.reduced([])
-						} else {
-							return variableNames
-						}
-					}
-					return [...variableNames, variableName]
-				}, [])(conditions)
-				console.log('subVariableNames', subVariableNames)
-				return [variableNames.concat(subVariableNames)]
-			}
-
-			if (key === 'formule'){
-				if (value['linéaire']){
-					let {assiette, taux} = value['linéaire']
-
-					// A propos de l'assiette
-					let assietteVariableName = removeDiacritics(assiette),
-						assietteValue = situation[assietteVariableName],
-						unknownAssiette = typeof assietteValue !== 'number'
-
-					if (unknownAssiette){
-						return [[...variableNames, assietteVariableName]]
-					} else {
-						if (variableNames.length > 0) {
-							return [variableNames]
-						}
-					}
-
-					// Arrivés là, cette formule devrait être calculable !
-
-					// A propos du taux
-					if (typeof taux !== 'string' && typeof taux !== 'number'){
-						throw 'Oups, pas de taux compliqués s\'il-vous-plaît'
-					}
-					let tauxValue = taux.indexOf('%') > -1 ?
-						+taux.replace('%', '')/100 :
-						+taux
-
-					return R.reduced([null, assietteValue * tauxValue])
-				}
-			}
-
-			return [variableNames]
-		}, [[], null])
+		extractRuleTypeAndName, // -> {type, name, rule}
+		data => R.assoc(
+			'derived',
+			deriveRule(situation)(data.rule)
+		)(data)
 	)
 
-let selectedRules = rules.filter(r => extractRuleTypeAndName(r)[1] == 'CIF CDD')
+// L'objectif de la simulation : quelles règles voulons nous calculer ?
+let selectedRules = rules.filter(r => extractRuleTypeAndName(r).name == 'CIF CDD')
 
-export let analyseSituation = (situation = initialSituation) =>
+export let analyseSituation = situation =>
 	R.pipe(
-		R.map(analyseVariable(situation)),
-		R.flatten()
+		R.map(analyseVariable(situation))
 	)(selectedRules)
 
-console.log(rules)
 
 
 export let variableType = name => {
-	let rule = findRuleByName(name)
+	console.log('Getting variable type for ', name)
+	if (name == null) return null
+
+	let found = findRuleByName(name)
+
 	// tellement peu de variables pour l'instant
 	// que c'est très simpliste
-	if (!rule) return 'boolean'
-	if (rule.formule['somme']) return 'numeric'
+	if (!found) return 'boolean'
+	let {rule, type} = found
+	if (typeof rule.formule['somme'] !== 'undefined') return 'numeric'
 }
 
-// console.log('RES', JSON.stringify(res))
+
 
 
 // let types = {

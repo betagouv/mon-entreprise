@@ -5,6 +5,7 @@ import DevTools from '../DevTools'
 import routes from '../routes'
 import {Router, browserHistory} from 'react-router'
 
+
 export default class App extends Component {
 	render() {
 		const { store } = this.props

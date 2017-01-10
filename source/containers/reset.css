@@ -1,0 +1,39 @@
+/*
+	Unify browser styles and reset opinionated defaults;
+	Reset style decisions that would break (rather than just customize)
+	the widget's form layout.
+ */
+
+[hidden],
+.js-only {
+	display: none;
+}
+
+/* Reset fieldset style */
+fieldset {
+	border: 0;
+	padding: 0;
+	padding-top: .01em;
+	margin: 0;
+	min-width: 0;
+}
+
+/* Remove spinner controls from Firefox */
+input[type="number"] {
+	appearance: textfield;
+}
+
+select {
+	width: auto;
+	height: auto;
+}
+
+input {
+	line-height: normal;
+	height: auto;
+}
+
+label {
+	font-size: 100%;
+	font-weight: normal;
+}
