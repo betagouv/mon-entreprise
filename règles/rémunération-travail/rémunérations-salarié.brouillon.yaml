@@ -1,13 +1,15 @@
-- Salaire: salaire de base
+# - Salaire: salaire de base
+#
+# - Salaire: salaire apprentis
+#
+# - Salaire: salaire contrat professionnalisation
+#
+# - Prime: primes salarié
+#   description: Indemnités, primes et avantages en argent
 
-- Salaire: salaire apprentis
-
-- Salaire: salaire contrat professionnalisation
-
-- Prime: primes salarié
-  description: Indemnités, primes et avantages en argent
-
-# depense_cantine_titre_restaurant_employeur = simulation.calculate(
-#             'depense_cantine_titre_restaurant_employeur', period)
-# reintegration_titre_restaurant_employeur = simulation.calculate(
-#     'reintegration_titre_restaurant_employeur', period)
+- Variable: assiette cotisations sociales
+  description: L'assiette de la plupart des cotisations sociales pour le calcul des cotisations sociales sur le travail salarié.
+  formule:
+    somme: ? # donc type numérique
+      # - salaire brut
+      # - primes etc.

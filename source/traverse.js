@@ -1,6 +1,7 @@
 import removeDiacritics from './utils/remove-diacritics'
 import R from 'ramda'
 import cddRules from './load-cdd-rules'
+import initialSituation from './initialSituation'
 
 /*
 
@@ -16,7 +17,7 @@ Voici une liste des mécanismes qui sont à traverser pour notamment :
 Dans un premier temps, l'idée est de créer un formulaire à questions unitaires optimisées pour que la saisie de données inutiles soit évitée.
 
 
-1) Il faut résoudre le calcul des variables.
+- Il faut résoudre le calcul des variables.
 	- ça introduit l'assiette 2300€
 	- ça nous donne son intervalle en % vu que l'assiette est constante, et donc un avancement du formulaire
 	- ça nous donne des résultats !!!!!! :))
@@ -82,7 +83,7 @@ let recognizeExpression = rawValue => {
 
 
 
-let analyseVariable =
+let analyseVariable = situation =>
 	R.pipe(
 		R.toPairs,
 		R.reduce(([variableNames, result], [key, value]) => {
@@ -137,7 +138,7 @@ let analyseVariable =
 
 					// A propos du taux
 					if (typeof taux !== 'string' && typeof taux !== 'number'){
-						throw "Oups, pas de taux compliqués s'il-vous-plaît"
+						throw 'Oups, pas de taux compliqués s\'il-vous-plaît'
 					}
 					let tauxValue = taux.indexOf('%') > -1 ?
 						+taux.replace('%', '')/100 :
@@ -151,27 +152,14 @@ let analyseVariable =
 		}, [[], null])
 	)
 
-
-var	situation = R.pipe(
-	R.toPairs,
-	R.map(([k,v])=>[removeDiacritics(k).toLowerCase(), v]),
-	R.fromPairs
-)({
-	'durée determinée': true,
-	// 'refus CDI avantageux': true
-	'CDD poursuivi en CDI': false,
-	'CDD type saisonnier': false,
-	'contrat jeune vacances': false,
-	'contrat aidé': false,
-	'apprentissage': false,
-	'assiette cotisations sociales': 2300
-})
+export let analyseSituation = (situation = initialSituation) =>
+	R.pipe(
+		R.map(analyseVariable(situation)),
+		R.flatten()
+	)(cddRules)
 
 
-let res = cddRules.map(v =>
-	// console.log(analyseVariable(v)) ||
-	analyseVariable(v))
-console.log('RES', JSON.stringify(res))
+// console.log('RES', JSON.stringify(res))
 
 
 // let types = {

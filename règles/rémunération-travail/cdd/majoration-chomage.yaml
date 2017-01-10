@@ -13,7 +13,7 @@
       taux:
         logique numérique: # première valeur trouvée, sinon 0
           - CDD poursuivi en CDI: 0%
-          # - Contrat . type : # mécanisme à introduire une fois les entités gérées
+          # - Contrat . type : # mécanisme de match à introduire une fois les entités gérées. Exclusivité exprimée dans l'entité Type
           - conditions exclusives:
             # ce n'est pas évident de savoir le type d'un CDD, proposer le calcul dans une autre variable !!
             - CDD type accroissement temporaire d'activité:
