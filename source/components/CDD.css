@@ -1,0 +1,30 @@
+#sim {
+	padding: 2em;
+}
+
+
+#sim section {
+	padding: 2em;
+}
+
+#conversation {
+	display: flex;
+	justify-content: space-around;
+	min-height: 10em;
+	margin: 3em 0;
+}
+
+#questions-answers {
+	background: blue;
+	min-width: 50%;
+}
+
+#help {
+	background: green;
+	min-width: 30%;
+}
+
+#results {
+	width: 100%;
+	background: purple;
+}

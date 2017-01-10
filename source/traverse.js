@@ -1,7 +1,8 @@
 import removeDiacritics from './utils/remove-diacritics'
 import R from 'ramda'
-import cddRules from './load-cdd-rules'
+import rules from './load-rules'
 import initialSituation from './initialSituation'
+import {findRuleByName, extractRuleTypeAndName} from './model'
 
 /*
 
@@ -152,12 +153,24 @@ let analyseVariable = situation =>
 		}, [[], null])
 	)
 
+let selectedRules = rules.filter(r => extractRuleTypeAndName(r)[1] == 'CIF CDD')
+
 export let analyseSituation = (situation = initialSituation) =>
 	R.pipe(
 		R.map(analyseVariable(situation)),
 		R.flatten()
-	)(cddRules)
+	)(selectedRules)
 
+console.log(rules)
+
+
+export let variableType = name => {
+	let rule = findRuleByName(name)
+	// tellement peu de variables pour l'instant
+	// que c'est très simpliste
+	if (!rule) return 'boolean'
+	if (rule.formule['somme']) return 'numeric'
+}
 
 // console.log('RES', JSON.stringify(res))
 

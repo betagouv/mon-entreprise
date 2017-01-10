@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
-import {analyseSituation} from '../traverse'
+import {analyseSituation, variableType} from '../traverse'
+import './CDD.css'
 
 export default class CDD extends Component {
+	state = {
+		situation: {}
+	}
 	render() {
+
+		let [missingVariable] = analyseSituation(this.state.situation)
+		let type = variableType(missingVariable)
+
 		return (
-			<div>
+			<div id="sim">
 				<section id="introduction">
 					<p>
 						Le CDD en France est un contrat d'exception au CDI. On y a donc recours sous certaines conditions seulement. Cet outil vous aidera à respecter ces conditions et à calculer le prix mensuel de l'embauche, qui en dépend, en vous proposant une suite de questions.
@@ -15,14 +23,24 @@ export default class CDD extends Component {
 						*: écrivez à contact@contact.contact (on fera mieux après). La loi française est complexe, souvent à raison. Nous ne la changerons pas, mais pouvons la rendre plus transparente.
 					</p>
 				</section>
-				<section id="discussion">
-					<ul>
-					{analyseSituation().map(v =>
-						<li key={v}>
-							{v}
-						</li>
-					)}
-					</ul>
+				<div id="conversation">
+					<section id="questions-answers">
+						<form onSubmit={e => e.preventDefault()}>
+							<label>
+								{missingVariable}
+								<input type="text"
+									value={this.state.value}
+									onChange={e => this.setState({situation: {[missingVariable]: true}}) } />
+							</label>
+							<input type="submit" value="Submit" />
+						</form>
+					</section>
+					<section id="help">
+						Aide
+					</section>
+				</div>
+				<section id="results">
+					Résultats
 				</section>
 			</div>
 		)
