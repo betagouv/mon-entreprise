@@ -22,10 +22,10 @@
       - contrat aidé #
       - apprentissage
       - contrat jeune vacances # (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
-      - saisonnier
+      - CDD type saisonnier
   formule:
     linéaire:
-      assiette: salaire brut
+      assiette: assiette cotisations sociales
       taux: 10%
 
   références:

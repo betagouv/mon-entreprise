@@ -55,10 +55,14 @@ export default reduceReducers(
 
 			// on calcule la prochaine étape, à ajouter sur la pile
 			let analysedSituation = analyseSituation(name => formValueSelector('conversation')(state, name)),
-				[firstMissingVariable] = R.pipe(
-					R.map(({derived: [missingVariables]}) => missingVariables),
+				yo = console.log('analysedSituation', analysedSituation),
+				missingVariables = R.pipe(
+					R.map(({derived: [missingVariables]}) => missingVariables || []),
 					R.flatten
 				)(analysedSituation),
+				yo2 = console.log('miss', missingVariables),
+
+				[firstMissingVariable] = missingVariables,
 
 				type = variableType(firstMissingVariable),
 

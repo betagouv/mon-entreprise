@@ -17,32 +17,28 @@ Voici une liste des mécanismes qui sont à traverser pour notamment :
 
 Dans un premier temps, l'idée est de créer un formulaire à questions unitaires optimisées pour que la saisie de données inutiles soit évitée.
 
-
 - Il faut résoudre le calcul des variables.
 	- ça introduit l'assiette 2300€
 	- ça nous donne son intervalle en % vu que l'assiette est constante, et donc un avancement du formulaire
 	- ça nous donne des résultats !!!!!! :))
-
 
 - Il faut donner des explications à TOUTES les variables. Aucune n'est triviale !
 
 - Il faut ajouter la notion d'entité.
 - Ce qui permettra de regrouper les questions par thème. Exemple, demander "Quel type de CDD" et ordonner les réponses possibles par influence (e.g. si c'est un CDD d'usage )
 
-
 -----------------------------------------
 
 */
-
 
 let expressionTests = {
 	'negatedVariable': v => /!((?:[a-z0-9]|\s|_)+)/g.exec(v),
 	// Cette regexp est trop complexe (il faut parser le tableau après le symbole d'inclusion) !
 	// 'variableIsIncludedIn': v => /((?:[a-z0-9]|\s|_)+)⊂*/g.exec(v),
 	'variableComparedToNumber': v => /((?:[a-z0-9]|\s|_)+)([<|>]=?)\s+([0-9]+)/g.exec(v),
-	'numberComparedToVariable': v =>  /([0-9]+)\s+([<|>]=?)((?:[a-z0-9]|\s|_)+)/g.exec(v),
-	'variableEqualsNumber': v =>  /((?:[a-z0-9]|\s|_)+)=((?:[a-z0-9]|\s|_)+)/g.exec(v),
-	'variable': v =>  /((?:[a-z0-9]|\s|_)+)/g.exec(v)
+	'numberComparedToVariable': v => /([0-9]+)\s+([<|>]=?)((?:[a-z0-9]|\s|_)+)/g.exec(v),
+	'variableEqualsNumber': v => /((?:[a-z0-9]|\s|_)+)=((?:[a-z0-9]|\s|_)+)/g.exec(v),
+	'variable': v => /((?:[a-z0-9]|\s|_)+)/g.exec(v)
 }
 
 let recognizeExpression = rawValue => {
@@ -55,19 +51,18 @@ let recognizeExpression = rawValue => {
 		let [, variableName] = match
 		// return [variableName, `!${variableName}`]
 		return [variableName, situation => situation(variableName) == 'non']
-
 	}
 
 	match = expressionTests['variableComparedToNumber'](value)
 	if (match) {
 		let [, variableName, symbol, number] = match
-		return [variableName, situation => eval(`situation("${variableName}") ${symbol} ${number}`)] //eslint-disable-line no-unused-vars
+		return [variableName, situation => eval(`situation("${variableName}") ${symbol} ${number}`)] // eslint-disable-line no-unused-vars
 	}
 
 	match = expressionTests['numberComparedToVariable'](value)
 	if (match) {
 		let [, number, symbol, variableName] = match
-		return [variableName, situation => eval(`${number} ${symbol} situation("${variableName}")`)] //eslint-disable-line no-unused-vars
+		return [variableName, situation => eval(`${number} ${symbol} situation("${variableName}")`)] // eslint-disable-line no-unused-vars
 	}
 
 	match = expressionTests['variableEqualsNumber'](value)
@@ -75,7 +70,6 @@ let recognizeExpression = rawValue => {
 		let [, variableName, number] = match
 		return [variableName, situation => situation(variableName) == number]
 	}
-
 
 	match = expressionTests['variable'](value)
 	if (match) {
@@ -90,12 +84,12 @@ let deriveRule = situation => R.pipe(
 	R.toPairs,
 	// Reduce to [variables needed to compute that variable, computed variable value]
 	R.reduce(([variableNames, result], [key, value]) => {
-		if (key === 'concerne'){
+		if (key === 'concerne') {
 			let [variableName, evaluation] = recognizeExpression(value)
 			// Si cette variable a été renseignée
-			if (knownVariable(situation, variableName)){
+			if (knownVariable(situation, variableName)) {
 				// Si l'expression n'est pas vraie...
-				if (!evaluation(situation)){
+				if (!evaluation(situation)) {
 					// On court-circuite toute la variable, et on n'a besoin d'aucune information !
 					return R.reduced([[]])
 				} else {
@@ -111,7 +105,7 @@ let deriveRule = situation => R.pipe(
 			let [subVariableNames, reduced] = R.reduce(([variableNames], expression) => {
 				let [variableName, evaluation] = recognizeExpression(expression)
 
-				if (knownVariable(situation, variableName)){
+				if (knownVariable(situation, variableName)) {
 					if (evaluation(situation)) {
 						return R.reduced([[], true])
 					} else {
@@ -124,8 +118,8 @@ let deriveRule = situation => R.pipe(
 			else return [variableNames.concat(subVariableNames)]
 		}
 
-		if (key === 'formule'){
-			if (value['linéaire']){
+		if (key === 'formule') {
+			if (value['linéaire']) {
 				let {assiette, taux} = value['linéaire']
 
 				// A propos de l'assiette
@@ -133,7 +127,7 @@ let deriveRule = situation => R.pipe(
 					assietteValue = situation(assietteVariableName),
 					unknownAssiette = assietteValue == undefined
 
-				if (unknownAssiette){
+				if (unknownAssiette) {
 					return [[...variableNames, assietteVariableName]]
 				} else {
 					if (variableNames.length > 0) {
@@ -144,11 +138,11 @@ let deriveRule = situation => R.pipe(
 				// Arrivés là, cette formule devrait être calculable !
 
 				// A propos du taux
-				if (typeof taux !== 'string' && typeof taux !== 'number'){
+				if (typeof taux !== 'string' && typeof taux !== 'number') {
 					throw 'Oups, pas de taux compliqués s\'il-vous-plaît'
 				}
 				let tauxValue = taux.indexOf('%') > -1 ?
-					+taux.replace('%', '')/100 :
+					+taux.replace('%', '') / 100 :
 					+taux
 
 				return R.reduced([null, assietteValue * tauxValue])
@@ -156,10 +150,8 @@ let deriveRule = situation => R.pipe(
 		}
 
 		return [variableNames]
-		}, [[], null])
+	}, [[], null])
 	)
-
-
 
 let analyseVariable = situation =>
 	R.pipe(
@@ -171,14 +163,17 @@ let analyseVariable = situation =>
 	)
 
 // L'objectif de la simulation : quelles règles voulons nous calculer ?
-let selectedRules = rules.filter(r => extractRuleTypeAndName(r).name == 'CIF CDD')
+let selectedRules = rules.filter(rule =>
+			R.contains(
+				extractRuleTypeAndName(rule).name,
+				['CIF CDD', 'Indemnité de fin de contrat']
+			)
+		)
 
 export let analyseSituation = situation =>
 	R.pipe(
 		R.map(analyseVariable(situation))
 	)(selectedRules)
-
-
 
 export let variableType = name => {
 	console.log('Getting variable type for ', name)
@@ -192,9 +187,6 @@ export let variableType = name => {
 	let {rule, type} = found
 	if (typeof rule.formule['somme'] !== 'undefined') return 'numeric'
 }
-
-
-
 
 // let types = {
 	/*
@@ -234,7 +226,6 @@ Variable:
 Les expressions sont le seul mécanisme relativement embêtant pour le moteur. Dans un premier temps, il les gerera au moyen d'expressions régulières, puis il faudra probablement mieux s'équiper avec un "javascript parser generator" :
 https://medium.com/@daffl/beyond-regex-writing-a-parser-in-javascript-8c9ed10576a6
 
-
 (variable): (string)
 
 (négation):
@@ -262,7 +253,6 @@ in Variable.formule :
 	variable: (variable)
 	possibilités: [variable.type]
 
-
 # pas nécessaire pour le CDD
 
 	in Variable
@@ -271,8 +261,5 @@ in Variable.formule :
 	(si):
 		si: (expression)
 		# corps
-
-
-
 
 	*/
