@@ -7,11 +7,22 @@ import {connect} from 'react-redux'
 import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
 
-@connect(({form: {conversation}}) => ({conversationState: conversation && conversation.values}))
+@connect(({form: {conversation}, steps}) => ({conversationState: conversation && conversation.values, steps}))
 class Aide extends Component {
 	render() {
+		let {steps, conversationState} = this.props
+		if (!steps.length) return null
+		let [{dependencyOfVariables, helpText}] = steps
 		return <section id="help">
-			{JSON.stringify(this.props.conversationState)}
+			{helpText}
+			<div className="dependency-of">
+				Cette question est nécessaire pour calculer :
+				<ul>
+					{dependencyOfVariables.map(v =>
+						<li key={v}>{v}</li>
+					)}
+				</ul>
+			</div>
 		</section>
 	}
 }

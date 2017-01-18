@@ -128,13 +128,6 @@ export var FormDecorator = formType => RenderField =>
 							maxWidth: wideQuestion ? '95%' : ''
 						}}
 						>{this.props.question}</h1>
-					{helpText &&
-						<span
-						className="help-button"
-						onClick={() => this.setState({helpVisible: true})}>
-							aide
-						</span>
-					}
 				</span>
 
 		renderTitleAndAnswer(valueType, human) {

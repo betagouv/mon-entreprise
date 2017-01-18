@@ -11,18 +11,19 @@
     l'une de ces conditions:
       # Evènements particuliers
       - CDD poursuivi en CDI
-      - refus CDI avantageux # (emploi similaire, rémunération >=)
-      - engagement employeur complément formation professionnelle
-        # Evènements particuliers - Rupture
-      - rupture anticipée salarié
-      - rupture pour faute grave, lourde, cas de force majeure
-      - rupture CDD pendant période essai
-        # Différents types de CDD
-      - CDD type usage # faire le calcul !!
-      - contrat aidé #
-      - apprentissage
-      - contrat jeune vacances # (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
-      - CDD type saisonnier
+      # - refus CDI avantageux # (emploi similaire, rémunération >=)
+      # - engagement employeur complément formation professionnelle
+      #   # Evènements particuliers - Rupture
+      # - rupture anticipée salarié
+      # - rupture pour faute grave, lourde, cas de force majeure
+      # - rupture CDD pendant période essai
+      #   # Différents types de CDD
+      # - CDD type usage # faire le calcul !!
+      # - contrat aidé #
+      # - apprentissage
+      # - contrat jeune vacances # (contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.)
+      # - CDD type saisonnier
+
   formule:
     linéaire:
       assiette: assiette cotisations sociales

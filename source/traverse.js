@@ -176,7 +176,6 @@ export let analyseSituation = situation =>
 	)(selectedRules)
 
 export let variableType = name => {
-	console.log('Getting variable type for ', name)
 	if (name == null) return null
 
 	let found = findRuleByName(name)

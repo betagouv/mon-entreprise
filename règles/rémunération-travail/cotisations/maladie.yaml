@@ -57,23 +57,23 @@
             # base: selon cette source, la base est l'assiette de la CSG : https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
             # information non retrouvée ailleurs
             taux:
-              2012: 0.015
-              2008: 0.016
+              2012-01: 0.015
+              2008-01: 0.016
               2007-07: 0.017
-              2006: 0.018
-              2003: 0.017
+              2006-01: 0.018
+              2003-01: 0.017
               1999-07: 0.015
               1998-07: 0.0125
-              1994: 0.01
+              1994-01: 0.01
               1989-09: 0.0075
 
               exception: # équivaut à un variations: si [exception] / si [cas normal]
                 si: régime = agricole
-                2014: 0.011
+                2014-01: 0.011
                 2011-07: 0.012
                 2008-07: 0.013
-                2007: 0.014
-                2003: 0.015
+                2007-01: 0.014
+                2003-01: 0.015
 
 
     - si: Activité = Indépendant

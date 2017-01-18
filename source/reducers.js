@@ -55,29 +55,33 @@ export default reduceReducers(
 
 			// on calcule la prochaine étape, à ajouter sur la pile
 			let analysedSituation = analyseSituation(name => formValueSelector('conversation')(state, name)),
-				yo = console.log('analysedSituation', analysedSituation),
+				yo = console.log(analysedSituation),
 				missingVariables = R.pipe(
-					R.map(({derived: [missingVariables]}) => missingVariables || []),
-					R.flatten
+					R.map( ({name, derived: [missingVariables]}) =>
+						(missingVariables || []).map(mv => [mv, name])
+					),
+					R.unnest,
+					//groupBy but remove mv from value, it's now in the key
+					R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
 				)(analysedSituation),
-				yo2 = console.log('miss', missingVariables),
+				yo2 = console.log('miss', missingVariables)
 
-				[firstMissingVariable] = missingVariables,
+			let [firstMissingVariable, dependencyOfVariables] = R.isEmpty(missingVariables) ? [] : R.toPairs(missingVariables)[0],
 
 				type = variableType(firstMissingVariable),
 
 				stepData = Object.assign({
 					name: firstMissingVariable,
 					state: null,
-					dependecyOfVariable: null, //TODO
+					dependencyOfVariables: dependencyOfVariables,
 					title: firstMissingVariable,
 					question: firstMissingVariable,
 					visible: true,
 					helpText: <p>
-						The impossible is possible, at Zombo.com
+						Le contrat à durée indéterminée est une exception au CDI.
 						<br/>
 						<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777" target="_blank">
-							Comprendre comment tout ce bordel se ficelle
+							En savoir plus (service-public.fr)
 						</a>
 					</p>
 				}, type == 'boolean' ? {
