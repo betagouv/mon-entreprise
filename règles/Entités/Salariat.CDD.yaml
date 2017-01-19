@@ -56,13 +56,13 @@
 
 
 - Variable: CDD poursuivi en CDI
-  attache: Salariat . CDD . évènements
+  attache: Salariat . CDD . événements
   possibilités exclusives:
     - embauche en CDI suivant le CDD
     - CDD requalifié en CDI # quand ça arrive ?
 
 - Variable: refus CDI avantageux
-  attache: Salariat . CDD . évènements
+  attache: Salariat . CDD . événements
   #TODO qu'est-ce ? (emploi similaire, rémunération >=)
 
 
@@ -70,11 +70,11 @@
   attache: Salariat . CDD
   description: L'employeur s'engage à fournir une formation professionnelle, ce qui le dispense de la cotisation CIF CDD
 
-- Variable: rupture anticipée salarié
+- Variable: anticipée salarié
   attache: Salariat . CDD . ruptures
 
-- Variable: rupture pour faute grave, lourde, cas de force majeure
+- Variable: pour faute grave, lourde, cas de force majeure
   attache: Salariat . CDD . ruptures
 
-- Variable: rupture CDD pendant période essai
+- Variable: pendant période essai
   attache: Salariat . CDD . ruptures

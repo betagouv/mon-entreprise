@@ -6,12 +6,12 @@
   référence:  Code du travail - Article L6322-37
   non applicable si:
     l'une de ces conditions:
-      - CDD poursuivi en CDI
+      - CDD . événements . CDD poursuivi en CDI
       - CDD . type = saisonnier
       - CDD . type = jeune vacances
-      - contrat aidé
+      - Salariat . contrat aidé
 
   formule:
     linéaire:
-      assiette: assiette cotisations sociales
+      assiette: Salariat . salaire de base
       taux: 1%

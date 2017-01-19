@@ -9,25 +9,25 @@
   non applicable si:
     l'une de ces conditions:
       # Evènements particuliers
-      - CDD poursuivi en CDI
-      - refus CDI avantageux
+      - CDD . événements . CDD poursuivi en CDI
+      - CDD . événements . refus CDI avantageux
 
       # Rupture
-      - rupture anticipée salarié
-      - rupture pour faute grave, lourde, cas de force majeure
-      - rupture CDD pendant période essai
+      - CDD . rupture . anticipée salarié
+      - CDD . rupture . pour faute grave, lourde, cas de force majeure
+      - CDD . rupture . pendant période essai
 
-      - complément formation professionnelle employeur
+      - CDD . complément formation professionnelle employeur
 
       # types de contrat
-      - contrat aidé
+      - Salariat . contrat aidé
       - CDD . type = usage
       - CDD . type = contrat jeune vacances
       - CDD . type = saisonnier
 
   formule:
     linéaire:
-      assiette: assiette cotisations sociales
+      assiette: Salariat . salaire de base
       taux: 10%
 
 

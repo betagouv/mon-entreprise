@@ -13,10 +13,10 @@
         logique numérique:
           - CDD poursuivi en CDI: 0%
           - Contrat . type = accroissement temporaire d'activité:
-            - CDD . durée ≤ 1 mois: 3%
-            - contrat de travail durée ≤ 3 mois: 1.5%
+            - CDD . durée ≤ 1: 3% # TODO 1 mois, pas 1 rien, évidemment
+            - contrat de travail durée ≤ 3: 1.5%
           - Contrat . type = usage:
-            - CDD . durée ≤ 3 mois: 0.5%
+            - CDD . durée ≤ 3: 0.5%
 
 
 
