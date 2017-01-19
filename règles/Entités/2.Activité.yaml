@@ -1,7 +1,8 @@
 Activité
   # L'activité d'un individu, souvent rémunérée.
 
-  durée déterminée: Booléen (Non)
+  durée déterminée: Booléen (Non) # peut être un calcul allant chercher les propriétés des types : CDD pour le salariat, durée du stage, etc.
+
 
   type:
   | Salariat

@@ -1,0 +1,41 @@
+
+- Variable: Contrat aidé
+  attache: Salariat
+  possibilités exclusives:
+    - contrat unique insertion
+    - emploi avenir
+    - CDD . type = sénior
+    - Alternance
+    # Y en a-t-il d'autres toujours en vigueur ?
+    # - contrat d'accès à l'emploi # = CUI CAE ?
+    # - contrat d'insertion – RSA # Qu'est-ce que c'est ?
+
+- Variable: emploi avenir
+  attache: Salariat . contrat aidé
+  description: Contrat de travail aidé créé pour faciliter l'insertion professionnelle et l’accès à une qualification pour les jeunes en difficulté
+
+- Variable: Contrat unique insertion
+  attache: Salariat . contrat aidé
+  possibilités exclusives:
+    - CUI-CAE
+    - CUI-CIE
+
+- Variable: Alternance
+  attache: Salariat . alternance
+  possibilités exclusives:
+    - apprentissage
+    - professionnalisation
+
+
+- Variable: Apprentissage
+  attache: Salariat . alternance
+  description: Contrat de travail aidé destiné au jeune professionnel qui suit une formation en alternance entre une entreprise et un centre de formation.
+  référence: https://fr.wikipedia.org/wiki/Contrat_d'apprentissage#En_France
+  # cette variable peut se calculer ! Au boulot !
+  # y intégrer l'Étudiant apprenti professeur https://www.service-public.fr/particuliers/vosdroits/F24439
+
+- Variable: Professionnalisation
+  attache: Salariat . alternance
+  description: Contrat de travail aidé consistant en l'alternance de périodes d’acquisition de savoir-faire en entreprise et de périodes de formation théorique dispensées en centres de formation ou par l’entreprise elle-même si elle dispose d’un service de formation agréé.
+  référence: https://fr.wikipedia.org/wiki/Contrat_de_professionnalisation
+  # cette variable peut se calculer ! Au boulot !

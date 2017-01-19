@@ -1,0 +1,49 @@
+- Entité: Salariat
+
+  # Sur ce concept de Salariat sont définies une liste de propriétés.
+  # Le salarié est embauché dans un établissement, lui même rattaché à une entreprise
+
+  individu: Individu
+  établissement: Établissement
+
+
+# Cet ensemble de variables sont définies implicitement sur l'entité Salariat
+
+- Variable: Salaire de base
+  type: nombre positif
+
+- Variable: Salaire brut
+  formule:
+    somme:
+      - salaire de base
+      # - primes
+      # - indemnités
+
+- Variable: statut cadre
+  description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
+  choix:
+    - oui
+    - non
+
+
+
+
+# TODO
+
+# - Variable: salaire net
+#   formule: salaire brut moins cotisations sociales salarié
+
+# - Variable: salaire super brut
+#   formule:
+#     somme:
+#       - salaire brut
+#       - cotisations patronales
+#     soustraction:
+#       - aides au travail salarié
+
+
+# # Cette propriété a pour type une énumération, mais peut-être calculée.
+# régime géographique:
+#   calc() :
+#     | Alsace-Moselle
+#     | Outre-Mer # Peut-on définir ça comme un régime ? A quoi ça sert ?
