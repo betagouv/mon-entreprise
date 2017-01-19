@@ -11,7 +11,7 @@
   description: Durée du contrat de travail
 
 - Variable: type
-  attache: Salariat . Contrat durée déterminée
+  attache: Salariat . CDD
   possibilités exclusives:
     - saisonnier
     - jeune vacances
@@ -19,8 +19,13 @@
     - usage
     - accroissement temporaire d'activité
 
+- Variable: jeune vacances
+  attache: Salariat . CDD
+  description: Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
+
+
 - Variable: usage # Similaire pour intérim, mais domaines différents
-  attache: Salariat . Contrat durée déterminée . type
+  attache: Salariat . CDD . type
   référence: https://www.service-public.fr/particuliers/vosdroits/F32476
   # concerne: emploi temporaire par nature
   formule:
@@ -51,20 +56,25 @@
 
 
 - Variable: CDD poursuivi en CDI
-  attache: Salariat . Contrat durée déterminée . évènements
+  attache: Salariat . CDD . évènements
   possibilités exclusives:
     - embauche en CDI suivant le CDD
     - CDD requalifié en CDI # quand ça arrive ?
 
+- Variable: refus CDI avantageux
+  attache: Salariat . CDD . évènements
+  #TODO qu'est-ce ? (emploi similaire, rémunération >=)
+
+
 - Variable: complément formation professionnelle employeur
-  attache: Salariat . Contrat durée déterminée
+  attache: Salariat . CDD
   description: L'employeur s'engage à fournir une formation professionnelle, ce qui le dispense de la cotisation CIF CDD
 
 - Variable: rupture anticipée salarié
-  attache: Salariat . Contrat durée déterminée . ruptures
+  attache: Salariat . CDD . ruptures
 
 - Variable: rupture pour faute grave, lourde, cas de force majeure
-  attache: Salariat . Contrat durée déterminée . ruptures
+  attache: Salariat . CDD . ruptures
 
 - Variable: rupture CDD pendant période essai
-  attache: Salariat . Contrat durée déterminée . ruptures
+  attache: Salariat . CDD . ruptures

@@ -1,19 +1,15 @@
 - Cotisation: CIF CDD
+  attache: CDD
   description: Conrtibution au financement du congé individuel de formation spécifique aux CDD
   attributs:
     collecteur: OPCA
   référence:  Code du travail - Article L6322-37
-  concerne: durée determinée
   non applicable si:
     l'une de ces conditions:
-        # Evènements
       - CDD poursuivi en CDI
-        # Types de CDD
-      - CDD type saisonnier
-      # TODO Commentés pour le développement de la démo CDD seulement
-      # - contrat jeune vacances
-      # - contrat aidé # voir la définition précise dans indemnité de fin de contrat
-      # - apprentissage
+      - CDD . type = saisonnier
+      - CDD . type = jeune vacances
+      - contrat aidé
 
   formule:
     linéaire:
