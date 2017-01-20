@@ -2,7 +2,7 @@ import R from 'ramda'
 import rules from './load-rules'
 import removeDiacritics from './remove-diacritics'
 import {findRuleByName, extractRuleTypeAndName} from './rules'
-import {recognizeExpression} from './recognizeExpression'
+import {recognizeExpression} from './expressions'
 
 
 // L'objectif de la simulation : quelles règles voulons nous calculer ?

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Home.css'
-import {searchRules} from '../model.js'
+import {searchRules} from '../engine/rules.js'
 import {Link} from 'react-router'
 
 export default class Home extends Component {

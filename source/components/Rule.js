@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {findRuleByName} from '../model.js'
+import {findRuleByName} from '../engine/rules.js'
 import './Rule.css'
 import JSONTree from 'react-json-tree'
 

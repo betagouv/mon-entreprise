@@ -11,7 +11,7 @@ logique numérique: # première valeur trouvée, sinon 0
   # - True: 0% # Ce mécanisme ajoute automatiquement cette ligne :)
 
 
-logique numérique:
+logique numérique 2:
   - CDD poursuivi en CDI: 0%
   - aiguillage: # signale que les deux propositions sont exclusives
       sujet: Contrat . type

@@ -2,7 +2,7 @@ import React from 'react'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
-import {analyseSituation, variableType} from './traverse'
+import {analyseSituation, variableType} from './engine/traverse'
 import { euro } from './components/conversation/formValueTypes.js'
 
 import Question from './components/conversation/Question'
