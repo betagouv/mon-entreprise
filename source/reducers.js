@@ -55,7 +55,6 @@ export default reduceReducers(
 
 			// on calcule la prochaine étape, à ajouter sur la pile
 			let analysedSituation = analyseSituation(name => formValueSelector('conversation')(state, name)),
-				yo = console.log(analysedSituation),
 				missingVariables = R.pipe(
 					R.map( ({name, derived: [missingVariables]}) =>
 						(missingVariables || []).map(mv => [mv, name])
@@ -63,8 +62,7 @@ export default reduceReducers(
 					R.unnest,
 					//groupBy but remove mv from value, it's now in the key
 					R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-				)(analysedSituation),
-				yo2 = console.log('miss', missingVariables)
+				)(analysedSituation)
 
 			let [firstMissingVariable, dependencyOfVariables] = R.isEmpty(missingVariables) ? [] : R.toPairs(missingVariables)[0],
 

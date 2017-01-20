@@ -36,7 +36,6 @@ export default class Home extends Component {
 				{this.state.userSearch != null &&
 					searchRules(this.state.userSearch)
 						.map(({type, name, rule}) =>
-							// console.log(rule) ||
 							<li key={name}>
 								<span className="rule-type">
 									{type}

@@ -98,11 +98,8 @@ let analyseRule = situation =>
 		)(data)
 	)
 
-
 export let analyseSituation = situation =>
-	R.pipe(
-		R.map(analyseRule(situation))
-	)(selectedRules)
+	selectedRules.map(analyseRule(situation))
 
 export let variableType = name => {
 	if (name == null) return null

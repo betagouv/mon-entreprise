@@ -13,9 +13,9 @@
       - CDD . événements . refus CDI avantageux
 
       # Rupture
-      - CDD . rupture . anticipée salarié
-      - CDD . rupture . pour faute grave, lourde, cas de force majeure
-      - CDD . rupture . pendant période essai
+      - CDD . évènements . rupture . anticipée salarié
+      - CDD . évènements . rupture . pour faute grave ou force majeure
+      - CDD . évènements . rupture . pendant période essai
 
       - CDD . complément formation professionnelle employeur
 
@@ -24,6 +24,14 @@
       - CDD . type = usage
       - CDD . type = contrat jeune vacances
       - CDD . type = saisonnier
+      # https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité.
+
+      # - CDD . type = vendanges
+      # cas du contrat vendanges !! différent du saisonnier ?
+      # du  Code rural et de la pêche maritime :  https://www.easycdd.com/LEGISLATION-CDD/Avant-de-rediger-un-contrat-CDD/Les-cas-de-recours-au-contrat-CDD/Cas-de-recours-Detaille/Le-contrat-CDD-vendanges
+
+      # Les contrats d'extras dans l'hôtellerie restauration
+      # - CDD . type = extras restauration
 
   formule:
     linéaire:
@@ -38,3 +46,4 @@
     - La prime de précarité est-elle due [...]:  https://www.service-public.fr/particuliers/vosdroits/F803
     - saisonnier: http://travail-emploi.gouv.fr/droit-du-travail/contrats-et-carriere/contrats-de-travail/article/le-travail-saisonnier
     - Liste sympa: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si
+    - https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD

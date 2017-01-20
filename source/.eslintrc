@@ -1,32 +1,29 @@
 rules:
- indent:
-  - 2
-  - tab
- quotes:
-  - 2
-  - single
- linebreak-style:
-  - 2
-  - unix
- semi:
-  - 2
-  - never
- no-unused-vars: 1
- no-console: 1
- react/prop-types: 0
- react/display-name: 0
+  indent:
+    - 2
+    - tab
+  quotes:
+    - 2
+    - single
+  linebreak-style:
+    - 2
+    - unix
+  semi:
+    - 2
+    - never
+  no-unused-vars: 1
+  no-console: 1
+  no-global-assign: 0
+  no-unsafe-negation: 0
 
 parser: babel-eslint
 
 env:
- browser: true
- commonjs: true
- es6: true
+  browser: true
+  commonjs: true
+  es6: true
 extends:
   - eslint:recommended
-  - plugin:react/recommended
-plugins:
-  - react
 parserOptions:
   ecmaFeatures:
-jsx: true
+    jsx: true
