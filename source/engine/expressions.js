@@ -37,7 +37,7 @@ export let recognizeExpression = rawValue => {
 	match = expressionTests['variableEqualsString'](value)
 	if (match) {
 		let [, variableName, string] = match
-		return [variableName, situation => situation(variableName) == number]
+		return [variableName, situation => situation(variableName) == string]
 	}
 
 	match = expressionTests['variable'](value)
