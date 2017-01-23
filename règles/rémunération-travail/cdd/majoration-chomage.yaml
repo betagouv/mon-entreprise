@@ -4,7 +4,7 @@
     dû par: employeur
     type: majoration
 
-  description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée (CDD)
+  description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD)
 
   formule:
     linéaire:
@@ -12,11 +12,11 @@
       taux:
         logique numérique:
           - CDD poursuivi en CDI: 0%
-          - Contrat . type = accroissement temporaire d'activité:
-            - CDD . durée ≤ 1: 3% # TODO 1 mois, pas 1 rien, évidemment
-            - contrat de travail durée ≤ 3: 1.5%
-          - Contrat . type = usage:
-            - CDD . durée ≤ 3: 0.5%
+          - motif . accroissement temporaire d'activité:
+            - durée ≤ 1: 3% # TODO 1 mois, pas 1 rien, évidemment
+            - durée ≤ 3: 1.5%
+          - motif . usage:
+            - durée ≤ 3: 0.5%
 
 
 

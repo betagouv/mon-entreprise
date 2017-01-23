@@ -11,6 +11,9 @@ import RhetoricalQuestion from './components/conversation/RhetoricalQuestion'
 
 import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION} from './actions'
 import R from 'ramda'
+import {borrify} from './engine/remove-diacritics'
+
+import {findGroup} from './engine/rules'
 
 import computeThemeColours from './components/themeColours'
 
@@ -62,7 +65,55 @@ export default reduceReducers(
 					R.unnest,
 					//groupBy but remove mv from value, it's now in the key
 					R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-				)(analysedSituation)
+				)(analysedSituation),
+				missingVariablesList = R.keys(missingVariables),
+
+			// identification des groupes de variables manquantes
+				groups = [...missingVariablesList.reduce(
+					(set, variable) => {
+						let subs = R.pipe(
+							borrify,
+							R.split(' . '),
+							R.dropLast(1),
+							R.join(' . ')
+						)(variable)
+
+						if (subs.length)
+							set.add(subs)
+
+						return set
+					}
+				, new Set())],
+				// -> groups Set [ "salariat . cdd . evenements", "salariat . cdd . type", "salariat", "salariat . cdd" ]
+
+				richGroups = R.pipe(
+					R.map(findGroup),
+					R.reject(R.isNil)
+				)(groups),
+
+				possibilities = richGroups[0]['choix exclusif']
+
+
+			// récupération du groupe. Inclure toutes les possibilités du groupe dans la question pour permettre à
+			// l'utilisateur de faire un choix réfléchi -> Question (réponses possibles)
+
+			// la question doit pouvoir stocker tout ça dans la situation (redux-form) correctement
+
+			console.log("groupPossibilities", possibilities)
+
+
+			return {...state, steps: [{
+				name: 'év',
+				question: 'év',
+				title: 'év',
+				dependencyOfVariables: ['je sais pas'],
+				visible: true,
+				component: Question,
+				choices: possibilities,
+				defaultValue: 'Non'
+			}], analysedSituation}
+
+
 
 			let [firstMissingVariable, dependencyOfVariables] = R.isEmpty(missingVariables) ? [] : R.toPairs(missingVariables)[0],
 

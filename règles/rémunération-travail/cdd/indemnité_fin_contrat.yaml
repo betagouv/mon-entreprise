@@ -9,21 +9,21 @@
   non applicable si:
     l'une de ces conditions:
       # Evènements particuliers
-      - CDD . événements . CDD poursuivi en CDI
-      - CDD . événements . refus CDI avantageux
+      - Salariat . CDD . événements . CDD poursuivi en CDI
+      - Salariat . CDD . événements . refus CDI avantageux
 
       # Rupture
-      - CDD . évènements . rupture . anticipée salarié
-      - CDD . évènements . rupture . pour faute grave ou force majeure
-      - CDD . évènements . rupture . pendant période essai
+      - Salariat . CDD . événements . anticipée salarié
+      - Salariat . CDD . événements . pour faute grave ou force majeure
+      - Salariat . CDD . événements . pendant période essai
 
-      - CDD . complément formation professionnelle employeur
+      - Salariat . CDD . complément formation professionnelle employeur
 
       # types de contrat
       - Salariat . contrat aidé
-      - CDD . type = usage
-      - CDD . type = contrat jeune vacances
-      - CDD . type = saisonnier
+      - Salariat . CDD . motif . usage
+      - Salariat . CDD . motif . jeune vacances
+      - Salariat . CDD . motif . saisonnier
       # https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité.
 
       # - CDD . type = vendanges

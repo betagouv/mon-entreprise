@@ -4,7 +4,7 @@
   choix exclusif:
     - contrat unique insertion
     - emploi avenir
-    - CDD . justification = sénior
+    - CDD . motif = sénior # le choix a été fait de rattacher la notion de contrat CDD sénior au motif de recours CDD, plutôt qu'aux contrats aidés
     - alternance
     # Y en a-t-il d'autres toujours en vigueur ?
     # - contrat d'accès à l'emploi # = CUI CAE ?
@@ -33,6 +33,9 @@
   référence: https://fr.wikipedia.org/wiki/Contrat_d'apprentissage#En_France
   # cette variable peut se calculer ! Au boulot !
   # y intégrer l'Étudiant apprenti professeur https://www.service-public.fr/particuliers/vosdroits/F24439
+  # attention ! Le contrat d'apprentissage n'est pas soumis aux dispositions légales du CDD:
+  # Article L1241-1
+  # Les dispositions du présent titre ne s'appliquent ni au contrat d'apprentissage [...]
 
 - Variable: Professionnalisation
   attache: Salariat . alternance
