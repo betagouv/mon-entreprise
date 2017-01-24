@@ -16,7 +16,7 @@
   attache: Salariat . CDD
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'une des raisons suivantes
-  choix exclusif:
+  choix exclusifs:
     - saisonnier
     - jeune vacances
     - sénior
@@ -60,7 +60,7 @@
   référence: https://www.service-public.fr/particuliers/vosdroits/F32476
   # concerne: emploi temporaire par nature
   formule:
-    choix exclusif:
+    choix exclusifs:
       variable: Entreprise . secteur activité
       possibilités:
         - Déménagement
@@ -86,10 +86,11 @@
 
 - Variable: événements
   attache: Salariat . CDD
+  description: Certains événements influent le prix d'un CDD
   # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,
   # et les identifier dynamiquement par leur attribut "attache" :
   # choix: exlusif # par rapport à 'choix: multiples'
-  choix exclusif:
+  choix exclusifs:
     - CDD poursuivi en CDI
     - refus CDI avantageux
     - rupture anticipée salarié
@@ -99,7 +100,7 @@
 
 - Variable: CDD poursuivi en CDI
   attache: Salariat . CDD . événements
-  choix exclusif:
+  choix exclusifs:
     - embauche en CDI suivant le CDD
     - CDD requalifié en CDI # quand ça arrive ?
 

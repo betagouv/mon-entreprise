@@ -13,7 +13,8 @@ import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION} from './actions'
 import R from 'ramda'
 import {borrify} from './engine/remove-diacritics'
 
-import {findGroup} from './engine/rules'
+import {findGroup, findRuleByDottedName} from './engine/rules'
+import {constructStepMeta} from './engine/conversation'
 
 import computeThemeColours from './components/themeColours'
 
@@ -68,50 +69,84 @@ export default reduceReducers(
 				)(analysedSituation),
 				missingVariablesList = R.keys(missingVariables),
 
+				yà = console.log('missingVariablesList', missingVariablesList),
+
 			// identification des groupes de variables manquantes
-				groups = [...missingVariablesList.reduce(
-					(set, variable) => {
-						let subs = R.pipe(
-							borrify,
-							R.split(' . '),
-							R.dropLast(1),
-							R.join(' . ')
-						)(variable)
+				// groups = [...missingVariablesList.reduce(
+				// 	(set, variable) => {
+				// 		let subs = R.pipe(
+				// 			borrify,
+				// 			R.split(' . '),
+				// 			R.dropLast(1),
+				// 			R.join(' . ')
+				// 		)(variable)
+				//
+				// 		if (subs.length)
+				// 			set.add(subs)
+				//
+				// 		return set
+				// 	}
+				// , new Set())],
+				groups = R.groupBy(
+					R.pipe(
+						borrify,
+						R.split(' . '),
+						R.dropLast(1),
+						R.join(' . ')
+					)
+				)(missingVariablesList),
 
-						if (subs.length)
-							set.add(subs)
+				yo = console.log('groups', groups),
 
-						return set
-					}
-				, new Set())],
-				// -> groups Set [ "salariat . cdd . evenements", "salariat . cdd . type", "salariat", "salariat . cdd" ]
-
-				richGroups = R.pipe(
-					R.map(findGroup),
-					R.reject(R.isNil)
+				// on va maintenant construire la liste des composants React correspondant aux questions pour obtenir les variables manquantes
+				yyoo = R.pipe(
+					R.mapObjIndexed((variables, group) =>
+						R.pipe(
+							findGroup,
+							R.cond([
+								// Pas de groupe trouvé : ce sont des variables individuelles
+								[R.isNil, () => variables.map(name => {
+									let rule = findRuleByDottedName(name)
+									console.log('rule', name, rule)
+									return Object.assign(constructStepMeta(rule),
+										rule.contrainte == 'nombre positif' ?
+										{
+											component: Input,
+											defaultValue: 0,
+											valueType: euro,
+											attributes: {
+												inputMode: 'numeric',
+												placeholder: 'votre réponse'
+											}
+										} : {
+											component: Question,
+											choices: ['Non', 'Oui'],
+											defaultValue: 'Non',
+										}
+									)})],
+								[R.T, group =>
+									Object.assign(
+										constructStepMeta(group),
+										{
+											component: Question,
+											choices: group['choix exclusifs'],
+											defaultValue: 'Non',
+											helpText: 'Choisissez une réponse'
+										}
+									)]
+							])
+						)(group)
+					),
+					R.values,
+					R.unnest
 				)(groups),
 
-				possibilities = richGroups[0]['choix exclusif']
-
-
-			// récupération du groupe. Inclure toutes les possibilités du groupe dans la question pour permettre à
-			// l'utilisateur de faire un choix réfléchi -> Question (réponses possibles)
+				l = console.log('yyoo', yyoo)
 
 			// la question doit pouvoir stocker tout ça dans la situation (redux-form) correctement
 
-			console.log("groupPossibilities", possibilities)
 
-
-			return {...state, steps: [{
-				name: 'év',
-				question: 'év',
-				title: 'év',
-				dependencyOfVariables: ['je sais pas'],
-				visible: true,
-				component: Question,
-				choices: possibilities,
-				defaultValue: 'Non'
-			}], analysedSituation}
+			return {...state, steps: yyoo, analysedSituation}
 
 
 

@@ -3,10 +3,11 @@ import entityRules from './load-entity-rules'
 
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import {borrify} from './remove-diacritics'
+import R from 'ramda'
 
 export let findRuleByName = search =>
 	rules
-		.map(extractRuleTypeAndName)
+		.map(enrichRule)
 		.find( ({name}) =>
 			name === search
 		)
@@ -16,22 +17,39 @@ export let searchRules = searchInput =>
 		.filter( rule =>
 			rule && hasKnownRuleType(rule) &&
 			JSON.stringify(rule).indexOf(searchInput) > -1)
-		.map(extractRuleTypeAndName)
+		.map(enrichRule)
 
 
-export let extractRuleTypeAndName = rule => {
+export let enrichRule = rule => {
 	let type = possibleVariableTypes.find(t => rule[t])
-	return {type, name: rule[type], rule, alias: rule.alias}
+	return {...rule, type, name: rule[type]}
 }
 
-export let hasKnownRuleType = rule => rule && extractRuleTypeAndName(rule).type
+export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
 
 let fullDottedName = rule => rule.attache && borrify(
 	[	rule.attache,
-		(({alias, name}) => alias || name)(extractRuleTypeAndName(rule)),
+		do { let {alias, name} = enrichRule(rule)
+			alias || name
+		}
 	].join(' . ')
 )
 
-export let findGroup = dottedName => console.log('findGroup', dottedName) ||
-	entityRules.find(rule => fullDottedName(rule) == dottedName && rule['choix exclusif'])
+export let findRuleByDottedName = dottedName =>
+	entityRules.map(enrichRule).find(rule => fullDottedName(rule) == borrify(dottedName))
+
+export let findGroup = R.pipe(
+	findRuleByDottedName,
+	found => found && found['choix exclusifs'] && found,
+	// Is there a way to express this more litterally in ramda ?
+	// R.unless(
+	// 	R.isNil,
+	// 	R.when(
+	// 		R.has('choix exclusifs'),
+	// 		R.identity
+	// 	)
+	// )
+)
+
+console.log('findG', findGroup('Salariat . CDD . événements'))

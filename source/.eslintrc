@@ -1,6 +1,6 @@
 rules:
   indent:
-    - 2
+    - 1
     - tab
   quotes:
     - 2

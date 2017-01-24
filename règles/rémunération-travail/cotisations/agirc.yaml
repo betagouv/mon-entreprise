@@ -11,8 +11,6 @@
     - http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
   concerne:
     - categorie salarié = privé cadre
-  notes: |
-    Il éxiste une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
 
   formule:
     barème en taux marginaux:
@@ -60,3 +58,7 @@
                 1993-07: .0234
             - seuil: 8
               taux: 0
+
+
+  notes: |
+    Il éxiste une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.

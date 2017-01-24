@@ -1,14 +1,14 @@
 import R from 'ramda'
 import rules from './load-rules'
 import removeDiacritics from './remove-diacritics'
-import {findRuleByName, extractRuleTypeAndName} from './rules'
+import {findRuleByName, enrichRule} from './rules'
 import {recognizeExpression} from './expressions'
 
 
 // L'objectif de la simulation : quelles règles voulons nous calculer ?
 let selectedRules = rules.filter(rule =>
 			R.contains(
-				extractRuleTypeAndName(rule).name,
+				enrichRule(rule).name,
 				['CIF CDD', 'Indemnité de fin de contrat']
 			)
 		)
@@ -91,10 +91,10 @@ let deriveRule = situation => R.pipe(
 
 let analyseRule = situation =>
 	R.pipe(
-		extractRuleTypeAndName, // -> {type, name, rule}
+		enrichRule, // -> {type, name, rule}
 		data => R.assoc(
 			'derived',
-			deriveRule(situation)(data.rule)
+			deriveRule(situation)(data)
 		)(data)
 	)
 

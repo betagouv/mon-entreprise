@@ -10,7 +10,8 @@
 # Cet ensemble de variables sont définies implicitement sur l'entité Salariat
 
 - Variable: Salaire de base
-  type: nombre positif
+  attache: Salariat
+  contrainte: nombre positif
 
 - Variable: Salaire brut
   formule:
