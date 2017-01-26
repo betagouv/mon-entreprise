@@ -7,6 +7,9 @@ export default class Layout extends Component {
 	render() {
 		return (<div>
 			<div id="header">
+				<div id="warning">
+					Attention ! Tout le contenu de ce site est hautement expérimental.
+				</div>
 				{
 					this.props.location.pathname != '/' &&
 					<Link to="/">
@@ -14,10 +17,10 @@ export default class Layout extends Component {
 					</Link>
 				}
 			</div>
-			{this.props.children}
-			<div id="warning">
-				Attention ! Tout le contenu de ce site est hautement expérimental.
+			<div id="content">
+				{this.props.children}
 			</div>
+
 			</div>
 		)
 	}

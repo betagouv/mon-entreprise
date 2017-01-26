@@ -11,25 +11,19 @@
 }
 
 #sim #introduction {
+	margin-left: 6em;
 	font-size: 110%;
 	padding-top: 0;
 	width: 60%;
-	margin-left: 10%;
 }
-#introduction h1 {
-	font-size: 250%;
-	font-weight: 400;
-}
-
 
 #conversation {
-	margin: 3em auto;
+	margin: 1em auto;
 	font-size: 120%;
 	line-height: normal;
 	display: flex;
 	justify-content: space-around;
 	min-height: 10em;
-	margin: 3em 0;
 	max-width: 90%;
 }
 
@@ -38,6 +32,7 @@
 }
 
 #sim #help {
+	visibility: hidden;
 	border: 1px solid #ccc;
 	border-radius: 2px;
 	font-style: italic;
@@ -67,28 +62,59 @@
 
 
 
-#results {
-	width: 90%;
-	border-top: 2px solid #aaa;
+#sim #results {
+	padding: .1em;
+	background: #4A89DC;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: 80%;
+	color: white;
+	height: 10em;
+	text-align: center;
 }
 
+#results h2 {
+	width: 8%;
+	display: inline-block;
+	line-height: 1.2em;
+	margin: 0;
+	padding: .5em;
+	font-weight: 400;
+	font-size: 250%;
+}
+
+
 #results ul {
+	display: inline-block;
+	width: 80%;
 	list-style: none;
 }
 
 #results li {
+	color: #333;
+	background: white;
 	display: inline-block;
-	background: #4A89DC;
-	color: white;
 	margin: 0 2em;
-	border-radius: 6px;
+	border-radius: 2px;
 	padding: .6em 2em;
+	text-align: center;
+}
+#results li h3 {
+	font-size: 130%;
+	width: 80%;
+	border-bottom: 1px solid #aaa;
+	margin: .1em;
+	padding-bottom: .2em;
 }
 
-#results li h3 {
-	border-bottom: 1px solid white;
+
+#results p {
+	margin: .6em;
 }
+
 
 #results .value {
-	font-size: 160%;
+	font-size: 150%;
 }
