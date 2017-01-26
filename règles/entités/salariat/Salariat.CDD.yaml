@@ -15,7 +15,7 @@
   alias: motif # alias utilisé dans l'article L. 1242-1
   attache: Salariat . CDD
   description: |
-    Le CDD est un contrat d'exception: son recours doit être autorisé par l'une des raisons suivantes
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'une des motifs suivants
   choix exclusifs:
     - saisonnier
     - jeune vacances
@@ -45,18 +45,27 @@
       # CUI
       # etc.
 
+- Variable: saisonnier
+  attache: Salariat . CDD . motif
+  titre: Contrat saisonnier
+
+- Variable: accroissement temporaire d'activité
+  attache: Salariat . CDD . motif
+  titre: Accroissement temporaire d'activité
 
 - Variable: jeune vacances
   attache: Salariat . CDD . motif
+  titre: Contrat jeune vacances
   description: Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
 
 - Variable: sénior
   attache: Salariat . CDD . motif
-  description: Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
+  titre: Contrat sénior
 
 
 - Variable: usage # Similaire pour intérim, mais domaines différents
   attache: Salariat . CDD . motif
+  titre: Contrat d'usage
   référence: https://www.service-public.fr/particuliers/vosdroits/F32476
   # concerne: emploi temporaire par nature
   formule:
@@ -100,6 +109,7 @@
 
 - Variable: CDD poursuivi en CDI
   attache: Salariat . CDD . événements
+  titre: Le CDD est poursuivi en CDI
   choix exclusifs:
     - embauche en CDI suivant le CDD
     - CDD requalifié en CDI # quand ça arrive ?
@@ -107,21 +117,26 @@
 
 - Variable: refus CDI avantageux
   attache: Salariat . CDD . événements
+  titre: Refus d'un CDI avantageux
   description: Le salarié refuse une reconduction en CDI pour un emploi similaire, et rémunération au moins aussi avantageuse
 
 - Variable: rupture anticipée salarié
+  titre: Rupture anticipée du salarié
   attache: Salariat . CDD . événements
   # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 
 - Variable: rupture pour faute grave ou force majeure
+  titre: Rupture pour faute grave ou force majeure
   attache: Salariat . CDD . événements
   # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 
 - Variable: rupture pendant période essai
+  titre: Rupture pendant la période d'essai
   attache: Salariat . CDD . événements
   # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 
 
 - Variable: complément formation professionnelle employeur
+  titre: Complément de formation offert par l'employeur
   attache: Salariat . CDD
   description: L'employeur s'engage à fournir une formation professionnelle, ce qui le dispense de la cotisation CIF CDD

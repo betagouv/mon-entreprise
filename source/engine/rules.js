@@ -28,7 +28,7 @@ export let enrichRule = rule => {
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
 
-let fullDottedName = rule => rule.attache && borrify(
+export let fullDottedName = rule => rule.attache && borrify(
 	[	rule.attache,
 		do { let {alias, name} = enrichRule(rule)
 			alias || name

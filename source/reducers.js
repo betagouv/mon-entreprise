@@ -13,7 +13,7 @@ import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION} from './actions'
 import R from 'ramda'
 import {borrify} from './engine/remove-diacritics'
 
-import {findGroup, findRuleByDottedName} from './engine/rules'
+import {findGroup, findRuleByDottedName, fullDottedName} from './engine/rules'
 import {constructStepMeta} from './engine/conversation'
 
 import computeThemeColours from './components/themeColours'
@@ -129,7 +129,12 @@ export default reduceReducers(
 										constructStepMeta(group),
 										{
 											component: Question,
-											choices: group['choix exclusifs'],
+											choices: group['choix exclusifs'].map(name => {
+												let rule = findRuleByDottedName(
+													fullDottedName(group) + ' . ' + name
+												)
+												return rule && rule.titre || name
+											}),
 											defaultValue: 'Non',
 											helpText: 'Choisissez une réponse'
 										}

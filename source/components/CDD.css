@@ -20,11 +20,11 @@
 	justify-content: space-around;
 	min-height: 10em;
 	margin: 3em 0;
-	max-width: 80%;
+	max-width: 90%;
 }
 
 #questions-answers {
-	min-width: 50%;
+	min-width: 60%;
 }
 
 #sim #help {
@@ -32,8 +32,8 @@
 	border-radius: 3em;
 	font-style: italic;
 	border-left: 6px solid #ddd;
-	margin-left: 6em;
-	padding-left: 6em;
+	margin-left: 2em;
+	padding-left: 3em;
 	min-width: 30%;
 	color: #444
 }
