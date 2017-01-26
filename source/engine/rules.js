@@ -1,9 +1,37 @@
-import rules from './load-rules'
-import entityRules from './load-entity-rules'
-
+// Séparation artificielle, temporaire, entre ces deux types de règles
+import rawRules from './load-rules'
+import rawEntityRules from './load-entity-rules'
+import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import {borrify} from './remove-diacritics'
-import R from 'ramda'
+
+
+/***********************************
+ Méthodes agissant sur une règle */
+
+export let enrichRule = rule => {
+	let
+		type = possibleVariableTypes.find(t => rule[t]),
+		name = rule[type],
+		dottedName = rule.attache && borrify(
+			[	rule.attache,	rule.alias || name].join(' . ')
+		)
+		console.log('enrich : dottedName', dottedName)
+
+	return {...rule, type, name, dottedName}
+}
+
+export let hasKnownRuleType = rule => rule && enrichRule(rule).type
+
+
+
+// On enrichit la base de règles avec des propriétés dérivées de celles du YAML
+let [rules, entityRules] = //R.map(R.map(enrichRule))([rawRules, rawEntityRules])
+	[rawRules, rawEntityRules].map(rules => rules.map(enrichRule))
+
+
+/****************************************
+ Méthodes de recherche d'une règle */
 
 export let findRuleByName = search =>
 	rules
@@ -20,24 +48,9 @@ export let searchRules = searchInput =>
 		.map(enrichRule)
 
 
-export let enrichRule = rule => {
-	let type = possibleVariableTypes.find(t => rule[t])
-	return {...rule, type, name: rule[type]}
-}
-
-export let hasKnownRuleType = rule => rule && enrichRule(rule).type
-
-
-export let fullDottedName = rule => rule.attache && borrify(
-	[	rule.attache,
-		do { let {alias, name} = enrichRule(rule)
-			alias || name
-		}
-	].join(' . ')
-)
 
 export let findRuleByDottedName = dottedName =>
-	entityRules.map(enrichRule).find(rule => fullDottedName(rule) == borrify(dottedName))
+	entityRules.find(rule => rule.dottedName == borrify(dottedName))
 
 export let findGroup = R.pipe(
 	findRuleByDottedName,
@@ -51,5 +64,3 @@ export let findGroup = R.pipe(
 	// 	)
 	// )
 )
-
-console.log('findG', findGroup('Salariat . CDD . événements'))

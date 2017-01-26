@@ -1,5 +1,5 @@
-export let constructStepMeta = ({name, description}) => ({
-	name: name,
+export let constructStepMeta = ({dottedName, name, description}) => ({
+	name: dottedName,
 	question: description || name,
 	title: name,
 	dependencyOfVariables: ['chai pas'],

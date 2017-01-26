@@ -13,7 +13,7 @@ import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION} from './actions'
 import R from 'ramda'
 import {borrify} from './engine/remove-diacritics'
 
-import {findGroup, findRuleByDottedName, fullDottedName} from './engine/rules'
+import {findGroup, findRuleByDottedName, dottedName} from './engine/rules'
 import {constructStepMeta} from './engine/conversation'
 
 import computeThemeColours from './components/themeColours'
@@ -105,9 +105,10 @@ export default reduceReducers(
 							findGroup,
 							R.cond([
 								// Pas de groupe trouvé : ce sont des variables individuelles
-								[R.isNil, () => variables.map(name => {
-									let rule = findRuleByDottedName(name)
-									console.log('rule', name, rule)
+								[R.isNil, () => variables.map(dottedName => {
+									console.log('dottedName', dottedName)
+									let rule = findRuleByDottedName(dottedName)
+									console.log('rule', rule)
 									return Object.assign(constructStepMeta(rule),
 										rule.contrainte == 'nombre positif' ?
 										{
@@ -131,7 +132,7 @@ export default reduceReducers(
 											component: Question,
 											choices: group['choix exclusifs'].map(name => {
 												let rule = findRuleByDottedName(
-													fullDottedName(group) + ' . ' + name
+													group.dottedName + ' . ' + name
 												)
 												return rule && rule.titre || name
 											}),
