@@ -122,9 +122,9 @@ export var FormDecorator = formType => RenderField =>
 				<span>
 					<h1
 						style={{
-							border: '2px solid ' + this.props.themeColours.colour, // higher border width and colour to emphasize focus
-							background: 'none',
-							color: this.props.themeColours.textColourOnWhite,
+							// border: '2px solid ' + this.props.themeColours.colour, // higher border width and colour to emphasize focus
+							// background: 'none',
+							// color: this.props.themeColours.textColourOnWhite,
 							maxWidth: wideQuestion ? '95%' : ''
 						}}
 						>{this.props.question}</h1>

@@ -6,6 +6,5 @@ export let answered = ({colour, textColour}) => ({
 })
 
 export let answer = ({textColourOnWhite}) => ({
-	color: textColourOnWhite,
-	border: '1px solid ' + textColourOnWhite,
+	color: textColourOnWhite
 })

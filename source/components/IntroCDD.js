@@ -1,12 +1,14 @@
 import React from 'react'
+import colours from './themeColours'
 
 export default () =>
 	<section id="introduction">
+		<h1 style={{color: colours().colour}}>Simulateur CDD</h1>
 		<p>
-			Le CDD en France est un contrat d'exception au CDI. On y a donc recours sous certaines conditions seulement. Cet outil vous aidera à respecter ces conditions et à calculer le prix mensuel de l'embauche, qui en dépend, en vous proposant une suite de questions.
+			Le CDD en France est un contrat d'exception au CDI, apportant à l'employeur plus de souplesse dans un cadre précis prévu par la loi. Dans un certain nombre de cas, une contrepartie financière lui est demandée. Ce simulateur vous aidera à la calculer.
 		</p>
 		<p>
-			Ici, vous avez le droit de ne pas savoir : certaines questions sont complexes, elles seront toujours accompagnées d'une aide contextuelle. Si ce n'est pas le cas, engueulez-nous !
+			Ici, vous avez le droit de ne pas savoir : certaines questions sont complexes, elles seront toujours accompagnées d'une aide contextuelle. Si ce n'est pas le cas, écrivez-nous &nbsp;<i style={{cursor: 'pointer'}} className="fa fa-envelope"></i>  !
 		</p>
 		{/*
 			<p>

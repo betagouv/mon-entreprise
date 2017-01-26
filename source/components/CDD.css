@@ -1,14 +1,24 @@
 #sim {
-	padding: 2em;
+	padding: 0 2em;
+}
+
+#sim p {
+	color: #333;
 }
 
 #sim section {
 	padding: 2em;
 }
 
-#introduction {
+#sim #introduction {
+	font-size: 110%;
+	padding-top: 0;
 	width: 60%;
 	margin-left: 10%;
+}
+#introduction h1 {
+	font-size: 250%;
+	font-weight: 400;
 }
 
 
@@ -28,10 +38,9 @@
 }
 
 #sim #help {
-	background: #f7f7f7;
-	border-radius: 3em;
+	border: 1px solid #ccc;
+	border-radius: 2px;
 	font-style: italic;
-	border-left: 6px solid #ddd;
 	margin-left: 2em;
 	padding-left: 3em;
 	min-width: 30%;

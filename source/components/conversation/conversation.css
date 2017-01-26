@@ -74,16 +74,18 @@
 }
 
 .step h1 {
+	background: #eee;
+	color: #222;
 	display: inline-block;
 	max-width: 55%;
-	font-size: 100%;
+	font-size: 110%;
 	font-weight: 400;
-	padding: .5em 1em;
+	padding: .6em 1em;
 	margin: 0;
+	margin-bottom: .4em;
 	border-radius: 1.4em;
 	position: relative;
 	cursor: pointer;
-	border: 1px solid #aaa;
 }
 /* The unfolded step is the currently focused
 question : make it visible with colors */
@@ -131,6 +133,22 @@ question : make it visible with colors */
 	border-radius: 1em;
 	float: right;
 }
+
+.step label.radio {
+	text-align: center;
+  margin-left: 1em;
+  margin-top: 1em;
+  cursor: pointer;
+  background: none;
+  padding: 0 .8em;
+  line-height: 1.8em;
+  border-radius: .4em;
+  float: right;
+	font-weight: 600;
+	font-size: 90%;
+	border: 1px solid #ddd;
+}
+
 
 .resume {
 	transition: 1s display;
