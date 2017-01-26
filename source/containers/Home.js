@@ -23,7 +23,10 @@ export default class Home extends Component {
 				<p>
 				Les règles des taxes et cotisations sur le travail <em>lisibles</em> par un humain et <em>interprétables</em> par un programme.
 				</p>
-				<p id="about"><Link to="/a-propos">En savoir plus</Link></p>
+				<p id="about">
+					<Link to="/a-propos">En savoir plus</Link><br/>
+					<Link to="/cdd">Démo CDD</Link>
+				</p>
 			</section>
 			<section id="search">
 				<input

@@ -53,7 +53,7 @@ export let searchRules = searchInput =>
 	rules
 		.filter( rule =>
 			rule && hasKnownRuleType(rule) &&
-			JSON.stringify(rule).indexOf(searchInput) > -1)
+			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
 

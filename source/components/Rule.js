@@ -8,7 +8,7 @@ export default class Rule extends Component {
 		let {
 			name
 		} = this.props.params,
-			json = findRuleByName(name)[2]
+			json = findRuleByName(name)
 
 		return (
 			<div id="variable">
