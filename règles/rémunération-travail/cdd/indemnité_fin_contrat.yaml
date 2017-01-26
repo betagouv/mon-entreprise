@@ -1,4 +1,4 @@
-- Cotisation: Indemnité de fin de contrat
+- Indemnité: Fin de contrat
   attache: CDD
   attributs:
     type: indemnité
@@ -13,9 +13,9 @@
       - Salariat . CDD . événements . refus CDI avantageux
 
       # Rupture
-      - Salariat . CDD . événements . anticipée salarié
-      - Salariat . CDD . événements . pour faute grave ou force majeure
-      - Salariat . CDD . événements . pendant période essai
+      - Salariat . CDD . événements . rupture anticipée salarié
+      - Salariat . CDD . événements . rupture pour faute grave ou force majeure
+      - Salariat . CDD . événements . rupture pendant période essai
 
       - Salariat . CDD . complément formation professionnelle employeur
 

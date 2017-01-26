@@ -8,11 +8,10 @@ import {recognizeExpression} from './expressions'
 let selectedRules = rules.filter(rule =>
 			R.contains(
 				enrichRule(rule).name,
-				// ['CIF CDD', 'Indemnité de fin de contrat']
-				['CIF CDD']
+				['CIF CDD', 'Fin de contrat']
+				// ['CIF CDD']
 			)
 		)
-
 
 let knownVariable = (situation, variableName) => typeof R.or(
 	situation(variableName),
