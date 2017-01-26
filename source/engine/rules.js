@@ -3,7 +3,6 @@ import rawRules from './load-rules'
 import rawEntityRules from './load-entity-rules'
 import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
-import {borrify} from './remove-diacritics'
 
 
 /***********************************
@@ -13,17 +12,27 @@ export let enrichRule = rule => {
 	let
 		type = possibleVariableTypes.find(t => rule[t]),
 		name = rule[type],
-		dottedName = rule.attache && borrify(
-			[	rule.attache,	rule.alias || name].join(' . ')
-		)
-		console.log('enrich : dottedName', dottedName)
+		dottedName = rule.attache && [
+			rule.attache,
+			rule.alias || name
+		].join(' . ')
 
 	return {...rule, type, name, dottedName}
 }
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
+let splitName = R.split(' . ')
 
+export let parentName = R.pipe(
+	splitName,
+	R.dropLast(1),
+	R.join(' . ')
+)
+export let nameLeaf = R.pipe(
+	splitName,
+	R.last
+)
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
 let [rules, entityRules] = //R.map(R.map(enrichRule))([rawRules, rawEntityRules])
@@ -49,8 +58,10 @@ export let searchRules = searchInput =>
 
 
 
-export let findRuleByDottedName = dottedName =>
-	entityRules.find(rule => rule.dottedName == borrify(dottedName))
+export let findRuleByDottedName = dottedName => do {
+	let found = entityRules.find(rule => rule.dottedName == dottedName)
+	found || console.log('dottedName = ', dottedName, ' a déserté')
+}
 
 export let findGroup = R.pipe(
 	findRuleByDottedName,

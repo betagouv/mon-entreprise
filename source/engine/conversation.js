@@ -1,4 +1,5 @@
 export let constructStepMeta = ({dottedName, name, description}) => ({
+	// name: dottedName.split(' . ').join('.'),
 	name: dottedName,
 	question: description || name,
 	title: name,

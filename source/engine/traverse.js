@@ -1,7 +1,6 @@
 import R from 'ramda'
 import rules from './load-rules'
-import removeDiacritics from './remove-diacritics'
-import {findRuleByName, enrichRule} from './rules'
+import {findRuleByName, enrichRule, parentName} from './rules'
 import {recognizeExpression} from './expressions'
 
 
@@ -9,23 +8,28 @@ import {recognizeExpression} from './expressions'
 let selectedRules = rules.filter(rule =>
 			R.contains(
 				enrichRule(rule).name,
-				['CIF CDD', 'Indemnité de fin de contrat']
+				// ['CIF CDD', 'Indemnité de fin de contrat']
+				['CIF CDD']
 			)
 		)
 
 
-let knownVariable = (situation, variableName) => (typeof situation(variableName) !== 'undefined')
+let knownVariable = (situation, variableName) => typeof R.or(
+	situation(variableName),
+	situation(parentName(variableName))
+) !== 'undefined'
 
-let deriveRule = situation => R.pipe(
+
+let deriveRule = situationGate => R.pipe(
 	R.toPairs,
 	// Reduce to [variables needed to compute that variable, computed variable value]
 	R.reduce(([variableNames, result], [key, value]) => {
 		if (key === 'concerne') {
 			let [variableName, evaluation] = recognizeExpression(value)
 			// Si cette variable a été renseignée
-			if (knownVariable(situation, variableName)) {
+			if (knownVariable(situationGate, variableName)) {
 				// Si l'expression n'est pas vraie...
-				if (!evaluation(situation)) {
+				if (!evaluation(situationGate)) {
 					// On court-circuite toute la variable, et on n'a besoin d'aucune information !
 					return R.reduced([[]])
 				} else {
@@ -39,10 +43,11 @@ let deriveRule = situation => R.pipe(
 		if (key === 'non applicable si') {
 			let conditions = value['l\'une de ces conditions']
 			let [subVariableNames, reduced] = R.reduce(([variableNames], expression) => {
+
 				let [variableName, evaluation] = recognizeExpression(expression)
 
-				if (knownVariable(situation, variableName)) {
-					if (evaluation(situation)) {
+				if (knownVariable(situationGate, variableName)) {
+					if (evaluation(situationGate)) {
 						return R.reduced([[], true])
 					} else {
 						return [variableNames]
@@ -59,8 +64,8 @@ let deriveRule = situation => R.pipe(
 				let {assiette, taux} = value['linéaire']
 
 				// A propos de l'assiette
-				let assietteVariableName = removeDiacritics(assiette),
-					assietteValue = situation(assietteVariableName),
+				let assietteVariableName = assiette,
+					assietteValue = situationGate(assietteVariableName),
 					unknownAssiette = assietteValue == undefined
 
 				if (unknownAssiette) {
@@ -89,17 +94,22 @@ let deriveRule = situation => R.pipe(
 	}, [[], null])
 	)
 
-let analyseRule = situation =>
+let analyseRule = situationGate =>
 	R.pipe(
 		enrichRule, // -> {type, name, rule}
 		data => R.assoc(
 			'derived',
-			deriveRule(situation)(data)
+			deriveRule(situationGate)(data)
 		)(data)
 	)
 
-export let analyseSituation = situation =>
-	selectedRules.map(analyseRule(situation))
+export let analyseSituation = situationGate =>
+	selectedRules.map(analyseRule(situationGate))
+
+// export let analyseSituation = R.pipe(
+// 	analyseRule,
+// 	R.flip(R.map)
+// )
 
 export let variableType = name => {
 	if (name == null) return null

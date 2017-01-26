@@ -9,7 +9,7 @@
 
 # Cet ensemble de variables sont définies implicitement sur l'entité Salariat
 
-- Variable: Salaire de base
+- Variable: salaire de base
   attache: Salariat
   contrainte: nombre positif
 

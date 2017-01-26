@@ -1,5 +1,5 @@
 
-- Variable: Contrat aidé
+- Variable: contrat aidé
   attache: Salariat
   choix exclusifs:
     - contrat unique insertion
@@ -14,7 +14,7 @@
   attache: Salariat . contrat aidé
   description: Contrat de travail aidé créé pour faciliter l'insertion professionnelle et l’accès à une qualification pour les jeunes en difficulté
 
-- Variable: Contrat unique insertion
+- Variable: contrat unique insertion
   attache: Salariat . contrat aidé
   choix exclusifs:
     - CUI-CAE

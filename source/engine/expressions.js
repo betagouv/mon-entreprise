@@ -1,25 +1,24 @@
 import removeDiacritics from './remove-diacritics'
+import R from 'ramda'
+import {parentName, nameLeaf} from './rules'
 
-// TODO: handle dotted variable syntax
-// ([\w\s]+(\s\.?\s\w+)+)\s([<?>?]?=?)\s([\w\s]+)
-var replace = "regex";
-var re = new RegExp(replace,"g");
-"mystring".replace(re, "newstring");
+// Ces regexp sont trop complexe. TODO Ce n'est que temporaire !
 
-// Ces regexp sont trop complexe. Ce n'est que temporaire !
+// composants des regexps
+let
+	vn = '[A-Za-z\\u00C0-\\u017F\\s]+', //variableName
+	sep = '\\s\\.\\s'
 
 let expressionTests = {
 	// 'negatedVariable': v => /!((?:[a-z0-9]|\s|_)+)/g.exec(v),
 	// 'variableIsIncludedIn': v => /((?:[a-z0-9]|\s|_)+)⊂*/g.exec(v),
 	'variableComparedToNumber': v => /([\w\s]+(?:\s\.\s[\w\s]+)*)\s([<>]=?)\s([0-9]+)/g.exec(v),
 	'variableEqualsString': v => /([\w\s]+(?:\s\.\s[\w\s]+)*)\s=\s([\w\s]+)/g.exec(v),
-	'variable': v => /^([\w\s]+(?:\s\.\s[\w\s]+)*)$/g.exec(v)
+	'variable': v => new RegExp(`^(${vn}(?:${sep}${vn})*)$`, 'g').exec(v)
 }
 
-export let recognizeExpression = rawValue => {
-	let
-		value = removeDiacritics(rawValue).toLowerCase(),
-		match
+export let recognizeExpression = value => {
+	let match
 
 	// match = expressionTests['negatedVariable'](value)
 	// if (match) {
@@ -43,6 +42,15 @@ export let recognizeExpression = rawValue => {
 	match = expressionTests['variable'](value)
 	if (match) {
 		let [variableName] = match
-		return [variableName, situation => situation(variableName) == 'oui']
+		return [
+			variableName,
+			situation => {
+				// let yo = parentName(variableName),
+				// ya = nameLeaf(variableName),
+				// yi = situation(parentName(variableName))
+				// debugger;
+				return removeDiacritics(situation(variableName)) == 'oui' ||
+				removeDiacritics(situation(parentName(variableName))) == nameLeaf(variableName)
+			}]
 	}
 }
