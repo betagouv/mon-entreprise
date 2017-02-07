@@ -14,6 +14,7 @@ class Aide extends Component {
 		if (!steps.length) return null
 		let [{dependencyOfVariables, helpText}] = steps
 		return <section id="help">
+			{/*
 			{helpText}
 			<div className="dependency-of">
 				Cette question est nécessaire pour calculer :
@@ -23,6 +24,7 @@ class Aide extends Component {
 					)}
 				</ul>
 			</div>
+			*/}
 		</section>
 	}
 }

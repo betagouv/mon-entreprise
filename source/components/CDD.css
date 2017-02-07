@@ -32,7 +32,6 @@
 }
 
 #sim #help {
-	visibility: hidden;
 	border: 1px solid #ccc;
 	border-radius: 2px;
 	font-style: italic;

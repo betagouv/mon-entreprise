@@ -6,15 +6,17 @@ import {parentName, nameLeaf} from './rules'
 
 // composants des regexps
 let
-	vn = '[A-Za-z\\u00C0-\\u017F\\s]+', //variableName
-	sep = '\\s\\.\\s'
+	vp = '[A-Za-z\\u00C0-\\u017F\\s]+', // variable part
+	sep = '\\s\\.\\s',
+	vn = `(${vp}(?:${sep}${vp})*)`
 
 let expressionTests = {
 	// 'negatedVariable': v => /!((?:[a-z0-9]|\s|_)+)/g.exec(v),
 	// 'variableIsIncludedIn': v => /((?:[a-z0-9]|\s|_)+)⊂*/g.exec(v),
-	'variableComparedToNumber': v => /([\w\s]+(?:\s\.\s[\w\s]+)*)\s([<>]=?)\s([0-9]+)/g.exec(v),
+	// 'variableComparedToNumber': v => /([\w\s]+(?:\s\.\s[\w\s]+)*)\s([<>]=?)\s([0-9]+)/g.exec(v),
+	'variableComparedToNumber': v => new RegExp(`^${vn}\\s([<>]=?)\\s([0-9]+)$`, 'g').exec(v),
 	'variableEqualsString': v => /([\w\s]+(?:\s\.\s[\w\s]+)*)\s=\s([\w\s]+)/g.exec(v),
-	'variable': v => new RegExp(`^(${vn}(?:${sep}${vn})*)$`, 'g').exec(v)
+	'variable': v => new RegExp(`^${vn}$`, 'g').exec(v)
 }
 
 export let recognizeExpression = value => {
@@ -29,6 +31,7 @@ export let recognizeExpression = value => {
 
 	match = expressionTests['variableComparedToNumber'](value)
 	if (match) {
+
 		let [, variableName, symbol, number] = match
 		return [variableName, situation => eval(`situation("${variableName}") ${symbol} ${number}`)] // eslint-disable-line no-unused-vars
 	}
@@ -48,9 +51,9 @@ export let recognizeExpression = value => {
 				// let yo = parentName(variableName),
 				// ya = nameLeaf(variableName),
 				// yi = situation(parentName(variableName))
-				// debugger;
-				return removeDiacritics(situation(variableName)) == 'oui' ||
-				removeDiacritics(situation(parentName(variableName))) == nameLeaf(variableName)
+				// debugger
+				return situation(variableName) == 'oui' ||
+				situation(parentName(variableName)) == nameLeaf(variableName)
 			}]
 	}
 }

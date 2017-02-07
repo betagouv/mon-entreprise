@@ -52,7 +52,6 @@ export default reduceReducers(
 	(state, action) => {
 		if (action.type == STEP_ACTION || action.type == START_CONVERSATION) {
 			let {newState, name} = action
-			console.log('action', action)
 			// une étape vient d'être validée : on va changer son état
 			let newSteps = R.pipe(
 				R.map(step => step.name == name ? {...step, state: newState} : step),
@@ -68,7 +67,7 @@ export default reduceReducers(
 				),
 
 				missingVariables = R.pipe(
-					R.map( ({name, derived: [missingVariables]}) =>
+					R.map( ({name, derived: {missingVariables}}) =>
 						(missingVariables || []).map(mv => [mv, name])
 					),
 					R.unnest,
@@ -91,10 +90,11 @@ export default reduceReducers(
 								[R.isNil, () => variables.map(dottedName => {
 									let rule = findRuleByDottedName(dottedName)
 									return Object.assign(constructStepMeta(rule),
-										rule.contrainte == 'nombre positif' ?
+										rule.contrainte == 'nombre positif' ||
+										rule.contrainte == 'période' ?
 										{
 											component: Input,
-											defaultValue: 0,
+											defaultValue: 1,
 											valueType: euro,
 											attributes: {
 												inputMode: 'numeric',

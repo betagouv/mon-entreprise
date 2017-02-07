@@ -8,20 +8,20 @@
 
 - Variable: durée
   attache: Salariat . CDD
-  type: période
+  contrainte: période
   description: Durée du contrat de travail
 
 - Variable: motif de recours
   alias: motif # alias utilisé dans l'article L. 1242-1
   attache: Salariat . CDD
   description: |
-    Le CDD est un contrat d'exception: son recours doit être autorisé par l'une des motifs suivants
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs suivants
   choix exclusifs:
     - saisonnier
     - jeune vacances
     - sénior
     - usage
-    - accroissement temporaire d'activité
+    - accroissement temporaire activité
     # remplacement salarié ?
     # mission ?
     # ambiguité : l'alternance / l'apprentissage / la fpro sont-ils des justification de CDD ?
@@ -49,7 +49,7 @@
   attache: Salariat . CDD . motif
   titre: Contrat saisonnier
 
-- Variable: accroissement temporaire d'activité
+- Variable: accroissement temporaire activité
   attache: Salariat . CDD . motif
   titre: Accroissement temporaire d'activité
 
@@ -66,7 +66,9 @@
 - Variable: usage # Similaire pour intérim, mais domaines différents
   attache: Salariat . CDD . motif
   titre: Contrat d'usage
-  référence: https://www.service-public.fr/particuliers/vosdroits/F32476
+  # alias: extra
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33693
   # concerne: emploi temporaire par nature
   formule:
     choix exclusifs:

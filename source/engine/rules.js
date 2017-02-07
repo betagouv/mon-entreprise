@@ -60,7 +60,7 @@ export let searchRules = searchInput =>
 
 export let findRuleByDottedName = dottedName => do {
 	let found = entityRules.find(rule => rule.dottedName == dottedName)
-	found || console.log('dottedName = ', dottedName, ' a déserté')
+	found
 }
 
 export let findGroup = R.pipe(

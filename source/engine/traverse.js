@@ -8,8 +8,10 @@ import {recognizeExpression} from './expressions'
 let selectedRules = rules.filter(rule =>
 			R.contains(
 				enrichRule(rule).name,
-				['CIF CDD', 'Fin de contrat']
-				// ['CIF CDD']
+				[
+					'CIF CDD', 'fin de contrat',
+					'majoration chômage CDD'
+				]
 			)
 		)
 
@@ -18,11 +20,15 @@ let knownVariable = (situation, variableName) => typeof R.or(
 	situation(parentName(variableName))
 ) !== 'undefined'
 
+let transformPercentage = s =>
+	s.indexOf('%') > -1 ?
+		+s.replace('%', '') / 100 :
+		+s
 
 let deriveRule = situationGate => R.pipe(
 	R.toPairs,
 	// Reduce to [variables needed to compute that variable, computed variable value]
-	R.reduce(([variableNames, result], [key, value]) => {
+	R.reduce(({missingVariables, computedValue}, [key, value]) => {
 		if (key === 'concerne') {
 			let [variableName, evaluation] = recognizeExpression(value)
 			// Si cette variable a été renseignée
@@ -30,21 +36,19 @@ let deriveRule = situationGate => R.pipe(
 				// Si l'expression n'est pas vraie...
 				if (!evaluation(situationGate)) {
 					// On court-circuite toute la variable, et on n'a besoin d'aucune information !
-					return R.reduced([[]])
+					return R.reduced({missingVariables: []})
 				} else {
 					// Sinon, on continue
-					return [variableNames]
+					return {missingVariables}
 				}
 			// sinon on demande la valeur de cette variable
-			} else return [[...variableNames, variableName]]
+			} else return { missingVariables: [...missingVariables, variableName] }
 		}
 
 		if (key === 'non applicable si') {
 			let conditions = value['l\'une de ces conditions']
 			let [subVariableNames, reduced] = R.reduce(([variableNames], expression) => {
-
 				let [variableName, evaluation] = recognizeExpression(expression)
-
 				if (knownVariable(situationGate, variableName)) {
 					if (evaluation(situationGate)) {
 						return R.reduced([[], true])
@@ -54,8 +58,9 @@ let deriveRule = situationGate => R.pipe(
 				}
 				return [[...variableNames, variableName]]
 			}, [[], null])(conditions)
-			if (reduced) return R.reduced([[]])
-			else return [variableNames.concat(subVariableNames)]
+
+			if (reduced) return R.reduced({missingVariables: []})
+			else return {missingVariables: [...missingVariables, ...subVariableNames]}
 		}
 
 		if (key === 'formule') {
@@ -67,30 +72,49 @@ let deriveRule = situationGate => R.pipe(
 					assietteValue = situationGate(assietteVariableName),
 					unknownAssiette = assietteValue == undefined
 
-				if (unknownAssiette) {
-					return [[...variableNames, assietteVariableName]]
-				} else {
-					if (variableNames.length > 0) {
-						return [variableNames]
-					}
-				}
-
 				// Arrivés là, cette formule devrait être calculable !
+				let {missingVariables: tauxMissingVariables = [], computedValue} = typeof taux !== 'string' ?
+					do {
+						let numericalLogic = taux['logique numérique']
+						if (!numericalLogic) throw 'On ne sait pas pour l\'instant traiter ce mécanisme de taux'
 
-				// A propos du taux
-				if (typeof taux !== 'string' && typeof taux !== 'number') {
-					throw 'Oups, pas de taux compliqués s\'il-vous-plaît'
+						let treatNumericalLogic = numericalLogic => {
+							if (typeof numericalLogic == 'string') {
+								return new Object({computedValue: assietteValue * transformPercentage(numericalLogic)})
+							} else {
+								return R.pipe(
+									R.toPairs(),
+									R.reduce(({missingVariables}, [expression, subLogic]) => {
+										let [variableName, evaluation] = recognizeExpression(expression)
+										if (knownVariable(situationGate, variableName)) {
+											if (evaluation(situationGate)) {
+												return R.reduced(treatNumericalLogic(subLogic))
+											} else {
+												return {missingVariables}
+											}
+										} else return {missingVariables: [...missingVariables, variableName]}
+									}, {missingVariables: []})
+							)(numericalLogic)
+							}}
+						treatNumericalLogic(numericalLogic)
+					} : ({computedValue: assietteValue * transformPercentage(taux)})
+
+				let formulaResult = {
+					missingVariables: [
+						...missingVariables,
+						...(unknownAssiette ? [assietteVariableName] : []),
+						...tauxMissingVariables
+					],
+					computedValue
 				}
-				let tauxValue = taux.indexOf('%') > -1 ?
-					+taux.replace('%', '') / 100 :
-					+taux
 
-				return R.reduced([null, assietteValue * tauxValue])
+				return computedValue != null ? R.reduced(formulaResult) : formulaResult
+
 			}
 		}
 
-		return [variableNames]
-	}, [[], null])
+		return {missingVariables}
+	}, {missingVariables: []})
 	)
 
 let analyseRule = situationGate =>
