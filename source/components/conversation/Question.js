@@ -1,13 +1,19 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {FormDecorator} from './FormDecorator'
 import {answer, answered} from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
+import Term from './Term'
+import {EXPLAIN_TERM} from '../../actions'
 
+@connect(null, dispatch => ({
+	explainTerm: term => () => dispatch({type: EXPLAIN_TERM, term})
+}))
 @HoverDecorator
 class RadioLabel extends Component {
 
 	render() {
-		let {choice: {value, label}, input, submit, hover, themeColours} = this.props,
+		let {choice: {value, label}, input, submit, hover, themeColours, explainTerm} = this.props,
 			labelStyle =
 				Object.assign(
 					(value === input.value || hover) ? answered(themeColours) : answer(themeColours),
@@ -20,7 +26,7 @@ class RadioLabel extends Component {
 				<input
 					type="radio" {...input} onClick={submit}
 					value={value} checked={value === input.value ? 'checked' : ''} />
-				{label}
+				<Term label={label} defined={true} explain={explainTerm(value)}/>
 			</label>
 		)
 	}

@@ -23,22 +23,31 @@
 	line-height: normal;
 	display: flex;
 	justify-content: space-around;
+	align-items: flex-start;
 	min-height: 10em;
 	max-width: 90%;
 }
 
 #questions-answers {
 	min-width: 60%;
+	transition: width 1s;
 }
 
 #sim #help {
-	border: 1px solid #ccc;
+	border: 1px solid;
 	border-radius: 2px;
+	border-color: #ccc
 	font-style: italic;
-	margin-left: 2em;
+	margin: 3em;
 	padding-left: 3em;
 	min-width: 30%;
-	color: #444
+	color: #444;
+	transition: opacity .4s;
+	opacity: 0
+}
+
+#sim #help.active {
+	opacity: 1
 }
 
 

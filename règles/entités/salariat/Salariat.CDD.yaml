@@ -120,11 +120,12 @@
 - Variable: refus CDI avantageux
   attache: Salariat . CDD . événements
   titre: Refus d'un CDI avantageux
-  description: Le salarié refuse une reconduction en CDI pour un emploi similaire, et rémunération au moins aussi avantageuse
+  description: Le salarié refuse une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
 
 - Variable: rupture anticipée salarié
   titre: Rupture anticipée du salarié
   attache: Salariat . CDD . événements
+  description: Rupture anticipée du contrat à l'initiative du salarié.
   # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 
 - Variable: rupture pour faute grave ou force majeure

@@ -1,0 +1,21 @@
+.term.defined .icon{
+  text-align: center;
+  width: 1.3em;
+  line-height: 1.3em;
+  border-radius: .2em;
+  display: inline-block;
+  margin-left: .8em;
+  opacity: .3;
+  border: 1px solid transparent;
+}
+
+.term.defined:hover .icon {
+  opacity: 1;
+  border-color: white;
+}
+
+.term.defined .icon:hover {
+  opacity: 1;
+  background: white;
+  color: #4A89DC;
+}

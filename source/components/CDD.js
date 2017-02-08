@@ -6,26 +6,39 @@ import {reduxForm, formValueSelector} from 'redux-form'
 import {connect} from 'react-redux'
 import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
+import {findRuleByName} from '../engine/rules'
 
-@connect(({form: {conversation}, steps}) => ({conversationState: conversation && conversation.values, steps}))
+@connect(({form: {conversation}, steps, explainTerm}) => ({conversationState: conversation && conversation.values, steps, explainTerm}))
 class Aide extends Component {
 	render() {
-		let {steps, conversationState} = this.props
+		let {steps, conversationState, explainTerm} = this.props
 		if (!steps.length) return null
 		let [{dependencyOfVariables, helpText}] = steps
-		return <section id="help">
-			{/*
-			{helpText}
-			<div className="dependency-of">
-				Cette question est nécessaire pour calculer :
-				<ul>
-					{dependencyOfVariables.map(v =>
-						<li key={v}>{v}</li>
-					)}
-				</ul>
-			</div>
-			*/}
-		</section>
+
+		if (!explainTerm) return <section id="help" />
+
+		let rule = findRuleByName(explainTerm),
+			text = rule.description || rule.titre
+
+		let possibilities = rule['choix exclusifs']
+
+		return (
+			<section id="help" className="active">
+				<p>
+					{text}
+				</p>
+				{ possibilities &&
+					<p>
+						{possibilities.length} possibilités :
+						<ul>
+							{possibilities.map(p =>
+								<li key={p}>{p}</li>
+							)}
+						</ul>
+					</p>
+				}
+			</section>
+		)
 	}
 }
 let situationSelector = formValueSelector('conversation')

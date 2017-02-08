@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 export default class Results extends Component {
 	render() {
 		let {analysedSituation} = this.props
-		console.log('analysedSituation', analysedSituation)
 		return (
 			<section id="results">
 				<h2>Vos obligations</h2>

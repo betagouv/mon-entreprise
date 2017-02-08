@@ -35,17 +35,17 @@ export let nameLeaf = R.pipe(
 )
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-let [rules, entityRules] = //R.map(R.map(enrichRule))([rawRules, rawEntityRules])
+let [rules, entityRules] =
 	[rawRules, rawEntityRules].map(rules => rules.map(enrichRule))
 
 
 /****************************************
  Méthodes de recherche d'une règle */
 
-export let findRuleByName = search =>
-	rules
+export let findRuleByName = search => console.log('search', search) ||
+	[...rules, ...entityRules]
 		.map(enrichRule)
-		.find( ({name}) =>
+		.find( ({name}) => console.log('name', name) ||
 			name === search
 		)
 

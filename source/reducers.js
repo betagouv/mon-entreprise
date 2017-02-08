@@ -9,7 +9,7 @@ import Question from './components/conversation/Question'
 import Input from './components/conversation/Input'
 import RhetoricalQuestion from './components/conversation/RhetoricalQuestion'
 
-import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION} from './actions'
+import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION, EXPLAIN_TERM} from './actions'
 import R from 'ramda'
 
 import {findGroup, findRuleByDottedName, dottedName, parentName} from './engine/rules'
@@ -35,6 +35,12 @@ function themeColours(state = computeThemeColours(), {type, colour}) {
 let situationGate = state =>
 	name => formValueSelector('conversation')(state, name)
 
+function explainTerm(state = null, {type, term}) {
+	if (type == EXPLAIN_TERM)
+		return term
+	else return state
+}
+
 export default reduceReducers(
 	combineReducers({
 		//  this is handled by redux-form, pas touche !
@@ -46,7 +52,9 @@ export default reduceReducers(
 
 		analysedSituation: (state = []) => state,
 
-		themeColours
+		themeColours,
+
+		explainTerm
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
 	(state, action) => {

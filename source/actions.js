@@ -27,3 +27,6 @@ export const INITIAL_REQUEST = 'INITIAL_REQUEST'
 
 export const CHANGE_THEME_COLOUR = 'CHANGE_THEME_COLOUR'
 export function changeThemeColour(colour) {return {type: CHANGE_THEME_COLOUR, colour}}
+
+
+export const EXPLAIN_TERM = 'EXPLAIN_TERM'
