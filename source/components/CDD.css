@@ -36,14 +36,14 @@
 #sim #help {
 	border: 1px solid;
 	border-radius: 2px;
-	border-color: #ccc
+	border-color: #ccc;
 	font-style: italic;
 	margin: 3em;
 	padding-left: 3em;
 	min-width: 30%;
 	color: #444;
 	transition: opacity .4s;
-	opacity: 0
+	opacity: 0;
 }
 
 #sim #help.active {
@@ -84,19 +84,23 @@
 }
 
 #results h2 {
-	width: 8%;
+	width: 5em;
 	display: inline-block;
-	line-height: 1.2em;
+	float: left;
+	line-height: 1.4em;
 	margin: 0;
+	margin-left: 1.5em;
 	padding: .5em;
 	font-weight: 400;
-	font-size: 250%;
+	font-size: 280%;
 }
 
 
 #results ul {
-	display: inline-block;
-	width: 80%;
+	display: inline-flex;
+	justify-content: space-around;
+	height: 100%;
+	width: 70%;
 	list-style: none;
 }
 
@@ -105,24 +109,36 @@
 	background: white;
 	display: inline-block;
 	margin: 0 2em;
-	border-radius: 2px;
+	border-radius: 8px;
 	padding: .6em 2em;
 	text-align: center;
+	border: 3px dashed white;
 }
+#results li.unsatisfied {
+	border: 3px dashed #4a89dc;
+}
+
 #results li h3 {
 	font-size: 130%;
-	width: 80%;
+	/*width: 80%;*/
 	border-bottom: 1px solid #aaa;
 	margin: .1em;
+	margin-bottom: 1em;
 	padding-bottom: .2em;
 }
 
-
-#results p {
-	margin: .6em;
+#results li p {
+	margin-top: 0;
+	font-size: 150%;
 }
 
+#results li.unsatisfied p{
+	font-style: italic;
+}
+#results li.number p {
+	font-size: 300%;
+}
 
 #results .value {
-	font-size: 150%;
+
 }

@@ -130,8 +130,8 @@ export default reduceReducers(
 													value: rule.name,
 													label: rule && rule.titre || name
 												}
-											}),
-											defaultValue: 'Non',
+											}).concat([{value: 'aucun', label: 'Aucun'}]),
+											// defaultValue: 'Non',
 											helpText: 'Choisissez une réponse'
 										}
 									)]
