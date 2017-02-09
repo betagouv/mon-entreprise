@@ -73,7 +73,8 @@
 
 #sim #results {
 	padding: .1em;
-	background: #4A89DC;
+	background: white;
+	border-top: 2px solid #333350;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -85,15 +86,16 @@
 }
 
 #results h2 {
+	color: #333350;
 	width: 5em;
 	display: inline-block;
 	float: left;
-	line-height: 1.4em;
+	line-height: 1.2em;
 	margin: 0;
 	margin-left: 1.5em;
 	padding: .5em;
 	font-weight: 400;
-	font-size: 280%;
+	font-size: 300%;
 }
 
 
@@ -113,10 +115,10 @@
 	border-radius: 8px;
 	padding: .6em 2em;
 	text-align: center;
-	border: 3px dashed white;
+	border: 2px solid #333350;
 }
 #results li.unsatisfied {
-	border: 3px dashed #4a89dc;
+	border: 2px dashed #333350;
 }
 
 #results li h3 {
