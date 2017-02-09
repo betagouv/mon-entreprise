@@ -12,6 +12,7 @@
 	transition: opacity .4s;
 	opacity: 0;
   position: relative;
+  overflow: hidden;
 }
 
 #sim #help.active {
@@ -20,11 +21,13 @@
 
 #sim #help i.fa-info-circle {
   margin-right: .3em;
-  float: left;
-  top: .05em;
-  right: .1em;
-  font-size: 300%;
-  color: #333350;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  font-size: 1000%;
+  color: black;
+  opacity: .02
 }
 
 #sim #help i.fa-times-circle {

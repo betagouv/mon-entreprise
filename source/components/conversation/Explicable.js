@@ -7,14 +7,14 @@ import {EXPLAIN_VARIABLE} from '../../actions'
 import {findRuleByName} from '../../engine/rules'
 
 
-@connect(null, dispatch => ({
+@connect(state => ({explained: state.explainedVariable}), dispatch => ({
 	explain: variableName => dispatch({type: EXPLAIN_VARIABLE, variableName})
 }))
 @HoverDecorator
 export default class Explicable extends React.Component {
 	render(){
 		let
-			{name, hover, label, explain} = this.props,
+			{name, hover, label, explain, explained} = this.props,
 			rule = findRuleByName(name)
 
 		// Rien à expliquer ici, ce n'est pas une règle
@@ -27,7 +27,7 @@ export default class Explicable extends React.Component {
 
 		return (
 			<span
-				className={classNames('explicable')} >
+				className={classNames('explicable', {explained: name === explained})} >
 				{ruleLabel}
 				<span
 					className="icon"

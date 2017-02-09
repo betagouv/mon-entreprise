@@ -9,6 +9,12 @@
   border: 1px solid transparent;
 }
 
+.explicable.explained .icon {
+  opacity: 1;
+  background: #4A89DC;
+  color: white;
+}
+
 .explicable:hover .icon {
   opacity: 1;
   border-color: white;
