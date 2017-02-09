@@ -6,7 +6,7 @@ rules:
     - 2
     - unix
   semi:
-    - 2
+    - 1
     - never
   no-unused-vars: 1
   no-console: 1

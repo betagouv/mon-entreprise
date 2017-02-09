@@ -1,6 +1,7 @@
 
 - Variable: contrat aidé
   attache: Salariat
+  question: Est-ce un contrat aidé ?
   choix exclusifs:
     - contrat unique insertion
     - emploi avenir

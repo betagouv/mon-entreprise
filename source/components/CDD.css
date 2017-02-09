@@ -35,6 +35,7 @@
 }
 
 #sim #help {
+	box-shadow: -1px 1px 15px 1px #eee;
 	border: 1px solid;
 	border-radius: 2px;
 	border-color: #ccc;

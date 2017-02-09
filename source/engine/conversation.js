@@ -1,7 +1,7 @@
-export let constructStepMeta = ({dottedName, name, description}) => ({
+export let constructStepMeta = ({question, dottedName, name}) => ({
 	// name: dottedName.split(' . ').join('.'),
 	name: dottedName,
-	question: description || name,
+	question: question || name,
 	title: name,
 	dependencyOfVariables: ['chai pas'],
 	visible: true,

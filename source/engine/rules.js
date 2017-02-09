@@ -42,10 +42,10 @@ let [rules, entityRules] =
 /****************************************
  Méthodes de recherche d'une règle */
 
-export let findRuleByName = search => console.log('search', search) ||
+export let findRuleByName = search =>
 	[...rules, ...entityRules]
 		.map(enrichRule)
-		.find( ({name}) => console.log('name', name) ||
+		.find( ({name}) =>
 			name === search
 		)
 

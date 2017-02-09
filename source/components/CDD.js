@@ -6,41 +6,9 @@ import {reduxForm, formValueSelector} from 'redux-form'
 import {connect} from 'react-redux'
 import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
-import {findRuleByName} from '../engine/rules'
+import Aide from './Aide'
 
-@connect(({form: {conversation}, steps, explainTerm}) => ({conversationState: conversation && conversation.values, steps, explainTerm}))
-class Aide extends Component {
-	render() {
-		let {steps, conversationState, explainTerm} = this.props
-		if (!steps.length) return null
-		let [{dependencyOfVariables, helpText}] = steps
 
-		if (!explainTerm) return <section id="help" />
-
-		let rule = findRuleByName(explainTerm),
-			text = rule.description || rule.titre
-
-		let possibilities = rule['choix exclusifs']
-
-		return (
-			<section id="help" className="active">
-				<p>
-					{text}
-				</p>
-				{ possibilities &&
-					<p>
-						{possibilities.length} possibilités :
-						<ul>
-							{possibilities.map(p =>
-								<li key={p}>{p}</li>
-							)}
-						</ul>
-					</p>
-				}
-			</section>
-		)
-	}
-}
 let situationSelector = formValueSelector('conversation')
 
 @reduxForm(

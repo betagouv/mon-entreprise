@@ -1,4 +1,4 @@
-.term.defined .icon{
+.explicable .icon{
   text-align: center;
   width: 1.3em;
   line-height: 1.3em;
@@ -9,12 +9,12 @@
   border: 1px solid transparent;
 }
 
-.term.defined:hover .icon {
+.explicable:hover .icon {
   opacity: 1;
   border-color: white;
 }
 
-.term.defined .icon:hover {
+.explicable .icon:hover {
   opacity: 1;
   background: white;
   color: #4A89DC;

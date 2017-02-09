@@ -1,32 +1,29 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import {FormDecorator} from './FormDecorator'
 import {answer, answered} from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
-import Term from './Term'
-import {EXPLAIN_TERM} from '../../actions'
+import Explicable from './Explicable'
+import R from 'ramda'
 
-@connect(null, dispatch => ({
-	explainTerm: term => () => dispatch({type: EXPLAIN_TERM, term})
-}))
 @HoverDecorator
 class RadioLabel extends Component {
 
 	render() {
-		let {choice: {value, label}, input, submit, hover, themeColours, explainTerm} = this.props,
+		let {value, label, input, submit, hover, themeColours} = this.props,
+			// value = R.when(R.is(Object), R.prop('value'))(choice),
 			labelStyle =
 				Object.assign(
 					(value === input.value || hover) ? answered(themeColours) : answer(themeColours),
 				)
 
 		return (
-			<label
+			<label key={value}
 				style={labelStyle}
 				className="radio" >
 				<input
 					type="radio" {...input} onClick={submit}
 					value={value} checked={value === input.value ? 'checked' : ''} />
-				<Term label={label} defined={true} explain={explainTerm(value)}/>
+				<Explicable name={value} label={label}/>
 			</label>
 		)
 	}
@@ -46,8 +43,10 @@ export default class Question extends Component {
 
 		return (
 			<span>
-				{ choices.map((choice) =>
-						<RadioLabel key={choice.value} {...{choice, input, submit, themeColours}}/>
+				{ choices.map((choice) => do {
+					let {value, label} = R.is(String)(choice) ? {value: choice, label: null} : choice;
+					<RadioLabel key={value} {...{value, label, input, submit, themeColours}}/>
+				}
 				)}
 			</span>
 		)
