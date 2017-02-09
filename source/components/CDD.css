@@ -34,25 +34,6 @@
 	transition: width 1s;
 }
 
-#sim #help {
-	box-shadow: -1px 1px 15px 1px #eee;
-	border: 1px solid;
-	border-radius: 2px;
-	border-color: #ccc;
-	font-style: italic;
-	margin: 3em;
-	padding-left: 3em;
-	min-width: 30%;
-	color: #444;
-	transition: opacity .4s;
-	opacity: 0;
-}
-
-#sim #help.active {
-	opacity: 1
-}
-
-
 
 .dependency-of {
 }

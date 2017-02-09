@@ -1,15 +1,20 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {findRuleByName} from '../engine/rules'
-
+import './Aide.css'
+import {EXPLAIN_VARIABLE} from '../actions'
 
 @connect(
 	state =>
-		({explained: state.explainedVariable})
+		({explained: state.explainedVariable}),
+	dispatch => ({
+		stopExplaining: () => dispatch(
+			{type: EXPLAIN_VARIABLE})
+	})
 )
 export default class Aide extends Component {
 	render() {
-		let {explained} = this.props
+		let {explained, stopExplaining} = this.props
 
 		if (!explained) return <section id="help" />
 
@@ -20,6 +25,10 @@ export default class Aide extends Component {
 
 		return (
 			<section id="help" className="active">
+				<i className="fa fa-info-circle"></i>
+				<i
+					className="fa fa-times-circle"
+					onClick={stopExplaining} ></i>
 				<p>
 					{text}
 				</p>

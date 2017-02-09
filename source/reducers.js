@@ -35,10 +35,13 @@ function themeColours(state = computeThemeColours(), {type, colour}) {
 let situationGate = state =>
 	name => formValueSelector('conversation')(state, name)
 
-function explainedVariable(state = null, {type, variableName}) {
-	if (type == EXPLAIN_VARIABLE)
+function explainedVariable(state = null, {type, variableName=null}) {
+	switch (type) {
+	case EXPLAIN_VARIABLE:
 		return variableName
-	else return state
+	default:
+		return state
+	}
 }
 
 export default reduceReducers(

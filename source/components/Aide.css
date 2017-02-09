@@ -1,0 +1,37 @@
+
+#sim #help {
+	box-shadow: -1px 1px 15px 1px #eee;
+	border: 1px solid;
+	border-radius: 2px;
+	border-color: #ccc;
+	font-style: italic;
+	margin: 3em;
+  padding: 1em;
+	min-width: 30%;
+	color: #444;
+	transition: opacity .4s;
+	opacity: 0;
+  position: relative;
+}
+
+#sim #help.active {
+	opacity: 1
+}
+
+#sim #help i.fa-info-circle {
+  margin-right: .3em;
+  float: left;
+  top: .05em;
+  right: .1em;
+  font-size: 300%;
+  color: #333350;
+}
+
+#sim #help i.fa-times-circle {
+  color: #4a89dc;
+  font-size: 120%;
+  position: absolute;
+  top: .6em;
+  right: .6em;
+  cursor: pointer;
+}
