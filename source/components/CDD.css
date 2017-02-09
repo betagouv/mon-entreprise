@@ -73,8 +73,8 @@
 
 #sim #results {
 	padding: .1em;
-	background: white;
-	border-top: 2px solid #333350;
+	background: #4A89DC;
+	box-shadow: 1px -7px 20px 2px #eee;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -86,7 +86,7 @@
 }
 
 #results h2 {
-	color: #333350;
+	color: white;
 	width: 5em;
 	display: inline-block;
 	float: left;
@@ -115,10 +115,10 @@
 	border-radius: 8px;
 	padding: .6em 2em;
 	text-align: center;
-	border: 2px solid #333350;
+	border: 1px solid #333350;
 }
 #results li.unsatisfied {
-	border: 2px dashed #333350;
+	border: 2px dashed #4A89DC;
 }
 
 #results li h3 {
