@@ -17,8 +17,9 @@
 - Variable: motif de recours
   alias: motif # alias utilisé dans l'article L. 1242-1
   attache: Salariat . CDD
+  question: Quel est le motif de recours au CDD ?
   description: |
-    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs suivants
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un de ces motifs
   choix exclusifs:
     - saisonnier
     - jeune vacances
@@ -100,7 +101,7 @@
 
 - Variable: événements
   attache: Salariat . CDD
-  question: Pensez-vous être confronté à un de ces évéments ?
+  question: Pensez-vous être confronté à l'un de ces évéments ?
   description: Certains événements impactent le prix d'un CDD
   # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,
   # et les identifier dynamiquement par leur attribut "attache" :

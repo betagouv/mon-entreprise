@@ -13,21 +13,24 @@ import {findRuleByName} from '../../engine/rules'
 @HoverDecorator
 export default class Explicable extends React.Component {
 	render(){
-		let
-			{name, hover, label, explain, explained} = this.props,
+		let {
+			name, hover, label,
+			explain, explained,
+			lightBackground
+			} = this.props,
 			rule = findRuleByName(name)
 
 		// Rien à expliquer ici, ce n'est pas une règle
 		if (!rule) return <span>{label}</span>
 
-		let ruleLabel = rule.titre || rule.name
+		let ruleLabel = label || rule.titre || rule.name
 		// Rien à expliquer ici, il n'y a pas de champ description dans la règle
 		if (!rule.description && !rule['choix exclusifs']) return <span>{ruleLabel}</span>
 
 
 		return (
 			<span
-				className={classNames('explicable', {explained: name === explained})} >
+				className={classNames('explicable', {explained: name === explained, dark: lightBackground})} >
 				{ruleLabel}
 				<span
 					className="icon"
