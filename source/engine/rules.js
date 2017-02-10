@@ -8,6 +8,7 @@ import possibleVariableTypes from './possibleVariableTypes.yaml'
 /***********************************
  Méthodes agissant sur une règle */
 
+// Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = rule => {
 	let
 		type = possibleVariableTypes.find(t => rule[t]),
@@ -22,12 +23,14 @@ export let enrichRule = rule => {
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
-let splitName = R.split(' . ')
+let
+	splitName = R.split(' . '),
+	joinName = R.join(' . ')
 
 export let parentName = R.pipe(
 	splitName,
 	R.dropLast(1),
-	R.join(' . ')
+	joinName
 )
 export let nameLeaf = R.pipe(
 	splitName,
@@ -35,7 +38,7 @@ export let nameLeaf = R.pipe(
 )
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-let [rules, entityRules] =
+export let [rules, entityRules] =
 	[rawRules, rawEntityRules].map(rules => rules.map(enrichRule))
 
 
@@ -58,10 +61,8 @@ export let searchRules = searchInput =>
 
 
 
-export let findRuleByDottedName = dottedName => do {
-	let found = entityRules.find(rule => rule.dottedName == dottedName)
-	found
-}
+export let findRuleByDottedName = dottedName =>
+	entityRules.find(rule => rule.dottedName == dottedName)
 
 export let findGroup = R.pipe(
 	findRuleByDottedName,

@@ -1,17 +1,17 @@
 - Cotisation: CIF CDD
-  attache: CDD
+  attache: Salariat . CDD
   description: Contribution au financement du congé individuel de formation spécifique aux CDD
   attributs:
     collecteur: OPCA
   référence:  Code du travail - Article L6322-37
   non applicable si:
     l'une de ces conditions:
-      - Salariat . CDD . événements . CDD poursuivi en CDI
-      - Salariat . CDD . motif . saisonnier
-      - Salariat . CDD . motif . jeune vacances
-      - Salariat . contrat aidé
+      - événements . CDD poursuivi en CDI
+      - motif . saisonnier
+      - motif . jeune vacances
+      - contrat aidé
 
   formule:
     linéaire:
-      assiette: Salariat . salaire de base
+      assiette: salaire de base
       taux: 1%

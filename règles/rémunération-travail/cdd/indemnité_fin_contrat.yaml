@@ -1,5 +1,5 @@
 - Indemnité: fin de contrat
-  attache: CDD
+  attache: Salariat . CDD
   attributs:
     type: indemnité
   alias: Prime de précarité
@@ -9,21 +9,21 @@
   non applicable si:
     l'une de ces conditions:
       # Evènements particuliers
-      - Salariat . CDD . événements . CDD poursuivi en CDI
-      - Salariat . CDD . événements . refus CDI avantageux
+      - événements . CDD poursuivi en CDI
+      - événements . refus CDI avantageux
 
       # Rupture
-      - Salariat . CDD . événements . rupture anticipée salarié
-      - Salariat . CDD . événements . rupture pour faute grave ou force majeure
-      - Salariat . CDD . événements . rupture pendant période essai
+      - événements . rupture anticipée salarié
+      - événements . rupture pour faute grave ou force majeure
+      - événements . rupture pendant période essai
 
-      - Salariat . CDD . complément formation professionnelle employeur
+      - engagement employeur complément formation
 
       # types de contrat
-      - Salariat . contrat aidé
-      - Salariat . CDD . motif . usage
-      - Salariat . CDD . motif . jeune vacances
-      - Salariat . CDD . motif . saisonnier
+      - contrat aidé
+      - motif . usage
+      - motif . jeune vacances
+      - motif . saisonnier
       # https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité.
 
       # - CDD . type = vendanges
@@ -35,7 +35,7 @@
 
   formule:
     linéaire:
-      assiette: Salariat . salaire de base
+      assiette: salaire de base
       taux: 10%
 
 

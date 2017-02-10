@@ -1,5 +1,5 @@
 - Cotisation: majoration chômage CDD
-  attache: CDD
+  attache: Salariat . CDD
   attributs:
     dû par: employeur
     type: majoration
@@ -7,18 +7,18 @@
   description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD)
   non applicable si:
     l'une de ces conditions:
-      - Salariat . CDD . durée contrat > 3
-      - Salariat . CDD . événements . CDD poursuivi en CDI
+      - durée contrat > 3
+      - événements . CDD poursuivi en CDI
   formule:
     linéaire:
-      assiette: Salariat . salaire de base
+      assiette: salaire de base
       taux:
         logique numérique:
-          Salariat . CDD . motif . accroissement temporaire activité:
-            Salariat . CDD . durée contrat <= 1: 3% # TODO 1 mois, pas 1 rien, évidemment
-            Salariat . CDD . durée contrat <= 3: 1.5%
-          Salariat . CDD . motif . usage:
-            Salariat . CDD . durée contrat <= 3: 0.5%
+          motif . accroissement temporaire activité:
+            durée contrat <= 1: 3% # TODO 1 mois, pas 1 rien, évidemment
+            durée contrat <= 3: 1.5%
+          motif . usage:
+            durée contrat <= 3: 0.5%
 
 
 

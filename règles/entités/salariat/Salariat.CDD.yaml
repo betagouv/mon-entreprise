@@ -144,8 +144,8 @@
   # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 
 
-- Variable: complément formation professionnelle employeur
+- Variable: engagement employeur complément formation
   titre: Complément de formation professionnelle offert par l'employeur
-  question: L'employeur s'engage-t-il à verser un complément de formation professionnelle ?
+  question: L'employeur s'engage-t-il à assurer un complément de formation professionnelle au salarié ?
   attache: Salariat . CDD
-  description: L'employeur peut s'engager à fournir un complément de formation professionnelle. Cela le dispensera de l'obligation de payer la cotisation CIF CDD
+  description: L'employeur s'engage à assurer un complément de formation professionnelle au salarié. Cela le dispense du versement de l'indemnité de fin de contrat.

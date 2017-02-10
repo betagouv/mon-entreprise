@@ -8,7 +8,8 @@ export default class Results extends Component {
 			<section id="results">
 				<h2>Vos obligations</h2>
 				<ul>
-					{analysedSituation.map(({name, type, derived: {missingVariables, computedValue}}) =>
+					{analysedSituation.map(
+						({name, type, derived: {missingVariables, computedValue}}) =>
 						do {
 							let
 								unsatisfied = missingVariables && missingVariables.length,

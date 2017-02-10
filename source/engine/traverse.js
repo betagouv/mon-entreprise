@@ -1,36 +1,36 @@
 import R from 'ramda'
-import rules from './load-rules'
-import {findRuleByName, enrichRule, parentName} from './rules'
+import {rules, findRuleByName, parentName} from './rules'
 import {recognizeExpression} from './expressions'
 
 
 // L'objectif de la simulation : quelles règles voulons nous calculer ?
 let selectedRules = rules.filter(rule =>
-			R.contains(
-				enrichRule(rule).name,
+			R.contains(rule.name,
 				[
-					'CIF CDD', 'fin de contrat',
+					'CIF CDD',
+					'fin de contrat',
 					'majoration chômage CDD'
 				]
 			)
 		)
 
-let knownVariable = (situation, variableName) => typeof R.or(
+let knownVariable = (situation, variableName) => R.or(
 	situation(variableName),
-	situation(parentName(variableName))
-) !== 'undefined'
+	situation(parentName(variableName)) // pour 'usage', 'motif' ( le parent de 'usage') = 'usage'
+) != null
 
 let transformPercentage = s =>
 	s.indexOf('%') > -1 ?
 		+s.replace('%', '') / 100 :
 		+s
 
-let deriveRule = situationGate => R.pipe(
+
+
+let deriveRule = (situationGate, rule) => R.pipe(
 	R.toPairs,
-	// Reduce to [variables needed to compute that variable, computed variable value]
 	R.reduce(({missingVariables, computedValue}, [key, value]) => {
 		if (key === 'concerne') {
-			let [variableName, evaluation] = recognizeExpression(value)
+			let [variableName, evaluation] = recognizeExpression(rule, value)
 			// Si cette variable a été renseignée
 			if (knownVariable(situationGate, variableName)) {
 				// Si l'expression n'est pas vraie...
@@ -48,7 +48,7 @@ let deriveRule = situationGate => R.pipe(
 		if (key === 'non applicable si') {
 			let conditions = value['l\'une de ces conditions']
 			let [subVariableNames, reduced] = R.reduce(([variableNames], expression) => {
-				let [variableName, evaluation] = recognizeExpression(expression)
+				let [variableName, evaluation] = recognizeExpression(rule, expression)
 				if (knownVariable(situationGate, variableName)) {
 					if (evaluation(situationGate)) {
 						return R.reduced([[], true])
@@ -68,7 +68,7 @@ let deriveRule = situationGate => R.pipe(
 				let {assiette, taux} = value['linéaire']
 
 				// A propos de l'assiette
-				let assietteVariableName = assiette,
+				let [assietteVariableName] = recognizeExpression(rule, assiette),
 					assietteValue = situationGate(assietteVariableName),
 					unknownAssiette = assietteValue == undefined
 
@@ -85,7 +85,7 @@ let deriveRule = situationGate => R.pipe(
 								return R.pipe(
 									R.toPairs(),
 									R.reduce(({missingVariables}, [expression, subLogic]) => {
-										let [variableName, evaluation] = recognizeExpression(expression)
+										let [variableName, evaluation] = recognizeExpression(rule, expression)
 										if (knownVariable(situationGate, variableName)) {
 											if (evaluation(situationGate)) {
 												return R.reduced(treatNumericalLogic(subLogic))
@@ -114,25 +114,24 @@ let deriveRule = situationGate => R.pipe(
 		}
 
 		return {missingVariables}
-	}, {missingVariables: []})
+	}, {missingVariables: []}
 	)
+)
 
-let analyseRule = situationGate =>
-	R.pipe(
-		enrichRule, // -> {type, name, rule}
-		data => R.assoc(
-			'derived',
-			deriveRule(situationGate)(data)
-		)(data)
-	)
 
+/* Analyse the set of selected rules, and add derived information to them :
+- do they need variables that are not present in the user situation ?
+- if not, do they have a computed value or are they non applicable ?
+*/
 export let analyseSituation = situationGate =>
-	selectedRules.map(analyseRule(situationGate))
+	selectedRules.map(rule =>
+		// how to express that better in Ramda ?
+		R.assoc(
+			'derived',
+			deriveRule(situationGate, rule)(rule)
+		)(rule)
+	)
 
-// export let analyseSituation = R.pipe(
-// 	analyseRule,
-// 	R.flip(R.map)
-// )
 
 export let variableType = name => {
 	if (name == null) return null

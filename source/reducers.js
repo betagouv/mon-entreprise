@@ -77,6 +77,8 @@ export default reduceReducers(
 					situationGate(state)
 				),
 
+				y = console.log('analysedSituation', analysedSituation),
+
 				missingVariables = R.pipe(
 					R.map( ({name, derived: {missingVariables}}) =>
 						(missingVariables || []).map(mv => [mv, name])
