@@ -107,7 +107,6 @@ export default reduceReducers(
 										rule.format == 'période' ?
 										{
 											component: Input,
-											defaultValue: 1,
 											valueType: euro,
 											attributes: {
 												inputMode: 'numeric',
@@ -118,8 +117,7 @@ export default reduceReducers(
 											choices: [
 												{value: 'non', label: 'Non'},
 												{value: 'oui', label: 'Oui'}
-											],
-											defaultValue: 'Non',
+											]
 										}
 									)})],
 								[R.T, group =>
@@ -129,9 +127,9 @@ export default reduceReducers(
 											component: Question,
 											choices:
 												group['une possibilité'].concat(
-													[{value: 'aucun', label: 'Aucun'}]
-												),
-											// defaultValue: 'Non',
+													group.requis !== 'oui' ?
+														[{value: '_', label: 'Aucun'}] : []
+												)
 										}
 									)]
 							])

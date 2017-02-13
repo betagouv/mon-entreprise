@@ -3,7 +3,6 @@ import classNames from 'classnames'
 import { connect } from 'react-redux'
 import {Field, change} from 'redux-form'
 import {stepAction} from '../../actions'
-import IgnoreStepButton from './IgnoreStepButton'
 import StepAnswer from './StepAnswer'
 
 /*
@@ -40,7 +39,6 @@ export var FormDecorator = formType => RenderField =>
 				themeColours,
 				// formerly in conversation-steps
 				valueType,
-				defaultValue,
 				attributes,
 				choices,
 				optionsURL,
@@ -49,13 +47,6 @@ export var FormDecorator = formType => RenderField =>
 			} = this.props
 
 			this.step = steps.find(s => s.name == name)
-
-			let ignoreStep = () => {
-				// Renseigne automatiquement la valeur de la saisie (en se plongeant dans les entrailles de redux-form)
-				this.props.setFormValue(name, defaultValue)
-				stepAction(name, 'ignored')
-			}
-
 
 			/* La saisie peut être cachée car ce n'est pas encore son tour,
 			ou parce qu'elle a déjà été remplie. Dans ce dernier cas, un résumé
@@ -91,9 +82,6 @@ export var FormDecorator = formType => RenderField =>
 					{this.renderHeader(unfolded, valueType, human, helpText, wideQuestion)}
 					{unfolded &&
 							<fieldset>
-								{ defaultValue &&
-									<IgnoreStepButton name={name} action={ignoreStep}/>
-								}
 								<Field
 									component={RenderField}
 									name={name}

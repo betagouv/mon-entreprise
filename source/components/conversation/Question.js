@@ -14,6 +14,7 @@ class RadioLabel extends Component {
 			labelStyle =
 				Object.assign(
 					(value === input.value || hover) ? answered(themeColours) : answer(themeColours),
+					value === '_' ? {fontWeight: 'bold'} : null
 				)
 
 		return (
@@ -42,13 +43,13 @@ export default class Question extends Component {
 		} = this.props
 
 		return (
-			<span>
+			<div>
 				{ choices.map((choice) => do {
 					let {value, label} = R.is(String)(choice) ? {value: choice, label: null} : choice;
 					<RadioLabel key={value} {...{value, label, input, submit, themeColours}}/>
 				}
 				)}
-			</span>
+			</div>
 		)
 	}
 }

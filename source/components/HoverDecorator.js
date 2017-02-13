@@ -5,10 +5,10 @@ export default DecoratedComponent =>
 		state = {
 			hover: false,
 		}
-		toggleHover = () =>
-			this.setState({hover: !this.state.hover})
+		setHover = state => () =>
+			this.setState({hover: state})
 		render() {
-			return <span onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover} >
+			return <span onMouseEnter={this.setHover(true)} onMouseLeave={this.setHover(false)} >
 				<DecoratedComponent {...this.props} hover={this.state.hover}/>
 			</span>
 		}
