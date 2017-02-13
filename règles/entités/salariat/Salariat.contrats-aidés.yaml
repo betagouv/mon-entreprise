@@ -2,7 +2,8 @@
 - Variable: contrat aidé
   attache: Salariat
   question: Est-ce un contrat aidé ?
-  choix exclusifs:
+  requis: oui
+  une possibilité:
     - contrat unique insertion
     - emploi avenir
     - CDD . motif = sénior # le choix a été fait de rattacher la notion de contrat CDD sénior au motif de recours CDD, plutôt qu'aux contrats aidés
@@ -17,13 +18,13 @@
 
 - Variable: contrat unique insertion
   attache: Salariat . contrat aidé
-  choix exclusifs:
+  une possibilité:
     - CUI-CAE
     - CUI-CIE
 
 - Variable: Alternance
   attache: Salariat . alternance
-  choix exclusifs:
+  une possibilité:
     - apprentissage
     - professionnalisation
 

@@ -12,8 +12,9 @@
 - Variable: salaire de base
   attache: Salariat
   question: Quel est le salaire de base ?
-  description: Le salaire de base est le salaire régulier présent dans le contrat. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.  
-  contrainte: nombre positif
+  description: Le salaire de base est le salaire régulier présent dans le contrat. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
+  format: nombre positif
+  requis: oui
 
 - Variable: Salaire brut
   formule:
@@ -26,7 +27,7 @@
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   choix:
     - oui
-    - non
+    - non (défaut)
 
 
 

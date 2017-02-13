@@ -66,12 +66,12 @@ export let findRuleByDottedName = dottedName =>
 
 export let findGroup = R.pipe(
 	findRuleByDottedName,
-	found => found && found['choix exclusifs'] && found,
+	found => found && found['une possibilité'] && found,
 	// Is there a way to express this more litterally in ramda ?
 	// R.unless(
 	// 	R.isNil,
 	// 	R.when(
-	// 		R.has('choix exclusifs'),
+	// 		R.has('une possibilité'),
 	// 		R.identity
 	// 	)
 	// )

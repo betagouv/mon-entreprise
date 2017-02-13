@@ -25,7 +25,7 @@ export default class Explicable extends React.Component {
 
 		let ruleLabel = label || rule.titre || rule.name
 		// Rien à expliquer ici, il n'y a pas de champ description dans la règle
-		if (!rule.description && !rule['choix exclusifs']) return <span>{ruleLabel}</span>
+		if (!rule.description && !rule['une possibilité']) return <span>{ruleLabel}</span>
 
 
 		return (

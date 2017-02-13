@@ -103,8 +103,8 @@ export default reduceReducers(
 								[R.isNil, () => variables.map(dottedName => {
 									let rule = findRuleByDottedName(dottedName)
 									return Object.assign(constructStepMeta(rule),
-										rule.contrainte == 'nombre positif' ||
-										rule.contrainte == 'période' ?
+										rule.format == 'nombre positif' ||
+										rule.format == 'période' ?
 										{
 											component: Input,
 											defaultValue: 1,
@@ -128,7 +128,7 @@ export default reduceReducers(
 										{
 											component: Question,
 											choices:
-												group['choix exclusifs'].concat(
+												group['une possibilité'].concat(
 													[{value: 'aucun', label: 'Aucun'}]
 												),
 											// defaultValue: 'Non',

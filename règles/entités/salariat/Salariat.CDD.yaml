@@ -8,11 +8,12 @@
   # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
 
 - Variable: durée contrat
-  titre: durée du contrat
-  question: Quelle est la durée du contrat ?
   attache: Salariat . CDD
-  contrainte: période
+  titre: durée du contrat
   description: Durée du contrat de travail
+  question: Quelle est la durée du contrat ?
+  format: période
+  requis: oui
 
 - Variable: motif de recours
   alias: motif # alias utilisé dans l'article L. 1242-1
@@ -20,7 +21,8 @@
   question: Quel est le motif de recours au CDD ?
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un de ces motifs
-  choix exclusifs:
+  requis: oui
+  une possibilité:
     - saisonnier
     - jeune vacances
     - sénior
@@ -75,7 +77,7 @@
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33693
   # concerne: emploi temporaire par nature
   formule:
-    choix exclusifs:
+    contrainte:
       variable: Entreprise . secteur activité
       possibilités:
         - Déménagement
@@ -105,8 +107,7 @@
   description: Certains événements impactent le prix d'un CDD
   # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,
   # et les identifier dynamiquement par leur attribut "attache" :
-  # choix: exlusif # par rapport à 'choix: multiples'
-  choix exclusifs:
+  une possibilité:
     - CDD poursuivi en CDI
     - refus CDI avantageux
     - rupture anticipée salarié
@@ -117,7 +118,7 @@
 - Variable: CDD poursuivi en CDI
   attache: Salariat . CDD . événements
   titre: Le CDD est poursuivi en CDI
-  choix exclusifs:
+  une possibilité:
     - embauche en CDI suivant le CDD
     - CDD requalifié en CDI # quand ça arrive ?
 
