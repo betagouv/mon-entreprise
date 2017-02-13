@@ -6,7 +6,7 @@ export default () =>
 		<h1>Simulateur CDD</h1>
 		<section id="introduction">
 			<p>
-				Le CDD en France est un contrat d'exception au CDI, apportant à l'employeur plus de souplesse dans un cadre précis prévu par la loi. Dans un certain nombre de cas, une contrepartie financière lui est demandée. Ce simulateur vous aidera à la calculer.
+				Le CDD en France est un contrat d'exception au CDI, apportant à l'employeur plus de souplesse dans un cadre précis prévu par la loi. Souvent, des contreparties financières lui sont demandées. Ce simulateur vous aidera à les calculer.
 			</p>
 			<p>
 				Ici, vous avez le droit de ne pas savoir : certains termes utilisés dans la simulation ne sont pas évidents, cliquez simplement sur le symbôle • pour ouvrir une aide contextuelle. Et n'hésitez pas à nous écrire &nbsp;<i style={{cursor: 'pointer'}} className="fa fa-envelope-o"></i>

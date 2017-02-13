@@ -68,21 +68,6 @@
 	margin: .5em 0;
 }
 
-#search-results .rule-type {
-	padding: 0 .5em;
-	font-size: 75%;
-	margin-right: 1em;
-	display: inline-block;
-	width: 7em;
-	text-align: center;
-	color: #4B4B66;
-	border: 2px solid #4B4B66;
-	border-radius: 3px;
-	font-weight: 600;
-	text-transform: uppercase;
-}
-
-
 #search-results a {
 	font-size: 120%;
 	color: #333350;

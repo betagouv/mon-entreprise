@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
+import {Link} from 'react-router'
 
 export default class Results extends Component {
 	render() {
@@ -24,6 +25,11 @@ export default class Results extends Component {
 										:computedValue + '€'
 								}
 								</p>
+								<Link to={"/regle/" + name} className="explore">
+									<button>
+										Explorer <i className="fa fa-cogs" aria-hidden="true"></i>
+									</button>
+								</Link>
 							</li>
 						}
 					)}

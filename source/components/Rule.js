@@ -2,24 +2,76 @@ import React, { Component } from 'react'
 import {findRuleByName} from '../engine/rules.js'
 import './Rule.css'
 import JSONTree from 'react-json-tree'
+import R from 'ramda'
+
 
 export default class Rule extends Component {
 	render() {
 		let {
 			name
 		} = this.props.params,
-			json = findRuleByName(name)
+			rule = findRuleByName(name)
 
 		return (
-			<div id="variable">
-				<h1>{name}</h1>
-				<pre>
-					<code className="yaml">
-						<JSONTree getItemString={() => ''} theme={theme} hideRoot="true" shouldExpandNode={() => true} data={json} />
-					</code>
-				</pre>
-			</div>
+			<div id="rule">
+				<h1>
+					<span className="rule-type">{rule.type}</span>
+					<span className="rule-name">{name}</span>
+				</h1>
+				<section id="rule-meta">
+					<div id="meta-paragraph">
+						<p>
+							{rule.description}
+						</p>
+					</div>
+					<div>
+						<h2>Propriétés</h2>
+						{this.renderObject({
+							...rule.attributs,
+							'contexte': rule['attache']
+						})}
+						<h2>Références</h2>
+						{this.renderReferences(rule)}
+					</div>
+				</section>
+				<section id="rule-rules">
+					{ rule['non applicable si'] &&
+						<section id="declenchement">
+							<h2>Conditions de déclenchement</h2>
+							{this.renderObject(rule['non applicable si'], 'non applicable si')}
+						</section>
+					}
+					<section id="formule">
+						<h2>Formule</h2>
+						{this.renderObject(rule['formule'])}
+					</section>
+				</section>
 
+				{/* <pre>
+						{this.renderObject(rule)}
+				</pre> */}
+			</div>
+		)
+	}
+	renderObject(o, rootKey){
+
+		return <JSONTree
+			getItemString={() => ''}
+			theme={theme}
+			hideRoot="true"
+			shouldExpandNode={() => true}
+			data={rootKey ? {[rootKey]: o} : o} />
+	}
+
+	renderReferences(rule) {
+		return (
+			rule['référence'] && <div>{rule['référence']}</div>)
+		|| (
+			rule['références'] && <ul id="rule-references">
+				{R.toPairs(rule['références']).map(
+					([name, link]) => <li key={name}><a href={link} target="_blank">{name}</a></li>
+				)}
+			</ul>
 		)
 	}
 }

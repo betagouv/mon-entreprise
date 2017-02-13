@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Home.css'
 import {searchRules} from '../engine/rules.js'
 import {Link} from 'react-router'
+import '../components/Rule.css'
 
 export default class Home extends Component {
 	state = {

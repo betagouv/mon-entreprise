@@ -1,7 +1,3 @@
-#sim {
-	padding: 0 2em;
-}
-
 #sim p {
 	color: #333;
 }
@@ -87,6 +83,7 @@
 	height: 100%;
 	width: 70%;
 	list-style: none;
+	margin-top: 0.4em;
 }
 
 #results li {
@@ -124,6 +121,26 @@
 	font-size: 300%;
 }
 
-#results .value {
+#results li:hover .explore {
+	display: inline;
+}
 
+#results li .explore {
+	display: none;
+}
+
+#results .explore button {
+	background: #4A89DC;
+	color: white;
+	font-weight: 600;
+	border: none;
+}
+#results .explore i {
+	display: inline-block;
+	font-size: 190%;
+	line-height: .2em;
+	opacity: .8
+}
+#results .explore:hover i {
+	opacity: 1
 }

@@ -1,7 +1,65 @@
-#variable {
-	font-size: 150%;
+#rule {
+	font-size: 120%;
 }
 
-#variable pre {
+#rule pre {
 	padding: 1em 2em;
+}
+
+.rule-type {
+	padding: 0 .5em;
+	font-size: 75%;
+	margin-right: 1em;
+	display: inline-block;
+	width: 7em;
+	text-align: center;
+	color: #4B4B66;
+	border: 2px solid #4B4B66;
+	border-radius: 3px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+#rule h1 {
+	color: #4B4B66;
+	display: flex;
+	align-items: center;
+}
+
+#rule h2 {
+	font-size: 100%;
+	font-weight: 400;
+	border-bottom: 1px solid #4B4B66;
+	display: inline-block;
+	padding-right: .6em;
+}
+
+#rule .rule-type {
+	font-size: 35%;
+}
+
+#rule-meta {
+	display: flex;
+	justify-content: flex-start;
+	min-height: 5em;
+}
+
+#meta-paragraph {
+	background: #4B4B661A;
+	margin: 0 3em;
+	padding: 1em;
+}
+
+#rule-meta #rule-references {
+	font-size: 85%;
+	list-style: none;
+}
+#rule-rules {
+	display: flex;
+	justify-content: start;
+	min-height: 5em;
+}
+
+#rule-rules section {
+	margin: 1em 3em
 }
