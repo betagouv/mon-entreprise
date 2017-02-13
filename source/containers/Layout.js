@@ -13,7 +13,7 @@ export default class Layout extends Component {
 				{
 					this.props.location.pathname != '/' &&
 					<Link to="/">
-						<img id="site-logo" src={require('../images/logo.png')} style={{width: '100px'}} />
+						<img id="site-logo" src={require('../images/logo.png')} />
 					</Link>
 				}
 			</div>

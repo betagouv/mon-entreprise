@@ -8,7 +8,6 @@
 
 #sim #introduction {
 	margin-left: 1.2em;
-	margin-top: 2em;
 	font-size: 110%;
 	padding-top: 0;
 	width: 60%;
@@ -121,26 +120,27 @@
 	font-size: 300%;
 }
 
-#results li:hover .explore {
+#results li:hover .understand {
 	display: inline;
 }
 
-#results li .explore {
+#results li .understand {
 	display: none;
 }
 
-#results .explore button {
+#results .understand button {
 	background: #4A89DC;
 	color: white;
 	font-weight: 600;
 	border: none;
+  padding: .3em .8em;
 }
-#results .explore i {
+#results .understand i {
 	display: inline-block;
 	font-size: 190%;
 	line-height: .2em;
 	opacity: .8
 }
-#results .explore:hover i {
+#results .understand:hover i {
 	opacity: 1
 }

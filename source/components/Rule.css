@@ -21,6 +21,7 @@
 }
 
 #rule h1 {
+	margin-bottom: 1%;
 	color: #4B4B66;
 	display: flex;
 	align-items: center;
@@ -45,7 +46,7 @@
 }
 
 #meta-paragraph {
-	background: #4B4B661A;
+	background: rgba(51, 51, 80, 0.03);
 	margin: 0 3em;
 	padding: 1em;
 }

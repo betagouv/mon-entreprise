@@ -25,9 +25,9 @@ export default class Results extends Component {
 										:computedValue + '€'
 								}
 								</p>
-								<Link to={"/regle/" + name} className="explore">
+								<Link to={"/regle/" + name} className="understand">
 									<button>
-										Explorer <i className="fa fa-cogs" aria-hidden="true"></i>
+										Comprendre <i className="fa fa-cogs" aria-hidden="true"></i>
 									</button>
 								</Link>
 							</li>

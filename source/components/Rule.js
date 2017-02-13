@@ -3,7 +3,7 @@ import {findRuleByName} from '../engine/rules.js'
 import './Rule.css'
 import JSONTree from 'react-json-tree'
 import R from 'ramda'
-
+import PageType from './PageType'
 
 export default class Rule extends Component {
 	render() {
@@ -14,6 +14,7 @@ export default class Rule extends Component {
 
 		return (
 			<div id="rule">
+				<PageType type="comprendre"/>
 				<h1>
 					<span className="rule-type">{rule.type}</span>
 					<span className="rule-name">{name}</span>
