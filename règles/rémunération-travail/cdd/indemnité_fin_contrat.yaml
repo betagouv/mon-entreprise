@@ -34,7 +34,7 @@
       # - CDD . type = extras restauration
 
   formule:
-    linéaire:
+    multiplication:
       assiette: salaire de base
       taux: 10%
 

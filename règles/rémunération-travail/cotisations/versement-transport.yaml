@@ -8,7 +8,7 @@
         condition: Entreprise . effectif >= 10
 
   formule:
-    linéaire:
+    multiplication:
       base: assiette cotisations sociales
       taux: Établissement . taux versement transport
 

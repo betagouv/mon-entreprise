@@ -11,6 +11,6 @@
     Anciennement 'contribution patronale au financement des organisations syndicales'
 
   formule:
-    linéaire:
+    multiplication:
       taux:
         2015: 0.016

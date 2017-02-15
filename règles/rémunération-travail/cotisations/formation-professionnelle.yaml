@@ -7,7 +7,7 @@
     - A faire : majoration pour les entreprises de travail temporaire
 
   formule:
-    linéaire:
+    multiplication:
       base: assiette cotisations sociales
       variations:
         - si: période >= 2016

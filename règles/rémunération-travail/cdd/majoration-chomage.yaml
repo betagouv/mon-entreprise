@@ -10,7 +10,7 @@
       - durée contrat > 3
       - événements . CDD poursuivi en CDI
   formule:
-    linéaire:
+    multiplication:
       assiette: salaire de base
       taux:
         logique numérique:

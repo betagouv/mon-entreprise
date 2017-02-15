@@ -35,7 +35,7 @@
 
 
   formule:
-    linéaire:
+    multiplication:
       base: assiette cotisations sociales
       taux:
         1992: 0.0045

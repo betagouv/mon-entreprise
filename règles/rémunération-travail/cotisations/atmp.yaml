@@ -16,7 +16,7 @@
 
 
   formule:
-    linéaire:
+    multiplication:
       base: assiette cotisations sociales
       variations:
         - si: Entreprise . effectif >= 150

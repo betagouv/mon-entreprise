@@ -8,7 +8,7 @@
   concerne: categorie salarié = privé cadre
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
   formule:
-    linéaire:
+    multiplication:
       base: assiette cotisations sociales
       plafond: 8 * plafond sécurité sociale
     composantes:

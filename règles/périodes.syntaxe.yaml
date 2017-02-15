@@ -1,11 +1,11 @@
-- linéaire:
+- multiplication:
     assiette:
       transformation:
         période: annuelle
         variable: salaire de base
     taux: 10%
 
-- linéaire:
+- multiplication:
     assiette:
       période: annuelle
       variable: salaire de base
@@ -13,6 +13,6 @@
 
 # Ce dernier est surement le plus lisible
 # Mais ne permet pas un système générique de transformation
-- linéaire:
+- multiplication:
     assiette: salaire de base [annuel]
     taux: 10%

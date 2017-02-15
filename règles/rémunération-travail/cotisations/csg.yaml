@@ -6,7 +6,7 @@
     Contribution sociale généralisée.
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
   formule:
-    linéaire:
+    multiplication:
       base: assiette CSG - CRDS
       composantes:
         - Cotisation:

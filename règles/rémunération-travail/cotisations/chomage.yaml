@@ -10,7 +10,7 @@
     - assimilé salarié
 
   formule:
-    linéaire:
+    multiplication:
       base: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
 

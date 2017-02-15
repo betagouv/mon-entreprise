@@ -14,7 +14,7 @@
     - Entreprise . association non lucrative
 
   formule:
-    linéaire:
+    multiplication:
       base: assiette cotisations sociales
       composantes:
         - Cotisation:

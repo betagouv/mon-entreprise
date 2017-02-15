@@ -8,7 +8,7 @@
     - Code du travail - Article L4162-19
 
   formule:
-    linéaire:
+    multiplication:
       assiette: assiette cotisations sociales
       composantes:
         - attributs:

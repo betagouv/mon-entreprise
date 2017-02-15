@@ -4,6 +4,6 @@
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale
   formule:
-    linéaire:
+    multiplication:
       base: assiette CSG - CRDS
       taux: 0.005
