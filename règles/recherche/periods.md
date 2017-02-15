@@ -62,6 +62,6 @@ Et puis :
 BILAN
 -------
 
-Cette *régularisation progressive* n'est pas implémenté aujourd'hui
+Cette *régularisation progressive* n'est pas implémentée aujourd'hui
 Elle est pourtant **obligatoire pour la DSN** !!
-Je crois bien que c'est exactement ça qui est implémenté pour les deux réductions fillon et allocs. Il faut le refaire pour toutes les cotisations non comportant des tranches.
+Je crois bien que c'est exactement ça qui est implémenté pour les deux réductions fillon et allocs. Il faut le refaire pour toutes les cotisations comportant des tranches !!
