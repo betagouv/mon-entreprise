@@ -7,8 +7,8 @@ import {recognizeExpression} from './expressions'
 let selectedRules = rules.filter(rule =>
 			R.contains(rule.name,
 				[
-					// 'CIF CDD',
-					// 'fin de contrat',
+					'CIF CDD',
+					'fin de contrat',
 					'majoration chômage CDD'
 				]
 			)

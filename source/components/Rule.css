@@ -54,6 +54,11 @@
 #rule-meta #rule-references {
 	font-size: 85%;
 	list-style: none;
+	padding-left: 1em;
+}
+#rule-meta #rule-references li i {
+	margin: 0 1em;
+	color: #333350
 }
 #rule-rules {
 	display: flex;

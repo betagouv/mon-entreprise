@@ -70,7 +70,15 @@ export default class Rule extends Component {
 		|| (
 			rule['références'] && <ul id="rule-references">
 				{R.toPairs(rule['références']).map(
-					([name, link]) => <li key={name}><a href={link} target="_blank">{name}</a></li>
+					([name, link]) =>
+						<li key={name}>
+							{link.indexOf('legifrance.gouv') >= 0 &&
+								<i className="fa fa-gavel" aria-hidden="true"></i>
+							}
+							<a href={link} target="_blank">
+								{name}
+							</a>
+						</li>
 				)}
 			</ul>
 		)

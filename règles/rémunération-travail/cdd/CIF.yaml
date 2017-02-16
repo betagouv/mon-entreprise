@@ -3,7 +3,8 @@
   description: Contribution au financement du congé individuel de formation spécifique aux CDD
   attributs:
     collecteur: OPCA
-  référence:  Code du travail - Article L6322-37
+  références:
+    Code du travail - Article L6322-37 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
   non applicable si:
     l'une de ces conditions:
       - événements . CDD poursuivi en CDI
