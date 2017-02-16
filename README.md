@@ -6,4 +6,7 @@ L'idée, que cette ébauche de logo tente d'exprimer, c'est d'augmenter les text
 
 Des moteurs interprèteront ces données pour en faire des formulaires de simulation, des outils pédagogiques (dans la lignée de la fiche de paie simplifiée : regrouper les cotisations sociales par risque), voir de la déclaration, et soyons fous, des outils politiques. 
 
-Le premier moteur est aujourd'hui développé sur le sujet pratique des cotisations dues pour un CDD.
+Le premier moteur et produit utilisable est concerne le sujet pratique du différentiel des cotisations dues pour un CDD.
+La suite sera l'intégration de toutes les cotisations d'un contrat CDI/CDD (sans le droit conventionnel). 
+Puis les principales réductions et aides à l'embauche.
+Suivront peut-être les formes de travail différentes... 
