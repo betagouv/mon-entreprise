@@ -27,7 +27,7 @@ export default class Input extends Component {
 						className={classnames({suffixed})}
 						id={'step-' + name}
 						{...attributes}
-						style={{borderColor: themeColours.colour}}
+						style={!active ? {border: '2px dashed #ddd'} : {border: '1px solid #ddd'}}
 						onKeyDown={({key}) =>
 							key == 'Enter' && input.value && (
 							!error ?
@@ -36,7 +36,7 @@ export default class Input extends Component {
 						)}
 						/>
 					{ suffixed &&
-						<label className="suffix" htmlFor={'step-' + name} style={!active ? {color:  '#aaa'} : {}}>
+						<label className="suffix" htmlFor={'step-' + name} style={!active ? {color: '#888'} : {color: '#222'}}>
 							{answerSuffix}
 						</label>
 					}

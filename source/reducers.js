@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 import {analyseSituation, variableType} from './engine/traverse'
-import { euro } from './components/conversation/formValueTypes.js'
+import { euro, months } from './components/conversation/formValueTypes.js'
 
 import Question from './components/conversation/Question'
 import Input from './components/conversation/Input'
@@ -107,7 +107,7 @@ export default reduceReducers(
 										rule.format == 'période' ?
 										{
 											component: Input,
-											valueType: euro,
+											valueType: rule.format == 'nombre positif' ? euro : months,
 											attributes: {
 												inputMode: 'numeric',
 												placeholder: 'votre réponse'

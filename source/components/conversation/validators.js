@@ -7,3 +7,8 @@ export let number = {
 	test: v => /^[0-9]+(\.[0-9]+)?$/.test(v),
 	error: 'Vous devez entrer un nombre',
 }
+
+export let int = {
+	test: v => /^[0-9]+/.test(v),
+	error: 'Vous devez entrer un entier, par ex. 16'
+}

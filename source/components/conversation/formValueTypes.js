@@ -15,3 +15,9 @@ export let euro = {
 	human: value => value + ' ' + '€',
 	validator: number
 }
+
+export let months = {
+	suffix: 'mois',
+	human: value => value + ' ' + 'mois',
+	validator: number
+}
