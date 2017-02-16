@@ -12,9 +12,13 @@
 - Variable: salaire de base
   attache: Salariat
   question: Quel est le salaire de base ?
-  description: Le salaire de base est le salaire régulier présent dans le contrat. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
+  description: Le salaire de base est le salaire brut régulier inscrit dans le contrat. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
   format: nombre positif
   requis: oui
+  suggestions:
+    SMIC: 1480
+    salaire médian: 2300
+
 
 - Variable: Salaire brut
   formule:

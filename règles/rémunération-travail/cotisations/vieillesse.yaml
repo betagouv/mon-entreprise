@@ -7,57 +7,56 @@
     # CTP: 100
   description: Cotisation au régime de retraite de base des salariés.
   formule:
-    type: linéaire
-    base: assiette cotisations sociales
+    multiplication:
+      assiette: assiette cotisations sociales
+      composantes:
+        - Cotisation:
+            dû par: salarié
+          formule:
+            taux:
+              2018-01: .004
+              2017-01: .004
+              2016-01: .0035
+              2015-01: .003
+              2014-01: .0025
+              2004-07: .001
 
-  composantes:
-    - Cotisation:
-        dû par: salarié
-      formule:
-        taux:
-          2018-01: .004
-          2017-01: .004
-          2016-01: .0035
-          2015-01: .003
-          2014-01: .0025
-          2004-07: .001
-
-    - Cotisation:
-        dû par: salarié
-        plafonnée: oui
-      formule:
-        plafond: 4 * plafond sécurité sociale
-        taux:
-            2017-01: .0690
-            2016-01: .0690
-            2015-01: .0685
-            2014-01: .0680
-            2012-11: .0675
-            2006-01: .0665
-            1993-07: .0655
-    - Cotisation:
-        dû par: employeur
-        plafonnée: non
-      formule:
-        taux:
-          2018-01: 0.019
-          2017-01: 0.019
-          2016-01: 0.0185
-          2015-01: 0.018
-          2014-01: 0.0175
-          1991-02: 0.016
+        - Cotisation:
+            dû par: salarié
+            plafonnée: oui
+          formule:
+            plafond: 4 * plafond sécurité sociale
+            taux:
+                2017-01: .0690
+                2016-01: .0690
+                2015-01: .0685
+                2014-01: .0680
+                2012-11: .0675
+                2006-01: .0665
+                1993-07: .0655
+        - Cotisation:
+            dû par: employeur
+            plafonnée: non
+          formule:
+            taux:
+              2018-01: 0.019
+              2017-01: 0.019
+              2016-01: 0.0185
+              2015-01: 0.018
+              2014-01: 0.0175
+              1991-02: 0.016
 
 
-    - Cotisation:
-        dû par: employeur
-        plafonnée: oui
-      formule:
-        plafond: 4 * plafond sécurité sociale
-        taux:
-          2017-01: .0855
-          2016-01: .0855
-          2015-01: .085
-          2014-01: .0845
-          2012-11: .084
-          2006-01: .083
-          1979-01: .082
+        - Cotisation:
+            dû par: employeur
+            plafonnée: oui
+          formule:
+            plafond: 4 * plafond sécurité sociale
+            taux:
+              2017-01: .0855
+              2016-01: .0855
+              2015-01: .085
+              2014-01: .0845
+              2012-11: .084
+              2006-01: .083
+              1979-01: .082

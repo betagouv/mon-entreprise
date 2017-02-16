@@ -239,6 +239,27 @@ fieldset > .ignore {
 	outline: none;
 }
 
+.step .input-suggestions {
+	font-style: italic;
+	float: right;
+	clear: right;
+	font-size: 75%;
+	color: #666;
+}
+.step .input-suggestions ul {
+  padding-left: 0;
+	margin-right: 8em;
+	list-style: none;
+	display: inline-flex;
+	align-items: flex-end;
+}
+.step .input-suggestions li {
+	margin-left: 1em;
+}
+.step .input-suggestions a {
+	color: #4A89DC;
+}
+
 .help-box {
 	position: absolute;
 	width: 100%;

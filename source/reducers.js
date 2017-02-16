@@ -111,7 +111,8 @@ export default reduceReducers(
 											attributes: {
 												inputMode: 'numeric',
 												placeholder: 'votre réponse'
-											}
+											},
+											suggestions: rule.suggestions
 										} : {
 											component: Question,
 											choices: [

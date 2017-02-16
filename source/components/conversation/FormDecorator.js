@@ -43,7 +43,9 @@ export var FormDecorator = formType => RenderField =>
 				choices,
 				optionsURL,
 				human,
-				helpText
+				helpText,
+				suggestions,
+				setFormValue
 			} = this.props
 
 			this.step = steps.find(s => s.name == name)
@@ -69,7 +71,9 @@ export var FormDecorator = formType => RenderField =>
 				possibleChoice, /* RhetoricalQuestion component's only choice :'-( */
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 				submit: () => setTimeout(() => stepAction(name, 'filled'), 1),
-				valueType
+				setFormValue: value => setFormValue(name, value),
+				valueType,
+				suggestions
 			}
 
 			/* There won't be any answer zone here, widen the question zone */

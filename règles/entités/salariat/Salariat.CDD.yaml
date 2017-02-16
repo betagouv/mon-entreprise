@@ -14,6 +14,13 @@
   question: Quelle est la durée du contrat ?
   format: période
   requis: oui
+  références:
+    Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
+  suggestions:
+    18 mois: 18
+    1 an: 12
+    6 mois: 6
+    3 mois: 3
 
 - Variable: motif de recours
   alias: motif # alias utilisé dans l'article L. 1242-1

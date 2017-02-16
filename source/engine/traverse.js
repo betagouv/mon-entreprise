@@ -7,8 +7,8 @@ import {recognizeExpression} from './expressions'
 let selectedRules = rules.filter(rule =>
 			R.contains(rule.name,
 				[
-					'CIF CDD',
-					'fin de contrat',
+					// 'CIF CDD',
+					// 'fin de contrat',
 					'majoration chômage CDD'
 				]
 			)
@@ -64,8 +64,8 @@ let deriveRule = (situationGate, rule) => R.pipe(
 		}
 
 		if (key === 'formule') {
-			if (value['linéaire']) {
-				let {assiette, taux} = value['linéaire']
+			if (value['multiplication']) {
+				let {assiette, taux} = value['multiplication']
 
 				// A propos de l'assiette
 				let [assietteVariableName] = recognizeExpression(rule, assiette),

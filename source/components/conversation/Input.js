@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {FormDecorator} from './FormDecorator'
 import classnames from 'classnames'
+import R from 'ramda'
 
 @FormDecorator('input')
 export default class Input extends Component {
@@ -8,11 +9,12 @@ export default class Input extends Component {
 		let {
 			name,
 			input,
-			stepProps: {attributes, submit, valueType},
+			stepProps: {attributes, submit, valueType, suggestions, setFormValue},
 			meta: {
 				touched, error, active,
 			},
-			themeColours
+			themeColours,
+
 		} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
@@ -46,6 +48,19 @@ export default class Input extends Component {
 						<span className="icon">&#10003;</span>
 					</button>
 				</span>
+				{suggestions && <span className="input-suggestions">suggestions:
+					<ul>
+					{R.toPairs(suggestions).map(([text, value]) =>
+						<li key={value}
+							onClick={() => setFormValue(value) && setTimeout(() => submit(), 300)}
+							onMouseOver={() => setFormValue(value)}
+							onMouseOut={() => setFormValue('')}>
+							<a href="#" title="cliquer pour valider">{text}</a>
+						</li>
+					)}
+					</ul>
+				</span>
+				}
 				{inputError && <span className="step-input-error">{error}</span>}
 			</span>
 		)
