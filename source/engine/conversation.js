@@ -1,7 +1,7 @@
 import React from 'react'
 import Explicable from '../components/conversation/Explicable'
 
-export let constructStepMeta = ({question, dottedName, name}) => ({
+export let constructStepMeta = ({question, subquestion, dottedName, name}) => ({
 	// name: dottedName.split(' . ').join('.'),
 	name: dottedName,
 	// question: question || name,
@@ -12,8 +12,9 @@ export let constructStepMeta = ({question, dottedName, name}) => ({
 	/>,
 	title: name,
 	dependencyOfVariables: ['chai pas'],
+	subquestion,
 
-	// Legacy properties :
+// Legacy properties :
 
 	visible: true,
 	// helpText: 'Voila un peu d\'aide poto'

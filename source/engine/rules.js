@@ -3,7 +3,14 @@ import rawRules from './load-rules'
 import rawEntityRules from './load-entity-rules'
 import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
+import marked from 'marked'
 
+let customMarked = new marked.Renderer()
+customMarked.link = ( href, title, text ) =>
+	`<a target="_blank" href="${ href }" title="${ title }">${ text }</a>`
+marked.setOptions({
+	renderer: customMarked
+})
 
 /***********************************
  Méthodes agissant sur une règle */
@@ -16,9 +23,11 @@ export let enrichRule = rule => {
 		dottedName = rule.attache && [
 			rule.attache,
 			rule.alias || name
-		].join(' . ')
+		].join(' . '),
+		subquestionMarkdown = rule['sous-question'],
+		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
 
-	return {...rule, type, name, dottedName}
+	return {...rule, type, name, dottedName, subquestion}
 }
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type

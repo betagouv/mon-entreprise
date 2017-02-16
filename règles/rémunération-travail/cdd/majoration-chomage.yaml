@@ -5,9 +5,9 @@
     type: majoration
 
   description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD)
-  # non applicable si:
-    # l'une de ces conditions:
-      # - durée contrat > 3
+  non applicable si:
+    l'une de ces conditions:
+      - durée contrat > 3
       # - événements . CDD poursuivi en CDI
   formule:
     multiplication:

@@ -45,7 +45,8 @@ export var FormDecorator = formType => RenderField =>
 				human,
 				helpText,
 				suggestions,
-				setFormValue
+				setFormValue,
+				subquestion
 			} = this.props
 
 			this.step = steps.find(s => s.name == name)
@@ -73,7 +74,8 @@ export var FormDecorator = formType => RenderField =>
 				submit: () => setTimeout(() => stepAction(name, 'filled'), 1),
 				setFormValue: value => setFormValue(name, value),
 				valueType,
-				suggestions
+				suggestions,
+				subquestion
 			}
 
 			/* There won't be any answer zone here, widen the question zone */
@@ -83,7 +85,7 @@ export var FormDecorator = formType => RenderField =>
 			<div className={classNames('step', {unfolded}, formType)} >
 				{this.state.helpVisible && this.renderHelpBox(helpText)}
 				<div style={{visibility: this.state.helpVisible ? 'hidden' : 'visible'}}>
-					{this.renderHeader(unfolded, valueType, human, helpText, wideQuestion)}
+					{this.renderHeader(unfolded, valueType, human, helpText, wideQuestion, subquestion)}
 					{unfolded &&
 							<fieldset>
 								<Field
@@ -102,16 +104,16 @@ export var FormDecorator = formType => RenderField =>
 		/*
 			< Le titre de ma question > ----------- < (? bulle d'aide) OU résultat >
 		*/
-		renderHeader(unfolded, valueType, human, helpText, wideQuestion) {
+		renderHeader(unfolded, valueType, human, helpText, wideQuestion, subquestion) {
 			return (
 				<span className="form-header" >
-				{ unfolded ? this.renderQuestion(unfolded, helpText, wideQuestion) : this.renderTitleAndAnswer(valueType, human)}
+				{ unfolded ? this.renderQuestion(unfolded, helpText, wideQuestion, subquestion) : this.renderTitleAndAnswer(valueType, human)}
 				</span>
 			)
 		}
 
-		renderQuestion = (unfolded, helpText, wideQuestion) =>
-				<span>
+		renderQuestion = (unfolded, helpText, wideQuestion, subquestion) =>
+				<span className="step-question">
 					<h1
 						style={{
 							// border: '2px solid ' + this.props.themeColours.colour, // higher border width and colour to emphasize focus
@@ -120,6 +122,7 @@ export var FormDecorator = formType => RenderField =>
 							maxWidth: wideQuestion ? '95%' : ''
 						}}
 						>{this.props.question}</h1>
+						<div className="step-subquestion" dangerouslySetInnerHTML={{__html: subquestion}}></div>
 				</span>
 
 		renderTitleAndAnswer(valueType, human) {

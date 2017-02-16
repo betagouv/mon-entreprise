@@ -10,8 +10,9 @@
 - Variable: durée contrat
   attache: Salariat . CDD
   titre: durée du contrat
-  description: Durée du contrat de travail
   question: Quelle est la durée du contrat ?
+  sous-question: |
+    [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
   format: période
   requis: oui
   références:

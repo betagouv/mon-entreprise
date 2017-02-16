@@ -15,10 +15,10 @@
             - Cotisation: # On va ici surcharger la Cotisation incomplète définie plus haut
                 composante: maladie, maternité, invalidité, décès
                 dû par: employeur
-                  taux:
-                    2017-01: 0.1284
-                    2016-01: 0.1284
-                    1992-07: 0.128
+              taux:
+                2017-01: 0.1284
+                2016-01: 0.1284
+                1992-07: 0.128
 
             - Cotisation:
                 composante: Contribution Solidarité Autonomie

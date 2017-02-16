@@ -100,6 +100,17 @@ question : make it visible with colors */
 	cursor: default;
 }
 
+.step-subquestion {
+	font-style: italic;
+	font-size: 70%;
+	margin-left: 1em;
+}
+.step-subquestion p {
+	display: inline;
+	color: #666;
+	margin: 0;
+}
+
 /* Our little help icon */
 .help-button {
 	display: inline-block;
@@ -243,7 +254,7 @@ fieldset > .ignore {
 	font-style: italic;
 	float: right;
 	clear: right;
-	font-size: 75%;
+	font-size: 70%;
 	color: #666;
 }
 .step .input-suggestions ul {
