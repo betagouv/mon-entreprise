@@ -35,7 +35,7 @@ module.exports = {
 		{
 			test: /\.(jpe?g|png|gif|svg)$/i,
 			loader: 'url?limit=10000!img?progressive=true'
-		} ]
+		}]
 	},
 	postcss: [
 		autoprefixer({

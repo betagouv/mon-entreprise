@@ -1,4 +1,3 @@
-import removeDiacritics from './remove-diacritics'
 import R from 'ramda'
 import {parentName, nameLeaf, findRuleByDottedName} from './rules'
 
@@ -20,10 +19,10 @@ let expressionTests = {
 	'variable': v => new RegExp(`^${vn}$`, 'g').exec(v)
 }
 
-/* Les variables peuvent être exprimées dans une règle relatives au contexte d'une règle,
-son 'attache', pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
+/* Les variables peuvent être exprimées dans une règle relativement à son contexte, son 'attache', pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
-let completeVariableName = ({attache, name}, partialName) => do {
+let completeVariableName = ({attache, name}, partialName) => {
+	return partialName
 	let
 		fragments = attache.split(' . '),
 		pathPossibilities = R.pipe(

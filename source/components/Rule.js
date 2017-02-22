@@ -1,25 +1,29 @@
 import React, { Component } from 'react'
-import {findRuleByName} from '../engine/rules.js'
+// import {findRuleByName} from '../engine/rules.js'
+import {analyseSituation} from '../engine/traverse'
 import './Rule.css'
 import JSONTree from 'react-json-tree'
 import R from 'ramda'
-import PageType from './PageType'
+import PageTypeIcon from './PageTypeIcon'
 
 export default class Rule extends Component {
 	render() {
 		let {
 			name
 		} = this.props.params,
-			rule = findRuleByName(name)
+			rule = analyseSituation(
+				v => ({'A': 'non', 'B': 'oui', 'C': 'oui', 'Z': 'non', 'X': 'non'}[v])
+			)[0]
 
 		return (
 			<div id="rule">
-				<PageType type="comprendre"/>
+				Pourquoi cette règle me concerne ? Comment est-elle calculée ?
+				<PageTypeIcon type="comprendre"/>
 				<h1>
 					<span className="rule-type">{rule.type}</span>
 					<span className="rule-name">{name}</span>
 				</h1>
-				<section id="rule-meta">
+				<section id="rule-meta" style={{display: 'none'}}>
 					<div id="meta-paragraph">
 						<p>
 							{rule.description}
@@ -36,12 +40,14 @@ export default class Rule extends Component {
 					</div>
 				</section>
 				<section id="rule-rules">
-					{ rule['non applicable si'] &&
-						<section id="declenchement">
+					{ do {
+						let cond =
+							R.toPairs(rule).find(([,v]) => v.rulePropType == 'cond')
+						cond != null && <section id="declenchement">
 							<h2>Conditions de déclenchement</h2>
-							{this.renderObject(rule['non applicable si'], 'non applicable si')}
+							<RuleProp {...cond[1]} />
 						</section>
-					}
+					}}
 					<section id="formule">
 						<h2>Formule</h2>
 						{this.renderObject(rule['formule'])}
@@ -84,6 +90,53 @@ export default class Rule extends Component {
 		)
 	}
 }
+
+let RuleProp = ({nodeValue, explanation, name}) =>
+<div className="ruleProp node" >
+	<div>
+		<span className="name">{name}</span>
+		<NodeValue data={nodeValue}/>
+	</div>
+	{
+		explanation.category == 'mecanism' && <Mecanism {...explanation}/>
+	}
+	{
+		explanation.category == 'expression' && <Expression {...explanation}/>
+	}
+</div>
+
+let Mecanism = ({nodeValue, name, explanation}) =>
+<div className="mecanism node" >
+	<div>
+		<span className="name">{name}</span>
+		<NodeValue data={nodeValue}/>
+	</div>
+	<ul>
+		{explanation.map(item => <li key={item.expression + item.name}>
+			{item.category == 'expression' ?
+				<Expression {...item} /> : <Mecanism {...item} />
+			}
+		</li>)}
+	</ul>
+</div>
+
+let Expression = ({nodeValue, expression}) =>
+<div className="expression node" >
+	<div>
+		<span className="name">{expression}</span>
+		<NodeValue data={nodeValue}/>
+	</div>
+</div>
+
+let NodeValue = ({data}) => do {
+	let valeur = data == null ? '?' : (
+		data ? 'oui' : 'non'
+	);
+	<span className={"value " + valeur}>←&nbsp;
+		{valeur}
+	</span>
+}
+
 
 
 

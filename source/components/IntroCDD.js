@@ -1,10 +1,10 @@
 import React from 'react'
 import colours from './themeColours'
-import PageType from './PageType'
+import PageTypeIcon from './PageTypeIcon'
 
 export default () =>
 	<div>
-		<PageType type="simulation"/>
+		<PageTypeIcon type="simulation"/>
 		<h1>Simulateur CDD</h1>
 		<section id="introduction">
 			<p>

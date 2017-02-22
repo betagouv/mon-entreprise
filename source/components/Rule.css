@@ -69,3 +69,38 @@
 #rule-rules section {
 	margin: 1em 3em
 }
+.node {
+	margin-top: .5em;
+	padding-left: 1em;
+}
+.ruleProp > div > .name {
+	padding: 0 1em;
+	border: 1px solid black;
+	background: #00ad9c
+}
+.mecanism {
+}
+.mecanism > div > .name {
+	padding: 0 1em;
+	border: 1px solid black;
+	background: #d5911a
+}
+.expression {
+
+}
+.expression > div > .name {
+	padding: 0 1em;
+	border: 1px solid black;
+	background: #6666ea;
+}
+#rule-rules .value {
+	padding-left: 1em;
+	font-weight: bold;
+}
+
+#rule-rules .value.oui {
+	color: #5ab738;
+}
+#rule-rules .value.non {
+	color: #f22c40;
+}

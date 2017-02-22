@@ -12,6 +12,7 @@ rules:
   no-console: 1
   no-global-assign: 0
   no-unsafe-negation: 0
+  no-undef: 0
 
 parser: babel-eslint
 
