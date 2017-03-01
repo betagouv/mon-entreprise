@@ -12,14 +12,19 @@ export default class Rule extends Component {
 			name
 		} = this.props.params,
 			rule = analyseSituation(
-				v => (
-					{	'A': 'non',
-						'B': 'oui',
-						'C': 'oui',
-						'Z': 'non',
-						'X': 'non',
-						'E': 5789
-					}[v])
+				v => R.path(v.split('.'))(
+					{
+						"Salariat ":{
+							" CDD ":{
+									" événements":"_",
+									" motif":"saisonnier",
+									" engagement employeur complément formation":"non",
+									" durée contrat":"2"
+								},
+							" contrat aidé":"non",
+							" salaire de base": 1481
+						}
+					})
 			)[0]
 
 		return (
@@ -161,11 +166,11 @@ let Expression = ({nodeValue, expression}) =>
 	</div>
 </div>
 
-let NodeValue = ({boolean, data}) => do {
+let NodeValue = ({data}) => do {
 	let valeur = data == null ?
 			'?'
 		: ( R.is(Number)(data) ?
-					data
+					Math.round(data)
 				: ( data ? 'oui' : 'non')
 		);
 

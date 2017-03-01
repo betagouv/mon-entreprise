@@ -22,12 +22,11 @@ let expressionTests = {
 /* Les variables peuvent être exprimées dans une règle relativement à son contexte, son 'attache', pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
 let completeVariableName = ({attache, name}, partialName) => {
-	return partialName
 	let
 		fragments = attache.split(' . '),
 		pathPossibilities = R.pipe(
-      R.length,
-      R.inc,
+			R.length,
+			R.inc,
 			R.range(1),
 			R.map(R.take(R.__, fragments)),
 			R.reverse
@@ -39,7 +38,7 @@ let completeVariableName = ({attache, name}, partialName) => {
 			)(findRuleByDottedName([...path, partialName].join(' . ')))
 		, null, pathPossibilities)
 
-	found && found.dottedName || do {throw `OUUUUPS la référence ${partialName} dans la règle : ${name} est introuvable dans la base`}
+	return found && found.dottedName || do {throw `OUUUUPS la référence ${partialName} dans la règle : ${name} est introuvable dans la base`}
 }
 
 

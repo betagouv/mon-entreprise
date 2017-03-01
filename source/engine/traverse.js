@@ -54,6 +54,7 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 let treat = (situationGate, rule) => rawNode => {
 
+
 	if (R.is(String)(rawNode)) {// it's an expression
 		let [variableName, evaluation] = recognizeExpression(rule, rawNode),
 			value = knownVariable(situationGate, variableName) ?
