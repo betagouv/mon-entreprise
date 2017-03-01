@@ -12,7 +12,14 @@ export default class Rule extends Component {
 			name
 		} = this.props.params,
 			rule = analyseSituation(
-				v => ({'A': 'non', 'B': 'oui', 'C': 'oui', 'Z': 'non', 'X': 'non'}[v])
+				v => (
+					{	'A': 'non',
+						'B': 'oui',
+						'C': 'oui',
+						'Z': 'non',
+						'X': 'non',
+						'E': 5789
+					}[v])
 			)[0]
 
 		return (
@@ -49,8 +56,8 @@ export default class Rule extends Component {
 						</section>
 					}}
 					<section id="formule">
-						<h2>Formule</h2>
-						{this.renderObject(rule['formule'])}
+						<h2>Calcul</h2>
+						<RuleProp {...rule['formule']}/>
 					</section>
 				</section>
 
@@ -65,7 +72,7 @@ export default class Rule extends Component {
 		return <JSONTree
 			getItemString={() => ''}
 			theme={theme}
-			hideRoot="true"
+			hideRoot={true}
 			shouldExpandNode={() => true}
 			data={rootKey ? {[rootKey]: o} : o} />
 	}
@@ -111,14 +118,40 @@ let Mecanism = ({nodeValue, name, explanation}) =>
 		<span className="name">{name}</span>
 		<NodeValue data={nodeValue}/>
 	</div>
-	<ul>
-		{explanation.map(item => <li key={item.expression + item.name}>
-			{item.category == 'expression' ?
-				<Expression {...item} /> : <Mecanism {...item} />
-			}
-		</li>)}
-	</ul>
+	{R.contains(name)(["l'une de ces conditions", 'toutes ces conditions']) &&
+		<ul>
+			{explanation.map(item => <li key={item.expression + item.name}>
+				{item.category == 'expression' ?
+					<Expression {...item} /> : <Mecanism {...item} />
+				}
+			</li>)}
+		</ul>
+	}
+	{name == 'multiplication' &&
+		<Multiplication  {...explanation}/>
+	}
 </div>
+
+let Multiplication = ({base, rate}) =>
+<div className="multiplication node" >
+		<Variable {...base}/>
+		<span className="multiplicationSign">×</span>
+		<Percentage {...rate}/>
+</div>
+
+
+let Variable = ({nodeValue, variableName}) =>
+<span className="variable" >
+	<span className="name">{variableName}</span>
+	<NodeValue data={nodeValue}/>
+</span>
+
+
+let Percentage = ({percentage}) =>
+<span className="rate" >
+	<span className="name">{percentage}</span>
+</span>
+
 
 let Expression = ({nodeValue, expression}) =>
 <div className="expression node" >
@@ -128,15 +161,27 @@ let Expression = ({nodeValue, expression}) =>
 	</div>
 </div>
 
-let NodeValue = ({data}) => do {
-	let valeur = data == null ? '?' : (
-		data ? 'oui' : 'non'
-	);
+let NodeValue = ({boolean, data}) => do {
+	let valeur = data == null ?
+			'?'
+		: ( R.is(Number)(data) ?
+					data
+				: ( data ? 'oui' : 'non')
+		);
+
 	<span className={"value " + valeur}>←&nbsp;
 		{valeur}
 	</span>
 }
 
+let Formula = ({explanation, nodeValue}) => do {
+	<div className="form node" >
+		<div>
+			<span className="name">{expression}</span>
+			<NodeValue data={nodeValue}/>
+		</div>
+	</div>
+}
 
 
 

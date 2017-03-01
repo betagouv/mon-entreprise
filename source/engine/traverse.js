@@ -19,9 +19,9 @@ let knownVariable = (situation, variableName) => R.or(
 ) != null
 
 let transformPercentage = s =>
-	s.indexOf('%') > -1 ?
-		+s.replace('%', '') / 100 :
-		+s
+	R.contains('%')(s) ?
+		+s.replace('%', '') / 100
+	: +s
 
 
 /*
@@ -120,6 +120,40 @@ let treat = (situationGate, rule) => rawNode => {
 		)(v)
 	}
 
+	if (k === 'multiplication') {
+		let base = v['assiette'],
+			[baseVariableName] = recognizeExpression(rule, base),
+			baseValue = situationGate(baseVariableName)
+		let rawRate = v['taux'], //TODO gérer les taux historisés
+			rate = transformPercentage(rawRate)
+
+		return {
+			nodeValue: baseValue && baseValue * rate, // null * 6 = 0 :-o
+			category: 'mecanism',
+			name: 'multiplication',
+			type: 'numeric',
+			explanation: {
+				base: {
+					type: 'numeric',
+					category: 'variable',
+					// name: 'base', déduit de la propriété de l'objet
+					nodeValue: baseValue,
+					explanation: null,
+					variableName: baseVariableName
+				},
+				rate: {
+					type: 'numeric',
+					category: 'percentage',
+					percentage: rawRate,
+					nodeValue: rate,
+					explanation: null
+				},
+				//TODO limit: 'plafond'
+				//TODO multiplier: 'multiplicateur'
+			}
+		}
+	}
+
 	throw 'Mécanisme inconnu !' +  JSON.stringify(rawNode)
 
 }
@@ -129,28 +163,35 @@ let treatRuleRoot = (situationGate, rule) => R.evolve({ // -> Voilà les attribu
 	// 'meta': pas de traitement pour l'instant
 
 	// 'cond' : Conditions d'applicabilité de la règle
-	'non applicable si': value =>
-			({
-				category: 'ruleProp',
-				rulePropType: 'cond',
-				name: 'non applicable si',
-				type: 'boolean',
-				... do {
-					let child = treat(situationGate, rule)(value);
-					({
-						nodeValue: child.nodeValue,
-						explanation: child
-					})
-				}
-			})
+	'non applicable si': value => {
+		let child = treat(situationGate, rule)(value)
+		return {
+			category: 'ruleProp',
+			rulePropType: 'cond',
+			name: 'non applicable si',
+			type: 'boolean',
+			nodeValue: child.nodeValue,
+			explanation: child
+		}
+	}
 	,
 	// [n'importe quel mécanisme booléen] : expression booléenne (simple variable, négation, égalité, comparaison numérique, test d'inclusion court / long) || l'une de ces conditions || toutes ces conditions
 	// 'applicable si': // pareil mais inversé !
 
-	// pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
-	'formule': null,
+	// note: pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
 	// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
-
+	'formule': value => {
+		let child = treat(situationGate, rule)(value)
+		return {
+			category: 'ruleProp',
+			rulePropType: 'formula',
+			name: 'formule',
+			type: 'numeric',
+			nodeValue: child.nodeValue,
+			explanation: child
+		}
+	}
+	,
 	// TODO les mécanismes de composantes et de variations utilisables un peu partout !
 
 	// TODO 'temporal': information concernant les périodes : à définir !

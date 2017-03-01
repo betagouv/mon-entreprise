@@ -70,13 +70,13 @@
 	margin: 1em 3em
 }
 .node {
-	margin-top: .5em;
+	margin-top: 1em;
 	padding-left: 1em;
 }
 .ruleProp > div > .name {
 	padding: 0 1em;
 	border: 1px solid black;
-	background: #00ad9c
+	background: #df5320
 }
 .mecanism {
 }
@@ -103,4 +103,23 @@
 }
 #rule-rules .value.non {
 	color: #f22c40;
+}
+
+.variable .name {
+	padding: 0 1em;
+	border: 1px solid black;
+	background: #6666ea;
+}
+
+.rate .name {
+	padding: 0 1em;
+	border: 1px solid black;
+	background: #407ee7;
+}
+
+.multiplicationSign {
+	margin: .1em .6em;
+	font-size: 150%;
+	vertical-align: sub;
+	display: block;
 }
