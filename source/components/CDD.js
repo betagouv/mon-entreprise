@@ -12,7 +12,7 @@ import Aide from './Aide'
 let situationSelector = formValueSelector('conversation')
 
 @reduxForm(
-	{form: 'conversation'}
+	{form: 'conversation', destroyOnUnmount: false}
 )
 @connect(state => ({
 	situation: variableName => situationSelector(state, variableName),

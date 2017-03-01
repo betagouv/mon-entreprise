@@ -13,9 +13,9 @@ let selectedRules = rules.filter(rule =>
 			)
 		)
 
-let knownVariable = (situation, variableName) => R.or(
-	situation(variableName),
-	situation(parentName(variableName)) // pour 'usage', 'motif' ( le parent de 'usage') = 'usage'
+let knownVariable = (situationGate, variableName) => R.or(
+	situationGate(variableName),
+	situationGate(parentName(variableName)) // pour 'usage', 'motif' ( le parent de 'usage') = 'usage'
 ) != null
 
 let transformPercentage = s =>
@@ -54,10 +54,10 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 let treat = (situationGate, rule) => rawNode => {
 
-
 	if (R.is(String)(rawNode)) {// it's an expression
 		let [variableName, evaluation] = recognizeExpression(rule, rawNode),
-			value = knownVariable(situationGate, variableName) ?
+			known = knownVariable(situationGate, variableName),
+			value = known ?
 				evaluation(situationGate)
 			: null
 
@@ -66,7 +66,8 @@ let treat = (situationGate, rule) => rawNode => {
 			nodeValue: value, // null, true or false
 			category: 'expression',
 			type: 'boolean',
-			explanation: null
+			explanation: null,
+			missingVariables: known ? [] : [variableName]
 		}
 	}
 
@@ -140,7 +141,8 @@ let treat = (situationGate, rule) => rawNode => {
 					// name: 'base', déduit de la propriété de l'objet
 					nodeValue: baseValue,
 					explanation: null,
-					variableName: baseVariableName
+					variableName: baseVariableName,
+					missingVariables: baseValue == null ? [baseVariableName] : []
 				},
 				rate: {
 					type: 'numeric',
@@ -189,7 +191,8 @@ let treatRuleRoot = (situationGate, rule) => R.evolve({ // -> Voilà les attribu
 			name: 'formule',
 			type: 'numeric',
 			nodeValue: child.nodeValue,
-			explanation: child
+			explanation: child,
+			shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true)
 		}
 	}
 	,

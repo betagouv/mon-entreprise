@@ -5,23 +5,26 @@ import {Link} from 'react-router'
 export default class Results extends Component {
 	render() {
 		let {analysedSituation} = this.props
+			// missingVariables = collectMissingVariables(analysedSituation, 'groupByResult')
 		return (
 			<section id="results">
 				<h2>Vos obligations</h2>
+				{console.log('analysedSituation', analysedSituation)}
 				<ul>
 					{analysedSituation.map(
-						({name, type, derived: {missingVariables, computedValue}}) =>
+						({name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}) =>
 						do {
 							let
-								unsatisfied = missingVariables && missingVariables.length,
-								irrelevant = !unsatisfied && computedValue == null;
+								unsatisfied = nonApplicable == null || computedValue == null,
+								irrelevant = nonApplicable === true;
+
 							<li key={name} className={classNames({unsatisfied, number: !unsatisfied && !irrelevant})}>
 								<h3>{type} {name}</h3>
 								<p>
-								{unsatisfied ?
-									'En attente de vos réponses...'
-									: irrelevant ?
-										"Vous n'êtes pas concernés"
+								{irrelevant ?
+									"Vous n'êtes pas concernés"
+									: unsatisfied ?
+										'En attente de vos réponses...'
 										:computedValue + '€'
 								}
 								</p>

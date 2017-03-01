@@ -5,27 +5,23 @@ import './Rule.css'
 import JSONTree from 'react-json-tree'
 import R from 'ramda'
 import PageTypeIcon from './PageTypeIcon'
+import {connect} from 'react-redux'
+import {formValueSelector} from 'redux-form'
 
+
+
+@connect(state => ({
+	situationGate: name => formValueSelector('conversation')(state, name)
+}))
 export default class Rule extends Component {
 	render() {
 		let {
-			name
-		} = this.props.params,
+			params: {name},
+			situationGate
+		} = this.props,
 			rule = analyseSituation(
-				v => R.path(v.split('.'))(
-					{
-						"Salariat ":{
-							" CDD ":{
-									" événements":"_",
-									" motif":"saisonnier",
-									" engagement employeur complément formation":"non",
-									" durée contrat":"2"
-								},
-							" contrat aidé":"non",
-							" salaire de base": 1481
-						}
-					})
-			)[0]
+				situationGate
+			).find(R.propEq('name', name))
 
 		return (
 			<div id="rule">

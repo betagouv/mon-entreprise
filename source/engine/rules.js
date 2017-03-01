@@ -5,6 +5,7 @@ import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from 'marked'
 
+
 let customMarked = new marked.Renderer()
 customMarked.link = ( href, title, text ) =>
 	`<a target="_blank" href="${ href }" title="${ title }">${ text }</a>`
@@ -85,3 +86,42 @@ export let findGroup = R.pipe(
 	// 	)
 	// )
 )
+
+/*********************************
+Autres */
+
+let collectNodeMissingVariables = target => (root, source=root, results=[]) => {
+	if (
+    source.nodeValue != null  ||
+    source.shortCircuit && source.shortCircuit(root)
+  ) return
+
+	if (source[target]) {
+		results.push(source[target])
+	}
+
+	for (var prop in source) {
+		if (R.is(Object)(source[prop]))
+			collectNodeMissingVariables(target)(root, source[prop], results)
+	}
+
+
+	return results
+}
+
+
+export let collectMissingVariables = (groupMethod='groupByMissingVariable', analysedSituation) =>
+	R.pipe(
+		R.chain( v =>
+			R.pipe(
+				collectNodeMissingVariables('missingVariables'),
+				R.flatten,
+				R.map(mv => [v.name, mv])
+			)(v)
+		),
+		//groupBy missing variable but remove mv from value, it's now in the key
+		R.groupBy(groupMethod == 'groupByMissingVariable' ? R.last : R.head),
+		R.map(R.map(groupMethod == 'groupByMissingVariable' ? R.head : R.last))
+		// below is a hand implementation of above... function composition can be nice sometimes :')
+		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
+	)(analysedSituation)

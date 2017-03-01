@@ -12,7 +12,7 @@ import RhetoricalQuestion from './components/conversation/RhetoricalQuestion'
 import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION, EXPLAIN_VARIABLE} from './actions'
 import R from 'ramda'
 
-import {findGroup, findRuleByDottedName, dottedName, parentName} from './engine/rules'
+import {findGroup, findRuleByDottedName, dottedName, parentName, collectMissingVariables} from './engine/rules'
 import {constructStepMeta} from './engine/conversation'
 
 import computeThemeColours from './components/themeColours'
@@ -62,39 +62,33 @@ export default reduceReducers(
 	// cross-cutting concerns because here `state` is the whole state tree
 	(state, action) => {
 		if (action.type == STEP_ACTION || action.type == START_CONVERSATION) {
-			let {newState, name} = action
-			// une étape vient d'être validée : on va changer son état
-			let newSteps = R.pipe(
-				R.map(step => step.name == name ? {...step, state: newState} : step),
-				R.reject(R.whereEq({theEnd: true}))
-			)(state.steps)
 
+			// pour débugguer :
 			window.situationGate = situationGate(state)
 
 			// on calcule la prochaine étape, à ajouter sur la pile
 			let
+				// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
 				analysedSituation = analyseSituation(
 					situationGate(state)
 				),
 
-				y = console.log('analysedSituation', analysedSituation),
+				// y = console.log('analysedSituation', JSON.stringify(analysedSituation)),
 
-				missingVariables = R.pipe(
-					R.map( ({name, derived: {missingVariables}}) =>
-						(missingVariables || []).map(mv => [mv, name])
-					),
-					R.unnest,
-					//groupBy but remove mv from value, it's now in the key
-					R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-				)(analysedSituation),
+				// on collecte les variables manquantes : celles qui sont nécessaires pour
+				// remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
+				// encore été renseignées
+				missingVariables = collectMissingVariables('groupByMissingVariable', analysedSituation),
+
 				missingVariablesList = R.keys(missingVariables),
 
+				ya = console.log('missingVariablesList', missingVariables),
 				groups = R.groupBy(
 					parentName
 				)(missingVariablesList),
 
 				// on va maintenant construire la liste des composants React correspondant aux questions pour obtenir les variables manquantes
-				yyoo = R.pipe(
+				steps = R.pipe(
 					R.mapObjIndexed((variables, group) =>
 						R.pipe(
 							findGroup,
@@ -140,16 +134,8 @@ export default reduceReducers(
 					R.unnest
 				)(groups)
 
-			// la question doit pouvoir stocker tout ça dans la situation (redux-form) correctement
+			return {...state, steps, analysedSituation}
 
-
-			return {...state, steps: yyoo, analysedSituation}
-
-
-
-
-			// return {...state, steps: [...newSteps, stepData], analysedSituation}
-			// ... do stuff
 		} else {
 			return state
 		}
