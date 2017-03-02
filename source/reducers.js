@@ -82,7 +82,6 @@ export default reduceReducers(
 
 				missingVariablesList = R.keys(missingVariables),
 
-				ya = console.log('missingVariablesList', missingVariables),
 				groups = R.groupBy(
 					parentName
 				)(missingVariablesList),

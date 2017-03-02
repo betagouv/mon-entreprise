@@ -9,7 +9,6 @@ export default class Results extends Component {
 		return (
 			<section id="results">
 				<h2>Vos obligations</h2>
-				{console.log('analysedSituation', analysedSituation)}
 				<ul>
 					{analysedSituation.map(
 						({name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}) =>

@@ -8,7 +8,20 @@ import PageTypeIcon from './PageTypeIcon'
 import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 
-
+// situationGate function useful for testing :
+// v => R.path(v.split('.'))(
+// 	{
+// 		"Salariat ":{
+// 			" CDD ":{
+// 					" événements":"_",
+// 					" motif":"usage",
+// 					" engagement employeur complément formation":"non",
+// 					" durée contrat":"2"
+// 				},
+// 			" contrat aidé":"non",
+// 			" salaire de base": 1481
+// 		}
+// 	})
 
 @connect(state => ({
 	situationGate: name => formValueSelector('conversation')(state, name)
@@ -22,6 +35,11 @@ export default class Rule extends Component {
 			rule = analyseSituation(
 				situationGate
 			).find(R.propEq('name', name))
+
+		if (!rule) {
+			this.props.router.push('/404')
+			return null
+		}
 
 		return (
 			<div id="rule">
@@ -39,10 +57,10 @@ export default class Rule extends Component {
 					</div>
 					<div>
 						<h2>Propriétés</h2>
-						{this.renderObject({
+						<JSONView o={{
 							...rule.attributs,
 							'contexte': rule['attache']
-						})}
+						}} />
 						<h2>Références</h2>
 						{this.renderReferences(rule)}
 					</div>
@@ -63,19 +81,10 @@ export default class Rule extends Component {
 				</section>
 
 				{/* <pre>
-						{this.renderObject(rule)}
+						<JSONView data={rule} />
 				</pre> */}
 			</div>
 		)
-	}
-	renderObject(o, rootKey){
-
-		return <JSONTree
-			getItemString={() => ''}
-			theme={theme}
-			hideRoot={true}
-			shouldExpandNode={() => true}
-			data={rootKey ? {[rootKey]: o} : o} />
 	}
 
 	renderReferences(rule) {
@@ -137,7 +146,12 @@ let Multiplication = ({base, rate}) =>
 <div className="multiplication node" >
 		<Variable {...base}/>
 		<span className="multiplicationSign">×</span>
-		<Percentage {...rate}/>
+		{
+			rate.explanation ?
+			<JSONView o={rate} />
+			: <Percentage {...rate}/>
+		}
+
 </div>
 
 
@@ -163,6 +177,7 @@ let Expression = ({nodeValue, expression}) =>
 </div>
 
 let NodeValue = ({data}) => do {
+	console.log('NodeValue', data)
 	let valeur = data == null ?
 			'?'
 		: ( R.is(Number)(data) ?
@@ -183,6 +198,14 @@ let Formula = ({explanation, nodeValue}) => do {
 		</div>
 	</div>
 }
+
+let JSONView = ({o, rootKey}) =>
+<JSONTree
+	getItemString={() => ''}
+	theme={theme}
+	hideRoot={true}
+	shouldExpandNode={() => true}
+	data={rootKey ? {[rootKey]: o} : o} />
 
 
 

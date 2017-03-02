@@ -6,9 +6,9 @@ import R from 'ramda'
 let selectedRules = rules.filter(rule =>
 			R.contains(rule.name,
 				[
-					'CIF CDD',
+					// 'CIF CDD',
 					// 'fin de contrat',
-					// 'majoration chômage CDD'
+					'majoration chômage CDD'
 				]
 			)
 		)
@@ -122,15 +122,100 @@ let treat = (situationGate, rule) => rawNode => {
 		)(v)
 	}
 
+	//TODO perf: declare this closure somewhere else ?
+	let treatNumericalLogicRec =
+		R.ifElse(
+			R.is(String),
+			rate => ({
+				nodeValue: transformPercentage(rate),
+				type: 'numeric',
+				category: 'percentage',
+				percentage: rate,
+				explanation: null
+			}),
+			R.pipe(
+				R.unless(
+					v => R.is(Object)(v) && R.keys(v).length >= 1,
+					() => {throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'}
+				),
+				R.toPairs,
+				R.reduce( (memo, [condition, consequence]) => {
+					let {nodeValue, explanation} = memo,
+						[variableName, evaluation] = recognizeExpression(rule, condition),
+						childNumericalLogic = treatNumericalLogicRec(consequence),
+						known = knownVariable(situationGate, variableName),
+						nextNodeValue = !known ?
+						// Si la proposition n'est pas encore résolvable
+							null
+						// Si la proposition est résolvable
+						:	evaluation(situationGate) ?
+							// Si elle est vraie
+								childNumericalLogic.nodeValue
+							// Si elle est fausse
+							: false
+
+					return {...memo,
+						nodeValue: nodeValue == null ?
+							null
+						: nodeValue !== false ?
+								nodeValue // l'une des propositions renvoie déjà une valeur numérique donc différente de false
+							: nextNodeValue,
+						// condition: condition,
+						explanation: [...explanation, {
+							nodeValue: nextNodeValue,
+							category: 'condition',
+							condition,
+							conditionValue: evaluation(situationGate),
+							type: 'boolean',
+							explanation: childNumericalLogic
+						}],
+						missingVariables: known ? [] : [variableName]
+					}
+				}, {
+					nodeValue: false,
+					category: 'mecanism',
+					name: "logique numérique",
+					type: 'boolean || numeric', // lol !
+					explanation: []
+				})
+		))
+
+	if (k === "logique numérique") {
+		return treatNumericalLogicRec(v)
+	}
+
+	if (k === "taux") {
+		// debugger
+		//TODO gérer les taux historisés
+		if (R.is(String)(v))
+			return {
+				type: 'numeric',
+				category: 'percentage',
+				percentage: v,
+				nodeValue: transformPercentage(v),
+				explanation: null
+			}
+		else {
+			let node = treat(situationGate, rule)(v)
+			return {
+				type: 'numeric',
+				category: 'percentage',
+				percentage: node.nodeValue,
+				nodeValue: node.nodeValue,
+				explanation: node
+			}
+		}
+	}
+
 	if (k === 'multiplication') {
 		let base = v['assiette'],
 			[baseVariableName] = recognizeExpression(rule, base),
-			baseValue = situationGate(baseVariableName)
-		let rawRate = v['taux'], //TODO gérer les taux historisés
-			rate = transformPercentage(rawRate)
+			baseValue = situationGate(baseVariableName),
+			rateNode = treat(situationGate, rule)({taux: v['taux']}),
+			rate = rateNode.nodeValue
 
 		return {
-			nodeValue: baseValue && baseValue * rate, // null * 6 = 0 :-o
+			nodeValue: baseValue && rate && +baseValue * rate, // null * 6 = 0 :-o
 			category: 'mecanism',
 			name: 'multiplication',
 			type: 'numeric',
@@ -139,18 +224,12 @@ let treat = (situationGate, rule) => rawNode => {
 					type: 'numeric',
 					category: 'variable',
 					// name: 'base', déduit de la propriété de l'objet
-					nodeValue: baseValue,
+					nodeValue: baseValue == null ? null : +baseValue,
 					explanation: null,
 					variableName: baseVariableName,
 					missingVariables: baseValue == null ? [baseVariableName] : []
 				},
-				rate: {
-					type: 'numeric',
-					category: 'percentage',
-					percentage: rawRate,
-					nodeValue: rate,
-					explanation: null
-				},
+				rate: rateNode,
 				//TODO limit: 'plafond'
 				//TODO multiplier: 'multiplicateur'
 			}
