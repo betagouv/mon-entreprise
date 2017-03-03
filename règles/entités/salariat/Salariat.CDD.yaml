@@ -14,7 +14,6 @@
   sous-question: |
     [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
   format: période
-  requis: oui
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
   suggestions:
@@ -29,7 +28,7 @@
   question: Quel est le motif de recours au CDD ?
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un de ces motifs
-  requis: oui
+  langue au chat possible: non
   une possibilité:
     - saisonnier
     - jeune vacances

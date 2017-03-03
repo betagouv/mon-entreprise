@@ -9,19 +9,20 @@ import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 
 // situationGate function useful for testing :
-// v => R.path(v.split('.'))(
-// 	{
-// 		"Salariat ":{
-// 			" CDD ":{
-// 					" événements":"_",
-// 					" motif":"usage",
-// 					" engagement employeur complément formation":"non",
-// 					" durée contrat":"2"
-// 				},
-// 			" contrat aidé":"non",
-// 			" salaire de base": 1481
-// 		}
-// 	})
+let testingSituationGate = v => R.path(v.split('.'))(
+	{
+		"Salariat ":{
+			" CDD ":{
+					" événements":"_",
+					" motif":"usage",
+					" engagement employeur complément formation":"non",
+					" durée contrat":"2"
+				},
+			" contrat aidé":"non",
+			" salaire de base": 1481,
+			" congés non pris": 3
+		}
+	})
 
 @connect(state => ({
 	situationGate: name => formValueSelector('conversation')(state, name)
@@ -33,7 +34,7 @@ export default class Rule extends Component {
 			situationGate
 		} = this.props,
 			rule = analyseSituation(
-				situationGate
+				testingSituationGate
 			).find(R.propEq('name', name))
 
 		if (!rule) {
@@ -139,6 +140,9 @@ let Mecanism = ({nodeValue, name, explanation}) =>
 	}
 	{name == 'multiplication' &&
 		<Multiplication  {...explanation}/>
+	}
+	{name == 'le maximum de' &&
+		<JSONView o={{nodeValue, name, explanation}} />
 	}
 </div>
 

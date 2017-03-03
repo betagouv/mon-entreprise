@@ -1,6 +1,7 @@
 import {rules, findRuleByName, parentName} from './rules'
 import {recognizeExpression} from './expressions'
 import R from 'ramda'
+import knownMecanisms from './known-mecanisms.yaml'
 
 // L'objectif de la simulation : quelles règles voulons nous calculer ?
 let selectedRules = rules.filter(rule =>
@@ -8,7 +9,8 @@ let selectedRules = rules.filter(rule =>
 				[
 					// 'CIF CDD',
 					// 'fin de contrat',
-					'majoration chômage CDD'
+					// 'majoration chômage CDD',
+					'Indemnité compensatrice congés payés simplifiée'
 				]
 			)
 		)
@@ -54,6 +56,7 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 let treat = (situationGate, rule) => rawNode => {
 
+	// TODO tout le code de parsing des expressions est à refaire avec un vrai parser -> AST
 	if (R.is(String)(rawNode)) {// it's an expression
 		let [variableName, evaluation] = recognizeExpression(rule, rawNode),
 			known = knownVariable(situationGate, variableName),
@@ -71,11 +74,24 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
-	if (!R.is(Object)(rawNode)) throw 'node should be string or object'
+	//TODO C'est pas bien ça. Devrait être traité par le parser plus haut !
+	if (R.is(Number)(rawNode)) {
+		return {
+			category: 'number',
+			nodeValue: rawNode,
+			type: 'numeric'
+		}
+	}
 
-	let pairs = R.toPairs(rawNode),
-		[k, v] = R.head(pairs)
-	if (pairs.length !== 1) throw 'OUPS !'
+	if (!R.is(Object)(rawNode)) {
+		console.log('This node : ', rawNode)
+		throw ' should be string or object'
+	}
+
+	let mecanisms = R.intersection(R.keys(rawNode), knownMecanisms)
+	if (mecanisms.length != 1) throw 'OUPS !'
+	let k = R.head(mecanisms),
+		v = rawNode[k]
 
 	if (k === "l'une de ces conditions") {
 		return R.pipe(
@@ -180,11 +196,11 @@ let treat = (situationGate, rule) => rawNode => {
 				})
 		))
 
-	if (k === "logique numérique") {
+	if (k === 'logique numérique') {
 		return treatNumericalLogicRec(v)
 	}
 
-	if (k === "taux") {
+	if (k === 'taux') {
 		// debugger
 		//TODO gérer les taux historisés
 		if (R.is(String)(v))
@@ -215,7 +231,7 @@ let treat = (situationGate, rule) => rawNode => {
 			rate = rateNode.nodeValue
 
 		return {
-			nodeValue: baseValue && rate && +baseValue * rate, // null * 6 = 0 :-o
+			nodeValue: ((baseValue && rate) || null) && +baseValue * rate, // null * 6 = 0 :-o
 			category: 'mecanism',
 			name: 'multiplication',
 			type: 'numeric',
@@ -236,7 +252,23 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
-	throw 'Mécanisme inconnu !' +  JSON.stringify(rawNode)
+	if (k === 'le maximum de') {
+		let contenders = v.map(treat(situationGate, rule)),
+			contenderValues = R.pluck('nodeValue')(contenders),
+			stopEverything = R.contains(null, contenderValues),
+			maxValue = R.max(...contenderValues)
+
+		return {
+			type: 'numeric',
+			category: 'mecanism',
+			name: 'le maximum de',
+			nodeValue: stopEverything ? null : maxValue,
+			explanation: contenders
+		}
+	}
+
+	console.log('rawNode', rawNode)
+	throw "Le mécanisme qui vient d'être loggué est inconnu !"
 
 }
 

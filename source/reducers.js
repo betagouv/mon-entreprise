@@ -121,7 +121,7 @@ export default reduceReducers(
 											component: Question,
 											choices:
 												group['une possibilité'].concat(
-													group.requis !== 'oui' ?
+													group['langue au chat possible'] ?
 														[{value: '_', label: 'Aucun'}] : []
 												)
 										}
