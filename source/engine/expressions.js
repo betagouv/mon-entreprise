@@ -3,6 +3,35 @@ import {parentName, nameLeaf, findRuleByDottedName} from './rules'
 
 // Ces regexp sont trop complexe. TODO Ce n'est que temporaire !
 
+// Exemple de grammaire Instaparse (Clojure[script])
+// https://github.com/Engelberg/instaparse#transforming-the-tree
+// http://instaparse-live.matt.is/
+/*
+expr = add-sub
+<add-sub> = mul-div | add | sub
+add = add-sub <' + '> mul-div
+sub = add-sub <' - '> mul-div
+<mul-div> = term | mul | div
+mul = mul-div <' * '> term
+div = mul-div <' / '> term
+<term> = variable | number | <'('> add-sub <')'>
+number = #'[0-9]+'
+<letter> = #'[a-zA-Z\u00C0-\u017F\s]'
+variable-fragment = letter+
+whitespace = #'\s'
+dot = #'\s\.\s'
+variable = variable-fragment (<dot> variable-fragment)*
+*/
+
+/*
+Parsers en JS :
+https://pegjs.org/online
+Jison
+Ce qui me semble le mieux : Nearley https://github.com/Hardmath123/nearley
+*/
+
+
+
 // composants des regexps
 let
 	vp = '[A-Za-z\\u00C0-\\u017F\\s]+', // variable part

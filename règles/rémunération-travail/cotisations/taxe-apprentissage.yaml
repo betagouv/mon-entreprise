@@ -43,7 +43,7 @@
               - http://circulaires.legifrance.gouv.fr/pdf/2012/03/cir_34909.pdf
               - http://bofip.impots.gouv.fr/bofip/6325-PGP.html
               # Toutefois, en application du IV de l’article 1609 quinvicies du CGI , dans les départements du Haut-Rhin, du Bas-Rhin et de la Moselle, les taux précités sont réduits à 52 % de leur montant, soit :
-            multiplicateur: 0.52
+            facteur: 0.52
 
           variations:
           - si: ratio alternants < 0.01

@@ -24,7 +24,7 @@
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire de base [annuel]
+          assiette: salaire de base annuel
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           taux: 10%
           prorata: congés non pris / 25 # variable qui par défaut est en jours ouvrés, probablement le plus commun
@@ -39,7 +39,7 @@
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
           assiette: congés non pris
-          prorata:  salaire de base [jour ouvré]
+          facteur:  salaire de base par jour ouvré
           # Comment ?
           # mensuel / nombre moyen de jours ouvrés par an
 

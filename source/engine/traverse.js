@@ -3,6 +3,15 @@ import {recognizeExpression} from './expressions'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 
+/*
+ Dans ce fichier, les règles YAML sont parsées.
+ Elles expriment un langage orienté expression, les expressions étant
+ - préfixes quand elles sont des 'mécanismes' (des mot-clefs représentant des calculs courants dans la loi)
+ - infixes pour les feuilles : des tests d'égalité, d'inclusion, des comparaisons sur des variables ou tout simplement la  variable elle-même, ou une opération effectuée sur la variable
+
+*/
+
+
 // L'objectif de la simulation : quelles règles voulons nous calculer ?
 let selectedRules = rules.filter(rule =>
 			R.contains(rule.name,
@@ -246,6 +255,7 @@ let treat = (situationGate, rule) => rawNode => {
 					missingVariables: baseValue == null ? [baseVariableName] : []
 				},
 				rate: rateNode,
+				prorata:
 				//TODO limit: 'plafond'
 				//TODO multiplier: 'multiplicateur'
 			}
