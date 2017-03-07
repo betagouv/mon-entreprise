@@ -2,6 +2,10 @@ import {rules, findRuleByName, parentName} from './rules'
 import {recognizeExpression} from './expressions'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
+import { Parser } from 'nearley'
+import Grammar from './grammar.ne'
+
+let nearley = new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -234,6 +238,8 @@ let treat = (situationGate, rule) => rawNode => {
 
 	if (k === 'multiplication') {
 		let base = v['assiette'],
+			parsed = nearley.feed(base),
+			yaya = console.log('parsed', parsed),
 			[baseVariableName] = recognizeExpression(rule, base),
 			baseValue = situationGate(baseVariableName),
 			rateNode = treat(situationGate, rule)({taux: v['taux']}),
@@ -255,7 +261,7 @@ let treat = (situationGate, rule) => rawNode => {
 					missingVariables: baseValue == null ? [baseVariableName] : []
 				},
 				rate: rateNode,
-				prorata:
+				// prorata:
 				//TODO limit: 'plafond'
 				//TODO multiplier: 'multiplicateur'
 			}
@@ -326,99 +332,6 @@ let treatRuleRoot = (situationGate, rule) => R.evolve({ // -> Voilà les attribu
 	// ... ?
 
 })(rule)
-
-
-let deriveRuleOld = (situationGate, rule) => pipe( // eslint-disable-line no-unused-vars
-	toPairs,
-	reduce(({missingVariables, computedValue}, [key, value]) => {
-		if (key === 'concerne') {
-			let [variableName, evaluation] = recognizeExpression(rule, value)
-			// Si cette variable a été renseignée
-			if (knownVariable(situationGate, variableName)) {
-				// Si l'expression n'est pas vraie...
-				if (!evaluation(situationGate)) {
-					// On court-circuite toute la variable, et on n'a besoin d'aucune information !
-					return reduced({missingVariables: []})
-				} else {
-					// Sinon, on continue
-					return {missingVariables}
-				}
-			// sinon on demande la valeur de cette variable
-			} else return { missingVariables: [...missingVariables, variableName] }
-		}
-
-		if (key === 'non applicable si') {
-			let conditions = value['l\'une de ces conditions']
-			let [subVariableNames, reduced] = reduce(([variableNames], expression) => {
-				let [variableName, evaluation] = recognizeExpression(rule, expression)
-				if (knownVariable(situationGate, variableName)) {
-					if (evaluation(situationGate)) {
-						return reduced([[], true])
-					} else {
-						return [variableNames]
-					}
-				}
-				return [[...variableNames, variableName]]
-			}, [[], null])(conditions)
-
-			if (reduced) return reduced({missingVariables: []})
-			else return {missingVariables: [...missingVariables, ...subVariableNames]}
-		}
-
-		if (key === 'formule') {
-			if (value['multiplication']) {
-				let {assiette, taux} = value['multiplication']
-
-				// A propos de l'assiette
-				let [assietteVariableName] = recognizeExpression(rule, assiette),
-					assietteValue = situationGate(assietteVariableName),
-					unknownAssiette = assietteValue == undefined
-
-				// Arrivés là, cette formule devrait être calculable !
-				let {missingVariables: tauxMissingVariables = [], computedValue} = typeof taux !== 'string' ?
-					do {
-						let numericalLogic = taux['logique numérique']
-						if (!numericalLogic) throw 'On ne sait pas pour l\'instant traiter ce mécanisme de taux'
-
-						let treatNumericalLogic = numericalLogic => {
-							if (typeof numericalLogic == 'string') {
-								return new Object({computedValue: assietteValue * transformPercentage(numericalLogic)})
-							} else {
-								return pipe(
-									toPairs(),
-									reduce(({missingVariables}, [expression, subLogic]) => {
-										let [variableName, evaluation] = recognizeExpression(rule, expression)
-										if (knownVariable(situationGate, variableName)) {
-											if (evaluation(situationGate)) {
-												return reduced(treatNumericalLogic(subLogic))
-											} else {
-												return {missingVariables}
-											}
-										} else return {missingVariables: [...missingVariables, variableName]}
-									}, {missingVariables: []})
-							)(numericalLogic)
-							}}
-						treatNumericalLogic(numericalLogic)
-					} : ({computedValue: assietteValue * transformPercentage(taux)})
-
-				let formulaResult = {
-					missingVariables: [
-						...missingVariables,
-						...(unknownAssiette ? [assietteVariableName] : []),
-						...tauxMissingVariables
-					],
-					computedValue
-				}
-
-				return computedValue != null ? reduced(formulaResult) : formulaResult
-
-			}
-		}
-
-		return {missingVariables}
-	}, {missingVariables: []}
-	)
-)
 
 
 /* Analyse the set of selected rules, and add derived information to them :
