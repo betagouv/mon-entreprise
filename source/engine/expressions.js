@@ -50,7 +50,7 @@ let expressionTests = {
 
 /* Les variables peuvent être exprimées dans une règle relativement à son contexte, son 'attache', pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
-let completeVariableName = ({attache, name}, partialName) => {
+export let completeVariableName = ({attache, name}, partialName) => {
 	let
 		fragments = attache.split(' . '),
 		pathPossibilities = R.pipe(
@@ -114,3 +114,13 @@ export let recognizeExpression = (rule, value) => {
 			}]
 	}
 }
+
+export let knownVariable = (situationGate, variableName) =>
+		situationGate(variableName) != null
+||	situationGate(parentName(variableName)) != null
+// pour 'usage', 'motif' ( le parent de 'usage') = 'usage'
+
+
+export let evaluateVariable = (situationGate, variableName) => //console.log('variableName', variableName, situationGate(parentName(variableName))) ||
+		situationGate(variableName) == 'oui'
+||	situationGate(parentName(variableName)) == nameLeaf(variableName)

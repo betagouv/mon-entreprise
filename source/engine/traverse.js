@@ -1,12 +1,13 @@
 import {rules, findRuleByName, parentName} from './rules'
-import {recognizeExpression} from './expressions'
+import {completeVariableName, evaluateVariable, knownVariable} from './expressions'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 
-let nearley = new Parser(Grammar.ParserRules, Grammar.ParserStart)
+let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
+console.log('a', nearley().feed('allez on essaie plusieurs combinaisons accentuées'))
 /*
  Dans ce fichier, les règles YAML sont parsées.
  Elles expriment un langage orienté expression, les expressions étant
@@ -20,18 +21,13 @@ let nearley = new Parser(Grammar.ParserRules, Grammar.ParserStart)
 let selectedRules = rules.filter(rule =>
 			R.contains(rule.name,
 				[
-					// 'CIF CDD',
-					// 'fin de contrat',
+					'CIF CDD',
+					'fin de contrat',
 					// 'majoration chômage CDD',
-					'Indemnité compensatrice congés payés simplifiée'
+					// 'Indemnité compensatrice congés payés simplifiée'
 				]
 			)
 		)
-
-let knownVariable = (situationGate, variableName) => R.or(
-	situationGate(variableName),
-	situationGate(parentName(variableName)) // pour 'usage', 'motif' ( le parent de 'usage') = 'usage'
-) != null
 
 let transformPercentage = s =>
 	R.contains('%')(s) ?
@@ -69,22 +65,52 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 let treat = (situationGate, rule) => rawNode => {
 
-	// TODO tout le code de parsing des expressions est à refaire avec un vrai parser -> AST
-	if (R.is(String)(rawNode)) {// it's an expression
-		let [variableName, evaluation] = recognizeExpression(rule, rawNode),
-			known = knownVariable(situationGate, variableName),
-			value = known ?
-				evaluation(situationGate)
-			: null
+	if (R.is(String)(rawNode)) {
+		/* On a à faire à un string, donc à une expression infixe.
+		Elle sera traité avec le parser obtenu grâce ) NearleyJs et notre grammaire.
+		On obtient un objet de type Variable (avec potentiellement un 'modifier'), CalcExpression ou Comparison.
+		Cet objet est alors rebalancé à 'treat'.
+		*/
 
-		return {
-			expression: rawNode,
-			nodeValue: value, // null, true or false
-			category: 'expression',
-			type: 'boolean',
-			explanation: null,
-			missingVariables: known ? [] : [variableName]
+		let [parseResults, ...additionnalResults] = nearley().feed(rawNode).results
+
+		if (additionnalResults && additionnalResults.length > 0) throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
+
+		if (!R.contains(parseResults.nodeType)(['Variable', 'CalcExpression', 'ModifiedVariable', 'Comparison']))
+			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
+
+		if (parseResults.nodeType == 'Variable') {
+
+			let
+				variablePartialName = parseResults.fragments.join(' . '),
+				variableName = completeVariableName(rule, variablePartialName),
+				known = knownVariable(situationGate, variableName)
+				debugger
+			return {
+				expression: rawNode,
+				nodeValue: !known ? null : evaluateVariable(situationGate, variableName),
+				category: 'expression',
+				type: 'boolean | numeric',
+				explanation: null,
+				missingVariables: known ? [] : [variableName]
+			}
 		}
+		// if (parseResults.nodeType == 'CalcExpression') {
+		//
+		// 	let
+		// 		variablePartialName = parseResults.fragments.join(' . '),
+		// 		variableName = completeVariableName(rule, variablePartialName),
+		// 		known = knownVariable(situationGate, variableName)
+		//
+		// 	return {
+		// 		expression: rawNode,
+		// 		nodeValue: situationGate(baseVariableName),
+		// 		category: 'expression',
+		// 		type: 'boolean | numeric',
+		// 		explanation: null,
+		// 		missingVariables: known ? [] : [variableName]
+		// 	}
+		// }
 	}
 
 	//TODO C'est pas bien ça. Devrait être traité par le parser plus haut !
@@ -214,7 +240,6 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'taux') {
-		// debugger
 		//TODO gérer les taux historisés
 		if (R.is(String)(v))
 			return {
@@ -238,9 +263,10 @@ let treat = (situationGate, rule) => rawNode => {
 
 	if (k === 'multiplication') {
 		let base = v['assiette'],
-			parsed = nearley.feed(base),
-			yaya = console.log('parsed', parsed),
-			[baseVariableName] = recognizeExpression(rule, base),
+			parsed = nearley().feed(base),
+			baseVariableFound = parsed.results[0].nodeType == 'Variable',
+			variablePartialName = baseVariableFound && parsed.results[0].fragments.join(' . '),
+			baseVariableName = completeVariableName(rule, variablePartialName),
 			baseValue = situationGate(baseVariableName),
 			rateNode = treat(situationGate, rule)({taux: v['taux']}),
 			rate = rateNode.nodeValue

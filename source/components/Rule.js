@@ -13,7 +13,7 @@ let testingSituationGate = v => R.path(v.split('.'))(
 	{
 		"Salariat ":{
 			" CDD ":{
-					" événements":"_",
+					" événements": "_",
 					" motif":"usage",
 					" engagement employeur complément formation":"non",
 					" durée contrat":"2"
