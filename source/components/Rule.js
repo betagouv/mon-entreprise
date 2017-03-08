@@ -14,9 +14,9 @@ let testingSituationGate = v => R.path(v.split('.'))(
 		"Salariat ":{
 			" CDD ":{
 					" événements": "_",
-					" motif":"usage",
+					" motif":"saisonnier",
 					" engagement employeur complément formation":"non",
-					" durée contrat":"2"
+					" durée contrat": 2
 				},
 			" contrat aidé":"non",
 			" salaire de base": 1481,
@@ -118,9 +118,6 @@ let RuleProp = ({nodeValue, explanation, name}) =>
 	{
 		explanation.category == 'mecanism' && <Mecanism {...explanation}/>
 	}
-	{
-		explanation.category == 'expression' && <Expression {...explanation}/>
-	}
 </div>
 
 let Mecanism = ({nodeValue, name, explanation}) =>
@@ -131,9 +128,12 @@ let Mecanism = ({nodeValue, name, explanation}) =>
 	</div>
 	{R.contains(name)(["l'une de ces conditions", 'toutes ces conditions']) &&
 		<ul>
-			{explanation.map(item => <li key={item.expression + item.name}>
-				{item.category == 'expression' ?
-					<Expression {...item} /> : <Mecanism {...item} />
+			{explanation.map(item => <li key={item.variableName + item.name}>
+				{item.category == 'variable' ?
+						<Variable {...item} />
+					: item.category == 'comparison' ?
+							<Comparison {...item} />
+						: <Mecanism {...item} />
 				}
 			</li>)}
 		</ul>
@@ -166,22 +166,25 @@ let Variable = ({nodeValue, variableName}) =>
 </span>
 
 
+let Comparison = ({nodeValue, text}) =>
+<span className="comparison" >
+	<span className="name">{text}</span>
+	<NodeValue data={nodeValue}/>
+</span>
+
+
+
+
+
+
 let Percentage = ({percentage}) =>
 <span className="rate" >
 	<span className="name">{percentage}</span>
 </span>
 
 
-let Expression = ({nodeValue, expression}) =>
-<div className="expression node" >
-	<div>
-		<span className="name">{expression}</span>
-		<NodeValue data={nodeValue}/>
-	</div>
-</div>
 
 let NodeValue = ({data}) => do {
-	console.log('NodeValue', data)
 	let valeur = data == null ?
 			'?'
 		: ( R.is(Number)(data) ?
@@ -203,13 +206,17 @@ let Formula = ({explanation, nodeValue}) => do {
 	</div>
 }
 
-let JSONView = ({o, rootKey}) =>
-<JSONTree
-	getItemString={() => ''}
-	theme={theme}
-	hideRoot={true}
-	shouldExpandNode={() => true}
-	data={rootKey ? {[rootKey]: o} : o} />
+let JSONView = ({o, rootKey}) => (
+  <div className="json">
+    <JSONTree
+      getItemString={() => ''}
+      theme={theme}
+      hideRoot={true}
+      shouldExpandNode={() => true}
+      data={rootKey ? {[rootKey]: o} : o}
+    />
+  </div>
+)
 
 
 

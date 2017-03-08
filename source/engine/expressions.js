@@ -120,7 +120,11 @@ export let knownVariable = (situationGate, variableName) =>
 ||	situationGate(parentName(variableName)) != null
 // pour 'usage', 'motif' ( le parent de 'usage') = 'usage'
 
+export let evaluateVariable = (situationGate, variableName) => {
+	let value = situationGate(variableName)
 
-export let evaluateVariable = (situationGate, variableName) => //console.log('variableName', variableName, situationGate(parentName(variableName))) ||
-		situationGate(variableName) == 'oui'
-||	situationGate(parentName(variableName)) == nameLeaf(variableName)
+	return R.is(Number)(value)
+    ? value
+    : value == 'oui' ||
+        situationGate(parentName(variableName)) == nameLeaf(variableName)
+}

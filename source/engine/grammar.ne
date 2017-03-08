@@ -1,25 +1,28 @@
-@{% function buildNode(type, d){return  ({nodeType: type, explanation: d})} %}
-
 main ->
 	  	CalcExpression {% id %}
 	  |	Variable {% id %}
 	  | ModifiedVariable {% id %}
 	  | Comparison {% id %}
 
-Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({nodeType: 'Comparison', operator: d[2][0], explanation: [d[0], d[4]]}) %}
+Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
+	category: 'comparison',
+	type: 'boolean',
+	operator: d[2][0],
+	explanation: [d[0], d[4]]
+}) %}
 
 Comparable -> (int | CalcExpression | Variable) {% d => d[0][0] %}
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "="
 
-ModifiedVariable -> Variable _ Modifier {% d => ({nodeType: 'ModifiedVariable', modifier: d[2], variable: d[0] }) %}
+ModifiedVariable -> Variable _ Modifier {% d => ({category: 'modifiedVariable', modifier: d[2], variable: d[0] }) %}
 
 Modifier -> "[" TemporalModifier "]" {% d =>d[1][0] %}
 
 TemporalModifier -> "annuel" | "mensuel" | "jour ouvré" {% id %}
 
 CalcExpression -> Term _ ArithmeticOperator _ Term {% d => ({
-	nodeType: 'CalcExpression',
+	category: 'calcExpression',
 	operator: d[2],
 	explanation: [d[0], d[4]],
 	type: 'numeric'
@@ -38,7 +41,7 @@ ArithmeticOperator -> "+" {% id %}
 
 
 Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d => ({
-	nodeType: 'Variable',
+	category: 'variable',
 	fragments: [d[0], ...d[1]],
 	type: 'numeric | boolean'
 }) %}
@@ -54,4 +57,4 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-int -> [0-9]:+        {% d => ({nodeType: 'value', value: d[0].join("")}) %}
+int -> [0-9]:+        {% d => ({category: 'value', nodeValue: +d[0].join("")}) %}

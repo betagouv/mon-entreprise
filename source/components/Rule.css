@@ -85,14 +85,12 @@
 	border: 1px solid black;
 	background: #d5911a
 }
-.expression {
 
+.mecanism li {
+	margin-bottom: .6em;
 }
-.expression > div > .name {
-	padding: 0 1em;
-	border: 1px solid black;
-	background: #6666ea;
-}
+
+
 #rule-rules .value {
 	padding-left: 1em;
 	font-weight: bold;
@@ -111,6 +109,12 @@
 	background: #6666ea;
 }
 
+.comparison .name {
+	padding: 0 1em;
+	border: 1px solid black;
+	background: #407ee7;
+}
+
 .rate .name {
 	padding: 0 1em;
 	border: 1px solid black;
@@ -122,4 +126,8 @@
 	font-size: 150%;
 	vertical-align: sub;
 	display: block;
+}
+
+.json {
+	font-size: 60%;
 }

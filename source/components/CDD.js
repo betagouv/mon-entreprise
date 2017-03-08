@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './CDD.css'
 import IntroCDD from './IntroCDD'
 import Results from './Results'
@@ -8,43 +8,42 @@ import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
 import Aide from './Aide'
 
-
 let situationSelector = formValueSelector('conversation')
 
-@reduxForm(
-	{form: 'conversation', destroyOnUnmount: false}
-)
-@connect(state => ({
+@reduxForm({form: 'conversation', destroyOnUnmount: false})
+@connect(
+  state => ({
 	situation: variableName => situationSelector(state, variableName),
 	steps: state.steps,
 	themeColours: state.themeColours,
-	analysedSituation: state.analysedSituation
-}), dispatch => ({
-	startConversation: () => dispatch({type: START_CONVERSATION})
-}))
+	analysedSituation: state.analysedSituation,
+}),
+  dispatch => ({
+	startConversation: () => dispatch({type: START_CONVERSATION}),
+}),
+)
 export default class CDD extends Component {
 	componentDidMount() {
 		this.props.startConversation()
 	}
 	render() {
-
 		let {steps} = this.props
 
-		let conversation = steps.map(step =>
-			<step.component key={step.name} {...step}/>
-		)
+		let conversation = steps.map(step => (
+      <step.component key={step.name} {...step} />
+    ))
 
 		return (
-			<div id="sim">
-				<IntroCDD />
-				<div id="conversation">
-					<section id="questions-answers">
-						{conversation}
-					</section>
-					<Aide />
-				</div>
-				<Results {...this.props}/>
-			</div>
+      <div id="sim">
+        <IntroCDD />
+        <div id="conversation">
+          <section id="questions-answers">
+            {conversation}
+          </section>
+          <Aide />
+        </div>
+        <Results {...this.props} />
+      </div>
 		)
 	}
 }

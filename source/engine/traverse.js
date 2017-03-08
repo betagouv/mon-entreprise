@@ -7,7 +7,6 @@ import Grammar from './grammar.ne'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
-console.log('a', nearley().feed('allez on essaie plusieurs combinaisons accentuées'))
 /*
  Dans ce fichier, les règles YAML sont parsées.
  Elles expriment un langage orienté expression, les expressions étant
@@ -23,8 +22,8 @@ let selectedRules = rules.filter(rule =>
 				[
 					'CIF CDD',
 					'fin de contrat',
-					// 'majoration chômage CDD',
-					// 'Indemnité compensatrice congés payés simplifiée'
+					'majoration chômage CDD',
+					'simplifiée'
 				]
 			)
 		)
@@ -63,6 +62,25 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
+let fillVariableNode = (rule, situationGate) => (parseResult) => {
+	let
+		{fragments} = parseResult,
+		variablePartialName = fragments.join(' . '),
+		variableName = completeVariableName(rule, variablePartialName),
+		known = knownVariable(situationGate, variableName),
+		nodeValue = !known ? null : evaluateVariable(situationGate, variableName)
+
+	return {
+		nodeValue,
+		category: 'variable',
+		fragments: fragments,
+		variableName,
+		type: 'boolean | numeric',
+		explanation: null,
+		missingVariables: known ? [] : [variableName]
+	}
+}
+
 let treat = (situationGate, rule) => rawNode => {
 
 	if (R.is(String)(rawNode)) {
@@ -72,45 +90,47 @@ let treat = (situationGate, rule) => rawNode => {
 		Cet objet est alors rebalancé à 'treat'.
 		*/
 
-		let [parseResults, ...additionnalResults] = nearley().feed(rawNode).results
+		let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
 		if (additionnalResults && additionnalResults.length > 0) throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-		if (!R.contains(parseResults.nodeType)(['Variable', 'CalcExpression', 'ModifiedVariable', 'Comparison']))
+		if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison']))
 			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
-		if (parseResults.nodeType == 'Variable') {
+		if (parseResult.category == 'variable')
+			return fillVariableNode(rule, situationGate)(parseResult, rawNode)
+
+		if (parseResult.category == 'comparison') {
 
 			let
-				variablePartialName = parseResults.fragments.join(' . '),
-				variableName = completeVariableName(rule, variablePartialName),
-				known = knownVariable(situationGate, variableName)
-				debugger
+				// variablePartialName = parseResult.fragments.join(' . '),
+				// variableName = completeVariableName(rule, variablePartialName),
+				// known = knownVariable(situationGate, variableName)
+				filledExplanation = parseResult.explanation.map(
+					R.when(R.propEq('category', 'variable'), fillVariableNode(rule, situationGate))
+				),
+				[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
+				comparatorFunctionName = {
+					'<': 'lt',
+					'<=': 'lte',
+					'>': 'gt',
+					'>=': 'gte'
+					//TODO '='
+				}[parseResult.operator],
+				comparatorFunction = R[comparatorFunctionName],
+				nodeValue = value1 == null || value2 == null ?
+					null
+				: comparatorFunction(value1, value2)
+
+
 			return {
-				expression: rawNode,
-				nodeValue: !known ? null : evaluateVariable(situationGate, variableName),
-				category: 'expression',
-				type: 'boolean | numeric',
-				explanation: null,
-				missingVariables: known ? [] : [variableName]
+				text: rawNode,
+				nodeValue: nodeValue,
+				category: 'comparison',
+				type: 'boolean',
+				explanation: filledExplanation
 			}
 		}
-		// if (parseResults.nodeType == 'CalcExpression') {
-		//
-		// 	let
-		// 		variablePartialName = parseResults.fragments.join(' . '),
-		// 		variableName = completeVariableName(rule, variablePartialName),
-		// 		known = knownVariable(situationGate, variableName)
-		//
-		// 	return {
-		// 		expression: rawNode,
-		// 		nodeValue: situationGate(baseVariableName),
-		// 		category: 'expression',
-		// 		type: 'boolean | numeric',
-		// 		explanation: null,
-		// 		missingVariables: known ? [] : [variableName]
-		// 	}
-		// }
 	}
 
 	//TODO C'est pas bien ça. Devrait être traité par le parser plus haut !
@@ -123,7 +143,6 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (!R.is(Object)(rawNode)) {
-		console.log('This node : ', rawNode)
 		throw ' should be string or object'
 	}
 
@@ -195,15 +214,15 @@ let treat = (situationGate, rule) => rawNode => {
 				),
 				R.toPairs,
 				R.reduce( (memo, [condition, consequence]) => {
-					let {nodeValue, explanation} = memo,
-						[variableName, evaluation] = recognizeExpression(rule, condition),
+					let
+						{nodeValue, explanation} = memo,
+						conditionNode = treat(situationGate, rule)(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
 						childNumericalLogic = treatNumericalLogicRec(consequence),
-						known = knownVariable(situationGate, variableName),
-						nextNodeValue = !known ?
+						nextNodeValue = conditionNode.nodeValue == null ?
 						// Si la proposition n'est pas encore résolvable
 							null
 						// Si la proposition est résolvable
-						:	evaluation(situationGate) ?
+						:	conditionNode.nodeValue == true ?
 							// Si elle est vraie
 								childNumericalLogic.nodeValue
 							// Si elle est fausse
@@ -215,16 +234,15 @@ let treat = (situationGate, rule) => rawNode => {
 						: nodeValue !== false ?
 								nodeValue // l'une des propositions renvoie déjà une valeur numérique donc différente de false
 							: nextNodeValue,
-						// condition: condition,
 						explanation: [...explanation, {
 							nodeValue: nextNodeValue,
 							category: 'condition',
-							condition,
-							conditionValue: evaluation(situationGate),
+							text: condition,
+							condition: conditionNode,
+							conditionValue: conditionNode.nodeValue,
 							type: 'boolean',
 							explanation: childNumericalLogic
 						}],
-						missingVariables: known ? [] : [variableName]
 					}
 				}, {
 					nodeValue: false,
@@ -262,17 +280,25 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'multiplication') {
+
 		let base = v['assiette'],
 			parsed = nearley().feed(base),
-			baseVariableFound = parsed.results[0].nodeType == 'Variable',
-			variablePartialName = baseVariableFound && parsed.results[0].fragments.join(' . '),
+			baseVariableFound = parsed.results[0].category == 'variable'
+		if (!baseVariableFound) throw "L'assiette d'une multiplication doit pour le moment être une variable"
+
+		let
+			variablePartialName = parsed.results[0].fragments.join(' . '),
 			baseVariableName = completeVariableName(rule, variablePartialName),
 			baseValue = situationGate(baseVariableName),
 			rateNode = treat(situationGate, rule)({taux: v['taux']}),
 			rate = rateNode.nodeValue
 
 		return {
-			nodeValue: ((baseValue && rate) || null) && +baseValue * rate, // null * 6 = 0 :-o
+			nodeValue: (rate === 0 || rate === false || baseValue === 0) ?
+				0
+			: (rate == null || baseValue == null) ?
+					null
+				: +baseValue * rate,
 			category: 'mecanism',
 			name: 'multiplication',
 			type: 'numeric',
@@ -309,7 +335,6 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
-	console.log('rawNode', rawNode)
 	throw "Le mécanisme qui vient d'être loggué est inconnu !"
 
 }

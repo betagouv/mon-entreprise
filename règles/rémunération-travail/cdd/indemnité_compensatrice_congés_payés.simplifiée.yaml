@@ -1,4 +1,4 @@
-- Cotisation: Indemnité compensatrice congés payés simplifiée
+- Cotisation: simplifiée
   attache: Salariat . CDD
   non applicable si:
     l'une de ces conditions:
@@ -14,7 +14,7 @@
           assiette: salaire de base
           taux: 10%
           # prorata: congés non pris / 25
-          prorata: 0.12 # 3/25
+          # prorata: 0.12 # 3/25
       #
       # - description: Méthode "maintien du salaire"
       #   note: Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a bénéficié d’une augmentation de salaire.
@@ -27,7 +27,7 @@
       #     # Comment ?
       #     # mensuel / nombre moyen de jours ouvrés par an
 
-      - 789
+      - 80
 
   notes: |
 
