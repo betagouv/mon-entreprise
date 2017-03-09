@@ -59,7 +59,7 @@ export default class Home extends Component {
             <ul>
               <li key="cdd">
                 <span className="simulateur">Surcoût du CDD</span>
-                <Link to="/cdd"><button>Essayer</button></Link>
+                <Link to="/cdd-intro"><button>Essayer</button></Link>
               </li>
               <li key="embauche">
                 <span className="simulateur">Prix global de l'embauche</span>

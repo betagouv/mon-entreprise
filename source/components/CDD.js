@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './CDD.css'
-import IntroCDD from './IntroCDD'
 import Results from './Results'
 import {reduxForm, formValueSelector} from 'redux-form'
 import {connect} from 'react-redux'
@@ -35,7 +34,6 @@ export default class CDD extends Component {
 
 		return (
       <div id="sim">
-        <IntroCDD />
         <div id="conversation">
           <section id="questions-answers">
             {conversation}

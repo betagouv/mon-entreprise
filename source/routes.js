@@ -5,6 +5,7 @@ import Home from './containers/Home'
 import Rule from './components/Rule'
 import About from './components/About'
 import CDD from './components/CDD'
+import CDDIntro from './components/CDDIntro'
 
 
 let RouteNotFound = () =>
@@ -23,8 +24,9 @@ let RouteNotFound = () =>
 export default (
   <Route path="/" component={Layout}>
     <Route path="regle/:name" component={Rule} />
+    <Route path="cdd-intro" component={CDDIntro} />
     <Route path="cdd" component={CDD} />
-      <Route path="a-propos" component={About} />
+    <Route path="a-propos" component={About} />
     <IndexRoute component={Home} />
     <Route path="*" component={RouteNotFound} />
   </Route>

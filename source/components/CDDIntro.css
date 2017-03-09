@@ -1,0 +1,60 @@
+#CDDIntro {
+	background: radial-gradient(ellipse at center, #4A89DC -160%,#333350 100%);
+	color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#CDDIntro h1 {
+	text-align: center;
+	font-size: 350%;
+	font-weight: 800;
+}
+
+#CDDIntro .subtitle {
+	text-align: center;
+	font-size: 110%;
+	font-weight: 300;
+}
+
+#CDDIntro #introduction {
+	margin-top: 4%;
+}
+
+#CDDIntro p {
+	font-size: 120%;
+	color: white;
+	opacity: .9;
+	width: 35%;
+	margin: 2em auto;
+}
+
+#CDDIntro #introduction .insist {
+	font-weight: 600;
+	/*font-style: italic;*/
+}
+
+
+#CDDIntro #action {
+	color: white;
+	margin-top: 5%;
+	display: block;
+	text-align: center;
+}
+#CDDIntro #action button {
+	color: inherit;
+	background: #4A89DC;
+	padding: .6em 1.2em;
+	font-size: 140%;
+	margin: 0 1em;
+	width: 12em;
+	border: none;
+	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1)
+}
+#CDDIntro #action button:hover {
+	box-shadow: none;
+	opacity: .95;
+}
