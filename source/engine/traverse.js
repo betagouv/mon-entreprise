@@ -4,6 +4,7 @@ import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
+import variablesInDevelopment from './variablesInDevelopment.yaml'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -18,14 +19,7 @@ let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 // L'objectif de la simulation : quelles règles voulons nous calculer ?
 let selectedRules = rules.filter(rule =>
-			R.contains(rule.name,
-				[
-					'CIF CDD',
-					'fin de contrat',
-					'majoration chômage CDD',
-					'simplifiée'
-				]
-			)
+			R.contains(rule.name, variablesInDevelopment)
 		)
 
 let transformPercentage = s =>
@@ -83,6 +77,8 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 
 let treat = (situationGate, rule) => rawNode => {
 
+	let reTreat = treat(situationGate, rule)
+
 	if (R.is(String)(rawNode)) {
 		/* On a à faire à un string, donc à une expression infixe.
 		Elle sera traité avec le parser obtenu grâce ) NearleyJs et notre grammaire.
@@ -100,12 +96,34 @@ let treat = (situationGate, rule) => rawNode => {
 		if (parseResult.category == 'variable')
 			return fillVariableNode(rule, situationGate)(parseResult, rawNode)
 
-		if (parseResult.category == 'comparison') {
-
+		if (parseResult.category == 'calcExpression') {
 			let
-				// variablePartialName = parseResult.fragments.join(' . '),
-				// variableName = completeVariableName(rule, variablePartialName),
-				// known = knownVariable(situationGate, variableName)
+				filledExplanation = parseResult.explanation.map(
+					R.when(R.propEq('category', 'variable'), fillVariableNode(rule, situationGate))
+				),
+				[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
+				operatorFunctionName = {
+					'*': 'multiply',
+					'/': 'divide',
+					'+': 'add',
+					'-': 'subtract'
+				}[parseResult.operator],
+				operatorFunction = R[operatorFunctionName],
+				nodeValue = value1 == null || value2 == null ?
+					null
+				: operatorFunction(value1, value2)
+
+			return {
+				text: rawNode,
+				nodeValue: nodeValue,
+				category: 'calcExpression',
+				type: 'numeric',
+				explanation: filledExplanation
+			}
+		}
+		if (parseResult.category == 'comparison') {
+			//TODO mutualise code for 'comparison' & 'calclExpression'. Harmonise their names
+			let
 				filledExplanation = parseResult.explanation.map(
 					R.when(R.propEq('category', 'variable'), fillVariableNode(rule, situationGate))
 				),
@@ -142,8 +160,10 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
+
 	if (!R.is(Object)(rawNode)) {
-		throw ' should be string or object'
+		console.log('Cette donnée : ', rawNode)
+		throw ' doit être un Number, String ou Object'
 	}
 
 	let mecanisms = R.intersection(R.keys(rawNode), knownMecanisms)
@@ -156,7 +176,7 @@ let treat = (situationGate, rule) => rawNode => {
 			R.unless(R.is(Array), () => {throw 'should be array'}),
 			R.reduce( (memo, next) => {
 				let {nodeValue, explanation} = memo,
-					child = treat(situationGate, rule)(next),
+					child = reTreat(next),
 					{nodeValue: nextValue} = child
 				return {...memo,
 					// c'est un OU logique mais avec une préférence pour null sur false
@@ -179,7 +199,7 @@ let treat = (situationGate, rule) => rawNode => {
 			R.unless(R.is(Array), () => {throw 'should be array'}),
 			R.reduce( (memo, next) => {
 				let {nodeValue, explanation} = memo,
-					child = treat(situationGate, rule)(next),
+					child = reTreat(next),
 					{nodeValue: nextValue} = child
 				return {...memo,
 					// c'est un ET logique avec une possibilité de null
@@ -216,7 +236,7 @@ let treat = (situationGate, rule) => rawNode => {
 				R.reduce( (memo, [condition, consequence]) => {
 					let
 						{nodeValue, explanation} = memo,
-						conditionNode = treat(situationGate, rule)(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
+						conditionNode = reTreat(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
 						childNumericalLogic = treatNumericalLogicRec(consequence),
 						nextNodeValue = conditionNode.nodeValue == null ?
 						// Si la proposition n'est pas encore résolvable
@@ -268,7 +288,7 @@ let treat = (situationGate, rule) => rawNode => {
 				explanation: null
 			}
 		else {
-			let node = treat(situationGate, rule)(v)
+			let node = reTreat(v)
 			return {
 				type: 'numeric',
 				category: 'percentage',
@@ -280,42 +300,28 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'multiplication') {
-
-		let base = v['assiette'],
-			parsed = nearley().feed(base),
-			baseVariableFound = parsed.results[0].category == 'variable'
-		if (!baseVariableFound) throw "L'assiette d'une multiplication doit pour le moment être une variable"
-
+		//TODO le code de ce mécanisme n'est pas élégant
 		let
-			variablePartialName = parsed.results[0].fragments.join(' . '),
-			baseVariableName = completeVariableName(rule, variablePartialName),
-			baseValue = situationGate(baseVariableName),
-			rateNode = treat(situationGate, rule)({taux: v['taux']}),
-			rate = rateNode.nodeValue
+			val = node => node.nodeValue,
+			base = reTreat(v['assiette']),
+			rate = v['taux'] ? reTreat({taux: v['taux']}) : {nodeValue: 1}, //TODO parser le taux dans le parser ?
+			facteur = v['facteur'] ? reTreat(v['facteur']) : {nodeValue: 1}
 
 		return {
-			nodeValue: (rate === 0 || rate === false || baseValue === 0) ?
+			nodeValue: (val(rate) === 0 || val(rate) === false || val(base) === 0 || val(facteur) === 0) ?
 				0
-			: (rate == null || baseValue == null) ?
+			: (val(rate) == null || val(base) == null || val(facteur) == null) ?
 					null
-				: +baseValue * rate,
+				: val(base) * val(rate) * val(facteur),
 			category: 'mecanism',
 			name: 'multiplication',
 			type: 'numeric',
 			explanation: {
-				base: {
-					type: 'numeric',
-					category: 'variable',
-					// name: 'base', déduit de la propriété de l'objet
-					nodeValue: baseValue == null ? null : +baseValue,
-					explanation: null,
-					variableName: baseVariableName,
-					missingVariables: baseValue == null ? [baseVariableName] : []
-				},
-				rate: rateNode,
-				// prorata:
+				base,
+				rate,
+				facteur
 				//TODO limit: 'plafond'
-				//TODO multiplier: 'multiplicateur'
+				//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
 			}
 		}
 	}

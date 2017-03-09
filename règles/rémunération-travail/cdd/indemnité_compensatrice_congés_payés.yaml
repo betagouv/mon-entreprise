@@ -1,4 +1,5 @@
 - Cotisation: Indemnité compensatrice congés payés
+  attache: Salariat . CDD
   description: |
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
@@ -12,7 +13,7 @@
   non applicable si:
     l'une de ces conditions:
       - événements . CDD poursuivi en CDI
-    # Y a-t-il d'autres conditions ?
+    # TODO Y a-t-il d'autres conditions ? Sinon supprimer la liste
 
   # TODO aspect temporel
   # L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
@@ -24,10 +25,10 @@
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire de base annuel
+          assiette: salaire de base * 12
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           taux: 10%
-          prorata: congés non pris / 25 # variable qui par défaut est en jours ouvrés, probablement le plus commun
+          facteur: congés non pris / 25 # variable qui par défaut est en jours ouvrés, probablement le plus commun
 
       - description: Méthode "maintien du salaire"
         note: Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a bénéficié d’une augmentation de salaire.
@@ -39,9 +40,8 @@
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
           assiette: congés non pris
-          facteur:  salaire de base par jour ouvré
-          # Comment ?
-          # mensuel / nombre moyen de jours ouvrés par an
+          facteur:  salaire de base / 21 # mensuel / nombre moyen de jours ouvrés par mois #TODO vrai mécanisme de calcul
+
 
   notes: |
 
