@@ -109,6 +109,7 @@
 
 - Variable: événements
   attache: Salariat . CDD
+  titre: Événement de contrat
   question: Pensez-vous être confronté à l'un de ces événements ?
   description: Certains événements impactent le prix d'un CDD
   # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,

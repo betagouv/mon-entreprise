@@ -4,7 +4,7 @@
 }
 
 .step {
-	opacity: .2;
+	opacity: 1;
 }
 
 .step:first-child {
@@ -92,12 +92,32 @@
 	margin-bottom: 1em;
 	border-radius: 1.4em;
 	position: relative;
-	cursor: pointer;
 }
-/* The unfolded step is the currently focused
-question : make it visible with colors */
-.step.unfolded h1 {
-	cursor: default;
+
+.fact {
+	width: 80%;
+	margin-bottom: 1em;
+	clear: both;
+}
+.fact .title {
+	font-weight: 600;
+	border-bottom: 1px solid #aaa;
+}
+.fact .answer {
+	float: right;
+}
+
+.fact .edit {
+	margin-left: 2em;
+	font-size: 75%;
+	cursor: pointer;
+	font-weight: bold;
+	padding: .1em .6em;
+	border-radius: 2px;
+}
+.step.completed .edit:hover {
+	background: #333350;
+	color: white;
 }
 
 .step-subquestion {

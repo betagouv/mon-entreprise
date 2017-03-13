@@ -12,39 +12,39 @@ let situationSelector = formValueSelector('conversation')
 
 @reduxForm({form: 'conversation', destroyOnUnmount: false})
 @connect(
-  state => ({
-	situation: variableName => situationSelector(state, variableName),
-	steps: state.steps,
-	themeColours: state.themeColours,
-	analysedSituation: state.analysedSituation,
-}),
-  dispatch => ({
-	startConversation: () => dispatch({type: START_CONVERSATION}),
-}),
+	state => ({
+		situation: variableName => situationSelector(state, variableName),
+		steps: state.submittedSteps.concat(state.steps),
+		themeColours: state.themeColours,
+		analysedSituation: state.analysedSituation,
+	}),
+	dispatch => ({
+		startConversation: () => dispatch({type: START_CONVERSATION}),
+	}),
 )
 export default class CDD extends Component {
 	componentDidMount() {
 		this.props.startConversation()
 	}
 	render() {
-		let {steps} = this.props
+		let {steps, situation} = this.props
 
 		let conversation = steps.map(step => (
-      <step.component key={step.name} {...step} />
-    ))
+			<step.component key={step.name} {...step} step={step} answer={situation(step.name)}/>
+		))
 
 		return (
-      <div id="sim">
-        <PageTypeIcon type="simulation" />
-        <h1>Simulateur CDD</h1>
-        <div id="conversation">
-          <section id="questions-answers">
-            {conversation}
-          </section>
-          <Aide />
-        </div>
-        <Results {...this.props} />
-      </div>
+			<div id="sim">
+				<PageTypeIcon type="simulation" />
+				<h1>Simulateur CDD</h1>
+				<div id="conversation">
+					<section id="questions-answers">
+						{conversation}
+					</section>
+					<Aide />
+				</div>
+				<Results {...this.props} />
+			</div>
 		)
 	}
 }

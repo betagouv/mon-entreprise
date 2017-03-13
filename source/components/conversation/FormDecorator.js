@@ -16,8 +16,6 @@ to understand those precious higher order components.
 export var FormDecorator = formType => RenderField =>
 	@connect( //... this helper directly to the redux state to avoid passing more props
 		state => ({
-			steps: state.steps,
-			answers: state.form.conversation && state.form.conversation.values,
 			themeColours: state.themeColours
 		}),
 		dispatch => ({
@@ -31,12 +29,14 @@ export var FormDecorator = formType => RenderField =>
 		}
 		render() {
 			let {
+				stepAction,
+				themeColours,
+				setFormValue
+			} = this.props,
+				{
 				name,
 				visible,
-				steps,
-				stepAction,
 				possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
-				themeColours,
 				// formerly in conversation-steps
 				valueType,
 				attributes,
@@ -45,11 +45,10 @@ export var FormDecorator = formType => RenderField =>
 				human,
 				helpText,
 				suggestions,
-				setFormValue,
 				subquestion
-			} = this.props
+			} = this.props.step
 
-			this.step = steps.find(s => s.name == name)
+			this.step = this.props.step
 
 			/* La saisie peut être cachée car ce n'est pas encore son tour,
 			ou parce qu'elle a déjà été remplie. Dans ce dernier cas, un résumé
@@ -82,7 +81,7 @@ export var FormDecorator = formType => RenderField =>
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
 			return (
-			<div className={classNames('step', {unfolded}, formType)} >
+			<div className={classNames({step: unfolded, fact: completed}, formType)} >
 				{this.state.helpVisible && this.renderHelpBox(helpText)}
 				<div style={{visibility: this.state.helpVisible ? 'hidden' : 'visible'}}>
 					{this.renderHeader(unfolded, valueType, human, helpText, wideQuestion, subquestion)}
@@ -129,16 +128,24 @@ export var FormDecorator = formType => RenderField =>
 			let {
 				name,
 				stepAction,
-				answers,
+				answer,
 				themeColours
 			} = this.props,
-				value = answers[name],
 				ignored = this.step.state === 'ignored'
-
 			return (
-				<span onClick={() => stepAction(name, 'editing')}>
-					<h1>{this.props.title}</h1>
-						<StepAnswer	{...{value, human, valueType, ignored, themeColours}} />
+				<span>
+					<span className="title">{this.props.step.title}</span>
+					<span className="answer">{answer}
+						<span className="edit">
+							<i
+								onClick={() => stepAction(name, 'editing')}
+								className="fa fa-pencil-square-o"
+								aria-hidden="true">
+							</i>
+							Modifier
+						</span>
+					</span>
+					{/* <StepAnswer	{...{value, human, valueType, ignored, themeColours}} /> */}
 				</span>)
 		}
 

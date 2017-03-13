@@ -17,15 +17,6 @@ import {constructStepMeta} from './engine/conversation'
 
 import computeThemeColours from './components/themeColours'
 
-function steps(steps = [], {type}) {
-	switch (type) {
-	case UNSUBMIT_ALL:
-		return []
-	default:
-		return steps
-	}
-}
-
 function themeColours(state = computeThemeColours(), {type, colour}) {
 	if (type == 'CHANGE_THEME_COLOUR')
 		return computeThemeColours(colour)
@@ -51,7 +42,9 @@ export default reduceReducers(
 
 		/* Have forms been filled or ignored ?
 		false means the user is reconsidering its previous input */
-		steps,
+		steps: (steps=[]) => steps,
+
+		submittedSteps: (steps=[]) => steps,
 
 		analysedSituation: (state = []) => state,
 
@@ -65,6 +58,15 @@ export default reduceReducers(
 
 			// pour débugguer :
 			window.situationGate = situationGate(state)
+
+			let newlySubmittedSteps =
+				action.newState == 'filled'
+				? [{
+					...state.steps.find(s => s.name === action.name),
+					state: 'filled'
+				}]
+				: []
+
 
 			// on calcule la prochaine étape, à ajouter sur la pile
 			let
@@ -82,11 +84,25 @@ export default reduceReducers(
 
 				missingVariablesList = R.keys(missingVariables),
 
+				/*
+					Certaines variables manquantes peuvent être factorisées dans des groupes.
+					Par exemple, au lieu de :
+
+					q1: "Pensez vous porlonger le CDD en CDI",
+					r1: Oui | Non
+					q2: "Pensez-vous qu'une rupture pour faute grave est susceptible d'arriver"
+					r2: Oui | Non
+
+					on préfère :
+
+					q: "Pensez-vous être confronté à l'un de ces événements ?"
+					r: Prolongation du CDD en CDI | Rupture pour faute grave
+				*/
 				groups = R.groupBy(
 					parentName
 				)(missingVariablesList),
 
-				// on va maintenant construire la liste des composants React correspondant aux questions pour obtenir les variables manquantes
+				// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
 				steps = R.pipe(
 					R.mapObjIndexed((variables, group) =>
 						R.pipe(
@@ -133,7 +149,13 @@ export default reduceReducers(
 					R.unnest
 				)(groups)
 
-			return {...state, steps, analysedSituation}
+			console.log('submittedSteps', newlySubmittedSteps)
+			return {
+				...state,
+				steps,
+				submittedSteps: state.submittedSteps.concat(newlySubmittedSteps),
+				analysedSituation
+			}
 
 		} else {
 			return state
