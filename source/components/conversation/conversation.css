@@ -81,15 +81,15 @@
 }
 
 .step h1 {
-	background: #eee;
-	color: #222;
+	border: 2px solid #333350;
+	color: #333350;
 	display: inline-block;
 	max-width: 60%;
 	font-size: 110%;
-	font-weight: 400;
+	font-weight: 600;
 	padding: .6em 1em;
 	margin: 0;
-	margin-bottom: .4em;
+	margin-bottom: 1em;
 	border-radius: 1.4em;
 	position: relative;
 	cursor: pointer;

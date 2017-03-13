@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
 import Aide from './Aide'
+import PageTypeIcon from './PageTypeIcon'
 
 let situationSelector = formValueSelector('conversation')
 
@@ -34,6 +35,8 @@ export default class CDD extends Component {
 
 		return (
       <div id="sim">
+        <PageTypeIcon type="simulation" />
+        <h1>Simulateur CDD</h1>
         <div id="conversation">
           <section id="questions-answers">
             {conversation}

@@ -6,16 +6,18 @@ p {
 	padding: 2em;
 }
 
-#sim #introduction {
-	margin-left: 1.2em;
-	font-size: 110%;
-	padding-top: 0;
-	width: 60%;
+#sim > h1 {
+	color: #333350;
+	margin-top: 3%;
+	text-align: center;
+	font-size: 350%;
+	font-weight: 800;
 }
+
 
 #conversation {
 	margin: 1em auto;
-	font-size: 120%;
+	font-size: 110%;
 	line-height: normal;
 	display: flex;
 	justify-content: space-around;
