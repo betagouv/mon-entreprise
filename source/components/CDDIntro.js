@@ -28,10 +28,10 @@ export default () => (
       <p>
         Sur ce simulateur 17.0, <span className="insist">vous avez le droit de ne pas savoir</span> : certains termes utilisés dans la simulation ne sont pas évidents : cliquez simplement sur le symbôle • qui les suit pour ouvrir une aide contextuelle.
       </p>
-      <p>
-        Et n'hésitez pas à nous écrire <i style={{cursor: 'pointer'}} className="fa fa-envelope-o" /> ! La loi française est complexe, souvent à raison. Nous ne la changerons pas, mais pouvons la rendre plus transparente.
-      </p>
       <Link id="action" to="/cdd"><button>C'est parti !</button></Link>
+      <p className="italic">
+        Et n'hésitez pas à nous écrire &nbsp;<i style={{cursor: 'pointer'}} className="fa fa-envelope-o" /> ! La loi française est complexe, car très ciblée. Nous ne la changerons pas, mais pouvons la rendre plus transparente.
+      </p>
     </section>
   </div>
 )

@@ -13,9 +13,9 @@
   question: Quelle est la durée du contrat ?
   sous-question: |
     [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
-  format: période
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
+  format: période
   suggestions:
     18 mois: 18
     1 an: 12
@@ -28,7 +28,6 @@
   question: Quel est le motif de recours au CDD ?
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un de ces motifs
-  langue au chat possible: non
   une possibilité:
     - saisonnier
     - jeune vacances
@@ -114,6 +113,7 @@
   description: Certains événements impactent le prix d'un CDD
   # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,
   # et les identifier dynamiquement par leur attribut "attache" :
+  langue au chat possible: oui
   une possibilité:
     - CDD poursuivi en CDI
     - refus CDI avantageux

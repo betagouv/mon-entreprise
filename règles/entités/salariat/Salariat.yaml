@@ -10,8 +10,12 @@
 - Variable: congés non pris
   attache: Salariat
   question: Combien de jours de congés non pris ?
-  description: LALALA
-  format: entier positif
+  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, donc sur 25 jours de congés légaux annuels.
+  format: nombre positif
+  suggestions:
+    3 / 25: 3
+    10 / 25: 10
+
 
 
 - Variable: salaire de base
@@ -19,6 +23,9 @@
   question: Quel est le salaire de base ?
   description: Le salaire de base est le salaire brut régulier inscrit dans le contrat. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
   format: nombre positif
+  suggestions:
+    SMIC: 1480
+    salaire médian: 2300
 
 - Variable: Salaire brut
   formule:

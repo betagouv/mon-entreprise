@@ -123,8 +123,8 @@ export let knownVariable = (situationGate, variableName) =>
 export let evaluateVariable = (situationGate, variableName) => {
 	let value = situationGate(variableName)
 
-	return R.is(Number)(value)
-    ? value
-    : value == 'oui' ||
+	return isNaN(value)
+    ? value == 'oui' ||
         situationGate(parentName(variableName)) == nameLeaf(variableName)
+		: value
 }

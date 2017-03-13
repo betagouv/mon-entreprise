@@ -9,20 +9,20 @@ import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 
 // situationGate function useful for testing :
-let testingSituationGate = v => R.path(v.split('.'))(
-	{
-		"Salariat ":{
-			" CDD ":{
-					" événements": "_",
-					" motif":"saisonnier",
-					" engagement employeur complément formation":"non",
-					" durée contrat": 2
-				},
-			" contrat aidé":"non",
-			" salaire de base": 1481,
-			" congés non pris": 3
-		}
-	})
+let testingSituationGate = v =>
+  R.path(v.split('.'))({
+	'Salariat ': {
+		' CDD ': {
+			' événements': '_',
+			' motif': 'saisonnier',
+			' engagement employeur complément formation': 'non',
+			' durée contrat': '2',
+		},
+		' contrat aidé': 'non',
+		' salaire de base': '1481',
+		' congés non pris': '3',
+	},
+})
 
 @connect(state => ({
 	situationGate: name => formValueSelector('conversation')(state, name)
@@ -34,7 +34,7 @@ export default class Rule extends Component {
 			situationGate
 		} = this.props,
 			rule = analyseSituation(
-				testingSituationGate
+				situationGate
 			).find(R.propEq('name', name))
 
 		if (!rule) {
@@ -159,11 +159,13 @@ let Multiplication = ({base, rate}) =>
 </div>
 
 
-let Variable = ({nodeValue, variableName}) =>
+let Variable = (yo) => do {let {nodeValue, variableName} = yo;
+console.log('yo', yo);
 <span className="variable" >
 	<span className="name">{variableName}</span>
 	<NodeValue data={nodeValue}/>
 </span>
+}
 
 
 let Comparison = ({nodeValue, text}) =>

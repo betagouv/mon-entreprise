@@ -2,7 +2,6 @@
 - Variable: contrat aidé
   attache: Salariat
   question: Est-ce un contrat aidé ?
-  langue au chat possible: non
   une possibilité:
     - contrat unique insertion
     - emploi avenir

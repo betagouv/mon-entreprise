@@ -50,7 +50,7 @@ p {
 
 #sim #results {
 	padding: .1em;
-	background: #4A89DC;
+	background: rgb(74, 137, 220);
 	box-shadow: 1px -7px 20px 2px #eee;
 	position: fixed;
 	bottom: 0;
@@ -58,7 +58,7 @@ p {
 	width: 100%;
 	font-size: 80%;
 	color: white;
-	height: 10em;
+	height: 12em;
 	text-align: center;
 }
 
@@ -69,9 +69,9 @@ p {
 	float: left;
 	line-height: 1.2em;
 	margin: 0;
-	margin-left: 1.5em;
+	margin-left: .5em;
 	padding: .5em;
-	font-weight: 400;
+	font-weight: 300;
 	font-size: 300%;
 }
 
@@ -80,66 +80,72 @@ p {
 	display: inline-flex;
 	justify-content: space-around;
 	height: 100%;
-	width: 70%;
+	width: 80%;
 	list-style: none;
 	margin-top: 0.4em;
+	padding-left: 0;
 }
 
 #results li {
-	color: #333;
-	background: white;
-	display: inline-block;
-	margin: 0 2em;
-	border-radius: 8px;
-	padding: .6em 2em;
+	margin: .8em 1em;
 	text-align: center;
-	border: 1px solid #333350;
 }
-#results li.unsatisfied {
-	border: 2px dashed #4A89DC;
+#results .rule-box {
+	padding: .2em 1em;
+	color: rgb(74, 137, 220);
+	background: white;
+	border-radius: 3px;
+	border: 1px solid white;
+	white-space: nowrap;
+	color: #333350;
+}
+#results li.unsatisfied .rule-box {
+	border: 2px dashed rgb(74, 137, 220);
 }
 
-#results li h3 {
-	font-size: 130%;
-	/*width: 80%;*/
-	border-bottom: 1px solid #aaa;
-	margin: .1em;
-	margin-bottom: .3em;
-	padding-bottom: .2em;
+#results .rule-type {
+	background: rgb(74, 137, 220);
+	color: white;
+	border: 1px solid;
+	font-size: 75%;
+	line-height: 2em;
+	font-weight: 800;
+}
+
+#results .rule-name {
+	font-size: 150%;
+	text-transform: capitalize;
 }
 
 #results li p {
 	margin: 0;
-	font-size: 150%;
+	padding: 1em 0;
+	font-size: 120%;
+	color: inherit;
 }
 
 #results li.unsatisfied p{
 	font-style: italic;
 }
-#results li.number p {
-	font-size: 300%;
+#results li p .figure {
+	font-size: 200%;
 }
 
-#results li:hover .understand {
-	display: inline;
-}
-
-#results li .understand {
-	display: none;
-}
-
-#results .understand button {
-	background: #4A89DC;
+#results .understand {
 	color: white;
-	font-weight: 600;
+	font-weight: 200;
 	border: none;
   padding: .3em .8em;
+	line-height: 1.8em;
+	font-style: italic;
+	text-decoration: none;
 }
 #results .understand i {
 	display: inline-block;
-	font-size: 190%;
+	font-size: 120%;
 	line-height: .2em;
-	opacity: .8
+	opacity: .3;
+	margin: 0 0 0 .6em;
 }
 #results .understand:hover i {
 	opacity: 1
