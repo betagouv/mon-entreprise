@@ -40,7 +40,7 @@ p {
 
 .dependency-of li {
 	font-size: 80%;
-	background: #4A89DC;
+	background: #333350;
 	color: white;
 	display: inline-block;
 	padding: .1em .6em;
@@ -52,8 +52,8 @@ p {
 
 #sim #results {
 	padding: .1em;
-	background: rgb(74, 137, 220);
-	box-shadow: 1px -7px 20px 2px #eee;
+	background: #333350;
+	box-shadow: 1px -7px 20px 2px #ccc;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -64,17 +64,23 @@ p {
 	text-align: center;
 }
 
-#results h2 {
+#results #results-titles {
 	color: white;
-	width: 5em;
+	width: 18%;
 	display: inline-block;
 	float: left;
 	line-height: 1.2em;
 	margin: 0;
 	margin-left: .5em;
 	padding: .5em;
-	font-weight: 300;
-	font-size: 300%;
+	font-weight: 400;
+	font-size: 120%;
+}
+#results #results-titles h2 {
+	font-size: 210%;
+}
+#results #results-titles div {
+	font-style: italic;
 }
 
 
@@ -84,7 +90,6 @@ p {
 	height: 100%;
 	width: 80%;
 	list-style: none;
-	margin-top: 0.4em;
 	padding-left: 0;
 }
 
@@ -92,9 +97,12 @@ p {
 	margin: .8em 1em;
 	text-align: center;
 }
+#results li a {
+	text-decoration: none;
+}
 #results .rule-box {
 	padding: .2em 1em;
-	color: rgb(74, 137, 220);
+	color: #333350;
 	background: white;
 	border-radius: 3px;
 	border: 1px solid white;
@@ -102,11 +110,11 @@ p {
 	color: #333350;
 }
 #results li.unsatisfied .rule-box {
-	border: 2px dashed rgb(74, 137, 220);
+	border: 2px dashed #333350;
 }
 
 #results .rule-type {
-	background: rgb(74, 137, 220);
+	background: #333350;
 	color: white;
 	border: 1px solid;
 	font-size: 75%;
@@ -133,22 +141,6 @@ p {
 	font-size: 200%;
 }
 
-#results .understand {
-	color: white;
-	font-weight: 200;
-	border: none;
-  padding: .3em .8em;
-	line-height: 1.8em;
-	font-style: italic;
-	text-decoration: none;
-}
-#results .understand i {
-	display: inline-block;
-	font-size: 120%;
-	line-height: .2em;
-	opacity: .3;
-	margin: 0 0 0 .6em;
-}
 #results .understand:hover i {
 	opacity: 1
 }

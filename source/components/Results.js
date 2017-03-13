@@ -11,7 +11,10 @@ export default class Results extends Component {
 			// missingVariables = collectMissingVariables(analysedSituation, 'groupByResult')
 		return (
 			<section id="results">
-				<h2>Vos obligations</h2>
+				<div id="results-titles">
+					<h2>Vos obligations</h2>
+					<div>Cliquez pour comprendre chaque calcul &nbsp;<i className="fa fa-hand-o-right" aria-hidden="true"></i></div>
+				</div>
 				<ul>
 					{analysedSituation.map(
 						({name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}) =>
@@ -21,24 +24,23 @@ export default class Results extends Component {
 								irrelevant = nonApplicable === true;
 
 							<li key={name} className={classNames({unsatisfied, number: !unsatisfied && !irrelevant})}>
-								<div className="rule-box">
-									<div className="rule-type">
-										{type}
-									</div>
-									<div className="rule-name">
-										{name}
-									</div>
-									<p>
-									{irrelevant ?
-										"Vous n'êtes pas concernés"
-										: unsatisfied ?
-											'En attente de vos réponses...'
-											: <span className="figure">{humanFigure(2)(computedValue) + '€'}</span>
-									}
-									</p>
-								</div>
 								<Link to={"/regle/" + name} className="understand">
-									Pourquoi ? <i className="fa fa-cogs" aria-hidden="true"></i>
+									<div className="rule-box">
+										<div className="rule-type">
+											{type}
+										</div>
+										<div className="rule-name">
+											{name}
+										</div>
+										<p>
+										{irrelevant ?
+											"Vous n'êtes pas concernés"
+											: unsatisfied ?
+												'En attente de vos réponses...'
+												: <span className="figure">{humanFigure(2)(computedValue) + '€'}</span>
+										}
+										</p>
+									</div>
 								</Link>
 							</li>
 						}
