@@ -13,12 +13,11 @@ export default () => (
     </div>
     <section id="introduction">
       <p>
-        En France, le contrat à durée déterminée{' '}
-        <span className="insist">est un contrat d'exception au CDI</span>
-        , apportant à l'employeur plus de souplesse dans un cadre précis prévu par la loi. Une contrepartie financière peut en échange lui être imposée.
+        En France, le contrat à durée déterminée <span className="insist">est un contrat d'exception au CDI</span>
+        , apportant à l'employeur plus de souplesse dans un cadre législatif précis, qui prévoit notamment une contrepartie financière.
       </p>
       <p>
-        Ce simulateur vous aidera calculer les 4 éléments de ce surcoût :
+        Ce simulateur calcule pour vous les 4 éléments de ce surcoût :
         <ul>
           <li>l'indemnité de fin de contrat</li>
           <li>le CIF</li>
@@ -27,15 +26,11 @@ export default () => (
         </ul>
       </p>
       <p>
-        Sur ce simulateur 17.0, <span className="insist">vous avez le droit de ne pas savoir</span> : certains termes utilisés dans la simulation ne sont pas évidents, cliquez simplement sur le symbôle • qui les suit pour ouvrir une aide contextuelle. Et n'hésitez pas à nous écrire &nbsp;
-        <i style={{cursor: 'pointer'}} className="fa fa-envelope-o" />
+        Sur ce simulateur 17.0, <span className="insist">vous avez le droit de ne pas savoir</span> : certains termes utilisés dans la simulation ne sont pas évidents : cliquez simplement sur le symbôle • qui les suit pour ouvrir une aide contextuelle.
       </p>
-      {/*
-				<p>
-				*: écrivez à contact@contact.contact (on fera mieux après). La loi française est complexe, souvent à raison. Nous ne la changerons pas, mais pouvons la rendre plus transparente.
-			</p>
-			*/
-      }
+      <p>
+        Et n'hésitez pas à nous écrire <i style={{cursor: 'pointer'}} className="fa fa-envelope-o" /> ! La loi française est complexe, souvent à raison. Nous ne la changerons pas, mais pouvons la rendre plus transparente.
+      </p>
       <Link id="action" to="/cdd"><button>C'est parti !</button></Link>
     </section>
   </div>
