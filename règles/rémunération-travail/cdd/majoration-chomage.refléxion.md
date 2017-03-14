@@ -1,3 +1,4 @@
+```yaml
 logique numérique: # première valeur trouvée, sinon 0
   - CDD poursuivi en CDI: 0%
   # - Contrat . type : # mécanisme de match à introduire une fois les entités gérées. Exclusivité exprimée dans l'entité Type
@@ -21,3 +22,4 @@ logique numérique 2:
           - contrat de travail durée ≤ 3 mois: 1.5%
         - usage:
           - contrat de travail durée ≤ 3 mois: 0.5%
+```

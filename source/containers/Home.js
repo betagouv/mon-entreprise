@@ -34,7 +34,7 @@ export default class Home extends Component {
           <section id="exploration">
 						<h1><i className="fa fa-search" aria-hidden="true"></i>Explorez la base</h1>
             <input
-              placeholder="Chercher par ex. retraite"
+              placeholder="Cherchez par ex. chomage"
               onChange={e => this.setState({userSearch: e.target.value})}
             />
 

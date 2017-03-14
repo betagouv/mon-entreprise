@@ -33,7 +33,6 @@ export default class Rule extends Component {
 
 		return (
 			<div id="rule">
-				Pourquoi cette règle me concerne ? Comment est-elle calculée ?
 				<PageTypeIcon type="comprendre"/>
 				<h1>
 					<span className="rule-type">{rule.type}</span>
@@ -55,6 +54,7 @@ export default class Rule extends Component {
 						{this.renderReferences(rule)}
 					</div>
 				</section>
+				<p>Pourquoi cette règle me concerne ? Comment est-elle calculée ? C'est pas très lisible pour l'instant, mais ça le deviendra</p>
 				<section id="rule-rules">
 					{ do {
 						let [,cond] =
