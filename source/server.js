@@ -23,6 +23,6 @@ new WebpackDevServer(webpack(config), {
 	}
 }).listen(3000, 'localhost', function (err) {
 	if (err)
-		console.log(err)
-	console.log('Bonjour ! Je vous sers sur localhost:3000')
+		console.log(err) //eslint-disable-line no-console
+	console.log('Bonjour ! Je vous sers sur localhost:3000') //eslint-disable-line no-console
 })

@@ -18,14 +18,31 @@ module.exports = {
 	module: {
 		loaders: [ {
 			test: /\.css$/,
-			loader: 'style!css!postcss-loader'
+			use: [
+				{
+					loader: 'style-loader',
+				},
+				{
+					loader: 'css-loader',
+					options: {
+						sourceMap: true,
+						importLoaders: 1,
+					}
+				},
+				{
+					loader: 'postcss-loader',
+					options: {
+						sourceMap: 'inline',
+					}
+				}
+			]
 		}, {
 			test: /\.html$/,
-			loader: 'html'
+			loader: 'html-loader'
 		},
 		{
 			test: /\.yaml$/,
-			loader: 'json!yaml'
+			loader: 'json-loader!yaml-loader'
 		},
 		{
 			test: /\.js$/,
@@ -34,20 +51,15 @@ module.exports = {
 		},
 		{
 			test: /\.(jpe?g|png|gif|svg)$/i,
-			loader: 'url?limit=10000!img?progressive=true'
+			loader: 'url-loader?limit=10000!img-loader?progressive=true'
 		}, {
 			test: /\.ne$/,
-			loader: 'nearley'
+			loader: 'nearley-loader'
 		}]
 	},
-	postcss: [
-		autoprefixer({
-			browsers: [ '> 1% in FR', 'not ie < 10' ]
-		})
-	],
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		// in order to use the fetch polyfill:
 		new webpack.ProvidePlugin({
 			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
