@@ -13,17 +13,6 @@
       - motif . jeune vacances
       - contrat aidé
 
-  # Données de test
-  # non applicable si:
-  #   l'une de ces conditions:
-  #     - A
-  #     - toutes ces conditions:
-  #       - B
-  #       - C
-  #       - l'une de ces conditions:
-  #         - X
-  #         - Z
-
   formule:
     multiplication:
       assiette: salaire de base

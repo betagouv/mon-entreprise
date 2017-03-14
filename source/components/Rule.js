@@ -7,22 +7,11 @@ import R from 'ramda'
 import PageTypeIcon from './PageTypeIcon'
 import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
+import mockSituation from '../engine/mockSituation.yaml'
 
 // situationGate function useful for testing :
-let testingSituationGate = v =>
-  R.path(v.split('.'))({
-	'Salariat ': {
-		' CDD ': {
-			' événements': '_',
-			' motif': 'saisonnier',
-			' engagement employeur complément formation': 'non',
-			' durée contrat': '2',
-		},
-		' contrat aidé': 'non',
-		' salaire de base': '1481',
-		' congés non pris': '3',
-	},
-})
+let testingSituationGate = v => // eslint-disable-line no-unused-vars
+	R.path(v.split('.'))(mockSituation)
 
 @connect(state => ({
 	situationGate: name => formValueSelector('conversation')(state, name)
@@ -68,16 +57,17 @@ export default class Rule extends Component {
 				</section>
 				<section id="rule-rules">
 					{ do {
-						let cond =
-							R.toPairs(rule).find(([,v]) => v.rulePropType == 'cond')
-						cond != null && <section id="declenchement">
-							<h2>Conditions de déclenchement</h2>
-							<RuleProp {...cond[1]} />
-						</section>
+						let [,cond] =
+							R.toPairs(rule).find(([,v]) => v.rulePropType == 'cond') || []
+						cond != null &&
+							<section id="declenchement">
+								<h2>Conditions de déclenchement</h2>
+								{cond.jsx}
+							</section>
 					}}
 					<section id="formule">
 						<h2>Calcul</h2>
-						<RuleProp {...rule['formule']}/>
+						{rule['formule'].jsx}
 					</section>
 				</section>
 
@@ -159,9 +149,9 @@ let Multiplication = ({base, rate}) =>
 </div>
 
 
-let Variable = (yo) => do {let {nodeValue, variableName} = yo;
-console.log('yo', yo);
-<span className="variable" >
+let Variable = (yo) => do {
+	let {nodeValue, variableName} = yo
+;<span className="variable" >
 	<span className="name">{variableName}</span>
 	<NodeValue data={nodeValue}/>
 </span>
@@ -186,38 +176,25 @@ let Percentage = ({percentage}) =>
 
 
 
-let NodeValue = ({data}) => do {
-	let valeur = data == null ?
-			'?'
-		: ( R.is(Number)(data) ?
-					Math.round(data)
-				: ( data ? 'oui' : 'non')
-		);
-
-	<span className={"value " + valeur}>←&nbsp;
-		{valeur}
-	</span>
-}
-
-let Formula = ({explanation, nodeValue}) => do {
-	<div className="form node" >
-		<div>
-			<span className="name">{expression}</span>
-			<NodeValue data={nodeValue}/>
-		</div>
-	</div>
-}
+// let Formula = ({explanation, nodeValue}) => do {
+// 	<div className="form node" >
+// 		<div>
+// 			<span className="name">{expression}</span>
+// 			<NodeValue data={nodeValue}/>
+// 		</div>
+// 	</div>
+// }
 
 let JSONView = ({o, rootKey}) => (
-  <div className="json">
-    <JSONTree
-      getItemString={() => ''}
-      theme={theme}
-      hideRoot={true}
-      shouldExpandNode={() => true}
-      data={rootKey ? {[rootKey]: o} : o}
-    />
-  </div>
+	<div className="json">
+		<JSONTree
+			getItemString={() => ''}
+			theme={theme}
+			hideRoot={true}
+			shouldExpandNode={() => true}
+			data={rootKey ? {[rootKey]: o} : o}
+		/>
+	</div>
 )
 
 

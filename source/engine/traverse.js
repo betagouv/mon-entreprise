@@ -1,10 +1,14 @@
-import {rules, findRuleByName, parentName} from './rules'
+import React from 'react'
+import {rules, findRuleByName} from './rules'
 import {completeVariableName, evaluateVariable, knownVariable} from './expressions'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 import variablesInDevelopment from './variablesInDevelopment.yaml'
+import {NodeValue} from './traverse-common-jsx'
+
+
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -71,7 +75,12 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		variableName,
 		type: 'boolean | numeric',
 		explanation: null,
-		missingVariables: known ? [] : [variableName]
+		missingVariables: known ? [] : [variableName],
+		jsx:
+			<span className="variable" >
+				<span className="name">{variableName}</span>
+				<NodeValue data={nodeValue}/>
+			</span>
 	}
 }
 
@@ -99,7 +108,14 @@ let treat = (situationGate, rule) => rawNode => {
 		if (parseResult.category == 'calcExpression') {
 			let
 				filledExplanation = parseResult.explanation.map(
-					R.when(R.propEq('category', 'variable'), fillVariableNode(rule, situationGate))
+					R.cond([
+						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'value'), node =>
+							R.assoc('jsx', <span className="value">
+								{node.nodeValue}
+							</span>)(node)
+						]
+					])
 				),
 				[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
 				operatorFunctionName = {
@@ -115,17 +131,34 @@ let treat = (situationGate, rule) => rawNode => {
 
 			return {
 				text: rawNode,
-				nodeValue: nodeValue,
+				nodeValue,
 				category: 'calcExpression',
 				type: 'numeric',
-				explanation: filledExplanation
+				explanation: filledExplanation,
+				jsx:
+					<div className="mecanism node" >
+						<div>
+							<span className="name">Éxpression de calcul</span>
+							<NodeValue data={nodeValue}/>
+						</div>
+						{filledExplanation[0].jsx}
+						<span className="operator">{parseResult.operator}</span>
+						{filledExplanation[1].jsx}
+				</div>
 			}
 		}
 		if (parseResult.category == 'comparison') {
 			//TODO mutualise code for 'comparison' & 'calclExpression'. Harmonise their names
 			let
 				filledExplanation = parseResult.explanation.map(
-					R.when(R.propEq('category', 'variable'), fillVariableNode(rule, situationGate))
+					R.cond([
+						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'value'), node =>
+							R.assoc('jsx', <span className="value">
+								{node.nodeValue}
+							</span>)(node)
+						]
+					])
 				),
 				[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
 				comparatorFunctionName = {
@@ -140,13 +173,18 @@ let treat = (situationGate, rule) => rawNode => {
 					null
 				: comparatorFunction(value1, value2)
 
-
 			return {
 				text: rawNode,
 				nodeValue: nodeValue,
 				category: 'comparison',
 				type: 'boolean',
-				explanation: filledExplanation
+				explanation: filledExplanation,
+				jsx:
+					<div className="comparison node" >
+						{filledExplanation[0].jsx}
+						<span className="operator">{parseResult.operator}</span>
+						{filledExplanation[1].jsx}
+					</div>
 			}
 		}
 	}
@@ -156,13 +194,17 @@ let treat = (situationGate, rule) => rawNode => {
 		return {
 			category: 'number',
 			nodeValue: rawNode,
-			type: 'numeric'
+			type: 'numeric',
+			jsx:
+				<span className="number">
+					{rawNode}
+				</span>
 		}
 	}
 
 
 	if (!R.is(Object)(rawNode)) {
-		console.log('Cette donnée : ', rawNode)
+		console.log('Cette donnée : ', rawNode) // eslint-disable-line no-console
 		throw ' doit être un Number, String ou Object'
 	}
 
@@ -172,7 +214,7 @@ let treat = (situationGate, rule) => rawNode => {
 		v = rawNode[k]
 
 	if (k === "l'une de ces conditions") {
-		return R.pipe(
+		let result = R.pipe(
 			R.unless(R.is(Array), () => {throw 'should be array'}),
 			R.reduce( (memo, next) => {
 				let {nodeValue, explanation} = memo,
@@ -193,6 +235,18 @@ let treat = (situationGate, rule) => rawNode => {
 				explanation: []
 			}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
 		)(v)
+		return {...result,
+			jsx:
+				<div className="mecanism node" >
+					<div>
+						<span className="name">{result.name}</span>
+						<NodeValue data={result.nodeValue}/>
+					</div>
+					<ul>
+					{result.explanation.map(item => <li>{item.jsx}</li>)}
+				</ul>
+			</div>
+		}
 	}
 	if (k === 'toutes ces conditions') {
 		return R.pipe(
@@ -220,12 +274,16 @@ let treat = (situationGate, rule) => rawNode => {
 	let treatNumericalLogicRec =
 		R.ifElse(
 			R.is(String),
-			rate => ({
+			rate => ({ //TODO unifier ce code
 				nodeValue: transformPercentage(rate),
 				type: 'numeric',
 				category: 'percentage',
 				percentage: rate,
-				explanation: null
+				explanation: null,
+				jsx:
+					<span className="rate" >
+						<span className="name">{rate}</span>
+					</span>
 			}),
 			R.pipe(
 				R.unless(
@@ -261,7 +319,13 @@ let treat = (situationGate, rule) => rawNode => {
 							condition: conditionNode,
 							conditionValue: conditionNode.nodeValue,
 							type: 'boolean',
-							explanation: childNumericalLogic
+							explanation: childNumericalLogic,
+							jsx: <span className="condition">
+								{conditionNode.jsx}
+								<span>
+									---> {childNumericalLogic.jsx}
+								</span>
+							</span>
 						}],
 					}
 				}, {
@@ -270,6 +334,18 @@ let treat = (situationGate, rule) => rawNode => {
 					name: "logique numérique",
 					type: 'boolean || numeric', // lol !
 					explanation: []
+				}),
+				node => ({...node,
+					jsx:
+						<div className="mecanism node" >
+							<div>
+								<span className="name">logique numérique</span>
+								<NodeValue data={node.nodeValue}/>
+							</div>
+							<ul>
+							{node.explanation.map(item => <li>{item.jsx}</li>)}
+						</ul>
+					</div>
 				})
 		))
 
@@ -281,11 +357,15 @@ let treat = (situationGate, rule) => rawNode => {
 		//TODO gérer les taux historisés
 		if (R.is(String)(v))
 			return {
-				type: 'numeric',
 				category: 'percentage',
+				type: 'numeric',
 				percentage: v,
 				nodeValue: transformPercentage(v),
-				explanation: null
+				explanation: null,
+				jsx:
+					<span className="rate" >
+						<span className="name">{v}</span>
+					</span>
 			}
 		else {
 			let node = reTreat(v)
@@ -294,7 +374,8 @@ let treat = (situationGate, rule) => rawNode => {
 				category: 'percentage',
 				percentage: node.nodeValue,
 				nodeValue: node.nodeValue,
-				explanation: node
+				explanation: node,
+				jsx: node.jsx
 			}
 		}
 	}
@@ -322,7 +403,14 @@ let treat = (situationGate, rule) => rawNode => {
 				facteur
 				//TODO limit: 'plafond'
 				//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
-			}
+			},
+			jsx:
+				<div className="multiplication node" >
+						{base.jsx}
+						<span className="multiplicationSign">×</span>
+						{rate && rate.jsx}
+						{facteur && facteur.jsx}
+				</div>
 		}
 	}
 
@@ -330,14 +418,25 @@ let treat = (situationGate, rule) => rawNode => {
 		let contenders = v.map(treat(situationGate, rule)),
 			contenderValues = R.pluck('nodeValue')(contenders),
 			stopEverything = R.contains(null, contenderValues),
-			maxValue = R.max(...contenderValues)
+			maxValue = R.max(...contenderValues),
+			nodeValue = stopEverything ? null : maxValue
 
 		return {
 			type: 'numeric',
 			category: 'mecanism',
 			name: 'le maximum de',
-			nodeValue: stopEverything ? null : maxValue,
-			explanation: contenders
+			nodeValue,
+			explanation: contenders,
+			jsx:
+				<div className="mecanism node" >
+					<div>
+						<span className="name">le maximum de</span>
+						<NodeValue data={nodeValue}/>
+					</div>
+					<ul>
+					{contenders.map(item => <li>{item.jsx}</li>)}
+				</ul>
+			</div>
 		}
 	}
 
@@ -351,14 +450,24 @@ let treatRuleRoot = (situationGate, rule) => R.evolve({ // -> Voilà les attribu
 
 	// 'cond' : Conditions d'applicabilité de la règle
 	'non applicable si': value => {
-		let child = treat(situationGate, rule)(value)
+		let
+			child = treat(situationGate, rule)(value),
+			nodeValue = child.nodeValue
 		return {
 			category: 'ruleProp',
 			rulePropType: 'cond',
 			name: 'non applicable si',
 			type: 'boolean',
 			nodeValue: child.nodeValue,
-			explanation: child
+			explanation: child,
+			jsx:
+				<div className="ruleProp node" >
+					<div>
+						<span className="name">non applicable si</span>
+						<NodeValue data={nodeValue}/>
+					</div>
+					{ child.jsx }
+				</div>
 		}
 	}
 	,
@@ -368,15 +477,25 @@ let treatRuleRoot = (situationGate, rule) => R.evolve({ // -> Voilà les attribu
 	// note: pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
 	// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 	'formule': value => {
-		let child = treat(situationGate, rule)(value)
+		let
+			child = treat(situationGate, rule)(value),
+			nodeValue = child.nodeValue
 		return {
 			category: 'ruleProp',
 			rulePropType: 'formula',
 			name: 'formule',
 			type: 'numeric',
-			nodeValue: child.nodeValue,
+			nodeValue: nodeValue,
 			explanation: child,
-			shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true)
+			shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true),
+			jsx:
+				<div className="ruleProp node" >
+					<div>
+						<span className="name">formula</span>
+						<NodeValue data={nodeValue}/>
+					</div>
+					{ child.jsx }
+				</div>
 		}
 	}
 	,

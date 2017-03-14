@@ -13,9 +13,13 @@ rules:
   no-global-assign: 0
   no-unsafe-negation: 0
   no-undef: 1
+  react/jsx-uses-vars: 2
+  react/jsx-uses-react: 2
 
 parser: babel-eslint
 
+plugins:
+  - react
 env:
   browser: true
   commonjs: true
