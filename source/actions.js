@@ -30,3 +30,5 @@ export function changeThemeColour(colour) {return {type: CHANGE_THEME_COLOUR, co
 
 
 export const EXPLAIN_VARIABLE = 'EXPLAIN_VARIABLE'
+
+export const POINT_OUT_OBJECTIVES = 'POINT_OUT_OBJECTIVES'

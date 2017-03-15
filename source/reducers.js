@@ -9,7 +9,7 @@ import Question from './components/conversation/Question'
 import Input from './components/conversation/Input'
 import RhetoricalQuestion from './components/conversation/RhetoricalQuestion'
 
-import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION, EXPLAIN_VARIABLE} from './actions'
+import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
 import R from 'ramda'
 
 import {findGroup, findRuleByDottedName, dottedName, parentName, collectMissingVariables} from './engine/rules'
@@ -35,6 +35,15 @@ function explainedVariable(state = null, {type, variableName=null}) {
 	}
 }
 
+function pointedOutObjectives(state=[], {type, objectives}) {
+	switch (type) {
+	case POINT_OUT_OBJECTIVES:
+		return objectives
+	default:
+		return state
+	}
+}
+
 export default reduceReducers(
 	combineReducers({
 		//  this is handled by redux-form, pas touche !
@@ -50,7 +59,9 @@ export default reduceReducers(
 
 		themeColours,
 
-		explainedVariable
+		explainedVariable,
+
+		pointedOutObjectives
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
 	(state, action) => {
@@ -77,11 +88,15 @@ export default reduceReducers(
 
 				// y = console.log('analysedSituation', JSON.stringify(analysedSituation)),
 
-				// on collecte les variables manquantes : celles qui sont nécessaires pour
-				// remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
-				// encore été renseignées
-				missingVariables = collectMissingVariables('groupByMissingVariable', analysedSituation),
+				/*
+					on collecte les variables manquantes : celles qui sont nécessaires pour
+					remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
+					encore été renseignées
 
+					missingVariables: {variable: [objectives]}
+				 */
+				missingVariables = collectMissingVariables('groupByMissingVariable', analysedSituation),
+				ya = console.log('missingVariables', missingVariables),
 				missingVariablesList = R.keys(missingVariables),
 
 				/*
@@ -128,20 +143,30 @@ export default reduceReducers(
 												{value: 'non', label: 'Non'},
 												{value: 'oui', label: 'Oui'}
 											]
+										},
+										{
+											objectives: missingVariables[dottedName]
 										}
 									)})],
-								[R.T, group =>
+								[R.T, group =>  do {
+									let possibilities = group['une possibilité']
 									Object.assign(
 										constructStepMeta(group),
 										{
 											component: Question,
 											choices:
-												group['une possibilité'].concat(
+												possibilities.concat(
 													group['langue au chat possible'] === 'oui' ?
 														[{value: '_', label: 'Aucun'}] : []
 												)
+										},
+										{
+											objectives: R.pipe(
+												R.chain(v => missingVariables[group.dottedName + ' . ' + v]),
+												R.uniq()
+											)(possibilities)
 										}
-									)]
+									)}]
 							])
 						)(group)
 					),

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import {Field, change} from 'redux-form'
-import {stepAction} from '../../actions'
+import {stepAction, POINT_OUT_OBJECTIVES} from '../../actions'
 import StepAnswer from './StepAnswer'
 
 /*
@@ -20,7 +20,8 @@ export var FormDecorator = formType => RenderField =>
 		}),
 		dispatch => ({
 			stepAction: (name, newState) => dispatch(stepAction(name, newState)),
-			setFormValue: (field, value) => dispatch(change('conversation', field, value))
+			setFormValue: (field, value) => dispatch(change('conversation', field, value)),
+			pointOutObjectives: objectives => dispatch({type: POINT_OUT_OBJECTIVES, objectives})
 		})
 	)
 	class extends Component {
@@ -31,7 +32,8 @@ export var FormDecorator = formType => RenderField =>
 			let {
 				stepAction,
 				themeColours,
-				setFormValue
+				setFormValue,
+				pointOutObjectives
 			} = this.props,
 				{
 				name,
@@ -45,7 +47,8 @@ export var FormDecorator = formType => RenderField =>
 				human,
 				helpText,
 				suggestions,
-				subquestion
+				subquestion,
+				objectives
 			} = this.props.step
 
 			this.step = this.props.step
@@ -81,7 +84,10 @@ export var FormDecorator = formType => RenderField =>
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
 			return (
-			<div className={classNames({step: unfolded, fact: completed}, formType)} >
+			<div
+				className={classNames({step: unfolded, fact: completed}, formType)}
+				onMouseOver={() => pointOutObjectives(objectives)}
+				onMouseOut={() => pointOutObjectives([])}>
 				{this.state.helpVisible && this.renderHelpBox(helpText)}
 				<div style={{visibility: this.state.helpVisible ? 'hidden' : 'visible'}}>
 					{this.renderHeader(unfolded, valueType, human, helpText, wideQuestion, subquestion)}
@@ -105,7 +111,7 @@ export var FormDecorator = formType => RenderField =>
 		*/
 		renderHeader(unfolded, valueType, human, helpText, wideQuestion, subquestion) {
 			return (
-				<span className="form-header" >
+				<span className="form-header">
 				{ unfolded ? this.renderQuestion(unfolded, helpText, wideQuestion, subquestion) : this.renderTitleAndAnswer(valueType, human)}
 				</span>
 			)
@@ -164,4 +170,8 @@ export var FormDecorator = formType => RenderField =>
 				{helpComponent}
 			</div>
 		}
+		componentWillUnmount(){
+			this.props.pointOutObjectives([])
+		}
+
 	}

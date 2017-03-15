@@ -94,32 +94,43 @@ p {
 }
 
 #results li {
-	margin: .8em 1em;
+	margin: .2em 1em;
 	text-align: center;
 }
 #results li a {
 	text-decoration: none;
 }
 #results .rule-box {
-	padding: .2em 1em;
+	padding: 0 1em;
 	color: #333350;
 	background: white;
 	border-radius: 3px;
-	border: 1px solid white;
 	white-space: nowrap;
 	color: #333350;
 }
-#results li.unsatisfied .rule-box {
-	border: 2px dashed #333350;
+#results li.irrelevant .rule-box {
+	background: rgba(255, 255, 255, 0.65);
+}
+#results li .pointer {
+	font-size: 300%;
+	line-height: .6em;
+	visibility: hidden;
+}
+#results li.pointedOut .pointer {
+	visibility: visible;
+}
+#results li.number .rule-box {
+	border: 5px solid #4A89DC;
 }
 
 #results .rule-type {
 	background: #333350;
 	color: white;
-	border: 1px solid;
+	border: none;
 	font-size: 75%;
 	line-height: 2em;
 	font-weight: 800;
+	margin: .6em 0 .1em;
 }
 
 #results .rule-name {
@@ -134,8 +145,11 @@ p {
 	color: inherit;
 }
 
-#results li.unsatisfied p{
+#results li.unsatisfied p {
 	font-style: italic;
+}
+#results li.irrelevant p {
+	font-weight: 600;
 }
 #results li p .figure {
 	font-size: 200%;

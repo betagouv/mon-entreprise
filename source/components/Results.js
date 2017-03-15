@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import {Link} from 'react-router'
+import {connect} from 'react-redux'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 
+@connect(
+	state => ({
+		pointedOutObjectives: state.pointedOutObjectives
+	})
+)
 export default class Results extends Component {
 	render() {
-		let {analysedSituation} = this.props
+		let {analysedSituation, pointedOutObjectives} = this.props
 			// missingVariables = collectMissingVariables(analysedSituation, 'groupByResult')
 		return (
 			<section id="results">
@@ -21,9 +27,11 @@ export default class Results extends Component {
 						do {
 							let
 								unsatisfied = nonApplicable == null || computedValue == null,
-								irrelevant = nonApplicable === true;
+								irrelevant = nonApplicable === true,
+								pointedOut = pointedOutObjectives.find(objective => objective == name),
+								number = nonApplicable == false && computedValue != null
 
-							<li key={name} className={classNames({unsatisfied, number: !unsatisfied && !irrelevant})}>
+							;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>
 								<Link to={"/regle/" + name} className="understand">
 									<div className="rule-box">
 										<div className="rule-type">
@@ -34,7 +42,7 @@ export default class Results extends Component {
 										</div>
 										<p>
 										{irrelevant ?
-											"Vous n'êtes pas concernés"
+											"Vous n'êtes pas concerné"
 											: unsatisfied ?
 												'En attente de vos réponses...'
 												: <span className="figure">{humanFigure(2)(computedValue) + '€'}</span>
@@ -42,6 +50,7 @@ export default class Results extends Component {
 										</p>
 									</div>
 								</Link>
+								<div className="pointer">•</div>
 							</li>
 						}
 					)}
