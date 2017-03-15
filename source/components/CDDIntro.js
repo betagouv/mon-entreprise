@@ -14,7 +14,7 @@ export default () => (
     <section id="introduction">
       <p>
         En France, le contrat à durée déterminée <span className="insist">est un contrat d'exception au CDI</span>
-        , apportant à l'employeur plus de souplesse dans un cadre législatif précis, qui prévoit notamment une contrepartie financière.
+        qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
       </p>
       <p>
         Ce simulateur calcule pour vous les 4 éléments de ce surcoût :

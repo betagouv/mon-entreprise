@@ -134,7 +134,7 @@
 - Variable: refus CDI avantageux
   attache: Salariat . CDD . événements
   titre: Refus d'un CDI avantageux
-  description: Le salarié refuse une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
+  description: Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
 
 - Variable: rupture anticipée salarié
   titre: Rupture anticipée du salarié
