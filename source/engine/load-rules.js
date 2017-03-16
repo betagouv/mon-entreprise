@@ -1,17 +1,31 @@
 import R from 'ramda'
 
-/* Load yaml files */
+/* TODO Ce fichier n'est pas propre.
 
-let context = require.context(
+C'est temporaire (séparation artificielle entre les règles d'entités et les règles d'objectif)
+Elles seront à termes toutes dans le même fichier, ou toutes dans leur fichier respectif
+
+*/
+
+let objectivesContext = require.context(
   '../../règles/rémunération-travail/cdd', true,
   /([a-zA-Z]|-|_)+.yaml$/)
 
+let entityContext = require.context(
+  '../../règles/entités/salariat', true,
+  /([a-zA-Z]|-|_)+.yaml$/)
 
-let rules = R.pipe(
-  R.map(context),
-  //flatten
+
+let objectives = R.pipe(
+  R.map(objectivesContext),
   R.unnest,
-)(context.keys())
+)(objectivesContext.keys())
 
 
-export default rules.filter(r => r != null)
+let entities = R.pipe(
+  R.map(entityContext),
+  R.unnest,
+)(entityContext.keys())
+
+
+export default [...objectives, ...entities].filter(r => r != null)

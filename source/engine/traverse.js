@@ -1,11 +1,10 @@
 import React from 'react'
-import {rules, findRuleByName} from './rules'
-import {completeVariableName, evaluateVariable, knownVariable} from './expressions'
+import {findRuleByDottedName, completeRuleName, findRuleByName} from './rules'
+import {evaluateVariable, knownVariable} from './variables'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
-import variablesInDevelopment from './variablesInDevelopment.yaml'
 import {Node, Leaf} from './traverse-common-jsx'
 
 
@@ -20,11 +19,6 @@ let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 */
 
-
-// L'objectif de la simulation : quelles règles voulons nous calculer ?
-let selectedRules = rules.filter(rule =>
-			R.contains(rule.name, variablesInDevelopment)
-		)
 
 let transformPercentage = s =>
 	R.contains('%')(s) ?
@@ -64,9 +58,20 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 	let
 		{fragments} = parseResult,
 		variablePartialName = fragments.join(' . '),
-		variableName = completeVariableName(rule, variablePartialName),
-		known = knownVariable(situationGate, variableName),
-		nodeValue = !known ? null : evaluateVariable(situationGate, variableName)
+		variableName = completeRuleName(rule, variablePartialName),
+		// y = console.log('variableName', variableName),
+		variable = findRuleByDottedName(variableName),
+		variableIsRule = variable.formule != null,
+		//TODO perf : mettre un cache sur les variables !
+		// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
+		// et qu'il n'y a aucun problème de perf aujourd'hui
+		parsedRule = variableIsRule && treatRuleRoot(
+			situationGate,
+			variable
+		),
+
+		known = !variableIsRule && knownVariable(situationGate, variableName),
+		nodeValue = variableIsRule ? parsedRule.nodeValue : !known ? null : evaluateVariable(situationGate, variableName)
 
 	return {
 		nodeValue,
@@ -74,8 +79,8 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		fragments: fragments,
 		variableName,
 		type: 'boolean | numeric',
-		explanation: null,
-		missingVariables: known ? [] : [variableName],
+		explanation: parsedRule,
+		missingVariables: (variableIsRule || known) ? [] : [variableName],
 		jsx:	<Leaf
 			classes="variable"
 			name={variableName}
@@ -85,7 +90,7 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 }
 
 let treat = (situationGate, rule) => rawNode => {
-
+// console.log('rawNode', rawNode)
 	let reTreat = treat(situationGate, rule)
 
 	if (R.is(String)(rawNode)) {
@@ -386,6 +391,33 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
+	// Une simple somme de variables
+	if (k === 'somme') {
+		let
+			summedVariables = v.map(reTreat),
+			nodeValue = summedVariables.reduce(
+				(memo, {nodeValue: nextNodeValue}) => memo == null ? null : nextNodeValue == null ? null : memo + +nextNodeValue,
+			0)
+
+		return {
+			nodeValue,
+			category: 'mecanism',
+			name: 'somme',
+			type: 'numeric',
+			explanation: summedVariables,
+			jsx: <Node
+				classes="mecanism somme"
+				name="somme"
+				value={nodeValue}
+				child={
+					<ul>
+						{summedVariables.map(v => <li key={v.name}>{v.jsx}</li>)}
+					</ul>
+				}
+			/>
+		}
+	}
+
 	if (k === 'multiplication') {
 		//TODO le code de ce mécanisme n'est pas élégant
 		let
@@ -473,70 +505,87 @@ let treat = (situationGate, rule) => rawNode => {
 
 }
 
-let treatRuleRoot = (situationGate, rule) => R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
+let treatRuleRoot = (situationGate, rule) => R.pipe(
+	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
 	// 'meta': pas de traitement pour l'instant
 
 	// 'cond' : Conditions d'applicabilité de la règle
-	'non applicable si': value => {
-		let
-			child = treat(situationGate, rule)(value),
-			nodeValue = child.nodeValue
-		return {
-			category: 'ruleProp',
-			rulePropType: 'cond',
-			name: 'non applicable si',
-			type: 'boolean',
-			nodeValue: child.nodeValue,
-			explanation: child,
-			jsx: <Node
-				classes="ruleProp mecanism cond"
-				name="non applicable si"
-				value={nodeValue}
-				child={
-					child.jsx
-				}
-			/>
+		'non applicable si': value => {
+			let
+				child = treat(situationGate, rule)(value),
+				nodeValue = child.nodeValue
+			return {
+				category: 'ruleProp',
+				rulePropType: 'cond',
+				name: 'non applicable si',
+				type: 'boolean',
+				nodeValue: child.nodeValue,
+				explanation: child,
+				jsx: <Node
+					classes="ruleProp mecanism cond"
+					name="non applicable si"
+					value={nodeValue}
+					child={
+						child.jsx
+					}
+				/>
+			}
 		}
-	}
-	,
-	// [n'importe quel mécanisme booléen] : expression booléenne (simple variable, négation, égalité, comparaison numérique, test d'inclusion court / long) || l'une de ces conditions || toutes ces conditions
-	// 'applicable si': // pareil mais inversé !
+		,
+		// [n'importe quel mécanisme booléen] : expression booléenne (simple variable, négation, égalité, comparaison numérique, test d'inclusion court / long) || l'une de ces conditions || toutes ces conditions
+		// 'applicable si': // pareil mais inversé !
 
-	// note: pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
-	// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
-	'formule': value => {
-		let
-			child = treat(situationGate, rule)(value),
-			nodeValue = child.nodeValue
-		return {
-			category: 'ruleProp',
-			rulePropType: 'formula',
-			name: 'formule',
-			type: 'numeric',
-			nodeValue: nodeValue,
-			explanation: child,
-			shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true),
-			jsx: <Node
-				classes="ruleProp mecanism formula"
-				name="formule"
-				value={nodeValue}
-				child={
-					child.jsx
-				}
-			/>
+		// note: pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
+		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
+		'formule': value => {
+			let
+				child = treat(situationGate, rule)(value),
+				nodeValue = child.nodeValue
+			return {
+				category: 'ruleProp',
+				rulePropType: 'formula',
+				name: 'formule',
+				type: 'numeric',
+				nodeValue: nodeValue,
+				explanation: child,
+				shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true),
+				jsx: <Node
+					classes="ruleProp mecanism formula"
+					name="formule"
+					value={nodeValue}
+					child={
+						child.jsx
+					}
+				/>
+			}
 		}
-	}
 	,
 	// TODO les mécanismes de composantes et de variations utilisables un peu partout !
-
 	// TODO 'temporal': information concernant les périodes : à définir !
-
 	// TODO 'intéractions': certaines variables vont en modifier d'autres : ex. Fillon va réduire voir annuler (set 0) une liste de cotisations
-
 	// ... ?
 
-})(rule)
+	}),
+	r => {
+		let
+			formuleValue = r.formule.nodeValue,
+			condValue = R.path(['non applicable si', 'nodeValue'])(r),
+			nodeValue =
+				condValue === undefined
+			? formuleValue
+			: formuleValue === 0
+				? 0
+				: condValue === null
+					? null
+					: condValue === true
+						? 0
+						: formuleValue
+
+
+		return {...r, nodeValue}
+	}
+)(rule)
 
 
 /* Analyse the set of selected rules, and add derived information to them :
@@ -544,10 +593,11 @@ let treatRuleRoot = (situationGate, rule) => R.evolve({ // -> Voilà les attribu
 - if not, do they have a computed value or are they non applicable ?
 */
 export let analyseSituation = situationGate =>
-	selectedRules.map(
-		rule => treatRuleRoot(situationGate, rule)
+	//TODO l'objectif devrait être spécifié par la page qui lance un simulateur
+	treatRuleRoot(
+		situationGate,
+		findRuleByName('surcoût CDD')
 	)
-
 
 export let variableType = name => {
 	if (name == null) return null

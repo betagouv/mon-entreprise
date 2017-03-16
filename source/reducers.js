@@ -2,17 +2,16 @@ import React from 'react'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
-import {analyseSituation, variableType} from './engine/traverse'
+import {analyseSituation} from './engine/traverse'
 import { euro, months } from './components/conversation/formValueTypes.js'
 
 import Question from './components/conversation/Question'
 import Input from './components/conversation/Input'
-import RhetoricalQuestion from './components/conversation/RhetoricalQuestion'
 
-import { STEP_ACTION, UNSUBMIT_ALL, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
+import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
 import R from 'ramda'
 
-import {findGroup, findRuleByDottedName, dottedName, parentName, collectMissingVariables} from './engine/rules'
+import {findGroup, findRuleByDottedName, parentName, collectMissingVariables} from './engine/rules'
 import {constructStepMeta} from './engine/conversation'
 
 import computeThemeColours from './components/themeColours'
@@ -86,19 +85,22 @@ export default reduceReducers(
 					situationGate(state)
 				),
 
-				// y = console.log('analysedSituation', JSON.stringify(analysedSituation)),
+				// y = console.log('analysedSituation',analysedSituation),
 
 				/*
 					on collecte les variables manquantes : celles qui sont nécessaires pour
 					remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
 					encore été renseignées
 
+					TODO perf : peut-on le faire en même temps que l'on traverse l'AST ?
+					Oui sûrement, cette liste se complète en remontant l'arbre. En fait, on le fait déjà pour nodeValue,
+					et quand nodeValue vaut null, c'est qu'il y a des missingVariables ! Il suffit donc de remplacer les
+					null par un tableau, et d'ailleurs utiliser des fonction d'aide pour mutualiser ces tests.
+
 					missingVariables: {variable: [objectives]}
 				 */
 				missingVariables = collectMissingVariables('groupByMissingVariable', analysedSituation),
-				ya = console.log('missingVariables', missingVariables),
 				missingVariablesList = R.keys(missingVariables),
-
 				/*
 					Certaines variables manquantes peuvent être factorisées dans des groupes.
 					Par exemple, au lieu de :
@@ -174,7 +176,6 @@ export default reduceReducers(
 					R.unnest
 				)(groups)
 
-			console.log('submittedSteps', newlySubmittedSteps)
 			return {
 				...state,
 				steps,

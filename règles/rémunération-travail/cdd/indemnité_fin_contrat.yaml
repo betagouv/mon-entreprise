@@ -1,8 +1,8 @@
-- Indemnité: fin de contrat
+- Indemnité: prime de fin de contrat
   attache: Salariat . CDD
   attributs:
     type: indemnité
-  alias: Prime de précarité
+  alias: prime de précarité
   description: Somme versée en fin de CDD comme compensation de précarité.
   notes: Attention, les exceptions sont légion. Conventions collectives.
 

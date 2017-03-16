@@ -11,7 +11,7 @@
       - événements . CDD poursuivi en CDI
   formule:
     multiplication:
-      assiette: salaire de base
+      assiette: assiette cotisations sociales
       taux:
         logique numérique:
           motif . accroissement temporaire activité:
@@ -19,22 +19,6 @@
             durée contrat <= 3: 1.5%
           motif . usage:
             durée contrat <= 3: 0.5%
-
-
-# On aurait aussi pu écrire la formule de façon plus explicite mais plus verbose :
-      # variations:
-      #   - si: motif . accroissement temporaire activité:
-      #       variations:
-      #         - si: durée contrat <= 1
-      #           taux: 3%
-      #         - si: durée contrat <= 3
-      #           taux: 1.5%
-      #   - si: motif . usage:
-      #       variations:
-      #         - si: durée contrat <= 3
-      #           taux: 0.5%
-
-
 
   références:
     Circulaire Unédic (unedic.fr): http://www.unedic.org/sites/default/files/ci201317_1.pdf

@@ -14,17 +14,19 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 	R.path(v.split('.'))(mockSituation)
 
 @connect(state => ({
-	situationGate: name => formValueSelector('conversation')(state, name)
+	// situationGate: name => formValueSelector('conversation')(state, name),
+	analysedSituation: state.analysedSituation
 }))
 export default class Rule extends Component {
 	render() {
 		let {
 			params: {name},
-			situationGate
+			analysedSituation
 		} = this.props,
-			rule = analyseSituation(
-				situationGate
-			).find(R.propEq('name', name))
+			objectives = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
+		if (!objectives) return null
+
+		let rule = objectives.find(R.pathEq(['explanation', 'name'], name)).explanation
 
 		if (!rule) {
 			this.props.router.push('/404')

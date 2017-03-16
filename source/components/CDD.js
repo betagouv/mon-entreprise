@@ -24,6 +24,7 @@ let situationSelector = formValueSelector('conversation')
 )
 export default class CDD extends Component {
 	componentDidMount() {
+		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		this.props.startConversation()
 	}
 	render() {

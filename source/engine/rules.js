@@ -1,6 +1,5 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
 import rawRules from './load-rules'
-import rawEntityRules from './load-entity-rules'
 import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from 'marked'
@@ -23,7 +22,7 @@ export let enrichRule = rule => {
 		name = rule[type],
 		dottedName = rule.attache && [
 			rule.attache,
-			rule.alias || name
+			name
 		].join(' . '),
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
@@ -47,16 +46,38 @@ export let nameLeaf = R.pipe(
 	R.last
 )
 
+/* Les variables peuvent être exprimées dans une règle relativement à son contexte, son 'attache', pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
+*/
+export let completeRuleName = ({attache, name}, partialName) => {
+	let
+		fragments = attache.split(' . '),
+		pathPossibilities = R.pipe(
+			R.length,
+			R.inc,
+			R.range(1),
+			R.map(R.take(R.__, fragments)),
+			R.reverse
+		)(fragments),
+
+		found = R.reduce((res, path) =>
+			R.when(
+				R.is(Object), R.reduced
+			)(findRuleByDottedName([...path, partialName].join(' . ')))
+		, null, pathPossibilities)
+
+	return found && found.dottedName || do {throw `OUUUUPS la référence ${partialName} dans la règle : ${name} est introuvable dans la base`}
+}
+
+
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let [rules, entityRules] =
-	[rawRules, rawEntityRules].map(rules => rules.map(enrichRule))
+export let rules = rawRules.map(enrichRule)
 
 
 /****************************************
  Méthodes de recherche d'une règle */
 
 export let findRuleByName = search =>
-	[...rules, ...entityRules]
+	rules
 		.map(enrichRule)
 		.find( ({name}) =>
 			name === search
@@ -69,10 +90,8 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-
-
-export let findRuleByDottedName = dottedName =>
-	entityRules.find(rule => rule.dottedName == dottedName)
+export let findRuleByDottedName = dottedName => // console.log('dottedName', rules,  dottedName) ||
+	rules.find(rule => rule.dottedName == dottedName)
 
 export let findGroup = R.pipe(
 	findRuleByDottedName,
@@ -94,7 +113,7 @@ let collectNodeMissingVariables = target => (root, source=root, results=[]) => {
 	if (
     source.nodeValue != null  ||
     source.shortCircuit && source.shortCircuit(root)
-  ) return
+  ) return []
 
 	if (source[target]) {
 		results.push(source[target])
@@ -105,13 +124,13 @@ let collectNodeMissingVariables = target => (root, source=root, results=[]) => {
 			collectNodeMissingVariables(target)(root, source[prop], results)
 	}
 
-
 	return results
 }
 
 
 export let collectMissingVariables = (groupMethod='groupByMissingVariable', analysedSituation) =>
 	R.pipe(
+		R.unless(R.is(Array), R.of),
 		R.chain( v =>
 			R.pipe(
 				collectNodeMissingVariables('missingVariables'),
