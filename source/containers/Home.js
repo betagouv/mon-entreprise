@@ -3,6 +3,7 @@ import './Home.css'
 import {searchRules} from '../engine/rules.js'
 import {Link} from 'react-router'
 import '../components/Rule.css'
+import R from 'ramda'
 
 export default class Home extends Component {
 	state = {
@@ -41,7 +42,7 @@ export default class Home extends Component {
             <section id="search-results">
               <ul>
                 {this.state.userSearch != null &&
-                  searchRules(this.state.userSearch).map(({type, name}) => (
+                  searchRules(this.state.userSearch).map(({type, name}) => R.contains(type, ['Indemnité', 'Cotisation']) && (
                     <li key={name}>
                       <span className="rule-type">
                         {type}

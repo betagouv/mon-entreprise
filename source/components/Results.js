@@ -15,7 +15,6 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 export default class Results extends Component {
 	render() {
 		let {analysedSituation, pointedOutObjectives} = this.props
-
 		// On travaille sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats
 
 		let explanation = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)

@@ -8,22 +8,39 @@ import PageTypeIcon from './PageTypeIcon'
 import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 import mockSituation from '../engine/mockSituation.yaml'
+import {START_CONVERSATION} from '../actions'
+import classNames from 'classnames'
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
 	R.path(v.split('.'))(mockSituation)
 
-@connect(state => ({
-	// situationGate: name => formValueSelector('conversation')(state, name),
-	analysedSituation: state.analysedSituation
-}))
+@connect(
+	state => ({
+		// situationGate: name => formValueSelector('conversation')(state, name),
+		analysedSituation: state.analysedSituation,
+		form: state.form
+	}),
+	dispatch => ({
+		startConversation: () => dispatch({type: START_CONVERSATION}),
+	})
+)
 export default class Rule extends Component {
+	state = {
+		showValues: false
+	}
+	componentDidMount() {
+		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
+		this.props.startConversation()
+	}
 	render() {
 		let {
 			params: {name},
-			analysedSituation
+			analysedSituation,
+			form
 		} = this.props,
 			objectives = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
+
 		if (!objectives) return null
 
 		let rule = objectives.find(R.pathEq(['explanation', 'name'], name)).explanation
@@ -32,6 +49,10 @@ export default class Rule extends Component {
 			this.props.router.push('/404')
 			return null
 		}
+
+		let
+			situationExists = !R.isEmpty(form),
+			showValues = situationExists && this.state.showValues
 
 		return (
 			<div id="rule">
@@ -57,7 +78,7 @@ export default class Rule extends Component {
 					</div>
 				</section>
 				<p>Pourquoi cette règle me concerne ? Comment est-elle calculée ? C'est pas très lisible pour l'instant, mais ça le deviendra</p>
-				<section id="rule-rules">
+				<section id="rule-rules" className={classNames({showValues})}>
 					{ do {
 						let [,cond] =
 							R.toPairs(rule).find(([,v]) => v.rulePropType == 'cond') || []
@@ -71,7 +92,13 @@ export default class Rule extends Component {
 						<h2>Calcul</h2>
 						{rule['formule'].jsx}
 					</section>
+					{situationExists &&
+						<button id="showValues" onClick={() => this.setState({showValues: !this.state.showValues})}>
+							<i className="fa fa-rocket" aria-hidden="true"></i> &nbsp;{!showValues ? 'Injecter votre situation' : 'Cacher votre situation'}
+						</button>
+					}
 				</section>
+
 
 				{/* <pre>
 						<JSONView data={rule} />

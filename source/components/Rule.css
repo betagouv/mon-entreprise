@@ -61,9 +61,29 @@
 	color: #333350
 }
 #rule-rules {
-	display: flex;
+	display: inline-flex;
 	justify-content: start;
 	min-height: 5em;
+	width: 80%;
+}
+
+#rule-rules .situationValue {
+	display: none;
+	padding-left: 1em;
+	font-weight: 600;
+	color: #333350;
+}
+
+#rule-rules.showValues .situationValue {
+	display: inline;
+}
+
+#showValues {
+	background: rgb(74, 137, 220);
+	color: white;
+	border: none;
+	font-size: 120%;
+	padding: .5em;
 }
 
 #rule-rules section {
@@ -121,21 +141,11 @@
 	padding-left: .3em;
 }
 
-#rule-rules .situationValue {
-	padding-left: 1em;
-	font-weight: 600;
-	color: #333350;
-}
-
 .maximum .description {
 	font-style: italic;
 	font-weight: 600;
 	margin-bottom: .4em;
 	margin-left: 1em;
-}
-
-.situationValue {
-	opacity: .6
 }
 
 .condition {
