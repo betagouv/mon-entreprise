@@ -3,6 +3,7 @@
   attributs:
     dû par: employeur
     type: majoration
+    destinataire: URSSAF
 
   description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD)
   non applicable si:
@@ -21,8 +22,8 @@
             durée contrat <= 3: 0.5%
 
   références:
-    Circulaire Unédic (unedic.fr): http://www.unedic.org/sites/default/files/ci201317_1.pdf
-    La mojoration de la contribution chômage (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html
+    La mojoration de la contribution chômage: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html
+    Circulaire Unédic: http://www.unedic.org/sites/default/files/ci201317_1.pdf
 
   notes: |
     - L'URSSAF liste à la fois des conditions pour "Les CDD concernés par l’application de la majoration" et pour "Les contrats de travail exclus de la majoration". Un doute persiste : difficile de savoir si les premières suffisent au calcul (donc que les deuxièmes sont là pour enlever les doutes) ou si les deuxièmes peuvent faire exception...

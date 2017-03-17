@@ -2,6 +2,8 @@
   attache: Salariat . CDD
   attributs:
     type: indemnité
+    destinataire: salarié
+
   alias: prime de précarité
   description: Somme versée en fin de CDD comme compensation de précarité.
   notes: Attention, les exceptions sont légion. Conventions collectives.
@@ -43,8 +45,8 @@
 
   références:
     Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
-    Fin du CDD (service-public.gouv.fr): https://www.service-public.fr/particuliers/vosdroits/F40
-    La prime de précarité est-elle due [...] (service-public.gouv.fr):  https://www.service-public.fr/particuliers/vosdroits/F803
-    Saisonnier (travail-emploi.gouv.fr): http://travail-emploi.gouv.fr/droit-du-travail/contrats-et-carriere/contrats-de-travail/article/le-travail-saisonnier
-    La prime de précarité n'est pas due si [...] (easycdd.com): https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si
-    Pourusuite de l'activité après la fin du CDD (easycdd.com): https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD
+    Fiche Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40
+    Fiche La prime de précarité est-elle due:  https://www.service-public.fr/particuliers/vosdroits/F803
+    Le travail saisonnier: http://travail-emploi.gouv.fr/droit-du-travail/contrats-et-carriere/contrats-de-travail/article/le-travail-saisonnier
+    La prime de précarité n'est pas due si: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si
+    Poursuite de l'activité après la fin du CDD: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD

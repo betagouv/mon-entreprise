@@ -43,23 +43,89 @@
 	display: flex;
 	justify-content: flex-start;
 	min-height: 5em;
+	margin-left: 1%;
+}
+
+#rule-meta > div {
+	margin-right: 5%;
 }
 
 #meta-paragraph {
-	background: rgba(51, 51, 80, 0.03);
-	margin: 0 3em;
+	/*background: rgba(51, 51, 80, 0.03);*/
+	/*margin: 0 3em;*/
 	padding: 1em;
+	width: 40%;
+
+}
+#meta-paragraph p {
+	/*border-left: 3px solid #333350;*/
+	padding-left: 1em;
+	color: #444;
+	font-size: 95%;
 }
 
-#rule-meta #rule-references {
+#destinataire a {
+	text-decoration: none;
+	color: inherit;
+}
+#destinataire img {
+	width: 130px;
+	display: block;
+}
+#destinataireName {
+	width: 130px;
+	text-align: center;
+	font-size: 70%;
+	line-height: 1em;
+	margin-top: .3em;
+}
+#destinataire #calligraphy {
+	color: #5B5B73;
+	border: 2px solid #5B5B73;
+	border-radius: .4em;
+	width: 130px;
+	line-height: 2em;
+	font-size: 130%;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+#references {
 	font-size: 85%;
 	list-style: none;
 	padding-left: 1em;
+	color: #333350;
 }
-#rule-meta #rule-references li i {
-	margin: 0 1em;
-	color: #333350
+#references a {
+	color: inherit;
+	/*text-decoration: none;*/
 }
+#references li {
+	margin-bottom: .15em;
+}
+#references .meta {
+	text-align: right;
+	width: 16em;
+	margin-right: 1.5em;
+	display: inline-block;
+	font-size: 75%;
+}
+#references .url {
+	font-weight: 600;
+	color: white;
+	background: #333350;
+	border-radius: .4em;
+	font-style: italic;
+	padding: .05em .6em;
+}
+#references img {
+	vertical-align: sub;
+  height: 1.2em;
+	border-radius: .3em;
+	margin-left: .6em;
+}
+
 #rule-rules {
 	display: inline-flex;
 	justify-content: start;
@@ -84,6 +150,7 @@
 	border: none;
 	font-size: 120%;
 	padding: .5em;
+	margin: auto;
 }
 
 #rule-rules section {

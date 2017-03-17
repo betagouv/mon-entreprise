@@ -10,6 +10,8 @@ import {formValueSelector} from 'redux-form'
 import mockSituation from '../engine/mockSituation.yaml'
 import {START_CONVERSATION} from '../actions'
 import classNames from 'classnames'
+import destinataires from '../../règles/destinataires/destinataires.yaml'
+import references from '../../règles/références/références.yaml'
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
@@ -54,6 +56,10 @@ export default class Rule extends Component {
 			situationExists = !R.isEmpty(form),
 			showValues = situationExists && this.state.showValues
 
+		let destinataire = R.path(['attributs', 'destinataire'])(rule),
+			destinataireData = destinataires[destinataire]
+
+
 		return (
 			<div id="rule">
 				<PageTypeIcon type="comprendre"/>
@@ -61,23 +67,28 @@ export default class Rule extends Component {
 					<span className="rule-type">{rule.type}</span>
 					<span className="rule-name">{name}</span>
 				</h1>
-				<section id="rule-meta" style={{display: 'none'}}>
+				<section id="rule-meta">
 					<div id="meta-paragraph">
 						<p>
 							{rule.description}
 						</p>
 					</div>
+					<div id="destinataire">
+						<h2>Destinataire</h2>
+						<a href={destinataireData.lien} target="_blank">
+							{destinataireData.image &&
+								<img src={require('../../règles/destinataires/' + destinataireData.image)} /> }
+							{!destinataireData.image &&
+								<div id="calligraphy">{destinataire}</div>
+							}
+						</a>
+						{destinataireData.nom && <div id="destinataireName">{destinataireData.nom}</div>}
+					</div>
 					<div>
-						<h2>Propriétés</h2>
-						<JSONView o={{
-							...rule.attributs,
-							'contexte': rule['attache']
-						}} />
 						<h2>Références</h2>
 						{this.renderReferences(rule)}
 					</div>
 				</section>
-				<p>Pourquoi cette règle me concerne ? Comment est-elle calculée ? C'est pas très lisible pour l'instant, mais ça le deviendra</p>
 				<section id="rule-rules" className={classNames({showValues})}>
 					{ do {
 						let [,cond] =
@@ -107,22 +118,32 @@ export default class Rule extends Component {
 		)
 	}
 
-	renderReferences(rule) {
+	renderReferences({'références': refs}) {
+		if (!refs) return <p>Cette règle manque de références.</p>
+
 		return (
-			rule['référence'] && <div>{rule['référence']}</div>)
-		|| (
-			rule['références'] && <ul id="rule-references">
-				{R.toPairs(rule['références']).map(
-					([name, link]) =>
-						<li key={name}>
-							{link.indexOf('legifrance.gouv') >= 0 &&
-								<i className="fa fa-gavel" aria-hidden="true"></i>
-							}
+			<ul id="references">
+				{R.toPairs(refs).map(
+					([name, link]) => {
+						let refkey = Object.keys(references).find(r => link.indexOf(r) > -1),
+							refData = refkey && references[refkey] || {},
+							domain = (link.indexOf("://") > -1
+								? link.split('/')[2]
+								: link.split('/')[0]).replace('www.', '')
+
+						return <li key={name}>
+							<span className="meta">
+								<span className="url">
+									{domain}
+									{refData.image &&
+										<img src={require('../../règles/références/' + refData.image)}/> }
+								</span>
+							</span>
 							<a href={link} target="_blank">
 								{name}
 							</a>
 						</li>
-				)}
+				})}
 			</ul>
 		)
 	}

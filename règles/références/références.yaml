@@ -1,0 +1,8 @@
+# Associtions d'URL de références avec leur logo
+
+service-public.fr:
+  image: marianne.png
+urssaf.fr:
+  image: URSSAF.png
+gouv.fr:
+  image: marianne.png

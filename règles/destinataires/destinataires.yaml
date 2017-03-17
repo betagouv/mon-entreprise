@@ -1,0 +1,9 @@
+OPCA:
+  nom: Organisme paritaire collecteur agréé
+  lien: https://fr.wikipedia.org/wiki/Organisme_paritaire_collecteur_agréé
+URSSAF:
+  image: URSSAF.png
+  lien: https://fr.wikipedia.org/wiki/URSSAF
+salarié:
+  nom: Le salarié
+  image: salarié.png
