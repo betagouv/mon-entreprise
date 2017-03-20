@@ -15,8 +15,8 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 export default class Results extends Component {
 	render() {
 		let {analysedSituation, pointedOutObjectives} = this.props
-		// On travaille sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats
 
+		// On travaille sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats
 		let explanation = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
 		if (!explanation) return null
 
@@ -28,12 +28,12 @@ export default class Results extends Component {
 				</div>
 				<ul>
 					{explanation.map(
-						({explanation: {name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}}) =>
+						({variableName, explanation: {name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}}) =>
 						do {
 							let
 								unsatisfied = nonApplicable == null || computedValue == null,
 								irrelevant = nonApplicable === true,
-								pointedOut = pointedOutObjectives.find(objective => objective == name),
+								pointedOut = pointedOutObjectives.find(objective => objective == variableName),
 								number = nonApplicable == false && computedValue != null
 
 								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>

@@ -135,7 +135,7 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable', anal
 			R.pipe(
 				collectNodeMissingVariables('missingVariables'),
 				R.flatten,
-				R.map(mv => [v.name, mv])
+				R.map(mv => [v.variableName, mv])
 			)(v)
 		),
 		//groupBy missing variable but remove mv from value, it's now in the key

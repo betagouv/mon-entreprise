@@ -99,7 +99,9 @@ export default reduceReducers(
 
 					missingVariables: {variable: [objectives]}
 				 */
-				missingVariables = collectMissingVariables('groupByMissingVariable', analysedSituation),
+
+				missingVariables = collectMissingVariables('groupByMissingVariable',  R.path(['formule', 'explanation', 'explanation'])(analysedSituation)),
+
 				missingVariablesList = R.keys(missingVariables),
 				/*
 					Certaines variables manquantes peuvent être factorisées dans des groupes.
