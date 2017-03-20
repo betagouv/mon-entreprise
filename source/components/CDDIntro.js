@@ -25,8 +25,9 @@ export default () => (
           <li>l'indemnité compensatrice de congés payés</li>
         </ul>
       </p>
+      <p>Par simplification, ces éléments sont tous calculés par mois de contrat.</p>
       <p>
-        Sur ce simulateur 17.0, <span className="insist">vous avez le droit de ne pas savoir</span> : certains termes utilisés dans la simulation ne sont pas évidents : cliquez simplement sur le symbôle • qui les suit pour ouvrir une aide contextuelle.
+        Tout au long de la simulation, cliquez sur les chaque résultat pour <span className="insist">obtenir une explication du calcul</span>. Aussi, vous avez le droit de ne pas savoir: certains termes utilisés dans la simulation ne sont pas évidents : cliquez simplement sur le symbôle • qui les suit pour ouvrir une aide contextuelle.
       </p>
       <Link id="action" to="/cdd"><button>C'est parti !</button></Link>
       <p className="italic">

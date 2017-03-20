@@ -21,15 +21,15 @@
   # TODO aspect temporel
   # L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
 
-#TODO on doit se base sur sdb + indemnité fin de contrat !
+  #TODO avoir un vrai mécanisme de calcul temporel pour faire les conversions
   formule:
     le maximum de:
-
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire de base * 12
+          assiette: salaire de base
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
+          # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
           taux: 10%
           facteur: congés non pris / 25 # variable qui par défaut est en jours ouvrés, probablement le plus commun
 
@@ -42,8 +42,12 @@
         #   soit du nombre moyen de jours ouvrables (ou ouvrés),
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
-          assiette: congés non pris
-          facteur:  salaire de base / 21 # mensuel / nombre moyen de jours ouvrés par mois #TODO vrai mécanisme de calcul
+          # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
+          # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
+          assiette: congés non pris / durée contrat
+          # salaire journalier
+          # mensuel / nombre moyen de jours ouvrés par mois
+          facteur:  salaire de base / 21
 
 
   notes: |

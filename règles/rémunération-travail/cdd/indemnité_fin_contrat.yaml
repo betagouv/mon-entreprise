@@ -35,12 +35,12 @@
       # Les contrats d'extras dans l'hôtellerie restauration
       # - CDD . type = extras restauration
 
+  # TODO Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat.
+  # Ici elle est étalée sur un mois moyen
   formule:
     multiplication:
       assiette: salaire de base
       taux: 10%
-
-
 
 
   références:
