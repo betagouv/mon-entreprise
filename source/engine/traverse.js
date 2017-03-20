@@ -83,7 +83,7 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		missingVariables: (variableIsRule || known) ? [] : [variableName],
 		jsx:	<Leaf
 			classes="variable"
-			name={variableName}
+			name={fragments.join(' . ')}
 			value={nodeValue}
 		/>
 	}
