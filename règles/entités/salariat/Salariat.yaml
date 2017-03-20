@@ -46,8 +46,8 @@
   description: Le salaire de base est le salaire brut régulier inscrit dans le contrat. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
   format: nombre positif
   suggestions:
-    SMIC: 1480
     salaire médian: 2300
+    SMIC: 1480
 
 # - Variable: Salaire brut
 #   formule:

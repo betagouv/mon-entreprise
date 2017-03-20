@@ -101,6 +101,7 @@ export default reduceReducers(
 				 */
 
 				missingVariables = collectMissingVariables('groupByMissingVariable',  R.path(['formule', 'explanation', 'explanation'])(analysedSituation)),
+				// yy = console.log('missingVariables',missingVariables),
 
 				missingVariablesList = R.keys(missingVariables),
 				/*

@@ -28,13 +28,13 @@ export default class Results extends Component {
 				</div>
 				<ul>
 					{explanation.map(
-						({variableName, explanation: {name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}}) =>
+						({variableName, nodeValue, explanation: {name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}}) =>
 						do {
 							let
-								unsatisfied = nonApplicable == null || computedValue == null,
-								irrelevant = nonApplicable === true,
-								pointedOut = pointedOutObjectives.find(objective => objective == variableName),
-								number = nonApplicable == false && computedValue != null
+								unsatisfied = nodeValue == null,
+								irrelevant = nonApplicable === true || computedValue == 0,
+								number = nonApplicable == false && computedValue != null,
+								pointedOut = pointedOutObjectives.find(objective => objective == variableName)
 
 								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>
 								<Link to={"/regle/" + name} className="understand">

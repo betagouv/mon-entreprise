@@ -567,6 +567,13 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 	// ... ?
 
 	}),
+	/* Calcul de la valeur de la variable en combinant :
+	- les conditions d'application ('non applicable si')
+	- la formule
+
+	TODO: mettre les conditions d'application dans "formule", et traiter la formule comme un mécanisme normal dans treat()
+
+	*/
 	r => {
 		let
 			formuleValue = r.formule.nodeValue,
