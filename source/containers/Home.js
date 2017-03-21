@@ -27,7 +27,7 @@ export default class Home extends Component {
             {' '}par un humain et{' '}
             <span className="insist">interprétables</span>
             {' '}par un programme.{' '}
-            <Link id="aboutLink" to="/a-propos">En savoir plus</Link>
+            <a href="https://github.com/laem/syso/wiki" target="_blank">En savoir plus</a>
           </p>
         </section>
         <section id="roads">

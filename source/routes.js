@@ -3,7 +3,6 @@ import { Route, IndexRoute, Link } from 'react-router'
 import Layout from './containers/Layout'
 import Home from './containers/Home'
 import Rule from './components/Rule'
-import About from './components/About'
 import CDD from './components/CDD'
 import CDDIntro from './components/CDDIntro'
 
@@ -26,7 +25,6 @@ export default (
     <Route path="regle/:name" component={Rule} />
     <Route path="cdd-intro" component={CDDIntro} />
     <Route path="cdd" component={CDD} />
-    <Route path="a-propos" component={About} />
     <IndexRoute component={Home} />
     <Route path="*" component={RouteNotFound} />
   </Route>
