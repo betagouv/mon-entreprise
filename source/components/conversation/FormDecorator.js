@@ -19,7 +19,7 @@ export var FormDecorator = formType => RenderField =>
 			themeColours: state.themeColours
 		}),
 		dispatch => ({
-			stepAction: (name, newState) => dispatch(stepAction(name, newState)),
+			stepAction: (name, step) => dispatch(stepAction(name, step)),
 			setFormValue: (field, value) => dispatch(change('conversation', field, value)),
 			pointOutObjectives: objectives => dispatch({type: POINT_OUT_OBJECTIVES, objectives})
 		})
@@ -33,11 +33,13 @@ export var FormDecorator = formType => RenderField =>
 				stepAction,
 				themeColours,
 				setFormValue,
-				pointOutObjectives
+				pointOutObjectives,
+				/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
+				de la réponse est affiché */
+				unfolded
 			} = this.props,
 				{
 				name,
-				visible,
 				possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
 				// formerly in conversation-steps
 				valueType,
@@ -48,19 +50,9 @@ export var FormDecorator = formType => RenderField =>
 				helpText,
 				suggestions,
 				subquestion,
-				objectives
+				objectives,
 			} = this.props.step
-
 			this.step = this.props.step
-
-			/* La saisie peut être cachée car ce n'est pas encore son tour,
-			ou parce qu'elle a déjà été remplie. Dans ce dernier cas, un résumé
-			de la réponse est affiché */
-			let stepState = this.step.state,
-				completed = stepState && stepState != 'editing',
-				unfolded = !completed
-
-			if (!visible) return null
 
 			/* Nos propriétés personnalisées à envoyer au RenderField.
 			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
@@ -73,7 +65,7 @@ export var FormDecorator = formType => RenderField =>
 				optionsURL, /* Select component's data source */
 				possibleChoice, /* RhetoricalQuestion component's only choice :'-( */
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
-				submit: () => setTimeout(() => stepAction(name, 'filled'), 1),
+				submit: () => setTimeout(() => stepAction('fold', name), 1),
 				setFormValue: value => setFormValue(name, value),
 				valueType,
 				suggestions,
@@ -85,7 +77,7 @@ export var FormDecorator = formType => RenderField =>
 
 			return (
 			<div
-				className={classNames({step: unfolded, fact: completed}, formType)}
+				className={classNames({step: unfolded}, formType)}
 				onMouseOver={() => pointOutObjectives(objectives)}
 				onMouseOut={() => pointOutObjectives([])}>
 				{this.state.helpVisible && this.renderHelpBox(helpText)}
@@ -142,9 +134,8 @@ export var FormDecorator = formType => RenderField =>
 				<span>
 					<span className="title">{this.props.step.title}</span>
 					<span className="answer">{answer}
-						<span className="edit">
+						<span className="edit" onClick={() => stepAction('unfold', name)}>
 							<i
-								onClick={() => stepAction(name, 'editing')}
 								className="fa fa-pencil-square-o"
 								aria-hidden="true">
 							</i>

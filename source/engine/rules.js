@@ -128,7 +128,7 @@ let collectNodeMissingVariables = target => (root, source=root, results=[]) => {
 }
 
 
-export let collectMissingVariables = (groupMethod='groupByMissingVariable', analysedSituation) =>
+export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
 	R.pipe(
 		R.unless(R.is(Array), R.of),
 		R.chain( v =>

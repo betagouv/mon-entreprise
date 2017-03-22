@@ -14,7 +14,8 @@ let situationSelector = formValueSelector('conversation')
 @connect(
 	state => ({
 		situation: variableName => situationSelector(state, variableName),
-		steps: state.submittedSteps.concat(state.steps),
+		foldedSteps: state.foldedSteps,
+		unfoldedSteps: state.unfoldedSteps,
 		themeColours: state.themeColours,
 		analysedSituation: state.analysedSituation,
 	}),
@@ -28,11 +29,21 @@ export default class CDD extends Component {
 		this.props.startConversation()
 	}
 	render() {
-		let {steps, situation} = this.props
+		let {foldedSteps, unfoldedSteps, situation} = this.props
 
-		let conversation = steps.map(step => (
-			<step.component key={step.name} {...step} step={step} answer={situation(step.name)}/>
+		let conversation = foldedSteps.map(step => <step.component
+				key={step.name}
+				{...step}
+				step={step}
+				answer={situation(step.name)} />
+		).concat(unfoldedSteps.map(step => <step.component
+				key={step.name}
+				{...step}
+				step={step}
+				unfolded={true}
+				answer={situation(step.name)} />
 		))
+
 
 		return (
 			<div id="sim">

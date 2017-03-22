@@ -43,6 +43,143 @@ function pointedOutObjectives(state=[], {type, objectives}) {
 	}
 }
 
+let handleSteps = (state, action) => {
+
+	let returnObject = {
+		...state,
+		analysedSituation: analyse(state)
+	}
+	if (action.type == START_CONVERSATION) {
+		return {
+			...returnObject,
+			unfoldedSteps: buildNextSteps(returnObject.analysedSituation)
+		}
+	}
+	if (action.type == STEP_ACTION && action.name == 'fold') {
+		return {
+			...returnObject,
+			foldedSteps: [...state.foldedSteps, R.head(state.unfoldedSteps)],
+			unfoldedSteps: buildNextSteps(returnObject.analysedSituation)
+		}
+	}
+	if (action.type == STEP_ACTION && action.name == 'unfold') {
+		let stepFinder = R.propEq('name', action.step),
+			foldedSteps = R.pipe(
+					R.splitWhen(stepFinder),
+					R.head
+			)(state.foldedSteps)
+			console.log('foldedSteps', foldedSteps)
+		return {
+			...returnObject,
+			foldedSteps,
+			unfoldedSteps: [R.find(stepFinder)(state.foldedSteps)]
+		}
+	}
+	return state
+}
+
+let analyse = R.pipe(
+	situationGate,
+	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
+	analyseSituation
+)
+
+let missingVariables
+
+let buildNextSteps = R.pipe(
+	/*
+		on collecte les variables manquantes : celles qui sont nécessaires pour
+		remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
+		encore été renseignées
+
+		TODO perf : peut-on le faire en même temps que l'on traverse l'AST ?
+		Oui sûrement, cette liste se complète en remontant l'arbre. En fait, on le fait déjà pour nodeValue,
+		et quand nodeValue vaut null, c'est qu'il y a des missingVariables ! Il suffit donc de remplacer les
+		null par un tableau, et d'ailleurs utiliser des fonction d'aide pour mutualiser ces tests.
+
+		missingVariables: {variable: [objectives]}
+	 */
+	R.path(['formule', 'explanation', 'explanation']),
+	analysedSituation => {
+		//TODO temporary fix
+		missingVariables = collectMissingVariables('groupByMissingVariable')(analysedSituation)
+		return missingVariables
+	},
+	R.keys,
+	/*
+		Certaines variables manquantes peuvent être factorisées dans des groupes.
+		Par exemple, au lieu de :
+
+		q1: "Pensez vous porlonger le CDD en CDI",
+		r1: Oui | Non
+		q2: "Pensez-vous qu'une rupture pour faute grave est susceptible d'arriver"
+		r2: Oui | Non
+
+		on préfère :
+
+		q: "Pensez-vous être confronté à l'un de ces événements ?"
+		r: Prolongation du CDD en CDI | Rupture pour faute grave
+	*/
+	R.groupBy(parentName),
+	// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
+	R.pipe(
+		R.mapObjIndexed((variables, group) =>
+			R.pipe(
+				findGroup,
+				R.cond([
+					// Pas de groupe trouvé : ce sont des variables individuelles
+					[R.isNil, () => variables.map(dottedName => {
+						let rule = findRuleByDottedName(dottedName)
+						return Object.assign(constructStepMeta(rule),
+							rule.format == 'nombre positif' ||
+							rule.format == 'période' ?
+							{
+								component: Input,
+								valueType: rule.format == 'nombre positif' ? euro : months,
+								attributes: {
+									inputMode: 'numeric',
+									placeholder: 'votre réponse'
+								},
+								suggestions: rule.suggestions
+							} : {
+								component: Question,
+								choices: [
+									{value: 'non', label: 'Non'},
+									{value: 'oui', label: 'Oui'}
+								]
+							},
+							{
+								objectives: missingVariables[dottedName]
+							}
+						)})],
+					[R.T, group =>  do {
+						let possibilities = group['une possibilité']
+						Object.assign(
+							constructStepMeta(group),
+							{
+								component: Question,
+								choices:
+									possibilities.concat(
+										group['langue au chat possible'] === 'oui' ?
+											[{value: '_', label: 'Aucun'}] : []
+									)
+							},
+							{
+								objectives: R.pipe(
+									R.chain(v => missingVariables[group.dottedName + ' . ' + v]),
+									R.uniq()
+								)(possibilities)
+							}
+						)}]
+				])
+			)(group)
+		),
+		R.values,
+		R.unnest
+	)
+)
+
+
 export default reduceReducers(
 	combineReducers({
 		//  this is handled by redux-form, pas touche !
@@ -50,9 +187,9 @@ export default reduceReducers(
 
 		/* Have forms been filled or ignored ?
 		false means the user is reconsidering its previous input */
-		steps: (steps=[]) => steps,
+		foldedSteps: (steps=[]) => steps,
+		unfoldedSteps: (steps=[]) => steps,
 
-		submittedSteps: (steps=[]) => steps,
 
 		analysedSituation: (state = []) => state,
 
@@ -63,132 +200,5 @@ export default reduceReducers(
 		pointedOutObjectives
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	(state, action) => {
-		if (action.type == STEP_ACTION || action.type == START_CONVERSATION) {
-
-			// pour débugguer :
-			window.situationGate = situationGate(state)
-
-			let newlySubmittedSteps =
-				action.newState == 'filled'
-				? [{
-					...state.steps.find(s => s.name === action.name),
-					state: 'filled'
-				}]
-				: []
-
-
-			// on calcule la prochaine étape, à ajouter sur la pile
-			let
-				// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
-				analysedSituation = analyseSituation(
-					situationGate(state)
-				),
-
-				// y = console.log('analysedSituation',analysedSituation),
-
-				/*
-					on collecte les variables manquantes : celles qui sont nécessaires pour
-					remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
-					encore été renseignées
-
-					TODO perf : peut-on le faire en même temps que l'on traverse l'AST ?
-					Oui sûrement, cette liste se complète en remontant l'arbre. En fait, on le fait déjà pour nodeValue,
-					et quand nodeValue vaut null, c'est qu'il y a des missingVariables ! Il suffit donc de remplacer les
-					null par un tableau, et d'ailleurs utiliser des fonction d'aide pour mutualiser ces tests.
-
-					missingVariables: {variable: [objectives]}
-				 */
-
-				missingVariables = collectMissingVariables('groupByMissingVariable',  R.path(['formule', 'explanation', 'explanation'])(analysedSituation)),
-				// yy = console.log('missingVariables',missingVariables),
-
-				missingVariablesList = R.keys(missingVariables),
-				/*
-					Certaines variables manquantes peuvent être factorisées dans des groupes.
-					Par exemple, au lieu de :
-
-					q1: "Pensez vous porlonger le CDD en CDI",
-					r1: Oui | Non
-					q2: "Pensez-vous qu'une rupture pour faute grave est susceptible d'arriver"
-					r2: Oui | Non
-
-					on préfère :
-
-					q: "Pensez-vous être confronté à l'un de ces événements ?"
-					r: Prolongation du CDD en CDI | Rupture pour faute grave
-				*/
-				groups = R.groupBy(
-					parentName
-				)(missingVariablesList),
-
-				// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
-				steps = R.pipe(
-					R.mapObjIndexed((variables, group) =>
-						R.pipe(
-							findGroup,
-							R.cond([
-								// Pas de groupe trouvé : ce sont des variables individuelles
-								[R.isNil, () => variables.map(dottedName => {
-									let rule = findRuleByDottedName(dottedName)
-									return Object.assign(constructStepMeta(rule),
-										rule.format == 'nombre positif' ||
-										rule.format == 'période' ?
-										{
-											component: Input,
-											valueType: rule.format == 'nombre positif' ? euro : months,
-											attributes: {
-												inputMode: 'numeric',
-												placeholder: 'votre réponse'
-											},
-											suggestions: rule.suggestions
-										} : {
-											component: Question,
-											choices: [
-												{value: 'non', label: 'Non'},
-												{value: 'oui', label: 'Oui'}
-											]
-										},
-										{
-											objectives: missingVariables[dottedName]
-										}
-									)})],
-								[R.T, group =>  do {
-									let possibilities = group['une possibilité']
-									Object.assign(
-										constructStepMeta(group),
-										{
-											component: Question,
-											choices:
-												possibilities.concat(
-													group['langue au chat possible'] === 'oui' ?
-														[{value: '_', label: 'Aucun'}] : []
-												)
-										},
-										{
-											objectives: R.pipe(
-												R.chain(v => missingVariables[group.dottedName + ' . ' + v]),
-												R.uniq()
-											)(possibilities)
-										}
-									)}]
-							])
-						)(group)
-					),
-					R.values,
-					R.unnest
-				)(groups)
-
-			return {
-				...state,
-				steps,
-				submittedSteps: state.submittedSteps.concat(newlySubmittedSteps),
-				analysedSituation
-			}
-
-		} else {
-			return state
-		}
-
-	}
+	handleSteps
 )

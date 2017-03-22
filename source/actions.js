@@ -2,8 +2,8 @@
 // The state keeps track of which of them have been submitted
 // The user can also come back to one of his answers and edit it
 export const STEP_ACTION = 'STEP_ACTION'
-export function stepAction(name, newState) {
-	return {type: STEP_ACTION, name, newState}
+export function stepAction(name, step) {
+	return {type: STEP_ACTION, name, step}
 }
 
 export const START_CONVERSATION = 'START_CONVERSATION'

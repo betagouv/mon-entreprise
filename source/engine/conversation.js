@@ -11,7 +11,6 @@ export let constructStepMeta = ({titre, question, subquestion, dottedName, name}
 		lightBackground={true}
 	/>,
 	title: titre || name,
-	dependencyOfVariables: ['chai pas'],
 	subquestion,
 
 // Legacy properties :
