@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 // import {findRuleByName} from '../engine/rules.js'
 import './Rule.css'
 import JSONTree from 'react-json-tree'
@@ -10,6 +11,8 @@ import {START_CONVERSATION} from '../actions'
 import classNames from 'classnames'
 import destinataires from '../../règles/destinataires/destinataires.yaml'
 import references from '../../règles/références/références.yaml'
+import {capitalise0} from '../utils'
+import knownMecanisms from '../engine/known-mecanisms.yaml'
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
@@ -26,9 +29,6 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 	})
 )
 export default class Rule extends Component {
-	state = {
-		showValues: false
-	}
 	componentDidMount() {
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		this.props.startConversation()
@@ -51,8 +51,7 @@ export default class Rule extends Component {
 		}
 
 		let
-			situationExists = !R.isEmpty(form),
-			showValues = situationExists && this.state.showValues
+			situationExists = !R.isEmpty(form)
 
 		let destinataire = R.path(['attributs', 'destinataire'])(rule),
 			destinataireData = destinataires[destinataire]
@@ -63,7 +62,7 @@ export default class Rule extends Component {
 				<PageTypeIcon type="comprendre"/>
 				<h1>
 					<span className="rule-type">{rule.type}</span>
-					<span className="rule-name">{name}</span>
+					<span className="rule-name">{capitalise0(name)}</span>
 				</h1>
 				<section id="rule-meta">
 					<div id="meta-paragraph">
@@ -87,31 +86,7 @@ export default class Rule extends Component {
 						{this.renderReferences(rule)}
 					</div>
 				</section>
-				<section id="rule-rules" className={classNames({showValues})}>
-					{ do {
-						let [,cond] =
-							R.toPairs(rule).find(([,v]) => v.rulePropType == 'cond') || []
-						cond != null &&
-							<section id="declenchement">
-								<h2>Conditions de déclenchement</h2>
-								{cond.jsx}
-							</section>
-					}}
-					<section id="formule">
-						<h2>Calcul</h2>
-						{rule['formule'].jsx}
-					</section>
-					{situationExists &&
-						<button id="showValues" onClick={() => this.setState({showValues: !this.state.showValues})}>
-							<i className="fa fa-rocket" aria-hidden="true"></i> &nbsp;{!showValues ? 'Injecter votre situation' : 'Cacher votre situation'}
-						</button>
-					}
-				</section>
-
-
-				{/* <pre>
-						<JSONView data={rule} />
-				</pre> */}
+				<Algorithm {...{rule, situationExists}}/>
 			</div>
 		)
 	}
@@ -143,6 +118,72 @@ export default class Rule extends Component {
 						</li>
 				})}
 			</ul>
+		)
+	}
+}
+
+// On ajoute à la section la possibilité d'ouvrir à droite un panneau d'explication des termes.
+// Il suffit à la section d'appeler une fonction fournie en lui donnant du JSX
+// Ne pas oublier de réduire la largeur de la section pour laisser de la place au dictionnaire.
+let AttachDictionary = dictionary => Decorated =>
+	class extends React.Component {
+		state = {
+			explanation: null
+		}
+		explain = explanation =>
+			this.setState({explanation})
+		componentDidMount() {
+			let decoratedNode = ReactDOM.findDOMNode(this.decorated)
+			decoratedNode.addEventListener('click', e => {
+				let term = e.target.dataset['termDefinition']
+				this.explain(R.path([term, 'description'], dictionary))
+			})
+		}
+		render(){
+			return (
+				<div className="dictionaryWrapper">
+					<Decorated ref={decorated => this.decorated = decorated} {...this.props} explain={this.explain}/>
+					{this.state.explanation &&
+						<div className="dictionaryPanel">
+							{this.state.explanation}
+						</div>
+					}
+				</div>
+			)
+		}
+	}
+
+@AttachDictionary(knownMecanisms)
+class Algorithm extends React.Component {
+	state = {
+		showValues: false
+	}
+	render(){
+		let {rule, situationExists, explain} = this.props,
+			showValues = situationExists && this.state.showValues
+		return (
+			<div id="algorithm">
+				<section id="rule-rules" className={classNames({showValues})}>
+					{ do {
+						let [,cond] =
+							R.toPairs(rule).find(([,v]) => v.rulePropType == 'cond') || []
+						cond != null &&
+							<section id="declenchement">
+								<h2>Conditions de déclenchement</h2>
+								{cond.jsx}
+							</section>
+					}}
+					<section id="formule">
+						<h2>Calcul</h2>
+						{rule['formule'].jsx}
+					</section>
+				</section>
+				{situationExists && <div>
+					<button id="showValues" onClick={() => this.setState({showValues: !this.state.showValues})}>
+						<i className="fa fa-rocket" aria-hidden="true"></i> &nbsp;{!showValues ? 'Injecter votre situation' : 'Cacher votre situation'}
+					</button>
+				</div>}
+			</div>
 		)
 	}
 }

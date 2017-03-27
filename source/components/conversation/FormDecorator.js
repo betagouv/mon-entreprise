@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {Field, change} from 'redux-form'
 import {stepAction, POINT_OUT_OBJECTIVES} from '../../actions'
 import StepAnswer from './StepAnswer'
+import {capitalise0} from '../../utils'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -127,13 +128,14 @@ export var FormDecorator = formType => RenderField =>
 				name,
 				stepAction,
 				answer,
-				themeColours
+				themeColours,
+				step: {title}
 			} = this.props,
 				ignored = this.step.state === 'ignored'
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
-						<span className="title">{this.props.step.title}</span>
+						<span className="title">{capitalise0(title)}</span>
 						<span className="answer">
 							{answer}
 						</span>

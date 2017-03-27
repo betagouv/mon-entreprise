@@ -148,9 +148,31 @@
 	background: rgb(74, 137, 220);
 	color: white;
 	border: none;
-	font-size: 120%;
-	padding: .5em;
+	font-size: 100%;
+	padding: .4em;
 	margin: auto;
+	margin-left: 3em;
+}
+
+#algorithm {
+	margin-top: 3em;
+	width: 60%;
+}
+
+.dictionaryWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+.dictionaryPanel {
+	width: 35%;
+	border: 1px dashed #aaa;
+	margin: 1em;
+	padding: .6em 1em;
+	min-height: 6em;
+	border-radius: .3em;
+
 }
 
 #rule-rules section {

@@ -1,7 +1,47 @@
-- l'une de ces conditions
-- toutes ces conditions
-- logique numérique
-- taux
-- multiplication
-- le maximum de
-- somme
+l'une de ces conditions:
+  description: |
+    C'est un 'ou' logique.
+    Contient une liste de conditions.
+    Renvoie vrai si l'une des conditions sont vraies.
+toutes ces conditions:
+  description: |
+    C'est un 'et' logique.
+    Contient une liste de conditions.
+    Renvoie vrai si toutes les conditions vraies.
+
+logique numérique:
+  description: |
+    Contient une liste de couples condition-conséquence.
+    Un par un, si la condition est vraie, alors on choisit la conséquence.
+    Cette conséquence peut elle-même être un mécanisme "logique numérique" ou plus simplement un taux.
+    Si aucune condition n'est vraie, alors ce mécanisme renvoie implilcitement 'non applicable' (ce qui peut se traduire par la valeur 0 si nous sommes dans un contexte numérique).
+
+taux:
+  description: |
+    C'est tout simplement une valeur numérique exprimée en pourcentage.
+
+multiplication:
+  description: |
+    C'est une multiplication un peu améliorée, très utile pour exprimer les cotisations, souvent linéaires.
+    Sa propriété 'assiette' est multipliée par un pourcentage, 'taux', ou par un 'facteur' quand ce nom est plus approprié.
+
+    La multiplication peut être plafonnée : ce plafond sépare l'assiette en deux, et la partie au-dessus du plafond est tout simplement ignorée.
+    Dans ce cas, elle se comporte comme une barème en taux marginaux à deux tranches, la deuxième au taux nul et allant de 'plafond' à l'infini.
+
+le maximum de:
+  description: |
+    Calcule le maximum de la liste de propositions fournie.
+    Ces propositions doivent avoir un mécanisme de calcul ou être une valeur numérique.
+    Il est conseillé de renseigner une description de chaque propositions par exemple quand elles représentent des méthodes de calcul alternatives parmi lesquelles il faut en choisir une.
+
+somme:
+  description: |
+    C'est tout simplement la somme de chaque terme de la liste.
+
+
+# à venir
+# barème:
+#   description: |
+#     C'est un barème en taux marginaux, mécanisme de calcul connu pour l'impôt sur le revenu.
+#     L'assiette est divisée en plusieurs tranches, multipliées par un taux prope à chaque tranche.
+#     Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable, couramment le plafonde de la sécurité sociale.

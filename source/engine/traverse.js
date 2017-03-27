@@ -219,7 +219,7 @@ let treat = (situationGate, rule) => rawNode => {
 		throw ' doit être un Number, String ou Object'
 	}
 
-	let mecanisms = R.intersection(R.keys(rawNode), knownMecanisms)
+	let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 	if (mecanisms.length != 1) throw 'OUPS !'
 	let k = R.head(mecanisms),
 		v = rawNode[k]
@@ -248,6 +248,7 @@ let treat = (situationGate, rule) => rawNode => {
 		)(v)
 		return {...result,
 			jsx:	<Node
+				termDefinition={result.name}
 				classes="mecanism list"
 				name={result.name}
 				value={result.nodeValue}
