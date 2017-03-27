@@ -94,27 +94,6 @@
 	position: relative;
 }
 
-.fact {
-	width: 80%;
-	margin-bottom: 1em;
-	clear: both;
-}
-.fact .title {
-	font-weight: 600;
-	border-bottom: 1px solid #aaa;
-}
-.fact .answer {
-	float: right;
-}
-
-.fact .edit {
-	margin-left: 2em;
-	font-size: 75%;
-	cursor: pointer;
-	font-weight: bold;
-	padding: .1em .6em;
-	border-radius: 2px;
-}
 .step.completed .edit:hover {
 	background: #333350;
 	color: white;
@@ -156,6 +135,10 @@
 
 .step fieldset {
 	margin: .8em 0;
+}
+
+#foldedSteps {
+	margin: 2em 0 4em;
 }
 
 .step.question fieldset > div {
@@ -441,4 +424,18 @@ for the appearing element to appear without stacking up below the first one */
 .user-next-action-animation-leave.user-next-action-animation-leave-active {
   opacity: 0;
   transition: opacity 700ms ease;
+}
+
+.foldedQuestion .edit {
+	vertical-align: middle;
+	margin-left: .5em;
+	border: none;
+	font-size: 80%;
+}
+
+.foldedQuestion .borderWrapper {
+	padding: .1em 0;
+	display: inline-block;
+	width: 80%;
+	border-bottom: 1px solid #eee
 }

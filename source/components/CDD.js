@@ -12,77 +12,77 @@ let situationSelector = formValueSelector('conversation')
 
 @reduxForm({form: 'conversation', destroyOnUnmount: false})
 @connect(
-  state => ({
+	state => ({
 	situation: variableName => situationSelector(state, variableName),
 	foldedSteps: state.foldedSteps,
 	unfoldedSteps: state.unfoldedSteps,
 	themeColours: state.themeColours,
 	analysedSituation: state.analysedSituation,
 }),
-  dispatch => ({
+	dispatch => ({
 	startConversation: () => dispatch({type: START_CONVERSATION}),
 }),
 )
 export default class CDD extends Component {
 	componentDidMount() {
-    // C'est ici que la génération du formulaire, et donc la traversée des variables commence
+		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		this.props.startConversation()
 	}
 	render() {
 		let {foldedSteps, unfoldedSteps, situation} = this.props
 
-		let conversation = foldedSteps
-      .map(step => (
-        <step.component
-          key={step.name}
-          {...step}
-          step={step}
-          answer={situation(step.name)}
-        />
-      ))
-      .concat(
-        unfoldedSteps.map(step => (
-          <step.component
-            key={step.name}
-            {...step}
-            step={step}
-            unfolded={true}
-            answer={situation(step.name)}
-          />
-        )),
-      )
-
 		return (
-      <div id="sim">
-        <PageTypeIcon type="simulation" />
-        <h1>Simulateur CDD</h1>
-        <div id="conversation">
-          <section id="questions-answers">
-            {conversation}
-            {unfoldedSteps.length == 0 &&
-              <div id="fin">
-                <img src={require('../images/fin.png')} />
-                <p>
-                  Nous n'avons plus de questions : votre simulation est terminée.
-                </p><p>
-                  Une remarque ? &nbsp;
-                  <a mailto="contact@embauche.beta.gouv.fr">
-                    Écrivez-nous
-                  </a>
-                  {' '}
+			<div id="sim">
+				<PageTypeIcon type="simulation" />
+				<h1>Simulateur CDD</h1>
+				<div id="conversation">
+					<div id="questions-answers">
+						<div id="foldedSteps">
+							{foldedSteps
+								.map(step => (
+									<step.component
+										key={step.name}
+										{...step}
+										step={step}
+										answer={situation(step.name)}
+									/>
+								))}
+						</div>
+						<div id="unfoldedSteps">
+							{unfoldedSteps.map(step => (
+								<step.component
+									key={step.name}
+									{...step}
+									step={step}
+									unfolded={true}
+									answer={situation(step.name)}
+								/>
+							))}
+						</div>
+						{unfoldedSteps.length == 0 &&
+							<div id="fin">
+								<img src={require('../images/fin.png')} />
+								<p>
+									Nous n'avons plus de questions : votre simulation est terminée.
+								</p><p>
+									Une remarque ? &nbsp;
+									<a mailto="contact@embauche.beta.gouv.fr">
+										Écrivez-nous
+									</a>
+									{' '}
 									<i
 										style={{cursor: 'pointer'}}
 										className="fa fa-envelope-o"
 									/>
 									{' '}
-                  !
-                </p>
-              </div>}
-          </section>
-          <Aide />
-        </div>
-        <Results {...this.props} />
-      </div>
+									!
+								</p>
+							</div>}
+						</div>
+					<Aide />
+				</div>
+				<Results {...this.props} />
+			</div>
 		)
 	}
 }

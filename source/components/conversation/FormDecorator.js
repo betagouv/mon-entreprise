@@ -131,19 +131,27 @@ export var FormDecorator = formType => RenderField =>
 			} = this.props,
 				ignored = this.step.state === 'ignored'
 			return (
-				<span>
-					<span className="title">{this.props.step.title}</span>
-					<span className="answer">{answer}
-						<span className="edit" onClick={() => stepAction('unfold', name)}>
-							<i
-								className="fa fa-pencil-square-o"
-								aria-hidden="true">
-							</i>
-							Modifier
+				<div className="foldedQuestion">
+					<span className="borderWrapper">
+						<span className="title">{this.props.step.title}</span>
+						<span className="answer">
+							{answer}
 						</span>
 					</span>
+					<button
+						className="edit"
+						onClick={() => stepAction('unfold', name)}
+						style={{color: themeColours.textColourOnWhite}} >
+						<i
+							className="fa fa-pencil-square-o"
+							aria-hidden="true"
+							>
+						</i>
+						{'  '}
+						Modifier
+					</button>
 					{/* <StepAnswer	{...{value, human, valueType, ignored, themeColours}} /> */}
-				</span>)
+				</div>)
 		}
 
 		renderHelpBox(helpText) {
