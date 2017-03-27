@@ -45,10 +45,14 @@ function pointedOutObjectives(state=[], {type, objectives}) {
 
 let handleSteps = (state, action) => {
 
+	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
+		return state
+
 	let returnObject = {
 		...state,
 		analysedSituation: analyse(state)
 	}
+
 	if (action.type == START_CONVERSATION) {
 		return {
 			...returnObject,
@@ -68,14 +72,12 @@ let handleSteps = (state, action) => {
 					R.splitWhen(stepFinder),
 					R.head
 			)(state.foldedSteps)
-			console.log('foldedSteps', foldedSteps)
 		return {
 			...returnObject,
 			foldedSteps,
 			unfoldedSteps: [R.find(stepFinder)(state.foldedSteps)]
 		}
 	}
-	return state
 }
 
 let analyse = R.pipe(

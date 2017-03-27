@@ -19,10 +19,10 @@ export default () => (
       <p>
         Ce simulateur calcule pour vous les 4 éléments de ce surcoût :
         <ul>
-          <li>l'indemnité de fin de contrat</li>
-          <li>le CIF</li>
-          <li>la majoration chômage</li>
-          <li>l'indemnité compensatrice de congés payés</li>
+          <li key="1">l'indemnité de fin de contrat</li>
+          <li key="2">le CIF</li>
+          <li key="3">la majoration chômage</li>
+          <li key="4">l'indemnité compensatrice de congés payés</li>
         </ul>
       </p>
       <p>Par simplification, ces éléments sont tous calculés par mois de contrat.</p>

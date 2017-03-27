@@ -78,6 +78,7 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		category: 'variable',
 		fragments: fragments,
 		variableName,
+		name: variableName,
 		type: 'boolean | numeric',
 		explanation: parsedRule,
 		missingVariables: (variableIsRule || known) ? [] : [variableName],
@@ -90,7 +91,6 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 }
 
 let treat = (situationGate, rule) => rawNode => {
-// console.log('rawNode', rawNode)
 	let reTreat = treat(situationGate, rule)
 
 	if (R.is(String)(rawNode)) {
@@ -253,7 +253,7 @@ let treat = (situationGate, rule) => rawNode => {
 				value={result.nodeValue}
 				child={
 					<ul>
-						{result.explanation.map(item => <li>{item.jsx}</li>)}
+						{result.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
 					</ul>
 				}
 			/>
@@ -353,7 +353,7 @@ let treat = (situationGate, rule) => rawNode => {
 						value={node.nodeValue}
 						child={
 							<ul>
-								{node.explanation.map(item => <li>{item.jsx}</li>)}
+								{node.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
 							</ul>
 						}
 					/>
@@ -450,17 +450,17 @@ let treat = (situationGate, rule) => rawNode => {
 				value={nodeValue}
 				child={
 					<ul>
-						<li>
+						<li key="base">
 							<span className="key">assiette: </span>
 							<span className="value">{base.jsx}</span>
 						</li>
 						{rate.nodeValue != 1 &&
-						<li>
+						<li key="rate">
 							<span className="key">taux: </span>
 							<span className="value">{rate.jsx}</span>
 						</li>}
 						{facteur.nodeValue != 1 &&
-						<li>
+						<li key="factor">
 							<span className="key">facteur: </span>
 							<span className="value">{facteur.jsx}</span>
 						</li>}
@@ -490,7 +490,7 @@ let treat = (situationGate, rule) => rawNode => {
 				child={
 					<ul>
 					{contenders.map((item, i) =>
-						<li>
+						<li key={i}>
 							<div className="description">{v[i].description}</div>
 							{item.jsx}
 						</li>
@@ -599,7 +599,8 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 - do they need variables that are not present in the user situation ?
 - if not, do they have a computed value or are they non applicable ?
 */
-export let analyseSituation = situationGate =>
+export let analyseSituation = situationGate => 	console.log('analyseSituation' + Math.random()) ||
+
 	//TODO l'objectif devrait être spécifié par la page qui lance un simulateur
 	treatRuleRoot(
 		situationGate,
