@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import {Link} from 'react-router'
 import {connect} from 'react-redux'
 import R from 'ramda'
+import './Results.css'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))

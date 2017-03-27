@@ -599,7 +599,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 - do they need variables that are not present in the user situation ?
 - if not, do they have a computed value or are they non applicable ?
 */
-export let analyseSituation = situationGate => 	console.log('analyseSituation' + Math.random()) ||
+export let analyseSituation = situationGate =>
 
 	//TODO l'objectif devrait être spécifié par la page qui lance un simulateur
 	treatRuleRoot(

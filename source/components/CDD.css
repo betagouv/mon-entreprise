@@ -26,26 +26,19 @@ p {
 	max-width: 90%;
 }
 
+
+#fin {
+	margin: 6em auto;
+	width: 20em;
+  display: block;
+	text-align: center;
+	font-style: italic;
+}
+
+
 #questions-answers {
 	min-width: 60%;
 	transition: width 1s;
-}
-
-
-.dependency-of {
-}
-.dependency-of ul {
-	display: inline;
-}
-
-.dependency-of li {
-	font-size: 80%;
-	background: #333350;
-	color: white;
-	display: inline-block;
-	padding: .1em .6em;
-	margin: 0 .6em;
-	border-radius: 3px;
 }
 
 
@@ -62,99 +55,4 @@ p {
 	color: white;
 	height: 12em;
 	text-align: center;
-}
-
-#results #results-titles {
-	color: white;
-	width: 18%;
-	display: inline-block;
-	float: left;
-	line-height: 1.2em;
-	margin: 0;
-	margin-left: .5em;
-	padding: .5em;
-	font-weight: 400;
-	font-size: 120%;
-}
-#results #results-titles h2 {
-	font-size: 210%;
-}
-#results #results-titles div {
-	font-style: italic;
-}
-
-
-#results ul {
-	display: inline-flex;
-	justify-content: space-around;
-	height: 100%;
-	width: 80%;
-	list-style: none;
-	padding-left: 0;
-}
-
-#results li {
-	margin: .2em 1em;
-	text-align: center;
-}
-#results li a {
-	text-decoration: none;
-}
-#results .rule-box {
-	padding: 0 1em;
-	color: #333350;
-	background: white;
-	border-radius: 3px;
-	white-space: nowrap;
-	color: #333350;
-}
-#results li.irrelevant .rule-box {
-	background: rgba(255, 255, 255, 0.65);
-}
-#results li .pointer {
-	font-size: 300%;
-	line-height: .6em;
-	visibility: hidden;
-}
-#results li.pointedOut .pointer {
-	visibility: visible;
-}
-#results li.number .rule-box {
-	border: 5px solid #4A89DC;
-}
-
-#results .rule-type {
-	background: #333350;
-	color: white;
-	border: none;
-	font-size: 75%;
-	line-height: 2em;
-	font-weight: 800;
-	margin: .6em 0 .1em;
-}
-
-#results .rule-name {
-	font-size: 150%;
-	text-transform: capitalize;
-}
-
-#results li p {
-	margin: 0;
-	padding: 1em 0;
-	font-size: 120%;
-	color: inherit;
-}
-
-#results li.unsatisfied p {
-	font-style: italic;
-}
-#results li.irrelevant p {
-	font-weight: 600;
-}
-#results li p .figure {
-	font-size: 200%;
-}
-
-#results .understand:hover i {
-	opacity: 1
 }
