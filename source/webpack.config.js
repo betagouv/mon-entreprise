@@ -1,9 +1,13 @@
 var webpack = require('webpack'),
-	autoprefixer = require('autoprefixer')
+	autoprefixer = require('autoprefixer'),
+	prodEnv = process.env.NODE_ENV == 'production' // eslint-disable-line no-undef
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
-	entry: [
+	entry: prodEnv ? [
+		'babel-polyfill',
+		'./source/entry.js'
+	] : [
 		'webpack-dev-server/client?http://localhost:3000/',
 		'webpack/hot/only-dev-server',
 		'react-hot-loader/patch',
@@ -54,10 +58,17 @@ module.exports = {
 			loader: 'url-loader?limit=10000!img-loader?progressive=true'
 		}, {
 			test: /\.ne$/,
-			loader: 'nearley-loader'
+			loader: 'babel-loader!nearley-loader'
 		}]
 	},
-	plugins: [
+	plugins: prodEnv ? [
+		new webpack.NoEmitOnErrorsPlugin(),
+		// in order to use the fetch polyfill:
+		new webpack.ProvidePlugin({
+			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+		}),
+		new webpack.optimize.UglifyJsPlugin()
+	] : [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
 		// in order to use the fetch polyfill:
