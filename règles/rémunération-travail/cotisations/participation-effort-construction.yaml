@@ -10,32 +10,15 @@
   notes: |
     C'est une cotisation à versement particulier : plusieurs possibilités
 
-  concerne:
-    régime = général:
-      - effectif entreprise >= 20
-    régime = agricole:
-      - effectif entreprise >= 50
-
-  # Cette syntaxe (retour à la ligne pour un OU et indentation pour un ET) permet d'exprimer :
-  #
-  #   OU "régime = général ET effectif_entreprise >= 20"
-  #   OU "régime = agricole ET effectif_entreprise >= 50"
-  #
-  # Une alternative plus verbose est :
-  conditions à remplir:
-    l'une de ces conditions:
-      - toutes ces conditions:
-        - régime = général
-        - effectif entreprise >= 20
-      - toutes ces conditions:
-        - régime = agricole
-        - effectif entreprise >= 50
-
-  # On préferera la première alternative qui dans ce contexte est sans ambiguïté
-
+  applicable si:
+    régime:
+      - cas: général
+        valeur: effectif entreprise >= 20
+      - cas: agricole
+        valeur: effectif entreprise >= 50
 
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       taux:
-        1992: 0.0045
+        1992: 0.45%

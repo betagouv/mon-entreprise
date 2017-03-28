@@ -1,9 +1,9 @@
 - Cotisation: Prévoyance Obligatoire Cadre
   attributs:
     dû par: employeur
-  concerne: catégorie salarié = cadre
+  applicable si: statut cadre
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       plafond: plafond sécurité sociale
-      taux: 0.015
+      taux: 1.5%

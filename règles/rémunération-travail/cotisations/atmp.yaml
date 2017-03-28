@@ -17,7 +17,7 @@
 
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       variations:
         - si: Entreprise . effectif >= 150
           message: |
@@ -49,7 +49,7 @@
           taux: Établissement . taux collectif ATMP
 
 - Variable: taux collectif ATMP
-  entité: Établissement
+  attache: Établissement
   saisie:
     selection: # affichera une saisie utilisateur de type <select> avec champ de recherche par mots clefs
       données: https://raw.githubusercontent.com/sgmap/taux-collectifs-cotisation-atmp/master/taux-2016.csv

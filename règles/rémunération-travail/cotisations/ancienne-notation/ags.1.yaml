@@ -7,7 +7,7 @@
     - assimilé salarié
   reference: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
   linear:
-    base: assiette cotisations sociales
+    assiette: assiette cotisations sociales
     limit: 4 * plafond sécurité sociale
     historique:
       2017-01-01: 0.0025

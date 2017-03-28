@@ -6,43 +6,42 @@
   description: Cotisation d’assurance chômage
   référence: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
 
-  ne concerne pas:
-    - assimilé salarié
+  non applicable si: assimilé salarié
 
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
 
-    composantes:
-      - Cotisation:
-          dû par: employeur
-        taux:
-          2015: 0.04
-          2007: 0.04
-          2006: 0.0404
-          2003: 0.04
-          2002-07: 0.037
-          2002: 0.036
-          2001-04: 0.037
-          2001: 0.0499
-          1997: 0.0526
-          1994: 0.0547
-          1993-08: 0.0538
-          1993-07: 0.0483
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux:
+            2015-01: 4%
+            2007-01: 4%
+            2006-01: 4.04%
+            2003-01: 4%
+            2002-07: 3.7%
+            2002-01: 3.6%
+            2001-04: 3.7%
+            2001-01: 4.99%
+            1997-01: 5.26%
+            1994-01: 5.47%
+            1993-08: 5.38%
+            1993-07: 4.83%
 
-      - Cotisation:
-          dû par: salarié
-        taux:
-          2015: .024
-          2007: .024
-          2006: .0244
-          2003: .024
-          2002-07: .021
-          2002: .02
-          2001-07: .021
-          2001-04: .026
-          2001: .0349
-          1997: .036
-          1994: .0386
-          1993-07: .03770
+        - attributs:
+            dû par: salarié
+          taux:
+            2015-01: 2.4%
+            2007-01: 2.4%
+            2006-01: 2.44%
+            2003-01: 2.4%
+            2002-07: 2.1%
+            2002-01: 2.%
+            2001-07: 2.1%
+            2001-04: 2.6%
+            2001-01: 3.49%
+            1997-01: 3.6%
+            1994-01: 3.86%
+            1993-07: 3.77%

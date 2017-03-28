@@ -7,12 +7,12 @@
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
   formule:
     multiplication:
-      base: assiette CSG - CRDS
+      assiette: assiette CSG - CRDS
       composantes:
-        - Cotisation:
+        - attributs:
             déductible des impôts: oui
-          taux: 0.024
+          taux: 2.4%
 
-        - Cotisation:
+        - attributs:
             déductible des impôts: non
-          taux: 0.051
+          taux: 5.1%

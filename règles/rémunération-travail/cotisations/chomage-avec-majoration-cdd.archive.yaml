@@ -12,7 +12,7 @@
 
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
 
     composantes:

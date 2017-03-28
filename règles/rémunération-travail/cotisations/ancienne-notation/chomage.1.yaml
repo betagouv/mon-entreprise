@@ -8,7 +8,7 @@
   ne concerne pas:
     - assimilé salarié
   linear:
-    base: assiette cotisations sociales
+    assiette: assiette cotisations sociales
     limit: 4 * plafond sécurité sociale
 
 - variable: chomage

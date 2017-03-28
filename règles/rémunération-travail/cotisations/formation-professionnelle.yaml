@@ -8,31 +8,9 @@
 
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       variations:
-        - si: période >= 2016
-          variations:
-            - si: effectif entreprise >= 11
-              taux: 0.01
-            - si: effectif entreprise < 11
-              taux: 0.0055
-        - si: période < 2016
-          variations:
-            - si: effectif entreprise >= 20
-              taux:
-                2015: 0.01 # c'est la dernière année de cette tranche
-                2004: 0.016
-                1993: 0.015
-                1992: 0.014
-            - si: effectif entreprise >= 10
-              taux:
-                2015: 0.01
-                2005: 0.0105
-                2004: 0.016
-                1993: 0.015
-                1992: 0.014
-            - si: effectif entreprise < 10
-              taux:
-                2005: 0.0055
-                2004: 0.004
-                1993: 0.0015
+        - si: effectif entreprise >= 11
+          taux: 1%
+        - si: effectif entreprise < 11
+          taux: 0.55%

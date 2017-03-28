@@ -6,7 +6,7 @@
   concerne:
     - categorie salarié = privé cadre
   linear:
-    base: assiette cotisations sociales
+    assiette: assiette cotisations sociales
     limit: 8 * plafond sécurité sociale
 
 - variable: cotisation exceptionnelle temporaire

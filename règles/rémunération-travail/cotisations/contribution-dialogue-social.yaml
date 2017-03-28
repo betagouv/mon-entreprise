@@ -12,5 +12,6 @@
 
   formule:
     multiplication:
+      assiette: assiette cotisations sociales
       taux:
-        2015: 0.016
+        2015: 0.016%

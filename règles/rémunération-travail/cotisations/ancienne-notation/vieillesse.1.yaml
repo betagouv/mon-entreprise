@@ -7,7 +7,7 @@
     destinataire: CNAV
   # CTP: 100
   linear:
-    base: assiette cotisations sociales
+    assiette: assiette cotisations sociales
 
 - variable: vieillesse
   tags:

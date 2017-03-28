@@ -9,7 +9,7 @@
     destinataire: ARRCO
 
   marginalRateTaxScale:
-    base: assiette sécurité sociale
+    assiette: assiette  sécurité sociale
 
 
 - variable: ARRCO

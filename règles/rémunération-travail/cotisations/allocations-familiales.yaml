@@ -6,7 +6,7 @@
 
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       taux:
-        2014: 0.0525
-        1993-07: 0.054
+        2014: 5.25%
+        1993-07: 5.4%

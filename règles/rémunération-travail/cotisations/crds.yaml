@@ -5,5 +5,5 @@
   description: Contribution pour le remboursement de la dette sociale
   formule:
     multiplication:
-      base: assiette CSG - CRDS
-      taux: 0.005
+      assiette: assiette CSG - CRDS
+      taux: 0.5%

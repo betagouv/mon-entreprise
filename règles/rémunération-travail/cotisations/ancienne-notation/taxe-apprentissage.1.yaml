@@ -6,7 +6,7 @@
   ne concerne pas:
     - entreprise_est_association_non_lucrative
   linear:
-    base: assiette cotisations sociales
+    assiette: assiette cotisations sociales
 
 - variable: apprentissage
   tags:

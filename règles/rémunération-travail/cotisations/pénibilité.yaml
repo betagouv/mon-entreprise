@@ -11,13 +11,11 @@
     multiplication:
       assiette: assiette cotisations sociales
       composantes:
-        - attributs:
-            composante: base
+        - nom: base
           taux:
             2017: 0.01%
-        - attributs:
-            composante: additionnelle
-          concerne: Activité . durée < 1 mois
+        - nom: additionnelle
+          applicable si: Activité . durée >= 1 mois
           taux:
             variations:
               - si: Salariat . exposition pénibilité simple

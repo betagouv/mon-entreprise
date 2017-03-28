@@ -1,19 +1,21 @@
 - Cotisation: Versement transport
 
-  concerne:
-    variations:
-      - si: période >= 2016
-        condition: Entreprise . effectif >= 11
-      - si: période < 2016
-        condition: Entreprise . effectif >= 10
+  applicable si:
+    # TODO variations sur la période
+    # variations:
+    #   - si: période >= 2016
+    #     condition: Entreprise . effectif >= 11
+    #   - si: période < 2016
+    #     condition: Entreprise . effectif >= 10
+    Entreprise . effectif >= 11
 
   formule:
     multiplication:
-      base: assiette cotisations sociales
+      assiette: assiette cotisations sociales
       taux: Établissement . taux versement transport
 
 - Variable: Taux versement transport
-  entité: Établissement
+  attache: Établissement
 
   saisie:
     sélection:

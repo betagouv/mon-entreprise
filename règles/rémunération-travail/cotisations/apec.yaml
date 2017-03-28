@@ -11,37 +11,37 @@
     Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
 
   formule:
-    barème en taux marginaux:
+    barème:
+      assiette: assiette cotisations sociales
       multiplicateur: plafond sécurité sociale
-      base: assiette cotisations sociales
       composantes:
-        - Cotisation:
+
+        - attributs:
             dû par: employeur
           tranches:
-            - seuil: 0
+            - taux:
+                2016-01: 0.036%
+                2011-01: 0.036%
+                1993-07: 0%
+            - seuil: 0 #TODO erreur ?
               taux:
-                2016-01: 0.00036
-                2011-01: 0.00036
-                1993-07: 0
-            - seuil: 0
-              taux:
-                2016-01: 0.00036
-                1993-07: 0.00036
+                2016-01: 0.036%
+                1993-07: 0.036%
             - seuil: 4
-              taux: 0
-        - Cotisation:
+              taux: 0%
+
+        - attributs:
             dû par: salarié
           tranches:
-            - seuil: 0
-              taux:
+            - taux:
                 historique:
-                  2016-01: 0.00024
-                  2011-01: 0.00024
+                  2016-01: 0.024%
+                  2011-01: 0.024%
                   1993-07: 0
-            - seuil: 0
+            - seuil: 0  #TODO erreur ?
               taux:
                 historique:
-                  2016-01: 0.00024
-                  1993-07: 0.00024
+                  2016-01: 0.024%
+                  1993-07: 0.024%
             - seuil: 4
               taux: 0

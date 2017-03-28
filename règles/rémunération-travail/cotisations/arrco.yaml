@@ -9,17 +9,16 @@
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
   formule:
-    barème en taux marginaux:
-      base: assiette sécurité sociale
+    barème:
+      assiette: assiette  sécurité sociale
       multiplicateur: plafond sécurité sociale
       composantes:
-        - Cotisation:
+        - attributs:
             dû par: employeur
             variations:
               - si: categorie salarié = privé cadre
                 tranches:
-                  - seuil: 0
-                    taux:
+                  - taux:
                       2016: 4.65%
                       2015: 4.65%
                       2014: 4.58%
@@ -29,11 +28,10 @@
                       1996: 3.375%
                       1993: 2.952%
                   - seuil: 1
-                    taux: 0
+                    taux: 0%
               - si: categorie salarié = privé non cadre
                 tranches:
-                  - seuil: 0
-                    taux:
+                  - taux:
                       2016-01: 4.65%
                       2015-01: 4.65%
                       2014-01: 4.58%
@@ -52,15 +50,14 @@
                       2002: 9%
                       2000: 7.5%
                   - seuil: 3
-                    taux: 0
+                    taux: 0%
 
         - Cotisation:
             dû par: salarié
           variations:
             - si: categorie salarié = privé cadre
               tranches:
-                - seuil: 0
-                  taux:
+                - taux:
                     2016: 3.1%
                     2015: 3.1%
                     2014: 3.05%
@@ -70,11 +67,10 @@
                     1996: 2.25%
                     1993: 1.968%
                 - seuil: 1
-                  taux: 0
+                  taux: 0%
             - si: catégorie salarié = privé non cadre
               tranches:
-                - seuil: 0
-                  taux:
+                - taux:
                     2016: 3.1%
                     2015: 3.1%
                     2014: 3.05%
@@ -93,4 +89,4 @@
                     2002: 6%
                     1993: 5%
                 - seuil: 3
-                  taux: 0
+                  taux: 0%

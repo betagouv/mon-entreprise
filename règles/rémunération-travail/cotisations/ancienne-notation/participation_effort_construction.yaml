@@ -19,7 +19,7 @@
   #   - "régime = agricole et effectif_entreprise >= 50"
 
   linear:
-    base: assiette cotisations sociales
+    assiette: assiette cotisations sociales
     historique:
       2015-01: 0.0045
       1992-01: 0.0045

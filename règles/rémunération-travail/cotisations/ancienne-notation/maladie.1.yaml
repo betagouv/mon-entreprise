@@ -2,7 +2,7 @@
   tags:
     branche: maladie
   linear:
-    base: assiette cotisations sociales
+    assiette: assiette cotisations sociales
 
 - variable: maladie
   tags:

@@ -13,52 +13,52 @@
     - categorie salarié = privé cadre
 
   formule:
-    barème en taux marginaux:
-      base: assiette sécurité sociale
+    barème:
+      assiette: assiette  sécurité sociale
       multiplicateur: plafond sécurité sociale
       composantes:
-        - Cotisation:
+        - attributs:
             dû par: employeur
           tranches:
-            - seuil: 0
-              taux: 0
+            - taux: 0%
+
             - seuil: 1
               taux:
-                2016: .1275
-                2015: .1275
-                2014: .1268
-                2006: .126
-                1999: .125
-                1998: .11875
-                1997: .1125
-                1996: .10625
-                1995: .10
-                1994: .0847
-                1993: .0702
+                2016: 12.75%
+                2015: 12.75%
+                2014: 12.68%
+                2006: 12.6%
+                1999: 12.5%
+                1998: 11.875%
+                1997: 11.25%
+                1996: 10.625%
+                1995: 10.%
+                1994: 8.47%
+                1993: 7.02%
             - seuil: 8
-              taux: 0
+              taux: 0%
 
-        - Cotisation:
+
+        - attributs:
             dû par: salarié
           tranches:
-            - seuil: 0
-              taux: 0
+            - taux: 0%
+
             - seuil: 1
               taux:
-                2016: .078
-                2015: .078
-                2014: .0775
-                2006: .077
-                1999: .075
-                1998: .06875
-                1997: .0625
-                1996: .05625
-                1995: .05
-                1994: .0363
-                1993-07: .0234
+                2016: 7.8%
+                2015: 7.8%
+                2014: 7.75%
+                2006: 7.7%
+                1999: 7.5%
+                1998: 6.875%
+                1997: 6.25%
+                1996: 5.625%
+                1995: 5%
+                1994: 3.63%
+                1993-07: 2.34%
             - seuil: 8
-              taux: 0
-
+              taux: 0%
 
   notes: |
     Il éxiste une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
