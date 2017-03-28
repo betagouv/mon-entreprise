@@ -13,6 +13,7 @@ import destinataires from '../../règles/destinataires/destinataires.yaml'
 import references from '../../règles/références/références.yaml'
 import {capitalise0} from '../utils'
 import knownMecanisms from '../engine/known-mecanisms.yaml'
+import marked from '../engine/marked'
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
@@ -128,24 +129,27 @@ export default class Rule extends Component {
 let AttachDictionary = dictionary => Decorated =>
 	class extends React.Component {
 		state = {
+			term: null,
 			explanation: null
 		}
-		explain = explanation =>
-			this.setState({explanation})
 		componentDidMount() {
 			let decoratedNode = ReactDOM.findDOMNode(this.decorated)
 			decoratedNode.addEventListener('click', e => {
-				let term = e.target.dataset['termDefinition']
-				this.explain(R.path([term, 'description'], dictionary))
+				let term = e.target.dataset['termDefinition'],
+					explanation = R.path([term, 'description'], dictionary)
+				this.setState({explanation, term})
 			})
 		}
+		renderExplanationMarkdown(explanation, term) {
+			return marked(`### Mécanisme: ${term}\n\n${explanation}`)
+		}
 		render(){
+			let {explanation, term} = this.state
 			return (
 				<div className="dictionaryWrapper">
 					<Decorated ref={decorated => this.decorated = decorated} {...this.props} explain={this.explain}/>
-					{this.state.explanation &&
-						<div className="dictionaryPanel">
-							{this.state.explanation}
+					{explanation &&
+						<div className="dictionaryPanel" dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(explanation, term)}}>
 						</div>
 					}
 				</div>

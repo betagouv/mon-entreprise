@@ -1,20 +1,30 @@
+# Liste et description des différents mécanismes compris par le moteur.
+# La description peut être rédigée en markdown :-)
+
 l'une de ces conditions:
   description: |
-    C'est un 'ou' logique.
+    C'est un `ou` logique.
+
     Contient une liste de conditions.
-    Renvoie vrai si l'une des conditions sont vraies.
+
+    Renvoie vrai si l'une des conditions est vraie.
 toutes ces conditions:
   description: |
-    C'est un 'et' logique.
+    C'est un `et` logique.
+
     Contient une liste de conditions.
+
     Renvoie vrai si toutes les conditions vraies.
 
 logique numérique:
   description: |
     Contient une liste de couples condition-conséquence.
-    Un par un, si la condition est vraie, alors on choisit la conséquence.
-    Cette conséquence peut elle-même être un mécanisme "logique numérique" ou plus simplement un taux.
-    Si aucune condition n'est vraie, alors ce mécanisme renvoie implilcitement 'non applicable' (ce qui peut se traduire par la valeur 0 si nous sommes dans un contexte numérique).
+
+    Couple par couple, si la condition est vraie, alors on choisit la conséquence.
+
+    Cette conséquence peut elle-même être un mécanisme `logique numérique` ou plus simplement un `taux`.
+
+    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
 
 taux:
   description: |
@@ -23,20 +33,49 @@ taux:
 multiplication:
   description: |
     C'est une multiplication un peu améliorée, très utile pour exprimer les cotisations, souvent linéaires.
-    Sa propriété 'assiette' est multipliée par un pourcentage, 'taux', ou par un 'facteur' quand ce nom est plus approprié.
 
-    La multiplication peut être plafonnée : ce plafond sépare l'assiette en deux, et la partie au-dessus du plafond est tout simplement ignorée.
-    Dans ce cas, elle se comporte comme une barème en taux marginaux à deux tranches, la deuxième au taux nul et allant de 'plafond' à l'infini.
+    Sa propriété `assiette` est multipliée par un pourcentage, `taux`, ou par un `facteur` quand ce nom est plus approprié.
+
+    La multiplication peut être plafonnée : ce plafond sépare l'assiette en deux, et la partie au-dessus du plafond est tout simplement ignorée. Dans ce cas, elle se comporte comme une barème en taux marginaux à deux tranches, la deuxième au taux nul et allant de `plafond` à l'infini.
 
 le maximum de:
   description: |
-    Calcule le maximum de la liste de propositions fournie.
+    Renvoie l'élément de la liste de propositions fournie qui la la plus grande valeur.
+
     Ces propositions doivent avoir un mécanisme de calcul ou être une valeur numérique.
-    Il est conseillé de renseigner une description de chaque propositions par exemple quand elles représentent des méthodes de calcul alternatives parmi lesquelles il faut en choisir une.
+
+    Il est conseillé de renseigner une description de chaque proposition par exemple quand elles représentent des méthodes de calcul alternatives parmi lesquelles il faut en choisir une.
 
 somme:
   description: |
     C'est tout simplement la somme de chaque terme de la liste.
+
+
+##########################################
+# Ce qu'on appelle aujourd'hui des RuleProp
+# Et qui deviendront des mécanismes classiques normalement par la suite #TODO
+
+formule:
+  description: |
+    C'est la formule de calcul d'une variable. Elle renvoie une valeur numérique ou un 'non', exprimant le fait que la variable n'est pas applicable, ce qui vaut implicitement 0.
+
+    Cette doit faire appel à fera appel à des mécanismes de calcul : par exemple `multiplication`, le plus commun pour les variables de type `Cotisation`.
+
+
+non applicable si:
+  description: |
+    Si cette variable est vraie, c'est que la variable n'est pas applicable pour la situation saisie.
+
+    > Pour une cotisation sociale, cela signifie qu'elle ne me concerne pas, que je n'ai pas à la verser.
+
+    La formule est donc à ignorer.
+
+
+
+
+
+
+
 
 
 # à venir

@@ -2,15 +2,7 @@
 import rawRules from './load-rules'
 import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
-import marked from 'marked'
-
-
-let customMarked = new marked.Renderer()
-customMarked.link = ( href, title, text ) =>
-	`<a target="_blank" href="${ href }" title="${ title }">${ text }</a>`
-marked.setOptions({
-	renderer: customMarked
-})
+import marked from './marked'
 
 /***********************************
  Méthodes agissant sur une règle */

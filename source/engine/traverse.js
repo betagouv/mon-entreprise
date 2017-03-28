@@ -248,7 +248,6 @@ let treat = (situationGate, rule) => rawNode => {
 		)(v)
 		return {...result,
 			jsx:	<Node
-				termDefinition={result.name}
 				classes="mecanism list"
 				name={result.name}
 				value={result.nodeValue}

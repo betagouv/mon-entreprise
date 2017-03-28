@@ -166,13 +166,29 @@
 	align-items: center;
 }
 .dictionaryPanel {
-	width: 35%;
+	width: 33%;
 	border: 1px dashed #aaa;
 	margin: 1em;
-	padding: .6em 1em;
+	padding: 0em 1.5em;
 	min-height: 6em;
 	border-radius: .3em;
-
+}
+.dictionaryPanel h3 {
+	color: #333350
+}
+.dictionaryPanel blockquote {
+	font-style: italic;
+	border-left: 4px solid #eee;
+	padding-left: 1em;
+	margin-left: 0;
+}
+.dictionaryPanel blockquote p {
+	color: #666;
+}
+.dictionaryPanel code {
+	border: 1px solid #aaa;
+	padding: .05em .3em;
+	border-radius: .3em;
 }
 
 #rule-rules section {
@@ -199,6 +215,12 @@
 	color: white;
 	font-weight: 600;
 	border-radius: .4em;
+}
+[data-term-definition] {
+	cursor: pointer;
+}
+[data-term-definition]:hover {
+	opacity: .8
 }
 .ruleProp > .nodeHead .name {
 	background: #df5320
@@ -275,6 +297,7 @@
 	font-weight: 600;
 	font-size: 90%;
 	border: 1px solid rgba(51, 51, 80, 0.25);
+	white-space: nowrap
 }
 
 
