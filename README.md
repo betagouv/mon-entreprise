@@ -24,4 +24,5 @@ C'est une appli en React, Redux, ES6-ES7, Webpack, qui exploite la loi codée en
 Les fichiers YAML sont principalement du code préfixé : opérateur puis list ou objet d'opérandes. Les feuilles de cet arbre par contre sont en style infixe et parsées avec Nearley.js.
 Ce gros AST est traversé, cela représente le moteur JS, qui utilise Ramda.
 Des bouts de code marqués avec `TODO perf` peuvent être améliorés si l'appli devient lente.
-Note : vous ne trouverez pas de `const` dans l'appli, tous les `let` se comportentant comme des `const` (ne sont pas réassignés), sauf pour les vraies constantes dans `actions.js`.
+
+> Note : vous ne trouverez pas de `const` dans l'appli, tous les `let` se comportentant comme des `const` (ne sont pas réassignés), sauf pour les vraies constantes dans `actions.js`.
