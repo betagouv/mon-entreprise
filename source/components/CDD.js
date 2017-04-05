@@ -66,7 +66,7 @@ export default class CDD extends Component {
 									Nous n'avons plus de questions : votre simulation est terminée.
 								</p><p>
 									Une remarque ? &nbsp;
-									<a mailto="contact@embauche.beta.gouv.fr">
+									<a href="mailto:contact@embauche.beta.gouv.fr">
 										Écrivez-nous
 									</a>
 									{' '}

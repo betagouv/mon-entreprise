@@ -419,18 +419,23 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'multiplication') {
-		//TODO le code de ce mécanisme n'est pas élégant
 		let
 			val = node => node.nodeValue,
-			base = reTreat(v['assiette']),
-			rate = v['taux'] ? reTreat({taux: v['taux']}) : {nodeValue: 1}, //TODO parser le taux dans le parser ?
-			facteur = v['facteur'] ? reTreat(v['facteur']) : {nodeValue: 1},
-			// OUCH :-o !
-			nodeValue = (val(rate) === 0 || val(rate) === false || val(base) === 0 || val(facteur) === 0) ?
+			mult = (base, rate, facteur, plafond) =>
+				Math.min(base, plafond) * rate * facteur,
+			constantNode = constant => ({nodeValue: constant}),
+			anyNull = R.any(R.pipe(val, R.equals(null))),
+			assiette = reTreat(v['assiette']),
+			//TODO parser le taux dans le parser ?
+			taux = v['taux'] ? reTreat({taux: v['taux']}) : constantNode(1),
+			facteur = v['facteur'] ? reTreat(v['facteur']) : constantNode(1),
+			plafond = v['plafond'] ? reTreat(v['plafond']) : constantNode(Infinity),
+			//TODO rate == false should be more explicit
+			nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
 				0
-			: (val(rate) == null || val(base) == null || val(facteur) == null) ?
+			: anyNull([taux, assiette, facteur, plafond]) ?
 					null
-				: val(base) * val(rate) * val(facteur)
+				: mult(val(assiette), val(taux), val(facteur), val(plafond))
 
 		return {
 			nodeValue,
@@ -438,10 +443,10 @@ let treat = (situationGate, rule) => rawNode => {
 			name: 'multiplication',
 			type: 'numeric',
 			explanation: {
-				base,
-				rate,
-				facteur
-				//TODO limit: 'plafond'
+				assiette,
+				taux,
+				facteur,
+				plafond
 				//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
 			},
 			jsx: <Node
@@ -450,19 +455,24 @@ let treat = (situationGate, rule) => rawNode => {
 				value={nodeValue}
 				child={
 					<ul>
-						<li key="base">
+						<li key="assiette">
 							<span className="key">assiette: </span>
-							<span className="value">{base.jsx}</span>
+							<span className="value">{assiette.jsx}</span>
 						</li>
-						{rate.nodeValue != 1 &&
-						<li key="rate">
+						{taux.nodeValue != 1 &&
+						<li key="taux">
 							<span className="key">taux: </span>
-							<span className="value">{rate.jsx}</span>
+							<span className="value">{taux.jsx}</span>
 						</li>}
 						{facteur.nodeValue != 1 &&
-						<li key="factor">
+						<li key="facteur">
 							<span className="key">facteur: </span>
 							<span className="value">{facteur.jsx}</span>
+						</li>}
+						{plafond.nodeValue != Infinity &&
+						<li key="plafond">
+							<span className="key">plafond: </span>
+							<span className="value">{plafond.jsx}</span>
 						</li>}
 					</ul>
 				}

@@ -25,7 +25,7 @@
 
             - nom: plafonnée
               formule:
-                plafond: 4 * plafond sécurité sociale
+                plafond: plafond sécurité sociale
                 taux:
                   2017-01: 6.90%
                   2016-01: 6.90%
@@ -48,7 +48,7 @@
                   1991-02: 1.6%
             - nom: plafonnée
               formule:
-                plafond: 4 * plafond sécurité sociale
+                plafond: plafond sécurité sociale
                 taux:
                   2017-01: 8.55%
                   2016-01: 8.55%

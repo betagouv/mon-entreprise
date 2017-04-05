@@ -13,6 +13,7 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
       taux:
         logique numérique:
           motif . accroissement temporaire activité:
