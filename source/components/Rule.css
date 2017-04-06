@@ -121,7 +121,7 @@
 }
 #references img {
 	vertical-align: sub;
-  height: 1.2em;
+	height: 1.2em;
 	border-radius: .3em;
 	margin-left: .6em;
 }
@@ -238,6 +238,7 @@
 	font-weight: 600;
 	display: inline-block;
 	margin-bottom: 1em;
+	margin-right: 0.8em;
 }
 
 .multiplication li .key {
@@ -290,10 +291,10 @@
 .variable .name {
 	color: #5B5B73;
 	text-align: center;
-  margin-top: 1em;
-  padding: .05em 1em;
-  line-height: 1.8em;
-  border-radius: .4em;
+	margin-top: 1em;
+	padding: .05em 1em;
+	line-height: 1.8em;
+	border-radius: .4em;
 	font-weight: 600;
 	font-size: 90%;
 	border: 1px solid rgba(51, 51, 80, 0.25);
@@ -315,4 +316,16 @@
 
 .json {
 	font-size: 60%;
+}
+
+.barème table {
+	width: 80%;
+	text-align: left;
+}
+.barème table td {
+	padding: .1em .4em;
+	/*border: 1px solid #aaa;*/
+}
+.barème table tr:nth-child(2n) {
+	background: #f1f1f1
 }

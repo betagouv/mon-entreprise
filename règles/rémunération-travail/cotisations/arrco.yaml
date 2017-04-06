@@ -10,7 +10,7 @@
 
   formule:
     barème:
-      assiette: assiette  sécurité sociale
+      assiette: assiette cotisations sociales
       multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:

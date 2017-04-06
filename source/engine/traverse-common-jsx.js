@@ -2,10 +2,10 @@ import React from 'react'
 import R from 'ramda'
 import classNames from 'classnames'
 
-let treatValue = data =>
+let treatValue = data => console.log('data', data) ||
 	data == null
 		? '?'
-		: R.is(Number)(data) ? Math.round(data) : data ? 'oui' : 'non'
+		: !isNaN(data) ? Math.round(+data) : data ? 'oui' : 'non'
 
 let NodeValue = ({data}) => (
 	<span className={'situationValue ' + treatValue(data)}>

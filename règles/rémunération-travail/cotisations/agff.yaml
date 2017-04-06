@@ -12,7 +12,7 @@
 
   formule:
     barème:
-      assiette: assiette  sécurité sociale
+      assiette: assiette cotisations sociales
       composantes:
         - attributs:
             dû par: employeur

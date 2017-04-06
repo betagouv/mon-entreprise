@@ -16,10 +16,10 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 export default class Results extends Component {
 	render() {
 		let {analysedSituation, pointedOutObjectives} = this.props
-
-		// On travaille sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats
+		// On travaille pour l'instant sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats. D'où ce chemin :
 		let explanation = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
 		if (!explanation) return null
+		console.log('explanation', explanation)
 
 		return (
 			<section id="results">
@@ -29,12 +29,13 @@ export default class Results extends Component {
 				</div>
 				<ul>
 					{explanation.map(
-						({variableName, nodeValue, explanation: {name, type, 'non applicable si': {nodeValue: nonApplicable}, formule: {nodeValue: computedValue}}}) =>
+						({variableName, nodeValue, explanation: {name, type, 'non applicable si': nonApplicable, formule: {nodeValue: computedValue}}}) =>
 						do {
 							let
 								unsatisfied = nodeValue == null,
-								irrelevant = nonApplicable === true || computedValue == 0,
-								number = nonApplicable == false && computedValue != null,
+								nonApplicableValue = nonApplicable ? nonApplicable.nodeValue : false,
+								irrelevant = nonApplicableValue === true || computedValue == 0,
+								number = nonApplicableValue == false && computedValue != null,
 								pointedOut = pointedOutObjectives.find(objective => objective == variableName)
 
 								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>

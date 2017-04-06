@@ -10,7 +10,6 @@ https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
 - 💚 `:green_heart:` when fixing the CI build
 - ✅ `:white_check_mark:` when adding tests
 - ⬆️ `:arrow_up:` when upgrading dependencies
-- ⬇️ `:arrow_down:` when downgrading dependencies
 
 
 Et ceux spécifiques au projet :

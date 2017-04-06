@@ -7,3 +7,6 @@ URSSAF:
 salarié:
   nom: Le salarié
   image: salarié.png
+AGIRC:
+  image: agirc.png
+  lien: https://fr.wikipedia.org/wiki/Agirc_et_Arrco

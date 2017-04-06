@@ -24,10 +24,11 @@
     qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
-      - CDD . CIF CDD #cotisation
-      - CDD . majoration chômage CDD #cotisation
-      - CDD . prime de fin de contrat #indemnité
-      - CDD . compensation des congés payés #indemnité
+      # - CDD . CIF CDD #cotisation
+      # - CDD . majoration chômage CDD #cotisation
+      # - CDD . prime de fin de contrat #indemnité
+      # - CDD . compensation des congés payés #indemnité
+      - AGIRC simple
 
 - Variable: assiette cotisations sociales
   attache: Salariat

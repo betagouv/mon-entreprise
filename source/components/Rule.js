@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 import mockSituation from '../engine/mockSituation.yaml'
 import {START_CONVERSATION} from '../actions'
 import classNames from 'classnames'
-import destinataires from '../../règles/destinataires/destinataires.yaml'
+import possiblesDestinataires from '../../règles/destinataires/destinataires.yaml'
 import references from '../../règles/références/références.yaml'
 import {capitalise0} from '../utils'
 import knownMecanisms from '../engine/known-mecanisms.yaml'
@@ -55,7 +55,7 @@ export default class Rule extends Component {
 			situationExists = !R.isEmpty(form)
 
 		let destinataire = R.path(['attributs', 'destinataire'])(rule),
-			destinataireData = destinataires[destinataire]
+			destinataireData = possiblesDestinataires[destinataire]
 
 
 		return (
@@ -73,14 +73,20 @@ export default class Rule extends Component {
 					</div>
 					<div id="destinataire">
 						<h2>Destinataire</h2>
-						<a href={destinataireData.lien} target="_blank">
-							{destinataireData.image &&
-								<img src={require('../../règles/destinataires/' + destinataireData.image)} /> }
-							{!destinataireData.image &&
-								<div id="calligraphy">{destinataire}</div>
-							}
-						</a>
-						{destinataireData.nom && <div id="destinataireName">{destinataireData.nom}</div>}
+						{!destinataireData ?
+								<p>Non renseigné</p>
+							: <div>
+									<a href={destinataireData.lien} target="_blank">
+										{destinataireData.image &&
+											<img src={require('../../règles/destinataires/' + destinataireData.image)} /> }
+										{!destinataireData.image &&
+											<div id="calligraphy">{destinataire}</div>
+										}
+									</a>
+									{destinataireData.nom && <div id="destinataireName">{destinataireData.nom}</div>}
+								</div>
+						}
+
 					</div>
 					<div>
 						<h2>Références</h2>
@@ -169,8 +175,9 @@ class Algorithm extends React.Component {
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({showValues})}>
 					{ do {
+						// TODO ce let est incompréhensible !
 						let [,cond] =
-							R.toPairs(rule).find(([,v]) => v.rulePropType == 'cond') || []
+							R.toPairs(rule).find(([,v]) => v && v.rulePropType == 'cond') || []
 						cond != null &&
 							<section id="declenchement">
 								<h2>Conditions de déclenchement</h2>

@@ -70,17 +70,8 @@ non applicable si:
 
     La formule est donc à ignorer.
 
-
-
-
-
-
-
-
-
-# à venir
-# barème:
-#   description: |
-#     C'est un barème en taux marginaux, mécanisme de calcul connu pour l'impôt sur le revenu.
-#     L'assiette est divisée en plusieurs tranches, multipliées par un taux prope à chaque tranche.
-#     Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable, couramment le plafonde de la sécurité sociale.
+barème:
+  description: |
+    C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation dans le calcul de l'impôt sur le revenu.
+    L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un taux spécifique.
+    Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable que l'on appelle multiplicateur, par exemple le plafond de la sécurité sociale.
