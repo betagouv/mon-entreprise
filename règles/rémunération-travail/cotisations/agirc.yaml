@@ -10,19 +10,18 @@
     - http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
     - http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
   concerne:
-    - categorie salarié = privé cadre
+    - statut cadre = oui
 
   formule:
     barème:
       assiette: assiette  sécurité sociale
-      multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
           tranches:
             - taux: 0%
 
-            - seuil: 1
+            - seuil: 1 * plafond sécurité sociale
               taux:
                 2016: 12.75%
                 2015: 12.75%
@@ -35,7 +34,7 @@
                 1995: 10.%
                 1994: 8.47%
                 1993: 7.02%
-            - seuil: 8
+            - seuil: 8 * plafond sécurité sociale
               taux: 0%
 
 
@@ -44,7 +43,7 @@
           tranches:
             - taux: 0%
 
-            - seuil: 1
+            - seuil: 1 * plafond sécurité sociale
               taux:
                 2016: 7.8%
                 2015: 7.8%
@@ -57,7 +56,7 @@
                 1995: 5%
                 1994: 3.63%
                 1993-07: 2.34%
-            - seuil: 8
+            - seuil: 8 * plafond sécurité sociale
               taux: 0%
 
   notes: |

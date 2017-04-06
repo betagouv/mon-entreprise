@@ -13,7 +13,6 @@
   formule:
     barème:
       assiette: assiette  sécurité sociale
-      multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
@@ -23,24 +22,24 @@
               tranches:
                 - taux:
                     2001-04: 0.8%
-                - seuil: 1
+                - seuil: 1 * plafond sécurité sociale
                   taux:
                     2001-04: 0.9%
-                - seuil: 3
+                - seuil: 3 * plafond sécurité sociale
                   taux: 0%
 
             - si: statut cadre = oui
               tranches:
                 - taux:
                     2001-04: 1.2%
-                - seuil: 1
+                - seuil: 1 * plafond sécurité sociale
                   taux:
                     2001-04: 1.3%
-                - seuil: 4
+                - seuil: 4 * plafond sécurité sociale
                   taux:
                     2016: 1.3%
                     2001-04: 0%
-                - seuil: 8
+                - seuil: 8 * plafond sécurité sociale
                   taux: 0%
 
         - attributs:
@@ -51,10 +50,10 @@
               tranches:
                 - taux:
                     2001-04: 0.8%
-                - seuil: 1
+                - seuil: 1 * plafond sécurité sociale
                   taux:
                     2001-04: 0.9%
-                - seuil: 3
+                - seuil: 3 * plafond sécurité sociale
                   taux: 0%
 
             - si: statut cadre = oui

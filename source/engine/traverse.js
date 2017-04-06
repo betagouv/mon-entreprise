@@ -378,6 +378,23 @@ let treat = (situationGate, rule) => rawNode => {
 						<span className="name">{v}</span>
 					</span>
 			}
+		// Si c'est une liste historisée de pourcentages
+		// TODO revoir le test avant le bug de l'an 2100
+		else if ( R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
+			//TODO sélectionner la date de la simulation en cours
+			let lazySelection = R.first(R.values(v))
+			return {
+				category: 'percentage',
+				type: 'numeric',
+				percentage: lazySelection,
+				nodeValue: transformPercentage(lazySelection),
+				explanation: null,
+				jsx:
+					<span className="percentage" >
+						<span className="name">{lazySelection}</span>
+					</span>
+			}
+		}
 		else {
 			let node = reTreat(v)
 			return {
