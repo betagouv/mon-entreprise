@@ -24,11 +24,10 @@
     qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
-      # - CDD . CIF CDD #cotisation
-      # - CDD . majoration chômage CDD #cotisation
-      # - CDD . prime de fin de contrat #indemnité
-      # - CDD . compensation des congés payés #indemnité
-      - AGIRC simple
+      - CDD . CIF CDD #cotisation
+      - CDD . majoration chômage CDD #cotisation
+      - CDD . prime de fin de contrat #indemnité
+      - CDD . compensation des congés payés #indemnité
 
 - Variable: assiette cotisations sociales
   attache: Salariat
@@ -73,8 +72,17 @@
 
 # TODO
 
-# - Variable: salaire net
-#   formule: salaire brut moins cotisations sociales salarié
+
+# Cette variable est le point de départ du simulateur "surcout CDD" :-D
+- Variable: salaire net
+  attache: Salariat
+  description: >
+    C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
+  formule:
+    somme: #TODO à l'avenir, exprimer une somme sous forme de requête
+      - AGIRC simple
+
+
 
 # - Variable: salaire super brut
 #   formule:

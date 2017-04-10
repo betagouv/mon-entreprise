@@ -8,25 +8,27 @@ import {START_CONVERSATION} from '../actions'
 import Aide from './Aide'
 import PageTypeIcon from './PageTypeIcon'
 
+//TODO fusionner SimulationCDD & SimulationNet
+
 let situationSelector = formValueSelector('conversation')
 
 @reduxForm({form: 'conversation', destroyOnUnmount: false})
 @connect(
 	state => ({
-	situation: variableName => situationSelector(state, variableName),
-	foldedSteps: state.foldedSteps,
-	unfoldedSteps: state.unfoldedSteps,
-	themeColours: state.themeColours,
-	analysedSituation: state.analysedSituation,
-}),
+		situation: variableName => situationSelector(state, variableName),
+		foldedSteps: state.foldedSteps,
+		unfoldedSteps: state.unfoldedSteps,
+		themeColours: state.themeColours,
+		analysedSituation: state.analysedSituation,
+	}),
 	dispatch => ({
-	startConversation: () => dispatch({type: START_CONVERSATION}),
-}),
+		startConversation: rootVariable => dispatch({type: START_CONVERSATION, rootVariable}),
+	}),
 )
 export default class CDD extends Component {
 	componentDidMount() {
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		this.props.startConversation()
+		this.props.startConversation('surcoût CDD')
 	}
 	render() {
 		let {foldedSteps, unfoldedSteps, situation} = this.props

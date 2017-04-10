@@ -48,9 +48,11 @@ let handleSteps = (state, action) => {
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
 		return state
 
+	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.name
+
 	let returnObject = {
 		...state,
-		analysedSituation: analyse(state)
+		analysedSituation: analyse(rootVariable)(state)
 	}
 
 	if (action.type == START_CONVERSATION) {
@@ -80,10 +82,10 @@ let handleSteps = (state, action) => {
 	}
 }
 
-let analyse = R.pipe(
+let analyse = rootVariable => R.pipe(
 	situationGate,
 	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
-	analyseSituation
+	analyseSituation(rootVariable)
 )
 
 let missingVariables

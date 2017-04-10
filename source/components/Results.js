@@ -19,7 +19,6 @@ export default class Results extends Component {
 		// On travaille pour l'instant sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats. D'où ce chemin :
 		let explanation = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
 		if (!explanation) return null
-		console.log('explanation', explanation)
 
 		return (
 			<section id="results">

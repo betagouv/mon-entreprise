@@ -3,7 +3,8 @@ import { Route, IndexRoute, Link } from 'react-router'
 import Layout from './containers/Layout'
 import Home from './containers/Home'
 import Rule from './components/Rule'
-import CDD from './components/CDD'
+import SimulationCDD from './components/SimulationCDD'
+import SimulationNet from './components/SimulationNet'
 import CDDIntro from './components/CDDIntro'
 
 
@@ -24,7 +25,8 @@ export default (
   <Route path="/" component={Layout}>
     <Route path="regle/:name" component={Rule} />
     <Route path="cdd-intro" component={CDDIntro} />
-    <Route path="cdd" component={CDD} />
+    <Route path="cdd" component={SimulationCDD} />
+    <Route path="net" component={SimulationNet} />
     <IndexRoute component={Home} />
     <Route path="*" component={RouteNotFound} />
   </Route>
