@@ -80,7 +80,8 @@
     C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
   formule:
     somme: #TODO à l'avenir, exprimer une somme sous forme de requête
-      - AGIRC simple
+      - APEC
+      - AGIRC
 
 
 

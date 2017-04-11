@@ -75,3 +75,15 @@ barème:
     C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation dans le calcul de l'impôt sur le revenu.
     L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un taux spécifique.
     Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable que l'on appelle multiplicateur, par exemple le plafond de la sécurité sociale.
+
+composantes:
+  description: |
+    Beaucoup de cotisations sont composées de deux parties qui partage la méthode de calcul mais diffèrent par des paramètres différents.
+
+    Pour ne pas définir deux variables presque redondantes, on utilise le mécanisme de composante. Il se comportera comme une somme dans les calculs, mais son affichage sur les pages /règle sera adapté.
+
+    Il est même possible, pour les mécanismes `barème` et `multiplication` de garder en commun un paramètre comme l'assiette, puis de déclarer des composantes pour le taux.
+
+    > L'example le plus courant de composantes, c'est la distinction part employeur, part salarié (ex. retraite AGIRC).
+
+    > On peut aussi citer la composante de base de la cotisation pénibilité, et la composante additionnelle.

@@ -1,63 +1,68 @@
 - Cotisation: ARRCO
+  attache: Salariat
   attributs:
     branche: retraite
     type de retraite: complémentaire
     destinataire: ARRCO
   description: >
-    Cotisation de retraite complémentaire pour tous les salariés du secteur privé,
-    (pour l'Association pour le Régime de Retraite Complémentaire des salariés)
-  référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés
+  références:
+    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
   formule:
     barème:
-      assiette: assiette cotisations sociales
-      multiplicateur: plafond sécurité sociale
+      assiette: salaire de base #TODO assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
-            variations:
-              - si: categorie salarié = privé cadre
-                tranches:
-                  - taux:
-                      2016: 4.65%
-                      2015: 4.65%
-                      2014: 4.58%
-                      1999: 4.5%
-                      1998: 4.125%
-                      1997: 3.75%
-                      1996: 3.375%
-                      1993: 2.952%
-                  - seuil: 1
-                    taux: 0%
-              - si: categorie salarié = privé non cadre
-                tranches:
-                  - taux:
-                      2016-01: 4.65%
-                      2015-01: 4.65%
-                      2014-01: 4.58%
-                      1999-01: 4.5%
-                      1998-01: 4.125%
-                      1997-01: 3.75%
-                      1996-01: 3.375%
-                      1993-07: 2.952%
-                  - seuil: 1
-                    taux:
-                      2016: 12.15%
-                      2015: 12.15%
-                      2014: 12.08%
-                      2005: 12.%
-                      2004: 10.5%
-                      2002: 9%
-                      2000: 7.5%
-                  - seuil: 3
-                    taux: 0%
+          variations:
+            - si: categorie salarié = privé cadre
+              tranches:
+                - en-dessous de: 1
+                  taux:
+                    2016: 4.65%
+                    2015: 4.65%
+                    2014: 4.58%
+                    1999: 4.5%
+                    1998: 4.125%
+                    1997: 3.75%
+                    1996: 3.375%
+                    1993: 2.952%
+                - au-dessus de: 1
+                  taux: 0%
+            - si: categorie salarié = privé non cadre
+              tranches:
+                - en-dessous de: 1
+                  taux:
+                    2016-01: 4.65%
+                    2015-01: 4.65%
+                    2014-01: 4.58%
+                    1999-01: 4.5%
+                    1998-01: 4.125%
+                    1997-01: 3.75%
+                    1996-01: 3.375%
+                    1993-07: 2.952%
+                - de: 1
+                  à: 3
+                  taux:
+                    2016: 12.15%
+                    2015: 12.15%
+                    2014: 12.08%
+                    2005: 12.%
+                    2004: 10.5%
+                    2002: 9%
+                    2000: 7.5%
+                - au-dessus de: 3
+                  taux: 0%
 
         - Cotisation:
             dû par: salarié
           variations:
             - si: categorie salarié = privé cadre
               tranches:
-                - taux:
+                - en-dessous de: 1
+                  taux:
                     2016: 3.1%
                     2015: 3.1%
                     2014: 3.05%
@@ -66,11 +71,12 @@
                     1997: 2.5%
                     1996: 2.25%
                     1993: 1.968%
-                - seuil: 1
+                - au-dessus de: 1
                   taux: 0%
             - si: catégorie salarié = privé non cadre
               tranches:
-                - taux:
+                - en-dessous de: 1
+                  taux:
                     2016: 3.1%
                     2015: 3.1%
                     2014: 3.05%
@@ -79,7 +85,8 @@
                     1997: 2.5%
                     1996: 2.25%
                     1993: 1.968%
-                - seuil: 1
+                - de: 1
+                  à: 3
                   taux:
                     2016: 8.1%
                     2015: 8.1%
@@ -88,5 +95,5 @@
                     2004: 7%
                     2002: 6%
                     1993: 5%
-                - seuil: 3
+                - au-dessus de: 3
                   taux: 0%

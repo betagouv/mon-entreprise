@@ -1,5 +1,5 @@
 #rule {
-	font-size: 120%;
+	font-size: 110%;
 }
 
 #rule pre {
@@ -33,6 +33,10 @@
 	border-bottom: 1px solid #4B4B66;
 	display: inline-block;
 	padding-right: .6em;
+}
+
+#rule ul {
+	margin: 0;
 }
 
 #rule .rule-type {
@@ -130,7 +134,6 @@
 	display: inline-flex;
 	justify-content: start;
 	min-height: 5em;
-	width: 80%;
 }
 
 #rule-rules .situationValue {
@@ -156,7 +159,7 @@
 
 #algorithm {
 	margin-top: 3em;
-	width: 60%;
+	width: 100%;
 }
 
 .dictionaryWrapper {
@@ -192,7 +195,7 @@
 }
 
 #rule-rules section {
-	margin: 1em 3em;
+	margin: 1em 0 1em 3em;
 	font-weight: 500;
 	font-size: 90%;
 	color: #444
@@ -205,7 +208,7 @@
 	color: #4B4B66
 }
 
-.nodeHead {
+.mecanism > .nodeHead {
 	margin-bottom: 1em;
 }
 
@@ -223,22 +226,25 @@
 	opacity: .8
 }
 .ruleProp > .nodeHead .name {
-	background: #df5320
+	background: #9b59b6;
 }
 .mecanism li {
 }
-.mecanism ul {
+.mecanism .properties, .mecanism.list ul {
 	margin-top: 0;
 	padding-left: 1em;
 	list-style-type: none;
 	border-left: 1px dashed #ccc;
 }
-.mecanism ul .key {
-	color: #d5911a;
+.mecanism .properties .key {
 	font-weight: 600;
 	display: inline-block;
-	margin-bottom: 1em;
+	margin-bottom: .6em;
 	margin-right: 0.8em;
+}
+
+.multiplication > .nodeHead .name {
+	background: #2ecc71;
 }
 
 .multiplication li .key {
@@ -292,7 +298,7 @@
 	color: #5B5B73;
 	text-align: center;
 	margin-top: 1em;
-	padding: .05em 1em;
+	padding: .05em .6em;
 	line-height: 1.8em;
 	border-radius: .4em;
 	font-weight: 600;
@@ -318,7 +324,16 @@
 	font-size: 60%;
 }
 
+.barème > .nodeHead .name {
+	background: #1abc9c;
+}
+
+.barème .key {
+	color: #1abc9c
+}
+
 .barème table {
+	margin-top: 1em;
 	width: 80%;
 	text-align: left;
 }
@@ -328,4 +343,33 @@
 }
 .barème table tr:nth-child(2n) {
 	background: #f1f1f1
+}
+
+.composantes > .nodeHead .name {
+	background: #3498db;
+}
+
+.composantes > ul > li {
+	display: inline-block;
+}
+.composantes .composante {
+	width: 45%;
+}
+.composantes .composante .content {
+	border-top: 1px solid #3498db;
+	padding: 1em;
+	margin-right: 2em;
+}
+.composantes .composanteAttributes {
+	list-style-type: none;
+	padding: .2em;
+	color: #3498db;
+}
+.composantes .composanteAttributes span:last-child {
+	font-weight: 600;
+}
+
+.composantes .composantesSymbol {
+	font-size: 160%;
+	color: #3498db;
 }

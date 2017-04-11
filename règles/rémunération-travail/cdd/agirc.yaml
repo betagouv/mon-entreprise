@@ -5,8 +5,7 @@
     type de retraite: complémentaire
     destinataire: AGIRC
   description: |
-    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO
-    (Association Générale des Institutions de Retraite des Cadres)
+    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
   références:
     calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
     garantie minimale de points: http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
@@ -14,7 +13,8 @@
 
   formule:
     barème:
-      assiette: assiette cotisations sociales
+      assiette: salaire de base #TODO assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur

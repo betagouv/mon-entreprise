@@ -101,21 +101,25 @@ export let findGroup = R.pipe(
 /*********************************
 Autres */
 
-let collectNodeMissingVariables = target => (root, source=root, results=[]) => {
+let collectNodeMissingVariables = (root, source=root, results=[]) => {
 	if (
     source.nodeValue != null  ||
     source.shortCircuit && source.shortCircuit(root)
-  ) return []
+  ) {
+		// console.log('nodev or shortcircuit root, source', root, source)
+		return []
+	}
 
-	if (source[target]) {
-		results.push(source[target])
+	if (source['missingVariables']) {
+		// console.log('root, source', root, source)
+		results.push(source['missingVariables'])
 	}
 
 	for (var prop in source) {
-		if (R.is(Object)(source[prop]))
-			collectNodeMissingVariables(target)(root, source[prop], results)
+		if (R.is(Object)(source[prop])) {
+			collectNodeMissingVariables(root, source[prop], results)
+		}
 	}
-
 	return results
 }
 
@@ -125,7 +129,7 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 		R.unless(R.is(Array), R.of),
 		R.chain( v =>
 			R.pipe(
-				collectNodeMissingVariables('missingVariables'),
+				collectNodeMissingVariables,
 				R.flatten,
 				R.map(mv => [v.variableName, mv])
 			)(v)

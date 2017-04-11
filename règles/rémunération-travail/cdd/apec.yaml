@@ -1,0 +1,42 @@
+- Cotisation: APEC
+  attache: Salariat
+  attributs:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: APEC
+  description: |
+    Cotisation de retraite complémentaire cadre, pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+  références:
+    chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  notes: |
+    Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
+
+  non applicable si: statut cadre # TODO l'inverse ! Vérifier le fonctionnnement de la négation !statut cadre OU statut cadre = non OU applicable si: statut cadre
+
+  formule:
+    barème:
+      assiette: salaire de base #TODO assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          tranches:
+            - en-dessous de: 4
+              taux: 0.036%
+                # 2016-01: 0.036%
+                # 2011-01: 0.036%
+                # 1993-07: 0%
+            - au-dessus de: 4
+              taux: 0%
+
+        - attributs:
+            dû par: salarié
+          tranches:
+            - en-dessous de: 4
+              taux: 0.024%
+                # 2016-01: 0.024%
+                # 2011-01: 0.024%
+                # 1993-07: 0%
+            - au-dessus de: 4
+              taux: 0%

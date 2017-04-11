@@ -26,13 +26,13 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 		form: state.form
 	}),
 	dispatch => ({
-		startConversation: () => dispatch({type: START_CONVERSATION}),
+		startConversation: rootVariable => dispatch({type: START_CONVERSATION, rootVariable}),
 	})
 )
 export default class Rule extends Component {
 	componentDidMount() {
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		this.props.startConversation()
+		this.props.startConversation('salaire net')
 	}
 	render() {
 		let {

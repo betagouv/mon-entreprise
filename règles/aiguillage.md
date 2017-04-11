@@ -17,7 +17,7 @@ formule:
         2016: 2%
 ```
 
-Etant donné que le statut cadre est une exception, on pourrait aussi utiliser cette syntaxe bien plus succinte.
+Etant donné que le statut cadre est une exception, on pourrait aussi utiliser cette syntaxe bien plus succincte.
 
 ```yaml
 formule:
@@ -33,6 +33,8 @@ formule:
 
 Dans le cas d'une variable de type énumération, il peut être commode de factoriser le sujet comparé et de parler de 'cas'.
 
+> Mais la variable devient alors une clé, alors qu'elles sont normalement des valeurs, ça peut être perturbant
+
 ```yaml
 formule:
   assiette: assiette cotisations sociales
@@ -46,9 +48,8 @@ formule:
         2016: 2%
 ```
 
-
-Celle-ci est identique à la précédente, mais ne contient pas de 'si' et est donc plus brève.
-On peut la voit comme une alternative adaptée à certains endroits (?).
+Celle-ci est similaire à `variations` mais ne contient pas de `si` et est donc plus brève.
+On peut la voir comme une alternative adaptée à certains endroits (?).
 
 ```yaml
 formule:

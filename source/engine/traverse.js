@@ -6,7 +6,7 @@ import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
-
+import {anyNull, val} from './traverse-common-functions'
 
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
@@ -215,8 +215,8 @@ let treat = (situationGate, rule) => rawNode => {
 
 
 	if (!R.is(Object)(rawNode)) {
-		console.log('Cette donnée : ', rawNode) // eslint-disable-line no-console
-		throw ' doit être un Number, String ou Object'
+		console.log() // eslint-disable-line no-console
+		throw 'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	}
 
 	let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
@@ -437,11 +437,9 @@ let treat = (situationGate, rule) => rawNode => {
 
 	if (k === 'multiplication') {
 		let
-			val = node => node.nodeValue,
 			mult = (base, rate, facteur, plafond) =>
 				Math.min(base, plafond) * rate * facteur,
 			constantNode = constant => ({nodeValue: constant}),
-			anyNull = R.any(R.pipe(val, R.equals(null))),
 			assiette = reTreat(v['assiette']),
 			//TODO parser le taux dans le parser ?
 			taux = v['taux'] ? reTreat({taux: v['taux']}) : constantNode(1),
@@ -498,9 +496,68 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'barème') {
-		// Sous entendu : barème en taux marginaux. A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
+		// Sous entendu : barème en taux marginaux.
+		// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
+		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+			let
+				baremeProps = R.dissoc('composantes')(v),
+				composantes = v.composantes.map(c =>
+					({
+						... reTreat(
+							{
+								barème: {
+									... baremeProps,
+									... R.dissoc('attributs')(c)
+								}
+							}
+						),
+						composante: c.nom ? {nom: c.nom} : c.attributs
+					})
+				),
+				l = console.log('composantes', composantes.map(val)),
+				nodeValue = anyNull(composantes) ? null
+					: R.reduce(R.add, 0, composantes.map(val))
+
+			return {
+				nodeValue,
+				category: 'mecanism',
+				name: 'composantes',
+				type: 'numeric',
+				explanation: composantes,
+				jsx: <Node
+					classes="mecanism composantes"
+					name="composantes"
+					value={nodeValue}
+					child={
+						<ul>
+							{ composantes.map((c, i) =>
+								[<li className="composante" key={JSON.stringify(c.composante)}>
+									<ul className="composanteAttributes">
+										{R.toPairs(c.composante).map(([k,v]) =>
+											<li>
+												<span>{k}: </span>
+												<span>{v}</span>
+											</li>
+										)}
+									</ul>
+									<div className="content">
+										{c.jsx}
+									</div>
+								</li>,
+								i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+								]
+								)
+							}
+						</ul>
+					}
+				/>
+			}
+		}
+
+		if (v['multiplicateur des tranches'] == null)
+			throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
+
 		let
-			val = node => node.nodeValue,
 			assiette = reTreat(v['assiette']),
 			multiplicateur = reTreat(v['multiplicateur des tranches']),
 
@@ -555,7 +612,7 @@ let treat = (situationGate, rule) => rawNode => {
 				name="barème"
 				value={nodeValue}
 				child={
-					<ul>
+					<ul className="properties">
 						<li key="assiette">
 							<span className="key">assiette: </span>
 							<span className="value">{assiette.jsx}</span>
@@ -567,7 +624,7 @@ let treat = (situationGate, rule) => rawNode => {
 						<table className="tranches">
 							<thead>
 								<tr>
-									<th>Tranche de l'assiette</th>
+									<th>Tranches de l'assiette</th>
 									<th>Taux</th>
 								</tr>
 								{v['tranches'].map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
@@ -619,7 +676,7 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
-	throw "Le mécanisme qui vient d'être loggué est inconnu !"
+	throw "Le mécanisme est inconnu !"
 
 }
 
@@ -633,6 +690,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 			let
 				child = treat(situationGate, rule)(value),
 				nodeValue = child.nodeValue
+
 			return {
 				category: 'ruleProp',
 				rulePropType: 'cond',
@@ -645,7 +703,8 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 					name="non applicable si"
 					value={nodeValue}
 					child={
-						child.jsx
+						child.category === 'variable' ? <div className="node">{child.jsx}</div>
+						: child.jsx
 					}
 				/>
 			}

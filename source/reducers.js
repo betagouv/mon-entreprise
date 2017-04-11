@@ -105,10 +105,12 @@ let buildNextSteps = R.pipe(
 	 */
 	R.path(['formule', 'explanation', 'explanation']),
 	analysedSituation => {
+		// console.log('analysedSituation', analysedSituation)
 		//TODO temporary fix
 		missingVariables = collectMissingVariables('groupByMissingVariable')(analysedSituation)
 		return missingVariables
 	},
+	// mv => console.log('l', mv),
 	R.keys,
 	/*
 		Certaines variables manquantes peuvent être factorisées dans des groupes.
