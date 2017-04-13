@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {findRuleByName} from '../engine/rules'
 import './Aide.css'
 import {EXPLAIN_VARIABLE} from '../actions'
+import References from './References'
 
 @connect(
 	state =>
@@ -19,7 +20,8 @@ export default class Aide extends Component {
 		if (!explained) return <section id="help" />
 
 		let rule = findRuleByName(explained),
-			text = rule.description || rule.titre
+			text = rule.description || rule.titre,
+			refs = rule.références
 
 		let possibilities = rule['choix exclusifs']
 
@@ -42,6 +44,10 @@ export default class Aide extends Component {
 						</ul>
 					</p>
 				}
+				{refs && <div>
+					<p>Pour en savoir plus: </p>
+					<References refs={refs} />
+				</div>}
 			</section>
 		)
 	}

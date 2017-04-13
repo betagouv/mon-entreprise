@@ -1,0 +1,34 @@
+.references {
+        font-size: 85%;
+        list-style: none;
+        padding-left: 1em;
+        color: #333350;
+}
+.references a {
+        color: inherit;
+        /*text-decoration: none;*/
+}
+.references li {
+        margin-bottom: .15em;
+}
+.references .meta {
+        text-align: right;
+        width: 16em;
+        margin-right: 1.5em;
+        display: inline-block;
+        font-size: 75%;
+}
+.references .url {
+        font-weight: 600;
+        color: white;
+        background: #333350;
+        border-radius: .4em;
+        font-style: italic;
+        padding: .05em .6em;
+}
+.references img {
+        vertical-align: sub;
+        height: 1.2em;
+        border-radius: .3em;
+        margin-left: .6em;
+}

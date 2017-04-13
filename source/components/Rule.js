@@ -10,10 +10,10 @@ import mockSituation from '../engine/mockSituation.yaml'
 import {START_CONVERSATION} from '../actions'
 import classNames from 'classnames'
 import possiblesDestinataires from '../../règles/destinataires/destinataires.yaml'
-import references from '../../règles/références/références.yaml'
 import {capitalise0} from '../utils'
 import knownMecanisms from '../engine/known-mecanisms.yaml'
 import marked from '../engine/marked'
+import References from './References'
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
@@ -32,7 +32,7 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 export default class Rule extends Component {
 	componentDidMount() {
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		this.props.startConversation('salaire net')
+		this.props.startConversation('surcoût CDD')
 	}
 	render() {
 		let {
@@ -101,31 +101,7 @@ export default class Rule extends Component {
 	renderReferences({'références': refs}) {
 		if (!refs) return <p>Cette règle manque de références.</p>
 
-		return (
-			<ul id="references">
-				{R.toPairs(refs).map(
-					([name, link]) => {
-						let refkey = Object.keys(references).find(r => link.indexOf(r) > -1),
-							refData = refkey && references[refkey] || {},
-							domain = (link.indexOf("://") > -1
-								? link.split('/')[2]
-								: link.split('/')[0]).replace('www.', '')
-
-						return <li key={name}>
-							<span className="meta">
-								<span className="url">
-									{domain}
-									{refData.image &&
-										<img src={require('../../règles/références/' + refData.image)}/> }
-								</span>
-							</span>
-							<a href={link} target="_blank">
-								{name}
-							</a>
-						</li>
-				})}
-			</ul>
-		)
+		return <References refs={refs}/>
 	}
 }
 

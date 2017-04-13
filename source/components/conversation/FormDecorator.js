@@ -111,7 +111,7 @@ export var FormDecorator = formType => RenderField =>
 		}
 
 		renderQuestion = (unfolded, helpText, wideQuestion, subquestion) =>
-				<span className="step-question">
+				<div className="step-question">
 					<h1
 						style={{
 							// border: '2px solid ' + this.props.themeColours.colour, // higher border width and colour to emphasize focus
@@ -121,7 +121,7 @@ export var FormDecorator = formType => RenderField =>
 						}}
 						>{this.props.question}</h1>
 						<div className="step-subquestion" dangerouslySetInnerHTML={{__html: subquestion}}></div>
-				</span>
+				</div>
 
 		renderTitleAndAnswer(valueType, human) {
 			let {

@@ -9,8 +9,8 @@
 
 - Variable: congés non pris
   attache: Salariat
-  question: Combien de jours de congés non pris ?
-  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, donc sur 25 jours de congés légaux annuels.
+  question: Combien de jours de congés ne seront pas pris ?
+  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux annuels.
   format: nombre positif
   suggestions:
     3 / 25: 3

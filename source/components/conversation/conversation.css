@@ -80,6 +80,10 @@
 	border: 1px solid rgba(0,0,0,.3);
 }
 
+.step-question {
+	margin-bottom: 1em;
+}
+
 .step h1 {
 	border: 2px solid #333350;
 	color: #333350;
@@ -89,7 +93,6 @@
 	font-weight: 600;
 	padding: .6em 1em;
 	margin: 0;
-	margin-bottom: 1em;
 	border-radius: 1.4em;
 	position: relative;
 }
@@ -100,8 +103,9 @@
 }
 
 .step-subquestion {
+	margin: .3em;
 	font-style: italic;
-	font-size: 70%;
+	font-size: 80%;
 	margin-left: 1em;
 }
 .step-subquestion p {

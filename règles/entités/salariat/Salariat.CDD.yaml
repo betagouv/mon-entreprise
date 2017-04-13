@@ -27,17 +27,20 @@
   attache: Salariat . CDD
   question: Quel est le motif de recours au CDD ?
   description: |
-    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un de ces motifs
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
   une possibilité:
     - saisonnier
     - jeune vacances
     - sénior
     - usage
     - accroissement temporaire activité
-    # remplacement salarié ?
-    # mission ?
+    - remplacement
+    - contrat de mission
+  références:
+    le recours au CDD: http://www.entreprises.cci-paris-idf.fr/web/reglementation/developpement-entreprise/droit-social/le-recours-au-cdd
+    embaucher en CDD: https://www.service-public.fr/particuliers/vosdroits/F34
     # ambiguité : l'alternance / l'apprentissage / la fpro sont-ils des justification de CDD ?
-    # la loi exclut expliicitement l'apprentissage de son titre sur le CDD !!
+    # la loi exclut explicitement l'apprentissage de son titre sur le CDD !!
     # " Les dispositions du présent titre (le CDD) ne s'appliquent ni au contrat d'apprentissage ni au contrat de mission conclu avec une entreprise de travail temporaire." https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901191&cidTexte=LEGITEXT000006072050
     # L'alternance semble bien en être une :
     #      Lorsque le contrat est à durée limitée, il s’effectue sur la durée du cycle de formation conduisant à l’obtention du diplôme ou du titre visé.
@@ -68,11 +71,20 @@
 - Variable: jeune vacances
   attache: Salariat . CDD . motif
   titre: Contrat jeune vacances
-  description: Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
+  description: Aussi appelé CDD vendages. Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
 
 - Variable: sénior
   attache: Salariat . CDD . motif
   titre: Contrat sénior
+
+- Variable: remplacement
+  attache: Salariat . CDD . motif
+  titre: Contrat de remplacement
+
+- Variable: contrat de mission
+  attache: Salariat . CDD . motif
+  titre: Contrat de mission
+  description: Aussi appelé contrat à objet défini. Ne concerne que les ingénieurs et cadres, et une durée entre 18 mois et 36 mois.
 
 
 - Variable: usage # Similaire pour intérim, mais domaines différents
@@ -111,8 +123,10 @@
 - Variable: événements
   attache: Salariat . CDD
   titre: Événement de contrat
-  question: Pensez-vous être confronté à l'un de ces événements ?
-  description: Certains événements impactent le prix d'un CDD
+  question: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+  description: |
+    Certains de ces événements impactent fortement les objectifs de la simulation.
+    Par exemple, si le CDD est poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
   # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,
   # et les identifier dynamiquement par leur attribut "attache" :
   langue au chat possible: oui

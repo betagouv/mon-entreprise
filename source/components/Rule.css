@@ -94,42 +94,6 @@
 	text-align: center;
 }
 
-
-#references {
-	font-size: 85%;
-	list-style: none;
-	padding-left: 1em;
-	color: #333350;
-}
-#references a {
-	color: inherit;
-	/*text-decoration: none;*/
-}
-#references li {
-	margin-bottom: .15em;
-}
-#references .meta {
-	text-align: right;
-	width: 16em;
-	margin-right: 1.5em;
-	display: inline-block;
-	font-size: 75%;
-}
-#references .url {
-	font-weight: 600;
-	color: white;
-	background: #333350;
-	border-radius: .4em;
-	font-style: italic;
-	padding: .05em .6em;
-}
-#references img {
-	vertical-align: sub;
-	height: 1.2em;
-	border-radius: .3em;
-	margin-left: .6em;
-}
-
 #rule-rules {
 	display: inline-flex;
 	justify-content: start;
@@ -214,7 +178,7 @@
 
 .mecanism > .nodeHead .name {
 	padding: .05em 1em;
-	background: #d5911a;
+	background: #34495e;
 	color: white;
 	font-weight: 600;
 	border-radius: .4em;
@@ -264,6 +228,10 @@
 	font-weight: 600;
 	margin-bottom: .4em;
 	margin-left: 1em;
+}
+
+.mecanism.conditions > .nodeHead .name {
+	background: #3498db
 }
 
 .condition {
