@@ -39,7 +39,7 @@
   # Ici elle est étalée sur un mois moyen
   formule:
     multiplication:
-      assiette: salaire de base
+      assiette: salaire brut
       taux: 10%
 
 
