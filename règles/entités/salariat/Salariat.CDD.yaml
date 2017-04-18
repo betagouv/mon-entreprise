@@ -3,9 +3,19 @@
 - Variable: CDD
   attache: Salariat
   nom complet: CDD
-  description: Contrat de travail pour lequel un employeur (société, entreprise) peut recruter directement un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
+  description: Contrat de travail pour lequel un employeur peut recruter un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
   référence: https://fr.wikipedia.org/wiki/Contrat_de_travail_%C3%A0_dur%C3%A9e_d%C3%A9termin%C3%A9e_en_France
   # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
+  # implique:
+  #   - emploi temporaire
+  #   - motif de recours
+
+# - Variable: emploi temporaire
+#   attache: Salariat . CDD
+#   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
+#   références:
+#     Code du travail - Article L1242-1 : https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=BF6DDD5AADF2010EFD3ED78B7CC00691.tpdila20v_1?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050&dateTexte=20100508
+
 
 - Variable: durée contrat
   attache: Salariat . CDD
@@ -21,6 +31,7 @@
     1 an: 12
     6 mois: 6
     3 mois: 3
+
 
 - Variable: motif # alias utilisé dans l'article L. 1242-1
   nom complet: motif de recours
@@ -94,6 +105,10 @@
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33693
   # concerne: emploi temporaire par nature
+  notes: |
+    - exprimer la justification du CDD d'usage au delà des secteurs.
+    " l'usage exclut le recours au CDI en raison de la nature de l'activité et du caractère temporaire de ces emplois."
+    + interdictions explicites (grève et travaux dangereux)
 
   formule-futur: #TODO intégrer ça dans le formulaire. Comment ?
     contrainte:
@@ -125,8 +140,8 @@
   titre: Événement de contrat
   question: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
   description: |
-    Certains de ces événements impactent fortement les objectifs de la simulation.
-    Par exemple, si le CDD est poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
+    Certains de ces événements impactent fortement les résultats de la simulation, et peuvent donc la racourcir.
+    Par exemple, dans l'hypothèse d'un CDD poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
   # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,
   # et les identifier dynamiquement par leur attribut "attache" :
   langue au chat possible: oui

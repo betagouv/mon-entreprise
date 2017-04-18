@@ -1,15 +1,18 @@
+// App.dev without the redux DevTools
 import React, {Component} from 'react'
 
 import { Provider } from 'react-redux'
-import routes from '../routes'
-import {Router} from 'react-router'
+import DevTools from '../DevTools'
+import Layout from './Layout'
 
 export default class App extends Component {
 	render() {
 		const { store } = this.props
 		return (
 			<Provider store={store}>
-				<Router routes={routes} history={history} />
+				<div>
+					<Layout />
+				</div>
 			</Provider>
 		)
 	}

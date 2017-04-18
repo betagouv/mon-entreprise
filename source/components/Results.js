@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import R from 'ramda'
 import './Results.css'
@@ -10,21 +10,24 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 
 @connect(
 	state => ({
-		pointedOutObjectives: state.pointedOutObjectives
+		pointedOutObjectives: state.pointedOutObjectives,
+		analysedSituation: state.analysedSituation,
+		conversationStarted: !R.isEmpty(state.form)
 	})
 )
 export default class Results extends Component {
 	render() {
-		let {analysedSituation, pointedOutObjectives} = this.props
+		let {analysedSituation, pointedOutObjectives, conversationStarted} = this.props
 		// On travaille pour l'instant sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats. D'où ce chemin :
 		let explanation = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
 		if (!explanation) return null
 
 		return (
-			<section id="results">
+			<section id="results" className={classNames({started: conversationStarted})}>
 				<div id="results-titles">
 					<h2>Vos obligations</h2>
-					<div>Cliquez pour comprendre chaque calcul &nbsp;<i className="fa fa-hand-o-right" aria-hidden="true"></i></div>
+					{conversationStarted &&
+						<div>Cliquez pour comprendre chaque calcul &nbsp;<i className="fa fa-hand-o-right" aria-hidden="true"></i></div>}
 				</div>
 				<ul>
 					{explanation.map(
@@ -47,12 +50,13 @@ export default class Results extends Component {
 											{name}
 										</div>
 										<p>
-										{irrelevant ?
-											"Vous n'êtes pas concerné"
-											: unsatisfied ?
-												'En attente de vos réponses...'
-												: <span className="figure">{humanFigure(2)(computedValue) + '€'}</span>
-										}
+										{conversationStarted && (
+											irrelevant ?
+												"Vous n'êtes pas concerné"
+												: unsatisfied ?
+													'En attente de vos réponses...'
+													: <span className="figure">{humanFigure(2)(computedValue) + '€'}</span>
+										)}
 										</p>
 									</div>
 								</Link>

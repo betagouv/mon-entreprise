@@ -1,0 +1,30 @@
+# Les simulateurs sont définis ici. Ils ont une variable comme objectif de calcul. Le moteur va analyser cette variable et son arbre pour produire un formulaire. Il sera exposé sur /simulateurs/:id
+
+- titre: Simulateur CDD
+  sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
+  id: cdd
+  introduction:
+    - icône: fa-handshake-o
+      texte: Vous avez embauché ou vous réfléchissez à l'embauche d'un salarié en CDD.
+      titre: Votre situation
+    - icône: fa-balance-scale
+      texte: Votre contrat ne peut donc avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
+      titre: Votre obligation
+
+  action:
+    texte: Répondez à quelques questions pour estimer le montant des 4 obligations du CDD.
+    bouton: C'est parti !
+  objectif: surcoût CDD
+  conclusion: |
+    Nous n'avons plus de questions : votre simulation est terminée.
+
+    Cliquez sur les obligations en bas pour comprendre vos résultats.
+
+    Une remarque ? [Écrivez-nous](mailto:contact@embauche.beta.gouv.fr) !
+# <i
+#   style={{cursor: 'pointer'}}
+#   className="fa fa-envelope-o"
+# />
+
+
+# - titre: Du brut au net

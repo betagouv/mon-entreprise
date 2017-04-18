@@ -8,8 +8,6 @@ import {START_CONVERSATION} from '../actions'
 import Aide from './Aide'
 import PageTypeIcon from './PageTypeIcon'
 
-//TODO fusionner SimulationCDD & SimulationNet
-
 let situationSelector = formValueSelector('conversation')
 
 @reduxForm({form: 'conversation', destroyOnUnmount: false})
@@ -66,7 +64,11 @@ export default class CDD extends Component {
 								<img src={require('../images/fin.png')} />
 								<p>
 									Nous n'avons plus de questions : votre simulation est terminée.
-								</p><p>
+								</p>
+								<p>
+									Cliquez sur les obligations en bas pour comprendre vos résultats.
+								</p>
+								<p>
 									Une remarque ? &nbsp;
 									<a href="mailto:contact@embauche.beta.gouv.fr">
 										Écrivez-nous

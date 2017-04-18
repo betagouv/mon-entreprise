@@ -1,0 +1,97 @@
+#sim {
+	padding: 3em 0; /* For the warning message */
+	background-color: #333350;
+	/*background-image: radial-gradient(ellipse at center, white -160%, rgba(255,255,255,0) 100%);*/
+	background-image: radial-gradient(ellipse at center, #4A89DC -160%,#333350 70%);
+	color: white;
+	transition: background-color .5s;
+	height: 100%;
+	padding-bottom: 10%;
+
+}
+
+#sim p {
+	color: inherit;
+}
+
+#sim.started {
+	background: none;
+	background-color: white;
+	color: #333350;
+}
+
+
+#sim > h1 {
+	color: inherit;
+	margin-top: 0;
+	text-align: center;
+	font-size: 350%;
+	font-weight: 800;
+}
+
+
+#simSubtitle {
+	margin-top: -.5em;
+	text-align: center;
+	font-size: 110%;
+	font-weight: 300;
+	margin-bottom: 2%;
+}
+
+#sim .centered {
+	width: 40%;
+	margin: 0 auto;
+}
+
+#sim .intro {
+	font-style: italic;
+	font-size: 100%;
+	margin-bottom: 4%;
+}
+#sim .intro > div {
+	margin: 1em 0;
+	display: flex;
+	align-items: center;
+}
+#sim .intro i {
+	opacity: .9;
+	font-size: 250%;
+	margin-right: .6em;
+}
+#sim .intro span {
+	display: inline-block;
+	width: 80%;
+}
+
+#sim .remarks p {
+	opacity: .9;
+	padding-left: 1em;
+	border-left: 10px solid rgba(255, 255, 255, 0.2);
+	font-style: italic;
+}
+
+#sim .action {
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+#sim .action p {
+	text-align: center;
+}
+
+#sim .action button {
+	color: white;
+	display: block;
+	text-align: center;
+	color: inherit;
+	background: #4A89DC;
+	padding: .6em 1.2em;
+	font-size: 140%;
+	margin: 1em auto;
+	width: 12em;
+	border: none;
+	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1)
+}
+#sim .action:hover {
+	box-shadow: none;
+	opacity: .95;
+}

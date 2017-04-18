@@ -2,7 +2,7 @@ import React from 'react'
 import R from 'ramda'
 import classNames from 'classnames'
 
-let treatValue = data => console.log('data', data) ||
+let treatValue = data =>
 	data == null
 		? '?'
 		: !isNaN(data) ? Math.round(+data) : data ? 'oui' : 'non'

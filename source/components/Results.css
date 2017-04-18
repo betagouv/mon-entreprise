@@ -1,4 +1,23 @@
 
+#results {
+	padding: .1em;
+	background: #333350;
+	font-size: 80%;
+	color: white;
+	padding-top: 2em;
+	text-align: center;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	border-top: 3px solid white;
+}
+#results.started {
+	border: none;
+	box-shadow: 1px -7px 20px 2px #ccc;
+}
+
+
 #results #results-titles {
 	color: white;
 	width: 18%;
@@ -42,6 +61,7 @@
 	border-radius: 3px;
 	white-space: nowrap;
 	color: #333350;
+	min-width: 15em;
 }
 #results li.irrelevant .rule-box {
 	background: rgba(255, 255, 255, 0.65);

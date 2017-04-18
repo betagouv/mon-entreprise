@@ -32,7 +32,7 @@ taux:
 
 multiplication:
   description: |
-    C'est une multiplication un peu améliorée, très utile pour exprimer les cotisations, souvent linéaires.
+    C'est une multiplication un peu améliorée, très utile pour exprimer les cotisations.
 
     Sa propriété `assiette` est multipliée par un pourcentage, `taux`, ou par un `facteur` quand ce nom est plus approprié.
 

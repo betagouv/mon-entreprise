@@ -1,4 +1,5 @@
 import marked from 'marked'
+import React from 'react'
 
 let customMarked = new marked.Renderer()
 customMarked.link = ( href, title, text ) =>
@@ -6,5 +7,9 @@ customMarked.link = ( href, title, text ) =>
 marked.setOptions({
 	renderer: customMarked
 })
+
+export let createMarkdownDiv = markdown =>
+	<div dangerouslySetInnerHTML={{__html: marked(markdown)}}></div>
+
 
 export default marked

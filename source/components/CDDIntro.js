@@ -2,14 +2,14 @@ import React from 'react'
 import colours from './themeColours'
 import PageTypeIcon from './PageTypeIcon'
 import './CDDIntro.css'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 
 export default () => (
   <div id="CDDIntro">
     <PageTypeIcon type="simulation" />
     <h1>Simulateur CDD</h1>
     <div className="subtitle">
-      Découvrir le surcoût pour l'employeur du CDD par rapport au CDI
+      Découvrir le surcoût employeur du CDD par rapport au CDI
     </div>
     <section id="introduction">
       <p>

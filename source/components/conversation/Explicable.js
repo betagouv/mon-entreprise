@@ -35,7 +35,8 @@ export default class Explicable extends React.Component {
 				<span
 					className="icon"
 					onClick={e => {e.preventDefault(); e.stopPropagation(); explain(name)}}>
-				{ hover ? 'ℹ' : '•' }</span>
+					<i className="fa fa-info" aria-hidden="true"></i>
+				</span>
 			</span>
 		)
 	}

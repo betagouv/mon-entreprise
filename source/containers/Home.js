@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import './Home.css'
 import {searchRules} from '../engine/rules.js'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import '../components/Rule.css'
 import R from 'ramda'
 
@@ -60,11 +60,11 @@ export default class Home extends Component {
             <ul>
               <li key="cdd">
                 <span className="simulateur">Surcoût du CDD</span>
-                <Link to="/cdd-intro"><button>Essayer</button></Link>
+                <Link to="/simulateurs/cdd"><button>Essayer</button></Link>
               </li>
               <li key="embauche">
                 <span className="simulateur">Prix global de l'embauche</span>
-                <Link><button className="disabled">Bientôt disponible</button></Link>
+                <a href="#"><button className="disabled">Bientôt disponible</button></a>
               </li>
             </ul>
           </section>

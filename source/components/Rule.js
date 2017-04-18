@@ -36,7 +36,7 @@ export default class Rule extends Component {
 	}
 	render() {
 		let {
-			params: {name},
+			match: {params: {name}},
 			analysedSituation,
 			form
 		} = this.props,
@@ -131,8 +131,13 @@ let AttachDictionary = dictionary => Decorated =>
 				<div className="dictionaryWrapper">
 					<Decorated ref={decorated => this.decorated = decorated} {...this.props} explain={this.explain}/>
 					{explanation &&
-						<div className="dictionaryPanel" dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(explanation, term)}}>
+						<div className="dictionaryPanelWrapper" onClick={() => this.setState({term: null, explanation: null})}>
+							<div className="dictionaryPanel"
+								onClick={e => {e.preventDefault(); e.stopPropagation()}}
+								dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(explanation, term)}}>
+							</div>
 						</div>
+
 					}
 				</div>
 			)

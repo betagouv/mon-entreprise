@@ -5,9 +5,11 @@
   border-radius: .2em;
   display: inline-block;
   margin-left: .8em;
-  opacity: .4;
+  opacity: .35;
   border: 1px solid transparent;
   cursor: pointer;
+  vertical-align: baseline;
+  font-size: 85%;
 }
 
 .explicable:hover .icon {
@@ -15,7 +17,7 @@
   border-color: white;
 }
 .explicable.dark:hover .icon {
-  border-color: #222;
+  border-color: #333350;
 }
 
 .explicable .icon:hover {
@@ -24,7 +26,7 @@
   color: #4A89DC;
 }
 .explicable.dark .icon:hover {
-  background: #222;
+  background: #333350;
   color: white;
 }
 
@@ -34,6 +36,6 @@
   color: white;
 }
 .explicable.dark.explained .icon {
-  background: #222;
+  background: #333350;
   color: white;
 }

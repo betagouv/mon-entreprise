@@ -16,7 +16,7 @@ p {
 
 
 #conversation {
-	margin: 1em auto;
+	margin: 3em auto;
 	font-size: 110%;
 	line-height: normal;
 	display: flex;
@@ -24,6 +24,7 @@ p {
 	align-items: flex-start;
 	min-height: 10em;
 	max-width: 90%;
+	max-height: 85%;
 }
 
 
@@ -34,25 +35,11 @@ p {
 	text-align: center;
 	font-style: italic;
 }
-
-
-#questions-answers {
-	min-width: 60%;
-	transition: width 1s;
+#fin p:first-of-type {
+	font-weight: bold
 }
 
-
-
-#sim #results {
-	padding: .1em;
-	background: #333350;
-	box-shadow: 1px -7px 20px 2px #ccc;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	font-size: 80%;
-	color: white;
-	height: 12em;
-	text-align: center;
+#questions-answers {
+	min-width: 55%;
+	transition: width 1s;
 }

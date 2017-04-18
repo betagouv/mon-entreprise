@@ -1,5 +1,7 @@
 body {
 	font-family: 'Open Sans';
+	margin: 0;
+	height: 100%;
 }
 
 #content {
@@ -11,6 +13,10 @@ body {
 	position: fixed;
   left: 1%;
   top: 4.5%;
+}
+
+a {
+	color: inherit;
 }
 
 h1 {
@@ -30,6 +36,18 @@ h1 {
 	width: 100%;
 	text-align: center;
 	z-index: 1000000;
+}
+#main {
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#ninetyPercent {
+	width: 100%;
+	flex-grow: 1;
+	overflow: auto;
 }
 
 #page-type {
