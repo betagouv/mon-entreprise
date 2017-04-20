@@ -92,6 +92,8 @@ let missingVariables
 
 let buildNextSteps = R.pipe(
 	/*
+		COLLECTE DES VARIABLES MANQUANTES
+		*********************************
 		on collecte les variables manquantes : celles qui sont nécessaires pour
 		remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
 		encore été renseignées

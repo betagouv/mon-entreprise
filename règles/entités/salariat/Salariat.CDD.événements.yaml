@@ -1,0 +1,46 @@
+- Variable: événements
+  attache: Salariat . CDD
+  titre: Événement de contrat
+  question: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+  description: |
+    Certains de ces événements impactent fortement les résultats de la simulation, et peuvent donc la racourcir.
+    Par exemple, dans l'hypothèse d'un CDD poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
+  # au lieu de lister tous les cas, l'alternative est de simplement indiquer qu'ils sont exclusifs,
+  # et les identifier dynamiquement par leur attribut "attache" :
+  langue au chat possible: oui
+  une possibilité:
+    - CDD poursuivi en CDI
+    - refus CDI avantageux
+    - rupture anticipée salarié
+    - rupture pour faute grave ou force majeure
+    - rupture pendant période essai
+
+
+- Variable: CDD poursuivi en CDI
+  attache: Salariat . CDD . événements
+  titre: Le CDD est poursuivi en CDI
+  une possibilité:
+    - embauche en CDI suivant le CDD
+    - CDD requalifié en CDI # quand ça arrive ?
+
+
+- Variable: refus CDI avantageux
+  attache: Salariat . CDD . événements
+  titre: Refus d'un CDI avantageux
+  description: Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
+
+- Variable: rupture anticipée salarié
+  titre: Rupture anticipée du salarié
+  attache: Salariat . CDD . événements
+  description: Rupture anticipée du contrat à l'initiative du salarié.
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
+
+- Variable: rupture pour faute grave ou force majeure
+  titre: Rupture pour faute grave ou force majeure
+  attache: Salariat . CDD . événements
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
+
+- Variable: rupture pendant période essai
+  titre: Rupture pendant la période d'essai
+  attache: Salariat . CDD . événements
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
