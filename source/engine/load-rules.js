@@ -1,19 +1,17 @@
 import R from 'ramda'
 
-/* TODO Ce fichier n'est pas propre.
-
-C'est temporaire (séparation artificielle entre les règles d'entités et les règles d'objectif)
-Elles seront à termes toutes dans le même fichier, ou toutes dans leur fichier respectif
-
+/*
+TODO sélection temporaire de dossier, tant que toute la base de règles n'est pas vérifiée
 */
 
 let objectivesContext = require.context(
   '../../règles/rémunération-travail/cdd', true,
-  /([a-zA-Z]|-|_)+.yaml$/)
+  // /([a-zA-Z]|-|_)+.yaml$/)
+  /(CIF|indemnité_fin_contrat|indemnité_compensatrice_congés_payés|majoration-chomage).yaml/)
+
 
 let entityContext = require.context(
-  '../../règles/entités/salariat', true,
-  /([a-zA-Z]|-|_)+.yaml$/)
+  '../../règles/rémunération-travail/entités/ok', true)
 
 
 let objectives = R.pipe(

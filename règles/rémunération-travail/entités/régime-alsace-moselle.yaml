@@ -1,0 +1,21 @@
+- entité: régime alsace moselle
+  description: Appartenance au régime local de sécurité sociale Alsace-Moselle
+  référence: http://regime-local.fr/salaries/
+  valeur:
+    une de ces conditions:
+      - affiliation 2012 conservée
+      - activité . département ⊂ [57 67 68] #TODO peut-être trop complexe pour être une expression infixe
+      - itinérance en Alsace Moselle:
+        - departement établissement ⊂ [57 67 68]
+        - itinérance en Alsace Moselle contractualisée
+
+- régime alsace moselle: affiliation 2012 conservée
+  type: booléen
+
+- régime alsace moselle: itinérance en Alsace Moselle
+  description: Le salarié effectue une itinérance en Alsace-Moselle
+  type: booléen
+
+- régime alsace moselle: itinérance en Alsace Moselle contractualisée
+  description: Le salarié effectue une itinérance en Alsace-Moselle, et celle-ci est définie explicitement dans le contrat de travail
+  type: booléen

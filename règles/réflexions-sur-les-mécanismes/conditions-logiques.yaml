@@ -58,15 +58,15 @@
   toutes ces conditions:
     - effectif entreprise <= 200
     - chiffre d'affaires < 50 000 000
-    - et l'une de ces conditions:
+    - et une de ces conditions:
       - entreprise . région = Alsace
       - établissement . secteur = éducation
 
   # On peut imaginer que 'toutes ces conditions' devienne en fonction du contexte:
   toutes ces situations:
   # On peut aussi légèrement adapter par exemple:
-  l'une de ces conditions: # devient :
-  et l'une de ces conditions:
+  une de ces conditions: # devient :
+  et une de ces conditions:
 
 # OPTIONS ABANDONNÉES
 

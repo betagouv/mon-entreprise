@@ -1,26 +1,30 @@
-- Cotisation: majoration chômage CDD
-  attache: Salariat . CDD
-  attributs:
+- espace: contrat salarié . CDD
+  nom: majoration chômage
+  cotisation:
     dû par: employeur
     type: majoration
     destinataire: URSSAF
 
   description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD)
+
   non applicable si:
-    l'une de ces conditions:
+    une de ces conditions:
       - durée contrat > 3 #cette information est déjà contenue dans la formule, mais ça ne fait pas de mal de l'expliciter ici
-      - événements . CDD poursuivi en CDI
+      - événement . CDD poursuivi en CDI
+
   formule:
     multiplication:
       assiette: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
       taux:
         logique numérique:
-          motif . accroissement temporaire activité:
+          motif . classique . accroissement activité:
             durée contrat <= 1: 3% # TODO 1 mois, pas 1 rien, évidemment
             durée contrat <= 3: 1.5%
-          motif . usage:
+          motif . classique . usage:
             durée contrat <= 3: 0.5%
+
+
 
   références:
     La mojoration de la contribution chômage: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html

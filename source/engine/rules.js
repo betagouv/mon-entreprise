@@ -4,6 +4,7 @@ import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
 
+ // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
  Méthodes agissant sur une règle */
 
@@ -11,20 +12,21 @@ import marked from './marked'
 export let enrichRule = rule => {
 	let
 		type = possibleVariableTypes.find(t => rule[t]),
-		name = rule[type],
-		dottedName = rule.attache && [
-			rule.attache,
+		name = rule['nom'],
+		ns = rule['espace'],
+		dottedName = ns ? [
+			ns,
 			name
-		].join(' . '),
+		].join(' . ') : name,
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
 
-	return {...rule, type, name, dottedName, subquestion}
+	return {...rule, type, name, ns, dottedName, subquestion}
 }
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
-let
+export let
 	splitName = R.split(' . '),
 	joinName = R.join(' . ')
 
@@ -38,28 +40,23 @@ export let nameLeaf = R.pipe(
 	R.last
 )
 
-/* Les variables peuvent être exprimées dans une règle relativement à son contexte, son 'attache', pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
+/* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
-export let completeRuleName = ({attache, name}, partialName) => {
+export let disambiguateRuleReference = ({ns, name}, partialName) => {
 	let
-		fragments = attache.split(' . '),
-		pathPossibilities = R.pipe(
-			R.length,
-			R.inc,
-			R.range(1),
-			R.map(R.take(R.__, fragments)),
-			R.reverse
-		)(fragments),
-
+		fragments = ns.split(' . '), // ex. [CDD . événements . rupture]
+		pathPossibilities = // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
+			R.range(0, fragments.length + 1)
+			 .map(nbEl => R.take(nbEl)(fragments))
+			.reverse(),
 		found = R.reduce((res, path) =>
 			R.when(
 				R.is(Object), R.reduced
 			)(findRuleByDottedName([...path, partialName].join(' . ')))
 		, null, pathPossibilities)
 
-	return found && found.dottedName || do {throw `OUUUUPS la référence ${partialName} dans la règle : ${name} est introuvable dans la base`}
+	return found && found.dottedName || do {throw `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`}
 }
-
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
 export let rules = rawRules.map(enrichRule)
@@ -82,7 +79,7 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-export let findRuleByDottedName = dottedName => // console.log('dottedName', rules,  dottedName) ||
+export let findRuleByDottedName = dottedName => // console.log('dottedName',  dottedName) ||
 	rules.find(rule => rule.dottedName == dottedName)
 
 export let findGroup = R.pipe(
@@ -140,3 +137,28 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 		// below is a hand implementation of above... function composition can be nice sometimes :')
 		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
 	)(analysedSituation)
+
+let isVariant = R.path(['formule', 'une possibilité'])
+
+export let recrecrecrec =
+	({variantGroups, recordGroups}, dottedName, childDottedName) => {
+		let child = findRuleByDottedName(dottedName),
+			parentDottedName = parentName(dottedName),
+			parent = findRuleByDottedName(parentDottedName)
+		if (isVariant(parent)) {
+			let grandParentDottedName = parentName(parentDottedName),
+				grandParent = findRuleByDottedName(grandParentDottedName)
+			if (isVariant(grandParent))
+				return recrecrecrec({variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
+			else
+				return {
+					variantGroups: R.mergeWith(R.concat, variantGroups, {[parentDottedName]: [childDottedName || dottedName]}),
+					recordGroups
+				}
+		} else
+				return {
+					variantGroups,
+					recordGroups: R.mergeWith(R.concat, recordGroups, {[parentDottedName]: [dottedName]})
+				}
+
+	}

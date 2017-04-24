@@ -1,0 +1,37 @@
+- entité : établissement
+
+- établissement: entreprise
+
+
+- établissement: employés
+  valeur:
+    liste: contrat salarié #TODO stagiaires, etc. ??
+
+- établissement: effectif
+  valeur:
+    décompte: employés
+
+- établissement: SIRET
+  valeur: entier à 14 chiffres
+
+- établissement: code commune
+  valeur: entier à 5 chiffres
+
+- établissement: code postal
+  valeur: entier à 5 chiffres
+
+- établissement: compte AT/MP
+
+- établissement . compte AT/MP: code risque
+  valeur: ?
+
+- établissement . compte AT/MP: appréciation du risque
+  valeur:
+    une possibilité:
+      - très élevé
+      - élevé
+      - moyen
+      - faible
+
+- établissement . compte AT/MP: taux risque
+# TODO faire référence à la règle de atmp.yaml

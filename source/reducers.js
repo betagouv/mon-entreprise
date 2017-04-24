@@ -5,14 +5,12 @@ import {reducer as formReducer, formValueSelector} from 'redux-form'
 import {analyseSituation} from './engine/traverse'
 import { euro, months } from './components/conversation/formValueTypes.js'
 
-import Question from './components/conversation/Question'
-import Input from './components/conversation/Input'
-
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
 import R from 'ramda'
 
-import {findGroup, findRuleByDottedName, parentName, collectMissingVariables} from './engine/rules'
-import {constructStepMeta} from './engine/conversation'
+import {findGroup, findRuleByDottedName, parentName, collectMissingVariables, recrecrecrec} from './engine/rules'
+
+import {generateGridQuestions, generateSimpleQuestions} from './engine/generateQuestions'
 
 import computeThemeColours from './components/themeColours'
 
@@ -112,13 +110,15 @@ let buildNextSteps = R.pipe(
 		missingVariables = collectMissingVariables('groupByMissingVariable')(analysedSituation)
 		return missingVariables
 	},
-	// mv => console.log('l', mv),
 	R.keys,
 	/*
-		Certaines variables manquantes peuvent être factorisées dans des groupes.
+		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.
+		**On appelle ça des groupes de type 'variante'.**
+		Il est alors plus intéressant de demander leur valeur dans un grille de possibilité plutôt que de façon indépendante.
+
 		Par exemple, au lieu de :
 
-		q1: "Pensez vous porlonger le CDD en CDI",
+		q1: "Pensez vous prolonger le CDD en CDI",
 		r1: Oui | Non
 		q2: "Pensez-vous qu'une rupture pour faute grave est susceptible d'arriver"
 		r2: Oui | Non
@@ -126,67 +126,27 @@ let buildNextSteps = R.pipe(
 		on préfère :
 
 		q: "Pensez-vous être confronté à l'un de ces événements ?"
-		r: Prolongation du CDD en CDI | Rupture pour faute grave
-	*/
-	R.groupBy(parentName),
-	// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
-	R.pipe(
-		R.mapObjIndexed((variables, group) =>
-			R.pipe(
-				findGroup,
-				R.cond([
-					// Pas de groupe trouvé : ce sont des variables individuelles
-					[R.isNil, () => variables.map(dottedName => {
-						let rule = findRuleByDottedName(dottedName)
-						return Object.assign(constructStepMeta(rule),
-							rule.format == 'nombre positif' ||
-							rule.format == 'période' ?
-							{
-								component: Input,
-								valueType: rule.format == 'nombre positif' ? euro : months,
-								attributes: {
-									inputMode: 'numeric',
-									placeholder: 'votre réponse'
-								},
-								suggestions: rule.suggestions
-							} : {
-								component: Question,
-								choices: [
-									{value: 'non', label: 'Non'},
-									{value: 'oui', label: 'Oui'}
-								]
-							},
-							{
-								objectives: missingVariables[dottedName]
-							}
-						)})],
-					[R.T, group =>  do {
-						let possibilities = group['une possibilité']
-						Object.assign(
-							constructStepMeta(group),
-							{
-								component: Question,
-								choices:
-									possibilities.concat(
-										group['langue au chat possible'] === 'oui' ?
-											[{value: '_', label: 'Aucun'}] : []
-									)
-							},
-							{
-								objectives: R.pipe(
-									R.chain(v => missingVariables[group.dottedName + ' . ' + v]),
-									R.uniq()
-								)(possibilities)
-							}
-						)}]
-				])
-			)(group)
-		),
-		R.values,
-		R.unnest
-	)
-)
+		r: Prolongation du CDD en CDI | Rupture pour faute grave.
 
+		Ceci est possible car ce sont tous les deux des événements et qu'ils sont incompatibles entre eux.
+		Pour l'instant, cela n'est possible que si les variables ont comme parent (ou grand-parent),
+		au sens de leur espace de nom, une règle de type 'une possibilité'.
+		#TODO pouvoir faire des variantes sans cette contrainte d'espace de nom
+
+		D'autres variables pourront être regroupées aussi, car elles partagent un parent, mais sans fusionner leurs questions dans l'interface. Ce sont des **groupes de type _record_ **
+	*/
+	R.reduce(
+		recrecrecrec //TODO reorganize
+		, {variantGroups: {}, recordGroups: {}}
+	),
+	// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
+	R.evolve({
+		variantGroups: generateGridQuestions,
+		recordGroups: generateSimpleQuestions,
+	}),
+	R.values,
+	R.unnest,
+)
 
 export default reduceReducers(
 	combineReducers({
@@ -195,9 +155,8 @@ export default reduceReducers(
 
 		/* Have forms been filled or ignored ?
 		false means the user is reconsidering its previous input */
-		foldedSteps: (steps=[]) => steps,
-		unfoldedSteps: (steps=[]) => steps,
-
+		foldedSteps: (steps = []) => steps,
+		unfoldedSteps: (steps = []) => steps,
 
 		analysedSituation: (state = []) => state,
 
@@ -205,7 +164,7 @@ export default reduceReducers(
 
 		explainedVariable,
 
-		pointedOutObjectives
+		pointedOutObjectives,
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
 	handleSteps

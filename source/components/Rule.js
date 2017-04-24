@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 import mockSituation from '../engine/mockSituation.yaml'
 import {START_CONVERSATION} from '../actions'
 import classNames from 'classnames'
-import possiblesDestinataires from '../../règles/destinataires/destinataires.yaml'
+import possiblesDestinataires from '../../règles/ressources/destinataires/destinataires.yaml'
 import {capitalise0} from '../utils'
 import knownMecanisms from '../engine/known-mecanisms.yaml'
 import marked from '../engine/marked'
@@ -78,7 +78,7 @@ export default class Rule extends Component {
 							: <div>
 									<a href={destinataireData.lien} target="_blank">
 										{destinataireData.image &&
-											<img src={require('../../règles/destinataires/' + destinataireData.image)} /> }
+											<img src={require('../../règles/ressources/destinataires/' + destinataireData.image)} /> }
 										{!destinataireData.image &&
 											<div id="calligraphy">{destinataire}</div>
 										}

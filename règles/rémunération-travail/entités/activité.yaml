@@ -1,0 +1,28 @@
+- entité : activité
+  description: Une activité est une occupation d'un individu, souvent rémunérée.
+  valeur:
+    # Cette syntaxe indique que l'activité est une alternative entre plusieurs autres concepts incompatibles : c'est ce que l'on appelle une variante.
+    # Ce qui ne veux pas dire que le cumul de plusieurs activités est impossible (etc. salariat et indépendant), mais celui-ci est défini en amont dans le concept d'individu.
+    une possibilité:
+      - contrat salarié
+      - indépendant
+      - fonction publique
+      - stage
+      - inactif # (demandeur d'emploi, etc.)
+      # TODO ...
+
+- activité: département
+  description: Département où l'activité est exercée
+  type: numerique
+
+- activité: individu
+  description: l'individu qui exerce cette activité
+  # on ne spécifie pas d'information de valeur -> une activité a une propriété individu, qui ne créée pas d'entité, c'est simplement une attache à l'entité individu existante
+
+
+  # TODO C'est aux fonctions de contrôle que revient la tâche de vérifier la cohérence des données
+  # Par exemple, un on peut cumuler un emploi dans la fonction publique et une activité d'indépendant que sous certaines conditions.
+
+
+  # TODO durée déterminée: Booléen (Non)
+  # peut être un calcul allant chercher les propriétés des types : CDD pour le salariat, durée du stage, etc.

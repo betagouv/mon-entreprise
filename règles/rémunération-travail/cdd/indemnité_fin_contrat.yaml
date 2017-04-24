@@ -1,40 +1,34 @@
-- Indemnité: prime de fin de contrat
-  attache: Salariat . CDD
-  attributs:
-    type: indemnité
+- espace: contrat salarié . CDD
+  nom: prime de fin de contrat
+  indemnité:
     destinataire: salarié
 
   alias: prime de précarité
   description: Somme versée en fin de CDD comme compensation de précarité.
-  notes: Attention, les exceptions sont légion. Conventions collectives.
+  notes: |
+    Attention, les exceptions sont légion. Conventions collectives...
+
+    - Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité : [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
 
 
   non applicable si:
-    l'une de ces conditions:
+    une de ces conditions:
       # Evènements particuliers
-      - événements . CDD poursuivi en CDI
-      - événements . refus CDI avantageux
+      - événement . CDD poursuivi en CDI
+      - événement . refus CDI avantageux
 
-      # Rupture
-      - événements . rupture anticipée salarié
-      - événements . rupture pour faute grave ou force majeure
-      - événements . rupture pendant période essai
+      # Rupture TODO regrouper celà dans une nouvelle variante
+      - événement . rupture anticipée salarié
+      - événement . rupture pour faute grave ou force majeure
+      - événement . rupture pendant période essai
 
-      - engagement employeur complément formation
+      - motif . classique . usage
+      - motif . classique . saisonnier
+      - motif . complément formation
+      - motif . contrat aidé
 
-      # types de contrat
-      - contrat aidé
-      - motif . usage
-      - motif . jeune vacances
-      - motif . saisonnier
-      # https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité.
+      - contrat jeune vacances
 
-      # - CDD . type = vendanges
-      # cas du contrat vendanges !! différent du saisonnier ?
-      # du  Code rural et de la pêche maritime :  https://www.easycdd.com/LEGISLATION-CDD/Avant-de-rediger-un-contrat-CDD/Les-cas-de-recours-au-contrat-CDD/Cas-de-recours-Detaille/Le-contrat-CDD-vendanges
-
-      # Les contrats d'extras dans l'hôtellerie restauration
-      # - CDD . type = extras restauration
 
   # TODO Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat.
   # Ici elle est étalée sur un mois moyen

@@ -1,7 +1,7 @@
-- Cotisation: ATMP
+- contrat salarié: ATMP
   nom: Cotisation d'Accidents du Travail et Maladies Professionnelles
   description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
-  attributs:
+  cotisation:
     branche: maladie
     collecteur: URSSAF
     responsable: CARSAT
@@ -48,8 +48,7 @@
             Il est accessible en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm) ou reçu par courrier.
           taux: Établissement . taux collectif ATMP
 
-- Variable: taux collectif ATMP
-  attache: Établissement
+- contrat salarié . ATMP : taux collectif ATMP
   saisie:
     selection: # affichera une saisie utilisateur de type <select> avec champ de recherche par mots clefs
       données: https://raw.githubusercontent.com/sgmap/taux-collectifs-cotisation-atmp/master/taux-2016.csv

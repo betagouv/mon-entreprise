@@ -27,7 +27,7 @@
     "react-router-dom": "^4.1.1",
     "reduce-reducers": "^0.1.2",
     "redux": "^3.6.0",
-    "redux-form": "^6.4.3",
+    "redux-form": "^6.6.3",
     "redux-saga": "^0.14.3",
     "reselect": "^2.5.2",
     "whatwg-fetch": "^2.0.2"

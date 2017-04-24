@@ -1,0 +1,36 @@
+- entité : entreprise
+
+- entreprise: établissements
+  valeur:
+    liste: établissement
+
+
+- entreprise: employés
+  valeur:
+    union: établissements . employés
+
+- entreprise: effectif
+  valeur:
+    décompte: employés
+
+- entreprise: nombre apprenti
+  valeur: numérique
+
+- entreprise: salaire brut
+  valeur:
+    somme: employés . salaire brut # les employés sont des `contrat salariés`, donc ont un salaire brut
+
+
+# TODO formule intéressante :
+# taxe sur les salaires(Cotisation, Impôt) = sum(Employés.Taxe sur les salaires)
+#   calcule la taxe sur les salaires de mes employés
+#   si resultat < franchise (2000) : 0
+#   si résultat < abattement (20 000): lissage
+
+
+
+#TODO A refaire
+# Compte AT/MP
+#   code risque: caractères
+#   appréciation du risque: très élevé | élevé | moyen | bureau
+#   taux de risque: calc(code risque) nombre positif

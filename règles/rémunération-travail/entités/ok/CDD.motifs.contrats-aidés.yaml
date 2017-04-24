@@ -1,0 +1,60 @@
+# TODO Aujourd'hui, nous n'avons besoin des contrats aidés que dans le contexte du motif de recours au CDD.
+# Il faudra par la suite, par exemple pour un simulateur CUI, les en extraire, par exemple dans `contrat salarié`, mais toujours pouvoir les utiliser ici.
+
+- espace: contrat salarié . CDD . motif
+  nom: contrat aidé
+  # Voir le TODO de contrat salarié . CDD . événement . CDD poursuivi en CDI
+  # formule:
+  #   une possibilité:
+  #   - contrat unique d'insertion
+  #   - emplois d'avenir
+  #   - CDD sénior
+  #   - alternance
+  #   # CDD d'insertion (CDDI) https://www.service-public.fr/particuliers/vosdroits/F14100
+  références:
+    Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+
+- espace: contrat salarié . CDD . motif . contrat aidé
+  nom: contrat unique d'insertion
+  # Voir le TODO de contrat salarié . CDD . événement . CDD poursuivi en CDI
+  # formule:
+  #   une possibilité:
+  #   - CUI-CAE
+  #   - CUI-CIE
+  références:
+    CUI - dispositions générales: http://travail-emploi.gouv.fr/emploi/insertion-dans-l-emploi/contrats-aides/article/le-contrat-unique-d-insertion-cui-dispositions-generales
+
+- espace: contrat salarié . CDD . motif . contrat aidé
+  nom: CDD sénior
+  titre: Contrat CDD sénior
+
+- espace: contrat salarié . CDD . motif . contrat aidé
+  nom: emploi d'avenir
+  description: Contrat de travail aidé créé pour faciliter l'insertion professionnelle et l’accès à une qualification pour les jeunes en difficulté
+  références:
+    Emploi d'avenir: https://www.service-public.fr/particuliers/vosdroits/F24438
+
+- espace: contrat salarié . CDD . motif . contrat aidé
+  nom: alternance
+  # Voir le TODO de contrat salarié . CDD . événement . CDD poursuivi en CDI
+  # formule:
+  #   une possibilité:
+  #   - apprentissage
+  #   - professionnalisation
+
+
+- espace: contrat salarié . CDD . motif . contrat aidé . alternance
+  nom: apprentissage
+  description: Contrat de travail aidé destiné au jeune professionnel qui suit une formation en alternance entre une entreprise et un centre de formation.
+  référence: https://fr.wikipedia.org/wiki/Contrat_d'apprentissage#En_France
+  # cette variable peut se calculer ! Au boulot !
+  # y intégrer l'Étudiant apprenti professeur https://www.service-public.fr/particuliers/vosdroits/F24439
+  # attention ! Le contrat d'apprentissage n'est pas soumis aux dispositions légales du CDD:
+  # Article L1241-1
+  # Les dispositions du présent titre ne s'appliquent ni au contrat d'apprentissage [...]
+
+- espace: contrat salarié . CDD . motif . contrat aidé . alternance
+  nom: professionnalisation
+  description: Contrat de travail aidé consistant en l'alternance de périodes d’acquisition de savoir-faire en entreprise et de périodes de formation théorique dispensées en centres de formation ou par l’entreprise elle-même si elle dispose d’un service de formation agréé.
+  référence: https://fr.wikipedia.org/wiki/Contrat_de_professionnalisation
+  # cette variable peut se calculer ! Au boulot !

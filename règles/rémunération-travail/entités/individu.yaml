@@ -1,0 +1,47 @@
+# Un des concepts de base du système, l'individu.
+# C'est une collection de champs (un _record_)
+
+- entité : individu
+  # individu n'est une proriété d'aucun autre objet
+  description: C'est le concept représentant une personne
+
+- individu: sexe
+  valeur:
+    une possibilité:
+      - masculin
+      - féminin
+
+# Voir ./individu.sexe.yaml, ces termes y sont définis.
+# Ils sont attachés à l'espace de nom `individu . sexe`.
+#
+# Pourquoi les propriétés de l'objet individu sont-elles éclatées dans une liste plate ? Concrêtement, pourquoi `sexe` n'est pas une propriété écrite directement au sein de l'objet `individu` ?
+# -> Pour plus de lisibilité : sexe, masculin, féminin peuvent s'étendre sur plusieurs lignes et rendraient l'objet individu illisible si elles y étaient toutes imbriquées.
+# Des objets à proriété pourront être reconstitués dans le navigateur.
+
+# Cette propriété est non calculable.
+# On peut parler de variables d'entrée, à saisir par l'utilisateur de la simulation.
+- individu: date de naissance
+  valeur:
+    date: JJ-MM-AAAA
+
+# Celle-ci est calculable, mais toujours saisissable
+- individu: age
+  valeur:
+    différence temporelle:
+      échelle: année
+      entre: date de naissance
+      et: aujourd'hui
+
+# A ce concept est associée une liste d'un autre concept, l'Activité.
+# La liste dénote le fait qu'elles peuvent se cumuler.
+- individu: activités
+  valeur:
+    liste: activité
+
+
+# Lors de l'éxecution du simulateur, ce concept sera instancié avec des données,
+# potentiellement plusieurs fois pour construire une population :
+# {
+#   date de naissance: 1989-08-01,
+#   activités: [a1, a2]
+# }

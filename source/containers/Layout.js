@@ -30,7 +30,7 @@ export default class Layout extends Component {
 							<Route exact path="/" component={Home}/>
 							<Route path="/contact" component={Contact} />
 							<Route path="/regle/:name" component={Rule} />
-							<Route path="/simulateurs/:simulateurId" component={Simulateur} />
+							<Route path="/simulateurs/:simulateurId/:intro?" component={Simulateur} />
 							<Route component={Route404} />
 						</Switch>
 					</div>

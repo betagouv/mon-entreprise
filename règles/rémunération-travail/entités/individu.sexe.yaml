@@ -1,0 +1,11 @@
+# Pourquoi ne pas simplement définir l'espace de nom en en-tête du fichier, par ex:
+# ```espace: individu . sexe```
+# pour ne pas avoir à le répéter ci-dessous ?
+# -> pour pouvoir dans un futur, que l'on espère proche, éditer ou parcourir ce code source directement dans un navigateur _par espace de nom_ avec une barre de recherche avancée. La notion de fichier serait alors embêtante.
+
+
+- individu . sexe : masculin
+  image: fa-male
+
+- individu . sexe : masculin
+  image: fa-female

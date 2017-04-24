@@ -119,7 +119,7 @@ export var FormDecorator = formType => RenderField =>
 							// color: this.props.themeColours.textColourOnWhite,
 							maxWidth: wideQuestion ? '95%' : ''
 						}}
-						>{this.props.question}</h1>
+						>{this.props.step.question}</h1>
 						<div className="step-subquestion" dangerouslySetInnerHTML={{__html: subquestion}}></div>
 				</div>
 

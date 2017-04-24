@@ -1,6 +1,6 @@
-- Cotisation: AGIRC
-  attache: Salariat
-  attributs:
+- espace: contrat salarié
+  nom: AGIRC
+  cotisation:
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC

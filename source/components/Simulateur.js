@@ -8,12 +8,13 @@ import Aide from './Aide'
 import PageTypeIcon from './PageTypeIcon'
 import simulateurs from '../../règles/simulateurs.yaml'
 import R from 'ramda'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect, Link, withRouter} from 'react-router-dom'
 import {createMarkdownDiv} from '../engine/marked'
 import './Simulateur.css'
 import classNames from 'classnames'
 let situationSelector = formValueSelector('conversation')
 
+@withRouter
 @reduxForm({form: 'conversation', destroyOnUnmount: false})
 @connect(
 	state => ({
@@ -37,24 +38,21 @@ export default class extends React.Component {
 			}
 		} = this.props
 
+		this.simulateurId = simulateurId
 		this.simulateur = R.find(R.propEq('id', simulateurId))(simulateurs)
 
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		if (this.simulateur)
 			this.props.startConversation(this.simulateur.objectif)
 	}
-	state = {
-		started: null
-	}
 	render(){
 		if (!this.simulateur) return <Redirect to="/404"/>
 
 		let
+			started = !this.props.match.params.intro,
 			{foldedSteps, unfoldedSteps, situation} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.simulateur)
-			,
-			{started} = this.state
 
 		return (
 			<div id="sim" className={classNames({started})}>
@@ -73,11 +71,11 @@ export default class extends React.Component {
 				</div>
 				{
 					// Tant que le bouton 'C'est parti' n'est pas cliqué, on affiche l'intro
-					!this.state.started ?
+					!started ?
 					<div>
 						<div className="action centered">
 							<p>{sim(['action', 'texte'])}</p>
-							<button onClick={() => this.setState({started: true})}>
+							<button onClick={() => this.props.history.push(`/simulateurs/${this.simulateurId}`)	}>
 								{sim(['action', 'bouton'])}
 							</button>
 						</div>
@@ -109,11 +107,11 @@ export default class extends React.Component {
 									}
 									<div id="unfoldedSteps">
 										{ !R.isEmpty(unfoldedSteps) && do {
-											let step = R.head(unfoldedSteps)
+											let step = R.head(unfoldedSteps),
+												pureStep = R.dissoc('component', step)
 											;<step.component
 												key={step.name}
-												{...step}
-												step={step}
+												step={pureStep}
 												unfolded={true}
 												answer={situation(step.name)}
 											/>

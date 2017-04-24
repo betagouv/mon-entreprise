@@ -1,6 +1,6 @@
-- Indemnité: compensation des congés payés
-  attache: Salariat . CDD
-  attributs:
+- espace: contrat salarié . CDD
+  nom: compensation des congés payés
+  indemnité:
     destinataire: salarié
     dû par: employeur
   description: |
@@ -8,14 +8,9 @@
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie d'une indemnité compensatrice de congés payés.
 
-  references:
-    Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
-    Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
-    Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
-
   non applicable si:
-    l'une de ces conditions:
-      - événements . CDD poursuivi en CDI
+    une de ces conditions:
+      - événement . CDD poursuivi en CDI
     # TODO Y a-t-il d'autres conditions ? Sinon supprimer la liste
 
   # TODO aspect temporel
@@ -55,3 +50,9 @@
     À noter, la loi El Khomri modifie l'article L3141-12:
     - avant : Les congés peuvent être pris dès l'ouverture des droits [...]
     - maintenant : Les congés peuvent être pris dès l’embauche [...]
+
+
+  references:
+    Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
+    Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
+    Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD

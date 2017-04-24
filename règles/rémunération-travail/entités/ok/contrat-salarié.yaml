@@ -1,47 +1,28 @@
-- Entité: Salariat
+- nom: contrat salarié
+  description: |
+    Activité encadrée par un contrat de travail de droit privé.
 
-  # Sur ce concept de Salariat sont définies une liste de propriétés.
-  # Le salarié est embauché dans un établissement, lui même rattaché à une entreprise
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans ces cas:
+      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
-  individu: Individu
+  # le contrat salarié est rattaché à l'activité, elle-même rattachée à un individu.
   établissement: Établissement
 
 
-- Variable: congés non pris
-  attache: Salariat
-  question: Combien de jours de congés ne seront pas pris ?
-  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux annuels.
-  format: nombre positif
-  suggestions:
-    3 / 25: 3
-    10 / 25: 10
-
-# Cette variable est le point de départ du simulateur "surcout CDD" :-D
-- Variable: surcoût CDD
-  attache: Salariat
-  description: >
-    En France, le contrat à durée déterminée <span className="insist">est un contrat d'exception au CDI</span>
-    qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
-  formule:
-    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
-      - CDD . CIF CDD #cotisation
-      - CDD . majoration chômage CDD #cotisation
-      - CDD . prime de fin de contrat #indemnité
-      - CDD . compensation des congés payés #indemnité
-
-- Variable: assiette cotisations sociales
-  attache: Salariat
-  description: >
+- espace: contrat salarié
+  nom: assiette cotisations sociales
+  description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule:
     somme:
       - salaire brut
-      - CDD . prime de fin de contrat #indemnité
-      - CDD . compensation des congés payés #indemnité
+      # - CDD . prime de fin de contrat #indemnité
+      # - CDD . compensation des congés payés #indemnité
 
-- Variable: salaire de base
-  attache: Salariat
+- espace: contrat salarié
+  nom: salaire de base
   question: Quel est le salaire de base ?
   description: Le salaire de base est le salaire brut régulier inscrit dans le contrat. C'est le salaire de négociation entre le salarié et l'employeur. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
   format: nombre positif
@@ -49,8 +30,8 @@
     salaire médian: 2300
     SMIC: 1480
 
-- Variable: salaire brut
-  attache: Salariat
+- espace: contrat salarié
+  nom: salaire brut
   question: Quel est le salaire brut ?
   description: Le salaire brut peut être vu comme la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié, ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
   format: nombre positif
@@ -65,34 +46,30 @@
     salaire médian: 2300
     SMIC: 1480
 
-- Variable: statut cadre
-  attache: Salariat
+- espace: contrat salarié
+  nom: statut cadre
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
-  choix:
-    - oui
-    - non (défaut)
 
 
-- Variable: plafond sécurité sociale
-  attache: Salariat
-  type de période: mensuel
+- espace: contrat salarié
+  nom: plafond sécurité sociale
+  #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
+  # type de période: mensuel
   formule: 3269
 
-
-# TODO
-
-
 # Cette variable est le point de départ du simulateur "surcout CDD" :-D
-- Variable: salaire net
-  attache: Salariat
-  description: >
+- espace: contrat salarié
+  nom: salaire net
+  description: |
     C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
   formule:
     somme: #TODO à l'avenir, exprimer une somme sous forme de requête
       - APEC
       - AGIRC
 
-
+- espace: contrat salarié
+  nom: régime alsace moselle
+  #TODO peut-être est-ce à définir au niveau de l'activité ?
 
 # - Variable: salaire super brut
 #   formule:

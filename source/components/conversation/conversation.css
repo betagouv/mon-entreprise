@@ -141,8 +141,28 @@
 	margin: .8em 0;
 }
 
+.step fieldset ul {
+	list-style-type: none;
+}
+
 #foldedSteps {
 	margin: 2em 0 4em;
+}
+
+.step.question .variant {
+	margin-bottom: 1em;
+}
+
+.step.question .variant > ul {
+	border-left: 1px dashed #ccc;
+	margin-top: .6em;
+	padding-left: .6em;
+	margin-left: 1em;
+}
+.step.question .variant > div {
+	padding-left: .6em;
+	font-weight: 600;
+	font-style: italic;
 }
 
 .step.question fieldset > div {
@@ -152,7 +172,13 @@
 }
 
 .step.question fieldset span {
-  margin-bottom: .6em;
+	white-space: nowrap
+}
+.step.question .variantLeaf {
+	margin-bottom: .6em;
+}
+.step.question .variant .variantLeaf {
+	display: inline-block;
 }
 
 .step label.radio,

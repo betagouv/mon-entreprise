@@ -1,10 +1,9 @@
-- Cotisation: ARRCO
-  attache: Salariat
-  attributs:
+- contrat salarié: ARRCO
+  cotisation:
     branche: retraite
     type de retraite: complémentaire
     destinataire: ARRCO
-  description: >
+  description: |
     Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés
   références:
     calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/

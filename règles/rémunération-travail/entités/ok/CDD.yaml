@@ -1,8 +1,8 @@
 # TODO Attention, il faudrait peut-être prendre en compte les interdictions du CDD.
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
 
-- Variable: CDD
-  attache: Salariat
+- espace: contrat salarié
+  nom: CDD
   nom complet: CDD
   description: Contrat de travail pour lequel un employeur peut recruter un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
   référence: https://fr.wikipedia.org/wiki/Contrat_de_travail_%C3%A0_dur%C3%A9e_d%C3%A9termin%C3%A9e_en_France
@@ -12,14 +12,13 @@
   #   - motif de recours
 
 # - Variable: emploi temporaire
-#   attache: Salariat . CDD
 #   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
 #   références:
 #     Code du travail - Article L1242-1
 
 
-- Variable: durée contrat
-  attache: Salariat . CDD
+- espace: contrat salarié . CDD
+  nom: durée contrat
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
   sous-question: |
@@ -33,9 +32,32 @@
     6 mois: 6
     3 mois: 3
 
+- espace: contrat salarié . CDD
+  nom: congés non pris
+  question: Combien de jours de congés ne seront pas pris ?
+  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux annuels.
+  format: nombre positif
+  suggestions:
+    3 / 25: 3
+    10 / 25: 10
 
-- Variable: contrat jeune vacances
-  attache: Salariat . CDD
+- espace: contrat salarié . CDD
+  nom: contrat jeune vacances
   titre: Contrat jeune vacances
+  question: Est-ce un contrat jeune vacances ?
   description: Aussi appelé CDD vendages. Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
   notes: Ce n'est pas un motif de CDD.
+
+
+
+# Cette variable est le point de départ du simulateur "surcout CDD" :-D
+- espace: contrat salarié . CDD
+  nom: surcoût CDD
+  description: |
+    En France, le contrat à durée déterminée _est un contrat d'exception au CDI_ qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
+  formule:
+    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
+      - CIF #cotisation
+      - majoration chômage #cotisation
+      - prime de fin de contrat #indemnité
+      - compensation des congés payés #indemnité

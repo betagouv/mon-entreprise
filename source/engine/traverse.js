@@ -1,6 +1,6 @@
 import React from 'react'
-import {findRuleByDottedName, completeRuleName, findRuleByName} from './rules'
-import {evaluateVariable, knownVariable} from './variables'
+import {findRuleByDottedName, disambiguateRuleReference, findRuleByName} from './rules'
+import {evaluateVariable} from './variables'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
@@ -36,7 +36,7 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 - faire le calcul (déterminer les valeurs de chaque noeud)
 - trouver les branches complètes pour déterminer les autres branches courtcircuitées
 	- ex. rule.formule est courtcircuitée si rule.non applicable est vrai
-	- les feuilles de "l'une de ces conditions" sont courtcircuitées si l'une d'elle est vraie
+	- les feuilles de 'une de ces conditions' sont courtcircuitées si l'une d'elle est vraie
 	- les feuilles de "toutes ces conditions" sont courtcircuitées si l'une d'elle est fausse
 	- ...
 (- bonus : utiliser ces informations pour l'ordre de priorité des variables inconnues)
@@ -58,7 +58,7 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 	let
 		{fragments} = parseResult,
 		variablePartialName = fragments.join(' . '),
-		variableName = completeRuleName(rule, variablePartialName),
+		variableName = disambiguateRuleReference(rule, variablePartialName),
 		// y = console.log('variableName', variableName),
 		variable = findRuleByDottedName(variableName),
 		variableIsRule = variable.formule != null,
@@ -70,8 +70,8 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 			variable
 		),
 
-		known = !variableIsRule && knownVariable(situationGate, variableName),
-		nodeValue = variableIsRule ? parsedRule.nodeValue : !known ? null : evaluateVariable(situationGate, variableName)
+		nodeValue = variableIsRule ? parsedRule.nodeValue : evaluateVariable(situationGate, variableName, variable.format),
+		missingVariables = variableIsRule ? [] : (nodeValue == null ? [variableName] : [])
 
 	return {
 		nodeValue,
@@ -81,7 +81,7 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		name: variableName,
 		type: 'boolean | numeric',
 		explanation: parsedRule,
-		missingVariables: (variableIsRule || known) ? [] : [variableName],
+		missingVariables,
 		jsx:	<Leaf
 			classes="variable"
 			name={fragments.join(' . ')}
@@ -95,8 +95,8 @@ let treat = (situationGate, rule) => rawNode => {
 
 	if (R.is(String)(rawNode)) {
 		/* On a à faire à un string, donc à une expression infixe.
-		Elle sera traité avec le parser obtenu grâce ) NearleyJs et notre grammaire.
-		On obtient un objet de type Variable (avec potentiellement un 'modifier'), CalcExpression ou Comparison.
+		Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire.
+		On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
 		Cet objet est alors rebalancé à 'treat'.
 		*/
 
@@ -220,11 +220,16 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
-	if (mecanisms.length != 1) throw 'OUPS !'
+
+	if (mecanisms.length != 1) {
+		console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', rawNode)
+		throw 'OUPS !'
+	}
+
 	let k = R.head(mecanisms),
 		v = rawNode[k]
 
-	if (k === "l'une de ces conditions") {
+	if (k === 'une de ces conditions') {
 		let result = R.pipe(
 			R.unless(R.is(Array), () => {throw 'should be array'}),
 			R.reduce( (memo, next) => {
@@ -241,7 +246,7 @@ let treat = (situationGate, rule) => rawNode => {
 			}, {
 				nodeValue: false,
 				category: 'mecanism',
-				name: "l'une de ces conditions",
+				name: 'une de ces conditions',
 				type: 'boolean',
 				explanation: []
 			}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
@@ -826,7 +831,7 @@ Variable:
 
 (boolean logic):
 	toutes ces conditions: ([expression | boolean logic])
-	l'une de ces conditions: ([expression | boolean logic])
+	une de ces conditions: ([expression | boolean logic])
 	conditions exclusives: ([expression | boolean logic])
 
 "If you write a regular expression, walk away for a cup of coffee, come back, and can't easily understand what you just wrote, then you should look for a clearer way to express what you're doing."

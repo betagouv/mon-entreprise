@@ -1,12 +1,9 @@
-- Cotisation: CIF CDD
-  attache: Salariat . CDD
+- espace: contrat salarié . CDD
+  nom: CIF
   description: Contribution au financement du congé individuel de formation spécifique aux CDD.
-  attributs:
+  cotisation:
     destinataire: OPCA
     dû par: employeur
-
-  références:
-    Code du travail - Article L6322-37 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
 
   non applicable si:
     une de ces conditions:
@@ -19,3 +16,6 @@
     multiplication:
       assiette: assiette cotisations sociales
       taux: 1%
+
+  références:
+    Code du travail - Article L6322-37 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050

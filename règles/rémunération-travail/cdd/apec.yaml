@@ -1,6 +1,6 @@
-- Cotisation: APEC
-  attache: Salariat
-  attributs:
+- espace: contrat salarié
+  nom: APEC
+  cotisation:
     branche: retraite
     type de retraite: complémentaire
     destinataire: APEC
