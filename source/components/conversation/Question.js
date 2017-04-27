@@ -42,7 +42,7 @@ export default class Question extends Component {
 		if (R.is(Array)(choices))
 			return this.renderBinaryQuestion()
 		else
-			return this.renderChildren(choices.children)
+			return this.renderChildren(choices)
 	}
 	renderBinaryQuestion(){
 		let {
@@ -59,7 +59,7 @@ export default class Question extends Component {
 			</ul>
 		)
 	}
-	renderChildren(children) {
+	renderChildren(choices) {
 		let {
 			input, // vient de redux-form
 			stepProps,
@@ -73,16 +73,21 @@ export default class Question extends Component {
 				radioDottedName.split(name + ' . ')[1]
 
 		return (<ul>
-			{ children.map( ({name, titre, dottedName, children: nextChildren}) =>
-				nextChildren ?
+			{ choices.children.map( ({name, titre, dottedName, children}) =>
+				children ?
 					<li key={name} className="variant">
 						<div>{titre || name}</div>
-						{this.renderChildren(nextChildren)}
+						{this.renderChildren({children})}
 					</li>
 				: <li key={name} className="variantLeaf">
-					<RadioLabel key={name} {...{value: relativeDottedName(dottedName), label: titre || name, input, submit, themeColours}}/>
+					<RadioLabel {...{value: relativeDottedName(dottedName), label: titre || name, input, submit, themeColours}}/>
 				</li>
 			)}
+			{choices.canGiveUp &&
+				<li key='aucun' className="variantLeaf">
+					<RadioLabel {...{value: false, label: 'Aucun', input, submit, themeColours}}/>
+				</li>
+			}
 		</ul>)
 	}
 }

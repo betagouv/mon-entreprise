@@ -33,13 +33,17 @@ let isVariant = R.path(['formule', 'une possibilité'])
 let buildVariantTree = relevantPaths => path => {
 	let rec = path => {
 		let node = findRuleByDottedName(path),
-			variants = isVariant(node),
-			shouldBeExpanded = variants && variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) ))
+			variant = isVariant(node),
+			variants = variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
+			shouldBeExpanded = variant && variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
+			canGiveUp = variant && !variant['choix obligatoire']
 
 		return Object.assign(
 			node,
 			shouldBeExpanded ?
-				{children: variants.map(v => rec(path + ' . ' + v))}
+				{	canGiveUp,
+					children: variants.map(v => rec(path + ' . ' + v))
+				}
 			: null
 		)
 	}
@@ -57,25 +61,13 @@ export let generateGridQuestions = R.pipe(
 		})
 	),
 
-	// R.map( R.pipe(
-	// 	R.flatten,
-	// 	R.map(findRuleByDottedName),
-	// 	([variant, ...variants]) =>
-	// 		Object.assign(
-	// 			constructStepMeta(variant),
-	// 			//TODO reintroduce langue au chat !
-	// 			{
-	// 				component: Question,
-	// 				choices: variants,
-	// 			},
-	// 			{objectives: []}
-				//TODO reintroduce objectives
-				// {
-				// 	objectives: R.pipe(
-				// 		R.chain(v => missingVariables[variant.dottedName + ' . ' + v]),
-				// 		R.uniq()
-				// 	)(variant['une possibilité'])
-				// }
+		//TODO reintroduce objectives
+		// {
+		// 	objectives: R.pipe(
+		// 		R.chain(v => missingVariables[variant.dottedName + ' . ' + v]),
+		// 		R.uniq()
+		// 	)(variant['une possibilité'])
+		// }
 )
 export let generateSimpleQuestions = R.pipe(
 	R.values, //TODO exploiter ici les groupes de questions de type 'record' (R.keys): elles pourraient potentiellement êtres regroupées visuellement dans le formulaire

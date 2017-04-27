@@ -5,7 +5,6 @@
   description: |
     Certains de ces événements impactent fortement les résultats de la simulation, et peuvent donc la racourcir.
     Par exemple, dans l'hypothèse d'un CDD poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
-  langue au chat possible: oui
   formule:
     une possibilité:
     - CDD poursuivi en CDI
