@@ -5,6 +5,9 @@ import R from 'ramda'
 
 @FormDecorator('input')
 export default class Input extends Component {
+	state = {
+		suggestedInput: false
+	}
 	render() {
 		let {
 			name,
@@ -19,7 +22,7 @@ export default class Input extends Component {
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = touched && error,
-			sendButtonDisabled = !input.value || inputError
+			sendButtonDisabled = this.state.suggestedInput || !input.value || inputError
 
 		return (
 			<span>
@@ -52,9 +55,9 @@ export default class Input extends Component {
 					<ul>
 					{R.toPairs(suggestions).map(([text, value]) =>
 						<li key={value}
-							onClick={() => setFormValue(value) && setTimeout(() => submit(), 300)}
-							onMouseOver={() => setFormValue(value)}
-							onMouseOut={() => setFormValue('')}>
+							onClick={() => setFormValue(value) && submit()}
+							onMouseOver={() => setFormValue(value) && this.setState({suggestedInput: true})}
+							onMouseOut={() => setFormValue('') && this.setState({suggestedInput: false})}>
 							<a href="#" title="cliquer pour valider">{text}</a>
 						</li>
 					)}

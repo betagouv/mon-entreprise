@@ -272,10 +272,17 @@ fieldset > .ignore {
 	align-items: flex-end;
 }
 .step .input-suggestions li {
-	margin-left: 1em;
+	margin-left: .6em;
 }
 .step .input-suggestions a {
 	color: #4A89DC;
+	padding: .1em .6em;
+	font-weight: 600;
+}
+.step .input-suggestions a:hover {
+	background: #4A89DC;
+	color: white;
+	text-decoration: none; 
 }
 
 .help-box {
