@@ -3,8 +3,9 @@
   titre: Événement de contrat
   question: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
   description: |
-    Certains de ces événements impactent fortement les résultats de la simulation, et peuvent donc la racourcir.
-    Par exemple, dans l'hypothèse d'un CDD poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
+    Certains événements impactent fortement les résultats de la simulation, et peuvent donc la racourcir.
+
+    > Par exemple, dans l'hypothèse d'un CDD poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
   formule:
     une possibilité:
     - CDD poursuivi en CDI
@@ -17,6 +18,7 @@
 - espace: contrat salarié . CDD . événement
   nom: CDD poursuivi en CDI
   titre: Le CDD est poursuivi en CDI
+  description: En fin de contrat, le CDD est reconduit en CDI sans interruption. 
   # TODO quand cette variable est appelée par une autre variable,
   # on devrait pouvoir poser la question, puis proposer un bouton qui permette d'aider l'utilisateur à
   # y répondre, en lui expliquant la formule suivante :
@@ -25,7 +27,6 @@
   #   une possibilité:
   #   - embauche en CDI suivant le CDD
   #   - CDD requalifié en CDI # quand ça arrive ?
-
 
 - espace: contrat salarié . CDD . événement
   nom: refus CDI avantageux

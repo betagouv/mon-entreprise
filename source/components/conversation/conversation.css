@@ -88,7 +88,7 @@
 	border: 2px solid #333350;
 	color: #333350;
 	display: inline-block;
-	max-width: 60%;
+	max-width: 75%;
 	font-size: 110%;
 	font-weight: 600;
 	padding: .6em 1em;
@@ -157,6 +157,7 @@
 	border-left: 1px dashed #ccc;
 	margin-top: .6em;
 	padding-left: .6em;
+	padding-top: .6em;
 	margin-left: 1em;
 }
 .step.question .variant > div {
@@ -180,7 +181,9 @@
 .step.question .variant .variantLeaf {
 	display: inline-block;
 }
-
+.step.question .variantLeaf.aucun label {
+	font-weight: bold;
+}
 .step label.radio,
 /* A resume of what's been answered */
 .resume {
@@ -308,7 +311,7 @@ fieldset > .ignore {
 .step .input-suggestions a:hover {
 	background: #4A89DC;
 	color: white;
-	text-decoration: none; 
+	text-decoration: none;
 }
 
 .help-box {

@@ -3,7 +3,7 @@
 
 - espace: contrat salarié
   nom: CDD
-  nom complet: CDD
+  titre: Contrat à durée déterminée
   description: Contrat de travail pour lequel un employeur peut recruter un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
   référence: https://fr.wikipedia.org/wiki/Contrat_de_travail_%C3%A0_dur%C3%A9e_d%C3%A9termin%C3%A9e_en_France
   # # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
@@ -35,6 +35,7 @@
 
 - espace: contrat salarié . CDD
   nom: congés non pris
+  titre: Congés non pris
   question: Combien de jours de congés ne seront pas pris ?
   description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux annuels.
   format: nombre positif

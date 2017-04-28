@@ -1,22 +1,28 @@
 
 #sim #help {
 	box-shadow: -1px 1px 15px 1px #eee;
-	border: 1px solid;
-	border-radius: 2px;
-	border-color: #ccc;
-	font-style: italic;
+	border: 1px solid #aaa;
+	border-radius: .3em;
 	margin: 3em;
-  padding: 1em;
-	min-width: 30%;
+  padding: .6em 1em;
+	width: 35%;
 	color: #444;
-	transition: opacity .4s;
-	opacity: 0;
+	visibility: hidden;
   position: relative;
   overflow: hidden;
+	background: white;
+}
+
+#sim #help blockquote {
+	font-style: italic;
+	font-size: 90%;
+	border-left: 4px solid #eee;
+	margin-left: .6em;
+	padding-left: .6em;
 }
 
 #sim #help.active {
-	opacity: 1
+	visibility: visible;
 }
 
 #sim #help i.fa-info-circle {
@@ -37,4 +43,8 @@
   top: .6em;
   right: .6em;
   cursor: pointer;
+}
+
+#sim #help h3 {
+	margin: .3em 0;
 }

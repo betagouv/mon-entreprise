@@ -84,7 +84,7 @@ export default class extends React.Component {
 								Pour simplifier, les résultats sont calculés par mois de contrat.
 							</p>
 							<p>
-								N'hésitez pas à <Link to="/contact">nous écrire</Link> ! La loi française est complexe, car très ciblée. Nous pouvons la rendre plus transparente.
+								N'hésitez pas à <Link to="/contact">nous écrire</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
 							</p>
 						</div>
 					</div>

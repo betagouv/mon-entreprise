@@ -23,8 +23,7 @@ let evaluateBottomUp = situationGate => startingFragments => {
 export let evaluateVariable = (situationGate, variableName, format) => {
 	// test rec
 	let value = situationGate(variableName)
-
 	return R.contains(format)(['nombre positif', 'période'])
-    ? value
+    ? (value == undefined ? null : value)
 		: evaluateBottomUp(situationGate)(splitName(variableName))
 }

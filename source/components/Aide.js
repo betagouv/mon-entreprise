@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {findRuleByName} from '../engine/rules'
+import {findRuleByDottedName} from '../engine/rules'
 import './Aide.css'
 import {EXPLAIN_VARIABLE} from '../actions'
 import References from './References'
+import marked from '../engine/marked'
 
 @connect(
 	state =>
@@ -14,13 +15,16 @@ import References from './References'
 	})
 )
 export default class Aide extends Component {
+	renderExplanationMarkdown(explanation, term) {
+		return marked(`### ${term} \n\n${explanation}`)
+	}
 	render() {
 		let {explained, stopExplaining} = this.props
 
 		if (!explained) return <section id="help" />
 
-		let rule = findRuleByName(explained),
-			text = rule.description || rule.titre,
+		let rule = findRuleByDottedName(explained),
+			text = rule.description,
 			refs = rule.références
 
 		let possibilities = rule['choix exclusifs']
@@ -31,10 +35,10 @@ export default class Aide extends Component {
 				<i
 					className="fa fa-times-circle"
 					onClick={stopExplaining} ></i>
-				<p>
-					{text}
+				<p
+					dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.titre)}}>
 				</p>
-				{ possibilities &&
+				{/* { possibilities &&
 					<p>
 						{possibilities.length} possibilités :
 						<ul>
@@ -43,7 +47,7 @@ export default class Aide extends Component {
 							)}
 						</ul>
 					</p>
-				}
+				} */}
 				{refs && <div>
 					<p>Pour en savoir plus: </p>
 					<References refs={refs} />

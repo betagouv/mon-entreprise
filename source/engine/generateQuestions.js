@@ -134,7 +134,7 @@ export let constructStepMeta = ({
 	name: dottedName,
 	// question: question || name,
 	question: (
-		<Explicable label={question || name} name={name} lightBackground={true} />
+		<Explicable label={question || name} dottedName={dottedName} lightBackground={true} />
 	),
 	title: titre || name,
 	subquestion,

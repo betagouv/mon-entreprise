@@ -14,6 +14,7 @@ import {capitalise0} from '../utils'
 import knownMecanisms from '../engine/known-mecanisms.yaml'
 import marked from '../engine/marked'
 import References from './References'
+import {AttachDictionary} from './AttachDictionary'
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
@@ -104,45 +105,6 @@ export default class Rule extends Component {
 		return <References refs={refs}/>
 	}
 }
-
-// On ajoute à la section la possibilité d'ouvrir à droite un panneau d'explication des termes.
-// Il suffit à la section d'appeler une fonction fournie en lui donnant du JSX
-// Ne pas oublier de réduire la largeur de la section pour laisser de la place au dictionnaire.
-let AttachDictionary = dictionary => Decorated =>
-	class extends React.Component {
-		state = {
-			term: null,
-			explanation: null
-		}
-		componentDidMount() {
-			let decoratedNode = ReactDOM.findDOMNode(this.decorated)
-			decoratedNode.addEventListener('click', e => {
-				let term = e.target.dataset['termDefinition'],
-					explanation = R.path([term, 'description'], dictionary)
-				this.setState({explanation, term})
-			})
-		}
-		renderExplanationMarkdown(explanation, term) {
-			return marked(`### Mécanisme: ${term}\n\n${explanation}`)
-		}
-		render(){
-			let {explanation, term} = this.state
-			return (
-				<div className="dictionaryWrapper">
-					<Decorated ref={decorated => this.decorated = decorated} {...this.props} explain={this.explain}/>
-					{explanation &&
-						<div className="dictionaryPanelWrapper" onClick={() => this.setState({term: null, explanation: null})}>
-							<div className="dictionaryPanel"
-								onClick={e => {e.preventDefault(); e.stopPropagation()}}
-								dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(explanation, term)}}>
-							</div>
-						</div>
-
-					}
-				</div>
-			)
-		}
-	}
 
 @AttachDictionary(knownMecanisms)
 class Algorithm extends React.Component {

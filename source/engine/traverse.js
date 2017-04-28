@@ -456,7 +456,6 @@ let treat = (situationGate, rule) => rawNode => {
 			: anyNull([taux, assiette, facteur, plafond]) ?
 					null
 				: mult(val(assiette), val(taux), val(facteur), val(plafond))
-
 		return {
 			nodeValue,
 			category: 'mecanism',

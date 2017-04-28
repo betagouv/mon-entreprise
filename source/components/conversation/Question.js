@@ -80,11 +80,11 @@ export default class Question extends Component {
 						{this.renderChildren({children})}
 					</li>
 				: <li key={name} className="variantLeaf">
-					<RadioLabel {...{value: relativeDottedName(dottedName), label: titre || name, input, submit, themeColours}}/>
+					<RadioLabel {...{value: relativeDottedName(dottedName), label: titre || name, dottedName, input, submit, themeColours}}/>
 				</li>
 			)}
 			{choices.canGiveUp &&
-				<li key='aucun' className="variantLeaf">
+				<li key='aucun' className="variantLeaf aucun">
 					<RadioLabel {...{value: false, label: 'Aucun', input, submit, themeColours}}/>
 				</li>
 			}
@@ -96,7 +96,7 @@ export default class Question extends Component {
 class RadioLabel extends Component {
 
 	render() {
-		let {value, label, input, submit, hover, themeColours} = this.props,
+		let {value, label, input, submit, hover, themeColours, dottedName} = this.props,
 			// value = R.when(R.is(Object), R.prop('value'))(choice),
 			labelStyle =
 				Object.assign(
@@ -111,7 +111,7 @@ class RadioLabel extends Component {
 				<input
 					type="radio" {...input} onClick={submit}
 					value={value} checked={value === input.value ? 'checked' : ''} />
-				<Explicable name={value} label={label}/>
+				<Explicable dottedName={dottedName} label={label}/>
 			</label>
 		)
 	}

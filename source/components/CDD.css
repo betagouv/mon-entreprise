@@ -40,6 +40,6 @@ p {
 }
 
 #questions-answers {
-	min-width: 55%;
+	min-width: 50%;
 	transition: width 1s;
 }

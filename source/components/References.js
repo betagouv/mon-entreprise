@@ -22,7 +22,7 @@ export default ({refs}) => (
 						</span>
 					</span>
 					<a href={link} target="_blank">
-						{name}
+						{R.head(name).toUpperCase() + R.tail(name)}
 					</a>
 				</li>
 		})}

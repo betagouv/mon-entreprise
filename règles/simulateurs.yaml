@@ -13,7 +13,7 @@
       titre: Votre obligation
 
   action:
-    texte: Répondez à quelques questions pour estimer le montant des 4 obligations du CDD.
+    texte: Découvrez en quelques clics le montant des 4 obligations du CDD.
     bouton: C'est parti !
   objectif: surcoût CDD
   conclusion: |
@@ -21,7 +21,7 @@
 
     Cliquez sur les obligations en bas pour comprendre vos résultats.
 
-    Une remarque ? [Écrivez-nous](mailto:contact@embauche.beta.gouv.fr) !
+    Une remarque ? [Écrivez-nous](/contact) !
 # <i
 #   style={{cursor: 'pointer'}}
 #   className="fa fa-envelope-o"
