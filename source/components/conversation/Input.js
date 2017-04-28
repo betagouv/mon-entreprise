@@ -55,8 +55,8 @@ export default class Input extends Component {
 					<ul>
 					{R.toPairs(suggestions).map(([text, value]) =>
 						<li key={value}
-							onClick={e => setFormValue(value) && submit() && e.preventDefault()}
-							onMouseOver={() => setFormValue(value) && this.setState({suggestedInput: true})}
+							onClick={e => setFormValue('' + value) && submit() && e.preventDefault()}
+							onMouseOver={() => setFormValue('' + value) && this.setState({suggestedInput: true})}
 							onMouseOut={() => setFormValue('') && this.setState({suggestedInput: false})}>
 							<a href="#" title="cliquer pour valider">{text}</a>
 						</li>

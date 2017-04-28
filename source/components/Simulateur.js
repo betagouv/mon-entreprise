@@ -107,11 +107,10 @@ export default class extends React.Component {
 									}
 									<div id="unfoldedSteps">
 										{ !R.isEmpty(unfoldedSteps) && do {
-											let step = R.head(unfoldedSteps),
-												pureStep = R.dissoc('component', step)
+											let step = R.head(unfoldedSteps)
 											;<step.component
 												key={step.name}
-												step={pureStep}
+												step={R.dissoc('component', step)}
 												unfolded={true}
 												answer={situation(step.name)}
 											/>

@@ -76,6 +76,10 @@ export var FormDecorator = formType => RenderField =>
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
+			let {pre = (v => v), test, error} = valueType ? valueType.validator : {},
+				validate = test && ( v =>
+					( v && test(pre(v)) ) ? undefined : error
+				)
 			return (
 			<div
 				className={classNames({step: unfolded}, formType)}
@@ -91,6 +95,7 @@ export var FormDecorator = formType => RenderField =>
 									name={name}
 									stepProps={stepProps}
 									themeColours={themeColours}
+									validate={validate}
 									/>
 							</fieldset>
 					}
