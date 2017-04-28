@@ -8,7 +8,7 @@ import { euro, months } from './components/conversation/formValueTypes.js'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
 import R from 'ramda'
 
-import {findGroup, findRuleByDottedName, parentName, collectMissingVariables, recrecrecrec} from './engine/rules'
+import {findGroup, findRuleByDottedName, parentName, collectMissingVariables, findVariantsAndRecords} from './engine/rules'
 
 import {generateGridQuestions, generateSimpleQuestions} from './engine/generateQuestions'
 
@@ -88,29 +88,25 @@ let analyse = rootVariable => R.pipe(
 
 let missingVariables
 
-let buildNextSteps = R.pipe(
-	/*
-		COLLECTE DES VARIABLES MANQUANTES
-		*********************************
-		on collecte les variables manquantes : celles qui sont nécessaires pour
-		remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
-		encore été renseignées
+/*
+	COLLECTE DES VARIABLES MANQUANTES
+	*********************************
+	on collecte les variables manquantes : celles qui sont nécessaires pour
+	remplir les objectifs de la simulation (calculer des cotisations) mais qui n'ont pas
+	encore été renseignées
 
-		TODO perf : peut-on le faire en même temps que l'on traverse l'AST ?
-		Oui sûrement, cette liste se complète en remontant l'arbre. En fait, on le fait déjà pour nodeValue,
-		et quand nodeValue vaut null, c'est qu'il y a des missingVariables ! Il suffit donc de remplacer les
-		null par un tableau, et d'ailleurs utiliser des fonction d'aide pour mutualiser ces tests.
+	TODO perf : peut-on le faire en même temps que l'on traverse l'AST ?
+	Oui sûrement, cette liste se complète en remontant l'arbre. En fait, on le fait déjà pour nodeValue,
+	et quand nodeValue vaut null, c'est qu'il y a des missingVariables ! Il suffit donc de remplacer les
+	null par un tableau, et d'ailleurs utiliser des fonction d'aide pour mutualiser ces tests.
 
-		missingVariables: {variable: [objectives]}
-	 */
-	R.path(['formule', 'explanation', 'explanation']),
-	analysedSituation => {
-		// console.log('analysedSituation', analysedSituation)
-		//TODO temporary fix
-		missingVariables = collectMissingVariables('groupByMissingVariable')(analysedSituation)
-		return missingVariables
-	},
-	R.keys,
+	missingVariables: {variable: [objectives]}
+ */
+let buildNextSteps = analysedSituation => {
+	let missingVariables = collectMissingVariables('groupByMissingVariable')(
+		R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
+	)
+
 	/*
 		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.
 		**On appelle ça des groupes de type 'variante'.**
@@ -135,18 +131,21 @@ let buildNextSteps = R.pipe(
 
 		D'autres variables pourront être regroupées aussi, car elles partagent un parent, mais sans fusionner leurs questions dans l'interface. Ce sont des **groupes de type _record_ **
 	*/
-	R.reduce(
-		recrecrecrec //TODO reorganize
-		, {variantGroups: {}, recordGroups: {}}
-	),
-	// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
-	R.evolve({
-		variantGroups: generateGridQuestions,
-		recordGroups: generateSimpleQuestions,
-	}),
-	R.values,
-	R.unnest,
-)
+	return R.pipe(
+		R.keys,
+		R.reduce(
+			findVariantsAndRecords
+			, {variantGroups: {}, recordGroups: {}}
+		),
+		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
+		R.evolve({
+			variantGroups: generateGridQuestions(missingVariables),
+			recordGroups: generateSimpleQuestions(missingVariables),
+		}),
+		R.values,
+		R.unnest,
+	)(missingVariables)
+}
 
 export default reduceReducers(
 	combineReducers({

@@ -50,16 +50,19 @@ let buildVariantTree = relevantPaths => path => {
 	return rec(path)
 }
 
-export let generateGridQuestions = R.pipe(
+export let generateGridQuestions = missingVariables => R.pipe(
 	R.toPairs,
 	R.map( ([variantRoot, relevantVariants]) =>
 		({
 			...constructStepMeta(findRuleByDottedName(variantRoot)),
 			component: Question,
 			choices: buildVariantTree(relevantVariants)(variantRoot),
-			objectives: []
+			objectives:  R.pipe(
+				R.chain(v => missingVariables[v]),
+				R.uniq()
+			)(relevantVariants)
 		})
-	),
+	)
 
 		//TODO reintroduce objectives
 		// {
@@ -69,7 +72,7 @@ export let generateGridQuestions = R.pipe(
 		// 	)(variant['une possibilité'])
 		// }
 )
-export let generateSimpleQuestions = R.pipe(
+export let generateSimpleQuestions = missingVariables => R.pipe(
 	R.values, //TODO exploiter ici les groupes de questions de type 'record' (R.keys): elles pourraient potentiellement êtres regroupées visuellement dans le formulaire
 	R.unnest,
 	R.map(dottedName => {
@@ -95,7 +98,7 @@ export let generateSimpleQuestions = R.pipe(
 					],
 				},
 			{
-				objectives: [] //missingVariables[dottedName],
+				objectives: missingVariables[dottedName],
 			}
 		)
 	})

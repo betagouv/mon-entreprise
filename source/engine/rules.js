@@ -140,7 +140,7 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
-export let recrecrecrec =
+export let findVariantsAndRecords =
 	({variantGroups, recordGroups}, dottedName, childDottedName) => {
 		let child = findRuleByDottedName(dottedName),
 			parentDottedName = parentName(dottedName),
@@ -149,7 +149,7 @@ export let recrecrecrec =
 			let grandParentDottedName = parentName(parentDottedName),
 				grandParent = findRuleByDottedName(grandParentDottedName)
 			if (isVariant(grandParent))
-				return recrecrecrec({variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
+				return findVariantsAndRecords({variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
 			else
 				return {
 					variantGroups: R.mergeWith(R.concat, variantGroups, {[parentDottedName]: [childDottedName || dottedName]}),

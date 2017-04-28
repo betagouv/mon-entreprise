@@ -79,8 +79,8 @@ export var FormDecorator = formType => RenderField =>
 			return (
 			<div
 				className={classNames({step: unfolded}, formType)}
-				onMouseOver={() => pointOutObjectives(objectives)}
-				onMouseOut={() => pointOutObjectives([])}>
+				onMouseEnter={() => pointOutObjectives(objectives)}
+				onMouseLeave={() => pointOutObjectives([])}>
 				{this.state.helpVisible && this.renderHelpBox(helpText)}
 				<div style={{visibility: this.state.helpVisible ? 'hidden' : 'visible'}}>
 					{this.renderHeader(unfolded, valueType, human, helpText, wideQuestion, subquestion)}
