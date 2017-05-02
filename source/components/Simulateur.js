@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './CDD.css'
-import {reduxForm, formValueSelector} from 'redux-form'
+import {reduxForm, formValueSelector, reset} from 'redux-form'
 import {connect} from 'react-redux'
 import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
@@ -26,6 +26,7 @@ let situationSelector = formValueSelector('conversation')
 	}),
 	dispatch => ({
 		startConversation: rootVariable => dispatch({type: START_CONVERSATION, rootVariable}),
+		resetForm: rootVariable => dispatch(reset('conversation'))
 	})
 )
 export default class extends React.Component {
@@ -52,7 +53,13 @@ export default class extends React.Component {
 			started = !this.props.match.params.intro,
 			{foldedSteps, unfoldedSteps, situation} = this.props,
 			sim = path =>
-				R.path(R.unless(R.is(Array), R.of)(path))(this.simulateur)
+				R.path(R.unless(R.is(Array), R.of)(path))(this.simulateur),
+			objectif = this.simulateur.objectif,
+			reinitalise = () => {
+				this.props.resetForm(objectif);
+				this.props.startConversation(objectif);
+			}
+
 
 		return (
 			<div id="sim" className={classNames({started})}>
@@ -94,6 +101,12 @@ export default class extends React.Component {
 								<div id="questions-answers">
 									{ !R.isEmpty(foldedSteps) &&
 										<div id="foldedSteps">
+											<div id="reinitialise" >
+												<button onClick={reinitalise}>
+													<i className="fa fa-trash" aria-hidden="true"></i>
+													Tout effacer
+												</button>
+											</div>
 											{foldedSteps
 												.map(step => (
 													<step.component

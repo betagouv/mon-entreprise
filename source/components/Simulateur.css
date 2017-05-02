@@ -95,3 +95,17 @@
 	box-shadow: none;
 	opacity: .95;
 }
+
+#reinitialise {
+	margin-bottom: 1em;
+	text-align: center;
+}
+#reinitialise button {
+	font-size: 80%;
+	color: #4A89DC;
+	border: none;
+}
+#reinitialise button i {
+	margin-right: .3em;
+	vertical-align: top
+}
