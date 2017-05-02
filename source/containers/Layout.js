@@ -17,7 +17,7 @@ export default class Layout extends Component {
 					<div id="ninetyPercent">
 						<div id="header">
 							<div id="warning">
-								Attention ! Ce site est expérimental.
+								<Link to="/contact">version BETA</Link>
 							</div>
 							{
 								// this.props.location.pathname != '/' &&

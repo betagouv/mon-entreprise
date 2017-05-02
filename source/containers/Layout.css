@@ -4,6 +4,24 @@ body {
 	height: 100%;
 }
 
+#warning {
+	width: 400px;
+  padding: 6px;
+  position: absolute;
+  text-align: center;
+  color: white;
+	background: #333350;
+	border: 2px solid white;
+	position: fixed;
+	top: 35px;
+	left: -150px;
+	transform: rotate(-45deg);
+	font-weight: bold;
+}
+#warning a {
+	text-decoration: none;
+}
+
 #content {
 	margin-top: 1.5em;
 }
@@ -25,18 +43,7 @@ h1 {
 	font-weight: 400;
 }
 
-#warning {
-	padding: .2em 0;
-	background: #8a1c1c;
-	color: white;
-	font-style: italic;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	text-align: center;
-	z-index: 1000000;
-}
+
 #main {
 	min-height: 100vh;
 	width: 100%;
