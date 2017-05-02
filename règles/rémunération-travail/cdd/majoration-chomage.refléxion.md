@@ -1,6 +1,6 @@
 ```yaml
 logique numérique: # première valeur trouvée, sinon 0
-  - CDD poursuivi en CDI: 0%
+  - poursuite du CDD en CDI: 0%
   # - Contrat . type : # mécanisme de match à introduire une fois les entités gérées. Exclusivité exprimée dans l'entité Type
   - conditions exclusives:
     # ce n'est pas évident de savoir le type d'un CDD, proposer le calcul dans une autre variable !!
@@ -13,7 +13,7 @@ logique numérique: # première valeur trouvée, sinon 0
 
 
 logique numérique 2:
-  - CDD poursuivi en CDI: 0%
+  - poursuite du CDD en CDI: 0%
   - aiguillage: # signale que les deux propositions sont exclusives
       sujet: Contrat . type
       propositions:

@@ -1,7 +1,7 @@
 variables du CDD:
 
 # Evènements
-- CDD poursuivi en CDI:
+- poursuite du CDD en CDI:
   - embauche en CDI suivant le CDD
   - CDD requalifié en CDI # quand ça arrive ?
 

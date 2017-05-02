@@ -67,7 +67,7 @@
 
         taux: #TODO pseudo code pour l'instant
           logique numérique: # première valeur trouvée, sinon 0
-            - CDD poursuivi en CDI: 0
+            - poursuite du CDD en CDI: 0
             - CDD type accroissement temporaire d'activité:
                 contrat de travail durée ≤ 1 mois: 0.03
                 contrat de travail durée ≤ 3 mois: 0.015

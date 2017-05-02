@@ -4,7 +4,7 @@
 - espace: contrat salarié . CDD . motif
   nom: contrat aidé
   titre: Contrat aidé
-  # Voir le TODO de contrat salarié . CDD . événement . CDD poursuivi en CDI
+  # Voir le TODO de contrat salarié . CDD . événement . poursuite du CDD en CDI
   # formule:
   #   une possibilité:
   #   - contrat unique d'insertion
@@ -17,7 +17,7 @@
 
 - espace: contrat salarié . CDD . motif . contrat aidé
   nom: contrat unique d'insertion
-  # Voir le TODO de contrat salarié . CDD . événement . CDD poursuivi en CDI
+  # Voir le TODO de contrat salarié . CDD . événement . poursuite du CDD en CDI
   # formule:
   #   une possibilité:
   #   - CUI-CAE
@@ -37,7 +37,7 @@
 
 - espace: contrat salarié . CDD . motif . contrat aidé
   nom: alternance
-  # Voir le TODO de contrat salarié . CDD . événement . CDD poursuivi en CDI
+  # Voir le TODO de contrat salarié . CDD . événement . poursuite du CDD en CDI
   # formule:
   #   une possibilité:
   #   - apprentissage

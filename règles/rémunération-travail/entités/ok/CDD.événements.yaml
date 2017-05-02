@@ -5,10 +5,10 @@
   description: |
     Certains événements impactent fortement les résultats de la simulation, et peuvent donc la racourcir.
 
-    > Par exemple, dans l'hypothèse d'un CDD poursuivi en CDI, aucune majoration ou indemnité ne sera à verser !
+    > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune majoration ou indemnité ne sera à verser !
   formule:
     une possibilité:
-    - CDD poursuivi en CDI
+    - poursuite du CDD en CDI
     - refus CDI avantageux
     - rupture anticipée salarié
     - rupture pour faute grave ou force majeure
@@ -16,9 +16,9 @@
 
 
 - espace: contrat salarié . CDD . événement
-  nom: CDD poursuivi en CDI
-  titre: Le CDD est poursuivi en CDI
-  description: En fin de contrat, le CDD est reconduit en CDI sans interruption. 
+  nom: poursuite du CDD en CDI
+  titre: Poursuite du CDD en CDI
+  description: En fin de contrat, le CDD est reconduit en CDI sans interruption.
   # TODO quand cette variable est appelée par une autre variable,
   # on devrait pouvoir poser la question, puis proposer un bouton qui permette d'aider l'utilisateur à
   # y répondre, en lui expliquant la formule suivante :
