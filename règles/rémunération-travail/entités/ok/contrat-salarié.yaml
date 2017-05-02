@@ -25,7 +25,7 @@
   nom: salaire de base
   question: Quel est le salaire de base ?
   description: Le salaire de base est le salaire brut régulier inscrit dans le contrat. C'est le salaire de négociation entre le salarié et l'employeur. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
-  format: nombre positif
+  format: euros
   suggestions:
     salaire médian: 2300
     SMIC: 1480
@@ -34,13 +34,13 @@
   nom: salaire brut
   titre: Salaire brut
   question: Quel est le salaire brut ?
-  description: | 
+  description: |
     C'est le salaire de négociation du contrat de travail en France.
 
     Il peut être vu comme :
     - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
     - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
-  format: nombre positif
+  format: euros
   # TODO En attendant que l'UI devienne plus intelligente, c'est confondu avec le salaire de base.
   # intelligente : il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule
   # formule:

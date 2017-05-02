@@ -1,23 +1,36 @@
-import { number } from './validators'
+import { number, int } from './validators'
 
 /*
  Here are common formats that can be attached to Form components
 */
 
-export let percentage = {
+let pourcentage = {
 	suffix: '%',
 	human: value => value + ' ' + '%',
 	validator: number
 }
 
-export let euro = {
+let euros = {
 	suffix: '€',
 	human: value => value + ' ' + '€',
 	validator: number
 }
 
-export let months = {
+let mois = {
 	suffix: 'mois',
 	human: value => value + ' ' + 'mois',
-	validator: number
+	validator: int
+}
+
+let jours = {
+	suffix: 'jours',
+	human: value => value + ' ' + 'jours',
+	validator: int
+}
+
+export default {
+	pourcentage,
+	euros,
+	mois,
+	jours
 }
