@@ -275,7 +275,7 @@ fieldset > .ignore {
 
 .step label.suffix {
 	font-size: 110%;
-	vertical-align: middle;
+	vertical-align: baseline;
 	transition: color .1s;
 	margin: 0 1.5em .1em 0.6em;
 }
@@ -286,29 +286,29 @@ fieldset > .ignore {
 	outline: none;
 }
 
-.step .input-suggestions {
+.step .inputSuggestions {
 	font-style: italic;
 	float: right;
 	clear: right;
 	font-size: 70%;
-	color: #666;
+	color: #222;
 }
-.step .input-suggestions ul {
+.step .inputSuggestions ul {
   padding-left: 0;
 	margin-right: 8em;
 	list-style: none;
 	display: inline-flex;
 	align-items: flex-end;
 }
-.step .input-suggestions li {
+.step .inputSuggestions li {
 	margin-left: .6em;
 }
-.step .input-suggestions a {
+.step .inputSuggestions a {
 	color: #4A89DC;
 	padding: .1em .6em;
 	font-weight: 600;
 }
-.step .input-suggestions a:hover {
+.step .inputSuggestions a:hover {
 	background: #4A89DC;
 	color: white;
 	text-decoration: none;

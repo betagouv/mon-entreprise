@@ -51,7 +51,7 @@ export default class Input extends Component {
 						<span className="icon">&#10003;</span>
 					</button>
 				</span>
-				{suggestions && <span className="input-suggestions">suggestions:
+				{suggestions && <span className="inputSuggestions">suggestions:
 					<ul>
 					{R.toPairs(suggestions).map(([text, value]) =>
 						<li key={value}
