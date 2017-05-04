@@ -22,8 +22,8 @@ http://webdesign.tutsplus.com/articles/quick-tip-dont-forget-the-viewport-meta-t
 #project {
   color: white;
   position: absolute;
-  left: 1%;
-  top: 2%;
+  left: 1.5%;
+  top: 3%;
   display: block;
   height: 3em;
 }
@@ -32,21 +32,8 @@ http://webdesign.tutsplus.com/articles/quick-tip-dont-forget-the-viewport-meta-t
   width: 5em;
 }
 
-#project .name {
-  display: inline-block;
-  line-height: 1.3em;
-  vertical-align: top;
-  margin-top: 1.2em;
-  margin-left: 0.6em;
-  font-weight: 300;
-  font-size: 125%;
-  width: 6em;
-}
-#project .heavy{
-  font-weight: 400
-}
-
 nav ul {
+  font-size: 120%;
   position: absolute;
   top: 4%;
   right: 6%;
@@ -56,7 +43,7 @@ nav ul {
 }
 
 nav a {
-  color: white;
+  color: #222;
   text-decoration: none;
 }
 
@@ -82,11 +69,7 @@ nav li:first-child {
 #splash {
   padding: 13em 0 8em;
 
-  background: -webkit-linear-gradient(top,#3C4963 10%,#3C3C63 80%);
-  background: -moz-linear-gradient(top,#3C4963 10%,#3C3C63 80%);
-  background: -o-linear-gradient(top,#3C4963 10%,#3C3C63 80%);
-  background: -ms-linear-gradient(top,#3C4963 10%,#3C3C63 80%);
-  background: linear-gradient(to bottom,#3C4963 10%,#3C3C63 80%);
+  background: white;
 
   /* Get fancy or not ?
   -webkit-box-shadow: 2px 8px 21px -11px rgba(0,0,0,0.75);
@@ -107,13 +90,14 @@ nav li:first-child {
   width: 65%;
   padding: 0 1em;
   background: white;
-  border-radius: 3px;
+  border-radius: .4em;
   opacity: 0.75;
 
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.08),0 20px 30px rgba(0,0,0,0.2);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08),0 20px 30px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
 
   transition: opacity .5s;
+
+  filter: grayscale(0.7)
 }
 
 #image-wrap:hover {
@@ -121,16 +105,14 @@ nav li:first-child {
 }
 
 #showcase h1 {
+  color: #333;
   display: inline-block;
   width: 25%;
   font-size: 250%;
-  font-weight: 600;
-  line-height: 1.3em;
+  font-weight: 400;
+  line-height: 1.6em;
   vertical-align: top;
-  text-transform: uppercase;
   text-align: left;
-
-  text-shadow: 2px 2px 5px rgba(6, 6, 6, 0.3);
   float: right;
 }
 
@@ -151,21 +133,20 @@ nav li:first-child {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 3em 0;
+  margin: 5em 0;
   width: 70%;
   line-height: 3em;
   max-width: 50em;
 }
 
 #main-actions a {
-  background: white;
-  color: #222;
+  background: #4A89DC;
+  color: white;
   display: inline-block;
-  font-size: 120%;
-  padding: 0 .6em;
+  font-size: 100%;
+  padding: .1em 1.5em;
   margin-top: .6em;
   border: 1px solid white;
-  border-radius: .3em;
   text-decoration: none;
   font-weight: 600;
   transition: .3s;
@@ -176,7 +157,8 @@ nav li:first-child {
 }
 
 #main-actions > span > span {
-  border: 1px solid white;
+  border: 1px solid #4A89DC;
+  color: #4A89DC;
   line-height: normal;
   position: absolute;
   top: -1.2em;
@@ -186,8 +168,7 @@ nav li:first-child {
   transform: translateX(-50%)
 }
 #main-actions a:hover {
-  background: white;
-  color: #3C4963;
+  filter: grayscale(.3);
 }
 
 @media (max-width: 1024px) {

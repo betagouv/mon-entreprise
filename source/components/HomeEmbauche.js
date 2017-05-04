@@ -8,9 +8,6 @@ export default class HomeEmbauche extends Component {
 				<nav>
 					<div id="project">
 						<img  src={require('../images/homeEmbauche/logo-SGMAP-fond-blanc.svg')} alt="Secrétariat général pour la modernisation de l'action publique" />
-						<a href="" className="name">
-							<span className="heavy">Prix </span>du&nbsp;<span className="heavy">Travail</span>
-						</a>
 					</div>
 				  <ul>
 						<li><a href="#about">À propos</a></li>
@@ -27,17 +24,17 @@ export default class HomeEmbauche extends Component {
 					<div id="showcase">
 						<h1>Estimer le&nbsp;prix<br/>d'une&nbsp;embauche en&nbsp;France</h1>
 						<div id="image-wrap">
-							<img src={require('../images/homeEmbauche/simulateur.gif')} alt="Vue animée du simulateur" className="animated" />
+							<img src={require('../images/homeEmbauche/simulateur-2017.gif')} alt="Vue animée du simulateur" className="animated" />
 							<span id="play-button">&#9654;</span>
-							<img src={require('../images/homeEmbauche/simulateur-statique.gif')} alt="Image du simulateur" className="static" />
+							<img src={require('../images/homeEmbauche/simulateur-2017.png')} alt="Image du simulateur" className="static" />
 						</div>
 						<div id="main-actions">
 							<span>
-								<a href="/simulateur" target="_blank">Faire une simulation de CDI&nbsp; &#10142;</a>
+								<a href="/simulateur" target="_blank">Simuler un CDI&nbsp; &#10142;</a>
 							</span>
 							<span>
 								<span>Nouveau</span>
-								<a href="/simulateurs/cdd" target="_blank">Faire une simulation de CDD (beta)&nbsp; &#10142;</a>
+								<a href="/simulateurs/cdd" target="_blank">Simuler un CDD (beta)&nbsp; &#10142;</a>
 							</span>
 						</div>
 					</div>
