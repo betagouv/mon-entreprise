@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './Home.css'
+import './HomeSyso.css'
 import {searchRules} from '../engine/rules.js'
 import {Link} from 'react-router-dom'
 import '../components/Rule.css'

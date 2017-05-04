@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Syso</title>
+		<title>Simulateur d'embauche</title>
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,600,700' rel='stylesheet' type='text/css'>
 	</head>
 
@@ -12,4 +12,24 @@
 		<script src="https://use.fontawesome.com/1da10bbdec.js"></script>
 		<script type="text/javascript" src="/dist/bundle.js"></script>
 	</body>
+
+
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var _paq = _paq || [];
+		_paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+		_paq.push(["setCookieDomain", "*.paie.sgmap.fr"]);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function() {
+			var u="//stats.data.gouv.fr/";
+			_paq.push(['setTrackerUrl', u+'piwik.php']);
+			_paq.push(['setSiteId', 10]);
+			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+	</script>
+	<noscript><p><img src="//stats.data.gouv.fr/piwik.php?idsite=10" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
+
 </html>
