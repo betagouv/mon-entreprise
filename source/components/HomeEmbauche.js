@@ -22,20 +22,22 @@ export default class HomeEmbauche extends Component {
 				</nav>
 				<div id="splash">
 					<div id="showcase">
-						<h1>Estimer le&nbsp;prix<br/>d'une&nbsp;embauche en&nbsp;France</h1>
+						<div id="showcaseMain">
+							<h1>Estimer le {' '} prix<br/>d'une {' '} embauche en {' '} France</h1>
+							<div id="main-actions">
+								<div>
+									<a href="/simulateur" target="_blank">Simuler un CDI <i className="fa fa-hand-o-right" aria-hidden="true"></i></a>
+								</div>
+								<div>
+									<span>Nouveau</span>
+									<a href="/simulateurs/cdd/intro" target="_blank">Simuler le surcoût CDD (beta) <i className="fa fa-hand-o-right" aria-hidden="true"></i></a>
+								</div>
+							</div>
+						</div>
 						<div id="image-wrap">
 							<img src={require('../images/homeEmbauche/simulateur-2017.gif')} alt="Vue animée du simulateur" className="animated" />
 							<span id="play-button">&#9654;</span>
 							<img src={require('../images/homeEmbauche/simulateur-2017.png')} alt="Image du simulateur" className="static" />
-						</div>
-						<div id="main-actions">
-							<span>
-								<a href="/simulateur" target="_blank">Simuler un CDI&nbsp; &#10142;</a>
-							</span>
-							<span>
-								<span>Nouveau</span>
-								<a href="/simulateurs/cdd" target="_blank">Simuler un CDD (beta)&nbsp; &#10142;</a>
-							</span>
 						</div>
 					</div>
 				</div>
@@ -78,7 +80,7 @@ export default class HomeEmbauche extends Component {
 					<p>
 		 				Intégrez le calcul des prélèvements sociaux très simplement dans votre application
 					</p>
-					<a href="/api-prelevements-sociaux.html" target="_blank">Lire la <em>documentation</em> &rarr;</a>
+					<a href="https://github.com/sgmap/cout-embauche/wiki/Documentation-de-l'API-pr%C3%A9l%C3%A8vements-sociaux" target="_blank">Lire la <em>documentation</em> &rarr;</a>
 				</section>
 
 				<section className="blocks dark" id="integrations">
