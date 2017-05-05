@@ -35,11 +35,13 @@
 	text-align: center;
 	font-size: 110%;
 	font-weight: 300;
-	margin-bottom: 2%;
+	margin-bottom: 2.5em;
 }
 
 #sim .centered {
-	width: 40%;
+	/*width: 40%;*/
+	width: 50em;
+	max-width: 90%;
 	margin: 0 auto;
 }
 

@@ -30,6 +30,7 @@
 	font-weight: 400;
 	font-size: 120%;
 }
+
 #results #results-titles h2 {
 	font-size: 210%;
 }
@@ -40,11 +41,34 @@
 
 #results ul {
 	display: inline-flex;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	height: 100%;
 	width: 80%;
 	list-style: none;
 	padding-left: 0;
+}
+
+
+@media (max-width: 1280px) {
+	#results {
+		padding: 0;
+	}
+	#results #results-titles {
+		display: block;
+		width: 100%;
+	}
+	#results h2 {
+		margin: 0.3em 1em 0 0;
+		display: inline-block;
+	}
+	#results #results-titles > div {
+		display: inline-block;
+	}
+
+	#results ul {
+		width: 100%;
+	}
 }
 
 #results li {

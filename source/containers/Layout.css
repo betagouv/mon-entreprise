@@ -2,6 +2,7 @@ body {
 	font-family: 'Open Sans';
 	margin: 0;
 	height: 100%;
+	font-size: calc(8px + .35vw)
 }
 
 #warning {
