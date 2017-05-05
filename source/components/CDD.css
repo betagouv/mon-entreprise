@@ -20,7 +20,6 @@ p {
 	font-size: 110%;
 	line-height: normal;
 	display: flex;
-	justify-content: space-around;
 	align-items: flex-start;
 	min-height: 10em;
 	max-width: 90%;

@@ -21,7 +21,7 @@ export default class Aide extends Component {
 	render() {
 		let {explained, stopExplaining} = this.props
 
-		if (!explained) return <section id="help" />
+		if (!explained) return <section id="helpWrapper" />
 
 		let rule = findRuleByDottedName(explained),
 			text = rule.description,
@@ -30,29 +30,31 @@ export default class Aide extends Component {
 		let possibilities = rule['choix exclusifs']
 
 		return (
-			<section id="help" className="active">
-				<i className="fa fa-info-circle"></i>
-				<i
-					className="fa fa-times-circle"
-					onClick={stopExplaining} ></i>
-				<p
-					dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.titre)}}>
-				</p>
-				{/* { possibilities &&
-					<p>
-						{possibilities.length} possibilités :
-						<ul>
-							{possibilities.map(p =>
-								<li key={p}>{p}</li>
-							)}
-						</ul>
+			<div id="helpWrapper" className="active">
+				<section id="help">
+					<i className="fa fa-info-circle"></i>
+					<i
+						className="fa fa-times-circle"
+						onClick={stopExplaining} ></i>
+					<p
+						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.titre)}}>
 					</p>
-				} */}
-				{refs && <div>
-					<p>Pour en savoir plus: </p>
-					<References refs={refs} />
-				</div>}
-			</section>
+					{/* { possibilities &&
+						<p>
+							{possibilities.length} possibilités :
+							<ul>
+								{possibilities.map(p =>
+									<li key={p}>{p}</li>
+								)}
+							</ul>
+						</p>
+					} */}
+					{refs && <div>
+						<p>Pour en savoir plus: </p>
+						<References refs={refs} />
+					</div>}
+				</section>
+			</div>
 		)
 	}
 }
