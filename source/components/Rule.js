@@ -55,7 +55,7 @@ export default class Rule extends Component {
 		let
 			situationExists = !R.isEmpty(form)
 
-		let destinataire = R.path(['attributs', 'destinataire'])(rule),
+		let destinataire = R.path([rule.type, 'destinataire'])(rule),
 			destinataireData = possiblesDestinataires[destinataire]
 
 

@@ -11,7 +11,7 @@ import marked from './marked'
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = rule => {
 	let
-		type = possibleVariableTypes.find(t => rule[t]),
+		type = possibleVariableTypes.find(t => R.has(t, rule)),
 		name = rule['nom'],
 		ns = rule['espace'],
 		dottedName = ns ? [
