@@ -13,7 +13,6 @@ import R from 'ramda'
 
 export default class Layout extends Component {
 	render() {
-		console.log('window.location.href.toString()', window.location.href.toString())
 		let displayWarning = ['/simu/', '/regle/'].find(t => window.location.href.toString().indexOf(t) > -1)
 
 		return (

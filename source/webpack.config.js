@@ -61,19 +61,13 @@ module.exports = {
 			loader: 'babel-loader!nearley-loader'
 		}]
 	},
-	plugins: prodEnv ? [
+	plugins: [
+		new webpack.EnvironmentPlugin(['NODE_ENV']),
 		new webpack.NoEmitOnErrorsPlugin(),
-		// in order to use the fetch polyfill:
 		new webpack.ProvidePlugin({
-			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
 		}),
-		new webpack.optimize.UglifyJsPlugin()
-	] : [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoEmitOnErrorsPlugin(),
-		// in order to use the fetch polyfill:
-		new webpack.ProvidePlugin({
-			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-		})
 	]
+	.concat(!prodEnv ? [new webpack.HotModuleReplacementPlugin()] : [])
+	.concat(prodEnv ? [new webpack.optimize.UglifyJsPlugin()] : []),
 }
