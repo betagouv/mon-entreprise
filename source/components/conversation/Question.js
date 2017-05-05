@@ -85,7 +85,7 @@ export default class Question extends Component {
 			)}
 			{choices.canGiveUp &&
 				<li key='aucun' className="variantLeaf aucun">
-					<RadioLabel {...{value: false, label: 'Aucun', input, submit, themeColours}}/>
+					<RadioLabel {...{value: 'non', label: 'Aucun', input, submit, themeColours}}/>
 				</li>
 			}
 		</ul>)
