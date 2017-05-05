@@ -18,8 +18,8 @@
   formule:
     somme:
       - salaire brut
-      # - CDD . prime de fin de contrat #indemnité
-      # - CDD . compensation des congés payés #indemnité
+      - CDD . prime fin de contrat #indemnité
+      - CDD . compensation congés payés #indemnité
 
 - espace: contrat salarié
   nom: salaire de base

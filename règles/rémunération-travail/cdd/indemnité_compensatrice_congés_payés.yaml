@@ -1,5 +1,5 @@
 - espace: contrat salarié . CDD
-  nom: compensation des congés payés
+  nom: compensation congés payés
   indemnité:
     destinataire: salarié
     dû par: employeur
@@ -22,7 +22,7 @@
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire brut
+          assiette: salaire brut + prime fin de contrat
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
           taux: 10%
@@ -37,12 +37,13 @@
         #   soit du nombre moyen de jours ouvrables (ou ouvrés),
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
+          assiette: salaire brut + prime fin de contrat
           # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
           # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
-          assiette: congés non pris / durée contrat
+          taux: congés non pris / durée contrat
           # salaire journalier
           # mensuel / nombre moyen de jours ouvrés par mois
-          facteur:  salaire brut / 21
+          facteur:  1 / 21
 
 
   notes: |

@@ -61,5 +61,5 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - CIF #cotisation
       - majoration chômage #cotisation
-      - prime de fin de contrat #indemnité
-      - compensation des congés payés #indemnité
+      - prime fin de contrat #indemnité
+      - compensation congés payés #indemnité
