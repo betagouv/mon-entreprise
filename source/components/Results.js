@@ -7,7 +7,7 @@ import './Results.css'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
-
+let capitalize = name => R.head(name).toUpperCase() + R.tail(name)
 @connect(
 	state => ({
 		pointedOutObjectives: state.pointedOutObjectives,
@@ -47,7 +47,7 @@ export default class Results extends Component {
 											{type}
 										</div>
 										<div className="rule-name">
-											{name}
+											{capitalize(name)}
 										</div>
 										<p>
 										{conversationStarted && (

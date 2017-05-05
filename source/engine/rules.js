@@ -69,7 +69,7 @@ export let findRuleByName = search =>
 	rules
 		.map(enrichRule)
 		.find( ({name}) =>
-			name === search
+			name.toLowerCase() === search.toLowerCase()
 		)
 
 export let searchRules = searchInput =>
@@ -79,8 +79,8 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-export let findRuleByDottedName = dottedName => // console.log('dottedName',  dottedName) ||
-	rules.find(rule => rule.dottedName == dottedName)
+export let findRuleByDottedName = dottedName => dottedName &&
+	rules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase())
 
 export let findGroup = R.pipe(
 	findRuleByDottedName,

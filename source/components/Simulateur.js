@@ -88,7 +88,7 @@ export default class extends React.Component {
 						</div>
 						<div className="remarks centered">
 							<p>
-								Pour simplifier, les résultats sont calculés par mois de contrat.
+								Pour simplifier, les résultats sont calculés par mois de contrat, et pour un temps complet.
 							</p>
 							<p>
 								N'hésitez pas à <Link to="/contact">nous écrire</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.

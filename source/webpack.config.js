@@ -55,7 +55,7 @@ module.exports = {
 		},
 		{
 			test: /\.(jpe?g|png|gif|svg)$/i,
-			loader: 'url-loader?limit=10000!img-loader?progressive=true'
+			loader: 'url-loader?limit=10000&name=images/[name].[ext]!img-loader?progressive=true'
 		}, {
 			test: /\.ne$/,
 			loader: 'babel-loader!nearley-loader'
