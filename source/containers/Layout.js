@@ -14,7 +14,7 @@ import R from 'ramda'
 export default class Layout extends Component {
 	render() {
 		console.log('window.location.href.toString()', window.location.href.toString())
-		let displayWarning = ['/simulateurs', '/regle'].find(t => window.location.href.toString().indexOf(t) > -1)
+		let displayWarning = ['/simu/', '/regle/'].find(t => window.location.href.toString().indexOf(t) > -1)
 
 		return (
 			<Router>
@@ -39,7 +39,7 @@ export default class Layout extends Component {
 							<Route exact path="/syso" component={HomeSyso}/>
 							<Route path="/contact" component={Contact} />
 							<Route path="/regle/:name" component={Rule} />
-							<Route path="/simulateurs/:simulateurId/:intro?" component={Simulateur} />
+							<Route path="/simu/:simulateurId/:intro?" component={Simulateur} />
 							<Route component={Route404} />
 						</Switch>
 					</div>

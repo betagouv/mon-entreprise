@@ -82,7 +82,7 @@ export default class extends React.Component {
 					<div>
 						<div className="action centered">
 							<p>{sim(['action', 'texte'])}</p>
-							<button onClick={() => this.props.history.push(`/simulateurs/${this.simulateurId}`)	}>
+							<button onClick={() => this.props.history.push(`/simu/${this.simulateurId}`)	}>
 								{sim(['action', 'bouton'])}
 							</button>
 						</div>

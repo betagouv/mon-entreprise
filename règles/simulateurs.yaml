@@ -1,4 +1,4 @@
-# Les simulateurs sont définis ici. Ils ont une variable comme objectif de calcul. Le moteur va analyser cette variable et son arbre pour produire un formulaire. Il sera exposé sur /simulateurs/:id
+# Les simulateurs sont définis ici. Ils ont une variable comme objectif de calcul. Le moteur va analyser cette variable et son arbre pour produire un formulaire. Il sera exposé sur /simu/:id
 
 #TODO pourquoi ne pas définir les simulateurs directement dans leurs variables d'objectif ?
 - titre: Simulateur CDD
