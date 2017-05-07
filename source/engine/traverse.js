@@ -518,7 +518,6 @@ let treat = (situationGate, rule) => rawNode => {
 						composante: c.nom ? {nom: c.nom} : c.attributs
 					})
 				),
-				l = console.log('composantes', composantes.map(val)),
 				nodeValue = anyNull(composantes) ? null
 					: R.reduce(R.add, 0, composantes.map(val))
 
@@ -684,6 +683,18 @@ let treat = (situationGate, rule) => rawNode => {
 
 }
 
+//TODO c'est moche :
+export let computeRuleValue = (formuleValue, condValue) =>
+	condValue === undefined
+	? formuleValue
+	: formuleValue === 0
+	? 0
+	: condValue === null
+		? null
+		: condValue === true
+			? 0
+			: formuleValue
+
 let treatRuleRoot = (situationGate, rule) => R.pipe(
 	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
@@ -759,17 +770,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 		let
 			formuleValue = r.formule.nodeValue,
 			condValue = R.path(['non applicable si', 'nodeValue'])(r),
-			nodeValue =
-				condValue === undefined
-			? formuleValue
-			: formuleValue === 0
-				? 0
-				: condValue === null
-					? null
-					: condValue === true
-						? 0
-						: formuleValue
-
+			nodeValue = computeRuleValue(formuleValue, condValue)
 
 		return {...r, nodeValue}
 	}

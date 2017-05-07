@@ -4,26 +4,27 @@ import R from 'ramda'
 TODO sélection temporaire de dossier, tant que toute la base de règles n'est pas vérifiée
 */
 
-let objectivesContext = require.context(
-  '../../règles/rémunération-travail/cdd', true,
-  // /([a-zA-Z]|-|_)+.yaml$/)
-  /(CIF|indemnité_fin_contrat|indemnité_compensatrice_congés_payés|majoration-chomage).yaml/)
+let requireAll = requireContext =>
+  requireContext.keys().map(requireContext)
 
-
-let entityContext = require.context(
-  '../../règles/rémunération-travail/entités/ok', true)
-
-
-let objectives = R.pipe(
-  R.map(objectivesContext),
+let rules= R.pipe(
+  R.chain(
+    requireAll,
+  ),
   R.unnest,
-)(objectivesContext.keys())
+  R.reject(R.isNil)
+)( // This array can't be generated, as the arguments to require.context can't be literals :-|
+  [
+  require.context(
+    '../../règles/rémunération-travail/cdd',
+    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+  require.context(
+    '../../règles/rémunération-travail/entités/ok',
+    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+  require.context(
+    '../../règles/rémunération-travail/cotisations/ok',
+    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+])
 
 
-let entities = R.pipe(
-  R.map(entityContext),
-  R.unnest,
-)(entityContext.keys())
-
-
-export default [...objectives, ...entities].filter(r => r != null)
+export default rules

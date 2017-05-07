@@ -15,6 +15,9 @@ import knownMecanisms from '../engine/known-mecanisms.yaml'
 import marked from '../engine/marked'
 import References from './References'
 import {AttachDictionary} from './AttachDictionary'
+import {analyseSituation} from '../engine/traverse'
+import {formValueSelector} from 'redux-form'
+
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
@@ -22,8 +25,7 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 
 @connect(
 	state => ({
-		// situationGate: name => formValueSelector('conversation')(state, name),
-		analysedSituation: state.analysedSituation,
+		situationGate: name => formValueSelector('conversation')(state, name),
 		form: state.form
 	}),
 	dispatch => ({
@@ -31,26 +33,19 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 	})
 )
 export default class Rule extends Component {
-	componentDidMount() {
-		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		this.props.startConversation('surcoût CDD')
-	}
 	render() {
 		let {
 			match: {params: {name}},
-			analysedSituation,
+			situationGate,
 			form
-		} = this.props,
-			objectives = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
+		} = this.props
 
-		if (!objectives) return null
-
-		let rule = objectives.find(R.pathEq(['explanation', 'name'], name)).explanation
-
-		if (!rule) {
-			this.props.router.push('/404')
-			return null
-		}
+		let rule = analyseSituation(name)(situationGate)
+		console.log('rule', rule)
+		// if (!rule) {
+		// 	this.props.router.push('/404')
+		// 	return null
+		// }
 
 		let
 			situationExists = !R.isEmpty(form)

@@ -79,7 +79,7 @@ let analyse = rootVariable => R.pipe(
  */
 let buildNextSteps = analysedSituation => {
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(
-		R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
+		analysedSituation
 	)
 
 	/*

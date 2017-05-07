@@ -6,14 +6,11 @@
     destinataire: AGIRC
   description: |
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
-  références:
-    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
-    garantie minimale de points: http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
   non applicable si: statut cadre # TODO l'inverse ! Vérifier le fonctionnnement de la négation !statut cadre OU statut cadre = non OU applicable si: statut cadre
 
   formule:
     barème:
-      assiette: salaire de base #TODO assiette cotisations sociales
+      assiette: salaire de base #TODO devrait être assiette cotisations sociales. Mais elle contient les primes CDD
       multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
@@ -62,4 +59,8 @@
               taux: 0%
 
   notes: |
-    Il éxiste une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
+    Il existe une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
+
+  références:
+    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+    garantie minimale de points: http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html

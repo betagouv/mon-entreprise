@@ -62,7 +62,7 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		new webpack.EnvironmentPlugin(['NODE_ENV']),
+		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.ProvidePlugin({
 			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',

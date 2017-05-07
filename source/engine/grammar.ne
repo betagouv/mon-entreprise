@@ -1,3 +1,5 @@
+# Pour éditer ou comprendre ce fichier, utilisez l'éditeur web Nearley : https://omrelli.ug/nearley-playground/
+
 main ->
 	  	CalcExpression {% id %}
 	  |	Variable {% id %}
