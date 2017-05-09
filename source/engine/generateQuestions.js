@@ -82,6 +82,8 @@ let buildNextSteps = analysedSituation => {
 		analysedSituation
 	)
 
+	console.log('missingVariables', missingVariables)
+
 	/*
 		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.
 		**On appelle ça des groupes de type 'variante'.**
@@ -181,14 +183,6 @@ export let generateGridQuestions = missingVariables => R.pipe(
 			)(relevantVariants)
 		})
 	)
-
-		//TODO reintroduce objectives
-		// {
-		// 	objectives: R.pipe(
-		// 		R.chain(v => missingVariables[variant.dottedName + ' . ' + v]),
-		// 		R.uniq()
-		// 	)(variant['une possibilité'])
-		// }
 )
 
 export let generateSimpleQuestions = missingVariables => R.pipe(

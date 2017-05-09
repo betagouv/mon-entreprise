@@ -58,9 +58,8 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 	let
 		{fragments} = parseResult,
 		variablePartialName = fragments.join(' . '),
-		variableName = disambiguateRuleReference(rule, variablePartialName),
-		// y = console.log('variableName', variableName),
-		variable = findRuleByDottedName(variableName),
+		dottedName = disambiguateRuleReference(rule, variablePartialName),
+		variable = findRuleByDottedName(dottedName),
 		variableIsRule = variable.formule != null,
 		//TODO perf : mettre un cache sur les variables !
 		// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
@@ -70,15 +69,14 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 			variable
 		),
 
-		nodeValue = variableIsRule ? parsedRule.nodeValue : evaluateVariable(situationGate, variableName, variable.format),
-		missingVariables = variableIsRule ? [] : (nodeValue == null ? [variableName] : [])
+		nodeValue = variableIsRule ? parsedRule.nodeValue : evaluateVariable(situationGate, dottedName, variable.format),
+		missingVariables = variableIsRule ? [] : (nodeValue == null ? [dottedName] : [])
 
 	return {
 		nodeValue,
 		category: 'variable',
 		fragments: fragments,
-		variableName,
-		name: variableName,
+		dottedName,
 		type: 'boolean | numeric',
 		explanation: parsedRule,
 		missingVariables,

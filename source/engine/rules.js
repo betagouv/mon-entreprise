@@ -128,11 +128,11 @@ let collectNodeMissingVariables = (root, source=root, results=[]) => {
 export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
 	R.pipe(
 		R.unless(R.is(Array), R.of),
-		R.chain( v =>
+		R.chain( v => console.log('v', v) ||
 			R.pipe(
 				collectNodeMissingVariables,
 				R.flatten,
-				R.map(mv => [v.variableName, mv])
+				R.map(mv => [v.dottedName, mv])
 			)(v)
 		),
 		//groupBy missing variable but remove mv from value, it's now in the key
