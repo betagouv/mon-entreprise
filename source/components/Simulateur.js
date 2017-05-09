@@ -11,7 +11,7 @@ import {Redirect, Link, withRouter} from 'react-router-dom'
 import {createMarkdownDiv} from '../engine/marked'
 import './Simulateur.css'
 import classNames from 'classnames'
-import {findRuleByName} from '../engine/rules'
+import {findRuleByName, decodeRuleName} from '../engine/rules'
 import {capitalise0} from '../utils'
 
 let situationSelector = formValueSelector('conversation')
@@ -36,20 +36,22 @@ export default class extends React.Component {
 		let {
 			match: {
 				params: {
-					name
+					name: encodedName
 				}
 			}
-		} = this.props
+		} = this.props,
+		name = decodeRuleName(encodedName)
 
+		this.encodedName = encodedName
 		this.name = name
 		this.rule = findRuleByName(name)
 
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		if (this.rule)
+		if (this.rule.formule)
 			this.props.startConversation(name)
 	}
 	render(){
-		if (!this.rule) return <Redirect to="/404"/>
+		if (!this.rule.formule) return <Redirect to="/404"/>
 
 		let
 			started = !this.props.match.params.intro,
@@ -87,7 +89,7 @@ export default class extends React.Component {
 					<div>
 						<div className="action centered">
 							<p>{sim(['introduction', 'motivation']) || 'Simulez cette règle en quelques clics'}</p>
-							<button onClick={() => this.props.history.push(`/simu/${this.simulateurId}`)	}>
+							<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
 								C'est parti !
 							</button>
 						</div>

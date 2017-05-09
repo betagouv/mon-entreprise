@@ -6,6 +6,7 @@ import R from 'ramda'
 import './Results.css'
 import {capitalise0} from '../utils'
 import {computeRuleValue} from '../engine/traverse'
+import {encodeRuleName} from '../engine/rules'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
@@ -49,7 +50,7 @@ export default class Results extends Component {
 								pointedOut = pointedOutObjectives.find(objective => objective == dottedName)
 
 								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>
-								<Link to={"/regle/" + name} className="understand">
+								<Link to={"/regle/" + encodeRuleName(name)} className="understand">
 									<div className="rule-box">
 										<div className="rule-type">
 											{type}

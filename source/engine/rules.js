@@ -1,3 +1,4 @@
+
 // Séparation artificielle, temporaire, entre ces deux types de règles
 import rawRules from './load-rules'
 import R from 'ramda'
@@ -39,6 +40,9 @@ export let nameLeaf = R.pipe(
 	splitName,
 	R.last
 )
+
+export let encodeRuleName = name => name.replace(/\s/g, '-')
+export let decodeRuleName = name => name.replace(/\-/g, ' ')
 
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */

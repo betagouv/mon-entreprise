@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-// import {findRuleByName} from '../engine/rules.js'
+import {decodeRuleName} from '../engine/rules.js'
 import './Rule.css'
 import JSONTree from 'react-json-tree'
 import R from 'ramda'
@@ -35,10 +35,11 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 export default class Rule extends Component {
 	render() {
 		let {
-			match: {params: {name}},
+			match: {params: {name: encodedName}},
 			situationGate,
 			form
-		} = this.props
+		} = this.props,
+		name = decodeRuleName(encodedName)
 
 		let rule = analyseSituation(name)(situationGate)
 		console.log('rule', rule)
