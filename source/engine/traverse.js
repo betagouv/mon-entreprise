@@ -90,6 +90,28 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 	}
 }
 
+
+let buildNegatedVariable = variable => {
+	let nodeValue = variable.nodeValue == null ? null : !variable.nodeValue
+	return {
+		nodeValue,
+		category: 'mecanism',
+		name: 'négation',
+		type: 'boolean',
+		explanation: variable,
+		jsx:	<Node
+			classes="inlineExpression negation"
+			value={nodeValue}
+			child={
+				<span className="nodeContent">
+					<span className="operator">¬</span>
+					{variable.jsx}
+				</span>
+			}
+		/>
+	}
+}
+
 let treat = (situationGate, rule) => rawNode => {
 	let reTreat = treat(situationGate, rule)
 
@@ -104,11 +126,15 @@ let treat = (situationGate, rule) => rawNode => {
 
 		if (additionnalResults && additionnalResults.length > 0) throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-		if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison']))
+		if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison', 'negatedVariable']))
 			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 		if (parseResult.category == 'variable')
-			return fillVariableNode(rule, situationGate)(parseResult, rawNode)
+			return fillVariableNode(rule, situationGate)(parseResult)
+		if (parseResult.category == 'negatedVariable')
+			return buildNegatedVariable(
+				fillVariableNode(rule, situationGate)(parseResult.variable)
+			)
 
 		if (parseResult.category == 'calcExpression') {
 			let

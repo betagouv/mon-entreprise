@@ -6,8 +6,9 @@
     destinataire: AGIRC
   description: |
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
-  non applicable si: statut cadre # TODO l'inverse ! Vérifier le fonctionnnement de la négation !statut cadre OU statut cadre = non OU applicable si: statut cadre
 
+  #TODO double négation en attendant d'ajouter 'applicable si'
+  non applicable si: ≠ statut cadre
   formule:
     barème:
       assiette: salaire de base #TODO devrait être assiette cotisations sociales. Mais elle contient les primes CDD
