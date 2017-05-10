@@ -25,7 +25,7 @@ export let AttachDictionary = dictionary => Decorated =>
 		render(){
 			let {explanation, term} = this.state
 			return (
-				<div className="dictionaryWrapper">
+				<div style={{display: 'inline-block'}} className="dictionaryWrapper">
 					<Decorated ref={decorated => this.decorated = decorated} {...this.props} explain={this.explain}/>
 					{explanation &&
 						<div className="dictionaryPanelWrapper" onClick={() => this.setState({term: null, explanation: null})}>

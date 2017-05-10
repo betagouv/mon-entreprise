@@ -1,0 +1,67 @@
+#examples {
+	min-width: 30%;
+}
+
+#examples h2.subtitled {
+	margin-bottom: .1em;
+}
+#examples .subtitle {
+	font-size: 85%;
+	font-style: italic;
+	margin-top: 0.3em;
+	margin-bottom: 1.6em
+}
+
+#injectSituation {
+	background: rgb(74, 137, 220);
+	color: white;
+	border: none;
+	font-size: 100%;
+	padding: .3em .6em;
+	margin-bottom: .6em;
+}
+
+#injectSituation.selected {
+	font-weight: bold;
+}
+
+
+#examples ul {
+	padding-left: 0;
+	list-style-type: none;
+}
+#examples .example {
+	font-weight: 500;
+	margin: .6em;
+	cursor: pointer;
+}
+#examples .example.selected .name {
+	font-weight: bold;
+}
+
+#examples i {
+	margin-right: .6em;
+}
+
+#examples .example i {
+	font-size: 200%;
+	vertical-align: sub;
+}
+
+#examples .example:not(.ok) {
+	color: #e74c3c;
+}
+
+#examples .example .ko {
+	font-size: 80%;
+	color: #666;
+}
+
+#examples .expected {
+	font-weight: 700;
+	color: #031bd6;
+}
+
+#examples .example.ok i {
+	color: #2ecc71
+}

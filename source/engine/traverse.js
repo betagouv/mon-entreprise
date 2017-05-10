@@ -60,17 +60,23 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rule, variablePartialName),
 		variable = findRuleByDottedName(dottedName),
-		variableIsRule = variable.formule != null,
+		variableIsCalculable = variable.formule != null,
 		//TODO perf : mettre un cache sur les variables !
 		// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
 		// et qu'il n'y a aucun problème de perf aujourd'hui
-		parsedRule = variableIsRule && treatRuleRoot(
+		parsedRule = variableIsCalculable && treatRuleRoot(
 			situationGate,
 			variable
 		),
 
-		nodeValue = variableIsRule ? parsedRule.nodeValue : evaluateVariable(situationGate, dottedName, variable.format),
-		missingVariables = variableIsRule ? [] : (nodeValue == null ? [dottedName] : [])
+		situationValue = evaluateVariable(situationGate, dottedName, variable),
+		nodeValue = situationValue
+			!= null ? situationValue
+			: !variableIsCalculable
+				? null
+				: parsedRule.nodeValue,
+		explanation = parsedRule,
+		missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
 	return {
 		nodeValue,
@@ -394,13 +400,14 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'taux') {
-		//TODO gérer les taux historisés
-		if (R.is(String)(v))
+		let reg = /^(\d+(\.\d+)?)\%$/
+		console.log('taux, v', v)
+		if (R.test(reg)(v))
 			return {
 				category: 'percentage',
 				type: 'numeric',
 				percentage: v,
-				nodeValue: transformPercentage(v),
+				nodeValue: R.match(reg)(v)[1]/100,
 				explanation: null,
 				jsx:
 					<span className="percentage" >
@@ -409,7 +416,7 @@ let treat = (situationGate, rule) => rawNode => {
 			}
 		// Si c'est une liste historisée de pourcentages
 		// TODO revoir le test avant le bug de l'an 2100
-		else if ( R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
+		else if ( R.is(Array)(v) && R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
 			//TODO sélectionner la date de la simulation en cours
 			let lazySelection = R.first(R.values(v))
 			return {
@@ -497,7 +504,7 @@ let treat = (situationGate, rule) => rawNode => {
 				name="multiplication"
 				value={nodeValue}
 				child={
-					<ul>
+					<ul className="properties">
 						<li key="assiette">
 							<span className="key">assiette: </span>
 							<span className="value">{assiette.jsx}</span>

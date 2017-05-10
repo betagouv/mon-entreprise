@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import './HomeSyso.css'
 import {searchRules, encodeRuleName} from '../engine/rules.js'
 import {Link} from 'react-router-dom'
-import '../components/Rule.css'
 import R from 'ramda'
 
 export default class Home extends Component {

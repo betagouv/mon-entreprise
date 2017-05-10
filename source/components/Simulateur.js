@@ -59,8 +59,8 @@ export default class extends React.Component {
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
-				this.props.resetForm(name);
-				this.props.startConversation(name);
+				this.props.resetForm(this.name);
+				this.props.startConversation(this.name);
 			}
 
 

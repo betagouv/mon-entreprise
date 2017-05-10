@@ -20,10 +20,18 @@ let evaluateBottomUp = situationGate => startingFragments => {
 }
 
 
-export let evaluateVariable = (situationGate, variableName, format) => {
+/* Evalue la valeur d'une variable
+en utilisant la fonction situationGate qui donne accès à la situation courante*/
+export let evaluateVariable = (situationGate, variableName, rule) => {
 	// test rec
 	let value = situationGate(variableName)
-	return format != null ?
-    	(value == undefined ? null : value)
-		: evaluateBottomUp(situationGate)(splitName(variableName))
+
+	return rule.format != null ?
+			value
+		: !rule.formule ?
+				// c'est une variante, eg. motifs . classique . accroissement d'activité
+				evaluateBottomUp(situationGate)(splitName(variableName))
+			: rule.formule['une possibilité'] ?
+					evaluateBottomUp(situationGate)(splitName(variableName))
+				: value
 }

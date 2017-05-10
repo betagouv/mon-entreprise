@@ -30,7 +30,7 @@
 }
 
 #rule h2 {
-	font-size: 100%;
+	font-size: 140%;
 	font-weight: 400;
 	border-bottom: 1px solid #4B4B66;
 	display: inline-block;
@@ -105,27 +105,17 @@
 #rule-rules .situationValue {
 	display: none;
 	padding-left: 1em;
-	font-weight: 600;
-	color: #4A89DC;
+	font-weight: 700;
+	color: #031bd6;
 }
 
 #rule-rules.showValues .situationValue {
 	display: inline;
 }
 
-#showValues {
-	background: rgb(74, 137, 220);
-	color: white;
-	border: none;
-	font-size: 100%;
-	padding: .4em;
-	margin: auto;
-	margin-left: 3em;
-}
-
 #algorithm {
 	margin-top: 3em;
-	width: 100%;
+	margin-right: 10em;
 }
 .dictionaryPanelWrapper {
 	position: fixed;
@@ -170,11 +160,10 @@
 #rule-rules section {
 	margin: 1em 0 1em 3em;
 	font-weight: 500;
-	font-size: 90%;
 	color: #444
 }
-#rule-rules section h2 {
-	font-size: 130%;
+#rule-rules section > div {
+	font-size: 90%;
 }
 .node {
 	padding-left: 1em;
@@ -349,4 +338,13 @@
 .composantes .composantesSymbol {
 	font-size: 160%;
 	color: #3498db;
+}
+
+
+
+#rule-calc {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
 }

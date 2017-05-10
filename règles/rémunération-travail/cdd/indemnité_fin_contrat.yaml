@@ -10,7 +10,6 @@
 
     - Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité : [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
 
-
   non applicable si:
     une de ces conditions:
       # Evènements particuliers
@@ -36,6 +35,19 @@
     multiplication:
       assiette: salaire brut
       taux: 10%
+
+  exemples:
+    - nom: salaire médian
+      situation:
+        salaire brut: 2300
+      valeur attendue: 230
+
+    - nom: CDD d'usage -> non applicable
+      situation:
+        motif . classique . usage: oui
+        événement . refus CDI avantageux: oui
+        salaire brut: 2300
+      valeur attendue: null
 
 
   références:

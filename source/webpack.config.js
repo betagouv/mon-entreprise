@@ -1,5 +1,6 @@
 var webpack = require('webpack'),
 	autoprefixer = require('autoprefixer'),
+	path = require('path'),
 	prodEnv = process.env.NODE_ENV == 'production' // eslint-disable-line no-undef
 
 module.exports = {
@@ -15,9 +16,15 @@ module.exports = {
 		'./source/entry.js'
 	],
 	output: {
-		path: require('path').resolve('./dist/'),
+		path: path.resolve('./dist/'),
 		filename: 'bundle.js',
 		publicPath: '/dist/'
+	},
+	resolve: {
+		alias: {
+			Engine: path.resolve('source/engine/'),
+			Règles: path.resolve('règles/')
+		}
 	},
 	module: {
 		loaders: [ {
