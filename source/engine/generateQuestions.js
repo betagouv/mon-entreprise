@@ -38,10 +38,10 @@ export let reduceSteps = (state, action) => {
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
 		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.pipe(
-					R.splitWhen(stepFinder),
-					R.head
-			)(state.foldedSteps)
+			foldedSteps = R.reject(stepFinder)(state.foldedSteps)
+		if (foldedSteps.length != state.foldedSteps.length - 1)
+			throw 'Problème lors du dépliement d\'une réponse'
+
 		return {
 			...returnObject,
 			foldedSteps,
