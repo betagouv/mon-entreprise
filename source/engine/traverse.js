@@ -401,7 +401,6 @@ let treat = (situationGate, rule) => rawNode => {
 
 	if (k === 'taux') {
 		let reg = /^(\d+(\.\d+)?)\%$/
-		console.log('taux, v', v)
 		if (R.test(reg)(v))
 			return {
 				category: 'percentage',

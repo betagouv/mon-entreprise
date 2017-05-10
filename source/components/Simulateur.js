@@ -108,7 +108,8 @@ export default class extends React.Component {
 								<div id="questions-answers">
 									{ !R.isEmpty(foldedSteps) &&
 										<div id="foldedSteps">
-											<div id="reinitialise" >
+											<div className="header" >
+												<h3>Vos réponses</h3>
 												<button onClick={reinitalise}>
 													<i className="fa fa-trash" aria-hidden="true"></i>
 													Tout effacer

@@ -82,7 +82,6 @@ let buildNextSteps = analysedSituation => {
 		analysedSituation
 	)
 
-	console.log('missingVariables', missingVariables)
 
 	/*
 		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.

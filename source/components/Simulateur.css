@@ -98,16 +98,20 @@
 	opacity: .95;
 }
 
-#reinitialise {
+
+#foldedSteps .header {
 	margin-bottom: 1em;
 	text-align: center;
 }
-#reinitialise button {
+#foldedSteps .header h3 {
+	display: inline;
+}
+#foldedSteps .header button {
 	font-size: 80%;
 	color: #4A89DC;
 	border: none;
 }
-#reinitialise button i {
+#foldedSteps .header button i {
 	margin-right: .3em;
 	vertical-align: top
 }
