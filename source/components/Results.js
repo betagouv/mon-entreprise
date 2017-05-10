@@ -6,7 +6,7 @@ import R from 'ramda'
 import './Results.css'
 import {capitalise0} from '../utils'
 import {computeRuleValue} from '../engine/traverse'
-import {encodeRuleName} from '../engine/rules'
+import {encodeRuleName, getObjectives} from '../engine/rules'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
@@ -20,12 +20,8 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 export default class Results extends Component {
 	render() {
 		let {analysedSituation, pointedOutObjectives, conversationStarted} = this.props,
-		// On travaille pour l'instant sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats. D'où ce chemin :
-			formuleType = R.path(['formule', 'explanation', 'name'])(analysedSituation),
-			explanation =
-				formuleType == 'somme' ? R.pluck('explanation', R.path(['formule', 'explanation', 'explanation'])(analysedSituation))
-			: formuleType ? [analysedSituation]
-			: null
+
+			explanation = getObjectives(analysedSituation)
 
 		if (!explanation) return null
 

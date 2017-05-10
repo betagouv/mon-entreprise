@@ -124,11 +124,26 @@ let collectNodeMissingVariables = (root, source=root, results=[]) => {
 	return results
 }
 
+// On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
+// Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
+export let getObjectives = analysedSituation => {
+	let formuleType = R.path(["formule", "explanation", "name"])(
+		analysedSituation
+	)
+	return formuleType == "somme"
+		? R.pluck(
+				"explanation",
+				R.path(["formule", "explanation", "explanation"])(analysedSituation)
+			)
+		: formuleType ? [analysedSituation] : null
+}
+
 
 export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
+
 	R.pipe(
-		R.unless(R.is(Array), R.of),
-		R.chain( v => console.log('v', v) ||
+		getObjectives,
+		R.chain( v =>
 			R.pipe(
 				collectNodeMissingVariables,
 				R.flatten,
