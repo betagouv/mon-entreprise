@@ -54,6 +54,8 @@
 
 - espace: contrat salarié
   nom: statut cadre
+  titre: Statut cadre
+  question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
 
 

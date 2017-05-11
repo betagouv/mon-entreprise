@@ -2,6 +2,7 @@
 # La description peut être rédigée en markdown :-)
 
 une de ces conditions:
+  type: boolean
   description: |
     C'est un `ou` logique.
 
@@ -9,6 +10,7 @@ une de ces conditions:
 
     Renvoie vrai si l'une des conditions est vraie.
 toutes ces conditions:
+  type: boolean
   description: |
     C'est un `et` logique.
 
@@ -17,6 +19,7 @@ toutes ces conditions:
     Renvoie vrai si toutes les conditions vraies.
 
 logique numérique:
+  type: numeric
   description: |
     Contient une liste de couples condition-conséquence.
 
@@ -27,10 +30,12 @@ logique numérique:
     Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
 
 taux:
+  type: numeric
   description: |
     C'est tout simplement une valeur numérique exprimée en pourcentage.
 
 multiplication:
+  type: numeric
   description: |
     C'est une multiplication un peu améliorée, très utile pour exprimer les cotisations.
 
@@ -39,6 +44,7 @@ multiplication:
     La multiplication peut être plafonnée : ce plafond sépare l'assiette en deux, et la partie au-dessus du plafond est tout simplement ignorée. Dans ce cas, elle se comporte comme une barème en taux marginaux à deux tranches, la deuxième au taux nul et allant de `plafond` à l'infini.
 
 le maximum de:
+  type: numeric
   description: |
     Renvoie l'élément de la liste de propositions fournie qui la la plus grande valeur.
 
@@ -47,6 +53,7 @@ le maximum de:
     Il est conseillé de renseigner une description de chaque proposition par exemple quand elles représentent des méthodes de calcul alternatives parmi lesquelles il faut en choisir une.
 
 somme:
+  type: numeric
   description: |
     C'est tout simplement la somme de chaque terme de la liste.
 
@@ -71,12 +78,14 @@ non applicable si:
     La formule de calcul peut donc être ignorée, quel que soit son montant.
 
 barème:
+  type: numeric
   description: |
     C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation dans le calcul de l'impôt sur le revenu.
     L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un taux spécifique.
     Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable que l'on appelle multiplicateur, par exemple le plafond de la sécurité sociale.
 
 composantes:
+  type: numeric
   description: |
     Beaucoup de cotisations sont composées de deux parties qui partage la méthode de calcul mais diffèrent par des paramètres différents.
 

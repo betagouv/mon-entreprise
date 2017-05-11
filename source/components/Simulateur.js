@@ -6,12 +6,14 @@ import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
 import Aide from './Aide'
 import PageTypeIcon from './PageTypeIcon'
-import simulateurs from '../../règles/simulateurs.yaml'
 import R from 'ramda'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import {createMarkdownDiv} from '../engine/marked'
 import './Simulateur.css'
 import classNames from 'classnames'
+import {findRuleByName, decodeRuleName} from '../engine/rules'
+import {capitalise0} from '../utils'
+
 let situationSelector = formValueSelector('conversation')
 
 @withRouter
@@ -34,56 +36,61 @@ export default class extends React.Component {
 		let {
 			match: {
 				params: {
-					simulateurId
+					name: encodedName
 				}
 			}
-		} = this.props
+		} = this.props,
+		name = decodeRuleName(encodedName)
 
-		this.simulateurId = simulateurId
-		this.simulateur = R.find(R.propEq('id', simulateurId))(simulateurs)
+		this.encodedName = encodedName
+		this.name = name
+		this.rule = findRuleByName(name)
 
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		if (this.simulateur)
-			this.props.startConversation(this.simulateur.objectif)
+		if (this.rule.formule)
+			this.props.startConversation(name)
 	}
 	render(){
-		if (!this.simulateur) return <Redirect to="/404"/>
+		if (!this.rule.formule) return <Redirect to="/404"/>
 
 		let
 			started = !this.props.match.params.intro,
 			{foldedSteps, unfoldedSteps, situation} = this.props,
 			sim = path =>
-				R.path(R.unless(R.is(Array), R.of)(path))(this.simulateur),
-			objectif = this.simulateur.objectif,
+				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
-				this.props.resetForm(objectif);
-				this.props.startConversation(objectif);
+				this.props.resetForm(this.name);
+				this.props.startConversation(this.name);
 			}
 
 
 		return (
 			<div id="sim" className={classNames({started})}>
 				<PageTypeIcon type="simulation" />
-				<h1>{sim('titre')}</h1>
-				<div id="simSubtitle">{sim('sous-titre')}</div>
-				<div className="intro centered">
-					{sim('introduction').map( ({icône, texte, titre}) =>
-						<div key={titre}>
-							<i title={titre} className={"fa "+icône} aria-hidden="true"></i>
-							<span>
-								{texte}
-							</span>
-						</div>
-					)}
-				</div>
+				<h1>{sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])}</h1>
+				{sim('sous-titre') &&
+					<div id="simSubtitle">{sim('sous-titre')}</div>
+				}
+				{sim(['introduction', 'notes']) &&
+					<div className="intro centered">
+						{sim(['introduction', 'notes']).map( ({icône, texte, titre}) =>
+							<div key={titre}>
+								<i title={titre} className={"fa "+icône} aria-hidden="true"></i>
+								<span>
+									{texte}
+								</span>
+							</div>
+						)}
+					</div>
+				}
 				{
 					// Tant que le bouton 'C'est parti' n'est pas cliqué, on affiche l'intro
 					!started ?
 					<div>
 						<div className="action centered">
-							<p>{sim(['action', 'texte'])}</p>
-							<button onClick={() => this.props.history.push(`/simu/${this.simulateurId}`)	}>
-								{sim(['action', 'bouton'])}
+							<p>{sim(['introduction', 'motivation']) || 'Simulez cette règle en quelques clics'}</p>
+							<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
+								C'est parti !
 							</button>
 						</div>
 						<div className="remarks centered">
@@ -101,7 +108,8 @@ export default class extends React.Component {
 								<div id="questions-answers">
 									{ !R.isEmpty(foldedSteps) &&
 										<div id="foldedSteps">
-											<div id="reinitialise" >
+											<div className="header" >
+												<h3>Vos réponses</h3>
 												<button onClick={reinitalise}>
 													<i className="fa fa-trash" aria-hidden="true"></i>
 													Tout effacer
@@ -130,16 +138,32 @@ export default class extends React.Component {
 										}}
 									</div>
 									{unfoldedSteps.length == 0 &&
-										<div id="fin">
-											<img src={require('../images/fin.png')} />
-											{createMarkdownDiv(sim('conclusion'))}
-										</div>}
+										<Conclusion />}
 									</div>
 								<Aide />
 							</div>
 						</div>
 					)}
 
+			</div>
+		)
+	}
+}
+
+class Conclusion extends Component {
+	render() {
+		return (
+			<div id="fin">
+				<img src={require('../images/fin.png')} />
+				<p>
+					Nous n'avons plus de questions : votre simulation est terminée.
+				</p>
+				<p>
+					Cliquez sur les obligations en bas pour comprendre vos résultats.
+				</p>
+				<p>
+					Une remarque ? <Link to="/contact">Écrivez-nous !</Link>
+				</p>
 			</div>
 		)
 	}

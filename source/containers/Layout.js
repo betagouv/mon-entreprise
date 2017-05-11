@@ -4,7 +4,7 @@ import './reset.css'
 import {Link, Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import HomeEmbauche from '../components/HomeEmbauche'
 import HomeSyso from '../components/HomeSyso'
-import Rule from '../components/Rule'
+import Rule from '../components/rule/Rule'
 import Route404 from '../components/Route404'
 import Contact from '../components/Contact'
 import Simulateur from '../components/Simulateur'
@@ -38,7 +38,7 @@ export default class Layout extends Component {
 							<Route exact path="/syso" component={HomeSyso}/>
 							<Route path="/contact" component={Contact} />
 							<Route path="/regle/:name" component={Rule} />
-							<Route path="/simu/:simulateurId/:intro?" component={Simulateur} />
+							<Route path="/simu/:name/:intro?" component={Simulateur} />
 							<Route component={Route404} />
 						</Switch>
 					</div>

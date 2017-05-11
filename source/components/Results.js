@@ -4,10 +4,12 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import R from 'ramda'
 import './Results.css'
+import {capitalise0} from '../utils'
+import {computeRuleValue} from '../engine/traverse'
+import {encodeRuleName, getObjectives} from '../engine/rules'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
-let capitalize = name => R.head(name).toUpperCase() + R.tail(name)
 @connect(
 	state => ({
 		pointedOutObjectives: state.pointedOutObjectives,
@@ -17,9 +19,10 @@ let capitalize = name => R.head(name).toUpperCase() + R.tail(name)
 )
 export default class Results extends Component {
 	render() {
-		let {analysedSituation, pointedOutObjectives, conversationStarted} = this.props
-		// On travaille pour l'instant sur un objectif qui est une somme de plusieurs variables, et c'est ces variables que nous affichons comme résultats. D'où ce chemin :
-		let explanation = R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
+		let {analysedSituation, pointedOutObjectives, conversationStarted} = this.props,
+
+			explanation = getObjectives(analysedSituation)
+
 		if (!explanation) return null
 
 		return (
@@ -31,23 +34,25 @@ export default class Results extends Component {
 				</div>
 				<ul>
 					{explanation.map(
-						({variableName, nodeValue, explanation: {name, type, 'non applicable si': nonApplicable, formule: {nodeValue: computedValue}}}) =>
+						({name, dottedName, type, 'non applicable si': nonApplicable, formule: {nodeValue: formuleValue}}) =>
 						do {
+							//TODO quel bordel, à revoir
 							let
-								unsatisfied = nodeValue == null,
+								ruleValue = computeRuleValue(formuleValue, nonApplicable && nonApplicable.nodeValue),
+								unsatisfied = ruleValue == null,
 								nonApplicableValue = nonApplicable ? nonApplicable.nodeValue : false,
-								irrelevant = nonApplicableValue === true || computedValue == 0,
-								number = nonApplicableValue == false && computedValue != null,
-								pointedOut = pointedOutObjectives.find(objective => objective == variableName)
+								irrelevant = nonApplicableValue === true || formuleValue == 0,
+								number = nonApplicableValue == false && formuleValue != null,
+								pointedOut = pointedOutObjectives.find(objective => objective == dottedName)
 
 								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>
-								<Link to={"/regle/" + name} className="understand">
+								<Link to={"/regle/" + encodeRuleName(name)} className="understand">
 									<div className="rule-box">
 										<div className="rule-type">
 											{type}
 										</div>
 										<div className="rule-name">
-											{capitalize(name)}
+											{capitalise0(name)}
 										</div>
 										<p>
 										{conversationStarted && (
@@ -55,7 +60,7 @@ export default class Results extends Component {
 												"Vous n'êtes pas concerné"
 												: unsatisfied ?
 													'En attente de vos réponses...'
-													: <span className="figure">{humanFigure(2)(computedValue) + '€'}</span>
+													: <span className="figure">{humanFigure(2)(formuleValue) + '€'}</span>
 										)}
 										</p>
 									</div>

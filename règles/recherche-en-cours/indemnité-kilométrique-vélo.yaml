@@ -1,0 +1,23 @@
+# AFAIRE :
+# - gérer l'aspect temporel : indemnité par jour, convertible proportionnellement.
+# - les réductions de cotisations / impôts
+# - créer et documenter les entités accord employeur, distance minimale domicile travail
+
+
+. : ikv
+nom: indemnité kilométrique vélo
+description: Indemnité Kilométrique Vélo pour les salariés qui pédalent entre leur domicile et leur lieu de travail
+formule:
+  applicable si: accord employeur ikv
+  multiplication:
+    assiette: 0.25€
+    facteur: distance minimale domicile travail
+    # par jour travaillé
+  réduction:
+    cibles:
+      - cotisations sociales #pour l'employeur
+      - salaire net imposable #pour le salarié
+    plafond: 200€
+
+références:
+  Indemnité kilométrique: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808

@@ -58,27 +58,31 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 	let
 		{fragments} = parseResult,
 		variablePartialName = fragments.join(' . '),
-		variableName = disambiguateRuleReference(rule, variablePartialName),
-		// y = console.log('variableName', variableName),
-		variable = findRuleByDottedName(variableName),
-		variableIsRule = variable.formule != null,
+		dottedName = disambiguateRuleReference(rule, variablePartialName),
+		variable = findRuleByDottedName(dottedName),
+		variableIsCalculable = variable.formule != null,
 		//TODO perf : mettre un cache sur les variables !
 		// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
 		// et qu'il n'y a aucun problème de perf aujourd'hui
-		parsedRule = variableIsRule && treatRuleRoot(
+		parsedRule = variableIsCalculable && treatRuleRoot(
 			situationGate,
 			variable
 		),
 
-		nodeValue = variableIsRule ? parsedRule.nodeValue : evaluateVariable(situationGate, variableName, variable.format),
-		missingVariables = variableIsRule ? [] : (nodeValue == null ? [variableName] : [])
+		situationValue = evaluateVariable(situationGate, dottedName, variable),
+		nodeValue = situationValue
+			!= null ? situationValue
+			: !variableIsCalculable
+				? null
+				: parsedRule.nodeValue,
+		explanation = parsedRule,
+		missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
 	return {
 		nodeValue,
 		category: 'variable',
 		fragments: fragments,
-		variableName,
-		name: variableName,
+		dottedName,
 		type: 'boolean | numeric',
 		explanation: parsedRule,
 		missingVariables,
@@ -86,6 +90,28 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 			classes="variable"
 			name={fragments.join(' . ')}
 			value={nodeValue}
+		/>
+	}
+}
+
+
+let buildNegatedVariable = variable => {
+	let nodeValue = variable.nodeValue == null ? null : !variable.nodeValue
+	return {
+		nodeValue,
+		category: 'mecanism',
+		name: 'négation',
+		type: 'boolean',
+		explanation: variable,
+		jsx:	<Node
+			classes="inlineExpression negation"
+			value={nodeValue}
+			child={
+				<span className="nodeContent">
+					<span className="operator">¬</span>
+					{variable.jsx}
+				</span>
+			}
 		/>
 	}
 }
@@ -104,11 +130,15 @@ let treat = (situationGate, rule) => rawNode => {
 
 		if (additionnalResults && additionnalResults.length > 0) throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-		if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison']))
+		if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison', 'negatedVariable']))
 			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 		if (parseResult.category == 'variable')
-			return fillVariableNode(rule, situationGate)(parseResult, rawNode)
+			return fillVariableNode(rule, situationGate)(parseResult)
+		if (parseResult.category == 'negatedVariable')
+			return buildNegatedVariable(
+				fillVariableNode(rule, situationGate)(parseResult.variable)
+			)
 
 		if (parseResult.category == 'calcExpression') {
 			let
@@ -370,13 +400,13 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'taux') {
-		//TODO gérer les taux historisés
-		if (R.is(String)(v))
+		let reg = /^(\d+(\.\d+)?)\%$/
+		if (R.test(reg)(v))
 			return {
 				category: 'percentage',
 				type: 'numeric',
 				percentage: v,
-				nodeValue: transformPercentage(v),
+				nodeValue: R.match(reg)(v)[1]/100,
 				explanation: null,
 				jsx:
 					<span className="percentage" >
@@ -385,7 +415,7 @@ let treat = (situationGate, rule) => rawNode => {
 			}
 		// Si c'est une liste historisée de pourcentages
 		// TODO revoir le test avant le bug de l'an 2100
-		else if ( R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
+		else if ( R.is(Array)(v) && R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
 			//TODO sélectionner la date de la simulation en cours
 			let lazySelection = R.first(R.values(v))
 			return {
@@ -473,7 +503,7 @@ let treat = (situationGate, rule) => rawNode => {
 				name="multiplication"
 				value={nodeValue}
 				child={
-					<ul>
+					<ul className="properties">
 						<li key="assiette">
 							<span className="key">assiette: </span>
 							<span className="value">{assiette.jsx}</span>
@@ -518,7 +548,6 @@ let treat = (situationGate, rule) => rawNode => {
 						composante: c.nom ? {nom: c.nom} : c.attributs
 					})
 				),
-				l = console.log('composantes', composantes.map(val)),
 				nodeValue = anyNull(composantes) ? null
 					: R.reduce(R.add, 0, composantes.map(val))
 
@@ -684,6 +713,18 @@ let treat = (situationGate, rule) => rawNode => {
 
 }
 
+//TODO c'est moche :
+export let computeRuleValue = (formuleValue, condValue) =>
+	condValue === undefined
+	? formuleValue
+	: formuleValue === 0
+	? 0
+	: condValue === null
+		? null
+		: condValue === true
+			? 0
+			: formuleValue
+
 let treatRuleRoot = (situationGate, rule) => R.pipe(
 	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
@@ -759,17 +800,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 		let
 			formuleValue = r.formule.nodeValue,
 			condValue = R.path(['non applicable si', 'nodeValue'])(r),
-			nodeValue =
-				condValue === undefined
-			? formuleValue
-			: formuleValue === 0
-				? 0
-				: condValue === null
-					? null
-					: condValue === true
-						? 0
-						: formuleValue
-
+			nodeValue = computeRuleValue(formuleValue, condValue)
 
 		return {...r, nodeValue}
 	}

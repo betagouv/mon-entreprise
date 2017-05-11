@@ -19,3 +19,21 @@
 
   références:
     Code du travail - Article L6322-37 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1480
+      valeur attendue: 14.8
+
+    - nom: salaire médian
+      situation:
+        motif . classique . usage: oui
+        assiette cotisations sociales: 2300
+      valeur attendue: 23
+
+    - nom: motif saisonnier -> non applicable
+      situation:
+        motif . classique . saisonnier: oui
+        assiette cotisations sociales: 2300
+      valeur attendue: null

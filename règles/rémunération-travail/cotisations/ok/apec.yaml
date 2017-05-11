@@ -12,7 +12,8 @@
   notes: |
     Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
 
-  non applicable si: statut cadre # TODO l'inverse ! Vérifier le fonctionnnement de la négation !statut cadre OU statut cadre = non OU applicable si: statut cadre
+  #TODO double négation en attendant d'ajouter 'applicable si'
+  non applicable si: ≠ statut cadre
 
   formule:
     barème:

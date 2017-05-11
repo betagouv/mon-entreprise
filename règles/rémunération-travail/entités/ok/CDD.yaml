@@ -63,3 +63,16 @@
       - majoration chômage #cotisation
       - prime fin de contrat #indemnité
       - compensation congés payés #indemnité
+
+  simulateur:
+    titre: Simulateur CDD
+    sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
+    introduction:
+      notes:
+        - icône: fa-handshake-o
+          texte: Vous avez embauché ou vous réfléchissez à l'embauche d'un salarié en CDD.
+          titre: Votre situation
+        - icône: fa-balance-scale
+          texte: Votre contrat ne peut donc avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
+          titre: Votre obligation
+      motivation: Découvrez en quelques clics le montant des 4 obligations du CDD.

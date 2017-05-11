@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import './HomeSyso.css'
-import {searchRules} from '../engine/rules.js'
+import {searchRules, encodeRuleName} from '../engine/rules.js'
 import {Link} from 'react-router-dom'
-import '../components/Rule.css'
 import R from 'ramda'
 
 export default class Home extends Component {
@@ -48,7 +47,7 @@ export default class Home extends Component {
                         {type}
                       </span>
                       <span className="rule-name">
-                        <Link to={`/regle/${name}`}>{name}</Link>
+                        <Link to={`/regle/${encodeRuleName(name)}`}>{name}</Link>
                       </span>
                     </li>
                   ))}
@@ -60,7 +59,7 @@ export default class Home extends Component {
             <ul>
               <li key="cdd">
                 <span className="simulateur">Surcoût du CDD</span>
-                <Link to="/simu/cdd/intro"><button>Essayer</button></Link>
+                <Link to="/simu/surcoût-CDD/intro"><button>Essayer</button></Link>
               </li>
               <li key="embauche">
                 <span className="simulateur">Prix global de l'embauche</span>

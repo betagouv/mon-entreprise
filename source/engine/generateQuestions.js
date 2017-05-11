@@ -38,10 +38,10 @@ export let reduceSteps = (state, action) => {
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
 		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.pipe(
-					R.splitWhen(stepFinder),
-					R.head
-			)(state.foldedSteps)
+			foldedSteps = R.reject(stepFinder)(state.foldedSteps)
+		if (foldedSteps.length != state.foldedSteps.length - 1)
+			throw 'Problème lors du dépliement d\'une réponse'
+
 		return {
 			...returnObject,
 			foldedSteps,
@@ -79,8 +79,9 @@ let analyse = rootVariable => R.pipe(
  */
 let buildNextSteps = analysedSituation => {
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(
-		R.path(['formule', 'explanation', 'explanation'])(analysedSituation)
+		analysedSituation
 	)
+
 
 	/*
 		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.
@@ -181,14 +182,6 @@ export let generateGridQuestions = missingVariables => R.pipe(
 			)(relevantVariants)
 		})
 	)
-
-		//TODO reintroduce objectives
-		// {
-		// 	objectives: R.pipe(
-		// 		R.chain(v => missingVariables[variant.dottedName + ' . ' + v]),
-		// 		R.uniq()
-		// 	)(variant['une possibilité'])
-		// }
 )
 
 export let generateSimpleQuestions = missingVariables => R.pipe(

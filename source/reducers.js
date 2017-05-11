@@ -7,7 +7,7 @@ import { euro, months } from './components/conversation/formValueTypes.js'
 import { EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
 import R from 'ramda'
 
-import {findGroup, findRuleByDottedName, parentName, collectMissingVariables, findVariantsAndRecords} from './engine/rules'
+import {findGroup, findRuleByDottedName, parentName, findVariantsAndRecords} from './engine/rules'
 
 import {reduceSteps, generateGridQuestions, generateSimpleQuestions} from './engine/generateQuestions'
 

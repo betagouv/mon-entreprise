@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {findRuleByDottedName} from '../engine/rules'
 import './Aide.css'
 import {EXPLAIN_VARIABLE} from '../actions'
-import References from './References'
+import References from './rule/References'
 import marked from '../engine/marked'
 
 @connect(

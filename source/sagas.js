@@ -1,4 +1,4 @@
-import { takeEvery} from 'redux-saga'
+import { takeEvery} from 'redux-saga/effects'
 // import { call, put} from 'redux-saga/effects'
 // import Promise from 'core-js/fn/promise'
 

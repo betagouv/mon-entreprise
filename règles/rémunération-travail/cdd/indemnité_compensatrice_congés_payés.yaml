@@ -16,7 +16,8 @@
   # TODO aspect temporel
   # L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
 
-  #TODO avoir un vrai mécanisme de calcul temporel pour faire les conversions
+  #TODO cette formule pourrait être clarifiée,
+  # probablement grâce à un vrai mécanisme de calcul temporel pour faire les conversions
   formule:
     le maximum de:
       - description: Méthode "du dixième"
@@ -44,6 +45,30 @@
           # salaire journalier
           # mensuel / nombre moyen de jours ouvrés par mois
           facteur:  1 / 21
+
+
+  exemples:
+    - nom: pas de congés non pris
+      situation:
+        salaire brut: 2300
+        prime fin de contrat: 0
+        congés non pris: 0
+        durée contrat: 12
+      valeur attendue: 0
+    - nom: 10 jours non pris
+      situation:
+        salaire brut: 2300
+        prime fin de contrat: 0
+        congés non pris: 10
+        durée contrat: 12
+      valeur attendue: 92
+    - nom: 3 jours non pris
+      situation:
+        salaire brut: 2300
+        prime fin de contrat: 0
+        congés non pris: 3
+        durée contrat: 6
+      valeur attendue: 54.76
 
 
   notes: |

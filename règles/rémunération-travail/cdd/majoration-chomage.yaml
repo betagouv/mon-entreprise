@@ -25,6 +25,25 @@
             durée contrat <= 3: 0.5%
 
 
+  exemples:
+    - nom: salaire médian, CDD d'usage, contrat de 2 mois
+      situation:
+        assiette cotisations sociales: 2300
+        motif . classique . accroissement activité: oui
+        durée contrat: 1
+      valeur attendue: 69
+
+    #TODO on ne peut aujourd'hui tester 'classique . usage' : l'évaluation n'aura pas la valeur de la première branche de la logique numérique, motif . classique . accroissement activité, et va donc s'arrêter en renvoyant un 'null'
+    # solution possible : un mode d'évaluation 'shallow' ou non renseigné = faux (null -> false)
+
+    - nom: durée de contrat de 4 mois -> non applicable
+      situation:
+        assiette cotisations sociales: 2300
+        durée contrat: 4
+      valeur attendue: null
+
+
+
 
   références:
     La mojoration de la contribution chômage: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html
