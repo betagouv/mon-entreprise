@@ -34,8 +34,10 @@ export default class Rule extends Component {
 	}
 	componentWillReceiveProps(nextProps){
 		let get = R.path(['match', 'params', 'name'])
-		if (get(nextProps) !== get(this.props))
+		if (get(nextProps) !== get(this.props)) {
 			this.setRule(get(nextProps))
+			this.setState({example: null, showValues: false})
+		}
 	}
 	setRule(name){
 		this.rule = analyseSituation(decodeRuleName(name))(this.props.situationGate)
