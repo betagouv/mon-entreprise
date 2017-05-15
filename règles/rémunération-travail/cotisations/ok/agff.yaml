@@ -58,7 +58,7 @@
             - si: statut cadre = oui
               tranches:
                 - en-dessous de: 1
-                   taux: 0.8%
+                  taux: 0.8%
                 - de: 1
                   à: 8
                   taux: 0.9%
