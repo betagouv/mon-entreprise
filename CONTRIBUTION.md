@@ -14,4 +14,4 @@ https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
 
 Et ceux spécifiques au projet :
 - :gear: `:gear:` pour une contribution au moteur qui traite les YAML
-- :scales: `:hammer:` pour une contribution à la base de règles
+- :hammer: `:hammer:` pour une contribution à la base de règles
