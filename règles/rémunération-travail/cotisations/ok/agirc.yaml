@@ -11,7 +11,7 @@
   non applicable si: ≠ statut cadre
   formule:
     barème:
-      assiette: salaire de base #TODO devrait être assiette cotisations sociales. Mais elle contient les primes CDD
+      assiette: assiette cotisations sociales #TODO devrait être assiette cotisations sociales. Mais elle contient les primes CDD
       multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
