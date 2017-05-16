@@ -1,7 +1,6 @@
 - Cotisation: AGS
   description: Cotisation au Régime de Garantie des Salaires
-  attributs:
-    - plafonnée
+  cotisation:
     - dû par: employeur
   reference: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 

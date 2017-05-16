@@ -65,15 +65,47 @@
   # type de période: mensuel
   formule: 3269
 
-# Cette variable est le point de départ du simulateur "surcout CDD" :-D
+
+
+
 - espace: contrat salarié
   nom: salaire net
   description: |
     C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
   formule:
+    # TODO à compléter
     somme: #TODO à l'avenir, exprimer une somme sous forme de requête
       - APEC
       - AGIRC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - espace: contrat salarié
   nom: régime alsace moselle

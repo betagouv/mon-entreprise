@@ -83,6 +83,7 @@ let buildNextSteps = analysedSituation => {
 	)
 
 
+
 	/*
 		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.
 		**On appelle ça des groupes de type 'variante'.**
@@ -120,6 +121,7 @@ let buildNextSteps = analysedSituation => {
 		}),
 		R.values,
 		R.unnest,
+		R.sort((a,b) => b.impact - a.impact),
 	)(missingVariables)
 }
 
@@ -179,7 +181,9 @@ export let generateGridQuestions = missingVariables => R.pipe(
 			objectives:  R.pipe(
 				R.chain(v => missingVariables[v]),
 				R.uniq()
-			)(relevantVariants)
+			)(relevantVariants),
+			// Mesure de l'impact de cette variable : combien de fois elle est citée par une règle
+			impact: relevantVariants.reduce((count, next) => count + missingVariables[next].length, 0)
 		})
 	)
 )
@@ -211,6 +215,7 @@ export let generateSimpleQuestions = missingVariables => R.pipe(
 				},
 			{
 				objectives: missingVariables[dottedName],
+				impact: missingVariables[dottedName].length
 			}
 		)
 	})
