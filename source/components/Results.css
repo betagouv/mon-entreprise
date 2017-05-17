@@ -122,8 +122,9 @@
 #results li.pointedOut .pointer {
 	visibility: visible;
 }
-#results li.number .rule-box {
-	border: 5px solid #4A89DC;
+#results li.number p {
+	color: #4A89DC;
+	font-weight: bold;
 }
 
 #results .rule-type {
@@ -154,5 +155,5 @@
 	font-weight: 600;
 }
 #results li p .figure {
-	font-size: 200%;
+	font-size: 250%;
 }
