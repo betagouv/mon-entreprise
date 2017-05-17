@@ -22,15 +22,18 @@ export default class Results extends Component {
 		let {analysedSituation, pointedOutObjectives, conversationStarted} = this.props,
 
 			explanation = getObjectives(analysedSituation)
-
 		if (!explanation) return null
 
 		return (
 			<section id="results" className={classNames({started: conversationStarted})}>
 				<div id="results-titles">
-					<h2>Vos obligations</h2>
+					<h2>Vos résultats <i className="fa fa-hand-o-right" aria-hidden="true"></i></h2>
+					{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation)
+						text &&
+							<p id="resultText">{text}</p>
+						}}
 					{conversationStarted &&
-						<div>Cliquez pour comprendre chaque calcul &nbsp;<i className="fa fa-hand-o-right" aria-hidden="true"></i></div>}
+						<p id="understandTip"><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Cliquez pour comprendre chaque calcul</em></p>}
 				</div>
 				<ul>
 					{explanation.map(
@@ -46,7 +49,7 @@ export default class Results extends Component {
 								pointedOut = pointedOutObjectives.find(objective => objective == dottedName)
 
 								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>
-								<Link to={"/regle/" + encodeRuleName(name)} className="understand">
+								<Link to={"/regle/" + encodeRuleName(name)} >
 									<div className="rule-box">
 										<div className="rule-type">
 											{type}
@@ -65,7 +68,7 @@ export default class Results extends Component {
 										</p>
 									</div>
 								</Link>
-								<div className="pointer">•</div>
+								{/* <div className="pointer">•</div> */}
 							</li>
 						}
 					)}

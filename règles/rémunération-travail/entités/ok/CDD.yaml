@@ -67,6 +67,7 @@
   simulateur:
     titre: Simulateur CDD
     sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
+    résultats: Ces 4 éléments constituent le surcoût du CDD
     introduction:
       notes:
         - icône: fa-handshake-o
