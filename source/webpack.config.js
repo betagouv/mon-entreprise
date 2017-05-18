@@ -7,6 +7,7 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: prodEnv ? [
 		'babel-polyfill',
+		'whatwg-fetch',
 		'./source/entry.js'
 	] : [
 		'webpack-dev-server/client?http://localhost:3000/',
@@ -23,7 +24,8 @@ module.exports = {
 	resolve: {
 		alias: {
 			Engine: path.resolve('source/engine/'),
-			Règles: path.resolve('règles/')
+			Règles: path.resolve('règles/'),
+			Components: path.resolve('source/components/')
 		}
 	},
 	module: {
@@ -70,10 +72,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
-		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.ProvidePlugin({
-			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
-		}),
+		new webpack.NoEmitOnErrorsPlugin()
 	]
 	.concat(!prodEnv ? [new webpack.HotModuleReplacementPlugin()] : [])
 	.concat(prodEnv ? [new webpack.optimize.UglifyJsPlugin()] : []),

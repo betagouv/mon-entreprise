@@ -51,7 +51,7 @@ export let disambiguateRuleReference = ({ns, name}, partialName) => {
 		fragments = ns.split(' . '), // ex. [CDD . événements . rupture]
 		pathPossibilities = // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 			R.range(0, fragments.length + 1)
-			 .map(nbEl => R.take(nbEl)(fragments))
+			.map(nbEl => R.take(nbEl)(fragments))
 			.reverse(),
 		found = R.reduce((res, path) =>
 			R.when(

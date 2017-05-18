@@ -1,26 +1,17 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { compose, createStore, applyMiddleware } from 'redux'
+import { compose, createStore } from 'redux'
 import App from './containers/App'
 import reducers from './reducers'
 import DevTools from './DevTools'
 import { AppContainer } from 'react-hot-loader'
-import createSagaMiddleware from 'redux-saga'
-import rootSaga from './sagas'
 
-
-const sagaMiddleware = createSagaMiddleware()
-
-const createFinalStore = compose(
-	// Enables your middleware:
-	applyMiddleware(sagaMiddleware), // any Redux middleware, e.g. redux-thunk
-	// Provides support for DevTools:
-	DevTools.instrument()
-)(createStore)
-
-
-const store = createFinalStore(reducers)
-sagaMiddleware.run(rootSaga)
+let store = createStore(
+  reducers,
+  compose(
+    DevTools.instrument()
+  )
+)
 
 let anchor = document.querySelector('#js')
 
@@ -29,7 +20,7 @@ render(
 	anchor
 )
 
-// Hot react component reloading. Unstable but helpful. 
+// Hot react component reloading. Unstable but helpful.
 if (module.hot) {
 	module.hot.accept('./containers/App', () => {
 	// If you use Webpack 2 in ES modules mode, you can

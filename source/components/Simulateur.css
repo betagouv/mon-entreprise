@@ -40,7 +40,7 @@
 #sim .intro {
 	font-style: italic;
 	font-size: 100%;
-	margin-bottom: 4%;
+	margin-bottom: 3%;
 }
 #sim .intro > div {
 	margin: 1em 0;
@@ -90,6 +90,24 @@
 }
 
 
+#conversation {
+	margin: 3em auto;
+	font-size: 110%;
+	line-height: normal;
+	display: flex;
+	align-items: flex-start;
+	min-height: 10em;
+	max-width: 90%;
+	max-height: 85%;
+}
+
+
+#questions-answers {
+	min-width: 50%;
+	transition: width 1s;
+}
+
+
 #foldedSteps .header {
 	margin-bottom: 1em;
 	text-align: center;
@@ -105,4 +123,42 @@
 #foldedSteps .header button i {
 	margin-right: .3em;
 	vertical-align: top
+}
+
+
+
+#fin {
+	margin: 0 auto;
+	width: 80%;
+  display: flex;
+	align-items: flex-end;
+	font-style: italic;
+}
+#fin-text {
+	width: 50%;
+	margin-left: 2em;
+	display: inline-block;
+}
+#fin p:first-of-type {
+	font-weight: bold
+}
+#fin img {
+	width: 25%;
+	display: inline-block;
+}
+
+
+
+.satisfaction-smiley {
+	color: #4A89DC;
+	font-size: 90%;
+	font-weight: bold;
+	border-radius: 6em;
+	width: 2em;
+	text-align: center;
+	display: inline-block;
+	border: 2px solid #4A89DC;
+	margin: 0 .6em;
+	padding: .3em 0;
+	transform: rotate(90deg)
 }

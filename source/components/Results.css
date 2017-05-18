@@ -13,7 +13,7 @@
 	left: 0;
 	box-shadow: 1px -7px 20px 2px #ccc;
 
-	/*opacity: 0;*/
+	opacity: 0;
 	transform: translateY(12em);
 	transition: transform .5s;
 	transition-delay: .3s;
@@ -21,6 +21,7 @@
 }
 #results.show {
 	transform: translateY(0);
+	opacity: 1;
 }
 
 
