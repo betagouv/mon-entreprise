@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
 import Aide from './Aide'
-import PageTypeIcon from './PageTypeIcon'
 import R from 'ramda'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import {createMarkdownDiv} from '../engine/marked'
@@ -66,7 +65,6 @@ export default class extends React.Component {
 
 		return (
 			<div id="sim" className={classNames({started})}>
-				<PageTypeIcon type="simulation" />
 				<h1>{sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])}</h1>
 				{sim('sous-titre') &&
 					<div id="simSubtitle">{sim('sous-titre')}</div>
@@ -88,7 +86,7 @@ export default class extends React.Component {
 					!started ?
 					<div>
 						<div className="action centered">
-							<p>{sim(['introduction', 'motivation']) || 'Simulez cette règle en quelques clics'}</p>
+							{createMarkdownDiv(sim(['introduction', 'motivation'])) || <p>Simulez cette règle en quelques clics</p>}
 							<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
 								C'est parti !
 							</button>
@@ -98,7 +96,7 @@ export default class extends React.Component {
 								Pour simplifier, les résultats sont calculés par mois de contrat, et pour un temps complet.
 							</p>
 							<p>
-								N'hésitez pas à <Link to="/contact">nous écrire</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
+								N'hésitez pas à nous écrire <Link to="/contact"><i className="fa fa-envelope-open-o" aria-hidden="true" style={{margin: '0 .3em'}}></i></Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
 							</p>
 						</div>
 					</div>

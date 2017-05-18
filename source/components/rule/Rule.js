@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 import R from 'ramda'
 import './Rule.css'
-import PageTypeIcon from '../PageTypeIcon'
 import {decodeRuleName, findRuleByName, disambiguateRuleReference} from 'Engine/rules.js'
 import mockSituation from 'Engine/mockSituation.yaml'
 import {analyseSituation} from 'Engine/traverse'
@@ -67,7 +66,6 @@ export default class Rule extends Component {
 
 		return (
 			<div id="rule">
-				<PageTypeIcon type="comprendre"/>
 				<h1>
 					<span className="rule-type">{type}</span>
 					<span className="rule-name">{capitalise0(name)}</span>

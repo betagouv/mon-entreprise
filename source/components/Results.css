@@ -11,11 +11,16 @@
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	border-top: 3px solid white;
-}
-#results.started {
-	border: none;
 	box-shadow: 1px -7px 20px 2px #ccc;
+
+	/*opacity: 0;*/
+	transform: translateY(12em);
+	transition: transform .5s;
+	transition-delay: .3s;
+	transition-timing-function: cubic-bezier(0, 1.01, 0.24, 1)
+}
+#results.show {
+	transform: translateY(0);
 }
 
 
@@ -25,7 +30,7 @@
 	float: left;
 	width: 18%;
 	margin: 0;
-	padding: 0 1em;
+	padding: 0 0 0 2em;
 }
 
 #results-actions {

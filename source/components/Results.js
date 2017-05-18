@@ -17,7 +17,8 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 	state => ({
 		pointedOutObjectives: state.pointedOutObjectives,
 		analysedSituation: state.analysedSituation,
-		conversationStarted: !R.isEmpty(state.form)
+		conversationStarted: !R.isEmpty(state.form),
+		conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state)
 	})
 )
 export default class Results extends Component {
@@ -26,6 +27,7 @@ export default class Results extends Component {
 			analysedSituation,
 			pointedOutObjectives,
 			conversationStarted,
+			conversationFirstAnswer: showResults,
 			location
 		} = this.props,
 			explanation = getObjectives(analysedSituation)
@@ -33,8 +35,9 @@ export default class Results extends Component {
 		if (!explanation) return null
 
 		let onRulePage = R.contains('/regle/')(location.pathname)
+
 		return (
-			<section id="results" className={classNames({started: conversationStarted})}>
+			<section id="results" className={classNames({show: showResults})}>
 				{onRulePage && conversationStarted ?
 					<div id ="results-actions">
 						<Link id="toSimulation" to={"/simu/" + encodeRuleName(analysedSituation.name)}>
