@@ -1,9 +1,8 @@
 #sim {
 	padding: 3em 0; /* For the warning message */
-	background-color: #333350;
 	/*background-image: radial-gradient(ellipse at center, white -160%, rgba(255,255,255,0) 100%);*/
-	background-image: radial-gradient(ellipse at center, #4A89DC -160%,#333350 70%);
-	color: white;
+	/*background-image: radial-gradient(ellipse at center, #4A89DC -160%,#333350 70%);*/
+	color: #333350;
 	transition: background-color .5s;
 	height: 100%;
 	padding-bottom: 10%;
@@ -13,13 +12,6 @@
 #sim p {
 	color: inherit;
 }
-
-#sim.started {
-	background: none;
-	background-color: white;
-	color: #333350;
-}
-
 
 #sim > h1 {
 	color: inherit;
@@ -48,7 +40,7 @@
 #sim .intro {
 	font-style: italic;
 	font-size: 100%;
-	margin-bottom: 4%;
+	margin-bottom: 3%;
 }
 #sim .intro > div {
 	margin: 1em 0;
@@ -84,7 +76,6 @@
 	color: white;
 	display: block;
 	text-align: center;
-	color: inherit;
 	background: #4A89DC;
 	padding: .6em 1.2em;
 	font-size: 140%;
@@ -93,9 +84,27 @@
 	border: none;
 	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1)
 }
-#sim .action:hover {
+#sim .action button:hover {
 	box-shadow: none;
 	opacity: .95;
+}
+
+
+#conversation {
+	margin: 3em auto;
+	font-size: 110%;
+	line-height: normal;
+	display: flex;
+	align-items: flex-start;
+	min-height: 10em;
+	max-width: 90%;
+	max-height: 85%;
+}
+
+
+#questions-answers {
+	min-width: 50%;
+	transition: width 1s;
 }
 
 
@@ -114,4 +123,42 @@
 #foldedSteps .header button i {
 	margin-right: .3em;
 	vertical-align: top
+}
+
+
+
+#fin {
+	margin: 0 auto;
+	width: 80%;
+  display: flex;
+	align-items: flex-end;
+	font-style: italic;
+}
+#fin-text {
+	width: 50%;
+	margin-left: 2em;
+	display: inline-block;
+}
+#fin p:first-of-type {
+	font-weight: bold
+}
+#fin img {
+	width: 25%;
+	display: inline-block;
+}
+
+
+
+.satisfaction-smiley {
+	color: #4A89DC;
+	font-size: 90%;
+	font-weight: bold;
+	border-radius: 6em;
+	width: 2em;
+	text-align: center;
+	display: inline-block;
+	border: 2px solid #4A89DC;
+	margin: 0 .6em;
+	padding: .3em 0;
+	transform: rotate(90deg)
 }

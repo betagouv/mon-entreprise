@@ -19,9 +19,6 @@ body {
 	transform: rotate(-45deg);
 	font-weight: bold;
 }
-#warning a {
-	text-decoration: none;
-}
 
 #content {
 	margin-top: 1.5em;
@@ -36,6 +33,7 @@ body {
 
 a {
 	color: inherit;
+	text-decoration: none;
 }
 
 h1 {
@@ -72,9 +70,4 @@ h1 {
 	text-transform: uppercase;
 	font-size: 100%;
 	font-weight: bold;
-}
-
-#page-type i {
-	display: block;
-	font-size: 700%;
 }

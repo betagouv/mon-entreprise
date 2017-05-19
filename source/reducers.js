@@ -40,6 +40,7 @@ function pointedOutObjectives(state=[], {type, objectives}) {
 
 export default reduceReducers(
 	combineReducers({
+		sessionId: (id =  Math.floor(Math.random() * 1000000000000) + '') => id,
 		//  this is handled by redux-form, pas touche !
 		form: formReducer,
 

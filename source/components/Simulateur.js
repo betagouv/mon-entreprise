@@ -1,18 +1,18 @@
 import React, {Component} from 'react'
-import './CDD.css'
 import {reduxForm, formValueSelector, reset} from 'redux-form'
 import {connect} from 'react-redux'
-import './conversation/conversation.css'
 import {START_CONVERSATION} from '../actions'
-import Aide from './Aide'
-import PageTypeIcon from './PageTypeIcon'
 import R from 'ramda'
 import {Redirect, Link, withRouter} from 'react-router-dom'
-import {createMarkdownDiv} from '../engine/marked'
-import './Simulateur.css'
+import Aide from './Aide'
+import {createMarkdownDiv} from 'Engine/marked'
+import {findRuleByName, decodeRuleName} from 'Engine/rules'
+import 'Components/conversation/conversation.css'
+import 'Components/Simulateur.css'
 import classNames from 'classnames'
-import {findRuleByName, decodeRuleName} from '../engine/rules'
 import {capitalise0} from '../utils'
+import Satisfaction from 'Components/Satisfaction'
+import Helmet from 'react-helmet'
 
 let situationSelector = formValueSelector('conversation')
 
@@ -28,7 +28,7 @@ let situationSelector = formValueSelector('conversation')
 	}),
 	dispatch => ({
 		startConversation: rootVariable => dispatch({type: START_CONVERSATION, rootVariable}),
-		resetForm: rootVariable => dispatch(reset('conversation'))
+		resetForm: () => dispatch(reset('conversation'))
 	})
 )
 export default class extends React.Component {
@@ -40,7 +40,7 @@ export default class extends React.Component {
 				}
 			}
 		} = this.props,
-		name = decodeRuleName(encodedName)
+			name = decodeRuleName(encodedName)
 
 		this.encodedName = encodedName
 		this.name = name
@@ -59,15 +59,20 @@ export default class extends React.Component {
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
-				this.props.resetForm(this.name);
-				this.props.startConversation(this.name);
-			}
+				this.props.resetForm(this.name)
+				this.props.startConversation(this.name)
+			},
+			title = sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])
 
 
 		return (
 			<div id="sim" className={classNames({started})}>
-				<PageTypeIcon type="simulation" />
-				<h1>{sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])}</h1>
+				<Helmet>
+					<title>{title}</title>
+					{sim('sous-titre') &&
+						<meta name="description" content={sim('sous-titre')} />}
+				</Helmet>
+				<h1>{title}</h1>
 				{sim('sous-titre') &&
 					<div id="simSubtitle">{sim('sous-titre')}</div>
 				}
@@ -88,7 +93,7 @@ export default class extends React.Component {
 					!started ?
 					<div>
 						<div className="action centered">
-							<p>{sim(['introduction', 'motivation']) || 'Simulez cette règle en quelques clics'}</p>
+							{createMarkdownDiv(sim(['introduction', 'motivation'])) || <p>Simulez cette règle en quelques clics</p>}
 							<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
 								C'est parti !
 							</button>
@@ -98,7 +103,9 @@ export default class extends React.Component {
 								Pour simplifier, les résultats sont calculés par mois de contrat, et pour un temps complet.
 							</p>
 							<p>
-								N'hésitez pas à <Link to="/contact">nous écrire</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
+								N'hésitez pas à nous écrire <Link to="/contact">
+								<i className="fa fa-envelope-open-o" aria-hidden="true" style={{margin: '0 .3em'}}></i>
+							</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
 							</p>
 						</div>
 					</div>
@@ -138,7 +145,7 @@ export default class extends React.Component {
 										}}
 									</div>
 									{unfoldedSteps.length == 0 &&
-										<Conclusion />}
+										<Conclusion simu={this.name}/>}
 									</div>
 								<Aide />
 							</div>
@@ -155,15 +162,15 @@ class Conclusion extends Component {
 		return (
 			<div id="fin">
 				<img src={require('../images/fin.png')} />
-				<p>
-					Nous n'avons plus de questions : votre simulation est terminée.
-				</p>
-				<p>
-					Cliquez sur les obligations en bas pour comprendre vos résultats.
-				</p>
-				<p>
-					Une remarque ? <Link to="/contact">Écrivez-nous !</Link>
-				</p>
+				<div id="fin-text">
+					<p>
+						Votre simulation est terminée !
+					</p>
+					<p>
+						N'hésitez pas à modifier vos réponses, ou cliquez sur vos résultats pour comprendre le calcul.
+					</p>
+					<Satisfaction simu={this.props.simu}/>
+				</div>
 			</div>
 		)
 	}

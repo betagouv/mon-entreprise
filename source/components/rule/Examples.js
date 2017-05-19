@@ -83,6 +83,12 @@ export default class Examples extends Component {
 					}
 					</ul>
 				}
+				<button
+					id="reportError">
+					<a href={"mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans une règle " + name}>
+						<i className="fa fa-exclamation-circle" aria-hidden="true" style={{marginRight: '.6em'}}></i>Signaler une erreur
+					</a>
+				</button>
 			</div>
 		)
 	}

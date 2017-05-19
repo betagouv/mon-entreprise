@@ -83,7 +83,7 @@ export var FormDecorator = formType => RenderField =>
 			return (
 			<div
 				className={classNames({step: unfolded}, formType)}
-				onMouseEnter={() => pointOutObjectives(objectives)}
+				onMouseEnter={() => null} //pointOutObjectives(objectives)}
 				onMouseLeave={() => pointOutObjectives([])}>
 				{this.state.helpVisible && this.renderHelpBox(helpText)}
 				<div style={{visibility: this.state.helpVisible ? 'hidden' : 'visible'}}>
@@ -155,7 +155,7 @@ export var FormDecorator = formType => RenderField =>
 							>
 						</i>
 						{'  '}
-						Modifier
+						<span>Modifier</span>
 					</button>
 					{/* <StepAnswer	{...{value, human, valueType, ignored, themeColours}} /> */}
 				</div>)

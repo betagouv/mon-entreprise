@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 import R from 'ramda'
 import './Rule.css'
-import PageTypeIcon from '../PageTypeIcon'
 import {decodeRuleName, findRuleByName, disambiguateRuleReference} from 'Engine/rules.js'
 import mockSituation from 'Engine/mockSituation.yaml'
 import {analyseSituation} from 'Engine/traverse'
@@ -14,6 +13,8 @@ import {capitalise0} from '../../utils'
 import References from './References'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
+import Helmet from 'react-helmet'
+
 
 // situationGate function useful for testing :
 let testingSituationGate = v => // eslint-disable-line no-unused-vars
@@ -67,7 +68,10 @@ export default class Rule extends Component {
 
 		return (
 			<div id="rule">
-				<PageTypeIcon type="comprendre"/>
+				<Helmet>
+					<title>{capitalise0(name)}</title>
+					<meta name="description" content={description} />
+				</Helmet>
 				<h1>
 					<span className="rule-type">{type}</span>
 					<span className="rule-name">{capitalise0(name)}</span>

@@ -13,6 +13,7 @@ rules:
   no-global-assign: 0
   no-unsafe-negation: 0
   no-undef: 1
+  no-mixed-spaces-and-tabs: 1
   react/jsx-uses-vars: 2
   react/jsx-uses-react: 2
 
