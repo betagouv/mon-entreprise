@@ -12,6 +12,7 @@ import 'Components/Simulateur.css'
 import classNames from 'classnames'
 import {capitalise0} from '../utils'
 import Satisfaction from 'Components/Satisfaction'
+import Helmet from 'react-helmet'
 
 let situationSelector = formValueSelector('conversation')
 
@@ -60,12 +61,18 @@ export default class extends React.Component {
 			reinitalise = () => {
 				this.props.resetForm(this.name)
 				this.props.startConversation(this.name)
-			}
+			},
+			title = sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])
 
 
 		return (
 			<div id="sim" className={classNames({started})}>
-				<h1>{sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])}</h1>
+				<Helmet>
+					<title>{title}</title>
+					{sim('sous-titre') &&
+						<meta name="description" content={sim('sous-titre')} />}
+				</Helmet>
+				<h1>{title}</h1>
 				{sim('sous-titre') &&
 					<div id="simSubtitle">{sim('sous-titre')}</div>
 				}
