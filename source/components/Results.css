@@ -80,7 +80,6 @@
 
 #results ul {
 	display: inline-flex;
-	flex-wrap: wrap;
 	justify-content: space-around;
 	height: 100%;
 	width: 80%;
@@ -91,6 +90,9 @@
 
 
 @media (max-width: 1280px) {
+	#results .rule-type {
+		display: none;
+	}
 	#results {
 		padding: 0;
 	}
@@ -99,9 +101,11 @@
 		text-align: center;
 	}
 	#results-titles p {
+		margin: 0;
 		margin-right: 3em;
 	}
 	#results-titles h2 {
+		font-size: 150%;
 		display: none;
 	}
 	#results-titles #resultText {
@@ -117,6 +121,10 @@
 
 	#results ul {
 		width: 100%;
+		font-size: 90%;
+	}
+	#results ul li .rule-box p {
+		padding: 0.6em;
 	}
 }
 
