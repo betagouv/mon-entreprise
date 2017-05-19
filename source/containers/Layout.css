@@ -19,9 +19,6 @@ body {
 	transform: rotate(-45deg);
 	font-weight: bold;
 }
-#warning a {
-	text-decoration: none;
-}
 
 #content {
 	margin-top: 1.5em;
@@ -36,6 +33,7 @@ body {
 
 a {
 	color: inherit;
+	text-decoration: none;
 }
 
 h1 {
