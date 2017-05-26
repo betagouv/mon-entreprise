@@ -146,19 +146,3 @@
 	width: 25%;
 	display: inline-block;
 }
-
-
-
-.satisfaction-smiley {
-	color: #4A89DC;
-	font-size: 90%;
-	font-weight: bold;
-	border-radius: 6em;
-	width: 2em;
-	text-align: center;
-	display: inline-block;
-	border: 2px solid #4A89DC;
-	margin: 0 .6em;
-	padding: .3em 0;
-	transform: rotate(90deg)
-}

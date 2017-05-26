@@ -45,7 +45,7 @@ export default class Examples extends Component {
 
 		return (
 			<div id="examples">
-				<h2 className="subtitled">Examples de calcul</h2>
+				<h2 className="subtitled">Exemples de calcul</h2>
 				<p className="subtitle">Cliquez sur un exemple pour le visualiser</p>
 				{situationExists && <div>
 					<button

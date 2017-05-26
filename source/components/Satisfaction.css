@@ -1,0 +1,59 @@
+#satisfaction {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+
+.satisfaction-smiley {
+	color: #4A89DC;
+	font-size: 90%;
+	font-weight: bold;
+	border-radius: 6em;
+	width: 2em;
+	text-align: center;
+	display: inline-block;
+	border: 2px solid #4A89DC;
+	margin: 0 .6em;
+	padding: .3em 0;
+	transform: rotate(90deg)
+}
+
+#satisfaction textarea {
+	border: 1px solid rgb(74, 137, 220, .5);
+	border-radius: .3em;
+	width: 65%;
+	height: 5em;
+	padding: .6em;
+	font-size: 85%;
+}
+
+#sendMessage {
+	font-size: 100%;
+	border: none;
+	color: rgb(74, 137, 220);
+
+	transition: color 1s;
+}
+#sendMessage:disabled {
+	color: #bbb;
+	cursor: default;
+}
+#sendMessage i {
+	margin-right: .6em;
+}
+#messageSent {
+	color: rgb(74, 137, 220);
+	font-size: 160%
+}
+
+#satisfaction p {
+	font-size: 85%;
+}
+
+#satisfaction p a {
+	text-decoration: underline;
+}
