@@ -1,7 +1,6 @@
-
-
-- Cotisation: GMP
-  attributs:
+- espace: contrat salarié
+  nom: GMP
+  cotisation:
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC
