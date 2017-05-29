@@ -678,6 +678,85 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
+	if (k === 'complément') {
+		// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
+		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+			let
+				complementProps = R.dissoc('composantes')(v),
+				composantes = v.composantes.map(c =>
+					({
+						... reTreat(
+							{
+								complément: {
+									... complementProps,
+									... R.dissoc('attributs')(c)
+								}
+							}
+						),
+						composante: c.nom ? {nom: c.nom} : c.attributs
+					})
+				),
+				nodeValue = anyNull(composantes) ? null
+					: R.reduce(R.add, 0, composantes.map(val))
+
+			return {
+				nodeValue,
+				category: 'mecanism',
+				name: 'composantes',
+				type: 'numeric',
+				explanation: composantes,
+				jsx: <Node
+					classes="mecanism composantes"
+					name="composantes"
+					value={nodeValue}
+					child={
+						<ul>
+							{ composantes.map((c, i) =>
+								[<li className="composante" key={JSON.stringify(c.composante)}>
+									<ul className="composanteAttributes">
+										{R.toPairs(c.composante).map(([k,v]) =>
+											<li>
+												<span>{k}: </span>
+												<span>{v}</span>
+											</li>
+										)}
+									</ul>
+									<div className="content">
+										{c.jsx}
+									</div>
+								</li>,
+								i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+								]
+								)
+							}
+						</ul>
+					}
+				/>
+			}
+		}
+
+		if (v['cible'] == null)
+			throw "un complément nécessite une propriété 'cible'"
+
+		let cible = reTreat(v['cible'])
+			mini = reTreat(v['montant'])
+			nodeValue = mini - R.min(cible,mini)
+
+		return {
+			type: 'numeric',
+			category: 'mecanism',
+			name: 'complément pour atteindre',
+			nodeValue,
+			explanation: contenders,
+			jsx: <Node
+				classes="mecanism list complement"
+				name="complément pour atteindre"
+				value={nodeValue}
+				child={mini}
+			/>
+		}
+	}
+
 	if (k === 'le maximum de') {
 		let contenders = v.map(treat(situationGate, rule)),
 			contenderValues = R.pluck('nodeValue')(contenders),
