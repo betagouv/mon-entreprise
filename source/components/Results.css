@@ -89,6 +89,97 @@
 }
 
 
+#results li {
+	margin: 0 1em 0;
+	text-align: center;
+	width: 25%;
+}
+
+#results li a {
+	text-decoration: none;
+}
+
+#results .rule-type {
+	color: white;
+	border: none;
+	font-size: 85%;
+	line-height: 2em;
+	font-weight: 600;
+	margin: .6em 0 .1em;
+}
+
+#results .rule-box {
+	padding: .6em 1em;
+	color: #333350;
+	background: white;
+	border-radius: 3px;
+	white-space: nowrap;
+	color: #333350;
+	height: 6em;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+#results .rule-name {
+	font-size: 175%;
+	font-weight: 600;
+}
+
+#results li p {
+	margin: 0;
+	padding: 0 0;
+	font-size: 120%;
+	color: inherit;
+	width: 100%;
+}
+
+#results li:not(.pointedOut):hover .rule-box {
+	background: #ddd;
+}
+#results li.irrelevant .rule-box {
+	background: rgba(255, 255, 255, 0.35);
+}
+
+#results li.pointedOut:not(.irrelevant) .rule-name {
+	color: #4A89DC;
+}
+#results li.pointedOut .rule-type {
+	color: #4A89DC;
+}
+
+#results li.pointedOut .rule-box {
+	border-bottom: .8em solid #4A89DC;
+}
+#results li.number p {
+	color: #4A89DC;
+	font-weight: bold;
+}
+
+
+
+#results li.irrelevant .rule-type {
+	color: rgba(255, 255, 255, 0.35);
+}
+
+#results li.irrelevant .rule-name {
+	text-decoration: line-through;
+}
+
+
+#results li.unsatisfied p {
+	font-style: italic;
+}
+#results li.irrelevant p {
+	font-weight: 600;
+}
+#results li p .figure {
+	font-size: 250%;
+}
+
+
+
 @media (max-width: 1280px) {
 	#results .rule-type {
 		display: none;
@@ -99,6 +190,7 @@
 	#results-titles {
 		width: 100%;
 		text-align: center;
+		margin-bottom: .6em;
 	}
 	#results-titles p {
 		margin: 0;
@@ -118,6 +210,9 @@
 	#results-titles > p {
 		display: inline-block;
 	}
+	#results-titles #understandTip {
+		display: none;
+	}
 
 	#results ul {
 		width: 100%;
@@ -126,86 +221,9 @@
 	#results ul li .rule-box p {
 		padding: 0.6em;
 	}
-}
 
-#results li {
-	margin: 1.4em 1em 0;
-	text-align: center;
-}
+	#results .rule-name {
+		font-size: 150%;
+	}
 
-#results li a {
-	text-decoration: none;
-}
-
-#results .rule-box {
-	padding: 0 1em;
-	color: #333350;
-	background: white;
-	border-radius: 3px;
-	white-space: nowrap;
-	color: #333350;
-	min-width: 15em;
-}
-#results li:not(.pointedOut):hover .rule-box {
-	background: #ddd;
-}
-#results li.irrelevant .rule-box {
-	background: rgba(255, 255, 255, 0.35);
-}
-
-#results li.pointedOut:not(.irrelevant) .rule-name {
-	color: #4A89DC;
-}
-#results li.pointedOut .rule-type {
-	background: #4A89DC;
-}
-
-#results li.pointedOut .rule-box {
-	border-top: .8em solid #4A89DC;
-}
-#results li.pointedOut {
-	/* Pour ne pas avoir de décalage dû au border-top */
-	margin-top: .6em;
-}
-#results li.number p {
-	color: #4A89DC;
-	font-weight: bold;
-}
-
-#results .rule-type {
-	background: #333350;
-	color: white;
-	border: none;
-	font-size: 75%;
-	line-height: 2em;
-	font-weight: 800;
-	margin: .6em 0 .1em;
-}
-
-#results li.irrelevant .rule-type {
-	color: rgba(255, 255, 255, 0.35);
-}
-
-#results li.irrelevant .rule-name {
-	text-decoration: line-through;
-}
-#results .rule-name {
-	font-size: 150%;
-}
-
-#results li p {
-	margin: 0;
-	padding: 1em 0;
-	font-size: 120%;
-	color: inherit;
-}
-
-#results li.unsatisfied p {
-	font-style: italic;
-}
-#results li.irrelevant p {
-	font-weight: 600;
-}
-#results li p .figure {
-	font-size: 250%;
 }

@@ -49,9 +49,8 @@ export default class Results extends Component {
 						{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation)
 							text &&
 								<p id="resultText">{text}</p>
-							}}
-						{conversationStarted &&
-							<p id="understandTip"><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Cliquez pour comprendre chaque calcul</em></p>}
+						}}
+						<p id="understandTip"><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Cliquez pour comprendre chaque calcul</em></p>
 				</div>
 				}
 				<ul>
@@ -70,11 +69,14 @@ export default class Results extends Component {
 								|| R.contains(encodeRuleName(name))(location.pathname)
 
 								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>
+
+
 								<Link to={"/regle/" + encodeRuleName(name)} >
+									<div className="rule-type">
+										{type}
+									</div>
 									<div className="rule-box">
-										<div className="rule-type">
-											{type}
-										</div>
+
 										<div className="rule-name">
 											{capitalise0(name)}
 										</div>
