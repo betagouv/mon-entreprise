@@ -42,7 +42,8 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 (- bonus : utiliser ces informations pour l'ordre de priorité des variables inconnues)
 
 - si une branche est incomplète et qu'elle est de type numérique, déterminer les bornes si c'est possible.
-	Ex. - pour une multiplication, si l'assiette est connue mais que l 'applicabilité est inconnue,
+	Ex. - pour une multiplication, si l'assiette est connd
+	ue mais que l 'applicabilité est inconnue,
 				les bornes seront [0, multiplication.value = assiette * taux]
 			- si taux = effectif entreprise >= 20 ? 1% : 2% et que l'applicabilité est connue,
 				bornes = [assiette * 1%, assiette * 2%]
@@ -679,7 +680,6 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'complément') {
-		// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
 		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 			let
 				complementProps = R.dissoc('composantes')(v),
@@ -738,8 +738,8 @@ let treat = (situationGate, rule) => rawNode => {
 		if (v['cible'] == null)
 			throw "un complément nécessite une propriété 'cible'"
 
-		let cible = reTreat(v['cible'])
-			mini = reTreat(v['montant'])
+		let cible = reTreat(v['cible']),
+			mini = reTreat(v['montant']),
 			nodeValue = mini - R.min(cible,mini)
 
 		return {
@@ -747,7 +747,6 @@ let treat = (situationGate, rule) => rawNode => {
 			category: 'mecanism',
 			name: 'complément pour atteindre',
 			nodeValue,
-			explanation: contenders,
 			jsx: <Node
 				classes="mecanism list complement"
 				name="complément pour atteindre"
