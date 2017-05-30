@@ -13,7 +13,9 @@
     si > PSS alors le mec va payer une cotisation AGIRC sur la tranche B, et la GMP sera le complément pour arriver à un montant total = cotisation #forfaitaire GMP
     Autrement dit, si agirc < cotisation forfaitaire, GMP = complément
 
-  concerne: catégorie salarié = cadre
+  # TODO On pourrait aussi se dire que cette formule est un complément de AGIRC,
+  # donc que les conditions d'applicabilité d'AGIRC n'ont pas à être répétées
+  non applicable si: ≠ statut cadre
 
 
   formule:
