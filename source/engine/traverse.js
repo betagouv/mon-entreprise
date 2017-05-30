@@ -740,7 +740,8 @@ let treat = (situationGate, rule) => rawNode => {
 
 		let cible = reTreat(v['cible']),
 			mini = reTreat(v['montant']),
-			nodeValue = mini - R.min(cible,mini)
+			nulled = val(cible) == null,
+			nodeValue = nulled ? null : R.subtract(mini, R.min(cible, mini))
 
 		return {
 			type: 'numeric',
