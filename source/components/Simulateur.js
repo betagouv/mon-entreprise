@@ -100,9 +100,6 @@ export default class extends React.Component {
 						</div>
 						<div className="remarks centered">
 							<p>
-								Pour simplifier, les résultats sont calculés par mois de contrat, et pour un temps complet.
-							</p>
-							<p>
 								N'hésitez pas à nous écrire <Link to="/contact">
 								<i className="fa fa-envelope-open-o" aria-hidden="true" style={{margin: '0 .3em'}}></i>
 							</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
