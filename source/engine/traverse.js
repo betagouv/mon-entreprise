@@ -747,11 +747,26 @@ let treat = (situationGate, rule) => rawNode => {
 			category: 'mecanism',
 			name: 'complément pour atteindre',
 			nodeValue,
+			explanation: {
+				cible,
+				mini
+			},
 			jsx: <Node
 				classes="mecanism list complement"
 				name="complément pour atteindre"
 				value={nodeValue}
-				child={mini}
+				child={
+					<ul className="properties">
+						<li key="cible">
+							<span className="key">montant calculé: </span>
+							<span className="value">{cible.jsx}</span>
+						</li>
+						<li key="mini">
+							<span className="key">montant à atteindre: </span>
+							<span className="value">{mini.jsx}</span>
+						</li>
+					</ul>
+				}
 			/>
 		}
 	}
