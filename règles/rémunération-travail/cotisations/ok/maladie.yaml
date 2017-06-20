@@ -1,9 +1,9 @@
-- Cotisation: Maladie
-  attributs:
+- espace: contrat salarié
+  nom: Maladie
+  cotisation:
     branche: maladie
-  initiales: MMID-CSA
   description: Cotisations de la branche maladie
-  références: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
+  référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
 
   formule:
     multiplication:
@@ -12,10 +12,7 @@
         - attributs: # On va ici surcharger la Cotisation incomplète définie plus haut
             composante: maladie, maternité, invalidité, décès
             dû par: employeur
-          taux:
-            2017-01: 12.89%
-            2016-01: 12.84%
-            1992-07: 12.8%
+          taux: 12.89%
 
         - attributs:
             composante: Contribution Solidarité Autonomie
@@ -24,59 +21,9 @@
           références:
             - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
             - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
-          formule:
-            taux:
-              2016-01: 3%
-              2004-07: 3%
+          taux: 3%
 
         - attributs:
             composante: maladie, maternité, invalidité, décès
             dû par: salarié
-          formule:
-            taux:
-              2014-01: 0.075%
-              1998-01: 0.075%
-              1997-01: 0.55%
-              1993-07: 0.68%
-
-        - attributs:
-            composante: maladie, maternité, invalidité, décès
-            dû par: salarié
-
-          applicable si: régime géographique = Alsace-Moselle
-
-          description: Complément de cotisation maladie spécifique au régime de sécurité sociale d'Alsace-Moselle
-          référence: https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
-
-          formule:
-            # base: selon cette source, la base est l'assiette de la CSG : https://baseircantec.retraites.fr/cotisations-assurance-maladie-alsace-moselle.html
-            # information non retrouvée ailleurs
-            taux:
-              2012-01: 1.5%
-              2008-01: 1.6%
-              2007-07: 1.7%
-              2006-01: 1.8%
-              2003-01: 1.7%
-              1999-07: 1.5%
-              1998-07: 1.25%
-              1994-01: 1%
-              1989-09: 0.75%
-
-              exception: # équivaut à un variations: si [exception] / si [cas normal]
-                si: régime = agricole
-                2014-01: 1.1%
-                2011-07: 1.2%
-                2008-07: 1.3%
-                2007-01: 1.4%
-                2003-01: 1.5%
-
-    # - si: Activité = Indépendant
-    #   description: Cotisations maladie et maternité
-    #   Cotisation:
-    #     branche: maladie
-    #     collecteur: RSI
-    #   calendrier: RSI
-    #   formule:
-    #     multiplication:
-    #       assiette: revenus professionnels # l'assiette différente fait qu'il n'y a pas vraiment d'intérêt de mettre en commun avec Activité = Salarié
-    #       taux: 0.065
+          taux: 0.075%

@@ -43,9 +43,9 @@
   format: euros
   # TODO En attendant que l'UI devienne plus intelligente, c'est confondu avec le salaire de base.
   # intelligente : il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule
-  # formule:
-    # somme:
-      # - salaire de base
+  formule:
+    somme:
+      - salaire de base
       # - primes
       # - indemnités
   suggestions:
@@ -78,6 +78,21 @@
       - APEC
       - AGIRC
 
+- espace: contrat salarié
+  nom: Salaire
+  description: |
+    Le coût du travail salarial
+  formule:
+    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
+      - salaire net
+      - salaire brut
+
+  simulateur:
+    titre: Simulateur de coût d'embauche
+    sous-titre: Découvrir le coût d'embauche ou le salaire réel
+    résultats: Le salaire net à partir du brut ou vice-versa, et les cotisations
+    introduction:
+      motivation: Découvrez le vrai coût du travail
 
 
 
