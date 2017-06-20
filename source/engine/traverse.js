@@ -118,7 +118,59 @@ let buildNegatedVariable = variable => {
 }
 
 let treat = (situationGate, rule) => rawNode => {
-	let reTreat = treat(situationGate, rule)
+	let reTreat = treat(situationGate, rule),
+		decompose = (v, k) => {
+		let
+			subProps = R.dissoc('composantes')(v),
+			composantes = v.composantes.map(c =>
+				({
+					... reTreat(
+						R.tap(obj => obj[k] = {
+								... subProps,
+								... R.dissoc('attributs')(c)
+							}, {})
+					),
+					composante: c.nom ? {nom: c.nom} : c.attributs
+				})
+			),
+			nodeValue = anyNull(composantes) ? null
+				: R.reduce(R.add, 0, composantes.map(val))
+
+		return {
+			nodeValue,
+			category: 'mecanism',
+			name: 'composantes',
+			type: 'numeric',
+			explanation: composantes,
+			jsx: <Node
+				classes="mecanism composantes"
+				name="composantes"
+				value={nodeValue}
+				child={
+					<ul>
+						{ composantes.map((c, i) =>
+							[<li className="composante" key={JSON.stringify(c.composante)}>
+								<ul className="composanteAttributes">
+									{R.toPairs(c.composante).map(([k,v]) =>
+										<li>
+											<span>{k}: </span>
+											<span>{v}</span>
+										</li>
+									)}
+								</ul>
+								<div className="content">
+									{c.jsx}
+								</div>
+							</li>,
+							i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+							]
+							)
+						}
+					</ul>
+				}
+			/>
+		}
+	}
 
 	if (R.is(String)(rawNode)) {
 		/* On a à faire à un string, donc à une expression infixe.
@@ -472,6 +524,10 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'multiplication') {
+		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+			return decompose(v,k)
+		}
+
 		let
 			mult = (base, rate, facteur, plafond) =>
 				Math.min(base, plafond) * rate * facteur,
@@ -534,58 +590,7 @@ let treat = (situationGate, rule) => rawNode => {
 		// Sous entendu : barème en taux marginaux.
 		// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
 		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
-			let
-				baremeProps = R.dissoc('composantes')(v),
-				composantes = v.composantes.map(c =>
-					({
-						... reTreat(
-							{
-								barème: {
-									... baremeProps,
-									... R.dissoc('attributs')(c)
-								}
-							}
-						),
-						composante: c.nom ? {nom: c.nom} : c.attributs
-					})
-				),
-				nodeValue = anyNull(composantes) ? null
-					: R.reduce(R.add, 0, composantes.map(val))
-
-			return {
-				nodeValue,
-				category: 'mecanism',
-				name: 'composantes',
-				type: 'numeric',
-				explanation: composantes,
-				jsx: <Node
-					classes="mecanism composantes"
-					name="composantes"
-					value={nodeValue}
-					child={
-						<ul>
-							{ composantes.map((c, i) =>
-								[<li className="composante" key={JSON.stringify(c.composante)}>
-									<ul className="composanteAttributes">
-										{R.toPairs(c.composante).map(([k,v]) =>
-											<li>
-												<span>{k}: </span>
-												<span>{v}</span>
-											</li>
-										)}
-									</ul>
-									<div className="content">
-										{c.jsx}
-									</div>
-								</li>,
-								i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
-								]
-								)
-							}
-						</ul>
-					}
-				/>
-			}
+			return decompose(v,k)
 		}
 
 		if (v['multiplicateur des tranches'] == null)
@@ -681,58 +686,7 @@ let treat = (situationGate, rule) => rawNode => {
 
 	if (k === 'complément') {
 		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
-			let
-				complementProps = R.dissoc('composantes')(v),
-				composantes = v.composantes.map(c =>
-					({
-						... reTreat(
-							{
-								complément: {
-									... complementProps,
-									... R.dissoc('attributs')(c)
-								}
-							}
-						),
-						composante: c.nom ? {nom: c.nom} : c.attributs
-					})
-				),
-				nodeValue = anyNull(composantes) ? null
-					: R.reduce(R.add, 0, composantes.map(val))
-
-			return {
-				nodeValue,
-				category: 'mecanism',
-				name: 'composantes',
-				type: 'numeric',
-				explanation: composantes,
-				jsx: <Node
-					classes="mecanism composantes"
-					name="composantes"
-					value={nodeValue}
-					child={
-						<ul>
-							{ composantes.map((c, i) =>
-								[<li className="composante" key={JSON.stringify(c.composante)}>
-									<ul className="composanteAttributes">
-										{R.toPairs(c.composante).map(([k,v]) =>
-											<li>
-												<span>{k}: </span>
-												<span>{v}</span>
-											</li>
-										)}
-									</ul>
-									<div className="content">
-										{c.jsx}
-									</div>
-								</li>,
-								i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
-								]
-								)
-							}
-						</ul>
-					}
-				/>
-			}
+			return decompose(v,k)
 		}
 
 		if (v['cible'] == null)
