@@ -65,18 +65,25 @@
   # type de période: mensuel
   formule: 3269
 
-
-
+- espace: contrat salarié
+  nom: cotisations
+  description: |
+    Les cotisations contributives et non contributives
+  formule:
+    somme:
+      - maladie
 
 - espace: contrat salarié
   nom: salaire net
   description: |
     C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
-  formule:
-    # TODO à compléter
-    somme: #TODO à l'avenir, exprimer une somme sous forme de requête
-      - APEC
-      - AGIRC
+  formule: salaire brut - cotisations (salarié)
+
+- espace: contrat salarié
+  nom: coût du travail
+  description: |
+    C'est le salaire de base augmenté des cotisations patronales.
+  formule: salaire brut + cotisations (employeur)
 
 - espace: contrat salarié
   nom: Salaire
@@ -85,7 +92,7 @@
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - salaire net
-      - salaire brut
+      - coût du travail
 
   simulateur:
     titre: Simulateur de coût d'embauche
