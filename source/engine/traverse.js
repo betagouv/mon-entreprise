@@ -57,7 +57,8 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 let fillVariableNode = (rule, situationGate) => (parseResult) => {
 	let
-		{fragments} = parseResult,
+		finalResult = parseResult.category == 'filteredVariable' ? parseResult.variable : parseResult,
+		{fragments} = finalResult,
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rule, variablePartialName),
 		variable = findRuleByDottedName(dottedName),
@@ -195,9 +196,11 @@ let treat = (situationGate, rule) => rawNode => {
 
 		if (parseResult.category == 'calcExpression') {
 			let
-				filledExplanation = parseResult.explanation.map(
+				filledExplanation = parseResult.explanation
+				.map(
 					R.cond([
 						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'filteredVariable'), fillVariableNode(rule, situationGate)],
 						[R.propEq('category', 'value'), node =>
 							R.assoc('jsx', <span className="value">
 								{node.nodeValue}
