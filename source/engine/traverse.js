@@ -55,7 +55,7 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-let fillVariableNode = (rule, situationGate) => (parseResult) => {
+let fillVariableNode = (rule, situationGate, filter) => (parseResult) => {
 	let
 		finalResult = parseResult.category == 'filteredVariable' ? parseResult.variable : parseResult,
 		{fragments} = finalResult,
@@ -68,7 +68,9 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		// et qu'il n'y a aucun problème de perf aujourd'hui
 		parsedRule = variableIsCalculable && treatRuleRoot(
 			situationGate,
-			variable
+			variable,
+			filter ? filter :
+				(parseResult.category == 'filteredVariable' ? parseResult.filter : null)
 		),
 
 		situationValue = evaluateVariable(situationGate, dottedName, variable),
@@ -118,12 +120,13 @@ let buildNegatedVariable = variable => {
 	}
 }
 
-let treat = (situationGate, rule) => rawNode => {
-	let reTreat = treat(situationGate, rule),
+let treat = (situationGate, rule, filter) => rawNode => {
+	let reTreat = treat(situationGate, rule, filter),
 		decompose = (v, k) => {
 		let
 			subProps = R.dissoc('composantes')(v),
-			composantes = v.composantes.map(c =>
+			isRelevant = c => !filter || c.attributs['dû par'] == filter,
+			composantes = v.composantes.filter(isRelevant).map(c =>
 				({
 					... reTreat(
 						R.tap(obj => obj[k] = {
@@ -188,19 +191,18 @@ let treat = (situationGate, rule) => rawNode => {
 			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 		if (parseResult.category == 'variable')
-			return fillVariableNode(rule, situationGate)(parseResult)
+			return fillVariableNode(rule, situationGate, filter)(parseResult)
 		if (parseResult.category == 'negatedVariable')
 			return buildNegatedVariable(
-				fillVariableNode(rule, situationGate)(parseResult.variable)
+				fillVariableNode(rule, situationGate, filter)(parseResult.variable)
 			)
 
 		if (parseResult.category == 'calcExpression') {
 			let
-				filledExplanation = parseResult.explanation
-				.map(
+				filledExplanation = parseResult.explanation.map(
 					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
-						[R.propEq('category', 'filteredVariable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate, filter)],
+						[R.propEq('category', 'filteredVariable'), fillVariableNode(rule, situationGate, filter)],
 						[R.propEq('category', 'value'), node =>
 							R.assoc('jsx', <span className="value">
 								{node.nodeValue}
@@ -244,7 +246,7 @@ let treat = (situationGate, rule) => rawNode => {
 			let
 				filledExplanation = parseResult.explanation.map(
 					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate, filter)],
 						[R.propEq('category', 'value'), node =>
 							R.assoc('jsx', <span className="value">
 								{node.nodeValue}
@@ -730,7 +732,7 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'le maximum de') {
-		let contenders = v.map(treat(situationGate, rule)),
+		let contenders = v.map(treat(situationGate, rule, filter)),
 			contenderValues = R.pluck('nodeValue')(contenders),
 			stopEverything = R.contains(null, contenderValues),
 			maxValue = R.max(...contenderValues),
@@ -776,7 +778,7 @@ export let computeRuleValue = (formuleValue, condValue) =>
 			? 0
 			: formuleValue
 
-let treatRuleRoot = (situationGate, rule) => R.pipe(
+let treatRuleRoot = (situationGate, rule, filter) => R.pipe(
 	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
 	// 'meta': pas de traitement pour l'instant
@@ -784,7 +786,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 	// 'cond' : Conditions d'applicabilité de la règle
 		'non applicable si': value => {
 			let
-				child = treat(situationGate, rule)(value),
+				child = treat(situationGate, rule, filter)(value),
 				nodeValue = child.nodeValue
 
 			return {
@@ -813,7 +815,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
 			let
-				child = treat(situationGate, rule)(value),
+				child = treat(situationGate, rule, filter)(value),
 				nodeValue = child.nodeValue
 			return {
 				category: 'ruleProp',
