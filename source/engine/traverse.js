@@ -125,7 +125,7 @@ let treat = (situationGate, rule, filter) => rawNode => {
 		decompose = (v, k) => {
 		let
 			subProps = R.dissoc('composantes')(v),
-			isRelevant = c => !filter || c.attributs['dû par'] == filter,
+			isRelevant = c => !filter || !c.attributs || c.attributs['dû par'] == filter,
 			composantes = v.composantes.filter(isRelevant).map(c =>
 				({
 					... reTreat(
