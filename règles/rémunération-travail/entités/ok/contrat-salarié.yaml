@@ -72,6 +72,7 @@
   formule:
     somme:
       - maladie
+      - vieillesse
 
 - espace: contrat salarié
   nom: salaire net
