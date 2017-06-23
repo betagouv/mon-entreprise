@@ -1,5 +1,5 @@
 - espace: contrat salarié
-  nom: Maladie
+  nom: maladie
   cotisation:
     branche: maladie
   description: Cotisations de la branche maladie
@@ -26,4 +26,4 @@
         - attributs:
             composante: maladie, maternité, invalidité, décès
             dû par: salarié
-          taux: 0.075%
+          taux: 0.75%
