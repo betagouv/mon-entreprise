@@ -129,10 +129,11 @@ let treat = (situationGate, rule, filter) => rawNode => {
 			composantes = v.composantes.filter(isRelevant).map(c =>
 				({
 					... reTreat(
-						R.tap(obj => obj[k] = {
+						R.objOf(k,
+							{
 								... subProps,
 								... R.dissoc('attributs')(c)
-							}, {})
+							})
 					),
 					composante: c.nom ? {nom: c.nom} : c.attributs
 				})
