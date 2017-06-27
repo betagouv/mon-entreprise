@@ -10,6 +10,7 @@ describe('enrichRule', function() {
 
   it('should extract the dotted name of the rule', function() {
     let rule = {espace:"contrat salarié", nom: "CDD"}
+    expect(enrichRule(rule)).to.have.property('name','CDD')
     expect(enrichRule(rule)).to.have.property('dottedName','contrat salarié . CDD')
   });
 
