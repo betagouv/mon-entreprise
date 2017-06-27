@@ -45,6 +45,7 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
+    "chai": "^4.0.2",
     "core-js": "^2.4.1",
     "css-loader": "^0.28.1",
     "eslint": "^3.19.0",
@@ -72,6 +73,6 @@
     "start": "node source/server.js",
     "compile": "NODE_ENV='production' webpack --config source/webpack.config.js",
     "surge": "npm run compile && surge --domain scientific-wish.surge.sh -p ./ && rm -rf dist/",
-    "test": "mocha-webpack --webpack-config webpack.config-test.js \"__tests__/**/*.test.js\""
+    "test": "mocha-webpack --webpack-config source/webpack.config.js \"__tests__/**/*.test.js\""
   }
 }
