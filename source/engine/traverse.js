@@ -725,7 +725,7 @@ export let computeRuleValue = (formuleValue, condValue) =>
 			? 0
 			: formuleValue
 
-let treatRuleRoot = (situationGate, rule) => R.pipe(
+export let treatRuleRoot = (situationGate, rule) => R.pipe(
 	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
 	// 'meta': pas de traitement pour l'instant
