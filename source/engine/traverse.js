@@ -233,6 +233,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 		},
 		treatNumber = rawNode => {
 			return {
+				text: ""+rawNode,
 				category: 'number',
 				nodeValue: rawNode,
 				type: 'numeric',
@@ -379,7 +380,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 						/>
 					})
 			))(v),
-		mecanismTaux = (k,v) => {
+		mecanismPercentage = (k,v) => {
 			let reg = /^(\d+(\.\d+)?)\%$/
 			if (R.test(reg)(v))
 				return {
@@ -422,6 +423,31 @@ let treat = (situationGate, rules, rule) => rawNode => {
 				}
 			}
 		},
+		mecanismSum = (k,v) => {
+			let
+				summedVariables = v.map(reTreat),
+				nodeValue = summedVariables.reduce(
+					(memo, {nodeValue: nextNodeValue}) => memo == null ? null : nextNodeValue == null ? null : memo + +nextNodeValue,
+				0)
+
+			return {
+				nodeValue,
+				category: 'mecanism',
+				name: 'somme',
+				type: 'numeric',
+				explanation: summedVariables,
+				jsx: <Node
+					classes="mecanism somme"
+					name="somme"
+					value={nodeValue}
+					child={
+						<ul>
+							{summedVariables.map(v => <li key={v.name || v.text}>{v.jsx}</li>)}
+						</ul>
+					}
+				/>
+			}
+		},
 		treatObject = rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
@@ -436,34 +462,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			if (k === 'une de ces conditions')	return mecanismOneOf(k,v)
 			if (k === 'toutes ces conditions')	return mecanismAllOf(k,v)
 			if (k === 'logique numérique')		return mecanismNumericalLogic(k,v)
-			if (k === 'taux')					return mecanismTaux(k,v)
-
-			// Une simple somme de variables
-			if (k === 'somme') {
-				let
-					summedVariables = v.map(reTreat),
-					nodeValue = summedVariables.reduce(
-						(memo, {nodeValue: nextNodeValue}) => memo == null ? null : nextNodeValue == null ? null : memo + +nextNodeValue,
-					0)
-
-				return {
-					nodeValue,
-					category: 'mecanism',
-					name: 'somme',
-					type: 'numeric',
-					explanation: summedVariables,
-					jsx: <Node
-						classes="mecanism somme"
-						name="somme"
-						value={nodeValue}
-						child={
-							<ul>
-								{summedVariables.map(v => <li key={v.name}>{v.jsx}</li>)}
-							</ul>
-						}
-					/>
-				}
-			}
+			if (k === 'taux')					return mecanismPercentage(k,v)
+			if (k === 'somme')					return mecanismSum(k,v)
 
 			if (k === 'multiplication') {
 				let

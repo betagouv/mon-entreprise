@@ -12,6 +12,13 @@ describe('treatRuleRoot', function() {
     expect(treatRuleRoot(stateSelector,[rule],rule)).to.have.property('nodeValue',3269)
   });
 
+  /* TODO: make this pass
+  it('should directly return simple numerical values', function() {
+    let rule = {formule: "3269"}
+    expect(treatRuleRoot(stateSelector,[rule],rule)).to.have.property('nodeValue',3269)
+  });
+  */
+
 });
 
 describe('analyseSituation', function() {
@@ -95,6 +102,13 @@ describe('analyseSituation with mecanisms', function() {
           {nom: "startHere", formule: {taux: "35%"}, espace: "top"}],
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',0.35)
+  });
+
+  it('should handle sums', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"somme": [3200, 60, 9]}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
   });
 
 });
