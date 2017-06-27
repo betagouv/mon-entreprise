@@ -246,6 +246,139 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			console.log() // eslint-disable-line no-console
 			throw 'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 		},
+		mecanismOneOf = (k, v) => {
+			let result = R.pipe(
+				R.unless(R.is(Array), () => {throw 'should be array'}),
+				R.reduce( (memo, next) => {
+					let {nodeValue, explanation} = memo,
+						child = reTreat(next),
+						{nodeValue: nextValue} = child
+					return {...memo,
+						// c'est un OU logique mais avec une préférence pour null sur false
+						nodeValue: nodeValue || nextValue || (
+							nodeValue == null ? null : nextValue
+						),
+						explanation: [...explanation, child]
+					}
+				}, {
+					nodeValue: false,
+					category: 'mecanism',
+					name: 'une de ces conditions',
+					type: 'boolean',
+					explanation: []
+				}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
+			)(v)
+			return {...result,
+				jsx:	<Node
+					classes="mecanism conditions list"
+					name={result.name}
+					value={result.nodeValue}
+					child={
+						<ul>
+							{result.explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+						</ul>
+					}
+				/>
+			}
+		},
+		mecanismAllOf = (k,v) => {
+			return R.pipe(
+				R.unless(R.is(Array), () => {throw 'should be array'}),
+				R.reduce( (memo, next) => {
+					let {nodeValue, explanation} = memo,
+						child = reTreat(next),
+						{nodeValue: nextValue} = child
+					return {...memo,
+						// c'est un ET logique avec une possibilité de null
+						nodeValue: ! nodeValue ? nodeValue : nextValue,
+						explanation: [...explanation, child]
+					}
+				}, {
+					nodeValue: true,
+					category: 'mecanism',
+					name: 'toutes ces conditions',
+					type: 'boolean',
+					explanation: []
+				}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
+			)(v)
+		},
+		mecanismNumericalLogic = (k,v) =>
+			R.ifElse(
+				R.is(String),
+				rate => ({ //TODO unifier ce code
+					nodeValue: transformPercentage(rate),
+					type: 'numeric',
+					category: 'percentage',
+					percentage: rate,
+					explanation: null,
+					jsx:
+						<span className="percentage" >
+							<span className="name">{rate}</span>
+						</span>
+				}),
+				R.pipe(
+					R.unless(
+						v => R.is(Object)(v) && R.keys(v).length >= 1,
+						() => {throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'}
+					),
+					R.toPairs,
+					R.reduce( (memo, [condition, consequence]) => {
+						let
+							{nodeValue, explanation} = memo,
+							conditionNode = reTreat(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
+							childNumericalLogic = mecanismNumericalLogic(condition, consequence),
+							nextNodeValue = conditionNode.nodeValue == null ?
+							// Si la proposition n'est pas encore résolvable
+								null
+							// Si la proposition est résolvable
+							:	conditionNode.nodeValue == true ?
+								// Si elle est vraie
+									childNumericalLogic.nodeValue
+								// Si elle est fausse
+								: false
+
+						return {...memo,
+							nodeValue: nodeValue == null ?
+								null
+							: nodeValue !== false ?
+									nodeValue // l'une des propositions renvoie déjà une valeur numérique donc différente de false
+								: nextNodeValue,
+							explanation: [...explanation, {
+								nodeValue: nextNodeValue,
+								category: 'condition',
+								text: condition,
+								condition: conditionNode,
+								conditionValue: conditionNode.nodeValue,
+								type: 'boolean',
+								explanation: childNumericalLogic,
+								jsx: <div className="condition">
+									{conditionNode.jsx}
+									<div>
+										{childNumericalLogic.jsx}
+									</div>
+								</div>
+							}],
+						}
+					}, {
+						nodeValue: false,
+						category: 'mecanism',
+						name: "logique numérique",
+						type: 'boolean || numeric', // lol !
+						explanation: []
+					}),
+					node => ({...node,
+						jsx: <Node
+							classes="mecanism numericalLogic list"
+							name="logique numérique"
+							value={node.nodeValue}
+							child={
+								<ul>
+									{node.explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+								</ul>
+							}
+						/>
+					})
+			))(v),
 		treatObject = rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
@@ -257,145 +390,9 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			let k = R.head(mecanisms),
 				v = rawNode[k]
 
-			if (k === 'une de ces conditions') {
-				let result = R.pipe(
-					R.unless(R.is(Array), () => {throw 'should be array'}),
-					R.reduce( (memo, next) => {
-						let {nodeValue, explanation} = memo,
-							child = reTreat(next),
-							{nodeValue: nextValue} = child
-						return {...memo,
-							// c'est un OU logique mais avec une préférence pour null sur false
-							nodeValue: nodeValue || nextValue || (
-								nodeValue == null ? null : nextValue
-							),
-							explanation: [...explanation, child]
-						}
-					}, {
-						nodeValue: false,
-						category: 'mecanism',
-						name: 'une de ces conditions',
-						type: 'boolean',
-						explanation: []
-					}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
-				)(v)
-				return {...result,
-					jsx:	<Node
-						classes="mecanism conditions list"
-						name={result.name}
-						value={result.nodeValue}
-						child={
-							<ul>
-								{result.explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
-							</ul>
-						}
-					/>
-				}
-			}
-			if (k === 'toutes ces conditions') {
-				return R.pipe(
-					R.unless(R.is(Array), () => {throw 'should be array'}),
-					R.reduce( (memo, next) => {
-						let {nodeValue, explanation} = memo,
-							child = reTreat(next),
-							{nodeValue: nextValue} = child
-						return {...memo,
-							// c'est un ET logique avec une possibilité de null
-							nodeValue: ! nodeValue ? nodeValue : nextValue,
-							explanation: [...explanation, child]
-						}
-					}, {
-						nodeValue: true,
-						category: 'mecanism',
-						name: 'toutes ces conditions',
-						type: 'boolean',
-						explanation: []
-					}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
-				)(v)
-			}
-
-			//TODO perf: declare this closure somewhere else ?
-			let treatNumericalLogicRec =
-				R.ifElse(
-					R.is(String),
-					rate => ({ //TODO unifier ce code
-						nodeValue: transformPercentage(rate),
-						type: 'numeric',
-						category: 'percentage',
-						percentage: rate,
-						explanation: null,
-						jsx:
-							<span className="percentage" >
-								<span className="name">{rate}</span>
-							</span>
-					}),
-					R.pipe(
-						R.unless(
-							v => R.is(Object)(v) && R.keys(v).length >= 1,
-							() => {throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'}
-						),
-						R.toPairs,
-						R.reduce( (memo, [condition, consequence]) => {
-							let
-								{nodeValue, explanation} = memo,
-								conditionNode = reTreat(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
-								childNumericalLogic = treatNumericalLogicRec(consequence),
-								nextNodeValue = conditionNode.nodeValue == null ?
-								// Si la proposition n'est pas encore résolvable
-									null
-								// Si la proposition est résolvable
-								:	conditionNode.nodeValue == true ?
-									// Si elle est vraie
-										childNumericalLogic.nodeValue
-									// Si elle est fausse
-									: false
-
-							return {...memo,
-								nodeValue: nodeValue == null ?
-									null
-								: nodeValue !== false ?
-										nodeValue // l'une des propositions renvoie déjà une valeur numérique donc différente de false
-									: nextNodeValue,
-								explanation: [...explanation, {
-									nodeValue: nextNodeValue,
-									category: 'condition',
-									text: condition,
-									condition: conditionNode,
-									conditionValue: conditionNode.nodeValue,
-									type: 'boolean',
-									explanation: childNumericalLogic,
-									jsx: <div className="condition">
-										{conditionNode.jsx}
-										<div>
-											{childNumericalLogic.jsx}
-										</div>
-									</div>
-								}],
-							}
-						}, {
-							nodeValue: false,
-							category: 'mecanism',
-							name: "logique numérique",
-							type: 'boolean || numeric', // lol !
-							explanation: []
-						}),
-						node => ({...node,
-							jsx: <Node
-								classes="mecanism numericalLogic list"
-								name="logique numérique"
-								value={node.nodeValue}
-								child={
-									<ul>
-										{node.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
-									</ul>
-								}
-							/>
-						})
-				))
-
-			if (k === 'logique numérique') {
-				return treatNumericalLogicRec(v)
-			}
+			if (k === 'une de ces conditions')	return mecanismOneOf(k,v)
+			if (k === 'toutes ces conditions')	return mecanismAllOf(k,v)
+			if (k === 'logique numérique')		return mecanismNumericalLogic(k,v)
 
 			if (k === 'taux') {
 				let reg = /^(\d+(\.\d+)?)\%$/

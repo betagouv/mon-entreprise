@@ -71,4 +71,23 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',true)
   });
 
+  it('should handle n-way "and"', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"toutes ces conditions": ["1 > 2", "1 > 0", "0 > 2"]}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',false)
+  });
+
+  it('should handle switch statements', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"logique numérique": {
+                  "1 > dix":"10",
+                  "3 < dix":"11",
+                  "3 > dix":"12"
+              }}, espace: "top"},
+          {nom: "dix", formule: 10, espace: "top"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',11)
+  });
+
 });
