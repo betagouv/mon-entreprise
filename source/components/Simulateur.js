@@ -6,7 +6,7 @@ import R from 'ramda'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import Aide from './Aide'
 import {createMarkdownDiv} from 'Engine/marked'
-import {findRuleByName, decodeRuleName} from 'Engine/rules'
+import {rules, findRuleByName, decodeRuleName} from 'Engine/rules'
 import 'Components/conversation/conversation.css'
 import 'Components/Simulateur.css'
 import classNames from 'classnames'
@@ -44,7 +44,7 @@ export default class extends React.Component {
 
 		this.encodedName = encodedName
 		this.name = name
-		this.rule = findRuleByName(name)
+		this.rule = findRuleByName(rules, name)
 
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		if (this.rule.formule)

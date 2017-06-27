@@ -7,7 +7,7 @@ import formValueTypes from 'Components/conversation/formValueTypes'
 import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
 import { STEP_ACTION, START_CONVERSATION} from '../actions'
-import {findGroup, findRuleByDottedName, parentName, collectMissingVariables, findVariantsAndRecords} from './rules'
+import {rules, findRuleByDottedName, collectMissingVariables, deprecated_findVariantsAndRecords} from './rules'
 
 
 export let reduceSteps = (state, action) => {
@@ -58,7 +58,7 @@ let situationGate = state =>
 let analyse = rootVariable => R.pipe(
 	situationGate,
 	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
-	analyseSituation(rootVariable)
+	analyseSituation(rules, rootVariable)
 )
 
 
@@ -111,7 +111,7 @@ let buildNextSteps = analysedSituation => {
 	return R.pipe(
 		R.keys,
 		R.reduce(
-			findVariantsAndRecords
+			deprecated_findVariantsAndRecords
 			, {variantGroups: {}, recordGroups: {}}
 		),
 		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
@@ -153,7 +153,7 @@ let isVariant = R.path(['formule', 'une possibilité'])
 
 let buildVariantTree = relevantPaths => path => {
 	let rec = path => {
-		let node = findRuleByDottedName(path),
+		let node = findRuleByDottedName(rules, path),
 			variant = isVariant(node),
 			variants = variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
 			shouldBeExpanded = variant && variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
@@ -175,7 +175,7 @@ export let generateGridQuestions = missingVariables => R.pipe(
 	R.toPairs,
 	R.map( ([variantRoot, relevantVariants]) =>
 		({
-			...constructStepMeta(findRuleByDottedName(variantRoot)),
+			...constructStepMeta(findRuleByDottedName(rules, variantRoot)),
 			component: Question,
 			choices: buildVariantTree(relevantVariants)(variantRoot),
 			objectives:  R.pipe(
@@ -192,7 +192,7 @@ export let generateSimpleQuestions = missingVariables => R.pipe(
 	R.values, //TODO exploiter ici les groupes de questions de type 'record' (R.keys): elles pourraient potentiellement êtres regroupées visuellement dans le formulaire
 	R.unnest,
 	R.map(dottedName => {
-		let rule = findRuleByDottedName(dottedName)
+		let rule = findRuleByDottedName(rules, dottedName)
 		if (rule == null) console.log(dottedName)
 		return Object.assign(
 			constructStepMeta(rule),

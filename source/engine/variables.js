@@ -1,5 +1,5 @@
 import R from 'ramda'
-import {parentName, nameLeaf, findRuleByDottedName, splitName, joinName} from './rules'
+import {splitName, joinName} from './rules'
 
 
 let evaluateBottomUp = situationGate => startingFragments => {

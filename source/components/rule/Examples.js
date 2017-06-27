@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import R from "ramda"
 import classNames from "classnames"
 import {
+	rules,
 	decodeRuleName,
-	findRuleByName,
 	disambiguateRuleReference
 } from "Engine/rules.js"
 import { analyseSituation } from "Engine/traverse"
@@ -18,13 +18,14 @@ export default class Examples extends Component {
 		return exemples.map(ex => {
 			// les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 			// comme dans sa formule
+			// TODO - absolutely don't do this here but as a transformation step in rule parsing
 			let exempleSituation = R.pipe(
 				R.toPairs,
-				R.map(([k, v]) => [disambiguateRuleReference(rule, k), v]),
+				R.map(([k, v]) => [disambiguateRuleReference(rules, rule, k), v]),
 				R.fromPairs
 			)(ex.situation)
 
-			let runExemple = analyseSituation(rule.name)(v => exempleSituation[v]),
+			let runExemple = analyseSituation(rules, rule.name)(v => exempleSituation[v]),
 				exempleCalculatedValue = runExemple["non applicable si"] &&
 					runExemple["non applicable si"].nodeValue
 					? null

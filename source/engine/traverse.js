@@ -1,5 +1,5 @@
 import React from 'react'
-import {findRuleByDottedName, disambiguateRuleReference, findRuleByName} from './rules'
+import {rules, findRuleByDottedName, disambiguateRuleReference, findRuleByName} from './rules'
 import {evaluateVariable} from './variables'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
@@ -54,18 +54,19 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-let fillVariableNode = (rule, situationGate) => (parseResult) => {
+let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
 	let
 		{fragments} = parseResult,
 		variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rule, variablePartialName),
-		variable = findRuleByDottedName(dottedName),
+		dottedName = disambiguateRuleReference(rules, rule, variablePartialName),
+		variable = findRuleByDottedName(rules, dottedName),
 		variableIsCalculable = variable.formule != null,
 		//TODO perf : mettre un cache sur les variables !
 		// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
 		// et qu'il n'y a aucun problème de perf aujourd'hui
 		parsedRule = variableIsCalculable && treatRuleRoot(
 			situationGate,
+			rules,
 			variable
 		),
 
@@ -116,8 +117,8 @@ let buildNegatedVariable = variable => {
 	}
 }
 
-let treat = (situationGate, rule) => rawNode => {
-	let reTreat = treat(situationGate, rule)
+let treat = (situationGate, rules, rule) => rawNode => {
+	let reTreat = treat(situationGate, rules, rule)
 
 	if (R.is(String)(rawNode)) {
 		/* On a à faire à un string, donc à une expression infixe.
@@ -134,17 +135,17 @@ let treat = (situationGate, rule) => rawNode => {
 			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 		if (parseResult.category == 'variable')
-			return fillVariableNode(rule, situationGate)(parseResult)
+			return fillVariableNode(rules, rule, situationGate)(parseResult)
 		if (parseResult.category == 'negatedVariable')
 			return buildNegatedVariable(
-				fillVariableNode(rule, situationGate)(parseResult.variable)
+				fillVariableNode(rules, rule, situationGate)(parseResult.variable)
 			)
 
 		if (parseResult.category == 'calcExpression') {
 			let
 				filledExplanation = parseResult.explanation.map(
 					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
 						[R.propEq('category', 'value'), node =>
 							R.assoc('jsx', <span className="value">
 								{node.nodeValue}
@@ -188,7 +189,7 @@ let treat = (situationGate, rule) => rawNode => {
 			let
 				filledExplanation = parseResult.explanation.map(
 					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
 						[R.propEq('category', 'value'), node =>
 							R.assoc('jsx', <span className="value">
 								{node.nodeValue}
@@ -679,7 +680,7 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'le maximum de') {
-		let contenders = v.map(treat(situationGate, rule)),
+		let contenders = v.map(treat(situationGate, rules, rule)),
 			contenderValues = R.pluck('nodeValue')(contenders),
 			stopEverything = R.contains(null, contenderValues),
 			maxValue = R.max(...contenderValues),
@@ -725,7 +726,7 @@ export let computeRuleValue = (formuleValue, condValue) =>
 			? 0
 			: formuleValue
 
-export let treatRuleRoot = (situationGate, rule) => R.pipe(
+export let treatRuleRoot = (situationGate, rules, rule) => R.pipe(
 	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
 	// 'meta': pas de traitement pour l'instant
@@ -733,7 +734,7 @@ export let treatRuleRoot = (situationGate, rule) => R.pipe(
 	// 'cond' : Conditions d'applicabilité de la règle
 		'non applicable si': value => {
 			let
-				child = treat(situationGate, rule)(value),
+				child = treat(situationGate, rules, rule)(value),
 				nodeValue = child.nodeValue
 
 			return {
@@ -762,7 +763,7 @@ export let treatRuleRoot = (situationGate, rule) => R.pipe(
 		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
 			let
-				child = treat(situationGate, rule)(value),
+				child = treat(situationGate, rules, rule)(value),
 				nodeValue = child.nodeValue
 			return {
 				category: 'ruleProp',
@@ -812,23 +813,13 @@ export let treatRuleRoot = (situationGate, rule) => R.pipe(
 - if not, do they have a computed value or are they non applicable ?
 */
 
-export let analyseSituation = rootVariable => situationGate =>
+export let analyseSituation = (rules, rootVariable) => situationGate =>
 	treatRuleRoot(
 		situationGate,
-		findRuleByName(rootVariable)
+		rules,
+		findRuleByName(rules, rootVariable)
 	)
 
-export let variableType = name => {
-	if (name == null) return null
-
-	let found = findRuleByName(name)
-
-	// tellement peu de variables pour l'instant
-	// que c'est très simpliste
-	if (!found) return 'boolean'
-	let {rule} = found
-	if (typeof rule.formule['somme'] !== 'undefined') return 'numeric'
-}
 
 
 
