@@ -61,3 +61,14 @@ describe('analyseSituation on raw rules', function() {
   */
 
 });
+
+describe('analyseSituation with mecanisms', function() {
+
+  it('should handle n-way "or"', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"une de ces conditions": ["1 > 2", "1 > 0", "0 > 2"]}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',true)
+  });
+
+});

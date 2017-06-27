@@ -286,7 +286,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 						value={result.nodeValue}
 						child={
 							<ul>
-								{result.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
+								{result.explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
 							</ul>
 						}
 					/>
@@ -713,8 +713,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 	let onNodeType = R.cond([
 		[R.is(String),	treatString],
 		[R.is(Number),	treatNumber],
-		[!R.is(Object),	treatOther],
-		[R.T,			treatObject]
+		[R.is(Object),	treatObject],
+		[R.T,			treatOther]
 	])
 	return onNodeType(rawNode)
 }
