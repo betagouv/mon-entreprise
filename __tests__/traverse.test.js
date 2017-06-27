@@ -1,4 +1,5 @@
 import {expect} from 'chai'
+import {enrichRule} from '../source/engine/rules'
 import {treatRuleRoot} from '../source/engine/traverse'
 import {analyseSituation} from '../source/engine/traverse'
 
@@ -20,6 +21,20 @@ describe('analyseSituation', function() {
   it('should directly return simple numerical values', function() {
     let rule = {name: "startHere", formule: 3269}
     let rules = [rule]
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
+  });
+
+  it('should compute expressions combining constants', function() {
+    let rule = {name: "startHere", formule: "32 + 69"}
+    let rules = [rule]
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',101)
+  });
+
+  it('should handle expressions referencing other rules', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "3259 + dix", espace: "top"},
+          {nom: "dix", formule: 10, espace: "top"}],
+        rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
   });
 
