@@ -379,6 +379,49 @@ let treat = (situationGate, rules, rule) => rawNode => {
 						/>
 					})
 			))(v),
+		mecanismTaux = (k,v) => {
+			let reg = /^(\d+(\.\d+)?)\%$/
+			if (R.test(reg)(v))
+				return {
+					category: 'percentage',
+					type: 'numeric',
+					percentage: v,
+					nodeValue: R.match(reg)(v)[1]/100,
+					explanation: null,
+					jsx:
+						<span className="percentage" >
+							<span className="name">{v}</span>
+						</span>
+				}
+			// Si c'est une liste historisée de pourcentages
+			// TODO revoir le test avant le bug de l'an 2100
+			else if ( R.is(Array)(v) && R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
+				//TODO sélectionner la date de la simulation en cours
+				let lazySelection = R.first(R.values(v))
+				return {
+					category: 'percentage',
+					type: 'numeric',
+					percentage: lazySelection,
+					nodeValue: transformPercentage(lazySelection),
+					explanation: null,
+					jsx:
+						<span className="percentage" >
+							<span className="name">{lazySelection}</span>
+						</span>
+				}
+			}
+			else {
+				let node = reTreat(v)
+				return {
+					type: 'numeric',
+					category: 'percentage',
+					percentage: node.nodeValue,
+					nodeValue: node.nodeValue,
+					explanation: node,
+					jsx: node.jsx
+				}
+			}
+		},
 		treatObject = rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
@@ -393,50 +436,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			if (k === 'une de ces conditions')	return mecanismOneOf(k,v)
 			if (k === 'toutes ces conditions')	return mecanismAllOf(k,v)
 			if (k === 'logique numérique')		return mecanismNumericalLogic(k,v)
-
-			if (k === 'taux') {
-				let reg = /^(\d+(\.\d+)?)\%$/
-				if (R.test(reg)(v))
-					return {
-						category: 'percentage',
-						type: 'numeric',
-						percentage: v,
-						nodeValue: R.match(reg)(v)[1]/100,
-						explanation: null,
-						jsx:
-							<span className="percentage" >
-								<span className="name">{v}</span>
-							</span>
-					}
-				// Si c'est une liste historisée de pourcentages
-				// TODO revoir le test avant le bug de l'an 2100
-				else if ( R.is(Array)(v) && R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
-					//TODO sélectionner la date de la simulation en cours
-					let lazySelection = R.first(R.values(v))
-					return {
-						category: 'percentage',
-						type: 'numeric',
-						percentage: lazySelection,
-						nodeValue: transformPercentage(lazySelection),
-						explanation: null,
-						jsx:
-							<span className="percentage" >
-								<span className="name">{lazySelection}</span>
-							</span>
-					}
-				}
-				else {
-					let node = reTreat(v)
-					return {
-						type: 'numeric',
-						category: 'percentage',
-						percentage: node.nodeValue,
-						nodeValue: node.nodeValue,
-						explanation: node,
-						jsx: node.jsx
-					}
-				}
-			}
+			if (k === 'taux')					return mecanismTaux(k,v)
 
 			// Une simple somme de variables
 			if (k === 'somme') {
