@@ -118,600 +118,605 @@ let buildNegatedVariable = variable => {
 }
 
 let treat = (situationGate, rules, rule) => rawNode => {
-	let reTreat = treat(situationGate, rules, rule)
+	// inner functions
+	let reTreat = treat(situationGate, rules, rule),
+		treatString = rawNode => {
+			/* On a à faire à un string, donc à une expression infixe.
+			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire.
+			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
+			Cet objet est alors rebalancé à 'treat'.
+			*/
 
-	if (R.is(String)(rawNode)) {
-		/* On a à faire à un string, donc à une expression infixe.
-		Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire.
-		On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
-		Cet objet est alors rebalancé à 'treat'.
-		*/
+			let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
-		let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
+			if (additionnalResults && additionnalResults.length > 0)
+				throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-		if (additionnalResults && additionnalResults.length > 0) throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
+			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison', 'negatedVariable']))
+				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
-		if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison', 'negatedVariable']))
-			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
+			if (parseResult.category == 'variable')
+				return fillVariableNode(rules, rule, situationGate)(parseResult)
+			if (parseResult.category == 'negatedVariable')
+				return buildNegatedVariable(
+					fillVariableNode(rules, rule, situationGate)(parseResult.variable)
+				)
 
-		if (parseResult.category == 'variable')
-			return fillVariableNode(rules, rule, situationGate)(parseResult)
-		if (parseResult.category == 'negatedVariable')
-			return buildNegatedVariable(
-				fillVariableNode(rules, rule, situationGate)(parseResult.variable)
-			)
-
-		if (parseResult.category == 'calcExpression') {
-			let
-				filledExplanation = parseResult.explanation.map(
-					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
-						[R.propEq('category', 'value'), node =>
-							R.assoc('jsx', <span className="value">
-								{node.nodeValue}
-							</span>)(node)
-						]
-					])
-				),
-				[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
-				operatorFunctionName = {
-					'*': 'multiply',
-					'/': 'divide',
-					'+': 'add',
-					'-': 'subtract'
-				}[parseResult.operator],
-				operatorFunction = R[operatorFunctionName],
-				nodeValue = value1 == null || value2 == null ?
-					null
-				: operatorFunction(value1, value2)
-
-			return {
-				text: rawNode,
-				nodeValue,
-				category: 'calcExpression',
-				type: 'numeric',
-				explanation: filledExplanation,
-				jsx:	<Node
-					classes="inlineExpression calcExpression"
-					value={nodeValue}
-					child={
-						<span className="nodeContent">
-							{filledExplanation[0].jsx}
-							<span className="operator">{parseResult.operator}</span>
-							{filledExplanation[1].jsx}
-						</span>
-					}
-				/>
-			}
-		}
-		if (parseResult.category == 'comparison') {
-			//TODO mutualise code for 'comparison' & 'calclExpression'. Harmonise their names
-			let
-				filledExplanation = parseResult.explanation.map(
-					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
-						[R.propEq('category', 'value'), node =>
-							R.assoc('jsx', <span className="value">
-								{node.nodeValue}
-							</span>)(node)
-						]
-					])
-				),
-				[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
-				comparatorFunctionName = {
-					'<': 'lt',
-					'<=': 'lte',
-					'>': 'gt',
-					'>=': 'gte'
-					//TODO '='
-				}[parseResult.operator],
-				comparatorFunction = R[comparatorFunctionName],
-				nodeValue = value1 == null || value2 == null ?
-					null
-				: comparatorFunction(value1, value2)
-
-			return {
-				text: rawNode,
-				nodeValue: nodeValue,
-				category: 'comparison',
-				type: 'boolean',
-				explanation: filledExplanation,
-				jsx:	<Node
-					classes="inlineExpression comparison"
-					value={nodeValue}
-					child={
-						<span className="nodeContent">
-							{filledExplanation[0].jsx}
-							<span className="operator">{parseResult.operator}</span>
-							{filledExplanation[1].jsx}
-						</span>
-					}
-				/>
-			}
-		}
-	}
-
-	//TODO C'est pas bien ça. Devrait être traité par le parser plus haut !
-	if (R.is(Number)(rawNode)) {
-		return {
-			category: 'number',
-			nodeValue: rawNode,
-			type: 'numeric',
-			jsx:
-				<span className="number">
-					{rawNode}
-				</span>
-		}
-	}
-
-
-	if (!R.is(Object)(rawNode)) {
-		console.log() // eslint-disable-line no-console
-		throw 'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
-	}
-
-	let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
-
-	if (mecanisms.length != 1) {
-		console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', rawNode)
-		throw 'OUPS !'
-	}
-
-	let k = R.head(mecanisms),
-		v = rawNode[k]
-
-	if (k === 'une de ces conditions') {
-		let result = R.pipe(
-			R.unless(R.is(Array), () => {throw 'should be array'}),
-			R.reduce( (memo, next) => {
-				let {nodeValue, explanation} = memo,
-					child = reTreat(next),
-					{nodeValue: nextValue} = child
-				return {...memo,
-					// c'est un OU logique mais avec une préférence pour null sur false
-					nodeValue: nodeValue || nextValue || (
-						nodeValue == null ? null : nextValue
+			if (parseResult.category == 'calcExpression') {
+				let
+					filledExplanation = parseResult.explanation.map(
+						R.cond([
+							[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
+							[R.propEq('category', 'value'), node =>
+								R.assoc('jsx', <span className="value">
+									{node.nodeValue}
+								</span>)(node)
+							]
+						])
 					),
-					explanation: [...explanation, child]
-				}
-			}, {
-				nodeValue: false,
-				category: 'mecanism',
-				name: 'une de ces conditions',
-				type: 'boolean',
-				explanation: []
-			}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
-		)(v)
-		return {...result,
-			jsx:	<Node
-				classes="mecanism conditions list"
-				name={result.name}
-				value={result.nodeValue}
-				child={
-					<ul>
-						{result.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
-					</ul>
-				}
-			/>
-		}
-	}
-	if (k === 'toutes ces conditions') {
-		return R.pipe(
-			R.unless(R.is(Array), () => {throw 'should be array'}),
-			R.reduce( (memo, next) => {
-				let {nodeValue, explanation} = memo,
-					child = reTreat(next),
-					{nodeValue: nextValue} = child
-				return {...memo,
-					// c'est un ET logique avec une possibilité de null
-					nodeValue: ! nodeValue ? nodeValue : nextValue,
-					explanation: [...explanation, child]
-				}
-			}, {
-				nodeValue: true,
-				category: 'mecanism',
-				name: 'toutes ces conditions',
-				type: 'boolean',
-				explanation: []
-			}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
-		)(v)
-	}
+					[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
+					operatorFunctionName = {
+						'*': 'multiply',
+						'/': 'divide',
+						'+': 'add',
+						'-': 'subtract'
+					}[parseResult.operator],
+					operatorFunction = R[operatorFunctionName],
+					nodeValue = value1 == null || value2 == null ?
+						null
+					: operatorFunction(value1, value2)
 
-	//TODO perf: declare this closure somewhere else ?
-	let treatNumericalLogicRec =
-		R.ifElse(
-			R.is(String),
-			rate => ({ //TODO unifier ce code
-				nodeValue: transformPercentage(rate),
+				return {
+					text: rawNode,
+					nodeValue,
+					category: 'calcExpression',
+					type: 'numeric',
+					explanation: filledExplanation,
+					jsx:	<Node
+						classes="inlineExpression calcExpression"
+						value={nodeValue}
+						child={
+							<span className="nodeContent">
+								{filledExplanation[0].jsx}
+								<span className="operator">{parseResult.operator}</span>
+								{filledExplanation[1].jsx}
+							</span>
+						}
+					/>
+				}
+			}
+			if (parseResult.category == 'comparison') {
+				//TODO mutualise code for 'comparison' & 'calclExpression'. Harmonise their names
+				let
+					filledExplanation = parseResult.explanation.map(
+						R.cond([
+							[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
+							[R.propEq('category', 'value'), node =>
+								R.assoc('jsx', <span className="value">
+									{node.nodeValue}
+								</span>)(node)
+							]
+						])
+					),
+					[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
+					comparatorFunctionName = {
+						'<': 'lt',
+						'<=': 'lte',
+						'>': 'gt',
+						'>=': 'gte'
+						//TODO '='
+					}[parseResult.operator],
+					comparatorFunction = R[comparatorFunctionName],
+					nodeValue = value1 == null || value2 == null ?
+						null
+					: comparatorFunction(value1, value2)
+
+				return {
+					text: rawNode,
+					nodeValue: nodeValue,
+					category: 'comparison',
+					type: 'boolean',
+					explanation: filledExplanation,
+					jsx:	<Node
+						classes="inlineExpression comparison"
+						value={nodeValue}
+						child={
+							<span className="nodeContent">
+								{filledExplanation[0].jsx}
+								<span className="operator">{parseResult.operator}</span>
+								{filledExplanation[1].jsx}
+							</span>
+						}
+					/>
+				}
+			}
+		},
+		treatNumber = rawNode => {
+			return {
+				category: 'number',
+				nodeValue: rawNode,
 				type: 'numeric',
-				category: 'percentage',
-				percentage: rate,
-				explanation: null,
 				jsx:
-					<span className="percentage" >
-						<span className="name">{rate}</span>
+					<span className="number">
+						{rawNode}
 					</span>
-			}),
-			R.pipe(
-				R.unless(
-					v => R.is(Object)(v) && R.keys(v).length >= 1,
-					() => {throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'}
-				),
-				R.toPairs,
-				R.reduce( (memo, [condition, consequence]) => {
-					let
-						{nodeValue, explanation} = memo,
-						conditionNode = reTreat(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
-						childNumericalLogic = treatNumericalLogicRec(consequence),
-						nextNodeValue = conditionNode.nodeValue == null ?
-						// Si la proposition n'est pas encore résolvable
-							null
-						// Si la proposition est résolvable
-						:	conditionNode.nodeValue == true ?
-							// Si elle est vraie
-								childNumericalLogic.nodeValue
-							// Si elle est fausse
-							: false
+			}
+		},
+		treatOther = rawNode => {
+			console.log() // eslint-disable-line no-console
+			throw 'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
+		},
+		treatObject = rawNode => {
+			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
-					return {...memo,
-						nodeValue: nodeValue == null ?
-							null
-						: nodeValue !== false ?
-								nodeValue // l'une des propositions renvoie déjà une valeur numérique donc différente de false
-							: nextNodeValue,
-						explanation: [...explanation, {
-							nodeValue: nextNodeValue,
-							category: 'condition',
-							text: condition,
-							condition: conditionNode,
-							conditionValue: conditionNode.nodeValue,
-							type: 'boolean',
-							explanation: childNumericalLogic,
-							jsx: <div className="condition">
-								{conditionNode.jsx}
-								<div>
-									{childNumericalLogic.jsx}
-								</div>
-							</div>
-						}],
-					}
-				}, {
-					nodeValue: false,
-					category: 'mecanism',
-					name: "logique numérique",
-					type: 'boolean || numeric', // lol !
-					explanation: []
-				}),
-				node => ({...node,
-					jsx: <Node
-						classes="mecanism numericalLogic list"
-						name="logique numérique"
-						value={node.nodeValue}
+			if (mecanisms.length != 1) {
+				console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', rawNode)
+				throw 'OUPS !'
+			}
+
+			let k = R.head(mecanisms),
+				v = rawNode[k]
+
+			if (k === 'une de ces conditions') {
+				let result = R.pipe(
+					R.unless(R.is(Array), () => {throw 'should be array'}),
+					R.reduce( (memo, next) => {
+						let {nodeValue, explanation} = memo,
+							child = reTreat(next),
+							{nodeValue: nextValue} = child
+						return {...memo,
+							// c'est un OU logique mais avec une préférence pour null sur false
+							nodeValue: nodeValue || nextValue || (
+								nodeValue == null ? null : nextValue
+							),
+							explanation: [...explanation, child]
+						}
+					}, {
+						nodeValue: false,
+						category: 'mecanism',
+						name: 'une de ces conditions',
+						type: 'boolean',
+						explanation: []
+					}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
+				)(v)
+				return {...result,
+					jsx:	<Node
+						classes="mecanism conditions list"
+						name={result.name}
+						value={result.nodeValue}
 						child={
 							<ul>
-								{node.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
+								{result.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
 							</ul>
 						}
 					/>
-				})
-		))
-
-	if (k === 'logique numérique') {
-		return treatNumericalLogicRec(v)
-	}
-
-	if (k === 'taux') {
-		let reg = /^(\d+(\.\d+)?)\%$/
-		if (R.test(reg)(v))
-			return {
-				category: 'percentage',
-				type: 'numeric',
-				percentage: v,
-				nodeValue: R.match(reg)(v)[1]/100,
-				explanation: null,
-				jsx:
-					<span className="percentage" >
-						<span className="name">{v}</span>
-					</span>
-			}
-		// Si c'est une liste historisée de pourcentages
-		// TODO revoir le test avant le bug de l'an 2100
-		else if ( R.is(Array)(v) && R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
-			//TODO sélectionner la date de la simulation en cours
-			let lazySelection = R.first(R.values(v))
-			return {
-				category: 'percentage',
-				type: 'numeric',
-				percentage: lazySelection,
-				nodeValue: transformPercentage(lazySelection),
-				explanation: null,
-				jsx:
-					<span className="percentage" >
-						<span className="name">{lazySelection}</span>
-					</span>
-			}
-		}
-		else {
-			let node = reTreat(v)
-			return {
-				type: 'numeric',
-				category: 'percentage',
-				percentage: node.nodeValue,
-				nodeValue: node.nodeValue,
-				explanation: node,
-				jsx: node.jsx
-			}
-		}
-	}
-
-	// Une simple somme de variables
-	if (k === 'somme') {
-		let
-			summedVariables = v.map(reTreat),
-			nodeValue = summedVariables.reduce(
-				(memo, {nodeValue: nextNodeValue}) => memo == null ? null : nextNodeValue == null ? null : memo + +nextNodeValue,
-			0)
-
-		return {
-			nodeValue,
-			category: 'mecanism',
-			name: 'somme',
-			type: 'numeric',
-			explanation: summedVariables,
-			jsx: <Node
-				classes="mecanism somme"
-				name="somme"
-				value={nodeValue}
-				child={
-					<ul>
-						{summedVariables.map(v => <li key={v.name}>{v.jsx}</li>)}
-					</ul>
 				}
-			/>
-		}
-	}
-
-	if (k === 'multiplication') {
-		let
-			mult = (base, rate, facteur, plafond) =>
-				Math.min(base, plafond) * rate * facteur,
-			constantNode = constant => ({nodeValue: constant}),
-			assiette = reTreat(v['assiette']),
-			//TODO parser le taux dans le parser ?
-			taux = v['taux'] ? reTreat({taux: v['taux']}) : constantNode(1),
-			facteur = v['facteur'] ? reTreat(v['facteur']) : constantNode(1),
-			plafond = v['plafond'] ? reTreat(v['plafond']) : constantNode(Infinity),
-			//TODO rate == false should be more explicit
-			nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
-				0
-			: anyNull([taux, assiette, facteur, plafond]) ?
-					null
-				: mult(val(assiette), val(taux), val(facteur), val(plafond))
-		return {
-			nodeValue,
-			category: 'mecanism',
-			name: 'multiplication',
-			type: 'numeric',
-			explanation: {
-				assiette,
-				taux,
-				facteur,
-				plafond
-				//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
-			},
-			jsx: <Node
-				classes="mecanism multiplication"
-				name="multiplication"
-				value={nodeValue}
-				child={
-					<ul className="properties">
-						<li key="assiette">
-							<span className="key">assiette: </span>
-							<span className="value">{assiette.jsx}</span>
-						</li>
-						{taux.nodeValue != 1 &&
-						<li key="taux">
-							<span className="key">taux: </span>
-							<span className="value">{taux.jsx}</span>
-						</li>}
-						{facteur.nodeValue != 1 &&
-						<li key="facteur">
-							<span className="key">facteur: </span>
-							<span className="value">{facteur.jsx}</span>
-						</li>}
-						{plafond.nodeValue != Infinity &&
-						<li key="plafond">
-							<span className="key">plafond: </span>
-							<span className="value">{plafond.jsx}</span>
-						</li>}
-					</ul>
-				}
-			/>
-		}
-	}
-
-	if (k === 'barème') {
-		// Sous entendu : barème en taux marginaux.
-		// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
-		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
-			let
-				baremeProps = R.dissoc('composantes')(v),
-				composantes = v.composantes.map(c =>
-					({
-						... reTreat(
-							{
-								barème: {
-									... baremeProps,
-									... R.dissoc('attributs')(c)
-								}
-							}
-						),
-						composante: c.nom ? {nom: c.nom} : c.attributs
-					})
-				),
-				nodeValue = anyNull(composantes) ? null
-					: R.reduce(R.add, 0, composantes.map(val))
-
-			return {
-				nodeValue,
-				category: 'mecanism',
-				name: 'composantes',
-				type: 'numeric',
-				explanation: composantes,
-				jsx: <Node
-					classes="mecanism composantes"
-					name="composantes"
-					value={nodeValue}
-					child={
-						<ul>
-							{ composantes.map((c, i) =>
-								[<li className="composante" key={JSON.stringify(c.composante)}>
-									<ul className="composanteAttributes">
-										{R.toPairs(c.composante).map(([k,v]) =>
-											<li>
-												<span>{k}: </span>
-												<span>{v}</span>
-											</li>
-										)}
-									</ul>
-									<div className="content">
-										{c.jsx}
-									</div>
-								</li>,
-								i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
-								]
-								)
-							}
-						</ul>
-					}
-				/>
 			}
-		}
+			if (k === 'toutes ces conditions') {
+				return R.pipe(
+					R.unless(R.is(Array), () => {throw 'should be array'}),
+					R.reduce( (memo, next) => {
+						let {nodeValue, explanation} = memo,
+							child = reTreat(next),
+							{nodeValue: nextValue} = child
+						return {...memo,
+							// c'est un ET logique avec une possibilité de null
+							nodeValue: ! nodeValue ? nodeValue : nextValue,
+							explanation: [...explanation, child]
+						}
+					}, {
+						nodeValue: true,
+						category: 'mecanism',
+						name: 'toutes ces conditions',
+						type: 'boolean',
+						explanation: []
+					}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
+				)(v)
+			}
 
-		if (v['multiplicateur des tranches'] == null)
-			throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
-
-		let
-			assiette = reTreat(v['assiette']),
-			multiplicateur = reTreat(v['multiplicateur des tranches']),
-
-			/* on réécrit en plus bas niveau les tranches :
-			`en-dessous de: 1`
-			devient
-			```
-			de: 0
-			à: 1
-			```
-			*/
-			tranches = v['tranches'].map(t =>
-				R.has('en-dessous de')(t) ? {de: 0, 'à': t['en-dessous de'], taux: t.taux}
-				: R.has('au-dessus de')(t) ? {de: t['au-dessus de'], 'à': Infinity, taux: t.taux}
-					: t
-			),
-			//TODO appliquer retreat() à de, à, taux pour qu'ils puissent contenir des calculs ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
-			/*
-				nulled = assiette.nodeValue == null || R.any(
+			//TODO perf: declare this closure somewhere else ?
+			let treatNumericalLogicRec =
+				R.ifElse(
+					R.is(String),
+					rate => ({ //TODO unifier ce code
+						nodeValue: transformPercentage(rate),
+						type: 'numeric',
+						category: 'percentage',
+						percentage: rate,
+						explanation: null,
+						jsx:
+							<span className="percentage" >
+								<span className="name">{rate}</span>
+							</span>
+					}),
 					R.pipe(
-						R.values, R.map(val), R.any(R.equals(null))
-					)
-				)(tranches),
-			*/
-			// nulled = anyNull([assiette, multiplicateur]),
-			nulled = val(assiette) == null || val(multiplicateur) == null,
+						R.unless(
+							v => R.is(Object)(v) && R.keys(v).length >= 1,
+							() => {throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'}
+						),
+						R.toPairs,
+						R.reduce( (memo, [condition, consequence]) => {
+							let
+								{nodeValue, explanation} = memo,
+								conditionNode = reTreat(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
+								childNumericalLogic = treatNumericalLogicRec(consequence),
+								nextNodeValue = conditionNode.nodeValue == null ?
+								// Si la proposition n'est pas encore résolvable
+									null
+								// Si la proposition est résolvable
+								:	conditionNode.nodeValue == true ?
+									// Si elle est vraie
+										childNumericalLogic.nodeValue
+									// Si elle est fausse
+									: false
 
-			nodeValue =
-				nulled ?
-					null
-				: tranches.reduce((memo, {de: min, 'à': max, taux}) =>
-					( val(assiette) < ( min * val(multiplicateur) ) )
-						? memo + 0
-						:	memo
-							+ ( Math.min(val(assiette), max * val(multiplicateur)) - (min * val(multiplicateur)) )
-							* transformPercentage(taux)
-				, 0)
+							return {...memo,
+								nodeValue: nodeValue == null ?
+									null
+								: nodeValue !== false ?
+										nodeValue // l'une des propositions renvoie déjà une valeur numérique donc différente de false
+									: nextNodeValue,
+								explanation: [...explanation, {
+									nodeValue: nextNodeValue,
+									category: 'condition',
+									text: condition,
+									condition: conditionNode,
+									conditionValue: conditionNode.nodeValue,
+									type: 'boolean',
+									explanation: childNumericalLogic,
+									jsx: <div className="condition">
+										{conditionNode.jsx}
+										<div>
+											{childNumericalLogic.jsx}
+										</div>
+									</div>
+								}],
+							}
+						}, {
+							nodeValue: false,
+							category: 'mecanism',
+							name: "logique numérique",
+							type: 'boolean || numeric', // lol !
+							explanation: []
+						}),
+						node => ({...node,
+							jsx: <Node
+								classes="mecanism numericalLogic list"
+								name="logique numérique"
+								value={node.nodeValue}
+								child={
+									<ul>
+										{node.explanation.map(item => <li key={item.name}>{item.jsx}</li>)}
+									</ul>
+								}
+							/>
+						})
+				))
 
-		return {
-			nodeValue,
-			category: 'mecanism',
-			name: 'barème',
-			barème: 'en taux marginaux',
-			type: 'numeric',
-			explanation: {
-				assiette,
-				multiplicateur,
-				tranches
-			},
-			jsx: <Node
-				classes="mecanism barème"
-				name="barème"
-				value={nodeValue}
-				child={
-					<ul className="properties">
-						<li key="assiette">
-							<span className="key">assiette: </span>
-							<span className="value">{assiette.jsx}</span>
-						</li>
-						<li key="multiplicateur">
-							<span className="key">multiplicateur des tranches: </span>
-							<span className="value">{multiplicateur.jsx}</span>
-						</li>
-						<table className="tranches">
-							<thead>
-								<tr>
-									<th>Tranches de l'assiette</th>
-									<th>Taux</th>
-								</tr>
-								{v['tranches'].map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
-									<tr key={min || minOnly}>
-										<td>
-											{	maxOnly ? 'En dessous de ' + maxOnly
-												: minOnly ? 'Au dessus de ' + minOnly
-													: `De ${min} à ${max}` }
-										</td>
-										<td> {taux} </td>
-									</tr>
-								)}
-							</thead>
-						</table>
-					</ul>
+			if (k === 'logique numérique') {
+				return treatNumericalLogicRec(v)
+			}
+
+			if (k === 'taux') {
+				let reg = /^(\d+(\.\d+)?)\%$/
+				if (R.test(reg)(v))
+					return {
+						category: 'percentage',
+						type: 'numeric',
+						percentage: v,
+						nodeValue: R.match(reg)(v)[1]/100,
+						explanation: null,
+						jsx:
+							<span className="percentage" >
+								<span className="name">{v}</span>
+							</span>
+					}
+				// Si c'est une liste historisée de pourcentages
+				// TODO revoir le test avant le bug de l'an 2100
+				else if ( R.is(Array)(v) && R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
+					//TODO sélectionner la date de la simulation en cours
+					let lazySelection = R.first(R.values(v))
+					return {
+						category: 'percentage',
+						type: 'numeric',
+						percentage: lazySelection,
+						nodeValue: transformPercentage(lazySelection),
+						explanation: null,
+						jsx:
+							<span className="percentage" >
+								<span className="name">{lazySelection}</span>
+							</span>
+					}
 				}
-			/>
-		}
-	}
-
-	if (k === 'le maximum de') {
-		let contenders = v.map(treat(situationGate, rules, rule)),
-			contenderValues = R.pluck('nodeValue')(contenders),
-			stopEverything = R.contains(null, contenderValues),
-			maxValue = R.max(...contenderValues),
-			nodeValue = stopEverything ? null : maxValue
-
-		return {
-			type: 'numeric',
-			category: 'mecanism',
-			name: 'le maximum de',
-			nodeValue,
-			explanation: contenders,
-			jsx: <Node
-				classes="mecanism list maximum"
-				name="le maximum de"
-				value={nodeValue}
-				child={
-					<ul>
-					{contenders.map((item, i) =>
-						<li key={i}>
-							<div className="description">{v[i].description}</div>
-							{item.jsx}
-						</li>
-					)}
-					</ul>
+				else {
+					let node = reTreat(v)
+					return {
+						type: 'numeric',
+						category: 'percentage',
+						percentage: node.nodeValue,
+						nodeValue: node.nodeValue,
+						explanation: node,
+						jsx: node.jsx
+					}
 				}
-			/>
+			}
+
+			// Une simple somme de variables
+			if (k === 'somme') {
+				let
+					summedVariables = v.map(reTreat),
+					nodeValue = summedVariables.reduce(
+						(memo, {nodeValue: nextNodeValue}) => memo == null ? null : nextNodeValue == null ? null : memo + +nextNodeValue,
+					0)
+
+				return {
+					nodeValue,
+					category: 'mecanism',
+					name: 'somme',
+					type: 'numeric',
+					explanation: summedVariables,
+					jsx: <Node
+						classes="mecanism somme"
+						name="somme"
+						value={nodeValue}
+						child={
+							<ul>
+								{summedVariables.map(v => <li key={v.name}>{v.jsx}</li>)}
+							</ul>
+						}
+					/>
+				}
+			}
+
+			if (k === 'multiplication') {
+				let
+					mult = (base, rate, facteur, plafond) =>
+						Math.min(base, plafond) * rate * facteur,
+					constantNode = constant => ({nodeValue: constant}),
+					assiette = reTreat(v['assiette']),
+					//TODO parser le taux dans le parser ?
+					taux = v['taux'] ? reTreat({taux: v['taux']}) : constantNode(1),
+					facteur = v['facteur'] ? reTreat(v['facteur']) : constantNode(1),
+					plafond = v['plafond'] ? reTreat(v['plafond']) : constantNode(Infinity),
+					//TODO rate == false should be more explicit
+					nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
+						0
+					: anyNull([taux, assiette, facteur, plafond]) ?
+							null
+						: mult(val(assiette), val(taux), val(facteur), val(plafond))
+				return {
+					nodeValue,
+					category: 'mecanism',
+					name: 'multiplication',
+					type: 'numeric',
+					explanation: {
+						assiette,
+						taux,
+						facteur,
+						plafond
+						//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
+					},
+					jsx: <Node
+						classes="mecanism multiplication"
+						name="multiplication"
+						value={nodeValue}
+						child={
+							<ul className="properties">
+								<li key="assiette">
+									<span className="key">assiette: </span>
+									<span className="value">{assiette.jsx}</span>
+								</li>
+								{taux.nodeValue != 1 &&
+								<li key="taux">
+									<span className="key">taux: </span>
+									<span className="value">{taux.jsx}</span>
+								</li>}
+								{facteur.nodeValue != 1 &&
+								<li key="facteur">
+									<span className="key">facteur: </span>
+									<span className="value">{facteur.jsx}</span>
+								</li>}
+								{plafond.nodeValue != Infinity &&
+								<li key="plafond">
+									<span className="key">plafond: </span>
+									<span className="value">{plafond.jsx}</span>
+								</li>}
+							</ul>
+						}
+					/>
+				}
+			}
+
+			if (k === 'barème') {
+				// Sous entendu : barème en taux marginaux.
+				// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
+				if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+					let
+						baremeProps = R.dissoc('composantes')(v),
+						composantes = v.composantes.map(c =>
+							({
+								... reTreat(
+									{
+										barème: {
+											... baremeProps,
+											... R.dissoc('attributs')(c)
+										}
+									}
+								),
+								composante: c.nom ? {nom: c.nom} : c.attributs
+							})
+						),
+						nodeValue = anyNull(composantes) ? null
+							: R.reduce(R.add, 0, composantes.map(val))
+
+					return {
+						nodeValue,
+						category: 'mecanism',
+						name: 'composantes',
+						type: 'numeric',
+						explanation: composantes,
+						jsx: <Node
+							classes="mecanism composantes"
+							name="composantes"
+							value={nodeValue}
+							child={
+								<ul>
+									{ composantes.map((c, i) =>
+										[<li className="composante" key={JSON.stringify(c.composante)}>
+											<ul className="composanteAttributes">
+												{R.toPairs(c.composante).map(([k,v]) =>
+													<li>
+														<span>{k}: </span>
+														<span>{v}</span>
+													</li>
+												)}
+											</ul>
+											<div className="content">
+												{c.jsx}
+											</div>
+										</li>,
+										i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+										]
+										)
+									}
+								</ul>
+							}
+						/>
+					}
+				}
+
+				if (v['multiplicateur des tranches'] == null)
+					throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
+
+				let
+					assiette = reTreat(v['assiette']),
+					multiplicateur = reTreat(v['multiplicateur des tranches']),
+
+					/* on réécrit en plus bas niveau les tranches :
+					`en-dessous de: 1`
+					devient
+					```
+					de: 0
+					à: 1
+					```
+					*/
+					tranches = v['tranches'].map(t =>
+						R.has('en-dessous de')(t) ? {de: 0, 'à': t['en-dessous de'], taux: t.taux}
+						: R.has('au-dessus de')(t) ? {de: t['au-dessus de'], 'à': Infinity, taux: t.taux}
+							: t
+					),
+					//TODO appliquer retreat() à de, à, taux pour qu'ils puissent contenir des calculs ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
+					/*
+						nulled = assiette.nodeValue == null || R.any(
+							R.pipe(
+								R.values, R.map(val), R.any(R.equals(null))
+							)
+						)(tranches),
+					*/
+					// nulled = anyNull([assiette, multiplicateur]),
+					nulled = val(assiette) == null || val(multiplicateur) == null,
+
+					nodeValue =
+						nulled ?
+							null
+						: tranches.reduce((memo, {de: min, 'à': max, taux}) =>
+							( val(assiette) < ( min * val(multiplicateur) ) )
+								? memo + 0
+								:	memo
+									+ ( Math.min(val(assiette), max * val(multiplicateur)) - (min * val(multiplicateur)) )
+									* transformPercentage(taux)
+						, 0)
+
+				return {
+					nodeValue,
+					category: 'mecanism',
+					name: 'barème',
+					barème: 'en taux marginaux',
+					type: 'numeric',
+					explanation: {
+						assiette,
+						multiplicateur,
+						tranches
+					},
+					jsx: <Node
+						classes="mecanism barème"
+						name="barème"
+						value={nodeValue}
+						child={
+							<ul className="properties">
+								<li key="assiette">
+									<span className="key">assiette: </span>
+									<span className="value">{assiette.jsx}</span>
+								</li>
+								<li key="multiplicateur">
+									<span className="key">multiplicateur des tranches: </span>
+									<span className="value">{multiplicateur.jsx}</span>
+								</li>
+								<table className="tranches">
+									<thead>
+										<tr>
+											<th>Tranches de l'assiette</th>
+											<th>Taux</th>
+										</tr>
+										{v['tranches'].map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
+											<tr key={min || minOnly}>
+												<td>
+													{	maxOnly ? 'En dessous de ' + maxOnly
+														: minOnly ? 'Au dessus de ' + minOnly
+															: `De ${min} à ${max}` }
+												</td>
+												<td> {taux} </td>
+											</tr>
+										)}
+									</thead>
+								</table>
+							</ul>
+						}
+					/>
+				}
+			}
+
+			if (k === 'le maximum de') {
+				let contenders = v.map(treat(situationGate, rules, rule)),
+					contenderValues = R.pluck('nodeValue')(contenders),
+					stopEverything = R.contains(null, contenderValues),
+					maxValue = R.max(...contenderValues),
+					nodeValue = stopEverything ? null : maxValue
+
+				return {
+					type: 'numeric',
+					category: 'mecanism',
+					name: 'le maximum de',
+					nodeValue,
+					explanation: contenders,
+					jsx: <Node
+						classes="mecanism list maximum"
+						name="le maximum de"
+						value={nodeValue}
+						child={
+							<ul>
+							{contenders.map((item, i) =>
+								<li key={i}>
+									<div className="description">{v[i].description}</div>
+									{item.jsx}
+								</li>
+							)}
+							</ul>
+						}
+					/>
+				}
+			}
+
+			throw "Le mécanisme est inconnu !"
 		}
-	}
 
-	throw "Le mécanisme est inconnu !"
-
+	let onNodeType = R.cond([
+		[R.is(String),	treatString],
+		[R.is(Number),	treatNumber],
+		[!R.is(Object),	treatOther],
+		[R.T,			treatObject]
+	])
+	return onNodeType(rawNode)
 }
 
 //TODO c'est moche :
