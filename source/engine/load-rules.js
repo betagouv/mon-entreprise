@@ -13,7 +13,7 @@ let rules= R.pipe(
   ),
   R.unnest,
   R.reject(R.isNil)
-)( // This array can't be generated, as the arguments to require.context can't be literals :-|
+)( // This array can't be generated, as the arguments to require.context must be literals :-|
   [
   require.context(
     '../../règles/rémunération-travail/cdd',
