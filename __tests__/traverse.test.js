@@ -118,4 +118,15 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
   });
 
+  it('should handle progressive scales', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.2}, ,{"au-dessus de":2, taux: 10}]
+          }}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
+  });
+
 });

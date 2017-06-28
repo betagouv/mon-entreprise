@@ -506,6 +506,154 @@ let treat = (situationGate, rules, rule) => rawNode => {
 				/>
 			}
 		},
+		mecanismScale = (k,v) => {
+			// Sous entendu : barème en taux marginaux.
+			// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
+			if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+				let
+					baremeProps = R.dissoc('composantes')(v),
+					composantes = v.composantes.map(c =>
+						({
+							... reTreat(
+								{
+									barème: {
+										... baremeProps,
+										... R.dissoc('attributs')(c)
+									}
+								}
+							),
+							composante: c.nom ? {nom: c.nom} : c.attributs
+						})
+					),
+					nodeValue = anyNull(composantes) ? null
+						: R.reduce(R.add, 0, composantes.map(val))
+
+				return {
+					nodeValue,
+					category: 'mecanism',
+					name: 'composantes',
+					type: 'numeric',
+					explanation: composantes,
+					jsx: <Node
+						classes="mecanism composantes"
+						name="composantes"
+						value={nodeValue}
+						child={
+							<ul>
+								{ composantes.map((c, i) =>
+									[<li className="composante" key={JSON.stringify(c.composante)}>
+										<ul className="composanteAttributes">
+											{R.toPairs(c.composante).map(([k,v]) =>
+												<li>
+													<span>{k}: </span>
+													<span>{v}</span>
+												</li>
+											)}
+										</ul>
+										<div className="content">
+											{c.jsx}
+										</div>
+									</li>,
+									i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+									]
+									)
+								}
+							</ul>
+						}
+					/>
+				}
+			}
+
+			if (v['multiplicateur des tranches'] == null)
+				throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
+
+			let
+				assiette = reTreat(v['assiette']),
+				multiplicateur = reTreat(v['multiplicateur des tranches']),
+
+				/* on réécrit en plus bas niveau les tranches :
+				`en-dessous de: 1`
+				devient
+				```
+				de: 0
+				à: 1
+				```
+				*/
+				tranches = v['tranches'].map(t =>
+					R.has('en-dessous de')(t) ? {de: 0, 'à': t['en-dessous de'], taux: t.taux}
+					: R.has('au-dessus de')(t) ? {de: t['au-dessus de'], 'à': Infinity, taux: t.taux}
+						: t
+				),
+				//TODO appliquer retreat() à de, à, taux pour qu'ils puissent contenir des calculs ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
+				/*
+					nulled = assiette.nodeValue == null || R.any(
+						R.pipe(
+							R.values, R.map(val), R.any(R.equals(null))
+						)
+					)(tranches),
+				*/
+				// nulled = anyNull([assiette, multiplicateur]),
+				nulled = val(assiette) == null || val(multiplicateur) == null,
+
+				nodeValue =
+					nulled ?
+						null
+					: tranches.reduce((memo, {de: min, 'à': max, taux}) =>
+						( val(assiette) < ( min * val(multiplicateur) ) )
+							? memo + 0
+							:	memo
+								+ ( Math.min(val(assiette), max * val(multiplicateur)) - (min * val(multiplicateur)) )
+								* transformPercentage(taux)
+					, 0)
+
+			return {
+				nodeValue,
+				category: 'mecanism',
+				name: 'barème',
+				barème: 'en taux marginaux',
+				type: 'numeric',
+				explanation: {
+					assiette,
+					multiplicateur,
+					tranches
+				},
+				jsx: <Node
+					classes="mecanism barème"
+					name="barème"
+					value={nodeValue}
+					child={
+						<ul className="properties">
+							<li key="assiette">
+								<span className="key">assiette: </span>
+								<span className="value">{assiette.jsx}</span>
+							</li>
+							<li key="multiplicateur">
+								<span className="key">multiplicateur des tranches: </span>
+								<span className="value">{multiplicateur.jsx}</span>
+							</li>
+							<table className="tranches">
+								<thead>
+									<tr>
+										<th>Tranches de l'assiette</th>
+										<th>Taux</th>
+									</tr>
+									{v['tranches'].map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
+										<tr key={min || minOnly || 0}>
+											<td>
+												{	maxOnly ? 'En dessous de ' + maxOnly
+													: minOnly ? 'Au dessus de ' + minOnly
+														: `De ${min} à ${max}` }
+											</td>
+											<td> {taux} </td>
+										</tr>
+									)}
+								</thead>
+							</table>
+						</ul>
+					}
+				/>
+			}
+		},
 		treatObject = rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
@@ -523,155 +671,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			if (k === 'taux')					return mecanismPercentage(k,v)
 			if (k === 'somme')					return mecanismSum(k,v)
 			if (k === 'multiplication')			return mecanismProduct(k,v)				
-
-			if (k === 'barème') {
-				// Sous entendu : barème en taux marginaux.
-				// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
-				if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
-					let
-						baremeProps = R.dissoc('composantes')(v),
-						composantes = v.composantes.map(c =>
-							({
-								... reTreat(
-									{
-										barème: {
-											... baremeProps,
-											... R.dissoc('attributs')(c)
-										}
-									}
-								),
-								composante: c.nom ? {nom: c.nom} : c.attributs
-							})
-						),
-						nodeValue = anyNull(composantes) ? null
-							: R.reduce(R.add, 0, composantes.map(val))
-
-					return {
-						nodeValue,
-						category: 'mecanism',
-						name: 'composantes',
-						type: 'numeric',
-						explanation: composantes,
-						jsx: <Node
-							classes="mecanism composantes"
-							name="composantes"
-							value={nodeValue}
-							child={
-								<ul>
-									{ composantes.map((c, i) =>
-										[<li className="composante" key={JSON.stringify(c.composante)}>
-											<ul className="composanteAttributes">
-												{R.toPairs(c.composante).map(([k,v]) =>
-													<li>
-														<span>{k}: </span>
-														<span>{v}</span>
-													</li>
-												)}
-											</ul>
-											<div className="content">
-												{c.jsx}
-											</div>
-										</li>,
-										i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
-										]
-										)
-									}
-								</ul>
-							}
-						/>
-					}
-				}
-
-				if (v['multiplicateur des tranches'] == null)
-					throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
-
-				let
-					assiette = reTreat(v['assiette']),
-					multiplicateur = reTreat(v['multiplicateur des tranches']),
-
-					/* on réécrit en plus bas niveau les tranches :
-					`en-dessous de: 1`
-					devient
-					```
-					de: 0
-					à: 1
-					```
-					*/
-					tranches = v['tranches'].map(t =>
-						R.has('en-dessous de')(t) ? {de: 0, 'à': t['en-dessous de'], taux: t.taux}
-						: R.has('au-dessus de')(t) ? {de: t['au-dessus de'], 'à': Infinity, taux: t.taux}
-							: t
-					),
-					//TODO appliquer retreat() à de, à, taux pour qu'ils puissent contenir des calculs ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
-					/*
-						nulled = assiette.nodeValue == null || R.any(
-							R.pipe(
-								R.values, R.map(val), R.any(R.equals(null))
-							)
-						)(tranches),
-					*/
-					// nulled = anyNull([assiette, multiplicateur]),
-					nulled = val(assiette) == null || val(multiplicateur) == null,
-
-					nodeValue =
-						nulled ?
-							null
-						: tranches.reduce((memo, {de: min, 'à': max, taux}) =>
-							( val(assiette) < ( min * val(multiplicateur) ) )
-								? memo + 0
-								:	memo
-									+ ( Math.min(val(assiette), max * val(multiplicateur)) - (min * val(multiplicateur)) )
-									* transformPercentage(taux)
-						, 0)
-
-				return {
-					nodeValue,
-					category: 'mecanism',
-					name: 'barème',
-					barème: 'en taux marginaux',
-					type: 'numeric',
-					explanation: {
-						assiette,
-						multiplicateur,
-						tranches
-					},
-					jsx: <Node
-						classes="mecanism barème"
-						name="barème"
-						value={nodeValue}
-						child={
-							<ul className="properties">
-								<li key="assiette">
-									<span className="key">assiette: </span>
-									<span className="value">{assiette.jsx}</span>
-								</li>
-								<li key="multiplicateur">
-									<span className="key">multiplicateur des tranches: </span>
-									<span className="value">{multiplicateur.jsx}</span>
-								</li>
-								<table className="tranches">
-									<thead>
-										<tr>
-											<th>Tranches de l'assiette</th>
-											<th>Taux</th>
-										</tr>
-										{v['tranches'].map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
-											<tr key={min || minOnly}>
-												<td>
-													{	maxOnly ? 'En dessous de ' + maxOnly
-														: minOnly ? 'Au dessus de ' + minOnly
-															: `De ${min} à ${max}` }
-												</td>
-												<td> {taux} </td>
-											</tr>
-										)}
-									</thead>
-								</table>
-							</ul>
-						}
-					/>
-				}
-			}
+			if (k === 'barème')					return mecanismScale(k,v)
 
 			if (k === 'le maximum de') {
 				let contenders = v.map(treat(situationGate, rules, rule)),
