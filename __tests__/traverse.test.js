@@ -129,4 +129,11 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
   });
 
+  it('should handle max', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"le maximum de": [3200, 60, 9]}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3200)
+  });
+
 });

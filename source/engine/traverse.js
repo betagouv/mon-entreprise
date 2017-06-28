@@ -654,6 +654,39 @@ let treat = (situationGate, rules, rule) => rawNode => {
 				/>
 			}
 		},
+		mecanismMax = (k,v) => {
+			let contenders = v.map(reTreat),
+				contenderValues = R.pluck('nodeValue')(contenders),
+				stopEverything = R.contains(null, contenderValues),
+				maxValue = R.max(...contenderValues),
+				nodeValue = stopEverything ? null : maxValue
+
+			return {
+				type: 'numeric',
+				category: 'mecanism',
+				name: 'le maximum de',
+				nodeValue,
+				explanation: contenders,
+				jsx: <Node
+					classes="mecanism list maximum"
+					name="le maximum de"
+					value={nodeValue}
+					child={
+						<ul>
+						{contenders.map((item, i) =>
+							<li key={i}>
+								<div className="description">{v[i].description}</div>
+								{item.jsx}
+							</li>
+						)}
+						</ul>
+					}
+				/>
+			}
+		},
+		mecanismError = (k,v) => {
+			throw "Le mécanisme est inconnu !"
+		},
 		treatObject = rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
@@ -665,46 +698,19 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			let k = R.head(mecanisms),
 				v = rawNode[k]
 
-			if (k === 'une de ces conditions')	return mecanismOneOf(k,v)
-			if (k === 'toutes ces conditions')	return mecanismAllOf(k,v)
-			if (k === 'logique numérique')		return mecanismNumericalLogic(k,v)
-			if (k === 'taux')					return mecanismPercentage(k,v)
-			if (k === 'somme')					return mecanismSum(k,v)
-			if (k === 'multiplication')			return mecanismProduct(k,v)				
-			if (k === 'barème')					return mecanismScale(k,v)
+			let dispatch = {
+					'une de ces conditions':	mecanismOneOf,
+					'toutes ces conditions':	mecanismAllOf,
+					'logique numérique':		mecanismNumericalLogic,
+					'taux':						mecanismPercentage,
+					'somme':					mecanismSum,
+					'multiplication':			mecanismProduct,
+					'barème':					mecanismScale,
+					'le maximum de':			mecanismMax,
+				},
+				action = R.pathOr(mecanismError,[k],dispatch)
 
-			if (k === 'le maximum de') {
-				let contenders = v.map(treat(situationGate, rules, rule)),
-					contenderValues = R.pluck('nodeValue')(contenders),
-					stopEverything = R.contains(null, contenderValues),
-					maxValue = R.max(...contenderValues),
-					nodeValue = stopEverything ? null : maxValue
-
-				return {
-					type: 'numeric',
-					category: 'mecanism',
-					name: 'le maximum de',
-					nodeValue,
-					explanation: contenders,
-					jsx: <Node
-						classes="mecanism list maximum"
-						name="le maximum de"
-						value={nodeValue}
-						child={
-							<ul>
-							{contenders.map((item, i) =>
-								<li key={i}>
-									<div className="description">{v[i].description}</div>
-									{item.jsx}
-								</li>
-							)}
-							</ul>
-						}
-					/>
-				}
-			}
-
-			throw "Le mécanisme est inconnu !"
+			return action(k,v)
 		}
 
 	let onNodeType = R.cond([
