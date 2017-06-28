@@ -117,12 +117,14 @@ export let getObjectives = analysedSituation => {
 	let formuleType = R.path(["formule", "explanation", "name"])(
 		analysedSituation
 	)
-	return formuleType == "somme"
+	let result = formuleType == "somme"
 		? R.pluck(
 				"explanation",
 				R.path(["formule", "explanation", "explanation"])(analysedSituation)
 			)
 		: formuleType ? [analysedSituation] : null
+
+	return R.reject(R.isNil)(result)
 }
 
 
