@@ -42,7 +42,8 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 (- bonus : utiliser ces informations pour l'ordre de priorité des variables inconnues)
 
 - si une branche est incomplète et qu'elle est de type numérique, déterminer les bornes si c'est possible.
-	Ex. - pour une multiplication, si l'assiette est connue mais que l 'applicabilité est inconnue,
+	Ex. - pour une multiplication, si l'assiette est connd
+	ue mais que l 'applicabilité est inconnue,
 				les bornes seront [0, multiplication.value = assiette * taux]
 			- si taux = effectif entreprise >= 20 ? 1% : 2% et que l'applicabilité est connue,
 				bornes = [assiette * 1%, assiette * 2%]
@@ -54,9 +55,10 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-let fillVariableNode = (rule, situationGate) => (parseResult) => {
+let fillVariableNode = (rule, situationGate, filter) => (parseResult) => {
 	let
-		{fragments} = parseResult,
+		finalResult = parseResult.category == 'filteredVariable' ? parseResult.variable : parseResult,
+		{fragments} = finalResult,
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rule, variablePartialName),
 		variable = findRuleByDottedName(dottedName),
@@ -66,7 +68,9 @@ let fillVariableNode = (rule, situationGate) => (parseResult) => {
 		// et qu'il n'y a aucun problème de perf aujourd'hui
 		parsedRule = variableIsCalculable && treatRuleRoot(
 			situationGate,
-			variable
+			variable,
+			filter ? filter :
+				(parseResult.category == 'filteredVariable' ? parseResult.filter : null)
 		),
 
 		situationValue = evaluateVariable(situationGate, dottedName, variable),
@@ -116,8 +120,62 @@ let buildNegatedVariable = variable => {
 	}
 }
 
-let treat = (situationGate, rule) => rawNode => {
-	let reTreat = treat(situationGate, rule)
+let treat = (situationGate, rule, filter) => rawNode => {
+	let reTreat = treat(situationGate, rule, filter),
+		decompose = (v, k) => {
+		let
+			subProps = R.dissoc('composantes')(v),
+			isRelevant = c => !filter || !c.attributs || c.attributs['dû par'] == filter,
+			composantes = v.composantes.filter(isRelevant).map(c =>
+				({
+					... reTreat(
+						R.objOf(k,
+							{
+								... subProps,
+								... R.dissoc('attributs')(c)
+							})
+					),
+					composante: c.nom ? {nom: c.nom} : c.attributs
+				})
+			),
+			nodeValue = anyNull(composantes) ? null
+				: R.reduce(R.add, 0, composantes.map(val))
+
+		return {
+			nodeValue,
+			category: 'mecanism',
+			name: 'composantes',
+			type: 'numeric',
+			explanation: composantes,
+			jsx: <Node
+				classes="mecanism composantes"
+				name="composantes"
+				value={nodeValue}
+				child={
+					<ul>
+						{ composantes.map((c, i) =>
+							[<li className="composante" key={JSON.stringify(c.composante)}>
+								<ul className="composanteAttributes">
+									{R.toPairs(c.composante).map(([k,v]) =>
+										<li>
+											<span>{k}: </span>
+											<span>{v}</span>
+										</li>
+									)}
+								</ul>
+								<div className="content">
+									{c.jsx}
+								</div>
+							</li>,
+							i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+							]
+							)
+						}
+					</ul>
+				}
+			/>
+		}
+	}
 
 	if (R.is(String)(rawNode)) {
 		/* On a à faire à un string, donc à une expression infixe.
@@ -134,17 +192,18 @@ let treat = (situationGate, rule) => rawNode => {
 			throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 		if (parseResult.category == 'variable')
-			return fillVariableNode(rule, situationGate)(parseResult)
+			return fillVariableNode(rule, situationGate, filter)(parseResult)
 		if (parseResult.category == 'negatedVariable')
 			return buildNegatedVariable(
-				fillVariableNode(rule, situationGate)(parseResult.variable)
+				fillVariableNode(rule, situationGate, filter)(parseResult.variable)
 			)
 
 		if (parseResult.category == 'calcExpression') {
 			let
 				filledExplanation = parseResult.explanation.map(
 					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate, filter)],
+						[R.propEq('category', 'filteredVariable'), fillVariableNode(rule, situationGate, filter)],
 						[R.propEq('category', 'value'), node =>
 							R.assoc('jsx', <span className="value">
 								{node.nodeValue}
@@ -188,7 +247,7 @@ let treat = (situationGate, rule) => rawNode => {
 			let
 				filledExplanation = parseResult.explanation.map(
 					R.cond([
-						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate)],
+						[R.propEq('category', 'variable'), fillVariableNode(rule, situationGate, filter)],
 						[R.propEq('category', 'value'), node =>
 							R.assoc('jsx', <span className="value">
 								{node.nodeValue}
@@ -471,6 +530,10 @@ let treat = (situationGate, rule) => rawNode => {
 	}
 
 	if (k === 'multiplication') {
+		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+			return decompose(v,k)
+		}
+
 		let
 			mult = (base, rate, facteur, plafond) =>
 				Math.min(base, plafond) * rate * facteur,
@@ -533,58 +596,7 @@ let treat = (situationGate, rule) => rawNode => {
 		// Sous entendu : barème en taux marginaux.
 		// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
 		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
-			let
-				baremeProps = R.dissoc('composantes')(v),
-				composantes = v.composantes.map(c =>
-					({
-						... reTreat(
-							{
-								barème: {
-									... baremeProps,
-									... R.dissoc('attributs')(c)
-								}
-							}
-						),
-						composante: c.nom ? {nom: c.nom} : c.attributs
-					})
-				),
-				nodeValue = anyNull(composantes) ? null
-					: R.reduce(R.add, 0, composantes.map(val))
-
-			return {
-				nodeValue,
-				category: 'mecanism',
-				name: 'composantes',
-				type: 'numeric',
-				explanation: composantes,
-				jsx: <Node
-					classes="mecanism composantes"
-					name="composantes"
-					value={nodeValue}
-					child={
-						<ul>
-							{ composantes.map((c, i) =>
-								[<li className="composante" key={JSON.stringify(c.composante)}>
-									<ul className="composanteAttributes">
-										{R.toPairs(c.composante).map(([k,v]) =>
-											<li>
-												<span>{k}: </span>
-												<span>{v}</span>
-											</li>
-										)}
-									</ul>
-									<div className="content">
-										{c.jsx}
-									</div>
-								</li>,
-								i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
-								]
-								)
-							}
-						</ul>
-					}
-				/>
-			}
+			return decompose(v,k)
 		}
 
 		if (v['multiplicateur des tranches'] == null)
@@ -678,8 +690,50 @@ let treat = (situationGate, rule) => rawNode => {
 		}
 	}
 
+	if (k === 'complément') {
+		if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+			return decompose(v,k)
+		}
+
+		if (v['cible'] == null)
+			throw "un complément nécessite une propriété 'cible'"
+
+		let cible = reTreat(v['cible']),
+			mini = reTreat(v['montant']),
+			nulled = val(cible) == null,
+			nodeValue = nulled ? null : R.subtract(val(mini), R.min(val(cible), val(mini)))
+
+		return {
+			type: 'numeric',
+			category: 'mecanism',
+			name: 'complément pour atteindre',
+			nodeValue,
+			explanation: {
+				cible,
+				mini
+			},
+			jsx: <Node
+				classes="mecanism list complement"
+				name="complément pour atteindre"
+				value={nodeValue}
+				child={
+					<ul className="properties">
+						<li key="cible">
+							<span className="key">montant calculé: </span>
+							<span className="value">{cible.jsx}</span>
+						</li>
+						<li key="mini">
+							<span className="key">montant à atteindre: </span>
+							<span className="value">{mini.jsx}</span>
+						</li>
+					</ul>
+				}
+			/>
+		}
+	}
+
 	if (k === 'le maximum de') {
-		let contenders = v.map(treat(situationGate, rule)),
+		let contenders = v.map(treat(situationGate, rule, filter)),
 			contenderValues = R.pluck('nodeValue')(contenders),
 			stopEverything = R.contains(null, contenderValues),
 			maxValue = R.max(...contenderValues),
@@ -725,7 +779,7 @@ export let computeRuleValue = (formuleValue, condValue) =>
 			? 0
 			: formuleValue
 
-let treatRuleRoot = (situationGate, rule) => R.pipe(
+let treatRuleRoot = (situationGate, rule, filter) => R.pipe(
 	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
 	// 'meta': pas de traitement pour l'instant
@@ -733,7 +787,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 	// 'cond' : Conditions d'applicabilité de la règle
 		'non applicable si': value => {
 			let
-				child = treat(situationGate, rule)(value),
+				child = treat(situationGate, rule, filter)(value),
 				nodeValue = child.nodeValue
 
 			return {
@@ -762,7 +816,7 @@ let treatRuleRoot = (situationGate, rule) => R.pipe(
 		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
 			let
-				child = treat(situationGate, rule)(value),
+				child = treat(situationGate, rule, filter)(value),
 				nodeValue = child.nodeValue
 			return {
 				category: 'ruleProp',

@@ -43,9 +43,9 @@
   format: euros
   # TODO En attendant que l'UI devienne plus intelligente, c'est confondu avec le salaire de base.
   # intelligente : il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule
-  # formule:
-    # somme:
-      # - salaire de base
+  formule:
+    somme:
+      - salaire de base
       # - primes
       # - indemnités
   suggestions:
@@ -65,19 +65,42 @@
   # type de période: mensuel
   formule: 3269
 
-
-
+- espace: contrat salarié
+  nom: cotisations
+  description: |
+    Les cotisations contributives et non contributives
+  formule:
+    somme:
+      - maladie
+      - vieillesse
 
 - espace: contrat salarié
   nom: salaire net
   description: |
     C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
-  formule:
-    # TODO à compléter
-    somme: #TODO à l'avenir, exprimer une somme sous forme de requête
-      - APEC
-      - AGIRC
+  formule: salaire brut - cotisations (salarié)
 
+- espace: contrat salarié
+  nom: coût du travail
+  description: |
+    C'est le salaire de base augmenté des cotisations patronales.
+  formule: salaire brut + cotisations (employeur)
+
+- espace: contrat salarié
+  nom: Salaire
+  description: |
+    Le coût du travail salarial
+  formule:
+    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
+      - salaire net
+      - coût du travail
+
+  simulateur:
+    titre: Simulateur de coût d'embauche
+    sous-titre: Découvrir le coût d'embauche ou le salaire réel
+    résultats: Le salaire net à partir du brut ou vice-versa, et les cotisations
+    introduction:
+      motivation: Découvrez le vrai coût du travail
 
 
 
