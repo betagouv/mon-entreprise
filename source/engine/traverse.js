@@ -448,6 +448,64 @@ let treat = (situationGate, rules, rule) => rawNode => {
 				/>
 			}
 		},
+		mecanismProduct = (k,v) => {
+			let
+				mult = (base, rate, facteur, plafond) =>
+					Math.min(base, plafond) * rate * facteur,
+				constantNode = constant => ({nodeValue: constant}),
+				assiette = reTreat(v['assiette']),
+				//TODO parser le taux dans le parser ?
+				taux = v['taux'] ? reTreat({taux: v['taux']}) : constantNode(1),
+				facteur = v['facteur'] ? reTreat(v['facteur']) : constantNode(1),
+				plafond = v['plafond'] ? reTreat(v['plafond']) : constantNode(Infinity),
+				//TODO rate == false should be more explicit
+				nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
+					0
+				: anyNull([taux, assiette, facteur, plafond]) ?
+						null
+					: mult(val(assiette), val(taux), val(facteur), val(plafond))
+			return {
+				nodeValue,
+				category: 'mecanism',
+				name: 'multiplication',
+				type: 'numeric',
+				explanation: {
+					assiette,
+					taux,
+					facteur,
+					plafond
+					//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
+				},
+				jsx: <Node
+					classes="mecanism multiplication"
+					name="multiplication"
+					value={nodeValue}
+					child={
+						<ul className="properties">
+							<li key="assiette">
+								<span className="key">assiette: </span>
+								<span className="value">{assiette.jsx}</span>
+							</li>
+							{taux.nodeValue != 1 &&
+							<li key="taux">
+								<span className="key">taux: </span>
+								<span className="value">{taux.jsx}</span>
+							</li>}
+							{facteur.nodeValue != 1 &&
+							<li key="facteur">
+								<span className="key">facteur: </span>
+								<span className="value">{facteur.jsx}</span>
+							</li>}
+							{plafond.nodeValue != Infinity &&
+							<li key="plafond">
+								<span className="key">plafond: </span>
+								<span className="value">{plafond.jsx}</span>
+							</li>}
+						</ul>
+					}
+				/>
+			}
+		},
 		treatObject = rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
@@ -464,65 +522,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			if (k === 'logique numérique')		return mecanismNumericalLogic(k,v)
 			if (k === 'taux')					return mecanismPercentage(k,v)
 			if (k === 'somme')					return mecanismSum(k,v)
-
-			if (k === 'multiplication') {
-				let
-					mult = (base, rate, facteur, plafond) =>
-						Math.min(base, plafond) * rate * facteur,
-					constantNode = constant => ({nodeValue: constant}),
-					assiette = reTreat(v['assiette']),
-					//TODO parser le taux dans le parser ?
-					taux = v['taux'] ? reTreat({taux: v['taux']}) : constantNode(1),
-					facteur = v['facteur'] ? reTreat(v['facteur']) : constantNode(1),
-					plafond = v['plafond'] ? reTreat(v['plafond']) : constantNode(Infinity),
-					//TODO rate == false should be more explicit
-					nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
-						0
-					: anyNull([taux, assiette, facteur, plafond]) ?
-							null
-						: mult(val(assiette), val(taux), val(facteur), val(plafond))
-				return {
-					nodeValue,
-					category: 'mecanism',
-					name: 'multiplication',
-					type: 'numeric',
-					explanation: {
-						assiette,
-						taux,
-						facteur,
-						plafond
-						//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
-					},
-					jsx: <Node
-						classes="mecanism multiplication"
-						name="multiplication"
-						value={nodeValue}
-						child={
-							<ul className="properties">
-								<li key="assiette">
-									<span className="key">assiette: </span>
-									<span className="value">{assiette.jsx}</span>
-								</li>
-								{taux.nodeValue != 1 &&
-								<li key="taux">
-									<span className="key">taux: </span>
-									<span className="value">{taux.jsx}</span>
-								</li>}
-								{facteur.nodeValue != 1 &&
-								<li key="facteur">
-									<span className="key">facteur: </span>
-									<span className="value">{facteur.jsx}</span>
-								</li>}
-								{plafond.nodeValue != Infinity &&
-								<li key="plafond">
-									<span className="key">plafond: </span>
-									<span className="value">{plafond.jsx}</span>
-								</li>}
-							</ul>
-						}
-					/>
-				}
-			}
+			if (k === 'multiplication')			return mecanismProduct(k,v)				
 
 			if (k === 'barème') {
 				// Sous entendu : barème en taux marginaux.

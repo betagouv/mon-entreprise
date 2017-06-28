@@ -111,4 +111,11 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
   });
 
+  it('should handle multiplications', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"multiplication": {assiette:3259, plafond:3200, facteur:1, taux:1.5}}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
+  });
+
 });
