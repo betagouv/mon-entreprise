@@ -89,7 +89,7 @@ export let
 						let
 							{nodeValue, explanation} = memo,
 							conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
-							childNumericalLogic = mecanismNumericalLogic(condition, consequence),
+							childNumericalLogic = mecanismNumericalLogic(recurse, condition, consequence),
 							nextNodeValue = conditionNode.nodeValue == null ?
 							// Si la proposition n'est pas encore résolvable
 								null
