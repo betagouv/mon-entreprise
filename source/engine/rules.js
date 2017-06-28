@@ -46,7 +46,8 @@ export let decodeRuleName = name => name.replace(/\-/g, ' ')
 
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
-export let disambiguateRuleReference = ({ns, name}, partialName) => {
+
+export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 	let
 		fragments = ns.split(' . '), // ex. [CDD . événements . rupture]
 		pathPossibilities = // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
@@ -56,7 +57,7 @@ export let disambiguateRuleReference = ({ns, name}, partialName) => {
 		found = R.reduce((res, path) =>
 			R.when(
 				R.is(Object), R.reduced
-			)(findRuleByDottedName([...path, partialName].join(' . ')))
+			)(findRuleByDottedName(allRules, [...path, partialName].join(' . ')))
 		, null, pathPossibilities)
 
 	return found && found.dottedName || do {throw `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`}
@@ -69,9 +70,8 @@ export let rules = rawRules.map(enrichRule)
 /****************************************
  Méthodes de recherche d'une règle */
 
-export let findRuleByName = search =>
-	rules
-		.map(enrichRule)
+export let findRuleByName = (allRules, search) =>
+	allRules
 		.find( ({name}) =>
 			name.toLowerCase() === search.toLowerCase()
 		)
@@ -83,21 +83,8 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-export let findRuleByDottedName = dottedName => dottedName &&
-	rules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase())
-
-export let findGroup = R.pipe(
-	findRuleByDottedName,
-	found => found && found['une possibilité'] && found,
-	// Is there a way to express this more litterally in ramda ?
-	// R.unless(
-	// 	R.isNil,
-	// 	R.when(
-	// 		R.has('une possibilité'),
-	// 		R.identity
-	// 	)
-	// )
-)
+export let findRuleByDottedName = (allRules, dottedName) => dottedName &&
+	allRules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase())
 
 /*********************************
 Autres */
@@ -130,12 +117,14 @@ export let getObjectives = analysedSituation => {
 	let formuleType = R.path(["formule", "explanation", "name"])(
 		analysedSituation
 	)
-	return formuleType == "somme"
+	let result = formuleType == "somme"
 		? R.pluck(
 				"explanation",
 				R.path(["formule", "explanation", "explanation"])(analysedSituation)
 			)
 		: formuleType ? [analysedSituation] : null
+
+	return R.reject(R.isNil)(result)
 }
 
 
@@ -159,16 +148,16 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
-export let findVariantsAndRecords =
+export let deprecated_findVariantsAndRecords =
 	({variantGroups, recordGroups}, dottedName, childDottedName) => {
-		let child = findRuleByDottedName(dottedName),
+		let child = findRuleByDottedName(rules, dottedName),
 			parentDottedName = parentName(dottedName),
-			parent = findRuleByDottedName(parentDottedName)
+			parent = findRuleByDottedName(rules, parentDottedName)
 		if (isVariant(parent)) {
 			let grandParentDottedName = parentName(parentDottedName),
-				grandParent = findRuleByDottedName(grandParentDottedName)
+				grandParent = findRuleByDottedName(rules, grandParentDottedName)
 			if (isVariant(grandParent))
-				return findVariantsAndRecords({variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
+				return deprecated_findVariantsAndRecords({variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
 			else
 				return {
 					variantGroups: R.mergeWith(R.concat, variantGroups, {[parentDottedName]: [childDottedName || dottedName]}),

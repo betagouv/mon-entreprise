@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {findRuleByDottedName} from '../engine/rules'
+import {rules, findRuleByDottedName} from '../engine/rules'
 import './Aide.css'
 import {EXPLAIN_VARIABLE} from '../actions'
 import References from './rule/References'
@@ -23,7 +23,7 @@ export default class Aide extends Component {
 
 		if (!explained) return <section id="helpWrapper" />
 
-		let rule = findRuleByDottedName(explained),
+		let rule = findRuleByDottedName(rule, explained),
 			text = rule.description,
 			refs = rule.références
 

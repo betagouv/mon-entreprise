@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 import R from 'ramda'
 import './Rule.css'
-import {decodeRuleName, findRuleByName, disambiguateRuleReference} from 'Engine/rules.js'
+import {rules, decodeRuleName} from 'Engine/rules.js'
 import mockSituation from 'Engine/mockSituation.yaml'
 import {analyseSituation} from 'Engine/traverse'
 import {START_CONVERSATION} from '../../actions'
@@ -41,7 +41,7 @@ export default class Rule extends Component {
 		}
 	}
 	setRule(name){
-		this.rule = analyseSituation(decodeRuleName(name))(this.props.situationGate)
+		this.rule = analyseSituation(rules, decodeRuleName(name))(this.props.situationGate)
 	}
 	componentWillMount(){
 		let {

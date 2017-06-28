@@ -4,7 +4,7 @@ import './Explicable.css'
 import HoverDecorator from '../HoverDecorator'
 import {connect} from 'react-redux'
 import {EXPLAIN_VARIABLE} from '../../actions'
-import {findRuleByDottedName} from '../../engine/rules'
+import {rules, findRuleByDottedName} from '../../engine/rules'
 
 
 @connect(state => ({explained: state.explainedVariable}), dispatch => ({
@@ -18,7 +18,7 @@ export default class Explicable extends React.Component {
 			explain, explained,
 			lightBackground
 			} = this.props,
-			rule = findRuleByDottedName(dottedName)
+			rule = findRuleByDottedName(rules, dottedName)
 
 		// Rien à expliquer ici, ce n'est pas une règle
 		if (!rule) return <span>{label}</span>
