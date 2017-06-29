@@ -6,7 +6,8 @@ import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
-import {mecanismOneOf,mecanismAllOf,mecanismNumericalLogic,mecanismSum,mecanismProduct,mecanismPercentage,mecanismScale,mecanismMax,mecanismError} from "./mecanisms"
+import {mecanismOneOf,mecanismAllOf,mecanismNumericalLogic,mecanismSum,mecanismProduct,
+		mecanismPercentage,mecanismScale,mecanismMax,mecanismError, mecanismComplement} from "./mecanisms"
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -270,6 +271,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					'multiplication':			mecanismProduct,
 					'barème':					mecanismScale,
 					'le maximum de':			mecanismMax,
+					'complément':				mecanismComplement,
 				},
 				action = R.pathOr(mecanismError,[k],dispatch)
 
