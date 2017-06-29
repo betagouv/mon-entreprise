@@ -464,6 +464,48 @@ export let mecanismMax = (recurse,k,v) => {
 	}
 }
 
+export let mecanismComplement = (recurse,k,v) => {
+	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+		return decompose(recurse,k,v)
+	}
+
+	if (v['cible'] == null)
+		throw "un complément nécessite une propriété 'cible'"
+
+	let cible = recurse(v['cible']),
+		mini = recurse(v['montant']),
+		nulled = val(cible) == null,
+		nodeValue = nulled ? null : R.subtract(val(mini), R.min(val(cible), val(mini)))
+
+	return {
+		type: 'numeric',
+		category: 'mecanism',
+		name: 'complément pour atteindre',
+		nodeValue,
+		explanation: {
+			cible,
+			mini
+		},
+		jsx: <Node
+			classes="mecanism list complement"
+			name="complément pour atteindre"
+			value={nodeValue}
+			child={
+				<ul className="properties">
+					<li key="cible">
+						<span className="key">montant calculé: </span>
+						<span className="value">{cible.jsx}</span>
+					</li>
+					<li key="mini">
+						<span className="key">montant à atteindre: </span>
+						<span className="value">{mini.jsx}</span>
+					</li>
+				</ul>
+			}
+		/>
+	}
+}
+
 export let mecanismError = (recurse,k,v) => {
 	throw "Le mécanisme est inconnu !"
 }

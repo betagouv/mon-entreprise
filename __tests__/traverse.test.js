@@ -56,6 +56,24 @@ describe('analyseSituation on raw rules', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3259)
   });
 
+  it('should handle complements', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {complément: {cible: "dix", montant: 93}}, espace: "top"},
+          {nom: "dix", formule: 17, espace: "top"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',93-17)
+  });
+
+  it('should handle components in complements', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {complément: {cible: "dix", 
+            composantes: [{montant: 93},{montant: 93}]
+          }}, espace: "top"},
+          {nom: "dix", formule: 17, espace: "top"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2*(93-17))
+  });
+
   /* TODO: make this pass
   it('should handle applicability conditions', function() {
     let rawRules = [
