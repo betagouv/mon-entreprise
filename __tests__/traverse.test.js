@@ -118,12 +118,44 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
   });
 
+  it('should handle components in multiplication', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"multiplication": {assiette:3200,
+            composantes: [{taux:0.7}, {taux:0.8}]
+          }}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
+  });
+
+  it('should apply a ceiling to the sum of components', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"multiplication": {assiette:3259, plafond:3200,
+            composantes: [{taux:0.7}, {taux:0.8}]
+          }}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
+  });
+
   it('should handle progressive scales', function() {
     let rawRules = [
           {nom: "startHere", formule: {"barème": {
             assiette:2008,
             "multiplicateur des tranches":1000,
             "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.2}, ,{"au-dessus de":2, taux: 10}]
+          }}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
+  });
+
+  it('should handle progressive scales with components', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            composantes: [
+              {"tranches":[{"en-dessous de":1, taux: 0.05},{de:1, "à": 2, taux: 0.4}, ,{"au-dessus de":2, taux: 5}]},
+              {"tranches":[{"en-dessous de":1, taux: 0.05},{de:1, "à": 2, taux: 0.8}, ,{"au-dessus de":2, taux: 5}]}
+            ]
           }}}],
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
