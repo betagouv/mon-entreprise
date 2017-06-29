@@ -8,6 +8,60 @@ let transformPercentage = s =>
 		+s.replace('%', '') / 100
 	: +s
 
+export let decompose = (recurse, k, v) => {
+	let
+		subProps = R.dissoc('composantes')(v),
+		composantes = v.composantes.map(c =>
+			({
+				... recurse(
+					R.objOf(k,
+						{
+							... subProps,
+							... R.dissoc('attributs')(c)
+						})
+				),
+				composante: c.nom ? {nom: c.nom} : c.attributs
+			})
+		),
+		nodeValue = anyNull(composantes) ? null
+			: R.reduce(R.add, 0, composantes.map(val))
+
+	return {
+		nodeValue,
+		category: 'mecanism',
+		name: 'composantes',
+		type: 'numeric',
+		explanation: composantes,
+		jsx: <Node
+			classes="mecanism composantes"
+			name="composantes"
+			value={nodeValue}
+			child={
+				<ul>
+					{ composantes.map((c, i) =>
+						[<li className="composante" key={JSON.stringify(c.composante)}>
+							<ul className="composanteAttributes">
+								{R.toPairs(c.composante).map(([k,v]) =>
+									<li>
+										<span>{k}: </span>
+										<span>{v}</span>
+									</li>
+								)}
+							</ul>
+							<div className="content">
+								{c.jsx}
+							</div>
+						</li>,
+						i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+						]
+						)
+					}
+				</ul>
+			}
+		/>
+	}
+}
+
 export let mecanismOneOf = (recurse, k, v) => {
 	let result = R.pipe(
 		R.unless(R.is(Array), () => {throw 'should be array'}),
@@ -216,6 +270,10 @@ export let mecanismSum = (recurse,k,v) => {
 }
 
 export let mecanismProduct = (recurse,k,v) => {
+	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+		return decompose(recurse,k,v)
+	}
+
 	let
 		mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond) * rate * facteur,
@@ -278,58 +336,8 @@ export let mecanismScale = (recurse,k,v) => {
 	// Sous entendu : barème en taux marginaux.
 	// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
-		let
-			baremeProps = R.dissoc('composantes')(v),
-			composantes = v.composantes.map(c =>
-				({
-					... recurse(
-						{
-							barème: {
-								... baremeProps,
-								... R.dissoc('attributs')(c)
-							}
-						}
-					),
-					composante: c.nom ? {nom: c.nom} : c.attributs
-				})
-			),
-			nodeValue = anyNull(composantes) ? null
-				: R.reduce(R.add, 0, composantes.map(val))
+		return decompose(recurse,k,v)
 
-		return {
-			nodeValue,
-			category: 'mecanism',
-			name: 'composantes',
-			type: 'numeric',
-			explanation: composantes,
-			jsx: <Node
-				classes="mecanism composantes"
-				name="composantes"
-				value={nodeValue}
-				child={
-					<ul>
-						{ composantes.map((c, i) =>
-							[<li className="composante" key={JSON.stringify(c.composante)}>
-								<ul className="composanteAttributes">
-									{R.toPairs(c.composante).map(([k,v]) =>
-										<li>
-											<span>{k}: </span>
-											<span>{v}</span>
-										</li>
-									)}
-								</ul>
-								<div className="content">
-									{c.jsx}
-								</div>
-							</li>,
-							i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
-							]
-							)
-						}
-					</ul>
-				}
-			/>
-		}
 	}
 
 	if (v['multiplicateur des tranches'] == null)
