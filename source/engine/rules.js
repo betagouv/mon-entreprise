@@ -124,7 +124,7 @@ export let getObjectives = analysedSituation => {
 			)
 		: formuleType ? [analysedSituation] : null
 
-	return R.reject(R.isNil)(result)
+	return result ? R.reject(R.isNil)(result) : null;
 }
 
 
