@@ -11,7 +11,9 @@ let transformPercentage = s =>
 export let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
-		composantes = v.composantes.map(c =>
+		filter = val(recurse("sys . filter")),
+		isRelevant = c => !filter || !c.attributs || c.attributs['dû par'] == filter,
+		composantes = v.composantes.filter(isRelevant).map(c =>
 			({
 				... recurse(
 					R.objOf(k,
