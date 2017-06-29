@@ -49,7 +49,7 @@ export let decodeRuleName = name => name.replace(/\-/g, ' ')
 
 export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 	let
-		fragments = ns.split(' . '), // ex. [CDD . événements . rupture]
+		fragments = ns ? ns.split(' . ') : [], // ex. [CDD . événements . rupture]
 		pathPossibilities = // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 			R.range(0, fragments.length + 1)
 			.map(nbEl => R.take(nbEl)(fragments))
@@ -83,8 +83,14 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-export let findRuleByDottedName = (allRules, dottedName) => dottedName &&
-	allRules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase())
+export let findRuleByDottedName = (allRules, dottedName) => {
+	let found = dottedName && allRules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase()),
+		result = dottedName && dottedName.startsWith("sys .") ?
+					found || {dottedName: dottedName, nodeValue: null} :
+					found
+
+	return result
+}
 
 /*********************************
 Autres */

@@ -47,6 +47,10 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
+// Creates a synthetic variable in the system namespace to signal filtering on components
+let withFilter = (rules, filter) =>
+	R.concat(rules,[{name:"filter", nodeValue:filter, ns:"sys", dottedName: "sys . filter"}])
+
 let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
 	let
 		{fragments} = parseResult,
@@ -64,11 +68,10 @@ let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
 		),
 
 		situationValue = evaluateVariable(situationGate, dottedName, variable),
-		nodeValue = situationValue
-			!= null ? situationValue
-			: !variableIsCalculable
-				? null
-				: parsedRule.nodeValue,
+		calculatedValue = variableIsCalculable ? parsedRule.nodeValue : null,
+		systemValue = dottedName.startsWith("sys .") ? variable.nodeValue : null,
+		nodeValue = R.defaultTo(situationValue,
+						R.defaultTo(systemValue,calculatedValue)),
 		explanation = parsedRule,
 		missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
@@ -125,11 +128,15 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			if (additionnalResults && additionnalResults.length > 0)
 				throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'modifiedVariable', 'comparison', 'negatedVariable']))
+			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable']))
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
 				return fillVariableNode(rules, rule, situationGate)(parseResult)
+			if (parseResult.category == 'filteredVariable') {
+				let newRules = withFilter(rules,parseResult.filter)
+				return fillVariableNode(newRules, rule, situationGate)(parseResult.variable)
+			}
 			if (parseResult.category == 'negatedVariable')
 				return buildNegatedVariable(
 					fillVariableNode(rules, rule, situationGate)(parseResult.variable)
@@ -137,9 +144,12 @@ let treat = (situationGate, rules, rule) => rawNode => {
 
 			if (parseResult.category == 'calcExpression') {
 				let
+					fillVariable = fillVariableNode(rules, rule, situationGate),
+					fillFiltered = parseResult => fillVariableNode(withFilter(rules,parseResult.filter), rule, situationGate)(parseResult.variable),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
-							[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
+							[R.propEq('category', 'variable'), fillVariable],
+							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								R.assoc('jsx', <span className="value">
 									{node.nodeValue}
