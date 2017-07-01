@@ -54,6 +54,7 @@
     "file-loader": "^0.11.1",
     "html-loader": "^0.4.5",
     "img-loader": "^2.0.0",
+    "jsdom": "^11.0.0",
     "json-loader": "^0.5.4",
     "mocha": "^3.4.2",
     "mocha-webpack": "^0.7.0",
@@ -74,6 +75,6 @@
     "start": "node source/server.js",
     "compile": "NODE_ENV='production' webpack --config source/webpack.config.js",
     "surge": "npm run compile && surge --domain scientific-wish.surge.sh -p ./ && rm -rf dist/",
-    "test": "mocha-webpack --webpack-config source/webpack.config.js --require source-map-support/register \"__tests__/**/*.test.js\""
+    "test": "mocha-webpack --webpack-config source/webpack.config.js --require source-map-support/register --require __tests__/helpers/browser.js \"__tests__/**/*.test.js\""
   }
 }
