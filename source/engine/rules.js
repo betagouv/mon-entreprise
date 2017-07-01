@@ -133,9 +133,7 @@ export let getObjectives = analysedSituation => {
 	return result ? R.reject(R.isNil)(result) : null;
 }
 
-
 export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
-
 	R.pipe(
 		getObjectives,
 		R.chain( v =>
@@ -154,16 +152,20 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
-export let deprecated_findVariantsAndRecords =
-	({variantGroups, recordGroups}, dottedName, childDottedName) => {
-		let child = findRuleByDottedName(rules, dottedName),
+export let findVariantsAndRecords =
+	(allRules, memo, dottedName, childDottedName) => {
+		console.log("memo",memo)
+		console.log("dottedName",dottedName)
+		console.log("childDottedName",childDottedName)
+		let {variantGroups, recordGroups} = memo,
+			child = findRuleByDottedName(allRules, dottedName),
 			parentDottedName = parentName(dottedName),
-			parent = findRuleByDottedName(rules, parentDottedName)
+			parent = findRuleByDottedName(allRules, parentDottedName)
 		if (isVariant(parent)) {
 			let grandParentDottedName = parentName(parentDottedName),
-				grandParent = findRuleByDottedName(rules, grandParentDottedName)
+				grandParent = findRuleByDottedName(allRules, grandParentDottedName)
 			if (isVariant(grandParent))
-				return deprecated_findVariantsAndRecords({variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
+				return findVariantsAndRecords(allRules, {variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
 			else
 				return {
 					variantGroups: R.mergeWith(R.concat, variantGroups, {[parentDottedName]: [childDottedName || dottedName]}),
