@@ -7,7 +7,7 @@ import formValueTypes from 'Components/conversation/formValueTypes'
 import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
 import { STEP_ACTION, START_CONVERSATION} from '../actions'
-import {rules, findRuleByDottedName, collectMissingVariables, deprecated_findVariantsAndRecords} from './rules'
+import {rules, findRuleByDottedName, collectMissingVariables, findVariantsAndRecords} from './rules'
 
 
 export let reduceSteps = (state, action) => {
@@ -26,14 +26,14 @@ export let reduceSteps = (state, action) => {
 		return {
 			...returnObject,
 			foldedSteps: state.foldedSteps || [],
-			unfoldedSteps: buildNextSteps(returnObject.analysedSituation)
+			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		return {
 			...returnObject,
 			foldedSteps: [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps: buildNextSteps(returnObject.analysedSituation)
+			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
@@ -77,12 +77,10 @@ let analyse = rootVariable => R.pipe(
 
 	missingVariables: {variable: [objectives]}
  */
-let buildNextSteps = analysedSituation => {
+export let buildNextSteps = (allRules, analysedSituation) => {
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(
 		analysedSituation
 	)
-
-
 
 	/*
 		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.
@@ -108,16 +106,17 @@ let buildNextSteps = analysedSituation => {
 
 		D'autres variables pourront être regroupées aussi, car elles partagent un parent, mais sans fusionner leurs questions dans l'interface. Ce sont des **groupes de type _record_ **
 	*/
+
+	// Ramda has trouble automatically currying this construction
+	let findVAR = (memo,name) => findVariantsAndRecords(allRules, memo, name, null)
+
 	return R.pipe(
 		R.keys,
-		R.reduce(
-			deprecated_findVariantsAndRecords
-			, {variantGroups: {}, recordGroups: {}}
-		),
+		R.reduce(findVAR, {variantGroups: {}, recordGroups: {}}),
 		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
 		R.evolve({
-			variantGroups: generateGridQuestions(missingVariables),
-			recordGroups: generateSimpleQuestions(missingVariables),
+			variantGroups: generateGridQuestions(allRules, missingVariables),
+			recordGroups: generateSimpleQuestions(allRules, missingVariables),
 		}),
 		R.values,
 		R.unnest,
@@ -151,9 +150,9 @@ export let constructStepMeta = ({
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
-let buildVariantTree = relevantPaths => path => {
+let buildVariantTree = (allRules, relevantPaths) => path => {
 	let rec = path => {
-		let node = findRuleByDottedName(rules, path),
+		let node = findRuleByDottedName(allRules, path),
 			variant = isVariant(node),
 			variants = variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
 			shouldBeExpanded = variant && variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
@@ -171,28 +170,29 @@ let buildVariantTree = relevantPaths => path => {
 	return rec(path)
 }
 
-export let generateGridQuestions = missingVariables => R.pipe(
+export let generateGridQuestions = (allRules, missingVariables) => R.pipe(
 	R.toPairs,
-	R.map( ([variantRoot, relevantVariants]) =>
-		({
-			...constructStepMeta(findRuleByDottedName(rules, variantRoot)),
-			component: Question,
-			choices: buildVariantTree(relevantVariants)(variantRoot),
-			objectives:  R.pipe(
-				R.chain(v => missingVariables[v]),
-				R.uniq()
-			)(relevantVariants),
-			// Mesure de l'impact de cette variable : combien de fois elle est citée par une règle
-			impact: relevantVariants.reduce((count, next) => count + missingVariables[next].length, 0)
-		})
+	R.map( ([variantRoot, relevantVariants]) => {
+			return ({
+				...constructStepMeta(findRuleByDottedName(allRules, variantRoot)),
+				component: Question,
+				choices: buildVariantTree(allRules, relevantVariants)(variantRoot),
+				objectives:  R.pipe(
+					R.chain(v => missingVariables[v]),
+					R.uniq()
+				)(relevantVariants),
+				// Mesure de l'impact de cette variable : combien de fois elle est citée par une règle
+				impact: relevantVariants.reduce((count, next) => count + missingVariables[next].length, 0)
+			})
+		}
 	)
 )
 
-export let generateSimpleQuestions = missingVariables => R.pipe(
+export let generateSimpleQuestions = (allRules, missingVariables) => R.pipe(
 	R.values, //TODO exploiter ici les groupes de questions de type 'record' (R.keys): elles pourraient potentiellement êtres regroupées visuellement dans le formulaire
 	R.unnest,
 	R.map(dottedName => {
-		let rule = findRuleByDottedName(rules, dottedName)
+		let rule = findRuleByDottedName(allRules, dottedName)
 		if (rule == null) console.log(dottedName)
 		return Object.assign(
 			constructStepMeta(rule),
