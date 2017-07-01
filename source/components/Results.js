@@ -6,8 +6,8 @@ import { withRouter } from 'react-router'
 import R from 'ramda'
 import './Results.css'
 import {capitalise0} from '../utils'
-import {computeRuleValue} from 'Engine/traverse'
-import {encodeRuleName, getObjectives} from 'Engine/rules'
+import {computeRuleValue} from '../engine/traverse'
+import {encodeRuleName, getObjectives} from '../engine/rules'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))

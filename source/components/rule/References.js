@@ -1,6 +1,6 @@
 import React from 'react'
 import R from 'ramda'
-import references from 'Règles/ressources/références/références.yaml'
+import references from '../../../../règles/ressources/références/références.yaml'
 import './References.css'
 
 export default ({refs}) => (
@@ -18,7 +18,7 @@ export default ({refs}) => (
 						<span className="url">
 							{domain}
 							{refData.image &&
-								<img src={require('Règles/ressources/références/' + refData.image)}/> }
+								<img src={require('../../../../règles/ressources/références/' + refData.image)}/> }
 						</span>
 					</span>
 					<a href={link} target="_blank">

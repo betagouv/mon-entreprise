@@ -2,8 +2,8 @@ import React from 'react'
 import classNames from 'classnames'
 import R from 'ramda'
 import {AttachDictionary} from '../AttachDictionary'
-import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import marked from 'Engine/marked'
+import knownMecanisms from '../../engine/known-mecanisms.yaml'
+import marked from '../../engine/marked'
 
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {

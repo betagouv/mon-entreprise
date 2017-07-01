@@ -2,7 +2,7 @@ import React from 'react'
 import R from 'ramda'
 import classNames from 'classnames'
 import {Link} from 'react-router-dom'
-import {encodeRuleName} from 'Engine/rules'
+import {encodeRuleName} from './rules'
 
 let treatValue = data =>
 	data == null
