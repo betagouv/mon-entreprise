@@ -153,12 +153,8 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 let isVariant = R.path(['formule', 'une possibilité'])
 
 export let findVariantsAndRecords =
-	(allRules, memo, dottedName, childDottedName) => {
-		console.log("memo",memo)
-		console.log("dottedName",dottedName)
-		console.log("childDottedName",childDottedName)
-		let {variantGroups, recordGroups} = memo,
-			child = findRuleByDottedName(allRules, dottedName),
+	(allRules, {variantGroups, recordGroups}, dottedName, childDottedName) => {
+		let child = findRuleByDottedName(allRules, dottedName),
 			parentDottedName = parentName(dottedName),
 			parent = findRuleByDottedName(allRules, parentDottedName)
 		if (isVariant(parent)) {
