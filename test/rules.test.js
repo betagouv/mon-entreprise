@@ -76,9 +76,9 @@ describe('findVariantsAndRecords', function() {
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
         situation = analyseSituation(rules,"sum")(stateSelector),
-        result = findVariantsAndRecords(rules, {variantGroups: {}, recordGroups: {}}, 'top . sum . evt . ko', 'top . deux')
+        result = findVariantsAndRecords(rules, {variantGroups: {}, recordGroups: {}}, 'top . sum . evt . ko')
 
-      expect(result).to.have.deep.property('variantGroups', {"top . sum . evt": ['top . deux']})
+      expect(result).to.have.deep.property('variantGroups', {"top . sum . evt": ['top . sum . evt . ko']})
   });
 
 });
