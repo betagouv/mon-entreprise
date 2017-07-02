@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import './HomeSyso.css'
-import {searchRules, encodeRuleName} from '../engine/rules.js'
-import {Link} from 'react-router-dom'
 import R from 'ramda'
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+import {searchRules, encodeRuleName} from 'Engine/rules.js'
+import './HomeSyso.css'
 
 export default class Home extends Component {
 	state = {

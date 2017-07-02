@@ -1,13 +1,14 @@
+import R from 'ramda'
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { withRouter } from 'react-router'
-import R from 'ramda'
+
 import './Results.css'
 import {capitalise0} from '../utils'
-import {computeRuleValue} from '../engine/traverse'
-import {encodeRuleName, getObjectives} from '../engine/rules'
+import {computeRuleValue} from 'Engine/traverse'
+import {encodeRuleName, getObjectives} from 'Engine/rules'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))

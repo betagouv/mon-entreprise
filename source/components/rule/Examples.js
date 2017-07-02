@@ -5,8 +5,8 @@ import {
 	rules,
 	decodeRuleName,
 	disambiguateRuleReference
-} from "../../engine/rules.js"
-import { analyseSituation } from "../../engine/traverse"
+} from "Engine/rules.js"
+import { analyseSituation } from "Engine/traverse"
 import "./Examples.css"
 
 export default class Examples extends Component {

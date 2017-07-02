@@ -1,9 +1,11 @@
 import React from 'react'
-import Explicable from '../components/conversation/Explicable'
 import R from 'ramda'
-import Question from '../components/conversation/Question'
-import Input from '../components/conversation/Input'
-import formValueTypes from '../components/conversation/formValueTypes'
+
+import Explicable from 'Components/conversation/Explicable'
+import Question from 'Components/conversation/Question'
+import Input from 'Components/conversation/Input'
+import formValueTypes from 'Components/conversation/formValueTypes'
+
 import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
 import { STEP_ACTION, START_CONVERSATION} from '../actions'

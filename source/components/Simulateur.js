@@ -1,18 +1,19 @@
+import R from 'ramda'
 import React, {Component} from 'react'
+import Helmet from 'react-helmet'
 import {reduxForm, formValueSelector, reset} from 'redux-form'
 import {connect} from 'react-redux'
-import {START_CONVERSATION} from '../actions'
-import R from 'ramda'
 import {Redirect, Link, withRouter} from 'react-router-dom'
+import classNames from 'classnames'
+
+import {START_CONVERSATION} from '../actions'
 import Aide from './Aide'
-import {createMarkdownDiv} from '../engine/marked'
-import {rules, findRuleByName, decodeRuleName} from '../engine/rules'
+import {createMarkdownDiv} from 'Engine/marked'
+import {rules, findRuleByName, decodeRuleName} from 'Engine/rules'
 import './conversation/conversation.css'
 import './Simulateur.css'
-import classNames from 'classnames'
 import {capitalise0} from '../utils'
 import Satisfaction from './Satisfaction'
-import Helmet from 'react-helmet'
 
 let situationSelector = formValueSelector('conversation')
 

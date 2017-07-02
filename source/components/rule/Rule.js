@@ -4,11 +4,11 @@ import {connect} from 'react-redux'
 import {formValueSelector} from 'redux-form'
 import R from 'ramda'
 import './Rule.css'
-import {rules, decodeRuleName} from '../../engine/rules.js'
-import mockSituation from '../../engine/mockSituation.yaml'
-import {analyseSituation} from '../../engine/traverse'
+import {rules, decodeRuleName} from 'Engine/rules.js'
+import mockSituation from 'Engine/mockSituation.yaml'
+import {analyseSituation} from 'Engine/traverse'
 import {START_CONVERSATION} from '../../actions'
-import possiblesDestinataires from '../../../règles/ressources/destinataires/destinataires.yaml'
+import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
 import {capitalise0} from '../../utils'
 import References from './References'
 import Algorithm from './Algorithm'
@@ -89,7 +89,7 @@ export default class Rule extends Component {
 							: <div>
 									<a href={destinataireData.lien} target="_blank">
 										{destinataireData.image &&
-											<img src={require('../../../règles/ressources/destinataires/' + destinataireData.image)} /> }
+											<img src={require('Règles/ressources/destinataires/' + destinataireData.image)} /> }
 										{!destinataireData.image &&
 											<div id="calligraphy">{destinataire}</div>
 										}
