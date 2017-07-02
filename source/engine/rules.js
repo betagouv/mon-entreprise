@@ -152,6 +152,25 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
+export let findVariantsAndRecords2 = (allRules, names) => {
+	let tag = name => {
+		let parent = parentName(name),
+			gramps = parentName(parent),
+			findV  = name => isVariant(findRuleByDottedName(allRules,name))
+
+		return findV(gramps) ? {type: "variantGroups", [gramps]:[name]}
+			   : findV(parent) ? {type: "variantGroups", [parent]:[name]}
+			   : {type: "recordGroups", [parent]:[name]}
+	}
+
+	let classify = R.map(tag),
+		groupByType = R.groupBy(R.prop("type")),
+		stripTypes = R.map(R.map(R.omit("type"))),
+		mergeLists = R.map(R.reduce(R.mergeWith(R.concat),{}))
+
+	return R.pipe(classify,groupByType,stripTypes,mergeLists)(names)
+}
+
 export let findVariantsAndRecords =
 	(allRules, {variantGroups, recordGroups}, dottedName, childDottedName) => {
 		let child = findRuleByDottedName(allRules, dottedName),
