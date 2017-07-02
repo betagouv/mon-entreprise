@@ -77,6 +77,6 @@
     "compile": "NODE_ENV='production' webpack --config source/webpack.config.js",
     "surge": "npm run compile && surge --domain scientific-wish.surge.sh -p ./ && rm -rf dist/",
     "test": "mocha-webpack --webpack-config source/webpack.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
-    "test-fast": "babel-node --presets babel-preset-flow,babel-preset-env --plugins transform-class-properties test/helpers/runner.js"
+    "test-fast": "babel-node --presets babel-preset-flow,babel-preset-env --plugins transform-class-properties test/helpers/runner.js -w"
   }
 }
