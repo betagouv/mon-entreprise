@@ -25,7 +25,6 @@ describe('buildNextSteps', function() {
   it('should generate questions from the real rule set', function() {
     let situation = analyseSituation(rules,"surcoût CDD")(stateSelector),
         result = buildNextSteps(rules, situation)
-    console.log(result)
   });
 
 });

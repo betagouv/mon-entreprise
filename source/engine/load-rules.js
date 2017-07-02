@@ -1,6 +1,5 @@
 import R from 'ramda'
 
-console.log (typeof __webpack_require__)
 // This is a mock of webpack's require.context, for testing purposes
 if (typeof __webpack_require__ === 'undefined') {
   const fs = require('fs');
@@ -43,11 +42,11 @@ if (typeof __webpack_require__ === 'undefined') {
 let directoryLoaders =
   [
     require.context('../../règles/rémunération-travail/cdd',
-                    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+                    true, /.yaml$/),
     require.context('../../règles/rémunération-travail/entités/ok',
-                    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+                    true, /.yaml$/),
     require.context('../../règles/rémunération-travail/cotisations/ok',
-                    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+                    true, /.yaml$/),
   ]
 
 // require.context returns an object which
