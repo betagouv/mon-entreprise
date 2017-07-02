@@ -1,7 +1,8 @@
 import R from 'ramda'
 
+console.log (typeof __webpack_require__)
 // This is a mock of webpack's require.context, for testing purposes
-if (typeof require.context === 'undefined') {
+if (typeof __webpack_require__ === 'undefined') {
   const fs = require('fs');
   const path = require('path');
 

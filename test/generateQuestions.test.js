@@ -1,6 +1,6 @@
 import R from 'ramda'
 import {expect} from 'chai'
-import {enrichRule} from '../source/engine/rules'
+import {rules, enrichRule} from '../source/engine/rules'
 import {analyseSituation} from '../source/engine/traverse'
 import {buildNextSteps} from '../source/engine/generateQuestions'
 
@@ -20,6 +20,12 @@ describe('buildNextSteps', function() {
 
     expect(result).to.have.lengthOf(1)
     expect(R.path(["question","props","label"])(result[0])).to.equal("?")
+  });
+
+  it('should generate questions from the real rule set', function() {
+    let situation = analyseSituation(rules,"surcoût CDD")(stateSelector),
+        result = buildNextSteps(rules, situation)
+    console.log(result)
   });
 
 });
