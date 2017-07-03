@@ -64,7 +64,7 @@ describe('findVariantsAndRecords', function() {
           {nom: "cinq", espace: "top", question:"?"}],
         rules = rawRules.map(enrichRule),
         situation = analyseSituation(rules,"startHere")(stateSelector),
-        result = findVariantsAndRecords2(rules, ['top . cinq'])
+        result = findVariantsAndRecords(rules, ['top . cinq'])
 
       expect(result).to.have.deep.property('recordGroups', {top: ['top . cinq']})
   });
@@ -77,32 +77,9 @@ describe('findVariantsAndRecords', function() {
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
         situation = analyseSituation(rules,"sum")(stateSelector),
-        result = findVariantsAndRecords2(rules, ['top . sum . evt . ko'])
+        result = findVariantsAndRecords(rules, ['top . sum . evt . ko'])
 
       expect(result).to.have.deep.property('variantGroups', {"top . sum . evt": ['top . sum . evt . ko']})
-  });
-
-  it('should find variants', function() {
-    let rawRules = [
-          {nom: "sum", formule: {somme: [2, "deux"]}, espace: "top"},
-          {nom: "deux", formule: 2, "non applicable si" : "top . sum . evt . ko", espace: "top"},
-          {nom: "evt", espace: "top . sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
-          {nom: "ko", espace: "top . sum . evt"}],
-        rules = rawRules.map(enrichRule),
-        situation = analyseSituation(rules,"sum")(stateSelector),
-        result = findVariantsAndRecords2(rules, ['top . sum . evt . ko'])
-
-      expect(result['variantGroups']).to.deep.equal({"top . sum . evt": ['top . sum . evt . ko']})
-  });
-
-  it('should provide equivalent function to findVAR with findVariants', function() {
-    let situation = analyseSituation(rules,"surcoût CDD")(stateSelector),
-        findVAR = (memo,name) => findVariantsAndRecords(rules, memo, name, null),
-        missing = collectMissingVariables()(situation),
-        newResult = R.pipe(R.keys,R.reduce(findVAR, {variantGroups: {}, recordGroups: {}}))(missing),
-        oldResult = findVariantsAndRecords2(rules, R.keys(missing))
-
-      expect(newResult).to.deep.equal(oldResult)
   });
 
 });

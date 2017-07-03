@@ -22,9 +22,4 @@ describe('buildNextSteps', function() {
     expect(R.path(["question","props","label"])(result[0])).to.equal("?")
   });
 
-  it('should generate questions from the real rule set', function() {
-    let situation = analyseSituation(rules,"surcoût CDD")(stateSelector),
-        result = buildNextSteps(rules, situation)
-  });
-
 });
