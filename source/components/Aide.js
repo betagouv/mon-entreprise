@@ -23,7 +23,7 @@ export default class Aide extends Component {
 
 		if (!explained) return <section id="helpWrapper" />
 
-		let rule = findRuleByDottedName(rule, explained),
+		let rule = findRuleByDottedName(rules, explained),
 			text = rule.description,
 			refs = rule.références
 
