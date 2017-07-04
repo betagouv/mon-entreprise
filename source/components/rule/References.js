@@ -1,7 +1,7 @@
 import React from 'react'
 import R from 'ramda'
-import references from 'Règles/ressources/références/références.yaml'
 import './References.css'
+import references from 'Règles/ressources/références/références.yaml'
 
 export default ({refs}) => (
 	<ul className="references">

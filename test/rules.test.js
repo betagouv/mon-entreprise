@@ -1,5 +1,6 @@
+import R from 'ramda'
 import {expect} from 'chai'
-import {enrichRule, collectMissingVariables, findVariantsAndRecords, getObjectives} from '../source/engine/rules'
+import {rules, enrichRule, collectMissingVariables, findVariantsAndRecords2, findVariantsAndRecords, getObjectives} from '../source/engine/rules'
 import {analyseSituation} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
@@ -63,7 +64,7 @@ describe('findVariantsAndRecords', function() {
           {nom: "cinq", espace: "top", question:"?"}],
         rules = rawRules.map(enrichRule),
         situation = analyseSituation(rules,"startHere")(stateSelector),
-        result = findVariantsAndRecords(rules, {variantGroups: {}, recordGroups: {}}, 'top . cinq', null)
+        result = findVariantsAndRecords(rules, ['top . cinq'])
 
       expect(result).to.have.deep.property('recordGroups', {top: ['top . cinq']})
   });
@@ -76,9 +77,9 @@ describe('findVariantsAndRecords', function() {
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
         situation = analyseSituation(rules,"sum")(stateSelector),
-        result = findVariantsAndRecords(rules, {variantGroups: {}, recordGroups: {}}, 'top . sum . evt . ko', 'top . deux')
+        result = findVariantsAndRecords(rules, ['top . sum . evt . ko'])
 
-      expect(result).to.have.deep.property('variantGroups', {"top . sum . evt": ['top . deux']})
+      expect(result).to.have.deep.property('variantGroups', {"top . sum . evt": ['top . sum . evt . ko']})
   });
 
 });

@@ -1,9 +1,11 @@
 import React from 'react'
-import Explicable from 'Components/conversation/Explicable'
 import R from 'ramda'
+
+import Explicable from 'Components/conversation/Explicable'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import formValueTypes from 'Components/conversation/formValueTypes'
+
 import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
 import { STEP_ACTION, START_CONVERSATION} from '../actions'
@@ -107,12 +109,9 @@ export let buildNextSteps = (allRules, analysedSituation) => {
 		D'autres variables pourront être regroupées aussi, car elles partagent un parent, mais sans fusionner leurs questions dans l'interface. Ce sont des **groupes de type _record_ **
 	*/
 
-	// Ramda has trouble automatically currying this construction
-	let findVAR = (memo,name) => findVariantsAndRecords(allRules, memo, name, null)
-
 	return R.pipe(
 		R.keys,
-		R.reduce(findVAR, {variantGroups: {}, recordGroups: {}}),
+		R.curry(findVariantsAndRecords)(allRules),
 		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
 		R.evolve({
 			variantGroups: generateGridQuestions(allRules, missingVariables),

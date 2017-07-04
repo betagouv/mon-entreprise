@@ -152,20 +152,35 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
-export let findVariantsAndRecords =
-	(allRules, memo, dottedName, childDottedName) => {
-		console.log("memo",memo)
-		console.log("dottedName",dottedName)
-		console.log("childDottedName",childDottedName)
-		let {variantGroups, recordGroups} = memo,
-			child = findRuleByDottedName(allRules, dottedName),
+export let findVariantsAndRecords = (allRules, names) => {
+	let tag = name => {
+		let parent = parentName(name),
+			gramps = parentName(parent),
+			findV  = name => isVariant(findRuleByDottedName(allRules,name))
+
+		return findV(gramps) ? {type: "variantGroups", [gramps]:[name]}
+			   : findV(parent) ? {type: "variantGroups", [parent]:[name]}
+			   : {type: "recordGroups", [parent]:[name]}
+	}
+
+	let classify = R.map(tag),
+		groupByType = R.groupBy(R.prop("type")),
+		stripTypes = R.map(R.map(R.omit("type"))),
+		mergeLists = R.map(R.reduce(R.mergeWith(R.concat),{}))
+
+	return R.pipe(classify,groupByType,stripTypes,mergeLists)(names)
+}
+
+export let findVariantsAndRecords2 =
+	(allRules, {variantGroups, recordGroups}, dottedName, childDottedName) => {
+		let child = findRuleByDottedName(allRules, dottedName),
 			parentDottedName = parentName(dottedName),
 			parent = findRuleByDottedName(allRules, parentDottedName)
 		if (isVariant(parent)) {
 			let grandParentDottedName = parentName(parentDottedName),
 				grandParent = findRuleByDottedName(allRules, grandParentDottedName)
 			if (isVariant(grandParent))
-				return findVariantsAndRecords(allRules, {variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
+				return findVariantsAndRecords2(allRules, {variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
 			else
 				return {
 					variantGroups: R.mergeWith(R.concat, variantGroups, {[parentDottedName]: [childDottedName || dottedName]}),

@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {rules, findRuleByDottedName} from '../engine/rules'
-import './Aide.css'
+
+import marked from 'Engine/marked'
+import {rules, findRuleByDottedName} from 'Engine/rules'
 import {EXPLAIN_VARIABLE} from '../actions'
+
 import References from './rule/References'
-import marked from '../engine/marked'
+import './Aide.css'
 
 @connect(
 	state =>

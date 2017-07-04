@@ -1,6 +1,6 @@
 import R from 'ramda'
 import {expect} from 'chai'
-import {enrichRule} from '../source/engine/rules'
+import {rules, enrichRule} from '../source/engine/rules'
 import {analyseSituation} from '../source/engine/traverse'
 import {buildNextSteps} from '../source/engine/generateQuestions'
 

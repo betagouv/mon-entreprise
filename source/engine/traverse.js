@@ -69,10 +69,12 @@ let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
 		),
 
 		situationValue = evaluateVariable(situationGate, dottedName, variable),
-		calculatedValue = variableIsCalculable ? parsedRule.nodeValue : null,
-		systemValue = dottedName.startsWith("sys .") ? variable.nodeValue : null,
-		nodeValue = R.defaultTo(situationValue,
-						R.defaultTo(systemValue,calculatedValue)),
+		nodeValue2 = situationValue
+				!= null ? situationValue
+				: !variableIsCalculable
+					? null
+					: parsedRule.nodeValue,
+		nodeValue = dottedName.startsWith("sys .") ? variable.nodeValue : nodeValue2,
 		explanation = parsedRule,
 		missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 

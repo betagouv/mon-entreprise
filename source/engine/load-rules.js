@@ -1,14 +1,52 @@
 import R from 'ramda'
 
+// This is a mock of webpack's require.context, for testing purposes
+if (typeof __webpack_require__ === 'undefined') {
+  const fs = require('fs');
+  const path = require('path');
+
+  require.context = (base = '.', scanSubDirectories = false, regularExpression = /\.js$/) => {
+    const yaml = require('js-yaml');
+
+    const files = {};
+
+    function readDirectory(directory) {
+      fs.readdirSync(directory).forEach((file) => {
+        const fullPath = path.resolve(directory, file);
+
+        if (fs.statSync(fullPath).isDirectory()) {
+          if (scanSubDirectories) readDirectory(fullPath);
+
+          return;
+        }
+
+        if (!regularExpression.test(fullPath)) return;
+
+        files[fullPath] = true;
+      });
+    }
+
+    readDirectory(path.resolve(__dirname, base));
+
+    function Module(file) {
+      return yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+    }
+
+    Module.keys = () => Object.keys(files);
+
+    return Module;
+  };
+}
+
 // This array can't be generated, as the arguments to require.context must be literals :-|
-let directoryLoaders = 
+let directoryLoaders =
   [
     require.context('../../règles/rémunération-travail/cdd',
-                    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+                    true, /.yaml$/),
     require.context('../../règles/rémunération-travail/entités/ok',
-                    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+                    true, /.yaml$/),
     require.context('../../règles/rémunération-travail/cotisations/ok',
-                    true, /([A-Za-z\u00C0-\u017F]|\.|-|_)+.yaml$/),
+                    true, /.yaml$/),
   ]
 
 // require.context returns an object which

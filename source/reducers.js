@@ -1,15 +1,13 @@
+import R from 'ramda'
 import React from 'react'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
-import { euro, months } from './components/conversation/formValueTypes.js'
 
+import {reduceSteps, generateGridQuestions, generateSimpleQuestions} from 'Engine/generateQuestions'
+import { euro, months } from 'Components/conversation/formValueTypes.js'
+import computeThemeColours from 'Components/themeColours'
 import { EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
-import R from 'ramda'
-
-import {reduceSteps, generateGridQuestions, generateSimpleQuestions} from './engine/generateQuestions'
-
-import computeThemeColours from './components/themeColours'
 
 function themeColours(state = computeThemeColours(), {type, colour}) {
 	if (type == 'CHANGE_THEME_COLOUR')
@@ -34,7 +32,6 @@ function pointedOutObjectives(state=[], {type, objectives}) {
 		return state
 	}
 }
-
 
 export default reduceReducers(
 	combineReducers({

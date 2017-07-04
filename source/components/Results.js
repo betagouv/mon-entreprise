@@ -1,9 +1,10 @@
+import R from 'ramda'
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { withRouter } from 'react-router'
-import R from 'ramda'
+
 import './Results.css'
 import {capitalise0} from '../utils'
 import {computeRuleValue} from 'Engine/traverse'
