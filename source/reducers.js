@@ -5,7 +5,6 @@ import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
 import {reduceSteps, generateGridQuestions, generateSimpleQuestions} from 'Engine/generateQuestions'
-import { euro, months } from 'Components/conversation/formValueTypes.js'
 import computeThemeColours from 'Components/themeColours'
 import { EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
 
