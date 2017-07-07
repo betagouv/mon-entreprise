@@ -53,6 +53,20 @@ describe('collectMissingVariables', function() {
     expect(result).to.have.property('sum . evt . ko')
   });
 
+  it('should identify missing variables mentioned in expressions', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
+          {nom: "deux", formule: 2, "non applicable si" : "evt . nyet > evt . nope", espace: "sum"},
+          {nom: "nope", espace: "sum . evt"},
+          {nom: "nyet", espace: "sum . evt"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseSituation(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(situation)
+
+    expect(result).to.have.property('sum . evt . nyet')
+    expect(result).to.have.property('sum . evt . nope')
+  });
+
 });
 
 describe('findVariantsAndRecords', function() {
