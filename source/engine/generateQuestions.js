@@ -8,56 +8,16 @@ import formValueTypes from 'Components/conversation/formValueTypes'
 
 import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
-import { STEP_ACTION, START_CONVERSATION} from '../actions'
 import {rules, findRuleByDottedName, findVariantsAndRecords} from './rules'
 
 
-export let reduceSteps = (state, action) => {
-
-	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
-		return state
-
-	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.name
-
-	let returnObject = {
-		...state,
-		analysedSituation: analyse(rootVariable)(state)
-	}
-
-	if (action.type == START_CONVERSATION) {
-		return {
-			...returnObject,
-			foldedSteps: state.foldedSteps || [],
-			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
-		}
-	}
-	if (action.type == STEP_ACTION && action.name == 'fold') {
-		return {
-			...returnObject,
-			foldedSteps: [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
-		}
-	}
-	if (action.type == STEP_ACTION && action.name == 'unfold') {
-		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.reject(stepFinder)(state.foldedSteps)
-		if (foldedSteps.length != state.foldedSteps.length - 1)
-			throw 'Problème lors du dépliement d\'une réponse'
-
-		return {
-			...returnObject,
-			foldedSteps,
-			unfoldedSteps: [R.find(stepFinder)(state.foldedSteps)]
-		}
-	}
-}
 
 
 let situationGate = state =>
 	name => formValueSelector('conversation')(state, name)
 
 
-let analyse = rootVariable => R.pipe(
+export let analyse = rootVariable => R.pipe(
 	situationGate,
 	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
 	analyseSituation(rules, rootVariable)

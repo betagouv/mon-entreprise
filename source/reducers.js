@@ -4,9 +4,51 @@ import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
-import {reduceSteps, generateGridQuestions, generateSimpleQuestions} from 'Engine/generateQuestions'
+import {rules} from 'Engine/rules'
+import {analyse, buildNextSteps, generateGridQuestions, generateSimpleQuestions} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
+import { STEP_ACTION, START_CONVERSATION} from './actions'
+
+export let reduceSteps = (state, action) => {
+
+	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
+		return state
+
+	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.name
+
+	let returnObject = {
+		...state,
+		analysedSituation: analyse(rootVariable)(state)
+	}
+
+	if (action.type == START_CONVERSATION) {
+		return {
+			...returnObject,
+			foldedSteps: state.foldedSteps || [],
+			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
+		}
+	}
+	if (action.type == STEP_ACTION && action.name == 'fold') {
+		return {
+			...returnObject,
+			foldedSteps: [...state.foldedSteps, R.head(state.unfoldedSteps)],
+			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
+		}
+	}
+	if (action.type == STEP_ACTION && action.name == 'unfold') {
+		let stepFinder = R.propEq('name', action.step),
+			foldedSteps = R.reject(stepFinder)(state.foldedSteps)
+		if (foldedSteps.length != state.foldedSteps.length - 1)
+			throw 'Problème lors du dépliement d\'une réponse'
+
+		return {
+			...returnObject,
+			foldedSteps,
+			unfoldedSteps: [R.find(stepFinder)(state.foldedSteps)]
+		}
+	}
+}
 
 function themeColours(state = computeThemeColours(), {type, colour}) {
 	if (type == 'CHANGE_THEME_COLOUR')
