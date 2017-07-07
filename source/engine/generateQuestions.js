@@ -56,6 +56,7 @@ export let getObjectives = analysedSituation => {
 	return result ? R.reject(R.isNil)(result) : null;
 }
 
+// FIXME - this relies on side-effects and the recursion is grossly indiscriminate
 let collectNodeMissingVariables = (root, source=root, results=[]) => {
 	if (
     source.nodeValue != null  ||
