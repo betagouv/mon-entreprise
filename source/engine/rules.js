@@ -95,61 +95,6 @@ export let findRuleByDottedName = (allRules, dottedName) => {
 /*********************************
 Autres */
 
-let collectNodeMissingVariables = (root, source=root, results=[]) => {
-	if (
-    source.nodeValue != null  ||
-    source.shortCircuit && source.shortCircuit(root)
-  ) {
-		// console.log('nodev or shortcircuit root, source', root, source)
-		return []
-	}
-
-	if (source['missingVariables']) {
-		// console.log('root, source', root, source)
-		results.push(source['missingVariables'])
-	}
-
-	for (var prop in source) {
-		if (R.is(Object)(source[prop])) {
-			collectNodeMissingVariables(root, source[prop], results)
-		}
-	}
-	return results
-}
-
-// On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
-// Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
-export let getObjectives = analysedSituation => {
-	let formuleType = R.path(["formule", "explanation", "name"])(
-		analysedSituation
-	)
-	let result = formuleType == "somme"
-		? R.pluck(
-				"explanation",
-				R.path(["formule", "explanation", "explanation"])(analysedSituation)
-			)
-		: formuleType ? [analysedSituation] : null
-
-	return result ? R.reject(R.isNil)(result) : null;
-}
-
-export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
-	R.pipe(
-		getObjectives,
-		R.chain( v =>
-			R.pipe(
-				collectNodeMissingVariables,
-				R.flatten,
-				R.map(mv => [v.dottedName, mv])
-			)(v)
-		),
-		//groupBy missing variable but remove mv from value, it's now in the key
-		R.groupBy(groupMethod == 'groupByMissingVariable' ? R.last : R.head),
-		R.map(R.map(groupMethod == 'groupByMissingVariable' ? R.head : R.last))
-		// below is a hand implementation of above... function composition can be nice sometimes :')
-		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-	)(analysedSituation)
-
 let isVariant = R.path(['formule', 'une possibilité'])
 
 export let findVariantsAndRecords = (allRules, names) => {

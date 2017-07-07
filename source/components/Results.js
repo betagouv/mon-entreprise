@@ -8,7 +8,8 @@ import { withRouter } from 'react-router'
 import './Results.css'
 import {capitalise0} from '../utils'
 import {computeRuleValue} from 'Engine/traverse'
-import {encodeRuleName, getObjectives} from 'Engine/rules'
+import {encodeRuleName} from 'Engine/rules'
+import {getObjectives} from 'Engine/generateQuestions'
 
 let fmt = new Intl.NumberFormat('fr-FR').format
 let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
