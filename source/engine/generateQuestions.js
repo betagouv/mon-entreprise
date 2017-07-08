@@ -126,6 +126,15 @@ export let buildNextSteps = (allRules, analysedSituation) => {
 		D'autres variables pourront être regroupées aussi, car elles partagent un parent, mais sans fusionner leurs questions dans l'interface. Ce sont des **groupes de type _record_ **
 	*/
 
+	// This is effectively a missingVariables.groupBy(questionRequired)
+	// but "questionRequired" does not have a clear specification
+	// we could look up "what formula is this variable mentioned in, and does it have a question attached"
+	// the problem is that we parse rules "bottom up", we would therefore need to:
+	// - parse rules top-down, i.e. analysedSituations = map(treatRuleRoot, rules)
+	// (might be a problem later on in terms of "big" rulesets, but not now)
+	// - decorate each rule with "mentions / depends on the following rules"
+	// - provide a "is mentioned by" query
+
 	return R.pipe(
 		R.keys,
 		R.curry(findVariantsAndRecords)(allRules),

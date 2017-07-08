@@ -5,10 +5,20 @@ import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
 import {rules} from 'Engine/rules'
-import {analyse, buildNextSteps, generateGridQuestions, generateSimpleQuestions} from 'Engine/generateQuestions'
+import {buildNextSteps, generateGridQuestions, generateSimpleQuestions} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
-import { EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES} from './actions'
-import { STEP_ACTION, START_CONVERSATION} from './actions'
+import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES, CHANGE_THEME_COLOUR} from './actions'
+
+import {analyseSituation} from 'Engine/traverse'
+
+let situationGate = state =>
+	name => formValueSelector('conversation')(state, name)
+
+let analyse = rootVariable => R.pipe(
+	situationGate,
+	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
+	analyseSituation(rules, rootVariable)
+)
 
 export let reduceSteps = (state, action) => {
 
@@ -51,7 +61,7 @@ export let reduceSteps = (state, action) => {
 }
 
 function themeColours(state = computeThemeColours(), {type, colour}) {
-	if (type == 'CHANGE_THEME_COLOUR')
+	if (type == CHANGE_THEME_COLOUR)
 		return computeThemeColours(colour)
 	else return state
 }
