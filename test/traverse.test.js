@@ -5,22 +5,6 @@ import {analyseSituation} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
 
-describe('treatRuleRoot', function() {
-
-  it('should directly return simple numerical values', function() {
-    let rule = {formule: 3269}
-    expect(treatRuleRoot(stateSelector,[rule],rule)).to.have.property('nodeValue',3269)
-  });
-
-  /* TODO: make this pass
-  it('should directly return simple numerical values', function() {
-    let rule = {formule: "3269"}
-    expect(treatRuleRoot(stateSelector,[rule],rule)).to.have.property('nodeValue',3269)
-  });
-  */
-
-});
-
 describe('analyseSituation', function() {
 
   it('should directly return simple numerical values', function() {

@@ -53,43 +53,64 @@ let withFilter = (rules, filter) =>
 	R.concat(rules,[{name:"filter", nodeValue:filter, ns:"sys", dottedName: "sys . filter"}])
 
 let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
+	let variableNode = createVariableNode(rules, rule, situationGate)(parseResult)
+	return evaluateNode(situationGate,[],variableNode)
+}
+
+let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
+	let evaluate = (situation, parsedRules, node) => {
+		let dottedName = node.dottedName,
+			variable = findRuleByDottedName(rules, dottedName),
+			variableIsCalculable = variable.formule != null,
+			//TODO perf : mettre un cache sur les variables !
+			// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
+			// et qu'il n'y a aucun problème de perf aujourd'hui
+			parsedRule = variableIsCalculable && evaluateNode(
+				situationGate,
+				[],
+				treatRuleRoot(
+					situationGate,
+					rules,
+					variable
+				)
+			),
+
+			situationValue = evaluateVariable(situationGate, dottedName, variable),
+			nodeValue2 = situationValue
+					!= null ? situationValue
+					: !variableIsCalculable
+						? null
+						: parsedRule.nodeValue,
+			nodeValue = dottedName.startsWith("sys .") ? variable.nodeValue : nodeValue2,
+			explanation = parsedRule,
+			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
+
+			return {
+				...node,
+				nodeValue,
+				missingVariables,
+				explanation,
+				jsx: {
+					...node.jsx,
+					value: nodeValue
+				}
+			}
+	}
+
 	let
 		{fragments} = parseResult,
 		variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rules, rule, variablePartialName),
-		variable = findRuleByDottedName(rules, dottedName),
-		variableIsCalculable = variable.formule != null,
-		//TODO perf : mettre un cache sur les variables !
-		// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
-		// et qu'il n'y a aucun problème de perf aujourd'hui
-		parsedRule = variableIsCalculable && treatRuleRoot(
-			situationGate,
-			rules,
-			variable
-		),
-
-		situationValue = evaluateVariable(situationGate, dottedName, variable),
-		nodeValue2 = situationValue
-				!= null ? situationValue
-				: !variableIsCalculable
-					? null
-					: parsedRule.nodeValue,
-		nodeValue = dottedName.startsWith("sys .") ? variable.nodeValue : nodeValue2,
-		explanation = parsedRule,
-		missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
+		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
 	return {
-		nodeValue,
+		evaluate,
 		category: 'variable',
 		fragments: fragments,
 		dottedName,
 		type: 'boolean | numeric',
-		explanation: parsedRule,
-		missingVariables,
 		jsx:	<Leaf
 			classes="variable"
 			name={fragments.join(' . ')}
-			value={nodeValue}
 		/>
 	}
 }
@@ -274,6 +295,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					'barème':					mecanismScale,
 					'le maximum de':			mecanismMax,
 					'complément':				mecanismComplement,
+					'une possibilité':			R.always({})
 				},
 				action = R.pathOr(mecanismError,[k],dispatch)
 
@@ -301,8 +323,17 @@ export let computeRuleValue = (formuleValue, condValue) =>
 			? 0
 			: formuleValue
 
-export let treatRuleRoot = (situationGate, rules, rule) => R.pipe(
-	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
+export let treatRuleRoot = (situationGate, rules, rule) => {
+	let evaluate = (situationGate, parsedRules, r) => {
+		let
+			formuleValue = r.formule.nodeValue,
+			condValue = R.path(['non applicable si', 'nodeValue'])(r),
+			nodeValue = computeRuleValue(formuleValue, condValue)
+
+		return {...r, nodeValue}
+	}
+
+	let parsedRoot = R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
 
 	// 'meta': pas de traitement pour l'instant
 
@@ -364,37 +395,28 @@ export let treatRuleRoot = (situationGate, rules, rule) => R.pipe(
 	// TODO 'intéractions': certaines variables vont en modifier d'autres : ex. Fillon va réduire voir annuler (set 0) une liste de cotisations
 	// ... ?
 
-	}),
-	/* Calcul de la valeur de la variable en combinant :
-	- les conditions d'application ('non applicable si')
-	- la formule
+	})(rule)
 
-	TODO: mettre les conditions d'application dans "formule", et traiter la formule comme un mécanisme normal dans treat()
-
-	*/
-	r => {
-		let
-			formuleValue = r.formule.nodeValue,
-			condValue = R.path(['non applicable si', 'nodeValue'])(r),
-			nodeValue = computeRuleValue(formuleValue, condValue)
-
-		return {...r, nodeValue}
+	return {
+		...parsedRoot,
+		evaluate
 	}
-)(rule)
+}
 
+let evaluateNode = (situationGate, parsedRules, node) => node.evaluate(situationGate, parsedRules, node)
 
 /* Analyse the set of selected rules, and add derived information to them :
 - do they need variables that are not present in the user situation ?
 - if not, do they have a computed value or are they non applicable ?
 */
 
-export let analyseSituation = (rules, rootVariable) => situationGate =>
-	treatRuleRoot(
-		situationGate,
-		rules,
-		findRuleByName(rules, rootVariable)
-	)
+export let analyseSituation = (rules, rootVariable) => situationGate => {
+	let treatOne = rule => treatRuleRoot(situationGate, rules, rule),
+		parsedRules = R.map(treatOne,rules),
+		rootRule = findRuleByName(parsedRules, rootVariable)
 
+	return evaluateNode(situationGate, parsedRules, rootRule)
+}
 
 
 

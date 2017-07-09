@@ -1,6 +1,9 @@
 # Liste et description des différents mécanismes compris par le moteur.
 # La description peut être rédigée en markdown :-)
 
+une possibilité:
+  type: enum
+
 une de ces conditions:
   type: boolean
   description: |
