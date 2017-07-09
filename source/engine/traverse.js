@@ -99,6 +99,7 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 
 	return {
 		evaluate,
+		name: variablePartialName,
 		category: 'variable',
 		fragments: fragments,
 		dottedName,
@@ -468,14 +469,21 @@ export let evaluateNode = (situationGate, parsedRules, node) => node.evaluate(si
 */
 
 export let analyseSituation = (rules, rootVariable) => situationGate => {
-	let treatOne = rule => treatRuleRoot(situationGate, rules, rule),
-		parsedRules = R.map(treatOne,rules),
-		rootRule = findRuleByName(parsedRules, rootVariable)
-
-	return evaluateNode(situationGate, parsedRules, rootRule)
+	let {root, parsedRules} = analyseTopDown(rules,rootVariable)(situationGate)
+	return root
 }
 
+export let analyseTopDown = (rules, rootVariable) => situationGate => {
+	let treatOne = rule => treatRuleRoot(situationGate, rules, rule),
+		parsedRules = R.map(treatOne,rules),
+		rootRule = findRuleByName(parsedRules, rootVariable),
+		root = evaluateNode(situationGate, parsedRules, rootRule)
 
+	return {
+		root,
+		parsedRules
+	}
+}
 
 
 

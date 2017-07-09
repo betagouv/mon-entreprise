@@ -71,7 +71,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 	let evaluate = (situationGate, parsedRules, node) => {
 		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
 		    values = R.map(evaluateOne, node.explanation),
-		    nodeValue = anyNull(values) ? null : R.reduce(R.or,false,values)
+		    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(R.or,false,values)
 
 		return {
 			...node,
@@ -109,7 +109,7 @@ export let mecanismAllOf = (recurse, k,v) => {
 	let evaluate = (situationGate, parsedRules, node) => {
 		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
 		    values = R.map(evaluateOne, node.explanation),
-		    nodeValue = anyNull(values) ? null : R.reduce(R.and,true,values)
+		    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(R.and,true,values)
 
 		return {
 			...node,
@@ -265,25 +265,35 @@ export let mecanismPercentage = (recurse,k,v) => {
 }
 
 export let mecanismSum = (recurse,k,v) => {
-	let
-		summedVariables = v.map(recurse),
-		nodeValue = summedVariables.reduce(
-			(memo, {nodeValue: nextNodeValue}) => memo == null ? null : nextNodeValue == null ? null : memo + +nextNodeValue,
-		0)
+	let evaluate = (situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
+		    values = R.map(evaluateOne, node.explanation),
+		    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(R.add,0,values)
+
+		return {
+			...node,
+			nodeValue,
+			jsx: {
+				...node.jsx,
+				value: nodeValue
+			}
+		}
+	}
+
+	let explanation = v.map(recurse)
 
 	return {
-		nodeValue,
+		evaluate,
+		explanation,
 		category: 'mecanism',
 		name: 'somme',
 		type: 'numeric',
-		explanation: summedVariables,
 		jsx: <Node
 			classes="mecanism somme"
 			name="somme"
-			value={nodeValue}
 			child={
 				<ul>
-					{summedVariables.map(v => <li key={v.name || v.text}>{v.jsx}</li>)}
+					{explanation.map(v => <li key={v.name || v.text}>{v.jsx}</li>)}
 				</ul>
 			}
 		/>

@@ -42,22 +42,25 @@ export let analyse = rootVariable => R.pipe(
 
 // On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
 // Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
-export let getObjectives = analysedSituation => {
+export let getObjectives = (root, parsedRules) => {
 	let formuleType = R.path(["formule", "explanation", "name"])(
-		analysedSituation
+		root
 	)
-	let result = formuleType == "somme"
-		? R.pluck(
-				"explanation",
-				R.path(["formule", "explanation", "explanation"])(analysedSituation)
-			)
-		: formuleType ? [analysedSituation] : null
 
-	return result ? R.reject(R.isNil)(result) : null;
+	let targets = formuleType == "somme"
+		? R.pluck(
+				"dottedName",
+				R.path(["formule", "explanation", "explanation"])(root)
+			)
+		: formuleType ? [root] : null,
+		names = targets ? R.reject(R.isNil)(targets) : []
+
+	return R.map(R.curry(findRuleByDottedName)(parsedRules),names)
 }
 
 // FIXME - this relies on side-effects and the recursion is grossly indiscriminate
 let collectNodeMissingVariables = (root, source=root, results=[]) => {
+	if (root == source) console.log("cNMV:",root)
 	if (
     source.nodeValue != null  ||
     source.shortCircuit && source.shortCircuit(root)
@@ -76,11 +79,12 @@ let collectNodeMissingVariables = (root, source=root, results=[]) => {
 			collectNodeMissingVariables(root, source[prop], results)
 		}
 	}
+
 	return results
 }
 
-export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
-	R.pipe(
+export let collectMissingVariables = (groupMethod='groupByMissingVariable') => ({root, parsedRules}) => {
+	return R.pipe(
 		getObjectives,
 		R.chain( v =>
 			R.pipe(
@@ -94,7 +98,8 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 		R.map(R.map(groupMethod == 'groupByMissingVariable' ? R.head : R.last))
 		// below is a hand implementation of above... function composition can be nice sometimes :')
 		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-	)(analysedSituation)
+	)(root, parsedRules)
+}
 
 export let buildNextSteps = (allRules, analysedSituation) => {
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(

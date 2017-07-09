@@ -106,9 +106,10 @@ describe('analyseSituation with mecanisms', function() {
 
   it('should handle sums', function() {
     let rawRules = [
-          {nom: "startHere", formule: {"somme": [3200, 60, 9]}}],
+          {nom: "startHere", formule: {"somme": [3200, "dix", 9]}},
+          {nom: "dix", formule: 10}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3219)
   });
 
   it('should handle multiplications', function() {
