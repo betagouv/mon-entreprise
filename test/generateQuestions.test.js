@@ -17,7 +17,6 @@ describe('collectMissingVariables', function() {
         rules = rawRules.map(enrichRule),
         situation = analyseSituation(rules,"startHere")(stateSelector),
         result = getObjectives(situation)
-        console.log("situation",situation)
 
     expect(result).to.have.lengthOf(1)
     expect(result[0]).to.have.property('name','deux')

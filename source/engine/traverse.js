@@ -53,26 +53,21 @@ let withFilter = (rules, filter) =>
 	R.concat(rules,[{name:"filter", nodeValue:filter, ns:"sys", dottedName: "sys . filter"}])
 
 let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
-	let variableNode = createVariableNode(rules, rule, situationGate)(parseResult)
-	return evaluateNode(situationGate,[],variableNode)
+	return createVariableNode(rules, rule, situationGate)(parseResult)
 }
 
 let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 	let evaluate = (situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
-			variable = findRuleByDottedName(rules, dottedName),
+			variable = findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
 			//TODO perf : mettre un cache sur les variables !
 			// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
 			// et qu'il n'y a aucun problème de perf aujourd'hui
 			parsedRule = variableIsCalculable && evaluateNode(
 				situationGate,
-				[],
-				treatRuleRoot(
-					situationGate,
-					rules,
-					variable
-				)
+				parsedRules,
+				variable
 			),
 
 			situationValue = evaluateVariable(situationGate, dottedName, variable),
@@ -167,6 +162,31 @@ let treat = (situationGate, rules, rule) => rawNode => {
 				)
 
 			if (parseResult.category == 'calcExpression') {
+				let evaluate = (situation, parsedRules, node) => {
+					let
+						operatorFunctionName = {
+							'*': 'multiply',
+							'/': 'divide',
+							'+': 'add',
+							'-': 'subtract'
+						}[node.operator],
+						value1 = evaluateNode(situation,parsedRules,node.explanation[0]).nodeValue,
+						value2 = evaluateNode(situation,parsedRules,node.explanation[1]).nodeValue,
+						operatorFunction = R[operatorFunctionName],
+						nodeValue = value1 == null || value2 == null ?
+							null
+						: operatorFunction(value1, value2)
+
+					return {
+						...node,
+						nodeValue,
+						jsx: {
+							...node.jsx,
+							value: nodeValue
+						}
+					}
+				}
+
 				let
 					fillVariable = fillVariableNode(rules, rule, situationGate),
 					fillFiltered = parseResult => fillVariableNode(withFilter(rules,parseResult.filter), rule, situationGate)(parseResult.variable),
@@ -175,33 +195,24 @@ let treat = (situationGate, rules, rule) => rawNode => {
 							[R.propEq('category', 'variable'), fillVariable],
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
-								R.assoc('jsx', <span className="value">
-									{node.nodeValue}
-								</span>)(node)
+								({
+									evaluate: (situation, parsedRules, me) => ({...node, nodeValue: parseInt(node.nodeValue)}),
+									jsx: <span className="value">{node.nodeValue}</span>
+								})
 							]
 						])
 					),
-					[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
-					operatorFunctionName = {
-						'*': 'multiply',
-						'/': 'divide',
-						'+': 'add',
-						'-': 'subtract'
-					}[parseResult.operator],
-					operatorFunction = R[operatorFunctionName],
-					nodeValue = value1 == null || value2 == null ?
-						null
-					: operatorFunction(value1, value2)
+					operator = parseResult.operator
 
 				return {
+					evaluate,
+					operator,
 					text: rawNode,
-					nodeValue,
 					category: 'calcExpression',
 					type: 'numeric',
 					explanation: filledExplanation,
 					jsx:	<Node
 						classes="inlineExpression calcExpression"
-						value={nodeValue}
 						child={
 							<span className="nodeContent">
 								{filledExplanation[0].jsx}
@@ -212,41 +223,61 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					/>
 				}
 			}
+
 			if (parseResult.category == 'comparison') {
 				//TODO mutualise code for 'comparison' & 'calclExpression'. Harmonise their names
+				let evaluate = (situation, parsedRules, node) => {
+					let
+						comparatorFunctionName = {
+							'<': 'lt',
+							'<=': 'lte',
+							'>': 'gt',
+							'>=': 'gte'
+							//TODO '='
+						}[node.operator],
+						comparatorFunction = R[comparatorFunctionName],
+						value1 = evaluateNode(situation,parsedRules,node.explanation[0]).nodeValue,
+						value2 = evaluateNode(situation,parsedRules,node.explanation[1]).nodeValue,
+						nodeValue = value1 == null || value2 == null ?
+							null
+						: comparatorFunction(value1, value2)
+
+					return {
+						...node,
+						nodeValue,
+						jsx: {
+							...node.jsx,
+							value: nodeValue
+						}
+					}
+				}
+
 				let
+					fillVariable = fillVariableNode(rules, rule, situationGate),
+					fillFiltered = parseResult => fillVariableNode(withFilter(rules,parseResult.filter), rule, situationGate)(parseResult.variable),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
-							[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
+							[R.propEq('category', 'variable'), fillVariable],
+							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
-								R.assoc('jsx', <span className="value">
-									{node.nodeValue}
-								</span>)(node)
+								({
+									evaluate: (situation, parsedRules, me) => ({...node, nodeValue: parseInt(node.nodeValue)}),
+									jsx: <span className="value">{node.nodeValue}</span>
+								})
 							]
 						])
 					),
-					[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
-					comparatorFunctionName = {
-						'<': 'lt',
-						'<=': 'lte',
-						'>': 'gt',
-						'>=': 'gte'
-						//TODO '='
-					}[parseResult.operator],
-					comparatorFunction = R[comparatorFunctionName],
-					nodeValue = value1 == null || value2 == null ?
-						null
-					: comparatorFunction(value1, value2)
+					operator = parseResult.operator
 
 				return {
+					evaluate,
+					operator,
 					text: rawNode,
-					nodeValue: nodeValue,
 					category: 'comparison',
 					type: 'boolean',
 					explanation: filledExplanation,
 					jsx:	<Node
 						classes="inlineExpression comparison"
-						value={nodeValue}
 						child={
 							<span className="nodeContent">
 								{filledExplanation[0].jsx}
@@ -308,7 +339,14 @@ let treat = (situationGate, rules, rule) => rawNode => {
 		[R.is(Object),	treatObject],
 		[R.T,			treatOther]
 	])
-	return onNodeType(rawNode)
+
+	let defaultEvaluate = (situationGate, parsedRules, node) => {
+				return node
+			}
+	let parsedNode = onNodeType(rawNode)
+
+	return	parsedNode.evaluate ? parsedNode :
+			{...parsedNode, evaluate: defaultEvaluate}
 }
 
 //TODO c'est moche :
@@ -326,8 +364,9 @@ export let computeRuleValue = (formuleValue, condValue) =>
 export let treatRuleRoot = (situationGate, rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
 		let
-			formuleValue = r.formule.nodeValue,
-			condValue = R.path(['non applicable si', 'nodeValue'])(r),
+			formuleValue = r.formule && evaluateNode(situationGate, parsedRules, r.formule).nodeValue,
+			condition = R.prop('non applicable si',r),
+			condValue = condition && evaluateNode(situationGate, parsedRules, condition).nodeValue,
 			nodeValue = computeRuleValue(formuleValue, condValue)
 
 		return {...r, nodeValue}
@@ -339,21 +378,30 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 
 	// 'cond' : Conditions d'applicabilité de la règle
 		'non applicable si': value => {
-			let
-				child = treat(situationGate, rules, rule)(value),
-				nodeValue = child.nodeValue
+			let evaluate = (situationGate, parsedRules, node) => {
+				let nodeValue = evaluateNode(situationGate, parsedRules, node.explanation).nodeValue
+				return {
+					...node,
+					nodeValue,
+					jsx: {
+						...node.jsx,
+						value: nodeValue
+					}
+				}
+			}
+
+			let child = treat(situationGate, rules, rule)(value)
 
 			return {
+				evaluate,
 				category: 'ruleProp',
 				rulePropType: 'cond',
 				name: 'non applicable si',
 				type: 'boolean',
-				nodeValue: child.nodeValue,
 				explanation: child,
 				jsx: <Node
 					classes="ruleProp mecanism cond"
 					name="non applicable si"
-					value={nodeValue}
 					child={
 						child.category === 'variable' ? <div className="node">{child.jsx}</div>
 						: child.jsx
@@ -368,21 +416,30 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 		// note: pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
 		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
-			let
-				child = treat(situationGate, rules, rule)(value),
-				nodeValue = child.nodeValue
+			let evaluate = (situationGate, parsedRules, node) => {
+				let nodeValue = evaluateNode(situationGate, parsedRules, node.explanation).nodeValue
+				return {
+					...node,
+					nodeValue,
+					jsx: {
+						...node.jsx,
+						value: nodeValue
+					}
+				}
+			}
+
+			let child = treat(situationGate, rules, rule)(value)
 			return {
+				evaluate,
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
 				type: 'numeric',
-				nodeValue: nodeValue,
 				explanation: child,
 				shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true),
 				jsx: <Node
 					classes="ruleProp mecanism formula"
 					name="formule"
-					value={nodeValue}
 					child={
 						child.jsx
 					}
