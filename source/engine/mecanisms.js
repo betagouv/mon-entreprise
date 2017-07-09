@@ -2,6 +2,7 @@ import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
 import {Node, Leaf} from './traverse-common-jsx'
+import {evaluateNode} from './traverse'
 
 let transformPercentage = s =>
 	R.contains('%')(s) ?
@@ -65,35 +66,37 @@ export let decompose = (recurse, k, v) => {
 }
 
 export let mecanismOneOf = (recurse, k, v) => {
-	let result = R.pipe(
-		R.unless(R.is(Array), () => {throw 'should be array'}),
-		R.reduce( (memo, next) => {
-			let {nodeValue, explanation} = memo,
-				child = recurse(next),
-				{nodeValue: nextValue} = child
-			return {...memo,
-				// c'est un OU logique mais avec une préférence pour null sur false
-				nodeValue: nodeValue || nextValue || (
-					nodeValue == null ? null : nextValue
-				),
-				explanation: [...explanation, child]
+	if (!R.is(Array,v)) throw 'should be array'
+
+	let evaluate = (situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
+		    values = R.map(evaluateOne, node.explanation),
+		    nodeValue = anyNull(values) ? null : R.reduce(R.or,false,values)
+
+		return {
+			...node,
+			nodeValue,
+			jsx: {
+				...node.jsx,
+				value: nodeValue
 			}
-		}, {
-			nodeValue: false,
-			category: 'mecanism',
-			name: 'une de ces conditions',
-			type: 'boolean',
-			explanation: []
-		}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
-	)(v)
-	return {...result,
+		}
+	}
+
+	let explanation = R.map(recurse, v)
+
+	return {
+		evaluate,
+		explanation,
+		category: 'mecanism',
+		name: 'une de ces conditions',
+		type: 'boolean',
 		jsx:	<Node
 			classes="mecanism conditions list"
-			name={result.name}
-			value={result.nodeValue}
+			name='une de ces conditions'
 			child={
 				<ul>
-					{result.explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+					{explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
 				</ul>
 			}
 		/>
@@ -101,25 +104,41 @@ export let mecanismOneOf = (recurse, k, v) => {
 }
 
 export let mecanismAllOf = (recurse, k,v) => {
-	return R.pipe(
-		R.unless(R.is(Array), () => {throw 'should be array'}),
-		R.reduce( (memo, next) => {
-			let {nodeValue, explanation} = memo,
-				child = recurse(next),
-				{nodeValue: nextValue} = child
-			return {...memo,
-				// c'est un ET logique avec une possibilité de null
-				nodeValue: ! nodeValue ? nodeValue : nextValue,
-				explanation: [...explanation, child]
+	if (!R.is(Array,v)) throw 'should be array'
+
+	let evaluate = (situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
+		    values = R.map(evaluateOne, node.explanation),
+		    nodeValue = anyNull(values) ? null : R.reduce(R.and,true,values)
+
+		return {
+			...node,
+			nodeValue,
+			jsx: {
+				...node.jsx,
+				value: nodeValue
 			}
-		}, {
-			nodeValue: true,
-			category: 'mecanism',
-			name: 'toutes ces conditions',
-			type: 'boolean',
-			explanation: []
-		}) // Reduce but don't use R.reduced to set the nodeValue : we need to treat all the nodes
-	)(v)
+		}
+	}
+
+	let explanation = R.map(recurse, v)
+
+	return {
+		evaluate,
+		explanation,
+		category: 'mecanism',
+		name: 'toutes ces conditions',
+		type: 'boolean',
+		jsx:	<Node
+			classes="mecanism conditions list"
+			name='toutes ces conditions'
+			child={
+				<ul>
+					{explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+				</ul>
+			}
+		/>
+	}
 }
 
 export let mecanismNumericalLogic = (recurse, k,v) => {

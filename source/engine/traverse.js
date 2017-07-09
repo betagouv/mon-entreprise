@@ -460,7 +460,7 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 	}
 }
 
-let evaluateNode = (situationGate, parsedRules, node) => node.evaluate(situationGate, parsedRules, node)
+export let evaluateNode = (situationGate, parsedRules, node) => node.evaluate(situationGate, parsedRules, node)
 
 /* Analyse the set of selected rules, and add derived information to them :
 - do they need variables that are not present in the user situation ?
