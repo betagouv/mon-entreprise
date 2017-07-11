@@ -354,9 +354,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 		[R.T,			treatOther]
 	])
 
-	let defaultEvaluate = (situationGate, parsedRules, node) => {
-				return node
-			}
+	let defaultEvaluate = (situationGate, parsedRules, node) => node
 	let parsedNode = onNodeType(rawNode)
 
 	return	parsedNode.evaluate ? parsedNode :
@@ -496,7 +494,7 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 }
 
 export let evaluateNode = (situationGate, parsedRules, node) =>
-	node.evaluate(situationGate, parsedRules, node)
+	node.evaluate ? node.evaluate(situationGate, parsedRules, node) : node
 export let collectNodeMissing = (node) =>
 	node.collectMissing ? node.collectMissing(node) : []
 

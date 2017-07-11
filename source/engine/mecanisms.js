@@ -260,23 +260,46 @@ export let mecanismProduct = (recurse,k,v) => {
 		return decompose(recurse,k,v)
 	}
 
-	let
-		mult = (base, rate, facteur, plafond) =>
-			Math.min(base, plafond) * rate * facteur,
-		constantNode = constant => ({nodeValue: constant}),
-		assiette = recurse(v['assiette']),
-		//TODO parser le taux dans le parser ?
-		taux = v['taux'] ? recurse({taux: v['taux']}) : constantNode(1),
-		facteur = v['facteur'] ? recurse(v['facteur']) : constantNode(1),
-		plafond = v['plafond'] ? recurse(v['plafond']) : constantNode(Infinity),
-		//TODO rate == false should be more explicit
-		nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
+	let evaluate = (situationGate, parsedRules, node) => {
+		let mult = (base, rate, facteur, plafond) => Math.min(base, plafond) * rate * facteur,
+			evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+			collectMissing = node => R.chain(collectNodeMissing,R.values(node.explanation))
+
+		let {taux, assiette, facteur, plafond} = node.explanation,
+			explanation = R.evolve({
+				taux: evaluateOne,
+				assiette: evaluateOne,
+				facteur: evaluateOne,
+				plafond: evaluateOne,
+			})(node.explanation)
+
+		let nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
 			0
 		: anyNull([taux, assiette, facteur, plafond]) ?
 				null
 			: mult(val(assiette), val(taux), val(facteur), val(plafond))
+
+		return {
+			...node,
+			nodeValue,
+			collectMissing,
+			explanation,
+			jsx: {
+				...node.jsx,
+				value: nodeValue
+			}
+		}
+	}
+
+	let constantNode = constant => ({nodeValue: constant})
+
+	let assiette = recurse(v['assiette']),
+		taux = v['taux'] ? recurse({taux: v['taux']}) : constantNode(1),
+		facteur = v['facteur'] ? recurse(v['facteur']) : constantNode(1),
+		plafond = v['plafond'] ? recurse(v['plafond']) : constantNode(Infinity)
+
 	return {
-		nodeValue,
+		evaluate,
 		category: 'mecanism',
 		name: 'multiplication',
 		type: 'numeric',
@@ -290,7 +313,6 @@ export let mecanismProduct = (recurse,k,v) => {
 		jsx: <Node
 			classes="mecanism multiplication"
 			name="multiplication"
-			value={nodeValue}
 			child={
 				<ul className="properties">
 					<li key="assiette">
@@ -418,25 +440,20 @@ export let mecanismScale = (recurse,k,v) => {
 }
 
 export let mecanismMax = (recurse,k,v) => {
-	let contenders = v.map(recurse),
-		contenderValues = R.pluck('nodeValue')(contenders),
-		stopEverything = R.contains(null, contenderValues),
-		maxValue = R.max(...contenderValues),
-		nodeValue = stopEverything ? null : maxValue
+	let explanation = v.map(recurse)
 
 	return {
+		evaluate: evaluateArray(R.max,Number.NEGATIVE_INFINITY),
 		type: 'numeric',
 		category: 'mecanism',
 		name: 'le maximum de',
-		nodeValue,
-		explanation: contenders,
+		explanation,
 		jsx: <Node
 			classes="mecanism list maximum"
 			name="le maximum de"
-			value={nodeValue}
 			child={
 				<ul>
-				{contenders.map((item, i) =>
+				{explanation.map((item, i) =>
 					<li key={i}>
 						<div className="description">{v[i].description}</div>
 						{item.jsx}
