@@ -1,6 +1,6 @@
 import R from 'ramda'
 import {expect} from 'chai'
-import {rules, enrichRule} from '../source/engine/rules'
+import {rules as realRules, enrichRule} from '../source/engine/rules'
 import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
 import {buildNextSteps, collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
 
@@ -67,6 +67,17 @@ describe('buildNextSteps', function() {
         situation = analyseTopDown(rules,"sum")(stateSelector),
         result = buildNextSteps(stateSelector, rules, situation)
 
+    expect(result).to.have.lengthOf(1)
+    expect(R.path(["question","props","label"])(result[0])).to.equal("?")
+  });
+
+  it('should generate questions from the real rules', function() {
+    let rules = realRules.map(enrichRule),
+        situation = analyseTopDown(rules,"surcoût CDD")(stateSelector),
+        objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
+        result = buildNextSteps(stateSelector, rules, situation)
+
+    expect(objectives).to.have.lengthOf(4)
     expect(result).to.have.lengthOf(1)
     expect(R.path(["question","props","label"])(result[0])).to.equal("?")
   });

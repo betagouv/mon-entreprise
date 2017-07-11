@@ -9,12 +9,32 @@ let transformPercentage = s =>
 		+s.replace('%', '') / 100
 	: +s
 
+let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
+	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+	    explanation = R.map(evaluateOne, node.explanation),
+	    values = R.pluck("nodeValue",explanation),
+	    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
+
+	let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+
+	return {
+		...node,
+		nodeValue,
+		collectMissing,
+		explanation,
+		jsx: {
+			...node.jsx,
+			value: nodeValue
+		}
+	}
+}
+
 export let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
 		filter = val(recurse("sys . filter")),
 		isRelevant = c => !filter || !c.attributs || c.attributs['dû par'] == filter,
-		composantes = v.composantes.filter(isRelevant).map(c =>
+		explanation = v.composantes.filter(isRelevant).map(c =>
 			({
 				... recurse(
 					R.objOf(k,
@@ -25,23 +45,20 @@ export let decompose = (recurse, k, v) => {
 				),
 				composante: c.nom ? {nom: c.nom} : c.attributs
 			})
-		),
-		nodeValue = anyNull(composantes) ? null
-			: R.reduce(R.add, 0, composantes.map(val))
+		)
 
 	return {
-		nodeValue,
+		evaluate: evaluateArray(R.add,0),
 		category: 'mecanism',
 		name: 'composantes',
 		type: 'numeric',
-		explanation: composantes,
+		explanation,
 		jsx: <Node
 			classes="mecanism composantes"
 			name="composantes"
-			value={nodeValue}
 			child={
 				<ul>
-					{ composantes.map((c, i) =>
+					{ explanation.map((c, i) =>
 						[<li className="composante" key={JSON.stringify(c.composante)}>
 							<ul className="composanteAttributes">
 								{R.toPairs(c.composante).map(([k,v]) =>
@@ -55,7 +72,7 @@ export let decompose = (recurse, k, v) => {
 								{c.jsx}
 							</div>
 						</li>,
-						i < (composantes.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+						i < (explanation.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
 						]
 						)
 					}
@@ -68,25 +85,10 @@ export let decompose = (recurse, k, v) => {
 export let mecanismOneOf = (recurse, k, v) => {
 	if (!R.is(Array,v)) throw 'should be array'
 
-	let evaluate = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
-		    values = R.map(evaluateOne, node.explanation),
-		    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(R.or,false,values)
-
-		return {
-			...node,
-			nodeValue,
-			jsx: {
-				...node.jsx,
-				value: nodeValue
-			}
-		}
-	}
-
 	let explanation = R.map(recurse, v)
 
 	return {
-		evaluate,
+		evaluate: evaluateArray(R.or,false),
 		explanation,
 		category: 'mecanism',
 		name: 'une de ces conditions',
@@ -106,25 +108,10 @@ export let mecanismOneOf = (recurse, k, v) => {
 export let mecanismAllOf = (recurse, k,v) => {
 	if (!R.is(Array,v)) throw 'should be array'
 
-	let evaluate = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
-		    values = R.map(evaluateOne, node.explanation),
-		    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(R.and,true,values)
-
-		return {
-			...node,
-			nodeValue,
-			jsx: {
-				...node.jsx,
-				value: nodeValue
-			}
-		}
-	}
-
 	let explanation = R.map(recurse, v)
 
 	return {
-		evaluate,
+		evaluate: evaluateArray(R.and,true),
 		explanation,
 		category: 'mecanism',
 		name: 'toutes ces conditions',
@@ -234,23 +221,6 @@ export let mecanismPercentage = (recurse,k,v) => {
 					<span className="name">{v}</span>
 				</span>
 		}
-	// Si c'est une liste historisée de pourcentages
-	// TODO revoir le test avant le bug de l'an 2100
-	else if ( R.is(Array)(v) && R.all(R.test(/(19|20)\d\d(-\d\d)?(-\d\d)?/))(R.keys(v)) ) {
-		//TODO sélectionner la date de la simulation en cours
-		let lazySelection = R.first(R.values(v))
-		return {
-			category: 'percentage',
-			type: 'numeric',
-			percentage: lazySelection,
-			nodeValue: transformPercentage(lazySelection),
-			explanation: null,
-			jsx:
-				<span className="percentage" >
-					<span className="name">{lazySelection}</span>
-				</span>
-		}
-	}
 	else {
 		let node = recurse(v)
 		return {
@@ -265,30 +235,10 @@ export let mecanismPercentage = (recurse,k,v) => {
 }
 
 export let mecanismSum = (recurse,k,v) => {
-	let evaluate = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
-		    explanation = R.map(evaluateOne, node.explanation),
-		    values = R.pluck("nodeValue",explanation),
-		    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(R.add,0,values)
-
-		let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
-
-		return {
-			...node,
-			nodeValue,
-			collectMissing,
-			explanation,
-			jsx: {
-				...node.jsx,
-				value: nodeValue
-			}
-		}
-	}
-
 	let explanation = v.map(recurse)
 
 	return {
-		evaluate,
+		evaluate: evaluateArray(R.add,0),
 		explanation,
 		category: 'mecanism',
 		name: 'somme',
