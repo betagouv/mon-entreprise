@@ -4,7 +4,7 @@ import {rules, enrichRule} from '../source/engine/rules'
 import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
 import {buildNextSteps, collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
 
-let stateSelector = (state, name) => null
+let stateSelector = (name) => null
 
 describe('getObjectives', function() {
 
@@ -16,7 +16,7 @@ describe('getObjectives', function() {
           {nom: "ko", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
         {root, parsedRules} = analyseTopDown(rules,"startHere")(stateSelector),
-        result = getObjectives(root, parsedRules)
+        result = getObjectives(stateSelector, root, parsedRules)
 
     expect(result).to.have.lengthOf(1)
     expect(result[0]).to.have.property('name','deux')
@@ -34,7 +34,7 @@ describe('collectMissingVariables', function() {
           {nom: "ko", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(situation)
+        result = collectMissingVariables()(stateSelector,situation)
 
     expect(result).to.have.property('sum . evt . ko')
   });
@@ -47,7 +47,7 @@ describe('collectMissingVariables', function() {
           {nom: "nyet", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(situation)
+        result = collectMissingVariables()(stateSelector,situation)
 
     expect(result).to.have.property('sum . evt . nyet')
     expect(result).to.have.property('sum . evt . nope')
@@ -64,8 +64,8 @@ describe('buildNextSteps', function() {
           {nom: "evt", espace: "top . sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseSituation(rules,"sum")(stateSelector),
-        result = buildNextSteps(rules, situation)
+        situation = analyseTopDown(rules,"sum")(stateSelector),
+        result = buildNextSteps(stateSelector, rules, situation)
 
     expect(result).to.have.lengthOf(1)
     expect(R.path(["question","props","label"])(result[0])).to.equal("?")

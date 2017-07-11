@@ -6,7 +6,7 @@ import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {analyseSituation} from './traverse'
+import {analyseSituation, evaluateNode} from './traverse'
 import {formValueSelector} from 'redux-form'
 import {rules, findRuleByDottedName, findVariantsAndRecords} from './rules'
 
@@ -42,7 +42,7 @@ export let analyse = rootVariable => R.pipe(
 
 // On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
 // Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
-export let getObjectives = (root, parsedRules) => {
+export let getObjectives = (situationGate, root, parsedRules) => {
 	let formuleType = R.path(["formule", "explanation", "name"])(
 		root
 	)
@@ -55,37 +55,17 @@ export let getObjectives = (root, parsedRules) => {
 		: formuleType ? [root] : null,
 		names = targets ? R.reject(R.isNil)(targets) : []
 
-	return R.map(R.curry(findRuleByDottedName)(parsedRules),names)
+	let findAndEvaluate = name => evaluateNode(situationGate,parsedRules,findRuleByDottedName(parsedRules,name))
+	return R.map(findAndEvaluate,names)
 }
 
-// FIXME - this relies on side-effects and the recursion is grossly indiscriminate
-let collectNodeMissingVariables = (root, source=root, results=[]) => {
-	if (root == source) console.log("cNMV:",root)
-	if (
-    source.nodeValue != null  ||
-    source.shortCircuit && source.shortCircuit(root)
-  ) {
-		// console.log('nodev or shortcircuit root, source', root, source)
-		return []
-	}
-
-	if (source['missingVariables']) {
-		// console.log('root, source', root, source)
-		results.push(source['missingVariables'])
-	}
-
-	for (var prop in source) {
-		if (R.is(Object)(source[prop])) {
-			collectNodeMissingVariables(root, source[prop], results)
-		}
-	}
-
-	return results
+let collectNodeMissingVariables = (root) => {
+	return root.collectMissing ? root.collectMissing(root) : []
 }
 
-export let collectMissingVariables = (groupMethod='groupByMissingVariable') => ({root, parsedRules}) => {
+export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (situationGate, {root, parsedRules}) => {
 	return R.pipe(
-		getObjectives,
+		R.curry(getObjectives)(situationGate),
 		R.chain( v =>
 			R.pipe(
 				collectNodeMissingVariables,
@@ -101,9 +81,9 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (
 	)(root, parsedRules)
 }
 
-export let buildNextSteps = (allRules, analysedSituation) => {
+export let buildNextSteps = (situationGate, flatRules, analysedSituation) => {
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(
-		analysedSituation
+		situationGate, analysedSituation
 	)
 
 	/*
@@ -142,11 +122,11 @@ export let buildNextSteps = (allRules, analysedSituation) => {
 
 	return R.pipe(
 		R.keys,
-		R.curry(findVariantsAndRecords)(allRules),
+		R.curry(findVariantsAndRecords)(flatRules),
 		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
 		R.evolve({
-			variantGroups: generateGridQuestions(allRules, missingVariables),
-			recordGroups: generateSimpleQuestions(allRules, missingVariables),
+			variantGroups: generateGridQuestions(analysedSituation.parsedRules, missingVariables),
+			recordGroups: generateSimpleQuestions(analysedSituation.parsedRules, missingVariables),
 		}),
 		R.values,
 		R.unnest,

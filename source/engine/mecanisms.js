@@ -2,7 +2,7 @@ import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
 import {Node, Leaf} from './traverse-common-jsx'
-import {evaluateNode} from './traverse'
+import {evaluateNode, collectNodeMissing} from './traverse'
 
 let transformPercentage = s =>
 	R.contains('%')(s) ?
@@ -266,13 +266,18 @@ export let mecanismPercentage = (recurse,k,v) => {
 
 export let mecanismSum = (recurse,k,v) => {
 	let evaluate = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child).nodeValue,
-		    values = R.map(evaluateOne, node.explanation),
+		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+		    explanation = R.map(evaluateOne, node.explanation),
+		    values = R.pluck("nodeValue",explanation),
 		    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(R.add,0,values)
+
+		let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
 
 		return {
 			...node,
 			nodeValue,
+			collectMissing,
+			explanation,
 			jsx: {
 				...node.jsx,
 				value: nodeValue

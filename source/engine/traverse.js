@@ -80,9 +80,12 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
+			let collectMissing = node => node.missingVariables
+
 			return {
 				...node,
 				nodeValue,
+				collectMissing,
 				missingVariables,
 				explanation,
 				jsx: {
@@ -171,16 +174,21 @@ let treat = (situationGate, rules, rule) => rawNode => {
 							'+': 'add',
 							'-': 'subtract'
 						}[node.operator],
-						value1 = evaluateNode(situation,parsedRules,node.explanation[0]).nodeValue,
-						value2 = evaluateNode(situation,parsedRules,node.explanation[1]).nodeValue,
+						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
+						value1 = explanation[0].nodeValue,
+						value2 = explanation[1].nodeValue,
 						operatorFunction = R[operatorFunctionName],
 						nodeValue = value1 == null || value2 == null ?
 							null
 						: operatorFunction(value1, value2)
 
+					let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+
 					return {
 						...node,
 						nodeValue,
+						collectMissing,
+						explanation,
 						jsx: {
 							...node.jsx,
 							value: nodeValue
@@ -237,15 +245,20 @@ let treat = (situationGate, rules, rule) => rawNode => {
 							//TODO '='
 						}[node.operator],
 						comparatorFunction = R[comparatorFunctionName],
-						value1 = evaluateNode(situation,parsedRules,node.explanation[0]).nodeValue,
-						value2 = evaluateNode(situation,parsedRules,node.explanation[1]).nodeValue,
+						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
+						value1 = explanation[0].nodeValue,
+						value2 = explanation[1].nodeValue,
 						nodeValue = value1 == null || value2 == null ?
 							null
 						: comparatorFunction(value1, value2)
 
+					let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+
 					return {
 						...node,
 						nodeValue,
+						collectMissing,
+						explanation,
 						jsx: {
 							...node.jsx,
 							value: nodeValue
@@ -365,12 +378,23 @@ export let computeRuleValue = (formuleValue, condValue) =>
 export let treatRuleRoot = (situationGate, rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
 		let
-			formuleValue = r.formule && evaluateNode(situationGate, parsedRules, r.formule).nodeValue,
-			condition = R.prop('non applicable si',r),
-			condValue = condition && evaluateNode(situationGate, parsedRules, condition).nodeValue,
+			evaluated = R.evolve({
+				formule:R.curry(evaluateNode)(situationGate, parsedRules),
+				"non applicable si":R.curry(evaluateNode)(situationGate, parsedRules)
+			},r),
+			formuleValue = evaluated.formule && evaluated.formule.nodeValue,
+			condition = R.prop('non applicable si',evaluated),
+			condValue = condition && condition.nodeValue,
 			nodeValue = computeRuleValue(formuleValue, condValue)
 
-		return {...r, nodeValue}
+		return {...evaluated, nodeValue}
+	}
+	let collectMissing = node => {
+		let cond = R.prop('non applicable si',node),
+			condMissing = cond ? collectNodeMissing(cond) : [],
+			formule = node.formule,
+			formMissing = formule ? collectNodeMissing(formule) : []
+		return R.concat(condMissing,formMissing)
 	}
 
 	let parsedRoot = R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
@@ -380,10 +404,12 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 	// 'cond' : Conditions d'applicabilité de la règle
 		'non applicable si': value => {
 			let evaluate = (situationGate, parsedRules, node) => {
-				let nodeValue = evaluateNode(situationGate, parsedRules, node.explanation).nodeValue
+				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+					nodeValue = explanation.nodeValue
 				return {
 					...node,
 					nodeValue,
+					explanation,
 					jsx: {
 						...node.jsx,
 						value: nodeValue
@@ -393,8 +419,11 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 
 			let child = treat(situationGate, rules, rule)(value)
 
+			let collectMissing = node => collectNodeMissing(node.explanation)
+
 			return {
 				evaluate,
+				collectMissing,
 				category: 'ruleProp',
 				rulePropType: 'cond',
 				name: 'non applicable si',
@@ -418,10 +447,12 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
 			let evaluate = (situationGate, parsedRules, node) => {
-				let nodeValue = evaluateNode(situationGate, parsedRules, node.explanation).nodeValue
+				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+					nodeValue = explanation.nodeValue
 				return {
 					...node,
 					nodeValue,
+					explanation,
 					jsx: {
 						...node.jsx,
 						value: nodeValue
@@ -430,14 +461,16 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 			}
 
 			let child = treat(situationGate, rules, rule)(value)
+			let collectMissing = node => collectNodeMissing(node.explanation)
+
 			return {
 				evaluate,
+				collectMissing,
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
 				type: 'numeric',
 				explanation: child,
-				shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true),
 				jsx: <Node
 					classes="ruleProp mecanism formula"
 					name="formule"
@@ -457,11 +490,15 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 
 	return {
 		...parsedRoot,
-		evaluate
+		evaluate,
+		collectMissing
 	}
 }
 
-export let evaluateNode = (situationGate, parsedRules, node) => node.evaluate(situationGate, parsedRules, node)
+export let evaluateNode = (situationGate, parsedRules, node) =>
+	node.evaluate(situationGate, parsedRules, node)
+export let collectNodeMissing = (node) =>
+	node.collectMissing ? node.collectMissing(node) : []
 
 /* Analyse the set of selected rules, and add derived information to them :
 - do they need variables that are not present in the user situation ?

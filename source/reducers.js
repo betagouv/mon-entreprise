@@ -36,14 +36,14 @@ export let reduceSteps = (state, action) => {
 		return {
 			...returnObject,
 			foldedSteps: state.foldedSteps || [],
-			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation.root)
+			unfoldedSteps: buildNextSteps(situationGate(state), rules, returnObject.analysedSituation)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		return {
 			...returnObject,
 			foldedSteps: [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation.root)
+			unfoldedSteps: buildNextSteps(situationGate(state), rules, returnObject.analysedSituation)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
