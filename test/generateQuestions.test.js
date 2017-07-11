@@ -78,8 +78,13 @@ describe('buildNextSteps', function() {
         result = buildNextSteps(stateSelector, rules, situation)
 
     expect(objectives).to.have.lengthOf(4)
-    expect(result).to.have.lengthOf(1)
-    expect(R.path(["question","props","label"])(result[0])).to.equal("?")
+    expect(result).to.have.lengthOf(5)
+    expect(R.path(["question","props","label"])(result[0])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
+    expect(R.path(["question","props","label"])(result[1])).to.equal("Quel est le motif de recours au CDD ?")
+    expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le salaire brut ?")
+    expect(R.path(["question","props","label"])(result[3])).to.equal("Est-ce un contrat jeune vacances ?")
+    expect(R.path(["question","props","label"])(result[4])).to.equal("Quelle est la durée du contrat ?")
+    expect(R.path(["question","props","label"])(result[5])).to.equal("Combien de jours de congés ne seront pas pris ?")
   });
 
 });
