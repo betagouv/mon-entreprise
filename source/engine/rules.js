@@ -112,7 +112,6 @@ export let findVariantsAndRecords = (allRules, names) => {
 		groupByType = R.groupBy(R.prop("type")),
 		stripTypes = R.map(R.map(R.omit("type"))),
 		mergeLists = R.map(R.reduce(R.mergeWith(R.concat),{}))
-		console.log("classify",classify(names))
 
 	return R.pipe(classify,groupByType,stripTypes,mergeLists)(names)
 }
