@@ -80,7 +80,8 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
-			let collectMissing = node => node.missingVariables
+			let collectMissing = node =>
+				variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
 			return {
 				...node,
