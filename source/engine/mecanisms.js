@@ -12,8 +12,8 @@ let transformPercentage = s =>
 let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
 	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
 	    explanation = R.map(evaluateOne, node.explanation),
-	    values = R.pluck("nodeValue",explanation),
-	    nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
+		values = R.pluck("nodeValue",explanation),
+		nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
 
 	let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
 
@@ -158,82 +158,85 @@ export let mecanismAllOf = (recurse, k,v) => {
 }
 
 export let mecanismNumericalLogic = (recurse, k,v) => {
-	return R.ifElse(
-		R.is(String),
-		rate => ({ //TODO unifier ce code
-			nodeValue: transformPercentage(rate),
-			type: 'numeric',
-			category: 'percentage',
-			percentage: rate,
-			explanation: null,
-			jsx:
-				<span className="percentage" >
-					<span className="name">{rate}</span>
-				</span>
-		}),
-		R.pipe(
-			R.unless(
-				v => R.is(Object)(v) && R.keys(v).length >= 1,
-				() => {throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'}
-			),
-			R.toPairs,
-			R.reduce( (memo, [condition, consequence]) => {
-				let
-					{nodeValue, explanation} = memo,
-					conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
-					childNumericalLogic = mecanismNumericalLogic(recurse, condition, consequence),
-					nextNodeValue = conditionNode.nodeValue == null ?
-					// Si la proposition n'est pas encore résolvable
-						null
-					// Si la proposition est résolvable
-					:	conditionNode.nodeValue == true ?
-						// Si elle est vraie
-							childNumericalLogic.nodeValue
-						// Si elle est fausse
-						: false
+	if (R.is(String,v)) {
+		// This seems an undue limitation
+		return mecanismPercentage(recurse,k,v)
+	}
 
-				return {...memo,
-					nodeValue: nodeValue == null ?
-						null
-					: nodeValue !== false ?
-							nodeValue // l'une des propositions renvoie déjà une valeur numérique donc différente de false
-						: nextNodeValue,
-					explanation: [...explanation, {
-						nodeValue: nextNodeValue,
-						category: 'condition',
-						text: condition,
-						condition: conditionNode,
-						conditionValue: conditionNode.nodeValue,
-						type: 'boolean',
-						explanation: childNumericalLogic,
-						jsx: <div className="condition">
-							{conditionNode.jsx}
-							<div>
-								{childNumericalLogic.jsx}
-							</div>
-						</div>
-					}],
-				}
-			}, {
-				nodeValue: false,
-				category: 'mecanism',
-				name: "logique numérique",
-				type: 'boolean || numeric', // lol !
-				explanation: []
-			}),
-			node => ({...node,
-				jsx: <Node
-					classes="mecanism numericalLogic list"
-					name="logique numérique"
-					value={node.nodeValue}
-					child={
-						<ul>
-							{node.explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
-						</ul>
-					}
-				/>
-			})
-	))(v)
+	if (!R.is(Object,v) || R.keys(v).length == 0) {
+		throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'
+	}
+
+	let parseCondition = ([condition, consequence]) => {
+		let
+			conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
+			childNumericalLogic = mecanismNumericalLogic(recurse, condition, consequence)
+
+			let collectMissing = node =>
+				R.concat(collectNodeMissing(conditionNode),collectNodeMissing(childNumericalLogic))
+
+			let evaluate = (situationGate, parsedRules, node) => ({
+					...evaluateNode(situationGate, parsedRules, childNumericalLogic),
+					condValue: evaluateNode(situationGate, parsedRules, conditionNode).nodeValue
+				})
+
+		return {
+				evaluate,
+				collectMissing,
+				category: 'condition',
+				text: condition,
+				condition: conditionNode,
+				type: 'boolean',
+				explanation: childNumericalLogic,
+				jsx: <div className="condition">
+					{conditionNode.jsx}
+					<div>
+						{childNumericalLogic.jsx}
+					</div>
+				</div>
+			}
+	}
+
+	let evaluateTerms = (situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+		    explanation = R.map(evaluateOne, node.explanation),
+			choice = R.find(node => node.condValue, explanation),
+			nodeValue = choice ? choice.nodeValue : null
+
+		let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+
+		return {
+			...node,
+			nodeValue,
+			collectMissing,
+			explanation,
+			jsx: {
+				...node.jsx,
+				value: nodeValue
+			}
+		}
+	}
+
+	let terms = R.toPairs(v)
+
+	let explanation = R.map(parseCondition,terms)
+
+	return {
+		evaluate: evaluateTerms,
+		category: 'mecanism',
+		name: "logique numérique",
+		type: 'boolean || numeric', // lol !
+		explanation,
+		jsx: <Node
+			classes="mecanism numericalLogic list"
+			name="logique numérique"
+			child={
+				<ul>
+					{explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+				</ul>
+			}
+		/>
+	}
 }
 
 export let mecanismPercentage = (recurse,k,v) => {

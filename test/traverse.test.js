@@ -88,9 +88,9 @@ describe('analyseSituation with mecanisms', function() {
   it('should handle switch statements', function() {
     let rawRules = [
           {nom: "startHere", formule: {"logique numérique": {
-                  "1 > dix":"10",
-                  "3 < dix":"11",
-                  "3 > dix":"12"
+                  "1 > dix":"1000%",
+                  "3 < dix":"1100%",
+                  "3 > dix":"1200%"
               }}, espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
