@@ -29,6 +29,35 @@ let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
 	}
 }
 
+let parseObject = (recurse, objectShape, value) => {
+	let recurseOne = key => defaultValue => {
+			if (!value[key] && ! defaultValue) throw "Il manque une valeur '"+key+"'"
+			return value[key] ? recurse(value[key]) : defaultValue
+		}
+	let transforms = R.fromPairs(R.map(k => [k,recurseOne(k)],R.keys(objectShape)))
+	return R.evolve(transforms,objectShape)
+}
+
+let evaluateObject = (objectShape, effect) => (situationGate, parsedRules, node) => {
+	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+		collectMissing = node => R.chain(collectNodeMissing,R.values(node.explanation))
+
+	let transforms = R.map(k => [k,evaluateOne], R.keys(objectShape)),
+	    explanation = R.evolve(R.fromPairs(transforms))(node.explanation),
+	    nodeValue = effect(explanation)
+
+	return {
+		...node,
+		nodeValue,
+		collectMissing,
+		explanation,
+		jsx: {
+			...node.jsx,
+			value: nodeValue
+		}
+	}
+}
+
 export let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
@@ -260,56 +289,35 @@ export let mecanismProduct = (recurse,k,v) => {
 		return decompose(recurse,k,v)
 	}
 
-	let evaluate = (situationGate, parsedRules, node) => {
-		let mult = (base, rate, facteur, plafond) => Math.min(base, plafond) * rate * facteur,
-			evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
-			collectMissing = node => R.chain(collectNodeMissing,R.values(node.explanation))
+	// Preprocessing step to parse percentages
+	let wrap = x => ({taux: x}),
+		value = R.evolve({taux:wrap},v)
 
-		let {taux, assiette, facteur, plafond} = node.explanation,
-			explanation = R.evolve({
-				taux: evaluateOne,
-				assiette: evaluateOne,
-				facteur: evaluateOne,
-				plafond: evaluateOne,
-			})(node.explanation)
-
-		let nodeValue = (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
+	let constantNode = constant => ({nodeValue: constant})
+	let objectShape = {
+		assiette:false,
+		taux:constantNode(1),
+		facteur:constantNode(1),
+		plafond:constantNode(Infinity)
+	}
+	let effect = ({assiette,taux,facteur,plafond}) => {
+		let mult = (base, rate, facteur, plafond) => Math.min(base, plafond) * rate * facteur
+		return (val(taux) === 0 || val(taux) === false || val(assiette) === 0 || val(facteur) === 0) ?
 			0
 		: anyNull([taux, assiette, facteur, plafond]) ?
 				null
 			: mult(val(assiette), val(taux), val(facteur), val(plafond))
-
-		return {
-			...node,
-			nodeValue,
-			collectMissing,
-			explanation,
-			jsx: {
-				...node.jsx,
-				value: nodeValue
-			}
-		}
 	}
 
-	let constantNode = constant => ({nodeValue: constant})
-
-	let assiette = recurse(v['assiette']),
-		taux = v['taux'] ? recurse({taux: v['taux']}) : constantNode(1),
-		facteur = v['facteur'] ? recurse(v['facteur']) : constantNode(1),
-		plafond = v['plafond'] ? recurse(v['plafond']) : constantNode(Infinity)
+	let explanation = parseObject(recurse,objectShape,value),
+		evaluate = evaluateObject(objectShape,effect)
 
 	return {
 		evaluate,
 		category: 'mecanism',
 		name: 'multiplication',
 		type: 'numeric',
-		explanation: {
-			assiette,
-			taux,
-			facteur,
-			plafond
-			//TODO introduire 'prorata' ou 'multiplicateur', pour sémantiser les opérandes ?
-		},
+		explanation,
 		jsx: <Node
 			classes="mecanism multiplication"
 			name="multiplication"
@@ -317,22 +325,22 @@ export let mecanismProduct = (recurse,k,v) => {
 				<ul className="properties">
 					<li key="assiette">
 						<span className="key">assiette: </span>
-						<span className="value">{assiette.jsx}</span>
+						<span className="value">{explanation.assiette.jsx}</span>
 					</li>
-					{taux.nodeValue != 1 &&
+					{explanation.taux.nodeValue != 1 &&
 					<li key="taux">
 						<span className="key">taux: </span>
-						<span className="value">{taux.jsx}</span>
+						<span className="value">{explanation.taux.jsx}</span>
 					</li>}
-					{facteur.nodeValue != 1 &&
+					{explanation.facteur.nodeValue != 1 &&
 					<li key="facteur">
 						<span className="key">facteur: </span>
-						<span className="value">{facteur.jsx}</span>
+						<span className="value">{explanation.facteur.jsx}</span>
 					</li>}
-					{plafond.nodeValue != Infinity &&
+					{explanation.plafond.nodeValue != Infinity &&
 					<li key="plafond">
 						<span className="key">plafond: </span>
-						<span className="value">{plafond.jsx}</span>
+						<span className="value">{explanation.plafond.jsx}</span>
 					</li>}
 				</ul>
 			}
@@ -470,36 +478,31 @@ export let mecanismComplement = (recurse,k,v) => {
 		return decompose(recurse,k,v)
 	}
 
-	if (v['cible'] == null)
-		throw "un complément nécessite une propriété 'cible'"
-
-	let cible = recurse(v['cible']),
-		mini = recurse(v['montant']),
-		nulled = val(cible) == null,
-		nodeValue = nulled ? null : R.subtract(val(mini), R.min(val(cible), val(mini)))
+	let objectShape = {cible:false,montant:false}
+	let effect = ({cible,montant}) => {
+		let nulled = val(cible) == null
+		return nulled ? null : R.subtract(val(montant), R.min(val(cible), val(montant)))
+	}
+	let explanation = parseObject(recurse,objectShape,v)
 
 	return {
+		evaluate: evaluateObject(objectShape,effect),
+		explanation,
 		type: 'numeric',
 		category: 'mecanism',
 		name: 'complément pour atteindre',
-		nodeValue,
-		explanation: {
-			cible,
-			mini
-		},
 		jsx: <Node
 			classes="mecanism list complement"
 			name="complément pour atteindre"
-			value={nodeValue}
 			child={
 				<ul className="properties">
 					<li key="cible">
 						<span className="key">montant calculé: </span>
-						<span className="value">{cible.jsx}</span>
+						<span className="value">{explanation.cible.jsx}</span>
 					</li>
 					<li key="mini">
 						<span className="key">montant à atteindre: </span>
-						<span className="value">{mini.jsx}</span>
+						<span className="value">{explanation.montant.jsx}</span>
 					</li>
 				</ul>
 			}
