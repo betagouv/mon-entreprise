@@ -89,10 +89,7 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 				collectMissing,
 				missingVariables,
 				explanation,
-				jsx: {
-					...node.jsx,
-					value: nodeValue
-				}
+				jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 			}
 	}
 
@@ -190,10 +187,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 						nodeValue,
 						collectMissing,
 						explanation,
-						jsx: {
-							...node.jsx,
-							value: nodeValue
-						}
+						jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 					}
 				}
 
@@ -260,10 +254,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 						nodeValue,
 						collectMissing,
 						explanation,
-						jsx: {
-							...node.jsx,
-							value: nodeValue
-						}
+						jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 					}
 				}
 
@@ -409,10 +400,7 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 					...node,
 					nodeValue,
 					explanation,
-					jsx: {
-						...node.jsx,
-						value: nodeValue
-					}
+					jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 				}
 			}
 
@@ -452,10 +440,7 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 					...node,
 					nodeValue,
 					explanation,
-					jsx: {
-						...node.jsx,
-						value: nodeValue
-					}
+					jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 				}
 			}
 

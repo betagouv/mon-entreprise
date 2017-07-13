@@ -22,10 +22,7 @@ let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
 		nodeValue,
 		collectMissing,
 		explanation,
-		jsx: {
-			...node.jsx,
-			value: nodeValue
-		}
+		jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 	}
 }
 
@@ -51,10 +48,7 @@ let evaluateObject = (objectShape, effect) => (situationGate, parsedRules, node)
 		nodeValue,
 		collectMissing,
 		explanation,
-		jsx: {
-			...node.jsx,
-			value: nodeValue
-		}
+		jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 	}
 }
 
@@ -210,10 +204,7 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 			nodeValue,
 			collectMissing,
 			explanation,
-			jsx: {
-				...node.jsx,
-				value: nodeValue
-			}
+			jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 		}
 	}
 
