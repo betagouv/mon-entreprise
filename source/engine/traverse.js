@@ -121,7 +121,7 @@ let buildNegatedVariable = variable => {
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 
-	let jsx = (nodeValue, explanation) => (
+	let jsx = (nodeValue, explanation) =>
 		<Node
 			classes="inlineExpression negation"
 			value={node.nodeValue}
@@ -132,7 +132,6 @@ let buildNegatedVariable = variable => {
 				</span>
 			}
 		/>
-	)
 
 	return {
 		evaluate,
@@ -212,7 +211,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					),
 					operator = parseResult.operator
 
-				let jsx = (nodeValue, explanation) => <Node
+				let jsx = (nodeValue, explanation) =>
+					<Node
 						classes="inlineExpression calcExpression"
 						value={nodeValue}
 						child={
@@ -407,7 +407,8 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 
 			let child = treat(situationGate, rules, rule)(value)
 
-			let jsx = (nodeValue, explanation) => <Node
+			let jsx = (nodeValue, explanation) =>
+				<Node
 					classes="ruleProp mecanism cond"
 					name="non applicable si"
 					value={nodeValue}
@@ -443,7 +444,8 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 
 			let child = treat(situationGate, rules, rule)(value)
 
-			let jsx = (nodeValue, explanation) => <Node
+			let jsx = (nodeValue, explanation) =>
+				<Node
 					classes="ruleProp mecanism formula"
 					name="formule"
 					value={nodeValue}
