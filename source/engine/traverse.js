@@ -95,13 +95,12 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
-	let jsx = (nodeValue, explanation) => {
+	let jsx = (nodeValue, explanation) =>
 		<Leaf
 			classes="variable"
 			name={fragments.join(' . ')}
 			value={nodeValue}
 		/>
-	}
 
 	return {
 		evaluate,
@@ -205,8 +204,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...node, nodeValue: parseInt(node.nodeValue)}),
-									jsx:  node => <span className="value">{node.nodeValue}</span>
+									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseInt(node.nodeValue)}),
+									jsx:  nodeValue => <span className="value">{nodeValue}</span>
 								})
 							]
 						])
@@ -269,15 +268,16 @@ let treat = (situationGate, rules, rule) => rawNode => {
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...node, nodeValue: parseInt(node.nodeValue)}),
-									jsx: node => <span className="value">{node.nodeValue}</span>
+									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseInt(node.nodeValue)}),
+									jsx: nodeValue => <span className="value">{nodeValue}</span>
 								})
 							]
 						])
 					),
 					operator = parseResult.operator
 
-				let jsx = (nodeValue, explanation) => <Node
+				let jsx = (nodeValue, explanation) =>
+					<Node
 						classes="inlineExpression calcExpression"
 						value={nodeValue}
 						child={
