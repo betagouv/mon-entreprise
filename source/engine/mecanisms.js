@@ -206,7 +206,6 @@ export let mecanismPercentage = (recurse,k,v) => {
 		return {
 			type: 'numeric',
 			category: 'percentage',
-			percentage: v,
 			nodeValue: R.match(reg)(v)[1]/100,
 			explanation: null,
 			jsx:
@@ -216,13 +215,14 @@ export let mecanismPercentage = (recurse,k,v) => {
 		}
 	else {
 		let node = recurse(v)
+		let evaluate = (situation, parsedRules, node) => evaluateNode(situation, parsedRules, node.explanation)
+		let jsx = (nodeValue,explanation) => makeJsx(explanation)
 		return {
+			evaluate,
+			jsx,
 			type: 'numeric',
 			category: 'percentage',
-			percentage: node.nodeValue,
-			nodeValue: node.nodeValue,
-			explanation: node,
-			jsx: node.jsx
+			explanation: node
 		}
 	}
 }
