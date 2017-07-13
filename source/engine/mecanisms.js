@@ -2,7 +2,9 @@ import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
 import {Node, Leaf} from './traverse-common-jsx'
-import {evaluateNode, evaluateArray, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
+import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
+
+let constantNode = constant => ({nodeValue: constant})
 
 let transformPercentage = s =>
 	R.contains('%')(s) ?
@@ -27,15 +29,11 @@ export let decompose = (recurse, k, v) => {
 			})
 		)
 
-	return {
-		evaluate: evaluateArray(R.add,0),
-		category: 'mecanism',
-		name: 'composantes',
-		type: 'numeric',
-		explanation,
-		jsx: <Node
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism composantes"
 			name="composantes"
+			value={nodeValue}
 			child={
 				<ul>
 					{ explanation.map((c, i) =>
@@ -49,16 +47,23 @@ export let decompose = (recurse, k, v) => {
 								)}
 							</ul>
 							<div className="content">
-								{c.jsx}
+								{makeJsx(c)}
 							</div>
 						</li>,
 						i < (explanation.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
-						]
-						)
+						])
 					}
 				</ul>
 			}
 		/>
+
+	return {
+		explanation,
+		jsx,
+		evaluate: evaluateArray(R.add,0),
+		category: 'mecanism',
+		name: 'composantes',
+		type: 'numeric'
 	}
 }
 
@@ -67,21 +72,25 @@ export let mecanismOneOf = (recurse, k, v) => {
 
 	let explanation = R.map(recurse, v)
 
-	return {
-		evaluate: evaluateArray(R.or,false),
-		explanation,
-		category: 'mecanism',
-		name: 'une de ces conditions',
-		type: 'boolean',
-		jsx:	<Node
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism conditions list"
 			name='une de ces conditions'
+			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+					{explanation.map(item => <li key={item.name || item.text}>{makeJsx(item)}</li>)}
 				</ul>
 			}
 		/>
+
+	return {
+		evaluate: evaluateArray(R.or,false),
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: 'une de ces conditions',
+		type: 'boolean'
 	}
 }
 
@@ -90,21 +99,25 @@ export let mecanismAllOf = (recurse, k,v) => {
 
 	let explanation = R.map(recurse, v)
 
-	return {
-		evaluate: evaluateArray(R.and,true),
-		explanation,
-		category: 'mecanism',
-		name: 'toutes ces conditions',
-		type: 'boolean',
-		jsx:	<Node
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism conditions list"
 			name='toutes ces conditions'
+			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+					{explanation.map(item => <li key={item.name || item.text}>{makeJsx(item)}</li>)}
 				</ul>
 			}
 		/>
+
+	return {
+		evaluate: evaluateArray(R.and,true),
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: 'toutes ces conditions',
+		type: 'boolean'
 	}
 }
 
@@ -121,30 +134,33 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 	let parseCondition = ([condition, consequence]) => {
 		let
 			conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
-			childNumericalLogic = mecanismNumericalLogic(recurse, condition, consequence)
+			consequenceNode = mecanismNumericalLogic(recurse, condition, consequence)
 
 			let collectMissing = node =>
-				R.concat(collectNodeMissing(conditionNode),collectNodeMissing(childNumericalLogic))
+				R.concat(collectNodeMissing(conditionNode),collectNodeMissing(consequenceNode))
 
 			let evaluate = (situationGate, parsedRules, node) => ({
-					...evaluateNode(situationGate, parsedRules, childNumericalLogic),
+					...evaluateNode(situationGate, parsedRules, consequenceNode),
 					condValue: evaluateNode(situationGate, parsedRules, conditionNode).nodeValue
 				})
 
+		let jsx = (nodeValue, {condition, consequence}) =>
+			<div className="condition">
+					{makeJsx(condition)}
+					<div>
+						{makeJsx(consequence)}
+					</div>
+				</div>
+
 		return {
 				evaluate,
+				jsx,
 				collectMissing,
+				explanation: {condition: conditionNode, consequence: consequenceNode},
 				category: 'condition',
 				text: condition,
 				condition: conditionNode,
 				type: 'boolean',
-				explanation: childNumericalLogic,
-				jsx: <div className="condition">
-					{conditionNode.jsx}
-					<div>
-						{childNumericalLogic.jsx}
-					</div>
-				</div>
 			}
 	}
 
@@ -155,35 +171,32 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 			nodeValue = choice ? choice.nodeValue : null
 
 		let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
-
-		return {
-			...node,
-			nodeValue,
-			collectMissing,
-			explanation,
-			jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-		}
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 
 	let terms = R.toPairs(v)
 
 	let explanation = R.map(parseCondition,terms)
 
-	return {
-		evaluate: evaluateTerms,
-		category: 'mecanism',
-		name: "logique numérique",
-		type: 'boolean || numeric', // lol !
-		explanation,
-		jsx: <Node
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism numericalLogic list"
 			name="logique numérique"
+			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(item => <li key={item.name || item.text}>{item.jsx}</li>)}
+					{explanation.map(item => <li key={item.name || item.text}>{makeJsx(item)}</li>)}
 				</ul>
 			}
 		/>
+
+	return {
+		evaluate: evaluateTerms,
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: "logique numérique",
+		type: 'boolean || numeric' // lol !
 	}
 }
 
@@ -191,8 +204,8 @@ export let mecanismPercentage = (recurse,k,v) => {
 	let reg = /^(\d+(\.\d+)?)\%$/
 	if (R.test(reg)(v))
 		return {
-			category: 'percentage',
 			type: 'numeric',
+			category: 'percentage',
 			percentage: v,
 			nodeValue: R.match(reg)(v)[1]/100,
 			explanation: null,
@@ -217,21 +230,27 @@ export let mecanismPercentage = (recurse,k,v) => {
 export let mecanismSum = (recurse,k,v) => {
 	let explanation = v.map(recurse)
 
-	return {
-		evaluate: evaluateArray(R.add,0),
-		explanation,
-		category: 'mecanism',
-		name: 'somme',
-		type: 'numeric',
-		jsx: <Node
+	let evaluate = evaluateArray(R.add,0)
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism somme"
 			name="somme"
+			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(v => <li key={v.name || v.text}>{v.jsx}</li>)}
+					{explanation.map(v => <li key={v.name || v.text}>{makeJsx(v)}</li>)}
 				</ul>
 			}
 		/>
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: 'somme',
+		type: 'numeric'
 	}
 }
 
@@ -244,7 +263,6 @@ export let mecanismProduct = (recurse,k,v) => {
 	let wrap = x => ({taux: x}),
 		value = R.evolve({taux:wrap},v)
 
-	let constantNode = constant => ({nodeValue: constant})
 	let objectShape = {
 		assiette:false,
 		taux:constantNode(1),
@@ -263,39 +281,43 @@ export let mecanismProduct = (recurse,k,v) => {
 	let explanation = parseObject(recurse,objectShape,value),
 		evaluate = evaluateObject(objectShape,effect)
 
-	return {
-		evaluate,
-		category: 'mecanism',
-		name: 'multiplication',
-		type: 'numeric',
-		explanation,
-		jsx: <Node
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism multiplication"
 			name="multiplication"
+			value={nodeValue}
 			child={
 				<ul className="properties">
 					<li key="assiette">
 						<span className="key">assiette: </span>
-						<span className="value">{explanation.assiette.jsx}</span>
+						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
 					{explanation.taux.nodeValue != 1 &&
 					<li key="taux">
 						<span className="key">taux: </span>
-						<span className="value">{explanation.taux.jsx}</span>
+						<span className="value">{makeJsx(explanation.taux)}</span>
 					</li>}
 					{explanation.facteur.nodeValue != 1 &&
 					<li key="facteur">
 						<span className="key">facteur: </span>
-						<span className="value">{explanation.facteur.jsx}</span>
+						<span className="value">{makeJsx(explanation.facteur)}</span>
 					</li>}
 					{explanation.plafond.nodeValue != Infinity &&
 					<li key="plafond">
 						<span className="key">plafond: </span>
-						<span className="value">{explanation.plafond.jsx}</span>
+						<span className="value">{makeJsx(explanation.plafond)}</span>
 					</li>}
 				</ul>
 			}
 		/>
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: 'multiplication',
+		type: 'numeric'
 	}
 }
 
@@ -310,23 +332,30 @@ export let mecanismScale = (recurse,k,v) => {
 	if (v['multiplicateur des tranches'] == null)
 		throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
 
-	let
-		assiette = recurse(v['assiette']),
-		multiplicateur = recurse(v['multiplicateur des tranches']),
-
-		/* on réécrit en plus bas niveau les tranches :
-		`en-dessous de: 1`
-		devient
-		```
-		de: 0
-		à: 1
-		```
-		*/
-		tranches = v['tranches'].map(t =>
+	/* on réécrit en plus bas niveau les tranches :
+	`en-dessous de: 1`
+	devient
+	```
+	de: 0
+	à: 1
+	```
+	*/
+	let tranches = v['tranches'].map(t =>
 			R.has('en-dessous de')(t) ? {de: 0, 'à': t['en-dessous de'], taux: t.taux}
 			: R.has('au-dessus de')(t) ? {de: t['au-dessus de'], 'à': Infinity, taux: t.taux}
-				: t
-		),
+				: t)
+
+	let aliased = {
+		...v,
+		multiplicateur: v['multiplicateur des tranches']
+	}
+
+	let objectShape = {
+		assiette:false,
+		multiplicateur:false
+	}
+
+	let effect = ({assiette, multiplicateur, tranches}) => {
 		//TODO appliquer retreat() à de, à, taux pour qu'ils puissent contenir des calculs ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
 		/*
 			nulled = assiette.nodeValue == null || R.any(
@@ -336,10 +365,9 @@ export let mecanismScale = (recurse,k,v) => {
 			)(tranches),
 		*/
 		// nulled = anyNull([assiette, multiplicateur]),
-		nulled = val(assiette) == null || val(multiplicateur) == null,
+		let nulled = val(assiette) == null || val(multiplicateur) == null
 
-		nodeValue =
-			nulled ?
+		return nulled ?
 				null
 			: tranches.reduce((memo, {de: min, 'à': max, taux}) =>
 				( val(assiette) < ( min * val(multiplicateur) ) )
@@ -348,19 +376,16 @@ export let mecanismScale = (recurse,k,v) => {
 						+ ( Math.min(val(assiette), max * val(multiplicateur)) - (min * val(multiplicateur)) )
 						* transformPercentage(taux)
 			, 0)
+		}
 
-	return {
-		nodeValue,
-		category: 'mecanism',
-		name: 'barème',
-		barème: 'en taux marginaux',
-		type: 'numeric',
-		explanation: {
-			assiette,
-			multiplicateur,
-			tranches
-		},
-		jsx: <Node
+	let explanation = {
+				...parseObject(recurse,objectShape,aliased),
+				tranches
+			},
+		evaluate = evaluateObject(objectShape,effect)
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism barème"
 			name="barème"
 			value={nodeValue}
@@ -368,11 +393,11 @@ export let mecanismScale = (recurse,k,v) => {
 				<ul className="properties">
 					<li key="assiette">
 						<span className="key">assiette: </span>
-						<span className="value">{assiette.jsx}</span>
+						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
 					<li key="multiplicateur">
 						<span className="key">multiplicateur des tranches: </span>
-						<span className="value">{multiplicateur.jsx}</span>
+						<span className="value">{makeJsx(explanation.multiplicateur)}</span>
 					</li>
 					<table className="tranches">
 						<thead>
@@ -380,7 +405,7 @@ export let mecanismScale = (recurse,k,v) => {
 								<th>Tranches de l'assiette</th>
 								<th>Taux</th>
 							</tr>
-							{v['tranches'].map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
+							{explanation.tranches.map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
 								<tr key={min || minOnly || 0}>
 									<td>
 										{	maxOnly ? 'En dessous de ' + maxOnly
@@ -395,32 +420,47 @@ export let mecanismScale = (recurse,k,v) => {
 				</ul>
 			}
 		/>
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: 'barème',
+		barème: 'en taux marginaux',
+		type: 'numeric'
 	}
 }
 
 export let mecanismMax = (recurse,k,v) => {
 	let explanation = v.map(recurse)
 
-	return {
-		evaluate: evaluateArray(R.max,Number.NEGATIVE_INFINITY),
-		type: 'numeric',
-		category: 'mecanism',
-		name: 'le maximum de',
-		explanation,
-		jsx: <Node
+	let evaluate = evaluateArray(R.max,Number.NEGATIVE_INFINITY)
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="mecanism list maximum"
 			name="le maximum de"
+			value={nodeValue}
 			child={
 				<ul>
 				{explanation.map((item, i) =>
 					<li key={i}>
 						<div className="description">{v[i].description}</div>
-						{item.jsx}
+						{makeJsx(item)}
 					</li>
 				)}
 				</ul>
 			}
 		/>
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		type: 'numeric',
+		category: 'mecanism',
+		name: 'le maximum de'
 	}
 }
 
@@ -449,11 +489,11 @@ export let mecanismComplement = (recurse,k,v) => {
 				<ul className="properties">
 					<li key="cible">
 						<span className="key">montant calculé: </span>
-						<span className="value">{explanation.cible.jsx}</span>
+						<span className="value">{makeJsx(explanation.cible)}</span>
 					</li>
 					<li key="mini">
 						<span className="key">montant à atteindre: </span>
-						<span className="value">{explanation.montant.jsx}</span>
+						<span className="value">{makeJsx(explanation.montant)}</span>
 					</li>
 				</ul>
 			}

@@ -8,7 +8,7 @@ import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
 import {mecanismOneOf,mecanismAllOf,mecanismNumericalLogic,mecanismSum,mecanismProduct,
 		mecanismPercentage,mecanismScale,mecanismMax,mecanismError, mecanismComplement} from "./mecanisms"
-import {evaluateNode, rewriteNode, collectNodeMissing} from './evaluation'
+import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -95,17 +95,22 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
-	return {
-		evaluate,
-		name: variablePartialName,
-		category: 'variable',
-		fragments: fragments,
-		dottedName,
-		type: 'boolean | numeric',
-		jsx:	<Leaf
+	let jsx = (nodeValue, explanation) => {
+		<Leaf
 			classes="variable"
 			name={fragments.join(' . ')}
+			value={nodeValue}
 		/>
+	}
+
+	return {
+		evaluate,
+		jsx,
+		name: variablePartialName,
+		category: 'variable',
+		fragments,
+		dottedName,
+		type: 'boolean | numeric'
 	}
 }
 
@@ -117,20 +122,26 @@ let buildNegatedVariable = variable => {
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 
-	return {
-		category: 'mecanism',
-		name: 'négation',
-		type: 'boolean',
-		explanation: variable,
-		jsx:	<Node
+	let jsx = (nodeValue, explanation) => (
+		<Node
 			classes="inlineExpression negation"
+			value={node.nodeValue}
 			child={
 				<span className="nodeContent">
 					<span className="operator">¬</span>
-					{variable.jsx}
+					{makeJsx(explanation)}
 				</span>
 			}
 		/>
+	)
+
+	return {
+		evaluate,
+		jsx,
+		category: 'mecanism',
+		name: 'négation',
+		type: 'boolean',
+		explanation: variable
 	}
 }
 
@@ -195,30 +206,33 @@ let treat = (situationGate, rules, rule) => rawNode => {
 							[R.propEq('category', 'value'), node =>
 								({
 									evaluate: (situation, parsedRules, me) => ({...node, nodeValue: parseInt(node.nodeValue)}),
-									jsx: <span className="value">{node.nodeValue}</span>
+									jsx:  node => <span className="value">{node.nodeValue}</span>
 								})
 							]
 						])
 					),
 					operator = parseResult.operator
 
+				let jsx = (nodeValue, explanation) => <Node
+						classes="inlineExpression calcExpression"
+						value={nodeValue}
+						child={
+							<span className="nodeContent">
+								{makeJsx(explanation[0])}
+								<span className="operator">{parseResult.operator}</span>
+								{makeJsx(explanation[1])}
+							</span>
+						}
+					/>
+
 				return {
 					evaluate,
+					jsx,
 					operator,
 					text: rawNode,
 					category: 'calcExpression',
 					type: 'numeric',
-					explanation: filledExplanation,
-					jsx:	<Node
-						classes="inlineExpression calcExpression"
-						child={
-							<span className="nodeContent">
-								{filledExplanation[0].jsx}
-								<span className="operator">{parseResult.operator}</span>
-								{filledExplanation[1].jsx}
-							</span>
-						}
-					/>
+					explanation: filledExplanation
 				}
 			}
 
@@ -256,30 +270,33 @@ let treat = (situationGate, rules, rule) => rawNode => {
 							[R.propEq('category', 'value'), node =>
 								({
 									evaluate: (situation, parsedRules, me) => ({...node, nodeValue: parseInt(node.nodeValue)}),
-									jsx: <span className="value">{node.nodeValue}</span>
+									jsx: node => <span className="value">{node.nodeValue}</span>
 								})
 							]
 						])
 					),
 					operator = parseResult.operator
 
+				let jsx = (nodeValue, explanation) => <Node
+						classes="inlineExpression calcExpression"
+						value={nodeValue}
+						child={
+							<span className="nodeContent">
+								{makeJsx(explanation[0])}
+								<span className="operator">{parseResult.operator}</span>
+								{makeJsx(explanation[1])}
+							</span>
+						}
+					/>
+
 				return {
 					evaluate,
+					jsx,
 					operator,
 					text: rawNode,
 					category: 'comparison',
 					type: 'boolean',
 					explanation: filledExplanation,
-					jsx:	<Node
-						classes="inlineExpression comparison"
-						child={
-							<span className="nodeContent">
-								{filledExplanation[0].jsx}
-								<span className="operator">{parseResult.operator}</span>
-								{filledExplanation[1].jsx}
-							</span>
-						}
-					/>
 				}
 			}
 		},
@@ -390,21 +407,24 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 
 			let child = treat(situationGate, rules, rule)(value)
 
+			let jsx = (nodeValue, explanation) => <Node
+					classes="ruleProp mecanism cond"
+					name="non applicable si"
+					value={nodeValue}
+					child={
+						explanation.category === 'variable' ? <div className="node">makeJsx(explanation)</div>
+						: makeJsx(explanation)
+					}
+				/>
+
 			return {
 				evaluate,
+				jsx,
 				category: 'ruleProp',
 				rulePropType: 'cond',
 				name: 'non applicable si',
 				type: 'boolean',
-				explanation: child,
-				jsx: <Node
-					classes="ruleProp mecanism cond"
-					name="non applicable si"
-					child={
-						child.category === 'variable' ? <div className="node">{child.jsx}</div>
-						: child.jsx
-					}
-				/>
+				explanation: child
 			}
 		}
 		,
@@ -423,20 +443,21 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 
 			let child = treat(situationGate, rules, rule)(value)
 
+			let jsx = (nodeValue, explanation) => <Node
+					classes="ruleProp mecanism formula"
+					name="formule"
+					value={nodeValue}
+					child={makeJsx(explanation)}
+				/>
+
 			return {
 				evaluate,
+				jsx,
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
 				type: 'numeric',
-				explanation: child,
-				jsx: <Node
-					classes="ruleProp mecanism formula"
-					name="formule"
-					child={
-						child.jsx
-					}
-				/>
+				explanation: child
 			}
 		}
 	,

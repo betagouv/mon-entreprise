@@ -1,5 +1,8 @@
 import R from 'ramda'
 
+export let makeJsx = (node) =>
+	typeof(node.jsx) == "function" ? node.jsx(node.nodeValue, node.explanation) : node.jsx
+
 export let collectNodeMissing = (node) =>
 	node.collectMissing ? node.collectMissing(node) : []
 
@@ -11,8 +14,7 @@ export let rewriteNode = (node, nodeValue, explanation, collectMissing) =>
 		...node,
 		nodeValue,
 		collectMissing,
-		explanation,
-		jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
+		explanation
 	})
 
 export let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
@@ -22,14 +24,7 @@ export let evaluateArray = (reducer, start) => (situationGate, parsedRules, node
 		nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
 
 	let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
-
-	return {
-		...node,
-		nodeValue,
-		collectMissing,
-		explanation,
-		jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-	}
+	return rewriteNode(node,nodeValue,explanation,collectMissing)
 }
 
 export let parseObject = (recurse, objectShape, value) => {
@@ -48,12 +43,5 @@ export let evaluateObject = (objectShape, effect) => (situationGate, parsedRules
 	let transforms = R.map(k => [k,evaluateOne], R.keys(objectShape)),
 	    explanation = R.evolve(R.fromPairs(transforms))(node.explanation),
 	    nodeValue = effect(explanation)
-
-	return {
-		...node,
-		nodeValue,
-		collectMissing,
-		explanation,
-		jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-	}
+	return rewriteNode(node,nodeValue,explanation,collectMissing)
 }

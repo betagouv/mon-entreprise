@@ -4,6 +4,7 @@ import R from 'ramda'
 import {AttachDictionary} from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import marked from 'Engine/marked'
+import {makeJsx} from 'Engine/evaluation'
 
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {
@@ -22,12 +23,12 @@ export default class Algorithm extends React.Component {
 						cond != null &&
 							<section id="declenchement">
 								<h2>Conditions de déclenchement</h2>
-								{cond.jsx}
+								{makeJsx(cond)}
 							</section>
 					}}
 					<section id="formule">
 						<h2>Calcul</h2>
-						{rule['formule'].jsx}
+						{makeJsx(rule['formule'])}
 					</section>
 				</section>
 			</div>
