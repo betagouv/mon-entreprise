@@ -32,7 +32,7 @@ export default class Results extends Component {
 			conversationFirstAnswer: showResults,
 			location
 		} = this.props,
-			explanation = getObjectives(analysedSituation)
+			explanation = getObjectives(name => null, analysedSituation.root, analysedSituation.parsedRules)
 
 		if (!explanation) return null
 
@@ -42,13 +42,13 @@ export default class Results extends Component {
 			<section id="results" className={classNames({show: showResults})}>
 				{onRulePage && conversationStarted ?
 					<div id ="results-actions">
-						<Link id="toSimulation" to={"/simu/" + encodeRuleName(analysedSituation.name)}>
+						<Link id="toSimulation" to={"/simu/" + encodeRuleName(analysedSituation.root.name)}>
 							<i className="fa fa-arrow-circle-left" aria-hidden="true"></i>Reprendre la simulation
 						</Link>
 					</div>
 				: <div id="results-titles">
 						<h2>Vos résultats <i className="fa fa-hand-o-right" aria-hidden="true"></i></h2>
-						{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation)
+						{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation.root)
 							text &&
 								<p id="resultText">{text}</p>
 						}}
