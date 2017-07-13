@@ -114,16 +114,26 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 
 
 let buildNegatedVariable = variable => {
-	let nodeValue = variable.nodeValue == null ? null : !variable.nodeValue
+	let evaluate = (situation, parsedRules, node) => {
+		let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
+		let collectMissing = node => collectNodeMissing(node.explanation)
+		return {
+			...node,
+			nodeValue,
+			collectMissing,
+			explanation,
+			jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
+		}
+	}
+
 	return {
-		nodeValue,
 		category: 'mecanism',
 		name: 'négation',
 		type: 'boolean',
 		explanation: variable,
 		jsx:	<Node
 			classes="inlineExpression negation"
-			value={nodeValue}
 			child={
 				<span className="nodeContent">
 					<span className="operator">¬</span>
