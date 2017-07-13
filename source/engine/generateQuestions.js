@@ -125,8 +125,8 @@ export let buildNextSteps = (situationGate, flatRules, analysedSituation) => {
 		R.curry(findVariantsAndRecords)(flatRules),
 		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
 		R.evolve({
-			variantGroups: generateGridQuestions(analysedSituation.parsedRules, missingVariables),
-			recordGroups: generateSimpleQuestions(analysedSituation.parsedRules, missingVariables),
+			variantGroups: generateGridQuestions(flatRules, missingVariables),
+			recordGroups: generateSimpleQuestions(flatRules, missingVariables),
 		}),
 		R.values,
 		R.unnest,
