@@ -6,10 +6,10 @@ import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {analyseSituation, evaluateNode} from './traverse'
+import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
 import {rules, findRuleByDottedName, findVariantsAndRecords} from './rules'
-
+import {collectNodeMissing, evaluateNode} from './evaluation'
 
 
 
@@ -59,16 +59,12 @@ export let getObjectives = (situationGate, root, parsedRules) => {
 	return R.map(findAndEvaluate,names)
 }
 
-let collectNodeMissingVariables = (root) => {
-	return root.collectMissing ? root.collectMissing(root) : []
-}
-
 export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (situationGate, {root, parsedRules}) => {
 	return R.pipe(
 		R.curry(getObjectives)(situationGate),
 		R.chain( v =>
 			R.pipe(
-				collectNodeMissingVariables,
+				collectNodeMissing,
 				R.flatten,
 				R.map(mv => [v.dottedName, mv])
 			)(v)

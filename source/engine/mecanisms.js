@@ -2,55 +2,12 @@ import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
 import {Node, Leaf} from './traverse-common-jsx'
-import {evaluateNode, collectNodeMissing} from './traverse'
+import {evaluateNode, evaluateArray, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
 
 let transformPercentage = s =>
 	R.contains('%')(s) ?
 		+s.replace('%', '') / 100
 	: +s
-
-let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
-	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
-	    explanation = R.map(evaluateOne, node.explanation),
-		values = R.pluck("nodeValue",explanation),
-		nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
-
-	let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
-
-	return {
-		...node,
-		nodeValue,
-		collectMissing,
-		explanation,
-		jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-	}
-}
-
-let parseObject = (recurse, objectShape, value) => {
-	let recurseOne = key => defaultValue => {
-			if (!value[key] && ! defaultValue) throw "Il manque une valeur '"+key+"'"
-			return value[key] ? recurse(value[key]) : defaultValue
-		}
-	let transforms = R.fromPairs(R.map(k => [k,recurseOne(k)],R.keys(objectShape)))
-	return R.evolve(transforms,objectShape)
-}
-
-let evaluateObject = (objectShape, effect) => (situationGate, parsedRules, node) => {
-	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
-		collectMissing = node => R.chain(collectNodeMissing,R.values(node.explanation))
-
-	let transforms = R.map(k => [k,evaluateOne], R.keys(objectShape)),
-	    explanation = R.evolve(R.fromPairs(transforms))(node.explanation),
-	    nodeValue = effect(explanation)
-
-	return {
-		...node,
-		nodeValue,
-		collectMissing,
-		explanation,
-		jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-	}
-}
 
 export let decompose = (recurse, k, v) => {
 	let

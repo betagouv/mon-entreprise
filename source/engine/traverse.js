@@ -8,6 +8,7 @@ import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
 import {mecanismOneOf,mecanismAllOf,mecanismNumericalLogic,mecanismSum,mecanismProduct,
 		mecanismPercentage,mecanismScale,mecanismMax,mecanismError, mecanismComplement} from "./mecanisms"
+import {evaluateNode, rewriteNode, collectNodeMissing} from './evaluation'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -84,12 +85,8 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 				variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
 			return {
-				...node,
-				nodeValue,
-				collectMissing,
+				...rewriteNode(node,nodeValue,explanation,collectMissing),
 				missingVariables,
-				explanation,
-				jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
 			}
 	}
 
@@ -112,19 +109,12 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 	}
 }
 
-
 let buildNegatedVariable = variable => {
 	let evaluate = (situation, parsedRules, node) => {
 		let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
 			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
 		let collectMissing = node => collectNodeMissing(node.explanation)
-		return {
-			...node,
-			nodeValue,
-			collectMissing,
-			explanation,
-			jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-		}
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 
 	return {
@@ -192,13 +182,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 
 					let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
 
-					return {
-						...node,
-						nodeValue,
-						collectMissing,
-						explanation,
-						jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-					}
+					return rewriteNode(node,nodeValue,explanation,collectMissing)
 				}
 
 				let
@@ -259,13 +243,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 
 					let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
 
-					return {
-						...node,
-						nodeValue,
-						collectMissing,
-						explanation,
-						jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-					}
+					return rewriteNode(node,nodeValue,explanation,collectMissing)
 				}
 
 				let
@@ -404,23 +382,16 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 	// 'cond' : Conditions d'applicabilité de la règle
 		'non applicable si': value => {
 			let evaluate = (situationGate, parsedRules, node) => {
+				let collectMissing = node => collectNodeMissing(node.explanation)
 				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
 					nodeValue = explanation.nodeValue
-				return {
-					...node,
-					nodeValue,
-					explanation,
-					jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-				}
+				return rewriteNode(node,nodeValue,explanation,collectMissing)
 			}
 
 			let child = treat(situationGate, rules, rule)(value)
 
-			let collectMissing = node => collectNodeMissing(node.explanation)
-
 			return {
 				evaluate,
-				collectMissing,
 				category: 'ruleProp',
 				rulePropType: 'cond',
 				name: 'non applicable si',
@@ -444,22 +415,16 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
 			let evaluate = (situationGate, parsedRules, node) => {
+				let collectMissing = node => collectNodeMissing(node.explanation)
 				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
 					nodeValue = explanation.nodeValue
-				return {
-					...node,
-					nodeValue,
-					explanation,
-					jsx: R.assocPath(["props","value"],nodeValue,node.jsx)
-				}
+				return rewriteNode(node,nodeValue,explanation,collectMissing)
 			}
 
 			let child = treat(situationGate, rules, rule)(value)
-			let collectMissing = node => collectNodeMissing(node.explanation)
 
 			return {
 				evaluate,
-				collectMissing,
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
@@ -488,11 +453,6 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 		collectMissing
 	}
 }
-
-export let evaluateNode = (situationGate, parsedRules, node) =>
-	node.evaluate ? node.evaluate(situationGate, parsedRules, node) : node
-export let collectNodeMissing = (node) =>
-	node.collectMissing ? node.collectMissing(node) : []
 
 /* Analyse the set of selected rules, and add derived information to them :
 - do they need variables that are not present in the user situation ?
