@@ -140,7 +140,8 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 				R.concat(collectNodeMissing(conditionNode),collectNodeMissing(consequenceNode))
 
 			let evaluate = (situationGate, parsedRules, node) => ({
-					...evaluateNode(situationGate, parsedRules, consequenceNode),
+					...node,
+					nodeValue: evaluateNode(situationGate, parsedRules, consequenceNode).nodeValue,
 					condValue: evaluateNode(situationGate, parsedRules, conditionNode).nodeValue
 				})
 
