@@ -35,14 +35,14 @@ describe('simplified tree walks', function() {
 		Variable: ['name']
 	})
 
-	Tree.prototype.evaluate = function (f) {
+	Tree.prototype.evaluate = function () {
 		return this.cata({
 			Number: (number) => parseInt(number),
 			Sum: (children) => R.reduce(R.add,0,R.map(evaluate,children)),
 		})
 	}
 
-	Tree.prototype.missing = function (f) {
+	Tree.prototype.missing = function () {
 		return this.cata({
 			Number: (number) => [],
 			Variable: (name) => [name],
@@ -52,13 +52,13 @@ describe('simplified tree walks', function() {
 
 	it('should provide a protocol for evaluation', function() {
 		let tree = Tree.Number("45"),
-			result = tree.evaluate()
+			result = evaluate(tree)
 		expect(result).to.equal(45)
 	});
 
 	it('should evaluate expressions', function() {
 		let tree = Tree.Sum([Tree.Number("45"),Tree.Number("25")]),
-			result = tree.evaluate()
+			result = evaluate(tree)
 		expect(result).to.equal(70)
 	});
 
@@ -66,19 +66,19 @@ describe('simplified tree walks', function() {
 		let tree = Tree.Sum([
 						Tree.Sum([Tree.Number("35"),Tree.Number("10")]),
 						Tree.Number("25")]),
-			result = tree.evaluate()
+			result = evaluate(tree)
 		expect(result).to.equal(70)
 	});
 
 	it('should provide a protocol for missing variables', function() {
 		let tree = Tree.Variable("a"),
-			result = tree.missing()
+			result = missing(tree)
 		expect(result).to.deep.equal(["a"])
 	});
 
 	it('should locate missing variables in expressions', function() {
 		let tree = Tree.Sum([Tree.Number("45"),Tree.Variable("a")]),
-			result = tree.missing()
+			result = missing(tree)
 		expect(result).to.deep.equal(["a"])
 	});
 
@@ -86,7 +86,7 @@ describe('simplified tree walks', function() {
 		let tree = Tree.Sum([
 						Tree.Sum([Tree.Number("35"),Tree.Variable("a")]),
 						Tree.Number("25")]),
-			result = tree.missing()
+			result = missing(tree)
 		expect(result).to.deep.equal(["a"])
 	});
 
