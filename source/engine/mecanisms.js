@@ -85,7 +85,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 		/>
 
 	return {
-		evaluate: evaluateArray(R.or,false),
+		evaluate: evaluateArray(R.or,false, false), // null values do not make the whole array null
 		jsx,
 		explanation,
 		category: 'mecanism',
