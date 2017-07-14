@@ -136,14 +136,23 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 			conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
 			consequenceNode = mecanismNumericalLogic(recurse, condition, consequence)
 
-			let collectMissing = node =>
-				R.concat(collectNodeMissing(conditionNode),collectNodeMissing(consequenceNode))
+			let evaluate = (situationGate, parsedRules, node) => {
+				let collectMissing = node =>
+					R.concat(collectNodeMissing(conditionNode),collectNodeMissing(consequenceNode))
 
-			let evaluate = (situationGate, parsedRules, node) => ({
+				let explanation = R.evolve({
+					condition: R.curry(evaluateNode)(situationGate, parsedRules),
+					consequence: R.curry(evaluateNode)(situationGate, parsedRules)
+				},node.explanation)
+
+				return {
 					...node,
-					nodeValue: evaluateNode(situationGate, parsedRules, consequenceNode).nodeValue,
-					condValue: evaluateNode(situationGate, parsedRules, conditionNode).nodeValue
-				})
+					collectMissing,
+					explanation,
+					nodeValue: explanation.consequence.nodeValue,
+					condValue: explanation.condition.nodeValue
+				}
+			}
 
 		let jsx = (nodeValue, {condition, consequence}) =>
 			<div className="condition">
@@ -156,7 +165,6 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 		return {
 				evaluate,
 				jsx,
-				collectMissing,
 				explanation: {condition: conditionNode, consequence: consequenceNode},
 				category: 'condition',
 				text: condition,
