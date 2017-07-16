@@ -187,7 +187,6 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2*(93-17))
   });
 
-  /* not working with top-down eval, fix it later
   it('should handle filtering on components', function() {
     let rawRules = [
           {nom: "startHere", espace: "top", formule: "composed (salarié)"},
@@ -206,6 +205,5 @@ describe('analyseSituation with mecanisms', function() {
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',50+400+40)
   });
-  */
 
 });

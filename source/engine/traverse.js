@@ -49,12 +49,20 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-// Creates a synthetic variable in the system namespace to signal filtering on components
-let withFilter = (rules, filter) =>
-	R.concat(rules,[{name:"filter", nodeValue:filter, ns:"sys", dottedName: "sys . filter"}])
-
 let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
 	return createVariableNode(rules, rule, situationGate)(parseResult)
+}
+
+let fillFilteredVariableNode = (rules, rule, situationGate) => (filter, parseResult) => {
+	let evaluateFiltered = originalEval => (situation, parsedRules, node) => {
+		let newSituation = name => name == "sys.filter" ? filter : situation(name)
+		return originalEval(newSituation, parsedRules, node)
+	}
+	let node = fillVariableNode(rules, rule, situationGate)(parseResult)
+	return {
+		...node,
+		evaluate: evaluateFiltered(node.evaluate)
+	}
 }
 
 let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
@@ -66,12 +74,12 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 			// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
 			// et qu'il n'y a aucun problème de perf aujourd'hui
 			parsedRule = variableIsCalculable && evaluateNode(
-				situationGate,
+				situation,
 				parsedRules,
 				variable
 			),
 
-			situationValue = evaluateVariable(situationGate, dottedName, variable),
+			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue2 = situationValue
 					!= null ? situationValue
 					: !variableIsCalculable
@@ -164,8 +172,7 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			if (parseResult.category == 'variable')
 				return fillVariableNode(rules, rule, situationGate)(parseResult)
 			if (parseResult.category == 'filteredVariable') {
-				let newRules = withFilter(rules,parseResult.filter)
-				return fillVariableNode(newRules, rule, situationGate)(parseResult.variable)
+				return fillFilteredVariableNode(rules, rule, situationGate)(parseResult.filter,parseResult.variable)
 			}
 			if (parseResult.category == 'negatedVariable')
 				return buildNegatedVariable(
@@ -194,9 +201,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					return rewriteNode(node,nodeValue,explanation,collectMissing)
 				}
 
-				let
-					fillVariable = fillVariableNode(rules, rule, situationGate),
-					fillFiltered = parseResult => fillVariableNode(withFilter(rules,parseResult.filter), rule, situationGate)(parseResult.variable),
+				let fillFiltered = parseResult => fillFilteredVariableNode(rules, rule, situationGate)(parseResult.filter,parseResult.variable)
+				let fillVariable = fillVariableNode(rules, rule, situationGate),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
 							[R.propEq('category', 'variable'), fillVariable],
@@ -259,9 +265,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					return rewriteNode(node,nodeValue,explanation,collectMissing)
 				}
 
-				let
-					fillVariable = fillVariableNode(rules, rule, situationGate),
-					fillFiltered = parseResult => fillVariableNode(withFilter(rules,parseResult.filter), rule, situationGate)(parseResult.variable),
+				let fillFiltered = parseResult => fillVariableNode(rules, rule, situationGate)(parseResult.variable)
+				let fillVariable = fillVariableNode(rules, rule, situationGate),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
 							[R.propEq('category', 'variable'), fillVariable],

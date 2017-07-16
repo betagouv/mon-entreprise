@@ -2,7 +2,7 @@ import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
 import {Node, Leaf} from './traverse-common-jsx'
-import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
+import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
 
 let constantNode = constant => ({nodeValue: constant})
 
@@ -14,9 +14,7 @@ let transformPercentage = s =>
 export let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
-		filter = val(recurse("sys . filter")),
-		isRelevant = c => !filter || !c.attributs || c.attributs['dû par'] == filter,
-		explanation = v.composantes.filter(isRelevant).map(c =>
+		explanation = v.composantes.map(c =>
 			({
 				... recurse(
 					R.objOf(k,
@@ -57,10 +55,12 @@ export let decompose = (recurse, k, v) => {
 			}
 		/>
 
+	let filter = situationGate => c => (!situationGate("sys.filter") || !c.composante) || c.composante['dû par'] == situationGate("sys.filter")
+	
 	return {
 		explanation,
 		jsx,
-		evaluate: evaluateArray(R.add,0),
+		evaluate: evaluateArrayWithFilter(filter,R.add,0),
 		category: 'mecanism',
 		name: 'composantes',
 		type: 'numeric'

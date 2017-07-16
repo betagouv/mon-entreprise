@@ -27,6 +27,16 @@ export let evaluateArray = (reducer, start, nullable = true) => (situationGate, 
 	return rewriteNode(node,nodeValue,explanation,collectMissing)
 }
 
+export let evaluateArrayWithFilter = (filter, reducer, start) => (situationGate, parsedRules, node) => {
+	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+	    explanation = R.map(evaluateOne, R.filter(filter(situationGate),node.explanation)),
+		values = R.pluck("nodeValue",explanation),
+		nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
+
+	let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+	return rewriteNode(node,nodeValue,explanation,collectMissing)
+}
+
 export let parseObject = (recurse, objectShape, value) => {
 	let recurseOne = key => defaultValue => {
 			if (!value[key] && ! defaultValue) throw "Il manque une valeur '"+key+"'"
