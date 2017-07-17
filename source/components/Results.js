@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { withRouter } from 'react-router'
+import {formValueSelector} from 'redux-form'
 
 import './Results.css'
 import {capitalise0} from '../utils'
@@ -20,7 +21,8 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 		pointedOutObjectives: state.pointedOutObjectives,
 		analysedSituation: state.analysedSituation,
 		conversationStarted: !R.isEmpty(state.form),
-		conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state)
+		conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state),
+		situationGate: (name => formValueSelector('conversation')(state, name))
 	})
 )
 export default class Results extends Component {
@@ -30,9 +32,10 @@ export default class Results extends Component {
 			pointedOutObjectives,
 			conversationStarted,
 			conversationFirstAnswer: showResults,
+			situationGate,
 			location
 		} = this.props,
-			explanation = getObjectives(name => null, analysedSituation.root, analysedSituation.parsedRules)
+			explanation = getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
 
 		if (!explanation) return null
 
