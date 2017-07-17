@@ -80,12 +80,11 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 			),
 
 			situationValue = evaluateVariable(situation, dottedName, variable),
-			nodeValue2 = situationValue
+			nodeValue = situationValue
 					!= null ? situationValue
 					: !variableIsCalculable
 						? null
 						: parsedRule.nodeValue,
-			nodeValue = dottedName.startsWith("sys .") ? variable.nodeValue : nodeValue2,
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
