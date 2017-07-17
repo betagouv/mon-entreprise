@@ -49,23 +49,23 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
-	return createVariableNode(rules, rule, situationGate)(parseResult)
+let fillVariableNode = (rules, rule) => (parseResult) => {
+	return createVariableNode(rules, rule)(parseResult)
 }
 
-let fillFilteredVariableNode = (rules, rule, situationGate) => (filter, parseResult) => {
+let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 	let evaluateFiltered = originalEval => (situation, parsedRules, node) => {
 		let newSituation = name => name == "sys.filter" ? filter : situation(name)
 		return originalEval(newSituation, parsedRules, node)
 	}
-	let node = fillVariableNode(rules, rule, situationGate)(parseResult)
+	let node = fillVariableNode(rules, rule)(parseResult)
 	return {
 		...node,
 		evaluate: evaluateFiltered(node.evaluate)
 	}
 }
 
-let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
+let createVariableNode = (rules, rule) => (parseResult) => {
 	let evaluate = (situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			variable = findRuleByDottedName(parsedRules, dottedName),
@@ -97,8 +97,7 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 			}
 	}
 
-	let
-		{fragments} = parseResult,
+	let {fragments} = parseResult,
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
@@ -122,7 +121,7 @@ let createVariableNode = (rules, rule, situationGate) => (parseResult) => {
 
 let buildNegatedVariable = variable => {
 	let evaluate = (situation, parsedRules, node) => {
-		let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+		let explanation = evaluateNode(situation, parsedRules, node.explanation),
 			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
 		let collectMissing = node => collectNodeMissing(node.explanation)
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
@@ -150,9 +149,9 @@ let buildNegatedVariable = variable => {
 	}
 }
 
-let treat = (situationGate, rules, rule) => rawNode => {
+let treat = (rules, rule) => rawNode => {
 	// inner functions
-	let reTreat = treat(situationGate, rules, rule),
+	let reTreat = treat(rules, rule),
 		treatString = rawNode => {
 			/* On a à faire à un string, donc à une expression infixe.
 			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire.
@@ -169,13 +168,13 @@ let treat = (situationGate, rules, rule) => rawNode => {
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
-				return fillVariableNode(rules, rule, situationGate)(parseResult)
+				return fillVariableNode(rules, rule)(parseResult)
 			if (parseResult.category == 'filteredVariable') {
-				return fillFilteredVariableNode(rules, rule, situationGate)(parseResult.filter,parseResult.variable)
+				return fillFilteredVariableNode(rules, rule)(parseResult.filter,parseResult.variable)
 			}
 			if (parseResult.category == 'negatedVariable')
 				return buildNegatedVariable(
-					fillVariableNode(rules, rule, situationGate)(parseResult.variable)
+					fillVariableNode(rules, rule)(parseResult.variable)
 				)
 
 			if (parseResult.category == 'calcExpression') {
@@ -200,8 +199,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					return rewriteNode(node,nodeValue,explanation,collectMissing)
 				}
 
-				let fillFiltered = parseResult => fillFilteredVariableNode(rules, rule, situationGate)(parseResult.filter,parseResult.variable)
-				let fillVariable = fillVariableNode(rules, rule, situationGate),
+				let fillFiltered = parseResult => fillFilteredVariableNode(rules, rule)(parseResult.filter,parseResult.variable)
+				let fillVariable = fillVariableNode(rules, rule),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
 							[R.propEq('category', 'variable'), fillVariable],
@@ -264,8 +263,8 @@ let treat = (situationGate, rules, rule) => rawNode => {
 					return rewriteNode(node,nodeValue,explanation,collectMissing)
 				}
 
-				let fillFiltered = parseResult => fillVariableNode(rules, rule, situationGate)(parseResult.variable)
-				let fillVariable = fillVariableNode(rules, rule, situationGate),
+				let fillFiltered = parseResult => fillVariableNode(rules, rule)(parseResult.variable)
+				let fillVariable = fillVariableNode(rules, rule),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
 							[R.propEq('category', 'variable'), fillVariable],
@@ -374,7 +373,7 @@ export let computeRuleValue = (formuleValue, condValue) =>
 			? 0
 			: formuleValue
 
-export let treatRuleRoot = (situationGate, rules, rule) => {
+export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
 		let
 			evaluated = R.evolve({
@@ -409,7 +408,7 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 				return rewriteNode(node,nodeValue,explanation,collectMissing)
 			}
 
-			let child = treat(situationGate, rules, rule)(value)
+			let child = treat(rules, rule)(value)
 
 			let jsx = (nodeValue, explanation) =>
 				<Node
@@ -446,7 +445,7 @@ export let treatRuleRoot = (situationGate, rules, rule) => {
 				return rewriteNode(node,nodeValue,explanation,collectMissing)
 			}
 
-			let child = treat(situationGate, rules, rule)(value)
+			let child = treat(rules, rule)(value)
 
 			let jsx = (nodeValue, explanation) =>
 				<Node
@@ -492,7 +491,7 @@ export let analyseSituation = (rules, rootVariable) => situationGate => {
 }
 
 export let analyseTopDown = (rules, rootVariable) => situationGate => {
-	let treatOne = rule => treatRuleRoot(situationGate, rules, rule),
+	let treatOne = rule => treatRuleRoot(rules, rule),
 		parsedRules = R.map(treatOne,rules),
 		rootRule = findRuleByName(parsedRules, rootVariable),
 		root = evaluateNode(situationGate, parsedRules, rootRule)
