@@ -42,22 +42,25 @@ describe('simplified tree walks', function() {
 	Expr.prototype.map = function(f) {
 		return this.cata({
 			Num: (x) => this, // fixed
-			Add: (x, y) => Add(f(x), f(y))
+			Add: (x, y) => Add(f(x), f(y)),
+			Var: (name) => this
 		})
 	}
 
 	// Celle-ci l'évaluation
-	const evaluator = (a) => {
+	const evaluator = state => a => {
 		return a.cata({
 			Num: (x) => x,
-			Add: (x, y) => x + y
+			Add: (x, y) => x + y,
+			Var: (name) => state[name]
 		})
 	}
 
-	let evaluate = expr => fold(evaluator, expr)
+	let evaluate = (expr, state={}) => fold(evaluator(state), expr)
 
 	let num = x => Fx(Num(x))
 	let add = (x, y) => Fx(Add(x,y))
+	let ref = (name) => Fx(Var(name))
 
 	it('should provide a protocol for evaluation', function() {
 		let tree = num(45),
@@ -74,6 +77,12 @@ describe('simplified tree walks', function() {
 	it('should evaluate nested expressions', function() {
 		let tree = add(num(45),add(num(15),num(10))),
 			result = evaluate(tree)
+		expect(result).to.equal(70)
+	});
+
+	it('should evaluate expressions involving variables', function() {
+		let tree = add(num(45),ref("a")),
+			result = evaluate(tree,{a:25})
 		expect(result).to.equal(70)
 	});
 
