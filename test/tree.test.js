@@ -25,51 +25,59 @@ describe('simplified tree walks', function() {
 	// Le but du jeu est de pouvoir le représenter de façon compacte, mais
 	// d'avoir un arbre simple à manipuler
 
-	let evaluate = tree => tree.evaluate()
-	let missing = tree => tree.missing()
+	const Fx = daggy.tagged('Fx',['x'])
+	const unFix = R.prop('x')
 
-	const Tree = daggy.taggedSum('Tree',
-	{
-		Number: ['number'],
-		Sum: ['children'],
-		Variable: ['name']
+	const Expr = daggy.taggedSum('Expr',{
+		Num: ['x'],
+		Add: ['x', 'y'],
+		Var: ['name']
 	})
+	const {Num, Add, Var} = Expr;
 
-	Tree.prototype.evaluate = function () {
+	// fold :: Functor f => (f a -> a) -> Fix f -> a
+	const fold = R.curry((alg, x) => R.compose(alg, R.map(fold(alg)), unFix)(x))
+
+	// Cette fonction fournit la traversée
+	Expr.prototype.map = function(f) {
 		return this.cata({
-			Number: (number) => parseInt(number),
-			Sum: (children) => R.reduce(R.add,0,R.map(evaluate,children)),
+			Num: (x) => this, // fixed
+			Add: (x, y) => Add(f(x), f(y))
 		})
 	}
 
-	Tree.prototype.missing = function () {
-		return this.cata({
-			Number: (number) => [],
-			Variable: (name) => [name],
-			Sum: (children) => R.reduce(R.concat,[],R.map(missing,children)),
+	// Celle-ci l'évaluation
+	const evaluator = (a) => {
+		return a.cata({
+			Num: (x) => x,
+			Add: (x, y) => x + y
 		})
 	}
+
+	let evaluate = expr => fold(evaluator, expr)
+
+	let num = x => Fx(Num(x))
+	let add = (x, y) => Fx(Add(x,y))
 
 	it('should provide a protocol for evaluation', function() {
-		let tree = Tree.Number("45"),
+		let tree = num(45),
 			result = evaluate(tree)
 		expect(result).to.equal(45)
 	});
 
 	it('should evaluate expressions', function() {
-		let tree = Tree.Sum([Tree.Number("45"),Tree.Number("25")]),
+		let tree = add(num(45),num(25)),
 			result = evaluate(tree)
 		expect(result).to.equal(70)
 	});
 
 	it('should evaluate nested expressions', function() {
-		let tree = Tree.Sum([
-						Tree.Sum([Tree.Number("35"),Tree.Number("10")]),
-						Tree.Number("25")]),
+		let tree = add(num(45),add(num(15),num(10))),
 			result = evaluate(tree)
 		expect(result).to.equal(70)
 	});
 
+/*
 	it('should provide a protocol for missing variables', function() {
 		let tree = Tree.Variable("a"),
 			result = missing(tree)
@@ -89,5 +97,5 @@ describe('simplified tree walks', function() {
 			result = missing(tree)
 		expect(result).to.deep.equal(["a"])
 	});
-
+*/
 });
