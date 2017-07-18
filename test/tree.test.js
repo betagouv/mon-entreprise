@@ -57,9 +57,21 @@ describe('simplified tree walks', function() {
 		})
 	}
 
+	// Celle-ci la collecte des variables manquantes
+	const collector = state => a => {
+		return a.cata({
+			Num: (x) => [],
+			Add: (x, y) => R.concat(x,y),
+			Var: (name) => state[name] ? [] : [name]
+		})
+	}
+
 	let evaluate = (expr, state={}) =>
 		fold(evaluator(state), expr)
 		.getOrElse(null) // for convenience
+
+	let missing = (expr, state={}) =>
+		fold(collector(state), expr)
 
 	let num = x => Fx(Num(M.Just(x)))
 	let add = (x, y) => Fx(Add(x,y))
@@ -95,25 +107,28 @@ describe('simplified tree walks', function() {
 		expect(result).to.equal(null)
 	});
 
-/*
 	it('should provide a protocol for missing variables', function() {
-		let tree = Tree.Variable("a"),
+		let tree = ref("a"),
 			result = missing(tree)
 		expect(result).to.deep.equal(["a"])
 	});
 
 	it('should locate missing variables in expressions', function() {
-		let tree = Tree.Sum([Tree.Number("45"),Tree.Variable("a")]),
+		let tree = add(num(45),ref("a")),
 			result = missing(tree)
 		expect(result).to.deep.equal(["a"])
 	});
 
 	it('should locate missing variables in nested expressions', function() {
-		let tree = Tree.Sum([
-						Tree.Sum([Tree.Number("35"),Tree.Variable("a")]),
-						Tree.Number("25")]),
+		let tree = add(add(num(35),ref("a")),num(25)),
 			result = missing(tree)
 		expect(result).to.deep.equal(["a"])
 	});
-*/
+
+	it('should locate missing variables in nested expressions', function() {
+		let tree = add(add(num(35),ref("a")),num(25)),
+			result = missing(tree,{a:25})
+		expect(result).to.deep.equal([])
+	});
+
 });
