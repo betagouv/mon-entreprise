@@ -1,6 +1,7 @@
 import R from 'ramda'
 import {expect} from 'chai'
 import daggy from 'daggy'
+import {Maybe as M} from 'ramda-fantasy'
 
 describe('simplified tree walks', function() {
 
@@ -51,14 +52,16 @@ describe('simplified tree walks', function() {
 	const evaluator = state => a => {
 		return a.cata({
 			Num: (x) => x,
-			Add: (x, y) => x + y,
-			Var: (name) => state[name]
+			Add: (x, y) => R.lift(R.add)(x,y),
+			Var: (name) => M.toMaybe(state[name]) // Doesn't typecheck
 		})
 	}
 
-	let evaluate = (expr, state={}) => fold(evaluator(state), expr)
+	let evaluate = (expr, state={}) =>
+		fold(evaluator(state), expr)
+		.getOrElse(null) // for convenience
 
-	let num = x => Fx(Num(x))
+	let num = x => Fx(Num(M.Just(x)))
 	let add = (x, y) => Fx(Add(x,y))
 	let ref = (name) => Fx(Var(name))
 
@@ -84,6 +87,12 @@ describe('simplified tree walks', function() {
 		let tree = add(num(45),ref("a")),
 			result = evaluate(tree,{a:25})
 		expect(result).to.equal(70)
+	});
+
+	it('should evaluate expressions involving missing variables', function() {
+		let tree = add(num(45),ref("b")),
+			result = evaluate(tree,{a:25})
+		expect(result).to.equal(null)
 	});
 
 /*
