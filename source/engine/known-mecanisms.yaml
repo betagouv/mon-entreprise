@@ -84,6 +84,11 @@ barème:
     L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un taux spécifique.
     Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable que l'on appelle multiplicateur, par exemple le plafond de la sécurité sociale.
 
+complément:
+  type: numeric
+  description: |
+    Complète une base pour atteindre un seuil minimal
+
 composantes:
   type: numeric
   description: |

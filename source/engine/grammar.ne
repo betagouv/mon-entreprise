@@ -6,6 +6,7 @@ main ->
 		| Variable {% id %}
 		| NegatedVariable {% id %}
 		| ModifiedVariable {% id %}
+		| FilteredVariable {% id %}
 		| Comparison {% id %}
 
 Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
@@ -20,6 +21,10 @@ Comparable -> (int | CalcExpression | Variable) {% d => d[0][0] %}
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "="
 
 NegatedVariable -> "≠" _ Variable {% d => ({category: 'negatedVariable', variable: d[2] }) %}
+
+FilteredVariable -> Variable _ Filter {% d => ({category: 'filteredVariable', filter: d[2], variable: d[0] }) %}
+
+Filter -> "(" VariableWord ")" {% d =>d[1] %}
 
 # Modificateurs temporels pas utilisés aujourd'hui
 ModifiedVariable -> Variable _ Modifier {% d => ({category: 'modifiedVariable', modifier: d[2], variable: d[0] }) %}
@@ -38,6 +43,7 @@ CalcExpression -> Term _ ArithmeticOperator _ Term {% d => ({
 }) %}
 
 Term -> Variable {% id %}
+		| FilteredVariable {% id %}
 		| int {% id %}
 
 ArithmeticOperator -> "+" {% id %}

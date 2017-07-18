@@ -1,61 +1,23 @@
 import React from 'react'
-import Explicable from 'Components/conversation/Explicable'
 import R from 'ramda'
+
+import Explicable from 'Components/conversation/Explicable'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import formValueTypes from 'Components/conversation/formValueTypes'
+
 import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
-import { STEP_ACTION, START_CONVERSATION} from '../actions'
-import {rules, findRuleByDottedName, collectMissingVariables, deprecated_findVariantsAndRecords} from './rules'
+import {rules, findRuleByDottedName, findVariantsAndRecords} from './rules'
 
 
-export let reduceSteps = (state, action) => {
-
-	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
-		return state
-
-	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.name
-
-	let returnObject = {
-		...state,
-		analysedSituation: analyse(rootVariable)(state)
-	}
-
-	if (action.type == START_CONVERSATION) {
-		return {
-			...returnObject,
-			foldedSteps: state.foldedSteps || [],
-			unfoldedSteps: buildNextSteps(returnObject.analysedSituation)
-		}
-	}
-	if (action.type == STEP_ACTION && action.name == 'fold') {
-		return {
-			...returnObject,
-			foldedSteps: [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps: buildNextSteps(returnObject.analysedSituation)
-		}
-	}
-	if (action.type == STEP_ACTION && action.name == 'unfold') {
-		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.reject(stepFinder)(state.foldedSteps)
-		if (foldedSteps.length != state.foldedSteps.length - 1)
-			throw 'Problème lors du dépliement d\'une réponse'
-
-		return {
-			...returnObject,
-			foldedSteps,
-			unfoldedSteps: [R.find(stepFinder)(state.foldedSteps)]
-		}
-	}
-}
 
 
 let situationGate = state =>
 	name => formValueSelector('conversation')(state, name)
 
 
-let analyse = rootVariable => R.pipe(
+export let analyse = rootVariable => R.pipe(
 	situationGate,
 	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
 	analyseSituation(rules, rootVariable)
@@ -77,12 +39,67 @@ let analyse = rootVariable => R.pipe(
 
 	missingVariables: {variable: [objectives]}
  */
-let buildNextSteps = analysedSituation => {
+
+// On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
+// Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
+export let getObjectives = analysedSituation => {
+	let formuleType = R.path(["formule", "explanation", "name"])(
+		analysedSituation
+	)
+	let result = formuleType == "somme"
+		? R.pluck(
+				"explanation",
+				R.path(["formule", "explanation", "explanation"])(analysedSituation)
+			)
+		: formuleType ? [analysedSituation] : null
+
+	return result ? R.reject(R.isNil)(result) : null;
+}
+
+// FIXME - this relies on side-effects and the recursion is grossly indiscriminate
+let collectNodeMissingVariables = (root, source=root, results=[]) => {
+	if (
+    source.nodeValue != null  ||
+    source.shortCircuit && source.shortCircuit(root)
+  ) {
+		// console.log('nodev or shortcircuit root, source', root, source)
+		return []
+	}
+
+	if (source['missingVariables']) {
+		// console.log('root, source', root, source)
+		results.push(source['missingVariables'])
+	}
+
+	for (var prop in source) {
+		if (R.is(Object)(source[prop])) {
+			collectNodeMissingVariables(root, source[prop], results)
+		}
+	}
+	return results
+}
+
+export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
+	R.pipe(
+		getObjectives,
+		R.chain( v =>
+			R.pipe(
+				collectNodeMissingVariables,
+				R.flatten,
+				R.map(mv => [v.dottedName, mv])
+			)(v)
+		),
+		//groupBy missing variable but remove mv from value, it's now in the key
+		R.groupBy(groupMethod == 'groupByMissingVariable' ? R.last : R.head),
+		R.map(R.map(groupMethod == 'groupByMissingVariable' ? R.head : R.last))
+		// below is a hand implementation of above... function composition can be nice sometimes :')
+		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
+	)(analysedSituation)
+
+export let buildNextSteps = (allRules, analysedSituation) => {
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(
 		analysedSituation
 	)
-
-
 
 	/*
 		Parmi les variables manquantes, certaines sont citées dans une règle de type 'une possibilité'.
@@ -108,16 +125,23 @@ let buildNextSteps = analysedSituation => {
 
 		D'autres variables pourront être regroupées aussi, car elles partagent un parent, mais sans fusionner leurs questions dans l'interface. Ce sont des **groupes de type _record_ **
 	*/
+
+	// This is effectively a missingVariables.groupBy(questionRequired)
+	// but "questionRequired" does not have a clear specification
+	// we could look up "what formula is this variable mentioned in, and does it have a question attached"
+	// the problem is that we parse rules "bottom up", we would therefore need to:
+	// - parse rules top-down, i.e. analysedSituations = map(treatRuleRoot, rules)
+	// (might be a problem later on in terms of "big" rulesets, but not now)
+	// - decorate each rule with "mentions / depends on the following rules"
+	// - provide a "is mentioned by" query
+
 	return R.pipe(
 		R.keys,
-		R.reduce(
-			deprecated_findVariantsAndRecords
-			, {variantGroups: {}, recordGroups: {}}
-		),
+		R.curry(findVariantsAndRecords)(allRules),
 		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
 		R.evolve({
-			variantGroups: generateGridQuestions(missingVariables),
-			recordGroups: generateSimpleQuestions(missingVariables),
+			variantGroups: generateGridQuestions(allRules, missingVariables),
+			recordGroups: generateSimpleQuestions(allRules, missingVariables),
 		}),
 		R.values,
 		R.unnest,
@@ -151,9 +175,9 @@ export let constructStepMeta = ({
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
-let buildVariantTree = relevantPaths => path => {
+let buildVariantTree = (allRules, relevantPaths) => path => {
 	let rec = path => {
-		let node = findRuleByDottedName(rules, path),
+		let node = findRuleByDottedName(allRules, path),
 			variant = isVariant(node),
 			variants = variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
 			shouldBeExpanded = variant && variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
@@ -171,28 +195,29 @@ let buildVariantTree = relevantPaths => path => {
 	return rec(path)
 }
 
-export let generateGridQuestions = missingVariables => R.pipe(
+export let generateGridQuestions = (allRules, missingVariables) => R.pipe(
 	R.toPairs,
-	R.map( ([variantRoot, relevantVariants]) =>
-		({
-			...constructStepMeta(findRuleByDottedName(rules, variantRoot)),
-			component: Question,
-			choices: buildVariantTree(relevantVariants)(variantRoot),
-			objectives:  R.pipe(
-				R.chain(v => missingVariables[v]),
-				R.uniq()
-			)(relevantVariants),
-			// Mesure de l'impact de cette variable : combien de fois elle est citée par une règle
-			impact: relevantVariants.reduce((count, next) => count + missingVariables[next].length, 0)
-		})
+	R.map( ([variantRoot, relevantVariants]) => {
+			return ({
+				...constructStepMeta(findRuleByDottedName(allRules, variantRoot)),
+				component: Question,
+				choices: buildVariantTree(allRules, relevantVariants)(variantRoot),
+				objectives:  R.pipe(
+					R.chain(v => missingVariables[v]),
+					R.uniq()
+				)(relevantVariants),
+				// Mesure de l'impact de cette variable : combien de fois elle est citée par une règle
+				impact: relevantVariants.reduce((count, next) => count + missingVariables[next].length, 0)
+			})
+		}
 	)
 )
 
-export let generateSimpleQuestions = missingVariables => R.pipe(
+export let generateSimpleQuestions = (allRules, missingVariables) => R.pipe(
 	R.values, //TODO exploiter ici les groupes de questions de type 'record' (R.keys): elles pourraient potentiellement êtres regroupées visuellement dans le formulaire
 	R.unnest,
 	R.map(dottedName => {
-		let rule = findRuleByDottedName(rules, dottedName)
+		let rule = findRuleByDottedName(allRules, dottedName)
 		if (rule == null) console.log(dottedName)
 		return Object.assign(
 			constructStepMeta(rule),

@@ -4,7 +4,7 @@ import './Explicable.css'
 import HoverDecorator from '../HoverDecorator'
 import {connect} from 'react-redux'
 import {EXPLAIN_VARIABLE} from '../../actions'
-import {rules, findRuleByDottedName} from '../../engine/rules'
+import {rules, findRuleByDottedName} from 'Engine/rules'
 
 
 @connect(state => ({explained: state.explainedVariable}), dispatch => ({

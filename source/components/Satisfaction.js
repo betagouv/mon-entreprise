@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import HoverDecorator from 'Components/HoverDecorator'
+import HoverDecorator from './HoverDecorator'
 import 'whatwg-fetch'
 import {connect} from 'react-redux'
 import './Satisfaction.css'

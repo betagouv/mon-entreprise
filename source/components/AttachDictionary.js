@@ -1,7 +1,7 @@
+import R from 'ramda'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import R from 'ramda'
-import marked from '../engine/marked'
+import marked from 'Engine/marked'
 
 // On ajoute à la section la possibilité d'ouvrir un panneau d'explication des termes.
 // Il suffit à la section d'appeler une fonction fournie en lui donnant du JSX

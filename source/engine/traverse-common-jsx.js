@@ -1,6 +1,8 @@
 import React from 'react'
 import R from 'ramda'
 import classNames from 'classnames'
+import {Link} from 'react-router-dom'
+import {encodeRuleName} from './rules'
 
 let treatValue = data =>
 	data == null
@@ -40,7 +42,9 @@ export let Leaf = ({classes, name, value}) => (
 	<span className={classNames(classes, 'leaf')}>
 		{name &&
 			<span className="nodeHead">
-				<span className="name">{name}<NodeValue data={value} /></span>
+				<Link to={"/regle/" + encodeRuleName(name)} >
+					<span className="name">{name}<NodeValue data={value} /></span>
+				</Link>
 			</span>}
 	</span>
 )

@@ -49,7 +49,7 @@ export let decodeRuleName = name => name.replace(/\-/g, ' ')
 
 export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 	let
-		fragments = ns.split(' . '), // ex. [CDD . événements . rupture]
+		fragments = ns ? ns.split(' . ') : [], // ex. [CDD . événements . rupture]
 		pathPossibilities = // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 			R.range(0, fragments.length + 1)
 			.map(nbEl => R.take(nbEl)(fragments))
@@ -83,81 +83,49 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-export let findRuleByDottedName = (allRules, dottedName) => dottedName &&
-	allRules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase())
+export let findRuleByDottedName = (allRules, dottedName) => {
+	let found = dottedName && allRules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase()),
+		result = dottedName && dottedName.startsWith("sys .") ?
+					found || {dottedName: dottedName, nodeValue: null} :
+					found
+
+	return result
+}
 
 /*********************************
 Autres */
 
-let collectNodeMissingVariables = (root, source=root, results=[]) => {
-	if (
-    source.nodeValue != null  ||
-    source.shortCircuit && source.shortCircuit(root)
-  ) {
-		// console.log('nodev or shortcircuit root, source', root, source)
-		return []
-	}
-
-	if (source['missingVariables']) {
-		// console.log('root, source', root, source)
-		results.push(source['missingVariables'])
-	}
-
-	for (var prop in source) {
-		if (R.is(Object)(source[prop])) {
-			collectNodeMissingVariables(root, source[prop], results)
-		}
-	}
-	return results
-}
-
-// On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
-// Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
-export let getObjectives = analysedSituation => {
-	let formuleType = R.path(["formule", "explanation", "name"])(
-		analysedSituation
-	)
-	let result = formuleType == "somme"
-		? R.pluck(
-				"explanation",
-				R.path(["formule", "explanation", "explanation"])(analysedSituation)
-			)
-		: formuleType ? [analysedSituation] : null
-
-	return result ? R.reject(R.isNil)(result) : null;
-}
-
-
-export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
-
-	R.pipe(
-		getObjectives,
-		R.chain( v =>
-			R.pipe(
-				collectNodeMissingVariables,
-				R.flatten,
-				R.map(mv => [v.dottedName, mv])
-			)(v)
-		),
-		//groupBy missing variable but remove mv from value, it's now in the key
-		R.groupBy(groupMethod == 'groupByMissingVariable' ? R.last : R.head),
-		R.map(R.map(groupMethod == 'groupByMissingVariable' ? R.head : R.last))
-		// below is a hand implementation of above... function composition can be nice sometimes :')
-		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-	)(analysedSituation)
-
 let isVariant = R.path(['formule', 'une possibilité'])
 
-export let deprecated_findVariantsAndRecords =
-	({variantGroups, recordGroups}, dottedName, childDottedName) => {
-		let child = findRuleByDottedName(rules, dottedName),
+export let findVariantsAndRecords = (allRules, names) => {
+	let tag = name => {
+		let parent = parentName(name),
+			gramps = parentName(parent),
+			findV  = name => isVariant(findRuleByDottedName(allRules,name))
+
+		return findV(gramps) ? {type: "variantGroups", [gramps]:[name]}
+			   : findV(parent) ? {type: "variantGroups", [parent]:[name]}
+			   : {type: "recordGroups", [parent]:[name]}
+	}
+
+	let classify = R.map(tag),
+		groupByType = R.groupBy(R.prop("type")),
+		stripTypes = R.map(R.map(R.omit("type"))),
+		mergeLists = R.map(R.reduce(R.mergeWith(R.concat),{}))
+
+	return R.pipe(classify,groupByType,stripTypes,mergeLists)(names)
+}
+
+export let findVariantsAndRecords2 =
+	(allRules, {variantGroups, recordGroups}, dottedName, childDottedName) => {
+		let child = findRuleByDottedName(allRules, dottedName),
 			parentDottedName = parentName(dottedName),
-			parent = findRuleByDottedName(rules, parentDottedName)
+			parent = findRuleByDottedName(allRules, parentDottedName)
 		if (isVariant(parent)) {
 			let grandParentDottedName = parentName(parentDottedName),
-				grandParent = findRuleByDottedName(rules, grandParentDottedName)
+				grandParent = findRuleByDottedName(allRules, grandParentDottedName)
 			if (isVariant(grandParent))
-				return deprecated_findVariantsAndRecords({variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
+				return findVariantsAndRecords2(allRules, {variantGroups, recordGroups}, parentDottedName, childDottedName || dottedName)
 			else
 				return {
 					variantGroups: R.mergeWith(R.concat, variantGroups, {[parentDottedName]: [childDottedName || dottedName]}),
