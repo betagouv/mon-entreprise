@@ -81,6 +81,7 @@
     somme:
       - maladie
       - vieillesse
+      - ARRCO
 
 - espace: contrat salarié
   nom: salaire net
@@ -93,6 +94,7 @@
       situation:
         CDD . événement . poursuite du CDD en CDI: oui
         salaire de base: 2300
+        statut cadre: non
       valeur attendue: 1768
 
 - espace: contrat salarié
