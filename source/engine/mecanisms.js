@@ -55,7 +55,7 @@ export let decompose = (recurse, k, v) => {
 			}
 		/>
 
-	let filter = situationGate => c => (!situationGate("sys.filter") || !c.composante) || c.composante['dû par'] == situationGate("sys.filter")
+	let filter = situationGate => c => (!situationGate("sys.filter") || !c.composante || !c.composante['dû par']) || c.composante['dû par'] == situationGate("sys.filter")
 
 	return {
 		explanation,
