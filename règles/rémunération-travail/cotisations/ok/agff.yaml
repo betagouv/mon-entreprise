@@ -20,7 +20,7 @@
             dû par: employeur
 
           variations:
-            - si: statut cadre = non
+            - si: ≠ statut cadre
               tranches:
                 - en-dessous de: 1
                   taux: 0.8%
@@ -30,7 +30,7 @@
                 - en-dessous de: 3
                   taux: 0%
 
-            - si: statut cadre = oui
+            - si: statut cadre
               tranches:
                 - taux:
                   - en-dessous de: 1
@@ -45,7 +45,7 @@
             dû par: salarié
 
           variations:
-            - si: statut cadre = non
+            - si: ≠ statut cadre
               tranches:
                 - en-dessous de: 1
                   taux: 0.8%
@@ -55,7 +55,7 @@
                 - au-dessus de: 3
                   taux: 0%
 
-            - si: statut cadre = oui
+            - si: statut cadre
               tranches:
                 - en-dessous de: 1
                   taux: 0.8%

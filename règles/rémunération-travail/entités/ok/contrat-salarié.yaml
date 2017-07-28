@@ -81,6 +81,7 @@
       - vieillesse (salarié)
       - ARRCO (salarié)
       - chômage (salarié)
+      - AGFF (salarié)
       - CSG
 
 - espace: contrat salarié
@@ -91,6 +92,7 @@
       - vieillesse (employeur)
       - ARRCO (employeur)
       - chômage (employeur)
+      - AGFF (employeur)
 
 - espace: contrat salarié
   nom: salaire net
