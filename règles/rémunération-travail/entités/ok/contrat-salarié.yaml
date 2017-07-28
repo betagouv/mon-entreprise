@@ -80,6 +80,7 @@
       - maladie (salarié)
       - vieillesse (salarié)
       - ARRCO (salarié)
+      - chômage (salarié)
       - CSG
 
 - espace: contrat salarié
@@ -89,6 +90,7 @@
       - maladie (employeur)
       - vieillesse (employeur)
       - ARRCO (employeur)
+      - chômage (employeur)
 
 - espace: contrat salarié
   nom: salaire net
