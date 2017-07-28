@@ -161,6 +161,20 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
   });
 
+  it('should handle progressive scales with variations', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            "variations":[
+              {si: "3 > 4", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.2}, ,{"au-dessus de":2, taux: 10}]},
+              {si: "3 > 2", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.8}, ,{"au-dessus de":2, taux: 10}]},
+            ]
+          }}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1800+80)
+  });
+
   it('should handle max', function() {
     let rawRules = [
           {nom: "startHere", formule: {"le maximum de": [3200, 60, 9]}}],
