@@ -86,6 +86,46 @@ describe('collectMissingVariables', function() {
     expect(result).to.have.property('top . dix')
   });
 
+  it('should report missing variables in variations', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {somme: ["variations"]}, espace: "top"},
+          {nom: "variations", espace: "top", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            "variations":[
+              {si: "dix", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: "deux"}, ,{"au-dessus de":2, taux: 10}]},
+              {si: "3 > 4", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.8}, ,{"au-dessus de":2, taux: 10}]},
+            ]
+          }}},
+          {nom: "dix", espace: "top"},
+          {nom: "deux", espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.have.property('top . dix')
+    // expect(result).to.have.property('top . deux') - this is a TODO
+  });
+
+  it('should not report missing variables in irrelevant variations', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {somme: ["variations"]}, espace: "top"},
+          {nom: "variations", espace: "top", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            "variations":[
+              {si: "dix", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: "deux"}, ,{"au-dessus de":2, taux: 10}]},
+              {si: "3 > 2", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.8}, ,{"au-dessus de":2, taux: 10}]},
+            ]
+          }}},
+          {nom: "dix", espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.deep.equal({})
+  });
+
   it('should not report missing variables in switch for consequences of false conditions', function() {
     let rawRules = [
           { nom: "startHere", formule: {"aiguillage numérique": {
