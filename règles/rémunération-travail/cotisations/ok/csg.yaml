@@ -34,3 +34,14 @@
         - attributs:
             déductible des impôts: non
           taux: 5.1%
+
+- espace: contrat salarié
+  nom: CRDS
+  attributs:
+    impôt: oui
+    dû par: salarié
+  description: Contribution pour le remboursement de la dette sociale
+  formule:
+    multiplication:
+      assiette: assiette CSG
+      taux: 0.5%
