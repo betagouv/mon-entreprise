@@ -23,7 +23,7 @@ export let evaluateArray = (reducer, start, nullable = true) => (situationGate, 
 		values = R.pluck("nodeValue",explanation),
 		nodeValue = (nullable && R.any(R.equals(null),values)) ? null : R.reduce(reducer, start, values)
 
-	let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+	let collectMissing = node => node.nodeValue == null ? R.chain(collectNodeMissing,node.explanation) : []
 	return rewriteNode(node,nodeValue,explanation,collectMissing)
 }
 

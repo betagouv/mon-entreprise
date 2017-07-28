@@ -65,6 +65,18 @@ describe('collectMissingVariables', function() {
     expect(result).to.be.empty
   });
 
+  it('should not report missing variables when "one of these" short-circuits', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
+          {nom: "deux", formule: "trois", "non applicable si" : {"une de ces conditions": ["3 > 2", "trois"]}, espace: "sum"},
+          {nom: "trois", espace: "sum"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.be.empty
+  });
+
 });
 
 describe('buildNextSteps', function() {
