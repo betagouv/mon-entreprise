@@ -53,6 +53,18 @@ describe('collectMissingVariables', function() {
     expect(result).to.have.property('sum . evt . nope')
   });
 
+  it('should ignore missing variables in the formula if not applicable', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
+          {nom: "deux", formule: "trois", "non applicable si" : "3 > 2", espace: "sum"},
+          {nom: "trois", espace: "sum"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.be.empty
+  });
+
 });
 
 describe('buildNextSteps', function() {

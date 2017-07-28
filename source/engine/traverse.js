@@ -390,8 +390,9 @@ export let treatRuleRoot = (rules, rule) => {
 	let collectMissing = node => {
 		let cond = R.prop('non applicable si',node),
 			condMissing = cond ? collectNodeMissing(cond) : [],
+			collectInFormule = (cond && cond.nodeValue != undefined) ? !cond.nodeValue : true,
 			formule = node.formule,
-			formMissing = formule ? collectNodeMissing(formule) : []
+			formMissing = collectInFormule ? (formule ? collectNodeMissing(formule) : []) : []
 		return R.concat(condMissing,formMissing)
 	}
 
