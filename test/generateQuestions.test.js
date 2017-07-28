@@ -62,7 +62,7 @@ describe('collectMissingVariables', function() {
         situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = collectMissingVariables()(stateSelector,situation)
 
-    expect(result).to.be.empty
+    expect(result).to.deep.equal({})
   });
 
   it('should not report missing variables when "one of these" short-circuits', function() {
@@ -74,7 +74,7 @@ describe('collectMissingVariables', function() {
         situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = collectMissingVariables()(stateSelector,situation)
 
-    expect(result).to.be.empty
+    expect(result).to.deep.equal({})
   });
 
   it('should report missing variables in switch statements', function() {
@@ -106,7 +106,7 @@ describe('collectMissingVariables', function() {
         situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = collectMissingVariables()(stateSelector,situation)
 
-    expect(result).to.be.empty
+    expect(result).to.deep.equal({})
   });
 
   it('should not report missing variables when a switch short-circuits', function() {
@@ -122,7 +122,7 @@ describe('collectMissingVariables', function() {
         situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = collectMissingVariables()(stateSelector,situation)
 
-    expect(result).to.be.empty
+    expect(result).to.deep.equal({})
   });
 
 });
