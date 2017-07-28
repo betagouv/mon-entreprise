@@ -177,14 +177,18 @@ let treat = (rules, rule) => rawNode => {
 					fillVariableNode(rules, rule)(parseResult.variable)
 				)
 
-			if (parseResult.category == 'calcExpression') {
+			if (parseResult.category == 'calcExpression' || parseResult.category == 'comparison') {
 				let evaluate = (situation, parsedRules, node) => {
 					let
 						operatorFunctionName = {
 							'*': 'multiply',
 							'/': 'divide',
 							'+': 'add',
-							'-': 'subtract'
+							'-': 'subtract',
+							'<': 'lt',
+							'<=': 'lte',
+							'>': 'gt',
+							'>=': 'gte'
 						}[node.operator],
 						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
 						value1 = explanation[0].nodeValue,
@@ -217,7 +221,7 @@ let treat = (rules, rule) => rawNode => {
 
 				let jsx = (nodeValue, explanation) =>
 					<Node
-						classes="inlineExpression calcExpression"
+						classes={"inlineExpression "+parseResult.category}
 						value={nodeValue}
 						child={
 							<span className="nodeContent">
@@ -233,73 +237,9 @@ let treat = (rules, rule) => rawNode => {
 					jsx,
 					operator,
 					text: rawNode,
-					category: 'calcExpression',
-					type: 'numeric',
+					category: parseResult.category,
+					type: parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
 					explanation: filledExplanation
-				}
-			}
-
-			if (parseResult.category == 'comparison') {
-				//TODO mutualise code for 'comparison' & 'calclExpression'. Harmonise their names
-				let evaluate = (situation, parsedRules, node) => {
-					let
-						comparatorFunctionName = {
-							'<': 'lt',
-							'<=': 'lte',
-							'>': 'gt',
-							'>=': 'gte'
-							//TODO '='
-						}[node.operator],
-						comparatorFunction = R[comparatorFunctionName],
-						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
-						value1 = explanation[0].nodeValue,
-						value2 = explanation[1].nodeValue,
-						nodeValue = value1 == null || value2 == null ?
-							null
-						: comparatorFunction(value1, value2)
-
-					let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
-
-					return rewriteNode(node,nodeValue,explanation,collectMissing)
-				}
-
-				let fillFiltered = parseResult => fillVariableNode(rules, rule)(parseResult.variable)
-				let fillVariable = fillVariableNode(rules, rule),
-					filledExplanation = parseResult.explanation.map(
-						R.cond([
-							[R.propEq('category', 'variable'), fillVariable],
-							[R.propEq('category', 'filteredVariable'), fillFiltered],
-							[R.propEq('category', 'value'), node =>
-								({
-									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseInt(node.nodeValue)}),
-									jsx: nodeValue => <span className="value">{nodeValue}</span>
-								})
-							]
-						])
-					),
-					operator = parseResult.operator
-
-				let jsx = (nodeValue, explanation) =>
-					<Node
-						classes="inlineExpression calcExpression"
-						value={nodeValue}
-						child={
-							<span className="nodeContent">
-								{makeJsx(explanation[0])}
-								<span className="operator">{parseResult.operator}</span>
-								{makeJsx(explanation[1])}
-							</span>
-						}
-					/>
-
-				return {
-					evaluate,
-					jsx,
-					operator,
-					text: rawNode,
-					category: 'comparison',
-					type: 'boolean',
-					explanation: filledExplanation,
 				}
 			}
 		},
