@@ -77,6 +77,54 @@ describe('collectMissingVariables', function() {
     expect(result).to.be.empty
   });
 
+  it('should report missing variables in switch statements', function() {
+    let rawRules = [
+          { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
+          { nom: "logic", formule: {"logique numérique": {
+                  "11 > dix":"1000%",
+                  "3 > dix":"1100%",
+                  "1 > dix":"1200%"
+              }}, espace: "top"},
+          {nom: "dix", espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.have.property('top . dix')
+  });
+
+  it('should not report missing variables in switch for consequences of false conditions', function() {
+    let rawRules = [
+          { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
+          { nom: "logic", formule: {"logique numérique": {
+                  "11 > 10":"1000%",
+                  "3 > 1":"1100%",
+                  "1 > 2":"dix"
+              }}, espace: "top"},
+          {nom: "dix", espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.be.empty
+  });
+
+  it('should not report missing variables when a switch short-circuits', function() {
+    let rawRules = [
+          { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
+          { nom: "logic", formule: {"logique numérique": {
+                  "11 > 10":"1000%",
+                  "3 > dix":"1100%",
+                  "1 > dix":"1200%"
+              }}, espace: "top"},
+          {nom: "dix", espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.be.empty
+  });
+
 });
 
 describe('buildNextSteps', function() {

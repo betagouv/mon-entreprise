@@ -137,8 +137,12 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 			consequenceNode = mecanismNumericalLogic(recurse, condition, consequence)
 
 			let evaluate = (situationGate, parsedRules, node) => {
-				let collectMissing = node =>
-					R.concat(collectNodeMissing(conditionNode),collectNodeMissing(consequenceNode))
+				let collectMissing = node => {
+					let leftMissing = collectNodeMissing(node.explanation.condition),
+						investigate = node.explanation.condition.nodeValue == true,
+						rightMissing = investigate ? collectNodeMissing(node.explanation.consequence) : []
+					return R.concat(leftMissing, rightMissing)
+				}
 
 				let explanation = R.evolve({
 					condition: R.curry(evaluateNode)(situationGate, parsedRules),
@@ -179,7 +183,11 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 			choice = R.find(node => node.condValue, explanation),
 			nodeValue = choice ? choice.nodeValue : null
 
-		let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+		let collectMissing = node => {
+			let choice = R.find(node => node.condValue, node.explanation)
+			return choice ? collectNodeMissing(choice) : R.chain(collectNodeMissing,node.explanation)
+		}
+
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 
