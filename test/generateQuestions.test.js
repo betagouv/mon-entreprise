@@ -214,4 +214,18 @@ describe('buildNextSteps', function() {
     expect(R.path(["question","props","label"])(result[5])).to.equal("Combien de jours de congés ne seront pas pris ?")
   });
 
+  it('should generate questions from the real rules, experimental version', function() {
+    let stateSelector = (name) => ({"contrat salarié . CDD . événement . poursuite du CDD en CDI":"oui"})[name]
+
+    let rules = realRules.map(enrichRule),
+        situation = analyseTopDown(rules,"Salaire")(stateSelector),
+        objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
+        result = buildNextSteps(stateSelector, rules, situation)
+
+    expect(objectives).to.have.lengthOf(2)
+    expect(result).to.have.lengthOf(2)
+    expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut ?")
+    expect(R.path(["question","props","label"])(result[1])).to.equal("Le salarié a-t-il le statut cadre ?")
+  });
+
 });
