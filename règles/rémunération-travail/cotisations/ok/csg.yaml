@@ -28,11 +28,11 @@
       assiette: assiette CSG
       composantes:
         - attributs:
-            déductible des impôts: oui
+            déductible des impôts: non
           taux: 2.4%
 
         - attributs:
-            déductible des impôts: non
+            déductible des impôts: oui
           taux: 5.1%
 
 - espace: contrat salarié
