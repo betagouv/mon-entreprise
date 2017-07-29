@@ -1,0 +1,12 @@
+- espace: contrat salarié
+  nom: Allocations Familiales
+  cotisation:
+    dû par: employeur
+    branche: famille
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 5.25%
