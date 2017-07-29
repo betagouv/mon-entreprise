@@ -87,6 +87,7 @@
       - CRDS
       - cotisation exceptionnelle temporaire (salarié)
       - chômage (salarié)
+      - APEC (salarié)
 
   exemples:
     - nom: salaire médian, non cadre
@@ -101,7 +102,7 @@
         CDD . événement . poursuite du CDD en CDI: oui
         salaire de base: 2300
         statut cadre: oui
-      valeur attendue: 544
+      valeur attendue: 543.84
 
 - espace: contrat salarié
   nom: cotisations patronales
@@ -116,6 +117,7 @@
       - AGFF (employeur)
       - cotisation exceptionnelle temporaire (employeur)
       - chômage (employeur)
+      - APEC (employeur)
       - AGS
 
   exemples:
@@ -124,14 +126,14 @@
         CDD . événement . poursuite du CDD en CDI: oui
         salaire de base: 2300
         statut cadre: non
-      valeur attendue: 896
+      valeur attendue: 948.66
 
     - nom: salaire médian, cadre
       situation:
         CDD . événement . poursuite du CDD en CDI: oui
         salaire de base: 2300
         statut cadre: oui
-      valeur attendue: 981
+      valeur attendue: 1032.72
 
 - espace: contrat salarié
   nom: salaire net

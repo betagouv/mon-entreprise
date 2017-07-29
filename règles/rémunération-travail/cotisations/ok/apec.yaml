@@ -25,9 +25,6 @@
           tranches:
             - en-dessous de: 4
               taux: 0.036%
-                # 2016-01: 0.036%
-                # 2011-01: 0.036%
-                # 1993-07: 0%
             - au-dessus de: 4
               taux: 0%
 
@@ -36,8 +33,5 @@
           tranches:
             - en-dessous de: 4
               taux: 0.024%
-                # 2016-01: 0.024%
-                # 2011-01: 0.024%
-                # 1993-07: 0%
             - au-dessus de: 4
               taux: 0%
