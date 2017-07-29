@@ -82,10 +82,11 @@
       - ARRCO (salarié)
       - AGIRC (salarié)
       - GMP (salarié)
-      - chômage (salarié)
       - AGFF (salarié)
       - CSG
       - CRDS
+      - cotisation exceptionnelle temporaire (salarié)
+      - chômage (salarié)
 
 - espace: contrat salarié
   nom: cotisations patronales
@@ -97,8 +98,9 @@
       - ARRCO (employeur)
       - AGIRC (employeur)
       - GMP (employeur)
-      - chômage (employeur)
       - AGFF (employeur)
+      - cotisation exceptionnelle temporaire (employeur)
+      - chômage (employeur)
 
 - espace: contrat salarié
   nom: salaire net
