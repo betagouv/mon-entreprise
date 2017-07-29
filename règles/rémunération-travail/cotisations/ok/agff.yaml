@@ -27,19 +27,18 @@
                 - de: 1
                   à: 3
                   taux: 0.9%
-                - en-dessous de: 3
+                - au-dessus de: 3
                   taux: 0%
 
             - si: statut cadre
               tranches:
-                - taux:
-                  - en-dessous de: 1
-                    taux: 1.2%
-                  - de: 1
-                    à: 8
-                    taux: 1.3%
-                  - au-dessus de: 8
-                    taux: 0%
+                - en-dessous de: 1
+                  taux: 1.2%
+                - de: 1
+                  à: 8
+                  taux: 1.3%
+                - au-dessus de: 8
+                  taux: 0%
 
         - attributs:
             dû par: salarié
