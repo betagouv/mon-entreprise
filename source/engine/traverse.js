@@ -137,7 +137,7 @@ let buildNegatedVariable = variable => {
 	let jsx = (nodeValue, explanation) =>
 		<Node
 			classes="inlineExpression negation"
-			value={node.nodeValue}
+			value={nodeValue}
 			child={
 				<span className="nodeContent">
 					<span className="operator">¬</span>
