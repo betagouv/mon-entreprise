@@ -8,9 +8,9 @@
     Les salariés relevant du régime Agirc et travaillant à temps plein dont le salaire ne permet pas d'obtenir le nombre minimum de 120 points Agirc, ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
   note: |
-    Méchanisme:
+    Mécanisme:
     si < PSS -> cotisation forfaitaire GMP
-    si > PSS alors le mec va payer une cotisation AGIRC sur la tranche B, et la GMP sera le complément pour arriver à un montant total = cotisation #forfaitaire GMP
+    si > PSS alors on va payer une cotisation AGIRC sur la tranche B, et la GMP sera le complément pour arriver à un montant total = cotisation #forfaitaire GMP
     Autrement dit, si agirc < cotisation forfaitaire, GMP = complément
 
   # TODO On pourrait aussi se dire que cette formule est un complément de AGIRC,
