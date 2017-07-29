@@ -81,6 +81,7 @@
       - vieillesse (salarié)
       - ARRCO (salarié)
       - AGIRC (salarié)
+      - GMP (salarié)
       - chômage (salarié)
       - AGFF (salarié)
       - CSG
@@ -94,6 +95,7 @@
       - vieillesse (employeur)
       - ARRCO (employeur)
       - AGIRC (employeur)
+      - GMP (employeur)
       - chômage (employeur)
       - AGFF (employeur)
 
