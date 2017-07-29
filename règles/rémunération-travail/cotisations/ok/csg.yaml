@@ -5,6 +5,14 @@
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
   formule:
+    somme:
+      - assiette csg abattue
+      - prévoyance obligatoire cadre
+
+- espace: contrat salarié
+  note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO
+  nom: assiette CSG abattue
+  formule:
     barème:
       assiette: assiette cotisations sociales
       multiplicateur des tranches: plafond sécurité sociale
