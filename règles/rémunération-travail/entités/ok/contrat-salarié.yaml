@@ -92,6 +92,7 @@
   formule:
     somme:
       - maladie (employeur)
+      - prévoyance obligatoire cadre
       - vieillesse (employeur)
       - ARRCO (employeur)
       - AGIRC (employeur)
