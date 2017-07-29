@@ -80,6 +80,7 @@
       - maladie (salarié)
       - vieillesse (salarié)
       - ARRCO (salarié)
+      - AGIRC (salarié)
       - chômage (salarié)
       - AGFF (salarié)
       - CSG
@@ -92,6 +93,7 @@
       - maladie (employeur)
       - vieillesse (employeur)
       - ARRCO (employeur)
+      - AGIRC (employeur)
       - chômage (employeur)
       - AGFF (employeur)
 
