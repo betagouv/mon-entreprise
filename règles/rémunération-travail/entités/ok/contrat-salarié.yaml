@@ -88,6 +88,21 @@
       - cotisation exceptionnelle temporaire (salarié)
       - chômage (salarié)
 
+  exemples:
+    - nom: salaire médian, non cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: non
+      valeur attendue: 510.83
+
+    - nom: salaire médian, cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: oui
+      valeur attendue: 544
+
 - espace: contrat salarié
   nom: cotisations patronales
   formule:
@@ -103,6 +118,21 @@
       - chômage (employeur)
       - AGS
 
+  exemples:
+    - nom: salaire médian, non cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: non
+      valeur attendue: 896
+
+    - nom: salaire médian, cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: oui
+      valeur attendue: 981
+
 - espace: contrat salarié
   nom: salaire net
   description: |
@@ -114,21 +144,6 @@
   description: |
     C'est le salaire de base augmenté des cotisations patronales.
   formule: salaire brut + cotisations patronales
-
-  exemples:
-    - nom: médian
-      situation:
-        CDD . événement . poursuite du CDD en CDI: oui
-        salaire de base: 2300
-        statut cadre: non
-      valeur attendue: 3196
-
-    - nom: médian cadre
-      situation:
-        CDD . événement . poursuite du CDD en CDI: oui
-        salaire de base: 2300
-        statut cadre: oui
-      valeur attendue: 3281
 
 - espace: contrat salarié
   nom: Salaire
