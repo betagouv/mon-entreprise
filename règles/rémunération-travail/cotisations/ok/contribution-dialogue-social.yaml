@@ -1,7 +1,7 @@
-- Cotisation: Contribution au Dialogue Social
-  attributs:
+- espace: contrat salarié
+  nom: Contribution au Dialogue Social
+  cotisations:
     dû par: employeur
-    branche: aucune idée
     collecteur: URSSAF
   description: Contribution patronale destinée à abonder un fonds paritaire dédié au financement des organisations syndicales et des organisations professionnelles d’employeurs.
   références:
@@ -13,5 +13,4 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux:
-        2015: 0.016%
+      taux: 0.016%
