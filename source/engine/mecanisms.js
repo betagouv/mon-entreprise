@@ -376,6 +376,9 @@ export let mecanismProduct = (recurse,k,v) => {
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 		return decompose(recurse,k,v)
 	}
+	if (v.variations) {
+		return devariate(recurse,k,v)
+	}
 
 	// Preprocessing step to parse percentages
 	let wrap = x => ({taux: x}),
@@ -445,7 +448,7 @@ export let mecanismScale = (recurse,k,v) => {
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 		return decompose(recurse,k,v)
 	}
-	if (v.variations) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+	if (v.variations) {
 		return devariate(recurse,k,v)
 	}
 
