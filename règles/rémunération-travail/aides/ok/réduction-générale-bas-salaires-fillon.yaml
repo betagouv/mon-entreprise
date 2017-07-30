@@ -1,71 +1,66 @@
-- Aide: Réduction générale bas salaires
-  attributs:
+- espace: contrat salarié
+  nom: réduction générale
+  aide:
     type: réduction de cotisations
     thème: aide bas salaires
     démarches: non
-  nom: Réduction générale des cotisations patronales sur les bas salaires
   alias: réduction fillon
-
   description: |
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation, hormis l'assurance chômage. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
   références:
-    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
-    - https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
+    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
+    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
 
-  concerne: Activité = Salariat # Ceci exclut notamment les stagiaires
+  non applicable si: salaire brut > plafond réduction générale
 
-  #TODO implémenter "Les salariés visés" de l'URSSAF
-  # Tout salarié dont la rémunération est inférieure à 1,6 , relevant à titre obligatoire du régime d’assurance chômage ou dont l’emploi ouvre droit à l’allocation d’assurance chômage, peut ouvrir droit à cet allégement, quelles que soient la forme ou la nature de son contrat de travail et la durée de travail à laquelle il est soumis.
+  formule:
+    le minimum de:
+      - assiette réduction générale
+      # TODO - cette expression correspond algébriquement mais n'a pas de sens métier, que faire ?
+      - réduction générale constante - réduction générale variable
 
-  #TODO règles de non-cumul et d'exceptions au non-cumul sur service-public...
-  # non-cumul:
-  #   - Aide:
-  #       type: réduction de cotisations
+- espace: contrat salarié
+  nom: réduction générale constante
+  formule: coefficient réduction générale * plafond réduction générale
 
+- espace: contrat salarié
+  nom: réduction générale variable
+  formule: coefficient réduction générale * salaire brut
 
-  #TODO cette exonération ne peut être imputée à toutes les cotisations sociales. Voir s'il faut l'implémenter
+- espace: contrat salarié
+  nom: coefficient réduction générale
+  formule:
+    multiplication:
+      # TODO - encore obtenu algébriquement mais sans signification
+      assiette: 10 / 6
+      variations:
+        - si: entreprise . effectif < 20
+          taux: 0.2809
+          plafond: plafond sécurité sociale
+        - si: entreprise . effectif >= 20
+          taux: 0.2849
 
-  variables ciblées:
-    filtre:
-      Cotisation:
-        dû par: employeur
-    cibles:
-      - fnal
+- espace: contrat salarié
+  nom: assiette réduction générale
+  formule:
+    somme:
       - allocations familiales
-      - contribution solidarité autonomie
-      - maladie
-      - variable: ATMP
-        limite: .01 * assiette cotisations sociales
-        prioritaire: non
+      - fnal (employeur)
+      - maladie (employeur)
+      - vieillesse (employeur)
+      # TODO: ajout ATMP
 
-  périodicité: mensuelle
-  période de référence: annuelle
-  #https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-2--le-calcul-de-la-reducti/la-regularisation.html
-  modes de régularisation:
-    - fin d'année
-      # - Chaque mois, la réduction est calculée sur le salaire du mois
-      # - en fin d'année, la réduction est calculée sur l'année. C'est cette valeur qui fait référence, pour absorber les variations mensuelles de salaire.
-      # -> la différence est régularisée sur les cotisations sociales du dernier mois
-    - progressive
-      # - Le principe de la régularisation "fin d'année" est appliqué chaque mois, à chaque versement.
-      # Cela évite une suprise de fin d'année, par exemple si le salaire pendant le deuxième semestre a été doublé et
-      # fait sortir le salrié du champ de la réduction !
+- espace: contrat salarié
+  nom: plafond réduction générale
+  # TODO: calcul du smic proratisé
+  formule: multiplicateur réduction générale * smic mensuel
 
-  # Voir calcul similaire documenté pour lodéom
-  # TODO vérifier que les taux donnés par l'URSSAF / SP
-  # correspondent à cette formule affine
-  # notamment sur l'histoire de l'AT/MP à hauteur de 1%
-  # Peut être est-ce pour une question d'arrondi reporté sur elle ?
+- espace: contrat salarié
+  nom: multiplicateur réduction générale
+  formule:
+    taux: 1.6
 
-  coefficient de réduction:
-    affine par morceaux:
-      base: smic proratisé
-      tranches:
-        - seuil: 0
-          coefficient: 1
-        - seuil: 1
-          coefficient: linéaire
-        - seuil: 1.6
-          exonération: 0
-
-  #TODO lire la page service-public et URSSAF pour voir ce qui nous manque
+- espace: contrat salarié
+  nom: smic mensuel
+  formule:
+    taux: 1480.27

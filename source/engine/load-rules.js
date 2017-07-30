@@ -47,6 +47,8 @@ let directoryLoaders =
                     true, /.yaml$/),
     require.context('../../règles/rémunération-travail/cotisations/ok',
                     true, /.yaml$/),
+    require.context('../../règles/rémunération-travail/aides/ok',
+                    true, /.yaml$/),
   ]
 
 // require.context returns an object which
