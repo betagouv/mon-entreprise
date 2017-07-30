@@ -587,6 +587,38 @@ export let mecanismMax = (recurse,k,v) => {
 	}
 }
 
+export let mecanismMin = (recurse,k,v) => {
+	let explanation = v.map(recurse)
+
+	let evaluate = evaluateArray(R.min,Infinity)
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
+			classes="mecanism list minimum"
+			name="le minimum de"
+			value={nodeValue}
+			child={
+				<ul>
+				{explanation.map((item, i) =>
+					<li key={i}>
+						<div className="description">{v[i].description}</div>
+						{makeJsx(item)}
+					</li>
+				)}
+				</ul>
+			}
+		/>
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		type: 'numeric',
+		category: 'mecanism',
+		name: 'le minimum de'
+	}
+}
+
 export let mecanismComplement = (recurse,k,v) => {
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 		return decompose(recurse,k,v)
