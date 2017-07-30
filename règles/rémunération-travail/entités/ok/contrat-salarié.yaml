@@ -143,14 +143,27 @@
 - espace: contrat salarié
   nom: salaire net
   description: |
-    C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
+    C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salarié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
   formule: salaire brut - cotisations salariales
 
 - espace: contrat salarié
   nom: coût du travail
   description: |
+    C'est le salaire "super brut" diminué des aides financières
+  formule: super brut - aides
+
+- espace: contrat salarié
+  nom: super brut
+  description: |
     C'est le salaire de base augmenté des cotisations patronales.
-  formule: salaire brut + cotisations patronales
+  formule:
+    somme:
+      - salaire brut
+      - cotisations patronales
+
+- espace: contrat salarié
+  nom: aides
+  formule: réduction générale
 
 - espace: contrat salarié
   nom: Salaire
