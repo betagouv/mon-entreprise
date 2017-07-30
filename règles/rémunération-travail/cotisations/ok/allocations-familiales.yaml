@@ -9,4 +9,18 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: 5.25%
+      variations:
+        # TODO - intégrer l'éligibilité à la réduction générale
+        # TODO - vérifier si la réduction doit être portée à part sur la fiche de paie
+        - si: salaire brut < plafond réduction allocations familiales
+          taux: 3.45%
+          plafond: plafond sécurité sociale
+        - si: salaire brut > plafond réduction allocations familiales
+          taux: 5.25%
+
+- espace: contrat salarié
+  nom: plafond réduction allocations familiales
+  formule:
+    multiplication:
+      assiette: smic mensuel
+      taux: 3.5
