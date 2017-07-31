@@ -151,10 +151,11 @@ let buildNegatedVariable = variable => {
 
 let treat = (rules, rule) => rawNode => {
 	// inner functions
-	let reTreat = treat(rules, rule),
+	let
+		reTreat = treat(rules, rule),
 		treatString = rawNode => {
-			/* On a à faire à un string, donc à une expression infixe.
-			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire.
+			/* On a affaire à un string, donc à une expression infixe.
+			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
 			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
 			Cet objet est alors rebalancé à 'treat'.
 			*/
@@ -282,7 +283,7 @@ let treat = (rules, rule) => rawNode => {
 					'complément':				mecanismComplement,
 					'une possibilité':			R.always({})
 				},
-				action = R.pathOr(mecanismError,[k],dispatch)
+				action = R.propOr(mecanismError, k, dispatch)
 
 			return action(reTreat,k,v)
 		}
@@ -317,8 +318,8 @@ export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
 		let
 			evaluated = R.evolve({
-				formule:R.curry(evaluateNode)(situationGate, parsedRules),
-				"non applicable si":R.curry(evaluateNode)(situationGate, parsedRules)
+				formule: R.curry(evaluateNode)(situationGate, parsedRules),
+				"non applicable si": R.curry(evaluateNode)(situationGate, parsedRules)
 			},r),
 			formuleValue = evaluated.formule && evaluated.formule.nodeValue,
 			condition = R.prop('non applicable si',evaluated),
@@ -336,11 +337,11 @@ export let treatRuleRoot = (rules, rule) => {
 		return R.concat(condMissing,formMissing)
 	}
 
-	let parsedRoot = R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
+	let parsedRoot = R.evolve({ // Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 
-	// 'meta': pas de traitement pour l'instant
+	// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
-	// 'cond' : Conditions d'applicabilité de la règle
+	// condition d'applicabilité de la règle
 		'non applicable si': value => {
 			let evaluate = (situationGate, parsedRules, node) => {
 				let collectMissing = node => collectNodeMissing(node.explanation)
@@ -357,7 +358,7 @@ export let treatRuleRoot = (rules, rule) => {
 					name="non applicable si"
 					value={nodeValue}
 					child={
-						explanation.category === 'variable' ? <div className="node">makeJsx(explanation)</div>
+						explanation.category === 'variable' ? <div className="node">{makeJsx(explanation)}</div>
 						: makeJsx(explanation)
 					}
 				/>
@@ -373,11 +374,6 @@ export let treatRuleRoot = (rules, rule) => {
 			}
 		}
 		,
-		// [n'importe quel mécanisme booléen] : expression booléenne (simple variable, négation, égalité, comparaison numérique, test d'inclusion court / long) || l'une de ces conditions || toutes ces conditions
-		// 'applicable si': // pareil mais inversé !
-
-		// note: pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
-		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
 			let evaluate = (situationGate, parsedRules, node) => {
 				let collectMissing = node => collectNodeMissing(node.explanation)
@@ -407,34 +403,44 @@ export let treatRuleRoot = (rules, rule) => {
 			}
 		}
 	,
-	// TODO les mécanismes de composantes et de variations utilisables un peu partout !
-	// TODO 'temporal': information concernant les périodes : à définir !
-	// TODO 'intéractions': certaines variables vont en modifier d'autres : ex. Fillon va réduire voir annuler (set 0) une liste de cotisations
-	// ... ?
 
 	})(rule)
 
 	return {
+		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
 		collectMissing
 	}
 }
 
-/* Analyse the set of selected rules, and add derived information to them :
-- do they need variables that are not present in the user situation ?
-- if not, do they have a computed value or are they non applicable ?
-*/
 
 export let analyseSituation = (rules, rootVariable) => situationGate => {
 	let {root, parsedRules} = analyseTopDown(rules,rootVariable)(situationGate)
 	return root
 }
 
+
+
 export let analyseTopDown = (rules, rootVariable) => situationGate => {
-	let treatOne = rule => treatRuleRoot(rules, rule),
+	let
+		/*
+		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
+		Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
+		qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
+		Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
+		Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
+		*/
+		treatOne = rule => treatRuleRoot(rules, rule),
+
+		//On fait ainsi pour chaque règle de la base.
 		parsedRules = R.map(treatOne,rules),
 		rootRule = findRuleByName(parsedRules, rootVariable),
+
+		/*
+			Ce n'est que dans cette nouvelle étape que l'arbre est vraiment évalué.
+			Auparavant, l'évaluation était faite lors de la construction de l'AST.
+		*/
 		root = evaluateNode(situationGate, parsedRules, rootRule)
 
 	return {
@@ -442,78 +448,3 @@ export let analyseTopDown = (rules, rootVariable) => situationGate => {
 		parsedRules
 	}
 }
-
-
-
-
-
-/*--------------------------------------------------------------------------------
- Ce qui suit est la première tentative d'écriture du principe du moteur et de la syntaxe */
-
-// let types = {
-	/*
-	(expression):
-		| (variable)
-		| (négation)
-		| (égalité)
-		| (comparaison numérique)
-		| (test d'inclusion court)
-	*/
-
-// }
-
-
-/*
-Variable:
-	- applicable si: (boolean logic)
-	- non applicable si: (boolean logic)
-	- concerne: (expression)
-	- ne concerne pas: (expression)
-
-(boolean logic):
-	toutes ces conditions: ([expression | boolean logic])
-	une de ces conditions: ([expression | boolean logic])
-	conditions exclusives: ([expression | boolean logic])
-
-"If you write a regular expression, walk away for a cup of coffee, come back, and can't easily understand what you just wrote, then you should look for a clearer way to express what you're doing."
-
-Les expressions sont le seul mécanisme relativement embêtant pour le moteur. Dans un premier temps, il les gerera au moyen d'expressions régulières, puis il faudra probablement mieux s'équiper avec un "javascript parser generator" :
-https://medium.com/@daffl/beyond-regex-writing-a-parser-in-javascript-8c9ed10576a6
-
-(variable): (string)
-
-(négation):
-	! (variable)
-
-(égalité):
-	(variable) = (variable.type)
-
-(comparaison numérique):
-	| (variable) < (variable.type)
-	| (variable) <= (variable.type)
-	| (variable) > (variable.type)
-	| (variable) <= (variable.type)
-
-(test d'inclusion court):
-	(variable) ⊂ [variable.type]
-
-in Variable.formule :
-	- composantes
-	- linéaire
-	- barème en taux marginaux
-	- test d'inclusion: (test d'inclusion)
-
-(test d'inclusion):
-	variable: (variable)
-	possibilités: [variable.type]
-
-# pas nécessaire pour le CDD
-
-	in Variable
-		- variations: [si]
-
-	(si):
-		si: (expression)
-		# corps
-
-	*/
