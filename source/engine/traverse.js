@@ -65,19 +65,24 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 	}
 }
 
+// TODO: dirty, dirty
+// ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
+var dict;
+
 let createVariableNode = (rules, rule) => (parseResult) => {
 	let evaluate = (situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
-			variable = findRuleByDottedName(parsedRules, dottedName),
+			cached = dict[dottedName],
+			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
 			//TODO perf : mettre un cache sur les variables !
 			// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
 			// et qu'il n'y a aucun problème de perf aujourd'hui
-			parsedRule = variableIsCalculable && evaluateNode(
+			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(
 				situation,
 				parsedRules,
 				variable
-			),
+			)),
 
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue = situationValue
@@ -91,10 +96,13 @@ let createVariableNode = (rules, rule) => (parseResult) => {
 			let collectMissing = node =>
 				variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
-			return {
+			let result = cached ? cached : {
 				...rewriteNode(node,nodeValue,explanation,collectMissing),
 				missingVariables,
 			}
+			dict[dottedName] = result
+
+			return result
 	}
 
 	let {fragments} = parseResult,
@@ -423,6 +431,7 @@ export let analyseSituation = (rules, rootVariable) => situationGate => {
 
 
 export let analyseTopDown = (rules, rootVariable) => situationGate => {
+	dict = {}
 	let
 		/*
 		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
