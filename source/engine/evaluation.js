@@ -1,7 +1,9 @@
 import R from 'ramda'
 
-export let makeJsx = (node) =>
-	typeof(node.jsx) == "function" ? node.jsx(node.nodeValue, node.explanation) : node.jsx
+export let makeJsx = node =>
+	typeof node.jsx == "function"
+		? node.jsx(node.nodeValue, node.explanation)
+		: node.jsx
 
 export let collectNodeMissing = (node) =>
 	node.collectMissing ? node.collectMissing(node) : []

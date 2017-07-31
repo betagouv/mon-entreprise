@@ -35,7 +35,7 @@ export let reduceSteps = (state, action) => {
 	if (action.type == START_CONVERSATION) {
 		return {
 			...returnObject,
-			foldedSteps: state.foldedSteps || [],
+			foldedSteps: [],
 			unfoldedSteps: buildNextSteps(situationGate(state), rules, returnObject.analysedSituation)
 		}
 	}

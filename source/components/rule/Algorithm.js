@@ -6,6 +6,13 @@ import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import marked from 'Engine/marked'
 import {makeJsx} from 'Engine/evaluation'
 
+let RuleWithoutFormula = () =>
+	<p>
+		Nous ne connaissons pas la formule de cette règle pour l'instant. Sa valeur
+		doit donc être renseignée directement.
+	</p>
+
+
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {
 	state = {
@@ -28,7 +35,7 @@ export default class Algorithm extends React.Component {
 					}}
 					<section id="formule">
 						<h2>Calcul</h2>
-						{makeJsx(rule['formule'])}
+						{rule['formule'] ? makeJsx(rule['formule']) : <RuleWithoutFormula />}
 					</section>
 				</section>
 			</div>

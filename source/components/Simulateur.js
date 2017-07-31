@@ -41,18 +41,19 @@ export default class extends React.Component {
 				}
 			}
 		} = this.props,
-			name = decodeRuleName(encodedName)
+			name = decodeRuleName(encodedName),
+			existingConversation = this.props.unfoldedSteps.length > 0
 
 		this.encodedName = encodedName
 		this.name = name
 		this.rule = findRuleByName(rules, name)
 
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		if (this.rule.formule)
+		if (!existingConversation)
 			this.props.startConversation(name)
 	}
 	render(){
-		if (!this.rule.formule) return <Redirect to="/404"/>
+		if (!this.rule.formule) return <Redirect to={"/regle/" + this.name}/>
 
 		let
 			started = !this.props.match.params.intro,
