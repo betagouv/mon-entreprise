@@ -36,6 +36,26 @@ describe('simplified tree walks', function() {
 	const Fx = daggy.tagged('Fx',['x'])
 	const unFix = R.prop('x')
 
+	// Chaque élément de notre liste est une définition:
+
+	const Def = daggy.taggedSum('Def', {
+		Formula: 	 ['expr'],
+		Conditional: ['cond','expr'], // Applicable si
+		Blocked: 	 ['cond','expr'], // Non applicable si
+	})
+	const {Formula, Conditional, Blocked} = Def
+
+	// Ce qu'on décrit est un framework de programmation déclarative: on stipule des
+	// définitions (salaire net = brut - cotisations) mais on les donne sans ordre
+	// impératif, on laisse au moteur le soin de calculer les dépendances
+
+	// Par contre, à l'exécution, il faut bien calculer des "effets de bord"
+	// pour rester performant: chaque évaluation d'une définition doit mettre
+	// à jour le 'dictionnaire' des valeurs connues, puis le mettre à disposition
+	// de la suite du calcul
+
+	// La partie droite d'une définition est une expression:
+
 	const Expr = daggy.taggedSum('Expr',{
 		Num: ['x'],
 		Add: ['x', 'y'],
@@ -44,7 +64,7 @@ describe('simplified tree walks', function() {
 //		AnyOf: ['conditions'],
 //		AllOf: ['conditions'],
 	})
-	const {Num, Add, Var} = Expr;
+	const {Num, Add, Var} = Expr
 
 	// fold :: Functor f => (f a -> a) -> Fix f -> a
 	const fold = R.curry((alg, x) => R.compose(alg, R.map(fold(alg)), unFix)(x))
