@@ -26,6 +26,13 @@ describe('simplified tree walks', function() {
 	// Le but du jeu est de pouvoir le représenter de façon compacte, mais
 	// d'avoir un arbre simple à manipuler
 
+	// Pour intégrer dans le simulateur, il faut remplir les exigences
+	// suivantes:
+	// - décorer l'arbre avec une valeur à chaque noeud
+	// - réaliser le calcul de façon efficiente (1 fois par variable)
+	// - savoir "court-circuiter" le calcul de variables manquantes dans les conditionnelles
+	// - avoir un moyen de gérer les composantes et filtrage
+
 	const Fx = daggy.tagged('Fx',['x'])
 	const unFix = R.prop('x')
 
@@ -33,6 +40,9 @@ describe('simplified tree walks', function() {
 		Num: ['x'],
 		Add: ['x', 'y'],
 		Var: ['name']
+//		NotIf: ['condition','formule'],
+//		AnyOf: ['conditions'],
+//		AllOf: ['conditions'],
 	})
 	const {Num, Add, Var} = Expr;
 
