@@ -1,9 +1,12 @@
 # syso
 
+
 Introduction
 ----------------------
 
 ![La loi papier sur la page de droite du dessin de l'énorme livre de droit, sera (page de droite) augmentée par du code interprếtable](https://github.com/laem/syso/blob/master/source/images/logo.png)
+
+> Allez voir notre [wiki](https://github.com/sgmap/syso/wiki/Home/), tout y est !
 
 L'idée, c'est d'augmenter les textes de loi avec des jeux de *donnée* qui décrivent l'architecture et les calculs de ses éléments, permettant par exemple à un citoyen ou une entreprise (deux entités différentes du système) de calculer ses obligations et ses droits ainsi que leur articulation (ex. comment je calcule la CSG sur mon salaire ? est-ce que j'appartiens au régime Alsace-Moselle ?).
 
