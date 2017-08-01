@@ -42,7 +42,7 @@ export default class extends React.Component {
 			}
 		} = this.props,
 			name = decodeRuleName(encodedName),
-			existingConversation = this.props.unfoldedSteps.length > 0
+			existingConversation = this.props.foldedSteps.length > 0
 
 		this.encodedName = encodedName
 		this.name = name
