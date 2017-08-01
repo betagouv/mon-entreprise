@@ -141,10 +141,10 @@ export let constructStepMeta = ({
 }) => ({
 	// name: dottedName.split(' . ').join('.'),
 	name: dottedName,
-	// S'il y a une question à poser, son espace de fin est rendu insécable. Sinon on prend le titre.
 	// <Explicable/> ajoutera une aide au clic sur un icône [?]
+	// Son texte est la question s'il y en a une à poser. Sinon on prend le titre.
 	question: (
-		<Explicable label={question && question.replace(/\s\?$/g, '\u00a0?') || name} dottedName={dottedName} lightBackground={true} />
+		<Explicable label={question || name} dottedName={dottedName} lightBackground={true} />
 	),
 	title: titre || name,
 	subquestion,
