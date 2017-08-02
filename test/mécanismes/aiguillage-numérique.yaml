@@ -1,0 +1,39 @@
+# Attendus
+# 'should set the right value to a numerical switch when a condition is verified'
+# should set a numerical switch to 0 if no condition is true
+
+# Utiliser http://romainvaleri.online.fr/ pour rigoler un peu
+
+
+- nom: taulard cyclothymique
+
+- nom: nombre de gigolos rachitiques
+
+
+- nom: aiguillage numérique simple
+
+  formule:
+    aiguillage numérique:
+      taulard cyclothymique: 3%
+      nombre de gigolos rachitiques > 1800 : 1.5%
+
+  exemples:
+    - nom: le premier aiguillage est activé -> sa valeur est renvoyée
+      situation:
+        taulard cyclothymique: oui
+        nombre de gigolos rachitiques: 1789
+      valeur attendue: 0.03
+    - nom: seul le 2ème aiguillage est activé
+      situation:
+        taulard cyclothymique: non
+        nombre de gigolos rachitiques: 1801
+      valeur attendue: 0.015
+    - nom: aucun aiguillage n'est activé -> 0
+      situation:
+        taulard cyclothymique: non
+        nombre de gigolos rachitiques: 1789
+      valeur attendue: 0
+
+# tester une imbrication d ' aiguillages
+
+# pouvoir tester les variables inconnues mais requises ?
