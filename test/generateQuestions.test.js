@@ -97,8 +97,7 @@ describe('collectMissingVariables', function() {
     let rawRules = [
           { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
           { nom: "logic", formule: {"logique numérique": {
-                  "11 > 10":"1000%",
-                  "3 > 1":"1100%",
+                  "8 > 10":"1000%",
                   "1 > 2":"dix"
               }}, espace: "top"},
           {nom: "dix", espace: "top"}],
