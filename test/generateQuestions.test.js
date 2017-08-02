@@ -109,6 +109,32 @@ describe('collectMissingVariables', function() {
     expect(result).to.deep.equal({})
   });
 
+  it('should report missing variables in consequence even if its condition is unresolved', function() {
+  let rawRules = [
+    { nom: "startHere", formule: { somme: ["logic"] }, espace: "top" },
+    { nom: "logic",
+      formule: {
+        "logique numérique": {
+          "10 > 11": "1000%",
+          "3 > dix": {
+            "douze": "560%",
+            "1 > 2": "75015%" }
+        }
+      },
+      espace: "top"
+    },
+    { nom: "douze", espace: "top" },
+    { nom: "dix", espace: "top" }
+  ],
+  rules = rawRules.map(enrichRule),
+  situation = analyseTopDown(rules, "startHere")(stateSelector),
+  result = collectMissingVariables()(stateSelector, situation);
+
+
+  expect(result).to.have.property('top . dix')
+  expect(result).to.have.property('top . douze')
+  });
+
   it('should not report missing variables when a switch short-circuits', function() {
     let rawRules = [
           { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
@@ -155,8 +181,8 @@ describe('buildNextSteps', function() {
     expect(R.path(["question","props","label"])(result[1])).to.equal("Quel est le motif de recours au CDD ?")
     expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le salaire brut ?")
     expect(R.path(["question","props","label"])(result[3])).to.equal("Est-ce un contrat jeune vacances ?")
-    expect(R.path(["question","props","label"])(result[4])).to.equal("Combien de jours de congés ne seront pas pris ?")
-    expect(R.path(["question","props","label"])(result[5])).to.equal("Quelle est la durée du contrat ?")
+    expect(R.path(["question","props","label"])(result[4])).to.equal("Quelle est la durée du contrat ?")
+    expect(R.path(["question","props","label"])(result[5])).to.equal("Combien de jours de congés ne seront pas pris ?")
   });
 
 });

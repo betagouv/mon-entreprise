@@ -136,27 +136,27 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 			conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
 			consequenceNode = mecanismNumericalLogic(recurse, condition, consequence)
 
-			let evaluate = (situationGate, parsedRules, node) => {
-				let collectMissing = node => {
-					let leftMissing = collectNodeMissing(node.explanation.condition),
-						investigate = node.explanation.condition.nodeValue == true,
-						rightMissing = investigate ? collectNodeMissing(node.explanation.consequence) : []
-					return R.concat(leftMissing, rightMissing)
-				}
-
-				let explanation = R.evolve({
-					condition: R.curry(evaluateNode)(situationGate, parsedRules),
-					consequence: R.curry(evaluateNode)(situationGate, parsedRules)
-				},node.explanation)
-
-				return {
-					...node,
-					collectMissing,
-					explanation,
-					nodeValue: explanation.consequence.nodeValue,
-					condValue: explanation.condition.nodeValue
-				}
+		let evaluate = (situationGate, parsedRules, node) => {
+			let collectMissing = node => {
+				let missingOnTheLeft = collectNodeMissing(node.explanation.condition),
+					investigate = node.explanation.condition.nodeValue !== false,
+					missingOnTheRight = investigate ? collectNodeMissing(node.explanation.consequence) : []
+				return R.concat(missingOnTheLeft, missingOnTheRight)
 			}
+
+			let explanation = R.evolve({
+				condition: R.curry(evaluateNode)(situationGate, parsedRules),
+				consequence: R.curry(evaluateNode)(situationGate, parsedRules)
+			},node.explanation)
+
+			return {
+				...node,
+				collectMissing,
+				explanation,
+				nodeValue: explanation.consequence.nodeValue,
+				condValue: explanation.condition.nodeValue
+			}
+		}
 
 		let jsx = (nodeValue, {condition, consequence}) =>
 			<div className="condition">
