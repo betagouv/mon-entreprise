@@ -121,20 +121,20 @@ export let mecanismAllOf = (recurse, k,v) => {
 	}
 }
 
-export let mecanismNumericalLogic = (recurse, k,v) => {
+export let mecanismNumericalSwitch = (recurse, k,v) => {
 	if (R.is(String,v)) {
 		// This seems an undue limitation
 		return mecanismPercentage(recurse,k,v)
 	}
 
 	if (!R.is(Object,v) || R.keys(v).length == 0) {
-		throw 'Le mécanisme "logique numérique" et ses sous-logiques doivent contenir au moins une proposition'
+		throw 'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
 	}
 
 	let parseCondition = ([condition, consequence]) => {
 		let
 			conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
-			consequenceNode = mecanismNumericalLogic(recurse, condition, consequence)
+			consequenceNode = mecanismNumericalSwitch(recurse, condition, consequence)
 
 		let evaluate = (situationGate, parsedRules, node) => {
 			let collectMissing = node => {
@@ -197,8 +197,8 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 
 	let jsx = (nodeValue, explanation) =>
 		<Node
-			classes="mecanism numericalLogic list"
-			name="logique numérique"
+			classes="mecanism numericalSwitch list"
+			name="aiguillage numérique"
 			value={nodeValue}
 			child={
 				<ul>
@@ -212,7 +212,7 @@ export let mecanismNumericalLogic = (recurse, k,v) => {
 		jsx,
 		explanation,
 		category: 'mecanism',
-		name: "logique numérique",
+		name: "aiguillage numérique",
 		type: 'boolean || numeric' // lol !
 	}
 }

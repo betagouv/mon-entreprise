@@ -87,7 +87,7 @@ describe('analyseSituation with mecanisms', function() {
 
   it('should handle switch statements', function() {
     let rawRules = [
-          {nom: "startHere", formule: {"logique numérique": {
+          {nom: "startHere", formule: {"aiguillage numérique": {
                   "1 > dix":"1000%",
                   "3 < dix":"1100%",
                   "3 > dix":"1200%"

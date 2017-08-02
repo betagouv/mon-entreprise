@@ -6,7 +6,7 @@ import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
-import {mecanismOneOf,mecanismAllOf,mecanismNumericalLogic,mecanismSum,mecanismProduct,
+import {mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
 		mecanismPercentage,mecanismScale,mecanismMax,mecanismError, mecanismComplement} from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
@@ -282,7 +282,7 @@ let treat = (rules, rule) => rawNode => {
 			let dispatch = {
 					'une de ces conditions':	mecanismOneOf,
 					'toutes ces conditions':	mecanismAllOf,
-					'logique numérique':		mecanismNumericalLogic,
+					'aiguillage numérique':		mecanismNumericalSwitch,
 					'taux':						mecanismPercentage,
 					'somme':					mecanismSum,
 					'multiplication':			mecanismProduct,

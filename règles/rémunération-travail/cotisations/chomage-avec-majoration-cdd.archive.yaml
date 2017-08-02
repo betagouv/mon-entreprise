@@ -66,7 +66,7 @@
           - l'URSSAF explique longuement la notion de durée du CDD : "Comment déterminer la durée du CDD ?"
 
         taux: #TODO pseudo code pour l'instant
-          logique numérique: # première valeur trouvée, sinon 0
+          aiguillage numérique: # première valeur trouvée, sinon 0
             - poursuite du CDD en CDI: 0
             - CDD type accroissement temporaire d'activité:
                 contrat de travail durée ≤ 1 mois: 0.03

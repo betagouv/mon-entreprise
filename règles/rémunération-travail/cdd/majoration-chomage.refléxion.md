@@ -1,5 +1,5 @@
 ```yaml
-logique numérique: # première valeur trouvée, sinon 0
+aiguillage numérique: # première valeur trouvée, sinon 0
   - poursuite du CDD en CDI: 0%
   # - Contrat . type : # mécanisme de match à introduire une fois les entités gérées. Exclusivité exprimée dans l'entité Type
   - conditions exclusives:
@@ -12,7 +12,7 @@ logique numérique: # première valeur trouvée, sinon 0
   # - True: 0% # Ce mécanisme ajoute automatiquement cette ligne :)
 
 
-logique numérique 2:
+aiguillage numérique 2:
   - poursuite du CDD en CDI: 0%
   - aiguillage: # signale que les deux propositions sont exclusives
       sujet: Contrat . type

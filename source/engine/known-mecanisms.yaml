@@ -21,14 +21,14 @@ toutes ces conditions:
 
     Renvoie vrai si toutes les conditions vraies.
 
-logique numérique:
+aiguillage numérique:
   type: numeric
   description: |
     Contient une liste de couples condition-conséquence.
 
     Couple par couple, si la condition est vraie, alors on choisit la conséquence.
 
-    Cette conséquence peut elle-même être un mécanisme `logique numérique` ou plus simplement un `taux`.
+    Cette conséquence peut elle-même être un mécanisme `aiguillage numérique` ou plus simplement un `taux`.
 
     Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
 

@@ -80,7 +80,7 @@ describe('collectMissingVariables', function() {
   it('should report missing variables in switch statements', function() {
     let rawRules = [
           { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
-          { nom: "logic", formule: {"logique numérique": {
+          { nom: "logic", formule: {"aiguillage numérique": {
                   "11 > dix":"1000%",
                   "3 > dix":"1100%",
                   "1 > dix":"1200%"
@@ -96,7 +96,7 @@ describe('collectMissingVariables', function() {
   it('should not report missing variables in switch for consequences of false conditions', function() {
     let rawRules = [
           { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
-          { nom: "logic", formule: {"logique numérique": {
+          { nom: "logic", formule: {"aiguillage numérique": {
                   "8 > 10":"1000%",
                   "1 > 2":"dix"
               }}, espace: "top"},
@@ -113,7 +113,7 @@ describe('collectMissingVariables', function() {
     { nom: "startHere", formule: { somme: ["logic"] }, espace: "top" },
     { nom: "logic",
       formule: {
-        "logique numérique": {
+        "aiguillage numérique": {
           "10 > 11": "1000%",
           "3 > dix": {
             "douze": "560%",
@@ -137,7 +137,7 @@ describe('collectMissingVariables', function() {
   it('should not report missing variables when a switch short-circuits', function() {
     let rawRules = [
           { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
-          { nom: "logic", formule: {"logique numérique": {
+          { nom: "logic", formule: {"aiguillage numérique": {
                   "11 > 10":"1000%",
                   "3 > dix":"1100%",
                   "1 > dix":"1200%"
