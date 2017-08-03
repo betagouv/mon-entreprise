@@ -107,6 +107,45 @@ describe('simplified tree walks', function() {
 	let add = (x, y) => Fx(Add(x,y))
 	let ref = (name) => Fx(Var(name))
 
+	const ExprAnn = daggy.taggedSum('ExprAnn',{
+		NumAnn: ['v', 'x'],
+		AddAnn: ['v', 'x', 'y'],
+	})
+	const {NumAnn, AddAnn} = ExprAnn
+
+	const annotate = a => {
+		return a.cata({
+			NumAnn: (v,x) => NumAnn(x,x),
+			AddAnn: (v,x,y) => {
+				let ax = annotate(x),
+					ay = annotate(y),
+					vv = ax.val()+ay.val()
+				return AddAnn(vv,ax,ay)
+			}
+		})
+	}
+
+	ExprAnn.prototype.val = function() {
+		return this.cata({
+			NumAnn: (v,x) => v,
+			AddAnn: (v,x,y) => v
+		})
+	}
+
+	it('should annotate nodes', function() {
+		let tree = NumAnn(null,45),
+			result = annotate(tree)
+		expect(result.val()).to.equal(45)
+	});
+
+	it('should annotate trees', function() {
+		let tree = AddAnn(null,NumAnn(null,25),NumAnn(null,45)),
+			result = annotate(tree)
+		expect(result.x.val()).to.equal(25)
+		expect(result.y.val()).to.equal(45)
+		expect(result.val()).to.equal(70)
+	});
+
 	it('should provide a protocol for evaluation', function() {
 		let tree = num(45),
 			result = evaluate(tree)
