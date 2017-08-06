@@ -100,51 +100,31 @@ describe('simplified tree walks', function() {
 		fold(evaluator(state), expr)
 		.getOrElse(null) // for convenience
 
+	const AnnF = daggy.tagged('AnnF',['fr','a'])
+
+	let ann = ({fst, snd}) => Fx(AnnF(fst,snd))
+
+	let nodeValue = annf => {
+		let {fr, a} = unFix(annf)
+		return a
+	}
+
+	// fork is Haskell's "&&&" operator: (f &&& g) x = Pair(f(x),g(x))
+	let fork = (f, g) => x => ({fst:f(x), snd:g(x)})
+
+	let synthesize = f => {
+		let algebra = f => R.compose(ann, fork(R.identity, R.compose(f, R.map(nodeValue))))
+		return fold(algebra(f))
+	}
+
+	let annotate = (state, tree) => synthesize(evaluator(state))(tree)
+
 	let missing = (expr, state={}) =>
 		fold(collector(state), expr)
 
 	let num = x => Fx(Num(M.Just(x)))
 	let add = (x, y) => Fx(Add(x,y))
 	let ref = (name) => Fx(Var(name))
-
-	const ExprAnn = daggy.taggedSum('ExprAnn',{
-		NumAnn: ['v', 'x'],
-		AddAnn: ['v', 'x', 'y'],
-	})
-	const {NumAnn, AddAnn} = ExprAnn
-
-	const annotate = a => {
-		return a.cata({
-			NumAnn: (v,x) => NumAnn(x,x),
-			AddAnn: (v,x,y) => {
-				let ax = annotate(x),
-					ay = annotate(y),
-					vv = ax.val()+ay.val()
-				return AddAnn(vv,ax,ay)
-			}
-		})
-	}
-
-	ExprAnn.prototype.val = function() {
-		return this.cata({
-			NumAnn: (v,x) => v,
-			AddAnn: (v,x,y) => v
-		})
-	}
-
-	it('should annotate nodes', function() {
-		let tree = NumAnn(null,45),
-			result = annotate(tree)
-		expect(result.val()).to.equal(45)
-	});
-
-	it('should annotate trees', function() {
-		let tree = AddAnn(null,NumAnn(null,25),NumAnn(null,45)),
-			result = annotate(tree)
-		expect(result.x.val()).to.equal(25)
-		expect(result.y.val()).to.equal(45)
-		expect(result.val()).to.equal(70)
-	});
 
 	it('should provide a protocol for evaluation', function() {
 		let tree = num(45),
@@ -161,6 +141,12 @@ describe('simplified tree walks', function() {
 	it('should evaluate nested expressions', function() {
 		let tree = add(num(45),add(num(15),num(10))),
 			result = evaluate(tree)
+		expect(result).to.equal(70)
+	});
+
+	it('should annotate tree with evaluation results', function() {
+		let tree = add(num(45),add(num(15),num(10))),
+			result = nodeValue(annotate({},tree)).getOrElse(null)
 		expect(result).to.equal(70)
 	});
 
