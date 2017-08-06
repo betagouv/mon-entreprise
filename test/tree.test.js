@@ -39,11 +39,9 @@ describe('simplified tree walks', function() {
 	// Chaque élément de notre liste est une définition:
 
 	const Def = daggy.taggedSum('Def', {
-		Formula: 	 ['expr'],
-		Conditional: ['cond','expr'], // Applicable si
-		Blocked: 	 ['cond','expr'], // Non applicable si
+		Assign: 	 ['name', 'expr']
 	})
-	const {Formula, Conditional, Blocked} = Def
+	const {Assign} = Def
 
 	// Ce qu'on décrit est un framework de programmation déclarative: on stipule des
 	// définitions (salaire net = brut - cotisations) mais on les donne sans ordre
@@ -60,9 +58,10 @@ describe('simplified tree walks', function() {
 		Num: ['x'],
 		Add: ['x', 'y'],
 		Var: ['name']
-//		NotIf: ['condition','formule'],
-//		AnyOf: ['conditions'],
-//		AllOf: ['conditions'],
+//		NotIf:  ['condition','formule'],
+//		OnlyIf: ['condition','formule'],
+//		AnyOf:  ['conditions'],
+//		AllOf:  ['conditions'],
 	})
 	const {Num, Add, Var} = Expr
 
