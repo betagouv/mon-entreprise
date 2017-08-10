@@ -103,7 +103,7 @@ describe('simplified tree walks', function() {
 	// Les helpers suivants rendent moins pénible la construction de valeurs
 	// notamment pour les tests
 
-	let num = x => Fx(Num(M.Just(x)))
+	let num = x => Fx(Num(x))
 	let add = (x, y) => Fx(Add(x,y))
 	let ref = (name) => Fx(Var(name))
 
@@ -132,7 +132,7 @@ describe('simplified tree walks', function() {
 	// Celle-ci l'évaluation
 	const evaluator = state => a => {
 		return a.cata({
-			Num: (x) => x,
+			Num: (x) => M.Just(x),
 			Add: (x, y) => R.lift(R.add)(x,y),
 			Var: (name) => M.toMaybe(state[name]) // Doesn't typecheck
 		})
@@ -249,4 +249,113 @@ describe('simplified tree walks', function() {
 	});
 
 	// Chapitre 3
+
+	// On sait evaluer des expressions, il faut aussi être capable de
+	// gérer les règles définissant les variables appelées dans ces
+	// expressions; voyons ce que ça donne avec un algèbre plus simple:
+
+	let calculate = R.curry((rules, name) => {
+		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+			expr = find(rules, name)
+		return fold(evaluator2(calculate(rules)), expr)
+	})
+
+	const evaluator2 = calculate => a => {
+		return a.cata({
+			Num: (x) => x,
+			Add: (x, y) => x+y,
+			Var: (name) => calculate(name)
+		})
+	}
+
+	it('should resolve variable dependencies', function() {
+		let rule1 = Assign("a",add(ref("b"),ref("b"))),
+			rule2 = Assign("b",num(15)),
+			rules = [rule1,rule2],
+			result = calculate(rules,"a")
+		expect(result).to.equal(30)
+	});
+
+	// Utilisons un Writer (un idiome fonctionnel pour par exemple écrire des logs)
+	// pour examiner le calcul de plus près:
+
+	const { of, chain, map, ap } = require('fantasy-land');
+	const { identity } = require('fantasy-combinators');
+	const { Tuple2 } = require('fantasy-tuples');
+
+	const Writer = M => {
+
+	    const Writer = daggy.tagged(Writer,['run']);
+
+	    Writer.of = function(x) {
+	        return Writer(() => Tuple2(x, M.empty()));
+	    };
+
+	    Writer.prototype.chain = function(f) {
+	        return Writer(() => {
+	            const result = this.run();
+	            const t = f(result._1).run();
+	            return Tuple2(t._1, result._2.concat(t._2));
+	        });
+	    };
+
+	    Writer.prototype.tell = function(y) {
+	        return Writer(() => {
+	            const result = this.run();
+	            return Tuple2(null, result._2.concat(y));
+	        });
+	    };
+
+	    Writer.prototype.map = function(f) {
+	        return Writer(() => {
+	            const result = this.run();
+	            return Tuple2(f(result._1), result._2);
+	        });
+	    };
+
+	    Writer.prototype.ap = function(b) {
+	        return this.chain((a) => b.map(a));
+	    };
+
+	    return Writer;
+
+	};
+
+	const Str = daggy.tagged('Str',['s'])
+	Str.prototype.empty = Str.empty = function() {return Str("")}
+	Str.prototype.concat = function(b) {return Str(this.s+b.s)}
+	Str.prototype.length = function() {return this.s.length}
+
+	const StrWriter = Writer(Str)
+	StrWriter.prototype.toString = function() {return this.run()._2.s}
+
+	let trace = R.curry((rules, name) => {
+		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+			expr = find(rules, name)
+		return fold(tracer(trace(rules)), expr)
+	})
+
+	const tracer = recurse => a => {
+		return a.cata({
+			Num: (x) => StrWriter(() => Tuple2(x,x+",")),
+			Add: (x, y) => x.chain(xx => y.chain(yy => StrWriter(() => Tuple2(xx+yy,"+,")))),
+			Var: (name) => recurse(name).chain(x => StrWriter(() => Tuple2(x,name+",")))
+		})
+	}
+
+	// On voit qu'on a calculé la valeur de b 2 fois! Ce n'est pas utile,
+	// puisque cette valeur ne changera pas au cours du calcul; et comme on
+	// répète le calcul autant de fois qu'il y a de références à une variable
+	// donnée, si l'arbre est un tant soit peu complexe les performances seront
+	// très mauvaises.
+
+	it('should trace the shape of the computation', function() {
+		let rule1 = Assign("a",add(ref("b"),ref("b"))),
+			rule2 = Assign("b",num(15)),
+			rules = [rule1,rule2],
+			result = trace(rules,"a").run()
+		expect(result._2).to.equal("15,b,15,b,+,")
+		expect(result._1).to.equal(30)
+	});
+
 });
