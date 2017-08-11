@@ -98,7 +98,8 @@ describe('simplified tree walks', function() {
 	// En JS c'est juste une fonction qui emballe et une qui déballe:
 
 	const Fx = daggy.tagged('Fx',['x'])
-	const unFix = R.prop('x')
+	Fx.prototype.project = function() { return this.x }
+	const unFix = fx => fx.project()
 
 	// Les helpers suivants rendent moins pénible la construction de valeurs
 	// notamment pour les tests
@@ -327,7 +328,7 @@ describe('simplified tree walks', function() {
 	Str.prototype.length = function() {return this.s.length}
 
 	const StrWriter = Writer(Str)
-	StrWriter.prototype.toString = function() {return this.run()._2.s}
+	const log = (x, s) => StrWriter(() => Tuple2(x,Str(s)))
 
 	let trace = R.curry((rules, name) => {
 		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
@@ -337,9 +338,9 @@ describe('simplified tree walks', function() {
 
 	const tracer = recurse => a => {
 		return a.cata({
-			Num: (x) => StrWriter(() => Tuple2(x,x+",")),
-			Add: (x, y) => x.chain(xx => y.chain(yy => StrWriter(() => Tuple2(xx+yy,"+,")))),
-			Var: (name) => recurse(name).chain(x => StrWriter(() => Tuple2(x,name+",")))
+			Num: (x) => log(x, x+","),
+			Add: (x, y) => x.chain(xx => y.chain(yy => log(xx+yy,"+,"))),
+			Var: (name) => recurse(name).chain(x => log(x,name+","))
 		})
 	}
 
@@ -354,8 +355,61 @@ describe('simplified tree walks', function() {
 			rule2 = Assign("b",num(15)),
 			rules = [rule1,rule2],
 			result = trace(rules,"a").run()
-		expect(result._2).to.equal("15,b,15,b,+,")
+		expect(result._2.s).to.equal("15,b,15,b,+,")
 		expect(result._1).to.equal(30)
+	});
+
+	// Pour corriger ce problème on va avoir besoin de formuler une version
+	// "monadique" du catamorphisme, c'est-à-dire qu'on va pouvoir l'associer
+	// à un contexte (ou monade) dans lequel tout le calcul va se dérouler,
+	// et qui va pouvoir accumuler des informations au fur et à mesure, par
+	// exemple un cache des variables déjà calculées.
+
+	// On a déjà vu un exemple de monade, c'était Writer: voyons comment on
+	// reformule le catamorphisme pour qu'il se déroule dans la monade Writer.
+	// D'abord on ajoute de la plomberie:
+
+	const cataM = (of, algM) => m =>
+		m.project()
+		.traverse(of, x => x.cataM(of, algM))
+		.chain(algM)
+
+	const traverse = function(of, f) {
+		return this.cata({
+			Num: (x) => of(this),
+			Add: (x, y) => f(x).chain(xx => f(y).chain(yy => of(Add(xx,yy)))),
+			Var: (name) => of(this)
+		})
+	}
+	Expr.prototype.traverse = traverse
+	Fx.prototype.cataM = function(of, alg) { return cataM(of, alg)(this) }
+
+	// Maintenant que c'est fait on voit qu'on a simplifié l'expression du
+	// catamorphisme: on n'a plus à expliciter l'enchaînement (sauf pour la
+	// récursion de plus haut niveau dans les variables)
+
+	let trace2 = R.curry((rules, name) => {
+		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+			expr = find(rules, name)
+		return cataM(StrWriter.of, tracer2(trace2(rules)))(expr)
+	})
+
+	const tracer2 = recurse => a => {
+		return a.cata({
+			Num: (x) 	=> log(x,x+","),
+			Add: (x, y) => log(x+y,"+,"),
+			Var: (name) => recurse(name).chain(x => log(x,name+","))
+		})
+	}
+
+	it('should trace the shape of the computation, too', function() {
+		let rule1 = Assign("a",add(ref("b"),ref("c"))),
+			rule2 = Assign("b",num(15)),
+			rule3 = Assign("c",num(10)),
+			rules = [rule1,rule2,rule3],
+			result = trace2(rules,"a").run()
+		expect(result._1).to.equal(25)
+		expect(result._2.s).to.equal("15,b,10,c,+,")
 	});
 
 });
