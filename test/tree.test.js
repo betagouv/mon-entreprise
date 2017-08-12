@@ -224,6 +224,7 @@ describe('simplified tree walks', function() {
 	// constructeur ann et une fonction de lecture
 
 	// Cf https://github.com/willtim/recursion-schemes/
+	// or http://www.timphilipwilliams.com/slides/HaskellAtBarclays.pdf
 
 	const AnnF = daggy.tagged('AnnF',['fr','a'])
 	let ann = ({fst, snd}) => Fx(AnnF(fst,snd))
@@ -278,7 +279,9 @@ describe('simplified tree walks', function() {
 	});
 
 	// Utilisons un Writer (un idiome fonctionnel pour par exemple écrire des logs)
-	// pour examiner le calcul de plus près:
+	// pour examiner le calcul de plus près. L'implémentation est celle de
+	// https://github.com/fantasyland/fantasy-writers/
+	// mais qui n'est plus à jour avec les versions récentes de daggy
 
 	const { of, chain, map, ap } = require('fantasy-land');
 	const { identity } = require('fantasy-combinators');
@@ -367,6 +370,8 @@ describe('simplified tree walks', function() {
 
 	// On a déjà vu un exemple de monade, c'était Writer: voyons comment on
 	// reformule le catamorphisme pour qu'il se déroule dans la monade Writer.
+	// L'implémentation de cataM est inspirée de
+	//   https://github.com/DrBoolean/excursion/
 	// D'abord on ajoute de la plomberie:
 
 	const cataM = (of, algM) => m =>
