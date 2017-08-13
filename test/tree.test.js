@@ -2,6 +2,7 @@ import R from 'ramda'
 import {expect} from 'chai'
 import daggy from 'daggy'
 import {Maybe as M} from 'ramda-fantasy'
+import {Writer} from 'akh'
 
 describe('simplified tree walks', function() {
 
@@ -279,59 +280,14 @@ describe('simplified tree walks', function() {
 	});
 
 	// Utilisons un Writer (un idiome fonctionnel pour par exemple écrire des logs)
-	// pour examiner le calcul de plus près. L'implémentation est celle de
-	// https://github.com/fantasyland/fantasy-writers/
-	// mais qui n'est plus à jour avec les versions récentes de daggy
+	// pour examiner le calcul de plus près.
 
-	const { of, chain, map, ap } = require('fantasy-land');
-	const { identity } = require('fantasy-combinators');
-	const { Tuple2 } = require('fantasy-tuples');
+	const Str = daggy.tagged("Str",['s'])
+	Str.zero = Str("")
+	Str.prototype.zero = Str.zero
+	Str.prototype.concat = function(b) { return Str(this.s+b.s)}
 
-	const Writer = M => {
-
-	    const Writer = daggy.tagged(Writer,['run']);
-
-	    Writer.of = function(x) {
-	        return Writer(() => Tuple2(x, M.empty()));
-	    };
-
-	    Writer.prototype.chain = function(f) {
-	        return Writer(() => {
-	            const result = this.run();
-	            const t = f(result._1).run();
-	            return Tuple2(t._1, result._2.concat(t._2));
-	        });
-	    };
-
-	    Writer.prototype.tell = function(y) {
-	        return Writer(() => {
-	            const result = this.run();
-	            return Tuple2(null, result._2.concat(y));
-	        });
-	    };
-
-	    Writer.prototype.map = function(f) {
-	        return Writer(() => {
-	            const result = this.run();
-	            return Tuple2(f(result._1), result._2);
-	        });
-	    };
-
-	    Writer.prototype.ap = function(b) {
-	        return this.chain((a) => b.map(a));
-	    };
-
-	    return Writer;
-
-	};
-
-	const Str = daggy.tagged('Str',['s'])
-	Str.prototype.empty = Str.empty = function() {return Str("")}
-	Str.prototype.concat = function(b) {return Str(this.s+b.s)}
-	Str.prototype.length = function() {return this.s.length}
-
-	const StrWriter = Writer(Str)
-	const log = (x, s) => StrWriter(() => Tuple2(x,Str(s)))
+	const log = (x, s) => Writer.tell(Str(s)).map(_ => x)
 
 	let trace = R.curry((rules, name) => {
 		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
@@ -357,9 +313,9 @@ describe('simplified tree walks', function() {
 		let rule1 = Assign("a",add(ref("b"),ref("b"))),
 			rule2 = Assign("b",num(15)),
 			rules = [rule1,rule2],
-			result = trace(rules,"a").run()
-		expect(result._2.s).to.equal("15,b,15,b,+,")
-		expect(result._1).to.equal(30)
+			result = trace(rules,"a").run(Str.zero)
+		expect(result.value).to.equal(30)
+		expect(result.output.s).to.equal("15,b,15,b,+,")
 	});
 
 	// Pour corriger ce problème on va avoir besoin de formuler une version
@@ -396,7 +352,7 @@ describe('simplified tree walks', function() {
 	let trace2 = R.curry((rules, name) => {
 		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
 			expr = find(rules, name)
-		return cataM(StrWriter.of, tracer2(trace2(rules)))(expr)
+		return cataM(Writer.of, tracer2(trace2(rules)))(expr)
 	})
 
 	const tracer2 = recurse => a => {
@@ -412,9 +368,9 @@ describe('simplified tree walks', function() {
 			rule2 = Assign("b",num(15)),
 			rule3 = Assign("c",num(10)),
 			rules = [rule1,rule2,rule3],
-			result = trace2(rules,"a").run()
-		expect(result._1).to.equal(25)
-		expect(result._2.s).to.equal("15,b,10,c,+,")
+			result = trace2(rules,"a").run(Str.zero)
+		expect(result.value).to.equal(25)
+		expect(result.output.s).to.equal("15,b,10,c,+,")
 	});
 
 });

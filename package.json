@@ -36,6 +36,7 @@
     "yaml-loader": "^0.5.0"
   },
   "devDependencies": {
+    "akh": "^3.1.2",
     "autoprefixer": "^7.1.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
