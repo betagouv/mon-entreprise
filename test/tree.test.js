@@ -2,7 +2,7 @@ import R from 'ramda'
 import {expect} from 'chai'
 import daggy from 'daggy'
 import {Maybe as M} from 'ramda-fantasy'
-import {Writer} from 'akh'
+import {StateT, Writer} from 'akh'
 
 describe('simplified tree walks', function() {
 
@@ -30,7 +30,7 @@ describe('simplified tree walks', function() {
 	// Pour intégrer dans le simulateur, il faut remplir les exigences
 	// suivantes:
 	// X décorer l'arbre avec une valeur à chaque noeud
-	// - réaliser le calcul de façon efficiente (1 fois par variable)
+	// X réaliser le calcul de façon efficiente (1 fois par variable)
 	// - savoir "court-circuiter" le calcul de variables manquantes dans les conditionnelles
 	// - avoir un moyen de gérer les composantes et filtrage
 
@@ -287,8 +287,6 @@ describe('simplified tree walks', function() {
 	Str.prototype.zero = Str.zero
 	Str.prototype.concat = function(b) { return Str(this.s+b.s)}
 
-	const log = (x, s) => Writer.tell(Str(s)).map(_ => x)
-
 	let trace = R.curry((rules, name) => {
 		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
 			expr = find(rules, name)
@@ -296,6 +294,7 @@ describe('simplified tree walks', function() {
 	})
 
 	const tracer = recurse => a => {
+		let log = (x, s) => Writer.tell(Str(s)).map(_ => x)
 		return a.cata({
 			Num: (x) => log(x, x+","),
 			Add: (x, y) => x.chain(xx => y.chain(yy => log(xx+yy,"+,"))),
@@ -356,6 +355,7 @@ describe('simplified tree walks', function() {
 	})
 
 	const tracer2 = recurse => a => {
+		let log = (x, s) => Writer.tell(Str(s)).map(_ => x)
 		return a.cata({
 			Num: (x) 	=> log(x,x+","),
 			Add: (x, y) => log(x+y,"+,"),
@@ -363,7 +363,7 @@ describe('simplified tree walks', function() {
 		})
 	}
 
-	it('should trace the shape of the computation, too', function() {
+	it('should trace the shape of the computation, showing two passes through b', function() {
 		let rule1 = Assign("a",add(ref("b"),ref("c"))),
 			rule2 = Assign("b",num(15)),
 			rule3 = Assign("c",num(10)),
@@ -371,6 +371,53 @@ describe('simplified tree walks', function() {
 			result = trace2(rules,"a").run(Str.zero)
 		expect(result.value).to.equal(25)
 		expect(result.output.s).to.equal("15,b,10,c,+,")
+	});
+
+	// On a la possibilité "d'encapsuler" une monade dans une autre:
+	// on va se doter d'un State, une monade qui permet de stocker un
+	// état et de le modifier en le propageant dans tout le calcul, et
+	// conserver Writer à l'intérieur (on utilise la variante StateT,
+	// le T veut dire "transformation de monade")
+
+	const S = StateT(Writer)
+	const log = (x, s) => S.lift(S.inner.tell(Str(s)).map(_ => x))
+
+	let trace3 = R.curry((rules, name) => {
+		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+			expr = find(rules, name)
+		return cataM(S.of, tracer3(trace3(rules)))(expr)
+	})
+
+	const memoize = f => name => {
+		let cache = result =>
+			result
+				.chain(x => result.modify(state => R.assoc(name,run(result),state))
+					.chain(z => S.of(x)))
+
+		return S.get.chain(state => {
+			let cached = state[name]
+			return cached ?
+				S.of(cached.value.value) : cache(f(name))
+		})
+	}
+
+	const tracer3 = recurse => a => {
+		return a.cata({
+			Num: (x) 	=> log(x,x+","),
+			Add: (x, y) => log(x+y,"+,"),
+			Var: memoize ((name) => recurse(name).chain(x => log(x,name+",")))
+		})
+	}
+
+	const run = (c, state) => Writer.run(StateT.run(c, state),Str.zero)
+
+	it('should trace the shape of the computation, showing one pass through b', function() {
+		let rule1 = Assign("a",add(ref("b"),ref("b"))),
+			rule2 = Assign("b",num(15)),
+			rules = [rule1,rule2],
+			result = run(trace3(rules,"a"),{})
+		expect(result.value.value).to.equal(30)
+		expect(result.output.s).to.equal("15,b,+,")
 	});
 
 });
