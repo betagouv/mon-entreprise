@@ -1,5 +1,3 @@
-require('babel-register')();
-
 var jsdom = require('jsdom/lib/old-api').jsdom;
 
 var exposedProperties = ['window', 'navigator', 'document'];
