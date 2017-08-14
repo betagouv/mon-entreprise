@@ -8,7 +8,7 @@
 - nom: taulard cyclothymique
 
 - nom: nombre de gigolos rachitiques
-
+  format: nombre
 
 - nom: aiguillage numérique simple
 
@@ -28,7 +28,7 @@
         taulard cyclothymique: non
         nombre de gigolos rachitiques: 1801
       valeur attendue: 0.015
-    - nom: aucun aiguillage n'est activé -> 0
+    - nom: aucun aiguillage n'est activé
       situation:
         taulard cyclothymique: non
         nombre de gigolos rachitiques: 1789
