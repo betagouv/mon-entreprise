@@ -6,26 +6,36 @@
 
 import {expect} from 'chai'
 import {enrichRule} from '../source/engine/rules'
-import {analyseSituation} from '../source/engine/traverse'
+import {analyseTopDown} from '../source/engine/traverse'
+import {collectMissingVariables} from '../source/engine/generateQuestions'
 import testBatteries from './load-mecanism-tests'
-
+import R from 'ramda'
 
 describe('Mécanismes', () =>
   testBatteries.map( battery =>
     battery.map(({exemples, nom, test}) =>
       exemples && describe(test || 'Nom de test (propriété "test") manquant dans la variable contenant ces "exemples"', () =>
-        exemples.map(({nom: testTexte, situation, 'valeur attendue': valeur}) =>
+        exemples.map(({nom: testTexte, situation, 'valeur attendue': valeur, 'variables manquantes': expectedMissing}) =>
           it(testTexte + '', () => {
-            let rules = battery.map(enrichRule),
-              state = situation || {},
-              analysis = analyseSituation(rules, nom)(name => state[name])
 
-              // console.log('JSON.stringify(analysis', JSON.stringify(analysis))
-            expect(analysis)
+            let rules = [...battery, {nom: "startHereHack", formule: {somme: [nom]}}].map(enrichRule),
+              state = situation || {},
+              stateSelector = name => state[name],
+              analysis = analyseTopDown(rules, "startHereHack")(stateSelector),
+              missing = collectMissingVariables()(stateSelector,analysis)
+
+            // console.log('JSON.stringify(analysis', JSON.stringify(analysis))
+
+            expect(analysis.root)
               .to.have.property(
                 'nodeValue',
                 valeur
               )
+
+            if (expectedMissing) {
+              expect(R.keys(missing)).to.eql(expectedMissing)
+            }
+
           })
         )
     ))

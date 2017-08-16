@@ -35,7 +35,6 @@ describe('collectMissingVariables', function() {
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = collectMissingVariables()(stateSelector,situation)
-
     expect(result).to.have.property('sum . evt . ko')
   });
 

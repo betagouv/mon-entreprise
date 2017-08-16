@@ -4,7 +4,7 @@
 
 - nom: dégradation majeure
 
-- nom: retenue sur dépot de garantie 1
+- nom: retenue sur dépot de garantie
   test: Aiguillage numérique simple
   formule:
     aiguillage numérique:
@@ -36,7 +36,7 @@
 - nom: montant caution
   format: €
 
-- nom: retenue sur dépot de garantie 2
+- nom: deuxième retenue sur dépot de garantie
   test: Imbrication d'aiguillages numériques
   formule:
     aiguillage numérique:
@@ -59,6 +59,13 @@
         dégradation majeure: oui
         montant caution: 1200
       valeur attendue: 0.10
+    - nom: imbrication nulle
+      valeur attendue: null
+      variables manquantes:
+        - dégradation mineure
+        - dégradation majeure
+        - montant caution
+
 
 
 # pouvoir tester les variables inconnues mais requises ?
