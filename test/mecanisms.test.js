@@ -25,12 +25,13 @@ describe('Mécanismes', () =>
               missing = collectMissingVariables()(stateSelector,analysis)
 
             // console.log('JSON.stringify(analysis', JSON.stringify(analysis))
-
-            expect(analysis.root)
-              .to.have.property(
-                'nodeValue',
-                valeur
-              )
+            if (valeur !== undefined) {
+              expect(analysis.root)
+                .to.have.property(
+                  'nodeValue',
+                  valeur
+                )
+            }
 
             if (expectedMissing) {
               expect(R.keys(missing).sort()).to.eql(expectedMissing.sort())

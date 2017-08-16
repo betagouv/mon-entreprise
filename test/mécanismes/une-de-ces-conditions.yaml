@@ -1,0 +1,25 @@
+
+- nom: dégradation mineure
+
+- nom: dégradation majeure
+
+- nom: remboursement dépot de garantie
+  test: Une de ces deux conditions
+  non applicable si:
+    une de ces conditions:
+      - dégradation mineure
+      - dégradation majeure
+  formule:
+    3000
+
+  exemples:
+    - nom: Est vraie -> non applicable -> 0
+      situation:
+        dégradation mineure: oui
+      valeur attendue: 0
+    - nom: Est fausse -> en attente de l'autre
+      situation:
+        dégradation majeure: non
+      valeur attendue: null
+      # variables manquantes:
+        # - dégradation mineure
