@@ -108,7 +108,7 @@ describe('collectMissingVariables', function() {
     expect(result).to.deep.equal({})
   });
 
-  it('should report missing variables in consequence even if its condition is unresolved', function() {
+  it('should report missing variables in consequence when its condition is unresolved', function() {
   let rawRules = [
     { nom: "startHere", formule: { somme: ["logic"] }, espace: "top" },
     { nom: "logic",

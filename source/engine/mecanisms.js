@@ -124,6 +124,7 @@ export let mecanismAllOf = (recurse, k,v) => {
 export let mecanismNumericalSwitch = (recurse, k,v) => {
 	if (R.is(String,v)) {
 		// This seems an undue limitation
+		// Or a logical one if we decide to keep this mecanism specialized as opposed to "variations"
 		return mecanismPercentage(recurse,k,v)
 	}
 
@@ -131,6 +132,10 @@ export let mecanismNumericalSwitch = (recurse, k,v) => {
 		throw 'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
 	}
 
+	// les termes sont les coupes (condition, conséquence) de l'aiguillage numérique
+	let terms = R.toPairs(v)
+
+	// la conséquence peut être un 'string' ou un autre aiguillage numérique
 	let parseCondition = ([condition, consequence]) => {
 		let
 			conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
@@ -147,7 +152,7 @@ export let mecanismNumericalSwitch = (recurse, k,v) => {
 			let explanation = R.evolve({
 				condition: R.curry(evaluateNode)(situationGate, parsedRules),
 				consequence: R.curry(evaluateNode)(situationGate, parsedRules)
-			},node.explanation)
+			}, node.explanation)
 
 			return {
 				...node,
@@ -181,7 +186,15 @@ export let mecanismNumericalSwitch = (recurse, k,v) => {
 		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
 		    explanation = R.map(evaluateOne, node.explanation),
 			choice = R.find(node => node.condValue, explanation),
-			nodeValue = choice ? choice.nodeValue : null
+			nonFalsyTerms = R.filter(node => node.condValue !== false, explanation),
+			getFirst = (prop) => R.pipe(R.head, R.prop(prop))(nonFalsyTerms),
+			nodeValue =
+				// voilà le "numérique" dans le nom de ce mécanisme : il renvoie zéro si aucune condition n'est vérifiée
+				R.isEmpty(nonFalsyTerms) ? 0 :
+					// c'est un 'null', on renvoie null car des variables sont manquantes
+					getFirst('condValue') == null ? null :
+						// c'est un true, on renvoie la valeur de la conséquence
+						getFirst('nodeValue')
 
 		let collectMissing = node => {
 			let choice = R.find(node => node.condValue, node.explanation)
@@ -190,8 +203,6 @@ export let mecanismNumericalSwitch = (recurse, k,v) => {
 
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
-
-	let terms = R.toPairs(v)
 
 	let explanation = R.map(parseCondition,terms)
 
