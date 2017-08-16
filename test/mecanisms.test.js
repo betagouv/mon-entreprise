@@ -10,11 +10,11 @@ import {analyseSituation} from '../source/engine/traverse'
 import testBatteries from './load-mecanism-tests'
 
 
-describe('mécanismes', () =>
+describe('Mécanismes', () =>
   testBatteries.map( battery =>
-    describe('mecanisme' + Math.random(), function() {
-      battery.map(({exemples, nom}) =>
-        exemples && exemples.map(({nom: testTexte, situation, 'valeur attendue': valeur}) =>
+    battery.map(({exemples, nom, test}) =>
+      exemples && describe(test || 'Nom de test (propriété "test") manquant dans la variable contenant ces "exemples"', () =>
+        exemples.map(({nom: testTexte, situation, 'valeur attendue': valeur}) =>
           it(testTexte + '', () => {
             let rules = battery.map(enrichRule),
               state = situation || {},
@@ -27,7 +27,7 @@ describe('mécanismes', () =>
                 valeur
               )
           })
-      ))
-    })
+        )
+    ))
   )
 )

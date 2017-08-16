@@ -37,7 +37,7 @@
   format: €
 
 - nom: retenue sur dépot de garantie 2
-  test: Aiguillages numériques imbriqués
+  test: Imbrication d'aiguillages numériques
   formule:
     aiguillage numérique:
       dégradation mineure: 5%

@@ -5,6 +5,7 @@
   format: kg
 
 - nom: poids total
+  test: Somme
   formule:
     somme:
       - farine
