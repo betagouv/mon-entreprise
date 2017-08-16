@@ -379,6 +379,11 @@ describe('simplified tree walks', function() {
 	// conserver Writer à l'intérieur (on utilise la variante StateT,
 	// le T veut dire "transformation de monade")
 
+	// On peut aller plus loin et mémoiser le catamorphisme:
+	// https://idontgetoutmuch.wordpress.com/2011/05/15/monadic-caching-folds/
+	// ça ne semble pas nécessaire ici puisque tout se passe au niveau de
+	// la récursion sur "Var"
+
 	const S = StateT(Writer)
 	const log = (x, s) => S.lift(S.inner.tell(Str(s)).map(_ => x))
 
