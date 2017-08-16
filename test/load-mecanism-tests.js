@@ -19,5 +19,5 @@ let directoryLoaderFunction =
 
 let items =
   loadAll(directoryLoaderFunction)
-
+console.log('items', items)
 export default items

@@ -1,39 +1,64 @@
-# Attendus
-# 'should set the right value to a numerical switch when a condition is verified'
-# should set a numerical switch to 0 if no condition is true
+# Utiliser http://romainvaleri.online.fr/ pour se donner des idées de noms de variables originales
 
-# Utiliser http://romainvaleri.online.fr/ pour rigoler un peu
+- nom: dégradation mineure
 
+- nom: dégradation majeure
 
-- nom: taulard cyclothymique
-
-- nom: nombre de gigolos rachitiques
-  format: nombre
-
-- nom: aiguillage numérique simple
-
+- nom: retenue sur dépot de garantie 1
+  test: Aiguillage numérique simple
   formule:
     aiguillage numérique:
-      taulard cyclothymique: 3%
-      nombre de gigolos rachitiques > 1800 : 1.5%
+      dégradation mineure: 10%
+      dégradation majeure: 30%
 
   exemples:
     - nom: le premier aiguillage est activé -> sa valeur est renvoyée
       situation:
-        taulard cyclothymique: oui
-        nombre de gigolos rachitiques: 1789
-      valeur attendue: 0.03
+        dégradation mineure: oui
+      valeur attendue: 0.1
     - nom: seul le 2ème aiguillage est activé
       situation:
-        taulard cyclothymique: non
-        nombre de gigolos rachitiques: 1801
-      valeur attendue: 0.015
+        dégradation mineure: non
+        dégradation majeure: oui
+      valeur attendue: 0.3
     - nom: aucun aiguillage n'est activé
       situation:
-        taulard cyclothymique: non
-        nombre de gigolos rachitiques: 1789
+        dégradation mineure: non
+        dégradation majeure: non
       valeur attendue: 0
+    - nom: L'ordre des termes est important
+      situation:
+        dégradation mineure: null
+        dégradation majeure: oui
+      valeur attendue: null
 
-# tester une imbrication d ' aiguillages
+
+- nom: montant caution
+  format: €
+
+- nom: retenue sur dépot de garantie 2
+  test: Aiguillages numériques imbriqués
+  formule:
+    aiguillage numérique:
+      dégradation mineure: 5%
+      dégradation majeure:
+        montant caution > 2000: 20%
+        montant caution > 1000: 10%
+
+
+  exemples:
+    - nom: imbrication simple
+      situation:
+        dégradation mineure: oui
+        dégradation majeure: non
+        montant caution: 3000
+      valeur attendue: 0.05
+    - nom: imbrication simple 2
+      situation:
+        dégradation mineure: non
+        dégradation majeure: oui
+        montant caution: 1200
+      valeur attendue: 0.10
+
 
 # pouvoir tester les variables inconnues mais requises ?

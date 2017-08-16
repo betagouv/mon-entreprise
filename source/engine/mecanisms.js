@@ -183,8 +183,9 @@ export let mecanismNumericalSwitch = (recurse, k,v) => {
 	}
 
 	let evaluateTerms = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
-		    explanation = R.map(evaluateOne, node.explanation),
+		let
+			evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+			explanation = R.map(evaluateOne, node.explanation),
 			choice = R.find(node => node.condValue, explanation),
 			nonFalsyTerms = R.filter(node => node.condValue !== false, explanation),
 			getFirst = (prop) => R.pipe(R.head, R.prop(prop))(nonFalsyTerms),
