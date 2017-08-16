@@ -65,6 +65,13 @@
         - dégradation mineure
         - dégradation majeure
         - montant caution
+    - nom: variables manquantes même si innaccessibles
+      situation:
+        dégradation mineure: non
+      valeur attendue: null
+      variables manquantes:
+        - dégradation majeure
+        - montant caution
 
 
 

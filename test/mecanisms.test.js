@@ -18,10 +18,10 @@ describe('Mécanismes', () =>
         exemples.map(({nom: testTexte, situation, 'valeur attendue': valeur, 'variables manquantes': expectedMissing}) =>
           it(testTexte + '', () => {
 
-            let rules = [...battery, {nom: "startHereHack", formule: {somme: [nom]}}].map(enrichRule),
+            let rules = [...battery].map(enrichRule),
               state = situation || {},
               stateSelector = name => state[name],
-              analysis = analyseTopDown(rules, "startHereHack")(stateSelector),
+              analysis = analyseTopDown(rules, nom)(stateSelector),
               missing = collectMissingVariables()(stateSelector,analysis)
 
             // console.log('JSON.stringify(analysis', JSON.stringify(analysis))
@@ -33,7 +33,7 @@ describe('Mécanismes', () =>
               )
 
             if (expectedMissing) {
-              expect(R.keys(missing)).to.eql(expectedMissing)
+              expect(R.keys(missing).sort()).to.eql(expectedMissing.sort())
             }
 
           })
