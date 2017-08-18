@@ -17,9 +17,16 @@
       situation:
         dégradation mineure: oui
       valeur attendue: 0
+      variables manquantes: []
     - nom: Est fausse -> en attente de l'autre
       situation:
         dégradation majeure: non
       valeur attendue: null
-      # variables manquantes:
-        # - dégradation mineure
+      variables manquantes:
+        - dégradation mineure
+    - nom: Toutes fausses -> valeur de la formule
+      situation:
+        dégradation mineure: non
+        dégradation majeure: non
+      valeur attendue: 3000
+      variables manquantes: []

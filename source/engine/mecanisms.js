@@ -84,8 +84,19 @@ export let mecanismOneOf = (recurse, k, v) => {
 			}
 		/>
 
+	let evaluate = (situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+		    explanation = R.map(evaluateOne, node.explanation),
+			values = R.pluck("nodeValue",explanation),
+			nodeValue = R.any(R.equals(true),values) ? true :
+							(R.any(R.equals(null),values) ? null : false)
+
+		let collectMissing = node => node.nodeValue == null ? R.chain(collectNodeMissing,node.explanation) : []
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
+	}
+
 	return {
-		evaluate: evaluateArray(R.or, false, false), // null values do not make the whole array null
+		evaluate,
 		jsx,
 		explanation,
 		category: 'mecanism',
