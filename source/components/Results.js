@@ -34,8 +34,9 @@ export default class Results extends Component {
 			conversationFirstAnswer: showResults,
 			situationGate,
 			location
-		} = this.props,
-			explanation = getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
+		} = this.props
+
+		let explanation = R.has('root', analysedSituation) && getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
 
 		if (!explanation) return null
 
