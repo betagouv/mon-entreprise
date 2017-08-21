@@ -8,17 +8,17 @@ import {expect} from 'chai'
 import {enrichRule} from '../source/engine/rules'
 import {analyseTopDown} from '../source/engine/traverse'
 import {collectMissingVariables} from '../source/engine/generateQuestions'
-import testBatteries from './load-mecanism-tests'
+import testSuites from './load-mecanism-tests'
 import R from 'ramda'
 
 describe('Mécanismes', () =>
-  testBatteries.map( battery =>
-    battery.map(({exemples, nom, test}) =>
+  testSuites.map( suite =>
+    suite.map(({exemples, nom, test}) =>
       exemples && describe(test || 'Nom de test (propriété "test") manquant dans la variable contenant ces "exemples"', () =>
         exemples.map(({nom: testTexte, situation, 'valeur attendue': valeur, 'variables manquantes': expectedMissing}) =>
           it(testTexte + '', () => {
 
-            let rules = [...battery].map(enrichRule),
+            let rules = suite.map(enrichRule),
               state = situation || {},
               stateSelector = name => state[name],
               analysis = analyseTopDown(rules, nom)(stateSelector),
