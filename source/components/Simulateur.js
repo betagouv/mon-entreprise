@@ -14,6 +14,7 @@ import './conversation/conversation.css'
 import './Simulateur.css'
 import {capitalise0} from '../utils'
 import Satisfaction from './Satisfaction'
+import Results from './Results'
 
 let situationSelector = formValueSelector('conversation')
 
@@ -109,7 +110,7 @@ export default class extends React.Component {
 						</div>
 					</div>
 					: (
-						<div>
+						<div id="playground">
 							<div id="conversation">
 								<div id="questions-answers">
 									{ !R.isEmpty(foldedSteps) &&
@@ -148,6 +149,7 @@ export default class extends React.Component {
 									</div>
 								<Aide />
 							</div>
+							<Results />
 						</div>
 					)}
 

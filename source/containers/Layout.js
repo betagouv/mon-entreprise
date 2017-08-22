@@ -8,8 +8,6 @@ import Rule from 'Components/rule/Rule'
 import Route404 from 'Components/Route404'
 import Contact from 'Components/Contact'
 import Simulateur from 'Components/Simulateur'
-import Results from 'Components/Results'
-
 
 export default class Layout extends Component {
 	render() {
@@ -42,7 +40,6 @@ export default class Layout extends Component {
 							<Route component={Route404} />
 						</Switch>
 					</div>
-					<Results />
 				</div>
 			</Router>
 		)
