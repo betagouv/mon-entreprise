@@ -8,7 +8,7 @@ import {formValueSelector} from 'redux-form'
 
 import './Results.css'
 import {capitalise0} from '../utils'
-import {computeRuleValue} from 'Engine/traverse'
+import {computeRuleValue, clearDict} from 'Engine/traverse'
 import {encodeRuleName} from 'Engine/rules'
 import {getObjectives} from 'Engine/generateQuestions'
 
@@ -34,8 +34,10 @@ export default class Results extends Component {
 			conversationFirstAnswer: showResults,
 			situationGate,
 			location
-		} = this.props,
-			explanation = getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
+		} = this.props
+
+
+		let explanation = R.has('root', analysedSituation) && clearDict() && getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
 
 		if (!explanation) return null
 

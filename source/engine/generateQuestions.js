@@ -41,18 +41,16 @@ export let analyse = rootVariable => R.pipe(
  */
 
 // On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
-// Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
+// Ou sur une variable unique ayant une formule ou une conodition 'non applicable si', elle est elle-même le seul objectif
 export let getObjectives = (situationGate, root, parsedRules) => {
-	let formuleType = R.path(["formule", "explanation", "name"])(
-		root
-	)
+	let formuleType = R.path(["formule", "explanation", "name"])(root)
 
 	let targets = formuleType == "somme"
 		? R.pluck(
 				"dottedName",
 				R.path(["formule", "explanation", "explanation"])(root)
 			)
-		: formuleType ? [root] : null,
+		: (root.formule || root['non applicable si']) ? [root.dottedName] : null,
 		names = targets ? R.reject(R.isNil)(targets) : []
 
 	let findAndEvaluate = name => evaluateNode(situationGate,parsedRules,findRuleByDottedName(parsedRules,name))

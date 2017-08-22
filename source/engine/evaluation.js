@@ -19,11 +19,11 @@ export let rewriteNode = (node, nodeValue, explanation, collectMissing) =>
 		explanation
 	})
 
-export let evaluateArray = (reducer, start, nullable = true) => (situationGate, parsedRules, node) => {
+export let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
 	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
 	    explanation = R.map(evaluateOne, node.explanation),
 		values = R.pluck("nodeValue",explanation),
-		nodeValue = (nullable && R.any(R.equals(null),values)) ? null : R.reduce(reducer, start, values)
+		nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
 
 	let collectMissing = node => node.nodeValue == null ? R.chain(collectNodeMissing,node.explanation) : []
 	return rewriteNode(node,nodeValue,explanation,collectMissing)

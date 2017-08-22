@@ -10,8 +10,7 @@ describe('getObjectives', function() {
 
   it('should derive objectives from the root rule', function() {
     let rawRules = [
-          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
-          {nom: "deux", formule: 2, "non applicable si" : "sum . evt . ko", espace: "sum"},
+          {nom: "startHere", formule: 2, "non applicable si" : "sum . evt . ko", espace: "sum"},
           {nom: "evt", espace: "sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
@@ -19,7 +18,7 @@ describe('getObjectives', function() {
         result = getObjectives(stateSelector, root, parsedRules)
 
     expect(result).to.have.lengthOf(1)
-    expect(result[0]).to.have.property('name','deux')
+    expect(result[0]).to.have.property('name','startHere')
   });
 
 });
@@ -28,21 +27,18 @@ describe('collectMissingVariables', function() {
 
   it('should identify missing variables', function() {
     let rawRules = [
-          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
-          {nom: "deux", formule: 2, "non applicable si" : "sum . evt . ko", espace: "sum"},
+          {nom: "startHere", formule: 2, "non applicable si" : "sum . evt . ko", espace: "sum"},
           {nom: "evt", espace: "sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = collectMissingVariables()(stateSelector,situation)
-
     expect(result).to.have.property('sum . evt . ko')
   });
 
   it('should identify missing variables mentioned in expressions', function() {
     let rawRules = [
-          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
-          {nom: "deux", formule: 2, "non applicable si" : "evt . nyet > evt . nope", espace: "sum"},
+          {nom: "startHere", formule: 2, "non applicable si" : "evt . nyet > evt . nope", espace: "sum"},
           {nom: "nope", espace: "sum . evt"},
           {nom: "nyet", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
@@ -55,8 +51,7 @@ describe('collectMissingVariables', function() {
 
   it('should ignore missing variables in the formula if not applicable', function() {
     let rawRules = [
-          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
-          {nom: "deux", formule: "trois", "non applicable si" : "3 > 2", espace: "sum"},
+          {nom: "startHere", formule: "trois", "non applicable si" : "3 > 2", espace: "sum"},
           {nom: "trois", espace: "sum"}],
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"startHere")(stateSelector),
@@ -67,8 +62,7 @@ describe('collectMissingVariables', function() {
 
   it('should not report missing variables when "one of these" short-circuits', function() {
     let rawRules = [
-          {nom: "startHere", formule: {somme: [2, "deux"]}, espace: "sum"},
-          {nom: "deux", formule: "trois", "non applicable si" : {"une de ces conditions": ["3 > 2", "trois"]}, espace: "sum"},
+          {nom: "startHere", formule: "trois", "non applicable si" : {"une de ces conditions": ["3 > 2", "trois"]}, espace: "sum"},
           {nom: "trois", espace: "sum"}],
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"startHere")(stateSelector),
@@ -79,8 +73,7 @@ describe('collectMissingVariables', function() {
 
   it('should report missing variables in switch statements', function() {
     let rawRules = [
-          { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
-          { nom: "logic", formule: {"aiguillage numérique": {
+          { nom: "startHere", formule: {"aiguillage numérique": {
                   "11 > dix":"1000%",
                   "3 > dix":"1100%",
                   "1 > dix":"1200%"
@@ -95,8 +88,7 @@ describe('collectMissingVariables', function() {
 
   it('should not report missing variables in switch for consequences of false conditions', function() {
     let rawRules = [
-          { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
-          { nom: "logic", formule: {"aiguillage numérique": {
+          { nom: "startHere", formule: {"aiguillage numérique": {
                   "8 > 10":"1000%",
                   "1 > 2":"dix"
               }}, espace: "top"},
@@ -108,10 +100,9 @@ describe('collectMissingVariables', function() {
     expect(result).to.deep.equal({})
   });
 
-  it('should report missing variables in consequence even if its condition is unresolved', function() {
+  it('should report missing variables in consequence when its condition is unresolved', function() {
   let rawRules = [
-    { nom: "startHere", formule: { somme: ["logic"] }, espace: "top" },
-    { nom: "logic",
+    { nom: "startHere",
       formule: {
         "aiguillage numérique": {
           "10 > 11": "1000%",
@@ -136,8 +127,7 @@ describe('collectMissingVariables', function() {
 
   it('should not report missing variables when a switch short-circuits', function() {
     let rawRules = [
-          { nom: "startHere", formule: {somme: ["logic"]}, espace: "top"},
-          { nom: "logic", formule: {"aiguillage numérique": {
+          { nom: "startHere", formule: {"aiguillage numérique": {
                   "11 > 10":"1000%",
                   "3 > dix":"1100%",
                   "1 > dix":"1200%"

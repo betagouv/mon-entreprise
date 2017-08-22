@@ -49,10 +49,6 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-let fillVariableNode = (rules, rule) => (parseResult) => {
-	return createVariableNode(rules, rule)(parseResult)
-}
-
 let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 	let evaluateFiltered = originalEval => (situation, parsedRules, node) => {
 		let newSituation = name => name == "sys.filter" ? filter : situation(name)
@@ -69,27 +65,30 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 // ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
 var dict;
 
-let createVariableNode = (rules, rule) => (parseResult) => {
+export let clearDict = () => dict = {}
+
+let fillVariableNode = (rules, rule) => (parseResult) => {
 	let evaluate = (situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
+			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
+			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 			cached = dict[dottedName],
+			// make parsedRules a dict object, that also serves as a cache of evaluation ?
 			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
-			//TODO perf : mettre un cache sur les variables !
-			// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
-			// et qu'il n'y a aucun problème de perf aujourd'hui
+
 			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(
 				situation,
 				parsedRules,
 				variable
 			)),
-
+			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue = situationValue
-					!= null ? situationValue
+					!= null ? situationValue // cette variable a été directement renseignée
 					: !variableIsCalculable
-						? null
-						: parsedRule.nodeValue,
+						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
+						: parsedRule.nodeValue, // la valeur du calcul fait foi
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
@@ -431,7 +430,7 @@ export let analyseSituation = (rules, rootVariable) => situationGate => {
 
 
 export let analyseTopDown = (rules, rootVariable) => situationGate => {
-	dict = {}
+	clearDict()
 	let
 		/*
 		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
