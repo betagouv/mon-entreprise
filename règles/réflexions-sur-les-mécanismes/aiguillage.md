@@ -55,7 +55,7 @@ On peut la voir comme une alternative adaptée à certains endroits (?).
 formule:
   assiette: assiette cotisations sociales
   taux:
-    logique numérique:
+    aiguillage numérique:
       statut cadre = non:
         2017: 16%
         2016: 12%

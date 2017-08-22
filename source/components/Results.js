@@ -4,10 +4,11 @@ import classNames from 'classnames'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { withRouter } from 'react-router'
+import {formValueSelector} from 'redux-form'
 
 import './Results.css'
 import {capitalise0} from '../utils'
-import {computeRuleValue} from 'Engine/traverse'
+import {computeRuleValue, clearDict} from 'Engine/traverse'
 import {encodeRuleName} from 'Engine/rules'
 import {getObjectives} from 'Engine/generateQuestions'
 
@@ -20,7 +21,8 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 		pointedOutObjectives: state.pointedOutObjectives,
 		analysedSituation: state.analysedSituation,
 		conversationStarted: !R.isEmpty(state.form),
-		conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state)
+		conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state),
+		situationGate: (name => formValueSelector('conversation')(state, name))
 	})
 )
 export default class Results extends Component {
@@ -30,9 +32,12 @@ export default class Results extends Component {
 			pointedOutObjectives,
 			conversationStarted,
 			conversationFirstAnswer: showResults,
+			situationGate,
 			location
-		} = this.props,
-			explanation = getObjectives(analysedSituation)
+		} = this.props
+
+
+		let explanation = R.has('root', analysedSituation) && clearDict() && getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
 
 		if (!explanation) return null
 
@@ -42,13 +47,13 @@ export default class Results extends Component {
 			<section id="results" className={classNames({show: showResults})}>
 				{onRulePage && conversationStarted ?
 					<div id ="results-actions">
-						<Link id="toSimulation" to={"/simu/" + encodeRuleName(analysedSituation.name)}>
+						<Link id="toSimulation" to={"/simu/" + encodeRuleName(analysedSituation.root.name)}>
 							<i className="fa fa-arrow-circle-left" aria-hidden="true"></i>Reprendre la simulation
 						</Link>
 					</div>
 				: <div id="results-titles">
 						<h2>Vos résultats <i className="fa fa-hand-o-right" aria-hidden="true"></i></h2>
-						{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation)
+						{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation.root)
 							text &&
 								<p id="resultText">{text}</p>
 						}}

@@ -44,7 +44,7 @@ export default class Satisfaction extends Component {
 		let {answer, message, messageSent} = this.state,
 			validMessage = typeof message == 'string' && message.length > 4,
 			onSmileyClick = s => this.sendSatisfaction(s)
-console.log(messageSent)
+
 		if (!answer)
 			return (
 				<p id="satisfaction">

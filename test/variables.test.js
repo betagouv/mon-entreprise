@@ -51,4 +51,12 @@ describe('evaluateVariable', function() {
 		expect(evaluateVariable(situationGate, "contrat salarié . CDD . motif . classique . accroissement activité", rule)).to.be.null
 	});
 
+	it ("should set the value of variants to false if one of them is true", function() {
+		let rule = {nom: "ici", espace: "univers", formule: {"une possibilité": ["noir","blanc"]}},
+			state = {"univers . ici": "blanc"},
+			situationGate = (name) => state[name]
+
+		expect(evaluateVariable(situationGate, "univers . ici . noir", rule)).to.be.false
+	});
+
 });

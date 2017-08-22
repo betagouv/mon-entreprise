@@ -1,7 +1,7 @@
 import R from 'ramda'
 import {expect} from 'chai'
 import {rules, enrichRule, findVariantsAndRecords} from '../source/engine/rules'
-import {analyseSituation} from '../source/engine/traverse'
+import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
 
@@ -32,7 +32,7 @@ describe('findVariantsAndRecords', function() {
           {nom: "dix", formule: "cinq", espace: "top"},
           {nom: "cinq", espace: "top", question:"?"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseSituation(rules,"startHere")(stateSelector),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = findVariantsAndRecords(rules, ['top . cinq'])
 
       expect(result).to.have.deep.property('recordGroups', {top: ['top . cinq']})
@@ -45,7 +45,7 @@ describe('findVariantsAndRecords', function() {
           {nom: "evt", espace: "top . sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseSituation(rules,"sum")(stateSelector),
+        situation = analyseTopDown(rules,"sum")(stateSelector),
         result = findVariantsAndRecords(rules, ['top . sum . evt . ko'])
 
       expect(result).to.have.deep.property('variantGroups', {"top . sum . evt": ['top . sum . evt . ko']})

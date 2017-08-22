@@ -6,8 +6,9 @@ import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
-import {mecanismOneOf,mecanismAllOf,mecanismNumericalLogic,mecanismSum,mecanismProduct,
+import {mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
 		mecanismPercentage,mecanismScale,mecanismMax,mecanismError, mecanismComplement} from "./mecanisms"
+import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -48,80 +49,120 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-// Creates a synthetic variable in the system namespace to signal filtering on components
-let withFilter = (rules, filter) =>
-	R.concat(rules,[{name:"filter", nodeValue:filter, ns:"sys", dottedName: "sys . filter"}])
-
-let fillVariableNode = (rules, rule, situationGate) => (parseResult) => {
-	let
-		{fragments} = parseResult,
-		variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rules, rule, variablePartialName),
-		variable = findRuleByDottedName(rules, dottedName),
-		variableIsCalculable = variable.formule != null,
-		//TODO perf : mettre un cache sur les variables !
-		// On le fait pas pour l'instant car ça peut compliquer les fonctionnalités futures
-		// et qu'il n'y a aucun problème de perf aujourd'hui
-		parsedRule = variableIsCalculable && treatRuleRoot(
-			situationGate,
-			rules,
-			variable
-		),
-
-		situationValue = evaluateVariable(situationGate, dottedName, variable),
-		nodeValue2 = situationValue
-				!= null ? situationValue
-				: !variableIsCalculable
-					? null
-					: parsedRule.nodeValue,
-		nodeValue = dottedName.startsWith("sys .") ? variable.nodeValue : nodeValue2,
-		explanation = parsedRule,
-		missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
-
+let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
+	let evaluateFiltered = originalEval => (situation, parsedRules, node) => {
+		let newSituation = name => name == "sys.filter" ? filter : situation(name)
+		return originalEval(newSituation, parsedRules, node)
+	}
+	let node = fillVariableNode(rules, rule)(parseResult)
 	return {
-		nodeValue,
-		category: 'variable',
-		fragments: fragments,
-		dottedName,
-		type: 'boolean | numeric',
-		explanation: parsedRule,
-		missingVariables,
-		jsx:	<Leaf
+		...node,
+		evaluate: evaluateFiltered(node.evaluate)
+	}
+}
+
+// TODO: dirty, dirty
+// ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
+var dict;
+
+export let clearDict = () => dict = {}
+
+let fillVariableNode = (rules, rule) => (parseResult) => {
+	let evaluate = (situation, parsedRules, node) => {
+		let dottedName = node.dottedName,
+			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
+			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
+			cached = dict[dottedName],
+			// make parsedRules a dict object, that also serves as a cache of evaluation ?
+			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
+			variableIsCalculable = variable.formule != null,
+
+			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(
+				situation,
+				parsedRules,
+				variable
+			)),
+			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
+			situationValue = evaluateVariable(situation, dottedName, variable),
+			nodeValue = situationValue
+					!= null ? situationValue // cette variable a été directement renseignée
+					: !variableIsCalculable
+						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
+						: parsedRule.nodeValue, // la valeur du calcul fait foi
+			explanation = parsedRule,
+			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
+
+			let collectMissing = node =>
+				variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
+
+			let result = cached ? cached : {
+				...rewriteNode(node,nodeValue,explanation,collectMissing),
+				missingVariables,
+			}
+			dict[dottedName] = result
+
+			return result
+	}
+
+	let {fragments} = parseResult,
+		variablePartialName = fragments.join(' . '),
+		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
+
+	let jsx = (nodeValue, explanation) =>
+		<Leaf
 			classes="variable"
 			name={fragments.join(' . ')}
 			value={nodeValue}
 		/>
+
+	return {
+		evaluate,
+		jsx,
+		name: variablePartialName,
+		category: 'variable',
+		fragments,
+		dottedName,
+		type: 'boolean | numeric'
 	}
 }
 
-
 let buildNegatedVariable = variable => {
-	let nodeValue = variable.nodeValue == null ? null : !variable.nodeValue
-	return {
-		nodeValue,
-		category: 'mecanism',
-		name: 'négation',
-		type: 'boolean',
-		explanation: variable,
-		jsx:	<Node
+	let evaluate = (situation, parsedRules, node) => {
+		let explanation = evaluateNode(situation, parsedRules, node.explanation),
+			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
+		let collectMissing = node => collectNodeMissing(node.explanation)
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
+	}
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
 			classes="inlineExpression negation"
-			value={nodeValue}
+			value={node.nodeValue}
 			child={
 				<span className="nodeContent">
 					<span className="operator">¬</span>
-					{variable.jsx}
+					{makeJsx(explanation)}
 				</span>
 			}
 		/>
+
+	return {
+		evaluate,
+		jsx,
+		category: 'mecanism',
+		name: 'négation',
+		type: 'boolean',
+		explanation: variable
 	}
 }
 
-let treat = (situationGate, rules, rule) => rawNode => {
+let treat = (rules, rule) => rawNode => {
 	// inner functions
-	let reTreat = treat(situationGate, rules, rule),
+	let
+		reTreat = treat(rules, rule),
 		treatString = rawNode => {
-			/* On a à faire à un string, donc à une expression infixe.
-			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire.
+			/* On a affaire à un string, donc à une expression infixe.
+			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
 			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
 			Cet objet est alors rebalancé à 'treat'.
 			*/
@@ -135,105 +176,78 @@ let treat = (situationGate, rules, rule) => rawNode => {
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
-				return fillVariableNode(rules, rule, situationGate)(parseResult)
+				return fillVariableNode(rules, rule)(parseResult)
 			if (parseResult.category == 'filteredVariable') {
-				let newRules = withFilter(rules,parseResult.filter)
-				return fillVariableNode(newRules, rule, situationGate)(parseResult.variable)
+				return fillFilteredVariableNode(rules, rule)(parseResult.filter,parseResult.variable)
 			}
 			if (parseResult.category == 'negatedVariable')
 				return buildNegatedVariable(
-					fillVariableNode(rules, rule, situationGate)(parseResult.variable)
+					fillVariableNode(rules, rule)(parseResult.variable)
 				)
 
-			if (parseResult.category == 'calcExpression') {
-				let
-					fillVariable = fillVariableNode(rules, rule, situationGate),
-					fillFiltered = parseResult => fillVariableNode(withFilter(rules,parseResult.filter), rule, situationGate)(parseResult.variable),
+			if (parseResult.category == 'calcExpression' || parseResult.category == 'comparison') {
+				let evaluate = (situation, parsedRules, node) => {
+					let
+						operatorFunctionName = {
+							'*': 'multiply',
+							'/': 'divide',
+							'+': 'add',
+							'-': 'subtract',
+							'<': 'lt',
+							'<=': 'lte',
+							'>': 'gt',
+							'>=': 'gte'
+						}[node.operator],
+						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
+						value1 = explanation[0].nodeValue,
+						value2 = explanation[1].nodeValue,
+						operatorFunction = R[operatorFunctionName],
+						nodeValue = value1 == null || value2 == null ?
+							null
+						: operatorFunction(value1, value2)
+
+					let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+
+					return rewriteNode(node,nodeValue,explanation,collectMissing)
+				}
+
+				let fillFiltered = parseResult => fillFilteredVariableNode(rules, rule)(parseResult.filter,parseResult.variable)
+				let fillVariable = fillVariableNode(rules, rule),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
 							[R.propEq('category', 'variable'), fillVariable],
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
-								R.assoc('jsx', <span className="value">
-									{node.nodeValue}
-								</span>)(node)
+								({
+									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseInt(node.nodeValue)}),
+									jsx:  nodeValue => <span className="value">{nodeValue}</span>
+								})
 							]
 						])
 					),
-					[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
-					operatorFunctionName = {
-						'*': 'multiply',
-						'/': 'divide',
-						'+': 'add',
-						'-': 'subtract'
-					}[parseResult.operator],
-					operatorFunction = R[operatorFunctionName],
-					nodeValue = value1 == null || value2 == null ?
-						null
-					: operatorFunction(value1, value2)
+					operator = parseResult.operator
 
-				return {
-					text: rawNode,
-					nodeValue,
-					category: 'calcExpression',
-					type: 'numeric',
-					explanation: filledExplanation,
-					jsx:	<Node
-						classes="inlineExpression calcExpression"
+				let jsx = (nodeValue, explanation) =>
+					<Node
+						classes={"inlineExpression "+parseResult.category}
 						value={nodeValue}
 						child={
 							<span className="nodeContent">
-								{filledExplanation[0].jsx}
+								{makeJsx(explanation[0])}
 								<span className="operator">{parseResult.operator}</span>
-								{filledExplanation[1].jsx}
+								{makeJsx(explanation[1])}
 							</span>
 						}
 					/>
-				}
-			}
-			if (parseResult.category == 'comparison') {
-				//TODO mutualise code for 'comparison' & 'calclExpression'. Harmonise their names
-				let
-					filledExplanation = parseResult.explanation.map(
-						R.cond([
-							[R.propEq('category', 'variable'), fillVariableNode(rules, rule, situationGate)],
-							[R.propEq('category', 'value'), node =>
-								R.assoc('jsx', <span className="value">
-									{node.nodeValue}
-								</span>)(node)
-							]
-						])
-					),
-					[{nodeValue: value1}, {nodeValue: value2}] = filledExplanation,
-					comparatorFunctionName = {
-						'<': 'lt',
-						'<=': 'lte',
-						'>': 'gt',
-						'>=': 'gte'
-						//TODO '='
-					}[parseResult.operator],
-					comparatorFunction = R[comparatorFunctionName],
-					nodeValue = value1 == null || value2 == null ?
-						null
-					: comparatorFunction(value1, value2)
 
 				return {
+					evaluate,
+					jsx,
+					operator,
 					text: rawNode,
-					nodeValue: nodeValue,
-					category: 'comparison',
-					type: 'boolean',
-					explanation: filledExplanation,
-					jsx:	<Node
-						classes="inlineExpression comparison"
-						value={nodeValue}
-						child={
-							<span className="nodeContent">
-								{filledExplanation[0].jsx}
-								<span className="operator">{parseResult.operator}</span>
-								{filledExplanation[1].jsx}
-							</span>
-						}
-					/>
+					category: parseResult.category,
+					type: parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
+					explanation: filledExplanation
 				}
 			}
 		},
@@ -267,15 +281,16 @@ let treat = (situationGate, rules, rule) => rawNode => {
 			let dispatch = {
 					'une de ces conditions':	mecanismOneOf,
 					'toutes ces conditions':	mecanismAllOf,
-					'logique numérique':		mecanismNumericalLogic,
+					'aiguillage numérique':		mecanismNumericalSwitch,
 					'taux':						mecanismPercentage,
 					'somme':					mecanismSum,
 					'multiplication':			mecanismProduct,
 					'barème':					mecanismScale,
 					'le maximum de':			mecanismMax,
 					'complément':				mecanismComplement,
+					'une possibilité':			R.always({})
 				},
-				action = R.pathOr(mecanismError,[k],dispatch)
+				action = R.propOr(mecanismError, k, dispatch)
 
 			return action(reTreat,k,v)
 		}
@@ -286,7 +301,12 @@ let treat = (situationGate, rules, rule) => rawNode => {
 		[R.is(Object),	treatObject],
 		[R.T,			treatOther]
 	])
-	return onNodeType(rawNode)
+
+	let defaultEvaluate = (situationGate, parsedRules, node) => node
+	let parsedNode = onNodeType(rawNode)
+
+	return	parsedNode.evaluate ? parsedNode :
+			{...parsedNode, evaluate: defaultEvaluate}
 }
 
 //TODO c'est moche :
@@ -301,174 +321,138 @@ export let computeRuleValue = (formuleValue, condValue) =>
 			? 0
 			: formuleValue
 
-export let treatRuleRoot = (situationGate, rules, rule) => R.pipe(
-	R.evolve({ // -> Voilà les attributs que peut comporter, pour l'instant, une Variable.
+export let treatRuleRoot = (rules, rule) => {
+	let evaluate = (situationGate, parsedRules, r) => {
+		let
+			evaluated = R.evolve({
+				formule: R.curry(evaluateNode)(situationGate, parsedRules),
+				"non applicable si": R.curry(evaluateNode)(situationGate, parsedRules)
+			},r),
+			formuleValue = evaluated.formule && evaluated.formule.nodeValue,
+			condition = R.prop('non applicable si',evaluated),
+			condValue = condition && condition.nodeValue,
+			nodeValue = computeRuleValue(formuleValue, condValue)
 
-	// 'meta': pas de traitement pour l'instant
+		return {...evaluated, nodeValue}
+	}
+	let collectMissing = node => {
+		let cond = R.prop('non applicable si',node),
+			condMissing = cond ? collectNodeMissing(cond) : [],
+			collectInFormule = (cond && cond.nodeValue != undefined) ? !cond.nodeValue : true,
+			formule = node.formule,
+			formMissing = collectInFormule ? (formule ? collectNodeMissing(formule) : []) : []
+		return R.concat(condMissing,formMissing)
+	}
 
-	// 'cond' : Conditions d'applicabilité de la règle
+	let parsedRoot = R.evolve({ // Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
+
+	// Les métadonnées d'une règle n'en font pas aujourd'hui partie
+
+	// condition d'applicabilité de la règle
 		'non applicable si': value => {
-			let
-				child = treat(situationGate, rules, rule)(value),
-				nodeValue = child.nodeValue
+			let evaluate = (situationGate, parsedRules, node) => {
+				let collectMissing = node => collectNodeMissing(node.explanation)
+				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+					nodeValue = explanation.nodeValue
+				return rewriteNode(node,nodeValue,explanation,collectMissing)
+			}
 
-			return {
-				category: 'ruleProp',
-				rulePropType: 'cond',
-				name: 'non applicable si',
-				type: 'boolean',
-				nodeValue: child.nodeValue,
-				explanation: child,
-				jsx: <Node
+			let child = treat(rules, rule)(value)
+
+			let jsx = (nodeValue, explanation) =>
+				<Node
 					classes="ruleProp mecanism cond"
 					name="non applicable si"
 					value={nodeValue}
 					child={
-						child.category === 'variable' ? <div className="node">{child.jsx}</div>
-						: child.jsx
+						explanation.category === 'variable' ? <div className="node">{makeJsx(explanation)}</div>
+						: makeJsx(explanation)
 					}
 				/>
+
+			return {
+				evaluate,
+				jsx,
+				category: 'ruleProp',
+				rulePropType: 'cond',
+				name: 'non applicable si',
+				type: 'boolean',
+				explanation: child
 			}
 		}
 		,
-		// [n'importe quel mécanisme booléen] : expression booléenne (simple variable, négation, égalité, comparaison numérique, test d'inclusion court / long) || l'une de ces conditions || toutes ces conditions
-		// 'applicable si': // pareil mais inversé !
-
-		// note: pour certaines variables booléennes, ex. appartenance à régime Alsace-Moselle, la formule et le non applicable si se rejoignent
-		// [n'importe quel mécanisme numérique] : multiplication || barème en taux marginaux || le maximum de || le minimum de || ...
 		'formule': value => {
-			let
-				child = treat(situationGate, rules, rule)(value),
-				nodeValue = child.nodeValue
+			let evaluate = (situationGate, parsedRules, node) => {
+				let collectMissing = node => collectNodeMissing(node.explanation)
+				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+					nodeValue = explanation.nodeValue
+				return rewriteNode(node,nodeValue,explanation,collectMissing)
+			}
+
+			let child = treat(rules, rule)(value)
+
+			let jsx = (nodeValue, explanation) =>
+				<Node
+					classes="ruleProp mecanism formula"
+					name="formule"
+					value={nodeValue}
+					child={makeJsx(explanation)}
+				/>
+
 			return {
+				evaluate,
+				jsx,
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
 				type: 'numeric',
-				nodeValue: nodeValue,
-				explanation: child,
-				shortCircuit: R.pathEq(['non applicable si', 'nodeValue'], true),
-				jsx: <Node
-					classes="ruleProp mecanism formula"
-					name="formule"
-					value={nodeValue}
-					child={
-						child.jsx
-					}
-				/>
+				explanation: child
 			}
 		}
 	,
-	// TODO les mécanismes de composantes et de variations utilisables un peu partout !
-	// TODO 'temporal': information concernant les périodes : à définir !
-	// TODO 'intéractions': certaines variables vont en modifier d'autres : ex. Fillon va réduire voir annuler (set 0) une liste de cotisations
-	// ... ?
 
-	}),
-	/* Calcul de la valeur de la variable en combinant :
-	- les conditions d'application ('non applicable si')
-	- la formule
+	})(rule)
 
-	TODO: mettre les conditions d'application dans "formule", et traiter la formule comme un mécanisme normal dans treat()
-
-	*/
-	r => {
-		let
-			formuleValue = r.formule.nodeValue,
-			condValue = R.path(['non applicable si', 'nodeValue'])(r),
-			nodeValue = computeRuleValue(formuleValue, condValue)
-
-		return {...r, nodeValue}
+	return {
+		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
+		...parsedRoot,
+		evaluate,
+		collectMissing
 	}
-)(rule)
+}
 
 
-/* Analyse the set of selected rules, and add derived information to them :
-- do they need variables that are not present in the user situation ?
-- if not, do they have a computed value or are they non applicable ?
-*/
-
-export let analyseSituation = (rules, rootVariable) => situationGate =>
-	treatRuleRoot(
-		situationGate,
-		rules,
-		findRuleByName(rules, rootVariable)
-	)
+export let analyseSituation = (rules, rootVariable) => situationGate => {
+	let {root, parsedRules} = analyseTopDown(rules,rootVariable)(situationGate)
+	return root
+}
 
 
 
+export let analyseTopDown = (rules, rootVariable) => situationGate => {
+	clearDict()
+	let
+		/*
+		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
+		Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
+		qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
+		Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
+		Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
+		*/
+		treatOne = rule => treatRuleRoot(rules, rule),
 
+		//On fait ainsi pour chaque règle de la base.
+		parsedRules = R.map(treatOne,rules),
+		rootRule = findRuleByName(parsedRules, rootVariable),
 
+		/*
+			Ce n'est que dans cette nouvelle étape que l'arbre est vraiment évalué.
+			Auparavant, l'évaluation était faite lors de la construction de l'AST.
+		*/
+		root = evaluateNode(situationGate, parsedRules, rootRule)
 
-
-
-/*--------------------------------------------------------------------------------
- Ce qui suit est la première tentative d'écriture du principe du moteur et de la syntaxe */
-
-// let types = {
-	/*
-	(expression):
-		| (variable)
-		| (négation)
-		| (égalité)
-		| (comparaison numérique)
-		| (test d'inclusion court)
-	*/
-
-// }
-
-
-/*
-Variable:
-	- applicable si: (boolean logic)
-	- non applicable si: (boolean logic)
-	- concerne: (expression)
-	- ne concerne pas: (expression)
-
-(boolean logic):
-	toutes ces conditions: ([expression | boolean logic])
-	une de ces conditions: ([expression | boolean logic])
-	conditions exclusives: ([expression | boolean logic])
-
-"If you write a regular expression, walk away for a cup of coffee, come back, and can't easily understand what you just wrote, then you should look for a clearer way to express what you're doing."
-
-Les expressions sont le seul mécanisme relativement embêtant pour le moteur. Dans un premier temps, il les gerera au moyen d'expressions régulières, puis il faudra probablement mieux s'équiper avec un "javascript parser generator" :
-https://medium.com/@daffl/beyond-regex-writing-a-parser-in-javascript-8c9ed10576a6
-
-(variable): (string)
-
-(négation):
-	! (variable)
-
-(égalité):
-	(variable) = (variable.type)
-
-(comparaison numérique):
-	| (variable) < (variable.type)
-	| (variable) <= (variable.type)
-	| (variable) > (variable.type)
-	| (variable) <= (variable.type)
-
-(test d'inclusion court):
-	(variable) ⊂ [variable.type]
-
-in Variable.formule :
-	- composantes
-	- linéaire
-	- barème en taux marginaux
-	- test d'inclusion: (test d'inclusion)
-
-(test d'inclusion):
-	variable: (variable)
-	possibilités: [variable.type]
-
-# pas nécessaire pour le CDD
-
-	in Variable
-		- variations: [si]
-
-	(si):
-		si: (expression)
-		# corps
-
-	*/
+	return {
+		root,
+		parsedRules
+	}
+}

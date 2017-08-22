@@ -1,0 +1,31 @@
+- nom: farine
+  format: kg
+
+- nom: sucre
+  format: kg
+
+- nom: poids total
+  test: Somme
+  formule:
+    somme:
+      - farine
+      - sucre
+
+  exemples:
+    - nom: somme simple
+      situation:
+        farine: 29000
+        sucre: 200
+      valeur attendue: 29200
+    - nom: un nul dans la somme
+      situation:
+        sucre: 200
+      valeur attendue: null
+    - nom: une somme de nuls
+      situation: # pas de situation
+      valeur attendue: null
+    - nom: un entier + un flotant
+      situation:
+        farine: 2.1
+        sucre: 200
+      valeur attendue: 202.1

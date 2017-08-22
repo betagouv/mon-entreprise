@@ -9,7 +9,7 @@ import {buildNextSteps, generateGridQuestions, generateSimpleQuestions} from 'En
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES, CHANGE_THEME_COLOUR} from './actions'
 
-import {analyseSituation} from 'Engine/traverse'
+import {analyseTopDown} from 'Engine/traverse'
 
 let situationGate = state =>
 	name => formValueSelector('conversation')(state, name)
@@ -17,7 +17,7 @@ let situationGate = state =>
 let analyse = rootVariable => R.pipe(
 	situationGate,
 	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
-	analyseSituation(rules, rootVariable)
+	analyseTopDown(rules, rootVariable)
 )
 
 export let reduceSteps = (state, action) => {
@@ -25,7 +25,7 @@ export let reduceSteps = (state, action) => {
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
 		return state
 
-	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.name
+	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.root.name
 
 	let returnObject = {
 		...state,
@@ -35,15 +35,15 @@ export let reduceSteps = (state, action) => {
 	if (action.type == START_CONVERSATION) {
 		return {
 			...returnObject,
-			foldedSteps: state.foldedSteps || [],
-			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
+			foldedSteps: [],
+			unfoldedSteps: buildNextSteps(situationGate(state), rules, returnObject.analysedSituation)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		return {
 			...returnObject,
 			foldedSteps: [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps: buildNextSteps(rules, returnObject.analysedSituation)
+			unfoldedSteps: buildNextSteps(situationGate(state), rules, returnObject.analysedSituation)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {

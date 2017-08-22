@@ -17,7 +17,7 @@
       assiette: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
       taux:
-        logique numérique:
+        aiguillage numérique:
           motif . classique . accroissement activité:
             durée contrat <= 1: 3% # TODO 1 mois, pas 1 rien, évidemment
             durée contrat <= 3: 1.5%
@@ -33,7 +33,7 @@
         durée contrat: 1
       valeur attendue: 69
 
-    #TODO on ne peut aujourd'hui tester 'classique . usage' : l'évaluation n'aura pas la valeur de la première branche de la logique numérique, motif . classique . accroissement activité, et va donc s'arrêter en renvoyant un 'null'
+    #TODO on ne peut aujourd'hui tester 'classique . usage' : l'évaluation n'aura pas la valeur de la première branche de l'aiguillage numérique, motif . classique . accroissement activité, et va donc s'arrêter en renvoyant un 'null'
     # solution possible : un mode d'évaluation 'shallow' ou non renseigné = faux (null -> false)
 
     - nom: durée de contrat de 4 mois -> non applicable

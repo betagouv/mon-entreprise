@@ -88,6 +88,13 @@
     C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
   formule: salaire brut - cotisations (salarié)
 
+  exemples:
+    - nom: médian
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+      valeur attendue: 1768
+
 - espace: contrat salarié
   nom: coût du travail
   description: |

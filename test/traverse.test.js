@@ -1,25 +1,8 @@
 import {expect} from 'chai'
 import {enrichRule} from '../source/engine/rules'
-import {treatRuleRoot} from '../source/engine/traverse'
 import {analyseSituation} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
-
-describe('treatRuleRoot', function() {
-
-  it('should directly return simple numerical values', function() {
-    let rule = {formule: 3269}
-    expect(treatRuleRoot(stateSelector,[rule],rule)).to.have.property('nodeValue',3269)
-  });
-
-  /* TODO: make this pass
-  it('should directly return simple numerical values', function() {
-    let rule = {formule: "3269"}
-    expect(treatRuleRoot(stateSelector,[rule],rule)).to.have.property('nodeValue',3269)
-  });
-  */
-
-});
 
 describe('analyseSituation', function() {
 
@@ -39,6 +22,14 @@ describe('analyseSituation', function() {
 
 describe('analyseSituation on raw rules', function() {
 
+  it('should handle direct referencing of a variable', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "dix", espace: "top"},
+          {nom: "dix", formule: 10, espace: "top"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',10)
+  });
+
   it('should handle expressions referencing other rules', function() {
     let rawRules = [
           {nom: "startHere", formule: "3259 + dix", espace: "top"},
@@ -56,22 +47,12 @@ describe('analyseSituation on raw rules', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3259)
   });
 
-  it('should handle complements', function() {
+  it('should handle comparisons', function() {
     let rawRules = [
-          {nom: "startHere", formule: {complément: {cible: "dix", montant: 93}}, espace: "top"},
-          {nom: "dix", formule: 17, espace: "top"}],
+          {nom: "startHere", formule: "3259 > dix", espace: "top"},
+          {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',93-17)
-  });
-
-  it('should handle components in complements', function() {
-    let rawRules = [
-          {nom: "startHere", formule: {complément: {cible: "dix", 
-            composantes: [{montant: 93},{montant: 93}]
-          }}, espace: "top"},
-          {nom: "dix", formule: 17, espace: "top"}],
-        rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2*(93-17))
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',true)
   });
 
   /* TODO: make this pass
@@ -105,10 +86,10 @@ describe('analyseSituation with mecanisms', function() {
 
   it('should handle switch statements', function() {
     let rawRules = [
-          {nom: "startHere", formule: {"logique numérique": {
-                  "1 > dix":"10",
-                  "3 < dix":"11",
-                  "3 > dix":"12"
+          {nom: "startHere", formule: {"aiguillage numérique": {
+                  "1 > dix":"1000%",
+                  "3 < dix":"1100%",
+                  "3 > dix":"1200%"
               }}, espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
@@ -124,9 +105,10 @@ describe('analyseSituation with mecanisms', function() {
 
   it('should handle sums', function() {
     let rawRules = [
-          {nom: "startHere", formule: {"somme": [3200, 60, 9]}}],
+          {nom: "startHere", formule: {"somme": [3200, "dix", 9]}},
+          {nom: "dix", formule: 10}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3219)
   });
 
   it('should handle multiplications', function() {
@@ -184,6 +166,24 @@ describe('analyseSituation with mecanisms', function() {
           {nom: "startHere", formule: {"le maximum de": [3200, 60, 9]}}],
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3200)
+  });
+
+  it('should handle complements', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {complément: {cible: "dix", montant: 93}}, espace: "top"},
+          {nom: "dix", formule: 17, espace: "top"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',93-17)
+  });
+
+  it('should handle components in complements', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {complément: {cible: "dix",
+            composantes: [{montant: 93},{montant: 93}]
+          }}, espace: "top"},
+          {nom: "dix", formule: 17, espace: "top"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2*(93-17))
   });
 
   it('should handle filtering on components', function() {

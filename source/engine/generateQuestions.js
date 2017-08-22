@@ -9,7 +9,7 @@ import formValueTypes from 'Components/conversation/formValueTypes'
 import {analyseSituation} from './traverse'
 import {formValueSelector} from 'redux-form'
 import {rules, findRuleByDottedName, findVariantsAndRecords} from './rules'
-
+import {collectNodeMissing, evaluateNode} from './evaluation'
 
 
 
@@ -41,50 +41,28 @@ export let analyse = rootVariable => R.pipe(
  */
 
 // On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
-// Ou sur une variable unique ayant une formule, elle est elle-même le seul objectif
-export let getObjectives = analysedSituation => {
-	let formuleType = R.path(["formule", "explanation", "name"])(
-		analysedSituation
-	)
-	let result = formuleType == "somme"
+// Ou sur une variable unique ayant une formule ou une conodition 'non applicable si', elle est elle-même le seul objectif
+export let getObjectives = (situationGate, root, parsedRules) => {
+	let formuleType = R.path(["formule", "explanation", "name"])(root)
+
+	let targets = formuleType == "somme"
 		? R.pluck(
-				"explanation",
-				R.path(["formule", "explanation", "explanation"])(analysedSituation)
+				"dottedName",
+				R.path(["formule", "explanation", "explanation"])(root)
 			)
-		: formuleType ? [analysedSituation] : null
+		: (root.formule || root['non applicable si']) ? [root.dottedName] : null,
+		names = targets ? R.reject(R.isNil)(targets) : []
 
-	return result ? R.reject(R.isNil)(result) : null;
+	let findAndEvaluate = name => evaluateNode(situationGate,parsedRules,findRuleByDottedName(parsedRules,name))
+	return R.map(findAndEvaluate,names)
 }
 
-// FIXME - this relies on side-effects and the recursion is grossly indiscriminate
-let collectNodeMissingVariables = (root, source=root, results=[]) => {
-	if (
-    source.nodeValue != null  ||
-    source.shortCircuit && source.shortCircuit(root)
-  ) {
-		// console.log('nodev or shortcircuit root, source', root, source)
-		return []
-	}
-
-	if (source['missingVariables']) {
-		// console.log('root, source', root, source)
-		results.push(source['missingVariables'])
-	}
-
-	for (var prop in source) {
-		if (R.is(Object)(source[prop])) {
-			collectNodeMissingVariables(root, source[prop], results)
-		}
-	}
-	return results
-}
-
-export let collectMissingVariables = (groupMethod='groupByMissingVariable') => analysedSituation =>
-	R.pipe(
-		getObjectives,
+export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (situationGate, {root, parsedRules}) => {
+	return R.pipe(
+		R.curry(getObjectives)(situationGate),
 		R.chain( v =>
 			R.pipe(
-				collectNodeMissingVariables,
+				collectNodeMissing,
 				R.flatten,
 				R.map(mv => [v.dottedName, mv])
 			)(v)
@@ -94,11 +72,12 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => a
 		R.map(R.map(groupMethod == 'groupByMissingVariable' ? R.head : R.last))
 		// below is a hand implementation of above... function composition can be nice sometimes :')
 		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-	)(analysedSituation)
+	)(root, parsedRules)
+}
 
-export let buildNextSteps = (allRules, analysedSituation) => {
+export let buildNextSteps = (situationGate, flatRules, analysedSituation) => {
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(
-		analysedSituation
+		situationGate, analysedSituation
 	)
 
 	/*
@@ -137,11 +116,11 @@ export let buildNextSteps = (allRules, analysedSituation) => {
 
 	return R.pipe(
 		R.keys,
-		R.curry(findVariantsAndRecords)(allRules),
+		R.curry(findVariantsAndRecords)(flatRules),
 		// on va maintenant construire la liste des composants React qui afficheront les questions à l'utilisateur pour que l'on obtienne les variables manquantes
 		R.evolve({
-			variantGroups: generateGridQuestions(allRules, missingVariables),
-			recordGroups: generateSimpleQuestions(allRules, missingVariables),
+			variantGroups: generateGridQuestions(flatRules, missingVariables),
+			recordGroups: generateSimpleQuestions(flatRules, missingVariables),
 		}),
 		R.values,
 		R.unnest,
@@ -160,7 +139,8 @@ export let constructStepMeta = ({
 }) => ({
 	// name: dottedName.split(' . ').join('.'),
 	name: dottedName,
-	// question: question || name,
+	// <Explicable/> ajoutera une aide au clic sur un icône [?]
+	// Son texte est la question s'il y en a une à poser. Sinon on prend le titre.
 	question: (
 		<Explicable label={question || name} dottedName={dottedName} lightBackground={true} />
 	),

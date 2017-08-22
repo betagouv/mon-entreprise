@@ -1,0 +1,78 @@
+# Utiliser http://romainvaleri.online.fr/ pour se donner des idées de noms de variables originales
+
+- nom: dégradation mineure
+
+- nom: dégradation majeure
+
+- nom: retenue sur dépot de garantie
+  test: Aiguillage numérique simple
+  formule:
+    aiguillage numérique:
+      dégradation mineure: 10%
+      dégradation majeure: 30%
+
+  exemples:
+    - nom: le premier aiguillage est activé -> sa valeur est renvoyée
+      situation:
+        dégradation mineure: oui
+      valeur attendue: 0.1
+    - nom: seul le 2ème aiguillage est activé
+      situation:
+        dégradation mineure: non
+        dégradation majeure: oui
+      valeur attendue: 0.3
+    - nom: aucun aiguillage n'est activé
+      situation:
+        dégradation mineure: non
+        dégradation majeure: non
+      valeur attendue: 0
+    - nom: L'ordre des termes est important
+      situation:
+        dégradation mineure: null
+        dégradation majeure: oui
+      valeur attendue: null
+
+
+- nom: montant caution
+  format: €
+
+- nom: deuxième retenue sur dépot de garantie
+  test: Imbrication d'aiguillages numériques
+  formule:
+    aiguillage numérique:
+      dégradation mineure: 5%
+      dégradation majeure:
+        montant caution > 2000: 20%
+        montant caution > 1000: 10%
+
+
+  exemples:
+    - nom: imbrication simple
+      situation:
+        dégradation mineure: oui
+        dégradation majeure: non
+        montant caution: 3000
+      valeur attendue: 0.05
+    - nom: imbrication simple 2
+      situation:
+        dégradation mineure: non
+        dégradation majeure: oui
+        montant caution: 1200
+      valeur attendue: 0.10
+    - nom: imbrication nulle
+      valeur attendue: null
+      variables manquantes:
+        - dégradation mineure
+        - dégradation majeure
+        - montant caution
+    - nom: variables manquantes même si innaccessibles
+      situation:
+        dégradation mineure: non
+      valeur attendue: null
+      variables manquantes:
+        - dégradation majeure
+        - montant caution
+
+
+
+# pouvoir tester les variables inconnues mais requises ?
