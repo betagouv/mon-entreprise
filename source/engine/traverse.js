@@ -65,6 +65,8 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 // ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
 var dict;
 
+export let clearDict = () => dict = {}
+
 let fillVariableNode = (rules, rule) => (parseResult) => {
 	let evaluate = (situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
@@ -428,7 +430,7 @@ export let analyseSituation = (rules, rootVariable) => situationGate => {
 
 
 export let analyseTopDown = (rules, rootVariable) => situationGate => {
-	dict = {}
+	clearDict()
 	let
 		/*
 		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
