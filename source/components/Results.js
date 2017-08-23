@@ -11,6 +11,9 @@ import {clearDict} from 'Engine/traverse'
 import {encodeRuleName} from 'Engine/rules'
 import {getObjectives} from 'Engine/generateQuestions'
 import ResultVignette from './ResultVignette'
+import Algorithm from './rule/Algorithm'
+
+
 
 @withRouter
 @connect(
@@ -38,6 +41,9 @@ export default class Results extends Component {
 
 		let onRulePage = R.contains('/regle/')(location.pathname)
 
+		if (explanation.length !== 1)
+			return <div>Erreur : Cette barre n'affiche pas plus d'un résultat</div>
+		let variable = explanation[0]
 		return (
 			<section id="results" className={classNames({show: showResults})}>
 				<div>
@@ -51,10 +57,10 @@ export default class Results extends Component {
 					<ResultVignette
 						conversationStarted={conversationStarted}
 						key="1"
-						{...explanation[0]} />
+						{...variable} />
 				</div>
 				<div id="explanation">
-
+					<Algorithm traversedRule={variable}/>
 				</div>
 				<p id="understandTip"><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Cliquez pour comprendre chaque calcul</em></p>
 			</section>
