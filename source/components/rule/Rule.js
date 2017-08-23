@@ -53,11 +53,6 @@ export default class Rule extends Component {
 	}
 	render() {
 
-		// if (!rule) {
-		// 	this.props.router.push('/404')
-		// 	return null
-		// }
-
 		let
 			situationExists = !R.isEmpty(this.props.form)
 

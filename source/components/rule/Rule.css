@@ -245,10 +245,32 @@
 	/*border-right: 1px solid rgba(51, 51, 80, 0.25);*/
 	/*padding: .5em .6em;*/
 	/*border-radius: .3em;*/
+	display: flex;
+
 }
 .nodeHead {
 	display: inline-block;
 }
+
+.properties .variable.node {
+	display: inline-block;
+}
+
+.variable.leaf {
+	padding-left: 1em;
+	display: block;
+}
+
+.variable.explanation {
+	padding-left: 0;
+}
+.variable.explanation .nodeContent {
+	padding-top: .6em;
+}
+.variable.explanation .formula .mecanism {
+	border-left: 1px dashed #9b59b6;
+}
+
 .leaf .situationValue {
 	text-align: center;
 }
@@ -282,8 +304,8 @@
 .operator {
 	margin: .1em .6em;
 	font-size: 150%;
+	line-height: 80%;
 	font-weight: 600;
-	vertical-align: middle;
 }
 
 .json {

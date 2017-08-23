@@ -110,12 +110,34 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
-	let jsx = (nodeValue, explanation) =>
-		<Leaf
-			classes="variable"
-			name={fragments.join(' . ')}
-			value={nodeValue}
-		/>
+	let jsx = (nodeValue, explanation, node) => {
+		// Une variable peut-être affichée soit sous forme de feuille à développer au clic seulement
+		// ou directement en ligne
+
+		let
+			name = node.name,
+			variableType = R.path(['explanation', 'type'])(node),
+			formule = R.path(['explanation', 'formule'])(node)
+
+		if (variableType === 'cotisation' || !formule)
+			return <Leaf
+					classes="variable"
+					name={name}
+					value={nodeValue}
+				/>
+		else {
+			return <Node
+				classes="variable explanation"
+				name={name}
+				value={nodeValue}
+				child={
+					<span className="nodeContent">
+						{makeJsx(formule)}
+					</span>
+				}
+			/>
+		}
+	}
 
 	return {
 		evaluate,
