@@ -145,6 +145,12 @@
   description: |
     C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salarié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
   formule: salaire de base - cotisations salariales
+  simulateur:
+      titre: Simulez votre salaire net
+      sous-titre: La somme déposée sur votre compte, avant de payer les impôts sur le revenu.
+      introduction:
+        motivation: Prévoyez la somme qui sera déposée sur votre compte bancaire
+
 
 - espace: contrat salarié
   nom: coût du travail
