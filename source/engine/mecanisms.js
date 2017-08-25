@@ -1,8 +1,11 @@
 import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
-import {Node, Leaf} from './traverse-common-jsx'
+import {Node, Leaf, VariableValue} from './traverse-common-jsx'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
+import {encodeRuleName} from './rules'
+import {Link} from 'react-router-dom'
+
 
 let constantNode = constant => ({nodeValue: constant})
 
@@ -343,17 +346,58 @@ export let mecanismSum = (recurse,k,v) => {
 
 	let evaluate = evaluateArray(R.add,0)
 
-	let jsx = (nodeValue, explanation) =>
-		<Node
-			classes="mecanism somme"
-			name="somme"
-			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map(v => <li key={v.name || v.text}>{makeJsx(v)}</li>)}
-				</ul>
-			}
-		/>
+	let jsx = (nodeValue, explanation) => {
+		/* Si nous avons une somme de variables de même type (ex. cotisations),
+		 nous allons l'afficher comme un tableau
+		 dont les lignes pourront être regroupées par des attributs en commun (ex. branche sécurité sociale de la cotisation)
+	  */
+		let
+			getType = R.path(['explanation', 'type']),
+			types = R.pipe(
+				R.map(getType),
+				R.uniq
+			)(explanation),
+			oneType = types.length === 1,
+			type = types[0]
+			console.log('types, uniqueType', types)
+
+		if (!oneType)
+			return	<Node
+					classes="mecanism somme"
+					name="somme"
+					value={nodeValue}
+					child={
+						<ul>
+							{explanation.map(v => <li key={v.name || v.text}>{makeJsx(v)}</li>)}
+						</ul>
+					}
+				/>
+
+		return <Node
+				classes="mecanism somme"
+				name={"somme de " + type}
+				value={nodeValue}
+				child={
+					<table>
+						<caption></caption>
+						<tbody>
+							{explanation.map(v =>
+								<tr key={v.name}>
+									<td className="element">
+										<Link to={"/regle/" + encodeRuleName(name)} >
+											{v.name}
+										</Link>
+									</td>
+									<td className="situationValue value">
+										<VariableValue data={v.nodeValue} />
+									</td>
+								</tr>
+							)}
+						</tbody>
+					</table>
+				}
+			/>
+	}
 
 	return {
 		evaluate,

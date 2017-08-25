@@ -370,3 +370,17 @@
 	justify-content: space-between;
 	align-items: baseline;
 }
+
+
+
+/* mécanisme somme */
+.somme tr:nth-child(2n) {
+    background: #f8f8f8;
+}
+.somme tr .element {
+	text-align: left;
+	padding-left: .6em;
+}
+.somme tr .value span {
+	text-align: right;
+}

@@ -16,7 +16,7 @@ let RuleWithoutFormula = () =>
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {
 	state = {
-		showValues: false
+		showValues: this.props.showValues
 	}
 	render(){
 		let {traversedRule: rule, showValues} = this.props

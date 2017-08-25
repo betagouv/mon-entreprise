@@ -60,7 +60,7 @@ export default class Results extends Component {
 						{...variable} />
 				</div>
 				<div id="explanation">
-					<Algorithm traversedRule={variable}/>
+					<Algorithm traversedRule={variable} showValues={true}/>
 				</div>
 				<p id="understandTip"><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Cliquez pour comprendre chaque calcul</em></p>
 			</section>

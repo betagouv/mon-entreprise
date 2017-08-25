@@ -9,9 +9,15 @@ let treatValue = data =>
 		? '?'
 		: !isNaN(data) ? Math.round(+data*100)/100 : data ? 'oui' : 'non'
 
-let NodeValue = ({data}) => (
+export let NodeValue = ({data}) => (
 	<span className={'situationValue ' + treatValue(data)}>
 		←&nbsp;
+		{treatValue(data)}
+	</span>
+)
+
+export let VariableValue = ({data}) => (
+	<span className={'situationValue ' + treatValue(data)}>
 		{treatValue(data)}
 	</span>
 )
