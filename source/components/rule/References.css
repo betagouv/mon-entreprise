@@ -33,3 +33,8 @@
         border-radius: .3em;
         margin-left: .6em;
 }
+
+li#complementary a {
+  font-style: italic;
+  border-bottom: 1px solid #ddd;
+}
