@@ -2,6 +2,8 @@ var webpack = require('webpack')
 var WebpackDevServer = require('webpack-dev-server')
 var config = require('./webpack.config')
 
+const PORT = process.env.PORT || 3000
+
 new WebpackDevServer(webpack(config), {
 	publicPath: config.output.publicPath,
 	hot: true,
@@ -21,8 +23,8 @@ new WebpackDevServer(webpack(config), {
 		chunks: false,
 		chunkModules: false
 	}
-}).listen(3000, '0.0.0.0', function (err) {
+}).listen(PORT, '0.0.0.0', function (err) {
 	if (err)
 		console.log(err) //eslint-disable-line no-console
-	console.log('Bonjour ! Je vous sers sur localhost:3000') //eslint-disable-line no-console
+	console.log('Bonjour ! Je vous sers sur localhost:'+PORT) //eslint-disable-line no-console
 })
