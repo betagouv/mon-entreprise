@@ -5,6 +5,7 @@ var config = require('./webpack.config')
 const PORT = process.env.PORT || 3000
 
 new WebpackDevServer(webpack(config), {
+	disableHostCheck: true,
 	publicPath: config.output.publicPath,
 	hot: true,
 	historyApiFallback: true,
