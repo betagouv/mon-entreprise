@@ -36,6 +36,7 @@
     "yaml-loader": "^0.5.0"
   },
   "devDependencies": {
+    "akh": "^3.1.2",
     "autoprefixer": "^7.1.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
@@ -54,8 +55,12 @@
     "core-js": "^2.4.1",
     "css-loader": "^0.28.1",
     "eslint": "^4.4.1",
+    "daggy": "^1.1.0",
     "eslint-plugin-react": "^7.0.1",
     "express": "^4.15.3",
+    "fantasy-combinators": "0.0.1",
+    "fantasy-land": "^3.3.0",
+    "fantasy-tuples": "^1.0.0",
     "file-loader": "^0.11.1",
     "html-loader": "^0.5.1",
     "img-loader": "^2.0.0",
@@ -65,6 +70,7 @@
     "mocha-webpack": "^0.7.0",
     "nearley-loader": "0.0.2",
     "postcss-loader": "^2.0.5",
+    "ramda-fantasy": "^0.8.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "redux-devtools": "^3.4.0",
     "redux-devtools-dock-monitor": "^1.1.2",
