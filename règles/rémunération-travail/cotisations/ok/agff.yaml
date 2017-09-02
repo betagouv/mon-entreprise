@@ -23,10 +23,10 @@
             - si: ≠ statut cadre
               tranches:
                 - en-dessous de: 1
-                  taux: 0.8%
+                  taux: 1.2%
                 - de: 1
                   à: 3
-                  taux: 0.9%
+                  taux: 1.3%
                 - au-dessus de: 3
                   taux: 0%
 
