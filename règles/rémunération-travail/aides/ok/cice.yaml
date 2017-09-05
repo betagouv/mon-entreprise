@@ -1,0 +1,29 @@
+- espace: contrat salarié
+  nom: CICE
+  aide:
+    type: avantage fiscal
+    thème: aide bas salaires
+    démarches: non
+  description: |
+    Crédit d'impôt pour la compétitivité et l'emploi
+  références:
+    calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31326
+
+  # TODO - exlure stage, apprentissage
+  non applicable si: salaire brut > plafond cice
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 0.07
+
+- espace: contrat salarié
+  nom: plafond cice
+  # TODO: calcul du smic proratisé
+  # TODO: smic mensuel défini dans la réduction générale, à déplacer pour mutualiser
+  formule: multiplicateur cice * smic mensuel
+
+- espace: contrat salarié
+  nom: multiplicateur cice
+  formule:
+    taux: 2.5

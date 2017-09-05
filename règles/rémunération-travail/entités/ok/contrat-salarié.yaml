@@ -163,7 +163,10 @@
 
 - espace: contrat salarié
   nom: aides
-  formule: réduction générale
+  formule:
+    somme:
+      - CICE
+      - réduction générale
 
 - espace: contrat salarié
   nom: Salaire
