@@ -79,7 +79,7 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 			cached = dict[cacheName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
 			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
-			variableIsCalculable = variable.formule != null,
+			variableIsCalculable = variable.formule != null && !R.path(['formule', 'explanation', 'une possibilité'])(variable),
 
 			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(
 				situation,
@@ -200,7 +200,8 @@ let treat = (rules, rule) => rawNode => {
 							'<': 'lt',
 							'<=': 'lte',
 							'>': 'gt',
-							'>=': 'gte'
+							'>=': 'gte',
+							'=': 'equal'
 						}[node.operator],
 						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
 						value1 = explanation[0].nodeValue,
@@ -223,7 +224,7 @@ let treat = (rules, rule) => rawNode => {
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseInt(node.nodeValue)}),
+									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: node.nodeValue}),
 									jsx:  nodeValue => <span className="value">{nodeValue}</span>
 								})
 							]
@@ -293,7 +294,7 @@ let treat = (rules, rule) => rawNode => {
 					'le maximum de':			mecanismMax,
 					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
-					'une possibilité':			R.always({})
+					'une possibilité':			R.always({'une possibilité':'oui'})
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 
