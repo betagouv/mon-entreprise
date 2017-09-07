@@ -71,6 +71,8 @@ export let clearDict = () => dict = {}
 
 let fillVariableNode = (rules, rule) => (parseResult) => {
 	let evaluate = (situation, parsedRules, node) => {
+		let retrieveEvaluated = (cached, variable) => cached ? cached : evaluateNode(situation,parsedRules,variable)
+
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
@@ -79,11 +81,7 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null && !R.path(['formule', 'explanation', 'une possibilité'])(variable),
 
-			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(
-				situation,
-				parsedRules,
-				variable
-			)),
+			parsedRule = variableIsCalculable && retrieveEvaluated(cached, variable),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue = situationValue
@@ -95,7 +93,9 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
 			let collectMissing = node =>
-				variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
+				R.path(['formule', 'explanation', 'une possibilité'])(variable) ?
+					R.concat(collectNodeMissing(retrieveEvaluated(cached,variable)), node.missingVariables) :
+					variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
 			let result = cached ? cached : {
 				...rewriteNode(node,nodeValue,explanation,collectMissing),
