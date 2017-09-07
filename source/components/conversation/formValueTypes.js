@@ -28,9 +28,16 @@ let jours = {
 	validator: int
 }
 
+let nombre = {
+	suffix: '',
+	human: value => value,
+	validator: int
+}
+
 export default {
 	pourcentage,
 	euros,
 	mois,
-	jours
+	jours,
+	nombre
 }

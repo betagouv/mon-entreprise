@@ -1,0 +1,21 @@
+- espace: contrat salarié
+  nom: AGS
+  description: Cotisation au Régime de Garantie des Salaires
+  cotisation:
+    - dû par: employeur
+  references:
+    calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
+  notes: |
+    - taux différent pour le personnel intérimaire des entreprises de travail temporaire
+    - Ne sont pas assujetties :
+      - les personnes morales de droit public,
+      - les syndicats de copropriété,
+      - les particuliers employeurs.
+
+#  non applicable si: assimilé salarié
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
+      taux: 0.15%

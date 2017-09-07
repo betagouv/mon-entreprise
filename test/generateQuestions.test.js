@@ -86,6 +86,46 @@ describe('collectMissingVariables', function() {
     expect(result).to.have.property('top . dix')
   });
 
+  it('should report missing variables in variations', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {somme: ["variations"]}, espace: "top"},
+          {nom: "variations", espace: "top", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            "variations":[
+              {si: "dix", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: "deux"}, ,{"au-dessus de":2, taux: 10}]},
+              {si: "3 > 4", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.8}, ,{"au-dessus de":2, taux: 10}]},
+            ]
+          }}},
+          {nom: "dix", espace: "top"},
+          {nom: "deux", espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.have.property('top . dix')
+    // expect(result).to.have.property('top . deux') - this is a TODO
+  });
+
+  it('should not report missing variables in irrelevant variations', function() {
+    let rawRules = [
+          {nom: "startHere", formule: {somme: ["variations"]}, espace: "top"},
+          {nom: "variations", espace: "top", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            "variations":[
+              {si: "dix", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: "deux"}, ,{"au-dessus de":2, taux: 10}]},
+              {si: "3 > 2", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.8}, ,{"au-dessus de":2, taux: 10}]},
+            ]
+          }}},
+          {nom: "dix", espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.deep.equal({})
+  });
+
   it('should not report missing variables in switch for consequences of false conditions', function() {
     let rawRules = [
           { nom: "startHere", formule: {"aiguillage numérique": {
@@ -172,6 +212,21 @@ describe('buildNextSteps', function() {
     expect(R.path(["question","props","label"])(result[3])).to.equal("Est-ce un contrat jeune vacances ?")
     expect(R.path(["question","props","label"])(result[4])).to.equal("Quelle est la durée du contrat ?")
     expect(R.path(["question","props","label"])(result[5])).to.equal("Combien de jours de congés ne seront pas pris ?")
+  });
+
+  it('should generate questions from the real rules, experimental version', function() {
+    let stateSelector = (name) => ({"contrat salarié . CDD . événement . poursuite du CDD en CDI":"oui"})[name]
+
+    let rules = realRules.map(enrichRule),
+        situation = analyseTopDown(rules,"Salaire")(stateSelector),
+        objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
+        result = buildNextSteps(stateSelector, rules, situation)
+
+    expect(objectives).to.have.lengthOf(2)
+    expect(result).to.have.lengthOf(3)
+    expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut ?")
+    expect(R.path(["question","props","label"])(result[1])).to.equal("Le salarié a-t-il le statut cadre ?")
+    expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est l'effectif de l'entreprise ?")
   });
 
 });

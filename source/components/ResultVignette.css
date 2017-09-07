@@ -1,0 +1,83 @@
+
+.ResultVignette {
+	max-width: 25em;
+	display: inline-block;
+}
+.ResultVignette .rule-type {
+	color: white;
+	border: none;
+	font-size: 85%;
+	line-height: 2em;
+	font-weight: 600;
+	margin: .6em 0 .1em;
+}
+
+.ResultVignette .rule-box {
+	padding: .6em 1em;
+	color: #333350;
+	background: white;
+	border-radius: 3px;
+	white-space: nowrap;
+	color: #333350;
+	height: 6em;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.ResultVignette .rule-name {
+	font-size: 175%;
+	font-weight: 600;
+}
+
+.ResultVignette p {
+	margin: 0;
+	padding: 0 0;
+	font-size: 120%;
+	color: inherit;
+	width: 100%;
+}
+
+.ResultVignette:hover .rule-box {
+	background: #ddd;
+}
+.ResultVignette.irrelevant .rule-box {
+	background: rgba(255, 255, 255, 0.35);
+}
+
+.ResultVignette:not(.irrelevant) .rule-name {
+	color: #4A89DC;
+}
+.ResultVignette .rule-type {
+	color: #4A89DC;
+}
+
+.ResultVignette .rule-box {
+	border-bottom: .8em solid #4A89DC;
+}
+.ResultVignette.number p {
+	color: #4A89DC;
+	font-weight: bold;
+}
+
+
+
+.ResultVignette.irrelevant .rule-type {
+	color: rgba(255, 255, 255, 0.35);
+}
+
+.ResultVignette.irrelevant .rule-name {
+	text-decoration: line-through;
+}
+
+
+.ResultVignette.unsatisfied p {
+	font-style: italic;
+}
+.ResultVignette.irrelevant p {
+	font-weight: 600;
+}
+.ResultVignette p .figure {
+	font-size: 250%;
+}

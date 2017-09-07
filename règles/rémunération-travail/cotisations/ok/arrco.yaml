@@ -1,0 +1,53 @@
+- espace: contrat salarié
+  nom: ARRCO
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: ARRCO
+  description: |
+    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés
+  références:
+    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+
+  formule:
+    barème:
+      assiette: assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          variations:
+            - si: statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 4.65%
+                - au-dessus de: 1
+                  taux: 0%
+            - si: ≠ statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 4.65%
+                - de: 1
+                  à: 3
+                  taux: 12.15%
+                - au-dessus de: 3
+                  taux: 0%
+
+        - attributs:
+            dû par: salarié
+          variations:
+            - si: statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 3.1%
+                - au-dessus de: 1
+                  taux: 0%
+            - si: ≠ statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 3.1%
+                - de: 1
+                  à: 3
+                  taux: 8.1%
+                - au-dessus de: 3
+                  taux: 0%

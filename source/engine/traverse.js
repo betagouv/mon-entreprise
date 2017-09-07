@@ -6,8 +6,10 @@ import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
-import {mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
-		mecanismPercentage,mecanismScale,mecanismMax,mecanismError, mecanismComplement} from "./mecanisms"
+import {
+	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
+	mecanismPercentage,mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
+} from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
@@ -108,12 +110,34 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
-	let jsx = (nodeValue, explanation) =>
-		<Leaf
-			classes="variable"
-			name={fragments.join(' . ')}
-			value={nodeValue}
-		/>
+	let jsx = (nodeValue, explanation, node) => {
+		// Une variable peut-être affichée soit sous forme de feuille à développer au clic seulement
+		// ou directement en ligne
+
+		let
+			name = node.name,
+			variableType = R.path(['explanation', 'type'])(node),
+			formule = R.path(['explanation', 'formule'])(node)
+
+		if (variableType === 'cotisation' || !formule)
+			return <Leaf
+					classes="variable"
+					name={name}
+					value={nodeValue}
+				/>
+		else {
+			return <Node
+				classes="variable explanation"
+				name={name}
+				value={nodeValue}
+				child={
+					<span className="nodeContent">
+						{makeJsx(formule)}
+					</span>
+				}
+			/>
+		}
+	}
 
 	return {
 		evaluate,
@@ -137,7 +161,7 @@ let buildNegatedVariable = variable => {
 	let jsx = (nodeValue, explanation) =>
 		<Node
 			classes="inlineExpression negation"
-			value={node.nodeValue}
+			value={nodeValue}
 			child={
 				<span className="nodeContent">
 					<span className="operator">¬</span>
@@ -287,6 +311,7 @@ let treat = (rules, rule) => rawNode => {
 					'multiplication':			mecanismProduct,
 					'barème':					mecanismScale,
 					'le maximum de':			mecanismMax,
+					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
 					'une possibilité':			R.always({})
 				},

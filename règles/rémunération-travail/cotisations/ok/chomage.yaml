@@ -1,0 +1,22 @@
+- espace: contrat salarié
+  nom: chômage
+  cotisation:
+    branche: chômage
+    destinataire: Pôle emploi
+  description: Cotisation d’assurance chômage
+  références:
+    calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
+
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 4%
+
+        - attributs:
+            dû par: salarié
+          taux: 2.4%

@@ -1,0 +1,26 @@
+- espace: contrat salarié
+  nom: Allocations Familiales
+  cotisation:
+    dû par: employeur
+    branche: famille
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      variations:
+        # TODO - intégrer l'éligibilité à la réduction générale
+        # TODO - vérifier si la réduction doit être portée à part sur la fiche de paie
+        - si: salaire brut < plafond réduction allocations familiales
+          taux: 3.45%
+          plafond: plafond sécurité sociale
+        - si: salaire brut > plafond réduction allocations familiales
+          taux: 5.25%
+
+- espace: contrat salarié
+  nom: plafond réduction allocations familiales
+  formule:
+    multiplication:
+      assiette: smic mensuel
+      taux: 3.5

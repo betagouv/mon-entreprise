@@ -1,8 +1,11 @@
 import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
-import {Node, Leaf} from './traverse-common-jsx'
+import {Node, Leaf, VariableValue} from './traverse-common-jsx'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
+import {encodeRuleName} from './rules'
+import {Link} from 'react-router-dom'
+
 
 let constantNode = constant => ({nodeValue: constant})
 
@@ -11,7 +14,7 @@ let transformPercentage = s =>
 		+s.replace('%', '') / 100
 	: +s
 
-export let decompose = (recurse, k, v) => {
+let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
 		explanation = v.composantes.map(c =>
@@ -63,6 +66,77 @@ export let decompose = (recurse, k, v) => {
 		evaluate: evaluateArrayWithFilter(filter,R.add,0),
 		category: 'mecanism',
 		name: 'composantes',
+		type: 'numeric'
+	}
+}
+
+let devariate = (recurse, k, v) => {
+	let
+		subProps = R.dissoc('variations')(v),
+		explanation = v.variations.map(c =>
+			({
+				... recurse(
+					R.objOf(k,
+						{
+							... subProps,
+							... R.dissoc('si')(c)
+						})
+				),
+				condition: recurse(c.si)
+			})
+		)
+
+	let evaluate = (situationGate, parsedRules, node) => {
+		let evaluateOne = child => {
+				let condition = evaluateNode(situationGate, parsedRules, child.condition)
+				return {
+					...evaluateNode(situationGate, parsedRules, child),
+					condition
+				}
+			}
+
+		let explanation = R.map(evaluateOne, node.explanation),
+			choice = R.find(node => node.condition.nodeValue, explanation),
+			nodeValue = choice ? choice.nodeValue : null
+
+		let collectMissing = node => {
+			let choice = R.find(node => node.condition.nodeValue, node.explanation),
+				leftMissing = choice ? [] : R.chain(collectNodeMissing,R.pluck("condition",node.explanation)),
+				rightMissing = choice ? collectNodeMissing(choice) : R.chain(collectNodeMissing,node.explanation)
+			return R.concat(leftMissing,rightMissing)
+		}
+
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
+	}
+
+	// TODO - find an appropriate representation
+	let jsx = (nodeValue, explanation) =>
+		<Node
+			classes="mecanism variations"
+			name="variations"
+			value={nodeValue}
+			child={
+				<ul>
+					{ explanation.map((c, i) =>
+						<li className="variation" key={JSON.stringify(c.condition)}>
+							<div className="variationCondition">
+								Si : {makeJsx(c.condition)}
+							</div>
+							<div className="content">
+								{makeJsx(c)}
+							</div>
+						</li>
+					)}
+				</ul>
+			}
+		/>
+
+	return {
+		explanation,
+		evaluate,
+		jsx,
+		category: 'mecanism',
+		name: 'variations',
 		type: 'numeric'
 	}
 }
@@ -272,17 +346,58 @@ export let mecanismSum = (recurse,k,v) => {
 
 	let evaluate = evaluateArray(R.add,0)
 
-	let jsx = (nodeValue, explanation) =>
-		<Node
-			classes="mecanism somme"
-			name="somme"
-			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map(v => <li key={v.name || v.text}>{makeJsx(v)}</li>)}
-				</ul>
-			}
-		/>
+	let jsx = (nodeValue, explanation) => {
+		/* Si nous avons une somme de variables de même type (ex. cotisations),
+		 nous allons l'afficher comme un tableau
+		 dont les lignes pourront être regroupées par des attributs en commun (ex. branche sécurité sociale de la cotisation)
+	  */
+		let
+			getType = R.path(['explanation', 'type']),
+			types = R.pipe(
+				R.map(getType),
+				R.uniq
+			)(explanation),
+			oneType = types.length === 1,
+			type = types[0]
+			console.log('types, uniqueType', types)
+
+		if (!oneType)
+			return	<Node
+					classes="mecanism somme"
+					name="somme"
+					value={nodeValue}
+					child={
+						<ul>
+							{explanation.map(v => <li key={v.name || v.text}>{makeJsx(v)}</li>)}
+						</ul>
+					}
+				/>
+
+		return <Node
+				classes="mecanism somme"
+				name={"somme de " + type}
+				value={nodeValue}
+				child={
+					<table>
+						<caption></caption>
+						<tbody>
+							{explanation.map(v =>
+								<tr key={v.name}>
+									<td className="element">
+										<Link to={"/regle/" + encodeRuleName(name)} >
+											{v.name}
+										</Link>
+									</td>
+									<td className="situationValue value">
+										<VariableValue data={v.nodeValue} />
+									</td>
+								</tr>
+							)}
+						</tbody>
+					</table>
+				}
+			/>
+	}
 
 	return {
 		evaluate,
@@ -297,6 +412,9 @@ export let mecanismSum = (recurse,k,v) => {
 export let mecanismProduct = (recurse,k,v) => {
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 		return decompose(recurse,k,v)
+	}
+	if (v.variations) {
+		return devariate(recurse,k,v)
 	}
 
 	// Preprocessing step to parse percentages
@@ -366,7 +484,9 @@ export let mecanismScale = (recurse,k,v) => {
 	// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 		return decompose(recurse,k,v)
-
+	}
+	if (v.variations) {
+		return devariate(recurse,k,v)
 	}
 
 	if (v['multiplicateur des tranches'] == null)
@@ -501,6 +621,38 @@ export let mecanismMax = (recurse,k,v) => {
 		type: 'numeric',
 		category: 'mecanism',
 		name: 'le maximum de'
+	}
+}
+
+export let mecanismMin = (recurse,k,v) => {
+	let explanation = v.map(recurse)
+
+	let evaluate = evaluateArray(R.min,Infinity)
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
+			classes="mecanism list minimum"
+			name="le minimum de"
+			value={nodeValue}
+			child={
+				<ul>
+				{explanation.map((item, i) =>
+					<li key={i}>
+						<div className="description">{v[i].description}</div>
+						{makeJsx(item)}
+					</li>
+				)}
+				</ul>
+			}
+		/>
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		type: 'numeric',
+		category: 'mecanism',
+		name: 'le minimum de'
 	}
 }
 
