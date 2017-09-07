@@ -207,6 +207,7 @@ describe('buildNextSteps', function() {
 
     expect(objectives).to.have.lengthOf(4)
 
+    expect(missing).to.have.property('contrat salarié . type de contrat')
     expect(missing).to.have.property('contrat salarié . CDD . événement')
     expect(missing).to.have.property('contrat salarié . CDD . motif')
     expect(missing).to.have.property('contrat salarié . salaire de base')
@@ -215,15 +216,16 @@ describe('buildNextSteps', function() {
     expect(missing).to.have.property('contrat salarié . CDD . congés non pris')
 
     // One question per missing variable !
-    expect(R.keys(missing)).to.have.lengthOf(6)
-    expect(result).to.have.lengthOf(6)
+    expect(R.keys(missing)).to.have.lengthOf(7)
+    expect(result).to.have.lengthOf(7)
 
-    expect(R.path(["question","props","label"])(result[0])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
-    expect(R.path(["question","props","label"])(result[1])).to.equal("Quel est le motif de recours au CDD ?")
-    expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le salaire brut ?")
-    expect(R.path(["question","props","label"])(result[3])).to.equal("Est-ce un contrat jeune vacances ?")
-    expect(R.path(["question","props","label"])(result[4])).to.equal("Quelle est la durée du contrat ?")
-    expect(R.path(["question","props","label"])(result[5])).to.equal("Combien de jours de congés ne seront pas pris ?")
+    expect(R.path(["question","props","label"])(result[0])).to.equal("Quelle est la nature du contrat de travail ?")
+    expect(R.path(["question","props","label"])(result[1])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
+    expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le motif de recours au CDD ?")
+    expect(R.path(["question","props","label"])(result[3])).to.equal("Quel est le salaire brut ?")
+    expect(R.path(["question","props","label"])(result[4])).to.equal("Est-ce un contrat jeune vacances ?")
+    expect(R.path(["question","props","label"])(result[5])).to.equal("Quelle est la durée du contrat ?")
+    expect(R.path(["question","props","label"])(result[6])).to.equal("Combien de jours de congés ne seront pas pris ?")
   });
 
   it('should generate questions from the real rules, experimental version', function() {

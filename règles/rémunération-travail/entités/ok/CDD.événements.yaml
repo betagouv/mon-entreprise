@@ -7,6 +7,8 @@
 
     > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune majoration ou indemnité sur le CDD ne sera à verser.
 
+  non applicable si: type de contrat != 'CDD'
+
   # TODO
   # cette règle devrait n'être affichée que quand son espace, CDD, est valide
   # CDD devrait être valide seulement si un motif de la liste des possibilités a été choisi
