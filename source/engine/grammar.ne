@@ -18,7 +18,7 @@ Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 
 Comparable -> (int | CalcExpression | Variable | Constant) {% d => d[0][0] %}
 
-ComparisonOperator -> ">" | "<" | ">=" | "<=" | "="
+ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
 NegatedVariable -> "≠" _ Variable {% d => ({category: 'negatedVariable', variable: d[2] }) %}
 
