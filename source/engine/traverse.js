@@ -201,7 +201,7 @@ let treat = (rules, rule) => rawNode => {
 							'<=': 'lte',
 							'>': 'gt',
 							'>=': 'gte',
-							'=': 'equal'
+							'=': 'equals'
 						}[node.operator],
 						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
 						value1 = explanation[0].nodeValue,
