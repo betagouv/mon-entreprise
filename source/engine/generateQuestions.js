@@ -117,7 +117,7 @@ let buildVariantTree = (allRules, path) => {
 		let node = findRuleByDottedName(allRules, path),
 			variant = isVariant(node),
 			variants = variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
-			shouldBeExpanded = variant && false, //variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
+			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
 
 		return Object.assign(
