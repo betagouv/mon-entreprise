@@ -13,18 +13,18 @@
   non applicable si:
     une de ces conditions:
       # Evènements particuliers
-      - événement . poursuite du CDD en CDI
-      - événement . refus CDI avantageux
+      - événement = 'poursuite du CDD en CDI'
+      - événement = 'refus CDI avantageux'
 
       # Rupture TODO regrouper celà dans une nouvelle variante
-      - événement . rupture anticipée salarié
-      - événement . rupture pour faute grave ou force majeure
-      - événement . rupture pendant période essai
+      - événement = 'rupture anticipée salarié'
+      - événement = 'rupture pour faute grave ou force majeure'
+      - événement = 'rupture pendant période essai'
 
-      - motif . classique . usage
-      - motif . classique . saisonnier
-      - motif . complément formation
-      - motif . contrat aidé
+      - motif = 'usage'
+      - motif = 'saisonnier'
+      - motif = 'complément formation'
+      - motif = 'contrat aidé'
 
       - contrat jeune vacances
 

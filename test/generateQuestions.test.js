@@ -202,10 +202,22 @@ describe('buildNextSteps', function() {
     let rules = realRules.map(enrichRule),
         situation = analyseTopDown(rules,"surcoût CDD")(stateSelector),
         objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
+        missing = collectMissingVariables()(stateSelector,situation),
         result = buildNextSteps(stateSelector, rules, situation)
 
     expect(objectives).to.have.lengthOf(4)
+
+    expect(missing).to.have.property('contrat salarié . CDD . événement')
+    expect(missing).to.have.property('contrat salarié . CDD . motif')
+    expect(missing).to.have.property('contrat salarié . salaire de base')
+    expect(missing).to.have.property('contrat salarié . CDD . contrat jeune vacances')
+    expect(missing).to.have.property('contrat salarié . CDD . durée contrat')
+    expect(missing).to.have.property('contrat salarié . CDD . congés non pris')
+
+    // One question per missing variable !
+    expect(R.keys(missing)).to.have.lengthOf(6)
     expect(result).to.have.lengthOf(6)
+
     expect(R.path(["question","props","label"])(result[0])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
     expect(R.path(["question","props","label"])(result[1])).to.equal("Quel est le motif de recours au CDD ?")
     expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le salaire brut ?")

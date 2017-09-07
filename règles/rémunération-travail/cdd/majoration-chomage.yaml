@@ -10,7 +10,7 @@
   non applicable si:
     une de ces conditions:
       - durée contrat > 3 #cette information est déjà contenue dans la formule, mais ça ne fait pas de mal de l'expliciter ici
-      - événement . poursuite du CDD en CDI
+      - événement = 'poursuite du CDD en CDI'
 
   formule:
     multiplication:
@@ -18,10 +18,10 @@
       plafond: 4 * plafond sécurité sociale
       taux:
         aiguillage numérique:
-          motif . classique . accroissement activité:
+          motif = 'accroissement activité':
             durée contrat <= 1: 3% # TODO 1 mois, pas 1 rien, évidemment
             durée contrat <= 3: 1.5%
-          motif . classique . usage:
+          motif = 'usage':
             durée contrat <= 3: 0.5%
 
 
