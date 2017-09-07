@@ -187,7 +187,7 @@ describe('buildNextSteps', function() {
   it('should generate questions', function() {
     let rawRules = [
           {nom: "sum", formule: {somme: [2, "deux"]}, espace: "top"},
-          {nom: "deux", formule: 2, "non applicable si" : "top . sum . evt . ko", espace: "top"},
+          {nom: "deux", formule: 2, "non applicable si" : "top . sum . evt = 'ko'", espace: "top"},
           {nom: "evt", espace: "top . sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),

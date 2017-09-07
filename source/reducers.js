@@ -5,7 +5,7 @@ import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
 import {rules} from 'Engine/rules'
-import {buildNextSteps, generateGridQuestions, generateSimpleQuestions} from 'Engine/generateQuestions'
+import {buildNextSteps} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES, CHANGE_THEME_COLOUR} from './actions'
 
