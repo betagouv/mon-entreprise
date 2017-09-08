@@ -144,6 +144,7 @@
       - AGS
       - Contribution au Dialogue Social
       - FNAL
+      - CDD . surcoût CDD
 
   exemples:
     - nom: salaire médian, non cadre
@@ -198,6 +199,7 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - salaire net
       - coût du travail
+      - CDD . surcoût CDD
 
   simulateur:
     titre: Simulateur de coût d'embauche
