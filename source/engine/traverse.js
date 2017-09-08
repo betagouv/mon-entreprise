@@ -205,7 +205,7 @@ let treat = (rules, rule) => rawNode => {
 						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
 						value1 = explanation[0].nodeValue,
 						value2 = explanation[1].nodeValue,
-						operatorFunction = operatorFunctionName == "!=" ? (a => b => !R.equals(a,b)) : R[operatorFunctionName],
+						operatorFunction = node.operator == "!=" ? ((a, b) => !R.equals(a,b)) : R[operatorFunctionName],
 						nodeValue = value1 == null || value2 == null ?
 							null
 						: operatorFunction(value1, value2)
