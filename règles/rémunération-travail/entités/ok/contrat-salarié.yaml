@@ -74,32 +74,99 @@
   formule: 3269
 
 - espace: contrat salarié
-  nom: cotisations
-  description: |
-    Les cotisations contributives et non contributives
+  nom: cotisations salariales
   formule:
     somme:
-      - maladie
-      - vieillesse
+      - maladie (salarié)
+      - vieillesse (salarié)
+      - ARRCO (salarié)
+      - AGIRC (salarié)
+      - GMP (salarié)
+      - AGFF (salarié)
+      - CSG
+      - CRDS
+      - cotisation exceptionnelle temporaire (salarié)
+      - chômage (salarié)
+      - APEC (salarié)
+
+  exemples:
+    - nom: salaire médian, non cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: non
+      valeur attendue: 510.83
+
+    - nom: salaire médian, cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: oui
+      valeur attendue: 543.84
+
+- espace: contrat salarié
+  nom: cotisations patronales
+  formule:
+    somme:
+      - maladie (employeur)
+      - prévoyance obligatoire cadre
+      - vieillesse (employeur)
+      - ARRCO (employeur)
+      - AGIRC (employeur)
+      - GMP (employeur)
+      - AGFF (employeur)
+      - cotisation exceptionnelle temporaire (employeur)
+      - allocations familiales
+      - chômage (employeur)
+      - APEC (employeur)
+      - AGS
+      - Contribution au Dialogue Social
+      - FNAL
+
+  exemples:
+    - nom: salaire médian, non cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: non
+        entreprise . effectif: 1
+      valeur attendue: 948.66
+
+    - nom: salaire médian, cadre
+      situation:
+        CDD . événement . poursuite du CDD en CDI: oui
+        salaire de base: 2300
+        statut cadre: oui
+        entreprise . effectif: 1
+      valeur attendue: 1032.72
 
 - espace: contrat salarié
   nom: salaire net
   description: |
-    C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salrié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
-  formule: salaire brut - cotisations (salarié)
-
-  exemples:
-    - nom: médian
-      situation:
-        CDD . événement . poursuite du CDD en CDI: oui
-        salaire de base: 2300
-      valeur attendue: 1768
+    C'est, en gros, le salaire brut moins les cotisations sociales. Ce salaire est plus important que le brut car c'est ce que le salarié reçoit sur son compte bancaire, et pourtant, le brut est très utilisé lors des négociations salariales.
+  formule: salaire brut - cotisations salariales
 
 - espace: contrat salarié
   nom: coût du travail
   description: |
+    C'est le salaire "super brut" diminué des aides financières
+  formule: super brut - aides
+
+- espace: contrat salarié
+  nom: super brut
+  description: |
     C'est le salaire de base augmenté des cotisations patronales.
-  formule: salaire brut + cotisations (employeur)
+  formule:
+    somme:
+      - salaire brut
+      - cotisations patronales
+
+- espace: contrat salarié
+  nom: aides
+  formule:
+    somme:
+      - CICE
+      - réduction générale
 
 - espace: contrat salarié
   nom: Salaire

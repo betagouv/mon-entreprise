@@ -6,8 +6,10 @@ import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
-import {mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
-		mecanismPercentage,mecanismScale,mecanismMax,mecanismError, mecanismComplement} from "./mecanisms"
+import {
+	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
+	mecanismPercentage,mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
+} from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
@@ -137,7 +139,7 @@ let buildNegatedVariable = variable => {
 	let jsx = (nodeValue, explanation) =>
 		<Node
 			classes="inlineExpression negation"
-			value={node.nodeValue}
+			value={nodeValue}
 			child={
 				<span className="nodeContent">
 					<span className="operator">¬</span>
@@ -287,6 +289,7 @@ let treat = (rules, rule) => rawNode => {
 					'multiplication':			mecanismProduct,
 					'barème':					mecanismScale,
 					'le maximum de':			mecanismMax,
+					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
 					'une possibilité':			R.always({})
 				},

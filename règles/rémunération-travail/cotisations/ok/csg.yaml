@@ -1,0 +1,55 @@
+- espace: contrat salarié
+  note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO
+  nom: assiette CSG
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
+    abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
+  formule:
+    somme:
+      - assiette csg abattue
+      - prévoyance obligatoire cadre
+
+- espace: contrat salarié
+  note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO
+  nom: assiette CSG abattue
+  formule:
+    barème:
+      assiette: assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
+      tranches:
+        - en-dessous de: 4
+          taux: 98.25%
+        - au-dessus de: 4
+          taux: 100%
+
+- espace: contrat salarié
+  nom: CSG
+  attributs:
+    impôt: oui
+    dû par: salarié
+  description: |
+    Contribution sociale généralisée.
+    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+  formule:
+    multiplication:
+      assiette: assiette CSG
+      composantes:
+        - attributs:
+            déductible des impôts: non
+          taux: 2.4%
+
+        - attributs:
+            déductible des impôts: oui
+          taux: 5.1%
+
+- espace: contrat salarié
+  nom: CRDS
+  attributs:
+    impôt: oui
+    dû par: salarié
+  description: Contribution pour le remboursement de la dette sociale
+  formule:
+    multiplication:
+      assiette: assiette CSG
+      taux: 0.5%

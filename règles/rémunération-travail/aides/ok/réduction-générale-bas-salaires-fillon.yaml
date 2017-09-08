@@ -1,0 +1,66 @@
+- espace: contrat salarié
+  nom: réduction générale
+  aide:
+    type: réduction de cotisations
+    thème: aide bas salaires
+    démarches: non
+  alias: réduction fillon
+  description: |
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation, hormis l'assurance chômage. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
+  références:
+    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
+    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
+
+  non applicable si: salaire brut > plafond réduction générale
+
+  formule:
+    le minimum de:
+      - assiette réduction générale
+      # TODO - cette expression correspond algébriquement mais n'a pas de sens métier, que faire ?
+      - réduction générale constante - réduction générale variable
+
+- espace: contrat salarié
+  nom: réduction générale constante
+  formule: coefficient réduction générale * plafond réduction générale
+
+- espace: contrat salarié
+  nom: réduction générale variable
+  formule: coefficient réduction générale * salaire brut
+
+- espace: contrat salarié
+  nom: coefficient réduction générale
+  formule:
+    multiplication:
+      # TODO - encore obtenu algébriquement mais sans signification
+      assiette: 10 / 6
+      variations:
+        - si: entreprise . effectif < 20
+          taux: 0.2809
+          plafond: plafond sécurité sociale
+        - si: entreprise . effectif >= 20
+          taux: 0.2849
+
+- espace: contrat salarié
+  nom: assiette réduction générale
+  formule:
+    somme:
+      - allocations familiales
+      - fnal (employeur)
+      - maladie (employeur)
+      - vieillesse (employeur)
+      # TODO: ajout ATMP
+
+- espace: contrat salarié
+  nom: plafond réduction générale
+  # TODO: calcul du smic proratisé
+  formule: multiplicateur réduction générale * smic mensuel
+
+- espace: contrat salarié
+  nom: multiplicateur réduction générale
+  formule:
+    taux: 1.6
+
+- espace: contrat salarié
+  nom: smic mensuel
+  formule:
+    taux: 1480.27

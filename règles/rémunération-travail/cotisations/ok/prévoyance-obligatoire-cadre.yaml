@@ -1,0 +1,16 @@
+# TODO: cette contribution est un minimum légal (méconnu semble-t-il), il faudrait pouvoir
+# indiquer le taux appliquer par l'entreprise
+# Cela implique de traiter de façon générique des valeurs "par défaut" qu'on peut corriger dans une
+# situation affinée
+- espace: contrat salarié
+  nom: prévoyance obligatoire cadre
+  attributs:
+    dû par: employeur
+  références:
+    minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
+  non applicable si: ≠ statut cadre
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: plafond sécurité sociale
+      taux: 1.5%

@@ -1,0 +1,15 @@
+- nom : entreprise
+  description: |
+    Le contrat lie une entreprise et un employé
+
+- espace: entreprise
+  nom: effectif
+  question: Quel est l'effectif de l'entreprise ?
+  description: |
+    De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
+  format: nombre
+  suggestions:
+    1: 1
+    20: 20
+    50: 50
+    1000: 1000

@@ -11,7 +11,7 @@ let transformPercentage = s =>
 		+s.replace('%', '') / 100
 	: +s
 
-export let decompose = (recurse, k, v) => {
+let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
 		explanation = v.composantes.map(c =>
@@ -63,6 +63,84 @@ export let decompose = (recurse, k, v) => {
 		evaluate: evaluateArrayWithFilter(filter,R.add,0),
 		category: 'mecanism',
 		name: 'composantes',
+		type: 'numeric'
+	}
+}
+
+let devariate = (recurse, k, v) => {
+	let
+		subProps = R.dissoc('variations')(v),
+		explanation = v.variations.map(c =>
+			({
+				... recurse(
+					R.objOf(k,
+						{
+							... subProps,
+							... R.dissoc('si')(c)
+						})
+				),
+				condition: recurse(c.si)
+			})
+		)
+
+	let evaluate = (situationGate, parsedRules, node) => {
+		let evaluateOne = child => {
+				let condition = evaluateNode(situationGate, parsedRules, child.condition)
+				return {
+					...evaluateNode(situationGate, parsedRules, child),
+					condition
+				}
+			}
+
+		let explanation = R.map(evaluateOne, node.explanation),
+			choice = R.find(node => node.condition.nodeValue, explanation),
+			nodeValue = choice ? choice.nodeValue : null
+
+		let collectMissing = node => {
+			let choice = R.find(node => node.condition.nodeValue, node.explanation),
+				leftMissing = choice ? [] : R.chain(collectNodeMissing,R.pluck("condition",node.explanation)),
+				rightMissing = choice ? collectNodeMissing(choice) : R.chain(collectNodeMissing,node.explanation)
+			return R.concat(leftMissing,rightMissing)
+		}
+
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
+	}
+
+	// TODO - find an appropriate representation
+	let jsx = (nodeValue, explanation) =>
+		<Node
+			classes="mecanism variations"
+			name="variations"
+			value={nodeValue}
+			child={
+				<ul>
+					{ explanation.map((c, i) =>
+						[<li className="variation" key={JSON.stringify(c.variation)}>
+							<ul className="variationAttributes">
+								{R.toPairs(c.condition).map(([k,v]) =>
+									<li>
+										<span>{k}: </span>
+										<span>{v}</span>
+									</li>
+								)}
+							</ul>
+							<div className="content">
+								{makeJsx(c)}
+							</div>
+						</li>,
+						i < (explanation.length - 1) && <li className="variationsSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+						])
+					}
+				</ul>
+			}
+		/>
+
+	return {
+		explanation,
+		evaluate,
+		jsx,
+		category: 'mecanism',
+		name: 'variations',
 		type: 'numeric'
 	}
 }
@@ -298,6 +376,9 @@ export let mecanismProduct = (recurse,k,v) => {
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 		return decompose(recurse,k,v)
 	}
+	if (v.variations) {
+		return devariate(recurse,k,v)
+	}
 
 	// Preprocessing step to parse percentages
 	let wrap = x => ({taux: x}),
@@ -366,7 +447,9 @@ export let mecanismScale = (recurse,k,v) => {
 	// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
 	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
 		return decompose(recurse,k,v)
-
+	}
+	if (v.variations) {
+		return devariate(recurse,k,v)
 	}
 
 	if (v['multiplicateur des tranches'] == null)
@@ -501,6 +584,38 @@ export let mecanismMax = (recurse,k,v) => {
 		type: 'numeric',
 		category: 'mecanism',
 		name: 'le maximum de'
+	}
+}
+
+export let mecanismMin = (recurse,k,v) => {
+	let explanation = v.map(recurse)
+
+	let evaluate = evaluateArray(R.min,Infinity)
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
+			classes="mecanism list minimum"
+			name="le minimum de"
+			value={nodeValue}
+			child={
+				<ul>
+				{explanation.map((item, i) =>
+					<li key={i}>
+						<div className="description">{v[i].description}</div>
+						{makeJsx(item)}
+					</li>
+				)}
+				</ul>
+			}
+		/>
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		type: 'numeric',
+		category: 'mecanism',
+		name: 'le minimum de'
 	}
 }
 
