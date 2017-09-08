@@ -4,6 +4,7 @@
   question: Quel est le motif de recours au CDD ?
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
+  non applicable si: type de contrat != 'CDD'
   formule:
     une possibilité:
       choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD

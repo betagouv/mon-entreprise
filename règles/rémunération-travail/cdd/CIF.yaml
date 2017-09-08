@@ -7,10 +7,12 @@
 
   non applicable si:
     une de ces conditions:
+      - type de contrat != 'CDD'
       - événement = 'poursuite du CDD en CDI'
       - contrat jeune vacances
       - motif = 'saisonnier'
       - motif = 'contrat aidé'
+
 
   formule:
     multiplication:

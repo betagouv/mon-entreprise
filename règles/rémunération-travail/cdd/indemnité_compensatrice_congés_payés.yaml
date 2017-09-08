@@ -10,6 +10,7 @@
 
   non applicable si:
     une de ces conditions:
+      - type de contrat != 'CDD'
       - événement . poursuite du CDD en CDI
     # TODO Y a-t-il d'autres conditions ? Sinon supprimer la liste
 
