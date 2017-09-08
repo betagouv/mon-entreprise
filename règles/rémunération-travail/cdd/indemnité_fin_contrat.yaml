@@ -12,6 +12,8 @@
 
   non applicable si:
     une de ces conditions:
+      - type de contrat != 'CDD'
+
       # Evènements particuliers
       - événement = 'poursuite du CDD en CDI'
       - événement = 'refus CDI avantageux'
