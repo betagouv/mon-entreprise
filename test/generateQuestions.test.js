@@ -71,6 +71,28 @@ describe('collectMissingVariables', function() {
     expect(result).to.deep.equal({})
   });
 
+  it('should report "une possibilité" as a missing variable even though it has a formula', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "trois", espace: "top"},
+          {nom: "trois", formule: {"une possibilité":["ko"]}, espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.have.property('top . trois')
+  });
+
+  it('should not report missing variables when "une possibilité" is inapplicable', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "trois", espace: "top"},
+          {nom: "trois", formule: {"une possibilité":["ko"]}, "non applicable si": 1, espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.deep.equal({})
+  });
+
   it('should report missing variables in switch statements', function() {
     let rawRules = [
           { nom: "startHere", formule: {"aiguillage numérique": {
