@@ -71,17 +71,16 @@ export let clearDict = () => dict = {}
 
 let fillVariableNode = (rules, rule) => (parseResult) => {
 	let evaluate = (situation, parsedRules, node) => {
-		let retrieveEvaluated = (cached, variable) => cached ? cached : evaluateNode(situation,parsedRules,variable)
-
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 			cached = dict[dottedName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
 			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
-			variableIsCalculable = variable.formule != null && !R.path(['formule', 'explanation', 'une possibilité'])(variable),
+			isMultipleChoice = R.path(['formule', 'explanation', 'une possibilité'])(variable),
+			variableIsCalculable = variable.formule != null,
 
-			parsedRule = variableIsCalculable && retrieveEvaluated(cached, variable),
+			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(situation,parsedRules,variable)),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue = situationValue
@@ -92,10 +91,7 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
 
-			let collectMissing = node =>
-				R.path(['formule', 'explanation', 'une possibilité'])(variable) ?
-					R.concat(collectNodeMissing(retrieveEvaluated(cached,variable)), node.missingVariables) :
-					variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
+			let collectMissing = node => variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
 			let result = cached ? cached : {
 				...rewriteNode(node,nodeValue,explanation,collectMissing),
@@ -293,7 +289,7 @@ let treat = (rules, rule) => rawNode => {
 					'le maximum de':			mecanismMax,
 					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
-					'une possibilité':			R.always({'une possibilité':'oui'})
+					'une possibilité':			R.always({'une possibilité':'oui', collectMissing: node => [rule.dottedName]})
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 
