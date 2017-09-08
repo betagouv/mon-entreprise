@@ -1,4 +1,10 @@
 - espace: contrat salarié . CDD
+  nom: en cours
+  titre: Contrat en cours d'exécution
+  question: Le contrat est-il déjà en cours d'exécution ?
+  description: Certaines questions ne sont pertinentes qu'après le début du contrat, mais pas avant l'embauche.
+
+- espace: contrat salarié . CDD
   nom: événement
   titre: Événement de contrat
   question: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
@@ -6,6 +12,8 @@
     Certains événements impactent fortement les obligations du CDD.
 
     > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune majoration ou indemnité sur le CDD ne sera à verser.
+
+  applicable si: en cours
 
   # TODO
   # cette règle devrait n'être affichée que quand son espace, CDD, est valide
