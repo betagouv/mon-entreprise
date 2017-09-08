@@ -264,7 +264,7 @@ describe('buildNextSteps', function() {
   });
 
   it('should generate questions from the real rules, experimental version', function() {
-    let stateSelector = (name) => ({"contrat salarié . CDD . événement . poursuite du CDD en CDI":"oui"})[name]
+    let stateSelector = (name) => ({"contrat salarié . type de contrat":"CDI"})[name]
 
     let rules = realRules.map(enrichRule),
         situation = analyseTopDown(rules,"Salaire")(stateSelector),
