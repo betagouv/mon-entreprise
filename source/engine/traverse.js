@@ -89,9 +89,12 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
 						: parsedRule.nodeValue, // la valeur du calcul fait foi
 			explanation = parsedRule,
-			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
+			missingVariables = variableIsCalculable ? [] : [dottedName]
 
-			let collectMissing = node => variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
+			let collectMissing = node =>
+				nodeValue != null ? // notamment si situationValue != null
+					[] :
+					variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
 			let result = cached ? cached : {
 				...rewriteNode(node,nodeValue,explanation,collectMissing),
