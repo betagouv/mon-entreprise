@@ -1,0 +1,27 @@
+- espace: contrat salarié
+  nom: versement transport
+
+  non applicable si: entreprise . effectif < 11
+    # TODO variations sur la période
+    # variations:
+    #   - si: période >= 2016
+    #     condition: Entreprise . effectif >= 11
+    #   - si: période < 2016
+    #     condition: Entreprise . effectif >= 10
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: etablissement . taux versement transport
+
+- espace: etablissement
+  nom: taux versement transport
+  formule:
+    sélection:
+      - données: 'taux_versement_transport'
+        clé: code INSEE
+    composantes:
+      - nom: aot
+        clé: 'aot'
+      - nom: smt
+        clé: 'smt'
