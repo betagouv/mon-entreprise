@@ -8,7 +8,8 @@ import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
 import {
 	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
-	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
+	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement,
+	mecanismSelection
 } from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
@@ -328,45 +329,6 @@ let treat = (rules, rule) => rawNode => {
 
 	return	parsedNode.evaluate ? parsedNode :
 			{...parsedNode, evaluate: defaultEvaluate}
-}
-
-let mecanismSelection = (recurse,k,v) => {
-	let dataSourceName = v['données']
-	let dataSearchField = v['dans']
-	let dataTargetName = v['renvoie']
-	let explanation = recurse(v['cherche'])
-
-	let evaluate = (situationGate, parsedRules, node) => {		
-		let collectMissing = node => collectNodeMissing(node.explanation),
-			explanation = evaluateNode(situationGate, parsedRules, node.explanation),
-			dataSource = findRuleByName(parsedRules, dataSourceName),
-			data = dataSource ? dataSource['data'] : null,
-			dataKey = explanation.nodeValue,
-			dataItems = (data && dataKey && dataSearchField) ? R.filter(item => item[dataSearchField] == dataKey, data) : null,
-			dataItemValues = dataItems ? R.values(dataItems) : null,
-			// TODO - over-specific! transform the JSON instead
-			dataItemSubValues = dataItemValues ? dataItemValues[0][dataTargetName]["taux"] : null,
-			sortedSubValues = dataItemSubValues ? R.sortBy(pair => pair[0], R.toPairs(dataItemSubValues)) : null,
-			nodeValue = sortedSubValues ? Number.parseFloat(R.last(sortedSubValues)[1]) : null
-		return rewriteNode(node,nodeValue,explanation,collectMissing)
-	}
-
-	let jsx = (nodeValue, explanation) =>
-		<Node
-			classes="mecanism"
-			name="sélection"
-			value={nodeValue}
-			child={
-				explanation.category === 'variable' ? <div className="node">{makeJsx(explanation)}</div>
-				: makeJsx(explanation)
-			}
-		/>
-
-	return {
-		evaluate,
-		explanation,
-		jsx
-	}
 }
 
 //TODO c'est moche :

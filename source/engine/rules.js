@@ -68,7 +68,7 @@ export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 }
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = rawRules.map(enrichRule, {taux_versement_transport})
+export let rules = rawRules.map(rule => enrichRule(rule, {taux_versement_transport}))
 
 
 /****************************************
