@@ -291,7 +291,7 @@ let treat = (rules, rule) => rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
 			if (mecanisms.length != 1) {
-				console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', rawNode)
+				console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', mecanisms, rawNode)
 				throw 'OUPS !'
 			}
 
@@ -308,6 +308,7 @@ let treat = (rules, rule) => rawNode => {
 					'le maximum de':			mecanismMax,
 					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
+					'sélection':				mecanismSelection,
 					'une possibilité':			R.always({'une possibilité':'oui', collectMissing: node => [rule.dottedName]})
 				},
 				action = R.propOr(mecanismError, k, dispatch)
@@ -327,6 +328,33 @@ let treat = (rules, rule) => rawNode => {
 
 	return	parsedNode.evaluate ? parsedNode :
 			{...parsedNode, evaluate: defaultEvaluate}
+}
+
+let mecanismSelection = (recurse,k,v) => {
+	let data = v['données']
+	let explanation = recurse(v['clé'])
+
+	let evaluate = (situationGate, parsedRules, node) => {		
+		let collectMissing = node => node.explanation.nodeValue ? [] : collectNodeMissing(node.explanation),
+			nodeValue = null
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
+	}
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
+			classes="mecanism"
+			name="sélection"
+			value={nodeValue}
+			child={
+				explanation.category === 'variable' ? <div className="node">{makeJsx(explanation)}</div>
+				: makeJsx(explanation)
+			}
+		/>
+
+	return {
+		evaluate,
+		jsx
+	}
 }
 
 //TODO c'est moche :

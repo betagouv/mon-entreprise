@@ -16,13 +16,14 @@
 
 - espace: etablissement
   nom: taux versement transport
-  données: 'taux_versement_transport'
+  données: taux_versement_transport
   formule:
     sélection:
         données: taux versement transport
-        clé: code INSEE
-    composantes:
-      - nom: aot
-        clé: 'aot'
-      - nom: smt
-        clé: 'smt'
+        clé: code postal
+        cherche: codePostal
+        composantes:
+          - nom: aot
+            cible: aot
+          - nom: smt
+            cible: smt

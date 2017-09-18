@@ -240,4 +240,22 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
   });
 
+  it('should handle selection', function() {
+    let stateSelector = (name) => ({"top . code postal":"2"})[name]
+    let data = {taux_versement_transport: {xyz: {codePostal:1, aot: {taux: {"2019":"1.0"}}}, abc: {codePostal:2, smt: {taux: {"2019":"2.0"}}}}}
+    let rawRules = [
+          { espace: "top",
+            nom: "startHere",
+            formule: {"sélection": {
+              données: "startHere",
+              clé: "code postal",
+              cherche: "codePostal",
+              cible: "smt"
+            }},
+            données: 'taux_versement_transport'},
+          {espace: "top", nom: "code postal"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2.0)
+  });
+
 });
