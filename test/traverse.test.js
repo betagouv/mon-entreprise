@@ -248,13 +248,13 @@ describe('analyseSituation with mecanisms', function() {
             nom: "startHere",
             formule: {"sélection": {
               données: "startHere",
-              clé: "code postal",
-              cherche: "codePostal",
-              cible: "smt"
+              cherche: "code postal",
+              dans: "codePostal",
+              renvoie: "smt"
             }},
             données: 'taux_versement_transport'},
-          {espace: "top", nom: "code postal"}],
-        rules = rawRules.map(enrichRule)
+          {espace: "top", nom: "code postal", format: "nombre"}],
+        rules = rawRules.map(rule => enrichRule(rule,data))
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2.0)
   });
 

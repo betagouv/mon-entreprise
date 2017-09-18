@@ -331,12 +331,22 @@ let treat = (rules, rule) => rawNode => {
 }
 
 let mecanismSelection = (recurse,k,v) => {
-	let data = v['données']
-	let explanation = recurse(v['clé'])
+	let dataSourceName = v['données']
+	let dataSearchField = v['dans']
+	let dataTargetName = v['renvoie']
+	let explanation = recurse(v['cherche'])
 
 	let evaluate = (situationGate, parsedRules, node) => {		
 		let collectMissing = node => node.explanation.nodeValue ? [] : collectNodeMissing(node.explanation),
-			nodeValue = null
+			dataSource = findRuleByName(parsedRules, dataSourceName),
+			dataKey = evaluateNode(situationGate, parsedRules, explanation).nodeValue,
+			data = dataSource ? dataSource['data'] : null,
+			dataItems = (data && dataKey && dataSearchField) ? R.filter(item => item[dataSearchField] == dataKey, data) : null,
+			dataItemValues = dataItems ? R.values(dataItems) : null,
+			// TODO - over-specific! transform the JSON instead
+			dataItemSubValues = dataItemValues ? dataItemValues[0][dataTargetName]["taux"] : null,
+			sortedSubValues = dataItemSubValues ? R.sortBy(pair => pair[0], R.toPairs(dataItemSubValues)) : null,
+			nodeValue = sortedSubValues ? Number.parseFloat(R.last(sortedSubValues)[1]) : null
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 

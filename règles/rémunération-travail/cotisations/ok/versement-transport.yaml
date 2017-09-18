@@ -20,10 +20,10 @@
   formule:
     sélection:
         données: taux versement transport
-        clé: code postal
-        cherche: codePostal
+        cherche: code postal
+        dans: codePostal
         composantes:
           - nom: aot
-            cible: aot
+            renvoie: aot
           - nom: smt
-            cible: smt
+            renvoie: smt
