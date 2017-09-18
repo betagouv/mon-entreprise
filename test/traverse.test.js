@@ -255,7 +255,7 @@ describe('analyseSituation with mecanisms', function() {
             données: 'taux_versement_transport'},
           {espace: "top", nom: "code postal", format: "nombre"}],
         rules = rawRules.map(rule => enrichRule(rule,data))
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2.0)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',0.02)
   });
 
 });

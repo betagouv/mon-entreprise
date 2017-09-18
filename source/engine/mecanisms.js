@@ -620,7 +620,7 @@ export let mecanismSelection = (recurse,k,v) => {
 	let dataTargetName = v['renvoie']
 	let explanation = recurse(v['cherche'])
 
-	let evaluate = (situationGate, parsedRules, node) => {		
+	let evaluate = (situationGate, parsedRules, node) => {
 		let collectMissing = node => collectNodeMissing(node.explanation),
 			explanation = evaluateNode(situationGate, parsedRules, node.explanation),
 			dataSource = findRuleByName(parsedRules, dataSourceName),
@@ -631,7 +631,9 @@ export let mecanismSelection = (recurse,k,v) => {
 			// TODO - over-specific! transform the JSON instead
 			dataItemSubValues = dataItemValues && dataItemValues[0][dataTargetName] ? dataItemValues[0][dataTargetName]["taux"] : null,
 			sortedSubValues = dataItemSubValues ? R.sortBy(pair => pair[0], R.toPairs(dataItemSubValues)) : null,
-			nodeValue = sortedSubValues ? Number.parseFloat(R.last(sortedSubValues)[1]) : null
+			// return 0 if we found a match for the lookup but not for the specific field,
+			// so that component sums don't sum to null
+			nodeValue = dataItems ? (sortedSubValues ? Number.parseFloat(R.last(sortedSubValues)[1])/100 : 0) : null
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 

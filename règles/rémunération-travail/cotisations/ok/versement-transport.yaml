@@ -19,11 +19,11 @@
   données: taux_versement_transport
   formule:
     sélection:
-        données: taux versement transport
-        cherche: code postal
-        dans: codePostal
-        composantes:
-          - nom: aot
-            renvoie: aot
-          - nom: smt
-            renvoie: smt
+      données: taux versement transport
+      cherche: code postal
+      dans: codePostal
+      composantes:
+        - nom: aot
+          renvoie: aot
+        - nom: smt
+          renvoie: smt
