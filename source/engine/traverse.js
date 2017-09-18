@@ -337,10 +337,11 @@ let mecanismSelection = (recurse,k,v) => {
 	let explanation = recurse(v['cherche'])
 
 	let evaluate = (situationGate, parsedRules, node) => {		
-		let collectMissing = node => node.explanation.nodeValue ? [] : collectNodeMissing(node.explanation),
+		let collectMissing = node => collectNodeMissing(node.explanation),
+			explanation = evaluateNode(situationGate, parsedRules, node.explanation),
 			dataSource = findRuleByName(parsedRules, dataSourceName),
-			dataKey = evaluateNode(situationGate, parsedRules, explanation).nodeValue,
 			data = dataSource ? dataSource['data'] : null,
+			dataKey = explanation.nodeValue,
 			dataItems = (data && dataKey && dataSearchField) ? R.filter(item => item[dataSearchField] == dataKey, data) : null,
 			dataItemValues = dataItems ? R.values(dataItems) : null,
 			// TODO - over-specific! transform the JSON instead
@@ -363,6 +364,7 @@ let mecanismSelection = (recurse,k,v) => {
 
 	return {
 		evaluate,
+		explanation,
 		jsx
 	}
 }

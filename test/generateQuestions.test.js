@@ -265,16 +265,16 @@ describe('buildNextSteps', function() {
   });
 
   it('should generate questions from the real rules, experimental version', function() {
-    let stateSelector = (name) => ({"contrat salarié . type de contrat":"CDI"})[name]
+    let stateSelector = (name) => ({"contrat salarié . type de contrat":"CDI","entreprise . effectif":"50"})[name]
 
     let rules = realRules.map(enrichRule),
         situation = analyseTopDown(rules,"Salaire")(stateSelector),
         objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
+        missing = collectMissingVariables()(stateSelector,situation),
         result = buildNextSteps(stateSelector, rules, situation)
 
     expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut ?")
     expect(R.path(["question","props","label"])(result[1])).to.equal("Le salarié a-t-il le statut cadre ?")
-    expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est l'effectif de l'entreprise ?")
   });
 
 });
