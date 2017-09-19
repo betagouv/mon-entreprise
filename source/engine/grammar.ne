@@ -67,7 +67,7 @@ Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d 
 VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
 
 
-VariableWord -> [a-zA-Z\u00C0-\u017F]:+     {% d => d[0].join('') %}
+VariableWord -> ['a-zA-Z\u00C0-\u017F]:+     {% d => d[0].join('') %}
 
 Dot -> [\.] {% d => null %}
 
