@@ -221,7 +221,7 @@ let treat = (rules, rule) => rawNode => {
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseInt(node.nodeValue)}),
+									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseFloat(node.nodeValue)}),
 									jsx:  nodeValue => <span className="value">{nodeValue}</span>
 								})
 							]
