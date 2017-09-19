@@ -5,6 +5,10 @@ import {Node, Leaf} from './traverse-common-jsx'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
 import {findRuleByName} from './rules'
 
+import 'react-virtualized/styles.css'
+import {Table, Column} from 'react-virtualized'
+import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/taux.json'
+
 let constantNode = constant => ({nodeValue: constant, jsx:  nodeValue => <span className="value">{nodeValue}</span>})
 
 let decompose = (recurse, k, v) => {
@@ -154,7 +158,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 
 	let evaluate = (situationGate, parsedRules, node) => {
 		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
-		    explanation = R.map(evaluateOne, node.explanation),
+				explanation = R.map(evaluateOne, node.explanation),
 			values = R.pluck("nodeValue",explanation),
 			nodeValue = R.any(R.equals(true),values) ? true :
 							(R.any(R.equals(null),values) ? null : false)
@@ -643,8 +647,38 @@ export let mecanismSelection = (recurse,k,v) => {
 			name="sélection"
 			value={nodeValue}
 			child={
-				explanation.category === 'variable' ? <div className="node">{makeJsx(explanation)}</div>
-				: makeJsx(explanation)
+				<Table
+					width={300}
+					height={300}
+					headerHeight={20}
+					rowHeight={30}
+					rowCount={R.values(taux_versement_transport).length}
+					rowGetter={
+						({ index }) => {
+							// transformation de données un peu crade du fichier taux.json qui gagnerait à être un CSV
+							let line = R.values(taux_versement_transport)[index],
+								getLastTaux = dataTargetName => {
+									let lastTaux = R.values(R.path([dataTargetName, 'taux'], line))
+									return (lastTaux && lastTaux.length && lastTaux[0]) || 0
+								}
+							return {
+								nom: line['nomLaposte'],
+								taux: getLastTaux(dataTargetName)
+							}
+						}
+					}
+				>
+					<Column
+						label='Nom de commune'
+						dataKey='nom'
+						width={200}
+					/>
+					<Column
+						width={100}
+						label={'Taux ' + dataTargetName}
+						dataKey="taux"
+					/>
+				</Table>
 			}
 		/>
 
