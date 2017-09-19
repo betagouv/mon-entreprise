@@ -12,16 +12,16 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: etablissement . taux versement transport
+      taux: établissement . taux versement transport
 
-- espace: etablissement
+- espace: établissement
   nom: taux versement transport
   données: taux_versement_transport
   formule:
     sélection:
       données: taux versement transport
-      cherche: code postal
-      dans: codePostal
+      cherche: commune
+      dans: nomLaposte
       composantes:
         - nom: aot
           renvoie: aot

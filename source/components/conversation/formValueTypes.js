@@ -29,9 +29,13 @@ let jours = {
 }
 
 let nombre = {
-	suffix: '',
 	human: value => value,
 	validator: int
+}
+
+let texte = {
+	human: value => value,
+	validator: {test: () => true}
 }
 
 export default {
@@ -39,5 +43,6 @@ export default {
 	euros,
 	mois,
 	jours,
-	nombre
+	nombre,
+	texte
 }
