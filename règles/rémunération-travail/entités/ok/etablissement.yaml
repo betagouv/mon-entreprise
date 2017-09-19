@@ -16,4 +16,4 @@
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   # format: objet
   format: texte
-  # suggestions: communes.csv
+  suggestions: communes

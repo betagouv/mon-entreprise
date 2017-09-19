@@ -4,6 +4,7 @@ import R from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
+import Select from 'Components/conversation/select/Select'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
 import {analyseSituation} from './traverse'
@@ -141,13 +142,18 @@ export let generateQuestion = flatRules => ([dottedName, objectives]) => {
 
 	// console.log(isVariant(rule)?"variant":"generateQuestion",[dottedName, objectives.length])
 
-	let numericQuestion = rule => ({
+	let inputQuestion = rule => ({
 			component: Input,
 			valueType: formValueTypes[rule.format],
 			attributes: {
 				inputMode: 'numeric',
 				placeholder: 'votre réponse',
 			},
+			suggestions: rule.suggestions,
+		})
+	let selectQuestion = rule => ({
+			component: Select,
+			valueType: formValueTypes[rule.format],
 			suggestions: rule.suggestions,
 		})
 	let binaryQuestion = rule => ({
@@ -168,9 +174,12 @@ export let generateQuestion = flatRules => ([dottedName, objectives]) => {
 		common,
 		isVariant(rule) ?
 			multiChoiceQuestion(rule) :
-			rule.format != null ?
-				numericQuestion(rule) :
-				binaryQuestion(rule),
+			rule.format == null ?
+				binaryQuestion(rule) :
+				typeof rule.suggestions == 'string' ?
+					selectQuestion(rule) :
+					inputQuestion(rule)
+				,
 		guidance
 	)
 }
