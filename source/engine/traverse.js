@@ -175,7 +175,7 @@ let treat = (rules, rule) => rawNode => {
 			if (additionnalResults && additionnalResults.length > 0)
 				throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable']))
+			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable', 'percentage']))
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
@@ -187,6 +187,15 @@ let treat = (rules, rule) => rawNode => {
 				return buildNegatedVariable(
 					fillVariableNode(rules, rule)(parseResult.variable)
 				)
+
+			// We don't need to handle category == 'value' because YAML then returns it as
+			// numerical value, not a String: it goes to treatNumber
+			if (parseResult.category == 'percentage') {
+				return {
+					nodeValue: parseResult.nodeValue,
+					jsx:  nodeValue => <span className="percentage">{rawNode}</span>
+				}
+			}
 
 			if (parseResult.category == 'calcExpression' || parseResult.category == 'comparison') {
 				let evaluate = (situation, parsedRules, node) => {
@@ -224,8 +233,14 @@ let treat = (rules, rule) => rawNode => {
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: node.nodeValue}),
+									nodeValue: node.nodeValue,
 									jsx:  nodeValue => <span className="value">{nodeValue}</span>
+								})
+							],
+							[R.propEq('category', 'percentage'), node =>
+								({
+									nodeValue: node.nodeValue,
+									jsx:  nodeValue => <span className="value">{nodeValue*100}%</span>
 								})
 							]
 						])

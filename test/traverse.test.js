@@ -103,6 +103,13 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',0.35)
   });
 
+  it('should handle raw percentages', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "35%", espace: "top"}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',0.35)
+  });
+
   it('should handle sums', function() {
     let rawRules = [
           {nom: "startHere", formule: {"somme": [3200, "dix", 9]}},
