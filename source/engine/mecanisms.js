@@ -627,7 +627,7 @@ export let mecanismSelection = (recurse,k,v) => {
 			data = dataSource ? dataSource['data'] : null,
 			dataKey = explanation.nodeValue,
 			dataItems = (data && dataKey && dataSearchField) ? R.filter(item => item[dataSearchField] == dataKey, data) : null,
-			dataItemValues = dataItems ? R.values(dataItems) : null,
+			dataItemValues = (dataItems && !R.isEmpty(dataItems)) ? R.values(dataItems) : null,
 			// TODO - over-specific! transform the JSON instead
 			dataItemSubValues = dataItemValues && dataItemValues[0][dataTargetName] ? dataItemValues[0][dataTargetName]["taux"] : null,
 			sortedSubValues = dataItemSubValues ? R.sortBy(pair => pair[0], R.toPairs(dataItemSubValues)) : null,

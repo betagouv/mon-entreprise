@@ -27,6 +27,15 @@ module.exports = {
 			exclude: /node_modules/,
 			loader: 'babel-loader'
 		},
+		{
+			test: /\.csv$/,
+			loader: 'csv-loader',
+			options: {
+				dynamicTyping: true,
+				header: true,
+				skipEmptyLines: true
+			}
+		},
 		{ //slow : ~ 3 seconds
 			test: /\.(jpe?g|png|gif|svg)$/i,
 			loader: 'ignore-loader'
