@@ -6,7 +6,7 @@ import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
 
 // TODO - should be in UI, not engine
-import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/taux.json'
+import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/taux.json'
 
  // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
