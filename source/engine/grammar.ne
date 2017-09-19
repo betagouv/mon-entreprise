@@ -72,4 +72,4 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-constant -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: d[0]+(d[1]?(d[1][0]+d[1][1]):"")}) %}
+constant -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):"")}) %}
