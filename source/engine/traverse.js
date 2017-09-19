@@ -174,7 +174,7 @@ let treat = (rules, rule) => rawNode => {
 			if (additionnalResults && additionnalResults.length > 0)
 				throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable']))
+			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable', 'percentage']))
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
@@ -186,6 +186,13 @@ let treat = (rules, rule) => rawNode => {
 				return buildNegatedVariable(
 					fillVariableNode(rules, rule)(parseResult.variable)
 				)
+
+			if (parseResult.category == 'percentage') {
+				return {
+					evaluate: (situation, parsedRules, node) => ({...node, nodeValue: parseFloat(parseResult.nodeValue)/100}),
+					jsx:  nodeValue => <span className="value">{rawNode}%</span>
+				}
+			}
 
 			if (parseResult.category == 'calcExpression' || parseResult.category == 'comparison') {
 				let evaluate = (situation, parsedRules, node) => {
@@ -222,6 +229,12 @@ let treat = (rules, rule) => rawNode => {
 							[R.propEq('category', 'value'), node =>
 								({
 									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseFloat(node.nodeValue)}),
+									jsx:  nodeValue => <span className="value">{nodeValue}</span>
+								})
+							],
+							[R.propEq('category', 'percentage'), node =>
+								({
+									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseFloat(node.nodeValue)/100}),
 									jsx:  nodeValue => <span className="value">{nodeValue}</span>
 								})
 							]
