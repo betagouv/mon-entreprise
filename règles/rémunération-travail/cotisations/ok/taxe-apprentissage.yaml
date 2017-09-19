@@ -1,5 +1,5 @@
 - espace: contrat salarié
-  nom: taxe apprentissage
+  nom: taxe d'apprentissage
   cotisation:
     destinataire: Organisme Collecteur de Taxe d'Apprentissage (OCTA)
   description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
@@ -44,8 +44,8 @@
           variations:
           - si: entreprise . ratio alternants < 1%
             taux: 0.4%
-          - si: entreprise . effectif entreprise >= 2000
-            taux: 0.6%
+            # - si: entreprise . effectif >= 2000
+            #   taux: 0.6%
           - si: entreprise . ratio alternants < 2%
             taux: 0.2%
           - si: entreprise . ratio alternants < 3%
