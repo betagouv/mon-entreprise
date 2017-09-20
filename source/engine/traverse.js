@@ -8,7 +8,7 @@ import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
 import {
 	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
-	mecanismPercentage,mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
+	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
 } from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
@@ -190,7 +190,7 @@ let treat = (rules, rule) => rawNode => {
 			if (parseResult.category == 'percentage') {
 				return {
 					evaluate: (situation, parsedRules, node) => ({...node, nodeValue: parseFloat(parseResult.nodeValue)/100}),
-					jsx:  nodeValue => <span className="value">{rawNode}%</span>
+					jsx:  nodeValue => <span className="percentage">{rawNode}</span>
 				}
 			}
 
@@ -297,7 +297,6 @@ let treat = (rules, rule) => rawNode => {
 					'une de ces conditions':	mecanismOneOf,
 					'toutes ces conditions':	mecanismAllOf,
 					'aiguillage numérique':		mecanismNumericalSwitch,
-					'taux':						mecanismPercentage,
 					'somme':					mecanismSum,
 					'multiplication':			mecanismProduct,
 					'barème':					mecanismScale,

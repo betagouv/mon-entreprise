@@ -20,7 +20,4 @@
 
 - espace: contrat salarié
   nom: plafond réduction allocations familiales
-  formule:
-    multiplication:
-      assiette: smic mensuel
-      taux: 3.5
+  formule: smic mensuel * 3.5
