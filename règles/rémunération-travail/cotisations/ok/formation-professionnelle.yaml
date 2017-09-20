@@ -1,0 +1,15 @@
+- espace: contrat salarié
+  nom: formation professionnelle
+  attributs:
+    dû par: employeur
+    collecteur: OPCA
+    # TODO majoration pour les entreprises de travail temporaire
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      variations:
+        - si: entreprise . effectif >= 11
+          taux: 1%
+        - si: entreprise . effectif < 11
+          taux: 0.55%
