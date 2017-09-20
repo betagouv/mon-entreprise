@@ -57,10 +57,8 @@
 
 - espace: contrat salarié
   nom: multiplicateur réduction générale
-  formule:
-    taux: 1.6
+  formule: 1.6
 
 - espace: contrat salarié
   nom: smic mensuel
-  formule:
-    taux: 1480.27
+  formule: 1480.27
