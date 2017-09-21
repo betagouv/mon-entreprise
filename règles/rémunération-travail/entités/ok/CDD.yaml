@@ -78,3 +78,7 @@
           titre: Votre obligation
       motivation: Découvrez en quelques clics le montant des 4 obligations du CDD
         # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
+    par défaut:
+      contrat salarié . CDD . événement: non
+      contrat salarié . CDD . congés non pris: 0
+      contrat salarié . CDD . contrat jeune vacances: non

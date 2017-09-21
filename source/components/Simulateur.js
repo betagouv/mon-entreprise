@@ -24,6 +24,7 @@ let situationSelector = formValueSelector('conversation')
 		situation: variableName => situationSelector(state, variableName),
 		foldedSteps: state.foldedSteps,
 		unfoldedSteps: state.unfoldedSteps,
+		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
 		analysedSituation: state.analysedSituation,
 	}),
@@ -57,7 +58,7 @@ export default class extends React.Component {
 
 		let
 			started = !this.props.match.params.intro,
-			{foldedSteps, unfoldedSteps, situation} = this.props,
+			{foldedSteps, extraSteps, unfoldedSteps, situation} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
@@ -122,6 +123,22 @@ export default class extends React.Component {
 												</button>
 											</div>
 											{foldedSteps
+												.map(step => (
+													<step.component
+														key={step.name}
+														{...step}
+														step={step}
+														answer={situation(step.name)}
+													/>
+												))}
+										</div>
+									}
+									{ !R.isEmpty(extraSteps) &&
+										<div id="foldedSteps">
+											<div className="header" >
+												<h3>Affiner votre situation</h3>
+											</div>
+											{extraSteps
 												.map(step => (
 													<step.component
 														key={step.name}
