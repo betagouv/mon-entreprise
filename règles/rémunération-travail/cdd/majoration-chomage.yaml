@@ -19,16 +19,18 @@
       plafond: 4 * plafond sécurité sociale
       taux:
         aiguillage numérique:
-          motif = 'accroissement activité':
+          motif . classique . accroissement activité:
             durée contrat <= 1: 3% # TODO 1 mois, pas 1 rien, évidemment
             durée contrat <= 3: 1.5%
-          motif = 'usage':
+          motif . classique . usage:
             durée contrat <= 3: 0.5%
 
 
   exemples:
-    - nom: salaire médian, CDD d'usage, contrat de 2 mois
+    - nom: salaire médian, accroissement d'activité, contrat de 1 mois
       situation:
+        événement: non
+        contrat salarié . type de contrat: CDD
         assiette cotisations sociales: 2300
         motif . classique . accroissement activité: oui
         durée contrat: 1
