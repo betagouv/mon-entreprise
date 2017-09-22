@@ -61,7 +61,7 @@ Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d 
 	type: 'numeric | boolean'
 }) %}
 
-Constant -> "'" [a-zA-Z\u00C0-\u017F ]:+ "'" {% d => ({
+Constant -> "'" [ .'a-zA-Z\u00C0-\u017F ]:+ "'" {% d => ({
 	category: 'value',
 	type: 'string',
 	nodeValue: d[1].join('')
