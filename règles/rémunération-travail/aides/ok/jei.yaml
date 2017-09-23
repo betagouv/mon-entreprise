@@ -15,6 +15,7 @@
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
+    cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
 
   non applicable si: ≠ statut JEI
 
