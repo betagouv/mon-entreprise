@@ -74,7 +74,9 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
-			cached = dict[dottedName],
+			filter = situation("sys.filter"),
+			cacheName = dottedName + (filter ? "." + filter: ""),
+			cached = dict[cacheName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
 			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
@@ -101,7 +103,7 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 				...rewriteNode(node,nodeValue,explanation,collectMissing),
 				missingVariables,
 			}
-			dict[dottedName] = result
+			dict[cacheName] = result
 
 			return result
 	}

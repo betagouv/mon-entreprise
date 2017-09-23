@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import {enrichRule} from '../source/engine/rules'
-import {analyseSituation} from '../source/engine/traverse'
+import {rules as realRules, enrichRule} from '../source/engine/rules'
+import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
 
@@ -217,6 +217,23 @@ describe('analyseSituation with mecanisms', function() {
           }}}],
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',50+400+40)
+  });
+
+  // TODO - make this a smaller test case
+  it('should compute consistent values', function() {
+    let stateSelector = (name) => ({
+        "contrat salarié . CDD . événement . poursuite du CDD en CDI":"oui",
+        "contrat salarié . salaire brut":2300,
+        "contrat salarié . statut cadre":"non",
+        "entreprise . effectif":20
+      })[name]
+
+    let rules = realRules.map(enrichRule),
+        part = analyseTopDown(rules,"coût du travail")(stateSelector),
+        whole = analyseTopDown(rules,"Salaire")(stateSelector)
+
+    expect(part.root.nodeValue).to.be.closeTo(2971.44,0.01)
+    expect(whole.root.formule.explanation.explanation[1].nodeValue).to.be.closeTo(2971.44,0.01)
   });
 
 });
