@@ -1,0 +1,28 @@
+- espace: contrat salarié
+  nom: assujettie à la taxe sur les salaires
+  titre: Entreprise assujettie à la taxe sur les salaires
+  question: L'entreprise est-elle assujettie à la taxe sur les salaires ?
+  description: |
+  	Sont assujetties les associations à but non lucratif et les entreprises non soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les particuliers employeurs, les employeurs agricoles, les établissements d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
+
+- espace: contrat salarié
+  nom: taxe sur les salaires
+  références:
+  	description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
+
+  non applicable si: ≠ assujettie à la taxe sur les salaires
+
+  formule:
+    barème:
+      assiette: assiette cotisations sociales - prévoyance obligatoire cadre
+      tranches:
+        - en-dessous de: 7721
+          taux: 4.25%
+        - de: 7721
+          à: 15417
+          taux: 8.5%
+        - de:  15417
+          à: 152279
+          taux: 13.6%
+        - au-dessus de: 152279
+          taux: 20%
