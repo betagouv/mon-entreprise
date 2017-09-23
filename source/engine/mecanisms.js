@@ -408,9 +408,6 @@ export let mecanismScale = (recurse,k,v) => {
 		return devariate(recurse,k,v)
 	}
 
-	if (v['multiplicateur des tranches'] == null)
-		throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
-
 	/* on réécrit en plus bas niveau les tranches :
 	`en-dessous de: 1`
 	devient
@@ -427,12 +424,11 @@ export let mecanismScale = (recurse,k,v) => {
 
 	let objectShape = {
 		assiette:false,
-		'multiplicateur des tranches':false
+		'multiplicateur des tranches':constantNode(1)
 	}
 
 	let effect = ({assiette, 'multiplicateur des tranches': multiplicateur, tranches}) => {
-		//TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
-		// (c'est partiellement le cas pour 'taux' qui est calculé mais pas ses variables manquantes)
+		// TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
 		// ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond
 		// sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
 		/*
