@@ -225,7 +225,8 @@ describe('analyseSituation with mecanisms', function() {
         "contrat salarié . CDD . événement . poursuite du CDD en CDI":"oui",
         "contrat salarié . salaire brut":2300,
         "contrat salarié . statut cadre":"non",
-        "entreprise . effectif":20
+        "entreprise . effectif":20,
+        "contrat salarié . assujettie à la taxe sur les salaires":"non"
       })[name]
 
     let rules = realRules.map(enrichRule),
