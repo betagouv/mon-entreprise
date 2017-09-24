@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import {enrichRule} from '../source/engine/rules'
-import {analyseSituation} from '../source/engine/traverse'
+import {rules as realRules, enrichRule} from '../source/engine/rules'
+import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
 
@@ -217,6 +217,27 @@ describe('analyseSituation with mecanisms', function() {
           }}}],
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',50+400+40)
+  });
+
+  it('should compute consistent values', function() {
+    let rawRules = [
+          {nom: "startHere", espace: "top", formule: "composed (salarié) + composed (employeur)"},
+          {nom: "orHere", espace: "top", formule: "composed"},
+          {nom: "composed", espace: "top", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            composantes: [
+              {tranches:[{"en-dessous de":1, taux: 0.05},{de:1, "à": 2, taux: 0.4}, ,{"au-dessus de":2, taux: 5}],
+               attributs: {"dû par":"salarié"}
+              },
+              {tranches:[{"en-dessous de":1, taux: 0.05},{de:1, "à": 2, taux: 0.8}, ,{"au-dessus de":2, taux: 5}],
+               attributs: {"dû par":"employeur"}
+              }
+            ]
+          }}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"orHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
   });
 
 });
