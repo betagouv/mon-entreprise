@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import {FormDecorator} from './FormDecorator'
+	import React, { Component } from 'react'
+import {FormDecorator} from '../FormDecorator'
 import ReactSelect from 'react-select'
 import SelectOption from './SelectOption.js'
 import 'react-select/dist/react-select.css'
@@ -13,8 +13,8 @@ class ReactSelectWrapper extends Component {
 			options,
 			submitOnChange =
 				option => {
-					option.text = option['Taux net'] + ' %'
-					onChange(option)
+					option.text = option['Taux net'].replace(",",".")
+					onChange(option.text)
 					submit()
 				},
 			selectValue = value && value['Code risque'],
@@ -32,7 +32,7 @@ class ReactSelectWrapper extends Component {
 					valueKey="Code risque"
 					placeholder="Tapez des mots ou déroulez la liste complète"
 					optionRenderer={SelectOption}
-					valueRenderer={(value) => value['Nature du risque'].substring(0, 50) + '...'}
+					valueRenderer={(value) => value['Taux net']}
 					clearable={false}
 					value={selectValue}
 					onBlur={() => onBlur(value)}
@@ -61,7 +61,7 @@ export default class Select extends Component {
 	}
 
 	componentDidMount() {
-		fetch(this.props.stepProps.optionsURL)
+		fetch("https://raw.githubusercontent.com/sgmap/taux-collectifs-cotisation-atmp/master/taux-2017.json")
 				.then(response => {
 					if (!response.ok) {
 						let error = new Error(response.statusText)
