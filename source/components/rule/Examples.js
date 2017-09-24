@@ -48,15 +48,6 @@ export default class Examples extends Component {
 			<div id="examples">
 				<h2 className="subtitled">Exemples de calcul</h2>
 				<p className="subtitle">Cliquez sur un exemple pour le visualiser</p>
-				{situationExists && <div>
-					<button
-						className={classNames({selected: !focusedExample && showValues})}
-						id="injectSituation"
-						onClick={() => showValues ? clearInjection(): inject()}>
-						<i className="fa fa-rocket" aria-hidden="true"></i> &nbsp;{focusedExample || !showValues ? 'Injecter votre situation' : 'Cacher votre situation'}
-					</button>
-				</div>
-				}
 				{R.isEmpty(examples) ?
 					<p><i className="fa fa-exclamation-triangle" aria-hidden="true"></i><em>Cette règle manque d'exemples...</em></p>
 				: <ul>{
@@ -83,6 +74,14 @@ export default class Examples extends Component {
 						)
 					}
 					</ul>
+				}
+				{(situationExists && focusedExample) && <div>
+					<button
+						id="injectSituation"
+						onClick={() => inject()}>
+						Revenir à votre situation
+					</button>
+				</div>
 				}
 				<button
 					id="reportError">

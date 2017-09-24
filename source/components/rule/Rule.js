@@ -31,13 +31,13 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 )
 export default class Rule extends Component {
 	state = {
-		example: null, showValues: false
+		example: null, showValues: true
 	}
 	componentWillReceiveProps(nextProps){
 		let get = R.path(['match', 'params', 'name'])
 		if (get(nextProps) !== get(this.props)) {
 			this.setRule(get(nextProps))
-			this.setState({example: null, showValues: false})
+			this.setState({example: null, showValues: true})
 		}
 	}
 	setRule(name){
