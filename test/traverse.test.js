@@ -219,21 +219,25 @@ describe('analyseSituation with mecanisms', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',50+400+40)
   });
 
-  // TODO - make this a smaller test case
   it('should compute consistent values', function() {
-    let stateSelector = (name) => ({
-        "contrat salarié . CDD . événement . poursuite du CDD en CDI":"oui",
-        "contrat salarié . salaire brut":2300,
-        "contrat salarié . statut cadre":"non",
-        "entreprise . effectif":20
-      })[name]
-
-    let rules = realRules.map(enrichRule),
-        part = analyseTopDown(rules,"coût du travail")(stateSelector),
-        whole = analyseTopDown(rules,"Salaire")(stateSelector)
-
-    expect(part.root.nodeValue).to.be.closeTo(2971.44,0.01)
-    expect(whole.root.formule.explanation.explanation[1].nodeValue).to.be.closeTo(2971.44,0.01)
+    let rawRules = [
+          {nom: "startHere", espace: "top", formule: "composed (salarié) + composed (employeur)"},
+          {nom: "orHere", espace: "top", formule: "composed"},
+          {nom: "composed", espace: "top", formule: {"barème": {
+            assiette:2008,
+            "multiplicateur des tranches":1000,
+            composantes: [
+              {tranches:[{"en-dessous de":1, taux: 0.05},{de:1, "à": 2, taux: 0.4}, ,{"au-dessus de":2, taux: 5}],
+               attributs: {"dû par":"salarié"}
+              },
+              {tranches:[{"en-dessous de":1, taux: 0.05},{de:1, "à": 2, taux: 0.8}, ,{"au-dessus de":2, taux: 5}],
+               attributs: {"dû par":"employeur"}
+              }
+            ]
+          }}}],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"orHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
   });
 
 });
