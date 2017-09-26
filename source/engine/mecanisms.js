@@ -6,11 +6,6 @@ import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilt
 
 let constantNode = constant => ({nodeValue: constant})
 
-let transformPercentage = s =>
-	R.contains('%')(s) ?
-		+s.replace('%', '') / 100
-	: +s
-
 let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
@@ -435,17 +430,13 @@ export let mecanismScale = (recurse,k,v) => {
 			: R.has('au-dessus de')(t) ? {de: t['au-dessus de'], 'à': Infinity, taux: t.taux}
 				: t)
 
-	let aliased = {
-		...v,
-		multiplicateur: v['multiplicateur des tranches']
-	}
 
 	let objectShape = {
 		assiette:false,
-		multiplicateur:false
+		'multiplicateur des tranches':false
 	}
 
-	let effect = ({assiette, multiplicateur, tranches}) => {
+	let effect = ({assiette, 'multiplicateur des tranches': multiplicateur, tranches}) => {
 		//TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
 		// (c'est partiellement le cas pour 'taux' qui est calculé mais pas ses variables manquantes)
 		// ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond
@@ -472,7 +463,7 @@ export let mecanismScale = (recurse,k,v) => {
 		}
 
 	let explanation = {
-				...parseObject(recurse,objectShape,aliased),
+				...parseObject(recurse,objectShape,v),
 				tranches
 			},
 		evaluate = evaluateObject(objectShape,effect)
