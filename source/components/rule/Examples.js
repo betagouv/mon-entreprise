@@ -42,7 +42,7 @@ export default class Examples extends Component {
 	render() {
 		let examples = this.runExamples(),
 			focusedExample = R.path(['focusedExample', 'nom'])(this.props),
-			{clearInjection, inject, situationExists , showValues} = this.props
+			{inject, situationExists , showValues} = this.props
 
 		return (
 			<div id="examples">
@@ -53,7 +53,7 @@ export default class Examples extends Component {
 				: <ul>{
 						examples.map(({nom, ok, rule, 'valeur attendue': expected}) =>
 							<li key={nom} className={classNames("example", {ok, selected: focusedExample == nom})}
-								onClick={() => focusedExample == nom ? clearInjection() : inject({nom, ok, rule})}
+								onClick={() => focusedExample == nom ? false : inject({nom, ok, rule})}
 								>
 								<span> {
 									ok ?

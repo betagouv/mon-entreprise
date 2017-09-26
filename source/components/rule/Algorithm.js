@@ -12,7 +12,6 @@ let RuleWithoutFormula = () =>
 		doit donc être renseignée directement.
 	</p>
 
-
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {
 	state = {
