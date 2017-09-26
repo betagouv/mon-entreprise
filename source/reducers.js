@@ -16,8 +16,10 @@ let fromConversation = state => name => formValueSelector('conversation')(state,
 
 // assume "wraps" a given situation function with one that overrides its values with
 // the given assumptions
-let assume = (evaluator, assumptions) => state => name =>
-		assumptions[name] != null ? assumptions[name] : evaluator(state)(name)
+let assume = (evaluator, assumptions) => state => name => {
+			let userInput = evaluator(state)(name)
+			return userInput != null ? userInput : assumptions[name]
+		}
 
 export let reduceSteps = (state, action) => {
 
@@ -39,7 +41,7 @@ export let reduceSteps = (state, action) => {
 	let situationGate = completeSituation(state),
 		analysedSituation = analyseTopDown(flatRules,rootVariable)(situationGate)
 
-	let returnObject = {
+	let newState = {
 		...state,
 		analysedSituation,
 		situationGate: situationGate
@@ -47,14 +49,14 @@ export let reduceSteps = (state, action) => {
 
 	if (action.type == START_CONVERSATION) {
 		return {
-			...returnObject,
+			...newState,
 			foldedSteps: [],
-			unfoldedSteps: buildNextSteps(situationGate, flatRules, returnObject.analysedSituation)
+			unfoldedSteps: buildNextSteps(situationGate, flatRules, newState.analysedSituation)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		let foldedSteps = [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps = buildNextSteps(situationGate, flatRules, returnObject.analysedSituation)
+			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
 
 		// The simulation is "over" - except we can now fill in extra questions
 		// where the answers were previously given reasonable assumptions
@@ -64,15 +66,15 @@ export let reduceSteps = (state, action) => {
 				extraSteps = buildNextSteps(newSituation, flatRules, reanalyse)
 
 			return {
-				...returnObject,
+				...newState,
 				foldedSteps,
 				extraSteps,
-				unfoldedSteps
+				unfoldedSteps: []
 			}
 		}
 
 		return {
-			...returnObject,
+			...newState,
 			foldedSteps,
 			unfoldedSteps
 		}
@@ -83,7 +85,7 @@ export let reduceSteps = (state, action) => {
 			extraSteps = R.reject(stepFinder)(state.extraSteps)
 
 		return {
-			...returnObject,
+			...newState,
 			foldedSteps,
 			extraSteps,
 			unfoldedSteps: [R.find(stepFinder)(R.concat(state.foldedSteps,state.extraSteps))]
