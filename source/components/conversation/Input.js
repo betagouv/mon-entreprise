@@ -12,12 +12,11 @@ export default class Input extends Component {
 		let {
 			name,
 			input,
-			stepProps: {attributes, submit, valueType, suggestions, setFormValue},
+			stepProps: {attributes, submit, valueType, suggestions},
 			meta: {
 				touched, error, active,
 			},
 			themeColours,
-
 		} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
@@ -54,13 +53,14 @@ export default class Input extends Component {
 					</button>
 				</span>
 
-				{this.renderSuggestions(suggestions)}
+				{this.renderSuggestions()}
 
 				{inputError && <span className="step-input-error">{error}</span>}
 			</span>
 		)
 	}
-	renderSuggestions(suggestions){
+	renderSuggestions(){
+		let {setFormValue, submit, suggestions} = this.props.stepProps
 		if (!suggestions) return null
 		return (
 			<span className="inputSuggestions">suggestions:
