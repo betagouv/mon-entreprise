@@ -31,13 +31,13 @@ let testingSituationGate = v => // eslint-disable-line no-unused-vars
 )
 export default class Rule extends Component {
 	state = {
-		example: null, showValues: false
+		example: null, showValues: true
 	}
 	componentWillReceiveProps(nextProps){
 		let get = R.path(['match', 'params', 'name'])
 		if (get(nextProps) !== get(this.props)) {
 			this.setRule(get(nextProps))
-			this.setState({example: null, showValues: false})
+			this.setState({example: null, showValues: true})
 		}
 	}
 	setRule(name){
@@ -105,13 +105,12 @@ export default class Rule extends Component {
 					</div>
 				</section>
 				<section id="rule-calc">
-					<Algorithm {...{traversedRule: R.path(['example', 'rule'])(this.state) || this.rule, showValues: this.state.showValues}}/>
+					<Algorithm {...{traversedRule: R.path(['example', 'rule'])(this.state) || this.rule, showValues: situationExists || this.state.example != null}}/>
 					<Examples
 						situationExists={situationExists}
 						rule={this.rule}
 						focusedExample={this.state.example}
 						showValues={this.state.showValues}
-						clearInjection={() => this.setState({example: null, showValues: false})}
 						inject={example => this.setState({example, showValues: true})}/>
 				</section>
 			</div>

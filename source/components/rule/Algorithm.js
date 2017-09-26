@@ -12,11 +12,10 @@ let RuleWithoutFormula = () =>
 		doit donc être renseignée directement.
 	</p>
 
-
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {
 	state = {
-		showValues: false
+		showValues: true
 	}
 	render(){
 		let {traversedRule: rule, showValues} = this.props
