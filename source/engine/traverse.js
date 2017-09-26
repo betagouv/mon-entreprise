@@ -187,9 +187,11 @@ let treat = (rules, rule) => rawNode => {
 					fillVariableNode(rules, rule)(parseResult.variable)
 				)
 
+			// We don't need to handle category == 'value' because YAML then returns it as
+			// numerical value, not a String: it goes to treatNumber
 			if (parseResult.category == 'percentage') {
 				return {
-					evaluate: (situation, parsedRules, node) => ({...node, nodeValue: parseFloat(parseResult.nodeValue)/100}),
+					nodeValue: parseFloat(parseResult.nodeValue)/100,
 					jsx:  nodeValue => <span className="percentage">{rawNode}</span>
 				}
 			}
@@ -228,13 +230,13 @@ let treat = (rules, rule) => rawNode => {
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseFloat(node.nodeValue)}),
+									nodeValue: parseFloat(node.nodeValue),
 									jsx:  nodeValue => <span className="value">{nodeValue}</span>
 								})
 							],
 							[R.propEq('category', 'percentage'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseFloat(node.nodeValue)/100}),
+									nodeValue: parseFloat(node.nodeValue)/100,
 									jsx:  nodeValue => <span className="value">{nodeValue}</span>
 								})
 							]
