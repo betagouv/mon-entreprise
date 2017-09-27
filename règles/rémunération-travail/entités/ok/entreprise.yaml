@@ -13,3 +13,13 @@
     20: 20
     50: 50
     1000: 1000
+
+- espace: entreprise
+  nom: ratio alternants
+  question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
+  description: |
+    Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
+  format: pourcentage
+  suggestions:
+    1: 1
+    5: 5
