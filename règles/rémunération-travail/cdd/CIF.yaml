@@ -7,10 +7,12 @@
 
   non applicable si:
     une de ces conditions:
+      - type de contrat != 'CDD'
       - événement . poursuite du CDD en CDI
       - contrat jeune vacances
       - motif . classique . saisonnier
       - motif . contrat aidé
+
 
   formule:
     multiplication:
@@ -28,12 +30,12 @@
 
     - nom: salaire médian
       situation:
-        motif . classique . usage: oui
+        contrat salarié . CDD . motif: classique . usage
         assiette cotisations sociales: 2300
       valeur attendue: 23
 
     - nom: motif saisonnier -> non applicable
       situation:
-        motif . classique . saisonnier: oui
+        contrat salarié . CDD . motif: classique . saisonnier
         assiette cotisations sociales: 2300
       valeur attendue: null

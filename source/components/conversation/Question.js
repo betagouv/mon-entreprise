@@ -73,7 +73,7 @@ export default class Question extends Component {
 				radioDottedName.split(name + ' . ')[1]
 
 		return (<ul>
-			{ choices.children.map( ({name, titre, dottedName, children}) =>
+			{ choices.children && choices.children.map( ({name, titre, dottedName, children}) =>
 				children ?
 					<li key={name} className="variant">
 						<div>{titre || name}</div>

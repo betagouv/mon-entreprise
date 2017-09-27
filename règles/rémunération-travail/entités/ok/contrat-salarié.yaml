@@ -9,6 +9,28 @@
   # le contrat salarié est rattaché à l'activité, elle-même rattachée à un individu.
   établissement: Établissement
 
+- espace: contrat salarié
+  nom: type de contrat
+  titre: Type de contrat
+  question: Quelle est la nature du contrat de travail ?
+  description: |
+    Le contrat de travail peut être à durée indéterminée - c'est le cas général - ou déterminée par exception.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+      - CDD
+      - CDI
+
+- espace: contrat salarié . type de contrat
+  nom: CDD
+  description: Le contrat de travail prévoit explicitement une date de fin.
+  formule: contrat salarié . type de contrat = 'CDD'
+
+- espace: contrat salarié . type de contrat
+  nom: CDI
+  description: Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été établi.
+  formule: contrat salarié . type de contrat = 'CDI'
 
 - espace: contrat salarié
   nom: assiette cotisations sociales
@@ -122,6 +144,7 @@
       - AGS
       - Contribution au Dialogue Social
       - FNAL
+      - CDD . surcoût CDD
 
   exemples:
     - nom: salaire médian, non cadre
@@ -176,6 +199,7 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - salaire net
       - coût du travail
+      - CDD . surcoût CDD
 
   simulateur:
     titre: Simulateur de coût d'embauche

@@ -79,13 +79,10 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 			cached = dict[cacheName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
 			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
+			isMultipleChoice = R.path(['formule', 'explanation', 'une possibilité'])(variable),
 			variableIsCalculable = variable.formule != null,
 
-			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(
-				situation,
-				parsedRules,
-				variable
-			)),
+			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(situation,parsedRules,variable)),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue = situationValue
@@ -94,10 +91,12 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
 						: parsedRule.nodeValue, // la valeur du calcul fait foi
 			explanation = parsedRule,
-			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
+			missingVariables = variableIsCalculable ? [] : [dottedName]
 
 			let collectMissing = node =>
-				variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
+				nodeValue != null ? // notamment si situationValue != null
+					[] :
+					variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
 			let result = cached ? cached : {
 				...rewriteNode(node,nodeValue,explanation,collectMissing),
@@ -209,12 +208,14 @@ let treat = (rules, rule) => rawNode => {
 							'<': 'lt',
 							'<=': 'lte',
 							'>': 'gt',
-							'>=': 'gte'
+							'>=': 'gte',
+							'=': 'equals',
+							'!=': 'equals'
 						}[node.operator],
 						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
 						value1 = explanation[0].nodeValue,
 						value2 = explanation[1].nodeValue,
-						operatorFunction = R[operatorFunctionName],
+						operatorFunction = node.operator == "!=" ? ((a, b) => !R.equals(a,b)) : R[operatorFunctionName],
 						nodeValue = value1 == null || value2 == null ?
 							null
 						: operatorFunction(value1, value2)
@@ -307,7 +308,7 @@ let treat = (rules, rule) => rawNode => {
 					'le maximum de':			mecanismMax,
 					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
-					'une possibilité':			R.always({})
+					'une possibilité':			R.always({'une possibilité':'oui', collectMissing: node => [rule.dottedName]})
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 

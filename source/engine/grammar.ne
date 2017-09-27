@@ -17,9 +17,9 @@ Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	explanation: [d[0], d[4]]
 }) %}
 
-Comparable -> (constant | percentage | CalcExpression | Variable) {% d => d[0][0] %}
+Comparable -> (number | percentage | CalcExpression | Variable | String) {% d => d[0][0] %}
 
-ComparisonOperator -> ">" | "<" | ">=" | "<=" | "="
+ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
 NegatedVariable -> "≠" _ Variable {% d => ({category: 'negatedVariable', variable: d[2] }) %}
 
@@ -45,7 +45,7 @@ CalcExpression -> Term _ ArithmeticOperator _ Term {% d => ({
 
 Term -> Variable {% id %}
 		| FilteredVariable {% id %}
-		| constant {% id %}
+		| number {% id %}
 		| percentage {% id %}
 
 ArithmeticOperator -> "+" {% id %}
@@ -63,6 +63,11 @@ Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d 
 	type: 'numeric | boolean'
 }) %}
 
+String -> "'" [ .'a-zA-Z\u00C0-\u017F ]:+ "'" {% d => ({
+	category: 'value',
+	type: 'string',
+	nodeValue: d[1].join('')
+}) %}
 
 VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
 
@@ -74,6 +79,6 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-constant -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):"")}) %}
+number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):"")}) %}
 
 percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({category: 'percentage', nodeValue: d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):"")}) %}

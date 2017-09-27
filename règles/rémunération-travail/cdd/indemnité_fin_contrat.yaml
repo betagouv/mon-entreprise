@@ -12,6 +12,8 @@
 
   non applicable si:
     une de ces conditions:
+      - type de contrat != 'CDD'
+
       # Evènements particuliers
       - événement . poursuite du CDD en CDI
       - événement . refus CDI avantageux
@@ -44,8 +46,7 @@
 
     - nom: CDD d'usage -> non applicable
       situation:
-        motif . classique . usage: oui
-        événement . refus CDI avantageux: oui
+        contrat salarié . CDD . motif: classique . usage
         salaire brut: 2300
       valeur attendue: null
 
