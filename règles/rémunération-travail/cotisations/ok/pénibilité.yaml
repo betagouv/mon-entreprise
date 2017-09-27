@@ -1,0 +1,26 @@
+- espace: contrat salarié
+  nom: cotisation pénibilité
+  attributs:
+    branche: santé # ou vieillesse car ouvrant droit à une retraite anticipée ?
+  description: Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur
+  références:
+    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
+    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html
+    - Code du travail - Article L4162-19
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      composantes:
+        - nom: base
+          taux: 0.01%
+        - nom: additionnelle
+          non applicable si:
+            - toutes ces conditions:
+                - type de contrat = 'CDD'
+                - durée contrat < 1
+          variations:
+            - si: ≠ contrat salarié . exposition pénibilité multiple
+              taux: 0.2%
+            - si: contrat salarié . exposition pénibilité multiple
+              taux: 0.4%

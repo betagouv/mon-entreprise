@@ -88,6 +88,11 @@
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
 
+- espace: contrat salarié
+  nom: exposition pénibilité multiple
+  titre: Exposition à plusieurs facteurs de pénibilité
+  question: Le salarié est-il exposé à des facteurs de pénibilité multiples ?
+  référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
 
 - espace: contrat salarié
   nom: plafond sécurité sociale
@@ -144,6 +149,7 @@
       - AGS
       - Contribution au Dialogue Social
       - FNAL
+      - cotisation pénibilité
       - taxe d'apprentissage
       - formation professionnelle
       - CDD . surcoût CDD
