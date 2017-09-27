@@ -1,0 +1,24 @@
+- nom: assiette
+  format: €
+
+- nom: base
+  format: €
+
+- nom: ARRCO
+  test: Barème en taux marginaux
+  formule:
+    barème:
+      assiette: assiette
+      multiplicateur des tranches: base
+      tranches:
+      - en-dessous de: 1
+        taux: 4.65%
+      - au-dessus de: 1
+        taux: 0%
+
+  exemples:
+    - nom: exemple
+      situation:
+        assiette: 3000
+        base: 5000
+      valeur attendue: 139.5

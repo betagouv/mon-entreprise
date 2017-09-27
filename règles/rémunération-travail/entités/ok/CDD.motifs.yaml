@@ -4,6 +4,7 @@
   question: Quel est le motif de recours au CDD ?
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
+  non applicable si: type de contrat != 'CDD'
   formule:
     une possibilité:
       choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
@@ -36,16 +37,19 @@
 - espace: contrat salarié . CDD . motif . classique
   nom: saisonnier
   titre: Saisonnier
+  formule: contrat salarié . CDD . motif = 'classique . saisonnier'
   description: Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter chaque année selon une périodicité à peu près fixe, en fonction du rythme des saisons ou des modes de vie collectifs.
 
 - espace: contrat salarié . CDD . motif . classique
   nom: accroissement activité
   titre: Accroissement temporaire d'activité
+  formule: contrat salarié . CDD . motif = 'classique . accroissement activité'
   description: Accroissement temporaire de l'activité de l'entreprise
 
 - espace: contrat salarié . CDD . motif . classique
   nom: remplacement
   titre: Contrat de remplacement
+  formule: contrat salarié . CDD . motif = 'classique . remplacement'
   description: |
     Nous regroupons dans cette catégorie les cas suivants.
 
@@ -63,6 +67,7 @@
 - espace: contrat salarié . CDD . motif . classique
   nom: mission
   titre: Contrat de mission
+  formule: contrat salarié . CDD . motif = 'classique . mission'
   description: |
     > Aussi appelé contrat à objet défini.
 
@@ -76,6 +81,7 @@
   nom: usage
   titre: Contrat d'usage
   alias: motif extra
+  formule: contrat salarié . CDD . motif = 'classique . usage'
   description:  Emplois pour lesquels, dans certains secteurs d'activité définis par décret ou par convention ou accord collectif de travail étendu, il est d'usage constant de ne pas recourir au contrat de travail à durée indéterminée en raison de la nature de l'activité exercée et du caractère par nature temporaire de ces emplois ;
   références:
     Embauche en contrat d'extra : https://www.service-public.fr/professionnels-entreprises/vosdroits/F33693
@@ -108,15 +114,16 @@
 - espace: contrat salarié . CDD . motif
   nom: complément formation
   titre: Complément de formation professionnelle assuré par l'employeur
+  formule: contrat salarié . CDD . motif = 'complément formation'
   description: L'employeur s'engage, pour une durée et dans des conditions déterminées par décret, à assurer un complément de formation professionnelle au salarié.
   références:
     Code du travail - Article L1242-3 : https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
     Code du travail - Décret D1242-3 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000018537448&cidTexte=LEGITEXT000006072050
 
-
 - espace: contrat salarié . CDD . motif
   nom: issue d'apprentissage
   titre: À l'issue d'un contrat d'apprentissage
+  formule: contrat salarié . CDD . motif = 'issue d'apprentissage'
   description: |
     A l'issue d'un contrat d'apprentissage, un contrat de travail à durée déterminée peut être conclu lorsque l'apprenti doit satisfaire aux obligations du service national dans un délai de moins d'un an après l'expiration du contrat d'apprentissage.
   références:

@@ -9,6 +9,28 @@
   # le contrat salarié est rattaché à l'activité, elle-même rattachée à un individu.
   établissement: Établissement
 
+- espace: contrat salarié
+  nom: type de contrat
+  titre: Type de contrat
+  question: Quelle est la nature du contrat de travail ?
+  description: |
+    Le contrat de travail peut être à durée indéterminée - c'est le cas général - ou déterminée par exception.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+      - CDD
+      - CDI
+
+- espace: contrat salarié . type de contrat
+  nom: CDD
+  description: Le contrat de travail prévoit explicitement une date de fin.
+  formule: contrat salarié . type de contrat = 'CDD'
+
+- espace: contrat salarié . type de contrat
+  nom: CDI
+  description: Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été établi.
+  formule: contrat salarié . type de contrat = 'CDI'
 
 - espace: contrat salarié
   nom: assiette cotisations sociales
@@ -66,6 +88,11 @@
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
 
+- espace: contrat salarié
+  nom: exposition pénibilité multiple
+  titre: Exposition à plusieurs facteurs de pénibilité
+  question: Le salarié est-il exposé à des facteurs de pénibilité multiples ?
+  référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
 
 - espace: contrat salarié
   nom: plafond sécurité sociale
@@ -122,6 +149,11 @@
       - AGS
       - Contribution au Dialogue Social
       - FNAL
+      - taxe sur les salaires
+      - cotisation pénibilité
+      - taxe d'apprentissage
+      - formation professionnelle
+      - CDD . surcoût CDD
 
   exemples:
     - nom: salaire médian, non cadre
@@ -167,6 +199,7 @@
     somme:
       - CICE
       - réduction générale
+      - exonération JEI
 
 - espace: contrat salarié
   nom: Salaire
@@ -176,6 +209,7 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - salaire net
       - coût du travail
+      - CDD . surcoût CDD
 
   simulateur:
     titre: Simulateur de coût d'embauche

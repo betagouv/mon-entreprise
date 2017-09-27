@@ -98,7 +98,7 @@ describe('analyseSituation with mecanisms', function() {
 
   it('should handle percentages', function() {
     let rawRules = [
-          {nom: "startHere", formule: {taux: "35%"}, espace: "top"}],
+          {nom: "startHere", formule: "35%", espace: "top"}],
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',0.35)
   });

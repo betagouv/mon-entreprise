@@ -11,6 +11,9 @@ import {collectMissingVariables} from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
 import R from 'ramda'
 
+// By luck this works as expected for both null and undefined, * but with different branches failing :O *
+let isFloat = n => Number(n) === n && n % 1 !== 0
+
 describe('Mécanismes', () =>
   testSuites.map( suite =>
     suite.map(({exemples, nom, test}) =>
@@ -25,7 +28,10 @@ describe('Mécanismes', () =>
               missing = collectMissingVariables()(stateSelector,analysis)
 
             // console.log('JSON.stringify(analysis', JSON.stringify(analysis))
-            if (valeur !== undefined) {
+            if (isFloat(valeur)) {
+              expect(analysis.root.nodeValue).to.be.closeTo(valeur,0.001)
+            }
+            else if (valeur !== undefined) {
               expect(analysis.root)
                 .to.have.property(
                   'nodeValue',

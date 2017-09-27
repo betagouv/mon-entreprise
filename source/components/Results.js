@@ -22,7 +22,7 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 		analysedSituation: state.analysedSituation,
 		conversationStarted: !R.isEmpty(state.form),
 		conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state),
-		situationGate: (name => formValueSelector('conversation')(state, name))
+		situationGate: state.situationGate
 	})
 )
 export default class Results extends Component {

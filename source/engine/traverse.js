@@ -8,7 +8,7 @@ import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
 import {
 	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
-	mecanismPercentage,mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
+	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
 } from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
@@ -79,13 +79,10 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 			cached = dict[cacheName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
 			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
+			isMultipleChoice = R.path(['formule', 'explanation', 'une possibilité'])(variable),
 			variableIsCalculable = variable.formule != null,
 
-			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(
-				situation,
-				parsedRules,
-				variable
-			)),
+			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(situation,parsedRules,variable)),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue = situationValue
@@ -94,10 +91,12 @@ let fillVariableNode = (rules, rule) => (parseResult) => {
 						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
 						: parsedRule.nodeValue, // la valeur du calcul fait foi
 			explanation = parsedRule,
-			missingVariables = variableIsCalculable ? [] : (nodeValue == null ? [dottedName] : [])
+			missingVariables = variableIsCalculable ? [] : [dottedName]
 
 			let collectMissing = node =>
-				variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
+				nodeValue != null ? // notamment si situationValue != null
+					[] :
+					variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
 
 			let result = cached ? cached : {
 				...rewriteNode(node,nodeValue,explanation,collectMissing),
@@ -176,7 +175,7 @@ let treat = (rules, rule) => rawNode => {
 			if (additionnalResults && additionnalResults.length > 0)
 				throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable']))
+			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable', 'percentage']))
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
@@ -189,6 +188,15 @@ let treat = (rules, rule) => rawNode => {
 					fillVariableNode(rules, rule)(parseResult.variable)
 				)
 
+			// We don't need to handle category == 'value' because YAML then returns it as
+			// numerical value, not a String: it goes to treatNumber
+			if (parseResult.category == 'percentage') {
+				return {
+					nodeValue: parseFloat(parseResult.nodeValue)/100,
+					jsx:  nodeValue => <span className="percentage">{rawNode}</span>
+				}
+			}
+
 			if (parseResult.category == 'calcExpression' || parseResult.category == 'comparison') {
 				let evaluate = (situation, parsedRules, node) => {
 					let
@@ -200,12 +208,14 @@ let treat = (rules, rule) => rawNode => {
 							'<': 'lt',
 							'<=': 'lte',
 							'>': 'gt',
-							'>=': 'gte'
+							'>=': 'gte',
+							'=': 'equals',
+							'!=': 'equals'
 						}[node.operator],
 						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
 						value1 = explanation[0].nodeValue,
 						value2 = explanation[1].nodeValue,
-						operatorFunction = R[operatorFunctionName],
+						operatorFunction = node.operator == "!=" ? ((a, b) => !R.equals(a,b)) : R[operatorFunctionName],
 						nodeValue = value1 == null || value2 == null ?
 							null
 						: operatorFunction(value1, value2)
@@ -223,7 +233,13 @@ let treat = (rules, rule) => rawNode => {
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
 							[R.propEq('category', 'value'), node =>
 								({
-									evaluate: (situation, parsedRules, me) => ({...me, nodeValue: parseInt(node.nodeValue)}),
+									nodeValue: parseFloat(node.nodeValue),
+									jsx:  nodeValue => <span className="value">{nodeValue}</span>
+								})
+							],
+							[R.propEq('category', 'percentage'), node =>
+								({
+									nodeValue: parseFloat(node.nodeValue)/100,
 									jsx:  nodeValue => <span className="value">{nodeValue}</span>
 								})
 							]
@@ -286,14 +302,13 @@ let treat = (rules, rule) => rawNode => {
 					'une de ces conditions':	mecanismOneOf,
 					'toutes ces conditions':	mecanismAllOf,
 					'aiguillage numérique':		mecanismNumericalSwitch,
-					'taux':						mecanismPercentage,
 					'somme':					mecanismSum,
 					'multiplication':			mecanismProduct,
 					'barème':					mecanismScale,
 					'le maximum de':			mecanismMax,
 					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
-					'une possibilité':			R.always({})
+					'une possibilité':			R.always({'une possibilité':'oui', collectMissing: node => [rule.dottedName]})
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 
