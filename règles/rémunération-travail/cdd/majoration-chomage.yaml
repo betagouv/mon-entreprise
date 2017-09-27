@@ -11,7 +11,7 @@
     une de ces conditions:
       - type de contrat != 'CDD'
       - durée contrat > 3 #cette information est déjà contenue dans la formule, mais ça ne fait pas de mal de l'expliciter ici
-      - événement = 'poursuite du CDD en CDI'
+      - événement . poursuite du CDD en CDI
 
   formule:
     multiplication:

@@ -15,18 +15,18 @@
       - type de contrat != 'CDD'
 
       # Evènements particuliers
-      - événement = 'poursuite du CDD en CDI'
-      - événement = 'refus CDI avantageux'
+      - événement . poursuite du CDD en CDI
+      - événement . refus CDI avantageux
 
       # Rupture TODO regrouper celà dans une nouvelle variante
-      - événement = 'rupture anticipée salarié'
-      - événement = 'rupture pour faute grave ou force majeure'
-      - événement = 'rupture pendant période essai'
+      - événement . rupture anticipée salarié
+      - événement . rupture pour faute grave ou force majeure
+      - événement . rupture pendant période essai
 
-      - motif = 'usage'
-      - motif = 'saisonnier'
-      - motif = 'complément formation'
-      - motif = 'contrat aidé'
+      - motif . classique . usage
+      - motif . classique . saisonnier
+      - motif . complément formation
+      - motif . contrat aidé
 
       - contrat jeune vacances
 
@@ -46,8 +46,7 @@
 
     - nom: CDD d'usage -> non applicable
       situation:
-        motif . classique . usage: oui
-        événement . refus CDI avantageux: oui
+        contrat salarié . CDD . motif: classique . usage
         salaire brut: 2300
       valeur attendue: null
 
