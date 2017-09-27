@@ -118,7 +118,8 @@ describe('collectMissingVariables', function() {
               {si: "3 > 2", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.8}, ,{"au-dessus de":2, taux: 10}]},
             ]
           }}},
-          {nom: "dix", espace: "top"}],
+          {nom: "dix", espace: "top"},
+          {nom: "deux", espace: "top"}],
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"startHere")(stateSelector),
         result = collectMissingVariables()(stateSelector,situation)

@@ -2,11 +2,12 @@
 
 
 main ->
-			CalcExpression {% id %}
+		  CalcExpression {% id %}
 		| Variable {% id %}
 		| NegatedVariable {% id %}
 		| ModifiedVariable {% id %}
 		| FilteredVariable {% id %}
+		| percentage {% id %}
 		| Comparison {% id %}
 
 Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
@@ -16,7 +17,7 @@ Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	explanation: [d[0], d[4]]
 }) %}
 
-Comparable -> (int | CalcExpression | Variable) {% d => d[0][0] %}
+Comparable -> (constant | percentage | CalcExpression | Variable) {% d => d[0][0] %}
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "="
 
@@ -44,7 +45,8 @@ CalcExpression -> Term _ ArithmeticOperator _ Term {% d => ({
 
 Term -> Variable {% id %}
 		| FilteredVariable {% id %}
-		| int {% id %}
+		| constant {% id %}
+		| percentage {% id %}
 
 ArithmeticOperator -> "+" {% id %}
 	| "-" {% id %}
@@ -72,4 +74,6 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-int -> [0-9]:+        {% d => ({category: 'value', nodeValue: +d[0].join("")}) %}
+constant -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):"")}) %}
+
+percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({category: 'percentage', nodeValue: d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):"")}) %}

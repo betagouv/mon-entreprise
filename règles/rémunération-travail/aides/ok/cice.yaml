@@ -15,7 +15,7 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: 0.07
+      taux: 7%
 
 - espace: contrat salarié
   nom: plafond cice
@@ -25,5 +25,4 @@
 
 - espace: contrat salarié
   nom: multiplicateur cice
-  formule:
-    taux: 2.5
+  formule: 2.5
