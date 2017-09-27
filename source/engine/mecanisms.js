@@ -414,9 +414,6 @@ export let mecanismScale = (recurse,k,v) => {
 		return devariate(recurse,k,v)
 	}
 
-	if (v['multiplicateur des tranches'] == null)
-		throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
-
 	/* on réécrit en plus bas niveau les tranches :
 	`en-dessous de: 1`
 	devient
@@ -433,7 +430,7 @@ export let mecanismScale = (recurse,k,v) => {
 
 	let objectShape = {
 		assiette:false,
-		'multiplicateur des tranches':false
+		'multiplicateur des tranches':constantNode(1)
 	}
 
 	let effect = ({assiette, 'multiplicateur des tranches': multiplicateur, tranches}) => {
