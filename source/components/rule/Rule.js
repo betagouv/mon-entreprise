@@ -15,14 +15,9 @@ import Algorithm from './Algorithm'
 import Examples from './Examples'
 import Helmet from 'react-helmet'
 
-
-// situationGate function useful for testing :
-let testingSituationGate = v => // eslint-disable-line no-unused-vars
-	R.path(v.split('.'))(mockSituation)
-
 @connect(
 	state => ({
-		situationGate: name => formValueSelector('conversation')(state, name),
+		situationGate: state.situationGate,
 		form: state.form
 	}),
 	dispatch => ({
