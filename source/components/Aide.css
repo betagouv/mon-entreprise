@@ -1,8 +1,8 @@
 
 #sim #helpWrapper {
-	width: 35%;
-	margin: 3em;
-	visibility: hidden;
+	max-width: 85%;
+	margin: 3em auto;
+	display: none;
 }
 
 #sim #help {
@@ -15,27 +15,6 @@
 	position: relative;
 }
 
-@media (max-width: 1280px) {
-	#sim #helpWrapper {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba(255, 255, 255, 0.86);
-		z-index: 1;
-	}
-	#sim #help {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 30em;
-		max-width: 90%;
-		margin: 0;
-	}
-}
-
 #sim #help blockquote {
 	font-style: italic;
 	font-size: 90%;
@@ -45,7 +24,7 @@
 }
 
 #sim #helpWrapper.active {
-	visibility: visible;
+	display: block;
 }
 
 #sim #help i.fa-info-circle {
