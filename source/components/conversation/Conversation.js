@@ -11,6 +11,7 @@ import {reduxForm} from 'redux-form'
 export default class Conversation extends Component {
 	render() {
 		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate} = this.props
+		window.scrollTo(0,document.body.scrollHeight)
 		return (
 			<div id="conversation">
 				<div id="questions-answers">
