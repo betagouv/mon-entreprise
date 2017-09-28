@@ -45,7 +45,8 @@ export let reduceSteps = (state, action) => {
 	let newState = {
 		...state,
 		analysedSituation,
-		situationGate: situationGate
+		situationGate: situationGate,
+		extraSteps: []
 	}
 
 	if (action.type == START_CONVERSATION) {
