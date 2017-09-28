@@ -1,31 +1,32 @@
 import R from 'ramda'
 import React, {Component} from 'react'
 import Helmet from 'react-helmet'
-import {reduxForm, formValueSelector, reset} from 'redux-form'
+import {formValueSelector, reset} from 'redux-form'
 import {connect} from 'react-redux'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import classNames from 'classnames'
 
 import {START_CONVERSATION} from '../actions'
-import Aide from './Aide'
 import {createMarkdownDiv} from 'Engine/marked'
 import {rules, findRuleByName, decodeRuleName} from 'Engine/rules'
 import './conversation/conversation.css'
 import './Simulateur.css'
 import {capitalise0} from '../utils'
-import Satisfaction from './Satisfaction'
+import Conversation from './conversation/Conversation'
+
 
 let situationSelector = formValueSelector('conversation')
 
 @withRouter
-@reduxForm({form: 'conversation', destroyOnUnmount: false})
 @connect(
 	state => ({
 		situation: variableName => situationSelector(state, variableName),
 		foldedSteps: state.foldedSteps,
 		unfoldedSteps: state.unfoldedSteps,
+		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
 		analysedSituation: state.analysedSituation,
+		situationGate: state.situationGate,
 	}),
 	dispatch => ({
 		startConversation: rootVariable => dispatch({type: START_CONVERSATION, rootVariable}),
@@ -57,7 +58,7 @@ export default class extends React.Component {
 
 		let
 			started = !this.props.match.params.intro,
-			{foldedSteps, unfoldedSteps, situation} = this.props,
+			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
@@ -65,7 +66,6 @@ export default class extends React.Component {
 				this.props.startConversation(this.name)
 			},
 			title = sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])
-
 
 		return (
 			<div id="sim" className={classNames({started})}>
@@ -108,68 +108,8 @@ export default class extends React.Component {
 							</p>
 						</div>
 					</div>
-					: (
-						<div>
-							<div id="conversation">
-								<div id="questions-answers">
-									{ !R.isEmpty(foldedSteps) &&
-										<div id="foldedSteps">
-											<div className="header" >
-												<h3>Vos réponses</h3>
-												<button onClick={reinitalise}>
-													<i className="fa fa-trash" aria-hidden="true"></i>
-													Tout effacer
-												</button>
-											</div>
-											{foldedSteps
-												.map(step => (
-													<step.component
-														key={step.name}
-														{...step}
-														step={step}
-														answer={situation(step.name)}
-													/>
-												))}
-										</div>
-									}
-									<div id="unfoldedSteps">
-										{ !R.isEmpty(unfoldedSteps) && do {
-											let step = R.head(unfoldedSteps)
-											;<step.component
-												key={step.name}
-												step={R.dissoc('component', step)}
-												unfolded={true}
-												answer={situation(step.name)}
-											/>
-										}}
-									</div>
-									{unfoldedSteps.length == 0 &&
-										<Conclusion simu={this.name}/>}
-									</div>
-								<Aide />
-							</div>
-						</div>
-					)}
+					: <Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>}
 
-			</div>
-		)
-	}
-}
-
-class Conclusion extends Component {
-	render() {
-		return (
-			<div id="fin">
-				<img src={require('../images/fin.png')} />
-				<div id="fin-text">
-					<p>
-						Votre simulation est terminée !
-					</p>
-					<p>
-						N'hésitez pas à modifier vos réponses, ou cliquez sur vos résultats pour comprendre le calcul.
-					</p>
-					<Satisfaction simu={this.props.simu}/>
-				</div>
 			</div>
 		)
 	}

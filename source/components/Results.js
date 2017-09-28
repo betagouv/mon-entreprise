@@ -18,18 +18,16 @@ let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 @withRouter
 @connect(
 	state => ({
-		pointedOutObjectives: state.pointedOutObjectives,
 		analysedSituation: state.analysedSituation,
 		conversationStarted: !R.isEmpty(state.form),
 		conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state),
-		situationGate: (name => formValueSelector('conversation')(state, name))
+		situationGate: state.situationGate
 	})
 )
 export default class Results extends Component {
 	render() {
 		let {
 			analysedSituation,
-			pointedOutObjectives,
 			conversationStarted,
 			conversationFirstAnswer: showResults,
 			situationGate,
@@ -70,12 +68,9 @@ export default class Results extends Component {
 								unsatisfied = ruleValue == null,
 								nonApplicableValue = nonApplicable ? nonApplicable.nodeValue : false,
 								irrelevant = nonApplicableValue === true || formuleValue == 0,
-								number = nonApplicableValue == false && formuleValue != null,
-								pointedOut =
-									pointedOutObjectives.find(objective => objective == dottedName)
-								|| R.contains(encodeRuleName(name))(location.pathname)
+								number = nonApplicableValue == false && formuleValue != null
 
-								;<li key={name} className={classNames({unsatisfied, irrelevant, number, pointedOut})}>
+								;<li key={name} className={classNames({unsatisfied, irrelevant, number})}>
 
 
 								<Link to={"/regle/" + encodeRuleName(name)} >

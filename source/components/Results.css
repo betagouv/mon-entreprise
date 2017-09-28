@@ -135,23 +135,6 @@
 	width: 100%;
 }
 
-#results li:not(.pointedOut):hover .rule-box {
-	background: #ddd;
-}
-#results li.irrelevant .rule-box {
-	background: rgba(255, 255, 255, 0.35);
-}
-
-#results li.pointedOut:not(.irrelevant) .rule-name {
-	color: #4A89DC;
-}
-#results li.pointedOut .rule-type {
-	color: #4A89DC;
-}
-
-#results li.pointedOut .rule-box {
-	border-bottom: .8em solid #4A89DC;
-}
 #results li.number p {
 	color: #4A89DC;
 	font-weight: bold;
