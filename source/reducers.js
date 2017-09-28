@@ -7,7 +7,7 @@ import {reducer as formReducer, formValueSelector} from 'redux-form'
 import {rules, findRuleByName } from 'Engine/rules'
 import {buildNextSteps} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
-import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, POINT_OUT_OBJECTIVES, CHANGE_THEME_COLOUR} from './actions'
+import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
 
 import {analyseTopDown} from 'Engine/traverse'
 
@@ -32,8 +32,9 @@ export let reduceSteps = (state, action) => {
 
 	let sim = findRuleByName(flatRules, rootVariable),
 		// Hard assumptions cannot be changed, they are used to specialise a simulator
+		// before the user sees the first question
 		hardAssumptions = R.pathOr({},['simulateur','hypothèses'],sim),
-		// Soft assumptions are revealed after the simulation starts, and can be changed
+		// Soft assumptions are revealed after the simulation ends, and can be changed
 		softAssumptions = R.pathOr({},['simulateur','par défaut'],sim),
 		intermediateSituation = assume(fromConversation, hardAssumptions),
 		completeSituation = assume(intermediateSituation,softAssumptions)
@@ -59,7 +60,7 @@ export let reduceSteps = (state, action) => {
 			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
 
 		// The simulation is "over" - except we can now fill in extra questions
-		// where the answers were previously given reasonable assumptions
+		// where the answers were previously given default reasonable assumptions
 		if (unfoldedSteps.length == 0 && !R.isEmpty(softAssumptions)) {
 			let newSituation = intermediateSituation(state),
 				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
@@ -108,14 +109,6 @@ function explainedVariable(state = null, {type, variableName=null}) {
 	}
 }
 
-function pointedOutObjectives(state=[], {type, objectives}) {
-	switch (type) {
-	case POINT_OUT_OBJECTIVES:
-		return objectives
-	default:
-		return state
-	}
-}
 
 export default reduceReducers(
 	combineReducers({
@@ -136,9 +129,8 @@ export default reduceReducers(
 
 		themeColours,
 
-		explainedVariable,
+		explainedVariable
 
-		pointedOutObjectives,
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
 	reduceSteps

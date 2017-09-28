@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import {Field, change} from 'redux-form'
-import {stepAction, POINT_OUT_OBJECTIVES} from '../../actions'
+import {stepAction} from '../../actions'
 import StepAnswer from './StepAnswer'
 import {capitalise0} from '../../utils'
 
@@ -21,8 +21,7 @@ export var FormDecorator = formType => RenderField =>
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
-			setFormValue: (field, value) => dispatch(change('conversation', field, value)),
-			pointOutObjectives: objectives => dispatch({type: POINT_OUT_OBJECTIVES, objectives})
+			setFormValue: (field, value) => dispatch(change('conversation', field, value))
 		})
 	)
 	class extends Component {
@@ -34,7 +33,6 @@ export var FormDecorator = formType => RenderField =>
 				stepAction,
 				themeColours,
 				setFormValue,
-				pointOutObjectives,
 				/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
 				de la réponse est affiché */
 				unfolded
@@ -83,8 +81,7 @@ export var FormDecorator = formType => RenderField =>
 			return (
 			<div
 				className={classNames({step: unfolded}, formType)}
-				onMouseEnter={() => null} //pointOutObjectives(objectives)}
-				onMouseLeave={() => pointOutObjectives([])}>
+				>
 				{this.state.helpVisible && this.renderHelpBox(helpText)}
 				<div style={{visibility: this.state.helpVisible ? 'hidden' : 'visible'}}>
 					{this.renderHeader(unfolded, valueType, human, helpText, wideQuestion, subquestion)}
@@ -175,9 +172,6 @@ export var FormDecorator = formType => RenderField =>
 				</a>
 				{helpComponent}
 			</div>
-		}
-		componentWillUnmount(){
-			this.props.pointOutObjectives([])
 		}
 
 	}
