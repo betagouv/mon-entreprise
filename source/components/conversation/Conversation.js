@@ -3,6 +3,7 @@ import R from 'ramda'
 import Aide from '../Aide'
 import Satisfaction from '../Satisfaction'
 import {reduxForm} from 'redux-form'
+import Scroll from 'react-scroll'
 
 @reduxForm({
 	form: "conversation",
@@ -11,7 +12,8 @@ import {reduxForm} from 'redux-form'
 export default class Conversation extends Component {
 	render() {
 		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate} = this.props
-		window.scrollTo(0,document.body.scrollHeight)
+
+		Scroll.animateScroll.scrollToBottom()
 		return (
 			<div id="conversation">
 				<div id="questions-answers">
