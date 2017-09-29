@@ -449,6 +449,8 @@ export let analyseTopDown = (rules, rootVariable) => situationGate => {
 
 		//On fait ainsi pour chaque règle de la base.
 		parsedRules = R.map(treatOne,rules),
+		// TODO: we should really make use of namespaces at this level, in particular
+		// setRule in Rule.js needs to get smarter and pass dottedName
 		rootRule = findRuleByName(parsedRules, rootVariable),
 
 		/*
