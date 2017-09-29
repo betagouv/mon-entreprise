@@ -16,9 +16,9 @@ Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	explanation: [d[0], d[4]]
 }) %}
 
-Comparable -> (int | CalcExpression | Variable) {% d => d[0][0] %}
+Comparable -> (int | CalcExpression | Variable | Constant) {% d => d[0][0] %}
 
-ComparisonOperator -> ">" | "<" | ">=" | "<=" | "="
+ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
 NegatedVariable -> "≠" _ Variable {% d => ({category: 'negatedVariable', variable: d[2] }) %}
 
@@ -61,6 +61,11 @@ Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d 
 	type: 'numeric | boolean'
 }) %}
 
+Constant -> "'" [ .'a-zA-Z\u00C0-\u017F ]:+ "'" {% d => ({
+	category: 'value',
+	type: 'string',
+	nodeValue: d[1].join('')
+}) %}
 
 VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
 
@@ -72,4 +77,4 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-int -> [0-9]:+        {% d => ({category: 'value', nodeValue: +d[0].join("")}) %}
+int -> [0-9]:+        {% d => ({category: 'value', nodeValue: parseInt(+d[0].join(""))}) %}

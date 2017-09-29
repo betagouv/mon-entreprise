@@ -9,6 +9,7 @@
 
   non applicable si:
     une de ces conditions:
+      - type de contrat != 'CDD'
       - durée contrat > 3 #cette information est déjà contenue dans la formule, mais ça ne fait pas de mal de l'expliciter ici
       - événement . poursuite du CDD en CDI
 
@@ -26,8 +27,10 @@
 
 
   exemples:
-    - nom: salaire médian, CDD d'usage, contrat de 2 mois
+    - nom: salaire médian, accroissement d'activité, contrat de 1 mois
       situation:
+        événement: non
+        contrat salarié . type de contrat: CDD
         assiette cotisations sociales: 2300
         motif . classique . accroissement activité: oui
         durée contrat: 1

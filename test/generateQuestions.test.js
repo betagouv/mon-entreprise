@@ -71,6 +71,41 @@ describe('collectMissingVariables', function() {
     expect(result).to.deep.equal({})
   });
 
+  it('should report "une possibilité" as a missing variable even though it has a formula', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "trois", espace: "top"},
+          {nom: "trois", formule: {"une possibilité":["ko"]}, espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.have.property('top . trois')
+  });
+
+  it('should not report missing variables when "une possibilité" is inapplicable', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "trois", espace: "top"},
+          {nom: "trois", formule: {"une possibilité":["ko"]}, "non applicable si": 1, espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(stateSelector),
+        result = collectMissingVariables()(stateSelector,situation)
+
+    expect(result).to.deep.equal({})
+  });
+
+  it('should not report missing variables when "une possibilité" was answered', function() {
+    let mySelector = (name) => ({"top . trois":"ko"})[name]
+
+    let rawRules = [
+          {nom: "startHere", formule: "trois", espace: "top"},
+          {nom: "trois", formule: {"une possibilité":["ko"]}, espace: "top"}],
+        rules = rawRules.map(enrichRule),
+        situation = analyseTopDown(rules,"startHere")(mySelector),
+        result = collectMissingVariables()(mySelector,situation)
+
+    expect(result).to.deep.equal({})
+  });
+
   it('should report missing variables in switch statements', function() {
     let rawRules = [
           { nom: "startHere", formule: {"aiguillage numérique": {
@@ -187,7 +222,7 @@ describe('buildNextSteps', function() {
   it('should generate questions', function() {
     let rawRules = [
           {nom: "sum", formule: {somme: [2, "deux"]}, espace: "top"},
-          {nom: "deux", formule: 2, "non applicable si" : "top . sum . evt . ko", espace: "top"},
+          {nom: "deux", formule: 2, "non applicable si" : "top . sum . evt = 'ko'", espace: "top"},
           {nom: "evt", espace: "top . sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
@@ -202,27 +237,41 @@ describe('buildNextSteps', function() {
     let rules = realRules.map(enrichRule),
         situation = analyseTopDown(rules,"surcoût CDD")(stateSelector),
         objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
+        missing = collectMissingVariables()(stateSelector,situation),
         result = buildNextSteps(stateSelector, rules, situation)
 
     expect(objectives).to.have.lengthOf(4)
-    expect(result).to.have.lengthOf(6)
-    expect(R.path(["question","props","label"])(result[0])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
-    expect(R.path(["question","props","label"])(result[1])).to.equal("Quel est le motif de recours au CDD ?")
-    expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le salaire brut ?")
-    expect(R.path(["question","props","label"])(result[3])).to.equal("Est-ce un contrat jeune vacances ?")
-    expect(R.path(["question","props","label"])(result[4])).to.equal("Quelle est la durée du contrat ?")
-    expect(R.path(["question","props","label"])(result[5])).to.equal("Combien de jours de congés ne seront pas pris ?")
+
+    expect(missing).to.have.property('contrat salarié . type de contrat')
+    expect(missing).to.have.property('contrat salarié . CDD . événement')
+    expect(missing).to.have.property('contrat salarié . CDD . motif')
+    expect(missing).to.have.property('contrat salarié . salaire de base')
+    expect(missing).to.have.property('contrat salarié . CDD . contrat jeune vacances')
+    expect(missing).to.have.property('contrat salarié . CDD . durée contrat')
+    expect(missing).to.have.property('contrat salarié . CDD . congés non pris')
+
+    // One question per missing variable !
+    expect(R.keys(missing)).to.have.lengthOf(7)
+    expect(result).to.have.lengthOf(7)
+
+    expect(R.path(["question","props","label"])(result[0])).to.equal("Quelle est la nature du contrat de travail ?")
+    expect(R.path(["question","props","label"])(result[1])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
+    expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le motif de recours au CDD ?")
+    expect(R.path(["question","props","label"])(result[3])).to.equal("Quel est le salaire brut ?")
+    expect(R.path(["question","props","label"])(result[4])).to.equal("Est-ce un contrat jeune vacances ?")
+    expect(R.path(["question","props","label"])(result[5])).to.equal("Quelle est la durée du contrat ?")
+    expect(R.path(["question","props","label"])(result[6])).to.equal("Combien de jours de congés ne seront pas pris ?")
   });
 
   it('should generate questions from the real rules, experimental version', function() {
-    let stateSelector = (name) => ({"contrat salarié . CDD . événement . poursuite du CDD en CDI":"oui"})[name]
+    let stateSelector = (name) => ({"contrat salarié . type de contrat":"CDI"})[name]
 
     let rules = realRules.map(enrichRule),
         situation = analyseTopDown(rules,"Salaire")(stateSelector),
         objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
         result = buildNextSteps(stateSelector, rules, situation)
 
-    expect(objectives).to.have.lengthOf(2)
+    expect(objectives).to.have.lengthOf(3) // Salaire net, coût du travail, surcoût CDD
     expect(result).to.have.lengthOf(3)
     expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut ?")
     expect(R.path(["question","props","label"])(result[1])).to.equal("Le salarié a-t-il le statut cadre ?")
