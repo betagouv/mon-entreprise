@@ -413,12 +413,12 @@ export let mecanismProduct = (recurse,k,v) => {
 						<span className="key">assiette: </span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
-					{explanation.taux.nodeValue != 1 &&
+					{(explanation.taux.nodeValue != 1 || explanation.taux.category == 'calcExpression') &&
 					<li key="taux">
 						<span className="key">taux: </span>
 						<span className="value">{makeJsx(explanation.taux)}</span>
 					</li>}
-					{explanation.facteur.nodeValue != 1 &&
+					{(explanation.facteur.nodeValue != 1 || explanation.taux.category == 'calcExpression') &&
 					<li key="facteur">
 						<span className="key">facteur: </span>
 						<span className="value">{makeJsx(explanation.facteur)}</span>
