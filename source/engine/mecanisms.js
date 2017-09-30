@@ -4,7 +4,7 @@ import {anyNull, val} from './traverse-common-functions'
 import {Node, Leaf} from './traverse-common-jsx'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
 
-let constantNode = constant => ({nodeValue: constant})
+let constantNode = constant => ({nodeValue: constant, jsx:  nodeValue => <span className="value">{nodeValue}</span>})
 
 let decompose = (recurse, k, v) => {
 	let
@@ -408,9 +408,6 @@ export let mecanismScale = (recurse,k,v) => {
 		return devariate(recurse,k,v)
 	}
 
-	if (v['multiplicateur des tranches'] == null)
-		throw "un barème nécessite pour l'instant une propriété 'multiplicateur des tranches'"
-
 	/* on réécrit en plus bas niveau les tranches :
 	`en-dessous de: 1`
 	devient
@@ -427,12 +424,11 @@ export let mecanismScale = (recurse,k,v) => {
 
 	let objectShape = {
 		assiette:false,
-		'multiplicateur des tranches':false
+		'multiplicateur des tranches':constantNode(1)
 	}
 
 	let effect = ({assiette, 'multiplicateur des tranches': multiplicateur, tranches}) => {
-		//TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
-		// (c'est partiellement le cas pour 'taux' qui est calculé mais pas ses variables manquantes)
+		// TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
 		// ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond
 		// sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
 		/*
@@ -475,7 +471,7 @@ export let mecanismScale = (recurse,k,v) => {
 					</li>
 					<li key="multiplicateur">
 						<span className="key">multiplicateur des tranches: </span>
-						<span className="value">{makeJsx(explanation.multiplicateur)}</span>
+						<span className="value">{makeJsx(explanation['multiplicateur des tranches'])}</span>
 					</li>
 					<table className="tranches">
 						<thead>
@@ -484,7 +480,9 @@ export let mecanismScale = (recurse,k,v) => {
 								<th>Taux</th>
 							</tr>
 							{explanation.tranches.map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
-								<tr key={min || minOnly || 0}>
+								<tr key={min || minOnly || 0}
+									style={{fontWeight: (explanation.assiette.nodeValue * explanation['multiplicateur des tranches'].nodeValue > min ? ' bold' : '')}}
+								>
 									<td>
 										{	maxOnly ? 'En dessous de ' + maxOnly
 											: minOnly ? 'Au dessus de ' + minOnly
