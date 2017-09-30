@@ -471,7 +471,7 @@ export let mecanismScale = (recurse,k,v) => {
 					</li>
 					<li key="multiplicateur">
 						<span className="key">multiplicateur des tranches: </span>
-						<span className="value">{makeJsx(explanation.multiplicateur)}</span>
+						<span className="value">{makeJsx(explanation['multiplicateur des tranches'])}</span>
 					</li>
 					<table className="tranches">
 						<thead>
