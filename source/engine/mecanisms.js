@@ -6,11 +6,6 @@ import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilt
 
 let constantNode = constant => ({nodeValue: constant})
 
-let transformPercentage = s =>
-	R.contains('%')(s) ?
-		+s.replace('%', '') / 100
-	: +s
-
 let decompose = (recurse, k, v) => {
 	let
 		subProps = R.dissoc('composantes')(v),
@@ -211,17 +206,15 @@ export let mecanismAllOf = (recurse, k,v) => {
 }
 
 export let mecanismNumericalSwitch = (recurse, k,v) => {
-	if (R.is(String,v)) {
-		// This seems an undue limitation
-		// Or a logical one if we decide to keep this mecanism specialized as opposed to "variations"
-		return mecanismPercentage(recurse,k,v)
-	}
+	// Si "l'aiguillage" est une constante ou une référence directe à une variable;
+	// l'utilité de ce cas correspond à un appel récursif au mécanisme
+	if (R.is(String,v)) return recurse(v)
 
 	if (!R.is(Object,v) || R.keys(v).length == 0) {
 		throw 'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
 	}
 
-	// les termes sont les coupes (condition, conséquence) de l'aiguillage numérique
+	// les termes sont les couples (condition, conséquence) de l'aiguillage numérique
 	let terms = R.toPairs(v)
 
 	// la conséquence peut être un 'string' ou un autre aiguillage numérique
@@ -318,33 +311,6 @@ export let mecanismNumericalSwitch = (recurse, k,v) => {
 	}
 }
 
-export let mecanismPercentage = (recurse,k,v) => {
-	let reg = /^(\d+(\.\d+)?)\%$/
-	if (R.test(reg)(v))
-		return {
-			type: 'numeric',
-			category: 'percentage',
-			nodeValue: R.match(reg)(v)[1]/100,
-			explanation: null,
-			jsx:
-				<span className="percentage" >
-					<span className="name">{v}</span>
-				</span>
-		}
-	else {
-		let node = recurse(v)
-		let evaluate = (situation, parsedRules, node) => evaluateNode(situation, parsedRules, node.explanation)
-		let jsx = (nodeValue,explanation) => makeJsx(explanation)
-		return {
-			evaluate,
-			jsx,
-			type: 'numeric',
-			category: 'percentage',
-			explanation: node
-		}
-	}
-}
-
 export let mecanismSum = (recurse,k,v) => {
 	let explanation = v.map(recurse)
 
@@ -380,10 +346,6 @@ export let mecanismProduct = (recurse,k,v) => {
 		return devariate(recurse,k,v)
 	}
 
-	// Preprocessing step to parse percentages
-	let wrap = x => ({taux: x}),
-		value = R.evolve({taux:wrap},v)
-
 	let objectShape = {
 		assiette:false,
 		taux:constantNode(1),
@@ -399,7 +361,7 @@ export let mecanismProduct = (recurse,k,v) => {
 			: mult(val(assiette), val(taux), val(facteur), val(plafond))
 	}
 
-	let explanation = parseObject(recurse,objectShape,value),
+	let explanation = parseObject(recurse,objectShape,v),
 		evaluate = evaluateObject(objectShape,effect)
 
 	let jsx = (nodeValue, explanation) =>
@@ -468,18 +430,17 @@ export let mecanismScale = (recurse,k,v) => {
 			: R.has('au-dessus de')(t) ? {de: t['au-dessus de'], 'à': Infinity, taux: t.taux}
 				: t)
 
-	let aliased = {
-		...v,
-		multiplicateur: v['multiplicateur des tranches']
-	}
 
 	let objectShape = {
 		assiette:false,
-		multiplicateur:false
+		'multiplicateur des tranches':false
 	}
 
-	let effect = ({assiette, multiplicateur, tranches}) => {
-		//TODO appliquer retreat() à de, à, taux pour qu'ils puissent contenir des calculs ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
+	let effect = ({assiette, 'multiplicateur des tranches': multiplicateur, tranches}) => {
+		//TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
+		// (c'est partiellement le cas pour 'taux' qui est calculé mais pas ses variables manquantes)
+		// ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond
+		// sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
 		/*
 			nulled = assiette.nodeValue == null || R.any(
 				R.pipe(
@@ -497,12 +458,12 @@ export let mecanismScale = (recurse,k,v) => {
 					? memo + 0
 					:	memo
 						+ ( Math.min(val(assiette), max * val(multiplicateur)) - (min * val(multiplicateur)) )
-						* transformPercentage(taux)
+						* recurse(taux).nodeValue
 			, 0)
 		}
 
 	let explanation = {
-				...parseObject(recurse,objectShape,aliased),
+				...parseObject(recurse,objectShape,v),
 				tranches
 			},
 		evaluate = evaluateObject(objectShape,effect)
@@ -657,5 +618,5 @@ export let mecanismComplement = (recurse,k,v) => {
 }
 
 export let mecanismError = (recurse,k,v) => {
-	throw "Le mécanisme est inconnu !"
+	throw "Le mécanisme '"+k+"' est inconnu !"+v
 }
