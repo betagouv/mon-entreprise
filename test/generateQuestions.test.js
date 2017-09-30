@@ -272,8 +272,6 @@ describe('buildNextSteps', function() {
         objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
         result = buildNextSteps(stateSelector, rules, situation)
 
-    expect(objectives).to.have.lengthOf(3) // Salaire net, coût du travail, surcoût CDD
-    expect(result).to.have.lengthOf(3)
     expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut ?")
     expect(R.path(["question","props","label"])(result[1])).to.equal("Le salarié a-t-il le statut cadre ?")
     expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est l'effectif de l'entreprise ?")

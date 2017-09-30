@@ -111,19 +111,13 @@ let devariate = (recurse, k, v) => {
 				<ul>
 					{ explanation.map((c, i) =>
 						[<li className="variation" key={JSON.stringify(c.variation)}>
-							<ul className="variationAttributes">
-								{R.toPairs(c.condition).map(([k,v]) =>
-									<li>
-										<span>{k}: </span>
-										<span>{v}</span>
-									</li>
-								)}
-							</ul>
-							<div className="content">
-								{makeJsx(c)}
+							<div className="condition">
+							{makeJsx(c.condition)}
+								<div className="content">
+									{makeJsx(c)}
+								</div>
 							</div>
-						</li>,
-						i < (explanation.length - 1) && <li className="variationsSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+						</li>
 						])
 					}
 				</ul>
