@@ -480,7 +480,9 @@ export let mecanismScale = (recurse,k,v) => {
 								<th>Taux</th>
 							</tr>
 							{explanation.tranches.map(({'en-dessous de': maxOnly, 'au-dessus de': minOnly, de: min, 'à': max, taux}) =>
-								<tr key={min || minOnly || 0}>
+								<tr key={min || minOnly || 0}
+									style={{fontWeight: (explanation.assiette.nodeValue * explanation['multiplicateur des tranches'].nodeValue > min ? ' bold' : '')}}
+								>
 									<td>
 										{	maxOnly ? 'En dessous de ' + maxOnly
 											: minOnly ? 'Au dessus de ' + minOnly
