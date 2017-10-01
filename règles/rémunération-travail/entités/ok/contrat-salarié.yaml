@@ -136,6 +136,7 @@
   formule:
     somme:
       - maladie (employeur)
+      - ATMP
       - prévoyance obligatoire cadre
       - vieillesse (employeur)
       - ARRCO (employeur)

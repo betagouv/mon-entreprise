@@ -1,0 +1,23 @@
+- espace: contrat salarié
+  nom: atmp
+  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
+  cotisation:
+    branche: maladie
+    destinataire: URSSAF
+    responsable: CARSAT
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: ATMP . taux collectif ATMP / 100
+
+- espace: contrat salarié . ATMP
+  nom: taux collectif ATMP
+  titre: Taux collectif ATMP
+  question: Quel taux Accidents du Travail et Maladies Professionnelles s'applique à l'entreprise ?
+  description: |
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
+    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà). L'entreprise peut consulter le taux qui la
+    concerne en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
+  format: pourcentage
+  suggestions: atmp-2017

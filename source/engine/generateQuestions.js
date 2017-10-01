@@ -5,6 +5,7 @@ import Explicable from 'Components/conversation/Explicable'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import Select from 'Components/conversation/select/Select'
+import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
 import {analyseSituation} from './traverse'
@@ -156,6 +157,11 @@ export let generateQuestion = flatRules => ([dottedName, objectives]) => {
 			valueType: formValueTypes[rule.format],
 			suggestions: rule.suggestions,
 		})
+	let selectAtmp = rule => ({
+			component: SelectAtmp,
+			valueType: formValueTypes[rule.format],
+			suggestions: rule.suggestions,
+		})
 	let binaryQuestion = rule => ({
 			component: Question,
 			choices: [
@@ -177,7 +183,7 @@ export let generateQuestion = flatRules => ([dottedName, objectives]) => {
 			rule.format == null ?
 				binaryQuestion(rule) :
 				typeof rule.suggestions == 'string' ?
-					selectQuestion(rule) :
+					(rule.suggestions == 'atmp-2017' ? selectAtmp(rule) : selectQuestion(rule)) :
 					inputQuestion(rule)
 				,
 		guidance
