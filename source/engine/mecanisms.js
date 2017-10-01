@@ -641,6 +641,9 @@ export let mecanismSelection = (recurse,k,v) => {
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 
+	let indexOf = explanation => explanation.nodeValue ? R.findIndex(x => x['nomLaposte'] == explanation.nodeValue, R.values(taux_versement_transport)) : 0
+	let indexOffset = 8
+
 	let jsx = (nodeValue, explanation) =>
 		<Node
 			classes="mecanism"
@@ -653,6 +656,10 @@ export let mecanismSelection = (recurse,k,v) => {
 					headerHeight={20}
 					rowHeight={30}
 					rowCount={R.values(taux_versement_transport).length}
+					scrollToIndex={indexOf(explanation)+indexOffset}
+					rowStyle={
+						({ index }) => index == indexOf(explanation) ? { fontWeight: "bold" } : {}
+					}
 					rowGetter={
 						({ index }) => {
 							// transformation de données un peu crade du fichier taux.json qui gagnerait à être un CSV
