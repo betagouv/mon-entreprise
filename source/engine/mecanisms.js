@@ -3,6 +3,11 @@ import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
 import {Node, Leaf} from './traverse-common-jsx'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
+import {findRuleByName} from './rules'
+
+import 'react-virtualized/styles.css'
+import {Table, Column} from 'react-virtualized'
+import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/taux.json'
 
 let constantNode = constant => ({nodeValue: constant, jsx:  nodeValue => <span className="value">{nodeValue}</span>})
 
@@ -153,7 +158,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 
 	let evaluate = (situationGate, parsedRules, node) => {
 		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
-		    explanation = R.map(evaluateOne, node.explanation),
+				explanation = R.map(evaluateOne, node.explanation),
 			values = R.pluck("nodeValue",explanation),
 			nodeValue = R.any(R.equals(true),values) ? true :
 							(R.any(R.equals(null),values) ? null : false)
@@ -606,6 +611,88 @@ export let mecanismComplement = (recurse,k,v) => {
 				</ul>
 			}
 		/>
+	}
+}
+
+export let mecanismSelection = (recurse,k,v) => {
+	if (v.composantes) { //mécanisme de composantes. Voir known-mecanisms.md/composantes
+		return decompose(recurse,k,v)
+	}
+
+	let dataSourceName = v['données']
+	let dataSearchField = v['dans']
+	let dataTargetName = v['renvoie']
+	let explanation = recurse(v['cherche'])
+
+	let evaluate = (situationGate, parsedRules, node) => {
+		let collectMissing = node => collectNodeMissing(node.explanation),
+			explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+			dataSource = findRuleByName(parsedRules, dataSourceName),
+			data = dataSource ? dataSource['data'] : null,
+			dataKey = explanation.nodeValue,
+			dataItems = (data && dataKey && dataSearchField) ? R.filter(item => item[dataSearchField] == dataKey, data) : null,
+			dataItemValues = (dataItems && !R.isEmpty(dataItems)) ? R.values(dataItems) : null,
+			// TODO - over-specific! transform the JSON instead
+			dataItemSubValues = dataItemValues && dataItemValues[0][dataTargetName] ? dataItemValues[0][dataTargetName]["taux"] : null,
+			sortedSubValues = dataItemSubValues ? R.sortBy(pair => pair[0], R.toPairs(dataItemSubValues)) : null,
+			// return 0 if we found a match for the lookup but not for the specific field,
+			// so that component sums don't sum to null
+			nodeValue = dataItems ? (sortedSubValues ? Number.parseFloat(R.last(sortedSubValues)[1])/100 : 0) : null
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
+	}
+
+	let indexOf = explanation => explanation.nodeValue ? R.findIndex(x => x['nomLaposte'] == explanation.nodeValue, R.values(taux_versement_transport)) : 0
+	let indexOffset = 8
+
+	let jsx = (nodeValue, explanation) =>
+		<Node
+			classes="mecanism"
+			name="sélection"
+			value={nodeValue}
+			child={
+				<Table
+					width={300}
+					height={300}
+					headerHeight={20}
+					rowHeight={30}
+					rowCount={R.values(taux_versement_transport).length}
+					scrollToIndex={indexOf(explanation)+indexOffset}
+					rowStyle={
+						({ index }) => index == indexOf(explanation) ? { fontWeight: "bold" } : {}
+					}
+					rowGetter={
+						({ index }) => {
+							// transformation de données un peu crade du fichier taux.json qui gagnerait à être un CSV
+							let line = R.values(taux_versement_transport)[index],
+								getLastTaux = dataTargetName => {
+									let lastTaux = R.values(R.path([dataTargetName, 'taux'], line))
+									return (lastTaux && lastTaux.length && lastTaux[0]) || 0
+								}
+							return {
+								nom: line['nomLaposte'],
+								taux: getLastTaux(dataTargetName)
+							}
+						}
+					}
+				>
+					<Column
+						label='Nom de commune'
+						dataKey='nom'
+						width={200}
+					/>
+					<Column
+						width={100}
+						label={'Taux ' + dataTargetName}
+						dataKey="taux"
+					/>
+				</Table>
+			}
+		/>
+
+	return {
+		evaluate,
+		explanation,
+		jsx
 	}
 }
 

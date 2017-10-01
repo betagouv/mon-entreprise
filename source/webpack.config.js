@@ -63,6 +63,15 @@ module.exports = {
 			loader: 'babel-loader'
 		},
 		{
+			test: /\.csv$/,
+			loader: 'csv-loader',
+			options: {
+				dynamicTyping: true,
+				header: true,
+				skipEmptyLines: true
+			}
+		},
+		{
 			test: /\.(jpe?g|png|gif|svg)$/i,
 			loader: 'url-loader?limit=10000&name=images/[name].[ext]!img-loader?progressive=true'
 		}, {

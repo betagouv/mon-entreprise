@@ -1,0 +1,19 @@
+- espace: établissement
+  nom: code postal
+  titre: Code postal de l'établissement
+  question: Quel est le code postal de la commune où est implanté l'établissement ?
+  description: |
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
+    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+  format: nombre
+
+- espace: établissement
+  nom: commune
+  titre: Commune de l'établissement
+  question: Quel est la commune où est implanté l'établissement ?
+  description: |
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
+    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+  # format: objet
+  format: texte
+  suggestions: communes

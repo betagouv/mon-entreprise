@@ -8,7 +8,8 @@ import Grammar from './grammar.ne'
 import {Node, Leaf} from './traverse-common-jsx'
 import {
 	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
-	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement
+	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement,
+	mecanismSelection
 } from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
 
@@ -291,7 +292,7 @@ let treat = (rules, rule) => rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
 			if (mecanisms.length != 1) {
-				console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', rawNode)
+				console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', mecanisms, rawNode)
 				throw 'OUPS !'
 			}
 
@@ -308,6 +309,7 @@ let treat = (rules, rule) => rawNode => {
 					'le maximum de':			mecanismMax,
 					'le minimum de':			mecanismMin,
 					'complément':				mecanismComplement,
+					'sélection':				mecanismSelection,
 					'une possibilité':			R.always({'une possibilité':'oui', collectMissing: node => [rule.dottedName]})
 				},
 				action = R.propOr(mecanismError, k, dispatch)

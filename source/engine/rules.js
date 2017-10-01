@@ -5,16 +5,20 @@ import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
 
+// TODO - should be in UI, not engine
+import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/taux.json'
+
  // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
  Méthodes agissant sur une règle */
 
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
-export let enrichRule = rule => {
+export let enrichRule = (rule, sharedData = {}) => {
 	let
 		type = possibleVariableTypes.find(t => R.has(t, rule)),
 		name = rule['nom'],
 		ns = rule['espace'],
+		data = rule['données'] ? sharedData[rule['données']] : null,
 		dottedName = ns ? [
 			ns,
 			name
@@ -22,7 +26,7 @@ export let enrichRule = rule => {
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
 
-	return {...rule, type, name, ns, dottedName, subquestion}
+	return {...rule, type, name, ns, data, dottedName, subquestion}
 }
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
@@ -64,7 +68,7 @@ export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 }
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = rawRules.map(enrichRule)
+export let rules = rawRules.map(rule => enrichRule(rule, {taux_versement_transport}))
 
 
 /****************************************

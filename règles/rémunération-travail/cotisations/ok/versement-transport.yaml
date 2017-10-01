@@ -1,0 +1,29 @@
+- espace: contrat salarié
+  nom: versement transport
+
+  non applicable si: entreprise . effectif < 11
+    # TODO variations sur la période
+    # variations:
+    #   - si: période >= 2016
+    #     condition: Entreprise . effectif >= 11
+    #   - si: période < 2016
+    #     condition: Entreprise . effectif >= 10
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: établissement . taux versement transport
+
+- espace: établissement
+  nom: taux versement transport
+  données: taux_versement_transport
+  formule:
+    sélection:
+      données: taux versement transport
+      cherche: commune
+      dans: nomLaposte
+      composantes:
+        - nom: aot
+          renvoie: aot
+        - nom: smt
+          renvoie: smt

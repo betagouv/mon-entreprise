@@ -13,6 +13,7 @@
     "transform-do-expressions",
     "transform-object-rest-spread",
     "transform-class-properties",
+    "syntax-dynamic-import",
     ["webpack-alias", { "config": "./source/webpack.config.js" }]
   ]
 }

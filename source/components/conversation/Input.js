@@ -12,18 +12,19 @@ export default class Input extends Component {
 		let {
 			name,
 			input,
-			stepProps: {attributes, submit, valueType, suggestions, setFormValue},
+			stepProps: {attributes, submit, valueType, suggestions},
 			meta: {
 				touched, error, active,
 			},
 			themeColours,
-
 		} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = touched && error,
 			sendButtonDisabled = this.state.suggestedInput || !input.value || inputError
 
+		if (typeof suggestions == 'string')
+			return <Select />
 		return (
 			<span>
 				<span className="answer">
@@ -51,21 +52,28 @@ export default class Input extends Component {
 						<span className="icon">&#10003;</span>
 					</button>
 				</span>
-				{suggestions && <span className="inputSuggestions">suggestions:
-					<ul>
-					{R.toPairs(suggestions).map(([text, value]) =>
-						<li key={value}
-							onClick={e => setFormValue('' + value) && submit() && e.preventDefault()}
-							onMouseOver={() => setFormValue('' + value) && this.setState({suggestedInput: true})}
-							onMouseOut={() => setFormValue('') && this.setState({suggestedInput: false})}>
-							<a href="#" title="cliquer pour valider">{text}</a>
-						</li>
-					)}
-					</ul>
-				</span>
-				}
+
+				{this.renderSuggestions()}
+
 				{inputError && <span className="step-input-error">{error}</span>}
 			</span>
 		)
+	}
+	renderSuggestions(){
+		let {setFormValue, submit, suggestions} = this.props.stepProps
+		if (!suggestions) return null
+		return (
+			<span className="inputSuggestions">suggestions:
+			<ul>
+			{R.toPairs(suggestions).map(([text, value]) =>
+				<li key={value}
+					onClick={e => setFormValue('' + value) && submit() && e.preventDefault()}
+					onMouseOver={() => setFormValue('' + value) && this.setState({suggestedInput: true})}
+					onMouseOut={() => setFormValue('') && this.setState({suggestedInput: false})}>
+					<a href="#" title="cliquer pour valider">{text}</a>
+				</li>
+			)}
+			</ul>
+		</span>)
 	}
 }
