@@ -10,14 +10,12 @@ import './Select.css'
 @FormDecorator('select')
 export default class Select extends Component {
 	state = {
-		data: null,
-		filterOptions: null
+		data: null
 	}
 	componentDidMount(){
 		import(/* webpackChunkName: "communescsv" */ 'Règles/communes.csv')
 			.then(module => this.setState({
 				data: module,
-				filterOptions: createFilterOptions({ options: module, labelKey: 'Nom_commune', valueKey: 'Nom_commune' })
 			}))
 			.catch(error => 'An error occurred while loading the component')
 	}
@@ -30,7 +28,6 @@ export default class Select extends Component {
 		} = this.props,
 			submitOnChange =
 				option => {
-					console.log('option', option)
 					onChange(option.Nom_commune)
 					submit()
 				}
@@ -43,11 +40,11 @@ export default class Select extends Component {
 				<VirtualizedSelect
 					options={this.state.data}
 					onChange={submitOnChange}
+          ignoreAccents={false}
 					labelKey="Nom_commune"
 					valueKey="Nom_commune"
 					placeholder="Entrez le nom de commune"
 					noResultsText="Nous n'avons trouvé aucune commune"
-					filterOptions={this.state.filterOptions}
 				/>
 			</div>
 		)
