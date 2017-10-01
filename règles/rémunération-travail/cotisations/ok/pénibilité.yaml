@@ -1,4 +1,26 @@
 - espace: contrat salarié
+  nom: exposition pénibilité
+  titre: Exposition à des facteurs de pénibilité
+  question: Quelle est l'exposition du salarié à des facteurs de pénibilité ?
+  référence: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
+  formule:
+    une possibilité:
+      - exposition simple
+      - exposition multiple
+
+- espace: contrat salarié . exposition pénibilité
+  nom: exposition simple
+  titre: Exposition à un seul facteur de pénibilité
+  formule: contrat salarié . exposition pénibilité = 'exposition simple'
+  description: Exposition à un seul facteur de pénibilité
+
+- espace: contrat salarié . exposition pénibilité
+  nom: exposition multiple
+  titre: Exposition à plusieurs facteurs de pénibilité
+  formule: contrat salarié . exposition pénibilité = 'exposition multiple'
+  description: Exposition à plusieurs facteurs de pénibilité
+
+- espace: contrat salarié
   nom: cotisation pénibilité
   attributs:
     branche: santé # ou vieillesse car ouvrant droit à une retraite anticipée ?
@@ -20,7 +42,9 @@
                 - type de contrat = 'CDD'
                 - durée contrat < 1
           variations:
-            - si: ≠ contrat salarié . exposition pénibilité multiple
+            - si: contrat salarié . exposition pénibilité = 'non'
+              taux: 0%
+            - si: contrat salarié . exposition pénibilité . exposition simple
               taux: 0.2%
-            - si: contrat salarié . exposition pénibilité multiple
+            - si: contrat salarié . exposition pénibilité . exposition multiple
               taux: 0.4%
