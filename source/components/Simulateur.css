@@ -92,13 +92,11 @@
 
 #conversation {
 	margin: 3em auto;
+	padding: 0 1em;
 	font-size: 110%;
 	line-height: normal;
-	display: flex;
-	align-items: flex-start;
 	min-height: 10em;
-	max-width: 90%;
-	max-height: 85%;
+	max-width: 50em;
 }
 
 

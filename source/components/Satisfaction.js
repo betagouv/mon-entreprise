@@ -55,9 +55,10 @@ export default class Satisfaction extends Component {
 			return (
 				<p id="satisfaction">
 					Vous êtes satisfait du simulateur ?
-					{" "}
-					<Smiley text=":)" hoverColor="#16a085" clicked={onSmileyClick}/>
-					<Smiley text=":|" hoverColor="#f39c12" clicked={onSmileyClick}/>
+					<p>
+						<Smiley text=":)" hoverColor="#16a085" clicked={onSmileyClick}/>
+						<Smiley text=":|" hoverColor="#f39c12" clicked={onSmileyClick}/>
+					</p>
 				</p>
 			)
 

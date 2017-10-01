@@ -143,6 +143,7 @@
 
 .step fieldset ul {
 	list-style-type: none;
+	padding-left: 2em;
 }
 
 #foldedSteps {
