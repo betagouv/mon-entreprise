@@ -18,7 +18,8 @@ export default class Algorithm extends React.Component {
 		showValues: true
 	}
 	render(){
-		let {traversedRule: rule, showValues} = this.props
+		let {traversedRule: rule, showValues} = this.props,
+			ruleWithoutFormula = !rule['formule'] || rule.formule.explanation['une possibilité']
 		return (
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({showValues})}>
@@ -34,7 +35,7 @@ export default class Algorithm extends React.Component {
 					}}
 					<section id="formule">
 						<h2>Calcul</h2>
-						{rule['formule'] ? makeJsx(rule['formule']) : <RuleWithoutFormula />}
+						{ruleWithoutFormula ? <RuleWithoutFormula /> : makeJsx(rule['formule'])}
 					</section>
 				</section>
 			</div>
