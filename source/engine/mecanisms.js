@@ -7,7 +7,7 @@ import {findRuleByName} from './rules'
 
 import 'react-virtualized/styles.css'
 import {Table, Column} from 'react-virtualized'
-import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/taux.json'
+import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/liste-taux.json'
 
 let constantNode = constant => ({nodeValue: constant, jsx:  nodeValue => <span className="value">{nodeValue}</span>})
 
@@ -641,7 +641,7 @@ export let mecanismSelection = (recurse,k,v) => {
 		return rewriteNode(node,nodeValue,explanation,collectMissing)
 	}
 
-	let indexOf = explanation => explanation.nodeValue ? R.findIndex(x => x['nomLaposte'] == explanation.nodeValue, R.values(taux_versement_transport)) : 0
+	let indexOf = explanation => explanation.nodeValue ? R.findIndex(x => x['nomLaposte'] == explanation.nodeValue, taux_versement_transport) : 0
 	let indexOffset = 8
 
 	let jsx = (nodeValue, explanation) =>
@@ -655,7 +655,7 @@ export let mecanismSelection = (recurse,k,v) => {
 					height={300}
 					headerHeight={20}
 					rowHeight={30}
-					rowCount={R.values(taux_versement_transport).length}
+					rowCount={taux_versement_transport.length}
 					scrollToIndex={indexOf(explanation)+indexOffset}
 					rowStyle={
 						({ index }) => index == indexOf(explanation) ? { fontWeight: "bold" } : {}
@@ -663,7 +663,7 @@ export let mecanismSelection = (recurse,k,v) => {
 					rowGetter={
 						({ index }) => {
 							// transformation de données un peu crade du fichier taux.json qui gagnerait à être un CSV
-							let line = R.values(taux_versement_transport)[index],
+							let line = taux_versement_transport[index],
 								getLastTaux = dataTargetName => {
 									let lastTaux = R.values(R.path([dataTargetName, 'taux'], line))
 									return (lastTaux && lastTaux.length && lastTaux[0]) || 0

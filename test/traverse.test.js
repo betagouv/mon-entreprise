@@ -242,7 +242,7 @@ describe('analyseSituation with mecanisms', function() {
 
   it('should handle selection', function() {
     let stateSelector = (name) => ({"top . code postal":"2"})[name]
-    let data = {taux_versement_transport: {xyz: {codePostal:1, aot: {taux: {"2019":"1.0"}}}, abc: {codePostal:2, smt: {taux: {"2019":"2.0"}}}}}
+    let data = {taux_versement_transport: [{codePostal:1, aot: {taux: {"2019":"1.0"}}}, {codePostal:2, smt: {taux: {"2019":"2.0"}}}]}
     let rawRules = [
           { espace: "top",
             nom: "startHere",
@@ -260,7 +260,7 @@ describe('analyseSituation with mecanisms', function() {
 
   it('should handle failed selections', function() {
     let stateSelector = (name) => ({"top . code postal":"3"})[name]
-    let data = {taux_versement_transport: {xyz: {codePostal:1, aot: {taux: {"2019":"1.0"}}}, abc: {codePostal:2, smt: {taux: {"2019":"2.0"}}}}}
+    let data = {taux_versement_transport: [{codePostal:1, aot: {taux: {"2019":"1.0"}}}, {codePostal:2, smt: {taux: {"2019":"2.0"}}}]}
     let rawRules = [
           { espace: "top",
             nom: "startHere",
