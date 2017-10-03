@@ -124,6 +124,12 @@ export default class Rule extends Component {
 						showValues={this.state.showValues}
 						inject={example => this.setState({example, showValues: true})}/>
 				</section>
+				<button
+					id="reportError">
+					<a href={"mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans une règle " + name}>
+						<i className="fa fa-exclamation-circle" aria-hidden="true" style={{marginRight: '.6em'}}></i>Signaler une erreur
+					</a>
+				</button>
 			</div>
 		)
 	}

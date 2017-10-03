@@ -357,3 +357,14 @@
 	justify-content: space-between;
 	align-items: baseline;
 }
+
+
+#reportError {
+	background: #c0392b;
+	color: white;
+	border: none;
+	font-size: 100%;
+	padding: .3em .6em;
+	margin: 3em auto 0;
+	display: block;
+}

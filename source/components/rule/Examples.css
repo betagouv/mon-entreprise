@@ -65,12 +65,3 @@
 #examples .example.ok i {
 	color: #2ecc71
 }
-
-#reportError {
-	background: #c0392b;
-	color: white;
-	border: none;
-	font-size: 100%;
-	padding: .3em .6em;
-	margin-top: 3em;
-}
