@@ -26,14 +26,11 @@ export default class Examples extends Component {
 			)(ex.situation)
 
 			let runExemple = analyseSituation(rules, rule.name)(v => exempleSituation[v]),
-				exempleCalculatedValue = runExemple["non applicable si"] &&
-					runExemple["non applicable si"].nodeValue
-					? null
-					: runExemple.formule.nodeValue
+				exempleValue = runExemple.nodeValue
 
 			return {
 				...ex,
-				ok: Math.abs( ex['valeur attendue'] - exempleCalculatedValue ) < .1, //TODO on peut sûrement faire mieux...
+				ok: Math.abs( ex['valeur attendue'] - exempleValue ) < .1, //TODO on peut sûrement faire mieux...
 				rule: runExemple
 			}
 		})
@@ -65,7 +62,7 @@ export default class Examples extends Component {
 									<div className="ko">
 										Ce test ne passe pas
 										{showValues && <span>
-											: la valeur attendue était {' '}
+											: le résultat attendu était {' '}
 											<span className="expected">{expected}</span>
 										</span>}
 									</div>
