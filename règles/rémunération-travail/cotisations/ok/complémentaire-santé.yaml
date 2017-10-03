@@ -13,6 +13,11 @@
         - attributs:
             dû par: salarié
           taux: 50%
+  exemples:
+    - nom: forfait à 40€
+      situation:
+        forfait complémentaire santé: 40
+      valeur attendue: 40
 
 - espace: contrat salarié
   nom: forfait complémentaire santé
