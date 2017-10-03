@@ -10,12 +10,27 @@
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31326
 
   # TODO - exlure stage, apprentissage
-  non applicable si: salaire brut > plafond cice
+  non applicable si:
+    une de ces conditions:
+      - assiette cotisations sociales > plafond cice
+      - entreprise . association non lucrative
 
   formule:
     multiplication:
       assiette: assiette cotisations sociales
       taux: 7%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 2300
+        entreprise . association non lucrative: non
+      valeur attendue: 161
+    - nom: Non applicable si association
+      situation:
+        assiette cotisations sociales: 2300
+        entreprise . association non lucrative: oui
+      valeur attendue: 0
 
 - espace: contrat salarié
   nom: plafond cice
