@@ -1,0 +1,19 @@
+- espace: contrat salarié
+  nom: complémentaire santé
+  références:
+    fiche: https://www.service-public.fr/particuliers/vosdroits/F20739
+  formule:
+    multiplication:
+      assiette: forfait complémentaire santé
+      composantes:
+        # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
+        - attributs:
+            dû par: employeur
+          taux: 50%
+        - attributs:
+            dû par: salarié
+          taux: 50%
+
+- espace: contrat salarié
+  nom: forfait complémentaire santé
+  formule: 40
