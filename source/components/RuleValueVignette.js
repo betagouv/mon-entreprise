@@ -11,20 +11,14 @@ import './RuleValueVignette.css'
 export default ({
 	name,
 	type,
-	"non applicable si": nonApplicable,
-	formule: { nodeValue: formuleValue },
-	conversationStarted
+	conversationStarted,
+	nodeValue: ruleValue
 }) =>
 	do {
-		//TODO quel bordel, à revoir
-		let ruleValue = computeRuleValue(
-				formuleValue,
-				nonApplicable && nonApplicable.nodeValue
-			),
+		let
 			unsatisfied = ruleValue == null,
-			nonApplicableValue = nonApplicable ? nonApplicable.nodeValue : false,
-			irrelevant = nonApplicableValue === true || formuleValue == 0,
-			number = nonApplicableValue == false && formuleValue != null
+			irrelevant = ruleValue == 0,
+			number = typeof ruleValue == 'number' && ruleValue > 0
 
 		;<span
 			key={name}
@@ -45,7 +39,7 @@ export default ({
 								: unsatisfied
 									? "En attente de vos réponses..."
 									: <span className="figure">
-										{humanFigure(2)(formuleValue) + "€"}
+										{humanFigure(2)(ruleValue) + "€"}
 									</span>)}
 					</p>
 				</div>
