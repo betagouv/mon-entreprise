@@ -10,6 +10,7 @@ import './RuleValueVignette.css'
 export default ({
 	name,
 	type,
+	titre,
 	conversationStarted,
 	nodeValue: ruleValue
 }) =>
@@ -29,7 +30,7 @@ export default ({
 				</div>
 				<div className="rule-box">
 					<div className="rule-name">
-						{capitalise0(name)}
+						{titre || capitalise0(name)}
 					</div>
 					<p>
 						{conversationStarted &&

@@ -151,7 +151,7 @@
       - taxe d'apprentissage
       - cotisation pénibilité
       - taxe sur les salaires
-      - CDD . surcoût CDD
+      - CDD . surcoût
 
   exemples:
     - nom: salaire médian, non cadre
@@ -208,7 +208,7 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - salaire net
       - coût du travail
-      - CDD . surcoût CDD
+      - CDD . surcoût
 
   simulateur:
     titre: Simulateur de coût d'embauche
