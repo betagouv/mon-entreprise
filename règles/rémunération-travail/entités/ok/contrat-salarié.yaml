@@ -109,6 +109,7 @@
       - cotisation exceptionnelle temporaire (salarié)
       - chômage (salarié)
       - APEC (salarié)
+      - complémentaire santé (salarié)
 
   exemples:
     - nom: salaire médian, non cadre
@@ -132,6 +133,7 @@
       - maladie (employeur)
       - ATMP
       - prévoyance obligatoire cadre
+      - complémentaire santé (employeur)
       - vieillesse (employeur)
       - ARRCO (employeur)
       - AGIRC (employeur)
