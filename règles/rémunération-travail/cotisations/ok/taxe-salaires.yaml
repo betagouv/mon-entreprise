@@ -33,5 +33,15 @@
 
 - espace: contrat salarié
   nom: taxe sur les salaires
+  description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent. 
   non applicable si: ≠ assujettie à la taxe sur les salaires
   formule: taxe sur les salaires annuelle / 12
+  exemples:
+    - nom: non applicable par défaut
+      situation:
+        salaire brut: 2300
+      valeur attendue: 0
+    - nom: association non lucrative
+      situation:
+        salaire brut: 2300
+      valeur attendue: 219.93 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
