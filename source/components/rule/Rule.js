@@ -14,6 +14,7 @@ import References from './References'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import Helmet from 'react-helmet'
+import {humanFigure} from './RuleValueVignette'
 
 @connect(
 	state => ({
@@ -54,12 +55,15 @@ export default class Rule extends Component {
 		// }
 
 		let
-			situationExists = !R.isEmpty(this.props.form)
+			conversationStarted = !R.isEmpty(this.props.form),
+			situationExists = conversationStarted || this.state.example != null
 
 		let
 			{type, name, description} = this.rule,
 			destinataire = R.path([type, 'destinataire'])(this.rule),
-			destinataireData = possiblesDestinataires[destinataire]
+			destinataireData = possiblesDestinataires[destinataire],
+			situationOrExampleRule = R.path(['example', 'rule'])(this.state) || this.rule,
+			ruleValue = situationOrExampleRule.nodeValue
 
 		return (
 			<div id="rule">
@@ -80,17 +84,18 @@ export default class Rule extends Component {
 					<div id="destinataire">
 						<h2>Destinataire</h2>
 						{!destinataireData ?
-								<p>Non renseigné</p>
-							: <div>
-									<a href={destinataireData.lien} target="_blank">
-										{destinataireData.image &&
-											<img src={require('Règles/ressources/destinataires/' + destinataireData.image)} /> }
-										{!destinataireData.image &&
-											<div id="calligraphy">{destinataire}</div>
-										}
-									</a>
-									{destinataireData.nom && <div id="destinataireName">{destinataireData.nom}</div>}
-								</div>
+							<p>Non renseigné</p>
+							:
+							<div>
+								<a href={destinataireData.lien} target="_blank">
+									{destinataireData.image &&
+										<img src={require('Règles/ressources/destinataires/' + destinataireData.image)} /> }
+									{!destinataireData.image &&
+										<div id="calligraphy">{destinataire}</div>
+									}
+								</a>
+								{destinataireData.nom && <div id="destinataireName">{destinataireData.nom}</div>}
+							</div>
 						}
 
 					</div>
@@ -99,10 +104,21 @@ export default class Rule extends Component {
 						{this.renderReferences(this.rule)}
 					</div>
 				</section>
+				<div id="ruleValue" style={{visibility: situationExists ? 'visible' : 'hidden'}}>
+					<h2>Résultat</h2>
+					<p>
+						{ruleValue == 0
+							? 'Règle non applicable'
+							: ruleValue == null
+								? 'Situation incomplète'
+								: humanFigure(2)(ruleValue) + ' €'}
+					</p>
+				</div>
+
 				<section id="rule-calc">
-					<Algorithm {...{traversedRule: R.path(['example', 'rule'])(this.state) || this.rule, showValues: situationExists || this.state.example != null}}/>
+					<Algorithm traversedRule={situationOrExampleRule} showValues={situationExists} />
 					<Examples
-						situationExists={situationExists}
+						situationExists={conversationStarted}
 						rule={this.rule}
 						focusedExample={this.state.example}
 						showValues={this.state.showValues}

@@ -96,6 +96,16 @@
 	text-align: center;
 }
 
+#ruleValue {
+	margin-left: 3em;
+	font-weight: 600;
+}
+
+
+/*
+	Règles CSS d'affichage des algorithmes
+*/
+
 #rule-rules {
 	display: inline-flex;
 	justify-content: start;
@@ -114,7 +124,6 @@
 }
 
 #algorithm {
-	margin-top: 3em;
 	margin-right: 10em;
 }
 .dictionaryPanelWrapper {

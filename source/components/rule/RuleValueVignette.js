@@ -1,11 +1,10 @@
 import React from "react"
 import {Link} from 'react-router-dom'
-import {computeRuleValue} from 'Engine/traverse'
 import {encodeRuleName} from 'Engine/rules'
 import classNames from 'classnames'
-import {capitalise0} from '../utils'
+import {capitalise0} from '../../utils'
 let fmt = new Intl.NumberFormat('fr-FR').format
-let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
+export let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
 import './RuleValueVignette.css'
 
 export default ({

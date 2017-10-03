@@ -9,7 +9,7 @@ import './Results.css'
 import {clearDict} from 'Engine/traverse'
 import {encodeRuleName} from 'Engine/rules'
 import {getObjectives} from 'Engine/generateQuestions'
-import RuleValueVignette from './RuleValueVignette'
+import RuleValueVignette from './rule/RuleValueVignette'
 
 @withRouter
 @connect(
