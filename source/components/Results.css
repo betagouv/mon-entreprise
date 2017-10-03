@@ -78,6 +78,7 @@
 
 
 
+
 #results ul {
 	display: inline-flex;
 	justify-content: space-around;
@@ -88,78 +89,6 @@
 	margin: 0;
 }
 
-
-#results li {
-	margin: 0 1em 0;
-	text-align: center;
-	width: 25%;
-}
-
-#results li a {
-	text-decoration: none;
-}
-
-#results .rule-type {
-	color: white;
-	border: none;
-	font-size: 85%;
-	line-height: 2em;
-	font-weight: 600;
-	margin: .6em 0 .1em;
-}
-
-#results .rule-box {
-	padding: .6em 1em;
-	color: #333350;
-	background: white;
-	border-radius: 3px;
-	white-space: nowrap;
-	color: #333350;
-	height: 6em;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-}
-
-#results .rule-name {
-	font-size: 175%;
-	font-weight: 600;
-}
-
-#results li p {
-	margin: 0;
-	padding: 0 0;
-	font-size: 120%;
-	color: inherit;
-	width: 100%;
-}
-
-#results li.number p {
-	color: #4A89DC;
-	font-weight: bold;
-}
-
-
-
-#results li.irrelevant .rule-type {
-	color: rgba(255, 255, 255, 0.35);
-}
-
-#results li.irrelevant .rule-name {
-	text-decoration: line-through;
-}
-
-
-#results li.unsatisfied p {
-	font-style: italic;
-}
-#results li.irrelevant p {
-	font-weight: 600;
-}
-#results li p .figure {
-	font-size: 250%;
-}
 
 
 
@@ -201,12 +130,6 @@
 		width: 100%;
 		font-size: 90%;
 	}
-	#results ul li .rule-box p {
-		padding: 0.6em;
-	}
 
-	#results .rule-name {
-		font-size: 150%;
-	}
 
 }
