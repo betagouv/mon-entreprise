@@ -58,7 +58,7 @@ export default class Examples extends Component {
 									: <i className="fa fa-times" aria-hidden="true"></i>
 								}</span>
 								<span className="name">{nom}</span>
-								{!ok &&
+								{!ok && focusedExample == nom && 
 									<div className="ko">
 										Ce test ne passe pas
 										{showValues && <span>
