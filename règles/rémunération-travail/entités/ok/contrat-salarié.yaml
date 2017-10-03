@@ -196,6 +196,7 @@
   formule:
     somme:
       - CICE
+      - CITS
       - réduction générale
       - exonération JEI
 
