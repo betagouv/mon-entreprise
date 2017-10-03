@@ -89,13 +89,13 @@
         # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
     hypothèses:
       contrat salarié . type de contrat: CDD
-    par défaut:
-      entreprise . effectif: 1
-      contrat salarié . CDD . événement: non
-      contrat salarié . CDD . congés non pris: 0
-      contrat salarié . CDD . contrat jeune vacances: non
       contrat salarié . statut cadre: non
       contrat salarié . statut JEI: non
       contrat salarié . exposition pénibilité: non
       contrat salarié . assujettie à la taxe sur les salaires: non
       contrat salarié . ATMP . taux collectif ATMP: 1
+      entreprise . effectif: 1
+    par défaut:
+      contrat salarié . CDD . événement: non
+      contrat salarié . CDD . congés non pris: 0
+      contrat salarié . CDD . contrat jeune vacances: non
