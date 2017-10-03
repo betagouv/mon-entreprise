@@ -92,7 +92,11 @@
   nom: plafond sécurité sociale
   #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
   # type de période: mensuel
-  formule: 3269
+  formule: 3269 * coefficient temps partiel
+
+- espace: contrat salarié
+  nom: smic mensuel
+  formule: 1480.27 * coefficient temps partiel
 
 - espace: contrat salarié
   nom: cotisations salariales

@@ -1,0 +1,21 @@
+- espace: contrat salarié
+  nom: temps partiel
+  question: Le salarié travail-il à temps partiel ?
+  description: Le temps partiel peut avoir une influence sur les règles. Par exemple les cotisations plafonnées ou les exonérations dépendant du SMIC.
+
+- espace: contrat salarié
+  nom: heures par semaine
+  question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
+  format: nombre
+  # contrôle : le code du travail définit la borne inférieure de 24h par semaine
+
+- espace: contrat salarié
+  nom: coefficient temps partiel
+  formule:
+    multiplication:
+      assiette: 1
+      variations:
+        - si: temps partiel
+          taux: heures par semaine / 35
+        - si: ≠ temps partiel
+          taux: 1
