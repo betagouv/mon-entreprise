@@ -28,3 +28,8 @@
   suggestions:
     1: 1
     5: 5
+
+- espace: entreprise
+  nom: association non lucrative
+  description: L'entreprise est une association non lucrative
+  question: S'agit-il d'une association à but non lucratif ?

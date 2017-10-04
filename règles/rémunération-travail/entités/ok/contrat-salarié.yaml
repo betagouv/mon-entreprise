@@ -196,6 +196,7 @@
   formule:
     somme:
       - CICE
+      - CITS
       - réduction générale
       - exonération JEI
 
@@ -215,9 +216,6 @@
     résultats: Le salaire net à partir du brut ou vice-versa, et les cotisations
     introduction:
       motivation: Découvrez le vrai coût du travail
-
-
-
 
 
 

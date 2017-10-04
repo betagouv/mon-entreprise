@@ -4,6 +4,8 @@
   description: |
     Sont assujetties les associations à but non lucratif et les entreprises non soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les particuliers employeurs, les employeurs agricoles, les établissements d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
   question: L'entreprise est-elle assujettie à la taxe sur les salaires ?
+  # variable non utilisée pour l'instant, comme dans le simulateur v1
+  # à ajouter quand nous aurons des mécanismes logiques plus évolués (notamment 'applicable si')
 
 - espace: contrat salarié
   nom: taxe sur les salaires annuelle
@@ -26,6 +28,13 @@
           taux: 13.6%
         - au-dessus de: 152279
           taux: 20%
+  exemples:
+    - nom: salaire médian
+      situation:
+        assiette taxe sur les salaires: 2300
+      valeur attendue: 2639.16 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
+
+
 
 - espace: contrat salarié
   nom: assiette taxe sur les salaires
@@ -33,5 +42,18 @@
 
 - espace: contrat salarié
   nom: taxe sur les salaires
-  non applicable si: ≠ assujettie à la taxe sur les salaires
+  description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+  non applicable si: ≠ Entreprise . association non lucrative
+
   formule: taxe sur les salaires annuelle / 12
+  exemples:
+    - nom: non applicable par défaut
+      situation:
+        salaire brut: 2300
+      valeur attendue: 0
+    - nom: association non lucrative
+      # Ce test ne sert qu'à tester la condition "association non lucrative", tant que nous faisons face à la limitation des calculs temporels
+      situation:
+        Entreprise . association non lucrative: oui
+        taxe sur les salaires annuelle: 2639.16
+      valeur attendue: 219.93

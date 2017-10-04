@@ -328,20 +328,17 @@ let treat = (rules, rule) => rawNode => {
 	let parsedNode = onNodeType(rawNode)
 
 	return	parsedNode.evaluate ? parsedNode :
-			{...parsedNode, evaluate: defaultEvaluate}
+		{...parsedNode, evaluate: defaultEvaluate}
 }
 
 //TODO c'est moche :
 export let computeRuleValue = (formuleValue, condValue) =>
 	condValue === undefined
-	? formuleValue
-	: formuleValue === 0
-	? 0
-	: condValue === null
-		? null
-		: condValue === true
+		? formuleValue
+		: formuleValue === 0
 			? 0
-			: formuleValue
+			: condValue === null ? null : condValue === true ? 0 : formuleValue
+
 
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {

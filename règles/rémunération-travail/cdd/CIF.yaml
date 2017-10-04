@@ -23,14 +23,30 @@
     Code du travail - Article L6322-37 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
 
   exemples:
+
+    - nom: Non applicable si CDI
+      situation:
+        type de contrat: CDI
+        assiette cotisations sociales: 1480
+      valeur attendue: 0
+
     - nom: SMIC
       situation:
+        type de contrat: CDD
+        événement: aucun
+        motif: accroissement activité
+        contrat jeune vacances: non
+        
         assiette cotisations sociales: 1480
       valeur attendue: 14.8
 
     - nom: salaire médian
       situation:
-        contrat salarié . CDD . motif: classique . usage
+        type de contrat: CDD
+        événement: aucun
+        motif: accroissement activité
+        contrat jeune vacances: non
+
         assiette cotisations sociales: 2300
       valeur attendue: 23
 
