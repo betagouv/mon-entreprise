@@ -8,6 +8,7 @@
     somme:
       - assiette csg abattue
       - prévoyance obligatoire cadre
+      - complémentaire santé (salarié)
 
 - espace: contrat salarié
   note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO

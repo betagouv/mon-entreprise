@@ -1,0 +1,31 @@
+- espace: contrat salarié
+  nom: complémentaire santé
+  références:
+    Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
+  formule:
+    multiplication:
+      assiette: forfait complémentaire santé
+      composantes:
+        # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
+        - attributs:
+            dû par: employeur
+          taux: 50%
+        - attributs:
+            dû par: salarié
+          taux: 50%
+  exemples:
+    - nom: forfait à 40€
+      situation:
+        forfait complémentaire santé: 40
+      valeur attendue: 40
+
+- espace: contrat salarié
+  nom: forfait complémentaire santé
+  titre: Forfait de complémentaire santé enteprise
+  question: Quel est forfait mensuel total de complémentaire santé de l'entreprise ?
+  description: |
+    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
+    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
+  références:
+    les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
+  format: euros
