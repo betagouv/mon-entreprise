@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
 import {FormDecorator} from '../FormDecorator'
-import VirtualizedSelect from 'react-virtualized-select'
-import createFilterOptions from 'react-select-fast-filter-options'
+import ReactSelect from 'react-select'
 
 import 'react-select/dist/react-select.css'
 import './Select.css'
 
 
+let getOptions = input =>
+	input.length < 3 ?
+		Promise.resolve({options: []}) :
+	fetch(`https://geo.api.gouv.fr/communes?nom=${input}`)
+		.then(response => {
+			if (!response.ok)
+				return [ {nom: 'Aucune commune trouvée', disabled: true} ]
+			return response.json()
+		})
+		.then(json => ({options: json}))
+		.catch(function(error) {
+			console.log('Erreur dans la recherche de communes à partir du code postal', error) // eslint-disable-line no-console
+			return {options: []}
+		})
+
+
 @FormDecorator('select')
 export default class Select extends Component {
-	state = {
-		data: null
-	}
-	componentDidMount(){
-		import(/* webpackChunkName: "communescsv" */ 'Règles/communes.csv')
-			.then(module => this.setState({
-				data: module,
-			}))
-			.catch(error => 'An error occurred while loading the component')
-	}
+
 	render() {
 		let {
 			input: {
@@ -28,23 +34,21 @@ export default class Select extends Component {
 		} = this.props,
 			submitOnChange =
 				option => {
-					onChange(option.Nom_commune)
+					onChange(option.code)
 					submit()
 				}
 
-		if (!this.state.data)
-			return <div>Nous reçevons les données... </div>
-
 		return (
 			<div className="select-answer commune">
-				<VirtualizedSelect
-					options={this.state.data}
+				<ReactSelect.Async
 					onChange={submitOnChange}
-          ignoreAccents={false}
-					labelKey="Nom_commune"
-					valueKey="Nom_commune"
+					labelKey="nom"
+					optionRenderer={({nom, codeDepartement}) => nom + ` (${codeDepartement})`}
 					placeholder="Entrez le nom de commune"
 					noResultsText="Nous n'avons trouvé aucune commune"
+					searchPromptText={null}
+					loadingPlaceholder="Recherche en cours..."
+					loadOptions={getOptions}
 				/>
 			</div>
 		)

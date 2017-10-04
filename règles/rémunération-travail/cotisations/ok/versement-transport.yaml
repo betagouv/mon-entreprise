@@ -20,8 +20,8 @@
   formule:
     sélection:
       données: taux versement transport
-      cherche: commune
-      dans: nomLaposte
+      cherche: code commune
+      dans: codeCommune
       composantes:
         - nom: aot
           renvoie: aot
