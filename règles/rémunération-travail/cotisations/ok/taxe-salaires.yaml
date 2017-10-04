@@ -38,7 +38,11 @@
 
 - espace: contrat salarié
   nom: assiette taxe sur les salaires
-  formule: assiette cotisations sociales - prévoyance obligatoire cadre
+  formule:
+    somme:
+      - assiette cotisations sociales
+      - prévoyance obligatoire cadre
+      - complémentaire santé (employeur)
 
 - espace: contrat salarié
   nom: taxe sur les salaires
