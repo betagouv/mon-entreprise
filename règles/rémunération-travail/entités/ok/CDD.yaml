@@ -50,11 +50,9 @@
   description: Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
   notes: Ce n'est pas un motif de CDD.
 
-
-
-# Cette variable est le point de départ du simulateur "surcout CDD" :-D
 - espace: contrat salarié . CDD
-  nom: surcoût CDD
+  nom: surcoût
+  titre: Dont surcoût CDD
   description: |
     En France, le contrat à durée déterminée _est un contrat d'exception au CDI_ qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
   formule:
@@ -64,10 +62,21 @@
       - prime fin de contrat #indemnité
       - compensation congés payés #indemnité
 
+# Cette variable est le point de départ du simulateur "surcout CDD" :-D
+- espace: contrat salarié . CDD
+  nom: surcoût CDD
+  description: |
+    En France, le contrat à durée déterminée _est un contrat d'exception au CDI_ qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
+  formule:
+    somme:
+      - salaire net
+      - coût du travail
+      - CDD . surcoût
+
   simulateur:
     titre: Simulateur CDD
     sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
-    résultats: Les 4 éléments du surcoût CDD, calculés au mois.
+    résultats: Le coût du travail faisant ressortir les cotisations spécifiques au CDD, calculées au mois.
     introduction:
       notes:
         - icône: fa-handshake-o
@@ -76,10 +85,18 @@
         - icône: fa-balance-scale
           texte: Votre contrat ne peut donc avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
           titre: Votre obligation
-      motivation: Découvrez en quelques clics le montant des 4 obligations du CDD
+      motivation: Découvrez en quelques clics le montant des obligations liées au CDD
         # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
     hypothèses:
       contrat salarié . type de contrat: CDD
+      contrat salarié . statut cadre: non
+      contrat salarié . statut JEI: non
+      contrat salarié . exposition pénibilité: non
+      contrat salarié . assujettie à la taxe sur les salaires: non
+      contrat salarié . ATMP . taux collectif ATMP: 1
+      contrat salarié . forfait complémentaire santé: 40
+      entreprise . effectif: 1
+      entreprise . association non lucrative: 1
     par défaut:
       contrat salarié . CDD . événement: non
       contrat salarié . CDD . congés non pris: 0
