@@ -12,6 +12,10 @@
 .references li {
         margin-bottom: .15em;
 }
+#noOfficialReferences {
+  text-align: center;
+  font-style: italic;
+}
 .references .meta {
         text-align: right;
         width: 16em;

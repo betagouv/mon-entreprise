@@ -125,7 +125,7 @@ export default reduceReducers(
 
 		analysedSituation: (state = []) => state,
 
-		situationGate: (state = state => name => null) => state,
+		situationGate: (state = name => null) => state,
 		refine: (state = false) => state,
 
 		themeColours,
