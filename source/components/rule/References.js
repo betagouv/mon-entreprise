@@ -2,6 +2,7 @@ import React from "react"
 import R from "ramda"
 import "./References.css"
 import references from "Règles/ressources/références/références.yaml"
+import {capitalise0} from '../../utils'
 
 export default class References extends React.Component {
 	state = {
@@ -56,7 +57,7 @@ export default class References extends React.Component {
 					</span>
 				</span>
 				<a href={link} target="_blank">
-					{R.head(name).toUpperCase() + R.tail(name)}
+					{capitalise0(name)}
 				</a>
 			</li>
 		)
