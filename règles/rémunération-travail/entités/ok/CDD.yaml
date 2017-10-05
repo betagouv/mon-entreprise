@@ -94,7 +94,9 @@
       contrat salarié . exposition pénibilité: non
       contrat salarié . assujettie à la taxe sur les salaires: non
       contrat salarié . ATMP . taux collectif ATMP: 1
+      contrat salarié . forfait complémentaire santé: 40
       entreprise . effectif: 1
+      entreprise . association non lucrative: 1
     par défaut:
       contrat salarié . CDD . événement: non
       contrat salarié . CDD . congés non pris: 0
