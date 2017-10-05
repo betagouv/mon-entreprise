@@ -1,4 +1,5 @@
 # Association d'URL de référence avec leur logo
+# Ces sources sont considérées comme officielles.
 
 service-public.fr:
   image: marianne.png
@@ -6,3 +7,5 @@ urssaf.fr:
   image: URSSAF.png
 gouv.fr:
   image: marianne.png
+agirc-arrco.fr:
+  image: agirc-arrco.png
