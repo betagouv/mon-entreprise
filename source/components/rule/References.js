@@ -9,7 +9,7 @@ export default class References extends React.Component {
 	}
 	render() {
 		let { refs } = this.props,
-			{ complementary, official } = R.groupBy(
+			{ complementary, official=[] } = R.groupBy(
 				([name, link]) => (this.findRefKey(link) ? "official" : "complementary")
 			)(R.toPairs(refs)),
 			showComplementary = this.state.showComplementary,
@@ -19,6 +19,7 @@ export default class References extends React.Component {
 			<ul className="references">
 				{[
 					...official.map(this.renderRef),
+					official.length == 0 ? <li id="noOfficialReferences">Pas de sources officielles</li> : null,
 					...(showComplementaryButton
 						? [
 							<li id="complementary" key="compl">
