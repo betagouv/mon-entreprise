@@ -54,7 +54,9 @@
   nom: surcoût
   titre: Dont surcoût CDD
   description: |
-    En France, le contrat à durée déterminée _est un contrat d'exception au CDI_ qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
+    Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux organismes sociaux, certaines compensations
+    financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4. Certaines sont versées en
+    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - CIF #cotisation
@@ -66,7 +68,7 @@
 - espace: contrat salarié . CDD
   nom: surcoût CDD
   description: |
-    En France, le contrat à durée déterminée _est un contrat d'exception au CDI_ qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
+    En France, le contrat à durée déterminée est un contrat d'exception au CDI qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
   formule:
     somme:
       - salaire net
@@ -76,7 +78,8 @@
   simulateur:
     titre: Simulateur CDD
     sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
-    résultats: Le coût du travail faisant ressortir les cotisations spécifiques au CDD, calculées au mois.
+    résultats: Le coût du travail faisant ressortir les cotisations spécifiques au CDD.
+    indice: Par mois
     introduction:
       notes:
         - icône: fa-handshake-o
