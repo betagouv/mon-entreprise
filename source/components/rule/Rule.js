@@ -59,7 +59,7 @@ export default class Rule extends Component {
 			situationExists = conversationStarted || this.state.example != null
 
 		let
-			{type, name, description} = this.rule,
+			{type, name, titre, description} = this.rule,
 			destinataire = R.path([type, 'destinataire'])(this.rule),
 			destinataireData = possiblesDestinataires[destinataire],
 			situationOrExampleRule = R.path(['example', 'rule'])(this.state) || this.rule,
@@ -68,7 +68,7 @@ export default class Rule extends Component {
 		return (
 			<div id="rule">
 				<Helmet>
-					<title>{capitalise0(name)}</title>
+					<title>{titre || capitalise0(name)}</title>
 					<meta name="description" content={description} />
 				</Helmet>
 				<h1>

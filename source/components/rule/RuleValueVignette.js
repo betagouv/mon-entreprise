@@ -38,9 +38,11 @@ export default ({
 								? "Vous n'êtes pas concerné"
 								: unsatisfied
 									? "En attente de vos réponses..."
-									: <span className="figure">
+									: <div><span className="figure">
 										{humanFigure(2)(ruleValue) + "€"}
-									</span>)}
+									</span>
+									<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p>
+									</div>)}
 					</p>
 				</div>
 			</Link>
