@@ -5,7 +5,9 @@
     type de retraite: complémentaire
     destinataire: AGIRC
   description: |
-    Les salariés relevant du régime Agirc et travaillant à temps plein dont le salaire ne permet pas d'obtenir le nombre minimum de 120 points Agirc, ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+    Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant pour
+    atteindre le nombre minimum de 120 points Agirc,
+    ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
   note: |
     Mécanisme:
