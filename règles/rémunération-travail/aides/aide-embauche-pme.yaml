@@ -15,7 +15,7 @@
       - effectif entreprise <= 250
       - 2016-01-18 < début contrat <= 2016
       - durée contrat > 6 mois # CDD OK, pas cumul avec apprentissage, donc alternance seulement en Contrat Pro
-      - salaire de base < 1,3 * SMIC
+      - salaire brut < 1,3 * SMIC
       - entreprise de droit privé # nécessaire ?
 
   non-cumul:

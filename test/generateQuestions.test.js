@@ -246,7 +246,7 @@ describe('buildNextSteps', function() {
     // expect(missing).to.have.property('contrat salarié . type de contrat')
     // expect(missing).to.have.property('contrat salarié . CDD . événement')
     // expect(missing).to.have.property('contrat salarié . CDD . motif')
-    // expect(missing).to.have.property('contrat salarié . salaire de base')
+    // expect(missing).to.have.property('contrat salarié . salaire brut')
     // expect(missing).to.have.property('contrat salarié . CDD . contrat jeune vacances')
     // expect(missing).to.have.property('contrat salarié . CDD . durée contrat')
     // expect(missing).to.have.property('contrat salarié . CDD . congés non pris')

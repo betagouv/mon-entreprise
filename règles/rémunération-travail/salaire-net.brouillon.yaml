@@ -23,7 +23,7 @@
 - Somme: salaire imposable
   # TODO cerfa_field
   somme: |
-    + salaire de base
+    + salaire brut
     + primes_salaires
     + remuneration_principale
     + primes_fonction_publique

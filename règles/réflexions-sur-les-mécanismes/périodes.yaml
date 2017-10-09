@@ -2,17 +2,17 @@
     assiette:
       transformation:
         période: annuelle
-        variable: salaire de base
+        variable: salaire brut
     taux: 10%
 
 - multiplication:
     assiette:
       période: annuelle
-      variable: salaire de base
+      variable: salaire brut
     taux: 10%
 
 # Ce dernier est surement le plus lisible
 # Mais ne permet pas un système générique de transformation
 - multiplication:
-    assiette: salaire de base [annuel]
+    assiette: salaire brut [annuel]
     taux: 10%

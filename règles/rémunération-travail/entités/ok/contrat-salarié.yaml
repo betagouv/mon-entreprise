@@ -35,7 +35,7 @@
 - espace: contrat salarié
   nom: assiette cotisations sociales
   description: |
-    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire brut, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule:
     somme:
@@ -49,23 +49,6 @@
       - CDD . prime fin de contrat
       - CDD . compensation congés payés
 
-# TODO - apparement new-cotisations change l'ordre de priorité des questions et nous fait
-# retomber sur "salaire de base", cette modif est un workaround en attendant d'y voir plus clair
-- espace: contrat salarié
-  nom: salaire de base
-  titre: Salaire brut
-  question: Quel est le salaire brut ?
-  description: |
-    C'est le salaire de négociation du contrat de travail en France.
-
-    Il peut être vu comme :
-    - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
-    - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
-  format: euros
-  suggestions:
-    salaire médian: 2300
-    SMIC: 1480
-
 - espace: contrat salarié
   nom: salaire brut
   titre: Salaire brut
@@ -77,13 +60,6 @@
     - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
     - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
   format: euros
-  # TODO En attendant que l'UI devienne plus intelligente, c'est confondu avec le salaire de base.
-  # intelligente : il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule
-  formule:
-    somme:
-      - salaire de base
-      # - primes
-      # - indemnités
   suggestions:
     salaire médian: 2300
     SMIC: 1480
@@ -144,6 +120,7 @@
       - taxe sur les salaires
       - CDD . surcoût
 
+
 - espace: contrat salarié
   nom: salaire net
   description: |
@@ -159,7 +136,7 @@
 - espace: contrat salarié
   nom: super brut
   description: |
-    C'est le salaire de base augmenté des cotisations patronales.
+    C'est le salaire brut augmenté des cotisations patronales.
   formule:
     somme:
       - salaire brut

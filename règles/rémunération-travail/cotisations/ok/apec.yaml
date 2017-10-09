@@ -17,7 +17,7 @@
 
   formule:
     barème:
-      assiette: salaire de base #TODO assiette cotisations sociales
+      assiette: assiette cotisations sociales
       multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
