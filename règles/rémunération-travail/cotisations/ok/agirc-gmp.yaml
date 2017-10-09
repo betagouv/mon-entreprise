@@ -9,21 +9,11 @@
     atteindre le nombre minimum de 120 points Agirc,
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
-  note: |
-    Mécanisme:
-    si < PSS -> cotisation forfaitaire GMP
-    si > PSS alors on va payer une cotisation AGIRC sur la tranche B, et la GMP sera le complément pour arriver à un montant total = cotisation #forfaitaire GMP
-    Autrement dit, si agirc < cotisation forfaitaire, GMP = complément
 
-  # TODO On pourrait aussi se dire que cette formule est un complément de AGIRC,
-  # donc que les conditions d'applicabilité d'AGIRC n'ont pas à être répétées
   non applicable si: ≠ statut cadre
-
 
   formule:
     complément:
-      # TODO harmoniser la syntaxe de ce 'complément' avec les systèmes de réduction de cotisation. C'est pareil avec une addition finalement
-      # cette cotisation vient compléter la cotisation cible, à hauteur du montant spécifié
       cible: agirc
       composantes:
         - attributs:
@@ -33,21 +23,9 @@
             dû par: salarié
           montant: 26.71
 
-# salaire charnière, inutile avec le méchanisme de complément.
-# C'est le salaire pour lequel le salarié acquiert 120 points AGIRC
-#         2017: 42590.88
-#         2016: 42590.88
-#         2015: 41913.84
-#         2014: 41444.64
-#         2013: 40948.70
-#         2012: 40251.98
-#         2011: 39146.63
-#         2010: 38332.92
-#         2009: 37973.00
-#         2008: 36877.00
-#         2007: 35666.00
-#         2006: 34428.00
-#         2005: 33512.00
-#         2004: 32952.00
-#         2003: 32349.00
-#         2002: 31337.00
+  note: Le mécanisme de complément de la cotisation AGIRC nous évite d'avoir à utiliser le "salaire charnière"
+
+  # TODO
+  # - harmoniser la syntaxe de ce 'complément' avec les systèmes de réduction de cotisation. C'est pareil avec une addition finalement
+  # - on pourrait aussi se dire que cette formule est un complément de AGIRC,
+  # donc que les conditions d'applicabilité d'AGIRC n'ont pas à être répétées
