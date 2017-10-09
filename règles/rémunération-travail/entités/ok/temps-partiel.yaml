@@ -1,7 +1,9 @@
 - espace: contrat salarié
   nom: temps partiel
-  question: Le salarié travail-il à temps partiel ?
-  description: Le temps partiel peut avoir une influence sur les règles. Par exemple les cotisations plafonnées ou les exonérations dépendant du SMIC.
+  question: Le contrat est-il à temps partiel ?
+  description: |
+    Le temps partiel peut avoir une influence sur les règles.
+    Par exemple les cotisations plafonnées ou les exonérations dépendant du SMIC.
 
 - espace: contrat salarié
   nom: heures par semaine
