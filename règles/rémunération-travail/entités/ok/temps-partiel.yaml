@@ -12,7 +12,7 @@
   # contrôle : le code du travail définit la borne inférieure de 24h par semaine
 
 - espace: contrat salarié
-  nom: coefficient temps partiel
+  nom: quotité de travail
   formule:
     multiplication:
       assiette: 1

@@ -98,7 +98,7 @@
   nom: plafond sécurité sociale
   #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
   # type de période: mensuel
-  formule: plafond sécurité sociale temps plein * coefficient temps partiel
+  formule: plafond sécurité sociale temps plein * quotité de travail
 
 
 - espace: contrat salarié
@@ -107,7 +107,7 @@
 
 - espace: contrat salarié
   nom: smic mensuel
-  formule: smic mensuel temps plein * coefficient temps partiel
+  formule: smic mensuel temps plein * quotité de travail
 
 - espace: contrat salarié
   nom: cotisations salariales
