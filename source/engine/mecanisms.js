@@ -98,7 +98,7 @@ let devariate = (recurse, k, v) => {
 
 		let collectMissing = node => {
 			let choice = R.find(node => node.condition.nodeValue, node.explanation),
-				leftMissing = choice ? [] : R.chain(collectNodeMissing,R.pluck("condition",node.explanation)),
+				leftMissing = choice ? [] : R.uniq(R.chain(collectNodeMissing,R.pluck("condition",node.explanation))),
 				rightMissing = choice ? collectNodeMissing(choice) : R.chain(collectNodeMissing,node.explanation)
 			return R.concat(leftMissing,rightMissing)
 		}
