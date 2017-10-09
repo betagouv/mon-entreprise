@@ -274,7 +274,7 @@ describe('buildNextSteps', function() {
         result = buildNextSteps(stateSelector, rules, situation)
 
     expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut ?")
-    expect(R.path(["question","props","label"])(result[1])).to.equal("Le salarié a-t-il le statut cadre ?")
+    expect(R.path(["question","props","label"])(result[1])).to.equal("Le contrat est-il à temps partiel ?")
   });
 
 });

@@ -38,7 +38,7 @@ let decompose = (recurse, k, v) => {
 						[<li className="composante" key={JSON.stringify(c.composante)}>
 							<ul className="composanteAttributes">
 								{R.toPairs(c.composante).map(([k,v]) =>
-									<li>
+									<li key={k}>
 										<span>{k}: </span>
 										<span>{v}</span>
 									</li>
@@ -48,7 +48,7 @@ let decompose = (recurse, k, v) => {
 								{makeJsx(c)}
 							</div>
 						</li>,
-						i < (explanation.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+						i < (explanation.length - 1) && <li key="+" className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
 						])
 					}
 				</ul>
@@ -98,7 +98,7 @@ let devariate = (recurse, k, v) => {
 
 		let collectMissing = node => {
 			let choice = R.find(node => node.condition.nodeValue, node.explanation),
-				leftMissing = choice ? [] : R.chain(collectNodeMissing,R.pluck("condition",node.explanation)),
+				leftMissing = choice ? [] : R.uniq(R.chain(collectNodeMissing,R.pluck("condition",node.explanation))),
 				rightMissing = choice ? collectNodeMissing(choice) : R.chain(collectNodeMissing,node.explanation)
 			return R.concat(leftMissing,rightMissing)
 		}
@@ -595,13 +595,14 @@ export let mecanismComplement = (recurse,k,v) => {
 		type: 'numeric',
 		category: 'mecanism',
 		name: 'complément pour atteindre',
-		jsx: <Node
+		jsx: (nodeValue, explanation) => <Node
 			classes="mecanism list complement"
-			name="complément pour atteindre"
+			name="complément"
+			value={nodeValue}
 			child={
 				<ul className="properties">
 					<li key="cible">
-						<span className="key">montant calculé: </span>
+						<span className="key">cible: </span>
 						<span className="value">{makeJsx(explanation.cible)}</span>
 					</li>
 					<li key="mini">

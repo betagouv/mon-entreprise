@@ -14,6 +14,7 @@
     "transform-object-rest-spread",
     "transform-class-properties",
     "syntax-dynamic-import",
+    "react-hot-loader/babel",
     ["webpack-alias", { "config": "./source/webpack.config.js" }]
   ]
 }

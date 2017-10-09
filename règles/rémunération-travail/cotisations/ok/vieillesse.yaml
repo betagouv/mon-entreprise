@@ -26,3 +26,12 @@
             - nom: plafonnée
               plafond: plafond sécurité sociale
               taux: 8.55%
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1480
+      valeur attendue: 262.70
+    - nom: Salaire élevé
+      situation:
+        assiette cotisations sociales: 8000
+      valeur attendue: 689.06
