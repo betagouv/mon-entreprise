@@ -597,11 +597,11 @@ export let mecanismComplement = (recurse,k,v) => {
 		name: 'complément pour atteindre',
 		jsx: <Node
 			classes="mecanism list complement"
-			name="complément pour atteindre"
+			name="complément"
 			child={
 				<ul className="properties">
 					<li key="cible">
-						<span className="key">montant calculé: </span>
+						<span className="key">cible: </span>
 						<span className="value">{makeJsx(explanation.cible)}</span>
 					</li>
 					<li key="mini">
