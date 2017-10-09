@@ -40,8 +40,14 @@
   formule:
     somme:
       - salaire brut
-      - CDD . prime fin de contrat #indemnité
-      - CDD . compensation congés payés #indemnité
+      - indemnités salarié
+
+- espace: contrat salarié
+  nom: indemnités salarié
+  formule:
+    somme:
+      - CDD . prime fin de contrat
+      - CDD . compensation congés payés
 
 # TODO - apparement new-cotisations change l'ordre de priorité des questions et nous fait
 # retomber sur "salaire de base", cette modif est un workaround en attendant d'y voir plus clair
