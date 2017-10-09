@@ -30,13 +30,12 @@ export default class Results extends Component {
 			location
 		} = this.props
 
-
-		let explanation = R.has('root', analysedSituation) && clearDict() && getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules),
-			hint = analysedSituation.root.simulateur && analysedSituation.root.simulateur.indice
+		let explanation = R.has('root', analysedSituation) && clearDict() && getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
 
 		if (!explanation) return null
 
-		let onRulePage = R.contains('/regle/')(location.pathname)
+		let onRulePage = R.contains('/regle/')(location.pathname),
+			hint = analysedSituation.root.simulateur && analysedSituation.root.simulateur.indice
 
 		return (
 			<section id="results" className={classNames({show: showResults})}>
