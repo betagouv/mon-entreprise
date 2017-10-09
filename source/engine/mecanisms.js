@@ -38,7 +38,7 @@ let decompose = (recurse, k, v) => {
 						[<li className="composante" key={JSON.stringify(c.composante)}>
 							<ul className="composanteAttributes">
 								{R.toPairs(c.composante).map(([k,v]) =>
-									<li>
+									<li key={k}>
 										<span>{k}: </span>
 										<span>{v}</span>
 									</li>
@@ -48,7 +48,7 @@ let decompose = (recurse, k, v) => {
 								{makeJsx(c)}
 							</div>
 						</li>,
-						i < (explanation.length - 1) && <li className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
+						i < (explanation.length - 1) && <li key="+" className="composantesSymbol"><i className="fa fa-plus-circle" aria-hidden="true"></i></li>
 						])
 					}
 				</ul>
