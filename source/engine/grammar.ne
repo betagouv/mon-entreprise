@@ -3,12 +3,43 @@
 
 main ->
 		  CalcExpression {% id %}
+		| SumExpression {% id %}
 		| Variable {% id %}
 		| NegatedVariable {% id %}
 		| ModifiedVariable {% id %}
 		| FilteredVariable {% id %}
 		| percentage {% id %}
 		| Comparison {% id %}
+
+#-----
+# On appelle SumExpression des expressions qui combinent des additions et des soustractions.
+# C'est une généralisation de CalcExpression mais sans * et / pour ne pas introduire la complexité
+# de la priorité entre les opérateurs ou des parenthèses.
+
+SumExpression -> SumTerm (_ SumTerm {% d => d[1] %}):*  {% d => ({
+	category: 'sumExpression',
+	explanation: [d[0], ...d[1]].reduce((memo, next) =>
+		Object.assign(memo, {[next.operator]: memo[next.operator].concat(next.explanation)})
+	, {'+': [], '-': []})
+
+}) %}
+
+
+SumTerm -> SumOperator _ VariableTerm {% d => ({
+	category: 'sumTerm',
+	operator: d[0],
+	explanation: d[2]
+}) %}
+
+VariableTerm -> Variable {% id %}
+		| FilteredVariable {% id %}
+
+
+SumOperator -> "+" {% id %}
+	| "-" {% id %}
+
+
+
 
 Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	category: 'comparison',
@@ -52,6 +83,9 @@ ArithmeticOperator -> "+" {% id %}
 	| "-" {% id %}
 	| "*" {% id %}
 	| "/" {% id %}
+
+
+
 
 
 # BooleanVariableExpression -> ("!" _):? Variable {% d => (['BooleanVariableExpression', ...d]) %}

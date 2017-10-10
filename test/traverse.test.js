@@ -18,6 +18,12 @@ describe('analyseSituation', function() {
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',101)
   });
 
+  it('should compute expressions combining constants', function() {
+    let rule = {name: "startHere", formule: "100 - 71"}
+    let rules = [rule]
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue', 29)
+  });
+
 });
 
 describe('analyseSituation on raw rules', function() {
@@ -36,6 +42,17 @@ describe('analyseSituation on raw rules', function() {
           {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
     expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
+  });
+
+  it('should handle complex variable sum expressions', function() {
+    let rawRules = [
+          {nom: "startHere", formule: "+ A + B - C", espace: "top"},
+          {nom: "A", formule: 15, espace: "top"},
+          {nom: "B", formule: 15, espace: "top"},
+          {nom: "C", formule: 1, espace: "top"}
+        ],
+        rules = rawRules.map(enrichRule)
+    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',29)
   });
 
   it('should handle applicability conditions', function() {

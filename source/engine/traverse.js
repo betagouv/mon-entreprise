@@ -176,7 +176,7 @@ let treat = (rules, rule) => rawNode => {
 			if (additionnalResults && additionnalResults.length > 0)
 				throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
 
-			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable', 'percentage']))
+			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'sumExpression', 'filteredVariable', 'comparison', 'negatedVariable', 'percentage']))
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
@@ -195,6 +195,60 @@ let treat = (rules, rule) => rawNode => {
 				return {
 					nodeValue: parseResult.nodeValue,
 					jsx:  nodeValue => <span className="percentage">{rawNode}</span>
+				}
+			}
+
+			if (parseResult.category == 'sumExpression') {
+				let evaluate = (situation, parsedRules, node) => {
+					let
+						explanation = {
+							'+': R.map(R.curry(evaluateNode)(situation,parsedRules), node.explanation['+']),
+							'-': R.map(R.curry(evaluateNode)(situation,parsedRules), node.explanation['-'])
+						},
+						getTerms =  node => R.unnest(R.values(node.explanation)),
+						nodeValue = R.any(R.equals(null), getTerms(node)) ? null : R.sum(
+							R.unnest( [
+								R.map(R.prop('nodeValue'), explanation['+']),
+								R.map(n => n.nodeValue * (-1), explanation['-'])
+							])
+						),
+						collectMissing = node => R.chain(collectNodeMissing, getTerms(node))
+
+					return rewriteNode(node,nodeValue,explanation,collectMissing)
+				}
+
+				let fillFiltered = parseResult => fillFilteredVariableNode(rules, rule)(parseResult.filter,parseResult.variable)
+				let fillVariable = fillVariableNode(rules, rule),
+					filledExplanation = R.map(
+						R.map(R.cond([
+							[R.propEq('category', 'variable'), fillVariable],
+							[R.propEq('category', 'filteredVariable'), fillFiltered]
+						])),
+						parseResult.explanation)
+
+				let jsx = (nodeValue, explanation) =>
+					<Node
+						classes="sumExpression"
+						value={nodeValue}
+						child={
+							<ul>
+								{explanation['+'].map( ({name}) =>
+									<li key={name}>+{name}</li>
+								)}
+								{explanation['-'].map( ({name}) =>
+									<li key={name}>-{name}</li>
+								)}
+							</ul>
+						}
+					/>
+
+				return {
+					evaluate,
+					jsx,
+					text: rawNode,
+					category: 'sumExpression',
+					type: 'numeric',
+					explanation: filledExplanation
 				}
 			}
 
