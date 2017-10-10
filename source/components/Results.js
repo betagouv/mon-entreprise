@@ -30,12 +30,12 @@ export default class Results extends Component {
 			location
 		} = this.props
 
-
 		let explanation = R.has('root', analysedSituation) && clearDict() && getObjectives(situationGate, analysedSituation.root, analysedSituation.parsedRules)
 
 		if (!explanation) return null
 
-		let onRulePage = R.contains('/regle/')(location.pathname)
+		let onRulePage = R.contains('/regle/')(location.pathname),
+			hint = analysedSituation.root.simulateur && analysedSituation.root.simulateur.indice
 
 		return (
 			<section id="results" className={classNames({show: showResults})}>
@@ -46,12 +46,11 @@ export default class Results extends Component {
 						</Link>
 					</div>
 					: <div id="results-titles">
-						<h2>Vos résultats <i className="fa fa-hand-o-right" aria-hidden="true"></i></h2>
+						<h2>{hint || "Vos résultats"}: <i className="fa fa-hand-o-right" aria-hidden="true"></i></h2>
 						{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation.root)
 							text &&
 								<p id="resultText">{text}</p>
 						}}
-						<p id="understandTip"><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Cliquez pour comprendre chaque calcul</em></p>
 					</div>
 				}
 				<ul>

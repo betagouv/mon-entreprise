@@ -35,6 +35,7 @@ export default class Algorithm extends React.Component {
 					}}
 					<section id="formule">
 						<h2>Calcul</h2>
+						<p>Vous pouvez cliquer sur chaque valeur pour comprendre comment elle est calculée.</p>
 						{ruleWithoutFormula ? <RuleWithoutFormula /> : makeJsx(rule['formule'])}
 					</section>
 				</section>
