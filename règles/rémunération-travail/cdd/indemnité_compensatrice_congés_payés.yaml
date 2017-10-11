@@ -24,7 +24,7 @@
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire brut + prime fin de contrat
+          assiette: salaire de base + prime fin de contrat
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
           taux: 10%
@@ -39,7 +39,7 @@
         #   soit du nombre moyen de jours ouvrables (ou ouvrés),
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
-          assiette: salaire brut + prime fin de contrat
+          assiette: salaire de base + prime fin de contrat
           # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
           # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
           taux: congés non pris / durée contrat
@@ -48,24 +48,25 @@
           facteur:  1 / 21
 
 
+
   exemples:
     - nom: pas de congés non pris
       situation:
-        salaire brut: 2300
+        salaire de base: 2300
         prime fin de contrat: 0
         congés non pris: 0
         durée contrat: 12
       valeur attendue: 0
     - nom: 10 jours non pris
       situation:
-        salaire brut: 2300
+        salaire de base: 2300
         prime fin de contrat: 0
         congés non pris: 10
         durée contrat: 12
       valeur attendue: 92
     - nom: 3 jours non pris
       situation:
-        salaire brut: 2300
+        salaire de base: 2300
         prime fin de contrat: 0
         congés non pris: 3
         durée contrat: 6
@@ -83,3 +84,4 @@
     Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
     Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
     Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
+    assiette de l'indemnité, circulaire drt 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
