@@ -196,6 +196,22 @@
       motivation: Découvrez le vrai coût du travail
 
 
+- espace: contrat salarié
+  nom: jours de congés légaux
+  description: Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le contrat dans le cas d'un CDD.
+  formule:
+    multiplication:
+      facteur: 2.083
+      variations:
+        - si: type de contrat = 'CDD'
+          assiette: CDD . durée contrat
+        - si: type de contrat = 'CDI'
+          assiette: 12
+
+  références:
+    fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
+
+
 
 
 

@@ -28,7 +28,7 @@
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
           taux: 10%
-          facteur: congés non pris / 25 # variable qui par défaut est en jours ouvrés, probablement le plus commun
+          facteur: congés non pris / jours de congés légaux # jours ouvrés, probablement le plus commun
 
       - description: Méthode "maintien du salaire"
         note: Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a bénéficié d’une augmentation de salaire.
