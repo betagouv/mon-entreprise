@@ -70,10 +70,7 @@
 
 - espace: contrat salarié
   nom: indemnités salarié
-  formule:
-    somme:
-      - CDD . prime fin de contrat
-      - CDD . compensation congés payés
+  formule: CDD . indemnités salarié CDD
 
 - espace: contrat salarié
   nom: statut cadre
@@ -144,7 +141,7 @@
       - taxe d'apprentissage
       - cotisation pénibilité
       - taxe sur les salaires
-      - CDD . surcoût
+      - CDD . cotisations employeur CDD
 
 - espace: contrat salarié
   nom: salaire net
