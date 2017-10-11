@@ -37,11 +37,7 @@
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
-  formule:
-    somme:
-      - salaire brut
-      - CDD . prime fin de contrat #indemnité
-      - CDD . compensation congés payés #indemnité
+  formule: salaire brut
 
 - espace: contrat salarié
   nom: salaire de base
@@ -70,6 +66,14 @@
   formule:
     somme:
       - salaire de base
+      - indemnités salarié
+
+- espace: contrat salarié
+  nom: indemnités salarié
+  formule:
+    somme:
+      - CDD . prime fin de contrat
+      - CDD . compensation congés payés
 
 - espace: contrat salarié
   nom: statut cadre
