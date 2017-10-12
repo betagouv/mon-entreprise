@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Layout.css'
 import './reset.css'
-import {Link, Route, BrowserRouter as Router, Switch} from 'react-router-dom'
+import {Link, Route, Router, Switch} from 'react-router-dom'
 import HomeEmbauche from 'Components/HomeEmbauche'
 import HomeSyso from 'Components/HomeSyso'
 import Rule from 'Components/rule/Rule'
@@ -13,8 +13,6 @@ import Results from 'Components/Results'
 import ReactPiwik from 'react-piwik';
 import createHistory from 'history/createBrowserHistory'
 
-const history = createHistory()
-
 const piwik = new ReactPiwik({
   url: 'stats.data.gouv.fr',
   siteId: 39,
@@ -22,6 +20,8 @@ const piwik = new ReactPiwik({
 });
 
 export default class Layout extends Component {
+	history = createHistory();
+
 	render() {
 		let displayWarning = ['/simu/', '/regle/'].find(t => window.location.href.toString().indexOf(t) > -1)
 
@@ -29,7 +29,7 @@ export default class Layout extends Component {
 		ReactPiwik.push(['trackPageView'])
 
 		return (
-			<Router history={piwik.connectToHistory(history)}>
+			<Router history={piwik.connectToHistory(this.history)}>
 				<div id="main">
 					<div id="ninetyPercent">
 						<div id="header">
