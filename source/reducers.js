@@ -11,6 +11,8 @@ import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR}
 
 import {analyseTopDown} from 'Engine/traverse'
 
+import ReactPiwik from 'react-piwik';
+
 // Our situationGate retrieves data from the "conversation" form
 let fromConversation = state => name => formValueSelector('conversation')(state, name)
 
@@ -57,6 +59,8 @@ export let reduceSteps = (state, action) => {
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
+		ReactPiwik.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
+
 		let foldedSteps = [...state.foldedSteps, R.head(state.unfoldedSteps)],
 			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
 
@@ -82,6 +86,8 @@ export let reduceSteps = (state, action) => {
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
+		ReactPiwik.push(['trackEvent', 'unfold', action.step]);
+
 		let stepFinder = R.propEq('name', action.step),
 			foldedSteps = R.reject(stepFinder)(state.foldedSteps),
 			extraSteps = R.reject(stepFinder)(state.extraSteps)

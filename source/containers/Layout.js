@@ -10,13 +10,26 @@ import Contact from 'Components/Contact'
 import Simulateur from 'Components/Simulateur'
 import Results from 'Components/Results'
 
+import ReactPiwik from 'react-piwik';
+import createHistory from 'history/createBrowserHistory'
+
+const history = createHistory()
+
+const piwik = new ReactPiwik({
+  url: 'stats.data.gouv.fr',
+  siteId: 39,
+  trackErrors: true,
+});
 
 export default class Layout extends Component {
 	render() {
 		let displayWarning = ['/simu/', '/regle/'].find(t => window.location.href.toString().indexOf(t) > -1)
 
+		// track the initial pageview
+		ReactPiwik.push(['trackPageView'])
+
 		return (
-			<Router>
+			<Router history={piwik.connectToHistory(history)}>
 				<div id="main">
 					<div id="ninetyPercent">
 						<div id="header">
