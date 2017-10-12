@@ -315,28 +315,37 @@ export let mecanismSum = (recurse,k,v) => {
 
 	let evaluate = evaluateArray(R.add,0)
 
+	let renderTable = explanation => <table>
+		<caption />
+		<tbody>
+			{explanation.map((v, i) => {
+				let rowFormula = R.path(['explanation', 'formule', 'explanation'], v),
+					isSomme = rowFormula && rowFormula.name == 'somme'
+
+				return [<tr key={v.name} className={isSomme ? '': 'noNest'}>
+					<td className="operator blank">{i != 0 && '+'}</td>
+					<td className="element">
+						{makeJsx(v)}
+					</td>
+					<td className="situationValue value">
+						<NodeValue data={v.nodeValue} />
+					</td>
+				</tr>,
+				... isSomme ? [ <tr className="nested">
+					<td className="blank" />
+					<td className="nested">{renderTable(rowFormula.explanation)}</td>
+				</tr>] : []]
+			})}
+		</tbody>
+	</table>
+
 	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism somme"
 			name="somme"
 			value={nodeValue}
 			child={
-				<table>
-					<caption />
-					<tbody>
-						{explanation.map((v, i) => (
-							<tr key={v.name}>
-								<td className="operator">{i != 0 && '+'}</td>
-								<td className="element">
-									{makeJsx(v)}
-								</td>
-								<td className="situationValue value">
-									<NodeValue data={v.nodeValue} />
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
+				renderTable(explanation)
 			}
 		/>
 	)
