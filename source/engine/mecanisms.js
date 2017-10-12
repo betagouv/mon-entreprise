@@ -1,7 +1,7 @@
 import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
-import {Node, Leaf} from './traverse-common-jsx'
+import {Node, NodeValue} from './traverse-common-jsx'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
 import {findRuleByName} from './rules'
 
@@ -315,17 +315,32 @@ export let mecanismSum = (recurse,k,v) => {
 
 	let evaluate = evaluateArray(R.add,0)
 
-	let jsx = (nodeValue, explanation) =>
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism somme"
 			name="somme"
 			value={nodeValue}
 			child={
-				<ul>
-					{explanation.map(v => <li key={v.name || v.text}>{makeJsx(v)}</li>)}
-				</ul>
+				<table>
+					<caption />
+					<tbody>
+						{explanation.map((v, i) => (
+							<tr key={v.name}>
+								<td className="operator">{i != 0 && '+'}</td>
+								<td className="element">
+									{makeJsx(v)}
+								</td>
+								<td className="situationValue value">
+									<NodeValue data={v.nodeValue} />
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
 			}
 		/>
+	)
+
 
 	return {
 		evaluate,
