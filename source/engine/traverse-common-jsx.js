@@ -13,9 +13,15 @@ let treatValue = data =>
 			: !isNaN(data) ? Math.round(+data*100)/100 : data
 
 export let NodeValue = ({data}) => (
+	<span >
+		{treatValue(data)}
+	</span>
+)
+
+let NodeValuePointer = ({data}) => (
 	<span className={'situationValue ' + treatValue(data)}>
 		←&nbsp;
-		{treatValue(data)}
+		<NodeValue data={data}/>
 	</span>
 )
 
@@ -31,10 +37,10 @@ export class Node extends React.Component {
 				{name &&
 					<span className="nodeHead">
 						<span className="name" data-term-definition={termDefinition} >{name}</span>
-						<NodeValue data={value} />
+						<NodeValuePointer data={value} />
 					</span>}
 				{child}
-				{!name && <NodeValue data={value} />}
+				{!name && <NodeValuePointer data={value} />}
 			</div>
 		)
 	}
@@ -46,7 +52,7 @@ export let Leaf = ({classes, name, value}) => (
 		{name &&
 			<span className="nodeHead">
 				<Link to={"/regle/" + encodeRuleName(name)} >
-					<span className="name">{capitalise0(name)}<NodeValue data={value} /></span>
+					<span className="name">{capitalise0(name)}<NodeValuePointer data={value} /></span>
 				</Link>
 			</span>}
 	</span>

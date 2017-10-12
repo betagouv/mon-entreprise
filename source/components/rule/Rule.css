@@ -130,10 +130,15 @@
 .somme table {
 	border-collapse: collapse;
 }
-.somme tr .element {
+.somme td.operator {
+	background: white;
+	border: 1px solid white;
+	border-right: 1px solid rgba(51, 51, 80, 0.15);
+}
+.somme tr {
 	border: 1px solid rgba(51, 51, 80, 0.15);
 }
-.somme tr:nth-child(2n) .element {
+.somme tr:nth-child(2n) {
   background: rgba(51, 51, 80, 0.05);
 
 }
@@ -150,5 +155,15 @@
 .somme .operator {
 	padding: 0 .6em;
 	font-weight: 600;
-	font-size: 120%
+	font-size: 120%;
+	color: black;
+}
+#rule-rules .somme table .leaf .situationValue {
+	display: none;
+}
+
+#rule-rules .somme table .situationValue {
+	padding: 0 1em;
+}
+#rule-rules .somme table .situationValue span {
 }
