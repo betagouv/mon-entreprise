@@ -36,8 +36,8 @@
 - espace: contrat salarié . CDD
   nom: congés non pris
   titre: Congés non pris
-  question: Combien de jours de congés ne seront pas pris ?
-  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux annuels.
+  question: Combien de jours ouvrés de congés ne seront pas pris ?
+  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux pour un contrat de douze mois. 
   format: jours
   suggestions:
     3 / 25: 3
@@ -51,6 +51,22 @@
   notes: Ce n'est pas un motif de CDD.
 
 - espace: contrat salarié . CDD
+  nom: cotisations employeur CDD
+  description: Cotisations employeur spécifiques au CDD
+  formule:
+    somme:
+      - CIF
+      - majoration chômage
+
+- espace: contrat salarié . CDD
+  nom: indemnités salarié CDD
+  description: Cotisations employeur spécifiques au CDD
+  formule:
+    somme:
+      - prime fin de contrat
+      - compensation congés payés
+
+- espace: contrat salarié . CDD
   nom: surcoût
   titre: Dont surcoût CDD
   description: |
@@ -59,10 +75,8 @@
     fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
-      - CIF #cotisation
-      - majoration chômage #cotisation
-      - prime fin de contrat #indemnité
-      - compensation congés payés #indemnité
+      - indemnités salarié CDD
+      - cotisations employeur CDD
 
 # Cette variable est le point de départ du simulateur "surcout CDD" :-D
 - espace: contrat salarié . CDD

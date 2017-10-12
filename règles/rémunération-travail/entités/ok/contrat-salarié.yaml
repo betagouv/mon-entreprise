@@ -37,14 +37,8 @@
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
-  formule:
-    somme:
-      - salaire brut
-      - CDD . prime fin de contrat #indemnité
-      - CDD . compensation congés payés #indemnité
+  formule: salaire brut
 
-# TODO - apparement new-cotisations change l'ordre de priorité des questions et nous fait
-# retomber sur "salaire de base", cette modif est un workaround en attendant d'y voir plus clair
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut
@@ -59,28 +53,24 @@
   suggestions:
     salaire médian: 2300
     SMIC: 1480
+  références:
+    Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
+  note: |
+    Ici nous confondons salaire brut et salaire de base, en attendant que l'UI de simulation puisse traiter la différence entre les deux. Il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule.
+    La définition du salaire de base est la suivante :
+    Le salaire de base est le salaire brut régulier inscrit dans le contrat. C'est le salaire de négociation entre le salarié et l'employeur. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
 
 - espace: contrat salarié
   nom: salaire brut
-  titre: Salaire brut
-  question: Quel est le salaire brut ?
-  description: |
-    C'est le salaire de négociation du contrat de travail en France.
-
-    Il peut être vu comme :
-    - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
-    - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
   format: euros
-  # TODO En attendant que l'UI devienne plus intelligente, c'est confondu avec le salaire de base.
-  # intelligente : il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule
   formule:
     somme:
       - salaire de base
-      # - primes
-      # - indemnités
-  suggestions:
-    salaire médian: 2300
-    SMIC: 1480
+      - indemnités salarié
+
+- espace: contrat salarié
+  nom: indemnités salarié
+  formule: CDD . indemnités salarié CDD
 
 - espace: contrat salarié
   nom: statut cadre
@@ -126,21 +116,6 @@
       - APEC (salarié)
       - complémentaire santé (salarié)
 
-  exemples:
-    - nom: salaire médian, non cadre
-      situation:
-        CDD . événement . poursuite du CDD en CDI: oui
-        salaire de base: 2300
-        statut cadre: non
-      valeur attendue: 510.83
-
-    - nom: salaire médian, cadre
-      situation:
-        CDD . événement . poursuite du CDD en CDI: oui
-        salaire de base: 2300
-        statut cadre: oui
-      valeur attendue: 543.84
-
 - espace: contrat salarié
   nom: cotisations patronales
   formule:
@@ -166,24 +141,7 @@
       - taxe d'apprentissage
       - cotisation pénibilité
       - taxe sur les salaires
-      - CDD . surcoût
-
-  exemples:
-    - nom: salaire médian, non cadre
-      situation:
-        CDD . événement . poursuite du CDD en CDI: oui
-        salaire de base: 2300
-        statut cadre: non
-        entreprise . effectif: 1
-      valeur attendue: 948.66
-
-    - nom: salaire médian, cadre
-      situation:
-        CDD . événement . poursuite du CDD en CDI: oui
-        salaire de base: 2300
-        statut cadre: oui
-        entreprise . effectif: 1
-      valeur attendue: 1032.72
+      - CDD . cotisations employeur CDD
 
 - espace: contrat salarié
   nom: salaire net
@@ -238,8 +196,20 @@
       motivation: Découvrez le vrai coût du travail
 
 
+- espace: contrat salarié
+  nom: jours de congés légaux
+  description: Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le contrat dans le cas d'un CDD.
+  formule:
+    multiplication:
+      facteur: 2.083
+      variations:
+        - si: type de contrat = 'CDD'
+          assiette: CDD . durée contrat
+        - si: type de contrat = 'CDI'
+          assiette: 12
 
-
+  références:
+    fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
 
 
 

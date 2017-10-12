@@ -35,19 +35,19 @@
   # Ici elle est étalée sur un mois moyen
   formule:
     multiplication:
-      assiette: salaire brut
+      assiette: salaire de base
       taux: 10%
 
   exemples:
     - nom: salaire médian
       situation:
-        salaire brut: 2300
+        salaire de base: 2300
       valeur attendue: 230
 
     - nom: CDD d'usage -> non applicable
       situation:
         contrat salarié . CDD . motif: classique . usage
-        salaire brut: 2300
+        salaire de base: 2300
       valeur attendue: null
 
 
