@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import {makeJsx} from '../evaluation'
 import {path} from 'ramda'
-import {Node, NodeValue} from '../traverse-common-jsx'
+import {Node, NodeValue} from './common'
 
 
 export default class Somme extends Component {

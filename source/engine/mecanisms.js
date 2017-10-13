@@ -1,7 +1,7 @@
 import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
-import {Node, NodeValue} from './traverse-common-jsx'
+import {Node} from './mecanismViews/common'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
 import {findRuleByName} from './rules'
 
