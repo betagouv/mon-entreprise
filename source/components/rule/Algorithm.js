@@ -5,6 +5,7 @@ import {AttachDictionary} from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import {makeJsx} from 'Engine/evaluation'
 import './Algorithm.css'
+import { humanFigure } from "./RuleValueVignette"
 
 let RuleWithoutFormula = () => [
 	<p>
@@ -45,6 +46,15 @@ export default class Algorithm extends React.Component {
 							? <RuleWithoutFormula />
 							: makeJsx(rule['formule'])
 						}
+					</section>
+					<section
+						id="ruleValue"
+						style={{ display: showValues ? "block" : "none" }} >
+						<i className="fa fa-calculator" aria-hidden="true"></i>{' '}{rule.nodeValue == 0
+							? "Règle non applicable"
+							: rule.nodeValue == null
+								? "Situation incomplète"
+								: humanFigure(2)(rule.nodeValue) + " €"}
 					</section>
 				</section>
 			</div>

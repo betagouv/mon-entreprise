@@ -11,7 +11,6 @@ import References from "./References"
 import Algorithm from "./Algorithm"
 import Examples from "./Examples"
 import Helmet from "react-helmet"
-import { humanFigure } from "./RuleValueVignette"
 import {createMarkdownDiv} from 'Engine/marked'
 
 @connect(
@@ -57,8 +56,7 @@ export default class Rule extends Component {
 
 		let { type, name, titre, description, question } = this.rule,
 			situationOrExampleRule =
-				R.path(["example", "rule"])(this.state) || this.rule,
-			ruleValue = situationOrExampleRule.nodeValue
+				R.path(["example", "rule"])(this.state) || this.rule
 
 		return (
 			<div id="rule">
@@ -77,19 +75,6 @@ export default class Rule extends Component {
 						{this.renderDestinataire(R.path([type, "destinataire"])(this.rule))}
 					</div>
 				</section>
-				<div
-					id="ruleValue"
-					style={{ display: situationExists ? "block" : "none" }}
-				>
-					<h2>Résultat</h2>
-					<p>
-						{ruleValue == 0
-							? "Règle non applicable"
-							: ruleValue == null
-								? "Situation incomplète"
-								: humanFigure(2)(ruleValue) + " €"}
-					</p>
-				</div>
 
 				<section id="rule-content">
 					<Algorithm

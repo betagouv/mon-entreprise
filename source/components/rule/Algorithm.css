@@ -26,6 +26,15 @@
 #rule-rules section > div {
 	font-size: 90%;
 }
+
+
+#rule-rules  #ruleValue {
+	font-weight: 400;
+	font-size: 160%;
+	margin: 2em 0 1em;
+}
+
+
 .node {
 	padding-left: 1em;
 	color: #4B4B66
@@ -200,8 +209,6 @@
 	font-size: 160%;
 	color: #3498db;
 }
-
-
 
 #rule-content {
 	margin-left: 2em;
