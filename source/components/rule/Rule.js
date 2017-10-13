@@ -66,16 +66,16 @@ export default class Rule extends Component {
 					<title>{titre || capitalise0(name)}</title>
 					<meta name="description" content={description} />
 				</Helmet>
-				<h1>
-					<span className="rule-type">{type}</span>
-					<span className="rule-name">{capitalise0(name)}</span>
-				</h1>
+
 				<section id="rule-meta">
+					<div className="rule-type">{type || 'Règle'}</div>
+					<h1>
+						{capitalise0(name)}
+					</h1>
 					<div id="meta-paragraph">
 						{createMarkdownDiv(description)}
+						{this.renderDestinataire(R.path([type, "destinataire"])(this.rule))}
 					</div>
-					{this.renderDestinataire(R.path([type, "destinataire"])(this.rule))}
-					{this.renderReferences(this.rule)}
 				</section>
 				<div
 					id="ruleValue"
@@ -103,6 +103,7 @@ export default class Rule extends Component {
 						showValues={this.state.showValues}
 						inject={example => this.setState({ example, showValues: true })}
 					/>
+					{this.renderReferences(this.rule)}
 				</section>
 				<button id="reportError">
 					<a
@@ -128,7 +129,7 @@ export default class Rule extends Component {
 
 		return (
 			<div id="destinataire">
-				<h2>Destinataire</h2>
+				<h3>Destinataire</h3>
 				{!destinataireData ? (
 					<p>Non renseigné</p>
 				) : (

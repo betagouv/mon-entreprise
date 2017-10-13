@@ -4,15 +4,25 @@
 	padding-bottom: 10%;
 }
 
+@media screen and (min-width:800px) {
+	#rule {
+		width: 800px;
+		margin: 0 auto;
+	}
+}
+
+#rule-meta {
+	margin-top: 1.6em;
+}
+
+
 #rule pre {
 	padding: 1em 2em;
 }
 
 .rule-type {
 	padding: 0 .5em;
-	font-size: 75%;
-	margin-right: 1em;
-	display: inline-block;
+	margin: 0 auto;
 	width: 7em;
 	text-align: center;
 	color: #4B4B66;
@@ -23,10 +33,12 @@
 }
 
 #rule h1 {
-	margin-bottom: 1%;
 	color: #4B4B66;
-	display: flex;
-	align-items: center;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	padding: .2em 0;
+	border-bottom: 1px solid rgba(51, 51, 80, 0.2);
 }
 
 #rule h2 {
@@ -41,27 +53,13 @@
 	margin: 0;
 }
 
-#rule .rule-type {
-	font-size: 35%;
-}
 
-#rule-meta {
-	display: flex;
-	justify-content: flex-start;
-	min-height: 5em;
-	margin-left: 1%;
-}
-
-#rule-meta > div {
-	margin-right: 5%;
-}
 
 #meta-paragraph {
-	/*background: rgba(51, 51, 80, 0.03);*/
-	/*margin: 0 3em;*/
+	background: rgba(51, 51, 80, 0.03);
 	padding: 1em;
-	width: 40%;
-
+	display: flex;
+	justify-content: center;
 }
 #meta-paragraph p {
 	/*border-left: 3px solid #333350;*/
@@ -70,16 +68,30 @@
 	font-size: 95%;
 }
 
+#rule h3 {
+	font-size: 100%;
+	font-weight: 400;
+	margin: .4em 0;
+}
+
+#destinataire {
+	text-align: center;
+	max-width: 25%;
+}
 #destinataire a {
 	text-decoration: none;
 	color: inherit;
 }
+#destinataire > div {
+	width: 70%;
+	margin: 0 auto;
+}
 #destinataire img {
-	width: 130px;
+	width: 100%;
+	opacity: .8;
 	display: block;
 }
 #destinataireName {
-	width: 130px;
 	text-align: center;
 	font-size: 70%;
 	line-height: 1em;
