@@ -12,7 +12,7 @@ import "./Examples.css"
 export default class Examples extends Component {
 	runExamples() {
 		let { rule } = this.props,
-			exemples = rule.exemples || []
+			{exemples=[]} = rule
 
 
 		return exemples.map(ex => {
@@ -41,6 +41,7 @@ export default class Examples extends Component {
 			focusedExample = R.path(['focusedExample', 'nom'])(this.props),
 			{inject, situationExists , showValues} = this.props
 
+		if (!examples.length) return null
 		return (
 			<div id="examples">
 				<h2 className="subtitled">Exemples de calcul</h2>
@@ -58,7 +59,7 @@ export default class Examples extends Component {
 									: <i className="fa fa-times" aria-hidden="true"></i>
 								}</span>
 								<span className="name">{nom}</span>
-								{!ok && focusedExample == nom && 
+								{!ok && focusedExample == nom &&
 									<div className="ko">
 										Ce test ne passe pas
 										{showValues && <span>
