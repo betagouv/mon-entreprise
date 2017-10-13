@@ -41,8 +41,7 @@ export default class Rule extends Component {
 	}
 	componentWillMount(){
 		let {
-			match: {params: {name}},
-			situationGate
+			match: {params: {name}}
 		} = this.props
 
 		this.setRule(name)
@@ -99,10 +98,7 @@ export default class Rule extends Component {
 						}
 
 					</div>
-					<div>
-						<h2>Références</h2>
-						{this.renderReferences(this.rule)}
-					</div>
+					{this.renderReferences(this.rule)}
 				</section>
 				<div id="ruleValue" style={{visibility: situationExists ? 'visible' : 'hidden'}}>
 					<h2>Résultat</h2>
@@ -135,8 +131,11 @@ export default class Rule extends Component {
 	}
 
 	renderReferences({'références': refs}) {
-		if (!refs) return <p>Cette règle manque de références.</p>
+		if (!refs) return null
 
-		return <References refs={refs}/>
+		return <div>
+			<h2>Références</h2>
+			<References refs={refs}/>
+		</div>
 	}
 }
