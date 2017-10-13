@@ -59,8 +59,6 @@ export default class Rule extends Component {
 
 		let
 			{type, name, titre, description} = this.rule,
-			destinataire = R.path([type, 'destinataire'])(this.rule),
-			destinataireData = possiblesDestinataires[destinataire],
 			situationOrExampleRule = R.path(['example', 'rule'])(this.state) || this.rule,
 			ruleValue = situationOrExampleRule.nodeValue
 
@@ -80,24 +78,7 @@ export default class Rule extends Component {
 							{description}
 						</p>
 					</div>
-					<div id="destinataire">
-						<h2>Destinataire</h2>
-						{!destinataireData ?
-							<p>Non renseigné</p>
-							:
-							<div>
-								<a href={destinataireData.lien} target="_blank">
-									{destinataireData.image &&
-										<img src={require('Règles/ressources/destinataires/' + destinataireData.image)} /> }
-									{!destinataireData.image &&
-										<div id="calligraphy">{destinataire}</div>
-									}
-								</a>
-								{destinataireData.nom && <div id="destinataireName">{destinataireData.nom}</div>}
-							</div>
-						}
-
-					</div>
+					{this.renderDestinataire(R.path([type, 'destinataire'])(this.rule))}
 					{this.renderReferences(this.rule)}
 				</section>
 				<div id="ruleValue" style={{visibility: situationExists ? 'visible' : 'hidden'}}>
@@ -128,6 +109,31 @@ export default class Rule extends Component {
 				</button>
 			</div>
 		)
+	}
+
+	renderDestinataire(destinataire) {
+		if (!destinataire) return null
+		let
+			destinataireData = possiblesDestinataires[destinataire]
+
+		return <div id="destinataire">
+			<h2>Destinataire</h2>
+			{!destinataireData ?
+				<p>Non renseigné</p>
+				:
+				<div>
+					<a href={destinataireData.lien} target="_blank">
+						{destinataireData.image &&
+							<img src={require('Règles/ressources/destinataires/' + destinataireData.image)} /> }
+						{!destinataireData.image &&
+							<div id="calligraphy">{destinataire}</div>
+						}
+					</a>
+					{destinataireData.nom && <div id="destinataireName">{destinataireData.nom}</div>}
+				</div>
+			}
+
+		</div>
 	}
 
 	renderReferences({'références': refs}) {
