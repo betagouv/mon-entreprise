@@ -20,21 +20,25 @@ let Table = ({explanation}) => <table>
 </table>
 
 
+/* La colonne peut au clic afficher une nouvelle colonne qui sera une autre somme imbriquée */
 class Row extends Component {
+	state = {
+		folded: true
+	}
 	render() {
 		let {v, i} = this.props,
 			rowFormula = path(["explanation", "formule", "explanation"], v),
 			isSomme = rowFormula && rowFormula.name == "somme"
 
 		return [
-			<tr key={v.name} className={isSomme ? "" : "noNest"}>
+			<tr key={v.name} className={isSomme ? "" : "noNest"} onClick={() => this.setState({folded: false})}>
 				<td className="operator blank">{i != 0 && "+"}</td>
 				<td className="element">{makeJsx(v)}</td>
 				<td className="situationValue value">
 					<NodeValue data={v.nodeValue} />
 				</td>
 			</tr>,
-			...(isSomme
+			...(isSomme && !this.state.folded
 				? [
 					<tr className="nested">
 						<td className="blank" />
