@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './HomeEmbauche.css'
+import {Link} from 'react-router-dom'
 
 export default class HomeEmbauche extends Component {
 	render() {
@@ -9,7 +10,7 @@ export default class HomeEmbauche extends Component {
 					<div id="project">
 						<img  src={require('../images/homeEmbauche/logo-SGMAP-fond-blanc.svg')} alt="Secrétariat général pour la modernisation de l'action publique" />
 					</div>
-				  <ul>
+					<ul>
 						<li><a href="#about">À propos</a></li>
 						<li><a id="integrate" href="#integration">
 							<strong>
@@ -17,8 +18,11 @@ export default class HomeEmbauche extends Component {
 								<span className="narrow-screen">Intégration</span>
 							</strong>
 						</a></li>
-				    <li><a href="/contact">Contact</a></li>
-				  </ul>
+						<li><Link to="/regles">
+							Base de règles
+						</Link></li>
+						<li><a href="/contact">Contact</a></li>
+					</ul>
 				</nav>
 				<div id="splash">
 					<div id="showcase">
