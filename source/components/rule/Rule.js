@@ -79,7 +79,7 @@ export default class Rule extends Component {
 				</section>
 				<div
 					id="ruleValue"
-					style={{ visibility: situationExists ? "visible" : "hidden" }}
+					style={{ display: situationExists ? "block" : "none" }}
 				>
 					<h2>Résultat</h2>
 					<p>
@@ -91,7 +91,7 @@ export default class Rule extends Component {
 					</p>
 				</div>
 
-				<section id="rule-calc">
+				<section id="rule-content">
 					<Algorithm
 						traversedRule={situationOrExampleRule}
 						showValues={situationExists}

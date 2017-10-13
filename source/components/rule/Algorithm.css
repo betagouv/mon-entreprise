@@ -3,11 +3,6 @@
 	Règles CSS d'affichage des algorithmes
 */
 
-#rule-rules {
-	display: inline-flex;
-	justify-content: start;
-	min-height: 5em;
-}
 
 #rule-rules .situationValue {
 	display: none;
@@ -21,11 +16,10 @@
 }
 
 #algorithm {
-	margin-right: 10em;
 }
 
 #rule-rules section {
-	margin: 1em 0 1em 3em;
+	margin: 1em 0 1em 0;
 	font-weight: 500;
 	color: #444
 }
@@ -209,9 +203,6 @@
 
 
 
-#rule-calc {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: baseline;
+#rule-content {
+	margin-left: 2em;
 }

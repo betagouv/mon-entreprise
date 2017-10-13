@@ -26,7 +26,7 @@ export default class References extends React.Component {
 							<li id="complementary" key="compl">
 								<span className="meta" />
 								<a
-									href="#"
+									href="#/"
 									onClick={() => this.setState({ showComplementary: true })}
 								>
 										sources complémentaires
