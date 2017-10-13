@@ -62,14 +62,18 @@ export let reduceSteps = (state, action) => {
 		ReactPiwik.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
 
 		let foldedSteps = [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation),
+			assumptionsMade = !R.isEmpty(softAssumptions),
+			done = unfoldedSteps.length == 0
 
 		// The simulation is "over" - except we can now fill in extra questions
 		// where the answers were previously given default reasonable assumptions
-		if (unfoldedSteps.length == 0 && !R.isEmpty(softAssumptions)) {
+		if (done && assumptionsMade) {
 			let newSituation = intermediateSituation(state),
 				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
 				extraSteps = buildNextSteps(newSituation, flatRules, reanalyse)
+
+			ReactPiwik.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
 
 			return {
 				...newState,
@@ -77,6 +81,10 @@ export let reduceSteps = (state, action) => {
 				extraSteps,
 				unfoldedSteps: []
 			}
+		}
+
+		if (done) {
+			ReactPiwik.push(['trackEvent', 'done', 'no more questions']);
 		}
 
 		return {
