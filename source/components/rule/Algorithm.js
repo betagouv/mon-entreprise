@@ -3,15 +3,17 @@ import classNames from 'classnames'
 import R from 'ramda'
 import {AttachDictionary} from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import marked from 'Engine/marked'
 import {makeJsx} from 'Engine/evaluation'
 import './Algorithm.css'
 
-let RuleWithoutFormula = () =>
+let RuleWithoutFormula = () => [
 	<p>
-		Nous ne connaissons pas la formule de cette règle pour l'instant. Sa valeur
-		doit donc être renseignée directement.
-	</p>
+		Cette règle n'a pas de formule de calcul pour l'instant (elle n'en aura même
+		peut-être jamais !)
+	</p>,
+	<p>Sa valeur doit donc être renseignée directement.</p>
+]
+
 
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {
@@ -36,8 +38,10 @@ export default class Algorithm extends React.Component {
 					}}
 					<section id="formule">
 						<h2>Calcul</h2>
-						<p>Vous pouvez cliquer sur chaque valeur pour comprendre comment elle est calculée.</p>
-						{ruleWithoutFormula ? <RuleWithoutFormula /> : makeJsx(rule['formule'])}
+						{ruleWithoutFormula ? <RuleWithoutFormula /> : <div>
+							<p>Vous pouvez cliquer sur chaque valeur pour comprendre comment elle est calculée.</p>
+							{makeJsx(rule['formule'])}
+						</div>}
 					</section>
 				</section>
 			</div>

@@ -55,7 +55,7 @@ export default class Rule extends Component {
 		let conversationStarted = !R.isEmpty(this.props.form),
 			situationExists = conversationStarted || this.state.example != null
 
-		let { type, name, titre, description } = this.rule,
+		let { type, name, titre, description, question } = this.rule,
 			situationOrExampleRule =
 				R.path(["example", "rule"])(this.state) || this.rule,
 			ruleValue = situationOrExampleRule.nodeValue
@@ -73,7 +73,7 @@ export default class Rule extends Component {
 						{capitalise0(name)}
 					</h1>
 					<div id="meta-paragraph">
-						{createMarkdownDiv(description)}
+						{createMarkdownDiv(description || question)}
 						{this.renderDestinataire(R.path([type, "destinataire"])(this.rule))}
 					</div>
 				</section>
