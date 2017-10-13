@@ -32,16 +32,19 @@ export default class Algorithm extends React.Component {
 							R.toPairs(rule).find(([,v]) => v && v.rulePropType == 'cond') || []
 						cond != null &&
 							<section id="declenchement">
-								<h2>Conditions de déclenchement</h2>
+								<h2>Déclenchement</h2>
 								{makeJsx(cond)}
 							</section>
 					}}
 					<section id="formule">
-						<h2>Calcul</h2>
-						{ruleWithoutFormula ? <RuleWithoutFormula /> : <div>
-							<p>Vous pouvez cliquer sur chaque valeur pour comprendre comment elle est calculée.</p>
-							{makeJsx(rule['formule'])}
-						</div>}
+						<h2>
+							Calcul
+							{!ruleWithoutFormula && <small>Cliquez sur chaque chaque valeur pour comprendre</small> }
+						</h2>
+						{ruleWithoutFormula
+							? <RuleWithoutFormula />
+							: makeJsx(rule['formule'])
+						}
 					</section>
 				</section>
 			</div>

@@ -42,11 +42,17 @@
 }
 
 #rule h2 {
-	font-size: 140%;
+	font-size: 150%;
 	font-weight: 400;
-	border-bottom: 1px solid #4B4B66;
-	display: inline-block;
-	padding-right: .6em;
+	border-bottom: 1px solid rgba(51, 51, 80, 0.15);
+	padding: 0.3em 0 .1em;
+}
+
+#rule h2 small {
+	font-size: 60%;
+	color: #888;
+	font-style: italic;
+	margin-left: 1em;
 }
 
 #rule ul {

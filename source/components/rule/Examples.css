@@ -1,16 +1,6 @@
 #examples {
 }
 
-#examples h2.subtitled {
-	margin-bottom: .1em;
-}
-#examples .subtitle {
-	font-size: 85%;
-	font-style: italic;
-	margin-top: 0.3em;
-	margin-bottom: 1.6em
-}
-
 #injectSituation {
 	background: rgb(74, 137, 220);
 	color: white;

@@ -44,8 +44,7 @@ export default class Examples extends Component {
 		if (!examples.length) return null
 		return (
 			<div id="examples">
-				<h2 className="subtitled">Exemples de calcul</h2>
-				<p className="subtitle">Cliquez sur un exemple pour le visualiser</p>
+				<h2>Exemples de calcul <small>Cliquez sur un exemple pour le tester</small></h2>
 				{R.isEmpty(examples) ? (
 					<p>
 						<i className="fa fa-exclamation-triangle" aria-hidden="true" />
