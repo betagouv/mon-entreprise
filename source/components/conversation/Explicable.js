@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {EXPLAIN_VARIABLE} from '../../actions'
 import {rules, findRuleByDottedName} from 'Engine/rules'
 
+import ReactPiwik from 'react-piwik';
 
 @connect(state => ({explained: state.explainedVariable}), dispatch => ({
 	explain: variableName => dispatch({type: EXPLAIN_VARIABLE, variableName})
@@ -40,7 +41,12 @@ export default class Explicable extends React.Component {
 					{ruleLabel}
 				<span
 					className="icon"
-					onClick={e => {e.preventDefault(); e.stopPropagation(); explain(dottedName)}}>
+					onClick={e => {
+						ReactPiwik.push(['trackEvent', 'help', dottedName]);
+						e.preventDefault();
+						e.stopPropagation();
+						explain(dottedName)
+					}}>
 					<i className="fa fa-info" aria-hidden="true"></i>
 				</span>
 			</span>
