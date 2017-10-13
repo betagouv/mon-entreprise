@@ -12,6 +12,7 @@ import Algorithm from "./Algorithm"
 import Examples from "./Examples"
 import Helmet from "react-helmet"
 import { humanFigure } from "./RuleValueVignette"
+import {createMarkdownDiv} from 'Engine/marked'
 
 @connect(
 	state => ({
@@ -71,7 +72,7 @@ export default class Rule extends Component {
 				</h1>
 				<section id="rule-meta">
 					<div id="meta-paragraph">
-						<p>{description}</p>
+						{createMarkdownDiv(description)}
 					</div>
 					{this.renderDestinataire(R.path([type, "destinataire"])(this.rule))}
 					{this.renderReferences(this.rule)}
