@@ -5,6 +5,7 @@ import {AttachDictionary} from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import marked from 'Engine/marked'
 import {makeJsx} from 'Engine/evaluation'
+import './Algorithm.css'
 
 let RuleWithoutFormula = () =>
 	<p>

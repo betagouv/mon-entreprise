@@ -2,6 +2,7 @@ import R from 'ramda'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import marked from 'Engine/marked'
+import './Dictionary.css'
 
 // On ajoute à la section la possibilité d'ouvrir un panneau d'explication des termes.
 // Il suffit à la section d'appeler une fonction fournie en lui donnant du JSX
