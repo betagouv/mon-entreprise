@@ -5,21 +5,6 @@ body {
 	font-size: calc(8px + .35vw)
 }
 
-#warning {
-	width: 400px;
-  padding: 6px;
-  position: absolute;
-  text-align: center;
-  color: white;
-	background: #333350;
-	border: 2px solid white;
-	position: fixed;
-	top: 35px;
-	left: -150px;
-	transform: rotate(-45deg);
-	font-weight: bold;
-}
-
 #content {
 	margin-top: 1.5em;
 }

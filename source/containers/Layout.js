@@ -1,22 +1,25 @@
-import React, { Component } from "react"
-import "./Layout.css"
-import "./reset.css"
-import { Link, Route, Router, Switch } from "react-router-dom"
-import HomeEmbauche from "Components/HomeEmbauche"
-import HomeSyso from "Components/HomeSyso"
-import Rule from "Components/rule/Rule"
-import Route404 from "Components/Route404"
-import Contact from "Components/Contact"
-import Simulateur from "Components/Simulateur"
-import Results from "Components/Results"
+import React, { Component } from 'react'
+import './Layout.css'
+import './reset.css'
+import './ribbon.css'
+
+import {Link, Route, Router, Switch} from 'react-router-dom'
+import ReactPiwik from 'react-piwik'
+import createHistory from 'history/createBrowserHistory'
+
+import HomeEmbauche from 'Components/HomeEmbauche'
+import HomeSyso from 'Components/HomeSyso'
+import Rule from 'Components/rule/Rule'
+import Route404 from 'Components/Route404'
+import Contact from 'Components/Contact'
+import Simulateur from 'Components/Simulateur'
+import Results from 'Components/Results'
 import RulesList from "Components/RulesList"
-import ReactPiwik from "react-piwik"
-import createHistory from "history/createBrowserHistory"
 
 const piwik = new ReactPiwik({
-	url: "stats.data.gouv.fr",
+	url: 'stats.data.gouv.fr',
 	siteId: 39,
-	trackErrors: true
+	trackErrors: true,
 })
 
 export default class Layout extends Component {
@@ -35,11 +38,12 @@ export default class Layout extends Component {
 				<div id="main">
 					<div id="ninetyPercent">
 						<div id="header">
-							{displayWarning && (
-								<div id="warning">
-									<Link to="/contact">version BETA</Link>
-								</div>
-							)}
+
+							{ displayWarning &&
+								<span id="ribbon">
+									<Link to="/contact"><em>version beta</em> <i className="fa fa-flask" aria-hidden="true"></i></Link>
+								</span>
+							}
 							{
 								// this.props.location.pathname != '/' &&
 								// <Link to="/">
