@@ -14,6 +14,7 @@ import './Simulateur.css'
 import {capitalise0} from '../utils'
 import Conversation from './conversation/Conversation'
 
+import ReactPiwik from 'react-piwik';
 
 let situationSelector = formValueSelector('conversation')
 
@@ -62,6 +63,7 @@ export default class extends React.Component {
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
+				ReactPiwik.push(['trackEvent', 'restart', '']);
 				this.props.resetForm(this.name)
 				this.props.startConversation(this.name)
 			},
