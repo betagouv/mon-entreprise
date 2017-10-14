@@ -37,7 +37,7 @@
   nom: congés non pris
   titre: Congés non pris
   question: Combien de jours ouvrés de congés ne seront pas pris ?
-  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux pour un contrat de douze mois. 
+  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux pour un contrat de douze mois.
   format: jours
   suggestions:
     3 / 25: 3
@@ -71,7 +71,9 @@
   titre: Dont surcoût CDD
   description: |
     Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux organismes sociaux, certaines compensations
-    financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4. Certaines sont versées en
+    financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4.
+
+    Certaines sont versées en
     fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD

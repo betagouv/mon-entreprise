@@ -411,12 +411,7 @@ export let treatRuleRoot = (rules, rule) => {
 			let child = treat(rules, rule)(value)
 
 			let jsx = (nodeValue, explanation) =>
-				<Node
-					classes="ruleProp mecanism formula"
-					name="formule"
-					value={nodeValue}
-					child={makeJsx(explanation)}
-				/>
+				makeJsx(explanation)
 
 			return {
 				evaluate,

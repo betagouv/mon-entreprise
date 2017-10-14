@@ -7,7 +7,9 @@ import {encodeRuleName} from './rules'
 let treatValue = data =>
 	data == null
 		? '?'
-		: !isNaN(data) ? Math.round(+data*100)/100 : data
+		: typeof data == 'boolean'
+			? {true: 'oui', false: 'non'}[data]
+			: !isNaN(data) ? Math.round(+data*100)/100 : data
 
 let NodeValue = ({data}) => (
 	<span className={'situationValue ' + treatValue(data)}>

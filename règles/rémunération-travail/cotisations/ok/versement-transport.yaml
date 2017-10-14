@@ -1,6 +1,6 @@
 - espace: contrat salarié
   nom: versement transport
-
+  description: Contribution sur le travail consacrée au financement des transports publics.
   non applicable si: entreprise . effectif < 11
     # TODO variations sur la période
     # variations:
@@ -13,6 +13,9 @@
     multiplication:
       assiette: assiette cotisations sociales
       taux: établissement . taux versement transport
+
+  références:
+    wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
 
 - espace: établissement
   nom: taux versement transport
