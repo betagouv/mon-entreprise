@@ -23,7 +23,7 @@ let assume = (evaluator, assumptions) => state => name => {
 			return userInput != null ? userInput : assumptions[name]
 		}
 
-export let reduceSteps = (flatRules, answerSource) => (state, action) => {
+export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) => {
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
 		return state
 
@@ -58,7 +58,7 @@ export let reduceSteps = (flatRules, answerSource) => (state, action) => {
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
-		ReactPiwik.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
+		tracker.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
 
 		let foldedSteps = [...state.foldedSteps, R.head(state.unfoldedSteps)],
 			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation),
@@ -72,7 +72,7 @@ export let reduceSteps = (flatRules, answerSource) => (state, action) => {
 				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
 				extraSteps = buildNextSteps(newSituation, flatRules, reanalyse)
 
-			ReactPiwik.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
+			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
 
 			return {
 				...newState,
@@ -83,7 +83,7 @@ export let reduceSteps = (flatRules, answerSource) => (state, action) => {
 		}
 
 		if (done) {
-			ReactPiwik.push(['trackEvent', 'done', 'no more questions']);
+			tracker.push(['trackEvent', 'done', 'no more questions']);
 		}
 
 		return {
@@ -93,7 +93,7 @@ export let reduceSteps = (flatRules, answerSource) => (state, action) => {
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
-		ReactPiwik.push(['trackEvent', 'unfold', action.step]);
+		tracker.push(['trackEvent', 'unfold', action.step]);
 
 		let stepFinder = R.propEq('name', action.step),
 			foldedSteps = R.reject(stepFinder)(state.foldedSteps).concat(state.unfoldedSteps),
@@ -147,5 +147,5 @@ export default reduceReducers(
 
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps(rules, fromConversation)
+	reduceSteps(ReactPiwik, rules, fromConversation)
 )
