@@ -23,10 +23,7 @@ let assume = (evaluator, assumptions) => state => name => {
 			return userInput != null ? userInput : assumptions[name]
 		}
 
-export let reduceSteps = (state, action) => {
-
-	let flatRules = rules
-
+export let reduceSteps = (flatRules, answerSource) => (state, action) => {
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
 		return state
 
@@ -38,7 +35,7 @@ export let reduceSteps = (state, action) => {
 		hardAssumptions = R.pathOr({},['simulateur','hypothèses'],sim),
 		// Soft assumptions are revealed after the simulation ends, and can be changed
 		softAssumptions = R.pathOr({},['simulateur','par défaut'],sim),
-		intermediateSituation = assume(fromConversation, hardAssumptions),
+		intermediateSituation = assume(answerSource, hardAssumptions),
 		completeSituation = assume(intermediateSituation,softAssumptions)
 
 	let situationGate = completeSituation(state),
@@ -52,10 +49,12 @@ export let reduceSteps = (state, action) => {
 	}
 
 	if (action.type == START_CONVERSATION) {
+		let unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+
 		return {
 			...newState,
 			foldedSteps: [],
-			unfoldedSteps: buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+			unfoldedSteps
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
@@ -148,5 +147,5 @@ export default reduceReducers(
 
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps
+	reduceSteps(rules, fromConversation)
 )
