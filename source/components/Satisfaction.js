@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import './Satisfaction.css'
 import classNames from 'classnames'
 
+import ReactPiwik from 'react-piwik';
+
 @connect(
 	state => ({
 		sessionId: state.sessionId
@@ -49,7 +51,11 @@ export default class Satisfaction extends Component {
 	render() {
 		let {answer, message, address, messageSent} = this.state,
 			validMessage = (typeof message == 'string' && message.length > 4) || (typeof address == 'string' && address.length > 4),
-			onSmileyClick = s => this.sendSatisfaction(s)
+			onSmileyClick = s => {
+				// Pour l'instant on double le flux avec Piwik
+				ReactPiwik.push(['trackEvent', 'feedback', 'smiley', s]);
+				this.sendSatisfaction(s)
+			}
 
 		if (!answer)
 			return (
