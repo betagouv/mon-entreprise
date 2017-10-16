@@ -14,7 +14,7 @@ import './Simulateur.css'
 import {capitalise0} from '../utils'
 import Conversation from './conversation/Conversation'
 
-import ReactPiwik from 'react-piwik';
+import ReactPiwik from './Tracker';
 
 let situationSelector = formValueSelector('conversation')
 
