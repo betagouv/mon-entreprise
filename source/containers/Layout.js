@@ -4,8 +4,6 @@ import './reset.css'
 import './ribbon.css'
 
 import {Link, Route, Router, Switch} from 'react-router-dom'
-import ReactPiwik from 'react-piwik'
-import createHistory from 'history/createBrowserHistory'
 
 import HomeEmbauche from 'Components/HomeEmbauche'
 import HomeSyso from 'Components/HomeSyso'
@@ -15,6 +13,9 @@ import Contact from 'Components/Contact'
 import Simulateur from 'Components/Simulateur'
 import Results from 'Components/Results'
 import RulesList from "Components/RulesList"
+
+import ReactPiwik from 'Components/Tracker';
+import createHistory from 'history/createBrowserHistory'
 
 const piwik = new ReactPiwik({
 	url: 'stats.data.gouv.fr',

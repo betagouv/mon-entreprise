@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import './Satisfaction.css'
 import classNames from 'classnames'
 
-import ReactPiwik from 'react-piwik';
+import ReactPiwik from './Tracker';
 
 @connect(
 	state => ({

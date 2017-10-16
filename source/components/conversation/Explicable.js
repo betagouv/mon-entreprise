@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {EXPLAIN_VARIABLE} from '../../actions'
 import {rules, findRuleByDottedName} from 'Engine/rules'
 
-import ReactPiwik from 'react-piwik';
+import ReactPiwik from '../Tracker';
 
 @connect(state => ({explained: state.explainedVariable}), dispatch => ({
 	explain: variableName => dispatch({type: EXPLAIN_VARIABLE, variableName})

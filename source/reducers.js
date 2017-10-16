@@ -11,7 +11,7 @@ import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR}
 
 import {analyseTopDown} from 'Engine/traverse'
 
-import ReactPiwik from 'react-piwik';
+import ReactPiwik from 'Components/Tracker';
 
 // Our situationGate retrieves data from the "conversation" form
 let fromConversation = state => name => formValueSelector('conversation')(state, name)
