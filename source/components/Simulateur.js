@@ -14,7 +14,7 @@ import './Simulateur.css'
 import {capitalise0} from '../utils'
 import Conversation from './conversation/Conversation'
 
-import ReactPiwik from './Tracker';
+import ReactPiwik from './Tracker'
 
 let situationSelector = formValueSelector('conversation')
 
@@ -34,15 +34,15 @@ let situationSelector = formValueSelector('conversation')
 		resetForm: () => dispatch(reset('conversation'))
 	})
 )
-export default class extends React.Component {
+export default class extends Component {
 	componentWillMount() {
 		let {
-			match: {
-				params: {
-					name: encodedName
+				match: {
+					params: {
+						name: encodedName
+					}
 				}
-			}
-		} = this.props,
+			} = this.props,
 			name = decodeRuleName(encodedName),
 			existingConversation = this.props.foldedSteps.length > 0
 
@@ -63,7 +63,7 @@ export default class extends React.Component {
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
-				ReactPiwik.push(['trackEvent', 'restart', '']);
+				ReactPiwik.push(['trackEvent', 'restart', ''])
 				this.props.resetForm(this.name)
 				this.props.startConversation(this.name)
 			},
@@ -95,15 +95,15 @@ export default class extends React.Component {
 				{
 					// Tant que le bouton 'C'est parti' n'est pas cliqué, on affiche l'intro
 					!started ?
-					<div>
-						<div className="action centered">
-							{createMarkdownDiv(sim(['sous-titre'])) || <p>Simulez cette règle en quelques clics</p>}
-							<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
+						<div>
+							<div className="action centered">
+								{createMarkdownDiv(sim(['sous-titre'])) || <p>Simulez cette règle en quelques clics</p>}
+								<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
 								C'est parti !
-							</button>
+								</button>
+							</div>
 						</div>
-					</div>
-					: <Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>}
+						: <Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>}
 
 			</div>
 		)
