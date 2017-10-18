@@ -1,11 +1,14 @@
 #sim {
-	padding: 3em 0; /* For the warning message */
+	margin: 1% auto;
 	/*background-image: radial-gradient(ellipse at center, white -160%, rgba(255,255,255,0) 100%);*/
 	/*background-image: radial-gradient(ellipse at center, #4A89DC -160%,#333350 70%);*/
 	color: #333350;
 	transition: background-color .5s;
 	height: 100%;
 	padding-bottom: 10%;
+
+	padding: 1em;
+	max-width: 50em;
 
 }
 
@@ -15,8 +18,7 @@
 
 #sim > h1 {
 	color: inherit;
-	margin-top: 0;
-	text-align: center;
+	margin: 0;
 	font-size: 350%;
 	font-weight: 800;
 }
@@ -24,7 +26,6 @@
 
 #simSubtitle {
 	margin-top: -.5em;
-	text-align: center;
 	font-size: 120%;
 	font-weight: 300;
 	margin-bottom: 2.5em;
@@ -33,9 +34,6 @@
 #sim .intro {
 	font-style: italic;
 	font-size: 110%;
-	width: 50em;
-	max-width: 90%;
-	margin: 0 auto;
 }
 #sim .intro > div {
 	margin: 1em 0;
@@ -80,12 +78,10 @@
 
 
 #conversation {
-	margin: 3em auto;
-	padding: 0 1em;
+	margin-top: 6%;
 	font-size: 110%;
 	line-height: normal;
 	min-height: 10em;
-	max-width: 50em;
 }
 
 
