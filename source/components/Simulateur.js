@@ -35,6 +35,9 @@ let situationSelector = formValueSelector('conversation')
 	})
 )
 export default class extends Component {
+	state = {
+		started: false
+	}
 	componentWillMount() {
 		let {
 				match: {
@@ -58,7 +61,7 @@ export default class extends Component {
 		if (!this.rule.formule) return <Redirect to={"/regle/" + this.name}/>
 
 		let
-			started = !this.props.match.params.intro,
+			{started} = this.state,
 			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
@@ -77,10 +80,10 @@ export default class extends Component {
 						<meta name="description" content={sim('sous-titre')} />}
 				</Helmet>
 				<h1>{title}</h1>
-				{sim('sous-titre') && started &&
+				{sim('sous-titre') &&
 					<div id="simSubtitle">{sim('sous-titre')}</div>
 				}
-				{sim(['introduction', 'notes']) &&
+				{!started && sim(['introduction', 'notes']) &&
 					<div className="intro centered">
 						{sim(['introduction', 'notes']).map( ({icône, texte, titre}) =>
 							<div key={titre}>
@@ -90,20 +93,12 @@ export default class extends Component {
 								</span>
 							</div>
 						)}
+						<button onClick={() => this.setState({started: true})}>J'ai compris</button>
 					</div>
 				}
-				{
-					// Tant que le bouton 'C'est parti' n'est pas cliqué, on affiche l'intro
-					!started ?
-						<div>
-							<div className="action centered">
-								{createMarkdownDiv(sim(['sous-titre'])) || <p>Simulez cette règle en quelques clics</p>}
-								<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
-								C'est parti !
-								</button>
-							</div>
-						</div>
-						: <Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>}
+				{ started &&
+						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>
+				}
 
 			</div>
 		)
