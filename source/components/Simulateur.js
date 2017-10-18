@@ -77,7 +77,7 @@ export default class extends React.Component {
 						<meta name="description" content={sim('sous-titre')} />}
 				</Helmet>
 				<h1>{title}</h1>
-				{sim('sous-titre') &&
+				{sim('sous-titre') && started &&
 					<div id="simSubtitle">{sim('sous-titre')}</div>
 				}
 				{sim(['introduction', 'notes']) &&
@@ -97,7 +97,7 @@ export default class extends React.Component {
 					!started ?
 					<div>
 						<div className="action centered">
-							{createMarkdownDiv(sim(['introduction', 'motivation'])) || <p>Simulez cette règle en quelques clics</p>}
+							{createMarkdownDiv(sim(['sous-titre'])) || <p>Simulez cette règle en quelques clics</p>}
 							<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
 								C'est parti !
 							</button>
