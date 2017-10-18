@@ -42,7 +42,7 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut
-  question: Quel est le salaire brut ?
+  question: Quel est le salaire brut mensuel ?
   description: |
     C'est le salaire de négociation du contrat de travail en France.
 
@@ -53,6 +53,8 @@
   suggestions:
     salaire médian: 2300
     SMIC: 1480
+    SMIC mi-temps: 740
+
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
   note: |
