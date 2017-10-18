@@ -34,7 +34,7 @@ export default class HomeEmbauche extends Component {
 								</div>
 								<div>
 									<span>Nouveau</span>
-									<a href="/simu/surcoût-CDD/intro">Simuler le surcoût CDD (beta) <i className="fa fa-hand-o-right" aria-hidden="true"></i></a>
+									<a href="/simu/surcoût-CDD">Simuler le surcoût CDD (beta) <i className="fa fa-hand-o-right" aria-hidden="true"></i></a>
 								</div>
 							</div>
 						</div>
