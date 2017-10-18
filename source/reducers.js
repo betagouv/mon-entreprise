@@ -23,10 +23,7 @@ let assume = (evaluator, assumptions) => state => name => {
 			return userInput != null ? userInput : assumptions[name]
 		}
 
-export let reduceSteps = (state, action) => {
-
-	let flatRules = rules
-
+export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) => {
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
 		return state
 
@@ -38,7 +35,7 @@ export let reduceSteps = (state, action) => {
 		hardAssumptions = R.pathOr({},['simulateur','hypothèses'],sim),
 		// Soft assumptions are revealed after the simulation ends, and can be changed
 		softAssumptions = R.pathOr({},['simulateur','par défaut'],sim),
-		intermediateSituation = assume(fromConversation, hardAssumptions),
+		intermediateSituation = assume(answerSource, hardAssumptions),
 		completeSituation = assume(intermediateSituation,softAssumptions)
 
 	let situationGate = completeSituation(state),
@@ -52,14 +49,16 @@ export let reduceSteps = (state, action) => {
 	}
 
 	if (action.type == START_CONVERSATION) {
+		let unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+
 		return {
 			...newState,
 			foldedSteps: [],
-			unfoldedSteps: buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+			unfoldedSteps
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
-		ReactPiwik.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
+		tracker.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
 
 		let foldedSteps = [...state.foldedSteps, R.head(state.unfoldedSteps)],
 			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation),
@@ -73,7 +72,7 @@ export let reduceSteps = (state, action) => {
 				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
 				extraSteps = buildNextSteps(newSituation, flatRules, reanalyse)
 
-			ReactPiwik.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
+			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
 
 			return {
 				...newState,
@@ -84,7 +83,7 @@ export let reduceSteps = (state, action) => {
 		}
 
 		if (done) {
-			ReactPiwik.push(['trackEvent', 'done', 'no more questions']);
+			tracker.push(['trackEvent', 'done', 'no more questions']);
 		}
 
 		return {
@@ -94,10 +93,10 @@ export let reduceSteps = (state, action) => {
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
-		ReactPiwik.push(['trackEvent', 'unfold', action.step]);
+		tracker.push(['trackEvent', 'unfold', action.step]);
 
 		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.reject(stepFinder)(state.foldedSteps),
+			foldedSteps = R.reject(stepFinder)(state.foldedSteps).concat(state.unfoldedSteps),
 			extraSteps = R.reject(stepFinder)(state.extraSteps)
 
 		return {
@@ -148,5 +147,5 @@ export default reduceReducers(
 
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps
+	reduceSteps(ReactPiwik, rules, fromConversation)
 )
