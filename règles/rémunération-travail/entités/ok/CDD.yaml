@@ -94,8 +94,6 @@
   simulateur:
     titre: Simulateur CDD
     sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
-    résultats: Le coût du travail faisant ressortir les cotisations spécifiques au CDD.
-    indice: Par mois
     introduction:
       notes:
         - icône: fa-handshake-o

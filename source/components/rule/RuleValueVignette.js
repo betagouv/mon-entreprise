@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import {capitalise0} from '../../utils'
 let fmt = new Intl.NumberFormat('fr-FR').format
 export let humanFigure = decimalDigits => value => fmt(value.toFixed(decimalDigits))
-import './RuleValueVignette.css'
+import './RuleValueVignette2.css'
 
 export default ({
 	name,
@@ -29,10 +29,10 @@ export default ({
 					{type}
 				</div>
 				<div className="rule-box">
-					<div className="rule-name">
-						{titre || capitalise0(name)}
-					</div>
-					<p>
+					<span className="rule-name">
+						{titre || capitalise0(name)} :
+					</span>
+					<span>{' '}
 						{conversationStarted &&
 							(irrelevant
 								? "Vous n'êtes pas concerné"
@@ -41,9 +41,9 @@ export default ({
 									: <div><span className="figure">
 										{humanFigure(2)(ruleValue) + "€"}
 									</span>
-									<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p>
+									{/*<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p> */}
 									</div>)}
-					</p>
+					</span>
 				</div>
 			</Link>
 		</span>

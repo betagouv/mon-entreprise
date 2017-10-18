@@ -1,19 +1,16 @@
 
 #results {
 	position: fixed;
-	bottom: 3%;
+	bottom: 2.5%;
 	left: 0;
 	width: 90%;
 	margin: 0 5%;
 
 	padding: .1em;
 	background: #4A89DC;
-	font-size: 80%;
 	color: white;
 	padding: .6em 0;
-	text-align: center;
-	height: 12em;
-
+	font-size: 110%;
 	box-shadow: 1px -7px 20px 2px #ccc;
 
 	opacity: 0;
@@ -28,8 +25,7 @@
 }
 
 
-#results-actions,
-#results-titles {
+#results-actions {
 	display: inline-block;
 	float: left;
 	width: 18%;
@@ -57,82 +53,32 @@
 	margin-right: .6em;
 }
 
-#results-titles {
-	color: white;
-	line-height: 1.2em;
-	font-weight: 400;
-	font-size: 120%;
-	text-align: left;
-}
-#results-titles h2 {
-	font-size: 250%;
-	margin: .4em 0;
-}
-#results-titles p {
-	color: inherit;
-}
-#results-titles i {
-	margin: 0 .3em;
-}
-#resultText {
+#results h2 {
+	margin: 0 .6em;
 	font-weight: 600;
-	font-size: 100%;
+	color: white;
+	text-align: left;
+	font-size: 115%
 }
 
-
-
-
+#results h2 i {
+	margin-right: .6em;
+}
 #results ul {
-	display: inline-flex;
-	justify-content: space-around;
-	height: 100%;
-	width: 80%;
 	list-style: none;
 	padding-left: 0;
-	margin: 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	height: 70%;
+	width: 98%;
+
 }
 
 
 
 
 @media (max-width: 1280px) {
-	#results .rule-type {
-		display: none;
-	}
-	#results {
-		padding: 0;
-	}
-	#results-titles {
-		width: 100%;
-		text-align: center;
-		margin-bottom: .6em;
-	}
-	#results-titles p {
-		margin: 0;
-		margin-right: 3em;
-	}
-	#results-titles h2 {
-		font-size: 150%;
-		display: none;
-	}
-	#results-titles #resultText {
-		font-size: 120%
-	}
-	#results h2 {
-		margin: 0.3em 1em 0 0;
-		display: inline-block;
-	}
-	#results-titles > p {
-		display: inline-block;
-	}
-	#results-titles #understandTip {
-		display: none;
-	}
-
-	#results ul {
-		width: 100%;
-		font-size: 90%;
-	}
 
 
 }

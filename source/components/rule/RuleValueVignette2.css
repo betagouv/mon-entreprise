@@ -1,0 +1,25 @@
+
+.RuleValueVignette {
+	margin: 0 1em 0 2em;
+	display: inline-block;
+	width: 100%;
+}
+
+.RuleValueVignette li a {
+	text-decoration: none;
+}
+.RuleValueVignette .rule-type {
+	color: white;
+	border: none;
+	line-height: 2em;
+	font-weight: 600;
+	margin: .6em 0 .1em;
+}
+.RuleValueVignette .rule-box {
+	display: flex;
+	justify-content: space-between;
+}
+
+.RuleValueVignette .rule-box > span {
+	display: inline-block;
+}

@@ -34,9 +34,7 @@ export default class Results extends Component {
 
 		if (!explanation) return null
 
-		let onRulePage = R.contains('/regle/')(location.pathname),
-			hint = analysedSituation.root.simulateur && analysedSituation.root.simulateur.indice
-
+		let onRulePage = R.contains('/regle/')(location.pathname)
 		return (
 			<section id="results" className={classNames({show: showResults})}>
 				{onRulePage && conversationStarted ?
@@ -46,11 +44,7 @@ export default class Results extends Component {
 						</Link>
 					</div>
 					: <div id="results-titles">
-						<h2>{hint || "Vos résultats"}: <i className="fa fa-hand-o-right" aria-hidden="true"></i></h2>
-						{do {let text = R.path(['simulateur', 'résultats'])(analysedSituation.root)
-							text &&
-								<p id="resultText">{text}</p>
-						}}
+						<h2><i className="fa fa-calculator" aria-hidden="true"></i>Vos résultats</h2>
 					</div>
 				}
 				<ul>
