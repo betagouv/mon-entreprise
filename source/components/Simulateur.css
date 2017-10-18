@@ -57,13 +57,6 @@
 	width: 80%;
 }
 
-#sim .remarks p {
-	opacity: .9;
-	padding-left: 1em;
-	border-left: 10px solid rgba(255, 255, 255, 0.2);
-	font-style: italic;
-}
-
 #sim .action {
 	margin-top: 5%;
 	margin-bottom: 3%;

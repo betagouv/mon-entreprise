@@ -102,13 +102,6 @@ export default class extends React.Component {
 								C'est parti !
 							</button>
 						</div>
-						<div className="remarks centered">
-							<p>
-								N'hésitez pas à nous écrire <Link to="/contact">
-								<i className="fa fa-envelope-open-o" aria-hidden="true" style={{margin: '0 .3em'}}></i>
-							</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
-							</p>
-						</div>
 					</div>
 					: <Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>}
 
