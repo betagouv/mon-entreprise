@@ -84,7 +84,7 @@ export default class extends Component {
 					<div id="simSubtitle">{sim('sous-titre')}</div>
 				}
 				{!started && sim(['introduction', 'notes']) &&
-					<div className="intro centered">
+					<div className="intro">
 						{sim(['introduction', 'notes']).map( ({icône, texte, titre}) =>
 							<div key={titre}>
 								<i title={titre} className={"fa "+icône} aria-hidden="true"></i>
