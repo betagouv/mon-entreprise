@@ -97,7 +97,7 @@ export let reduceSteps = (state, action) => {
 		ReactPiwik.push(['trackEvent', 'unfold', action.step]);
 
 		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.reject(stepFinder)(state.foldedSteps),
+			foldedSteps = R.reject(stepFinder)(state.foldedSteps).concat(state.unfoldedSteps),
 			extraSteps = R.reject(stepFinder)(state.extraSteps)
 
 		return {
