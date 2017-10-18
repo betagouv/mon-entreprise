@@ -273,7 +273,7 @@ describe('buildNextSteps', function() {
         missing = collectMissingVariables()(stateSelector,situation),
         result = buildNextSteps(stateSelector, rules, situation)
 
-    expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut ?")
+    expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut mensuel ?")
     expect(R.path(["question","props","label"])(result[1])).to.equal("Le contrat est-il à temps partiel ?")
   });
 
