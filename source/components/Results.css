@@ -1,9 +1,10 @@
 
 #results {
 	position: fixed;
-	bottom: 0;
+	bottom: 3%;
 	left: 0;
-	width: 100%;
+	width: 90%;
+	margin: 0 5%;
 
 	padding: .1em;
 	background: #4A89DC;
