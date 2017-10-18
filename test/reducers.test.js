@@ -62,8 +62,8 @@ describe('fold', function() {
     expect(result.unfoldedSteps).to.have.lengthOf(1)
     expect(result.unfoldedSteps[0]).to.have.deep.property("name","top . bb")
     expect(result).to.have.property('foldedSteps')
-    expect(result.unfoldedSteps).to.have.lengthOf(1)
-    expect(result.unfoldedSteps[0]).to.have.deep.property("name","top . aa")
+    expect(result.foldedSteps).to.have.lengthOf(1)
+    expect(result.foldedSteps[0]).to.have.deep.property("name","top . aa")
   });
 
 });
