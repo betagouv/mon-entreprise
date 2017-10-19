@@ -44,7 +44,7 @@ export default class Results extends Component {
 						</Link>
 					</div>
 					: <div id="results-titles">
-						<h2><i className="fa fa-calculator" aria-hidden="true"></i>Vos résultats</h2>
+						<h2><i className="fa fa-calculator" aria-hidden="true"></i>{explanation.length == 1 ? 'Votre résultat' : 'Vos résultats'}</h2>
 					</div>
 				}
 				<ul>

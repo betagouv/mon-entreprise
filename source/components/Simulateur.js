@@ -96,7 +96,7 @@ export default class extends Component {
 						<button onClick={() => this.setState({started: true})}>J'ai compris</button>
 					</div>
 				}
-				{ started &&
+				{ (started || !sim(['introduction', 'notes'])) &&
 						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>
 				}
 

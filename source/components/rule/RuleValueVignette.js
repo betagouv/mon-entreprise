@@ -6,7 +6,7 @@ import { capitalise0 } from "../../utils"
 let fmt = new Intl.NumberFormat("fr-FR").format
 export let humanFigure = decimalDigits => value =>
 	fmt(value.toFixed(decimalDigits))
-import "./RuleValueVignette2.css"
+import "./RuleValueVignette.css"
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"
 
 export default ({
