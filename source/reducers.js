@@ -96,15 +96,23 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
 		tracker.push(['trackEvent', 'unfold', action.step]);
 
+		// The logic here is a bit hard to follow (TODO: refactor),
+		// it guarantees that (foldedSteps+unfoldedSteps) as a set is invariant
+		// foldedSteps should only have questions that have been answered
+		// unfoldedSteps is all the questions that must still be answered
 		let stepFinder = R.propEq('name', action.step),
 			previous = R.head(state.unfoldedSteps),
-			foldedSteps = R.reject(stepFinder)(R.concat(state.foldedSteps, previous ? [previous] : [])),
-			unfolded = R.find(stepFinder)(R.concat(state.foldedSteps, state.extraSteps))
+			prevFinder = R.propEq('name', previous && previous.name),
+			answered = previous && (answerSource(state)(previous.name) != undefined),
+			foldable = answered ? [previous] : [],
+			foldedSteps = R.reject(stepFinder)(R.concat(state.foldedSteps, foldable)),
+			unfolded = R.find(stepFinder)(R.concat(state.foldedSteps, state.extraSteps)),
+			unfoldedSteps = R.concat([unfolded], answered ? R.reject(prevFinder)(state.unfoldedSteps) : state.unfoldedSteps)
 
 		return {
 			...newState,
 			foldedSteps,
-			unfoldedSteps: R.concat([unfolded], state.unfoldedSteps)
+			unfoldedSteps
 		}
 	}
 }
