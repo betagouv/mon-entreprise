@@ -23,3 +23,28 @@
 .RuleValueVignette .rule-box > span {
 	display: inline-block;
 }
+
+.RuleValueVignette .rule-value {
+	transition: background .8s;
+}
+.RuleValueVignette .rule-value .unsatisfied {
+	font-style: italic;
+}
+.RuleValueVignette .rule-value .irrelevant {
+	font-style: normal;
+}
+.RuleValueVignette .rule-value .figure {
+	font-weight: bold;
+}
+
+
+
+/* Animation of summary figures changes : flash ! */
+.flash-enter {
+		background: rgba(255, 255, 255, 1);
+}
+
+.flash-leave {
+		/* Completely hide the button while it's being animated and before it's removed from the DOM. */
+		display: none;
+}
