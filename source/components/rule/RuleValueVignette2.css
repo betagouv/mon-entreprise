@@ -1,9 +1,4 @@
 
-.RuleValueVignette {
-	margin: 0 1em 0 2em;
-	display: inline-block;
-	width: 100%;
-}
 
 .RuleValueVignette li a {
 	text-decoration: none;
@@ -18,6 +13,9 @@
 .RuleValueVignette .rule-box {
 	display: flex;
 	justify-content: space-between;
+}
+.RuleValueVignette .rule-box:hover {
+	background: rgba(255, 255, 255, 0.16)
 }
 
 .RuleValueVignette .rule-box > span {

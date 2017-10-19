@@ -48,7 +48,9 @@ export default class Results extends Component {
 					</div>
 				}
 				<ul>
-					{explanation.map( rule => <RuleValueVignette key={rule.nom} {...rule} conversationStarted={conversationStarted} />)}
+					{explanation.map( rule => <li key={rule.nom}>
+						<RuleValueVignette {...rule} conversationStarted={conversationStarted} />
+					</li>)}
 				</ul>
 			</section>
 		)
