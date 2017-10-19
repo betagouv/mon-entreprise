@@ -37,6 +37,8 @@ export default class Conversation extends Component {
 								))}
 						</div>
 					}
+					{unfoldedSteps.length == 0 &&
+						<Conclusion affiner={!R.isEmpty(extraSteps)}/>}
 					{ !R.isEmpty(extraSteps) &&
 						<div id="foldedSteps">
 							<div className="header" >
@@ -64,8 +66,9 @@ export default class Conversation extends Component {
 							/>
 						}}
 					</div>
-					{unfoldedSteps.length == 0 &&
-						<Conclusion simu={this.name}/>}
+					{R.isEmpty(unfoldedSteps) &&
+						<Satisfaction simu={this.props.simu}/>
+					}
 				</div>
 				<Aide />
 			</div>
@@ -73,22 +76,11 @@ export default class Conversation extends Component {
 	}
 }
 
-
-class Conclusion extends Component {
-	render() {
-		return (
-			<div id="fin">
-				<img src={require('../../images/fin.png')} />
-				<div id="fin-text">
-					<p>
-						Votre simulation est terminée !
-					</p>
-					<p>
-						N'hésitez pas à modifier vos réponses, ou cliquez sur vos résultats pour comprendre le calcul.
-					</p>
-					<Satisfaction simu={this.props.simu}/>
-				</div>
-			</div>
-		)
-	}
-}
+let Conclusion = ({ affiner }) => (
+	<div id="fin">
+		<p>
+			Vous pouvez maintenant modifier vos réponses{" "}
+			{affiner && "ou affiner votre situation"} : vos résultats ci-dessous seront mis à jour.
+		</p>
+	</div>
+)

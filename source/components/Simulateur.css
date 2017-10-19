@@ -93,7 +93,6 @@
 
 #foldedSteps .header {
 	margin-bottom: 1em;
-	text-align: center;
 }
 #foldedSteps .header h3 {
 	display: inline;
@@ -111,21 +110,6 @@
 
 
 #fin {
-	margin: 0 auto;
-	width: 80%;
-  display: flex;
-	align-items: flex-end;
+	width: 30em;
 	font-style: italic;
-}
-#fin-text {
-	width: 50%;
-	margin-left: 2em;
-	display: inline-block;
-}
-#fin p:first-of-type {
-	font-weight: bold
-}
-#fin img {
-	width: 25%;
-	display: inline-block;
 }
