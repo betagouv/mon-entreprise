@@ -73,7 +73,13 @@
 }
 
 
-
+#results #incitation {
+	text-align: center;
+	font-style: italic;
+	opacity: 0.9;
+	font-size: 85%;
+	margin-bottom: .1em;
+}
 
 @media (max-width: 1280px) {
 

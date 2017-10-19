@@ -52,6 +52,7 @@ export default class Results extends Component {
 						<RuleValueVignette {...rule} conversationStarted={conversationStarted} />
 					</li>)}
 				</ul>
+				<div id="incitation">Cliquez pour comprendre chaque calcul !</div>
 			</section>
 		)
 	}
