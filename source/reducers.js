@@ -45,7 +45,8 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		...state,
 		analysedSituation,
 		situationGate: situationGate,
-		extraSteps: []
+		extraSteps: [],
+		explainedVariable: null
 	}
 
 	if (action.type == START_CONVERSATION) {
