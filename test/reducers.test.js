@@ -40,11 +40,13 @@ describe('fold', function() {
 
     let rawRules = [
           // TODO - this won't work without the indirection, figure out why
-          {nom: "startHere", formule: {somme: ["a","b"]}, espace: "top"},
+          {nom: "startHere", formule: {somme: ["a","b","c"]}, espace: "top"},
           {nom: "a", espace: "top", formule: "aa"},
           {nom: "b", espace: "top", formule: "bb"},
+          {nom: "c", espace: "top", formule: "cc"},
           {nom: "aa", question: "?", titre: "a", espace: "top"},
-          {nom: "bb", question: "?", titre: "b", espace: "top"}],
+          {nom: "bb", question: "?", titre: "b", espace: "top"},
+          {nom: "cc", question: "?", titre: "c", espace: "top"}],
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
@@ -59,11 +61,12 @@ describe('fold', function() {
     let result = step5
 
     expect(result).to.have.property('unfoldedSteps')
-    expect(result.unfoldedSteps).to.have.lengthOf(1)
+    expect(result.unfoldedSteps).to.have.lengthOf(3)
     expect(result.unfoldedSteps[0]).to.have.deep.property("name","top . bb")
     expect(result).to.have.property('foldedSteps')
-    expect(result.foldedSteps).to.have.lengthOf(1)
-    expect(result.foldedSteps[0]).to.have.deep.property("name","top . aa")
+    expect(result.foldedSteps).to.have.lengthOf(2)
+    expect(result.foldedSteps[0]).to.have.deep.property("name","top . cc")
+    expect(result.foldedSteps[1]).to.have.deep.property("name","top . aa")
   });
 
 });

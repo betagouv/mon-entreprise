@@ -97,14 +97,14 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		tracker.push(['trackEvent', 'unfold', action.step]);
 
 		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.reject(stepFinder)(state.foldedSteps).concat(state.unfoldedSteps),
-			extraSteps = R.reject(stepFinder)(state.extraSteps)
+			previous = R.head(state.unfoldedSteps),
+			foldedSteps = R.reject(stepFinder)(R.concat(state.foldedSteps, previous ? [previous] : [])),
+			unfolded = R.find(stepFinder)(R.concat(state.foldedSteps, state.extraSteps))
 
 		return {
 			...newState,
 			foldedSteps,
-			extraSteps,
-			unfoldedSteps: [R.find(stepFinder)(R.concat(state.foldedSteps,state.extraSteps))]
+			unfoldedSteps: R.concat([unfolded], state.unfoldedSteps)
 		}
 	}
 }
