@@ -7,6 +7,7 @@ import {EXPLAIN_VARIABLE} from '../actions'
 
 import References from './rule/References'
 import './Aide.css'
+import {capitalise0} from '../utils'
 
 @connect(
 	state =>
@@ -39,7 +40,7 @@ export default class Aide extends Component {
 						className="fa fa-times-circle"
 						onClick={stopExplaining} ></i>
 					<p
-						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.titre)}}>
+						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.titre || capitalise0(rule.name))}}>
 					</p>
 					{/* { possibilities &&
 						<p>
