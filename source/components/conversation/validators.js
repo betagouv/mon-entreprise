@@ -9,6 +9,6 @@ export let number = {
 }
 
 export let int = {
-	test: v => /^[0-9]+/.test(v),
+	test: v => /^[0-9]+$/.test(v),
 	error: 'Vous devez entrer un entier, par ex. 16'
 }
