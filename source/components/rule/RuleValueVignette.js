@@ -30,16 +30,16 @@ export default ({
 				</div>
 				<div className="rule-box">
 					<span className="rule-name">
-						{titre || capitalise0(name)} :
+						{titre || capitalise0(name)}
 					</span>
 					<span>{' '}
 						{conversationStarted &&
 							(irrelevant
 								? "Vous n'êtes pas concerné"
 								: unsatisfied
-									? "En attente de vos réponses..."
+									? <em>En attente de vos réponses...</em>
 									: <div><span className="figure">
-										{humanFigure(2)(ruleValue) + "€"}
+										<b>{humanFigure(2)(ruleValue) + " €"}</b>
 									</span>
 									{/*<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p> */}
 									</div>)}

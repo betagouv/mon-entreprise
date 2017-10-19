@@ -10,8 +10,8 @@
 	background: #4A89DC;
 	color: white;
 	padding: .6em 0;
-	font-size: 110%;
-	box-shadow: 1px -7px 20px 2px #ccc;
+	font-size: 120%;
+	box-shadow: 0px 0px 20px 2px #ccc;
 
 	opacity: 0;
 	transform: translateY(12em);
@@ -58,7 +58,7 @@
 	font-weight: 600;
 	color: white;
 	text-align: left;
-	font-size: 115%
+	font-size: 125%;
 }
 
 #results h2 i {
@@ -71,7 +71,8 @@
 	align-items: center;
 	flex-wrap: wrap;
 	height: 70%;
-	width: 98%;
+	width: 96%;
+	margin: .6em auto;
 
 }
 
