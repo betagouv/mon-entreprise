@@ -22,6 +22,11 @@
 	text-align: left;
 	padding: .1em .6em;
 }
+.somme .element .unfoldIndication {
+	font-size: 68%;
+	color: #888;
+	cursor: pointer;
+}
 .somme tr .value span {
 	text-align: right;
 }
