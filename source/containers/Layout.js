@@ -25,7 +25,15 @@ const piwik = new ReactPiwik({
 
 export default class Layout extends Component {
 	history = createHistory()
-
+	state = {
+		resultsHeight: 600
+	}
+	componentDidMount(){
+		let resultsEl = document.getElementById('results')
+		this.setState({
+			resultsHeight: resultsEl ? resultsEl.clientHeight : 600
+		})
+	}
 	render() {
 		let displayWarning = ["/simu/", "/regle/", "/regles"].find(
 			t => window.location.href.toString().indexOf(t) > -1
@@ -37,7 +45,7 @@ export default class Layout extends Component {
 		return (
 			<Router history={piwik.connectToHistory(this.history)}>
 				<div id="main">
-					<div id="ninetyPercent">
+					<div>
 						<div id="header">
 
 							{ displayWarning &&
@@ -62,6 +70,7 @@ export default class Layout extends Component {
 							<Route component={Route404} />
 						</Switch>
 					</div>
+					<div id="antiOverlap" style={{height: this.state.resultsHeight + 'px'}}/>
 					<Results />
 				</div>
 			</Router>
