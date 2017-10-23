@@ -53,13 +53,13 @@ export default class Input extends Component {
 					</button>
 				</span>
 
-				{this.renderSuggestions()}
+				{this.renderSuggestions(themeColours)}
 
 				{inputError && <span className="step-input-error">{error}</span>}
 			</span>
 		)
 	}
-	renderSuggestions(){
+	renderSuggestions(themeColours){
 		let {setFormValue, submit, suggestions} = this.props.stepProps
 		if (!suggestions) return null
 		return (
@@ -69,7 +69,8 @@ export default class Input extends Component {
 				<li key={value}
 					onClick={e => setFormValue('' + value) && submit() && e.preventDefault()}
 					onMouseOver={() => setFormValue('' + value) && this.setState({suggestedInput: true})}
-					onMouseOut={() => setFormValue('') && this.setState({suggestedInput: false})}>
+					onMouseOut={() => setFormValue('') && this.setState({suggestedInput: false})}
+					style={{color: themeColours.colour}}>
 					<a href="#" title="cliquer pour valider">{text}</a>
 				</li>
 			)}

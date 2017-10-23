@@ -35,12 +35,6 @@ h1 {
 	flex-direction: column;
 }
 
-#ninetyPercent {
-	width: 100%;
-	flex-grow: 1;
-	overflow: auto;
-}
-
 #page-type {
 	display: inline-block;
 	position: fixed;

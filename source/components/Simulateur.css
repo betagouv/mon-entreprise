@@ -1,11 +1,14 @@
 #sim {
-	padding: 3em 0; /* For the warning message */
+	margin: 1% auto;
 	/*background-image: radial-gradient(ellipse at center, white -160%, rgba(255,255,255,0) 100%);*/
 	/*background-image: radial-gradient(ellipse at center, #4A89DC -160%,#333350 70%);*/
 	color: #333350;
 	transition: background-color .5s;
 	height: 100%;
 	padding-bottom: 10%;
+
+	padding: 1em;
+	max-width: 50em;
 
 }
 
@@ -15,8 +18,7 @@
 
 #sim > h1 {
 	color: inherit;
-	margin-top: 0;
-	text-align: center;
+	margin: 0;
 	font-size: 350%;
 	font-weight: 800;
 }
@@ -24,23 +26,14 @@
 
 #simSubtitle {
 	margin-top: -.5em;
-	text-align: center;
-	font-size: 110%;
+	font-size: 120%;
 	font-weight: 300;
 	margin-bottom: 2.5em;
 }
 
-#sim .centered {
-	/*width: 40%;*/
-	width: 50em;
-	max-width: 90%;
-	margin: 0 auto;
-}
-
 #sim .intro {
 	font-style: italic;
-	font-size: 100%;
-	margin-bottom: 3%;
+	font-size: 110%;
 }
 #sim .intro > div {
 	margin: 1em 0;
@@ -57,13 +50,6 @@
 	width: 80%;
 }
 
-#sim .remarks p {
-	opacity: .9;
-	padding-left: 1em;
-	border-left: 10px solid rgba(255, 255, 255, 0.2);
-	font-style: italic;
-}
-
 #sim .action {
 	margin-top: 5%;
 	margin-bottom: 3%;
@@ -72,31 +58,30 @@
 	text-align: center;
 }
 
-#sim .action button {
+#sim .intro button {
 	color: white;
 	display: block;
 	text-align: center;
 	background: #4A89DC;
-	padding: .6em 1.2em;
+	padding: .3em 1em;
 	font-size: 140%;
-	margin: 1em auto;
-	width: 12em;
+	margin: 2em auto;
+	width: 8em;
 	border: none;
-	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1)
+	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);
+	opacity: 0.95
 }
-#sim .action button:hover {
+#sim .intro button:hover {
 	box-shadow: none;
-	opacity: .95;
+	opacity: 1;
 }
 
 
 #conversation {
-	margin: 3em auto;
-	padding: 0 1em;
+	margin-top: 6%;
 	font-size: 110%;
 	line-height: normal;
 	min-height: 10em;
-	max-width: 50em;
 }
 
 
@@ -108,14 +93,13 @@
 
 #foldedSteps .header {
 	margin-bottom: 1em;
-	text-align: center;
 }
 #foldedSteps .header h3 {
 	display: inline;
 }
 #foldedSteps .header button {
 	font-size: 80%;
-	color: #4A89DC;
+	color: #2975D1;
 	border: none;
 }
 #foldedSteps .header button i {
@@ -126,21 +110,6 @@
 
 
 #fin {
-	margin: 0 auto;
-	width: 80%;
-  display: flex;
-	align-items: flex-end;
+	width: 30em;
 	font-style: italic;
-}
-#fin-text {
-	width: 50%;
-	margin-left: 2em;
-	display: inline-block;
-}
-#fin p:first-of-type {
-	font-weight: bold
-}
-#fin img {
-	width: 25%;
-	display: inline-block;
 }

@@ -14,7 +14,7 @@ import './Simulateur.css'
 import {capitalise0} from '../utils'
 import Conversation from './conversation/Conversation'
 
-import ReactPiwik from './Tracker';
+import ReactPiwik from './Tracker'
 
 let situationSelector = formValueSelector('conversation')
 
@@ -34,15 +34,18 @@ let situationSelector = formValueSelector('conversation')
 		resetForm: () => dispatch(reset('conversation'))
 	})
 )
-export default class extends React.Component {
+export default class extends Component {
+	state = {
+		started: false
+	}
 	componentWillMount() {
 		let {
-			match: {
-				params: {
-					name: encodedName
+				match: {
+					params: {
+						name: encodedName
+					}
 				}
-			}
-		} = this.props,
+			} = this.props,
 			name = decodeRuleName(encodedName),
 			existingConversation = this.props.foldedSteps.length > 0
 
@@ -58,12 +61,12 @@ export default class extends React.Component {
 		if (!this.rule.formule) return <Redirect to={"/regle/" + this.name}/>
 
 		let
-			started = !this.props.match.params.intro,
-			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate} = this.props,
+			{started} = this.state,
+			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate, themeColours} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
-				ReactPiwik.push(['trackEvent', 'restart', '']);
+				ReactPiwik.push(['trackEvent', 'restart', ''])
 				this.props.resetForm(this.name)
 				this.props.startConversation(this.name)
 			},
@@ -80,8 +83,8 @@ export default class extends React.Component {
 				{sim('sous-titre') &&
 					<div id="simSubtitle">{sim('sous-titre')}</div>
 				}
-				{sim(['introduction', 'notes']) &&
-					<div className="intro centered">
+				{!started && sim(['introduction', 'notes']) &&
+					<div className="intro">
 						{sim(['introduction', 'notes']).map( ({icône, texte, titre}) =>
 							<div key={titre}>
 								<i title={titre} className={"fa "+icône} aria-hidden="true"></i>
@@ -90,27 +93,13 @@ export default class extends React.Component {
 								</span>
 							</div>
 						)}
+						<button onClick={() => this.setState({started: true})}>J'ai compris</button>
 					</div>
 				}
-				{
-					// Tant que le bouton 'C'est parti' n'est pas cliqué, on affiche l'intro
-					!started ?
-					<div>
-						<div className="action centered">
-							{createMarkdownDiv(sim(['introduction', 'motivation'])) || <p>Simulez cette règle en quelques clics</p>}
-							<button onClick={() => this.props.history.push(`/simu/${this.encodedName}`)	}>
-								C'est parti !
-							</button>
-						</div>
-						<div className="remarks centered">
-							<p>
-								N'hésitez pas à nous écrire <Link to="/contact">
-								<i className="fa fa-envelope-open-o" aria-hidden="true" style={{margin: '0 .3em'}}></i>
-							</Link> ! La loi française est très ciblée, et donc complexe. Nous pouvons la rendre plus transparente.
-							</p>
-						</div>
-					</div>
-					: <Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>}
+				{ (started || !sim(['introduction', 'notes'])) &&
+						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) }
+							{...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite: themeColours.textColourOnWhite}}/>
+				}
 
 			</div>
 		)

@@ -94,8 +94,6 @@
   simulateur:
     titre: Simulateur CDD
     sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
-    résultats: Le coût du travail faisant ressortir les cotisations spécifiques au CDD.
-    indice: Par mois
     introduction:
       notes:
         - icône: fa-handshake-o
@@ -104,7 +102,6 @@
         - icône: fa-balance-scale
           texte: Votre contrat ne peut donc avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
           titre: Votre obligation
-      motivation: Découvrez en quelques clics le montant des obligations liées au CDD
         # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
     hypothèses:
       contrat salarié . type de contrat: CDD

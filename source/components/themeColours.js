@@ -7,7 +7,7 @@ export default forcedThemeColour => {
 			return script && script.getAttribute('couleur')
 		},
 		// Use the default theme colour if the host page hasn't made a choice
-		defaultColour = '#4A89DC',
+		defaultColour = '#2975D1',
 		colour = forcedThemeColour || scriptColour() || defaultColour,
 		textColour = findContrastedTextColour(colour, true), // the 'simple' version feels better...
 		inverseTextColour = textColour === '#ffffff' ? '#000' : '#fff',

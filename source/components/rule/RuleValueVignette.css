@@ -1,9 +1,4 @@
 
-.RuleValueVignette {
-	margin: 0 1em 0;
-	text-align: center;
-	width: 25%;
-}
 
 .RuleValueVignette li a {
 	text-decoration: none;
@@ -11,84 +6,43 @@
 .RuleValueVignette .rule-type {
 	color: white;
 	border: none;
-	font-size: 85%;
 	line-height: 2em;
 	font-weight: 600;
 	margin: .6em 0 .1em;
 }
-
 .RuleValueVignette .rule-box {
-	padding: .6em 1em;
-	color: #333350;
-	background: white;
-	border-radius: 3px;
-	white-space: nowrap;
-	height: 8em;
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
+}
+.RuleValueVignette .rule-box:hover {
+	background: rgba(255, 255, 255, 0.16)
 }
 
-.RuleValueVignette .rule-name {
-	font-size: 175%;
-	font-weight: 600;
+.RuleValueVignette .rule-box > span {
+	display: inline-block;
 }
 
-.RuleValueVignette p {
-	margin: 0;
-	padding: 0 0;
-	font-size: 120%;
-	color: inherit;
-	width: 100%;
+.RuleValueVignette .rule-value {
+	transition: background .8s;
 }
-.RuleValueVignette.number p {
-	color: #4A89DC;
-	font-weight: bold;
-}
-.RuleValueVignette.unsatisfied p {
+.RuleValueVignette .rule-value .unsatisfied {
 	font-style: italic;
 }
-.RuleValueVignette.irrelevant p {
-	font-weight: 600;
+.RuleValueVignette .rule-value .irrelevant {
+	font-style: normal;
 }
-.RuleValueVignette p .figure {
-	font-size: 250%;
-}
-
-
-.RuleValueVignette:not(.unsatisfied):not(.irrelevant) .rule-box {
-	border-bottom: .8em solid #4A89DC;
-}
-
-.RuleValueVignette:hover .rule-box {
-	background: #ddd;
-}
-.RuleValueVignette.irrelevant .rule-box {
-	background: rgba(255, 255, 255, 0.35);
+.RuleValueVignette .rule-value .figure {
+	font-weight: bold;
 }
 
 
 
-.RuleValueVignette.irrelevant .rule-type {
-	color: rgba(255, 255, 255, 0.35);
+/* Animation of summary figures changes : flash ! */
+.flash-enter {
+		background: rgba(255, 255, 255, 1);
 }
 
-.RuleValueVignette.irrelevant .rule-name {
-	text-decoration: line-through;
-}
-
-
-
-
-@media (max-width: 1280px) {
-
-
-	.RuleValueVignette .rule-box p {
-		padding: 0.6em;
-	}
-
-	.RuleValueVignette .rule-name {
-		font-size: 150%;
-	}
+.flash-leave {
+		/* Completely hide the button while it's being animated and before it's removed from the DOM. */
+		display: none;
 }
