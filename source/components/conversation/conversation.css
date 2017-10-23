@@ -305,13 +305,10 @@ fieldset > .ignore {
 	margin-left: .6em;
 }
 .step .inputSuggestions a {
-	color: #4A89DC;
 	padding: .1em .6em;
 	font-weight: 600;
 }
 .step .inputSuggestions a:hover {
-	background: #4A89DC;
-	color: white;
 	text-decoration: none;
 }
 

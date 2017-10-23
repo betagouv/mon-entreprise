@@ -11,7 +11,7 @@ import Scroll from 'react-scroll'
 })
 export default class Conversation extends Component {
 	render() {
-		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate} = this.props
+		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite} = this.props
 
 		Scroll.animateScroll.scrollToBottom()
 		return (
@@ -21,7 +21,7 @@ export default class Conversation extends Component {
 						<div id="foldedSteps">
 							<div className="header" >
 								<h3>Vos réponses</h3>
-								<button onClick={reinitalise}>
+								<button onClick={reinitalise} style={{color: textColourOnWhite}}>
 									<i className="fa fa-trash" aria-hidden="true"></i>
 									Tout effacer
 								</button>

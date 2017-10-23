@@ -62,7 +62,7 @@ export default class extends Component {
 
 		let
 			{started} = this.state,
-			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate} = this.props,
+			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate, themeColours} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
@@ -97,7 +97,8 @@ export default class extends Component {
 					</div>
 				}
 				{ (started || !sim(['introduction', 'notes'])) &&
-						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) } {...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate}}/>
+						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) }
+							{...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite: themeColours.textColourOnWhite}}/>
 				}
 
 			</div>
