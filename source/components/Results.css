@@ -57,7 +57,7 @@
 
 #results h2 small {
 	opacity: 0.7;
-	font-size: 70%;
+	font-size: calc(50% + .2vw);
 	font-weight: 400;
 }
 #results h2 span {
@@ -71,7 +71,6 @@
 	align-items: center;
 	flex-wrap: wrap;
 	height: 70%;
-	width: 96%;
 	margin: .6em auto 1.2em;
 }
 
