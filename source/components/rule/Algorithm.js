@@ -31,7 +31,7 @@ export default class Algorithm extends React.Component {
 						// TODO ce let est incompréhensible !
 						let applicabilityMecanisms =
 							R.values(rule).filter( v => v && v['rulePropType'] == 'cond')
-						applicabilityMecanisms.length &&
+						applicabilityMecanisms.length > 0 &&
 							<section id="declenchement">
 								<h2>Déclenchement</h2>
 								<ul>
