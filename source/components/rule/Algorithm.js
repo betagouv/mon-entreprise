@@ -29,12 +29,14 @@ export default class Algorithm extends React.Component {
 				<section id="rule-rules" className={classNames({showValues})}>
 					{ do {
 						// TODO ce let est incompréhensible !
-						let [,cond] =
-							R.toPairs(rule).find(([,v]) => v && v.rulePropType == 'cond') || []
-						cond != null &&
+						let applicabilityMecanisms =
+							R.values(rule).filter( v => v && v['rulePropType'] == 'cond')
+						applicabilityMecanisms.length > 0 &&
 							<section id="declenchement">
 								<h2>Déclenchement</h2>
-								{makeJsx(cond)}
+								<ul>
+									{applicabilityMecanisms.map(v => <li key={v.name}>{makeJsx(v)}</li>)}
+								</ul>
 							</section>
 					}}
 					<section id="formule">

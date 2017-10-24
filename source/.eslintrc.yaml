@@ -8,6 +8,9 @@ rules:
   semi:
     - 1
     - never
+  quotes:
+    - 1
+    - single
   no-unused-vars: 1
   no-console: 1
   no-global-assign: 0

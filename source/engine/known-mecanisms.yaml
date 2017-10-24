@@ -86,13 +86,25 @@ formule:
     Cette doit faire appel à fera appel à des mécanismes de calcul : par exemple `multiplication`, le plus commun pour les variables de type `Cotisation`.
 
 
-non applicable si:
+applicable si:
   description: |
-    Si cette variable est vraie, c'est que la variable n'est pas applicable pour la situation saisie.
+    Décide si la règle est applicable pour la situation saisie.
 
-    > Pour une cotisation sociale, cela signifie qu'elle ne me concerne pas, que je n'ai pas à la verser.
+    > Une cotisation sociale peut ne concerner que les salariés au statut cadre. Elle ne sera pas à verser pour un non cadre
 
     La formule de calcul peut donc être ignorée, quel que soit son montant.
+
+    Peut être accompagnée du mécanisme 'non appicable si'.
+
+non applicable si:
+  description: |
+    Décide si la règle n'est applicable pour la situation saisie.
+
+    > Un contrat CDD peut entraîner une majoration spécifique. Cette majoration est 'non applicable si' le contrat est un CDI. 
+
+    La formule de calcul peut donc être ignorée, quel que soit son montant.
+
+    Peut être accompagnée du mécanisme 'appicable si'.
 
 barème:
   type: numeric

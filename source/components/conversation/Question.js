@@ -73,21 +73,21 @@ export default class Question extends Component {
 				radioDottedName.split(name + ' . ')[1]
 
 		return (<ul>
+			{choices.canGiveUp &&
+				<li key='aucun' className="variantLeaf aucun">
+					<RadioLabel {...{value: 'non', label: 'Aucun', input, submit, themeColours}}/>
+				</li>
+			}
 			{ choices.children && choices.children.map( ({name, titre, dottedName, children}) =>
 				children ?
 					<li key={name} className="variant">
 						<div>{titre || name}</div>
 						{this.renderChildren({children})}
 					</li>
-				: <li key={name} className="variantLeaf">
-					<RadioLabel {...{value: relativeDottedName(dottedName), label: titre || name, dottedName, input, submit, themeColours}}/>
-				</li>
+					: <li key={name} className="variantLeaf">
+						<RadioLabel {...{value: relativeDottedName(dottedName), label: titre || name, dottedName, input, submit, themeColours}}/>
+					</li>
 			)}
-			{choices.canGiveUp &&
-				<li key='aucun' className="variantLeaf aucun">
-					<RadioLabel {...{value: 'non', label: 'Aucun', input, submit, themeColours}}/>
-				</li>
-			}
 		</ul>)
 	}
 }

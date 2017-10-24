@@ -52,7 +52,7 @@ export let getObjectives = (situationGate, root, parsedRules) => {
 				"dottedName",
 				R.path(["formule", "explanation", "explanation"])(root)
 			)
-		: (root.formule || root['non applicable si']) ? [root.dottedName] : null,
+		: (root.formule || root['non applicable si'] || root['applicable si']) ? [root.dottedName] : null,
 		names = targets ? R.reject(R.isNil)(targets) : []
 
 	let findAndEvaluate = name => evaluateNode(situationGate,parsedRules,findRuleByDottedName(parsedRules,name))
