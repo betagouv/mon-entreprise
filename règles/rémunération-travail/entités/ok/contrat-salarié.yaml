@@ -117,12 +117,6 @@
       - chômage (salarié)
       - APEC (salarié)
       - complémentaire santé (salarié)
-  exemples:
-    - nom: A
-      situation:
-        CSG: 40
-        CRDS: 78.89
-      valeur attendue: 789
 
 - espace: contrat salarié
   nom: cotisations patronales
