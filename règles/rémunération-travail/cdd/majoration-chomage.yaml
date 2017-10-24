@@ -5,25 +5,23 @@
     type: majoration
     destinataire: URSSAF
 
-  description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD)
+  description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
 
   non applicable si:
-    une de ces conditions:
-      - type de contrat != 'CDD'
-      - durée contrat > 3 #cette information est déjà contenue dans la formule, mais ça ne fait pas de mal de l'expliciter ici
-      - événement . poursuite du CDD en CDI
+    événement . poursuite du CDD en CDI
+  # En cas d’embauche sous CDI par l’employeur à l’issue d’un CDD entrant dans le champ de la majoration [...] l’employeur régularise sur sa déclaration suivant la date d’embauche sous CDI, les montants indûment versés au titre de la majoration CDD [...]
+
+  applicable si:
+    toutes ces conditions:
+      - type de contrat = 'CDD'
+      - durée contrat <= 3
+      - motif . classique . usage
 
   formule:
     multiplication:
       assiette: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
-      taux:
-        aiguillage numérique:
-          motif . classique . accroissement activité:
-            durée contrat <= 1: 3% # TODO 1 mois, pas 1 rien, évidemment
-            durée contrat <= 3: 1.5%
-          motif . classique . usage:
-            durée contrat <= 3: 0.5%
+      taux: 0.5%
 
 
   exemples:
@@ -34,10 +32,17 @@
         assiette cotisations sociales: 2300
         motif . classique . accroissement activité: oui
         durée contrat: 1
-      valeur attendue: 69
+      valeur attendue: 0
 
-    #TODO on ne peut aujourd'hui tester 'classique . usage' : l'évaluation n'aura pas la valeur de la première branche de l'aiguillage numérique, motif . classique . accroissement activité, et va donc s'arrêter en renvoyant un 'null'
-    # solution possible : un mode d'évaluation 'shallow' ou non renseigné = faux (null -> false)
+    - nom: salaire médian, motif CDD usage, contrat de 1 mois
+      situation:
+        événement: non
+        contrat salarié . type de contrat: CDD
+        assiette cotisations sociales: 2300
+        motif . classique . usage: oui
+        durée contrat: 1
+        plafond sécurité sociale: 3269
+      valeur attendue: 11.5
 
     - nom: durée de contrat de 4 mois -> non applicable
       situation:
