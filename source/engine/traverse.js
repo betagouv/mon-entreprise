@@ -430,20 +430,28 @@ export let treatRuleRoot = (rules, rule) => {
 
 		return { ...evaluated, nodeValue, isApplicable }
 	}
+
 	let collectMissing = ({
 		formule,
 		isApplicable,
 		'non applicable si': notApplicable,
 		'applicable si': applicable
 	}) => {
-		let condMissing = R.chain(applyOrEmpty(collectNodeMissing))([
-				notApplicable,
-				applicable
-			]),
+		let
+			condMissing =
+				val(notApplicable) === true
+					? []
+					: val(applicable) === false
+						? []
+						: [
+							...applyOrEmpty(collectNodeMissing)(notApplicable),
+							...applyOrEmpty(collectNodeMissing)(applicable)
+						],
 			collectInFormule = isApplicable !== false,
 			formMissing = applyOrEmpty(() =>
 				applyOrEmpty(collectNodeMissing)(formule)
 			)(collectInFormule)
+
 		return R.concat(condMissing, formMissing)
 	}
 
