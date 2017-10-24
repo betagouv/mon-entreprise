@@ -134,7 +134,7 @@ let devariate = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map((c, i) => [
+					{explanation.map((c) => [
 						<li className="variation" key={JSON.stringify(c.variation)}>
 							<div className="condition">
 								{makeJsx(c.condition)}
@@ -313,7 +313,6 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	let evaluateTerms = (situationGate, parsedRules, node) => {
 		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
 			explanation = R.map(evaluateOne, node.explanation),
-			choice = R.find(node => node.condValue, explanation),
 			nonFalsyTerms = R.filter(node => node.condValue !== false, explanation),
 			getFirst = prop => R.pipe(R.head, R.prop(prop))(nonFalsyTerms),
 			nodeValue =

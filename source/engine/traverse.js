@@ -1,18 +1,40 @@
 import React from 'react'
-import {rules, findRuleByDottedName, disambiguateRuleReference, findRuleByName} from './rules'
-import {evaluateVariable} from './variables'
+import {
+	findRuleByDottedName,
+	disambiguateRuleReference,
+	findRuleByName
+} from './rules'
+import { evaluateVariable } from './variables'
 import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
-import {Node, Leaf} from './mecanismViews/common'
+import { Node, Leaf } from './mecanismViews/common'
 import {
-	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
-	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement,
+	mecanismOneOf,
+	mecanismAllOf,
+	mecanismNumericalSwitch,
+	mecanismSum,
+	mecanismProduct,
+	mecanismScale,
+	mecanismMax,
+	mecanismMin,
+	mecanismError,
+	mecanismComplement,
 	mecanismSelection
-} from "./mecanisms"
-import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
-import {anyNull, val, undefOrTrue, applyOrEmpty} from './traverse-common-functions'
+} from './mecanisms'
+import {
+	evaluateNode,
+	rewriteNode,
+	collectNodeMissing,
+	makeJsx
+} from './evaluation'
+import {
+	anyNull,
+	val,
+	undefOrTrue,
+	applyOrEmpty
+} from './traverse-common-functions'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -23,7 +45,6 @@ let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
  - infixes pour les feuilles : des tests d'égalité, d'inclusion, des comparaisons sur des variables ou tout simplement la  variable elle-même, ou une opération effectuée sur la variable
 
 */
-
 
 /*
 -> Notre règle est naturellement un AST (car notation préfixe dans le YAML)
@@ -55,7 +76,7 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 	let evaluateFiltered = originalEval => (situation, parsedRules, node) => {
-		let newSituation = name => name == "sys.filter" ? filter : situation(name)
+		let newSituation = name => (name == 'sys.filter' ? filter : situation(name))
 		return originalEval(newSituation, parsedRules, node)
 	}
 	let node = fillVariableNode(rules, rule)(parseResult)
@@ -67,58 +88,62 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 
 // TODO: dirty, dirty
 // ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
-var dict;
+var dict
 
-export let clearDict = () => dict = {}
+export let clearDict = () => (dict = {})
 
-let fillVariableNode = (rules, rule) => (parseResult) => {
+let fillVariableNode = (rules, rule) => parseResult => {
 	let evaluate = (situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
-			filter = situation("sys.filter"),
-			cacheName = dottedName + (filter ? "." + filter: ""),
+			filter = situation('sys.filter'),
+			cacheName = dottedName + (filter ? '.' + filter : ''),
 			cached = dict[cacheName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
-			variable = cached ? cached : findRuleByDottedName(parsedRules, dottedName),
-			isMultipleChoice = R.path(['formule', 'explanation', 'une possibilité'])(variable),
+			variable = cached
+				? cached
+				: findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
-
-			parsedRule = variableIsCalculable && (cached ? cached : evaluateNode(situation,parsedRules,variable)),
+			parsedRule =
+				variableIsCalculable &&
+				(cached ? cached : evaluateNode(situation, parsedRules, variable)),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
-			nodeValue = situationValue
-					!= null ? situationValue // cette variable a été directement renseignée
+			nodeValue =
+				situationValue != null
+					? situationValue // cette variable a été directement renseignée
 					: !variableIsCalculable
 						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
 						: parsedRule.nodeValue, // la valeur du calcul fait foi
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : [dottedName]
 
-			let collectMissing = node =>
-				nodeValue != null ? // notamment si situationValue != null
-					[] :
-					variableIsCalculable ? collectNodeMissing(parsedRule) : node.missingVariables
+		let collectMissing = node =>
+			nodeValue != null // notamment si situationValue != null
+				? []
+				: variableIsCalculable
+					? collectNodeMissing(parsedRule)
+					: node.missingVariables
 
-			let result = cached ? cached : {
-				...rewriteNode(node,nodeValue,explanation,collectMissing),
-				missingVariables,
+		let result = cached
+			? cached
+			: {
+				...rewriteNode(node, nodeValue, explanation, collectMissing),
+				missingVariables
 			}
-			dict[cacheName] = result
+		dict[cacheName] = result
 
-			return result
+		return result
 	}
 
-	let {fragments} = parseResult,
+	let { fragments } = parseResult,
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
-	let jsx = (nodeValue, explanation) =>
-		<Leaf
-			classes="variable"
-			name={fragments.join(' . ')}
-			value={nodeValue}
-		/>
+	let jsx = (nodeValue) => (
+		<Leaf classes="variable" name={fragments.join(' . ')} value={nodeValue} />
+	)
 
 	return {
 		evaluate,
@@ -136,10 +161,10 @@ let buildNegatedVariable = variable => {
 		let explanation = evaluateNode(situation, parsedRules, node.explanation),
 			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
 		let collectMissing = node => collectNodeMissing(node.explanation)
-		return rewriteNode(node,nodeValue,explanation,collectMissing)
+		return rewriteNode(node, nodeValue, explanation, collectMissing)
 	}
 
-	let jsx = (nodeValue, explanation) =>
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="inlineExpression negation"
 			value={nodeValue}
@@ -150,6 +175,7 @@ let buildNegatedVariable = variable => {
 				</span>
 			}
 		/>
+	)
 
 	return {
 		evaluate,
@@ -163,8 +189,7 @@ let buildNegatedVariable = variable => {
 
 let treat = (rules, rule) => rawNode => {
 	// inner functions
-	let
-		reTreat = treat(rules, rule),
+	let reTreat = treat(rules, rule),
 		treatString = rawNode => {
 			/* On a affaire à un string, donc à une expression infixe.
 			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
@@ -175,15 +200,29 @@ let treat = (rules, rule) => rawNode => {
 			let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
 			if (additionnalResults && additionnalResults.length > 0)
-				throw "Attention ! L'expression <" + rawNode + '> ne peut être traitée de façon univoque'
+				throw 'Attention ! L\'expression <' +
+					rawNode +
+					'> ne peut être traitée de façon univoque'
 
-			if (!R.contains(parseResult.category)(['variable', 'calcExpression', 'filteredVariable', 'comparison', 'negatedVariable', 'percentage']))
-				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
+			if (
+				!R.contains(parseResult.category)([
+					'variable',
+					'calcExpression',
+					'filteredVariable',
+					'comparison',
+					'negatedVariable',
+					'percentage'
+				])
+			)
+				throw 'Attention ! Erreur de traitement de l\'expression : ' + rawNode
 
 			if (parseResult.category == 'variable')
 				return fillVariableNode(rules, rule)(parseResult)
 			if (parseResult.category == 'filteredVariable') {
-				return fillFilteredVariableNode(rules, rule)(parseResult.filter,parseResult.variable)
+				return fillFilteredVariableNode(rules, rule)(
+					parseResult.filter,
+					parseResult.variable
+				)
 			}
 			if (parseResult.category == 'negatedVariable')
 				return buildNegatedVariable(
@@ -195,14 +234,16 @@ let treat = (rules, rule) => rawNode => {
 			if (parseResult.category == 'percentage') {
 				return {
 					nodeValue: parseResult.nodeValue,
-					jsx:  nodeValue => <span className="percentage">{rawNode}</span>
+					jsx: () => <span className="percentage">{rawNode}</span>
 				}
 			}
 
-			if (parseResult.category == 'calcExpression' || parseResult.category == 'comparison') {
+			if (
+				parseResult.category == 'calcExpression' ||
+				parseResult.category == 'comparison'
+			) {
 				let evaluate = (situation, parsedRules, node) => {
-					let
-						operatorFunctionName = {
+					let operatorFunctionName = {
 							'*': 'multiply',
 							'/': 'divide',
 							'+': 'add',
@@ -214,44 +255,60 @@ let treat = (rules, rule) => rawNode => {
 							'=': 'equals',
 							'!=': 'equals'
 						}[node.operator],
-						explanation = R.map(R.curry(evaluateNode)(situation,parsedRules),node.explanation),
+						explanation = R.map(
+							R.curry(evaluateNode)(situation, parsedRules),
+							node.explanation
+						),
 						value1 = explanation[0].nodeValue,
 						value2 = explanation[1].nodeValue,
-						operatorFunction = node.operator == "!=" ? ((a, b) => !R.equals(a,b)) : R[operatorFunctionName],
-						nodeValue = value1 == null || value2 == null ?
-							null
-						: operatorFunction(value1, value2)
+						operatorFunction =
+							node.operator == '!='
+								? (a, b) => !R.equals(a, b)
+								: R[operatorFunctionName],
+						nodeValue =
+							value1 == null || value2 == null
+								? null
+								: operatorFunction(value1, value2)
 
-					let collectMissing = node => R.chain(collectNodeMissing,node.explanation)
+					let collectMissing = node =>
+						R.chain(collectNodeMissing, node.explanation)
 
-					return rewriteNode(node,nodeValue,explanation,collectMissing)
+					return rewriteNode(node, nodeValue, explanation, collectMissing)
 				}
 
-				let fillFiltered = parseResult => fillFilteredVariableNode(rules, rule)(parseResult.filter,parseResult.variable)
+				let fillFiltered = parseResult =>
+					fillFilteredVariableNode(rules, rule)(
+						parseResult.filter,
+						parseResult.variable
+					)
 				let fillVariable = fillVariableNode(rules, rule),
 					filledExplanation = parseResult.explanation.map(
 						R.cond([
 							[R.propEq('category', 'variable'), fillVariable],
 							[R.propEq('category', 'filteredVariable'), fillFiltered],
-							[R.propEq('category', 'value'), node =>
-								({
+							[
+								R.propEq('category', 'value'),
+								node => ({
 									nodeValue: node.nodeValue,
-									jsx:  nodeValue => <span className="value">{nodeValue}</span>
+									jsx: nodeValue => <span className="value">{nodeValue}</span>
 								})
 							],
-							[R.propEq('category', 'percentage'), node =>
-								({
+							[
+								R.propEq('category', 'percentage'),
+								node => ({
 									nodeValue: node.nodeValue,
-									jsx:  nodeValue => <span className="value">{nodeValue*100}%</span>
+									jsx: nodeValue => (
+										<span className="value">{nodeValue * 100}%</span>
+									)
 								})
 							]
 						])
 					),
 					operator = parseResult.operator
 
-				let jsx = (nodeValue, explanation) =>
+				let jsx = (nodeValue, explanation) => (
 					<Node
-						classes={"inlineExpression "+parseResult.category}
+						classes={'inlineExpression ' + parseResult.category}
 						value={nodeValue}
 						child={
 							<span className="nodeContent">
@@ -261,6 +318,7 @@ let treat = (rules, rule) => rawNode => {
 							</span>
 						}
 					/>
+				)
 
 				return {
 					evaluate,
@@ -268,32 +326,36 @@ let treat = (rules, rule) => rawNode => {
 					operator,
 					text: rawNode,
 					category: parseResult.category,
-					type: parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
+					type:
+						parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
 					explanation: filledExplanation
 				}
 			}
 		},
 		treatNumber = rawNode => {
 			return {
-				text: ""+rawNode,
+				text: '' + rawNode,
 				category: 'number',
 				nodeValue: rawNode,
 				type: 'numeric',
-				jsx:
-					<span className="number">
-						{rawNode}
-					</span>
+				jsx: <span className="number">{rawNode}</span>
 			}
 		},
 		treatOther = rawNode => {
 			console.log() // eslint-disable-line no-console
-			throw 'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
+			throw 'Cette donnée : ' +
+				rawNode +
+				' doit être un Number, String ou Object'
 		},
 		treatObject = rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
 			if (mecanisms.length != 1) {
-				console.log('Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet', mecanisms, rawNode)
+				console.log( // eslint-disable-line no-console
+					'Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet',
+					mecanisms,
+					rawNode
+				)
 				throw 'OUPS !'
 			}
 
@@ -301,90 +363,88 @@ let treat = (rules, rule) => rawNode => {
 				v = rawNode[k]
 
 			let dispatch = {
-					'une de ces conditions':	mecanismOneOf,
-					'toutes ces conditions':	mecanismAllOf,
-					'aiguillage numérique':		mecanismNumericalSwitch,
-					'somme':					mecanismSum,
-					'multiplication':			mecanismProduct,
-					'barème':					mecanismScale,
-					'le maximum de':			mecanismMax,
-					'le minimum de':			mecanismMin,
-					'complément':				mecanismComplement,
-					'sélection':				mecanismSelection,
-					'une possibilité':			R.always({'une possibilité':'oui', collectMissing: node => [rule.dottedName]})
+					'une de ces conditions': mecanismOneOf,
+					'toutes ces conditions': mecanismAllOf,
+					'aiguillage numérique': mecanismNumericalSwitch,
+					somme: mecanismSum,
+					multiplication: mecanismProduct,
+					barème: mecanismScale,
+					'le maximum de': mecanismMax,
+					'le minimum de': mecanismMin,
+					complément: mecanismComplement,
+					sélection: mecanismSelection,
+					'une possibilité': R.always({
+						'une possibilité': 'oui',
+						collectMissing: () => [rule.dottedName]
+					})
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 
-			return action(reTreat,k,v)
+			return action(reTreat, k, v)
 		}
 
 	let onNodeType = R.cond([
-		[R.is(String),	treatString],
-		[R.is(Number),	treatNumber],
-		[R.is(Object),	treatObject],
-		[R.T,			treatOther]
+		[R.is(String), treatString],
+		[R.is(Number), treatNumber],
+		[R.is(Object), treatObject],
+		[R.T, treatOther]
 	])
 
 	let defaultEvaluate = (situationGate, parsedRules, node) => node
 	let parsedNode = onNodeType(rawNode)
 
-	return	parsedNode.evaluate ? parsedNode :
-		{...parsedNode, evaluate: defaultEvaluate}
+	return parsedNode.evaluate
+		? parsedNode
+		: { ...parsedNode, evaluate: defaultEvaluate }
 }
 
-//TODO c'est moche :
 export let computeRuleValue = (formuleValue, isApplicable) =>
 	isApplicable === true
 		? formuleValue
-		: isApplicable === false
-			? 0
-			: formuleValue == 0
-				? 0
-				: null
-
+		: isApplicable === false ? 0 : formuleValue == 0 ? 0 : null
 
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
-		let
-			evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
-			evaluated = R.evolve({
-				'formule': evolveRule,
-				'non applicable si': evolveRule,
-				'applicable si': evolveRule
-			}, r),
-			//evaluateed = console.log('evaluated', evaluated),
+		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
+			evaluated = R.evolve(
+				{
+					formule: evolveRule,
+					'non applicable si': evolveRule,
+					'applicable si': evolveRule
+				},
+				r
+			),
 			formuleValue = val(evaluated['formule']),
-			isApplicable = do { let e = evaluated
+			isApplicable = do {
+				let e = evaluated
 				val(e['non applicable si']) === true
 					? false
 					: val(e['applicable si']) === false
 						? false
-						: anyNull( [e['non applicable si'], e['applicable si']] )
+						: anyNull([e['non applicable si'], e['applicable si']])
 							? null
-							: !val(e['non applicable si']) && undefOrTrue(val(e['applicable si']))
+							: !val(e['non applicable si']) &&
+								undefOrTrue(val(e['applicable si']))
 			},
 			nodeValue = computeRuleValue(formuleValue, isApplicable)
-			//ya  = console.log(r.name, val(evaluated['applicable si']), val(evaluated['non applicable si']))
-			//console.log('evaluate', evaluated['applicable si'])
-			//ya  = console.log(r.name, 'formuleValue, condValue',formuleValue, condValue)
 
-		return {...evaluated, nodeValue, isApplicable}
+		return { ...evaluated, nodeValue, isApplicable }
 	}
 	let collectMissing = ({
 		formule,
 		isApplicable,
 		'non applicable si': notApplicable,
-		'applicable si': applicable}) => {
-
-		let
-			condMissing = R.chain(
-				applyOrEmpty(collectNodeMissing)
-			)([notApplicable, applicable]),
+		'applicable si': applicable
+	}) => {
+		let condMissing = R.chain(applyOrEmpty(collectNodeMissing))([
+				notApplicable,
+				applicable
+			]),
 			collectInFormule = isApplicable !== false,
-			formMissing = applyOrEmpty(
-				() => applyOrEmpty(collectNodeMissing)(formule)
+			formMissing = applyOrEmpty(() =>
+				applyOrEmpty(collectNodeMissing)(formule)
 			)(collectInFormule)
-		return R.concat(condMissing,formMissing)
+		return R.concat(condMissing, formMissing)
 	}
 
 	let parsedRoot = R.evolve({
@@ -394,18 +454,21 @@ export let treatRuleRoot = (rules, rule) => {
 		// condition d'applicabilité de la règle
 		'non applicable si': evolveCond('non applicable si', rule, rules),
 		'applicable si': evolveCond('applicable si', rule, rules),
-		'formule': value => {
+		formule: value => {
 			let evaluate = (situationGate, parsedRules, node) => {
 				let collectMissing = node => collectNodeMissing(node.explanation)
-				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+				let explanation = evaluateNode(
+						situationGate,
+						parsedRules,
+						node.explanation
+					),
 					nodeValue = explanation.nodeValue
-				return rewriteNode(node,nodeValue,explanation,collectMissing)
+				return rewriteNode(node, nodeValue, explanation, collectMissing)
 			}
 
 			let child = treat(rules, rule)(value)
 
-			let jsx = (nodeValue, explanation) =>
-				makeJsx(explanation)
+			let jsx = (nodeValue, explanation) => makeJsx(explanation)
 
 			return {
 				evaluate,
@@ -430,9 +493,13 @@ export let treatRuleRoot = (rules, rule) => {
 let evolveCond = (name, rule, rules) => value => {
 	let evaluate = (situationGate, parsedRules, node) => {
 		let collectMissing = node => collectNodeMissing(node.explanation)
-		let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+		let explanation = evaluateNode(
+				situationGate,
+				parsedRules,
+				node.explanation
+			),
 			nodeValue = explanation.nodeValue
-		return rewriteNode(node,nodeValue,explanation,collectMissing)
+		return rewriteNode(node, nodeValue, explanation, collectMissing)
 	}
 
 	let child = treat(rules, rule)(value)
@@ -463,18 +530,14 @@ let evolveCond = (name, rule, rules) => value => {
 	}
 }
 
-
 export let analyseSituation = (rules, rootVariable) => situationGate => {
-	let {root, parsedRules} = analyseTopDown(rules,rootVariable)(situationGate)
+	let { root } = analyseTopDown(rules, rootVariable)(situationGate)
 	return root
 }
 
-
-
 export let analyseTopDown = (rules, rootVariable) => situationGate => {
 	clearDict()
-	let
-		/*
+	let /*
 		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
 		Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
 		qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
@@ -482,13 +545,11 @@ export let analyseTopDown = (rules, rootVariable) => situationGate => {
 		Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
 		*/
 		treatOne = rule => treatRuleRoot(rules, rule),
-
 		//On fait ainsi pour chaque règle de la base.
-		parsedRules = R.map(treatOne,rules),
+		parsedRules = R.map(treatOne, rules),
 		// TODO: we should really make use of namespaces at this level, in particular
 		// setRule in Rule.js needs to get smarter and pass dottedName
 		rootRule = findRuleByName(parsedRules, rootVariable),
-
 		/*
 			Ce n'est que dans cette nouvelle étape que l'arbre est vraiment évalué.
 			Auparavant, l'évaluation était faite lors de la construction de l'AST.
