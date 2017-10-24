@@ -1,13 +1,14 @@
 import R from 'ramda'
 import React from 'react'
 import {anyNull, val} from './traverse-common-functions'
-import {Node, Leaf} from './traverse-common-jsx'
+import {Node} from './mecanismViews/common'
 import {makeJsx, evaluateNode, rewriteNode, evaluateArray, evaluateArrayWithFilter, evaluateObject, parseObject, collectNodeMissing} from './evaluation'
 import {findRuleByName} from './rules'
 
 import 'react-virtualized/styles.css'
 import {Table, Column} from 'react-virtualized'
 import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/liste-taux.json'
+import Somme from './mecanismViews/Somme'
 
 let constantNode = constant => ({nodeValue: constant, jsx:  nodeValue => <span className="value">{nodeValue}</span>})
 
@@ -315,21 +316,10 @@ export let mecanismSum = (recurse,k,v) => {
 
 	let evaluate = evaluateArray(R.add,0)
 
-	let jsx = (nodeValue, explanation) =>
-		<Node
-			classes="mecanism somme"
-			name="somme"
-			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map(v => <li key={v.name || v.text}>{makeJsx(v)}</li>)}
-				</ul>
-			}
-		/>
 
 	return {
 		evaluate,
-		jsx,
+		jsx: (nodeValue, explanation) => <Somme nodeValue={nodeValue} explanation={explanation} />,
 		explanation,
 		category: 'mecanism',
 		name: 'somme',

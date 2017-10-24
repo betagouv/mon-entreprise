@@ -5,7 +5,7 @@ import R from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
-import {Node, Leaf} from './traverse-common-jsx'
+import {Node, Leaf} from './mecanismViews/common'
 import {
 	mecanismOneOf,mecanismAllOf,mecanismNumericalSwitch,mecanismSum,mecanismProduct,
 	mecanismScale,mecanismMax,mecanismMin, mecanismError, mecanismComplement,

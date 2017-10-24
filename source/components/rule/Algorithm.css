@@ -142,6 +142,9 @@
 	border: 1px solid rgba(51, 51, 80, 0.25);
 	white-space: nowrap
 }
+.variable .name:hover {
+	color: black;
+}
 
 
 .percentage .name {
@@ -149,7 +152,7 @@
 	font-weight: 600;
 }
 
-.operator {
+.inlineExpression .operator {
 	margin: .1em .6em;
 	font-size: 150%;
 	font-weight: 600;

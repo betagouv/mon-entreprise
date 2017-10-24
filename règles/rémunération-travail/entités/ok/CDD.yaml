@@ -79,6 +79,14 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - indemnités salarié CDD
       - cotisations employeur CDD
+  exemples:
+    - nom: "exemple 1"
+      situation:
+        indemnités salarié CDD: 100
+        cotisations employeur CDD: 190
+        prime fin de contrat: 60.4
+        compensation congés payés: 39.6
+      valeur attendue: 290
 
 # Cette variable est le point de départ du simulateur "surcout CDD" :-D
 - espace: contrat salarié . CDD
@@ -90,6 +98,16 @@
       - salaire net
       - coût du travail
       - CDD . surcoût
+  exemples:
+    - nom: "exemple 1"
+      situation:
+        salaire net: 1000
+        coût du travail: 1610
+        indemnités salarié CDD: 100
+        cotisations employeur CDD: 190
+        prime fin de contrat: 60.4
+        compensation congés payés: 39.6
+      valeur attendue: 2900
 
   simulateur:
     titre: Simulateur CDD
