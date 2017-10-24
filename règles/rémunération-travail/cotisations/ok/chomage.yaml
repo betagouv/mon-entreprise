@@ -6,6 +6,8 @@
   description: Cotisation d’assurance chômage
   références:
     calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
+    urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
+    changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
 
   formule:
     multiplication:
@@ -18,5 +20,19 @@
           taux: 4%
 
         - attributs:
+            dû par: employeur
+            composante: contribution exceptionnelle temporaire
+          description: |
+            Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
+          taux: 0.05%
+
+        - attributs:
             dû par: salarié
           taux: 2.4%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1480
+        plafond sécurité sociale: 3269
+      valeur attendue: 95.46
