@@ -11,6 +11,7 @@
 }
 .somme tr {
 	border: 1px solid rgba(51, 51, 80, 0.15);
+	text-align: right;
 }
 .somme tr:hover {
 	background: rgba(51, 51, 80, 0.02)

@@ -49,7 +49,7 @@ class Row extends Component {
 				? [
 					<tr className="nested" key={v.name + "-nest"}>
 						<td className="blank" />
-						<td className="nested">
+						<td className="nested" colspan="2">
 							<Table explanation={rowFormula.explanation} />
 						</td>
 					</tr>
