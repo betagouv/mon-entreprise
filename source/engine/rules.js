@@ -64,7 +64,9 @@ export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 			)(findRuleByDottedName(allRules, [...path, partialName].join(' . ')))
 		, null, pathPossibilities)
 
-	return found && found.dottedName || do {throw `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`}
+	return found && found.dottedName || do {
+		throw `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`
+	}
 }
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML

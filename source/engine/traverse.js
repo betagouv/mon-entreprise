@@ -12,6 +12,7 @@ import {
 	mecanismSelection
 } from "./mecanisms"
 import {evaluateNode, rewriteNode, collectNodeMissing, makeJsx} from './evaluation'
+import {anyNull, val, undefOrTrue, applyOrEmpty} from './traverse-common-functions'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -332,74 +333,67 @@ let treat = (rules, rule) => rawNode => {
 }
 
 //TODO c'est moche :
-export let computeRuleValue = (formuleValue, condValue) =>
-	condValue === undefined
+export let computeRuleValue = (formuleValue, isApplicable) =>
+	isApplicable === true
 		? formuleValue
-		: formuleValue === 0
+		: isApplicable === false
 			? 0
-			: condValue === null ? null : condValue === true ? 0 : formuleValue
+			: formuleValue == 0
+				? 0
+				: null
 
 
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
 		let
+			evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
 			evaluated = R.evolve({
-				formule: R.curry(evaluateNode)(situationGate, parsedRules),
-				"non applicable si": R.curry(evaluateNode)(situationGate, parsedRules)
-			},r),
-			formuleValue = evaluated.formule && evaluated.formule.nodeValue,
-			condition = R.prop('non applicable si',evaluated),
-			condValue = condition && condition.nodeValue,
-			nodeValue = computeRuleValue(formuleValue, condValue)
+				'formule': evolveRule,
+				'non applicable si': evolveRule,
+				'applicable si': evolveRule
+			}, r),
+			//evaluateed = console.log('evaluated', evaluated),
+			formuleValue = val(evaluated['formule']),
+			isApplicable = do { let e = evaluated
+				val(e['non applicable si']) === true
+					? false
+					: val(e['applicable si']) === false
+						? false
+						: anyNull( [e['non applicable si'], e['applicable si']] )
+							? null
+							: !val(e['non applicable si']) && undefOrTrue(val(e['applicable si']))
+			},
+			nodeValue = computeRuleValue(formuleValue, isApplicable)
+			//ya  = console.log(r.name, val(evaluated['applicable si']), val(evaluated['non applicable si']))
+			//console.log('evaluate', evaluated['applicable si'])
+			//ya  = console.log(r.name, 'formuleValue, condValue',formuleValue, condValue)
 
-		return {...evaluated, nodeValue}
+		return {...evaluated, nodeValue, isApplicable}
 	}
-	let collectMissing = node => {
-		let cond = R.prop('non applicable si',node),
-			condMissing = cond ? collectNodeMissing(cond) : [],
-			collectInFormule = (cond && cond.nodeValue != undefined) ? !cond.nodeValue : true,
-			formule = node.formule,
-			formMissing = collectInFormule ? (formule ? collectNodeMissing(formule) : []) : []
+	let collectMissing = ({
+		formule,
+		isApplicable,
+		'non applicable si': notApplicable,
+		'applicable si': applicable}) => {
+
+		let
+			condMissing = R.chain(
+				applyOrEmpty(collectNodeMissing)
+			)([notApplicable, applicable]),
+			collectInFormule = isApplicable !== false,
+			formMissing = applyOrEmpty(
+				() => applyOrEmpty(collectNodeMissing)(formule)
+			)(collectInFormule)
 		return R.concat(condMissing,formMissing)
 	}
 
-	let parsedRoot = R.evolve({ // Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
+	let parsedRoot = R.evolve({
+		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
+		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
-	// Les métadonnées d'une règle n'en font pas aujourd'hui partie
-
-	// condition d'applicabilité de la règle
-		'non applicable si': value => {
-			let evaluate = (situationGate, parsedRules, node) => {
-				let collectMissing = node => collectNodeMissing(node.explanation)
-				let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
-					nodeValue = explanation.nodeValue
-				return rewriteNode(node,nodeValue,explanation,collectMissing)
-			}
-
-			let child = treat(rules, rule)(value)
-
-			let jsx = (nodeValue, explanation) =>
-				<Node
-					classes="ruleProp mecanism cond"
-					name="non applicable si"
-					value={nodeValue}
-					child={
-						explanation.category === 'variable' ? <div className="node">{makeJsx(explanation)}</div>
-						: makeJsx(explanation)
-					}
-				/>
-
-			return {
-				evaluate,
-				jsx,
-				category: 'ruleProp',
-				rulePropType: 'cond',
-				name: 'non applicable si',
-				type: 'boolean',
-				explanation: child
-			}
-		}
-		,
+		// condition d'applicabilité de la règle
+		'non applicable si': evolveCond('non applicable si', rule, rules),
+		'applicable si': evolveCond('applicable si', rule, rules),
 		'formule': value => {
 			let evaluate = (situationGate, parsedRules, node) => {
 				let collectMissing = node => collectNodeMissing(node.explanation)
@@ -423,8 +417,6 @@ export let treatRuleRoot = (rules, rule) => {
 				explanation: child
 			}
 		}
-	,
-
 	})(rule)
 
 	return {
@@ -432,6 +424,42 @@ export let treatRuleRoot = (rules, rule) => {
 		...parsedRoot,
 		evaluate,
 		collectMissing
+	}
+}
+
+let evolveCond = (name, rule, rules) => value => {
+	let evaluate = (situationGate, parsedRules, node) => {
+		let collectMissing = node => collectNodeMissing(node.explanation)
+		let explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+			nodeValue = explanation.nodeValue
+		return rewriteNode(node,nodeValue,explanation,collectMissing)
+	}
+
+	let child = treat(rules, rule)(value)
+
+	let jsx = (nodeValue, explanation) => (
+		<Node
+			classes="ruleProp mecanism cond"
+			name={name}
+			value={nodeValue}
+			child={
+				explanation.category === 'variable' ? (
+					<div className="node">{makeJsx(explanation)}</div>
+				) : (
+					makeJsx(explanation)
+				)
+			}
+		/>
+	)
+
+	return {
+		evaluate,
+		jsx,
+		category: 'ruleProp',
+		rulePropType: 'cond',
+		name,
+		type: 'boolean',
+		explanation: child
 	}
 }
 
