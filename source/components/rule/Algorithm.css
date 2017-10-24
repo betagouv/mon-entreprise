@@ -41,6 +41,14 @@
 	color: #4B4B66
 }
 
+#declenchement > ul {
+	padding: 0;
+	list-style-type: none;
+}
+#declenchement > ul > li {
+	margin-bottom: 1em
+}
+
 .mecanism > .nodeHead {
 	margin-bottom: 1em;
 }
