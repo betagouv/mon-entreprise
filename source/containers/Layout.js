@@ -28,12 +28,6 @@ export default class Layout extends Component {
 	state = {
 		resultsHeight: 600
 	}
-	componentDidMount(){
-		let resultsEl = document.getElementById('results')
-		this.setState({
-			resultsHeight: resultsEl ? resultsEl.clientHeight : 600
-		})
-	}
 	render() {
 		let displayWarning = ["/simu/", "/regle/", "/regles"].find(
 			t => window.location.href.toString().indexOf(t) > -1
@@ -71,7 +65,7 @@ export default class Layout extends Component {
 						</Switch>
 					</div>
 					<div id="antiOverlap" style={{height: this.state.resultsHeight + 'px'}}/>
-					<Results />
+					<Results setElementHeight={resultsHeight => this.setState({resultsHeight})}/>
 				</div>
 			</Router>
 		)

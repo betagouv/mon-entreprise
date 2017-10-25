@@ -21,6 +21,11 @@ import RuleValueVignette from './rule/RuleValueVignette'
 	})
 )
 export default class Results extends Component {
+	componentDidMount(){
+		setTimeout(() =>
+			this.props.setElementHeight(this.el.offsetHeight)
+		, 1)
+	}
 	render() {
 		let {
 			analysedSituation,
@@ -36,7 +41,7 @@ export default class Results extends Component {
 
 		let onRulePage = R.contains('/regle/')(location.pathname)
 		return (
-			<section id="results" className={classNames({show: showResults})}>
+			<section ref={el => this.el = el} id="results" className={classNames({show: showResults})}>
 				{onRulePage && conversationStarted ?
 					<div id ="results-actions">
 						<Link id="toSimulation" to={"/simu/" + encodeRuleName(analysedSituation.root.name)}>
