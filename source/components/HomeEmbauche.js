@@ -32,7 +32,7 @@ export default class HomeEmbauche extends Component {
 							<div id="main-actions">
 								<div>
 									<a
-									onClick={() => {Piwik.push(['setCustomUrl', '/simulateurV1']); Piwik.push(['trackPageView']);}}
+									onClick={() => {ReactPiwik.push(['setCustomUrl', '/simulateurV1']); ReactPiwik.push(['trackPageView']);}}
 									href="/simulateur" target="_blank">Simuler un CDI <i className="fa fa-hand-o-right" aria-hidden="true"></i></a>
 								</div>
 								<div>
