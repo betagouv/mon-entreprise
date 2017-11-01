@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './HomeEmbauche.css'
 import {Link} from 'react-router-dom'
+import ReactPiwik from 'Components/Tracker';
 
 export default class HomeEmbauche extends Component {
 	render() {
@@ -30,7 +31,9 @@ export default class HomeEmbauche extends Component {
 							<h1>Estimer le {' '} prix<br/>d'une {' '} embauche en {' '} France</h1>
 							<div id="main-actions">
 								<div>
-									<a href="/simulateur" target="_blank">Simuler un CDI <i className="fa fa-hand-o-right" aria-hidden="true"></i></a>
+									<a
+									onClick={() => {Piwik.push(['setCustomUrl', '/simulateurV1']); Piwik.push(['trackPageView']);}}
+									href="/simulateur" target="_blank">Simuler un CDI <i className="fa fa-hand-o-right" aria-hidden="true"></i></a>
 								</div>
 								<div>
 									<span>Nouveau</span>
