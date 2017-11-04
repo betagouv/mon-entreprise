@@ -5,7 +5,7 @@ import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
 import {rules, findRuleByName } from 'Engine/rules'
-import {buildNextSteps, makeQuestion} from 'Engine/generateQuestions'
+import {nextSteps, makeQuestion} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
 
@@ -50,7 +50,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 	}
 
 	if (action.type == START_CONVERSATION) {
-		let next = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+		let next = nextSteps(situationGate, flatRules, newState.analysedSituation)
 
 		return {
 			...newState,
@@ -62,7 +62,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		tracker.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
 
 		let foldedSteps = [...state.foldedSteps, state.currentQuestion],
-			next = buildNextSteps(situationGate, flatRules, newState.analysedSituation),
+			next = nextSteps(situationGate, flatRules, newState.analysedSituation),
 			assumptionsMade = !R.isEmpty(softAssumptions),
 			done = next.length == 0
 
@@ -71,7 +71,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		if (done && assumptionsMade) {
 			let newSituation = intermediateSituation(state),
 				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
-				extraSteps = buildNextSteps(newSituation, flatRules, reanalyse)
+				extraSteps = nextSteps(newSituation, flatRules, reanalyse)
 
 			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
 
@@ -96,17 +96,17 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
 		tracker.push(['trackEvent', 'unfold', action.step]);
 
-		let stepFinder = R.propEq('name', action.step),
-			previous = state.currentQuestion,
-			prevFinder = R.propEq('name', previous && previous.name),
-			answered = previous && (answerSource(state)(previous.name) != undefined),
+		let previous = state.currentQuestion,
+			answered = previous && (answerSource(state)(previous) != undefined),
 			foldable = answered ? [previous] : [],
-			foldedSteps = R.reject(stepFinder)(R.concat(state.foldedSteps, foldable))
+			foldedSteps = R.without([action.step])(R.concat(state.foldedSteps, foldable)),
+			extraSteps = R.without([action.step], state.extraSteps)
 
 		return {
 			...newState,
 			foldedSteps,
-			currentQuestion: makeQuestion(flatRules)(action.step)
+			extraSteps,
+			currentQuestion: action.step
 		}
 	}
 }

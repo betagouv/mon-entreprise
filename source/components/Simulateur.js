@@ -13,6 +13,7 @@ import './conversation/conversation.css'
 import './Simulateur.css'
 import {capitalise0} from '../utils'
 import Conversation from './conversation/Conversation'
+import {makeQuestion} from 'Engine/generateQuestions'
 
 import ReactPiwik from './Tracker'
 
@@ -72,13 +73,19 @@ export default class extends Component {
 			},
 			title = sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])
 
-		let buildStep = accessor => step =>
-			<step.component
+		let buildAnyStep = unfolded => accessor => question => {
+			let step = makeQuestion(rules)(question)
+			return <step.component
 				key={step.name}
 				{...step}
+				{...{unfolded}}
 				step={step}
 				answer={accessor(step.name)}
 			/>
+		}
+
+		let buildStep = buildAnyStep(false)
+		let buildUnfoldedStep = buildAnyStep(true)
 
 		return (
 			<div id="sim" className={classNames({started})}>
@@ -108,8 +115,8 @@ export default class extends Component {
 						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) }
 							{...{
 								reinitalise,
+								currentQuestion: currentQuestion && buildUnfoldedStep(situation)(currentQuestion),
 								foldedSteps: R.map(buildStep(situation), foldedSteps),
-								currentQuestion: currentQuestion && buildStep(situation)({...currentQuestion, unfolded: true}),
 								extraSteps: R.map(buildStep(situationGate), extraSteps),
 								textColourOnWhite: themeColours.textColourOnWhite}}/>
 				}

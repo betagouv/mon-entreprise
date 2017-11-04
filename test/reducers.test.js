@@ -29,7 +29,7 @@ describe('fold', function() {
         result = reducer({},action)
 
     expect(result).to.have.property('currentQuestion')
-    expect(result.currentQuestion).to.have.deep.property("name","top . aa")
+    expect(result.currentQuestion).to.equal("top . aa")
   });
 
   it('should deal with double unfold', function() {
@@ -59,10 +59,10 @@ describe('fold', function() {
     let result = step5
 
     expect(result).to.have.property('currentQuestion')
-    expect(result.currentQuestion).to.have.deep.property("name","top . bb")
+    expect(result.currentQuestion).to.equal("top . bb")
     expect(result).to.have.property('foldedSteps')
     expect(result.foldedSteps).to.have.lengthOf(1)
-    expect(result.foldedSteps[0]).to.have.deep.property("name","top . aa")
+    expect(result.foldedSteps[0]).to.equal("top . aa")
   });
 
   it('should not list the same question in folded and unfolded', function() {
@@ -93,11 +93,11 @@ describe('fold', function() {
     let result = step6
 
     expect(result).to.have.property('currentQuestion')
-    expect(result.currentQuestion).to.have.deep.property("name","top . cc")
+    expect(result.currentQuestion).to.equal("top . cc")
     expect(result).to.have.property('foldedSteps')
     expect(result.foldedSteps).to.have.lengthOf(2)
-    expect(result.foldedSteps[0]).to.have.deep.property("name","top . aa")
-    expect(result.foldedSteps[1]).to.have.deep.property("name","top . bb")
+    expect(result.foldedSteps[0]).to.equal("top . aa")
+    expect(result.foldedSteps[1]).to.equal("top . bb")
   });
 
 });
