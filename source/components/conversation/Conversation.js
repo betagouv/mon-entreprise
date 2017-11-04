@@ -14,6 +14,14 @@ export default class Conversation extends Component {
 		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite} = this.props,
 			currentQuestion = R.head(unfoldedSteps) ? R.head(unfoldedSteps) : null
 
+		let buildStep = accessor => step =>
+			<step.component
+				key={step.name}
+				{...step}
+				step={step}
+				answer={accessor(step.name)}
+			/>
+
 		Scroll.animateScroll.scrollToBottom()
 		return (
 			<div id="conversation">
@@ -27,15 +35,7 @@ export default class Conversation extends Component {
 									Tout effacer
 								</button>
 							</div>
-							{foldedSteps
-								.map(step => (
-									<step.component
-										key={step.name}
-										{...step}
-										step={step}
-										answer={situation(step.name)}
-									/>
-								))}
+							{foldedSteps.map(buildStep(situation))}
 						</div>
 					}
 					{unfoldedSteps.length == 0 &&
@@ -45,27 +45,11 @@ export default class Conversation extends Component {
 							<div className="header" >
 								<h3>Affiner votre situation</h3>
 							</div>
-							{extraSteps
-								.map(step => (
-									<step.component
-										key={step.name}
-										{...step}
-										step={step}
-										answer={situationGate(step.name)}
-									/>
-								))}
+							{extraSteps.map(buildStep(situationGate))}
 						</div>
 					}
 					<div id="unfoldedSteps">
-						{ currentQuestion && do {
-							let step = currentQuestion
-							;<step.component
-								key={step.name}
-								step={R.dissoc('component', step)}
-								unfolded={true}
-								answer={situation(step.name)}
-							/>
-						}}
+						{ currentQuestion && buildStep(situation)({...currentQuestion, unfolded: true})}
 					</div>
 					{!currentQuestion &&
 						<Satisfaction simu={this.props.simu}/>
