@@ -72,6 +72,16 @@ export default class extends Component {
 			},
 			title = sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])
 
+		let buildStep = accessor => step =>
+			<step.component
+				key={step.name}
+				{...step}
+				step={step}
+				answer={accessor(step.name)}
+			/>
+
+		let currentQuestion = R.head(unfoldedSteps)
+
 		return (
 			<div id="sim" className={classNames({started})}>
 				<Helmet>
@@ -98,7 +108,12 @@ export default class extends Component {
 				}
 				{ (started || !sim(['introduction', 'notes'])) &&
 						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) }
-							{...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite: themeColours.textColourOnWhite}}/>
+							{...{
+								reinitalise,
+								foldedSteps: R.map(buildStep(situation), foldedSteps),
+								currentQuestion: currentQuestion && buildStep(situation)({...currentQuestion, unfolded: true}),
+								extraSteps: R.map(buildStep(situationGate), extraSteps),
+								textColourOnWhite: themeColours.textColourOnWhite}}/>
 				}
 
 			</div>
