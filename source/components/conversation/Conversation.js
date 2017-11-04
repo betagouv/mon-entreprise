@@ -11,7 +11,8 @@ import Scroll from 'react-scroll'
 })
 export default class Conversation extends Component {
 	render() {
-		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite} = this.props
+		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite} = this.props,
+			currentQuestion = R.head(unfoldedSteps) ? R.head(unfoldedSteps) : null
 
 		Scroll.animateScroll.scrollToBottom()
 		return (
@@ -56,8 +57,8 @@ export default class Conversation extends Component {
 						</div>
 					}
 					<div id="unfoldedSteps">
-						{ !R.isEmpty(unfoldedSteps) && do {
-							let step = R.head(unfoldedSteps)
+						{ currentQuestion && do {
+							let step = currentQuestion
 							;<step.component
 								key={step.name}
 								step={R.dissoc('component', step)}
@@ -66,7 +67,7 @@ export default class Conversation extends Component {
 							/>
 						}}
 					</div>
-					{R.isEmpty(unfoldedSteps) &&
+					{!currentQuestion &&
 						<Satisfaction simu={this.props.simu}/>
 					}
 				</div>
