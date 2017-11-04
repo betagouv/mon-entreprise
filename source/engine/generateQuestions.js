@@ -78,16 +78,19 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (
 }
 
 export let buildNextSteps = (situationGate, flatRules, analysedSituation) => {
-	let missingVariables = collectMissingVariables('groupByMissingVariable')(situationGate, analysedSituation),
-		asPairs = R.toPairs(missingVariables)
-
-	let generate = R.map(R.curry(generateQuestion)(flatRules)),
-		sort = R.sort((a,b) => b.impact - a.impact)
-
-	return R.pipe(generate,sort)(asPairs)
+	let missing = nextSteps(situationGate, flatRules, analysedSituation)
+	return R.map(makeQuestion(flatRules), missing)
 }
 
+export let nextSteps = (situationGate, flatRules, analysedSituation) => {
+	let impact = ([variable, objectives]) => R.length(objectives)
 
+	let missingVariables = collectMissingVariables('groupByMissingVariable')(situationGate, analysedSituation),
+		pairs = R.toPairs(missingVariables),
+		sortedPairs = R.sort((a,b) => impact(b) - impact(a), pairs)
+
+	return R.map(R.head, sortedPairs)
+}
 
 export let constructStepMeta = ({
 	titre,
@@ -134,14 +137,8 @@ let buildVariantTree = (allRules, path) => {
 	return rec(path)
 }
 
-export let generateQuestion = flatRules => ([dottedName, objectives]) => {
-	let rule = findRuleByDottedName(flatRules, dottedName),
-		guidance = {
-			objectives,
-			impact: objectives.length
-		}
-
-	// console.log(isVariant(rule)?"variant":"generateQuestion",[dottedName, objectives.length])
+export let makeQuestion = flatRules => dottedName => {
+	let rule = findRuleByDottedName(flatRules, dottedName)
 
 	let inputQuestion = rule => ({
 			component: Input,
@@ -185,7 +182,5 @@ export let generateQuestion = flatRules => ([dottedName, objectives]) => {
 				typeof rule.suggestions == 'string' ?
 					(rule.suggestions == 'atmp-2017' ? selectAtmp(rule) : selectQuestion(rule)) :
 					inputQuestion(rule)
-				,
-		guidance
 	)
 }

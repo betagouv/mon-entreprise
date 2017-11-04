@@ -48,8 +48,7 @@ export var FormDecorator = formType => RenderField =>
 				human,
 				helpText,
 				suggestions,
-				subquestion,
-				objectives,
+				subquestion
 			} = this.props.step
 			this.step = this.props.step
 
