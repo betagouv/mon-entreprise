@@ -22,8 +22,8 @@ let situationSelector = formValueSelector('conversation')
 @connect(
 	state => ({
 		situation: variableName => situationSelector(state, variableName),
+		currentQuestion: state.currentQuestion,
 		foldedSteps: state.foldedSteps,
-		unfoldedSteps: state.unfoldedSteps,
 		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
 		analysedSituation: state.analysedSituation,
@@ -62,7 +62,7 @@ export default class extends Component {
 
 		let
 			{started} = this.state,
-			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate, themeColours} = this.props,
+			{foldedSteps, extraSteps, currentQuestion, situation, situationGate, themeColours} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
@@ -79,8 +79,6 @@ export default class extends Component {
 				step={step}
 				answer={accessor(step.name)}
 			/>
-
-		let currentQuestion = R.head(unfoldedSteps)
 
 		return (
 			<div id="sim" className={classNames({started})}>

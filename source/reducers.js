@@ -5,7 +5,7 @@ import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
 import {rules, findRuleByName } from 'Engine/rules'
-import {buildNextSteps} from 'Engine/generateQuestions'
+import {buildNextSteps, makeQuestion} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
 
@@ -50,21 +50,21 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 	}
 
 	if (action.type == START_CONVERSATION) {
-		let unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+		let next = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
 
 		return {
 			...newState,
 			foldedSteps: [],
-			unfoldedSteps
+			currentQuestion: R.head(next)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
 
-		let foldedSteps = [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation),
+		let foldedSteps = [...state.foldedSteps, state.currentQuestion],
+			next = buildNextSteps(situationGate, flatRules, newState.analysedSituation),
 			assumptionsMade = !R.isEmpty(softAssumptions),
-			done = unfoldedSteps.length == 0
+			done = next.length == 0
 
 		// The simulation is "over" - except we can now fill in extra questions
 		// where the answers were previously given default reasonable assumptions
@@ -79,7 +79,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 				...newState,
 				foldedSteps,
 				extraSteps,
-				unfoldedSteps: []
+				currentQuestion: null
 			}
 		}
 
@@ -90,29 +90,23 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		return {
 			...newState,
 			foldedSteps,
-			unfoldedSteps
+			currentQuestion: R.head(next)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
 		tracker.push(['trackEvent', 'unfold', action.step]);
 
-		// The logic here is a bit hard to follow (TODO: refactor),
-		// it guarantees that (foldedSteps+unfoldedSteps) as a set is invariant
-		// foldedSteps should only have questions that have been answered
-		// unfoldedSteps is all the questions that must still be answered
 		let stepFinder = R.propEq('name', action.step),
-			previous = R.head(state.unfoldedSteps),
+			previous = state.currentQuestion,
 			prevFinder = R.propEq('name', previous && previous.name),
 			answered = previous && (answerSource(state)(previous.name) != undefined),
 			foldable = answered ? [previous] : [],
-			foldedSteps = R.reject(stepFinder)(R.concat(state.foldedSteps, foldable)),
-			unfolded = R.find(stepFinder)(R.concat(state.foldedSteps, state.extraSteps)),
-			unfoldedSteps = R.concat([unfolded], answered ? R.reject(prevFinder)(state.unfoldedSteps) : state.unfoldedSteps)
+			foldedSteps = R.reject(stepFinder)(R.concat(state.foldedSteps, foldable))
 
 		return {
 			...newState,
 			foldedSteps,
-			unfoldedSteps
+			currentQuestion: makeQuestion(flatRules)(action.step)
 		}
 	}
 }
@@ -143,7 +137,7 @@ export default reduceReducers(
 		false means the user is reconsidering its previous input */
 		foldedSteps: (steps = []) => steps,
 		extraSteps: (steps = []) => steps,
-		unfoldedSteps: (steps = []) => steps,
+		currentQuestion: (state = null) => state,
 
 		analysedSituation: (state = []) => state,
 

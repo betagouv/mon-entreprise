@@ -12,7 +12,7 @@ let tracker = {push: array => null}
 
 describe('fold', function() {
 
-  it('should start conversation with only unfolded questions', function() {
+  it('should start conversation with the first missing variable', function() {
     let rawRules = [
           // TODO - this won't work without the indirection, figure out why
           {nom: "startHere", formule: {somme: ["a","b"]}, espace: "top"},
@@ -28,10 +28,8 @@ describe('fold', function() {
         // missing = collectMissingVariables()(stateSelector({}),situation),
         result = reducer({},action)
 
-    expect(result).to.have.property('unfoldedSteps')
-    expect(result.unfoldedSteps).to.have.lengthOf(2)
-    expect(result.unfoldedSteps[0]).to.have.deep.property("name","top . aa")
-    expect(result.unfoldedSteps[1]).to.have.deep.property("name","top . bb")
+    expect(result).to.have.property('currentQuestion')
+    expect(result.currentQuestion).to.have.deep.property("name","top . aa")
   });
 
   it('should deal with double unfold', function() {
@@ -60,10 +58,8 @@ describe('fold', function() {
 
     let result = step5
 
-    expect(result).to.have.property('unfoldedSteps')
-    expect(result.unfoldedSteps).to.have.lengthOf(2)
-    expect(result.unfoldedSteps[0]).to.have.deep.property("name","top . bb")
-    expect(result.unfoldedSteps[1]).to.have.deep.property("name","top . cc")
+    expect(result).to.have.property('currentQuestion')
+    expect(result.currentQuestion).to.have.deep.property("name","top . bb")
     expect(result).to.have.property('foldedSteps')
     expect(result.foldedSteps).to.have.lengthOf(1)
     expect(result.foldedSteps[0]).to.have.deep.property("name","top . aa")
@@ -96,9 +92,8 @@ describe('fold', function() {
 
     let result = step6
 
-    expect(result).to.have.property('unfoldedSteps')
-    expect(result.unfoldedSteps).to.have.lengthOf(1)
-    expect(result.unfoldedSteps[0]).to.have.deep.property("name","top . cc")
+    expect(result).to.have.property('currentQuestion')
+    expect(result.currentQuestion).to.have.deep.property("name","top . cc")
     expect(result).to.have.property('foldedSteps')
     expect(result.foldedSteps).to.have.lengthOf(2)
     expect(result.foldedSteps[0]).to.have.deep.property("name","top . aa")
