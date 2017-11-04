@@ -3,7 +3,7 @@ import R from 'ramda'
 import {expect} from 'chai'
 import {rules as realRules, enrichRule} from '../source/engine/rules'
 import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
-import {buildNextSteps, collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
+import {collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
 
 import {reduceSteps} from '../source/reducers'
 
