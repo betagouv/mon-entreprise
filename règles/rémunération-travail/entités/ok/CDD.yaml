@@ -133,6 +133,7 @@
       entreprise . association non lucrative: 1
     par défaut:
       contrat salarié . temps partiel: non
+      contrat salarié . heures par semaine: 35
       contrat salarié . CDD . événement: non
       contrat salarié . CDD . congés non pris: 0
       contrat salarié . CDD . contrat jeune vacances: non
