@@ -8,7 +8,7 @@
   },
   "description": "Expérimentation sur les prélèvements sociaux en code",
   "engines": {
-    "node": ">=6.2.0"
+    "node": ">=6.2.0 <9.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",

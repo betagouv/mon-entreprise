@@ -11,7 +11,7 @@ import Scroll from 'react-scroll'
 })
 export default class Conversation extends Component {
 	render() {
-		let {foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite} = this.props
+		let {foldedSteps, currentQuestion, extraSteps, reinitalise, textColourOnWhite} = this.props
 
 		Scroll.animateScroll.scrollToBottom()
 		return (
@@ -26,49 +26,22 @@ export default class Conversation extends Component {
 									Tout effacer
 								</button>
 							</div>
-							{foldedSteps
-								.map(step => (
-									<step.component
-										key={step.name}
-										{...step}
-										step={step}
-										answer={situation(step.name)}
-									/>
-								))}
+							{foldedSteps}
 						</div>
 					}
-					{unfoldedSteps.length == 0 &&
+					{!currentQuestion &&
 						<Conclusion affiner={!R.isEmpty(extraSteps)}/>}
 					{ !R.isEmpty(extraSteps) &&
 						<div id="foldedSteps">
 							<div className="header" >
 								<h3>Affiner votre situation</h3>
 							</div>
-							{extraSteps
-								.map(step => (
-									<step.component
-										key={step.name}
-										{...step}
-										step={step}
-										answer={situationGate(step.name)}
-									/>
-								))}
+							{extraSteps}
 						</div>
 					}
-					<div id="unfoldedSteps">
-						{ !R.isEmpty(unfoldedSteps) && do {
-							let step = R.head(unfoldedSteps)
-							;<step.component
-								key={step.name}
-								step={R.dissoc('component', step)}
-								unfolded={true}
-								answer={situation(step.name)}
-							/>
-						}}
+					<div id="currentQuestion">
+						{ currentQuestion || <Satisfaction simu={this.props.simu}/>}
 					</div>
-					{R.isEmpty(unfoldedSteps) &&
-						<Satisfaction simu={this.props.simu}/>
-					}
 				</div>
 				<Aide />
 			</div>

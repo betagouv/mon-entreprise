@@ -2,7 +2,7 @@ import R from 'ramda'
 import {expect} from 'chai'
 import {rules as realRules, enrichRule} from '../source/engine/rules'
 import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
-import {buildNextSteps, collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
+import {nextSteps, collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
 
 let stateSelector = (name) => null
 
@@ -218,7 +218,7 @@ describe('collectMissingVariables', function() {
 
 });
 
-describe('buildNextSteps', function() {
+describe('nextSteps', function() {
 
   it('should generate questions', function() {
     let rawRules = [
@@ -228,10 +228,10 @@ describe('buildNextSteps', function() {
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
         situation = analyseTopDown(rules,"sum")(stateSelector),
-        result = buildNextSteps(stateSelector, rules, situation)
+        result = nextSteps(stateSelector, rules, situation)
 
     expect(result).to.have.lengthOf(1)
-    expect(R.path(["question","props","label"])(result[0])).to.equal("?")
+    expect(result[0]).to.equal("top . sum . evt")
   });
 
   it('should generate questions from the real rules', function() {
@@ -239,7 +239,7 @@ describe('buildNextSteps', function() {
         situation = analyseTopDown(rules,"surcoût CDD")(stateSelector),
         objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
         missing = collectMissingVariables()(stateSelector,situation),
-        result = buildNextSteps(stateSelector, rules, situation)
+        result = nextSteps(stateSelector, rules, situation)
 
     // expect(objectives).to.have.lengthOf(4)
 
@@ -271,10 +271,10 @@ describe('buildNextSteps', function() {
         situation = analyseTopDown(rules,"Salaire")(stateSelector),
         objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
         missing = collectMissingVariables()(stateSelector,situation),
-        result = buildNextSteps(stateSelector, rules, situation)
+        result = nextSteps(stateSelector, rules, situation)
 
-    expect(R.path(["question","props","label"])(result[0])).to.equal("Quel est le salaire brut mensuel ?")
-    expect(R.path(["question","props","label"])(result[1])).to.equal("Le contrat est-il à temps partiel ?")
+    expect(result[0]).to.equal("contrat salarié . salaire de base")
+    expect(result[1]).to.equal("contrat salarié . temps partiel")
   });
 
 });

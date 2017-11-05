@@ -13,6 +13,7 @@ import './conversation/conversation.css'
 import './Simulateur.css'
 import {capitalise0} from '../utils'
 import Conversation from './conversation/Conversation'
+import {makeQuestion} from 'Engine/generateQuestions'
 
 import ReactPiwik from './Tracker'
 
@@ -22,8 +23,8 @@ let situationSelector = formValueSelector('conversation')
 @connect(
 	state => ({
 		situation: variableName => situationSelector(state, variableName),
+		currentQuestion: state.currentQuestion,
 		foldedSteps: state.foldedSteps,
-		unfoldedSteps: state.unfoldedSteps,
 		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
 		analysedSituation: state.analysedSituation,
@@ -62,7 +63,7 @@ export default class extends Component {
 
 		let
 			{started} = this.state,
-			{foldedSteps, extraSteps, unfoldedSteps, situation, situationGate, themeColours} = this.props,
+			{foldedSteps, extraSteps, currentQuestion, situation, situationGate, themeColours} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
@@ -71,6 +72,20 @@ export default class extends Component {
 				this.props.startConversation(this.name)
 			},
 			title = sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])
+
+		let buildAnyStep = unfolded => accessor => question => {
+			let step = makeQuestion(rules)(question)
+			return <step.component
+				key={step.name}
+				{...step}
+				{...{unfolded}}
+				step={step}
+				answer={accessor(step.name)}
+			/>
+		}
+
+		let buildStep = buildAnyStep(false)
+		let buildUnfoldedStep = buildAnyStep(true)
 
 		return (
 			<div id="sim" className={classNames({started})}>
@@ -98,7 +113,12 @@ export default class extends Component {
 				}
 				{ (started || !sim(['introduction', 'notes'])) &&
 						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) }
-							{...{foldedSteps, unfoldedSteps, extraSteps, reinitalise, situation, situationGate, textColourOnWhite: themeColours.textColourOnWhite}}/>
+							{...{
+								reinitalise,
+								currentQuestion: currentQuestion && buildUnfoldedStep(situation)(currentQuestion),
+								foldedSteps: R.map(buildStep(situation), foldedSteps),
+								extraSteps: R.map(buildStep(situationGate), extraSteps),
+								textColourOnWhite: themeColours.textColourOnWhite}}/>
 				}
 
 			</div>

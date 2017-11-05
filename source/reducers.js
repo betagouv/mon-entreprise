@@ -5,7 +5,7 @@ import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
 import {rules, findRuleByName } from 'Engine/rules'
-import {buildNextSteps} from 'Engine/generateQuestions'
+import {nextSteps, makeQuestion} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
 
@@ -50,28 +50,28 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 	}
 
 	if (action.type == START_CONVERSATION) {
-		let unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation)
+		let next = nextSteps(situationGate, flatRules, newState.analysedSituation)
 
 		return {
 			...newState,
 			foldedSteps: [],
-			unfoldedSteps
+			currentQuestion: R.head(next)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
 
-		let foldedSteps = [...state.foldedSteps, R.head(state.unfoldedSteps)],
-			unfoldedSteps = buildNextSteps(situationGate, flatRules, newState.analysedSituation),
+		let foldedSteps = [...state.foldedSteps, state.currentQuestion],
+			next = nextSteps(situationGate, flatRules, newState.analysedSituation),
 			assumptionsMade = !R.isEmpty(softAssumptions),
-			done = unfoldedSteps.length == 0
+			done = next.length == 0
 
 		// The simulation is "over" - except we can now fill in extra questions
 		// where the answers were previously given default reasonable assumptions
 		if (done && assumptionsMade) {
 			let newSituation = intermediateSituation(state),
 				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
-				extraSteps = buildNextSteps(newSituation, flatRules, reanalyse)
+				extraSteps = nextSteps(newSituation, flatRules, reanalyse)
 
 			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
 
@@ -79,7 +79,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 				...newState,
 				foldedSteps,
 				extraSteps,
-				unfoldedSteps: []
+				currentQuestion: null
 			}
 		}
 
@@ -90,21 +90,26 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		return {
 			...newState,
 			foldedSteps,
-			unfoldedSteps
+			currentQuestion: R.head(next)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
 		tracker.push(['trackEvent', 'unfold', action.step]);
 
-		let stepFinder = R.propEq('name', action.step),
-			foldedSteps = R.reject(stepFinder)(state.foldedSteps).concat(state.unfoldedSteps),
-			extraSteps = R.reject(stepFinder)(state.extraSteps)
+		// We are possibly "refolding" a previously open question
+		let previous = state.currentQuestion,
+			// we fold it back into foldedSteps if it had been answered
+			answered = previous && answerSource(state)(previous) != undefined,
+			foldedSteps = answered ? R.concat(state.foldedSteps, [previous]) : state.foldedSteps,
+			// we fold it back into "extra steps" if it came from there
+			fromExtra = previous && softAssumptions[previous] != undefined,
+			extraSteps = fromExtra ? R.concat(state.extraSteps, [previous]) : state.extraSteps
 
 		return {
 			...newState,
-			foldedSteps,
-			extraSteps,
-			unfoldedSteps: [R.find(stepFinder)(R.concat(state.foldedSteps,state.extraSteps))]
+			foldedSteps: R.without([action.step], foldedSteps),
+			extraSteps: R.without([action.step], extraSteps),
+			currentQuestion: action.step
 		}
 	}
 }
@@ -135,7 +140,7 @@ export default reduceReducers(
 		false means the user is reconsidering its previous input */
 		foldedSteps: (steps = []) => steps,
 		extraSteps: (steps = []) => steps,
-		unfoldedSteps: (steps = []) => steps,
+		currentQuestion: (state = null) => state,
 
 		analysedSituation: (state = []) => state,
 
