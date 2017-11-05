@@ -96,17 +96,19 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
 		tracker.push(['trackEvent', 'unfold', action.step]);
 
+		// We are possibly "refolding" a previously open question
 		let previous = state.currentQuestion,
-			answered = previous && (answerSource(state)(previous) != undefined),
-			foldable = answered ? [previous] : [],
-			foldedSteps = R.without([action.step], R.concat(state.foldedSteps, foldable)),
-			fromExtra = !answered && R.contains(previous, R.keys(softAssumptions)),
-			extraSteps = R.without([action.step], fromExtra ? R.concat(state.extraSteps, [previous]) : state.extraSteps)
+			// we fold it back into foldedSteps if it had been answered
+			answered = previous && answerSource(state)(previous) != undefined,
+			foldedSteps = answered ? R.concat(state.foldedSteps, [previous]) : state.foldedSteps,
+			// we fold it back into "extra steps" if it came from there
+			fromExtra = previous && softAssumptions[previous] != undefined,
+			extraSteps = fromExtra ? R.concat(state.extraSteps, [previous]) : state.extraSteps
 
 		return {
 			...newState,
-			foldedSteps,
-			extraSteps,
+			foldedSteps: R.without([action.step], foldedSteps),
+			extraSteps: R.without([action.step], extraSteps),
 			currentQuestion: action.step
 		}
 	}
