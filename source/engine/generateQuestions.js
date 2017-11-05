@@ -77,17 +77,12 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (
 	)(root, parsedRules)
 }
 
-export let buildNextSteps = (situationGate, flatRules, analysedSituation) => {
-	let missing = nextSteps(situationGate, flatRules, analysedSituation)
-	return R.map(makeQuestion(flatRules), missing)
-}
-
 export let nextSteps = (situationGate, flatRules, analysedSituation) => {
 	let impact = ([variable, objectives]) => R.length(objectives)
 
 	let missingVariables = collectMissingVariables('groupByMissingVariable')(situationGate, analysedSituation),
 		pairs = R.toPairs(missingVariables),
-		sortedPairs = R.sort((a,b) => impact(b) - impact(a), pairs)
+		sortedPairs = R.sort(R.descend(impact), pairs)
 
 	return R.map(R.head, sortedPairs)
 }
