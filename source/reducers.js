@@ -99,8 +99,9 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		let previous = state.currentQuestion,
 			answered = previous && (answerSource(state)(previous) != undefined),
 			foldable = answered ? [previous] : [],
-			foldedSteps = R.without([action.step])(R.concat(state.foldedSteps, foldable)),
-			extraSteps = R.without([action.step], state.extraSteps)
+			foldedSteps = R.without([action.step], R.concat(state.foldedSteps, foldable)),
+			fromExtra = !answered && R.contains(previous, R.keys(softAssumptions)),
+			extraSteps = R.without([action.step], fromExtra ? R.concat(state.extraSteps, [previous]) : state.extraSteps)
 
 		return {
 			...newState,
