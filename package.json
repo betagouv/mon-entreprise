@@ -13,6 +13,7 @@
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "classnames": "^2.2.5",
+    "dedent-js": "^1.0.1",
     "deep-assign": "^2.0.0",
     "ignore-loader": "^0.1.2",
     "install": "^0.10.1",
@@ -97,6 +98,7 @@
     "test": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
     "test-watch": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
     "test-meca": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
-    "heroku-postbuild": "npm install --dev && webpack --config source/webpack.config.js --progress"
+    "heroku-postbuild": "npm install --dev && webpack --config source/webpack.config.js --progress",
+    "test-inversions": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch"
   }
 }
