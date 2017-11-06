@@ -403,8 +403,57 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 		? formuleValue
 		: isApplicable === false ? 0 : formuleValue == 0 ? 0 : null
 
+let computeInversion = (objective, computeGivenInput, currentValue) => {
+	let v = currentValue || objective, // notre première approximation est l'objectif lui-même (on suppose donc qu'ils sont du même ordre de grandeur, ce qui est vrai pour les salaires mais pas forcément pour d'autres variables évidemment)
+		here = computeGivenInput(v)
+
+	console.log('coucou', v, here)
+
+	if (Math.abs(here - objective) < 20 ) {
+		return v
+	}
+
+	let
+		ascend = computeGivenInput(v + 10),
+		descend = computeGivenInput(v - 10)
+
+	if (Math.abs(ascend - objective) < Math.abs(descend - objective))
+		return computeInversion(objective, computeGivenInput, v + 10)
+	else
+		return computeInversion(objective, computeGivenInput, v - 10)
+
+}
+
+
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
+		let inversions = r['inversions possibles']
+		if (inversions) {
+			/*
+			Quel inversion possible est renseignée dans la situation courante ?
+			Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
+			le salaire net, a été renseigné ?
+			*/
+			let fixedObjective = inversions.find(name => situationGate(name) != undefined) //TODO ça va foirer avec des espaces de nom
+			//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
+			if (fixedObjective != null) {
+				let
+					fixedObjectiveRule = findRuleByName(parsedRules, fixedObjective),
+					nodeValue = computeInversion(
+						situationGate(fixedObjective),
+						i =>
+							evaluateNode(
+								n => (r.name === n || n === 'sys.filter') ? i : situationGate(n),
+								parsedRules,
+								fixedObjectiveRule
+							).nodeValue
+					)
+
+				return {nodeValue}
+
+			}
+		}
+
 		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
 			evaluated = R.evolve(
 				{
