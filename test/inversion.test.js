@@ -42,12 +42,12 @@ describe("inversions", () => {
 
 				- nom: brut
 				  format: euro
-				  inversions possibles: 
+				  inversions possibles:
 				    - net
 			`,
 			rules = yaml.safeLoad(rawRules).map(enrichRule),
 			analysis = analyseSituation(rules, "brut")(stateSelector)
 
-		expect(analysis.nodeValue).to.be.closeTo(2570, 0.001)
+		expect(analysis.nodeValue).to.be.closeTo(2000/(77/100), 0.0001*2000)
 	})
 })
