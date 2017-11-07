@@ -1,11 +1,12 @@
 import { expect } from "chai"
 import { enrichRule } from "../source/engine/rules"
-import { analyseSituation } from "../source/engine/traverse"
+import { analyseTopDown, analyseSituation } from "../source/engine/traverse"
+import { collectMissingVariables } from "../source/engine/generateQuestions"
 import yaml from "js-yaml"
-import dedent from 'dedent-js'
+import dedent from "dedent-js"
 
 describe("inversions", () => {
-	/*
+  /*
   it("should handle non inverted example", () => {
     let fakeState = { brut: 2300 }
     let stateSelector = name => fakeState[name]
@@ -28,12 +29,11 @@ describe("inversions", () => {
   })
 	*/
 
-	it("should handle inversions", () => {
-		let fakeState = { net: 2000 }
-		let stateSelector = name => fakeState[name]
+  it("should handle inversions", () => {
+    let fakeState = { net: 2000 }
+    let stateSelector = name => fakeState[name]
 
-		let
-			rawRules = dedent`
+    let rawRules = dedent`
 				- nom: net
 				  formule:
 				    multiplication:
@@ -45,9 +45,36 @@ describe("inversions", () => {
 				  inversions possibles:
 				    - net
 			`,
-			rules = yaml.safeLoad(rawRules).map(enrichRule),
-			analysis = analyseSituation(rules, "brut")(stateSelector)
+      rules = yaml.safeLoad(rawRules).map(enrichRule),
+      analysis = analyseSituation(rules, "brut")(stateSelector)
 
-		expect(analysis.nodeValue).to.be.closeTo(2000/(77/100), 0.0001*2000)
-	})
+    expect(analysis.nodeValue).to.be.closeTo(2000 / (77 / 100), 0.0001 * 2000)
+  })
+
+  it("should handle inversions with missing variables", () => {
+    let rawRules = dedent`
+				- nom: net
+				  formule:
+				    multiplication:
+				      assiette: brut
+				      variations:
+				        - si: cadre
+				          taux: 80%
+				        - si: ≠ cadre
+				          taux: 70%
+
+				- nom: brut
+				  format: euro
+				  inversions possibles:
+				    - net
+				- nom: cadre
+			`,
+      rules = yaml.safeLoad(rawRules).map(enrichRule),
+      stateSelector = name => ({ net: 2000 }[name]),
+      analysis = analyseTopDown(rules, "brut")(stateSelector),
+      missing = collectMissingVariables()(stateSelector, analysis)
+
+    expect(analysis.root.nodeValue).to.be.null
+    expect(missing).to.have.key("cadre")
+  })
 })
