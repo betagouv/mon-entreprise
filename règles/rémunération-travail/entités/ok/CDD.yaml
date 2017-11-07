@@ -91,25 +91,11 @@
 # Cette variable est le point de départ du simulateur "surcout CDD" :-D
 - espace: contrat salarié . CDD
   nom: surcoût CDD
-  description: |
-    En France, le contrat à durée déterminée est un contrat d'exception au CDI qui apporte à l'employeur plus de souplesse dans un cadre législatif précis, comportant en particulier des contreparties financières.
-  formule:
-    somme:
+  simulateur:
+    objectifs:
       - salaire net
       - coût du travail
       - CDD . surcoût
-  exemples:
-    - nom: "exemple 1"
-      situation:
-        salaire net: 1000
-        coût du travail: 1610
-        indemnités salarié CDD: 100
-        cotisations employeur CDD: 190
-        prime fin de contrat: 60.4
-        compensation congés payés: 39.6
-      valeur attendue: 2900
-
-  simulateur:
     titre: Simulateur CDD
     sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
     introduction:
