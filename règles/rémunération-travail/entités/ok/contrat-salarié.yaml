@@ -181,18 +181,13 @@
       - exonération JEI
 
 - espace: contrat salarié
-  nom: Salaire
-  description: |
-    Le coût du travail salarial
-  formule:
-    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
+  nom: salaire
+  simulateur:
+    objectifs:
       - salaire net
       - coût du travail
-
-  simulateur:
     titre: Simulateur de coût d'embauche
-    sous-titre: Découvrir le coût d'embauche ou le salaire réel
-    résultats: Le salaire net à partir du brut ou vice-versa, et les cotisations
+    sous-titre: Découvrir le coût d'embauche et le salaire réel
     par défaut:
       contrat salarié . temps partiel: non
       contrat salarié . heures par semaine: 35
