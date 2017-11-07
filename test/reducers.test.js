@@ -2,7 +2,6 @@ import R from 'ramda'
 
 import {expect} from 'chai'
 import {rules as realRules, enrichRule} from '../source/engine/rules'
-import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
 import {collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
 
 import {reduceSteps} from '../source/reducers'
@@ -22,10 +21,10 @@ describe('fold', function() {
           {nom: "bb", question: "?", titre: "b", espace: "top"}],
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector),
-        action = {type:'START_CONVERSATION', rootVariable: 'startHere'},
+        action = {type:'START_CONVERSATION', targetName: 'startHere'},
         // situation = analyseTopDown(rules,"startHere")(stateSelector({})),
         // objectives = getObjectives(stateSelector({}), situation.root, situation.parsedRules),
-        // missing = collectMissingVariables()(stateSelector({}),situation),
+        // missing = collectMissingVariables(stateSelector({}),situation),
         result = reducer({},action)
 
     expect(result).to.have.property('currentQuestion')
@@ -48,7 +47,7 @@ describe('fold', function() {
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', rootVariable: 'startHere'})
+    var step1 = reducer({},{type:'START_CONVERSATION', targetName: 'startHere'})
     fakeState['top . aa'] = 1
     var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
     fakeState['top . bb'] = 1
@@ -82,7 +81,7 @@ describe('fold', function() {
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', rootVariable: 'startHere'})
+    var step1 = reducer({},{type:'START_CONVERSATION', targetName: 'startHere'})
     fakeState['top . aa'] = 1
     var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
 
@@ -116,7 +115,7 @@ describe('fold', function() {
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', rootVariable: 'startHere'})
+    var step1 = reducer({},{type:'START_CONVERSATION', targetName: 'startHere'})
     fakeState['top . aa'] = 1
     var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
     var step3 = reducer(step2,{type:'STEP_ACTION', name: 'unfold', step: 'top . bb'})
