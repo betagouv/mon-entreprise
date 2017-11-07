@@ -405,38 +405,58 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 		? formuleValue
 		: isApplicable === false ? 0 : formuleValue == 0 ? 0 : null
 
+export let findInversion = (situationGate, rules, rule) => {
+	let inversions = rule['inversions possibles']
+	if (!inversions) return null
+	/*
+	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
+	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
+	le salaire net, a été renseigné ?
+	*/
+	let fixedObjective = inversions.find(name => situationGate(name) != undefined) //TODO ça va foirer avec des espaces de nom
+	if (fixedObjective == null) return null
+	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
+	return {
+		fixedObjective,
+		fixedObjectiveValue: situationGate(fixedObjective),
+		fixedObjectiveRule: findRuleByName(rules, fixedObjective)
+	}
+}
 
 export let treatRuleRoot = (rules, rule) => {
+
 	let evaluate = (situationGate, parsedRules, r) => {
-		let inversions = r['inversions possibles']
-		if (inversions) {
-			/*
-			Quelle inversion possible est renseignée dans la situation courante ?
-			Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
-			le salaire net, a été renseigné ?
-			*/
-			let fixedObjective = inversions.find(name => situationGate(name) != undefined) //TODO ça va foirer avec des espaces de nom
-			//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
-			if (fixedObjective != null) {
-				let
-					fixedObjectiveRule = findRuleByName(parsedRules, fixedObjective),
-					fx = x => evaluateNode(
-						n => (r.name === n || n === 'sys.filter') ? x : situationGate(n), //TODO pourquoi doit-on nous préoccuper de sys.filter ?
-						parsedRules,
-						fixedObjectiveRule
-					).nodeValue,
-					tolerancePercentage = 0.00001,
-					nodeValue = uniroot(
-						x => fx(x) - situationGate(fixedObjective),
-						0,
-						1000000000,
-						tolerancePercentage * situationGate(fixedObjective),
-						100
-					)
+		let inversion = findInversion(situationGate, parsedRules, r)
+		if (inversion) {
+			let {fixedObjectiveValue, fixedObjectiveRule} = inversion
+			let
+				fx = x => evaluateNode(
+					n => (r.name === n || n === 'sys.filter') ? x : situationGate(n), //TODO pourquoi doit-on nous préoccuper de sys.filter ?
+					parsedRules,
+					fixedObjectiveRule
+				).nodeValue,
+				tolerancePercentage = 0.00001,
+				// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
+				nodeValue = uniroot(
+					x => fx(x) - fixedObjectiveValue,
+					0,
+					1000000000,
+					tolerancePercentage * fixedObjectiveValue,
+					100
+				)
 
-				return {nodeValue}
-
-			}
+				// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
+				// considérer que l'inversion est impossible du fait de variables manquantes
+				// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
+			return fx(1000) == null ? {
+				...r,
+				nodeValue: null,
+				inversionMissingVariables: collectNodeMissing(evaluateNode(
+					n => (r.name === n || n === 'sys.filter') ? 1000 : situationGate(n), //TODO pourquoi doit-on nous préoccuper de sys.filter ?
+					parsedRules,
+					fixedObjectiveRule
+				))
+			} : {...r, nodeValue}
 		}
 
 		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
@@ -465,12 +485,19 @@ export let treatRuleRoot = (rules, rule) => {
 		return { ...evaluated, nodeValue, isApplicable }
 	}
 
-	let collectMissing = ({
-		formule,
-		isApplicable,
-		'non applicable si': notApplicable,
-		'applicable si': applicable
-	}) => {
+	let collectMissing = (rule) => {
+		let {
+			formule,
+			isApplicable,
+			'non applicable si': notApplicable,
+			'applicable si': applicable,
+			inversionMissingVariables
+		} = rule
+
+		if (inversionMissingVariables) {
+			return inversionMissingVariables
+		}
+
 		let
 			condMissing =
 				val(notApplicable) === true
