@@ -8,23 +8,8 @@ import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {analyseSituation, findInversion} from './traverse'
-import {formValueSelector} from 'redux-form'
-import {rules, findRuleByDottedName} from './rules'
-import {collectNodeMissing, evaluateNode} from './evaluation'
-
-
-
-let situationGate = state =>
-	name => formValueSelector('conversation')(state, name)
-
-
-export let analyse = rootVariable => R.pipe(
-	situationGate,
-	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
-	analyseSituation(rules, rootVariable)
-)
-
+import {findRuleByDottedName} from './rules'
+import {collectNodeMissing} from './evaluation'
 
 
 /*
@@ -42,33 +27,8 @@ export let analyse = rootVariable => R.pipe(
 	missingVariables: {variable: [objectives]}
  */
 
-// On peut travailler sur une somme, les objectifs sont alors les variables de cette somme.
-// Ou sur une variable unique ayant une formule ou une conodition 'non applicable si', elle est elle-même le seul objectif
-export let getObjectives = (situationGate, root, parsedRules) => {
-	let formuleType = R.path(["formule", "explanation", "name"])(root)
-
-	let targets = formuleType == "somme"
-		? R.pluck(
-				"dottedName",
-				R.path(["formule", "explanation", "explanation"])(root)
-			)
-		: (root.formule || root['non applicable si'] || root['applicable si']) ? [root.dottedName] : null,
-		names = targets ? R.reject(R.isNil)(targets) : []
-
-	let inversion = findInversion(situationGate, parsedRules, root)
-
-	if (inversion){
-		return [evaluateNode(situationGate, parsedRules, inversion.fixedObjectiveRule)]
-	}
-
-	let findAndEvaluate = name => evaluateNode(situationGate,parsedRules,findRuleByDottedName(parsedRules,name))
-
-	return R.map(findAndEvaluate,names)
-}
-
-export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (situationGate, {root, parsedRules}) => {
-	return R.pipe(
-		R.curry(getObjectives)(situationGate),
+export let collectMissingVariables = targets =>
+	R.pipe(
 		R.chain( v =>
 			R.pipe(
 				collectNodeMissing,
@@ -77,17 +37,17 @@ export let collectMissingVariables = (groupMethod='groupByMissingVariable') => (
 			)(v)
 		),
 		//groupBy missing variable but remove mv from value, it's now in the key
-		R.groupBy(groupMethod == 'groupByMissingVariable' ? R.last : R.head),
-		R.map(R.map(groupMethod == 'groupByMissingVariable' ? R.head : R.last))
+		R.groupBy(R.last),
+		R.map(R.map(R.head))
 		// below is a hand implementation of above... function composition can be nice sometimes :')
 		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-	)(root, parsedRules)
-}
+	)(targets)
 
-export let nextSteps = (situationGate, flatRules, analysedSituation) => {
+
+export let nextSteps = (situationGate, flatRules, analysis) => {
 	let impact = ([variable, objectives]) => R.length(objectives)
 
-	let missingVariables = collectMissingVariables('groupByMissingVariable')(situationGate, analysedSituation),
+	let missingVariables = collectMissingVariables(analysis.targets),
 		pairs = R.toPairs(missingVariables),
 		sortedPairs = R.sort(R.descend(impact), pairs)
 

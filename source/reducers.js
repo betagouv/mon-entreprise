@@ -9,7 +9,7 @@ import {nextSteps, makeQuestion} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
 
-import {analyseTopDown} from 'Engine/traverse'
+import {analyse} from 'Engine/traverse'
 
 import ReactPiwik from 'Components/Tracker';
 
@@ -27,9 +27,9 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
 		return state
 
-	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.root.name
+	let targetName = action.type == START_CONVERSATION ? action.targetName : state.targetName
 
-	let sim = findRuleByName(flatRules, rootVariable),
+	let sim = findRuleByName(flatRules, targetName),
 		// Hard assumptions cannot be changed, they are used to specialise a simulator
 		// before the user sees the first question
 		hardAssumptions = R.pathOr({},['simulateur','hypothèses'],sim),
@@ -39,18 +39,19 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		completeSituation = assume(intermediateSituation,softAssumptions)
 
 	let situationGate = completeSituation(state),
-		analysedSituation = analyseTopDown(flatRules,rootVariable)(situationGate)
+		analysis = analyse(flatRules, targetName)(situationGate)
 
 	let newState = {
 		...state,
-		analysedSituation,
+		targetName,
+		analysis,
 		situationGate: situationGate,
 		extraSteps: [],
 		explainedVariable: null
 	}
 
 	if (action.type == START_CONVERSATION) {
-		let next = nextSteps(situationGate, flatRules, newState.analysedSituation)
+		let next = nextSteps(situationGate, flatRules, newState.analysis)
 
 		return {
 			...newState,
@@ -62,7 +63,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		tracker.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
 
 		let foldedSteps = [...state.foldedSteps, state.currentQuestion],
-			next = nextSteps(situationGate, flatRules, newState.analysedSituation),
+			next = nextSteps(situationGate, flatRules, newState.analysis),
 			assumptionsMade = !R.isEmpty(softAssumptions),
 			done = next.length == 0
 
@@ -70,10 +71,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		// where the answers were previously given default reasonable assumptions
 		if (done && assumptionsMade) {
 			let newSituation = intermediateSituation(state),
-				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
-				extraSteps = nextSteps(newSituation, flatRules, reanalyse)
+				reanalysis = analyse(flatRules, targetName)(newSituation),
+				extraSteps = nextSteps(newSituation, flatRules, reanalysis)
 
-			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
+			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length])
 
 			return {
 				...newState,
@@ -142,7 +143,9 @@ export default reduceReducers(
 		extraSteps: (steps = []) => steps,
 		currentQuestion: (state = null) => state,
 
-		analysedSituation: (state = []) => state,
+		analysis: (state = null) => state,
+
+		targetName: (state = null) => state,
 
 		situationGate: (state = name => null) => state,
 		refine: (state = false) => state,
