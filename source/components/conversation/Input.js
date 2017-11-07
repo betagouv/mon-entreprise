@@ -6,7 +6,7 @@ import R from 'ramda'
 @FormDecorator('input')
 export default class Input extends Component {
 	state = {
-		suggestedInput: false
+		hoverSuggestion: null
 	}
 	render() {
 		let {
@@ -19,8 +19,9 @@ export default class Input extends Component {
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = touched && error,
+			{hoverSuggestion} = this.state,
 			sendButtonDisabled =
-				this.state.suggestedInput || !input.value || inputError
+				input.value == null || input.value == '' || inputError
 
 		if (typeof suggestions == 'string') return <Select />
 		return (
@@ -29,6 +30,7 @@ export default class Input extends Component {
 					<input
 						type="text"
 						{...input}
+						value={hoverSuggestion != null ? hoverSuggestion : input.value}
 						className={classnames({ suffixed })}
 						id={'step-' + name}
 						{...attributes}
@@ -73,7 +75,7 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, submit, suggestions } = this.props.stepProps
+		let { setFormValue, submit, suggestions, input } = this.props.stepProps
 		if (!suggestions) return null
 		return (
 			<span className="inputSuggestions">
@@ -84,11 +86,8 @@ export default class Input extends Component {
 							key={value}
 							onClick={e =>
 								setFormValue('' + value) && submit() && e.preventDefault()}
-							onMouseOver={() =>
-								setFormValue('' + value) &&
-								this.setState({ suggestedInput: true })}
-							onMouseOut={() =>
-								setFormValue('') && this.setState({ suggestedInput: false })}
+							onMouseOver={() => this.setState({ hoverSuggestion: value })}
+							onMouseOut={() => this.setState({ hoverSuggestion: null })}
 							style={{ color: themeColours.colour }}
 						>
 							<a href="#" title="cliquer pour valider">
