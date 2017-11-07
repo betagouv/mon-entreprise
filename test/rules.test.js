@@ -1,7 +1,6 @@
 import R from 'ramda'
 import {expect} from 'chai'
 import {rules, enrichRule, findVariantsAndRecords} from '../source/engine/rules'
-import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
 

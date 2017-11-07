@@ -24,11 +24,10 @@ import ReactPiwik from './Tracker'
 		foldedSteps: state.foldedSteps,
 		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
-		analysedSituation: state.analysedSituation,
 		situationGate: state.situationGate,
 	}),
 	dispatch => ({
-		startConversation: rootVariable => dispatch({type: START_CONVERSATION, rootVariable}),
+		startConversation: targetName => dispatch({type: START_CONVERSATION, targetName}),
 		resetForm: () => dispatch(reset('conversation'))
 	})
 )
@@ -56,7 +55,8 @@ export default class extends Component {
 			this.props.startConversation(name)
 	}
 	render(){
-		if (!this.rule.formule) return <Redirect to={"/regle/" + this.name}/>
+		if (!this.rule.formule && !R.path(['simulateur', 'objectifs'], this.rule))
+			return <Redirect to={'/regle/' + this.name} />
 
 		let
 			{started} = this.state,

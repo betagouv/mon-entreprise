@@ -1,6 +1,6 @@
 import { expect } from "chai"
 import { enrichRule } from "../source/engine/rules"
-import { analyseTopDown, analyseSituation } from "../source/engine/traverse"
+import { analyse } from "../source/engine/traverse"
 import { collectMissingVariables } from "../source/engine/generateQuestions"
 import yaml from "js-yaml"
 import dedent from "dedent-js"
@@ -23,9 +23,9 @@ describe("inversions", () => {
 				  format: euro
 			`,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
-      analysis = analyseSituation(rules, "net")(stateSelector)
+      analysis = analyse(rules, "net")(stateSelector)
 
-    expect(analysis.nodeValue).to.be.closeTo(1771, 0.001)
+    expect(analysis.targets[0].nodeValue).to.be.closeTo(1771, 0.001)
   })
 	*/
 
@@ -46,9 +46,9 @@ describe("inversions", () => {
 				    - net
 			`,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
-      analysis = analyseSituation(rules, "brut")(stateSelector)
+      analysis = analyse(rules, "brut")(stateSelector)
 
-    expect(analysis.nodeValue).to.be.closeTo(2000 / (77 / 100), 0.0001 * 2000)
+    expect(analysis.targets[0].nodeValue).to.be.closeTo(2000 / (77 / 100), 0.0001 * 2000)
   })
 
   it("should handle inversions with missing variables", () => {
@@ -71,10 +71,10 @@ describe("inversions", () => {
 			`,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
       stateSelector = name => ({ net: 2000 }[name]),
-      analysis = analyseTopDown(rules, "brut")(stateSelector),
-      missing = collectMissingVariables()(stateSelector, analysis)
+      analysis = analyse(rules, "brut")(stateSelector),
+      missing = collectMissingVariables(analysis.targets)
 
-    expect(analysis.root.nodeValue).to.be.null
+    expect(analysis.targets[0].nodeValue).to.be.null
     expect(missing).to.have.key("cadre")
   })
 })
