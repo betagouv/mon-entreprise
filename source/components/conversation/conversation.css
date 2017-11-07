@@ -302,10 +302,9 @@ fieldset > .ignore {
 	align-items: flex-end;
 }
 .step .inputSuggestions li {
-	margin-left: .6em;
 }
 .step .inputSuggestions a {
-	padding: .1em .6em;
+	padding: .1em .9em;
 	font-weight: 600;
 }
 .step .inputSuggestions a:hover {
