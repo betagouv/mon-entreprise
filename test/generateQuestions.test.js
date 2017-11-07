@@ -1,7 +1,7 @@
 import R from 'ramda'
 import {expect} from 'chai'
 import {rules as realRules, enrichRule} from '../source/engine/rules'
-import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
+import {analyseTopDown} from '../source/engine/traverse'
 import {nextSteps, collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
 
 let stateSelector = (name) => null
