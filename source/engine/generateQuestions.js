@@ -8,7 +8,7 @@ import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {analyseSituation} from './traverse'
+import {analyseSituation, findInversion} from './traverse'
 import {formValueSelector} from 'redux-form'
 import {rules, findRuleByDottedName} from './rules'
 import {collectNodeMissing, evaluateNode} from './evaluation'
@@ -55,7 +55,14 @@ export let getObjectives = (situationGate, root, parsedRules) => {
 		: (root.formule || root['non applicable si'] || root['applicable si']) ? [root.dottedName] : null,
 		names = targets ? R.reject(R.isNil)(targets) : []
 
+	let inversion = findInversion(situationGate, parsedRules, root)
+
+	if (inversion){
+		return [evaluateNode(situationGate, parsedRules, inversion.fixedObjectiveRule)]
+	}
+
 	let findAndEvaluate = name => evaluateNode(situationGate,parsedRules,findRuleByDottedName(parsedRules,name))
+
 	return R.map(findAndEvaluate,names)
 }
 
