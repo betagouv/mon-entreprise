@@ -188,13 +188,23 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - salaire net
       - coût du travail
-      - CDD . surcoût
 
   simulateur:
     titre: Simulateur de coût d'embauche
     sous-titre: Découvrir le coût d'embauche ou le salaire réel
     résultats: Le salaire net à partir du brut ou vice-versa, et les cotisations
-
+    par défaut:
+      contrat salarié . temps partiel: non
+      contrat salarié . heures par semaine: 35
+      contrat salarié . CDD . événement: non
+      contrat salarié . CDD . congés non pris: 0
+      contrat salarié . CDD . contrat jeune vacances: non
+      contrat salarié . forfait complémentaire santé: 40
+      contrat salarié . statut JEI: non
+      contrat salarié . exposition pénibilité: non
+      contrat salarié . assujettie à la taxe sur les salaires: non
+      contrat salarié . ATMP . taux collectif ATMP: 1
+      entreprise . association non lucrative: non
 
 - espace: contrat salarié
   nom: jours de congés légaux
