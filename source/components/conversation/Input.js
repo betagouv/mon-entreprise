@@ -81,7 +81,7 @@ export default class Input extends Component {
 			<span>{'Donne la valeur pour' + this.state.inversionName}</span>,
 			<select>
 				{inversions.map(({ name, title, dottedName }) => (
-					<option value={name} selected={dottedName == inputName} onClick={() => this.inverse(dottedName)}>
+					<option value={name} selected={dottedName == inputName} onClick={() => this.inverse(inputName, dottedName)}>
 						{title || name}
 					</option>
 				))}
@@ -89,9 +89,12 @@ export default class Input extends Component {
 			<span> de </span>
 		]
 	}
-	inverse(inversionName) {
+	inverse(inputName, inversionName) {
 		this.setState({inversionName})
-		this.props.stepProps.setFormValue(this.props.input.value, inversionName)
+		let inversionCouple = [inputName, inversionName]
+		this.props.stepProps.setInversion(inversionCouple)
+		//todo change the target !
+
 	}
 	renderSuggestions(themeColours) {
 		let { setFormValue, submit, suggestions } = this.props.stepProps

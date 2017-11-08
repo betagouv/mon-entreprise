@@ -7,7 +7,7 @@ import {reducer as formReducer, formValueSelector} from 'redux-form'
 import {rules, findRuleByName } from 'Engine/rules'
 import {nextSteps, makeQuestion} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
-import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
+import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR, SET_INVERSION} from './actions'
 
 import {analyse} from 'Engine/traverse'
 
@@ -36,9 +36,15 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		// Soft assumptions are revealed after the simulation ends, and can be changed
 		softAssumptions = R.pathOr({},['simulateur','par défaut'],sim),
 		intermediateSituation = assume(answerSource, hardAssumptions),
-		completeSituation = assume(intermediateSituation,softAssumptions)
+		completeSituation = assume(intermediateSituation,softAssumptions),
+		finalSituation = state => name =>
+			completeSituation(state)(
+				state.inversion && name === state.inversion[0]
+					? state.inversion[1]
+					: name
+			)
 
-	let situationGate = completeSituation(state),
+	let situationGate = finalSituation(state),
 		analysis = analyse(flatRules, targetName)(situationGate)
 
 	let newState = {
@@ -130,6 +136,14 @@ function explainedVariable(state = null, {type, variableName=null}) {
 	}
 }
 
+function inversion(state = null, {type, inversionCouple}) {
+	switch (type) {
+	case SET_INVERSION:
+		return inversionCouple
+	default:
+		return state
+	}
+}
 
 export default reduceReducers(
 	combineReducers({
@@ -148,7 +162,10 @@ export default reduceReducers(
 		targetName: (state = null) => state,
 
 		situationGate: (state = name => null) => state,
+
 		refine: (state = false) => state,
+
+		inversion,
 
 		themeColours,
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import {Field, change} from 'redux-form'
-import {stepAction} from '../../actions'
+import {stepAction, SET_INVERSION} from '../../actions'
 import StepAnswer from './StepAnswer'
 import {capitalise0} from '../../utils'
 
@@ -21,7 +21,8 @@ export var FormDecorator = formType => RenderField =>
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
-			setFormValue: (field, value) => dispatch(change('conversation', field, value))
+			setFormValue: (field, value) => dispatch(change('conversation', field, value)),
+			setInversion: inversionCouple => dispatch({type: SET_INVERSION, inversionCouple})
 		})
 	)
 	class extends Component {
@@ -35,7 +36,8 @@ export var FormDecorator = formType => RenderField =>
 				setFormValue,
 				/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
 				de la réponse est affiché */
-				unfolded
+				unfolded,
+				setInversion
 			} = this.props,
 				{
 				name,
@@ -66,12 +68,12 @@ export var FormDecorator = formType => RenderField =>
 				possibleChoice, /* RhetoricalQuestion component's only choice :'-( */
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 				submit: () => setTimeout(() => stepAction('fold', name), 1),
-				// some forms may want to change the name under which its data is stored
-				setFormValue: (value, formName=name) => setFormValue(formName, value),
+				setFormValue: value => setFormValue(name, value),
 				valueType,
 				suggestions,
 				subquestion,
-				inversions
+				inversions,
+				setInversion
 			}
 
 			/* There won't be any answer zone here, widen the question zone */
