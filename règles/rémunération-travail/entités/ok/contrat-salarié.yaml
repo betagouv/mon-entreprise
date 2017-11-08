@@ -42,7 +42,7 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut
-  question: Quel est le salaire brut mensuel ?
+  question: Quel est le salaire mensuel ?
   description: |
     C'est le salaire de négociation du contrat de travail en France.
 

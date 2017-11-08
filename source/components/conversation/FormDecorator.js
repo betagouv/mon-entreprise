@@ -48,7 +48,8 @@ export var FormDecorator = formType => RenderField =>
 				human,
 				helpText,
 				suggestions,
-				subquestion
+				subquestion,
+				inversions
 			} = this.props.step
 			this.step = this.props.step
 
@@ -58,16 +59,19 @@ export var FormDecorator = formType => RenderField =>
 			des balises html, <input> dans notre cas.
 			*/
 			let stepProps = {
+				name,
 				attributes, /* Input component's html attributes */
 				choices,  /* Question component's radio choices */
 				optionsURL, /* Select component's data source */
 				possibleChoice, /* RhetoricalQuestion component's only choice :'-( */
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 				submit: () => setTimeout(() => stepAction('fold', name), 1),
-				setFormValue: value => setFormValue(name, value),
+				// some forms may want to change the name under which its data is stored
+				setFormValue: (value, formName=name) => setFormValue(formName, value),
 				valueType,
 				suggestions,
-				subquestion
+				subquestion,
+				inversions
 			}
 
 			/* There won't be any answer zone here, widen the question zone */

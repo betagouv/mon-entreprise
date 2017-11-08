@@ -10,23 +10,22 @@ export default class Input extends Component {
 	}
 	render() {
 		let {
-				name,
 				input,
-				stepProps: { attributes, submit, valueType, suggestions },
+				stepProps: { name, attributes, submit, valueType },
 				meta: { touched, error, active },
 				themeColours
 			} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = touched && error,
-			{hoverSuggestion} = this.state,
+			{ hoverSuggestion } = this.state,
 			sendButtonDisabled =
 				input.value == null || input.value == '' || inputError
 
-		if (typeof suggestions == 'string') return <Select />
 		return (
 			<span>
 				<span className="answer">
+					{this.renderInversions()}
 					<input
 						type="text"
 						{...input}
@@ -74,8 +73,28 @@ export default class Input extends Component {
 			</span>
 		)
 	}
+	renderInversions() {
+		let { stepProps: { name: inputName, inversions } } = this.props
+		if (!inversions) return null
+
+		return [
+			<span>{'Donne la valeur pour' + this.state.inversionName}</span>,
+			<select>
+				{inversions.map(({ name, title, dottedName }) => (
+					<option value={name} selected={dottedName == inputName} onClick={() => this.inverse(dottedName)}>
+						{title || name}
+					</option>
+				))}
+			</select>,
+			<span> de </span>
+		]
+	}
+	inverse(inversionName) {
+		this.setState({inversionName})
+		this.props.stepProps.setFormValue(this.props.input.value, inversionName)
+	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, submit, suggestions, input } = this.props.stepProps
+		let { setFormValue, submit, suggestions } = this.props.stepProps
 		if (!suggestions) return null
 		return (
 			<span className="inputSuggestions">
@@ -85,7 +104,7 @@ export default class Input extends Component {
 						<li
 							key={value}
 							onClick={e =>
-								setFormValue('' + value) && submit() && e.preventDefault()}
+								setFormValue('' + value, this.state.inversionName) && submit() && e.preventDefault()}
 							onMouseOver={() => this.setState({ hoverSuggestion: value })}
 							onMouseOut={() => this.setState({ hoverSuggestion: null })}
 							style={{ color: themeColours.colour }}

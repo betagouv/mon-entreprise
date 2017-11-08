@@ -8,7 +8,7 @@ import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {findRuleByDottedName} from './rules'
+import {findRuleByDottedName, findRuleByName} from './rules'
 import {collectNodeMissing} from './evaluation'
 
 
@@ -110,6 +110,7 @@ export let makeQuestion = flatRules => dottedName => {
 				placeholder: 'votre réponse',
 			},
 			suggestions: rule.suggestions,
+			inversions: rule['inversions possibles'] && rule['inversions possibles'].map(n => findRuleByName(flatRules, n)).concat([rule])
 		})
 	let selectQuestion = rule => ({
 			component: Select,
