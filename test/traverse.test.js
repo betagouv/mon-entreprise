@@ -1,33 +1,34 @@
 import {expect} from 'chai'
 import {rules as realRules, enrichRule} from '../source/engine/rules'
-import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
+import {analyse, getTargets} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
 
-describe('analyseSituation', function() {
+
+describe('analyse', function() {
 
   it('should directly return simple numerical values', function() {
     let rule = {name: "startHere", formule: 3269}
     let rules = [rule]
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3269)
   });
 
   it('should compute expressions combining constants', function() {
     let rule = {name: "startHere", formule: "32 + 69"}
     let rules = [rule]
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',101)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',101)
   });
 
 });
 
-describe('analyseSituation on raw rules', function() {
+describe('analyse on raw rules', function() {
 
   it('should handle direct referencing of a variable', function() {
     let rawRules = [
           {nom: "startHere", formule: "dix", espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',10)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',10)
   });
 
   it('should handle expressions referencing other rules', function() {
@@ -35,7 +36,7 @@ describe('analyseSituation on raw rules', function() {
           {nom: "startHere", formule: "3259 + dix", espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3269)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3269)
   });
 
   it('should handle applicability conditions', function() {
@@ -44,7 +45,7 @@ describe('analyseSituation on raw rules', function() {
           {nom: "dix", formule: 10, espace: "top", "non applicable si" : "vrai"},
           {nom: "vrai", formule: "2 > 1", espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3259)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3259)
   });
 
   it('should handle comparisons', function() {
@@ -52,7 +53,7 @@ describe('analyseSituation on raw rules', function() {
           {nom: "startHere", formule: "3259 > dix", espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',true)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',true)
   });
 
   /* TODO: make this pass
@@ -62,26 +63,26 @@ describe('analyseSituation on raw rules', function() {
           {nom: "dix", formule: 10, espace: "top", "non applicable si" : "vrai"},
           {nom: "vrai", formule: "1", espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3259)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3259)
   });
   */
 
 });
 
-describe('analyseSituation with mecanisms', function() {
+describe('analyse with mecanisms', function() {
 
   it('should handle n-way "or"', function() {
     let rawRules = [
           {nom: "startHere", formule: {"une de ces conditions": ["1 > 2", "1 > 0", "0 > 2"]}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',true)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',true)
   });
 
   it('should handle n-way "and"', function() {
     let rawRules = [
           {nom: "startHere", formule: {"toutes ces conditions": ["1 > 2", "1 > 0", "0 > 2"]}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',false)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',false)
   });
 
   it('should handle switch statements', function() {
@@ -93,14 +94,14 @@ describe('analyseSituation with mecanisms', function() {
               }}, espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',11)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',11)
   });
 
   it('should handle percentages', function() {
     let rawRules = [
           {nom: "startHere", formule: "35%", espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',0.35)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',0.35)
   });
 
   it('should handle sums', function() {
@@ -108,14 +109,14 @@ describe('analyseSituation with mecanisms', function() {
           {nom: "startHere", formule: {"somme": [3200, "dix", 9]}},
           {nom: "dix", formule: 10}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3219)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3219)
   });
 
   it('should handle multiplications', function() {
     let rawRules = [
           {nom: "startHere", formule: {"multiplication": {assiette:3259, plafond:3200, facteur:1, taux:1.5}}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',4800)
   });
 
   it('should handle components in multiplication', function() {
@@ -124,7 +125,7 @@ describe('analyseSituation with mecanisms', function() {
             composantes: [{taux:0.7}, {taux:0.8}]
           }}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',4800)
   });
 
   it('should apply a ceiling to the sum of components', function() {
@@ -133,7 +134,7 @@ describe('analyseSituation with mecanisms', function() {
             composantes: [{taux:0.7}, {taux:0.8}]
           }}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',4800)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',4800)
   });
 
   it('should handle progressive scales', function() {
@@ -144,7 +145,7 @@ describe('analyseSituation with mecanisms', function() {
             "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.2}, ,{"au-dessus de":2, taux: 10}]
           }}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
   });
 
   it('should handle progressive scales with components', function() {
@@ -158,7 +159,7 @@ describe('analyseSituation with mecanisms', function() {
             ]
           }}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
   });
 
   it('should handle progressive scales with variations', function() {
@@ -172,14 +173,14 @@ describe('analyseSituation with mecanisms', function() {
             ]
           }}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1800+80)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1800+80)
   });
 
   it('should handle max', function() {
     let rawRules = [
           {nom: "startHere", formule: {"le maximum de": [3200, 60, 9]}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',3200)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3200)
   });
 
   it('should handle complements', function() {
@@ -187,7 +188,7 @@ describe('analyseSituation with mecanisms', function() {
           {nom: "startHere", formule: {complément: {cible: "dix", montant: 93}}, espace: "top"},
           {nom: "dix", formule: 17, espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',93-17)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',93-17)
   });
 
   it('should handle components in complements', function() {
@@ -197,7 +198,7 @@ describe('analyseSituation with mecanisms', function() {
           }}, espace: "top"},
           {nom: "dix", formule: 17, espace: "top"}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',2*(93-17))
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',2*(93-17))
   });
 
   it('should handle filtering on components', function() {
@@ -216,7 +217,7 @@ describe('analyseSituation with mecanisms', function() {
             ]
           }}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',50+400+40)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',50+400+40)
   });
 
   it('should compute consistent values', function() {
@@ -236,8 +237,8 @@ describe('analyseSituation with mecanisms', function() {
             ]
           }}}],
         rules = rawRules.map(enrichRule)
-    expect(analyseSituation(rules,"orHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',100+1200+80)
+    expect(analyse(rules,"orHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
   });
 
   it('should handle selection', function() {
@@ -255,7 +256,7 @@ describe('analyseSituation with mecanisms', function() {
             données: 'taux_versement_transport'},
           {espace: "top", nom: "code postal", format: "nombre"}],
         rules = rawRules.map(rule => enrichRule(rule,data))
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue',0.02)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',0.02)
   });
 
   it('should handle failed selections', function() {
@@ -273,7 +274,7 @@ describe('analyseSituation with mecanisms', function() {
             données: 'taux_versement_transport'},
           {espace: "top", nom: "code postal", format: "nombre"}],
         rules = rawRules.map(rule => enrichRule(rule,data))
-    expect(analyseSituation(rules,"startHere")(stateSelector)).to.have.property('nodeValue', 0)
+    expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue', 0)
   });
 
 });

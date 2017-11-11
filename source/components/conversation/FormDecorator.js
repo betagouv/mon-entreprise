@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import {Field, change} from 'redux-form'
-import {stepAction} from '../../actions'
+import {stepAction, SET_INVERSION} from '../../actions'
 import StepAnswer from './StepAnswer'
 import {capitalise0} from '../../utils'
 
@@ -21,7 +21,8 @@ export var FormDecorator = formType => RenderField =>
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
-			setFormValue: (field, value) => dispatch(change('conversation', field, value))
+			setFormValue: (field, value) => dispatch(change('conversation', field, value)),
+			setInversion: inversionCouple => dispatch({type: SET_INVERSION, inversionCouple})
 		})
 	)
 	class extends Component {
@@ -35,7 +36,8 @@ export var FormDecorator = formType => RenderField =>
 				setFormValue,
 				/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
 				de la réponse est affiché */
-				unfolded
+				unfolded,
+				setInversion
 			} = this.props,
 				{
 				name,
@@ -48,7 +50,8 @@ export var FormDecorator = formType => RenderField =>
 				human,
 				helpText,
 				suggestions,
-				subquestion
+				subquestion,
+				inversions
 			} = this.props.step
 			this.step = this.props.step
 
@@ -58,6 +61,7 @@ export var FormDecorator = formType => RenderField =>
 			des balises html, <input> dans notre cas.
 			*/
 			let stepProps = {
+				name,
 				attributes, /* Input component's html attributes */
 				choices,  /* Question component's radio choices */
 				optionsURL, /* Select component's data source */
@@ -67,7 +71,9 @@ export var FormDecorator = formType => RenderField =>
 				setFormValue: value => setFormValue(name, value),
 				valueType,
 				suggestions,
-				subquestion
+				subquestion,
+				inversions,
+				setInversion
 			}
 
 			/* There won't be any answer zone here, widen the question zone */

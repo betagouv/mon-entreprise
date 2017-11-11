@@ -1,27 +1,12 @@
 import R from 'ramda'
 import {expect} from 'chai'
 import {rules as realRules, enrichRule} from '../source/engine/rules'
-import {analyseSituation, analyseTopDown} from '../source/engine/traverse'
-import {nextSteps, collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
+import {analyse} from '../source/engine/traverse'
+import {nextSteps, collectMissingVariables} from '../source/engine/generateQuestions'
+
 
 let stateSelector = (name) => null
 
-describe('getObjectives', function() {
-
-  it('should derive objectives from the root rule', function() {
-    let rawRules = [
-          {nom: "startHere", formule: 2, "non applicable si" : "sum . evt . ko", espace: "sum"},
-          {nom: "evt", espace: "sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
-          {nom: "ko", espace: "sum . evt"}],
-        rules = rawRules.map(enrichRule),
-        {root, parsedRules} = analyseTopDown(rules,"startHere")(stateSelector),
-        result = getObjectives(stateSelector, root, parsedRules)
-
-    expect(result).to.have.lengthOf(1)
-    expect(result[0]).to.have.property('name','startHere')
-  });
-
-});
 
 describe('collectMissingVariables', function() {
 
@@ -31,8 +16,8 @@ describe('collectMissingVariables', function() {
           {nom: "evt", espace: "sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
     expect(result).to.have.property('sum . evt . ko')
   });
 
@@ -42,8 +27,8 @@ describe('collectMissingVariables', function() {
           {nom: "nope", espace: "sum . evt"},
           {nom: "nyet", espace: "sum . evt"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.have.property('sum . evt . nyet')
     expect(result).to.have.property('sum . evt . nope')
@@ -54,8 +39,8 @@ describe('collectMissingVariables', function() {
           {nom: "startHere", formule: "trois", "non applicable si" : "3 > 2", espace: "sum"},
           {nom: "trois", espace: "sum"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.deep.equal({})
   });
@@ -65,8 +50,8 @@ describe('collectMissingVariables', function() {
           {nom: "startHere", formule: "trois", "non applicable si" : {"une de ces conditions": ["3 > 2", "trois"]}, espace: "sum"},
           {nom: "trois", espace: "sum"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.deep.equal({})
   });
@@ -76,8 +61,8 @@ describe('collectMissingVariables', function() {
           {nom: "startHere", formule: "trois", espace: "top"},
           {nom: "trois", formule: {"une possibilité":["ko"]}, espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.have.property('top . trois')
   });
@@ -87,8 +72,8 @@ describe('collectMissingVariables', function() {
           {nom: "startHere", formule: "trois", espace: "top"},
           {nom: "trois", formule: {"une possibilité":["ko"]}, "non applicable si": 1, espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.deep.equal({})
   });
@@ -100,8 +85,8 @@ describe('collectMissingVariables', function() {
           {nom: "startHere", formule: "trois", espace: "top"},
           {nom: "trois", formule: {"une possibilité":["ko"]}, espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(mySelector),
-        result = collectMissingVariables()(mySelector,situation)
+        analysis = analyse(rules,"startHere")(mySelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.deep.equal({})
   });
@@ -115,8 +100,8 @@ describe('collectMissingVariables', function() {
               }}, espace: "top"},
           {nom: "dix", espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.have.property('top . dix')
   });
@@ -135,8 +120,8 @@ describe('collectMissingVariables', function() {
           {nom: "dix", espace: "top"},
           {nom: "deux", espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.have.property('top . dix')
     // expect(result).to.have.property('top . deux') - this is a TODO
@@ -156,8 +141,8 @@ describe('collectMissingVariables', function() {
           {nom: "dix", espace: "top"},
           {nom: "deux", espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.deep.equal({})
   });
@@ -170,8 +155,8 @@ describe('collectMissingVariables', function() {
               }}, espace: "top"},
           {nom: "dix", espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.deep.equal({})
   });
@@ -193,8 +178,8 @@ describe('collectMissingVariables', function() {
     { nom: "dix", espace: "top" }
   ],
   rules = rawRules.map(enrichRule),
-  situation = analyseTopDown(rules, "startHere")(stateSelector),
-  result = collectMissingVariables()(stateSelector, situation);
+  analysis = analyse(rules, "startHere")(stateSelector),
+  result = collectMissingVariables(analysis.targets)
 
 
   expect(result).to.have.property('top . dix')
@@ -210,8 +195,8 @@ describe('collectMissingVariables', function() {
               }}, espace: "top"},
           {nom: "dix", espace: "top"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"startHere")(stateSelector),
-        result = collectMissingVariables()(stateSelector,situation)
+        analysis = analyse(rules,"startHere")(stateSelector),
+        result = collectMissingVariables(analysis.targets)
 
     expect(result).to.deep.equal({})
   });
@@ -227,8 +212,8 @@ describe('nextSteps', function() {
           {nom: "evt", espace: "top . sum", formule: {"une possibilité":["ko"]}, titre: "Truc", question:"?"},
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
-        situation = analyseTopDown(rules,"sum")(stateSelector),
-        result = nextSteps(stateSelector, rules, situation)
+        analysis = analyse(rules,"sum")(stateSelector),
+        result = nextSteps(stateSelector, rules, analysis)
 
     expect(result).to.have.lengthOf(1)
     expect(result[0]).to.equal("top . sum . evt")
@@ -236,10 +221,9 @@ describe('nextSteps', function() {
 
   it('should generate questions from the real rules', function() {
     let rules = realRules.map(enrichRule),
-        situation = analyseTopDown(rules,"surcoût CDD")(stateSelector),
-        objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
-        missing = collectMissingVariables()(stateSelector,situation),
-        result = nextSteps(stateSelector, rules, situation)
+        analysis = analyse(rules,"surcoût CDD")(stateSelector),
+        missing = collectMissingVariables(analysis.targets),
+        result = nextSteps(stateSelector, rules, analysis)
 
     // expect(objectives).to.have.lengthOf(4)
 
@@ -268,10 +252,9 @@ describe('nextSteps', function() {
     let stateSelector = (name) => ({"contrat salarié . type de contrat":"CDI","entreprise . effectif":"50"})[name]
 
     let rules = realRules.map(enrichRule),
-        situation = analyseTopDown(rules,"Salaire")(stateSelector),
-        objectives = getObjectives(stateSelector, situation.root, situation.parsedRules),
-        missing = collectMissingVariables()(stateSelector,situation),
-        result = nextSteps(stateSelector, rules, situation)
+        analysis = analyse(rules,"Salaire")(stateSelector),
+        missing = collectMissingVariables(analysis.targets),
+        result = nextSteps(stateSelector, rules, analysis)
 
     expect(result[0]).to.equal("contrat salarié . salaire de base")
     expect(result[1]).to.equal("contrat salarié . temps partiel")

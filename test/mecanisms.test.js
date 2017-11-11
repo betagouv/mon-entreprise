@@ -6,7 +6,7 @@
 
 import {expect} from 'chai'
 import {enrichRule} from '../source/engine/rules'
-import {analyseTopDown} from '../source/engine/traverse'
+import {analyse} from '../source/engine/traverse'
 import {collectMissingVariables} from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
 import R from 'ramda'
@@ -24,15 +24,16 @@ describe('Mécanismes', () =>
             let rules = suite.map(enrichRule),
               state = situation || {},
               stateSelector = name => state[name],
-              analysis = analyseTopDown(rules, nom)(stateSelector),
-              missing = collectMissingVariables()(stateSelector,analysis)
+              analysis = analyse(rules, nom)(stateSelector),
+              missing = collectMissingVariables(analysis.targets),
+              target = analysis.targets[0]
 
             // console.log('JSON.stringify(analysis', JSON.stringify(analysis))
             if (isFloat(valeur)) {
-              expect(analysis.root.nodeValue).to.be.closeTo(valeur,0.001)
+              expect(target.nodeValue).to.be.closeTo(valeur,0.001)
             }
             else if (valeur !== undefined) {
-              expect(analysis.root)
+              expect(target)
                 .to.have.property(
                   'nodeValue',
                   valeur
