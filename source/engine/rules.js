@@ -4,6 +4,7 @@ import rawRules from './load-rules'
 import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
+import {capitalise0} from '../utils'
 
 // TODO - should be in UI, not engine
 import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/liste-taux.json'
@@ -17,7 +18,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 	let
 		type = possibleVariableTypes.find(t => R.has(t, rule) || rule.type === t),
 		name = rule['nom'],
-		title = rule['titre'],
+		title = capitalise0(rule['titre'] || name),
 		ns = rule['espace'],
 		data = rule['données'] ? sharedData[rule['données']] : null,
 		dottedName = ns ? [
