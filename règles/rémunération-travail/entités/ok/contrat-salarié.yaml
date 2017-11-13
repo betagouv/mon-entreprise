@@ -148,7 +148,7 @@
 
 - espace: contrat salarié
   nom: salaire net
-  titre: Le salarié touchera
+  titre: Salaire net
   type: salaire
   description: |
     Le salaire brut moins les cotisations sociales. C'est ce que le salarié reçoit sur son compte bancaire; cette somme peut varier en fonction de décisions politiques,
@@ -156,7 +156,6 @@
   formule: salaire brut - cotisations salariales
 
 - espace: contrat salarié
-  titre: L'employeur versera
   nom: coût du travail
   type: salaire
   description: |
