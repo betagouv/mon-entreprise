@@ -5,8 +5,7 @@ import './ribbon.css'
 
 import {Link, Route, Router, Switch} from 'react-router-dom'
 
-import HomeEmbauche from 'Components/HomeEmbauche'
-import HomeSyso from 'Components/HomeSyso'
+import Home from 'Components/Home'
 import Rule from 'Components/rule/Rule'
 import Route404 from 'Components/Route404'
 import Contact from 'Components/Contact'
@@ -26,7 +25,7 @@ const piwik = new ReactPiwik({
 export default class Layout extends Component {
 	history = createHistory()
 	state = {
-		resultsHeight: 600
+		resultsHeight: 0
 	}
 	render() {
 		let displayWarning = ["/simu/", "/regle/", "/regles"].find(
@@ -55,8 +54,7 @@ export default class Layout extends Component {
 							}
 						</div>
 						<Switch>
-							<Route exact path="/" component={HomeEmbauche} />
-							<Route exact path="/syso" component={HomeSyso} />
+							<Route exact path="/" component={Home} />
 							<Route path="/contact" component={Contact} />
 							<Route path="/regle/:name" component={Rule} />
 							<Route path="/regles" component={RulesList} />

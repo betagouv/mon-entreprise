@@ -17,6 +17,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 	let
 		type = possibleVariableTypes.find(t => R.has(t, rule) || rule.type === t),
 		name = rule['nom'],
+		title = rule['titre'],
 		ns = rule['espace'],
 		data = rule['données'] ? sharedData[rule['données']] : null,
 		dottedName = ns ? [
@@ -26,7 +27,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
 
-	return {...rule, type, name, ns, data, dottedName, subquestion}
+	return {...rule, type, name, title, ns, data, dottedName, subquestion}
 }
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
