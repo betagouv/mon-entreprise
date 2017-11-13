@@ -166,6 +166,7 @@
 
 - espace: contrat salarié
   nom: super brut
+  titre: Salaire super brut
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales. C'est ce que l'employeur doit en principe verser au total

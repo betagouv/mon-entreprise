@@ -1,0 +1,88 @@
+#home {
+}
+
+#home #header {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+#home #header h1 {
+	line-height: 1.1em
+}
+
+#home #marianne {
+	width: 100px;
+	margin: 1em;
+}
+
+#home #selection {
+	margin: 6em auto;
+	font-size: 120%;
+	width: 95%;
+	max-width: 860px;
+	text-align: center;
+}
+
+#home #selection h2 {
+	margin: 2em;
+}
+#home #selection ul {
+	text-align: left;
+	margin: 2em auto;
+	width: 80%;
+}
+
+
+#home select option:checked::after {
+	content: '✓';
+	margin-left: 1em;
+}
+
+#home select {
+	width: 60%;
+}
+
+
+
+
+
+
+
+
+
+#home #conversionSymbol {
+	font-size: 250%;
+	margin: .6em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#home button {
+	color: white;
+	display: block;
+	text-align: center;
+	background: #4A89DC;
+	padding: .3em 1em;
+	font-size: 200%;
+	margin: 2em auto;
+	width: 8em;
+	border: none;
+	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);
+	opacity: 0.95
+}
+#home button:hover {
+	box-shadow: none;
+	opacity: 1;
+}
