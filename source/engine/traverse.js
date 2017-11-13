@@ -420,9 +420,10 @@ export let findInversion = (situationGate, rules, rule) => {
 	return {
 		fixedObjective,
 		fixedObjectiveValue: situationGate(fixedObjective),
-		fixedObjectiveRule: findRuleByName(rules, fixedObjective)
+		fixedObjectiveRule: findRuleByDottedName(rules, fixedObjective)
 	}
 }
+
 
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
@@ -431,7 +432,7 @@ export let treatRuleRoot = (rules, rule) => {
 			let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 			let fx = x =>
 					evaluateNode(
-						n => (r.name === n || n === 'sys.filter' ? x : situationGate(n)), //TODO pourquoi doit-on nous préoccuper de sys.filter ?
+						n => r.dottedName === n || n === 'sys.filter' ? x : situationGate(n),
 						parsedRules,
 						fixedObjectiveRule
 					).nodeValue,
@@ -444,7 +445,6 @@ export let treatRuleRoot = (rules, rule) => {
 					tolerancePercentage * fixedObjectiveValue,
 					100
 				)
-
 			// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
 			// considérer que l'inversion est impossible du fait de variables manquantes
 			// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
@@ -454,8 +454,7 @@ export let treatRuleRoot = (rules, rule) => {
 					nodeValue: null,
 					inversionMissingVariables: collectNodeMissing(
 						evaluateNode(
-							n =>
-								r.name === n || n === 'sys.filter' ? 1000 : situationGate(n), //TODO pourquoi doit-on nous préoccuper de sys.filter ?
+							n => r.dottedName === n || n === 'sys.filter' ? 1000 : situationGate(n),
 							parsedRules,
 							fixedObjectiveRule
 						)
@@ -616,9 +615,11 @@ export let getTargets = (target, rules) => {
 	return targets
 }
 
-export let analyse = (rules, targetName) => situationGate => {
+export let analyse = (rules, targetInput) => situationGate => {
 	clearDict()
-	let /*
+	let
+		targetNames = typeof targetInput === 'string' ? [targetInput] : targetInput,
+		/*
 		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
 		Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
 		qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
@@ -630,12 +631,12 @@ export let analyse = (rules, targetName) => situationGate => {
 		parsedRules = R.map(treatOne, rules),
 		// TODO: we should really make use of namespaces at this level, in particular
 		// setRule in Rule.js needs to get smarter and pass dottedName
-		parsedTarget = findRuleByName(parsedRules, targetName),
+		parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
 		/*
 			Ce n'est que dans cette nouvelle étape que l'arbre est vraiment évalué.
 			Auparavant, l'évaluation était faite lors de la construction de l'AST.
 		*/
-		targets = getTargets(parsedTarget, parsedRules).map(t =>
+		targets = R.chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
 			evaluateNode(situationGate, parsedRules, t)
 		)
 

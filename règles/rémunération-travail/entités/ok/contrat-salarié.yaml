@@ -56,6 +56,9 @@
     SMIC: 1480
     SMIC mi-temps: 740
 
+  inversions possibles:
+    - contrat salarié . salaire net
+
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
   note: |
@@ -150,9 +153,12 @@
   nom: salaire net
   titre: Salaire net
   type: salaire
+  question: Quel est le salaire net ?
   description: |
-    Le salaire brut moins les cotisations sociales. C'est ce que le salarié reçoit sur son compte bancaire; cette somme peut varier en fonction de décisions politiques,
-    (augmentation ou diminution de cotisations) alors que le salaire brut est contractuel: il ne peut être que renégocié d'un commun accord.
+    Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel: pour le changer, il faut signer un avenant au contrat.
+  format: euros
   formule: salaire brut - cotisations salariales
 
 - espace: contrat salarié

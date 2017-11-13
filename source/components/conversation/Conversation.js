@@ -6,7 +6,7 @@ import {reduxForm} from 'redux-form'
 import Scroll from 'react-scroll'
 
 @reduxForm({
-	form: "conversation",
+	form: 'conversation',
 	destroyOnUnmount: false
 })
 export default class Conversation extends Component {

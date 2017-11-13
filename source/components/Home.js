@@ -7,9 +7,12 @@ import { propEq, reject } from 'ramda'
 
 export default class HomeEmbauche extends Component {
 	state = {
-		input: 'salaire de base'
+		input: 'salaire de base',
+		targets: ['salaire net']
 	}
 	render() {
+		let { targets, input } = this.state
+
 		return (
 			<div id="home">
 				<div id="header">
@@ -27,7 +30,9 @@ export default class HomeEmbauche extends Component {
 					<div id="conversionSymbol">↓</div>
 					<p>Choisissez ce que nous allons calculer</p>
 					{this.renderOutputList()}
-					<button>C'est parti !</button>
+					<Link to={'/simu/' + targets.join('+') + '/' + input}>
+						<button>C'est parti !</button>
+					</Link>
 				</section>
 			</div>
 		)
@@ -35,9 +40,12 @@ export default class HomeEmbauche extends Component {
 	renderInputList() {
 		let salaires = rules.filter(propEq('type', 'salaire'))
 		return (
-			<select onMouseDown={e => this.setState({input: e.target.value})}>
+			<select
+				defaultValue="salaire de base"
+				onMouseDown={e => this.setState({ input: e.target.value })}
+			>
 				{salaires.map(s => (
-					<option key={s.name} value={s.name} selected={s.name === 'salaire de base'}>
+					<option key={s.name} value={s.name}>
 						{s.title || s.name}
 					</option>
 				))}
@@ -45,14 +53,21 @@ export default class HomeEmbauche extends Component {
 		)
 	}
 	renderOutputList() {
-		let salaires = rules.filter(propEq('type', 'salaire'))
+		let salaires = rules.filter(propEq('type', 'salaire')),
+			{ targets, input } = this.state
 		return (
-			<select multiple onMouseDown={e=>{
-				e.preventDefault()
-				e.target.selected = !e.target.selected
-			}}>
+			<select
+				multiple
+				value={targets}
+				onChange={e =>
+					this.setState({
+						targets: targets.find(t => t === e.target.value)
+							? reject(t => t === e.target.value, targets)
+							: [...targets, e.target.value]
+					})}
+			>
 				{salaires.map(s => (
-					<option key={s.name} value={s.name} disabled={s.name === this.state.input}>
+					<option key={s.name} value={s.name} disabled={s.name === input}>
 						{s.title || s.name}
 					</option>
 				))}

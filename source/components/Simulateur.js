@@ -1,19 +1,18 @@
 import R from 'ramda'
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import {reset} from 'redux-form'
-import {connect} from 'react-redux'
-import {Redirect, Link, withRouter} from 'react-router-dom'
+import { reset } from 'redux-form'
+import { connect } from 'react-redux'
+import { Redirect, withRouter } from 'react-router-dom'
 import classNames from 'classnames'
 
-import {START_CONVERSATION} from '../actions'
-import {createMarkdownDiv} from 'Engine/marked'
-import {rules, findRuleByName, decodeRuleName} from 'Engine/rules'
+import { START_CONVERSATION } from '../actions'
+import { rules, findRuleByName, decodeRuleName } from 'Engine/rules'
 import './conversation/conversation.css'
 import './Simulateur.css'
-import {capitalise0} from '../utils'
+import { capitalise0 } from '../utils'
 import Conversation from './conversation/Conversation'
-import {makeQuestion} from 'Engine/generateQuestions'
+import { makeQuestion } from 'Engine/generateQuestions'
 
 import ReactPiwik from './Tracker'
 
@@ -24,10 +23,11 @@ import ReactPiwik from './Tracker'
 		foldedSteps: state.foldedSteps,
 		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
-		situationGate: state.situationGate,
+		situationGate: state.situationGate
 	}),
 	dispatch => ({
-		startConversation: targetName => dispatch({type: START_CONVERSATION, targetName}),
+		startConversation: (targetNames, firstInput) =>
+			dispatch({ type: START_CONVERSATION, targetNames, firstInput}),
 		resetForm: () => dispatch(reset('conversation'))
 	})
 )
@@ -36,89 +36,75 @@ export default class extends Component {
 		started: false
 	}
 	componentWillMount() {
-		let {
-				match: {
-					params: {
-						name: encodedName
-					}
-				}
-			} = this.props,
-			name = decodeRuleName(encodedName),
+		let { match: { params: { targets: encodedTargets, firstInput: encodedFirstInput } } } = this.props,
+			targetNames = encodedTargets.split('+').map(decodeRuleName),
 			existingConversation = this.props.foldedSteps.length > 0
 
-		this.encodedName = encodedName
-		this.name = name
-		this.rule = findRuleByName(rules, name)
+		this.targetNames = targetNames
+		this.targetRules = targetNames.map(name => findRuleByName(rules, name))
+		this.firstInput = findRuleByName(rules, decodeRuleName(encodedFirstInput)).dottedName
 
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		if (!existingConversation)
-			this.props.startConversation(name)
+		// if (!existingConversation)
+		//TODO
+		this.props.startConversation(targetNames, this.firstInput)
 	}
-	render(){
-		if (!this.rule.formule && !R.path(['simulateur', 'objectifs'], this.rule))
-			return <Redirect to={'/regle/' + this.name} />
+	render() {
+		//TODO
+		// if (!this.targets.formule && !R.path(['simulateur', 'objectifs'], this.rule))
+		// 	return <Redirect to={'/regle/' + this.name} />
 
-		let
-			{started} = this.state,
-			{foldedSteps, extraSteps, currentQuestion, situationGate, themeColours} = this.props,
-			sim = path =>
-				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
+		let {
+				foldedSteps,
+				extraSteps,
+				currentQuestion,
+				situationGate,
+				themeColours
+			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
 				this.props.resetForm(this.name)
-				this.props.startConversation(this.name)
-			},
-			title = sim('titre') || capitalise0(this.rule['titre'] || this.rule['nom'])
+				this.props.startConversation(this.targets, this.firstInput)
+			}
 
-		let buildAnyStep = unfolded => accessor => question => {
-			let step = makeQuestion(rules)(question)
-			return <step.component
+		return (
+			<div id="sim">
+				<Helmet>
+					<title>Titre à mettre</title>
+				</Helmet>
+				<h1>Titre et sous titres à mettre TODO</h1>
+
+				<Conversation
+					{...{
+						reinitalise,
+						currentQuestion:
+							currentQuestion &&
+							this.buildStep({ unfolded: true })(situationGate)(currentQuestion),
+						foldedSteps: R.map(
+							this.buildStep({ unfolded: false })(situationGate),
+							foldedSteps
+						),
+						extraSteps: R.map(
+							this.buildStep({ unfolded: true })(situationGate),
+							extraSteps
+						),
+						textColourOnWhite: themeColours.textColourOnWhite
+					}}
+				/>
+			</div>
+		)
+	}
+
+	buildStep = ({ unfolded }) => accessor => question => {
+		let step = makeQuestion(rules)(question)
+		return (
+			<step.component
 				key={step.name}
 				{...step}
-				{...{unfolded}}
+				unfolded={unfolded}
 				step={step}
 				answer={accessor(step.name)}
 			/>
-		}
-
-		let buildStep = buildAnyStep(false)
-		let buildUnfoldedStep = buildAnyStep(true)
-
-		return (
-			<div id="sim" className={classNames({started})}>
-				<Helmet>
-					<title>{title}</title>
-					{sim('sous-titre') &&
-						<meta name="description" content={sim('sous-titre')} />}
-				</Helmet>
-				<h1>{title}</h1>
-				{sim('sous-titre') &&
-					<div id="simSubtitle">{sim('sous-titre')}</div>
-				}
-				{!started && sim(['introduction', 'notes']) &&
-					<div className="intro">
-						{sim(['introduction', 'notes']).map( ({icône, texte, titre}) =>
-							<div key={titre}>
-								<i title={titre} className={"fa "+icône} aria-hidden="true"></i>
-								<span>
-									{texte}
-								</span>
-							</div>
-						)}
-						<button onClick={() => this.setState({started: true})}>J'ai compris</button>
-					</div>
-				}
-				{ (started || !sim(['introduction', 'notes'])) &&
-						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) }
-							{...{
-								reinitalise,
-								currentQuestion: currentQuestion && buildUnfoldedStep(situationGate)(currentQuestion),
-								foldedSteps: R.map(buildStep(situationGate), foldedSteps),
-								extraSteps: R.map(buildStep(situationGate), extraSteps),
-								textColourOnWhite: themeColours.textColourOnWhite}}/>
-				}
-
-			</div>
 		)
 	}
 }
