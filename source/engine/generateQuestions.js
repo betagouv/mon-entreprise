@@ -9,23 +9,8 @@ import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
 import {analyseSituation} from './traverse'
-import {formValueSelector} from 'redux-form'
 import {rules, findRuleByDottedName} from './rules'
 import {collectNodeMissing, evaluateNode} from './evaluation'
-
-
-
-let situationGate = state =>
-	name => formValueSelector('conversation')(state, name)
-
-
-export let analyse = rootVariable => R.pipe(
-	situationGate,
-	// une liste des objectifs de la simulation (des 'rules' aussi nommées 'variables')
-	analyseSituation(rules, rootVariable)
-)
-
-
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES

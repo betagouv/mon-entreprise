@@ -4,7 +4,7 @@ import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
-import {rules, findRuleByName } from 'Engine/rules'
+import {rules, findRuleByName, findRuleByDottedName } from 'Engine/rules'
 import {nextSteps, makeQuestion} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
@@ -13,8 +13,20 @@ import {analyseTopDown} from 'Engine/traverse'
 
 import ReactPiwik from 'Components/Tracker';
 
-// Our situationGate retrieves data from the "conversation" form
-let fromConversation = state => name => formValueSelector('conversation')(state, name)
+import formValueTypes from 'Components/conversation/formValueTypes'
+
+let fromConversation = flatRules => state => name => {
+	// Our situationGate retrieves data from the "conversation" form
+	// The search below is to apply input conversions such as replacing "," with "."
+	if (name.startsWith("sys.")) return null
+
+	let rule = findRuleByDottedName(flatRules, name),
+		format = rule ? formValueTypes[rule.format] : null,
+		pre = format && format.validator.pre ? format.validator.pre : R.identity,
+		value = formValueSelector('conversation')(state, name)
+
+	return value && pre(value)
+}
 
 // assume "wraps" a given situation function with one that overrides its values with
 // the given assumptions
@@ -153,5 +165,5 @@ export default reduceReducers(
 
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps(ReactPiwik, rules, fromConversation)
+	reduceSteps(ReactPiwik, rules, fromConversation(rules))
 )

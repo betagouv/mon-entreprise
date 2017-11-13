@@ -29,7 +29,7 @@ let jours = {
 }
 
 let nombre = {
-	human: value => value,
+	human: value => value.replace(/./g, ','),
 	validator: int
 }
 

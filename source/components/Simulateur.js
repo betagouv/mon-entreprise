@@ -1,7 +1,7 @@
 import R from 'ramda'
 import React, {Component} from 'react'
 import Helmet from 'react-helmet'
-import {formValueSelector, reset} from 'redux-form'
+import {reset} from 'redux-form'
 import {connect} from 'react-redux'
 import {Redirect, Link, withRouter} from 'react-router-dom'
 import classNames from 'classnames'
@@ -17,12 +17,9 @@ import {makeQuestion} from 'Engine/generateQuestions'
 
 import ReactPiwik from './Tracker'
 
-let situationSelector = formValueSelector('conversation')
-
 @withRouter
 @connect(
 	state => ({
-		situation: variableName => situationSelector(state, variableName),
 		currentQuestion: state.currentQuestion,
 		foldedSteps: state.foldedSteps,
 		extraSteps: state.extraSteps,
@@ -63,7 +60,7 @@ export default class extends Component {
 
 		let
 			{started} = this.state,
-			{foldedSteps, extraSteps, currentQuestion, situation, situationGate, themeColours} = this.props,
+			{foldedSteps, extraSteps, currentQuestion, situationGate, themeColours} = this.props,
 			sim = path =>
 				R.path(R.unless(R.is(Array), R.of)(path))(this.rule.simulateur || {}),
 			reinitalise = () => {
@@ -115,8 +112,8 @@ export default class extends Component {
 						<Conversation initialValues={ R.pathOr({},['simulateur','par défaut'], sim) }
 							{...{
 								reinitalise,
-								currentQuestion: currentQuestion && buildUnfoldedStep(situation)(currentQuestion),
-								foldedSteps: R.map(buildStep(situation), foldedSteps),
+								currentQuestion: currentQuestion && buildUnfoldedStep(situationGate)(currentQuestion),
+								foldedSteps: R.map(buildStep(situationGate), foldedSteps),
 								extraSteps: R.map(buildStep(situationGate), extraSteps),
 								textColourOnWhite: themeColours.textColourOnWhite}}/>
 				}
