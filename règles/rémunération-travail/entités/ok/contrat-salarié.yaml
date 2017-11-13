@@ -42,6 +42,7 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut
+  type: salaire
   question: Quel est le salaire brut mensuel ?
   description: |
     C'est le salaire de négociation du contrat de travail en France.
@@ -148,6 +149,7 @@
 - espace: contrat salarié
   nom: salaire net
   titre: Le salarié touchera
+  type: salaire
   description: |
     Le salaire brut moins les cotisations sociales. C'est ce que le salarié reçoit sur son compte bancaire; cette somme peut varier en fonction de décisions politiques,
     (augmentation ou diminution de cotisations) alors que le salaire brut est contractuel: il ne peut être que renégocié d'un commun accord.
@@ -156,6 +158,7 @@
 - espace: contrat salarié
   titre: L'employeur versera
   nom: coût du travail
+  type: salaire
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
@@ -163,6 +166,7 @@
 
 - espace: contrat salarié
   nom: super brut
+  type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales. C'est ce que l'employeur doit en principe verser au total
     pour l'emploi du salarié, mais en pratique certaines aides vont diminuer ce coût théorique du travail.
