@@ -56,7 +56,7 @@ describe("inversions", () => {
 				- nom: net
 				  formule:
 				    multiplication:
-				      assiette: brut
+				      assiette: assiette
 				      variations:
 				        - si: cadre
 				          taux: 80%
@@ -68,6 +68,9 @@ describe("inversions", () => {
 				  inversions possibles:
 				    - net
 				- nom: cadre
+				- nom: assiette
+				  formule: 67 + brut
+
 			`,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
       stateSelector = name => ({ net: 2000 }[name]),

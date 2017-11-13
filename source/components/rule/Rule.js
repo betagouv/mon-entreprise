@@ -19,8 +19,8 @@ import {createMarkdownDiv} from 'Engine/marked'
 		form: state.form
 	}),
 	dispatch => ({
-		startConversation: targetName =>
-			dispatch({ type: START_CONVERSATION, targetName })
+		startConversation: targetNames =>
+			dispatch({ type: START_CONVERSATION, targetNames })
 	})
 )
 export default class Rule extends Component {
