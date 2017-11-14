@@ -106,7 +106,8 @@ let fillVariableNode = (rules, rule) => parseResult => {
 			variable = cached
 				? cached
 				: findRuleByDottedName(parsedRules, dottedName),
-			variableIsCalculable = variable.formule != null,
+			inversion = findInversion(situation, parsedRules, variable),
+			variableIsCalculable = variable.formule != null || inversion != null,
 			parsedRule =
 				variableIsCalculable &&
 				(cached ? cached : evaluateNode(situation, parsedRules, variable)),
@@ -115,9 +116,9 @@ let fillVariableNode = (rules, rule) => parseResult => {
 			nodeValue =
 				situationValue != null
 					? situationValue // cette variable a été directement renseignée
-					: !variableIsCalculable
-						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
-						: parsedRule.nodeValue, // la valeur du calcul fait foi
+					: variableIsCalculable
+						? parsedRule.nodeValue // la valeur du calcul fait foi
+						: null, // elle restera donc nulle
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : [dottedName]
 
@@ -424,44 +425,53 @@ export let findInversion = (situationGate, rules, rule) => {
 	}
 }
 
+let doInversion = (situationGate, parsedRules, r) => {
+	let inversion = findInversion(situationGate, parsedRules, r)
+	if (!inversion) return null
+	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
+	let fx = x =>
+		evaluateNode(
+			n => (r.dottedName === n || n === 'sys.filter' ? x : situationGate(n)),
+			parsedRules,
+			fixedObjectiveRule
+		).nodeValue
+
+	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
+	// considérer que l'inversion est impossible du fait de variables manquantes
+	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
+	if (fx(1000) == null)
+		return {
+			nodeValue: null,
+			inversionMissingVariables: collectNodeMissing(
+				evaluateNode(
+					n =>
+						r.dottedName === n || n === 'sys.filter' ? 1000 : situationGate(n),
+					parsedRules,
+					fixedObjectiveRule
+				)
+			)
+		}
+
+	let tolerancePercentage = 0.00001,
+		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
+		nodeValue = uniroot(
+			x => fx(x) - fixedObjectiveValue,
+			0,
+			1000000000,
+			tolerancePercentage * fixedObjectiveValue,
+			100
+		)
+
+	return {
+		nodeValue
+	}
+}
 
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
-		let inversion = findInversion(situationGate, parsedRules, r)
-		if (inversion) {
-			let { fixedObjectiveValue, fixedObjectiveRule } = inversion
-			let fx = x =>
-					evaluateNode(
-						n => r.dottedName === n || n === 'sys.filter' ? x : situationGate(n),
-						parsedRules,
-						fixedObjectiveRule
-					).nodeValue,
-				tolerancePercentage = 0.00001,
-				// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
-				nodeValue = uniroot(
-					x => fx(x) - fixedObjectiveValue,
-					0,
-					1000000000,
-					tolerancePercentage * fixedObjectiveValue,
-					100
-				)
-			// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
-			// considérer que l'inversion est impossible du fait de variables manquantes
-			// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
-			return fx(1000) == null
-				? {
-					...r,
-					nodeValue: null,
-					inversionMissingVariables: collectNodeMissing(
-						evaluateNode(
-							n => r.dottedName === n || n === 'sys.filter' ? 1000 : situationGate(n),
-							parsedRules,
-							fixedObjectiveRule
-						)
-					)
-				}
-				: { ...r, nodeValue }
-		}
+		let inversion = situationGate(r.dottedName) == undefined // avoid the inversion loop !
+			&& doInversion(situationGate, parsedRules, r)
+		if (inversion) return { ...r, ...inversion }
 
 		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
 			evaluated = R.evolve(
@@ -617,8 +627,8 @@ export let getTargets = (target, rules) => {
 
 export let analyse = (rules, targetInput) => situationGate => {
 	clearDict()
-	let
-		targetNames = typeof targetInput === 'string' ? [targetInput] : targetInput,
+	let targetNames =
+			typeof targetInput === 'string' ? [targetInput] : targetInput,
 		/*
 		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
 		Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
