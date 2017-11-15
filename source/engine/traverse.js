@@ -415,7 +415,9 @@ export let findInversion = (situationGate, rules, rule) => {
 	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
 	le salaire net, a été renseigné ?
 	*/
-	let fixedObjective = inversions.find(name => situationGate(name) != undefined) //TODO ça va foirer avec des espaces de nom
+	let fixedObjective = inversions
+		.map(i => disambiguateRuleReference(rules, rule, i))
+		.find(name => situationGate(name) != undefined)
 	if (fixedObjective == null) return null
 	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
 	return {
@@ -469,8 +471,9 @@ let doInversion = (situationGate, parsedRules, r) => {
 
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
-		let inversion = situationGate(r.dottedName) == undefined // avoid the inversion loop !
-			&& doInversion(situationGate, parsedRules, r)
+		let inversion =
+			situationGate(r.dottedName) == undefined && // avoid the inversion loop !
+			doInversion(situationGate, parsedRules, r)
 		if (inversion) return { ...r, ...inversion }
 
 		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
