@@ -432,8 +432,8 @@ let doInversion = (situationGate, parsedRules, r) => {
 	if (!inversion) return null
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let fx = x =>
-		evaluateNode(
-			n => (r.dottedName === n || n === 'sys.filter' ? x : situationGate(n)),
+		clearDict() && evaluateNode(
+			n => r.dottedName === n ? x : situationGate(n),
 			parsedRules,
 			fixedObjectiveRule
 		).nodeValue
@@ -447,7 +447,7 @@ let doInversion = (situationGate, parsedRules, r) => {
 			inversionMissingVariables: collectNodeMissing(
 				evaluateNode(
 					n =>
-						r.dottedName === n || n === 'sys.filter' ? 1000 : situationGate(n),
+						r.dottedName === n ? 1000 : situationGate(n),
 					parsedRules,
 					fixedObjectiveRule
 				)
