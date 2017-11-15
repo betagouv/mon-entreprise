@@ -28,7 +28,7 @@ describe("inversions", () => {
   })
 
 
-  it("should handle inversions", () => {
+  it("should handle simple inversion", () => {
     let fakeState = { net: 2000 }
     let stateSelector = name => fakeState[name]
 
