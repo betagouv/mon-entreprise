@@ -57,7 +57,9 @@
     SMIC mi-temps: 740
 
   inversions possibles:
-    - contrat salarié . salaire net
+    - salaire net
+    - salaire super brut
+    - coût du travail
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
