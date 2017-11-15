@@ -8,9 +8,12 @@ import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {findRuleByDottedName} from './rules'
-import {collectNodeMissing} from './evaluation'
-
+import {
+	findRuleByDottedName,
+	findRuleByName,
+	disambiguateRuleReference
+} from './rules'
+import { collectNodeMissing } from './evaluation'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -29,12 +32,8 @@ import {collectNodeMissing} from './evaluation'
 
 export let collectMissingVariables = targets =>
 	R.pipe(
-		R.chain( v =>
-			R.pipe(
-				collectNodeMissing,
-				R.flatten,
-				R.map(mv => [v.dottedName, mv])
-			)(v)
+		R.chain(v =>
+			R.pipe(collectNodeMissing, R.flatten, R.map(mv => [v.dottedName, mv]))(v)
 		),
 		//groupBy missing variable but remove mv from value, it's now in the key
 		R.groupBy(R.last),
@@ -42,7 +41,6 @@ export let collectMissingVariables = targets =>
 		// below is a hand implementation of above... function composition can be nice sometimes :')
 		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
 	)(targets)
-
 
 export let nextSteps = (situationGate, flatRules, analysis) => {
 	let impact = ([variable, objectives]) => R.length(objectives)
@@ -59,21 +57,25 @@ export let constructStepMeta = ({
 	question,
 	subquestion,
 	dottedName,
-	name,
+	name
 }) => ({
 	// name: dottedName.split(' . ').join('.'),
 	name: dottedName,
 	// <Explicable/> ajoutera une aide au clic sur un icône [?]
 	// Son texte est la question s'il y en a une à poser. Sinon on prend le titre.
 	question: (
-		<Explicable label={question || name} dottedName={dottedName} lightBackground={true} />
+		<Explicable
+			label={question || name}
+			dottedName={dottedName}
+			lightBackground={true}
+		/>
 	),
 	title: titre || name,
 	subquestion,
 
 	// Legacy properties :
 
-	visible: true,
+	visible: true
 	// helpText: 'Voila un peu d\'aide poto'
 })
 
@@ -83,17 +85,19 @@ let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = findRuleByDottedName(allRules, path),
 			variant = isVariant(node),
-			variants = variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
+			variants =
+				variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
 
 		return Object.assign(
 			node,
-			shouldBeExpanded ?
-				{	canGiveUp,
+			shouldBeExpanded
+				? {
+					canGiveUp,
 					children: variants.map(v => rec(path + ' . ' + v))
 				}
-			: null
+				: null
 		)
 	}
 	return rec(path)
@@ -103,46 +107,55 @@ export let makeQuestion = flatRules => dottedName => {
 	let rule = findRuleByDottedName(flatRules, dottedName)
 
 	let inputQuestion = rule => ({
-			component: Input,
-			valueType: formValueTypes[rule.format],
-			attributes: {
-				inputMode: 'numeric',
-				placeholder: 'votre réponse',
-			},
-			suggestions: rule.suggestions,
-		})
+		component: Input,
+		valueType: formValueTypes[rule.format],
+		attributes: {
+			inputMode: 'numeric',
+			placeholder: 'votre réponse'
+		},
+		suggestions: rule.suggestions,
+		inversions:
+			rule['inversions possibles'] &&
+			rule['inversions possibles']
+				.map(i =>
+					findRuleByDottedName(
+						flatRules,
+						disambiguateRuleReference(flatRules, rule, i)
+					)
+				)
+				.concat([rule])
+	})
 	let selectQuestion = rule => ({
-			component: Select,
-			valueType: formValueTypes[rule.format],
-			suggestions: rule.suggestions,
-		})
+		component: Select,
+		valueType: formValueTypes[rule.format],
+		suggestions: rule.suggestions
+	})
 	let selectAtmp = rule => ({
-			component: SelectAtmp,
-			valueType: formValueTypes[rule.format],
-			suggestions: rule.suggestions,
-		})
+		component: SelectAtmp,
+		valueType: formValueTypes[rule.format],
+		suggestions: rule.suggestions
+	})
 	let binaryQuestion = rule => ({
-			component: Question,
-			choices: [
-					{ value: 'non', label: 'Non' },
-					{ value: 'oui', label: 'Oui' },
-			],
-		})
+		component: Question,
+		choices: [{ value: 'non', label: 'Non' }, { value: 'oui', label: 'Oui' }]
+	})
 	let multiChoiceQuestion = rule => ({
-				component: Question,
-				choices: buildVariantTree(flatRules, dottedName)
-		})
+		component: Question,
+		choices: buildVariantTree(flatRules, dottedName)
+	})
 
 	let common = constructStepMeta(rule)
 
 	return Object.assign(
 		common,
-		isVariant(rule) ?
-			multiChoiceQuestion(rule) :
-			rule.format == null ?
-				binaryQuestion(rule) :
-				typeof rule.suggestions == 'string' ?
-					(rule.suggestions == 'atmp-2017' ? selectAtmp(rule) : selectQuestion(rule)) :
-					inputQuestion(rule)
+		isVariant(rule)
+			? multiChoiceQuestion(rule)
+			: rule.format == null
+				? binaryQuestion(rule)
+				: typeof rule.suggestions == 'string'
+					? rule.suggestions == 'atmp-2017'
+						? selectAtmp(rule)
+						: selectQuestion(rule)
+					: inputQuestion(rule)
 	)
 }

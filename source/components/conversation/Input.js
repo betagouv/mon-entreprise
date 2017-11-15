@@ -12,21 +12,21 @@ export default class Input extends Component {
 		let {
 				name,
 				input,
-				stepProps: { attributes, submit, valueType, suggestions },
+				stepProps: { attributes, submit, valueType },
 				meta: { touched, error, active },
 				themeColours
 			} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = touched && error,
-			{hoverSuggestion} = this.state,
+			{ hoverSuggestion } = this.state,
 			sendButtonDisabled =
 				input.value == null || input.value == '' || inputError
 
-		if (typeof suggestions == 'string') return <Select />
 		return (
 			<span>
 				<span className="answer">
+					{this.renderInversions()}
 					<input
 						type="text"
 						{...input}
@@ -39,10 +39,14 @@ export default class Input extends Component {
 								? { border: '2px dashed #ddd' }
 								: { border: '1px solid #ddd' }
 						}
-						onKeyDown={({ key }) =>
-							key == 'Enter' &&
-							input.value &&
-							(!error ? submit() : input.onBlur()) // blur will trigger the error
+						onKeyDown={
+							({ key }) =>
+								key == 'Enter' &&
+								input.value &&
+								(!error ? submit() : input.onBlur())
+
+
+							// blur will trigger the error
 						}
 					/>
 					{suffixed && (
@@ -74,6 +78,26 @@ export default class Input extends Component {
 			</span>
 		)
 	}
+	renderInversions() {
+		let { stepProps: { name: inputName, inversions } } = this.props
+		if (!inversions) return null
+
+		return (
+			<select
+				value={this.props.name}
+				onChange={e => this.inverse(e.target.value)}
+			>
+				{inversions.map(({ name, title, dottedName }) => (
+					<option key={dottedName} value={dottedName}>
+						{title || name}
+					</option>
+				))}
+			</select>
+		)
+	}
+	inverse(inversionName) {
+		this.props.changeFieldName(inversionName)
+	}
 	renderSuggestions(themeColours) {
 		let { setFormValue, submit, suggestions, input } = this.props.stepProps
 		if (!suggestions) return null
@@ -85,7 +109,8 @@ export default class Input extends Component {
 						<li
 							key={value}
 							onClick={e =>
-								setFormValue('' + value) && submit() && e.preventDefault()}
+								setFormValue('' + value) && submit() && e.preventDefault()
+							}
 							onMouseOver={() => this.setState({ hoverSuggestion: value })}
 							onMouseOut={() => this.setState({ hoverSuggestion: null })}
 							style={{ color: themeColours.colour }}
