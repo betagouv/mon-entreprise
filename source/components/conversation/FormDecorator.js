@@ -26,7 +26,8 @@ export var FormDecorator = formType => RenderField =>
 	)
 	class extends Component {
 		state = {
-			helpVisible: false
+			helpVisible: false,
+			fieldName: this.props.step.name
 		}
 		render() {
 			let {
@@ -38,7 +39,6 @@ export var FormDecorator = formType => RenderField =>
 				unfolded
 			} = this.props,
 				{
-				name,
 				possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
 				// formerly in conversation-steps
 				valueType,
@@ -52,6 +52,8 @@ export var FormDecorator = formType => RenderField =>
 			} = this.props.step
 			this.step = this.props.step
 
+			let {fieldName} = this.state
+
 			/* Nos propriétés personnalisées à envoyer au RenderField.
 			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
 			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
@@ -63,8 +65,8 @@ export var FormDecorator = formType => RenderField =>
 				optionsURL, /* Select component's data source */
 				possibleChoice, /* RhetoricalQuestion component's only choice :'-( */
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
-				submit: () => setTimeout(() => stepAction('fold', name), 1),
-				setFormValue: value => setFormValue(name, value),
+				submit: () => setTimeout(() => stepAction('fold', fieldName), 1),
+				setFormValue: value => setFormValue(fieldName, value),
 				valueType,
 				suggestions,
 				subquestion
@@ -88,10 +90,11 @@ export var FormDecorator = formType => RenderField =>
 							<fieldset>
 								<Field
 									component={RenderField}
-									name={name}
+									name={fieldName}
 									stepProps={stepProps}
 									themeColours={themeColours}
 									validate={validate}
+									changeFieldName={name => this.setState({fieldName: name})}
 									/>
 							</fieldset>
 					}
