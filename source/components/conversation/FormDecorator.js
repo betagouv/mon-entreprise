@@ -44,16 +44,9 @@ export var FormDecorator = formType => RenderField =>
 					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
 					// formerly in conversation-steps
 					valueType,
-					attributes,
-					choices,
-					optionsURL,
 					human,
-					helpText,
-					suggestions,
-					subquestion,
-					inversions
+					helpText
 				} = this.props.step
-			this.step = this.props.step
 
 			let { fieldName } = this.state
 
@@ -63,17 +56,10 @@ export var FormDecorator = formType => RenderField =>
 			des balises html, <input> dans notre cas.
 			*/
 			let stepProps = {
-				attributes /* Input component's html attributes */,
-				choices /* Question component's radio choices */,
-				optionsURL /* Select component's data source */,
-				possibleChoice /* RhetoricalQuestion component's only choice :'-( */,
+				...this.props.step,
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 				submit: () => setTimeout(() => stepAction('fold', fieldName), 1),
-				setFormValue: value => setFormValue(fieldName, value),
-				valueType,
-				suggestions,
-				subquestion,
-				inversions
+				setFormValue: value => setFormValue(fieldName, value)
 			}
 
 			/* There won't be any answer zone here, widen the question zone */
@@ -94,8 +80,7 @@ export var FormDecorator = formType => RenderField =>
 							valueType,
 							human,
 							helpText,
-							wideQuestion,
-							subquestion
+							wideQuestion
 						)}
 						{unfolded && (
 							<fieldset>
@@ -117,14 +102,8 @@ export var FormDecorator = formType => RenderField =>
 		/*
 			< Le titre de ma question > ----------- < (? bulle d'aide) OU résultat >
 		*/
-		renderHeader(
-			unfolded,
-			valueType,
-			human,
-			helpText,
-			wideQuestion,
-			subquestion
-		) {
+		renderHeader(unfolded, valueType, human, helpText, wideQuestion) {
+			let { subquestion } = this.props.step
 			return (
 				<span className="form-header">
 					{unfolded
@@ -155,13 +134,13 @@ export var FormDecorator = formType => RenderField =>
 
 		renderTitleAndAnswer(valueType, human) {
 			let {
-					name,
-					stepAction,
-					answer,
-					themeColours,
-					step: { title }
-				} = this.props,
-				ignored = this.step.state === 'ignored'
+				name,
+				stepAction,
+				answer,
+				themeColours,
+				step: { title }
+			} = this.props
+
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
