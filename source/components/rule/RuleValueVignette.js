@@ -29,7 +29,6 @@ export default ({
 			})}
 		>
 			<Link to={"/regle/" + encodeRuleName(name)}>
-				<div className="rule-type">{type}</div>
 				<div className="rule-box">
 					<span className="rule-name">{titre || capitalise0(name)}</span>
 					<RuleValue
