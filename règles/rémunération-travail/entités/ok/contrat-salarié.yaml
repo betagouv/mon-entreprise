@@ -41,7 +41,7 @@
 
 - espace: contrat salarié
   nom: salaire de base
-  titre: Salaire brut
+  titre: Salaire
   type: salaire
   question: Quel est le salaire mensuel ?
   description: |

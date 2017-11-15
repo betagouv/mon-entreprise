@@ -84,7 +84,7 @@ export default class Input extends Component {
 
 		return (
 			<select
-				value={this.props.name}
+				value={inputName}
 				onChange={e => this.inverse(e.target.value)}
 			>
 				{inversions.map(({ name, title, dottedName }) => (
