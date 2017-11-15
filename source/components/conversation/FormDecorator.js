@@ -48,7 +48,8 @@ export var FormDecorator = formType => RenderField =>
 				human,
 				helpText,
 				suggestions,
-				subquestion
+				subquestion,
+				inversions
 			} = this.props.step
 			this.step = this.props.step
 
@@ -69,7 +70,8 @@ export var FormDecorator = formType => RenderField =>
 				setFormValue: value => setFormValue(fieldName, value),
 				valueType,
 				suggestions,
-				subquestion
+				subquestion,
+				inversions
 			}
 
 			/* There won't be any answer zone here, widen the question zone */
