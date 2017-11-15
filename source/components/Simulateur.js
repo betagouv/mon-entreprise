@@ -10,11 +10,12 @@ import { START_CONVERSATION } from '../actions'
 import { rules, findRuleByName, decodeRuleName } from 'Engine/rules'
 import './conversation/conversation.css'
 import './Simulateur.css'
-import { capitalise0 } from '../utils'
 import Conversation from './conversation/Conversation'
 import { makeQuestion } from 'Engine/generateQuestions'
 
 import ReactPiwik from './Tracker'
+
+import Results from 'Components/Results'
 
 @withRouter
 @connect(
@@ -26,8 +27,8 @@ import ReactPiwik from './Tracker'
 		situationGate: state.situationGate
 	}),
 	dispatch => ({
-		startConversation: (targetNames, firstInput) =>
-			dispatch({ type: START_CONVERSATION, targetNames, firstInput}),
+		startConversation: targetNames =>
+			dispatch({ type: START_CONVERSATION, targetNames}),
 		resetForm: () => dispatch(reset('conversation'))
 	})
 )
@@ -36,18 +37,16 @@ export default class extends Component {
 		started: false
 	}
 	componentWillMount() {
-		let { match: { params: { targets: encodedTargets, firstInput: encodedFirstInput } } } = this.props,
-			targetNames = encodedTargets.split('+').map(decodeRuleName),
-			existingConversation = this.props.foldedSteps.length > 0
+		let { match: { params: { targets: encodedTargets} } } = this.props,
+			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
 		this.targetRules = targetNames.map(name => findRuleByName(rules, name))
-		this.firstInput = findRuleByName(rules, decodeRuleName(encodedFirstInput)).dottedName
 
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		// if (!existingConversation)
 		//TODO
-		this.props.startConversation(targetNames, this.firstInput)
+		this.props.startConversation(targetNames)
 	}
 	render() {
 		//TODO
@@ -64,7 +63,7 @@ export default class extends Component {
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
 				this.props.resetForm(this.name)
-				this.props.startConversation(this.targets, this.firstInput)
+				this.props.startConversation(this.targets)
 			}
 
 		return (
@@ -72,8 +71,8 @@ export default class extends Component {
 				<Helmet>
 					<title>Titre à mettre</title>
 				</Helmet>
-				<h1>Titre et sous titres à mettre TODO</h1>
-
+				<h1>Titre et sous titres à mettre</h1>
+				<Results />
 				<Conversation
 					{...{
 						reinitalise,

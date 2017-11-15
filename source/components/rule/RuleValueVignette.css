@@ -3,13 +3,6 @@
 .RuleValueVignette li a {
 	text-decoration: none;
 }
-.RuleValueVignette .rule-type {
-	color: white;
-	border: none;
-	line-height: 2em;
-	font-weight: 600;
-	margin: .6em 0 .1em;
-}
 .RuleValueVignette .rule-box {
 	display: flex;
 	justify-content: space-between;

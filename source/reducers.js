@@ -63,11 +63,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 
 	if (action.type == START_CONVERSATION) {
 		let next = nextSteps(situationGate, flatRules, newState.analysis)
-		console.log('next', action.firstInput)
 		return {
 			...newState,
 			foldedSteps: [],
-			currentQuestion: action.firstInput || R.head(next)
+			currentQuestion: R.head(next)
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
