@@ -50,6 +50,36 @@ describe("inversions", () => {
     expect(analysis.targets[0].nodeValue).to.be.closeTo(2000 / (77 / 100), 0.0001 * 2000)
   })
 
+  it("should ask the input of one of the possible inversions", () => {
+    let rawRules = dedent`
+				- nom: net
+				  formule:
+				    multiplication:
+				      assiette: assiette
+				      variations:
+				        - si: cadre
+				          taux: 80%
+				        - si: ≠ cadre
+				          taux: 70%
+
+				- nom: brut
+				  format: euro
+				  inversions possibles:
+				    - net
+				- nom: cadre
+				- nom: assiette
+				  formule: 67 + brut
+
+			`,
+      rules = yaml.safeLoad(rawRules).map(enrichRule),
+      stateSelector = name => null,
+      analysis = analyse(rules, "brut")(stateSelector),
+      missing = collectMissingVariables(analysis.targets)
+
+    expect(analysis.targets[0].nodeValue).to.be.null
+    expect(missing).to.have.key("brut")
+  })
+
   it("should handle inversions with missing variables", () => {
     let rawRules = dedent`
 				- nom: net

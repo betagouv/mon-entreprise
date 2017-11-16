@@ -78,14 +78,19 @@ export default class Input extends Component {
 			</span>
 		)
 	}
+	componentDidMount() {
+		let { stepProps: { inversions } } = this.props
+		if (inversions)
+			this.inverse(inversions[0].dottedName)
+	}
 	renderInversions() {
-		let { stepProps: { name: inputName, inversions } } = this.props
+		let { stepProps: { inversions } } = this.props
 		if (!inversions) return null
 
 		return (
 			<select
-				value={inputName}
-				onChange={e => this.inverse(e.target.value)}
+				value={inversions[0].dottedName}
+				onMouseDown={e => this.inverse(e.target.value)}
 			>
 				{inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>

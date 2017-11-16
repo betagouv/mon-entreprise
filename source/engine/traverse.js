@@ -418,7 +418,8 @@ export let findInversion = (situationGate, rules, rule) => {
 	let fixedObjective = inversions
 		.map(i => disambiguateRuleReference(rules, rule, i))
 		.find(name => situationGate(name) != undefined)
-	if (fixedObjective == null) return null
+
+	if (fixedObjective == null) return {inversionChoiceNeeded: true}
 	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
 	return {
 		fixedObjective,
@@ -430,6 +431,10 @@ export let findInversion = (situationGate, rules, rule) => {
 let doInversion = (situationGate, parsedRules, r) => {
 	let inversion = findInversion(situationGate, parsedRules, r)
 	if (!inversion) return null
+	if (inversion.inversionChoiceNeeded) return {
+		inversionMissingVariables: [r.dottedName],
+		nodeValue: null
+	}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let fx = x =>
 		clearDict() && evaluateNode(
