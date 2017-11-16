@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { rules } from 'Engine/rules'
 import { propEq, reject } from 'ramda'
 import { Link } from 'react-router-dom'
+import './TargetSelection.css'
 
 export default class TargetSelection extends Component {
 	state = {
@@ -11,7 +12,7 @@ export default class TargetSelection extends Component {
 		let { targets } = this.state
 
 		return (
-			<section id="selection">
+			<section id="targetSelection">
 				<h2>Qu'allons-nous calculer ?</h2>
 				{this.renderOutputList()}
 				{targets.length !== 0 && (
@@ -27,24 +28,25 @@ export default class TargetSelection extends Component {
 		let salaires = rules.filter(propEq('type', 'salaire')),
 			{ targets } = this.state
 		return (
-			<select
-				multiple
-				value={targets}
-				onMouseDown={e => e.target.value != '' &&
-					this.setState({
-						targets: targets.find(t => t === e.target.value)
-							? reject(t => t === e.target.value, targets)
-							: [...targets, e.target.value]
-					})
-				}
-			>
+			<div>
 				{salaires.map(s => (
-					<option key={s.name} value={s.name}>
-						<div className="optionTitle">{s.title || s.name}</div>
-						<span>{s['résumé']}</span>
-					</option>
+					<label key={s.name}>
+						<input
+							type="checkbox"
+							checked={targets.includes(s.name)}
+							onChange={() => this.setState({
+								targets: targets.find(t => t === s.name)
+									? reject(t => t === s.name, targets)
+									: [...targets, s.name]
+							})}
+						/>
+						<div>
+							<span className="optionTitle">{s.title || s.name}</span>
+							<p>{s['résumé']}</p>
+						</div>
+					</label>
 				))}
-			</select>
+			</div>
 		)
 	}
 }
