@@ -41,7 +41,8 @@
 
 - espace: contrat salarié
   nom: salaire de base
-  titre: Salaire
+  titre: Salaire brut
+  résumé: Le salaire inscrit dans le contrat de travail.
   type: salaire
   question: Quel est le salaire mensuel ?
   description: |
@@ -59,7 +60,6 @@
   inversions possibles:
     - salaire net
     - super brut
-    - coût du travail
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -156,6 +156,7 @@
   titre: Salaire net
   type: salaire
   question: Quel est le salaire net ?
+  résumé: La somme versée par le salarié tous les mois.
   description: |
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
 
@@ -165,7 +166,6 @@
 
 - espace: contrat salarié
   nom: coût du travail
-  type: salaire
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
@@ -174,6 +174,7 @@
 - espace: contrat salarié
   nom: super brut
   titre: Salaire super brut
+  résumé: La somme versée par l'employeur tous les mois.
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales. C'est ce que l'employeur doit en principe verser au total
@@ -185,6 +186,8 @@
 
 - espace: contrat salarié
   nom: aides
+  résumé: Les aides différées dont peut bénéficier l'employeur.
+  type: salaire
   formule:
     somme:
       - CICE
