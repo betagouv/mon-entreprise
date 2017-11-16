@@ -37,6 +37,7 @@
 #home select option:checked::after {
 	content: '✓';
 	margin-left: 1em;
+	font-size: 150%;
 }
 
 #home select {
@@ -57,7 +58,18 @@
 }
 
 
+#home select {
+	height: 15em;
+}
 
+#home .optionTitle {
+	font-weight: bold;
+	font-size: 120%;
+}
+
+#home option {
+	margin-bottom: .6em;
+}
 
 
 

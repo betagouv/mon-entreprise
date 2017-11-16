@@ -5,17 +5,16 @@ import { Link } from 'react-router-dom'
 
 export default class TargetSelection extends Component {
 	state = {
-		targets: ['salaire net', 'coût du travail']
+		targets: []
 	}
 	render() {
 		let { targets } = this.state
 
 		return (
 			<section id="selection">
-				<h2>Que voulez-vous faire ?</h2>
-				<p>Choisissez un ou plusieurs objectifs de calcul</p>
+				<h2>Que voulez-vous calculer ?</h2>
 				{this.renderOutputList()}
-				{targets.length !==0 && (
+				{targets.length !== 0 && (
 					<Link to={'/simu/' + targets.join('+')}>
 						<button>Valider</button>
 					</Link>
@@ -31,7 +30,7 @@ export default class TargetSelection extends Component {
 			<select
 				multiple
 				value={targets}
-				onMouseDown={e =>
+				onMouseDown={e => e.target.value != '' &&
 					this.setState({
 						targets: targets.find(t => t === e.target.value)
 							? reject(t => t === e.target.value, targets)
@@ -41,7 +40,8 @@ export default class TargetSelection extends Component {
 			>
 				{salaires.map(s => (
 					<option key={s.name} value={s.name}>
-						{s.title || s.name}
+						<div className="optionTitle">{s.title || s.name}</div>
+						<span>{s['résumé']}</span>
 					</option>
 				))}
 			</select>
