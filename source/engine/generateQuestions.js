@@ -103,7 +103,7 @@ let buildVariantTree = (allRules, path) => {
 	return rec(path)
 }
 
-export let makeQuestion = flatRules => dottedName => {
+export let makeQuestion = (flatRules, targetNames) => dottedName => {
 	let rule = findRuleByDottedName(flatRules, dottedName)
 
 	let inputQuestion = rule => ({
@@ -116,14 +116,16 @@ export let makeQuestion = flatRules => dottedName => {
 		suggestions: rule.suggestions,
 		inversions:
 			rule['inversions possibles'] &&
-			rule['inversions possibles']
+			R.reject(
+				({name}) => targetNames.includes(name)
+			)(rule['inversions possibles']
 				.map(i =>
 					findRuleByDottedName(
 						flatRules,
 						disambiguateRuleReference(flatRules, rule, i)
 					)
 				)
-				.concat([rule])
+				.concat([rule]))
 	})
 	let selectQuestion = rule => ({
 		component: Select,
