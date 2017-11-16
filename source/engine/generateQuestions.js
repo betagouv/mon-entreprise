@@ -48,7 +48,6 @@ export let nextSteps = (situationGate, flatRules, analysis) => {
 	let missingVariables = collectMissingVariables(analysis.targets),
 		pairs = R.toPairs(missingVariables),
 		sortedPairs = R.sort(R.descend(impact), pairs)
-
 	return R.map(R.head, sortedPairs)
 }
 

@@ -134,7 +134,6 @@ export var FormDecorator = formType => RenderField =>
 
 		renderTitleAndAnswer(valueType, human) {
 			let {
-				name,
 				stepAction,
 				answer,
 				themeColours,
@@ -149,7 +148,7 @@ export var FormDecorator = formType => RenderField =>
 					</span>
 					<button
 						className="edit"
-						onClick={() => stepAction('unfold', name)}
+						onClick={() => stepAction('unfold', this.state.fieldName)}
 						style={{ color: themeColours.textColourOnWhite }}
 					>
 						<i className="fa fa-pencil-square-o" aria-hidden="true" />
