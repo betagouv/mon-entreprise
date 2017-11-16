@@ -24,7 +24,8 @@ import Results from 'Components/Results'
 		foldedSteps: state.foldedSteps,
 		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
-		situationGate: state.situationGate
+		situationGate: state.situationGate,
+		targetNames: state.targetNames
 	}),
 	dispatch => ({
 		startConversation: targetNames =>
@@ -58,7 +59,8 @@ export default class extends Component {
 				extraSteps,
 				currentQuestion,
 				situationGate,
-				themeColours
+				themeColours,
+				targetNames
 			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
@@ -78,13 +80,13 @@ export default class extends Component {
 						reinitalise,
 						currentQuestion:
 							currentQuestion &&
-							this.buildStep({ unfolded: true })(situationGate)(currentQuestion),
+							this.buildStep({ unfolded: true })(situationGate, targetNames)(currentQuestion),
 						foldedSteps: R.map(
-							this.buildStep({ unfolded: false })(situationGate),
+							this.buildStep({ unfolded: false })(situationGate, targetNames),
 							foldedSteps
 						),
 						extraSteps: R.map(
-							this.buildStep({ unfolded: true })(situationGate),
+							this.buildStep({ unfolded: true })(situationGate, targetNames),
 							extraSteps
 						),
 						textColourOnWhite: themeColours.textColourOnWhite
@@ -94,8 +96,8 @@ export default class extends Component {
 		)
 	}
 
-	buildStep = ({ unfolded }) => accessor => question => {
-		let step = makeQuestion(rules)(question)
+	buildStep = ({ unfolded }) => (accessor, targetNames) => question => {
+		let step = makeQuestion(rules, targetNames)(question)
 		return (
 			<step.component
 				key={step.name}
