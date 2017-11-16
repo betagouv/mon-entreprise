@@ -12,7 +12,7 @@ export default class TargetSelection extends Component {
 
 		return (
 			<section id="selection">
-				<h2>Que voulez-vous calculer ?</h2>
+				<h2>Qu'allons-nous calculer ?</h2>
 				{this.renderOutputList()}
 				{targets.length !== 0 && (
 					<Link to={'/simu/' + targets.join('+')}>
