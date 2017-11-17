@@ -89,7 +89,7 @@ export default class Input extends Component {
 
 		return (
 			<select
-				value={inversions[0].dottedName}
+				defaultValue={inversions[0].dottedName}
 				onMouseDown={e => this.inverse(e.target.value)}
 			>
 				{inversions.map(({ name, title, dottedName }) => (

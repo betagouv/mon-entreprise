@@ -47,7 +47,8 @@ export default class extends Component {
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		// if (!existingConversation)
 		//TODO
-		this.props.startConversation(targetNames)
+		if (this.props.foldedSteps.length === 0)
+			this.props.startConversation(targetNames)
 	}
 	render() {
 		//TODO
