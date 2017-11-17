@@ -156,7 +156,7 @@
   titre: Salaire net
   type: salaire
   question: Quel est le salaire net ?
-  résumé: La somme versée par le salarié tous les mois.
+  résumé: La somme touchée par le salarié tous les mois.
   description: |
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
 
@@ -174,7 +174,7 @@
 - espace: contrat salarié
   nom: super brut
   titre: Salaire super brut
-  résumé: La somme versée par l'employeur tous les mois.
+  résumé: La somme totale versée par l'employeur tous les mois.
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales. C'est ce que l'employeur doit en principe verser au total
