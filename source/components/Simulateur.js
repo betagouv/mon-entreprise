@@ -71,9 +71,9 @@ export default class extends Component {
 		return (
 			<div id="sim">
 				<Helmet>
-					<title>Titre à mettre</title>
+					<title>Simulateur d'embauche</title>
 				</Helmet>
-				<h1>Titre et sous titres à mettre</h1>
+				<h1>Simulateur d'embauche</h1>
 				<Results />
 				<Conversation
 					{...{
