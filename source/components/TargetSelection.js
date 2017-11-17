@@ -30,22 +30,24 @@ export default class TargetSelection extends Component {
 		return (
 			<div>
 				{salaires.map(s => (
-					<label key={s.name}>
-						<input
-							type="checkbox"
-							checked={targets.includes(s.name)}
-							onChange={() => this.setState({
-								targets: targets.find(t => t === s.name)
-									? reject(t => t === s.name, targets)
-									: [...targets, s.name]
-							})}
-						/>
+					<span>
+					<input id={s.name}
+						type="checkbox"
+						checked={targets.includes(s.name)}
+						onChange={() => this.setState({
+							targets: targets.find(t => t === s.name)
+								? reject(t => t === s.name, targets)
+								: [...targets, s.name]
+						})}
+					/>
+					<label for={s.name} key={s.name}>
+						<i className="fa fa-square-o fa-2x"></i><i className="fa fa-check-square-o fa-2x"></i>
 						<div>
 							<span className="optionTitle">{s.title || s.name}</span>
 							<p>{s['résumé']}</p>
 						</div>
 					</label>
-				))}
+				</span>))}
 			</div>
 		)
 	}
