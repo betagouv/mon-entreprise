@@ -18,7 +18,9 @@ export default class Home extends Component {
 					/>
 					<h1>Simulateurs d'embauche</h1>
 				</div>
-				<TargetSelection />
+				<div id="content">
+					<TargetSelection />
+				</div>
 			</div>
 		)
 	}

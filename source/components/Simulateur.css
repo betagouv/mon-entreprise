@@ -18,7 +18,7 @@
 
 #sim > h1 {
 	color: inherit;
-	margin: 0;
+	margin: 1em 0;
 	font-size: 350%;
 	font-weight: 800;
 }
@@ -78,7 +78,7 @@
 
 
 #conversation {
-	margin-top: 6%;
+	margin-top: 8%;
 	font-size: 110%;
 	line-height: normal;
 	min-height: 10em;
