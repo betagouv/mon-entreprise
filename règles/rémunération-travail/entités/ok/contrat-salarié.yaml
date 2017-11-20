@@ -21,6 +21,7 @@
       possibilités:
       - CDD
       - CDI
+  par défaut: CDI
 
 - espace: contrat salarié . type de contrat
   nom: CDD
@@ -89,6 +90,7 @@
   titre: Statut cadre
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
+  par défaut: non
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
@@ -206,18 +208,6 @@
       - coût du travail
     titre: Simulateur de coût d'embauche
     sous-titre: Découvrir le coût d'embauche et le salaire réel
-    par défaut:
-      contrat salarié . temps partiel: non
-      contrat salarié . heures par semaine: 35
-      contrat salarié . CDD . événement: non
-      contrat salarié . CDD . congés non pris: 0
-      contrat salarié . CDD . contrat jeune vacances: non
-      contrat salarié . forfait complémentaire santé: 40
-      contrat salarié . statut JEI: non
-      contrat salarié . exposition pénibilité: non
-      contrat salarié . assujettie à la taxe sur les salaires: non
-      contrat salarié . ATMP . taux collectif ATMP: 1
-      entreprise . association non lucrative: non
 
 - espace: contrat salarié
   nom: jours de congés légaux
@@ -234,42 +224,6 @@
   références:
     fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - espace: contrat salarié
   nom: régime alsace moselle
-  #TODO peut-être est-ce à définir au niveau de l'activité ?
-
-# - Variable: salaire super brut
-#   formule:
-#     somme:
-#       - salaire brut
-#       - cotisations patronales
-#     soustraction:
-#       - aides au travail salarié
-
-
-# # Cette propriété a pour type une énumération, mais peut-être calculée.
-# régime géographique:
-#   calc() :
-#     | Alsace-Moselle
-#     | Outre-Mer # Peut-on définir ça comme un régime ? A quoi ça sert ?
+  par défaut: non

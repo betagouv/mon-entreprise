@@ -4,6 +4,7 @@
   question: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
   description: |
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
+  par défaut: non
 
 - espace: contrat salarié
   nom: exonération JEI
