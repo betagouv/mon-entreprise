@@ -52,7 +52,7 @@ export let nextSteps = (situationGate, flatRules, analysis) => {
 }
 
 export let constructStepMeta = ({
-	titre,
+	title,
 	question,
 	subquestion,
 	dottedName,
@@ -69,7 +69,7 @@ export let constructStepMeta = ({
 			lightBackground={true}
 		/>
 	),
-	title: titre || name,
+	title,
 	subquestion,
 
 	// Legacy properties :

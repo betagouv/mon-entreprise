@@ -72,7 +72,7 @@ export default class extends Component {
 		return (
 			<div id="sim">
 				<Helmet>
-					<title>Simulateur d'embauche : {R.pluck('titre', this.targetRules).join(', ')}</title>
+					<title>Simulateur d'embauche : {R.pluck('title', this.targetRules).join(', ')}</title>
 					<meta name="description" content={R.pluck('description', this.targetRules).join(' - ')} />
 				</Helmet>
 				<Results />

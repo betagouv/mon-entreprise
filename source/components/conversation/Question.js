@@ -78,14 +78,14 @@ export default class Question extends Component {
 					<RadioLabel {...{value: 'non', label: 'Aucun', input, submit, themeColours}}/>
 				</li>
 			}
-			{ choices.children && choices.children.map( ({name, titre, dottedName, children}) =>
+			{ choices.children && choices.children.map( ({name, title, dottedName, children}) =>
 				children ?
 					<li key={name} className="variant">
-						<div>{titre || name}</div>
+						<div>{title}</div>
 						{this.renderChildren({children})}
 					</li>
 					: <li key={name} className="variantLeaf">
-						<RadioLabel {...{value: relativeDottedName(dottedName), label: titre || name, dottedName, input, submit, themeColours}}/>
+						<RadioLabel {...{value: relativeDottedName(dottedName), label: title, dottedName, input, submit, themeColours}}/>
 					</li>
 			)}
 		</ul>)
