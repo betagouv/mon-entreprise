@@ -20,7 +20,7 @@ export default class Conversation extends Component {
 					{ !R.isEmpty(foldedSteps) &&
 						<div id="foldedSteps">
 							<div className="header" >
-								<h3>Vos réponses</h3>
+								<h2><i className="fa fa-mouse-pointer" aria-hidden="true"></i>Vos réponses</h2>
 								<button onClick={reinitalise} style={{color: textColourOnWhite}}>
 									<i className="fa fa-trash" aria-hidden="true"></i>
 									Tout effacer

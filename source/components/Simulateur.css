@@ -9,6 +9,7 @@
 
 	padding: 1em;
 	max-width: 50em;
+	font-size: 115%;
 
 }
 
@@ -76,36 +77,6 @@
 	opacity: 1;
 }
 
-
-#conversation {
-	margin-top: 8%;
-	font-size: 110%;
-	line-height: normal;
-	min-height: 10em;
-}
-
-
-#questions-answers {
-	min-width: 50%;
-	transition: width 1s;
-}
-
-
-#foldedSteps .header {
-	margin-bottom: 1em;
-}
-#foldedSteps .header h3 {
-	display: inline;
-}
-#foldedSteps .header button {
-	font-size: 80%;
-	color: #2975D1;
-	border: none;
-}
-#foldedSteps .header button i {
-	margin-right: .3em;
-	vertical-align: top
-}
 
 
 
