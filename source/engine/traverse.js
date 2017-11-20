@@ -21,7 +21,8 @@ import {
 	mecanismMin,
 	mecanismError,
 	mecanismComplement,
-	mecanismSelection
+	mecanismSelection,
+	mecanismInversion
 } from './mecanisms'
 import {
 	evaluateNode,
@@ -36,7 +37,6 @@ import {
 	applyOrEmpty
 } from './traverse-common-functions'
 
-import uniroot from './uniroot'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -106,8 +106,7 @@ let fillVariableNode = (rules, rule) => parseResult => {
 			variable = cached
 				? cached
 				: findRuleByDottedName(parsedRules, dottedName),
-			inversion = findInversion(situation, parsedRules, variable),
-			variableIsCalculable = variable.formule != null || inversion != null,
+			variableIsCalculable = variable.formule != null,
 			parsedRule =
 				variableIsCalculable &&
 				(cached ? cached : evaluateNode(situation, parsedRules, variable)),
@@ -380,7 +379,8 @@ let treat = (rules, rule) => rawNode => {
 					'une possibilité': R.always({
 						'une possibilité': 'oui',
 						collectMissing: () => [rule.dottedName]
-					})
+					}),
+					'inversion': mecanismInversion(rule.dottedName)
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 
@@ -407,79 +407,9 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 		? formuleValue
 		: isApplicable === false ? 0 : formuleValue == 0 ? 0 : null
 
-export let findInversion = (situationGate, rules, rule) => {
-	let inversions = rule['inversions possibles']
-	if (!inversions) return null
-	/*
-	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
-	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
-	le salaire net, a été renseigné ?
-	*/
-	let fixedObjective = inversions
-		.map(i => disambiguateRuleReference(rules, rule, i))
-		.find(name => situationGate(name) != undefined)
-
-	if (fixedObjective == null) return {inversionChoiceNeeded: true}
-	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
-	return {
-		fixedObjective,
-		fixedObjectiveValue: situationGate(fixedObjective),
-		fixedObjectiveRule: findRuleByDottedName(rules, fixedObjective)
-	}
-}
-
-let doInversion = (situationGate, parsedRules, r) => {
-	let inversion = findInversion(situationGate, parsedRules, r)
-	if (!inversion) return null
-	if (inversion.inversionChoiceNeeded) return {
-		inversionMissingVariables: [r.dottedName],
-		nodeValue: null
-	}
-	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
-	let fx = x =>
-		clearDict() && evaluateNode(
-			n => r.dottedName === n ? x : situationGate(n),
-			parsedRules,
-			fixedObjectiveRule
-		).nodeValue
-
-	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
-	// considérer que l'inversion est impossible du fait de variables manquantes
-	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
-	if (fx(1000) == null)
-		return {
-			nodeValue: null,
-			inversionMissingVariables: collectNodeMissing(
-				evaluateNode(
-					n =>
-						r.dottedName === n ? 1000 : situationGate(n),
-					parsedRules,
-					fixedObjectiveRule
-				)
-			)
-		}
-
-	let tolerancePercentage = 0.00001,
-		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
-		nodeValue = uniroot(
-			x => fx(x) - fixedObjectiveValue,
-			0,
-			1000000000,
-			tolerancePercentage * fixedObjectiveValue,
-			100
-		)
-
-	return {
-		nodeValue
-	}
-}
 
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
-		let inversion =
-			situationGate(r.dottedName) == undefined && // avoid the inversion loop !
-			doInversion(situationGate, parsedRules, r)
-		if (inversion) return { ...r, ...inversion }
 
 		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
 			evaluated = R.evolve(
@@ -512,13 +442,8 @@ export let treatRuleRoot = (rules, rule) => {
 			formule,
 			isApplicable,
 			'non applicable si': notApplicable,
-			'applicable si': applicable,
-			inversionMissingVariables
+			'applicable si': applicable
 		} = rule
-
-		if (inversionMissingVariables) {
-			return inversionMissingVariables
-		}
 
 		let condMissing =
 				val(notApplicable) === true
