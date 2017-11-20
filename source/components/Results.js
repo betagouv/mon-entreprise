@@ -46,9 +46,17 @@ export default class Results extends Component {
 						</Link>
 					</div>
 					: <div id="results-titles">
-						<h2><i className="fa fa-calculator" aria-hidden="true"></i>{targets.length == 1 ? 'Votre résultat' : 'Vos résultats'}</h2>
+						<h2><i className="fa fa-calculator" aria-hidden="true"></i>{targets.length == 1 ? 'Votre objectif' : 'Vos objectifs'}</h2>
 					</div>
 				}
+				<Link
+					className="edit"
+					to="/"
+				>
+					<i className="fa fa-pencil-square-o" aria-hidden="true" />
+					{'  '}
+					<span>Modifier</span>
+				</Link>
 				<ul>
 					{targets.map( rule => <li key={rule.nom}>
 						<RuleValueVignette {...rule} conversationStarted={conversationStarted} />

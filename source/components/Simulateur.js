@@ -38,7 +38,7 @@ export default class extends Component {
 		started: false
 	}
 	componentWillMount() {
-		let { match: { params: { targets: encodedTargets} } } = this.props,
+		let { match: { params: { targets: encodedTargets} }, targetNames: pastTargetNames } = this.props,
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
@@ -47,7 +47,7 @@ export default class extends Component {
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		// if (!existingConversation)
 		//TODO
-		if (this.props.foldedSteps.length === 0)
+		if (this.props.foldedSteps.length === 0 || !R.equals(targetNames, pastTargetNames))
 			this.props.startConversation(targetNames)
 	}
 	render() {
