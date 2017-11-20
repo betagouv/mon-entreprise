@@ -54,14 +54,14 @@ export default class Rule extends Component {
 		let conversationStarted = !R.isEmpty(this.props.form),
 			situationExists = conversationStarted || this.state.example != null
 
-		let { type, name, titre, description, question } = this.rule,
+		let { type, name, title, description, question } = this.rule,
 			situationOrExampleRule =
 				R.path(["example", "rule"])(this.state) || this.rule
 
 		return (
 			<div id="rule">
 				<Helmet>
-					<title>{titre || capitalise0(name)}</title>
+					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
 

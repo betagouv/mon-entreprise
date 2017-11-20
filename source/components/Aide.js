@@ -40,7 +40,7 @@ export default class Aide extends Component {
 						className="fa fa-times-circle"
 						onClick={stopExplaining} ></i>
 					<p
-						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.titre || capitalise0(rule.name))}}>
+						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.title)}}>
 					</p>
 					{/* { possibilities &&
 						<p>
