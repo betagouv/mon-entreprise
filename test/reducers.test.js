@@ -21,7 +21,7 @@ describe('fold', function() {
           {nom: "bb", question: "?", titre: "b", espace: "top"}],
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector),
-        action = {type:'START_CONVERSATION', targetName: 'startHere'},
+        action = {type:'START_CONVERSATION', targetNames: ['startHere']},
         // situation = analyseTopDown(rules,"startHere")(stateSelector({})),
         // objectives = getObjectives(stateSelector({}), situation.root, situation.parsedRules),
         // missing = collectMissingVariables(stateSelector({}),situation),
@@ -47,7 +47,7 @@ describe('fold', function() {
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', targetName: 'startHere'})
+    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['startHere']})
     fakeState['top . aa'] = 1
     var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
     fakeState['top . bb'] = 1
@@ -81,7 +81,7 @@ describe('fold', function() {
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', targetName: 'startHere'})
+    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['startHere']})
     fakeState['top . aa'] = 1
     var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
 
@@ -115,7 +115,7 @@ describe('fold', function() {
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', targetName: 'startHere'})
+    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['startHere']})
     fakeState['top . aa'] = 1
     var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
     var step3 = reducer(step2,{type:'STEP_ACTION', name: 'unfold', step: 'top . bb'})
