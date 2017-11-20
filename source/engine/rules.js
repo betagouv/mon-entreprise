@@ -26,9 +26,10 @@ export let enrichRule = (rule, sharedData = {}) => {
 			name
 		].join(' . ') : name,
 		subquestionMarkdown = rule['sous-question'],
-		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
+		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
+		defaultValue = rule['par défaut']
 
-	return {...rule, type, name, title, ns, data, dottedName, subquestion}
+	return {...rule, type, name, title, ns, data, dottedName, subquestion, defaultValue}
 }
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
