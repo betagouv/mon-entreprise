@@ -1,6 +1,7 @@
 #results {
 	margin: 0 auto;
 	padding: .1em .3em;
+	position: relative;
 
 	background: #2975D1;
 	color: white;
@@ -34,6 +35,18 @@
 	font-size: 70%;
 	margin: 0 .6em
 }
+
+#results .edit {
+	position: absolute;
+	top: 1.3em;
+	right: 1em;
+
+	vertical-align: middle;
+	border: none;
+	font-size: 80%;
+	color: white;
+}
+
 #results ul {
 	list-style: none;
 	padding-left: 0;
