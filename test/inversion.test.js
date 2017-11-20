@@ -11,16 +11,16 @@ describe("inversions", () => {
     let stateSelector = name => fakeState[name]
 
     let
-			rawRules = dedent`
-				- nom: net
-				  formule:
-				    multiplication:
-				      assiette: brut
-				      taux: 77%
+      rawRules = dedent`
+        - nom: net
+          formule:
+            multiplication:
+              assiette: brut
+              taux: 77%
 
-				- nom: brut
-				  format: euro
-			`,
+        - nom: brut
+          format: euro
+      `,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
       analysis = analyse(rules, "net")(stateSelector)
 
@@ -33,17 +33,19 @@ describe("inversions", () => {
     let stateSelector = name => fakeState[name]
 
     let rawRules = dedent`
-				- nom: net
-				  formule:
-				    multiplication:
-				      assiette: brut
-				      taux: 77%
+        - nom: net
+          formule:
+            multiplication:
+              assiette: brut
+              taux: 77%
 
-				- nom: brut
-				  format: euro
-				  inversions possibles:
-				    - net
-			`,
+        - nom: brut
+          format: euro
+          formule:
+            inversion:
+              avec:
+                - net
+      `,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
       analysis = analyse(rules, "brut")(stateSelector)
 
@@ -52,25 +54,27 @@ describe("inversions", () => {
 
   it("should ask the input of one of the possible inversions", () => {
     let rawRules = dedent`
-				- nom: net
-				  formule:
-				    multiplication:
-				      assiette: assiette
-				      variations:
-				        - si: cadre
-				          taux: 80%
-				        - si: ≠ cadre
-				          taux: 70%
+        - nom: net
+          formule:
+            multiplication:
+              assiette: assiette
+              variations:
+                - si: cadre
+                  taux: 80%
+                - si: ≠ cadre
+                  taux: 70%
 
-				- nom: brut
-				  format: euro
-				  inversions possibles:
-				    - net
-				- nom: cadre
-				- nom: assiette
-				  formule: 67 + brut
+        - nom: brut
+          format: euro
+          formule:
+            inversion:
+              avec:
+                - net
+        - nom: cadre
+        - nom: assiette
+          formule: 67 + brut
 
-			`,
+      `,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
       stateSelector = name => null,
       analysis = analyse(rules, "brut")(stateSelector),
@@ -82,25 +86,27 @@ describe("inversions", () => {
 
   it("should handle inversions with missing variables", () => {
     let rawRules = dedent`
-				- nom: net
-				  formule:
-				    multiplication:
-				      assiette: assiette
-				      variations:
-				        - si: cadre
-				          taux: 80%
-				        - si: ≠ cadre
-				          taux: 70%
+        - nom: net
+          formule:
+            multiplication:
+              assiette: assiette
+              variations:
+                - si: cadre
+                  taux: 80%
+                - si: ≠ cadre
+                  taux: 70%
 
-				- nom: brut
-				  format: euro
-				  inversions possibles:
-				    - net
-				- nom: cadre
-				- nom: assiette
-				  formule: 67 + brut
+        - nom: brut
+          format: euro
+          formule:
+            inversion:
+              avec:
+                - net
+        - nom: cadre
+        - nom: assiette
+          formule: 67 + brut
 
-			`,
+      `,
       rules = yaml.safeLoad(rawRules).map(enrichRule),
       stateSelector = name => ({ net: 2000 }[name]),
       analysis = analyse(rules, "brut")(stateSelector),
@@ -130,9 +136,11 @@ describe("inversions", () => {
 
         - nom: brut
           format: euro
-          inversions possibles:
-            - net
-            - total
+          formule:
+            inversion:
+              avec:
+                - net
+                - total
 
         - nom: cadre
 

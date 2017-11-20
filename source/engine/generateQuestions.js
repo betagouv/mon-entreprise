@@ -113,11 +113,12 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 			placeholder: 'votre réponse'
 		},
 		suggestions: rule.suggestions,
-		inversions:
-			rule['inversions possibles'] &&
+		inversions: do {
+			let inversions = R.path(['formule', 'inversion', 'avec'])(rule)
+			inversions &&
 			R.reject(
 				({name}) => targetNames.includes(name)
-			)(rule['inversions possibles']
+			)(inversions
 				.map(i =>
 					findRuleByDottedName(
 						flatRules,
@@ -125,6 +126,7 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 					)
 				)
 				.concat([rule]))
+		}
 	})
 	let selectQuestion = rule => ({
 		component: Select,

@@ -44,7 +44,7 @@
   titre: Salaire brut
   résumé: Le salaire inscrit dans le contrat de travail.
   type: salaire
-  question: Quel est le salaire mensuel ?
+  question: Quel est le salaire brut mensuel ?
   description: |
     C'est le salaire de négociation du contrat de travail en France.
 
@@ -57,9 +57,13 @@
     SMIC: 1480
     SMIC mi-temps: 740
 
-  inversions possibles:
-    - salaire net
-    - super brut
+  formule:
+    inversion:
+      question: Quel est le salaire mensuel ?
+      titre: salaire
+      avec:
+        - salaire net
+        - super brut
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
