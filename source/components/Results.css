@@ -30,11 +30,6 @@
 	margin-right: .6em;
 }
 
-#results h2 small {
-	opacity: 0.7;
-	font-size: calc(50% + .2vw);
-	font-weight: 400;
-}
 #results h2 span {
 	font-size: 70%;
 	margin: 0 .6em
