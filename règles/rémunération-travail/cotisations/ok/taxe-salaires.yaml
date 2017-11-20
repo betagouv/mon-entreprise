@@ -6,6 +6,7 @@
   question: L'entreprise est-elle assujettie à la taxe sur les salaires ?
   # variable non utilisée pour l'instant, comme dans le simulateur v1
   # à ajouter quand nous aurons des mécanismes logiques plus évolués (notamment 'applicable si')
+  par défaut: non
 
 - espace: contrat salarié
   nom: taxe sur les salaires annuelle
