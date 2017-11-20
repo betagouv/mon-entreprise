@@ -287,6 +287,11 @@ fieldset > .ignore {
 	outline: none;
 }
 
+.step .inputPrefix {
+	margin: 0 1em;
+	font-weight: 600;
+}
+
 .step .inputSuggestions {
 	font-style: italic;
 	float: right;

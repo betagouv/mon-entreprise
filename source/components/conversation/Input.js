@@ -87,6 +87,10 @@ export default class Input extends Component {
 		let { stepProps: { inversions } } = this.props
 		if (!inversions) return null
 
+		if (inversions.length === 1) return (
+			<span className="inputPrefix">{inversions[0].title || inversions[0].name}</span>
+		)
+
 		return (
 			<select
 				defaultValue={inversions[0].dottedName}
