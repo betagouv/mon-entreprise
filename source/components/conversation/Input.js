@@ -79,8 +79,15 @@ export default class Input extends Component {
 			</span>
 		)
 	}
+
+	componentDidMount(){
+		let { stepProps: { name, inversion, setFormValue} } = this.props
+		if (!inversion) return null
+		// initialize the form field in renderinversions
+		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + name)
+	}
 	renderInversions() {
-		let { stepProps: { inversion, name} } = this.props
+		let { stepProps: { name, inversion} } = this.props
 		if (!inversion) return null
 
 		if (inversion.inversions.length === 1) return (
@@ -90,9 +97,8 @@ export default class Input extends Component {
 		return (
 			<Field
 				component="select"
-				name={name + ' . inversion' }
+				name={'inversions.' + name}
 				className="inputPrefix"
-				defaultValue={inversion.inversions[0].dottedName}
 			>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
