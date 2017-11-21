@@ -48,7 +48,8 @@ export var FormDecorator = formType => RenderField =>
 					helpText
 				} = this.props.step
 
-			console.log('fieldName', fieldName)
+				console.log('fieldName', fieldName)
+
 			/* Nos propriétés personnalisées à envoyer au RenderField.
 			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
 			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
@@ -58,7 +59,7 @@ export var FormDecorator = formType => RenderField =>
 				...this.props.step,
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 				submit: () => setTimeout(() => stepAction('fold', fieldName), 1),
-				setFormValue: value => setFormValue(fieldName, value)
+				setFormValue: (value, name=fieldName) => setFormValue(name, value)
 			}
 
 			/* There won't be any answer zone here, widen the question zone */
@@ -132,11 +133,11 @@ export var FormDecorator = formType => RenderField =>
 		)
 
 		renderTitleAndAnswer(valueType, human) {
-			let { step, stepAction, situationGate, themeColours, step: { title } } = this.props
+			let { step, stepAction, situationGate, themeColours, step: { title }, fieldName } = this.props
 			let inversionTitle = R.path(['props', 'step', 'inversion', 'title'])(this)
 
 
-			let answer = situationGate(this.state.fieldName)
+			let answer = situationGate(fieldName)
 
 			return (
 				<div className="foldedQuestion">
@@ -146,7 +147,7 @@ export var FormDecorator = formType => RenderField =>
 					</span>
 					<button
 						className="edit"
-						onClick={() => stepAction('unfold', this.state.fieldName)}
+						onClick={() => stepAction('unfold', fieldName)}
 						style={{ color: themeColours.textColourOnWhite }}
 					>
 						<i className="fa fa-pencil-square-o" aria-hidden="true" />

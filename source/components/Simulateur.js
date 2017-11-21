@@ -1,7 +1,7 @@
 import R from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { reset } from 'redux-form'
+import { reset, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
 import classNames from 'classnames'
@@ -25,7 +25,8 @@ import Results from 'Components/Results'
 		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
 		situationGate: state.situationGate,
-		targetNames: state.targetNames
+		targetNames: state.targetNames,
+		inputInversions: formValueSelector('conversation')(state, 'inversions')
 	}),
 	dispatch => ({
 		startConversation: targetNames =>
@@ -61,7 +62,8 @@ export default class extends Component {
 				currentQuestion,
 				situationGate,
 				themeColours,
-				targetNames
+				targetNames,
+				inputInversions
 			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
@@ -81,13 +83,13 @@ export default class extends Component {
 						reinitalise,
 						currentQuestion:
 							currentQuestion &&
-							this.buildStep({ unfolded: true })(situationGate, targetNames)(currentQuestion),
+							this.buildStep({ unfolded: true })(situationGate, targetNames, inputInversions)(currentQuestion),
 						foldedSteps: R.map(
-							this.buildStep({ unfolded: false })(situationGate, targetNames),
+							this.buildStep({ unfolded: false })(situationGate, targetNames, inputInversions),
 							foldedSteps
 						),
 						extraSteps: R.map(
-							this.buildStep({ unfolded: true })(situationGate, targetNames),
+							this.buildStep({ unfolded: true })(situationGate, targetNames, inputInversions),
 							extraSteps
 						),
 						textColourOnWhite: themeColours.textColourOnWhite
@@ -97,11 +99,10 @@ export default class extends Component {
 		)
 	}
 
-	buildStep = ({ unfolded }) => (situationGate, targetNames) => question => {
+	buildStep = ({ unfolded }) => (situationGate, targetNames, inputInversions) => question => {
 		let step = makeQuestion(rules, targetNames)(question)
 
-		let inversed = situationGate(step.name + ' . inversion')
-		let fieldName = inversed ? situationGate(step.name + ' . inversion') : step.name
+		let fieldName = (unfolded && inputInversions && R.path(step.name.split('.'), inputInversions)) || step.name
 
 		return (
 			<step.component
