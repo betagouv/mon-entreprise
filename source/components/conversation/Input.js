@@ -79,24 +79,24 @@ export default class Input extends Component {
 		)
 	}
 	componentDidMount() {
-		let { stepProps: { inversions } } = this.props
-		if (inversions)
-			this.inverse(inversions[0].dottedName)
+		let { stepProps: { inversion } } = this.props
+		if (inversion)
+			this.inverse(inversion.inversions[0].dottedName)
 	}
 	renderInversions() {
-		let { stepProps: { inversions } } = this.props
-		if (!inversions) return null
+		let { stepProps: { inversion } } = this.props
+		if (!inversion) return null
 
-		if (inversions.length === 1) return (
-			<span className="inputPrefix">{inversions[0].title || inversions[0].name}</span>
+		if (inversion.inversions.length === 1) return (
+			<span className="inputPrefix">{inversion.inversions[0].title || inversion.inversions[0].name}</span>
 		)
 
 		return (
 			<select
-				defaultValue={inversions[0].dottedName}
+				defaultValue={inversion.inversions[0].dottedName}
 				onMouseDown={e => this.inverse(e.target.value)}
 			>
-				{inversions.map(({ name, title, dottedName }) => (
+				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}
 					</option>
@@ -105,6 +105,7 @@ export default class Input extends Component {
 		)
 	}
 	inverse(inversionName) {
+		console.log('inversion, ', inversionName)
 		this.props.changeFieldName(inversionName)
 	}
 	renderSuggestions(themeColours) {

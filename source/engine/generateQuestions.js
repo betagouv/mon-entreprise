@@ -113,19 +113,22 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 			placeholder: 'votre réponse'
 		},
 		suggestions: rule.suggestions,
-		inversions: do {
+		inversion: do {
 			let inversions = R.path(['formule', 'inversion', 'avec'])(rule)
-			inversions &&
-			R.reject(
-				({name}) => targetNames.includes(name)
-			)(inversions
-				.map(i =>
-					findRuleByDottedName(
-						flatRules,
-						disambiguateRuleReference(flatRules, rule, i)
-					)
-				)
-				.concat([rule]))
+			inversions && {
+				inversions: R.reject(({ name }) => targetNames.includes(name))(
+					inversions
+						.map(i =>
+							findRuleByDottedName(
+								flatRules,
+								disambiguateRuleReference(flatRules, rule, i)
+							)
+						)
+						.concat([rule])
+				),
+				question: rule.formule.inversion.question,
+				title: rule.formule.inversion.titre
+			}
 		}
 	})
 	let selectQuestion = rule => ({
