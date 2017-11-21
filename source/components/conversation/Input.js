@@ -93,6 +93,7 @@ export default class Input extends Component {
 
 		return (
 			<select
+				className="inputPrefix"
 				defaultValue={inversion.inversions[0].dottedName}
 				onMouseDown={e => this.inverse(e.target.value)}
 			>
