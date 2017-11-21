@@ -97,7 +97,7 @@ export default class extends Component {
 		)
 	}
 
-	buildStep = ({ unfolded }) => (accessor, targetNames) => question => {
+	buildStep = ({ unfolded }) => (situationGate, targetNames) => question => {
 		let step = makeQuestion(rules, targetNames)(question)
 		return (
 			<step.component
@@ -105,7 +105,7 @@ export default class extends Component {
 				{...step}
 				unfolded={unfolded}
 				step={step}
-				answer={accessor(step.name)}
+				situationGate={situationGate}
 			/>
 		)
 	}

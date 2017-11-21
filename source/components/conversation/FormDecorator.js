@@ -5,7 +5,7 @@ import { Field, change } from 'redux-form'
 import { stepAction } from '../../actions'
 import StepAnswer from './StepAnswer'
 import { capitalise0 } from '../../utils'
-
+import R from 'ramda'
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
 with a header, click actions and more goodies.
@@ -45,7 +45,8 @@ export var FormDecorator = formType => RenderField =>
 					// formerly in conversation-steps
 					valueType,
 					human,
-					helpText
+					helpText,
+					situationGate
 				} = this.props.step
 
 			let { fieldName } = this.state
@@ -123,7 +124,8 @@ export var FormDecorator = formType => RenderField =>
 						maxWidth: wideQuestion ? '95%' : ''
 					}}
 				>
-					{this.props.step.question}
+					{R.path(['props', 'step', 'inversion', 'question'])(this) ||
+						this.props.step.question}
 				</h1>
 				<div
 					className="step-subquestion"
@@ -133,17 +135,13 @@ export var FormDecorator = formType => RenderField =>
 		)
 
 		renderTitleAndAnswer(valueType, human) {
-			let {
-				stepAction,
-				answer,
-				themeColours,
-				step: { title }
-			} = this.props
-
+			let { step, stepAction, situationGate, themeColours, step: { title } } = this.props
+			let inversionTitle = R.path(['props', 'step', 'inversion', 'title'])(this)
+			let answer = situationGate(this.state.fieldName)
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
-						<span className="title">{capitalise0(title)}</span>
+						<span className="title">{capitalise0(inversionTitle || title)}</span>
 						<span className="answer">{answer}</span>
 					</span>
 					<button
