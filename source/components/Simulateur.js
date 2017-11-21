@@ -99,6 +99,10 @@ export default class extends Component {
 
 	buildStep = ({ unfolded }) => (situationGate, targetNames) => question => {
 		let step = makeQuestion(rules, targetNames)(question)
+
+		let inversed = situationGate(step.name + ' . inversion')
+		let fieldName = inversed ? situationGate(step.name + ' . inversion') : step.name
+
 		return (
 			<step.component
 				key={step.name}
@@ -106,6 +110,7 @@ export default class extends Component {
 				unfolded={unfolded}
 				step={step}
 				situationGate={situationGate}
+				fieldName={fieldName}
 			/>
 		)
 	}

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import R from 'ramda'
+import {Field} from 'redux-form'
+
 
 @FormDecorator('input')
 export default class Input extends Component {
@@ -10,9 +12,8 @@ export default class Input extends Component {
 	}
 	render() {
 		let {
-				name,
 				input,
-				stepProps: { attributes, submit, valueType },
+				stepProps: { name, attributes, submit, valueType },
 				meta: { touched, error, active },
 				themeColours
 			} = this.props,
@@ -78,13 +79,8 @@ export default class Input extends Component {
 			</span>
 		)
 	}
-	componentDidMount() {
-		let { stepProps: { inversion } } = this.props
-		if (inversion)
-			this.inverse(inversion.inversions[0].dottedName)
-	}
 	renderInversions() {
-		let { stepProps: { inversion } } = this.props
+		let { stepProps: { inversion, name} } = this.props
 		if (!inversion) return null
 
 		if (inversion.inversions.length === 1) return (
@@ -92,22 +88,19 @@ export default class Input extends Component {
 		)
 
 		return (
-			<select
+			<Field
+				component="select"
+				name={name + ' . inversion' }
 				className="inputPrefix"
 				defaultValue={inversion.inversions[0].dottedName}
-				onMouseDown={e => this.inverse(e.target.value)}
 			>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}
 					</option>
 				))}
-			</select>
+			</Field>
 		)
-	}
-	inverse(inversionName) {
-		console.log('inversion, ', inversionName)
-		this.props.changeFieldName(inversionName)
 	}
 	renderSuggestions(themeColours) {
 		let { setFormValue, submit, suggestions, input } = this.props.stepProps

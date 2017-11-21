@@ -29,7 +29,6 @@ export var FormDecorator = formType => RenderField =>
 	class extends Component {
 		state = {
 			helpVisible: false,
-			fieldName: this.props.step.name
 		}
 		render() {
 			let {
@@ -38,19 +37,18 @@ export var FormDecorator = formType => RenderField =>
 					setFormValue,
 					/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
 				de la réponse est affiché */
-					unfolded
+					unfolded,
+					fieldName
 				} = this.props,
 				{
 					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
 					// formerly in conversation-steps
 					valueType,
 					human,
-					helpText,
-					situationGate
+					helpText
 				} = this.props.step
 
-			let { fieldName } = this.state
-
+			console.log('fieldName', fieldName)
 			/* Nos propriétés personnalisées à envoyer au RenderField.
 			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
 			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
@@ -91,7 +89,6 @@ export var FormDecorator = formType => RenderField =>
 									stepProps={stepProps}
 									themeColours={themeColours}
 									validate={validate}
-									changeFieldName={name => this.setState({ fieldName: name })}
 								/>
 							</fieldset>
 						)}
@@ -137,7 +134,10 @@ export var FormDecorator = formType => RenderField =>
 		renderTitleAndAnswer(valueType, human) {
 			let { step, stepAction, situationGate, themeColours, step: { title } } = this.props
 			let inversionTitle = R.path(['props', 'step', 'inversion', 'title'])(this)
+
+
 			let answer = situationGate(this.state.fieldName)
+
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
