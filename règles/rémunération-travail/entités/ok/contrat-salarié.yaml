@@ -191,7 +191,6 @@
 - espace: contrat salarié
   nom: aides
   résumé: Les aides différées dont peut bénéficier l'employeur.
-  type: salaire
   formule:
     somme:
       - CICE
