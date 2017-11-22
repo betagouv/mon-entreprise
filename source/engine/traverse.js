@@ -21,7 +21,8 @@ import {
 	mecanismMin,
 	mecanismError,
 	mecanismComplement,
-	mecanismSelection
+	mecanismSelection,
+	mecanismInversion
 } from './mecanisms'
 import {
 	evaluateNode,
@@ -35,6 +36,7 @@ import {
 	undefOrTrue,
 	applyOrEmpty
 } from './traverse-common-functions'
+
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -113,9 +115,9 @@ let fillVariableNode = (rules, rule) => parseResult => {
 			nodeValue =
 				situationValue != null
 					? situationValue // cette variable a été directement renseignée
-					: !variableIsCalculable
-						? null // pas moyen de calculer car il n'y a pas de formule, elle restera donc nulle
-						: parsedRule.nodeValue, // la valeur du calcul fait foi
+					: variableIsCalculable
+						? parsedRule.nodeValue // la valeur du calcul fait foi
+						: null, // elle restera donc nulle
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : [dottedName]
 
@@ -141,7 +143,7 @@ let fillVariableNode = (rules, rule) => parseResult => {
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
-	let jsx = (nodeValue) => (
+	let jsx = nodeValue => (
 		<Leaf classes="variable" name={fragments.join(' . ')} value={nodeValue} />
 	)
 
@@ -351,7 +353,8 @@ let treat = (rules, rule) => rawNode => {
 			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
 
 			if (mecanisms.length != 1) {
-				console.log( // eslint-disable-line no-console
+				console.log(
+					// eslint-disable-line no-console
 					'Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet',
 					mecanisms,
 					rawNode
@@ -376,7 +379,8 @@ let treat = (rules, rule) => rawNode => {
 					'une possibilité': R.always({
 						'une possibilité': 'oui',
 						collectMissing: () => [rule.dottedName]
-					})
+					}),
+					'inversion': mecanismInversion(rule.dottedName)
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 
@@ -403,8 +407,10 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 		? formuleValue
 		: isApplicable === false ? 0 : formuleValue == 0 ? 0 : null
 
+
 export let treatRuleRoot = (rules, rule) => {
 	let evaluate = (situationGate, parsedRules, r) => {
+
 		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
 			evaluated = R.evolve(
 				{
@@ -431,14 +437,15 @@ export let treatRuleRoot = (rules, rule) => {
 		return { ...evaluated, nodeValue, isApplicable }
 	}
 
-	let collectMissing = ({
-		formule,
-		isApplicable,
-		'non applicable si': notApplicable,
-		'applicable si': applicable
-	}) => {
-		let
-			condMissing =
+	let collectMissing = rule => {
+		let {
+			formule,
+			isApplicable,
+			'non applicable si': notApplicable,
+			'applicable si': applicable
+		} = rule
+
+		let condMissing =
 				val(notApplicable) === true
 					? []
 					: val(applicable) === false
@@ -538,14 +545,24 @@ let evolveCond = (name, rule, rules) => value => {
 	}
 }
 
-export let analyseSituation = (rules, rootVariable) => situationGate => {
-	let { root } = analyseTopDown(rules, rootVariable)(situationGate)
-	return root
+export let getTargets = (target, rules) => {
+	let multiSimulation = R.path(['simulateur', 'objectifs'])(target)
+	let targets = multiSimulation
+		? // On a un simulateur qui définit une liste d'objectifs
+		multiSimulation
+			.map(n => disambiguateRuleReference(rules, target, n))
+			.map(n => findRuleByDottedName(rules, n))
+		: // Sinon on est dans le cas d'une simple variable d'objectif
+		[target]
+
+	return targets
 }
 
-export let analyseTopDown = (rules, rootVariable) => situationGate => {
+export let analyse = (rules, targetInput) => situationGate => {
 	clearDict()
-	let /*
+	let targetNames =
+			typeof targetInput === 'string' ? [targetInput] : targetInput,
+		/*
 		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
 		Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
 		qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
@@ -557,15 +574,17 @@ export let analyseTopDown = (rules, rootVariable) => situationGate => {
 		parsedRules = R.map(treatOne, rules),
 		// TODO: we should really make use of namespaces at this level, in particular
 		// setRule in Rule.js needs to get smarter and pass dottedName
-		rootRule = findRuleByName(parsedRules, rootVariable),
+		parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
 		/*
 			Ce n'est que dans cette nouvelle étape que l'arbre est vraiment évalué.
 			Auparavant, l'évaluation était faite lors de la construction de l'AST.
 		*/
-		root = evaluateNode(situationGate, parsedRules, rootRule)
+		targets = R.chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
+			evaluateNode(situationGate, parsedRules, t)
+		)
 
 	return {
-		root,
+		targets,
 		parsedRules
 	}
 }

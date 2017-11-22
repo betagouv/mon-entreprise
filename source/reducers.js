@@ -1,17 +1,16 @@
 import R from 'ramda'
-import React from 'react'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
 import {rules, findRuleByName, findRuleByDottedName } from 'Engine/rules'
-import {nextSteps, makeQuestion} from 'Engine/generateQuestions'
+import {nextSteps} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
 
-import {analyseTopDown} from 'Engine/traverse'
+import {analyse} from 'Engine/traverse'
 
-import ReactPiwik from 'Components/Tracker';
+import ReactPiwik from 'Components/Tracker'
 
 import formValueTypes from 'Components/conversation/formValueTypes'
 
@@ -31,17 +30,17 @@ let fromConversation = flatRules => state => name => {
 // assume "wraps" a given situation function with one that overrides its values with
 // the given assumptions
 let assume = (evaluator, assumptions) => state => name => {
-			let userInput = evaluator(state)(name)
-			return userInput != null ? userInput : assumptions[name]
-		}
+	let userInput = evaluator(state)(name)
+	return userInput != null ? userInput : assumptions[name]
+}
 
 export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) => {
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type))
 		return state
 
-	let rootVariable = action.type == START_CONVERSATION ? action.rootVariable : state.analysedSituation.root.name
+	let targetNames = action.type == START_CONVERSATION ? action.targetNames : state.targetNames
 
-	let sim = findRuleByName(flatRules, rootVariable),
+	let sim = targetNames.length === 1 ? findRuleByName(flatRules, targetNames[0]) : {},
 		// Hard assumptions cannot be changed, they are used to specialise a simulator
 		// before the user sees the first question
 		hardAssumptions = R.pathOr({},['simulateur','hypothèses'],sim),
@@ -51,19 +50,19 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		completeSituation = assume(intermediateSituation,softAssumptions)
 
 	let situationGate = completeSituation(state),
-		analysedSituation = analyseTopDown(flatRules,rootVariable)(situationGate)
+		analysis = analyse(flatRules, targetNames)(situationGate)
 
 	let newState = {
 		...state,
-		analysedSituation,
+		targetNames,
+		analysis,
 		situationGate: situationGate,
 		extraSteps: [],
 		explainedVariable: null
 	}
 
 	if (action.type == START_CONVERSATION) {
-		let next = nextSteps(situationGate, flatRules, newState.analysedSituation)
-
+		let next = nextSteps(situationGate, flatRules, newState.analysis)
 		return {
 			...newState,
 			foldedSteps: [],
@@ -71,10 +70,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'fold') {
-		tracker.push(['trackEvent', 'answer', action.step+": "+situationGate(action.step)]);
+		tracker.push(['trackEvent', 'answer', action.step+': '+situationGate(action.step)])
 
 		let foldedSteps = [...state.foldedSteps, state.currentQuestion],
-			next = nextSteps(situationGate, flatRules, newState.analysedSituation),
+			next = nextSteps(situationGate, flatRules, newState.analysis),
 			assumptionsMade = !R.isEmpty(softAssumptions),
 			done = next.length == 0
 
@@ -82,10 +81,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		// where the answers were previously given default reasonable assumptions
 		if (done && assumptionsMade) {
 			let newSituation = intermediateSituation(state),
-				reanalyse = analyseTopDown(flatRules,rootVariable)(newSituation),
-				extraSteps = nextSteps(newSituation, flatRules, reanalyse)
+				reanalysis = analyse(flatRules, targetNames)(newSituation),
+				extraSteps = nextSteps(newSituation, flatRules, reanalysis)
 
-			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length]);
+			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length])
 
 			return {
 				...newState,
@@ -96,7 +95,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		}
 
 		if (done) {
-			tracker.push(['trackEvent', 'done', 'no more questions']);
+			tracker.push(['trackEvent', 'done', 'no more questions'])
 		}
 
 		return {
@@ -106,7 +105,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
-		tracker.push(['trackEvent', 'unfold', action.step]);
+		tracker.push(['trackEvent', 'unfold', action.step])
 
 		// We are possibly "refolding" a previously open question
 		let previous = state.currentQuestion,
@@ -154,7 +153,9 @@ export default reduceReducers(
 		extraSteps: (steps = []) => steps,
 		currentQuestion: (state = null) => state,
 
-		analysedSituation: (state = []) => state,
+		analysis: (state = null) => state,
+
+		targetNames: (state = null) => state,
 
 		situationGate: (state = name => null) => state,
 		refine: (state = false) => state,

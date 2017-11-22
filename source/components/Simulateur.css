@@ -9,6 +9,7 @@
 
 	padding: 1em;
 	max-width: 50em;
+	font-size: 130%;
 
 }
 
@@ -18,7 +19,7 @@
 
 #sim > h1 {
 	color: inherit;
-	margin: 0;
+	margin: 1em 0;
 	font-size: 350%;
 	font-weight: 800;
 }
@@ -76,36 +77,6 @@
 	opacity: 1;
 }
 
-
-#conversation {
-	margin-top: 6%;
-	font-size: 110%;
-	line-height: normal;
-	min-height: 10em;
-}
-
-
-#questions-answers {
-	min-width: 50%;
-	transition: width 1s;
-}
-
-
-#foldedSteps .header {
-	margin-bottom: 1em;
-}
-#foldedSteps .header h3 {
-	display: inline;
-}
-#foldedSteps .header button {
-	font-size: 80%;
-	color: #2975D1;
-	border: none;
-}
-#foldedSteps .header button i {
-	margin-right: .3em;
-	vertical-align: top
-}
 
 
 

@@ -42,6 +42,8 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut
+  résumé: Le salaire inscrit dans le contrat de travail.
+  type: salaire
   question: Quel est le salaire brut mensuel ?
   description: |
     C'est le salaire de négociation du contrat de travail en France.
@@ -54,6 +56,14 @@
     salaire médian: 2300
     SMIC: 1480
     SMIC mi-temps: 740
+
+  formule:
+    inversion:
+      question: Quel est le salaire mensuel ?
+      titre: salaire
+      avec:
+        - salaire net
+        - super brut
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -147,14 +157,18 @@
 
 - espace: contrat salarié
   nom: salaire net
-  titre: Le salarié touchera
+  titre: Salaire net
+  type: salaire
+  question: Quel est le salaire net ?
+  résumé: La somme touchée par le salarié tous les mois.
   description: |
-    Le salaire brut moins les cotisations sociales. C'est ce que le salarié reçoit sur son compte bancaire; cette somme peut varier en fonction de décisions politiques,
-    (augmentation ou diminution de cotisations) alors que le salaire brut est contractuel: il ne peut être que renégocié d'un commun accord.
+    Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel: pour le changer, il faut signer un avenant au contrat.
+  format: euros
   formule: salaire brut - cotisations salariales
 
 - espace: contrat salarié
-  titre: L'employeur versera
   nom: coût du travail
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
@@ -163,6 +177,9 @@
 
 - espace: contrat salarié
   nom: super brut
+  titre: Salaire super brut
+  résumé: La somme totale versée par l'employeur tous les mois.
+  type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales. C'est ce que l'employeur doit en principe verser au total
     pour l'emploi du salarié, mais en pratique certaines aides vont diminuer ce coût théorique du travail.
@@ -173,6 +190,7 @@
 
 - espace: contrat salarié
   nom: aides
+  résumé: Les aides différées dont peut bénéficier l'employeur.
   formule:
     somme:
       - CICE
@@ -181,18 +199,13 @@
       - exonération JEI
 
 - espace: contrat salarié
-  nom: Salaire
-  description: |
-    Le coût du travail salarial
-  formule:
-    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
+  nom: salaire
+  simulateur:
+    objectifs:
       - salaire net
       - coût du travail
-
-  simulateur:
     titre: Simulateur de coût d'embauche
-    sous-titre: Découvrir le coût d'embauche ou le salaire réel
-    résultats: Le salaire net à partir du brut ou vice-versa, et les cotisations
+    sous-titre: Découvrir le coût d'embauche et le salaire réel
     par défaut:
       contrat salarié . temps partiel: non
       contrat salarié . heures par semaine: 35

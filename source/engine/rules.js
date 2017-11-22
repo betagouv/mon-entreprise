@@ -4,6 +4,7 @@ import rawRules from './load-rules'
 import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
+import {capitalise0} from '../utils'
 
 // TODO - should be in UI, not engine
 import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/liste-taux.json'
@@ -15,8 +16,9 @@ import taux_versement_transport from '../../règles/rémunération-travail/cotis
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = (rule, sharedData = {}) => {
 	let
-		type = possibleVariableTypes.find(t => R.has(t, rule)),
+		type = possibleVariableTypes.find(t => R.has(t, rule) || rule.type === t),
 		name = rule['nom'],
+		title = capitalise0(rule['titre'] || name),
 		ns = rule['espace'],
 		data = rule['données'] ? sharedData[rule['données']] : null,
 		dottedName = ns ? [
@@ -26,7 +28,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
 
-	return {...rule, type, name, ns, data, dottedName, subquestion}
+	return {...rule, type, name, title, ns, data, dottedName, subquestion}
 }
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type

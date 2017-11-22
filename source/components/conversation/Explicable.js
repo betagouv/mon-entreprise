@@ -25,7 +25,7 @@ export default class Explicable extends React.Component {
 		if (!rule) return <span>{label}</span>
 
 		let ruleLabel = (
-			label || rule.titre || rule.name
+			label || rule.title
 		).replace(/\s\?$/g, '\u00a0?') // le possible ' ?' final est rendu insécable
 
 		// Rien à expliquer ici, il n'y a pas de champ description dans la règle

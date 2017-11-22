@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import R from "ramda"
 import "./Rule.css"
 import { rules, decodeRuleName, nameLeaf } from "Engine/rules.js"
-import { analyseSituation } from "Engine/traverse"
+import { analyse } from "Engine/traverse"
 import { START_CONVERSATION } from "../../actions"
 import possiblesDestinataires from "Règles/ressources/destinataires/destinataires.yaml"
 import { capitalise0 } from "../../utils"
@@ -19,8 +19,8 @@ import {createMarkdownDiv} from 'Engine/marked'
 		form: state.form
 	}),
 	dispatch => ({
-		startConversation: rootVariable =>
-			dispatch({ type: START_CONVERSATION, rootVariable })
+		startConversation: targetNames =>
+			dispatch({ type: START_CONVERSATION, targetNames })
 	})
 )
 export default class Rule extends Component {
@@ -36,9 +36,9 @@ export default class Rule extends Component {
 		}
 	}
 	setRule(name) {
-		this.rule = analyseSituation(rules, nameLeaf(decodeRuleName(name)))(
+		this.rule = analyse(rules, nameLeaf(decodeRuleName(name)))(
 			this.props.situationGate
-		)
+		).targets[0]
 	}
 	componentWillMount() {
 		let { match: { params: { name } } } = this.props
@@ -54,14 +54,14 @@ export default class Rule extends Component {
 		let conversationStarted = !R.isEmpty(this.props.form),
 			situationExists = conversationStarted || this.state.example != null
 
-		let { type, name, titre, description, question } = this.rule,
+		let { type, name, title, description, question } = this.rule,
 			situationOrExampleRule =
 				R.path(["example", "rule"])(this.state) || this.rule
 
 		return (
 			<div id="rule">
 				<Helmet>
-					<title>{titre || capitalise0(name)}</title>
+					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
 

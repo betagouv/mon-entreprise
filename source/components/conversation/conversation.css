@@ -1,3 +1,49 @@
+
+#conversation {
+	margin-top: 8%;
+	line-height: normal;
+	min-height: 10em;
+}
+
+
+#questions-answers {
+	min-width: 50%;
+	transition: width 1s;
+}
+
+
+#foldedSteps {
+	margin: 3em .3em;
+}
+
+#foldedSteps .header button {
+	font-size: 80%;
+	color: #2975D1;
+	border: none;
+}
+#foldedSteps .header button i {
+	margin-right: .3em;
+	vertical-align: top
+}
+
+
+#conversation h2, #results h2 {
+	margin: .6em;
+	font-weight: 600;
+	text-align: left;
+	font-size: 110%;
+	display: inline-block;
+}
+
+#conversation h2 i, #results h2 i {
+	margin-right: .5em;
+}
+
+
+
+
+
+
 .step {
 	position: relative;
 	margin-bottom: 5.5em;
@@ -146,10 +192,6 @@
 	padding-left: 2em;
 }
 
-#foldedSteps {
-	margin: 3em 0;
-}
-
 .step.question .variant {
 	margin-bottom: 1em;
 }
@@ -285,6 +327,11 @@ fieldset > .ignore {
 .step input[type=number]:focus {
 	border-color: #D0D4D8;
 	outline: none;
+}
+
+.step .inputPrefix {
+	margin: 0 1em;
+	font-weight: 600;
 }
 
 .step .inputSuggestions {
@@ -461,6 +508,11 @@ for the appearing element to appear without stacking up below the first one */
 .user-next-action-animation-leave.user-next-action-animation-leave-active {
   opacity: 0;
   transition: opacity 700ms ease;
+}
+
+
+.foldedQuestion  {
+	margin-left: 1.2em;
 }
 
 .foldedQuestion .edit {

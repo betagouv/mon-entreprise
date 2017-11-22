@@ -12,7 +12,7 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group"
 export default ({
 	name,
 	type,
-	titre,
+	title,
 	conversationStarted,
 	nodeValue: ruleValue
 }) =>
@@ -29,9 +29,8 @@ export default ({
 			})}
 		>
 			<Link to={"/regle/" + encodeRuleName(name)}>
-				<div className="rule-type">{type}</div>
 				<div className="rule-box">
-					<span className="rule-name">{titre || capitalise0(name)}</span>
+					<span className="rule-name">{title}</span>
 					<RuleValue
 						{...{ unsatisfied, irrelevant, conversationStarted, ruleValue }}
 					/>
