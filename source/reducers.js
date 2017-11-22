@@ -44,11 +44,9 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		// Hard assumptions cannot be changed, they are used to specialise a simulator
 		// before the user sees the first question
 		hardAssumptions = R.pathOr({},['simulateur','hypothèses'],sim),
-		// Soft assumptions are revealed after the simulation ends, and can be changed
-		softAssumptions = R.pathOr({},['simulateur','par défaut'],sim),
 		intermediateSituation = assume(answerSource, hardAssumptions),
-		completeSituation = assume(intermediateSituation,softAssumptions),
-		situationWithDefaults = assume(completeSituation, collectDefaults(flatRules))
+		rulesDefaults = collectDefaults(flatRules),
+		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
 	let situationGate = situationWithDefaults(state),
 		analysis = analyse(flatRules, targetNames)(situationGate)
@@ -75,7 +73,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 
 		let foldedSteps = [...state.foldedSteps, state.currentQuestion],
 			next = nextSteps(situationGate, flatRules, newState.analysis),
-			assumptionsMade = !R.isEmpty(softAssumptions),
+			assumptionsMade = !R.isEmpty(rulesDefaults),
 			done = next.length == 0
 
 		// The simulation is "over" - except we can now fill in extra questions
@@ -90,8 +88,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 			return {
 				...newState,
 				foldedSteps,
-				extraSteps,
-				currentQuestion: null
+				currentQuestion: R.head(extraSteps)
 			}
 		}
 
@@ -112,15 +109,11 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		let previous = state.currentQuestion,
 			// we fold it back into foldedSteps if it had been answered
 			answered = previous && answerSource(state)(previous) != undefined,
-			foldedSteps = answered ? R.concat(state.foldedSteps, [previous]) : state.foldedSteps,
-			// we fold it back into "extra steps" if it came from there
-			fromExtra = previous && softAssumptions[previous] != undefined,
-			extraSteps = fromExtra ? R.concat(state.extraSteps, [previous]) : state.extraSteps
+			foldedSteps = answered ? R.concat(state.foldedSteps, [previous]) : state.foldedSteps
 
 		return {
 			...newState,
 			foldedSteps: R.without([action.step], foldedSteps),
-			extraSteps: R.without([action.step], extraSteps),
 			currentQuestion: action.step
 		}
 	}
