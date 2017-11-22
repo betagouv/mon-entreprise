@@ -49,7 +49,8 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
 	let situationGate = situationWithDefaults(state),
-		analysis = analyse(flatRules, targetNames)(situationGate)
+		parsedRules = R.path(['analysis', 'parsedRules'], state),
+		analysis = analyse(parsedRules || flatRules, targetNames)(situationGate)
 
 	let newState = {
 		...state,
@@ -80,7 +81,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		// where the answers were previously given default reasonable assumptions
 		if (done && assumptionsMade) {
 			let newSituation = intermediateSituation(state),
-				reanalysis = analyse(flatRules, targetNames)(newSituation),
+				reanalysis = analyse(analysis.parsedRules, targetNames)(newSituation),
 				extraSteps = nextSteps(newSituation, flatRules, reanalysis)
 
 			tracker.push(['trackEvent', 'done', 'extra questions: '+extraSteps.length])

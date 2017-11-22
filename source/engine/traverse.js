@@ -501,7 +501,8 @@ export let treatRuleRoot = (rules, rule) => {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
-		collectMissing
+		collectMissing,
+		parsed: true
 	}
 }
 
@@ -571,7 +572,8 @@ export let analyse = (rules, targetInput) => situationGate => {
 		*/
 		treatOne = rule => treatRuleRoot(rules, rule),
 		//On fait ainsi pour chaque règle de la base.
-		parsedRules = R.map(treatOne, rules),
+		parsedAlready = R.all(r => r['parsed'], rules),
+		parsedRules = parsedAlready ? rules : R.map(treatOne, rules),
 		// TODO: we should really make use of namespaces at this level, in particular
 		// setRule in Rule.js needs to get smarter and pass dottedName
 		parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
