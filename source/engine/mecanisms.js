@@ -587,7 +587,7 @@ export let mecanismScale = (recurse, k, v) => {
 				: R.has('au-dessus de')(t)
 					? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
 					: t
-	)
+	).map(R.evolve({taux: recurse}))
 
 	let objectShape = {
 		assiette: false,
@@ -621,7 +621,7 @@ export let mecanismScale = (recurse, k, v) => {
 						: memo +
 								(Math.min(val(assiette), max * val(multiplicateur)) -
 									min * val(multiplicateur)) *
-									recurse(taux).nodeValue,
+									taux.nodeValue,
 				0
 			)
 	}
