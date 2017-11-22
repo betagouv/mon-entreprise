@@ -72,7 +72,11 @@ export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 	}
 }
 
-export let collectDefaults = rules => R.fromPairs(rules.map(r => [r.dottedName, r.defaultValue]))
+export let collectDefaults = R.pipe(
+	R.map(R.props(['dottedName', 'defaultValue'])),
+	R.reject(([,v]) => v === undefined),
+	R.fromPairs
+)
 
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
