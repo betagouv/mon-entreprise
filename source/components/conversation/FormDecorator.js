@@ -48,8 +48,6 @@ export var FormDecorator = formType => RenderField =>
 					helpText
 				} = this.props.step
 
-				console.log('fieldName', fieldName)
-
 			/* Nos propriétés personnalisées à envoyer au RenderField.
 			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
 			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus

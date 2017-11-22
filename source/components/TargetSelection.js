@@ -30,7 +30,7 @@ export default class TargetSelection extends Component {
 		return (
 			<div>
 				{salaires.map(s => (
-					<span>
+					<span key={s.name}>
 						<input
 							id={s.name}
 							type="checkbox"
@@ -43,7 +43,7 @@ export default class TargetSelection extends Component {
 								})
 							}
 						/>
-						<label for={s.name} key={s.name}>
+						<label htmlFor={s.name} key={s.name}>
 							<i className="fa fa-square-o fa-2x" />
 							<i className="fa fa-check-square-o fa-2x" />
 							<div>
