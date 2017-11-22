@@ -29,7 +29,7 @@ describe("enrichRule", function() {
     expect(enrichRule(rule)).to.have.property("name", "CDD")
     expect(enrichRule(rule)).to.have.property(
       "dottedName",
-      "contrat salarié . CDD"
+      "contrat salarié . cdd"
     )
   })
 
