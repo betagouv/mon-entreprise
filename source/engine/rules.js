@@ -72,6 +72,9 @@ export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 	}
 }
 
+export let collectDefaults = rules => R.fromPairs(rules.map(r => [r.dottedName, r.defaultValue]))
+
+
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
 export let rules = rawRules.map(rule => enrichRule(rule, {taux_versement_transport}))
 

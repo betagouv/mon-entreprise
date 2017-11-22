@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import {reducer as formReducer, formValueSelector} from 'redux-form'
 
-import {rules, findRuleByName, findRuleByDottedName } from 'Engine/rules'
+import {rules, findRuleByName, findRuleByDottedName, collectDefaults} from 'Engine/rules'
 import {nextSteps} from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, START_CONVERSATION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR} from './actions'
@@ -47,9 +47,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (state, action) =
 		// Soft assumptions are revealed after the simulation ends, and can be changed
 		softAssumptions = R.pathOr({},['simulateur','par défaut'],sim),
 		intermediateSituation = assume(answerSource, hardAssumptions),
-		completeSituation = assume(intermediateSituation,softAssumptions)
+		completeSituation = assume(intermediateSituation,softAssumptions),
+		situationWithDefaults = assume(completeSituation, collectDefaults(flatRules))
 
-	let situationGate = completeSituation(state),
+	let situationGate = situationWithDefaults(state),
 		analysis = analyse(flatRules, targetNames)(situationGate)
 
 	let newState = {
