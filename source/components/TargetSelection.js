@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { rules } from 'Engine/rules'
-import { propEq, reject } from 'ramda'
+import { rules, findRuleByName } from 'Engine/rules'
+import { propEq, reject, curry } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 
@@ -25,11 +25,16 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let salaires = rules.filter(propEq('type', 'salaire')),
+		let popularTargets = [
+				'salaire net',
+				'salaire de base',
+				'super brut',
+				'aides'
+			].map(curry(findRuleByName)(rules)),
 			{ targets } = this.state
 		return (
 			<div>
-				{salaires.map(s => (
+				{popularTargets.map(s => (
 					<span key={s.name}>
 						<input
 							id={s.name}
