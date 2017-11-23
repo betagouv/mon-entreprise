@@ -158,3 +158,43 @@ describe("inversions", () => {
   })
 
 })
+
+it("complex inversion with composantes", () => {
+  let rawRules = dedent`
+      - nom: net
+        formule:
+          multiplication:
+            assiette: 67 + brut
+            taux: 80%
+
+      - nom: cotisation
+        formule:
+          multiplication:
+            assiette: 67 + brut
+            composantes:
+              - attributs:
+                  dû par: employeur
+                taux: 100%
+              - attributs:
+                  dû par: salarié
+                taux: 50%
+
+      - nom: total
+        formule: cotisation (employeur) + cotisation (salarié)
+
+      - nom: brut
+        format: euro
+        formule:
+          inversion:
+            avec:
+              - net
+              - total
+    `,
+    rules = yaml.safeLoad(rawRules).map(enrichRule),
+    stateSelector = name => ({ net: 2000 }[name]),
+    analysis = analyse(rules, "total")(stateSelector),
+    missing = collectMissingVariables(analysis.targets)
+
+  expect(analysis.targets[0].nodeValue).to.equal(3750)
+  expect(missing).to.be.empty
+})
