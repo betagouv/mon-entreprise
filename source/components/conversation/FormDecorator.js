@@ -38,7 +38,8 @@ export var FormDecorator = formType => RenderField =>
 					/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
 				de la réponse est affiché */
 					unfolded,
-					fieldName
+					fieldName,
+					inverted
 				} = this.props,
 				{
 					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
@@ -55,6 +56,7 @@ export var FormDecorator = formType => RenderField =>
 			*/
 			let stepProps = {
 				...this.props.step,
+				inverted,
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 				submit: () => setTimeout(() => stepAction('fold', fieldName), 1),
 				setFormValue: (value, name=fieldName) => setFormValue(name, value)

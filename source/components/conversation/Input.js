@@ -107,8 +107,11 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, submit, suggestions, input } = this.props.stepProps
-		if (!suggestions) return null
+		let { setFormValue, submit, suggestions, input, name, inverted } = this.props.stepProps
+
+
+
+		if (!suggestions || inverted) return null
 		return (
 			<div className="inputSuggestions">
 				suggestions:
