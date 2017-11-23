@@ -116,15 +116,15 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 		inversion: do {
 			let inversions = R.path(['formule', 'inversion', 'avec'])(rule)
 			inversions && {
-				inversions: R.reject(({ name }) => targetNames.includes(name))(
-					inversions
-						.map(i =>
+				inversions: [rule].concat(
+					R.reject(({ name }) => targetNames.includes(name))(
+						inversions.map(i =>
 							findRuleByDottedName(
 								flatRules,
 								disambiguateRuleReference(flatRules, rule, i)
 							)
 						)
-						.concat([rule])
+					)
 				),
 				question: rule.formule.inversion.question,
 				title: rule.formule.inversion.titre
