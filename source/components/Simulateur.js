@@ -112,6 +112,7 @@ export default class extends Component {
 				step={step}
 				situationGate={situationGate}
 				fieldName={fieldName}
+				inverted={step.name !== fieldName}
 			/>
 		)
 	}
