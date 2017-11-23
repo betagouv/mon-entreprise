@@ -64,7 +64,7 @@
       titre: salaire
       avec:
         - salaire net
-        - super brut
+        - salaire total
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -175,11 +175,11 @@
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
-  formule: super brut - aides
+  formule: salaire total - aides
 
 - espace: contrat salarié
-  nom: super brut
-  titre: Salaire super brut
+  nom: salaire total
+  titre: Salaire total
   résumé: La somme totale versée par l'employeur tous les mois.
   type: salaire
   description: |
