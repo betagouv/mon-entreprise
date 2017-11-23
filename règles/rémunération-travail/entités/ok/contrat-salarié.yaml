@@ -19,8 +19,8 @@
     une possibilité:
       choix obligatoire: oui
       possibilités:
-      - CDD
       - CDI
+      - CDD
   par défaut: CDI
 
 - espace: contrat salarié . type de contrat
