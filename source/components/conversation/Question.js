@@ -75,7 +75,7 @@ export default class Question extends Component {
 		return (<ul>
 			{choices.canGiveUp &&
 				<li key='aucun' className="variantLeaf aucun">
-					<RadioLabel {...{value: 'non', label: 'Aucun', input, submit, themeColours}}/>
+					<RadioLabel {...{value: 'non', label: 'Aucun', input, submit, themeColours, dottedName: null}}/>
 				</li>
 			}
 			{ choices.children && choices.children.map( ({name, title, dottedName, children}) =>
