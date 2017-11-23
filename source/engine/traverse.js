@@ -81,7 +81,7 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 		let newSituation = name => (name == 'sys.filter' ? filter : situation(name))
 		return originalEval(newSituation, parsedRules, node)
 	}
-	let node = fillVariableNode(rules, rule)(parseResult)
+	let node = fillVariableNode(rules, rule, filter)(parseResult)
 	return {
 		...node,
 		evaluate: evaluateFiltered(node.evaluate)
@@ -92,14 +92,13 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 // ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
 var dict
 
-export let clearDict = () => dict = console.log('clear dict') || {}
+export let clearDict = () => dict = {}
 
-let fillVariableNode = (rules, rule) => parseResult => {
+let fillVariableNode = (rules, rule, filter) => parseResult => {
 	let evaluate = (situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
-			filter = situation('sys.filter'),
 			cacheName = dottedName + (filter ? '.' + filter : ''),
 			cached = dict[cacheName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
