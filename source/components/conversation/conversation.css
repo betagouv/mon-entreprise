@@ -1,6 +1,6 @@
 
 #conversation {
-	margin-top: 8%;
+	margin-top: 2.6em;
 	line-height: normal;
 	min-height: 10em;
 }
@@ -332,6 +332,13 @@ fieldset > .ignore {
 .step .inputPrefix {
 	margin: 0 1em;
 	font-weight: 600;
+	margin-bottom: 1em;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.inputPrefix select {
+	font-size: 120%
 }
 
 .step .inputSuggestions {
@@ -343,7 +350,6 @@ fieldset > .ignore {
 }
 .step .inputSuggestions ul {
   padding-left: 0;
-	margin-right: 8em;
 	list-style: none;
 	display: inline-flex;
 	align-items: flex-end;
@@ -399,6 +405,10 @@ fieldset > .ignore {
 	line-height: 0em;
 }
 
+.step .send:disabled {
+	opacity: 0.2
+}
+
 .step .send .icon {
 	margin-left: .3em;
 	font-size: 135%;
@@ -414,6 +424,7 @@ fieldset > .ignore {
 .answer {
 	float: right;
 }
+
 
 .step-input-error {
 	position: absolute;
