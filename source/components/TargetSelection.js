@@ -28,7 +28,7 @@ export default class TargetSelection extends Component {
 		let popularTargets = [
 				'salaire net',
 				'salaire de base',
-				'super brut',
+				'salaire total',
 				'aides'
 			].map(curry(findRuleByName)(rules)),
 			{ targets } = this.state
