@@ -525,6 +525,6 @@ for the appearing element to appear without stacking up below the first one */
 .foldedQuestion .borderWrapper {
 	padding: .1em 0;
 	display: inline-block;
-	width: 80%;
+	width: calc(100% - 6em);
 	border-bottom: 1px solid #eee
 }
