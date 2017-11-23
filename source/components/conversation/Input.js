@@ -26,8 +26,9 @@ export default class Input extends Component {
 
 		return (
 			<span>
-				<span className="answer">
-					{this.renderInversions()}
+				<div className="inputPrefix">{this.renderInversions()}</div>
+				<div className="answer">
+
 					<input
 						type="text"
 						{...input}
@@ -45,8 +46,6 @@ export default class Input extends Component {
 								key == 'Enter' &&
 								input.value &&
 								(!error ? submit() : input.onBlur())
-
-
 							// blur will trigger the error
 						}
 					/>
@@ -61,17 +60,17 @@ export default class Input extends Component {
 					)}
 					<button
 						className="send"
+						disabled={sendButtonDisabled}
 						style={{
-							visibility: sendButtonDisabled ? 'hidden' : 'visible',
 							color: themeColours.textColour,
 							background: themeColours.colour
 						}}
-						onClick={() => (!error ? submit() : null)}
+						onClick={() => (!sendButtonDisabled && !error ? submit() : null)}
 					>
 						<span className="text">valider</span>
 						<span className="icon">&#10003;</span>
 					</button>
-				</span>
+				</div>
 
 				{this.renderSuggestions(themeColours)}
 
@@ -91,14 +90,13 @@ export default class Input extends Component {
 		if (!inversion) return null
 
 		if (inversion.inversions.length === 1) return (
-			<span className="inputPrefix">{inversion.inversions[0].title || inversion.inversions[0].name}</span>
+			<span>{inversion.inversions[0].title || inversion.inversions[0].name}</span>
 		)
 
 		return (
 			<Field
 				component="select"
 				name={'inversions.' + name}
-				className="inputPrefix"
 			>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
@@ -112,7 +110,7 @@ export default class Input extends Component {
 		let { setFormValue, submit, suggestions, input } = this.props.stepProps
 		if (!suggestions) return null
 		return (
-			<span className="inputSuggestions">
+			<div className="inputSuggestions">
 				suggestions:
 				<ul>
 					{R.toPairs(suggestions).map(([text, value]) => (
@@ -131,7 +129,7 @@ export default class Input extends Component {
 						</li>
 					))}
 				</ul>
-			</span>
+			</div>
 		)
 	}
 }
