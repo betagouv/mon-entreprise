@@ -92,7 +92,7 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 // ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
 var dict
 
-export let clearDict = () => (dict = {})
+export let clearDict = () => dict = console.log('clear dict') || {}
 
 let fillVariableNode = (rules, rule) => parseResult => {
 	let evaluate = (situation, parsedRules, node) => {
@@ -128,15 +128,17 @@ let fillVariableNode = (rules, rule) => parseResult => {
 					? collectNodeMissing(parsedRule)
 					: node.missingVariables
 
-		let result = cached
-			? cached
-			: {
+		if (cached) {
+			return cached
+		}
+		else {
+
+			dict[cacheName] = {
 				...rewriteNode(node, nodeValue, explanation, collectMissing),
 				missingVariables
 			}
-		dict[cacheName] = result
-
-		return result
+			return dict[cacheName]
+		}
 	}
 
 	let { fragments } = parseResult,

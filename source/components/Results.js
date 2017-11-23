@@ -34,8 +34,6 @@ export default class Results extends Component {
 
 		let {targets} = analysis
 
-		clearDict() // pourquoi ??
-
 		let onRulePage = R.contains('/regle/')(location.pathname)
 		return (
 			<section ref={el => this.el = el} id="results">
