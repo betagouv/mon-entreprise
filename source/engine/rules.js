@@ -99,8 +99,10 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-export let findRuleByDottedName = (allRules, dottedName) =>
-	dottedName && allRules.find(rule => rule.dottedName == dottedName.toLowerCase())
+export let findRuleByDottedName = (allRules, dottedName) => {
+	let query = dottedName.toLowerCase()
+	return allRules.find(rule => rule.dottedName == query)
+}
 
 /*********************************
 Autres */

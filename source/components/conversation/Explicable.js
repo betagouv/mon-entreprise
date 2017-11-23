@@ -18,11 +18,14 @@ export default class Explicable extends React.Component {
 			dottedName, hover, label,
 			explain, explained,
 			lightBackground
-			} = this.props,
-			rule = findRuleByDottedName(rules, dottedName)
+			} = this.props
 
 		// Rien à expliquer ici, ce n'est pas une règle
-		if (!rule) return <span>{label}</span>
+		if (dottedName == null)
+			return <span>{label}</span>
+
+		let rule = findRuleByDottedName(rules, dottedName)
+
 
 		let ruleLabel = (
 			label || rule.title
