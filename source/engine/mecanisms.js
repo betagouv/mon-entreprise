@@ -402,7 +402,7 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 	}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let fx = x =>
-		console.log('fx') || clearDict() && evaluateNode(
+		clearDict() && evaluateNode(
 			n => dottedName === n ? x : situationGate(n),
 			parsedRules,
 			fixedObjectiveRule
@@ -423,7 +423,7 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 				)
 			)
 		}
-	console.log('uniroot', dottedName, inversion.fixedObjective)
+
 	let tolerancePercentage = 0.00001,
 		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
 		nodeValue = uniroot(
