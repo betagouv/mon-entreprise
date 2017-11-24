@@ -1,10 +1,9 @@
 import R from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { reset, formValueSelector } from 'redux-form'
+import { reset, change, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
-import { Redirect, withRouter } from 'react-router-dom'
-import classNames from 'classnames'
+import { withRouter } from 'react-router-dom'
 
 import { START_CONVERSATION } from '../actions'
 import { rules, findRuleByName, decodeRuleName } from 'Engine/rules'
@@ -30,8 +29,9 @@ import Results from 'Components/Results'
 	}),
 	dispatch => ({
 		startConversation: targetNames =>
-			dispatch({ type: START_CONVERSATION, targetNames}),
-		resetForm: () => dispatch(reset('conversation'))
+			dispatch({ type: START_CONVERSATION, targetNames }),
+		resetForm: () => dispatch(reset('conversation')),
+		resetFormField: name => dispatch(change('conversation', name, ''))
 	})
 )
 export default class extends Component {
@@ -39,16 +39,24 @@ export default class extends Component {
 		started: false
 	}
 	componentWillMount() {
-		let { match: { params: { targets: encodedTargets} }, targetNames: pastTargetNames } = this.props,
+		let {
+				match: { params: { targets: encodedTargets } },
+				targetNames: pastTargetNames,
+				resetFormField
+			} = this.props,
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
 		this.targetRules = targetNames.map(name => findRuleByName(rules, name))
 
+		this.targetRules.map(({ dottedName }) => resetFormField(dottedName))
 		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
 		// if (!existingConversation)
 		//TODO
-		if (this.props.foldedSteps.length === 0 || !R.equals(targetNames, pastTargetNames))
+		if (
+			this.props.foldedSteps.length === 0 ||
+			!R.equals(targetNames, pastTargetNames)
+		)
 			this.props.startConversation(targetNames)
 	}
 	render() {
@@ -74,8 +82,14 @@ export default class extends Component {
 		return (
 			<div id="sim">
 				<Helmet>
-					<title>Simulateur d'embauche : {R.pluck('title', this.targetRules).join(', ')}</title>
-					<meta name="description" content={R.pluck('description', this.targetRules).join(' - ')} />
+					<title>
+						Simulateur d'embauche :{' '}
+						{R.pluck('title', this.targetRules).join(', ')}
+					</title>
+					<meta
+						name="description"
+						content={R.pluck('description', this.targetRules).join(' - ')}
+					/>
 				</Helmet>
 				<Results />
 				<Conversation
@@ -83,13 +97,25 @@ export default class extends Component {
 						reinitalise,
 						currentQuestion:
 							currentQuestion &&
-							this.buildStep({ unfolded: true })(situationGate, targetNames, inputInversions)(currentQuestion),
+							this.buildStep({ unfolded: true })(
+								situationGate,
+								targetNames,
+								inputInversions
+							)(currentQuestion),
 						foldedSteps: R.map(
-							this.buildStep({ unfolded: false })(situationGate, targetNames, inputInversions),
+							this.buildStep({ unfolded: false })(
+								situationGate,
+								targetNames,
+								inputInversions
+							),
 							foldedSteps
 						),
 						extraSteps: R.map(
-							this.buildStep({ unfolded: true })(situationGate, targetNames, inputInversions),
+							this.buildStep({ unfolded: true })(
+								situationGate,
+								targetNames,
+								inputInversions
+							),
 							extraSteps
 						),
 						textColourOnWhite: themeColours.textColourOnWhite
@@ -99,10 +125,18 @@ export default class extends Component {
 		)
 	}
 
-	buildStep = ({ unfolded }) => (situationGate, targetNames, inputInversions) => question => {
+	buildStep = ({ unfolded }) => (
+		situationGate,
+		targetNames,
+		inputInversions
+	) => question => {
 		let step = makeQuestion(rules, targetNames)(question)
 
-		let fieldName = (unfolded && inputInversions && R.path(step.name.split('.'), inputInversions)) || step.name
+		let fieldName =
+			(unfolded &&
+				inputInversions &&
+				R.path(step.name.split('.'), inputInversions)) ||
+			step.name
 
 		return (
 			<step.component
