@@ -5,6 +5,7 @@ import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
 import {capitalise0} from '../utils'
+import formValueTypes from 'Components/conversation/formValueTypes'
 
 // TODO - should be in UI, not engine
 import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/liste-taux.json'
@@ -108,3 +109,16 @@ export let findRuleByDottedName = (allRules, dottedName) => {
 Autres */
 
 let isVariant = R.path(['formule', 'une possibilité'])
+
+export let formatInputs = (flatRules, formValueSelector) => state => name => {
+	// Our situationGate retrieves data from the "conversation" form
+	// The search below is to apply input conversions such as replacing "," with "."
+	if (name.startsWith('sys.')) return null
+
+	let rule = findRuleByDottedName(flatRules, name),
+		format = rule ? formValueTypes[rule.format] : null,
+		pre = format && format.validator.pre ? format.validator.pre : R.identity,
+		value = formValueSelector('conversation')(state, name)
+
+	return value && pre(value)
+}

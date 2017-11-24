@@ -21,7 +21,6 @@ import Results from 'Components/Results'
 	state => ({
 		currentQuestion: state.currentQuestion,
 		foldedSteps: state.foldedSteps,
-		extraSteps: state.extraSteps,
 		themeColours: state.themeColours,
 		situationGate: state.situationGate,
 		targetNames: state.targetNames,
@@ -65,7 +64,6 @@ export default class extends Component {
 
 		let {
 				foldedSteps,
-				extraSteps,
 				currentQuestion,
 				situationGate,
 				themeColours,
@@ -108,14 +106,6 @@ export default class extends Component {
 								inputInversions
 							),
 							foldedSteps
-						),
-						extraSteps: R.map(
-							this.buildStep({ unfolded: true })(
-								situationGate,
-								targetNames,
-								inputInversions
-							),
-							extraSteps
 						),
 						textColourOnWhite: themeColours.textColourOnWhite
 					}}

@@ -11,7 +11,7 @@ import Scroll from 'react-scroll'
 })
 export default class Conversation extends Component {
 	render() {
-		let {foldedSteps, currentQuestion, extraSteps, reinitalise, textColourOnWhite} = this.props
+		let {foldedSteps, currentQuestion, reinitalise, textColourOnWhite} = this.props
 
 		Scroll.animateScroll.scrollToBottom()
 		return (
@@ -30,13 +30,13 @@ export default class Conversation extends Component {
 						</div>
 					}
 					{!currentQuestion &&
-						<Conclusion affiner={!R.isEmpty(extraSteps)}/>}
-					{ !R.isEmpty(extraSteps) &&
+						<Conclusion affiner={!R.isEmpty({})}/>}
+					{ !R.isEmpty({}) &&
 						<div id="foldedSteps">
 							<div className="header" >
 								<h3>Affiner votre situation</h3>
 							</div>
-							{extraSteps}
+							{}
 						</div>
 					}
 					<div id="currentQuestion">
