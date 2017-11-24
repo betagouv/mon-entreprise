@@ -6,6 +6,8 @@ import { stepAction } from '../../actions'
 import StepAnswer from './StepAnswer'
 import { capitalise0 } from '../../utils'
 import R from 'ramda'
+import Explicable from 'Components/conversation/Explicable'
+
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
 with a header, click actions and more goodies.
@@ -28,7 +30,7 @@ export var FormDecorator = formType => RenderField =>
 	)
 	class extends Component {
 		state = {
-			helpVisible: false,
+			helpVisible: false
 		}
 		render() {
 			let {
@@ -59,7 +61,7 @@ export var FormDecorator = formType => RenderField =>
 				inverted,
 				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 				submit: () => setTimeout(() => stepAction('fold', fieldName), 1),
-				setFormValue: (value, name=fieldName) => setFormValue(name, value)
+				setFormValue: (value, name = fieldName) => setFormValue(name, value)
 			}
 
 			/* There won't be any answer zone here, widen the question zone */
@@ -102,18 +104,25 @@ export var FormDecorator = formType => RenderField =>
 			< Le titre de ma question > ----------- < (? bulle d'aide) OU résultat >
 		*/
 		renderHeader(unfolded, valueType, human, helpText, wideQuestion) {
-			let { subquestion } = this.props.step
+			let { step: { subquestion }, fieldName, inversion } = this.props
 			return (
 				<span className="form-header">
 					{unfolded
-						? this.renderQuestion(unfolded, helpText, wideQuestion, subquestion)
+						? this.renderQuestion(
+							unfolded,
+							helpText,
+							wideQuestion,
+							subquestion,
+							fieldName,
+							inversion
+						)
 						: this.renderTitleAndAnswer(valueType, human)}
 				</span>
 			)
 		}
 
-		renderQuestion = (unfolded, helpText, wideQuestion, subquestion) => (
-			<div className="step-question">
+		renderQuestion(unfolded, helpText, wideQuestion, subquestion, fieldName, inversion) {
+			let question = (
 				<h1
 					style={{
 						// border: '2px solid ' + this.props.themeColours.colour, // higher border width and colour to emphasize focus
@@ -125,24 +134,41 @@ export var FormDecorator = formType => RenderField =>
 					{R.path(['props', 'step', 'inversion', 'question'])(this) ||
 						this.props.step.question}
 				</h1>
-				<div
-					className="step-subquestion"
-					dangerouslySetInnerHTML={{ __html: subquestion }}
-				/>
-			</div>
-		)
+			)
+			return (
+				<div className="step-question">
+					{inversion ? (
+						question
+					) : (
+						<Explicable dottedName={fieldName}>{question}</Explicable>
+					)}
+					<div
+						className="step-subquestion"
+						dangerouslySetInnerHTML={{ __html: subquestion }}
+					/>
+				</div>
+			)
+		}
 
 		renderTitleAndAnswer(valueType, human) {
-			let { step, stepAction, situationGate, themeColours, step: { title }, fieldName } = this.props
+			let {
+				step,
+				stepAction,
+				situationGate,
+				themeColours,
+				step: { title },
+				fieldName
+			} = this.props
 			let inversionTitle = R.path(['props', 'step', 'inversion', 'title'])(this)
-
 
 			let answer = situationGate(fieldName)
 
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
-						<span className="title">{capitalise0(inversionTitle || title)}</span>
+						<span className="title">
+							{capitalise0(inversionTitle || title)}
+						</span>
 						<span className="answer">{answer}</span>
 					</span>
 					<button

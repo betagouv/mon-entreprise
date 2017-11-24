@@ -1,7 +1,5 @@
-import React from 'react'
 import R from 'ramda'
 
-import Explicable from 'Components/conversation/Explicable'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import Select from 'Components/conversation/select/Select'
@@ -51,32 +49,6 @@ export let nextSteps = (situationGate, flatRules, analysis) => {
 	return R.map(R.head, sortedPairs)
 }
 
-export let constructStepMeta = ({
-	title,
-	question,
-	subquestion,
-	dottedName,
-	name
-}) => ({
-	// name: dottedName.split(' . ').join('.'),
-	name: dottedName,
-	// <Explicable/> ajoutera une aide au clic sur un icône [?]
-	// Son texte est la question s'il y en a une à poser. Sinon on prend le titre.
-	question: (
-		<Explicable
-			label={question || name}
-			dottedName={dottedName}
-			lightBackground={true}
-		/>
-	),
-	title,
-	subquestion,
-
-	// Legacy properties :
-
-	visible: true
-	// helpText: 'Voila un peu d\'aide poto'
-})
 
 let isVariant = R.path(['formule', 'une possibilité'])
 
@@ -153,10 +125,9 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 		choices: buildVariantTree(flatRules, dottedName)
 	})
 
-	let common = constructStepMeta(rule)
 
 	return Object.assign(
-		common,
+		rule,
 		isVariant(rule)
 			? multiChoiceQuestion(rule)
 			: rule.format == null

@@ -5,37 +5,28 @@
   border-radius: .2em;
   display: inline-block;
   margin-left: .8em;
-  opacity: .5;
+  padding: .15em;
+  opacity: .4;
   border: 1px solid transparent;
+  border-radius: 1em;
   cursor: pointer;
   vertical-align: baseline;
-  font-size: 85%;
-}
-
-.explicable:hover .icon {
-  opacity: 1;
-  border-color: white;
-}
-.explicable.dark:hover .icon {
-  border-color: #333350;
+  font-size: 95%;
 }
 
 .explicable .icon:hover {
   opacity: 1;
-  background: white;
-  color: #4A89DC;
 }
-.explicable.dark .icon:hover {
-  background: #333350;
-  color: white;
+/* Add explanation text to icon, feels too heavy
+.explicable .icon:hover::after {
+  content: '+ d\'infos';
+  margin-left: .2em;
+  font-size: 90%;
+  opacity: .3
 }
-
+*/
 .explicable.explained .icon {
   opacity: 1;
   background: #4A89DC;
-  color: white;
-}
-.explicable.dark.explained .icon {
-  background: #333350;
   color: white;
 }
