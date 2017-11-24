@@ -29,9 +29,9 @@
 
 #conversation h2, #results h2 {
 	margin: .6em;
-	font-weight: 600;
+	font-weight: 400;
 	text-align: left;
-	font-size: 110%;
+	font-size: 95%;
 	display: inline-block;
 }
 

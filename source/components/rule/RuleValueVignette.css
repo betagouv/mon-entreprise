@@ -14,12 +14,17 @@
 .RuleValueVignette .rule-box > span {
 	display: inline-block;
 }
-
+.RuleValueVignette .rule-name {
+	font-weight: 600;
+	font-size: 105%;
+}
 .RuleValueVignette .rule-value {
 	transition: background .8s;
+	font-size: 105%;
 }
 .RuleValueVignette .rule-value .unsatisfied {
 	font-style: italic;
+	font-size: 85%;
 }
 .RuleValueVignette .rule-value .irrelevant {
 	font-style: normal;
