@@ -457,8 +457,15 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 
 	return {
 		evaluate,
-		jsx: () => (
-			<div>C'est une inversion !</div>
+		jsx: (nodeValue) => (
+			<Node
+				classes="mecanism inversion"
+				name="inversion"
+				value={nodeValue}
+				child={<div>
+					<div>avec</div>
+					<ul>{v.avec.map(recurse).map(el => <li key={el.name}>{makeJsx(el)}</li>)}</ul>
+				</div>} />
 		),
 		category: 'mecanism',
 		name: 'inversion',
