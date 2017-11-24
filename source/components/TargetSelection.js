@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { rules, findRuleByName } from 'Engine/rules'
-import { propEq, reject, curry } from 'ramda'
+import { reject, curry } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 
