@@ -5,6 +5,8 @@ import {rules as realRules, enrichRule} from '../source/engine/rules'
 import {collectMissingVariables, getObjectives} from '../source/engine/generateQuestions'
 
 import {reduceSteps} from '../source/reducers'
+import yaml from "js-yaml"
+import dedent from "dedent-js"
 
 let stateSelector = state => name => null
 let tracker = {push: array => null}
@@ -64,73 +66,45 @@ describe('fold', function() {
     expect(result.foldedSteps[0]).to.equal("top . aa")
   });
 
-  it('should list questions with defaults as extra steps', function() {
+  it('should first ask for questions without defaults, then those with defaults', function() {
     let fakeState = {}
     let stateSelector = state => name => fakeState[name]
+    let
+      rawRules = dedent`
+        - nom: net
+          formule: brut - cotisation
 
-    let rawRules = [
-          // TODO - this won't work without the indirection, figure out why
-          {nom: "startHere", formule: {somme: ["a","b","c"]}, espace: "top",
-           simulateur: {"par défaut": {"top . bb": 1, "top . cc":0}}},
-          {nom: "a", espace: "top", formule: "aa"},
-          {nom: "b", espace: "top", formule: "bb"},
-          {nom: "c", espace: "top", formule: "cc"},
-          {nom: "aa", question: "?", titre: "a", espace: "top"},
-          {nom: "bb", question: "?", titre: "b", espace: "top"},
-          {nom: "cc", question: "?", titre: "c", espace: "top"}],
-        rules = rawRules.map(enrichRule),
+        - nom: brut
+          format: euro
+
+        - nom: cotisation
+          formule:
+            multiplication:
+              assiette: brut
+              variations:
+                - si: cadre
+                  taux: 77%
+                - si: ≠ cadre
+                  taux: 80%
+        - nom: cadre
+          par défaut: non
+      `,
+        rules = yaml.safeLoad(rawRules).map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['startHere']})
-    fakeState['top . aa'] = 1
-    var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
+    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['net']})
 
-    let result = step2
+    expect(step1).to.have.property('currentQuestion')
+    expect(step1.currentQuestion).to.equal('brut')
 
-    expect(result).to.have.property('currentQuestion')
-    expect(result.currentQuestion).to.be.an('null')
-    expect(result).to.have.property('foldedSteps')
-    expect(result.foldedSteps).to.have.lengthOf(1)
-    expect(result.foldedSteps[0]).to.equal("top . aa")
-    expect(result).to.have.property('extraSteps')
-    expect(result.extraSteps).to.have.lengthOf(2)
-    expect(result.extraSteps[0]).to.equal("top . bb")
-    expect(result.extraSteps[1]).to.equal("top . cc")
-  });
+    fakeState['brut'] = 2300
+    var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'brut'})
 
-  it('should return questions with a default to extra steps', function() {
-    let fakeState = {}
-    let stateSelector = state => name => fakeState[name]
-
-    let rawRules = [
-          // TODO - this won't work without the indirection, figure out why
-          {nom: "startHere", formule: {somme: ["a","b","c"]}, espace: "top",
-           simulateur: {"par défaut": {"top . bb": 1, "top . cc":0}}},
-          {nom: "a", espace: "top", formule: "aa"},
-          {nom: "b", espace: "top", formule: "bb"},
-          {nom: "c", espace: "top", formule: "cc"},
-          {nom: "aa", question: "?", titre: "a", espace: "top"},
-          {nom: "bb", question: "?", titre: "b", espace: "top"},
-          {nom: "cc", question: "?", titre: "c", espace: "top"}],
-        rules = rawRules.map(enrichRule),
-        reducer = reduceSteps(tracker, rules, stateSelector)
-
-    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['startHere']})
-    fakeState['top . aa'] = 1
-    var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
-    var step3 = reducer(step2,{type:'STEP_ACTION', name: 'unfold', step: 'top . bb'})
-    var step4 = reducer(step3,{type:'STEP_ACTION', name: 'unfold', step: 'top . cc'})
-
-    let result = step4
-
-    expect(result).to.have.property('currentQuestion')
-    expect(result.currentQuestion).to.equal("top . cc")
-    expect(result).to.have.property('foldedSteps')
-    expect(result.foldedSteps).to.have.lengthOf(1)
-    expect(result.foldedSteps[0]).to.equal("top . aa")
-    expect(result).to.have.property('extraSteps')
-    expect(result.extraSteps).to.have.lengthOf(1)
-    expect(result.extraSteps[0]).to.equal("top . bb")
+    expect(step2).to.have.property('foldedSteps')
+    expect(step2.foldedSteps).to.have.lengthOf(1)
+    expect(step2.foldedSteps[0]).to.equal("brut")
+    expect(step2).to.have.property('currentQuestion')
+    expect(step2.currentQuestion).to.equal('cadre')
   });
 
 });
