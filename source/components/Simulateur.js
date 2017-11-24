@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { reset, change, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 import { START_CONVERSATION } from '../actions'
 import { rules, findRuleByName, decodeRuleName } from 'Engine/rules'
@@ -47,22 +47,21 @@ export default class extends Component {
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
-		this.targetRules = targetNames.map(name => findRuleByName(rules, name))
+		this.targetRules = R.reject(R.isNil)(
+			targetNames.map(name => findRuleByName(rules, name))
+		)
 
 		this.targetRules.map(({ dottedName }) => resetFormField(dottedName))
-		// C'est ici que la génération du formulaire, et donc la traversée des variables commence
-		// if (!existingConversation)
-		//TODO
+
 		if (
-			this.props.foldedSteps.length === 0 ||
-			!R.equals(targetNames, pastTargetNames)
+			this.targetRules.length > 0 &&
+			(this.props.foldedSteps.length === 0 ||
+				!R.equals(targetNames, pastTargetNames))
 		)
 			this.props.startConversation(targetNames)
 	}
 	render() {
-		//TODO
-		// if (!this.targets.formule && !R.path(['simulateur', 'objectifs'], this.rule))
-		// 	return <Redirect to={'/regle/' + this.name} />
+		if (this.targetRules.length == 0) return <Redirect to="/404" />
 
 		let {
 				foldedSteps,
