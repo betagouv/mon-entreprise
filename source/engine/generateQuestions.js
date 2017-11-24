@@ -102,6 +102,25 @@ let buildVariantTree = (allRules, path) => {
 	return rec(path)
 }
 
+let buildPossibleInversion = (rule, flatRules, targetNames) => {
+	let inversions = R.path(['formule', 'inversion', 'avec'])(rule),
+		inversionObjects = inversions.map(i =>
+			findRuleByDottedName(
+				flatRules,
+				disambiguateRuleReference(flatRules, rule, i)
+			)
+		),
+		yo = R.reject(({ name }) => targetNames.includes(name))([rule].concat(inversionObjects))
+
+	return (
+		inversions && {
+			inversions: yo,
+			question: rule.formule.inversion.question,
+			title: rule.formule.inversion.titre
+		}
+	)
+}
+
 export let makeQuestion = (flatRules, targetNames) => dottedName => {
 	let rule = findRuleByDottedName(flatRules, dottedName)
 
@@ -113,23 +132,7 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 			placeholder: 'votre réponse'
 		},
 		suggestions: rule.suggestions,
-		inversion: do {
-			let inversions = R.path(['formule', 'inversion', 'avec'])(rule)
-			inversions && {
-				inversions: [rule].concat(
-					R.reject(({ name }) => targetNames.includes(name))(
-						inversions.map(i =>
-							findRuleByDottedName(
-								flatRules,
-								disambiguateRuleReference(flatRules, rule, i)
-							)
-						)
-					)
-				),
-				question: rule.formule.inversion.question,
-				title: rule.formule.inversion.titre
-			}
-		}
+		inversion: buildPossibleInversion(rule, flatRules, targetNames)
 	})
 	let selectQuestion = rule => ({
 		component: Select,
