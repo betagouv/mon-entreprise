@@ -1,5 +1,5 @@
 
-.dictionaryPanelWrapper {
+#dictionaryPanelWrapper {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -8,32 +8,35 @@
 	background: rgba(255, 255, 255, 0.86);
 	z-index: 1;
 }
-.dictionaryPanel {
+#dictionaryPanel {
 	background: white;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
-	width: 33%;
+	width: 70%;
+	max-width: 40em;
 	border: 2px solid #333350;
 	margin: 1em;
 	padding: 0em 1.5em;
 	min-height: 6em;
 	border-radius: .3em;
 }
-.dictionaryPanel h3 {
-	color: #333350
+#dictionaryPanel h3 {
+	color: #333350;
+	font-weight: bold;
+	font-size: 125%;
 }
-.dictionaryPanel blockquote {
+#dictionaryPanel blockquote {
 	font-style: italic;
 	border-left: 4px solid #eee;
 	padding-left: 1em;
 	margin-left: 0;
 }
-.dictionaryPanel blockquote p {
+#dictionaryPanel blockquote p {
 	color: #666;
 }
-.dictionaryPanel code {
+#dictionaryPanel code {
 	border: 1px solid #aaa;
 	padding: .05em .3em;
 	border-radius: .3em;
