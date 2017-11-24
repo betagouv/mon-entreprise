@@ -135,18 +135,18 @@ export default class extends Component {
 		let fieldName =
 			(unfolded &&
 				inputInversions &&
-				R.path(step.name.split('.'), inputInversions)) ||
-			step.name
+				R.path(step.dottedName.split('.'), inputInversions)) ||
+			step.dottedName
 
 		return (
 			<step.component
-				key={step.name}
+				key={step.dottedName}
 				{...step}
 				unfolded={unfolded}
 				step={step}
 				situationGate={situationGate}
 				fieldName={fieldName}
-				inverted={step.name !== fieldName}
+				inverted={step.dottedName !== fieldName}
 			/>
 		)
 	}

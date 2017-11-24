@@ -11,46 +11,35 @@ import ReactPiwik from '../Tracker';
 @connect(state => ({explained: state.explainedVariable}), dispatch => ({
 	explain: variableName => dispatch({type: EXPLAIN_VARIABLE, variableName})
 }))
-@HoverDecorator
 export default class Explicable extends React.Component {
 	render(){
 		let {
-			dottedName, hover, label,
+			dottedName,
 			explain, explained,
-			lightBackground
-			} = this.props
+		} = this.props
 
 		// Rien à expliquer ici, ce n'est pas une règle
 		if (dottedName == null)
-			return <span>{label}</span>
+			return this.props.children
 
 		let rule = findRuleByDottedName(rules, dottedName)
 
-
-		let ruleLabel = (
-			label || rule.title
-		).replace(/\s\?$/g, '\u00a0?') // le possible ' ?' final est rendu insécable
-
-		// Rien à expliquer ici, il n'y a pas de champ description dans la règle
-		if (!rule.description)
-			return <span>{ruleLabel}</span>
+		if (rule.description == null)
+			return this.props.children
 
 		//TODO montrer les variables de type 'une possibilité'
 
-
 		return (
 			<span
-				className={classNames('explicable', {explained: dottedName === explained, dark: lightBackground})} >
-					{ruleLabel}
+				className={classNames('explicable', {explained: dottedName === explained})} >
+				{this.props.children}
 				<span
 					className="icon"
-					onClick={e => {
-						ReactPiwik.push(['trackEvent', 'help', dottedName]);
-						e.preventDefault();
-						e.stopPropagation();
+					onClick={() => {
+						ReactPiwik.push(['trackEvent', 'help', dottedName])
 						explain(dottedName)
 					}}>
-					<i className="fa fa-info" aria-hidden="true"></i>
+					<i className="fa fa-book" aria-hidden="true"></i>
 				</span>
 			</span>
 		)

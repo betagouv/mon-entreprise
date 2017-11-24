@@ -13,7 +13,7 @@ export default class Input extends Component {
 	render() {
 		let {
 				input,
-				stepProps: { name, attributes, submit, valueType },
+				stepProps: { dottedName, attributes, submit, valueType },
 				meta: { touched, error, active },
 				themeColours
 			} = this.props,
@@ -34,7 +34,7 @@ export default class Input extends Component {
 						{...input}
 						value={hoverSuggestion != null ? hoverSuggestion : input.value}
 						className={classnames({ suffixed })}
-						id={'step-' + name}
+						id={'step-' + dottedName}
 						{...attributes}
 						style={
 							!active
@@ -52,7 +52,7 @@ export default class Input extends Component {
 					{suffixed && (
 						<label
 							className="suffix"
-							htmlFor={'step-' + name}
+							htmlFor={'step-' + dottedName}
 							style={!active ? { color: '#888' } : { color: '#222' }}
 						>
 							{answerSuffix}
@@ -80,23 +80,23 @@ export default class Input extends Component {
 	}
 
 	componentDidMount(){
-		let { stepProps: { name, inversion, setFormValue} } = this.props
+		let { stepProps: { dottedName, inversion, setFormValue} } = this.props
 		if (!inversion) return null
 		// initialize the form field in renderinversions
-		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + name)
+		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
 	}
 	renderInversions() {
-		let { stepProps: { name, inversion} } = this.props
+		let { stepProps: { dottedName, inversion} } = this.props
 		if (!inversion) return null
 
 		if (inversion.inversions.length === 1) return (
-			<span>{inversion.inversions[0].title || inversion.inversions[0].name}</span>
+			<span>{inversion.inversions[0].title || inversion.inversions[0].dottedName}</span>
 		)
 
 		return (
 			<Field
 				component="select"
-				name={'inversions.' + name}
+				name={'inversions.' + dottedName}
 			>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
@@ -107,7 +107,7 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, submit, suggestions, input, name, inverted } = this.props.stepProps
+		let { setFormValue, submit, suggestions, inverted } = this.props.stepProps
 
 
 
