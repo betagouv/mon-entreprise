@@ -24,7 +24,7 @@
 #toSimulation i {
 	margin-right: .6em;
 }
-
+/* results h2 defined in conversation.css */
 #results h2 span {
 	font-size: 70%;
 	margin: 0 .6em
@@ -32,7 +32,7 @@
 
 #results .edit {
 	position: absolute;
-	top: 1.3em;
+	top: 1em;
 	right: 1em;
 
 	vertical-align: middle;
