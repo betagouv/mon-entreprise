@@ -27,7 +27,7 @@ describe('fold', function() {
         // situation = analyseTopDown(rules,"startHere")(stateSelector({})),
         // objectives = getObjectives(stateSelector({}), situation.root, situation.parsedRules),
         // missing = collectMissingVariables(stateSelector({}),situation),
-        result = reducer({},action)
+        result = reducer({foldedSteps: []},action)
 
     expect(result).to.have.property('currentQuestion')
     expect(result.currentQuestion).to.equal("top . aa")
@@ -49,7 +49,7 @@ describe('fold', function() {
         rules = rawRules.map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['startHere']})
+    var step1 = reducer({foldedSteps: []},{type:'START_CONVERSATION', targetNames: ['startHere']})
     fakeState['top . aa'] = 1
     var step2 = reducer(step1,{type:'STEP_ACTION', name: 'fold', step: 'top . aa'})
     fakeState['top . bb'] = 1
@@ -92,7 +92,7 @@ describe('fold', function() {
         rules = yaml.safeLoad(rawRules).map(enrichRule),
         reducer = reduceSteps(tracker, rules, stateSelector)
 
-    var step1 = reducer({},{type:'START_CONVERSATION', targetNames: ['net']})
+    var step1 = reducer({foldedSteps: []},{type:'START_CONVERSATION', targetNames: ['net']})
 
     expect(step1).to.have.property('currentQuestion')
     expect(step1.currentQuestion).to.equal('brut')
