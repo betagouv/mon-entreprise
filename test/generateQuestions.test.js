@@ -252,12 +252,23 @@ describe('nextSteps', function() {
     let stateSelector = (name) => ({"contrat salarié . type de contrat":"CDI","entreprise . effectif":"50"})[name]
 
     let rules = realRules.map(enrichRule),
-        analysis = analyse(rules,"Salaire")(stateSelector),
+        analysis = analyse(rules,"salaire")(stateSelector),
         missing = collectMissingVariables(analysis.targets),
         result = nextSteps(stateSelector, rules, analysis)
 
     expect(result[0]).to.equal("contrat salarié . salaire de base")
     expect(result[1]).to.equal("contrat salarié . temps partiel")
+  });
+
+  it('should ask "motif CDD" if "CDD" applies', function() {
+    let stateSelector = (name) => ({"contrat salarié . type de contrat":"CDD","contrat salarié . salaire de base":"2300"})[name]
+
+    let rules = realRules.map(enrichRule),
+        analysis = analyse(rules,"salaire net")(stateSelector),
+        missing = collectMissingVariables(analysis.targets),
+        result = nextSteps(stateSelector, rules, analysis)
+
+    expect(result).to.include("contrat salarié . CDD . motif")
   });
 
 });

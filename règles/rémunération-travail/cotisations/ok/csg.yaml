@@ -6,7 +6,7 @@
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
   formule:
     somme:
-      - assiette csg abattue
+      - assiette CSG abattue
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
 

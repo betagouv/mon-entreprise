@@ -1,5 +1,6 @@
 - espace: contrat salarié
-  nom: atmp
+  nom: ATMP
+  titre: Cotisation Accidents du Travail et Maladies Professionnelles
   description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
   cotisation:
     branche: maladie

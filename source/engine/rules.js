@@ -22,10 +22,10 @@ export let enrichRule = (rule, sharedData = {}) => {
 		title = capitalise0(rule['titre'] || name),
 		ns = rule['espace'],
 		data = rule['données'] ? sharedData[rule['données']] : null,
-		dottedName = (ns ? [
+		dottedName = ns ? [
 			ns,
 			name
-		].join(' . ') : name).toLowerCase(),
+		].join(' . ') : name,
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 		defaultValue = rule['par défaut']
@@ -90,7 +90,7 @@ export let rules = rawRules.map(rule => enrichRule(rule, {taux_versement_transpo
 export let findRuleByName = (allRules, search) =>
 	allRules
 		.find( ({name}) =>
-			name.toLowerCase() === search.toLowerCase()
+			name === search
 		)
 
 export let searchRules = searchInput =>
@@ -101,8 +101,7 @@ export let searchRules = searchInput =>
 		.map(enrichRule)
 
 export let findRuleByDottedName = (allRules, dottedName) => {
-	let query = dottedName.toLowerCase()
-	return allRules.find(rule => rule.dottedName == query)
+	return allRules.find(rule => rule.dottedName == dottedName)
 }
 
 /*********************************
