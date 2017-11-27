@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import R from 'ramda'
 import Aide from '../Aide'
 import Satisfaction from '../Satisfaction'
-import {reduxForm} from 'redux-form'
+import { reduxForm } from 'redux-form'
 import Scroll from 'react-scroll'
 
 @reduxForm({
@@ -11,36 +11,57 @@ import Scroll from 'react-scroll'
 })
 export default class Conversation extends Component {
 	render() {
-		let {foldedSteps, currentQuestion, reinitalise, textColourOnWhite} = this.props
+		let {
+			foldedSteps,
+			currentQuestion,
+			reinitalise,
+			textColourOnWhite,
+			done,
+			nextSteps
+		} = this.props
 
 		Scroll.animateScroll.scrollToBottom()
 		return (
 			<div id="conversation">
 				<div id="questions-answers">
-					{ !R.isEmpty(foldedSteps) &&
+					{!R.isEmpty(foldedSteps) && (
 						<div id="foldedSteps">
-							<div className="header" >
-								<h2><i className="fa fa-mouse-pointer" aria-hidden="true"></i>Vos réponses</h2>
-								<button onClick={reinitalise} style={{color: textColourOnWhite}}>
-									<i className="fa fa-trash" aria-hidden="true"></i>
+							<div className="header">
+								<h2>
+									<i className="fa fa-mouse-pointer" aria-hidden="true" />Vos
+									réponses
+								</h2>
+								<button
+									onClick={reinitalise}
+									style={{ color: textColourOnWhite }}
+								>
+									<i className="fa fa-trash" aria-hidden="true" />
 									Tout effacer
 								</button>
 							</div>
 							{foldedSteps}
 						</div>
-					}
-					{!currentQuestion &&
-						<Conclusion affiner={!R.isEmpty({})}/>}
-					{ !R.isEmpty({}) &&
-						<div id="foldedSteps">
-							<div className="header" >
-								<h3>Affiner votre situation</h3>
-							</div>
-							{}
+					)}
+					{done && (
+						<div className="tip">
+							{nextSteps.length != 0 && (
+								<p>Votre première estimation est disponible !</p>
+							)}
+							{nextSteps.length != 0 && (
+								<p>
+									Il vous reste environ {nextSteps.length}{' '}
+									{nextSteps.length === 1 ? 'questions' : 'question'} pour
+									affiner le calcul
+									<progress
+										value={foldedSteps.length}
+										max={foldedSteps.length + nextSteps.length}
+									/>
+								</p>
+							)}
 						</div>
-					}
+					)}
 					<div id="currentQuestion">
-						{ currentQuestion || <Satisfaction simu={this.props.simu}/>}
+						{currentQuestion || <Satisfaction simu={this.props.simu} />}
 					</div>
 				</div>
 				<Aide />
@@ -48,12 +69,3 @@ export default class Conversation extends Component {
 		)
 	}
 }
-
-let Conclusion = ({ affiner }) => (
-	<div id="fin">
-		<p>
-			Vous pouvez maintenant modifier vos réponses{" "}
-			{affiner && "ou affiner votre situation"} : vos résultats ci-dessous seront mis à jour.
-		</p>
-	</div>
-)

@@ -24,6 +24,8 @@ import Results from 'Components/Results'
 		themeColours: state.themeColours,
 		situationGate: state.situationGate,
 		targetNames: state.targetNames,
+		done: state.done,
+		nextSteps: state.nextSteps,
 		inputInversions: formValueSelector('conversation')(state, 'inversions')
 	}),
 	dispatch => ({
@@ -107,6 +109,8 @@ export default class extends Component {
 							),
 							foldedSteps
 						),
+						done: this.props.done,
+						nextSteps: this.props.nextSteps,
 						textColourOnWhite: themeColours.textColourOnWhite
 					}}
 				/>
