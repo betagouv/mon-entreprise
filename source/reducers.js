@@ -1,4 +1,4 @@
-import R from 'ramda'
+import R, {head} from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
@@ -10,7 +10,7 @@ import {
 	nameLeaf,
 	formatInputs
 } from 'Engine/rules'
-import { nextSteps } from 'Engine/generateQuestions'
+import { getNextSteps } from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import {
 	STEP_ACTION,
@@ -28,6 +28,16 @@ import ReactPiwik from 'Components/Tracker'
 let assume = (evaluator, assumptions) => state => name => {
 	let userInput = evaluator(state)(name)
 	return userInput != null ? userInput : assumptions[name]
+}
+
+let nextWithoutDefaults = (state, flatRules, analysis, targetNames, intermediateSituation) => {
+	let
+		reanalysis = analyse(analysis.parsedRules, targetNames)(
+			intermediateSituation(state)
+		),
+		nextSteps = getNextSteps(intermediateSituation(state), flatRules, reanalysis)
+
+	return {currentQuestion: head(nextSteps), nextSteps}
 }
 
 export let reduceSteps = (tracker, flatRules, answerSource) => (
@@ -52,22 +62,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	let
 		parsedRules = R.path(['analysis', 'parsedRules'], state),
 		analysis = analyse(parsedRules || flatRules, targetNames)(situationWithDefaults(state)),
-		next = nextSteps(situationWithDefaults(state), flatRules, analysis),
+		nextWithDefaults = getNextSteps(situationWithDefaults(state), flatRules, analysis),
 		assumptionsMade = !R.isEmpty(rulesDefaults),
-		done = next.length == 0,
-		currentQuestion =
-			done && assumptionsMade
-				? // The simulation is "over" - except we can now fill in extra questions
-					// where the answers were previously given default reasonable assumptions
-					do {
-						let
-							reanalysis = analyse(analysis.parsedRules, targetNames)(
-								intermediateSituation(state)
-							),
-							next = nextSteps(intermediateSituation(state), flatRules, reanalysis)
-						R.head(next)
-					}
-				: R.head(next)
+		done = nextWithDefaults.length == 0
+
 
 	let newState = {
 		...state,
@@ -75,7 +73,13 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		analysis,
 		situationGate: situationWithDefaults(state),
 		explainedVariable: null,
-		currentQuestion
+		done,
+		... (done && assumptionsMade
+			?
+			// The simulation is "over" - except we can now fill in extra questions
+			// where the answers were previously given default reasonable assumptions
+			nextWithoutDefaults(state, flatRules, analysis, targetNames, intermediateSituation)
+			: {currentQuestion: head(nextWithDefaults), nextSteps: nextWithDefaults})
 	}
 
 	if (action.type == START_CONVERSATION) {
@@ -142,13 +146,15 @@ export default reduceReducers(
 		false means the user is reconsidering its previous input */
 		foldedSteps: (steps = []) => steps,
 		currentQuestion: (state = null) => state,
+		nextSteps: (state = []) => state,
 
 		analysis: (state = null) => state,
 
 		targetNames: (state = null) => state,
 
 		situationGate: (state = name => null) => state,
-		refine: (state = false) => state,
+
+		done: (state = null) => state,
 
 		themeColours,
 

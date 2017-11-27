@@ -213,7 +213,7 @@ describe('nextSteps', function() {
           {nom: "ko", espace: "top . sum . evt"}],
         rules = rawRules.map(enrichRule),
         analysis = analyse(rules,"sum")(stateSelector),
-        result = nextSteps(stateSelector, rules, analysis)
+        result = getNextSteps(stateSelector, rules, analysis)
 
     expect(result).to.have.lengthOf(1)
     expect(result[0]).to.equal("top . sum . evt")
@@ -223,7 +223,7 @@ describe('nextSteps', function() {
     let rules = realRules.map(enrichRule),
         analysis = analyse(rules,"surcoût CDD")(stateSelector),
         missing = collectMissingVariables(analysis.targets),
-        result = nextSteps(stateSelector, rules, analysis)
+        result = getNextSteps(stateSelector, rules, analysis)
 
     // expect(objectives).to.have.lengthOf(4)
 
@@ -254,7 +254,7 @@ describe('nextSteps', function() {
     let rules = realRules.map(enrichRule),
         analysis = analyse(rules,"salaire")(stateSelector),
         missing = collectMissingVariables(analysis.targets),
-        result = nextSteps(stateSelector, rules, analysis)
+        result = getNextSteps(stateSelector, rules, analysis)
 
     expect(result[0]).to.equal("contrat salarié . salaire de base")
     expect(result[1]).to.equal("contrat salarié . temps partiel")
@@ -266,7 +266,7 @@ describe('nextSteps', function() {
     let rules = realRules.map(enrichRule),
         analysis = analyse(rules,"salaire net")(stateSelector),
         missing = collectMissingVariables(analysis.targets),
-        result = nextSteps(stateSelector, rules, analysis)
+        result = getNextSteps(stateSelector, rules, analysis)
 
     expect(result).to.include("contrat salarié . CDD . motif")
   });

@@ -81,6 +81,13 @@
 
 
 
-#fin {
+#sim .tip {
 	font-style: italic;
+	margin-bottom: 2em;
+}
+#sim .tip p {
+	margin: 0;
+}
+#sim .tip progress {
+	margin-left: 1em;
 }
