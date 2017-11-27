@@ -313,6 +313,10 @@ fieldset > .ignore {
 	font-size: 120%;
 }
 
+.step input:not(.suffixed) {
+	margin-right: 1em;
+}
+
 .step label.suffix {
 	font-size: 110%;
 	vertical-align: baseline;
@@ -414,7 +418,7 @@ fieldset > .ignore {
 
 .step .send .text {
 	text-transform: uppercase;
-	font-size: 90%;
+	font-size: 115%;
 	line-height: 2em;
 }
 
