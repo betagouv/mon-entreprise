@@ -19,34 +19,34 @@
     multiplication:
       assiette: assiette cotisations sociales
       variations:
-        - si: Entreprise . effectif >= 150
+        - si: entreprise . effectif >= 150
           message: |
             L'entreprise relève de la tarification individuelle.
             Le taux AT/MP de l'établissement, privé, est accessible en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm) ou reçu par courrier.
           taux:
-            variable: Établissement . taux ATMP
+            variable: établissement . taux ATMP
             alternative:
             # mécanisme à utiliser quand la probabilité est forte pour que
             # l'utilisateur ne connaisse pas cette information
               message: En l'absence de cette information, estimez-le avec votre taux collectif
             # il est ici redirigé vers une variable qui permet une approximation
-              variable: Établissement . taux collectif ATMP
+              variable: établissement . taux collectif ATMP
 
-        - si: Entreprise . effectif >= 20
+        - si: entreprise . effectif >= 20
           message: |
             L'entreprise relève de la tarification mixte, une combinaison du taux individuel de l'établissement et du taux collectif du secteur de l'établissement.
             Ce taux mixte est accessible en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm) ou reçu par courrier.
           taux:
-            variable: Établissement . taux ATMP
+            variable: établissement . taux ATMP
             alternative:
               message: En l'absence de cette information, estimez-le avec votre taux collectif
-              variable: Établissement . taux collectif ATMP
+              variable: établissement . taux collectif ATMP
 
-        - si: Entreprise . effectif < 20
+        - si: entreprise . effectif < 20
           message: |
             Votre entreprise relève du taux individuel, qui est privé.
             Il est accessible en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm) ou reçu par courrier.
-          taux: Établissement . taux collectif ATMP
+          taux: établissement . taux collectif ATMP
 
 - contrat salarié . ATMP : taux collectif ATMP
   saisie:

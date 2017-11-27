@@ -89,7 +89,7 @@
 
   formule-futur: #TODO intégrer ça dans le formulaire. Comment ?
     contrainte:
-      variable: Entreprise . secteur activité
+      variable: entreprise . secteur activité
       possibilités:
         - Déménagement
         - Services à la personne

@@ -49,7 +49,7 @@
   formule:
     somme:
       - allocations familiales
-      - fnal (employeur)
+      - FNAL (employeur)
       - maladie (employeur)
       - vieillesse (employeur)
       # TODO: ajout ATMP
