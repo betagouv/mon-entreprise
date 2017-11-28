@@ -106,7 +106,7 @@
 /* END Group items animation */
 
 /* Group ignore buttons */
-.form-group .header .ignore {
+.form-group .header #ignore {
 	margin-left: 3em;
 }
 
@@ -126,14 +126,20 @@
 }
 
 .step-question {
+	max-width: 70%;
+}
+
+.unfoldedHeader {
 	margin-bottom: 2em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .step h1 {
 	border: 2px solid #333350;
 	color: #333350;
 	display: inline-block;
-	max-width: 75%;
 	font-size: 110%;
 	font-weight: 600;
 	padding: .6em 1em;
@@ -261,23 +267,6 @@
 	opacity: .8;
 	margin-left: .4em;
 	vertical-align: middle;
-}
-
-.ignore, .ignore:visited {
-	cursor: pointer;
-	color: #888;
-	font-weight: 200;
-	text-decoration: none;
-	border-bottom: 1px solid #ccc;
-	font-size: 80%;
-	line-height: 1.2em;
-	font-style: italic;
-}
-
-/* step ignore buttons */
-fieldset > .ignore {
-	position: absolute;
-	bottom: 0em;
 }
 
 .step input[type=radio] {
