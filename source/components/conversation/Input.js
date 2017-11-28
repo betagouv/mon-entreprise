@@ -65,7 +65,6 @@ export default class Input extends Component {
 				</div>
 
 				{this.renderSuggestions(themeColours)}
-
 				{inputError && <span className="step-input-error">{error}</span>}
 			</span>
 		)
