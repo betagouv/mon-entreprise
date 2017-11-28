@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {rules as realRules, enrichRule} from '../source/engine/rules'
-import {analyse, getTargets} from '../source/engine/traverse'
+import {analyse, parseAll, getTargets} from '../source/engine/traverse'
 
 let stateSelector = (state, name) => null
 
@@ -9,13 +9,13 @@ describe('analyse', function() {
 
   it('should directly return simple numerical values', function() {
     let rule = {name: "startHere", formule: 3269}
-    let rules = [rule]
+    let rules = parseAll([rule])
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3269)
   });
 
   it('should compute expressions combining constants', function() {
     let rule = {name: "startHere", formule: "32 + 69"}
-    let rules = [rule]
+    let rules = parseAll([rule])
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',101)
   });
 
@@ -27,7 +27,7 @@ describe('analyse on raw rules', function() {
     let rawRules = [
           {nom: "startHere", formule: "dix", espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',10)
   });
 
@@ -35,7 +35,7 @@ describe('analyse on raw rules', function() {
     let rawRules = [
           {nom: "startHere", formule: "3259 + dix", espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3269)
   });
 
@@ -44,7 +44,7 @@ describe('analyse on raw rules', function() {
           {nom: "startHere", formule: "3259 + dix", espace: "top"},
           {nom: "dix", formule: 10, espace: "top", "non applicable si" : "vrai"},
           {nom: "vrai", formule: "2 > 1", espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3259)
   });
 
@@ -52,7 +52,7 @@ describe('analyse on raw rules', function() {
     let rawRules = [
           {nom: "startHere", formule: "3259 > dix", espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',true)
   });
 
@@ -74,14 +74,14 @@ describe('analyse with mecanisms', function() {
   it('should handle n-way "or"', function() {
     let rawRules = [
           {nom: "startHere", formule: {"une de ces conditions": ["1 > 2", "1 > 0", "0 > 2"]}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',true)
   });
 
   it('should handle n-way "and"', function() {
     let rawRules = [
           {nom: "startHere", formule: {"toutes ces conditions": ["1 > 2", "1 > 0", "0 > 2"]}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',false)
   });
 
@@ -93,14 +93,14 @@ describe('analyse with mecanisms', function() {
                   "3 > dix":"1200%"
               }}, espace: "top"},
           {nom: "dix", formule: 10, espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',11)
   });
 
   it('should handle percentages', function() {
     let rawRules = [
           {nom: "startHere", formule: "35%", espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',0.35)
   });
 
@@ -108,14 +108,14 @@ describe('analyse with mecanisms', function() {
     let rawRules = [
           {nom: "startHere", formule: {"somme": [3200, "dix", 9]}},
           {nom: "dix", formule: 10}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3219)
   });
 
   it('should handle multiplications', function() {
     let rawRules = [
           {nom: "startHere", formule: {"multiplication": {assiette:3259, plafond:3200, facteur:1, taux:1.5}}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',4800)
   });
 
@@ -124,7 +124,7 @@ describe('analyse with mecanisms', function() {
           {nom: "startHere", formule: {"multiplication": {assiette:3200,
             composantes: [{taux:0.7}, {taux:0.8}]
           }}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',4800)
   });
 
@@ -133,7 +133,7 @@ describe('analyse with mecanisms', function() {
           {nom: "startHere", formule: {"multiplication": {assiette:3259, plafond:3200,
             composantes: [{taux:0.7}, {taux:0.8}]
           }}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',4800)
   });
 
@@ -144,7 +144,7 @@ describe('analyse with mecanisms', function() {
             "multiplicateur des tranches":1000,
             "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.2}, ,{"au-dessus de":2, taux: 10}]
           }}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
   });
 
@@ -158,7 +158,7 @@ describe('analyse with mecanisms', function() {
               {"tranches":[{"en-dessous de":1, taux: 0.05},{de:1, "à": 2, taux: 0.8}, ,{"au-dessus de":2, taux: 5}]}
             ]
           }}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
   });
 
@@ -172,14 +172,14 @@ describe('analyse with mecanisms', function() {
               {si: "3 > 2", "tranches":[{"en-dessous de":1, taux: 0.1},{de:1, "à": 2, taux: 1.8}, ,{"au-dessus de":2, taux: 10}]},
             ]
           }}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1800+80)
   });
 
   it('should handle max', function() {
     let rawRules = [
           {nom: "startHere", formule: {"le maximum de": [3200, 60, 9]}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',3200)
   });
 
@@ -187,7 +187,7 @@ describe('analyse with mecanisms', function() {
     let rawRules = [
           {nom: "startHere", formule: {complément: {cible: "dix", montant: 93}}, espace: "top"},
           {nom: "dix", formule: 17, espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',93-17)
   });
 
@@ -197,7 +197,7 @@ describe('analyse with mecanisms', function() {
             composantes: [{montant: 93},{montant: 93}]
           }}, espace: "top"},
           {nom: "dix", formule: 17, espace: "top"}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',2*(93-17))
   });
 
@@ -216,7 +216,7 @@ describe('analyse with mecanisms', function() {
               }
             ]
           }}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',50+400+40)
   });
 
@@ -236,7 +236,7 @@ describe('analyse with mecanisms', function() {
               }
             ]
           }}}],
-        rules = rawRules.map(enrichRule)
+        rules = parseAll(rawRules.map(enrichRule))
     expect(analyse(rules,"orHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',100+1200+80)
   });
@@ -255,7 +255,7 @@ describe('analyse with mecanisms', function() {
             }},
             données: 'taux_versement_transport'},
           {espace: "top", nom: "code postal", format: "nombre"}],
-        rules = rawRules.map(rule => enrichRule(rule,data))
+        rules = parseAll(rawRules.map(rule => enrichRule(rule,data)))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue',0.02)
   });
 
@@ -273,7 +273,7 @@ describe('analyse with mecanisms', function() {
             }},
             données: 'taux_versement_transport'},
           {espace: "top", nom: "code postal", format: "nombre"}],
-        rules = rawRules.map(rule => enrichRule(rule,data))
+        rules = parseAll(rawRules.map(rule => enrichRule(rule,data)))
     expect(analyse(rules,"startHere")(stateSelector).targets[0]).to.have.property('nodeValue', 0)
   });
 
