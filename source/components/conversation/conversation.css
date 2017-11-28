@@ -425,6 +425,8 @@
 	bottom: -1.5em;
 	font-size: .8em;
 	font-style: italic;
+	color: #c0392b;
+	font-weight: 600;
 }
 
 .step textarea {
