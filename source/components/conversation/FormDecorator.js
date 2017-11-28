@@ -3,10 +3,10 @@ import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Field, change } from 'redux-form'
 import { stepAction } from '../../actions'
-import StepAnswer from './StepAnswer'
 import { capitalise0 } from '../../utils'
 import R from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
+import IgnoreStepButton from './IgnoreStepButton'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -24,7 +24,7 @@ export var FormDecorator = formType => RenderField =>
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
-			setFormValue: (field, value) =>
+			setFormValue: (field, value) => console.log(field, value) ||
 				dispatch(change('conversation', field, value))
 		})
 	)
@@ -33,42 +33,9 @@ export var FormDecorator = formType => RenderField =>
 			helpVisible: false
 		}
 		render() {
-			let {
-					stepAction,
-					themeColours,
-					setFormValue,
-					/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
-				de la réponse est affiché */
-					unfolded,
-					fieldName,
-					inverted
-				} = this.props,
-				{
-					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
-					// formerly in conversation-steps
-					valueType,
-					human,
-					helpText
-				} = this.props.step
+			let { unfolded } = this.props,
+				{ helpText } = this.props.step
 
-			/* Nos propriétés personnalisées à envoyer au RenderField.
-			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
-			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
-			des balises html, <input> dans notre cas.
-			*/
-			let stepProps = {
-				...this.props.step,
-				inverted,
-				//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
-				submit: () => setTimeout(() => stepAction('fold', fieldName), 1),
-				setFormValue: (value, name = fieldName) => setFormValue(name, value)
-			}
-
-			/* There won't be any answer zone here, widen the question zone */
-			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
-
-			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
-				validate = test && (v => (v && test(pre(v)) ? undefined : error))
 			return (
 				<div className={classNames({ step: unfolded }, formType)}>
 					{this.state.helpVisible && this.renderHelpBox(helpText)}
@@ -77,51 +44,50 @@ export var FormDecorator = formType => RenderField =>
 							visibility: this.state.helpVisible ? 'hidden' : 'visible'
 						}}
 					>
-						{this.renderHeader(
-							unfolded,
-							valueType,
-							human,
-							helpText,
-							wideQuestion
-						)}
-						{unfolded && (
-							<fieldset>
-								<Field
-									component={RenderField}
-									name={fieldName}
-									stepProps={stepProps}
-									themeColours={themeColours}
-									validate={validate}
-								/>
-							</fieldset>
-						)}
+						{/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
+				de la réponse est affiché */}
+						{unfolded ? this.renderUnfolded() : this.renderFolded()}
 					</div>
 				</div>
 			)
 		}
 
-		/*
-			< Le titre de ma question > ----------- < (? bulle d'aide) OU résultat >
-		*/
-		renderHeader(unfolded, valueType, human, helpText, wideQuestion) {
-			let { step: { subquestion }, fieldName, inversion } = this.props
-			return (
-				<span className="form-header">
-					{unfolded
-						? this.renderQuestion(
-							unfolded,
-							helpText,
-							wideQuestion,
-							subquestion,
-							fieldName,
-							inversion
-						)
-						: this.renderTitleAndAnswer(valueType, human)}
-				</span>
-			)
-		}
+		renderUnfolded() {
+			let {
+				setFormValue,
+				stepAction,
+				step: {
+					subquestion,
+					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
+					defaultValue,
+					valueType
+				},
+				fieldName,
+				inversion,
+				inverted,
+				themeColours
+			} = this.props
 
-		renderQuestion(unfolded, helpText, wideQuestion, subquestion, fieldName, inversion) {
+			/* Nos propriétés personnalisées à envoyer au RenderField.
+			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
+			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
+			des balises html, <input> dans notre cas.
+			*/
+			let submit = () => setTimeout(() => stepAction('fold', fieldName), 1),
+				stepProps = {
+					...this.props.step,
+					inverted,
+					//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
+					submit,
+					setFormValue: (value, name = fieldName) => setFormValue(name, value)
+				}
+
+			/* There won't be any answer zone here, widen the question zone */
+			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
+
+			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
+				validate = test && (v => (v && test(pre(v)) ? undefined : error))
+
 			let question = (
 				<h1
 					style={{
@@ -136,23 +102,43 @@ export var FormDecorator = formType => RenderField =>
 				</h1>
 			)
 			return (
-				<div className="step-question">
-					{inversion ? (
-						question
-					) : (
-						<Explicable dottedName={fieldName}>{question}</Explicable>
-					)}
-					<div
-						className="step-subquestion"
-						dangerouslySetInnerHTML={{ __html: subquestion }}
-					/>
+				<div>
+					<div className="unfoldedHeader">
+						<div className="step-question">
+							{inversion ? (
+								question
+							) : (
+								<Explicable dottedName={fieldName}>{question}</Explicable>
+							)}
+							<div
+								className="step-subquestion"
+								dangerouslySetInnerHTML={{ __html: subquestion }}
+							/>
+						</div>
+						{defaultValue && (
+							<IgnoreStepButton
+								action={() => {
+									setFormValue(fieldName, '' + defaultValue)
+									submit()
+								}}
+							/>
+						)}
+					</div>
+					<fieldset>
+						<Field
+							component={RenderField}
+							name={fieldName}
+							stepProps={stepProps}
+							themeColours={themeColours}
+							validate={validate}
+						/>
+					</fieldset>
 				</div>
 			)
 		}
 
-		renderTitleAndAnswer(valueType, human) {
+		renderFolded() {
 			let {
-				step,
 				stepAction,
 				situationGate,
 				themeColours,
@@ -180,7 +166,7 @@ export var FormDecorator = formType => RenderField =>
 						{'  '}
 						<span>Modifier</span>
 					</button>
-					{/* <StepAnswer	{...{value, human, valueType, ignored, themeColours}} /> */}
+					{}
 				</div>
 			)
 		}

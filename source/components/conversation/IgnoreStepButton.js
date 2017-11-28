@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import './IgnoreStepButton.css'
+import HoverDecorator from 'Components/HoverDecorator'
 
+@HoverDecorator
 export default class IgnoreStepButton extends Component {
 	componentDidMount() {
 		// removeEventListener will need the exact same function instance
 		this.boundHandleKeyDown = this.handleKeyDown.bind(this)
-		
+
 		window.addEventListener('keydown', this.boundHandleKeyDown)
 	}
-	handleKeyDown({key}) {
+	handleKeyDown({ key }) {
 		if (key !== 'Escape') return
 		this.props.action()
 	}
@@ -15,8 +18,13 @@ export default class IgnoreStepButton extends Component {
 		window.removeEventListener('keydown', this.boundHandleKeyDown)
 	}
 	render() {
-		return <a className="ignore" onClick={this.props.action}>
-			passer
-		</a>
+		return (
+			<div>
+				<span id="ignoreIcon" style={{opacity: this.props.hover ? 1 : 0}}>Échap</span>
+				<a id="ignore" onClick={this.props.action}>
+					passer
+				</a>
+			</div>
+		)
 	}
 }
