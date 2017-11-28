@@ -79,7 +79,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			// The simulation is "over" - except we can now fill in extra questions
 			// where the answers were previously given default reasonable assumptions
 			nextWithoutDefaults(state, flatRules, analysis, targetNames, intermediateSituation)
-			: {currentQuestion: head(nextWithDefaults), nextSteps: nextWithDefaults})
+			: {currentQuestion: head(nextWithDefaults), nextSteps: nextWithDefaults, })
 	}
 
 	if (action.type == START_CONVERSATION) {
