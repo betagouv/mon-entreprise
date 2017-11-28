@@ -10,6 +10,13 @@ import Scroll from 'react-scroll'
 	destroyOnUnmount: false
 })
 export default class Conversation extends Component {
+	state = {
+		nbFoldedStepsForFirstEstimation: null
+	}
+	componentWillReceiveProps(newProps) {
+		if (newProps.done && this.state.nbFoldedStepsForFirstEstimation == null)
+			this.setState({nbFoldedStepsForFirstEstimation: newProps.foldedSteps.length})
+	}
 	render() {
 		let {
 			foldedSteps,
@@ -44,7 +51,7 @@ export default class Conversation extends Component {
 					)}
 					{done && (
 						<div className="tip">
-							{nextSteps.length != 0 && (
+							{nextSteps.length != 0 && this.state.nbFoldedStepsForFirstEstimation === foldedSteps.length && (
 								<p>Votre première estimation est disponible !</p>
 							)}
 							{nextSteps.length != 0 && (
