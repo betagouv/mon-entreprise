@@ -581,7 +581,8 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 			evaluateNode(situationGate, parsedRules, t)
 		)
 
-	return {targets}
+	// Don't use 'dict' for anything else than ResultsGrid
+	return {targets, dict}
 }
 
 export let analyse = (parsedRules, target) => {
