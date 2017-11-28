@@ -15,6 +15,7 @@ import { makeQuestion } from 'Engine/generateQuestions'
 import ReactPiwik from './Tracker'
 
 import Results from 'Components/Results'
+import ResultsGrid from 'Components/ResultsGrid'
 
 @withRouter
 @connect(
@@ -114,6 +115,7 @@ export default class extends Component {
 						textColourOnWhite: themeColours.textColourOnWhite
 					}}
 				/>
+				<ResultsGrid />
 			</div>
 		)
 	}

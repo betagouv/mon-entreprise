@@ -4,7 +4,7 @@
 # situation affinée
 - espace: contrat salarié
   nom: prévoyance obligatoire cadre
-  attributs:
+  cotisation:
     dû par: employeur
   références:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros

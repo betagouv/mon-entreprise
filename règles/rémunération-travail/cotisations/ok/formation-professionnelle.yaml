@@ -1,6 +1,6 @@
 - espace: contrat salarié
   nom: formation professionnelle
-  attributs:
+  cotisation:
     dû par: employeur
     collecteur: OPCA
     # TODO majoration pour les entreprises de travail temporaire
