@@ -19,7 +19,7 @@ import {
 	CHANGE_THEME_COLOUR
 } from './actions'
 
-import { analyse } from 'Engine/traverse'
+import { analyseMany, parseAll } from 'Engine/traverse'
 
 import ReactPiwik from 'Components/Tracker'
 
@@ -30,12 +30,12 @@ let assume = (evaluator, assumptions) => state => name => {
 	return userInput != null ? userInput : assumptions[name]
 }
 
-let nextWithoutDefaults = (state, flatRules, analysis, targetNames, intermediateSituation) => {
+let nextWithoutDefaults = (state, analysis, targetNames, intermediateSituation) => {
 	let
-		reanalysis = analyse(analysis.parsedRules, targetNames)(
+		reanalysis = analyseMany(state.parsedRules, targetNames)(
 			intermediateSituation(state)
 		),
-		nextSteps = getNextSteps(intermediateSituation(state), flatRules, reanalysis)
+		nextSteps = getNextSteps(intermediateSituation(state), reanalysis)
 
 	return {currentQuestion: head(nextSteps), nextSteps}
 }
@@ -44,6 +44,9 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	state,
 	action
 ) => {
+	// Optimization - don't parse on each analysis
+	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
+
 	if (![START_CONVERSATION, STEP_ACTION].includes(action.type)) return state
 
 	let targetNames =
@@ -61,11 +64,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 
 	let
 		parsedRules = R.path(['analysis', 'parsedRules'], state),
-		analysis = analyse(parsedRules || flatRules, targetNames)(situationWithDefaults(state)),
-		nextWithDefaults = getNextSteps(situationWithDefaults(state), flatRules, analysis),
+		analysis = analyseMany(state.parsedRules, targetNames)(situationWithDefaults(state)),
+		nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
 		assumptionsMade = !R.isEmpty(rulesDefaults),
 		done = nextWithDefaults.length == 0
-
 
 	let newState = {
 		...state,
@@ -78,7 +80,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			?
 			// The simulation is "over" - except we can now fill in extra questions
 			// where the answers were previously given default reasonable assumptions
-			nextWithoutDefaults(state, flatRules, analysis, targetNames, intermediateSituation)
+			nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
 			: {currentQuestion: head(nextWithDefaults), nextSteps: nextWithDefaults, })
 	}
 
@@ -148,6 +150,7 @@ export default reduceReducers(
 		currentQuestion: (state = null) => state,
 		nextSteps: (state = []) => state,
 
+		parsedRules: (state = null) => state,
 		analysis: (state = null) => state,
 
 		targetNames: (state = null) => state,

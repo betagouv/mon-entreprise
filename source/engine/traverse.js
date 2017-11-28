@@ -410,6 +410,13 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 
 
 export let treatRuleRoot = (rules, rule) => {
+	/*
+	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
+	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
+	qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
+	Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
+	Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
+	*/
 	let evaluate = (situationGate, parsedRules, r) => {
 
 		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
@@ -560,34 +567,23 @@ export let getTargets = (target, rules) => {
 	return targets
 }
 
-export let analyse = (rules, targetInput) => situationGate => {
+export let parseAll = flatRules => {
+	let treatOne = rule => treatRuleRoot(flatRules, rule)
+	return R.map(treatOne, flatRules)
+}
+
+export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	clearDict()
-	let targetNames =
-			typeof targetInput === 'string' ? [targetInput] : targetInput,
-		/*
-		La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
-		Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
-		qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
-		Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
-		Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
-		*/
-		treatOne = rule => treatRuleRoot(rules, rule),
-		//On fait ainsi pour chaque règle de la base.
-		parsedAlready = R.all(r => r['parsed'], rules),
-		parsedRules = parsedAlready ? rules : R.map(treatOne, rules),
 		// TODO: we should really make use of namespaces at this level, in particular
 		// setRule in Rule.js needs to get smarter and pass dottedName
-		parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
-		/*
-			Ce n'est que dans cette nouvelle étape que l'arbre est vraiment évalué.
-			Auparavant, l'évaluation était faite lors de la construction de l'AST.
-		*/
+	let parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
 		targets = R.chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
 			evaluateNode(situationGate, parsedRules, t)
 		)
 
-	return {
-		targets,
-		parsedRules
-	}
+	return {targets}
+}
+
+export let analyse = (parsedRules, target) => {
+	return analyseMany(parsedRules, [target])
 }

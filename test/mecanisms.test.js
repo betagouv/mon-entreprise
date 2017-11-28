@@ -6,7 +6,7 @@
 
 import {expect} from 'chai'
 import {enrichRule} from '../source/engine/rules'
-import {analyse} from '../source/engine/traverse'
+import {analyse, parseAll} from '../source/engine/traverse'
 import {collectMissingVariables} from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
 import R from 'ramda'
@@ -21,7 +21,7 @@ describe('Mécanismes', () =>
         exemples.map(({nom: testTexte, situation, 'valeur attendue': valeur, 'variables manquantes': expectedMissing}) =>
           it(testTexte + '', () => {
 
-            let rules = suite.map(enrichRule),
+            let rules = parseAll(suite.map(enrichRule)),
               state = situation || {},
               stateSelector = name => state[name],
               analysis = analyse(rules, nom)(stateSelector),

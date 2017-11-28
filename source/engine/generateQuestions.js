@@ -40,7 +40,7 @@ export let collectMissingVariables = targets =>
 		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
 	)(targets)
 
-export let getNextSteps = (situationGate, flatRules, analysis) => {
+export let getNextSteps = (situationGate, analysis) => {
 	let impact = ([variable, objectives]) => R.length(objectives)
 
 	let missingVariables = collectMissingVariables(analysis.targets),
