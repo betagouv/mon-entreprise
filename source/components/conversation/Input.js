@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import R from 'ramda'
-import {Field} from 'redux-form'
-
+import { Field } from 'redux-form'
+import SendButton from './SendButton'
 
 @FormDecorator('input')
 export default class Input extends Component {
@@ -28,8 +28,8 @@ export default class Input extends Component {
 			<span>
 				<div className="inputPrefix">{this.renderInversions()}</div>
 				<div className="answer">
-
 					<input
+						ref={el => { this.inputElement = el }}
 						type="text"
 						{...input}
 						value={hoverSuggestion != null ? hoverSuggestion : input.value}
@@ -46,6 +46,7 @@ export default class Input extends Component {
 								key == 'Enter' &&
 								input.value &&
 								(!error ? submit() : input.onBlur())
+
 							// blur will trigger the error
 						}
 					/>
@@ -58,18 +59,9 @@ export default class Input extends Component {
 							{answerSuffix}
 						</label>
 					)}
-					<button
-						className="send"
-						disabled={sendButtonDisabled}
-						style={{
-							color: themeColours.textColour,
-							background: themeColours.colour
-						}}
-						onClick={() => (!sendButtonDisabled && !error ? submit() : null)}
-					>
-						<span className="text">valider</span>
-						<span className="icon">&#10003;</span>
-					</button>
+					<SendButton
+						{...{ sendButtonDisabled, themeColours, error, submit }}
+					/>
 				</div>
 
 				{this.renderSuggestions(themeColours)}
@@ -79,25 +71,27 @@ export default class Input extends Component {
 		)
 	}
 
-	componentDidMount(){
-		let { stepProps: { dottedName, inversion, setFormValue} } = this.props
+	componentDidMount() {
+		this.inputElement.focus()
+
+		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
 		if (!inversion) return null
 		// initialize the form field in renderinversions
 		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
 	}
 	renderInversions() {
-		let { stepProps: { dottedName, inversion} } = this.props
+		let { stepProps: { dottedName, inversion } } = this.props
 		if (!inversion) return null
 
-		if (inversion.inversions.length === 1) return (
-			<span>{inversion.inversions[0].title || inversion.inversions[0].dottedName}</span>
-		)
+		if (inversion.inversions.length === 1)
+			return (
+				<span>
+					{inversion.inversions[0].title || inversion.inversions[0].dottedName}
+				</span>
+			)
 
 		return (
-			<Field
-				component="select"
-				name={'inversions.' + dottedName}
-			>
+			<Field component="select" name={'inversions.' + dottedName}>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}
@@ -108,8 +102,6 @@ export default class Input extends Component {
 	}
 	renderSuggestions(themeColours) {
 		let { setFormValue, submit, suggestions, inverted } = this.props.stepProps
-
-
 
 		if (!suggestions || inverted) return null
 		return (

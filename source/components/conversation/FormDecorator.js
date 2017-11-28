@@ -24,8 +24,7 @@ export var FormDecorator = formType => RenderField =>
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
-			setFormValue: (field, value) => console.log(field, value) ||
-				dispatch(change('conversation', field, value))
+			setFormValue: (field, value) => dispatch(change('conversation', field, value))
 		})
 	)
 	class extends Component {

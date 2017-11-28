@@ -1,5 +1,9 @@
 
-#ignore, #ignore:visited {
+#ignore {
+	position: relative;
+}
+
+#ignoreButton, #ignoreButton:visited {
 	cursor: pointer;
 	color: #444;
 	font-weight: 200;
@@ -8,15 +12,4 @@
 	font-size: 80%;
 	line-height: 1.2em;
 	font-style: italic;
-}
-
-#ignoreIcon {
-	font-size: 80%;
-	font-weight: bold;
-	background: #ddd;
-	color: white;
-	margin-right: .6em;
-	padding: .5em .4em;
-	border-radius: .2em;
-	transition: .2s opacity;
 }

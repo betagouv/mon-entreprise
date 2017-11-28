@@ -385,6 +385,9 @@
 	vertical-align: middle;
 }
 
+.sendWrapper {
+	position: relative;
+}
 
 .step .send {
 	padding: 0 .1em 0 .5em;
@@ -528,4 +531,20 @@ for the appearing element to appear without stacking up below the first one */
 	display: inline-block;
 	width: calc(100% - 6em);
 	border-bottom: 1px solid #eee
+}
+
+
+
+
+.keyIcon {
+	position: absolute;
+	font-size: 80%;
+	text-align: center;
+	font-weight: bold;
+	background: #ddd;
+	color: white;
+	margin-left: .6em;
+	padding: .5em .4em;
+	border-radius: .2em;
+	transition: .2s opacity;
 }
