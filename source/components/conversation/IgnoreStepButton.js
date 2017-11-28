@@ -19,11 +19,11 @@ export default class IgnoreStepButton extends Component {
 	}
 	render() {
 		return (
-			<div>
-				<span id="ignoreIcon" style={{opacity: this.props.hover ? 1 : 0}}>Échap</span>
-				<a id="ignore" onClick={this.props.action}>
+			<div id="ignore">
+				<a id="ignoreButton" onClick={this.props.action}>
 					passer
 				</a>
+				<span className="keyIcon" style={{opacity: this.props.hover ? 1 : 0}}>Échap</span>
 			</div>
 		)
 	}
