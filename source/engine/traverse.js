@@ -76,14 +76,19 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
+// TODO - this is becoming overly specific
 let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 	let evaluateFiltered = originalEval => (situation, parsedRules, node) => {
 		let newSituation = name => (name == 'sys.filter' ? filter : situation(name))
 		return originalEval(newSituation, parsedRules, node)
 	}
-	let node = fillVariableNode(rules, rule, filter)(parseResult)
+	let node = fillVariableNode(rules, rule, filter)(parseResult),
+		// Decorate node with who's paying
+		cotisation = {...node.cotisation, "dû par":filter}
+
 	return {
 		...node,
+		cotisation,
 		evaluate: evaluateFiltered(node.evaluate)
 	}
 }

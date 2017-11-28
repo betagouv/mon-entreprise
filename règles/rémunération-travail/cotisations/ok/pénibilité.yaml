@@ -23,8 +23,8 @@
 
 - espace: contrat salarié
   nom: cotisation pénibilité
-  attributs:
-    branche: santé # ou vieillesse car ouvrant droit à une retraite anticipée ?
+  cotisation:
+    branche: maladie # ou vieillesse car ouvrant droit à une retraite anticipée ?
   description: Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur
   références:
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
