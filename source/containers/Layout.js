@@ -11,6 +11,7 @@ import Route404 from 'Components/Route404'
 import Contact from 'Components/Contact'
 import Simulateur from 'Components/Simulateur'
 import RulesList from 'Components/pages/RulesList'
+import Mecanisms from 'Components/Mecanisms'
 import Contribution from 'Components/pages/Contribution'
 import Integration from 'Components/pages/Integration'
 import About from 'Components/pages/About'
@@ -39,6 +40,7 @@ export default class Layout extends Component {
 						<Route path="/contact" component={Contact} />
 						<Route path="/regle/:name" component={RulePage} />
 						<Route path="/regles" component={RulesList} />
+						<Route path="/mecanisms" component={Mecanisms} />
 						<Route path="/simu/:targets" component={Simulateur} />
 						<Route path="/à-propos" component={About} />
 						<Route path="/intégrer" component={Integration} />
