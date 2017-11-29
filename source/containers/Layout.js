@@ -11,6 +11,7 @@ import Route404 from "Components/Route404"
 import Contact from "Components/Contact"
 import Simulateur from "Components/Simulateur"
 import RulesList from "Components/RulesList"
+import Mecanisms from 'Components/Mecanisms'
 
 import ReactPiwik from "Components/Tracker"
 import createHistory from "history/createBrowserHistory"
@@ -37,6 +38,7 @@ export default class Layout extends Component {
           <Route path="/simu/:targets" component={Simulateur} />
           <Redirect from="/simu/" to="/" />
           <Redirect from="/simu/:name/intro" to="/simu/:name" />
+          <Route path="/mecanisms" component={Mecanisms} />
           <Route component={Route404} />
         </Switch>
       </Router>
