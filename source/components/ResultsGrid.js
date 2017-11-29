@@ -28,6 +28,14 @@ export let cell = (branch, payer, analysis) => {
 	return R.sum(values)
 }
 
+export let subCell = (row, name, payer) => {
+	let cells = row[name],
+		items = R.filter(item => paidBy(payer)(item) || filteredBy(payer)(item),cells),
+		values = R.map(R.prop('nodeValue'),items)
+
+	return R.sum(values)
+}
+
 export let byBranch = (analysis) => {
 	let sal = analysis.dict['contrat salarié . cotisations salariales']
 	let pat = analysis.dict['contrat salarié . cotisations patronales']
@@ -62,7 +70,8 @@ export default class ResultsGrid extends Component {
 		let extract = x => (x && x.nodeValue) || 0,
 			fromSituation = name => situationGate(name),
 			fromEval = name => R.find(R.propEq('dottedName',name),analysis.targets),
-			get = name => extract(fromSituation(name) || fromEval(name))
+			fromDict = name => analysis.dict[name],
+			get = name => extract(fromSituation(name) || fromEval(name) || fromDict(name))
 		let results = byBranch(analysis),
 			brut = get('contrat salarié . salaire brut'),
 			net = get('contrat salarié . salaire net'),
@@ -81,11 +90,11 @@ export default class ResultsGrid extends Component {
 				<tbody>
 				{R.keys(results).map(
 					branch => {
-						let props = {branch, analysis}
+						let props = {branch, values: results[branch], analysis}
 						return <Row key={branch} {...props} />
 				})}
 				<tr>
-					<td className="element"></td>
+				<td className="element"></td>
 				<td className="operator">=</td>
 				<td className="element">{humanFigure(2)(net)} (salaire net)</td>
 				<td className="operator">=</td>
@@ -99,17 +108,49 @@ export default class ResultsGrid extends Component {
 }
 
 class Row extends Component {
+	state = {
+		folded: true
+	}
 	render() {
-		let { branch, analysis } = this.props
+		let { branch, values, analysis } = this.props,
+			detail = byName(values)
 
-		return (
-			<tr>
-				<td className="element">{capitalise0(branch)}</td>
+		let title = name => {
+			let node = R.head(detail[name])
+			return node.title || capitalise0(node.name)
+		}
+
+		let aggregateRow = () => {
+			return this.state.folded ?
+				<tr onClick={() => this.setState({ folded: !this.state.folded })}>
+				<td className="element">{capitalise0(branch)}&nbsp;<span className="unfoldIndication">▶</span></td>
 				<td className="operator">-</td>
 				<td className="element">{humanFigure(2)(cell(branch,"salarié",analysis))}</td>
 				<td className="operator">+</td>
 				<td className="element">{humanFigure(2)(cell(branch,"employeur",analysis))}</td>
-			</tr>
-		)
+				</tr>
+			: // unfolded
+				<tr onClick={() => this.setState({ folded: !this.state.folded })}>
+				<td className="element">{capitalise0(branch)}&nbsp;<span className="unfoldIndication">▽'</span></td>
+				<td colSpan="4"></td>
+				</tr>
+		}
+
+		let detailRows = () => {
+			return this.state.folded ? [] :
+				R.keys(detail).map(
+					subCellName =>
+					<tr>
+						<td className="element">&nbsp;{title(subCellName)}</td>
+						<td className="operator">-</td>
+						<td className="element">{humanFigure(2)(subCell(detail,subCellName,"salarié"))}</td>
+						<td className="operator">+</td>
+						<td className="element">{humanFigure(2)(subCell(detail,subCellName,"employeur"))}</td>
+					</tr>
+				)
+		}
+
+		// returns an array of <tr>
+		return R.concat([aggregateRow()],detailRows())
 	}
 }
