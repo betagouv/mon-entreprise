@@ -5,7 +5,7 @@ import R from 'ramda'
 import './Mecanisms.css'
 
 let directoryLoader = require.context('../../test/mécanismes/', true, /.yaml$/),
-	tests = R.fromPairs(
+	suites = R.fromPairs(
 		directoryLoader
 			.keys()
 			.map(key => [
@@ -21,14 +21,28 @@ export default class Mecanisms extends Component {
 				{R.toPairs(knownMecanims).map(([name, data]) => (
 					<li key={name}>
 						{name}
-						{tests[name] == null ? (
+						{suites[name] == null ? (
 							<p className="warning">Pas de tests !</p>
 						) : (
-							<p>nombre de tests {tests[name].length}</p>
+							<Tests name={name} suites={suites} />
 						)}
 					</li>
 				))}
 			</ul>
+		)
+	}
+}
+
+class Tests extends Component {
+	render() {
+		let { suites, name } = this.props,
+			suite = suites[name],
+			tests = suite.filter(R.has('test'))
+
+		return (
+			<p>
+				{tests.length} {tests.length == 1 ? 'test' : 'tests'}
+			</p>
 		)
 	}
 }
