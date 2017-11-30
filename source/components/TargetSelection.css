@@ -22,7 +22,6 @@
 }
 
 #targetSelection div {
-	display: inline-block;
 	margin-left: 1em;
 	line-height: 0.6em;
 }
@@ -66,17 +65,26 @@
 	color: #2975d1;
 }
 
+#targetSelection #action {
+	text-align: center;
+	margin: 2em auto;
+}
+
+#targetSelection #action p {
+	font-size: 80%;
+	color: #4a89dc;
+}
+
 /* TODO styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */
 
 #targetSelection button {
 	color: white;
 	display: block;
-	text-align: center;
 	background: #4a89dc;
 	padding: 0.3em 1em;
 	font-size: 200%;
-	margin: 2em auto;
 	width: 8em;
+	margin: 0 auto;
 	border: none;
 	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);
 	opacity: 0.95;
