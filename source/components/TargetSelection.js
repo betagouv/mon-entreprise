@@ -13,12 +13,15 @@ export default class TargetSelection extends Component {
 
 		return (
 			<section id="targetSelection">
-				<h2>Qu'allons-nous calculer ?</h2>
+				<h2>Que voulez-vous calculer ?</h2>
 				{this.renderOutputList()}
 				{targets.length !== 0 && (
-					<Link to={'/simu/' + targets.join('+')}>
-						<button>Valider</button>
-					</Link>
+					<div id="action">
+						<p>Vous pouvez faire plusieurs choix</p>
+						<Link to={'/simu/' + targets.join('+')}>
+							<button>Valider</button>
+						</Link>
+					</div>
 				)}
 			</section>
 		)
