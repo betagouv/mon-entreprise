@@ -80,12 +80,9 @@ export default class ResultsGrid extends Component {
 				<table>
 					<thead>
 						<tr>
-							<td className="element" />
-							<td colSpan="2" className="element">
-								{humanFigure(2)(brut)} (salaire brut)
-							</td>
-							<td colSpan="2" className="element">
-								{humanFigure(2)(brut)} (salaire brut)
+							<td className="element"><span className="annotation">Salaire brut</span></td>
+							<td colSpan="4" className="element" id="sommeBase">
+								{humanFigure(2)(brut)}
 							</td>
 						</tr>
 					</thead>
@@ -97,10 +94,10 @@ export default class ResultsGrid extends Component {
 						<tr>
 							<td className="element" />
 							<td className="operator">=</td>
-							<td className="element">{humanFigure(2)(net)} (salaire net)</td>
+							<td className="element">{humanFigure(2)(net)} <div className="annotation">Salaire net</div></td>
 							<td className="operator">=</td>
 							<td className="element">
-								{humanFigure(2)(total)} (salaire total)
+								{humanFigure(2)(total)} <div className="annotation">Salaire total</div>
 							</td>
 						</tr>
 					</tbody>
@@ -158,7 +155,7 @@ class Row extends Component {
 				? []
 				: R.keys(detail).map(subCellName => (
 					<tr>
-						<td className="element">&nbsp;{title(subCellName)}</td>
+						<td className="element name">&nbsp;{title(subCellName)}</td>
 						<td className="operator">-</td>
 						<td className="element">
 							{humanFigure(2)(subCell(detail, subCellName, 'salarié'))}
