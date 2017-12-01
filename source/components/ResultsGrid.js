@@ -76,13 +76,14 @@ export default class ResultsGrid extends Component {
 			total = get('contrat salarié . salaire total')
 
 		return (
-			<div className="somme">
+			<div className="somme resultsGrid">
 				<table>
 					<thead>
 						<tr>
-							<td className="element"><span className="annotation">Salaire brut</span></td>
-							<td colSpan="4" className="element" id="sommeBase">
-								{humanFigure(2)(brut)}
+							<td className="element" />
+							<td colSpan="4" className="element value" id="sommeBase">
+								{humanFigure(2)(brut)}{' '}
+								<span className="annotation">Salaire brut</span>
 							</td>
 						</tr>
 					</thead>
@@ -94,10 +95,14 @@ export default class ResultsGrid extends Component {
 						<tr>
 							<td className="element" />
 							<td className="operator">=</td>
-							<td className="element">{humanFigure(2)(net)} <div className="annotation">Salaire net</div></td>
+							<td className="element value">
+								{humanFigure(2)(net)}{' '}
+								<span className="annotation">Salaire net</span>
+							</td>
 							<td className="operator">=</td>
-							<td className="element">
-								{humanFigure(2)(total)} <div className="annotation">Salaire total</div>
+							<td className="element value">
+								{humanFigure(2)(total)}{' '}
+								<span className="annotation">Salaire total</span>
 							</td>
 						</tr>
 					</tbody>
@@ -123,26 +128,26 @@ class Row extends Component {
 		let aggregateRow = () => {
 			return this.state.folded ? (
 				<tr onClick={() => this.setState({ folded: !this.state.folded })}>
-					<td className="element">
+					<td className="element category name">
 						{capitalise0(branch)}&nbsp;<span className="unfoldIndication">
-							▶
+							déplier >
 						</span>
 					</td>
 					<td className="operator">-</td>
-					<td className="element">
+					<td className="element value">
 						{humanFigure(2)(cell(branch, 'salarié', analysis))}
 					</td>
 					<td className="operator">+</td>
-					<td className="element">
+					<td className="element value">
 						{humanFigure(2)(cell(branch, 'employeur', analysis))}
 					</td>
 				</tr>
 			) : (
 				// unfolded
 				<tr onClick={() => this.setState({ folded: !this.state.folded })}>
-					<td className="element">
+					<td className="element category name">
 						{capitalise0(branch)}&nbsp;<span className="unfoldIndication">
-							▽'
+							replier
 						</span>
 					</td>
 					<td colSpan="4" />
@@ -154,14 +159,14 @@ class Row extends Component {
 			return this.state.folded
 				? []
 				: R.keys(detail).map(subCellName => (
-					<tr>
+					<tr className="detailsRow">
 						<td className="element name">&nbsp;{title(subCellName)}</td>
 						<td className="operator">-</td>
-						<td className="element">
+						<td className="element value">
 							{humanFigure(2)(subCell(detail, subCellName, 'salarié'))}
 						</td>
 						<td className="operator">+</td>
-						<td className="element">
+						<td className="element value">
 							{humanFigure(2)(subCell(detail, subCellName, 'employeur'))}
 						</td>
 					</tr>
