@@ -33,7 +33,7 @@ export default class Layout extends Component {
 
 		return (
 			<Router history={piwik.connectToHistory(this.history)}>
-				<div id="main">
+				<>
 					<div id="header">
 						{displayWarning && (
 							<span id="ribbon">
@@ -60,7 +60,7 @@ export default class Layout extends Component {
 						<Redirect from="/simu/:name/intro" to="/simu/:name" />
 						<Route component={Route404} />
 					</Switch>
-				</div>
+				</>
 			</Router>
 		)
 	}
