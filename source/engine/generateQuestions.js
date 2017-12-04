@@ -8,7 +8,6 @@ import formValueTypes from 'Components/conversation/formValueTypes'
 
 import {
 	findRuleByDottedName,
-	findRuleByName,
 	disambiguateRuleReference
 } from './rules'
 import { collectNodeMissing } from './evaluation'
@@ -41,7 +40,7 @@ export let collectMissingVariables = targets =>
 	)(targets)
 
 export let getNextSteps = (situationGate, analysis) => {
-	let impact = ([variable, objectives]) => R.length(objectives)
+	let impact = ([, objectives]) => R.length(objectives)
 
 	let missingVariables = collectMissingVariables(analysis.targets),
 		pairs = R.toPairs(missingVariables),

@@ -11,10 +11,11 @@ import { capitalise0 } from '../utils'
 import { nameLeaf } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
-let paidBy = which => R.pathEq(['explanation', 'cotisation', 'dû par'], which)
-let filteredBy = which => R.pathEq(['cotisation', 'dû par'], which)
+let paidBy = R.pathEq(['explanation', 'cotisation', 'dû par'])
 
-export let byName = branch => R.groupBy(R.prop('dottedName'), branch)
+let filteredBy = R.pathEq(['cotisation', 'dû par'])
+
+export let byName = R.groupBy(R.prop('dottedName'))
 
 export let cell = (branch, payer, analysis) => {
 	let row = byBranch(analysis)[branch],
@@ -116,15 +117,15 @@ export default class ResultsGrid extends Component {
 						})}
 						<tr>
 							<td key="blank" className="element" />
-							{relevantSalaries.has('salaire net') && [
+							{relevantSalaries.has('salaire net') && <>
 								<td key="netOperator" className="operator">
 									=
-								</td>,
+								</td>
 								<td key="net" className="element value">
 									{humanFigure(2)(net)}{' '}
 									<span className="annotation">Salaire net</span>
 								</td>
-							]}
+							</>}
 							{relevantSalaries.has('salaire total') && [
 								<td key="totalOperator" className="operator">
 									=

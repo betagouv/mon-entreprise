@@ -91,7 +91,6 @@ export default class extends Component {
 						content={R.pluck('description', this.targetRules).join(' - ')}
 					/>
 				</Helmet>
-				<Results />
 				<Conversation
 					{...{
 						reinitalise,
@@ -115,6 +114,7 @@ export default class extends Component {
 						textColourOnWhite: themeColours.textColourOnWhite
 					}}
 				/>
+				<Results />
 				<ResultsGrid />
 			</div>
 		)
