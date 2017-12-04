@@ -1,17 +1,17 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/env", {
       "targets": {
         "browsers": ["last 2 versions", "safari >= 7"]
       },
       "modules": false
     }],
-    "react"
+    "@babel/react"
   ],
   "plugins": [
-    "transform-decorators-legacy",
+    "@babel/plugin-proposal-decorators",
     "transform-do-expressions",
-    "transform-object-rest-spread",
+    "@babel/plugin-proposal-object-rest-spread",
     "transform-class-properties",
     "syntax-dynamic-import",
     "react-hot-loader/babel",
