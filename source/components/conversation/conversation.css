@@ -1,16 +1,8 @@
 
-#conversation {
-	margin-top: 2.6em;
-	line-height: normal;
-	min-height: 10em;
+
+#myScrollToElement {
+	height: 60%;
 }
-
-
-#questions-answers {
-	min-width: 50%;
-	transition: width 1s;
-}
-
 
 #foldedSteps {
 	margin: 3em .3em;
@@ -27,7 +19,7 @@
 }
 
 
-#conversation h2, #results h2 {
+#sim h2 {
 	margin: .6em;
 	font-weight: 400;
 	text-align: left;
@@ -35,7 +27,7 @@
 	display: inline-block;
 }
 
-#conversation h2 i, #results h2 i {
+#sim h2 i {
 	margin-right: .5em;
 }
 

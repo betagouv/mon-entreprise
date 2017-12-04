@@ -59,11 +59,14 @@ export let byBranch = analysis => {
 	analysis: state.analysis,
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
-	inversions: formValueSelector('conversation')(state, 'inversions')
+	inversions: formValueSelector('conversation')(state, 'inversions'),
+	done: state.done
 }))
 export default class ResultsGrid extends Component {
 	render() {
-		let { analysis, situationGate, targetNames, inversions } = this.props
+		let { analysis, situationGate, targetNames, inversions, done } = this.props
+
+		if (!done) return null
 
 		if (!analysis) return null
 
