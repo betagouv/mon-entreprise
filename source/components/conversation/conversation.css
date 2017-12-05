@@ -4,14 +4,26 @@
 	height: 55%;
 }
 
+#myScrollToElement button {
+	display: block;
+	margin: 1em auto;
+}
+
+
+#myScrollToElement, #foldedSteps {
+	padding: 1em 1em;
+}
+
 #foldedSteps {
-	margin: 3em .3em;
+	margin-bottom: 6em;
 }
 
 #foldedSteps .header button {
 	font-size: 80%;
 	color: #2975D1;
 	border: none;
+	display: block;
+	margin: 0 auto;
 }
 #foldedSteps .header button i {
 	margin-right: .3em;
