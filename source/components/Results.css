@@ -6,11 +6,12 @@
 }
 #results {
 	width: 100%;
+	padding: .5em;
 }
 #resultsContent {
 	position: relative;
 	margin: 0 auto;
-	padding: .6em 0;
+	padding: .2em 0;
 	width: 100%;
 	max-width: 45em;
 	background: #2975D1;
@@ -20,7 +21,8 @@
 
 #results button {
 	display: block;
-	margin: 1em auto;
+	margin: .5em auto 0;
+	transition: 1s opacity;
 }
 
 #results-actions {
@@ -63,7 +65,7 @@
 	align-items: center;
 	flex-wrap: wrap;
 	height: 70%;
-	margin: .2em auto 1.2em;
+	margin: .6em auto 1.2em;
 }
 
 
