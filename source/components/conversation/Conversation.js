@@ -29,11 +29,11 @@ export default class Conversation extends Component {
 			nextSteps
 		} = this.props
 
-		scroller.scrollTo('myScrollToElement', {
-			duration: 200,
-			delay: 100,
-			smooth: true
-		})
+		// scroller.scrollTo('myScrollToElement', {
+		// 	duration: 200,
+		// 	delay: 100,
+		// 	smooth: true
+		// })
 
 		return (
 			<>

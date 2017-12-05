@@ -36,6 +36,7 @@ export default class Results extends Component {
 
 		let onRulePage = R.contains('/regle/')(location.pathname)
 		return (
+			<div id="resultsWrapper">
 			<section ref={el => this.el = el} id="results">
 				{onRulePage && conversationStarted ?
 					<div id ="results-actions">
@@ -61,6 +62,7 @@ export default class Results extends Component {
 					</li>)}
 				</ul>
 			</section>
+			</div>
 		)
 	}
 }
