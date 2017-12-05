@@ -74,3 +74,17 @@
 	box-shadow: none;
 	opacity: 1;
 }
+
+.scrollButton {
+	display: block;
+	margin: .8em auto;
+	transition: 1s opacity;
+	color: #4A89DC;
+	border: none;
+}
+.scrollButton.up {
+	margin-top: 0;
+}
+.scrollButton.down {
+	margin-bottom: 0;
+}

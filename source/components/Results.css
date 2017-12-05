@@ -20,9 +20,6 @@
 }
 
 #results button {
-	display: block;
-	margin: .5em auto 0;
-	transition: 1s opacity;
 }
 
 #results-actions {
