@@ -1,7 +1,7 @@
 
 
 #myScrollToElement {
-	height: 60%;
+	height: 55%;
 }
 
 #foldedSteps {
@@ -541,4 +541,11 @@ for the appearing element to appear without stacking up below the first one */
 	padding: .5em .4em;
 	border-radius: .2em;
 	transition: .2s opacity;
+}
+
+
+@media screen and (max-width:860px) {
+	.keyIcon {
+		display: none;
+	}
 }
