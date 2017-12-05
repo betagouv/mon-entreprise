@@ -1,0 +1,12 @@
+
+#sim .tip {
+	font-style: italic;
+	margin-bottom: .6em;
+	text-align: center;
+}
+#sim .tip p {
+	margin: 0;
+}
+#sim .tip progress {
+	margin-left: 1em;
+}
