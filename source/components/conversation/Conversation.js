@@ -52,7 +52,7 @@ export default class Conversation extends Component {
           </div>
         )}
         <Element name="myScrollToElement" id="myScrollToElement">
-          <button style={{opacity: foldedSteps.length != 0 ? 1 : 0}}>↑ Modifier mes réponses</button>
+          <button className="scrollButton up" style={{opacity: foldedSteps.length != 0 ? 1 : 0}}>↑ Modifier mes réponses</button>
           <div id="currentQuestion">
             {currentQuestion || <Satisfaction simu={this.props.simu} />}
           </div>

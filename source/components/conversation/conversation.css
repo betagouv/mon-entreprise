@@ -2,20 +2,12 @@
 
 #myScrollToElement {
 	height: 55%;
+	padding: 1em;
 }
 
-#myScrollToElement button {
-	display: block;
-	margin: 0 auto 1em;
-	transition: 1s opacity;
-}
-
-
-#myScrollToElement, #foldedSteps {
-	padding: 1em 1em;
-}
 
 #foldedSteps {
+	padding: 1em;
 	margin-bottom: 6em;
 }
 
