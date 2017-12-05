@@ -44,13 +44,13 @@ export default class Results extends Component {
             <div id="results-titles">
               <h2>
                 <i className="fa fa-calculator" aria-hidden="true" />
-                {targets.length == 1 ? "Votre objectif" : "Vos objectifs"}
+                {targets.length == 1 ? "Votre résultat" : "Vos résultats"}
               </h2>
             </div>
             <Link className="edit" to="/">
               <i className="fa fa-pencil-square-o" aria-hidden="true" />
               {"  "}
-              <span>Modifier</span>
+              <span>Changer d'objectif</span>
             </Link>
             <ul>
               {targets.map(rule => (
