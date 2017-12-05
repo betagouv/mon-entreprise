@@ -6,7 +6,8 @@
 
 #myScrollToElement button {
 	display: block;
-	margin: 1em auto;
+	margin: 0 auto 1em;
+	transition: 1s opacity;
 }
 
 

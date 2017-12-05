@@ -63,7 +63,7 @@ export default class Results extends Component {
               ))}
             </ul>
           </div>
-          {done && <button>Comprendre mes résultats</button>}
+          <button style={{opacity: done ? 1 : 0}}>Comprendre mes résultats</button>
         </section>
       </div>
     )
