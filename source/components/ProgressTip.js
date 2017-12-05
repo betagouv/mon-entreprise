@@ -31,9 +31,8 @@ export default class ProgressTip extends Component {
 					)}
 				{nextSteps.length != 0 && (
 					<p>
-						Il vous reste environ {nextSteps.length}{' '}
-						{nextSteps.length === 1 ? 'questions' : 'question'} pour
-						affiner le calcul
+						Il reste environ {nextSteps.length}{' '}
+						{nextSteps.length === 1 ? 'question' : 'questions'}
 						<progress
 							value={foldedSteps.length}
 							max={foldedSteps.length + nextSteps.length}
