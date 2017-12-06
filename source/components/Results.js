@@ -57,7 +57,7 @@ export default class Results extends Component {
               ))}
             </ul>
           </div>
-          <button className="scrollButton down" style={{opacity: done ? 1 : 0}}>↓ Comprendre mes résultats</button>
+          <h3 className="scrollIndication down" style={{opacity: done ? 1 : 0}}><i className="fa fa-long-arrow-down" aria-hidden="true"></i> Comprendre mes résultats</h3>
         </section>
       </div>
     )
