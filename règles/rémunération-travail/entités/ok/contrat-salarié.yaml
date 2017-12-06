@@ -173,7 +173,7 @@
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
-  formule: salaire total - aides
+  formule: salaire total - aides employeur différées
 
 - espace: contrat salarié
   nom: salaire total
@@ -181,21 +181,20 @@
   résumé: La somme totale versée par l'employeur tous les mois.
   type: salaire
   description: |
-    C'est le salaire brut, plus les cotisations patronales. C'est ce que l'employeur doit en principe verser au total
-    pour l'emploi du salarié, mais en pratique certaines aides vont diminuer ce coût théorique du travail.
+    C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines aides peuvent diminuer cette somme.
   formule:
     somme:
       - salaire brut
       - cotisations patronales
+      - réduction générale
 
 - espace: contrat salarié
-  nom: aides
+  nom: aides employeur différées
   résumé: Les aides différées dont peut bénéficier l'employeur.
   formule:
     somme:
       - CICE
       - CITS
-      - réduction générale
       - exonération JEI
 
 - espace: contrat salarié
