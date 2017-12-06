@@ -2,7 +2,8 @@
   nom: AGS
   description: Cotisation au Régime de Garantie des Salaires
   cotisation:
-    - dû par: employeur
+    dû par: employeur
+    branche: chômage
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
   notes: |
