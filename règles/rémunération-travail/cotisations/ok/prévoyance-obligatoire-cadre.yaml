@@ -1,11 +1,10 @@
 # TODO: cette contribution est un minimum légal (méconnu semble-t-il), il faudrait pouvoir
 # indiquer le taux appliqué par l'entreprise
-# Cela implique de traiter de façon générique des valeurs "par défaut" qu'on peut corriger dans une
-# situation affinée
 - espace: contrat salarié
   nom: prévoyance obligatoire cadre
   cotisation:
     dû par: employeur
+    branche: maladie
   références:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
   non applicable si: ≠ statut cadre
