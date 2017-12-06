@@ -88,11 +88,12 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		return {
 			...newState,
 			// when objectives change, reject theme from answered questions
-			foldedSteps: R.reject(name => targetNames.includes(nameLeaf(name)))(
+			foldedSteps: action.fromScratch ? [] : R.reject(name => targetNames.includes(nameLeaf(name)))(
 				state.foldedSteps
 			)
 		}
 	}
+
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push([
 			'trackEvent',

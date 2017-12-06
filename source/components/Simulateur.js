@@ -30,8 +30,8 @@ import ResultsGrid from 'Components/ResultsGrid'
 		inputInversions: formValueSelector('conversation')(state, 'inversions')
 	}),
 	dispatch => ({
-		startConversation: targetNames =>
-			dispatch({ type: START_CONVERSATION, targetNames }),
+		startConversation: (targetNames, fromScratch=false) =>
+			dispatch({ type: START_CONVERSATION, targetNames, fromScratch }),
 		resetForm: () => dispatch(reset('conversation')),
 		resetFormField: name => dispatch(change('conversation', name, ''))
 	})
@@ -75,8 +75,8 @@ export default class extends Component {
 			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
-				this.props.resetForm(this.name)
-				this.props.startConversation(this.targets)
+				this.props.resetForm()
+				this.props.startConversation(this.targetNames, true)
 			}
 
 		return (
