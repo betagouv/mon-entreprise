@@ -28,7 +28,7 @@ Cotisation
 
   # contrat: Contrat
   dû par: salarié | employeur
-  branche: maladie | chômage | vieillesse | famille
+  branche: santé | chômage | vieillesse | famille
   collecteur: URSSAF | RSI # | ...
   # D'autres attributs peuvent être ajoutés directement dans les instances de cette classe.
   # Ils ne sont alors pas contraints ni obligatoires
