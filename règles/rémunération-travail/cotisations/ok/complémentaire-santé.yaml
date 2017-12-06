@@ -1,7 +1,7 @@
 - espace: contrat salarié
   nom: complémentaire santé
   cotisation:
-    branche: maladie
+    branche: santé
   références:
     Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
   formule:

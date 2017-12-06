@@ -4,7 +4,7 @@
   description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
   cotisation:
     dû par: employeur
-    branche: maladie
+    branche: santé
     destinataire: URSSAF
     responsable: CARSAT
 

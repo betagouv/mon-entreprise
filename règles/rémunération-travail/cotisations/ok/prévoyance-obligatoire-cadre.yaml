@@ -4,7 +4,7 @@
   nom: prévoyance obligatoire cadre
   cotisation:
     dû par: employeur
-    branche: maladie
+    branche: santé
   références:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
   non applicable si: ≠ statut cadre

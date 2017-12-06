@@ -1,7 +1,7 @@
 - espace: contrat salarié
   nom: maladie
   cotisation:
-    branche: maladie
+    branche: santé
   description: Cotisations de la branche maladie
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
 
