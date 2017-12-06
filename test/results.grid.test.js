@@ -27,7 +27,7 @@ describe('results grid', function() {
 
 	expect(branches).to.have.lengthOf(4)
 	expect(branches).to.include("chômage")
-	expect(branches).to.include("maladie")
+	expect(branches).to.include("santé")
 	expect(branches).to.include("retraite")
 	expect(branches).to.include("autre")
   });
@@ -47,13 +47,15 @@ describe('results grid', function() {
 		result = byBranch(analysis),
 		branches = R.keys(result)
 
-	expect(branches).to.have.lengthOf(6)
+	expect(branches).to.have.lengthOf(8)
 	expect(branches).to.include("chômage")
-	expect(branches).to.include("maladie")
+	expect(branches).to.include("santé")
 	expect(branches).to.include("retraite")
 	expect(branches).to.include("logement")
 	expect(branches).to.include("famille")
-	expect(branches).to.include("autre")
+  expect(branches).to.include("autre")
+  expect(branches).to.include("transport")
+  expect(branches).to.include("formation")
   });
 
   it('should collect cells by name', function() {
@@ -69,14 +71,15 @@ describe('results grid', function() {
 
 	let analysis = step2.analysis,
 		result = byBranch(analysis),
-		maladie = byName(result.maladie),
+		maladie = byName(result['santé']),
 		names = R.keys(maladie)
 
-	expect(names).to.have.lengthOf(4)
+	expect(names).to.have.lengthOf(5)
 	expect(names).to.include("contrat salarié . maladie")
 	expect(names).to.include("contrat salarié . ATMP")
 	expect(names).to.include("contrat salarié . complémentaire santé")
-	expect(names).to.include("contrat salarié . cotisation pénibilité")
+  expect(names).to.include("contrat salarié . cotisation pénibilité")
+  expect(names).to.include("contrat salarié . prévoyance obligatoire cadre")
   });
 
   it('should sum cells by branch and payer', function() {
@@ -109,7 +112,7 @@ describe('results grid', function() {
 
 	let analysis = step2.analysis,
 		result = byBranch(analysis),
-		maladie = byName(result.maladie)
+		maladie = byName(result['santé'])
 
 	expect(subCell(maladie,"contrat salarié . ATMP","salarié")).to.be.closeTo(0, 0.1)
 	expect(subCell(maladie,"contrat salarié . ATMP","employeur")).to.be.closeTo(54, 1)
