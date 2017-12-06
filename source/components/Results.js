@@ -41,12 +41,6 @@ export default class Results extends Component {
         <section id="results">
           <ProgressTip />
           <div id="resultsContent">
-            <div id="results-titles">
-              <h2>
-                <i className="fa fa-calculator" aria-hidden="true" />
-                {targets.length == 1 ? "Votre résultat" : "Vos résultats"}
-              </h2>
-            </div>
             <Link className="edit" to="/">
               <i className="fa fa-pencil-square-o" aria-hidden="true" />
               {"  "}
