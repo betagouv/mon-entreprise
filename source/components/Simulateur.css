@@ -75,8 +75,9 @@
 	opacity: 1;
 }
 
-.scrollButton {
+.scrollIndication {
 	display: block;
+	text-align: center;
 	margin: 1.4em auto;
 	transition: 1s opacity;
 	color: #4A89DC;
@@ -84,9 +85,15 @@
 	font-size: 100%;
 	font-weight: 600;
 }
-.scrollButton.up {
+.scrollIndication i {
+	margin: 0 .3em;
+}
+.scrollIndication:hover i {
+	font-weight: bold;
+}
+.scrollIndication.up {
 	margin-top: 0;
 }
-.scrollButton.down {
+.scrollIndication.down {
 	margin-bottom: 0;
 }
