@@ -18,7 +18,7 @@
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   format: nombre
   suggestions: utilisation d'une API
-  par défaut: non
+  par défaut: 29019
 
 - espace: établissement
   nom: commune
