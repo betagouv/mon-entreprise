@@ -80,7 +80,7 @@ describe('results grid', function() {
 	expect(names).to.include("contrat salarié . complémentaire santé")
   expect(names).to.include("contrat salarié . cotisation pénibilité")
   expect(names).to.include("contrat salarié . prévoyance obligatoire cadre")
-  expect(names).to.include("contrat salarié . santé au travail")
+  expect(names).to.include("contrat salarié . médecine du travail")
   });
 
   it('should sum cells by branch and payer', function() {

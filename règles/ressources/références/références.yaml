@@ -11,3 +11,7 @@ agirc-arrco.fr:
   image: agirc-arrco.png
 pole-emploi.fr:
   image: pole-emploi.png
+ladocumentationfrançaise.fr:
+  image: ladocumentationfrançaise.png
+senat.fr:
+  image: senat.png
