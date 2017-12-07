@@ -1,0 +1,14 @@
+#toSimulation {
+	background: #333350;
+	margin: 0 auto 1em;
+	display: block;
+	width: 20em;
+	color: white;
+	font-size: 180%;
+	text-align: center;
+	padding: .2em .6em;
+}
+
+#toSimulation i {
+	margin: 0 .6em
+}
