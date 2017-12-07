@@ -72,7 +72,8 @@ export default class extends Component {
 				situationGate,
 				themeColours,
 				targetNames,
-				inputInversions
+				inputInversions,
+				done
 			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
@@ -116,7 +117,7 @@ export default class extends Component {
 					}}
 				/>
 				<Results />
-				<Explanation targetRules={R.path(['analysis', 'targets'], this.props)}/>
+				{done && <Explanation targetRules={R.path(['analysis', 'targets'], this.props)}/>}
 			</div>
 		)
 	}
