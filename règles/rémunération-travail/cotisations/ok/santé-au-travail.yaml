@@ -1,0 +1,13 @@
+- espace: contrat salarié
+  nom: santé au travail
+  cotisation:
+    dû par: employeur
+    branche: santé
+  références:
+    question au sénat: http://www.senat.fr/questions/base/2005/qSEQ050919275.html
+    rapporot officiel, page 6: http://www.ladocumentationfrancaise.fr/var/storage/rapports-publics/074000708.pdf
+  notes:  |
+    Le montant de cette cotisation n'est pas défini par la loi, mais elle doit bien être proportionnelle au nombre d'employés.
+
+    Nous avons choisi un montant indicatif en se basant sur les références et ajusté avec l'inflation depuis 2007.
+  formule: 80 / 12
