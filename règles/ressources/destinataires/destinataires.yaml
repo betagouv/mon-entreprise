@@ -10,3 +10,6 @@ salarié:
 AGIRC:
   image: agirc.png
   lien: https://fr.wikipedia.org/wiki/Agirc_et_Arrco
+AGFF:
+  image: agff.png
+  lien: http://www.agff-info.fr/
