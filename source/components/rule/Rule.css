@@ -2,13 +2,8 @@
 	font-size: 110%;
 	height: 100%;
 	padding-bottom: 10%;
-}
-
-@media screen and (min-width:860px) {
-	#rule {
-		width: 860px;
-		margin: 0 auto;
-	}
+	max-width: 45em;
+	margin: 0 auto;
 }
 
 #rule-meta {
