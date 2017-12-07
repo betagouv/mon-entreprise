@@ -9,7 +9,6 @@ import { humanFigure } from "./rule/RuleValueVignette"
 
 import { capitalise0 } from "../utils"
 import { nameLeaf } from "Engine/rules"
-import "./ResultsGrid.css"
 
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
