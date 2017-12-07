@@ -1,11 +1,11 @@
 import React from 'react'
 import classNames from 'classnames'
-import R from 'ramda'
+import R, {path} from 'ramda'
 import {AttachDictionary} from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import {makeJsx} from 'Engine/evaluation'
 import './Algorithm.css'
-import { humanFigure } from "./RuleValueVignette"
+import { humanFigure } from './RuleValueVignette'
 
 let RuleWithoutFormula = () => [
 	<p>
@@ -22,8 +22,9 @@ export default class Algorithm extends React.Component {
 		showValues: true
 	}
 	render(){
-		let {traversedRule: rule, showValues} = this.props,
-			ruleWithoutFormula = !rule['formule'] || rule.formule.explanation['une possibilité']
+		let {rule, showValues} = this.props,
+			ruleWithoutFormula = !rule['formule'] || path(['formule', 'explanation', 'une possibilité'], rule)
+
 		return (
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({showValues})}>

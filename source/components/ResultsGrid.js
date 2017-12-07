@@ -10,11 +10,11 @@ import { humanFigure } from "./rule/RuleValueVignette"
 import { capitalise0 } from "../utils"
 import { nameLeaf } from "Engine/rules"
 import "./ResultsGrid.css"
+
+
 // Filtered variables and rules can't be filtered in a uniform way, for now
 let paidBy = R.pathEq(["explanation", "cotisation", "dû par"])
-
 let filteredBy = R.pathEq(["cotisation", "dû par"])
-
 export let byName = R.groupBy(R.prop("dottedName"))
 
 export let cell = (branch, payer, analysis) => {
@@ -173,24 +173,26 @@ class Row extends Component {
         </td>
         {this.state.folded ? (
           <>
-            {relevantSalaries.has('salaire net') &&
-            <>
-              <td key="operator1" className="operator">
-                -
-              </td>
-              <td key="value1" className="element value">
-                {humanFigure(2)(cell(branch, "salarié", analysis))}
-              </td>
-            </>}
-            {relevantSalaries.has('salaire total') &&
-            <>
-              <td key="operator2" className="operator">
-                +
-              </td>
-              <td key="value2" className="element value">
-                {humanFigure(2)(cell(branch, "employeur", analysis))}
-              </td>
-            </>}
+            {relevantSalaries.has("salaire net") && (
+              <>
+                <td key="operator1" className="operator">
+                  -
+                </td>
+                <td key="value1" className="element value">
+                  {humanFigure(2)(cell(branch, "salarié", analysis))}
+                </td>
+              </>
+            )}
+            {relevantSalaries.has("salaire total") && (
+              <>
+                <td key="operator2" className="operator">
+                  +
+                </td>
+                <td key="value2" className="element value">
+                  {humanFigure(2)(cell(branch, "employeur", analysis))}
+                </td>
+              </>
+            )}
           </>
         ) : (
           <td key="blank" colSpan="4" />
@@ -203,20 +205,26 @@ class Row extends Component {
       : R.keys(detail).map(subCellName => (
           <tr key={"detailsRow" + subCellName} className="detailsRow">
             <td className="element name">&nbsp;{title(subCellName)}</td>
-						{relevantSalaries.has('salaire net') && <>
-	            <td key="operator1" className="operator">-</td>
-	            <td key="value1" className="element value">
-	              {humanFigure(2)(subCell(detail, subCellName, "salarié"))}
-	            </td>
-							</>
-						}
-						{relevantSalaries.has('salaire total') && <>
-	            <td key="operator2" className="operator">+</td>
-	            <td key="value2" className="element value">
-	              {humanFigure(2)(subCell(detail, subCellName, "employeur"))}
-	            </td>
-							</>
-						}
+            {relevantSalaries.has("salaire net") && (
+              <>
+                <td key="operator1" className="operator">
+                  -
+                </td>
+                <td key="value1" className="element value">
+                  {humanFigure(2)(subCell(detail, subCellName, "salarié"))}
+                </td>
+              </>
+            )}
+            {relevantSalaries.has("salaire total") && (
+              <>
+                <td key="operator2" className="operator">
+                  +
+                </td>
+                <td key="value2" className="element value">
+                  {humanFigure(2)(subCell(detail, subCellName, "employeur"))}
+                </td>
+              </>
+            )}
           </tr>
         ))
 

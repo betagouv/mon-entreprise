@@ -141,14 +141,14 @@ let devariate = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map((c) => [
-						<li className="variation" key={JSON.stringify(c.variation)}>
+					{explanation.map(c =>
+						<li className="variation" key={JSON.stringify(c.condition)}>
 							<div className="condition">
 								{makeJsx(c.condition)}
 								<div className="content">{makeJsx(c)}</div>
 							</div>
 						</li>
-					])}
+					)}
 				</ul>
 			}
 		/>
@@ -680,14 +680,14 @@ export let mecanismScale = (recurse, k, v) => {
 													: ''
 										}}
 									>
-										<td>
+										<td key="tranche">
 											{maxOnly
 												? 'En dessous de ' + maxOnly
 												: minOnly
 													? 'Au dessus de ' + minOnly
 													: `De ${min} à ${max}`}
 										</td>
-										<td> {taux} </td>
+										<td key="taux"> {makeJsx(taux)} </td>
 									</tr>
 								)
 							)}
