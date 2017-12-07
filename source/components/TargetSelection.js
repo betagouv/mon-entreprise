@@ -34,7 +34,7 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let popularTargets = [...salaries, 'aides'].map(curry(findRuleByName)(rules)),
+		let popularTargets = [...salaries, 'aides employeur différées'].map(curry(findRuleByName)(rules)),
 			{ targets } = this.state
 		return (
 			<div>
