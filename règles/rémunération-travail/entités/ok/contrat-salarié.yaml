@@ -183,12 +183,17 @@
   résumé: La somme totale versée par l'employeur tous les mois.
   type: salaire
   description: |
-    C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines aides peuvent diminuer cette somme.
+    C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines réductions de cotisation et aides peuvent diminuer cette somme.
+  formule: salaire total sans réduction - réduction générale
+
+- espace: contrat salarié
+  nom: salaire total sans réduction
+  type: salaire
   formule:
     somme:
       - salaire brut
       - cotisations patronales
-      - réduction générale
+
 
 - espace: contrat salarié
   nom: aides employeur différées
