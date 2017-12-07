@@ -6,7 +6,7 @@ import "./ribbon.css"
 import { Link, Route, Router, Switch, Redirect } from "react-router-dom"
 
 import Home from "Components/Home"
-import Rule from "Components/rule/Rule"
+import RulePage from "Components/RulePage"
 import Route404 from "Components/Route404"
 import Contact from "Components/Contact"
 import Simulateur from "Components/Simulateur"
@@ -32,7 +32,7 @@ export default class Layout extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/contact" component={Contact} />
-          <Route path="/regle/:name" component={Rule} />
+          <Route path="/regle/:name" component={RulePage} />
           <Route path="/regles" component={RulesList} />
           <Route path="/simu/:targets" component={Simulateur} />
           <Redirect from="/simu/" to="/" />

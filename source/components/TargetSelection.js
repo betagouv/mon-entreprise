@@ -4,6 +4,12 @@ import { reject, curry } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 
+export let salaries = [
+		'salaire net',
+		'salaire de base',
+		'salaire total'
+	]
+
 export default class TargetSelection extends Component {
 	state = {
 		targets: []
@@ -28,12 +34,7 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let popularTargets = [
-				'salaire net',
-				'salaire de base',
-				'salaire total',
-				'aides'
-			].map(curry(findRuleByName)(rules)),
+		let popularTargets = [...salaries, 'aides'].map(curry(findRuleByName)(rules)),
 			{ targets } = this.state
 		return (
 			<div>

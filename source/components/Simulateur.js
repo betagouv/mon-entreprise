@@ -15,7 +15,7 @@ import { makeQuestion } from 'Engine/generateQuestions'
 import ReactPiwik from './Tracker'
 
 import Results from 'Components/Results'
-import ResultsGrid from 'Components/ResultsGrid'
+import Explanation from 'Components/Explanation'
 
 @withRouter
 @connect(
@@ -27,7 +27,8 @@ import ResultsGrid from 'Components/ResultsGrid'
 		targetNames: state.targetNames,
 		done: state.done,
 		nextSteps: state.nextSteps,
-		inputInversions: formValueSelector('conversation')(state, 'inversions')
+		inputInversions: formValueSelector('conversation')(state, 'inversions'),
+		analysis: state.analysis
 	}),
 	dispatch => ({
 		startConversation: (targetNames, fromScratch=false) =>
@@ -83,7 +84,7 @@ export default class extends Component {
 			<div id="sim">
 				<Helmet>
 					<title>
-						Simulateur d'embauche :{' '}
+						{'Simulateur d\'embauche : '}
 						{R.pluck('title', this.targetRules).join(', ')}
 					</title>
 					<meta
@@ -115,7 +116,7 @@ export default class extends Component {
 					}}
 				/>
 				<Results />
-				<ResultsGrid />
+				<Explanation targetRules={R.path(['analysis', 'targets'], this.props)}/>
 			</div>
 		)
 	}

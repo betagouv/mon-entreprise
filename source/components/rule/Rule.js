@@ -1,66 +1,31 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import R from 'ramda'
+import { connect } from 'react-redux'
 import './Rule.css'
-import {
-	rules,
-	decodeRuleName,
-	nameLeaf,
-	findRuleByName
-} from 'Engine/rules.js'
-import { analyse } from 'Engine/traverse'
-import { START_CONVERSATION } from '../../actions'
-import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
 import { capitalise0 } from '../../utils'
 import References from './References'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import Helmet from 'react-helmet'
 import { createMarkdownDiv } from 'Engine/marked'
+import Destinataire from './Destinataire'
 
-@connect(
-	state => ({
-		situationGate: state.situationGate,
-		form: state.form
-	}),
-	dispatch => ({
-		startConversation: targetNames =>
-			dispatch({ type: START_CONVERSATION, targetNames })
-	})
-)
+@connect(state => ({
+	form: state.form
+}))
 export default class Rule extends Component {
 	state = {
 		example: null,
 		showValues: true
 	}
-	componentWillReceiveProps(nextProps) {
-		let get = R.path(['match', 'params', 'name'])
-		if (get(nextProps) !== get(this.props)) {
-			this.setRule(get(nextProps))
-			this.setState({ example: null, showValues: true })
-		}
-	}
-	setRule(name) {
-		let ruleName = nameLeaf(decodeRuleName(name)),
-			rule = findRuleByName(rules, ruleName)
-		if (!rule) return null
-		this.rule = analyse(rules, rule.name)(this.props.situationGate).targets[0]
-	}
-	componentWillMount() {
-		let { match: { params: { name } } } = this.props
-
-		this.setRule(name)
-	}
 	render() {
-		if (!this.rule) return <Redirect to="/404" />
-
-		let conversationStarted = !R.isEmpty(this.props.form),
+		let { form, rule } = this.props,
+			conversationStarted = !R.isEmpty(form),
 			situationExists = conversationStarted || this.state.example != null
 
-		let { type, name, title, description, question } = this.rule,
-			situationOrExampleRule =
-				R.path(['example', 'rule'])(this.state) || this.rule
+		let { type, name, title, description, question } = rule,
+			situationOrExampleRule = R.path(['example', 'rule'])(this.state) || rule
 
 		return (
 			<div id="rule">
@@ -74,23 +39,23 @@ export default class Rule extends Component {
 					<h1>{capitalise0(name)}</h1>
 					<div id="meta-paragraph">
 						{createMarkdownDiv(description || question)}
-						{this.renderDestinataire(R.path([type, 'destinataire'])(this.rule))}
+						<Destinataire destinataire={R.path([type, 'destinataire'])(rule)} />
 					</div>
 				</section>
 
 				<section id="rule-content">
 					<Algorithm
-						traversedRule={situationOrExampleRule}
+						rule={situationOrExampleRule}
 						showValues={situationExists}
 					/>
 					<Examples
 						situationExists={conversationStarted}
-						rule={this.rule}
+						rule={rule}
 						focusedExample={this.state.example}
 						showValues={this.state.showValues}
 						inject={example => this.setState({ example, showValues: true })}
 					/>
-					{this.renderReferences(this.rule)}
+					{this.renderReferences(rule)}
 				</section>
 				<button id="reportError">
 					<a
@@ -110,45 +75,11 @@ export default class Rule extends Component {
 		)
 	}
 
-	renderDestinataire(destinataire) {
-		if (!destinataire) return null
-		let destinataireData = possiblesDestinataires[destinataire]
-
-		return (
-			<div id="destinataire">
-				<h3>Destinataire</h3>
-				{!destinataireData ? (
-					<p>Non renseigné</p>
-				) : (
-					<div>
-						<a href={destinataireData.lien} target="_blank">
-							{destinataireData.image && (
-								<img
-									src={require('Règles/ressources/destinataires/' +
-										destinataireData.image)}
-								/>
-							)}
-							{!destinataireData.image && (
-								<div id="calligraphy">{destinataire}</div>
-							)}
-						</a>
-						{destinataireData.nom && (
-							<div id="destinataireName">{destinataireData.nom}</div>
-						)}
-					</div>
-				)}
-			</div>
-		)
-	}
-
-	renderReferences({ références: refs }) {
-		if (!refs) return null
-
-		return (
+	renderReferences = ({ références: refs }) =>
+		refs ? (
 			<div>
 				<h2>Références</h2>
 				<References refs={refs} />
 			</div>
-		)
-	}
+		) : null
 }
