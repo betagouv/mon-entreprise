@@ -1,0 +1,17 @@
+- nom: statut cadre
+
+- test: Variations
+  formule:
+    multiplication:
+      assiette: 100
+      variations:
+        - si: statut cadre
+          taux: 8%
+        - si: ≠ statut cadre
+          taux: 5%
+
+  exemples:
+    - nom:
+      situation:
+        statut cadre: non
+      valeur attendue: 5

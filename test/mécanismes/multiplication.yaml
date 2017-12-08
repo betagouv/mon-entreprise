@@ -1,7 +1,7 @@
 - nom: mon assiette
   format: €
 
-- test: multiplication simple
+- test: Multiplication simple
   formule:
     multiplication:
       assiette: mon assiette
@@ -17,7 +17,7 @@
         mon assiette: 333.33
       valeur attendue: 9.999
 
-- test: multiplication à taux flottant
+- test: Multiplication à taux flottant
   formule:
     multiplication:
       assiette: 300
@@ -31,7 +31,7 @@
 - nom: mon plafond
   format: €
 
-- test: multiplication plafonnée
+- test: Multiplication plafonnée
   formule:
     multiplication:
       assiette: mon assiette
@@ -53,7 +53,7 @@
 - nom: mon facteur
   format: nombre
 
-- test: multiplication à facteur
+- test: Multiplication à facteur
   formule:
     multiplication:
       assiette: 100
@@ -67,7 +67,7 @@
 
 
 
-- test: multiplication complète
+- test: Multiplication complète
   formule:
     multiplication:
       assiette: mon assiette
@@ -87,7 +87,7 @@
 # TODO implémenter les taux variables
 # - nom: mon taux
 #   format: pourcentage
-# - test: multiplication simple
+# - test: Multiplication simple
 #   formule:
 #     multiplication:
 #       assiette: mon assiette
