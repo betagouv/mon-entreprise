@@ -586,7 +586,7 @@ export let mecanismScale = (recurse, k, v) => {
 		return devariate(recurse, k, v)
 	}
 
-	/* on réécrit en plus bas niveau les tranches :
+	/* on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
 	`en-dessous de: 1`
 	devient
 	```
