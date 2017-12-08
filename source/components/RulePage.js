@@ -6,7 +6,7 @@ import { head, path } from 'ramda'
 import { decodeRuleName, nameLeaf, findRuleByName } from 'Engine/rules.js'
 import {encodeRuleName} from 'Engine/rules'
 import {pipe, pluck, join, map} from 'ramda'
-import { Link } from 'react-router-dom'
+import { Link, Redirect} from 'react-router-dom'
 import {animateScroll} from 'react-scroll'
 import './PageRule.css'
 

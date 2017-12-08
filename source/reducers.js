@@ -25,7 +25,7 @@ import ReactPiwik from 'Components/Tracker'
 
 // assume "wraps" a given situation function with one that overrides its values with
 // the given assumptions
-let assume = (evaluator, assumptions) => state => name => {
+export let assume = (evaluator, assumptions) => state => name => {
 	let userInput = evaluator(state)(name)
 	return userInput != null ? userInput : assumptions[name]
 }

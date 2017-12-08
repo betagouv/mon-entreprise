@@ -19,3 +19,10 @@
           plafond: plafond sécurité sociale
         - si: entreprise . effectif >= 20
           taux: 0.5%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1500
+        entreprise . effectif: 10
+      valeur attendue: 1.5
