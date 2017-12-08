@@ -38,7 +38,7 @@ export default class Layout extends Component {
           <Route path="/simu/:targets" component={Simulateur} />
           <Redirect from="/simu/" to="/" />
           <Redirect from="/simu/:name/intro" to="/simu/:name" />
-          <Route path="/mecanisms" component={Mecanisms} />
+          <Route path="/mécanismes" component={Mecanisms} />
           <Route component={Route404} />
         </Switch>
       </Router>

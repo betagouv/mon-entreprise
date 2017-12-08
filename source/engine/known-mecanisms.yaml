@@ -44,10 +44,6 @@ aiguillage numérique:
 
     Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
 
-taux:
-  type: numeric
-  description: |
-    C'est tout simplement une valeur numérique exprimée en pourcentage.
 
 multiplication:
   type: numeric
