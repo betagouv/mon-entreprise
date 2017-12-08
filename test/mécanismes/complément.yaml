@@ -1,0 +1,35 @@
+- nom: ma cotisation
+  format: €
+
+- test: Complément
+  formule:
+    complément:
+      cible: ma cotisation
+      montant: 100
+
+  exemples:
+    - nom:
+      situation:
+        ma cotisation: 33
+      valeur attendue: 67
+
+- nom: autre cotisation
+  format: €
+
+- test: Complément à composantes
+  formule:
+    complément:
+      composantes:
+        - nom: A
+          cible: ma cotisation
+          montant: 100
+        - nom: B
+          cible: autre cotisation
+          montant: 200
+
+  exemples:
+    - nom:
+      situation:
+        ma cotisation: 33
+        autre cotisation: 133
+      valeur attendue: 134
