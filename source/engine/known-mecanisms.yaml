@@ -57,11 +57,9 @@ multiplication:
 le maximum de:
   type: numeric
   description: |
-    Renvoie l'élément de la liste de propositions fournie qui a la plus grande valeur.
+    Renvoie la valeur numérique de la liste de propositions fournie qui est la plus grande.
 
-    Ces propositions doivent avoir un mécanisme de calcul ou être une valeur numérique.
-
-    Il est conseillé de renseigner une description de chaque proposition par exemple quand elles représentent des méthodes de calcul alternatives parmi lesquelles il faut en choisir une.
+    Il est conseillé de renseigner une description de chaque proposition par exemple quand elles représentent des méthodes de calcul alternatives.
 
 le minimum de:
   type: numeric
