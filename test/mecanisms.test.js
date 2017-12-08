@@ -29,8 +29,7 @@ describe('Mécanismes', () =>
               target = analysis.targets[0]
 
             if (isFloat(valeur)) {
-              let yo = expect(target.nodeValue).to.be.closeTo(valeur,0.001)
-              console.log('yo', yo)
+              expect(target.nodeValue).to.be.closeTo(valeur,0.001)
             }
             else if (valeur !== undefined) {
               expect(target)
