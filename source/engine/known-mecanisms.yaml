@@ -45,6 +45,18 @@ aiguillage numérique:
     Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
 
 
+variations:
+  type: numeric
+  description: |
+    Contient une liste de couples condition-conséquence, sous une forme plus explicite que l'aiguillage numérique :
+
+    ```
+    si: condition
+    alors
+    ```
+
+    `condition` est booléen, `alors` contient les attributs d'un mécanisme numérique, comme `barème` ou `multiplication`.
+
 multiplication:
   type: numeric
   description: |
