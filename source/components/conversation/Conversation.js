@@ -14,7 +14,6 @@ export default class Conversation extends Component {
     if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
       return null
 
-		console.log('will scroll')
     setTimeout(
       () =>
         scroller.scrollTo("myScrollToElement", {
