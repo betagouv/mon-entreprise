@@ -1,8 +1,7 @@
 - nom: mon assiette
   format: €
 
-- nom: cotisation
-  test: multiplication simple
+- test: multiplication simple
   formule:
     multiplication:
       assiette: mon assiette
@@ -18,8 +17,7 @@
         mon assiette: 333.33
       valeur attendue: 9.999
 
-- nom: cotisation 2
-  test: multiplication à taux flottant
+- test: multiplication à taux flottant
   formule:
     multiplication:
       assiette: 300
@@ -33,8 +31,7 @@
 - nom: mon plafond
   format: €
 
-- nom: cotisation 3
-  test: multiplication plafonnée
+- test: multiplication plafonnée
   formule:
     multiplication:
       assiette: mon assiette
@@ -56,8 +53,7 @@
 - nom: mon facteur
   format: nombre
 
-- nom: cotisation 4
-  test: multiplication à facteur
+- test: multiplication à facteur
   formule:
     multiplication:
       assiette: 100
@@ -71,8 +67,7 @@
 
 
 
-- nom: cotisation 5
-  test: multiplication complète
+- test: multiplication complète
   formule:
     multiplication:
       assiette: mon assiette
@@ -92,8 +87,7 @@
 # TODO implémenter les taux variables
 # - nom: mon taux
 #   format: pourcentage
-# - nom: cotisation
-#   test: multiplication simple
+# - test: multiplication simple
 #   formule:
 #     multiplication:
 #       assiette: mon assiette

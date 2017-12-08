@@ -4,8 +4,7 @@
 - nom: base
   format: €
 
-- nom: premier barème
-  test: Barème en taux marginaux
+- test: Barème en taux marginaux
   formule:
     barème:
       assiette: assiette
@@ -17,7 +16,7 @@
         taux: 0%
 
   exemples:
-    - nom: exemple
+    - nom:
       situation:
         assiette: 3000
         base: 5000
