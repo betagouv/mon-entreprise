@@ -3,13 +3,6 @@
 .RuleValueVignette li a {
 	text-decoration: none;
 }
-.RuleValueVignette .rule-type {
-	color: white;
-	border: none;
-	line-height: 2em;
-	font-weight: 600;
-	margin: .6em 0 .1em;
-}
 .RuleValueVignette .rule-box {
 	display: flex;
 	justify-content: space-between;
@@ -21,12 +14,17 @@
 .RuleValueVignette .rule-box > span {
 	display: inline-block;
 }
-
+.RuleValueVignette .rule-name {
+	font-weight: 600;
+	font-size: 105%;
+}
 .RuleValueVignette .rule-value {
 	transition: background .8s;
+	font-size: 105%;
 }
 .RuleValueVignette .rule-value .unsatisfied {
 	font-style: italic;
+	font-size: 85%;
 }
 .RuleValueVignette .rule-value .irrelevant {
 	font-style: normal;

@@ -1,17 +1,12 @@
-
 #sim #helpWrapper {
-	max-width: 85%;
-	margin: 3em auto;
+	margin: 1em auto;
 	display: none;
 }
 
 #sim #help {
-	box-shadow: -1px 1px 15px 1px #eee;
-	border: 1px solid #aaa;
-	border-radius: .3em;
-  padding: .6em 1em;
-	color: #444;
-	background: white;
+	border-radius: 0.2em;
+	padding: 0.1em 1em;
+	background: #e7f8e1;
 	position: relative;
 }
 
@@ -19,34 +14,23 @@
 	font-style: italic;
 	font-size: 90%;
 	border-left: 4px solid #eee;
-	margin-left: .6em;
-	padding-left: .6em;
+	margin-left: 0.6em;
+	padding-left: 0.6em;
 }
 
 #sim #helpWrapper.active {
 	display: block;
 }
 
-#sim #help i.fa-info-circle {
-  margin-right: .3em;
-  text-align: center;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  font-size: 1000%;
-  color: black;
-  opacity: .03
-}
-
 #sim #help i.fa-times-circle {
-  color: #4a89dc;
-  font-size: 120%;
-  position: absolute;
-  top: .6em;
-  right: .6em;
-  cursor: pointer;
+	color: #4a89dc;
+	font-size: 120%;
+	position: absolute;
+	top: 0.6em;
+	right: 0.6em;
+	cursor: pointer;
 }
 
 #sim #help h3 {
-	margin: .3em 0;
+	margin: 0.3em 0;
 }

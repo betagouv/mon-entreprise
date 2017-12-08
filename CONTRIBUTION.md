@@ -10,7 +10,7 @@ https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
 - 💚 `:green_heart:` when fixing the CI build
 - ✅ `:white_check_mark:` when adding tests
 - ⬆️ `:arrow_up:` when upgrading dependencies
-
+- :sparkles: `:sparkles: ` when formatting files
 
 Et ceux spécifiques au projet :
 - :gear: `:gear:` pour une contribution au moteur qui traite les YAML

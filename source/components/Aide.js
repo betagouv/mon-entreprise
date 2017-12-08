@@ -35,12 +35,11 @@ export default class Aide extends Component {
 		return (
 			<div id="helpWrapper" className="active">
 				<section id="help">
-					<i className="fa fa-info-circle"></i>
 					<i
 						className="fa fa-times-circle"
 						onClick={stopExplaining} ></i>
 					<p
-						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.titre || capitalise0(rule.name))}}>
+						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.title)}}>
 					</p>
 					{/* { possibilities &&
 						<p>

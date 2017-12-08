@@ -10,7 +10,7 @@
 
   notes: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
 
-  non applicable si: Entreprise . association non lucrative
+  non applicable si: entreprise . association non lucrative
   # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
   # -> pas de taxe ni contribution d'apprentissage
   formule:

@@ -5,7 +5,7 @@ import {
 	rules,
 	disambiguateRuleReference
 } from "Engine/rules.js"
-import { analyseSituation } from "Engine/traverse"
+import { analyse } from "Engine/traverse"
 import "./Examples.css"
 
 export default class Examples extends Component {
@@ -23,10 +23,10 @@ export default class Examples extends Component {
 				R.fromPairs
 			)(ex.situation)
 
-			let runExemple = analyseSituation(rules, rule.name)(
+			let runExemple = analyse(rules, rule.name)(
 					v => exempleSituation[v]
 				),
-				exempleValue = runExemple.nodeValue
+				exempleValue = runExemple.targets[0].nodeValue
 
 			return {
 				...ex,

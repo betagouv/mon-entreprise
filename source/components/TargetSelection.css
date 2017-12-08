@@ -1,0 +1,87 @@
+#targetSelection {
+	margin: 6em auto;
+	font-size: 110%;
+	max-width: 860px;
+}
+
+#targetSelection h2 {
+	margin: 2em;
+}
+#targetSelection ul {
+	text-align: left;
+	margin: 2em auto;
+	width: 80%;
+}
+
+#targetSelection label {
+	display: block;
+	margin-bottom: 1em;
+	display: flex;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+#targetSelection div {
+	display: inline-block;
+	margin-left: 1em;
+	line-height: 0.6em;
+}
+
+#targetSelection .optionTitle {
+	font-size: 120%;
+}
+#targetSelection label p {
+	color: #555;
+}
+#targetSelection input:checked + label .optionTitle {
+	font-weight: 600;
+	color: #2975d1;
+}
+
+#targetSelection input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+#targetSelection input + label > i.fa {
+	max-width: 0.75em;
+}
+
+#targetSelection input + label > i.fa.fa-square-o {
+	color: #555;
+	display: inline;
+}
+#targetSelection input + label > i.fa.fa-check-square-o {
+	display: none;
+}
+#targetSelection input:checked + label > i.fa.fa-square-o {
+	display: none;
+}
+#targetSelection input:checked + label > i.fa.fa-check-square-o {
+	color: #2975d1;
+	display: inline;
+}
+#targetSelection label:hover > i.fa {
+	color: #2975d1;
+}
+
+/* TODO styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */
+
+#targetSelection button {
+	color: white;
+	display: block;
+	text-align: center;
+	background: #4a89dc;
+	padding: 0.3em 1em;
+	font-size: 200%;
+	margin: 2em auto;
+	width: 8em;
+	border: none;
+	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);
+	opacity: 0.95;
+}
+#targetSelection button:hover {
+	box-shadow: none;
+	opacity: 1;
+}

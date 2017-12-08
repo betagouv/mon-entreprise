@@ -1,17 +1,23 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import R from "ramda"
-import "./Rule.css"
-import { rules, decodeRuleName, nameLeaf } from "Engine/rules.js"
-import { analyseSituation } from "Engine/traverse"
-import { START_CONVERSATION } from "../../actions"
-import possiblesDestinataires from "Règles/ressources/destinataires/destinataires.yaml"
-import { capitalise0 } from "../../utils"
-import References from "./References"
-import Algorithm from "./Algorithm"
-import Examples from "./Examples"
-import Helmet from "react-helmet"
-import {createMarkdownDiv} from 'Engine/marked'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+import R from 'ramda'
+import './Rule.css'
+import {
+	rules,
+	decodeRuleName,
+	nameLeaf,
+	findRuleByName
+} from 'Engine/rules.js'
+import { analyse } from 'Engine/traverse'
+import { START_CONVERSATION } from '../../actions'
+import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
+import { capitalise0 } from '../../utils'
+import References from './References'
+import Algorithm from './Algorithm'
+import Examples from './Examples'
+import Helmet from 'react-helmet'
+import { createMarkdownDiv } from 'Engine/marked'
 
 @connect(
 	state => ({
@@ -19,8 +25,8 @@ import {createMarkdownDiv} from 'Engine/marked'
 		form: state.form
 	}),
 	dispatch => ({
-		startConversation: rootVariable =>
-			dispatch({ type: START_CONVERSATION, rootVariable })
+		startConversation: targetNames =>
+			dispatch({ type: START_CONVERSATION, targetNames })
 	})
 )
 export default class Rule extends Component {
@@ -29,16 +35,17 @@ export default class Rule extends Component {
 		showValues: true
 	}
 	componentWillReceiveProps(nextProps) {
-		let get = R.path(["match", "params", "name"])
+		let get = R.path(['match', 'params', 'name'])
 		if (get(nextProps) !== get(this.props)) {
 			this.setRule(get(nextProps))
 			this.setState({ example: null, showValues: true })
 		}
 	}
 	setRule(name) {
-		this.rule = analyseSituation(rules, nameLeaf(decodeRuleName(name)))(
-			this.props.situationGate
-		)
+		let ruleName = nameLeaf(decodeRuleName(name)),
+			rule = findRuleByName(rules, ruleName)
+		if (!rule) return null
+		this.rule = analyse(rules, rule.name)(this.props.situationGate).targets[0]
 	}
 	componentWillMount() {
 		let { match: { params: { name } } } = this.props
@@ -46,33 +53,28 @@ export default class Rule extends Component {
 		this.setRule(name)
 	}
 	render() {
-		// if (!rule) {
-		// 	this.props.router.push('/404')
-		// 	return null
-		// }
+		if (!this.rule) return <Redirect to="/404" />
 
 		let conversationStarted = !R.isEmpty(this.props.form),
 			situationExists = conversationStarted || this.state.example != null
 
-		let { type, name, titre, description, question } = this.rule,
+		let { type, name, title, description, question } = this.rule,
 			situationOrExampleRule =
-				R.path(["example", "rule"])(this.state) || this.rule
+				R.path(['example', 'rule'])(this.state) || this.rule
 
 		return (
 			<div id="rule">
 				<Helmet>
-					<title>{titre || capitalise0(name)}</title>
+					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
 
 				<section id="rule-meta">
 					<div className="rule-type">{type || 'Règle'}</div>
-					<h1>
-						{capitalise0(name)}
-					</h1>
+					<h1>{capitalise0(name)}</h1>
 					<div id="meta-paragraph">
 						{createMarkdownDiv(description || question)}
-						{this.renderDestinataire(R.path([type, "destinataire"])(this.rule))}
+						{this.renderDestinataire(R.path([type, 'destinataire'])(this.rule))}
 					</div>
 				</section>
 
@@ -93,14 +95,14 @@ export default class Rule extends Component {
 				<button id="reportError">
 					<a
 						href={
-							"mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans une règle " +
+							'mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans une règle ' +
 							name
 						}
 					>
 						<i
 							className="fa fa-exclamation-circle"
 							aria-hidden="true"
-							style={{ marginRight: ".6em" }}
+							style={{ marginRight: '.6em' }}
 						/>Signaler une erreur
 					</a>
 				</button>
@@ -122,7 +124,7 @@ export default class Rule extends Component {
 						<a href={destinataireData.lien} target="_blank">
 							{destinataireData.image && (
 								<img
-									src={require("Règles/ressources/destinataires/" +
+									src={require('Règles/ressources/destinataires/' +
 										destinataireData.image)}
 								/>
 							)}

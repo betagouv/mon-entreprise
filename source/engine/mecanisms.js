@@ -12,12 +12,19 @@ import {
 	parseObject,
 	collectNodeMissing
 } from './evaluation'
-import { findRuleByName } from './rules'
+import {
+	findRuleByName,
+	disambiguateRuleReference,
+	findRuleByDottedName
+} from './rules'
 
 import 'react-virtualized/styles.css'
 import { Table, Column } from 'react-virtualized'
 import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/liste-taux.json'
 import Somme from './mecanismViews/Somme'
+import uniroot from './uniroot'
+import {clearDict} from 'Engine/traverse'
+
 
 let constantNode = constant => ({
 	nodeValue: constant,
@@ -362,6 +369,110 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	}
 }
 
+
+export let findInversion = (situationGate, rules, v, dottedName) => {
+	let inversions = v.avec
+	if (!inversions)
+		throw 'Une formule d\'inversion doit préciser _avec_ quoi on peut inverser la variable'
+	/*
+	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
+	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
+	le salaire net, a été renseigné ?
+	*/
+	let fixedObjective = inversions
+		.map(i => disambiguateRuleReference(rules, rules.find(R.propEq('dottedName', dottedName)), i))
+		.find(name => situationGate(name) != undefined)
+
+	if (fixedObjective == null) return {inversionChoiceNeeded: true}
+	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
+	return {
+		fixedObjective,
+		fixedObjectiveValue: situationGate(fixedObjective),
+		fixedObjectiveRule: findRuleByDottedName(rules, fixedObjective)
+	}
+}
+
+
+let doInversion = (situationGate, parsedRules, v, dottedName) => {
+	let inversion = findInversion(situationGate, parsedRules, v, dottedName)
+
+	if (inversion.inversionChoiceNeeded) return {
+		inversionMissingVariables: [dottedName],
+		nodeValue: null
+	}
+	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
+	let fx = x =>
+		clearDict() && evaluateNode(
+			n => dottedName === n ? x : situationGate(n),
+			parsedRules,
+			fixedObjectiveRule
+		).nodeValue
+
+	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
+	// considérer que l'inversion est impossible du fait de variables manquantes
+	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
+	if (fx(1000) == null)
+		return {
+			nodeValue: null,
+			inversionMissingVariables: collectNodeMissing(
+				evaluateNode(
+					n =>
+						dottedName === n ? 1000 : situationGate(n),
+					parsedRules,
+					fixedObjectiveRule
+				)
+			)
+		}
+
+	let tolerancePercentage = 0.00001,
+		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
+		nodeValue = uniroot(
+			x => fx(x) - fixedObjectiveValue,
+			0,
+			1000000000,
+			tolerancePercentage * fixedObjectiveValue,
+			100
+		)
+
+	return {
+		nodeValue,
+		inversionMissingVariables: []
+	}
+}
+
+
+export let mecanismInversion = dottedName => (recurse, k, v) => {
+
+	let evaluate = (situationGate, parsedRules, node) => {
+		let inversion =
+			// avoid the inversion loop !
+			situationGate(dottedName) == undefined &&
+			doInversion(situationGate, parsedRules, v, dottedName)
+		let
+			collectMissing = () => inversion.inversionMissingVariables,
+			nodeValue = inversion.nodeValue
+
+		return rewriteNode(node, nodeValue, null, collectMissing)
+	}
+
+	return {
+		evaluate,
+		jsx: (nodeValue) => (
+			<Node
+				classes="mecanism inversion"
+				name="inversion"
+				value={nodeValue}
+				child={<div>
+					<div>avec</div>
+					<ul>{v.avec.map(recurse).map(el => <li key={el.name}>{makeJsx(el)}</li>)}</ul>
+				</div>} />
+		),
+		category: 'mecanism',
+		name: 'inversion',
+		type: 'numeric'
+	}
+}
+
 export let mecanismSum = (recurse, k, v) => {
 	let explanation = v.map(recurse)
 
@@ -482,7 +593,7 @@ export let mecanismScale = (recurse, k, v) => {
 				: R.has('au-dessus de')(t)
 					? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
 					: t
-	)
+	).map(R.evolve({taux: recurse}))
 
 	let objectShape = {
 		assiette: false,
@@ -516,7 +627,7 @@ export let mecanismScale = (recurse, k, v) => {
 						: memo +
 								(Math.min(val(assiette), max * val(multiplicateur)) -
 									min * val(multiplicateur)) *
-									recurse(taux).nodeValue,
+									taux.nodeValue,
 				0
 			)
 	}

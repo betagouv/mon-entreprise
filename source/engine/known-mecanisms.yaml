@@ -9,6 +9,13 @@ sélection:
 une possibilité:
   type: enum
 
+inversion:
+  type: numeric
+  description: |
+    La formule de calcul de cette variable n'est pas connue, souvent elle n'a même pas de sens. Mais le mécanisme `inversion` indique qu'elle peut être _estimée_ à partir de l'un des _objectifs_ listés sous l'attribut `avec`. Il faut alors renseigner une valeur cible pour cet objectif.
+
+    Voilà comment ça marche : on va donner à la variable une valeur au hasard, calculer _l'objectif_, puis améliorer notre choix jusqu'à ce que l'écart entre le calcul et la valeur cible disparaisse.
+
 une de ces conditions:
   type: boolean
   description: |
@@ -100,7 +107,7 @@ non applicable si:
   description: |
     Décide si la règle n'est applicable pour la situation saisie.
 
-    > Un contrat CDD peut entraîner une majoration spécifique. Cette majoration est 'non applicable si' le contrat est un CDI. 
+    > Un contrat CDD peut entraîner une majoration spécifique. Cette majoration est 'non applicable si' le contrat est un CDI.
 
     La formule de calcul peut donc être ignorée, quel que soit son montant.
 

@@ -5,9 +5,9 @@
     # TODO variations sur la période
     # variations:
     #   - si: période >= 2016
-    #     condition: Entreprise . effectif >= 11
+    #     condition: entreprise . effectif >= 11
     #   - si: période < 2016
-    #     condition: Entreprise . effectif >= 10
+    #     condition: entreprise . effectif >= 10
 
   formule:
     multiplication:
