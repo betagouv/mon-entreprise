@@ -40,7 +40,7 @@ export default class Layout extends Component {
 						<Route path="/contact" component={Contact} />
 						<Route path="/regle/:name" component={RulePage} />
 						<Route path="/regles" component={RulesList} />
-						<Route path="/mecanisms" component={Mecanisms} />
+						<Route path="/mecanismes" component={Mecanisms} />
 						<Route path="/simu/:targets" component={Simulateur} />
 						<Route path="/à-propos" component={About} />
 						<Route path="/intégrer" component={Integration} />
