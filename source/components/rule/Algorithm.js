@@ -52,7 +52,7 @@ export default class Algorithm extends React.Component {
 					</section>
 					<section
 						id="ruleValue"
-						style={{ display: showValues ? "block" : "none" }} >
+						style={{ visibility: showValues ? "visible" : "hidden" }} >
 						<i className="fa fa-calculator" aria-hidden="true"></i>{' '}{rule.nodeValue == 0
 							? "Règle non applicable"
 							: rule.nodeValue == null
