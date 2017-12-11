@@ -1,22 +1,28 @@
 var webpack = require('webpack'),
-	autoprefixer = require('autoprefixer'),
 	path = require('path'),
 	prodEnv = process.env.NODE_ENV == 'production' // eslint-disable-line no-undef
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
-	entry: prodEnv
-		? ['@babel/polyfill', 'whatwg-fetch', './source/entry.js']
-		: [
-				'webpack-dev-server/client?http://localhost:3000/',
-				'webpack/hot/only-dev-server',
-				'@babel/polyfill',
-				'react-hot-loader/patch',
-				'./source/entry.js'
-			],
+	entry: {
+		bundle: prodEnv
+			? ['@babel/polyfill', 'whatwg-fetch', './source/entry.js']
+			: [
+					'webpack-dev-server/client?http://localhost:3000/',
+					'webpack/hot/only-dev-server',
+					'@babel/polyfill',
+					'react-hot-loader/patch',
+					'./source/entry.js'
+				],
+		simulateur: './source/entry-iframe.js'
+		// 'colour-chooser': [
+		// 	'babel-polyfill',
+		// 	'./source/entry-colour-chooser.js'
+		// ]
+	},
 	output: {
 		path: path.resolve('./dist/'),
-		filename: 'bundle.js',
+		filename: '[name].js',
 		publicPath: '/dist/'
 	},
 	resolve: {

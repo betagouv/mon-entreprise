@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--  See how this iframe must be used in ./example-integration.html -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>Simulateur d'embauche</title>
+
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,600,700' rel='stylesheet' type='text/css'>
+
+	</head>
+
+	<body>
+		<div id="js" />
+		<script type="text/javascript">
+			var couleur =
+				window.location.search
+					.substring(1) //get rid of "?" in querystring
+					.split("=")[1],
+				scriptBeginning = '<script type="text/javascript" src="dist/bundle.js" couleur="#'
+				scriptEnd = '"><\/script>'
+			// Example colours : #1F4382 - #3570B8 - #4A89DC - #4A9DED
+			document.write(scriptBeginning + couleur + scriptEnd)
+		</script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.5/iframeResizer.contentWindow.min.js"></script>
+		<script src="https://use.fontawesome.com/1da10bbdec.js"></script>
+	</body>
+</html>
