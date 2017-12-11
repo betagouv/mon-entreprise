@@ -1,0 +1,24 @@
+
+.page {
+  max-width: 45em;
+  margin: 3em;
+}
+
+
+.page p {
+}
+
+.page h1 {
+  margin: 4em 0 1em;
+  color: #3C4963;
+  font-size: 280%;
+}
+
+.page em {
+  font-weight: 600;
+  font-style: normal;
+}
+
+.page a {
+  color: #3C4963
+}

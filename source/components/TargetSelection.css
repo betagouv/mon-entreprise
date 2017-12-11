@@ -23,7 +23,6 @@
 
 #targetSelection div {
 	margin-left: 1em;
-	line-height: 0.6em;
 }
 
 #targetSelection .optionTitle {
@@ -31,6 +30,7 @@
 }
 #targetSelection label p {
 	color: #555;
+	margin: 0;
 }
 #targetSelection input:checked + label .optionTitle {
 	font-weight: 600;
