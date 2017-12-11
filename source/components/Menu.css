@@ -4,7 +4,7 @@
 	width: 4em;
 	height: 3em;
 	right: 2em;
-	top: 2em;
+	top: 3em;
 }
 
 /* Color/shape of burger icon bars */
@@ -26,7 +26,7 @@
 
 /* General sidebar styles */
 .bm-menu {
-	background: #373a47;
+	background: white;
 	padding: 3em 0.6em;
 	font-size: 280%;
 }
@@ -38,7 +38,6 @@
 
 /* Wrapper for item list */
 .bm-item-list {
-	color: white;
 	padding: 0.8em;
 	height: auto !important;
 }

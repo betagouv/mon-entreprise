@@ -15,20 +15,13 @@ body {
 	margin-top: 1.5em;
 }
 
-#site-logo {
-	width: 60px;
-	position: fixed;
-  left: 1%;
-  top: 4.5%;
-}
-
 a {
 	color: inherit;
 	text-decoration: none;
 }
 
 h1 {
-	margin: 6% 3% 0;
+	margin: 0 .1em;
 	font-size: 250%;
 	font-weight: 400;
 }
