@@ -25,7 +25,8 @@ module.exports = {
 		alias: {
 			Engine: path.resolve('source/engine/'),
 			Règles: path.resolve('règles/'),
-			Components: path.resolve('source/components/')
+			Components: path.resolve('source/components/'),
+			Images: path.resolve('source/images/')
 		}
 	},
 	module: {
