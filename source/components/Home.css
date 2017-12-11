@@ -1,19 +1,17 @@
 #home {
 }
 
-#home #header {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-}
-
 #home #header h1 {
-	line-height: 1.1em
+	margin-top: 3em;
+	text-align: center;
+	font-size: 300%
 }
 
 #home #marianne {
-	width: 100px;
-	margin: 1em;
+	position: absolute;
+	left: 2em;
+	top: 2em;
+	width: 8em;
 }
 
 #home > #content {
