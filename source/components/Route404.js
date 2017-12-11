@@ -16,7 +16,7 @@ export default () => (
 			<img
 				style={{ margin: '3%' }}
 				width="100%"
-				src={require('../images/map-directions.png')}
+				src={require('Images/map-directions.png')}
 			/>
 			<em>Revenir en lieu sûr</em>
 		</Link>

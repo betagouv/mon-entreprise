@@ -11,6 +11,22 @@ body {
 #js, #js>div {
 	height: 100%
 }
+
+
+#header h1 {
+	margin-top: 3em;
+	text-align: center;
+	font-size: 300%
+}
+
+#header #marianne {
+	position: absolute;
+	left: 2em;
+	top: 2em;
+	width: 8em;
+}
+
+
 #content {
 	margin-top: 1.5em;
 }
