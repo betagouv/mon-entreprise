@@ -39,7 +39,7 @@ export default class Input extends Component {
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
-								: { border: '1px solid #ddd' }
+								: { border: '1px solid #2975D1' }
 						}
 						onKeyDown={
 							({ key }) =>
