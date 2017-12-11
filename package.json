@@ -24,6 +24,7 @@
     "ramda": "0.24.1",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
+    "react-burger-menu": "^2.1.11",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
