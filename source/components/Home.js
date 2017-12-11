@@ -17,13 +17,14 @@ export default class Home extends Component {
 						src={require('../images/marianne.svg')}
 						alt="Un service de l'État français"
 					/>
+					<Menu right>
+						<a className="menu-item" href="/">À propos</a>
+						<a className="menu-item" href="/about">Intégrer le module</a>
+						<a className="menu-item" href="/contact">Contribuer</a>
+					</Menu>
 					<h1>Simulateurs d'embauche</h1>
 				</div>
-				<Menu right>
-					<a className="menu-item" href="/">À propos</a>
-					<a className="menu-item" href="/about">Intégrer le module</a>
-					<a className="menu-item" href="/contact">Contribuer</a>
-				</Menu>
+
 				<div id="content">
 					<TargetSelection />
 				</div>
