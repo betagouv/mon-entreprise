@@ -69,12 +69,11 @@ export default class ResultsGrid extends Component {
 
 		if (!analysis) return null
 
-		let extract = x => (x && x.nodeValue) || 0,
-			fromSituation = name => situationGate(name),
+		let extract = x => typeof x == 'string' ? +x : ((x && x.nodeValue) || 0),
 			fromEval = name => R.find(R.propEq("dottedName", name), analysis.targets),
 			fromDict = name => analysis.dict[name],
 			get = name =>
-				extract(fromSituation(name) || fromEval(name) || fromDict(name))
+				extract(situationGate(name) || fromEval(name) || fromDict(name))
 		let results = byBranch(analysis),
 			brut = get("contrat salarié . salaire brut"),
 			net = get("contrat salarié . salaire net"),
@@ -238,7 +237,7 @@ class ReductionRow extends Component {
 	render() {
     let {relevantSalaries, node} = this.props
     if (!relevantSalaries.has('salaire total')) return null
-		let value = node.nodeValue
+		let value = node ? node.nodeValue : 0
 		let aggregateRow = (
 			<tr
 				key="aggregateRowReductions"
