@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
-import { Field, change } from 'redux-form'
+import { Field, change, formValueSelector } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
 import R from 'ramda'
@@ -20,7 +20,8 @@ export var FormDecorator = formType => RenderField =>
 	@connect(
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
-			themeColours: state.themeColours
+			themeColours: state.themeColours,
+			getCurrentInversion: dottedName => formValueSelector('conversation')(state, 'inversions.' + dottedName)
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
