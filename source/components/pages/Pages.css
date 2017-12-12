@@ -1,7 +1,8 @@
 
 .page {
   max-width: 45em;
-  margin: 2em;
+  margin: 2em auto;
+  padding: 0 2em;
   font-size: 130%;
 }
 
