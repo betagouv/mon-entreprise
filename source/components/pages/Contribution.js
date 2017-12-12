@@ -18,7 +18,7 @@ export default class Contribution extends Component {
 					sur{' '}
 					<a href="https://github.com/sgmap/syso" target="_blank">
 						GitHub
-					</a>
+					</a>.
 				</p>
 			</section>
 		)

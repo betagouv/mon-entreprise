@@ -1,117 +1,105 @@
-
-
-
-
-
-
-
-
 #integration p {
-  margin-top: 3em;
-  vertical-align: top;
-  position: relative;
+	margin-top: 3em;
+	vertical-align: top;
+	position: relative;
 }
 #integration code {
-  position: relative;
-  display: inline-block;
-  font-size: 80%;
-  max-width: 40em;
-  padding: 1em;
-  background: #f8f8f8;
-  margin: auto;
-  margin-bottom: 1em;
-
-  box-shadow: 0 1px 1px rgba(0,0,0,0.05), -1px 1px 1px rgba(0,0,0,0.02);
+	position: relative;
+	display: inline-block;
+	font-size: 80%;
+	width: 90%;
+	padding: 1em;
+	background: #f8f8f8;
+	margin: auto;
+	margin-bottom: 1em;
+	overflow: auto;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), -1px 1px 1px rgba(0, 0, 0, 0.02);
 }
 
 #integration code em {
-  font-weight: 300;
-  color: black;
+	font-weight: 300;
+	color: black;
 }
 
 #integration code:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-width: 0 16px 16px 0;
-  border-style: solid;
-  border-color: #e8e8e8 white;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-width: 0 16px 16px 0;
+	border-style: solid;
+	border-color: #e8e8e8 white;
 }
 
 #scriptColor {
-  color: #4A89DC
+	color: #4a89dc;
 }
-
 
 section#integrations a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
-
-
 #integrationList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
 }
 
 #integrations article {
-  vertical-align: top;
-  width: 15em;
-  padding: 0 2%;
-  display: inline-block;
-  background-repeat: no-repeat;
-  background-size: contain;
-  text-align: center;
-  margin-bottom: 2em;
+	vertical-align: top;
+	width: 15em;
+	padding: 0 2%;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-size: contain;
+	text-align: center;
+	margin-bottom: 2em;
 }
 
 #integrations article img {
-  width: 8em;
-  height: 8em;
-  border-radius: 8em;
-  border: 3px solid #3C4963;
+	width: 8em;
+	height: 8em;
+	border-radius: 8em;
+	border: 3px solid #3c4963;
 }
 
 #integrations .question-mark {
-  display: inline-block;
-  font-size: 6.5em;
-  border: 1px solid white;
-  border-radius: 10em;
-  width: 1.2em;
-  height: 1.2em;
-  line-height: 1.2em
+	display: inline-block;
+	font-size: 6.5em;
+	border: 1px solid white;
+	border-radius: 10em;
+	width: 1.2em;
+	height: 1.2em;
+	line-height: 1.2em;
 }
 
 #integrations {
-  padding-bottom: 0;
-  border-bottom: none;
+	padding-bottom: 0;
+	border-bottom: none;
 }
 
 #contribution .block-wrap {
-  margin-top: 3em;
-  width: 100%;
+	margin-top: 3em;
+	width: 100%;
 }
 
-
 #contribution article {
-  padding: 0 5% 2em;
-  margin-bottom: 0;
-  font-size: 90%;
+	padding: 0 5% 2em;
+	margin-bottom: 0;
+	font-size: 90%;
 }
 
 #contribution article h2 {
-  font-weight: 600;
-  color: #3C4963;
+	font-weight: 600;
+	color: #3c4963;
 }
 
 #contribution article p {
-  display: inline;
+	display: inline;
 }
 
 #contribution article img {
-  width: 8em;
-  border-radius: 0;
+	width: 8em;
+	border-radius: 0;
 }
