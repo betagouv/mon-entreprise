@@ -2,6 +2,7 @@
 .page {
   max-width: 45em;
   margin: 3em;
+  font-size: 130%;
 }
 
 
@@ -20,5 +21,5 @@
 }
 
 .page a {
-  color: #3C4963
+  color: #1548af
 }

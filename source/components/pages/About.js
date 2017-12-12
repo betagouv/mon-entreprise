@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './Pages.css'
+import './About.css'
 import Header from './Header'
+import { Link } from 'react-router-dom'
 export default class About extends Component {
 	render() {
 		return (
@@ -16,9 +18,10 @@ export default class About extends Component {
 				</p>
 				<p>
 					Ce premier service, un{' '}
-					<em>module simulation des sommes en jeu lors d'une embauche</em>, peut
-					être <em>intégré facilement et gratuitement</em> par toute
-					organisation sur son site Web.
+					<em>module de simulation des sommes en jeu lors d'une embauche</em>,
+					peut être{' '}
+					<Link to="/intégrer">intégré facilement et gratuitement</Link> par
+					toute organisation sur son site Web.
 				</p>
 				<p>
 					Ce travail est contributif : venez définir avec nous la feuille de
@@ -28,7 +31,7 @@ export default class About extends Component {
 				<MailChimp />
 				<a
 					className="button"
-					href="mailto:contact@embauche.beta.gouv.fr?subject=Rejoindre l'OpenLab&body=Bonjour, je suis intéressé par votre produit et votre démarche et souhaite participer au prochain OpenLab. Bonne journée !"
+					href="mailto:contact@embauche.beta.gouv.fr?subject=Contact"
 				>
 					Ou contactez-nous directement
 				</a>
@@ -37,6 +40,8 @@ export default class About extends Component {
 		)
 	}
 }
+
+import './MailChimp.css'
 
 let MailChimp = () => (
 	<div id="mc_embed_signup">
