@@ -458,7 +458,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, collectMissing)
 		// rewrite the simulation cache with the definitive inversion values
-		
+
 		R.toPairs(inversion.inversionCache).map(([k,v])=>cache[k] = v)
 		return evaluatedNode
 	}
