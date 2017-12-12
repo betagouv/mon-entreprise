@@ -39,8 +39,8 @@ export let subCell = (row, name, payer) => {
 }
 
 export let byBranch = analysis => {
-	let sal = analysis.dict["contrat salarié . cotisations salariales"]
-	let pat = analysis.dict["contrat salarié . cotisations patronales"]
+	let sal = analysis.cache["contrat salarié . cotisations salariales"]
+	let pat = analysis.cache["contrat salarié . cotisations patronales"]
 
 	let l1 = sal ? sal.explanation.formule.explanation.explanation : [],
 		l2 = pat ? pat.explanation.formule.explanation.explanation : [],
@@ -71,7 +71,7 @@ export default class ResultsGrid extends Component {
 
 		let extract = x => typeof x == 'string' ? +x : ((x && x.nodeValue) || 0),
 			fromEval = name => R.find(R.propEq("dottedName", name), analysis.targets),
-			fromDict = name => analysis.dict[name],
+			fromDict = name => analysis.cache[name],
 			get = name =>
 				extract(situationGate(name) || fromEval(name) || fromDict(name))
 		let results = byBranch(analysis),

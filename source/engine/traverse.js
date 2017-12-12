@@ -78,9 +78,9 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 // TODO - this is becoming overly specific
 let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
-	let evaluateFiltered = originalEval => (situation, parsedRules, node) => {
+	let evaluateFiltered = originalEval => (cache, situation, parsedRules, node) => {
 		let newSituation = name => (name == 'sys.filter' ? filter : situation(name))
-		return originalEval(newSituation, parsedRules, node)
+		return originalEval(cache, newSituation, parsedRules, node)
 	}
 	let node = fillVariableNode(rules, rule, filter)(parseResult),
 		// Decorate node with who's paying
@@ -93,19 +93,13 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 	}
 }
 
-// TODO: dirty, dirty
-// ne pas laisser trop longtemps cette "optimisation" qui tue l'aspect fonctionnel de l'algo
-var dict
-
-export let clearDict = () => dict = {}
-
 let fillVariableNode = (rules, rule, filter) => parseResult => {
-	let evaluate = (situation, parsedRules, node) => {
+	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 			cacheName = dottedName + (filter ? '.' + filter : ''),
-			cached = dict[cacheName],
+			cached = cache[cacheName],
 			// make parsedRules a dict object, that also serves as a cache of evaluation ?
 			variable = cached
 				? cached
@@ -113,7 +107,7 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			variableIsCalculable = variable.formule != null,
 			parsedRule =
 				variableIsCalculable &&
-				(cached ? cached : evaluateNode(situation, parsedRules, variable)),
+				(cached ? cached : evaluateNode(cache, situation, parsedRules, variable)),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue =
@@ -137,11 +131,11 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 		}
 		else {
 
-			dict[cacheName] = {
+			cache[cacheName] = {
 				...rewriteNode(node, nodeValue, explanation, collectMissing),
 				missingVariables
 			}
-			return dict[cacheName]
+			return cache[cacheName]
 		}
 	}
 
@@ -165,8 +159,8 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 }
 
 let buildNegatedVariable = variable => {
-	let evaluate = (situation, parsedRules, node) => {
-		let explanation = evaluateNode(situation, parsedRules, node.explanation),
+	let evaluate = (cache, situation, parsedRules, node) => {
+		let explanation = evaluateNode(cache, situation, parsedRules, node.explanation),
 			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
 		let collectMissing = node => collectNodeMissing(node.explanation)
 		return rewriteNode(node, nodeValue, explanation, collectMissing)
@@ -250,7 +244,7 @@ let treat = (rules, rule) => rawNode => {
 				parseResult.category == 'calcExpression' ||
 				parseResult.category == 'comparison'
 			) {
-				let evaluate = (situation, parsedRules, node) => {
+				let evaluate = (cache, situation, parsedRules, node) => {
 					let operatorFunctionName = {
 							'*': 'multiply',
 							'/': 'divide',
@@ -264,7 +258,7 @@ let treat = (rules, rule) => rawNode => {
 							'!=': 'equals'
 						}[node.operator],
 						explanation = R.map(
-							R.curry(evaluateNode)(situation, parsedRules),
+							R.curry(evaluateNode)(cache, situation, parsedRules),
 							node.explanation
 						),
 						value1 = explanation[0].nodeValue,
@@ -400,7 +394,7 @@ let treat = (rules, rule) => rawNode => {
 		[R.T, treatOther]
 	])
 
-	let defaultEvaluate = (situationGate, parsedRules, node) => node
+	let defaultEvaluate = (cache, situationGate, parsedRules, node) => node
 	let parsedNode = onNodeType(rawNode)
 
 	return parsedNode.evaluate
@@ -422,9 +416,9 @@ export let treatRuleRoot = (rules, rule) => {
 	Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
 	Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
 	*/
-	let evaluate = (situationGate, parsedRules, r) => {
+	let evaluate = (cache, situationGate, parsedRules, r) => {
 
-		let evolveRule = R.curry(evaluateNode)(situationGate, parsedRules),
+		let evolveRule = R.curry(evaluateNode)(cache, situationGate, parsedRules),
 			evaluated = R.evolve(
 				{
 					formule: evolveRule,
@@ -483,9 +477,9 @@ export let treatRuleRoot = (rules, rule) => {
 		'non applicable si': evolveCond('non applicable si', rule, rules),
 		'applicable si': evolveCond('applicable si', rule, rules),
 		formule: value => {
-			let evaluate = (situationGate, parsedRules, node) => {
+			let evaluate = (cache, situationGate, parsedRules, node) => {
 				let collectMissing = node => collectNodeMissing(node.explanation)
-				let explanation = evaluateNode(
+				let explanation = evaluateNode(cache,
 						situationGate,
 						parsedRules,
 						node.explanation
@@ -520,9 +514,9 @@ export let treatRuleRoot = (rules, rule) => {
 }
 
 let evolveCond = (name, rule, rules) => value => {
-	let evaluate = (situationGate, parsedRules, node) => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let collectMissing = node => collectNodeMissing(node.explanation)
-		let explanation = evaluateNode(
+		let explanation = evaluateNode(cache,
 				situationGate,
 				parsedRules,
 				node.explanation
@@ -578,16 +572,17 @@ export let parseAll = flatRules => {
 }
 
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
-	clearDict()
 		// TODO: we should really make use of namespaces at this level, in particular
 		// setRule in Rule.js needs to get smarter and pass dottedName
+	let cache = {}
+
 	let parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
 		targets = R.chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
-			evaluateNode(situationGate, parsedRules, t)
+			evaluateNode(cache, situationGate, parsedRules, t)
 		)
 
 	// Don't use 'dict' for anything else than ResultsGrid
-	return {targets, dict}
+	return {targets, cache}
 }
 
 export let analyse = (parsedRules, target) => {
