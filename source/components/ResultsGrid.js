@@ -45,12 +45,12 @@ export let byBranch = analysis => {
 	let l1 = sal ? sal.explanation.formule.explanation.explanation : [],
 		l2 = pat ? pat.explanation.formule.explanation.explanation : [],
 		explanations = R.concat(l1, l2),
-		byBranch = R.groupBy(
+		result = R.groupBy(
 			R.pathOr("autre", ["explanation", "cotisation", "branche"]),
 			explanations
 		)
 
-	return byBranch
+	return result
 }
 
 @withRouter
@@ -78,7 +78,6 @@ export default class ResultsGrid extends Component {
 			brut = get("contrat salarié . salaire brut"),
 			net = get("contrat salarié . salaire net"),
 			total = get("contrat salarié . salaire total")
-
 		let inversion = R.path(
 				["contrat salarié ", " salaire de base"],
 				inversions
@@ -106,8 +105,8 @@ export default class ResultsGrid extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{R.keys(results).map(branch => {
-							let props = { key: branch, branch, values: results[branch], analysis, relevantSalaries }
+						{R.toPairs(results).map(([branch, values]) => {
+							let props = { key: branch, branch, values, analysis, relevantSalaries }
 							return <Row {...props} />
 						})}
             <ReductionRow node={fromDict('contrat salarié . réduction générale')}  relevantSalaries={relevantSalaries}/>

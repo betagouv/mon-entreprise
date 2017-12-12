@@ -79,7 +79,7 @@ export default class Input extends Component {
 		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
 	}
 	renderInversions() {
-		let { stepProps: { dottedName, inversion } } = this.props
+		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
 		if (!inversion) return null
 
 		if (inversion.inversions.length === 1)
@@ -90,7 +90,9 @@ export default class Input extends Component {
 			)
 
 		return (
-			<Field component="select" name={'inversions.' + dottedName}>
+			// This field is handled by redux-form : it will set in the state what's
+			// the current inversion
+			<Field component="select" name={'inversions.' + dottedName} onChange={(e,newValue, previousFieldName) => setFormValue('', previousFieldName)}>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}
