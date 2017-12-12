@@ -8,8 +8,8 @@ export let makeJsx = node =>
 export let collectNodeMissing = (node) =>
 	node.collectMissing ? node.collectMissing(node) : []
 
-export let evaluateNode = (situationGate, parsedRules, node) =>
-	node.evaluate ? node.evaluate(situationGate, parsedRules, node) : node
+export let evaluateNode = (cache, situationGate, parsedRules, node) =>
+	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
 
 export let rewriteNode = (node, nodeValue, explanation, collectMissing) =>
 	({
@@ -19,8 +19,8 @@ export let rewriteNode = (node, nodeValue, explanation, collectMissing) =>
 		explanation
 	})
 
-export let evaluateArray = (reducer, start) => (situationGate, parsedRules, node) => {
-	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+export let evaluateArray = (reducer, start) => (cache, situationGate, parsedRules, node) => {
+	let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
 	    explanation = R.map(evaluateOne, node.explanation),
 		values = R.pluck("nodeValue",explanation),
 		nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
@@ -29,8 +29,8 @@ export let evaluateArray = (reducer, start) => (situationGate, parsedRules, node
 	return rewriteNode(node,nodeValue,explanation,collectMissing)
 }
 
-export let evaluateArrayWithFilter = (filter, reducer, start) => (situationGate, parsedRules, node) => {
-	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+export let evaluateArrayWithFilter = (filter, reducer, start) => (cache, situationGate, parsedRules, node) => {
+	let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
 	    explanation = R.map(evaluateOne, R.filter(filter(situationGate),node.explanation)),
 		values = R.pluck("nodeValue",explanation),
 		nodeValue = R.any(R.equals(null),values) ? null : R.reduce(reducer, start, values)
@@ -48,8 +48,8 @@ export let parseObject = (recurse, objectShape, value) => {
 	return R.evolve(transforms,objectShape)
 }
 
-export let evaluateObject = (objectShape, effect) => (situationGate, parsedRules, node) => {
-	let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+export let evaluateObject = (objectShape, effect) => (cache, situationGate, parsedRules, node) => {
+	let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
 		collectMissing = node => R.chain(collectNodeMissing,R.values(node.explanation))
 
 	let transforms = R.map(k => [k,evaluateOne], R.keys(objectShape)),

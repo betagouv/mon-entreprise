@@ -28,7 +28,6 @@ describe('Mécanismes', () =>
               missing = collectMissingVariables(analysis.targets),
               target = analysis.targets[0]
 
-            // console.log('JSON.stringify(analysis', JSON.stringify(analysis))
             if (isFloat(valeur)) {
               expect(target.nodeValue).to.be.closeTo(valeur,0.001)
             }

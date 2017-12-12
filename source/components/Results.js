@@ -6,7 +6,6 @@ import { connect } from "react-redux"
 import { withRouter } from "react-router"
 
 import "./Results.css"
-import { clearDict } from "Engine/traverse"
 import { encodeRuleName } from "Engine/rules"
 import RuleValueVignette from "./rule/RuleValueVignette"
 import ProgressTip from "Components/ProgressTip"

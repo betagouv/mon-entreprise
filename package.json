@@ -15,6 +15,8 @@
     "classnames": "^2.2.5",
     "dedent-js": "^1.0.1",
     "deep-assign": "^2.0.0",
+    "flow": "^0.2.3",
+    "global": "^4.3.2",
     "ignore-loader": "^0.1.2",
     "install": "^0.10.1",
     "js-yaml": "^3.9.1",
