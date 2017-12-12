@@ -11,10 +11,10 @@ export default class About extends Component {
 				<h1>À propos</h1>
 				<p>
 					<a href="https://beta.gouv.fr" target="_blank">
-						L'incubateur des services numériques de l'État a lancé
+						L'incubateur des services numériques de l'État
 					</a>{' '}
-					en 2014 le développement d’une <em>ressource ouverte</em> de calcul
-					des prélèvements sociaux sur les revenus d'activité en France.
+					a lancé en 2014 le développement d’une <em>ressource ouverte</em> de
+					calcul des prélèvements sociaux sur les revenus d'activité en France.
 				</p>
 				<p>
 					Ce premier service, un{' '}

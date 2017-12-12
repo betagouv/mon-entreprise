@@ -11,7 +11,7 @@ export default class RulesList extends Component {
 		return (
 			<div id="RulesList" className="page">
 				<Header />
-				<h1>Notre base de règles</h1>
+				<h1>Les règles aujourd'hui implémentées</h1>
 				<ul>
 					{rules.map(rule => (
 						<li key={rule.name}>

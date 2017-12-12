@@ -1,7 +1,7 @@
 
 .page {
   max-width: 45em;
-  margin: 3em;
+  margin: 2em;
   font-size: 130%;
 }
 
@@ -10,9 +10,9 @@
 }
 
 .page h1 {
-  margin: 4em 0 1em;
+  margin: 5em 0 1em;
   color: #3C4963;
-  font-size: 280%;
+  font-size: 220%;
 }
 
 .page em {
