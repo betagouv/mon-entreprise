@@ -64,8 +64,11 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 
 	let
 		parsedRules = R.path(['analysis', 'parsedRules'], state),
+		date = Date.now(),
 		analysis = analyseMany(state.parsedRules, targetNames)(situationWithDefaults(state)),
+		yaya = console.log('Date.now(', Date.now() - date),
 		nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
+		yaaya = console.log('Date.now2(', Date.now() - date),
 		assumptionsMade = !R.isEmpty(rulesDefaults),
 		done = nextWithDefaults.length == 0
 
@@ -83,6 +86,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
 			: {currentQuestion: head(nextWithDefaults), nextSteps: nextWithDefaults, })
 	}
+	console.log('Date.now3(', Date.now() - date)
 
 	if (action.type == START_CONVERSATION) {
 		return {
