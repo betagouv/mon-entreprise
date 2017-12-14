@@ -1,0 +1,18 @@
+{
+  "name": "Simulateur d'embauche",
+  "short_name": "Embauche",
+  "description": "Jongler entre les différents salaires lors d'une embauche",
+  "display": "standalone",
+  "lang": "fr",
+  "orientation": "portrait-primary",
+  "theme_color": "#2975D1",
+  "icons": [{
+    "src": "/dist/images/marianne.svg",
+    "sizes": "48x48 72x72 96x96 128x128 256x256",
+    "type": "image/svg"
+  }],
+  "related_applications": [{
+    "platform": "web"
+  }],
+  "background_color": "#2975D1"
+}
