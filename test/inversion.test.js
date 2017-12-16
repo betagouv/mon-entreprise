@@ -208,5 +208,5 @@ it('should collect missing variables fast', function() {
   let start = Date.now()
   let missing = collectMissingVariables(analysis.targets)
   let elapsed = Date.now()-start
-  expect(elapsed).to.be.below(200)
+  expect(elapsed).to.be.below(300)
 });
