@@ -119,18 +119,25 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			explanation = parsedRule,
 			missingVariables = variableIsCalculable ? [] : [dottedName]
 
-		let collectMissing = node =>
-			nodeValue != null // notamment si situationValue != null
+		let collectMissing = node => {
+			let missingName = cacheName+":missing",
+				cached = cache[missingName]
+
+			if (cached) return cached
+
+			let result = nodeValue != null // notamment si situationValue != null
 				? []
 				: variableIsCalculable
 					? collectNodeMissing(parsedRule)
 					: node.missingVariables
+			cache[missingName] = result
+			return result
+		}
 
 		if (cached) {
 			return cached
 		}
 		else {
-
 			cache[cacheName] = {
 				...rewriteNode(node, nodeValue, explanation, collectMissing),
 				missingVariables
