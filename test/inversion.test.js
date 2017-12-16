@@ -1,6 +1,6 @@
 import { expect } from "chai"
-import { enrichRule } from "../source/engine/rules"
-import { analyse, parseAll } from "../source/engine/traverse"
+import { rules as realRules, enrichRule } from '../source/engine/rules'
+import { analyse, analyseMany, parseAll } from "../source/engine/traverse"
 import { collectMissingVariables } from "../source/engine/generateQuestions"
 import yaml from "js-yaml"
 import dedent from "dedent-js"
@@ -198,3 +198,15 @@ it("complex inversion with composantes", () => {
   expect(analysis.targets[0].nodeValue).to.equal(3750)
   expect(missing).to.be.empty
 })
+
+it('should collect missing variables fast', function() {
+  let stateSelector = (name) => ({"contrat salarié . salaire net":"2300"})[name]
+
+  let rules = parseAll(realRules.map(enrichRule)),
+      analysis = analyseMany(rules,["salaire brut","salaire total"])(stateSelector)
+
+  let start = Date.now()
+  let missing = collectMissingVariables(analysis.targets)
+  let elapsed = Date.now()-start
+  expect(elapsed).to.be.below(200)
+});
