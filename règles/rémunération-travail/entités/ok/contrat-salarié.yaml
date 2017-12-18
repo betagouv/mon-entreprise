@@ -184,7 +184,11 @@
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines réductions de cotisation et aides peuvent diminuer cette somme.
-  formule: salaire total sans réduction - réduction générale
+  formule: salaire total sans réduction - réductions de cotisations
+
+- espace: contrat salarié
+  nom: réductions de cotisations
+  formule: réduction générale + exonération JEI
 
 - espace: contrat salarié
   nom: salaire total sans réduction
@@ -202,7 +206,6 @@
     somme:
       - CICE
       - CITS
-      - exonération JEI
 
 - espace: contrat salarié
   nom: salaire

@@ -109,7 +109,7 @@ export default class ResultsGrid extends Component {
 							let props = { key: branch, branch, values, analysis, relevantSalaries }
 							return <Row {...props} />
 						})}
-            <ReductionRow node={fromDict('contrat salarié . réduction générale')}  relevantSalaries={relevantSalaries}/>
+            <ReductionRow node={fromDict('contrat salarié . réductions de cotisations')}  relevantSalaries={relevantSalaries}/>
 						<tr>
 							<td key="blank" className="element" />
 							{relevantSalaries.has("salaire net") && (
@@ -280,7 +280,7 @@ class ReductionRow extends Component {
 			? null
 			:
 					<tr key="detailsRowRéductions" className="detailsRow">
-						<td className="element name">&nbsp;Réduction générale</td>
+						<td className="element name">&nbsp;Réductions de cotisations</td>
 						{relevantSalaries.has("salaire net") && (
 							<>
 								<td key="operator1" className="operator">
