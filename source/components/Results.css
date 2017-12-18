@@ -6,6 +6,7 @@
 }
 
 @media (max-height: 350px) {
+	/* Hack : at 350px of height, it's a mobile device and the keyboard is active */
 	#resultsZone {
 		display: none;
 	}
