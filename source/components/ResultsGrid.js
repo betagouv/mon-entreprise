@@ -252,7 +252,7 @@ class ReductionRow extends Component {
 						{relevantSalaries.has("salaire net") && (
 							<>
 								<td key="operator1" className="operator">
-									-
+									+
 								</td>
 								<td key="value1" className="element value">
 									{humanFigure(2)(0)}
@@ -262,7 +262,7 @@ class ReductionRow extends Component {
 						{relevantSalaries.has("salaire total") && (
 							<>
 								<td key="operator2" className="operator">
-									+
+									-
 								</td>
 								<td key="value2" className="element value">
 									{humanFigure(2)(value)}
@@ -284,7 +284,7 @@ class ReductionRow extends Component {
 						{relevantSalaries.has("salaire net") && (
 							<>
 								<td key="operator1" className="operator">
-									-
+									+
 								</td>
 								<td key="value1" className="element value">
 									{humanFigure(2)(0)}
@@ -294,7 +294,7 @@ class ReductionRow extends Component {
 						{relevantSalaries.has("salaire total") && (
 							<>
 								<td key="operator2" className="operator">
-									+
+									-
 								</td>
 								<td key="value2" className="element value">
 									{humanFigure(2)(value)}
