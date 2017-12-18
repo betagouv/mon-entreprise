@@ -14,15 +14,15 @@ export default class Input extends Component {
 		let {
 				input,
 				stepProps: { dottedName, attributes, submit, valueType },
-				meta: { touched, error, active },
+				meta: { dirty, error, active },
 				themeColours
 			} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
-			inputError = touched && error,
+			inputError = dirty && error,
 			{ hoverSuggestion } = this.state,
-			sendButtonDisabled =
-				input.value == null || input.value == '' || inputError
+			submitDisabled =
+				!dirty || inputError
 
 		return (
 			<span>
@@ -43,11 +43,8 @@ export default class Input extends Component {
 						}
 						onKeyDown={
 							({ key }) =>
-								key == 'Enter' &&
-								input.value &&
-								(!error ? submit() : input.onBlur())
-
-							// blur will trigger the error
+								key == 'Enter'
+								&& (submitDisabled ? input.onBlur() : submit())
 						}
 					/>
 					{suffixed && (
@@ -60,7 +57,7 @@ export default class Input extends Component {
 						</label>
 					)}
 					<SendButton
-						{...{ sendButtonDisabled, themeColours, error, submit }}
+						{...{disabled: submitDisabled, themeColours, error, submit }}
 					/>
 				</div>
 
