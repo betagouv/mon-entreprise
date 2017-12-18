@@ -1,10 +1,15 @@
+.explicable {
+  display: flex;
+  align-items: center;
+}
+
 .explicable .icon{
   text-align: center;
   width: 1.3em;
   line-height: 1.3em;
   border-radius: .2em;
   display: inline-block;
-  margin-left: .8em;
+  margin-left: .4em;
   padding: .15em;
   opacity: .4;
   border: 1px solid transparent;
