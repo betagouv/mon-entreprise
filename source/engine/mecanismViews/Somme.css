@@ -28,6 +28,7 @@
 	color: #888;
 	cursor: pointer;
 	font-weight: 400;
+	white-space: nowrap;
 }
 .somme tr .value span {
 	text-align: right;
@@ -108,6 +109,7 @@
 	padding: 0 0.6em;
 	margin-left: .3em;
 	border-radius: .2em;
+	white-space: nowrap
 }
 
 .detailsRow {
