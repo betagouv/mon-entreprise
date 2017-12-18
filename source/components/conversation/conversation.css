@@ -131,6 +131,8 @@
 	margin: 0;
 	border-radius: 1.4em;
 	position: relative;
+	/* Give some space for the explicable's icon */
+	max-width: 90%;
 }
 
 .step.completed .edit:hover {
