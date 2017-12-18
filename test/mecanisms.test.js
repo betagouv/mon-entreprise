@@ -10,9 +10,7 @@ import { analyse, parseAll } from "../source/engine/traverse"
 import { collectMissingVariables } from "../source/engine/generateQuestions"
 import testSuites from "./load-mecanism-tests"
 import R from "ramda"
-
-// By luck this works as expected for both null and undefined, * but with different branches failing :O *
-let isFloat = n => Number(n) === n && n % 1 !== 0
+import {isFloat} from '../source/components/rule/Examples'
 
 describe("Mécanismes", () =>
   testSuites.map(suite =>
