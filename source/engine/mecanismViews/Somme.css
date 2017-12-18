@@ -89,6 +89,11 @@
 .resultsGrid .detailsRow .name {
 	padding-left: 1.2em;
 }
+.resultsGrid .detailsRow .name:hover {
+	color: #2975D1;
+	text-decoration: underline;
+}
+
 .resultsGrid .name {
 	font-size: 90%;
 }

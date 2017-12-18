@@ -2,13 +2,14 @@ import R from "ramda"
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
+import { Link } from "react-router-dom"
 import { formValueSelector } from "redux-form"
 import "./Results.css"
 import "../engine/mecanismViews/Somme.css"
 import { humanFigure } from "./rule/RuleValueVignette"
 
 import { capitalise0 } from "../utils"
-import { nameLeaf } from "Engine/rules"
+import { nameLeaf, encodeRuleName } from "Engine/rules"
 
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
@@ -196,7 +197,9 @@ class Row extends Component {
 			? []
 			: R.keys(detail).map(subCellName => (
 					<tr key={"detailsRow" + subCellName} className="detailsRow">
-						<td className="element name">&nbsp;{title(subCellName)}</td>
+						<td className="element name"><Link to={'/regle/' + encodeRuleName(nameLeaf(subCellName))} >
+							{title(subCellName)}
+						</Link></td>
 						{relevantSalaries.has("salaire net") && (
 							<>
 								<td key="operator1" className="operator">
@@ -279,29 +282,33 @@ class ReductionRow extends Component {
 		let detailRow = this.state.folded
 			? null
 			:
-					<tr key="detailsRowRéductions" className="detailsRow">
-						<td className="element name">&nbsp;Réductions de cotisations</td>
-						{relevantSalaries.has("salaire net") && (
-							<>
-								<td key="operator1" className="operator">
-									+
-								</td>
-								<td key="value1" className="element value">
-									{humanFigure(2)(0)}
-								</td>
-							</>
-						)}
-						{relevantSalaries.has("salaire total") && (
-							<>
-								<td key="operator2" className="operator">
-									-
-								</td>
-								<td key="value2" className="element value">
-									{humanFigure(2)(value)}
-								</td>
-							</>
-						)}
-					</tr>
+			<tr key="detailsRowRéductions" className="detailsRow">
+				<td className="element name">
+					<Link to={'/regle/' + encodeRuleName('réductions de cotisations')} >
+						Réductions de cotisations
+					</Link>
+				</td>
+				{relevantSalaries.has("salaire net") && (
+					<>
+						<td key="operator1" className="operator">
+							+
+						</td>
+						<td key="value1" className="element value">
+							{humanFigure(2)(0)}
+						</td>
+					</>
+				)}
+				{relevantSalaries.has("salaire total") && (
+					<>
+						<td key="operator2" className="operator">
+							-
+						</td>
+						<td key="value2" className="element value">
+							{humanFigure(2)(value)}
+						</td>
+					</>
+				)}
+			</tr>
 
 		// returns an array of <tr>
 		return [aggregateRow, detailRow]
