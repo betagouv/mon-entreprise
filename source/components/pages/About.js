@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import './Pages.css'
 import './About.css'
-import Header from './Header'
 import { Link } from 'react-router-dom'
 export default class About extends Component {
 	render() {
 		return (
 			<section className="page" id="about">
-				<Header />
 				<h1>À propos</h1>
 				<p>
 					<a href="https://beta.gouv.fr" target="_blank">

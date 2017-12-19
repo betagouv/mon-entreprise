@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
-import { slide as Menu } from 'react-burger-menu'
 import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
+	state = {
+		mobileNavVisible: false
+	}
+	togglemobileNavVisible = () =>
+		this.setState({ mobileNavVisible: !this.state.mobileNavVisible })
+
 	render() {
+		let displayHeader = !['/simu/', '/regle/'].find(
+			t => window.location.href.toString().includes(t)
+		)
+		if (!displayHeader) return null
+
 		return (
 			<div id="header">
 				<Link className="menu-item" to="/">
@@ -14,32 +24,45 @@ export default class Header extends Component {
 						alt="Un service de l'État français"
 					/>
 				</Link>
-				<nav>
-					<Menu right>
-						<Links />
-					</Menu>
-					{/* Et maintenant le menu pour grand écran, activé en CSS */}
-					<Links />
+				<Link to="/">
+					<h1>Simulateur d'embauche</h1>
+				</Link>
+				<div id="menuButton">
+					{this.state.mobileNavVisible ? (
+						<i
+							className="fa fa-times"
+							aria-hidden="true"
+							onClick={this.togglemobileNavVisible}
+						/>
+					) : (
+						<i
+							className="fa fa-bars"
+							aria-hidden="true"
+							onClick={this.togglemobileNavVisible}
+						/>
+					)}
+				</div>
+				<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
+					<Links toggle={this.togglemobileNavVisible} />
 				</nav>
 			</div>
 		)
 	}
 }
 
-let Links = () => <>
-	<Link className="menu-item" to="/">
-		<i className="fa fa-home" aria-hidden="true"></i>
-	</Link>
-	<Link className="menu-item" to="/intégrer">
-		<em>Intégrer le module</em>
-	</Link>
-	<Link className="menu-item" to="/contribuer">
-		Contribuer
-	</Link>
-	<Link className="menu-item" to="/regles">
-		Toutes nos règles
-	</Link>
-	<Link className="menu-item" to="/à-propos">
-		À propos
-	</Link>
-</>
+let Links = ({toggle}) => (
+	<div id="links" onClick={toggle}>
+		<Link className="menu-item" to="/intégrer">
+			<em>Intégrer le module</em>
+		</Link>
+		<Link className="menu-item" to="/contribuer">
+			Contribuer
+		</Link>
+		<Link className="menu-item" to="/regles">
+			Toutes nos règles
+		</Link>
+		<Link className="menu-item" to="/à-propos">
+			À propos
+		</Link>
+	</div>
+)
