@@ -53,7 +53,7 @@ export default class Header extends Component {
 let Links = ({toggle}) => (
 	<div id="links" onClick={toggle}>
 		<Link className="menu-item" to="/intégrer">
-			<em>Intégrer le module</em>
+			Intégrer le module
 		</Link>
 		<Link className="menu-item" to="/contribuer">
 			Contribuer
