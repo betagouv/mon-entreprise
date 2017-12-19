@@ -144,10 +144,10 @@ export var FormDecorator = formType => RenderField =>
 				stepAction,
 				situationGate,
 				themeColours,
-				step: { title },
-				fieldName
+				step: { title, dottedName },
+				fieldName,
+				fieldTitle
 			} = this.props
-			let inversionTitle = R.path(['props', 'step', 'inversion', 'title'])(this)
 
 			let answer = situationGate(fieldName)
 
@@ -155,13 +155,13 @@ export var FormDecorator = formType => RenderField =>
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
 						<span className="title">
-							{capitalise0(inversionTitle || title)}
+							{capitalise0(fieldTitle || title)}
 						</span>
 						<span className="answer">{answer}</span>
 					</span>
 					<button
 						className="edit"
-						onClick={() => stepAction('unfold', fieldName)}
+						onClick={() => stepAction('unfold', dottedName)}
 						style={{ color: themeColours.textColourOnWhite }}
 					>
 						<i className="fa fa-pencil-square-o" aria-hidden="true" />

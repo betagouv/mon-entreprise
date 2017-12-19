@@ -80,8 +80,7 @@ let buildPossibleInversion = (rule, flatRules, targetNames) => {
 
 	return {
 		inversions: yo,
-		question: rule.formule.inversion.question,
-		title: rule.formule.inversion.titre
+		question: rule.formule.inversion.question
 	}
 }
 

@@ -6,7 +6,12 @@ import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 
 import { START_CONVERSATION } from '../actions'
-import { rules, findRuleByName, decodeRuleName } from 'Engine/rules'
+import {
+	rules,
+	findRuleByName,
+	findRuleByDottedName,
+	decodeRuleName
+} from 'Engine/rules'
 import './conversation/conversation.css'
 import './Simulateur.css'
 import Conversation from './conversation/Conversation'
@@ -31,7 +36,7 @@ import Explanation from 'Components/Explanation'
 		analysis: state.analysis
 	}),
 	dispatch => ({
-		startConversation: (targetNames, fromScratch=false) =>
+		startConversation: (targetNames, fromScratch = false) =>
 			dispatch({ type: START_CONVERSATION, targetNames, fromScratch }),
 		resetForm: () => dispatch(reset('conversation')),
 		resetFormField: name => dispatch(change('conversation', name, ''))
@@ -117,7 +122,11 @@ export default class extends Component {
 					}}
 				/>
 				<Results />
-				{done && <Explanation targetRules={R.path(['analysis', 'targets'], this.props)}/>}
+				{done && (
+					<Explanation
+						targetRules={R.path(['analysis', 'targets'], this.props)}
+					/>
+				)}
 			</div>
 		)
 	}
@@ -130,10 +139,10 @@ export default class extends Component {
 		let step = makeQuestion(rules, targetNames)(question)
 
 		let fieldName =
-			(unfolded &&
-				inputInversions &&
-				R.path(step.dottedName.split('.'), inputInversions)) ||
-			step.dottedName
+				(inputInversions &&
+					R.path(step.dottedName.split('.'), inputInversions)) ||
+				step.dottedName,
+			fieldTitle = findRuleByDottedName(rules, fieldName).title
 
 		return (
 			<step.component
@@ -143,6 +152,7 @@ export default class extends Component {
 				step={step}
 				situationGate={situationGate}
 				fieldName={fieldName}
+				fieldTitle={fieldTitle}
 				inverted={step.dottedName !== fieldName}
 			/>
 		)
