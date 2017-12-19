@@ -1,6 +1,36 @@
+
+
+#myScrollToElement {
+	height: 55%;
+	padding: 1em;
+}
+
+
+#foldedSteps {
+	padding: 1em;
+	margin-bottom: 6em;
+}
+
+#foldedSteps .header button {
+	font-size: 80%;
+	color: #2975D1;
+	border: none;
+	display: block;
+	margin: 0 auto;
+}
+#foldedSteps .header button i {
+	margin-right: .3em;
+	vertical-align: top
+}
+
+
+
+
+
+
+
 .step {
 	position: relative;
-	margin-bottom: 5.5em;
 }
 
 .step {
@@ -61,7 +91,7 @@
 /* END Group items animation */
 
 /* Group ignore buttons */
-.form-group .header .ignore {
+.form-group .header #ignore {
 	margin-left: 3em;
 }
 
@@ -81,20 +111,28 @@
 }
 
 .step-question {
+	max-width: 70%;
+}
+
+.unfoldedHeader {
 	margin-bottom: 2em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .step h1 {
 	border: 2px solid #333350;
 	color: #333350;
 	display: inline-block;
-	max-width: 75%;
 	font-size: 110%;
 	font-weight: 600;
 	padding: .6em 1em;
 	margin: 0;
 	border-radius: 1.4em;
 	position: relative;
+	/* Give some space for the explicable's icon */
+	max-width: 90%;
 }
 
 .step.completed .edit:hover {
@@ -144,10 +182,6 @@
 .step fieldset ul {
 	list-style-type: none;
 	padding-left: 2em;
-}
-
-#foldedSteps {
-	margin: 3em 0;
 }
 
 .step.question .variant {
@@ -203,13 +237,11 @@
   margin-left: 1em;
   margin-top: 1em;
   cursor: pointer;
-  background: none;
-  padding: .3em 1em;
+  padding: .25em .85em;
   line-height: 1.8em;
-  border-radius: .4em;
-	font-weight: 500;
-	font-size: 90%;
-	border: 1px solid rgba(51, 51, 80, 0.33);
+  border-radius: 1em;
+	font-weight: 600;
+	font-size: 105%;
 }
 
 
@@ -222,23 +254,6 @@
 	opacity: .8;
 	margin-left: .4em;
 	vertical-align: middle;
-}
-
-.ignore, .ignore:visited {
-	cursor: pointer;
-	color: #888;
-	font-weight: 200;
-	text-decoration: none;
-	border-bottom: 1px solid #ccc;
-	font-size: 80%;
-	line-height: 1.2em;
-	font-style: italic;
-}
-
-/* step ignore buttons */
-fieldset > .ignore {
-	position: absolute;
-	bottom: 0em;
 }
 
 .step input[type=radio] {
@@ -270,8 +285,12 @@ fieldset > .ignore {
 
 .step input.suffixed {
 	padding: 0.1em 1em 0;
-	border-radius: .4em;
+	border-radius: .2em;
 	font-size: 120%;
+}
+
+.step input:not(.suffixed) {
+	margin-right: 1em;
 }
 
 .step label.suffix {
@@ -287,6 +306,18 @@ fieldset > .ignore {
 	outline: none;
 }
 
+.step .inputPrefix {
+	margin: 0 1em;
+	font-weight: 600;
+	margin-bottom: 1em;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.inputPrefix select {
+	font-size: 120%
+}
+
 .step .inputSuggestions {
 	font-style: italic;
 	float: right;
@@ -296,7 +327,6 @@ fieldset > .ignore {
 }
 .step .inputSuggestions ul {
   padding-left: 0;
-	margin-right: 8em;
 	list-style: none;
 	display: inline-flex;
 	align-items: flex-end;
@@ -342,6 +372,9 @@ fieldset > .ignore {
 	vertical-align: middle;
 }
 
+.sendWrapper {
+	position: relative;
+}
 
 .step .send {
 	padding: 0 .1em 0 .5em;
@@ -352,6 +385,10 @@ fieldset > .ignore {
 	line-height: 0em;
 }
 
+.step .send:disabled {
+	opacity: 0.2
+}
+
 .step .send .icon {
 	margin-left: .3em;
 	font-size: 135%;
@@ -360,7 +397,7 @@ fieldset > .ignore {
 
 .step .send .text {
 	text-transform: uppercase;
-	font-size: 90%;
+	font-size: 115%;
 	line-height: 2em;
 }
 
@@ -368,12 +405,15 @@ fieldset > .ignore {
 	float: right;
 }
 
+
 .step-input-error {
 	position: absolute;
 	right: 0;
 	bottom: -1.5em;
 	font-size: .8em;
 	font-style: italic;
+	color: #c0392b;
+	font-weight: 600;
 }
 
 .step textarea {
@@ -463,6 +503,11 @@ for the appearing element to appear without stacking up below the first one */
   transition: opacity 700ms ease;
 }
 
+
+.foldedQuestion  {
+	margin-left: 1.2em;
+}
+
 .foldedQuestion .edit {
 	vertical-align: middle;
 	margin-left: .5em;
@@ -473,6 +518,29 @@ for the appearing element to appear without stacking up below the first one */
 .foldedQuestion .borderWrapper {
 	padding: .1em 0;
 	display: inline-block;
-	width: 80%;
+	width: calc(100% - 6em);
 	border-bottom: 1px solid #eee
+}
+
+
+
+
+.keyIcon {
+	position: absolute;
+	font-size: 80%;
+	text-align: center;
+	font-weight: bold;
+	background: #ddd;
+	color: white;
+	margin-left: .6em;
+	padding: .5em .4em;
+	border-radius: .2em;
+	transition: .2s opacity;
+}
+
+
+@media screen and (max-width:860px) {
+	.keyIcon {
+		display: none;
+	}
 }

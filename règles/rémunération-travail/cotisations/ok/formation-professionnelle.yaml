@@ -1,8 +1,9 @@
 - espace: contrat salarié
   nom: formation professionnelle
-  attributs:
+  cotisation:
     dû par: employeur
     collecteur: OPCA
+    branche: formation
     # TODO majoration pour les entreprises de travail temporaire
 
   formule:

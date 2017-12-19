@@ -24,9 +24,11 @@
 	padding: .1em .6em;
 }
 .somme .element .unfoldIndication {
-	font-size: 68%;
+	font-size: 60%;
 	color: #888;
 	cursor: pointer;
+	font-weight: 400;
+	white-space: nowrap;
 }
 .somme tr .value span {
 	text-align: right;
@@ -64,4 +66,57 @@
 }
 .somme > table  {
 	border-bottom: 1px solid rgba(51, 51, 80, 0.15);
+}
+
+
+
+/* Specific to ResultsGrid.css. Somme.js and ResultsGrid.js should be merged */
+
+.resultsGrid table {
+	font-size: 90%;
+}
+.resultsGrid td {
+	line-height: 1.6em;
+	border: 1px solid #e3e3ee;
+}
+.resultsGrid .operator {
+	border-right-color: transparent;
+}
+.resultsGrid .element.category {
+	font-weight: 600;
+	font-size: 100%;
+}
+.resultsGrid .detailsRow .name {
+	padding-left: 1.2em;
+}
+.resultsGrid .detailsRow .name:hover {
+	color: #2975D1;
+	text-decoration: underline;
+}
+
+.resultsGrid .name {
+	font-size: 90%;
+}
+.resultsGrid .value {
+	font-weight: 700;
+	color: #031bd6;
+}
+#sommeBase {
+	text-align: center;
+}
+
+.resultsGrid .annotation {
+	color: #333350;
+	border: 1px solid #333350;
+	background: #031bd61a;
+	font-weight: 600;
+	font-size: 95%;
+	padding: 0 0.6em;
+	margin-left: .3em;
+	border-radius: .2em;
+	white-space: nowrap
+}
+
+.detailsRow {
+	background: rgba(51, 51, 80, 0.02)
 }

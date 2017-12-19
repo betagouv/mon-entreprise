@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import R from 'ramda'
+import { Field } from 'redux-form'
+import SendButton from './SendButton'
 
 @FormDecorator('input')
 export default class Input extends Component {
@@ -10,82 +12,106 @@ export default class Input extends Component {
 	}
 	render() {
 		let {
-				name,
 				input,
-				stepProps: { attributes, submit, valueType, suggestions },
-				meta: { touched, error, active },
+				stepProps: { dottedName, attributes, submit, valueType },
+				meta: { dirty, error, active },
 				themeColours
 			} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
-			inputError = touched && error,
-			{hoverSuggestion} = this.state,
-			sendButtonDisabled =
-				input.value == null || input.value == '' || inputError
+			inputError = dirty && error,
+			{ hoverSuggestion } = this.state,
+			submitDisabled =
+				!dirty || inputError
 
-		if (typeof suggestions == 'string') return <Select />
 		return (
 			<span>
-				<span className="answer">
+				<div className="inputPrefix">{this.renderInversions()}</div>
+				<div className="answer">
 					<input
+						ref={el => { this.inputElement = el }}
 						type="text"
 						{...input}
 						value={hoverSuggestion != null ? hoverSuggestion : input.value}
 						className={classnames({ suffixed })}
-						id={'step-' + name}
+						id={'step-' + dottedName}
 						{...attributes}
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
-								: { border: '1px solid #ddd' }
+								: { border: '1px solid #2975D1' }
 						}
-						onKeyDown={({ key }) =>
-							key == 'Enter' &&
-							input.value &&
-							(!error ? submit() : input.onBlur()) // blur will trigger the error
+						onKeyDown={
+							({ key }) =>
+								key == 'Enter'
+								&& (submitDisabled ? input.onBlur() : submit())
 						}
 					/>
 					{suffixed && (
 						<label
 							className="suffix"
-							htmlFor={'step-' + name}
+							htmlFor={'step-' + dottedName}
 							style={!active ? { color: '#888' } : { color: '#222' }}
 						>
 							{answerSuffix}
 						</label>
 					)}
-					<button
-						className="send"
-						style={{
-							visibility: sendButtonDisabled ? 'hidden' : 'visible',
-							color: themeColours.textColour,
-							background: themeColours.colour
-						}}
-						onClick={() => (!error ? submit() : null)}
-					>
-						<span className="text">valider</span>
-						<span className="icon">&#10003;</span>
-					</button>
-				</span>
+					<SendButton
+						{...{disabled: submitDisabled, themeColours, error, submit }}
+					/>
+				</div>
 
 				{this.renderSuggestions(themeColours)}
-
 				{inputError && <span className="step-input-error">{error}</span>}
 			</span>
 		)
 	}
-	renderSuggestions(themeColours) {
-		let { setFormValue, submit, suggestions, input } = this.props.stepProps
-		if (!suggestions) return null
+
+	componentDidMount() {
+		this.inputElement.focus()
+
+		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
+		if (!inversion) return null
+		// initialize the form field in renderinversions
+		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
+	}
+	renderInversions() {
+		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
+		if (!inversion) return null
+
+		if (inversion.inversions.length === 1)
+			return (
+				<span>
+					{inversion.inversions[0].title || inversion.inversions[0].dottedName}
+				</span>
+			)
+
 		return (
-			<span className="inputSuggestions">
+			// This field is handled by redux-form : it will set in the state what's
+			// the current inversion
+			<Field component="select" name={'inversions.' + dottedName} onChange={(e,newValue, previousFieldName) => setFormValue('', previousFieldName)}>
+				{inversion.inversions.map(({ name, title, dottedName }) => (
+					<option key={dottedName} value={dottedName}>
+						{title || name}
+					</option>
+				))}
+			</Field>
+		)
+	}
+	renderSuggestions(themeColours) {
+		let { setFormValue, submit, suggestions, inverted } = this.props.stepProps
+
+		if (!suggestions || inverted) return null
+		return (
+			<div className="inputSuggestions">
 				suggestions:
 				<ul>
 					{R.toPairs(suggestions).map(([text, value]) => (
 						<li
 							key={value}
 							onClick={e =>
-								setFormValue('' + value) && submit() && e.preventDefault()}
+								setFormValue('' + value) && submit() && e.preventDefault()
+							}
 							onMouseOver={() => this.setState({ hoverSuggestion: value })}
 							onMouseOut={() => this.setState({ hoverSuggestion: null })}
 							style={{ color: themeColours.colour }}
@@ -96,7 +122,7 @@ export default class Input extends Component {
 						</li>
 					))}
 				</ul>
-			</span>
+			</div>
 		)
 	}
 }

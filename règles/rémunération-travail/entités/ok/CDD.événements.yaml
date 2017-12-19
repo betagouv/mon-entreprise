@@ -20,7 +20,7 @@
     - rupture anticipée salarié
     - rupture pour faute grave ou force majeure
     - rupture pendant période essai
-
+  par défaut: non
 
 - espace: contrat salarié . CDD . événement
   nom: poursuite du CDD en CDI

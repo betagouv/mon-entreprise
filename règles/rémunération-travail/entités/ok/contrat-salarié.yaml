@@ -13,14 +13,13 @@
   nom: type de contrat
   titre: Type de contrat
   question: Quelle est la nature du contrat de travail ?
-  description: |
-    Le contrat de travail peut être à durée indéterminée - c'est le cas général - ou déterminée par exception.
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-      - CDD
       - CDI
+      - CDD
+  par défaut: CDI
 
 - espace: contrat salarié . type de contrat
   nom: CDD
@@ -42,6 +41,8 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut
+  résumé: Le salaire inscrit dans le contrat de travail.
+  type: salaire
   question: Quel est le salaire brut mensuel ?
   description: |
     C'est le salaire de négociation du contrat de travail en France.
@@ -54,6 +55,14 @@
     salaire médian: 2300
     SMIC: 1480
     SMIC mi-temps: 740
+
+  formule:
+    inversion:
+      question: Quel est le salaire mensuel ?
+      titre: salaire
+      avec:
+        - salaire net
+        - salaire total
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -79,6 +88,7 @@
   titre: Statut cadre
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
+  par défaut: non
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
@@ -126,6 +136,7 @@
       - ATMP
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
+      - médecine du travail
       - vieillesse (employeur)
       - ARRCO (employeur)
       - AGIRC (employeur)
@@ -137,7 +148,8 @@
       - APEC (employeur)
       - AGS
       - FNAL
-      - Contribution au Dialogue Social
+      - participation effort de construction
+      - contribution au dialogue social
       - formation professionnelle
       - versement transport
       - taxe d'apprentissage
@@ -147,64 +159,62 @@
 
 - espace: contrat salarié
   nom: salaire net
-  titre: Le salarié touchera
+  titre: Salaire net
+  type: salaire
+  question: Quel est le salaire net ?
+  résumé: La somme touchée par le salarié tous les mois.
   description: |
-    Le salaire brut moins les cotisations sociales. C'est ce que le salarié reçoit sur son compte bancaire; cette somme peut varier en fonction de décisions politiques,
-    (augmentation ou diminution de cotisations) alors que le salaire brut est contractuel: il ne peut être que renégocié d'un commun accord.
+    Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel: pour le changer, il faut signer un avenant au contrat.
+  format: euros
   formule: salaire brut - cotisations salariales
 
 - espace: contrat salarié
-  titre: L'employeur versera
   nom: coût du travail
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
-  formule: super brut - aides
+  formule: salaire total - aides employeur différées
 
 - espace: contrat salarié
-  nom: super brut
+  nom: salaire total
+  titre: Salaire total
+  résumé: La somme totale versée par l'employeur tous les mois.
+  type: salaire
   description: |
-    C'est le salaire brut, plus les cotisations patronales. C'est ce que l'employeur doit en principe verser au total
-    pour l'emploi du salarié, mais en pratique certaines aides vont diminuer ce coût théorique du travail.
+    C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines réductions de cotisation et aides peuvent diminuer cette somme.
+  formule: salaire total sans réduction - réductions de cotisations
+
+- espace: contrat salarié
+  nom: réductions de cotisations
+  formule: réduction générale + exonération JEI
+
+- espace: contrat salarié
+  nom: salaire total sans réduction
+  type: salaire
   formule:
     somme:
       - salaire brut
       - cotisations patronales
 
+
 - espace: contrat salarié
-  nom: aides
+  nom: aides employeur différées
+  résumé: Les aides différées dont peut bénéficier l'employeur.
   formule:
     somme:
       - CICE
       - CITS
-      - réduction générale
-      - exonération JEI
 
 - espace: contrat salarié
-  nom: Salaire
-  description: |
-    Le coût du travail salarial
-  formule:
-    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
+  nom: salaire
+  simulateur:
+    objectifs:
       - salaire net
       - coût du travail
-
-  simulateur:
     titre: Simulateur de coût d'embauche
-    sous-titre: Découvrir le coût d'embauche ou le salaire réel
-    résultats: Le salaire net à partir du brut ou vice-versa, et les cotisations
-    par défaut:
-      contrat salarié . temps partiel: non
-      contrat salarié . heures par semaine: 35
-      contrat salarié . CDD . événement: non
-      contrat salarié . CDD . congés non pris: 0
-      contrat salarié . CDD . contrat jeune vacances: non
-      contrat salarié . forfait complémentaire santé: 40
-      contrat salarié . statut JEI: non
-      contrat salarié . exposition pénibilité: non
-      contrat salarié . assujettie à la taxe sur les salaires: non
-      contrat salarié . ATMP . taux collectif ATMP: 1
-      entreprise . association non lucrative: non
+    sous-titre: Découvrir le coût d'embauche et le salaire réel
 
 - espace: contrat salarié
   nom: jours de congés légaux
@@ -221,42 +231,6 @@
   références:
     fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - espace: contrat salarié
   nom: régime alsace moselle
-  #TODO peut-être est-ce à définir au niveau de l'activité ?
-
-# - Variable: salaire super brut
-#   formule:
-#     somme:
-#       - salaire brut
-#       - cotisations patronales
-#     soustraction:
-#       - aides au travail salarié
-
-
-# # Cette propriété a pour type une énumération, mais peut-être calculée.
-# régime géographique:
-#   calc() :
-#     | Alsace-Moselle
-#     | Outre-Mer # Peut-on définir ça comme un régime ? A quoi ça sert ?
+  par défaut: non

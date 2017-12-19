@@ -1,6 +1,6 @@
 - espace: contrat salarié
-  nom: Contribution au Dialogue Social
-  cotisations:
+  nom: contribution au dialogue social
+  cotisation:
     dû par: employeur
     collecteur: URSSAF
   description: Contribution patronale destinée à abonder un fonds paritaire dédié au financement des organisations syndicales et des organisations professionnelles d’employeurs.

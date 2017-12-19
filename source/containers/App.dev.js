@@ -11,9 +11,7 @@ export default class App extends Component {
 			<Provider store={store}>
 				<div>
 					<Layout />
-					{/*
 					<DevTools />
-					*/}
 				</div>
 			</Provider>
 		)

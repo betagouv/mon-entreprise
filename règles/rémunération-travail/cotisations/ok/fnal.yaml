@@ -1,10 +1,10 @@
 - espace: contrat salarié
   nom: FNAL
+  titre: Contribution au Fonds National d’Aide au Logement
   cotisation:
     dû par: employeur
     destinataire: URSSAF
     branche: logement
-  description: Contribution au Fonds National d’Aide au Logement
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
   note: Il y avait une cotisation supplémentaire pour les entreprises de >= 20 employés avant 2015, mais le résultat était le même.
@@ -19,3 +19,10 @@
           plafond: plafond sécurité sociale
         - si: entreprise . effectif >= 20
           taux: 0.5%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1500
+        entreprise . effectif: 10
+      valeur attendue: 1.5

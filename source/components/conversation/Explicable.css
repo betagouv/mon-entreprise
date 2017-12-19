@@ -1,41 +1,38 @@
-.explicable .icon{
-  text-align: center;
-  width: 1.3em;
-  line-height: 1.3em;
-  border-radius: .2em;
-  display: inline-block;
-  margin-left: .8em;
-  opacity: .5;
-  border: 1px solid transparent;
-  cursor: pointer;
-  vertical-align: baseline;
-  font-size: 85%;
+.explicable {
+	display: flex;
+	align-items: center;
 }
 
-.explicable:hover .icon {
-  opacity: 1;
-  border-color: white;
-}
-.explicable.dark:hover .icon {
-  border-color: #333350;
+.explicable .icon {
+	text-align: center;
+	width: 1.3em;
+	line-height: 1.3em;
+	border-radius: 0.2em;
+	display: inline-block;
+	margin-left: 0.4em;
+	padding: 0.15em;
+	opacity: 0.65;
+	border: 1px solid transparent;
+	border-radius: 1em;
+	cursor: pointer;
+	vertical-align: baseline;
+	font-size: 95%;
+	color: #2975D1;
 }
 
 .explicable .icon:hover {
-  opacity: 1;
-  background: white;
-  color: #4A89DC;
+	opacity: 1;
 }
-.explicable.dark .icon:hover {
-  background: #333350;
-  color: white;
+/* Add explanation text to icon, feels too heavy
+.explicable .icon:hover::after {
+  content: '+ d\'infos';
+  margin-left: .2em;
+  font-size: 90%;
+  opacity: .3
 }
-
+*/
 .explicable.explained .icon {
-  opacity: 1;
-  background: #4A89DC;
-  color: white;
-}
-.explicable.dark.explained .icon {
-  background: #333350;
-  color: white;
+	opacity: 1;
+	background: #4a89dc;
+	color: white;
 }

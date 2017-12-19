@@ -6,6 +6,7 @@
   question: L'entreprise est-elle assujettie à la taxe sur les salaires ?
   # variable non utilisée pour l'instant, comme dans le simulateur v1
   # à ajouter quand nous aurons des mécanismes logiques plus évolués (notamment 'applicable si')
+  par défaut: non
 
 - espace: contrat salarié
   nom: taxe sur les salaires annuelle
@@ -47,7 +48,7 @@
 - espace: contrat salarié
   nom: taxe sur les salaires
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
-  non applicable si: ≠ Entreprise . association non lucrative
+  non applicable si: ≠ entreprise . association non lucrative
 
   formule: taxe sur les salaires annuelle / 12
   exemples:
@@ -58,6 +59,6 @@
     - nom: association non lucrative
       # Ce test ne sert qu'à tester la condition "association non lucrative", tant que nous faisons face à la limitation des calculs temporels
       situation:
-        Entreprise . association non lucrative: oui
+        entreprise . association non lucrative: oui
         taxe sur les salaires annuelle: 2639.16
       valeur attendue: 219.93

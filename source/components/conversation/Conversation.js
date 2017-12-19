@@ -1,59 +1,63 @@
-import React, { Component } from 'react'
-import R from 'ramda'
-import Aide from '../Aide'
-import Satisfaction from '../Satisfaction'
-import {reduxForm} from 'redux-form'
-import Scroll from 'react-scroll'
+import React, { Component } from "react"
+import R from "ramda"
+import Aide from "../Aide"
+import Satisfaction from "../Satisfaction"
+import { reduxForm } from "redux-form"
+import { scroller, Element } from "react-scroll"
 
 @reduxForm({
-	form: "conversation",
-	destroyOnUnmount: false
+  form: "conversation",
+  destroyOnUnmount: false
 })
 export default class Conversation extends Component {
-	render() {
-		let {foldedSteps, currentQuestion, extraSteps, reinitalise, textColourOnWhite} = this.props
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
+      return null
 
-		Scroll.animateScroll.scrollToBottom()
-		return (
-			<div id="conversation">
-				<div id="questions-answers">
-					{ !R.isEmpty(foldedSteps) &&
-						<div id="foldedSteps">
-							<div className="header" >
-								<h3>Vos réponses</h3>
-								<button onClick={reinitalise} style={{color: textColourOnWhite}}>
-									<i className="fa fa-trash" aria-hidden="true"></i>
-									Tout effacer
-								</button>
-							</div>
-							{foldedSteps}
-						</div>
-					}
-					{!currentQuestion &&
-						<Conclusion affiner={!R.isEmpty(extraSteps)}/>}
-					{ !R.isEmpty(extraSteps) &&
-						<div id="foldedSteps">
-							<div className="header" >
-								<h3>Affiner votre situation</h3>
-							</div>
-							{extraSteps}
-						</div>
-					}
-					<div id="currentQuestion">
-						{ currentQuestion || <Satisfaction simu={this.props.simu}/>}
-					</div>
-				</div>
-				<Aide />
-			</div>
-		)
-	}
+    setTimeout(
+      () =>
+        scroller.scrollTo("myScrollToElement", {
+          duration: 200,
+          delay: 0,
+          smooth: true
+        }),
+      1
+    )
+  }
+  render() {
+    let {
+      foldedSteps,
+      currentQuestion,
+      reinitalise,
+      textColourOnWhite,
+      done,
+      nextSteps
+    } = this.props
+
+    return (
+      <>
+        {!R.isEmpty(foldedSteps) && (
+          <div id="foldedSteps">
+            <div className="header">
+              <button
+                onClick={reinitalise}
+                style={{ color: textColourOnWhite }}
+              >
+                <i className="fa fa-trash" aria-hidden="true" />
+                Tout effacer
+              </button>
+            </div>
+            {foldedSteps}
+          </div>
+        )}
+        <Element name="myScrollToElement" id="myScrollToElement">
+          <h3 className="scrollIndication up" style={{opacity: foldedSteps.length != 0 ? 1 : 0}}><i className="fa fa-long-arrow-up" aria-hidden="true"></i> Modifier mes réponses</h3>
+          <div id="currentQuestion">
+            {currentQuestion || <Satisfaction simu={this.props.simu} />}
+          </div>
+        </Element>
+        <Aide />
+      </>
+    )
+  }
 }
-
-let Conclusion = ({ affiner }) => (
-	<div id="fin">
-		<p>
-			Vous pouvez maintenant modifier vos réponses{" "}
-			{affiner && "ou affiner votre situation"} : vos résultats ci-dessous seront mis à jour.
-		</p>
-	</div>
-)

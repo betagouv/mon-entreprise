@@ -13,6 +13,7 @@
     20: 20
     50: 50
     1000: 1000
+  par défaut: 1
 
 - espace: entreprise
   nom: ratio alternants
@@ -28,8 +29,10 @@
   suggestions:
     1: 1
     5: 5
+  par défaut: 0
 
 - espace: entreprise
   nom: association non lucrative
   description: L'entreprise est une association non lucrative
   question: S'agit-il d'une association à but non lucratif ?
+  par défaut: non

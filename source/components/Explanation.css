@@ -1,0 +1,15 @@
+#explanation {
+	margin: 6em 0;
+}
+
+#explanation p {
+	text-align: center;
+}
+
+
+@media (max-height: 350px) {
+	/* Hack : at 350px of height, it's a mobile device and the keyboard is active */
+	#explanation {
+		display: none;
+	}
+}

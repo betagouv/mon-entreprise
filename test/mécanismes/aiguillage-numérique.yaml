@@ -36,8 +36,7 @@
 - nom: montant caution
   format: €
 
-- nom: deuxième retenue sur dépot de garantie
-  test: Imbrication d'aiguillages numériques
+- test: Imbrication d'aiguillages numériques
   formule:
     aiguillage numérique:
       dégradation mineure: 5%

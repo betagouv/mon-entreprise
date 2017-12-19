@@ -1,44 +1,56 @@
 .references {
-        font-size: 85%;
-        list-style: none;
-        padding-left: 1em;
-        color: #333350;
+  font-size: 100%;
+  list-style: none;
+  padding-left: 1em;
+  color: #333350;
 }
 .references a {
-        color: inherit;
-        /*text-decoration: none;*/
+  color: inherit;
+  width: 40%;
+  text-decoration: underline;
 }
 
 .references li {
-        margin-bottom: .15em;
+  margin-bottom: 0.6em;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 #noOfficialReferences {
   text-align: left;
   font-style: italic;
 }
-.references .meta {
-        text-align: right;
-        width: 16em;
-        margin-right: 1.5em;
-        display: inline-block;
-        font-size: 75%;
-}
 .references .url {
-        font-weight: 600;
-        color: white;
-        background: #333350;
-        border-radius: .4em;
-        font-style: italic;
-        padding: .05em .6em;
+  font-weight: 600;
+  color: white;
+  background: #333350;
+  border-radius: 0.4em;
+  font-style: italic;
+  padding: 0.05em 0.6em;
+  font-size: 95%;
+}
+.references .imageWrapper {
+  width: 8em;
+  display: inline-block;
 }
 .references img {
-        vertical-align: sub;
-        height: 1.2em;
-        border-radius: .3em;
-        margin-left: .6em;
+  vertical-align: sub;
+  max-height: 3em;
+  max-width: 5em;
+  border-radius: 0.3em;
+  margin: 0 auto;
+  display: block;
 }
 
+li#complementary {
+  margin-top: 1.2em;
+}
 li#complementary a {
   font-style: italic;
-  border-bottom: 1px solid #ddd;
+  text-decoration: none;
+  width: auto;
+}
+
+#complementary i {
+  margin-right: .6em;
 }

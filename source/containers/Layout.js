@@ -3,70 +3,49 @@ import './Layout.css'
 import './reset.css'
 import './ribbon.css'
 
-import {Link, Route, Router, Switch} from 'react-router-dom'
+import { Link, Route, Router, Switch, Redirect } from 'react-router-dom'
 
-import HomeEmbauche from 'Components/HomeEmbauche'
-import HomeSyso from 'Components/HomeSyso'
-import Rule from 'Components/rule/Rule'
+import Home from 'Components/pages/Home'
+import RulePage from 'Components/RulePage'
 import Route404 from 'Components/Route404'
 import Contact from 'Components/Contact'
 import Simulateur from 'Components/Simulateur'
-import Results from 'Components/Results'
-import RulesList from "Components/RulesList"
-
-import ReactPiwik from 'Components/Tracker';
+import RulesList from 'Components/pages/RulesList'
+import Mecanisms from 'Components/Mecanisms'
+import Contribution from 'Components/pages/Contribution'
+import Integration from 'Components/pages/Integration'
+import About from 'Components/pages/About'
+import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 
 const piwik = new ReactPiwik({
 	url: 'stats.data.gouv.fr',
 	siteId: 39,
-	trackErrors: true,
+	trackErrors: true
 })
 
 export default class Layout extends Component {
 	history = createHistory()
-	state = {
-		resultsHeight: 600
-	}
 	render() {
-		let displayWarning = ["/simu/", "/regle/", "/regles"].find(
-			t => window.location.href.toString().indexOf(t) > -1
-		)
-
 		// track the initial pageview
-		ReactPiwik.push(["trackPageView"])
+		ReactPiwik.push(['trackPageView'])
 
 		return (
 			<Router history={piwik.connectToHistory(this.history)}>
-				<div id="main">
-					<div>
-						<div id="header">
-
-							{ displayWarning &&
-								<span id="ribbon">
-									<Link to="/contact"><em>version beta</em> <i className="fa fa-flask" aria-hidden="true"></i></Link>
-								</span>
-							}
-							{
-								// this.props.location.pathname != '/' &&
-								// <Link to="/">
-								// 	<img id="site-logo" src={require('../images/logo.png')} />
-								// </Link>
-							}
-						</div>
-						<Switch>
-							<Route exact path="/" component={HomeEmbauche} />
-							<Route exact path="/syso" component={HomeSyso} />
-							<Route path="/contact" component={Contact} />
-							<Route path="/regle/:name" component={Rule} />
-							<Route path="/regles" component={RulesList} />
-							<Route path="/simu/:name/:intro?" component={Simulateur} />
-							<Route component={Route404} />
-						</Switch>
-					</div>
-					<div id="antiOverlap" style={{height: this.state.resultsHeight + 'px'}}/>
-					<Results setElementHeight={resultsHeight => this.setState({resultsHeight})}/>
-				</div>
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route path="/contact" component={Contact} />
+					<Route path="/regle/:name" component={RulePage} />
+					<Route path="/regles" component={RulesList} />
+					<Route path="/simu/:targets" component={Simulateur} />
+					<Route path="/à-propos" component={About} />
+					<Route path="/intégrer" component={Integration} />
+					<Route path="/contribuer" component={Contribution} />
+					<Redirect from="/simu/" to="/" />
+					<Redirect from="/simu/:name/intro" to="/simu/:name" />
+					<Route path="/mécanismes" component={Mecanisms} />
+					<Route component={Route404} />
+				</Switch>
 			</Router>
 		)
 	}

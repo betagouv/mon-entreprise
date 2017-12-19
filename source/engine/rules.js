@@ -4,6 +4,8 @@ import rawRules from './load-rules'
 import R from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
+import {capitalise0} from '../utils'
+import formValueTypes from 'Components/conversation/formValueTypes'
 
 // TODO - should be in UI, not engine
 import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/liste-taux.json'
@@ -15,8 +17,9 @@ import taux_versement_transport from '../../règles/rémunération-travail/cotis
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = (rule, sharedData = {}) => {
 	let
-		type = possibleVariableTypes.find(t => R.has(t, rule)),
+		type = possibleVariableTypes.find(t => R.has(t, rule) || rule.type === t),
 		name = rule['nom'],
+		title = capitalise0(rule['titre'] || name),
 		ns = rule['espace'],
 		data = rule['données'] ? sharedData[rule['données']] : null,
 		dottedName = ns ? [
@@ -24,10 +27,17 @@ export let enrichRule = (rule, sharedData = {}) => {
 			name
 		].join(' . ') : name,
 		subquestionMarkdown = rule['sous-question'],
-		subquestion = subquestionMarkdown && marked(subquestionMarkdown)
+		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
+		defaultValue = rule['par défaut']
 
-	return {...rule, type, name, ns, data, dottedName, subquestion}
+	return {...rule, type, name, title, ns, data, dottedName, subquestion, defaultValue}
 }
+
+export let disambiguateExampleSituation = (rules, rule) => R.pipe(
+	R.toPairs,
+	R.map(([k, v]) => [disambiguateRuleReference(rules, rule, k), v]),
+	R.fromPairs
+)
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
@@ -69,6 +79,13 @@ export let disambiguateRuleReference = (allRules, {ns, name}, partialName) => {
 	}
 }
 
+export let collectDefaults = R.pipe(
+	R.map(R.props(['dottedName', 'defaultValue'])),
+	R.reject(([,v]) => v === undefined),
+	R.fromPairs
+)
+
+
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
 export let rules = rawRules.map(rule => enrichRule(rule, {taux_versement_transport}))
 
@@ -79,7 +96,7 @@ export let rules = rawRules.map(rule => enrichRule(rule, {taux_versement_transpo
 export let findRuleByName = (allRules, search) =>
 	allRules
 		.find( ({name}) =>
-			name.toLowerCase() === search.toLowerCase()
+			name === search
 		)
 
 export let searchRules = searchInput =>
@@ -89,10 +106,24 @@ export let searchRules = searchInput =>
 			JSON.stringify(rule).toLowerCase().indexOf(searchInput) > -1)
 		.map(enrichRule)
 
-export let findRuleByDottedName = (allRules, dottedName) =>
-	dottedName && allRules.find(rule => rule.dottedName.toLowerCase() == dottedName.toLowerCase())
+export let findRuleByDottedName = (allRules, dottedName) => {
+	return allRules.find(rule => rule.dottedName == dottedName)
+}
 
 /*********************************
 Autres */
 
 let isVariant = R.path(['formule', 'une possibilité'])
+
+export let formatInputs = (flatRules, formValueSelector) => state => name => {
+	// Our situationGate retrieves data from the "conversation" form
+	// The search below is to apply input conversions such as replacing "," with "."
+	if (name.startsWith('sys.')) return null
+
+	let rule = findRuleByDottedName(flatRules, name),
+		format = rule ? formValueTypes[rule.format] : null,
+		pre = format && format.validator.pre ? format.validator.pre : R.identity,
+		value = formValueSelector('conversation')(state, name)
+
+	return value && pre(value)
+}

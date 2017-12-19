@@ -1,5 +1,6 @@
 - espace: contrat salarié
-  nom: Cotisation Exceptionnelle Temporaire
+  nom: cotisation exceptionnelle temporaire
+  acronyme: CET
   cotisation:
     branche: retraite
     type de retraite: complémentaire

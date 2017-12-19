@@ -1,0 +1,12 @@
+- test: Composantes
+  formule:
+    multiplication:
+      assiette: 100
+      composantes:
+        - taux: 8%
+        - taux: 2%
+
+  exemples:
+    - nom:
+      situation:
+      valeur attendue: 10

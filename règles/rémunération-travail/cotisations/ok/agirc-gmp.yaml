@@ -17,11 +17,11 @@
       composantes:
         - attributs:
             dû par: employeur
-          cible: agirc (employeur)
+          cible: AGIRC (employeur)
           montant: 43.67 * quotité de travail
         - attributs:
             dû par: salarié
-          cible: agirc (salarié)
+          cible: AGIRC (salarié)
           montant: 26.71 * quotité de travail
 
   note: Le mécanisme de complément de la cotisation AGIRC nous évite d'avoir à utiliser le "salaire charnière"
