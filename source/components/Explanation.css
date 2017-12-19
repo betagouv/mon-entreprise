@@ -6,6 +6,16 @@
 	text-align: center;
 }
 
+#explanation #warning {
+	margin-top: 4em;
+	color: #4B4B66;
+	font-size: 85%;
+}
+#explanation #warning i {
+	margin-right: 0.6em;
+	opacity: .8;
+}
+
 
 @media (max-height: 350px) {
 	/* Hack : at 350px of height, it's a mobile device and the keyboard is active */
