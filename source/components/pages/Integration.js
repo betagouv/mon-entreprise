@@ -31,6 +31,10 @@ export default class MyComponent extends Component {
 							outil interactif
 						</a>.
 					</p>
+					<p>
+						<i className="fa fa-info-circle" aria-hidden="true"></i>
+						Le simulateur utilisable sur embauche.beta.gouv.fr est la toute dernière version. Elle sera bientôt disponible à l'intégration sous forme de module.
+					</p>
 				</div>
 				<div className="blocks" id="integrations">
 					<h1>Quelques intégrations</h1>

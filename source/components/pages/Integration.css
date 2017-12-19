@@ -2,6 +2,10 @@
 	margin-top: 3em;
 	vertical-align: top;
 }
+#integration i {
+	margin-right: .6em;
+	color: #3C4963;
+}
 #integration code {
 	display: inline-block;
 	font-size: 80%;
