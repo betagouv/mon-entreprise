@@ -16,6 +16,7 @@ import Integration from 'Components/pages/Integration'
 import About from 'Components/pages/About'
 import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
+import Header from 'Components/pages/Header'
 
 const piwik = new ReactPiwik({
 	url: 'stats.data.gouv.fr',
@@ -31,19 +32,22 @@ export default class Layout extends Component {
 
 		return (
 			<Router history={piwik.connectToHistory(this.history)}>
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route path="/contact" component={Contact} />
-					<Route path="/regle/:name" component={RulePage} />
-					<Route path="/regles" component={RulesList} />
-					<Route path="/simu/:targets" component={Simulateur} />
-					<Route path="/à-propos" component={About} />
-					<Route path="/intégrer" component={Integration} />
-					<Route path="/contribuer" component={Contribution} />
-					<Redirect from="/simu/" to="/" />
-					<Redirect from="/simu/:name/intro" to="/simu/:name" />
-					<Route component={Route404} />
-				</Switch>
+				<>
+					<Header />
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route path="/contact" component={Contact} />
+						<Route path="/regle/:name" component={RulePage} />
+						<Route path="/regles" component={RulesList} />
+						<Route path="/simu/:targets" component={Simulateur} />
+						<Route path="/à-propos" component={About} />
+						<Route path="/intégrer" component={Integration} />
+						<Route path="/contribuer" component={Contribution} />
+						<Redirect from="/simu/" to="/" />
+						<Redirect from="/simu/:name/intro" to="/simu/:name" />
+						<Route component={Route404} />
+					</Switch>
+					</>
 			</Router>
 		)
 	}

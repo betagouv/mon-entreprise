@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import './Integration.css'
 import './Pages.css'
-import Header from './Header'
 
 export default class MyComponent extends Component {
 	render() {
 		return (
 			<section className="page" id="integration">
-				<Header />
 				<div>
 					<h1>Intégrez le module Web</h1>
 					<p>Intégrez le module en ajoutant une ligne à votre page Web :</p>

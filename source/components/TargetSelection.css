@@ -1,18 +1,24 @@
 #targetSelection {
-	margin: 0 auto;
-	font-size: 90%;
+	height: 40em;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 100%;
 	max-width: 860px;
+}
+
+#targetSelection > div {
+	width: 100%;
 }
 
 #targetSelection h2 {
 	margin: 2em;
 }
-#targetSelection ul {
-	text-align: left;
-	margin: 2em auto;
-	width: 80%;
+#targetSelection #targets {
+	width: 30em;
+	margin: 0 auto;
 }
-
 #targetSelection label {
 	display: block;
 	margin-bottom: 1em;
@@ -67,7 +73,7 @@
 
 #targetSelection #action {
 	text-align: center;
-	margin: 2em auto;
+	margin: 1em auto;
 }
 
 #targetSelection #action p {

@@ -1,10 +1,8 @@
 #integration p {
 	margin-top: 3em;
 	vertical-align: top;
-	position: relative;
 }
 #integration code {
-	position: relative;
 	display: inline-block;
 	font-size: 80%;
 	width: 90%;
