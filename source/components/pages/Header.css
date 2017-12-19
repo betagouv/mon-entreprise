@@ -38,6 +38,7 @@ nav > a {
 		left: 0;
 		top: 4.8em;
     bottom: 0;
+		z-index: 10;
 	}
 	nav.visible #links {
 		margin: 6em 1em;

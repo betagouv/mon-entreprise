@@ -23,7 +23,7 @@ export default class TargetSelection extends Component {
 				>
 					<p>Vous pouvez faire plusieurs choix</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<button>Valider</button>
+						<button className="blueButton">Valider</button>
 					</Link>
 				</div>
 			</section>
