@@ -63,7 +63,6 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
 	let
-		parsedRules = R.path(['analysis', 'parsedRules'], state),
 		analysis = analyseMany(state.parsedRules, targetNames)(situationWithDefaults(state)),
 		nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
 		assumptionsMade = !R.isEmpty(rulesDefaults),
@@ -87,8 +86,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	if (action.type == START_CONVERSATION) {
 		return {
 			...newState,
-			// when objectives change, reject theme from answered questions
-			foldedSteps: action.fromScratch ? [] : R.reject(name => targetNames.includes(nameLeaf(name)))(
+			/* when objectives change, reject them from answered questions
+			Hack : 'salaire de base' is the only inversable variable, so the only
+			one that could be the next target AND already in the answered steps */
+			foldedSteps: action.fromScratch ? [] : R.reject(R.contains('salaire de base'))(
 				state.foldedSteps
 			)
 		}
