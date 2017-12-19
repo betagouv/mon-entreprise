@@ -33,6 +33,12 @@ export let enrichRule = (rule, sharedData = {}) => {
 	return {...rule, type, name, title, ns, data, dottedName, subquestion, defaultValue}
 }
 
+export let disambiguateExampleSituation = (rules, rule) => R.pipe(
+	R.toPairs,
+	R.map(([k, v]) => [disambiguateRuleReference(rules, rule, k), v]),
+	R.fromPairs
+)
+
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
 export let

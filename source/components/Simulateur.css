@@ -1,16 +1,13 @@
 #sim {
-	margin: 1% auto;
-	/*background-image: radial-gradient(ellipse at center, white -160%, rgba(255,255,255,0) 100%);*/
-	/*background-image: radial-gradient(ellipse at center, #4A89DC -160%,#333350 70%);*/
+	margin: 0 auto;
+
 	color: #333350;
 	transition: background-color .5s;
 	height: 100%;
-	padding-bottom: 10%;
-
-	padding: 1em;
-	width: 90%;
 	max-width: 45em;
 	font-size: 130%;
+
+	height: 92%;
 
 }
 
@@ -78,16 +75,25 @@
 	opacity: 1;
 }
 
-
-
-
-#sim .tip {
-	font-style: italic;
-	margin-bottom: 2em;
+.scrollIndication {
+	display: block;
+	text-align: center;
+	margin: 1.4em auto;
+	transition: 1s opacity;
+	color: #4A89DC;
+	border: none;
+	font-size: 100%;
+	font-weight: 600;
 }
-#sim .tip p {
-	margin: 0;
+.scrollIndication i {
+	margin: 0 .3em;
 }
-#sim .tip progress {
-	margin-left: 1em;
+.scrollIndication:hover i {
+	font-weight: bold;
+}
+.scrollIndication.up {
+	margin-top: 0;
+}
+.scrollIndication.down {
+	margin-bottom: 0;
 }

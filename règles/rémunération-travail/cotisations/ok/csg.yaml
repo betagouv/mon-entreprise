@@ -26,7 +26,7 @@
 
 - espace: contrat salarié
   nom: CSG
-  attributs:
+  cotisation:
     impôt: oui
     dû par: salarié
   description: |
@@ -46,7 +46,7 @@
 
 - espace: contrat salarié
   nom: CRDS
-  attributs:
+  cotisation:
     impôt: oui
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale

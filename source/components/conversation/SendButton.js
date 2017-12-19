@@ -4,16 +4,16 @@ import HoverDecorator from 'Components/HoverDecorator'
 @HoverDecorator
 export default class SendButton extends Component {
 	getAction(){
-		let {sendButtonDisabled, error, submit } = this.props
-		return () => (!sendButtonDisabled && !error ? submit() : null)
+		let {disabled, submit } = this.props
+		return () => (!disabled ? submit() : null)
 	}
 	render() {
-		let { sendButtonDisabled, themeColours, hover } = this.props
+		let { disabled, themeColours, hover } = this.props
 		return (
 			<span className="sendWrapper">
 				<button
 					className="send"
-					disabled={sendButtonDisabled}
+					disabled={disabled}
 					style={{
 						color: themeColours.textColour,
 						background: themeColours.colour
@@ -25,7 +25,7 @@ export default class SendButton extends Component {
 				</button>
 				<span
 					className="keyIcon"
-					style={{ opacity: hover && !sendButtonDisabled ? 1 : 0 }}
+					style={{ opacity: hover && !disabled ? 1 : 0 }}
 				>
 					Entrée{' '}↵
 				</span>

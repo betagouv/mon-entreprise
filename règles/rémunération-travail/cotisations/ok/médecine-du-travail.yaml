@@ -1,0 +1,16 @@
+- espace: contrat salarié
+  nom: médecine du travail
+  alias: santé au travail
+  cotisation:
+    dû par: employeur
+    branche: santé
+  références:
+    fiche: http://travail-emploi.gouv.fr/emploi/maintien-dans-l-emploi/prevention-et-maintien-dans-l-emploi-10705/services-de-sante-au-travail-sst
+    question au sénat: http://www.senat.fr/questions/base/2005/qSEQ050919275.html
+    rapport officiel, page 6: http://www.ladocumentationfrançaise.fr/var/storage/rapports-publics/074000708.pdf
+  description:  |
+    L'employeur a l'obligation d'organiser un service de santé au travail, en adhérant à un service interentreprises, ou en créant un service interne.
+
+    Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est pas défini par la loi, mais il doit être proportionnel au nombre d'employés. Nous avons choisi un montant indicatif (voir les références) ajusté avec l'inflation depuis 2007.
+
+  formule: 80 / 12

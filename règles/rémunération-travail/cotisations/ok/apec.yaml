@@ -1,11 +1,11 @@
 - espace: contrat salarié
   nom: APEC
   cotisation:
-    branche: retraite
+    branche: chômage
     type de retraite: complémentaire
     destinataire: APEC
   description: |
-    Cotisation de retraite complémentaire cadre, pour le fonctionnement de l'APEC
+    Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
   références:
     chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles

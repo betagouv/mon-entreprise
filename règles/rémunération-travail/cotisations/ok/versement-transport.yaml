@@ -8,7 +8,9 @@
     #     condition: entreprise . effectif >= 11
     #   - si: période < 2016
     #     condition: entreprise . effectif >= 10
-
+  cotisation:
+    branche: transport
+    dû par: employeur
   formule:
     multiplication:
       assiette: assiette cotisations sociales

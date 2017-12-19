@@ -6,7 +6,12 @@ import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 
 import { START_CONVERSATION } from '../actions'
-import { rules, findRuleByName, decodeRuleName } from 'Engine/rules'
+import {
+	rules,
+	findRuleByName,
+	findRuleByDottedName,
+	decodeRuleName
+} from 'Engine/rules'
 import './conversation/conversation.css'
 import './Simulateur.css'
 import Conversation from './conversation/Conversation'
@@ -15,6 +20,7 @@ import { makeQuestion } from 'Engine/generateQuestions'
 import ReactPiwik from './Tracker'
 
 import Results from 'Components/Results'
+import Explanation from 'Components/Explanation'
 
 @withRouter
 @connect(
@@ -26,11 +32,12 @@ import Results from 'Components/Results'
 		targetNames: state.targetNames,
 		done: state.done,
 		nextSteps: state.nextSteps,
-		inputInversions: formValueSelector('conversation')(state, 'inversions')
+		inputInversions: formValueSelector('conversation')(state, 'inversions'),
+		analysis: state.analysis
 	}),
 	dispatch => ({
-		startConversation: targetNames =>
-			dispatch({ type: START_CONVERSATION, targetNames }),
+		startConversation: (targetNames, fromScratch = false) =>
+			dispatch({ type: START_CONVERSATION, targetNames, fromScratch }),
 		resetForm: () => dispatch(reset('conversation')),
 		resetFormField: name => dispatch(change('conversation', name, ''))
 	})
@@ -70,19 +77,20 @@ export default class extends Component {
 				situationGate,
 				themeColours,
 				targetNames,
-				inputInversions
+				inputInversions,
+				done
 			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
-				this.props.resetForm(this.name)
-				this.props.startConversation(this.targets)
+				this.props.resetForm()
+				this.props.startConversation(this.targetNames, true)
 			}
 
 		return (
 			<div id="sim">
 				<Helmet>
 					<title>
-						Simulateur d'embauche :{' '}
+						{'Simulateur d\'embauche : '}
 						{R.pluck('title', this.targetRules).join(', ')}
 					</title>
 					<meta
@@ -90,7 +98,6 @@ export default class extends Component {
 						content={R.pluck('description', this.targetRules).join(' - ')}
 					/>
 				</Helmet>
-				<Results />
 				<Conversation
 					{...{
 						reinitalise,
@@ -114,6 +121,12 @@ export default class extends Component {
 						textColourOnWhite: themeColours.textColourOnWhite
 					}}
 				/>
+				<Results />
+				{done && (
+					<Explanation
+						targetRules={R.path(['analysis', 'targets'], this.props)}
+					/>
+				)}
 			</div>
 		)
 	}
@@ -126,10 +139,10 @@ export default class extends Component {
 		let step = makeQuestion(rules, targetNames)(question)
 
 		let fieldName =
-			(unfolded &&
-				inputInversions &&
-				R.path(step.dottedName.split('.'), inputInversions)) ||
-			step.dottedName
+				(inputInversions &&
+					R.path(step.dottedName.split('.'), inputInversions)) ||
+				step.dottedName,
+			fieldTitle = findRuleByDottedName(rules, fieldName).title
 
 		return (
 			<step.component
@@ -139,6 +152,7 @@ export default class extends Component {
 				step={step}
 				situationGate={situationGate}
 				fieldName={fieldName}
+				fieldTitle={fieldTitle}
 				inverted={step.dottedName !== fieldName}
 			/>
 		)

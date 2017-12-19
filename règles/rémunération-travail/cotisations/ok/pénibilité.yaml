@@ -23,13 +23,10 @@
 
 - espace: contrat salarié
   nom: cotisation pénibilité
-  attributs:
+  cotisation:
     branche: santé # ou vieillesse car ouvrant droit à une retraite anticipée ?
+    dû par: employeur
   description: Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur
-  références:
-    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
-    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html
-    - Code du travail - Article L4162-19
 
   formule:
     multiplication:
@@ -38,14 +35,47 @@
         - nom: base
           taux: 0.01%
         - nom: additionnelle
-          non applicable si:
-            - toutes ces conditions:
-                - type de contrat = 'CDD'
-                - durée contrat < 1
+          # TODO une fois que 'non applicable si' sera un mécanisme
+          # non applicable si:
+          #   - toutes ces conditions:
+          #       - type de contrat = 'CDD'
+          #       - CDD . durée contrat < 1
           variations:
-            - si: contrat salarié . exposition pénibilité = 'non'
+            - si: exposition pénibilité = 'non'
               taux: 0%
-            - si: contrat salarié . exposition pénibilité . exposition simple
+            - si: exposition pénibilité . exposition simple
               taux: 0.2%
-            - si: contrat salarié . exposition pénibilité . exposition multiple
+            - si: exposition pénibilité . exposition multiple
               taux: 0.4%
+  exemples:
+    - nom: Pas d'exposition
+      situation:
+        exposition pénibilité: non
+        assiette cotisations sociales: 2000
+      valeur attendue: 0.2
+
+    - nom: Exposition simple
+      situation:
+        exposition pénibilité: exposition simple
+        assiette cotisations sociales: 2000
+      valeur attendue: 4.2
+
+    - nom: Exposition multiple
+      situation:
+        exposition pénibilité: exposition multiple
+        assiette cotisations sociales: 2000
+      valeur attendue: 8.2
+
+    # TODO
+    # - nom: Pas de composante additionnelle pour CDD court
+    #   situation:
+    #     type de contrat: 'CDD'
+    #     CDD . durée contrat: .2
+    #     assiette cotisations sociales: 2000
+    #     exposition pénibilité: exposition multiple
+    #   valeur attendue: 0.2
+
+  références:
+    fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
+    fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html
+    Code du travail - Article L4162-19: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000028496066&dateTexte=&categorieLien=cid

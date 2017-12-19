@@ -6,13 +6,13 @@ var webpack = require('webpack'),
 module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: prodEnv ? [
-		'babel-polyfill',
+		'@babel/polyfill',
 		'whatwg-fetch',
 		'./source/entry.js'
 	] : [
 		'webpack-dev-server/client?http://localhost:3000/',
 		'webpack/hot/only-dev-server',
-		'babel-polyfill',
+		'@babel/polyfill',
 		'react-hot-loader/patch',
 		'./source/entry.js'
 	],

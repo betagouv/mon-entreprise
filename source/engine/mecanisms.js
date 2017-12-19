@@ -101,11 +101,11 @@ let devariate = (recurse, k, v) => {
 			condition: recurse(c.si)
 		}))
 
-	let evaluate = (situationGate, parsedRules, node) => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let evaluateOne = child => {
-			let condition = evaluateNode(situationGate, parsedRules, child.condition)
+			let condition = evaluateNode(cache, situationGate, parsedRules, child.condition)
 			return {
-				...evaluateNode(situationGate, parsedRules, child),
+				...evaluateNode(cache, situationGate, parsedRules, child),
 				condition
 			}
 		}
@@ -141,14 +141,14 @@ let devariate = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map((c) => [
-						<li className="variation" key={JSON.stringify(c.variation)}>
+					{explanation.map(c =>
+						<li className="variation" key={JSON.stringify(c.condition)}>
 							<div className="condition">
 								{makeJsx(c.condition)}
 								<div className="content">{makeJsx(c)}</div>
 							</div>
 						</li>
-					])}
+					)}
 				</ul>
 			}
 		/>
@@ -184,8 +184,8 @@ export let mecanismOneOf = (recurse, k, v) => {
 		/>
 	)
 
-	let evaluate = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = R.map(evaluateOne, node.explanation),
 			values = R.pluck('nodeValue', explanation),
 			nodeValue = R.any(R.equals(true), values)
@@ -230,8 +230,8 @@ export let mecanismAllOf = (recurse, k, v) => {
 	)
 
 
-	let evaluate = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = R.map(evaluateOne, node.explanation),
 			values = R.pluck('nodeValue', explanation),
 			nodeValue = R.any(R.equals(false), values)
@@ -272,7 +272,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 		let conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
 			consequenceNode = mecanismNumericalSwitch(recurse, condition, consequence)
 
-		let evaluate = (situationGate, parsedRules, node) => {
+		let evaluate = (cache, situationGate, parsedRules, node) => {
 			let collectMissing = node => {
 				let missingOnTheLeft = collectNodeMissing(node.explanation.condition),
 					investigate = node.explanation.condition.nodeValue !== false,
@@ -284,8 +284,8 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 
 			let explanation = R.evolve(
 				{
-					condition: R.curry(evaluateNode)(situationGate, parsedRules),
-					consequence: R.curry(evaluateNode)(situationGate, parsedRules)
+					condition: R.curry(evaluateNode)(cache, situationGate, parsedRules),
+					consequence: R.curry(evaluateNode)(cache, situationGate, parsedRules)
 				},
 				node.explanation
 			)
@@ -317,8 +317,8 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 		}
 	}
 
-	let evaluateTerms = (situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(situationGate, parsedRules, child),
+	let evaluateTerms = (cache, situationGate, parsedRules, node) => {
+		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = R.map(evaluateOne, node.explanation),
 			nonFalsyTerms = R.filter(node => node.condValue !== false, explanation),
 			getFirst = prop => R.pipe(R.head, R.prop(prop))(nonFalsyTerms),
@@ -401,12 +401,15 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 		nodeValue: null
 	}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
-	let fx = x =>
-		clearDict() && evaluateNode(
+	let inversionCache = {}
+	let fx = x => {
+		inversionCache = {}
+		return evaluateNode(inversionCache, // with an empty cache
 			n => dottedName === n ? x : situationGate(n),
 			parsedRules,
 			fixedObjectiveRule
 		).nodeValue
+	}
 
 	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
 	// considérer que l'inversion est impossible du fait de variables manquantes
@@ -415,7 +418,7 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 		return {
 			nodeValue: null,
 			inversionMissingVariables: collectNodeMissing(
-				evaluateNode(
+				evaluateNode({},
 					n =>
 						dottedName === n ? 1000 : situationGate(n),
 					parsedRules,
@@ -436,14 +439,15 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 
 	return {
 		nodeValue,
-		inversionMissingVariables: []
+		inversionMissingVariables: [],
+		inversionCache
 	}
 }
 
 
 export let mecanismInversion = dottedName => (recurse, k, v) => {
 
-	let evaluate = (situationGate, parsedRules, node) => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let inversion =
 			// avoid the inversion loop !
 			situationGate(dottedName) == undefined &&
@@ -452,7 +456,11 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 			collectMissing = () => inversion.inversionMissingVariables,
 			nodeValue = inversion.nodeValue
 
-		return rewriteNode(node, nodeValue, null, collectMissing)
+		let evaluatedNode = rewriteNode(node, nodeValue, null, collectMissing)
+		// rewrite the simulation cache with the definitive inversion values
+
+		R.toPairs(inversion.inversionCache).map(([k,v])=>cache[k] = v)
+		return evaluatedNode
 	}
 
 	return {
@@ -680,14 +688,14 @@ export let mecanismScale = (recurse, k, v) => {
 													: ''
 										}}
 									>
-										<td>
+										<td key="tranche">
 											{maxOnly
 												? 'En dessous de ' + maxOnly
 												: minOnly
 													? 'Au dessus de ' + minOnly
 													: `De ${min} à ${max}`}
 										</td>
-										<td> {taux} </td>
+										<td key="taux"> {makeJsx(taux)} </td>
 									</tr>
 								)
 							)}
@@ -829,9 +837,9 @@ export let mecanismSelection = (recurse, k, v) => {
 	let dataTargetName = v['renvoie']
 	let explanation = recurse(v['cherche'])
 
-	let evaluate = (situationGate, parsedRules, node) => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let collectMissing = node => collectNodeMissing(node.explanation),
-			explanation = evaluateNode(situationGate, parsedRules, node.explanation),
+			explanation = evaluateNode(cache, situationGate, parsedRules, node.explanation),
 			dataSource = findRuleByName(parsedRules, dataSourceName),
 			data = dataSource ? dataSource['data'] : null,
 			dataKey = explanation.nodeValue,

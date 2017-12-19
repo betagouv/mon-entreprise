@@ -2,7 +2,7 @@
   nom: Cotisation d'Accidents du Travail et Maladies Professionnelles
   description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
   cotisation:
-    branche: maladie
+    branche: santé
     collecteur: URSSAF
     responsable: CARSAT
 

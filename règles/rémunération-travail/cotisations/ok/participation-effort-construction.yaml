@@ -1,0 +1,23 @@
+- espace: contrat salarié
+  nom: participation effort de construction
+  alias: Dispositif du 1 % logement
+  acronyme: PEEC
+  description: Participation des employeurs à l'effort de construction
+  cotisation:
+    branche: logement
+    dû par: employeur
+    impôt: oui
+  références:
+    fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
+  notes: |
+    L'employeur a le choix entre verser cet impôt à un "organisme du 1 % patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
+
+
+  applicable si: entreprise . effectif >= 20
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 0.45%
+
+  # TODO cas agricole, et autres statuts spécifiques
+  # TODO décalage d'un an : salaire N-1 pour paiement en N

@@ -8,7 +8,6 @@ import formValueTypes from 'Components/conversation/formValueTypes'
 
 import {
 	findRuleByDottedName,
-	findRuleByName,
 	disambiguateRuleReference
 } from './rules'
 import { collectNodeMissing } from './evaluation'
@@ -28,20 +27,13 @@ import { collectNodeMissing } from './evaluation'
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariables = targets =>
-	R.pipe(
-		R.chain(v =>
-			R.pipe(collectNodeMissing, R.flatten, R.map(mv => [v.dottedName, mv]))(v)
-		),
-		//groupBy missing variable but remove mv from value, it's now in the key
-		R.groupBy(R.last),
-		R.map(R.map(R.head))
-		// below is a hand implementation of above... function composition can be nice sometimes :')
-		// R.reduce( (memo, [mv, dependencyOf]) => ({...memo, [mv]: [...(memo[mv] || []), dependencyOf] }), {})
-	)(targets)
+export let collectMissingVariables = targets => {
+	let missing = R.chain(collectNodeMissing, targets)
+	return R.groupBy(R.identity, missing)
+}
 
 export let getNextSteps = (situationGate, analysis) => {
-	let impact = ([variable, objectives]) => R.length(objectives)
+	let impact = ([, objectives]) => R.length(objectives)
 
 	let missingVariables = collectMissingVariables(analysis.targets),
 		pairs = R.toPairs(missingVariables),
@@ -88,8 +80,7 @@ let buildPossibleInversion = (rule, flatRules, targetNames) => {
 
 	return {
 		inversions: yo,
-		question: rule.formule.inversion.question,
-		title: rule.formule.inversion.titre
+		question: rule.formule.inversion.question
 	}
 }
 

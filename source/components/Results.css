@@ -1,54 +1,56 @@
-#results {
-	margin: 0 auto;
-	padding: .1em .3em;
-	position: relative;
 
+#resultsZone {
+	height: 49%;
+	display: flex;
+	align-items: flex-end;
+}
+
+@media (max-height: 350px) {
+	/* Hack : at 350px of height, it's a mobile device and the keyboard is active */
+	#resultsZone {
+		display: none;
+	}
+}
+
+#results {
+	width: 100%;
+	padding: .4em 1.4em;
+}
+#resultsContent {
+	position: relative;
+	margin: 0 auto;
+	padding: .3em 0 1em;
+	min-height: 4em;
+	width: 100%;
+	max-width: 45em;
 	background: #2975D1;
 	color: white;
 	box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.25);
-}
-
-#results-actions {
-	background: #333350;
-}
-
-#toSimulation {
-	font-size: 150%;
-	color: white;
-	margin-left: .6em;
-	line-height: 1.8em;
-	text-decoration: none;
-	border-radius: .2em;
-	position: relative;
-}
-#toSimulation i {
-	margin-right: .6em;
-}
-/* results h2 defined in conversation.css */
-#results h2 span {
-	font-size: 70%;
-	margin: 0 .6em
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 #results .edit {
-	position: absolute;
-	top: 1em;
-	right: 1em;
-
 	vertical-align: middle;
 	border: none;
-	font-size: 80%;
+	font-size: 85%;
 	color: white;
+	width: 100%;
+	text-align: center;
 }
 
 #results ul {
+	font-size: 125%;
+	width: 100%;
 	list-style: none;
 	padding-left: 0;
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	height: 70%;
-	margin: .2em auto 1.2em;
+	margin: 0 auto;
+
 }
 
 
@@ -56,11 +58,4 @@
 	margin: 0 1.2em;
 	display: inline-block;
 	width: 100%;
-}
-
-
-
-@media (max-width: 1280px) {
-
-
 }

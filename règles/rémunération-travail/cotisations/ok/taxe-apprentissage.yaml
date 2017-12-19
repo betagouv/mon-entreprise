@@ -2,6 +2,8 @@
   nom: taxe d'apprentissage
   cotisation:
     destinataire: Organisme Collecteur de Taxe d'Apprentissage (OCTA)
+    branche: formation
+    dû par: employeur
   description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
 
   références:

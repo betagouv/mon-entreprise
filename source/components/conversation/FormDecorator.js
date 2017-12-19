@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
-import { Field, change } from 'redux-form'
+import { Field, change, formValueSelector } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
 import R from 'ramda'
@@ -20,7 +20,8 @@ export var FormDecorator = formType => RenderField =>
 	@connect(
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
-			themeColours: state.themeColours
+			themeColours: state.themeColours,
+			getCurrentInversion: dottedName => formValueSelector('conversation')(state, 'inversions.' + dottedName)
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
@@ -84,8 +85,10 @@ export var FormDecorator = formType => RenderField =>
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
+
 			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
 				validate = test && (v => (v && test(pre(v)) ? undefined : error))
+
 
 			let question = (
 				<h1
@@ -141,10 +144,10 @@ export var FormDecorator = formType => RenderField =>
 				stepAction,
 				situationGate,
 				themeColours,
-				step: { title },
-				fieldName
+				step: { title, dottedName },
+				fieldName,
+				fieldTitle
 			} = this.props
-			let inversionTitle = R.path(['props', 'step', 'inversion', 'title'])(this)
 
 			let answer = situationGate(fieldName)
 
@@ -152,13 +155,13 @@ export var FormDecorator = formType => RenderField =>
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
 						<span className="title">
-							{capitalise0(inversionTitle || title)}
+							{capitalise0(fieldTitle || title)}
 						</span>
 						<span className="answer">{answer}</span>
 					</span>
 					<button
 						className="edit"
-						onClick={() => stepAction('unfold', fieldName)}
+						onClick={() => stepAction('unfold', dottedName)}
 						style={{ color: themeColours.textColourOnWhite }}
 					>
 						<i className="fa fa-pencil-square-o" aria-hidden="true" />

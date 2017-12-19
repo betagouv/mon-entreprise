@@ -14,15 +14,15 @@ export default class Input extends Component {
 		let {
 				input,
 				stepProps: { dottedName, attributes, submit, valueType },
-				meta: { touched, error, active },
+				meta: { dirty, error, active },
 				themeColours
 			} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
-			inputError = touched && error,
+			inputError = dirty && error,
 			{ hoverSuggestion } = this.state,
-			sendButtonDisabled =
-				input.value == null || input.value == '' || inputError
+			submitDisabled =
+				!dirty || inputError
 
 		return (
 			<span>
@@ -39,15 +39,12 @@ export default class Input extends Component {
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
-								: { border: '1px solid #ddd' }
+								: { border: '1px solid #2975D1' }
 						}
 						onKeyDown={
 							({ key }) =>
-								key == 'Enter' &&
-								input.value &&
-								(!error ? submit() : input.onBlur())
-
-							// blur will trigger the error
+								key == 'Enter'
+								&& (submitDisabled ? input.onBlur() : submit())
 						}
 					/>
 					{suffixed && (
@@ -60,7 +57,7 @@ export default class Input extends Component {
 						</label>
 					)}
 					<SendButton
-						{...{ sendButtonDisabled, themeColours, error, submit }}
+						{...{disabled: submitDisabled, themeColours, error, submit }}
 					/>
 				</div>
 
@@ -79,7 +76,7 @@ export default class Input extends Component {
 		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
 	}
 	renderInversions() {
-		let { stepProps: { dottedName, inversion } } = this.props
+		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
 		if (!inversion) return null
 
 		if (inversion.inversions.length === 1)
@@ -90,7 +87,9 @@ export default class Input extends Component {
 			)
 
 		return (
-			<Field component="select" name={'inversions.' + dottedName}>
+			// This field is handled by redux-form : it will set in the state what's
+			// the current inversion
+			<Field component="select" name={'inversions.' + dottedName} onChange={(e,newValue, previousFieldName) => setFormValue('', previousFieldName)}>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}
