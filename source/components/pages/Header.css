@@ -5,14 +5,21 @@
 	padding: 1em;
 	border-bottom: 1px solid #ebebeb;
 }
-
+#header #brand {
+	display: flex;
+	align-items: center;
+}
 #header h1 {
 	font-size: calc(1vw + 150%);
 	font-weight: 600;
+	display: inline-block;
+	margin-left: .8em;
+	color: #333
 }
 
 #header #marianne {
 	width: calc(3vw + 5em);
+
 }
 #menuButton {
 	font-size: 300%;
@@ -23,8 +30,8 @@ nav {
 	font-size: 150%;
 }
 
-nav > a {
-	color: #3c4963;
+nav a {
+	color: #666;
 }
 @media screen and (max-width: 860px) {
 	nav {

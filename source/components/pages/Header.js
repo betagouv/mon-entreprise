@@ -17,14 +17,12 @@ export default class Header extends Component {
 
 		return (
 			<div id="header">
-				<Link className="menu-item" to="/">
+				<Link id="brand" to="/">
 					<img
 						id="marianne"
 						src={require('Images/marianne.svg')}
 						alt="Un service de l'État français"
 					/>
-				</Link>
-				<Link to="/">
 					<h1>Simulateur d'embauche</h1>
 				</Link>
 				<div id="menuButton">
