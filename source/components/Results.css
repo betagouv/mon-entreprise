@@ -1,12 +1,12 @@
 
 #resultsZone {
-	height: 49%;
+	min-height: 49%;
 	display: flex;
 	align-items: flex-end;
-	transition: 1s height;
+	transition: 1s min-height;
 }
 #sim.noQuestionsLeft #resultsZone {
-	height: auto;
+	min-height: 0;
 }
 
 @media (max-height: 350px) {

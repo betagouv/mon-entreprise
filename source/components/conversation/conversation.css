@@ -1,12 +1,13 @@
 
 
 #myScrollToElement {
-	height: 55%;
+	min-height: 55%;
 	padding: 1em;
+	transition: 1s min-height;
 }
 
 #sim.noQuestionsLeft #myScrollToElement {
-	height: auto;
+	min-height: 0;
 }
 
 
