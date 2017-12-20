@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { rules, findRuleByName } from 'Engine/rules'
-import { reject, curry } from 'ramda'
+import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 
@@ -34,7 +34,15 @@ export default class TargetSelection extends Component {
 		let popularTargets = [...salaries, 'aides employeur différées'].map(
 				curry(findRuleByName)(rules)
 			),
-			{ targets } = this.state
+			{ targets } = this.state,
+			// You can't select 3 salaries, as one must be an input in the next step
+			optionDisabled = name => contains('salaire', name) && pipe(
+				reject(equals(name)),
+				filter(contains('salaire')),
+				length,
+				equals(2)
+			)(targets)
+
 		return (
 			<div>
 				<div id="targets">
@@ -43,6 +51,7 @@ export default class TargetSelection extends Component {
 							<input
 								id={s.name}
 								type="checkbox"
+								disabled={optionDisabled(s.name)}
 								checked={targets.includes(s.name)}
 								onChange={() =>
 									this.setState({

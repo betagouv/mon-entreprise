@@ -48,6 +48,11 @@
 	z-index: -1;
 	opacity: 0;
 }
+#targetSelection input:disabled + label,
+#targetSelection input:disabled + label p,
+#targetSelection input:disabled + label > i {
+	color: #aaa !important;
+}
 
 #targetSelection input + label > i.fa {
 	max-width: 0.75em;
