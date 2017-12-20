@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { connect } from "react-redux"
-import { withRouter } from "react-router"
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import './ProgressTip.css'
 
 @withRouter
 @connect(state => ({
 	done: state.done,
 	foldedSteps: state.foldedSteps,
-	nextSteps: state.nextSteps,
+	nextSteps: state.nextSteps
 }))
 export default class ProgressTip extends Component {
 	state = {
@@ -20,22 +20,23 @@ export default class ProgressTip extends Component {
 			})
 	}
 	render() {
-		let {done, nextSteps, foldedSteps} = this.props
+		let { done, nextSteps, foldedSteps } = this.props,
+			nbQuestions = nextSteps.length
 		if (!done) return null
 		return (
 			<div className="tip">
-				{nextSteps.length != 0 &&
-					this.state.nbFoldedStepsForFirstEstimation ===
-						foldedSteps.length && (
+				{nbQuestions != 0 &&
+					this.state.nbFoldedStepsForFirstEstimation === foldedSteps.length && (
 						<p>Votre première estimation est disponible !</p>
 					)}
-				{nextSteps.length != 0 && (
+				{nbQuestions != 0 && (
 					<p>
-						Il reste environ {nextSteps.length}{' '}
-						{nextSteps.length === 1 ? 'question' : 'questions'}
+						{nbQuestions === 1
+							? 'Une dernière question !'
+							: `Il reste moins de ${nbQuestions} questions`}
 						<progress
 							value={foldedSteps.length}
-							max={foldedSteps.length + nextSteps.length}
+							max={foldedSteps.length + nbQuestions}
 						/>
 					</p>
 				)}
