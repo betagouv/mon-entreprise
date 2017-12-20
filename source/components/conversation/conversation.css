@@ -5,6 +5,10 @@
 	padding: 1em;
 }
 
+#sim.noQuestionsLeft #myScrollToElement {
+	height: auto;
+}
+
 
 #foldedSteps {
 	padding: 1em;

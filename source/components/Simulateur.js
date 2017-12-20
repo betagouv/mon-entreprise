@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import { reset, change, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
-
+import classNames from 'classnames'
 import { START_CONVERSATION } from '../actions'
 import {
 	rules,
@@ -84,10 +84,11 @@ export default class extends Component {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
 				this.props.resetForm()
 				this.props.startConversation(this.targetNames, true)
-			}
+			},
+			noQuestionsLeft = currentQuestion == null
 
 		return (
-			<div id="sim">
+			<div id="sim" className={classNames({noQuestionsLeft})}>
 				<Helmet>
 					<title>
 						{'Simulateur d\'embauche : '}

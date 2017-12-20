@@ -3,6 +3,10 @@
 	height: 49%;
 	display: flex;
 	align-items: flex-end;
+	transition: 1s height;
+}
+#sim.noQuestionsLeft #resultsZone {
+	height: auto;
 }
 
 @media (max-height: 350px) {
