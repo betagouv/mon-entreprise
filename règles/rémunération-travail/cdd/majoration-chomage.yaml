@@ -28,16 +28,16 @@
     - nom: salaire médian, accroissement d'activité, contrat de 1 mois
       situation:
         événement: non
-        contrat salarié . type de contrat: CDD
+        type de contrat: CDD
         assiette cotisations sociales: 2300
-        motif . classique . accroissement activité: oui
+        motif: classique . accroissement activité
         durée contrat: 1
       valeur attendue: 0
 
     - nom: salaire médian, motif CDD usage, contrat de 1 mois
       situation:
         événement: non
-        contrat salarié . type de contrat: CDD
+        type de contrat: CDD
         assiette cotisations sociales: 2300
         motif . classique . usage: oui
         durée contrat: 1

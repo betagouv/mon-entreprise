@@ -1,0 +1,101 @@
+- nom: mon assiette
+  format: €
+
+- test: Multiplication simple
+  formule:
+    multiplication:
+      assiette: mon assiette
+      taux: 3%
+
+  exemples:
+    - nom: entier
+      situation:
+        mon assiette: 100
+      valeur attendue: 3
+    - nom: flottant
+      situation:
+        mon assiette: 333.33
+      valeur attendue: 9.999
+
+- test: Multiplication à taux flottant
+  formule:
+    multiplication:
+      assiette: 300
+      taux: 3.3%
+  exemples:
+    - nom:
+      situation:
+      valeur attendue: 9.9
+
+
+- nom: mon plafond
+  format: €
+
+- test: Multiplication plafonnée
+  formule:
+    multiplication:
+      assiette: mon assiette
+      taux: 3%
+      plafond: mon plafond
+
+  exemples:
+    - nom: plafond non atteint
+      situation:
+        mon assiette: 100
+        mon plafond: 200
+      valeur attendue: 3
+    - nom: plafond atteint
+      situation:
+        mon assiette: 100
+        mon plafond: 50
+      valeur attendue: 1.5
+
+- nom: mon facteur
+  format: nombre
+
+- test: Multiplication à facteur
+  formule:
+    multiplication:
+      assiette: 100
+      facteur: mon facteur
+
+  exemples:
+    - nom:
+      situation:
+        mon facteur: 3
+      valeur attendue: 300
+
+
+
+- test: Multiplication complète
+  formule:
+    multiplication:
+      assiette: mon assiette
+      facteur: mon facteur
+      plafond: mon plafond
+      taux: 0.5%
+
+  exemples:
+    - nom:
+      situation:
+        mon assiette: 200
+        mon facteur: 2
+        mon plafond: 100
+      valeur attendue: 1
+
+
+# TODO implémenter les taux variables
+# - nom: mon taux
+#   format: pourcentage
+# - test: Multiplication simple
+#   formule:
+#     multiplication:
+#       assiette: mon assiette
+#       taux: mon taux
+#
+#   exemples:
+#     - nom: exemple
+#       situation:
+#         mon assiette: 100
+#         mon taux: 3%
+#       valeur attendue: 3

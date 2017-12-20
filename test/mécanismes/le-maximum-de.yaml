@@ -1,0 +1,18 @@
+- test: Maximum
+  formule:
+    le maximum de:
+      - multiplication:
+          assiette: 100
+          taux: 1%
+      - multiplication:
+          assiette: 10
+          taux: 9%
+
+  exemples:
+    - nom:
+      situation:
+      valeur attendue: 1
+
+
+# TODO
+# Pouvoir faire référence à une variable, ou mettre une valeur. Aujourd'hui il est seulement possible de lister des mécanismes numériques

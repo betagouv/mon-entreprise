@@ -4,8 +4,7 @@
 - nom: base
   format: €
 
-- nom: ARRCO
-  test: Barème en taux marginaux
+- test: Barème en taux marginaux
   formule:
     barème:
       assiette: assiette
@@ -17,8 +16,33 @@
         taux: 0%
 
   exemples:
-    - nom: exemple
+    - nom:
       situation:
         assiette: 3000
         base: 5000
       valeur attendue: 139.5
+
+
+# TODO implémenter les taux variables
+# - nom: taux variable
+#   format: pourcentage
+#
+# - nom: deuxième barème
+#   test: Barème à taux variable
+#   formule:
+#     barème:
+#       assiette: assiette
+#       multiplicateur des tranches: base
+#       tranches:
+#       - en-dessous de: 1
+#         taux: taux variable
+#       - au-dessus de: 1
+#         taux: taux variable / 2
+#
+#   exemples:
+#     - nom: exemple
+#       situation:
+#         assiette: 200
+#         base: 100
+#         taux variable: 1%
+#       valeur attendue: 1.5

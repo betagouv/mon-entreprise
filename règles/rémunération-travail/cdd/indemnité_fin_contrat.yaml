@@ -41,12 +41,14 @@
   exemples:
     - nom: salaire médian
       situation:
+        type de contrat: CDD
         salaire de base: 2300
+        motif: classique . accroissement activité
       valeur attendue: 230
 
     - nom: CDD d'usage -> non applicable
       situation:
-        contrat salarié . CDD . motif: classique . usage
+        motif: classique . usage
         salaire de base: 2300
       valeur attendue: null
 
