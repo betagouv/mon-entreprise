@@ -78,6 +78,7 @@ let buildPossibleInversion = (rule, flatRules, targetNames) => {
 		),
 		yo = R.reject(({ name }) => targetNames.includes(name))([rule].concat(inversionObjects))
 
+	console.log('yo', yo)
 	return {
 		inversions: yo,
 		question: rule.formule.inversion.question

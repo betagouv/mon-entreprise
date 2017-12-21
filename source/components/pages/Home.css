@@ -1,4 +1,20 @@
-
+#updateMessage {
+	display: flex;
+	align-items: center;
+	max-width: 30em;
+	margin: 0 auto;
+}
+#updateMessage p {
+	color: #4b4b66;
+	font-size: 85%;
+	transition: 0.8s opacity;
+	transition-delay: 0.2s;
+}
+#updateMessage i {
+	color: #2975d1;
+	margin-right: 1em;
+	transition: 0.8s opacity;
+}
 
 #home > #content {
 	display: flex;
