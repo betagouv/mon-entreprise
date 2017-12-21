@@ -41,12 +41,13 @@ export default class Layout extends Component {
 						<Route path="/regle/:name" component={RulePage} />
 						<Route path="/regles" component={RulesList} />
 						<Route path="/mecanismes" component={Mecanisms} />
+						<Redirect from="/simu/surcoût-CDD/intro" to="/" />
+						<Redirect from="/simu/surcoût-CDD" to="/" />
 						<Route path="/simu/:targets" component={Simulateur} />
 						<Route path="/à-propos" component={About} />
 						<Route path="/intégrer" component={Integration} />
 						<Route path="/contribuer" component={Contribution} />
 						<Redirect from="/simu/" to="/" />
-						<Redirect from="/simu/:name/intro" to="/simu/:name" />
 						<Route component={Route404} />
 					</Switch>
 					</>
