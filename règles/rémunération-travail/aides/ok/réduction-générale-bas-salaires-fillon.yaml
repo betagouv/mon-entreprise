@@ -14,7 +14,7 @@
 
   non applicable si:
     une de ces conditions:
-      - salaire brut > plafond réduction générale
+      - assiette cotisations sociales > plafond réduction générale
       - statut JEI
 
   formule:
@@ -22,6 +22,15 @@
       - assiette réduction générale
       # TODO - cette expression correspond algébriquement mais n'a pas de sens métier, que faire ?
       - réduction générale constante - réduction générale variable
+  exemples:
+    - nom: "Maximale dans le cas d'un SMIC"
+      situation:
+        assiette cotisations sociales: 1480
+      valeur attendue: 415.732
+    - nom: "Nulle au-dessus du plafond"
+      situation:
+        assiette cotisations sociales: 2370
+      valeur attendue: 0
 
 - espace: contrat salarié
   nom: réduction générale constante
@@ -29,7 +38,7 @@
 
 - espace: contrat salarié
   nom: réduction générale variable
-  formule: coefficient réduction générale * salaire brut
+  formule: coefficient réduction générale * assiette cotisations sociales
 
 - espace: contrat salarié
   nom: coefficient réduction générale
@@ -52,7 +61,17 @@
       - FNAL (employeur)
       - maladie (employeur)
       - vieillesse (employeur)
-      # TODO: ajout ATMP
+      - assiette ATMP réduction générale
+
+- espace: contrat salarié
+  nom: assiette ATMP réduction générale
+  description: Lorsque le montant de la réduction générale est supérieur au montant de ces cotisations et contributions, la réduction est également imputée sur les cotisations accidents du travail et maladies professionnelles dans la limite de 0,90 % de la rémunération.
+  formule:
+    multiplication:
+      # En pratique, l'ATMP est toujours supérieur à 0.9%
+      assiette: assiette cotisations sociales
+      taux: 0.9%
+
 
 - espace: contrat salarié
   nom: plafond réduction générale
