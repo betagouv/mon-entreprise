@@ -43,6 +43,19 @@
         - attributs:
             déductible des impôts: oui
           taux: 5.1%
+  exemples:
+    - nom: "CSG cadre"
+      situation:
+        assiette cotisations sociales: 1500
+        forfait complémentaire santé: 40
+        statut cadre: oui
+      valeur attendue: 113.7
+    - nom: "CSG non cadre"
+      situation:
+        assiette cotisations sociales: 1500
+        forfait complémentaire santé: 40
+      valeur attendue: 112
+
 
 - espace: contrat salarié
   nom: CRDS
