@@ -69,11 +69,6 @@ export default class Input extends Component {
 
 	componentDidMount() {
 		this.inputElement.focus()
-
-		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
-		if (!inversion) return null
-		// initialize the form field in renderinversions
-		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
 	}
 	renderInversions() {
 		let { stepProps: { dottedName, inversion, setFormValue } } = this.props

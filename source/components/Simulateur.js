@@ -1,7 +1,7 @@
 import R from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { reset, change, formValueSelector } from 'redux-form'
+import { reset, change, formValueSelector, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import classNames from 'classnames'
@@ -88,7 +88,7 @@ export default class extends Component {
 			noQuestionsLeft = currentQuestion == null
 
 		return (
-			<div id="sim" className={classNames({noQuestionsLeft})}>
+			<div id="sim" className={classNames({ noQuestionsLeft })}>
 				<Helmet>
 					<title>
 						{'Simulateur d\'embauche : '}
@@ -138,24 +138,53 @@ export default class extends Component {
 		inputInversions
 	) => question => {
 		let step = makeQuestion(rules, targetNames)(question)
-
 		let fieldName =
 				(inputInversions &&
 					R.path(step.dottedName.split('.'), inputInversions)) ||
 				step.dottedName,
-			fieldTitle = findRuleByDottedName(rules, fieldName).title
+			fieldTitle = findRuleByDottedName(rules, fieldName).title,
+			inverted = step.dottedName !== fieldName,
+			GeneratedStepComponent = generateStepComponent(
+				step.dottedName,
+				R.path(['inversion', 'inversions'], step)
+			)(step.component)
 
 		return (
-			<step.component
-				key={step.dottedName}
-				{...step}
-				unfolded={unfolded}
-				step={step}
-				situationGate={situationGate}
-				fieldName={fieldName}
-				fieldTitle={fieldTitle}
-				inverted={step.dottedName !== fieldName}
+			<GeneratedStepComponent
+				{...{
+					...step,
+					key: step.dottedName,
+					unfolded,
+					step,
+					situationGate,
+					fieldName,
+					fieldTitle,
+					inverted
+				}}
 			/>
 		)
 	}
 }
+
+// We need to use functions here to set the initialValue of the invnersion dynamically
+let generateStepComponent = (dottedName, possibleInversions) => StepComponent =>
+	@reduxForm({
+		form: 'conversation',
+		destroyOnUnmount: false,
+		initialValues: {
+			...(possibleInversions
+				? {
+					inversions: {
+						'contrat salarié ': {
+							' salaire de base': possibleInversions[0].dottedName
+						}
+					}
+				}
+				: {})
+		}
+	})
+	class Step extends Component {
+		render() {
+			return <StepComponent {...this.props} />
+		}
+	}
