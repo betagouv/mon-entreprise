@@ -94,7 +94,7 @@
   nom: plafond sécurité sociale temps plein
   #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
   # type de période: mensuel
-  formule: 3269
+  formule: 3311
 
 - espace: contrat salarié
   nom: plafond sécurité sociale
