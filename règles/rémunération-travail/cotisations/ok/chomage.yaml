@@ -28,11 +28,14 @@
 
         - attributs:
             dû par: salarié
-          taux: 2.4%
+          taux: 0.95%
 
   exemples:
     - nom: SMIC
       situation:
-        assiette cotisations sociales: 1480
-        plafond sécurité sociale: 3269
-      valeur attendue: 95.46
+        assiette cotisations sociales: 1500
+      valeur attendue: 75
+    - nom: Haut salaire
+      situation:
+        assiette cotisations sociales: 20000
+      valeur attendue: 662.2
