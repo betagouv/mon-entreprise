@@ -97,7 +97,7 @@ describe('results grid', function() {
 	let analysis = step2.analysis
 
 	expect(cell("retraite","salarié",analysis)).to.be.closeTo(257, 5)
-	expect(cell("autre","salarié",analysis)).to.be.closeTo(180, 5)
+	expect(cell("autre","salarié",analysis)).to.be.closeTo(220, 5)
   });
 
   it('should access cell values', function() {
