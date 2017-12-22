@@ -2,6 +2,7 @@
   nom: maladie
   cotisation:
     branche: santé
+    dû par: employeur
   description: Cotisations de la branche maladie
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
 
@@ -11,19 +12,12 @@
       composantes:
         - attributs: # On va ici surcharger la Cotisation incomplète définie plus haut
             composante: maladie, maternité, invalidité, décès
-            dû par: employeur
           taux: 12.89%
 
         - attributs:
             composante: Contribution Solidarité Autonomie
             abbréviation: CSA
-            dû par: employeur
           références:
             - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
             - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
           taux: 0.3%
-
-        - attributs:
-            composante: maladie, maternité, invalidité, décès
-            dû par: salarié
-          taux: 0.75%

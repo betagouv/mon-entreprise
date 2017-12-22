@@ -115,7 +115,6 @@
   nom: cotisations salariales
   formule:
     somme:
-      - maladie (salarié)
       - vieillesse (salarié)
       - ARRCO (salarié)
       - AGIRC (salarié)
