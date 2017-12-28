@@ -18,14 +18,14 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: 7%
+      taux: 6%
 
   exemples:
     - nom: SMIC
       situation:
         assiette cotisations sociales: 2300
         entreprise . association non lucrative: non
-      valeur attendue: 161
+      valeur attendue: 138
     - nom: Non applicable si association
       situation:
         assiette cotisations sociales: 2300

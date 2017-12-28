@@ -74,11 +74,10 @@ describe('results grid', function() {
 		maladie = byName(result['santé']),
 		names = R.keys(maladie)
 
-	expect(names).to.have.lengthOf(6)
+	expect(names).to.have.lengthOf(5)
 	expect(names).to.include("contrat salarié . maladie")
 	expect(names).to.include("contrat salarié . ATMP")
 	expect(names).to.include("contrat salarié . complémentaire santé")
-  expect(names).to.include("contrat salarié . cotisation pénibilité")
   expect(names).to.include("contrat salarié . prévoyance obligatoire cadre")
   expect(names).to.include("contrat salarié . médecine du travail")
   });
@@ -97,7 +96,7 @@ describe('results grid', function() {
 	let analysis = step2.analysis
 
 	expect(cell("retraite","salarié",analysis)).to.be.closeTo(257, 5)
-	expect(cell("autre","salarié",analysis)).to.be.closeTo(180, 5)
+	expect(cell("autre","salarié",analysis)).to.be.closeTo(220, 5)
   });
 
   it('should access cell values', function() {

@@ -22,7 +22,7 @@ export default class Home extends Component {
 					/>
 					<p style={opacityStyle}>
 						Cette nouvelle version du site vous permet de simuler un CDD ou un
-						CDI dans la même interface. Joyeuses fêtes !
+						CDI, aux taux de 2018. Joyeuses fêtes !
 					</p>
 				</div>
 				<div id="content">

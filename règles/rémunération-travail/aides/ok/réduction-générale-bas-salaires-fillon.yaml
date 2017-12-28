@@ -25,11 +25,11 @@
   exemples:
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
-        assiette cotisations sociales: 1480
-      valeur attendue: 415.732
+        assiette cotisations sociales: 1498.47
+      valeur attendue: 420.92
     - nom: "Nulle au-dessus du plafond"
       situation:
-        assiette cotisations sociales: 2370
+        assiette cotisations sociales: 2398
       valeur attendue: 0
 
 - espace: contrat salarié
