@@ -1,4 +1,4 @@
-import R, {head} from 'ramda'
+import R, { head } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
@@ -30,14 +30,18 @@ export let assume = (evaluator, assumptions) => state => name => {
 	return userInput != null ? userInput : assumptions[name]
 }
 
-let nextWithoutDefaults = (state, analysis, targetNames, intermediateSituation) => {
-	let
-		reanalysis = analyseMany(state.parsedRules, targetNames)(
+let nextWithoutDefaults = (
+	state,
+	analysis,
+	targetNames,
+	intermediateSituation
+) => {
+	let reanalysis = analyseMany(state.parsedRules, targetNames)(
 			intermediateSituation(state)
 		),
 		nextSteps = getNextSteps(intermediateSituation(state), reanalysis)
 
-	return {currentQuestion: head(nextSteps), nextSteps}
+	return { currentQuestion: head(nextSteps), nextSteps }
 }
 
 export let reduceSteps = (tracker, flatRules, answerSource) => (
@@ -62,8 +66,9 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
-	let
-		analysis = analyseMany(state.parsedRules, targetNames)(situationWithDefaults(state)),
+	let analysis = analyseMany(state.parsedRules, targetNames)(
+			situationWithDefaults(state)
+		),
 		nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
 		assumptionsMade = !R.isEmpty(rulesDefaults),
 		done = nextWithDefaults.length == 0
@@ -75,12 +80,14 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationGate: situationWithDefaults(state),
 		explainedVariable: null,
 		done,
-		... (done && assumptionsMade
-			?
-			// The simulation is "over" - except we can now fill in extra questions
-			// where the answers were previously given default reasonable assumptions
-			nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
-			: {currentQuestion: head(nextWithDefaults), nextSteps: nextWithDefaults, })
+		...(done && assumptionsMade
+			? // The simulation is "over" - except we can now fill in extra questions
+				// where the answers were previously given default reasonable assumptions
+				nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
+			: {
+					currentQuestion: head(nextWithDefaults),
+					nextSteps: nextWithDefaults
+				})
 	}
 
 	if (action.type == START_CONVERSATION) {
@@ -89,9 +96,9 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			/* when objectives change, reject them from answered questions
 			Hack : 'salaire de base' is the only inversable variable, so the only
 			one that could be the next target AND already in the answered steps */
-			foldedSteps: action.fromScratch ? [] : R.reject(R.contains('salaire de base'))(
-				state.foldedSteps
-			)
+			foldedSteps: action.fromScratch
+				? []
+				: R.reject(R.contains('salaire de base'))(state.foldedSteps)
 		}
 	}
 
@@ -133,10 +140,10 @@ function themeColours(state = computeThemeColours(), { type, colour }) {
 
 function explainedVariable(state = null, { type, variableName = null }) {
 	switch (type) {
-	case EXPLAIN_VARIABLE:
-		return variableName
-	default:
-		return state
+		case EXPLAIN_VARIABLE:
+			return variableName
+		default:
+			return state
 	}
 }
 

@@ -16,11 +16,12 @@ export default class Explanation extends Component {
 			<section id="explanation">
 				{this.renderExplanation(targetRules)}
 				<div id="warning">
-				<p>
-					<i className="fa fa-info-circle" aria-hidden="true"></i>Le calcul ne prend pas en compte les conventions et accords
-					collectifs, et n'est pas opposable à un bulletin de paie. En cas d'écart, vous
-					pouvez en discuter avec votre responsable.
-				</p>
+					<p>
+						<i className="fa fa-info-circle" aria-hidden="true" />Le calcul ne
+						prend pas en compte les conventions et accords collectifs, et n'est
+						pas opposable à un bulletin de paie. En cas d'écart, vous pouvez en
+						discuter avec votre responsable.
+					</p>
 				</div>
 			</section>
 		)

@@ -16,7 +16,13 @@
  * @returns an estimate for the root within accuracy.
  *
  */
-export default function uniroot(func, lowerLimit, upperLimit, errorTol, maxIter) {
+export default function uniroot(
+	func,
+	lowerLimit,
+	upperLimit,
+	errorTol,
+	maxIter
+) {
 	var a = lowerLimit,
 		b = upperLimit,
 		c = a,
@@ -37,7 +43,7 @@ export default function uniroot(func, lowerLimit, upperLimit, errorTol, maxIter)
 
 		if (Math.abs(fc) < Math.abs(fb)) {
 			// Swap data for b to be the best approximation
-			(a = b), (b = c), (c = a)
+			;(a = b), (b = c), (c = a)
 			;(fa = fb), (fb = fc), (fc = fa)
 		}
 
@@ -60,7 +66,7 @@ export default function uniroot(func, lowerLimit, upperLimit, errorTol, maxIter)
 				q = 1.0 - t1
 			} else {
 				// Quadric inverse interpolation
-				(q = fa / fc), (t1 = fb / fc), (t2 = fb / fa)
+				;(q = fa / fc), (t1 = fb / fc), (t2 = fb / fa)
 				p = t2 * (cb * q * (q - t1) - (b - a) * (t1 - 1))
 				q = (q - 1) * (t1 - 1) * (t2 - 1)
 			}
@@ -87,11 +93,11 @@ export default function uniroot(func, lowerLimit, upperLimit, errorTol, maxIter)
 			new_step = new_step > 0 ? tol_act : -tol_act
 		}
 
-		(a = b), (fa = fb) // Save the previous approx.
+		;(a = b), (fa = fb) // Save the previous approx.
 		;(b += new_step), (fb = func(b)) // Do step to a new approxim.
 
 		if ((fb > 0 && fc > 0) || (fb < 0 && fc < 0)) {
-			(c = a), (fc = fa) // Adjust c for it to have a sign opposite to that of b
+			;(c = a), (fc = fa) // Adjust c for it to have a sign opposite to that of b
 		}
 	}
 }

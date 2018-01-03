@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import HoverDecorator from 'Components/HoverDecorator'
 
 @HoverDecorator
 export default class SendButton extends Component {
-	getAction(){
-		let {disabled, submit } = this.props
+	getAction() {
+		let { disabled, submit } = this.props
 		return () => (!disabled ? submit() : null)
 	}
 	render() {
@@ -27,7 +27,7 @@ export default class SendButton extends Component {
 					className="keyIcon"
 					style={{ opacity: hover && !disabled ? 1 : 0 }}
 				>
-					Entrée{' '}↵
+					Entrée ↵
 				</span>
 			</span>
 		)

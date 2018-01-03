@@ -21,15 +21,16 @@ export default class Input extends Component {
 			suffixed = answerSuffix != null,
 			inputError = dirty && error,
 			{ hoverSuggestion } = this.state,
-			submitDisabled =
-				!dirty || inputError
+			submitDisabled = !dirty || inputError
 
 		return (
 			<span>
 				<div className="inputPrefix">{this.renderInversions()}</div>
 				<div className="answer">
 					<input
-						ref={el => { this.inputElement = el }}
+						ref={el => {
+							this.inputElement = el
+						}}
 						type="text"
 						{...input}
 						value={hoverSuggestion != null ? hoverSuggestion : input.value}
@@ -41,10 +42,8 @@ export default class Input extends Component {
 								? { border: '2px dashed #ddd' }
 								: { border: '1px solid #2975D1' }
 						}
-						onKeyDown={
-							({ key }) =>
-								key == 'Enter'
-								&& (submitDisabled ? input.onBlur() : submit())
+						onKeyDown={({ key }) =>
+							key == 'Enter' && (submitDisabled ? input.onBlur() : submit())
 						}
 					/>
 					{suffixed && (
@@ -57,7 +56,7 @@ export default class Input extends Component {
 						</label>
 					)}
 					<SendButton
-						{...{disabled: submitDisabled, themeColours, error, submit }}
+						{...{ disabled: submitDisabled, themeColours, error, submit }}
 					/>
 				</div>
 
@@ -89,7 +88,13 @@ export default class Input extends Component {
 		return (
 			// This field is handled by redux-form : it will set in the state what's
 			// the current inversion
-			<Field component="select" name={'inversions.' + dottedName} onChange={(e,newValue, previousFieldName) => setFormValue('', previousFieldName)}>
+			<Field
+				component="select"
+				name={'inversions.' + dottedName}
+				onChange={(e, newValue, previousFieldName) =>
+					setFormValue('', previousFieldName)
+				}
+			>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}

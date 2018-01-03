@@ -27,8 +27,8 @@ export default class About extends Component {
 					des statuts autres que le travail salarié, ...).
 				</p>
 				<MailChimp />
-				<p>Ou{' '}
-					<Link to="/contact">contactez-nous</Link>{' '}directement.
+				<p>
+					Ou <Link to="/contact">contactez-nous</Link> directement.
 				</p>
 				{/* <p>Notre prochaine rencontre OpenLab aura lieu <strong>le mercredi 18 janvier 2017 à 10h</strong>, au 86 allée de Bercy, 75012, salle 381-R</p> */}
 			</section>

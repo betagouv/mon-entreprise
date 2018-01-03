@@ -6,4 +6,4 @@ export let undefOrTrue = val => val == undefined || val == true
 
 export let anyNull = R.any(R.pipe(val, R.equals(null)))
 
-export let applyOrEmpty = func => v => v ? func(v) : []
+export let applyOrEmpty = func => v => (v ? func(v) : [])

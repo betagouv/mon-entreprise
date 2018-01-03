@@ -23,8 +23,7 @@ import { Table, Column } from 'react-virtualized'
 import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/liste-taux.json'
 import Somme from './mecanismViews/Somme'
 import uniroot from './uniroot'
-import {clearDict} from 'Engine/traverse'
-
+import { clearDict } from 'Engine/traverse'
 
 let constantNode = constant => ({
 	nodeValue: constant,
@@ -103,7 +102,12 @@ let devariate = (recurse, k, v) => {
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let evaluateOne = child => {
-			let condition = evaluateNode(cache, situationGate, parsedRules, child.condition)
+			let condition = evaluateNode(
+				cache,
+				situationGate,
+				parsedRules,
+				child.condition
+			)
 			return {
 				...evaluateNode(cache, situationGate, parsedRules, child),
 				condition
@@ -119,11 +123,11 @@ let devariate = (recurse, k, v) => {
 				leftMissing = choice
 					? []
 					: R.uniq(
-						R.chain(
-							collectNodeMissing,
-							R.pluck('condition', node.explanation)
-						)
-					),
+							R.chain(
+								collectNodeMissing,
+								R.pluck('condition', node.explanation)
+							)
+						),
 				rightMissing = choice
 					? collectNodeMissing(choice)
 					: R.chain(collectNodeMissing, node.explanation)
@@ -141,14 +145,14 @@ let devariate = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(c =>
+					{explanation.map(c => (
 						<li className="variation" key={JSON.stringify(c.condition)}>
 							<div className="condition">
 								{makeJsx(c.condition)}
 								<div className="content">{makeJsx(c)}</div>
 							</div>
 						</li>
-					)}
+					))}
 				</ul>
 			}
 		/>
@@ -185,7 +189,8 @@ export let mecanismOneOf = (recurse, k, v) => {
 	)
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
+		let evaluateOne = child =>
+				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = R.map(evaluateOne, node.explanation),
 			values = R.pluck('nodeValue', explanation),
 			nodeValue = R.any(R.equals(true), values)
@@ -229,9 +234,9 @@ export let mecanismAllOf = (recurse, k, v) => {
 		/>
 	)
 
-
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
+		let evaluateOne = child =>
+				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = R.map(evaluateOne, node.explanation),
 			values = R.pluck('nodeValue', explanation),
 			nodeValue = R.any(R.equals(false), values)
@@ -318,7 +323,8 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	}
 
 	let evaluateTerms = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
+		let evaluateOne = child =>
+				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = R.map(evaluateOne, node.explanation),
 			nonFalsyTerms = R.filter(node => node.condValue !== false, explanation),
 			getFirst = prop => R.pipe(R.head, R.prop(prop))(nonFalsyTerms),
@@ -327,10 +333,10 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				R.isEmpty(nonFalsyTerms)
 					? 0
 					: // c'est un 'null', on renvoie null car des variables sont manquantes
-					getFirst('condValue') == null
+						getFirst('condValue') == null
 						? null
 						: // c'est un true, on renvoie la valeur de la conséquence
-						getFirst('nodeValue')
+							getFirst('nodeValue')
 
 		let collectMissing = node => {
 			let choice = R.find(node => node.condValue, node.explanation)
@@ -369,21 +375,26 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	}
 }
 
-
 export let findInversion = (situationGate, rules, v, dottedName) => {
 	let inversions = v.avec
 	if (!inversions)
-		throw 'Une formule d\'inversion doit préciser _avec_ quoi on peut inverser la variable'
+		throw "Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
 	/*
 	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
 	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
 	le salaire net, a été renseigné ?
 	*/
 	let fixedObjective = inversions
-		.map(i => disambiguateRuleReference(rules, rules.find(R.propEq('dottedName', dottedName)), i))
+		.map(i =>
+			disambiguateRuleReference(
+				rules,
+				rules.find(R.propEq('dottedName', dottedName)),
+				i
+			)
+		)
 		.find(name => situationGate(name) != undefined)
 
-	if (fixedObjective == null) return {inversionChoiceNeeded: true}
+	if (fixedObjective == null) return { inversionChoiceNeeded: true }
 	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
 	return {
 		fixedObjective,
@@ -392,20 +403,21 @@ export let findInversion = (situationGate, rules, v, dottedName) => {
 	}
 }
 
-
 let doInversion = (situationGate, parsedRules, v, dottedName) => {
 	let inversion = findInversion(situationGate, parsedRules, v, dottedName)
 
-	if (inversion.inversionChoiceNeeded) return {
-		inversionMissingVariables: [dottedName],
-		nodeValue: null
-	}
+	if (inversion.inversionChoiceNeeded)
+		return {
+			inversionMissingVariables: [dottedName],
+			nodeValue: null
+		}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let inversionCache = {}
 	let fx = x => {
 		inversionCache = {}
-		return evaluateNode(inversionCache, // with an empty cache
-			n => dottedName === n ? x : situationGate(n),
+		return evaluateNode(
+			inversionCache, // with an empty cache
+			n => (dottedName === n ? x : situationGate(n)),
 			parsedRules,
 			fixedObjectiveRule
 		).nodeValue
@@ -418,9 +430,9 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 		return {
 			nodeValue: null,
 			inversionMissingVariables: collectNodeMissing(
-				evaluateNode({},
-					n =>
-						dottedName === n ? 1000 : situationGate(n),
+				evaluateNode(
+					{},
+					n => (dottedName === n ? 1000 : situationGate(n)),
 					parsedRules,
 					fixedObjectiveRule
 				)
@@ -444,36 +456,40 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 	}
 }
 
-
 export let mecanismInversion = dottedName => (recurse, k, v) => {
-
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let inversion =
 			// avoid the inversion loop !
 			situationGate(dottedName) == undefined &&
 			doInversion(situationGate, parsedRules, v, dottedName)
-		let
-			collectMissing = () => inversion.inversionMissingVariables,
+		let collectMissing = () => inversion.inversionMissingVariables,
 			nodeValue = inversion.nodeValue
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, collectMissing)
 		// rewrite the simulation cache with the definitive inversion values
 
-		R.toPairs(inversion.inversionCache).map(([k,v])=>cache[k] = v)
+		R.toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
 		return evaluatedNode
 	}
 
 	return {
 		evaluate,
-		jsx: (nodeValue) => (
+		jsx: nodeValue => (
 			<Node
 				classes="mecanism inversion"
 				name="inversion"
 				value={nodeValue}
-				child={<div>
-					<div>avec</div>
-					<ul>{v.avec.map(recurse).map(el => <li key={el.name}>{makeJsx(el)}</li>)}</ul>
-				</div>} />
+				child={
+					<div>
+						<div>avec</div>
+						<ul>
+							{v.avec
+								.map(recurse)
+								.map(el => <li key={el.name}>{makeJsx(el)}</li>)}
+						</ul>
+					</div>
+				}
+			/>
 		),
 		category: 'mecanism',
 		name: 'inversion',
@@ -542,18 +558,18 @@ export let mecanismProduct = (recurse, k, v) => {
 					</li>
 					{(explanation.taux.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
-							<li key="taux">
-								<span className="key">taux: </span>
-								<span className="value">{makeJsx(explanation.taux)}</span>
-							</li>
-						)}
+						<li key="taux">
+							<span className="key">taux: </span>
+							<span className="value">{makeJsx(explanation.taux)}</span>
+						</li>
+					)}
 					{(explanation.facteur.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
-							<li key="facteur">
-								<span className="key">facteur: </span>
-								<span className="value">{makeJsx(explanation.facteur)}</span>
-							</li>
-						)}
+						<li key="facteur">
+							<span className="key">facteur: </span>
+							<span className="value">{makeJsx(explanation.facteur)}</span>
+						</li>
+					)}
 					{explanation.plafond.nodeValue != Infinity && (
 						<li key="plafond">
 							<span className="key">plafond: </span>
@@ -594,14 +610,16 @@ export let mecanismScale = (recurse, k, v) => {
 	à: 1
 	```
 	*/
-	let tranches = v['tranches'].map(
-		t =>
-			R.has('en-dessous de')(t)
-				? { de: 0, à: t['en-dessous de'], taux: t.taux }
-				: R.has('au-dessus de')(t)
-					? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
-					: t
-	).map(R.evolve({taux: recurse}))
+	let tranches = v['tranches']
+		.map(
+			t =>
+				R.has('en-dessous de')(t)
+					? { de: 0, à: t['en-dessous de'], taux: t.taux }
+					: R.has('au-dessus de')(t)
+						? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
+						: t
+		)
+		.map(R.evolve({ taux: recurse }))
 
 	let objectShape = {
 		assiette: false,
@@ -629,15 +647,15 @@ export let mecanismScale = (recurse, k, v) => {
 		return nulled
 			? null
 			: tranches.reduce(
-				(memo, { de: min, à: max, taux }) =>
-					val(assiette) < min * val(multiplicateur)
-						? memo + 0
-						: memo +
+					(memo, { de: min, à: max, taux }) =>
+						val(assiette) < min * val(multiplicateur)
+							? memo + 0
+							: memo +
 								(Math.min(val(assiette), max * val(multiplicateur)) -
 									min * val(multiplicateur)) *
 									taux.nodeValue,
-				0
-			)
+					0
+				)
 	}
 
 	let explanation = {
@@ -839,7 +857,12 @@ export let mecanismSelection = (recurse, k, v) => {
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let collectMissing = node => collectNodeMissing(node.explanation),
-			explanation = evaluateNode(cache, situationGate, parsedRules, node.explanation),
+			explanation = evaluateNode(
+				cache,
+				situationGate,
+				parsedRules,
+				node.explanation
+			),
 			dataSource = findRuleByName(parsedRules, dataSourceName),
 			data = dataSource ? dataSource['data'] : null,
 			dataKey = explanation.nodeValue,
@@ -870,9 +893,9 @@ export let mecanismSelection = (recurse, k, v) => {
 	let indexOf = explanation =>
 		explanation.nodeValue
 			? R.findIndex(
-				x => x['nomLaposte'] == explanation.nodeValue,
-				taux_versement_transport
-			)
+					x => x['nomLaposte'] == explanation.nodeValue,
+					taux_versement_transport
+				)
 			: 0
 	let indexOffset = 8
 
@@ -890,7 +913,8 @@ export let mecanismSelection = (recurse, k, v) => {
 					rowCount={taux_versement_transport.length}
 					scrollToIndex={indexOf(explanation) + indexOffset}
 					rowStyle={({ index }) =>
-						index == indexOf(explanation) ? { fontWeight: 'bold' } : {}}
+						index == indexOf(explanation) ? { fontWeight: 'bold' } : {}
+					}
 					rowGetter={({ index }) => {
 						// transformation de données un peu crade du fichier taux.json qui gagnerait à être un CSV
 						let line = taux_versement_transport[index],
@@ -919,5 +943,5 @@ export let mecanismSelection = (recurse, k, v) => {
 }
 
 export let mecanismError = (recurse, k, v) => {
-	throw 'Le mécanisme \'' + k + '\' est inconnu !' + v
+	throw "Le mécanisme '" + k + "' est inconnu !" + v
 }

@@ -51,7 +51,7 @@ export default class Layout extends Component {
 						<Redirect from="/simulateur" to="/" />
 						<Route component={Route404} />
 					</Switch>
-					</>
+				</>
 			</Router>
 		)
 	}

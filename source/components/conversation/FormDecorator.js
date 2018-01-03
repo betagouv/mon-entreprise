@@ -21,11 +21,13 @@ export var FormDecorator = formType => RenderField =>
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
 			themeColours: state.themeColours,
-			getCurrentInversion: dottedName => formValueSelector('conversation')(state, 'inversions.' + dottedName)
+			getCurrentInversion: dottedName =>
+				formValueSelector('conversation')(state, 'inversions.' + dottedName)
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
-			setFormValue: (field, value) => dispatch(change('conversation', field, value))
+			setFormValue: (field, value) =>
+				dispatch(change('conversation', field, value))
 		})
 	)
 	class extends Component {
@@ -85,10 +87,8 @@ export var FormDecorator = formType => RenderField =>
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
-
 			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
 				validate = test && (v => (v && test(pre(v)) ? undefined : error))
-
 
 			let question = (
 				<h1
@@ -154,9 +154,7 @@ export var FormDecorator = formType => RenderField =>
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
-						<span className="title">
-							{capitalise0(fieldTitle || title)}
-						</span>
+						<span className="title">{capitalise0(fieldTitle || title)}</span>
 						<span className="answer">{answer}</span>
 					</span>
 					<button

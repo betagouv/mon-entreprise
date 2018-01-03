@@ -121,14 +121,7 @@ let RadioLabel = props => (
 @HoverDecorator
 class RadioLabelContent extends Component {
 	render() {
-		let {
-				value,
-				label,
-				input,
-				submit,
-				hover,
-				themeColours,
-			} = this.props,
+		let { value, label, input, submit, hover, themeColours } = this.props,
 			// value = R.when(R.is(Object), R.prop('value'))(choice),
 			labelStyle = Object.assign(
 				value === input.value || hover

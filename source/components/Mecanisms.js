@@ -16,20 +16,26 @@ let directoryLoader = require.context('../../test/mécanismes/', true, /.yaml$/)
 
 export default class Mecanisms extends Component {
 	render() {
-		return (<div style={{margin: '1em auto', maxWidth: '45em'}}>
-			<p>Cette page liste les mécanismes et indique en rouge ceux qui n'ont pas de tests. La commande "yarn test" permet de voir ceux qui passent. Ce serait bien de pouvoir les faire tourner dans le navigateur en partageant le code de mecanisms.test.js</p>
-			<ul id="mecanisms">
-				{R.toPairs(knownMecanims).map(([name, data]) => (
-					<li key={name}>
-						{name}
-						{suites[name] == null ? (
-							<p className="warning">Pas de tests !</p>
-						) : (
-							<Tests name={name} suites={suites} />
-						)}
-					</li>
-				))}
-			</ul>
+		return (
+			<div style={{ margin: '1em auto', maxWidth: '45em' }}>
+				<p>
+					Cette page liste les mécanismes et indique en rouge ceux qui n'ont pas
+					de tests. La commande "yarn test" permet de voir ceux qui passent. Ce
+					serait bien de pouvoir les faire tourner dans le navigateur en
+					partageant le code de mecanisms.test.js
+				</p>
+				<ul id="mecanisms">
+					{R.toPairs(knownMecanims).map(([name, data]) => (
+						<li key={name}>
+							{name}
+							{suites[name] == null ? (
+								<p className="warning">Pas de tests !</p>
+							) : (
+								<Tests name={name} suites={suites} />
+							)}
+						</li>
+					))}
+				</ul>
 			</div>
 		)
 	}

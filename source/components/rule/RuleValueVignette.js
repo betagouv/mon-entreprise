@@ -42,7 +42,7 @@ export default ({
 let RuleValue = ({ unsatisfied, irrelevant, conversationStarted, ruleValue }) =>
 	do {
 		let [className, text] = irrelevant
-			? ['irrelevant', 'Vous n\'êtes pas concerné']
+			? ['irrelevant', "Vous n'êtes pas concerné"]
 			: unsatisfied
 				? ['unsatisfied', 'En attente de vos réponses...']
 				: ['figure', humanFigure(2)(ruleValue) + ' €']
@@ -51,7 +51,7 @@ let RuleValue = ({ unsatisfied, irrelevant, conversationStarted, ruleValue }) =>
 			/*<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p> */
 		}
 
-		<ReactCSSTransitionGroup
+		;<ReactCSSTransitionGroup
 			transitionName="flash"
 			transitionEnterTimeout={100}
 			transitionLeaveTimeout={100}

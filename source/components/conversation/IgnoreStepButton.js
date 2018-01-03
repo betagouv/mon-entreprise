@@ -23,7 +23,9 @@ export default class IgnoreStepButton extends Component {
 				<a id="ignoreButton" onClick={this.props.action}>
 					passer
 				</a>
-				<span className="keyIcon" style={{opacity: this.props.hover ? 1 : 0}}>Échap</span>
+				<span className="keyIcon" style={{ opacity: this.props.hover ? 1 : 0 }}>
+					Échap
+				</span>
 			</div>
 		)
 	}

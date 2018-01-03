@@ -36,12 +36,14 @@ export default class TargetSelection extends Component {
 			),
 			{ targets } = this.state,
 			// You can't select 3 salaries, as one must be an input in the next step
-			optionDisabled = name => contains('salaire', name) && pipe(
-				reject(equals(name)),
-				filter(contains('salaire')),
-				length,
-				equals(2)
-			)(targets)
+			optionDisabled = name =>
+				contains('salaire', name) &&
+				pipe(
+					reject(equals(name)),
+					filter(contains('salaire')),
+					length,
+					equals(2)
+				)(targets)
 
 		return (
 			<div>

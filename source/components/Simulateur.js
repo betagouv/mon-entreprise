@@ -88,10 +88,10 @@ export default class extends Component {
 			noQuestionsLeft = currentQuestion == null
 
 		return (
-			<div id="sim" className={classNames({noQuestionsLeft})}>
+			<div id="sim" className={classNames({ noQuestionsLeft })}>
 				<Helmet>
 					<title>
-						{'Simulateur d\'embauche : '}
+						{"Simulateur d'embauche : "}
 						{R.pluck('title', this.targetRules).join(', ')}
 					</title>
 					<meta

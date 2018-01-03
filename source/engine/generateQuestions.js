@@ -6,10 +6,7 @@ import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {
-	findRuleByDottedName,
-	disambiguateRuleReference
-} from './rules'
+import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 import { collectNodeMissing } from './evaluation'
 
 /*
@@ -41,7 +38,6 @@ export let getNextSteps = (situationGate, analysis) => {
 	return R.map(R.head, sortedPairs)
 }
 
-
 let isVariant = R.path(['formule', 'une possibilité'])
 
 let buildVariantTree = (allRules, path) => {
@@ -57,9 +53,9 @@ let buildVariantTree = (allRules, path) => {
 			node,
 			shouldBeExpanded
 				? {
-					canGiveUp,
-					children: variants.map(v => rec(path + ' . ' + v))
-				}
+						canGiveUp,
+						children: variants.map(v => rec(path + ' . ' + v))
+					}
 				: null
 		)
 	}
@@ -69,14 +65,15 @@ let buildVariantTree = (allRules, path) => {
 let buildPossibleInversion = (rule, flatRules, targetNames) => {
 	let ruleInversions = R.path(['formule', 'inversion', 'avec'])(rule)
 	if (!ruleInversions) return null
-	let
-		inversionObjects = ruleInversions.map(i =>
+	let inversionObjects = ruleInversions.map(i =>
 			findRuleByDottedName(
 				flatRules,
 				disambiguateRuleReference(flatRules, rule, i)
 			)
 		),
-		yo = R.reject(({ name }) => targetNames.includes(name))([rule].concat(inversionObjects))
+		yo = R.reject(({ name }) => targetNames.includes(name))(
+			[rule].concat(inversionObjects)
+		)
 
 	console.log('yo', yo)
 	return {
@@ -116,7 +113,6 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 		component: Question,
 		choices: buildVariantTree(flatRules, dottedName)
 	})
-
 
 	return Object.assign(
 		rule,

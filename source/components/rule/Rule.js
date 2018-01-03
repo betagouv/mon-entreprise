@@ -53,7 +53,11 @@ export default class Rule extends Component {
 						rule={rule}
 						focusedExample={this.state.example}
 						showValues={this.state.showValues}
-						inject={example => this.state.example != null ? this.setState({example: null}) : this.setState({ example, showValues: true })}
+						inject={example =>
+							this.state.example != null
+								? this.setState({ example: null })
+								: this.setState({ example, showValues: true })
+						}
 					/>
 					{this.renderReferences(rule)}
 				</section>

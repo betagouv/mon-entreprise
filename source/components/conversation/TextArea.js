@@ -1,18 +1,16 @@
-import React, {Component} from 'react'
-import {FormDecorator} from './FormDecorator'
+import React, { Component } from 'react'
+import { FormDecorator } from './FormDecorator'
 
 @FormDecorator('text-area')
 export default class Input extends Component {
 	render() {
 		let {
-			name,
-			input,
-			stepProps: {submit, attributes},
-			meta: {
-				touched, error,
-			},
-			themeColours
-		} = this.props,
+				name,
+				input,
+				stepProps: { submit, attributes },
+				meta: { touched, error },
+				themeColours
+			} = this.props,
 			inputError = touched && error,
 			sendButtonDisabled = !input.value || inputError
 
@@ -23,16 +21,22 @@ export default class Input extends Component {
 						{...attributes}
 						{...input}
 						id={'step-' + name}
-						onKeyDown={({key, ctrlKey}) =>
-							key == 'Enter' && ctrlKey && input.value && (
-							!error ?
-								submit() :
-								input.onBlur() // blur will trigger the error
-						)}
-						/>
-					<button className="send"
-						style={{visibility: sendButtonDisabled ? 'hidden' : 'visible', color: themeColours.textColour, background: themeColours.colour}}
-						onClick={() => !error ? submit() : null} >
+						onKeyDown={({ key, ctrlKey }) =>
+							key == 'Enter' &&
+							ctrlKey &&
+							input.value &&
+							(!error ? submit() : input.onBlur()) // blur will trigger the error
+						}
+					/>
+					<button
+						className="send"
+						style={{
+							visibility: sendButtonDisabled ? 'hidden' : 'visible',
+							color: themeColours.textColour,
+							background: themeColours.colour
+						}}
+						onClick={() => (!error ? submit() : null)}
+					>
 						<span className="text">valider</span>
 						<span className="icon">✓</span>
 					</button>

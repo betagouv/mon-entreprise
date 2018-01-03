@@ -1,62 +1,79 @@
-import {expect} from 'chai'
-import {evaluateBottomUp, evaluateVariable} from '../source/engine/variables'
+import { expect } from 'chai'
+import { evaluateBottomUp, evaluateVariable } from '../source/engine/variables'
 
 describe('evaluateVariable', function() {
+	it('should directly return the value of any rule that specifies a format (i.e currency, duration)', function() {
+		let rule = { format: 'euros' },
+			state = { salaire: '2300' },
+			situationGate = name => state[name]
 
-	it ("should directly return the value of any rule that specifies a format (i.e currency, duration)", function() {
-		let rule = {format: "euros"},
-			state = {salaire: "2300"},
-			situationGate = (name) => state[name]
+		expect(evaluateVariable(situationGate, 'salaire', rule)).to.equal('2300')
+	})
 
-		expect(evaluateVariable(situationGate, "salaire", rule)).to.equal("2300")
-	});
-
-	it ("should interpret rules without a formula as boolean-valued, with 'oui' for true", function() {
+	it("should interpret rules without a formula as boolean-valued, with 'oui' for true", function() {
 		let rule = {},
-			state = {condition: "oui"},
-			situationGate = (name) => state[name]
+			state = { condition: 'oui' },
+			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, "condition", rule)).to.be.true
-	});
+		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.true
+	})
 
-	it ("should interpret rules without a formula as boolean-valued, with values other than 'oui' meaning false", function() {
+	it("should interpret rules without a formula as boolean-valued, with values other than 'oui' meaning false", function() {
 		let rule = {},
-			state = {condition: "nope"},
-			situationGate = (name) => state[name]
+			state = { condition: 'nope' },
+			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, "condition", rule)).to.be.false
-	});
+		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.false
+	})
 
-	it ("should interpret rules with 'one of these', with 'oui' for true", function() {
-		let rule = {formule: {"une possibilité": ["noir","blanc"]}},
-			state = {condition: "oui"},
-			situationGate = (name) => state[name]
+	it("should interpret rules with 'one of these', with 'oui' for true", function() {
+		let rule = { formule: { 'une possibilité': ['noir', 'blanc'] } },
+			state = { condition: 'oui' },
+			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, "condition", rule)).to.be.true
-	});
+		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.true
+	})
 
-	it ("should walk up the namespace chain until it finds the tail as the value", function() {
-		let rule = {formule: {"une possibilité": ["noir","blanc"]}},
-			state = {"contrat salarié . CDD . motif": "classique . accroissement activité"},
-			situationGate = (name) => state[name]
+	it('should walk up the namespace chain until it finds the tail as the value', function() {
+		let rule = { formule: { 'une possibilité': ['noir', 'blanc'] } },
+			state = {
+				'contrat salarié . CDD . motif': 'classique . accroissement activité'
+			},
+			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, "contrat salarié . CDD . motif . classique . accroissement activité", rule)).to.be.true
-	});
+		expect(
+			evaluateVariable(
+				situationGate,
+				'contrat salarié . CDD . motif . classique . accroissement activité',
+				rule
+			)
+		).to.be.true
+	})
 
-	it ("should return null if a value isn't found for the name given", function() {
-		let rule = {formule: {"une possibilité": ["noir","blanc"]}},
-			state = {"condition": "classique . accroissement activité"},
-			situationGate = (name) => state[name]
+	it("should return null if a value isn't found for the name given", function() {
+		let rule = { formule: { 'une possibilité': ['noir', 'blanc'] } },
+			state = { condition: 'classique . accroissement activité' },
+			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, "contrat salarié . CDD . motif . classique . accroissement activité", rule)).to.be.null
-	});
+		expect(
+			evaluateVariable(
+				situationGate,
+				'contrat salarié . CDD . motif . classique . accroissement activité',
+				rule
+			)
+		).to.be.null
+	})
 
-	it ("should set the value of variants to false if one of them is true", function() {
-		let rule = {nom: "ici", espace: "univers", formule: {"une possibilité": ["noir","blanc"]}},
-			state = {"univers . ici": "blanc"},
-			situationGate = (name) => state[name]
+	it('should set the value of variants to false if one of them is true', function() {
+		let rule = {
+				nom: 'ici',
+				espace: 'univers',
+				formule: { 'une possibilité': ['noir', 'blanc'] }
+			},
+			state = { 'univers . ici': 'blanc' },
+			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, "univers . ici . noir", rule)).to.be.false
-	});
-
-});
+		expect(evaluateVariable(situationGate, 'univers . ici . noir', rule)).to.be
+			.false
+	})
+})

@@ -37,7 +37,6 @@ import {
 	applyOrEmpty
 } from './traverse-common-functions'
 
-
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 /*
@@ -78,13 +77,18 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 // TODO - this is becoming overly specific
 let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
-	let evaluateFiltered = originalEval => (cache, situation, parsedRules, node) => {
+	let evaluateFiltered = originalEval => (
+		cache,
+		situation,
+		parsedRules,
+		node
+	) => {
 		let newSituation = name => (name == 'sys.filter' ? filter : situation(name))
 		return originalEval(cache, newSituation, parsedRules, node)
 	}
 	let node = fillVariableNode(rules, rule, filter)(parseResult),
 		// Decorate node with who's paying
-		cotisation = {...node.cotisation, "dû par":filter}
+		cotisation = { ...node.cotisation, 'dû par': filter }
 
 	return {
 		...node,
@@ -107,7 +111,9 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			variableIsCalculable = variable.formule != null,
 			parsedRule =
 				variableIsCalculable &&
-				(cached ? cached : evaluateNode(cache, situation, parsedRules, variable)),
+				(cached
+					? cached
+					: evaluateNode(cache, situation, parsedRules, variable)),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
 			nodeValue =
@@ -120,24 +126,24 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			missingVariables = variableIsCalculable ? [] : [dottedName]
 
 		let collectMissing = node => {
-			let missingName = cacheName+":missing",
+			let missingName = cacheName + ':missing',
 				cached = cache[missingName]
 
 			if (cached) return cached
 
-			let result = nodeValue != null // notamment si situationValue != null
-				? []
-				: variableIsCalculable
-					? collectNodeMissing(parsedRule)
-					: node.missingVariables
+			let result =
+				nodeValue != null // notamment si situationValue != null
+					? []
+					: variableIsCalculable
+						? collectNodeMissing(parsedRule)
+						: node.missingVariables
 			cache[missingName] = result
 			return result
 		}
 
 		if (cached) {
 			return cached
-		}
-		else {
+		} else {
 			cache[cacheName] = {
 				...rewriteNode(node, nodeValue, explanation, collectMissing),
 				missingVariables
@@ -167,7 +173,12 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 
 let buildNegatedVariable = variable => {
 	let evaluate = (cache, situation, parsedRules, node) => {
-		let explanation = evaluateNode(cache, situation, parsedRules, node.explanation),
+		let explanation = evaluateNode(
+				cache,
+				situation,
+				parsedRules,
+				node.explanation
+			),
 			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
 		let collectMissing = node => collectNodeMissing(node.explanation)
 		return rewriteNode(node, nodeValue, explanation, collectMissing)
@@ -209,7 +220,7 @@ let treat = (rules, rule) => rawNode => {
 			let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
 			if (additionnalResults && additionnalResults.length > 0)
-				throw 'Attention ! L\'expression <' +
+				throw "Attention ! L'expression <" +
 					rawNode +
 					'> ne peut être traitée de façon univoque'
 
@@ -223,7 +234,7 @@ let treat = (rules, rule) => rawNode => {
 					'percentage'
 				])
 			)
-				throw 'Attention ! Erreur de traitement de l\'expression : ' + rawNode
+				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
 				return fillVariableNode(rules, rule)(parseResult)
@@ -387,7 +398,7 @@ let treat = (rules, rule) => rawNode => {
 						'une possibilité': 'oui',
 						collectMissing: () => [rule.dottedName]
 					}),
-					'inversion': mecanismInversion(rule.dottedName)
+					inversion: mecanismInversion(rule.dottedName)
 				},
 				action = R.propOr(mecanismError, k, dispatch)
 
@@ -414,7 +425,6 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 		? formuleValue
 		: isApplicable === false ? 0 : formuleValue == 0 ? 0 : null
 
-
 export let treatRuleRoot = (rules, rule) => {
 	/*
 	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
@@ -424,7 +434,6 @@ export let treatRuleRoot = (rules, rule) => {
 	Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
 	*/
 	let evaluate = (cache, situationGate, parsedRules, r) => {
-
 		let evolveRule = R.curry(evaluateNode)(cache, situationGate, parsedRules),
 			evaluated = R.evolve(
 				{
@@ -465,9 +474,9 @@ export let treatRuleRoot = (rules, rule) => {
 					: val(applicable) === false
 						? []
 						: [
-							...applyOrEmpty(collectNodeMissing)(notApplicable),
-							...applyOrEmpty(collectNodeMissing)(applicable)
-						],
+								...applyOrEmpty(collectNodeMissing)(notApplicable),
+								...applyOrEmpty(collectNodeMissing)(applicable)
+							],
 			collectInFormule = isApplicable !== false,
 			formMissing = applyOrEmpty(() =>
 				applyOrEmpty(collectNodeMissing)(formule)
@@ -486,7 +495,8 @@ export let treatRuleRoot = (rules, rule) => {
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
 				let collectMissing = node => collectNodeMissing(node.explanation)
-				let explanation = evaluateNode(cache,
+				let explanation = evaluateNode(
+						cache,
 						situationGate,
 						parsedRules,
 						node.explanation
@@ -523,7 +533,8 @@ export let treatRuleRoot = (rules, rule) => {
 let evolveCond = (name, rule, rules) => value => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let collectMissing = node => collectNodeMissing(node.explanation)
-		let explanation = evaluateNode(cache,
+		let explanation = evaluateNode(
+				cache,
 				situationGate,
 				parsedRules,
 				node.explanation
@@ -564,11 +575,11 @@ export let getTargets = (target, rules) => {
 	let multiSimulation = R.path(['simulateur', 'objectifs'])(target)
 	let targets = multiSimulation
 		? // On a un simulateur qui définit une liste d'objectifs
-		multiSimulation
-			.map(n => disambiguateRuleReference(rules, target, n))
-			.map(n => findRuleByDottedName(rules, n))
+			multiSimulation
+				.map(n => disambiguateRuleReference(rules, target, n))
+				.map(n => findRuleByDottedName(rules, n))
 		: // Sinon on est dans le cas d'une simple variable d'objectif
-		[target]
+			[target]
 
 	return targets
 }
@@ -579,8 +590,8 @@ export let parseAll = flatRules => {
 }
 
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
-		// TODO: we should really make use of namespaces at this level, in particular
-		// setRule in Rule.js needs to get smarter and pass dottedName
+	// TODO: we should really make use of namespaces at this level, in particular
+	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = {}
 
 	let parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
@@ -589,7 +600,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 		)
 
 	// Don't use 'dict' for anything else than ResultsGrid
-	return {targets, cache}
+	return { targets, cache }
 }
 
 export let analyse = (parsedRules, target) => {

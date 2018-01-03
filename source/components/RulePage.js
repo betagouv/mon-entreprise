@@ -4,10 +4,10 @@ import Rule from 'Components/rule/Rule'
 import { analyse } from 'Engine/traverse'
 import { head, path } from 'ramda'
 import { decodeRuleName, nameLeaf, findRuleByName } from 'Engine/rules.js'
-import {encodeRuleName} from 'Engine/rules'
-import {pipe, pluck, join, map} from 'ramda'
-import { Link, Redirect} from 'react-router-dom'
-import {animateScroll} from 'react-scroll'
+import { encodeRuleName } from 'Engine/rules'
+import { pipe, pluck, join, map } from 'ramda'
+import { Link, Redirect } from 'react-router-dom'
+import { animateScroll } from 'react-scroll'
 import './PageRule.css'
 
 @connect(state => ({
@@ -20,8 +20,8 @@ export default class RulePage extends Component {
 	componentWillMount() {
 		this.setRule(this.nameFromParams(this.props))
 	}
-	componentDidMount(){
-		animateScroll.scrollToTop({duration: 300})
+	componentDidMount() {
+		animateScroll.scrollToTop({ duration: 300 })
 	}
 	componentWillReceiveProps(nextProps) {
 		if (this.nameFromParams(nextProps) !== this.nameFromParams(this.props)) {
@@ -42,14 +42,21 @@ export default class RulePage extends Component {
 
 		let targets = path(['analysis', 'targets'], this.props)
 
-		return (<>
-			{targets && <BackToSimulation targets={targets}/> }
-			<Rule rule={this.rule} />
-		</>)
+		return (
+			<>
+				{targets && <BackToSimulation targets={targets} />}
+				<Rule rule={this.rule} />
+			</>
+		)
 	}
 }
 
-let BackToSimulation = ({targets}) =>
-	<Link id="toSimulation" to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}>
-		<i className="fa fa-arrow-circle-left" aria-hidden="true"></i>Reprendre la simulation
+let BackToSimulation = ({ targets }) => (
+	<Link
+		id="toSimulation"
+		to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
+	>
+		<i className="fa fa-arrow-circle-left" aria-hidden="true" />Reprendre la
+		simulation
 	</Link>
+)

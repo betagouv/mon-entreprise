@@ -1,11 +1,10 @@
 import R from 'ramda'
-import {expect} from 'chai'
+import { expect } from 'chai'
 import daggy from 'daggy'
-import {Maybe as M} from 'ramda-fantasy'
-import {StateT, Writer} from 'akh'
+import { Maybe as M } from 'ramda-fantasy'
+import { StateT, Writer } from 'akh'
 
 describe('simplified tree walks', function() {
-
 	// Notre domaine peut se simplifier à une liste d'équations à trous:
 	// a: 45
 	// b: a + c
@@ -41,9 +40,9 @@ describe('simplified tree walks', function() {
 	// Chaque élément de notre base de règles est une définition:
 
 	const Def = daggy.taggedSum('Def', {
-		Assign: 	 ['name', 'expr']
+		Assign: ['name', 'expr']
 	})
-	const {Assign} = Def
+	const { Assign } = Def
 
 	// Par contre, à l'exécution, il faut bien calculer des "effets de bord"
 	// pour rester performant: chaque évaluation d'une définition doit mettre
@@ -52,16 +51,16 @@ describe('simplified tree walks', function() {
 
 	// La partie droite d'une définition est une expression:
 
-	const Expr = daggy.taggedSum('Expr',{
+	const Expr = daggy.taggedSum('Expr', {
 		Num: ['x'],
 		Add: ['x', 'y'],
 		Var: ['name']
-//		NotIf:  ['condition','formule'],
-//		OnlyIf: ['condition','formule'],
-//		AnyOf:  ['conditions'],
-//		AllOf:  ['conditions'],
+		//		NotIf:  ['condition','formule'],
+		//		OnlyIf: ['condition','formule'],
+		//		AnyOf:  ['conditions'],
+		//		AllOf:  ['conditions'],
 	})
-	const {Num, Add, Var} = Expr
+	const { Num, Add, Var } = Expr
 
 	// Chapitre 1...
 
@@ -98,16 +97,18 @@ describe('simplified tree walks', function() {
 
 	// En JS c'est juste une fonction qui emballe et une qui déballe:
 
-	const Fx = daggy.tagged('Fx',['x'])
-	Fx.prototype.project = function() { return this.x }
+	const Fx = daggy.tagged('Fx', ['x'])
+	Fx.prototype.project = function() {
+		return this.x
+	}
 	const unFix = fx => fx.project()
 
 	// Les helpers suivants rendent moins pénible la construction de valeurs
 	// notamment pour les tests
 
 	let num = x => Fx(Num(x))
-	let add = (x, y) => Fx(Add(x,y))
-	let ref = (name) => Fx(Var(name))
+	let add = (x, y) => Fx(Add(x, y))
+	let ref = name => Fx(Var(name))
 
 	// Une application de la théorie des catégories permet de dériver
 	// la fonction "fold" suivante, qui généralise aux structures récursives
@@ -115,7 +116,9 @@ describe('simplified tree walks', function() {
 	// un catamorphisme
 
 	// fold :: Functor f => (f a -> a) -> Fix f -> a
-	const fold = R.curry((algebra, x) => R.compose(algebra, R.map(fold(algebra)), unFix)(x))
+	const fold = R.curry((algebra, x) =>
+		R.compose(algebra, R.map(fold(algebra)), unFix)(x)
+	)
 
 	// Cf. https://www.schoolofhaskell.com/user/bartosz/understanding-algebras
 
@@ -125,24 +128,23 @@ describe('simplified tree walks', function() {
 	// Cette fonction fournit la traversée
 	Expr.prototype.map = function(f) {
 		return this.cata({
-			Num: (x) => this, // fixed
+			Num: x => this, // fixed
 			Add: (x, y) => Add(f(x), f(y)),
-			Var: (name) => this
+			Var: name => this
 		})
 	}
 
 	// Celle-ci l'évaluation
 	const evaluator = state => a => {
 		return a.cata({
-			Num: (x) => M.Just(x),
-			Add: (x, y) => R.lift(R.add)(x,y),
-			Var: (name) => M.toMaybe(state[name]) // Doesn't typecheck
+			Num: x => M.Just(x),
+			Add: (x, y) => R.lift(R.add)(x, y),
+			Var: name => M.toMaybe(state[name]) // Doesn't typecheck
 		})
 	}
 
-	let evaluate = (expr, state={}) =>
-		fold(evaluator(state), expr)
-		.getOrElse(null) // for convenience
+	let evaluate = (expr, state = {}) =>
+		fold(evaluator(state), expr).getOrElse(null) // for convenience
 
 	// Voici donc l'évaluation d'un arbre...
 
@@ -150,19 +152,19 @@ describe('simplified tree walks', function() {
 		let tree = num(45),
 			result = evaluate(tree)
 		expect(result).to.equal(45)
-	});
+	})
 
 	it('should evaluate expressions', function() {
-		let tree = add(num(45),num(25)),
+		let tree = add(num(45), num(25)),
 			result = evaluate(tree)
 		expect(result).to.equal(70)
-	});
+	})
 
 	it('should evaluate nested expressions', function() {
-		let tree = add(num(45),add(num(15),num(10))),
+		let tree = add(num(45), add(num(15), num(10))),
 			result = evaluate(tree)
 		expect(result).to.equal(70)
-	});
+	})
 
 	// Problème: on évalue l'arbre tout entier d'un seul coup; mais
 	// peut-on aussi "décorer" l'arbre pendant sa traversée avec les
@@ -172,50 +174,49 @@ describe('simplified tree walks', function() {
 
 	const collector = state => a => {
 		return a.cata({
-			Num: (x) => [],
-			Add: (x, y) => R.concat(x,y),
-			Var: (name) => state[name] ? [] : [name]
+			Num: x => [],
+			Add: (x, y) => R.concat(x, y),
+			Var: name => (state[name] ? [] : [name])
 		})
 	}
 
-	let missing = (expr, state={}) =>
-		fold(collector(state), expr)
+	let missing = (expr, state = {}) => fold(collector(state), expr)
 
 	it('should evaluate expressions involving variables', function() {
-		let tree = add(num(45),ref("a")),
-			result = evaluate(tree,{a:25})
+		let tree = add(num(45), ref('a')),
+			result = evaluate(tree, { a: 25 })
 		expect(result).to.equal(70)
-	});
+	})
 
 	it('should evaluate expressions involving missing variables', function() {
-		let tree = add(num(45),ref("b")),
-			result = evaluate(tree,{a:25})
+		let tree = add(num(45), ref('b')),
+			result = evaluate(tree, { a: 25 })
 		expect(result).to.equal(null)
-	});
+	})
 
 	it('should provide a protocol for missing variables', function() {
-		let tree = ref("a"),
+		let tree = ref('a'),
 			result = missing(tree)
-		expect(result).to.deep.equal(["a"])
-	});
+		expect(result).to.deep.equal(['a'])
+	})
 
 	it('should locate missing variables in expressions', function() {
-		let tree = add(num(45),ref("a")),
+		let tree = add(num(45), ref('a')),
 			result = missing(tree)
-		expect(result).to.deep.equal(["a"])
-	});
+		expect(result).to.deep.equal(['a'])
+	})
 
 	it('should locate missing variables in nested expressions', function() {
-		let tree = add(add(num(35),ref("a")),num(25)),
+		let tree = add(add(num(35), ref('a')), num(25)),
 			result = missing(tree)
-		expect(result).to.deep.equal(["a"])
-	});
+		expect(result).to.deep.equal(['a'])
+	})
 
 	it('should locate missing variables in nested expressions', function() {
-		let tree = add(add(num(35),ref("a")),num(25)),
-			result = missing(tree,{a:25})
+		let tree = add(add(num(35), ref('a')), num(25)),
+			result = missing(tree, { a: 25 })
 		expect(result).to.deep.equal([])
-	});
+	})
 
 	// Chapitre 2...
 
@@ -227,29 +228,30 @@ describe('simplified tree walks', function() {
 	// Cf https://github.com/willtim/recursion-schemes/
 	// or http://www.timphilipwilliams.com/slides/HaskellAtBarclays.pdf
 
-	const AnnF = daggy.tagged('AnnF',['fr','a'])
-	let ann = ({fst, snd}) => Fx(AnnF(fst,snd))
+	const AnnF = daggy.tagged('AnnF', ['fr', 'a'])
+	let ann = ({ fst, snd }) => Fx(AnnF(fst, snd))
 	let nodeValue = annf => {
-		let {fr, a} = unFix(annf)
+		let { fr, a } = unFix(annf)
 		return a
 	}
 
 	// fork est l'opérateur "&&&" de Haskell: (f &&& g) x = Pair(f(x),g(x))
-	let fork = (f, g) => x => ({fst:f(x), snd:g(x)})
+	let fork = (f, g) => x => ({ fst: f(x), snd: g(x) })
 
 	// synthesize combine l'application d'un algèbre fourni f et de l'annotation
 	let synthesize = f => {
-		let algebra = f => R.compose(ann, fork(R.identity, R.compose(f, R.map(nodeValue))))
+		let algebra = f =>
+			R.compose(ann, fork(R.identity, R.compose(f, R.map(nodeValue))))
 		return fold(algebra(f))
 	}
 
 	let annotate = (state, tree) => synthesize(evaluator(state))(tree)
 
 	it('should annotate tree with evaluation results', function() {
-		let tree = add(num(45),add(num(15),num(10))),
-			result = nodeValue(annotate({},tree)).getOrElse(null)
+		let tree = add(num(45), add(num(15), num(10))),
+			result = nodeValue(annotate({}, tree)).getOrElse(null)
 		expect(result).to.equal(70)
-	});
+	})
 
 	// Chapitre 3
 
@@ -258,37 +260,41 @@ describe('simplified tree walks', function() {
 	// expressions; voyons ce que ça donne avec un algèbre plus simple:
 
 	let calculate = R.curry((rules, name) => {
-		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+		let find = (rules, name) =>
+				R.find(x => R.prop('name', x) == name, rules).expr,
 			expr = find(rules, name)
 		return fold(evaluator2(calculate(rules)), expr)
 	})
 
 	const evaluator2 = calculate => a => {
 		return a.cata({
-			Num: (x) => x,
-			Add: (x, y) => x+y,
-			Var: (name) => calculate(name)
+			Num: x => x,
+			Add: (x, y) => x + y,
+			Var: name => calculate(name)
 		})
 	}
 
 	it('should resolve variable dependencies', function() {
-		let rule1 = Assign("a",add(ref("b"),ref("b"))),
-			rule2 = Assign("b",num(15)),
-			rules = [rule1,rule2],
-			result = calculate(rules,"a")
+		let rule1 = Assign('a', add(ref('b'), ref('b'))),
+			rule2 = Assign('b', num(15)),
+			rules = [rule1, rule2],
+			result = calculate(rules, 'a')
 		expect(result).to.equal(30)
-	});
+	})
 
 	// Utilisons un Writer (un idiome fonctionnel pour par exemple écrire des logs)
 	// pour examiner le calcul de plus près.
 
-	const Str = daggy.tagged("Str",['s'])
-	Str.zero = Str("")
+	const Str = daggy.tagged('Str', ['s'])
+	Str.zero = Str('')
 	Str.prototype.zero = Str.zero
-	Str.prototype.concat = function(b) { return Str(this.s+b.s)}
+	Str.prototype.concat = function(b) {
+		return Str(this.s + b.s)
+	}
 
 	let trace = R.curry((rules, name) => {
-		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+		let find = (rules, name) =>
+				R.find(x => R.prop('name', x) == name, rules).expr,
 			expr = find(rules, name)
 		return fold(tracer(trace(rules)), expr)
 	})
@@ -296,9 +302,9 @@ describe('simplified tree walks', function() {
 	const tracer = recurse => a => {
 		let log = (x, s) => Writer.tell(Str(s)).map(_ => x)
 		return a.cata({
-			Num: (x) => log(x, x+","),
-			Add: (x, y) => x.chain(xx => y.chain(yy => log(xx+yy,"+,"))),
-			Var: (name) => recurse(name).chain(x => log(x,name+","))
+			Num: x => log(x, x + ','),
+			Add: (x, y) => x.chain(xx => y.chain(yy => log(xx + yy, '+,'))),
+			Var: name => recurse(name).chain(x => log(x, name + ','))
 		})
 	}
 
@@ -309,13 +315,13 @@ describe('simplified tree walks', function() {
 	// très mauvaises.
 
 	it('should trace the shape of the computation', function() {
-		let rule1 = Assign("a",add(ref("b"),ref("b"))),
-			rule2 = Assign("b",num(15)),
-			rules = [rule1,rule2],
-			result = trace(rules,"a").run(Str.zero)
+		let rule1 = Assign('a', add(ref('b'), ref('b'))),
+			rule2 = Assign('b', num(15)),
+			rules = [rule1, rule2],
+			result = trace(rules, 'a').run(Str.zero)
 		expect(result.value).to.equal(30)
-		expect(result.output.s).to.equal("15,b,15,b,+,")
-	});
+		expect(result.output.s).to.equal('15,b,15,b,+,')
+	})
 
 	// Pour corriger ce problème on va avoir besoin de formuler une version
 	// "monadique" du catamorphisme, c'est-à-dire qu'on va pouvoir l'associer
@@ -330,26 +336,30 @@ describe('simplified tree walks', function() {
 	// D'abord on ajoute de la plomberie:
 
 	const cataM = (of, algM) => m =>
-		m.project()
-		.traverse(of, x => x.cataM(of, algM))
-		.chain(algM)
+		m
+			.project()
+			.traverse(of, x => x.cataM(of, algM))
+			.chain(algM)
 
 	const traverse = function(of, f) {
 		return this.cata({
-			Num: (x) => of(this),
-			Add: (x, y) => f(x).chain(xx => f(y).chain(yy => of(Add(xx,yy)))),
-			Var: (name) => of(this)
+			Num: x => of(this),
+			Add: (x, y) => f(x).chain(xx => f(y).chain(yy => of(Add(xx, yy)))),
+			Var: name => of(this)
 		})
 	}
 	Expr.prototype.traverse = traverse
-	Fx.prototype.cataM = function(of, alg) { return cataM(of, alg)(this) }
+	Fx.prototype.cataM = function(of, alg) {
+		return cataM(of, alg)(this)
+	}
 
 	// Maintenant que c'est fait on voit qu'on a simplifié l'expression du
 	// catamorphisme: on n'a plus à expliciter l'enchaînement (sauf pour la
 	// récursion de plus haut niveau dans les variables)
 
 	let trace2 = R.curry((rules, name) => {
-		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+		let find = (rules, name) =>
+				R.find(x => R.prop('name', x) == name, rules).expr,
 			expr = find(rules, name)
 		return cataM(Writer.of, tracer2(trace2(rules)))(expr)
 	})
@@ -357,21 +367,21 @@ describe('simplified tree walks', function() {
 	const tracer2 = recurse => a => {
 		let log = (x, s) => Writer.tell(Str(s)).map(_ => x)
 		return a.cata({
-			Num: (x) 	=> log(x,x+","),
-			Add: (x, y) => log(x+y,"+,"),
-			Var: (name) => recurse(name).chain(x => log(x,name+","))
+			Num: x => log(x, x + ','),
+			Add: (x, y) => log(x + y, '+,'),
+			Var: name => recurse(name).chain(x => log(x, name + ','))
 		})
 	}
 
 	it('should trace the shape of the computation, showing two passes through b', function() {
-		let rule1 = Assign("a",add(ref("b"),ref("c"))),
-			rule2 = Assign("b",num(15)),
-			rule3 = Assign("c",num(10)),
-			rules = [rule1,rule2,rule3],
-			result = trace2(rules,"a").run(Str.zero)
+		let rule1 = Assign('a', add(ref('b'), ref('c'))),
+			rule2 = Assign('b', num(15)),
+			rule3 = Assign('c', num(10)),
+			rules = [rule1, rule2, rule3],
+			result = trace2(rules, 'a').run(Str.zero)
 		expect(result.value).to.equal(25)
-		expect(result.output.s).to.equal("15,b,10,c,+,")
-	});
+		expect(result.output.s).to.equal('15,b,10,c,+,')
+	})
 
 	// On a la possibilité "d'encapsuler" une monade dans une autre:
 	// on va se doter d'un State, une monade qui permet de stocker un
@@ -388,41 +398,42 @@ describe('simplified tree walks', function() {
 	const log = (x, s) => S.lift(S.inner.tell(Str(s)).map(_ => x))
 
 	let trace3 = R.curry((rules, name) => {
-		let find = (rules, name) => R.find(x => R.prop("name",x) == name,rules).expr,
+		let find = (rules, name) =>
+				R.find(x => R.prop('name', x) == name, rules).expr,
 			expr = find(rules, name)
 		return cataM(S.of, tracer3(trace3(rules)))(expr)
 	})
 
 	const memoize = f => name => {
 		let cache = result =>
-			result
-				.chain(x => result.modify(state => R.assoc(name,run(result),state))
-					.chain(z => S.of(x)))
+			result.chain(x =>
+				result
+					.modify(state => R.assoc(name, run(result), state))
+					.chain(z => S.of(x))
+			)
 
 		return S.get.chain(state => {
 			let cached = state[name]
-			return cached ?
-				S.of(cached.value.value) : cache(f(name))
+			return cached ? S.of(cached.value.value) : cache(f(name))
 		})
 	}
 
 	const tracer3 = recurse => a => {
 		return a.cata({
-			Num: (x) 	=> log(x,x+","),
-			Add: (x, y) => log(x+y,"+,"),
-			Var: memoize ((name) => recurse(name).chain(x => log(x,name+",")))
+			Num: x => log(x, x + ','),
+			Add: (x, y) => log(x + y, '+,'),
+			Var: memoize(name => recurse(name).chain(x => log(x, name + ',')))
 		})
 	}
 
-	const run = (c, state) => Writer.run(StateT.run(c, state),Str.zero)
+	const run = (c, state) => Writer.run(StateT.run(c, state), Str.zero)
 
 	it('should trace the shape of the computation, showing one pass through b', function() {
-		let rule1 = Assign("a",add(ref("b"),ref("b"))),
-			rule2 = Assign("b",num(15)),
-			rules = [rule1,rule2],
-			result = run(trace3(rules,"a"),{})
+		let rule1 = Assign('a', add(ref('b'), ref('b'))),
+			rule2 = Assign('b', num(15)),
+			rules = [rule1, rule2],
+			result = run(trace3(rules, 'a'), {})
 		expect(result.value.value).to.equal(30)
-		expect(result.output.s).to.equal("15,b,+,")
-	});
-
-});
+		expect(result.output.s).to.equal('15,b,+,')
+	})
+})
