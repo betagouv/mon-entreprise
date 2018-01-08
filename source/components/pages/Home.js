@@ -21,8 +21,8 @@ export default class Home extends Component {
 						style={opacityStyle}
 					/>
 					<p style={opacityStyle}>
-						Cette nouvelle version du site vous permet de simuler un CDD ou un
-						CDI, aux taux de 2018. Joyeuses fêtes !
+						Cette nouvelle version du site vous permet de simuler un CDD ou CDI,
+						aux taux de 2018.
 					</p>
 				</div>
 				<div id="content">
