@@ -5,12 +5,10 @@
  */
 
 let taux = require('./taux.json')
-let R = require('ramda')
+let { pipe, map, assoc, merge, find, propEq, toPairs } = require('ramda')
 let fs = require('fs')
 
-let result = R.pipe(R.toPairs, R.map(([k, v]) => R.assoc('codeCommune', k, v)))(
-	taux
-)
+let result = pipe(toPairs, map(([k, v]) => assoc('codeCommune', k, v)))(taux)
 
 let villesAvecArrondissements = [
 	[
@@ -44,8 +42,8 @@ let villesAvecArrondissements = [
 
 let additionnalResults = villesAvecArrondissements.map(
 	([data, codeCommune1erArrondissement]) =>
-		R.merge(
-			R.find(R.propEq('codeCommune', codeCommune1erArrondissement))(result),
+		merge(
+			find(propEq('codeCommune', codeCommune1erArrondissement))(result),
 			data
 		)
 )

@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import R, { path } from 'ramda'
+import { path, values } from 'ramda'
 import { AttachDictionary } from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import { makeJsx } from 'Engine/evaluation'
@@ -32,7 +32,7 @@ export default class Algorithm extends React.Component {
 					{
 						do {
 							// TODO ce let est incompréhensible !
-							let applicabilityMecanisms = R.values(rule).filter(
+							let applicabilityMecanisms = values(rule).filter(
 								v => v && v['rulePropType'] == 'cond'
 							)
 							applicabilityMecanisms.length > 0 && (

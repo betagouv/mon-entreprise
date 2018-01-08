@@ -5,7 +5,33 @@ import {
 	findRuleByName
 } from './rules'
 import { evaluateVariable } from './variables'
-import R from 'ramda'
+import {
+	contains,
+	propEq,
+	curry,
+	chain,
+	cond,
+	evolve,
+	equals,
+	concat,
+	path,
+	divide,
+	multiply,
+	map,
+	intersection,
+	keys,
+	is,
+	propOr,
+	always,
+	head,
+	T,
+	gte,
+	lte,
+	lt,
+	gt,
+	add,
+	subtract
+} from 'ramda'
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
@@ -225,7 +251,7 @@ let treat = (rules, rule) => rawNode => {
 					'> ne peut être traitée de façon univoque'
 
 			if (
-				!R.contains(parseResult.category)([
+				!contains(parseResult.category)([
 					'variable',
 					'calcExpression',
 					'filteredVariable',
@@ -263,35 +289,31 @@ let treat = (rules, rule) => rawNode => {
 				parseResult.category == 'comparison'
 			) {
 				let evaluate = (cache, situation, parsedRules, node) => {
-					let operatorFunctionName = {
-							'*': 'multiply',
-							'/': 'divide',
-							'+': 'add',
-							'-': 'subtract',
-							'<': 'lt',
-							'<=': 'lte',
-							'>': 'gt',
-							'>=': 'gte',
-							'=': 'equals',
-							'!=': 'equals'
+					let operatorFunction = {
+							'*': multiply,
+							'/': divide,
+							'+': add,
+							'-': subtract,
+							'<': lt,
+							'<=': lte,
+							'>': gt,
+							'>=': gte,
+							'=': equals,
+							'!=': (a, b) => !equals(a, b)
 						}[node.operator],
-						explanation = R.map(
-							R.curry(evaluateNode)(cache, situation, parsedRules),
+						explanation = map(
+							curry(evaluateNode)(cache, situation, parsedRules),
 							node.explanation
 						),
 						value1 = explanation[0].nodeValue,
 						value2 = explanation[1].nodeValue,
-						operatorFunction =
-							node.operator == '!='
-								? (a, b) => !R.equals(a, b)
-								: R[operatorFunctionName],
 						nodeValue =
 							value1 == null || value2 == null
 								? null
 								: operatorFunction(value1, value2)
 
 					let collectMissing = node =>
-						R.chain(collectNodeMissing, node.explanation)
+						chain(collectNodeMissing, node.explanation)
 
 					return rewriteNode(node, nodeValue, explanation, collectMissing)
 				}
@@ -303,18 +325,18 @@ let treat = (rules, rule) => rawNode => {
 					)
 				let fillVariable = fillVariableNode(rules, rule),
 					filledExplanation = parseResult.explanation.map(
-						R.cond([
-							[R.propEq('category', 'variable'), fillVariable],
-							[R.propEq('category', 'filteredVariable'), fillFiltered],
+						cond([
+							[propEq('category', 'variable'), fillVariable],
+							[propEq('category', 'filteredVariable'), fillFiltered],
 							[
-								R.propEq('category', 'value'),
+								propEq('category', 'value'),
 								node => ({
 									nodeValue: node.nodeValue,
 									jsx: nodeValue => <span className="value">{nodeValue}</span>
 								})
 							],
 							[
-								R.propEq('category', 'percentage'),
+								propEq('category', 'percentage'),
 								node => ({
 									nodeValue: node.nodeValue,
 									jsx: nodeValue => (
@@ -368,7 +390,7 @@ let treat = (rules, rule) => rawNode => {
 				' doit être un Number, String ou Object'
 		},
 		treatObject = rawNode => {
-			let mecanisms = R.intersection(R.keys(rawNode), R.keys(knownMecanisms))
+			let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 			if (mecanisms.length != 1) {
 				console.log(
@@ -380,7 +402,7 @@ let treat = (rules, rule) => rawNode => {
 				throw 'OUPS !'
 			}
 
-			let k = R.head(mecanisms),
+			let k = head(mecanisms),
 				v = rawNode[k]
 
 			let dispatch = {
@@ -394,22 +416,22 @@ let treat = (rules, rule) => rawNode => {
 					'le minimum de': mecanismMin,
 					complément: mecanismComplement,
 					sélection: mecanismSelection,
-					'une possibilité': R.always({
+					'une possibilité': always({
 						'une possibilité': 'oui',
 						collectMissing: () => [rule.dottedName]
 					}),
 					inversion: mecanismInversion(rule.dottedName)
 				},
-				action = R.propOr(mecanismError, k, dispatch)
+				action = propOr(mecanismError, k, dispatch)
 
 			return action(reTreat, k, v)
 		}
 
-	let onNodeType = R.cond([
-		[R.is(String), treatString],
-		[R.is(Number), treatNumber],
-		[R.is(Object), treatObject],
-		[R.T, treatOther]
+	let onNodeType = cond([
+		[is(String), treatString],
+		[is(Number), treatNumber],
+		[is(Object), treatObject],
+		[T, treatOther]
 	])
 
 	let defaultEvaluate = (cache, situationGate, parsedRules, node) => node
@@ -434,8 +456,8 @@ export let treatRuleRoot = (rules, rule) => {
 	Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
 	*/
 	let evaluate = (cache, situationGate, parsedRules, r) => {
-		let evolveRule = R.curry(evaluateNode)(cache, situationGate, parsedRules),
-			evaluated = R.evolve(
+		let evolveRule = curry(evaluateNode)(cache, situationGate, parsedRules),
+			evaluated = evolve(
 				{
 					formule: evolveRule,
 					'non applicable si': evolveRule,
@@ -482,10 +504,10 @@ export let treatRuleRoot = (rules, rule) => {
 				applyOrEmpty(collectNodeMissing)(formule)
 			)(collectInFormule)
 
-		return R.concat(condMissing, formMissing)
+		return concat(condMissing, formMissing)
 	}
 
-	let parsedRoot = R.evolve({
+	let parsedRoot = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
@@ -572,7 +594,7 @@ let evolveCond = (name, rule, rules) => value => {
 }
 
 export let getTargets = (target, rules) => {
-	let multiSimulation = R.path(['simulateur', 'objectifs'])(target)
+	let multiSimulation = path(['simulateur', 'objectifs'])(target)
 	let targets = multiSimulation
 		? // On a un simulateur qui définit une liste d'objectifs
 			multiSimulation
@@ -586,7 +608,7 @@ export let getTargets = (target, rules) => {
 
 export let parseAll = flatRules => {
 	let treatOne = rule => treatRuleRoot(flatRules, rule)
-	return R.map(treatOne, flatRules)
+	return map(treatOne, flatRules)
 }
 
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
@@ -595,7 +617,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	let cache = {}
 
 	let parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
-		targets = R.chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
+		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)
 

@@ -1,4 +1,4 @@
-import R from 'ramda'
+import * as R from 'ramda'
 import { expect } from 'chai'
 import daggy from 'daggy'
 import { Maybe as M } from 'ramda-fantasy'

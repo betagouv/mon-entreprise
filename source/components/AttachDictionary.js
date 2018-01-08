@@ -1,4 +1,4 @@
-import R from 'ramda'
+import { path } from 'ramda'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import marked from 'Engine/marked'
@@ -16,7 +16,7 @@ export let AttachDictionary = dictionary => Decorated =>
 			let decoratedNode = ReactDOM.findDOMNode(this.decorated)
 			decoratedNode.addEventListener('click', e => {
 				let term = e.target.dataset['termDefinition'],
-					explanation = R.path([term, 'description'], dictionary)
+					explanation = path([term, 'description'], dictionary)
 				this.setState({ explanation, term })
 			})
 		}

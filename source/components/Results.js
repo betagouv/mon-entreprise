@@ -1,12 +1,10 @@
-import R from 'ramda'
+import { isEmpty, path, contains } from 'ramda'
 import React, { Component } from 'react'
-import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
 import './Results.css'
-import { encodeRuleName } from 'Engine/rules'
 import RuleValueVignette from './rule/RuleValueVignette'
 import ProgressTip from 'Components/ProgressTip'
 
@@ -14,8 +12,8 @@ import ProgressTip from 'Components/ProgressTip'
 @connect(state => ({
 	analysis: state.analysis,
 	targetName: state.targetName,
-	conversationStarted: !R.isEmpty(state.form),
-	conversationFirstAnswer: R.path(['form', 'conversation', 'values'])(state),
+	conversationStarted: !isEmpty(state.form),
+	conversationFirstAnswer: path(['form', 'conversation', 'values'])(state),
 	situationGate: state.situationGate,
 	done: state.done
 }))
@@ -34,7 +32,7 @@ export default class Results extends Component {
 
 		let { targets } = analysis
 
-		let onRulePage = R.contains('/regle/')(location.pathname)
+		let onRulePage = contains('/regle/')(location.pathname)
 		return (
 			<div id="resultsZone">
 				<section id="results">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
-import R from 'ramda'
+import { isEmpty, path } from 'ramda'
 import { connect } from 'react-redux'
 import './Rule.css'
 import { capitalise0 } from '../../utils'
@@ -21,11 +21,11 @@ export default class Rule extends Component {
 	}
 	render() {
 		let { form, rule } = this.props,
-			conversationStarted = !R.isEmpty(form),
+			conversationStarted = !isEmpty(form),
 			situationExists = conversationStarted || this.state.example != null
 
 		let { type, name, title, description, question } = rule,
-			situationOrExampleRule = R.path(['example', 'rule'])(this.state) || rule
+			situationOrExampleRule = path(['example', 'rule'])(this.state) || rule
 
 		return (
 			<div id="rule">
@@ -39,7 +39,7 @@ export default class Rule extends Component {
 					<h1>{capitalise0(name)}</h1>
 					<div id="meta-paragraph">
 						{createMarkdownDiv(description || question)}
-						<Destinataire destinataire={R.path([type, 'destinataire'])(rule)} />
+						<Destinataire destinataire={path([type, 'destinataire'])(rule)} />
 					</div>
 				</section>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import R from 'ramda'
+import { isEmpty } from 'ramda'
 import Aide from '../Aide'
 import Satisfaction from '../Satisfaction'
 import { reduxForm } from 'redux-form'
@@ -36,7 +36,7 @@ export default class Conversation extends Component {
 
 		return (
 			<>
-				{!R.isEmpty(foldedSteps) && (
+				{!isEmpty(foldedSteps) && (
 					<div id="foldedSteps">
 						<div className="header">
 							<button

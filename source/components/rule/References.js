@@ -1,5 +1,5 @@
 import React from 'react'
-import R from 'ramda'
+import { toPairs, groupBy } from 'ramda'
 import './References.css'
 import references from 'Règles/ressources/références/références.yaml'
 import { capitalise0 } from '../../utils'
@@ -10,9 +10,9 @@ export default class References extends React.Component {
 	}
 	render() {
 		let { refs } = this.props,
-			{ complementary, official = [] } = R.groupBy(
+			{ complementary, official = [] } = groupBy(
 				([name, link]) => (this.findRefKey(link) ? 'official' : 'complementary')
-			)(R.toPairs(refs)),
+			)(toPairs(refs)),
 			showComplementary = this.state.showComplementary,
 			showComplementaryButton = !this.state.showComplementary && complementary
 

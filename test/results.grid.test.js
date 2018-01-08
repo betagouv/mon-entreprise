@@ -1,4 +1,4 @@
-import R from 'ramda'
+import * as R from 'ramda'
 import { expect } from 'chai'
 import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'

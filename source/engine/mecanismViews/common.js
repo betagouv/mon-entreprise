@@ -1,5 +1,5 @@
 import React from 'react'
-import R from 'ramda'
+import { contains } from 'ramda'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import { encodeRuleName } from '../rules'
@@ -25,7 +25,7 @@ let NodeValuePointer = ({ data }) => (
 export class Node extends React.Component {
 	render() {
 		let { classes, name, value, child } = this.props,
-			termDefinition = R.contains('mecanism', classes) && name
+			termDefinition = contains('mecanism', classes) && name
 
 		return (
 			<div className={classNames(classes, 'node')}>

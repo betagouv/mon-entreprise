@@ -1,6 +1,26 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
 import rawRules from './load-rules'
-import R from 'ramda'
+import {
+	has,
+	pipe,
+	toPairs,
+	map,
+	fromPairs,
+	split,
+	join,
+	dropLast,
+	take,
+	reduce,
+	when,
+	is,
+	props,
+	identity,
+	path,
+	reject,
+	reduced,
+	range,
+	last
+} from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
 import { capitalise0 } from '../utils'
@@ -15,7 +35,7 @@ import taux_versement_transport from '../../règles/rémunération-travail/cotis
 
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = (rule, sharedData = {}) => {
-	let type = possibleVariableTypes.find(t => R.has(t, rule) || rule.type === t),
+	let type = possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
 		name = rule['nom'],
 		title = capitalise0(rule['titre'] || name),
 		ns = rule['espace'],
@@ -39,22 +59,22 @@ export let enrichRule = (rule, sharedData = {}) => {
 }
 
 export let disambiguateExampleSituation = (rules, rule) =>
-	R.pipe(
-		R.toPairs,
-		R.map(([k, v]) => [disambiguateRuleReference(rules, rule, k), v]),
-		R.fromPairs
+	pipe(
+		toPairs,
+		map(([k, v]) => [disambiguateRuleReference(rules, rule, k), v]),
+		fromPairs
 	)
 
 export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 
-export let splitName = R.split(' . '),
-	joinName = R.join(' . ')
+export let splitName = split(' . '),
+	joinName = join(' . ')
 
-export let parentName = R.pipe(splitName, R.dropLast(1), joinName)
-export let nameLeaf = R.pipe(splitName, R.last)
+export let parentName = pipe(splitName, dropLast(1), joinName)
+export let nameLeaf = pipe(splitName, last)
 
 export let encodeRuleName = name => name.replace(/\s/g, '-')
-export let decodeRuleName = name => name.replace(/\-/g, ' ')
+export let decodeRuleName = name => name.replace(/-/g, ' ')
 
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
@@ -65,12 +85,12 @@ export let disambiguateRuleReference = (
 	partialName
 ) => {
 	let fragments = ns ? ns.split(' . ') : [], // ex. [CDD . événements . rupture]
-		pathPossibilities = R.range(0, fragments.length + 1) // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
-			.map(nbEl => R.take(nbEl)(fragments))
+		pathPossibilities = range(0, fragments.length + 1) // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
+			.map(nbEl => take(nbEl)(fragments))
 			.reverse(),
-		found = R.reduce(
+		found = reduce(
 			(res, path) =>
-				R.when(R.is(Object), R.reduced)(
+				when(is(Object), reduced)(
 					findRuleByDottedName(allRules, [...path, partialName].join(' . '))
 				),
 			null,
@@ -85,10 +105,10 @@ export let disambiguateRuleReference = (
 	)
 }
 
-export let collectDefaults = R.pipe(
-	R.map(R.props(['dottedName', 'defaultValue'])),
-	R.reject(([, v]) => v === undefined),
-	R.fromPairs
+export let collectDefaults = pipe(
+	map(props(['dottedName', 'defaultValue'])),
+	reject(([, v]) => v === undefined),
+	fromPairs
 )
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
@@ -121,7 +141,7 @@ export let findRuleByDottedName = (allRules, dottedName) => {
 /*********************************
  Autres */
 
-let isVariant = R.path(['formule', 'une possibilité'])
+let isVariant = path(['formule', 'une possibilité'])
 
 export let formatInputs = (flatRules, formValueSelector) => state => name => {
 	// Our situationGate retrieves data from the "conversation" form
@@ -130,7 +150,7 @@ export let formatInputs = (flatRules, formValueSelector) => state => name => {
 
 	let rule = findRuleByDottedName(flatRules, name),
 		format = rule ? formValueTypes[rule.format] : null,
-		pre = format && format.validator.pre ? format.validator.pre : R.identity,
+		pre = format && format.validator.pre ? format.validator.pre : identity,
 		value = formValueSelector('conversation')(state, name)
 
 	return value && pre(value)

@@ -1,4 +1,4 @@
-import R from 'ramda'
+import { pipe, map, flatten, reject, isNil } from 'ramda'
 
 // This is a mock of webpack's require.context, for testing purposes
 if (typeof __webpack_require__ === 'undefined') {
@@ -66,8 +66,6 @@ let directoryLoaders = [
 let loadAll = directoryLoaderFunction =>
 	directoryLoaderFunction.keys().map(directoryLoaderFunction)
 
-let rules = R.pipe(R.map(loadAll), R.flatten, R.reject(R.isNil))(
-	directoryLoaders
-)
+let rules = pipe(map(loadAll), flatten, reject(isNil))(directoryLoaders)
 
 export default rules

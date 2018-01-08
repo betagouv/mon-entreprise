@@ -9,7 +9,7 @@ import { enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
-import R from 'ramda'
+import * as R from 'ramda'
 import { isFloat } from '../source/components/rule/Examples'
 
 describe('Mécanismes', () =>

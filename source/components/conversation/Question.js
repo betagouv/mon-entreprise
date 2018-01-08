@@ -3,7 +3,7 @@ import { FormDecorator } from './FormDecorator'
 import { answer, answered } from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
-import R from 'ramda'
+import { pipe, split, reverse, reduce, is } from 'ramda'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
@@ -21,10 +21,10 @@ import R from 'ramda'
 
 */
 
-let dottedNameToObject = R.pipe(
-	R.split(' . '),
-	R.reverse,
-	R.reduce((memo, next) => ({ [next]: memo }), 'oui')
+let dottedNameToObject = pipe(
+	split(' . '),
+	reverse,
+	reduce((memo, next) => ({ [next]: memo }), 'oui')
 )
 
 // FormDecorator permet de factoriser du code partagé par les différents types de saisie,
@@ -34,7 +34,7 @@ export default class Question extends Component {
 	render() {
 		let { stepProps: { choices } } = this.props
 
-		if (R.is(Array)(choices)) return this.renderBinaryQuestion()
+		if (is(Array)(choices)) return this.renderBinaryQuestion()
 		else return this.renderChildren(choices)
 	}
 	renderBinaryQuestion() {
@@ -122,7 +122,7 @@ let RadioLabel = props => (
 class RadioLabelContent extends Component {
 	render() {
 		let { value, label, input, submit, hover, themeColours } = this.props,
-			// value = R.when(R.is(Object), R.prop('value'))(choice),
+			// value = when(is(Object), prop('value'))(choice),
 			labelStyle = Object.assign(
 				value === input.value || hover
 					? answered(themeColours)

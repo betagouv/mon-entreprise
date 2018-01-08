@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Field, change, formValueSelector } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
-import R from 'ramda'
+import { path } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
 
@@ -99,7 +99,7 @@ export var FormDecorator = formType => RenderField =>
 						maxWidth: wideQuestion ? '95%' : ''
 					}}
 				>
-					{R.path(['props', 'step', 'inversion', 'question'])(this) ||
+					{path(['props', 'step', 'inversion', 'question'])(this) ||
 						this.props.step.question}
 				</h1>
 			)
@@ -117,7 +117,7 @@ export var FormDecorator = formType => RenderField =>
 								dangerouslySetInnerHTML={{ __html: subquestion }}
 							/>
 						</div>
-						{defaultValue && (
+						{defaultValue != null && (
 							<IgnoreStepButton
 								action={() => {
 									setFormValue(fieldName, '' + defaultValue)

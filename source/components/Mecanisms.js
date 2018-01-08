@@ -1,11 +1,11 @@
 // Page listing the engine's currently implemented mecanisms and their tests
 import React, { Component } from 'react'
 import knownMecanims from 'Engine/known-mecanisms.yaml'
-import R from 'ramda'
+import { fromPairs, has, toPairs } from 'ramda'
 import './Mecanisms.css'
 
 let directoryLoader = require.context('../../test/mécanismes/', true, /.yaml$/),
-	suites = R.fromPairs(
+	suites = fromPairs(
 		directoryLoader
 			.keys()
 			.map(key => [
@@ -25,7 +25,7 @@ export default class Mecanisms extends Component {
 					partageant le code de mecanisms.test.js
 				</p>
 				<ul id="mecanisms">
-					{R.toPairs(knownMecanims).map(([name, data]) => (
+					{toPairs(knownMecanims).map(([name, data]) => (
 						<li key={name}>
 							{name}
 							{suites[name] == null ? (
@@ -45,7 +45,7 @@ class Tests extends Component {
 	render() {
 		let { suites, name } = this.props,
 			suite = suites[name],
-			tests = suite.filter(R.has('test'))
+			tests = suite.filter(has('test'))
 
 		return (
 			<p>

@@ -1,4 +1,4 @@
-import R from 'ramda'
+import { reject, isNil, equals, pluck, path, map } from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { reset, change, formValueSelector } from 'redux-form'
@@ -55,7 +55,7 @@ export default class extends Component {
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
-		this.targetRules = R.reject(R.isNil)(
+		this.targetRules = reject(isNil)(
 			targetNames.map(name => findRuleByName(rules, name))
 		)
 
@@ -64,7 +64,7 @@ export default class extends Component {
 		if (
 			this.targetRules.length > 0 &&
 			(this.props.foldedSteps.length === 0 ||
-				!R.equals(targetNames, pastTargetNames))
+				!equals(targetNames, pastTargetNames))
 		)
 			this.props.startConversation(targetNames)
 	}
@@ -92,11 +92,11 @@ export default class extends Component {
 				<Helmet>
 					<title>
 						{"Simulateur d'embauche : "}
-						{R.pluck('title', this.targetRules).join(', ')}
+						{pluck('title', this.targetRules).join(', ')}
 					</title>
 					<meta
 						name="description"
-						content={R.pluck('description', this.targetRules).join(' - ')}
+						content={pluck('description', this.targetRules).join(' - ')}
 					/>
 				</Helmet>
 				<Conversation
@@ -109,7 +109,7 @@ export default class extends Component {
 								targetNames,
 								inputInversions
 							)(currentQuestion),
-						foldedSteps: R.map(
+						foldedSteps: map(
 							this.buildStep({ unfolded: false })(
 								situationGate,
 								targetNames,
@@ -125,7 +125,7 @@ export default class extends Component {
 				<Results />
 				{done && (
 					<Explanation
-						targetRules={R.path(['analysis', 'targets'], this.props)}
+						targetRules={path(['analysis', 'targets'], this.props)}
 					/>
 				)}
 			</div>
@@ -141,7 +141,7 @@ export default class extends Component {
 
 		let fieldName =
 				(inputInversions &&
-					R.path(step.dottedName.split('.'), inputInversions)) ||
+					path(step.dottedName.split('.'), inputInversions)) ||
 				step.dottedName,
 			fieldTitle = findRuleByDottedName(rules, fieldName).title
 

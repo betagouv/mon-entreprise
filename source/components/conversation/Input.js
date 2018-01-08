@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
-import R from 'ramda'
+import { toPairs } from 'ramda'
 import { Field } from 'redux-form'
 import SendButton from './SendButton'
 
@@ -111,7 +111,7 @@ export default class Input extends Component {
 			<div className="inputSuggestions">
 				suggestions:
 				<ul>
-					{R.toPairs(suggestions).map(([text, value]) => (
+					{toPairs(suggestions).map(([text, value]) => (
 						<li
 							key={value}
 							onClick={e =>

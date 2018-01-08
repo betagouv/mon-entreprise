@@ -1,4 +1,18 @@
-import R from 'ramda'
+import {
+	path,
+	propEq,
+	pathEq,
+	groupBy,
+	prop,
+	map,
+	sum,
+	filter,
+	concat,
+	pathOr,
+	toPairs,
+	keys,
+	head
+} from 'ramda'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -12,30 +26,27 @@ import { capitalise0 } from '../utils'
 import { nameLeaf, encodeRuleName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
-let paidBy = R.pathEq(['explanation', 'cotisation', 'dû par'])
-let filteredBy = R.pathEq(['cotisation', 'dû par'])
-export let byName = R.groupBy(R.prop('dottedName'))
+let paidBy = pathEq(['explanation', 'cotisation', 'dû par'])
+let filteredBy = pathEq(['cotisation', 'dû par'])
+export let byName = groupBy(prop('dottedName'))
 
 export let cell = (branch, payer, analysis) => {
 	let row = byBranch(analysis)[branch],
-		items = R.filter(
-			item => paidBy(payer)(item) || filteredBy(payer)(item),
-			row
-		),
-		values = R.map(R.prop('nodeValue'), items)
+		items = filter(item => paidBy(payer)(item) || filteredBy(payer)(item), row),
+		values = map(prop('nodeValue'), items)
 
-	return R.sum(values)
+	return sum(values)
 }
 
 export let subCell = (row, name, payer) => {
 	let cells = row[name],
-		items = R.filter(
+		items = filter(
 			item => paidBy(payer)(item) || filteredBy(payer)(item),
 			cells
 		),
-		values = R.map(R.prop('nodeValue'), items)
+		values = map(prop('nodeValue'), items)
 
-	return R.sum(values)
+	return sum(values)
 }
 
 export let byBranch = analysis => {
@@ -44,9 +55,9 @@ export let byBranch = analysis => {
 
 	let l1 = sal ? sal.explanation.formule.explanation.explanation : [],
 		l2 = pat ? pat.explanation.formule.explanation.explanation : [],
-		explanations = R.concat(l1, l2),
-		result = R.groupBy(
-			R.pathOr('autre', ['explanation', 'cotisation', 'branche']),
+		explanations = concat(l1, l2),
+		result = groupBy(
+			pathOr('autre', ['explanation', 'cotisation', 'branche']),
 			explanations
 		)
 
@@ -70,7 +81,7 @@ export default class ResultsGrid extends Component {
 		if (!analysis) return null
 
 		let extract = x => (typeof x == 'string' ? +x : (x && x.nodeValue) || 0),
-			fromEval = name => R.find(R.propEq('dottedName', name), analysis.targets),
+			fromEval = name => find(propEq('dottedName', name), analysis.targets),
 			fromDict = name => analysis.cache[name],
 			get = name =>
 				extract(situationGate(name) || fromEval(name) || fromDict(name))
@@ -78,10 +89,7 @@ export default class ResultsGrid extends Component {
 			brut = get('contrat salarié . salaire brut'),
 			net = get('contrat salarié . salaire net'),
 			total = get('contrat salarié . salaire total')
-		let inversion = R.path(
-				['contrat salarié ', ' salaire de base'],
-				inversions
-			),
+		let inversion = path(['contrat salarié ', ' salaire de base'], inversions),
 			relevantSalaries = new Set(
 				targetNames
 					.concat(inversion ? [nameLeaf(inversion)] : [])
@@ -105,7 +113,7 @@ export default class ResultsGrid extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{R.toPairs(results).map(([branch, values]) => {
+						{toPairs(results).map(([branch, values]) => {
 							let props = {
 								key: branch,
 								branch,
@@ -158,7 +166,7 @@ class Row extends Component {
 			detail = byName(values)
 
 		let title = name => {
-			let node = R.head(detail[name])
+			let node = head(detail[name])
 			return node.title || capitalise0(node.name)
 		}
 
@@ -203,7 +211,7 @@ class Row extends Component {
 
 		let detailRows = this.state.folded
 			? []
-			: R.keys(detail).map(subCellName => (
+			: keys(detail).map(subCellName => (
 					<tr key={'detailsRow' + subCellName} className="detailsRow">
 						<td className="element name">
 							<Link to={'/regle/' + encodeRuleName(nameLeaf(subCellName))}>
@@ -234,7 +242,7 @@ class Row extends Component {
 				))
 
 		// returns an array of <tr>
-		return R.concat([aggregateRow], detailRows)
+		return concat([aggregateRow], detailRows)
 	}
 }
 

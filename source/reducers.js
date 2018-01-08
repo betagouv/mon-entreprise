@@ -1,4 +1,4 @@
-import R, { head } from 'ramda'
+import { head, isEmpty, pathOr, reject, contains, without, concat } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
@@ -7,7 +7,6 @@ import {
 	rules,
 	findRuleByName,
 	collectDefaults,
-	nameLeaf,
 	formatInputs
 } from 'Engine/rules'
 import { getNextSteps } from 'Engine/generateQuestions'
@@ -60,7 +59,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			targetNames.length === 1 ? findRuleByName(flatRules, targetNames[0]) : {},
 		// Hard assumptions cannot be changed, they are used to specialise a simulator
 		// before the user sees the first question
-		hardAssumptions = R.pathOr({}, ['simulateur', 'hypothèses'], sim),
+		hardAssumptions = pathOr({}, ['simulateur', 'hypothèses'], sim),
 		intermediateSituation = assume(answerSource, hardAssumptions),
 		// Most rules have default values
 		rulesDefaults = collectDefaults(flatRules),
@@ -70,7 +69,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			situationWithDefaults(state)
 		),
 		nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
-		assumptionsMade = !R.isEmpty(rulesDefaults),
+		assumptionsMade = !isEmpty(rulesDefaults),
 		done = nextWithDefaults.length == 0
 
 	let newState = {
@@ -98,7 +97,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			one that could be the next target AND already in the answered steps */
 			foldedSteps: action.fromScratch
 				? []
-				: R.reject(R.contains('salaire de base'))(state.foldedSteps)
+				: reject(contains('salaire de base'))(state.foldedSteps)
 		}
 	}
 
@@ -122,12 +121,12 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			// we fold it back into foldedSteps if it had been answered
 			answered = previous && answerSource(state)(previous) != undefined,
 			foldedSteps = answered
-				? R.concat(state.foldedSteps, [previous])
+				? concat(state.foldedSteps, [previous])
 				: state.foldedSteps
 
 		return {
 			...newState,
-			foldedSteps: R.without([action.step], foldedSteps),
+			foldedSteps: without([action.step], foldedSteps),
 			currentQuestion: action.step
 		}
 	}

@@ -1,4 +1,4 @@
-import R from 'ramda'
+import { isEmpty, dropLast, last } from 'ramda'
 import { splitName, joinName } from './rules'
 
 let evaluateBottomUp = situationGate => startingFragments => {
@@ -7,13 +7,13 @@ let evaluateBottomUp = situationGate => startingFragments => {
 			? null
 			: do {
 					let query = joinName(parentFragments),
-						expectedResult = R.isEmpty(childFragments)
+						expectedResult = isEmpty(childFragments)
 							? 'oui'
 							: joinName(childFragments)
 
 					situationGate(query) == null
-						? rec(R.dropLast(1)(parentFragments), [
-								R.last(parentFragments),
+						? rec(dropLast(1)(parentFragments), [
+								last(parentFragments),
 								...childFragments
 							])
 						: situationGate(query) == expectedResult

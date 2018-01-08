@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import R, { pick } from 'ramda'
+import { evolve, path, isEmpty } from 'ramda'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { disambiguateExampleSituation, collectDefaults } from 'Engine/rules.js'
 import { analyse } from 'Engine/traverse'
 import './Examples.css'
 import { assume } from '../../reducers'
-import { expect } from 'chai'
 
 // By luck this works as expected for both null and undefined, * but with different branches failing :O *
 export let isFloat = n => Number(n) === n && n % 1 !== 0
@@ -15,9 +14,7 @@ export let isFloat = n => Number(n) === n && n % 1 !== 0
 // comme dans sa formule
 export let runExamples = (examples, rule, parsedRules) =>
 	examples
-		.map(
-			R.evolve({ situation: disambiguateExampleSituation(parsedRules, rule) })
-		)
+		.map(evolve({ situation: disambiguateExampleSituation(parsedRules, rule) }))
 		.map(ex => {
 			let exampleSituationGate = () => name => ex.situation[name]
 
@@ -46,7 +43,7 @@ export let runExamples = (examples, rule, parsedRules) =>
 }))
 export default class Examples extends Component {
 	render() {
-		let focusedExample = R.path(['focusedExample', 'nom'])(this.props),
+		let focusedExample = path(['focusedExample', 'nom'])(this.props),
 			{ inject, situationExists, showValues, rule, parsedRules } = this.props,
 			{ exemples = [] } = rule,
 			examples = runExamples(exemples, rule, parsedRules)
@@ -58,7 +55,7 @@ export default class Examples extends Component {
 					Exemples de calcul{' '}
 					<small>Cliquez sur un exemple pour le tester</small>
 				</h2>
-				{R.isEmpty(examples) ? (
+				{isEmpty(examples) ? (
 					<p>
 						<i className="fa fa-exclamation-triangle" aria-hidden="true" />
 						<em>Cette règle manque d'exemples...</em>
