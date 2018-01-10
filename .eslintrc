@@ -11,6 +11,9 @@ rules:
   quotes:
     - 1
     - single
+  jsx-quotes:
+    - 1
+    - prefer-double
   no-unused-vars: 1
   no-console: 1
   no-global-assign: 0

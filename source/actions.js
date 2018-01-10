@@ -3,14 +3,13 @@
 // The user can also come back to one of his answers and edit it
 export const STEP_ACTION = 'STEP_ACTION'
 export function stepAction(name, step) {
-	return {type: STEP_ACTION, name, step}
+	return { type: STEP_ACTION, name, step }
 }
 
 export const START_CONVERSATION = 'START_CONVERSATION'
 
 // Reset the form
 export const UNSUBMIT_ALL = 'UNSUBMIT_ALL'
-
 
 // Collect the input information from the forms, send them to the simulation engine API
 // then update the results in the UI
@@ -26,7 +25,8 @@ export const TOGGLE_ADVANCED_SECTION = 'TOGGLE_ADVANCED_SECTION'
 export const INITIAL_REQUEST = 'INITIAL_REQUEST'
 
 export const CHANGE_THEME_COLOUR = 'CHANGE_THEME_COLOUR'
-export function changeThemeColour(colour) {return {type: CHANGE_THEME_COLOUR, colour}}
-
+export function changeThemeColour(colour) {
+	return { type: CHANGE_THEME_COLOUR, colour }
+}
 
 export const EXPLAIN_VARIABLE = 'EXPLAIN_VARIABLE'

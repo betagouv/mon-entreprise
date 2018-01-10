@@ -1,4 +1,19 @@
-import R from 'ramda'
+import {
+	chain,
+	groupBy,
+	toPairs,
+	sort,
+	map,
+	length,
+	descend,
+	head,
+	unless,
+	is,
+	prop,
+	path,
+	reject,
+	identity
+} from 'ramda'
 
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
@@ -6,10 +21,7 @@ import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import {
-	findRuleByDottedName,
-	disambiguateRuleReference
-} from './rules'
+import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 import { collectNodeMissing } from './evaluation'
 
 /*
@@ -28,38 +40,36 @@ import { collectNodeMissing } from './evaluation'
  */
 
 export let collectMissingVariables = targets => {
-	let missing = R.chain(collectNodeMissing, targets)
-	return R.groupBy(R.identity, missing)
+	let missing = chain(collectNodeMissing, targets)
+	return groupBy(identity, missing)
 }
 
 export let getNextSteps = (situationGate, analysis) => {
-	let impact = ([, objectives]) => R.length(objectives)
+	let impact = ([, objectives]) => length(objectives)
 
 	let missingVariables = collectMissingVariables(analysis.targets),
-		pairs = R.toPairs(missingVariables),
-		sortedPairs = R.sort(R.descend(impact), pairs)
-	return R.map(R.head, sortedPairs)
+		pairs = toPairs(missingVariables),
+		sortedPairs = sort(descend(impact), pairs)
+	return map(head, sortedPairs)
 }
 
-
-let isVariant = R.path(['formule', 'une possibilité'])
+let isVariant = path(['formule', 'une possibilité'])
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = findRuleByDottedName(allRules, path),
 			variant = isVariant(node),
-			variants =
-				variant && R.unless(R.is(Array), R.prop('possibilités'))(variant),
-			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => R.contains(path + ' . ' + v)(rp) )),
+			variants = variant && unless(is(Array), prop('possibilités'))(variant),
+			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
 
 		return Object.assign(
 			node,
 			shouldBeExpanded
 				? {
-					canGiveUp,
-					children: variants.map(v => rec(path + ' . ' + v))
-				}
+						canGiveUp,
+						children: variants.map(v => rec(path + ' . ' + v))
+					}
 				: null
 		)
 	}
@@ -67,18 +77,18 @@ let buildVariantTree = (allRules, path) => {
 }
 
 let buildPossibleInversion = (rule, flatRules, targetNames) => {
-	let ruleInversions = R.path(['formule', 'inversion', 'avec'])(rule)
+	let ruleInversions = path(['formule', 'inversion', 'avec'])(rule)
 	if (!ruleInversions) return null
-	let
-		inversionObjects = ruleInversions.map(i =>
+	let inversionObjects = ruleInversions.map(i =>
 			findRuleByDottedName(
 				flatRules,
 				disambiguateRuleReference(flatRules, rule, i)
 			)
 		),
-		yo = R.reject(({ name }) => targetNames.includes(name))([rule].concat(inversionObjects))
+		yo = reject(({ name }) => targetNames.includes(name))(
+			[rule].concat(inversionObjects)
+		)
 
-	console.log('yo', yo)
 	return {
 		inversions: yo,
 		question: rule.formule.inversion.question
@@ -116,7 +126,6 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 		component: Question,
 		choices: buildVariantTree(flatRules, dottedName)
 	})
-
 
 	return Object.assign(
 		rule,

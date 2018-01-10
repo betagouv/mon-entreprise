@@ -1,4 +1,4 @@
-import R from 'ramda'
+import { path } from 'ramda'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import marked from 'Engine/marked'
@@ -16,26 +16,39 @@ export let AttachDictionary = dictionary => Decorated =>
 			let decoratedNode = ReactDOM.findDOMNode(this.decorated)
 			decoratedNode.addEventListener('click', e => {
 				let term = e.target.dataset['termDefinition'],
-					explanation = R.path([term, 'description'], dictionary)
-				this.setState({explanation, term})
+					explanation = path([term, 'description'], dictionary)
+				this.setState({ explanation, term })
 			})
 		}
 		renderExplanationMarkdown(explanation, term) {
 			return marked(`### Mécanisme: ${term}\n\n${explanation}`)
 		}
-		render(){
-			let {explanation, term} = this.state
+		render() {
+			let { explanation, term } = this.state
 			return (
-				<div style={{display: 'inline-block'}} className="dictionaryWrapper">
-					<Decorated ref={decorated => this.decorated = decorated} {...this.props} explain={this.explain}/>
-					{explanation &&
-						<div id="dictionaryPanelWrapper" onClick={() => this.setState({term: null, explanation: null})}>
-							<div id="dictionaryPanel"
-								onClick={e => {e.preventDefault(); e.stopPropagation()}}
-								dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(explanation, term)}}>
-							</div>
+				<div style={{ display: 'inline-block' }} className="dictionaryWrapper">
+					<Decorated
+						ref={decorated => (this.decorated = decorated)}
+						{...this.props}
+						explain={this.explain}
+					/>
+					{explanation && (
+						<div
+							id="dictionaryPanelWrapper"
+							onClick={() => this.setState({ term: null, explanation: null })}
+						>
+							<div
+								id="dictionaryPanel"
+								onClick={e => {
+									e.preventDefault()
+									e.stopPropagation()
+								}}
+								dangerouslySetInnerHTML={{
+									__html: this.renderExplanationMarkdown(explanation, term)
+								}}
+							/>
 						</div>
-					}
+					)}
 				</div>
 			)
 		}

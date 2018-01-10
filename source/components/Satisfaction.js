@@ -72,7 +72,7 @@ export default class Satisfaction extends Component {
 
 		let messagePlaceholder = {
 			':)': 'Envoyez-nous un commentaire !',
-			':|': 'Qu\'est-ce qui n\'a pas été ?'
+			':|': "Qu'est-ce qui n'a pas été ?"
 		}[answer]
 
 		let feedback = (
@@ -139,10 +139,10 @@ export class Smiley extends Component {
 				style={
 					this.props.hover
 						? {
-							background: this.props.hoverColor,
-							color: 'white',
-							borderColor: 'transparent'
-						}
+								background: this.props.hoverColor,
+								color: 'white',
+								borderColor: 'transparent'
+							}
 						: {}
 				}
 			>

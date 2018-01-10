@@ -1,4 +1,36 @@
-import R from 'ramda'
+import {
+	objOf,
+	toPairs,
+	dissoc,
+	add,
+	find,
+	uniq,
+	chain,
+	pluck,
+	concat,
+	map,
+	any,
+	equals,
+	is,
+	keys,
+	evolve,
+	curry,
+	filter,
+	pipe,
+	head,
+	isEmpty,
+	propEq,
+	prop,
+	has,
+	max,
+	min,
+	subtract,
+	values,
+	sortBy,
+	last,
+	findIndex,
+	path
+} from 'ramda'
 import React from 'react'
 import { anyNull, val } from './traverse-common-functions'
 import { Node } from './mecanismViews/common'
@@ -23,8 +55,6 @@ import { Table, Column } from 'react-virtualized'
 import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/liste-taux.json'
 import Somme from './mecanismViews/Somme'
 import uniroot from './uniroot'
-import {clearDict} from 'Engine/traverse'
-
 
 let constantNode = constant => ({
 	nodeValue: constant,
@@ -32,12 +62,12 @@ let constantNode = constant => ({
 })
 
 let decompose = (recurse, k, v) => {
-	let subProps = R.dissoc('composantes')(v),
+	let subProps = dissoc('composantes')(v),
 		explanation = v.composantes.map(c => ({
 			...recurse(
-				R.objOf(k, {
+				objOf(k, {
 					...subProps,
-					...R.dissoc('attributs')(c)
+					...dissoc('attributs')(c)
 				})
 			),
 			composante: c.nom ? { nom: c.nom } : c.attributs
@@ -53,7 +83,7 @@ let decompose = (recurse, k, v) => {
 					{explanation.map((c, i) => [
 						<li className="composante" key={JSON.stringify(c.composante)}>
 							<ul className="composanteAttributes">
-								{R.toPairs(c.composante).map(([k, v]) => (
+								{toPairs(c.composante).map(([k, v]) => (
 									<li key={k}>
 										<span>{k}: </span>
 										<span>{v}</span>
@@ -82,7 +112,7 @@ let decompose = (recurse, k, v) => {
 	return {
 		explanation,
 		jsx,
-		evaluate: evaluateArrayWithFilter(filter, R.add, 0),
+		evaluate: evaluateArrayWithFilter(filter, add, 0),
 		category: 'mecanism',
 		name: 'composantes',
 		type: 'numeric'
@@ -90,12 +120,12 @@ let decompose = (recurse, k, v) => {
 }
 
 let devariate = (recurse, k, v) => {
-	let subProps = R.dissoc('variations')(v),
+	let subProps = dissoc('variations')(v),
 		explanation = v.variations.map(c => ({
 			...recurse(
-				R.objOf(k, {
+				objOf(k, {
 					...subProps,
-					...R.dissoc('si')(c)
+					...dissoc('si')(c)
 				})
 			),
 			condition: recurse(c.si)
@@ -103,31 +133,33 @@ let devariate = (recurse, k, v) => {
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let evaluateOne = child => {
-			let condition = evaluateNode(cache, situationGate, parsedRules, child.condition)
+			let condition = evaluateNode(
+				cache,
+				situationGate,
+				parsedRules,
+				child.condition
+			)
 			return {
 				...evaluateNode(cache, situationGate, parsedRules, child),
 				condition
 			}
 		}
 
-		let explanation = R.map(evaluateOne, node.explanation),
-			choice = R.find(node => node.condition.nodeValue, explanation),
+		let explanation = map(evaluateOne, node.explanation),
+			choice = find(node => node.condition.nodeValue, explanation),
 			nodeValue = choice ? choice.nodeValue : null
 
 		let collectMissing = node => {
-			let choice = R.find(node => node.condition.nodeValue, node.explanation),
+			let choice = find(node => node.condition.nodeValue, node.explanation),
 				leftMissing = choice
 					? []
-					: R.uniq(
-						R.chain(
-							collectNodeMissing,
-							R.pluck('condition', node.explanation)
-						)
-					),
+					: uniq(
+							chain(collectNodeMissing, pluck('condition', node.explanation))
+						),
 				rightMissing = choice
 					? collectNodeMissing(choice)
-					: R.chain(collectNodeMissing, node.explanation)
-			return R.concat(leftMissing, rightMissing)
+					: chain(collectNodeMissing, node.explanation)
+			return concat(leftMissing, rightMissing)
 		}
 
 		return rewriteNode(node, nodeValue, explanation, collectMissing)
@@ -141,14 +173,14 @@ let devariate = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(c =>
+					{explanation.map(c => (
 						<li className="variation" key={JSON.stringify(c.condition)}>
 							<div className="condition">
 								{makeJsx(c.condition)}
 								<div className="content">{makeJsx(c)}</div>
 							</div>
 						</li>
-					)}
+					))}
 				</ul>
 			}
 		/>
@@ -165,9 +197,9 @@ let devariate = (recurse, k, v) => {
 }
 
 export let mecanismOneOf = (recurse, k, v) => {
-	if (!R.is(Array, v)) throw 'should be array'
+	if (!is(Array, v)) throw 'should be array'
 
-	let explanation = R.map(recurse, v)
+	let explanation = map(recurse, v)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -185,17 +217,16 @@ export let mecanismOneOf = (recurse, k, v) => {
 	)
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
-			explanation = R.map(evaluateOne, node.explanation),
-			values = R.pluck('nodeValue', explanation),
-			nodeValue = R.any(R.equals(true), values)
+		let evaluateOne = child =>
+				evaluateNode(cache, situationGate, parsedRules, child),
+			explanation = map(evaluateOne, node.explanation),
+			values = pluck('nodeValue', explanation),
+			nodeValue = any(equals(true), values)
 				? true
-				: R.any(R.equals(null), values) ? null : false
+				: any(equals(null), values) ? null : false
 
 		let collectMissing = node =>
-			node.nodeValue == null
-				? R.chain(collectNodeMissing, node.explanation)
-				: []
+			node.nodeValue == null ? chain(collectNodeMissing, node.explanation) : []
 		return rewriteNode(node, nodeValue, explanation, collectMissing)
 	}
 
@@ -210,9 +241,9 @@ export let mecanismOneOf = (recurse, k, v) => {
 }
 
 export let mecanismAllOf = (recurse, k, v) => {
-	if (!R.is(Array, v)) throw 'should be array'
+	if (!is(Array, v)) throw 'should be array'
 
-	let explanation = R.map(recurse, v)
+	let explanation = map(recurse, v)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -229,19 +260,17 @@ export let mecanismAllOf = (recurse, k, v) => {
 		/>
 	)
 
-
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
-			explanation = R.map(evaluateOne, node.explanation),
-			values = R.pluck('nodeValue', explanation),
-			nodeValue = R.any(R.equals(false), values)
+		let evaluateOne = child =>
+				evaluateNode(cache, situationGate, parsedRules, child),
+			explanation = map(evaluateOne, node.explanation),
+			values = pluck('nodeValue', explanation),
+			nodeValue = any(equals(false), values)
 				? false // court-circuit
-				: R.any(R.equals(null), values) ? null : true
+				: any(equals(null), values) ? null : true
 
 		let collectMissing = node =>
-			node.nodeValue == null
-				? R.chain(collectNodeMissing, node.explanation)
-				: []
+			node.nodeValue == null ? chain(collectNodeMissing, node.explanation) : []
 		return rewriteNode(node, nodeValue, explanation, collectMissing)
 	}
 
@@ -258,14 +287,14 @@ export let mecanismAllOf = (recurse, k, v) => {
 export let mecanismNumericalSwitch = (recurse, k, v) => {
 	// Si "l'aiguillage" est une constante ou une référence directe à une variable;
 	// l'utilité de ce cas correspond à un appel récursif au mécanisme
-	if (R.is(String, v)) return recurse(v)
+	if (is(String, v)) return recurse(v)
 
-	if (!R.is(Object, v) || R.keys(v).length == 0) {
+	if (!is(Object, v) || keys(v).length == 0) {
 		throw 'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
 	}
 
 	// les termes sont les couples (condition, conséquence) de l'aiguillage numérique
-	let terms = R.toPairs(v)
+	let terms = toPairs(v)
 
 	// la conséquence peut être un 'string' ou un autre aiguillage numérique
 	let parseCondition = ([condition, consequence]) => {
@@ -279,13 +308,13 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 					missingOnTheRight = investigate
 						? collectNodeMissing(node.explanation.consequence)
 						: []
-				return R.concat(missingOnTheLeft, missingOnTheRight)
+				return concat(missingOnTheLeft, missingOnTheRight)
 			}
 
-			let explanation = R.evolve(
+			let explanation = evolve(
 				{
-					condition: R.curry(evaluateNode)(cache, situationGate, parsedRules),
-					consequence: R.curry(evaluateNode)(cache, situationGate, parsedRules)
+					condition: curry(evaluateNode)(cache, situationGate, parsedRules),
+					consequence: curry(evaluateNode)(cache, situationGate, parsedRules)
 				},
 				node.explanation
 			)
@@ -318,31 +347,32 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	}
 
 	let evaluateTerms = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => evaluateNode(cache, situationGate, parsedRules, child),
-			explanation = R.map(evaluateOne, node.explanation),
-			nonFalsyTerms = R.filter(node => node.condValue !== false, explanation),
-			getFirst = prop => R.pipe(R.head, R.prop(prop))(nonFalsyTerms),
+		let evaluateOne = child =>
+				evaluateNode(cache, situationGate, parsedRules, child),
+			explanation = map(evaluateOne, node.explanation),
+			nonFalsyTerms = filter(node => node.condValue !== false, explanation),
+			getFirst = o => pipe(head, prop(o))(nonFalsyTerms),
 			nodeValue =
 				// voilà le "numérique" dans le nom de ce mécanisme : il renvoie zéro si aucune condition n'est vérifiée
-				R.isEmpty(nonFalsyTerms)
+				isEmpty(nonFalsyTerms)
 					? 0
 					: // c'est un 'null', on renvoie null car des variables sont manquantes
-					getFirst('condValue') == null
+						getFirst('condValue') == null
 						? null
 						: // c'est un true, on renvoie la valeur de la conséquence
-						getFirst('nodeValue')
+							getFirst('nodeValue')
 
 		let collectMissing = node => {
-			let choice = R.find(node => node.condValue, node.explanation)
+			let choice = find(node => node.condValue, node.explanation)
 			return choice
 				? collectNodeMissing(choice)
-				: R.chain(collectNodeMissing, node.explanation)
+				: chain(collectNodeMissing, node.explanation)
 		}
 
 		return rewriteNode(node, nodeValue, explanation, collectMissing)
 	}
 
-	let explanation = R.map(parseCondition, terms)
+	let explanation = map(parseCondition, terms)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -369,21 +399,26 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	}
 }
 
-
 export let findInversion = (situationGate, rules, v, dottedName) => {
 	let inversions = v.avec
 	if (!inversions)
-		throw 'Une formule d\'inversion doit préciser _avec_ quoi on peut inverser la variable'
+		throw "Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
 	/*
 	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
 	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
 	le salaire net, a été renseigné ?
 	*/
 	let fixedObjective = inversions
-		.map(i => disambiguateRuleReference(rules, rules.find(R.propEq('dottedName', dottedName)), i))
+		.map(i =>
+			disambiguateRuleReference(
+				rules,
+				rules.find(propEq('dottedName', dottedName)),
+				i
+			)
+		)
 		.find(name => situationGate(name) != undefined)
 
-	if (fixedObjective == null) return {inversionChoiceNeeded: true}
+	if (fixedObjective == null) return { inversionChoiceNeeded: true }
 	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
 	return {
 		fixedObjective,
@@ -392,20 +427,21 @@ export let findInversion = (situationGate, rules, v, dottedName) => {
 	}
 }
 
-
 let doInversion = (situationGate, parsedRules, v, dottedName) => {
 	let inversion = findInversion(situationGate, parsedRules, v, dottedName)
 
-	if (inversion.inversionChoiceNeeded) return {
-		inversionMissingVariables: [dottedName],
-		nodeValue: null
-	}
+	if (inversion.inversionChoiceNeeded)
+		return {
+			inversionMissingVariables: [dottedName],
+			nodeValue: null
+		}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let inversionCache = {}
 	let fx = x => {
 		inversionCache = {}
-		return evaluateNode(inversionCache, // with an empty cache
-			n => dottedName === n ? x : situationGate(n),
+		return evaluateNode(
+			inversionCache, // with an empty cache
+			n => (dottedName === n ? x : situationGate(n)),
 			parsedRules,
 			fixedObjectiveRule
 		).nodeValue
@@ -418,9 +454,9 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 		return {
 			nodeValue: null,
 			inversionMissingVariables: collectNodeMissing(
-				evaluateNode({},
-					n =>
-						dottedName === n ? 1000 : situationGate(n),
+				evaluateNode(
+					{},
+					n => (dottedName === n ? 1000 : situationGate(n)),
 					parsedRules,
 					fixedObjectiveRule
 				)
@@ -444,36 +480,40 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 	}
 }
 
-
 export let mecanismInversion = dottedName => (recurse, k, v) => {
-
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let inversion =
 			// avoid the inversion loop !
 			situationGate(dottedName) == undefined &&
 			doInversion(situationGate, parsedRules, v, dottedName)
-		let
-			collectMissing = () => inversion.inversionMissingVariables,
+		let collectMissing = () => inversion.inversionMissingVariables,
 			nodeValue = inversion.nodeValue
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, collectMissing)
 		// rewrite the simulation cache with the definitive inversion values
 
-		R.toPairs(inversion.inversionCache).map(([k,v])=>cache[k] = v)
+		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
 		return evaluatedNode
 	}
 
 	return {
 		evaluate,
-		jsx: (nodeValue) => (
+		jsx: nodeValue => (
 			<Node
 				classes="mecanism inversion"
 				name="inversion"
 				value={nodeValue}
-				child={<div>
-					<div>avec</div>
-					<ul>{v.avec.map(recurse).map(el => <li key={el.name}>{makeJsx(el)}</li>)}</ul>
-				</div>} />
+				child={
+					<div>
+						<div>avec</div>
+						<ul>
+							{v.avec
+								.map(recurse)
+								.map(el => <li key={el.name}>{makeJsx(el)}</li>)}
+						</ul>
+					</div>
+				}
+			/>
 		),
 		category: 'mecanism',
 		name: 'inversion',
@@ -484,7 +524,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 export let mecanismSum = (recurse, k, v) => {
 	let explanation = v.map(recurse)
 
-	let evaluate = evaluateArray(R.add, 0)
+	let evaluate = evaluateArray(add, 0)
 
 	return {
 		evaluate,
@@ -542,18 +582,18 @@ export let mecanismProduct = (recurse, k, v) => {
 					</li>
 					{(explanation.taux.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
-							<li key="taux">
-								<span className="key">taux: </span>
-								<span className="value">{makeJsx(explanation.taux)}</span>
-							</li>
-						)}
+						<li key="taux">
+							<span className="key">taux: </span>
+							<span className="value">{makeJsx(explanation.taux)}</span>
+						</li>
+					)}
 					{(explanation.facteur.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
-							<li key="facteur">
-								<span className="key">facteur: </span>
-								<span className="value">{makeJsx(explanation.facteur)}</span>
-							</li>
-						)}
+						<li key="facteur">
+							<span className="key">facteur: </span>
+							<span className="value">{makeJsx(explanation.facteur)}</span>
+						</li>
+					)}
 					{explanation.plafond.nodeValue != Infinity && (
 						<li key="plafond">
 							<span className="key">plafond: </span>
@@ -594,14 +634,16 @@ export let mecanismScale = (recurse, k, v) => {
 	à: 1
 	```
 	*/
-	let tranches = v['tranches'].map(
-		t =>
-			R.has('en-dessous de')(t)
-				? { de: 0, à: t['en-dessous de'], taux: t.taux }
-				: R.has('au-dessus de')(t)
-					? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
-					: t
-	).map(R.evolve({taux: recurse}))
+	let tranches = v['tranches']
+		.map(
+			t =>
+				has('en-dessous de')(t)
+					? { de: 0, à: t['en-dessous de'], taux: t.taux }
+					: has('au-dessus de')(t)
+						? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
+						: t
+		)
+		.map(evolve({ taux: recurse }))
 
 	let objectShape = {
 		assiette: false,
@@ -617,9 +659,9 @@ export let mecanismScale = (recurse, k, v) => {
 		// ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond
 		// sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
 		/*
-			nulled = assiette.nodeValue == null || R.any(
-				R.pipe(
-					R.values, R.map(val), R.any(R.equals(null))
+			nulled = assiette.nodeValue == null || any(
+				pipe(
+					values, map(val), any(equals(null))
 				)
 			)(tranches),
 		*/
@@ -629,15 +671,15 @@ export let mecanismScale = (recurse, k, v) => {
 		return nulled
 			? null
 			: tranches.reduce(
-				(memo, { de: min, à: max, taux }) =>
-					val(assiette) < min * val(multiplicateur)
-						? memo + 0
-						: memo +
+					(memo, { de: min, à: max, taux }) =>
+						val(assiette) < min * val(multiplicateur)
+							? memo + 0
+							: memo +
 								(Math.min(val(assiette), max * val(multiplicateur)) -
 									min * val(multiplicateur)) *
 									taux.nodeValue,
-				0
-			)
+					0
+				)
 	}
 
 	let explanation = {
@@ -720,7 +762,7 @@ export let mecanismScale = (recurse, k, v) => {
 export let mecanismMax = (recurse, k, v) => {
 	let explanation = v.map(recurse)
 
-	let evaluate = evaluateArray(R.max, Number.NEGATIVE_INFINITY)
+	let evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -753,7 +795,7 @@ export let mecanismMax = (recurse, k, v) => {
 export let mecanismMin = (recurse, k, v) => {
 	let explanation = v.map(recurse)
 
-	let evaluate = evaluateArray(R.min, Infinity)
+	let evaluate = evaluateArray(min, Infinity)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -792,9 +834,7 @@ export let mecanismComplement = (recurse, k, v) => {
 	let objectShape = { cible: false, montant: false }
 	let effect = ({ cible, montant }) => {
 		let nulled = val(cible) == null
-		return nulled
-			? null
-			: R.subtract(val(montant), R.min(val(cible), val(montant)))
+		return nulled ? null : subtract(val(montant), min(val(cible), val(montant)))
 	}
 	let explanation = parseObject(recurse, objectShape, v)
 
@@ -839,29 +879,34 @@ export let mecanismSelection = (recurse, k, v) => {
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let collectMissing = node => collectNodeMissing(node.explanation),
-			explanation = evaluateNode(cache, situationGate, parsedRules, node.explanation),
+			explanation = evaluateNode(
+				cache,
+				situationGate,
+				parsedRules,
+				node.explanation
+			),
 			dataSource = findRuleByName(parsedRules, dataSourceName),
 			data = dataSource ? dataSource['data'] : null,
 			dataKey = explanation.nodeValue,
 			dataItems =
 				data && dataKey && dataSearchField
-					? R.filter(item => item[dataSearchField] == dataKey, data)
+					? filter(item => item[dataSearchField] == dataKey, data)
 					: null,
 			dataItemValues =
-				dataItems && !R.isEmpty(dataItems) ? R.values(dataItems) : null,
+				dataItems && !isEmpty(dataItems) ? values(dataItems) : null,
 			// TODO - over-specific! transform the JSON instead
 			dataItemSubValues =
 				dataItemValues && dataItemValues[0][dataTargetName]
 					? dataItemValues[0][dataTargetName]['taux']
 					: null,
 			sortedSubValues = dataItemSubValues
-				? R.sortBy(pair => pair[0], R.toPairs(dataItemSubValues))
+				? sortBy(pair => pair[0], toPairs(dataItemSubValues))
 				: null,
 			// return 0 if we found a match for the lookup but not for the specific field,
 			// so that component sums don't sum to null
 			nodeValue = dataItems
 				? sortedSubValues
-					? Number.parseFloat(R.last(sortedSubValues)[1]) / 100
+					? Number.parseFloat(last(sortedSubValues)[1]) / 100
 					: 0
 				: null
 		return rewriteNode(node, nodeValue, explanation, collectMissing)
@@ -869,10 +914,10 @@ export let mecanismSelection = (recurse, k, v) => {
 
 	let indexOf = explanation =>
 		explanation.nodeValue
-			? R.findIndex(
-				x => x['nomLaposte'] == explanation.nodeValue,
-				taux_versement_transport
-			)
+			? findIndex(
+					x => x['nomLaposte'] == explanation.nodeValue,
+					taux_versement_transport
+				)
 			: 0
 	let indexOffset = 8
 
@@ -890,12 +935,13 @@ export let mecanismSelection = (recurse, k, v) => {
 					rowCount={taux_versement_transport.length}
 					scrollToIndex={indexOf(explanation) + indexOffset}
 					rowStyle={({ index }) =>
-						index == indexOf(explanation) ? { fontWeight: 'bold' } : {}}
+						index == indexOf(explanation) ? { fontWeight: 'bold' } : {}
+					}
 					rowGetter={({ index }) => {
 						// transformation de données un peu crade du fichier taux.json qui gagnerait à être un CSV
 						let line = taux_versement_transport[index],
 							getLastTaux = dataTargetName => {
-								let lastTaux = R.values(R.path([dataTargetName, 'taux'], line))
+								let lastTaux = values(path([dataTargetName, 'taux'], line))
 								return (lastTaux && lastTaux.length && lastTaux[0]) || 0
 							}
 						return {
@@ -919,5 +965,5 @@ export let mecanismSelection = (recurse, k, v) => {
 }
 
 export let mecanismError = (recurse, k, v) => {
-	throw 'Le mécanisme \'' + k + '\' est inconnu !' + v
+	throw "Le mécanisme '" + k + "' est inconnu !" + v
 }

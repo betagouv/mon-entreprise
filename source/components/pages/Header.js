@@ -10,8 +10,8 @@ export default class Header extends Component {
 		this.setState({ mobileNavVisible: !this.state.mobileNavVisible })
 
 	render() {
-		let displayHeader = !['/simu/', '/regle/'].find(
-			t => window.location.href.toString().includes(t)
+		let displayHeader = !['/simu/', '/regle/'].find(t =>
+			window.location.href.toString().includes(t)
 		)
 		if (!displayHeader) return null
 
@@ -48,7 +48,7 @@ export default class Header extends Component {
 	}
 }
 
-let Links = ({toggle}) => (
+let Links = ({ toggle }) => (
 	<div id="links" onClick={toggle}>
 		<Link className="menu-item" to="/intégrer">
 			Intégrer le module

@@ -1,20 +1,18 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import marked from 'Engine/marked'
-import {rules, findRuleByDottedName} from 'Engine/rules'
-import {EXPLAIN_VARIABLE} from '../actions'
+import { rules, findRuleByDottedName } from 'Engine/rules'
+import { EXPLAIN_VARIABLE } from '../actions'
 
 import References from './rule/References'
 import './Aide.css'
-import {capitalise0} from '../utils'
+import { capitalise0 } from '../utils'
 
 @connect(
-	state =>
-		({explained: state.explainedVariable}),
+	state => ({ explained: state.explainedVariable }),
 	dispatch => ({
-		stopExplaining: () => dispatch(
-			{type: EXPLAIN_VARIABLE})
+		stopExplaining: () => dispatch({ type: EXPLAIN_VARIABLE })
 	})
 )
 export default class Aide extends Component {
@@ -22,7 +20,7 @@ export default class Aide extends Component {
 		return marked(`### ${term} \n\n${explanation}`)
 	}
 	render() {
-		let {explained, stopExplaining} = this.props
+		let { explained, stopExplaining } = this.props
 
 		if (!explained) return <section id="helpWrapper" />
 
@@ -35,12 +33,12 @@ export default class Aide extends Component {
 		return (
 			<div id="helpWrapper" className="active">
 				<section id="help">
-					<i
-						className="fa fa-times-circle"
-						onClick={stopExplaining} ></i>
+					<i className="fa fa-times-circle" onClick={stopExplaining} />
 					<p
-						dangerouslySetInnerHTML={{__html: this.renderExplanationMarkdown(text, rule.title)}}>
-					</p>
+						dangerouslySetInnerHTML={{
+							__html: this.renderExplanationMarkdown(text, rule.title)
+						}}
+					/>
 					{/* { possibilities &&
 						<p>
 							{possibilities.length} possibilités :
@@ -51,10 +49,12 @@ export default class Aide extends Component {
 							</ul>
 						</p>
 					} */}
-					{refs && <div>
-						<p>Pour en savoir plus: </p>
-						<References refs={refs} />
-					</div>}
+					{refs && (
+						<div>
+							<p>Pour en savoir plus: </p>
+							<References refs={refs} />
+						</div>
+					)}
 				</section>
 			</div>
 		)

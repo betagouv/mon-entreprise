@@ -35,7 +35,7 @@ let nombre = {
 
 let texte = {
 	human: value => value,
-	validator: {test: () => true}
+	validator: { test: () => true }
 }
 
 export default {

@@ -24,8 +24,7 @@ new WebpackDevServer(webpack(config), {
 		chunks: false,
 		chunkModules: false
 	}
-}).listen(PORT, '0.0.0.0', function (err) {
-	if (err)
-		console.log(err) //eslint-disable-line no-console
-	console.log('Bonjour ! Je vous sers sur localhost:'+PORT) //eslint-disable-line no-console
+}).listen(PORT, '0.0.0.0', function(err) {
+	if (err) console.log(err) //eslint-disable-line no-console
+	console.log('Bonjour ! Je vous sers sur localhost:' + PORT) //eslint-disable-line no-console
 })

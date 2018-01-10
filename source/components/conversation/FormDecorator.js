@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Field, change, formValueSelector } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
-import R from 'ramda'
+import { path } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
 
@@ -21,11 +21,13 @@ export var FormDecorator = formType => RenderField =>
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
 			themeColours: state.themeColours,
-			getCurrentInversion: dottedName => formValueSelector('conversation')(state, 'inversions.' + dottedName)
+			getCurrentInversion: dottedName =>
+				formValueSelector('conversation')(state, 'inversions.' + dottedName)
 		}),
 		dispatch => ({
 			stepAction: (name, step) => dispatch(stepAction(name, step)),
-			setFormValue: (field, value) => dispatch(change('conversation', field, value))
+			setFormValue: (field, value) =>
+				dispatch(change('conversation', field, value))
 		})
 	)
 	class extends Component {
@@ -85,10 +87,8 @@ export var FormDecorator = formType => RenderField =>
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
-
 			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
 				validate = test && (v => (v && test(pre(v)) ? undefined : error))
-
 
 			let question = (
 				<h1
@@ -99,7 +99,7 @@ export var FormDecorator = formType => RenderField =>
 						maxWidth: wideQuestion ? '95%' : ''
 					}}
 				>
-					{R.path(['props', 'step', 'inversion', 'question'])(this) ||
+					{path(['props', 'step', 'inversion', 'question'])(this) ||
 						this.props.step.question}
 				</h1>
 			)
@@ -117,7 +117,7 @@ export var FormDecorator = formType => RenderField =>
 								dangerouslySetInnerHTML={{ __html: subquestion }}
 							/>
 						</div>
-						{defaultValue && (
+						{defaultValue != null && (
 							<IgnoreStepButton
 								action={() => {
 									setFormValue(fieldName, '' + defaultValue)
@@ -154,9 +154,7 @@ export var FormDecorator = formType => RenderField =>
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
-						<span className="title">
-							{capitalise0(fieldTitle || title)}
-						</span>
+						<span className="title">{capitalise0(fieldTitle || title)}</span>
 						<span className="answer">{answer}</span>
 					</span>
 					<button
