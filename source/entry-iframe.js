@@ -4,7 +4,9 @@ let script = document.getElementById('script-simulateur-embauche'),
 	src = script.getAttribute('src')
 
 document.write(`
-<iframe id="SGMAPembauche" src="${src.split('dist')[0]}iframe.html?couleur=${couleur}" width="100%" style="border: none;" scrolling="no"></iframe>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.5/iframeResizer.min.js"></script>
-<script type="text/javascript">iFrameResize(null, '#SGMAPembauche')</script>
+<iframe id="simulateurEmbauche" src="${
+	src.split('dist')[0]
+}iframe.html?couleur=${couleur}" style="border: none; width: 100%" scrolling="no"></iframe>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js"></script>
+<script type="text/javascript">iFrameResize(null, '#simulateurEmbauche')</script>
 `)
