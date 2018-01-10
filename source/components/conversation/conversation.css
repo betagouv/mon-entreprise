@@ -1,5 +1,3 @@
-
-
 #myScrollToElement {
 	min-height: 55%;
 	padding: 1em;
@@ -10,7 +8,6 @@
 	min-height: 0;
 }
 
-
 #foldedSteps {
 	padding: 1em;
 	margin-bottom: 6em;
@@ -18,21 +15,14 @@
 
 #foldedSteps .header button {
 	font-size: 80%;
-	color: #2975D1;
 	border: none;
 	display: block;
 	margin: 0 auto;
 }
 #foldedSteps .header button i {
-	margin-right: .3em;
-	vertical-align: top
+	margin-right: 0.3em;
+	vertical-align: top;
 }
-
-
-
-
-
-
 
 .step {
 	position: relative;
@@ -53,7 +43,7 @@
 
 .form-group.explicit > .group-content {
 	margin-left: 1em;
-	padding: .8em 0 0 1.3em;
+	padding: 0.8em 0 0 1.3em;
 }
 
 .form-group.folded .group-content {
@@ -61,7 +51,7 @@
 }
 
 .form-group .header {
-	margin: 4em 0 .6em 0;
+	margin: 4em 0 0.6em 0;
 }
 
 .group-items {
@@ -78,7 +68,7 @@
 
 .group-animated-enter.group-animated-enter-active {
 	opacity: 1;
- 	transition: opacity 300ms ease-in;
+	transition: opacity 300ms ease-in;
 }
 
 .group-animated-leave {
@@ -90,7 +80,7 @@
 	opacity: 0;
 	transform: scaleY(0);
 	transform-origin: top;
-  transition: opacity 200ms ease, transform 200ms ease-out;
+	transition: opacity 200ms ease, transform 200ms ease-out;
 }
 
 /* END Group items animation */
@@ -107,12 +97,12 @@
 .group-title h1 {
 	font-size: 100%;
 	font-weight: 400;
-	padding: .5em .8em;
+	padding: 0.5em 0.8em;
 	margin: 0;
 	border-radius: 1em;
 	position: relative;
 	width: 100%;
-	border: 1px solid rgba(0,0,0,.3);
+	border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .step-question {
@@ -132,7 +122,7 @@
 	display: inline-block;
 	font-size: 110%;
 	font-weight: 600;
-	padding: .6em 1em;
+	padding: 0.6em 1em;
 	margin: 0;
 	border-radius: 1.4em;
 	position: relative;
@@ -146,7 +136,7 @@
 }
 
 .step-subquestion {
-	margin: .3em;
+	margin: 0.3em;
 	font-style: italic;
 	font-size: 80%;
 	margin-left: 1em;
@@ -161,7 +151,7 @@
 .help-button {
 	display: inline-block;
 	float: right;
-	margin-top: .5em;
+	margin-top: 0.5em;
 	line-height: 1.1em;
 	border-radius: 1em;
 	font-size: 90%;
@@ -172,8 +162,8 @@
 	cursor: pointer;
 	color: #aaa;
 	text-transform: uppercase;
-  font-size: 60%;
-  padding: .25em .6em;
+	font-size: 60%;
+	padding: 0.25em 0.6em;
 }
 .help-button:hover {
 	color: #333;
@@ -181,7 +171,7 @@
 }
 
 .step fieldset {
-	margin: .8em 0;
+	margin: 0.8em 0;
 }
 
 .step fieldset ul {
@@ -195,13 +185,13 @@
 
 .step.question .variant > ul {
 	border-left: 1px dashed #ccc;
-	margin-top: .6em;
-	padding-left: .6em;
-	padding-top: .6em;
+	margin-top: 0.6em;
+	padding-left: 0.6em;
+	padding-top: 0.6em;
 	margin-left: 1em;
 }
 .step.question .variant > div {
-	padding-left: .6em;
+	padding-left: 0.6em;
 	font-weight: 600;
 	font-style: italic;
 }
@@ -209,14 +199,14 @@
 .step.question fieldset > div {
 	display: flex;
 	justify-content: flex-end;
-  flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .step.question fieldset span {
-	white-space: nowrap
+	white-space: nowrap;
 }
 .step.question .variantLeaf {
-	margin-bottom: .6em;
+	margin-bottom: 0.6em;
 }
 .step.question .variant .variantLeaf {
 	display: inline-block;
@@ -225,30 +215,28 @@
 	font-weight: bold;
 }
 .step label.radio,
-/* A resume of what's been answered */
-.resume {
+/* A resume of what's been answered */ .resume {
 	text-align: center;
 	margin-left: 1em;
 	margin-top: 2em;
 	cursor: pointer;
 	background: none;
-	padding: 0 .8em;
+	padding: 0 0.8em;
 	line-height: 1.8em;
 	border-radius: 1em;
 }
 
 .step label.radio {
 	text-align: center;
-  margin-left: 1em;
-  margin-top: 1em;
-  cursor: pointer;
-  padding: .25em .85em;
-  line-height: 1.8em;
-  border-radius: 1em;
+	margin-left: 1em;
+	margin-top: 1em;
+	cursor: pointer;
+	padding: 0.25em 0.85em;
+	line-height: 1.8em;
+	border-radius: 1em;
 	font-weight: 600;
 	font-size: 105%;
 }
-
 
 .resume {
 	transition: 1s display;
@@ -256,41 +244,41 @@
 
 .answer-ignored {
 	font-size: 80%;
-	opacity: .8;
-	margin-left: .4em;
+	opacity: 0.8;
+	margin-left: 0.4em;
 	vertical-align: middle;
 }
 
-.step input[type=radio] {
-	display : none;
+.step input[type='radio'] {
+	display: none;
 }
 
-.step input[type=text] {
+.step input[type='text'] {
 	border-bottom: 1px solid;
 	display: inline-block;
 	line-height: 1.6em;
 	height: 1.6em; /* IE 11 needs this */
 	font-size: 100%;
 	padding: 0;
-	padding-right: .4em;
+	padding-right: 0.4em;
 	width: 8em;
 	text-align: right;
-	padding-left: .2em;
+	padding-left: 0.2em;
 }
 
 /* Remove IE's clear button the appears before our suffix */
 .step input::-ms-clear {
-  width : 0;
-  height: 0;
+	width: 0;
+	height: 0;
 }
 
 .step input::placeholder {
-   font-style: italic;
+	font-style: italic;
 }
 
 .step input.suffixed {
 	padding: 0.1em 1em 0;
-	border-radius: .2em;
+	border-radius: 0.2em;
 	font-size: 120%;
 }
 
@@ -301,13 +289,13 @@
 .step label.suffix {
 	font-size: 110%;
 	vertical-align: baseline;
-	transition: color .1s;
-	margin: 0 1.5em .1em 0.6em;
+	transition: color 0.1s;
+	margin: 0 1.5em 0.1em 0.6em;
 }
 
-.step input[type=text]:focus,
-.step input[type=number]:focus {
-	border-color: #D0D4D8;
+.step input[type='text']:focus,
+.step input[type='number']:focus {
+	border-color: #d0d4d8;
 	outline: none;
 }
 
@@ -320,7 +308,7 @@
 }
 
 .inputPrefix select {
-	font-size: 120%
+	font-size: 120%;
 }
 
 .step .inputSuggestions {
@@ -331,7 +319,7 @@
 	color: #222;
 }
 .step .inputSuggestions ul {
-  padding-left: 0;
+	padding-left: 0;
 	list-style: none;
 	display: inline-flex;
 	align-items: flex-end;
@@ -339,7 +327,7 @@
 .step .inputSuggestions li {
 }
 .step .inputSuggestions a {
-	padding: .1em .9em;
+	padding: 0.1em 0.9em;
 	font-weight: 600;
 }
 .step .inputSuggestions a:hover {
@@ -382,20 +370,20 @@
 }
 
 .step .send {
-	padding: 0 .1em 0 .5em;
+	padding: 0 0.1em 0 0.5em;
 	background: none;
 	cursor: pointer;
 	border: 1px solid;
-	border-radius: .2em;
+	border-radius: 0.2em;
 	line-height: 0em;
 }
 
 .step .send:disabled {
-	opacity: 0.2
+	opacity: 0.2;
 }
 
 .step .send .icon {
-	margin-left: .3em;
+	margin-left: 0.3em;
 	font-size: 135%;
 	vertical-align: middle;
 }
@@ -410,12 +398,11 @@
 	float: right;
 }
 
-
 .step-input-error {
 	position: absolute;
 	right: 0;
 	bottom: -1.5em;
-	font-size: .8em;
+	font-size: 0.8em;
 	font-style: italic;
 	color: #c0392b;
 	font-weight: 600;
@@ -428,22 +415,21 @@
 
 #share-link {
 	color: white;
-	padding: .3em .3em;
+	padding: 0.3em 0.3em;
 	display: inline-block;
-	margin-top: .3em;
-	border-radius: .25em;
+	margin-top: 0.3em;
+	border-radius: 0.25em;
 }
 #share-icon {
 	font-size: 200%;
 	vertical-align: middle;
 	line-height: 0em;
-	margin-left: .3em;
+	margin-left: 0.3em;
 }
 
 .select-answer.commune .Select {
 	width: 50%;
 }
-
 
 .info-zone {
 	font-size: 65%;
@@ -458,7 +444,7 @@
 }
 
 .input-tip p {
-	margin: .1em;
+	margin: 0.1em;
 }
 
 #show-advanced {
@@ -500,35 +486,31 @@ for the appearing element to appear without stacking up below the first one */
 }
 
 .user-next-action-animation-leave {
-  opacity: 1;
+	opacity: 1;
 }
 
 .user-next-action-animation-leave.user-next-action-animation-leave-active {
-  opacity: 0;
-  transition: opacity 700ms ease;
+	opacity: 0;
+	transition: opacity 700ms ease;
 }
 
-
-.foldedQuestion  {
+.foldedQuestion {
 	margin-left: 1.2em;
 }
 
 .foldedQuestion .edit {
 	vertical-align: middle;
-	margin-left: .5em;
+	margin-left: 0.5em;
 	border: none;
 	font-size: 80%;
 }
 
 .foldedQuestion .borderWrapper {
-	padding: .1em 0;
+	padding: 0.1em 0;
 	display: inline-block;
 	width: calc(100% - 6em);
-	border-bottom: 1px solid #eee
+	border-bottom: 1px solid #eee;
 }
-
-
-
 
 .keyIcon {
 	position: absolute;
@@ -537,14 +519,13 @@ for the appearing element to appear without stacking up below the first one */
 	font-weight: bold;
 	background: #ddd;
 	color: white;
-	margin-left: .6em;
-	padding: .5em .4em;
-	border-radius: .2em;
-	transition: .2s opacity;
+	margin-left: 0.6em;
+	padding: 0.5em 0.4em;
+	border-radius: 0.2em;
+	transition: 0.2s opacity;
 }
 
-
-@media screen and (max-width:860px) {
+@media screen and (max-width: 860px) {
 	.keyIcon {
 		display: none;
 	}

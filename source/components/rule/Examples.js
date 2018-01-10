@@ -39,12 +39,20 @@ export let runExamples = (examples, rule, parsedRules) =>
 
 @connect(state => ({
 	situationGate: state.situationGate,
-	parsedRules: state.parsedRules
+	parsedRules: state.parsedRules,
+	colour: state.themeColours.colour
 }))
 export default class Examples extends Component {
 	render() {
 		let focusedExample = path(['focusedExample', 'nom'])(this.props),
-			{ inject, situationExists, showValues, rule, parsedRules } = this.props,
+			{
+				inject,
+				situationExists,
+				showValues,
+				rule,
+				parsedRules,
+				colour
+			} = this.props,
 			{ exemples = [] } = rule,
 			examples = runExamples(exemples, rule, parsedRules)
 
@@ -99,7 +107,11 @@ export default class Examples extends Component {
 				{situationExists &&
 					focusedExample && (
 						<div>
-							<button id="injectSituation" onClick={() => inject()}>
+							<button
+								id="injectSituation"
+								onClick={() => inject()}
+								style={{ background: colour }}
+							>
 								Revenir à votre situation
 							</button>
 						</div>

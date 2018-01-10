@@ -3,8 +3,8 @@
 	vertical-align: top;
 }
 #integration i {
-	margin-right: .6em;
-	color: #3C4963;
+	margin-right: 0.6em;
+	color: #3c4963;
 }
 #integration code {
 	display: inline-block;
@@ -34,7 +34,7 @@
 }
 
 #scriptColor {
-	color: #4a89dc;
+	color: #2975d1;
 }
 
 section#integrations a {

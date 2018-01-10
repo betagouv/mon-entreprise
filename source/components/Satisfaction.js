@@ -3,12 +3,12 @@ import HoverDecorator from './HoverDecorator'
 import 'whatwg-fetch'
 import { connect } from 'react-redux'
 import './Satisfaction.css'
-import classNames from 'classnames'
 
 import ReactPiwik from './Tracker'
 
 @connect(state => ({
-	sessionId: state.sessionId
+	sessionId: state.sessionId,
+	textColourOnWhite: state.themeColours.textColourOnWhite
 }))
 export default class Satisfaction extends Component {
 	state = {
@@ -64,8 +64,18 @@ export default class Satisfaction extends Component {
 				<div id="satisfaction">
 					<p>Vous êtes satisfait du simulateur ?</p>
 					<p>
-						<Smiley text=":)" hoverColor="#16a085" clicked={onSmileyClick} />
-						<Smiley text=":|" hoverColor="#f39c12" clicked={onSmileyClick} />
+						<Smiley
+							text=":)"
+							hoverColor="#16a085"
+							themeColour={this.props.textColourOnWhite}
+							clicked={onSmileyClick}
+						/>
+						<Smiley
+							text=":|"
+							hoverColor="#f39c12"
+							themeColour={this.props.textColourOnWhite}
+							clicked={onSmileyClick}
+						/>
 					</p>
 				</div>
 			)
@@ -96,11 +106,17 @@ export default class Satisfaction extends Component {
 				{!messageSent && feedback}
 				<button
 					id="sendMessage"
+					style={{ color: this.props.textColourOnWhite }}
 					disabled={!validMessage || messageSent}
 					onClick={() => this.sendSatisfaction()}
 				>
 					{messageSent ? (
-						<i id="messageSent" className="fa fa-check" aria-hidden="true" />
+						<i
+							id="messageSent"
+							className="fa fa-check"
+							aria-hidden="true"
+							style={{ color: this.props.textColourOnWhite }}
+						/>
 					) : (
 						<span>
 							<i className="fa fa-paper-plane" aria-hidden="true" />
@@ -143,7 +159,10 @@ export class Smiley extends Component {
 								color: 'white',
 								borderColor: 'transparent'
 							}
-						: {}
+						: {
+								color: this.props.themeColour,
+								borderColor: this.props.themeColour
+							}
 				}
 			>
 				{this.props.text}

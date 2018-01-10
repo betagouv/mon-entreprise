@@ -1,4 +1,3 @@
-
 #resultsZone {
 	min-height: 49%;
 	display: flex;
@@ -18,16 +17,15 @@
 
 #results {
 	width: 100%;
-	padding: .4em 1.4em;
+	padding: 0.4em 1.4em;
 }
 #resultsContent {
 	position: relative;
 	margin: 0 auto;
-	padding: .3em 0 1em;
+	padding: 0.3em 0 1em;
 	min-height: 4em;
 	width: 100%;
 	max-width: 45em;
-	background: #2975D1;
 	color: white;
 	box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.25);
 	display: flex;
@@ -54,9 +52,7 @@
 	align-items: center;
 	flex-wrap: wrap;
 	margin: 0 auto;
-
 }
-
 
 #results li {
 	margin: 0 1.2em;

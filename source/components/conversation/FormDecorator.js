@@ -162,7 +162,7 @@ export var FormDecorator = formType => RenderField =>
 						onClick={() => stepAction('unfold', dottedName)}
 						style={{ color: themeColours.textColourOnWhite }}
 					>
-						<i className="fa fa-pencil-square-o" aria-hidden="true" />
+						<i className="fa fa-pencil" aria-hidden="true" />
 						{'  '}
 						<span>Modifier</span>
 					</button>

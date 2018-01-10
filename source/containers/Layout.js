@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './Layout.css'
 import './reset.css'
-import './ribbon.css'
 
 import { Link, Route, Router, Switch, Redirect } from 'react-router-dom'
 
