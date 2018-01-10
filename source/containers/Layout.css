@@ -6,10 +6,11 @@ body {
 	font-family: 'Open Sans';
 	margin: 0;
 	height: 100%;
-	font-size: calc(8px + .35vw)
+	font-size: calc(8px + 0.35vw);
 }
-#js, #js>div {
-	height: 100%
+#js,
+#js > div {
+	height: 100%;
 }
 
 a {
@@ -18,19 +19,18 @@ a {
 }
 
 h1 {
-	margin: 0 .1em;
+	margin: 0 0.1em;
 	font-weight: 400;
 }
-
 
 #page-type {
 	display: inline-block;
 	position: fixed;
 	right: 3%;
 	top: 9%;
-	opacity: .4;
+	opacity: 0.4;
 	color: #333350;
-  opacity: 0.8;
+	opacity: 0.8;
 }
 
 #page-type span {
@@ -38,7 +38,6 @@ h1 {
 	font-size: 100%;
 	font-weight: bold;
 }
-
 
 .blueButton {
 	color: white;
@@ -51,7 +50,7 @@ h1 {
 	border: none;
 	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);
 	opacity: 0.95;
-	border-radius: .2em;
+	border-radius: 0.2em;
 	cursor: pointer;
 }
 .blueButton:hover {

@@ -1,43 +1,42 @@
-
 #ribbon {
 }
 #ribbon a {
-    display: block;
-    background: #333350;
-    color: #fff;
-    text-decoration: none;
-    font-family: arial, sans-serif;
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 40px;
-    font-size: .8rem;
-    line-height: .6rem;
-    position: relative;
-    transition: 0.5s;
-    box-shadow: -1px 1px 16px 3px rgba(0, 0, 0, 0.2)
+	display: block;
+	background: #333350;
+	color: #fff;
+	text-decoration: none;
+	font-family: arial, sans-serif;
+	text-align: center;
+	font-weight: bold;
+	padding: 5px 40px;
+	font-size: 0.8rem;
+	line-height: 0.6rem;
+	position: relative;
+	transition: 0.5s;
+	box-shadow: -1px 1px 16px 3px rgba(0, 0, 0, 0.2);
 }
 #ribbon a:hover {
-    background: #4A89DC;
-    color: #fff;
+	background: #4a89dc;
+	color: #fff;
 }
-@media screen and (min-width:800px) {
-    #ribbon {
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      width: 200px;
-      overflow: hidden;
-      height: 200px;
-      z-index: 9999;
-    }
-    #ribbon a {
-      font-size: 1rem;
-      line-height: 1.6rem;
-      width: 150px;
-      position: absolute;
-      top: 35px;
-      left: -60px;
-      transform: rotate(-45deg);
-    }
+@media screen and (min-width: 800px) {
+	#ribbon {
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 200px;
+		overflow: hidden;
+		height: 200px;
+		z-index: 9999;
+	}
+	#ribbon a {
+		font-size: 1rem;
+		line-height: 1.6rem;
+		width: 250px;
+		position: absolute;
+		top: 35px;
+		left: -60px;
+		transform: rotate(-45deg);
+	}
 }

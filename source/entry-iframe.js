@@ -6,7 +6,5 @@ let script = document.getElementById('script-simulateur-embauche'),
 document.write(`
 <iframe id="simulateurEmbauche" src="${
 	src.split('dist')[0]
-}iframe.html?couleur=${couleur}" style="border: none; width: 100%" scrolling="no"></iframe>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js"></script>
-<script type="text/javascript">iFrameResize(null, '#simulateurEmbauche')</script>
+}iframe.html?couleur=${couleur}" style="border: none; width: 60em; display: block; margin: 0 auto; height: 45em" scrolling="no"></iframe>
 `)
