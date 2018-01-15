@@ -11,7 +11,8 @@ import {
 	pathOr,
 	toPairs,
 	keys,
-	head
+	head,
+	find
 } from 'ramda'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
