@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Layout.css'
 import './reset.css'
 
-import { Link, Route, Router, Switch, Redirect } from 'react-router-dom'
+import { Route, Router, Switch, Redirect } from 'react-router-dom'
 
 import Home from 'Components/pages/Home'
 import RulePage from 'Components/RulePage'

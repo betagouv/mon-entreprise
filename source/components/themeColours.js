@@ -1,12 +1,8 @@
 import findContrastedTextColour from './findContrastedTextColour'
+import { getJsScriptAttribute } from '../utils'
 
 export default forcedThemeColour => {
-	let scriptColour = () => {
-			let script =
-				document.currentScript ||
-				[...document.getElementsByTagName('script')].pop()
-			return script && script.getAttribute('couleur')
-		},
+	let scriptColour = getJsScriptAttribute('couleur'),
 		// Use the default theme colour if the host page hasn't made a choice
 		defaultColour = '#2975D1',
 		colour = forcedThemeColour || scriptColour() || defaultColour,

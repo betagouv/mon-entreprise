@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
+import { getJsScriptAttribute } from '../../utils'
 
 export default class Header extends Component {
 	state = {
@@ -14,6 +15,8 @@ export default class Header extends Component {
 			window.location.href.toString().includes(t)
 		)
 		if (!displayHeader) return null
+
+		if (getJsScriptAttribute('iframe')()) return null
 
 		return (
 			<div id="header">
