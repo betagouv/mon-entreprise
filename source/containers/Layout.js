@@ -49,6 +49,7 @@ export default class Layout extends Component {
 						<Redirect from="/simu/" to="/" />
 						<Redirect from="/simulateur" to="/" />
 						<Redirect from="/iframe.html" to="/" />
+						<Redirect from="/couleur.html" to="/" />
 						<Route component={Route404} />
 					</Switch>
 				</>

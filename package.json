@@ -25,6 +25,7 @@
 		"ramda": "^0.25.0",
 		"react": "^16.2.0",
 		"react-addons-css-transition-group": "^15.6.2",
+		"react-color": "^2.13.8",
 		"react-dom": "^16.2.0",
 		"react-helmet": "^5.2.0",
 		"react-redux": "^5.0.6",
