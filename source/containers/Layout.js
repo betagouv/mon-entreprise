@@ -29,7 +29,6 @@ export default class Layout extends Component {
 	render() {
 		// track the initial pageview
 		ReactPiwik.push(['trackPageView'])
-
 		return (
 			<Router history={piwik.connectToHistory(this.history)}>
 				<>
@@ -48,7 +47,6 @@ export default class Layout extends Component {
 						<Route path="/contribuer" component={Contribution} />
 						<Redirect from="/simu/" to="/" />
 						<Redirect from="/simulateur" to="/" />
-						<Redirect from="/iframe.html" to="/" />
 						<Redirect from="/couleur.html" to="/" />
 						<Route component={Route404} />
 					</Switch>

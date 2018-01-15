@@ -5,9 +5,18 @@ import App from './containers/App'
 import reducers from './reducers'
 import DevTools from './DevTools'
 import { AppContainer } from 'react-hot-loader'
+import computeThemeColours from './components/themeColours'
 
-let store = createStore(reducers, compose(DevTools.instrument()))
+let url = window.location.href.toString(),
+	urlColour = url.includes('couleur=')
+let initialStore = {
+	iframe: url.includes('iframe'),
+	themeColours: computeThemeColours(
+		urlColour && url.split('couleur=')[1].split('&')[0]
+	)
+}
 
+let store = createStore(reducers, initialStore, compose(DevTools.instrument()))
 let anchor = document.querySelector('#js')
 
 render(<App store={store} />, anchor)

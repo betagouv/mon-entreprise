@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
-import { getJsScriptAttribute } from '../../utils'
 import screenfull from 'screenfull'
+import { connect } from 'react-redux'
 
+@connect(state => ({
+	iframe: state.iframe
+}))
 export default class Header extends Component {
 	state = {
 		mobileNavVisible: false

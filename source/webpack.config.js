@@ -14,7 +14,8 @@ module.exports = {
 					'react-hot-loader/patch',
 					'./source/entry.js'
 				],
-		simulateur: './source/entry-iframe.js',
+		// le nom "simulateur" est là pour des raisons historiques
+		simulateur: './source/iframe-script.js',
 		'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
 	},
 	output: {
