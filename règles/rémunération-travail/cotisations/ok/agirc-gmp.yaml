@@ -8,8 +8,7 @@
     Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant pour
     atteindre le nombre minimum de 120 points Agirc,
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
-  référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
-
+  
   non applicable si: ≠ statut cadre
 
   formule:
@@ -18,11 +17,11 @@
         - attributs:
             dû par: employeur
           cible: AGIRC (employeur)
-          montant: 43.67 * quotité de travail
+          montant: 45.11 * quotité de travail
         - attributs:
             dû par: salarié
           cible: AGIRC (salarié)
-          montant: 26.71 * quotité de travail
+          montant: 27.60 * quotité de travail
 
   note: Le mécanisme de complément de la cotisation AGIRC nous évite d'avoir à utiliser le "salaire charnière"
 
@@ -30,3 +29,7 @@
   # - harmoniser la syntaxe de ce 'complément' avec les systèmes de réduction de cotisation. C'est pareil avec une addition finalement
   # - on pourrait aussi se dire que cette formule est un complément de AGIRC,
   # donc que les conditions d'applicabilité d'AGIRC n'ont pas à être répétées
+
+  références: 
+    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+    circulaire 2017 -07-DT: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
