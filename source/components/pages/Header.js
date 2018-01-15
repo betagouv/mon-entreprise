@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
 import { getJsScriptAttribute } from '../../utils'
+import screenfull from 'screenfull'
 
 export default class Header extends Component {
 	state = {
@@ -11,12 +12,18 @@ export default class Header extends Component {
 		this.setState({ mobileNavVisible: !this.state.mobileNavVisible })
 
 	render() {
+		if (this.props.iframe)
+			return screenfull.enabled ? (
+				<div id="iframeFullscreen" onClick={() => screenfull.toggle()}>
+					Mode plein écran
+					<i className="fa fa-arrows-alt" aria-hidden="true" />
+				</div>
+			) : null
+
 		let displayHeader = !['/simu/', '/regle/'].find(t =>
 			window.location.href.toString().includes(t)
 		)
 		if (!displayHeader) return null
-
-		if (getJsScriptAttribute('iframe')()) return null
 
 		return (
 			<div id="header">
