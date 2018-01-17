@@ -75,11 +75,11 @@ export var FormDecorator = formType => RenderField =>
 			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
 			des balises html, <input> dans notre cas.
 			*/
+			//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 			let submit = () => setTimeout(() => stepAction('fold', fieldName), 1),
 				stepProps = {
 					...this.props.step,
 					inverted,
-					//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 					submit,
 					setFormValue: (value, name = fieldName) => setFormValue(name, value)
 				}
