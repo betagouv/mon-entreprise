@@ -1,4 +1,4 @@
-import { isEmpty, path, contains } from 'ramda'
+import { isEmpty, path, contains, propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -11,6 +11,7 @@ import ProgressTip from 'Components/ProgressTip'
 @withRouter
 @connect(state => ({
 	analysis: state.analysis,
+	oldAnalysis: state.oldAnalysis,
 	targetName: state.targetName,
 	conversationStarted: !isEmpty(state.form),
 	conversationFirstAnswer: path(['form', 'conversation', 'values'])(state),
@@ -21,6 +22,7 @@ export default class Results extends Component {
 	render() {
 		let {
 			analysis,
+			oldAnalysis,
 			targetName,
 			conversationStarted,
 			conversationFirstAnswer,
@@ -30,7 +32,14 @@ export default class Results extends Component {
 
 		if (!analysis) return null
 
-		let { targets } = analysis
+		let targets = oldAnalysis
+			? oldAnalysis.targets.map(t => {
+					let newTargetValue = analysis.targets.find(
+						propEq('dottedName', t.dottedName)
+					).nodeValue
+					return { ...t, newValue: newTargetValue }
+				})
+			: analysis.targets
 
 		let onRulePage = contains('/regle/')(location.pathname)
 		return (
