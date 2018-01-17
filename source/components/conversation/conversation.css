@@ -315,7 +315,7 @@
 	font-style: italic;
 	float: right;
 	clear: right;
-	font-size: 70%;
+	font-size: 75%;
 	color: #222;
 }
 .step .inputSuggestions ul {
@@ -326,11 +326,12 @@
 }
 .step .inputSuggestions li {
 }
-.step .inputSuggestions a {
+.step .inputSuggestions span {
 	padding: 0.1em 0.9em;
 	font-weight: 600;
+	cursor: pointer;
 }
-.step .inputSuggestions a:hover {
+.step .inputSuggestions span:hover {
 	text-decoration: none;
 }
 
