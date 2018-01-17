@@ -1,10 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { compose, createStore } from 'redux'
+import { compose, createStore, applyMiddleware } from 'redux'
 import App from './containers/App'
 import reducers from './reducers'
 import DevTools from './DevTools'
 import { AppContainer } from 'react-hot-loader'
+import debounceFormChangeActions from './debounceFormChangeActions'
 import computeThemeColours from './components/themeColours'
 import { getIframeOption, getUrl } from './utils'
 
@@ -13,7 +14,15 @@ let initialStore = {
 	themeColours: computeThemeColours(getIframeOption('couleur'))
 }
 
-let store = createStore(reducers, initialStore, compose(DevTools.instrument()))
+let createStoreWithMiddleware = applyMiddleware(debounceFormChangeActions())(
+	createStore
+)
+
+let store = createStoreWithMiddleware(
+	reducers,
+	initialStore,
+	compose(DevTools.instrument())
+)
 let anchor = document.querySelector('#js')
 
 render(<App store={store} />, anchor)
