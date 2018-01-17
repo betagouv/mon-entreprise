@@ -4,7 +4,7 @@ import { answer, answered } from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
 import { pipe, split, reverse, reduce, is } from 'ramda'
-
+import SendButton from './SendButton'
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
 	- nom: motif CDD # La racine, unique, qui formera la Question. Ses enfants sont les choix possibles
@@ -21,26 +21,33 @@ import { pipe, split, reverse, reduce, is } from 'ramda'
 
 */
 
-let dottedNameToObject = pipe(
-	split(' . '),
-	reverse,
-	reduce((memo, next) => ({ [next]: memo }), 'oui')
-)
-
 // FormDecorator permet de factoriser du code partagé par les différents types de saisie,
 // dont Question est un example
 @FormDecorator('question')
 export default class Question extends Component {
 	render() {
-		let { stepProps: { choices } } = this.props
+		let {
+			stepProps: { choices },
+			themeColours,
+			stepProps: { submit }
+		} = this.props
+		let choiceElements = is(Array)(choices)
+			? this.renderBinaryQuestion()
+			: this.renderChildren(choices)
 
-		if (is(Array)(choices)) return this.renderBinaryQuestion()
-		else return this.renderChildren(choices)
+		return (
+			<>
+				{choiceElements}
+				<SendButton
+					{...{ disabled: false, themeColours, error: false, submit }}
+				/>
+			</>
+		)
 	}
 	renderBinaryQuestion() {
 		let {
 			input, // vient de redux-form
-			stepProps: { submit, choices },
+			stepProps: { submit, choices, setFormValue },
 			themeColours
 		} = this.props
 
@@ -49,7 +56,7 @@ export default class Question extends Component {
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
-						{...{ value, label, input, submit, themeColours }}
+						{...{ value, label, input, submit, themeColours, setFormValue }}
 					/>
 				))}
 			</ul>
@@ -62,7 +69,7 @@ export default class Question extends Component {
 				themeColours
 			} = this.props,
 			{ name } = input,
-			{ submit } = stepProps,
+			{ submit, setFormValue } = stepProps,
 			// seront stockées ainsi dans le state :
 			// [parent object path]: dotted name relative to parent
 			relativeDottedName = radioDottedName =>
@@ -79,7 +86,8 @@ export default class Question extends Component {
 								input,
 								submit,
 								themeColours,
-								dottedName: null
+								dottedName: null,
+								setFormValue
 							}}
 						/>
 					</li>
@@ -101,7 +109,8 @@ export default class Question extends Component {
 											dottedName,
 											input,
 											submit,
-											themeColours
+											themeColours,
+											setFormValue
 										}}
 									/>
 								</li>
@@ -121,7 +130,7 @@ let RadioLabel = props => (
 @HoverDecorator
 class RadioLabelContent extends Component {
 	render() {
-		let { value, label, input, submit, hover, themeColours } = this.props,
+		let { value, label, input, hover, themeColours, setFormValue } = this.props,
 			// value = when(is(Object), prop('value'))(choice),
 			labelStyle = Object.assign(
 				value === input.value || hover
@@ -136,7 +145,7 @@ class RadioLabelContent extends Component {
 				<input
 					type="radio"
 					{...input}
-					onClick={submit}
+					onClick={() => setFormValue(value)}
 					value={value}
 					checked={value === input.value ? 'checked' : ''}
 				/>
