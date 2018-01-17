@@ -50,10 +50,17 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	// Optimization - don't parse on each analysis
 	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
 
-	if (![START_CONVERSATION, STEP_ACTION].includes(action.type)) return state
+	if (
+		![START_CONVERSATION, STEP_ACTION, '@@redux-form/CHANGE'].includes(
+			action.type
+		)
+	)
+		return state
 
 	let targetNames =
-		action.type == START_CONVERSATION ? action.targetNames : state.targetNames
+		action.type == START_CONVERSATION
+			? action.targetNames
+			: state.targetNames || []
 
 	let sim =
 			targetNames.length === 1 ? findRuleByName(flatRules, targetNames[0]) : {},
@@ -66,9 +73,14 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
 	let analysis = analyseMany(state.parsedRules, targetNames)(
-			situationWithDefaults(state)
-		),
-		nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
+		situationWithDefaults(state)
+	)
+
+	if (action.type === '@@redux-form/CHANGE') {
+		return { ...state, analysis, situationGate: situationWithDefaults(state) }
+	}
+
+	let nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
 		assumptionsMade = !isEmpty(rulesDefaults),
 		done = nextWithDefaults.length == 0
 
