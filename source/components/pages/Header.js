@@ -3,9 +3,12 @@ import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
+@withRouter
 @connect(state => ({
-	iframe: state.iframe
+	iframe: state.iframe,
+	textColourOnWhite: state.themeColours.textColourOnWhite
 }))
 export default class Header extends Component {
 	state = {
@@ -15,17 +18,26 @@ export default class Header extends Component {
 		this.setState({ mobileNavVisible: !this.state.mobileNavVisible })
 
 	render() {
+		let { location } = this.props
+		let appMode = ['/simu', '/regle'].find(t => location.pathname.includes(t))
 		if (this.props.iframe)
 			return screenfull.enabled ? (
-				<div id="iframeFullscreen" onClick={() => screenfull.toggle()}>
-					Mode plein écran
-					<i className="fa fa-arrows-alt" aria-hidden="true" />
+				<div
+					id="iframeFullscreen"
+					onClick={() => screenfull.toggle()}
+					className={appMode ? 'absolute' : ''}
+				>
+					{!appMode && <span>Mode plein écran</span>}
+					<i
+						className="fa fa-arrows-alt"
+						aria-hidden="true"
+						style={{ color: this.props.textColourOnWhite }}
+					/>
 				</div>
 			) : null
 
-		let displayHeader = !['/simu/', '/regle/'].find(t =>
-			window.location.href.toString().includes(t)
-		)
+		let displayHeader = !appMode
+
 		if (!displayHeader) return null
 
 		return (

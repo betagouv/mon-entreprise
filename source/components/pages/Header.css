@@ -76,11 +76,21 @@ nav a {
 	text-align: center;
 	background: #eee;
 	display: block;
-	width: 20em;
+	width: 12em;
 	margin: 0 auto;
-	padding: 0.6em 1em;
+	padding: 0.4em 1em;
 	cursor: pointer;
+}
+#iframeFullscreen.absolute {
+	padding: 0;
 }
 #iframeFullscreen i {
 	margin-left: 1em;
+}
+
+#iframeFullscreen.absolute i {
+	position: absolute;
+	top: 0.2em;
+	right: 0.3em;
+	font-size: 150%;
 }
