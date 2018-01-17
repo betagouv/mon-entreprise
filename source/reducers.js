@@ -51,7 +51,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
 
 	if (
-		![START_CONVERSATION, STEP_ACTION, '@@redux-form/CHANGE'].includes(
+		![START_CONVERSATION, STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
 			action.type
 		)
 	)
@@ -76,7 +76,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationWithDefaults(state)
 	)
 
-	if (action.type === '@@redux-form/CHANGE') {
+	if (action.type === 'USER_INPUT_UPDATE') {
 		return { ...state, analysis, situationGate: situationWithDefaults(state) }
 	}
 
