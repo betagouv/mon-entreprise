@@ -8,7 +8,7 @@ import SendButton from './SendButton'
 @FormDecorator('input')
 export default class Input extends Component {
 	state = {
-		hoverSuggestion: null
+		lastValue: null
 	}
 	render() {
 		let {
@@ -20,7 +20,6 @@ export default class Input extends Component {
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = dirty && error,
-			{ hoverSuggestion } = this.state,
 			submitDisabled = !dirty || inputError
 
 		return (
@@ -33,7 +32,6 @@ export default class Input extends Component {
 						}}
 						type="text"
 						{...input}
-						value={hoverSuggestion != null ? hoverSuggestion : input.value}
 						className={classnames({ suffixed })}
 						id={'step-' + dottedName}
 						{...attributes}
@@ -104,7 +102,7 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, submit, suggestions, inverted } = this.props.stepProps
+		let { setFormValue, suggestions, inverted } = this.props.stepProps
 
 		if (!suggestions || inverted) return null
 		return (
@@ -114,14 +112,20 @@ export default class Input extends Component {
 					{toPairs(suggestions).map(([text, value]) => (
 						<li
 							key={value}
-							onClick={e =>
-								setFormValue('' + value) && submit() && e.preventDefault()
+							onClick={() => {
+								this.setState({ lastValue: null })
+								setFormValue('' + value)
+							}}
+							onMouseOver={() => {
+								this.setState({ lastValue: this.props.input.value })
+								setFormValue('' + value)
+							}}
+							onMouseOut={() =>
+								this.state.lastValue && setFormValue('' + this.state.lastValue)
 							}
-							onMouseOver={() => this.setState({ hoverSuggestion: value })}
-							onMouseOut={() => this.setState({ hoverSuggestion: null })}
 							style={{ color: themeColours.colour }}
 						>
-							<a href="#" title="cliquer pour valider">
+							<a href="#" title="cliquez pour insérer cette suggestion">
 								{text}
 							</a>
 						</li>
