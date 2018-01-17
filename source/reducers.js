@@ -77,7 +77,13 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	)
 
 	if (action.type === 'USER_INPUT_UPDATE') {
-		return { ...state, analysis, situationGate: situationWithDefaults(state) }
+		let oldAnalysis = state.oldAnalysis
+		return {
+			...state,
+			analysis,
+			oldAnalysis: oldAnalysis || state.analysis,
+			situationGate: situationWithDefaults(state)
+		}
 	}
 
 	let nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
@@ -88,6 +94,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		...state,
 		targetNames,
 		analysis,
+		oldAnalysis: null,
 		situationGate: situationWithDefaults(state),
 		explainedVariable: null,
 		done,
@@ -172,6 +179,7 @@ export default reduceReducers(
 
 		parsedRules: (state = null) => state,
 		analysis: (state = null) => state,
+		oldAnalysis: (state = null) => state,
 
 		targetNames: (state = null) => state,
 

@@ -13,9 +13,11 @@ export default ({
 	type,
 	title,
 	conversationStarted,
-	nodeValue: ruleValue
+	nodeValue: ruleValue,
+	newValue
 }) =>
 	do {
+		console.log(newValue)
 		let unsatisfied = ruleValue == null,
 			irrelevant = ruleValue == 0,
 			number = typeof ruleValue == 'number' && ruleValue > 0
@@ -31,20 +33,39 @@ export default ({
 				<div className="rule-box">
 					<span className="rule-name">{title}</span>
 					<RuleValue
-						{...{ unsatisfied, irrelevant, conversationStarted, ruleValue }}
+						{...{
+							unsatisfied,
+							irrelevant,
+							conversationStarted,
+							ruleValue,
+							newValue
+						}}
 					/>
 				</div>
 			</Link>
 		</span>
 	}
 
-let RuleValue = ({ unsatisfied, irrelevant, conversationStarted, ruleValue }) =>
+let RuleValue = ({
+	unsatisfied,
+	irrelevant,
+	conversationStarted,
+	ruleValue,
+	newValue
+}) =>
 	do {
 		let [className, text] = irrelevant
 			? ['irrelevant', "Vous n'êtes pas concerné"]
 			: unsatisfied
 				? ['unsatisfied', 'En attente de vos réponses...']
-				: ['figure', humanFigure(0)(ruleValue) + ' €']
+				: [
+						'figure',
+						humanFigure(0)(ruleValue) +
+							' €' +
+							(typeof newValue === 'number'
+								? ` + ${humanFigure(0)(newValue - ruleValue)}`
+								: '')
+					]
 
 		{
 			/*<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p> */
