@@ -27,19 +27,23 @@ import SendButton from './SendButton'
 export default class Question extends Component {
 	render() {
 		let {
-			stepProps: { choices },
+			stepProps: { choices, submit },
 			themeColours,
-			stepProps: { submit }
+			meta: { pristine }
 		} = this.props
 		let choiceElements = is(Array)(choices)
 			? this.renderBinaryQuestion()
 			: this.renderChildren(choices)
-
 		return (
 			<>
 				{choiceElements}
 				<SendButton
-					{...{ disabled: false, themeColours, error: false, submit }}
+					{...{
+						disabled: pristine,
+						themeColours,
+						error: false,
+						submit
+					}}
 				/>
 			</>
 		)
