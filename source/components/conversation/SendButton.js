@@ -7,6 +7,19 @@ export default class SendButton extends Component {
 		let { disabled, submit } = this.props
 		return () => (!disabled ? submit() : null)
 	}
+	componentDidMount() {
+		// removeEventListener will need the exact same function instance
+		this.boundHandleKeyDown = this.handleKeyDown.bind(this)
+
+		window.addEventListener('keydown', this.boundHandleKeyDown)
+	}
+	componentWillUnmount() {
+		window.removeEventListener('keydown', this.boundHandleKeyDown)
+	}
+	handleKeyDown({ key }) {
+		if (key !== 'Enter') return
+		this.getAction()()
+	}
 	render() {
 		let { disabled, themeColours, hover } = this.props
 		return (

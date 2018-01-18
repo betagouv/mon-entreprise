@@ -40,9 +40,6 @@ export default class Input extends Component {
 								? { border: '2px dashed #ddd' }
 								: { border: `1px solid ${themeColours.textColourOnWhite}` }
 						}
-						onKeyDown={({ key }) =>
-							key == 'Enter' && (submitDisabled ? input.onBlur() : submit())
-						}
 					/>
 					{suffixed && (
 						<label
