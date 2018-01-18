@@ -55,6 +55,7 @@ export default class extends Component {
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
+
 		this.targetRules = reject(isNil)(
 			targetNames.map(name => findRuleByName(rules, name))
 		)
@@ -76,7 +77,6 @@ export default class extends Component {
 				currentQuestion,
 				situationGate,
 				themeColours,
-				targetNames,
 				inputInversions,
 				done
 			} = this.props,
@@ -106,13 +106,13 @@ export default class extends Component {
 							currentQuestion &&
 							this.buildStep({ unfolded: true })(
 								situationGate,
-								targetNames,
+								this.targetNames,
 								inputInversions
 							)(currentQuestion),
 						foldedSteps: map(
 							this.buildStep({ unfolded: false })(
 								situationGate,
-								targetNames,
+								this.targetNames,
 								inputInversions
 							),
 							foldedSteps
