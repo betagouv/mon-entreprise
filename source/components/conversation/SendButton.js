@@ -21,7 +21,7 @@ export default class SendButton extends Component {
 					onClick={this.getAction()}
 				>
 					<span className="text">valider</span>
-					<span className="icon">&#10003;</span>
+					<i className="fa fa-check" aria-hidden="true" />
 				</button>
 				<span
 					className="keyIcon"
