@@ -6,14 +6,11 @@ import reducers from './reducers'
 import DevTools from './DevTools'
 import { AppContainer } from 'react-hot-loader'
 import computeThemeColours from './components/themeColours'
+import { getIframeOption, getUrl } from './utils'
 
-let url = window.location.href.toString(),
-	urlColour = url.includes('couleur=')
 let initialStore = {
-	iframe: url.includes('iframe'),
-	themeColours: computeThemeColours(
-		urlColour && url.split('couleur=')[1].split('&')[0]
-	)
+	iframe: getUrl().includes('iframe'),
+	themeColours: computeThemeColours(getIframeOption('couleur'))
 }
 
 let store = createStore(reducers, initialStore, compose(DevTools.instrument()))

@@ -17,12 +17,21 @@ import About from 'Components/pages/About'
 import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 import Header from 'Components/pages/Header'
+import { getIframeOption } from '../utils'
 
 const piwik = new ReactPiwik({
 	url: 'stats.data.gouv.fr',
 	siteId: 39,
 	trackErrors: true
 })
+let integratorUrl = getIframeOption('integratorUrl')
+ReactPiwik.push([
+	'setCustomVariable',
+	1,
+	'urlPartenaire',
+	decodeURIComponent(integratorUrl || 'https://embauche.beta.gouv.fr'),
+	'visit'
+])
 
 export default class Layout extends Component {
 	history = createHistory()
