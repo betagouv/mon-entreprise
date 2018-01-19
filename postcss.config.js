@@ -1,9 +1,4 @@
 module.exports = {
-	plugins: [
-		require('autoprefixer')
-	]
+	plugins: [require('autoprefixer')],
+	sourceMap: 'inline'
 }
-
-/*
-browsers: [ '> 1% in FR', 'not ie < 10' ]
-*/

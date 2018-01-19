@@ -47,10 +47,7 @@ module.exports = {
 						}
 					},
 					{
-						loader: 'postcss-loader',
-						options: {
-							sourceMap: 'inline'
-						}
+						loader: 'postcss-loader'
 					}
 				]
 			},
