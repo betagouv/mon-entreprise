@@ -1,5 +1,5 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import rawRules from './load-rules'
+import rawRules from '../../règles/base.yaml'
 import {
 	has,
 	pipe,

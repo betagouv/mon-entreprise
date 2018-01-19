@@ -1,0 +1,1995 @@
+- espace: contrat salarié . CDD
+  nom: CIF
+  description: Contribution au financement du congé individuel de formation spécifique aux CDD.
+  cotisation:
+    destinataire: OPCA
+    dû par: employeur
+
+  non applicable si:
+    une de ces conditions:
+      - type de contrat != 'CDD'
+      - événement . poursuite du CDD en CDI
+      - contrat jeune vacances
+      - motif . classique . saisonnier
+      - motif . contrat aidé
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 1%
+
+  références:
+    Code du travail - Article L6322-37 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
+
+  exemples:
+
+    - nom: Non applicable si CDI
+      situation:
+        type de contrat: CDI
+        assiette cotisations sociales: 1480
+      valeur attendue: 0
+
+    - nom: SMIC
+      situation:
+        type de contrat: CDD
+        événement: aucun
+        motif: accroissement activité
+        contrat jeune vacances: non
+
+        assiette cotisations sociales: 1480
+      valeur attendue: 14.8
+
+    - nom: salaire médian
+      situation:
+        type de contrat: CDD
+        événement: aucun
+        motif: accroissement activité
+        contrat jeune vacances: non
+
+        assiette cotisations sociales: 2300
+      valeur attendue: 23
+
+    - nom: motif saisonnier -> non applicable
+      situation:
+        contrat salarié . CDD . motif: classique . saisonnier
+        assiette cotisations sociales: 2300
+      valeur attendue: null
+
+- espace: contrat salarié . CDD
+  nom: compensation congés payés
+  indemnité:
+    destinataire: salarié
+    dû par: employeur
+  description: |
+    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie d'une indemnité compensatrice de congés payés.
+
+  non applicable si:
+    une de ces conditions:
+      - type de contrat != 'CDD'
+      - événement . poursuite du CDD en CDI
+    # TODO Y a-t-il d'autres conditions ? Sinon supprimer la liste
+
+  # TODO aspect temporel
+  # L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
+
+  #TODO cette formule pourrait être clarifiée,
+  # probablement grâce à un vrai mécanisme de calcul temporel pour faire les conversions
+  formule:
+    le maximum de:
+      - description: Méthode "du dixième"
+        note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
+        multiplication:
+          assiette: salaire de base + prime fin de contrat
+          # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
+          # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
+          taux: 10%
+          facteur: congés non pris / jours de congés légaux # jours ouvrés, probablement le plus commun
+
+      - description: Méthode "maintien du salaire"
+        note: Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a bénéficié d’une augmentation de salaire.
+        référence: https://www.service-public.fr/particuliers/vosdroits/F33359
+
+        # Pour effectuer le calcul, l'employeur peut tenir compte :
+        #   soit de l'horaire réel du mois,
+        #   soit du nombre moyen de jours ouvrables (ou ouvrés),
+        #   soit du nombre réel de jours ouvrables (ou ouvrés).
+        multiplication:
+          assiette: salaire de base + prime fin de contrat
+          # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
+          # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
+          taux: congés non pris / durée contrat
+          # salaire journalier
+          # mensuel / nombre moyen de jours ouvrés par mois
+          facteur:  1 / 21
+
+
+
+  exemples:
+    - nom: pas de congés non pris
+      situation:
+        salaire de base: 2300
+        prime fin de contrat: 0
+        congés non pris: 0
+        durée contrat: 12
+      valeur attendue: 0
+    - nom: 10 jours non pris
+      situation:
+        type de contrat: CDD
+        salaire de base: 2300
+        prime fin de contrat: 0
+        congés non pris: 10
+        durée contrat: 12
+      valeur attendue: 92
+    - nom: 3 jours non pris
+      situation:
+        type de contrat: CDD
+        salaire de base: 2300
+        prime fin de contrat: 0
+        congés non pris: 3
+        durée contrat: 6
+      valeur attendue: 55.21
+
+
+  notes: |
+
+    À noter, la loi El Khomri modifie l'article L3141-12:
+    - avant : Les congés peuvent être pris dès l'ouverture des droits [...]
+    - maintenant : Les congés peuvent être pris dès l’embauche [...]
+
+
+  références:
+    Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
+    Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
+    Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
+    assiette de l'indemnité, circulaire drt 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
+
+
+
+
+
+
+- espace: contrat salarié . CDD
+  nom: prime fin de contrat
+  indemnité:
+    destinataire: salarié
+
+  alias: prime de précarité
+  description: Somme versée en fin de CDD comme compensation de précarité.
+  notes: |
+    Attention, les exceptions sont légion. Conventions collectives...
+
+    - Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité : [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
+
+  non applicable si:
+    une de ces conditions:
+      - type de contrat != 'CDD'
+
+      # Evènements particuliers
+      - événement . poursuite du CDD en CDI
+      - événement . refus CDI avantageux
+
+      # Rupture TODO regrouper celà dans une nouvelle variante
+      - événement . rupture anticipée salarié
+      - événement . rupture pour faute grave ou force majeure
+      - événement . rupture pendant période essai
+
+      - motif . classique . usage
+      - motif . classique . saisonnier
+      - motif . complément formation
+      - motif . contrat aidé
+
+      - contrat jeune vacances
+
+
+  # TODO Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat.
+  # Ici elle est étalée sur un mois moyen
+  formule:
+    multiplication:
+      assiette: salaire de base
+      taux: 10%
+
+  exemples:
+    - nom: salaire médian
+      situation:
+        type de contrat: CDD
+        salaire de base: 2300
+        motif: classique . accroissement activité
+      valeur attendue: 230
+
+    - nom: CDD d'usage -> non applicable
+      situation:
+        motif: classique . usage
+        salaire de base: 2300
+      valeur attendue: null
+
+
+  références:
+    Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
+    Fiche Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40
+    Fiche La prime de précarité est-elle due:  https://www.service-public.fr/particuliers/vosdroits/F803
+    Le travail saisonnier: http://travail-emploi.gouv.fr/droit-du-travail/contrats-et-carriere/contrats-de-travail/article/le-travail-saisonnier
+    La prime de précarité n'est pas due si: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si
+    Poursuite de l'activité après la fin du CDD: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD
+
+
+- espace: contrat salarié . CDD
+  nom: majoration chômage
+  cotisation:
+    dû par: employeur
+    type: majoration
+    destinataire: URSSAF
+
+  description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
+
+  non applicable si:
+    événement . poursuite du CDD en CDI
+  # En cas d’embauche sous CDI par l’employeur à l’issue d’un CDD entrant dans le champ de la majoration [...] l’employeur régularise sur sa déclaration suivant la date d’embauche sous CDI, les montants indûment versés au titre de la majoration CDD [...]
+
+  applicable si:
+    toutes ces conditions:
+      - type de contrat = 'CDD'
+      - durée contrat <= 3
+      - motif . classique . usage
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
+      taux: 0.5%
+
+
+  exemples:
+    - nom: salaire médian, accroissement d'activité, contrat de 1 mois
+      situation:
+        événement: non
+        type de contrat: CDD
+        assiette cotisations sociales: 2300
+        motif: classique . accroissement activité
+        durée contrat: 1
+      valeur attendue: 0
+
+    - nom: salaire médian, motif CDD usage, contrat de 1 mois
+      situation:
+        événement: non
+        type de contrat: CDD
+        assiette cotisations sociales: 2300
+        motif . classique . usage: oui
+        durée contrat: 1
+        plafond sécurité sociale: 3269
+      valeur attendue: 11.5
+
+    - nom: durée de contrat de 4 mois -> non applicable
+      situation:
+        assiette cotisations sociales: 2300
+        durée contrat: 4
+      valeur attendue: null
+
+
+
+
+  références:
+    La majoration de la contribution chômage: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html
+    Circulaire Unédic: http://www.unedic.org/sites/default/files/ci201317_1.pdf
+
+  notes: |
+    - L'URSSAF liste à la fois des conditions pour "Les CDD concernés par l’application de la majoration" et pour "Les contrats de travail exclus de la majoration". Un doute persiste : difficile de savoir si les premières suffisent au calcul (donc que les deuxièmes sont là pour enlever les doutes) ou si les deuxièmes peuvent faire exception...
+    - Depuis le 1er juillet 2013
+    - l'URSSAF explique longuement la notion de durée du CDD : "Comment déterminer la durée du CDD ?"
+
+
+- espace: contrat salarié
+  nom: ATMP
+  titre: Cotisation Accidents du Travail et Maladies Professionnelles
+  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
+  cotisation:
+    dû par: employeur
+    branche: santé
+    destinataire: URSSAF
+    responsable: CARSAT
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: ATMP . taux collectif ATMP / 100
+
+- espace: contrat salarié . ATMP
+  nom: taux collectif ATMP
+  titre: Taux collectif ATMP
+  question: Quel taux Accidents du Travail et Maladies Professionnelles s'applique à l'entreprise ?
+  description: |
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
+    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà). L'entreprise peut consulter le taux qui la
+    concerne en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
+  format: pourcentage
+  suggestions: atmp-2017
+  # https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=4702534627E4A8CF240B990E28C81AF4.tplgfr30s_3?idArticle=JORFARTI000033735834&cidTexte=JORFTEXT000033735824&dateTexte=29990101&categorieLien=id
+  # article 3 Le taux net moyen national de cotisation est de 2,32 %.
+  par défaut: 2.32
+
+- espace: contrat salarié . CDD
+  nom: événement
+  titre: Événement de contrat
+  question: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+  description: |
+    Certains événements impactent fortement les obligations du CDD.
+
+    > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune majoration ou indemnité sur le CDD ne sera à verser.
+
+  non applicable si: type de contrat != 'CDD'
+
+  # TODO
+  # cette règle devrait n'être affichée que quand son espace, CDD, est valide
+  # CDD devrait être valide seulement si un motif de la liste des possibilités a été choisi
+  # elle apparaîtrait alors forcément _après_ la question du motif
+  formule:
+    une possibilité:
+    - poursuite du CDD en CDI
+    - refus CDI avantageux
+    - rupture anticipée salarié
+    - rupture pour faute grave ou force majeure
+    - rupture pendant période essai
+  par défaut: non
+
+- espace: contrat salarié . CDD . événement
+  nom: poursuite du CDD en CDI
+  titre: Poursuite du CDD en CDI
+  description: En fin de contrat, le CDD est reconduit en CDI sans interruption.
+  formule: contrat salarié . CDD . événement = 'poursuite du CDD en CDI'
+  # TODO quand cette variable est appelée par une autre variable,
+  # on devrait pouvoir poser la question, puis proposer un bouton qui permette d'aider l'utilisateur à
+  # y répondre, en lui expliquant la formule suivante :
+  #
+  # formule:
+  #   une possibilité:
+  #   - embauche en CDI suivant le CDD
+  #   - CDD requalifié en CDI # quand ça arrive ?
+
+- espace: contrat salarié . CDD . événement
+  nom: refus CDI avantageux
+  titre: Refus d'un CDI avantageux
+  description: Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi similaire, et une rémunération au moins aussi avantageuse.
+  formule: contrat salarié . CDD . événement = 'refus CDI avantageux'
+
+- espace: contrat salarié . CDD . événement
+  nom: rupture anticipée salarié
+  titre: Rupture anticipée du salarié
+  description: Rupture anticipée du contrat à l'initiative du salarié.
+  formule: contrat salarié . CDD . événement = 'rupture anticipée salarié'
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
+
+- espace: contrat salarié . CDD . événement
+  nom: rupture pour faute grave ou force majeure
+  titre: Rupture pour faute grave ou force majeure
+  formule: contrat salarié . CDD . événement = 'rupture pour faute grave ou force majeure'
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
+
+- espace: contrat salarié . CDD . événement
+  nom: rupture pendant période essai
+  titre: Rupture pendant la période d'essai
+  formule: contrat salarié . CDD . événement = 'rupture pendant période essai'
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
+- espace: contrat salarié . CDD
+  nom: motif
+  titre: Motif de recours
+  question: Quel est le motif de recours au CDD ?
+  description: |
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
+  non applicable si: type de contrat != 'CDD'
+  formule:
+    une possibilité:
+      choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
+      possibilités:
+      - classique
+      - contrat aidé
+      - complément formation
+      - issue d'apprentissage
+  # les CDD d'usage "concentrent la moitié des embauches en CDD"
+  par défaut: classique . usage
+  références:
+    Code du travail - Articles L1242-1 à 4: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=E318966AA9DEB9E32465297F15B04D86.tpdila20v_1?idSectionTA=LEGISCTA000006195639&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+    le recours au CDD: http://www.entreprises.cci-paris-idf.fr/web/reglementation/developpement-entreprise/droit-social/le-recours-au-cdd
+    embaucher en CDD: https://www.service-public.fr/particuliers/vosdroits/F34
+    les cas de recours au CDD: https://www.easycdd.com/LEGISLATION-CDD/Avant-de-rediger-un-contrat-CDD/Les-cas-de-recours-au-contrat-CDD
+
+- espace: contrat salarié . CDD . motif
+  nom: classique
+  titre: motifs classiques
+  formule:
+    une possibilité:
+    - remplacement
+    - accroissement activité
+    - saisonnier
+    - usage
+    - mission
+  références:
+    Code du travail - Article L1242-2: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000033024658&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+  par défaut: usage
+
+- espace: contrat salarié . CDD . motif . classique
+  nom: saisonnier
+  titre: Saisonnier
+  formule: contrat salarié . CDD . motif = 'classique . saisonnier'
+  description: Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter chaque année selon une périodicité à peu près fixe, en fonction du rythme des saisons ou des modes de vie collectifs.
+
+- espace: contrat salarié . CDD . motif . classique
+  nom: accroissement activité
+  titre: Accroissement temporaire d'activité
+  formule: contrat salarié . CDD . motif = 'classique . accroissement activité'
+  description: Accroissement temporaire de l'activité de l'entreprise
+
+- espace: contrat salarié . CDD . motif . classique
+  nom: remplacement
+  titre: Contrat de remplacement
+  formule: contrat salarié . CDD . motif = 'classique . remplacement'
+  description: |
+    Nous regroupons dans cette catégorie les cas suivants.
+
+    - Remplacement d'un salarié en cas :
+      - D'absence ;
+      - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
+      - De suspension de son contrat de travail ;
+      - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
+      - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
+
+    - Remplacement d'un chef d'entreprise artisanale, industrielle ou commerciale, d'une personne exerçant une profession libérale, de son conjoint participant effectivement à l'activité de l'entreprise à titre professionnel et habituel ou d'un associé non salarié d'une société civile professionnelle, d'une société civile de moyens d'une société d'exercice libéral ou de toute autre personne morale exerçant une profession libérale ;
+
+    - Remplacement du chef d'une exploitation agricole ou d'une entreprise mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche maritime, d'un aide familial, d'un associé d'exploitation, ou de leur conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il participe effectivement à l'activité de l'exploitation agricole ou de l'entreprise ;
+
+- espace: contrat salarié . CDD . motif . classique
+  nom: mission
+  titre: Contrat de mission
+  formule: contrat salarié . CDD . motif = 'classique . mission'
+  description: |
+    > Aussi appelé contrat à objet défini.
+
+    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de branche étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+    - Les nécessités économiques auxquelles ces contrats sont susceptibles d'apporter une réponse adaptée ;
+    - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini bénéficient de garanties relatives à l'aide au reclassement, à la validation des acquis de l'expérience, à la priorité de réembauche et à l'accès à la formation professionnelle continue et peuvent, au cours du délai de prévenance, mobiliser les moyens disponibles pour organiser la suite de leur parcours professionnel ;
+    - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini ont priorité d'accès aux emplois en contrat à durée indéterminée dans l'entreprise.
+
+- espace: contrat salarié . CDD . motif . classique
+  nom: usage
+  titre: Contrat d'usage
+  alias: motif extra
+  formule: contrat salarié . CDD . motif = 'classique . usage'
+  description:  Emplois pour lesquels, dans certains secteurs d'activité définis par décret ou par convention ou accord collectif de travail étendu, il est d'usage constant de ne pas recourir au contrat de travail à durée indéterminée en raison de la nature de l'activité exercée et du caractère par nature temporaire de ces emplois ;
+  références:
+    Embauche en contrat d'extra : https://www.service-public.fr/professionnels-entreprises/vosdroits/F33693
+
+  formule-futur: #TODO intégrer ça dans le formulaire. Comment ?
+    contrainte:
+      variable: entreprise . secteur activité
+      possibilités:
+        - Déménagement
+        - Services à la personne
+        - Hôtellerie, restauration
+        - Centre de loisirs et de vacances
+        - Activité foraine
+        - Sport professionnel
+        - Enseignement
+        - Spectacle
+        - Action culturelle
+        - Audiovisuel, production cinématographique, édition phonographique
+        - Exploitation forestière
+        - Réparation navale
+        - Information
+        - Enquêtes, sondages
+        - Entreposage et stockage de la viande
+        - Bâtiment et travaux publics pour les chantiers à l'étranger
+        - Coopération, assistance technique d'ingénierie et de recherche à l'étranger
+        - Recherche scientifique dans le cadre d'un accord international (convention, arrangement administratif)
+        - Assistance technique ou logistique dans les institutions internationales ou dans l'Union européenne prévu par les traités
+
+
+- espace: contrat salarié . CDD . motif
+  nom: complément formation
+  titre: Complément de formation professionnelle assuré par l'employeur
+  formule: contrat salarié . CDD . motif = 'complément formation'
+  description: L'employeur s'engage, pour une durée et dans des conditions déterminées par décret, à assurer un complément de formation professionnelle au salarié.
+  références:
+    Code du travail - Article L1242-3 : https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+    Code du travail - Décret D1242-3 : https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000018537448&cidTexte=LEGITEXT000006072050
+
+- espace: contrat salarié . CDD . motif
+  nom: issue d'apprentissage
+  titre: À l'issue d'un contrat d'apprentissage
+  formule: contrat salarié . CDD . motif = 'issue d'apprentissage'
+  description: |
+    A l'issue d'un contrat d'apprentissage, un contrat de travail à durée déterminée peut être conclu lorsque l'apprenti doit satisfaire aux obligations du service national dans un délai de moins d'un an après l'expiration du contrat d'apprentissage.
+  références:
+    Code du travail - Article L1242-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000028498598&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+
+
+
+
+- espace: contrat salarié . CDD . motif
+  nom: contrat aidé
+  titre: Contrat aidé (CUI, alternance, ...)
+  formule: contrat salarié . CDD . motif = 'contrat aidé'
+  références:
+    Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+# TODO Attention, il faudrait peut-être prendre en compte les interdictions du CDD.
+# https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
+
+# - espace: contrat salarié
+#   nom: CDD
+#   titre: Contrat à durée déterminée
+#   description: Contrat de travail pour lequel un employeur peut recruter un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
+#   référence: https://fr.wikipedia.org/wiki/Contrat_de_travail_à_durée_déterminée_en_France
+#   # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
+#   implique:
+#     - emploi temporaire
+#     - motif de recours
+#   # C'est ici que l'on dit : si le CDD a été choisi, la réponses à motif CDD doit être donnée (on ne peut ne pas y répondre)
+#
+# - Variable: emploi temporaire
+#   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
+#   références:
+#     Code du travail - Article L1242-1
+
+
+- espace: contrat salarié . CDD
+  nom: durée contrat
+  titre: durée du contrat
+  question: Quelle est la durée du contrat ?
+  sous-question: |
+    [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
+  références:
+    Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
+  format: mois
+  suggestions:
+    18 mois: 18
+    1 an: 12
+    6 mois: 6
+    3 mois: 3
+  # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
+  par défaut: 1
+
+- espace: contrat salarié . CDD
+  nom: congés non pris
+  titre: Congés non pris
+  question: Combien de jours ouvrés de congés ne seront pas pris ?
+  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux pour un contrat de douze mois.
+  format: jours
+  suggestions:
+    3 / 25: 3
+    10 / 25: 10
+  par défaut: 0
+
+- espace: contrat salarié . CDD
+  nom: contrat jeune vacances
+  titre: Contrat jeune vacances
+  question: Est-ce un contrat jeune vacances ?
+  description: Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
+  notes: Ce n'est pas un motif de CDD.
+  par défaut: non
+
+- espace: contrat salarié . CDD
+  nom: cotisations employeur CDD
+  description: Cotisations employeur spécifiques au CDD
+  formule:
+    somme:
+      - CIF
+      - majoration chômage
+
+- espace: contrat salarié . CDD
+  nom: indemnités salarié CDD
+  description: Cotisations employeur spécifiques au CDD
+  formule:
+    somme:
+      - prime fin de contrat
+      - compensation congés payés
+
+- espace: contrat salarié . CDD
+  nom: surcoût
+  titre: Dont surcoût CDD
+  description: |
+    Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux organismes sociaux, certaines compensations
+    financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4.
+
+    Certaines sont versées en
+    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
+  formule:
+    somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
+      - indemnités salarié CDD
+      - cotisations employeur CDD
+  exemples:
+    - nom: "exemple 1"
+      situation:
+        indemnités salarié CDD: 100
+        cotisations employeur CDD: 190
+        prime fin de contrat: 60.4
+        compensation congés payés: 39.6
+      valeur attendue: 290
+
+# Cette variable est le point de départ du simulateur "surcout CDD" :-D
+- espace: contrat salarié . CDD
+  nom: surcoût CDD
+  simulateur:
+    objectifs:
+      - salaire net
+      - coût du travail
+      - CDD . surcoût
+    titre: Simulateur CDD
+    sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
+    introduction:
+      notes:
+        - icône: fa-handshake-o
+          texte: Vous avez embauché ou vous réfléchissez à l'embauche d'un salarié en CDD.
+          titre: Votre situation
+        - icône: fa-balance-scale
+          texte: Votre contrat ne peut donc avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
+          titre: Votre obligation
+        # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
+    hypothèses:
+      contrat salarié . type de contrat: CDD
+- nom: contrat salarié
+  description: |
+    Activité encadrée par un contrat de travail de droit privé.
+
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans ces cas:
+      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+
+  # le contrat salarié est rattaché à l'activité, elle-même rattachée à un individu.
+  établissement: Établissement
+
+- espace: contrat salarié
+  nom: type de contrat
+  titre: Type de contrat
+  question: Quelle est la nature du contrat de travail ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+      - CDI
+      - CDD
+  par défaut: CDI
+
+- espace: contrat salarié . type de contrat
+  nom: CDD
+  description: Le contrat de travail prévoit explicitement une date de fin.
+  formule: contrat salarié . type de contrat = 'CDD'
+
+- espace: contrat salarié . type de contrat
+  nom: CDI
+  description: Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été établi.
+  formule: contrat salarié . type de contrat = 'CDI'
+
+- espace: contrat salarié
+  nom: assiette cotisations sociales
+  description: |
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
+  référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
+  formule: salaire brut
+
+- espace: contrat salarié
+  nom: salaire de base
+  titre: Salaire brut
+  résumé: Le salaire inscrit dans le contrat de travail.
+  type: salaire
+  question: Quel est le salaire brut mensuel ?
+  description: |
+    C'est le salaire de négociation du contrat de travail en France.
+
+    Il peut être vu comme :
+    - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
+    - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
+  format: euros
+  suggestions:
+    salaire médian: 2300
+    SMIC: 1480
+    SMIC mi-temps: 740
+
+  formule:
+    inversion:
+      question: Quel est le salaire mensuel ?
+      titre: salaire
+      avec:
+        - salaire net
+        - salaire total
+
+  références:
+    Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
+  note: |
+    Ici nous confondons salaire brut et salaire de base, en attendant que l'UI de simulation puisse traiter la différence entre les deux. Il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule.
+    La définition du salaire de base est la suivante :
+    Le salaire de base est le salaire brut régulier inscrit dans le contrat. C'est le salaire de négociation entre le salarié et l'employeur. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
+
+- espace: contrat salarié
+  nom: salaire brut
+  format: euros
+  formule:
+    somme:
+      - salaire de base
+      - indemnités salarié
+
+- espace: contrat salarié
+  nom: indemnités salarié
+  formule: CDD . indemnités salarié CDD
+
+- espace: contrat salarié
+  nom: statut cadre
+  titre: Statut cadre
+  question: Le salarié a-t-il le statut cadre ?
+  description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
+  par défaut: non
+
+- espace: contrat salarié
+  nom: plafond sécurité sociale temps plein
+  #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
+  # type de période: mensuel
+  formule: 3311
+
+- espace: contrat salarié
+  nom: plafond sécurité sociale
+  #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
+  # type de période: mensuel
+  formule: plafond sécurité sociale temps plein * quotité de travail
+
+
+- espace: contrat salarié
+  nom: smic mensuel temps plein
+  formule: 1498.47
+
+- espace: contrat salarié
+  nom: smic mensuel
+  formule: smic mensuel temps plein * quotité de travail
+
+- espace: contrat salarié
+  nom: cotisations salariales
+  formule:
+    somme:
+      - vieillesse (salarié)
+      - ARRCO (salarié)
+      - AGIRC (salarié)
+      - GMP (salarié)
+      - AGFF (salarié)
+      - CSG
+      - CRDS
+      - cotisation exceptionnelle temporaire (salarié)
+      - chômage (salarié)
+      - APEC (salarié)
+      - complémentaire santé (salarié)
+
+- espace: contrat salarié
+  nom: cotisations patronales
+  formule:
+    somme:
+      - maladie (employeur)
+      - ATMP
+      - prévoyance obligatoire cadre
+      - complémentaire santé (employeur)
+      - médecine du travail
+      - vieillesse (employeur)
+      - ARRCO (employeur)
+      - AGIRC (employeur)
+      - GMP (employeur)
+      - AGFF (employeur)
+      - cotisation exceptionnelle temporaire (employeur)
+      - allocations familiales
+      - chômage (employeur)
+      - APEC (employeur)
+      - AGS
+      - FNAL
+      - participation effort de construction
+      - contribution au dialogue social
+      - formation professionnelle
+      - versement transport
+      - taxe d'apprentissage
+      - taxe sur les salaires
+      - CDD . cotisations employeur CDD
+
+- espace: contrat salarié
+  nom: salaire net
+  titre: Salaire net
+  type: salaire
+  question: Quel est le salaire net ?
+  résumé: La somme touchée par le salarié tous les mois.
+  description: |
+    Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel: pour le changer, il faut signer un avenant au contrat.
+  format: euros
+  formule: salaire brut - cotisations salariales
+
+- espace: contrat salarié
+  nom: coût du travail
+  description: |
+    C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
+    des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
+  formule: salaire total - aides employeur différées
+
+- espace: contrat salarié
+  nom: salaire total
+  titre: Salaire total
+  résumé: La somme totale versée par l'employeur tous les mois.
+  type: salaire
+  description: |
+    C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines réductions de cotisation et aides peuvent diminuer cette somme.
+  formule: salaire total sans réduction - réductions de cotisations
+
+- espace: contrat salarié
+  nom: réductions de cotisations
+  formule: réduction générale + exonération JEI
+
+- espace: contrat salarié
+  nom: salaire total sans réduction
+  type: salaire
+  formule:
+    somme:
+      - salaire brut
+      - cotisations patronales
+
+
+- espace: contrat salarié
+  nom: aides employeur différées
+  résumé: Les aides différées dont peut bénéficier l'employeur.
+  formule:
+    somme:
+      - CICE
+      - CITS
+
+- espace: contrat salarié
+  nom: salaire
+  simulateur:
+    objectifs:
+      - salaire net
+      - coût du travail
+    titre: Simulateur de coût d'embauche
+    sous-titre: Découvrir le coût d'embauche et le salaire réel
+
+- espace: contrat salarié
+  nom: jours de congés légaux
+  description: Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le contrat dans le cas d'un CDD.
+  formule:
+    multiplication:
+      facteur: 2.083
+      variations:
+        - si: type de contrat = 'CDD'
+          assiette: CDD . durée contrat
+        - si: type de contrat = 'CDI'
+          assiette: 12
+
+  références:
+    fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
+
+- espace: contrat salarié
+  nom: régime alsace moselle
+  par défaut: non
+- nom : entreprise
+  description: |
+    Le contrat lie une entreprise et un employé
+
+- espace: entreprise
+  nom: effectif
+  question: Quel est l'effectif de l'entreprise ?
+  description: |
+    De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
+  format: nombre
+  suggestions:
+    1: 1
+    20: 20
+    50: 50
+    1000: 1000
+  par défaut: 1
+
+- espace: entreprise
+  nom: ratio alternants
+  formule: ratio alternants saisi / 100
+
+- espace: entreprise
+  nom: ratio alternants saisi
+  question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
+  titre: Fraction d'alternants
+  description: |
+    Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
+  format: pourcentage
+  suggestions:
+    1: 1
+    5: 5
+  par défaut: 0
+
+- espace: entreprise
+  nom: association non lucrative
+  description: L'entreprise est une association non lucrative
+  question: S'agit-il d'une association à but non lucratif ?
+  par défaut: non
+- espace: établissement
+  nom: code postal
+  titre: Code postal de l'établissement
+  question: Quel est le code postal de la commune de l'établissement ?
+  description: |
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
+    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+  format: nombre
+  suggestions: utilisation d'une API
+  par défaut: non
+
+- espace: établissement
+  nom: code commune
+  titre: Code commune de l'établissement
+  question: Dans quelle commune l'établissement est-il implanté ?
+  description: |
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
+    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+  format: nombre
+  suggestions: utilisation d'une API
+  par défaut: 29019
+
+- espace: établissement
+  nom: commune
+  titre: Commune de l'établissement
+  question: Dans quelle commune l'établissement est-il implanté ?
+  description: |
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
+    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+  # format: objet
+  format: texte
+  par défaut: non
+- espace: contrat salarié
+  nom: temps partiel
+  question: Le contrat est-il à temps partiel ?
+  description: |
+    Le temps partiel peut avoir une influence sur les règles.
+    Par exemple les cotisations plafonnées ou les exonérations dépendant du SMIC.
+  par défaut: non
+
+- espace: contrat salarié
+  nom: heures par semaine
+  question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
+  format: nombre
+  # contrôle : le code du travail définit la borne inférieure de 24h par semaine. Sauf qu'en réalité, la loi permet très souvent des dérogations.
+  par défaut: 35
+
+- espace: contrat salarié
+  nom: quotité de travail
+  formule:
+    multiplication:
+      assiette: 1
+      variations:
+        - si: temps partiel
+          taux: heures par semaine / 35
+        - si: ≠ temps partiel
+          taux: 1
+- espace: contrat salarié
+  nom: CICE
+  aide:
+    type: avantage fiscal
+    thème: aide bas salaires
+    démarches: non
+  description: |
+    Crédit d'impôt pour la compétitivité et l'emploi
+  références:
+    calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31326
+
+  # TODO - exlure stage, apprentissage
+  non applicable si:
+    une de ces conditions:
+      - assiette cotisations sociales > plafond cice
+      - entreprise . association non lucrative
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 6%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 2300
+        entreprise . association non lucrative: non
+      valeur attendue: 138
+    - nom: Non applicable si association
+      situation:
+        assiette cotisations sociales: 2300
+        entreprise . association non lucrative: oui
+      valeur attendue: 0
+
+- espace: contrat salarié
+  nom: plafond cice
+  # TODO: calcul du smic proratisé
+  # TODO: smic mensuel défini dans la réduction générale, à déplacer pour mutualiser
+  formule: multiplicateur cice * smic mensuel
+
+- espace: contrat salarié
+  nom: multiplicateur cice
+  formule: 2.5
+
+
+
+- espace: contrat salarié
+  nom: CITS
+  titre: Crédit d'impôt de taxe sur les salaire
+  aide:
+    type: avantage fiscal
+    thème: aide bas salaires
+    démarches: non
+  description: |
+    La loi de finances pour 2017 instaure, au bénéfice des associations et organismes sans but lucratif (OSBL),
+    un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
+  références:
+    fiche: https://www.service-public.fr/associations/actualites/A11012
+
+  non applicable si:
+    une de ces conditions:
+      - assiette cotisations sociales > plafond CITS
+      - ≠ entreprise . association non lucrative
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 4%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 2300
+        entreprise . association non lucrative: oui
+      valeur attendue: 92
+    - nom: Non applicable si organisme lucratif
+      situation:
+        assiette cotisations sociales: 2300
+        entreprise . association non lucrative: non
+      valeur attendue: 0
+
+- espace: contrat salarié
+  nom: plafond CITS
+  formule: multiplicateur CITS * smic mensuel
+
+- espace: contrat salarié
+  nom: multiplicateur CITS
+  formule: 2.5
+
+
+- espace: contrat salarié
+  nom: statut JEI
+  titre: Statut JEI
+  question: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
+  description: |
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
+  par défaut: non
+
+- espace: contrat salarié
+  nom: exonération JEI
+  aide:
+    type: réduction de cotisations
+    démarches: non
+  description: |
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
+  références:
+    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
+    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
+    cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+
+  applicable si: statut JEI
+
+  formule:
+    # TODO - le plafonnement à 4,5 smic, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
+    # il faut fournir un mécanisme "exonération" capable de recalculer une règle en introduisant un plafond
+    le minimum de:
+      - 1634.39
+      - somme:
+        - allocations familiales
+        - maladie (employeur)
+        - vieillesse (employeur)
+- espace: contrat salarié
+  nom: réduction générale
+  aide:
+    type: réduction de cotisations
+    thème: aide bas salaires
+    démarches: non
+  alias: réduction fillon
+  description: |
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation, hormis l'assurance chômage. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
+  références:
+    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
+    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
+    cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+
+  non applicable si:
+    une de ces conditions:
+      - assiette cotisations sociales > plafond réduction générale
+      - statut JEI
+
+  formule:
+    le minimum de:
+      - assiette réduction générale
+      # TODO - cette expression correspond algébriquement mais n'a pas de sens métier, que faire ?
+      - réduction générale constante - réduction générale variable
+  exemples:
+    - nom: "Maximale dans le cas d'un SMIC"
+      situation:
+        assiette cotisations sociales: 1498.47
+      valeur attendue: 420.92
+    - nom: "Nulle au-dessus du plafond"
+      situation:
+        assiette cotisations sociales: 2398
+      valeur attendue: 0
+
+- espace: contrat salarié
+  nom: réduction générale constante
+  formule: coefficient réduction générale * plafond réduction générale
+
+- espace: contrat salarié
+  nom: réduction générale variable
+  formule: coefficient réduction générale * assiette cotisations sociales
+
+- espace: contrat salarié
+  nom: coefficient réduction générale
+  formule:
+    multiplication:
+      # TODO - encore obtenu algébriquement mais sans signification
+      assiette: 10 / 6
+      variations:
+        - si: entreprise . effectif < 20
+          taux: 0.2809
+          plafond: plafond sécurité sociale
+        - si: entreprise . effectif >= 20
+          taux: 0.2849
+
+- espace: contrat salarié
+  nom: assiette réduction générale
+  formule:
+    somme:
+      - allocations familiales
+      - FNAL (employeur)
+      - maladie (employeur)
+      - vieillesse (employeur)
+      - assiette ATMP réduction générale
+
+- espace: contrat salarié
+  nom: assiette ATMP réduction générale
+  description: Lorsque le montant de la réduction générale est supérieur au montant de ces cotisations et contributions, la réduction est également imputée sur les cotisations accidents du travail et maladies professionnelles dans la limite de 0,90 % de la rémunération.
+  formule:
+    multiplication:
+      # En pratique, l'ATMP est toujours supérieur à 0.9%
+      assiette: assiette cotisations sociales
+      taux: 0.9%
+
+
+- espace: contrat salarié
+  nom: plafond réduction générale
+  # TODO: calcul du smic proratisé
+  formule: multiplicateur réduction générale * smic mensuel
+
+- espace: contrat salarié
+  nom: multiplicateur réduction générale
+  formule: 1.6
+
+- espace: contrat salarié
+  nom: AGFF
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGFF
+  description: |
+    Cotisation de retraite complémentaire
+    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO)
+  référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+  notes: |
+    Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
+
+  formule:
+    barème:
+      assiette: assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+
+          variations:
+            - si: ≠ statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 1.2%
+                - de: 1
+                  à: 3
+                  taux: 1.3%
+                - au-dessus de: 3
+                  taux: 0%
+
+            - si: statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 1.2%
+                - de: 1
+                  à: 8
+                  taux: 1.3%
+                - au-dessus de: 8
+                  taux: 0%
+
+        - attributs:
+            dû par: salarié
+
+          variations:
+            - si: ≠ statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 0.8%
+                - de: 1
+                  à: 3
+                  taux: 0.9%
+                - au-dessus de: 3
+                  taux: 0%
+
+            - si: statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 0.8%
+                - de: 1
+                  à: 8
+                  taux: 0.9%
+                - au-dessus de: 8
+                  taux: 0%
+- espace: contrat salarié
+  nom: GMP
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC
+  description: |
+    Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant pour
+    atteindre le nombre minimum de 120 points Agirc,
+    ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+
+  non applicable si: ≠ statut cadre
+
+  formule:
+    complément:
+      composantes:
+        - attributs:
+            dû par: employeur
+          cible: AGIRC (employeur)
+          montant: 45.11 * quotité de travail
+        - attributs:
+            dû par: salarié
+          cible: AGIRC (salarié)
+          montant: 27.60 * quotité de travail
+
+  note: Le mécanisme de complément de la cotisation AGIRC nous évite d'avoir à utiliser le "salaire charnière"
+
+  # TODO
+  # - harmoniser la syntaxe de ce 'complément' avec les systèmes de réduction de cotisation. C'est pareil avec une addition finalement
+  # - on pourrait aussi se dire que cette formule est un complément de AGIRC,
+  # donc que les conditions d'applicabilité d'AGIRC n'ont pas à être répétées
+
+  références:
+    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+    circulaire 2017 -07-DT: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
+- espace: contrat salarié
+  nom: AGIRC
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC
+  description: |
+    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
+
+  #TODO double négation en attendant d'ajouter 'applicable si'
+  non applicable si: ≠ statut cadre
+  formule:
+    barème:
+      assiette: assiette cotisations sociales #TODO devrait être assiette cotisations sociales. Mais elle contient les primes CDD
+      multiplicateur des tranches: plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          tranches:
+            - en-dessous de: 1
+              taux: 0%
+            - de: 1
+              à: 8
+              taux: 12.75%
+                # 2016: 12.75%
+                # 2015: 12.75%
+                # 2014: 12.68%
+                # 2006: 12.6%
+                # 1999: 12.5%
+                # 1998: 11.875%
+                # 1997: 11.25%
+                # 1996: 10.625%
+                # 1995: 10.%
+                # 1994: 8.47%
+                # 1993: 7.02%
+            - au-dessus de: 8
+              taux: 0%
+
+
+        - attributs:
+            dû par: salarié
+          tranches:
+            - en-dessous de: 1
+              taux: 0%
+            - de: 1
+              à: 8
+              taux: 7.8%
+                # 2016: 7.8%
+                # 2015: 7.8%
+                # 2014: 7.75%
+                # 2006: 7.7%
+                # 1999: 7.5%
+                # 1998: 6.875%
+                # 1997: 6.25%
+                # 1996: 5.625%
+                # 1995: 5%
+                # 1994: 3.63%
+                # 1993-07: 2.34%
+            - au-dessus de: 8
+              taux: 0%
+
+  notes: |
+    Il existe une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
+
+  références:
+    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+    garantie minimale de points: http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
+- espace: contrat salarié
+  nom: AGS
+  description: Cotisation au Régime de Garantie des Salaires
+  cotisation:
+    dû par: employeur
+    branche: chômage
+  references:
+    calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
+  notes: |
+    - taux différent pour le personnel intérimaire des entreprises de travail temporaire
+    - Ne sont pas assujetties :
+      - les personnes morales de droit public,
+      - les syndicats de copropriété,
+      - les particuliers employeurs.
+
+#  non applicable si: assimilé salarié
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
+      taux: 0.15%
+- espace: contrat salarié
+  nom: allocations familiales
+  cotisation:
+    dû par: employeur
+    branche: famille
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+
+  formule: cotisation allocations familiales - réduction allocations familiales
+
+- espace: contrat salarié
+  nom: cotisation allocations familiales
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 5.25%
+
+- espace: contrat salarié
+  nom: réduction allocations familiales
+  applicable si:
+    toutes ces conditions:
+      - assiette cotisations sociales < plafond réduction allocations familiales
+      - ≠ statut JEI
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 1.8%
+
+- espace: contrat salarié
+  nom: plafond réduction allocations familiales
+  formule: smic mensuel * 3.5
+
+# TODO - intégrer l'éligibilité à la réduction générale
+# TODO - vérifier si la réduction doit être portée à part sur la fiche de paie
+- espace: contrat salarié
+  nom: APEC
+  cotisation:
+    branche: chômage
+    type de retraite: complémentaire
+    destinataire: APEC
+  description: |
+    Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+  références:
+    chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+  notes: |
+    Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
+
+  #TODO double négation en attendant d'ajouter 'applicable si'
+  non applicable si: ≠ statut cadre
+
+  formule:
+    barème:
+      assiette: salaire de base #TODO assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          tranches:
+            - en-dessous de: 4
+              taux: 0.036%
+            - au-dessus de: 4
+              taux: 0%
+
+        - attributs:
+            dû par: salarié
+          tranches:
+            - en-dessous de: 4
+              taux: 0.024%
+            - au-dessus de: 4
+              taux: 0%
+- espace: contrat salarié
+  nom: ARRCO
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: ARRCO
+  description: |
+    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés
+  références:
+    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+
+  formule:
+    barème:
+      assiette: assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          variations:
+            - si: statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 4.65%
+                - au-dessus de: 1
+                  taux: 0%
+            - si: ≠ statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 4.65%
+                - de: 1
+                  à: 3
+                  taux: 12.15%
+                - au-dessus de: 3
+                  taux: 0%
+
+        - attributs:
+            dû par: salarié
+          variations:
+            - si: statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 3.1%
+                - au-dessus de: 1
+                  taux: 0%
+            - si: ≠ statut cadre
+              tranches:
+                - en-dessous de: 1
+                  taux: 3.1%
+                - de: 1
+                  à: 3
+                  taux: 8.1%
+                - au-dessus de: 3
+                  taux: 0%
+- espace: contrat salarié
+  nom: chômage
+  cotisation:
+    branche: chômage
+    destinataire: Pôle emploi
+  description: Cotisation d’assurance chômage
+  références:
+    calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
+    urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
+    changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
+
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 4%
+
+        - attributs:
+            dû par: employeur
+            composante: contribution exceptionnelle temporaire
+          description: |
+            Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
+          taux: 0.05%
+
+        - attributs:
+            dû par: salarié
+          taux: 0.95%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1500
+      valeur attendue: 75
+    - nom: Haut salaire
+      situation:
+        assiette cotisations sociales: 20000
+      valeur attendue: 662.2
+- espace: contrat salarié
+  nom: complémentaire santé
+  cotisation:
+    branche: santé
+  références:
+    Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
+  formule:
+    multiplication:
+      assiette: forfait complémentaire santé
+      composantes:
+        # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
+        - attributs:
+            dû par: employeur
+          taux: 50%
+        - attributs:
+            dû par: salarié
+          taux: 50%
+  exemples:
+    - nom: forfait à 40€
+      situation:
+        forfait complémentaire santé: 40
+      valeur attendue: 40
+
+- espace: contrat salarié
+  nom: forfait complémentaire santé
+  titre: Forfait de complémentaire santé enteprise
+  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
+  description: |
+    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
+    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
+  références:
+    les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
+  format: euros
+  par défaut: 40
+  suggestions:
+    basique: 40
+    moyen: 100
+- espace: contrat salarié
+  nom: contribution au dialogue social
+  cotisation:
+    dû par: employeur
+    collecteur: URSSAF
+  description: Contribution patronale destinée à abonder un fonds paritaire dédié au financement des organisations syndicales et des organisations professionnelles d’employeurs.
+  références:
+    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
+    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
+  notes: |
+    Anciennement 'contribution patronale au financement des organisations syndicales'
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 0.016%
+- espace: contrat salarié
+  nom: cotisation exceptionnelle temporaire
+  acronyme: CET
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC
+  description: |
+    Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points supplémentaires au salarié.
+  références:
+    calcul: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+
+  non applicable si: ≠ statut cadre
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 8 * plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 0.22%
+
+        - attributs:
+            dû par: salarié
+          taux: 0.13%
+- espace: contrat salarié
+  note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO
+  nom: assiette CSG
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
+    abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
+  formule:
+    somme:
+      - assiette CSG abattue
+      - prévoyance obligatoire cadre
+      - complémentaire santé (employeur)
+
+- espace: contrat salarié
+  note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO
+  nom: assiette CSG abattue
+  formule:
+    barème:
+      assiette: assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
+      tranches:
+        - en-dessous de: 4
+          taux: 98.25%
+        - au-dessus de: 4
+          taux: 100%
+
+- espace: contrat salarié
+  nom: CSG
+  cotisation:
+    impôt: oui
+    dû par: salarié
+  description: |
+    Contribution sociale généralisée.
+    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+  formule:
+    multiplication:
+      assiette: assiette CSG
+      composantes:
+        - attributs:
+            déductible des impôts: non
+          taux: 2.4%
+
+        - attributs:
+            déductible des impôts: oui
+          taux: 6.8%
+  exemples:
+    - nom: "CSG cadre"
+      situation:
+        assiette cotisations sociales: 1500
+        forfait complémentaire santé: 40
+        statut cadre: oui
+      valeur attendue: 139.495
+    - nom: "CSG non cadre"
+      situation:
+        assiette cotisations sociales: 1500
+        forfait complémentaire santé: 40
+      valeur attendue: 137.425
+
+
+- espace: contrat salarié
+  nom: CRDS
+  cotisation:
+    impôt: oui
+    dû par: salarié
+  description: Contribution pour le remboursement de la dette sociale
+  formule:
+    multiplication:
+      assiette: assiette CSG
+      taux: 0.5%
+- espace: contrat salarié
+  nom: FNAL
+  titre: Contribution au Fonds National d’Aide au Logement
+  cotisation:
+    dû par: employeur
+    destinataire: URSSAF
+    branche: logement
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
+  note: Il y avait une cotisation supplémentaire pour les entreprises de >= 20 employés avant 2015, mais le résultat était le même.
+  explication: |
+    Si l'entreprise a un effectif supérieur ou égal à 20 salariés, elle doit verser 0,50 % sur la totalité des salaires. Pour les entreprises de moins de 20 salariés et pour les employeurs occupés aux activités mentionnées aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche maritime et les coopératives mentionnées à l'article L. 521-1 du même code, la cotisation est de 0,10 % des salaires limités au plafond de sécurité sociale (tranche A). Intégrée aux cotisations de sécurité sociale, elle est recouvrée par les Urssaf pour le financement des allocations logement versées par les caisses d'allocations familiales.   Les employeurs qui ont atteint ou dépassé pour la première fois, au titre des années 2008 à 2012, le seuil de 20 salariés ont été dispensés de l’ancien Fnal supplémentaire pendant 3 ans. La contribution était ensuite progressivement appelée sur les 3 années suivantes. Un dispositif est mis en place pour 2016, 2017 et 2018. Les employeurs qui atteignent ou dépassent au titre de ces années l'effectif de 20 salariés continuent d'appliquer le taux de 0,10 % pendant trois ans (suite au franchissement de seuil). Cette modalité n'implique pas d'adaptation du calcul du coefficient de la réduction générale. Le seuil de 20 salariés s'apprécie au 31 décembre et la modification de la cotisation est effective au 1er avril suivant.
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      variations:
+        - si: entreprise . effectif < 20
+          taux: 0.1%
+          plafond: plafond sécurité sociale
+        - si: entreprise . effectif >= 20
+          taux: 0.5%
+
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1500
+        entreprise . effectif: 10
+      valeur attendue: 1.5
+- espace: contrat salarié
+  nom: formation professionnelle
+  cotisation:
+    dû par: employeur
+    collecteur: OPCA
+    branche: formation
+    # TODO majoration pour les entreprises de travail temporaire
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      variations:
+        - si: entreprise . effectif >= 11
+          taux: 1%
+        - si: entreprise . effectif < 11
+          taux: 0.55%
+- espace: contrat salarié
+  nom: maladie
+  cotisation:
+    branche: santé
+    dû par: employeur
+  description: Cotisations de la branche maladie
+  référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      composantes:
+        - attributs: # On va ici surcharger la Cotisation incomplète définie plus haut
+            composante: maladie, maternité, invalidité, décès
+          taux: 12.89%
+
+        - attributs:
+            composante: Contribution Solidarité Autonomie
+            abbréviation: CSA
+          références:
+            - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
+            - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
+          taux: 0.3%
+- espace: contrat salarié
+  nom: médecine du travail
+  alias: santé au travail
+  cotisation:
+    dû par: employeur
+    branche: santé
+  références:
+    fiche: http://travail-emploi.gouv.fr/emploi/maintien-dans-l-emploi/prevention-et-maintien-dans-l-emploi-10705/services-de-sante-au-travail-sst
+    question au sénat: http://www.senat.fr/questions/base/2005/qSEQ050919275.html
+    rapport officiel, page 6: http://www.ladocumentationfrançaise.fr/var/storage/rapports-publics/074000708.pdf
+  description:  |
+    L'employeur a l'obligation d'organiser un service de santé au travail, en adhérant à un service interentreprises, ou en créant un service interne.
+
+    Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est pas défini par la loi, mais il doit être proportionnel au nombre d'employés. Nous avons choisi un montant indicatif (voir les références) ajusté avec l'inflation depuis 2007.
+
+  formule: 80 / 12
+- espace: contrat salarié
+  nom: participation effort de construction
+  alias: Dispositif du 1 % logement
+  acronyme: PEEC
+  description: Participation des employeurs à l'effort de construction
+  cotisation:
+    branche: logement
+    dû par: employeur
+    impôt: oui
+  références:
+    fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
+  notes: |
+    L'employeur a le choix entre verser cet impôt à un "organisme du 1 % patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
+
+
+  applicable si: entreprise . effectif >= 20
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 0.45%
+
+  # TODO cas agricole, et autres statuts spécifiques
+  # TODO décalage d'un an : salaire N-1 pour paiement en N
+# TODO: cette contribution est un minimum légal (méconnu semble-t-il), il faudrait pouvoir
+# indiquer le taux appliqué par l'entreprise
+- espace: contrat salarié
+  nom: prévoyance obligatoire cadre
+  cotisation:
+    dû par: employeur
+    branche: santé
+  références:
+    minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
+  non applicable si: ≠ statut cadre
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: plafond sécurité sociale
+      taux: 1.5%
+- espace: contrat salarié
+  nom: taxe d'apprentissage
+  cotisation:
+    destinataire: Organisme Collecteur de Taxe d'Apprentissage (OCTA)
+    branche: formation
+    dû par: employeur
+  description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
+
+  références:
+    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
+    csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
+
+  notes: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
+
+  non applicable si: entreprise . association non lucrative
+  # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
+  # -> pas de taxe ni contribution d'apprentissage
+  formule:
+    somme:
+      - taxe d'apprentissage de base
+      - contribution supplémentaire à l'apprentissage
+
+- espace: contrat salarié
+  nom: taxe d'apprentissage de base
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 0.68%
+        # exception:
+        #   si: régime géographique = Alsace-Moselle
+        #   2016: 0.44%
+
+- espace: contrat salarié
+  nom: contribution supplémentaire à l'apprentissage
+
+  non applicable si:
+    une de ces conditions:
+      - entreprise . effectif < 250
+      - entreprise . ratio alternants >= 5%
+
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+
+      # exception:
+      #   si: régime géographique = Alsace-Moselle
+      #   références:
+      #     - http://circulaires.legifrance.gouv.fr/pdf/2012/03/cir_34909.pdf
+      #     - http://bofip.impots.gouv.fr/bofip/6325-PGP.html
+      #     # Toutefois, en application du IV de l’article 1609 quinvicies du CGI , dans les départements du Haut-Rhin, du Bas-Rhin et de la Moselle, les taux précités sont réduits à 52 % de leur montant, soit :
+      #   facteur: 0.52
+
+      variations:
+      - si: taxe d'apprentissage . csa au taux majoré
+        taux: 0.6%
+      - si: entreprise . ratio alternants < 1%
+        taux: 0.4%
+      - si: entreprise . ratio alternants < 2%
+        taux: 0.2%
+      - si: entreprise . ratio alternants < 3%
+        taux: 0.1%
+      - si: entreprise . ratio alternants < 5%
+        taux: 0.05%
+
+- espace: contrat salarié . taxe d'apprentissage
+  nom: csa au taux majoré
+
+  formule:
+    toutes ces conditions:
+      - entreprise . effectif >= 2000
+      - entreprise . ratio alternants < 1%
+
+# TODO chantier droits: introduire la répartition entre part régionale, quota d'app., hors quota
+# https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
+- espace: contrat salarié
+  nom: assujettie à la taxe sur les salaires
+  titre: Entreprise assujettie à la taxe sur les salaires
+  description: |
+    Sont assujetties les associations à but non lucratif et les entreprises non soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les particuliers employeurs, les employeurs agricoles, les établissements d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
+  question: L'entreprise est-elle assujettie à la taxe sur les salaires ?
+  # variable non utilisée pour l'instant, comme dans le simulateur v1
+  # à ajouter quand nous aurons des mécanismes logiques plus évolués (notamment 'applicable si')
+  par défaut: non
+
+- espace: contrat salarié
+  nom: taxe sur les salaires annuelle
+  références:
+    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
+
+  formule:
+    barème:
+      # TODO - les barèmes étant exprimés en base annuelle, et également à cause des limitations
+      # de la grammaire, on a recours à cette formulation trop compliquée; à simplifier
+      assiette: assiette taxe sur les salaires * 12
+      tranches:
+        - en-dessous de: 7721
+          taux: 4.25%
+        - de: 7721
+          à: 15417
+          taux: 8.5%
+        - de:  15417
+          à: 152279
+          taux: 13.6%
+        - au-dessus de: 152279
+          taux: 20%
+  exemples:
+    - nom: salaire médian
+      situation:
+        assiette taxe sur les salaires: 2300
+      valeur attendue: 2639.16 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
+
+
+
+- espace: contrat salarié
+  nom: assiette taxe sur les salaires
+  formule:
+    somme:
+      - assiette cotisations sociales
+      - prévoyance obligatoire cadre
+      - complémentaire santé (employeur)
+
+- espace: contrat salarié
+  nom: taxe sur les salaires
+  description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+  non applicable si: ≠ entreprise . association non lucrative
+
+  formule: taxe sur les salaires annuelle / 12
+  exemples:
+    - nom: non applicable par défaut
+      situation:
+        salaire brut: 2300
+      valeur attendue: 0
+    - nom: association non lucrative
+      # Ce test ne sert qu'à tester la condition "association non lucrative", tant que nous faisons face à la limitation des calculs temporels
+      situation:
+        entreprise . association non lucrative: oui
+        taxe sur les salaires annuelle: 2639.16
+      valeur attendue: 219.93
+- espace: contrat salarié
+  nom: versement transport
+  description: Contribution sur le travail consacrée au financement des transports publics.
+  non applicable si: entreprise . effectif < 11
+    # TODO variations sur la période
+    # variations:
+    #   - si: période >= 2016
+    #     condition: entreprise . effectif >= 11
+    #   - si: période < 2016
+    #     condition: entreprise . effectif >= 10
+  cotisation:
+    branche: transport
+    dû par: employeur
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: établissement . taux versement transport
+
+  références:
+    wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+- espace: établissement
+  nom: taux versement transport
+  données: taux_versement_transport
+  formule:
+    sélection:
+      données: taux versement transport
+      cherche: code commune
+      dans: codeCommune
+      composantes:
+        - nom: aot
+          renvoie: aot
+        - nom: smt
+          renvoie: smt
+- espace: contrat salarié
+  nom: vieillesse
+  cotisation:
+    branche: retraite
+    collecteur: URSSAF
+    destinataire: CNAV
+    # CTP: 100
+  description: Cotisation au régime de retraite de base des salariés.
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      composantes:
+        - attributs:
+            dû par: salarié
+          composantes:
+            - nom: non plafonnée
+              taux: 0.4%
+            - nom: plafonnée
+              plafond: plafond sécurité sociale
+              taux: 6.90%
+        - attributs:
+            dû par: employeur
+          composantes:
+            - nom: non plafonnée
+              taux: 1.9%
+            - nom: plafonnée
+              plafond: plafond sécurité sociale
+              taux: 8.55%
+  exemples:
+    - nom: SMIC
+      situation:
+        assiette cotisations sociales: 1500
+      valeur attendue: 266.25
+    - nom: Haut salaire élevé
+      situation:
+        assiette cotisations sociales: 8000
+      valeur attendue: 695.55
