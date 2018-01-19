@@ -1,5 +1,5 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import rawRules from '../../règles/base.yaml'
+import rawRules from 'Règles/base.yaml'
 import {
 	has,
 	pipe,
@@ -27,7 +27,7 @@ import { capitalise0 } from '../utils'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
 // TODO - should be in UI, not engine
-import taux_versement_transport from '../../règles/rémunération-travail/cotisations/ok/liste-taux.json'
+import taux_versement_transport from 'Règles/taux-versement-transport.json'
 
 // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
