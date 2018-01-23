@@ -33,6 +33,8 @@ export default class About extends Component {
 					Ou <Link to="/contact">contactez-nous</Link> directement.
 				</p>
 				{/* <p>Notre prochaine rencontre OpenLab aura lieu <strong>le mercredi 18 janvier 2017 à 10h</strong>, au 86 allée de Bercy, 75012, salle 381-R</p> */}
+				<h1>Vie privée</h1>
+				<p>LALALA</p>
 			</section>
 		)
 	}
