@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './Layout.css'
 import './reset.css'
-import './ribbon.css'
 
-import { Link, Route, Router, Switch, Redirect } from 'react-router-dom'
+import { Route, Router, Switch, Redirect } from 'react-router-dom'
 
 import Home from 'Components/pages/Home'
 import RulePage from 'Components/RulePage'
@@ -18,19 +17,27 @@ import About from 'Components/pages/About'
 import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 import Header from 'Components/pages/Header'
+import { getIframeOption } from '../utils'
 
 const piwik = new ReactPiwik({
 	url: 'stats.data.gouv.fr',
 	siteId: 39,
 	trackErrors: true
 })
+let integratorUrl = getIframeOption('integratorUrl')
+ReactPiwik.push([
+	'setCustomVariable',
+	1,
+	'urlPartenaire',
+	decodeURIComponent(integratorUrl || 'https://embauche.beta.gouv.fr'),
+	'visit'
+])
 
 export default class Layout extends Component {
 	history = createHistory()
 	render() {
 		// track the initial pageview
 		ReactPiwik.push(['trackPageView'])
-
 		return (
 			<Router history={piwik.connectToHistory(this.history)}>
 				<>
@@ -49,6 +56,7 @@ export default class Layout extends Component {
 						<Route path="/contribuer" component={Contribution} />
 						<Redirect from="/simu/" to="/" />
 						<Redirect from="/simulateur" to="/" />
+						<Redirect from="/couleur.html" to="/" />
 						<Route component={Route404} />
 					</Switch>
 				</>

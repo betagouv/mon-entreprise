@@ -2,18 +2,16 @@
 }
 
 #injectSituation {
-	background: rgb(74, 137, 220);
 	color: white;
 	border: none;
 	font-size: 100%;
-	padding: .3em .6em;
-	margin-bottom: .6em;
+	padding: 0.3em 0.6em;
+	margin-bottom: 0.6em;
 }
 
 #injectSituation.selected {
 	font-weight: bold;
 }
-
 
 #examples ul {
 	padding-left: 0;
@@ -21,7 +19,7 @@
 }
 #examples .example {
 	font-weight: 500;
-	margin: .6em;
+	margin: 0.6em;
 	cursor: pointer;
 }
 #examples .example.selected .name {
@@ -29,7 +27,7 @@
 }
 
 #examples i {
-	margin-right: .6em;
+	margin-right: 0.6em;
 }
 
 #examples .example i {
@@ -52,5 +50,5 @@
 }
 
 #examples .example.ok i {
-	color: #2ecc71
+	color: #2ecc71;
 }

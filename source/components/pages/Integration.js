@@ -16,7 +16,7 @@ export default class MyComponent extends Component {
 							id
 						</em>="script-simulateur-embauche" <em>
 							data-couleur
-						</em>="<span id="scriptColor">#4A89DC</span>" <em>src</em>="https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js">
+						</em>="<span id="scriptColor">#2975D1</span>" <em>src</em>="https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js">
 						<span>{'<'}</span>
 						<span>/</span>
 						<em>script</em>

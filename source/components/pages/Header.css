@@ -13,13 +13,12 @@
 	font-size: calc(1vw + 150%);
 	font-weight: 600;
 	display: inline-block;
-	margin-left: .8em;
-	color: #333
+	margin-left: 0.8em;
+	color: #333;
 }
 
 #header #marianne {
 	width: calc(3vw + 5em);
-
 }
 #menuButton {
 	font-size: 300%;
@@ -44,7 +43,7 @@ nav a {
 		background: white;
 		left: 0;
 		top: 4.8em;
-    bottom: 0;
+		bottom: 0;
 		z-index: 10;
 	}
 	nav.visible #links {
@@ -70,4 +69,28 @@ nav a {
 		margin: 0.8em;
 		font-size: 85%;
 	}
+}
+
+#iframeFullscreen {
+	font-size: 120%;
+	text-align: center;
+	background: #eee;
+	display: block;
+	width: 12em;
+	margin: 0 auto;
+	padding: 0.4em 1em;
+	cursor: pointer;
+}
+#iframeFullscreen.absolute {
+	padding: 0;
+}
+#iframeFullscreen i {
+	margin-left: 1em;
+}
+
+#iframeFullscreen.absolute i {
+	position: absolute;
+	top: 0.2em;
+	right: 0.3em;
+	font-size: 150%;
 }

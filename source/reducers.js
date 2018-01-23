@@ -167,6 +167,8 @@ export default reduceReducers(
 
 		done: (state = null) => state,
 
+		iframe: (state = false) => state,
+
 		themeColours,
 
 		explainedVariable

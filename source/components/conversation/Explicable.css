@@ -17,7 +17,6 @@
 	cursor: pointer;
 	vertical-align: baseline;
 	font-size: 95%;
-	color: #2975D1;
 }
 
 .explicable .icon:hover {
@@ -31,8 +30,3 @@
   opacity: .3
 }
 */
-.explicable.explained .icon {
-	opacity: 1;
-	background: #4a89dc;
-	color: white;
-}

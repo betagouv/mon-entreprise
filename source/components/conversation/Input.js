@@ -40,7 +40,7 @@ export default class Input extends Component {
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
-								: { border: '1px solid #2975D1' }
+								: { border: `1px solid ${themeColours.textColourOnWhite}` }
 						}
 						onKeyDown={({ key }) =>
 							key == 'Enter' && (submitDisabled ? input.onBlur() : submit())
@@ -119,7 +119,7 @@ export default class Input extends Component {
 							}
 							onMouseOver={() => this.setState({ hoverSuggestion: value })}
 							onMouseOut={() => this.setState({ hoverSuggestion: null })}
-							style={{ color: themeColours.colour }}
+							style={{ color: themeColours.textColourOnWhite }}
 						>
 							<a href="#" title="cliquer pour valider">
 								{text}

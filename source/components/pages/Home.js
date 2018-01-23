@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import './Pages.css'
 import './Home.css'
 import TargetSelection from '../TargetSelection'
+import { connect } from 'react-redux'
 
+@connect(state => ({
+	themeColours: state.themeColours
+}))
 export default class Home extends Component {
 	state = {
 		updateMessage: false
@@ -18,7 +22,10 @@ export default class Home extends Component {
 					<i
 						className="fa fa-newspaper-o"
 						aria-hidden="true"
-						style={opacityStyle}
+						style={{
+							...opacityStyle,
+							color: this.props.themeColours.textColourOnWhite
+						}}
 					/>
 					<p style={opacityStyle}>
 						Cette nouvelle version du site vous permet de simuler un CDD ou CDI,
@@ -26,7 +33,7 @@ export default class Home extends Component {
 					</p>
 				</div>
 				<div id="content">
-					<TargetSelection />
+					<TargetSelection themeColours={this.props.themeColours} />
 				</div>
 			</div>
 		)

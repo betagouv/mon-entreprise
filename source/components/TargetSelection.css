@@ -35,12 +35,8 @@
 	font-size: 120%;
 }
 #targetSelection label p {
-	color: #555;
 	margin: 0;
-}
-#targetSelection input:checked + label .optionTitle {
-	font-weight: 600;
-	color: #2975d1;
+	font-weight: 400;
 }
 
 #targetSelection input {
@@ -58,24 +54,6 @@
 	max-width: 0.75em;
 }
 
-#targetSelection input + label > i.fa.fa-square-o {
-	color: #555;
-	display: inline;
-}
-#targetSelection input + label > i.fa.fa-check-square-o {
-	display: none;
-}
-#targetSelection input:checked + label > i.fa.fa-square-o {
-	display: none;
-}
-#targetSelection input:checked + label > i.fa.fa-check-square-o {
-	color: #2975d1;
-	display: inline;
-}
-#targetSelection label:hover > i.fa {
-	color: #2975d1;
-}
-
 #targetSelection #action {
 	text-align: center;
 	margin: 1em auto;
@@ -83,7 +61,6 @@
 
 #targetSelection #action p {
 	font-size: 80%;
-	color: #4a89dc;
 }
 
 /* TODO styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

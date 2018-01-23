@@ -7,7 +7,8 @@ import './ProgressTip.css'
 @connect(state => ({
 	done: state.done,
 	foldedSteps: state.foldedSteps,
-	nextSteps: state.nextSteps
+	nextSteps: state.nextSteps,
+	textColourOnWhite: state.themeColours.textColourOnWhite
 }))
 export default class ProgressTip extends Component {
 	state = {
@@ -20,7 +21,7 @@ export default class ProgressTip extends Component {
 			})
 	}
 	render() {
-		let { done, nextSteps, foldedSteps } = this.props,
+		let { done, nextSteps, foldedSteps, textColourOnWhite } = this.props,
 			nbQuestions = nextSteps.length
 		if (!done) return null
 		return (
@@ -34,9 +35,10 @@ export default class ProgressTip extends Component {
 						{nbQuestions === 1
 							? 'Une dernière question !'
 							: `Il reste moins de ${nbQuestions} questions`}
-						<progress
-							value={foldedSteps.length}
-							max={foldedSteps.length + nbQuestions}
+						<ProgressBar
+							foldedSteps={foldedSteps}
+							nbQuestions={nbQuestions}
+							colour={textColourOnWhite}
 						/>
 					</p>
 				)}
@@ -44,3 +46,13 @@ export default class ProgressTip extends Component {
 		)
 	}
 }
+
+let ProgressBar = ({ foldedSteps, nbQuestions, colour }) => (
+	<progress
+		value={foldedSteps.length}
+		max={foldedSteps.length + nbQuestions}
+		style={{
+			borderColor: colour
+		}}
+	/>
+)

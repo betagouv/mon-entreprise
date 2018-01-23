@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './Pages.css'
 import './About.css'
 import { Link } from 'react-router-dom'
+import BlueButton from '../BlueButton'
+
 export default class About extends Component {
 	render() {
 		return (
@@ -64,13 +66,14 @@ let MailChimp = () => (
 					/>
 				</div>
 				<div className="clear">
-					<input
-						type="submit"
-						value="M'inscrire"
-						name="subscribe"
-						id="mc-embedded-subscribe"
-						className="blueButton"
-					/>
+					<BlueButton>
+						<input
+							type="submit"
+							value="M'inscrire"
+							name="subscribe"
+							id="mc-embedded-subscribe"
+						/>
+					</BlueButton>
 				</div>
 			</div>
 		</form>

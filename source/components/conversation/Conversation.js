@@ -53,7 +53,10 @@ export default class Conversation extends Component {
 				<Element name="myScrollToElement" id="myScrollToElement">
 					<h3
 						className="scrollIndication up"
-						style={{ opacity: foldedSteps.length != 0 ? 1 : 0 }}
+						style={{
+							opacity: foldedSteps.length != 0 ? 1 : 0,
+							color: textColourOnWhite
+						}}
 					>
 						<i className="fa fa-long-arrow-up" aria-hidden="true" /> Modifier
 						mes réponses

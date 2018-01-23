@@ -1,4 +1,3 @@
-
 #sim .tip {
 	font-style: italic;
 	margin-bottom: 1em;
@@ -10,7 +9,8 @@
 #sim .tip progress {
 	margin-left: 1em;
 	background: white;
-  border: 1px solid #2975D1;
+	border-width: 1px;
+	border-style: solid;
 }
 
 progress::-webkit-progress-bar {
@@ -18,5 +18,4 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-	background: #2975D1;
 }

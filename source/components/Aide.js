@@ -7,10 +7,12 @@ import { EXPLAIN_VARIABLE } from '../actions'
 
 import References from './rule/References'
 import './Aide.css'
-import { capitalise0 } from '../utils'
 
 @connect(
-	state => ({ explained: state.explainedVariable }),
+	state => ({
+		explained: state.explainedVariable,
+		themeColours: state.themeColours
+	}),
 	dispatch => ({
 		stopExplaining: () => dispatch({ type: EXPLAIN_VARIABLE })
 	})
@@ -20,7 +22,7 @@ export default class Aide extends Component {
 		return marked(`### ${term} \n\n${explanation}`)
 	}
 	render() {
-		let { explained, stopExplaining } = this.props
+		let { explained, stopExplaining, themeColours } = this.props
 
 		if (!explained) return <section id="helpWrapper" />
 
@@ -33,7 +35,11 @@ export default class Aide extends Component {
 		return (
 			<div id="helpWrapper" className="active">
 				<section id="help">
-					<i className="fa fa-times-circle" onClick={stopExplaining} />
+					<i
+						className="fa fa-times-circle"
+						onClick={stopExplaining}
+						style={{ color: themeColours.colour }}
+					/>
 					<p
 						dangerouslySetInnerHTML={{
 							__html: this.renderExplanationMarkdown(text, rule.title)

@@ -3,7 +3,7 @@ import { rules, findRuleByName } from 'Engine/rules'
 import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
-
+import BlueButton from './BlueButton'
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
 
 export default class TargetSelection extends Component {
@@ -21,9 +21,11 @@ export default class TargetSelection extends Component {
 					id="action"
 					style={{ visibility: !targets.length ? 'hidden' : 'visible' }}
 				>
-					<p>Vous pouvez faire plusieurs choix</p>
+					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
+						Vous pouvez faire plusieurs choix
+					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<button className="blueButton">Valider</button>
+						<BlueButton>Valider</BlueButton>
 					</Link>
 				</div>
 			</section>
@@ -35,6 +37,7 @@ export default class TargetSelection extends Component {
 				curry(findRuleByName)(rules)
 			),
 			{ targets } = this.state,
+			textColourOnWhite = this.props.themeColours.textColourOnWhite,
 			// You can't select 3 salaries, as one must be an input in the next step
 			optionDisabled = name =>
 				contains('salaire', name) &&
@@ -43,7 +46,8 @@ export default class TargetSelection extends Component {
 					filter(contains('salaire')),
 					length,
 					equals(2)
-				)(targets)
+				)(targets),
+			optionIsChecked = s => targets.includes(s.name)
 
 		return (
 			<div>
@@ -54,7 +58,7 @@ export default class TargetSelection extends Component {
 								id={s.name}
 								type="checkbox"
 								disabled={optionDisabled(s.name)}
-								checked={targets.includes(s.name)}
+								checked={optionIsChecked(s)}
 								onChange={() =>
 									this.setState({
 										targets: targets.find(t => t === s.name)
@@ -63,12 +67,40 @@ export default class TargetSelection extends Component {
 									})
 								}
 							/>
-							<label htmlFor={s.name} key={s.name}>
-								<i className="fa fa-square-o fa-2x" />
-								<i className="fa fa-check-square-o fa-2x" />
+							<label
+								htmlFor={s.name}
+								key={s.name}
+								style={
+									optionIsChecked(s)
+										? {
+												fontWeight: 600,
+												color: textColourOnWhite
+											}
+										: {}
+								}
+							>
+								{optionIsChecked(s) ? (
+									<i
+										className="fa fa-check-square-o fa-2x"
+										style={{ color: textColourOnWhite }}
+									/>
+								) : (
+									<i
+										className="fa fa-square-o fa-2x"
+										style={{ color: '#555' }}
+									/>
+								)}
 								<div>
 									<span className="optionTitle">{s.title || s.name}</span>
-									<p>{s['résumé']}</p>
+									<p
+										style={
+											optionIsChecked(s)
+												? { color: textColourOnWhite }
+												: { color: '#555' }
+										}
+									>
+										{s['résumé']}
+									</p>
 								</div>
 							</label>
 						</div>

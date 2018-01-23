@@ -1,4 +1,3 @@
-
 /* mécanisme somme */
 .somme table {
 	width: 100%;
@@ -14,14 +13,13 @@
 	text-align: right;
 }
 .somme tr:hover {
-	background: rgba(51, 51, 80, 0.02)
+	background: rgba(51, 51, 80, 0.02);
 }
 .somme tr:nth-child(2n) {
-
 }
 .somme tr .element {
 	text-align: left;
-	padding: .1em .6em;
+	padding: 0.1em 0.6em;
 }
 .somme .element .unfoldIndication {
 	font-size: 60%;
@@ -39,7 +37,7 @@
 .somme .operator {
 	text-align: center;
 	width: 1em;
-	padding: 0 .4em;
+	padding: 0 0.4em;
 	font-weight: 600;
 	font-size: 120%;
 	color: black;
@@ -55,7 +53,7 @@
 }
 
 .somme .nested {
-  padding: 0;
+	padding: 0;
 	border: none;
 }
 .somme .nested tr:first-child {
@@ -64,11 +62,9 @@
 .somme .noNest {
 	border-bottom: none;
 }
-.somme > table  {
+.somme > table {
 	border-bottom: 1px solid rgba(51, 51, 80, 0.15);
 }
-
-
 
 /* Specific to ResultsGrid.css. Somme.js and ResultsGrid.js should be merged */
 
@@ -90,7 +86,7 @@
 	padding-left: 1.2em;
 }
 .resultsGrid .detailsRow .name:hover {
-	color: #2975D1;
+	color: #111;
 	text-decoration: underline;
 }
 
@@ -112,11 +108,11 @@
 	font-weight: 600;
 	font-size: 95%;
 	padding: 0 0.6em;
-	margin-left: .3em;
-	border-radius: .2em;
-	white-space: nowrap
+	margin-left: 0.3em;
+	border-radius: 0.2em;
+	white-space: nowrap;
 }
 
 .detailsRow {
-	background: rgba(51, 51, 80, 0.02)
+	background: rgba(51, 51, 80, 0.02);
 }
