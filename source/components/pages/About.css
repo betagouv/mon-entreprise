@@ -4,3 +4,11 @@
 	display: block;
 	text-align: center;
 }
+
+#about iframe {
+	width: 100%;
+	border: none;
+	height: auto;
+	background: yellow;
+	height: 6.5em;
+}
