@@ -112,6 +112,9 @@ export default class Input extends Component {
 							onClick={() => {
 								this.setState({ lastValue: null })
 								setFormValue('' + value)
+								if (this.state.suggestion !== value)
+									this.setState({ suggestion: value })
+								else this.props.stepProps.submit()
 							}}
 							onMouseOver={() => {
 								this.setState({ lastValue: this.props.input.value })
