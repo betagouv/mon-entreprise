@@ -52,7 +52,7 @@ import {
 
 import 'react-virtualized/styles.css'
 import { Table, Column } from 'react-virtualized'
-import taux_versement_transport from 'Règles/rémunération-travail/cotisations/ok/liste-taux.json'
+import taux_versement_transport from 'Règles/taux-versement-transport.json'
 import Somme from './mecanismViews/Somme'
 import uniroot from './uniroot'
 

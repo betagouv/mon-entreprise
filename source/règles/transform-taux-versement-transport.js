@@ -49,7 +49,7 @@ let additionnalResults = villesAvecArrondissements.map(
 )
 
 fs.writeFile(
-	'./liste-taux.json',
+	'./taux-versement-transport.json',
 	JSON.stringify(result.concat(additionnalResults)),
 	function(err) {
 		if (err) {
