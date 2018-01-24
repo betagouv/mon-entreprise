@@ -29,6 +29,7 @@
 		"nearley": "^2.9.2",
 		"npm": "^5.3.0",
 		"ramda": "^0.25.0",
+		"rc-progress": "^2.2.5",
 		"react": "^16.2.0",
 		"react-addons-css-transition-group": "^15.6.2",
 		"react-color": "^2.13.8",
