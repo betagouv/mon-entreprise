@@ -49,7 +49,7 @@ export let Leaf = ({ classes, name, value }) => (
 	<span className={classNames(classes, 'leaf')}>
 		{name && (
 			<span className="nodeHead">
-				<Link to={'/regle/' + encodeRuleName(name)}>
+				<Link to={'/règle/' + encodeRuleName(name)}>
 					<span className="name">
 						{capitalise0(name)}
 						<NodeValuePointer data={value} />

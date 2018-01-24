@@ -70,7 +70,7 @@
 	background: rgba(51, 51, 80, 0.03);
 	padding: 1em;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 }
 #meta-content p {
 	/*border-left: 3px solid #333350;*/

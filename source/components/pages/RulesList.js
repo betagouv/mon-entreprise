@@ -13,7 +13,7 @@ export default class RulesList extends Component {
 				<ul>
 					{rules.map(rule => (
 						<li key={rule.name}>
-							<Link to={'/regle/' + encodeRuleName(rule.name)}>
+							<Link to={'/règle/' + encodeRuleName(rule.name)}>
 								{capitalise0(rule.name)}
 							</Link>
 						</li>

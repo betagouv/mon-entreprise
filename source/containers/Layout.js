@@ -45,8 +45,15 @@ export default class Layout extends Component {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route path="/contact" component={Contact} />
-						<Route path="/regle/:name" component={RulePage} />
-						<Route path="/regles" component={RulesList} />
+						<Route path="/règle/:name" component={RulePage} />
+						{/* Redirect to be removed in March (Google should have understood...)*/}
+						<Route
+							path="/regle/:name"
+							render={({ match }) => (
+								<Redirect to={`/règle/${match.params.name}`} />
+							)}
+						/>
+						<Route path="/règles" component={RulesList} />
 						<Route path="/mecanismes" component={Mecanisms} />
 						<Redirect from="/simu/surcoût-CDD/intro" to="/" />
 						<Redirect from="/simu/surcoût-CDD" to="/" />

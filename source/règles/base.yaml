@@ -1,3 +1,6 @@
+- nom: contrat salarié
+  description: Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
+
 - espace: contrat salarié . CDD
   nom: CIF
   description: Contribution au financement du congé individuel de formation spécifique aux CDD.
@@ -860,6 +863,7 @@
 - espace: contrat salarié
   nom: régime alsace moselle
   par défaut: non
+
 - nom : entreprise
   description: |
     Le contrat lie une entreprise et un employé

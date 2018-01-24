@@ -7,13 +7,12 @@ import { makeJsx } from 'Engine/evaluation'
 import './Algorithm.css'
 import { humanFigure } from '../../utils'
 
-let RuleWithoutFormula = () => [
+let RuleWithoutFormula = () => (
 	<p>
-		Cette règle n'a pas de formule de calcul pour l'instant (elle n'en aura même
-		peut-être jamais !)
-	</p>,
-	<p>Sa valeur doit donc être renseignée directement.</p>
-]
+		Cette règle n'a pas de formule de calcul pour l'instant. Sa valeur doit donc
+		être renseignée directement.
+	</p>
+)
 
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {

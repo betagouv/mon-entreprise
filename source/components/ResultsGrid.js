@@ -214,7 +214,7 @@ class Row extends Component {
 			: keys(detail).map(subCellName => (
 					<tr key={'detailsRow' + subCellName} className="detailsRow">
 						<td className="element name">
-							<Link to={'/regle/' + encodeRuleName(nameLeaf(subCellName))}>
+							<Link to={'/règle/' + encodeRuleName(nameLeaf(subCellName))}>
 								{title(subCellName)}
 							</Link>
 						</td>
@@ -298,7 +298,7 @@ class ReductionRow extends Component {
 		let detailRow = this.state.folded ? null : (
 			<tr key="detailsRowRéductions" className="detailsRow">
 				<td className="element name">
-					<Link to={'/regle/' + encodeRuleName('réductions de cotisations')}>
+					<Link to={'/règle/' + encodeRuleName('réductions de cotisations')}>
 						Réductions de cotisations
 					</Link>
 				</td>

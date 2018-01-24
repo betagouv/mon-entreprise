@@ -19,7 +19,7 @@ export class Header extends Component {
 
 	render() {
 		let { location } = this.props
-		let appMode = ['/simu', '/regle'].find(t => location.pathname.includes(t))
+		let appMode = ['/simu', '/règle'].find(t => location.pathname.includes(t))
 		if (this.props.iframe)
 			return screenfull.enabled ? (
 				<div
@@ -88,7 +88,7 @@ let Links = ({ toggle }) => (
 		<Link className="menu-item" to="/contribuer">
 			Contribuer
 		</Link>
-		<Link className="menu-item" to="/regles">
+		<Link className="menu-item" to="/règles">
 			Toutes nos règles
 		</Link>
 		<Link className="menu-item" to="/à-propos">

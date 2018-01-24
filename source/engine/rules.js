@@ -10,6 +10,7 @@ import {
 	join,
 	dropLast,
 	take,
+	propEq,
 	reduce,
 	when,
 	is,
@@ -137,6 +138,9 @@ export let searchRules = searchInput =>
 export let findRuleByDottedName = (allRules, dottedName) => {
 	return allRules.find(rule => rule.dottedName == dottedName)
 }
+
+export let findRuleByNamespace = (allRules, ns) =>
+	allRules.filter(propEq('ns', ns))
 
 /*********************************
  Autres */
