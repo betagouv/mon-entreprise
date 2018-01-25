@@ -8,6 +8,7 @@ import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import Fuse from 'fuse.js'
 import { Redirect } from 'react-router-dom'
+import Highlighter from 'react-highlight-words'
 
 export default class RulesList extends Component {
 	render() {
@@ -41,37 +42,51 @@ class SearchBar extends React.Component {
 		this.fuse = new Fuse(rules, options)
 	}
 	state = {
-		selectedOption: null
+		selectedOption: null,
+		inputValue: null
 	}
 	handleChange = selectedOption => {
 		this.setState({ selectedOption })
 	}
-
+	renderOption = option => (
+		<Highlighter
+			searchWords={[this.state.inputValue]}
+			textToHighlight={option.title}
+		/>
+	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
 		let { selectedOption } = this.state
 
 		if (selectedOption != null)
 			return <Redirect to={'règle/' + selectedOption.dottedName} />
+
 		return (
-			<Select
-				name="form-field-name"
-				value={selectedOption && selectedOption.dottedName}
-				onChange={this.handleChange}
-				valueKey="dottedName"
-				labelKey="title"
-				filterOptions={this.filterOptions}
-			/>
+			<>
+				<Select
+					value={selectedOption && selectedOption.dottedName}
+					onChange={this.handleChange}
+					onInputChange={inputValue => this.setState({ inputValue })}
+					valueKey="dottedName"
+					labelKey="title"
+					options={rules}
+					filterOptions={this.filterOptions}
+					optionRenderer={this.renderOption}
+					searchPromptText="Entrez des mots clefs ici"
+					noResultsText="Nous n'avons rien trouvé..."
+				/>
+				{!this.state.inputValue && (
+					<ul>
+						{rules.map(rule => (
+							<li key={rule.dottedName}>
+								<Link to={'/règle/' + encodeRuleName(rule.name)}>
+									{capitalise0(rule.name)}
+								</Link>
+							</li>
+						))}
+					</ul>
+				)}
+			</>
 		)
 	}
 }
-
-// <ul>
-// 	{rules.map(rule => (
-// 		<li key={rule.name}>
-// 			<Link to={'/règle/' + encodeRuleName(rule.name)}>
-// 				{capitalise0(rule.name)}
-// 			</Link>
-// 		</li>
-// 	))}
-// </ul>
