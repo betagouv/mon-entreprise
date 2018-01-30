@@ -1,0 +1,11 @@
+#searchButton button {
+	margin-top: 0.6em;
+	border: none;
+}
+#searchButton i {
+	font-size: 180%;
+}
+#searchButton {
+	display: flex;
+	justify-content: flex-end;
+}

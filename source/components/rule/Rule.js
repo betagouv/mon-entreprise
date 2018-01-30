@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom'
 import { findRuleByNamespace } from 'Engine/rules'
 import withColours from '../withColours'
 
+import SearchButton from 'Components/SearchButton'
+
 @connect(state => ({
 	form: state.form,
 	textColourOnWhite: state.themeColours.textColourOnWhite,
@@ -38,7 +40,7 @@ export default class Rule extends Component {
 					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
-
+				<SearchButton />
 				<RuleMeta
 					{...{
 						textColourOnWhite,

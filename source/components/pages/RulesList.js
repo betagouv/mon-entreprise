@@ -15,13 +15,13 @@ export default class RulesList extends Component {
 		return (
 			<div id="RulesList" className="page">
 				<h1>Explorez notre base de règles</h1>
-				<SearchBar rules={rules} />
+				<SearchBar showDefaultList={true} rules={rules} />
 			</div>
 		)
 	}
 }
 
-class SearchBar extends React.Component {
+export class SearchBar extends React.Component {
 	componentWillMount() {
 		var options = {
 			keys: [
@@ -60,7 +60,6 @@ class SearchBar extends React.Component {
 
 		if (selectedOption != null)
 			return <Redirect to={'règle/' + selectedOption.dottedName} />
-
 		return (
 			<>
 				<Select
@@ -72,20 +71,21 @@ class SearchBar extends React.Component {
 					options={rules}
 					filterOptions={this.filterOptions}
 					optionRenderer={this.renderOption}
-					searchPromptText="Entrez des mots clefs ici"
+					placeholder="Entrez des mots clefs ici"
 					noResultsText="Nous n'avons rien trouvé..."
 				/>
-				{!this.state.inputValue && (
-					<ul>
-						{rules.map(rule => (
-							<li key={rule.dottedName}>
-								<Link to={'/règle/' + encodeRuleName(rule.name)}>
-									{capitalise0(rule.name)}
-								</Link>
-							</li>
-						))}
-					</ul>
-				)}
+				{this.props.showDefaultList &&
+					!this.state.inputValue && (
+						<ul>
+							{rules.map(rule => (
+								<li key={rule.dottedName}>
+									<Link to={'/règle/' + encodeRuleName(rule.name)}>
+										{capitalise0(rule.name)}
+									</Link>
+								</li>
+							))}
+						</ul>
+					)}
 			</>
 		)
 	}
