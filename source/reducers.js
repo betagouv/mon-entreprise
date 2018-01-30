@@ -1,4 +1,4 @@
-import { head, isEmpty, pathOr, reject, contains, without, concat } from 'ramda'
+import { head, isEmpty, pathOr, reject, contains, without, concat, length } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
@@ -116,9 +116,17 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push([
 			'trackEvent',
-			'answer',
+			'answer:'+action.source,
 			action.step + ': ' + situationWithDefaults(state)(action.step)
 		])
+
+		if (!newState.currentQuestion) {
+			tracker.push([
+				'trackEvent',
+				'done',
+				'after'+length(newState.foldedSteps)+'questions'
+			])
+		}
 
 		return {
 			...newState,

@@ -139,7 +139,7 @@ class RadioLabelContent extends Component {
 	click = value => () => {
 		this.props.setFormValue(value)
 		if (this.state.active !== value) this.setState({ active: value })
-		else this.props.submit()
+		else this.props.submit('dblClick')
 	}
 	render() {
 		let { value, label, input, hover, themeColours } = this.props,

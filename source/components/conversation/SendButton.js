@@ -5,7 +5,7 @@ import HoverDecorator from 'Components/HoverDecorator'
 export default class SendButton extends Component {
 	getAction() {
 		let { disabled, submit } = this.props
-		return () => (!disabled ? submit() : null)
+		return (cause) => (!disabled ? submit(cause) : null)
 	}
 	componentDidMount() {
 		// removeEventListener will need the exact same function instance
@@ -18,7 +18,7 @@ export default class SendButton extends Component {
 	}
 	handleKeyDown({ key }) {
 		if (key !== 'Enter') return
-		this.getAction()()
+		this.getAction()('enter')
 	}
 	render() {
 		let { disabled, themeColours, hover } = this.props
@@ -31,7 +31,7 @@ export default class SendButton extends Component {
 						color: themeColours.textColour,
 						background: themeColours.colour
 					}}
-					onClick={this.getAction()}
+					onClick={(event) => this.getAction()('accept')}
 				>
 					<span className="text">valider</span>
 					<i className="fa fa-check" aria-hidden="true" />
