@@ -22,9 +22,14 @@ export default class TargetSelection extends Component {
 					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
 						Vous pouvez faire plusieurs choix
 					</p>
-					<BlueButton disabled={!ready} style={{ opacity: !ready ? 0.4 : 1 }}>
-						<Link to={'/simu/' + targets.join('+')}>Valider</Link>
-					</BlueButton>
+					<Link to={'/simu/' + targets.join('+')}>
+						<BlueButton
+							disabled={!ready}
+							style={{ opacity: !ready ? 0.15 : 1 }}
+						>
+							Valider
+						</BlueButton>
+					</Link>
 				</div>
 			</section>
 		)
@@ -71,7 +76,6 @@ export default class TargetSelection extends Component {
 								style={
 									optionIsChecked(s)
 										? {
-												fontWeight: 600,
 												color: textColourOnWhite
 											}
 										: {}
@@ -85,7 +89,7 @@ export default class TargetSelection extends Component {
 								) : (
 									<i
 										className="fa fa-square-o fa-2x"
-										style={{ color: '#555' }}
+										style={{ color: '#4b4b66' }}
 									/>
 								)}
 								<div>
@@ -94,7 +98,7 @@ export default class TargetSelection extends Component {
 										style={
 											optionIsChecked(s)
 												? { color: textColourOnWhite }
-												: { color: '#555' }
+												: { color: '#4b4b66' }
 										}
 									>
 										{s['résumé']}

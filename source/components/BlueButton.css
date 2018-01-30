@@ -1,3 +1,7 @@
+#action a {
+	cursor: default;
+}
+
 .blueButton {
 	color: white;
 	display: block;
@@ -17,12 +21,8 @@
 	opacity: 1;
 }
 .blueButton:disabled {
-	background: #aaa !important;
+	background: #4b4b66 !important;
 }
 .blueButton a {
 	color: inherit;
-}
-
-.blueButton:disabled a {
-	cursor: default;
 }
