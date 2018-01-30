@@ -133,13 +133,8 @@ let RadioLabel = props => (
 
 @HoverDecorator
 class RadioLabelContent extends Component {
-	state = {
-		active: null
-	}
 	click = value => () => {
-		this.props.setFormValue(value)
-		if (this.state.active !== value) this.setState({ active: value })
-		else this.props.submit('dblClick')
+		if (this.props.input.value == value) this.props.submit('dblClick')
 	}
 	render() {
 		let { value, label, input, hover, themeColours } = this.props,
