@@ -11,21 +11,19 @@ export default class TargetSelection extends Component {
 		targets: []
 	}
 	render() {
-		let { targets } = this.state
+		let { targets } = this.state,
+			ready = targets.length > 0
 
 		return (
 			<section id="targetSelection">
 				<h1>Que voulez-vous calculer ?</h1>
 				{this.renderOutputList()}
-				<div
-					id="action"
-					style={{ visibility: !targets.length ? 'hidden' : 'visible' }}
-				>
+				<div id="action">
 					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
 						Vous pouvez faire plusieurs choix
 					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton>Valider</BlueButton>
+						<BlueButton disabled={!ready}>Valider</BlueButton>
 					</Link>
 				</div>
 			</section>
@@ -73,7 +71,6 @@ export default class TargetSelection extends Component {
 								style={
 									optionIsChecked(s)
 										? {
-												fontWeight: 600,
 												color: textColourOnWhite
 											}
 										: {}
@@ -87,7 +84,7 @@ export default class TargetSelection extends Component {
 								) : (
 									<i
 										className="fa fa-square-o fa-2x"
-										style={{ color: '#555' }}
+										style={{ color: '#4b4b66' }}
 									/>
 								)}
 								<div>
@@ -96,7 +93,7 @@ export default class TargetSelection extends Component {
 										style={
 											optionIsChecked(s)
 												? { color: textColourOnWhite }
-												: { color: '#555' }
+												: { color: '#4b4b66' }
 										}
 									>
 										{s['résumé']}

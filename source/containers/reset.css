@@ -13,13 +13,13 @@
 fieldset {
 	border: 0;
 	padding: 0;
-	padding-top: .01em;
+	padding-top: 0.01em;
 	margin: 0;
 	min-width: 0;
 }
 
 /* Remove spinner controls from Firefox */
-input[type="number"] {
+input[type='number'] {
 	appearance: textfield;
 }
 
@@ -41,7 +41,10 @@ label {
 button {
 	background: none;
 	border: 1px solid #222;
-	border-radius: .2em;
+	border-radius: 0.2em;
 	padding: 0 1em;
+}
+
+button:enabled {
 	cursor: pointer;
 }

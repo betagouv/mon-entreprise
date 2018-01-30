@@ -21,18 +21,20 @@
 }
 #targetSelection label {
 	display: block;
-	margin-bottom: 1em;
+	margin-bottom: 1.2em;
 	display: flex;
-	vertical-align: middle;
+	align-items: center;
 	cursor: pointer;
 }
-
+#targetSelection label i {
+	font-size: 180%;
+}
 #targetSelection div {
 	margin-left: 1em;
 }
 
 #targetSelection .optionTitle {
-	font-size: 120%;
+	font-size: 130%;
 }
 #targetSelection label p {
 	margin: 0;
