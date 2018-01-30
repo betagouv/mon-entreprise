@@ -23,12 +23,7 @@ export default class TargetSelection extends Component {
 						Vous pouvez faire plusieurs choix
 					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton
-							disabled={!ready}
-							style={{ opacity: !ready ? 0.15 : 1 }}
-						>
-							Valider
-						</BlueButton>
+						<BlueButton disabled={!ready}>Valider</BlueButton>
 					</Link>
 				</div>
 			</section>

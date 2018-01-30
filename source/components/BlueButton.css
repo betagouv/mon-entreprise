@@ -21,7 +21,8 @@
 	opacity: 1;
 }
 .blueButton:disabled {
-	background: #4b4b66 !important;
+	background: #4b4b6633 !important;
+	box-shadow: none;
 }
 .blueButton a {
 	color: inherit;
