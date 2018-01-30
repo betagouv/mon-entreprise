@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import './ProgressTip.css'
+import { Line } from 'rc-progress'
 
 @withRouter
 @connect(state => ({
 	done: state.done,
 	foldedSteps: state.foldedSteps,
 	nextSteps: state.nextSteps,
-	textColourOnWhite: state.themeColours.textColourOnWhite
+	colour: state.themeColours.colour
 }))
 export default class ProgressTip extends Component {
 	state = {
@@ -21,7 +22,7 @@ export default class ProgressTip extends Component {
 			})
 	}
 	render() {
-		let { done, nextSteps, foldedSteps, textColourOnWhite } = this.props,
+		let { done, nextSteps, foldedSteps, colour } = this.props,
 			nbQuestions = nextSteps.length
 		if (!done) return null
 		return (
@@ -35,10 +36,14 @@ export default class ProgressTip extends Component {
 						{nbQuestions === 1
 							? 'Une dernière question !'
 							: `Il reste moins de ${nbQuestions} questions`}
-						<ProgressBar
-							foldedSteps={foldedSteps}
-							nbQuestions={nbQuestions}
-							colour={textColourOnWhite}
+						<Line
+							percent={
+								100 * foldedSteps.length / (foldedSteps.length + nbQuestions)
+							}
+							strokeWidth="1"
+							strokeColor={colour}
+							trailColor="white"
+							strokeLinecap="butt"
 						/>
 					</p>
 				)}
@@ -46,13 +51,3 @@ export default class ProgressTip extends Component {
 		)
 	}
 }
-
-let ProgressBar = ({ foldedSteps, nbQuestions, colour }) => (
-	<progress
-		value={foldedSteps.length}
-		max={foldedSteps.length + nbQuestions}
-		style={{
-			borderColor: colour
-		}}
-	/>
-)

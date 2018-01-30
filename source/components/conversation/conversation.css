@@ -214,6 +214,10 @@
 .step.question .variantLeaf.aucun label {
 	font-weight: bold;
 }
+
+.step.question .sendWrapper {
+	float: right;
+}
 .step label.radio,
 /* A resume of what's been answered */ .resume {
 	text-align: center;
@@ -315,7 +319,7 @@
 	font-style: italic;
 	float: right;
 	clear: right;
-	font-size: 70%;
+	font-size: 75%;
 	color: #222;
 }
 .step .inputSuggestions ul {
@@ -326,11 +330,12 @@
 }
 .step .inputSuggestions li {
 }
-.step .inputSuggestions a {
+.step .inputSuggestions span {
 	padding: 0.1em 0.9em;
 	font-weight: 600;
+	cursor: pointer;
 }
-.step .inputSuggestions a:hover {
+.step .inputSuggestions span:hover {
 	text-decoration: none;
 }
 
@@ -370,11 +375,11 @@
 }
 
 .step .send {
-	padding: 0 0.1em 0 0.5em;
+	padding: 0.1em 0.4em 0em 1em;
 	background: none;
 	cursor: pointer;
 	border: 1px solid;
-	border-radius: 0.2em;
+	border-radius: 0.4em;
 	line-height: 0em;
 }
 
@@ -382,19 +387,24 @@
 	opacity: 0.2;
 }
 
-.step .send .icon {
-	margin-left: 0.3em;
-	font-size: 135%;
-	vertical-align: middle;
+.step .send i {
+	margin: 0 0.3em;
+	font-size: 160%;
 }
 
 .step .send .text {
 	text-transform: uppercase;
-	font-size: 115%;
+	font-size: 135%;
 	line-height: 2em;
 }
 
 .answer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.foldedQuestion .answer {
 	float: right;
 }
 

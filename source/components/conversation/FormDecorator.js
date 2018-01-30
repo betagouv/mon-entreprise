@@ -25,7 +25,7 @@ export var FormDecorator = formType => RenderField =>
 				formValueSelector('conversation')(state, 'inversions.' + dottedName)
 		}),
 		dispatch => ({
-			stepAction: (name, step) => dispatch(stepAction(name, step)),
+			stepAction: (name, step, source) => dispatch(stepAction(name, step, source)),
 			setFormValue: (field, value) =>
 				dispatch(change('conversation', field, value))
 		})
@@ -75,11 +75,11 @@ export var FormDecorator = formType => RenderField =>
 			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
 			des balises html, <input> dans notre cas.
 			*/
-			let submit = () => setTimeout(() => stepAction('fold', fieldName), 1),
+			//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
+			let submit = (cause) => setTimeout(() => stepAction('fold', fieldName, cause), 1),
 				stepProps = {
 					...this.props.step,
 					inverted,
-					//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
 					submit,
 					setFormValue: (value, name = fieldName) => setFormValue(name, value)
 				}
@@ -121,7 +121,7 @@ export var FormDecorator = formType => RenderField =>
 							<IgnoreStepButton
 								action={() => {
 									setFormValue(fieldName, '' + defaultValue)
-									submit()
+									submit('ignore')
 								}}
 							/>
 						)}
@@ -159,7 +159,7 @@ export var FormDecorator = formType => RenderField =>
 					</span>
 					<button
 						className="edit"
-						onClick={() => stepAction('unfold', dottedName)}
+						onClick={() => stepAction('unfold', dottedName, 'unfold')}
 						style={{ color: themeColours.textColourOnWhite }}
 					>
 						<i className="fa fa-pencil" aria-hidden="true" />

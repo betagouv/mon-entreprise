@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { encodeRuleName } from 'Engine/rules'
 import classNames from 'classnames'
-import { capitalise0 } from '../../utils'
 let fmt = new Intl.NumberFormat('fr-FR').format
 export let humanFigure = decimalDigits => value =>
 	fmt(value.toFixed(decimalDigits))
@@ -45,7 +44,7 @@ let RuleValue = ({ unsatisfied, irrelevant, conversationStarted, ruleValue }) =>
 			? ['irrelevant', "Vous n'êtes pas concerné"]
 			: unsatisfied
 				? ['unsatisfied', 'En attente de vos réponses...']
-				: ['figure', humanFigure(2)(ruleValue) + ' €']
+				: ['figure', humanFigure(0)(ruleValue) + ' €']
 
 		{
 			/*<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p> */

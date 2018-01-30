@@ -1,4 +1,4 @@
-import { head, isEmpty, pathOr, reject, contains, without, concat } from 'ramda'
+import { head, isEmpty, pathOr, reject, contains, without, concat, length } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
@@ -50,10 +50,17 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	// Optimization - don't parse on each analysis
 	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
 
-	if (![START_CONVERSATION, STEP_ACTION].includes(action.type)) return state
+	if (
+		![START_CONVERSATION, STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
+			action.type
+		)
+	)
+		return state
 
 	let targetNames =
-		action.type == START_CONVERSATION ? action.targetNames : state.targetNames
+		action.type == START_CONVERSATION
+			? action.targetNames
+			: state.targetNames || []
 
 	let sim =
 			targetNames.length === 1 ? findRuleByName(flatRules, targetNames[0]) : {},
@@ -66,9 +73,14 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
 	let analysis = analyseMany(state.parsedRules, targetNames)(
-			situationWithDefaults(state)
-		),
-		nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
+		situationWithDefaults(state)
+	)
+
+	if (action.type === 'USER_INPUT_UPDATE') {
+		return { ...state, analysis, situationGate: situationWithDefaults(state) }
+	}
+
+	let nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
 		assumptionsMade = !isEmpty(rulesDefaults),
 		done = nextWithDefaults.length == 0
 
@@ -104,9 +116,17 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push([
 			'trackEvent',
-			'answer',
+			'answer:'+action.source,
 			action.step + ': ' + situationWithDefaults(state)(action.step)
 		])
+
+		if (!newState.currentQuestion) {
+			tracker.push([
+				'trackEvent',
+				'done',
+				'after'+length(newState.foldedSteps)+'questions'
+			])
+		}
 
 		return {
 			...newState,

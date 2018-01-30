@@ -1,6 +1,6 @@
 #sim .tip {
 	font-style: italic;
-	margin-bottom: 1em;
+	margin-bottom: -0.3em;
 	text-align: center;
 }
 #sim .tip p {
@@ -11,11 +11,4 @@
 	background: white;
 	border-width: 1px;
 	border-style: solid;
-}
-
-progress::-webkit-progress-bar {
-	background: white;
-}
-
-progress::-webkit-progress-value {
 }
