@@ -4,8 +4,12 @@ import { connect } from 'react-redux'
 
 export default connect(state => ({
 	themeColours: state.themeColours
-}))(({ themeColours, children }) => (
-	<button className="blueButton" style={{ background: themeColours.colour }}>
+}))(({ themeColours, children, disabled, style }) => (
+	<button
+		disabled={disabled}
+		className="blueButton"
+		style={{ ...style, background: themeColours.colour }}
+	>
 		{children}
 	</button>
 ))

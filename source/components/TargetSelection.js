@@ -11,22 +11,20 @@ export default class TargetSelection extends Component {
 		targets: []
 	}
 	render() {
-		let { targets } = this.state
+		let { targets } = this.state,
+			ready = targets.length > 0
 
 		return (
 			<section id="targetSelection">
 				<h1>Que voulez-vous calculer ?</h1>
 				{this.renderOutputList()}
-				<div
-					id="action"
-					style={{ visibility: !targets.length ? 'hidden' : 'visible' }}
-				>
+				<div id="action">
 					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
 						Vous pouvez faire plusieurs choix
 					</p>
-					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton>Valider</BlueButton>
-					</Link>
+					<BlueButton disabled={!ready} style={{ opacity: !ready ? 0.4 : 1 }}>
+						<Link to={'/simu/' + targets.join('+')}>Valider</Link>
+					</BlueButton>
 				</div>
 			</section>
 		)
