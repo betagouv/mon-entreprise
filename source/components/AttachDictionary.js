@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import marked from 'Engine/marked'
 import './Dictionary.css'
+import Overlay from './Overlay'
 
 // On ajoute à la section la possibilité d'ouvrir un panneau d'explication des termes.
 // Il suffit à la section d'appeler une fonction fournie en lui donnant du JSX
@@ -26,28 +27,24 @@ export let AttachDictionary = dictionary => Decorated =>
 		render() {
 			let { explanation, term } = this.state
 			return (
-				<div style={{ display: 'inline-block' }} className="dictionaryWrapper">
+				<div style={{ display: 'inline-block' }}>
 					<Decorated
 						ref={decorated => (this.decorated = decorated)}
 						{...this.props}
-						explain={this.explain}
 					/>
 					{explanation && (
-						<div
-							id="dictionaryPanelWrapper"
-							onClick={() => this.setState({ term: null, explanation: null })}
+						<Overlay
+							onOuterClick={() =>
+								this.setState({ term: null, explanation: null })
+							}
 						>
 							<div
 								id="dictionaryPanel"
-								onClick={e => {
-									e.preventDefault()
-									e.stopPropagation()
-								}}
 								dangerouslySetInnerHTML={{
 									__html: this.renderExplanationMarkdown(explanation, term)
 								}}
 							/>
-						</div>
+						</Overlay>
 					)}
 				</div>
 			)
