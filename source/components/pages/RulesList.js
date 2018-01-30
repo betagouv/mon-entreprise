@@ -22,6 +22,9 @@ export default class RulesList extends Component {
 }
 
 export class SearchBar extends React.Component {
+	componentDidMount() {
+		this.inputElement.focus()
+	}
 	componentWillMount() {
 		var options = {
 			keys: [
@@ -58,8 +61,10 @@ export class SearchBar extends React.Component {
 	render() {
 		let { selectedOption } = this.state
 
-		if (selectedOption != null)
-			return <Redirect to={'règle/' + selectedOption.dottedName} />
+		if (selectedOption != null) {
+			this.props.finally()
+			return <Redirect to={'/règle/' + selectedOption.dottedName} />
+		}
 		return (
 			<>
 				<Select
@@ -73,6 +78,9 @@ export class SearchBar extends React.Component {
 					optionRenderer={this.renderOption}
 					placeholder="Entrez des mots clefs ici"
 					noResultsText="Nous n'avons rien trouvé..."
+					ref={el => {
+						this.inputElement = el
+					}}
 				/>
 				{this.props.showDefaultList &&
 					!this.state.inputValue && (
