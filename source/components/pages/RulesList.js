@@ -89,9 +89,9 @@ export class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
-		let { rules } = this.props,
-			{ i18n } = this.context
-		let { selectedOption } = this.state
+		let { rules, finish = () => null  } = this.props,
+			{ i18n } = this.context,
+		{ selectedOption } = this.state,
 
 		if (selectedOption != null) {
 			this.props.finally && this.props.finally()
