@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
-export let salaries = ['salaire net', 'salaire de base', 'salaire total']
+
+export let salaries = ['salaire net', 'salaire brut', 'salaire total']
 
 @connect(state => ({
 	flatRules: state.flatRules,

@@ -667,13 +667,14 @@
 
 - espace: contrat salarié
   nom: salaire de base
-  titre: Salaire brut
-  résumé: Le salaire inscrit dans le contrat de travail.
+  titre: Salaire brut de base
+  résumé: Le salaire brut régulier inscrit dans le contrat de travail.
   type: salaire
-  question: Quel est le salaire brut mensuel ?
+  question: Quel est le salaire de base mensuel ?
   description: |
-    C'est le salaire de négociation du contrat de travail en France. 
-
+    C'est le salaire régulier inscrit dans le contrat de travail.
+    Il ne comprend donc pas les primes, indemnités, avantages...
+    Toutes ces formes de salaire donneront le salaire brut.
   format: euros
   suggestions:
     salaire médian: 2300
@@ -690,13 +691,20 @@
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
-  note: |
-    Ici nous confondons salaire brut et salaire de base, en attendant que l'UI de simulation puisse traiter la différence entre les deux. Il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule.
-    La définition du salaire de base est la suivante :
-    Le salaire de base est le salaire brut régulier inscrit dans le contrat. C'est le salaire de négociation entre le salarié et l'employeur. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
+
 
 - espace: contrat salarié
   nom: salaire brut
+  résumé: Le salaire inscrit sur le contrat de travail.
+  description: >
+    C'est le salaire de négociation du contrat de travail en France.
+
+    Il peut être vu comme :
+
+    - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
+    - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
+
+
   format: euros
   formule:
     somme:
@@ -1425,7 +1433,7 @@
 
   formule:
     barème:
-      assiette: salaire de base #TODO assiette cotisations sociales
+      assiette: assiette cotisations sociales
       multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
