@@ -90,11 +90,11 @@ export default class ResultsGrid extends Component {
 			brut = get('contrat salarié . salaire brut'),
 			net = get('contrat salarié . salaire net'),
 			total = get('contrat salarié . salaire total')
-		let inversion = path(['contrat salarié ', ' salaire de base'], inversions),
+		let inversion = path(['contrat salarié ', ' salaire brut'], inversions),
 			relevantSalaries = new Set(
 				targetNames
 					.concat(inversion ? [nameLeaf(inversion)] : [])
-					.concat(['salaire de base'])
+					.concat(['salaire brut'])
 			)
 
 		return (
