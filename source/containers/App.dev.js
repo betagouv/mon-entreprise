@@ -1,19 +1,13 @@
-import React, { Component } from 'react'
-
-import { Provider } from 'react-redux'
+import React from 'react'
 import DevTools from '../DevTools'
+import { Provider } from 'react-redux'
 import Layout from './Layout'
 
-export default class App extends Component {
-	render() {
-		const { store } = this.props
-		return (
-			<Provider store={store}>
-				<div>
-					<Layout />
-					<DevTools />
-				</div>
-			</Provider>
-		)
-	}
-}
+export default ({ store }) => (
+	<Provider store={store}>
+		<div id="dev">
+			<Layout />
+			<DevTools />
+		</div>
+	</Provider>
+)
