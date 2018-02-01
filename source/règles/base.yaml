@@ -1262,7 +1262,7 @@
     atteindre le nombre minimum de 120 points Agirc,
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
 
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
 
   formule:
     complément:
@@ -1295,11 +1295,10 @@
   description: |
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
 
-  #TODO double négation en attendant d'ajouter 'applicable si'
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
   formule:
     barème:
-      assiette: assiette cotisations sociales #TODO devrait être assiette cotisations sociales. Mais elle contient les primes CDD
+      assiette: assiette cotisations sociales
       multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
@@ -1416,8 +1415,7 @@
   références:
     chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
 
-  #TODO double négation en attendant d'ajouter 'applicable si'
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
 
   formule:
     barème:
@@ -1600,7 +1598,7 @@
   références:
     calcul: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
 
   formule:
     multiplication:
@@ -1796,12 +1794,13 @@
     branche: santé
   références:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
   formule:
     multiplication:
       assiette: assiette cotisations sociales
       plafond: plafond sécurité sociale
       taux: 1.5%
+      # TODO attention : il semblerait que ce 1.5% englobe aussi la complémentaire santé ! La confusion serait entretenue par les organismes de prévoyance...
 - espace: contrat salarié
   nom: taxe d'apprentissage
   cotisation:
