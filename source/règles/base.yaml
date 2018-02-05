@@ -681,8 +681,8 @@
   format: euros
   suggestions:
     salaire médian: 2300
-    SMIC: 1480
-    SMIC mi-temps: 740
+    SMIC: 1500
+    SMIC mi-temps: 750
 
   formule:
     inversion:
