@@ -27,3 +27,12 @@ Ce gros object est interprété par un moteur JS. Les mécanismes de calcul expo
 Les fichiers YAML ainsi que le code du moteur ne sont aujourd'hui pas très bien ordonnés, et nous n'avons pas de documentation technique : mieux vaut nous contacter avant de faire un plongeon dans le code. 
 
 > Note : vous ne trouverez pas de `const` dans l'appli, tous les `let` (sauf exception signalée) se comportant comme des `const` (ne sont pas réassignés), sauf pour les vraies constantes dans `actions.js`.
+
+
+Navigateurs supportés 
+--------------------------
+
+Toutes les versions récentes de Firefox, Chrome, Safari, Edge, ainsi que IE 11 sont normalement supportées. 
+
+Nous testons cette compatibilité grâce à [BrowserStack](http://browserstack.com/) qui s'engage pour les logiciels libres.
+![Logo de Browserstack, notre solution de tests manuels](https://i.imgur.com/dQwLjXA.png)
