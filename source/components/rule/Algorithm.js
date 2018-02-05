@@ -5,7 +5,7 @@ import { AttachDictionary } from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import { makeJsx } from 'Engine/evaluation'
 import './Algorithm.css'
-import { humanFigure } from './RuleValueVignette'
+import { humanFigure } from '../../utils'
 
 let RuleWithoutFormula = () => [
 	<p>
@@ -29,24 +29,22 @@ export default class Algorithm extends React.Component {
 		return (
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({ showValues })}>
-					{
-						do {
-							// TODO ce let est incompréhensible !
-							let applicabilityMecanisms = values(rule).filter(
-								v => v && v['rulePropType'] == 'cond'
-							)
-							applicabilityMecanisms.length > 0 && (
-								<section id="declenchement">
-									<h2>Déclenchement</h2>
-									<ul>
-										{applicabilityMecanisms.map(v => (
-											<li key={v.name}>{makeJsx(v)}</li>
-										))}
-									</ul>
-								</section>
-							)
-						}
-					}
+					{do {
+						// TODO ce let est incompréhensible !
+						let applicabilityMecanisms = values(rule).filter(
+							v => v && v['rulePropType'] == 'cond'
+						)
+						applicabilityMecanisms.length > 0 && (
+							<section id="declenchement">
+								<h2>Déclenchement</h2>
+								<ul>
+									{applicabilityMecanisms.map(v => (
+										<li key={v.name}>{makeJsx(v)}</li>
+									))}
+								</ul>
+							</section>
+						)
+					}}
 					<section id="formule">
 						<h2>
 							Calcul

@@ -75,9 +75,9 @@ module.exports = {
 			},
 			{
 				test: /\.(jpe?g|png|gif|svg)$/i,
-				loader: prodEnv ? 
-					'url-loader?limit=10000&name=images/[name].[ext]!img-loader?progressive=true' : 
-					'url-loader?limit=10000&name=images/[name].[ext]'
+				loader: prodEnv
+					? 'url-loader?limit=10000&name=images/[name].[ext]!img-loader?progressive=true'
+					: 'url-loader?limit=10000&name=images/[name].[ext]'
 			},
 			{
 				test: /\.ne$/,
