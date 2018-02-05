@@ -6,3 +6,9 @@ export let getIframeOption = optionName => {
 		hasOption = url.includes(optionName + '=')
 	return hasOption && url.split(optionName + '=')[1].split('&')[0]
 }
+
+export let fmt =
+	'Intl' in window ? new Intl.NumberFormat('fr-FR').format : v => v
+
+export let humanFigure = decimalDigits => value =>
+	fmt(value.toFixed(decimalDigits))

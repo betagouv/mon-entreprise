@@ -9,30 +9,59 @@ export default class About extends Component {
 		return (
 			<section className="page" id="about">
 				<h1>À propos</h1>
-				<p>
-					<a href="https://beta.gouv.fr" target="_blank">
-						L'incubateur des services numériques de l'État
-					</a>{' '}
-					a lancé en 2014 le développement d’une <em>ressource ouverte</em> de
-					calcul des prélèvements sociaux sur les revenus d'activité en France.
-				</p>
-				<p>
-					Ce premier service, un{' '}
-					<em>module de simulation des sommes en jeu lors d'une embauche</em>,
-					peut être{' '}
-					<Link to="/intégrer">intégré facilement et gratuitement</Link> par
-					toute organisation sur son site Web.
-				</p>
-				<p>
-					Ce travail est contributif : venez définir avec nous la feuille de
-					route du service (implémentation des conventions collectives, ajout
-					des statuts autres que le travail salarié, ...).
-				</p>
-				<MailChimp />
-				<p>
-					Ou <Link to="/contact">contactez-nous</Link> directement.
-				</p>
+				<section>
+					<p>
+						<a href="https://beta.gouv.fr" target="_blank">
+							L'incubateur des services numériques de l'État
+						</a>{' '}
+						a lancé en 2014 le développement d’une <em>ressource ouverte</em> de
+						calcul des prélèvements sociaux sur les revenus d'activité en
+						France, étape incontournable lors d'une embauche.
+					</p>
+					<p>
+						Ce premier service, un{' '}
+						<em>module de simulation des sommes en jeu lors d'une embauche</em>,
+						peut être{' '}
+						<Link to="/intégrer">intégré facilement et gratuitement</Link> par
+						toute organisation sur son site Web.
+					</p>
+					<p>
+						Suivez nos mises à jour sur{' '}
+						<a href="https://twitter.com/embauchegouv" target="_blank">
+							twitter <i className="fa fa-twitter" aria-hidden="true" />
+						</a>
+					</p>
+				</section>
+				<section>
+					<p>
+						Ce travail est fait en commun : venez définir avec nous la feuille
+						de route du service (implémentation des conventions collectives,
+						ajout des statuts autres que le travail salarié, ...).
+					</p>
+					<MailChimp />
+					<p>
+						Ou <Link to="/contact">contactez-nous</Link> directement.
+					</p>
+				</section>
 				{/* <p>Notre prochaine rencontre OpenLab aura lieu <strong>le mercredi 18 janvier 2017 à 10h</strong>, au 86 allée de Bercy, 75012, salle 381-R</p> */}
+				<h1>Vie privée</h1>
+				<p>
+					Les simulateurs hébergés sur embauche.beta.gouv.fr n'ont pas de
+					mémoire : les données de simulation (salaires, code postal de
+					l'entreprise, etc.) <em>ne sont pas stockées sur nos serveurs</em>.
+				</p>
+				<p>
+					Par contre, nous recueillons des statistiques anonymes d'usage du
+					site, que nous utilisons dans l'unique but d'améliorer le service,
+					conformément au{' '}
+					<a
+						href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience"
+						target="_blank"
+					>
+						recommandations de la CNIL
+					</a>.
+				</p>
+				<iframe src="http://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr" />
 			</section>
 		)
 	}

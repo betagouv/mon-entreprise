@@ -21,9 +21,8 @@ import { Link } from 'react-router-dom'
 import { formValueSelector } from 'redux-form'
 import './Results.css'
 import '../engine/mecanismViews/Somme.css'
-import { humanFigure } from './rule/RuleValueVignette'
 
-import { capitalise0 } from '../utils'
+import { capitalise0, humanFigure } from '../utils'
 import { nameLeaf, encodeRuleName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now

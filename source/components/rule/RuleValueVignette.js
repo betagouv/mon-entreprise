@@ -2,9 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { encodeRuleName } from 'Engine/rules'
 import classNames from 'classnames'
-let fmt = new Intl.NumberFormat('fr-FR').format
-export let humanFigure = decimalDigits => value =>
-	fmt(value.toFixed(decimalDigits))
+import { humanFigure } from '../../utils'
+
 import './RuleValueVignette.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 

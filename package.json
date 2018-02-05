@@ -80,7 +80,7 @@
 		"fantasy-combinators": "0.0.1",
 		"fantasy-land": "^3.3.0",
 		"fantasy-tuples": "^1.0.0",
-		"file-loader": "^1.1.5",
+		"file-loader": "^1.1.6",
 		"html-loader": "^0.5.1",
 		"img-loader": "^2.0.0",
 		"jsdom": "^11.0.0",
