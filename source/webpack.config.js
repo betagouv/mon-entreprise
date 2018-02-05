@@ -56,6 +56,15 @@ module.exports = {
 				loader: 'html-loader'
 			},
 			{
+				test: /\.(jpe?g|png|svg)$/,
+				use: {
+					loader: 'file-loader',
+					options: {
+						name: 'images/[name].[ext]'
+					}
+				}
+			},
+			{
 				test: /\.yaml$/,
 				loader: 'json-loader!yaml-loader'
 			},
@@ -72,12 +81,6 @@ module.exports = {
 					header: true,
 					skipEmptyLines: true
 				}
-			},
-			{
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				loader: prodEnv
-					? 'url-loader?limit=10000&name=images/[name].[ext]!img-loader?progressive=true'
-					: 'url-loader?limit=10000&name=images/[name].[ext]'
 			},
 			{
 				test: /\.ne$/,
