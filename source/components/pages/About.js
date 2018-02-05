@@ -14,7 +14,8 @@ export default class About extends Component {
 						L'incubateur des services numériques de l'État
 					</a>{' '}
 					a lancé en 2014 le développement d’une <em>ressource ouverte</em> de
-					calcul des prélèvements sociaux sur les revenus d'activité en France.
+					calcul des prélèvements sociaux sur les revenus d'activité en France,
+					étape incontournable lors d'une embauche.
 				</p>
 				<p>
 					Ce premier service, un{' '}
