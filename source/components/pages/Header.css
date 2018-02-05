@@ -94,3 +94,20 @@ nav a {
 	right: 0.3em;
 	font-size: 150%;
 }
+
+#footer {
+	position: fixed;
+	right: 1em;
+	bottom: 1em;
+}
+#footer a {
+	font-size: 95%;
+	color: rgb(75, 75, 102);
+}
+#footer a:hover {
+	color: black;
+}
+
+#footer i {
+	margin: 0.1em;
+}

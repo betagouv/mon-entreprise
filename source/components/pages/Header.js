@@ -10,7 +10,7 @@ import { withRouter } from 'react-router'
 	iframe: state.iframe,
 	textColourOnWhite: state.themeColours.textColourOnWhite
 }))
-export default class Header extends Component {
+export class Header extends Component {
 	state = {
 		mobileNavVisible: false
 	}
@@ -89,3 +89,20 @@ let Links = ({ toggle }) => (
 		</Link>
 	</div>
 )
+
+@withRouter
+export class Footer extends Component {
+	render() {
+		let appMode = ['/simu', '/regle'].find(t =>
+			this.props.location.pathname.includes(t)
+		)
+		if (!appMode) return null
+		return (
+			<div id="footer">
+				<Link to="/à-propos">
+					À propos <i className="fa fa-question-circle" aria-hidden="true" />
+				</Link>
+			</div>
+		)
+	}
+}
