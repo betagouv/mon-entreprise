@@ -61,7 +61,7 @@ export default class About extends Component {
 						recommandations de la CNIL
 					</a>.
 				</p>
-				<iframe src="http://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr" />
+				<iframe src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr" />
 			</section>
 		)
 	}
