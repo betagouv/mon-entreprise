@@ -12,6 +12,7 @@ export default class IgnoreStepButton extends Component {
 	}
 	handleKeyDown({ key }) {
 		if (key !== 'Escape') return
+		document.activeElement.blur()
 		this.props.action()
 	}
 	componentWillUnmount() {
