@@ -12,6 +12,7 @@ import {
 	unless,
 	is,
 	prop,
+	pick,
 	path,
 	reject,
 	identity
@@ -55,7 +56,7 @@ export let getNextSteps = (situationGate, analysis) => {
 	return map(head, sortedPairs)
 }
 
-let isVariant = path(['formule', 'une possibilité'])
+let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {
@@ -80,10 +81,10 @@ let buildVariantTree = (allRules, path) => {
 
 let buildPossibleInversion = (rule, rules, targetNames) => {
 	let query = queryRule(rule),
-		invertible = query('formule . inversion')
+		inversion = query('formule . inversion')
 
-	if (!invertible) return null
-	let inversionObjects = query('inversion . avec').map(i =>
+	if (!inversion) return null
+	let inversionObjects = query('formule . inversion . avec').map(i =>
 			findRuleByDottedName(rules, disambiguateRuleReference(rules, rule, i))
 		),
 		inversions = reject(({ name }) => targetNames.includes(name))(
@@ -104,10 +105,10 @@ export let getInputComponent = ({ unfolded }) => (
 	let rule = findRuleByDottedName(rules, dottedName)
 
 	let commonProps = {
+		key: dottedName,
 		unfolded,
 		fieldName: dottedName,
-		title: rule.title,
-		question: rule.question
+		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
 	}
 
 	if (isVariant(rule))

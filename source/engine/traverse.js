@@ -410,6 +410,7 @@ let treat = (rules, rule) => rawNode => {
 					complément: mecanismComplement,
 					sélection: mecanismSelection,
 					'une possibilité': always({
+						...v,
 						'une possibilité': 'oui',
 						missingVariables: {[rule.dottedName]:1}
 					}),
