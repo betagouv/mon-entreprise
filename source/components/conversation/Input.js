@@ -13,7 +13,9 @@ export default class Input extends Component {
 	render() {
 		let {
 				input,
-				stepProps: { dottedName, attributes, submit, valueType },
+				dottedName,
+				submit,
+				valueType,
 				meta: { dirty, error, active },
 				themeColours
 			} = this.props,
@@ -34,7 +36,8 @@ export default class Input extends Component {
 						{...input}
 						className={classnames({ suffixed })}
 						id={'step-' + dottedName}
-						{...attributes}
+						inputMode="numeric"
+						placeholder="votre réponse"
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
@@ -64,13 +67,13 @@ export default class Input extends Component {
 	componentDidMount() {
 		this.inputElement.focus()
 
-		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
+		let { dottedName, inversion, setFormValue } = this.props
 		if (!inversion) return null
 		// initialize the form field in renderinversions
 		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
 	}
 	renderInversions() {
-		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
+		let { dottedName, inversion, setFormValue } = this.props
 		if (!inversion) return null
 
 		if (inversion.inversions.length === 1)
@@ -99,7 +102,7 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, suggestions, inverted } = this.props.stepProps
+		let { setFormValue, suggestions, inverted } = this.props
 
 		if (!suggestions || inverted) return null
 		return (
@@ -114,7 +117,7 @@ export default class Input extends Component {
 								setFormValue('' + value)
 								if (this.state.suggestion !== value)
 									this.setState({ suggestion: value })
-								else this.props.stepProps.submit('suggestion')
+								else this.props.submit('suggestion')
 							}}
 							onMouseOver={() => {
 								this.setState({ lastValue: this.props.input.value })

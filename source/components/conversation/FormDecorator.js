@@ -22,25 +22,22 @@ export var FormDecorator = formType => RenderField =>
 		state => ({
 			themeColours: state.themeColours,
 			getCurrentInversion: dottedName =>
-				formValueSelector('conversation')(state, 'inversions.' + dottedName)
+				formValueSelector('conversation')(state, 'inversions.' + dottedName),
+			situationGate: state.situationGate
 		}),
 		dispatch => ({
-			stepAction: (name, step, source) => dispatch(stepAction(name, step, source)),
+			stepAction: (name, step, source) =>
+				dispatch(stepAction(name, step, source)),
 			setFormValue: (field, value) =>
 				dispatch(change('conversation', field, value))
 		})
 	)
 	class extends Component {
-		state = {
-			helpVisible: false
-		}
 		render() {
-			let { unfolded } = this.props,
-				{ helpText } = this.props.step
+			let { unfolded } = this.props
 
 			return (
 				<div className={classNames({ step: unfolded }, formType)}>
-					{this.state.helpVisible && this.renderHelpBox(helpText)}
 					<div
 						style={{
 							visibility: this.state.helpVisible ? 'hidden' : 'visible'
@@ -58,37 +55,31 @@ export var FormDecorator = formType => RenderField =>
 			let {
 				setFormValue,
 				stepAction,
-				step: {
-					subquestion,
-					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
-					defaultValue,
-					valueType
-				},
+				subquestion,
+				possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
+				defaultValue,
+				valueType,
 				fieldName,
 				inversion,
 				inverted,
 				themeColours
 			} = this.props
 
-			/* Nos propriétés personnalisées à envoyer au RenderField.
-			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
-			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
-			des balises html, <input> dans notre cas.
-			*/
-			//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
-			let submit = (cause) => setTimeout(() => stepAction('fold', fieldName, cause), 1),
-				stepProps = {
-					...this.props.step,
-					inverted,
-					submit,
-					setFormValue: (value, name = fieldName) => setFormValue(name, value)
-				}
-
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
 			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
 				validate = test && (v => (v && test(pre(v)) ? undefined : error))
+
+			let submit = cause =>
+					//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
+					setTimeout(() => stepAction('fold', fieldName, cause), 1),
+				stepProps = {
+					...this.props,
+					submit,
+					validate,
+					setFormValue: (value, name = fieldName) => setFormValue(name, value)
+				}
 
 			let question = (
 				<h1
@@ -99,8 +90,8 @@ export var FormDecorator = formType => RenderField =>
 						maxWidth: wideQuestion ? '95%' : ''
 					}}
 				>
-					{path(['props', 'step', 'inversion', 'question'])(this) ||
-						this.props.step.question}
+					{path(['props', 'inversion', 'question'])(this) ||
+						this.props.question}
 				</h1>
 			)
 			return (
@@ -130,9 +121,8 @@ export var FormDecorator = formType => RenderField =>
 						<Field
 							component={RenderField}
 							name={fieldName}
-							stepProps={stepProps}
+							{...stepProps}
 							themeColours={themeColours}
-							validate={validate}
 						/>
 					</fieldset>
 				</div>
@@ -144,7 +134,8 @@ export var FormDecorator = formType => RenderField =>
 				stepAction,
 				situationGate,
 				themeColours,
-				step: { title, dottedName },
+				title,
+				dottedName,
 				fieldName,
 				fieldTitle
 			} = this.props
@@ -167,25 +158,6 @@ export var FormDecorator = formType => RenderField =>
 						<span>Modifier</span>
 					</button>
 					{}
-				</div>
-			)
-		}
-
-		renderHelpBox(helpText) {
-			let helpComponent =
-				typeof helpText === 'string' ? <p>{helpText}</p> : helpText
-
-			return (
-				<div className="help-box">
-					<a
-						className="close-help"
-						onClick={() => this.setState({ helpVisible: false })}
-					>
-						<span className="close-text">
-							revenir <span className="icon">&#x2715;</span>
-						</span>
-					</a>
-					{helpComponent}
 				</div>
 			)
 		}
