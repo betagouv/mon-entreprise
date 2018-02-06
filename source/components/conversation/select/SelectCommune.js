@@ -25,7 +25,7 @@ let getOptions = input =>
 @FormDecorator('select')
 export default class SelectCommune extends Component {
 	render() {
-		let { input: { onChange }, stepProps: { submit } } = this.props,
+		let { input: { onChange }, submit } = this.props,
 			submitOnChange = option => {
 				onChange(option)
 				submit()

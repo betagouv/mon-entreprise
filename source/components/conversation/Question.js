@@ -28,11 +28,7 @@ import SendButton from './SendButton'
 @translate()
 export default class Question extends Component {
 	render() {
-		let {
-			stepProps: { choices, submit },
-			themeColours,
-			meta: { pristine }
-		} = this.props
+		let { choices, submit, themeColours, meta: { pristine } } = this.props
 		let choiceElements = is(Array)(choices)
 			? this.renderBinaryQuestion()
 			: this.renderChildren(choices)
@@ -53,7 +49,9 @@ export default class Question extends Component {
 	renderBinaryQuestion() {
 		let {
 			input, // vient de redux-form
-			stepProps: { submit, choices, setFormValue },
+			submit,
+			choices,
+			setFormValue,
 			themeColours
 		} = this.props
 
@@ -71,11 +69,11 @@ export default class Question extends Component {
 	renderChildren(choices) {
 		let {
 				input, // vient de redux-form
-				stepProps,
+				submit,
+				setFormValue,
 				themeColours
 			} = this.props,
 			{ name } = input,
-			{ submit, setFormValue } = stepProps,
 			// seront stockées ainsi dans le state :
 			// [parent object path]: dotted name relative to parent
 			relativeDottedName = radioDottedName =>

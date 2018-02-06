@@ -1,4 +1,4 @@
-import { reject, isNil, equals, pluck, path, map } from 'ramda'
+import { reject, isNil, equals, pluck, path, map, omit } from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { reset, change, formValueSelector } from 'redux-form'
@@ -34,7 +34,7 @@ import Explanation from 'Components/Explanation'
 		nextSteps: state.nextSteps,
 		inputInversions: formValueSelector('conversation')(state, 'inversions'),
 		analysis: state.analysis,
-		flatRules: state.flatRules
+		parsedRules: state.parsedRules
 	}),
 	dispatch => ({
 		startConversation: (targetNames, fromScratch = false) =>
@@ -49,17 +49,19 @@ export default class extends Component {
 	}
 	componentWillMount() {
 		let {
-				match: { params: { targets: encodedTargets } },
+				match: {
+					params: { targets: encodedTargets }
+				},
 				targetNames: pastTargetNames,
-				flatRules,
-				resetFormField
+				resetFormField,
+				parsedRules
 			} = this.props,
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
 
 		this.targetRules = reject(isNil)(
-			targetNames.map(name => findRule(flatRules, name))
+			targetNames.map(name => findRule(parsedRules, name))
 		)
 
 		this.targetRules.map(({ dottedName }) => resetFormField(dottedName))
@@ -151,9 +153,9 @@ export default class extends Component {
 		return (
 			<step.component
 				key={step.dottedName}
-				{...step}
+				{...omit('component', step)}
 				unfolded={unfolded}
-				step={step}
+				step={omit('component', step)}
 				situationGate={situationGate}
 				fieldName={fieldName}
 				fieldTitle={fieldTitle}

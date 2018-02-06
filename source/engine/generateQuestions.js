@@ -67,7 +67,7 @@ let buildVariantTree = (allRules, path) => {
 				? {
 						canGiveUp,
 						children: variants.map(v => rec(path + ' . ' + v))
-					}
+				  }
 				: null
 		)
 	}
@@ -93,50 +93,79 @@ let buildPossibleInversion = (rule, flatRules, targetNames) => {
 	}
 }
 
-export let makeQuestion = (flatRules, targetNames) => dottedName => {
-	let rule = findRuleByDottedName(flatRules, dottedName)
+export let getInputComponent = ({ unfolded }) => (
+	rules,
+	targetNames,
+	inputInversions
+) => dottedName => {
+	let rule = findRuleByDottedName(rules, dottedName)
 
-	let inputQuestion = rule => ({
-		component: Input,
-		valueType: formValueTypes[rule.format],
-		attributes: {
-			inputMode: 'numeric',
-			// TRANSLATE
-			placeholder: 'votre réponse'
-		},
-		suggestions: rule.suggestions,
-		inversion: buildPossibleInversion(rule, flatRules, targetNames)
-	})
-	let selectQuestion = rule => ({
-		component: Select,
-		valueType: formValueTypes[rule.format],
-		suggestions: rule.suggestions
-	})
-	let selectAtmp = rule => ({
-		component: SelectAtmp,
-		valueType: formValueTypes[rule.format],
-		suggestions: rule.suggestions
-	})
-	let binaryQuestion = rule => ({
-		component: Question,
-		// TRANSLATE
-		choices: [{ value: 'non', label: 'Non' }, { value: 'oui', label: 'Oui' }]
-	})
-	let multiChoiceQuestion = rule => ({
-		component: Question,
-		choices: buildVariantTree(flatRules, dottedName)
-	})
+	let fieldName =
+			(inputInversions && path(dottedName.split('.'), inputInversions)) ||
+			dottedName,
+		fieldTitle = findRuleByDottedName(rules, fieldName).title
 
-	return Object.assign(
-		rule,
-		isVariant(rule)
-			? multiChoiceQuestion(rule)
-			: rule.format == null
-				? binaryQuestion(rule)
-				: typeof rule.suggestions == 'string'
-					? rule.suggestions == 'atmp-2017'
-						? selectAtmp(rule)
-						: selectQuestion(rule)
-					: inputQuestion(rule)
+	let commonProps = {
+		unfolded,
+		fieldName,
+		title: rule.title
+	}
+
+	if (isVariant(rule))
+		return (
+			<Question
+				{...{
+					...commonProps,
+					choices: buildVariantTree(rules, dottedName)
+				}}
+			/>
+		)
+
+	if (rule.format == null)
+		return (
+			<Question
+				{...{
+					...commonProps,
+					choices: [
+						{ value: 'non', label: 'Non' },
+						{ value: 'oui', label: 'Oui' }
+					]
+				}}
+			/>
+		)
+
+	if (rule.suggestions == 'atmp-2017')
+		return (
+			<SelectAtmp
+				{...{
+					...commonProps,
+					valueType: formValueTypes[rule.format],
+					suggestions: rule.suggestions
+				}}
+			/>
+		)
+
+	if (typeof rule.suggestions == 'string')
+		return (
+			<Select
+				{...{
+					...commonProps,
+					valueType: formValueTypes[rule.format],
+					suggestions: rule.suggestions
+				}}
+			/>
+		)
+
+	return (
+		<Input
+			{...{
+				...commonProps,
+				valueType: formValueTypes[rule.format],
+				suggestions: rule.suggestions,
+				inversion: buildPossibleInversion(rule, rules, targetNames),
+				fieldTitle,
+				inverted: dottedName !== fieldName
+			}}
+		/>
 	)
 }
