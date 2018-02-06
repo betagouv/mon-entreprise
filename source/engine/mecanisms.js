@@ -499,6 +499,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	}
 
 	return {
+		...v,
 		evaluate,
 		jsx: nodeValue => (
 			<Node
