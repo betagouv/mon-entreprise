@@ -1713,15 +1713,16 @@
     branche: santé
     dû par: employeur
   description: Cotisations de la branche maladie
-  référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
-
+  références: 
+    fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
+    Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
   formule:
     multiplication:
       assiette: assiette cotisations sociales
       composantes:
         - attributs: # On va ici surcharger la Cotisation incomplète définie plus haut
             composante: maladie, maternité, invalidité, décès
-          taux: 12.89%
+          taux: 13%
 
         - attributs:
             composante: Contribution Solidarité Autonomie
