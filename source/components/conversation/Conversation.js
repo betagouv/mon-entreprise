@@ -6,6 +6,13 @@ import Satisfaction from '../Satisfaction'
 import { reduxForm } from 'redux-form'
 import { scroller, Element } from 'react-scroll'
 
+let scroll = () =>
+	scroller.scrollTo('myScrollToElement', {
+		duration: 500,
+		delay: 0,
+		smooth: true
+	})
+
 @reduxForm({
 	form: 'conversation',
 	destroyOnUnmount: false
@@ -16,15 +23,7 @@ export default class Conversation extends Component {
 		if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
 			return null
 
-		setTimeout(
-			() =>
-				scroller.scrollTo('myScrollToElement', {
-					duration: 200,
-					delay: 0,
-					smooth: true
-				}),
-			1
-		)
+		setTimeout(scroll, 1) // scrolling after the first answer doesn't work
 	}
 	render() {
 		let {

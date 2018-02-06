@@ -10,7 +10,10 @@
 	"engines": {
 		"node": ">=6.2.0 <10.0.0"
 	},
-	"browserslist": ["> 1% in FR", "not ie < 11"],
+	"browserslist": [
+		"> 1% in FR",
+		"not ie < 11"
+	],
 	"dependencies": {
 		"@babel/polyfill": "^7.0.0-beta.34",
 		"classnames": "^2.2.5",
@@ -40,7 +43,7 @@
 		"react-redux": "^5.0.6",
 		"react-router": "^4.2.0",
 		"react-router-dom": "^4.2.2",
-		"react-scroll": "^1.7.3",
+		"react-scroll": "^1.7.6",
 		"react-select": "^1.2.0",
 		"react-select-fast-filter-options": "^0.2.3",
 		"react-transition-group": "^2.2.1",
