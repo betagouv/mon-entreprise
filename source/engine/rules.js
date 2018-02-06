@@ -154,6 +154,8 @@ export let findRuleByNamespace = (allRules, ns) =>
 /*********************************
  Autres */
 
+export let queryRule = rule => query => path(query.split(' . '))(rule)
+
 let isVariant = path(['formule', 'une possibilité'])
 
 export let formatInputs = (flatRules, formValueSelector) => state => name => {

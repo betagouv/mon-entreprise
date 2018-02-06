@@ -16,14 +16,18 @@ import {
 	reject,
 	identity
 } from 'ramda'
-
+import React from 'react'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
-import { findRuleByDottedName, disambiguateRuleReference } from './rules'
+import {
+	findRuleByDottedName,
+	disambiguateRuleReference,
+	queryRule
+} from './rules'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -74,14 +78,13 @@ let buildVariantTree = (allRules, path) => {
 	return rec(path)
 }
 
-let buildPossibleInversion = (rule, flatRules, targetNames) => {
-	let ruleInversions = path(['formule', 'inversion', 'avec'])(rule)
-	if (!ruleInversions) return null
-	let inversionObjects = ruleInversions.map(i =>
-			findRuleByDottedName(
-				flatRules,
-				disambiguateRuleReference(flatRules, rule, i)
-			)
+let buildPossibleInversion = (rule, rules, targetNames) => {
+	let query = queryRule(rule),
+		invertible = query('formule . inversion')
+
+	if (!invertible) return null
+	let inversionObjects = query('inversion . avec').map(i =>
+			findRuleByDottedName(rules, disambiguateRuleReference(rules, rule, i))
 		),
 		inversions = reject(({ name }) => targetNames.includes(name))(
 			[rule].concat(inversionObjects)
@@ -89,7 +92,7 @@ let buildPossibleInversion = (rule, flatRules, targetNames) => {
 
 	return {
 		inversions,
-		question: rule.formule.inversion.question
+		question: query('formule . inversion . question')
 	}
 }
 
@@ -100,15 +103,11 @@ export let getInputComponent = ({ unfolded }) => (
 ) => dottedName => {
 	let rule = findRuleByDottedName(rules, dottedName)
 
-	let fieldName =
-			(inputInversions && path(dottedName.split('.'), inputInversions)) ||
-			dottedName,
-		fieldTitle = findRuleByDottedName(rules, fieldName).title
-
 	let commonProps = {
 		unfolded,
-		fieldName,
-		title: rule.title
+		fieldName: dottedName,
+		title: rule.title,
+		question: rule.question
 	}
 
 	if (isVariant(rule))
@@ -156,14 +155,20 @@ export let getInputComponent = ({ unfolded }) => (
 			/>
 		)
 
+	let fieldName =
+			(inputInversions && path(dottedName.split('.'), inputInversions)) ||
+			commonProps.fieldName,
+		inversion = buildPossibleInversion(rule, rules, targetNames)
+
 	return (
 		<Input
 			{...{
 				...commonProps,
 				valueType: formValueTypes[rule.format],
 				suggestions: rule.suggestions,
-				inversion: buildPossibleInversion(rule, rules, targetNames),
-				fieldTitle,
+				inversion,
+				fieldTitle: findRuleByDottedName(rules, fieldName).title,
+				fieldName,
 				inverted: dottedName !== fieldName
 			}}
 		/>

@@ -46,10 +46,7 @@ export var FormDecorator = formType => RenderField =>
 
 			return (
 				<div className={classNames({ step: unfolded }, formType)}>
-					<div
-						style={{
-							visibility: this.state.helpVisible ? 'hidden' : 'visible'
-						}}>
+					<div>
 						{/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
 				de la réponse est affiché */}
 						{unfolded ? this.renderUnfolded() : this.renderFolded()}
@@ -68,7 +65,6 @@ export var FormDecorator = formType => RenderField =>
 					valueType,
 					fieldName,
 					inversion,
-					inverted,
 					themeColours
 				} = this.props,
 				{ i18n } = this.context
