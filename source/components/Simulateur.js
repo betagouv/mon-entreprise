@@ -15,7 +15,7 @@ import {
 import './conversation/conversation.css'
 import './Simulateur.css'
 import Conversation from './conversation/Conversation'
-import { makeQuestion } from 'Engine/generateQuestions'
+import { getInputComponent } from 'Engine/generateQuestions'
 
 import ReactPiwik from './Tracker'
 
@@ -77,10 +77,10 @@ export default class extends Component {
 		let {
 				foldedSteps,
 				currentQuestion,
-				situationGate,
 				themeColours,
 				inputInversions,
-				done
+				done,
+				parsedRules
 			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
@@ -106,14 +106,14 @@ export default class extends Component {
 						reinitalise,
 						currentQuestion:
 							currentQuestion &&
-							this.buildStep({ unfolded: true })(
-								situationGate,
+							getInputComponent({ unfolded: true })(
+								parsedRules,
 								this.targetNames,
 								inputInversions
 							)(currentQuestion),
 						foldedSteps: map(
-							this.buildStep({ unfolded: false })(
-								situationGate,
+							getInputComponent({ unfolded: false })(
+								parsedRules,
 								this.targetNames,
 								inputInversions
 							),
