@@ -104,8 +104,7 @@ let buildPossibleInversion = (rule, rules, targetNames) => {
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
 export let getInputComponent = ({ unfolded }) => (
 	rules,
-	targetNames,
-	inputInversions
+	targetNames
 ) => dottedName => {
 	let rule = findRuleByDottedName(rules, dottedName)
 
@@ -164,10 +163,7 @@ export let getInputComponent = ({ unfolded }) => (
 	// Now the numeric input case
 
 	// Check for inversions
-	let fieldName =
-			(inputInversions && path(dottedName.split('.'), inputInversions)) ||
-			commonProps.fieldName,
-		inversion = buildPossibleInversion(rule, rules, targetNames)
+	let inversion = buildPossibleInversion(rule, rules, targetNames)
 
 	/* In the case of an inversion, display a RadioInput component.
 	On click on one of the radios, display the corresponding input.
@@ -180,12 +176,7 @@ export let getInputComponent = ({ unfolded }) => (
 			<InversionInput
 				{...{
 					...commonProps,
-					valueType: formValueTypes[rule.format],
-					suggestions: rule.suggestions,
-					inversion,
-					inverted: dottedName !== fieldName,
-					fieldTitle: findRuleByDottedName(rules, fieldName).title,
-					fieldName
+					inversion
 				}}
 			/>
 		)
@@ -195,8 +186,7 @@ export let getInputComponent = ({ unfolded }) => (
 			{...{
 				...commonProps,
 				valueType: formValueTypes[rule.format],
-				suggestions: rule.suggestions,
-				fieldName
+				suggestions: rule.suggestions
 			}}
 		/>
 	)
