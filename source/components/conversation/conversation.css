@@ -253,7 +253,7 @@
 	vertical-align: middle;
 }
 
-.step input[type='radio'] {
+.step.question input[type='radio'] {
 	display: none;
 }
 
