@@ -1,0 +1,6 @@
+.step.inversionInput #inversions label {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 0.6em;
+	margin-left: 1em;
+}

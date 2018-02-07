@@ -3,7 +3,11 @@ import { FormDecorator } from './FormDecorator'
 import { answer, answered } from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
-import { Field } from 'redux-form'
+import { Field, formValueSelector } from 'redux-form'
+import './InversionInput.css'
+import Input from './Input'
+import { connect } from 'react-redux'
+import { path } from 'ramda'
 
 @FormDecorator('inversionInput')
 export default class InversionInput extends Component {
@@ -36,7 +40,29 @@ export default class InversionInput extends Component {
 						{title || name}
 					</label>
 				))}
+				<InversionInputComponent />
 			</div>
 		)
 	}
 }
+
+@connect(state => ({
+	inputInversions: formValueSelector('conversation')(state, 'inversions')
+}))
+class InversionInputComponent extends Component {
+	render() {
+		let { inputInversions, dottedName } = this.props,
+			fieldName =
+				(inputInversions && path(dottedName.split('.'), inputInversions)) ||
+				dottedName
+		return (
+			<Input
+				{...{
+					fieldName
+				}}
+			/>
+		)
+	}
+}
+
+//TODO valueType: formValueTypes[rule.format],

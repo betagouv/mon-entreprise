@@ -32,7 +32,6 @@ import Explanation from 'Components/Explanation'
 		targetNames: state.targetNames,
 		done: state.done,
 		nextSteps: state.nextSteps,
-		inputInversions: formValueSelector('conversation')(state, 'inversions'),
 		analysis: state.analysis,
 		parsedRules: state.parsedRules
 	}),
@@ -81,7 +80,6 @@ export default class extends Component {
 				foldedSteps,
 				currentQuestion,
 				themeColours,
-				inputInversions,
 				done,
 				parsedRules
 			} = this.props,
@@ -111,14 +109,12 @@ export default class extends Component {
 							currentQuestion &&
 							getInputComponent({ unfolded: true })(
 								flatRules,
-								this.targetNames,
-								inputInversions
+								this.targetNames
 							)(currentQuestion),
 						foldedSteps: map(
 							getInputComponent({ unfolded: false })(
 								flatRules,
-								this.targetNames,
-								inputInversions
+								this.targetNames
 							),
 							foldedSteps
 						),
@@ -134,33 +130,6 @@ export default class extends Component {
 					/>
 				)}
 			</div>
-		)
-	}
-
-	buildStep = ({ unfolded, flatRules }) => (
-		situationGate,
-		targetNames,
-		inputInversions
-	) => question => {
-		let step = makeQuestion(flatRules, targetNames)(question)
-
-		let fieldName =
-				(inputInversions &&
-					path(step.dottedName.split('.'), inputInversions)) ||
-				step.dottedName,
-			fieldTitle = findRuleByDottedName(flatRules, fieldName).title
-
-		return (
-			<step.component
-				key={step.dottedName}
-				{...omit('component', step)}
-				unfolded={unfolded}
-				step={omit('component', step)}
-				situationGate={situationGate}
-				fieldName={fieldName}
-				fieldTitle={fieldTitle}
-				inverted={step.dottedName !== fieldName}
-			/>
 		)
 	}
 }
