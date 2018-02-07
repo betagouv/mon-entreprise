@@ -5,25 +5,8 @@ import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
 import { is } from 'ramda'
 import SendButton from './SendButton'
-/* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
-	Les données @choices sont un arbre de type:
-	- nom: motif CDD # La racine, unique, qui formera la Question. Ses enfants sont les choix possibles
-		enfants:
-		- nom: motif classique
-			enfants:
-			- nom: motif saisonnier
-			- nom: motif remplacement
-		- nom: motif contrat aidé
-		- nom: motif complément de formation
 
-	A chaque nom est associé une propriété 'données' contenant l'entité complète (et donc le titre, le texte d'aide etc.) : ce n'est pas à
-	ce composant (une vue) d'aller les chercher.
-
-*/
-
-// FormDecorator permet de factoriser du code partagé par les différents types de saisie,
-// dont Question est un example
-@FormDecorator('question')
+@FormDecorator('radioInput')
 export default class Question extends Component {
 	render() {
 		let { choices, submit, themeColours, meta: { pristine } } = this.props

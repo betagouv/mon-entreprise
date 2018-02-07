@@ -21,6 +21,7 @@ import Input from 'Components/conversation/Input'
 import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
+import RadioInput from '../components/conversation/RadioInput'
 
 import {
 	findRuleByDottedName,
@@ -174,16 +175,28 @@ export let getInputComponent = ({ unfolded }) => (
 	Else just display the Input component.
 	*/
 
+	if (inversion)
+		return (
+			<RadioInput
+				{...{
+					...commonProps,
+					valueType: formValueTypes[rule.format],
+					suggestions: rule.suggestions,
+					inversion,
+					inverted: dottedName !== fieldName,
+					fieldTitle: findRuleByDottedName(rules, fieldName).title,
+					fieldName
+				}}
+			/>
+		)
+
 	return (
 		<Input
 			{...{
 				...commonProps,
 				valueType: formValueTypes[rule.format],
 				suggestions: rule.suggestions,
-				inversion,
-				fieldTitle: findRuleByDottedName(rules, fieldName).title,
-				fieldName,
-				inverted: dottedName !== fieldName
+				fieldName
 			}}
 		/>
 	)
