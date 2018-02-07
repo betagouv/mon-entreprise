@@ -99,6 +99,8 @@ let buildPossibleInversion = (rule, rules, targetNames) => {
 	}
 }
 
+// This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
+// That's not great, but we won't invest more time until we have more diverse input components and a better type system.
 export let getInputComponent = ({ unfolded }) => (
 	rules,
 	targetNames,
@@ -158,10 +160,19 @@ export let getInputComponent = ({ unfolded }) => (
 			/>
 		)
 
+	// Now the numeric input case
+
+	// Check for inversions
 	let fieldName =
 			(inputInversions && path(dottedName.split('.'), inputInversions)) ||
 			commonProps.fieldName,
 		inversion = buildPossibleInversion(rule, rules, targetNames)
+
+	/* In the case of an inversion, display a RadioInput component.
+	On click on one of the radios, display the corresponding input.
+	If only one inversion is possible, don't show the radio but show the documentation icon.
+	Else just display the Input component.
+	*/
 
 	return (
 		<Input
