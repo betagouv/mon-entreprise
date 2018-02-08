@@ -2,8 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1em;
-	border-bottom: 1px solid #ebebeb;
+	padding: 1em 1em 0;
 }
 #header #brand {
 	display: flex;
@@ -21,18 +20,27 @@
 }
 
 #header #logo {
-	width: calc(1vw + 5em);
-}
-#header #marianne {
-	width: calc(3vw + 5em);
+	width: calc(2vw + 5em);
 }
 #menuButton {
-	font-size: 300%;
+	font-size: 350%;
 	color: #3c4963;
 	margin: 0 0.4em;
+	display: inline-block;
 }
 nav {
 	font-size: 150%;
+	margin-bottom: 1em;
+	display: inline-block;
+}
+#header #marianne {
+	width: calc(2vw + 3em);
+}
+
+@media screen and (min-width: 860px) {
+	#header #marianne {
+		vertical-align: middle;
+	}
 }
 
 nav a {
@@ -68,12 +76,14 @@ nav a {
 	}
 
 	nav {
-		margin-right: 2em;
+		margin-right: 1em;
 	}
 
 	nav a {
 		margin: 0.8em;
 		font-size: 85%;
+		font-weight: 600;
+		color: #3c4963;
 	}
 }
 
