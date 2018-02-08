@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import { toPairs } from 'ramda'
-import { Field } from 'redux-form'
 import SendButton from './SendButton'
 
 @FormDecorator('input')
@@ -33,7 +32,6 @@ export default class Input extends Component {
 
 		return (
 			<span>
-				<div className="inputPrefix">{this.renderInversions()}</div>
 				<div className="answer">
 					<input
 						ref={el => {
