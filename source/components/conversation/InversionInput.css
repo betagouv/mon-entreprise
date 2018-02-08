@@ -1,6 +1,11 @@
-.step.inversionInput #inversions label {
-	display: flex;
-	flex-wrap: wrap;
+#inversionRadios {
+}
+#inversionRadios label {
+	display: block;
 	margin-bottom: 0.6em;
 	margin-left: 1em;
+	font-size: 110%;
+}
+#inversionRadios .explicable {
+	display: inline;
 }

@@ -53,18 +53,20 @@ class Fields extends Component {
 		// This field is handled by redux-form : it will set in the state what's
 		// the current inversion
 		return (
-			<div id="inversions">
-				{inversion.inversions.map(({ name, title, dottedName: value }) => (
-					<label key={value}>
-						<Field
-							name={'inversions.' + dottedName}
-							component="input"
-							type="radio"
-							value={value}
-						/>
-						{title || name}
-					</label>
-				))}
+			<>
+				<div id="inversionRadios">
+					{inversion.inversions.map(({ name, title, dottedName: value }) => (
+						<label key={value}>
+							<Field
+								name={'inversions.' + dottedName}
+								component="input"
+								type="radio"
+								value={value}
+							/>
+							<Explicable dottedName={value}>{title || name}</Explicable>
+						</label>
+					))}
+				</div>
 				{activeInversion && (
 					<Input
 						{...{
@@ -73,7 +75,7 @@ class Fields extends Component {
 						}}
 					/>
 				)}
-			</div>
+			</>
 		)
 	}
 }
