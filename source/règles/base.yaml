@@ -671,7 +671,7 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut de base
-  résumé: Le salaire brut régulier inscrit dans le contrat de travail.
+  résumé: Salaire brut régulier inscrit dans le contrat de travail.
   type: salaire
   question: Quel est le salaire de base mensuel ?
   description: |
@@ -699,7 +699,7 @@
 
 - espace: contrat salarié
   nom: salaire brut
-  résumé: Le salaire inscrit dans le contrat de travail.
+  résumé: Salaire et avantages négociés dans le contrat de travail.
   description: >
     C'est le salaire de négociation du contrat de travail en France.
 
@@ -798,7 +798,7 @@
   titre: Salaire net
   type: salaire
   question: Quel est le salaire net ?
-  résumé: La somme touchée par le salarié tous les mois.
+  résumé: Touché par le salarié tous les mois.
   description: |
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
 
@@ -811,12 +811,12 @@
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût social total réel du travail pour l'employeur.
-  formule: salaire total - aides employeur différées
+  formule: salaire total - aides employeur
 
 - espace: contrat salarié
   nom: salaire total
   titre: Salaire total
-  résumé: La somme totale versée par l'employeur tous les mois.
+  résumé: Total versé par l'employeur tous les mois.
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines réductions de cotisation et aides peuvent diminuer cette somme.
@@ -836,8 +836,8 @@
 
 
 - espace: contrat salarié
-  nom: aides employeur différées
-  résumé: Les aides différées dont peut bénéficier l'employeur.
+  nom: aides employeur
+  résumé: Aides différées dont peut bénéficier l'employeur.
   description: | 
         Certaines aides peuvent être demandées par l'employeur pour faciliter une embauche. 
   

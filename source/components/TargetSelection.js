@@ -10,12 +10,12 @@ import BlueButton from './BlueButton'
 export let salaries = ['salaire net', 'salaire brut', 'salaire total']
 
 @connect(state => ({
-	flatRules: state.flatRules,
+	flatRules: state.flatRules
 }))
 @translate()
 export default class TargetSelection extends Component {
 	state = {
-		targets: [],
+		targets: []
 	}
 	render() {
 		let { targets } = this.state,
@@ -23,14 +23,20 @@ export default class TargetSelection extends Component {
 
 		return (
 			<section id="targetSelection">
-				<h1><Trans i18nKey="targetSelection">Que voulez-vous calculer ?</Trans></h1>
+				<h1>
+					<Trans i18nKey="targetSelection">Que voulez-vous calculer ?</Trans>
+				</h1>
 				{this.renderOutputList()}
 				<div id="action">
 					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
-						<Trans i18nKey="selectMany">Vous pouvez faire plusieurs choix</Trans>
+						<Trans i18nKey="selectMany">
+							Vous pouvez faire plusieurs choix
+						</Trans>
 					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready}><Trans>Valider</Trans></BlueButton>
+						<BlueButton disabled={!ready}>
+							<Trans>Valider</Trans>
+						</BlueButton>
 					</Link>
 				</div>
 			</section>
@@ -38,8 +44,7 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let { flatRules } = this.props,
-			popularTargets = [...salaries, 'aides employeur différées'].map(
+		let popularTargets = [...salaries, 'aides employeur'].map(
 				curry(findRuleByName)(flatRules)
 			),
 			{ targets } = this.state,
@@ -80,10 +85,9 @@ export default class TargetSelection extends Component {
 									optionIsChecked(s)
 										? {
 												color: textColourOnWhite
-											}
+										  }
 										: {}
-								}
-							>
+								}>
 								{optionIsChecked(s) ? (
 									<i
 										className="fa fa-check-square-o fa-2x"
@@ -102,8 +106,7 @@ export default class TargetSelection extends Component {
 											optionIsChecked(s)
 												? { color: textColourOnWhite }
 												: { color: '#4b4b66' }
-										}
-									>
+										}>
 										{s['résumé']}
 									</p>
 								</div>
