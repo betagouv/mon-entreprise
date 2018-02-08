@@ -7,8 +7,12 @@ import { Field, formValueSelector } from 'redux-form'
 import './InversionInput.css'
 import { Input } from './Input'
 import { connect } from 'react-redux'
-import { path } from 'ramda'
+import { path, last } from 'ramda'
 import { change } from 'redux-form'
+
+let getActiveInversion = ({ inputInversions, dottedName }) =>
+	(inputInversions && path(dottedName.split('.'), inputInversions)) ||
+	dottedName
 
 @connect(
 	state => ({
@@ -28,15 +32,12 @@ export default class InversionInput extends Component {
 			this.props.clearPreviousInversionValue(inversion)
 	}
 	render() {
-		let fieldName = getActiveInversion(this.props)
+		let fieldName = getActiveInversion(this.props),
+			fieldTitle = last(fieldName.split(' . '))
 
-		return <Fields {...{ ...this.props, fieldName }} />
+		return <Fields {...{ ...this.props, fieldName, fieldTitle }} />
 	}
 }
-
-let getActiveInversion = ({ inputInversions, dottedName }) =>
-	(inputInversions && path(dottedName.split('.'), inputInversions)) ||
-	dottedName
 
 @FormDecorator('inversionInput')
 class Fields extends Component {
