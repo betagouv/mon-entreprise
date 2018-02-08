@@ -32,7 +32,7 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let popularTargets = [...salaries, 'aides employeur différées'].map(
+		let popularTargets = [...salaries, 'aides employeur'].map(
 				curry(findRuleByName)(rules)
 			),
 			{ targets } = this.state,
