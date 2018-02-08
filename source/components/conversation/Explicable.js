@@ -38,9 +38,11 @@ export default class Explicable extends React.Component {
 				{this.props.children}
 				<span
 					className="icon"
-					onClick={() => {
+					onClick={e => {
 						ReactPiwik.push(['trackEvent', 'help', dottedName])
 						explain(dottedName)
+						e.preventDefault()
+						e.stopPropagation()
 					}}
 					style={
 						dottedName === explained
