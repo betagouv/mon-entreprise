@@ -176,6 +176,8 @@ export let getInputComponent = ({ unfolded }) => (
 			<InversionInput
 				{...{
 					...commonProps,
+					valueType: formValueTypes[rule.format],
+					suggestions: rule.suggestions,
 					inversion
 				}}
 			/>

@@ -5,20 +5,43 @@ import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
 import { Field, formValueSelector } from 'redux-form'
 import './InversionInput.css'
-import Input from './Input'
+import { Input } from './Input'
 import { connect } from 'react-redux'
 import { path } from 'ramda'
+import { change } from 'redux-form'
 
-@FormDecorator('inversionInput')
+@connect(
+	state => ({
+		inputInversions: formValueSelector('conversation')(state, 'inversions')
+	}),
+	dispatch => ({
+		clearPreviousInversionValue: field =>
+			dispatch(change('conversation', field, ''))
+	})
+)
 export default class InversionInput extends Component {
-	componentDidMount() {
-		let { dottedName, inversion, setFormValue } = this.props
-		// initialize the form field of renderinversions
-		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
+	componentWillReceiveProps(newProps) {
+		let newInversion = getActiveInversion(newProps),
+			inversion = getActiveInversion(this.props)
+
+		if (newInversion !== inversion)
+			this.props.clearPreviousInversionValue(inversion)
 	}
 	render() {
-		let { dottedName, inversion, setFormValue } = this.props
+		let fieldName = getActiveInversion(this.props)
 
+		return <Fields {...{ ...this.props, fieldName }} />
+	}
+}
+
+let getActiveInversion = ({ inputInversions, dottedName }) =>
+	(inputInversions && path(dottedName.split('.'), inputInversions)) ||
+	dottedName
+
+@FormDecorator('inversionInput')
+class Fields extends Component {
+	render() {
+		let { dottedName, inversion, fieldName } = this.props
 		if (inversion.inversions.length === 1)
 			return (
 				<span>
@@ -40,29 +63,13 @@ export default class InversionInput extends Component {
 						{title || name}
 					</label>
 				))}
-				<InversionInputComponent />
+				<Input
+					{...{
+						...this.props,
+						suggestions: dottedName === fieldName && this.props.suggestions
+					}}
+				/>
 			</div>
 		)
 	}
 }
-
-@connect(state => ({
-	inputInversions: formValueSelector('conversation')(state, 'inversions')
-}))
-class InversionInputComponent extends Component {
-	render() {
-		let { inputInversions, dottedName } = this.props,
-			fieldName =
-				(inputInversions && path(dottedName.split('.'), inputInversions)) ||
-				dottedName
-		return (
-			<Input
-				{...{
-					fieldName
-				}}
-			/>
-		)
-	}
-}
-
-//TODO valueType: formValueTypes[rule.format],

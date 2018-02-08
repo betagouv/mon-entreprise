@@ -303,18 +303,6 @@
 	outline: none;
 }
 
-.step .inputPrefix {
-	margin: 0 1em;
-	font-weight: 600;
-	margin-bottom: 1em;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.inputPrefix select {
-	font-size: 120%;
-}
-
 .step .inputSuggestions {
 	font-style: italic;
 	float: right;
