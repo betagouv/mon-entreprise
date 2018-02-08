@@ -673,8 +673,9 @@
   question: Quel est le salaire de base mensuel ?
   description: |
     C'est le salaire régulier inscrit dans le contrat de travail.
-    Il ne comprend donc pas les primes, indemnités, avantages...
-    Toutes ces formes de salaire donneront le salaire brut.
+    Il peut éventuellement inclure les primes ramenées au mois.
+
+    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
   format: euros
   suggestions:
     salaire médian: 2300
@@ -683,7 +684,7 @@
 
   formule:
     inversion:
-      question: Quel est le salaire mensuel ?
+      question: Quel salaire mensuel voulez-vous saisir ?
       titre: salaire
       avec:
         - salaire net
@@ -695,7 +696,7 @@
 
 - espace: contrat salarié
   nom: salaire brut
-  résumé: Le salaire inscrit sur le contrat de travail.
+  résumé: Le salaire inscrit dans le contrat de travail.
   description: >
     C'est le salaire de négociation du contrat de travail en France.
 
