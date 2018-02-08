@@ -11,8 +11,7 @@ import { path, last } from 'ramda'
 import { change } from 'redux-form'
 
 let getActiveInversion = ({ inputInversions, dottedName }) =>
-	(inputInversions && path(dottedName.split('.'), inputInversions)) ||
-	dottedName
+	inputInversions && path(dottedName.split('.'), inputInversions)
 
 @connect(
 	state => ({
@@ -32,17 +31,19 @@ export default class InversionInput extends Component {
 			this.props.clearPreviousInversionValue(inversion)
 	}
 	render() {
-		let fieldName = getActiveInversion(this.props),
+		let activeInversion = getActiveInversion(this.props),
+			fieldName = activeInversion || this.props.dottedName,
 			fieldTitle = last(fieldName.split(' . '))
-
-		return <Fields {...{ ...this.props, fieldName, fieldTitle }} />
+		return (
+			<Fields {...{ ...this.props, activeInversion, fieldName, fieldTitle }} />
+		)
 	}
 }
 
 @FormDecorator('inversionInput')
 class Fields extends Component {
 	render() {
-		let { dottedName, inversion, fieldName } = this.props
+		let { dottedName, inversion, fieldName, activeInversion } = this.props
 		if (inversion.inversions.length === 1)
 			return (
 				<span>
@@ -64,12 +65,14 @@ class Fields extends Component {
 						{title || name}
 					</label>
 				))}
-				<Input
-					{...{
-						...this.props,
-						suggestions: dottedName === fieldName && this.props.suggestions
-					}}
-				/>
+				{activeInversion && (
+					<Input
+						{...{
+							...this.props,
+							suggestions: dottedName === fieldName && this.props.suggestions
+						}}
+					/>
+				)}
 			</div>
 		)
 	}
