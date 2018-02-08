@@ -44,8 +44,8 @@ export class Header extends Component {
 			<div id="header">
 				<Link id="brand" to="/">
 					<img
-						id="marianne"
-						src={require('Images/marianne.svg')}
+						id="logo"
+						src={require('Images/logo-simulateur.svg')}
 						alt="Un service de l'État français"
 					/>
 					<h1>Simulateur d'embauche</h1>

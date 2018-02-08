@@ -10,13 +10,19 @@
 	align-items: center;
 }
 #header h1 {
-	font-size: calc(1vw + 150%);
+	font-size: calc(1vw + 130%);
 	font-weight: 600;
 	display: inline-block;
-	margin-left: 0.8em;
-	color: #333;
+	margin-left: 0em;
+	color: #3c4963;
+	width: 10em;
+	line-height: 1em;
+	margin-bottom: 0.6em;
 }
 
+#header #logo {
+	width: calc(1vw + 5em);
+}
 #header #marianne {
 	width: calc(3vw + 5em);
 }
