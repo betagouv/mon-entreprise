@@ -1,14 +1,7 @@
 import React from 'react'
 
 export default () => (
-	<div
-		style={{
-			color: '#333350',
-			margin: '15% auto',
-			width: '20em',
-			textAlign: 'center'
-		}}
-	>
+	<div className="centeredMessage">
 		<p>
 			Pour nous écrire :{' '}
 			<span style={{ fontWeight: 'bold' }}>contact@embauche.beta.gouv.fr</span>

@@ -10,14 +10,13 @@ import Helmet from 'react-helmet'
 import { createMarkdownDiv } from 'Engine/marked'
 import Destinataire from './Destinataire'
 import { Link } from 'react-router-dom'
-import { findRuleByNamespace } from 'Engine/rules'
+import { findRuleByNamespace, encodeRuleName } from 'Engine/rules'
 import withColours from '../withColours'
 
 import SearchButton from 'Components/SearchButton'
 
 @connect(state => ({
 	form: state.form,
-	textColourOnWhite: state.themeColours.textColourOnWhite,
 	rules: state.parsedRules
 }))
 export default class Rule extends Component {
@@ -26,7 +25,7 @@ export default class Rule extends Component {
 		showValues: true
 	}
 	render() {
-		let { form, rule, textColourOnWhite } = this.props,
+		let { form, rule } = this.props,
 			conversationStarted = !isEmpty(form),
 			situationExists = conversationStarted || this.state.example != null
 
@@ -43,7 +42,6 @@ export default class Rule extends Component {
 				<SearchButton />
 				<RuleMeta
 					{...{
-						textColourOnWhite,
 						ns,
 						type,
 						description,
@@ -103,7 +101,7 @@ let NamespaceRules = withColours(({ namespaceRules, rule, colours }) => (
 							color: colours.textColourOnWhite,
 							textDecoration: 'underline'
 						}}
-						to={'/règle/' + r.name}
+						to={'/règle/' + encodeRuleName(r.name)}
 					>
 						{r.name}
 					</Link>
@@ -113,18 +111,10 @@ let NamespaceRules = withColours(({ namespaceRules, rule, colours }) => (
 	</section>
 ))
 
-let RuleMeta = ({
-	textColourOnWhite,
-	ns,
-	type,
-	description,
-	question,
-	rule,
-	name
-}) => (
+let RuleMeta = ({ ns, type, description, question, rule, name }) => (
 	<section id="rule-meta">
 		<div id="meta-header">
-			{ns && <Namespace {...{ textColourOnWhite, ns }} />}
+			{ns && <Namespace {...{ ns }} />}
 			<h1>{capitalise0(name)}</h1>
 		</div>
 		<div id="meta-content">
@@ -141,16 +131,16 @@ let RuleMeta = ({
 	</section>
 )
 
-let Namespace = ({ ns, textColourOnWhite }) => (
+export let Namespace = withColours(({ ns, colours }) => (
 	<ul id="namespace">
 		{ns.split(' . ').map(fragment => (
 			<li key={fragment}>
 				<Link
 					style={{
-						color: textColourOnWhite,
+						color: colours.textColourOnWhite,
 						textDecoration: 'underline'
 					}}
-					to={'/règle/' + fragment}
+					to={'/règle/' + encodeRuleName(fragment)}
 				>
 					{capitalise0(fragment)}
 				</Link>
@@ -162,7 +152,7 @@ let Namespace = ({ ns, textColourOnWhite }) => (
 			</li>
 		))}
 	</ul>
-)
+))
 
 let ReportError = () => (
 	<button id="reportError">

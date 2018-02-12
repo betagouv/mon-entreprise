@@ -39,3 +39,10 @@ h1 {
 	font-size: 100%;
 	font-weight: bold;
 }
+
+.centeredMessage {
+	color: #333350;
+	margin: 10% auto;
+	width: 20em;
+	textalign: center;
+}

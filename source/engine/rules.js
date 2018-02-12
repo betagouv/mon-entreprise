@@ -74,8 +74,10 @@ export let splitName = split(' . '),
 export let parentName = pipe(splitName, dropLast(1), joinName)
 export let nameLeaf = pipe(splitName, last)
 
-export let encodeRuleName = name => name.replace(/\s/g, '-')
-export let decodeRuleName = name => name.replace(/-/g, ' ')
+export let encodeRuleName = name =>
+	name.replace(/\s\.\s/g, '--').replace(/\s/g, '-')
+export let decodeRuleName = name =>
+	name.replace(/--/g, ' . ').replace(/-/g, ' ')
 
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
@@ -120,8 +122,11 @@ export let rules = rawRules.map(rule =>
 /****************************************
  Méthodes de recherche d'une règle */
 
-export let findRuleByName = (allRules, search) =>
-	allRules.find(({ name }) => name === search)
+export let findRuleByName = (allRules, query) =>
+	allRules.find(({ name }) => name === query)
+
+export let findRulesByName = (allRules, query) =>
+	allRules.filter(({ name }) => name === query)
 
 export let searchRules = searchInput =>
 	rules
