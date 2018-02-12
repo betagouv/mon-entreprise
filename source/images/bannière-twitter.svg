@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="310"
+   height="60"
+   id="svg10"
+   sodipodi:docname="logo.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1019"
+     id="namedview12"
+     showgrid="false"
+     inkscape:zoom="0.62996954"
+     inkscape:cx="720.6846"
+     inkscape:cy="-36.809204"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" />
+  <metadata
+     id="metadata2">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Logo beta.gouv.fr</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     style="opacity:1;fill:#4a89dc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5.06986427;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect40"
+     width="1500"
+     height="500"
+     x="-7.2958989"
+     y="-379.38794" />
+  <text
+     xml:space="preserve"
+     transform="scale(1.040833,0.96076892)"
+     style="font-size:46.96238327px;fill:#ffffff;stroke-width:0.99919969"
+     id="text8"
+     x="352.29898"
+     y="-176.78494"><tspan
+       x="352.29898"
+       y="-126.82497"
+       style="font-weight:bold;font-size:53.33333206px;line-height:0.40000001;font-family:'Century Gothic Std';fill:#ffffff;stroke-width:0.99919969"
+       id="tspan6">       <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.33333206px;line-height:0.40000001;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;stroke-width:0.99919969"
+   id="tspan36">embauche</tspan>.<tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:60px;line-height:0.40000001;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Italic';fill:#ffffff;stroke-width:0.99919969"
+   id="tspan20">beta.gouv.fr</tspan><tspan
+   style="font-style:italic;font-weight:normal;font-size:53.33333206px;line-height:0.40000001;font-family:'Times New Roman';fill:#ffffff;stroke-width:0.99919969"
+   id="tspan4">      </tspan></tspan></text>
+</svg>

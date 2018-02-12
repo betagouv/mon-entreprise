@@ -2,31 +2,45 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1em;
-	border-bottom: 1px solid #ebebeb;
+	padding: 1em 1em 0;
 }
 #header #brand {
 	display: flex;
 	align-items: center;
 }
 #header h1 {
-	font-size: calc(1vw + 150%);
+	font-size: calc(1vw + 130%);
 	font-weight: 600;
 	display: inline-block;
-	margin-left: 0.8em;
-	color: #333;
+	margin-left: 0em;
+	color: #3c4963;
+	width: 10em;
+	line-height: 1em;
+	margin-bottom: 0.6em;
 }
 
-#header #marianne {
-	width: calc(3vw + 5em);
+#header #logo {
+	width: calc(2vw + 5em);
 }
 #menuButton {
-	font-size: 300%;
+	font-size: 350%;
 	color: #3c4963;
 	margin: 0 0.4em;
+	display: inline-block;
 }
 nav {
 	font-size: 150%;
+	margin-bottom: 1em;
+	display: inline-block;
+}
+#header #marianne {
+	width: calc(2vw + 3em);
+}
+
+@media screen and (min-width: 860px) {
+	#header #marianne {
+		vertical-align: middle;
+	}
 }
 
 nav a {
@@ -62,12 +76,14 @@ nav a {
 	}
 
 	nav {
-		margin-right: 2em;
+		margin-right: 1em;
 	}
 
 	nav a {
 		margin: 0.8em;
 		font-size: 85%;
+		font-weight: 600;
+		color: #3c4963;
 	}
 }
 

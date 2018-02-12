@@ -44,30 +44,37 @@ export class Header extends Component {
 			<div id="header">
 				<Link id="brand" to="/">
 					<img
-						id="marianne"
-						src={require('Images/marianne.svg')}
+						id="logo"
+						src={require('Images/logo/logo-simulateur.svg')}
 						alt="Un service de l'État français"
 					/>
 					<h1>Simulateur d'embauche</h1>
 				</Link>
-				<div id="menuButton">
-					{this.state.mobileNavVisible ? (
-						<i
-							className="fa fa-times"
-							aria-hidden="true"
-							onClick={this.togglemobileNavVisible}
-						/>
-					) : (
-						<i
-							className="fa fa-bars"
-							aria-hidden="true"
-							onClick={this.togglemobileNavVisible}
-						/>
-					)}
+				<div id="headerContent">
+					<div id="menuButton">
+						{this.state.mobileNavVisible ? (
+							<i
+								className="fa fa-times"
+								aria-hidden="true"
+								onClick={this.togglemobileNavVisible}
+							/>
+						) : (
+							<i
+								className="fa fa-bars"
+								aria-hidden="true"
+								onClick={this.togglemobileNavVisible}
+							/>
+						)}
+					</div>
+					<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
+						<Links toggle={this.togglemobileNavVisible} />
+					</nav>
+					<img
+						id="marianne"
+						src={require('Images/marianne.svg')}
+						alt="Un service de l'État français"
+					/>
 				</div>
-				<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
-					<Links toggle={this.togglemobileNavVisible} />
-				</nav>
 			</div>
 		)
 	}
