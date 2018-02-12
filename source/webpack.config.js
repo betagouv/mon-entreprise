@@ -8,7 +8,7 @@ module.exports = {
 		bundle: prodEnv
 			? ['@babel/polyfill', 'whatwg-fetch', './source/entry.js']
 			: [
-					'webpack-dev-server/client?http://localhost:3000/',
+					'webpack-dev-server/client?http://0.0.0.0:3000/',
 					'webpack/hot/only-dev-server',
 					'@babel/polyfill',
 					'react-hot-loader/patch',
