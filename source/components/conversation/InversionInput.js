@@ -57,31 +57,34 @@ class Fields extends Component {
 			<>
 				<div id="inversionRadios">
 					{inversion.inversions.map(({ name, title, dottedName: value }) => (
-						<label
-							key={value}
-							className={classNames({
-								selected: value === activeInversion,
-								unselected: activeInversion && value !== activeInversion
-							})}
-						>
-							<Field
-								name={'inversions.' + dottedName}
-								component="input"
-								type="radio"
-								value={value}
-							/>
-							<Explicable dottedName={value}>{title || name}</Explicable>
-						</label>
+						<>
+							<label
+								key={value}
+								className={classNames({
+									selected: value === activeInversion,
+									unselected: activeInversion && value !== activeInversion
+								})}
+							>
+								<Field
+									name={'inversions.' + dottedName}
+									component="input"
+									type="radio"
+									value={value}
+								/>
+								<Explicable dottedName={value}>{title || name}</Explicable>
+							</label>
+							{activeInversion === value && (
+								<Input
+									{...{
+										...this.props,
+										suggestions:
+											dottedName === fieldName && this.props.suggestions
+									}}
+								/>
+							)}
+						</>
 					))}
 				</div>
-				{activeInversion && (
-					<Input
-						{...{
-							...this.props,
-							suggestions: dottedName === fieldName && this.props.suggestions
-						}}
-					/>
-				)}
 			</>
 		)
 	}
