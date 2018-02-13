@@ -9,6 +9,7 @@ import 'react-select/dist/react-select.css'
 import Fuse from 'fuse.js'
 import { Redirect } from 'react-router-dom'
 import Highlighter from 'react-highlight-words'
+import { pick } from 'ramda'
 
 export default class RulesList extends Component {
 	render() {
@@ -42,7 +43,10 @@ export class SearchBar extends React.Component {
 				}
 			]
 		}
-		this.fuse = new Fuse(rules, options)
+		this.fuse = new Fuse(
+			rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
+			options
+		)
 	}
 	state = {
 		selectedOption: null,
