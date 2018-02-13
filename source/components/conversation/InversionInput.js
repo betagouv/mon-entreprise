@@ -9,7 +9,7 @@ import { Input } from './Input'
 import { connect } from 'react-redux'
 import { path, last } from 'ramda'
 import { change } from 'redux-form'
-
+import classNames from 'classnames'
 let getActiveInversion = ({ inputInversions, dottedName }) =>
 	inputInversions && path(dottedName.split('.'), inputInversions)
 
@@ -50,13 +50,20 @@ class Fields extends Component {
 					{inversion.inversions[0].title || inversion.inversions[0].dottedName}
 				</span>
 			)
+
 		// This field is handled by redux-form : it will set in the state what's
 		// the current inversion
 		return (
 			<>
 				<div id="inversionRadios">
 					{inversion.inversions.map(({ name, title, dottedName: value }) => (
-						<label key={value}>
+						<label
+							key={value}
+							className={classNames({
+								selected: value === activeInversion,
+								unselected: activeInversion && value !== activeInversion
+							})}
+						>
 							<Field
 								name={'inversions.' + dottedName}
 								component="input"
