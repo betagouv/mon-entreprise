@@ -670,12 +670,12 @@
 
 - espace: contrat salarié
   nom: salaire de base
-  titre: Salaire brut de base
+  titre: Salaire de base
   résumé: Salaire brut régulier inscrit dans le contrat de travail.
   type: salaire
   question: Quel est le salaire de base mensuel ?
   description: |
-    C'est le salaire régulier inscrit dans le contrat de travail.
+    C'est le salaire *brut* régulier inscrit dans le contrat de travail.
     Il peut éventuellement inclure les primes ramenées au mois.
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
@@ -819,7 +819,14 @@
   résumé: Total versé par l'employeur tous les mois.
   type: salaire
   description: |
-    C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines réductions de cotisation et aides peuvent diminuer cette somme.
+    C'est le salaire brut, plus les cotisations patronales, moins les réductions de cotisations sociales.
+
+    C'est le total que l'employeur doit verser mensuellement pour employer un salarié.
+
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
+
+    Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
+
   formule: salaire total sans réduction - réductions de cotisations
 
 - espace: contrat salarié
