@@ -686,7 +686,7 @@
 
   formule:
     inversion:
-      question: Quel salaire mensuel voulez-vous saisir ?
+      question: Quel est le salaire mensuel ?
       titre: salaire
       avec:
         - salaire net
