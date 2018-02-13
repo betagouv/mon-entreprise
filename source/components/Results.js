@@ -24,11 +24,17 @@ import { findRuleByDottedName } from 'Engine/rules.js'
 @translate()
 export default class Results extends Component {
 	render() {
-		let { flatRules, analysis, conversationStarted, done, themeColours } = this.props
-			let withFlatRule = rule => ({
-				...rule,
-				flatRule: findRuleByDottedName(flatRules, rule.dottedName)
-			})
+		let {
+			flatRules,
+			analysis,
+			conversationStarted,
+			done,
+			themeColours
+		} = this.props
+		let withFlatRule = rule => ({
+			...rule,
+			flatRule: findRuleByDottedName(flatRules, rule.dottedName)
+		})
 
 		if (!analysis) return null
 
@@ -44,7 +50,9 @@ export default class Results extends Component {
 						<Link className="edit" to="/" style={textStyle}>
 							<i className="fa fa-pencil" aria-hidden="true" />
 							{'  '}
-							<span><Trans i18nKey="reset">Changer d'objectif</Trans></span>
+							<span>
+								<Trans i18nKey="reset">Changer</Trans>
+							</span>
 						</Link>
 						<ul>
 							{targets.map(rule => (
@@ -62,8 +70,7 @@ export default class Results extends Component {
 						style={{
 							opacity: done ? 1 : 0,
 							color: themeColours.textColourOnWhite
-						}}
-					>
+						}}>
 						<i className="fa fa-long-arrow-down" aria-hidden="true" />{' '}
 						<Trans i18nKey="details">Comprendre mes résultats</Trans>
 					</h3>
