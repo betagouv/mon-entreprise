@@ -73,8 +73,8 @@ export default class Conversation extends Component {
 							<Satisfaction />
 						)}
 					</div>
+					<Aide />
 				</Element>
-				<Aide />
 			</>
 		)
 	}
