@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { isEmpty } from 'ramda'
+import { isEmpty, map } from 'ramda'
 import Aide from '../Aide'
-import Satisfaction from '../Satisfaction'
 import { reduxForm } from 'redux-form'
 import { scroller, Element } from 'react-scroll'
+import { getInputComponent } from 'Engine/generateQuestions'
+import Satisfaction from '../Satisfaction'
 
 let scroll = () =>
 	scroller.scrollTo('myScrollToElement', {
@@ -27,10 +28,10 @@ export default class Conversation extends Component {
 		let {
 			foldedSteps,
 			currentQuestion,
+			parsedRules,
+			targetNames,
 			reinitalise,
-			textColourOnWhite,
-			done,
-			nextSteps
+			textColourOnWhite
 		} = this.props
 
 		return (
@@ -46,7 +47,10 @@ export default class Conversation extends Component {
 								Tout effacer
 							</button>
 						</div>
-						{foldedSteps}
+						{map(
+							getInputComponent({ unfolded: false })(parsedRules, targetNames),
+							foldedSteps
+						)}
 					</div>
 				)}
 				<Element name="myScrollToElement" id="myScrollToElement">
@@ -61,7 +65,13 @@ export default class Conversation extends Component {
 						mes réponses
 					</h3>
 					<div id="currentQuestion">
-						{currentQuestion || <Satisfaction simu={this.props.simu} />}
+						{currentQuestion ? (
+							getInputComponent({ unfolded: true })(parsedRules, targetNames)(
+								currentQuestion
+							)
+						) : (
+							<Satisfaction />
+						)}
 					</div>
 				</Element>
 				<Aide />
