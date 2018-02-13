@@ -62,8 +62,10 @@ export class SearchBar extends React.Component {
 		let { selectedOption } = this.state
 
 		if (selectedOption != null) {
-			this.props.finally()
-			return <Redirect to={'/règle/' + selectedOption.dottedName} />
+			this.props.finally && this.props.finally()
+			return (
+				<Redirect to={'/règle/' + encodeRuleName(selectedOption.dottedName)} />
+			)
 		}
 		return (
 			<>

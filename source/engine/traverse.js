@@ -183,7 +183,12 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
 	let jsx = nodeValue => (
-		<Leaf classes="variable" name={fragments.join(' . ')} value={nodeValue} />
+		<Leaf
+			classes="variable"
+			name={fragments.join(' . ')}
+			dottedName={dottedName}
+			value={nodeValue}
+		/>
 	)
 
 	return {
