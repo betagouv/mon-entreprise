@@ -36,7 +36,7 @@ export default class Results extends Component {
 						<Link className="edit" to="/" style={textStyle}>
 							<i className="fa fa-pencil" aria-hidden="true" />
 							{'  '}
-							<span>Changer d'objectif</span>
+							<span>Changer</span>
 						</Link>
 						<ul>
 							{targets.map(rule => (
