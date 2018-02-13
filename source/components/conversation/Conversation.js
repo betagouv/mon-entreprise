@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import { isEmpty } from 'ramda'
+import { isEmpty, map } from 'ramda'
 import Aide from '../Aide'
-import Satisfaction from '../Satisfaction'
 import { reduxForm } from 'redux-form'
 import { scroller, Element } from 'react-scroll'
+import { getInputComponent } from 'Engine/generateQuestions'
+import Satisfaction from '../Satisfaction'
 
 let scroll = () =>
 	scroller.scrollTo('myScrollToElement', {
@@ -29,10 +30,10 @@ export default class Conversation extends Component {
 		let {
 			foldedSteps,
 			currentQuestion,
+			parsedRules,
+			targetNames,
 			reinitalise,
-			textColourOnWhite,
-			done,
-			nextSteps
+			textColourOnWhite
 		} = this.props
 
 		return (
@@ -42,13 +43,15 @@ export default class Conversation extends Component {
 						<div className="header">
 							<button
 								onClick={reinitalise}
-								style={{ color: textColourOnWhite }}
-							>
+								style={{ color: textColourOnWhite }}>
 								<i className="fa fa-trash" aria-hidden="true" />
 								<Trans i18nKey="resetAll">Tout effacer</Trans>
 							</button>
 						</div>
-						{foldedSteps}
+						{map(
+							getInputComponent({ unfolded: false })(parsedRules, targetNames),
+							foldedSteps
+						)}
 					</div>
 				)}
 				<Element name="myScrollToElement" id="myScrollToElement">
@@ -57,13 +60,18 @@ export default class Conversation extends Component {
 						style={{
 							opacity: foldedSteps.length != 0 ? 1 : 0,
 							color: textColourOnWhite
-						}}
-					>
+						}}>
 						<i className="fa fa-long-arrow-up" aria-hidden="true" />
 						<Trans i18nKey="change">Modifier mes réponses</Trans>
 					</h3>
 					<div id="currentQuestion">
-						{currentQuestion || <Satisfaction simu={this.props.simu} />}
+						{currentQuestion ? (
+							getInputComponent({ unfolded: true })(parsedRules, targetNames)(
+								currentQuestion
+							)
+						) : (
+							<Satisfaction />
+						)}
 					</div>
 				</Element>
 				<Aide />

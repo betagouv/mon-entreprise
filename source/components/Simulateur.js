@@ -15,8 +15,6 @@ import {
 import './conversation/conversation.css'
 import './Simulateur.css'
 import Conversation from './conversation/Conversation'
-import { getInputComponent } from 'Engine/generateQuestions'
-
 import ReactPiwik from './Tracker'
 
 import Results from 'Components/Results'
@@ -105,21 +103,10 @@ export default class extends Component {
 				<Conversation
 					{...{
 						reinitalise,
-						currentQuestion:
-							currentQuestion &&
-							getInputComponent({ unfolded: true })(
-								flatRules,
-								this.targetNames
-							)(currentQuestion),
-						foldedSteps: map(
-							getInputComponent({ unfolded: false })(
-								flatRules,
-								this.targetNames
-							),
-							foldedSteps
-						),
-						done: this.props.done,
-						nextSteps: this.props.nextSteps,
+						parsedRules,
+						targetNames: this.targetNames,
+						currentQuestion,
+						foldedSteps,
 						textColourOnWhite: themeColours.textColourOnWhite
 					}}
 				/>

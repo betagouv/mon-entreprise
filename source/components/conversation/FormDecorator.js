@@ -23,8 +23,6 @@ export var FormDecorator = formType => RenderField =>
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
 			themeColours: state.themeColours,
-			getCurrentInversion: dottedName =>
-				formValueSelector('conversation')(state, 'inversions.' + dottedName),
 			situationGate: state.situationGate
 		}),
 		dispatch => ({
