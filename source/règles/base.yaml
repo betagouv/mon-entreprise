@@ -1714,7 +1714,7 @@
     branche: santé
     dû par: employeur
   description: Cotisations de la branche maladie
-  références: 
+  références:
     fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
   formule:
@@ -1890,7 +1890,7 @@
           à: 152279
           taux: 13.6%
         - au-dessus de: 152279
-          taux: 20%
+          taux: 0%
   exemples:
     - nom: salaire médian
       situation:
