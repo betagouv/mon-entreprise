@@ -535,6 +535,51 @@ export let mecanismSum = (recurse, k, v) => {
 	}
 }
 
+
+
+export let mecanismReduction = (recurse, k, v) => {
+	let objectShape = {
+		assiette: false,
+		abattement: constantNode(0),
+		franchise: constantNode(0)
+	}
+
+	let effect = ({assiette, abattement, franchise, décote}) => {
+		let v_assiette = val(assiette),
+			nulled = v_assiette == null
+
+		return nulled
+			? null
+			: val(franchise) && v_assiette < val(franchise)
+				? 0
+				: décote
+					? do {
+							let plafond = val(décote.plafond),
+								taux = val(décote.taux)
+
+							max(0,(1+taux)*v_assiette - (taux * plafond))
+						}
+					: v_assiette
+	}
+
+	let base = parseObject(recurse, objectShape, v),
+		explanation = v.décote ?
+		{
+			...base,
+			décote: map(recurse, v.décote)
+		} : base,
+		evaluate = evaluateObject(objectShape, effect)
+
+	return {
+		evaluate,
+		jsx: (nodeValue, explanation) => <div>Allègement</div>,
+		explanation,
+		category: 'mecanism',
+		name: 'allègement',
+		type: 'numeric'
+	}
+}
+
 export let mecanismProduct = (recurse, k, v) => {
 	if (v.composantes) {
 		//mécanisme de composantes. Voir known-mecanisms.md/composantes

@@ -48,7 +48,8 @@ import {
 	mecanismError,
 	mecanismComplement,
 	mecanismSelection,
-	mecanismInversion
+	mecanismInversion,
+	mecanismReduction
 } from './mecanisms'
 import {
 	evaluateNode,
@@ -425,7 +426,8 @@ let treat = (rules, rule) => rawNode => {
 						'une possibilité': 'oui',
 						collectMissing: () => [rule.dottedName]
 					}),
-					inversion: mecanismInversion(rule.dottedName)
+					inversion: mecanismInversion(rule.dottedName),
+					allègement: mecanismReduction
 				},
 				action = propOr(mecanismError, k, dispatch)
 

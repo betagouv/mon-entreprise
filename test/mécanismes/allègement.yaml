@@ -13,26 +13,18 @@
         montant: 1000
       valeur attendue: 0
 
-
 - test: montant décoté
   format: €
   formule: 
     allègement: 
       assiette: montant
       décote: 
-        0: 0%
-        2040: 100%
+        plafond: 2040
+        taux: 100%
   exemples: 
     - situation: 
         montant: 1000
-      valeur attendue: 490
-
-
-# La décote aurait aussi pu s'écrire ainsi, tel que décrit par la documentation sur la taxe sur les salaires, mais notre mécanisme nous semble mieux retranscrire sa finalité
-#décote: 
-#  de: 1200
-#  à: 2040
-#  taux: 75%
+      valeur attendue: 0
 
 - test: montant abattu
   format: €
@@ -48,7 +40,6 @@
         montant: 80000
       valeur attendue: 59493
 
-
 - test: montant franchisé et décoté
   format: €
   formule: 
@@ -56,23 +47,18 @@
       assiette: montant
       franchise: 1200
       décote: 
-        1200: 25%
-        2040: 100%
+        plafond: 2040
+        taux: 75%
   exemples: 
     - situation: 
         montant: 100
       valeur attendue: 0
     - situation: 
         montant: 1200
-      valeur attendue: 300
-
+      valeur attendue: 570
     - situation: 
-        montant: 1300
-      valeur attendue: 441
-
+        montant: 1620
+      valeur attendue: 1305
     - situation: 
         montant: 2040
       valeur attendue: 2040
-
-        
-
