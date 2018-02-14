@@ -1870,8 +1870,8 @@
   # à ajouter quand nous aurons des mécanismes logiques plus évolués (notamment 'applicable si')
   par défaut: non
 
-- espace: contrat salarié . taxe sur les salaires
-  nom: montant annuel
+- espace: contrat salarié . taxe sur les salaires 
+  nom: barème annuel
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
@@ -1897,7 +1897,19 @@
         assiette: 2300
       valeur attendue: 2639.16 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
 
-
+- espace: contrat salarié . taxe sur les salaires
+  nom: montant annuel
+  formule: 
+    allègements: 
+      assiette: barème annuel
+      franchise: 1200 
+      décote: 
+        plafond: 2040
+        taux: 75%
+      #abattement:
+        #applicable si: entreprise . association non lucrative
+        #valeur: 20507
+  
 
 - espace: contrat salarié . taxe sur les salaires
   nom: assiette
