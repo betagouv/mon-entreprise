@@ -81,13 +81,12 @@ export let decodeRuleName = name =>
 
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
-
 export let disambiguateRuleReference = (
 	allRules,
 	{ ns, name },
 	partialName
 ) => {
-	let fragments = ns ? ns.split(' . ') : [], // ex. [CDD . événements . rupture]
+	let fragments = ns ? [...ns.split(' . '), name] : [], // ex. [CDD . événements . rupture]
 		pathPossibilities = range(0, fragments.length + 1) // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 			.map(nbEl => take(nbEl)(fragments))
 			.reverse(),
