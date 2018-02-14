@@ -26,7 +26,7 @@ export default ({
 				number
 			})}
 		>
-			<Link to={'/regle/' + encodeRuleName(name)}>
+			<Link to={'/règle/' + encodeRuleName(name)}>
 				<div className="rule-box">
 					<span className="rule-name">{title}</span>
 					<RuleValue

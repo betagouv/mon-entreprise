@@ -1,27 +1,3 @@
-
-#dictionaryPanelWrapper {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(255, 255, 255, 0.86);
-	z-index: 1;
-}
-#dictionaryPanel {
-	background: white;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	width: 70%;
-	max-width: 40em;
-	border: 2px solid #333350;
-	margin: 1em;
-	padding: 0em 1.5em;
-	min-height: 6em;
-	border-radius: .3em;
-}
 #dictionaryPanel h3 {
 	color: #333350;
 	font-weight: bold;
@@ -38,6 +14,6 @@
 }
 #dictionaryPanel code {
 	border: 1px solid #aaa;
-	padding: .05em .3em;
-	border-radius: .3em;
+	padding: 0.05em 0.3em;
+	border-radius: 0.3em;
 }

@@ -3,12 +3,18 @@ import { connect } from 'react-redux'
 import Rule from 'Components/rule/Rule'
 import { analyse } from 'Engine/traverse'
 import { head, path } from 'ramda'
-import { decodeRuleName, nameLeaf, findRuleByName } from 'Engine/rules.js'
+import {
+	decodeRuleName,
+	nameLeaf,
+	findRulesByName,
+	findRuleByDottedName
+} from 'Engine/rules.js'
 import { encodeRuleName } from 'Engine/rules'
 import { pipe, pluck, join, map } from 'ramda'
 import { Link, Redirect } from 'react-router-dom'
 import { animateScroll } from 'react-scroll'
 import './PageRule.css'
+import { Namespace } from './rule/Rule'
 
 @connect(state => ({
 	situationGate: state.situationGate,
@@ -29,15 +35,28 @@ export default class RulePage extends Component {
 		}
 	}
 	setRule(name) {
+		let { parsedRules, situationGate } = this.props,
+			decodedRuleName = decodeRuleName(name)
+		if (decodedRuleName.includes(' . ')) {
+			let rule = findRuleByDottedName(parsedRules, decodedRuleName)
+			this.rule =
+				rule &&
+				head(analyse(parsedRules, rule.dottedName)(situationGate).targets)
+			this.multipleMatchingRules = false
+			return
+		}
+
 		let ruleName = nameLeaf(decodeRuleName(name)),
-			rule = findRuleByName(this.props.parsedRules, ruleName)
-		if (!rule) return null
+			rules = findRulesByName(parsedRules, ruleName)
+		if (!rules.length) return null
+		if (rules.length > 1) this.multipleMatchingRules = rules
 		this.rule = head(
-			analyse(this.props.parsedRules, rule.name)(this.props.situationGate)
-				.targets
+			analyse(parsedRules, head(rules).dottedName)(situationGate).targets
 		)
 	}
 	render() {
+		if (this.multipleMatchingRules)
+			return <DisambiguateRuleQuery rules={this.multipleMatchingRules} />
 		if (!this.rule) return <Redirect to="/404" />
 
 		let targets = path(['analysis', 'targets'], this.props)
@@ -59,4 +78,20 @@ let BackToSimulation = ({ targets }) => (
 		<i className="fa fa-arrow-circle-left" aria-hidden="true" />Reprendre la
 		simulation
 	</Link>
+)
+
+let DisambiguateRuleQuery = ({ rules }) => (
+	<div className="centeredMessage">
+		<p>
+			Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?
+		</p>
+		<ul>
+			{rules.map(({ dottedName, ns, title }) => (
+				<li key={dottedName}>
+					<Namespace ns={ns} />
+					<Link to={'/règle/' + encodeRuleName(dottedName)}>{title}</Link>
+				</li>
+			))}
+		</ul>
+	</div>
 )

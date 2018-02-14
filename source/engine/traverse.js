@@ -183,7 +183,12 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
 	let jsx = nodeValue => (
-		<Leaf classes="variable" name={fragments.join(' . ')} value={nodeValue} />
+		<Leaf
+			classes="variable"
+			name={fragments.join(' . ')}
+			dottedName={dottedName}
+			value={nodeValue}
+		/>
 	)
 
 	return {
@@ -616,7 +621,12 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = {}
 
-	let parsedTargets = targetNames.map(t => findRuleByName(parsedRules, t)),
+	let parsedTargets = targetNames.map(
+			t =>
+				t.includes(' . ')
+					? findRuleByDottedName(parsedRules, t)
+					: findRuleByName(parsedRules, t)
+		),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)

@@ -7,40 +7,50 @@
 }
 
 #rule-meta {
-	margin-top: 1.6em;
 }
 
+#meta-header {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+#meta-header {
+	line-height: 3em;
+}
+
+#namespace {
+	padding: 0;
+}
+
+#namespace li {
+	display: inline;
+}
 
 #rule pre {
 	padding: 1em 2em;
 }
 
-.rule-type {
-	padding: 0 .5em;
-	margin: 0 auto;
-	width: 7em;
+.rule-type span {
+	padding: 0 1em;
+	margin: 0 1em;
 	text-align: center;
-	color: #4B4B66;
-	border: 2px solid #4B4B66;
+	color: #4b4b66;
+	border: 2px solid #4b4b66;
 	border-radius: 3px;
 	font-weight: 600;
 	text-transform: uppercase;
 }
 
 #rule h1 {
-	color: #4B4B66;
-	width: 100%;
-	text-align: center;
-	margin: 0;
-	padding: .2em 0;
-	border-bottom: 1px solid rgba(51, 51, 80, 0.2);
+	color: #4b4b66;
+	font-size: 200%;
 }
 
 #rule h2 {
 	font-size: 150%;
 	font-weight: 400;
 	border-bottom: 1px solid rgba(51, 51, 80, 0.15);
-	padding: 0.3em 0 .1em;
+	padding: 0.3em 0 0.1em;
 }
 
 #rule h2 small {
@@ -54,15 +64,14 @@
 	margin: 0;
 }
 
-
-
-#meta-paragraph {
+#meta-content {
+	border-top: 1px solid rgba(51, 51, 80, 0.2);
 	background: rgba(51, 51, 80, 0.03);
 	padding: 1em;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 }
-#meta-paragraph p {
+#meta-content p {
 	/*border-left: 3px solid #333350;*/
 	padding-left: 1em;
 	color: #444;
@@ -72,7 +81,7 @@
 #rule h3 {
 	font-size: 100%;
 	font-weight: 400;
-	margin: .4em 0;
+	margin: 0.4em 0;
 }
 
 #destinataire {
@@ -89,19 +98,19 @@
 }
 #destinataire img {
 	width: 100%;
-	opacity: .8;
+	opacity: 0.8;
 	display: block;
 }
 #destinataireName {
 	text-align: center;
 	font-size: 70%;
 	line-height: 1em;
-	margin-top: .3em;
+	margin-top: 0.3em;
 }
 #destinataire #calligraphy {
-	color: #5B5B73;
-	border: 2px solid #5B5B73;
-	border-radius: .4em;
+	color: #5b5b73;
+	border: 2px solid #5b5b73;
+	border-radius: 0.4em;
 	width: 130px;
 	line-height: 2em;
 	font-size: 130%;
@@ -114,7 +123,7 @@
 	color: white;
 	border: none;
 	font-size: 100%;
-	padding: .3em .6em;
+	padding: 0.3em 0.6em;
 	margin: 3em auto 0;
 	display: block;
 }

@@ -1,4 +1,8 @@
 #RulesList ul {
-	margin: 0 auto;
+	margin: 1em auto;
 	max-width: 860px;
+	padding: 0;
+}
+#RulesList li {
+	list-style: none;
 }

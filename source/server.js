@@ -8,6 +8,7 @@ new WebpackDevServer(webpack(config), {
 	disableHostCheck: true,
 	publicPath: config.output.publicPath,
 	hot: true,
+	headers: { 'Access-Control-Allow-Origin': '*' }, //for hot reloading
 	historyApiFallback: true,
 	// It suppress error shown in console, so it has to be set to false.
 	quiet: false,

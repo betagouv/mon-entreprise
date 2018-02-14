@@ -628,7 +628,7 @@
       contrat salarié . type de contrat: CDD
 - nom: contrat salarié
   description: |
-    Activité encadrée par un contrat de travail de droit privé.
+    Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
 
     Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans ces cas:
       - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
@@ -860,6 +860,7 @@
 - espace: contrat salarié
   nom: régime alsace moselle
   par défaut: non
+
 - nom : entreprise
   description: |
     Le contrat lie une entreprise et un employé

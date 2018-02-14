@@ -45,11 +45,11 @@ export class Node extends React.Component {
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export let Leaf = ({ classes, name, value }) => (
+export let Leaf = ({ classes, dottedName, name, value }) => (
 	<span className={classNames(classes, 'leaf')}>
-		{name && (
+		{dottedName && (
 			<span className="nodeHead">
-				<Link to={'/regle/' + encodeRuleName(name)}>
+				<Link to={'/règle/' + encodeRuleName(dottedName)}>
 					<span className="name">
 						{capitalise0(name)}
 						<NodeValuePointer data={value} />
