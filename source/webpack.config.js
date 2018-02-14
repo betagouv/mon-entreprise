@@ -1,6 +1,7 @@
 var webpack = require('webpack'),
 	path = require('path'),
-	prodEnv = process.env.NODE_ENV == 'production' // eslint-disable-line no-undef
+	prodEnv = process.env.NODE_ENV == 'production', // eslint-disable-line no-undef
+	HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
@@ -92,6 +93,13 @@ module.exports = {
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
 		new webpack.NoEmitOnErrorsPlugin()
 	]
-		.concat(!prodEnv ? [new webpack.HotModuleReplacementPlugin()] : [])
+		.concat(
+			!prodEnv
+				? [
+						new webpack.HotModuleReplacementPlugin(),
+						new HardSourceWebpackPlugin()
+					]
+				: []
+		)
 		.concat(prodEnv ? [new webpack.optimize.UglifyJsPlugin()] : [])
 }
