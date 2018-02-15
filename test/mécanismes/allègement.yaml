@@ -26,20 +26,6 @@
         montant: 1000
       valeur attendue: 0
 
-- test: montant abattu
-  format: €
-  formule: 
-    allègement: 
-      assiette: montant
-      abattement: 20507
-  exemples: 
-    - situation: 
-        montant: 10000
-      valeur attendue: 0
-    - situation: 
-        montant: 80000
-      valeur attendue: 59493
-
 - test: montant franchisé et décoté
   format: €
   formule: 
@@ -62,3 +48,20 @@
     - situation: 
         montant: 2040
       valeur attendue: 2040
+
+
+- test: montant abattu
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      abattement: 20507
+  exemples: 
+    - situation: 
+        montant: 10000
+      valeur attendue: 0
+    - situation: 
+        montant: 80000
+      valeur attendue: 59493
+
+

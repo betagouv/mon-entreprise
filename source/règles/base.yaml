@@ -1906,10 +1906,9 @@
       décote: 
         plafond: 2040
         taux: 75%
-      #abattement:
-        #applicable si: entreprise . association non lucrative
-        #valeur: 20507
-  
+      # Attention : l'abattement n'est valable que pour les organismes à but non lucratif. 
+      # Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
+      abattement: 20507
 
 - espace: contrat salarié . taxe sur les salaires
   nom: assiette
@@ -1922,7 +1921,7 @@
 - espace: contrat salarié
   nom: taxe sur les salaires
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
-  non applicable si: ≠ entreprise . association non lucrative
+  applicable si: entreprise . association non lucrative
 
   formule: montant annuel / 12
   exemples:
