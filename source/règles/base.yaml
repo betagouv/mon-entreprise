@@ -1858,6 +1858,14 @@
       - entreprise . effectif >= 2000
       - entreprise . ratio alternants < 1%
 
+- espace: contrat salarié . taxe sur les salaires
+  nom: assiette
+  formule:
+    somme:
+      - assiette cotisations sociales
+      - prévoyance obligatoire cadre
+      - complémentaire santé (employeur)
+
 # TODO chantier droits: introduire la répartition entre part régionale, quota d'app., hors quota
 # https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
 - espace: contrat salarié . taxe sur les salaires
@@ -1871,7 +1879,7 @@
   par défaut: non
 
 - espace: contrat salarié . taxe sur les salaires 
-  nom: barème annuel
+  nom: barème annuel 
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
@@ -1897,11 +1905,16 @@
         assiette: 2300
       valeur attendue: 2639.16 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
 
-- espace: contrat salarié . taxe sur les salaires
+- espace: entreprise . taxe sur les salaires
+  nom: barème annuel
+  formule: 
+    contrat salarié . taxe sur les salaires . barème annuel * effectif
+
+- espace: entreprise . taxe sur les salaires
   nom: montant annuel
   formule: 
-    allègements: 
-      assiette: barème annuel
+    allègement: 
+      assiette: barème annuel 
       franchise: 1200 
       décote: 
         plafond: 2040
@@ -1911,12 +1924,8 @@
       abattement: 20507
 
 - espace: contrat salarié . taxe sur les salaires
-  nom: assiette
-  formule:
-    somme:
-      - assiette cotisations sociales
-      - prévoyance obligatoire cadre
-      - complémentaire santé (employeur)
+  nom: montant annuel
+  formule: entreprise . taxe sur les salaires . montant annuel / entreprise . effectif
 
 - espace: contrat salarié
   nom: taxe sur les salaires
@@ -1935,6 +1944,7 @@
         entreprise . association non lucrative: oui
         montant annuel: 2639.16
       valeur attendue: 219.93
+
 
 - espace: contrat salarié
   nom: versement transport
