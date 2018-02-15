@@ -194,7 +194,7 @@ let devariate = (recurse, k, v) => {
 }
 
 export let mecanismOneOf = (recurse, k, v) => {
-	if (!is(Array, v)) throw 'should be array'
+	if (!is(Array, v)) throw new Error('should be array')
 
 	let explanation = map(recurse, v)
 
@@ -238,7 +238,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 }
 
 export let mecanismAllOf = (recurse, k, v) => {
-	if (!is(Array, v)) throw 'should be array'
+	if (!is(Array, v)) throw new Error('should be array')
 
 	let explanation = map(recurse, v)
 
@@ -287,7 +287,9 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	if (is(String, v)) return recurse(v)
 
 	if (!is(Object, v) || keys(v).length == 0) {
-		throw 'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
+		throw new Error(
+			'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
+		)
 	}
 
 	// les termes sont les couples (condition, conséquence) de l'aiguillage numérique
@@ -399,7 +401,9 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 export let findInversion = (situationGate, rules, v, dottedName) => {
 	let inversions = v.avec
 	if (!inversions)
-		throw "Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
+		throw new Error(
+			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
+		)
 	/*
 	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
 	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
@@ -965,5 +969,5 @@ export let mecanismSelection = (recurse, k, v) => {
 }
 
 export let mecanismError = (recurse, k, v) => {
-	throw "Le mécanisme '" + k + "' est inconnu !" + v
+	throw new Error("Le mécanisme '" + k + "' est inconnu !" + v)
 }

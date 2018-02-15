@@ -391,9 +391,9 @@ let treat = (rules, rule) => rawNode => {
 		},
 		treatOther = rawNode => {
 			console.log() // eslint-disable-line no-console
-			throw 'Cette donnée : ' +
-				rawNode +
-				' doit être un Number, String ou Object'
+			throw new Error(
+				'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
+			)
 		},
 		treatObject = rawNode => {
 			let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
@@ -405,7 +405,7 @@ let treat = (rules, rule) => rawNode => {
 					mecanisms,
 					rawNode
 				)
-				throw 'OUPS !'
+				throw new Error('OUPS !')
 			}
 
 			let k = head(mecanisms),
