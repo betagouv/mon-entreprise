@@ -535,8 +535,6 @@ export let mecanismSum = (recurse, k, v) => {
 	}
 }
 
-
-
 export let mecanismReduction = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
@@ -544,7 +542,7 @@ export let mecanismReduction = (recurse, k, v) => {
 		franchise: constantNode(0)
 	}
 
-	let effect = ({assiette, abattement, franchise, décote}) => {
+	let effect = ({ assiette, abattement, franchise, décote }) => {
 		let v_assiette = val(assiette),
 			nulled = v_assiette == null
 
@@ -557,17 +555,18 @@ export let mecanismReduction = (recurse, k, v) => {
 							let plafond = val(décote.plafond),
 								taux = val(décote.taux)
 
-							max(0,(1+taux)*v_assiette - (taux * plafond))
+							max(0, (1 + taux) * v_assiette - taux * plafond)
 						}
-					: v_assiette
+					: abattement ? max(0, v_assiette - val(abattement)) : v_assiette
 	}
 
 	let base = parseObject(recurse, objectShape, v),
-		explanation = v.décote ?
-		{
-			...base,
-			décote: map(recurse, v.décote)
-		} : base,
+		explanation = v.décote
+			? {
+					...base,
+					décote: map(recurse, v.décote)
+				}
+			: base,
 		evaluate = evaluateObject(objectShape, effect)
 
 	return {
