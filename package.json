@@ -10,10 +10,7 @@
 	"engines": {
 		"node": ">=6.2.0 <10.0.0"
 	},
-	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
-	],
+	"browserslist": ["> 1% in FR", "not ie < 11"],
 	"dependencies": {
 		"@babel/polyfill": "^7.0.0-beta.34",
 		"classnames": "^2.2.5",
@@ -85,7 +82,6 @@
 		"file-loader": "^1.1.6",
 		"hard-source-webpack-plugin": "^0.5.18",
 		"html-loader": "^0.5.1",
-		"img-loader": "^2.0.0",
 		"jsdom": "^11.0.0",
 		"json-loader": "^0.5.4",
 		"nearley-loader": "0.0.2",
@@ -103,13 +99,21 @@
 	},
 	"scripts": {
 		"start": "node source/server.js",
-		"compile": "NODE_ENV='production' webpack --config source/webpack.config.js",
-		"surge": "npm run compile && surge --domain scientific-wish.surge.sh -p ./ && rm -rf dist/",
-		"test": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
-		"test-watch": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
-		"test-meca": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
-		"test-rules": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
-		"heroku-postbuild": "npm install --dev && webpack --config source/webpack.config.js --progress",
-		"test-inversions": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch"
+		"compile":
+			"NODE_ENV='production' webpack --config source/webpack.config.js",
+		"surge":
+			"npm run compile && surge --domain scientific-wish.surge.sh -p ./ && rm -rf dist/",
+		"test":
+			"mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
+		"test-watch":
+			"mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
+		"test-meca":
+			"mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
+		"test-rules":
+			"mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
+		"heroku-postbuild":
+			"npm install --dev && webpack --config source/webpack.config.js --progress",
+		"test-inversions":
+			"mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch"
 	}
 }
