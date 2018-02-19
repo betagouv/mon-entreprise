@@ -1001,6 +1001,25 @@
   formule: 2.5
 
 
+- espace: contrat salarié . CITS
+  nom: non abattu
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 4%
+
+- espace: contrat salarié . CITS
+  nom: abattement mensuel par salarié
+  formule:
+    multiplication:
+      assiette: entreprise . taxe sur les salaires . abattement associations
+      taux: 1 / entreprise . effectif
+      facteur: 1 / 12
+  note: |
+    Cette variable révèle deux lacunes de notre modélisation :
+      - on ne peut pas spécifier plusieurs salariés à l'entreprise, et donc calculer correctement le CITS. On fait donc comme si l'unique salarié simulé était le salarié type, multiplié.
+      - on ne gère pas la conversion entre les périodes temporelles.
+    On les résoud en exploitant à tort les capacités du mécanisme multiplication.
 
 - espace: contrat salarié
   nom: CITS
@@ -1018,10 +1037,12 @@
   applicable si: entreprise . association non lucrative
   non applicable si: assiette cotisations sociales > plafond CITS
 
+  note: Le CITS est un crédit sur la taxe sur les salaires. Celle-ci est abattue de ~20k. Le CITS est lui-même abattu de ~20k ! Quel intérêt, pourquoi ne pas simplement supprimer l'abattement initial ? Parce que dans certains cas, une entreprise d'un salarié au SMIC, 4% des rémunérations annuelles < abattement de 20k. Donc le crédit est nul. Donc la taxe sur les salaires reste abattue comme initialement prévu.
+
   formule:
-    multiplication:
-      assiette: assiette cotisations sociales
-      taux: 4%
+    allègement:
+      assiette: non abattu
+      abattement: abattement mensuel par salarié
 
   exemples:
     - nom: SMIC
@@ -1909,7 +1930,13 @@
     contrat salarié . taxe sur les salaires . barème annuel * effectif
 
 - espace: entreprise . taxe sur les salaires
+  nom: abattement associations
+  formule: 20507
+
+
+- espace: entreprise . taxe sur les salaires
   nom: montant annuel
+
   formule:
     allègement:
       assiette: barème annuel
@@ -1917,10 +1944,11 @@
       décote:
         plafond: 2040
         taux: 75%
-      # Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
-      # Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
-      abattement: 20507
+      abattement: abattement associations
 
+  note: |
+    Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
+    Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
 - espace: contrat salarié . taxe sur les salaires
   nom: montant annuel
   formule: entreprise . taxe sur les salaires . montant annuel / entreprise . effectif
