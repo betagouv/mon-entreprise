@@ -1015,10 +1015,8 @@
   références:
     fiche: https://www.service-public.fr/associations/actualites/A11012
 
-  non applicable si:
-    une de ces conditions:
-      - assiette cotisations sociales > plafond CITS
-      - ≠ entreprise . association non lucrative
+  applicable si: entreprise . association non lucrative
+  non applicable si: assiette cotisations sociales > plafond CITS
 
   formule:
     multiplication:
@@ -1878,8 +1876,8 @@
   # à ajouter quand nous aurons des mécanismes logiques plus évolués (notamment 'applicable si')
   par défaut: non
 
-- espace: contrat salarié . taxe sur les salaires 
-  nom: barème annuel 
+- espace: contrat salarié . taxe sur les salaires
+  nom: barème annuel
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
@@ -1907,19 +1905,19 @@
 
 - espace: entreprise . taxe sur les salaires
   nom: barème annuel
-  formule: 
+  formule:
     contrat salarié . taxe sur les salaires . barème annuel * effectif
 
 - espace: entreprise . taxe sur les salaires
   nom: montant annuel
-  formule: 
-    allègement: 
-      assiette: barème annuel 
-      franchise: 1200 
-      décote: 
+  formule:
+    allègement:
+      assiette: barème annuel
+      franchise: 1200
+      décote:
         plafond: 2040
         taux: 75%
-      # Attention : l'abattement n'est valable que pour les organismes à but non lucratif. 
+      # Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
       # Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
       abattement: 20507
 
