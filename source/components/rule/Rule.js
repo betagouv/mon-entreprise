@@ -56,6 +56,9 @@ export default class Rule extends Component {
 						rule={situationOrExampleRule}
 						showValues={situationExists}
 					/>
+					{rule.note && (
+						<section id="notes">{createMarkdownDiv(rule.note)}</section>
+					)}
 					<Examples
 						situationExists={conversationStarted}
 						rule={rule}

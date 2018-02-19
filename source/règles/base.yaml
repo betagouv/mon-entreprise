@@ -132,7 +132,7 @@
       valeur attendue: 55.21
 
 
-  notes: |
+  note: |
 
     À noter, la loi El Khomri modifie l'article L3141-12:
     - avant : Les congés peuvent être pris dès l'ouverture des droits [...]
@@ -157,7 +157,7 @@
 
   alias: prime de précarité
   description: Somme versée en fin de CDD comme compensation de précarité.
-  notes: |
+  note: |
     Attention, les exceptions sont légion. Conventions collectives...
 
     - Dans les faits, les CDD Senior perçoivent une indemnité d’un montant équivalent à l’indemnité de précarité : [line](https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si)
@@ -273,10 +273,8 @@
     La majoration de la contribution chômage: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html
     Circulaire Unédic: http://www.unedic.org/sites/default/files/ci201317_1.pdf
 
-  notes: |
+  note: |
     - L'URSSAF liste à la fois des conditions pour "Les CDD concernés par l’application de la majoration" et pour "Les contrats de travail exclus de la majoration". Un doute persiste : difficile de savoir si les premières suffisent au calcul (donc que les deuxièmes sont là pour enlever les doutes) ou si les deuxièmes peuvent faire exception...
-    - Depuis le 1er juillet 2013
-    - l'URSSAF explique longuement la notion de durée du CDD : "Comment déterminer la durée du CDD ?"
 
 
 - espace: contrat salarié
@@ -564,7 +562,7 @@
   titre: Contrat jeune vacances
   question: Est-ce un contrat jeune vacances ?
   description: Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses vacances scolaires ou universitaires.
-  notes: Ce n'est pas un motif de CDD.
+  note: Ce n'est pas un motif de CDD.
   par défaut: non
 
 - espace: contrat salarié . CDD
@@ -1190,8 +1188,6 @@
     Cotisation de retraite complémentaire
     (Cotisation pour l'Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO)
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
-  notes: |
-    Attention: les tranches du barème sont différentes pour les cadres et non-cadres, en valeur et en nombres.
 
   formule:
     barème:
@@ -1341,7 +1337,7 @@
             - au-dessus de: 8
               taux: 0%
 
-  notes: |
+  note: |
     Il existe une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
 
   références:
@@ -1355,12 +1351,6 @@
     branche: chômage
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
-  notes: |
-    - taux différent pour le personnel intérimaire des entreprises de travail temporaire
-    - Ne sont pas assujetties :
-      - les personnes morales de droit public,
-      - les syndicats de copropriété,
-      - les particuliers employeurs.
 
 #  non applicable si: assimilé salarié
 
@@ -1415,8 +1405,6 @@
     (Association Pour l’Emploi des Cadres)
   références:
     chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
-  notes: |
-    Avant 2011, il y avait une cotisation forfaitaire au lieu de la tranche A
 
   #TODO double négation en attendant d'ajouter 'applicable si'
   non applicable si: ≠ statut cadre
@@ -1577,12 +1565,14 @@
   cotisation:
     dû par: employeur
     collecteur: URSSAF
-  description: Contribution patronale destinée à abonder un fonds paritaire dédié au financement des organisations syndicales et des organisations professionnelles d’employeurs.
+  description: |
+    Contribution patronale destinée à abonder un fonds paritaire dédié au financement des organisations syndicales et des organisations professionnelles d’employeurs.
+
+    Anciennement 'contribution patronale au financement des organisations syndicales'
+
   références:
     - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
-  notes: |
-    Anciennement 'contribution patronale au financement des organisations syndicales'
 
   formule:
     multiplication:
@@ -1614,8 +1604,9 @@
         - attributs:
             dû par: salarié
           taux: 0.13%
+
 - espace: contrat salarié
-  note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO
+  note: Cette assiette est complexe, cette version n'est qu'une simplification.
   nom: assiette CSG
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
@@ -1627,7 +1618,6 @@
       - complémentaire santé (employeur)
 
 - espace: contrat salarié
-  note: Cette assiette est complexe, cette version n'est qu'une simplification. #TODO
   nom: assiette CSG abattue
   formule:
     barème:
@@ -1692,9 +1682,6 @@
     branche: logement
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
-  note: Il y avait une cotisation supplémentaire pour les entreprises de >= 20 employés avant 2015, mais le résultat était le même.
-  explication: |
-    Si l'entreprise a un effectif supérieur ou égal à 20 salariés, elle doit verser 0,50 % sur la totalité des salaires. Pour les entreprises de moins de 20 salariés et pour les employeurs occupés aux activités mentionnées aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche maritime et les coopératives mentionnées à l'article L. 521-1 du même code, la cotisation est de 0,10 % des salaires limités au plafond de sécurité sociale (tranche A). Intégrée aux cotisations de sécurité sociale, elle est recouvrée par les Urssaf pour le financement des allocations logement versées par les caisses d'allocations familiales.   Les employeurs qui ont atteint ou dépassé pour la première fois, au titre des années 2008 à 2012, le seuil de 20 salariés ont été dispensés de l’ancien Fnal supplémentaire pendant 3 ans. La contribution était ensuite progressivement appelée sur les 3 années suivantes. Un dispositif est mis en place pour 2016, 2017 et 2018. Les employeurs qui atteignent ou dépassent au titre de ces années l'effectif de 20 salariés continuent d'appliquer le taux de 0,10 % pendant trois ans (suite au franchissement de seuil). Cette modalité n'implique pas d'adaptation du calcul du coefficient de la réduction générale. Le seuil de 20 salariés s'apprécie au 31 décembre et la modification de la cotisation est effective au 1er avril suivant.
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -1778,9 +1765,8 @@
     impôt: oui
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
-  notes: |
+  note: |
     L'employeur a le choix entre verser cet impôt à un "organisme du 1 % patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
-
 
   applicable si: entreprise . effectif >= 20
   formule:
@@ -1817,7 +1803,7 @@
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
     csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
 
-  notes: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
+  note: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
 
   non applicable si: entreprise . association non lucrative
   # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
