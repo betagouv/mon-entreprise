@@ -65,8 +65,8 @@
 }
 
 #meta-content {
-	border-top: 1px solid rgba(51, 51, 80, 0.2);
-	background: rgba(51, 51, 80, 0.03);
+	border: 1px solid rgba(41, 117, 209, 0.3);
+	background: rgba(41, 117, 209, 0.08);
 	padding: 1em;
 	display: flex;
 	justify-content: flex-start;
@@ -76,12 +76,6 @@
 	padding-left: 1em;
 	color: #444;
 	font-size: 95%;
-}
-
-#rule h3 {
-	font-size: 100%;
-	font-weight: 400;
-	margin: 0.4em 0;
 }
 
 #destinataire {
@@ -126,4 +120,8 @@
 	padding: 0.3em 0.6em;
 	margin: 3em auto 0;
 	display: block;
+}
+
+#notes {
+	color: #666;
 }

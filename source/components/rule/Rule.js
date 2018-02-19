@@ -57,7 +57,10 @@ export default class Rule extends Component {
 						showValues={situationExists}
 					/>
 					{rule.note && (
-						<section id="notes">{createMarkdownDiv(rule.note)}</section>
+						<section id="notes">
+							<h3>Note: </h3>
+							{createMarkdownDiv(rule.note)}
+						</section>
 					)}
 					<Examples
 						situationExists={conversationStarted}
