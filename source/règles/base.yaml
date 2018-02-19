@@ -1900,7 +1900,7 @@
 - espace: contrat salarié . taxe sur les salaires
   nom: barème annuel
   références:
-    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
+    barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
   formule:
     barème:
@@ -1959,6 +1959,9 @@
   applicable si: entreprise . association non lucrative
 
   formule: montant annuel / 12
+
+  note: Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
+
   exemples:
     - nom: non applicable par défaut
       situation:
@@ -1971,6 +1974,8 @@
         montant annuel: 2639.16
       valeur attendue: 219.93
 
+  références:
+    fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
 - espace: contrat salarié
   nom: versement transport
