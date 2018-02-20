@@ -733,7 +733,7 @@
 
 - espace: contrat salarié
   nom: smic mensuel temps plein
-  formule: 1500
+  formule: 1500,89
 
 - espace: contrat salarié
   nom: smic mensuel
