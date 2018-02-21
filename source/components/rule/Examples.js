@@ -18,7 +18,7 @@ export let runExamples = (examples, rule, parsedRules) =>
 		.map(ex => {
 			let exampleSituationGate = () => name => ex.situation[name]
 
-			let runExample = analyse(parsedRules, rule.name)(
+			let runExample = analyse(parsedRules, rule.dottedName)(
 					assume(exampleSituationGate, collectDefaults(parsedRules))()
 				),
 				exampleValue = runExample.targets[0].nodeValue,
