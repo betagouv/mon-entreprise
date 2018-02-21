@@ -24,6 +24,13 @@ export default class Rule extends Component {
 		example: null,
 		showValues: true
 	}
+
+	componentWillReceiveProps(nextProps) {
+		let dn = path(['rule', 'dottedName'])
+		if (dn(this.props) !== dn(this.nextProps)) {
+			this.setState({ example: null })
+		}
+	}
 	render() {
 		let { form, rule } = this.props,
 			conversationStarted = !isEmpty(form),
