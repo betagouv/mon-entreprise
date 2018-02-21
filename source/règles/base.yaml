@@ -1944,14 +1944,20 @@
   exemples:
     - nom: non applicable par défaut
       situation:
-        salaire brut: 2300
+        salaire de base: 2300
       valeur attendue: 0
-    - nom: association non lucrative
-      # Ce test ne sert qu'à tester la condition "association non lucrative", tant que nous faisons face à la limitation des calculs temporels
+    - nom: association non lucrative unipersonnelle
       situation:
         entreprise . association non lucrative: oui
-        montant annuel: 2639.16
-      valeur attendue: 219.93
+        salaire de base: 2300
+        entreprise . effectif: 1
+      valeur attendue: 0
+    - nom: association non lucrative
+      situation:
+        entreprise . association non lucrative: oui
+        salaire de base: 2300
+        entreprise . effectif: 10
+      valeur attendue: 49
 
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
