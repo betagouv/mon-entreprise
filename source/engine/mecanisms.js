@@ -50,6 +50,7 @@ import {
 
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
+import Allègement from './mecanismViews/Allègement'
 import buildSelectionView from './mecanismViews/Selection'
 import uniroot from './uniroot'
 
@@ -575,7 +576,7 @@ export let mecanismReduction = (recurse, k, v) => {
 
 	return {
 		evaluate,
-		jsx: (nodeValue, explanation) => <div>Allègement</div>,
+		jsx: Allègement,
 		explanation,
 		category: 'mecanism',
 		name: 'allègement',
