@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { isEmpty, path } from 'ramda'
+import { isEmpty, path, last } from 'ramda'
 import { connect } from 'react-redux'
 import './Rule.css'
 import { capitalise0 } from '../../utils'
@@ -74,7 +74,7 @@ export default class Rule extends Component {
 						}
 					/>
 					{!isEmpty(namespaceRules) && (
-						<NamespaceRules {...{ rule, namespaceRules }} />
+						<NamespaceRulesList {...{ rule, namespaceRules }} />
 					)}
 					{this.renderReferences(rule)}
 				</section>
@@ -92,7 +92,7 @@ export default class Rule extends Component {
 		) : null
 }
 
-let NamespaceRules = withColours(({ namespaceRules, rule, colours }) => (
+let NamespaceRulesList = withColours(({ namespaceRules, rule, colours }) => (
 	<section>
 		<h2>
 			Règles attachées<small>
@@ -107,7 +107,7 @@ let NamespaceRules = withColours(({ namespaceRules, rule, colours }) => (
 							color: colours.textColourOnWhite,
 							textDecoration: 'underline'
 						}}
-						to={'/règle/' + encodeRuleName(r.name)}
+						to={'/règle/' + encodeRuleName(r.dottedName)}
 					>
 						{r.name}
 					</Link>
@@ -139,24 +139,33 @@ let RuleMeta = ({ ns, type, description, question, rule, name }) => (
 
 export let Namespace = withColours(({ ns, colours }) => (
 	<ul id="namespace">
-		{ns.split(' . ').map(fragment => (
-			<li key={fragment}>
-				<Link
-					style={{
-						color: colours.textColourOnWhite,
-						textDecoration: 'underline'
-					}}
-					to={'/règle/' + encodeRuleName(fragment)}
-				>
-					{capitalise0(fragment)}
-				</Link>
-				<i
-					style={{ margin: '0 .6em', fontSize: '85%' }}
-					className="fa fa-chevron-right"
-					aria-hidden="true"
-				/>
-			</li>
-		))}
+		{ns
+			.split(' . ')
+			.reduce(
+				(memo, next) => [
+					...memo,
+					[...(memo.length ? memo.reverse()[0] : []), next]
+				],
+				[]
+			)
+			.map(fragments => (
+				<li key={fragments.join()}>
+					<Link
+						style={{
+							color: colours.textColourOnWhite,
+							textDecoration: 'underline'
+						}}
+						to={'/règle/' + encodeRuleName(fragments.join(' . '))}
+					>
+						{capitalise0(last(fragments))}
+					</Link>
+					<i
+						style={{ margin: '0 .6em', fontSize: '85%' }}
+						className="fa fa-chevron-right"
+						aria-hidden="true"
+					/>
+				</li>
+			))}
 	</ul>
 ))
 

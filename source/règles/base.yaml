@@ -1910,6 +1910,10 @@
         assiette: 2300
       valeur attendue: 2639.16 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
 
+- espace: entreprise
+  nom: taxe sur les salaires
+  
+
 - espace: entreprise . taxe sur les salaires
   nom: barème annuel
   formule:
