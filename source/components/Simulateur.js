@@ -9,6 +9,7 @@ import { START_CONVERSATION } from '../actions'
 import {
 	rules,
 	findRuleByName,
+	findRule,
 	findRuleByDottedName,
 	decodeRuleName
 } from 'Engine/rules'
@@ -57,7 +58,7 @@ export default class extends Component {
 		this.targetNames = targetNames
 
 		this.targetRules = reject(isNil)(
-			targetNames.map(name => findRuleByName(rules, name))
+			targetNames.map(name => findRule(rules, name))
 		)
 
 		this.targetRules.map(({ dottedName }) => resetFormField(dottedName))

@@ -2,7 +2,8 @@ import React from 'react'
 import {
 	findRuleByDottedName,
 	disambiguateRuleReference,
-	findRuleByName
+	findRuleByName,
+	findRule
 } from './rules'
 import { evaluateVariable } from './variables'
 import {
@@ -623,12 +624,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = {}
 
-	let parsedTargets = targetNames.map(
-			t =>
-				t.includes(' . ')
-					? findRuleByDottedName(parsedRules, t)
-					: findRuleByName(parsedRules, t)
-		),
+	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)

@@ -143,6 +143,11 @@ export let findRuleByDottedName = (allRules, dottedName) => {
 	return allRules.find(rule => rule.dottedName == dottedName)
 }
 
+export let findRule = (rules, nameOrDottedName) =>
+	nameOrDottedName.includes(' . ')
+		? findRuleByDottedName(rules, nameOrDottedName)
+		: findRuleByName(rules, nameOrDottedName)
+
 export let findRuleByNamespace = (allRules, ns) =>
 	allRules.filter(propEq('ns', ns))
 
