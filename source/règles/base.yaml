@@ -1871,17 +1871,6 @@
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
 
-# TODO chantier droits: introduire la répartition entre part régionale, quota d'app., hors quota
-# https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
-- espace: contrat salarié . taxe sur les salaires
-  nom: assujetissement
-  titre: Entreprise assujettie à la taxe sur les salaires
-  description: |
-    Sont assujetties les associations à but non lucratif et les entreprises non soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les particuliers employeurs, les employeurs agricoles, les établissements d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
-  question: L'entreprise est-elle assujettie à la taxe sur les salaires ?
-  # variable non utilisée pour l'instant, comme dans le simulateur v1
-  # à ajouter quand nous aurons des mécanismes logiques plus évolués (notamment 'applicable si')
-  par défaut: non
 
 - espace: contrat salarié . taxe sur les salaires
   nom: barème annuel
