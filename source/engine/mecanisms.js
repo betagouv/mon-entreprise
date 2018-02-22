@@ -548,12 +548,12 @@ export let mecanismReduction = (recurse, k, v) => {
 	}
 
 	let effect = ({ assiette, abattement, franchise, décote }) => {
-		let v_assiette = val(assiette),
-			nulled = v_assiette == null
+		let v_assiette = val(assiette)
 
-		let montantFranchiséDécoté = nulled
-			? null
-			: val(franchise) && v_assiette < val(franchise)
+		if (v_assiette == null) return null
+
+		let montantFranchiséDécoté =
+			val(franchise) && v_assiette < val(franchise)
 				? 0
 				: décote
 					? do {

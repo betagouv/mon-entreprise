@@ -12,6 +12,11 @@
     - situation: 
         montant: 1000
       valeur attendue: 0
+    - situation: 
+      valeur attendue: null
+      variables manquantes:
+        - montant
+
 
 - test: montant décoté
   format: €
