@@ -990,8 +990,6 @@
 
 - espace: contrat salarié
   nom: plafond cice
-  # TODO: calcul du smic proratisé
-  # TODO: smic mensuel défini dans la réduction générale, à déplacer pour mutualiser
   formule: multiplicateur cice * smic mensuel
 
 - espace: contrat salarié
@@ -1030,10 +1028,10 @@
     La loi de finances pour 2017 instaure, au bénéfice des associations et organismes sans but lucratif (OSBL),
     un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
   références:
-    fiche: https://www.service-public.fr/associations/actualites/A11012
+    fiche: https://www.service-public.fr/associations/vosdroits/F34066
 
   applicable si: entreprise . association non lucrative
-  non applicable si: assiette cotisations sociales > plafond CITS
+  non applicable si: assiette cotisations sociales > plafond
 
   note: Le CITS est un crédit sur la taxe sur les salaires. Celle-ci est abattue de ~20k. Le CITS est lui-même abattu de ~20k ! Quel intérêt, pourquoi ne pas simplement supprimer l'abattement initial ? Parce que dans certains cas, une entreprise d'un salarié au SMIC, 4% des rémunérations annuelles < abattement de 20k. Donc le crédit est nul. Donc la taxe sur les salaires reste abattue comme initialement prévu.
 
@@ -1043,23 +1041,35 @@
       abattement: abattement mensuel par salarié
 
   exemples:
-    - nom: SMIC
+    - nom: Petite association, non applicable car taxe sur les salaires nulle (car abattue)
       situation:
         assiette cotisations sociales: 2300
         entreprise . association non lucrative: oui
-      valeur attendue: 92
+      valeur attendue: 0
+    - nom: Applicable
+      situation:
+        entreprise . association non lucrative: oui
+        assiette cotisations sociales: 3000
+        entreprise . effectif: 50
+      valeur attendue: 85.82
+    - nom: Non applicable car rémunération trop forte
+      situation:
+        entreprise . association non lucrative: oui
+        assiette cotisations sociales: 4000
+        entreprise . effectif: 50
+      valeur attendue: 0 
     - nom: Non applicable si organisme lucratif
       situation:
-        assiette cotisations sociales: 2300
         entreprise . association non lucrative: non
+        assiette cotisations sociales: 2300
       valeur attendue: 0
 
-- espace: contrat salarié
-  nom: plafond CITS
-  formule: multiplicateur CITS * smic mensuel
+- espace: contrat salarié . CITS
+  nom: plafond
+  formule: multiplicateur * smic mensuel
 
-- espace: contrat salarié
-  nom: multiplicateur CITS
+- espace: contrat salarié . CITS
+  nom: multiplicateur
   formule: 2.5
 
 
