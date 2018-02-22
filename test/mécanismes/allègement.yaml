@@ -65,3 +65,28 @@
       valeur attendue: 59493
 
 
+- test: montant franchisé, décote, abattu
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      franchise: 1200
+      décote: 
+        plafond: 2040
+        taux: 75%
+      abattement: 20507    
+  exemples: 
+    - situation: 
+        montant: 100
+      valeur attendue: 0
+    - situation: 
+        montant: 1620
+      valeur attendue: 0
+    - situation: 
+        montant: 3000
+      valeur attendue: 0
+    - situation: 
+        montant: 21000
+      valeur attendue: 493
+
+

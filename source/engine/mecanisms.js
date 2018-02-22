@@ -551,7 +551,7 @@ export let mecanismReduction = (recurse, k, v) => {
 		let v_assiette = val(assiette),
 			nulled = v_assiette == null
 
-		return nulled
+		let montantFranchiséDécoté = nulled
 			? null
 			: val(franchise) && v_assiette < val(franchise)
 				? 0
@@ -560,9 +560,19 @@ export let mecanismReduction = (recurse, k, v) => {
 							let plafond = val(décote.plafond),
 								taux = val(décote.taux)
 
-							max(0, (1 + taux) * v_assiette - taux * plafond)
+							v_assiette > plafond
+								? v_assiette
+								: max(0, (1 + taux) * v_assiette - taux * plafond)
 						}
-					: abattement ? max(0, v_assiette - val(abattement)) : v_assiette
+					: v_assiette
+
+		console.log(montantFranchiséDécoté)
+
+		return abattement
+			? val(abattement) == null
+				? montantFranchiséDécoté === 0 ? 0 : null
+				: max(0, montantFranchiséDécoté - val(abattement))
+			: montantFranchiséDécoté
 	}
 
 	let base = parseObject(recurse, objectShape, v),
