@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { evolve, path, isEmpty } from 'ramda'
+import { evolve, path, isEmpty, compose } from 'ramda'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { disambiguateExampleSituation, collectDefaults } from 'Engine/rules.js'
 import { analyse } from 'Engine/traverse'
 import './Examples.css'
 import { assume } from '../../reducers'
+import { setExample } from '../../actions'
+
+export let exampleSituationGateWithDefaults = (situationObject, rules) =>
+	assume(() => name => situationObject[name], collectDefaults(rules))()
 
 // By luck this works as expected for both null and undefined, * but with different branches failing :O *
 export let isFloat = n => Number(n) === n && n % 1 !== 0
@@ -16,10 +20,8 @@ export let runExamples = (examples, rule, parsedRules) =>
 	examples
 		.map(evolve({ situation: disambiguateExampleSituation(parsedRules, rule) }))
 		.map(ex => {
-			let exampleSituationGate = () => name => ex.situation[name]
-
 			let runExample = analyse(parsedRules, rule.dottedName)(
-					assume(exampleSituationGate, collectDefaults(parsedRules))()
+					exampleSituationGateWithDefaults(ex.situation, parsedRules)
 				),
 				exampleValue = runExample.targets[0].nodeValue,
 				goal = ex['valeur attendue'],
@@ -37,21 +39,25 @@ export let runExamples = (examples, rule, parsedRules) =>
 			}
 		})
 
-@connect(state => ({
-	situationGate: state.situationGate,
-	parsedRules: state.parsedRules,
-	colour: state.themeColours.colour
-}))
+@connect(
+	state => ({
+		situationGate: state.situationGate,
+		parsedRules: state.parsedRules,
+		colour: state.themeColours.colour
+	}),
+	dispatch => ({
+		setExample: compose(dispatch, setExample)
+	})
+)
 export default class Examples extends Component {
 	render() {
-		let focusedExample = path(['focusedExample', 'nom'])(this.props),
-			{
-				inject,
+		let {
 				situationExists,
-				showValues,
 				rule,
 				parsedRules,
-				colour
+				colour,
+				setExample,
+				currentExample
 			} = this.props,
 			{ exemples = [] } = rule,
 			examples = runExamples(exemples, rule, parsedRules)
@@ -70,46 +76,51 @@ export default class Examples extends Component {
 					</p>
 				) : (
 					<ul>
-						{examples.map(({ nom, ok, rule, 'valeur attendue': expected }) => (
-							<li
-								key={nom}
-								className={classNames('example', {
-									ok,
-									selected: focusedExample == nom
-								})}
-								onClick={() => inject({ nom, ok, rule })}
-							>
-								<span>
-									{' '}
-									{ok ? (
-										<i className="fa fa-check-circle" aria-hidden="true" />
-									) : (
-										<i className="fa fa-times" aria-hidden="true" />
-									)}
-								</span>
-								<span className="name">{nom}</span>
-								{!ok &&
-									focusedExample == nom && (
-										<div className="ko">
-											Ce test ne passe pas
-											{showValues && (
+						{examples.map(
+							({ nom, ok, rule, 'valeur attendue': expected, situation }) => (
+								<li
+									key={nom}
+									className={classNames('example', {
+										ok,
+										selected: currentExample && currentExample.name == nom
+									})}
+									onClick={() =>
+										currentExample
+											? setExample(null)
+											: setExample(nom, situation)
+									}
+								>
+									<span>
+										{' '}
+										{ok ? (
+											<i className="fa fa-check-circle" aria-hidden="true" />
+										) : (
+											<i className="fa fa-times" aria-hidden="true" />
+										)}
+									</span>
+									<span className="name">{nom}</span>
+									{!ok &&
+										currentExample &&
+										currentExample.name == nom && (
+											<div className="ko">
+												Ce test ne passe pas
 												<span>
 													: le résultat attendu était{' '}
 													<span className="expected">{expected}</span>
 												</span>
-											)}
-										</div>
-									)}
-							</li>
-						))}
+											</div>
+										)}
+								</li>
+							)
+						)}
 					</ul>
 				)}
 				{situationExists &&
-					focusedExample && (
+					currentExample && (
 						<div>
 							<button
 								id="injectSituation"
-								onClick={() => inject()}
+								onClick={() => setExample(null)}
 								style={{ background: colour }}
 							>
 								Revenir à votre situation

@@ -17,28 +17,16 @@ import SearchButton from 'Components/SearchButton'
 
 @connect(state => ({
 	form: state.form,
-	rules: state.parsedRules
+	rules: state.parsedRules,
+	currentExample: state.currentExample
 }))
 export default class Rule extends Component {
-	state = {
-		example: null,
-		showValues: true
-	}
-
-	componentWillReceiveProps(nextProps) {
-		let dn = path(['rule', 'dottedName'])
-		if (dn(this.props) !== dn(this.nextProps)) {
-			this.setState({ example: null })
-		}
-	}
 	render() {
-		let { form, rule } = this.props,
-			conversationStarted = !isEmpty(form),
-			situationExists = conversationStarted || this.state.example != null
+		let { form, rule, currentExample, rules } = this.props,
+			conversationStarted = !isEmpty(form)
 
 		let { type, name, title, description, question, ns } = rule,
-			situationOrExampleRule = path(['example', 'rule'])(this.state) || rule,
-			namespaceRules = findRuleByNamespace(this.props.rules, rule.dottedName)
+			namespaceRules = findRuleByNamespace(rules, rule.dottedName)
 
 		return (
 			<div id="rule">
@@ -60,8 +48,10 @@ export default class Rule extends Component {
 
 				<section id="rule-content">
 					<Algorithm
-						rule={situationOrExampleRule}
-						showValues={situationExists}
+						rules={rules}
+						currentExample={currentExample}
+						rule={rule}
+						showValues={conversationStarted || currentExample}
 					/>
 					{rule.note && (
 						<section id="notes">
@@ -70,15 +60,9 @@ export default class Rule extends Component {
 						</section>
 					)}
 					<Examples
+						currentExample={currentExample}
 						situationExists={conversationStarted}
 						rule={rule}
-						focusedExample={this.state.example}
-						showValues={this.state.showValues}
-						inject={example =>
-							this.state.example != null
-								? this.setState({ example: null })
-								: this.setState({ example, showValues: true })
-						}
 					/>
 					{!isEmpty(namespaceRules) && (
 						<NamespaceRulesList {...{ rule, namespaceRules }} />
