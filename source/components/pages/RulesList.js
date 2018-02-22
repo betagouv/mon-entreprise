@@ -30,12 +30,16 @@ export class SearchBar extends React.Component {
 		var options = {
 			keys: [
 				{
+					name: 'name',
+					weight: 0.3
+				},
+				{
 					name: 'title',
-					weight: 0.5
+					weight: 0.3
 				},
 				{
 					name: 'espace',
-					weight: 0.3
+					weight: 0.2
 				},
 				{
 					name: 'description',
@@ -44,9 +48,7 @@ export class SearchBar extends React.Component {
 			]
 		}
 		this.fuse = new Fuse(
-			rules.map(
-				pick(['title', 'espace', 'description', 'name', 'dottedName', 'ns'])
-			),
+			rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
 			options
 		)
 	}
@@ -57,14 +59,17 @@ export class SearchBar extends React.Component {
 	handleChange = selectedOption => {
 		this.setState({ selectedOption })
 	}
-	renderOption = ({ title, ns }) => (
+	renderOption = ({ title, dottedName }) => (
 		<span>
 			<Highlighter
 				searchWords={[this.state.inputValue]}
 				textToHighlight={title}
 			/>
-			<span style={{ opacity: 0.6, fontSize: '80%', marginLeft: '.6em' }}>
-				{ns}
+			<span style={{ opacity: 0.6, fontSize: '75%', marginLeft: '.6em' }}>
+				<Highlighter
+					searchWords={[this.state.inputValue]}
+					textToHighlight={dottedName}
+				/>
 			</span>
 		</span>
 	)
