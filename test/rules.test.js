@@ -52,7 +52,13 @@ describe('rule checks', function() {
 				r.defaultValue == null
 		)
 
-		rulesNeedingDefault.map(r => console.log('yo', r.dottedName))
+		rulesNeedingDefault.map(r =>
+			console.log(
+				'cette règle, ',
+				r.dottedName,
+				'devrait avoir une valeur par défaut'
+			)
+		)
 		expect(rulesNeedingDefault).to.be.empty
 	})
 })

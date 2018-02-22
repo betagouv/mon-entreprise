@@ -566,8 +566,6 @@ export let mecanismReduction = (recurse, k, v) => {
 						}
 					: v_assiette
 
-		console.log(montantFranchiséDécoté)
-
 		return abattement
 			? val(abattement) == null
 				? montantFranchiséDécoté === 0 ? 0 : null

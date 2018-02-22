@@ -1909,10 +1909,6 @@
         assiette: 2300
       valeur attendue: 2639.16 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
 
-- espace: entreprise
-  nom: taxe sur les salaires
-  
-
 - espace: entreprise . taxe sur les salaires
   nom: barème annuel
   formule:
@@ -1923,8 +1919,8 @@
   formule: 20507
 
 
-- espace: entreprise . taxe sur les salaires
-  nom: montant annuel
+- espace: entreprise
+  nom: taxe sur les salaires
 
   formule:
     allègement:
@@ -1938,9 +1934,11 @@
   note: |
     Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
     Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
+
+
 - espace: contrat salarié . taxe sur les salaires
   nom: montant annuel
-  formule: entreprise . taxe sur les salaires . montant annuel / entreprise . effectif
+  formule: entreprise . taxe sur les salaires / entreprise . effectif
 
 - espace: contrat salarié
   nom: taxe sur les salaires
