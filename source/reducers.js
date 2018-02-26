@@ -6,7 +6,10 @@ import {
 	contains,
 	without,
 	concat,
-	length
+	length,
+	reduce,
+	assoc,
+	map
 } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
@@ -14,6 +17,7 @@ import { reducer as formReducer, formValueSelector } from 'redux-form'
 
 import {
 	rules,
+	enrichRule,
 	findRuleByName,
 	collectDefaults,
 	formatInputs
@@ -30,6 +34,8 @@ import {
 import { analyseMany, parseAll } from 'Engine/traverse'
 
 import ReactPiwik from 'Components/Tracker'
+
+import translations from 'Règles/externalized.yaml'
 
 // assume "wraps" a given situation function with one that overrides its values with
 // the given assumptions
@@ -52,12 +58,31 @@ let nextWithoutDefaults = (
 	return { currentQuestion: head(nextSteps), nextSteps }
 }
 
+export let translateAll = (translations, flatRules) => {
+	let translationsOf = rule => translations[enrichRule(rule).dottedName],
+		translateProp = (lang, translation) => (rule, prop) => {
+			let propTrans = translation[prop + '.' + lang]
+			return propTrans ? assoc(prop, propTrans, rule) : rule
+		},
+		translateRule = (lang, translations, props) => rule => {
+			let ruleTrans = translationsOf(rule)
+			return ruleTrans
+				? reduce(translateProp(lang, ruleTrans), rule, props)
+				: rule
+		}
+
+	let targets = ['titre', 'description', 'question', 'sous-question']
+
+	return map(translateRule('en', translations, targets), flatRules)
+}
+
 export let reduceSteps = (tracker, flatRules, answerSource) => (
 	state,
 	action
 ) => {
 	// Optimization - don't parse on each analysis
-	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
+	if (!state.parsedRules)
+		state.parsedRules = parseAll(translateAll(translations, flatRules))
 
 	if (
 		![START_CONVERSATION, STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
@@ -102,12 +127,12 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		done,
 		...(done && assumptionsMade
 			? // The simulation is "over" - except we can now fill in extra questions
-				// where the answers were previously given default reasonable assumptions
-				nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
+			  // where the answers were previously given default reasonable assumptions
+			  nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
 			: {
 					currentQuestion: head(nextWithDefaults),
 					nextSteps: nextWithDefaults
-				})
+			  })
 	}
 
 	if (action.type == START_CONVERSATION) {
