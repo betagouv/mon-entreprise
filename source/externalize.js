@@ -10,7 +10,7 @@ rules.map(
 		let externalizeProp = (rule, prop, result) => {
 			if (rule[prop]) {
 				result[prop+".fr"] = result[prop+".en"] = rule[prop]
-				result[prop+".en"] = result[prop+".en"].toUpperCase()
+				result[prop+".en"] = result[prop+".en"].split("").reverse().join("")
 			}
 		}
 
