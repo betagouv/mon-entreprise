@@ -35,8 +35,6 @@ import { analyseMany, parseAll } from 'Engine/traverse'
 
 import ReactPiwik from 'Components/Tracker'
 
-import translations from 'Règles/externalized.yaml'
-
 // assume "wraps" a given situation function with one that overrides its values with
 // the given assumptions
 export let assume = (evaluator, assumptions) => state => name => {
@@ -58,31 +56,12 @@ let nextWithoutDefaults = (
 	return { currentQuestion: head(nextSteps), nextSteps }
 }
 
-export let translateAll = (translations, flatRules) => {
-	let translationsOf = rule => translations[enrichRule(rule).dottedName],
-		translateProp = (lang, translation) => (rule, prop) => {
-			let propTrans = translation[prop + '.' + lang]
-			return propTrans ? assoc(prop, propTrans, rule) : rule
-		},
-		translateRule = (lang, translations, props) => rule => {
-			let ruleTrans = translationsOf(rule)
-			return ruleTrans
-				? reduce(translateProp(lang, ruleTrans), rule, props)
-				: rule
-		}
-
-	let targets = ['titre', 'description', 'question', 'sous-question']
-
-	return map(translateRule('en', translations, targets), flatRules)
-}
-
 export let reduceSteps = (tracker, flatRules, answerSource) => (
 	state,
 	action
 ) => {
 	// Optimization - don't parse on each analysis
-	if (!state.parsedRules)
-		state.parsedRules = parseAll(translateAll(translations, flatRules))
+	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
 
 	if (
 		![START_CONVERSATION, STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
