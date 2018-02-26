@@ -17,7 +17,7 @@ export default class TargetSelection extends Component {
 
 		return (
 			<section id="targetSelection">
-				<h1>Que voulez-vous calculer ?</h1>
+				<h1>Que voulez-vous estimer ?</h1>
 				{this.renderOutputList()}
 				<div id="action">
 					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
