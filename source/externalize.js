@@ -28,4 +28,4 @@ externalized = rules.map(
 	}
 )
 
-fs.writeFileSync('externalized.yam', yaml.safeDump(externalized))
+fs.writeFileSync('source/règles/externalized.yaml', yaml.safeDump(externalized))
