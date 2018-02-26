@@ -85,12 +85,12 @@ let buildPossibleInversion = (rule, flatRules, targetNames) => {
 				disambiguateRuleReference(flatRules, rule, i)
 			)
 		),
-		yo = reject(({ name }) => targetNames.includes(name))(
+		inversions = reject(({ name }) => targetNames.includes(name))(
 			[rule].concat(inversionObjects)
 		)
 
 	return {
-		inversions: yo,
+		inversions,
 		question: rule.formule.inversion.question
 	}
 }
@@ -103,6 +103,7 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 		valueType: formValueTypes[rule.format],
 		attributes: {
 			inputMode: 'numeric',
+			// TRANSLATE
 			placeholder: 'votre réponse'
 		},
 		suggestions: rule.suggestions,
@@ -120,6 +121,7 @@ export let makeQuestion = (flatRules, targetNames) => dottedName => {
 	})
 	let binaryQuestion = rule => ({
 		component: Question,
+		// TRANSLATE
 		choices: [{ value: 'non', label: 'Non' }, { value: 'oui', label: 'Oui' }]
 	})
 	let multiChoiceQuestion = rule => ({
