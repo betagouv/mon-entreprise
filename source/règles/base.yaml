@@ -698,7 +698,7 @@
 
 - espace: contrat salarié
   nom: salaire brut
-  résumé: Salaire et avantages négociés dans le contrat de travail.
+  résumé: Inscrit dans le contrat de travail.
   description: >
     C'est le salaire de négociation du contrat de travail en France.
 
@@ -815,7 +815,7 @@
 - espace: contrat salarié
   nom: salaire total
   titre: Salaire total
-  résumé: Total versé par l'employeur tous les mois.
+  résumé: À verser par l'employeur tous les mois.
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales, moins les réductions de cotisations sociales.
@@ -843,7 +843,7 @@
 
 - espace: contrat salarié
   nom: aides employeur
-  résumé: Aides différées dont peut bénéficier l'employeur.
+  résumé: Aides différées pour l'employeur.
   formule:
     somme:
       - CICE
