@@ -7,7 +7,7 @@ import {
 	getObjectives
 } from '../source/engine/generateQuestions'
 
-import { reduceSteps, translateAll } from '../source/reducers'
+import { reduceSteps } from '../source/reducers'
 import yaml from 'js-yaml'
 import dedent from 'dedent-js'
 
@@ -138,33 +138,5 @@ describe('fold', function() {
 		expect(step2.foldedSteps[0]).to.equal('brut')
 		expect(step2).to.have.property('currentQuestion')
 		expect(step2.currentQuestion).to.equal('cadre')
-	})
-})
-
-describe('translateAll', function() {
-	it('should translate flat rules', function() {
-		let rules = [{
-			"espace":"foo",
-			"nom":"bar",
-			"titre":"Titre",
-			"description":"Description",
-			"question":"Question",
-			"sous-question":"Sous Question",
-		}]
-		let translations = {
-			"foo . bar":{
-				"titre.en":"TITRE",
-				"description.en":"DESC",
-				"question.en":"QUEST",
-				"sous-question.en":"SOUSQ",
-			}
-		}
-
-		let result = translateAll(translations, rules)
-
-		expect(result[0]).to.have.property("titre","TITRE")
-		expect(result[0]).to.have.property("description","DESC")
-		expect(result[0]).to.have.property("question","QUEST")
-		expect(result[0]).to.have.property("sous-question","SOUSQ")
 	})
 })
