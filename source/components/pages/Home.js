@@ -29,7 +29,7 @@ export default class Home extends Component {
 					/>
 					<p style={opacityStyle}>
 						<Trans i18nKey="news">
-								Le simulateur est maintenant utilisable en anglais
+							Le simulateur est maintenant utilisable en anglais
 						</Trans>
 					</p>
 				</div>
