@@ -1,23 +1,15 @@
-- cible: contrat salarié . CDD . CIF
-  titre.fr: CIF
+contrat salarié . CDD . CIF:
   titre.en: CIF
-  description.fr: >-
-    Contribution au financement du congé individuel de formation spécifique aux
-    CDD.
+  titre.fr: CIF
   description.en: >-
     CONTRIBUTION AU FINANCEMENT DU CONGÉ INDIVIDUEL DE FORMATION SPÉCIFIQUE AUX
     CDD.
-- cible: contrat salarié . CDD . compensation congés payés
-  titre.fr: compensation congés payés
+  description.fr: >-
+    Contribution au financement du congé individuel de formation spécifique aux
+    CDD.
+contrat salarié . CDD . compensation congés payés:
   titre.en: COMPENSATION CONGÉS PAYÉS
-  description.fr: >
-    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
-    en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
-
-
-    Il est cependant courant que le salarié ne puisse pas prendre tous ses
-    congés avant le terme de son contrat, il bénéficie d'une indemnité
-    compensatrice de congés payés.
+  titre.fr: compensation congés payés
   description.en: >
     LE SALARIÉ EN CDD BÉNÉFICIE DES MÊMES DROITS À CONGÉS PAYÉS QUE LE SALARIÉ
     EN CDI. IL ACQUIERT ET PREND SES CONGÉS PAYÉS DANS LES MÊMES CONDITIONS.
@@ -26,43 +18,42 @@
     IL EST CEPENDANT COURANT QUE LE SALARIÉ NE PUISSE PAS PRENDRE TOUS SES
     CONGÉS AVANT LE TERME DE SON CONTRAT, IL BÉNÉFICIE D'UNE INDEMNITÉ
     COMPENSATRICE DE CONGÉS PAYÉS.
-- cible: contrat salarié . CDD . prime fin de contrat
-  titre.fr: prime fin de contrat
+  description.fr: >
+    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
+    en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses
+    congés avant le terme de son contrat, il bénéficie d'une indemnité
+    compensatrice de congés payés.
+contrat salarié . CDD . prime fin de contrat:
   titre.en: PRIME FIN DE CONTRAT
-  description.fr: Somme versée en fin de CDD comme compensation de précarité.
+  titre.fr: prime fin de contrat
   description.en: SOMME VERSÉE EN FIN DE CDD COMME COMPENSATION DE PRÉCARITÉ.
-  alias.fr: prime de précarité
+  description.fr: Somme versée en fin de CDD comme compensation de précarité.
   alias.en: PRIME DE PRÉCARITÉ
-- cible: contrat salarié . CDD . majoration chômage
-  titre.fr: majoration chômage
+  alias.fr: prime de précarité
+contrat salarié . CDD . majoration chômage:
   titre.en: MAJORATION CHÔMAGE
-  description.fr: >-
-    Majoration des contributions patronales d’assurance chômage pour les
-    contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
+  titre.fr: majoration chômage
   description.en: >-
     MAJORATION DES CONTRIBUTIONS PATRONALES D’ASSURANCE CHÔMAGE POUR LES
     CONTRATS À DURÉE DÉTERMINÉE COURTS (CDD). A PRIORI JUSQU’AU 31 MARS 2019.
-- cible: contrat salarié . ATMP
-  titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
-  titre.en: COTISATION ACCIDENTS DU TRAVAIL ET MALADIES PROFESSIONNELLES
   description.fr: >-
-    Cotisation due au titre des Accidents du Travail et Maladies
-    Professionnelles
+    Majoration des contributions patronales d’assurance chômage pour les
+    contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
+contrat salarié . ATMP:
+  titre.en: COTISATION ACCIDENTS DU TRAVAIL ET MALADIES PROFESSIONNELLES
+  titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
   description.en: >-
     COTISATION DUE AU TITRE DES ACCIDENTS DU TRAVAIL ET MALADIES
     PROFESSIONNELLES
-- cible: contrat salarié . ATMP . taux collectif ATMP
-  titre.fr: Taux collectif ATMP
+  description.fr: >-
+    Cotisation due au titre des Accidents du Travail et Maladies
+    Professionnelles
+contrat salarié . ATMP . taux collectif ATMP:
   titre.en: TAUX COLLECTIF ATMP
-  description.fr: >
-    Les entreprises de moins de 20 salariés sont assujetties à ce taux
-    collectif. Pour les entreprises plus importantes,
-
-    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
-    L'entreprise peut consulter le taux qui la
-
-    concerne en ligne sur
-    [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
+  titre.fr: Taux collectif ATMP
   description.en: >
     LES ENTREPRISES DE MOINS DE 20 SALARIÉS SONT ASSUJETTIES À CE TAUX
     COLLECTIF. POUR LES ENTREPRISES PLUS IMPORTANTES,
@@ -72,114 +63,96 @@
 
     CONCERNE EN LIGNE SUR
     [NET-ENTREPRISE](HTTP://WWW.NET-ENTREPRISES.FR/HTML/COMPTE-ACCIDENT-TRAVAIL.HTM).
-  question.fr: >-
-    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
-    l'entreprise ?
+  description.fr: >
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux
+    collectif. Pour les entreprises plus importantes,
+
+    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
+    L'entreprise peut consulter le taux qui la
+
+    concerne en ligne sur
+    [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
   question.en: >-
     QUEL TAUX ACCIDENTS DU TRAVAIL ET MALADIES PROFESSIONNELLES S'APPLIQUE À
     L'ENTREPRISE ?
-- cible: contrat salarié . CDD . événement
-  titre.fr: Événement de contrat
+  question.fr: >-
+    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
+    l'entreprise ?
+contrat salarié . CDD . événement:
   titre.en: ÉVÉNEMENT DE CONTRAT
-  description.fr: >
-    Certains événements impactent fortement les obligations du CDD.
-
-
-    > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune
-    majoration ou indemnité sur le CDD ne sera à verser.
+  titre.fr: Événement de contrat
   description.en: >
     CERTAINS ÉVÉNEMENTS IMPACTENT FORTEMENT LES OBLIGATIONS DU CDD.
 
 
     > PAR EXEMPLE, DANS L'HYPOTHÈSE D'UNE POURSUITE DU CDD EN CDI, AUCUNE
     MAJORATION OU INDEMNITÉ SUR LE CDD NE SERA À VERSER.
-  question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+  description.fr: >
+    Certains événements impactent fortement les obligations du CDD.
+
+
+    > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune
+    majoration ou indemnité sur le CDD ne sera à verser.
   question.en: PENSEZ-VOUS ÊTRE CONFRONTÉ À L'UN DE CES ÉVÉNEMENTS AU COURS DU CONTRAT ?
-- cible: contrat salarié . CDD . événement . poursuite du CDD en CDI
-  titre.fr: Poursuite du CDD en CDI
+  question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+contrat salarié . CDD . événement . poursuite du CDD en CDI:
   titre.en: POURSUITE DU CDD EN CDI
-  description.fr: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
+  titre.fr: Poursuite du CDD en CDI
   description.en: 'EN FIN DE CONTRAT, LE CDD EST RECONDUIT EN CDI SANS INTERRUPTION.'
-- cible: contrat salarié . CDD . événement . refus CDI avantageux
-  titre.fr: Refus d'un CDI avantageux
+  description.fr: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
+contrat salarié . CDD . événement . refus CDI avantageux:
   titre.en: REFUS D'UN CDI AVANTAGEUX
-  description.fr: >-
-    Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi
-    similaire, et une rémunération au moins aussi avantageuse.
+  titre.fr: Refus d'un CDI avantageux
   description.en: >-
     LE SALARIÉ, AU TERME DU CDD, REFUSE UNE RECONDUCTION EN CDI POUR UN EMPLOI
     SIMILAIRE, ET UNE RÉMUNÉRATION AU MOINS AUSSI AVANTAGEUSE.
-- cible: contrat salarié . CDD . événement . rupture anticipée salarié
-  titre.fr: Rupture anticipée du salarié
+  description.fr: >-
+    Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi
+    similaire, et une rémunération au moins aussi avantageuse.
+contrat salarié . CDD . événement . rupture anticipée salarié:
   titre.en: RUPTURE ANTICIPÉE DU SALARIÉ
-  description.fr: Rupture anticipée du contrat à l'initiative du salarié.
+  titre.fr: Rupture anticipée du salarié
   description.en: RUPTURE ANTICIPÉE DU CONTRAT À L'INITIATIVE DU SALARIÉ.
-- cible: >-
-    contrat salarié . CDD . événement . rupture pour faute grave ou force
-    majeure
-  titre.fr: Rupture pour faute grave ou force majeure
+  description.fr: Rupture anticipée du contrat à l'initiative du salarié.
+contrat salarié . CDD . événement . rupture pour faute grave ou force majeure:
   titre.en: RUPTURE POUR FAUTE GRAVE OU FORCE MAJEURE
-- cible: contrat salarié . CDD . événement . rupture pendant période essai
-  titre.fr: Rupture pendant la période d'essai
+  titre.fr: Rupture pour faute grave ou force majeure
+contrat salarié . CDD . événement . rupture pendant période essai:
   titre.en: RUPTURE PENDANT LA PÉRIODE D'ESSAI
-- cible: contrat salarié . CDD . motif
-  titre.fr: Motif de recours
+  titre.fr: Rupture pendant la période d'essai
+contrat salarié . CDD . motif:
   titre.en: MOTIF DE RECOURS
-  description.fr: >
-    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un
-    des motifs spécifiés dans la loi.
+  titre.fr: Motif de recours
   description.en: >
     LE CDD EST UN CONTRAT D'EXCEPTION: SON RECOURS DOIT ÊTRE AUTORISÉ PAR L'UN
     DES MOTIFS SPÉCIFIÉS DANS LA LOI.
-  question.fr: Quel est le motif de recours au CDD ?
+  description.fr: >
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un
+    des motifs spécifiés dans la loi.
   question.en: QUEL EST LE MOTIF DE RECOURS AU CDD ?
-- cible: contrat salarié . CDD . motif . classique
-  titre.fr: motifs classiques
+  question.fr: Quel est le motif de recours au CDD ?
+contrat salarié . CDD . motif . classique:
   titre.en: MOTIFS CLASSIQUES
-- cible: contrat salarié . CDD . motif . classique . saisonnier
-  titre.fr: Saisonnier
+  titre.fr: motifs classiques
+contrat salarié . CDD . motif . classique . saisonnier:
   titre.en: SAISONNIER
-  description.fr: >-
-    Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter
-    chaque année selon une périodicité à peu près fixe, en fonction du rythme
-    des saisons ou des modes de vie collectifs.
+  titre.fr: Saisonnier
   description.en: >-
     EMPLOIS À CARACTÈRE SAISONNIER, DONT LES TÂCHES SONT APPELÉES À SE RÉPÉTER
     CHAQUE ANNÉE SELON UNE PÉRIODICITÉ À PEU PRÈS FIXE, EN FONCTION DU RYTHME
     DES SAISONS OU DES MODES DE VIE COLLECTIFS.
-- cible: contrat salarié . CDD . motif . classique . accroissement activité
-  titre.fr: Accroissement temporaire d'activité
+  description.fr: >-
+    Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter
+    chaque année selon une périodicité à peu près fixe, en fonction du rythme
+    des saisons ou des modes de vie collectifs.
+contrat salarié . CDD . motif . classique . accroissement activité:
   titre.en: ACCROISSEMENT TEMPORAIRE D'ACTIVITÉ
-  description.fr: Accroissement temporaire de l'activité de l'entreprise
+  titre.fr: Accroissement temporaire d'activité
   description.en: ACCROISSEMENT TEMPORAIRE DE L'ACTIVITÉ DE L'ENTREPRISE
-- cible: contrat salarié . CDD . motif . classique . remplacement
-  titre.fr: Contrat de remplacement
+  description.fr: Accroissement temporaire de l'activité de l'entreprise
+contrat salarié . CDD . motif . classique . remplacement:
   titre.en: CONTRAT DE REMPLACEMENT
-  description.fr: >
-    Nous regroupons dans cette catégorie les cas suivants.
-
-
-    - Remplacement d'un salarié en cas :
-      - D'absence ;
-      - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
-      - De suspension de son contrat de travail ;
-      - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
-      - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
-
-    - Remplacement d'un chef d'entreprise artisanale, industrielle ou
-    commerciale, d'une personne exerçant une profession libérale, de son
-    conjoint participant effectivement à l'activité de l'entreprise à titre
-    professionnel et habituel ou d'un associé non salarié d'une société civile
-    professionnelle, d'une société civile de moyens d'une société d'exercice
-    libéral ou de toute autre personne morale exerçant une profession libérale ;
-
-
-    - Remplacement du chef d'une exploitation agricole ou d'une entreprise
-    mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche
-    maritime, d'un aide familial, d'un associé d'exploitation, ou de leur
-    conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il
-    participe effectivement à l'activité de l'exploitation agricole ou de
-    l'entreprise ;
+  titre.fr: Contrat de remplacement
   description.en: >
     NOUS REGROUPONS DANS CETTE CATÉGORIE LES CAS SUIVANTS.
 
@@ -205,31 +178,34 @@
     CONJOINT MENTIONNÉ À L'ARTICLE L. 722-10 DU MÊME CODE DÈS LORS QU'IL
     PARTICIPE EFFECTIVEMENT À L'ACTIVITÉ DE L'EXPLOITATION AGRICOLE OU DE
     L'ENTREPRISE ;
-- cible: contrat salarié . CDD . motif . classique . mission
-  titre.fr: Contrat de mission
-  titre.en: CONTRAT DE MISSION
   description.fr: >
-    > Aussi appelé contrat à objet défini.
+    Nous regroupons dans cette catégorie les cas suivants.
 
 
-    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives,
-    en vue de la réalisation d'un objet défini lorsqu'un accord de branche
-    étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+    - Remplacement d'un salarié en cas :
+      - D'absence ;
+      - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
+      - De suspension de son contrat de travail ;
+      - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
+      - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
+
+    - Remplacement d'un chef d'entreprise artisanale, industrielle ou
+    commerciale, d'une personne exerçant une profession libérale, de son
+    conjoint participant effectivement à l'activité de l'entreprise à titre
+    professionnel et habituel ou d'un associé non salarié d'une société civile
+    professionnelle, d'une société civile de moyens d'une société d'exercice
+    libéral ou de toute autre personne morale exerçant une profession libérale ;
 
 
-    - Les nécessités économiques auxquelles ces contrats sont susceptibles
-    d'apporter une réponse adaptée ;
-
-    - Les conditions dans lesquelles les salariés sous contrat à durée
-    déterminée à objet défini bénéficient de garanties relatives à l'aide au
-    reclassement, à la validation des acquis de l'expérience, à la priorité de
-    réembauche et à l'accès à la formation professionnelle continue et peuvent,
-    au cours du délai de prévenance, mobiliser les moyens disponibles pour
-    organiser la suite de leur parcours professionnel ;
-
-    - Les conditions dans lesquelles les salariés sous contrat à durée
-    déterminée à objet défini ont priorité d'accès aux emplois en contrat à
-    durée indéterminée dans l'entreprise.
+    - Remplacement du chef d'une exploitation agricole ou d'une entreprise
+    mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche
+    maritime, d'un aide familial, d'un associé d'exploitation, ou de leur
+    conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il
+    participe effectivement à l'activité de l'exploitation agricole ou de
+    l'entreprise ;
+contrat salarié . CDD . motif . classique . mission:
+  titre.en: CONTRAT DE MISSION
+  titre.fr: Contrat de mission
   description.en: >
     > AUSSI APPELÉ CONTRAT À OBJET DÉFINI.
 
@@ -252,110 +228,120 @@
     - LES CONDITIONS DANS LESQUELLES LES SALARIÉS SOUS CONTRAT À DURÉE
     DÉTERMINÉE À OBJET DÉFINI ONT PRIORITÉ D'ACCÈS AUX EMPLOIS EN CONTRAT À
     DURÉE INDÉTERMINÉE DANS L'ENTREPRISE.
-- cible: contrat salarié . CDD . motif . classique . usage
-  titre.fr: Contrat d'usage
+  description.fr: >
+    > Aussi appelé contrat à objet défini.
+
+
+    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives,
+    en vue de la réalisation d'un objet défini lorsqu'un accord de branche
+    étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+
+    - Les nécessités économiques auxquelles ces contrats sont susceptibles
+    d'apporter une réponse adaptée ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini bénéficient de garanties relatives à l'aide au
+    reclassement, à la validation des acquis de l'expérience, à la priorité de
+    réembauche et à l'accès à la formation professionnelle continue et peuvent,
+    au cours du délai de prévenance, mobiliser les moyens disponibles pour
+    organiser la suite de leur parcours professionnel ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini ont priorité d'accès aux emplois en contrat à
+    durée indéterminée dans l'entreprise.
+contrat salarié . CDD . motif . classique . usage:
   titre.en: CONTRAT D'USAGE
-  description.fr: >-
-    Emplois pour lesquels, dans certains secteurs d'activité définis par décret
-    ou par convention ou accord collectif de travail étendu, il est d'usage
-    constant de ne pas recourir au contrat de travail à durée indéterminée en
-    raison de la nature de l'activité exercée et du caractère par nature
-    temporaire de ces emplois ;
+  titre.fr: Contrat d'usage
   description.en: >-
     EMPLOIS POUR LESQUELS, DANS CERTAINS SECTEURS D'ACTIVITÉ DÉFINIS PAR DÉCRET
     OU PAR CONVENTION OU ACCORD COLLECTIF DE TRAVAIL ÉTENDU, IL EST D'USAGE
     CONSTANT DE NE PAS RECOURIR AU CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE EN
     RAISON DE LA NATURE DE L'ACTIVITÉ EXERCÉE ET DU CARACTÈRE PAR NATURE
     TEMPORAIRE DE CES EMPLOIS ;
-  alias.fr: motif extra
-  alias.en: MOTIF EXTRA
-- cible: contrat salarié . CDD . motif . complément formation
-  titre.fr: Complément de formation professionnelle assuré par l'employeur
-  titre.en: COMPLÉMENT DE FORMATION PROFESSIONNELLE ASSURÉ PAR L'EMPLOYEUR
   description.fr: >-
-    L'employeur s'engage, pour une durée et dans des conditions déterminées par
-    décret, à assurer un complément de formation professionnelle au salarié.
+    Emplois pour lesquels, dans certains secteurs d'activité définis par décret
+    ou par convention ou accord collectif de travail étendu, il est d'usage
+    constant de ne pas recourir au contrat de travail à durée indéterminée en
+    raison de la nature de l'activité exercée et du caractère par nature
+    temporaire de ces emplois ;
+  alias.en: MOTIF EXTRA
+  alias.fr: motif extra
+contrat salarié . CDD . motif . complément formation:
+  titre.en: COMPLÉMENT DE FORMATION PROFESSIONNELLE ASSURÉ PAR L'EMPLOYEUR
+  titre.fr: Complément de formation professionnelle assuré par l'employeur
   description.en: >-
     L'EMPLOYEUR S'ENGAGE, POUR UNE DURÉE ET DANS DES CONDITIONS DÉTERMINÉES PAR
     DÉCRET, À ASSURER UN COMPLÉMENT DE FORMATION PROFESSIONNELLE AU SALARIÉ.
-- cible: contrat salarié . CDD . motif . issue d'apprentissage
-  titre.fr: À l'issue d'un contrat d'apprentissage
+  description.fr: >-
+    L'employeur s'engage, pour une durée et dans des conditions déterminées par
+    décret, à assurer un complément de formation professionnelle au salarié.
+contrat salarié . CDD . motif . issue d'apprentissage:
   titre.en: À L'ISSUE D'UN CONTRAT D'APPRENTISSAGE
-  description.fr: >
-    A l'issue d'un contrat d'apprentissage, un contrat de travail à durée
-    déterminée peut être conclu lorsque l'apprenti doit satisfaire aux
-    obligations du service national dans un délai de moins d'un an après
-    l'expiration du contrat d'apprentissage.
+  titre.fr: À l'issue d'un contrat d'apprentissage
   description.en: >
     A L'ISSUE D'UN CONTRAT D'APPRENTISSAGE, UN CONTRAT DE TRAVAIL À DURÉE
     DÉTERMINÉE PEUT ÊTRE CONCLU LORSQUE L'APPRENTI DOIT SATISFAIRE AUX
     OBLIGATIONS DU SERVICE NATIONAL DANS UN DÉLAI DE MOINS D'UN AN APRÈS
     L'EXPIRATION DU CONTRAT D'APPRENTISSAGE.
-- cible: contrat salarié . CDD . motif . contrat aidé
-  titre.fr: 'Contrat aidé (CUI, alternance, ...)'
+  description.fr: >
+    A l'issue d'un contrat d'apprentissage, un contrat de travail à durée
+    déterminée peut être conclu lorsque l'apprenti doit satisfaire aux
+    obligations du service national dans un délai de moins d'un an après
+    l'expiration du contrat d'apprentissage.
+contrat salarié . CDD . motif . contrat aidé:
   titre.en: 'CONTRAT AIDÉ (CUI, ALTERNANCE, ...)'
-- cible: contrat salarié . CDD . durée contrat
-  titre.fr: durée du contrat
+  titre.fr: 'Contrat aidé (CUI, alternance, ...)'
+contrat salarié . CDD . durée contrat:
   titre.en: DURÉE DU CONTRAT
-  question.fr: Quelle est la durée du contrat ?
+  titre.fr: durée du contrat
   question.en: QUELLE EST LA DURÉE DU CONTRAT ?
-  sous-question.fr: >
-    [Cliquez
-    ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
-    pour connaître la durée maximale d'un CDD.
+  question.fr: Quelle est la durée du contrat ?
   sous-question.en: >
     [CLIQUEZ
     ICI](HTTPS://WWW.SERVICE-PUBLIC.FR/PROFESSIONNELS-ENTREPRISES/VOSDROITS/F31211)
     POUR CONNAÎTRE LA DURÉE MAXIMALE D'UN CDD.
-- cible: contrat salarié . CDD . congés non pris
-  titre.fr: Congés non pris
+  sous-question.fr: >
+    [Cliquez
+    ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
+    pour connaître la durée maximale d'un CDD.
+contrat salarié . CDD . congés non pris:
   titre.en: CONGÉS NON PRIS
-  description.fr: >-
-    Combien de jours de congés ne pourront être pris par l'employé, du fait de
-    la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés
-    légaux pour un contrat de douze mois.
+  titre.fr: Congés non pris
   description.en: >-
     COMBIEN DE JOURS DE CONGÉS NE POURRONT ÊTRE PRIS PAR L'EMPLOYÉ, DU FAIT DE
     LA DURÉE DE SON CDD. EN JOURS OUVRÉS, PAR RAPPORT AUX 25 JOURS DE CONGÉS
     LÉGAUX POUR UN CONTRAT DE DOUZE MOIS.
-  question.fr: Combien de jours ouvrés de congés ne seront pas pris ?
-  question.en: COMBIEN DE JOURS OUVRÉS DE CONGÉS NE SERONT PAS PRIS ?
-- cible: contrat salarié . CDD . contrat jeune vacances
-  titre.fr: Contrat jeune vacances
-  titre.en: CONTRAT JEUNE VACANCES
   description.fr: >-
-    Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
-    vacances scolaires ou universitaires.
+    Combien de jours de congés ne pourront être pris par l'employé, du fait de
+    la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés
+    légaux pour un contrat de douze mois.
+  question.en: COMBIEN DE JOURS OUVRÉS DE CONGÉS NE SERONT PAS PRIS ?
+  question.fr: Combien de jours ouvrés de congés ne seront pas pris ?
+contrat salarié . CDD . contrat jeune vacances:
+  titre.en: CONTRAT JEUNE VACANCES
+  titre.fr: Contrat jeune vacances
   description.en: >-
     AUSSI APPELÉ CDD VENDANGES. CONTRAT CONCLU AVEC UN JEUNE PENDANT SES
     VACANCES SCOLAIRES OU UNIVERSITAIRES.
-  question.fr: Est-ce un contrat jeune vacances ?
+  description.fr: >-
+    Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
+    vacances scolaires ou universitaires.
   question.en: EST-CE UN CONTRAT JEUNE VACANCES ?
-- cible: contrat salarié . CDD . cotisations employeur CDD
-  titre.fr: cotisations employeur CDD
+  question.fr: Est-ce un contrat jeune vacances ?
+contrat salarié . CDD . cotisations employeur CDD:
   titre.en: COTISATIONS EMPLOYEUR CDD
-  description.fr: Cotisations employeur spécifiques au CDD
+  titre.fr: cotisations employeur CDD
   description.en: COTISATIONS EMPLOYEUR SPÉCIFIQUES AU CDD
-- cible: contrat salarié . CDD . indemnités salarié CDD
-  titre.fr: indemnités salarié CDD
+  description.fr: Cotisations employeur spécifiques au CDD
+contrat salarié . CDD . indemnités salarié CDD:
   titre.en: INDEMNITÉS SALARIÉ CDD
-  description.fr: Cotisations employeur spécifiques au CDD
+  titre.fr: indemnités salarié CDD
   description.en: COTISATIONS EMPLOYEUR SPÉCIFIQUES AU CDD
-- cible: contrat salarié . CDD . surcoût
-  titre.fr: Dont surcoût CDD
+  description.fr: Cotisations employeur spécifiques au CDD
+contrat salarié . CDD . surcoût:
   titre.en: DONT SURCOÛT CDD
-  description.fr: >
-    Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
-    organismes sociaux, certaines compensations
-
-    financières en contrepartie de la souplesse apportée par ce contrat; elles
-    sont au nombre de 4.
-
-
-    Certaines sont versées en
-
-    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici
-    ramenées à leur coût mensuel.
+  titre.fr: Dont surcoût CDD
   description.en: >
     LE CONTRAT À DURÉE DÉTERMINÉE EXIGE QUE L'EMPLOYEUR VERSE, AU SALARIÉ OU AUX
     ORGANISMES SOCIAUX, CERTAINES COMPENSATIONS
@@ -368,21 +354,24 @@
 
     FIN DE CONTRAT, D'AUTRES AVEC CHAQUE SALAIRE MENSUEL; ELLES SONT ICI
     RAMENÉES À LEUR COÛT MENSUEL.
-- cible: contrat salarié . CDD . surcoût CDD
-  titre.fr: surcoût CDD
-  titre.en: SURCOÛT CDD
-- cible: contrat salarié
-  titre.fr: contrat salarié
-  titre.en: CONTRAT SALARIÉ
   description.fr: >
-    Le contrat qui lie une entreprise (via son établissement) à un individu, qui
-    est alors son salarié.
+    Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
+    organismes sociaux, certaines compensations
+
+    financières en contrepartie de la souplesse apportée par ce contrat; elles
+    sont au nombre de 4.
 
 
-    Le contrat n'est en fait pas nécessaire dans le droit français, il est
-    possible d'employer quelqu'un sans contrat par exemple dans ces cas:
-      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
-      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+    Certaines sont versées en
+
+    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici
+    ramenées à leur coût mensuel.
+contrat salarié . CDD . surcoût CDD:
+  titre.en: SURCOÛT CDD
+  titre.fr: surcoût CDD
+contrat salarié:
+  titre.en: CONTRAT SALARIÉ
+  titre.fr: contrat salarié
   description.en: >
     LE CONTRAT QUI LIE UNE ENTREPRISE (VIA SON ÉTABLISSEMENT) À UN INDIVIDU, QUI
     EST ALORS SON SALARIÉ.
@@ -392,52 +381,50 @@
     POSSIBLE D'EMPLOYER QUELQU'UN SANS CONTRAT PAR EXEMPLE DANS CES CAS:
       - PARTICULIERS EMPLOYEURS : PLUS DE 8 HEURES PAR SEMAINE OU DE PLUS DE 4 SEMAINES CONSÉCUTIVES DANS L'ANNÉE.
       - CDI: LA SIGNATURE D’UN CONTRAT DE TRAVAIL N’EST PAS OBLIGATOIRE DANS CERTAINS CAS. C’EST LE CAS DU CONTRAT DE TRAVAIL À DURÉE INDÉTERMINÉE, CONSIDÉRÉ COMME LA FORME NORMALE ET GÉNÉRALE DE LA RELATION DE TRAVAIL ENTRE UN SALARIÉ ET UN EMPLOYEUR (ART. L1221-2 DU CODE DU TRAVAIL).
-- cible: contrat salarié . type de contrat
-  titre.fr: Type de contrat
+  description.fr: >
+    Le contrat qui lie une entreprise (via son établissement) à un individu, qui
+    est alors son salarié.
+
+
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est
+    possible d'employer quelqu'un sans contrat par exemple dans ces cas:
+      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+contrat salarié . type de contrat:
   titre.en: TYPE DE CONTRAT
-  question.fr: Quelle est la nature du contrat de travail ?
+  titre.fr: Type de contrat
   question.en: QUELLE EST LA NATURE DU CONTRAT DE TRAVAIL ?
-- cible: contrat salarié . type de contrat . CDD
-  titre.fr: CDD
+  question.fr: Quelle est la nature du contrat de travail ?
+contrat salarié . type de contrat . CDD:
   titre.en: CDD
-  description.fr: Le contrat de travail prévoit explicitement une date de fin.
+  titre.fr: CDD
   description.en: LE CONTRAT DE TRAVAIL PRÉVOIT EXPLICITEMENT UNE DATE DE FIN.
-- cible: contrat salarié . type de contrat . CDI
-  titre.fr: CDI
+  description.fr: Le contrat de travail prévoit explicitement une date de fin.
+contrat salarié . type de contrat . CDI:
   titre.en: CDI
-  description.fr: >-
-    Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
-    établi.
+  titre.fr: CDI
   description.en: >-
     LE CONTRAT DE TRAVAIL NE MENTIONNE PAS DE DATE DE FIN, OU N'A PAS ÉTÉ
     ÉTABLI.
-- cible: contrat salarié . assiette cotisations sociales
-  titre.fr: assiette cotisations sociales
+  description.fr: >-
+    Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
+    établi.
+contrat salarié . assiette cotisations sociales:
   titre.en: ASSIETTE COTISATIONS SOCIALES
-  description.fr: >
-    L'assiette des cotisations sociales est la base de calcul d'un grand nombre
-    de cotisations sur le travail salarié. Elle comprend les rémunérations en
-    espèces (salaire de base, indemnité, primes...) et les avantages en nature
-    (logement, véhicule...).
+  titre.fr: assiette cotisations sociales
   description.en: >
     L'ASSIETTE DES COTISATIONS SOCIALES EST LA BASE DE CALCUL D'UN GRAND NOMBRE
     DE COTISATIONS SUR LE TRAVAIL SALARIÉ. ELLE COMPREND LES RÉMUNÉRATIONS EN
     ESPÈCES (SALAIRE DE BASE, INDEMNITÉ, PRIMES...) ET LES AVANTAGES EN NATURE
     (LOGEMENT, VÉHICULE...).
-- cible: contrat salarié . salaire de base
-  titre.fr: Salaire brut
-  titre.en: SALAIRE BRUT
   description.fr: >
-    C'est le salaire de négociation du contrat de travail en France.
-
-
-    Il peut être vu comme :
-
-    - la somme du salaire net et des cotisations sociales salariales retenues
-    sur le bulletin de paie d'un salarié
-
-    - ou comme les sommes perçues par le salarié au titre de son contrat de
-    travail, avant retenues sociales et fiscales.
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre
+    de cotisations sur le travail salarié. Elle comprend les rémunérations en
+    espèces (salaire de base, indemnité, primes...) et les avantages en nature
+    (logement, véhicule...).
+contrat salarié . salaire de base:
+  titre.en: SALAIRE BRUT
+  titre.fr: Salaire brut
   description.en: >
     C'EST LE SALAIRE DE NÉGOCIATION DU CONTRAT DE TRAVAIL EN FRANCE.
 
@@ -449,54 +436,57 @@
 
     - OU COMME LES SOMMES PERÇUES PAR LE SALARIÉ AU TITRE DE SON CONTRAT DE
     TRAVAIL, AVANT RETENUES SOCIALES ET FISCALES.
-  question.fr: Quel est le salaire brut mensuel ?
+  description.fr: >
+    C'est le salaire de négociation du contrat de travail en France.
+
+
+    Il peut être vu comme :
+
+    - la somme du salaire net et des cotisations sociales salariales retenues
+    sur le bulletin de paie d'un salarié
+
+    - ou comme les sommes perçues par le salarié au titre de son contrat de
+    travail, avant retenues sociales et fiscales.
   question.en: QUEL EST LE SALAIRE BRUT MENSUEL ?
-- cible: contrat salarié . salaire brut
-  titre.fr: salaire brut
+  question.fr: Quel est le salaire brut mensuel ?
+contrat salarié . salaire brut:
   titre.en: SALAIRE BRUT
-- cible: contrat salarié . indemnités salarié
-  titre.fr: indemnités salarié
+  titre.fr: salaire brut
+contrat salarié . indemnités salarié:
   titre.en: INDEMNITÉS SALARIÉ
-- cible: contrat salarié . statut cadre
-  titre.fr: Statut cadre
+  titre.fr: indemnités salarié
+contrat salarié . statut cadre:
   titre.en: STATUT CADRE
-  description.fr: >-
-    Notion mal définie mais reconnue par les conventions collectives et
-    déterminant l'appartenance à une caise de retraite de base spécifique
+  titre.fr: Statut cadre
   description.en: >-
     NOTION MAL DÉFINIE MAIS RECONNUE PAR LES CONVENTIONS COLLECTIVES ET
     DÉTERMINANT L'APPARTENANCE À UNE CAISE DE RETRAITE DE BASE SPÉCIFIQUE
-  question.fr: Le salarié a-t-il le statut cadre ?
+  description.fr: >-
+    Notion mal définie mais reconnue par les conventions collectives et
+    déterminant l'appartenance à une caise de retraite de base spécifique
   question.en: LE SALARIÉ A-T-IL LE STATUT CADRE ?
-- cible: contrat salarié . plafond sécurité sociale temps plein
-  titre.fr: plafond sécurité sociale temps plein
+  question.fr: Le salarié a-t-il le statut cadre ?
+contrat salarié . plafond sécurité sociale temps plein:
   titre.en: PLAFOND SÉCURITÉ SOCIALE TEMPS PLEIN
-- cible: contrat salarié . plafond sécurité sociale
-  titre.fr: plafond sécurité sociale
+  titre.fr: plafond sécurité sociale temps plein
+contrat salarié . plafond sécurité sociale:
   titre.en: PLAFOND SÉCURITÉ SOCIALE
-- cible: contrat salarié . smic mensuel temps plein
-  titre.fr: smic mensuel temps plein
+  titre.fr: plafond sécurité sociale
+contrat salarié . smic mensuel temps plein:
   titre.en: SMIC MENSUEL TEMPS PLEIN
-- cible: contrat salarié . smic mensuel
-  titre.fr: smic mensuel
+  titre.fr: smic mensuel temps plein
+contrat salarié . smic mensuel:
   titre.en: SMIC MENSUEL
-- cible: contrat salarié . cotisations salariales
-  titre.fr: cotisations salariales
+  titre.fr: smic mensuel
+contrat salarié . cotisations salariales:
   titre.en: COTISATIONS SALARIALES
-- cible: contrat salarié . cotisations patronales
-  titre.fr: cotisations patronales
+  titre.fr: cotisations salariales
+contrat salarié . cotisations patronales:
   titre.en: COTISATIONS PATRONALES
-- cible: contrat salarié . salaire net
-  titre.fr: Salaire net
+  titre.fr: cotisations patronales
+contrat salarié . salaire net:
   titre.en: SALAIRE NET
-  description.fr: >
-    Le salaire brut moins les cotisations sociales, c'est ce que le salarié
-    reçoit sur son compte bancaire.
-
-
-    Cette somme peut varier en fonction de décisions politiques (augmentation ou
-    diminution des cotisations) alors que le salaire brut est contractuel: pour
-    le changer, il faut signer un avenant au contrat.
+  titre.fr: Salaire net
   description.en: >
     LE SALAIRE BRUT MOINS LES COTISATIONS SOCIALES, C'EST CE QUE LE SALARIÉ
     REÇOIT SUR SON COMPTE BANCAIRE.
@@ -505,312 +495,313 @@
     CETTE SOMME PEUT VARIER EN FONCTION DE DÉCISIONS POLITIQUES (AUGMENTATION OU
     DIMINUTION DES COTISATIONS) ALORS QUE LE SALAIRE BRUT EST CONTRACTUEL: POUR
     LE CHANGER, IL FAUT SIGNER UN AVENANT AU CONTRAT.
-  question.fr: Quel est le salaire net ?
-  question.en: QUEL EST LE SALAIRE NET ?
-- cible: contrat salarié . coût du travail
-  titre.fr: coût du travail
-  titre.en: COÛT DU TRAVAIL
   description.fr: >
-    C'est ce que l'employeur devra réellement payer au total au salarié et aux
-    organismes de collecte, en tenant compte
+    Le salaire brut moins les cotisations sociales, c'est ce que le salarié
+    reçoit sur son compte bancaire.
 
-    des aides et subventions qui lui sont reversées: c'est donc le coût total
-    réel du travail pour l'employeur.
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou
+    diminution des cotisations) alors que le salaire brut est contractuel: pour
+    le changer, il faut signer un avenant au contrat.
+  question.en: QUEL EST LE SALAIRE NET ?
+  question.fr: Quel est le salaire net ?
+contrat salarié . coût du travail:
+  titre.en: COÛT DU TRAVAIL
+  titre.fr: coût du travail
   description.en: >
     C'EST CE QUE L'EMPLOYEUR DEVRA RÉELLEMENT PAYER AU TOTAL AU SALARIÉ ET AUX
     ORGANISMES DE COLLECTE, EN TENANT COMPTE
 
     DES AIDES ET SUBVENTIONS QUI LUI SONT REVERSÉES: C'EST DONC LE COÛT TOTAL
     RÉEL DU TRAVAIL POUR L'EMPLOYEUR.
-- cible: contrat salarié . salaire total
-  titre.fr: Salaire total
-  titre.en: SALAIRE TOTAL
   description.fr: >
-    C'est le salaire brut, plus les cotisations patronales. C'est le total que
-    l'employeur doit en principe prévoir de verser pour employer un salarié,
-    mais en pratique certaines réductions de cotisation et aides peuvent
-    diminuer cette somme.
+    C'est ce que l'employeur devra réellement payer au total au salarié et aux
+    organismes de collecte, en tenant compte
+
+    des aides et subventions qui lui sont reversées: c'est donc le coût total
+    réel du travail pour l'employeur.
+contrat salarié . salaire total:
+  titre.en: SALAIRE TOTAL
+  titre.fr: Salaire total
   description.en: >
     C'EST LE SALAIRE BRUT, PLUS LES COTISATIONS PATRONALES. C'EST LE TOTAL QUE
     L'EMPLOYEUR DOIT EN PRINCIPE PRÉVOIR DE VERSER POUR EMPLOYER UN SALARIÉ,
     MAIS EN PRATIQUE CERTAINES RÉDUCTIONS DE COTISATION ET AIDES PEUVENT
     DIMINUER CETTE SOMME.
-- cible: contrat salarié . réductions de cotisations
-  titre.fr: réductions de cotisations
+  description.fr: >
+    C'est le salaire brut, plus les cotisations patronales. C'est le total que
+    l'employeur doit en principe prévoir de verser pour employer un salarié,
+    mais en pratique certaines réductions de cotisation et aides peuvent
+    diminuer cette somme.
+contrat salarié . réductions de cotisations:
   titre.en: RÉDUCTIONS DE COTISATIONS
-- cible: contrat salarié . salaire total sans réduction
-  titre.fr: salaire total sans réduction
+  titre.fr: réductions de cotisations
+contrat salarié . salaire total sans réduction:
   titre.en: SALAIRE TOTAL SANS RÉDUCTION
-- cible: contrat salarié . aides employeur différées
-  titre.fr: aides employeur différées
+  titre.fr: salaire total sans réduction
+contrat salarié . aides employeur différées:
   titre.en: AIDES EMPLOYEUR DIFFÉRÉES
-- cible: contrat salarié . salaire
-  titre.fr: salaire
+  titre.fr: aides employeur différées
+contrat salarié . salaire:
   titre.en: SALAIRE
-- cible: contrat salarié . jours de congés légaux
-  titre.fr: jours de congés légaux
+  titre.fr: salaire
+contrat salarié . jours de congés légaux:
   titre.en: JOURS DE CONGÉS LÉGAUX
-  description.fr: >-
-    Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le
-    contrat dans le cas d'un CDD.
+  titre.fr: jours de congés légaux
   description.en: >-
     JOURS OUVRÉS DE CONGÉS ACQUIS LÉGALEMENT PAR TOUT SALARIÉ POUR L'ANNÉE OU LE
     CONTRAT DANS LE CAS D'UN CDD.
-- cible: contrat salarié . régime alsace moselle
-  titre.fr: régime alsace moselle
+  description.fr: >-
+    Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le
+    contrat dans le cas d'un CDD.
+contrat salarié . régime alsace moselle:
   titre.en: RÉGIME ALSACE MOSELLE
-- cible: entreprise
-  titre.fr: entreprise
+  titre.fr: régime alsace moselle
+entreprise:
   titre.en: ENTREPRISE
-  description.fr: |
-    Le contrat lie une entreprise et un employé
+  titre.fr: entreprise
   description.en: |
     LE CONTRAT LIE UNE ENTREPRISE ET UN EMPLOYÉ
-- cible: entreprise . effectif
-  titre.fr: effectif
+  description.fr: |
+    Le contrat lie une entreprise et un employé
+entreprise . effectif:
   titre.en: EFFECTIF
-  description.fr: >
-    De nombreuses cotisations patronales varient selon l'effectif de
-    l'entreprise.
+  titre.fr: effectif
   description.en: >
     DE NOMBREUSES COTISATIONS PATRONALES VARIENT SELON L'EFFECTIF DE
     L'ENTREPRISE.
-  question.fr: Quel est l'effectif de l'entreprise ?
-  question.en: QUEL EST L'EFFECTIF DE L'ENTREPRISE ?
-- cible: entreprise . ratio alternants
-  titre.fr: ratio alternants
-  titre.en: RATIO ALTERNANTS
-- cible: entreprise . ratio alternants saisi
-  titre.fr: Fraction d'alternants
-  titre.en: FRACTION D'ALTERNANTS
   description.fr: >
-    Cette fraction détermine la contribution supplémentaire pour l'apprentissage
-    pour les entreprises concernées.
+    De nombreuses cotisations patronales varient selon l'effectif de
+    l'entreprise.
+  question.en: QUEL EST L'EFFECTIF DE L'ENTREPRISE ?
+  question.fr: Quel est l'effectif de l'entreprise ?
+entreprise . ratio alternants:
+  titre.en: RATIO ALTERNANTS
+  titre.fr: ratio alternants
+entreprise . ratio alternants saisi:
+  titre.en: FRACTION D'ALTERNANTS
+  titre.fr: Fraction d'alternants
   description.en: >
     CETTE FRACTION DÉTERMINE LA CONTRIBUTION SUPPLÉMENTAIRE POUR L'APPRENTISSAGE
     POUR LES ENTREPRISES CONCERNÉES.
-  question.fr: >-
-    Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
-    l'entreprise ?
+  description.fr: >
+    Cette fraction détermine la contribution supplémentaire pour l'apprentissage
+    pour les entreprises concernées.
   question.en: >-
     QUELLE EST LA FRACTION DE CONTRATS D'ALTERNANCE DANS L'EFFECTIF MOYEN DE
     L'ENTREPRISE ?
-- cible: entreprise . association non lucrative
-  titre.fr: association non lucrative
+  question.fr: >-
+    Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
+    l'entreprise ?
+entreprise . association non lucrative:
   titre.en: ASSOCIATION NON LUCRATIVE
-  description.fr: L'entreprise est une association non lucrative
+  titre.fr: association non lucrative
   description.en: L'ENTREPRISE EST UNE ASSOCIATION NON LUCRATIVE
-  question.fr: S'agit-il d'une association à but non lucratif ?
+  description.fr: L'entreprise est une association non lucrative
   question.en: S'AGIT-IL D'UNE ASSOCIATION À BUT NON LUCRATIF ?
-- cible: établissement . code postal
-  titre.fr: Code postal de l'établissement
+  question.fr: S'agit-il d'une association à but non lucratif ?
+établissement . code postal:
   titre.en: CODE POSTAL DE L'ÉTABLISSEMENT
-  description.fr: >
-    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
-    cotisations sont
-
-    calculées à l'échelle de l'établissement et sont fonction de règlementations
-    locales.
+  titre.fr: Code postal de l'établissement
   description.en: >
     LORSQU'UNE ENTREPRISE DISPOSE DE PLUSIEURS ÉTABLISSEMENTS, CERTAINES
     COTISATIONS SONT
 
     CALCULÉES À L'ÉCHELLE DE L'ÉTABLISSEMENT ET SONT FONCTION DE RÈGLEMENTATIONS
     LOCALES.
-  question.fr: Quel est le code postal de la commune de l'établissement ?
+  description.fr: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
   question.en: QUEL EST LE CODE POSTAL DE LA COMMUNE DE L'ÉTABLISSEMENT ?
-- cible: établissement . code commune
-  titre.fr: Code commune de l'établissement
+  question.fr: Quel est le code postal de la commune de l'établissement ?
+établissement . code commune:
   titre.en: CODE COMMUNE DE L'ÉTABLISSEMENT
-  description.fr: >
-    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
-    cotisations sont
-
-    calculées à l'échelle de l'établissement et sont fonction de règlementations
-    locales.
+  titre.fr: Code commune de l'établissement
   description.en: >
     LORSQU'UNE ENTREPRISE DISPOSE DE PLUSIEURS ÉTABLISSEMENTS, CERTAINES
     COTISATIONS SONT
 
     CALCULÉES À L'ÉCHELLE DE L'ÉTABLISSEMENT ET SONT FONCTION DE RÈGLEMENTATIONS
     LOCALES.
-  question.fr: Dans quelle commune l'établissement est-il implanté ?
+  description.fr: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
   question.en: DANS QUELLE COMMUNE L'ÉTABLISSEMENT EST-IL IMPLANTÉ ?
-- cible: établissement . commune
-  titre.fr: Commune de l'établissement
+  question.fr: Dans quelle commune l'établissement est-il implanté ?
+établissement . commune:
   titre.en: COMMUNE DE L'ÉTABLISSEMENT
-  description.fr: >
-    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
-    cotisations sont
-
-    calculées à l'échelle de l'établissement et sont fonction de règlementations
-    locales.
+  titre.fr: Commune de l'établissement
   description.en: >
     LORSQU'UNE ENTREPRISE DISPOSE DE PLUSIEURS ÉTABLISSEMENTS, CERTAINES
     COTISATIONS SONT
 
     CALCULÉES À L'ÉCHELLE DE L'ÉTABLISSEMENT ET SONT FONCTION DE RÈGLEMENTATIONS
     LOCALES.
-  question.fr: Dans quelle commune l'établissement est-il implanté ?
-  question.en: DANS QUELLE COMMUNE L'ÉTABLISSEMENT EST-IL IMPLANTÉ ?
-- cible: contrat salarié . temps partiel
-  titre.fr: temps partiel
-  titre.en: TEMPS PARTIEL
   description.fr: >
-    Le temps partiel peut avoir une influence sur les règles.
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
 
-    Par exemple les cotisations plafonnées ou les exonérations dépendant du
-    SMIC.
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  question.en: DANS QUELLE COMMUNE L'ÉTABLISSEMENT EST-IL IMPLANTÉ ?
+  question.fr: Dans quelle commune l'établissement est-il implanté ?
+contrat salarié . temps partiel:
+  titre.en: TEMPS PARTIEL
+  titre.fr: temps partiel
   description.en: >
     LE TEMPS PARTIEL PEUT AVOIR UNE INFLUENCE SUR LES RÈGLES.
 
     PAR EXEMPLE LES COTISATIONS PLAFONNÉES OU LES EXONÉRATIONS DÉPENDANT DU
     SMIC.
-  question.fr: Le contrat est-il à temps partiel ?
+  description.fr: >
+    Le temps partiel peut avoir une influence sur les règles.
+
+    Par exemple les cotisations plafonnées ou les exonérations dépendant du
+    SMIC.
   question.en: LE CONTRAT EST-IL À TEMPS PARTIEL ?
-- cible: contrat salarié . heures par semaine
-  titre.fr: heures par semaine
+  question.fr: Le contrat est-il à temps partiel ?
+contrat salarié . heures par semaine:
   titre.en: HEURES PAR SEMAINE
-  question.fr: >-
-    Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
-    partiel ?
+  titre.fr: heures par semaine
   question.en: >-
     QUEL EST LE NOMBRE D'HEURES TRAVAILLÉES PAR SEMAINE DANS LE CADRE DU TEMPS
     PARTIEL ?
-- cible: contrat salarié . quotité de travail
-  titre.fr: quotité de travail
+  question.fr: >-
+    Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
+    partiel ?
+contrat salarié . quotité de travail:
   titre.en: QUOTITÉ DE TRAVAIL
-- cible: contrat salarié . CICE
-  titre.fr: CICE
+  titre.fr: quotité de travail
+contrat salarié . CICE:
   titre.en: CICE
-  description.fr: |
-    Crédit d'impôt pour la compétitivité et l'emploi
+  titre.fr: CICE
   description.en: |
     CRÉDIT D'IMPÔT POUR LA COMPÉTITIVITÉ ET L'EMPLOI
-- cible: contrat salarié . plafond cice
-  titre.fr: plafond cice
+  description.fr: |
+    Crédit d'impôt pour la compétitivité et l'emploi
+contrat salarié . plafond cice:
   titre.en: PLAFOND CICE
-- cible: contrat salarié . multiplicateur cice
-  titre.fr: multiplicateur cice
+  titre.fr: plafond cice
+contrat salarié . multiplicateur cice:
   titre.en: MULTIPLICATEUR CICE
-- cible: contrat salarié . CITS
-  titre.fr: Crédit d'impôt de taxe sur les salaire
+  titre.fr: multiplicateur cice
+contrat salarié . CITS:
   titre.en: CRÉDIT D'IMPÔT DE TAXE SUR LES SALAIRE
-  description.fr: >
-    La loi de finances pour 2017 instaure, au bénéfice des associations et
-    organismes sans but lucratif (OSBL),
-
-    un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
+  titre.fr: Crédit d'impôt de taxe sur les salaire
   description.en: >
     LA LOI DE FINANCES POUR 2017 INSTAURE, AU BÉNÉFICE DES ASSOCIATIONS ET
     ORGANISMES SANS BUT LUCRATIF (OSBL),
 
     UN DISPOSITIF DE CRÉDIT D'IMPÔT DE TAXE SUR LES SALAIRES (CITS).
-- cible: contrat salarié . plafond CITS
-  titre.fr: plafond CITS
+  description.fr: >
+    La loi de finances pour 2017 instaure, au bénéfice des associations et
+    organismes sans but lucratif (OSBL),
+
+    un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
+contrat salarié . plafond CITS:
   titre.en: PLAFOND CITS
-- cible: contrat salarié . multiplicateur CITS
-  titre.fr: multiplicateur CITS
+  titre.fr: plafond CITS
+contrat salarié . multiplicateur CITS:
   titre.en: MULTIPLICATEUR CITS
-- cible: contrat salarié . statut JEI
-  titre.fr: Statut JEI
+  titre.fr: multiplicateur CITS
+contrat salarié . statut JEI:
   titre.en: STATUT JEI
-  description.fr: >
-    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
-    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
-    moins de leurs charges à de la Recherche et Développement de bénéficier de
-    certaines exonérations.
+  titre.fr: Statut JEI
   description.en: >
     LE STATUT DE JEUNE ENTREPRISE INNOVANTE (JEI) A ÉTÉ CRÉÉ PAR LA LOI DE
     FINANCES POUR 2004 ET PERMET AUX PME DE MOINS DE 8 ANS CONSACRANT 15% AU
     MOINS DE LEURS CHARGES À DE LA RECHERCHE ET DÉVELOPPEMENT DE BÉNÉFICIER DE
     CERTAINES EXONÉRATIONS.
-  question.fr: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
+  description.fr: >
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier de
+    certaines exonérations.
   question.en: PROFITEZ-VOUS DU STATUT JEUNE ENTREPRISE INNOVANTE POUR CETTE EMBAUCHE ?
-- cible: contrat salarié . exonération JEI
-  titre.fr: exonération JEI
+  question.fr: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
+contrat salarié . exonération JEI:
   titre.en: EXONÉRATION JEI
-  description.fr: >
-    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
-    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
-    moins de leurs charges à de la Recherche et Développement de bénéficier de
-    certaines exonérations.
+  titre.fr: exonération JEI
   description.en: >
     LE STATUT DE JEUNE ENTREPRISE INNOVANTE (JEI) A ÉTÉ CRÉÉ PAR LA LOI DE
     FINANCES POUR 2004 ET PERMET AUX PME DE MOINS DE 8 ANS CONSACRANT 15% AU
     MOINS DE LEURS CHARGES À DE LA RECHERCHE ET DÉVELOPPEMENT DE BÉNÉFICIER DE
     CERTAINES EXONÉRATIONS.
-- cible: contrat salarié . réduction générale
-  titre.fr: réduction générale
-  titre.en: RÉDUCTION GÉNÉRALE
   description.fr: >
-    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
-    zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
-    payer aucune cotisation, hormis l'assurance chômage. Le montant de
-    l'allègement est égal au produit de la rémunération annuelle brute par un
-    coefficient. Il n'y a pas de formalité particulière à effectuer.
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier de
+    certaines exonérations.
+contrat salarié . réduction générale:
+  titre.en: RÉDUCTION GÉNÉRALE
+  titre.fr: réduction générale
   description.en: >
     DANS LE CADRE DU PACTE DE RESPONSABILITÉ ET DE SOLIDARITÉ, LE DISPOSITIF
     ZÉRO COTISATION URSSAF PERMET À L'EMPLOYEUR D'UN SALARIÉ AU SMIC DE NE PLUS
     PAYER AUCUNE COTISATION, HORMIS L'ASSURANCE CHÔMAGE. LE MONTANT DE
     L'ALLÈGEMENT EST ÉGAL AU PRODUIT DE LA RÉMUNÉRATION ANNUELLE BRUTE PAR UN
     COEFFICIENT. IL N'Y A PAS DE FORMALITÉ PARTICULIÈRE À EFFECTUER.
-  alias.fr: réduction fillon
+  description.fr: >
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
+    zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
+    payer aucune cotisation, hormis l'assurance chômage. Le montant de
+    l'allègement est égal au produit de la rémunération annuelle brute par un
+    coefficient. Il n'y a pas de formalité particulière à effectuer.
   alias.en: RÉDUCTION FILLON
-- cible: contrat salarié . réduction générale constante
-  titre.fr: réduction générale constante
+  alias.fr: réduction fillon
+contrat salarié . réduction générale constante:
   titre.en: RÉDUCTION GÉNÉRALE CONSTANTE
-- cible: contrat salarié . réduction générale variable
-  titre.fr: réduction générale variable
+  titre.fr: réduction générale constante
+contrat salarié . réduction générale variable:
   titre.en: RÉDUCTION GÉNÉRALE VARIABLE
-- cible: contrat salarié . coefficient réduction générale
-  titre.fr: coefficient réduction générale
+  titre.fr: réduction générale variable
+contrat salarié . coefficient réduction générale:
   titre.en: COEFFICIENT RÉDUCTION GÉNÉRALE
-- cible: contrat salarié . assiette réduction générale
-  titre.fr: assiette réduction générale
+  titre.fr: coefficient réduction générale
+contrat salarié . assiette réduction générale:
   titre.en: ASSIETTE RÉDUCTION GÉNÉRALE
-- cible: contrat salarié . assiette ATMP réduction générale
-  titre.fr: assiette ATMP réduction générale
+  titre.fr: assiette réduction générale
+contrat salarié . assiette ATMP réduction générale:
   titre.en: ASSIETTE ATMP RÉDUCTION GÉNÉRALE
-  description.fr: >-
-    Lorsque le montant de la réduction générale est supérieur au montant de ces
-    cotisations et contributions, la réduction est également imputée sur les
-    cotisations accidents du travail et maladies professionnelles dans la limite
-    de 0,90 % de la rémunération.
+  titre.fr: assiette ATMP réduction générale
   description.en: >-
     LORSQUE LE MONTANT DE LA RÉDUCTION GÉNÉRALE EST SUPÉRIEUR AU MONTANT DE CES
     COTISATIONS ET CONTRIBUTIONS, LA RÉDUCTION EST ÉGALEMENT IMPUTÉE SUR LES
     COTISATIONS ACCIDENTS DU TRAVAIL ET MALADIES PROFESSIONNELLES DANS LA LIMITE
     DE 0,90 % DE LA RÉMUNÉRATION.
-- cible: contrat salarié . plafond réduction générale
-  titre.fr: plafond réduction générale
+  description.fr: >-
+    Lorsque le montant de la réduction générale est supérieur au montant de ces
+    cotisations et contributions, la réduction est également imputée sur les
+    cotisations accidents du travail et maladies professionnelles dans la limite
+    de 0,90 % de la rémunération.
+contrat salarié . plafond réduction générale:
   titre.en: PLAFOND RÉDUCTION GÉNÉRALE
-- cible: contrat salarié . multiplicateur réduction générale
-  titre.fr: multiplicateur réduction générale
+  titre.fr: plafond réduction générale
+contrat salarié . multiplicateur réduction générale:
   titre.en: MULTIPLICATEUR RÉDUCTION GÉNÉRALE
-- cible: contrat salarié . AGFF
-  titre.fr: AGFF
+  titre.fr: multiplicateur réduction générale
+contrat salarié . AGFF:
   titre.en: AGFF
-  description.fr: >
-    Cotisation de retraite complémentaire
-
-    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de
-    l’AGIRC et de l’ARRCO)
+  titre.fr: AGFF
   description.en: >
     COTISATION DE RETRAITE COMPLÉMENTAIRE
 
     (COTISATION POUR L'ASSOCIATION POUR LA GESTION DU FONDS DE FINANCEMENT DE
     L’AGIRC ET DE L’ARRCO)
-- cible: contrat salarié . GMP
-  titre.fr: GMP
-  titre.en: GMP
   description.fr: >
-    Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant
-    pour
+    Cotisation de retraite complémentaire
 
-    atteindre le nombre minimum de 120 points Agirc,
-
-    ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de
+    l’AGIRC et de l’ARRCO)
+contrat salarié . GMP:
+  titre.en: GMP
+  titre.fr: GMP
   description.en: >
     LES SALARIÉS RELEVANT DU RÉGIME AGIRC QUI N'ONT PAS UN SALAIRE SUFFISANT
     POUR
@@ -818,144 +809,142 @@
     ATTEINDRE LE NOMBRE MINIMUM DE 120 POINTS AGIRC,
 
     ONT LA GARANTIE DE LES OBTENIR EN CONTREPARTIE D'UNE COTISATION FORFAITAIRE.
-- cible: contrat salarié . AGIRC
-  titre.fr: AGIRC
-  titre.en: AGIRC
   description.fr: >
-    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée
-    par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
+    Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant
+    pour
+
+    atteindre le nombre minimum de 120 points Agirc,
+
+    ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+contrat salarié . AGIRC:
+  titre.en: AGIRC
+  titre.fr: AGIRC
   description.en: >
     COTISATION DE RETRAITE COMPLÉMENTAIRE CADRE. COMPLÈTE LE RÉGIME ARRCO, GÉRÉE
     PAR L'AGIRC (ASSOCIATION GÉNÉRALE DES INSTITUTIONS DE RETRAITE DES CADRES)
-- cible: contrat salarié . AGS
-  titre.fr: AGS
+  description.fr: >
+    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée
+    par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
+contrat salarié . AGS:
   titre.en: AGS
-  description.fr: Cotisation au Régime de Garantie des Salaires
+  titre.fr: AGS
   description.en: COTISATION AU RÉGIME DE GARANTIE DES SALAIRES
-- cible: contrat salarié . allocations familiales
-  titre.fr: allocations familiales
+  description.fr: Cotisation au Régime de Garantie des Salaires
+contrat salarié . allocations familiales:
   titre.en: ALLOCATIONS FAMILIALES
-- cible: contrat salarié . cotisation allocations familiales
-  titre.fr: cotisation allocations familiales
+  titre.fr: allocations familiales
+contrat salarié . cotisation allocations familiales:
   titre.en: COTISATION ALLOCATIONS FAMILIALES
-- cible: contrat salarié . réduction allocations familiales
-  titre.fr: réduction allocations familiales
+  titre.fr: cotisation allocations familiales
+contrat salarié . réduction allocations familiales:
   titre.en: RÉDUCTION ALLOCATIONS FAMILIALES
-- cible: contrat salarié . plafond réduction allocations familiales
-  titre.fr: plafond réduction allocations familiales
+  titre.fr: réduction allocations familiales
+contrat salarié . plafond réduction allocations familiales:
   titre.en: PLAFOND RÉDUCTION ALLOCATIONS FAMILIALES
-- cible: contrat salarié . APEC
-  titre.fr: APEC
+  titre.fr: plafond réduction allocations familiales
+contrat salarié . APEC:
   titre.en: APEC
-  description.fr: |
-    Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
-    (Association Pour l’Emploi des Cadres)
+  titre.fr: APEC
   description.en: |
     COTISATION CHÔMAGE COMPLÉMENTAIRE CADRE, POUR LE FONCTIONNEMENT DE L'APEC
     (ASSOCIATION POUR L’EMPLOI DES CADRES)
-- cible: contrat salarié . ARRCO
-  titre.fr: ARRCO
+  description.fr: |
+    Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+contrat salarié . ARRCO:
   titre.en: ARRCO
-  description.fr: >
-    Cotisation de retraite complémentaire pour tous les salariés du secteur
-    privé, gérée par l'Association pour le Régime de Retraite Complémentaire des
-    salariés
+  titre.fr: ARRCO
   description.en: >
     COTISATION DE RETRAITE COMPLÉMENTAIRE POUR TOUS LES SALARIÉS DU SECTEUR
     PRIVÉ, GÉRÉE PAR L'ASSOCIATION POUR LE RÉGIME DE RETRAITE COMPLÉMENTAIRE DES
     SALARIÉS
-- cible: contrat salarié . chômage
-  titre.fr: chômage
-  titre.en: CHÔMAGE
-  description.fr: Cotisation d’assurance chômage
-  description.en: COTISATION D’ASSURANCE CHÔMAGE
-- cible: contrat salarié . complémentaire santé
-  titre.fr: complémentaire santé
-  titre.en: COMPLÉMENTAIRE SANTÉ
-- cible: contrat salarié . forfait complémentaire santé
-  titre.fr: Forfait de complémentaire santé enteprise
-  titre.en: FORFAIT DE COMPLÉMENTAIRE SANTÉ ENTEPRISE
   description.fr: >
-    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
-    doit prendre en charge la moitié du montant,
-
-    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
-    libre, tant qu'elle couvre un panier légal de soins.
+    Cotisation de retraite complémentaire pour tous les salariés du secteur
+    privé, gérée par l'Association pour le Régime de Retraite Complémentaire des
+    salariés
+contrat salarié . chômage:
+  titre.en: CHÔMAGE
+  titre.fr: chômage
+  description.en: COTISATION D’ASSURANCE CHÔMAGE
+  description.fr: Cotisation d’assurance chômage
+contrat salarié . complémentaire santé:
+  titre.en: COMPLÉMENTAIRE SANTÉ
+  titre.fr: complémentaire santé
+contrat salarié . forfait complémentaire santé:
+  titre.en: FORFAIT DE COMPLÉMENTAIRE SANTÉ ENTEPRISE
+  titre.fr: Forfait de complémentaire santé enteprise
   description.en: >
     L'EMPLOYEUR A L'OBLIGATION DE PROPOSER UNE OFFRE DE COMPLÉMENTAIRE SANTÉ. IL
     DOIT PRENDRE EN CHARGE LA MOITIÉ DU MONTANT,
 
     CE QUE NOUS AVONS RETENU POUR CETTE SIMULATION, OU DAVANTAGE. LE MONTANT EST
     LIBRE, TANT QU'ELLE COUVRE UN PANIER LÉGAL DE SOINS.
-  question.fr: >-
-    Quel est le montant mensuel total (salarié et employeur) de la
-    complémentaire santé entreprise ?
+  description.fr: >
+    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
+    doit prendre en charge la moitié du montant,
+
+    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
+    libre, tant qu'elle couvre un panier légal de soins.
   question.en: >-
     QUEL EST LE MONTANT MENSUEL TOTAL (SALARIÉ ET EMPLOYEUR) DE LA
     COMPLÉMENTAIRE SANTÉ ENTREPRISE ?
-- cible: contrat salarié . contribution au dialogue social
-  titre.fr: contribution au dialogue social
+  question.fr: >-
+    Quel est le montant mensuel total (salarié et employeur) de la
+    complémentaire santé entreprise ?
+contrat salarié . contribution au dialogue social:
   titre.en: CONTRIBUTION AU DIALOGUE SOCIAL
-  description.fr: >-
-    Contribution patronale destinée à abonder un fonds paritaire dédié au
-    financement des organisations syndicales et des organisations
-    professionnelles d’employeurs.
+  titre.fr: contribution au dialogue social
   description.en: >-
     CONTRIBUTION PATRONALE DESTINÉE À ABONDER UN FONDS PARITAIRE DÉDIÉ AU
     FINANCEMENT DES ORGANISATIONS SYNDICALES ET DES ORGANISATIONS
     PROFESSIONNELLES D’EMPLOYEURS.
-- cible: contrat salarié . cotisation exceptionnelle temporaire
-  titre.fr: cotisation exceptionnelle temporaire
+  description.fr: >-
+    Contribution patronale destinée à abonder un fonds paritaire dédié au
+    financement des organisations syndicales et des organisations
+    professionnelles d’employeurs.
+contrat salarié . cotisation exceptionnelle temporaire:
   titre.en: COTISATION EXCEPTIONNELLE TEMPORAIRE
-  description.fr: >
-    Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points
-    supplémentaires au salarié.
+  titre.fr: cotisation exceptionnelle temporaire
   description.en: >
     COTISATION DE SOLIDARITÉ POUR LE RÉGIME AGIRC, ELLE NE DONNE PAS DE POINTS
     SUPPLÉMENTAIRES AU SALARIÉ.
-- cible: contrat salarié . assiette CSG
-  titre.fr: assiette CSG
+  description.fr: >
+    Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points
+    supplémentaires au salarié.
+contrat salarié . assiette CSG:
   titre.en: ASSIETTE CSG
-- cible: contrat salarié . assiette CSG abattue
-  titre.fr: assiette CSG abattue
+  titre.fr: assiette CSG
+contrat salarié . assiette CSG abattue:
   titre.en: ASSIETTE CSG ABATTUE
-- cible: contrat salarié . CSG
-  titre.fr: CSG
+  titre.fr: assiette CSG abattue
+contrat salarié . CSG:
   titre.en: CSG
-  description.fr: |
-    Contribution sociale généralisée.
-    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+  titre.fr: CSG
   description.en: |
     CONTRIBUTION SOCIALE GÉNÉRALISÉE.
     PRÉLÈVEMENT OBLIGATOIRE QUI PARTICIPE AU FINANCEMENT DE LA SÉCURITÉ SOCIALE.
-- cible: contrat salarié . CRDS
-  titre.fr: CRDS
+  description.fr: |
+    Contribution sociale généralisée.
+    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+contrat salarié . CRDS:
   titre.en: CRDS
-  description.fr: Contribution pour le remboursement de la dette sociale
+  titre.fr: CRDS
   description.en: CONTRIBUTION POUR LE REMBOURSEMENT DE LA DETTE SOCIALE
-- cible: contrat salarié . FNAL
-  titre.fr: Contribution au Fonds National d’Aide au Logement
+  description.fr: Contribution pour le remboursement de la dette sociale
+contrat salarié . FNAL:
   titre.en: CONTRIBUTION AU FONDS NATIONAL D’AIDE AU LOGEMENT
-- cible: contrat salarié . formation professionnelle
-  titre.fr: formation professionnelle
+  titre.fr: Contribution au Fonds National d’Aide au Logement
+contrat salarié . formation professionnelle:
   titre.en: FORMATION PROFESSIONNELLE
-- cible: contrat salarié . maladie
-  titre.fr: maladie
+  titre.fr: formation professionnelle
+contrat salarié . maladie:
   titre.en: MALADIE
-  description.fr: Cotisations de la branche maladie
+  titre.fr: maladie
   description.en: COTISATIONS DE LA BRANCHE MALADIE
-- cible: contrat salarié . médecine du travail
-  titre.fr: médecine du travail
+  description.fr: Cotisations de la branche maladie
+contrat salarié . médecine du travail:
   titre.en: MÉDECINE DU TRAVAIL
-  description.fr: >
-    L'employeur a l'obligation d'organiser un service de santé au travail, en
-    adhérant à un service interentreprises, ou en créant un service interne.
-
-
-    Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est
-    pas défini par la loi, mais il doit être proportionnel au nombre d'employés.
-    Nous avons choisi un montant indicatif (voir les références) ajusté avec
-    l'inflation depuis 2007.
+  titre.fr: médecine du travail
   description.en: >
     L'EMPLOYEUR A L'OBLIGATION D'ORGANISER UN SERVICE DE SANTÉ AU TRAVAIL, EN
     ADHÉRANT À UN SERVICE INTERENTREPRISES, OU EN CRÉANT UN SERVICE INTERNE.
@@ -965,76 +954,85 @@
     PAS DÉFINI PAR LA LOI, MAIS IL DOIT ÊTRE PROPORTIONNEL AU NOMBRE D'EMPLOYÉS.
     NOUS AVONS CHOISI UN MONTANT INDICATIF (VOIR LES RÉFÉRENCES) AJUSTÉ AVEC
     L'INFLATION DEPUIS 2007.
-  alias.fr: santé au travail
+  description.fr: >
+    L'employeur a l'obligation d'organiser un service de santé au travail, en
+    adhérant à un service interentreprises, ou en créant un service interne.
+
+
+    Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est
+    pas défini par la loi, mais il doit être proportionnel au nombre d'employés.
+    Nous avons choisi un montant indicatif (voir les références) ajusté avec
+    l'inflation depuis 2007.
   alias.en: SANTÉ AU TRAVAIL
-- cible: contrat salarié . participation effort de construction
-  titre.fr: participation effort de construction
+  alias.fr: santé au travail
+contrat salarié . participation effort de construction:
   titre.en: PARTICIPATION EFFORT DE CONSTRUCTION
-  description.fr: Participation des employeurs à l'effort de construction
+  titre.fr: participation effort de construction
   description.en: PARTICIPATION DES EMPLOYEURS À L'EFFORT DE CONSTRUCTION
-  alias.fr: Dispositif du 1 % logement
+  description.fr: Participation des employeurs à l'effort de construction
   alias.en: DISPOSITIF DU 1 % LOGEMENT
-- cible: contrat salarié . prévoyance obligatoire cadre
-  titre.fr: prévoyance obligatoire cadre
+  alias.fr: Dispositif du 1 % logement
+contrat salarié . prévoyance obligatoire cadre:
   titre.en: PRÉVOYANCE OBLIGATOIRE CADRE
-- cible: contrat salarié . taxe d'apprentissage
-  titre.fr: taxe d'apprentissage
+  titre.fr: prévoyance obligatoire cadre
+contrat salarié . taxe d'apprentissage:
   titre.en: TAXE D'APPRENTISSAGE
-  description.fr: >-
-    La taxe d'apprentissage permet de financer par les entreprises les dépenses
-    de l'apprentissage et des formations technologiques et professionnelles
+  titre.fr: taxe d'apprentissage
   description.en: >-
     LA TAXE D'APPRENTISSAGE PERMET DE FINANCER PAR LES ENTREPRISES LES DÉPENSES
     DE L'APPRENTISSAGE ET DES FORMATIONS TECHNOLOGIQUES ET PROFESSIONNELLES
-- cible: contrat salarié . taxe d'apprentissage de base
-  titre.fr: taxe d'apprentissage de base
+  description.fr: >-
+    La taxe d'apprentissage permet de financer par les entreprises les dépenses
+    de l'apprentissage et des formations technologiques et professionnelles
+contrat salarié . taxe d'apprentissage de base:
   titre.en: TAXE D'APPRENTISSAGE DE BASE
-- cible: contrat salarié . contribution supplémentaire à l'apprentissage
-  titre.fr: contribution supplémentaire à l'apprentissage
+  titre.fr: taxe d'apprentissage de base
+contrat salarié . contribution supplémentaire à l'apprentissage:
   titre.en: CONTRIBUTION SUPPLÉMENTAIRE À L'APPRENTISSAGE
-- cible: contrat salarié . taxe d'apprentissage . csa au taux majoré
-  titre.fr: csa au taux majoré
+  titre.fr: contribution supplémentaire à l'apprentissage
+contrat salarié . taxe d'apprentissage . csa au taux majoré:
   titre.en: CSA AU TAUX MAJORÉ
-- cible: contrat salarié . assujettie à la taxe sur les salaires
-  titre.fr: Entreprise assujettie à la taxe sur les salaires
+  titre.fr: csa au taux majoré
+contrat salarié . assujettie à la taxe sur les salaires:
   titre.en: ENTREPRISE ASSUJETTIE À LA TAXE SUR LES SALAIRES
-  description.fr: >
-    Sont assujetties les associations à but non lucratif et les entreprises non
-    soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les
-    particuliers employeurs, les employeurs agricoles, les établissements
-    d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
+  titre.fr: Entreprise assujettie à la taxe sur les salaires
   description.en: >
     SONT ASSUJETTIES LES ASSOCIATIONS À BUT NON LUCRATIF ET LES ENTREPRISES NON
     SOUMISES À LA TVA OU PAYANT LA TVA SUR MOINS DE 10% DE LEUR CHIFFRE. LES
     PARTICULIERS EMPLOYEURS, LES EMPLOYEURS AGRICOLES, LES ÉTABLISSEMENTS
     D'ENSEIGNEMENT SUPÉRIEUR, LES AUTO-ENTREPRENEURS NE SONT PAS CONCERNÉS.
-  question.fr: L'entreprise est-elle assujettie à la taxe sur les salaires ?
+  description.fr: >
+    Sont assujetties les associations à but non lucratif et les entreprises non
+    soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les
+    particuliers employeurs, les employeurs agricoles, les établissements
+    d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
   question.en: L'ENTREPRISE EST-ELLE ASSUJETTIE À LA TAXE SUR LES SALAIRES ?
-- cible: contrat salarié . taxe sur les salaires annuelle
-  titre.fr: taxe sur les salaires annuelle
+  question.fr: L'entreprise est-elle assujettie à la taxe sur les salaires ?
+contrat salarié . taxe sur les salaires annuelle:
   titre.en: TAXE SUR LES SALAIRES ANNUELLE
-- cible: contrat salarié . assiette taxe sur les salaires
-  titre.fr: assiette taxe sur les salaires
+  titre.fr: taxe sur les salaires annuelle
+contrat salarié . assiette taxe sur les salaires:
   titre.en: ASSIETTE TAXE SUR LES SALAIRES
-- cible: contrat salarié . taxe sur les salaires
-  titre.fr: taxe sur les salaires
+  titre.fr: assiette taxe sur les salaires
+contrat salarié . taxe sur les salaires:
   titre.en: TAXE SUR LES SALAIRES
-  description.fr: >-
-    La taxe sur les salaires en France est un impôt progressif créé en 1948 que
-    certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+  titre.fr: taxe sur les salaires
   description.en: >-
     LA TAXE SUR LES SALAIRES EN FRANCE EST UN IMPÔT PROGRESSIF CRÉÉ EN 1948 QUE
     CERTAINS EMPLOYEURS DOIVENT ACQUITTER SUR LES SALAIRES QU'ILS DISTRIBUENT.
-- cible: contrat salarié . versement transport
-  titre.fr: versement transport
+  description.fr: >-
+    La taxe sur les salaires en France est un impôt progressif créé en 1948 que
+    certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+contrat salarié . versement transport:
   titre.en: VERSEMENT TRANSPORT
-  description.fr: Contribution sur le travail consacrée au financement des transports publics.
+  titre.fr: versement transport
   description.en: CONTRIBUTION SUR LE TRAVAIL CONSACRÉE AU FINANCEMENT DES TRANSPORTS PUBLICS.
-- cible: établissement . taux versement transport
-  titre.fr: taux versement transport
+  description.fr: Contribution sur le travail consacrée au financement des transports publics.
+établissement . taux versement transport:
   titre.en: TAUX VERSEMENT TRANSPORT
-- cible: contrat salarié . vieillesse
-  titre.fr: vieillesse
+  titre.fr: taux versement transport
+contrat salarié . vieillesse:
   titre.en: VIEILLESSE
-  description.fr: Cotisation au régime de retraite de base des salariés.
+  titre.fr: vieillesse
   description.en: COTISATION AU RÉGIME DE RETRAITE DE BASE DES SALARIÉS.
+  description.fr: Cotisation au régime de retraite de base des salariés.
