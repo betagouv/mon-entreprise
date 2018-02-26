@@ -1,0 +1,1040 @@
+- cible: contrat salarié . CDD . CIF
+  titre.en: CIF
+  titre.fr: CIF
+  description.en: >-
+    Contribution au financement du congé individuel de formation spécifique aux
+    CDD.
+  description.fr: >-
+    Contribution au financement du congé individuel de formation spécifique aux
+    CDD.
+- cible: contrat salarié . CDD . compensation congés payés
+  titre.en: compensation congés payés
+  titre.fr: compensation congés payés
+  description.en: >
+    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
+    en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses
+    congés avant le terme de son contrat, il bénéficie d'une indemnité
+    compensatrice de congés payés.
+  description.fr: >
+    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
+    en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses
+    congés avant le terme de son contrat, il bénéficie d'une indemnité
+    compensatrice de congés payés.
+- cible: contrat salarié . CDD . prime fin de contrat
+  titre.en: prime fin de contrat
+  titre.fr: prime fin de contrat
+  description.en: Somme versée en fin de CDD comme compensation de précarité.
+  description.fr: Somme versée en fin de CDD comme compensation de précarité.
+  alias.en: prime de précarité
+  alias.fr: prime de précarité
+- cible: contrat salarié . CDD . majoration chômage
+  titre.en: majoration chômage
+  titre.fr: majoration chômage
+  description.en: >-
+    Majoration des contributions patronales d’assurance chômage pour les
+    contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
+  description.fr: >-
+    Majoration des contributions patronales d’assurance chômage pour les
+    contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
+- cible: contrat salarié . ATMP
+  titre.en: Cotisation Accidents du Travail et Maladies Professionnelles
+  titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
+  description.en: >-
+    Cotisation due au titre des Accidents du Travail et Maladies
+    Professionnelles
+  description.fr: >-
+    Cotisation due au titre des Accidents du Travail et Maladies
+    Professionnelles
+- cible: contrat salarié . ATMP . taux collectif ATMP
+  titre.en: Taux collectif ATMP
+  titre.fr: Taux collectif ATMP
+  description.en: >
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux
+    collectif. Pour les entreprises plus importantes,
+
+    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
+    L'entreprise peut consulter le taux qui la
+
+    concerne en ligne sur
+    [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
+  description.fr: >
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux
+    collectif. Pour les entreprises plus importantes,
+
+    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
+    L'entreprise peut consulter le taux qui la
+
+    concerne en ligne sur
+    [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
+  question.en: >-
+    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
+    l'entreprise ?
+  question.fr: >-
+    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
+    l'entreprise ?
+- cible: contrat salarié . CDD . événement
+  titre.en: Événement de contrat
+  titre.fr: Événement de contrat
+  description.en: >
+    Certains événements impactent fortement les obligations du CDD.
+
+
+    > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune
+    majoration ou indemnité sur le CDD ne sera à verser.
+  description.fr: >
+    Certains événements impactent fortement les obligations du CDD.
+
+
+    > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune
+    majoration ou indemnité sur le CDD ne sera à verser.
+  question.en: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+  question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+- cible: contrat salarié . CDD . événement . poursuite du CDD en CDI
+  titre.en: Poursuite du CDD en CDI
+  titre.fr: Poursuite du CDD en CDI
+  description.en: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
+  description.fr: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
+- cible: contrat salarié . CDD . événement . refus CDI avantageux
+  titre.en: Refus d'un CDI avantageux
+  titre.fr: Refus d'un CDI avantageux
+  description.en: >-
+    Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi
+    similaire, et une rémunération au moins aussi avantageuse.
+  description.fr: >-
+    Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi
+    similaire, et une rémunération au moins aussi avantageuse.
+- cible: contrat salarié . CDD . événement . rupture anticipée salarié
+  titre.en: Rupture anticipée du salarié
+  titre.fr: Rupture anticipée du salarié
+  description.en: Rupture anticipée du contrat à l'initiative du salarié.
+  description.fr: Rupture anticipée du contrat à l'initiative du salarié.
+- cible: >-
+    contrat salarié . CDD . événement . rupture pour faute grave ou force
+    majeure
+  titre.en: Rupture pour faute grave ou force majeure
+  titre.fr: Rupture pour faute grave ou force majeure
+- cible: contrat salarié . CDD . événement . rupture pendant période essai
+  titre.en: Rupture pendant la période d'essai
+  titre.fr: Rupture pendant la période d'essai
+- cible: contrat salarié . CDD . motif
+  titre.en: Motif de recours
+  titre.fr: Motif de recours
+  description.en: >
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un
+    des motifs spécifiés dans la loi.
+  description.fr: >
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un
+    des motifs spécifiés dans la loi.
+  question.en: Quel est le motif de recours au CDD ?
+  question.fr: Quel est le motif de recours au CDD ?
+- cible: contrat salarié . CDD . motif . classique
+  titre.en: motifs classiques
+  titre.fr: motifs classiques
+- cible: contrat salarié . CDD . motif . classique . saisonnier
+  titre.en: Saisonnier
+  titre.fr: Saisonnier
+  description.en: >-
+    Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter
+    chaque année selon une périodicité à peu près fixe, en fonction du rythme
+    des saisons ou des modes de vie collectifs.
+  description.fr: >-
+    Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter
+    chaque année selon une périodicité à peu près fixe, en fonction du rythme
+    des saisons ou des modes de vie collectifs.
+- cible: contrat salarié . CDD . motif . classique . accroissement activité
+  titre.en: Accroissement temporaire d'activité
+  titre.fr: Accroissement temporaire d'activité
+  description.en: Accroissement temporaire de l'activité de l'entreprise
+  description.fr: Accroissement temporaire de l'activité de l'entreprise
+- cible: contrat salarié . CDD . motif . classique . remplacement
+  titre.en: Contrat de remplacement
+  titre.fr: Contrat de remplacement
+  description.en: >
+    Nous regroupons dans cette catégorie les cas suivants.
+
+
+    - Remplacement d'un salarié en cas :
+      - D'absence ;
+      - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
+      - De suspension de son contrat de travail ;
+      - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
+      - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
+
+    - Remplacement d'un chef d'entreprise artisanale, industrielle ou
+    commerciale, d'une personne exerçant une profession libérale, de son
+    conjoint participant effectivement à l'activité de l'entreprise à titre
+    professionnel et habituel ou d'un associé non salarié d'une société civile
+    professionnelle, d'une société civile de moyens d'une société d'exercice
+    libéral ou de toute autre personne morale exerçant une profession libérale ;
+
+
+    - Remplacement du chef d'une exploitation agricole ou d'une entreprise
+    mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche
+    maritime, d'un aide familial, d'un associé d'exploitation, ou de leur
+    conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il
+    participe effectivement à l'activité de l'exploitation agricole ou de
+    l'entreprise ;
+  description.fr: >
+    Nous regroupons dans cette catégorie les cas suivants.
+
+
+    - Remplacement d'un salarié en cas :
+      - D'absence ;
+      - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
+      - De suspension de son contrat de travail ;
+      - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
+      - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
+
+    - Remplacement d'un chef d'entreprise artisanale, industrielle ou
+    commerciale, d'une personne exerçant une profession libérale, de son
+    conjoint participant effectivement à l'activité de l'entreprise à titre
+    professionnel et habituel ou d'un associé non salarié d'une société civile
+    professionnelle, d'une société civile de moyens d'une société d'exercice
+    libéral ou de toute autre personne morale exerçant une profession libérale ;
+
+
+    - Remplacement du chef d'une exploitation agricole ou d'une entreprise
+    mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche
+    maritime, d'un aide familial, d'un associé d'exploitation, ou de leur
+    conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il
+    participe effectivement à l'activité de l'exploitation agricole ou de
+    l'entreprise ;
+- cible: contrat salarié . CDD . motif . classique . mission
+  titre.en: Contrat de mission
+  titre.fr: Contrat de mission
+  description.en: >
+    > Aussi appelé contrat à objet défini.
+
+
+    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives,
+    en vue de la réalisation d'un objet défini lorsqu'un accord de branche
+    étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+
+    - Les nécessités économiques auxquelles ces contrats sont susceptibles
+    d'apporter une réponse adaptée ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini bénéficient de garanties relatives à l'aide au
+    reclassement, à la validation des acquis de l'expérience, à la priorité de
+    réembauche et à l'accès à la formation professionnelle continue et peuvent,
+    au cours du délai de prévenance, mobiliser les moyens disponibles pour
+    organiser la suite de leur parcours professionnel ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini ont priorité d'accès aux emplois en contrat à
+    durée indéterminée dans l'entreprise.
+  description.fr: >
+    > Aussi appelé contrat à objet défini.
+
+
+    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives,
+    en vue de la réalisation d'un objet défini lorsqu'un accord de branche
+    étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+
+    - Les nécessités économiques auxquelles ces contrats sont susceptibles
+    d'apporter une réponse adaptée ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini bénéficient de garanties relatives à l'aide au
+    reclassement, à la validation des acquis de l'expérience, à la priorité de
+    réembauche et à l'accès à la formation professionnelle continue et peuvent,
+    au cours du délai de prévenance, mobiliser les moyens disponibles pour
+    organiser la suite de leur parcours professionnel ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini ont priorité d'accès aux emplois en contrat à
+    durée indéterminée dans l'entreprise.
+- cible: contrat salarié . CDD . motif . classique . usage
+  titre.en: Contrat d'usage
+  titre.fr: Contrat d'usage
+  description.en: >-
+    Emplois pour lesquels, dans certains secteurs d'activité définis par décret
+    ou par convention ou accord collectif de travail étendu, il est d'usage
+    constant de ne pas recourir au contrat de travail à durée indéterminée en
+    raison de la nature de l'activité exercée et du caractère par nature
+    temporaire de ces emplois ;
+  description.fr: >-
+    Emplois pour lesquels, dans certains secteurs d'activité définis par décret
+    ou par convention ou accord collectif de travail étendu, il est d'usage
+    constant de ne pas recourir au contrat de travail à durée indéterminée en
+    raison de la nature de l'activité exercée et du caractère par nature
+    temporaire de ces emplois ;
+  alias.en: motif extra
+  alias.fr: motif extra
+- cible: contrat salarié . CDD . motif . complément formation
+  titre.en: Complément de formation professionnelle assuré par l'employeur
+  titre.fr: Complément de formation professionnelle assuré par l'employeur
+  description.en: >-
+    L'employeur s'engage, pour une durée et dans des conditions déterminées par
+    décret, à assurer un complément de formation professionnelle au salarié.
+  description.fr: >-
+    L'employeur s'engage, pour une durée et dans des conditions déterminées par
+    décret, à assurer un complément de formation professionnelle au salarié.
+- cible: contrat salarié . CDD . motif . issue d'apprentissage
+  titre.en: À l'issue d'un contrat d'apprentissage
+  titre.fr: À l'issue d'un contrat d'apprentissage
+  description.en: >
+    A l'issue d'un contrat d'apprentissage, un contrat de travail à durée
+    déterminée peut être conclu lorsque l'apprenti doit satisfaire aux
+    obligations du service national dans un délai de moins d'un an après
+    l'expiration du contrat d'apprentissage.
+  description.fr: >
+    A l'issue d'un contrat d'apprentissage, un contrat de travail à durée
+    déterminée peut être conclu lorsque l'apprenti doit satisfaire aux
+    obligations du service national dans un délai de moins d'un an après
+    l'expiration du contrat d'apprentissage.
+- cible: contrat salarié . CDD . motif . contrat aidé
+  titre.en: 'Contrat aidé (CUI, alternance, ...)'
+  titre.fr: 'Contrat aidé (CUI, alternance, ...)'
+- cible: contrat salarié . CDD . durée contrat
+  titre.en: durée du contrat
+  titre.fr: durée du contrat
+  question.en: Quelle est la durée du contrat ?
+  question.fr: Quelle est la durée du contrat ?
+  sous-question.en: >
+    [Cliquez
+    ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
+    pour connaître la durée maximale d'un CDD.
+  sous-question.fr: >
+    [Cliquez
+    ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
+    pour connaître la durée maximale d'un CDD.
+- cible: contrat salarié . CDD . congés non pris
+  titre.en: Congés non pris
+  titre.fr: Congés non pris
+  description.en: >-
+    Combien de jours de congés ne pourront être pris par l'employé, du fait de
+    la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés
+    légaux pour un contrat de douze mois.
+  description.fr: >-
+    Combien de jours de congés ne pourront être pris par l'employé, du fait de
+    la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés
+    légaux pour un contrat de douze mois.
+  question.en: Combien de jours ouvrés de congés ne seront pas pris ?
+  question.fr: Combien de jours ouvrés de congés ne seront pas pris ?
+- cible: contrat salarié . CDD . contrat jeune vacances
+  titre.en: Contrat jeune vacances
+  titre.fr: Contrat jeune vacances
+  description.en: >-
+    Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
+    vacances scolaires ou universitaires.
+  description.fr: >-
+    Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
+    vacances scolaires ou universitaires.
+  question.en: Est-ce un contrat jeune vacances ?
+  question.fr: Est-ce un contrat jeune vacances ?
+- cible: contrat salarié . CDD . cotisations employeur CDD
+  titre.en: cotisations employeur CDD
+  titre.fr: cotisations employeur CDD
+  description.en: Cotisations employeur spécifiques au CDD
+  description.fr: Cotisations employeur spécifiques au CDD
+- cible: contrat salarié . CDD . indemnités salarié CDD
+  titre.en: indemnités salarié CDD
+  titre.fr: indemnités salarié CDD
+  description.en: Cotisations employeur spécifiques au CDD
+  description.fr: Cotisations employeur spécifiques au CDD
+- cible: contrat salarié . CDD . surcoût
+  titre.en: Dont surcoût CDD
+  titre.fr: Dont surcoût CDD
+  description.en: >
+    Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
+    organismes sociaux, certaines compensations
+
+    financières en contrepartie de la souplesse apportée par ce contrat; elles
+    sont au nombre de 4.
+
+
+    Certaines sont versées en
+
+    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici
+    ramenées à leur coût mensuel.
+  description.fr: >
+    Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
+    organismes sociaux, certaines compensations
+
+    financières en contrepartie de la souplesse apportée par ce contrat; elles
+    sont au nombre de 4.
+
+
+    Certaines sont versées en
+
+    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici
+    ramenées à leur coût mensuel.
+- cible: contrat salarié . CDD . surcoût CDD
+  titre.en: surcoût CDD
+  titre.fr: surcoût CDD
+- cible: contrat salarié
+  titre.en: contrat salarié
+  titre.fr: contrat salarié
+  description.en: >
+    Le contrat qui lie une entreprise (via son établissement) à un individu, qui
+    est alors son salarié.
+
+
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est
+    possible d'employer quelqu'un sans contrat par exemple dans ces cas:
+      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+  description.fr: >
+    Le contrat qui lie une entreprise (via son établissement) à un individu, qui
+    est alors son salarié.
+
+
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est
+    possible d'employer quelqu'un sans contrat par exemple dans ces cas:
+      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+- cible: contrat salarié . type de contrat
+  titre.en: Type de contrat
+  titre.fr: Type de contrat
+  question.en: Quelle est la nature du contrat de travail ?
+  question.fr: Quelle est la nature du contrat de travail ?
+- cible: contrat salarié . type de contrat . CDD
+  titre.en: CDD
+  titre.fr: CDD
+  description.en: Le contrat de travail prévoit explicitement une date de fin.
+  description.fr: Le contrat de travail prévoit explicitement une date de fin.
+- cible: contrat salarié . type de contrat . CDI
+  titre.en: CDI
+  titre.fr: CDI
+  description.en: >-
+    Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
+    établi.
+  description.fr: >-
+    Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
+    établi.
+- cible: contrat salarié . assiette cotisations sociales
+  titre.en: assiette cotisations sociales
+  titre.fr: assiette cotisations sociales
+  description.en: >
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre
+    de cotisations sur le travail salarié. Elle comprend les rémunérations en
+    espèces (salaire de base, indemnité, primes...) et les avantages en nature
+    (logement, véhicule...).
+  description.fr: >
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre
+    de cotisations sur le travail salarié. Elle comprend les rémunérations en
+    espèces (salaire de base, indemnité, primes...) et les avantages en nature
+    (logement, véhicule...).
+- cible: contrat salarié . salaire de base
+  titre.en: Salaire brut
+  titre.fr: Salaire brut
+  description.en: >
+    C'est le salaire de négociation du contrat de travail en France.
+
+
+    Il peut être vu comme :
+
+    - la somme du salaire net et des cotisations sociales salariales retenues
+    sur le bulletin de paie d'un salarié
+
+    - ou comme les sommes perçues par le salarié au titre de son contrat de
+    travail, avant retenues sociales et fiscales.
+  description.fr: >
+    C'est le salaire de négociation du contrat de travail en France.
+
+
+    Il peut être vu comme :
+
+    - la somme du salaire net et des cotisations sociales salariales retenues
+    sur le bulletin de paie d'un salarié
+
+    - ou comme les sommes perçues par le salarié au titre de son contrat de
+    travail, avant retenues sociales et fiscales.
+  question.en: Quel est le salaire brut mensuel ?
+  question.fr: Quel est le salaire brut mensuel ?
+- cible: contrat salarié . salaire brut
+  titre.en: salaire brut
+  titre.fr: salaire brut
+- cible: contrat salarié . indemnités salarié
+  titre.en: indemnités salarié
+  titre.fr: indemnités salarié
+- cible: contrat salarié . statut cadre
+  titre.en: Statut cadre
+  titre.fr: Statut cadre
+  description.en: >-
+    Notion mal définie mais reconnue par les conventions collectives et
+    déterminant l'appartenance à une caise de retraite de base spécifique
+  description.fr: >-
+    Notion mal définie mais reconnue par les conventions collectives et
+    déterminant l'appartenance à une caise de retraite de base spécifique
+  question.en: Le salarié a-t-il le statut cadre ?
+  question.fr: Le salarié a-t-il le statut cadre ?
+- cible: contrat salarié . plafond sécurité sociale temps plein
+  titre.en: plafond sécurité sociale temps plein
+  titre.fr: plafond sécurité sociale temps plein
+- cible: contrat salarié . plafond sécurité sociale
+  titre.en: plafond sécurité sociale
+  titre.fr: plafond sécurité sociale
+- cible: contrat salarié . smic mensuel temps plein
+  titre.en: smic mensuel temps plein
+  titre.fr: smic mensuel temps plein
+- cible: contrat salarié . smic mensuel
+  titre.en: smic mensuel
+  titre.fr: smic mensuel
+- cible: contrat salarié . cotisations salariales
+  titre.en: cotisations salariales
+  titre.fr: cotisations salariales
+- cible: contrat salarié . cotisations patronales
+  titre.en: cotisations patronales
+  titre.fr: cotisations patronales
+- cible: contrat salarié . salaire net
+  titre.en: Salaire net
+  titre.fr: Salaire net
+  description.en: >
+    Le salaire brut moins les cotisations sociales, c'est ce que le salarié
+    reçoit sur son compte bancaire.
+
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou
+    diminution des cotisations) alors que le salaire brut est contractuel: pour
+    le changer, il faut signer un avenant au contrat.
+  description.fr: >
+    Le salaire brut moins les cotisations sociales, c'est ce que le salarié
+    reçoit sur son compte bancaire.
+
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou
+    diminution des cotisations) alors que le salaire brut est contractuel: pour
+    le changer, il faut signer un avenant au contrat.
+  question.en: Quel est le salaire net ?
+  question.fr: Quel est le salaire net ?
+- cible: contrat salarié . coût du travail
+  titre.en: coût du travail
+  titre.fr: coût du travail
+  description.en: >
+    C'est ce que l'employeur devra réellement payer au total au salarié et aux
+    organismes de collecte, en tenant compte
+
+    des aides et subventions qui lui sont reversées: c'est donc le coût total
+    réel du travail pour l'employeur.
+  description.fr: >
+    C'est ce que l'employeur devra réellement payer au total au salarié et aux
+    organismes de collecte, en tenant compte
+
+    des aides et subventions qui lui sont reversées: c'est donc le coût total
+    réel du travail pour l'employeur.
+- cible: contrat salarié . salaire total
+  titre.en: Salaire total
+  titre.fr: Salaire total
+  description.en: >
+    C'est le salaire brut, plus les cotisations patronales. C'est le total que
+    l'employeur doit en principe prévoir de verser pour employer un salarié,
+    mais en pratique certaines réductions de cotisation et aides peuvent
+    diminuer cette somme.
+  description.fr: >
+    C'est le salaire brut, plus les cotisations patronales. C'est le total que
+    l'employeur doit en principe prévoir de verser pour employer un salarié,
+    mais en pratique certaines réductions de cotisation et aides peuvent
+    diminuer cette somme.
+- cible: contrat salarié . réductions de cotisations
+  titre.en: réductions de cotisations
+  titre.fr: réductions de cotisations
+- cible: contrat salarié . salaire total sans réduction
+  titre.en: salaire total sans réduction
+  titre.fr: salaire total sans réduction
+- cible: contrat salarié . aides employeur différées
+  titre.en: aides employeur différées
+  titre.fr: aides employeur différées
+- cible: contrat salarié . salaire
+  titre.en: salaire
+  titre.fr: salaire
+- cible: contrat salarié . jours de congés légaux
+  titre.en: jours de congés légaux
+  titre.fr: jours de congés légaux
+  description.en: >-
+    Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le
+    contrat dans le cas d'un CDD.
+  description.fr: >-
+    Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le
+    contrat dans le cas d'un CDD.
+- cible: contrat salarié . régime alsace moselle
+  titre.en: régime alsace moselle
+  titre.fr: régime alsace moselle
+- cible: entreprise
+  titre.en: entreprise
+  titre.fr: entreprise
+  description.en: |
+    Le contrat lie une entreprise et un employé
+  description.fr: |
+    Le contrat lie une entreprise et un employé
+- cible: entreprise . effectif
+  titre.en: effectif
+  titre.fr: effectif
+  description.en: >
+    De nombreuses cotisations patronales varient selon l'effectif de
+    l'entreprise.
+  description.fr: >
+    De nombreuses cotisations patronales varient selon l'effectif de
+    l'entreprise.
+  question.en: Quel est l'effectif de l'entreprise ?
+  question.fr: Quel est l'effectif de l'entreprise ?
+- cible: entreprise . ratio alternants
+  titre.en: ratio alternants
+  titre.fr: ratio alternants
+- cible: entreprise . ratio alternants saisi
+  titre.en: Fraction d'alternants
+  titre.fr: Fraction d'alternants
+  description.en: >
+    Cette fraction détermine la contribution supplémentaire pour l'apprentissage
+    pour les entreprises concernées.
+  description.fr: >
+    Cette fraction détermine la contribution supplémentaire pour l'apprentissage
+    pour les entreprises concernées.
+  question.en: >-
+    Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
+    l'entreprise ?
+  question.fr: >-
+    Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
+    l'entreprise ?
+- cible: entreprise . association non lucrative
+  titre.en: association non lucrative
+  titre.fr: association non lucrative
+  description.en: L'entreprise est une association non lucrative
+  description.fr: L'entreprise est une association non lucrative
+  question.en: S'agit-il d'une association à but non lucratif ?
+  question.fr: S'agit-il d'une association à but non lucratif ?
+- cible: établissement . code postal
+  titre.en: Code postal de l'établissement
+  titre.fr: Code postal de l'établissement
+  description.en: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  description.fr: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  question.en: Quel est le code postal de la commune de l'établissement ?
+  question.fr: Quel est le code postal de la commune de l'établissement ?
+- cible: établissement . code commune
+  titre.en: Code commune de l'établissement
+  titre.fr: Code commune de l'établissement
+  description.en: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  description.fr: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  question.en: Dans quelle commune l'établissement est-il implanté ?
+  question.fr: Dans quelle commune l'établissement est-il implanté ?
+- cible: établissement . commune
+  titre.en: Commune de l'établissement
+  titre.fr: Commune de l'établissement
+  description.en: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  description.fr: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  question.en: Dans quelle commune l'établissement est-il implanté ?
+  question.fr: Dans quelle commune l'établissement est-il implanté ?
+- cible: contrat salarié . temps partiel
+  titre.en: temps partiel
+  titre.fr: temps partiel
+  description.en: >
+    Le temps partiel peut avoir une influence sur les règles.
+
+    Par exemple les cotisations plafonnées ou les exonérations dépendant du
+    SMIC.
+  description.fr: >
+    Le temps partiel peut avoir une influence sur les règles.
+
+    Par exemple les cotisations plafonnées ou les exonérations dépendant du
+    SMIC.
+  question.en: Le contrat est-il à temps partiel ?
+  question.fr: Le contrat est-il à temps partiel ?
+- cible: contrat salarié . heures par semaine
+  titre.en: heures par semaine
+  titre.fr: heures par semaine
+  question.en: >-
+    Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
+    partiel ?
+  question.fr: >-
+    Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
+    partiel ?
+- cible: contrat salarié . quotité de travail
+  titre.en: quotité de travail
+  titre.fr: quotité de travail
+- cible: contrat salarié . CICE
+  titre.en: CICE
+  titre.fr: CICE
+  description.en: |
+    Crédit d'impôt pour la compétitivité et l'emploi
+  description.fr: |
+    Crédit d'impôt pour la compétitivité et l'emploi
+- cible: contrat salarié . plafond cice
+  titre.en: plafond cice
+  titre.fr: plafond cice
+- cible: contrat salarié . multiplicateur cice
+  titre.en: multiplicateur cice
+  titre.fr: multiplicateur cice
+- cible: contrat salarié . CITS
+  titre.en: Crédit d'impôt de taxe sur les salaire
+  titre.fr: Crédit d'impôt de taxe sur les salaire
+  description.en: >
+    La loi de finances pour 2017 instaure, au bénéfice des associations et
+    organismes sans but lucratif (OSBL),
+
+    un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
+  description.fr: >
+    La loi de finances pour 2017 instaure, au bénéfice des associations et
+    organismes sans but lucratif (OSBL),
+
+    un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
+- cible: contrat salarié . plafond CITS
+  titre.en: plafond CITS
+  titre.fr: plafond CITS
+- cible: contrat salarié . multiplicateur CITS
+  titre.en: multiplicateur CITS
+  titre.fr: multiplicateur CITS
+- cible: contrat salarié . statut JEI
+  titre.en: Statut JEI
+  titre.fr: Statut JEI
+  description.en: >
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier de
+    certaines exonérations.
+  description.fr: >
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier de
+    certaines exonérations.
+  question.en: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
+  question.fr: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
+- cible: contrat salarié . exonération JEI
+  titre.en: exonération JEI
+  titre.fr: exonération JEI
+  description.en: >
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier de
+    certaines exonérations.
+  description.fr: >
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier de
+    certaines exonérations.
+- cible: contrat salarié . réduction générale
+  titre.en: réduction générale
+  titre.fr: réduction générale
+  description.en: >
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
+    zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
+    payer aucune cotisation, hormis l'assurance chômage. Le montant de
+    l'allègement est égal au produit de la rémunération annuelle brute par un
+    coefficient. Il n'y a pas de formalité particulière à effectuer.
+  description.fr: >
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
+    zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
+    payer aucune cotisation, hormis l'assurance chômage. Le montant de
+    l'allègement est égal au produit de la rémunération annuelle brute par un
+    coefficient. Il n'y a pas de formalité particulière à effectuer.
+  alias.en: réduction fillon
+  alias.fr: réduction fillon
+- cible: contrat salarié . réduction générale constante
+  titre.en: réduction générale constante
+  titre.fr: réduction générale constante
+- cible: contrat salarié . réduction générale variable
+  titre.en: réduction générale variable
+  titre.fr: réduction générale variable
+- cible: contrat salarié . coefficient réduction générale
+  titre.en: coefficient réduction générale
+  titre.fr: coefficient réduction générale
+- cible: contrat salarié . assiette réduction générale
+  titre.en: assiette réduction générale
+  titre.fr: assiette réduction générale
+- cible: contrat salarié . assiette ATMP réduction générale
+  titre.en: assiette ATMP réduction générale
+  titre.fr: assiette ATMP réduction générale
+  description.en: >-
+    Lorsque le montant de la réduction générale est supérieur au montant de ces
+    cotisations et contributions, la réduction est également imputée sur les
+    cotisations accidents du travail et maladies professionnelles dans la limite
+    de 0,90 % de la rémunération.
+  description.fr: >-
+    Lorsque le montant de la réduction générale est supérieur au montant de ces
+    cotisations et contributions, la réduction est également imputée sur les
+    cotisations accidents du travail et maladies professionnelles dans la limite
+    de 0,90 % de la rémunération.
+- cible: contrat salarié . plafond réduction générale
+  titre.en: plafond réduction générale
+  titre.fr: plafond réduction générale
+- cible: contrat salarié . multiplicateur réduction générale
+  titre.en: multiplicateur réduction générale
+  titre.fr: multiplicateur réduction générale
+- cible: contrat salarié . AGFF
+  titre.en: AGFF
+  titre.fr: AGFF
+  description.en: >
+    Cotisation de retraite complémentaire
+
+    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de
+    l’AGIRC et de l’ARRCO)
+  description.fr: >
+    Cotisation de retraite complémentaire
+
+    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de
+    l’AGIRC et de l’ARRCO)
+- cible: contrat salarié . GMP
+  titre.en: GMP
+  titre.fr: GMP
+  description.en: >
+    Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant
+    pour
+
+    atteindre le nombre minimum de 120 points Agirc,
+
+    ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+  description.fr: >
+    Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant
+    pour
+
+    atteindre le nombre minimum de 120 points Agirc,
+
+    ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+- cible: contrat salarié . AGIRC
+  titre.en: AGIRC
+  titre.fr: AGIRC
+  description.en: >
+    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée
+    par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
+  description.fr: >
+    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée
+    par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
+- cible: contrat salarié . AGS
+  titre.en: AGS
+  titre.fr: AGS
+  description.en: Cotisation au Régime de Garantie des Salaires
+  description.fr: Cotisation au Régime de Garantie des Salaires
+- cible: contrat salarié . allocations familiales
+  titre.en: allocations familiales
+  titre.fr: allocations familiales
+- cible: contrat salarié . cotisation allocations familiales
+  titre.en: cotisation allocations familiales
+  titre.fr: cotisation allocations familiales
+- cible: contrat salarié . réduction allocations familiales
+  titre.en: réduction allocations familiales
+  titre.fr: réduction allocations familiales
+- cible: contrat salarié . plafond réduction allocations familiales
+  titre.en: plafond réduction allocations familiales
+  titre.fr: plafond réduction allocations familiales
+- cible: contrat salarié . APEC
+  titre.en: APEC
+  titre.fr: APEC
+  description.en: |
+    Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+  description.fr: |
+    Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+- cible: contrat salarié . ARRCO
+  titre.en: ARRCO
+  titre.fr: ARRCO
+  description.en: >
+    Cotisation de retraite complémentaire pour tous les salariés du secteur
+    privé, gérée par l'Association pour le Régime de Retraite Complémentaire des
+    salariés
+  description.fr: >
+    Cotisation de retraite complémentaire pour tous les salariés du secteur
+    privé, gérée par l'Association pour le Régime de Retraite Complémentaire des
+    salariés
+- cible: contrat salarié . chômage
+  titre.en: chômage
+  titre.fr: chômage
+  description.en: Cotisation d’assurance chômage
+  description.fr: Cotisation d’assurance chômage
+- cible: contrat salarié . complémentaire santé
+  titre.en: complémentaire santé
+  titre.fr: complémentaire santé
+- cible: contrat salarié . forfait complémentaire santé
+  titre.en: Forfait de complémentaire santé enteprise
+  titre.fr: Forfait de complémentaire santé enteprise
+  description.en: >
+    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
+    doit prendre en charge la moitié du montant,
+
+    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
+    libre, tant qu'elle couvre un panier légal de soins.
+  description.fr: >
+    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
+    doit prendre en charge la moitié du montant,
+
+    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
+    libre, tant qu'elle couvre un panier légal de soins.
+  question.en: >-
+    Quel est le montant mensuel total (salarié et employeur) de la
+    complémentaire santé entreprise ?
+  question.fr: >-
+    Quel est le montant mensuel total (salarié et employeur) de la
+    complémentaire santé entreprise ?
+- cible: contrat salarié . contribution au dialogue social
+  titre.en: contribution au dialogue social
+  titre.fr: contribution au dialogue social
+  description.en: >-
+    Contribution patronale destinée à abonder un fonds paritaire dédié au
+    financement des organisations syndicales et des organisations
+    professionnelles d’employeurs.
+  description.fr: >-
+    Contribution patronale destinée à abonder un fonds paritaire dédié au
+    financement des organisations syndicales et des organisations
+    professionnelles d’employeurs.
+- cible: contrat salarié . cotisation exceptionnelle temporaire
+  titre.en: cotisation exceptionnelle temporaire
+  titre.fr: cotisation exceptionnelle temporaire
+  description.en: >
+    Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points
+    supplémentaires au salarié.
+  description.fr: >
+    Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points
+    supplémentaires au salarié.
+- cible: contrat salarié . assiette CSG
+  titre.en: assiette CSG
+  titre.fr: assiette CSG
+- cible: contrat salarié . assiette CSG abattue
+  titre.en: assiette CSG abattue
+  titre.fr: assiette CSG abattue
+- cible: contrat salarié . CSG
+  titre.en: CSG
+  titre.fr: CSG
+  description.en: |
+    Contribution sociale généralisée.
+    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+  description.fr: |
+    Contribution sociale généralisée.
+    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+- cible: contrat salarié . CRDS
+  titre.en: CRDS
+  titre.fr: CRDS
+  description.en: Contribution pour le remboursement de la dette sociale
+  description.fr: Contribution pour le remboursement de la dette sociale
+- cible: contrat salarié . FNAL
+  titre.en: Contribution au Fonds National d’Aide au Logement
+  titre.fr: Contribution au Fonds National d’Aide au Logement
+- cible: contrat salarié . formation professionnelle
+  titre.en: formation professionnelle
+  titre.fr: formation professionnelle
+- cible: contrat salarié . maladie
+  titre.en: maladie
+  titre.fr: maladie
+  description.en: Cotisations de la branche maladie
+  description.fr: Cotisations de la branche maladie
+- cible: contrat salarié . médecine du travail
+  titre.en: médecine du travail
+  titre.fr: médecine du travail
+  description.en: >
+    L'employeur a l'obligation d'organiser un service de santé au travail, en
+    adhérant à un service interentreprises, ou en créant un service interne.
+
+
+    Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est
+    pas défini par la loi, mais il doit être proportionnel au nombre d'employés.
+    Nous avons choisi un montant indicatif (voir les références) ajusté avec
+    l'inflation depuis 2007.
+  description.fr: >
+    L'employeur a l'obligation d'organiser un service de santé au travail, en
+    adhérant à un service interentreprises, ou en créant un service interne.
+
+
+    Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est
+    pas défini par la loi, mais il doit être proportionnel au nombre d'employés.
+    Nous avons choisi un montant indicatif (voir les références) ajusté avec
+    l'inflation depuis 2007.
+  alias.en: santé au travail
+  alias.fr: santé au travail
+- cible: contrat salarié . participation effort de construction
+  titre.en: participation effort de construction
+  titre.fr: participation effort de construction
+  description.en: Participation des employeurs à l'effort de construction
+  description.fr: Participation des employeurs à l'effort de construction
+  alias.en: Dispositif du 1 % logement
+  alias.fr: Dispositif du 1 % logement
+- cible: contrat salarié . prévoyance obligatoire cadre
+  titre.en: prévoyance obligatoire cadre
+  titre.fr: prévoyance obligatoire cadre
+- cible: contrat salarié . taxe d'apprentissage
+  titre.en: taxe d'apprentissage
+  titre.fr: taxe d'apprentissage
+  description.en: >-
+    La taxe d'apprentissage permet de financer par les entreprises les dépenses
+    de l'apprentissage et des formations technologiques et professionnelles
+  description.fr: >-
+    La taxe d'apprentissage permet de financer par les entreprises les dépenses
+    de l'apprentissage et des formations technologiques et professionnelles
+- cible: contrat salarié . taxe d'apprentissage de base
+  titre.en: taxe d'apprentissage de base
+  titre.fr: taxe d'apprentissage de base
+- cible: contrat salarié . contribution supplémentaire à l'apprentissage
+  titre.en: contribution supplémentaire à l'apprentissage
+  titre.fr: contribution supplémentaire à l'apprentissage
+- cible: contrat salarié . taxe d'apprentissage . csa au taux majoré
+  titre.en: csa au taux majoré
+  titre.fr: csa au taux majoré
+- cible: contrat salarié . assujettie à la taxe sur les salaires
+  titre.en: Entreprise assujettie à la taxe sur les salaires
+  titre.fr: Entreprise assujettie à la taxe sur les salaires
+  description.en: >
+    Sont assujetties les associations à but non lucratif et les entreprises non
+    soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les
+    particuliers employeurs, les employeurs agricoles, les établissements
+    d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
+  description.fr: >
+    Sont assujetties les associations à but non lucratif et les entreprises non
+    soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les
+    particuliers employeurs, les employeurs agricoles, les établissements
+    d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
+  question.en: L'entreprise est-elle assujettie à la taxe sur les salaires ?
+  question.fr: L'entreprise est-elle assujettie à la taxe sur les salaires ?
+- cible: contrat salarié . taxe sur les salaires annuelle
+  titre.en: taxe sur les salaires annuelle
+  titre.fr: taxe sur les salaires annuelle
+- cible: contrat salarié . assiette taxe sur les salaires
+  titre.en: assiette taxe sur les salaires
+  titre.fr: assiette taxe sur les salaires
+- cible: contrat salarié . taxe sur les salaires
+  titre.en: taxe sur les salaires
+  titre.fr: taxe sur les salaires
+  description.en: >-
+    La taxe sur les salaires en France est un impôt progressif créé en 1948 que
+    certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+  description.fr: >-
+    La taxe sur les salaires en France est un impôt progressif créé en 1948 que
+    certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+- cible: contrat salarié . versement transport
+  titre.en: versement transport
+  titre.fr: versement transport
+  description.en: Contribution sur le travail consacrée au financement des transports publics.
+  description.fr: Contribution sur le travail consacrée au financement des transports publics.
+- cible: établissement . taux versement transport
+  titre.en: taux versement transport
+  titre.fr: taux versement transport
+- cible: contrat salarié . vieillesse
+  titre.en: vieillesse
+  titre.fr: vieillesse
+  description.en: Cotisation au régime de retraite de base des salariés.
+  description.fr: Cotisation au régime de retraite de base des salariés.

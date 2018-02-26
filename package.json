@@ -102,6 +102,7 @@
 	},
 	"scripts": {
 		"start": "node source/server.js",
+		"externalize": "node source/externalize.js",
 		"compile": "NODE_ENV='production' webpack --config source/webpack.config.js",
 		"surge": "npm run compile && surge --domain scientific-wish.surge.sh -p ./ && rm -rf dist/",
 		"test": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
