@@ -24,7 +24,7 @@ export default class TargetSelection extends Component {
 		return (
 			<section id="targetSelection">
 				<h1>
-					<Trans i18nKey="targetSelection">Que voulez-vous calculer ?</Trans>
+					<Trans i18nKey="targetSelection">Que voulez-vous estimer ?</Trans>
 				</h1>
 				{this.renderOutputList()}
 				<div id="action">
