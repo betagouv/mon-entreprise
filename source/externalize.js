@@ -26,7 +26,6 @@ rules.map(
 		externalizeProp(rule,"description",result)
 		externalizeProp(rule,"question",result)
 		externalizeProp(rule,"sous-question",result)
-		externalizeProp(rule,"alias",result)
 		return result
 	}
 )
