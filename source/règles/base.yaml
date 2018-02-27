@@ -1724,6 +1724,7 @@
           taux: 1%
         - si: entreprise . effectif < 11
           taux: 0.55%
+
 - espace: contrat salarié
   nom: maladie
   cotisation:
@@ -1945,6 +1946,9 @@
 
 - espace: contrat salarié
   nom: taxe sur les salaires
+  taxe:
+    dû par: employeur
+  
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
   applicable si: entreprise . association non lucrative
 
