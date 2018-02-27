@@ -26,7 +26,8 @@ import { capitalise0, humanFigure } from '../utils'
 import { nameLeaf, encodeRuleName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
-let paidBy = pathEq(['explanation', 'cotisation', 'dû par'])
+let paidBy = payer => item =>
+	pathEq(['explanation', item.explanation.type, 'dû par'], payer, item)
 let filteredBy = pathEq(['cotisation', 'dû par'])
 export let byName = groupBy(prop('dottedName'))
 
