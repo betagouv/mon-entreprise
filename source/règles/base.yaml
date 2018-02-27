@@ -1881,6 +1881,9 @@
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
 
+  références: 
+    assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
+
 
 - espace: contrat salarié . taxe sur les salaires
   nom: barème annuel
@@ -1965,6 +1968,7 @@
         entreprise . association non lucrative: oui
         salaire de base: 2300
         entreprise . effectif: 10
+        forfait complémentaire santé: 0
       valeur attendue: 49
 
   références:
