@@ -141,3 +141,10 @@ composantes:
     Il est même possible, pour les mécanismes `barème` et `multiplication` de garder en commun un paramètre comme l'assiette, puis de déclarer des composantes pour le taux.
 
     > L'example le plus courant de composantes, c'est la distinction part employeur, part salarié (ex. retraite AGIRC).
+
+allègement: 
+  type: numeric
+  description: |
+    Permet de réduire le montant d'une variable. 
+    Très utilisé dans le contexte des impôts. 
+

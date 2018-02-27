@@ -1,6 +1,7 @@
 var webpack = require('webpack'),
 	path = require('path'),
-	prodEnv = process.env.NODE_ENV == 'production' // eslint-disable-line no-undef
+	prodEnv = process.env.NODE_ENV == 'production', // eslint-disable-line no-undef
+	HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 module.exports = {
 	devtool: 'cheap-module-source-map',
@@ -13,10 +14,8 @@ module.exports = {
 					'@babel/polyfill',
 					'react-hot-loader/patch',
 					'./source/entry.js'
-				],
+				]
 		// le nom "simulateur" est là pour des raisons historiques
-		simulateur: './source/iframe-script.js',
-		'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
 	},
 	output: {
 		path: path.resolve('./dist/'),
@@ -92,6 +91,13 @@ module.exports = {
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
 		new webpack.NoEmitOnErrorsPlugin()
 	]
-		.concat(!prodEnv ? [new webpack.HotModuleReplacementPlugin()] : [])
+		.concat(
+			!prodEnv
+				? [
+						new webpack.HotModuleReplacementPlugin(),
+						new HardSourceWebpackPlugin()
+					]
+				: []
+		)
 		.concat(prodEnv ? [new webpack.optimize.UglifyJsPlugin()] : [])
 }

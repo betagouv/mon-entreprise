@@ -2,7 +2,8 @@ import React from 'react'
 import {
 	findRuleByDottedName,
 	disambiguateRuleReference,
-	findRuleByName
+	findRuleByName,
+	findRule
 } from './rules'
 import { evaluateVariable } from './variables'
 import {
@@ -48,7 +49,8 @@ import {
 	mecanismError,
 	mecanismComplement,
 	mecanismSelection,
-	mecanismInversion
+	mecanismInversion,
+	mecanismReduction
 } from './mecanisms'
 import {
 	evaluateNode,
@@ -390,9 +392,9 @@ let treat = (rules, rule) => rawNode => {
 		},
 		treatOther = rawNode => {
 			console.log() // eslint-disable-line no-console
-			throw 'Cette donnée : ' +
-				rawNode +
-				' doit être un Number, String ou Object'
+			throw new Error(
+				'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
+			)
 		},
 		treatObject = rawNode => {
 			let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
@@ -404,7 +406,7 @@ let treat = (rules, rule) => rawNode => {
 					mecanisms,
 					rawNode
 				)
-				throw 'OUPS !'
+				throw new Error('OUPS !')
 			}
 
 			let k = head(mecanisms),
@@ -425,7 +427,8 @@ let treat = (rules, rule) => rawNode => {
 						'une possibilité': 'oui',
 						collectMissing: () => [rule.dottedName]
 					}),
-					inversion: mecanismInversion(rule.dottedName)
+					inversion: mecanismInversion(rule.dottedName),
+					allègement: mecanismReduction
 				},
 				action = propOr(mecanismError, k, dispatch)
 
@@ -621,12 +624,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = {}
 
-	let parsedTargets = targetNames.map(
-			t =>
-				t.includes(' . ')
-					? findRuleByDottedName(parsedRules, t)
-					: findRuleByName(parsedRules, t)
-		),
+	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)

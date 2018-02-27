@@ -173,4 +173,46 @@ describe('results grid', function() {
 			subCell(maladie, 'contrat salarié . ATMP', 'employeur')
 		).to.be.closeTo(54, 1)
 	})
+
+	it('should access taxe sur les salaires', function() {
+		let fakeState = {}
+		let stateSelector = state => name => fakeState[name]
+
+		let rules = realRules.map(enrichRule),
+			reducer = reduceSteps(tracker, rules, stateSelector)
+
+		var step1 = reducer(
+			{ foldedSteps: [] },
+			{
+				type: 'START_CONVERSATION',
+				targetNames: ['salaire net', 'salaire total']
+			}
+		)
+		fakeState['contrat salarié . salaire de base'] = 2300
+		var step2 = reducer(step1, {
+			type: 'STEP_ACTION',
+			name: 'fold',
+			step: 'contrat salarié . salaire de base'
+		})
+		fakeState['entreprise . association non lucrative'] = 'oui'
+		var step3 = reducer(step2, {
+			type: 'STEP_ACTION',
+			name: 'fold',
+			step: 'entreprise . association non lucrative'
+		})
+		fakeState['entreprise . effectif'] = 10
+		var step4 = reducer(step3, {
+			type: 'STEP_ACTION',
+			name: 'fold',
+			step: 'entreprise . effectif'
+		})
+
+		let analysis = step4.analysis,
+			result = byBranch(analysis),
+			autre = byName(result['autre'])
+
+		expect(
+			subCell(autre, 'contrat salarié . taxe sur les salaires', 'employeur')
+		).to.be.closeTo(51, 1)
+	})
 })

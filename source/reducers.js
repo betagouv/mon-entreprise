@@ -1,4 +1,13 @@
-import { head, isEmpty, pathOr, reject, contains, without, concat, length } from 'ramda'
+import {
+	head,
+	isEmpty,
+	pathOr,
+	reject,
+	contains,
+	without,
+	concat,
+	length
+} from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
@@ -116,7 +125,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push([
 			'trackEvent',
-			'answer:'+action.source,
+			'answer:' + action.source,
 			action.step + ': ' + situationWithDefaults(state)(action.step)
 		])
 
@@ -124,7 +133,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			tracker.push([
 				'trackEvent',
 				'done',
-				'after'+length(newState.foldedSteps)+'questions'
+				'after' + length(newState.foldedSteps) + 'questions'
 			])
 		}
 
@@ -166,6 +175,15 @@ function explainedVariable(state = null, { type, variableName = null }) {
 	}
 }
 
+function currentExample(state = null, { type, situation, name }) {
+	switch (type) {
+		case 'SET_EXAMPLE':
+			return name != null ? { name, situation } : null
+		default:
+			return state
+	}
+}
+
 export default reduceReducers(
 	combineReducers({
 		sessionId: (id = Math.floor(Math.random() * 1000000000000) + '') => id,
@@ -191,7 +209,9 @@ export default reduceReducers(
 
 		themeColours,
 
-		explainedVariable
+		explainedVariable,
+
+		currentExample
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
 	reduceSteps(ReactPiwik, rules, formatInputs(rules, formValueSelector))

@@ -6,6 +6,10 @@ export function stepAction(name, step, source) {
 	return { type: STEP_ACTION, name, step, source }
 }
 
+export function setExample(name, situation) {
+	return { type: 'SET_EXAMPLE', situation, name }
+}
+
 export const START_CONVERSATION = 'START_CONVERSATION'
 
 // Reset the form

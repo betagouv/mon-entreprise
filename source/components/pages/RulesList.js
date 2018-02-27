@@ -30,12 +30,16 @@ export class SearchBar extends React.Component {
 		var options = {
 			keys: [
 				{
+					name: 'name',
+					weight: 0.3
+				},
+				{
 					name: 'title',
-					weight: 0.5
+					weight: 0.3
 				},
 				{
 					name: 'espace',
-					weight: 0.3
+					weight: 0.2
 				},
 				{
 					name: 'description',
@@ -55,11 +59,19 @@ export class SearchBar extends React.Component {
 	handleChange = selectedOption => {
 		this.setState({ selectedOption })
 	}
-	renderOption = option => (
-		<Highlighter
-			searchWords={[this.state.inputValue]}
-			textToHighlight={option.title}
-		/>
+	renderOption = ({ title, dottedName }) => (
+		<span>
+			<Highlighter
+				searchWords={[this.state.inputValue]}
+				textToHighlight={title}
+			/>
+			<span style={{ opacity: 0.6, fontSize: '75%', marginLeft: '.6em' }}>
+				<Highlighter
+					searchWords={[this.state.inputValue]}
+					textToHighlight={dottedName}
+				/>
+			</span>
+		</span>
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {

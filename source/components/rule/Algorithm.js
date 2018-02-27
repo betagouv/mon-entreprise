@@ -6,6 +6,9 @@ import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import { makeJsx } from 'Engine/evaluation'
 import './Algorithm.css'
 import { humanFigure } from '../../utils'
+import { head } from 'ramda'
+import { analyse } from 'Engine/traverse'
+import { exampleSituationGateWithDefaults } from './Examples'
 
 let RuleWithoutFormula = () => (
 	<p>
@@ -16,14 +19,21 @@ let RuleWithoutFormula = () => (
 
 @AttachDictionary(knownMecanisms)
 export default class Algorithm extends React.Component {
-	state = {
-		showValues: true
-	}
 	render() {
-		let { rule, showValues } = this.props,
+		let { rule: displayedRule, showValues, currentExample, rules } = this.props,
 			ruleWithoutFormula =
-				!rule['formule'] ||
-				path(['formule', 'explanation', 'une possibilité'], rule)
+				!displayedRule['formule'] ||
+				path(['formule', 'explanation', 'une possibilité'], displayedRule)
+
+		let rule = currentExample
+			? head(
+					analyse(rules, displayedRule.dottedName)(
+						exampleSituationGateWithDefaults(currentExample.situation, rules)
+					).targets
+				)
+			: displayedRule
+
+		console.log('didcomp')
 
 		return (
 			<div id="algorithm">

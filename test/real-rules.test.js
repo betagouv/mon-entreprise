@@ -13,7 +13,6 @@ import R from 'ramda'
 import { runExamples, isFloat } from '../source/components/rule/Examples'
 
 let parsedRules = parseAll(rules)
-
 describe('Tests des règles de notre base de règles', () =>
 	parsedRules.map(rule => {
 		if (!rule.exemples) return null

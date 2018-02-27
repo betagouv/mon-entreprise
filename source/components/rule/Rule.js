@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { isEmpty, path } from 'ramda'
+import { isEmpty, path, last } from 'ramda'
 import { connect } from 'react-redux'
 import './Rule.css'
 import { capitalise0 } from '../../utils'
@@ -17,21 +17,16 @@ import SearchButton from 'Components/SearchButton'
 
 @connect(state => ({
 	form: state.form,
-	rules: state.parsedRules
+	rules: state.parsedRules,
+	currentExample: state.currentExample
 }))
 export default class Rule extends Component {
-	state = {
-		example: null,
-		showValues: true
-	}
 	render() {
-		let { form, rule } = this.props,
-			conversationStarted = !isEmpty(form),
-			situationExists = conversationStarted || this.state.example != null
+		let { form, rule, currentExample, rules } = this.props,
+			conversationStarted = !isEmpty(form)
 
 		let { type, name, title, description, question, ns } = rule,
-			situationOrExampleRule = path(['example', 'rule'])(this.state) || rule,
-			namespaceRules = findRuleByNamespace(this.props.rules, rule.dottedName)
+			namespaceRules = findRuleByNamespace(rules, rule.dottedName)
 
 		return (
 			<div id="rule">
@@ -53,22 +48,24 @@ export default class Rule extends Component {
 
 				<section id="rule-content">
 					<Algorithm
-						rule={situationOrExampleRule}
-						showValues={situationExists}
+						rules={rules}
+						currentExample={currentExample}
+						rule={rule}
+						showValues={conversationStarted || currentExample}
 					/>
+					{rule.note && (
+						<section id="notes">
+							<h3>Note: </h3>
+							{createMarkdownDiv(rule.note)}
+						</section>
+					)}
 					<Examples
+						currentExample={currentExample}
 						situationExists={conversationStarted}
 						rule={rule}
-						focusedExample={this.state.example}
-						showValues={this.state.showValues}
-						inject={example =>
-							this.state.example != null
-								? this.setState({ example: null })
-								: this.setState({ example, showValues: true })
-						}
 					/>
 					{!isEmpty(namespaceRules) && (
-						<NamespaceRules {...{ rule, namespaceRules }} />
+						<NamespaceRulesList {...{ rule, namespaceRules }} />
 					)}
 					{this.renderReferences(rule)}
 				</section>
@@ -86,7 +83,7 @@ export default class Rule extends Component {
 		) : null
 }
 
-let NamespaceRules = withColours(({ namespaceRules, rule, colours }) => (
+let NamespaceRulesList = withColours(({ namespaceRules, rule, colours }) => (
 	<section>
 		<h2>
 			Règles attachées<small>
@@ -101,7 +98,7 @@ let NamespaceRules = withColours(({ namespaceRules, rule, colours }) => (
 							color: colours.textColourOnWhite,
 							textDecoration: 'underline'
 						}}
-						to={'/règle/' + encodeRuleName(r.name)}
+						to={'/règle/' + encodeRuleName(r.dottedName)}
 					>
 						{r.name}
 					</Link>
@@ -133,24 +130,33 @@ let RuleMeta = ({ ns, type, description, question, rule, name }) => (
 
 export let Namespace = withColours(({ ns, colours }) => (
 	<ul id="namespace">
-		{ns.split(' . ').map(fragment => (
-			<li key={fragment}>
-				<Link
-					style={{
-						color: colours.textColourOnWhite,
-						textDecoration: 'underline'
-					}}
-					to={'/règle/' + encodeRuleName(fragment)}
-				>
-					{capitalise0(fragment)}
-				</Link>
-				<i
-					style={{ margin: '0 .6em', fontSize: '85%' }}
-					className="fa fa-chevron-right"
-					aria-hidden="true"
-				/>
-			</li>
-		))}
+		{ns
+			.split(' . ')
+			.reduce(
+				(memo, next) => [
+					...memo,
+					[...(memo.length ? memo.reverse()[0] : []), next]
+				],
+				[]
+			)
+			.map(fragments => (
+				<li key={fragments.join()}>
+					<Link
+						style={{
+							color: colours.textColourOnWhite,
+							textDecoration: 'underline'
+						}}
+						to={'/règle/' + encodeRuleName(fragments.join(' . '))}
+					>
+						{capitalise0(last(fragments))}
+					</Link>
+					<i
+						style={{ margin: '0 .6em', fontSize: '85%' }}
+						className="fa fa-chevron-right"
+						aria-hidden="true"
+					/>
+				</li>
+			))}
 	</ul>
 ))
 

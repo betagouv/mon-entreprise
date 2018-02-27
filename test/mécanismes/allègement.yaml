@@ -1,0 +1,97 @@
+- nom: montant 
+  format: €
+
+- test: montant franchisé
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      franchise: 1200
+
+  exemples: 
+    - situation: 
+        montant: 1000
+      valeur attendue: 0
+    - situation: 
+      valeur attendue: null
+      variables manquantes:
+        - montant
+
+
+- test: montant décoté
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      décote: 
+        plafond: 2040
+        taux: 100%
+  exemples: 
+    - situation: 
+        montant: 1000
+      valeur attendue: 0
+
+- test: montant franchisé et décoté
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      franchise: 1200
+      décote: 
+        plafond: 2040
+        taux: 75%
+  exemples: 
+    - situation: 
+        montant: 100
+      valeur attendue: 0
+    - situation: 
+        montant: 1200
+      valeur attendue: 570
+    - situation: 
+        montant: 1620
+      valeur attendue: 1305
+    - situation: 
+        montant: 2040
+      valeur attendue: 2040
+
+
+- test: montant abattu
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      abattement: 20507
+  exemples: 
+    - situation: 
+        montant: 10000
+      valeur attendue: 0
+    - situation: 
+        montant: 80000
+      valeur attendue: 59493
+
+
+- test: montant franchisé, décote, abattu
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      franchise: 1200
+      décote: 
+        plafond: 2040
+        taux: 75%
+      abattement: 20507    
+  exemples: 
+    - situation: 
+        montant: 100
+      valeur attendue: 0
+    - situation: 
+        montant: 1620
+      valeur attendue: 0
+    - situation: 
+        montant: 3000
+      valeur attendue: 0
+    - situation: 
+        montant: 21000
+      valeur attendue: 493
+
+

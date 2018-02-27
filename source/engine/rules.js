@@ -81,13 +81,12 @@ export let decodeRuleName = name =>
 
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
 */
-
 export let disambiguateRuleReference = (
 	allRules,
 	{ ns, name },
 	partialName
 ) => {
-	let fragments = ns ? ns.split(' . ') : [], // ex. [CDD . événements . rupture]
+	let fragments = ns ? [...ns.split(' . '), name] : [], // ex. [CDD . événements . rupture]
 		pathPossibilities = range(0, fragments.length + 1) // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 			.map(nbEl => take(nbEl)(fragments))
 			.reverse(),
@@ -103,7 +102,7 @@ export let disambiguateRuleReference = (
 	return (
 		(found && found.dottedName) ||
 		do {
-			throw `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`
+			throw new `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`()
 		}
 	)
 }
@@ -143,6 +142,11 @@ export let searchRules = searchInput =>
 export let findRuleByDottedName = (allRules, dottedName) => {
 	return allRules.find(rule => rule.dottedName == dottedName)
 }
+
+export let findRule = (rules, nameOrDottedName) =>
+	nameOrDottedName.includes(' . ')
+		? findRuleByDottedName(rules, nameOrDottedName)
+		: findRuleByName(rules, nameOrDottedName)
 
 export let findRuleByNamespace = (allRules, ns) =>
 	allRules.filter(propEq('ns', ns))
