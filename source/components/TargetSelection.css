@@ -41,7 +41,7 @@
 	font-weight: 400;
 }
 
-#targetSelection input {
+#targetSelection input[type='checkbox'] {
 	position: absolute;
 	z-index: -1;
 	opacity: 0;

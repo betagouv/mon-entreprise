@@ -3,10 +3,9 @@ import './Pages.css'
 import './Home.css'
 import TargetSelection from '../TargetSelection'
 import { connect } from 'react-redux'
+import withColours from '../withColours'
 
-@connect(state => ({
-	themeColours: state.themeColours
-}))
+@withColours
 export default class Home extends Component {
 	state = {
 		updateMessage: false
@@ -25,7 +24,7 @@ export default class Home extends Component {
 							aria-hidden="true"
 							style={{
 								...opacityStyle,
-								color: this.props.themeColours.textColourOnWhite
+								color: this.props.colours.textColourOnWhite
 							}}
 						/>
 						<p style={opacityStyle}>
@@ -35,7 +34,7 @@ export default class Home extends Component {
 					</div>
 				)}
 				<div id="content">
-					<TargetSelection themeColours={this.props.themeColours} />
+					<TargetSelection colours={this.props.colours} />
 				</div>
 			</div>
 		)
