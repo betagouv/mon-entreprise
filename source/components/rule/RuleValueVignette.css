@@ -1,14 +1,9 @@
-
-
-.RuleValueVignette li a {
-	text-decoration: none;
-}
 .RuleValueVignette .rule-box {
 	display: flex;
 	justify-content: space-between;
 }
-.RuleValueVignette .rule-box:hover {
-	background: rgba(255, 255, 255, 0.16)
+.rule-box:hover {
+	background: rgba(255, 255, 255, 0.16);
 }
 
 .RuleValueVignette .rule-box > span {
@@ -18,29 +13,27 @@
 	font-weight: 600;
 	font-size: 105%;
 }
-.RuleValueVignette .rule-value {
-	transition: background .8s;
+.Rule-value {
+	transition: background 0.8s;
 	font-size: 105%;
 }
-.RuleValueVignette .rule-value .unsatisfied {
+.Rule-value .unsatisfied {
 	font-style: italic;
 	font-size: 85%;
 }
-.RuleValueVignette .rule-value .irrelevant {
+.Rule-value .irrelevant {
 	font-style: normal;
 }
-.RuleValueVignette .rule-value .figure {
+.Rule-value .figure {
 	font-weight: bold;
 }
 
-
-
 /* Animation of summary figures changes : flash ! */
 .flash-enter {
-		background: rgba(255, 255, 255, 1);
+	background: rgba(255, 255, 255, 1);
 }
 
 .flash-leave {
-		/* Completely hide the button while it's being animated and before it's removed from the DOM. */
-		display: none;
+	/* Completely hide the button while it's being animated and before it's removed from the DOM. */
+	display: none;
 }
