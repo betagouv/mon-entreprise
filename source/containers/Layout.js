@@ -1,4 +1,4 @@
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next'
 import i18next from 'i18next'
 
 import React, { Component } from 'react'
@@ -12,6 +12,7 @@ import RulePage from 'Components/RulePage'
 import Route404 from 'Components/Route404'
 import Contact from 'Components/Contact'
 import Simulateur from 'Components/Simulateur'
+import Simu from 'Components/Simu'
 import RulesList from 'Components/pages/RulesList'
 import Mecanisms from 'Components/Mecanisms'
 import Contribution from 'Components/pages/Contribution'
@@ -42,7 +43,7 @@ export default class Layout extends Component {
 		// track the initial pageview
 		ReactPiwik.push(['trackPageView'])
 		return (
-			<I18nextProvider i18n={ i18next }>
+			<I18nextProvider i18n={i18next}>
 				<Router history={piwik.connectToHistory(this.history)}>
 					<>
 						<Header />
@@ -62,6 +63,7 @@ export default class Layout extends Component {
 							<Redirect from="/simu/surcoût-CDD/intro" to="/" />
 							<Redirect from="/simu/surcoût-CDD" to="/" />
 							<Route path="/simu/:targets" component={Simulateur} />
+							<Route path="/simu2" component={Simu} />
 							<Route path="/à-propos" component={About} />
 							<Route path="/intégrer" component={Integration} />
 							<Route path="/contribuer" component={Contribution} />

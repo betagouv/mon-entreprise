@@ -3,12 +3,10 @@ import { Trans, translate } from 'react-i18next'
 import './Pages.css'
 import './Home.css'
 import TargetSelection from '../TargetSelection'
-import { connect } from 'react-redux'
+import withColours from '../withColours'
 
-@connect(state => ({
-	themeColours: state.themeColours
-}))
 @translate()
+@withColours
 export default class Home extends Component {
 	state = {}
 	componentDidMount() {
@@ -24,7 +22,7 @@ export default class Home extends Component {
 						aria-hidden="true"
 						style={{
 							...opacityStyle,
-							color: this.props.themeColours.textColourOnWhite
+							color: this.props.colours.textColourOnWhite
 						}}
 					/>
 					<p style={opacityStyle}>
@@ -34,7 +32,7 @@ export default class Home extends Component {
 					</p>
 				</div>
 				<div id="content">
-					<TargetSelection themeColours={this.props.themeColours} />
+					<TargetSelection colours={this.props.colours} />
 				</div>
 			</div>
 		)

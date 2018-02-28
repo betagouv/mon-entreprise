@@ -1,54 +1,85 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import { findRuleByName } from 'Engine/rules'
-import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
 import { connect } from 'react-redux'
+import { rules, findRuleByName } from 'Engine/rules'
+import {
+	reject,
+	propEq,
+	curry,
+	pipe,
+	equals,
+	filter,
+	contains,
+	length
+} from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
+import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { connect } from 'react-redux'
+import { RuleValue } from './rule/RuleValueVignette'
 
-export let salaries = ['salaire net', 'salaire brut', 'salaire total']
+export let salaries = ['salaire net', 'salaire de base', 'salaire total']
+let popularTargetNames = [...salaries, 'aides employeur']
 
-@connect(state => ({
-	flatRules: state.flatRules
-}))
 @translate()
+@reduxForm({
+	form: 'conversation'
+})
+@connect(
+	state => ({
+		getTargetValue: dottedName =>
+			formValueSelector('conversation')(state, dottedName),
+		targets: state.analysis ? state.analysis.targets : [],
+		flatRules: state.flatRules
+	}),
+	dispatch => ({
+		startConversation: (targetNames, fromScratch = false) =>
+			dispatch({ type: 'START_CONVERSATION', targetNames, fromScratch })
+	})
+)
 export default class TargetSelection extends Component {
 	state = {
-		targets: []
+		targets: [],
+		activeInput: null
+	}
+
+	componentWillMount() {
+		this.props.startConversation(popularTargetNames)
 	}
 	render() {
 		let { targets } = this.state,
 			ready = targets.length > 0
 
+		console.log('yayayay', this.props.targets)
+
+		if (this.props.targets.length == 0) return null
+
 		return (
 			<section id="targetSelection">
-				<h1>
-					<Trans i18nKey="targetSelection">Que voulez-vous estimer ?</Trans>
-				</h1>
+				<h1>Entrez un salaire mensuel</h1>
 				{this.renderOutputList()}
-				<div id="action">
-					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
-						<Trans i18nKey="selectMany">
+
+				{false && (
+					<div id="action">
+						<p style={{ color: this.props.colours.textColourOnWhite }}>
 							Vous pouvez faire plusieurs choix
-						</Trans>
-					</p>
-					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready}>
-							<Trans>Valider</Trans>
-						</BlueButton>
-					</Link>
-				</div>
+						</p>
+						<Link to={'/simu/' + targets.join('+')}>
+							<BlueButton disabled={!ready}>Valider</BlueButton>
+						</Link>
+					</div>
+				)}
 			</section>
 		)
 	}
 
 	renderOutputList() {
-		let popularTargets = [...salaries, 'aides employeur'].map(
+		let popularTargets = popularTargetNames.map(
 				curry(findRuleByName)(flatRules)
 			),
 			{ targets } = this.state,
-			textColourOnWhite = this.props.themeColours.textColourOnWhite,
+			textColourOnWhite = this.props.colours.textColourOnWhite,
 			// You can't select 3 salaries, as one must be an input in the next step
 			optionDisabled = name =>
 				contains('salaire', name) &&
@@ -111,6 +142,27 @@ export default class TargetSelection extends Component {
 									</p>
 								</div>
 							</label>
+							{s.name.includes('salaire') &&
+							this.state.activeInput === s.dottedName ? (
+								<Field
+									name={s.dottedName}
+									component="input"
+									type="text"
+									placeholder="mon salaire"
+								/>
+							) : (
+								<span
+									style={{ width: '6em' }}
+									onClick={() => this.setState({ activeInput: s.dottedName })}>
+									{do {
+										let rule = this.props.targets.find(
+												propEq('dottedName', s.dottedName)
+											),
+											value = rule && rule.nodeValue
+										;<RuleValue value={value} />
+									}}
+								</span>
+							)}
 						</div>
 					))}
 				</div>

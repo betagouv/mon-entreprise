@@ -8,56 +8,33 @@ import { humanFigure } from '../../utils'
 import './RuleValueVignette.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-export default ({
-	name,
-	type,
-	conversationStarted,
-	flatRule,
-	nodeValue: ruleValue
-}) =>
-	do {
-		let unsatisfied = ruleValue == null,
-			irrelevant = ruleValue == 0,
-			number = typeof ruleValue == 'number' && ruleValue > 0
-		;<span
-			key={name}
-			className={classNames('RuleValueVignette', {
-				unsatisfied,
-				irrelevant,
-				number
-			})}
-		>
-			<Link to={'/règle/' + encodeRuleName(name)}>
-				<div className="rule-box">
-					<span className="rule-name">{flatRule.title}</span>
-					<RuleValue
-						{...{ unsatisfied, irrelevant, conversationStarted, ruleValue }}
-					/>
-				</div>
-			</Link>
-		</span>
-	}
+export default ({ name, type, title, nodeValue: ruleValue }) => (
+	<span key={name} className="RuleValueVignette">
+		<Link to={'/règle/' + encodeRuleName(name)}>
+			<div className="rule-box">
+				<span className="rule-name">{title}</span>
+				<RuleValue ruleValue={ruleValue} />
+			</div>
+		</Link>
+	</span>
+)
 
-let RuleValue = ({ unsatisfied, irrelevant, conversationStarted, ruleValue }) =>
+export let RuleValue = ({ value }) =>
 	do {
+		let unsatisfied = value == null,
+			irrelevant = value == 0
 		let [className, text] = irrelevant
 			? ['irrelevant', "Vous n'êtes pas concerné"]
 			: unsatisfied
 				? ['unsatisfied', 'En attente de vos réponses...']
-				: ['figure', humanFigure(0)(ruleValue) + ' €']
-
-		{
-			/*<p><i className="fa fa-lightbulb-o" aria-hidden="true"></i><em>Pourquoi ?</em></p> */
-		}
-
+				: ['figure', humanFigure(0)(value) + ' €']
 		;<ReactCSSTransitionGroup
 			transitionName="flash"
 			transitionEnterTimeout={100}
-			transitionLeaveTimeout={100}
-		>
-			<span key={text} className="rule-value">
+			transitionLeaveTimeout={100}>
+			<span key={text} className="Rule-value">
 				{' '}
-				{conversationStarted && <span className={className}><Trans i18nKey={className}>{text}</Trans></span>}
+				<span className={className}>{text}</span>
 			</span>
 		</ReactCSSTransitionGroup>
 	}
