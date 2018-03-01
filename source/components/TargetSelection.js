@@ -13,8 +13,7 @@ import {
 	length,
 	without,
 	append,
-	ifElse,
-	__
+	ifElse
 } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
@@ -63,9 +62,11 @@ export default class TargetSelection extends Component {
 				{this.state.activeInput && (
 					<div id="action">
 						{this.state.affinage ? (
-							<p style={{ color: this.props.colours.textColourOnWhite }}>
-								Sélectionnez un ou plusieurs objectifs
-							</p>
+							!this.props.conversationVisible && (
+								<p style={{ color: this.props.colours.textColourOnWhite }}>
+									Cochez un ou plusieurs objectifs
+								</p>
+							)
 						) : (
 							<BlueButton
 								onClick={() =>
@@ -106,6 +107,9 @@ export default class TargetSelection extends Component {
 										id={s.name}
 										type="checkbox"
 										checked={optionIsChecked(s)}
+										onClick={() =>
+											console.log('iazdo') || this.props.showConversation()
+										}
 										onChange={() =>
 											startConversation(
 												toggleTarget(s.name)(

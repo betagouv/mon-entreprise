@@ -7,6 +7,7 @@ import { scroller, Element } from 'react-scroll'
 import { getInputComponent } from 'Engine/generateQuestions'
 import Satisfaction from '../Satisfaction'
 
+import { connect } from 'react-redux'
 let scroll = () =>
 	scroller.scrollTo('myScrollToElement', {
 		duration: 500,
@@ -19,6 +20,17 @@ let scroll = () =>
 	destroyOnUnmount: false
 })
 @translate()
+@connect(state => ({
+	currentQuestion: state.currentQuestion,
+	foldedSteps: state.foldedSteps,
+	themeColours: state.themeColours,
+	situationGate: state.situationGate,
+	targetNames: state.targetNames,
+	done: state.done,
+	nextSteps: state.nextSteps,
+	analysis: state.analysis,
+	parsedRules: state.parsedRules
+}))
 export default class Conversation extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
@@ -35,7 +47,7 @@ export default class Conversation extends Component {
 			reinitalise,
 			textColourOnWhite
 		} = this.props
-
+		console.log(this.props)
 		return (
 			<>
 				{!isEmpty(foldedSteps) && (

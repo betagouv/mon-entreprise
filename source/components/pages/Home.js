@@ -4,6 +4,7 @@ import './Pages.css'
 import './Home.css'
 import TargetSelection from '../TargetSelection'
 import withColours from '../withColours'
+import Simu from '../Simu'
 
 @translate()
 @withColours
@@ -32,7 +33,7 @@ export default class Home extends Component {
 					</p>
 				</div>
 				<div id="content">
-					<TargetSelection colours={this.props.colours} />
+					<Simu />
 				</div>
 			</div>
 		)
