@@ -68,6 +68,8 @@
 
 #targetSelection #action p {
 	font-size: 80%;
+	border-bottom: #4b4b66 solid 2px;
+	color: #4b4b66;
 }
 
 #targetSelection input[type='text'] {

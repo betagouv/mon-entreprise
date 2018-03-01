@@ -10,7 +10,11 @@ import {
 	equals,
 	filter,
 	contains,
-	length
+	length,
+	without,
+	append,
+	ifElse,
+	__
 } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
@@ -32,6 +36,7 @@ let popularTargetNames = [...salaries, 'aides employeur']
 			formValueSelector('conversation')(state, dottedName),
 		targets: state.analysis ? state.analysis.targets : [],
 		flatRules: state.flatRules
+		targetNames: state.targetNames
 	}),
 	dispatch => ({
 		startConversation: (targetNames, fromScratch = false) =>
@@ -40,19 +45,14 @@ let popularTargetNames = [...salaries, 'aides employeur']
 )
 export default class TargetSelection extends Component {
 	state = {
-		targets: [],
-		activeInput: null
+		activeInput: null,
+		affinage: false
 	}
 
 	componentWillMount() {
 		this.props.startConversation(popularTargetNames)
 	}
 	render() {
-		let { targets } = this.state,
-			ready = targets.length > 0
-
-		console.log('yayayay', this.props.targets)
-
 		if (this.props.targets.length == 0) return null
 
 		return (
@@ -60,14 +60,21 @@ export default class TargetSelection extends Component {
 				<h1>Entrez un salaire mensuel</h1>
 				{this.renderOutputList()}
 
-				{false && (
+				{this.state.activeInput && (
 					<div id="action">
-						<p style={{ color: this.props.colours.textColourOnWhite }}>
-							Vous pouvez faire plusieurs choix
-						</p>
-						<Link to={'/simu/' + targets.join('+')}>
-							<BlueButton disabled={!ready}>Valider</BlueButton>
-						</Link>
+						{this.state.affinage ? (
+							<p style={{ color: this.props.colours.textColourOnWhite }}>
+								Sélectionnez un ou plusieurs objectifs
+							</p>
+						) : (
+							<BlueButton
+								onClick={() =>
+									console.log('iozn') || this.setState({ affinage: true })
+								}
+							>
+								Affiner
+							</BlueButton>
+						)}
 					</div>
 				)}
 			</section>
@@ -75,21 +82,18 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let popularTargets = popularTargetNames.map(
-				curry(findRuleByName)(flatRules)
-			),
-			{ targets } = this.state,
-			textColourOnWhite = this.props.colours.textColourOnWhite,
-			// You can't select 3 salaries, as one must be an input in the next step
-			optionDisabled = name =>
-				contains('salaire', name) &&
-				pipe(
-					reject(equals(name)),
-					filter(contains('salaire')),
-					length,
-					equals(2)
-				)(targets),
-			optionIsChecked = s => targets.includes(s.name)
+		let popularTargets = popularTargetNames.map(curry(findRuleByName)(flatRules)),
+			{
+				targets,
+				targetNames,
+				textColourOnWhite,
+				startConversation
+			} = this.props,
+			optionIsChecked = s => targetNames.includes(s.name),
+			visibleCheckbox = s =>
+				this.state.affinage && s.dottedName !== this.state.activeInput,
+			toggleTarget = target =>
+				ifElse(contains(target), without(target), append(target))
 
 		return (
 			<div>
@@ -97,19 +101,22 @@ export default class TargetSelection extends Component {
 					{popularTargets.map(s => (
 						<div key={s.name}>
 							<div className="main">
-								<input
-									id={s.name}
-									type="checkbox"
-									disabled={optionDisabled(s.name)}
-									checked={optionIsChecked(s)}
-									onChange={() =>
-										this.setState({
-											targets: targets.find(t => t === s.name)
-												? reject(t => t === s.name, targets)
-												: [...targets, s.name]
-										})
-									}
-								/>
+								{visibleCheckbox(s) && (
+									<input
+										id={s.name}
+										type="checkbox"
+										checked={optionIsChecked(s)}
+										onChange={() =>
+											startConversation(
+												toggleTarget(s.name)(
+													targetNames.filter(
+														t => !this.state.activeInput.includes(t)
+													)
+												)
+											)
+										}
+									/>
+								)}
 								<label
 									htmlFor={s.name}
 									key={s.name}
@@ -119,18 +126,21 @@ export default class TargetSelection extends Component {
 													color: textColourOnWhite
 											  }
 											: {}
-									}>
-									{optionIsChecked(s) ? (
-										<i
-											className="fa fa-check-square-o fa-2x"
-											style={{ color: textColourOnWhite }}
-										/>
-									) : (
-										<i
-											className="fa fa-square-o fa-2x"
-											style={{ color: '#4b4b66' }}
-										/>
-									)}
+									}
+								>
+									{visibleCheckbox(s) ? (
+										optionIsChecked(s) ? (
+											<i
+												className="fa fa-check-square-o fa-2x"
+												style={{ color: textColourOnWhite }}
+											/>
+										) : (
+											<i
+												className="fa fa-square-o fa-2x"
+												style={{ color: '#4b4b66' }}
+											/>
+										)
+									) : null}
 									<span className="optionTitle">{s.title || s.name}</span>
 								</label>
 								<span className="targetInputOrValue">
