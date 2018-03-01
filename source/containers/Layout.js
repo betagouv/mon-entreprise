@@ -8,8 +8,6 @@ import Home from 'Components/pages/Home'
 import RulePage from 'Components/RulePage'
 import Route404 from 'Components/Route404'
 import Contact from 'Components/Contact'
-import Simulateur from 'Components/Simulateur'
-import Simu from 'Components/Simu'
 import RulesList from 'Components/pages/RulesList'
 import Mecanisms from 'Components/Mecanisms'
 import Contribution from 'Components/pages/Contribution'
@@ -56,14 +54,9 @@ export default class Layout extends Component {
 						/>
 						<Route path="/règles" component={RulesList} />
 						<Route path="/mecanismes" component={Mecanisms} />
-						<Redirect from="/simu/surcoût-CDD/intro" to="/" />
-						<Redirect from="/simu/surcoût-CDD" to="/" />
-						<Route path="/simu/:targets" component={Simulateur} />
-						<Route path="/simu2" component={Simu} />
 						<Route path="/à-propos" component={About} />
 						<Route path="/intégrer" component={Integration} />
 						<Route path="/contribuer" component={Contribution} />
-						<Redirect from="/simu/" to="/" />
 						<Redirect from="/simulateur" to="/" />
 						<Redirect from="/couleur.html" to="/" />
 						<Route component={Route404} />
