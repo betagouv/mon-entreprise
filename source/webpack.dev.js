@@ -5,6 +5,7 @@ var webpack = require('webpack'),
 
 module.exports = {
 	...common,
+	mode: 'development',
 	entry: {
 		bundle: [
 			'webpack-dev-server/client?http://0.0.0.0:3000/',
