@@ -14,7 +14,7 @@ module.exports = {
 		publicPath: '/dist/'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.css$/,
 				use: [
