@@ -19,26 +19,31 @@
 	width: 30em;
 	margin: 0 auto;
 }
+#targetSelection #targets > div {
+	margin-bottom: 2em;
+}
+
+#targetSelection .main {
+	display: flex;
+	justify-content: space-between;
+	align-items: middle;
+}
 #targetSelection label {
 	display: block;
-	margin-bottom: 1.2em;
-	display: flex;
-	align-items: center;
 	cursor: pointer;
 }
 #targetSelection label i {
-	font-size: 180%;
-}
-#targetSelection div {
-	margin-left: 1em;
+	font-size: 170%;
 }
 
 #targetSelection .optionTitle {
-	font-size: 130%;
+	font-size: 120%;
+	margin-left: 1em;
 }
-#targetSelection label p {
+#targetSelection p {
 	margin: 0;
 	font-weight: 400;
+	font-size: 90%;
 }
 
 #targetSelection input[type='checkbox'] {
@@ -65,4 +70,23 @@
 	font-size: 80%;
 }
 
-/* TODO styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */
+#targetSelection input[type='text'] {
+	border: 1px solid #3c4963;
+}
+
+#targetSelection .targetValue {
+	display: inline-block;
+	border: 1px solid #ccc;
+}
+
+#targetSelection .targetValue,
+#targetSelection input[type='text'] {
+	width: 6em;
+	display: inline-block;
+	height: 1.4em;
+	padding: 0;
+	font-size: 100%;
+	padding: 0em 0.3em;
+}
+
+/* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

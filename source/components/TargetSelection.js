@@ -90,76 +90,82 @@ export default class TargetSelection extends Component {
 				<div id="targets">
 					{popularTargets.map(s => (
 						<div key={s.name}>
-							<input
-								id={s.name}
-								type="checkbox"
-								disabled={optionDisabled(s.name)}
-								checked={optionIsChecked(s)}
-								onChange={() =>
-									this.setState({
-										targets: targets.find(t => t === s.name)
-											? reject(t => t === s.name, targets)
-											: [...targets, s.name]
-									})
-								}
-							/>
-							<label
-								htmlFor={s.name}
-								key={s.name}
+							<div className="main">
+								<input
+									id={s.name}
+									type="checkbox"
+									disabled={optionDisabled(s.name)}
+									checked={optionIsChecked(s)}
+									onChange={() =>
+										this.setState({
+											targets: targets.find(t => t === s.name)
+												? reject(t => t === s.name, targets)
+												: [...targets, s.name]
+										})
+									}
+								/>
+								<label
+									htmlFor={s.name}
+									key={s.name}
+									style={
+										optionIsChecked(s)
+											? {
+													color: textColourOnWhite
+												}
+											: {}
+									}
+								>
+									{optionIsChecked(s) ? (
+										<i
+											className="fa fa-check-square-o fa-2x"
+											style={{ color: textColourOnWhite }}
+										/>
+									) : (
+										<i
+											className="fa fa-square-o fa-2x"
+											style={{ color: '#4b4b66' }}
+										/>
+									)}
+									<span className="optionTitle">{s.title || s.name}</span>
+								</label>
+								<span className="targetInputOrValue">
+									{s.name.includes('salaire') &&
+									this.state.activeInput === s.dottedName ? (
+										<Field
+											name={s.dottedName}
+											component="input"
+											type="text"
+											placeholder="mon salaire"
+											autoFocus
+										/>
+									) : (
+										<span
+											className="targetValue"
+											style={{ width: '6em' }}
+											onClick={() =>
+												this.setState({ activeInput: s.dottedName })
+											}
+										>
+											{do {
+												let rule = this.props.targets.find(
+														propEq('dottedName', s.dottedName)
+													),
+													value = rule && rule.nodeValue
+												;<RuleValue value={value} />
+											}}
+										</span>
+									)}
+								</span>
+							</div>
+							<p
 								style={
 									optionIsChecked(s)
-										? {
-												color: textColourOnWhite
-											}
-										: {}
+										? { color: textColourOnWhite }
+										: { color: '#4b4b66' }
 								}
 							>
-								{optionIsChecked(s) ? (
-									<i
-										className="fa fa-check-square-o fa-2x"
-										style={{ color: textColourOnWhite }}
-									/>
-								) : (
-									<i
-										className="fa fa-square-o fa-2x"
-										style={{ color: '#4b4b66' }}
-									/>
-								)}
-								<div>
-									<span className="optionTitle">{s.title || s.name}</span>
-									<p
-										style={
-											optionIsChecked(s)
-												? { color: textColourOnWhite }
-												: { color: '#4b4b66' }
-										}
-									>
-										{s['résumé']}
-									</p>
-								</div>
-							</label>
-							{s.name.includes('salaire') &&
-							this.state.activeInput === s.dottedName ? (
-								<Field
-									name={s.dottedName}
-									component="input"
-									type="text"
-									placeholder="mon salaire"
-								/>
-							) : (
-								<span
-									style={{ width: '6em' }}
-									onClick={() => this.setState({ activeInput: s.dottedName })}
-								>
-									{do {
-										let rule = this.props.targets.find(
-												propEq('dottedName', s.dottedName)
-											),
-											value = rule && rule.nodeValue
-										;<RuleValue value={value} />
-									}}
-								</span>
-							)}
+								{s['résumé']}
+							</p>
 						</div>
 					))}
 				</div>
