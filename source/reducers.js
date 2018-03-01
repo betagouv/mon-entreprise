@@ -81,6 +81,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
+	console.log('targnames', targetNames)
 	let analysis = analyseMany(state.parsedRules, targetNames)(
 		situationWithDefaults(state)
 	)
