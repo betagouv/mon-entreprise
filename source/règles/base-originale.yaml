@@ -639,7 +639,12 @@
   nom: type de contrat
   titre: Type de contrat
   question: Quelle est la nature du contrat de travail ?
-  formule: CDI
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+      - CDI
+      - CDD
   par défaut: CDI
 
 - espace: contrat salarié . type de contrat
@@ -710,7 +715,6 @@
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   par défaut: non
-  formule: oui
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
@@ -967,7 +971,10 @@
       - assiette cotisations sociales > plafond cice
       - entreprise . association non lucrative
 
-  formule: 0
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 6%
 
   exemples:
     - nom: SMIC
@@ -1116,7 +1123,11 @@
       - assiette cotisations sociales > plafond réduction générale
       - statut JEI
 
-  formule: 0
+  formule:
+    le minimum de:
+      - assiette réduction générale
+      # TODO - cette expression correspond algébriquement mais n'a pas de sens métier, que faire ?
+      - réduction générale constante - réduction générale variable
   exemples:
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
@@ -1351,10 +1362,13 @@
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 
+#  non applicable si: assimilé salarié
 
-  formule: 0
-
-
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
+      taux: 0.15%
 - espace: contrat salarié
   nom: allocations familiales
   cotisation:
@@ -1379,7 +1393,10 @@
       - assiette cotisations sociales < plafond réduction allocations familiales
       - ≠ statut JEI
 
-  formule: 0
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 1.8%
 
 - espace: contrat salarié
   nom: plafond réduction allocations familiales
@@ -1486,7 +1503,27 @@
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
 
-  formule: 0  
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 4 * plafond sécurité sociale
+
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 4%
+
+        - attributs:
+            dû par: employeur
+            composante: contribution exceptionnelle temporaire
+          description: |
+            Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
+          taux: 0.05%
+
+        - attributs:
+            dû par: salarié
+          taux: 0.95%
+
   exemples:
     - nom: SMIC
       situation:
