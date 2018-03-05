@@ -1,24 +1,13 @@
 contrat salarié . CDD . CIF:
-  titre.en: FIC
-  titre.fr: CIF
-  description.en: >-
-    .DDC xua euqificéps noitamrof ed leudividni égnoc ud tnemecnanif ua
-    noitubirtnoC
   description.fr: >-
     Contribution au financement du congé individuel de formation spécifique aux
     CDD.
-contrat salarié . CDD . compensation congés payés:
-  titre.en: séyap ségnoc noitasnepmoc
-  titre.fr: compensation congés payés
   description.en: >-
-
-    .séyap ségnoc ed ecirtasnepmoc étinmedni enu'd eicifénéb li ,tartnoc nos ed
-    emret el tnava ségnoc ses suot erdnerp sap essiup en éiralas el euq tnaruoc
-    tnadnepec tse lI
-
-
-    .snoitidnoc semêm sel snad séyap ségnoc ses dnerp te treiuqca lI .IDC ne
-    éiralas el euq séyap ségnoc à stiord semêm sed eicifénéb DDC ne éiralas eL
+    Contribution to the financing of individual training leave specific to
+    fixed-term contracts.
+  titre.fr: CIF
+  titre.en: CIF
+contrat salarié . CDD . compensation congés payés:
   description.fr: >
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
@@ -27,42 +16,51 @@ contrat salarié . CDD . compensation congés payés:
     Il est cependant courant que le salarié ne puisse pas prendre tous ses
     congés avant le terme de son contrat, il bénéficie d'une indemnité
     compensatrice de congés payés.
-contrat salarié . CDD . prime fin de contrat:
-  titre.en: tartnoc ed nif emirp
-  titre.fr: prime fin de contrat
-  description.en: .étiracérp ed noitasnepmoc emmoc DDC ed nif ne eésrev emmoS
-  description.fr: Somme versée en fin de CDD comme compensation de précarité.
-contrat salarié . CDD . majoration chômage:
-  titre.en: egamôhc noitarojam
-  titre.fr: majoration chômage
   description.en: >-
-    .9102 sram 13 ua’uqsuj iroirp A .)DDC( struoc eénimretéd eérud à startnoc
-    sel ruop egamôhc ecnarussa’d selanortap snoitubirtnoc sed noitarojaM
+    The employee on fixed-term contracts has the same rights to paid leave as
+    the employee on a permanent contract. He acquires and takes his paid leave
+    under the same conditions.
+
+
+    It is however common that the employee can not take all his leave before the
+    end of his contract, he benefits from a compensatory indemnity of paid
+    vacation.
+  titre.fr: compensation congés payés
+  titre.en: paid vacation pay
+contrat salarié . CDD . prime fin de contrat:
+  description.fr: Somme versée en fin de CDD comme compensation de précarité.
+  description.en: >-
+    Amount paid at the end of fixed-term contracts as compensation for
+    precariousness.
+  titre.fr: prime fin de contrat
+  titre.en: premium end of contract
+contrat salarié . CDD . majoration chômage:
   description.fr: >-
     Majoration des contributions patronales d’assurance chômage pour les
     contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
-contrat salarié . ATMP:
-  titre.en: sellennoisseforP seidalaM te liavarT ud stnediccA noitasitoC
-  titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
   description.en: >-
-    sellennoisseforP seidalaM te liavarT ud stnediccA sed ertit ua eud
-    noitasitoC
+    Increase in employers' unemployment insurance contributions for short-term
+    fixed-term contracts (fixed-term contracts). A priori until March 31, 2019.
+  titre.fr: majoration chômage
+  titre.en: unemployment increase
+contrat salarié . ATMP:
+  titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
+  titre.en: Work Accidents and Occupational Diseases Contributions
   description.fr: >-
     Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles
-contrat salarié . ATMP . taux collectif ATMP:
-  titre.en: PMTA fitcelloc xuaT
-  titre.fr: Taux collectif ATMP
   description.en: >-
-
-    .)mth.liavart-tnedicca-etpmoc/lmth/rf.sesirpertne-ten.www//:ptth(]esirpertne-ten[
-    rus engil ne enrecnoc
-
-    al iuq xuat el retlusnoc tuep esirpertne'L .)àled-ua( ésilaudividni eriov
-    )séiralas 051 à'uqsuj( éludom tse xuat ec
-
-    ,setnatropmi sulp sesirpertne sel ruoP .fitcelloc xuat ec à seittejussa tnos
-    séiralas 02 ed sniom ed sesirpertne seL
+    Contribution due in respect of occupational accidents and occupational
+    diseases
+contrat salarié . ATMP . taux collectif ATMP:
+  titre.fr: Taux collectif ATMP
+  titre.en: ATMP collective rate
+  question.fr: >-
+    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
+    l'entreprise ?
+  question.en: >-
+    What rate of Workplace Accidents and Occupational Diseases applies to the
+    company?
   description.fr: >
     Les entreprises de moins de 20 salariés sont assujetties à ce taux
     collectif. Pour les entreprises plus importantes,
@@ -72,125 +70,93 @@ contrat salarié . ATMP . taux collectif ATMP:
 
     concerne en ligne sur
     [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
-  question.en: >-
-    ? esirpertne'l à euqilppa's sellennoisseforP seidalaM te liavarT ud
-    stnediccA xuat leuQ
-  question.fr: >-
-    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
-    l'entreprise ?
-contrat salarié . CDD . événement:
-  titre.en: tartnoc ed tnemenévÉ
-  titre.fr: Événement de contrat
   description.en: >-
+    Companies with less than 20 employees are subject to this collective rate.
+    For larger companies,
 
-    .resrev à ares en DDC el rus étinmedni uo noitarojam enucua ,IDC ne DDC ud
-    etiusruop enu'd esèhtopyh'l snad ,elpmexe raP >
+    this rate is modulated (up to 150 employees) or even individualized
+    (beyond). The company can consult the rate that
 
-
-    .DDC ud snoitagilbo sel tnemetrof tnetcapmi stnemenévé sniatreC
+    concerns online on [net-entreprise]
+    (http://www.net-entreprises.fr/html/account-accident-travail.htm).
+contrat salarié . CDD . événement:
+  titre.fr: Événement de contrat
+  titre.en: Event of contract
+  question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
+  question.en: Do you think you are facing any of these events during the contract?
   description.fr: >
     Certains événements impactent fortement les obligations du CDD.
 
 
     > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune
     majoration ou indemnité sur le CDD ne sera à verser.
-  question.en: '? tartnoc ud sruoc ua stnemenévé sec ed nu''l à étnorfnoc ertê suov-zesneP'
-  question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
-contrat salarié . CDD . événement . poursuite du CDD en CDI:
-  titre.en: IDC ne DDC ud etiusruoP
-  titre.fr: Poursuite du CDD en CDI
-  description.en: '.noitpurretni snas IDC ne tiudnocer tse DDC el ,tartnoc ed nif nE'
-  description.fr: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
-contrat salarié . CDD . événement . refus CDI avantageux:
-  titre.en: xuegatnava IDC nu'd sufeR
-  titre.fr: Refus d'un CDI avantageux
   description.en: >-
-    .esuegatnava issua sniom ua noitarénumér enu te ,erialimis iolpme nu ruop
-    IDC ne noitcudnocer enu esufer ,DDC ud emret ua ,éiralas eL
+    Certain events have a strong impact on the obligations of the CDD.
+
+
+    > For example, in the event of a continuation of the fixed-term contract, no
+    increase or compensation on the fixed-term contract will be payable.
+contrat salarié . CDD . événement . poursuite du CDD en CDI:
+  titre.fr: Poursuite du CDD en CDI
+  titre.en: Continuation of the CDD on CDI
+  description.fr: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
+  description.en: >-
+    At the end of the contract, the fixed-term contract is renewed without
+    interruption.
+contrat salarié . CDD . événement . refus CDI avantageux:
+  titre.fr: Refus d'un CDI avantageux
+  titre.en: Refusal of a favorable CDI
   description.fr: >-
     Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi
     similaire, et une rémunération au moins aussi avantageuse.
-contrat salarié . CDD . événement . rupture anticipée salarié:
-  titre.en: éiralas ud eépicitna erutpuR
-  titre.fr: Rupture anticipée du salarié
-  description.en: .éiralas ud evitaitini'l à tartnoc ud eépicitna erutpuR
-  description.fr: Rupture anticipée du contrat à l'initiative du salarié.
-contrat salarié . CDD . événement . rupture pour faute grave ou force majeure:
-  titre.en: eruejam ecrof uo evarg etuaf ruop erutpuR
-  titre.fr: Rupture pour faute grave ou force majeure
-contrat salarié . CDD . événement . rupture pendant période essai:
-  titre.en: iasse'd edoirép al tnadnep erutpuR
-  titre.fr: Rupture pendant la période d'essai
-contrat salarié . CDD . motif:
-  titre.en: sruocer ed fitoM
-  titre.fr: Motif de recours
   description.en: >-
-
-    .iol al snad séificéps sfitom sed nu'l rap ésirotua ertê tiod sruocer nos
-    :noitpecxe'd tartnoc nu tse DDC eL
+    The employee, at the end of the fixed-term contract, refuses a renewal on an
+    open-ended contract for a similar job, and a remuneration at least as
+    advantageous.
+contrat salarié . CDD . événement . rupture anticipée salarié:
+  titre.fr: Rupture anticipée du salarié
+  titre.en: Anticipated termination of the employee
+  description.fr: Rupture anticipée du contrat à l'initiative du salarié.
+  description.en: Anticipated termination of the contract at the initiative of the employee.
+contrat salarié . CDD . événement . rupture pour faute grave ou force majeure:
+  titre.fr: Rupture pour faute grave ou force majeure
+  titre.en: Breaking for serious misconduct or force majeure
+contrat salarié . CDD . événement . rupture pendant période essai:
+  titre.fr: Rupture pendant la période d'essai
+  titre.en: Break during the trial period
+contrat salarié . CDD . motif:
+  titre.fr: Motif de recours
+  titre.en: Reason for appeal
+  question.fr: Quel est le motif de recours au CDD ?
+  question.en: What is the reason for using the CDD?
   description.fr: >
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un
     des motifs spécifiés dans la loi.
-  question.en: '? DDC ua sruocer ed fitom el tse leuQ'
-  question.fr: Quel est le motif de recours au CDD ?
-contrat salarié . CDD . motif . classique:
-  titre.en: seuqissalc sfitom
-  titre.fr: motifs classiques
-contrat salarié . CDD . motif . classique . saisonnier:
-  titre.en: reinnosiaS
-  titre.fr: Saisonnier
   description.en: >-
-    .sfitcelloc eiv ed sedom sed uo snosias sed emhtyr ud noitcnof ne ,exif sèrp
-    uep à éticidoirép enu noles eénna euqahc retépér es à seéleppa tnos sehcât
-    sel tnod ,reinnosias erètcarac à siolpmE
+    The CDD is an exceptional contract: its appeal must be authorized by one of
+    the reasons specified in the law.
+contrat salarié . CDD . motif . classique:
+  titre.fr: motifs classiques
+  titre.en: classic patterns
+contrat salarié . CDD . motif . classique . saisonnier:
+  titre.fr: Saisonnier
+  titre.en: Seasonal
   description.fr: >-
     Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter
     chaque année selon une périodicité à peu près fixe, en fonction du rythme
     des saisons ou des modes de vie collectifs.
-contrat salarié . CDD . motif . classique . accroissement activité:
-  titre.en: étivitca'd eriaropmet tnemessiorccA
-  titre.fr: Accroissement temporaire d'activité
-  description.en: esirpertne'l ed étivitca'l ed eriaropmet tnemessiorccA
-  description.fr: Accroissement temporaire de l'activité de l'entreprise
-contrat salarié . CDD . motif . classique . remplacement:
-  titre.en: tnemecalpmer ed tartnoC
-  titre.fr: Contrat de remplacement
   description.en: >-
-
-    ; esirpertne'l ed uo elocirga noitatiolpxe'l ed étivitca'l à tnemevitceffe
-    epicitrap li'uq srol sèd edoc emêm ud 01-227 .L elcitra'l à énnoitnem
-    tniojnoc ruel ed uo ,noitatiolpxe'd éicossa nu'd ,lailimaf edia nu'd
-    ,emitiram ehcêp al ed te larur edoc ud 1-227 .L elcitra'l ed °4 à °1 xua
-    eénnoitnem esirpertne enu'd uo elocirga noitatiolpxe enu'd fehc ud
-    tnemecalpmeR -
-
-
-    ; elarébil noisseforp enu tnaçrexe elarom ennosrep ertua etuot ed uo larébil
-    ecicrexe'd étéicos enu'd sneyom ed elivic étéicos enu'd ,ellennoisseforp
-    elivic étéicos enu'd éiralas non éicossa nu'd uo leutibah te lennoisseforp
-    ertit à esirpertne'l ed étivitca'l à tnemevitceffe tnapicitrap tniojnoc nos
-    ed ,elarébil noisseforp enu tnaçrexe ennosrep enu'd ,elaicremmoc uo
-    elleirtsudni ,elanasitra esirpertne'd fehc nu'd tnemecalpmeR -
-
-
-    ; recalpmer el à éleppa eénimretédni eérud à tartnoc rap éturcer éiralas ud
-    evitceffe ecivres ne eértne'l ed etnetta'D -  
-
-    ; etsixe ne li's ,lennosrep ud séugéléd sed ,tuaféd à ,uo esirpertne'd
-    étimoc ud noitatlusnoc sèrpa liavart ed etsop nos ed noisserppus al
-    tnadécérp fitiniféd trapéd eD -  
-
-    ; liavart ed tartnoc nos ed noisnepsus eD -  
-
-    ; rueyolpme nos te éiralas ec ertne tircé egnahcé rap uo liavart ed tartnoc
-    nos à tnaneva rap ulcnoc ,leitrap spmet à eriosivorp egassap eD -  
-
-    ; ecnesba'D -  
-
-    : sac ne éiralas nu'd tnemecalpmeR -
-
-
-    .stnavius sac sel eirogétac ettec snad snopuorger suoN
+    Seasonal jobs, the tasks of which are to be repeated each year at a roughly
+    fixed frequency, according to the rhythm of the seasons or the collective
+    way of life.
+contrat salarié . CDD . motif . classique . accroissement activité:
+  titre.fr: Accroissement temporaire d'activité
+  titre.en: Temporary increase of activity
+  description.fr: Accroissement temporaire de l'activité de l'entreprise
+  description.en: Temporary increase in business activity
+contrat salarié . CDD . motif . classique . remplacement:
+  titre.fr: Contrat de remplacement
+  titre.en: Replacement contract
   description.fr: >
     Nous regroupons dans cette catégorie les cas suivants.
 
@@ -216,32 +182,10 @@ contrat salarié . CDD . motif . classique . remplacement:
     conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il
     participe effectivement à l'activité de l'exploitation agricole ou de
     l'entreprise ;
+  description.en: "We group in this category the following cases.\n\n- Replacement of an employee in case:\n\_\_- Of absence;\n\_\_- Temporary part-time passage, concluded by amendment to his employment contract or by written exchange between this employee and his employer;\n\_\_- suspension of his employment contract;\n\_\_- definitive departure preceding the abolition of his workstation after consulting the works council or, failing that, the staff representatives, if any;\n\_\_- Waiting for the effective entry of the employee recruited by contract of indefinite duration called to replace him;\n\n- Replacement of a business leader, industrial or commercial, a person practicing a profession, his spouse actually participating in the business activity in a professional and usual or a non-employee partner a professional civil society, a civil society of means of a liberal exercise society or any other legal person exercising a liberal profession;\n\n- Replacement of the head of a farm or enterprise mentioned in 1 ° to 4 ° of Article L. 722-1 of the Rural Code and Sea Fisheries, a family carer, a partner of a farm, or their spouse mentioned in Article L. 722-10 of the same Code, provided that he or she actually participates in the activity of the farm or enterprise;"
 contrat salarié . CDD . motif . classique . mission:
-  titre.en: noissim ed tartnoC
   titre.fr: Contrat de mission
-  description.en: >-
-
-    .esirpertne'l snad eénimretédni eérud à tartnoc ne siolpme xua sècca'd
-    étiroirp tno iniféd tejbo à eénimretéd eérud à tartnoc suos séiralas sel
-    selleuqsel snad snoitidnoc seL -
-
-    ; lennoisseforp sruocrap ruel ed etius al resinagro ruop selbinopsid sneyom
-    sel resilibom ,ecnanevérp ed ialéd ud sruoc ua ,tnevuep te eunitnoc
-    ellennoisseforp noitamrof al à sècca'l à te ehcuabmeér ed étiroirp al à
-    ,ecneirépxe'l ed siuqca sed noitadilav al à ,tnemessalcer ua edia'l à
-    sevitaler seitnarag ed tneicifénéb iniféd tejbo à eénimretéd eérud à tartnoc
-    suos séiralas sel selleuqsel snad snoitidnoc seL -
-
-    ; eétpada esnopér enu retroppa'd selbitpecsus tnos startnoc sec selleuqxua
-    seuqimonocé sétissecén seL -
-
-
-    : tiniféd li'uq te tiovérp el esirpertne'd drocca nu ,tuaféd à ,uo udneté
-    ehcnarb ed drocca nu'uqsrol iniféd tejbo nu'd noitasilaér al ed euv ne
-    ,sevitcelloc snoitnevnoc sed snes ua ,serdac ed te srueinégni'd tnemeturceR
-
-
-    .iniféd tejbo à tartnoc éleppa issuA >
+  titre.en: Mission contract
   description.fr: >
     > Aussi appelé contrat à objet défini.
 
@@ -264,111 +208,117 @@ contrat salarié . CDD . motif . classique . mission:
     - Les conditions dans lesquelles les salariés sous contrat à durée
     déterminée à objet défini ont priorité d'accès aux emplois en contrat à
     durée indéterminée dans l'entreprise.
-contrat salarié . CDD . motif . classique . usage:
-  titre.en: egasu'd tartnoC
-  titre.fr: Contrat d'usage
   description.en: >-
-    ; siolpme sec ed eriaropmet erutan rap erètcarac ud te eécrexe étivitca'l ed
-    erutan al ed nosiar ne eénimretédni eérud à liavart ed tartnoc ua riruocer
-    sap en ed tnatsnoc egasu'd tse li ,udneté liavart ed fitcelloc drocca uo
-    noitnevnoc rap uo tercéd rap siniféd étivitca'd sruetces sniatrec snad
-    ,sleuqsel ruop siolpmE
+    > Also called a defined object contract.
+
+
+    Recruitment of engineers and executives, within the meaning of collective
+    agreements, to achieve a defined purpose when an extended industry agreement
+    or, failing that, an enterprise agreement provides for it and defines:
+
+
+    - The economic necessities to which these contracts are likely to provide an
+    appropriate response;
+
+    - The conditions under which fixed-term employees with a defined purpose
+    benefit from guarantees relating to assistance with reclassification,
+    validation of experience acquired, re-employment priority and access to
+    vocational training continue and may, during the period of consideration,
+    mobilize the means available to organize the rest of their professional
+    career;
+
+    - The conditions under which fixed-term employees with fixed-object
+    contracts have priority of access to indeterminate employment in the
+    company.
+contrat salarié . CDD . motif . classique . usage:
+  titre.fr: Contrat d'usage
+  titre.en: Usage contract
   description.fr: >-
     Emplois pour lesquels, dans certains secteurs d'activité définis par décret
     ou par convention ou accord collectif de travail étendu, il est d'usage
     constant de ne pas recourir au contrat de travail à durée indéterminée en
     raison de la nature de l'activité exercée et du caractère par nature
     temporaire de ces emplois ;
-contrat salarié . CDD . motif . complément formation:
-  titre.en: rueyolpme'l rap érussa ellennoisseforp noitamrof ed tnemélpmoC
-  titre.fr: Complément de formation professionnelle assuré par l'employeur
   description.en: >-
-    .éiralas ua ellennoisseforp noitamrof ed tnemélpmoc nu rerussa à ,tercéd rap
-    seénimretéd snoitidnoc sed snad te eérud enu ruop ,egagne's rueyolpme'L
+    Jobs for which, in certain sectors of activity defined by decree or by
+    agreement or collective labor agreement extended, it is customary not to
+    resort to the employment contract of indefinite duration because of the
+    nature of the activity carried out and the temporary nature of these jobs;
+contrat salarié . CDD . motif . complément formation:
+  titre.fr: Complément de formation professionnelle assuré par l'employeur
+  titre.en: Complementary professional training provided by the employer
   description.fr: >-
     L'employeur s'engage, pour une durée et dans des conditions déterminées par
     décret, à assurer un complément de formation professionnelle au salarié.
-contrat salarié . CDD . motif . issue d'apprentissage:
-  titre.en: egassitnerppa'd tartnoc nu'd eussi'l À
-  titre.fr: À l'issue d'un contrat d'apprentissage
   description.en: >-
-
-    .egassitnerppa'd tartnoc ud noitaripxe'l sèrpa na nu'd sniom ed ialéd nu
-    snad lanoitan ecivres ud snoitagilbo xua eriafsitas tiod itnerppa'l euqsrol
-    ulcnoc ertê tuep eénimretéd eérud à liavart ed tartnoc nu ,egassitnerppa'd
-    tartnoc nu'd eussi'l A
+    The employer undertakes, for a period and under conditions determined by
+    decree, to provide additional professional training to the employee.
+contrat salarié . CDD . motif . issue d'apprentissage:
+  titre.fr: À l'issue d'un contrat d'apprentissage
+  titre.en: At the end of an apprenticeship contract
   description.fr: >
     A l'issue d'un contrat d'apprentissage, un contrat de travail à durée
     déterminée peut être conclu lorsque l'apprenti doit satisfaire aux
     obligations du service national dans un délai de moins d'un an après
     l'expiration du contrat d'apprentissage.
+  description.en: >-
+    At the end of an apprenticeship contract, a fixed-term employment contract
+    may be concluded when the apprentice has to fulfill the obligations of the
+    national service within a period of less than one year after the expiry of
+    the contract of employment. learning.
 contrat salarié . CDD . motif . contrat aidé:
-  titre.en: ')... ,ecnanretla ,IUC( édia tartnoC'
   titre.fr: 'Contrat aidé (CUI, alternance, ...)'
+  titre.en: 'Contract helped (CUI, alternation, ...)'
 contrat salarié . CDD . durée contrat:
-  titre.en: tartnoc ud eérud
   titre.fr: durée du contrat
-  question.en: '? tartnoc ud eérud al tse elleuQ'
+  titre.en: contract length
   question.fr: Quelle est la durée du contrat ?
-  sous-question.en: >-
-
-    .DDC nu'd elamixam eérud al ertîannoc ruop
-    )11213F/stiordsov/sesirpertne-slennoisseforp/rf.cilbup-ecivres.www//:sptth(]ici
-    zeuqilC[
+  question.en: What is the duration of the contract ?
   sous-question.fr: >
     [Cliquez
     ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     pour connaître la durée maximale d'un CDD.
+  sous-question.en: >-
+    [Click here]
+    (https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
+    to know the maximum duration of a CDD.
 contrat salarié . CDD . congés non pris:
-  titre.en: sirp non ségnoC
   titre.fr: Congés non pris
-  description.en: >-
-    .siom ezuod ed tartnoc nu ruop xuagél ségnoc ed sruoj 52 xua troppar rap
-    ,sérvuo sruoj nE .DDC nos ed eérud al ed tiaf ud ,éyolpme'l rap sirp ertê
-    tnorruop en ségnoc ed sruoj ed neibmoC
+  titre.en: Leave not taken
+  question.fr: Combien de jours ouvrés de congés ne seront pas pris ?
+  question.en: How many days off will not be taken?
   description.fr: >-
     Combien de jours de congés ne pourront être pris par l'employé, du fait de
     la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés
     légaux pour un contrat de douze mois.
-  question.en: '? sirp sap tnores en ségnoc ed sérvuo sruoj ed neibmoC'
-  question.fr: Combien de jours ouvrés de congés ne seront pas pris ?
-contrat salarié . CDD . contrat jeune vacances:
-  titre.en: secnacav enuej tartnoC
-  titre.fr: Contrat jeune vacances
   description.en: >-
-    .seriatisrevinu uo serialocs secnacav ses tnadnep enuej nu ceva ulcnoc
-    tartnoC .segnadnev DDC éleppa issuA
+    How many days of leave can the employee take, given the length of his / her
+    fixed term contract. In working days, compared to 25 days of legal leave for
+    a twelve-month contract.
+contrat salarié . CDD . contrat jeune vacances:
+  titre.fr: Contrat jeune vacances
+  titre.en: Young holiday contract
+  question.fr: Est-ce un contrat jeune vacances ?
+  question.en: Is it a young holiday contract?
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  question.en: '? secnacav enuej tartnoc nu ec-tsE'
-  question.fr: Est-ce un contrat jeune vacances ?
-contrat salarié . CDD . cotisations employeur CDD:
-  titre.en: DDC rueyolpme snoitasitoc
-  titre.fr: cotisations employeur CDD
-  description.en: DDC ua seuqificéps rueyolpme snoitasitoC
-  description.fr: Cotisations employeur spécifiques au CDD
-contrat salarié . CDD . indemnités salarié CDD:
-  titre.en: DDC éiralas sétinmedni
-  titre.fr: indemnités salarié CDD
-  description.en: DDC ua seuqificéps rueyolpme snoitasitoC
-  description.fr: Cotisations employeur spécifiques au CDD
-contrat salarié . CDD . surcoût:
-  titre.en: DDC tûocrus tnoD
-  titre.fr: Dont surcoût CDD
   description.en: >-
-
-    .leusnem tûoc ruel à seénemar ici tnos selle ;leusnem erialas euqahc ceva
-    sertua'd ,tartnoc ed nif
-
-    ne seésrev tnos seniatreC
-
-
-    .4 ed erbmon ua tnos selle ;tartnoc ec rap eétroppa esselpuos al ed
-    eitrapertnoc ne serèicnanif
-
-    snoitasnepmoc seniatrec ,xuaicos semsinagro xua uo éiralas ua ,esrev
-    rueyolpme'l euq egixe eénimretéd eérud à tartnoc eL
+    Also called CDD grape harvest. Contract concluded with a young person during
+    his school or university holidays.
+contrat salarié . CDD . cotisations employeur CDD:
+  description.fr: Cotisations employeur spécifiques au CDD
+  description.en: Employer contributions specific to the fixed-term contract
+  titre.fr: cotisations employeur CDD
+  titre.en: employer contributions CDD
+contrat salarié . CDD . indemnités salarié CDD:
+  description.fr: Cotisations employeur spécifiques au CDD
+  description.en: Employer contributions specific to the fixed-term contract
+  titre.fr: indemnités salarié CDD
+  titre.en: employee compensation CDD
+contrat salarié . CDD . surcoût:
+  titre.fr: Dont surcoût CDD
+  titre.en: Of which additional cost CDD
   description.fr: >
     Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
     organismes sociaux, certaines compensations
@@ -381,28 +331,22 @@ contrat salarié . CDD . surcoût:
 
     fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici
     ramenées à leur coût mensuel.
-contrat salarié . CDD . surcoût CDD:
-  titre.en: DDC tûocrus
-  titre.fr: surcoût CDD
-contrat salarié:
-  titre.en: éiralas tartnoc
-  titre.fr: contrat salarié
   description.en: >-
+    The fixed-term contract requires the employer to pay certain compensation to
+    the employee or to the social organizations
 
-    .)liavart ud edoC ud 2-1221L .trA( rueyolpme nu te éiralas nu ertne liavart
-    ed noitaler al ed elarénég te elamron emrof al emmoc érédisnoc ,eénimretédnI
-    eéruD à liavart ed tartnoC ud sac el tse’C .sac sniatrec snad eriotagilbo
-    sap tse’n liavart ed tartnoc nu’d erutangis aL :idc -  
-
-    .eénna'l snad sevitucésnoc seniames 4 ed sulp ed uo eniames rap serueh 8 ed
-    sulp : srueyolpme sreilucitrap -  
-
-    :sac sec snad elpmexe rap tartnoc snas nu'uqleuq reyolpme'd elbissop tse li
-    ,siaçnarf tiord el snad eriassecén sap tiaf ne tse'n tartnoc eL
+    in return for the flexibility provided by this contract; they are 4 in
+    number.
 
 
-    .éiralas nos srola tse iuq ,udividni nu à )tnemessilbaté nos aiv( esirpertne
-    enu eil iuq tartnoc eL
+    Some are paid in
+
+    end of contract, others with each monthly salary; they are here reduced to
+    their monthly cost.
+contrat salarié . CDD . surcoût CDD:
+  titre.fr: surcoût CDD
+  titre.en: additional cost CDD
+contrat salarié:
   description.fr: >
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui
     est alors son salarié.
@@ -412,54 +356,48 @@ contrat salarié:
     possible d'employer quelqu'un sans contrat par exemple dans ces cas:
       - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
       - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+  description.en: "The contract that binds a company (via its establishment) to an individual, who is then his employee.\n\nThe contract is actually not necessary in French law, it is possible to employ someone without a contract for example in these cases:\n\_\_- Individual employers: more than 8 hours per week or more than 4 consecutive weeks in the year.\n\_\_- cdi: The signing of a contract of employment is not mandatory in some cases. This is the case of the Undetermined Employment Contract, considered as the normal and general form of the employment relationship between an employee and an employer (Article L1221-2 of the Labor Code)."
+  titre.fr: contrat salarié
+  titre.en: salaried contract
 contrat salarié . type de contrat:
-  titre.en: tartnoc ed epyT
   titre.fr: Type de contrat
-  question.en: '? liavart ed tartnoc ud erutan al tse elleuQ'
+  titre.en: Type of Contract
   question.fr: Quelle est la nature du contrat de travail ?
+  question.en: What is the nature of the employment contract?
 contrat salarié . type de contrat . CDD:
-  titre.en: DDC
-  titre.fr: CDD
-  description.en: .nif ed etad enu tnemeticilpxe tiovérp liavart ed tartnoc eL
   description.fr: Le contrat de travail prévoit explicitement une date de fin.
+  description.en: The employment contract explicitly provides for an end date.
+  titre.fr: CDD
+  titre.en: CSD
 contrat salarié . type de contrat . CDI:
-  titre.en: IDC
-  titre.fr: CDI
-  description.en: >-
-    .ilbaté été sap a'n uo ,nif ed etad ed sap ennoitnem en liavart ed tartnoc
-    eL
   description.fr: >-
     Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
     établi.
-contrat salarié . assiette cotisations sociales:
-  titre.en: selaicos snoitasitoc etteissa
-  titre.fr: assiette cotisations sociales
   description.en: >-
-
-    .)...elucihév ,tnemegol( erutan ne segatnava sel te )...semirp ,étinmedni
-    ,esab ed erialas( secèpse ne snoitarénumér sel dnerpmoc ellE .éiralas
-    liavart el rus snoitasitoc ed erbmon dnarg nu'd luclac ed esab al tse
-    selaicos snoitasitoc sed etteissa'L
+    The employment contract does not mention an end date, or has not been
+    established.
+  titre.fr: CDI
+  titre.en: CDI
+contrat salarié . assiette cotisations sociales:
   description.fr: >
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre
     de cotisations sur le travail salarié. Elle comprend les rémunérations en
     espèces (salaire de base, indemnité, primes...) et les avantages en nature
     (logement, véhicule...).
-contrat salarié . salaire de base:
-  titre.en: turb erialaS
-  titre.fr: Salaire brut
   description.en: >-
-
-    .selacsif te selaicos seuneter tnava ,liavart ed tartnoc nos ed ertit ua
-    éiralas el rap seuçrep semmos sel emmoc uo -
-
-    éiralas nu'd eiap ed nitellub el rus seuneter selairalas selaicos
-    snoitasitoc sed te ten erialas ud emmos al -
-
-    : emmoc uv ertê tuep lI
-
-
-    .ecnarF ne liavart ed tartnoc ud noitaicogén ed erialas el tse'C
+    The basis of social contributions is the basis for calculating a large
+    number of contributions to paid work. It includes cash compensation (basic
+    salary, compensation, bonuses ...) and benefits in kind (housing, vehicle
+    ...).
+  titre.fr: assiette cotisations sociales
+  titre.en: social contribution base
+contrat salarié . salaire de base:
+  titre.fr: Salaire brut
+  titre.en: Gross salary
+  résumé.fr: Le salaire inscrit dans le contrat de travail.
+  résumé.en: The salary entered in the employment contract.
+  question.fr: Quel est le salaire brut mensuel ?
+  question.en: What is the monthly gross salary?
   description.fr: >
     C'est le salaire de négociation du contrat de travail en France.
 
@@ -471,55 +409,59 @@ contrat salarié . salaire de base:
 
     - ou comme les sommes perçues par le salarié au titre de son contrat de
     travail, avant retenues sociales et fiscales.
-  question.en: '? leusnem turb erialas el tse leuQ'
-  question.fr: Quel est le salaire brut mensuel ?
-contrat salarié . salaire brut:
-  titre.en: turb erialas
-  titre.fr: salaire brut
-contrat salarié . indemnités salarié:
-  titre.en: éiralas sétinmedni
-  titre.fr: indemnités salarié
-contrat salarié . statut cadre:
-  titre.en: erdac tutatS
-  titre.fr: Statut cadre
   description.en: >-
-    euqificéps esab ed etiarter ed esiac enu à ecnanetrappa'l tnanimretéd te
-    sevitcelloc snoitnevnoc sel rap eunnocer siam einiféd lam noitoN
+    This is the negotiating salary of the employment contract in France.
+
+
+    It can be seen as:
+
+    - the sum of the net salary and social security contributions deducted from
+    an employee's payslip
+
+    - or as sums received by the employee under his employment contract, before
+    social and tax deductions.
+contrat salarié . salaire brut:
+  titre.fr: salaire brut
+  titre.en: gross salary
+contrat salarié . indemnités salarié:
+  titre.fr: indemnités salarié
+  titre.en: employee benefits
+contrat salarié . statut cadre:
+  titre.fr: Statut cadre
+  titre.en: Status frame
+  question.fr: Le salarié a-t-il le statut cadre ?
+  question.en: Does the employee have the status frame?
   description.fr: >-
     Notion mal définie mais reconnue par les conventions collectives et
     déterminant l'appartenance à une caise de retraite de base spécifique
-  question.en: '? erdac tutats el li-t-a éiralas eL'
-  question.fr: Le salarié a-t-il le statut cadre ?
-contrat salarié . plafond sécurité sociale temps plein:
-  titre.en: nielp spmet elaicos étirucés dnofalp
-  titre.fr: plafond sécurité sociale temps plein
-contrat salarié . plafond sécurité sociale:
-  titre.en: elaicos étirucés dnofalp
-  titre.fr: plafond sécurité sociale
-contrat salarié . smic mensuel temps plein:
-  titre.en: nielp spmet leusnem cims
-  titre.fr: smic mensuel temps plein
-contrat salarié . smic mensuel:
-  titre.en: leusnem cims
-  titre.fr: smic mensuel
-contrat salarié . cotisations salariales:
-  titre.en: selairalas snoitasitoc
-  titre.fr: cotisations salariales
-contrat salarié . cotisations patronales:
-  titre.en: selanortap snoitasitoc
-  titre.fr: cotisations patronales
-contrat salarié . salaire net:
-  titre.en: ten erialaS
-  titre.fr: Salaire net
   description.en: >-
-
-    .tartnoc ua tnaneva nu rengis tuaf li ,regnahc el ruop :leutcartnoc tse turb
-    erialas el euq srola )snoitasitoc sed noitunimid uo noitatnemgua( seuqitilop
-    snoisicéd ed noitcnof ne reirav tuep emmos etteC
-
-
-    .eriacnab etpmoc nos rus tioçer éiralas el euq ec tse'c ,selaicos
-    snoitasitoc sel sniom turb erialas eL
+    Not well defined but recognized by collective agreements and determining
+    membership in a specific basic pension plan
+contrat salarié . plafond sécurité sociale temps plein:
+  titre.fr: plafond sécurité sociale temps plein
+  titre.en: ceiling social security full time
+contrat salarié . plafond sécurité sociale:
+  titre.fr: plafond sécurité sociale
+  titre.en: social security ceiling
+contrat salarié . smic mensuel temps plein:
+  titre.fr: smic mensuel temps plein
+  titre.en: monthly full time smic
+contrat salarié . smic mensuel:
+  titre.fr: smic mensuel
+  titre.en: monthly smic
+contrat salarié . cotisations salariales:
+  titre.fr: cotisations salariales
+  titre.en: Employee contributions
+contrat salarié . cotisations patronales:
+  titre.fr: cotisations patronales
+  titre.en: employer contributions
+contrat salarié . salaire net:
+  titre.fr: Salaire net
+  titre.en: Net salary
+  question.fr: Quel est le salaire net ?
+  question.en: What is the net salary?
+  résumé.fr: La somme touchée par le salarié tous les mois.
+  résumé.en: The amount the employee receives every month.
   description.fr: >
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié
     reçoit sur son compte bancaire.
@@ -528,326 +470,300 @@ contrat salarié . salaire net:
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
     diminution des cotisations) alors que le salaire brut est contractuel: pour
     le changer, il faut signer un avenant au contrat.
-  question.en: '? ten erialas el tse leuQ'
-  question.fr: Quel est le salaire net ?
-contrat salarié . coût du travail:
-  titre.en: liavart ud tûoc
-  titre.fr: coût du travail
   description.en: >-
+    The gross salary minus the social contributions is what the employee
+    receives on his bank account.
 
-    .rueyolpme'l ruop liavart ud leér latot tûoc el cnod tse'c :seésrever tnos
-    iul iuq snoitnevbus te sedia sed
 
-    etpmoc tnanet ne ,etcelloc ed semsinagro xua te éiralas ua latot ua reyap
-    tnemelleér arved rueyolpme'l euq ec tse'C
+    This amount can vary according to political decisions (increase or decrease
+    in contributions) while the gross salary is contractual: to change it, it is
+    necessary to sign an amendment to the contract.
+contrat salarié . coût du travail:
   description.fr: >
     C'est ce que l'employeur devra réellement payer au total au salarié et aux
     organismes de collecte, en tenant compte
 
     des aides et subventions qui lui sont reversées: c'est donc le coût total
     réel du travail pour l'employeur.
-contrat salarié . salaire total:
-  titre.en: latot erialaS
-  titre.fr: Salaire total
   description.en: >-
+    This is what the employer will actually have to pay to the employee and the
+    collection agencies in total, taking into account
 
-    .emmos ettec reunimid tnevuep sedia te noitasitoc ed snoitcudér seniatrec
-    euqitarp ne siam ,éiralas nu reyolpme ruop resrev ed riovérp epicnirp ne
-    tiod rueyolpme'l euq latot el tse'C .selanortap snoitasitoc sel sulp ,turb
-    erialas el tse'C
+    grants and subsidies that are paid back to him: this is the actual total
+    cost of the work for the employer.
+  titre.fr: coût du travail
+  titre.en: labor cost
+contrat salarié . salaire total:
+  titre.fr: Salaire total
+  titre.en: Total salary
+  résumé.fr: La somme totale versée par l'employeur tous les mois.
+  résumé.en: The total sum paid by the employer every month.
   description.fr: >
     C'est le salaire brut, plus les cotisations patronales. C'est le total que
     l'employeur doit en principe prévoir de verser pour employer un salarié,
     mais en pratique certaines réductions de cotisation et aides peuvent
     diminuer cette somme.
-contrat salarié . réductions de cotisations:
-  titre.en: snoitasitoc ed snoitcudér
-  titre.fr: réductions de cotisations
-contrat salarié . salaire total sans réduction:
-  titre.en: noitcudér snas latot erialas
-  titre.fr: salaire total sans réduction
-contrat salarié . aides employeur différées:
-  titre.en: seéréffid rueyolpme sedia
-  titre.fr: aides employeur différées
-contrat salarié . salaire:
-  titre.en: erialas
-  titre.fr: salaire
-contrat salarié . jours de congés légaux:
-  titre.en: xuagél ségnoc ed sruoj
-  titre.fr: jours de congés légaux
   description.en: >-
-    .DDC nu'd sac el snad tartnoc el uo eénna'l ruop éiralas tuot rap tnemelagél
-    siuqca ségnoc ed sérvuo sruoJ
+    This is the gross salary, plus the employer contributions. This is the total
+    that the employer must in principle plan to pay to employ an employee, but
+    in practice certain reductions in contributions and aids may reduce this
+    amount.
+contrat salarié . réductions de cotisations:
+  titre.fr: réductions de cotisations
+  titre.en: contribution reductions
+contrat salarié . salaire total sans réduction:
+  titre.fr: salaire total sans réduction
+  titre.en: total salary without reduction
+contrat salarié . aides employeur différées:
+  résumé.fr: Les aides différées dont peut bénéficier l'employeur.
+  résumé.en: The deferred aid which can benefit the employer.
+  titre.fr: aides employeur différées
+  titre.en: deferred employer aids
+contrat salarié . salaire:
+  titre.fr: salaire
+  titre.en: salary
+contrat salarié . jours de congés légaux:
   description.fr: >-
     Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le
     contrat dans le cas d'un CDD.
+  description.en: >-
+    Working days of leave legally acquired by any employee for the year or the
+    contract in the case of a fixed-term contract.
+  titre.fr: jours de congés légaux
+  titre.en: days of legal leave
 contrat salarié . régime alsace moselle:
-  titre.en: ellesom ecasla emigér
   titre.fr: régime alsace moselle
+  titre.en: moselle alsace diet
 entreprise:
-  titre.en: esirpertne
-  titre.fr: entreprise
-  description.en: |-
-
-    éyolpme nu te esirpertne enu eil tartnoc eL
   description.fr: |
     Le contrat lie une entreprise et un employé
+  description.en: The contract binds a company and an employee
+  titre.fr: entreprise
+  titre.en: business
 entreprise . effectif:
-  titre.en: fitceffe
-  titre.fr: effectif
-  description.en: >-
-
-    .esirpertne'l ed fitceffe'l noles tneirav selanortap snoitasitoc sesuerbmon
-    eD
+  question.fr: Quel est l'effectif de l'entreprise ?
+  question.en: What is the workforce of the company?
   description.fr: >
     De nombreuses cotisations patronales varient selon l'effectif de
     l'entreprise.
-  question.en: '? esirpertne''l ed fitceffe''l tse leuQ'
-  question.fr: Quel est l'effectif de l'entreprise ?
+  description.en: Many employer contributions vary according to the size of the company.
+  titre.fr: effectif
+  titre.en: effective
 entreprise . ratio alternants:
-  titre.en: stnanretla oitar
   titre.fr: ratio alternants
+  titre.en: alternating ratio
 entreprise . ratio alternants saisi:
-  titre.en: stnanretla'd noitcarF
-  titre.fr: Fraction d'alternants
-  description.en: >-
-
-    .seénrecnoc sesirpertne sel ruop egassitnerppa'l ruop eriatnemélppus
-    noitubirtnoc al enimretéd noitcarf etteC
-  description.fr: >
-    Cette fraction détermine la contribution supplémentaire pour l'apprentissage
-    pour les entreprises concernées.
-  question.en: >-
-    ? esirpertne'l ed neyom fitceffe'l snad ecnanretla'd startnoc ed noitcarf al
-    tse elleuQ
   question.fr: >-
     Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
     l'entreprise ?
+  question.en: >-
+    What is the fraction of work-study contracts in the average workforce of the
+    company?
+  titre.fr: Fraction d'alternants
+  titre.en: Fraction of alternates
+  description.fr: >
+    Cette fraction détermine la contribution supplémentaire pour l'apprentissage
+    pour les entreprises concernées.
+  description.en: >-
+    This fraction determines the additional contribution for learning for the
+    companies involved.
 entreprise . association non lucrative:
-  titre.en: evitarcul non noitaicossa
-  titre.fr: association non lucrative
-  description.en: evitarcul non noitaicossa enu tse esirpertne'L
   description.fr: L'entreprise est une association non lucrative
-  question.en: '? fitarcul non tub à noitaicossa enu''d li-tiga''S'
+  description.en: The company is a non-profit organization
   question.fr: S'agit-il d'une association à but non lucratif ?
+  question.en: Is this a non-profit organization?
+  titre.fr: association non lucrative
+  titre.en: non-profit association
 établissement . code postal:
-  titre.en: tnemessilbaté'l ed latsop edoC
   titre.fr: Code postal de l'établissement
-  description.en: >-
-
-    .selacol snoitatnemelgèr ed noitcnof tnos te tnemessilbaté'l ed ellehcé'l à
-    seéluclac
-
-    tnos snoitasitoc seniatrec ,stnemessilbaté srueisulp ed esopsid esirpertne
-    enu'uqsroL
-  description.fr: >
-    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
-    cotisations sont
-
-    calculées à l'échelle de l'établissement et sont fonction de règlementations
-    locales.
-  question.en: '? tnemessilbaté''l ed enummoc al ed latsop edoc el tse leuQ'
+  titre.en: Postal code of the establishment
   question.fr: Quel est le code postal de la commune de l'établissement ?
+  question.en: What is the postal code of the municipality of the establishment?
+  description.fr: >
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines
+    cotisations sont
+
+    calculées à l'échelle de l'établissement et sont fonction de règlementations
+    locales.
+  description.en: |-
+    When a company has more than one establishment, certain contributions are
+    calculated at the establishment level and are based on local regulations.
 établissement . code commune:
-  titre.en: tnemessilbaté'l ed enummoc edoC
   titre.fr: Code commune de l'établissement
-  description.en: >-
-
-    .selacol snoitatnemelgèr ed noitcnof tnos te tnemessilbaté'l ed ellehcé'l à
-    seéluclac
-
-    tnos snoitasitoc seniatrec ,stnemessilbaté srueisulp ed esopsid esirpertne
-    enu'uqsroL
+  titre.en: Common code of the establishment
+  question.fr: Dans quelle commune l'établissement est-il implanté ?
+  question.en: In which commune is the establishment located?
   description.fr: >
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines
     cotisations sont
 
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
-  question.en: '? étnalpmi li-tse tnemessilbaté''l enummoc elleuq snaD'
-  question.fr: Dans quelle commune l'établissement est-il implanté ?
+  description.en: |-
+    When a company has more than one establishment, certain contributions are
+    calculated at the establishment level and are based on local regulations.
 établissement . commune:
-  titre.en: tnemessilbaté'l ed enummoC
   titre.fr: Commune de l'établissement
-  description.en: >-
-
-    .selacol snoitatnemelgèr ed noitcnof tnos te tnemessilbaté'l ed ellehcé'l à
-    seéluclac
-
-    tnos snoitasitoc seniatrec ,stnemessilbaté srueisulp ed esopsid esirpertne
-    enu'uqsroL
+  titre.en: Municipality of the establishment
+  question.fr: Dans quelle commune l'établissement est-il implanté ?
+  question.en: In which commune is the establishment located?
   description.fr: >
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines
     cotisations sont
 
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
-  question.en: '? étnalpmi li-tse tnemessilbaté''l enummoc elleuq snaD'
-  question.fr: Dans quelle commune l'établissement est-il implanté ?
+  description.en: |-
+    When a company has more than one establishment, certain contributions are
+    calculated at the establishment level and are based on local regulations.
 contrat salarié . temps partiel:
-  titre.en: leitrap spmet
-  titre.fr: temps partiel
-  description.en: >-
-
-    .CIMS ud tnadnepéd snoitarénoxe sel uo seénnofalp snoitasitoc sel elpmexe
-    raP
-
-    .selgèr sel rus ecneulfni enu riova tuep leitrap spmet eL
+  question.fr: Le contrat est-il à temps partiel ?
+  question.en: Is the contract part-time?
   description.fr: >
     Le temps partiel peut avoir une influence sur les règles.
 
     Par exemple les cotisations plafonnées ou les exonérations dépendant du
     SMIC.
-  question.en: '? leitrap spmet à li-tse tartnoc eL'
-  question.fr: Le contrat est-il à temps partiel ?
+  description.en: |-
+    Part-time can have an influence on the rules.
+    For example, capped contributions or exemptions depending on the SMIC.
+  titre.fr: temps partiel
+  titre.en: part-time
 contrat salarié . heures par semaine:
-  titre.en: eniames rap serueh
-  titre.fr: heures par semaine
-  question.en: >-
-    ? leitrap spmet ud erdac el snad eniames rap seélliavart serueh'd erbmon el
-    tse leuQ
   question.fr: >-
     Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
     partiel ?
+  question.en: What is the number of hours worked per week in part-time work?
+  titre.fr: heures par semaine
+  titre.en: hours per week
 contrat salarié . quotité de travail:
-  titre.en: liavart ed étitouq
   titre.fr: quotité de travail
+  titre.en: work quota
 contrat salarié . CICE:
-  titre.en: ECIC
-  titre.fr: CICE
-  description.en: |-
-
-    iolpme'l te étivititépmoc al ruop tôpmi'd tidérC
   description.fr: |
     Crédit d'impôt pour la compétitivité et l'emploi
+  description.en: Competitiveness and Employment Tax Credit
+  titre.fr: CICE
+  titre.en: CICE
 contrat salarié . plafond cice:
-  titre.en: ecic dnofalp
   titre.fr: plafond cice
+  titre.en: cice ceiling
 contrat salarié . multiplicateur cice:
-  titre.en: ecic ruetacilpitlum
   titre.fr: multiplicateur cice
+  titre.en: cice multiplier
+contrat salarié . CITS . non abattu:
+  titre.fr: non abattu
+  titre.en: not slaughtered
+contrat salarié . CITS . abattement mensuel par salarié:
+  titre.fr: abattement mensuel par salarié
+  titre.en: monthly deduction per employee
 contrat salarié . CITS:
-  titre.en: erialas sel rus exat ed tôpmi'd tidérC
   titre.fr: Crédit d'impôt de taxe sur les salaire
-  description.en: >-
-
-    .)STIC( serialas sel rus exat ed tôpmi'd tidérc ed fitisopsid nu
-
-    ,)LBSO( fitarcul tub snas semsinagro te snoitaicossa sed ecifénéb ua
-    ,eruatsni 7102 ruop secnanif ed iol aL
+  titre.en: Salary tax credit
   description.fr: >
     La loi de finances pour 2017 instaure, au bénéfice des associations et
     organismes sans but lucratif (OSBL),
 
     un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
-contrat salarié . plafond CITS:
-  titre.en: STIC dnofalp
-  titre.fr: plafond CITS
-contrat salarié . multiplicateur CITS:
-  titre.en: STIC ruetacilpitlum
-  titre.fr: multiplicateur CITS
+  description.en: >-
+    The Finance Act for 2017 establishes, for the benefit of associations and
+    non-profit organizations (NPOs),
+
+    a wage tax credit scheme (CITS).
+contrat salarié . CITS . plafond:
+  titre.fr: plafond
+  titre.en: ceiling
+contrat salarié . CITS . multiplicateur:
+  titre.fr: multiplicateur
+  titre.en: multiplier
 contrat salarié . statut JEI:
-  titre.en: IEJ tutatS
   titre.fr: Statut JEI
-  description.en: >-
-
-    .snoitarénoxe seniatrec ed reicifénéb ed tnemeppolevéD te ehcrehceR al ed à
-    segrahc sruel ed sniom ua %51 tnarcasnoc sna 8 ed sniom ed EMP xua temrep te
-    4002 ruop secnanif ed iol al rap éérc été a )IEJ( etnavonni esirpertne enuej
-    ed tutats eL
-  description.fr: >
-    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
-    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
-    moins de leurs charges à de la Recherche et Développement de bénéficier de
-    certaines exonérations.
-  question.en: '? ehcuabme ettec ruop etnavonnI esirpertnE enueJ tutats ud suov-zetiforP'
+  titre.en: JEI status
   question.fr: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
-contrat salarié . exonération JEI:
-  titre.en: IEJ noitarénoxe
-  titre.fr: exonération JEI
-  description.en: >-
-
-    .snoitarénoxe seniatrec ed reicifénéb ed tnemeppolevéD te ehcrehceR al ed à
-    segrahc sruel ed sniom ua %51 tnarcasnoc sna 8 ed sniom ed EMP xua temrep te
-    4002 ruop secnanif ed iol al rap éérc été a )IEJ( etnavonni esirpertne enuej
-    ed tutats eL
+  question.en: Do you enjoy the Young Innovative Company status for this job?
   description.fr: >
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
     moins de leurs charges à de la Recherche et Développement de bénéficier de
     certaines exonérations.
-contrat salarié . réduction générale:
-  titre.en: elarénég noitcudér
-  titre.fr: réduction générale
   description.en: >-
-
-    .reutceffe à erèilucitrap étilamrof ed sap a y'n lI .tneiciffeoc nu rap
-    eturb elleunna noitarénumér al ed tiudorp ua lagé tse tnemegèlla'l ed
-    tnatnom eL .egamôhc ecnarussa'l simroh ,noitasitoc enucua reyap sulp en ed
-    cimS ua éiralas nu'd rueyolpme'l à temrep fassrU noitasitoc oréz fitisopsid
-    el ,étiradilos ed te étilibasnopser ed etcap ud erdac el snaD
+    The status of young innovative company (JEI) was created by the Finance Act
+    for 2004 and allows SMEs under 8 years of age, which devote at least 15% of
+    their expenses to Research and Development to benefit from certain
+    exemptions.
+contrat salarié . exonération JEI:
+  description.fr: >
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier de
+    certaines exonérations.
+  description.en: >-
+    The status of young innovative company (JEI) was created by the Finance Act
+    for 2004 and allows SMEs under 8 years of age, which devote at least 15% of
+    their expenses to Research and Development to benefit from certain
+    exemptions.
+  titre.fr: exonération JEI
+  titre.en: JEI exemption
+contrat salarié . réduction générale:
   description.fr: >
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
     zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
     payer aucune cotisation, hormis l'assurance chômage. Le montant de
     l'allègement est égal au produit de la rémunération annuelle brute par un
     coefficient. Il n'y a pas de formalité particulière à effectuer.
-contrat salarié . réduction générale constante:
-  titre.en: etnatsnoc elarénég noitcudér
-  titre.fr: réduction générale constante
-contrat salarié . réduction générale variable:
-  titre.en: elbairav elarénég noitcudér
-  titre.fr: réduction générale variable
-contrat salarié . coefficient réduction générale:
-  titre.en: elarénég noitcudér tneiciffeoc
-  titre.fr: coefficient réduction générale
-contrat salarié . assiette réduction générale:
-  titre.en: elarénég noitcudér etteissa
-  titre.fr: assiette réduction générale
-contrat salarié . assiette ATMP réduction générale:
-  titre.en: elarénég noitcudér PMTA etteissa
-  titre.fr: assiette ATMP réduction générale
   description.en: >-
-    .noitarénumér al ed % 09,0 ed etimil al snad sellennoisseforp seidalam te
-    liavart ud stnedicca snoitasitoc sel rus eétupmi tnemelagé tse noitcudér al
-    ,snoitubirtnoc te snoitasitoc sec ed tnatnom ua rueirépus tse elarénég
-    noitcudér al ed tnatnom el euqsroL
+    As part of the liability and solidarity pact, the zero-contribution scheme
+    Urssaf allows the employer of a Smic employee to no longer pay any
+    contributions, except for unemployment insurance. The amount of the relief
+    is equal to the product of the gross annual remuneration by a coefficient.
+    There is no particular formality to perform.
+  titre.fr: réduction générale
+  titre.en: general reduction
+contrat salarié . réduction générale constante:
+  titre.fr: réduction générale constante
+  titre.en: constant general reduction
+contrat salarié . réduction générale variable:
+  titre.fr: réduction générale variable
+  titre.en: variable general reduction
+contrat salarié . coefficient réduction générale:
+  titre.fr: coefficient réduction générale
+  titre.en: coefficient overall reduction
+contrat salarié . assiette réduction générale:
+  titre.fr: assiette réduction générale
+  titre.en: general reduction
+contrat salarié . assiette ATMP réduction générale:
   description.fr: >-
     Lorsque le montant de la réduction générale est supérieur au montant de ces
     cotisations et contributions, la réduction est également imputée sur les
     cotisations accidents du travail et maladies professionnelles dans la limite
     de 0,90 % de la rémunération.
-contrat salarié . plafond réduction générale:
-  titre.en: elarénég noitcudér dnofalp
-  titre.fr: plafond réduction générale
-contrat salarié . multiplicateur réduction générale:
-  titre.en: elarénég noitcudér ruetacilpitlum
-  titre.fr: multiplicateur réduction générale
-contrat salarié . AGFF:
-  titre.en: FFGA
-  titre.fr: AGFF
   description.en: >-
-
-    )OCRRA’l ed te CRIGA’l ed tnemecnaniF ed sdnoF ud noitseG al ruop
-    noitaicossA'l ruop noitasitoC(
-
-    eriatnemélpmoc etiarter ed noitasitoC
+    When the amount of the general reduction is greater than the amount of these
+    contributions and contributions, the reduction is also deducted from the
+    contributions for industrial accidents and occupational diseases up to the
+    limit of 0.90% of the remuneration.
+  titre.fr: assiette ATMP réduction générale
+  titre.en: ATMP trim plate
+contrat salarié . plafond réduction générale:
+  titre.fr: plafond réduction générale
+  titre.en: ceiling general reduction
+contrat salarié . multiplicateur réduction générale:
+  titre.fr: multiplicateur réduction générale
+  titre.en: general reduction multiplier
+contrat salarié . AGFF:
   description.fr: >
     Cotisation de retraite complémentaire
 
     (Cotisation pour l'Association pour la Gestion du Fonds de Financement de
     l’AGIRC et de l’ARRCO)
-contrat salarié . GMP:
-  titre.en: PMG
-  titre.fr: GMP
   description.en: >-
+    Supplementary pension contribution
 
-    .eriatiafrof noitasitoc enu'd eitrapertnoc ne rinetbo sel ed eitnarag al tno
-
-    ,crigA stniop 021 ed muminim erbmon el erdnietta
-
-    ruop tnasiffus erialas nu sap tno'n iuq crigA emigér ud tnaveler séiralas
-    seL
+    (Contribution for the Association for the Management of the Financing Fund
+    of AGIRC and ARRCO)
+  titre.fr: AGFF
+  titre.en: AGFF
+contrat salarié . GMP:
   description.fr: >
     Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant
     pour
@@ -855,151 +771,148 @@ contrat salarié . GMP:
     atteindre le nombre minimum de 120 points Agirc,
 
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
+  description.en: |-
+    Employees under the Agirc scheme who do not have a salary sufficient to
+    reach the minimum number of 120 Agirc points,
+    are guaranteed to obtain them in return for a lump sum contribution.
+  titre.fr: GMP
+  titre.en: GMP
 contrat salarié . AGIRC:
-  titre.en: CRIGA
-  titre.fr: AGIRC
-  description.en: >-
-
-    )serdaC sed etiarteR ed snoitutitsnI sed elarénéG noitaicossA( CRIGA'l rap
-    eérég ,OCRRA emigér el etèlpmoC .erdac eriatnemélpmoc etiarter ed noitasitoC
   description.fr: >
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée
     par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
+  description.en: >-
+    Supplementary pension contribution framework. Completes the ARRCO regime,
+    managed by the AGIRC (General Association of Retirement Pensions)
+  titre.fr: AGIRC
+  titre.en: AGIRC
 contrat salarié . AGS:
-  titre.en: SGA
-  titre.fr: AGS
-  description.en: serialaS sed eitnaraG ed emigéR ua noitasitoC
   description.fr: Cotisation au Régime de Garantie des Salaires
+  description.en: Contribution to the wage guarantee scheme
+  titre.fr: AGS
+  titre.en: AGS
 contrat salarié . allocations familiales:
-  titre.en: selailimaf snoitacolla
   titre.fr: allocations familiales
+  titre.en: Family allowances
 contrat salarié . cotisation allocations familiales:
-  titre.en: selailimaf snoitacolla noitasitoc
   titre.fr: cotisation allocations familiales
+  titre.en: family allowance contribution
 contrat salarié . réduction allocations familiales:
-  titre.en: selailimaf snoitacolla noitcudér
   titre.fr: réduction allocations familiales
+  titre.en: reduction of family allowances
 contrat salarié . plafond réduction allocations familiales:
-  titre.en: selailimaf snoitacolla noitcudér dnofalp
   titre.fr: plafond réduction allocations familiales
+  titre.en: ceiling reduction family allowances
 contrat salarié . APEC:
-  titre.en: CEPA
-  titre.fr: APEC
-  description.en: |-
-
-    )serdaC sed iolpmE’l ruoP noitaicossA(
-    CEPA'l ed tnemennoitcnof el ruop ,erdac eriatnemélpmoc egamôhc noitasitoC
   description.fr: |
     Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
-contrat salarié . ARRCO:
-  titre.en: OCRRA
-  titre.fr: ARRCO
   description.en: >-
+    Compulsory supplementary unemployment contribution, for the functioning of
+    APEC
 
-    séiralas sed eriatnemélpmoC etiarteR ed emigéR el ruop noitaicossA'l rap
-    eérég ,évirp ruetces ud séiralas sel suot ruop eriatnemélpmoc etiarter ed
-    noitasitoC
+    (Association for the Employment of Managers)
+  titre.fr: APEC
+  titre.en: APEC
+contrat salarié . ARRCO:
   description.fr: >
     Cotisation de retraite complémentaire pour tous les salariés du secteur
     privé, gérée par l'Association pour le Régime de Retraite Complémentaire des
     salariés
-contrat salarié . chômage:
-  titre.en: egamôhc
-  titre.fr: chômage
-  description.en: egamôhc ecnarussa’d noitasitoC
-  description.fr: Cotisation d’assurance chômage
-contrat salarié . complémentaire santé:
-  titre.en: étnas eriatnemélpmoc
-  titre.fr: complémentaire santé
-contrat salarié . forfait complémentaire santé:
-  titre.en: esirpetne étnas eriatnemélpmoc ed tiafroF
-  titre.fr: Forfait de complémentaire santé enteprise
   description.en: >-
-
-    .snios ed lagél reinap nu ervuoc elle'uq tnat ,erbil tse tnatnom eL
-    .egatnavad uo ,noitalumis ettec ruop uneter snova suon euq ec
-
-    ,tnatnom ud éitiom al egrahc ne erdnerp tiod lI .étnas eriatnemélpmoc ed
-    erffo enu resoporp ed noitagilbo'l a rueyolpme'L
+    Supplementary pension contribution for all employees in the private sector,
+    managed by the Association for the Complementary Pension Plan for Employees
+  titre.fr: ARRCO
+  titre.en: ARRCO
+contrat salarié . chômage:
+  description.fr: Cotisation d’assurance chômage
+  description.en: Unemployment insurance contribution
+  titre.fr: chômage
+  titre.en: unemployment
+contrat salarié . complémentaire santé:
+  titre.fr: complémentaire santé
+  titre.en: Complementary Health
+contrat salarié . forfait complémentaire santé:
+  titre.fr: Forfait de complémentaire santé enteprise
+  titre.en: Supplementary health insurance plan
+  question.fr: >-
+    Quel est le montant mensuel total (salarié et employeur) de la
+    complémentaire santé entreprise ?
+  question.en: >-
+    What is the total monthly amount (employee and employer) of the
+    complementary health company?
   description.fr: >
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
     doit prendre en charge la moitié du montant,
 
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
     libre, tant qu'elle couvre un panier légal de soins.
-  question.en: >-
-    ? esirpertne étnas eriatnemélpmoc al ed )rueyolpme te éiralas( latot leusnem
-    tnatnom el tse leuQ
-  question.fr: >-
-    Quel est le montant mensuel total (salarié et employeur) de la
-    complémentaire santé entreprise ?
-contrat salarié . contribution au dialogue social:
-  titre.en: laicos eugolaid ua noitubirtnoc
-  titre.fr: contribution au dialogue social
   description.en: >-
-    .srueyolpme’d sellennoisseforp snoitasinagro sed te selacidnys snoitasinagro
-    sed tnemecnanif ua éidéd eriatirap sdnof nu rednoba à eénitsed elanortap
-    noitubirtnoC
-  description.fr: >-
+    The employer has the obligation to propose an offer of complementary health.
+    He has to take care of half the amount,
+
+    what we chose for this simulation, or more. The amount is free as long as it
+    covers a legal care basket.
+contrat salarié . contribution au dialogue social:
+  description.fr: >
     Contribution patronale destinée à abonder un fonds paritaire dédié au
     financement des organisations syndicales et des organisations
     professionnelles d’employeurs.
-contrat salarié . cotisation exceptionnelle temporaire:
-  titre.en: eriaropmet ellennoitpecxe noitasitoc
-  titre.fr: cotisation exceptionnelle temporaire
-  description.en: >-
 
-    .éiralas ua seriatnemélppus stniop ed sap ennod en elle ,crigA emigér el
-    ruop étiradilos ed noitasitoC
+
+    Anciennement 'contribution patronale au financement des organisations
+    syndicales'
+  description.en: >-
+    Employers' contribution intended to supplement a joint fund dedicated to the
+    financing of trade union organizations and professional organizations of
+    employers.
+
+
+    Formerly 'employers' contribution to the financing of trade union
+    organizations'
+  titre.fr: contribution au dialogue social
+  titre.en: contribution to social dialogue
+contrat salarié . cotisation exceptionnelle temporaire:
   description.fr: >
     Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points
     supplémentaires au salarié.
+  description.en: >-
+    Solidarity contribution for the Agirc scheme, it does not give additional
+    points to the employee.
+  titre.fr: cotisation exceptionnelle temporaire
+  titre.en: exceptional temporary contribution
 contrat salarié . assiette CSG:
-  titre.en: GSC etteissa
   titre.fr: assiette CSG
+  titre.en: CSG plate
 contrat salarié . assiette CSG abattue:
-  titre.en: euttaba GSC etteissa
   titre.fr: assiette CSG abattue
+  titre.en: CSG plate slaughtered
 contrat salarié . CSG:
-  titre.en: GSC
-  titre.fr: CSG
-  description.en: |-
-
-    .elaicos étirucés al ed tnemecnanif ua epicitrap iuq eriotagilbo tnemevèlérP
-    .eésilarénég elaicos noitubirtnoC
   description.fr: |
     Contribution sociale généralisée.
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+  description.en: |-
+    Generalized social contribution.
+    Compulsory levy that contributes to the financing of social security.
+  titre.fr: CSG
+  titre.en: CSG
 contrat salarié . CRDS:
-  titre.en: SDRC
-  titre.fr: CRDS
-  description.en: elaicos etted al ed tnemesruobmer el ruop noitubirtnoC
   description.fr: Contribution pour le remboursement de la dette sociale
+  description.en: Contribution for the repayment of the social debt
+  titre.fr: CRDS
+  titre.en: CRDS
 contrat salarié . FNAL:
-  titre.en: tnemegoL ua ediA’d lanoitaN sdnoF ua noitubirtnoC
   titre.fr: Contribution au Fonds National d’Aide au Logement
+  titre.en: Contribution to the National Fund for Housing Assistance
 contrat salarié . formation professionnelle:
-  titre.en: ellennoisseforp noitamrof
   titre.fr: formation professionnelle
+  titre.en: professional training
 contrat salarié . maladie:
-  titre.en: eidalam
-  titre.fr: maladie
-  description.en: eidalam ehcnarb al ed snoitasitoC
   description.fr: Cotisations de la branche maladie
+  description.en: Contributions from the sickness branch
+  titre.fr: maladie
+  titre.en: disease
 contrat salarié . médecine du travail:
-  titre.en: liavart ud enicedém
-  titre.fr: médecine du travail
-  description.en: >-
-
-    .7002 siuped noitalfni'l ceva étsuja )secneréfér sel riov( fitacidni tnatnom
-    nu isiohc snova suoN .séyolpme'd erbmon ua lennoitroporp ertê tiod li siam
-    ,iol al rap iniféd sap tse'n noitasitoc ettec ed tnatnom el ,ecivres nu à
-    noiséhda'l ed sac el snaD
-
-
-    .enretni ecivres nu tnaérc ne uo ,sesirpertneretni ecivres nu à tnaréhda ne
-    ,liavart ua étnas ed ecivres nu resinagro'd noitagilbo'l a rueyolpme'L
   description.fr: >
     L'employeur a l'obligation d'organiser un service de santé au travail, en
     adhérant à un service interentreprises, ou en créant un service interne.
@@ -1009,73 +922,81 @@ contrat salarié . médecine du travail:
     pas défini par la loi, mais il doit être proportionnel au nombre d'employés.
     Nous avons choisi un montant indicatif (voir les références) ajusté avec
     l'inflation depuis 2007.
-contrat salarié . participation effort de construction:
-  titre.en: noitcurtsnoc ed troffe noitapicitrap
-  titre.fr: participation effort de construction
-  description.en: noitcurtsnoc ed troffe'l à srueyolpme sed noitapicitraP
-  description.fr: Participation des employeurs à l'effort de construction
-contrat salarié . prévoyance obligatoire cadre:
-  titre.en: erdac eriotagilbo ecnayovérp
-  titre.fr: prévoyance obligatoire cadre
-contrat salarié . taxe d'apprentissage:
-  titre.en: egassitnerppa'd exat
-  titre.fr: taxe d'apprentissage
   description.en: >-
-    sellennoisseforp te seuqigolonhcet snoitamrof sed te egassitnerppa'l ed
-    sesnepéd sel sesirpertne sel rap recnanif ed temrep egassitnerppa'd exat aL
+    The employer has the obligation to organize an occupational health service,
+    by joining a business-to-business service, or by creating an internal
+    service.
+
+
+    In the case of joining a service, the amount of this contribution is not
+    defined by law, but it must be proportional to the number of employees. We
+    have chosen an indicative amount (see references) adjusted with inflation
+    since 2007.
+  titre.fr: médecine du travail
+  titre.en: Occupational Medicine
+contrat salarié . participation effort de construction:
+  description.fr: Participation des employeurs à l'effort de construction
+  description.en: Employer involvement in the construction effort
+  titre.fr: participation effort de construction
+  titre.en: participation building effort
+contrat salarié . prévoyance obligatoire cadre:
+  titre.fr: prévoyance obligatoire cadre
+  titre.en: mandatory foresight framework
+contrat salarié . taxe d'apprentissage:
   description.fr: >-
     La taxe d'apprentissage permet de financer par les entreprises les dépenses
     de l'apprentissage et des formations technologiques et professionnelles
+  description.en: >-
+    Apprenticeship tax enables companies to finance apprenticeship and
+    technological and professional training expenses
+  titre.fr: taxe d'apprentissage
+  titre.en: Tax learning
 contrat salarié . taxe d'apprentissage de base:
-  titre.en: esab ed egassitnerppa'd exat
   titre.fr: taxe d'apprentissage de base
+  titre.en: basic apprenticeship fee
 contrat salarié . contribution supplémentaire à l'apprentissage:
-  titre.en: egassitnerppa'l à eriatnemélppus noitubirtnoc
   titre.fr: contribution supplémentaire à l'apprentissage
+  titre.en: additional contribution to learning
 contrat salarié . taxe d'apprentissage . csa au taux majoré:
-  titre.en: érojam xuat ua asc
   titre.fr: csa au taux majoré
-contrat salarié . assujettie à la taxe sur les salaires:
-  titre.en: serialas sel rus exat al à eittejussa esirpertnE
-  titre.fr: Entreprise assujettie à la taxe sur les salaires
-  description.en: >-
-
-    .sénrecnoc sap tnos en sruenerpertne-otua sel ,rueirépus tnemengiesne'd
-    stnemessilbaté sel ,selocirga srueyolpme sel ,srueyolpme sreilucitrap seL
-    .erffihc ruel ed %01 ed sniom rus AVT al tnayap uo AVT al à sesimuos non
-    sesirpertne sel te fitarcul non tub à snoitaicossa sel seittejussa tnoS
-  description.fr: >
-    Sont assujetties les associations à but non lucratif et les entreprises non
-    soumises à la TVA ou payant la TVA sur moins de 10% de leur chiffre. Les
-    particuliers employeurs, les employeurs agricoles, les établissements
-    d'enseignement supérieur, les auto-entrepreneurs ne sont pas concernés.
-  question.en: '? serialas sel rus exat al à eittejussa elle-tse esirpertne''L'
-  question.fr: L'entreprise est-elle assujettie à la taxe sur les salaires ?
-contrat salarié . taxe sur les salaires annuelle:
-  titre.en: elleunna serialas sel rus exat
-  titre.fr: taxe sur les salaires annuelle
-contrat salarié . assiette taxe sur les salaires:
-  titre.en: serialas sel rus exat etteissa
-  titre.fr: assiette taxe sur les salaires
-contrat salarié . taxe sur les salaires:
-  titre.en: serialas sel rus exat
+  titre.en: csa at the higher rate
+contrat salarié . taxe sur les salaires . assiette:
+  titre.fr: assiette
+  titre.en: plate
+contrat salarié . taxe sur les salaires . barème annuel:
+  titre.fr: barème annuel
+  titre.en: annual scale
+entreprise . taxe sur les salaires . barème annuel:
+  titre.fr: barème annuel
+  titre.en: annual scale
+entreprise . taxe sur les salaires . abattement associations:
+  titre.fr: abattement associations
+  titre.en: abatement associations
+entreprise . taxe sur les salaires:
   titre.fr: taxe sur les salaires
-  description.en: >-
-    .tneubirtsid sli'uq serialas sel rus rettiuqca tneviod srueyolpme sniatrec
-    euq 8491 ne éérc fissergorp tôpmi nu tse ecnarF ne serialas sel rus exat aL
+  titre.en: payroll tax
+contrat salarié . taxe sur les salaires . montant annuel:
+  titre.fr: montant annuel
+  titre.en: annual amount
+contrat salarié . taxe sur les salaires:
   description.fr: >-
     La taxe sur les salaires en France est un impôt progressif créé en 1948 que
     certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+  description.en: >-
+    The payroll tax in France is a progressive tax created in 1948 that some
+    employers must pay on the wages they distribute.
+  titre.fr: taxe sur les salaires
+  titre.en: payroll tax
 contrat salarié . versement transport:
-  titre.en: tropsnart tnemesrev
-  titre.fr: versement transport
-  description.en: .scilbup stropsnart sed tnemecnanif ua eércasnoc liavart el rus noitubirtnoC
   description.fr: Contribution sur le travail consacrée au financement des transports publics.
+  description.en: Contribution on the work devoted to the financing of public transport.
+  titre.fr: versement transport
+  titre.en: transport payment
 établissement . taux versement transport:
-  titre.en: tropsnart tnemesrev xuat
   titre.fr: taux versement transport
+  titre.en: transport payment rate
 contrat salarié . vieillesse:
-  titre.en: essellieiv
-  titre.fr: vieillesse
-  description.en: .séiralas sed esab ed etiarter ed emigér ua noitasitoC
   description.fr: Cotisation au régime de retraite de base des salariés.
+  description.en: Contribution to the basic pension plan of employees.
+  titre.fr: vieillesse
+  titre.en: old age

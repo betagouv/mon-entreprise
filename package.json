@@ -23,6 +23,7 @@
 		"flow": "^0.2.3",
 		"fuse.js": "^3.2.0",
 		"global": "^4.3.2",
+		"google-translate-api": "^2.3.0",
 		"ignore-loader": "^0.1.2",
 		"js-yaml": "^3.9.1",
 		"marked": "^0.3.9",
