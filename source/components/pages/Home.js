@@ -4,10 +4,9 @@ import './Home.css'
 import TargetSelection from '../TargetSelection'
 import { connect } from 'react-redux'
 
-@connect(state => ({
-	themeColours: state.themeColours
-}))
-export default class Home extends Component {
+var I18n = require("i18n-js");
+
+class Home extends Component {
 	state = {
 		updateMessage: false
 	}
@@ -27,7 +26,7 @@ export default class Home extends Component {
 							color: this.props.themeColours.textColourOnWhite
 						}}
 					/>
-					<p style={opacityStyle}>
+					<p style={opacityStyle} translate="yes">
 						Cette nouvelle version du site vous permet de simuler un CDD ou CDI,
 						aux taux de 2018.
 					</p>
@@ -39,3 +38,6 @@ export default class Home extends Component {
 		)
 	}
 }
+export default connect(state => ({
+	themeColours: state.themeColours
+}))(Home);

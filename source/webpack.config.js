@@ -13,6 +13,7 @@ module.exports = {
 					'webpack/hot/only-dev-server',
 					'@babel/polyfill',
 					'react-hot-loader/patch',
+					'./source/i18nliner-glue.js',
 					'./source/entry.js'
 				]
 		// le nom "simulateur" est là pour des raisons historiques
@@ -70,7 +71,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				loader: 'babel-loader!react-i18nliner/webpack-loader'
 			},
 			{
 				test: /\.csv$/,

@@ -6,6 +6,8 @@ import './TargetSelection.css'
 import BlueButton from './BlueButton'
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
 
+var I18n = require("i18n-js");
+
 export default class TargetSelection extends Component {
 	state = {
 		targets: []
@@ -16,14 +18,14 @@ export default class TargetSelection extends Component {
 
 		return (
 			<section id="targetSelection">
-				<h1>Que voulez-vous calculer ?</h1>
+				<h1 translate="yes">Que voulez-vous calculer ?</h1>
 				{this.renderOutputList()}
 				<div id="action">
-					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
+					<p style={{ color: this.props.themeColours.textColourOnWhite }} translate="yes">
 						Vous pouvez faire plusieurs choix
 					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready}>Valider</BlueButton>
+						<BlueButton disabled={!ready} translate="yes">Valider</BlueButton>
 					</Link>
 				</div>
 			</section>
