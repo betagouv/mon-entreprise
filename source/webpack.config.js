@@ -15,7 +15,7 @@ module.exports = {
 					'react-hot-loader/patch',
 					'./source/i18nliner-glue.js',
 					'./source/entry.js'
-				]
+			  ]
 		// le nom "simulateur" est là pour des raisons historiques
 	},
 	output: {
@@ -97,7 +97,7 @@ module.exports = {
 				? [
 						new webpack.HotModuleReplacementPlugin(),
 						new HardSourceWebpackPlugin()
-					]
+				  ]
 				: []
 		)
 		.concat(prodEnv ? [new webpack.optimize.UglifyJsPlugin()] : [])

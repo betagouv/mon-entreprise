@@ -4,7 +4,7 @@ import './Home.css'
 import TargetSelection from '../TargetSelection'
 import { connect } from 'react-redux'
 
-var I18n = require("i18n-js");
+var I18n = require('i18n-js')
 
 class Home extends Component {
 	state = {
@@ -32,12 +32,16 @@ class Home extends Component {
 					</p>
 				</div>
 				<div id="content">
-					<TargetSelection themeColours={this.props.themeColours} />
+					<TargetSelection
+						parsedRules={this.props.parsedRules}
+						themeColours={this.props.themeColours}
+					/>
 				</div>
 			</div>
 		)
 	}
 }
 export default connect(state => ({
-	themeColours: state.themeColours
-}))(Home);
+	themeColours: state.themeColours,
+	parsedRules: state.parsedRules
+}))(Home)

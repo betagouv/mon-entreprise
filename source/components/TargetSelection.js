@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { rules, findRuleByName } from 'Engine/rules'
+import { findRuleByName } from 'Engine/rules'
 import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
-
-var I18n = require("i18n-js");
+import I18n from 'i18n-js'
 
 export default class TargetSelection extends Component {
 	state = {
@@ -21,11 +20,16 @@ export default class TargetSelection extends Component {
 				<h1 translate="yes">Que voulez-vous calculer ?</h1>
 				{this.renderOutputList()}
 				<div id="action">
-					<p style={{ color: this.props.themeColours.textColourOnWhite }} translate="yes">
+					<p
+						style={{ color: this.props.themeColours.textColourOnWhite }}
+						translate="yes"
+					>
 						Vous pouvez faire plusieurs choix
 					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready} translate="yes">Valider</BlueButton>
+						<BlueButton disabled={!ready} translate="yes">
+							Valider
+						</BlueButton>
 					</Link>
 				</div>
 			</section>
@@ -34,7 +38,7 @@ export default class TargetSelection extends Component {
 
 	renderOutputList() {
 		let popularTargets = [...salaries, 'aides employeur différées'].map(
-				curry(findRuleByName)(rules)
+				curry(findRuleByName)(this.props.parsedRules)
 			),
 			{ targets } = this.state,
 			textColourOnWhite = this.props.themeColours.textColourOnWhite,
@@ -74,7 +78,7 @@ export default class TargetSelection extends Component {
 									optionIsChecked(s)
 										? {
 												color: textColourOnWhite
-											}
+										  }
 										: {}
 								}
 							>
