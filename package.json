@@ -22,6 +22,7 @@
 		"flow": "^0.2.3",
 		"fuse.js": "^3.2.0",
 		"global": "^4.3.2",
+		"google-translate-api": "^2.3.0",
 		"i18n-js": "^3.0.3",
 		"i18nliner": "betagouv/i18nliner-js",
 		"ignore-loader": "^0.1.2",
