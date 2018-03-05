@@ -43,7 +43,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 		title = capitalise0(rule['titre'] || name),
 		ns = rule['espace'],
 		data = rule['données'] ? sharedData[rule['données']] : null,
-		dottedName = ns ? [ns, name].join(' . ') : name,
+		dottedName = buildDottedName(rule),
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 		defaultValue = rule['par défaut']
@@ -60,6 +60,9 @@ export let enrichRule = (rule, sharedData = {}) => {
 		defaultValue
 	}
 }
+
+let buildDottedName = rule =>
+	rule['espace'] ? [rule['espace'], rule['nom']].join(' . ') : rule['nom']
 
 export let disambiguateExampleSituation = (rules, rule) =>
 	pipe(
@@ -169,7 +172,7 @@ export let formatInputs = (flatRules, formValueSelector) => state => name => {
 /* Traduction */
 
 export let translateAll = (translations, flatRules) => {
-	let translationsOf = rule => translations[rule.dottedName],
+	let translationsOf = rule => translations[buildDottedName(rule)],
 		translateProp = (lang, translation) => (rule, prop) => {
 			let propTrans = translation[prop + '.' + lang]
 			return propTrans ? assoc(prop, propTrans, rule) : rule
@@ -181,13 +184,12 @@ export let translateAll = (translations, flatRules) => {
 				: rule
 		}
 
-	let targets = ['title', 'description', 'question', 'sous-question']
+	let targets = ['titre', 'description', 'question', 'sous-question', 'résumé']
 
 	return map(translateRule('en', translations, targets), flatRules)
 }
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = translateAll(
-	translations,
-	rawRules.map(rule => enrichRule(rule, { taux_versement_transport }))
+export let rules = translateAll(translations, rawRules).map(rule =>
+	enrichRule(rule, { taux_versement_transport })
 )
