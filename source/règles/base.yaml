@@ -639,7 +639,7 @@
   nom: type de contrat
   titre: Type de contrat
   question: Quelle est la nature du contrat de travail ?
-  formule: CDI
+  formule: "'CDI'"
   par défaut: CDI
 
 - espace: contrat salarié . type de contrat
@@ -710,7 +710,7 @@
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   par défaut: non
-  formule: oui
+  formule: "'oui'"
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
