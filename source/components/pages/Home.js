@@ -6,7 +6,11 @@ import { connect } from 'react-redux'
 
 var I18n = require('i18n-js')
 
-class Home extends Component {
+@connect(state => ({
+	themeColours: state.themeColours,
+	parsedRules: state.parsedRules
+}))
+export default class Home extends Component {
 	state = {
 		updateMessage: false
 	}
@@ -41,7 +45,3 @@ class Home extends Component {
 		)
 	}
 }
-export default connect(state => ({
-	themeColours: state.themeColours,
-	parsedRules: state.parsedRules
-}))(Home)
