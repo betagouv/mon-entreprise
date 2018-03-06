@@ -7,7 +7,7 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
 		bundle: prodEnv
-			? ['@babel/polyfill', 'whatwg-fetch', './source/entry.js', './source/i18nliner-glue.js']
+			? ['@babel/polyfill', 'whatwg-fetch', './source/i18nliner-glue.js', './source/entry.js']
 			: [
 					'webpack-dev-server/client?http://0.0.0.0:3000/',
 					'webpack/hot/only-dev-server',
