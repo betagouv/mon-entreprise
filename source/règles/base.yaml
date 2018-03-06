@@ -933,8 +933,9 @@
   nom: temps partiel
   question: Le contrat est-il à temps partiel ?
   description: |
-    Le temps partiel peut avoir une influence sur les règles.
-    Par exemple les cotisations plafonnées ou les exonérations dépendant du SMIC.
+    Deux contrats au même salaire, l'un à temps partiel, l'autre à temps complet, peuvent donner lieu à des montants de cotisation différents.
+
+    Par exemple pour les cotisations plafonnées ou les exonérations dépendant du SMIC.
   par défaut: non
 
 - espace: contrat salarié
