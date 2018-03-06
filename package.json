@@ -26,6 +26,7 @@
 		"fuse.js": "^3.2.0",
 		"global": "^4.3.2",
 		"google-translate-api": "^2.3.0",
+		"hard-source-webpack-plugin": "^0.5.18",
 		"i18n-js": "^3.0.3",
 		"i18nliner": "^0.2.3",
 		"ignore-loader": "^0.1.2",
@@ -59,6 +60,7 @@
 		"reselect": "^3.0.1",
 		"screenfull": "^3.3.2",
 		"whatwg-fetch": "^2.0.3",
+		"webpack-dev-server": "^2.9.5",
 		"yaml-loader": "^0.5.0"
 	},
 	"devDependencies": {
@@ -90,7 +92,6 @@
 		"fantasy-land": "^3.3.0",
 		"fantasy-tuples": "^1.0.0",
 		"file-loader": "^1.1.6",
-		"hard-source-webpack-plugin": "^0.5.18",
 		"html-loader": "^0.5.1",
 		"jsdom": "^11.0.0",
 		"json-loader": "^0.5.4",
@@ -104,8 +105,7 @@
 		"source-map-support": "^0.5.0",
 		"style-loader": "^0.19.0",
 		"url-loader": "^0.6.2",
-		"webpack": "^3.10.0",
-		"webpack-dev-server": "^2.9.5"
+		"webpack": "^3.10.0"
 	},
 	"scripts": {
 		"start": "node source/server.js",
@@ -116,7 +116,7 @@
 		"test-watch": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
 		"test-meca": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
 		"test-rules": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
-		"heroku-postbuild": "npm install --dev && webpack --config source/webpack.config.js --progress",
+		"heroku-postbuild": "yarn install --production=false && webpack --config source/webpack.config.js --progress",
 		"test-inversions": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch"
 	}
 }
