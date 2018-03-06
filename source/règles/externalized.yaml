@@ -360,23 +360,22 @@ contrat salarié:
   titre.en: ~~salaried contract
   titre.fr: contrat salarié
 contrat salarié . type de contrat:
-  titre.en: ~~Type of Contract
+  titre.en: Type of contract
   titre.fr: Type de contrat
-  question.en: ~~What is the nature of the employment contract?
+  question.en: What is the nature of the employment contract?
   question.fr: Quelle est la nature du contrat de travail ?
 contrat salarié . type de contrat . CDD:
-  description.en: ~~The employment contract explicitly provides for an end date.
+  description.en: The employment contract explicitly provides for an end date.
   description.fr: Le contrat de travail prévoit explicitement une date de fin.
-  titre.en: ~~CSD
+  titre.en: Fixed term (CDD)
   titre.fr: CDD
 contrat salarié . type de contrat . CDI:
   description.en: >-
-    ~~The employment contract does not mention an end date, or has not been
-    established.
+    The employment contract does not mention an end date, or it has not been established : the law makes it a permanent contract by default.
   description.fr: >-
     Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
     établi.
-  titre.en: ~~CDI
+  titre.en: Permanent (CDI)
   titre.fr: CDI
 contrat salarié . assiette cotisations sociales:
   description.en: >-
@@ -392,11 +391,11 @@ contrat salarié . assiette cotisations sociales:
   titre.en: ~~social contribution base
   titre.fr: assiette cotisations sociales
 contrat salarié . salaire de base:
-  titre.en: ~~Gross salary
+  titre.en: Gross salary
   titre.fr: Salaire brut
-  résumé.en: ~~The salary entered in the employment contract.
+  résumé.en: The salary written in the employment contract.
   résumé.fr: Le salaire inscrit dans le contrat de travail.
-  question.en: ~~What is the monthly gross salary?
+  question.en: What is the monthly gross salary?
   question.fr: Quel est le salaire brut mensuel ?
   description.en: >-
     ~~This is the negotiating salary of the employment contract in France.
@@ -421,18 +420,18 @@ contrat salarié . salaire de base:
     - ou comme les sommes perçues par le salarié au titre de son contrat de
     travail, avant retenues sociales et fiscales.
 contrat salarié . salaire brut:
-  titre.en: ~~gross salary
+  titre.en: gross salary
   titre.fr: salaire brut
 contrat salarié . indemnités salarié:
   titre.en: ~~employee benefits
   titre.fr: indemnités salarié
 contrat salarié . statut cadre:
-  titre.en: ~~Status frame
+  titre.en: cadre status
   titre.fr: Statut cadre
-  question.en: ~~Does the employee have the status frame?
+  question.en: Does the employee have the "cadre" status ?
   question.fr: Le salarié a-t-il le statut cadre ?
   description.en: >-
-    ~~Not well defined but recognized by collective agreements and determining
+    This status is not well defined but recognized by collective agreements and determining
     membership in a specific basic pension plan
   description.fr: >-
     Notion mal définie mais reconnue par les conventions collectives et
@@ -456,20 +455,17 @@ contrat salarié . cotisations patronales:
   titre.en: ~~employer contributions
   titre.fr: cotisations patronales
 contrat salarié . salaire net:
-  titre.en: ~~Net salary
+  titre.en: Net salary
   titre.fr: Salaire net
-  question.en: ~~What is the net salary?
+  question.en: What is the net salary?
   question.fr: Quel est le salaire net ?
-  résumé.en: ~~The amount the employee receives every month.
+  résumé.en: The amount received monthly by the employee.
   résumé.fr: La somme touchée par le salarié tous les mois.
   description.en: >-
-    ~~The gross salary minus the social contributions is what the employee
+    The gross salary minus the social contributions is what the employee
     receives on his bank account.
 
-
-    This amount can vary according to political decisions (increase or decrease
-    in contributions) while the gross salary is contractual: to change it, it is
-    necessary to sign an amendment to the contract.
+    This amount can vary according to political decisions (increase or decrease in contributions) while the gross salary is contractual: to change it, an amendment to the contract must be signed.
   description.fr: >
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié
     reçoit sur son compte bancaire.
@@ -494,12 +490,12 @@ contrat salarié . coût du travail:
   titre.en: ~~labor cost
   titre.fr: coût du travail
 contrat salarié . salaire total:
-  titre.en: ~~Total salary
+  titre.en: Total salary
   titre.fr: Salaire total
-  résumé.en: ~~The total sum paid by the employer every month.
+  résumé.en: The total sum paid by the employer every month.
   résumé.fr: La somme totale versée par l'employeur tous les mois.
   description.en: >-
-    ~~This is the gross salary, plus the employer contributions. This is the
+    It is the gross salary, plus the employer contributions. It is the
     total that the employer must in principle plan to pay to employ an employee,
     but in practice certain reductions in contributions and aids may reduce this
     amount.
@@ -515,9 +511,9 @@ contrat salarié . salaire total sans réduction:
   titre.en: ~~total salary without reduction
   titre.fr: salaire total sans réduction
 contrat salarié . aides employeur différées:
-  résumé.en: ~~The deferred aid which can benefit the employer.
+  résumé.en: The deferred aids available to the employer.
   résumé.fr: Les aides différées dont peut bénéficier l'employeur.
-  titre.en: ~~deferred employer aids
+  titre.en: deferred employer aids
   titre.fr: aides employeur différées
 contrat salarié . salaire:
   titre.en: ~~salary
@@ -617,24 +613,24 @@ entreprise . association non lucrative:
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
 contrat salarié . temps partiel:
-  question.en: ~~Is the contract part-time?
+  question.en: Is the contract part-time?
   question.fr: Le contrat est-il à temps partiel ?
   description.en: |-
-    ~~Part-time can have an influence on the rules.
-    For example, capped contributions or exemptions depending on the SMIC.
+    Two contracts with the same salary, with one being part-time, can lead to slightly different social contribution amounts. 
+    For example, capped contributions or exemptions depending on the legal minimum wage.
   description.fr: >
     Le temps partiel peut avoir une influence sur les règles.
 
     Par exemple les cotisations plafonnées ou les exonérations dépendant du
     SMIC.
-  titre.en: ~~part-time
+  titre.en: Part-time
   titre.fr: temps partiel
 contrat salarié . heures par semaine:
-  question.en: ~~What is the number of hours worked per week in part-time work?
+  question.en: What is the number of hours worked per week ?
   question.fr: >-
     Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
     partiel ?
-  titre.en: ~~hours per week
+  titre.en: hours per week
   titre.fr: heures par semaine
 contrat salarié . quotité de travail:
   titre.en: ~~work quota
@@ -834,20 +830,17 @@ contrat salarié . complémentaire santé:
   titre.en: ~~Complementary Health
   titre.fr: complémentaire santé
 contrat salarié . forfait complémentaire santé:
-  titre.en: ~~Supplementary health insurance plan
+  titre.en: Complementary health insurance plan
   titre.fr: Forfait de complémentaire santé enteprise
   question.en: >-
-    ~~What is the total monthly amount (employee and employer) of the
+    What is the total monthly amount (employee and employer) of the
     complementary health company?
   question.fr: >-
     Quel est le montant mensuel total (salarié et employeur) de la
     complémentaire santé entreprise ?
   description.en: >-
-    ~~The employer has the obligation to propose an offer of complementary
-    health. He has to take care of half the amount,
-
-    what we chose for this simulation, or more. The amount is free as long as it
-    covers a legal care basket.
+    The employer has the obligation to propose a complementary
+    health insurance plan. More importantly, he has to take in charge at least half of the amount, which is the repartition we chose for this simulation, or more. The plan is free as long as it covers a legal care basket.
   description.fr: >
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
     doit prendre en charge la moitié du montant,
