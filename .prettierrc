@@ -7,4 +7,4 @@ semi: false
 singleQuote: true
 arrowParens: avoid
 proseWrap: preserve
-tabWidth:2
+tabWidth: 2
