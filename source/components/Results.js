@@ -8,6 +8,8 @@ import './Results.css'
 import RuleValueVignette from './rule/RuleValueVignette'
 import ProgressTip from 'Components/ProgressTip'
 
+import I18n from 'i18n-js'
+
 @withRouter
 @connect(state => ({
 	analysis: state.analysis,
@@ -35,8 +37,7 @@ export default class Results extends Component {
 					<div id="resultsContent" style={{ background: themeColours.colour }}>
 						<Link className="edit" to="/" style={textStyle}>
 							<i className="fa fa-pencil" aria-hidden="true" />
-							{'  '}
-							<span>Changer d'objectif</span>
+							<span translate="yes">Changer d'objectif</span>
 						</Link>
 						<ul>
 							{targets.map(rule => (
@@ -56,8 +57,8 @@ export default class Results extends Component {
 							color: themeColours.textColourOnWhite
 						}}
 					>
-						<i className="fa fa-long-arrow-down" aria-hidden="true" />{' '}
-						Comprendre mes résultats
+						<i className="fa fa-long-arrow-down" aria-hidden="true"/>
+						<span translate="yes">Comprendre mes résultats</span>
 					</h3>
 				</section>
 			</div>

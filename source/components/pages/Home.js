@@ -4,8 +4,11 @@ import './Home.css'
 import TargetSelection from '../TargetSelection'
 import { connect } from 'react-redux'
 
+var I18n = require('i18n-js')
+
 @connect(state => ({
-	themeColours: state.themeColours
+	themeColours: state.themeColours,
+	parsedRules: state.parsedRules
 }))
 export default class Home extends Component {
 	state = {
@@ -27,13 +30,16 @@ export default class Home extends Component {
 							color: this.props.themeColours.textColourOnWhite
 						}}
 					/>
-					<p style={opacityStyle}>
+					<p style={opacityStyle} translate="yes">
 						Cette nouvelle version du site vous permet de simuler un CDD ou CDI,
 						aux taux de 2018.
 					</p>
 				</div>
 				<div id="content">
-					<TargetSelection themeColours={this.props.themeColours} />
+					<TargetSelection
+						parsedRules={this.props.parsedRules}
+						themeColours={this.props.themeColours}
+					/>
 				</div>
 			</div>
 		)

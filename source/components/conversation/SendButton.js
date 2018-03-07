@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HoverDecorator from 'Components/HoverDecorator'
+import I18n from 'i18n-js'
 
 @HoverDecorator
 export default class SendButton extends Component {
@@ -33,10 +34,11 @@ export default class SendButton extends Component {
 					}}
 					onClick={(event) => this.getAction()('accept')}
 				>
-					<span className="text">valider</span>
+					<span className="text" translate="yes">valider</span>
 					<i className="fa fa-check" aria-hidden="true" />
 				</button>
 				<span
+					translate="yes"
 					className="keyIcon"
 					style={{ opacity: hover && !disabled ? 1 : 0 }}
 				>

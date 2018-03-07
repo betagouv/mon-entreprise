@@ -7,14 +7,15 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
 		bundle: prodEnv
-			? ['@babel/polyfill', 'whatwg-fetch', './source/entry.js']
+			? ['@babel/polyfill', 'whatwg-fetch', './source/i18nliner-glue.js', './source/entry.js']
 			: [
 					'webpack-dev-server/client?http://0.0.0.0:3000/',
 					'webpack/hot/only-dev-server',
 					'@babel/polyfill',
 					'react-hot-loader/patch',
+					'./source/i18nliner-glue.js',
 					'./source/entry.js'
-				]
+			  ]
 		// le nom "simulateur" est là pour des raisons historiques
 	},
 	output: {
@@ -70,7 +71,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				loader: 'babel-loader!react-i18nliner/webpack-loader'
 			},
 			{
 				test: /\.csv$/,
@@ -96,7 +97,7 @@ module.exports = {
 				? [
 						new webpack.HotModuleReplacementPlugin(),
 						new HardSourceWebpackPlugin()
-					]
+				  ]
 				: []
 		)
 		.concat(prodEnv ? [new webpack.optimize.UglifyJsPlugin()] : [])

@@ -6,7 +6,10 @@ import {
 	contains,
 	without,
 	concat,
-	length
+	length,
+	reduce,
+	assoc,
+	map
 } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
@@ -14,6 +17,7 @@ import { reducer as formReducer, formValueSelector } from 'redux-form'
 
 import {
 	rules,
+	enrichRule,
 	findRuleByName,
 	collectDefaults,
 	formatInputs
@@ -102,12 +106,12 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		done,
 		...(done && assumptionsMade
 			? // The simulation is "over" - except we can now fill in extra questions
-				// where the answers were previously given default reasonable assumptions
-				nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
+			  // where the answers were previously given default reasonable assumptions
+			  nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
 			: {
 					currentQuestion: head(nextWithDefaults),
 					nextSteps: nextWithDefaults
-				})
+			  })
 	}
 
 	if (action.type == START_CONVERSATION) {

@@ -1,3 +1,6 @@
+var I18n = require("i18n-js");
+I18n.locale = "en"
+
 import React, { Component } from 'react'
 import './Layout.css'
 import './reset.css'
