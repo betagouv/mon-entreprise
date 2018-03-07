@@ -6,8 +6,9 @@ import { reduxForm } from 'redux-form'
 import { scroller, Element } from 'react-scroll'
 import { getInputComponent } from 'Engine/generateQuestions'
 import Satisfaction from '../Satisfaction'
-
 import { connect } from 'react-redux'
+import './conversation.css'
+
 let scroll = () =>
 	scroller.scrollTo('myScrollToElement', {
 		duration: 500,

@@ -55,28 +55,31 @@ export default class TargetSelection extends Component {
 		if (this.props.targets.length == 0) return null
 
 		return (
-			<section id="targetSelection">
-				<h1>Entrez un salaire mensuel</h1>
+			<section
+				id="targetSelection"
+				style={{
+					background: this.props.colours.colour,
+					color: this.props.colours.textColour
+				}}
+			>
 				{this.renderOutputList()}
 
-				{this.state.activeInput && (
+				{this.state.activeInput ? (
 					<div id="action">
 						{this.state.affinage ? (
 							!this.props.conversationVisible && (
-								<p style={{ color: this.props.colours.textColourOnWhite }}>
+								<p style={{ color: this.props.colours.textColour }}>
 									Cochez un ou plusieurs objectifs
 								</p>
 							)
 						) : (
-							<BlueButton
-								onClick={() =>
-									console.log('iozn') || this.setState({ affinage: true })
-								}
-							>
+							<BlueButton onClick={() => this.setState({ affinage: true })}>
 								Affiner
 							</BlueButton>
 						)}
 					</div>
+				) : (
+					<h1>Entrez un salaire mensuel</h1>
 				)}
 			</section>
 		)
@@ -132,19 +135,25 @@ export default class TargetSelection extends Component {
 											: {}
 									}
 								>
-									{visibleCheckbox(s) ? (
-										optionIsChecked(s) ? (
-											<i
-												className="fa fa-check-square-o fa-2x"
-												style={{ color: textColourOnWhite }}
-											/>
-										) : (
-											<i
-												className="fa fa-square-o fa-2x"
-												style={{ color: '#4b4b66' }}
-											/>
-										)
-									) : null}
+									{
+										<span
+											style={{
+												visibility: visibleCheckbox(s) ? 'visible' : 'hidden'
+											}}
+										>
+											{optionIsChecked(s) ? (
+												<i
+													className="fa fa-check-square-o fa-2x"
+													style={{ color: textColourOnWhite }}
+												/>
+											) : (
+												<i
+													className="fa fa-square-o fa-2x"
+													style={{ color: '#4b4b66' }}
+												/>
+											)}
+										</span>
+									}
 									<span className="optionTitle">{s.title || s.name}</span>
 								</label>
 								<span className="targetInputOrValue">
@@ -158,20 +167,26 @@ export default class TargetSelection extends Component {
 											autoFocus
 										/>
 									) : (
-										<span
-											className="targetValue"
-											style={{ width: '6em' }}
-											onClick={() =>
-												this.setState({ activeInput: s.dottedName })
-											}>
-											{do {
-												let rule = this.props.targets.find(
-														propEq('dottedName', s.dottedName)
-													),
-													value = rule && rule.nodeValue
-												;<RuleValue value={value} />
-											}}
-										</span>
+										<>
+											{this.state.activeInput && (
+												<i className="fa fa-calculator" aria-hidden="true" />
+											)}
+											<span
+												className="targetValue"
+												style={{ width: '6em' }}
+												onClick={() =>
+													this.setState({ activeInput: s.dottedName })
+												}
+											>
+												{do {
+													let rule = this.props.targets.find(
+															propEq('dottedName', s.dottedName)
+														),
+														value = rule && rule.nodeValue
+													;<RuleValue value={value} />
+												}}
+											</span>
+										</>
 									)}
 								</span>
 							</div>
