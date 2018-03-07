@@ -15,6 +15,7 @@
 		"not ie < 11"
 	],
 	"dependencies": {
+		"live-server": "^1.2.0",
 		"@babel/polyfill": "^7.0.0-beta.34",
 		"classnames": "^2.2.5",
 		"dedent-js": "^1.0.1",
