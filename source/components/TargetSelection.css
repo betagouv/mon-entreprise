@@ -1,23 +1,23 @@
 #targetSelection {
-	height: 35em;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-wrap: wrap;
-	font-size: 100%;
 	max-width: 860px;
+
+	padding: 0.3em 2em;
+
+	border-radius: 0.6em;
 }
 
 #targetSelection > div {
 	width: 100%;
 }
 
-#targetSelection h2 {
-	margin: 2em;
+#targetSelection h1 {
+	margin: 0.3em;
+	color: inherit;
 }
 #targetSelection #targets {
-	width: 30em;
-	margin: 0 auto;
+	margin: 1em auto;
+	/* For the checkbox that will appear */
+	padding: 0 2em;
 }
 #targetSelection #targets > div {
 	margin-bottom: 2em;
@@ -34,6 +34,8 @@
 }
 #targetSelection label i {
 	font-size: 170%;
+
+	margin-left: -1.6em;
 }
 
 #targetSelection .optionTitle {
@@ -51,11 +53,6 @@
 	z-index: -1;
 	opacity: 0;
 }
-#targetSelection input:disabled + label,
-#targetSelection input:disabled + label p,
-#targetSelection input:disabled + label > i {
-	color: #aaa !important;
-}
 
 #targetSelection input + label > i.fa {
 	max-width: 0.75em;
@@ -72,10 +69,6 @@
 	color: #4b4b66;
 }
 
-#targetSelection input[type='text'] {
-	border: 1px solid #3c4963;
-}
-
 #targetSelection .targetValue {
 	display: inline-block;
 	border: 1px solid #ccc;
@@ -83,12 +76,28 @@
 
 #targetSelection .targetValue,
 #targetSelection input[type='text'] {
-	width: 6em;
+	width: 4.5em !important;
 	display: inline-block;
 	height: 1.4em;
 	padding: 0;
-	font-size: 100%;
+	font-size: 120%;
 	padding: 0em 0.3em;
+	background: white;
+	border-radius: 0.1em;
+	border: none;
+	color: #4b4b66;
+	text-align: right;
+}
+
+#targetSelection input[type='text'] {
+	border: 3px solid #4b4b66;
+}
+
+#targetSelection .fa-calculator {
+	margin: 0 0.4em;
+	font-size: 90%;
+
+	opacity: 0.85;
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */
