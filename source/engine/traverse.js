@@ -264,7 +264,8 @@ let treat = (rules, rule) => rawNode => {
 					'filteredVariable',
 					'comparison',
 					'negatedVariable',
-					'percentage'
+					'percentage',
+					'value'
 				])
 			)
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
@@ -282,8 +283,6 @@ let treat = (rules, rule) => rawNode => {
 					fillVariableNode(rules, rule)(parseResult.variable)
 				)
 
-			// We don't need to handle category == 'value' because YAML then returns it as
-			// numerical value, not a String: it goes to treatNumber
 			if (parseResult.category == 'percentage') {
 				return {
 					nodeValue: parseResult.nodeValue,
@@ -291,6 +290,14 @@ let treat = (rules, rule) => rawNode => {
 				}
 			}
 
+			// We don't need to handle a category == 'number' because YAML then returns it as
+			// numerical value, not a String: it goes to treatNumber
+			if (parseResult.category == 'value') {
+				return {
+					nodeValue: parseResult.nodeValue,
+					jsx: () => <span className="string">{parseResult.nodeValue}</span>
+				}
+			}
 			if (
 				parseResult.category == 'calcExpression' ||
 				parseResult.category == 'comparison'
@@ -483,7 +490,7 @@ export let treatRuleRoot = (rules, rule) => {
 						: anyNull([e['non applicable si'], e['applicable si']])
 							? null
 							: !val(e['non applicable si']) &&
-								undefOrTrue(val(e['applicable si']))
+							  undefOrTrue(val(e['applicable si']))
 			},
 			nodeValue = computeRuleValue(formuleValue, isApplicable)
 
@@ -506,7 +513,7 @@ export let treatRuleRoot = (rules, rule) => {
 						: [
 								...applyOrEmpty(collectNodeMissing)(notApplicable),
 								...applyOrEmpty(collectNodeMissing)(applicable)
-							],
+						  ],
 			collectInFormule = isApplicable !== false,
 			formMissing = applyOrEmpty(() =>
 				applyOrEmpty(collectNodeMissing)(formule)
@@ -605,11 +612,11 @@ export let getTargets = (target, rules) => {
 	let multiSimulation = path(['simulateur', 'objectifs'])(target)
 	let targets = multiSimulation
 		? // On a un simulateur qui définit une liste d'objectifs
-			multiSimulation
+		  multiSimulation
 				.map(n => disambiguateRuleReference(rules, target, n))
 				.map(n => findRuleByDottedName(rules, n))
 		: // Sinon on est dans le cas d'une simple variable d'objectif
-			[target]
+		  [target]
 
 	return targets
 }

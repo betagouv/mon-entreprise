@@ -9,6 +9,7 @@ main ->
 		| FilteredVariable {% id %}
 		| percentage {% id %}
 		| Comparison {% id %}
+		| Constant {% id %}
 
 Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	category: 'comparison',
