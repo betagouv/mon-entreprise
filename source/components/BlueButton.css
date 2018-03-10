@@ -7,13 +7,11 @@
 	display: block;
 	padding: 0.3em 1em;
 	font-size: 200%;
-	width: 8em;
 	margin: 0 auto;
 	border: none;
 	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);
 	opacity: 0.95;
 	border-radius: 0.2em;
-
 	transition: background 0.3s;
 }
 .blueButton:hover {
@@ -21,7 +19,7 @@
 	opacity: 1;
 }
 .blueButton:disabled {
-	background: #4b4b6633 !important;
+	background: #4b4b66 !important;
 	box-shadow: none;
 }
 .blueButton a {

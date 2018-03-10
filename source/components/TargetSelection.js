@@ -19,11 +19,10 @@ export default class TargetSelection extends Component {
 				<h1>Que voulez-vous calculer ?</h1>
 				{this.renderOutputList()}
 				<div id="action">
-					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
-						Vous pouvez faire plusieurs choix
-					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready}>Valider</BlueButton>
+						<BlueButton disabled={!ready}>
+							{!ready ? 'Vous pouvez faire plusieurs choix' : 'Valider'}
+						</BlueButton>
 					</Link>
 				</div>
 			</section>

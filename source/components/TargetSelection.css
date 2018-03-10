@@ -1,5 +1,4 @@
 #targetSelection {
-	height: 35em;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -61,8 +60,10 @@
 	margin: 1em auto;
 }
 
-#targetSelection #action p {
-	font-size: 80%;
+#targetSelection #action button:disabled {
+	background: none !important;
+	color: #4b4b66;
+	border-bottom: #4b4b66 solid 2px;
+	border-radius: 0;
+	font-size: 100%;
 }
-
-/* TODO styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */
