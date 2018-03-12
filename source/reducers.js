@@ -74,7 +74,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		return state
 
 	let conversationTargetNames =
-		action.type == 'SET_CONVERSATION_TARGETS'
+		action.type == 'SET_CONVERSATION_TARGETS' && action.targetNames
 			? action.targetNames
 			: state.conversationTargetNames
 
@@ -108,7 +108,11 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationGate: situationWithDefaults(state),
 		explainedVariable: null,
 		nextSteps,
-		currentQuestion: head(nextSteps)
+		currentQuestion: head(nextSteps),
+		foldedSteps:
+			action.type === 'SET_CONVERSATION_TARGETS' && action.reset
+				? []
+				: state.foldedSteps
 	}
 
 	if (action.type == 'SET_CONVERSATION_TARGETS') return newState

@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { isEmpty, map } from 'ramda'
 import Aide from '../Aide'
-import { reduxForm } from 'redux-form'
+import { reduxForm, reset } from 'redux-form'
 import { scroller, Element } from 'react-scroll'
 import { getInputComponent } from 'Engine/generateQuestions'
 import Satisfaction from '../Satisfaction'
 import { connect } from 'react-redux'
 import './conversation.css'
 
+import ReactPiwik from '../Tracker'
 let scroll = () =>
 	scroller.scrollTo('myScrollToElement', {
 		duration: 500,
@@ -21,17 +22,26 @@ let scroll = () =>
 	destroyOnUnmount: false
 })
 @translate()
-@connect(state => ({
-	currentQuestion: state.currentQuestion,
-	foldedSteps: state.foldedSteps,
-	themeColours: state.themeColours,
-	situationGate: state.situationGate,
-	targetNames: state.targetNames,
-	done: state.done,
-	nextSteps: state.nextSteps,
-	analysis: state.analysis,
-	parsedRules: state.parsedRules
-}))
+@connect(
+	state => ({
+		currentQuestion: state.currentQuestion,
+		foldedSteps: state.foldedSteps,
+		themeColours: state.themeColours,
+		situationGate: state.situationGate,
+		targetNames: state.targetNames,
+		done: state.done,
+		nextSteps: state.nextSteps,
+		analysis: state.analysis,
+		parsedRules: state.parsedRules
+	}),
+	dispatch => ({
+		reinitialise: () => {
+			ReactPiwik.push(['trackEvent', 'restart', ''])
+			dispatch(reset('conversation'))
+			dispatch({ type: 'SET_CONVERSATION_TARGETS', reset: true })
+		}
+	})
+)
 export default class Conversation extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
@@ -45,7 +55,7 @@ export default class Conversation extends Component {
 			currentQuestion,
 			parsedRules,
 			targetNames,
-			reinitalise,
+			reinitialise,
 			textColourOnWhite
 		} = this.props
 		console.log(this.props)
@@ -55,7 +65,7 @@ export default class Conversation extends Component {
 					<div id="foldedSteps">
 						<div className="header">
 							<button
-								onClick={reinitalise}
+								onClick={reinitialise}
 								style={{ color: textColourOnWhite }}>
 								<i className="fa fa-trash" aria-hidden="true" />
 								<Trans i18nKey="resetAll">Tout effacer</Trans>
