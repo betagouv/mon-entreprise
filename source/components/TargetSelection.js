@@ -21,7 +21,7 @@ import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
-let popularTargetNames = [...salaries, 'aides employeur']
+export let popularTargetNames = [...salaries, 'aides employeur']
 
 @reduxForm({
 	form: 'conversation'
@@ -31,11 +31,11 @@ let popularTargetNames = [...salaries, 'aides employeur']
 		getTargetValue: dottedName =>
 			formValueSelector('conversation')(state, dottedName),
 		targets: state.analysis ? state.analysis.targets : [],
-		targetNames: state.targetNames
+		conversationTargetNames: state.conversationTargetNames
 	}),
 	dispatch => ({
-		startConversation: (targetNames, fromScratch = false) =>
-			dispatch({ type: 'START_CONVERSATION', targetNames, fromScratch })
+		setConversationTargets: (targetNames, fromScratch = false) =>
+			dispatch({ type: 'SET_CONVERSATION_TARGETS', targetNames, fromScratch })
 	})
 )
 export default class TargetSelection extends Component {
@@ -66,8 +66,12 @@ export default class TargetSelection extends Component {
 							)
 						) : (
 							<>
-								<p>Estimation par défaut un CDI non cadre ... </p>
-								<BlueButton onClick={this.props.setSelectingTargets}>
+								<p>Estimation par défaut pour un CDI non cadre ... </p>
+								<BlueButton
+									onClick={() => {
+										this.props.setSelectingTargets()
+									}}
+								>
 									Personnaliser
 								</BlueButton>
 							</>
@@ -84,11 +88,11 @@ export default class TargetSelection extends Component {
 		let popularTargets = popularTargetNames.map(curry(findRuleByName)(rules)),
 			{
 				targets,
-				targetNames,
+				conversationTargetNames,
 				textColourOnWhite,
-				startConversation
+				setConversationTargets
 			} = this.props,
-			optionIsChecked = s => targetNames.includes(s.name),
+			optionIsChecked = s => (conversationTargetNames || []).includes(s.name),
 			visibleCheckbox = s =>
 				this.props.selectingTargets && s.dottedName !== this.state.activeInput,
 			toggleTarget = target =>
@@ -107,9 +111,9 @@ export default class TargetSelection extends Component {
 										checked={optionIsChecked(s)}
 										onClick={() => this.props.showConversation()}
 										onChange={() =>
-											startConversation(
+											setConversationTargets(
 												toggleTarget(s.name)(
-													targetNames.filter(
+													conversationTargetNames.filter(
 														t => !this.state.activeInput.includes(t)
 													)
 												)
@@ -168,9 +172,9 @@ export default class TargetSelection extends Component {
 												className="targetValue"
 												style={{ width: '6em' }}
 												onClick={() => {
-													this.props.startConversation(
-														reject(equals(s.name), popularTargetNames)
-													)
+													//													this.props.setConversationTargets(
+													//														reject(equals(s.name), popularTargetNames)
+													//													)
 
 													this.setState({ activeInput: s.dottedName })
 												}}
