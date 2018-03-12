@@ -20,36 +20,19 @@ import {
 } from 'Engine/rules'
 import { getNextSteps } from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
-import {
-	STEP_ACTION,
-	START_CONVERSATION,
-	EXPLAIN_VARIABLE,
-	CHANGE_THEME_COLOUR
-} from './actions'
+import { STEP_ACTION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR } from './actions'
 
 import { analyseMany, parseAll } from 'Engine/traverse'
 
 import ReactPiwik from 'Components/Tracker'
+
+import { popularTargetNames } from './components/TargetSelection'
 
 // assume "wraps" a given situation function with one that overrides its values with
 // the given assumptions
 export let assume = (evaluator, assumptions) => state => name => {
 	let userInput = evaluator(state)(name)
 	return userInput != null ? userInput : assumptions[name]
-}
-
-let nextWithoutDefaults = (
-	state,
-	analysis,
-	targetNames,
-	intermediateSituation
-) => {
-	let reanalysis = analyseMany(state.parsedRules, targetNames)(
-			intermediateSituation(state)
-		),
-		nextSteps = getNextSteps(intermediateSituation(state), reanalysis)
-
-	return { currentQuestion: head(nextSteps), nextSteps }
 }
 
 export let reduceSteps = (tracker, flatRules, answerSource) => (
@@ -60,19 +43,18 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
 
 	if (
-		![START_CONVERSATION, STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
+		!['SET_CONVERSATION_TARGETS', STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
 			action.type
 		)
 	)
 		return state
 
-	let targetNames =
-		action.type == START_CONVERSATION
+	let conversationTargetNames =
+		action.type == 'SET_CONVERSATION_TARGETS'
 			? action.targetNames
-			: state.targetNames || []
+			: state.conversationTargetNames
 
-	let sim =
-			targetNames.length === 1 ? findRuleByName(flatRules, targetNames[0]) : {},
+	let sim = {},
 		// Hard assumptions cannot be changed, they are used to specialise a simulator
 		// before the user sees the first question
 		hardAssumptions = pathOr({}, ['simulateur', 'hypothèses'], sim),
@@ -81,8 +63,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
-	console.log('targnames', targetNames)
-	let analysis = analyseMany(state.parsedRules, targetNames)(
+	let analysis = analyseMany(state.parsedRules, state.targetNames)(
 		situationWithDefaults(state)
 	)
 
@@ -90,38 +71,23 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		return { ...state, analysis, situationGate: situationWithDefaults(state) }
 	}
 
-	let nextWithDefaults = getNextSteps(situationWithDefaults(state), analysis),
-		assumptionsMade = !isEmpty(rulesDefaults),
-		done = nextWithDefaults.length == 0
+	let nextStepsAnalysis = analyseMany(
+			state.parsedRules,
+			conversationTargetNames
+		)(intermediateSituation(state)),
+		nextSteps = getNextSteps(intermediateSituation(state), nextStepsAnalysis)
 
 	let newState = {
 		...state,
-		targetNames,
+		conversationTargetNames,
 		analysis,
 		situationGate: situationWithDefaults(state),
 		explainedVariable: null,
-		done,
-		...(done && assumptionsMade
-			? // The simulation is "over" - except we can now fill in extra questions
-				// where the answers were previously given default reasonable assumptions
-				nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
-			: {
-					currentQuestion: head(nextWithDefaults),
-					nextSteps: nextWithDefaults
-				})
+		nextSteps,
+		currentQuestion: head(nextSteps)
 	}
 
-	if (action.type == START_CONVERSATION) {
-		return {
-			...newState,
-			/* when objectives change, reject them from answered questions
-			Hack : 'salaire de base' is the only inversable variable, so the only
-			one that could be the next target AND already in the answered steps */
-			foldedSteps: action.fromScratch
-				? []
-				: reject(contains('salaire de base'))(state.foldedSteps)
-		}
-	}
+	if (action.type == 'SET_CONVERSATION_TARGETS') return newState
 
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push([
@@ -200,11 +166,10 @@ export default reduceReducers(
 		parsedRules: (state = null) => state,
 		analysis: (state = null) => state,
 
-		targetNames: (state = null) => state,
+		targetNames: (state = popularTargetNames) => state,
+		conversationTargetNames: (state = []) => state,
 
 		situationGate: (state = name => null) => state,
-
-		done: (state = null) => state,
 
 		iframe: (state = false) => state,
 
