@@ -23,7 +23,9 @@ export default class ProgressTip extends Component {
 			nbQuestions = nextSteps.length
 
 		if (selectingTargets && !conversationVisible)
-			return <p>Vous aurez {nextSteps.length} questions !</p>
+			return nbQuestions ? (
+				<p>Vous aurez {nextSteps.length} questions !</p>
+			) : null
 		if (!conversationVisible) return null
 		return (
 			<div className="tip">
