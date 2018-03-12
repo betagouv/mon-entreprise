@@ -60,9 +60,7 @@ export default class TargetSelection extends Component {
 					<div id="action">
 						{this.props.selectingTargets ? (
 							!this.props.conversationVisible && (
-								<p style={{ color: this.props.colours.textColour }}>
-									Cochez un ou plusieurs objectifs
-								</p>
+								<p>Cochez un ou plusieurs objectifs</p>
 							)
 						) : (
 							<>
