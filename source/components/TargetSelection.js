@@ -44,44 +44,43 @@ let popularTargetNames = [...salaries, 'aides employeur']
 )
 export default class TargetSelection extends Component {
 	state = {
-		activeInput: null,
-		affinage: false
+		activeInput: null
 	}
 
-	componentWillMount() {
-		this.props.startConversation(popularTargetNames)
-	}
 	render() {
-		if (this.props.targets.length == 0) return null
-
 		return (
-			<section
-				id="targetSelection"
-				style={{
-					background: this.props.colours.colour,
-					color: this.props.colours.textColour
-				}}
-			>
-				{this.renderOutputList()}
+			<>
+				<section
+					id="targetSelection"
+					style={{
+						background: this.props.colours.colour,
+						color: this.props.colours.textColour
+					}}
+				>
+					{this.renderOutputList()}
+				</section>
 
 				{this.state.activeInput ? (
 					<div id="action">
-						{this.state.affinage ? (
+						{this.props.selectingTargets ? (
 							!this.props.conversationVisible && (
 								<p style={{ color: this.props.colours.textColour }}>
 									Cochez un ou plusieurs objectifs
 								</p>
 							)
 						) : (
-							<BlueButton onClick={() => this.setState({ affinage: true })}>
-								Affiner
-							</BlueButton>
+							<>
+								<p>Estimation par défaut un CDI non cadre ... </p>
+								<BlueButton onClick={this.props.setSelectingTargets}>
+									Personnaliser
+								</BlueButton>
+							</>
 						)}
 					</div>
 				) : (
 					<h1>Entrez un salaire mensuel</h1>
 				)}
-			</section>
+			</>
 		)
 	}
 
@@ -95,7 +94,7 @@ export default class TargetSelection extends Component {
 			} = this.props,
 			optionIsChecked = s => targetNames.includes(s.name),
 			visibleCheckbox = s =>
-				this.state.affinage && s.dottedName !== this.state.activeInput,
+				this.props.selectingTargets && s.dottedName !== this.state.activeInput,
 			toggleTarget = target =>
 				ifElse(contains(target), without(target), append(target))
 
@@ -110,9 +109,7 @@ export default class TargetSelection extends Component {
 										id={s.name}
 										type="checkbox"
 										checked={optionIsChecked(s)}
-										onClick={() =>
-											console.log('iazdo') || this.props.showConversation()
-										}
+										onClick={() => this.props.showConversation()}
 										onChange={() =>
 											startConversation(
 												toggleTarget(s.name)(
@@ -174,9 +171,13 @@ export default class TargetSelection extends Component {
 											<span
 												className="targetValue"
 												style={{ width: '6em' }}
-												onClick={() =>
+												onClick={() => {
+													this.props.startConversation(
+														reject(equals(s.name), popularTargetNames)
+													)
+
 													this.setState({ activeInput: s.dottedName })
-												}
+												}}
 											>
 												{do {
 													let rule = this.props.targets.find(
