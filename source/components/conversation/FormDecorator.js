@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Field, change, formValueSelector } from 'redux-form'
@@ -164,7 +165,7 @@ export var FormDecorator = formType => RenderField =>
 					>
 						<i className="fa fa-pencil" aria-hidden="true" />
 						{'  '}
-						<span>Modifier</span>
+						<span><Trans>Modifier</Trans></span>
 					</button>
 					{}
 				</div>
@@ -182,7 +183,7 @@ export var FormDecorator = formType => RenderField =>
 						onClick={() => this.setState({ helpVisible: false })}
 					>
 						<span className="close-text">
-							revenir <span className="icon">&#x2715;</span>
+							<Trans>revenir</Trans> <span className="icon">&#x2715;</span>
 						</span>
 					</a>
 					{helpComponent}

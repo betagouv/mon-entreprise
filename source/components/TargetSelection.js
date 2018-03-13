@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
 import { rules, findRuleByName } from 'Engine/rules'
 import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
 import { Link } from 'react-router-dom'
@@ -20,10 +21,10 @@ export default class TargetSelection extends Component {
 				{this.renderOutputList()}
 				<div id="action">
 					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
-						Vous pouvez faire plusieurs choix
+						<Trans i18nKey="selectMany">Vous pouvez faire plusieurs choix</Trans>
 					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready}>Valider</BlueButton>
+						<BlueButton disabled={!ready}><Trans>Valider</Trans></BlueButton>
 					</Link>
 				</div>
 			</section>

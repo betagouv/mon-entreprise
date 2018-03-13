@@ -1,4 +1,5 @@
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { encodeRuleName } from 'Engine/rules'
 import classNames from 'classnames'
@@ -56,7 +57,7 @@ let RuleValue = ({ unsatisfied, irrelevant, conversationStarted, ruleValue }) =>
 		>
 			<span key={text} className="rule-value">
 				{' '}
-				{conversationStarted && <span className={className}>{text}</span>}
+				{conversationStarted && <span className={className}><Trans i18nKey={className}>{text}</Trans></span>}
 			</span>
 		</ReactCSSTransitionGroup>
 	}
