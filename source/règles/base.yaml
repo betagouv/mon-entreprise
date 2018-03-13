@@ -56,14 +56,14 @@
       valeur attendue: null
 
 - espace: contrat salarié . CDD
-  nom: compensation congés payés
+  nom: compensation pour congés non pris
   indemnité:
     destinataire: salarié
     dû par: employeur
   description: |
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
-    Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie d'une indemnité compensatrice de congés payés.
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie alors d'une indemnité compensatrice de congés payés versée par l'employeur.
 
   non applicable si:
     une de ces conditions:
@@ -81,7 +81,7 @@
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire de base + prime fin de contrat
+          assiette: salaire de base + prime de fin de contrat
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
           taux: 10%
@@ -96,7 +96,7 @@
         #   soit du nombre moyen de jours ouvrables (ou ouvrés),
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
-          assiette: salaire de base + prime fin de contrat
+          assiette: salaire de base + prime de fin de contrat
           # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
           # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
           taux: congés non pris / durée contrat
@@ -110,7 +110,7 @@
     - nom: pas de congés non pris
       situation:
         salaire de base: 2300
-        prime fin de contrat: 0
+        prime de fin de contrat: 0
         congés non pris: 0
         durée contrat: 12
       valeur attendue: 0
@@ -118,7 +118,7 @@
       situation:
         type de contrat: CDD
         salaire de base: 2300
-        prime fin de contrat: 0
+        prime de fin de contrat: 0
         congés non pris: 10
         durée contrat: 12
       valeur attendue: 92
@@ -126,7 +126,7 @@
       situation:
         type de contrat: CDD
         salaire de base: 2300
-        prime fin de contrat: 0
+        prime de fin de contrat: 0
         congés non pris: 3
         durée contrat: 6
       valeur attendue: 55.21
@@ -151,7 +151,7 @@
 
 
 - espace: contrat salarié . CDD
-  nom: prime fin de contrat
+  nom: prime de fin de contrat
   indemnité:
     destinataire: salarié
 
@@ -280,7 +280,7 @@
 - espace: contrat salarié
   nom: ATMP
   titre: Cotisation Accidents du Travail et Maladies Professionnelles
-  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
+  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles.
   cotisation:
     dû par: employeur
     branche: santé
@@ -578,7 +578,7 @@
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:
-      - prime fin de contrat
+      - prime de fin de contrat
       - compensation congés payés
 
 - espace: contrat salarié . CDD
@@ -599,7 +599,7 @@
       situation:
         indemnités salarié CDD: 100
         cotisations employeur CDD: 190
-        prime fin de contrat: 60.4
+        prime de fin de contrat: 60.4
         compensation congés payés: 39.6
       valeur attendue: 290
 

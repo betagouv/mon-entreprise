@@ -1,22 +1,21 @@
 contrat salarié . CDD . CIF:
   description.en: >-
-    ~~Contribution to the financing of individual training leave specific to
+    Contribution to the financing of individual training leave, specific to
     fixed-term contracts.
   description.fr: >-
     Contribution au financement du congé individuel de formation spécifique aux
     CDD.
-  titre.en: ~~CIF
+  titre.en: CIF
   titre.fr: CIF
 contrat salarié . CDD . compensation congés payés:
   description.en: >-
-    ~~The employee on fixed-term contracts has the same rights to paid leave as
+    The employee on a fixed-term contract has the same rights for paid leave as
     the employee on a permanent contract. He acquires and takes his paid leave
     under the same conditions.
 
 
     It is however common that the employee can not take all his leave before the
-    end of his contract, he benefits from a compensatory indemnity of paid
-    vacation.
+    end of his contract. In that case, he receives a compensatory indemnity paid by the employer. 
   description.fr: >
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
@@ -25,30 +24,30 @@ contrat salarié . CDD . compensation congés payés:
     Il est cependant courant que le salarié ne puisse pas prendre tous ses
     congés avant le terme de son contrat, il bénéficie d'une indemnité
     compensatrice de congés payés.
-  titre.en: ~~paid vacation pay
-  titre.fr: compensation congés payés
+  titre.en: untaken vacation compensation
+  titre.fr: compensation pour congés non pris
 contrat salarié . CDD . prime fin de contrat:
   description.en: >-
-    ~~Amount paid at the end of fixed-term contracts as compensation for
+    Amount paid at the end of a fixed-term contract as a compensation for
     precariousness.
   description.fr: Somme versée en fin de CDD comme compensation de précarité.
-  titre.en: ~~premium end of contract
-  titre.fr: prime fin de contrat
+  titre.en: end of contract bonus
+  titre.fr: prime de fin de contrat
 contrat salarié . CDD . majoration chômage:
   description.en: >-
-    ~~Increase in employers' unemployment insurance contributions for short-term
-    fixed-term contracts (fixed-term contracts). A priori until March 31, 2019.
+    Increase in employers' unemployment insurance contributions for short-term
+    fixed-term contracts ("CDD"). A priori until March 31, 2019.
   description.fr: >-
     Majoration des contributions patronales d’assurance chômage pour les
     contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
-  titre.en: ~~unemployment increase
+  titre.en: additional unemployment insurance 
   titre.fr: majoration chômage
 contrat salarié . ATMP:
-  titre.en: ~~Work Accidents and Occupational Diseases Contributions
+  titre.en: Contribution for work accidents and occupational diseases
   titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
   description.en: >-
-    ~~Contribution due in respect of occupational accidents and occupational
-    diseases
+    Contribution in respect of work accidents and occupational
+    diseases.
   description.fr: >-
     Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles
@@ -59,16 +58,11 @@ contrat salarié . ATMP . taux collectif ATMP:
     Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
     l'entreprise ?
   question.en: >-
-    ~~What rate of Workplace Accidents and Occupational Diseases applies to the
-    company?
+    What rate of workplace accidents and occupational diseases applies to the
+    company ?
   description.en: >-
-    ~~Companies with less than 20 employees are subject to this collective rate.
-    For larger companies,
-
-    this rate is modulated (up to 150 employees) or even individualized
-    (beyond). The company can consult the rate that
-
-    concerns online on [net-entreprise]
+    Companies with less than 20 employees are subject to this collective rate.
+    For larger companies, this rate is modulated (up to 150 employees), and then individualized (beyond 250). The company's rate can be consulted online on [net-entreprise]
     (http://www.net-entreprises.fr/html/account-accident-travail.htm).
   description.fr: >
     Les entreprises de moins de 20 salariés sont assujetties à ce taux
@@ -80,16 +74,15 @@ contrat salarié . ATMP . taux collectif ATMP:
     concerne en ligne sur
     [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
 contrat salarié . CDD . événement:
-  titre.en: ~~Event of contract
+  titre.en: Contract related event
   titre.fr: Événement de contrat
-  question.en: ~~Do you think you are facing any of these events during the contract?
+  question.en: Are you expecting any of these events to happen during the contract?
   question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
   description.en: >-
-    ~~Certain events have a strong impact on the obligations of the CDD.
+    Some events have a strong impact on the financial obligations of the fixed-term contrat.
 
 
-    > For example, in the event of a continuation of the fixed-term contract, no
-    increase or compensation on the fixed-term contract will be payable.
+    > For example, in the event of a continuation of the fixed-term contract as a permanent contrat, no increase or compensation on the fixed-term contract will be required.
   description.fr: >
     Certains événements impactent fortement les obligations du CDD.
 
@@ -97,52 +90,51 @@ contrat salarié . CDD . événement:
     > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune
     majoration ou indemnité sur le CDD ne sera à verser.
 contrat salarié . CDD . événement . poursuite du CDD en CDI:
-  titre.en: ~~Continuation of the CDD on CDI
+  titre.en: Fixed-term contract continued as permanent
   titre.fr: Poursuite du CDD en CDI
   description.en: >-
-    ~~At the end of the contract, the fixed-term contract is renewed without
-    interruption.
-  description.fr: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
+    At the end of the fixed-term contract, without interruption, a permanent contract is signed.
+  description.fr: En fin de contrat, le CDD est reconduit en CDI sans interruption.
 contrat salarié . CDD . événement . refus CDI avantageux:
-  titre.en: ~~Refusal of a favorable CDI
+  titre.en: Refusal of a favorable CDI
   titre.fr: Refus d'un CDI avantageux
   description.en: >-
-    ~~The employee, at the end of the fixed-term contract, refuses a renewal on
-    an open-ended contract for a similar job, and a remuneration at least as
+    The employee, at the end of the fixed-term contract, refuses a renewal on
+    an open-ended contract for a similar job, with a remuneration at least as
     advantageous.
   description.fr: >-
     Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi
     similaire, et une rémunération au moins aussi avantageuse.
 contrat salarié . CDD . événement . rupture anticipée salarié:
-  titre.en: ~~Anticipated termination of the employee
-  titre.fr: Rupture anticipée du salarié
-  description.en: ~~Anticipated termination of the contract at the initiative of the employee.
+  titre.en: Early termination by the employee
+  titre.fr: Rupture anticipée par le salarié
+  description.en: Early termination of the contract at the initiative of the employee.
   description.fr: Rupture anticipée du contrat à l'initiative du salarié.
 contrat salarié . CDD . événement . rupture pour faute grave ou force majeure:
-  titre.en: ~~Breaking for serious misconduct or force majeure
+  titre.en: Breaking for serious misconduct or force majeure
   titre.fr: Rupture pour faute grave ou force majeure
 contrat salarié . CDD . événement . rupture pendant période essai:
-  titre.en: ~~Break during the trial period
+  titre.en: Breaking during the trial period
   titre.fr: Rupture pendant la période d'essai
 contrat salarié . CDD . motif:
-  titre.en: ~~Reason for appeal
+  titre.en: Reason for appeal
   titre.fr: Motif de recours
-  question.en: ~~What is the reason for using the CDD?
+  question.en: What is the reason for using a fixed-term contract ?
   question.fr: Quel est le motif de recours au CDD ?
   description.en: >-
-    ~~The CDD is an exceptional contract: its appeal must be authorized by one
-    of the reasons specified in the law.
+    The CDD is an exceptional contract: the reason for its use must be one
+    of those specified in the law.
   description.fr: >
-    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un
+    Le CDD est un contrat d'exception : son recours doit être autorisé par l'un
     des motifs spécifiés dans la loi.
 contrat salarié . CDD . motif . classique:
-  titre.en: ~~classic patterns
+  titre.en: classic reasons
   titre.fr: motifs classiques
 contrat salarié . CDD . motif . classique . saisonnier:
-  titre.en: ~~Seasonal
+  titre.en: Seasonal
   titre.fr: Saisonnier
   description.en: >-
-    ~~Seasonal jobs, the tasks of which are to be repeated each year at a
+    Seasonal jobs, the tasks of which are to be repeated each year at a
     roughly fixed frequency, according to the rhythm of the seasons or the
     collective way of life.
   description.fr: >-
@@ -150,86 +142,30 @@ contrat salarié . CDD . motif . classique . saisonnier:
     chaque année selon une périodicité à peu près fixe, en fonction du rythme
     des saisons ou des modes de vie collectifs.
 contrat salarié . CDD . motif . classique . accroissement activité:
-  titre.en: ~~Temporary increase of activity
+  titre.en: Temporary increase of activity
   titre.fr: Accroissement temporaire d'activité
-  description.en: ~~Temporary increase in business activity
+  description.en: Temporary increase in business activity
   description.fr: Accroissement temporaire de l'activité de l'entreprise
 contrat salarié . CDD . motif . classique . remplacement:
-  titre.en: ~~Replacement contract
+  titre.en: Replacement contract
   titre.fr: Contrat de remplacement
-  description.en: "~~We group in this category the following cases.\n\n- Replacement of an employee in case:\n\_\_- Of absence;\n\_\_- Temporary part-time passage, concluded by amendment to his employment contract or by written exchange between this employee and his employer;\n\_\_- suspension of his employment contract;\n\_\_- definitive departure preceding the abolition of his workstation after consulting the works council or, failing that, the staff representatives, if any;\n\_\_- Waiting for the effective entry of the employee recruited by contract of indefinite duration called to replace him;\n\n- Replacement of a business leader, industrial or commercial, a person practicing a profession, his spouse actually participating in the business activity in a professional and usual or a non-employee partner a professional civil society, a civil society of means of a liberal exercise society or any other legal person exercising a liberal profession;\n\n- Replacement of the head of a farm or enterprise mentioned in 1 ° to 4 ° of Article L. 722-1 of the Rural Code and Sea Fisheries, a family carer, a partner of a farm, or their spouse mentioned in Article L. 722-10 of the same Code, provided that he or she actually participates in the activity of the farm or enterprise;"
-  description.fr: >
-    Nous regroupons dans cette catégorie les cas suivants.
-
-
-    - Remplacement d'un salarié en cas :
-      - D'absence ;
-      - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
-      - De suspension de son contrat de travail ;
-      - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
-      - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
-
-    - Remplacement d'un chef d'entreprise artisanale, industrielle ou
-    commerciale, d'une personne exerçant une profession libérale, de son
-    conjoint participant effectivement à l'activité de l'entreprise à titre
-    professionnel et habituel ou d'un associé non salarié d'une société civile
-    professionnelle, d'une société civile de moyens d'une société d'exercice
-    libéral ou de toute autre personne morale exerçant une profession libérale ;
-
-
-    - Remplacement du chef d'une exploitation agricole ou d'une entreprise
-    mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche
-    maritime, d'un aide familial, d'un associé d'exploitation, ou de leur
-    conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il
-    participe effectivement à l'activité de l'exploitation agricole ou de
-    l'entreprise ;
+  description.en: Replacement of an employee. A list of precise cases is defined by the law.
+  
+  description.fr: > Remplacement 
 contrat salarié . CDD . motif . classique . mission:
-  titre.en: ~~Mission contract
+  titre.en: Mission contract
   titre.fr: Contrat de mission
   description.en: >-
-    ~~> Also called a defined object contract.
-
+    > Also called a defined object contract.
 
     Recruitment of engineers and executives, within the meaning of collective
-    agreements, to achieve a defined purpose when an extended industry agreement
-    or, failing that, an enterprise agreement provides for it and defines:
+    agreements, to achieve a defined purpose when a collective agreement authorizes its use.
 
-
-    - The economic necessities to which these contracts are likely to provide an
-    appropriate response;
-
-    - The conditions under which fixed-term employees with a defined purpose
-    benefit from guarantees relating to assistance with reclassification,
-    validation of experience acquired, re-employment priority and access to
-    vocational training continue and may, during the period of consideration,
-    mobilize the means available to organize the rest of their professional
-    career;
-
-    - The conditions under which fixed-term employees with fixed-object
-    contracts have priority of access to indeterminate employment in the
-    company.
   description.fr: >
     > Aussi appelé contrat à objet défini.
 
+    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de droit conventionnel le prévoit. 
 
-    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives,
-    en vue de la réalisation d'un objet défini lorsqu'un accord de branche
-    étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
-
-
-    - Les nécessités économiques auxquelles ces contrats sont susceptibles
-    d'apporter une réponse adaptée ;
-
-    - Les conditions dans lesquelles les salariés sous contrat à durée
-    déterminée à objet défini bénéficient de garanties relatives à l'aide au
-    reclassement, à la validation des acquis de l'expérience, à la priorité de
-    réembauche et à l'accès à la formation professionnelle continue et peuvent,
-    au cours du délai de prévenance, mobiliser les moyens disponibles pour
-    organiser la suite de leur parcours professionnel ;
-
-    - Les conditions dans lesquelles les salariés sous contrat à durée
-    déterminée à objet défini ont priorité d'accès aux emplois en contrat à
-    durée indéterminée dans l'entreprise.
 contrat salarié . CDD . motif . classique . usage:
   titre.en: ~~Usage contract
   titre.fr: Contrat d'usage
