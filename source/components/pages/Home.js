@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
 import './Pages.css'
 import './Home.css'
 import TargetSelection from '../TargetSelection'
@@ -28,8 +29,10 @@ export default class Home extends Component {
 						}}
 					/>
 					<p style={opacityStyle}>
+						<Trans i18nKey="news">
 						Cette nouvelle version du site vous permet de simuler un CDD ou CDI,
 						aux taux de 2018.
+						</Trans>
 					</p>
 				</div>
 				<div id="content">
