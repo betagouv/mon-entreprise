@@ -670,7 +670,7 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire de base
-  résumé: Salaire brut régulier inscrit dans le contrat de travail.
+  résumé: Brut régulier inscrit dans le contrat de travail.
   type: salaire
   question: Quel est le salaire de base mensuel ?
   description: |

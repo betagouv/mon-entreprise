@@ -19,6 +19,7 @@ import BlueButton from './BlueButton'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
+import classNames from 'classnames'
 
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
 export let popularTargetNames = [...salaries, 'aides employeur']
@@ -44,10 +45,13 @@ export default class TargetSelection extends Component {
 	}
 
 	render() {
+		let firstEstimationComplete =
+			this.state.activeInput && this.props.targets.length > 0
 		return (
-			<>
+			<div id="targetSelection">
+				{!firstEstimationComplete && <h1>Entrez un salaire mensuel</h1>}
 				<section
-					id="targetSelection"
+					id="targetsContainer"
 					style={{
 						background: this.props.colours.colour,
 						color: this.props.colours.textColour
@@ -56,9 +60,7 @@ export default class TargetSelection extends Component {
 					{this.renderOutputList()}
 				</section>
 
-				{!this.state.activeInput || !this.props.targets.length ? (
-					<h1>Entrez un salaire mensuel</h1>
-				) : (
+				{firstEstimationComplete && (
 					<div id="action">
 						{this.props.selectingTargets ? (
 							!this.props.conversationVisible && (
@@ -78,7 +80,7 @@ export default class TargetSelection extends Component {
 						)}
 					</div>
 				)}
-			</>
+			</div>
 		)
 	}
 
@@ -154,21 +156,27 @@ export default class TargetSelection extends Component {
 								<span className="targetInputOrValue">
 									{s.name.includes('salaire') &&
 									this.state.activeInput === s.dottedName ? (
-										<Field
-											name={s.dottedName}
-											component="input"
-											type="text"
-											placeholder="mon salaire"
-											autoFocus
-										/>
+										<>
+											<Field
+												name={s.dottedName}
+												component="input"
+												type="text"
+												placeholder="mon salaire"
+												autoFocus
+											/>
+											{this.props.targets.length > 0 && (
+												<i
+													className="fa fa-pencil-o valueTypeIcon"
+													aria-hidden="true"
+												/>
+											)}
+										</>
 									) : (
 										<>
-											{this.state.activeInput && (
-												<i className="fa fa-calculator" aria-hidden="true" />
-											)}
 											<span
-												className="targetValue"
-												style={{ width: '6em' }}
+												className={classNames('targetValue', {
+													attractClick: this.props.targets.length === 0
+												})}
 												onClick={() => {
 													//													this.props.setConversationTargets(
 													//														reject(equals(s.name), popularTargetNames)
@@ -184,20 +192,18 @@ export default class TargetSelection extends Component {
 														value = rule && rule.nodeValue
 													;<RuleValue value={value} />
 												}}
+												{this.props.targets.length > 0 && (
+													<i
+														className="fa fa-calculator valueTypeIcon"
+														aria-hidden="true"
+													/>
+												)}
 											</span>
 										</>
 									)}
 								</span>
 							</div>
-							<p
-								style={
-									optionIsChecked(s)
-										? { color: textColourOnWhite }
-										: { color: '#4b4b66' }
-								}
-							>
-								{s['résumé']}
-							</p>
+							<p>{s['résumé']}</p>
 						</div>
 					))}
 				</div>
