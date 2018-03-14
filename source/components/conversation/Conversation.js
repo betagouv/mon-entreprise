@@ -8,7 +8,6 @@ import Satisfaction from '../Satisfaction'
 import { connect } from 'react-redux'
 import './conversation.css'
 
-import ReactPiwik from '../Tracker'
 let scroll = () =>
 	scroller.scrollTo('myScrollToElement', {
 		duration: 500,
@@ -58,34 +57,7 @@ export default class Conversation extends Component {
 		} = this.props
 		return (
 			<>
-				{!isEmpty(foldedSteps) && (
-					<div id="foldedSteps">
-						<div className="header">
-							<button
-								onClick={reinitialise}
-								style={{ color: textColourOnWhite }}
-							>
-								<i className="fa fa-trash" aria-hidden="true" />
-								Tout effacer
-							</button>
-						</div>
-						{map(
-							getInputComponent({ unfolded: false })(parsedRules, targetNames),
-							foldedSteps
-						)}
-					</div>
-				)}
 				<Element name="myScrollToElement" id="myScrollToElement">
-					<h3
-						className="scrollIndication up"
-						style={{
-							opacity: foldedSteps.length != 0 ? 1 : 0,
-							color: textColourOnWhite
-						}}
-					>
-						<i className="fa fa-long-arrow-up" aria-hidden="true" /> Modifier
-						mes réponses
-					</h3>
 					<div id="currentQuestion">
 						{currentQuestion ? (
 							getInputComponent({ unfolded: true })(parsedRules, targetNames)(
