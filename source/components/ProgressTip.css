@@ -1,14 +1,8 @@
-#sim .tip {
+.progressTip {
 	font-style: italic;
 	margin-bottom: -0.3em;
 	text-align: center;
 }
-#sim .tip p {
+.progressTip p {
 	margin: 0;
-}
-#sim .tip progress {
-	margin-left: 1em;
-	background: white;
-	border-width: 1px;
-	border-style: solid;
 }
