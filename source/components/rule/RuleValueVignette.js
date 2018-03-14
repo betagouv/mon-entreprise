@@ -23,7 +23,7 @@ export let RuleValue = ({ value }) =>
 		let unsatisfied = value == null,
 			irrelevant = value == 0
 		let [className, text] = irrelevant
-			? ['irrelevant', 'Non applicable']
+			? ['irrelevant', '0']
 			: unsatisfied
 				? ['unsatisfied', '']
 				: ['figure', humanFigure(0)(value) + ' €']

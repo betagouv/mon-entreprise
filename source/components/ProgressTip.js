@@ -33,7 +33,7 @@ export default class ProgressTip extends Component {
 					<p>
 						{nbQuestions === 1
 							? 'Une dernière question !'
-							: `Il reste moins de ${nbQuestions} questions`}
+							: `Moins de ${nbQuestions} questions`}
 						<Line
 							percent={
 								100 * foldedSteps.length / (foldedSteps.length + nbQuestions)
