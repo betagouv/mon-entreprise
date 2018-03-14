@@ -20,7 +20,7 @@ let initialStore = {
 
 let enhancer = compose(
 	applyMiddleware(debounceFormChangeActions()),
-	DevTools.instrument()
+	DevTools.instrument({ maxAge: 10 })
 )
 
 let initialRules = lang == 'en' ? rules : rulesFr

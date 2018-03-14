@@ -473,7 +473,7 @@ export let treatRuleRoot = (rules, rule) => {
 						: anyNull([e['non applicable si'], e['applicable si']])
 							? null
 							: !val(e['non applicable si']) &&
-								undefOrTrue(val(e['applicable si']))
+							  undefOrTrue(val(e['applicable si']))
 			},
 			nodeValue = computeRuleValue(formuleValue, isApplicable)
 
@@ -596,16 +596,17 @@ export let getTargets = (target, rules) => {
 	let multiSimulation = path(['simulateur', 'objectifs'])(target)
 	let targets = multiSimulation
 		? // On a un simulateur qui définit une liste d'objectifs
-			multiSimulation
+		  multiSimulation
 				.map(n => disambiguateRuleReference(rules, target, n))
 				.map(n => findRuleByDottedName(rules, n))
 		: // Sinon on est dans le cas d'une simple variable d'objectif
-			[target]
+		  [target]
 
 	return targets
 }
 
 export let parseAll = flatRules => {
+	console.log('parseall')
 	let treatOne = rule => treatRuleRoot(flatRules, rule)
 	return map(treatOne, flatRules)
 }
