@@ -4,6 +4,7 @@ import TargetSelection from './TargetSelection'
 import withColours from './withColours'
 import Conversation from './conversation/Conversation'
 import ProgressTip from './ProgressTip'
+import FoldedSteps from './conversation/FoldedSteps'
 
 @withColours
 export default class extends Component {
@@ -17,7 +18,7 @@ export default class extends Component {
 
 		return (
 			<div>
-				{' '}
+				<FoldedSteps />
 				<TargetSelection
 					colours={colours}
 					conversationVisible={this.state.conversationVisible}
