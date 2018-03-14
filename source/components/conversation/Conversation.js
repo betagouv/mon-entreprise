@@ -56,7 +56,6 @@ export default class Conversation extends Component {
 			reinitialise,
 			textColourOnWhite
 		} = this.props
-		console.log(this.props)
 		return (
 			<>
 				{!isEmpty(foldedSteps) && (

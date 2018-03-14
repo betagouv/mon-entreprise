@@ -56,11 +56,13 @@ export default class TargetSelection extends Component {
 					{this.renderOutputList()}
 				</section>
 
-				{this.state.activeInput ? (
+				{!this.state.activeInput || !this.props.targets.length ? (
+					<h1>Entrez un salaire mensuel</h1>
+				) : (
 					<div id="action">
 						{this.props.selectingTargets ? (
 							!this.props.conversationVisible && (
-								<p>Cochez un ou plusieurs objectifs</p>
+								<p>Que voulez-vous affiner ?</p>
 							)
 						) : (
 							<>
@@ -75,8 +77,6 @@ export default class TargetSelection extends Component {
 							</>
 						)}
 					</div>
-				) : (
-					<h1>Entrez un salaire mensuel</h1>
 				)}
 			</>
 		)
