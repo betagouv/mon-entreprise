@@ -104,11 +104,11 @@
 		"start": "node source/server.js",
 		"externalize": "node source/externalize.js",
 		"compile": "webpack --config source/webpack.prod.js",
-		"test": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
-		"test-watch": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
-		"test-meca": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
-		"test-rules": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
-		"test-inversions": "mocha-webpack --webpack-config source/webpack.test.config.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
+		"test": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
+		"test-watch": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
+		"test-meca": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
+		"test-rules": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
+		"test-inversions": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
 		"heroku-postbuild": "yarn install --production=false && yarn compile"
 	}
 }
