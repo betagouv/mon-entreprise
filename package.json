@@ -17,7 +17,7 @@
 	"dependencies": {
 		"live-server": "^1.2.0",
 		"@babel/core": "^7.0.0-beta.40",
-		"@babel/plugin-proposal-decorators": "=7.0.0-beta.40",
+		"@babel/plugin-proposal-decorators": "=7.0.0-beta.41",
 		"@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
 		"@babel/plugin-syntax-decorators": "^7.0.0-beta.40",
 		"@babel/polyfill": "^7.0.0-beta.40",
