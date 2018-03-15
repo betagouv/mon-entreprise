@@ -1,12 +1,10 @@
 {
 	"name": "syso",
-	"version": "0.0.1",
-	"license": "AGPL-3.0",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:laem/syso.git"
+		"url": "git@github.com:betagouv/syso.git"
 	},
-	"description": "Expérimentation sur les prélèvements sociaux en code",
 	"engines": {
 		"node": ">=6.2.0 <10.0.0"
 	},
