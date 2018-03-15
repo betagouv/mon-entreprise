@@ -75,9 +75,8 @@ export let byBranch = analysis => {
 	analysis: state.analysis,
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
-	inversions: formValueSelector('conversation')(state, 'inversions'),
-	done: state.done,
-	flatRules: state.flatRules
+	flatRules: state.flatRules,
+	inversions: formValueSelector('conversation')(state, 'inversions')
 }))
 @translate()
 export default class ResultsGrid extends Component {
@@ -87,12 +86,9 @@ export default class ResultsGrid extends Component {
 				situationGate,
 				targetNames,
 				inversions,
-				done,
 				flatRules
 			} = this.props,
 			rules = flatRules
-
-		if (!done) return null
 
 		if (!analysis) return null
 

@@ -1,13 +1,3 @@
-#myScrollToElement {
-	min-height: 55%;
-	padding: 1em;
-	transition: 1s min-height;
-}
-
-#sim.noQuestionsLeft #myScrollToElement {
-	min-height: 0;
-}
-
 #foldedSteps {
 	padding: 1em;
 	margin-bottom: 6em;
@@ -22,6 +12,10 @@
 #foldedSteps .header button i {
 	margin-right: 0.3em;
 	vertical-align: top;
+}
+
+#myScrollToElement {
+    padding-top: .6em
 }
 
 .step {
