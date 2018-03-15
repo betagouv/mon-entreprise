@@ -21,7 +21,7 @@ import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
 
-export let salaries = ['salaire net', 'salaire de base', 'salaire total']
+export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
 
 @reduxForm({
