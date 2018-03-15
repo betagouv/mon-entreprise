@@ -616,7 +616,6 @@ export let getTargets = (target, rules) => {
 }
 
 export let parseAll = flatRules => {
-	console.log('parseall')
 	let treatOne = rule => treatRuleRoot(flatRules, rule)
 	return map(treatOne, flatRules)
 }
