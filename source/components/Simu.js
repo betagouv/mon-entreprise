@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-//import styles from './Simu.css'
+import styles from './Simu.css'
 import TargetSelection from './TargetSelection'
 import withColours from './withColours'
 import Conversation from './conversation/Conversation'
 import ProgressTip from './ProgressTip'
-import FoldedSteps from './conversation/FoldedSteps'
+import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
+import Explanation from './Explanation'
 
 @withColours
 export default class extends Component {
@@ -19,17 +20,25 @@ export default class extends Component {
 		return (
 			<div>
 				<FoldedSteps />
-				<TargetSelection
-					colours={colours}
-					conversationVisible={this.state.conversationVisible}
-					showConversation={() => this.setState({ conversationVisible: true })}
-					selectingTargets={selectingTargets}
-					setSelectingTargets={() => this.setState({ selectingTargets: true })}
-				/>
-				<ProgressTip {...{ selectingTargets, conversationVisible }} />
-				{this.state.conversationVisible && (
-					<Conversation textColourOnWhite={colours.textColourOnWhite} />
-				)}
+				<div id="focusZone">
+					<GoToAnswers />
+					<TargetSelection
+						colours={colours}
+						conversationVisible={this.state.conversationVisible}
+						showConversation={() =>
+							this.setState({ conversationVisible: true })
+						}
+						selectingTargets={selectingTargets}
+						setSelectingTargets={() =>
+							this.setState({ selectingTargets: true })
+						}
+					/>
+					<ProgressTip {...{ selectingTargets, conversationVisible }} />
+					{this.state.conversationVisible && (
+						<Conversation textColourOnWhite={colours.textColourOnWhite} />
+					)}
+					<Explanation />
+				</div>
 			</div>
 		)
 	}

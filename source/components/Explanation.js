@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import ResultsGrid from 'Components/ResultsGrid'
 import { salaries } from 'Components/TargetSelection'
-import { isEmpty, intersection, head } from 'ramda'
+import { isEmpty, intersection, head, path } from 'ramda'
 import Rule from 'Components/rule/Rule'
 import './Explanation.css'
 import { pluck } from 'ramda'
+import { connect } from 'react-redux'
 
+@connect(state => ({
+	analysis: state.analysis
+}))
 export default class Explanation extends Component {
 	render() {
-		let { targetRules } = this.props
-
+		let targetRules = path(['analysis', 'targets'], this.props)
 		if (!targetRules) return null
 
 		return (
@@ -27,6 +30,7 @@ export default class Explanation extends Component {
 		)
 	}
 	renderExplanation(targetRules) {
+		console.log(pluck('name', targetRules), salaries)
 		if (!isEmpty(intersection(pluck('name', targetRules), salaries)))
 			return <ResultsGrid /> // Problem if targetRules is [salaire net, aides] the Explanation will not explain 'aides'. The user will have to click on Aides to understand it. Should we display a list of <Rule /> sections ?
 
