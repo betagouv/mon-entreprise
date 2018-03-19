@@ -84,10 +84,10 @@
 	text-align: right;
 }
 
-#targetSelection .targetValue {
+#targetSelection .editable {
 border-bottom: 1px dashed #ffffff91}
 
-#targetSelection .targetValue.attractClick,
+#targetSelection .attractClick,
 #targetSelection input[type='text'] {
 	width: 5em !important;
 	display: inline-block;
