@@ -25,9 +25,7 @@ export let RuleValue = ({ value }) =>
 			irrelevant = value == 0
 		let [className, text] = irrelevant
 			? ['irrelevant', '0']
-			: unsatisfied
-				? ['unsatisfied', '']
-				: ['figure', humanFigure(0)(value) + ' €']
+			: unsatisfied ? ['unsatisfied', ''] : ['figure', humanFigure(0)(value)]
 		;<ReactCSSTransitionGroup
 			transitionName="flash"
 			transitionEnterTimeout={100}

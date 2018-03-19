@@ -49,11 +49,11 @@ export default class TargetSelection extends Component {
 	}
 
 	render() {
-		let firstEstimationComplete =
+		this.firstEstimationComplete =
 			this.state.activeInput && this.props.targets.length > 0
 		return (
 			<div id="targetSelection">
-				{!firstEstimationComplete && <h1>Entrez un salaire mensuel</h1>}
+				{!this.firstEstimationComplete && <h1>Entrez un salaire mensuel</h1>}
 				<section
 					id="targetsContainer"
 					style={{
@@ -64,7 +64,7 @@ export default class TargetSelection extends Component {
 					{this.renderOutputList()}
 				</section>
 
-				{firstEstimationComplete && (
+				{this.firstEstimationComplete && (
 					<div id="action">
 						{this.props.selectingTargets ? (
 							!this.props.conversationVisible && (
@@ -158,14 +158,12 @@ export default class TargetSelection extends Component {
 									<span className="optionTitle">{s.title || s.name}</span>
 								</label>
 								<span className="targetInputOrValue">
-									{s.name.includes('salaire') &&
-									this.state.activeInput === s.dottedName ? (
+									{this.state.activeInput === s.dottedName ? (
 										<>
 											<Field
 												name={s.dottedName}
 												component="input"
 												type="text"
-												placeholder="mon--require  salaire"
 												autoFocus
 											/>
 											{this.props.targets.length > 0 && (
@@ -178,16 +176,14 @@ export default class TargetSelection extends Component {
 									) : (
 										<>
 											<span
-												className={classNames('targetValue', {
+												className={classNames({
+													editable: s.question,
 													attractClick:
 														s.question && this.props.targets.length === 0
 												})}
 												onClick={() => {
-													//													this.props.setConversationTargets(
-													//														reject(equals(s.name), popularTargetNames)
-													//													)
-
-													this.setState({ activeInput: s.dottedName })
+													s.question &&
+														this.setState({ activeInput: s.dottedName })
 												}}
 											>
 												{do {
@@ -205,6 +201,9 @@ export default class TargetSelection extends Component {
 												)}
 											</span>
 										</>
+									)}
+									{(this.firstEstimationComplete || s.question) && (
+										<span className="unit">€</span>
 									)}
 								</span>
 							</div>
