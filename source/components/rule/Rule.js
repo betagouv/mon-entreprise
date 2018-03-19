@@ -13,17 +13,15 @@ import { Link } from 'react-router-dom'
 import { findRuleByNamespace, encodeRuleName } from 'Engine/rules'
 import withColours from '../withColours'
 
-import SearchButton from 'Components/SearchButton'
-
 @connect(state => ({
-	form: state.form,
+	analysis: state.analysis,
 	rules: state.parsedRules,
 	currentExample: state.currentExample
 }))
 export default class Rule extends Component {
 	render() {
-		let { form, rule, currentExample, rules } = this.props,
-			conversationStarted = !isEmpty(form)
+		let { analysis, rule, currentExample, rules } = this.props,
+			conversationStarted = !isEmpty(analysis)
 
 		let { type, name, title, description, question, ns } = rule,
 			namespaceRules = findRuleByNamespace(rules, rule.dottedName)
@@ -34,7 +32,6 @@ export default class Rule extends Component {
 					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
-				<SearchButton />
 				<RuleMeta
 					{...{
 						ns,
