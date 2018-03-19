@@ -161,7 +161,7 @@ export default class TargetSelection extends Component {
 												name={s.dottedName}
 												component="input"
 												type="text"
-												placeholder="mon salaire"
+												placeholder="mon--require  salaire"
 												autoFocus
 											/>
 											{this.props.targets.length > 0 && (
@@ -175,7 +175,8 @@ export default class TargetSelection extends Component {
 										<>
 											<span
 												className={classNames('targetValue', {
-													attractClick: this.props.targets.length === 0
+													attractClick:
+														s.question && this.props.targets.length === 0
 												})}
 												onClick={() => {
 													//													this.props.setConversationTargets(
