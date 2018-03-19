@@ -34,7 +34,7 @@ export default class Algorithm extends React.Component {
 					analyse(rules, displayedRule.dottedName)(
 						exampleSituationGateWithDefaults(currentExample.situation, rules)
 					).targets
-				)
+			  )
 			: displayedRule
 
 		return (

@@ -11,13 +11,15 @@ import Helmet from 'react-helmet'
 import { createMarkdownDiv } from 'Engine/marked'
 import Destinataire from './Destinataire'
 import { Link } from 'react-router-dom'
-import { findRuleByNamespace, encodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import {
+	findRuleByNamespace,
+	encodeRuleName,
+	findRuleByDottedName
+} from 'Engine/rules'
 import withColours from '../withColours'
 
-import SearchButton from 'Components/SearchButton'
-
 @connect(state => ({
-	form: state.form,
+	analysis: state.analysis,
 	rules: state.parsedRules,
 	flatRules: state.flatRules,
 	currentExample: state.currentExample
@@ -27,7 +29,7 @@ export default class Rule extends Component {
 	render() {
 		let { form, rule, currentExample, rules, flatRules } = this.props,
 			flatRule = findRuleByDottedName(flatRules, rule.dottedName),
-			conversationStarted = !isEmpty(form)
+			conversationStarted = !isEmpty(analysis)
 
 		let { type, name, title, description, question, ns } = flatRule,
 			namespaceRules = findRuleByNamespace(flatRules, rule.dottedName)
@@ -38,7 +40,6 @@ export default class Rule extends Component {
 					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
-				<SearchButton />
 				<RuleMeta
 					{...{
 						ns,
@@ -82,37 +83,41 @@ export default class Rule extends Component {
 	renderReferences = ({ références: refs }) =>
 		refs ? (
 			<div>
-				<h2><Trans>Références</Trans></h2>
+				<h2>
+					<Trans>Références</Trans>
+				</h2>
 				<References refs={refs} />
 			</div>
 		) : null
 }
 
-let NamespaceRulesList = withColours(({ namespaceRules, flatRule, colours }) => (
-	<section>
-		<h2>
-			<Trans>Règles attachées</Trans>
-			<small>
-				<Trans i18nKey="inspace">Ces règles sont dans l'espace de nom</Trans> `{flatRule.title}`
-			</small>
-		</h2>
-		<ul>
-			{namespaceRules.map(r => (
-				<li key={r.name}>
-					<Link
-						style={{
-							color: colours.textColourOnWhite,
-							textDecoration: 'underline'
-						}}
-						to={'/règle/' + encodeRuleName(r.dottedName)}
-					>
-						{r.title || r.name}
-					</Link>
-				</li>
-			))}
-		</ul>
-	</section>
-))
+let NamespaceRulesList = withColours(
+	({ namespaceRules, flatRule, colours }) => (
+		<section>
+			<h2>
+				<Trans>Règles attachées</Trans>
+				<small>
+					<Trans i18nKey="inspace">Ces règles sont dans l'espace de nom</Trans>{' '}
+					`{flatRule.title}`
+				</small>
+			</h2>
+			<ul>
+				{namespaceRules.map(r => (
+					<li key={r.name}>
+						<Link
+							style={{
+								color: colours.textColourOnWhite,
+								textDecoration: 'underline'
+							}}
+							to={'/règle/' + encodeRuleName(r.dottedName)}>
+							{r.title || r.name}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+)
 
 let RuleMeta = ({ ns, type, description, question, rule, name, title }) => (
 	<section id="rule-meta">
@@ -152,8 +157,7 @@ export let Namespace = withColours(({ ns, colours }) => (
 							color: colours.textColourOnWhite,
 							textDecoration: 'underline'
 						}}
-						to={'/règle/' + encodeRuleName(fragments.join(' . '))}
-					>
+						to={'/règle/' + encodeRuleName(fragments.join(' . '))}>
 						{capitalise0(last(fragments))}
 					</Link>
 					<i
@@ -172,8 +176,7 @@ let ReportError = () => (
 			href={
 				'mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans une règle ' +
 				name
-			}
-		>
+			}>
 			<i
 				className="fa fa-exclamation-circle"
 				aria-hidden="true"

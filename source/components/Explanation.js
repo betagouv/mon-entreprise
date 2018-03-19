@@ -9,6 +9,7 @@ import { pluck } from 'ramda'
 import { connect } from 'react-redux'
 
 @translate()
+import SearchButton from './SearchButton'
 @connect(state => ({
 	analysis: state.analysis
 }))
@@ -35,7 +36,12 @@ export default class Explanation extends Component {
 	}
 	renderExplanation(targetRules) {
 		if (!isEmpty(intersection(pluck('name', targetRules), salaries)))
-			return <ResultsGrid /> // Problem if targetRules is [salaire net, aides] the Explanation will not explain 'aides'. The user will have to click on Aides to understand it. Should we display a list of <Rule /> sections ?
+			return (
+				<>
+					<SearchButton />
+					<ResultsGrid />
+				</>
+			) // Problem if targetRules is [salaire net, aides] the Explanation will not explain 'aides'. The user will have to click on Aides to understand it. Should we display a list of <Rule /> sections ?
 
 		if (targetRules.length > 1)
 			return (

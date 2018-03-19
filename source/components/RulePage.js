@@ -14,8 +14,9 @@ import { encodeRuleName } from 'Engine/rules'
 import { pipe, pluck, join, map } from 'ramda'
 import { Link, Redirect } from 'react-router-dom'
 import { animateScroll } from 'react-scroll'
-import './PageRule.css'
+import './RulePage.css'
 import { Namespace } from './rule/Rule'
+import SearchButton from 'Components/SearchButton'
 
 @connect(state => ({
 	situationGate: state.situationGate,
@@ -64,10 +65,11 @@ export default class RulePage extends Component {
 		let targets = path(['analysis', 'targets'], this.props)
 
 		return (
-			<>
+			<div id="RulePage">
 				{targets && <BackToSimulation targets={targets} />}
+				<SearchButton />
 				<Rule rule={this.rule} />
-			</>
+			</div>
 		)
 	}
 }
