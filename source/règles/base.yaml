@@ -796,7 +796,7 @@
   nom: salaire net
   titre: Salaire net
   type: salaire
-  question: Quel est le salaire net ?
+  question: Quel est le salaire net mensuel ?
   résumé: Touché par le salarié tous les mois.
   description: |
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
@@ -815,6 +815,7 @@
 - espace: contrat salarié
   nom: salaire total
   titre: Salaire total
+  question: Quel est le salaire total mensuel?
   résumé: À verser par l'employeur tous les mois.
   type: salaire
   description: |
