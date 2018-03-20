@@ -151,7 +151,7 @@ contrat salarié . CDD . motif . classique . remplacement:
   titre.fr: Contrat de remplacement
   description.en: Replacement of an employee. A list of precise cases is defined by the law.
   
-  description.fr: > Remplacement 
+  description.fr: Remplacement
 contrat salarié . CDD . motif . classique . mission:
   titre.en: Mission contract
   titre.fr: Contrat de mission
