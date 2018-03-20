@@ -918,15 +918,15 @@ contrat salarié . taxe sur les salaires:
   titre.en: tax on salaries
   titre.fr: taxe sur les salaires
 contrat salarié . versement transport:
-  description.en: ~~Contribution on the work devoted to the financing of public transport.
-  description.fr: Contribution sur le travail consacrée au financement des transports publics.
-  titre.en: ~~transport payment
+  description.en: Contribution based on the salaries to finance public transports.
+  description.fr: Contribution sur les salaires destinée au financement des transports publics.
+  titre.en: Transport tax
   titre.fr: versement transport
-établissement . taux versement transport:
-  titre.en: ~~transport payment rate
-  titre.fr: taux versement transport
+établissement . taux du versement transport:
+  titre.en: Rate of transport tax
+  titre.fr: Taux du versement transport
 contrat salarié . vieillesse:
-  description.en: ~~Contribution to the basic pension plan of employees.
+  description.en: Contribution to the basic pension plan of employees.
   description.fr: Cotisation au régime de retraite de base des salariés.
-  titre.en: ~~old age
+  titre.en: Basic pension contribution
   titre.fr: vieillesse
