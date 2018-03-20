@@ -888,34 +888,34 @@ contrat salarié . contribution supplémentaire à l'apprentissage:
   titre.en: ~~additional contribution to learning
   titre.fr: contribution supplémentaire à l'apprentissage
 contrat salarié . taxe d'apprentissage . csa au taux majoré:
-  titre.en: ~~csa at the higher rate
+  titre.en: csa at the higher rate
   titre.fr: csa au taux majoré
 contrat salarié . taxe sur les salaires . assiette:
-  titre.en: ~~plate
+  titre.en: base
   titre.fr: assiette
 contrat salarié . taxe sur les salaires . barème annuel:
-  titre.en: ~~annual scale
+  titre.en: annual scale
   titre.fr: barème annuel
 entreprise . taxe sur les salaires . barème annuel:
-  titre.en: ~~annual scale
+  titre.en: annual scale
   titre.fr: barème annuel
 entreprise . taxe sur les salaires . abattement associations:
-  titre.en: ~~abatement associations
+  titre.en: associations abatement
   titre.fr: abattement associations
 entreprise . taxe sur les salaires:
-  titre.en: ~~payroll tax
+  titre.en: tax on salaries
   titre.fr: taxe sur les salaires
 contrat salarié . taxe sur les salaires . montant annuel:
-  titre.en: ~~annual amount
+  titre.en: annual amount
   titre.fr: montant annuel
 contrat salarié . taxe sur les salaires:
   description.en: >-
-    ~~The payroll tax in France is a progressive tax created in 1948 that some
-    employers must pay on the wages they distribute.
+    The tax on salaries in France is a progressive tax created in 1948 that some
+    employers must pay on their employees' salaries.
   description.fr: >-
     La taxe sur les salaires en France est un impôt progressif créé en 1948 que
     certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
-  titre.en: ~~payroll tax
+  titre.en: tax on salaries
   titre.fr: taxe sur les salaires
 contrat salarié . versement transport:
   description.en: ~~Contribution on the work devoted to the financing of public transport.
