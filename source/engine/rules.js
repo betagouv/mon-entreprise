@@ -107,7 +107,7 @@ export let disambiguateRuleReference = (
 	return (
 		(found && found.dottedName) ||
 		do {
-			throw new `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`()
+			throw new Error(`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`)
 		}
 	)
 }
