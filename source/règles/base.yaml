@@ -579,7 +579,7 @@
   formule:
     somme:
       - prime de fin de contrat
-      - compensation congés payés
+      - compensation pour congés non pris
 
 - espace: contrat salarié . CDD
   nom: surcoût
@@ -600,7 +600,7 @@
         indemnités salarié CDD: 100
         cotisations employeur CDD: 190
         prime de fin de contrat: 60.4
-        compensation congés payés: 39.6
+        compensation pour congés non pris: 39.6
       valeur attendue: 290
 
 # Cette variable est le point de départ du simulateur "surcout CDD" :-D
