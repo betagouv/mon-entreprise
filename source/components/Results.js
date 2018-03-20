@@ -1,5 +1,6 @@
 import { isEmpty, path, contains } from 'ramda'
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -36,7 +37,7 @@ export default class Results extends Component {
 						<Link className="edit" to="/" style={textStyle}>
 							<i className="fa fa-pencil" aria-hidden="true" />
 							{'  '}
-							<span>Changer d'objectif</span>
+							<span><Trans i18nKey="reset">Changer d'objectif</Trans></span>
 						</Link>
 						<ul>
 							{targets.map(rule => (
@@ -57,7 +58,7 @@ export default class Results extends Component {
 						}}
 					>
 						<i className="fa fa-long-arrow-down" aria-hidden="true" />{' '}
-						Comprendre mes résultats
+						<Trans i18nKey="details">Comprendre mes résultats</Trans>
 					</h3>
 				</section>
 			</div>

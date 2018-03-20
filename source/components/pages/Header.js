@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
 import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
@@ -27,7 +28,7 @@ export class Header extends Component {
 					onClick={() => screenfull.toggle()}
 					className={appMode ? 'absolute' : ''}
 				>
-					{!appMode && <span>Mode plein écran</span>}
+					{!appMode && <span><Trans>Mode plein écran</Trans></span>}
 					<i
 						className="fa fa-arrows-alt"
 						aria-hidden="true"
@@ -107,7 +108,7 @@ export class Footer extends Component {
 		return (
 			<div id="footer">
 				<Link to="/à-propos">
-					À propos <i className="fa fa-question-circle" aria-hidden="true" />
+					<Trans>À propos</Trans> <i className="fa fa-question-circle" aria-hidden="true" />
 				</Link>
 			</div>
 		)
