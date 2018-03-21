@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './Pages.css'
 import './Home.css'
-import TargetSelection from '../TargetSelection'
-import { connect } from 'react-redux'
 import withColours from '../withColours'
 import Simu from '../Simu'
 
