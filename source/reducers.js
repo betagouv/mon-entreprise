@@ -1,23 +1,9 @@
-import {
-	head,
-	isEmpty,
-	pathOr,
-	reject,
-	contains,
-	without,
-	concat,
-	length
-} from 'ramda'
+import { head, pathOr, without, concat, path, length } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
 
-import {
-	rules,
-	findRuleByName,
-	collectDefaults,
-	formatInputs
-} from 'Engine/rules'
+import { rules, collectDefaults, formatInputs } from 'Engine/rules'
 import { getNextSteps } from 'Engine/generateQuestions'
 import computeThemeColours from 'Components/themeColours'
 import { STEP_ACTION, EXPLAIN_VARIABLE, CHANGE_THEME_COLOUR } from './actions'
@@ -48,6 +34,8 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		)
 	)
 		return state
+
+	if (path(['form', 'conversation', 'syncErrors'], state)) return state
 
 	let conversationTargetNames =
 		action.type == 'SET_CONVERSATION_TARGETS' && action.targetNames
