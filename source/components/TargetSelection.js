@@ -165,7 +165,7 @@ let validate = buildValidationFunction(formValueTypes['euros'])
 let InputComponent = ({ input, meta: { dirty, error } }) => (
 	<span>
 		{dirty && error && <span className="input-error">{error}</span>}
-		<input type="number" {...input} autoFocus inputMethod="numeric" />
+		<input type="number" {...input} autoFocus />
 	</span>
 )
 let TargetOrInputValue = ({
