@@ -4,7 +4,7 @@ import { rules, findRuleByName } from 'Engine/rules'
 import { propEq, contains, without, curry, append, ifElse } from 'ramda'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { Field, reduxForm, formValueSelector, change } from 'redux-form'
 import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
@@ -23,6 +23,7 @@ export let popularTargetNames = [...salaries, 'aides employeur']
 		conversationTargetNames: state.conversationTargetNames
 	}),
 	dispatch => ({
+		clearFormValue: field => dispatch(change('conversation', field, '')),
 		setConversationTargets: (targetNames, fromScratch = false) =>
 			dispatch({ type: 'SET_CONVERSATION_TARGETS', targetNames, fromScratch })
 	})
@@ -140,13 +141,15 @@ export default class TargetSelection extends Component {
 									}
 									<span className="optionTitle">{s.title || s.name}</span>
 								</label>
-								<TargetOrInputValue
+								<TargetInputOrValue
 									{...{
 										s,
 										targets: this.props.targets,
 										firstEstimationComplete: this.firstEstimationComplete,
 										activeInput: this.state.activeInput,
-										setActiveInput: name => this.setState({ activeInput: name })
+										setActiveInput: name =>
+											this.setState({ activeInput: name }),
+										clearFormValue: this.props.clearFormValue
 									}}
 								/>
 							</div>
@@ -165,12 +168,13 @@ let InputComponent = ({ input, meta: { dirty, error } }) => (
 		<input type="number" {...input} autoFocus />
 	</span>
 )
-let TargetOrInputValue = ({
+let TargetInputOrValue = ({
 	s,
 	targets,
 	firstEstimationComplete,
 	activeInput,
-	setActiveInput
+	setActiveInput,
+	clearFormValue
 }) => (
 	<span className="targetInputOrValue">
 		{activeInput === s.dottedName ? (
@@ -188,7 +192,9 @@ let TargetOrInputValue = ({
 						attractClick: s.question && targets.length === 0
 					})}
 					onClick={() => {
-						s.question && setActiveInput(s.dottedName)
+						if (!s.question) return
+						activeInput && clearFormValue(activeInput)
+						setActiveInput(s.dottedName)
 					}}
 				>
 					{do {
@@ -202,6 +208,3 @@ let TargetOrInputValue = ({
 		{(firstEstimationComplete || s.question) && <span className="unit">€</span>}
 	</span>
 )
-
-/* 
-						*/
