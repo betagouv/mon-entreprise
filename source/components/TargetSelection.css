@@ -88,7 +88,7 @@
 border-bottom: 1px dashed #ffffff91}
 
 #targetSelection .attractClick,
-#targetSelection input[type='text'] {
+#targetSelection input[type='numeric'] {
 	width: 5em !important;
 	display: inline-block;
 	height: 1.5em;
@@ -108,6 +108,16 @@ border: none;
     margin-left: .6em;
 	font-size: 120%;
 	vertical-align: middle;
+}
+
+.input-error {
+padding: 0 .6em;
+    margin-right: .6em;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #c0392b;
+    background: yellow;
+    font-weight: 600;		
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

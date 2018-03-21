@@ -7,9 +7,7 @@ export default ({ store }) => (
 	<Provider store={store}>
 		<div id="dev">
 			<Layout />
-			{/*
 			<DevTools />
-			*/}
 		</div>
 	</Provider>
 )
