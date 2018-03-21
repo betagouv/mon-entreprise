@@ -70,9 +70,7 @@ export var FormDecorator = formType => RenderField =>
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
-			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
-				validate = test && (v => (v && test(pre(v)) ? undefined : error)),
-				inversionQ = path(['props', 'inversion', 'question'])(this)
+			let validate = buildValidationFunction(valueType)
 
 			let submit = cause =>
 					//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
@@ -164,3 +162,8 @@ export var FormDecorator = formType => RenderField =>
 			)
 		}
 	}
+
+export let buildValidationFunction = valueType => {
+	let { pre = v => v, test, error } = valueType ? valueType.validator : {}
+	return test && (v => (v && test(pre(v)) ? undefined : error))
+}

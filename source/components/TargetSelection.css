@@ -109,11 +109,5 @@ border: none;
 	font-size: 120%;
 	vertical-align: middle;
 }
-#targetSelection .valueTypeIcon {
-		display: none;
-	margin: 0 0.4em;
-	font-size: 80%;
-	opacity: 0.5;
-}
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

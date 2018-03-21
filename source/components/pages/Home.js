@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import './Pages.css'
 import './Home.css'
-import TargetSelection from '../TargetSelection'
 import withColours from '../withColours'
 import Simu from '../Simu'
 

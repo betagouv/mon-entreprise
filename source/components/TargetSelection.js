@@ -1,28 +1,15 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import { connect } from 'react-redux'
+import formValueTypes from 'Components/conversation/formValueTypes'
 import { rules, findRuleByName } from 'Engine/rules'
-import {
-	reject,
-	propEq,
-	curry,
-	pipe,
-	equals,
-	filter,
-	contains,
-	length,
-	without,
-	append,
-	ifElse
-} from 'ramda'
-import { Link } from 'react-router-dom'
+import { propEq, contains, without, curry, append, ifElse } from 'ramda'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
-
+import { buildValidationFunction } from './conversation/FormDecorator'
 export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
 
@@ -91,7 +78,6 @@ export default class TargetSelection extends Component {
 	renderOutputList() {
 		let popularTargets = popularTargetNames.map(curry(findRuleByName)(flatRules)),
 			{
-				targets,
 				conversationTargetNames,
 				textColourOnWhite,
 				setConversationTargets
@@ -157,55 +143,15 @@ export default class TargetSelection extends Component {
 									}
 									<span className="optionTitle">{s.title || s.name}</span>
 								</label>
-								<span className="targetInputOrValue">
-									{this.state.activeInput === s.dottedName ? (
-										<>
-											<Field
-												name={s.dottedName}
-												component="input"
-												type="text"
-												autoFocus
-											/>
-											{this.props.targets.length > 0 && (
-												<i
-													className="fa fa-pencil-o valueTypeIcon"
-													aria-hidden="true"
-												/>
-											)}
-										</>
-									) : (
-										<>
-											<span
-												className={classNames({
-													editable: s.question,
-													attractClick:
-														s.question && this.props.targets.length === 0
-												})}
-												onClick={() => {
-													s.question &&
-														this.setState({ activeInput: s.dottedName })
-												}}
-											>
-												{do {
-													let rule = this.props.targets.find(
-															propEq('dottedName', s.dottedName)
-														),
-														value = rule && rule.nodeValue
-													;<RuleValue value={value} />
-												}}
-												{this.props.targets.length > 0 && (
-													<i
-														className="fa fa-calculator valueTypeIcon"
-														aria-hidden="true"
-													/>
-												)}
-											</span>
-										</>
-									)}
-									{(this.firstEstimationComplete || s.question) && (
-										<span className="unit">€</span>
-									)}
-								</span>
+								<TargetOrInputValue
+									{...{
+										s,
+										targets: this.props.targets,
+										firstEstimationComplete: this.firstEstimationComplete,
+										activeInput: this.state.activeInput,
+										setActiveInput: name => this.setState({ activeInput: name })
+									}}
+								/>
 							</div>
 							<p>{s['résumé']}</p>
 						</div>
@@ -215,3 +161,47 @@ export default class TargetSelection extends Component {
 		)
 	}
 }
+
+let InputComponent = ({ input, meta: { dirty, error } }) => (
+	<span>
+		<input type="text" {...input} autoFocus />
+
+		{dirty && error && <span className="step-input-error">{error}</span>}
+	</span>
+)
+let TargetOrInputValue = ({
+	s,
+	targets,
+	firstEstimationComplete,
+	activeInput,
+	setActiveInput
+}) => (
+	<span className="targetInputOrValue">
+		{activeInput === s.dottedName ? (
+			<Field name={s.dottedName} component={InputComponent} type="text" />
+		) : (
+			<>
+				<span
+					className={classNames({
+						editable: s.question,
+						attractClick: s.question && targets.length === 0
+					})}
+					onClick={() => {
+						s.question && setActiveInput(s.dottedName)
+					}}
+				>
+					{do {
+						let rule = targets.find(propEq('dottedName', s.dottedName)),
+							value = rule && rule.nodeValue
+						;<RuleValue value={value} />
+					}}
+				</span>
+			</>
+		)}
+		{(firstEstimationComplete || s.question) && <span className="unit">€</span>}
+	</span>
+)
+
+/* 
+				validate={buildValidationFunction(formValueTypes['euros'])}
+						*/
