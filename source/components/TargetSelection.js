@@ -161,12 +161,11 @@ export default class TargetSelection extends Component {
 		)
 	}
 }
-
+let validate = buildValidationFunction(formValueTypes['euros'])
 let InputComponent = ({ input, meta: { dirty, error } }) => (
 	<span>
-		<input type="text" {...input} autoFocus />
-
-		{dirty && error && <span className="step-input-error">{error}</span>}
+		{dirty && error && <span className="input-error">{error}</span>}
+		<input type="number" {...input} autoFocus inputMethod="numeric" />
 	</span>
 )
 let TargetOrInputValue = ({
@@ -178,7 +177,12 @@ let TargetOrInputValue = ({
 }) => (
 	<span className="targetInputOrValue">
 		{activeInput === s.dottedName ? (
-			<Field name={s.dottedName} component={InputComponent} type="text" />
+			<Field
+				name={s.dottedName}
+				component={InputComponent}
+				type="text"
+				validate={validate}
+			/>
 		) : (
 			<>
 				<span
@@ -203,5 +207,4 @@ let TargetOrInputValue = ({
 )
 
 /* 
-				validate={buildValidationFunction(formValueTypes['euros'])}
 						*/

@@ -10,6 +10,11 @@ import { path } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
 
+export let buildValidationFunction = valueType => {
+	let validator = valueType ? valueType.validator : {},
+		{ pre = v => v, test = v => true, error } = validator
+	return v => v != undefined && (test(pre(v)) ? undefined : error)
+}
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
 with a header, click actions and more goodies.
@@ -162,8 +167,3 @@ export var FormDecorator = formType => RenderField =>
 			)
 		}
 	}
-
-export let buildValidationFunction = valueType => {
-	let { pre = v => v, test, error } = valueType ? valueType.validator : {}
-	return test && (v => (v && test(pre(v)) ? undefined : error))
-}
