@@ -88,7 +88,7 @@
 border-bottom: 1px dashed #ffffff91}
 
 #targetSelection .attractClick,
-#targetSelection input[type='numeric'] {
+#targetSelection input[type='number'] {
 	width: 5em !important;
 	display: inline-block;
 	height: 1.5em;
