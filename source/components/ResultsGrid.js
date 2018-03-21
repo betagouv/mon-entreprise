@@ -281,7 +281,7 @@ class ReductionRow extends Component {
 	render() {
 		let { relevantSalaries, node } = this.props
 		if (!relevantSalaries.has('salaire total')) return null
-		let value = node ? node.nodeValue : 0
+		let value = node && node.nodeValue ? node.nodeValue : 0
 		let aggregateRow = (
 			<tr
 				key="aggregateRowReductions"
