@@ -32,9 +32,7 @@ export default class Home extends Component {
 						</p>
 					</div>
 				)}
-				<div id="content">
-					<Simu />
-				</div>
+				<Simu />
 			</div>
 		)
 	}
