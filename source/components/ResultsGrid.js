@@ -23,7 +23,7 @@ import './Results.css'
 import '../engine/mecanismViews/Somme.css'
 
 import { capitalise0, humanFigure } from '../utils'
-import { nameLeaf, encodeRuleName } from 'Engine/rules'
+import { nameLeaf, encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
 let paidBy = payer => item =>
@@ -33,7 +33,10 @@ export let byName = groupBy(prop('dottedName'))
 
 export let cell = (branch, payer, analysis) => {
 	let row = byBranch(analysis)[branch],
-		items = filter(item => paidBy(payer)(item) || filteredBy(payer)(item), row),
+		items = filter(
+			item => paidBy(payer)(item) || filteredBy(payer)(item),
+			row
+		),
 		values = map(prop('nodeValue'), items)
 
 	return sum(values)
@@ -68,23 +71,38 @@ export let byBranch = analysis => {
 @withRouter
 @connect(state => ({
 	analysis: state.analysis,
+	parsedRules: state.parsedRules,
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
 	inversions: formValueSelector('conversation')(state, 'inversions')
 }))
 export default class ResultsGrid extends Component {
 	render() {
-		let { analysis, situationGate, targetNames, inversions } = this.props
+		let {
+			analysis,
+			parsedRules,
+			situationGate,
+			targetNames,
+			inversions
+		} = this.props
 
 		if (!analysis) return null
 
-		let extract = x => (typeof x == 'string' ? +x : (x && x.nodeValue) || 0),
-			fromEval = name => find(propEq('dottedName', name), analysis.targets),
+		let extract = x =>
+				typeof x == 'string' ? +x : (x && x.nodeValue) || 0,
+			fromEval = name =>
+				find(propEq('dottedName', name), analysis.targets),
 			fromDict = name => analysis.cache[name],
 			get = name =>
-				extract(situationGate(name) || fromEval(name) || fromDict(name))
+				extract(
+					situationGate(name) || fromEval(name) || fromDict(name)
+				),
+			title = rule => rule.title || capitalise0(rule.name)
+
 		let results = byBranch(analysis),
 			brut = get('contrat salarié . salaire brut'),
+			base = get('contrat salarié . salaire de base'),
+			avan = get('contrat salarié . avantages salarié'),
 			net = get('contrat salarié . salaire net'),
 			total = get('contrat salarié . salaire total')
 		let inversion = path(['contrat salarié ', ' salaire brut'], inversions),
@@ -93,20 +111,96 @@ export default class ResultsGrid extends Component {
 					.concat(inversion ? [nameLeaf(inversion)] : [])
 					.concat(['salaire brut'])
 			)
+		let brutR = findRuleByDottedName(
+			parsedRules,
+			'contrat salarié . salaire brut'
+		)
+		let baseR = findRuleByDottedName(
+			parsedRules,
+			'contrat salarié . salaire de base'
+		)
+		let avanR = findRuleByDottedName(
+			parsedRules,
+			'contrat salarié . avantages salarié'
+		)
 
 		return (
 			<div className="somme resultsGrid">
 				<table>
 					<thead>
 						<tr>
-							<td className="element" />
+							<td className="element category">
+								<Link
+									to={
+										'/règle/' +
+										encodeRuleName(baseR.dottedName)
+									}
+								>
+									<div className="rule-box">
+										<span className="rule-name">
+											{title(baseR)}
+										</span>
+									</div>
+								</Link>
+							</td>
 							<td
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
 								id="sommeBase"
 							>
+								{humanFigure(2)(base)}{' '}
+							</td>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<td className="element category">
+								<Link
+									to={
+										'/règle/' +
+										encodeRuleName(avanR.dottedName)
+									}
+								>
+									<div className="rule-box">
+										<span className="rule-name">
+											{title(avanR)}
+										</span>
+									</div>
+								</Link>
+							</td>
+							<td
+								colSpan={(relevantSalaries.size - 1) * 2}
+								className="element value"
+								id="sommeBase"
+							>
+								+
+								{humanFigure(2)(avan)}{' '}
+							</td>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<td className="element category">
+								<Link
+									to={
+										'/règle/' +
+										encodeRuleName(brutR.dottedName)
+									}
+								>
+									<div className="rule-box">
+										<span className="rule-name">
+											{title(brutR)}
+										</span>
+									</div>
+								</Link>
+							</td>
+							<td
+								colSpan={(relevantSalaries.size - 1) * 2}
+								className="element value"
+								id="sommeBase"
+							>
+								=
 								{humanFigure(2)(brut)}{' '}
-								<span className="annotation">Salaire brut</span>
 							</td>
 						</tr>
 					</thead>
@@ -122,7 +216,9 @@ export default class ResultsGrid extends Component {
 							return <Row {...props} />
 						})}
 						<ReductionRow
-							node={fromDict('contrat salarié . réductions de cotisations')}
+							node={fromDict(
+								'contrat salarié . réductions de cotisations'
+							)}
 							relevantSalaries={relevantSalaries}
 						/>
 						<tr>
@@ -134,7 +230,9 @@ export default class ResultsGrid extends Component {
 									</td>
 									<td key="net" className="element value">
 										{humanFigure(2)(net)}{' '}
-										<span className="annotation">Salaire net</span>
+										<span className="annotation">
+											Salaire net
+										</span>
 									</td>
 								</>
 							)}
@@ -144,7 +242,9 @@ export default class ResultsGrid extends Component {
 								</td>,
 								<td key="total" className="element value">
 									{humanFigure(2)(total)}{' '}
-									<span className="annotation">Salaire total</span>
+									<span className="annotation">
+										Salaire total
+									</span>
 								</td>
 							]}
 						</tr>
@@ -186,7 +286,9 @@ class Row extends Component {
 									-
 								</td>
 								<td key="value1" className="element value">
-									{humanFigure(2)(cell(branch, 'salarié', analysis))}
+									{humanFigure(2)(
+										cell(branch, 'salarié', analysis)
+									)}
 								</td>
 							</>
 						)}
@@ -196,7 +298,9 @@ class Row extends Component {
 									+
 								</td>
 								<td key="value2" className="element value">
-									{humanFigure(2)(cell(branch, 'employeur', analysis))}
+									{humanFigure(2)(
+										cell(branch, 'employeur', analysis)
+									)}
 								</td>
 							</>
 						)}
@@ -212,7 +316,12 @@ class Row extends Component {
 			: keys(detail).map(subCellName => (
 					<tr key={'detailsRow' + subCellName} className="detailsRow">
 						<td className="element name">
-							<Link to={'/règle/' + encodeRuleName(nameLeaf(subCellName))}>
+							<Link
+								to={
+									'/règle/' +
+									encodeRuleName(nameLeaf(subCellName))
+								}
+							>
 								{title(subCellName)}
 							</Link>
 						</td>
@@ -222,7 +331,9 @@ class Row extends Component {
 									-
 								</td>
 								<td key="value1" className="element value">
-									{humanFigure(2)(subCell(detail, subCellName, 'salarié'))}
+									{humanFigure(2)(
+										subCell(detail, subCellName, 'salarié')
+									)}
 								</td>
 							</>
 						)}
@@ -232,7 +343,13 @@ class Row extends Component {
 									+
 								</td>
 								<td key="value2" className="element value">
-									{humanFigure(2)(subCell(detail, subCellName, 'employeur'))}
+									{humanFigure(2)(
+										subCell(
+											detail,
+											subCellName,
+											'employeur'
+										)
+									)}
 								</td>
 							</>
 						)}
@@ -296,7 +413,12 @@ class ReductionRow extends Component {
 		let detailRow = this.state.folded ? null : (
 			<tr key="detailsRowRéductions" className="detailsRow">
 				<td className="element name">
-					<Link to={'/règle/' + encodeRuleName('réductions de cotisations')}>
+					<Link
+						to={
+							'/règle/' +
+							encodeRuleName('réductions de cotisations')
+						}
+					>
 						Réductions de cotisations
 					</Link>
 				</td>
