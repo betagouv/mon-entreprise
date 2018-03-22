@@ -6,7 +6,7 @@ body {
 	font-family: 'Open Sans';
 	margin: 0;
 	height: 100%;
-	font-size: calc(8px + 0.35vw);
+	font-size: calc(12px + 0.20vw);
 	background: white;
 }
 #js,

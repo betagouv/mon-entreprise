@@ -1,8 +1,6 @@
 .progressTip {
-	font-style: italic;
-	margin-bottom: -0.3em;
 	text-align: center;
 }
 .progressTip p {
-	margin: 0;
+		margin: .1em 0 2em
 }

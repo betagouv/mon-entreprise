@@ -14,7 +14,6 @@ import { Line } from 'rc-progress'
 export default class ProgressTip extends Component {
 	render() {
 		let {
-				done,
 				nextSteps,
 				foldedSteps,
 				colour,
