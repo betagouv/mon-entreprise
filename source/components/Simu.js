@@ -9,34 +9,17 @@ import Explanation from './Explanation'
 
 @withColours
 export default class extends Component {
-	state = {
-		conversationVisible: false,
-		selectingTargets: false
-	}
 	render() {
-		let { colours } = this.props,
-			{ selectingTargets, conversationVisible } = this.state
+		let { colours } = this.props
 
 		return (
 			<div>
 				<FoldedSteps />
 				<div id="focusZone">
 					<GoToAnswers />
-					<TargetSelection
-						colours={colours}
-						conversationVisible={this.state.conversationVisible}
-						showConversation={() =>
-							this.setState({ conversationVisible: true })
-						}
-						selectingTargets={selectingTargets}
-						setSelectingTargets={() =>
-							this.setState({ selectingTargets: true })
-						}
-					/>
-					<ProgressTip {...{ selectingTargets, conversationVisible }} />
-					{this.state.conversationVisible && (
-						<Conversation textColourOnWhite={colours.textColourOnWhite} />
-					)}
+					<TargetSelection colours={colours} />
+					<ProgressTip />
+					<Conversation textColourOnWhite={colours.textColourOnWhite} />
 					<Explanation />
 				</div>
 			</div>

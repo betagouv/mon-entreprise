@@ -180,7 +180,7 @@ export default initialRules =>
 			analysis: (state = null) => state,
 
 			targetNames: (state = popularTargetNames) => state,
-			conversationTargetNames: (state = []) => state,
+			conversationTargetNames: (state = null) => state,
 
 			situationGate: (state = name => null) => state,
 

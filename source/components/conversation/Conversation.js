@@ -23,7 +23,8 @@ import './conversation.css'
 		done: state.done,
 		nextSteps: state.nextSteps,
 		analysis: state.analysis,
-		parsedRules: state.parsedRules
+		parsedRules: state.parsedRules,
+		conversationTargetNames: state.conversationTargetNames
 	}),
 	dispatch => ({
 		reinitialise: () => {
@@ -41,8 +42,10 @@ export default class Conversation extends Component {
 			parsedRules,
 			targetNames,
 			reinitialise,
-			textColourOnWhite
+			textColourOnWhite,
+			conversationTargetNames
 		} = this.props
+		if ((conversationTargetNames || []).length === 0) return null
 		return (
 			<>
 				<div id="currentQuestion">

@@ -38,8 +38,8 @@ export default class TargetSelection extends Component {
 	}
 
 	render() {
-		this.firstEstimationComplete =
-			this.state.activeInput && this.props.targets.length > 0
+		let { targets, conversationTargetNames } = this.props
+		this.firstEstimationComplete = this.state.activeInput && targets.length > 0
 		return (
 			<div id="targetSelection">
 				{!this.firstEstimationComplete && <h1>Entrez un salaire mensuel</h1>}
@@ -55,8 +55,8 @@ export default class TargetSelection extends Component {
 
 				{this.firstEstimationComplete && (
 					<div id="action">
-						{this.props.selectingTargets ? (
-							!this.props.conversationVisible && (
+						{conversationTargetNames ? (
+							!conversationTargetNames.length && (
 								<p>Que voulez-vous affiner ?</p>
 							)
 						) : (
@@ -64,7 +64,7 @@ export default class TargetSelection extends Component {
 								<p>Estimation par défaut pour un CDI non cadre ... </p>
 								<BlueButton
 									onClick={() => {
-										this.props.setSelectingTargets()
+										this.props.setConversationTargets([])
 									}}
 								>
 									Personnaliser
@@ -86,7 +86,7 @@ export default class TargetSelection extends Component {
 			} = this.props,
 			optionIsChecked = s => (conversationTargetNames || []).includes(s.name),
 			visibleCheckbox = s =>
-				this.props.selectingTargets && s.dottedName !== this.state.activeInput,
+				conversationTargetNames && s.dottedName !== this.state.activeInput,
 			toggleTarget = target =>
 				ifElse(contains(target), without(target), append(target))
 
@@ -101,11 +101,10 @@ export default class TargetSelection extends Component {
 										id={s.name}
 										type="checkbox"
 										checked={optionIsChecked(s)}
-										onClick={() => this.props.showConversation()}
 										onChange={() =>
 											setConversationTargets(
 												toggleTarget(s.name)(
-													conversationTargetNames.filter(
+													(conversationTargetNames || []).filter(
 														t => !this.state.activeInput.includes(t)
 													)
 												)
