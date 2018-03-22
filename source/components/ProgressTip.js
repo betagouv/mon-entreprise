@@ -8,7 +8,8 @@ import { Line } from 'rc-progress'
 @connect(state => ({
 	foldedSteps: state.foldedSteps,
 	nextSteps: state.nextSteps,
-	colour: state.themeColours.colour
+	colour: state.themeColours.colour,
+	conversationTargetNames: state.conversationTargetNames
 }))
 export default class ProgressTip extends Component {
 	render() {
@@ -17,16 +18,15 @@ export default class ProgressTip extends Component {
 				nextSteps,
 				foldedSteps,
 				colour,
-				conversationVisible,
-				selectingTargets
+				conversationTargetNames
 			} = this.props,
 			nbQuestions = nextSteps.length
 
-		if (selectingTargets && !conversationVisible)
+		if (conversationTargetNames && conversationTargetNames.length === 0)
 			return nbQuestions ? (
 				<p>Vous aurez {nextSteps.length} questions !</p>
 			) : null
-		if (!conversationVisible) return null
+		if (!conversationTargetNames) return null
 		return (
 			nbQuestions != 0 && (
 				<div className="progressTip">
