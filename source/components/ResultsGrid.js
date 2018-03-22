@@ -73,6 +73,7 @@ export let byBranch = analysis => {
 @withRouter
 @connect(state => ({
 	analysis: state.analysis,
+	parsedRules: state.parsedRules,
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
 	flatRules: state.flatRules,
@@ -96,9 +97,13 @@ export default class ResultsGrid extends Component {
 			fromEval = name => find(propEq('dottedName', name), analysis.targets),
 			fromDict = name => analysis.cache[name],
 			get = name =>
-				extract(situationGate(name) || fromEval(name) || fromDict(name))
+				extract(situationGate(name) || fromEval(name) || fromDict(name)),
+			title = rule => rule.title || capitalise0(rule.name)
+
 		let results = byBranch(analysis),
 			brut = get('contrat salarié . salaire brut'),
+			base = get('contrat salarié . salaire de base'),
+			avan = get('contrat salarié . avantages salarié'),
 			net = get('contrat salarié . salaire net'),
 			total = get('contrat salarié . salaire total')
 		let inversion = path(['contrat salarié ', ' salaire brut'], inversions),
@@ -107,21 +112,72 @@ export default class ResultsGrid extends Component {
 					.concat(inversion ? [nameLeaf(inversion)] : [])
 					.concat(['salaire brut'])
 			)
+		let brutR = findRuleByDottedName(
+			parsedRules,
+			'contrat salarié . salaire brut'
+		)
+		let baseR = findRuleByDottedName(
+			parsedRules,
+			'contrat salarié . salaire de base'
+		)
+		let avanR = findRuleByDottedName(
+			parsedRules,
+			'contrat salarié . avantages salarié'
+		)
 
 		return (
 			<div className="somme resultsGrid">
 				<table>
 					<thead>
 						<tr>
-							<td className="element" />
+							<td className="element category">
+								<Link to={'/règle/' + encodeRuleName(baseR.dottedName)}>
+									<div className="rule-box">
+										<span className="rule-name">{title(baseR)}</span>
+									</div>
+								</Link>
+							</td>
 							<td
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
 								id="sommeBase">
+								{humanFigure(2)(base)}{' '}
+							</td>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<td className="element category">
+								<Link to={'/règle/' + encodeRuleName(avanR.dottedName)}>
+									<div className="rule-box">
+										<span className="rule-name">{title(avanR)}</span>
+									</div>
+								</Link>
+							</td>
+							<td
+								colSpan={(relevantSalaries.size - 1) * 2}
+								className="element value"
+								id="sommeBase">
+								+
+								{humanFigure(2)(avan)}{' '}
+							</td>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<td className="element category">
+								<Link to={'/règle/' + encodeRuleName(brutR.dottedName)}>
+									<div className="rule-box">
+										<span className="rule-name">{title(brutR)}</span>
+									</div>
+								</Link>
+							</td>
+							<td
+								colSpan={(relevantSalaries.size - 1) * 2}
+								className="element value"
+								id="sommeBase">
+								=
 								{humanFigure(2)(brut)}{' '}
-								<span className="annotation">
-									<Trans>Salaire brut</Trans>
-								</span>
 							</td>
 						</tr>
 					</thead>

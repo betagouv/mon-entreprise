@@ -713,6 +713,13 @@
   formule:
     somme:
       - salaire de base
+      - avantages salarié
+
+- espace: contrat salarié
+  nom: avantages salarié
+  format: euros
+  formule:
+    somme:
       - indemnités salarié
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
