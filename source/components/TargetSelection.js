@@ -12,6 +12,8 @@ import { buildValidationFunction } from './conversation/FormDecorator'
 export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
 
+import { humanFigure } from '../utils'
+
 @reduxForm({
 	form: 'conversation'
 })
@@ -23,7 +25,8 @@ export let popularTargetNames = [...salaries, 'aides employeur']
 		conversationTargetNames: state.conversationTargetNames
 	}),
 	dispatch => ({
-		clearFormValue: field => dispatch(change('conversation', field, '')),
+		setFormValue: (field, name) =>
+			dispatch(change('conversation', field, name)),
 		setConversationTargets: (targetNames, fromScratch = false) =>
 			dispatch({ type: 'SET_CONVERSATION_TARGETS', targetNames, fromScratch })
 	})
@@ -149,7 +152,7 @@ export default class TargetSelection extends Component {
 										activeInput: this.state.activeInput,
 										setActiveInput: name =>
 											this.setState({ activeInput: name }),
-										clearFormValue: this.props.clearFormValue
+										setFormValue: this.props.setFormValue
 									}}
 								/>
 							</div>
@@ -185,26 +188,43 @@ let TargetInputOrValue = ({
 				validate={validate}
 			/>
 		) : (
-			<>
-				<span
-					className={classNames({
-						editable: s.question,
-						attractClick: s.question && targets.length === 0
-					})}
-					onClick={() => {
-						if (!s.question) return
-						activeInput && clearFormValue(activeInput)
-						setActiveInput(s.dottedName)
-					}}
-				>
-					{do {
-						let rule = targets.find(propEq('dottedName', s.dottedName)),
-							value = rule && rule.nodeValue
-						;<RuleValue value={value} />
-					}}
-				</span>
-			</>
+			<TargetValue {...{ targets, s, activeInput, setActiveInput }} />
 		)}
 		{(firstEstimationComplete || s.question) && <span className="unit">€</span>}
 	</span>
 )
+
+@connect(
+	() => ({}),
+	dispatch => ({
+		setFormValue: (field, name) => dispatch(change('conversation', field, name))
+	})
+)
+class TargetValue extends Component {
+	render() {
+		let { targets, s, setFormValue, activeInput, setActiveInput } = this.props,
+			rule = targets.find(propEq('dottedName', s.dottedName)),
+			value = rule && rule.nodeValue,
+			humanValue = value != null && value.toFixed(0)
+
+		return (
+			<span
+				className={classNames({
+					editable: s.question,
+					attractClick: s.question && targets.length === 0
+				})}
+				onClick={() => {
+					if (!s.question) return
+					if (value != null) {
+						setFormValue(s.dottedName, humanValue + '')
+						setFormValue(activeInput, '')
+					}
+
+					setActiveInput(s.dottedName)
+				}}
+			>
+				<RuleValue value={value} />
+			</span>
+		)
+	}
+}
