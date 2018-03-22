@@ -15,8 +15,3 @@
 	transition: 0.8s opacity;
 }
 
-#home > #content {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}

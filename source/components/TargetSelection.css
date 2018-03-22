@@ -19,42 +19,46 @@
 	text-align: center;
 }
 #targetSelection #targets {
-	margin: .3em auto;
+	margin: .4em auto;
 	/* For the checkbox that will appear */
 	padding: 0;
 }
-#targetSelection #targets > div {
+#targetSelection #targets  li {
 	margin-bottom: .4em;
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.25);
 
-    padding: .6em 1em;
+		display: flex;
+		align-items: center;
+    padding: .4em 1em;
     border-radius: .3em;
 }
 
-#targetSelection #targets > div p {
-	margin: 0;
-	opacity: .75
+#targetSelection #targets > li p {
+	margin: .2em 0 0;
+	opacity: .8;
+	line-height: 1.2em;
 	}
 
-#targetSelection .main {
-	display: flex;
-	justify-content: space-between;
-	align-items: middle;
-}
 #targetSelection label {
-	display: block;
+		width: 10%;
+	display: inline-block;
 	cursor: pointer;
 }
 #targetSelection label i {
-	font-size: 170%;
+	font-size: 200%;
 	font-width: 600;
-	color: #4b4b66;
-	margin-left: -2em;
+}
+
+#targetSelection .texts {
+		margin: 0 1.5em 0 .6em;
+		width: 55%;
+		display: inline-block;
+		font-size: 110%;
+
 }
 
 #targetSelection .optionTitle {
 	font-size: 130%;
-	margin-left: 1em;
 	font-weight: 600;
 }
 
@@ -80,7 +84,8 @@
 
 #targetSelection .targetInputOrValue
 {
-	font-size: 120%;
+		width: 40%;
+	font-size: 140%;
 	text-align: right;
 }
 
@@ -91,7 +96,7 @@ border-bottom: 1px dashed #ffffff91}
 #targetSelection input[type='number'] {
 	width: 5em !important;
 	display: inline-block;
-	height: 1.5em;
+	height: 1.6em;
 	text-align: right;
 	font-weight: 600;
 	padding: 0;
