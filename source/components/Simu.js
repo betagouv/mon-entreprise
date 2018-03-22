@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './Simu.css'
+import './Simu.css'
 import TargetSelection from './TargetSelection'
 import withColours from './withColours'
 import Conversation from './conversation/Conversation'
@@ -13,7 +13,7 @@ export default class extends Component {
 		let { colours } = this.props
 
 		return (
-			<div>
+			<>
 				<FoldedSteps />
 				<div id="focusZone">
 					<GoToAnswers />
@@ -22,7 +22,7 @@ export default class extends Component {
 					<Conversation textColourOnWhite={colours.textColourOnWhite} />
 					<Explanation />
 				</div>
-			</div>
+			</>
 		)
 	}
 }

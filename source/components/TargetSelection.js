@@ -92,74 +92,54 @@ export default class TargetSelection extends Component {
 
 		return (
 			<div>
-				<div id="targets">
+				<ul id="targets">
 					{popularTargets.map(s => (
-						<div key={s.name}>
-							<div className="main">
-								{visibleCheckbox(s) && (
-									<input
-										id={s.name}
-										type="checkbox"
-										checked={optionIsChecked(s)}
-										onChange={() =>
-											setConversationTargets(
-												toggleTarget(s.name)(
-													(conversationTargetNames || []).filter(
-														t => !this.state.activeInput.includes(t)
-													)
+						<li key={s.name}>
+							{visibleCheckbox(s) && (
+								<input
+									id={s.name}
+									type="checkbox"
+									checked={optionIsChecked(s)}
+									onChange={() =>
+										setConversationTargets(
+											toggleTarget(s.name)(
+												(conversationTargetNames || []).filter(
+													t => !this.state.activeInput.includes(t)
 												)
 											)
-										}
-									/>
-								)}
-								<label
-									htmlFor={s.name}
-									key={s.name}
-									style={
-										optionIsChecked(s)
-											? {
-													color: textColourOnWhite
-											  }
-											: {}
+										)
 									}
-								>
-									{
-										<span
-											style={{
-												visibility: visibleCheckbox(s) ? 'visible' : 'hidden'
-											}}
-										>
-											{optionIsChecked(s) ? (
-												<i
-													className="fa fa-check-square-o fa-2x"
-													style={{ color: textColourOnWhite }}
-												/>
-											) : (
-												<i
-													className="fa fa-square-o fa-2x"
-													style={{ color: '#4b4b66' }}
-												/>
-											)}
-										</span>
-									}
-									<span className="optionTitle">{s.title || s.name}</span>
-								</label>
-								<TargetInputOrValue
-									{...{
-										s,
-										targets: this.props.targets,
-										firstEstimationComplete: this.firstEstimationComplete,
-										activeInput: this.state.activeInput,
-										setActiveInput: name =>
-											this.setState({ activeInput: name }),
-										setFormValue: this.props.setFormValue
-									}}
 								/>
-							</div>
-							<p>{s['résumé']}</p>
-						</div>
+							)}
+							{conversationTargetNames && (
+								<label htmlFor={s.name} key={s.name}>
+									<i
+										style={{
+											visibility: visibleCheckbox(s) ? 'visible' : 'hidden'
+										}}
+										className={`fa fa${
+											optionIsChecked(s) ? '-check' : ''
+										}-square-o fa-2x`}
+									/>
+								</label>
+							)}
+							<span className="texts">
+								<span className="optionTitle">{s.title || s.name}</span>
+								<p>{s['résumé']}</p>
+							</span>
+							<TargetInputOrValue
+								{...{
+									s,
+									targets: this.props.targets,
+									firstEstimationComplete: this.firstEstimationComplete,
+									activeInput: this.state.activeInput,
+									setActiveInput: name => this.setState({ activeInput: name }),
+									setFormValue: this.props.setFormValue
+								}}
+							/>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
 		)
 	}

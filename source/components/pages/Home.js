@@ -31,9 +31,7 @@ export default class Home extends Component {
 						</Trans>
 					</p>
 				</div>
-				<div id="content">
-					<Simu />
-				</div>
+				<Simu />
 			</div>
 		)
 	}
