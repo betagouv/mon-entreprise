@@ -1,6 +1,11 @@
+.scrollIndication.up {
+    margin: 1em;
+	text-align: center
+}
+
 #foldedSteps {
 	padding: 1em;
-	margin-bottom: 6em;
+	margin-bottom: 1em;
 }
 
 #foldedSteps .header button {

@@ -9,27 +9,26 @@
 	align-items: center;
 }
 #header h1 {
-	font-size: calc(1vw + 130%);
+	font-size: calc(.8vw + 125%);
 	font-weight: 600;
 	display: inline-block;
 	margin-left: 0em;
 	color: #3c4963;
-	width: 10em;
 	line-height: 1em;
 	margin-bottom: 0.6em;
 }
 
 #header #logo {
-	width: calc(2vw + 5em);
+	width: calc(1vw + 5em);
 }
 #menuButton {
-	font-size: 350%;
+	font-size: 300%;
 	color: #3c4963;
 	margin: 0 0.4em;
 	display: inline-block;
 }
 nav {
-	font-size: 150%;
+	font-size: 110%;
 	margin-bottom: 1em;
 	display: inline-block;
 }
