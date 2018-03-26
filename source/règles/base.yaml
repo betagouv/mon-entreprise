@@ -659,8 +659,9 @@
 
 - espace: contrat salarié
   nom: assiette cotisations sociales
+  titre: Assiette des cotisations sociales
   description: |
-    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule: salaire brut
 
@@ -671,11 +672,8 @@
   type: salaire
   question: Quel est le salaire brut mensuel ?
   description: |
-    C'est le salaire de négociation du contrat de travail en France.
+    C'est le salaire de négociation du contrat de travail en France. 
 
-    Il peut être vu comme :
-    - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
-    - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
   format: euros
   suggestions:
     salaire médian: 2300
@@ -798,7 +796,7 @@
   nom: coût du travail
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
-    des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
+    des aides et subventions qui lui sont reversées: c'est donc le coût social total réel du travail pour l'employeur.
   formule: salaire total - aides employeur différées
 
 - espace: contrat salarié
