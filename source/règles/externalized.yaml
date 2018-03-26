@@ -232,41 +232,33 @@ contrat salarié . CDD . congés non pris:
     la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés
     légaux pour un contrat de douze mois.
 contrat salarié . CDD . contrat jeune vacances:
-  titre.en: ~~Young holiday contract
+  titre.en: Young holiday contract
   titre.fr: Contrat jeune vacances
-  question.en: ~~Is it a young holiday contract?
+  question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
   description.en: >-
-    ~~Also called CDD grape harvest. Contract concluded with a young person
+    Also called "harvest contract". Contract concluded with a young person
     during his school or university holidays.
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
 contrat salarié . CDD . cotisations employeur CDD:
-  description.en: ~~Employer contributions specific to the fixed-term contract
+  description.en: Employer contributions specific to the fixed-term contract
   description.fr: Cotisations employeur spécifiques au CDD
-  titre.en: ~~employer contributions CDD
+  titre.en: fixed-term contract employer contributions
   titre.fr: cotisations employeur CDD
 contrat salarié . CDD . indemnités salarié CDD:
-  description.en: ~~Employer contributions specific to the fixed-term contract
+  description.en: Employer contributions specific to the fixed-term contract
   description.fr: Cotisations employeur spécifiques au CDD
-  titre.en: ~~employee compensation CDD
+  titre.en: fixed-term contrat employee compensations
   titre.fr: indemnités salarié CDD
 contrat salarié . CDD . surcoût:
-  titre.en: ~~Of which additional cost CDD
+  titre.en: Of which additional cost CDD
   titre.fr: Dont surcoût CDD
   description.en: >-
-    ~~The fixed-term contract requires the employer to pay certain compensation
-    to the employee or to the social organizations
+    The fixed-term contract (CDD) requires the employer to pay some additional employee and social contributions in return for the flexibility provided by this contract.
 
-    in return for the flexibility provided by this contract; they are 4 in
-    number.
-
-
-    Some are paid in
-
-    end of contract, others with each monthly salary; they are here reduced to
-    their monthly cost.
+    Some are paid at the end of the contract, others with each monthly salary; Here, all of them are reduced to their monthly cost.
   description.fr: >
     Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
     organismes sociaux, certaines compensations
@@ -280,10 +272,13 @@ contrat salarié . CDD . surcoût:
     fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici
     ramenées à leur coût mensuel.
 contrat salarié . CDD . surcoût CDD:
-  titre.en: ~~additional cost CDD
+  titre.en: additional fixed-term contract cost
   titre.fr: surcoût CDD
 contrat salarié:
-  description.en: "~~The contract that binds a company (via its establishment) to an individual, who is then his employee.\n\nThe contract is actually not necessary in French law, it is possible to employ someone without a contract for example in these cases:\n\_\_- Individual employers: more than 8 hours per week or more than 4 consecutive weeks in the year.\n\_\_- cdi: The signing of a contract of employment is not mandatory in some cases. This is the case of the Undetermined Employment Contract, considered as the normal and general form of the employment relationship between an employee and an employer (Article L1221-2 of the Labor Code)."
+  description.en: > 
+    The contract that binds a company (via its establishment) to an individual, who is then his employee. 
+  
+    The contract is actually not necessary in French law. The CDI, permanent contract, is considered the default form of the employment relationship between an employee and an employer (Article L1221-2 of the Labor Code)."
   description.fr: >
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui
     est alors son salarié.
@@ -293,7 +288,7 @@ contrat salarié:
     possible d'employer quelqu'un sans contrat par exemple dans ces cas:
       - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
       - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
-  titre.en: ~~salaried contract
+  titre.en: employment contract
   titre.fr: contrat salarié
 contrat salarié . type de contrat:
   titre.en: Type of contract
@@ -315,16 +310,13 @@ contrat salarié . type de contrat . CDI:
   titre.fr: CDI
 contrat salarié . assiette cotisations sociales:
   description.en: >-
-    ~~The basis of social contributions is the basis for calculating a large
-    number of contributions to paid work. It includes cash compensation (basic
-    salary, compensation, bonuses ...) and benefits in kind (housing, vehicle
-    ...).
+    This is the basis for computing a large number of contributions on salaries. It includes cash compensation (base salary, compensations, bonuses ...) and benefits in kind (housing, vehicle, ...).
   description.fr: >
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre
-    de cotisations sur le travail salarié. Elle comprend les rémunérations en
+    de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en
     espèces (salaire de base, indemnité, primes...) et les avantages en nature
     (logement, véhicule...).
-  titre.en: ~~social contribution base
+  titre.en: base for the social contributions 
   titre.fr: assiette cotisations sociales
 contrat salarié . salaire de base:
   titre.en: Gross salary
@@ -334,16 +326,9 @@ contrat salarié . salaire de base:
   question.en: What is the monthly gross salary?
   question.fr: Quel est le salaire brut mensuel ?
   description.en: >-
-    ~~This is the negotiating salary of the employment contract in France.
+    This is the negociated salary written on the employment contract in France.
 
 
-    It can be seen as:
-
-    - the sum of the net salary and social security contributions deducted from
-    an employee's payslip
-
-    - or as sums received by the employee under his employment contract, before
-    social and tax deductions.
   description.fr: >
     C'est le salaire de négociation du contrat de travail en France.
 
@@ -359,7 +344,7 @@ contrat salarié . salaire brut:
   titre.en: gross salary
   titre.fr: salaire brut
 contrat salarié . indemnités salarié:
-  titre.en: ~~employee benefits
+  titre.en: employee benefits
   titre.fr: indemnités salarié
 contrat salarié . statut cadre:
   titre.en: cadre status
@@ -373,22 +358,22 @@ contrat salarié . statut cadre:
     Notion mal définie mais reconnue par les conventions collectives et
     déterminant l'appartenance à une caise de retraite de base spécifique
 contrat salarié . plafond sécurité sociale temps plein:
-  titre.en: ~~ceiling social security full time
+  titre.en: Full-time social security ceiling
   titre.fr: plafond sécurité sociale temps plein
 contrat salarié . plafond sécurité sociale:
-  titre.en: ~~social security ceiling
+  titre.en: social security ceiling
   titre.fr: plafond sécurité sociale
 contrat salarié . smic mensuel temps plein:
-  titre.en: ~~monthly full time smic
+  titre.en: monthly full time minimal salary
   titre.fr: smic mensuel temps plein
 contrat salarié . smic mensuel:
-  titre.en: ~~monthly smic
+  titre.en: monthly minimal salary
   titre.fr: smic mensuel
 contrat salarié . cotisations salariales:
-  titre.en: ~~Employee contributions
+  titre.en: Employee contributions
   titre.fr: cotisations salariales
 contrat salarié . cotisations patronales:
-  titre.en: ~~employer contributions
+  titre.en: employer contributions
   titre.fr: cotisations patronales
 contrat salarié . salaire net:
   titre.en: Net salary
@@ -412,18 +397,14 @@ contrat salarié . salaire net:
     le changer, il faut signer un avenant au contrat.
 contrat salarié . coût du travail:
   description.en: >-
-    ~~This is what the employer will actually have to pay to the employee and
-    the collection agencies in total, taking into account
-
-    grants and subsidies that are paid back to him: this is the actual total
-    cost of the work for the employer.
+    This is what the employer will actually have to pay to the employee and the collection agencies in total, taking into account grants and subsidies that are paid back to him: this is the actual total social cost of the employee for the employer.
   description.fr: >
     C'est ce que l'employeur devra réellement payer au total au salarié et aux
     organismes de collecte, en tenant compte
 
     des aides et subventions qui lui sont reversées: c'est donc le coût total
     réel du travail pour l'employeur.
-  titre.en: ~~labor cost
+  titre.en: labor cost
   titre.fr: coût du travail
 contrat salarié . salaire total:
   titre.en: Total salary
@@ -441,10 +422,10 @@ contrat salarié . salaire total:
     mais en pratique certaines réductions de cotisation et aides peuvent
     diminuer cette somme.
 contrat salarié . réductions de cotisations:
-  titre.en: ~~contribution reductions
+  titre.en: contribution reductions
   titre.fr: réductions de cotisations
 contrat salarié . salaire total sans réduction:
-  titre.en: ~~total salary without reduction
+  titre.en: total salary without reduction
   titre.fr: salaire total sans réduction
 contrat salarié . aides employeur différées:
   résumé.en: The deferred aids available to the employer.
@@ -452,67 +433,67 @@ contrat salarié . aides employeur différées:
   titre.en: deferred employer aids
   titre.fr: aides employeur différées
 contrat salarié . salaire:
-  titre.en: ~~salary
+  titre.en: salary
   titre.fr: salaire
 contrat salarié . jours de congés légaux:
   description.en: >-
-    ~~Working days of leave legally acquired by any employee for the year or the
+    Working days of paid leave legally acquired by any employee for the year or the
     contract in the case of a fixed-term contract.
   description.fr: >-
     Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le
     contrat dans le cas d'un CDD.
-  titre.en: ~~days of legal leave
+  titre.en: days of legal paid leave
   titre.fr: jours de congés légaux
 contrat salarié . régime alsace moselle:
-  titre.en: ~~moselle alsace diet
+  titre.en: Alsace-Moselle scheme
   titre.fr: régime alsace moselle
 entreprise:
-  description.en: ~~The contract binds a company and an employee
+  description.en: The contract binds a company and an employee
   description.fr: |
     Le contrat lie une entreprise et un employé
-  titre.en: ~~business
+  titre.en: company
   titre.fr: entreprise
 entreprise . effectif:
-  question.en: ~~What is the workforce of the company?
+  question.en: What is the workforce of the company?
   question.fr: Quel est l'effectif de l'entreprise ?
-  description.en: ~~Many employer contributions vary according to the size of the company.
+  description.en: Many employer contributions vary according to the size of the company.
   description.fr: >
     De nombreuses cotisations patronales varient selon l'effectif de
     l'entreprise.
-  titre.en: ~~effective
+  titre.en: workforce
   titre.fr: effectif
 entreprise . ratio alternants:
-  titre.en: ~~alternating ratio
+  titre.en: work-study employees ratio
   titre.fr: ratio alternants
 entreprise . ratio alternants saisi:
   question.en: >-
-    ~~What is the fraction of work-study contracts in the average workforce of
+    What is the fraction of work-study contracts in the average workforce of
     the company?
   question.fr: >-
     Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
     l'entreprise ?
-  titre.en: ~~Fraction of alternates
+  titre.en: Fraction of alternants
   titre.fr: Fraction d'alternants
   description.en: >-
-    ~~This fraction determines the additional contribution for learning for the
-    companies involved.
+    This fraction determines the additional contribution for apprenticeship for the
+    companies concerned.
   description.fr: >
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage
     pour les entreprises concernées.
 entreprise . association non lucrative:
-  description.en: ~~The company is a non-profit organization
+  description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
-  question.en: ~~Is this a non-profit organization?
+  question.en: Is this a non-profit organisation ?
   question.fr: S'agit-il d'une association à but non lucratif ?
-  titre.en: ~~non-profit association
+  titre.en: non-profit organisation
   titre.fr: association non lucrative
 établissement . code postal:
-  titre.en: ~~Postal code of the establishment
+  titre.en: Postal code of the establishment
   titre.fr: Code postal de l'établissement
-  question.en: ~~What is the postal code of the municipality of the establishment?
+  question.en: What is the postal code of the establishment?
   question.fr: Quel est le code postal de la commune de l'établissement ?
   description.en: |-
-    ~~When a company has more than one establishment, certain contributions are
+    When a company has more than one establishment, certain contributions are
     calculated at the establishment level and are based on local regulations.
   description.fr: >
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines
@@ -521,12 +502,12 @@ entreprise . association non lucrative:
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
 établissement . code commune:
-  titre.en: ~~Common code of the establishment
+  titre.en: "Commune" code of the establishment
   titre.fr: Code commune de l'établissement
-  question.en: ~~In which commune is the establishment located?
+  question.en: In which city is the establishment located?
   question.fr: Dans quelle commune l'établissement est-il implanté ?
   description.en: |-
-    ~~When a company has more than one establishment, certain contributions are
+    When a company has more than one establishment, certain contributions are
     calculated at the establishment level and are based on local regulations.
   description.fr: >
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines
@@ -535,12 +516,12 @@ entreprise . association non lucrative:
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
 établissement . commune:
-  titre.en: ~~Municipality of the establishment
+  titre.en: City of the establishment
   titre.fr: Commune de l'établissement
-  question.en: ~~In which commune is the establishment located?
+  question.en: In which city is the establishment located?
   question.fr: Dans quelle commune l'établissement est-il implanté ?
   description.en: |-
-    ~~When a company has more than one establishment, certain contributions are
+    When a company has more than one establishment, certain contributions are
     calculated at the establishment level and are based on local regulations.
   description.fr: >
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines
