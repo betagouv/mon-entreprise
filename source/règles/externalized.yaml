@@ -181,50 +181,50 @@ contrat salarié . CDD . motif . classique . usage:
     raison de la nature de l'activité exercée et du caractère par nature
     temporaire de ces emplois ;
 contrat salarié . CDD . motif . complément formation:
-  titre.en: ~~Complementary professional training provided by the employer
+  titre.en: Complementary professional training provided by the employer
   titre.fr: Complément de formation professionnelle assuré par l'employeur
   description.en: >-
-    ~~The employer undertakes, for a period and under conditions determined by
+    The employer undertakes, for a period and under conditions determined by
     decree, to provide additional professional training to the employee.
   description.fr: >-
     L'employeur s'engage, pour une durée et dans des conditions déterminées par
     décret, à assurer un complément de formation professionnelle au salarié.
 contrat salarié . CDD . motif . issue d'apprentissage:
-  titre.en: ~~At the end of an apprenticeship contract
+  titre.en: End of an apprenticeship contract
   titre.fr: À l'issue d'un contrat d'apprentissage
   description.en: >-
-    ~~At the end of an apprenticeship contract, a fixed-term employment contract
+    At the end of an apprenticeship contract, a fixed-term employment contract
     may be concluded when the apprentice has to fulfill the obligations of the
     national service within a period of less than one year after the expiry of
-    the contract of employment. learning.
+    the contract.
   description.fr: >
     A l'issue d'un contrat d'apprentissage, un contrat de travail à durée
     déterminée peut être conclu lorsque l'apprenti doit satisfaire aux
     obligations du service national dans un délai de moins d'un an après
     l'expiration du contrat d'apprentissage.
 contrat salarié . CDD . motif . contrat aidé:
-  titre.en: '~~Contract helped (CUI, alternation, ...)'
+  titre.en: Aided contract (CUI, work-study , ...)
   titre.fr: 'Contrat aidé (CUI, alternance, ...)'
 contrat salarié . CDD . durée contrat:
-  titre.en: ~~contract length
+  titre.en: contract duration
   titre.fr: durée du contrat
-  question.en: ~~What is the duration of the contract ?
+  question.en: What is the duration of the contract ?
   question.fr: Quelle est la durée du contrat ?
   sous-question.en: >-
-    ~~[Click here]
+    [Click here]
     (https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
-    to know the maximum duration of a CDD.
+    to know the maximum duration of a fixed-term contract.
   sous-question.fr: >
     [Cliquez
     ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     pour connaître la durée maximale d'un CDD.
 contrat salarié . CDD . congés non pris:
-  titre.en: ~~Leave not taken
+  titre.en: Untaken paid leave
   titre.fr: Congés non pris
-  question.en: ~~How many days off will not be taken?
+  question.en: How many working days of paid leave will not be taken?
   question.fr: Combien de jours ouvrés de congés ne seront pas pris ?
   description.en: >-
-    ~~How many days of leave can the employee take, given the length of his /
+    How many days of paid leave the employee will not be able to take, given the length of his /
     her fixed term contract. In working days, compared to 25 days of legal leave
     for a twelve-month contract.
   description.fr: >-
