@@ -15,7 +15,7 @@ contrat salarié . CDD . compensation pour congés non pris:
 
 
     It is however common that the employee can not take all his leave before the
-    end of his contract. In that case, he receives a compensatory indemnity paid by the employer. 
+    end of his contract. In that case, he receives a compensatory alowance paid by the employer. 
   description.fr: >
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
@@ -79,7 +79,7 @@ contrat salarié . CDD . événement:
   question.en: Are you expecting any of these events to happen during the contract?
   question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
   description.en: >-
-    Some events have a strong impact on the financial obligations of the fixed-term contrat.
+    Some events have a strong impact on the financial obligations of the fixed-term contract.
 
 
     > For example, in the event of a continuation of the fixed-term contract as a permanent contrat, no increase or compensation on the fixed-term contract will be required.
@@ -167,13 +167,13 @@ contrat salarié . CDD . motif . classique . mission:
     Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de droit conventionnel le prévoit. 
 
 contrat salarié . CDD . motif . classique . usage:
-  titre.en: ~~Usage contract
+  titre.en: Customary contract
   titre.fr: Contrat d'usage
   description.en: >-
-    ~~Jobs for which, in certain sectors of activity defined by decree or by
-    agreement or collective labor agreement extended, it is customary not to
-    resort to the employment contract of indefinite duration because of the
-    nature of the activity carried out and the temporary nature of these jobs;
+    Jobs for which, in certain sectors of activity defined by decree or by
+    collective agreement, a permanent contract is generally not used because
+   of the nature of the activity carried out and the temporary nature of these jobs.
+
   description.fr: >-
     Emplois pour lesquels, dans certains secteurs d'activité définis par décret
     ou par convention ou accord collectif de travail étendu, il est d'usage
