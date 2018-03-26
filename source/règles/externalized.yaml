@@ -569,54 +569,52 @@ contrat salarié . heures par semaine:
   titre.en: hours per week
   titre.fr: heures par semaine
 contrat salarié . quotité de travail:
-  titre.en: ~~work quota
+  titre.en: work rate
+  description.en: Time worked in proportion of the legal full-time quantity.
   titre.fr: quotité de travail
 contrat salarié . CICE:
-  description.en: ~~Competitiveness and Employment Tax Credit
+  description.en: Competitiveness and Employment Tax Credit (CICE).
   description.fr: |
     Crédit d'impôt pour la compétitivité et l'emploi
-  titre.en: ~~CICE
+  titre.en: CICE
   titre.fr: CICE
 contrat salarié . plafond cice:
-  titre.en: ~~cice ceiling
+  titre.en: CICE ceiling
   titre.fr: plafond cice
 contrat salarié . multiplicateur cice:
-  titre.en: ~~cice multiplier
+  titre.en: CICE multiplier
   titre.fr: multiplicateur cice
 contrat salarié . CITS . non abattu:
-  titre.en: ~~not slaughtered
+  titre.en: not abated
   titre.fr: non abattu
 contrat salarié . CITS . abattement mensuel par salarié:
-  titre.en: ~~monthly deduction per employee
+  titre.en: monthly deduction per employee
   titre.fr: abattement mensuel par salarié
 contrat salarié . CITS:
-  titre.en: ~~Salary tax credit
+  titre.en: Tax on salaries credit
   titre.fr: Crédit d'impôt de taxe sur les salaire
   description.en: >-
-    ~~The Finance Act for 2017 establishes, for the benefit of associations and
-    non-profit organizations (NPOs),
-
-    a wage tax credit scheme (CITS).
+    The Finance Act for 2017 establishes, for the benefit of associations and
+    non-profit organizations (NPOs), a wage tax credit scheme named CITS.
   description.fr: >
     La loi de finances pour 2017 instaure, au bénéfice des associations et
     organismes sans but lucratif (OSBL),
 
     un dispositif de crédit d'impôt de taxe sur les salaires (CITS).
 contrat salarié . CITS . plafond:
-  titre.en: ~~ceiling
+  titre.en: ceiling
   titre.fr: plafond
 contrat salarié . CITS . multiplicateur:
-  titre.en: ~~multiplier
+  titre.en: multiplier
   titre.fr: multiplicateur
 contrat salarié . statut JEI:
-  titre.en: ~~JEI status
+  titre.en: JEI status
   titre.fr: Statut JEI
-  question.en: ~~Do you enjoy the Young Innovative Company status for this job?
+  question.en: Do you benefit from the young innovative company status (JEI) for this job?
   question.fr: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
   description.en: >-
-    ~~The status of young innovative company (JEI) was created by the Finance
-    Act for 2004 and allows SMEs under 8 years of age, which devote at least 15%
-    of their expenses to Research and Development to benefit from certain
+    The status of young innovative company (JEI) was created by the Finance
+    Act for 2004 and allows small companies (PME) under 8 years of age, which devote at least 15% of their expenses to Research and Development to benefit from certain
     exemptions.
   description.fr: >
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
@@ -625,48 +623,42 @@ contrat salarié . statut JEI:
     certaines exonérations.
 contrat salarié . exonération JEI:
   description.en: >-
-    ~~The status of young innovative company (JEI) was created by the Finance
-    Act for 2004 and allows SMEs under 8 years of age, which devote at least 15%
-    of their expenses to Research and Development to benefit from certain
-    exemptions.
+    Exemption for the companies that obtained the JEI (young innovative company) status.
   description.fr: >
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
     moins de leurs charges à de la Recherche et Développement de bénéficier de
     certaines exonérations.
-  titre.en: ~~JEI exemption
+  titre.en: JEI exemption
   titre.fr: exonération JEI
 contrat salarié . réduction générale:
   description.en: >-
-    ~~As part of the liability and solidarity pact, the zero-contribution scheme
-    Urssaf allows the employer of a Smic employee to no longer pay any
-    contributions, except for unemployment insurance. The amount of the relief
-    is equal to the product of the gross annual remuneration by a coefficient.
-    There is no particular formality to perform.
+    As part of the "liability and solidarity pact", the zero-contribution URSSAF scheme
+    allows the employer of an employee with the minimul legal salary (SMIC) to no longer pay any contributions, except for unemployment insurance. The amount of the reduction is equal to the product of the gross annual remuneration by a coefficient. No particular formality is required to obtain apply it.
   description.fr: >
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
     zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
     payer aucune cotisation, hormis l'assurance chômage. Le montant de
     l'allègement est égal au produit de la rémunération annuelle brute par un
     coefficient. Il n'y a pas de formalité particulière à effectuer.
-  titre.en: ~~general reduction
+  titre.en: general reduction
   titre.fr: réduction générale
 contrat salarié . réduction générale constante:
-  titre.en: ~~constant general reduction
+  titre.en: constant general reduction
   titre.fr: réduction générale constante
 contrat salarié . réduction générale variable:
-  titre.en: ~~variable general reduction
+  titre.en: variable general reduction
   titre.fr: réduction générale variable
 contrat salarié . coefficient réduction générale:
-  titre.en: ~~coefficient overall reduction
+  titre.en: general reduction coefficient
   titre.fr: coefficient réduction générale
 contrat salarié . assiette réduction générale:
-  titre.en: ~~general reduction
+  titre.en: general reduction base
   titre.fr: assiette réduction générale
 contrat salarié . assiette ATMP réduction générale:
   description.en: >-
-    ~~When the amount of the general reduction is greater than the amount of
-    these contributions and contributions, the reduction is also deducted from
+    When the amount of the general reduction is greater than the amount of
+    these contributions, the reduction is also deducted from
     the contributions for industrial accidents and occupational diseases up to
     the limit of 0.90% of the remuneration.
   description.fr: >-
@@ -674,32 +666,29 @@ contrat salarié . assiette ATMP réduction générale:
     cotisations et contributions, la réduction est également imputée sur les
     cotisations accidents du travail et maladies professionnelles dans la limite
     de 0,90 % de la rémunération.
-  titre.en: ~~ATMP trim plate
+  titre.en: general reduction ATMP base
   titre.fr: assiette ATMP réduction générale
 contrat salarié . plafond réduction générale:
-  titre.en: ~~ceiling general reduction
+  titre.en: general reduction ceiling
   titre.fr: plafond réduction générale
 contrat salarié . multiplicateur réduction générale:
-  titre.en: ~~general reduction multiplier
+  titre.en: general reduction multiplier
   titre.fr: multiplicateur réduction générale
 contrat salarié . AGFF:
   description.en: >-
-    ~~Supplementary pension contribution
-
-    (Contribution for the Association for the Management of the Financing Fund
-    of AGIRC and ARRCO)
+    Complementary pension contribution (Association for the Management of the Financing Fund of AGIRC and ARRCO).
   description.fr: >
     Cotisation de retraite complémentaire
 
     (Cotisation pour l'Association pour la Gestion du Fonds de Financement de
     l’AGIRC et de l’ARRCO)
-  titre.en: ~~AGFF
+  titre.en: AGFF
   titre.fr: AGFF
 contrat salarié . GMP:
   description.en: |-
-    ~~Employees under the Agirc scheme who do not have a salary sufficient to
+    Employees under the Agirc scheme who do not have a salary sufficient to
     reach the minimum number of 120 Agirc points,
-    are guaranteed to obtain them in return for a lump sum contribution.
+    are guaranteed to obtain them in exchange for a lump sum contribution.
   description.fr: >
     Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant
     pour
@@ -707,63 +696,60 @@ contrat salarié . GMP:
     atteindre le nombre minimum de 120 points Agirc,
 
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
-  titre.en: ~~GMP
+  titre.en: GMP
   titre.fr: GMP
 contrat salarié . AGIRC:
   description.en: >-
-    ~~Supplementary pension contribution framework. Completes the ARRCO regime,
-    managed by the AGIRC (General Association of Retirement Pensions)
+    Complementary pension contribution for the "cadres". Completes the ARRCO regime,
+    managed by the AGIRC (General Association of Retirement Pensions).
   description.fr: >
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée
     par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
-  titre.en: ~~AGIRC
+  titre.en: AGIRC
   titre.fr: AGIRC
 contrat salarié . AGS:
-  description.en: ~~Contribution to the wage guarantee scheme
+  description.en: Contribution to the wage guarantee scheme
   description.fr: Cotisation au Régime de Garantie des Salaires
-  titre.en: ~~AGS
+  titre.en: AGS
   titre.fr: AGS
 contrat salarié . allocations familiales:
-  titre.en: ~~Family allowances
+  titre.en: Family allowances
   titre.fr: allocations familiales
 contrat salarié . cotisation allocations familiales:
-  titre.en: ~~family allowance contribution
+  titre.en: contribution to the family allowances
   titre.fr: cotisation allocations familiales
 contrat salarié . réduction allocations familiales:
-  titre.en: ~~reduction of family allowances
+  titre.en: reduction of family allowances
   titre.fr: réduction allocations familiales
 contrat salarié . plafond réduction allocations familiales:
-  titre.en: ~~ceiling reduction family allowances
+  titre.en: family allowances reduction ceiling
   titre.fr: plafond réduction allocations familiales
 contrat salarié . APEC:
   description.en: >-
-    ~~Compulsory supplementary unemployment contribution, for the functioning of
-    APEC
-
-    (Association for the Employment of Managers)
+    Compulsory complementary unemployment contribution, for the operation of the APEC (Association for the Employment of "cadres")
   description.fr: |
     Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
-  titre.en: ~~APEC
+  titre.en: APEC
   titre.fr: APEC
 contrat salarié . ARRCO:
   description.en: >-
-    ~~Supplementary pension contribution for all employees in the private
+    Complementary pension contribution for all employees in the private
     sector, managed by the Association for the Complementary Pension Plan for
     Employees
   description.fr: >
     Cotisation de retraite complémentaire pour tous les salariés du secteur
     privé, gérée par l'Association pour le Régime de Retraite Complémentaire des
     salariés
-  titre.en: ~~ARRCO
+  titre.en: ARRCO
   titre.fr: ARRCO
 contrat salarié . chômage:
-  description.en: ~~Unemployment insurance contribution
+  description.en: Unemployment insurance contribution
   description.fr: Cotisation d’assurance chômage
-  titre.en: ~~unemployment
+  titre.en: unemployment
   titre.fr: chômage
 contrat salarié . complémentaire santé:
-  titre.en: ~~Complementary Health
+  titre.en: Complementary health insurance
   titre.fr: complémentaire santé
 contrat salarié . forfait complémentaire santé:
   titre.en: Complementary health insurance plan
@@ -785,7 +771,7 @@ contrat salarié . forfait complémentaire santé:
     libre, tant qu'elle couvre un panier légal de soins.
 contrat salarié . contribution au dialogue social:
   description.en: >-
-    ~~Employers' contribution intended to supplement a joint fund dedicated to
+    Employers' contribution intended to supplement a joint fund dedicated to
     the financing of trade union organizations and professional organizations of
     employers.
 
@@ -800,57 +786,57 @@ contrat salarié . contribution au dialogue social:
 
     Anciennement 'contribution patronale au financement des organisations
     syndicales'
-  titre.en: ~~contribution to social dialogue
+  titre.en: Contribution to social dialogue
   titre.fr: contribution au dialogue social
 contrat salarié . cotisation exceptionnelle temporaire:
   description.en: >-
-    ~~Solidarity contribution for the Agirc scheme, it does not give additional
+    Solidarity contribution for the Agirc pension scheme, it does not give additional
     points to the employee.
   description.fr: >
     Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points
     supplémentaires au salarié.
-  titre.en: ~~exceptional temporary contribution
+  titre.en: Exceptional and temporary pension contribution
   titre.fr: cotisation exceptionnelle temporaire
 contrat salarié . assiette CSG:
-  titre.en: ~~CSG plate
+  titre.en: CSG base
   titre.fr: assiette CSG
 contrat salarié . assiette CSG abattue:
-  titre.en: ~~CSG plate slaughtered
+  titre.en: Abated CSG base
   titre.fr: assiette CSG abattue
 contrat salarié . CSG:
   description.en: |-
-    ~~Generalized social contribution.
+    Generalized social contribution.
     Compulsory levy that contributes to the financing of social security.
   description.fr: |
     Contribution sociale généralisée.
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
-  titre.en: ~~CSG
+  titre.en: CSG
   titre.fr: CSG
 contrat salarié . CRDS:
-  description.en: ~~Contribution for the repayment of the social debt
+  description.en: Contribution for the repayment of the social debt
   description.fr: Contribution pour le remboursement de la dette sociale
-  titre.en: ~~CRDS
+  titre.en: CRDS
   titre.fr: CRDS
 contrat salarié . FNAL:
-  titre.en: ~~Contribution to the National Fund for Housing Assistance
+  titre.en: Contribution to the National Fund for Housing Assistance
   titre.fr: Contribution au Fonds National d’Aide au Logement
 contrat salarié . formation professionnelle:
-  titre.en: ~~professional training
+  titre.en: professional training
   titre.fr: formation professionnelle
 contrat salarié . maladie:
-  description.en: ~~Contributions from the sickness branch
+  description.en: Contributions to the national health insurance 
   description.fr: Cotisations de la branche maladie
-  titre.en: ~~disease
+  titre.en: health insurance
   titre.fr: maladie
 contrat salarié . médecine du travail:
   description.en: >-
-    ~~The employer has the obligation to organize an occupational health
-    service, by joining a business-to-business service, or by creating an
+    The employer has the obligation to organize an occupational health
+    service, by joining a service for businesses, or by creating an
     internal service.
 
 
     In the case of joining a service, the amount of this contribution is not
-    defined by law, but it must be proportional to the number of employees. We
+    defined by the law, but it must be proportional to the number of employees. We
     have chosen an indicative amount (see references) adjusted with inflation
     since 2007.
   description.fr: >
@@ -862,33 +848,33 @@ contrat salarié . médecine du travail:
     pas défini par la loi, mais il doit être proportionnel au nombre d'employés.
     Nous avons choisi un montant indicatif (voir les références) ajusté avec
     l'inflation depuis 2007.
-  titre.en: ~~Occupational Medicine
+  titre.en: Occupational Medicine
   titre.fr: médecine du travail
 contrat salarié . participation effort de construction:
-  description.en: ~~Employer involvement in the construction effort
+  description.en: Employer participation in the home building effort
   description.fr: Participation des employeurs à l'effort de construction
-  titre.en: ~~participation building effort
+  titre.en: Participation to home building 
   titre.fr: participation effort de construction
 contrat salarié . prévoyance obligatoire cadre:
-  titre.en: ~~mandatory foresight framework
+  titre.en: mandatory life insurance for "cadres"
   titre.fr: prévoyance obligatoire cadre
 contrat salarié . taxe d'apprentissage:
   description.en: >-
-    ~~Apprenticeship tax enables companies to finance apprenticeship and
-    technological and professional training expenses
+    The apprenticeship tax enables the financing by companies of the expenses of apprenticeship and
+    technological and professional training 
   description.fr: >-
     La taxe d'apprentissage permet de financer par les entreprises les dépenses
     de l'apprentissage et des formations technologiques et professionnelles
-  titre.en: ~~Tax learning
+  titre.en: Apprenticeship tax
   titre.fr: taxe d'apprentissage
 contrat salarié . taxe d'apprentissage de base:
-  titre.en: ~~basic apprenticeship fee
+  titre.en: Basic apprenticeship tax
   titre.fr: taxe d'apprentissage de base
 contrat salarié . contribution supplémentaire à l'apprentissage:
-  titre.en: ~~additional contribution to learning
+  titre.en: Additional contribution to apprenticeship
   titre.fr: contribution supplémentaire à l'apprentissage
 contrat salarié . taxe d'apprentissage . csa au taux majoré:
-  titre.en: csa at the higher rate
+  titre.en: CSA at the higher rate
   titre.fr: csa au taux majoré
 contrat salarié . taxe sur les salaires . assiette:
   titre.en: base

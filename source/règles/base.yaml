@@ -947,6 +947,7 @@
 
 - espace: contrat salarié
   nom: quotité de travail
+  description: Temps de travail en proportion du temps complet légal.
   formule:
     multiplication:
       assiette: 1
@@ -1088,7 +1089,7 @@
     type: réduction de cotisations
     démarches: non
   description: |
-    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
+    Exonération pour les jeunes entreprises innovantes (JEI).
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
@@ -1197,7 +1198,7 @@
     destinataire: AGFF
   description: |
     Cotisation de retraite complémentaire
-    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO)
+    (Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO).
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
   formule:
@@ -1389,6 +1390,7 @@
 
 - espace: contrat salarié
   nom: réduction allocations familiales
+  titre: Réduction des allocations familiales
   applicable si:
     toutes ces conditions:
       - assiette cotisations sociales < plafond réduction allocations familiales
@@ -1401,6 +1403,7 @@
 
 - espace: contrat salarié
   nom: plafond réduction allocations familiales
+  titre: Plafond de la réduction des allocations familiales
   formule: smic mensuel * 3.5
 
 # TODO - intégrer l'éligibilité à la réduction générale
@@ -1447,7 +1450,7 @@
     type de retraite: complémentaire
     destinataire: ARRCO
   description: |
-    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés
+    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés.
   références:
     calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
@@ -1768,6 +1771,7 @@
   formule: 80 / 12
 - espace: contrat salarié
   nom: participation effort de construction
+  titre: Participation à l'effort de construction
   alias: Dispositif du 1 % logement
   acronyme: PEEC
   description: Participation des employeurs à l'effort de construction
@@ -1792,6 +1796,7 @@
 # indiquer le taux appliqué par l'entreprise
 - espace: contrat salarié
   nom: prévoyance obligatoire cadre
+  titre: Prévoyance obligatoire pour les cadres
   cotisation:
     dû par: employeur
     branche: santé
@@ -1869,6 +1874,7 @@
 
 - espace: contrat salarié . taxe d'apprentissage
   nom: csa au taux majoré
+  titre: CSA au taux majoré
 
   formule:
     toutes ces conditions:
