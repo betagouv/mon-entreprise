@@ -172,7 +172,7 @@ contrat salarié . CDD . motif . classique . usage:
   description.en: >-
     Jobs for which, in certain sectors of activity defined by decree or by
     collective agreement, a permanent contract is generally not used because
-   of the nature of the activity carried out and the temporary nature of these jobs.
+    of the nature of the activity carried out and the temporary nature of these jobs.
 
   description.fr: >-
     Emplois pour lesquels, dans certains secteurs d'activité définis par décret
@@ -502,7 +502,7 @@ entreprise . association non lucrative:
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
 établissement . code commune:
-  titre.en: "Commune" code of the establishment
+  titre.en: establishment municipality code
   titre.fr: Code commune de l'établissement
   question.en: In which city is the establishment located?
   question.fr: Dans quelle commune l'établissement est-il implanté ?
