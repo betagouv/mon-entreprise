@@ -218,6 +218,11 @@ contrat salarié . CDD . durée contrat:
     [Cliquez
     ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     pour connaître la durée maximale d'un CDD.
+  suggestions: 
+    18 mois: 18 months
+    1 an: 1 year
+    6 mois: 6 months
+    3 mois: 3 months
 contrat salarié . CDD . congés non pris:
   titre.en: Untaken paid leave
   titre.fr: Congés non pris
@@ -340,6 +345,10 @@ contrat salarié . salaire de base:
 
     - ou comme les sommes perçues par le salarié au titre de son contrat de
     travail, avant retenues sociales et fiscales.
+  suggestions.en:
+    salaire médian: median salary
+    SMIC: minimal salary (SMIC)
+    SMIC mi-temps: half-time min. salary
 contrat salarié . salaire brut:
   titre.en: gross salary
   titre.fr: salaire brut
@@ -750,6 +759,9 @@ contrat salarié . forfait complémentaire santé:
 
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
     libre, tant qu'elle couvre un panier légal de soins.
+  suggestions.en: 
+    basique: low
+    moyen: average
 contrat salarié . contribution au dialogue social:
   description.en: >-
     Employers' contribution intended to supplement a joint fund dedicated to
