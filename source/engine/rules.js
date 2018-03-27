@@ -195,3 +195,6 @@ export let translateAll = (translations, flatRules) => {
 export let rules = translateAll(translations, rawRules).map(rule =>
 	enrichRule(rule, { taux_versement_transport })
 )
+export let rulesFr = rawRules.map(rule =>
+	enrichRule(rule, { taux_versement_transport })
+)

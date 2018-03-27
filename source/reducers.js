@@ -16,7 +16,7 @@ import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
 
 import {
-	rules,
+	rules, rulesFr,
 	enrichRule,
 	findRuleByName,
 	collectDefaults,

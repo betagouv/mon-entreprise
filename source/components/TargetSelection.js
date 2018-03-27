@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
-import { rules, findRuleByName } from 'Engine/rules'
+import { findRuleByName } from 'Engine/rules'
 import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
 
+@connect(state => ({
+	parsedRules: state.parsedRules,
+}))
 export default class TargetSelection extends Component {
 	state = {
-		targets: []
+		targets: [],
 	}
 	render() {
 		let { targets } = this.state,
@@ -32,8 +36,9 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let popularTargets = [...salaries, 'aides employeur différées'].map(
-				curry(findRuleByName)(rules)
+		let { parsedRules } = this.props,
+			popularTargets = [...salaries, 'aides employeur différées'].map(
+				curry(findRuleByName)(parsedRules)
 			),
 			{ targets } = this.state,
 			textColourOnWhite = this.props.themeColours.textColourOnWhite,

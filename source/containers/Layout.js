@@ -21,12 +21,16 @@ import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 import { Header, Footer } from 'Components/pages/Header'
 import { getIframeOption } from '../utils'
+import queryString from 'query-string'
 import enTranslations from '../locales/en.yaml'
+
+let lang = getIframeOption('lang') || queryString.parse(location.search)['lang'] || sessionStorage['lang']
+if (lang) sessionStorage['lang'] = lang
 
 i18next
 	.init({
 		debug: true,
-		lng: 'en',
+		lng: lang,
 		resources: {
 				en: {
 			translation: enTranslations
@@ -52,6 +56,14 @@ ReactPiwik.push([
 export default class Layout extends Component {
 	history = createHistory()
 	render() {
+		// Language changes
+		this.history.listen((location, action) => {
+			let lang = queryString.parse(location.search)['lang']
+			if (lang) {
+				i18next.changeLanguage(lang);
+				sessionStorage['lang'] = lang
+			}
+		})
 		// track the initial pageview
 		ReactPiwik.push(['trackPageView'])
 		return (
