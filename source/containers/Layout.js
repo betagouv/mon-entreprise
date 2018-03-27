@@ -1,6 +1,5 @@
 import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next'
-import XHR from 'i18next-xhr-backend';
 
 import React, { Component } from 'react'
 import './Layout.css'
@@ -22,29 +21,19 @@ import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 import { Header, Footer } from 'Components/pages/Header'
 import { getIframeOption } from '../utils'
-
-function loadLocales(url, options, callback, data) {
-	try {
-		let translations = require('../../locales/'+url+'.json');
-		callback(translations, {status: '200'});
-	} catch (e) {
-		callback(null, {status: '404'});
-	}
-}
+import enTranslations from '../../locales/en.json'
 
 i18next
-	.use(XHR)
 	.init({
 		debug: true,
 		lng: 'en',
-		backend: {
-			loadPath: '{{lng}}',
-			parse: (data) => data,
-			ajax: loadLocales
-		}
+		resources: {
+				en: {
+			translation: enTranslations
+		}}
 	}, (err, t) => {
-		// ...
-	});
+		console.log("Error from i18n load",err,t)
+	})
 
 const piwik = new ReactPiwik({
 	url: 'stats.data.gouv.fr',
