@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import { toPairs } from 'ramda'
@@ -7,6 +8,9 @@ import SendButton from './SendButton'
 
 @FormDecorator('input')
 export default class Input extends Component {
+	static contextTypes = {
+      i18n: PropTypes.object.isRequired
+    }
 	state = {
 		lastValue: ''
 	}
@@ -20,7 +24,9 @@ export default class Input extends Component {
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = dirty && error,
-			submitDisabled = !dirty || inputError
+			submitDisabled = !dirty || inputError,
+			{ i18n } = this.context
+		attributes['placeholder'] = i18n.t(attributes['placeholder']);
 
 		return (
 			<span>
