@@ -104,12 +104,13 @@ export class Footer extends Component {
 		let appMode = ['/simu', '/regle'].find(t =>
 			this.props.location.pathname.includes(t)
 		)
-		if (!appMode) return null
 		return (
 			<div id="footer">
-				<Link to="/à-propos">
+				<Link to="?lang=en">(en)</Link>/<Link to="?lang=fr">(fr)</Link>&nbsp;
+				{appMode &&
+				(<Link to="/à-propos">
 					<Trans>À propos</Trans> <i className="fa fa-question-circle" aria-hidden="true" />
-				</Link>
+				</Link>)}
 			</div>
 		)
 	}
