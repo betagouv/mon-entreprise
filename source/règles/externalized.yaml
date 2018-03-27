@@ -761,7 +761,7 @@ contrat salarié . forfait complémentaire santé:
     libre, tant qu'elle couvre un panier légal de soins.
   suggestions.en: 
     basique: low
-    moyen: average
+    elevé: high
 contrat salarié . contribution au dialogue social:
   description.en: >-
     Employers' contribution intended to supplement a joint fund dedicated to
