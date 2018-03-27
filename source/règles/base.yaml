@@ -682,7 +682,7 @@
 
   formule:
     inversion:
-      question: What is the monthly salary ?
+      question: Quel est le salaire mensuel ?
       titre: salaire
       avec:
         - salaire net
