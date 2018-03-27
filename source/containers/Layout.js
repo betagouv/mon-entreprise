@@ -21,7 +21,7 @@ import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 import { Header, Footer } from 'Components/pages/Header'
 import { getIframeOption } from '../utils'
-import enTranslations from '../../locales/en.json'
+import enTranslations from '../locales/en.yaml'
 
 i18next
 	.init({
