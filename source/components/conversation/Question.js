@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
 import { FormDecorator } from './FormDecorator'
 import { answer, answered } from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
@@ -148,7 +149,7 @@ class RadioLabelContent extends Component {
 
 		return (
 			<label key={value} style={labelStyle} className="radio">
-				{label}
+				<Trans i18nKey={`radio_${label}`}>{label}</Trans>
 				<input
 					type="radio"
 					{...input}
