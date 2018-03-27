@@ -20,4 +20,6 @@ Mode plein écran: Full screen
 first: Your first estimate is now available!
 lastQ: One last question !
 questionsLeft: Fewer than <1>{{nbQuestions}}</1> questions to go…
-
+radio_Oui: Yes
+radio_Non: No
+radio_Aucun: None
