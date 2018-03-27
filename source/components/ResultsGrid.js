@@ -1,10 +1,13 @@
 import {
+	curry,
+	evolve,
 	path,
 	propEq,
 	pathEq,
 	groupBy,
 	prop,
 	map,
+	mapObjIndexed,
 	sum,
 	filter,
 	concat,
@@ -15,6 +18,8 @@ import {
 	find
 } from 'ramda'
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -23,7 +28,7 @@ import './Results.css'
 import '../engine/mecanismViews/Somme.css'
 
 import { capitalise0, humanFigure } from '../utils'
-import { nameLeaf, encodeRuleName } from 'Engine/rules'
+import { nameLeaf, encodeRuleName, rules, findRuleByDottedName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
 let paidBy = payer => item =>
@@ -109,7 +114,7 @@ export default class ResultsGrid extends Component {
 								id="sommeBase"
 							>
 								{humanFigure(2)(brut)}{' '}
-								<span className="annotation">Salaire brut</span>
+								<span className="annotation"><Trans>Salaire brut</Trans></span>
 							</td>
 						</tr>
 					</thead>
@@ -137,7 +142,7 @@ export default class ResultsGrid extends Component {
 									</td>
 									<td key="net" className="element value">
 										{humanFigure(2)(net)}{' '}
-										<span className="annotation">Salaire net</span>
+										<span className="annotation"><Trans>Salaire net</Trans></span>
 									</td>
 								</>
 							)}
@@ -147,7 +152,7 @@ export default class ResultsGrid extends Component {
 								</td>,
 								<td key="total" className="element value">
 									{humanFigure(2)(total)}{' '}
-									<span className="annotation">Salaire total</span>
+									<span className="annotation"><Trans>Salaire total</Trans></span>
 								</td>
 							]}
 						</tr>
@@ -159,16 +164,21 @@ export default class ResultsGrid extends Component {
 }
 
 class Row extends Component {
+	static contextTypes = {
+      i18n: PropTypes.object.isRequired
+    }
 	state = {
 		folded: true
 	}
 	render() {
 		let { branch, values, analysis, relevantSalaries } = this.props,
-			detail = byName(values)
+			detail = byName(values),
+			ruleData = mapObjIndexed((v,k,o) => findRuleByDottedName(rules,k), detail),
+			{ i18n } = this.context
 
 		let title = name => {
-			let node = head(detail[name])
-			return node.title || capitalise0(node.name)
+			let node = ruleData[name]
+			return node.title || capitalise0(i18n.t(node.name))
 		}
 
 		let aggregateRow = (
@@ -177,8 +187,8 @@ class Row extends Component {
 				onClick={() => this.setState({ folded: !this.state.folded })}
 			>
 				<td key="category" className="element category name">
-					{capitalise0(branch)}&nbsp;<span className="unfoldIndication">
-						{this.state.folded ? 'déplier >' : 'replier'}
+					{capitalise0(i18n.t(branch))}&nbsp;<span className="unfoldIndication">
+						{this.state.folded ? i18n.t('déplier')+' >' : i18n.t('replier')}
 					</span>
 				</td>
 				{this.state.folded ? (
