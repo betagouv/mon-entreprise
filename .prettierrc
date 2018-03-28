@@ -1,10 +1,12 @@
-printWidth: 80
-trailingComma: none
-bracketSpacing: true
-jsxBracketSameLine: true
-useTabs: true
-semi: false
-singleQuote: true
-arrowParens: avoid
-proseWrap: preserve
-tabWidth: 2
+{
+  "printWidth": 80,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "useTabs": true,
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "proseWrap": "preserve",
+  "tabWidth": 2
+}
