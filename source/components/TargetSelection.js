@@ -39,20 +39,29 @@ export default class TargetSelection extends Component {
 	}
 
 	render() {
-		let { targets, conversationTargetNames } = this.props
+		let { targets, conversationTargetNames, colours } = this.props
 		this.firstEstimationComplete = this.state.activeInput && targets.length > 0
 		return (
 			<div id="targetSelection">
-				{!this.firstEstimationComplete && <h1>Entrez un salaire mensuel</h1>}
 				<section
 					id="targetsContainer"
 					style={{
-						background: this.props.colours.colour,
-						color: this.props.colours.textColour
+						background: colours.colour,
+						color: colours.textColour
 					}}
 				>
 					{this.renderOutputList()}
 				</section>
+				{!this.firstEstimationComplete && (
+					<h1>
+						Entrez un salaire mensuel{' '}
+						<i
+							style={{ color: colours.textColourOnWhite }}
+							className="fa fa-calendar"
+							aria-hidden="true"
+						/>
+					</h1>
+				)}
 
 				{this.firstEstimationComplete && (
 					<div id="action">

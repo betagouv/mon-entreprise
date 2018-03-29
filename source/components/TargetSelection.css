@@ -19,6 +19,10 @@
 	text-align: center;
 	font-size: 170%;
 }
+
+#targetSelection h1 i {
+font-size: 80%;
+}
 #targetSelection #targets {
 	margin: .4em auto;
 	/* For the checkbox that will appear */
