@@ -202,7 +202,7 @@ function currentExample(state = null, { type, situation, name }) {
 	}
 }
 
-export default reduceReducers(
+export default (initialRules) => reduceReducers(
 	combineReducers({
 		sessionId: (id = Math.floor(Math.random() * 1000000000000) + '') => id,
 		//  this is handled by redux-form, pas touche !
@@ -233,5 +233,5 @@ export default reduceReducers(
 		currentExample
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps(ReactPiwik, rulesFr, formatInputs(rulesFr, formValueSelector))
+	reduceSteps(ReactPiwik, initialRules, formatInputs(initialRules, formValueSelector))
 )
