@@ -852,7 +852,7 @@
 
 - espace: contrat salarié
   nom: aides employeur
-  résumé: Aides différées pour l'employeur.
+  résumé: Pour l'employeur, différées dans le temps.
   description: > 
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
