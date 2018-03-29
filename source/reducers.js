@@ -60,8 +60,11 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	state,
 	action
 ) => {
+	state.flatRules = flatRules
 	// Optimization - don't parse on each analysis
-	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
+	if (!state.parsedRules) {
+		state.parsedRules = parseAll(flatRules)
+	}
 
 	if (
 		![START_CONVERSATION, STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
@@ -201,6 +204,7 @@ export default reduceReducers(
 		nextSteps: (state = []) => state,
 
 		parsedRules: (state = null) => state,
+		flatRules: (state = null) => state,
 		analysis: (state = null) => state,
 
 		targetNames: (state = null) => state,

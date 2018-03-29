@@ -28,7 +28,7 @@ import './Results.css'
 import '../engine/mecanismViews/Somme.css'
 
 import { capitalise0, humanFigure } from '../utils'
-import { nameLeaf, encodeRuleName, rules, findRuleByDottedName } from 'Engine/rules'
+import { nameLeaf, encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
 let paidBy = payer => item =>
@@ -76,12 +76,14 @@ export let byBranch = analysis => {
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
 	inversions: formValueSelector('conversation')(state, 'inversions'),
-	done: state.done
+	done: state.done,
+	flatRules: state.flatRules
 }))
 @translate()
 export default class ResultsGrid extends Component {
 	render() {
-		let { analysis, situationGate, targetNames, inversions, done } = this.props
+		let { analysis, situationGate, targetNames, inversions, done, flatRules } = this.props,
+			rules = flatRules
 
 		if (!done) return null
 
@@ -126,6 +128,7 @@ export default class ResultsGrid extends Component {
 								branch,
 								values,
 								analysis,
+								rules,
 								relevantSalaries
 							}
 							return <Row {...props} />
@@ -173,7 +176,7 @@ class Row extends Component {
 		folded: true
 	}
 	render() {
-		let { branch, values, analysis, relevantSalaries } = this.props,
+		let { rules, branch, values, analysis, relevantSalaries } = this.props,
 			detail = byName(values),
 			ruleData = mapObjIndexed((v,k,o) => findRuleByDottedName(rules,k), detail),
 			{ i18n } = this.context

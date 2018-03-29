@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { rules, encodeRuleName } from 'Engine/rules.js'
+import { connect } from 'react-redux'
+import { encodeRuleName } from 'Engine/rules.js'
 import { Link } from 'react-router-dom'
 import './RulesList.css'
 import './Pages.css'
@@ -11,12 +12,18 @@ import { Redirect } from 'react-router-dom'
 import Highlighter from 'react-highlight-words'
 import { pick } from 'ramda'
 
+@connect(
+	state => ({
+		flatRules: state.flatRules
+	})
+)
 export default class RulesList extends Component {
 	render() {
+		let { flatRules } = this.props;
 		return (
 			<div id="RulesList" className="page">
 				<h1>Explorez notre base de règles</h1>
-				<SearchBar showDefaultList={true} rules={rules} />
+				<SearchBar showDefaultList={true} rules={flatRules} />
 			</div>
 		)
 	}
