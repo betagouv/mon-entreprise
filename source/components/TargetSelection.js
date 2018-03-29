@@ -66,17 +66,20 @@ export default class TargetSelection extends Component {
 					<div id="action">
 						{conversationTargetNames ? (
 							!conversationTargetNames.length && (
-								<p>Que voulez-vous affiner ?</p>
+								<p>Cochez ce que vous voulez affiner</p>
 							)
 						) : (
 							<>
-								<p>Estimation par défaut pour un CDI non cadre ... </p>
+								<p>
+									Estimation approximative pour une situation par défaut : CDI
+									non cadre...
+								</p>
 								<BlueButton
 									onClick={() => {
 										this.props.setConversationTargets([])
 									}}
 								>
-									Personnaliser
+									Affiner le calcul
 								</BlueButton>
 							</>
 						)}

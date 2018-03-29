@@ -14,15 +14,28 @@
 }
 
 #targetSelection h1 {
-	margin: 0.3em;
+	margin: 0.6em;
 	color: inherit;
 	text-align: center;
-	font-size: 170%;
+	font-size: 180%;
 }
 
 #targetSelection h1 i {
-font-size: 80%;
+    font-size: 80%;
 }
+
+#targetSelection #action {
+	text-align: center;
+	margin: 1em auto;
+}
+
+#targetSelection #action p {
+    font-size: 130%;
+	color: #4b4b66;
+	margin-bottom: 1em;
+}
+
+
 #targetSelection #targets {
 	margin: .4em auto;
 	/* For the checkbox that will appear */
@@ -31,9 +44,8 @@ font-size: 80%;
 #targetSelection #targets  li {
 	margin-bottom: .4em;
 	background: rgba(0, 0, 0, 0.25);
-
-		display: flex;
-		align-items: center;
+    display: flex;
+	align-items: center;
     padding: .4em 1em;
     border-radius: .3em;
 }
@@ -83,16 +95,6 @@ text-decoration: underline;
 	max-width: 0.75em;
 }
 
-#targetSelection #action {
-	text-align: center;
-	margin: 1em auto;
-}
-
-#targetSelection #action p {
-		font-size: 110%;
-	color: #4b4b66;
-	margin-bottom: 1em;
-}
 
 #targetSelection .targetInputOrValue
 {
