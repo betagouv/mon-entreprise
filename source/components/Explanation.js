@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import ResultsGrid from 'Components/ResultsGrid'
 import { salaries } from 'Components/TargetSelection'
 import { isEmpty, intersection, head } from 'ramda'
@@ -7,6 +7,7 @@ import Rule from 'Components/rule/Rule'
 import './Explanation.css'
 import { pluck } from 'ramda'
 
+@translate()
 export default class Explanation extends Component {
 	render() {
 		let { targetRules } = this.props

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { FormDecorator } from './FormDecorator'
 
 @FormDecorator('text-area')
+@translate()
 export default class Input extends Component {
 	render() {
 		let {

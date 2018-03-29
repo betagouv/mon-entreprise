@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import HoverDecorator from 'Components/HoverDecorator'
 
 @HoverDecorator
+@translate()
 export default class SendButton extends Component {
 	getAction() {
 		let { disabled, submit } = this.props

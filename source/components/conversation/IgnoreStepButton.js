@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import './IgnoreStepButton.css'
 import HoverDecorator from 'Components/HoverDecorator'
 
 @HoverDecorator
+@translate()
 export default class IgnoreStepButton extends Component {
 	componentDidMount() {
 		// removeEventListener will need the exact same function instance

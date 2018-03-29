@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { FormDecorator } from './FormDecorator'
 import { answer, answered } from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
@@ -25,6 +25,7 @@ import SendButton from './SendButton'
 // FormDecorator permet de factoriser du code partagé par les différents types de saisie,
 // dont Question est un example
 @FormDecorator('question')
+@translate()
 export default class Question extends Component {
 	render() {
 		let {
@@ -133,6 +134,7 @@ let RadioLabel = props => (
 )
 
 @HoverDecorator
+@translate()
 class RadioLabelContent extends Component {
 	click = value => () => {
 		if (this.props.input.value == value) this.props.submit('dblClick')

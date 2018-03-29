@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import './Pages.css'
 import './Home.css'
 import TargetSelection from '../TargetSelection'
@@ -8,10 +8,9 @@ import { connect } from 'react-redux'
 @connect(state => ({
 	themeColours: state.themeColours
 }))
+@translate()
 export default class Home extends Component {
-	state = {
-		updateMessage: false
-	}
+	state = {}
 	componentDidMount() {
 		setTimeout(() => this.setState({ showUpdateMessage: true }), 1000)
 	}

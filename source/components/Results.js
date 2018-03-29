@@ -1,6 +1,6 @@
 import { isEmpty, path, contains } from 'ramda'
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -19,6 +19,7 @@ import ProgressTip from 'Components/ProgressTip'
 	done: state.done,
 	themeColours: state.themeColours
 }))
+@translate()
 export default class Results extends Component {
 	render() {
 		let { analysis, conversationStarted, done, themeColours } = this.props

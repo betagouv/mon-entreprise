@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
@@ -32,6 +32,7 @@ export var FormDecorator = formType => RenderField =>
 				dispatch(change('conversation', field, value))
 		})
 	)
+	@translate()
 	class extends Component {
 		static contextTypes = {
 			i18n: PropTypes.object.isRequired
