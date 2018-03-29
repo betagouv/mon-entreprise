@@ -16,7 +16,6 @@ export default ({
 	nodeValue: ruleValue
 }) =>
 	do {
-		debugger;
 		let unsatisfied = ruleValue == null,
 			irrelevant = ruleValue == 0,
 			number = typeof ruleValue == 'number' && ruleValue > 0
