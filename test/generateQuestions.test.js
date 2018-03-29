@@ -1,11 +1,14 @@
 import * as R from 'ramda'
+import yaml from 'js-yaml'
+import dedent from 'dedent-js'
 import { expect } from 'chai'
 import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 import {
 	getNextSteps,
 	collectMissingVariablesByTarget,
-	collectMissingVariables
+	collectMissingVariables,
+	sortByCount
 } from '../source/engine/generateQuestions'
 
 let stateSelector = name => null
@@ -318,6 +321,7 @@ describe('collectMissingVariables', function() {
 })
 
 describe('nextSteps', function() {
+	null
 	it('should generate questions', function() {
 		let rawRules = [
 				{ nom: 'sum', formule: { somme: [2, 'deux'] }, espace: 'top' },
@@ -338,7 +342,7 @@ describe('nextSteps', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'sum')(stateSelector),
-			result = collectMissingVariables(analysis)
+			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
@@ -382,8 +386,7 @@ describe('nextSteps', function() {
 
 		let rules = parseAll(realRules.map(enrichRule)),
 			analysis = analyse(rules, 'salaire')(stateSelector),
-			missing = collectMissingVariables(analysis.targets),
-			result = getNextSteps(stateSelector, analysis)
+			result = collectMissingVariables(analysis.targets)
 
 		expect(result[0]).to.equal('contrat salarié . salaire de base')
 		expect(result[1]).to.equal('contrat salarié . temps partiel')
@@ -398,8 +401,7 @@ describe('nextSteps', function() {
 
 		let rules = parseAll(realRules.map(enrichRule)),
 			analysis = analyse(rules, 'salaire net')(stateSelector),
-			missing = collectMissingVariables(analysis.targets),
-			result = getNextSteps(stateSelector, analysis)
+			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.include('contrat salarié . CDD . motif')
 	})

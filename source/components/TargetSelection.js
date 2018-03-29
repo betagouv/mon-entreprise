@@ -83,24 +83,26 @@ export default class TargetSelection extends Component {
 				curry(findRuleByName)(flatRules)
 			),
 			{ textColourOnWhite, missingVariablesByTarget } = this.props
+		console.log(missingVariablesByTarget)
 
 		return (
 			<div>
 				<ul id="targets">
 					{popularTargets.map(s => (
 						<li key={s.name}>
-							<span>BLOB</span>
+							<span>
+								{do {
+									let mv = missingVariablesByTarget[s.dottedName],
+										number = mv && mv.missingVariables.length
+									console.log(number)
+									number
+								}}
+							</span>
 							<span className="texts">
 								<span className="optionTitle">
 									<Link to={'/règle/' + s.dottedName}>{s.title || s.name}</Link>
 								</span>
-								<p>
-									{ s['résumé'] }
-									{ values(
-										missingVariablesByTarget[s.dottedName] || {}
-										).length
-									}
-								</p>
+								<p>{s['résumé']}</p>
 							</span>
 							<TargetInputOrValue
 								{...{
