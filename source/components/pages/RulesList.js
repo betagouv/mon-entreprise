@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { encodeRuleName } from 'Engine/rules.js'
 import { Link } from 'react-router-dom'
@@ -29,7 +31,11 @@ export default class RulesList extends Component {
 	}
 }
 
+@translate()
 export class SearchBar extends React.Component {
+	static contextTypes = {
+      i18n: PropTypes.object.isRequired
+    }
 	componentDidMount() {
 		this.inputElement.focus()
 	}
@@ -83,7 +89,8 @@ export class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
-		let { rules } = this.props
+		let { rules } = this.props,
+			{ i18n } = this.context
 		let { selectedOption } = this.state
 
 		if (selectedOption != null) {
@@ -103,8 +110,8 @@ export class SearchBar extends React.Component {
 					options={rules}
 					filterOptions={this.filterOptions}
 					optionRenderer={this.renderOption}
-					placeholder="Entrez des mots clefs ici"
-					noResultsText="Nous n'avons rien trouvé..."
+					placeholder={i18n.t('Entrez des mots clefs ici')}
+					noResultsText={i18n.t("noresults",{defaultValue:"Nous n'avons rien trouvé…"})}
 					ref={el => {
 						this.inputElement = el
 					}}
