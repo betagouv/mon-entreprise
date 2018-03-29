@@ -44,12 +44,11 @@ export default class SearchButton extends Component {
 						<SearchBar showDefaultList={false} finally={this.close} rules={flatRules} />
 					</Overlay>
 				) : (
-					<button onClick={() => this.setState({ visible: true })}>
-						<i
-							style={{ color: this.props.colours.colour }}
-							className="fa fa-search"
-							aria-hidden="true"
-						/>
+					<button
+						onClick={() => this.setState({ visible: true })}
+						style={{ color: this.props.colours.colour }}
+					>
+						<i className="fa fa-search" aria-hidden="true" /> Recherche
 					</button>
 				)}
 			</div>
