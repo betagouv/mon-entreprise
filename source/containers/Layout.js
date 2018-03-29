@@ -21,23 +21,6 @@ import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 import { Header, Footer } from 'Components/pages/Header'
 import { getIframeOption } from '../utils'
-import queryString from 'query-string'
-import enTranslations from '../locales/en.yaml'
-
-let lang = getIframeOption('lang') || queryString.parse(location.search)['lang'] || sessionStorage['lang']
-if (lang) sessionStorage['lang'] = lang
-
-i18next
-	.init({
-		debug: true,
-		lng: lang,
-		resources: {
-				en: {
-			translation: enTranslations
-		}}
-	}, (err, t) => {
-		console.log("Error from i18n load",err,t)
-	})
 
 const piwik = new ReactPiwik({
 	url: 'stats.data.gouv.fr',
