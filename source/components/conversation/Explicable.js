@@ -3,14 +3,15 @@ import classNames from 'classnames'
 import './Explicable.css'
 import { connect } from 'react-redux'
 import { EXPLAIN_VARIABLE } from '../../actions'
-import { rules, findRuleByDottedName } from 'Engine/rules'
+import { findRuleByDottedName } from 'Engine/rules'
 
 import ReactPiwik from '../Tracker'
 
 @connect(
 	state => ({
 		explained: state.explainedVariable,
-		textColourOnWhite: state.themeColours.textColourOnWhite
+		textColourOnWhite: state.themeColours.textColourOnWhite,
+		flatRules: state.flatRules
 	}),
 	dispatch => ({
 		explain: variableName => dispatch({ type: EXPLAIN_VARIABLE, variableName })
@@ -18,12 +19,12 @@ import ReactPiwik from '../Tracker'
 )
 export default class Explicable extends React.Component {
 	render() {
-		let { dottedName, explain, explained, textColourOnWhite } = this.props
+		let { flatRules, dottedName, explain, explained, textColourOnWhite } = this.props
 
 		// Rien à expliquer ici, ce n'est pas une règle
 		if (dottedName == null) return this.props.children
 
-		let rule = findRuleByDottedName(rules, dottedName)
+		let rule = findRuleByDottedName(flatRules, dottedName)
 
 		if (rule.description == null) return this.props.children
 
