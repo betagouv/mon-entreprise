@@ -4,6 +4,7 @@ import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 import {
 	getNextSteps,
+	collectMissingVariablesByTarget,
 	collectMissingVariables
 } from '../source/engine/generateQuestions'
 
@@ -30,7 +31,8 @@ describe('collectMissingVariables', function() {
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
-		expect(result).to.have.property('sum . evt . ko')
+
+		expect(result).to.include('sum . evt . ko')
 	})
 
 	it('should identify missing variables mentioned in expressions', function() {
@@ -46,10 +48,10 @@ describe('collectMissingVariables', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+			result = getNextSteps(collectMissingVariablesByTarget(analysis.targets))
 
-		expect(result).to.have.property('sum . evt . nyet')
-		expect(result).to.have.property('sum . evt . nope')
+		expect(result).to.include('sum . evt . nyet')
+		expect(result).to.include('sum . evt . nope')
 	})
 
 	it('should ignore missing variables in the formula if not applicable', function() {
@@ -64,9 +66,9 @@ describe('collectMissingVariables', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+			result = getNextSteps(collectMissingVariablesByTarget(analysis.targets))
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should not report missing variables when "one of these" short-circuits', function() {
@@ -83,7 +85,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
@@ -95,7 +97,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . trois')
+		expect(result).to.include('top . trois')
 	})
 
 	it('should not report missing variables when "une possibilité" is inapplicable', function() {
@@ -112,7 +114,8 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
+		null
 	})
 
 	it('should not report missing variables when "une possibilité" was answered', function() {
@@ -126,7 +129,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(mySelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should report missing variables in switch statements', function() {
@@ -148,7 +151,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . dix')
+		expect(result).to.include('top . dix')
 	})
 
 	it('should report missing variables in variations', function() {
@@ -194,11 +197,11 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . dix')
-		expect(result).to.have.property('top . deux')
-		expect(result).not.to.have.property('top . quatre')
+		expect(result).to.include('top . dix')
+		expect(result).to.include('top . deux')
+		expect(result).not.to.include('top . quatre')
 		// TODO
-		// expect(result).to.have.property('top . trois')
+		// expect(result).to.include('top . trois')
 	})
 
 	it('should not report missing variables in irrelevant variations', function() {
@@ -241,7 +244,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should not report missing variables in switch for consequences of false conditions', function() {
@@ -262,7 +265,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should report missing variables in consequence when its condition is unresolved', function() {
@@ -287,8 +290,8 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . dix')
-		expect(result).to.have.property('top . douze')
+		expect(result).to.include('top . dix')
+		expect(result).to.include('top . douze')
 	})
 
 	it('should not report missing variables when a switch short-circuits', function() {
@@ -310,7 +313,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 })
 
@@ -335,7 +338,7 @@ describe('nextSteps', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'sum')(stateSelector),
-			result = getNextSteps(stateSelector, analysis)
+			result = collectMissingVariables(analysis)
 
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')

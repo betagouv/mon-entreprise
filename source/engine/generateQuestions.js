@@ -1,7 +1,16 @@
 import {
 	flatten,
 	mergeAll,
+	compose,
+	values,
+	pipe,
+	sortBy,
 	pluck,
+	fromPairs,
+	uniq,
+	countBy,
+	chain,
+	unnest,
 	groupBy,
 	toPairs,
 	sort,
@@ -48,10 +57,12 @@ import {
 
 export let collectMissingVariables = targets => mergeAll(pluck('missingVariables', targets))
 
-export let getNextSteps = (situationGate, analysis) => {
+export let collectMissingVariablesByTarget = targets => fromPairs(targets.map(target => [target, target.missingVariables]))
+
+export let getNextSteps = missingVariablesByTarget => {
 	let impact = ([, count]) => count
 
-	let missingVariables = collectMissingVariables(analysis.targets),
+	let missingVariables = mergeAll(values(missingVariablesByTarget)),
 		pairs = toPairs(missingVariables),
 		sortedPairs = sort(descend(impact), pairs)
 	return map(head, sortedPairs)
