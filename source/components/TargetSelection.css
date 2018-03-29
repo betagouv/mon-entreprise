@@ -62,6 +62,12 @@
 	font-size: 130%;
 	font-weight: 600;
 }
+#targetSelection .optionTitle a {
+color: inherit
+}
+#targetSelection .optionTitle a:hover {
+text-decoration: underline;
+}
 
 #targetSelection input[type='checkbox'] {
 	position: absolute;
