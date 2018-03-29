@@ -34,3 +34,4 @@ export function changeThemeColour(colour) {
 }
 
 export const EXPLAIN_VARIABLE = 'EXPLAIN_VARIABLE'
+export const CHANGE_LANG = 'CHANGE_LANG'

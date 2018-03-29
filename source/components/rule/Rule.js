@@ -10,7 +10,7 @@ import Helmet from 'react-helmet'
 import { createMarkdownDiv } from 'Engine/marked'
 import Destinataire from './Destinataire'
 import { Link } from 'react-router-dom'
-import { findRuleByNamespace, encodeRuleName } from 'Engine/rules'
+import { findRuleByNamespace, encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import withColours from '../withColours'
 
 import SearchButton from 'Components/SearchButton'
@@ -18,14 +18,16 @@ import SearchButton from 'Components/SearchButton'
 @connect(state => ({
 	form: state.form,
 	rules: state.parsedRules,
+	flatRules: state.flatRules,
 	currentExample: state.currentExample
 }))
 export default class Rule extends Component {
 	render() {
-		let { form, rule, currentExample, rules } = this.props,
+		let { form, rule, currentExample, rules, flatRules } = this.props,
+			flatRule = findRuleByDottedName(flatRules, rule.dottedName),
 			conversationStarted = !isEmpty(form)
 
-		let { type, name, title, description, question, ns } = rule,
+		let { type, name, title, description, question, ns } = flatRule,
 			namespaceRules = findRuleByNamespace(rules, rule.dottedName)
 
 		return (
@@ -53,21 +55,21 @@ export default class Rule extends Component {
 						rule={rule}
 						showValues={conversationStarted || currentExample}
 					/>
-					{rule.note && (
+					{flatRule.note && (
 						<section id="notes">
 							<h3>Note: </h3>
-							{createMarkdownDiv(rule.note)}
+							{createMarkdownDiv(flatRule.note)}
 						</section>
 					)}
 					<Examples
 						currentExample={currentExample}
 						situationExists={conversationStarted}
-						rule={rule}
+						rule={flatRule}
 					/>
 					{!isEmpty(namespaceRules) && (
-						<NamespaceRulesList {...{ rule, namespaceRules }} />
+						<NamespaceRulesList {...{ flatRule, namespaceRules }} />
 					)}
-					{this.renderReferences(rule)}
+					{this.renderReferences(flatRule)}
 				</section>
 				<ReportError />
 			</div>

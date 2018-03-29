@@ -9,7 +9,7 @@ import BlueButton from './BlueButton'
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
 
 @connect(state => ({
-	parsedRules: state.parsedRules,
+	flatRules: state.flatRules,
 }))
 @translate()
 export default class TargetSelection extends Component {
@@ -37,9 +37,9 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let { parsedRules } = this.props,
+		let { flatRules } = this.props,
 			popularTargets = [...salaries, 'aides employeur différées'].map(
-				curry(findRuleByName)(parsedRules)
+				curry(findRuleByName)(flatRules)
 			),
 			{ targets } = this.state,
 			textColourOnWhite = this.props.themeColours.textColourOnWhite,

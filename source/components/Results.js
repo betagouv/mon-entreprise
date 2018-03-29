@@ -8,10 +8,12 @@ import { withRouter } from 'react-router'
 import './Results.css'
 import RuleValueVignette from './rule/RuleValueVignette'
 import ProgressTip from 'Components/ProgressTip'
+import { findRuleByDottedName } from 'Engine/rules.js'
 
 @withRouter
 @connect(state => ({
 	analysis: state.analysis,
+	flatRules: state.flatRules,
 	targetName: state.targetName,
 	conversationStarted: !isEmpty(state.form),
 	conversationFirstAnswer: path(['form', 'conversation', 'values'])(state),
@@ -22,7 +24,11 @@ import ProgressTip from 'Components/ProgressTip'
 @translate()
 export default class Results extends Component {
 	render() {
-		let { analysis, conversationStarted, done, themeColours } = this.props
+		let { flatRules, analysis, conversationStarted, done, themeColours } = this.props
+			let withFlatRule = rule => ({
+				...rule,
+				flatRule: findRuleByDottedName(flatRules, rule.dottedName)
+			})
 
 		if (!analysis) return null
 
@@ -44,7 +50,7 @@ export default class Results extends Component {
 							{targets.map(rule => (
 								<li key={rule.nom} style={textStyle}>
 									<RuleValueVignette
-										{...rule}
+										{...withFlatRule(rule)}
 										conversationStarted={conversationStarted}
 									/>
 								</li>
