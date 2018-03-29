@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { CHANGE_LANG } from '../../actions'
 
 @withRouter
 @connect(state => ({
@@ -102,6 +103,12 @@ let Links = ({ toggle }) => (
 
 @withRouter
 @translate()
+@connect(
+	state => {},
+	dispatch => ({
+		changeLanguage: (lang) => dispatch({ type: CHANGE_LANG, lang })
+	})
+)
 export class Footer extends Component {
 	static contextTypes = {
       i18n: PropTypes.object.isRequired
@@ -109,6 +116,7 @@ export class Footer extends Component {
 	render() {
 		let { i18n } = this.context
 		let changeLanguage = lng => {
+				this.props.changeLanguage(lng)
 				i18n.changeLanguage(lng)
 			}
 		let appMode = ['/simu', '/regle'].find(t =>

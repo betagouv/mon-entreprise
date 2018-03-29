@@ -28,7 +28,8 @@ import {
 	STEP_ACTION,
 	START_CONVERSATION,
 	EXPLAIN_VARIABLE,
-	CHANGE_THEME_COLOUR
+	CHANGE_THEME_COLOUR,
+	CHANGE_LANG
 } from './actions'
 
 import { analyseMany, parseAll } from 'Engine/traverse'
@@ -64,6 +65,16 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	// Optimization - don't parse on each analysis
 	if (!state.parsedRules) {
 		state.parsedRules = parseAll(flatRules)
+	}
+
+	// TODO
+	if (action.type == CHANGE_LANG) {
+		if (action.lang == 'fr') { flatRules = rulesFr }
+		else flatRules = rules
+		return {
+			...state,
+			flatRules
+		}
 	}
 
 	if (
@@ -222,5 +233,5 @@ export default reduceReducers(
 		currentExample
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps(ReactPiwik, rules, formatInputs(rules, formValueSelector))
+	reduceSteps(ReactPiwik, rules, formatInputs(rulesFr, formValueSelector))
 )

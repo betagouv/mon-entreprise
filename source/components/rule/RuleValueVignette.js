@@ -11,11 +11,12 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 export default ({
 	name,
 	type,
-	title,
 	conversationStarted,
+	flatRule,
 	nodeValue: ruleValue
 }) =>
 	do {
+		debugger;
 		let unsatisfied = ruleValue == null,
 			irrelevant = ruleValue == 0,
 			number = typeof ruleValue == 'number' && ruleValue > 0
@@ -29,7 +30,7 @@ export default ({
 		>
 			<Link to={'/règle/' + encodeRuleName(name)}>
 				<div className="rule-box">
-					<span className="rule-name">{title}</span>
+					<span className="rule-name">{flatRule.title}</span>
 					<RuleValue
 						{...{ unsatisfied, irrelevant, conversationStarted, ruleValue }}
 					/>
