@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './SearchButton.css'
 import Overlay from './Overlay'
 import { SearchBar } from './pages/RulesList'
 import withColours from 'Components/withColours'
 
+@connect(
+	state => ({
+		flatRules: state.flatRules
+	})
+)
 @withColours
 export default class SearchButton extends Component {
 	componentDidMount() {
@@ -27,12 +33,13 @@ export default class SearchButton extends Component {
 	}
 	close = () => this.setState({ visible: false })
 	render() {
+		let { flatRules } = this.props
 		return (
 			<div id="searchButton">
 				{this.state.visible ? (
 					<Overlay onOuterClick={this.close}>
 						<h2>Chercher une règle</h2>
-						<SearchBar showDefaultList={false} finally={this.close} />
+						<SearchBar showDefaultList={false} finally={this.close} rules={flatRules} />
 					</Overlay>
 				) : (
 					<button onClick={() => this.setState({ visible: true })}>

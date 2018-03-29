@@ -34,6 +34,7 @@ export class SearchBar extends React.Component {
 		this.inputElement.focus()
 	}
 	componentWillMount() {
+		let { rules } = this.props
 		var options = {
 			keys: [
 				{
@@ -82,6 +83,7 @@ export class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
+		let { rules } = this.props
 		let { selectedOption } = this.state
 
 		if (selectedOption != null) {
@@ -113,7 +115,7 @@ export class SearchBar extends React.Component {
 							{rules.map(rule => (
 								<li key={rule.dottedName}>
 									<Link to={'/règle/' + encodeRuleName(rule.name)}>
-										{capitalise0(rule.name)}
+										{rule.title || capitalise0(rule.name)}
 									</Link>
 								</li>
 							))}
