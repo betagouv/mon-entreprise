@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
@@ -7,6 +8,7 @@ import { Field } from 'redux-form'
 import SendButton from './SendButton'
 
 @FormDecorator('input')
+@translate()
 export default class Input extends Component {
 	static contextTypes = {
       i18n: PropTypes.object.isRequired
@@ -25,8 +27,9 @@ export default class Input extends Component {
 			suffixed = answerSuffix != null,
 			inputError = dirty && error,
 			submitDisabled = !dirty || inputError,
-			{ i18n } = this.context
-		attributes['placeholder'] = i18n.t(attributes['placeholder']);
+			{ i18n } = this.context,
+			transformedAttributes = Object.assign({}, attributes)
+		transformedAttributes['placeholder'] = i18n.t(attributes['placeholder'])
 
 		return (
 			<span>
@@ -40,7 +43,7 @@ export default class Input extends Component {
 						{...input}
 						className={classnames({ suffixed })}
 						id={'step-' + dottedName}
-						{...attributes}
+						{...transformedAttributes}
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
