@@ -39,3 +39,13 @@ clickForMore: You can click the results below for detailed explanations.
 Quel est le salaire mensuel ?: What is the monthly salary?
 back: Back to your simulation
 ambiguous: More than one rule with this name found. Which one are you looking for ?
+reportError: Report an error
+Références: Relevant legal information
+Règles attachées: Linked rules
+inspace: These rules are in category
+Pas de sources officielles: No official information
+afficher les sources complémentaires: display additional information sources
+understand: Click any value to see how it was calculated
+input: This rule does not have a formula to compute it. Its value must be supplied through the form.
+Déclenchement: Applicability
+Calcul: Calculation formula

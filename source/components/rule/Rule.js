@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import { isEmpty, path, last } from 'ramda'
 import { connect } from 'react-redux'
 import './Rule.css'
@@ -21,6 +22,7 @@ import SearchButton from 'Components/SearchButton'
 	flatRules: state.flatRules,
 	currentExample: state.currentExample
 }))
+@translate()
 export default class Rule extends Component {
 	render() {
 		let { form, rule, currentExample, rules, flatRules } = this.props,
@@ -28,7 +30,7 @@ export default class Rule extends Component {
 			conversationStarted = !isEmpty(form)
 
 		let { type, name, title, description, question, ns } = flatRule,
-			namespaceRules = findRuleByNamespace(rules, rule.dottedName)
+			namespaceRules = findRuleByNamespace(flatRules, rule.dottedName)
 
 		return (
 			<div id="rule">
@@ -44,7 +46,8 @@ export default class Rule extends Component {
 						description,
 						question,
 						rule,
-						name
+						name,
+						title
 					}}
 				/>
 
@@ -79,17 +82,18 @@ export default class Rule extends Component {
 	renderReferences = ({ références: refs }) =>
 		refs ? (
 			<div>
-				<h2>Références</h2>
+				<h2><Trans>Références</Trans></h2>
 				<References refs={refs} />
 			</div>
 		) : null
 }
 
-let NamespaceRulesList = withColours(({ namespaceRules, rule, colours }) => (
+let NamespaceRulesList = withColours(({ namespaceRules, flatRule, colours }) => (
 	<section>
 		<h2>
-			Règles attachées<small>
-				Ces règles sont dans l'espace de nom `{rule.name}`
+			<Trans>Règles attachées</Trans>
+			<small>
+				<Trans i18nKey="inspace">Ces règles sont dans l'espace de nom</Trans> `{flatRule.title}`
 			</small>
 		</h2>
 		<ul>
@@ -102,7 +106,7 @@ let NamespaceRulesList = withColours(({ namespaceRules, rule, colours }) => (
 						}}
 						to={'/règle/' + encodeRuleName(r.dottedName)}
 					>
-						{r.name}
+						{r.title || r.name}
 					</Link>
 				</li>
 			))}
@@ -110,11 +114,11 @@ let NamespaceRulesList = withColours(({ namespaceRules, rule, colours }) => (
 	</section>
 ))
 
-let RuleMeta = ({ ns, type, description, question, rule, name }) => (
+let RuleMeta = ({ ns, type, description, question, rule, name, title }) => (
 	<section id="rule-meta">
 		<div id="meta-header">
 			{ns && <Namespace {...{ ns }} />}
-			<h1>{capitalise0(name)}</h1>
+			<h1>{title || capitalise0(name)}</h1>
 		</div>
 		<div id="meta-content">
 			<div id="meta-paragraph">
@@ -174,7 +178,8 @@ let ReportError = () => (
 				className="fa fa-exclamation-circle"
 				aria-hidden="true"
 				style={{ marginRight: '.6em' }}
-			/>Signaler une erreur
+			/>
+			<Trans i18nKey="reportError">Signaler une erreur</Trans>
 		</a>
 	</button>
 )
