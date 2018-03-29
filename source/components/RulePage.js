@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import Rule from 'Components/rule/Rule'
 import { analyse } from 'Engine/traverse'
@@ -21,6 +22,7 @@ import { Namespace } from './rule/Rule'
 	flatRules: state.flatRules,
 	analysis: state.analysis
 }))
+@translate()
 export default class RulePage extends Component {
 	nameFromParams = path(['match', 'params', 'name'])
 	componentWillMount() {
@@ -75,15 +77,15 @@ let BackToSimulation = ({ targets }) => (
 		id="toSimulation"
 		to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
 	>
-		<i className="fa fa-arrow-circle-left" aria-hidden="true" />Reprendre la
-		simulation
+		<i className="fa fa-arrow-circle-left" aria-hidden="true" />
+		<Trans i18nKey="back">Reprendre la simulation</Trans>
 	</Link>
 )
 
 let DisambiguateRuleQuery = ({ rules }) => (
 	<div className="centeredMessage">
 		<p>
-			Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?
+			<Trans i18nKey="ambiguous">Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?</Trans>
 		</p>
 		<ul>
 			{rules.map(({ dottedName, ns, title }) => (
