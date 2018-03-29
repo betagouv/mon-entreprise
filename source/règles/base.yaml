@@ -853,10 +853,8 @@
 - espace: contrat salarié
   nom: aides employeur
   résumé: Aides différées pour l'employeur.
-  description: | 
-        Certaines aides peuvent être demandées par l'employeur pour faciliter une embauche. 
-  
-        Ces aides sont différées : elles ne viennent pas réduire les montants mensuels, mais interviennent par la suite, par exemple sous forme de crédit d'impôt.
+  description: > 
+    Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
     somme:
       - CICE
