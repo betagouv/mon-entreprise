@@ -6,6 +6,7 @@ import { propEq, contains, without, curry, append, ifElse } from 'ramda'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 import { Field, reduxForm, formValueSelector, change } from 'redux-form'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
@@ -124,7 +125,9 @@ export default class TargetSelection extends Component {
 								</label>
 							)}
 							<span className="texts">
-								<span className="optionTitle">{s.title || s.name}</span>
+								<span className="optionTitle">
+									<Link to={'/règle/' + s.dottedName}>{s.title || s.name}</Link>
+								</span>
 								<p>{s['résumé']}</p>
 							</span>
 							<TargetInputOrValue
