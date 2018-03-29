@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { findRuleByName } from 'Engine/rules'
 import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
 import { connect } from 'react-redux'
@@ -11,6 +11,7 @@ export let salaries = ['salaire net', 'salaire de base', 'salaire total']
 @connect(state => ({
 	parsedRules: state.parsedRules,
 }))
+@translate()
 export default class TargetSelection extends Component {
 	state = {
 		targets: [],

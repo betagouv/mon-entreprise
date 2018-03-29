@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import './ProgressTip.css'
@@ -12,6 +12,7 @@ import { Line } from 'rc-progress'
 	nextSteps: state.nextSteps,
 	colour: state.themeColours.colour
 }))
+@translate()
 export default class ProgressTip extends Component {
 	state = {
 		nbFoldedStepsForFirstEstimation: null

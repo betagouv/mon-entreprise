@@ -56,14 +56,6 @@ ReactPiwik.push([
 export default class Layout extends Component {
 	history = createHistory()
 	render() {
-		// Language changes
-		this.history.listen((location, action) => {
-			let lang = queryString.parse(location.search)['lang']
-			if (lang) {
-				i18next.changeLanguage(lang);
-				sessionStorage['lang'] = lang
-			}
-		})
 		// track the initial pageview
 		ReactPiwik.push(['trackPageView'])
 		return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { encodeRuleName } from 'Engine/rules'
 import classNames from 'classnames'
@@ -8,6 +8,7 @@ import { humanFigure } from '../../utils'
 import './RuleValueVignette.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
+@translate()
 export default ({
 	name,
 	type,

@@ -18,7 +18,7 @@ import {
 	find
 } from 'ramda'
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -78,6 +78,7 @@ export let byBranch = analysis => {
 	inversions: formValueSelector('conversation')(state, 'inversions'),
 	done: state.done
 }))
+@translate()
 export default class ResultsGrid extends Component {
 	render() {
 		let { analysis, situationGate, targetNames, inversions, done } = this.props
@@ -163,6 +164,7 @@ export default class ResultsGrid extends Component {
 	}
 }
 
+@translate()
 class Row extends Component {
 	static contextTypes = {
       i18n: PropTypes.object.isRequired

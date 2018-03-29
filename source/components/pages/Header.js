@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
+import PropTypes from 'prop-types'
 import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
@@ -11,6 +12,7 @@ import { withRouter } from 'react-router'
 	iframe: state.iframe,
 	textColourOnWhite: state.themeColours.textColourOnWhite
 }))
+@translate()
 export class Header extends Component {
 	state = {
 		mobileNavVisible: false
@@ -99,14 +101,22 @@ let Links = ({ toggle }) => (
 )
 
 @withRouter
+@translate()
 export class Footer extends Component {
+	static contextTypes = {
+      i18n: PropTypes.object.isRequired
+    }
 	render() {
+		let { i18n } = this.context
+		let changeLanguage = lng => {
+				i18n.changeLanguage(lng)
+			}
 		let appMode = ['/simu', '/regle'].find(t =>
 			this.props.location.pathname.includes(t)
 		)
 		return (
 			<div id="footer">
-				<Link to="?lang=en">(en)</Link>/<Link to="?lang=fr">(fr)</Link>&nbsp;
+				<span onClick={() => changeLanguage('en')}>(en)</span>/<span onClick={() => changeLanguage('fr')}>(fr)</span>&nbsp;
 				{appMode &&
 				(<Link to="/à-propos">
 					<Trans>À propos</Trans> <i className="fa fa-question-circle" aria-hidden="true" />

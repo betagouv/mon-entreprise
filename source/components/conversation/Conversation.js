@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { isEmpty } from 'ramda'
 import Aide from '../Aide'
 import Satisfaction from '../Satisfaction'
@@ -10,6 +10,7 @@ import { scroller, Element } from 'react-scroll'
 	form: 'conversation',
 	destroyOnUnmount: false
 })
+@translate()
 export default class Conversation extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
