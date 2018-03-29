@@ -23,15 +23,14 @@ export let popularTargetNames = [...salaries, 'aides employeur']
 		getTargetValue: dottedName =>
 			formValueSelector('conversation')(state, dottedName),
 		targets: state.analysis ? state.analysis.targets : [],
-		flatRules: state.flatRules
-		conversationTargetNames: state.conversationTargetNames,
+		flatRules: state.flatRules,
+		conversationStarted: state.conversationStarted,
 		missingVariablesByTarget: state.missingVariablesByTarget
 	}),
 	dispatch => ({
 		setFormValue: (field, name) =>
 			dispatch(change('conversation', field, name)),
-		setConversationTargets: (targetNames, fromScratch = false) =>
-			dispatch({ type: 'SET_CONVERSATION_TARGETS', targetNames, fromScratch })
+		startConversation: () => dispatch({ type: 'START_CONVERSATION' })
 	})
 )
 export default class TargetSelection extends Component {
@@ -40,7 +39,7 @@ export default class TargetSelection extends Component {
 	}
 
 	render() {
-		let { targets, conversationTargetNames, colours } = this.props
+		let { targets, conversationStarted, colours } = this.props
 		this.firstEstimationComplete = this.state.activeInput && targets.length > 0
 		return (
 			<div id="targetSelection">
@@ -49,8 +48,7 @@ export default class TargetSelection extends Component {
 					style={{
 						background: colours.colour,
 						color: colours.textColour
-					}}
-				>
+					}}>
 					{this.renderOutputList()}
 				</section>
 				{!this.firstEstimationComplete && (
@@ -64,80 +62,34 @@ export default class TargetSelection extends Component {
 					</h1>
 				)}
 
-				{this.firstEstimationComplete && (
-					<div id="action">
-						{conversationTargetNames ? (
-							!conversationTargetNames.length && (
-								<p>Cochez ce que vous voulez affiner</p>
-							)
-						) : (
-							<>
-								<p>
-									<b>Estimation approximative</b> <br /> pour une situation par
-									défaut (CDI non cadre).
-								</p>
-								<BlueButton
-									onClick={() => {
-										this.props.setConversationTargets([])
-									}}
-								>
-									Affiner le calcul
-								</BlueButton>
-							</>
-						)}
-					</div>
-				)}
+				{this.firstEstimationComplete &&
+					!conversationStarted && (
+						<div id="action">
+							<p>
+								<b>Estimation approximative</b> <br /> pour une situation par
+								défaut (CDI non cadre).
+							</p>
+							<BlueButton onClick={this.props.startConversation}>
+								Affiner le calcul
+							</BlueButton>
+						</div>
+					)}
 			</div>
 		)
 	}
 
 	renderOutputList() {
-		let popularTargets = popularTargetNames.map(curry(findRuleByName)(flatRules)),
-			{
-				conversationTargetNames,
-				textColourOnWhite,
-				setConversationTargets,
-				missingVariablesByTarget
-			} = this.props,
-			optionIsChecked = s => (conversationTargetNames || []).includes(s.name),
-			visibleCheckbox = s =>
-				conversationTargetNames && s.dottedName !== this.state.activeInput,
-			toggleTarget = target =>
-				ifElse(contains(target), without(target), append(target))
+		let popularTargets = popularTargetNames.map(
+				curry(findRuleByName)(flatRules)
+			),
+			{ textColourOnWhite, missingVariablesByTarget } = this.props
 
 		return (
 			<div>
 				<ul id="targets">
 					{popularTargets.map(s => (
 						<li key={s.name}>
-							{visibleCheckbox(s) && (
-								<input
-									id={s.name}
-									type="checkbox"
-									checked={optionIsChecked(s)}
-									onChange={() =>
-										setConversationTargets(
-											toggleTarget(s.name)(
-												(conversationTargetNames || []).filter(
-													t => !this.state.activeInput.includes(t)
-												)
-											)
-										)
-									}
-								/>
-							)}
-							{conversationTargetNames && (
-								<label htmlFor={s.name} key={s.name}>
-									<i
-										style={{
-											visibility: visibleCheckbox(s) ? 'visible' : 'hidden'
-										}}
-										className={`fa fa${
-											optionIsChecked(s) ? '-check' : ''
-										}-square-o fa-2x`}
-									/>
-								</label>
-							)}
+							<span>BLOB</span>
 							<span className="texts">
 								<span className="optionTitle">
 									<Link to={'/règle/' + s.dottedName}>{s.title || s.name}</Link>
@@ -224,8 +176,7 @@ class TargetValue extends Component {
 					}
 
 					setActiveInput(s.dottedName)
-				}}
-			>
+				}}>
 				<RuleValue value={value} />
 			</span>
 		)
