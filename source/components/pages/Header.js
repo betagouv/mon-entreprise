@@ -104,7 +104,7 @@ let Links = ({ toggle }) => (
 @withRouter
 @translate()
 @connect(
-	state => {},
+	state => ({}),
 	dispatch => ({
 		changeLanguage: (lang) => dispatch({ type: CHANGE_LANG, lang })
 	})
