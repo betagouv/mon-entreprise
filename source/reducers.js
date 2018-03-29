@@ -233,5 +233,5 @@ export default reduceReducers(
 		currentExample
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps(ReactPiwik, rules, formatInputs(rulesFr, formValueSelector))
+	reduceSteps(ReactPiwik, rulesFr, formatInputs(rulesFr, formValueSelector))
 )
