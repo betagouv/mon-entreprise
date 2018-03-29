@@ -1,4 +1,5 @@
 import React from 'react'
+import { Trans, translate } from 'react-i18next'
 import classNames from 'classnames'
 import { path, values } from 'ramda'
 import { AttachDictionary } from '../AttachDictionary'
@@ -12,12 +13,15 @@ import { exampleSituationGateWithDefaults } from './Examples'
 
 let RuleWithoutFormula = () => (
 	<p>
+		<Trans i18nKey="input">
 		Cette règle n'a pas de formule de calcul pour l'instant. Sa valeur doit donc
 		être renseignée directement.
+		</Trans>
 	</p>
 )
 
 @AttachDictionary(knownMecanisms)
+@translate()
 export default class Algorithm extends React.Component {
 	render() {
 		let { rule: displayedRule, showValues, currentExample, rules } = this.props,
@@ -45,7 +49,7 @@ export default class Algorithm extends React.Component {
 						)
 						applicabilityMecanisms.length > 0 && (
 							<section id="declenchement">
-								<h2>Déclenchement</h2>
+								<h2><Trans>Déclenchement</Trans></h2>
 								<ul>
 									{applicabilityMecanisms.map(v => (
 										<li key={v.name}>{makeJsx(v)}</li>
@@ -56,9 +60,9 @@ export default class Algorithm extends React.Component {
 					}}
 					<section id="formule">
 						<h2>
-							Calcul
+							<Trans>Calcul</Trans>
 							{!ruleWithoutFormula && (
-								<small>Cliquez sur chaque chaque valeur pour comprendre</small>
+								<small><Trans i18nKey="understand">Cliquez sur chaque chaque valeur pour comprendre</Trans></small>
 							)}
 						</h2>
 						{ruleWithoutFormula ? (
