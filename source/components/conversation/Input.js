@@ -61,9 +61,6 @@ export class Input extends Component {
 		)
 	}
 
-	componentDidMount() {
-		this.inputElement.focus()
-	}
 	renderSuggestions(themeColours) {
 		let { setFormValue, suggestions, inverted } = this.props
 
