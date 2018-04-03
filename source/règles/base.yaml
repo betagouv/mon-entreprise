@@ -669,8 +669,8 @@
 
 - espace: contrat salarié
   nom: salaire de base
-  titre: Salaire de base
-  résumé: Brut régulier inscrit dans le contrat de travail.
+  titre: Salaire brut de base
+  résumé: Inscrit dans le contrat de travail.
   type: salaire
   question: Quel est le salaire de base mensuel ?
   description: |
@@ -821,8 +821,8 @@
 
 - espace: contrat salarié
   nom: salaire total
-  titre: Salaire total
-  question: Quel est le salaire total mensuel?
+  titre: Salaire chargé
+  question: Quel est le salaire mensuel chargé ?
   résumé: À verser par l'employeur tous les mois.
   type: salaire
   description: |
