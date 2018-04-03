@@ -71,8 +71,8 @@ export default class TargetSelection extends Component {
 						) : (
 							<>
 								<p>
-									Estimation approximative pour une situation par défaut : CDI
-									non cadre...
+									<b>Estimation approximative</b> <br /> pour une situation par
+									défaut (CDI non cadre).
 								</p>
 								<BlueButton
 									onClick={() => {
