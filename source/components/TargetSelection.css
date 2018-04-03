@@ -56,6 +56,14 @@
 	line-height: 1.2em;
 	}
 
+#targetSelection .progressCircle {
+		width: 2.5em;
+}
+#targetSelection .progressCircle i {
+		color: #5de662;
+		font-size: 230%
+}
+
 #targetSelection label {
 		width: 10%;
 	display: inline-block;

@@ -13,6 +13,7 @@ import classNames from 'classnames'
 import { buildValidationFunction } from './conversation/FormDecorator'
 export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
+import { Circle } from 'rc-progress'
 
 @translate()
 @reduxForm({
@@ -82,22 +83,37 @@ export default class TargetSelection extends Component {
 		let popularTargets = popularTargetNames.map(
 				curry(findRuleByName)(flatRules)
 			),
-			{ textColourOnWhite, missingVariablesByTarget } = this.props
-		console.log(missingVariablesByTarget)
+			{
+				textColourOnWhite,
+				missingVariablesByTarget,
+				conversationStarted
+			} = this.props
 
 		return (
 			<div>
 				<ul id="targets">
 					{popularTargets.map(s => (
 						<li key={s.name}>
-							<span>
-								{do {
-									let mv = missingVariablesByTarget[s.dottedName],
-										number = mv && mv.missingVariables.length
-									console.log(number)
-									number
-								}}
-							</span>
+							{conversationStarted && (
+								<span className="progressCircle">
+									{do {
+										let mv = missingVariablesByTarget[s.dottedName],
+											number = mv && mv.missingVariables.length,
+											ratio = number / 16
+										ratio === 0 ? (
+											<i className="fa fa-check" aria-hidden="true" />
+										) : (
+											<Circle
+												percent={100 - ratio * 100}
+												strokeWidth="15"
+												strokeColor="#5de662"
+												trailColor="#bbbbbb"
+												trailWidth="5"
+											/>
+										)
+									}}
+								</span>
+							)}
 							<span className="texts">
 								<span className="optionTitle">
 									<Link to={'/règle/' + s.dottedName}>{s.title || s.name}</Link>
