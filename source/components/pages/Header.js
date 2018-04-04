@@ -111,8 +111,8 @@ let Links = ({ toggle }) => (
 )
 export class Footer extends Component {
 	static contextTypes = {
-      i18n: PropTypes.object.isRequired
-    }
+		i18n: PropTypes.object.isRequired
+	}
 	render() {
 		let { i18n } = this.context
 		let changeLanguage = lng => {
