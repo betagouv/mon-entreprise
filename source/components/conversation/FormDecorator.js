@@ -32,7 +32,6 @@ export var FormDecorator = formType => RenderField =>
 				dispatch(change('conversation', field, value))
 		})
 	)
-	@translate()
 	class extends Component {
 		static contextTypes = {
 			i18n: PropTypes.object.isRequired

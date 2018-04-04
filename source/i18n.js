@@ -4,9 +4,11 @@ import queryString from 'query-string'
 
 import { getIframeOption } from './utils'
 import enTranslations from './locales/en.yaml'
+import frTranslations from './locales/fr.yaml'
 
 let lang = getIframeOption('lang') || queryString.parse(location.search)['lang'] || sessionStorage['lang']
-if (lang) sessionStorage['lang'] = lang
+if (!lang) lang = 'fr'
+sessionStorage['lang'] = lang
 
 i18next
 	.init({
@@ -14,8 +16,12 @@ i18next
 		lng: lang,
 		resources: {
 				en: {
-			translation: enTranslations
-		}}
+					translation: enTranslations
+				},
+				fr: {
+					translation: frTranslations
+				}
+    }
 	}, (err, t) => {
 		console.log("Error from i18n load",err,t)
 	})

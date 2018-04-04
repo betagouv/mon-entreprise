@@ -108,7 +108,8 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, suggestions, inverted } = this.props.stepProps
+		let { setFormValue, suggestions, inverted } = this.props.stepProps,
+			{ i18n } = this.context
 
 		if (!suggestions || inverted) return null
 		return (
@@ -135,7 +136,7 @@ export default class Input extends Component {
 							}
 							style={{ color: themeColours.textColourOnWhite }}
 						>
-							<span title="cliquez pour insérer cette suggestion">{text}</span>
+							<span title={ i18n.t("suggestion") }>{text}</span>
 						</li>
 					))}
 				</ul>
