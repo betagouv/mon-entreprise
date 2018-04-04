@@ -169,9 +169,10 @@ describe('results grid', function() {
 			0,
 			0.1
 		)
+		let defaultATMPRate = 2.22 / 100
 		expect(
 			subCell(maladie, 'contrat salarié . ATMP', 'employeur')
-		).to.be.closeTo(54, 1)
+		).to.be.closeTo(2300 * defaultATMPRate, 1)
 	})
 
 	it('should access taxe sur les salaires', function() {
