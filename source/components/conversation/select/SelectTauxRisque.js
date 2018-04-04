@@ -63,7 +63,7 @@ export default class Select extends Component {
 
 	componentDidMount() {
 		fetch(
-			'https://raw.githubusercontent.com/sgmap/taux-collectifs-cotisation-atmp/master/taux-2017.json'
+			'https://raw.githubusercontent.com/sgmap/taux-collectifs-cotisation-atmp/master/taux-2018.json'
 		)
 			.then(response => {
 				if (!response.ok) {
