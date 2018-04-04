@@ -11,8 +11,8 @@ import SendButton from './SendButton'
 @translate()
 export default class Input extends Component {
 	static contextTypes = {
-      i18n: PropTypes.object.isRequired
-    }
+		i18n: PropTypes.object.isRequired
+	}
 	state = {
 		lastValue: ''
 	}
@@ -54,8 +54,7 @@ export default class Input extends Component {
 						<label
 							className="suffix"
 							htmlFor={'step-' + dottedName}
-							style={!active ? { color: '#888' } : { color: '#222' }}
-						>
+							style={!active ? { color: '#888' } : { color: '#222' }}>
 							{answerSuffix}
 						</label>
 					)}
@@ -97,8 +96,7 @@ export default class Input extends Component {
 				name={'inversions.' + dottedName}
 				onChange={(e, newValue, previousFieldName) =>
 					setFormValue('', previousFieldName)
-				}
-			>
+				}>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}
@@ -108,7 +106,8 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, suggestions, inverted } = this.props.stepProps
+		let { setFormValue, suggestions, inverted } = this.props.stepProps,
+			{ i18n } = this.context
 
 		if (!suggestions || inverted) return null
 		return (
@@ -133,9 +132,10 @@ export default class Input extends Component {
 								this.state.lastValue != null &&
 								setFormValue('' + this.state.lastValue)
 							}
-							style={{ color: themeColours.textColourOnWhite }}
-						>
-							<span title="cliquez pour insérer cette suggestion">{text}</span>
+							style={{ color: themeColours.textColourOnWhite }}>
+							<span title={i18n.t('cliquez pour insérer cette suggestion')}>
+								{text}
+							</span>
 						</li>
 					))}
 				</ul>
