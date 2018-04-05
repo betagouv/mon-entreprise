@@ -25,16 +25,18 @@ export default class ProgressTip extends Component {
 		return (
 			nbQuestions != 0 && (
 				<div className="progressTip">
-					{foldedSteps.length > 0 && (
-						<Line
-							percent={
-								100 * foldedSteps.length / (foldedSteps.length + nbQuestions)
-							}
-							trailWidth="1"
-							strokeWidth="2"
-							strokeColor={colour}
-						/>
-					)}
+					<Line
+						style={{
+							visibility: foldedSteps.length > 0 ? 'visible' : 'hidden'
+						}}
+						percent={
+							100 * foldedSteps.length / (foldedSteps.length + nbQuestions)
+						}
+						trailWidth="1"
+						strokeWidth="2"
+						strokeColor={colour}
+					/>
+
 					<p>
 						{nbQuestions === 1
 							? 'une dernière question !'

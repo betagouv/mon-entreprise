@@ -5,7 +5,6 @@
 	padding: 0.2em .5em;
 
 	border-radius: 0.6em;
-	font-size: 85%;
 	box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.25)
 }
 
@@ -17,11 +16,7 @@
 	margin: 0.6em;
 	color: inherit;
 	text-align: center;
-	font-size: 200%;
-}
-
-#targetSelection h1 i {
-    font-size: 80%;
+	font-size: 180%;
 }
 
 #targetSelection #action {
@@ -30,9 +25,9 @@
 }
 
 #targetSelection #action p {
-    font-size: 130%;
 	color: #4b4b66;
 	margin-bottom: 1em;
+	font-size: 120%;
 }
 
 
@@ -46,22 +41,23 @@
 	background: rgba(0, 0, 0, 0.25);
     display: flex;
 	align-items: center;
-    padding: .4em 1em;
+    padding: .4em .6em .4em;
     border-radius: .3em;
 }
 
 #targetSelection #targets > li p {
 	margin: .2em 0 0;
-	opacity: .8;
+	opacity: .80;
 	line-height: 1.2em;
 	}
 
 #targetSelection .progressCircle {
 		width: 2.5em;
+		margin-right: .6em;
 }
 #targetSelection .progressCircle i {
 		color: #5de662;
-		font-size: 230%
+		font-size: 180%
 }
 
 #targetSelection label {
@@ -69,21 +65,16 @@
 	display: inline-block;
 	cursor: pointer;
 }
-#targetSelection label i {
-	font-size: 200%;
-	font-width: 600;
-}
 
 #targetSelection .texts {
-		margin: 0 1.5em 0 .6em;
+		margin: 0 .4em 0;
 		width: 55%;
 		display: inline-block;
-		font-size: 110%;
 
 }
 
 #targetSelection .optionTitle {
-	font-size: 130%;
+	font-size: 120%;
 	font-weight: 600;
 }
 #targetSelection .optionTitle a {
@@ -107,7 +98,7 @@ text-decoration: underline;
 #targetSelection .targetInputOrValue
 {
 		width: 40%;
-	font-size: 140%;
+	font-size: 110%;
 	text-align: right;
 }
 
@@ -143,7 +134,7 @@ border: none;
 .input-error {
 padding: 0 .6em;
     margin-right: .6em;
-    font-size: 0.8em;
+    font-size: 80%;
     font-style: italic;
     color: #c0392b;
     background: yellow;

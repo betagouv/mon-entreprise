@@ -85,32 +85,37 @@ export default class TargetSelection extends Component {
 				<ul id="targets">
 					{popularTargets.map(s => (
 						<li key={s.name}>
-							{conversationStarted &&
-								activeInput !== s.dottedName && (
-									<span className="progressCircle">
-										{do {
-											let mv = missingVariablesByTarget[s.dottedName],
-												number = mv && mv.missingVariables.length,
-												ratio = number / 16
-											ratio === 0 ? (
-												<i className="fa fa-check" aria-hidden="true" />
-											) : (
-												<Circle
-													percent={100 - ratio * 100}
-													strokeWidth="15"
-													strokeColor="#5de662"
-													trailColor="#fff"
-													trailWidth="5"
-												/>
-											)
-										}}
-									</span>
-								)}
+							{conversationStarted && (
+								<span
+									className="progressCircle"
+									style={{
+										visibility:
+											activeInput === s.dottedName ? 'hidden' : 'visible'
+									}}
+								>
+									{do {
+										let mv = missingVariablesByTarget[s.dottedName],
+											number = mv && mv.missingVariables.length,
+											ratio = number / 16
+										ratio === 0 ? (
+											<i className="fa fa-check" aria-hidden="true" />
+										) : (
+											<Circle
+												percent={100 - ratio * 100}
+												strokeWidth="15"
+												strokeColor="#5de662"
+												trailColor="#fff"
+												trailWidth="5"
+											/>
+										)
+									}}
+								</span>
+							)}
 							<span className="texts">
 								<span className="optionTitle">
 									<Link to={'/règle/' + s.dottedName}>{s.title || s.name}</Link>
 								</span>
-								<p>{s['résumé']}</p>
+								{!conversationStarted && <p>{s['résumé']}</p>}
 							</span>
 							<TargetInputOrValue
 								{...{
