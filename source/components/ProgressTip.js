@@ -21,6 +21,8 @@ export default class ProgressTip extends Component {
 			} = this.props,
 			nbQuestions = nextSteps.length
 
+		console.log(colour, 'tc')
+
 		if (!conversationStarted) return null
 		return (
 			nbQuestions != 0 && (
@@ -30,9 +32,9 @@ export default class ProgressTip extends Component {
 							percent={
 								100 * foldedSteps.length / (foldedSteps.length + nbQuestions)
 							}
+							trailWidth=".3"
 							strokeWidth="1"
 							strokeColor={colour}
-							strokeLinecap="butt"
 						/>
 					)}
 					<p>
