@@ -31,8 +31,8 @@ let scroll = () =>
 	dispatch => ({
 		reinitialise: () => {
 			ReactPiwik.push(['trackEvent', 'restart', ''])
-			dispatch(reset('conversation'))
-			dispatch({ type: 'SET_CONVERSATION_TARGETS', reset: true })
+			// TODO horrible hack : our state should be refactored to enable resetting the relevant part of it
+			window.location.reload(false)
 		}
 	})
 )
