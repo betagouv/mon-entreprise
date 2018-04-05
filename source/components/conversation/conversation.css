@@ -189,10 +189,11 @@
 
 .step input[type='text'] {
 	border-bottom: 1px solid;
+	border-radius: .3em;
 	display: inline-block;
 	line-height: 1.6em;
 	height: 1.6em; /* IE 11 needs this */
-	font-size: 100%;
+	font-size: 130%;
 	padding: 0;
 	padding-right: 0.4em;
 	width: 8em;
