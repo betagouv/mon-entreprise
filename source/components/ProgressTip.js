@@ -16,7 +16,7 @@ export default class ProgressTip extends Component {
 		let {
 				nextSteps,
 				foldedSteps,
-				themeColours: { colour },
+				themeColours: { colour, textColourOnWhite },
 				conversationStarted
 			} = this.props,
 			nbQuestions = nextSteps.length
@@ -37,10 +37,15 @@ export default class ProgressTip extends Component {
 						strokeColor={colour}
 					/>
 
-					<p>
-						{nbQuestions === 1
-							? 'une dernière question !'
-							: `moins de ${nbQuestions} questions`}
+					<p style={{ color: textColourOnWhite }}>
+						{nbQuestions === 1 ? (
+							'dernière question !'
+						) : (
+							<span>
+								<i className="fa fa-minus-square-o" aria-hidden="true" />
+								{` de ${nbQuestions} questions`}
+							</span>
+						)}
 					</p>
 				</div>
 			)
