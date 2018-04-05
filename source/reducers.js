@@ -1,4 +1,4 @@
-import { head, pathOr, without, concat, path, length } from 'ramda'
+import { head, pathOr, without, concat, path, length, reject } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
@@ -62,6 +62,10 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 
 	if (path(['form', 'conversation', 'syncErrors'], state)) return state
 
+	let targetNames = reject(
+		name => state.activeTargetInput && state.activeTargetInput.includes(name)
+	)(state.targetNames)
+
 	let sim = {},
 		// Hard assumptions cannot be changed, they are used to specialise a simulator
 		// before the user sees the first question
@@ -71,7 +75,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
-	let analysis = analyseMany(state.parsedRules, state.targetNames)(
+	let analysis = analyseMany(state.parsedRules, targetNames)(
 		situationWithDefaults(state)
 	)
 
@@ -79,7 +83,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		return { ...state, analysis, situationGate: situationWithDefaults(state) }
 	}
 
-	let nextStepsAnalysis = analyseMany(state.parsedRules, state.targetNames)(
+	let nextStepsAnalysis = analyseMany(state.parsedRules, targetNames)(
 			intermediateSituation(state)
 		),
 		missingVariablesByTarget = collectMissingVariablesByTarget(
@@ -173,6 +177,14 @@ function conversationStarted(state = false, { type }) {
 			return state
 	}
 }
+function activeTargetInput(state = null, { type, name }) {
+	switch (type) {
+		case 'SET_ACTIVE_TARGET_INPUT':
+			return name
+		default:
+			return state
+	}
+}
 
 export default initialRules =>
 	reduceReducers(
@@ -203,7 +215,8 @@ export default initialRules =>
 			explainedVariable,
 
 			currentExample,
-			conversationStarted
+			conversationStarted,
+			activeTargetInput
 		}),
 		// cross-cutting concerns because here `state` is the whole state tree
 		reduceSteps(

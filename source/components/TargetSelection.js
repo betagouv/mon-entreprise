@@ -26,22 +26,20 @@ import { Circle } from 'rc-progress'
 		targets: state.analysis ? state.analysis.targets : [],
 		flatRules: state.flatRules,
 		conversationStarted: state.conversationStarted,
-		missingVariablesByTarget: state.missingVariablesByTarget
+		missingVariablesByTarget: state.missingVariablesByTarget,
+		activeInput: state.activeTargetInput
 	}),
 	dispatch => ({
 		setFormValue: (field, name) =>
 			dispatch(change('conversation', field, name)),
-		startConversation: () => dispatch({ type: 'START_CONVERSATION' })
+		startConversation: () => dispatch({ type: 'START_CONVERSATION' }),
+		setActiveInput: name => dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
 	})
 )
 export default class TargetSelection extends Component {
-	state = {
-		activeInput: null
-	}
-
 	render() {
 		let { targets, conversationStarted, colours } = this.props
-		this.firstEstimationComplete = this.state.activeInput && targets.length > 0
+		this.firstEstimationComplete = this.props.activeInput && targets.length > 0
 		return (
 			<div id="targetSelection">
 				<section
@@ -86,7 +84,9 @@ export default class TargetSelection extends Component {
 			{
 				textColourOnWhite,
 				missingVariablesByTarget,
-				conversationStarted
+				conversationStarted,
+				activeInput,
+				setActiveInput
 			} = this.props
 
 		return (
@@ -94,26 +94,27 @@ export default class TargetSelection extends Component {
 				<ul id="targets">
 					{popularTargets.map(s => (
 						<li key={s.name}>
-							{conversationStarted && (
-								<span className="progressCircle">
-									{do {
-										let mv = missingVariablesByTarget[s.dottedName],
-											number = mv && mv.missingVariables.length,
-											ratio = number / 16
-										ratio === 0 ? (
-											<i className="fa fa-check" aria-hidden="true" />
-										) : (
-											<Circle
-												percent={100 - ratio * 100}
-												strokeWidth="15"
-												strokeColor="#5de662"
-												trailColor="#bbbbbb"
-												trailWidth="5"
-											/>
-										)
-									}}
-								</span>
-							)}
+							{conversationStarted &&
+								activeInput !== s.dottedName && (
+									<span className="progressCircle">
+										{do {
+											let mv = missingVariablesByTarget[s.dottedName],
+												number = mv && mv.missingVariables.length,
+												ratio = number / 16
+											ratio === 0 ? (
+												<i className="fa fa-check" aria-hidden="true" />
+											) : (
+												<Circle
+													percent={100 - ratio * 100}
+													strokeWidth="15"
+													strokeColor="#5de662"
+													trailColor="#bbbbbb"
+													trailWidth="5"
+												/>
+											)
+										}}
+									</span>
+								)}
 							<span className="texts">
 								<span className="optionTitle">
 									<Link to={'/règle/' + s.dottedName}>{s.title || s.name}</Link>
@@ -125,8 +126,8 @@ export default class TargetSelection extends Component {
 									s,
 									targets: this.props.targets,
 									firstEstimationComplete: this.firstEstimationComplete,
-									activeInput: this.state.activeInput,
-									setActiveInput: name => this.setState({ activeInput: name }),
+									activeInput,
+									setActiveInput,
 									setFormValue: this.props.setFormValue
 								}}
 							/>
