@@ -484,7 +484,7 @@
 
 - espace: contrat salarié . CDD . motif
   nom: complément formation
-  titre: Complément de formation professionnelle assuré par l'employeur
+  titre: Complément de formation professionnelle 
   formule: contrat salarié . CDD . motif = 'complément formation'
   description: L'employeur s'engage, pour une durée et dans des conditions déterminées par décret, à assurer un complément de formation professionnelle au salarié.
   références:

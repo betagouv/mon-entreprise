@@ -31,6 +31,10 @@
     padding-top: .3em
 }
 
+#currentQuestion {
+    margin-bottom: 4em;
+}
+
 .step {
 	position: relative;
 }
