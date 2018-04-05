@@ -10,18 +10,24 @@ import {
 	unless,
 	is,
 	prop,
+	pick,
 	path,
 	reject,
 	identity
 } from 'ramda'
-
+import React from 'react'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
 import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
+import InversionInput from '../components/conversation/InversionInput'
 
-import { findRuleByDottedName, disambiguateRuleReference } from './rules'
+import {
+	findRuleByDottedName,
+	disambiguateRuleReference,
+	queryRule
+} from './rules'
 import { collectNodeMissing } from './evaluation'
 
 /*
@@ -53,7 +59,7 @@ export let getNextSteps = (situationGate, analysis) => {
 	return map(head, sortedPairs)
 }
 
-let isVariant = path(['formule', 'une possibilité'])
+let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {
@@ -76,67 +82,114 @@ let buildVariantTree = (allRules, path) => {
 	return rec(path)
 }
 
-let buildPossibleInversion = (rule, flatRules, targetNames) => {
-	let ruleInversions = path(['formule', 'inversion', 'avec'])(rule)
-	if (!ruleInversions) return null
-	let inversionObjects = ruleInversions.map(i =>
-			findRuleByDottedName(
-				flatRules,
-				disambiguateRuleReference(flatRules, rule, i)
-			)
+let buildPossibleInversion = (rule, rules, targetNames) => {
+	let query = queryRule(rule.raw),
+		inversion = query('formule . inversion')
+
+	if (!inversion) return null
+	let inversionObjects = query('formule . inversion . avec').map(i =>
+			findRuleByDottedName(rules, disambiguateRuleReference(rules, rule, i))
 		),
-		yo = reject(({ name }) => targetNames.includes(name))(
+		inversions = reject(({ name }) => targetNames.includes(name))(
 			[rule].concat(inversionObjects)
 		)
 
 	return {
-		inversions: yo,
-		question: rule.formule.inversion.question
+		inversions,
+		question: query('formule . inversion . question')
 	}
 }
 
-export let makeQuestion = (flatRules, targetNames) => dottedName => {
-	let rule = findRuleByDottedName(flatRules, dottedName)
+// This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
+// That's not great, but we won't invest more time until we have more diverse input components and a better type system.
+export let getInputComponent = ({ unfolded }) => (
+	rules,
+	targetNames
+) => dottedName => {
+	let rule = findRuleByDottedName(rules, dottedName)
 
-	let inputQuestion = rule => ({
-		component: Input,
-		valueType: formValueTypes[rule.format],
-		attributes: {
-			inputMode: 'numeric',
-			placeholder: 'votre réponse'
-		},
-		suggestions: rule.suggestions,
-		inversion: buildPossibleInversion(rule, flatRules, targetNames)
-	})
-	let selectQuestion = rule => ({
-		component: Select,
-		valueType: formValueTypes[rule.format],
-		suggestions: rule.suggestions
-	})
-	let selectAtmp = rule => ({
-		component: SelectAtmp,
-		valueType: formValueTypes[rule.format],
-		suggestions: rule.suggestions
-	})
-	let binaryQuestion = rule => ({
-		component: Question,
-		choices: [{ value: 'non', label: 'Non' }, { value: 'oui', label: 'Oui' }]
-	})
-	let multiChoiceQuestion = rule => ({
-		component: Question,
-		choices: buildVariantTree(flatRules, dottedName)
-	})
+	let commonProps = {
+		key: dottedName,
+		unfolded,
+		fieldName: dottedName,
+		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
+	}
 
-	return Object.assign(
-		rule,
-		isVariant(rule)
-			? multiChoiceQuestion(rule)
-			: rule.format == null
-				? binaryQuestion(rule)
-				: typeof rule.suggestions == 'string'
-					? rule.suggestions == 'atmp-2017'
-						? selectAtmp(rule)
-						: selectQuestion(rule)
-					: inputQuestion(rule)
+	if (isVariant(rule))
+		return (
+			<Question
+				{...{
+					...commonProps,
+					choices: buildVariantTree(rules, dottedName)
+				}}
+			/>
+		)
+
+	if (rule.format == null)
+		return (
+			<Question
+				{...{
+					...commonProps,
+					choices: [
+						{ value: 'non', label: 'Non' },
+						{ value: 'oui', label: 'Oui' }
+					]
+				}}
+			/>
+		)
+
+	if (rule.suggestions == 'atmp-2017')
+		return (
+			<SelectAtmp
+				{...{
+					...commonProps,
+					valueType: formValueTypes[rule.format],
+					suggestions: rule.suggestions
+				}}
+			/>
+		)
+
+	if (typeof rule.suggestions == 'string')
+		return (
+			<Select
+				{...{
+					...commonProps,
+					valueType: formValueTypes[rule.format],
+					suggestions: rule.suggestions
+				}}
+			/>
+		)
+
+	// Now the numeric input case
+
+	// Check for inversions
+	let inversion = buildPossibleInversion(rule, rules, targetNames)
+
+	/* In the case of an inversion, display a RadioInput component.
+	On click on one of the radios, display the corresponding input.
+	If only one inversion is possible, don't show the radio but show the documentation icon.
+	Else just display the Input component.
+	*/
+
+	if (inversion)
+		return (
+			<InversionInput
+				{...{
+					...commonProps,
+					valueType: formValueTypes[rule.format],
+					suggestions: rule.suggestions,
+					inversion
+				}}
+			/>
+		)
+
+	return (
+		<Input
+			{...{
+				...commonProps,
+				valueType: formValueTypes[rule.format],
+				suggestions: rule.suggestions
+			}}
+		/>
 	)
 }

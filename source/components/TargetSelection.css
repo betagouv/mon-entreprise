@@ -1,59 +1,27 @@
-#targetSelection {
-	height: 35em;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-wrap: wrap;
-	font-size: 100%;
-	max-width: 860px;
+#targetsContainer {
+	max-width: 40em;
+	margin: 0 auto;
+
+	padding: 0.2em .5em;
+
+	border-radius: 0.6em;
+	font-size: 85%;
+	box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.25)
 }
 
-#targetSelection > div {
+#targetsContainer > div {
 	width: 100%;
 }
 
-#targetSelection h2 {
-	margin: 2em;
-}
-#targetSelection #targets {
-	width: 30em;
-	margin: 0 auto;
-}
-#targetSelection label {
-	display: block;
-	margin-bottom: 1.2em;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-}
-#targetSelection label i {
+#targetSelection h1 {
+	margin: 0.6em;
+	color: inherit;
+	text-align: center;
 	font-size: 180%;
 }
-#targetSelection div {
-	margin-left: 1em;
-}
 
-#targetSelection .optionTitle {
-	font-size: 130%;
-}
-#targetSelection label p {
-	margin: 0;
-	font-weight: 400;
-}
-
-#targetSelection input {
-	position: absolute;
-	z-index: -1;
-	opacity: 0;
-}
-#targetSelection input:disabled + label,
-#targetSelection input:disabled + label p,
-#targetSelection input:disabled + label > i {
-	color: #aaa !important;
-}
-
-#targetSelection input + label > i.fa {
-	max-width: 0.75em;
+#targetSelection h1 i {
+    font-size: 80%;
 }
 
 #targetSelection #action {
@@ -62,7 +30,113 @@
 }
 
 #targetSelection #action p {
-	font-size: 80%;
+    font-size: 130%;
+	color: #4b4b66;
+	margin-bottom: 1em;
 }
 
-/* TODO styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */
+
+#targetSelection #targets {
+	margin: .4em auto;
+	/* For the checkbox that will appear */
+	padding: 0;
+}
+#targetSelection #targets  li {
+	margin-bottom: .4em;
+	background: rgba(0, 0, 0, 0.25);
+    display: flex;
+	align-items: center;
+    padding: .4em 1em;
+    border-radius: .3em;
+}
+
+#targetSelection #targets > li p {
+	margin: .2em 0 0;
+	opacity: .8;
+	line-height: 1.2em;
+	}
+
+#targetSelection label {
+		width: 10%;
+	display: inline-block;
+	cursor: pointer;
+}
+#targetSelection label i {
+	font-size: 200%;
+	font-width: 600;
+}
+
+#targetSelection .texts {
+		margin: 0 1.5em 0 .6em;
+		width: 55%;
+		display: inline-block;
+		font-size: 110%;
+
+}
+
+#targetSelection .optionTitle {
+	font-size: 130%;
+	font-weight: 600;
+}
+#targetSelection .optionTitle a {
+color: inherit
+}
+#targetSelection .optionTitle a:hover {
+text-decoration: underline;
+}
+
+#targetSelection input[type='checkbox'] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+#targetSelection input + label > i.fa {
+	max-width: 0.75em;
+}
+
+
+#targetSelection .targetInputOrValue
+{
+		width: 40%;
+	font-size: 140%;
+	text-align: right;
+}
+
+#targetSelection .editable {
+border-bottom: 1px dashed #ffffff91}
+
+#targetSelection .attractClick,
+#targetSelection input[type='number'] {
+	width: 5em !important;
+	display: inline-block;
+	height: 1.6em;
+	text-align: right;
+	font-weight: 600;
+	padding: 0;
+	padding: 0em 0.5em;
+	background: white;
+	border-radius: 0.2em;
+border: none;
+	box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.45);
+	color: #333;
+	font-size: inherit
+}
+
+#targetSelection .unit {
+    margin-left: .6em;
+	font-size: 120%;
+	vertical-align: middle;
+}
+
+.input-error {
+padding: 0 .6em;
+    margin-right: .6em;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #c0392b;
+    background: yellow;
+    font-weight: 600;		
+}
+
+/* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

@@ -1,4 +1,4 @@
-import { reject, isNil, equals, pluck, path, map } from 'ramda'
+import { reject, isNil, equals, pluck, path, map, omit } from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { reset, change, formValueSelector } from 'redux-form'
@@ -7,7 +7,6 @@ import { withRouter, Redirect } from 'react-router-dom'
 import classNames from 'classnames'
 import { START_CONVERSATION } from '../actions'
 import {
-	rules,
 	findRuleByName,
 	findRule,
 	findRuleByDottedName,
@@ -16,8 +15,6 @@ import {
 import './conversation/conversation.css'
 import './Simulateur.css'
 import Conversation from './conversation/Conversation'
-import { makeQuestion } from 'Engine/generateQuestions'
-
 import ReactPiwik from './Tracker'
 
 import Results from 'Components/Results'
@@ -33,8 +30,8 @@ import Explanation from 'Components/Explanation'
 		targetNames: state.targetNames,
 		done: state.done,
 		nextSteps: state.nextSteps,
-		inputInversions: formValueSelector('conversation')(state, 'inversions'),
-		analysis: state.analysis
+		analysis: state.analysis,
+		parsedRules: state.parsedRules
 	}),
 	dispatch => ({
 		startConversation: (targetNames, fromScratch = false) =>
@@ -51,14 +48,15 @@ export default class extends Component {
 		let {
 				match: { params: { targets: encodedTargets } },
 				targetNames: pastTargetNames,
-				resetFormField
+				resetFormField,
+				parsedRules
 			} = this.props,
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
 
 		this.targetNames = targetNames
 
 		this.targetRules = reject(isNil)(
-			targetNames.map(name => findRule(rules, name))
+			targetNames.map(name => findRule(parsedRules, name))
 		)
 
 		this.targetRules.map(({ dottedName }) => resetFormField(dottedName))
@@ -76,10 +74,9 @@ export default class extends Component {
 		let {
 				foldedSteps,
 				currentQuestion,
-				situationGate,
 				themeColours,
-				inputInversions,
-				done
+				done,
+				parsedRules
 			} = this.props,
 			reinitalise = () => {
 				ReactPiwik.push(['trackEvent', 'restart', ''])
@@ -103,23 +100,10 @@ export default class extends Component {
 				<Conversation
 					{...{
 						reinitalise,
-						currentQuestion:
-							currentQuestion &&
-							this.buildStep({ unfolded: true })(
-								situationGate,
-								this.targetNames,
-								inputInversions
-							)(currentQuestion),
-						foldedSteps: map(
-							this.buildStep({ unfolded: false })(
-								situationGate,
-								this.targetNames,
-								inputInversions
-							),
-							foldedSteps
-						),
-						done: this.props.done,
-						nextSteps: this.props.nextSteps,
+						parsedRules,
+						targetNames: this.targetNames,
+						currentQuestion,
+						foldedSteps,
 						textColourOnWhite: themeColours.textColourOnWhite
 					}}
 				/>
@@ -130,33 +114,6 @@ export default class extends Component {
 					/>
 				)}
 			</div>
-		)
-	}
-
-	buildStep = ({ unfolded }) => (
-		situationGate,
-		targetNames,
-		inputInversions
-	) => question => {
-		let step = makeQuestion(rules, targetNames)(question)
-
-		let fieldName =
-				(inputInversions &&
-					path(step.dottedName.split('.'), inputInversions)) ||
-				step.dottedName,
-			fieldTitle = findRuleByDottedName(rules, fieldName).title
-
-		return (
-			<step.component
-				key={step.dottedName}
-				{...step}
-				unfolded={unfolded}
-				step={step}
-				situationGate={situationGate}
-				fieldName={fieldName}
-				fieldTitle={fieldTitle}
-				inverted={step.dottedName !== fieldName}
-			/>
 		)
 	}
 }

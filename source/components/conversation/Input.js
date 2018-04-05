@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import { toPairs } from 'ramda'
-import { Field } from 'redux-form'
 import SendButton from './SendButton'
 
-@FormDecorator('input')
-export default class Input extends Component {
+export class Input extends Component {
 	state = {
 		lastValue: ''
 	}
 	render() {
 		let {
 				input,
-				stepProps: { dottedName, attributes, submit, valueType },
+				dottedName,
+				submit,
+				valueType,
 				meta: { dirty, error, active },
 				themeColours
 			} = this.props,
@@ -24,7 +24,6 @@ export default class Input extends Component {
 
 		return (
 			<span>
-				<div className="inputPrefix">{this.renderInversions()}</div>
 				<div className="answer">
 					<input
 						ref={el => {
@@ -34,7 +33,8 @@ export default class Input extends Component {
 						{...input}
 						className={classnames({ suffixed })}
 						id={'step-' + dottedName}
-						{...attributes}
+						inputMode="numeric"
+						placeholder="votre réponse"
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
@@ -61,45 +61,8 @@ export default class Input extends Component {
 		)
 	}
 
-	componentDidMount() {
-		this.inputElement.focus()
-
-		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
-		if (!inversion) return null
-		// initialize the form field in renderinversions
-		setFormValue(inversion.inversions[0].dottedName, 'inversions.' + dottedName)
-	}
-	renderInversions() {
-		let { stepProps: { dottedName, inversion, setFormValue } } = this.props
-		if (!inversion) return null
-
-		if (inversion.inversions.length === 1)
-			return (
-				<span>
-					{inversion.inversions[0].title || inversion.inversions[0].dottedName}
-				</span>
-			)
-
-		return (
-			// This field is handled by redux-form : it will set in the state what's
-			// the current inversion
-			<Field
-				component="select"
-				name={'inversions.' + dottedName}
-				onChange={(e, newValue, previousFieldName) =>
-					setFormValue('', previousFieldName)
-				}
-			>
-				{inversion.inversions.map(({ name, title, dottedName }) => (
-					<option key={dottedName} value={dottedName}>
-						{title || name}
-					</option>
-				))}
-			</Field>
-		)
-	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, suggestions, inverted } = this.props.stepProps
+		let { setFormValue, suggestions, inverted } = this.props
 
 		if (!suggestions || inverted) return null
 		return (
@@ -114,7 +77,7 @@ export default class Input extends Component {
 								setFormValue('' + value)
 								if (this.state.suggestion !== value)
 									this.setState({ suggestion: value })
-								else this.props.stepProps.submit('suggestion')
+								else this.props.submit('suggestion')
 							}}
 							onMouseOver={() => {
 								this.setState({ lastValue: this.props.input.value })
@@ -134,3 +97,5 @@ export default class Input extends Component {
 		)
 	}
 }
+
+export default FormDecorator('input')(Input)

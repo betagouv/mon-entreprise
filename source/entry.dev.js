@@ -17,7 +17,7 @@ let initialStore = {
 
 let enhancer = compose(
 	applyMiddleware(debounceFormChangeActions()),
-	DevTools.instrument()
+	DevTools.instrument({ maxAge: 10 })
 )
 
 let store = createStore(reducers, initialStore, enhancer)

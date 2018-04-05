@@ -5,11 +5,7 @@ import { answer } from './userAnswerButtonStyle'
 @FormDecorator('rhetorical-question')
 export default class RhetoricalQuestion extends Component {
 	render() {
-		let {
-			input,
-			stepProps: { submit, possibleChoice },
-			themeColours
-		} = this.props
+		let { input, submit, possibleChoice, themeColours } = this.props
 
 		if (!possibleChoice) return null // No action possible, don't render an answer
 

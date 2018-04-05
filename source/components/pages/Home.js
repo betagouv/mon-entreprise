@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import './Pages.css'
 import './Home.css'
-import TargetSelection from '../TargetSelection'
-import { connect } from 'react-redux'
+import withColours from '../withColours'
+import Simu from '../Simu'
 
-@connect(state => ({
-	themeColours: state.themeColours
-}))
+@withColours
 export default class Home extends Component {
 	state = {
 		updateMessage: false
@@ -18,23 +16,23 @@ export default class Home extends Component {
 		let opacityStyle = { opacity: this.state.showUpdateMessage ? 1 : 0 }
 		return (
 			<div id="home" className="page">
-				<div id="updateMessage">
-					<i
-						className="fa fa-newspaper-o"
-						aria-hidden="true"
-						style={{
-							...opacityStyle,
-							color: this.props.themeColours.textColourOnWhite
-						}}
-					/>
-					<p style={opacityStyle}>
-						Cette nouvelle version du site vous permet de simuler un CDD ou CDI,
-						aux taux de 2018.
-					</p>
-				</div>
-				<div id="content">
-					<TargetSelection themeColours={this.props.themeColours} />
-				</div>
+				{false && (
+					<div id="updateMessage">
+						<i
+							className="fa fa-newspaper-o"
+							aria-hidden="true"
+							style={{
+								...opacityStyle,
+								color: this.props.colours.textColourOnWhite
+							}}
+						/>
+						<p style={opacityStyle}>
+							Cette nouvelle version du site vous permet de simuler un CDD ou
+							CDI, aux taux de 2018.
+						</p>
+					</div>
+				)}
+				<Simu />
 			</div>
 		)
 	}

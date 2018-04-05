@@ -12,9 +12,10 @@
 
 #sim #help blockquote {
 	font-style: italic;
-	font-size: 90%;
-	border-left: 4px solid #eee;
-	margin-left: 0.6em;
+	font-size: 95%;
+	opacity: 0.95;
+	border-left: 4px solid #4b4b66;
+	margin-left: 0.3em;
 	padding-left: 0.6em;
 }
 

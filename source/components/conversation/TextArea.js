@@ -7,7 +7,8 @@ export default class Input extends Component {
 		let {
 				name,
 				input,
-				stepProps: { submit, attributes },
+				submit,
+				attributes,
 				meta: { touched, error },
 				themeColours
 			} = this.props,
@@ -21,11 +22,12 @@ export default class Input extends Component {
 						{...attributes}
 						{...input}
 						id={'step-' + name}
-						onKeyDown={({ key, ctrlKey }) =>
-							key == 'Enter' &&
-							ctrlKey &&
-							input.value &&
-							(!error ? submit() : input.onBlur()) // blur will trigger the error
+						onKeyDown={
+							({ key, ctrlKey }) =>
+								key == 'Enter' &&
+								ctrlKey &&
+								input.value &&
+								(!error ? submit() : input.onBlur()) // blur will trigger the error
 						}
 					/>
 					<button
