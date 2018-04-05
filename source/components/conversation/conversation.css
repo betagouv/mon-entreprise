@@ -4,19 +4,24 @@
 }
 
 #foldedSteps {
-	padding: 1em;
+	padding: 1em 0 ;
 	margin-bottom: 1em;
 }
 
 #foldedSteps .header button {
-	font-size: 80%;
-	border: none;
 	display: block;
-	margin: 0 auto;
+	margin: 0 auto .6em;
 }
-#foldedSteps .header button i {
+#foldedSteps button i {
 	margin-right: 0.3em;
+	font-size: 110%;
 	vertical-align: top;
+}
+
+#foldedSteps button  {
+  
+	border: none;
+	font-weight: 500;
 }
 
 #myScrollToElement {
@@ -238,7 +243,7 @@
 	font-style: italic;
 	float: right;
 	clear: right;
-	font-size: 75%;
+	font-size: 90%;
 	color: #222;
 }
 .step .inputSuggestions ul {
@@ -382,11 +387,6 @@
 
 /* Positioning the animated elements absolutely + transition-delay will make it possible
 for the appearing element to appear without stacking up below the first one */
-#user-next-action {
-	position: relative;
-	height: 2em;
-	margin-bottom: 3em;
-}
 
 .input-tip {
 	position: absolute;
@@ -397,31 +397,6 @@ for the appearing element to appear without stacking up below the first one */
 	margin: auto;
 }
 
-#reinit {
-	position: static;
-	display: block;
-	text-align: center;
-	font-size: 65%;
-}
-
-.user-next-action-animation-enter {
-	opacity: 0;
-}
-
-.user-next-action-animation-enter.user-next-action-animation-enter-active {
-	opacity: 1;
-	transition: opacity 700ms;
-	transition-delay: 700ms;
-}
-
-.user-next-action-animation-leave {
-	opacity: 1;
-}
-
-.user-next-action-animation-leave.user-next-action-animation-leave-active {
-	opacity: 0;
-	transition: opacity 700ms ease;
-}
 
 .foldedQuestion {
 	margin-left: 1.2em;
@@ -431,13 +406,12 @@ for the appearing element to appear without stacking up below the first one */
 	vertical-align: middle;
 	margin-left: 0.5em;
 	border: none;
-	font-size: 80%;
 }
 
 .foldedQuestion .borderWrapper {
 	padding: 0.1em 0;
 	display: inline-block;
-	width: calc(100% - 6em);
+	width: calc(100% - 8em);
 	border-bottom: 1px solid #eee;
 }
 

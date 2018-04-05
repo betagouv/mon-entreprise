@@ -6,12 +6,12 @@
 }
 .progressTip svg {
 		display: inline-block;
-		width: 65%;
+		width: 62%;
 		margin-right: 2%
 }
 .progressTip p {
 		display: inline-block;
-		width: 30%;
+		width: 35%;
 		margin: .1em 0 1.6em;
 		text-align: right;
 		font-weight: 600;

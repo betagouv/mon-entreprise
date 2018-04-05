@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 //import styles from './.css'
 // css in conversation.Css
-import { isEmpty, map } from 'ramda'
+import { isEmpty, map, pick } from 'ramda'
 import ReactPiwik from '../Tracker'
 import { getInputComponent } from 'Engine/generateQuestions'
 import withColours from '../withColours'
@@ -17,17 +17,16 @@ let scroll = () =>
 
 @withColours
 @connect(
-	state => ({
-		currentQuestion: state.currentQuestion,
-		foldedSteps: state.foldedSteps,
-		themeColours: state.themeColours,
-		situationGate: state.situationGate,
-		targetNames: state.targetNames,
-		done: state.done,
-		nextSteps: state.nextSteps,
-		analysis: state.analysis,
-		parsedRules: state.parsedRules
-	}),
+	pick([
+		'currentQuestion',
+		'foldedSteps',
+		'themeColours',
+		'situationGate',
+		'targetNames',
+		'nextSteps',
+		'analysis',
+		'parsedRules'
+	]),
 	dispatch => ({
 		reinitialise: () => {
 			ReactPiwik.push(['trackEvent', 'restart', ''])
@@ -43,7 +42,7 @@ export default class extends Component {
 			reinitialise,
 			targetNames,
 			parsedRules,
-			textColourOnWhite
+			themeColours: { textColourOnWhite }
 		} = this.props
 
 		if (isEmpty(foldedSteps || [])) return null
