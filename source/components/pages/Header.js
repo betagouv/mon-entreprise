@@ -58,7 +58,12 @@ export class Header extends Component {
 					/>
 					<h1>Simulateur d'embauche</h1>
 				</Link>
-				<div id="headerContent">
+				<div id="headerRight">
+					<img
+						id="marianne"
+						src={require('Images/marianne.svg')}
+						alt="Un service de l'État français"
+					/>
 					<div id="menuButton">
 						{this.state.mobileNavVisible ? (
 							<i
@@ -77,11 +82,6 @@ export class Header extends Component {
 					<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
 						<Links toggle={this.togglemobileNavVisible} />
 					</nav>
-					<img
-						id="marianne"
-						src={require('Images/marianne.svg')}
-						alt="Un service de l'État français"
-					/>
 				</div>
 			</div>
 		)

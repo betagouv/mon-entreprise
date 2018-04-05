@@ -21,15 +21,23 @@
 #header #logo {
 	width: calc(1vw + 5em);
 }
+
+#headerRight {
+   min-width: 8em
+}
+
+
 #menuButton {
 	font-size: 300%;
 	color: #3c4963;
-	margin: 0 0.4em;
+	margin: 0;
+	margin-left: .6em;
 	display: inline-block;
 }
 nav {
 	font-size: 110%;
 	margin-bottom: 1em;
+	margin-left: 1em;
 	display: inline-block;
 }
 #header #marianne {
@@ -72,10 +80,6 @@ nav a {
 @media screen and (min-width: 860px) {
 	#menuButton {
 		display: none;
-	}
-
-	nav {
-		margin-right: 1em;
 	}
 
 	nav a {
