@@ -13,7 +13,7 @@ export default class extends Component {
 		let { colours } = this.props
 
 		return (
-			<>
+			<div id="simu">
 				<FoldedSteps />
 				<div id="focusZone">
 					<GoToAnswers />
@@ -22,7 +22,7 @@ export default class extends Component {
 					<Conversation textColourOnWhite={colours.textColourOnWhite} />
 					<Explanation />
 				</div>
-			</>
+			</div>
 		)
 	}
 }
