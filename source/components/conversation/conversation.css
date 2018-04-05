@@ -154,7 +154,8 @@
 	display: inline-block;
 }
 .step.question .variantLeaf.aucun label {
-	font-weight: bold;
+	font-weight: 800;
+    text-decoration: underline;
 }
 
 .step.question .sendWrapper {
