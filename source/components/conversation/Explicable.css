@@ -11,12 +11,12 @@
 	display: inline-block;
 	margin-left: 0.4em;
 	padding: 0.15em;
-	opacity: 0.65;
+	opacity: 0.85;
 	border: 1px solid transparent;
 	border-radius: 1em;
 	cursor: pointer;
+	font-size: 120%;
 	vertical-align: baseline;
-	font-size: 95%;
 }
 
 .explicable .icon:hover {

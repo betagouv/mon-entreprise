@@ -1,5 +1,5 @@
 .scrollIndication {
-    margin: .4em;
+    margin: .6em;
 	text-align: center
 }
 
@@ -33,75 +33,6 @@
 
 .step:first-child {
 	opacity: 1;
-}
-
-.form-group {
-	position: relative;
-	margin-bottom: 4.5em;
-}
-
-.form-group.explicit > .group-content {
-	margin-left: 1em;
-	padding: 0.8em 0 0 1.3em;
-}
-
-.form-group.folded .group-content {
-	border: none;
-}
-
-.form-group .header {
-	margin: 4em 0 0.6em 0;
-}
-
-.group-items {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-/* Group items animation */
-
-.group-animated-enter {
-	opacity: 0;
-}
-
-.group-animated-enter.group-animated-enter-active {
-	opacity: 1;
-	transition: opacity 300ms ease-in;
-}
-
-.group-animated-leave {
-	opacity: 1;
-	transform: scaleY(1);
-}
-
-.group-animated-leave.group-animated-leave-active {
-	opacity: 0;
-	transform: scaleY(0);
-	transform-origin: top;
-	transition: opacity 200ms ease, transform 200ms ease-out;
-}
-
-/* END Group items animation */
-
-/* Group ignore buttons */
-.form-group .header #ignore {
-	margin-left: 3em;
-}
-
-.group-title {
-	position: relative;
-	display: inline-block;
-}
-.group-title h1 {
-	font-size: 100%;
-	font-weight: 400;
-	padding: 0.5em 0.8em;
-	margin: 0;
-	border-radius: 1em;
-	position: relative;
-	width: 100%;
-	border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .step-question {
