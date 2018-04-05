@@ -10,6 +10,9 @@ import { connect } from 'react-redux'
 
 @translate()
 import SearchButton from './SearchButton'
+import withColours from './withColours'
+
+@withColours
 @connect(state => ({
 	analysis: state.analysis
 }))
@@ -20,6 +23,15 @@ export default class Explanation extends Component {
 
 		return (
 			<section id="explanation">
+				<h3
+					className="scrollIndication down"
+					style={{
+						color: this.props.colours.textColourOnWhite
+					}}
+				>
+					<i className="fa fa-long-arrow-down" aria-hidden="true" /> Comprendre
+					mes résultats
+				</h3>
 				{this.renderExplanation(targetRules)}
 				<div id="warning">
 					<p>
