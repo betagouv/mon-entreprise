@@ -112,7 +112,10 @@ text-decoration: underline;
 }
 
 #targetSelection .editable {
-border-bottom: 1px dashed #ffffff91}
+    border-bottom: 1px dashed #ffffff91;
+    min-width: 2.5em;
+    display: inline-block;
+}
 
 #targetSelection .attractClick,
 #targetSelection input[type='number'] {
