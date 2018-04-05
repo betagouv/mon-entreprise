@@ -1,5 +1,5 @@
 .scrollIndication {
-    margin: 1em;
+    margin: .4em;
 	text-align: center
 }
 
@@ -20,7 +20,7 @@
 }
 
 #myScrollToElement {
-    padding-top: .6em
+    padding-top: .3em
 }
 
 .step {

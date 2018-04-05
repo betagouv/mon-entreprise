@@ -50,16 +50,7 @@ export default class TargetSelection extends Component {
 					}}>
 					{this.renderOutputList()}
 				</section>
-				{!this.firstEstimationComplete && (
-					<h1>
-						Entrez un salaire mensuel{' '}
-						<i
-							style={{ color: colours.textColourOnWhite }}
-							className="fa fa-calendar"
-							aria-hidden="true"
-						/>
-					</h1>
-				)}
+				{!this.firstEstimationComplete && <h1>Entrez un salaire mensuel </h1>}
 
 				{this.firstEstimationComplete &&
 					!conversationStarted && (
