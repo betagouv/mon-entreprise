@@ -108,7 +108,7 @@ export default class TargetSelection extends Component {
 													percent={100 - ratio * 100}
 													strokeWidth="15"
 													strokeColor="#5de662"
-													trailColor="#bbbbbb"
+													trailColor="#fff"
 													trailWidth="5"
 												/>
 											)
