@@ -7,6 +7,7 @@
 #header #brand {
 	display: flex;
 	align-items: center;
+	    max-width: 14em;
 }
 #header h1 {
 	font-size: calc(.8vw + 125%);
