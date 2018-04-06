@@ -36,6 +36,7 @@
 	background: rgba(0, 0, 0, 0.25);
     display: flex;
 	align-items: center;
+	justify-content: space-between;
     padding: .4em .6em .4em;
     border-radius: .3em;
 }
@@ -46,30 +47,28 @@
 	line-height: 1.2em;
 	}
 
+#targetSelection li .header {
+	    display: flex;
+		align-items: center;
+}
+
 #targetSelection .progressCircle {
-		width: 2.5em;
 		margin-right: .6em;
+}
+#targetSelection .progressCircle svg {
+		width: 2em;
 }
 #targetSelection .progressCircle i {
 		color: #5de662;
 		font-size: 220%
 }
 
-#targetSelection label {
-		width: 10%;
-	display: inline-block;
-	cursor: pointer;
-}
-
 #targetSelection .texts {
 		margin: 0 .4em 0;
-		width: 55%;
-		display: inline-block;
-
 }
 
 #targetSelection .optionTitle {
-	font-size: 120%;
+	font-size: 115%;
 	font-weight: 600;
 }
 #targetSelection .optionTitle a {
@@ -79,22 +78,11 @@ color: inherit
 text-decoration: underline;
 }
 
-#targetSelection input[type='checkbox'] {
-	position: absolute;
-	z-index: -1;
-	opacity: 0;
-}
-
-#targetSelection input + label > i.fa {
-	max-width: 0.75em;
-}
-
-
 #targetSelection .targetInputOrValue
 {
-		width: 40%;
-	font-size: 110%;
-	text-align: right;
+	font-size: 120%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #targetSelection .editable {
@@ -105,7 +93,7 @@ text-decoration: underline;
 
 #targetSelection .attractClick,
 #targetSelection input[type='number'] {
-	width: 5em !important;
+	width: 4em !important;
 	display: inline-block;
 	height: 1.6em;
 	text-align: right;
@@ -122,14 +110,14 @@ border: none;
 
 #targetSelection .unit {
     margin-left: .6em;
-	font-size: 120%;
+	font-size: 125%;
 	vertical-align: middle;
 }
 
 .input-error {
 padding: 0 .6em;
     margin-right: .6em;
-    font-size: 80%;
+    font-size: 90%;
     font-style: italic;
     color: #c0392b;
     background: yellow;
