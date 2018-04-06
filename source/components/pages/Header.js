@@ -31,7 +31,11 @@ export class Header extends Component {
 					onClick={() => screenfull.toggle()}
 					className={appMode ? 'absolute' : ''}
 				>
-					{!appMode && <span><Trans>Mode plein écran</Trans></span>}
+					{!appMode && (
+						<span>
+							<Trans>Mode plein écran</Trans>
+						</span>
+					)}
 					<i
 						className="fa fa-arrows-alt"
 						aria-hidden="true"
@@ -103,32 +107,36 @@ let Links = ({ toggle }) => (
 
 @withRouter
 @translate()
-@connect(
-	state => ({}),
-	dispatch => ({
-		changeLanguage: (lang) => dispatch({ type: CHANGE_LANG, lang })
-	})
-)
+@connect(null, dispatch => ({
+	changeLanguage: lang => dispatch({ type: CHANGE_LANG, lang })
+}))
 export class Footer extends Component {
 	static contextTypes = {
-      i18n: PropTypes.object.isRequired
-    }
+		i18n: PropTypes.object.isRequired
+	}
+
+	getUnusedLanguage = () => (this.context.i18n.language === 'fr' ? 'en' : 'fr')
+
+	changeLanguage = () => {
+		let nextLanguage = this.getUnusedLanguage()
+		this.props.changeLanguage(nextLanguage)
+		this.context.i18n.changeLanguage(nextLanguage)
+	}
 	render() {
-		let { i18n } = this.context
-		let changeLanguage = lng => {
-				this.props.changeLanguage(lng)
-				i18n.changeLanguage(lng)
-			}
 		let appMode = ['/simu', '/regle'].find(t =>
 			this.props.location.pathname.includes(t)
 		)
 		return (
 			<div id="footer">
-				<span onClick={() => changeLanguage('en')}>(en)</span>/<span onClick={() => changeLanguage('fr')}>(fr)</span>&nbsp;
-				{appMode &&
-				(<Link to="/à-propos">
-					<Trans>À propos</Trans> <i className="fa fa-question-circle" aria-hidden="true" />
-				</Link>)}
+				<button onClick={this.changeLanguage}>
+					{this.getUnusedLanguage()}
+				</button>
+				{appMode && (
+					<Link to="/à-propos">
+						<Trans>À propos</Trans>{' '}
+						<i className="fa fa-question-circle" aria-hidden="true" />
+					</Link>
+				)}
 			</div>
 		)
 	}
