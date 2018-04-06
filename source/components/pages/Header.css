@@ -127,3 +127,19 @@ nav a {
 #footer i {
 	margin: 0.1em;
 }
+
+#footer button {
+		font-size: 150%;
+		border: none;
+		border-radius: 0;
+
+}
+#footer button:hover {
+		border-bottom: 1px solid black;
+}
+
+#footer img {
+		margin-right: .4em;
+		height: .8em;
+}
+
