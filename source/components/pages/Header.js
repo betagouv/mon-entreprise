@@ -114,11 +114,13 @@ export class Footer extends Component {
 	static contextTypes = {
 		i18n: PropTypes.object.isRequired
 	}
-
-	getUnusedLanguage = () => (this.context.i18n.language === 'fr' ? 'en' : 'fr')
+	getUnusedLanguageCode = () => {
+		let languageCode = this.context.i18n.language
+		return !languageCode || languageCode === 'fr' ? 'en' : 'fr'
+	}
 
 	changeLanguage = () => {
-		let nextLanguage = this.getUnusedLanguage()
+		let nextLanguage = this.getUnusedLanguageCode()
 		this.props.changeLanguage(nextLanguage)
 		this.context.i18n.changeLanguage(nextLanguage)
 	}
@@ -129,7 +131,13 @@ export class Footer extends Component {
 		return (
 			<div id="footer">
 				<button onClick={this.changeLanguage}>
-					{this.getUnusedLanguage()}
+					{do {
+						let languageCode = this.getUnusedLanguageCode()
+						;<span>
+							<img src={require(`Images/${languageCode}.png`)} />
+							{languageCode.toUpperCase()}
+						</span>
+					}}
 				</button>
 				{appMode && (
 					<Link to="/à-propos">
