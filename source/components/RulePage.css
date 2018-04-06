@@ -4,13 +4,13 @@
 }
 
 #toSimulation {
-	background: #333350;
-	margin: 0 auto;
+	margin: .6em auto;
 	display: block;
 	color: white;
 	font-size: 180%;
 	text-align: center;
 	padding: .2em .6em;
+	border-radius: .2em;
 }
 
 #toSimulation i {

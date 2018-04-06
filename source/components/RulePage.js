@@ -11,19 +11,15 @@ import {
 	findRuleByDottedName
 } from 'Engine/rules.js'
 import { encodeRuleName } from 'Engine/rules'
-import { pipe, pluck, join, map } from 'ramda'
+import { pipe, pluck, join, map, pick } from 'ramda'
 import { Link, Redirect } from 'react-router-dom'
 import { animateScroll } from 'react-scroll'
 import './RulePage.css'
 import { Namespace } from './rule/Rule'
 import SearchButton from 'Components/SearchButton'
 
-@connect(state => ({
-	situationGate: state.situationGate,
-	parsedRules: state.parsedRules,
-	analysis: state.analysis
-}))
 @translate()
+@connect(pick(['situationGate', 'parsedRules', 'analysis', 'themeColours']))
 export default class RulePage extends Component {
 	nameFromParams = path(['match', 'params', 'name'])
 	componentWillMount() {
@@ -66,7 +62,12 @@ export default class RulePage extends Component {
 
 		return (
 			<div id="RulePage">
-				{targets && <BackToSimulation targets={targets} />}
+				{targets && (
+					<BackToSimulation
+						colour={this.props.themeColours.colour}
+						targets={targets}
+					/>
+				)}
 				<SearchButton />
 				<Rule rule={this.rule} />
 			</div>
@@ -74,11 +75,11 @@ export default class RulePage extends Component {
 	}
 }
 
-let BackToSimulation = ({ targets }) => (
+let BackToSimulation = ({ targets, colour }) => (
 	<Link
 		id="toSimulation"
 		to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
-	>
+		style={{ background: colour }}>
 		<i className="fa fa-arrow-circle-left" aria-hidden="true" />
 		<Trans i18nKey="back">Reprendre la simulation</Trans>
 	</Link>
@@ -87,7 +88,9 @@ let BackToSimulation = ({ targets }) => (
 let DisambiguateRuleQuery = ({ rules }) => (
 	<div className="centeredMessage">
 		<p>
-			<Trans i18nKey="ambiguous">Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?</Trans>
+			<Trans i18nKey="ambiguous">
+				Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?
+			</Trans>
 		</p>
 		<ul>
 			{rules.map(({ dottedName, ns, title }) => (
