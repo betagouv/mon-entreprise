@@ -17,7 +17,8 @@ import { Circle } from 'rc-progress'
 
 @translate()
 @reduxForm({
-	form: 'conversation'
+	form: 'conversation',
+	destroyOnUnmount: false
 })
 @connect(
 	state => ({
