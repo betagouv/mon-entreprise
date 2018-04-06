@@ -1,16 +1,17 @@
-#sim #helpWrapper {
-	margin: 1em auto;
+#helpWrapper {
+	margin: 0 auto 2em;
 	display: none;
 }
 
-#sim #help {
-	border-radius: 0.2em;
+#help {
+	border-radius: 0.4em;
 	padding: 0.1em 1em;
 	background: #e7f8e1;
+	border: 1px solid #9fbd94;; 
 	position: relative;
 }
 
-#sim #help blockquote {
+#help blockquote {
 	font-style: italic;
 	font-size: 95%;
 	opacity: 0.95;
@@ -19,11 +20,11 @@
 	padding-left: 0.6em;
 }
 
-#sim #helpWrapper.active {
+#helpWrapper.active {
 	display: block;
 }
 
-#sim #help i.fa-times-circle {
+#help i.fa-times-circle {
 	font-size: 120%;
 	position: absolute;
 	top: 0.6em;
@@ -31,6 +32,6 @@
 	cursor: pointer;
 }
 
-#sim #help h3 {
+#help h3 {
 	margin: 0.3em 0;
 }

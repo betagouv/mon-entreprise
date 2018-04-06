@@ -48,6 +48,7 @@ export default class Conversation extends Component {
 		if (!conversationStarted) return null
 		return (
 			<>
+				<Aide />
 				<div id="currentQuestion">
 					{currentQuestion ? (
 						getInputComponent({ unfolded: true })(parsedRules, targetNames)(
@@ -57,7 +58,6 @@ export default class Conversation extends Component {
 						<Satisfaction />
 					)}
 				</div>
-				<Aide />
 			</>
 		)
 	}
