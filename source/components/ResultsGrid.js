@@ -158,7 +158,7 @@ export default class ResultsGrid extends Component {
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
 								id="sommeBase">
-								+
+								<span className="operator">+ </span>
 								{humanFigure(2)(avan)}{' '}
 							</td>
 						</tr>
@@ -176,7 +176,7 @@ export default class ResultsGrid extends Component {
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
 								id="sommeBase">
-								=
+								<span className="operator">= </span>
 								{humanFigure(2)(brut)}{' '}
 							</td>
 						</tr>
