@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import formValueTypes from 'Components/conversation/formValueTypes'
 import { rules, findRuleByName } from 'Engine/rules'
-import { propEq, path, contains, without, curry, append, ifElse } from 'ramda'
+import { propEq, isEmpty, curry } from 'ramda'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 import { Field, reduxForm, formValueSelector, change } from 'redux-form'
@@ -111,6 +111,11 @@ export default class TargetSelection extends Component {
 	}
 }
 
+let computeRatio = (mvt, name) =>
+	!isEmpty(mvt) &&
+	mvt.current[name].missingVariables.length /
+		mvt.initial[name].missingVariables.length
+
 let Header = ({
 	conversationStarted,
 	s,
@@ -123,12 +128,13 @@ let Header = ({
 				className="progressCircle"
 				style={{
 					visibility: activeInput === s.dottedName ? 'hidden' : 'visible'
-				}}
-			>
+				}}>
 				{do {
-					let mv = missingVariablesByTarget[s.dottedName],
-						number = mv && mv.missingVariables.length,
-						ratio = number / 16
+					let ratio =
+						activeInput === s.dottedName
+							? 0
+							: computeRatio(missingVariablesByTarget, s.dottedName)
+
 					ratio === 0 ? (
 						<i className="fa fa-check" aria-hidden="true" />
 					) : (
@@ -165,8 +171,7 @@ let TargetInputOrValue = ({
 	targets,
 	firstEstimationComplete,
 	activeInput,
-	setActiveInput,
-	clearFormValue
+	setActiveInput
 }) => (
 	<span className="targetInputOrValue">
 		{activeInput === s.dottedName ? (

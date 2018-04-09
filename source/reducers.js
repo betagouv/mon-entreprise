@@ -97,7 +97,15 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationGate: situationWithDefaults(state),
 		explainedVariable: null,
 		nextSteps,
-		missingVariablesByTarget,
+		// store the missingVariables when no question has been answered yet,
+		// to be able to compute a progress by objective
+		missingVariablesByTarget: {
+			initial:
+				state.foldedSteps.length === 0
+					? missingVariablesByTarget
+					: state.missingVariablesByTarget.initial,
+			current: missingVariablesByTarget
+		},
 		currentQuestion: head(nextSteps),
 		foldedSteps:
 			action.type === 'SET_CONVERSATION_TARGETS' && action.reset
