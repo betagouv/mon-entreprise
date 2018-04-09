@@ -47,9 +47,10 @@ let nextWithoutDefaults = (
 	state,
 	analysis,
 	targetNames,
-	intermediateSituation
+    intermediateSituation,
+	parsedRules
 ) => {
-	let reanalysis = analyseMany(state.parsedRules, targetNames)(
+	let reanalysis = analyseMany(parsedRules, targetNames)(
 			intermediateSituation(state)
 		),
 		nextSteps = getNextSteps(intermediateSituation(state), reanalysis)
@@ -57,15 +58,11 @@ let nextWithoutDefaults = (
 	return { currentQuestion: head(nextSteps), nextSteps }
 }
 
-export let reduceSteps = (tracker, flatRules, answerSource) => (
+export let reduceSteps = (tracker, flatRules, parsedRules, answerSource) => (
 	state,
 	action
 ) => {
 	state.flatRules = flatRules
-	// Optimization - don't parse on each analysis
-	if (!state.parsedRules) {
-		state.parsedRules = parseAll(flatRules)
-	}
 
 	// TODO
 	if (action.type == CHANGE_LANG) {
@@ -99,7 +96,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
 
-	let analysis = analyseMany(state.parsedRules, targetNames)(
+	let analysis = analyseMany(parsedRules, targetNames)(
 		situationWithDefaults(state)
 	)
 
@@ -121,7 +118,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		...(done && assumptionsMade
 			? // The simulation is "over" - except we can now fill in extra questions
 			  // where the answers were previously given default reasonable assumptions
-			  nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
+			  nextWithoutDefaults(state, analysis, targetNames, intermediateSituation, parsedRules)
 			: {
 					currentQuestion: head(nextWithDefaults),
 					nextSteps: nextWithDefaults
@@ -214,7 +211,6 @@ export default (initialRules) => reduceReducers(
 		currentQuestion: (state = null) => state,
 		nextSteps: (state = []) => state,
 
-		parsedRules: (state = null) => state,
 		flatRules: (state = null) => state,
 		analysis: (state = null) => state,
 
@@ -233,5 +229,5 @@ export default (initialRules) => reduceReducers(
 		currentExample
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps(ReactPiwik, initialRules, formatInputs(initialRules, formValueSelector))
+	reduceSteps(ReactPiwik, initialRules, do { window.parsedRules = parseAll(initialRules); window.parsedRules}, formatInputs(initialRules, formValueSelector))
 )

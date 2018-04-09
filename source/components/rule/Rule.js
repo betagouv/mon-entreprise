@@ -18,7 +18,6 @@ import SearchButton from 'Components/SearchButton'
 
 @connect(state => ({
 	form: state.form,
-	rules: state.parsedRules,
 	flatRules: state.flatRules,
 	currentExample: state.currentExample
 }))
