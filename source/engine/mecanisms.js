@@ -147,20 +147,20 @@ let devariate = (recurse, k, v) => {
 			choice = find(node => node.condition.nodeValue, explanation),
 			nodeValue = choice ? choice.nodeValue : null
 
-		let collectMissing = node => {
-			let choice = find(node => node.condition.nodeValue, node.explanation),
-				leftMissing = choice
-					? []
-					: uniq(
-							chain(collectNodeMissing, pluck('condition', node.explanation))
-						),
-				rightMissing = choice
-					? collectNodeMissing(choice)
-					: chain(collectNodeMissing, node.explanation)
-			return concat(leftMissing, rightMissing)
-		}
+		let leftMissing = choice
+				? []
+				: uniq(
+						chain(collectNodeMissing, pluck('condition', explanation))
+					),
+			rightMissing = choice
+				? collectNodeMissing(choice)
+				: chain(collectNodeMissing, explanation),
+			missingVariables = concat(leftMissing, rightMissing)
 
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+		return {
+			...rewriteNode(node, nodeValue, explanation),
+			missingVariables
+		}
 	}
 
 	// TODO - find an appropriate representation
@@ -221,11 +221,13 @@ export let mecanismOneOf = (recurse, k, v) => {
 			values = pluck('nodeValue', explanation),
 			nodeValue = any(equals(true), values)
 				? true
-				: any(equals(null), values) ? null : false
+				: any(equals(null), values) ? null : false,
+			missingVariables = nodeValue == null ? chain(collectNodeMissing, explanation) : []
 
-		let collectMissing = node =>
-			node.nodeValue == null ? chain(collectNodeMissing, node.explanation) : []
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+		return {
+			...rewriteNode(node, nodeValue, explanation),
+			missingVariables
+		}
 	}
 
 	return {
@@ -265,11 +267,13 @@ export let mecanismAllOf = (recurse, k, v) => {
 			values = pluck('nodeValue', explanation),
 			nodeValue = any(equals(false), values)
 				? false // court-circuit
-				: any(equals(null), values) ? null : true
+				: any(equals(null), values) ? null : true,
+			missingVariables = nodeValue == null ? chain(collectNodeMissing, explanation) : []
 
-		let collectMissing = node =>
-			node.nodeValue == null ? chain(collectNodeMissing, node.explanation) : []
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+		return {
+			...rewriteNode(node, nodeValue, explanation),
+			missingVariables
+		}
 	}
 
 	return {
@@ -302,27 +306,24 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 			consequenceNode = mecanismNumericalSwitch(recurse, condition, consequence)
 
 		let evaluate = (cache, situationGate, parsedRules, node) => {
-			let collectMissing = node => {
-				let missingOnTheLeft = collectNodeMissing(node.explanation.condition),
-					investigate = node.explanation.condition.nodeValue !== false,
-					missingOnTheRight = investigate
-						? collectNodeMissing(node.explanation.consequence)
-						: []
-				return concat(missingOnTheLeft, missingOnTheRight)
-			}
-
 			let explanation = evolve(
 				{
 					condition: curry(evaluateNode)(cache, situationGate, parsedRules),
 					consequence: curry(evaluateNode)(cache, situationGate, parsedRules)
 				},
 				node.explanation
-			)
+			),
+				missingOnTheLeft = collectNodeMissing(explanation.condition),
+				investigate = explanation.condition.nodeValue !== false,
+				missingOnTheRight = investigate
+					? collectNodeMissing(explanation.consequence)
+					: [],
+				missingVariables = concat(missingOnTheLeft, missingOnTheRight)
 
 			return {
 				...node,
-				collectMissing,
 				explanation,
+				missingVariables,
 				nodeValue: explanation.consequence.nodeValue,
 				condValue: explanation.condition.nodeValue
 			}
@@ -360,16 +361,16 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 						getFirst('condValue') == null
 						? null
 						: // c'est un true, on renvoie la valeur de la conséquence
-							getFirst('nodeValue')
-
-		let collectMissing = node => {
-			let choice = find(node => node.condValue, node.explanation)
-			return choice
+							getFirst('nodeValue'),
+			choice = find(node => node.condValue, explanation),
+			missingVariables = choice
 				? collectNodeMissing(choice)
-				: chain(collectNodeMissing, node.explanation)
-		}
+				: chain(collectNodeMissing, explanation)
 
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+		return {
+			...rewriteNode(node, nodeValue, explanation),
+			missingVariables
+		}
 	}
 
 	let explanation = map(parseCondition, terms)
@@ -486,14 +487,17 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let inversion =
 			// avoid the inversion loop !
-			situationGate(dottedName) == undefined &&
-			doInversion(situationGate, parsedRules, v, dottedName)
-		let collectMissing = () => inversion.inversionMissingVariables,
-			nodeValue = inversion.nodeValue
+				situationGate(dottedName) == undefined &&
+				doInversion(situationGate, parsedRules, v, dottedName),
+			nodeValue = inversion.nodeValue,
+			missingVariables = inversion.inversionMissingVariables
 
-		let evaluatedNode = rewriteNode(node, nodeValue, null, collectMissing)
+		let evaluatedNode = {
+			...rewriteNode(node, nodeValue, null),
+			missingVariables
+		}
+
 		// rewrite the simulation cache with the definitive inversion values
-
 		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
 		return evaluatedNode
 	}
@@ -932,8 +936,7 @@ export let mecanismSelection = (recurse, k, v) => {
 	let explanation = recurse(v['cherche'])
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let collectMissing = node => collectNodeMissing(node.explanation),
-			explanation = evaluateNode(
+		let explanation = evaluateNode(
 				cache,
 				situationGate,
 				parsedRules,
@@ -962,8 +965,13 @@ export let mecanismSelection = (recurse, k, v) => {
 				? sortedSubValues
 					? Number.parseFloat(last(sortedSubValues)[1]) / 100
 					: 0
-				: null
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+				: null,
+			missingVariables = collectNodeMissing(explanation)
+
+		return {
+			...rewriteNode(node, nodeValue, explanation),
+			missingVariables
+		}
 	}
 
 	let SelectionView = buildSelectionView(dataTargetName)
