@@ -518,15 +518,19 @@ export let treatRuleRoot = (rules, rule) => {
 		'applicable si': evolveCond('applicable si', rule, rules),
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
-				let collectMissing = node => collectNodeMissing(node.explanation)
 				let explanation = evaluateNode(
 						cache,
 						situationGate,
 						parsedRules,
 						node.explanation
 					),
-					nodeValue = explanation.nodeValue
-				return rewriteNode(node, nodeValue, explanation, collectMissing)
+					nodeValue = explanation.nodeValue,
+					missingVariables = collectNodeMissing(explanation)
+
+				return {
+					...rewriteNode(node, nodeValue, explanation),
+					missingVariables
+				}
 			}
 
 			let child = treat(rules, rule)(value)
@@ -556,15 +560,19 @@ export let treatRuleRoot = (rules, rule) => {
 
 let evolveCond = (name, rule, rules) => value => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let collectMissing = node => collectNodeMissing(node.explanation)
 		let explanation = evaluateNode(
 				cache,
 				situationGate,
 				parsedRules,
 				node.explanation
 			),
-			nodeValue = explanation.nodeValue
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+			nodeValue = explanation.nodeValue,
+			missingVariables = collectNodeMissing(explanation)
+
+		return {
+			...rewriteNode(node, nodeValue, explanation),
+			missingVariables
+		}
 	}
 
 	let child = treat(rules, rule)(value)
