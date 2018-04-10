@@ -82,7 +82,14 @@ export let byBranch = analysis => {
 @translate()
 export default class ResultsGrid extends Component {
 	render() {
-		let { analysis, situationGate, targetNames, inversions, done, flatRules } = this.props,
+		let {
+				analysis,
+				situationGate,
+				targetNames,
+				inversions,
+				done,
+				flatRules
+			} = this.props,
 			rules = flatRules
 
 		if (!done) return null
@@ -114,10 +121,11 @@ export default class ResultsGrid extends Component {
 							<td
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
-								id="sommeBase"
-							>
+								id="sommeBase">
 								{humanFigure(2)(brut)}{' '}
-								<span className="annotation"><Trans>Salaire brut</Trans></span>
+								<span className="annotation">
+									<Trans>Salaire brut</Trans>
+								</span>
 							</td>
 						</tr>
 					</thead>
@@ -146,7 +154,9 @@ export default class ResultsGrid extends Component {
 									</td>
 									<td key="net" className="element value">
 										{humanFigure(2)(net)}{' '}
-										<span className="annotation"><Trans>Salaire net</Trans></span>
+										<span className="annotation">
+											<Trans>Salaire net</Trans>
+										</span>
 									</td>
 								</>
 							)}
@@ -156,7 +166,9 @@ export default class ResultsGrid extends Component {
 								</td>,
 								<td key="total" className="element value">
 									{humanFigure(2)(total)}{' '}
-									<span className="annotation"><Trans>Salaire total</Trans></span>
+									<span className="annotation">
+										<Trans>Salaire total</Trans>
+									</span>
 								</td>
 							]}
 						</tr>
@@ -170,15 +182,18 @@ export default class ResultsGrid extends Component {
 @translate()
 class Row extends Component {
 	static contextTypes = {
-      i18n: PropTypes.object.isRequired
-    }
+		i18n: PropTypes.object.isRequired
+	}
 	state = {
 		folded: true
 	}
 	render() {
 		let { rules, branch, values, analysis, relevantSalaries } = this.props,
 			detail = byName(values),
-			ruleData = mapObjIndexed((v,k,o) => findRuleByDottedName(rules,k), detail),
+			ruleData = mapObjIndexed(
+				(v, k, o) => findRuleByDottedName(rules, k),
+				detail
+			),
 			{ i18n } = this.context
 
 		let title = name => {
@@ -189,11 +204,10 @@ class Row extends Component {
 		let aggregateRow = (
 			<tr
 				key="aggregateRow"
-				onClick={() => this.setState({ folded: !this.state.folded })}
-			>
+				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
 					{capitalise0(i18n.t(branch))}&nbsp;<span className="unfoldIndication">
-						{this.state.folded ? i18n.t('déplier')+' >' : i18n.t('replier')}
+						{this.state.folded ? i18n.t('déplier') + ' >' : i18n.t('replier')}
 					</span>
 				</td>
 				{this.state.folded ? (
@@ -255,7 +269,7 @@ class Row extends Component {
 							</>
 						)}
 					</tr>
-				))
+			  ))
 
 		// returns an array of <tr>
 		return concat([aggregateRow], detailRows)
@@ -275,10 +289,9 @@ class ReductionRow extends Component {
 		let aggregateRow = (
 			<tr
 				key="aggregateRowReductions"
-				onClick={() => this.setState({ folded: !this.state.folded })}
-			>
+				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
-					Réductions &nbsp;<span className="unfoldIndication">
+					<Trans>Réductions</Trans>&nbsp;<span className="unfoldIndication">
 						{this.state.folded ? 'déplier >' : 'replier'}
 					</span>
 				</td>
