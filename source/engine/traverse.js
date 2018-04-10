@@ -151,29 +151,17 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 						? parsedRule.nodeValue // la valeur du calcul fait foi
 						: null, // elle restera donc nulle
 			explanation = parsedRule,
-			missingVariables = variableIsCalculable ? [] : [dottedName]
-
-		let collectMissing = node => {
-			let missingName = cacheName + ':missing',
-				cached = cache[missingName]
-
-			if (cached) return cached
-
-			let result =
-				nodeValue != null // notamment si situationValue != null
+			missingVariables = nodeValue != null // notamment si situationValue != null
 					? []
 					: variableIsCalculable
 						? collectNodeMissing(parsedRule)
-						: node.missingVariables
-			cache[missingName] = result
-			return result
-		}
+						: [dottedName]
 
 		if (cached) {
 			return cached
 		} else {
 			cache[cacheName] = {
-				...rewriteNode(node, nodeValue, explanation, collectMissing),
+				...rewriteNode(node, nodeValue, explanation),
 				missingVariables
 			}
 			return cache[cacheName]
@@ -212,9 +200,13 @@ let buildNegatedVariable = variable => {
 				parsedRules,
 				node.explanation
 			),
-			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
-		let collectMissing = node => collectNodeMissing(node.explanation)
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue,
+			missingVariables = explanation.missingVariables
+
+		return {
+			...rewriteNode(node, nodeValue, explanation),
+			missingVariables
+		}
 	}
 
 	let jsx = (nodeValue, explanation) => (
@@ -317,12 +309,14 @@ let treat = (rules, rule) => rawNode => {
 						nodeValue =
 							value1 == null || value2 == null
 								? null
-								: operatorFunction(value1, value2)
+								: operatorFunction(value1, value2),
+						missingVariables = chain(collectNodeMissing, explanation)
 
-					let collectMissing = node =>
-						chain(collectNodeMissing, node.explanation)
 
-					return rewriteNode(node, nodeValue, explanation, collectMissing)
+					return {
+						...rewriteNode(node, nodeValue, explanation),
+						missingVariables
+					}
 				}
 
 				let fillFiltered = parseResult =>
@@ -425,7 +419,7 @@ let treat = (rules, rule) => rawNode => {
 					sélection: mecanismSelection,
 					'une possibilité': always({
 						'une possibilité': 'oui',
-						collectMissing: () => [rule.dottedName]
+						missingVariables: [rule.dottedName]
 					}),
 					inversion: mecanismInversion(rule.dottedName),
 					allègement: mecanismReduction
@@ -461,7 +455,7 @@ export let treatRuleRoot = (rules, rule) => {
 	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
 	qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
 	Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
-	Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
+	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST
 	*/
 	let evaluate = (cache, situationGate, parsedRules, r) => {
 		let evolveRule = curry(evaluateNode)(cache, situationGate, parsedRules),

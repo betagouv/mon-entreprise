@@ -18,16 +18,17 @@ export let makeJsx = node =>
 		: node.jsx
 
 export let collectNodeMissing = node =>
-	node.collectMissing ? node.collectMissing(node) : []
+	node.missingVariables ||
+		(node.collectMissing ? node.collectMissing(node) : [])
 
 export let evaluateNode = (cache, situationGate, parsedRules, node) =>
 	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
 
-export let rewriteNode = (node, nodeValue, explanation, collectMissing) => ({
+export let rewriteNode = (node, nodeValue, explanation, collectMissing = null) => ({
 	...node,
 	nodeValue,
-	collectMissing,
-	explanation
+	explanation,
+	collectMissing
 })
 
 export let evaluateArray = (reducer, start) => (
@@ -42,11 +43,15 @@ export let evaluateArray = (reducer, start) => (
 		values = pluck('nodeValue', explanation),
 		nodeValue = any(equals(null), values)
 			? null
-			: reduce(reducer, start, values)
+			: reduce(reducer, start, values),
+		missingVariables = node.nodeValue == null
+			? chain(collectNodeMissing, explanation)
+			: []
 
-	let collectMissing = node =>
-		node.nodeValue == null ? chain(collectNodeMissing, node.explanation) : []
-	return rewriteNode(node, nodeValue, explanation, collectMissing)
+	return {
+		...rewriteNode(node, nodeValue, explanation),
+		missingVariables
+	}
 }
 
 export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
@@ -64,10 +69,15 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 		values = pluck('nodeValue', explanation),
 		nodeValue = any(equals(null), values)
 			? null
-			: reduce(reducer, start, values)
+			: reduce(reducer, start, values),
+		missingVariables = node.nodeValue == null
+			? chain(collectNodeMissing, explanation)
+			: []
 
-	let collectMissing = node => chain(collectNodeMissing, node.explanation)
-	return rewriteNode(node, nodeValue, explanation, collectMissing)
+	return {
+		...rewriteNode(node, nodeValue, explanation),
+		missingVariables
+	}
 }
 
 export let parseObject = (recurse, objectShape, value) => {
@@ -86,11 +96,15 @@ export let evaluateObject = (objectShape, effect) => (
 	node
 ) => {
 	let evaluateOne = child =>
-			evaluateNode(cache, situationGate, parsedRules, child),
-		collectMissing = node => chain(collectNodeMissing, values(node.explanation))
+			evaluateNode(cache, situationGate, parsedRules, child)
 
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		explanation = evolve(fromPairs(transforms))(node.explanation),
-		nodeValue = effect(explanation)
-	return rewriteNode(node, nodeValue, explanation, collectMissing)
+		nodeValue = effect(explanation),
+		missingVariables = chain(collectNodeMissing, values(explanation))
+
+	return {
+		...rewriteNode(node, nodeValue, explanation),
+		missingVariables
+	}
 }
