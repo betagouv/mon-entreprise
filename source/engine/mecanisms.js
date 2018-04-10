@@ -1,4 +1,6 @@
 import {
+	flatten,
+	length,
 	objOf,
 	toPairs,
 	dissoc,
@@ -144,7 +146,8 @@ let devariate = (recurse, k, v) => {
 		}
 
 		let explanation = map(evaluateOne, node.explanation),
-			choice = find(node => node.condition.nodeValue, explanation),
+			satisfied = filter(node => node.condition.nodeValue, explanation),
+			choice = head(satisfied),
 			nodeValue = choice ? choice.nodeValue : null
 
 		let leftMissing = choice
@@ -152,9 +155,9 @@ let devariate = (recurse, k, v) => {
 				: uniq(
 						map(collectNodeMissing, pluck('condition', explanation))
 					),
-			rightMissing = choice
-				? choice.missingVariables
-				: map(collectNodeMissing, explanation),
+			rightMissing = !choice
+				? []
+				: map(collectNodeMissing, satisfied),
 			missingVariables = concat(leftMissing, rightMissing || [])
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
@@ -423,7 +426,7 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 
 	if (inversion.inversionChoiceNeeded)
 		return {
-			inversionMissingVariables: [dottedName],
+			missingVariables: [dottedName],
 			nodeValue: null
 		}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
@@ -435,28 +438,21 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 			n => (dottedName === n ? x : situationGate(n)),
 			parsedRules,
 			fixedObjectiveRule
-		).nodeValue
+		)
 	}
 
 	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
 	// considérer que l'inversion est impossible du fait de variables manquantes
 	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
-	if (fx(1000) == null)
-		return {
-			nodeValue: null,
-			inversionMissingVariables:
-				evaluateNode(
-					{},
-					n => (dottedName === n ? 1000 : situationGate(n)),
-					parsedRules,
-					fixedObjectiveRule
-				).missingVariables
-		}
+	let attempt = fx(1000)
+	if (attempt.nodeValue == null) {
+		return attempt
+	}
 
 	let tolerancePercentage = 0.00001,
 		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
 		nodeValue = uniroot(
-			x => fx(x) - fixedObjectiveValue,
+			x => fx(x).nodeValue - fixedObjectiveValue,
 			0,
 			1000000000,
 			tolerancePercentage * fixedObjectiveValue,
@@ -465,7 +461,7 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 
 	return {
 		nodeValue,
-		inversionMissingVariables: [],
+		missingVariables: [],
 		inversionCache
 	}
 }
@@ -477,12 +473,12 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				situationGate(dottedName) == undefined &&
 				doInversion(situationGate, parsedRules, v, dottedName),
 			nodeValue = inversion.nodeValue,
-			missingVariables = inversion.inversionMissingVariables
+			missingVariables = inversion.missingVariables
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
 
 		// rewrite the simulation cache with the definitive inversion values
-		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
+//		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
 		return evaluatedNode
 	}
 

@@ -1,3 +1,4 @@
+import { length } from 'ramda'
 import { expect } from 'chai'
 import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
@@ -105,8 +106,23 @@ describe('inversions', () => {
                 - net
         - nom: cadre
         - nom: assiette
-          formule: 67 + brut
-
+          formule:
+            somme:
+              - 1200
+              - brut
+              - taxeOne
+        - nom: taxeOne
+          non applicable si: cadre
+          formule: taxe + taxe
+        - nom: taxe
+          formule:
+            multiplication:
+              assiette: 1200
+              variations:
+                - si: cadre
+                  taux: 80%
+                - si: ≠ cadre
+                  taux: 70%
       `,
 			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
 			stateSelector = name => ({ net: 2000 }[name]),

@@ -41,6 +41,7 @@ import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 
 export let collectMissingVariables = targets => {
 	let missing = flatten(pluck('missingVariables', targets))
+	console.log("total # missing", length(missing))
 	return groupBy(identity, missing)
 }
 

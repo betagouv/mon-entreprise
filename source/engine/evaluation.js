@@ -5,6 +5,7 @@ import {
 	equals,
 	reduce,
 	chain,
+	length,
 	fromPairs,
 	keys,
 	values,

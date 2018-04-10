@@ -129,38 +129,35 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 			cacheName = dottedName + (filter ? '.' + filter : ''),
-			cached = cache[cacheName],
-			// make parsedRules a dict object, that also serves as a cache of evaluation ?
-			variable = cached
-				? cached
-				: findRuleByDottedName(parsedRules, dottedName),
+			cached = cache[cacheName]
+
+		if (cached) {
+			return cached
+		}
+
+		let variable = findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
-			parsedRule =
-				variableIsCalculable &&
-				(cached
-					? cached
-					: evaluateNode(cache, situation, parsedRules, variable)),
-			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
+			needsEvaluation = (variableIsCalculable && situationValue == null),
+			parsedRule = needsEvaluation
+				 ? evaluateNode(cache, situation, parsedRules, variable)
+				 : variable,
+			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
+			explanation = parsedRule,
 			nodeValue =
 				situationValue != null
 					? situationValue // cette variable a été directement renseignée
 					: variableIsCalculable
 						? parsedRule.nodeValue // la valeur du calcul fait foi
 						: null, // elle restera donc nulle
-			explanation = parsedRule,
 			missingVariables = nodeValue != null // notamment si situationValue != null
 					? []
 					: variableIsCalculable
 						? parsedRule.missingVariables
 						: [dottedName]
 
-		if (cached) {
-			return cached
-		} else {
-			cache[cacheName] = rewriteNode(node, nodeValue, explanation, missingVariables)
-			return cache[cacheName]
-		}
+		cache[cacheName] = rewriteNode(node, nodeValue, explanation, missingVariables)
+		return cache[cacheName]
 	}
 
 	let { fragments } = parseResult,
