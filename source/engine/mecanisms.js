@@ -153,14 +153,11 @@ let devariate = (recurse, k, v) => {
 						chain(collectNodeMissing, pluck('condition', explanation))
 					),
 			rightMissing = choice
-				? collectNodeMissing(choice)
+				? choice.missingVariables
 				: chain(collectNodeMissing, explanation),
-			missingVariables = concat(leftMissing, rightMissing)
+			missingVariables = concat(leftMissing, rightMissing || [])
 
-		return {
-			...rewriteNode(node, nodeValue, explanation),
-			missingVariables
-		}
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	// TODO - find an appropriate representation
@@ -224,10 +221,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 				: any(equals(null), values) ? null : false,
 			missingVariables = nodeValue == null ? chain(collectNodeMissing, explanation) : []
 
-		return {
-			...rewriteNode(node, nodeValue, explanation),
-			missingVariables
-		}
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	return {
@@ -270,10 +264,7 @@ export let mecanismAllOf = (recurse, k, v) => {
 				: any(equals(null), values) ? null : true,
 			missingVariables = nodeValue == null ? chain(collectNodeMissing, explanation) : []
 
-		return {
-			...rewriteNode(node, nodeValue, explanation),
-			missingVariables
-		}
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	return {
@@ -313,12 +304,12 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				},
 				node.explanation
 			),
-				missingOnTheLeft = collectNodeMissing(explanation.condition),
+				missingOnTheLeft = explanation.condition.missingVariables,
 				investigate = explanation.condition.nodeValue !== false,
 				missingOnTheRight = investigate
-					? collectNodeMissing(explanation.consequence)
+					? explanation.consequence.missingVariables
 					: [],
-				missingVariables = concat(missingOnTheLeft, missingOnTheRight)
+				missingVariables = concat(missingOnTheLeft || [], missingOnTheRight || [])
 
 			return {
 				...node,
@@ -364,13 +355,10 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 							getFirst('nodeValue'),
 			choice = find(node => node.condValue, explanation),
 			missingVariables = choice
-				? collectNodeMissing(choice)
+				? choice.missingVariables
 				: chain(collectNodeMissing, explanation)
 
-		return {
-			...rewriteNode(node, nodeValue, explanation),
-			missingVariables
-		}
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	let explanation = map(parseCondition, terms)
@@ -492,10 +480,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 			nodeValue = inversion.nodeValue,
 			missingVariables = inversion.inversionMissingVariables
 
-		let evaluatedNode = {
-			...rewriteNode(node, nodeValue, null),
-			missingVariables
-		}
+		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
 
 		// rewrite the simulation cache with the definitive inversion values
 		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
@@ -966,12 +951,9 @@ export let mecanismSelection = (recurse, k, v) => {
 					? Number.parseFloat(last(sortedSubValues)[1]) / 100
 					: 0
 				: null,
-			missingVariables = collectNodeMissing(explanation)
+			missingVariables = explanation.missingVariables
 
-		return {
-			...rewriteNode(node, nodeValue, explanation),
-			missingVariables
-		}
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	let SelectionView = buildSelectionView(dataTargetName)

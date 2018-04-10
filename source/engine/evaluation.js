@@ -17,18 +17,16 @@ export let makeJsx = node =>
 		? node.jsx(node.nodeValue, node.explanation)
 		: node.jsx
 
-export let collectNodeMissing = node =>
-	node.missingVariables ||
-		(node.collectMissing ? node.collectMissing(node) : [])
+export let collectNodeMissing = node => node.missingVariables || []
 
 export let evaluateNode = (cache, situationGate, parsedRules, node) =>
 	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
 
-export let rewriteNode = (node, nodeValue, explanation, collectMissing = null) => ({
+export let rewriteNode = (node, nodeValue, explanation, missingVariables) => ({
 	...node,
 	nodeValue,
 	explanation,
-	collectMissing
+	missingVariables
 })
 
 export let evaluateArray = (reducer, start) => (
