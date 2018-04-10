@@ -150,11 +150,11 @@ let devariate = (recurse, k, v) => {
 		let leftMissing = choice
 				? []
 				: uniq(
-						chain(collectNodeMissing, pluck('condition', explanation))
+						map(collectNodeMissing, pluck('condition', explanation))
 					),
 			rightMissing = choice
 				? choice.missingVariables
-				: chain(collectNodeMissing, explanation),
+				: map(collectNodeMissing, explanation),
 			missingVariables = concat(leftMissing, rightMissing || [])
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
@@ -219,7 +219,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 			nodeValue = any(equals(true), values)
 				? true
 				: any(equals(null), values) ? null : false,
-			missingVariables = nodeValue == null ? chain(collectNodeMissing, explanation) : []
+			missingVariables = nodeValue == null ? map(collectNodeMissing, explanation) : []
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -262,7 +262,7 @@ export let mecanismAllOf = (recurse, k, v) => {
 			nodeValue = any(equals(false), values)
 				? false // court-circuit
 				: any(equals(null), values) ? null : true,
-			missingVariables = nodeValue == null ? chain(collectNodeMissing, explanation) : []
+			missingVariables = nodeValue == null ? map(collectNodeMissing, explanation) : []
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -356,7 +356,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 			choice = find(node => node.condValue, explanation),
 			missingVariables = choice
 				? choice.missingVariables
-				: chain(collectNodeMissing, explanation)
+				: map(collectNodeMissing, explanation)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -444,14 +444,13 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 	if (fx(1000) == null)
 		return {
 			nodeValue: null,
-			inversionMissingVariables: collectNodeMissing(
+			inversionMissingVariables:
 				evaluateNode(
 					{},
 					n => (dottedName === n ? 1000 : situationGate(n)),
 					parsedRules,
 					fixedObjectiveRule
-				)
-			)
+				).missingVariables
 		}
 
 	let tolerancePercentage = 0.00001,

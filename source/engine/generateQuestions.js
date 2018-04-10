@@ -1,5 +1,6 @@
 import {
-	chain,
+	flatten,
+	pluck,
 	groupBy,
 	toPairs,
 	sort,
@@ -22,7 +23,6 @@ import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
 import { findRuleByDottedName, disambiguateRuleReference } from './rules'
-import { collectNodeMissing } from './evaluation'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -40,7 +40,7 @@ import { collectNodeMissing } from './evaluation'
  */
 
 export let collectMissingVariables = targets => {
-	let missing = chain(collectNodeMissing, targets)
+	let missing = flatten(pluck('missingVariables', targets))
 	return groupBy(identity, missing)
 }
 

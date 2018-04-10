@@ -43,13 +43,10 @@ export let evaluateArray = (reducer, start) => (
 			? null
 			: reduce(reducer, start, values),
 		missingVariables = node.nodeValue == null
-			? chain(collectNodeMissing, explanation)
+			? map(collectNodeMissing, explanation)
 			: []
 
-	return {
-		...rewriteNode(node, nodeValue, explanation),
-		missingVariables
-	}
+	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 
 export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
@@ -69,13 +66,10 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 			? null
 			: reduce(reducer, start, values),
 		missingVariables = node.nodeValue == null
-			? chain(collectNodeMissing, explanation)
+			? map(collectNodeMissing, explanation)
 			: []
 
-	return {
-		...rewriteNode(node, nodeValue, explanation),
-		missingVariables
-	}
+	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 
 export let parseObject = (recurse, objectShape, value) => {
@@ -99,10 +93,7 @@ export let evaluateObject = (objectShape, effect) => (
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		explanation = evolve(fromPairs(transforms))(node.explanation),
 		nodeValue = effect(explanation),
-		missingVariables = chain(collectNodeMissing, values(explanation))
+		missingVariables = map(collectNodeMissing, values(explanation))
 
-	return {
-		...rewriteNode(node, nodeValue, explanation),
-		missingVariables
-	}
+	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
