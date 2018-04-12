@@ -130,7 +130,7 @@ export default class Satisfaction extends Component {
 					) : (
 						<span>
 							<i className="fa fa-paper-plane" aria-hidden="true" />
-							<span className="text">envoyer</span>
+							<span className="text"><Trans>envoyer</Trans></span>
 						</span>
 					)}
 				</button>
