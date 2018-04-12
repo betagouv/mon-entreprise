@@ -441,6 +441,11 @@ contrat salarié . aides employeur différées:
   résumé.fr: Les aides différées dont peut bénéficier l'employeur.
   titre.en: deferred employer aids
   titre.fr: aides employeur différées
+  description.en: | 
+        Some aids can be requested by the employer to help hires. 
+
+        These aids are deferred : they can for example be given indirectly as a tax credit.
+  
 contrat salarié . salaire:
   titre.en: salary
   titre.fr: salaire

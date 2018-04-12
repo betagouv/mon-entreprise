@@ -37,8 +37,6 @@ export default class Algorithm extends React.Component {
 				)
 			: displayedRule
 
-		console.log('didcomp')
-
 		return (
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({ showValues })}>
