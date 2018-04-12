@@ -29,8 +29,7 @@ export default class Home extends Component {
 					/>
 					<p style={opacityStyle}>
 						<Trans i18nKey="news">
-						Cette nouvelle version du site vous permet de simuler un CDD ou CDI,
-						aux taux de 2018.
+								Le simulateur est maintenant utilisable en anglais
 						</Trans>
 					</p>
 				</div>
