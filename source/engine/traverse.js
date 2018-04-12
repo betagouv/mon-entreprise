@@ -19,6 +19,8 @@ import {
 	divide,
 	multiply,
 	map,
+	length,
+	flatten,
 	intersection,
 	keys,
 	is,
@@ -130,7 +132,6 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 			cacheName = dottedName + (filter ? '.' + filter : ''),
 			cached = cache[cacheName]
-
 		if (cached) {
 			return cached
 		}
@@ -445,6 +446,9 @@ export let treatRuleRoot = (rules, rule) => {
 	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST
 	*/
 	let evaluate = (cache, situationGate, parsedRules, node) => {
+		cache.parseLevel++
+//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
+
 		let evolveRule = curry(evaluateNode)(cache, situationGate, parsedRules),
 			evaluated = evolve(
 				{
@@ -487,6 +491,8 @@ export let treatRuleRoot = (rules, rule) => {
 			formMissing = (collectInFormule && formule.missingVariables) || [],
 			missingVariables = concat(condMissing, formMissing)
 
+		cache.parseLevel--
+//		console.log("".padStart(cache.parseLevel-1),map(mv => length(flatten(mv)), {ruleCond:condMissing, formule:formMissing}))
 		return { ...evaluated, nodeValue, isApplicable, missingVariables }
 	}
 
@@ -598,7 +604,7 @@ export let parseAll = flatRules => {
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
-	let cache = {}
+	let cache = {parseLevel: 0}
 
 	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>

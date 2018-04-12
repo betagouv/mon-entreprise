@@ -222,7 +222,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 			nodeValue = any(equals(true), values)
 				? true
 				: any(equals(null), values) ? null : false,
-			missingVariables = nodeValue == null ? map(collectNodeMissing, explanation) : []
+			missingVariables = nodeValue == null ? uniq(map(collectNodeMissing, explanation)) : []
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -421,7 +421,7 @@ export let findInversion = (situationGate, rules, v, dottedName) => {
 	}
 }
 
-let doInversion = (situationGate, parsedRules, v, dottedName) => {
+let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	let inversion = findInversion(situationGate, parsedRules, v, dottedName)
 
 	if (inversion.inversionChoiceNeeded)
@@ -432,7 +432,7 @@ let doInversion = (situationGate, parsedRules, v, dottedName) => {
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let inversionCache = {}
 	let fx = x => {
-		inversionCache = {}
+		inversionCache = {parseLevel: oldCache.parseLevel+1, op:"<"}
 		return evaluateNode(
 			inversionCache, // with an empty cache
 			n => (dottedName === n ? x : situationGate(n)),
@@ -471,9 +471,9 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 		let inversion =
 			// avoid the inversion loop !
 				situationGate(dottedName) == undefined &&
-				doInversion(situationGate, parsedRules, v, dottedName),
+				doInversion(cache, situationGate, parsedRules, v, dottedName),
 			nodeValue = inversion.nodeValue,
-			missingVariables = inversion.missingVariables
+			missingVariables = uniq(flatten(inversion.missingVariables))
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
 

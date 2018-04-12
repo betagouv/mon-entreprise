@@ -6,6 +6,8 @@ import {
 	reduce,
 	chain,
 	length,
+	flatten,
+	uniq,
 	fromPairs,
 	keys,
 	values,
@@ -46,7 +48,7 @@ export let evaluateArray = (reducer, start) => (
 		missingVariables = node.nodeValue == null
 			? map(collectNodeMissing, explanation)
 			: []
-
+//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 
@@ -67,7 +69,9 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 			? null
 			: reduce(reducer, start, values),
 		missingVariables = node.nodeValue == null
-			? map(collectNodeMissing, explanation)
+			// TODO - this works by coincidence, composantes are usually of a computation
+			// where missing variables are shared
+			? uniq(map(collectNodeMissing, explanation))
 			: []
 
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
@@ -95,6 +99,6 @@ export let evaluateObject = (objectShape, effect) => (
 		explanation = evolve(fromPairs(transforms))(node.explanation),
 		nodeValue = effect(explanation),
 		missingVariables = map(collectNodeMissing, values(explanation))
-
+//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
