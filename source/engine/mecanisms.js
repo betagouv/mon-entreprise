@@ -478,8 +478,9 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
 
-		// rewrite the simulation cache with the definitive inversion values
-//		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
+		// TODO - we need this so that ResultsGrid will work, but it's
+		// just not right
+		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
 		return evaluatedNode
 	}
 
