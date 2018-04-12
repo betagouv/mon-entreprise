@@ -53,7 +53,9 @@
 	flex-wrap: wrap;
 	margin: 0 auto;
 }
-
+#results i {
+	margin-right: 0.6em;
+}
 #results li {
 	margin: 0 1.2em;
 	display: inline-block;

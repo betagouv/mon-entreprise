@@ -3,14 +3,19 @@ import HoverDecorator from './HoverDecorator'
 import 'whatwg-fetch'
 import { connect } from 'react-redux'
 import './Satisfaction.css'
-
+import { Trans, translate } from 'react-i18next'
 import ReactPiwik from './Tracker'
+import PropTypes from 'prop-types'
 
 @connect(state => ({
 	sessionId: state.sessionId,
 	textColourOnWhite: state.themeColours.textColourOnWhite
 }))
+@translate()
 export default class Satisfaction extends Component {
+    static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
 	state = {
 		answer: false,
 		message: null,
@@ -50,6 +55,7 @@ export default class Satisfaction extends Component {
 	}
 	render() {
 		let { answer, message, address, messageSent } = this.state,
+			{ i18n } = this.context,
 			validMessage =
 				(typeof message == 'string' && message.length > 4) ||
 				(typeof address == 'string' && address.length > 4),
@@ -62,7 +68,11 @@ export default class Satisfaction extends Component {
 		if (!answer)
 			return (
 				<div id="satisfaction">
-					<p>Vous êtes satisfait du simulateur ?</p>
+						<p>
+						<Trans i18nKey="satisfaction">
+								Vous êtes satisfait du simulateur ?
+						</Trans>	
+						</p>
 					<p>
 						<Smiley
 							text=":)"
@@ -81,8 +91,8 @@ export default class Satisfaction extends Component {
 			)
 
 		let messagePlaceholder = {
-			':)': 'Envoyez-nous un commentaire !',
-			':|': "Qu'est-ce qui n'a pas été ?"
+			':)': i18n.t('Envoyez-nous un commentaire !'),
+			':|': i18n.t("Qu'est-ce qui n'a pas été ?")
 		}[answer]
 
 		let feedback = (
@@ -120,19 +130,23 @@ export default class Satisfaction extends Component {
 					) : (
 						<span>
 							<i className="fa fa-paper-plane" aria-hidden="true" />
-							<span className="text">envoyer</span>
+							<span className="text"><Trans>envoyer</Trans></span>
 						</span>
 					)}
 				</button>
-				<p>
+				<p> 
+						<Trans i18nKey="satisfaction-email-ou" >
 					Pour recevoir une réponse, laissez-nous votre adresse ou{' '}
+			</Trans>
 					<a
 						href={
 							'mailto:contact@embauche.beta.gouv.fr?subject=Suggestion pour le simulateur ' +
 							this.props.simu
 						}
 					>
-						envoyez-nous directement un mail{' '}
+							<Trans i18nKey="satisfaction-mailto">
+									{' '}envoyez-nous directement un mail{' '}
+				</Trans>
 						<i
 							className="fa fa-envelope-open-o"
 							aria-hidden="true"

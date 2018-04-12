@@ -56,14 +56,14 @@
       valeur attendue: null
 
 - espace: contrat salarié . CDD
-  nom: compensation congés payés
+  nom: compensation pour congés non pris
   indemnité:
     destinataire: salarié
     dû par: employeur
   description: |
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
-    Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie d'une indemnité compensatrice de congés payés.
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie alors d'une indemnité compensatrice de congés payés versée par l'employeur.
 
   non applicable si:
     une de ces conditions:
@@ -81,7 +81,7 @@
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire de base + prime fin de contrat
+          assiette: salaire de base + prime de fin de contrat
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
           taux: 10%
@@ -96,7 +96,7 @@
         #   soit du nombre moyen de jours ouvrables (ou ouvrés),
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
-          assiette: salaire de base + prime fin de contrat
+          assiette: salaire de base + prime de fin de contrat
           # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
           # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
           taux: congés non pris / durée contrat
@@ -110,7 +110,7 @@
     - nom: pas de congés non pris
       situation:
         salaire de base: 2300
-        prime fin de contrat: 0
+        prime de fin de contrat: 0
         congés non pris: 0
         durée contrat: 12
       valeur attendue: 0
@@ -118,7 +118,7 @@
       situation:
         type de contrat: CDD
         salaire de base: 2300
-        prime fin de contrat: 0
+        prime de fin de contrat: 0
         congés non pris: 10
         durée contrat: 12
       valeur attendue: 92
@@ -126,7 +126,7 @@
       situation:
         type de contrat: CDD
         salaire de base: 2300
-        prime fin de contrat: 0
+        prime de fin de contrat: 0
         congés non pris: 3
         durée contrat: 6
       valeur attendue: 55.21
@@ -151,7 +151,7 @@
 
 
 - espace: contrat salarié . CDD
-  nom: prime fin de contrat
+  nom: prime de fin de contrat
   indemnité:
     destinataire: salarié
 
@@ -280,7 +280,7 @@
 - espace: contrat salarié
   nom: ATMP
   titre: Cotisation Accidents du Travail et Maladies Professionnelles
-  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles
+  description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles.
   cotisation:
     dû par: employeur
     branche: santé
@@ -578,8 +578,8 @@
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:
-      - prime fin de contrat
-      - compensation congés payés
+      - prime de fin de contrat
+      - compensation pour congés non pris
 
 - espace: contrat salarié . CDD
   nom: surcoût
@@ -599,8 +599,8 @@
       situation:
         indemnités salarié CDD: 100
         cotisations employeur CDD: 190
-        prime fin de contrat: 60.4
-        compensation congés payés: 39.6
+        prime de fin de contrat: 60.4
+        compensation pour congés non pris: 39.6
       valeur attendue: 290
 
 # Cette variable est le point de départ du simulateur "surcout CDD" :-D
@@ -659,8 +659,9 @@
 
 - espace: contrat salarié
   nom: assiette cotisations sociales
+  titre: Assiette des cotisations sociales
   description: |
-    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule: salaire brut
 
@@ -671,11 +672,8 @@
   type: salaire
   question: Quel est le salaire brut mensuel ?
   description: |
-    C'est le salaire de négociation du contrat de travail en France.
+    C'est le salaire de négociation du contrat de travail en France. 
 
-    Il peut être vu comme :
-    - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
-    - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
   format: euros
   suggestions:
     salaire médian: 2300
@@ -798,7 +796,7 @@
   nom: coût du travail
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
-    des aides et subventions qui lui sont reversées: c'est donc le coût total réel du travail pour l'employeur.
+    des aides et subventions qui lui sont reversées: c'est donc le coût social total réel du travail pour l'employeur.
   formule: salaire total - aides employeur différées
 
 - espace: contrat salarié
@@ -826,6 +824,10 @@
 - espace: contrat salarié
   nom: aides employeur différées
   résumé: Les aides différées dont peut bénéficier l'employeur.
+  description: | 
+        Certaines aides peuvent être demandées par l'employeur pour faciliter une embauche. 
+  
+        Ces aides sont différées : elles ne viennent pas réduire les montants mensuels, mais interviennent par la suite, par exemple sous forme de crédit d'impôt.
   formule:
     somme:
       - CICE
@@ -933,8 +935,9 @@
   nom: temps partiel
   question: Le contrat est-il à temps partiel ?
   description: |
-    Le temps partiel peut avoir une influence sur les règles.
-    Par exemple les cotisations plafonnées ou les exonérations dépendant du SMIC.
+    Deux contrats au même salaire, l'un à temps partiel, l'autre à temps complet, peuvent donner lieu à des montants de cotisation différents.
+
+    Par exemple pour les cotisations plafonnées ou les exonérations dépendant du SMIC.
   par défaut: non
 
 - espace: contrat salarié
@@ -946,6 +949,7 @@
 
 - espace: contrat salarié
   nom: quotité de travail
+  description: Temps de travail en proportion du temps complet légal.
   formule:
     multiplication:
       assiette: 1
@@ -1087,7 +1091,7 @@
     type: réduction de cotisations
     démarches: non
   description: |
-    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
+    Exonération pour les jeunes entreprises innovantes (JEI).
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
@@ -1196,7 +1200,7 @@
     destinataire: AGFF
   description: |
     Cotisation de retraite complémentaire
-    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO)
+    (Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO).
   référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
   formule:
@@ -1388,6 +1392,7 @@
 
 - espace: contrat salarié
   nom: réduction allocations familiales
+  titre: Réduction des allocations familiales
   applicable si:
     toutes ces conditions:
       - assiette cotisations sociales < plafond réduction allocations familiales
@@ -1400,6 +1405,7 @@
 
 - espace: contrat salarié
   nom: plafond réduction allocations familiales
+  titre: Plafond de la réduction des allocations familiales
   formule: smic mensuel * 3.5
 
 # TODO - intégrer l'éligibilité à la réduction générale
@@ -1446,7 +1452,7 @@
     type de retraite: complémentaire
     destinataire: ARRCO
   description: |
-    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés
+    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés.
   références:
     calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
@@ -1569,7 +1575,7 @@
   par défaut: 40
   suggestions:
     basique: 40
-    moyen: 100
+    élevé: 100
 - espace: contrat salarié
   nom: contribution au dialogue social
   cotisation:
@@ -1767,6 +1773,7 @@
   formule: 80 / 12
 - espace: contrat salarié
   nom: participation effort de construction
+  titre: Participation à l'effort de construction
   alias: Dispositif du 1 % logement
   acronyme: PEEC
   description: Participation des employeurs à l'effort de construction
@@ -1791,6 +1798,7 @@
 # indiquer le taux appliqué par l'entreprise
 - espace: contrat salarié
   nom: prévoyance obligatoire cadre
+  titre: Prévoyance obligatoire pour les cadres
   cotisation:
     dû par: employeur
     branche: santé
@@ -1868,6 +1876,7 @@
 
 - espace: contrat salarié . taxe d'apprentissage
   nom: csa au taux majoré
+  titre: CSA au taux majoré
 
   formule:
     toutes ces conditions:
@@ -1981,7 +1990,7 @@
 
 - espace: contrat salarié
   nom: versement transport
-  description: Contribution sur le travail consacrée au financement des transports publics.
+  description: Contribution sur les salaires destinée au financement des transports publics.
   non applicable si: entreprise . effectif < 11
     # TODO variations sur la période
     # variations:
@@ -1995,13 +2004,13 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: établissement . taux versement transport
+      taux: établissement . taux du versement transport
 
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
 
 - espace: établissement
-  nom: taux versement transport
+  nom: taux du versement transport
   données: taux_versement_transport
   formule:
     sélection:

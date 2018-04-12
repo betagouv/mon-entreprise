@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import './ProgressTip.css'
@@ -11,6 +12,7 @@ import { Line } from 'rc-progress'
 	nextSteps: state.nextSteps,
 	colour: state.themeColours.colour
 }))
+@translate()
 export default class ProgressTip extends Component {
 	state = {
 		nbFoldedStepsForFirstEstimation: null
@@ -29,13 +31,18 @@ export default class ProgressTip extends Component {
 			<div className="tip">
 				{nbQuestions != 0 &&
 					this.state.nbFoldedStepsForFirstEstimation === foldedSteps.length && (
-						<p>Votre première estimation est disponible !</p>
+						<p><Trans i18nKey="first">Votre première estimation est disponible !</Trans></p>
 					)}
 				{nbQuestions != 0 && (
 					<p>
 						{nbQuestions === 1
-							? 'Une dernière question !'
-							: `Il reste moins de ${nbQuestions} questions`}
+							?
+							<Trans i18nKey="lastQ">Une dernière question !</Trans>
+							:
+							<Trans i18nKey="questionsLeft" count={nbQuestions}>
+							Il reste moins de {{nbQuestions}} questions.
+							</Trans>
+						}
 						<Line
 							percent={
 								100 * foldedSteps.length / (foldedSteps.length + nbQuestions)

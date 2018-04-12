@@ -1,0 +1,63 @@
+targetSelection: What would you like to estimate ?
+news: Welcome to the english-language version of the salary cost estimator
+selectMany: You may pick more than one
+Valider: Accept
+valider: accept
+votre réponse: answer here
+reset: Start over
+resetAll: Discard answers
+change: Change answers
+details: Detailed results
+revenir: back
+Modifier: Edit
+passer: skip
+irrelevant: Not owed
+unsatisfied: Awaiting your answers…
+Échap: Esc
+Entrée: Enter
+À propos: About (fr)
+Mode plein écran: Full screen
+first: Your first estimate is now available!
+lastQ: One last question!
+questionsLeft: Fewer than <1>{{nbQuestions}}</1> questions to go…
+radio_Oui: Yes
+radio_Non: No
+radio_Aucun: None
+déplier: show more
+replier: show less
+santé: healthcare
+retraite: pensions
+famille: family allowances
+chômage: unemployment
+logement: housing
+autre: other
+Salaire brut: Gross salary
+Salaire net: Net salary
+Salaire total: Total salary
+Salaire de base: Base salary
+Réductions: Reductions
+disclaimer: This estimate takes into account national law but not union negotiated rules, and should not be used as a pay slip. If results differ from a pay slip, we refer you to an accountant or HR expert.
+clickForMore: You can click the results below for detailed explanations.
+Quel est le salaire mensuel ?: What is the monthly salary?
+back: Back to your simulation
+ambiguous: More than one rule with this name found. Which one are you looking for ?
+reportError: Report an error
+Références: Relevant legal information
+Règles attachées: Linked rules
+inspace: These rules are in category
+Pas de sources officielles: No official information
+afficher les sources complémentaires: display additional information sources
+understand: Click any value to see how it was calculated
+input: This rule does not have a formula to compute it. Its value must be supplied through the form.
+Déclenchement: Applicability
+Calcul: Calculation formula
+Chercher une règle: Find a rule
+Entrez des mots clefs ici: Enter keywords
+noresults: No results
+cliquez pour insérer cette suggestion: click to insert this suggestion
+satisfaction: Are you satisfied with the simulator ?
+Envoyez-nous un commentaire !: Send us a comment !
+Qu'est-ce qui n'a pas été ?: What went wrong ?
+satisfaction-email-ou: To start a conversation with us, fill your email address or
+satisfaction-mailto: click here to directly write an email
+envoyer: send

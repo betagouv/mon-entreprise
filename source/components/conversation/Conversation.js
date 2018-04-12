@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import { isEmpty } from 'ramda'
 import Aide from '../Aide'
 import Satisfaction from '../Satisfaction'
@@ -9,6 +10,7 @@ import { scroller, Element } from 'react-scroll'
 	form: 'conversation',
 	destroyOnUnmount: false
 })
+@translate()
 export default class Conversation extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
@@ -44,7 +46,7 @@ export default class Conversation extends Component {
 								style={{ color: textColourOnWhite }}
 							>
 								<i className="fa fa-trash" aria-hidden="true" />
-								Tout effacer
+								<Trans i18nKey="resetAll">Tout effacer</Trans>
 							</button>
 						</div>
 						{foldedSteps}
@@ -58,8 +60,8 @@ export default class Conversation extends Component {
 							color: textColourOnWhite
 						}}
 					>
-						<i className="fa fa-long-arrow-up" aria-hidden="true" /> Modifier
-						mes réponses
+						<i className="fa fa-long-arrow-up" aria-hidden="true" />
+						<Trans i18nKey="change">Modifier mes réponses</Trans>
 					</h3>
 					<div id="currentQuestion">
 						{currentQuestion || <Satisfaction simu={this.props.simu} />}

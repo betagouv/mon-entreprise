@@ -1,6 +1,8 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
 import rawRules from 'Règles/base.yaml'
+import translations from 'Règles/externalized.yaml'
 import {
+	assoc,
 	has,
 	pipe,
 	toPairs,
@@ -41,7 +43,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 		title = capitalise0(rule['titre'] || name),
 		ns = rule['espace'],
 		data = rule['données'] ? sharedData[rule['données']] : null,
-		dottedName = ns ? [ns, name].join(' . ') : name,
+		dottedName = buildDottedName(rule),
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 		defaultValue = rule['par défaut']
@@ -58,6 +60,9 @@ export let enrichRule = (rule, sharedData = {}) => {
 		defaultValue
 	}
 }
+
+let buildDottedName = rule =>
+	rule['espace'] ? [rule['espace'], rule['nom']].join(' . ') : rule['nom']
 
 export let disambiguateExampleSituation = (rules, rule) =>
 	pipe(
@@ -102,7 +107,7 @@ export let disambiguateRuleReference = (
 	return (
 		(found && found.dottedName) ||
 		do {
-			throw new `OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`()
+			throw new Error(`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`)
 		}
 	)
 }
@@ -111,11 +116,6 @@ export let collectDefaults = pipe(
 	map(props(['dottedName', 'defaultValue'])),
 	reject(([, v]) => v === undefined),
 	fromPairs
-)
-
-// On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = rawRules.map(rule =>
-	enrichRule(rule, { taux_versement_transport })
 )
 
 /****************************************
@@ -168,3 +168,33 @@ export let formatInputs = (flatRules, formValueSelector) => state => name => {
 
 	return value && pre(value)
 }
+
+/* Traduction */
+
+export let translateAll = (translations, flatRules) => {
+	let translationsOf = rule => translations[buildDottedName(rule)],
+		translateProp = (lang, translation) => (rule, prop) => {
+			let propTrans = translation[prop + '.' + lang]
+		    if (prop === 'suggestions' && propTrans)
+				return assoc('suggestions', pipe(toPairs, map(([key,translatedKey]) => [translatedKey, rule.suggestions[key]]), fromPairs)(propTrans), rule)
+			return propTrans ? assoc(prop, propTrans, rule) : rule
+		},
+		translateRule = (lang, translations, props) => rule => {
+			let ruleTrans = translationsOf(rule)
+			return ruleTrans
+				? reduce(translateProp(lang, ruleTrans), rule, props)
+				: rule
+		}
+
+	let targets = ['titre', 'description', 'question', 'sous-question', 'résumé', 'suggestions']
+
+	return map(translateRule('en', translations, targets), flatRules)
+}
+
+// On enrichit la base de règles avec des propriétés dérivées de celles du YAML
+export let rules = translateAll(translations, rawRules).map(rule =>
+	enrichRule(rule, { taux_versement_transport })
+)
+export let rulesFr = rawRules.map(rule =>
+	enrichRule(rule, { taux_versement_transport })
+)

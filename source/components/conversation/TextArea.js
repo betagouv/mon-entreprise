@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import { FormDecorator } from './FormDecorator'
 
 @FormDecorator('text-area')
+@translate()
 export default class Input extends Component {
 	render() {
 		let {
@@ -37,7 +39,7 @@ export default class Input extends Component {
 						}}
 						onClick={() => (!error ? submit() : null)}
 					>
-						<span className="text">valider</span>
+						<span className="text"><Trans>valider</Trans></span>
 						<span className="icon">✓</span>
 					</button>
 				</span>

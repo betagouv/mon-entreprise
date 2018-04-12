@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import ResultsGrid from 'Components/ResultsGrid'
 import { salaries } from 'Components/TargetSelection'
 import { isEmpty, intersection, head } from 'ramda'
@@ -6,6 +7,7 @@ import Rule from 'Components/rule/Rule'
 import './Explanation.css'
 import { pluck } from 'ramda'
 
+@translate()
 export default class Explanation extends Component {
 	render() {
 		let { targetRules } = this.props
@@ -17,10 +19,12 @@ export default class Explanation extends Component {
 				{this.renderExplanation(targetRules)}
 				<div id="warning">
 					<p>
-						<i className="fa fa-info-circle" aria-hidden="true" />Le calcul ne
-						prend pas en compte les conventions et accords collectifs, et n'est
-						pas opposable à un bulletin de paie. En cas d'écart, vous pouvez en
-						discuter avec votre responsable.
+						<i className="fa fa-info-circle" aria-hidden="true" />
+						<Trans i18nKey="disclaimer">
+						Le calcul ne prend pas en compte les conventions et accords collectifs,
+						et n'est pas opposable à un bulletin de paie. En cas d'écart, vous pouvez
+						en discuter avec votre responsable.
+						</Trans>
 					</p>
 				</div>
 			</section>
@@ -32,7 +36,7 @@ export default class Explanation extends Component {
 
 		if (targetRules.length > 1)
 			return (
-				<p>Cliquez sur les lignes de résultat ci-dessus pour les comprendre</p>
+				<p><Trans i18nKey="clickForMore">Cliquez sur les lignes de résultat ci-dessus pour les comprendre</Trans></p>
 			)
 
 		return <Rule rule={head(targetRules)} />

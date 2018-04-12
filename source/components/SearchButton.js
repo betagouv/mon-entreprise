@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import { connect } from 'react-redux'
 import './SearchButton.css'
 import Overlay from './Overlay'
 import { SearchBar } from './pages/RulesList'
 import withColours from 'Components/withColours'
 
+@connect(
+	state => ({
+		flatRules: state.flatRules
+	})
+)
 @withColours
+@translate()
 export default class SearchButton extends Component {
 	componentDidMount() {
 		// removeEventListener will need the exact same function instance
@@ -27,12 +35,13 @@ export default class SearchButton extends Component {
 	}
 	close = () => this.setState({ visible: false })
 	render() {
+		let { flatRules } = this.props
 		return (
 			<div id="searchButton">
 				{this.state.visible ? (
 					<Overlay onOuterClick={this.close}>
-						<h2>Chercher une règle</h2>
-						<SearchBar showDefaultList={false} finally={this.close} />
+						<h2><Trans>Chercher une règle</Trans></h2>
+						<SearchBar showDefaultList={false} finally={this.close} rules={flatRules} />
 					</Overlay>
 				) : (
 					<button onClick={() => this.setState({ visible: true })}>

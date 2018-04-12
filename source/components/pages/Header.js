@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import PropTypes from 'prop-types'
 import 'Components/pages/Header.css'
 import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { CHANGE_LANG } from '../../actions'
 
 @withRouter
 @connect(state => ({
 	iframe: state.iframe,
 	textColourOnWhite: state.themeColours.textColourOnWhite
 }))
+@translate()
 export class Header extends Component {
 	state = {
 		mobileNavVisible: false
@@ -27,7 +31,11 @@ export class Header extends Component {
 					onClick={() => screenfull.toggle()}
 					className={appMode ? 'absolute' : ''}
 				>
-					{!appMode && <span>Mode plein écran</span>}
+					{!appMode && (
+						<span>
+							<Trans>Mode plein écran</Trans>
+						</span>
+					)}
 					<i
 						className="fa fa-arrows-alt"
 						aria-hidden="true"
@@ -98,17 +106,45 @@ let Links = ({ toggle }) => (
 )
 
 @withRouter
+@translate()
+@connect(null, dispatch => ({
+	changeLanguage: lang => dispatch({ type: CHANGE_LANG, lang })
+}))
 export class Footer extends Component {
+	static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
+	getUnusedLanguageCode = () => {
+		let languageCode = this.context.i18n.language
+		return !languageCode || languageCode === 'fr' ? 'en' : 'fr'
+	}
+
+	changeLanguage = () => {
+		let nextLanguage = this.getUnusedLanguageCode()
+		this.props.changeLanguage(nextLanguage)
+		this.context.i18n.changeLanguage(nextLanguage)
+	}
 	render() {
 		let appMode = ['/simu', '/regle'].find(t =>
 			this.props.location.pathname.includes(t)
 		)
-		if (!appMode) return null
 		return (
 			<div id="footer">
-				<Link to="/à-propos">
-					À propos <i className="fa fa-question-circle" aria-hidden="true" />
-				</Link>
+				<button onClick={this.changeLanguage}>
+					{do {
+						let languageCode = this.getUnusedLanguageCode()
+						;<span>
+							<img src={require(`Images/${languageCode}.png`)} />
+							{languageCode.toUpperCase()}
+						</span>
+					}}
+				</button>
+				{appMode && (
+					<Link to="/à-propos">
+						<Trans>À propos</Trans>{' '}
+						<i className="fa fa-question-circle" aria-hidden="true" />
+					</Link>
+				)}
 			</div>
 		)
 	}

@@ -7,7 +7,6 @@ import { withRouter, Redirect } from 'react-router-dom'
 import classNames from 'classnames'
 import { START_CONVERSATION } from '../actions'
 import {
-	rules,
 	findRuleByName,
 	findRule,
 	findRuleByDottedName,
@@ -34,7 +33,8 @@ import Explanation from 'Components/Explanation'
 		done: state.done,
 		nextSteps: state.nextSteps,
 		inputInversions: formValueSelector('conversation')(state, 'inversions'),
-		analysis: state.analysis
+		analysis: state.analysis,
+		flatRules: state.flatRules
 	}),
 	dispatch => ({
 		startConversation: (targetNames, fromScratch = false) =>
@@ -51,6 +51,7 @@ export default class extends Component {
 		let {
 				match: { params: { targets: encodedTargets } },
 				targetNames: pastTargetNames,
+				flatRules,
 				resetFormField
 			} = this.props,
 			targetNames = encodedTargets.split('+').map(decodeRuleName)
@@ -58,7 +59,7 @@ export default class extends Component {
 		this.targetNames = targetNames
 
 		this.targetRules = reject(isNil)(
-			targetNames.map(name => findRule(rules, name))
+			targetNames.map(name => findRule(flatRules, name))
 		)
 
 		this.targetRules.map(({ dottedName }) => resetFormField(dottedName))
@@ -74,6 +75,7 @@ export default class extends Component {
 		if (this.targetRules.length == 0) return <Redirect to="/404" />
 
 		let {
+				flatRules,
 				foldedSteps,
 				currentQuestion,
 				situationGate,
@@ -105,13 +107,13 @@ export default class extends Component {
 						reinitalise,
 						currentQuestion:
 							currentQuestion &&
-							this.buildStep({ unfolded: true })(
+							this.buildStep({ unfolded: true, flatRules })(
 								situationGate,
 								this.targetNames,
 								inputInversions
 							)(currentQuestion),
 						foldedSteps: map(
-							this.buildStep({ unfolded: false })(
+							this.buildStep({ unfolded: false, flatRules })(
 								situationGate,
 								this.targetNames,
 								inputInversions
@@ -133,18 +135,18 @@ export default class extends Component {
 		)
 	}
 
-	buildStep = ({ unfolded }) => (
+	buildStep = ({ unfolded, flatRules }) => (
 		situationGate,
 		targetNames,
 		inputInversions
 	) => question => {
-		let step = makeQuestion(rules, targetNames)(question)
+		let step = makeQuestion(flatRules, targetNames)(question)
 
 		let fieldName =
 				(inputInversions &&
 					path(step.dottedName.split('.'), inputInversions)) ||
 				step.dottedName,
-			fieldTitle = findRuleByDottedName(rules, fieldName).title
+			fieldTitle = findRuleByDottedName(flatRules, fieldName).title
 
 		return (
 			<step.component

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import PropTypes from 'prop-types'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import { toPairs } from 'ramda'
@@ -6,7 +8,11 @@ import { Field } from 'redux-form'
 import SendButton from './SendButton'
 
 @FormDecorator('input')
+@translate()
 export default class Input extends Component {
+	static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
 	state = {
 		lastValue: ''
 	}
@@ -20,7 +26,10 @@ export default class Input extends Component {
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = dirty && error,
-			submitDisabled = !dirty || inputError
+			submitDisabled = !dirty || inputError,
+			{ i18n } = this.context,
+			transformedAttributes = Object.assign({}, attributes)
+		transformedAttributes['placeholder'] = i18n.t(attributes['placeholder'])
 
 		return (
 			<span>
@@ -34,7 +43,7 @@ export default class Input extends Component {
 						{...input}
 						className={classnames({ suffixed })}
 						id={'step-' + dottedName}
-						{...attributes}
+						{...transformedAttributes}
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
@@ -45,8 +54,7 @@ export default class Input extends Component {
 						<label
 							className="suffix"
 							htmlFor={'step-' + dottedName}
-							style={!active ? { color: '#888' } : { color: '#222' }}
-						>
+							style={!active ? { color: '#888' } : { color: '#222' }}>
 							{answerSuffix}
 						</label>
 					)}
@@ -88,8 +96,7 @@ export default class Input extends Component {
 				name={'inversions.' + dottedName}
 				onChange={(e, newValue, previousFieldName) =>
 					setFormValue('', previousFieldName)
-				}
-			>
+				}>
 				{inversion.inversions.map(({ name, title, dottedName }) => (
 					<option key={dottedName} value={dottedName}>
 						{title || name}
@@ -99,7 +106,8 @@ export default class Input extends Component {
 		)
 	}
 	renderSuggestions(themeColours) {
-		let { setFormValue, suggestions, inverted } = this.props.stepProps
+		let { setFormValue, suggestions, inverted } = this.props.stepProps,
+			{ i18n } = this.context
 
 		if (!suggestions || inverted) return null
 		return (
@@ -124,9 +132,10 @@ export default class Input extends Component {
 								this.state.lastValue != null &&
 								setFormValue('' + this.state.lastValue)
 							}
-							style={{ color: themeColours.textColourOnWhite }}
-						>
-							<span title="cliquez pour insérer cette suggestion">{text}</span>
+							style={{ color: themeColours.textColourOnWhite }}>
+							<span title={i18n.t('cliquez pour insérer cette suggestion')}>
+								{text}
+							</span>
 						</li>
 					))}
 				</ul>

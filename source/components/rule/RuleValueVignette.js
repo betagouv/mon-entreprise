@@ -1,4 +1,5 @@
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { encodeRuleName } from 'Engine/rules'
 import classNames from 'classnames'
@@ -10,8 +11,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 export default ({
 	name,
 	type,
-	title,
 	conversationStarted,
+	flatRule,
 	nodeValue: ruleValue
 }) =>
 	do {
@@ -28,7 +29,7 @@ export default ({
 		>
 			<Link to={'/règle/' + encodeRuleName(name)}>
 				<div className="rule-box">
-					<span className="rule-name">{title}</span>
+					<span className="rule-name">{flatRule.title}</span>
 					<RuleValue
 						{...{ unsatisfied, irrelevant, conversationStarted, ruleValue }}
 					/>
@@ -56,7 +57,7 @@ let RuleValue = ({ unsatisfied, irrelevant, conversationStarted, ruleValue }) =>
 		>
 			<span key={text} className="rule-value">
 				{' '}
-				{conversationStarted && <span className={className}>{text}</span>}
+				{conversationStarted && <span className={className}><Trans i18nKey={className}>{text}</Trans></span>}
 			</span>
 		</ReactCSSTransitionGroup>
 	}

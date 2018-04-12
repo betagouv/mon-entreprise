@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import { rules, findRuleByName } from 'Engine/rules'
+import { Trans, translate } from 'react-i18next'
+import { findRuleByName } from 'Engine/rules'
 import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 export let salaries = ['salaire net', 'salaire de base', 'salaire total']
 
+@connect(state => ({
+	flatRules: state.flatRules,
+}))
+@translate()
 export default class TargetSelection extends Component {
 	state = {
-		targets: []
+		targets: [],
 	}
 	render() {
 		let { targets } = this.state,
@@ -16,14 +22,14 @@ export default class TargetSelection extends Component {
 
 		return (
 			<section id="targetSelection">
-				<h1>Que voulez-vous calculer ?</h1>
+				<h1><Trans i18nKey="targetSelection">Que voulez-vous calculer ?</Trans></h1>
 				{this.renderOutputList()}
 				<div id="action">
 					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
-						Vous pouvez faire plusieurs choix
+						<Trans i18nKey="selectMany">Vous pouvez faire plusieurs choix</Trans>
 					</p>
 					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready}>Valider</BlueButton>
+						<BlueButton disabled={!ready}><Trans>Valider</Trans></BlueButton>
 					</Link>
 				</div>
 			</section>
@@ -31,8 +37,9 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let popularTargets = [...salaries, 'aides employeur différées'].map(
-				curry(findRuleByName)(rules)
+		let { flatRules } = this.props,
+			popularTargets = [...salaries, 'aides employeur différées'].map(
+				curry(findRuleByName)(flatRules)
 			),
 			{ targets } = this.state,
 			textColourOnWhite = this.props.themeColours.textColourOnWhite,

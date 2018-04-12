@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Field, change, formValueSelector } from 'redux-form'
@@ -31,6 +33,9 @@ export var FormDecorator = formType => RenderField =>
 		})
 	)
 	class extends Component {
+		static contextTypes = {
+			i18n: PropTypes.object.isRequired
+		}
 		state = {
 			helpVisible: false
 		}
@@ -68,7 +73,8 @@ export var FormDecorator = formType => RenderField =>
 				inversion,
 				inverted,
 				themeColours
-			} = this.props
+			} = this.props,
+			{ i18n } = this.context
 
 			/* Nos propriétés personnalisées à envoyer au RenderField.
 			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
@@ -88,7 +94,8 @@ export var FormDecorator = formType => RenderField =>
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
 			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
-				validate = test && (v => (v && test(pre(v)) ? undefined : error))
+				validate = test && (v => (v && test(pre(v)) ? undefined : error)),
+				inversionQ = path(['props', 'step', 'inversion', 'question'])(this)
 
 			let question = (
 				<h1
@@ -99,8 +106,11 @@ export var FormDecorator = formType => RenderField =>
 						maxWidth: wideQuestion ? '95%' : ''
 					}}
 				>
-					{path(['props', 'step', 'inversion', 'question'])(this) ||
-						this.props.step.question}
+					{
+						inversionQ ?
+							i18n.t(inversionQ)
+						:	this.props.step.question
+					}
 				</h1>
 			)
 			return (
@@ -164,7 +174,7 @@ export var FormDecorator = formType => RenderField =>
 					>
 						<i className="fa fa-pencil" aria-hidden="true" />
 						{'  '}
-						<span>Modifier</span>
+						<span><Trans>Modifier</Trans></span>
 					</button>
 					{}
 				</div>
@@ -182,7 +192,7 @@ export var FormDecorator = formType => RenderField =>
 						onClick={() => this.setState({ helpVisible: false })}
 					>
 						<span className="close-text">
-							revenir <span className="icon">&#x2715;</span>
+							<Trans>revenir</Trans> <span className="icon">&#x2715;</span>
 						</span>
 					</a>
 					{helpComponent}

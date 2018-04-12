@@ -1,9 +1,11 @@
 import React from 'react'
+import { Trans, translate } from 'react-i18next'
 import { toPairs, groupBy } from 'ramda'
 import './References.css'
 import references from 'Règles/ressources/références/références.yaml'
 import { capitalise0 } from '../../utils'
 
+@translate()
 export default class References extends React.Component {
 	state = {
 		showComplementary: false
@@ -21,7 +23,9 @@ export default class References extends React.Component {
 				{[
 					...official.map(this.renderRef),
 					official.length == 0 ? (
-						<li id="noOfficialReferences">Pas de sources officielles</li>
+						<li id="noOfficialReferences">
+							<Trans>Pas de sources officielles</Trans>
+						</li>
 					) : null,
 					...(showComplementaryButton
 						? [
@@ -31,7 +35,7 @@ export default class References extends React.Component {
 										onClick={() => this.setState({ showComplementary: true })}
 									>
 										<i className="fa fa-eye" aria-hidden="true" />
-										afficher les sources complémentaires
+										<Trans>afficher les sources complémentaires</Trans>
 									</a>
 								</li>
 							]

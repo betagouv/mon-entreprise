@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { rules, encodeRuleName } from 'Engine/rules.js'
+import { Trans, translate } from 'react-i18next'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { encodeRuleName } from 'Engine/rules.js'
 import { Link } from 'react-router-dom'
 import './RulesList.css'
 import './Pages.css'
@@ -11,22 +14,33 @@ import { Redirect } from 'react-router-dom'
 import Highlighter from 'react-highlight-words'
 import { pick } from 'ramda'
 
+@connect(
+	state => ({
+		flatRules: state.flatRules
+	})
+)
 export default class RulesList extends Component {
 	render() {
+		let { flatRules } = this.props;
 		return (
 			<div id="RulesList" className="page">
 				<h1>Explorez notre base de règles</h1>
-				<SearchBar showDefaultList={true} rules={rules} />
+				<SearchBar showDefaultList={true} rules={flatRules} />
 			</div>
 		)
 	}
 }
 
+@translate()
 export class SearchBar extends React.Component {
+	static contextTypes = {
+      i18n: PropTypes.object.isRequired
+    }
 	componentDidMount() {
 		this.inputElement.focus()
 	}
 	componentWillMount() {
+		let { rules } = this.props
 		var options = {
 			keys: [
 				{
@@ -75,6 +89,8 @@ export class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
+		let { rules } = this.props,
+			{ i18n } = this.context
 		let { selectedOption } = this.state
 
 		if (selectedOption != null) {
@@ -94,8 +110,8 @@ export class SearchBar extends React.Component {
 					options={rules}
 					filterOptions={this.filterOptions}
 					optionRenderer={this.renderOption}
-					placeholder="Entrez des mots clefs ici"
-					noResultsText="Nous n'avons rien trouvé..."
+					placeholder={i18n.t('Entrez des mots clefs ici')}
+					noResultsText={i18n.t("noresults",{defaultValue:"Nous n'avons rien trouvé…"})}
 					ref={el => {
 						this.inputElement = el
 					}}
@@ -106,7 +122,7 @@ export class SearchBar extends React.Component {
 							{rules.map(rule => (
 								<li key={rule.dottedName}>
 									<Link to={'/règle/' + encodeRuleName(rule.name)}>
-										{capitalise0(rule.name)}
+										{rule.title || capitalise0(rule.name)}
 									</Link>
 								</li>
 							))}

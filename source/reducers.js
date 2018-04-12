@@ -6,14 +6,18 @@ import {
 	contains,
 	without,
 	concat,
-	length
+	length,
+	reduce,
+	assoc,
+	map
 } from 'ramda'
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
 
 import {
-	rules,
+	rules, rulesFr,
+	enrichRule,
 	findRuleByName,
 	collectDefaults,
 	formatInputs
@@ -24,7 +28,8 @@ import {
 	STEP_ACTION,
 	START_CONVERSATION,
 	EXPLAIN_VARIABLE,
-	CHANGE_THEME_COLOUR
+	CHANGE_THEME_COLOUR,
+	CHANGE_LANG
 } from './actions'
 
 import { analyseMany, parseAll } from 'Engine/traverse'
@@ -56,8 +61,21 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	state,
 	action
 ) => {
+	state.flatRules = flatRules
 	// Optimization - don't parse on each analysis
-	if (!state.parsedRules) state.parsedRules = parseAll(flatRules)
+	if (!state.parsedRules) {
+		state.parsedRules = parseAll(flatRules)
+	}
+
+	// TODO
+	if (action.type == CHANGE_LANG) {
+		if (action.lang == 'fr') { flatRules = rulesFr }
+		else flatRules = rules
+		return {
+			...state,
+			flatRules
+		}
+	}
 
 	if (
 		![START_CONVERSATION, STEP_ACTION, 'USER_INPUT_UPDATE'].includes(
@@ -102,12 +120,12 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		done,
 		...(done && assumptionsMade
 			? // The simulation is "over" - except we can now fill in extra questions
-				// where the answers were previously given default reasonable assumptions
-				nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
+			  // where the answers were previously given default reasonable assumptions
+			  nextWithoutDefaults(state, analysis, targetNames, intermediateSituation)
 			: {
 					currentQuestion: head(nextWithDefaults),
 					nextSteps: nextWithDefaults
-				})
+			  })
 	}
 
 	if (action.type == START_CONVERSATION) {
@@ -184,7 +202,7 @@ function currentExample(state = null, { type, situation, name }) {
 	}
 }
 
-export default reduceReducers(
+export default (initialRules) => reduceReducers(
 	combineReducers({
 		sessionId: (id = Math.floor(Math.random() * 1000000000000) + '') => id,
 		//  this is handled by redux-form, pas touche !
@@ -197,6 +215,7 @@ export default reduceReducers(
 		nextSteps: (state = []) => state,
 
 		parsedRules: (state = null) => state,
+		flatRules: (state = null) => state,
 		analysis: (state = null) => state,
 
 		targetNames: (state = null) => state,
@@ -214,5 +233,5 @@ export default reduceReducers(
 		currentExample
 	}),
 	// cross-cutting concerns because here `state` is the whole state tree
-	reduceSteps(ReactPiwik, rules, formatInputs(rules, formValueSelector))
+	reduceSteps(ReactPiwik, initialRules, formatInputs(initialRules, formValueSelector))
 )

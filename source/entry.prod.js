@@ -8,6 +8,9 @@ import { getIframeOption, getUrl } from './utils'
 import { Provider } from 'react-redux'
 import Layout from './containers/Layout'
 
+import { rules, rulesFr } from 'Engine/rules'
+import lang from './i18n'
+
 let initialStore = {
 	iframe: getUrl().includes('iframe'),
 	themeColours: computeThemeColours(getIframeOption('couleur'))
@@ -15,7 +18,8 @@ let initialStore = {
 
 let enhancer = compose(applyMiddleware(debounceFormChangeActions()))
 
-let store = createStore(reducers, initialStore, enhancer)
+let initialRules = lang == 'en' ? rules : rulesFr
+let store = createStore(reducers(initialRules), initialStore, enhancer)
 let anchor = document.querySelector('#js')
 
 render(

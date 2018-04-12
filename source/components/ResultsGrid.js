@@ -1,10 +1,13 @@
 import {
+	curry,
+	evolve,
 	path,
 	propEq,
 	pathEq,
 	groupBy,
 	prop,
 	map,
+	mapObjIndexed,
 	sum,
 	filter,
 	concat,
@@ -15,6 +18,8 @@ import {
 	find
 } from 'ramda'
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -23,7 +28,7 @@ import './Results.css'
 import '../engine/mecanismViews/Somme.css'
 
 import { capitalise0, humanFigure } from '../utils'
-import { nameLeaf, encodeRuleName } from 'Engine/rules'
+import { nameLeaf, encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
 let paidBy = payer => item =>
@@ -71,11 +76,21 @@ export let byBranch = analysis => {
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
 	inversions: formValueSelector('conversation')(state, 'inversions'),
-	done: state.done
+	done: state.done,
+	flatRules: state.flatRules
 }))
+@translate()
 export default class ResultsGrid extends Component {
 	render() {
-		let { analysis, situationGate, targetNames, inversions, done } = this.props
+		let {
+				analysis,
+				situationGate,
+				targetNames,
+				inversions,
+				done,
+				flatRules
+			} = this.props,
+			rules = flatRules
 
 		if (!done) return null
 
@@ -106,10 +121,11 @@ export default class ResultsGrid extends Component {
 							<td
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
-								id="sommeBase"
-							>
+								id="sommeBase">
 								{humanFigure(2)(brut)}{' '}
-								<span className="annotation">Salaire brut</span>
+								<span className="annotation">
+									<Trans>Salaire brut</Trans>
+								</span>
 							</td>
 						</tr>
 					</thead>
@@ -120,6 +136,7 @@ export default class ResultsGrid extends Component {
 								branch,
 								values,
 								analysis,
+								rules,
 								relevantSalaries
 							}
 							return <Row {...props} />
@@ -137,7 +154,9 @@ export default class ResultsGrid extends Component {
 									</td>
 									<td key="net" className="element value">
 										{humanFigure(2)(net)}{' '}
-										<span className="annotation">Salaire net</span>
+										<span className="annotation">
+											<Trans>Salaire net</Trans>
+										</span>
 									</td>
 								</>
 							)}
@@ -147,7 +166,9 @@ export default class ResultsGrid extends Component {
 								</td>,
 								<td key="total" className="element value">
 									{humanFigure(2)(total)}{' '}
-									<span className="annotation">Salaire total</span>
+									<span className="annotation">
+										<Trans>Salaire total</Trans>
+									</span>
 								</td>
 							]}
 						</tr>
@@ -158,27 +179,35 @@ export default class ResultsGrid extends Component {
 	}
 }
 
+@translate()
 class Row extends Component {
+	static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
 	state = {
 		folded: true
 	}
 	render() {
-		let { branch, values, analysis, relevantSalaries } = this.props,
-			detail = byName(values)
+		let { rules, branch, values, analysis, relevantSalaries } = this.props,
+			detail = byName(values),
+			ruleData = mapObjIndexed(
+				(v, k, o) => findRuleByDottedName(rules, k),
+				detail
+			),
+			{ i18n } = this.context
 
 		let title = name => {
-			let node = head(detail[name])
-			return node.title || capitalise0(node.name)
+			let node = ruleData[name]
+			return node.title || capitalise0(i18n.t(node.name))
 		}
 
 		let aggregateRow = (
 			<tr
 				key="aggregateRow"
-				onClick={() => this.setState({ folded: !this.state.folded })}
-			>
+				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
-					{capitalise0(branch)}&nbsp;<span className="unfoldIndication">
-						{this.state.folded ? 'déplier >' : 'replier'}
+					{capitalise0(i18n.t(branch))}&nbsp;<span className="unfoldIndication">
+						{this.state.folded ? i18n.t('déplier') + ' >' : i18n.t('replier')}
 					</span>
 				</td>
 				{this.state.folded ? (
@@ -240,7 +269,7 @@ class Row extends Component {
 							</>
 						)}
 					</tr>
-				))
+			  ))
 
 		// returns an array of <tr>
 		return concat([aggregateRow], detailRows)
@@ -260,10 +289,9 @@ class ReductionRow extends Component {
 		let aggregateRow = (
 			<tr
 				key="aggregateRowReductions"
-				onClick={() => this.setState({ folded: !this.state.folded })}
-			>
+				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
-					Réductions &nbsp;<span className="unfoldIndication">
+					<Trans>Réductions</Trans>&nbsp;<span className="unfoldIndication">
 						{this.state.folded ? 'déplier >' : 'replier'}
 					</span>
 				</td>
