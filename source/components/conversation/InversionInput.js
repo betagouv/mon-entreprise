@@ -5,7 +5,7 @@ import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
 import { Field, formValueSelector } from 'redux-form'
 import './InversionInput.css'
-import { Input } from './Input'
+import Input from './Input'
 import { connect } from 'react-redux'
 import { path, last } from 'ramda'
 import { change } from 'redux-form'
@@ -63,8 +63,7 @@ class Fields extends Component {
 								className={classNames({
 									selected: value === activeInversion,
 									unselected: activeInversion && value !== activeInversion
-								})}
-							>
+								})}>
 								<Field
 									name={'inversions.' + dottedName}
 									component="input"

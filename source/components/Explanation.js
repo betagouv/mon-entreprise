@@ -8,10 +8,10 @@ import './Explanation.css'
 import { pluck } from 'ramda'
 import { connect } from 'react-redux'
 
-@translate()
 import SearchButton from './SearchButton'
 import withColours from './withColours'
 
+@translate()
 @withColours
 @connect(state => ({
 	analysis: state.analysis
@@ -27,8 +27,7 @@ export default class Explanation extends Component {
 					className="scrollIndication down"
 					style={{
 						color: this.props.colours.textColourOnWhite
-					}}
-				>
+					}}>
 					<i className="fa fa-long-arrow-down" aria-hidden="true" /> Comprendre
 					mes résultats
 				</h3>

@@ -95,7 +95,7 @@ export var FormDecorator = formType => RenderField =>
 						// color: this.props.themeColours.textColourOnWhite,
 						maxWidth: wideQuestion ? '95%' : ''
 					}}>
-					{inversionQ ? i18n.t(inversionQ) : this.props.question}
+					{this.props.question}
 				</h1>
 			)
 			return (

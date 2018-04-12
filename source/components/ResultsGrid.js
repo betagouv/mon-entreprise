@@ -87,7 +87,8 @@ export default class ResultsGrid extends Component {
 				situationGate,
 				targetNames,
 				inversions,
-				flatRules
+				flatRules,
+				parsedRules
 			} = this.props,
 			rules = flatRules
 

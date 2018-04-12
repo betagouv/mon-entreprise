@@ -71,7 +71,7 @@ export default class TargetSelection extends Component {
 
 	renderOutputList() {
 		let popularTargets = popularTargetNames.map(
-				curry(findRuleByName)(flatRules)
+				curry(findRuleByName)(this.props.flatRules)
 			),
 			{
 				missingVariablesByTarget,

@@ -14,14 +14,12 @@ import { Redirect } from 'react-router-dom'
 import Highlighter from 'react-highlight-words'
 import { pick } from 'ramda'
 
-@connect(
-	state => ({
-		flatRules: state.flatRules
-	})
-)
+@connect(state => ({
+	flatRules: state.flatRules
+}))
 export default class RulesList extends Component {
 	render() {
-		let { flatRules } = this.props;
+		let { flatRules } = this.props
 		return (
 			<div id="RulesList" className="page">
 				<h1>Explorez notre base de règles</h1>
@@ -34,8 +32,8 @@ export default class RulesList extends Component {
 @translate()
 export class SearchBar extends React.Component {
 	static contextTypes = {
-      i18n: PropTypes.object.isRequired
-    }
+		i18n: PropTypes.object.isRequired
+	}
 	componentDidMount() {
 		this.inputElement.focus()
 	}
@@ -89,9 +87,9 @@ export class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
-		let { rules, finish = () => null  } = this.props,
+		let { rules, finish = () => null } = this.props,
 			{ i18n } = this.context,
-		{ selectedOption } = this.state,
+			{ selectedOption } = this.state
 
 		if (selectedOption != null) {
 			this.props.finally && this.props.finally()
@@ -111,7 +109,9 @@ export class SearchBar extends React.Component {
 					filterOptions={this.filterOptions}
 					optionRenderer={this.renderOption}
 					placeholder={i18n.t('Entrez des mots clefs ici')}
-					noResultsText={i18n.t("noresults",{defaultValue:"Nous n'avons rien trouvé…"})}
+					noResultsText={i18n.t('noresults', {
+						defaultValue: "Nous n'avons rien trouvé…"
+					})}
 					ref={el => {
 						this.inputElement = el
 					}}
