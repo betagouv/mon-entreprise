@@ -1,9 +1,11 @@
 import {
+	add,
 	map,
 	pluck,
 	any,
 	equals,
 	reduce,
+	mergeWith,
 	chain,
 	length,
 	flatten,
@@ -20,7 +22,10 @@ export let makeJsx = node =>
 		? node.jsx(node.nodeValue, node.explanation)
 		: node.jsx
 
-export let collectNodeMissing = node => node.missingVariables || []
+export let collectNodeMissing = node => node.missingVariables || {}
+
+export let mergeAllMissing = missings => reduce(mergeWith(add),{},map(collectNodeMissing,missings))
+export let mergeMissing = (left, right) => mergeWith(add, left || {}, right || {})
 
 export let evaluateNode = (cache, situationGate, parsedRules, node) =>
 	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
@@ -46,8 +51,8 @@ export let evaluateArray = (reducer, start) => (
 			? null
 			: reduce(reducer, start, values),
 		missingVariables = node.nodeValue == null
-			? map(collectNodeMissing, explanation)
-			: []
+			? mergeAllMissing(explanation)
+			: {}
 //	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
@@ -69,10 +74,8 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 			? null
 			: reduce(reducer, start, values),
 		missingVariables = node.nodeValue == null
-			// TODO - this works by coincidence, composantes are usually of a computation
-			// where missing variables are shared
-			? uniq(map(collectNodeMissing, explanation))
-			: []
+			? mergeAllMissing(explanation)
+			: {}
 
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
@@ -98,7 +101,7 @@ export let evaluateObject = (objectShape, effect) => (
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		explanation = evolve(fromPairs(transforms))(node.explanation),
 		nodeValue = effect(explanation),
-		missingVariables = map(collectNodeMissing, values(explanation))
+		missingVariables = mergeAllMissing(values(explanation))
 //	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }

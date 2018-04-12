@@ -1,5 +1,6 @@
 import {
 	flatten,
+	mergeAll,
 	pluck,
 	groupBy,
 	toPairs,
@@ -39,14 +40,10 @@ import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariables = targets => {
-	let missing = flatten(pluck('missingVariables', targets))
-//	console.log("total # missing", length(missing))
-	return groupBy(identity, missing)
-}
+export let collectMissingVariables = targets => mergeAll(pluck('missingVariables', targets))
 
 export let getNextSteps = (situationGate, analysis) => {
-	let impact = ([, objectives]) => length(objectives)
+	let impact = ([, count]) => count
 
 	let missingVariables = collectMissingVariables(analysis.targets),
 		pairs = toPairs(missingVariables),

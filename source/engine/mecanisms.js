@@ -1,5 +1,6 @@
 import {
 	flatten,
+	mergeAll,
 	length,
 	objOf,
 	toPairs,
@@ -42,7 +43,9 @@ import {
 	evaluateArrayWithFilter,
 	evaluateObject,
 	parseObject,
-	collectNodeMissing
+	collectNodeMissing,
+	mergeAllMissing,
+	mergeMissing
 } from './evaluation'
 import {
 	findRuleByName,
@@ -151,14 +154,12 @@ let devariate = (recurse, k, v) => {
 			nodeValue = choice ? choice.nodeValue : null
 
 		let leftMissing = choice
-				? []
-				: uniq(
-						map(collectNodeMissing, pluck('condition', explanation))
-					),
+				? {}
+				: mergeAllMissing(pluck('condition', explanation)),
 			rightMissing = !choice
-				? []
-				: map(collectNodeMissing, satisfied),
-			missingVariables = concat(leftMissing, rightMissing || [])
+				? {}
+				: mergeAllMissing(satisfied),
+			missingVariables = mergeMissing(leftMissing, rightMissing)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -222,7 +223,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 			nodeValue = any(equals(true), values)
 				? true
 				: any(equals(null), values) ? null : false,
-			missingVariables = nodeValue == null ? uniq(map(collectNodeMissing, explanation)) : []
+			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -265,7 +266,7 @@ export let mecanismAllOf = (recurse, k, v) => {
 			nodeValue = any(equals(false), values)
 				? false // court-circuit
 				: any(equals(null), values) ? null : true,
-			missingVariables = nodeValue == null ? map(collectNodeMissing, explanation) : []
+			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -311,8 +312,8 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				investigate = explanation.condition.nodeValue !== false,
 				missingOnTheRight = investigate
 					? explanation.consequence.missingVariables
-					: [],
-				missingVariables = concat(missingOnTheLeft || [], missingOnTheRight || [])
+					: {},
+				missingVariables = mergeMissing(missingOnTheLeft, missingOnTheRight)
 
 			return {
 				...node,
@@ -359,7 +360,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 			choice = find(node => node.condValue, explanation),
 			missingVariables = choice
 				? choice.missingVariables
-				: map(collectNodeMissing, explanation)
+				: mergeAllMissing(explanation)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -426,7 +427,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 
 	if (inversion.inversionChoiceNeeded)
 		return {
-			missingVariables: [dottedName],
+			missingVariables: {[dottedName]:1},
 			nodeValue: null
 		}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
@@ -461,7 +462,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 
 	return {
 		nodeValue,
-		missingVariables: [],
+		missingVariables: {},
 		inversionCache
 	}
 }
@@ -473,7 +474,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				situationGate(dottedName) == undefined &&
 				doInversion(cache, situationGate, parsedRules, v, dottedName),
 			nodeValue = inversion.nodeValue,
-			missingVariables = uniq(flatten(inversion.missingVariables))
+			missingVariables = inversion.missingVariables
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
 

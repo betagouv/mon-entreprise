@@ -19,6 +19,7 @@ import {
 	divide,
 	multiply,
 	map,
+	merge,
 	length,
 	flatten,
 	intersection,
@@ -57,7 +58,9 @@ import {
 import {
 	evaluateNode,
 	rewriteNode,
-	makeJsx
+	makeJsx,
+	mergeMissing,
+	mergeAllMissing
 } from './evaluation'
 import {
 	anyNull,
@@ -152,10 +155,10 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 						? parsedRule.nodeValue // la valeur du calcul fait foi
 						: null, // elle restera donc nulle
 			missingVariables = nodeValue != null // notamment si situationValue != null
-					? []
+					? {}
 					: variableIsCalculable
 						? parsedRule.missingVariables
-						: [dottedName]
+						: {[dottedName]:1}
 
 		cache[cacheName] = rewriteNode(node, nodeValue, explanation, missingVariables)
 		return cache[cacheName]
@@ -300,9 +303,9 @@ let treat = (rules, rule) => rawNode => {
 							value1 == null || value2 == null
 								? null
 								: operatorFunction(value1, value2),
-						missingVariables = concat(
-							explanation[0].missingVariables || [],
-							explanation[1].missingVariables || [])
+						missingVariables = mergeMissing(
+							explanation[0].missingVariables,
+							explanation[1].missingVariables)
 
 					return rewriteNode(node, nodeValue, explanation, missingVariables)
 				}
@@ -407,7 +410,7 @@ let treat = (rules, rule) => rawNode => {
 					sélection: mecanismSelection,
 					'une possibilité': always({
 						'une possibilité': 'oui',
-						missingVariables: [rule.dottedName]
+						missingVariables: {[rule.dottedName]:1}
 					}),
 					inversion: mecanismInversion(rule.dottedName),
 					allègement: mecanismReduction
@@ -480,16 +483,16 @@ export let treatRuleRoot = (rules, rule) => {
 
 		let condMissing =
 				val(notApplicable) === true
-					? []
+					? {}
 					: val(applicable) === false
-						? []
-						: concat(
-							(notApplicable && notApplicable.missingVariables) || [],
-							(applicable && applicable.missingVariables) || []
+						? {}
+						: merge(
+							(notApplicable && notApplicable.missingVariables) || {},
+							(applicable && applicable.missingVariables) || {}
 						),
 			collectInFormule = isApplicable !== false,
-			formMissing = (collectInFormule && formule.missingVariables) || [],
-			missingVariables = concat(condMissing, formMissing)
+			formMissing = (collectInFormule && formule.missingVariables) || {},
+			missingVariables = mergeMissing(condMissing, formMissing)
 
 		cache.parseLevel--
 //		console.log("".padStart(cache.parseLevel-1),map(mv => length(flatten(mv)), {ruleCond:condMissing, formule:formMissing}))
