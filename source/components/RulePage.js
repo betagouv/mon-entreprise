@@ -19,7 +19,7 @@ import { Namespace } from './rule/Rule'
 
 @connect(state => ({
 	situationGate: state.situationGate,
-	flatRules: state.flatRules,
+	parsedRules: state.parsedRules,
 	analysis: state.analysis
 }))
 @translate()
@@ -37,23 +37,23 @@ export default class RulePage extends Component {
 		}
 	}
 	setRule(name) {
-		let { flatRules, situationGate } = this.props,
+		let { parsedRules, situationGate } = this.props,
 			decodedRuleName = decodeRuleName(name)
 		if (decodedRuleName.includes(' . ')) {
-			let rule = findRuleByDottedName(flatRules, decodedRuleName)
+			let rule = findRuleByDottedName(parsedRules, decodedRuleName)
 			this.rule =
 				rule &&
-				head(analyse(flatRules, rule.dottedName)(situationGate).targets)
+				head(analyse(parsedRules, rule.dottedName)(situationGate).targets)
 			this.multipleMatchingRules = false
 			return
 		}
 
 		let ruleName = nameLeaf(decodeRuleName(name)),
-			rules = findRulesByName(flatRules, ruleName)
+			rules = findRulesByName(parsedRules, ruleName)
 		if (!rules.length) return null
 		if (rules.length > 1) this.multipleMatchingRules = rules
 		this.rule = head(
-			analyse(flatRules, head(rules).dottedName)(situationGate).targets
+			analyse(parsedRules, head(rules).dottedName)(situationGate).targets
 		)
 	}
 	render() {
