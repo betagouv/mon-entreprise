@@ -25,6 +25,7 @@ export let makeJsx = node =>
 
 export let collectNodeMissing = node => node.missingVariables || {}
 
+export let bonus = (missings, hasCondition=true) => hasCondition ? map(x=>x+.0001, missings || {}) : missings
 export let mergeAllMissing = missings => reduce(mergeWith(add),{},map(collectNodeMissing,missings))
 export let mergeMissing = (left, right) => mergeWith(add, left || {}, right || {})
 

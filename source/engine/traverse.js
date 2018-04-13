@@ -60,7 +60,8 @@ import {
 	rewriteNode,
 	makeJsx,
 	mergeMissing,
-	mergeAllMissing
+	mergeAllMissing,
+	bonus
 } from './evaluation'
 import {
 	anyNull,
@@ -492,7 +493,10 @@ export let treatRuleRoot = (rules, rule) => {
 						),
 			collectInFormule = isApplicable !== false,
 			formMissing = (collectInFormule && formule.missingVariables) || {},
-			missingVariables = mergeMissing(condMissing, formMissing)
+			// On veut abaisser le score des conséquences par rapport aux conditions,
+			// mais seulement dans le cas où une condition est effectivement présente
+			hasCondition = keys(condMissing).length > 0,
+			missingVariables = mergeMissing(bonus(condMissing,hasCondition), formMissing)
 
 		cache.parseLevel--
 //		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})

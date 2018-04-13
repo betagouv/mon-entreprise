@@ -47,7 +47,8 @@ import {
 	parseObject,
 	collectNodeMissing,
 	mergeAllMissing,
-	mergeMissing
+	mergeMissing,
+	bonus
 } from './evaluation'
 import {
 	findRuleByName,
@@ -160,8 +161,8 @@ let devariate = (recurse, k, v) => {
 				: mergeAllMissing(pluck('condition', explanation)),
 			rightMissing = choice === false
 				? {}
-				: map(x=>x-1, mergeAllMissing(satisfied)),
-			missingVariables = mergeMissing(leftMissing, rightMissing)
+				: mergeAllMissing(satisfied),
+			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -318,7 +319,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				rightMissing = investigate
 					? explanation.consequence.missingVariables
 					: {},
-				missingVariables = mergeMissing(leftMissing, rightMissing)
+				missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
 			return {
 				...node,
