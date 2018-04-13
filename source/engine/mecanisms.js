@@ -159,9 +159,7 @@ let devariate = (recurse, k, v) => {
 		let leftMissing = choice
 				? {}
 				: mergeAllMissing(pluck('condition', explanation)),
-			rightMissing = choice === false
-				? {}
-				: mergeAllMissing(satisfied),
+			rightMissing = mergeAllMissing(satisfied),
 			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
