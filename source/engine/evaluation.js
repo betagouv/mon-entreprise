@@ -1,5 +1,6 @@
 import {
 	add,
+	max,
 	map,
 	pluck,
 	any,
@@ -53,7 +54,7 @@ export let evaluateArray = (reducer, start) => (
 		missingVariables = node.nodeValue == null
 			? mergeAllMissing(explanation)
 			: {}
-//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
+//	console.log("".padStart(cache.parseLevel), missingVariables)
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 

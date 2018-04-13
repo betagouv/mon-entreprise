@@ -449,8 +449,8 @@ export let treatRuleRoot = (rules, rule) => {
 	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST
 	*/
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		cache.parseLevel++
 //		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
+		cache.parseLevel++
 
 		let evolveRule = curry(evaluateNode)(cache, situationGate, parsedRules),
 			evaluated = evolve(
@@ -495,7 +495,8 @@ export let treatRuleRoot = (rules, rule) => {
 			missingVariables = mergeMissing(condMissing, formMissing)
 
 		cache.parseLevel--
-//		console.log("".padStart(cache.parseLevel-1),map(mv => length(flatten(mv)), {ruleCond:condMissing, formule:formMissing}))
+//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
+//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
 		return { ...evaluated, nodeValue, isApplicable, missingVariables }
 	}
 

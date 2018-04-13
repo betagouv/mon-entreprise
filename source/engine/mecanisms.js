@@ -1,5 +1,7 @@
 import {
 	flatten,
+	reduce,
+	mergeWith,
 	mergeAll,
 	length,
 	objOf,
@@ -156,9 +158,9 @@ let devariate = (recurse, k, v) => {
 		let leftMissing = choice
 				? {}
 				: mergeAllMissing(pluck('condition', explanation)),
-			rightMissing = !choice
+			rightMissing = choice === false
 				? {}
-				: mergeAllMissing(satisfied),
+				: map(x=>x-1, mergeAllMissing(satisfied)),
 			missingVariables = mergeMissing(leftMissing, rightMissing)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
@@ -223,7 +225,10 @@ export let mecanismOneOf = (recurse, k, v) => {
 			nodeValue = any(equals(true), values)
 				? true
 				: any(equals(null), values) ? null : false,
-			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
+			// Unlike most other array merges of missing variables this is a "flat" merge
+			// because "one of these conditions" tend to be several tests of the same variable
+			// (e.g. contract type is one of x, y, z)
+			missingVariables = nodeValue == null ? reduce(mergeWith(max),{},map(collectNodeMissing,explanation)) : {}
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -308,12 +313,12 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				},
 				node.explanation
 			),
-				missingOnTheLeft = explanation.condition.missingVariables,
+				leftMissing = explanation.condition.missingVariables,
 				investigate = explanation.condition.nodeValue !== false,
-				missingOnTheRight = investigate
+				rightMissing = investigate
 					? explanation.consequence.missingVariables
 					: {},
-				missingVariables = mergeMissing(missingOnTheLeft, missingOnTheRight)
+				missingVariables = mergeMissing(leftMissing, rightMissing)
 
 			return {
 				...node,
