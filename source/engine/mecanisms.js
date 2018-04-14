@@ -21,6 +21,7 @@ import {
 	evolve,
 	curry,
 	filter,
+	all,
 	pipe,
 	head,
 	isEmpty,
@@ -152,6 +153,7 @@ let devariate = (recurse, k, v) => {
 		}
 
 		let explanation = map(evaluateOne, node.explanation),
+			candidates = filter(node => node.condition.nodeValue !== false, explanation),
 			satisfied = filter(node => node.condition.nodeValue, explanation),
 			choice = head(satisfied),
 			nodeValue = choice ? choice.nodeValue : null
@@ -159,7 +161,7 @@ let devariate = (recurse, k, v) => {
 		let leftMissing = choice
 				? {}
 				: mergeAllMissing(pluck('condition', explanation)),
-			rightMissing = mergeAllMissing(satisfied),
+			rightMissing = mergeAllMissing(candidates),
 			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)

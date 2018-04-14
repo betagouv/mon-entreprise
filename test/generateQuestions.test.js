@@ -160,19 +160,20 @@ describe('collectMissingVariables', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
 							variations: [
 								{
 									si: 'dix',
+									'multiplicateur des tranches': 'deux',
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 'deux' },
+										{ de: 1, à: 2, taux: 'trois' },
 										,
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								},
 								{
 									si: '3 > 4',
+									'multiplicateur des tranches': 'quatre',
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
 										{ de: 1, à: 2, taux: 1.8 },
@@ -185,14 +186,19 @@ describe('collectMissingVariables', function() {
 					}
 				},
 				{ nom: 'dix', espace: 'top' },
-				{ nom: 'deux', espace: 'top' }
+				{ nom: 'deux', espace: 'top' },
+				{ nom: 'trois', espace: 'top' },
+				{ nom: 'quatre', espace: 'top' }
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.have.property('top . dix')
-		// expect(result).to.have.property('top . deux') - this is a TODO
+		expect(result).to.have.property('top . deux')
+		expect(result).not.to.have.property('top . quatre')
+		// TODO
+		// expect(result).to.have.property('top . trois')
 	})
 
 	it('should not report missing variables in irrelevant variations', function() {
