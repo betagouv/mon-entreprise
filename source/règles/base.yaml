@@ -2014,7 +2014,7 @@
   données: taux_versement_transport
   formule:
     sélection:
-      données: taux versement transport
+      données: taux du versement transport
       cherche: code commune
       dans: codeCommune
       composantes:
