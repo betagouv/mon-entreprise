@@ -25,25 +25,19 @@
     Important : l'aide n'est disponible que pendant 12 mois.
 
   formule: 
-    réduction: 
-      cibles:  
+    réduction linéaire: 
+      assiette:  
         - maladie
         - vieillesse
         - allocations familiales
         - versement transport
         - FNAL
-      montant: 
-        linéaire:
-          fonction de: salaire brut
-          points: 
-            - 1.5 * smic mensuel: 100%
-            - 2.4 * SMIC: 0%
+      variable: salaire brut
+      multiplicateur: smic mensuel
+      contraintes: 
+        1.5: 100%
+        2.4: 0%
           
-      non-cumul:  
-        réduction générale
-    
-   
-
 - espace: contrat salarié . CDD
   nom: CIF
   description: Contribution au financement du congé individuel de formation spécifique aux CDD.
@@ -885,7 +879,11 @@
 
 - espace: contrat salarié
   nom: réductions de cotisations
-  formule: réduction générale + exonération JEI
+  formule:
+    le maximum de: 
+      - réduction générale
+      - exonération JEI
+      - exonération sociale ZRR
 
 - espace: contrat salarié
   nom: salaire total sans réduction
