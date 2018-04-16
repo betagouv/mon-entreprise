@@ -4,6 +4,9 @@
 sélection:
   type: numeric
   description: |
+    Recherche d'un objet dans une liste en faisant la correspondance entre une variable du ssystème et une clé de l'objet. Retourne la valeur de la clé voulue.
+
+    Mécanisme pour l'instant assez spécifique au données du versement transport.
     C'est tout simplement une valeur numérique exprimée en pourcentage.
 
 une possibilité:
