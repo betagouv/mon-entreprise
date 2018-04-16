@@ -1,3 +1,49 @@
+- espace: entreprise
+  nom: dans ZRR
+  formule: 
+    présence: 
+      de: code commune
+      dans: liste communes ZRR
+
+- nom: exonération sociale ZRR
+  aide:
+    type: réduction de cotisations
+    thème: aide embauche
+    démarches: oui
+  applicable si: 
+    toutes ces conditions: 
+      - entreprise . dans ZRR
+      - entreprise . effectif < 50
+  non applicable si: 
+    une de ces conditions: 
+      - entreprise . licenciement économique récent
+#     - liste de secteurs à exclure sur service-public.fr
+#     - CDD . durée < 12
+
+  note: | 
+    Nous proposons une implémentation partielle de cette aide complexe, les références contiennent plus de détails. 
+    Important : l'aide n'est disponible que pendant 12 mois.
+
+  formule: 
+    réduction: 
+      cibles:  
+        - maladie
+        - vieillesse
+        - allocations familiales
+        - versement transport
+        - FNAL
+      montant: 
+        linéaire:
+          fonction de: salaire brut
+          points: 
+            - 1.5 * smic mensuel: 100%
+            - 2.4 * SMIC: 0%
+          
+      non-cumul:  
+        réduction générale
+    
+   
+
 - espace: contrat salarié . CDD
   nom: CIF
   description: Contribution au financement du congé individuel de formation spécifique aux CDD.
