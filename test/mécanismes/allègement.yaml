@@ -45,6 +45,9 @@
         montant: 100
       valeur attendue: 0
     - situation: 
+        montant: 1000
+      valeur attendue: 0
+    - situation: 
         montant: 1200
       valeur attendue: 570
     - situation: 

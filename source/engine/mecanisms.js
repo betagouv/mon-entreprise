@@ -15,7 +15,7 @@ import {
 	concat,
 	map,
 	any,
-	equals,
+		equals,
 	is,
 	keys,
 	evolve,
@@ -531,6 +531,80 @@ export let mecanismSum = (recurse, k, v) => {
 		name: 'somme',
 		type: 'numeric'
 	}
+}
+
+export let mecanismLinearReduction = (recurse, k, v) => {
+
+		
+	let objectShape = {
+		assiette: false,
+	    variable: false,
+		multiplicateur: false,
+	}
+
+	let effect = ({
+		assiette,
+			variable,
+			multiplicateur,
+			contraintes
+	}) => {
+		let nulled = anyNull([assiette, variable, multiplicateur])
+
+		if (nulled) return null
+			console.log(contraintes)
+
+			let contraintesList = toPairs(contraintes),
+					[lowerLimit, lowerRate] = head(contraintesList),
+					[upperLimit, upperRate] = last(contraintesList),
+					x1 = val(multiplicateur) * lowerLimit,
+					x2 = val(multiplicateur) * upperLimit,
+					y1 = val(variable) * lowerRate,
+					y2 = val(variable) * upperRate
+
+
+
+			if (val(variable) < x1 ) 
+					return y1
+			if (val(variable) > x2 ) 
+					return y2
+
+			// Outside of these 2 limits, it's a linear function a * x + b
+
+			let a = (y2 - y1) / (x2 - x1),
+					b = y1 - x1 * a
+
+			return (a * val(variable) + b) * val(assiette)
+
+	}
+
+	let explanation = {
+			...parseObject(recurse, objectShape, v),
+			contraintes: v.contraintes
+		},
+		evaluate = evaluateObject(objectShape, effect)
+
+
+
+	let jsx = (nodeValue, explanation) => (
+		<Node
+			classes="mecanism réductionLinéaire"
+			name="réductionLinéaire"
+			value={nodeValue}
+			child={ <div > Réduction linéaire </div>
+
+			}
+		/>
+	)
+
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: 'réduction linéaire',
+		type: 'numeric'
+	}
+
 }
 
 export let mecanismReduction = (recurse, k, v) => {
