@@ -153,3 +153,8 @@ allègement:
     Permet de réduire le montant d'une variable. 
     Très utilisé dans le contexte des impôts. 
 
+
+réduction linéaire: 
+  type: numeric
+  description: |
+    Permet TODO

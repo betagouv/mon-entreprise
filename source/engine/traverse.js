@@ -50,7 +50,8 @@ import {
 	mecanismComplement,
 	mecanismSelection,
 	mecanismInversion,
-	mecanismReduction
+	mecanismReduction,
+	mecanismLinearReduction
 } from './mecanisms'
 import {
 	evaluateNode,
@@ -398,13 +399,11 @@ let treat = (rules, rule) => rawNode => {
 			let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 			if (mecanisms.length != 1) {
+				let erreur =
+					'Erreur : on ne devrait reconnaître que un et un seul mécanisme dans cet objet'
 				// eslint-disable-next-line no-console
-				console.log(
-					'Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet',
-					mecanisms,
-					rawNode
-				)
-				throw new Error('OUPS !')
+				console.log(erreur, mecanisms, rawNode)
+				throw new Error('OUPS ! ' + erreur)
 			}
 
 			let k = head(mecanisms),
@@ -427,7 +426,8 @@ let treat = (rules, rule) => rawNode => {
 						missingVariables: { [rule.dottedName]: 1 }
 					}),
 					inversion: mecanismInversion(rule.dottedName),
-					allègement: mecanismReduction
+					allègement: mecanismReduction,
+					'réduction linéaire': mecanismLinearReduction
 				},
 				action = propOr(mecanismError, k, dispatch)
 
