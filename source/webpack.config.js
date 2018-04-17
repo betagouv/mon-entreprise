@@ -14,8 +14,10 @@ module.exports = {
 					'@babel/polyfill',
 					'react-hot-loader/patch',
 					'./source/entry.js'
-				]
+				],
 		// le nom "simulateur" est là pour des raisons historiques
+		simulateur: './source/iframe-script.js',	
+		'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
 	},
 	output: {
 		path: path.resolve('./dist/'),
