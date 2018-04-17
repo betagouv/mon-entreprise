@@ -8,7 +8,7 @@ export default class MyComponent extends Component {
 			<section className="page" id="integration">
 				<div>
 					<h1>Intégrez le module Web</h1>
-					<p>Intégrez le module en ajoutant une ligne à votre page Web :</p>
+					<p>En ajoutant une ligne à votre page Web :</p>
 					<code>
 						<span>{'<'}</span>
 						<em>
@@ -30,6 +30,9 @@ export default class MyComponent extends Component {
 						<a href="/couleur.html" target="_blank">
 							outil interactif
 						</a>.
+					</p>
+					<p>
+					   L'attribut <i>data-lang="en"</i> vous permet quand à lui de choisir l'anglais comme langue par défaut du simulateur (elle restera modifiable par l'utilisateur). 
 					</p>
 				</div>
 				<div className="blocks" id="integrations">
