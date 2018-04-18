@@ -15,8 +15,8 @@
     réduction linéaire: 
       assiette:
         somme: 
-        - assiette une
-        - assiette deux
+          - assiette une
+          - assiette deux
       variable: salaire brut
       multiplicateur: smic mensuel
       contraintes: 
@@ -40,8 +40,8 @@
       valeur attendue: 0
     - nom: quelque part dans l'intervalle
       situation: 
-        assiette un: 200
+        assiette une: 200
         assiette deux: 300
         salaire brut: 2920
         smic mensuel: 1500
-      valeur attendue: 53.33 # −(2÷3)×2920+2000
+      valeur attendue: 53.333 # −(2÷3)×2920+2000

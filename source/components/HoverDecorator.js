@@ -10,8 +10,7 @@ export default DecoratedComponent =>
 			return (
 				<span
 					onMouseEnter={this.setHover(true)}
-					onMouseLeave={this.setHover(false)}
-				>
+					onMouseLeave={this.setHover(false)}>
 					<DecoratedComponent {...this.props} hover={this.state.hover} />
 				</span>
 			)

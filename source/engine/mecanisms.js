@@ -1,6 +1,7 @@
 import {
 	reduce,
 	mergeWith,
+	sort,
 	objOf,
 	toPairs,
 	dissoc,
@@ -9,7 +10,7 @@ import {
 	pluck,
 	map,
 	any,
-		equals,
+	equals,
 	is,
 	keys,
 	evolve,
@@ -543,47 +544,40 @@ export let mecanismSum = (recurse, k, v) => {
 }
 
 export let mecanismLinearReduction = (recurse, k, v) => {
-
-		
 	let objectShape = {
 		assiette: false,
-	    variable: false,
-		multiplicateur: false,
+		variable: false,
+		multiplicateur: false
 	}
 
-	let effect = ({
-		assiette,
-			variable,
-			multiplicateur,
-			contraintes
-	}) => {
+	let effect = ({ assiette, variable, multiplicateur, contraintes }) => {
 		let nulled = anyNull([assiette, variable, multiplicateur])
 
 		if (nulled) return null
-			console.log(contraintes)
 
-			let contraintesList = toPairs(contraintes),
-					[lowerLimit, lowerRate] = head(contraintesList),
-					[upperLimit, upperRate] = last(contraintesList),
-					x1 = val(multiplicateur) * lowerLimit,
-					x2 = val(multiplicateur) * upperLimit,
-					y1 = val(variable) * lowerRate,
-					y2 = val(variable) * upperRate
+		//We'll build a linear function given the two constraints that must be respected
 
+		let contraintesList = pipe(
+				toPairs,
+				// we don't rely on the sorting of objects
+				sort(([k1], [k2]) => k1 - k2)
+			)(contraintes),
+			[lowerLimit, lowerRate] = head(contraintesList),
+			[upperLimit, upperRate] = last(contraintesList),
+			x1 = val(multiplicateur) * lowerLimit,
+			x2 = val(multiplicateur) * upperLimit,
+			y1 = val(assiette) * lowerRate,
+			y2 = val(assiette) * upperRate
 
+		if (val(variable) < x1) return y1
+		if (val(variable) > x2) return y2
 
-			if (val(variable) < x1 ) 
-					return y1
-			if (val(variable) > x2 ) 
-					return y2
+		// Outside of these 2 limits, it's a linear function a * x + b
 
-			// Outside of these 2 limits, it's a linear function a * x + b
+		let a = (y2 - y1) / (x2 - x1),
+			b = y1 - x1 * a
 
-			let a = (y2 - y1) / (x2 - x1),
-					b = y1 - x1 * a
-
-			return (a * val(variable) + b) * val(assiette)
-
+		return a * val(variable) + b
 	}
 
 	let explanation = {
@@ -592,16 +586,12 @@ export let mecanismLinearReduction = (recurse, k, v) => {
 		},
 		evaluate = evaluateObject(objectShape, effect)
 
-
-
 	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism réductionLinéaire"
 			name="réductionLinéaire"
 			value={nodeValue}
-			child={ <div > Réduction linéaire </div>
-
-			}
+			child={<div> Réduction linéaire </div>}
 		/>
 	)
 
@@ -613,7 +603,6 @@ export let mecanismLinearReduction = (recurse, k, v) => {
 		name: 'réduction linéaire',
 		type: 'numeric'
 	}
-
 }
 
 export let mecanismReduction = (recurse, k, v) => {
