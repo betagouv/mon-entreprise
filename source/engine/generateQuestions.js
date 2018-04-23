@@ -4,7 +4,8 @@ import {
 	add,
 	values,
 	pipe,
-	sortBy,
+	sort,
+	descend,
 	pluck,
 	fromPairs,
 	uniq,
@@ -48,8 +49,6 @@ import {
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariables = targets => mergeAll(pluck('missingVariables', targets))
-
 export let collectMissingVariablesByTarget = targets => fromPairs(targets.map(target => [target, target.missingVariables]))
 
 export let getNextSteps = missingVariablesByTarget => {
@@ -60,6 +59,8 @@ export let getNextSteps = missingVariablesByTarget => {
 		sortedPairs = sort(descend(impact), pairs)
 	return map(head, sortedPairs)
 }
+
+export let collectMissingVariables = targets => getNextSteps(collectMissingVariablesByTarget(targets))
 
 let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
 

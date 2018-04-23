@@ -53,8 +53,8 @@ describe('Mécanismes', () =>
 									}
 
 									if (expectedMissing) {
-										expect(R.keys(missing).sort()).to.eql(
-											expectedMissing.sort()
+										expect(missing).to.eql(
+											expectedMissing
 										)
 									}
 								})

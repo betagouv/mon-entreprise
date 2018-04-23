@@ -22,8 +22,8 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{ type: 'START_CONVERSATION', targetNames: ['salaire net'] }
+			{ foldedSteps: [], targetNames: ['salaire net'] },
+			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
 		var step2 = reducer(step1, {
@@ -51,11 +51,10 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{
-				type: 'START_CONVERSATION',
+			{	foldedSteps: [],
 				targetNames: ['salaire net', 'salaire total']
-			}
+			},
+			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
 		var step2 = reducer(step1, {
@@ -87,11 +86,9 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{
-				type: 'START_CONVERSATION',
-				targetNames: ['salaire net', 'salaire total']
-			}
+			{	foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total'] },
+			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
 		var step2 = reducer(step1, {
@@ -121,11 +118,9 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{
-				type: 'START_CONVERSATION',
-				targetNames: ['salaire net', 'salaire total']
-			}
+			{	foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total'] },
+			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
 		var step2 = reducer(step1, {
@@ -148,11 +143,9 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{
-				type: 'START_CONVERSATION',
-				targetNames: ['salaire net', 'salaire total']
-			}
+			{	foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total'] },
+			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
 		var step2 = reducer(step1, {
@@ -183,11 +176,9 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{
-				type: 'START_CONVERSATION',
-				targetNames: ['salaire net', 'salaire total']
-			}
+			{	foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total'] },
+			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
 		var step2 = reducer(step1, {

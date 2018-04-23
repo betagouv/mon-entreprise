@@ -1,14 +1,10 @@
 import * as R from 'ramda'
-import yaml from 'js-yaml'
-import dedent from 'dedent-js'
 import { expect } from 'chai'
 import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 import {
-	getNextSteps,
 	collectMissingVariablesByTarget,
-	collectMissingVariables,
-	sortByCount
+	collectMissingVariables
 } from '../source/engine/generateQuestions'
 
 let stateSelector = name => null
@@ -51,7 +47,7 @@ describe('collectMissingVariables', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = getNextSteps(collectMissingVariablesByTarget(analysis.targets))
+			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.include('sum . evt . nyet')
 		expect(result).to.include('sum . evt . nope')
@@ -69,7 +65,7 @@ describe('collectMissingVariables', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = getNextSteps(collectMissingVariablesByTarget(analysis.targets))
+			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.be.empty
 	})
@@ -321,7 +317,6 @@ describe('collectMissingVariables', function() {
 })
 
 describe('nextSteps', function() {
-	null
 	it('should generate questions', function() {
 		let rawRules = [
 				{ nom: 'sum', formule: { somme: [2, 'deux'] }, espace: 'top' },
@@ -346,35 +341,6 @@ describe('nextSteps', function() {
 
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
-	})
-
-	it('should generate questions from the real rules', function() {
-		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'surcoût CDD')(stateSelector),
-			missing = collectMissingVariables(analysis.targets),
-			result = getNextSteps(stateSelector, analysis)
-
-		// expect(objectives).to.have.lengthOf(4)
-
-		// expect(missing).to.have.property('contrat salarié . type de contrat')
-		// expect(missing).to.have.property('contrat salarié . CDD . événement')
-		// expect(missing).to.have.property('contrat salarié . CDD . motif')
-		// expect(missing).to.have.property('contrat salarié . salaire de base')
-		// expect(missing).to.have.property('contrat salarié . CDD . contrat jeune vacances')
-		// expect(missing).to.have.property('contrat salarié . CDD . durée contrat')
-		// expect(missing).to.have.property('contrat salarié . CDD . congés non pris')
-
-		// One question per missing variable !
-		// expect(R.keys(missing)).to.have.lengthOf(7)
-		// expect(result).to.have.lengthOf(7)
-
-		// expect(R.path(["question","props","label"])(result[0])).to.equal("Quelle est la nature du contrat de travail ?")
-		// expect(R.path(["question","props","label"])(result[1])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
-		// expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le motif de recours au CDD ?")
-		// expect(R.path(["question","props","label"])(result[3])).to.equal("Quel est le salaire brut ?")
-		// expect(R.path(["question","props","label"])(result[4])).to.equal("Est-ce un contrat jeune vacances ?")
-		// expect(R.path(["question","props","label"])(result[5])).to.equal("Quelle est la durée du contrat ?")
-		// expect(R.path(["question","props","label"])(result[6])).to.equal("Combien de jours de congés ne seront pas pris ?")
 	})
 
 	it('should generate questions from the real rules, experimental version', function() {
