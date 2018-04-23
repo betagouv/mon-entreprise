@@ -1,10 +1,16 @@
 import {
+	add,
+	max,
 	map,
 	pluck,
 	any,
 	equals,
 	reduce,
+	mergeWith,
 	chain,
+	length,
+	flatten,
+	uniq,
 	fromPairs,
 	keys,
 	values,
@@ -17,17 +23,20 @@ export let makeJsx = node =>
 		? node.jsx(node.nodeValue, node.explanation)
 		: node.jsx
 
-export let collectNodeMissing = node =>
-	node.collectMissing ? node.collectMissing(node) : []
+export let collectNodeMissing = node => node.missingVariables || {}
+
+export let bonus = (missings, hasCondition=true) => hasCondition ? map(x=>x+.0001, missings || {}) : missings
+export let mergeAllMissing = missings => reduce(mergeWith(add),{},map(collectNodeMissing,missings))
+export let mergeMissing = (left, right) => mergeWith(add, left || {}, right || {})
 
 export let evaluateNode = (cache, situationGate, parsedRules, node) =>
 	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
 
-export let rewriteNode = (node, nodeValue, explanation, collectMissing) => ({
+export let rewriteNode = (node, nodeValue, explanation, missingVariables) => ({
 	...node,
 	nodeValue,
-	collectMissing,
-	explanation
+	explanation,
+	missingVariables
 })
 
 export let evaluateArray = (reducer, start) => (
@@ -42,11 +51,12 @@ export let evaluateArray = (reducer, start) => (
 		values = pluck('nodeValue', explanation),
 		nodeValue = any(equals(null), values)
 			? null
-			: reduce(reducer, start, values)
-
-	let collectMissing = node =>
-		node.nodeValue == null ? chain(collectNodeMissing, node.explanation) : []
-	return rewriteNode(node, nodeValue, explanation, collectMissing)
+			: reduce(reducer, start, values),
+		missingVariables = node.nodeValue == null
+			? mergeAllMissing(explanation)
+			: {}
+//	console.log("".padStart(cache.parseLevel), missingVariables)
+	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 
 export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
@@ -64,10 +74,12 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 		values = pluck('nodeValue', explanation),
 		nodeValue = any(equals(null), values)
 			? null
-			: reduce(reducer, start, values)
+			: reduce(reducer, start, values),
+		missingVariables = node.nodeValue == null
+			? mergeAllMissing(explanation)
+			: {}
 
-	let collectMissing = node => chain(collectNodeMissing, node.explanation)
-	return rewriteNode(node, nodeValue, explanation, collectMissing)
+	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 
 export let parseObject = (recurse, objectShape, value) => {
@@ -86,11 +98,12 @@ export let evaluateObject = (objectShape, effect) => (
 	node
 ) => {
 	let evaluateOne = child =>
-			evaluateNode(cache, situationGate, parsedRules, child),
-		collectMissing = node => chain(collectNodeMissing, values(node.explanation))
+			evaluateNode(cache, situationGate, parsedRules, child)
 
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		explanation = evolve(fromPairs(transforms))(node.explanation),
-		nodeValue = effect(explanation)
-	return rewriteNode(node, nodeValue, explanation, collectMissing)
+		nodeValue = effect(explanation),
+		missingVariables = mergeAllMissing(values(explanation))
+//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
+	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }

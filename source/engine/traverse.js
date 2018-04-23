@@ -19,6 +19,9 @@ import {
 	divide,
 	multiply,
 	map,
+	merge,
+	length,
+	flatten,
 	intersection,
 	keys,
 	is,
@@ -55,14 +58,15 @@ import {
 import {
 	evaluateNode,
 	rewriteNode,
-	collectNodeMissing,
-	makeJsx
+	makeJsx,
+	mergeMissing,
+	mergeAllMissing,
+	bonus
 } from './evaluation'
 import {
 	anyNull,
 	val,
-	undefOrTrue,
-	applyOrEmpty
+	undefOrTrue
 } from './traverse-common-functions'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
@@ -131,53 +135,34 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 			cacheName = dottedName + (filter ? '.' + filter : ''),
-			cached = cache[cacheName],
-			// make parsedRules a dict object, that also serves as a cache of evaluation ?
-			variable = cached
-				? cached
-				: findRuleByDottedName(parsedRules, dottedName),
+			cached = cache[cacheName]
+		if (cached) {
+			return cached
+		}
+
+		let variable = findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
-			parsedRule =
-				variableIsCalculable &&
-				(cached
-					? cached
-					: evaluateNode(cache, situation, parsedRules, variable)),
-			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			situationValue = evaluateVariable(situation, dottedName, variable),
+			needsEvaluation = (variableIsCalculable && situationValue == null),
+			parsedRule = needsEvaluation
+				 ? evaluateNode(cache, situation, parsedRules, variable)
+				 : variable,
+			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
+			explanation = parsedRule,
 			nodeValue =
 				situationValue != null
 					? situationValue // cette variable a été directement renseignée
 					: variableIsCalculable
 						? parsedRule.nodeValue // la valeur du calcul fait foi
 						: null, // elle restera donc nulle
-			explanation = parsedRule,
-			missingVariables = variableIsCalculable ? [] : [dottedName]
-
-		let collectMissing = node => {
-			let missingName = cacheName + ':missing',
-				cached = cache[missingName]
-
-			if (cached) return cached
-
-			let result =
-				nodeValue != null // notamment si situationValue != null
-					? []
+			missingVariables = nodeValue != null // notamment si situationValue != null
+					? {}
 					: variableIsCalculable
-						? collectNodeMissing(parsedRule)
-						: node.missingVariables
-			cache[missingName] = result
-			return result
-		}
+						? parsedRule.missingVariables
+						: {[dottedName]:1}
 
-		if (cached) {
-			return cached
-		} else {
-			cache[cacheName] = {
-				...rewriteNode(node, nodeValue, explanation, collectMissing),
-				missingVariables
-			}
-			return cache[cacheName]
-		}
+		cache[cacheName] = rewriteNode(node, nodeValue, explanation, missingVariables)
+		return cache[cacheName]
 	}
 
 	let { fragments } = parseResult,
@@ -212,9 +197,10 @@ let buildNegatedVariable = variable => {
 				parsedRules,
 				node.explanation
 			),
-			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue
-		let collectMissing = node => collectNodeMissing(node.explanation)
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue,
+			missingVariables = explanation.missingVariables
+
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	let jsx = (nodeValue, explanation) => (
@@ -317,12 +303,12 @@ let treat = (rules, rule) => rawNode => {
 						nodeValue =
 							value1 == null || value2 == null
 								? null
-								: operatorFunction(value1, value2)
+								: operatorFunction(value1, value2),
+						missingVariables = mergeMissing(
+							explanation[0].missingVariables,
+							explanation[1].missingVariables)
 
-					let collectMissing = node =>
-						chain(collectNodeMissing, node.explanation)
-
-					return rewriteNode(node, nodeValue, explanation, collectMissing)
+					return rewriteNode(node, nodeValue, explanation, missingVariables)
 				}
 
 				let fillFiltered = parseResult =>
@@ -425,7 +411,7 @@ let treat = (rules, rule) => rawNode => {
 					sélection: mecanismSelection,
 					'une possibilité': always({
 						'une possibilité': 'oui',
-						collectMissing: () => [rule.dottedName]
+						missingVariables: {[rule.dottedName]:1}
 					}),
 					inversion: mecanismInversion(rule.dottedName),
 					allègement: mecanismReduction
@@ -461,9 +447,12 @@ export let treatRuleRoot = (rules, rule) => {
 	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
 	qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
 	Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
-	Lors de ce traitement, des fonctions 'evaluate', `collectMissingVariables` et `jsx` sont attachés aux objets de l'AST
+	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST
 	*/
-	let evaluate = (cache, situationGate, parsedRules, r) => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
+		cache.parseLevel++
+
 		let evolveRule = curry(evaluateNode)(cache, situationGate, parsedRules),
 			evaluated = evolve(
 				{
@@ -471,7 +460,7 @@ export let treatRuleRoot = (rules, rule) => {
 					'non applicable si': evolveRule,
 					'applicable si': evolveRule
 				},
-				r
+				node
 			),
 			formuleValue = val(evaluated['formule']),
 			isApplicable = do {
@@ -487,32 +476,32 @@ export let treatRuleRoot = (rules, rule) => {
 			},
 			nodeValue = computeRuleValue(formuleValue, isApplicable)
 
-		return { ...evaluated, nodeValue, isApplicable }
-	}
-
-	let collectMissing = rule => {
 		let {
 			formule,
-			isApplicable,
 			'non applicable si': notApplicable,
 			'applicable si': applicable
-		} = rule
+		} = evaluated
 
 		let condMissing =
 				val(notApplicable) === true
-					? []
+					? {}
 					: val(applicable) === false
-						? []
-						: [
-								...applyOrEmpty(collectNodeMissing)(notApplicable),
-								...applyOrEmpty(collectNodeMissing)(applicable)
-							],
+						? {}
+						: merge(
+							(notApplicable && notApplicable.missingVariables) || {},
+							(applicable && applicable.missingVariables) || {}
+						),
 			collectInFormule = isApplicable !== false,
-			formMissing = applyOrEmpty(() =>
-				applyOrEmpty(collectNodeMissing)(formule)
-			)(collectInFormule)
+			formMissing = (collectInFormule && formule.missingVariables) || {},
+			// On veut abaisser le score des conséquences par rapport aux conditions,
+			// mais seulement dans le cas où une condition est effectivement présente
+			hasCondition = keys(condMissing).length > 0,
+			missingVariables = mergeMissing(bonus(condMissing,hasCondition), formMissing)
 
-		return concat(condMissing, formMissing)
+		cache.parseLevel--
+//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
+//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
+		return { ...evaluated, nodeValue, isApplicable, missingVariables }
 	}
 
 	let parsedRoot = evolve({
@@ -524,15 +513,16 @@ export let treatRuleRoot = (rules, rule) => {
 		'applicable si': evolveCond('applicable si', rule, rules),
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
-				let collectMissing = node => collectNodeMissing(node.explanation)
 				let explanation = evaluateNode(
 						cache,
 						situationGate,
 						parsedRules,
 						node.explanation
 					),
-					nodeValue = explanation.nodeValue
-				return rewriteNode(node, nodeValue, explanation, collectMissing)
+					nodeValue = explanation.nodeValue,
+					missingVariables = explanation.missingVariables
+
+				return rewriteNode(node, nodeValue, explanation, missingVariables)
 			}
 
 			let child = treat(rules, rule)(value)
@@ -555,22 +545,22 @@ export let treatRuleRoot = (rules, rule) => {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
-		collectMissing,
 		parsed: true
 	}
 }
 
 let evolveCond = (name, rule, rules) => value => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let collectMissing = node => collectNodeMissing(node.explanation)
 		let explanation = evaluateNode(
 				cache,
 				situationGate,
 				parsedRules,
 				node.explanation
 			),
-			nodeValue = explanation.nodeValue
-		return rewriteNode(node, nodeValue, explanation, collectMissing)
+			nodeValue = explanation.nodeValue,
+			missingVariables = explanation.missingVariables
+
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	let child = treat(rules, rule)(value)
@@ -622,7 +612,7 @@ export let parseAll = flatRules => {
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
-	let cache = {}
+	let cache = {parseLevel: 0}
 
 	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>

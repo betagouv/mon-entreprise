@@ -1,5 +1,7 @@
 import {
-	chain,
+	flatten,
+	mergeAll,
+	pluck,
 	groupBy,
 	toPairs,
 	sort,
@@ -22,7 +24,6 @@ import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
 import { findRuleByDottedName, disambiguateRuleReference } from './rules'
-import { collectNodeMissing } from './evaluation'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -39,13 +40,10 @@ import { collectNodeMissing } from './evaluation'
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariables = targets => {
-	let missing = chain(collectNodeMissing, targets)
-	return groupBy(identity, missing)
-}
+export let collectMissingVariables = targets => mergeAll(pluck('missingVariables', targets))
 
 export let getNextSteps = (situationGate, analysis) => {
-	let impact = ([, objectives]) => length(objectives)
+	let impact = ([, count]) => count
 
 	let missingVariables = collectMissingVariables(analysis.targets),
 		pairs = toPairs(missingVariables),
