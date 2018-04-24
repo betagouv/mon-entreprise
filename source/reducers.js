@@ -66,14 +66,9 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		name => state.activeTargetInput && state.activeTargetInput.includes(name)
 	)(state.targetNames)
 
-	let sim = {},
-		// Hard assumptions cannot be changed, they are used to specialise a simulator
-		// before the user sees the first question
-		hardAssumptions = pathOr({}, ['simulateur', 'hypothèses'], sim),
-		intermediateSituation = assume(answerSource, hardAssumptions),
-		// Most rules have default values
-		rulesDefaults = collectDefaults(flatRules),
-		situationWithDefaults = assume(intermediateSituation, rulesDefaults)
+	// Most rules have default values
+	let rulesDefaults = collectDefaults(flatRules),
+		situationWithDefaults = assume(answerSource, rulesDefaults)
 
 	let analysis = analyseMany(state.parsedRules, targetNames)(
 		situationWithDefaults(state)
@@ -84,7 +79,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 	}
 
 	let nextStepsAnalysis = analyseMany(state.parsedRules, targetNames)(
-			intermediateSituation(state)
+			answerSource(state)
 		),
 		missingVariablesByTarget = collectMissingVariablesByTarget(
 			nextStepsAnalysis.targets
