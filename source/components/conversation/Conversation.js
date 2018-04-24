@@ -23,7 +23,7 @@ import './conversation.css'
 		'done',
 		'nextSteps',
 		'analysis',
-		'parsedRules',
+		'flatRules',
 		'conversationStarted'
 	]),
 	dispatch => ({
@@ -39,7 +39,7 @@ export default class Conversation extends Component {
 		let {
 			foldedSteps,
 			currentQuestion,
-			parsedRules,
+			flatRules,
 			targetNames,
 			reinitialise,
 			textColourOnWhite,
@@ -51,7 +51,7 @@ export default class Conversation extends Component {
 				<Aide />
 				<div id="currentQuestion">
 					{currentQuestion ? (
-						getInputComponent({ unfolded: true })(parsedRules, targetNames)(
+						getInputComponent({ unfolded: true })(flatRules, targetNames)(
 							currentQuestion
 						)
 					) : (

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 //import styles from './.css'
 // css in conversation.Css
@@ -25,7 +26,7 @@ let scroll = () =>
 		'targetNames',
 		'nextSteps',
 		'analysis',
-		'parsedRules'
+		'flatRules'
 	]),
 	dispatch => ({
 		reinitialise: () => {
@@ -35,13 +36,14 @@ let scroll = () =>
 		}
 	})
 )
+@translate()
 export default class extends Component {
 	render() {
 		let {
 			foldedSteps,
 			reinitialise,
 			targetNames,
-			parsedRules,
+			flatRules,
 			themeColours: { textColourOnWhite }
 		} = this.props
 
@@ -51,11 +53,11 @@ export default class extends Component {
 				<div className="header">
 					<button onClick={reinitialise} style={{ color: textColourOnWhite }}>
 						<i className="fa fa-trash" aria-hidden="true" />
-						Tout effacer
+						<Trans i18nKey="resetAll">Tout effacer</Trans>
 					</button>
 				</div>
 				{map(
-					getInputComponent({ unfolded: false })(parsedRules, targetNames),
+					getInputComponent({ unfolded: false })(flatRules, targetNames),
 					foldedSteps
 				)}
 			</div>
