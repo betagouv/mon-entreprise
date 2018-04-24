@@ -42,7 +42,6 @@ export let runExamples = (examples, rule, parsedRules) =>
 @connect(
 	state => ({
 		situationGate: state.situationGate,
-		parsedRules: state.parsedRules,
 		colour: state.themeColours.colour
 	}),
 	dispatch => ({
@@ -54,13 +53,12 @@ export default class Examples extends Component {
 		let {
 				situationExists,
 				rule,
-				parsedRules,
 				colour,
 				setExample,
 				currentExample
 			} = this.props,
 			{ exemples = [] } = rule,
-			examples = runExamples(exemples, rule, parsedRules)
+			examples = runExamples(exemples, rule, window.parsedRules)
 
 		if (!examples.length) return null
 		return (
