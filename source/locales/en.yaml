@@ -26,6 +26,8 @@ questionsLeft: Fewer than <1>{{nbQuestions}}</1> questions to go…
 radio_Oui: Yes
 radio_Non: No
 radio_Aucun: None
+oui: yes
+non: no
 déplier: show more
 replier: show less
 transport: transportation

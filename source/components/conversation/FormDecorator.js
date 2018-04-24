@@ -9,6 +9,7 @@ import { capitalise0 } from '../../utils'
 import { path } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
+import { findRuleByDottedName } from 'Engine/rules'
 
 export let buildValidationFunction = valueType => {
 	let validator = valueType ? valueType.validator : {},
@@ -28,7 +29,8 @@ export var FormDecorator = formType => RenderField =>
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
 			themeColours: state.themeColours,
-			situationGate: state.situationGate
+			situationGate: state.situationGate,
+			flatRules: state.flatRules
 		}),
 		dispatch => ({
 			stepAction: (name, step, source) =>
@@ -141,16 +143,22 @@ export var FormDecorator = formType => RenderField =>
 				title,
 				dottedName,
 				fieldName,
-				fieldTitle
-			} = this.props
+				fieldTitle,
+				flatRules
+			} = this.props,
+			{ i18n } = this.context
 
-			let answer = situationGate(fieldName)
+			let answer = situationGate(fieldName),
+				rule = findRuleByDottedName(flatRules, dottedName + ' . ' + answer),
+				translatedAnswer = (rule && rule.title) || i18n.t(answer)
 
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
 						<span className="title">{capitalise0(fieldTitle || title)}</span>
-						<span className="answer">{answer}</span>
+						<span className="answer">
+						{translatedAnswer}
+						</span>
 					</span>
 					<button
 						className="edit"
