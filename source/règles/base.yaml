@@ -638,7 +638,7 @@
 - espace: contrat salarié
   nom: type de contrat
   titre: Type de contrat
-  question: Quelle est la nature du contrat de travail ?
+  question: Quelle est la nature du contrat de travail ?
   formule:
     une possibilité:
       choix obligatoire: oui

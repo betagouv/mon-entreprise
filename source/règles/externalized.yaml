@@ -15,7 +15,7 @@ contrat salarié . CDD . compensation pour congés non pris:
 
 
     It is however common that the employee can not take all his leave before the
-    end of his contract. In that case, he receives a compensatory alowance paid by the employer. 
+    end of his contract. In that case, he receives a compensatory alowance paid by the employer.
   description.fr: >
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
@@ -40,7 +40,7 @@ contrat salarié . CDD . majoration chômage:
   description.fr: >-
     Majoration des contributions patronales d’assurance chômage pour les
     contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
-  titre.en: additional unemployment insurance 
+  titre.en: additional unemployment insurance
   titre.fr: majoration chômage
 contrat salarié . ATMP:
   titre.en: Contribution for work accidents and occupational diseases
@@ -280,9 +280,9 @@ contrat salarié . CDD . surcoût CDD:
   titre.en: additional fixed-term contract cost
   titre.fr: surcoût CDD
 contrat salarié:
-  description.en: > 
-    The contract that binds a company (via its establishment) to an individual, who is then his employee. 
-  
+  description.en: >
+    The contract that binds a company (via its establishment) to an individual, who is then his employee.
+
     The contract is actually not necessary in French law. The CDI, permanent contract, is considered the default form of the employment relationship between an employee and an employer (Article L1221-2 of the Labor Code)."
   description.fr: >
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui
@@ -321,7 +321,7 @@ contrat salarié . assiette cotisations sociales:
     de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en
     espèces (salaire de base, indemnité, primes...) et les avantages en nature
     (logement, véhicule...).
-  titre.en: base for the social contributions 
+  titre.en: base for the social contributions
   titre.fr: assiette cotisations sociales
 contrat salarié . salaire de base:
   titre.en: Gross salary
@@ -352,9 +352,9 @@ contrat salarié . salaire de base:
 contrat salarié . salaire brut:
   titre.en: gross salary
   titre.fr: salaire brut
-contrat salarié . indemnités salarié:
+contrat salarié . avantages salarié:
   titre.en: employee benefits
-  titre.fr: indemnités salarié
+  titre.fr: avantages salarié
 contrat salarié . statut cadre:
   titre.en: cadre status
   titre.fr: Statut cadre
@@ -436,16 +436,16 @@ contrat salarié . réductions de cotisations:
 contrat salarié . salaire total sans réduction:
   titre.en: total salary without reduction
   titre.fr: salaire total sans réduction
-contrat salarié . aides employeur différées:
+contrat salarié . aides employeur:
   résumé.en: The deferred aids available to the employer.
   résumé.fr: Les aides différées dont peut bénéficier l'employeur.
   titre.en: deferred employer aids
   titre.fr: aides employeur différées
-  description.en: | 
-        Some aids can be requested by the employer to help hires. 
+  description.en: |
+        Some aids can be requested by the employer to help hires.
 
         These aids are deferred : they can for example be given indirectly as a tax credit.
-  
+
 contrat salarié . salaire:
   titre.en: salary
   titre.fr: salaire
