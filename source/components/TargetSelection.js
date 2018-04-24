@@ -51,17 +51,19 @@ export default class TargetSelection extends Component {
 					}}>
 					{this.renderOutputList()}
 				</section>
-				{!this.firstEstimationComplete && <h1>Entrez un salaire mensuel </h1>}
+				{!this.firstEstimationComplete &&
+					<h1><Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans></h1>
+				}
 
 				{this.firstEstimationComplete &&
 					!conversationStarted && (
 						<div id="action">
 							<p>
-								<b>Estimation approximative</b> <br /> pour une situation par
-								défaut (CDI non cadre).
+								<b><Trans>Estimation approximative</Trans></b> <br />
+								<Trans i18nKey="defaults">pour une situation par défaut (CDI non cadre).</Trans>
 							</p>
 							<BlueButton onClick={this.props.startConversation}>
-								Affiner le calcul
+								<Trans>Affiner le calcul</Trans>
 							</BlueButton>
 						</div>
 					)}

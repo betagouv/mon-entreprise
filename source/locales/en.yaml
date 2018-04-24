@@ -1,5 +1,8 @@
-targetSelection: What would you like to estimate ?
+enterSalary: Enter a monthly salary
 news: Understand the social cost of hiring in France.
+Estimation approximative: This is an estimate
+defaults: assuming a permanent (CDI) full-time contract
+Affiner le calcul: Refine this estimate
 selectMany: You may pick more than one
 Valider: Accept
 valider: accept
