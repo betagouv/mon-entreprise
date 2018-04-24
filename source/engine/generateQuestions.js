@@ -49,7 +49,7 @@ import {
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariablesByTarget = targets => fromPairs(targets.map(target => [target, target.missingVariables]))
+export let collectMissingVariablesByTarget = targets => fromPairs(targets.map(target => [target.dottedName, target.missingVariables]))
 
 export let getNextSteps = missingVariablesByTarget => {
 	let impact = ([, count]) => count

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import formValueTypes from 'Components/conversation/formValueTypes'
 import { rules, findRuleByName } from 'Engine/rules'
-import { propEq, isEmpty, curry } from 'ramda'
+import { propEq, isEmpty, curry, values } from 'ramda'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 import { Field, reduxForm, formValueSelector, change } from 'redux-form'
@@ -115,8 +115,8 @@ export default class TargetSelection extends Component {
 
 let computeRatio = (mvt, name) =>
 	!isEmpty(mvt) &&
-	mvt.current[name].missingVariables.length /
-		mvt.initial[name].missingVariables.length
+	values(mvt.current[name]).length /
+		values(mvt.initial[name]).length
 
 let Header = ({
 	conversationStarted,
