@@ -1,7 +1,9 @@
 import {
 	flatten,
-	mergeAll,
+	reduce,
+	mergeWith,
 	add,
+	max,
 	values,
 	pipe,
 	sort,
@@ -54,7 +56,7 @@ export let collectMissingVariablesByTarget = targets => fromPairs(targets.map(ta
 export let getNextSteps = missingVariablesByTarget => {
 	let impact = ([, count]) => count
 
-	let missingVariables = mergeAll(values(missingVariablesByTarget)),
+	let missingVariables = reduce(mergeWith(max),{},values(missingVariablesByTarget)),
 		pairs = toPairs(missingVariables),
 		sortedPairs = sort(descend(impact), pairs)
 	return map(head, sortedPairs)
