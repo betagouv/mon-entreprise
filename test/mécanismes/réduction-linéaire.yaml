@@ -1,8 +1,6 @@
 - nom: assiette une
   format: €
 
-- nom: assiette deux
-  format: €
 
 - nom: smic mensuel
   format: €
@@ -13,15 +11,54 @@
 - test: Réduction linéaire
   formule: 
     réduction linéaire: 
+      assiette: assiette une
+      variable: salaire brut
+      début:
+        valeur de variable: smic mensuel * 1.5
+        réduction de l'assiette: 100%      
+      fin:
+        valeur de variable: smic mensuel * 2
+        réduction de l'assiette: 0%      
+
+  exemples: 
+    - nom: en-dessous
+      situation: 
+        assiette une: 500
+        salaire brut: 1500
+        smic mensuel: 1500
+      valeur attendue: 500
+    - nom: au-dessus
+      situation: 
+        assiette une: 500
+        salaire brut: 3000
+        smic mensuel: 1500
+      valeur attendue: 0
+    - nom: quelque part dans l'intervalle
+      situation: 
+        assiette une: 500
+        salaire brut: 2920
+        smic mensuel: 1500
+      valeur attendue: 53.333 # −(2÷3)×2920+2000
+
+
+
+- nom: assiette deux
+  format: €
+
+- test: Réduction linéaire avec somme pour assiette
+  formule: 
+    réduction linéaire: 
       assiette:
         somme: 
           - assiette une
           - assiette deux
       variable: salaire brut
-      multiplicateur: smic mensuel
-      contraintes: 
-        1.5: 1
-        2: 0
+      début:
+        valeur de variable: smic mensuel * 1.5
+        réduction: 100%      
+      fin:
+        valeur de variable: smic mensuel * 2
+        réduction: 0%      
 
   exemples: 
     - nom: en-dessous
@@ -31,17 +68,3 @@
         salaire brut: 1500
         smic mensuel: 1500
       valeur attendue: 500
-    - nom: au-dessus
-      situation: 
-        assiette une: 200
-        assiette deux: 300
-        salaire brut: 3000
-        smic mensuel: 1500
-      valeur attendue: 0
-    - nom: quelque part dans l'intervalle
-      situation: 
-        assiette une: 200
-        assiette deux: 300
-        salaire brut: 2920
-        smic mensuel: 1500
-      valeur attendue: 53.333 # −(2÷3)×2920+2000
