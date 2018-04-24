@@ -86,8 +86,8 @@ export class GoToAnswers extends Component {
 						color: this.props.colours.textColourOnWhite
 					}}
 				>
-					<i className="fa fa-long-arrow-up" aria-hidden="true" /> Modifier mes
-					réponses
+					<i className="fa fa-long-arrow-up" aria-hidden="true" />
+					<span> <Trans i18nKey="change">Modifier mes réponses</Trans></span>
 				</h3>
 			</Element>
 		)
