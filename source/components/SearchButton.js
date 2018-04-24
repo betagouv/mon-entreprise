@@ -48,7 +48,8 @@ export default class SearchButton extends Component {
 						onClick={() => this.setState({ visible: true })}
 						style={{ color: this.props.colours.colour }}
 					>
-						<i className="fa fa-search" aria-hidden="true" /> Recherche
+						<i className="fa fa-search" aria-hidden="true" />
+						<span> <Trans>Recherche</Trans></span>
 					</button>
 				)}
 			</div>

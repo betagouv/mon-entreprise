@@ -38,14 +38,14 @@ export default class ProgressTip extends Component {
 					/>
 
 					<p style={{ color: textColourOnWhite }}>
-						{nbQuestions === 1 ? (
-							'dernière question !'
-						) : (
-							<span>
-								<i className="fa fa-minus-square-o" aria-hidden="true" />
-								{` de ${nbQuestions} questions`}
-							</span>
-						)}
+						{nbQuestions === 1
+							?
+							<Trans i18nKey="lastQ">dernière question !</Trans>
+							:
+							<Trans i18nKey="questionsLeft" count={nbQuestions}>
+							moins de {{nbQuestions}} questions
+							</Trans>
+						}
 					</p>
 				</div>
 			)

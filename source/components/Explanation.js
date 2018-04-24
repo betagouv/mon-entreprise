@@ -28,8 +28,8 @@ export default class Explanation extends Component {
 					style={{
 						color: this.props.colours.textColourOnWhite
 					}}>
-					<i className="fa fa-long-arrow-down" aria-hidden="true" /> Comprendre
-					mes résultats
+					<i className="fa fa-long-arrow-down" aria-hidden="true" />
+					<span> <Trans i18nKey="details">Comprendre mes résultats</Trans></span>
 				</h3>
 				{this.renderExplanation(targetRules)}
 				<div id="warning">

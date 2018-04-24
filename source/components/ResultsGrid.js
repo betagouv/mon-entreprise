@@ -114,15 +114,15 @@ export default class ResultsGrid extends Component {
 					.concat(['salaire brut'])
 			)
 		let brutR = findRuleByDottedName(
-			parsedRules,
+			flatRules,
 			'contrat salarié . salaire brut'
 		)
 		let baseR = findRuleByDottedName(
-			parsedRules,
+			flatRules,
 			'contrat salarié . salaire de base'
 		)
 		let avanR = findRuleByDottedName(
-			parsedRules,
+			flatRules,
 			'contrat salarié . avantages salarié'
 		)
 
@@ -331,12 +331,17 @@ class Row extends Component {
 
 // TODO Ce code est beaucoup trop spécifique
 // C'est essentiellement une copie de Row
+@translate()
 class ReductionRow extends Component {
+	static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
 	state = {
 		folded: true
 	}
 	render() {
-		let { relevantSalaries, node } = this.props
+		let { relevantSalaries, node } = this.props,
+			{ i18n } = this.context
 		if (!relevantSalaries.has('salaire total')) return null
 		let value = node && node.nodeValue ? node.nodeValue : 0
 		let aggregateRow = (
@@ -345,7 +350,7 @@ class ReductionRow extends Component {
 				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
 					<Trans>Réductions</Trans>&nbsp;<span className="unfoldIndication">
-						{this.state.folded ? 'déplier >' : 'replier'}
+						{this.state.folded ? i18n.t('déplier') + ' >' : i18n.t('replier')}
 					</span>
 				</td>
 				{this.state.folded ? (

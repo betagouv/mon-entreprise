@@ -28,6 +28,8 @@ radio_Non: No
 radio_Aucun: None
 déplier: show more
 replier: show less
+transport: transportation
+formation: training
 santé: healthcare
 retraite: pensions
 famille: family allowances
@@ -37,8 +39,9 @@ autre: other
 Salaire brut: Gross salary
 Salaire net: Net salary
 Salaire total: Total salary
-Salaire de base: Base salary
-Réductions: Reductions
+Salaire brut de base: Base salary
+Avantages salarié: Employee benefits
+Réductions: Deductions
 disclaimer: This estimate takes into account national law but not union negotiated rules, and should not be used as a pay slip. If results differ from a pay slip, we refer you to an accountant or HR expert.
 clickForMore: You can click the results below for detailed explanations.
 Quel est le salaire mensuel ?: What is the monthly salary?
@@ -64,3 +67,4 @@ Qu'est-ce qui n'a pas été ?: What went wrong ?
 satisfaction-email-ou: To start a conversation with us, fill your email address or
 satisfaction-mailto: click here to directly write an email
 envoyer: send
+Recherche: Search
