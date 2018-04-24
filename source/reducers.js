@@ -84,7 +84,8 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		missingVariablesByTarget = collectMissingVariablesByTarget(
 			nextStepsAnalysis.targets
 		),
-		nextSteps = getNextSteps(missingVariablesByTarget)
+		nextSteps = getNextSteps(missingVariablesByTarget),
+		currentQuestion = head(nextSteps)
 
 	let newState = {
 		...state,
@@ -92,23 +93,21 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		situationGate: situationWithDefaults(state),
 		explainedVariable: null,
 		nextSteps,
-		// store the missingVariables when no question has been answered yet,
-		// to be able to compute a progress by objective
-		missingVariablesByTarget: {
-			initial:
-				state.foldedSteps.length === 0
-					? missingVariablesByTarget
-					: state.missingVariablesByTarget.initial,
-			current: missingVariablesByTarget
-		},
-		currentQuestion: head(nextSteps),
+		currentQuestion,
 		foldedSteps:
 			action.type === 'SET_CONVERSATION_TARGETS' && action.reset
 				? []
 				: state.foldedSteps
 	}
 
-	if (action.type == 'START_CONVERSATION') return newState
+	if (action.type == 'START_CONVERSATION')
+		return {
+			...newState,
+			missingVariablesByTarget: {
+				initial: missingVariablesByTarget,
+				current: missingVariablesByTarget
+			}
+		}
 
 	if (action.type == STEP_ACTION && action.name == 'fold') {
 		tracker.push([
@@ -124,10 +123,15 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 				'after' + length(newState.foldedSteps) + 'questions'
 			])
 		}
+		let foldedSteps = [...state.foldedSteps, state.currentQuestion]
 
 		return {
 			...newState,
-			foldedSteps: [...state.foldedSteps, state.currentQuestion]
+			foldedSteps,
+			missingVariablesByTarget: {
+				...state.missingVariablesByTarget,
+				current: missingVariablesByTarget
+			}
 		}
 	}
 	if (action.type == STEP_ACTION && action.name == 'unfold') {
@@ -137,14 +141,19 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 		let previous = state.currentQuestion,
 			// we fold it back into foldedSteps if it had been answered
 			answered = previous && answerSource(state)(previous) != undefined,
-			foldedSteps = answered
+			rawFoldedSteps = answered
 				? concat(state.foldedSteps, [previous])
-				: state.foldedSteps
+				: state.foldedSteps,
+			foldedSteps = without([action.step], foldedSteps)
 
 		return {
 			...newState,
-			foldedSteps: without([action.step], foldedSteps),
-			currentQuestion: action.step
+			foldedSteps,
+			currentQuestion: action.step,
+			missingVariablesByTarget: {
+				...state.missingVariablesByTarget,
+				current: missingVariablesByTarget
+			}
 		}
 	}
 }

@@ -51,16 +51,23 @@ export default class TargetSelection extends Component {
 					}}>
 					{this.renderOutputList()}
 				</section>
-				{!this.firstEstimationComplete &&
-					<h1><Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans></h1>
-				}
+				{!this.firstEstimationComplete && (
+					<h1>
+						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
+					</h1>
+				)}
 
 				{this.firstEstimationComplete &&
 					!conversationStarted && (
 						<div id="action">
 							<p>
-								<b><Trans>Estimation approximative</Trans></b> <br />
-								<Trans i18nKey="defaults">pour une situation par défaut (CDI non cadre).</Trans>
+								<b>
+									<Trans>Estimation approximative</Trans>
+								</b>{' '}
+								<br />
+								<Trans i18nKey="defaults">
+									pour une situation par défaut (CDI non cadre).
+								</Trans>
 							</p>
 							<BlueButton onClick={this.props.startConversation}>
 								<Trans>Affiner le calcul</Trans>
@@ -115,8 +122,34 @@ export default class TargetSelection extends Component {
 
 let computeRatio = (mvt, name) =>
 	!isEmpty(mvt) &&
-	values(mvt.current[name]).length /
-		values(mvt.initial[name]).length
+	values(mvt.current[name]).length / values(mvt.initial[name]).length
+
+let ProgressCircle = ({ activeInput, s, missingVariablesByTarget }) => {
+	let isActiveInput = activeInput === s.dottedName,
+		ratio = isActiveInput
+			? null
+			: computeRatio(missingVariablesByTarget, s.dottedName)
+
+	return (
+		<span
+			className="progressCircle"
+			style={{
+				visibility: isActiveInput ? 'hidden' : 'visible'
+			}}>
+			{ratio === 0 ? (
+				<i className="fa fa-check" aria-hidden="true" />
+			) : (
+				<Circle
+					percent={100 - ratio * 100}
+					strokeWidth="15"
+					strokeColor="#5de662"
+					trailColor="#fff"
+					trailWidth="5"
+				/>
+			)}
+		</span>
+	)
+}
 
 let Header = ({
 	conversationStarted,
@@ -126,30 +159,7 @@ let Header = ({
 }) => (
 	<span className="header">
 		{conversationStarted && (
-			<span
-				className="progressCircle"
-				style={{
-					visibility: activeInput === s.dottedName ? 'hidden' : 'visible'
-				}}>
-				{do {
-					let ratio =
-						activeInput === s.dottedName
-							? 0
-							: computeRatio(missingVariablesByTarget, s.dottedName)
-
-					ratio === 0 ? (
-						<i className="fa fa-check" aria-hidden="true" />
-					) : (
-						<Circle
-							percent={100 - ratio * 100}
-							strokeWidth="15"
-							strokeColor="#5de662"
-							trailColor="#fff"
-							trailWidth="5"
-						/>
-					)
-				}}
-			</span>
+			<ProgressCircle {...{ s, missingVariablesByTarget, activeInput }} />
 		)}
 
 		<span className="texts">
