@@ -13,7 +13,7 @@ let ProgressCircle = ({ ratio, isActiveInput }) => (
 			<i className="fa fa-check" aria-hidden="true" />
 		) : (
 			<Circle
-				percent={100 - ratio * 100}
+				percent={Math.max(2, 100 - ratio * 100)}
 				strokeWidth="15"
 				strokeColor="#5de662"
 				trailColor="#fff"

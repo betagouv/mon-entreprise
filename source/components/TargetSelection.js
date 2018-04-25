@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
-import ProgressCircle from './ProgressCircle/index'
+import ProgressCircle from './ProgressCircle/ProgressCircle'
 import { buildValidationFunction } from './conversation/FormDecorator'
 export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
