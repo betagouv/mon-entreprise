@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { disambiguateExampleSituation, collectDefaults } from 'Engine/rules.js'
 import { analyse } from 'Engine/traverse'
 import './Examples.css'
-import { assume } from '../../reducers'
+import { assume } from '../../reducers/reduceSteps'
 import { setExample } from '../../actions'
 
 export let exampleSituationGateWithDefaults = (situationObject, rules) =>
@@ -88,8 +88,7 @@ export default class Examples extends Component {
 										currentExample
 											? setExample(null)
 											: setExample(nom, situation)
-									}
-								>
+									}>
 									<span>
 										{' '}
 										{ok ? (
@@ -121,8 +120,7 @@ export default class Examples extends Component {
 							<button
 								id="injectSituation"
 								onClick={() => setExample(null)}
-								style={{ background: colour }}
-							>
+								style={{ background: colour }}>
 								Revenir à votre situation
 							</button>
 						</div>
