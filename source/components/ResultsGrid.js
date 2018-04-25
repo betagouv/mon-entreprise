@@ -73,7 +73,6 @@ export let byBranch = analysis => {
 @withRouter
 @connect(state => ({
 	analysis: state.analysis,
-	parsedRules: state.parsedRules,
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
 	flatRules: state.flatRules,
@@ -87,8 +86,7 @@ export default class ResultsGrid extends Component {
 				situationGate,
 				targetNames,
 				inversions,
-				flatRules,
-				parsedRules
+				flatRules
 			} = this.props,
 			rules = flatRules
 
