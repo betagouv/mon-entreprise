@@ -6,8 +6,5 @@ var webpack = require('webpack'),
 module.exports = {
 	...common,
 	mode: 'development',
-	plugins: [
-		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
-		new HardSourceWebpackPlugin()
-	]
+	plugins: [new webpack.EnvironmentPlugin({ NODE_ENV: 'development' })]
 }

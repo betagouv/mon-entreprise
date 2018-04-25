@@ -38,7 +38,7 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 
 	if (
 		path(['form', 'conversation', 'syncErrors'], state) ||
-		!answerSource(state)(state.activeTargetInput)
+		(state.activeTargetInput && !answerSource(state)(state.activeTargetInput))
 	)
 		return state
 
