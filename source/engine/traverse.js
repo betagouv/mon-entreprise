@@ -53,6 +53,8 @@ import {
 	mecanismReduction,
 	mecanismLinearReduction
 } from './mecanisms'
+import mecanismInclusion from './mecanisms/inclusion'
+
 import {
 	evaluateNode,
 	rewriteNode,
@@ -427,7 +429,8 @@ let treat = (rules, rule) => rawNode => {
 					}),
 					inversion: mecanismInversion(rule.dottedName),
 					allègement: mecanismReduction,
-					'réduction linéaire': mecanismLinearReduction
+					'réduction linéaire': mecanismLinearReduction,
+					inclusion: mecanismInclusion
 				},
 				action = propOr(mecanismError, k, dispatch)
 

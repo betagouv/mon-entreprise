@@ -158,3 +158,6 @@ réduction linéaire:
   type: numeric
   description: |
     Permet TODO
+
+inclusion: 
+  description: Est-ce que l'élément `de` est inclus dans la liste `dans` ?

@@ -2,12 +2,13 @@
   nom: dans ZRR
   formule: 
     inclusion: 
-      de: code commune
+      de: établissement . code commune
       dans: liste communes ZRR
 
 - espace: entreprise
   nom: licenciement économique récent
   question: L'entreprise a-t-elle récemment (??) fait un licenciement économique ?
+  par défaut: non
 
 - espace: contrat salarié
   nom: exonération sociale ZRR
@@ -43,6 +44,14 @@
       contraintes: 
         1.5: 1
         2.4: 0
+
+  exemples: 
+    - nom: Pas de ZRR dans la commune par défaut
+      situation: 
+        entreprise . effectif: 20
+        établissement . code commune: 75020
+        salaire de base: 2300
+      valeur attendue: 0
           
 - espace: contrat salarié . CDD
   nom: CIF
@@ -904,6 +913,8 @@
     somme:
       - CICE
       - CITS
+      - exonération sociale ZRR
+
 
 - espace: contrat salarié
   nom: salaire
