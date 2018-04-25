@@ -2,7 +2,7 @@ import * as R from 'ramda'
 import { expect } from 'chai'
 import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
-import { reduceSteps } from '../source/reducers'
+import reduceSteps from '../source/reducers/reduceSteps'
 
 import {
 	byBranch,
@@ -51,7 +51,8 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{	foldedSteps: [],
+			{
+				foldedSteps: [],
 				targetNames: ['salaire net', 'salaire total']
 			},
 			{ type: 'START_CONVERSATION' }
@@ -86,8 +87,10 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{	foldedSteps: [],
-				targetNames: ['salaire net', 'salaire total'] },
+			{
+				foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total']
+			},
 			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
@@ -118,8 +121,10 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{	foldedSteps: [],
-				targetNames: ['salaire net', 'salaire total'] },
+			{
+				foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total']
+			},
 			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
@@ -143,8 +148,10 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{	foldedSteps: [],
-				targetNames: ['salaire net', 'salaire total'] },
+			{
+				foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total']
+			},
 			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300
@@ -176,8 +183,10 @@ describe('results grid', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{	foldedSteps: [],
-				targetNames: ['salaire net', 'salaire total'] },
+			{
+				foldedSteps: [],
+				targetNames: ['salaire net', 'salaire total']
+			},
 			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['contrat salarié . salaire de base'] = 2300

@@ -7,7 +7,7 @@ import {
 	getObjectives
 } from '../source/engine/generateQuestions'
 
-import { reduceSteps } from '../source/reducers'
+import reduceSteps from '../source/reducers/reduceSteps'
 import { popularTargetNames } from '../source/components/TargetSelection'
 
 import yaml from 'js-yaml'
@@ -122,7 +122,7 @@ describe('fold', function() {
 
 		var step1 = reducer(
 			{ foldedSteps: [], targetNames: ['net'] },
-			{ type: 'START_CONVERSATION'}
+			{ type: 'START_CONVERSATION' }
 		)
 
 		expect(step1).to.have.property('currentQuestion')
