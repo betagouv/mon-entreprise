@@ -27,7 +27,7 @@ import withColours from '../withColours'
 @translate()
 export default class Rule extends Component {
 	render() {
-		let { form, rule, currentExample, rules, flatRules } = this.props,
+		let { form, rule, currentExample, rules, flatRules, analysis } = this.props,
 			flatRule = findRuleByDottedName(flatRules, rule.dottedName),
 			conversationStarted = !isEmpty(analysis)
 
