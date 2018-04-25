@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import formValueTypes from 'Components/conversation/formValueTypes'
-import { rules, findRuleByName } from 'Engine/rules'
-import { propEq, isEmpty, curry, values } from 'ramda'
+import { findRuleByName } from 'Engine/rules'
+import { propEq, curry } from 'ramda'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
 import { Field, reduxForm, formValueSelector, change } from 'redux-form'
@@ -10,10 +10,10 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
+import ProgressCircle from './ProgressCircle/index'
 import { buildValidationFunction } from './conversation/FormDecorator'
 export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
-import { Circle } from 'rc-progress'
 
 @translate()
 @reduxForm({
@@ -27,7 +27,6 @@ import { Circle } from 'rc-progress'
 		targets: state.analysis ? state.analysis.targets : [],
 		flatRules: state.flatRules,
 		conversationStarted: state.conversationStarted,
-		missingVariablesByTarget: state.missingVariablesByTarget,
 		activeInput: state.activeTargetInput
 	}),
 	dispatch => ({
@@ -82,30 +81,24 @@ export default class TargetSelection extends Component {
 		let popularTargets = popularTargetNames.map(
 				curry(findRuleByName)(this.props.flatRules)
 			),
-			{
-				missingVariablesByTarget,
-				conversationStarted,
-				activeInput,
-				setActiveInput
-			} = this.props
+			{ conversationStarted, activeInput, setActiveInput, targets } = this.props
 
 		return (
 			<div>
 				<ul id="targets">
-					{popularTargets.map(s => (
-						<li key={s.name}>
+					{popularTargets.map(target => (
+						<li key={target.name}>
 							<Header
 								{...{
+									target,
 									conversationStarted,
-									s,
-									missingVariablesByTarget,
-									activeInput
+									isActiveInput: activeInput === target.dottedName
 								}}
 							/>
 							<TargetInputOrValue
 								{...{
-									s,
-									targets: this.props.targets,
+									target,
+									targets,
 									firstEstimationComplete: this.firstEstimationComplete,
 									activeInput,
 									setActiveInput,
@@ -120,56 +113,24 @@ export default class TargetSelection extends Component {
 	}
 }
 
-let computeRatio = (mvt, name) =>
-	!isEmpty(mvt) &&
-	values(mvt.current[name]).length / values(mvt.initial[name]).length
-
-let ProgressCircle = ({ activeInput, s, missingVariablesByTarget }) => {
-	let isActiveInput = activeInput === s.dottedName,
-		ratio = isActiveInput
-			? null
-			: computeRatio(missingVariablesByTarget, s.dottedName)
-
+let Header = ({ target, conversationStarted, isActiveInput }) => {
 	return (
-		<span
-			className="progressCircle"
-			style={{
-				visibility: isActiveInput ? 'hidden' : 'visible'
-			}}>
-			{ratio === 0 ? (
-				<i className="fa fa-check" aria-hidden="true" />
-			) : (
-				<Circle
-					percent={100 - ratio * 100}
-					strokeWidth="15"
-					strokeColor="#5de662"
-					trailColor="#fff"
-					trailWidth="5"
-				/>
+		<span className="header">
+			{conversationStarted && (
+				<ProgressCircle target={target} isActiveInput={isActiveInput} />
 			)}
+
+			<span className="texts">
+				<span className="optionTitle">
+					<Link to={'/règle/' + target.dottedName}>
+						{target.title || target.name}
+					</Link>
+				</span>
+				{!conversationStarted && <p>{target['résumé']}</p>}
+			</span>
 		</span>
 	)
 }
-
-let Header = ({
-	conversationStarted,
-	s,
-	missingVariablesByTarget,
-	activeInput
-}) => (
-	<span className="header">
-		{conversationStarted && (
-			<ProgressCircle {...{ s, missingVariablesByTarget, activeInput }} />
-		)}
-
-		<span className="texts">
-			<span className="optionTitle">
-				<Link to={'/règle/' + s.dottedName}>{s.title || s.name}</Link>
-			</span>
-			{!conversationStarted && <p>{s['résumé']}</p>}
-		</span>
-	</span>
-)
 
 let validate = buildValidationFunction(formValueTypes['euros'])
 let InputComponent = ({ input, meta: { dirty, error } }) => (
@@ -179,24 +140,26 @@ let InputComponent = ({ input, meta: { dirty, error } }) => (
 	</span>
 )
 let TargetInputOrValue = ({
-	s,
+	target,
 	targets,
 	firstEstimationComplete,
 	activeInput,
 	setActiveInput
 }) => (
 	<span className="targetInputOrValue">
-		{activeInput === s.dottedName ? (
+		{activeInput === target.dottedName ? (
 			<Field
-				name={s.dottedName}
+				name={target.dottedName}
 				component={InputComponent}
 				type="text"
 				validate={validate}
 			/>
 		) : (
-			<TargetValue {...{ targets, s, activeInput, setActiveInput }} />
+			<TargetValue {...{ targets, target, activeInput, setActiveInput }} />
 		)}
-		{(firstEstimationComplete || s.question) && <span className="unit">€</span>}
+		{(firstEstimationComplete || target.question) && (
+			<span className="unit">€</span>
+		)}
 	</span>
 )
 
@@ -208,25 +171,31 @@ let TargetInputOrValue = ({
 )
 class TargetValue extends Component {
 	render() {
-		let { targets, s, setFormValue, activeInput, setActiveInput } = this.props,
-			rule = targets.find(propEq('dottedName', s.dottedName)),
-			value = rule && rule.nodeValue,
+		let {
+				targets,
+				target,
+				setFormValue,
+				activeInput,
+				setActiveInput
+			} = this.props,
+			targetWithValue = targets.find(propEq('dottedName', target.dottedName)),
+			value = targetWithValue && targetWithValue.nodeValue,
 			humanValue = value != null && value.toFixed(0)
 
 		return (
 			<span
 				className={classNames({
-					editable: s.question,
-					attractClick: s.question && targets.length === 0
+					editable: target.question,
+					attractClick: target.question && targets.length === 0
 				})}
 				onClick={() => {
-					if (!s.question) return
+					if (!target.question) return
 					if (value != null) {
-						setFormValue(s.dottedName, humanValue + '')
+						setFormValue(target.dottedName, humanValue + '')
 						setFormValue(activeInput, '')
 					}
 
-					setActiveInput(s.dottedName)
+					setActiveInput(target.dottedName)
 				}}>
 				<RuleValue value={value} />
 			</span>
