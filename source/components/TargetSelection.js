@@ -39,8 +39,8 @@ import { Circle } from 'rc-progress'
 )
 export default class TargetSelection extends Component {
 	render() {
-		let { targets, conversationStarted, colours } = this.props
-		this.firstEstimationComplete = this.props.activeInput && targets.length > 0
+		let { targets, conversationStarted, colours, activeInput } = this.props
+		this.firstEstimationComplete = activeInput && targets.length > 0
 		return (
 			<div id="targetSelection">
 				<section

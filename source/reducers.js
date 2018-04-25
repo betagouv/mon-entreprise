@@ -55,12 +55,17 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 			'SET_CONVERSATION_TARGETS',
 			STEP_ACTION,
 			'USER_INPUT_UPDATE',
-			'START_CONVERSATION'
+			'START_CONVERSATION',
+			'SET_ACTIVE_TARGET_INPUT'
 		].includes(action.type)
 	)
 		return state
 
-	if (path(['form', 'conversation', 'syncErrors'], state)) return state
+	if (
+		path(['form', 'conversation', 'syncErrors'], state) ||
+		!answerSource(state)(state.activeTargetInput)
+	)
+		return state
 
 	let targetNames = reject(
 		name => state.activeTargetInput && state.activeTargetInput.includes(name)
@@ -100,7 +105,7 @@ export let reduceSteps = (tracker, flatRules, answerSource) => (
 				: state.foldedSteps
 	}
 
-	if (action.type == 'START_CONVERSATION')
+	if (['START_CONVERSATION', 'SET_ACTIVE_TARGET_INPUT'].includes(action.type))
 		return {
 			...newState,
 			missingVariablesByTarget: {
