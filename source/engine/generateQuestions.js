@@ -1,18 +1,16 @@
 import {
 	flatten,
+	keys,
 	reduce,
 	mergeWith,
 	add,
-	max,
 	values,
-	pipe,
-	sort,
+	sortWith,
 	descend,
-	pluck,
 	fromPairs,
-	uniq,
 	countBy,
 	toPairs,
+	pair,
 	map,
 	head,
 	unless,
@@ -51,18 +49,37 @@ import {
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariablesByTarget = targets => fromPairs(targets.map(target => [target.dottedName, target.missingVariables]))
+export let collectMissingVariablesByTarget = targets =>
+	fromPairs(
+		targets.map(target => [target.dottedName, target.missingVariables])
+	)
 
 export let getNextSteps = missingVariablesByTarget => {
-	let impact = ([, count]) => count
+	let byCount = ([, [count]]) => count
+	let byScore = ([, [, score]]) => score
 
-	let missingVariables = reduce(mergeWith(max),{},values(missingVariablesByTarget)),
-		pairs = toPairs(missingVariables),
-		sortedPairs = sort(descend(impact), pairs)
+	let missingByTotalScore = reduce(
+		mergeWith(add),
+		{},
+		values(missingVariablesByTarget)
+	)
+
+	let innerKeys = flatten(map(keys, values(missingVariablesByTarget))),
+		missingByTargetsAdvanced = countBy(identity, innerKeys)
+
+	let missingByCompound = mergeWith(
+			pair,
+			missingByTargetsAdvanced,
+			missingByTotalScore
+		),
+		pairs = toPairs(missingByCompound),
+		sortedPairs = sortWith([descend(byCount), descend(byScore)], pairs)
+
 	return map(head, sortedPairs)
 }
 
-export let collectMissingVariables = targets => getNextSteps(collectMissingVariablesByTarget(targets))
+export let collectMissingVariables = targets =>
+	getNextSteps(collectMissingVariablesByTarget(targets))
 
 let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
 
@@ -70,7 +87,8 @@ let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = findRuleByDottedName(allRules, path),
 			variant = isVariant(node),
-			variants = variant && unless(is(Array), prop('possibilités'))(variant),
+			variants =
+				variant && unless(is(Array), prop('possibilités'))(variant),
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
 
@@ -93,7 +111,10 @@ let buildPossibleInversion = (rule, rules, targetNames) => {
 
 	if (!inversion) return null
 	let inversionObjects = query('formule . inversion . avec').map(i =>
-			findRuleByDottedName(rules, disambiguateRuleReference(rules, rule, i))
+			findRuleByDottedName(
+				rules,
+				disambiguateRuleReference(rules, rule, i)
+			)
 		),
 		inversions = reject(({ name }) => targetNames.includes(name))(
 			[rule].concat(inversionObjects)

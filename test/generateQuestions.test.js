@@ -3,6 +3,7 @@ import { expect } from 'chai'
 import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 import {
+	getNextSteps,
 	collectMissingVariablesByTarget,
 	collectMissingVariables
 } from '../source/engine/generateQuestions'
@@ -75,7 +76,9 @@ describe('collectMissingVariables', function() {
 				{
 					nom: 'startHere',
 					formule: 'trois',
-					'non applicable si': { 'une de ces conditions': ['3 > 2', 'trois'] },
+					'non applicable si': {
+						'une de ces conditions': ['3 > 2', 'trois']
+					},
 					espace: 'sum'
 				},
 				{ nom: 'trois', espace: 'sum' }
@@ -90,7 +93,11 @@ describe('collectMissingVariables', function() {
 	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
 		let rawRules = [
 				{ nom: 'startHere', formule: 'trois', espace: 'top' },
-				{ nom: 'trois', formule: { 'une possibilité': ['ko'] }, espace: 'top' }
+				{
+					nom: 'trois',
+					formule: { 'une possibilité': ['ko'] },
+					espace: 'top'
+				}
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
@@ -122,7 +129,11 @@ describe('collectMissingVariables', function() {
 
 		let rawRules = [
 				{ nom: 'startHere', formule: 'trois', espace: 'top' },
-				{ nom: 'trois', formule: { 'une possibilité': ['ko'] }, espace: 'top' }
+				{
+					nom: 'trois',
+					formule: { 'une possibilité': ['ko'] },
+					espace: 'top'
+				}
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(mySelector),
@@ -155,7 +166,11 @@ describe('collectMissingVariables', function() {
 
 	it('should report missing variables in variations', function() {
 		let rawRules = [
-				{ nom: 'startHere', formule: { somme: ['variations'] }, espace: 'top' },
+				{
+					nom: 'startHere',
+					formule: { somme: ['variations'] },
+					espace: 'top'
+				},
 				{
 					nom: 'variations',
 					espace: 'top',
@@ -205,7 +220,11 @@ describe('collectMissingVariables', function() {
 
 	it('should not report missing variables in irrelevant variations', function() {
 		let rawRules = [
-				{ nom: 'startHere', formule: { somme: ['variations'] }, espace: 'top' },
+				{
+					nom: 'startHere',
+					formule: { somme: ['variations'] },
+					espace: 'top'
+				},
 				{
 					nom: 'variations',
 					espace: 'top',
@@ -354,8 +373,7 @@ describe('nextSteps', function() {
 			analysis = analyse(rules, 'salaire')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result[0]).to.equal('contrat salarié . salaire de base')
-		expect(result[1]).to.equal('contrat salarié . temps partiel')
+		expect(result[0]).to.equal('contrat salarié . temps partiel')
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function() {
@@ -370,5 +388,45 @@ describe('nextSteps', function() {
 			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.include('contrat salarié . CDD . motif')
+	})
+})
+
+describe('getNextSteps', function() {
+	it('should give priority to questions that advance most targets', function() {
+		let missingVariablesByTarget = {
+			chargé: {
+				effectif: 34.01,
+				cadre: 30
+			},
+			net: {
+				cadre: 10.1
+			},
+			aides: {
+				effectif: 32.0,
+				cadre: 10
+			}
+		}
+
+		let result = getNextSteps(missingVariablesByTarget)
+
+		expect(result[0]).to.equal('cadre')
+	})
+
+	it('should give priority to questions by total weight when advancing the same target count', function() {
+		let missingVariablesByTarget = {
+			chargé: {
+				effectif: 24.01,
+				cadre: 30
+			},
+			net: {
+				effectif: 24.01,
+				cadre: 10.1
+			},
+			aides: {}
+		}
+
+		let result = getNextSteps(missingVariablesByTarget)
+
+		expect(result[0]).to.equal('effectif')
 	})
 })

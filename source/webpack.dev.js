@@ -23,7 +23,6 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
-		new webpack.HotModuleReplacementPlugin(),
-		new HardSourceWebpackPlugin()
+		new webpack.HotModuleReplacementPlugin()
 	]
 }
