@@ -1,11 +1,16 @@
 - espace: entreprise
   nom: dans ZRR
   formule: 
-    présence: 
+    inclusion: 
       de: code commune
       dans: liste communes ZRR
 
-- nom: exonération sociale ZRR
+- espace: entreprise
+  nom: licenciement économique récent
+  question: L'entreprise a-t-elle récemment (??) fait un licenciement économique ?
+
+- espace: contrat salarié
+  nom: exonération sociale ZRR
   aide:
     type: réduction de cotisations
     thème: aide embauche
@@ -27,6 +32,7 @@
   formule: 
     réduction linéaire: 
       assiette:  
+        somme: 
         - maladie
         - vieillesse
         - allocations familiales
@@ -35,8 +41,8 @@
       variable: salaire brut
       multiplicateur: smic mensuel
       contraintes: 
-        1.5: 100%
-        2.4: 0%
+        1.5: 1
+        2.4: 0
           
 - espace: contrat salarié . CDD
   nom: CIF
