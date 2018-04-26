@@ -1,19 +1,13 @@
 .progressTip {
 	max-width: 40em;
 	margin: .2em auto;
-
-
 }
-.progressTip svg {
-		display: inline-block;
-		width: calc(100% - 11em);
-		margin-right: 1em;
-}
+
 .progressTip p {
 		display: inline-block;
-		width: 10em;
+		width: 100%;
 		margin: .1em 0 1.6em;
-		text-align: right;
+		text-align: center;
 		font-weight: 600;
 }
 

@@ -23,20 +23,9 @@ export default class ProgressTip extends Component {
 
 		if (!conversationStarted) return null
 		return (
-			nbQuestions != 0 && (
 				<div className="progressTip">
-					<Line
-						style={{
-							visibility: foldedSteps.length > 0 ? 'visible' : 'hidden'
-						}}
-						percent={
-							100 * foldedSteps.length / (foldedSteps.length + nbQuestions)
-						}
-						trailWidth="1"
-						strokeWidth="2"
-						strokeColor={colour}
-					/>
-
+					{ nbQuestions != 0
+					?
 					<p style={{ color: textColourOnWhite }}>
 						{nbQuestions === 1
 							?
@@ -47,8 +36,9 @@ export default class ProgressTip extends Component {
 							</Trans>
 						}
 					</p>
+					:
+					<br/>}
 				</div>
-			)
 		)
 	}
 }
