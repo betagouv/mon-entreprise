@@ -1,4 +1,4 @@
-import { path, head, reject, concat, without } from 'ramda'
+import { path, head, reject, concat, without, length } from 'ramda'
 
 import { rules, collectDefaults, rulesFr } from 'Engine/rules'
 import {
