@@ -440,3 +440,7 @@ for the appearing element to appear without stacking up below the first one */
 		display: none;
 	}
 }
+
+.conversationContainer {
+	flex: 1;
+}

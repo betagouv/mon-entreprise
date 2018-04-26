@@ -1,11 +1,8 @@
 #targetsContainer {
-
-	padding: 0.2em .5em;
-
+	padding: 0.5em;
 	border-radius: 0.6em;
-	box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.25)
+	box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.25);
 }
-
 
 #targetSelection h1 {
 	margin: 0.6em;
@@ -25,46 +22,48 @@
 	font-size: 120%;
 }
 
-
 #targetSelection #targets {
-	margin: .4em auto;
+	margin: 0;
 	/* For the checkbox that will appear */
 	padding: 0;
 }
-#targetSelection #targets  li {
-	margin-bottom: .4em;
+#targetSelection #targets li {
+	margin-bottom: 0.5em;
 	background: rgba(0, 0, 0, 0.25);
-    display: flex;
+	display: flex;
 	align-items: center;
 	justify-content: space-between;
-    padding: .4em .6em .4em;
-    border-radius: .3em;
+	padding: 0.4em 0.6em 0.4em;
+	border-radius: 0.3em;
+}
+#targetSelection #targets li:last-child {
+	margin-bottom: 0;
 }
 
 #targetSelection #targets > li p {
-	margin: .2em 0 0;
-	opacity: .80;
+	margin: 0.2em 0 0;
+	opacity: 0.8;
 	line-height: 1.2em;
-	}
+}
 
 #targetSelection li .header {
-	    display: flex;
-		align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 #targetSelection .progressCircle {
-		margin-right: .6em;
+	margin-right: 0.6em;
 }
 #targetSelection .progressCircle svg {
-		width: 2em;
+	width: 2em;
 }
 #targetSelection .progressCircle i {
-		color: #5de662;
-		font-size: 220%
+	color: #5de662;
+	font-size: 220%;
 }
 
 #targetSelection .texts {
-		margin: 0 .4em 0;
+	margin: 0 0.4em 0;
 }
 
 #targetSelection .optionTitle {
@@ -72,23 +71,22 @@
 	font-weight: 600;
 }
 #targetSelection .optionTitle a {
-color: inherit
+	color: inherit;
 }
 #targetSelection .optionTitle a:hover {
-text-decoration: underline;
+	text-decoration: underline;
 }
 
-#targetSelection .targetInputOrValue
-{
+#targetSelection .targetInputOrValue {
 	font-size: 120%;
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
 #targetSelection .editable {
-    border-bottom: 1px dashed #ffffff91;
-    min-width: 2.5em;
-    display: inline-block;
+	border-bottom: 1px dashed #ffffff91;
+	min-width: 2.5em;
+	display: inline-block;
 }
 
 #targetSelection .attractClick,
@@ -102,26 +100,26 @@ text-decoration: underline;
 	padding: 0em 0.5em;
 	background: white;
 	border-radius: 0.2em;
-border: none;
+	border: none;
 	box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.45);
 	color: #333;
-	font-size: inherit
+	font-size: inherit;
 }
 
 #targetSelection .unit {
-    margin-left: .6em;
+	margin-left: 0.6em;
 	font-size: 125%;
 	vertical-align: middle;
 }
 
 .input-error {
-padding: 0 .6em;
-    margin-right: .6em;
-    font-size: 90%;
-    font-style: italic;
-    color: #c0392b;
-    background: yellow;
-    font-weight: 600;		
+	padding: 0 0.6em;
+	margin-right: 0.6em;
+	font-size: 90%;
+	font-style: italic;
+	color: #c0392b;
+	background: yellow;
+	font-weight: 600;
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

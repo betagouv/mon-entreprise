@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
-import { isEmpty, map, pick } from 'ramda'
+import { translate } from 'react-i18next'
+import { pick } from 'ramda'
 import Aide from '../Aide'
 import { reduxForm, reset } from 'redux-form'
 import { getInputComponent } from 'Engine/generateQuestions'
@@ -28,7 +28,6 @@ import './conversation.css'
 	]),
 	dispatch => ({
 		reinitialise: () => {
-			ReactPiwik.push(['trackEvent', 'restart', ''])
 			dispatch(reset('conversation'))
 			dispatch({ type: 'SET_CONVERSATION_TARGETS', reset: true })
 		}
@@ -37,28 +36,28 @@ import './conversation.css'
 export default class Conversation extends Component {
 	render() {
 		let {
-			foldedSteps,
 			currentQuestion,
 			flatRules,
 			targetNames,
-			reinitialise,
-			textColourOnWhite,
 			conversationStarted
 		} = this.props
-		if (!conversationStarted) return null
 		return (
-			<>
-				<Aide />
-				<div id="currentQuestion">
-					{currentQuestion ? (
-						getInputComponent({ unfolded: true })(flatRules, targetNames)(
-							currentQuestion
-						)
-					) : (
-						<Satisfaction />
-					)}
-				</div>
-			</>
+			<div className="conversationContainer">
+				{conversationStarted ? (
+					<>
+						<Aide />
+						<div id="currentQuestion">
+							{currentQuestion ? (
+								getInputComponent({ unfolded: true })(flatRules, targetNames)(
+									currentQuestion
+								)
+							) : (
+								<Satisfaction />
+							)}
+						</div>
+					</>
+				) : null}
+			</div>
 		)
 	}
 }

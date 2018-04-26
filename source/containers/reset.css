@@ -4,6 +4,15 @@
 	the widget's form layout.
  */
 
+html {
+	box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
 [hidden],
 .js-only {
 	display: none;

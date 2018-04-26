@@ -6,6 +6,7 @@ import Conversation from './conversation/Conversation'
 import ProgressTip from './ProgressTip'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
 import Explanation from './Explanation'
+import GoToExplanations from './GoToExplanations'
 
 @withColours
 export default class extends Component {
@@ -20,8 +21,9 @@ export default class extends Component {
 					<TargetSelection colours={colours} />
 					<ProgressTip />
 					<Conversation textColourOnWhite={colours.textColourOnWhite} />
-					<Explanation />
+					<GoToExplanations />
 				</div>
+				<Explanation />
 			</div>
 		)
 	}
