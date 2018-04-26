@@ -8,10 +8,7 @@
 	"engines": {
 		"node": ">=8.10.0 <10.0.0"
 	},
-	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
-	],
+	"browserslist": ["> 1% in FR", "not ie < 11"],
 	"dependencies": {
 		"@babel/core": "=7.0.0-beta.46",
 		"@babel/plugin-proposal-decorators": "=7.0.0-beta.46",
@@ -101,14 +98,28 @@
 		"yaml-loader": "^0.5.0"
 	},
 	"scripts": {
+		"pretest":
+			"LIST=`git diff --name-only HEAD..HEAD^ | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"start": "node source/server.js",
 		"externalize": "node source/externalize.js",
 		"compile": "webpack --config source/webpack.prod.js",
-		"test": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
-		"test-watch": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
-		"test-meca": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
-		"test-rules": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
-		"test-inversions": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
-		"heroku-postbuild": "yarn install --production=false && yarn compile"
+		"test":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
+		"test-watch":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
+		"test-meca":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
+		"test-rules":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
+		"test-inversions":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
+		"heroku-postbuild": "yarn install --production=false && yarn compile",
+		"eslint":
+			"LIST=`git diff --cached --name-only HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
+		"eslint-check":
+			"eslint --print-config .eslintrc | eslint-config-prettier-check"
+	},
+	"devDependencies": {
+		"eslint-config-prettier": "^2.9.0"
 	}
 }
