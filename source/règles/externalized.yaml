@@ -350,7 +350,7 @@ contrat salarié . salaire de base:
     SMIC: minimal salary (SMIC)
     SMIC mi-temps: half-time min. salary
 contrat salarié . salaire brut:
-  titre.en: gross salary
+  titre.en: gross salary with benefits
   titre.fr: salaire brut
 contrat salarié . avantages salarié:
   titre.en: employee benefits
