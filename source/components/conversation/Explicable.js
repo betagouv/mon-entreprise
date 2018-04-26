@@ -19,7 +19,13 @@ import ReactPiwik from '../Tracker'
 )
 export default class Explicable extends React.Component {
 	render() {
-		let { flatRules, dottedName, explain, explained, textColourOnWhite } = this.props
+		let {
+			flatRules,
+			dottedName,
+			explain,
+			explained,
+			textColourOnWhite
+		} = this.props
 
 		// Rien à expliquer ici, ce n'est pas une règle
 		if (dottedName == null) return this.props.children
@@ -34,8 +40,7 @@ export default class Explicable extends React.Component {
 			<span
 				className={classNames('explicable', {
 					explained: dottedName === explained
-				})}
-			>
+				})}>
 				{this.props.children}
 				<span
 					className="icon"
@@ -51,10 +56,9 @@ export default class Explicable extends React.Component {
 									opacity: 1,
 									background: textColourOnWhite,
 									color: 'white'
-								}
+							  }
 							: { color: textColourOnWhite }
-					}
-				>
+					}>
 					<i className="fa fa-book" aria-hidden="true" />
 				</span>
 			</span>

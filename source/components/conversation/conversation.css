@@ -1,13 +1,14 @@
 .scrollIndication {
-    margin: .6em;
-	text-align: center
+	margin: 0.6em;
+	text-align: center;
 }
 
 .scrollIndication.down {
-		margin-bottom: 1em;}
+	margin-bottom: 1em;
+}
 
 #foldedSteps {
-	padding: 1em 0 ;
+	padding: 1em 0;
 	margin-bottom: 1em;
 }
 
@@ -21,18 +22,17 @@
 	vertical-align: top;
 }
 
-#foldedSteps button  {
-  
+#foldedSteps button {
 	border: none;
 	font-weight: 500;
 }
 
 #myScrollToElement {
-    padding-top: .3em
+	padding-top: 0.3em;
 }
 
 #currentQuestion {
-    margin-bottom: 4em;
+	margin-bottom: 4em;
 }
 
 .step {
@@ -52,7 +52,7 @@
 }
 
 .unfoldedHeader {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -155,7 +155,7 @@
 }
 .step.question .variantLeaf.aucun label {
 	font-weight: 800;
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .step.question .sendWrapper {
@@ -202,7 +202,7 @@
 
 .step input[type='text'] {
 	border-bottom: 1px solid;
-	border-radius: .3em;
+	border-radius: 0.3em;
 	display: inline-block;
 	line-height: 1.6em;
 	height: 1.6em; /* IE 11 needs this */
@@ -404,7 +404,6 @@ for the appearing element to appear without stacking up below the first one */
 	bottom: 0;
 	margin: auto;
 }
-
 
 .foldedQuestion {
 	margin-left: 1.2em;

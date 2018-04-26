@@ -6,6 +6,7 @@ import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
 import { is } from 'ramda'
 import SendButton from './SendButton'
+import './Question.css'
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
 	- nom: motif CDD # La racine, unique, qui formera la Question. Ses enfants sont les choix possibles
@@ -28,7 +29,12 @@ import SendButton from './SendButton'
 @translate()
 export default class Question extends Component {
 	render() {
-		let { choices, submit, themeColours, meta: { pristine } } = this.props
+		let {
+			choices,
+			submit,
+			themeColours,
+			meta: { pristine }
+		} = this.props
 		let choiceElements = is(Array)(choices)
 			? this.renderBinaryQuestion()
 			: this.renderChildren(choices)
@@ -56,7 +62,7 @@ export default class Question extends Component {
 		} = this.props
 
 		return (
-			<ul>
+			<ul className="binaryQuestionList">
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
