@@ -247,29 +247,6 @@
 	outline: none;
 }
 
-.step .inputSuggestions {
-	font-style: italic;
-	float: right;
-	clear: right;
-	font-size: 90%;
-	color: #222;
-}
-.step .inputSuggestions ul {
-	padding-left: 0;
-	list-style: none;
-	display: inline-flex;
-	align-items: flex-end;
-}
-.step .inputSuggestions li {
-}
-.step .inputSuggestions span {
-	padding: 0.1em 0.9em;
-	font-weight: 600;
-	cursor: pointer;
-}
-.step .inputSuggestions span:hover {
-	text-decoration: none;
-}
 
 .help-box {
 	position: absolute;

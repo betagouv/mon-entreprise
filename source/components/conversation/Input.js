@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { translate } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
-import { toPairs } from 'ramda'
 import SendButton from './SendButton'
+import InputSuggestions from './InputSuggestions'
 
 @FormDecorator('input')
 @translate()
 export default class Input extends Component {
 	static contextTypes = {
 		i18n: PropTypes.object.isRequired
-	}
-	state = {
-		suggestion: null
 	}
 	render() {
 		let {
@@ -61,39 +58,13 @@ export default class Input extends Component {
 						{...{ disabled: submitDisabled, themeColours, error, submit }}
 					/>
 				</div>
-
-				{this.renderSuggestions(themeColours)}
+				<InputSuggestions
+					suggestions={this.props.suggestions}
+					onFirstClick={value => this.props.setFormValue('' + value)}
+					onSecondClick={() => this.props.submit('suggestion')}
+				/>
 				{inputError && <span className="step-input-error">{error}</span>}
 			</span>
-		)
-	}
-
-	renderSuggestions(themeColours) {
-		let { setFormValue, suggestions, inverted } = this.props,
-			{ i18n } = this.context
-
-		if (!suggestions || inverted) return null
-		return (
-			<div className="inputSuggestions">
-				suggestions:
-				<ul>
-					{toPairs(suggestions).map(([text, value]) => (
-						<li
-							key={value}
-							onClick={() => {
-								setFormValue('' + value)
-								if (this.state.suggestion !== value)
-									this.setState({ suggestion: value })
-								else this.props.submit('suggestion')
-							}}
-							style={{ color: themeColours.textColourOnWhite }}>
-							<span title={i18n.t('cliquez pour insérer cette suggestion')}>
-								{text}
-							</span>
-						</li>
-					))}
-				</ul>
-			</div>
 		)
 	}
 }

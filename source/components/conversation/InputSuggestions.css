@@ -1,0 +1,24 @@
+
+.inputSuggestions {
+	font-style: italic;
+	float: right;
+	clear: right;
+	font-size: 90%;
+	color: #222;
+}
+.inputSuggestions ul {
+	padding-left: 0;
+	list-style: none;
+	display: inline-flex;
+	align-items: flex-end;
+}
+.inputSuggestions li {
+}
+.inputSuggestions span {
+	padding: 0.1em 0.9em;
+	font-weight: 600;
+	cursor: pointer;
+}
+.inputSuggestions span:hover {
+	text-decoration: none;
+}
