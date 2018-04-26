@@ -8,6 +8,7 @@ import {
 import { analyseMany, parseAll } from 'Engine/traverse'
 
 export default (tracker, flatRules, answerSource) => (state, action) => {
+	console.log(action)
 	state.flatRules = flatRules
 	// Optimization - don't parse on each analysis
 	if (!state.parsedRules) {
@@ -36,21 +37,14 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	)
 		return state
 
-	if (
-		path(['form', 'conversation', 'syncErrors'], state) ||
-		(state.activeTargetInput && !answerSource(state)(state.activeTargetInput))
-	)
+	if (path(['form', 'conversation', 'syncErrors'], state))
 		return state
-
-	let targetNames = reject(
-		name => state.activeTargetInput && state.activeTargetInput.includes(name)
-	)(state.targetNames)
 
 	// Most rules have default values
 	let rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(answerSource, rulesDefaults)
 
-	let analysis = analyseMany(state.parsedRules, targetNames)(
+	let analysis = analyseMany(state.parsedRules, state.targetNames)(
 		situationWithDefaults(state)
 	)
 
@@ -58,7 +52,7 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 		return { ...state, analysis, situationGate: situationWithDefaults(state) }
 	}
 
-	let nextStepsAnalysis = analyseMany(state.parsedRules, targetNames)(
+	let nextStepsAnalysis = analyseMany(state.parsedRules, state.targetNames)(
 			answerSource(state)
 		),
 		missingVariablesByTarget = collectMissingVariablesByTarget(
@@ -80,14 +74,19 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 				: state.foldedSteps
 	}
 
-	if (['START_CONVERSATION', 'SET_ACTIVE_TARGET_INPUT'].includes(action.type))
+	// Les nextSteps initiaux ne dépendent que des règles et pourraient être précalculés
+	// TODO: sortir ce calcul du state pour éviter cette "astuce" avec stillBlank
+	if (['START_CONVERSATION', 'SET_ACTIVE_TARGET_INPUT'].includes(action.type)) {
+		// Le premier clic pour sélectionner un input actif permet d'initialiser missingVariablesByTarget
+		let stillBlank = state.activeTargetInput && !answerSource(state)(state.activeTargetInput)
 		return {
-			...newState,
+			...(stillBlank ? state : newState),
 			missingVariablesByTarget: {
-				initial: missingVariablesByTarget,
+				initial: state.missingVariablesByTarget.initial ? state.missingVariablesByTarget.initial : missingVariablesByTarget,
 				current: missingVariablesByTarget
 			}
 		}
+	}
 
 	if (action.type == 'STEP_ACTION' && action.name == 'fold') {
 		tracker.push([
