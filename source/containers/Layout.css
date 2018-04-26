@@ -6,7 +6,7 @@ body {
 	font-family: 'Open Sans';
 	margin: 0;
 	height: 100%;
-	font-size: calc(13px + 0.20vw);
+	font-size: calc(13px + 0.2vw);
 	background: white;
 }
 #js,
@@ -45,4 +45,12 @@ h1 {
 	margin: 10% auto;
 	width: 20em;
 	textalign: center;
+}
+
+.unstyledButton {
+	color: inherit;
+	padding: 0.3em 1em;
+	border: none;
+	border-radius: 0;
+	font-size: inherit;
 }

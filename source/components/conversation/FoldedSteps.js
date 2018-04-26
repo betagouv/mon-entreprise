@@ -7,13 +7,13 @@ import { isEmpty, map, pick } from 'ramda'
 import ReactPiwik from '../Tracker'
 import { getInputComponent } from 'Engine/generateQuestions'
 import withColours from '../withColours'
-import { scroller, Element } from 'react-scroll'
+import { scroller, Element, animateScroll } from 'react-scroll'
 
 let scroll = () =>
 	scroller.scrollTo('myScrollToElement', {
-		duration: 500,
+		duration: 0,
 		delay: 0,
-		smooth: true
+		smooth: false
 	})
 
 @withColours
@@ -70,11 +70,20 @@ export default class extends Component {
 	foldedSteps: state.foldedSteps
 }))
 export class GoToAnswers extends Component {
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.foldedSteps.length == this.props.foldedSteps.length)
+	componentDidMount() {
+		scroll()
+	}
+	componentDidUpdate(prevProps) {
+		if (prevProps.foldedSteps.length == this.props.foldedSteps.length)
 			return null
-
-		setTimeout(scroll, 1) // scrolling after the first answer doesn't work
+		scroll()
+	}
+	handleScrollToAnswers = () => {
+		animateScroll.scrollToTop({
+			duration: 200,
+			delay: 0,
+			smooth: true
+		})
 	}
 	render() {
 		return (
@@ -84,10 +93,13 @@ export class GoToAnswers extends Component {
 					style={{
 						opacity: this.props.foldedSteps.length != 0 ? 1 : 0,
 						color: this.props.colours.textColourOnWhite
-					}}
-				>
-					<i className="fa fa-long-arrow-up" aria-hidden="true" />
-					<span> <Trans i18nKey="change">Modifier mes réponses</Trans></span>
+					}}>
+					<button
+						className="unstyledButton"
+						onClick={this.handleScrollToAnswers}>
+						<i className="fa fa-long-arrow-up" aria-hidden="true" />
+						&nbsp;<Trans i18nKey="change">Modifier mes réponses</Trans>
+					</button>
 				</h3>
 			</Element>
 		)
