@@ -27,17 +27,21 @@
 	/* For the checkbox that will appear */
 	padding: 0;
 }
-#targetSelection #targets li {
+#targetSelection #targets > li:last-child {
+	margin-bottom: 0;
+}
+
+#targetSelection #targets >  li {
 	margin-bottom: 0.5em;
 	background: rgba(0, 0, 0, 0.25);
-	display: flex;
+    padding: .4em .6em .4em;
+    border-radius: .3em;
+
+}
+#targetSelection #targets >  li .main {
+    display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0.4em 0.6em 0.4em;
-	border-radius: 0.3em;
-}
-#targetSelection #targets li:last-child {
-	margin-bottom: 0;
 }
 
 #targetSelection #targets > li p {
@@ -46,7 +50,7 @@
 	line-height: 1.2em;
 }
 
-#targetSelection li .header {
+#targetSelection li > .header {
 	display: flex;
 	align-items: center;
 }
@@ -62,9 +66,6 @@
 	font-size: 220%;
 }
 
-#targetSelection .texts {
-	margin: 0 0.4em 0;
-}
 
 #targetSelection .optionTitle {
 	font-size: 115%;
@@ -120,6 +121,11 @@
 	color: #c0392b;
 	background: yellow;
 	font-weight: 600;
+}
+
+#targetSelection .inputSuggestions {
+		margin: .6em 0
+
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

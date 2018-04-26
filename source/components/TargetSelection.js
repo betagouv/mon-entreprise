@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
+import InputSuggestions from 'Components/conversation/InputSuggestions'
 import { buildValidationFunction } from './conversation/FormDecorator'
 export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
@@ -88,23 +89,35 @@ export default class TargetSelection extends Component {
 				<ul id="targets">
 					{popularTargets.map(target => (
 						<li key={target.name}>
-							<Header
-								{...{
-									target,
-									conversationStarted,
-									isActiveInput: activeInput === target.dottedName
-								}}
-							/>
-							<TargetInputOrValue
-								{...{
-									target,
-									targets,
-									firstEstimationComplete: this.firstEstimationComplete,
-									activeInput,
-									setActiveInput,
-									setFormValue: this.props.setFormValue
-								}}
-							/>
+							<div className="main">
+								<Header
+									{...{
+										target,
+										conversationStarted,
+										isActiveInput: activeInput === target.dottedName
+									}}
+								/>
+								<TargetInputOrValue
+									{...{
+										target,
+										targets,
+										firstEstimationComplete: this.firstEstimationComplete,
+										activeInput,
+										setActiveInput,
+										setFormValue: this.props.setFormValue
+									}}
+								/>
+							</div>
+							{activeInput === target.dottedName &&
+								!conversationStarted && (
+									<InputSuggestions
+										suggestions={target.suggestions}
+										onFirstClick={value =>
+											this.props.setFormValue(target.dottedName, '' + value)
+										}
+										colouredBackground={true}
+									/>
+								)}
 						</li>
 					))}
 				</ul>

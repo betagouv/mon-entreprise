@@ -13,7 +13,13 @@ export default class extends Component {
 	}
 	state = { suggestion: null }
 	render() {
-		let { suggestions, onSecondClick, onFirstClick } = this.props,
+		let {
+				suggestions,
+				onSecondClick,
+				onFirstClick,
+				colouredBackground,
+				colours
+			} = this.props,
 			{ i18n } = this.context
 
 		if (!suggestions) return null
@@ -28,9 +34,13 @@ export default class extends Component {
 								onFirstClick(value)
 								if (this.state.suggestion !== value)
 									this.setState({ suggestion: value })
-								else onSecondClick(value)
+								else onSecondClick && onSecondClick(value)
 							}}
-							style={{ color: this.props.colours.textColourOnWhite }}>
+							style={{
+								color: colouredBackground
+									? colours.textColour
+									: colours.textColourOnWhite
+							}}>
 							<span title={i18n.t('cliquez pour insérer cette suggestion')}>
 								{text}
 							</span>

@@ -1,24 +1,19 @@
 
 .inputSuggestions {
-	font-style: italic;
-	float: right;
-	clear: right;
-	font-size: 90%;
-	color: #222;
+	text-align: right;
 }
 .inputSuggestions ul {
 	padding-left: 0;
 	list-style: none;
 	display: inline-flex;
 	align-items: flex-end;
+	font-weight: 600;
 }
 .inputSuggestions li {
-}
-.inputSuggestions span {
-	padding: 0.1em 0.9em;
-	font-weight: 600;
+	text-align: center;
+    margin-left: 1em;
+	min-width: 2em;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 	cursor: pointer;
-}
-.inputSuggestions span:hover {
-	text-decoration: none;
 }
