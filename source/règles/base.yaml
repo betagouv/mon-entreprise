@@ -699,16 +699,8 @@
 
 - espace: contrat salarié
   nom: salaire brut
-  résumé: Inscrit dans le contrat de travail.
   description: >
-    C'est le salaire de négociation du contrat de travail en France.
-
-    Il peut être vu comme :
-
-    - la somme du salaire net et des cotisations sociales salariales retenues sur le bulletin de paie d'un salarié
-    - ou comme les sommes perçues par le salarié au titre de son contrat de travail, avant retenues sociales et fiscales.
-
-
+    C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
   format: euros
   formule:
     somme:

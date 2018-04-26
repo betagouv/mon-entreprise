@@ -332,19 +332,17 @@ contrat salarié . salaire de base:
   question.fr: Quel est le salaire brut mensuel ?
   description.en: >-
     This is the negociated salary written on the employment contract in France.
+    It normally includes bonuses computed on a monthly basis.
 
-
+    It does not include employee benefits whether direct (monetary sums added to
+    the base pay such as medical or housing allowances) or indirect (benefits conveyed
+    in non-monetary forms such as food coupons, but whose value is added to the pay
+    slip as part of taxable income).
   description.fr: >
-    C'est le salaire de négociation du contrat de travail en France.
+    C'est le salaire *brut* régulier inscrit dans le contrat de travail.
+    Il peut éventuellement inclure les primes ramenées au mois.
 
-
-    Il peut être vu comme :
-
-    - la somme du salaire net et des cotisations sociales salariales retenues
-    sur le bulletin de paie d'un salarié
-
-    - ou comme les sommes perçues par le salarié au titre de son contrat de
-    travail, avant retenues sociales et fiscales.
+    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
   suggestions.en:
     salaire médian: median salary
     SMIC: minimal salary (SMIC)
@@ -352,6 +350,10 @@ contrat salarié . salaire de base:
 contrat salarié . salaire brut:
   titre.en: gross salary with benefits
   titre.fr: salaire brut
+  description.fr: >
+    C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
+  description.en: >
+    This is the effective base salary, including all benefits, for the purpose of computing social costs.
 contrat salarié . avantages salarié:
   titre.en: employee benefits
   titre.fr: avantages salarié
