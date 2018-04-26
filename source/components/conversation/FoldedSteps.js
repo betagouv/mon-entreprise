@@ -9,13 +9,6 @@ import { getInputComponent } from 'Engine/generateQuestions'
 import withColours from '../withColours'
 import { scroller, Element, animateScroll } from 'react-scroll'
 
-let scroll = () =>
-	scroller.scrollTo('myScrollToElement', {
-		duration: 0,
-		delay: 0,
-		smooth: false
-	})
-
 @withColours
 @connect(
 	pick([
@@ -67,16 +60,26 @@ export default class extends Component {
 
 @withColours
 @connect(state => ({
-	foldedSteps: state.foldedSteps
+	foldedSteps: state.foldedSteps,
+	conversationStarted: state.conversationStarted
 }))
 export class GoToAnswers extends Component {
-	componentDidMount() {
-		scroll()
-	}
 	componentDidUpdate(prevProps) {
-		if (prevProps.foldedSteps.length == this.props.foldedSteps.length)
-			return null
-		scroll()
+		if (!prevProps.conversationStarted && this.props.conversationStarted) {
+			scroller.scrollTo('myScrollToElement', {
+				duration: 200,
+				delay: 0,
+				smooth: true
+			})
+			return
+		}
+		if (prevProps.foldedSteps.length === this.props.foldedSteps.length) return
+
+		scroller.scrollTo('myScrollToElement', {
+			duration: 0,
+			delay: 0,
+			smooth: false
+		})
 	}
 	handleScrollToAnswers = () => {
 		animateScroll.scrollToTop({
