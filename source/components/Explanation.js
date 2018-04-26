@@ -7,7 +7,7 @@ import Rule from 'Components/rule/Rule'
 import './Explanation.css'
 import { pluck } from 'ramda'
 import { connect } from 'react-redux'
-
+import { scroller, Element } from 'react-scroll'
 import SearchButton from './SearchButton'
 import withColours from './withColours'
 
@@ -17,32 +17,45 @@ import withColours from './withColours'
 	analysis: state.analysis
 }))
 export default class Explanation extends Component {
+	handleScrollToResults = () => {
+		scroller.scrollTo('resultsScrollElement', {
+			smooth: true,
+			duration: 200,
+			delay: 0
+		})
+	}
 	render() {
 		let targetRules = path(['analysis', 'targets'], this.props)
 		if (!targetRules) return null
 
 		return (
-			<section id="explanation">
-				<h3
-					className="scrollIndication down"
-					style={{
-						color: this.props.colours.textColourOnWhite
-					}}>
-					<i className="fa fa-long-arrow-down" aria-hidden="true" />
-					<span> <Trans i18nKey="details">Comprendre mes résultats</Trans></span>
-				</h3>
-				{this.renderExplanation(targetRules)}
-				<div id="warning">
-					<p>
-						<i className="fa fa-info-circle" aria-hidden="true" />
-						<Trans i18nKey="disclaimer">
-							Le calcul ne prend pas en compte les conventions et accords
-							collectifs, et n'est pas opposable à un bulletin de paie. En cas
-							d'écart, vous pouvez en discuter avec votre responsable.
-						</Trans>
-					</p>
-				</div>
-			</section>
+			<Element name="resultsScrollElement" id="resultsScrollElement">
+				<section id="explanation">
+					<h3
+						className="scrollIndication down"
+						style={{
+							color: this.props.colours.textColourOnWhite
+						}}>
+						<button
+							className="unstyledButton"
+							onClick={this.handleScrollToResults}>
+							<i className="fa fa-long-arrow-down" aria-hidden="true" />
+							&nbsp;<Trans i18nKey="details">Comprendre mes résultats</Trans>
+						</button>
+					</h3>
+					{this.renderExplanation(targetRules)}
+					<div id="warning">
+						<p>
+							<i className="fa fa-info-circle" aria-hidden="true" />
+							<Trans i18nKey="disclaimer">
+								Le calcul ne prend pas en compte les conventions et accords
+								collectifs, et n'est pas opposable à un bulletin de paie. En cas
+								d'écart, vous pouvez en discuter avec votre responsable.
+							</Trans>
+						</p>
+					</div>
+				</section>
+			</Element>
 		)
 	}
 	renderExplanation(targetRules) {
