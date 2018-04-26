@@ -63,11 +63,7 @@ import {
 	mergeAllMissing,
 	bonus
 } from './evaluation'
-import {
-	anyNull,
-	val,
-	undefOrTrue
-} from './traverse-common-functions'
+import { anyNull, val, undefOrTrue } from './traverse-common-functions'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -143,10 +139,10 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 		let variable = findRuleByDottedName(parsedRules, dottedName),
 			variableIsCalculable = variable.formule != null,
 			situationValue = evaluateVariable(situation, dottedName, variable),
-			needsEvaluation = (variableIsCalculable && situationValue == null),
+			needsEvaluation = variableIsCalculable && situationValue == null,
 			parsedRule = needsEvaluation
-				 ? evaluateNode(cache, situation, parsedRules, variable)
-				 : variable,
+				? evaluateNode(cache, situation, parsedRules, variable)
+				: variable,
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			explanation = parsedRule,
 			nodeValue =
@@ -155,13 +151,19 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 					: variableIsCalculable
 						? parsedRule.nodeValue // la valeur du calcul fait foi
 						: null, // elle restera donc nulle
-			missingVariables = nodeValue != null // notamment si situationValue != null
+			missingVariables =
+				nodeValue != null // notamment si situationValue != null
 					? {}
 					: variableIsCalculable
 						? parsedRule.missingVariables
-						: {[dottedName]:1}
+						: { [dottedName]: 1 }
 
-		cache[cacheName] = rewriteNode(node, nodeValue, explanation, missingVariables)
+		cache[cacheName] = rewriteNode(
+			node,
+			nodeValue,
+			explanation,
+			missingVariables
+		)
 		return cache[cacheName]
 	}
 
@@ -306,7 +308,8 @@ let treat = (rules, rule) => rawNode => {
 								: operatorFunction(value1, value2),
 						missingVariables = mergeMissing(
 							explanation[0].missingVariables,
-							explanation[1].missingVariables)
+							explanation[1].missingVariables
+						)
 
 					return rewriteNode(node, nodeValue, explanation, missingVariables)
 				}
@@ -412,7 +415,7 @@ let treat = (rules, rule) => rawNode => {
 					'une possibilité': always({
 						...v,
 						'une possibilité': 'oui',
-						missingVariables: {[rule.dottedName]:1}
+						missingVariables: { [rule.dottedName]: 1 }
 					}),
 					inversion: mecanismInversion(rule.dottedName),
 					allègement: mecanismReduction
@@ -440,7 +443,11 @@ let treat = (rules, rule) => rawNode => {
 export let computeRuleValue = (formuleValue, isApplicable) =>
 	isApplicable === true
 		? formuleValue
-		: isApplicable === false ? 0 : formuleValue == 0 ? 0 : null
+		: isApplicable === false
+			? 0
+			: formuleValue == 0
+				? 0
+				: null
 
 export let treatRuleRoot = (rules, rule) => {
 	/*
@@ -451,7 +458,7 @@ export let treatRuleRoot = (rules, rule) => {
 	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST
 	*/
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
+		//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
 		cache.parseLevel++
 
 		let evolveRule = curry(evaluateNode)(cache, situationGate, parsedRules),
@@ -489,19 +496,22 @@ export let treatRuleRoot = (rules, rule) => {
 					: val(applicable) === false
 						? {}
 						: merge(
-							(notApplicable && notApplicable.missingVariables) || {},
-							(applicable && applicable.missingVariables) || {}
-						),
+								(notApplicable && notApplicable.missingVariables) || {},
+								(applicable && applicable.missingVariables) || {}
+						  ),
 			collectInFormule = isApplicable !== false,
 			formMissing = (collectInFormule && formule.missingVariables) || {},
 			// On veut abaisser le score des conséquences par rapport aux conditions,
 			// mais seulement dans le cas où une condition est effectivement présente
 			hasCondition = keys(condMissing).length > 0,
-			missingVariables = mergeMissing(bonus(condMissing,hasCondition), formMissing)
+			missingVariables = mergeMissing(
+				bonus(condMissing, hasCondition),
+				formMissing
+			)
 
 		cache.parseLevel--
-//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
-//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
+		//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
+		//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
 		return { ...evaluated, nodeValue, isApplicable, missingVariables }
 	}
 
@@ -613,7 +623,7 @@ export let parseAll = flatRules => {
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
-	let cache = {parseLevel: 0}
+	let cache = { parseLevel: 0 }
 
 	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>

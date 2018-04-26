@@ -34,14 +34,12 @@ export default class RulePage extends Component {
 		}
 	}
 	setRule(name) {
-		let { parsedRules, situationGate } = this.props,
+		let { parsedRules } = this.props,
 			decodedRuleName = decodeRuleName(name)
+
 		if (decodedRuleName.includes(' . ')) {
-			let rule = findRuleByDottedName(parsedRules, decodedRuleName)
-			this.rule =
-				rule &&
-				head(analyse(parsedRules, rule.dottedName)(situationGate).targets)
 			this.multipleMatchingRules = false
+			this.setDottedRule(decodedRuleName)
 			return
 		}
 
@@ -49,8 +47,15 @@ export default class RulePage extends Component {
 			rules = findRulesByName(parsedRules, ruleName)
 		if (!rules.length) return null
 		if (rules.length > 1) this.multipleMatchingRules = rules
+		let dottedName = head(rules).dottedName
+		this.setDottedRule(dottedName)
+	}
+	setDottedRule(dottedName) {
+		let { parsedRules, situationGate } = this.props,
+			rule = findRuleByDottedName(parsedRules, dottedName)
+		if (!rule) return null
 		this.rule = head(
-			analyse(parsedRules, head(rules).dottedName)(situationGate).targets
+			analyse(parsedRules, rule.dottedName)(situationGate).targets
 		)
 	}
 	render() {
