@@ -13,7 +13,7 @@ export default class Input extends Component {
 		i18n: PropTypes.object.isRequired
 	}
 	state = {
-		lastValue: ''
+		suggestion: null
 	}
 	render() {
 		let {
@@ -81,20 +81,11 @@ export default class Input extends Component {
 						<li
 							key={value}
 							onClick={() => {
-								this.setState({ lastValue: null })
 								setFormValue('' + value)
 								if (this.state.suggestion !== value)
 									this.setState({ suggestion: value })
 								else this.props.submit('suggestion')
 							}}
-							onMouseOver={() => {
-								this.setState({ lastValue: this.props.input.value })
-								setFormValue('' + value)
-							}}
-							onMouseOut={() =>
-								this.state.lastValue != null &&
-								setFormValue('' + this.state.lastValue)
-							}
 							style={{ color: themeColours.textColourOnWhite }}>
 							<span title={i18n.t('cliquez pour insérer cette suggestion')}>
 								{text}
