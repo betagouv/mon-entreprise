@@ -218,7 +218,7 @@ export default class ResultsGrid extends Component {
 								<td key="total" className="element value">
 									{humanFigure(2)(total)}{' '}
 									<span className="annotation">
-										<Trans>Salaire total</Trans>
+										<Trans>Salaire chargé</Trans>
 									</span>
 								</td>
 							]}
