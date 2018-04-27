@@ -64,10 +64,12 @@ export default class Question extends Component {
 		return (
 			<ul className="binaryQuestionList">
 				{choices.map(({ value, label }) => (
-					<RadioLabel
-						key={value}
-						{...{ value, label, input, submit, themeColours, setFormValue }}
-					/>
+					<li key={value}>
+						<RadioLabel
+							key={value}
+							{...{ value, label, input, submit, themeColours, setFormValue }}
+						/>
+					</li>
 				))}
 			</ul>
 		)
