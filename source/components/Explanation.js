@@ -27,10 +27,15 @@ export default class Explanation extends Component {
 					<p>
 						<i className="fa fa-info-circle" aria-hidden="true" />
 						<Trans i18nKey="disclaimer">
-							Le calcul ne prend pas en compte les conventions et accords
-							collectifs, et n'est pas opposable à un bulletin de paie. En cas
-							d'écart, vous pouvez en discuter avec votre responsable.
+							Le simulateur vous aide à comprendre votre bulletin de paie, mais
+							n'y est pas opposable. Il ne prend pour l'instant pas en compte
+							les conventions et accords collectifs, ni la myriade d'aides aux
+							entreprises que vous pouvez explorer sur
 						</Trans>
+						<a href="https://www.aides-entreprises.fr" target="_blank">
+							{' '}
+							aides-entreprises.fr
+						</a>.
 					</p>
 				</div>
 			</section>
