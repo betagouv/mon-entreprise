@@ -8,7 +8,6 @@ import {
 import { analyseMany, parseAll } from 'Engine/traverse'
 
 export default (tracker, flatRules, answerSource) => (state, action) => {
-	console.log(action)
 	state.flatRules = flatRules
 	// Optimization - don't parse on each analysis
 	if (!state.parsedRules) {
@@ -78,11 +77,12 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	// TODO: sortir ce calcul du state pour éviter cette "astuce" avec stillBlank
 	if (['START_CONVERSATION', 'SET_ACTIVE_TARGET_INPUT'].includes(action.type)) {
 		// Le premier clic pour sélectionner un input actif permet d'initialiser missingVariablesByTarget
-		let stillBlank = state.activeTargetInput && !answerSource(state)(state.activeTargetInput)
+		let stillBlank = state.activeTargetInput && !answerSource(state)(state.activeTargetInput),
+			initial = path(['missingVariablesByTarget','initial'], state)
 		return {
 			...(stillBlank ? state : newState),
 			missingVariablesByTarget: {
-				initial: state.missingVariablesByTarget.initial ? state.missingVariablesByTarget.initial : missingVariablesByTarget,
+				initial: initial ? initial : missingVariablesByTarget,
 				current: missingVariablesByTarget
 			}
 		}
