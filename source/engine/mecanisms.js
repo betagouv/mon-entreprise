@@ -479,7 +479,8 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 			// avoid the inversion loop !
 				situationGate(dottedName) == undefined &&
 				doInversion(cache, situationGate, parsedRules, v, dottedName),
-			nodeValue = inversion.nodeValue,
+			// TODO - ceci n'est pas vraiment satisfaisant
+			nodeValue = situationGate(dottedName) ? Number.parseFloat(situationGate(dottedName)) : inversion.nodeValue,
 			missingVariables = inversion.missingVariables
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
