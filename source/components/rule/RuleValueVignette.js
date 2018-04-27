@@ -1,14 +1,12 @@
-import React from 'react'
-import { Trans } from 'react-i18next'
+import React, { Component } from 'react'
+import withLanguage from '../withLanguage'
 import { Link } from 'react-router-dom'
 import { encodeRuleName } from 'Engine/rules'
-import classNames from 'classnames'
-import { humanFigure } from '../../utils'
 
 import './RuleValueVignette.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-export default ({ name, type, title, nodeValue: ruleValue }) => (
+let RuleValueVignette = ({ name, title, nodeValue: ruleValue }) => (
 	<span key={name} className="RuleValueVignette">
 		<Link to={'/règle/' + encodeRuleName(name)}>
 			<div className="rule-box">
@@ -19,20 +17,37 @@ export default ({ name, type, title, nodeValue: ruleValue }) => (
 	</span>
 )
 
-export let RuleValue = ({ value }) =>
-	do {
+@withLanguage
+export class RuleValue extends Component {
+	render() {
+		let { value, language } = this.props
 		let unsatisfied = value == null,
 			irrelevant = value == 0
 		let [className, text] = irrelevant
 			? ['irrelevant', '0']
-			: unsatisfied ? ['unsatisfied', ''] : ['figure', humanFigure(0)(value)]
-		;<ReactCSSTransitionGroup
-			transitionName="flash"
-			transitionEnterTimeout={100}
-			transitionLeaveTimeout={100}>
-			<span key={text} className="Rule-value">
-				{' '}
-				<span className={className}>{text}</span>
-			</span>
-		</ReactCSSTransitionGroup>
+			: unsatisfied
+				? ['unsatisfied', '']
+				: [
+						'figure',
+						Intl.NumberFormat(language, {
+							style: 'currency',
+							currency: 'EUR',
+							maximumFractionDigits: 0,
+							minimumFractionDigits: 0
+						}).format(value)
+				  ]
+		return (
+			<ReactCSSTransitionGroup
+				transitionName="flash"
+				transitionEnterTimeout={100}
+				transitionLeaveTimeout={100}>
+				<span key={text} className="Rule-value">
+					{' '}
+					<span className={className}>{text}</span>
+				</span>
+			</ReactCSSTransitionGroup>
+		)
 	}
+}
+
+export default RuleValueVignette

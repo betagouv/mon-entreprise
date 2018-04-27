@@ -52,7 +52,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				exclude: /node_modules|dist|test/,
+				exclude: /node_modules|dist/,
 				loader: 'babel-loader'
 			},
 			{

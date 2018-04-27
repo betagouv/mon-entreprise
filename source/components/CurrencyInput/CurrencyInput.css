@@ -1,0 +1,17 @@
+.currencyInput__container {
+	display: flex !important;
+	align-items: baseline;
+	justify-content: flex-end;
+}
+
+.currencyInput__input {
+	height: inherit;
+	border: none;
+	text-align: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	min-width: 0;
+	color: inherit;
+	background-color: inherit;
+	font-size: inherit;
+}

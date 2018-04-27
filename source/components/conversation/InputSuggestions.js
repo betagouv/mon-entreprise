@@ -3,24 +3,20 @@ import './InputSuggestions.css'
 import withColours from '../withColours'
 import { toPairs } from 'ramda'
 import { translate } from 'react-i18next'
-import PropTypes from 'prop-types'
 
 @withColours
 @translate()
-export default class extends Component {
-	static contextTypes = {
-		i18n: PropTypes.object.isRequired
-	}
+export default class InputSuggestions extends Component {
 	state = { suggestion: null }
 	render() {
 		let {
-				suggestions,
-				onSecondClick,
-				onFirstClick,
-				colouredBackground,
-				colours
-			} = this.props,
-			{ i18n } = this.context
+			suggestions,
+			onSecondClick,
+			onFirstClick,
+			colouredBackground,
+			colours,
+			t
+		} = this.props
 
 		if (!suggestions) return null
 		return (
@@ -41,7 +37,7 @@ export default class extends Component {
 									? colours.textColour
 									: colours.textColourOnWhite
 							}}>
-							<span title={i18n.t('cliquez pour insérer cette suggestion')}>
+							<span title={t('cliquez pour insérer cette suggestion')}>
 								{text}
 							</span>
 						</li>

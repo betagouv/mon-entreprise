@@ -6,30 +6,33 @@ import { AttachDictionary } from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import { makeJsx } from 'Engine/evaluation'
 import './Algorithm.css'
-import { humanFigure } from '../../utils'
 import { head } from 'ramda'
 import { analyse } from 'Engine/traverse'
 import { exampleSituationGateWithDefaults } from './Examples'
-import PropTypes from 'prop-types'
+import withLanguage from '../withLanguage'
 
 let RuleWithoutFormula = () => (
 	<p>
 		<Trans i18nKey="input">
-		Cette règle n'a pas de formule de calcul pour l'instant. Sa valeur doit donc
-		être renseignée directement.
+			Cette règle n’a pas de formule de calcul pour l’instant. Sa valeur doit
+			donc être renseignée directement.
 		</Trans>
 	</p>
 )
 
 @AttachDictionary(knownMecanisms)
 @translate()
+@withLanguage
 export default class Algorithm extends React.Component {
-    static contextTypes = {
-		i18n: PropTypes.object.isRequired
-	}
 	render() {
-		let { rule: displayedRule, showValues, currentExample, rules } = this.props,
-			{ i18n } = this.context,
+		let {
+				rule: displayedRule,
+				showValues,
+				currentExample,
+				t,
+				rules,
+				language
+			} = this.props,
 			ruleWithoutFormula =
 				!displayedRule['formule'] ||
 				path(['formule', 'explanation', 'une possibilité'], displayedRule)
@@ -52,7 +55,9 @@ export default class Algorithm extends React.Component {
 						)
 						applicabilityMecanisms.length > 0 && (
 							<section id="declenchement">
-								<h2><Trans>Déclenchement</Trans></h2>
+								<h2>
+									<Trans>Déclenchement</Trans>
+								</h2>
 								<ul>
 									{applicabilityMecanisms.map(v => (
 										<li key={v.name}>{makeJsx(v)}</li>
@@ -65,7 +70,11 @@ export default class Algorithm extends React.Component {
 						<h2>
 							<Trans>Calcul</Trans>
 							{!ruleWithoutFormula && (
-								<small><Trans i18nKey="understand">Cliquez sur chaque chaque valeur pour comprendre</Trans></small>
+								<small>
+									<Trans i18nKey="understand">
+										Cliquez sur chaque chaque valeur pour comprendre
+									</Trans>
+								</small>
 							)}
 						</h2>
 						{ruleWithoutFormula ? (
@@ -76,14 +85,16 @@ export default class Algorithm extends React.Component {
 					</section>
 					<section
 						id="ruleValue"
-						style={{ visibility: showValues ? 'visible' : 'hidden' }}
-					>
+						style={{ visibility: showValues ? 'visible' : 'hidden' }}>
 						<i className="fa fa-calculator" aria-hidden="true" />{' '}
 						{rule.nodeValue == 0
-							? i18n.t('Règle non applicable')
+							? t('Règle non applicable')
 							: rule.nodeValue == null
-								? i18n.t('Situation incomplète')
-								: humanFigure(2)(rule.nodeValue) + ' €'}
+								? t('Situation incomplète')
+								: Intl.NumberFormat(language, {
+										style: 'currency',
+										currency: 'EUR'
+								  }).format(rule.nodeValue)}
 					</section>
 				</section>
 			</div>

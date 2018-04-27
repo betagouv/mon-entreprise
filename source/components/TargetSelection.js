@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import formValueTypes from 'Components/conversation/formValueTypes'
 import { findRuleByName } from 'Engine/rules'
 import { propEq, curry } from 'ramda'
 import './TargetSelection.css'
@@ -11,8 +10,9 @@ import { connect } from 'react-redux'
 import { RuleValue } from './rule/RuleValueVignette'
 import classNames from 'classnames'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
+import withLanguage from './withLanguage'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
-import { buildValidationFunction } from './conversation/FormDecorator'
+import CurrencyInput from './CurrencyInput/CurrencyInput'
 export let salaries = ['salaire total', 'salaire de base', 'salaire net']
 export let popularTargetNames = [...salaries, 'aides employeur']
 
@@ -65,7 +65,9 @@ export default class TargetSelection extends Component {
 									<Trans>Estimation approximative</Trans>
 								</b>{' '}
 								<br />
-								<Trans i18nKey="defaults">pour un CDI non cadre</Trans>
+								<Trans i18nKey="defaults">
+									pour une situation par défaut (CDI non cadre).
+								</Trans>
 							</p>
 							<BlueButton onClick={this.props.startConversation}>
 								<Trans>Affiner le calcul</Trans>
@@ -143,37 +145,32 @@ let Header = ({ target, conversationStarted, isActiveInput }) => {
 	)
 }
 
-let validate = buildValidationFunction(formValueTypes['euros'])
-let InputComponent = ({ input, meta: { dirty, error } }) => (
-	<span>
-		{dirty && error && <span className="input-error">{error}</span>}
-		<input type="number" {...input} autoFocus />
-	</span>
-)
-let TargetInputOrValue = ({
-	target,
-	targets,
-	firstEstimationComplete,
-	activeInput,
-	setActiveInput
-}) => (
-	<span className="targetInputOrValue">
-		{activeInput === target.dottedName ? (
-			<Field
-				name={target.dottedName}
-				component={InputComponent}
-				type="text"
-				validate={validate}
-			/>
-		) : (
-			<TargetValue {...{ targets, target, activeInput, setActiveInput }} />
-		)}
-		{(firstEstimationComplete || target.question) && (
-			<span className="unit">€</span>
-		)}
-	</span>
-)
+let CurrencyField = props => {
+	return (
+		<CurrencyInput
+			className="targetInput"
+			autoFocus
+			{...props.input}
+			{...props}
+		/>
+	)
+}
 
+let TargetInputOrValue = withLanguage(
+	({ target, targets, activeInput, setActiveInput, language }) => (
+		<span className="targetInputOrValue">
+			{activeInput === target.dottedName ? (
+				<Field
+					name={target.dottedName}
+					component={CurrencyField}
+					language={language}
+				/>
+			) : (
+				<TargetValue {...{ targets, target, activeInput, setActiveInput }} />
+			)}
+		</span>
+	)
+)
 @connect(
 	() => ({}),
 	dispatch => ({
@@ -190,9 +187,7 @@ class TargetValue extends Component {
 				setActiveInput
 			} = this.props,
 			targetWithValue = targets.find(propEq('dottedName', target.dottedName)),
-			value = targetWithValue && targetWithValue.nodeValue,
-			humanValue = value != null && value.toFixed(0)
-
+			value = targetWithValue && targetWithValue.nodeValue
 		return (
 			<span
 				className={classNames({
@@ -202,10 +197,9 @@ class TargetValue extends Component {
 				onClick={() => {
 					if (!target.question) return
 					if (value != null) {
-						setFormValue(target.dottedName, humanValue + '')
+						setFormValue(target.dottedName, Math.floor(value) + '')
 						setFormValue(activeInput, '')
 					}
-
 					setActiveInput(target.dottedName)
 				}}>
 				<RuleValue value={value} />
