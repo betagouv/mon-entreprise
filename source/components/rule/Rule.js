@@ -47,6 +47,7 @@ export default class Rule extends Component {
 						description,
 						question,
 						rule,
+						flatRules,
 						name,
 						title
 					}}
@@ -123,10 +124,19 @@ let NamespaceRulesList = withColours(
 	)
 )
 
-let RuleMeta = ({ ns, type, description, question, rule, name, title }) => (
+let RuleMeta = ({
+	ns,
+	type,
+	description,
+	question,
+	rule,
+	flatRules,
+	name,
+	title
+}) => (
 	<section id="rule-meta">
 		<div id="meta-header">
-			{ns && <Namespace {...{ ns }} />}
+			{ns && <Namespace {...{ ns, flatRules }} />}
 			<h1>{title || capitalise0(name)}</h1>
 		</div>
 		<div id="meta-content">
@@ -143,7 +153,7 @@ let RuleMeta = ({ ns, type, description, question, rule, name, title }) => (
 	</section>
 )
 
-export let Namespace = withColours(({ ns, colours }) => (
+export let Namespace = withColours(({ ns, flatRules, colours }) => (
 	<ul id="namespace">
 		{ns
 			.split(' . ')
@@ -154,23 +164,29 @@ export let Namespace = withColours(({ ns, colours }) => (
 				],
 				[]
 			)
-			.map(fragments => (
-				<li key={fragments.join()}>
-					<Link
-						style={{
-							color: colours.textColourOnWhite,
-							textDecoration: 'underline'
-						}}
-						to={'/règle/' + encodeRuleName(fragments.join(' . '))}>
-						{capitalise0(last(fragments))}
-					</Link>
-					<i
-						style={{ margin: '0 .6em', fontSize: '85%' }}
-						className="fa fa-chevron-right"
-						aria-hidden="true"
-					/>
-				</li>
-			))}
+			.map(fragments => {
+				let ruleName = fragments.join(' . '),
+					rule = findRuleByDottedName(flatRules, ruleName),
+					ruleText = rule.title || capitalise0(rule.name)
+
+				return (
+					<li key={fragments.join()}>
+						<Link
+							style={{
+								color: colours.textColourOnWhite,
+								textDecoration: 'underline'
+							}}
+							to={'/règle/' + encodeRuleName(ruleName)}>
+							{ruleText}
+						</Link>
+						<i
+							style={{ margin: '0 .6em', fontSize: '85%' }}
+							className="fa fa-chevron-right"
+							aria-hidden="true"
+						/>
+					</li>
+				)
+			})}
 	</ul>
 ))
 
