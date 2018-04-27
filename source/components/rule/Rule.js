@@ -27,7 +27,7 @@ import withColours from '../withColours'
 @translate()
 export default class Rule extends Component {
 	render() {
-		let { form, rule, currentExample, rules, flatRules, analysis } = this.props,
+		let { rule, currentExample, rules, flatRules, analysis } = this.props,
 			flatRule = findRuleByDottedName(flatRules, rule.dottedName),
 			conversationStarted = !isEmpty(analysis)
 
@@ -53,12 +53,14 @@ export default class Rule extends Component {
 				/>
 
 				<section id="rule-content">
-					<Algorithm
-						rules={rules}
-						currentExample={currentExample}
-						rule={rule}
-						showValues={conversationStarted || currentExample}
-					/>
+					{flatRule.ns && (
+						<Algorithm
+							rules={rules}
+							currentExample={currentExample}
+							rule={rule}
+							showValues={conversationStarted || currentExample}
+						/>
+					)}
 					{flatRule.note && (
 						<section id="notes">
 							<h3>Note: </h3>
@@ -97,7 +99,9 @@ let NamespaceRulesList = withColours(
 			<h2>
 				<Trans>Règles attachées</Trans>
 				<small>
-					<Trans i18nKey="inspace">Ces règles sont dans l'espace de nom</Trans>{' '}
+					<Trans i18nKey="inspace">
+						Ces règles sont dans l'espace de nom
+					</Trans>{' '}
 					`{flatRule.title}`
 				</small>
 			</h2>
