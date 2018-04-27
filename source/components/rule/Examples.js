@@ -85,7 +85,7 @@ export default class Examples extends Component {
 										selected: currentExample && currentExample.name == nom
 									})}
 									onClick={() =>
-										currentExample
+										currentExample && currentExample.name == nom
 											? setExample(null)
 											: setExample(nom, situation)
 									}>
