@@ -1,1 +1,1 @@
-web: yarn run live-server
+web: yarn run live-server --entry-file=index.html
