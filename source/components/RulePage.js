@@ -3,7 +3,7 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import Rule from 'Components/rule/Rule'
 import { analyse } from 'Engine/traverse'
-import { head, path } from 'ramda'
+import { head, path, compose } from 'ramda'
 import {
 	decodeRuleName,
 	nameLeaf,
@@ -17,6 +17,7 @@ import { animateScroll } from 'react-scroll'
 import './RulePage.css'
 import { Namespace } from './rule/Rule'
 import SearchButton from 'Components/SearchButton'
+import { setExample } from '../actions'
 
 @translate()
 @connect(pick(['situationGate', 'parsedRules', 'analysis', 'themeColours']))
@@ -80,15 +81,27 @@ export default class RulePage extends Component {
 	}
 }
 
-let BackToSimulation = ({ targets, colour }) => (
-	<Link
-		id="toSimulation"
-		to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
-		style={{ background: colour }}>
-		<i className="fa fa-arrow-circle-left" aria-hidden="true" />
-		<Trans i18nKey="back">Reprendre la simulation</Trans>
-	</Link>
+@connect(
+	state => ({}),
+	dispatch => ({
+		setExample: compose(dispatch, setExample)
+	})
 )
+class BackToSimulation extends Component {
+	render() {
+		let { targets, colour, setExample } = this.props
+		return (
+			<Link
+				onClick={() => setExample(null)}
+				id="toSimulation"
+				to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
+				style={{ background: colour }}>
+				<i className="fa fa-arrow-circle-left" aria-hidden="true" />
+				<Trans i18nKey="back">Reprendre la simulation</Trans>
+			</Link>
+		)
+	}
+}
 
 let DisambiguateRuleQuery = ({ rules }) => (
 	<div className="centeredMessage">
