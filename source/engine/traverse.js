@@ -500,7 +500,7 @@ export let treatRuleRoot = (rules, rule) => {
 								(applicable && applicable.missingVariables) || {}
 						  ),
 			collectInFormule = isApplicable !== false,
-			formMissing = (collectInFormule && formule.missingVariables) || {},
+			formMissing = (collectInFormule && formule && formule.missingVariables) || {},
 			// On veut abaisser le score des conséquences par rapport aux conditions,
 			// mais seulement dans le cas où une condition est effectivement présente
 			hasCondition = keys(condMissing).length > 0,
