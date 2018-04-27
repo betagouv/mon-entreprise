@@ -17,7 +17,7 @@ let News = ({ hidden, colours: { textColourOnWhite } }) =>
 			/>
 			<p>
 				<Trans i18nKey="news">
-					Le simulateur est maintenant utilisable en anglais
+					Le simulateur vous propose désormais une estimation instantanée !
 				</Trans>
 			</p>
 		</div>
