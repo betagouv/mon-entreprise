@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
 
-export default ({ destinataire }) =>
-	do {
-		let destinataireData = possiblesDestinataires[destinataire]
-		destinataire ? (
+@translate()
+export default class Rule extends Component {
+	render() {
+		let { destinataire } = this.props,
+			destinataireData = possiblesDestinataires[destinataire]
+
+		return destinataire ? (
 			<div id="destinataire">
-				<h3>Destinataire</h3>
+				<h3><Trans>Destinataire</Trans></h3>
 				{!destinataireData ? (
 					<p>Non renseigné</p>
 				) : (
@@ -30,3 +34,4 @@ export default ({ destinataire }) =>
 			</div>
 		) : null
 	}
+}
