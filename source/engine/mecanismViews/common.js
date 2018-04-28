@@ -1,8 +1,10 @@
-import React from 'react'
-import { contains } from 'ramda'
+import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import { pick, contains } from 'ramda'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import { encodeRuleName } from '../rules'
+import { connect } from 'react-redux'
+import { encodeRuleName, findRuleByDottedName } from '../rules'
 import { capitalise0 } from '../../utils'
 
 let treatValue = data =>
@@ -22,7 +24,7 @@ let NodeValuePointer = ({ data }) => (
 )
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export class Node extends React.Component {
+export class Node extends Component {
 	render() {
 		let { classes, name, value, child } = this.props,
 			termDefinition = contains('mecanism', classes) && name
@@ -32,7 +34,7 @@ export class Node extends React.Component {
 				{name && (
 					<span className="nodeHead">
 						<span className="name" data-term-definition={termDefinition}>
-							{name}
+							<Trans>{name}</Trans>
 						</span>
 						<NodeValuePointer data={value} />
 					</span>
@@ -45,17 +47,25 @@ export class Node extends React.Component {
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export let Leaf = ({ classes, dottedName, name, value }) => (
-	<span className={classNames(classes, 'leaf')}>
-		{dottedName && (
-			<span className="nodeHead">
-				<Link to={'/règle/' + encodeRuleName(dottedName)}>
-					<span className="name">
-						{capitalise0(name)}
-						<NodeValuePointer data={value} />
-					</span>
-				</Link>
-			</span>
-		)}
-	</span>
+@connect(
+	pick(['flatRules'])
 )
+export class Leaf extends Component {
+	render () {
+		let { classes, dottedName, name, value, flatRules } = this.props,
+			rule = findRuleByDottedName(flatRules, dottedName)
+
+		return <span className={classNames(classes, 'leaf')}>
+			{dottedName && (
+				<span className="nodeHead">
+					<Link to={'/règle/' + encodeRuleName(dottedName)}>
+						<span className="name">
+							{rule.title || capitalise0(name)}
+							<NodeValuePointer data={value} />
+						</span>
+					</Link>
+				</span>
+			)}
+		</span>
+	}
+}

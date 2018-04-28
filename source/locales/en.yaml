@@ -50,7 +50,7 @@ Quel est le salaire mensuel ?: What is the monthly salary?
 back: Back to your simulation
 ambiguous: More than one rule with this name found. Which one are you looking for ?
 reportError: Report an error
-Références: Relevant legal information
+Références: Relevant legal information (fr)
 Règles attachées: Linked rules
 inspace: These rules are in category
 Pas de sources officielles: No official information
@@ -83,3 +83,21 @@ clickexample: Click on a situation to see the result
 fail: This test failed
 expected: the expected result was
 cancelExample: Back to your situation
+non applicable si: not applicable if
+applicable si: applicable if
+une de ces conditions: one of these applies
+toutes ces conditions: all of these apply
+assiette: base
+taux: rate
+facteur: multiplier
+plafond: ceiling
+barème: scale
+composantes: components
+multiplicateur des tranches: bracket amount
+Tranches de l'assiette: Scale brackets
+Taux: Rates
+cible: target
+montant à atteindre: minimum value
+dû par: owed by
+employeur: employer
+salarié: employee

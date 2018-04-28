@@ -36,6 +36,7 @@ import {
 	last
 } from 'ramda'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { anyNull, val } from './traverse-common-functions'
 import { Node } from './mecanismViews/common'
 import {
@@ -92,8 +93,8 @@ let decompose = (recurse, k, v) => {
 							<ul className="composanteAttributes">
 								{toPairs(c.composante).map(([k, v]) => (
 									<li key={k}>
-										<span>{k}: </span>
-										<span>{v}</span>
+										<span><Trans>{k}</Trans>: </span>
+										<span><Trans>{v}</Trans></span>
 									</li>
 								))}
 							</ul>
@@ -625,26 +626,26 @@ export let mecanismProduct = (recurse, k, v) => {
 			child={
 				<ul className="properties">
 					<li key="assiette">
-						<span className="key">assiette: </span>
+						<span className="key"><Trans>assiette</Trans>: </span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
 					{(explanation.taux.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
 						<li key="taux">
-							<span className="key">taux: </span>
+							<span className="key"><Trans>taux</Trans>: </span>
 							<span className="value">{makeJsx(explanation.taux)}</span>
 						</li>
 					)}
 					{(explanation.facteur.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
 						<li key="facteur">
-							<span className="key">facteur: </span>
+							<span className="key"><Trans>facteur</Trans>: </span>
 							<span className="value">{makeJsx(explanation.facteur)}</span>
 						</li>
 					)}
 					{explanation.plafond.nodeValue != Infinity && (
 						<li key="plafond">
-							<span className="key">plafond: </span>
+							<span className="key"><Trans>plafond</Trans>: </span>
 							<span className="value">{makeJsx(explanation.plafond)}</span>
 						</li>
 					)}
@@ -744,11 +745,11 @@ export let mecanismScale = (recurse, k, v) => {
 			child={
 				<ul className="properties">
 					<li key="assiette">
-						<span className="key">assiette: </span>
+						<span className="key"><Trans>assiette</Trans>: </span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
 					<li key="multiplicateur">
-						<span className="key">multiplicateur des tranches: </span>
+						<span className="key"><Trans>multiplicateur des tranches</Trans>: </span>
 						<span className="value">
 							{makeJsx(explanation['multiplicateur des tranches'])}
 						</span>
@@ -756,8 +757,8 @@ export let mecanismScale = (recurse, k, v) => {
 					<table className="tranches">
 						<thead>
 							<tr>
-								<th>Tranches de l'assiette</th>
-								<th>Taux</th>
+								<th><Trans>Tranches de l'assiette</Trans></th>
+								<th><Trans>Taux</Trans></th>
 							</tr>
 							{explanation.tranches.map(
 								({
@@ -780,10 +781,10 @@ export let mecanismScale = (recurse, k, v) => {
 									>
 										<td key="tranche">
 											{maxOnly
-												? 'En dessous de ' + maxOnly
+												? '< ' + maxOnly
 												: minOnly
-													? 'Au dessus de ' + minOnly
-													: `De ${min} à ${max}`}
+													? '> ' + minOnly
+													: `${min} - ${max}`}
 										</td>
 										<td key="taux"> {makeJsx(taux)} </td>
 									</tr>
@@ -900,11 +901,11 @@ export let mecanismComplement = (recurse, k, v) => {
 				child={
 					<ul className="properties">
 						<li key="cible">
-							<span className="key">cible: </span>
+							<span className="key"><Trans>cible</Trans>: </span>
 							<span className="value">{makeJsx(explanation.cible)}</span>
 						</li>
 						<li key="mini">
-							<span className="key">montant à atteindre: </span>
+							<span className="key"><Trans>montant à atteindre</Trans>: </span>
 							<span className="value">{makeJsx(explanation.montant)}</span>
 						</li>
 					</ul>
