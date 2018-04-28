@@ -48,6 +48,11 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	)
 
 	if (action.type === 'USER_INPUT_UPDATE') {
+		tracker.push([
+			'trackEvent',
+			'input:' + state.activeTargetInput,
+			answerSource(state)(state.activeTargetInput)
+		])
 		return { ...state, analysis, situationGate: situationWithDefaults(state) }
 	}
 
@@ -71,6 +76,22 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 			action.type === 'SET_CONVERSATION_TARGETS' && action.reset
 				? []
 				: state.foldedSteps
+	}
+
+	if (action.type === 'SET_ACTIVE_TARGET_INPUT') {
+		tracker.push([
+			'trackEvent',
+			'select',
+			state.activeTargetInput
+		])
+	}
+
+	if (action.type === 'START_CONVERSATION') {
+		tracker.push([
+			'trackEvent',
+			'refine',
+			''
+		])
 	}
 
 	// Les nextSteps initiaux ne dépendent que des règles et pourraient être précalculés
@@ -99,7 +120,7 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 			tracker.push([
 				'trackEvent',
 				'done',
-				'after' + length(newState.foldedSteps) + 'questions'
+				'after ' + length(newState.foldedSteps) + ' questions'
 			])
 		}
 		let foldedSteps = [...state.foldedSteps, state.currentQuestion]
