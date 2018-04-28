@@ -143,7 +143,7 @@ let RuleMeta = ({
 			<div id="meta-paragraph">
 				{type && (
 					<span className="rule-type">
-						<span>{type}</span>
+						<span><Trans>{type}</Trans></span>
 					</span>
 				)}
 				{createMarkdownDiv(description || question)}
