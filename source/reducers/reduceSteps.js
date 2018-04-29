@@ -1,4 +1,4 @@
-import { path, head, reject, concat, without, length } from 'ramda'
+import { path, head, reject, concat, without, length, map } from 'ramda'
 
 import { rules, collectDefaults, rulesFr } from 'Engine/rules'
 import {
@@ -94,16 +94,44 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 		])
 	}
 
-	// Les nextSteps initiaux ne dépendent que des règles et pourraient être précalculés
-	// TODO: sortir ce calcul du state pour éviter cette "astuce" avec stillBlank
-	if (['START_CONVERSATION', 'SET_ACTIVE_TARGET_INPUT'].includes(action.type)) {
-		// Le premier clic pour sélectionner un input actif permet d'initialiser missingVariablesByTarget
-		let stillBlank = state.activeTargetInput && !answerSource(state)(state.activeTargetInput),
-			initial = path(['missingVariablesByTarget','initial'], state)
+	if (['SET_ACTIVE_TARGET_INPUT','START_CONVERSATION'].includes(action.type)) {
+		// Si rien n'a été renseigné (stillBlank) on renvoie state et pas newState
+		// pour éviter que les cases blanches disparaissent, c'est un hack…
+		let stillBlank = state.activeTargetInput && !answerSource(state)(state.activeTargetInput)
+
+		// Il faut recalculer les missingVariablesByTarget à chaque changement d'objectif
+		// car les variables manquantes du salaire de base calculé par inversion dépendent
+		// du choix de la variable avec laquelle on fait l'inversion !
+
+		// On reste dépendant d'une coincidence: le fait qu'un input soit renseigné
+		// ou non peut donc également changer la donne.
+		// Le flux normal est le suivant:
+		// - SET_ACTIVE_TARGET_INPUT (clic dans une case blanche)
+		// - USER_INPUT_UPDATE (saisie d'une valeur)
+		// - START_CONVERSATION (saisie d'une valeur)
+		// - SET_ACTIVE_TARGET_INPUT (changement d'objectif)
+		// et dans ce cas ça marche, mais supposons qu'on a ensuite:
+		// - USER_INPUT_UPDATE (suppression d'une valeur après le début de la conversation)
+		// si l'input actif est le salaire de base on a un missingVariables incorrect
+		// puisqu'il ne sait pas avec quelle variable on fait l'inversion, et si on fait
+		// - SET_ACTIVE_TARGET_INPUT (clic dans une autre case blanche)
+		// on va se retrouver avec un affichage incohérent, et il ne sera pas corrigé
+		// lors du USER_INPUT_UPDATE puisqu'on ne recalcule pas lors de cette action
+		// TODO - corriger ce bug correctement avec des tests auto
+
+		// TODO - utiliser le nom qualifié dans analyseMany et qualifier les targetNames
+		let qualifiedTargets = map(x => "contrat salarié . "+x, state.targetNames),
+			initialAnalysis = analyseMany(state.parsedRules, state.targetNames)(
+				name => qualifiedTargets.includes(name) ? answerSource(state)(name) : null
+			),
+			initialMissingVariablesByTarget = collectMissingVariablesByTarget(
+				initialAnalysis.targets
+			)
+
 		return {
 			...(stillBlank ? state : newState),
 			missingVariablesByTarget: {
-				initial: initial ? initial : missingVariablesByTarget,
+				initial: initialMissingVariablesByTarget,
 				current: missingVariablesByTarget
 			}
 		}
