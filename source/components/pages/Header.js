@@ -22,41 +22,31 @@ export class Header extends Component {
 		this.setState({ mobileNavVisible: !this.state.mobileNavVisible })
 
 	render() {
-		let { location } = this.props
-		let appMode = ['/simu', '/règle'].find(t => location.pathname.includes(t))
-		if (this.props.iframe)
-			return screenfull.enabled ? (
-				<div
-					id="iframeFullscreen"
-					onClick={() => screenfull.toggle()}
-					className={appMode ? 'absolute' : ''}>
-					{!appMode && (
-						<span>
-							<Trans>Mode plein écran</Trans>
-						</span>
-					)}
-					<i
-						className="fa fa-arrows-alt"
-						aria-hidden="true"
-						style={{ color: this.props.textColourOnWhite }}
-					/>
-				</div>
-			) : null
-
-		let displayHeader = !appMode
-
-		if (!displayHeader) return null
-
 		return (
 			<div id="header">
-				<Link id="brand" to="/">
-					<img
-						id="logo"
-						src={require('Images/logo/logo-simulateur.svg')}
-						alt="Un service de l'État français"
-					/>
-					<h1>Simulateur d'embauche</h1>
-				</Link>
+				{!this.props.iframe && (
+					<Link id="brand" to="/">
+						<img
+							id="logo"
+							src={require('Images/logo/logo-simulateur.svg')}
+							alt="Un service de l'État français"
+						/>
+						<h1>Simulateur d'embauche</h1>
+					</Link>
+				)}
+				{this.props.iframe &&
+					screenfull.enabled && (
+						<div id="iframeFullscreen" onClick={() => screenfull.toggle()}>
+							<span>
+								<Trans>Plein écran</Trans>
+							</span>
+							<i
+								className="fa fa-arrows-alt"
+								aria-hidden="true"
+								style={{ color: this.props.textColourOnWhite }}
+							/>
+						</div>
+					)}
 				<div id="headerRight">
 					<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
 						<Links toggle={this.togglemobileNavVisible} />
