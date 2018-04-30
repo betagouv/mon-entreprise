@@ -65,9 +65,7 @@ export default class TargetSelection extends Component {
 									<Trans>Estimation approximative</Trans>
 								</b>{' '}
 								<br />
-								<Trans i18nKey="defaults">
-									pour une situation par défaut (CDI non cadre).
-								</Trans>
+								<Trans i18nKey="defaults">pour un CDI non cadre</Trans>
 							</p>
 							<BlueButton onClick={this.props.startConversation}>
 								<Trans>Affiner le calcul</Trans>
