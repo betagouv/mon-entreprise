@@ -2,7 +2,7 @@
 	"name": "Simulateur d'embauche",
 	"short_name": "Embauche",
 	"description": "Jongler entre les différents salaires lors d'une embauche",
-	"display": "browser",
+	"display": "standalone",
 	"lang": "fr",
 	"orientation": "portrait-primary",
 	"theme_color": "#2975d1",
