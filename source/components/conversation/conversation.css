@@ -114,13 +114,19 @@
 	border: 1px solid #333;
 }
 
-.step fieldset {
+.step .fieldset {
 	margin: 0.8em 0;
+	display: flex;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
-.step fieldset ul {
+.step .fieldset ul {
 	list-style-type: none;
 	padding-left: 2em;
+	margin-right: 2em;
+	min-width: 20%;
 }
 
 .step.question .variant {
@@ -152,8 +158,6 @@
 	white-space: nowrap;
 }
 .step.question .variantLeaf {
-	display: flex;
-	justify-content: flex-end;
 	margin-bottom: 0.6em;
 }
 

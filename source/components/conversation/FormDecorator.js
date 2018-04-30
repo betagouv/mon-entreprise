@@ -123,30 +123,30 @@ export var FormDecorator = formType => RenderField =>
 							/>
 						)}
 					</div>
-					<fieldset>
+					<div className="fieldset">
 						<Field
 							component={RenderField}
 							name={fieldName}
 							{...stepProps}
 							themeColours={themeColours}
 						/>
-					</fieldset>
+					</div>
 				</div>
 			)
 		}
 
 		renderFolded() {
 			let {
-				stepAction,
-				situationGate,
-				themeColours,
-				title,
-				dottedName,
-				fieldName,
-				fieldTitle,
-				flatRules
-			} = this.props,
-			{ i18n } = this.context
+					stepAction,
+					situationGate,
+					themeColours,
+					title,
+					dottedName,
+					fieldName,
+					fieldTitle,
+					flatRules
+				} = this.props,
+				{ i18n } = this.context
 
 			let answer = situationGate(fieldName),
 				rule = findRuleByDottedName(flatRules, dottedName + ' . ' + answer),
@@ -156,9 +156,7 @@ export var FormDecorator = formType => RenderField =>
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
 						<span className="title">{capitalise0(fieldTitle || title)}</span>
-						<span className="answer">
-						{translatedAnswer}
-						</span>
+						<span className="answer">{translatedAnswer}</span>
 					</span>
 					<button
 						className="edit"
