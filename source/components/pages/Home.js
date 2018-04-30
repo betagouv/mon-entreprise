@@ -5,7 +5,8 @@ import News from '../News'
 
 export default () => (
 	<div id="home" className="page">
-		<News />
+		{/*	Use this News component to talk about things that are not naturally discoverable */}
+		{/*	<News /> */}
 		<Simu />
 	</div>
 )
