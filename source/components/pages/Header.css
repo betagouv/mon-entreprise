@@ -7,10 +7,10 @@
 #header #brand {
 	display: flex;
 	align-items: center;
-	    max-width: 14em;
+	max-width: 14em;
 }
 #header h1 {
-	font-size: calc(.8vw + 125%);
+	font-size: calc(.8vw + 100%);
 	font-weight: 600;
 	display: inline-block;
 	margin-left: 0em;
@@ -20,36 +20,28 @@
 }
 
 #header #logo {
-	width: calc(1vw + 5em);
+	width: calc(3vw + 2em);
 }
 
 #headerRight {
-   min-width: 8em
+    display: flex;
+	align-items: center;
 }
 
 
 #menuButton {
-	font-size: 300%;
+	font-size: 220%;
 	color: #3c4963;
-	margin: 0;
-	margin-left: .6em;
+	margin: 0 .1em;
 	display: inline-block;
+
 }
 nav {
 	font-size: 110%;
-	margin-bottom: 1em;
-	margin-left: 1em;
 	display: inline-block;
-}
-#header #marianne {
-	width: calc(2vw + 3em);
+	line-height: 2em;
 }
 
-@media screen and (min-width: 860px) {
-	#header #marianne {
-		vertical-align: middle;
-	}
-}
 
 nav a {
 	color: #666;
@@ -67,6 +59,7 @@ nav a {
 		top: 4.8em;
 		bottom: 0;
 		z-index: 10;
+		margin: 0;
 	}
 	nav.visible #links {
 		margin: 6em 1em;
@@ -115,34 +108,20 @@ nav a {
 	font-size: 150%;
 }
 
-#footer {
-	position: fixed;
-	right: 1em;
-	bottom: 1em;
-}
-#footer a {
-	font-size: 95%;
-	color: rgb(75, 75, 102);
-}
-#footer a:hover {
-	color: black;
-}
 
-#footer i {
-	margin: 0.1em;
-}
-
-#footer button {
-		font-size: 150%;
+#langSwitcher button {
+		font-size: 120%;
 		border: none;
 		border-radius: 0;
+		margin: 0 .6em;
+		padding: 0;
 
 }
-#footer button:hover {
+#langSwitcher button:hover {
 		border-bottom: 1px solid black;
 }
 
-#footer img {
+#langSwitcher img {
 		margin-right: .4em;
 		height: .8em;
 }

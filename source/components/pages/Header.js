@@ -29,8 +29,7 @@ export class Header extends Component {
 				<div
 					id="iframeFullscreen"
 					onClick={() => screenfull.toggle()}
-					className={appMode ? 'absolute' : ''}
-				>
+					className={appMode ? 'absolute' : ''}>
 					{!appMode && (
 						<span>
 							<Trans>Mode plein écran</Trans>
@@ -59,12 +58,11 @@ export class Header extends Component {
 					<h1>Simulateur d'embauche</h1>
 				</Link>
 				<div id="headerRight">
-					<img
-						id="marianne"
-						src={require('Images/marianne.svg')}
-						alt="Un service de l'État français"
-					/>
-					<div id="menuButton">
+					<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
+						<Links toggle={this.togglemobileNavVisible} />
+					</nav>
+					<LangSwitcher />
+					<span id="menuButton">
 						{this.state.mobileNavVisible ? (
 							<i
 								className="fa fa-times"
@@ -78,10 +76,7 @@ export class Header extends Component {
 								onClick={this.togglemobileNavVisible}
 							/>
 						)}
-					</div>
-					<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
-						<Links toggle={this.togglemobileNavVisible} />
-					</nav>
+					</span>
 				</div>
 			</div>
 		)
@@ -110,7 +105,7 @@ let Links = ({ toggle }) => (
 @connect(null, dispatch => ({
 	changeLanguage: lang => dispatch({ type: CHANGE_LANG, lang })
 }))
-export class Footer extends Component {
+export class LangSwitcher extends Component {
 	static contextTypes = {
 		i18n: PropTypes.object.isRequired
 	}
@@ -125,11 +120,8 @@ export class Footer extends Component {
 		this.context.i18n.changeLanguage(nextLanguage)
 	}
 	render() {
-		let appMode = ['/simu', '/regle'].find(t =>
-			this.props.location.pathname.includes(t)
-		)
 		return (
-			<div id="footer">
+			<span id="langSwitcher">
 				<button onClick={this.changeLanguage}>
 					{do {
 						let languageCode = this.getUnusedLanguageCode()
@@ -139,13 +131,7 @@ export class Footer extends Component {
 						</span>
 					}}
 				</button>
-				{appMode && (
-					<Link to="/à-propos">
-						<Trans>À propos</Trans>{' '}
-						<i className="fa fa-question-circle" aria-hidden="true" />
-					</Link>
-				)}
-			</div>
+			</span>
 		)
 	}
 }

@@ -18,7 +18,7 @@ import Integration from 'Components/pages/Integration'
 import About from 'Components/pages/About'
 import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
-import { Header, Footer } from 'Components/pages/Header'
+import { Header } from 'Components/pages/Header'
 import { getIframeOption } from '../utils'
 
 const piwik = new ReactPiwik({
@@ -59,7 +59,6 @@ export default class Layout extends Component {
 							<Redirect from="/couleur.html" to="/" />
 							<Route component={Route404} />
 						</Switch>
-						<Footer />
 					</>
 				</Router>
 			</I18nextProvider>

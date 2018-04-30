@@ -1,0 +1,6 @@
+
+#marianne {
+	width: calc(2vw + 2.5em);
+	margin: .6em auto;
+	display: block
+}
