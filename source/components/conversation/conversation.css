@@ -400,12 +400,13 @@ for the appearing element to appear without stacking up below the first one */
 	vertical-align: middle;
 	margin-left: 0.5em;
 	border: none;
+	padding-right: 0
 }
 
 .foldedQuestion .borderWrapper {
 	padding: 0.1em 0;
 	display: inline-block;
-	width: calc(100% - 8em);
+	width: calc(100% - 7em);
 	border-bottom: 1px solid #eee;
 }
 
