@@ -78,9 +78,10 @@
 }
 
 #targetSelection .targetInputOrValue {
-	font-size: 120%;
+	font-size: 125%;
 	display: flex;
 	justify-content: flex-end;
+	margin-left: .6em;
 }
 
 #targetSelection .editable {
@@ -107,8 +108,8 @@
 }
 
 #targetSelection .unit {
-	margin-left: 0.6em;
-	font-size: 125%;
+	margin-left: 0.4em;
+	font-size: 110%;
 	vertical-align: middle;
 }
 
