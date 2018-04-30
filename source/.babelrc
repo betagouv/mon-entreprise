@@ -9,7 +9,7 @@
     "@babel/react"
   ],
   "plugins": [
-    "@babel/plugin-proposal-decorators",
+    ["@babel/plugin-proposal-decorators",{"legacy": true}],
     "transform-do-expressions",
     "@babel/plugin-proposal-object-rest-spread",
     "transform-class-properties",
