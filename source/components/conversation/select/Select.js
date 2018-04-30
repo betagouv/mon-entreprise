@@ -26,10 +26,7 @@ let getOptions = input =>
 @FormDecorator('select')
 export default class Select extends Component {
 	render() {
-		let {
-				input: { onChange },
-				stepProps: { submit, suggestions }
-			} = this.props,
+		let { input: { onChange }, submit, suggestions } = this.props,
 			submitOnChange = option => {
 				onChange(option.code)
 				submit()

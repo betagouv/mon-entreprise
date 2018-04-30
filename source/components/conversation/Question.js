@@ -4,8 +4,9 @@ import { FormDecorator } from './FormDecorator'
 import { answer, answered } from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
 import Explicable from './Explicable'
-import { pipe, split, reverse, reduce, is } from 'ramda'
+import { is } from 'ramda'
 import SendButton from './SendButton'
+import './Question.css'
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
 	- nom: motif CDD # La racine, unique, qui formera la Question. Ses enfants sont les choix possibles
@@ -29,7 +30,8 @@ import SendButton from './SendButton'
 export default class Question extends Component {
 	render() {
 		let {
-			stepProps: { choices, submit },
+			choices,
+			submit,
 			themeColours,
 			meta: { pristine }
 		} = this.props
@@ -53,12 +55,14 @@ export default class Question extends Component {
 	renderBinaryQuestion() {
 		let {
 			input, // vient de redux-form
-			stepProps: { submit, choices, setFormValue },
+			submit,
+			choices,
+			setFormValue,
 			themeColours
 		} = this.props
 
 		return (
-			<ul>
+			<ul className="binaryQuestionList">
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
@@ -71,11 +75,11 @@ export default class Question extends Component {
 	renderChildren(choices) {
 		let {
 				input, // vient de redux-form
-				stepProps,
+				submit,
+				setFormValue,
 				themeColours
 			} = this.props,
 			{ name } = input,
-			{ submit, setFormValue } = stepProps,
 			// seront stockées ainsi dans le state :
 			// [parent object path]: dotted name relative to parent
 			relativeDottedName = radioDottedName =>

@@ -1,5 +1,5 @@
 #explanation {
-	margin: 6em 0;
+	margin: 3em 0;
 }
 
 #explanation p {
@@ -9,11 +9,11 @@
 #explanation #warning {
 	margin-top: 4em;
 	color: #4B4B66;
-	font-size: 85%;
+	font-size: 90%;
 }
 #explanation #warning i {
 	margin-right: 0.6em;
-	opacity: .8;
+	opacity: .9;
 }
 
 

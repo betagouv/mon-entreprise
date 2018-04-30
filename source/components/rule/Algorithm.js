@@ -10,6 +10,7 @@ import { humanFigure } from '../../utils'
 import { head } from 'ramda'
 import { analyse } from 'Engine/traverse'
 import { exampleSituationGateWithDefaults } from './Examples'
+import PropTypes from 'prop-types'
 
 let RuleWithoutFormula = () => (
 	<p>
@@ -23,8 +24,12 @@ let RuleWithoutFormula = () => (
 @AttachDictionary(knownMecanisms)
 @translate()
 export default class Algorithm extends React.Component {
+    static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
 	render() {
 		let { rule: displayedRule, showValues, currentExample, rules } = this.props,
+			{ i18n } = this.context,
 			ruleWithoutFormula =
 				!displayedRule['formule'] ||
 				path(['formule', 'explanation', 'une possibilité'], displayedRule)
@@ -34,7 +39,7 @@ export default class Algorithm extends React.Component {
 					analyse(rules, displayedRule.dottedName)(
 						exampleSituationGateWithDefaults(currentExample.situation, rules)
 					).targets
-				)
+			  )
 			: displayedRule
 
 		return (
@@ -75,9 +80,9 @@ export default class Algorithm extends React.Component {
 					>
 						<i className="fa fa-calculator" aria-hidden="true" />{' '}
 						{rule.nodeValue == 0
-							? 'Règle non applicable'
+							? i18n.t('Règle non applicable')
 							: rule.nodeValue == null
-								? 'Situation incomplète'
+								? i18n.t('Situation incomplète')
 								: humanFigure(2)(rule.nodeValue) + ' €'}
 					</section>
 				</section>

@@ -5,8 +5,9 @@ import queryString from 'query-string'
 import { getIframeOption } from './utils'
 import enTranslations from './locales/en.yaml'
 
-let lang = getIframeOption('lang') ||
-    queryString.parse(location.search)['lang'] ||
+let lang =
+	getIframeOption('lang') ||
+	queryString.parse(location.search)['lang'] ||
 	sessionStorage['lang'] ||
 	'fr'
 
@@ -14,7 +15,7 @@ sessionStorage['lang'] = lang
 
 i18next.init(
 	{
-		debug: true,
+		debug: false,
 		lng: lang,
 		resources: {
 			en: {

@@ -1,0 +1,28 @@
+.news-header {
+	display: flex;
+	align-items: center;
+	max-width: 30em;
+	margin: 0 auto;
+	justify-content: center;
+	animation: fade-in 2s;
+}
+.news-header p {
+	color: #4b4b66;
+	font-size: 85%;
+}
+
+.news-header i {
+	margin-right: 1em;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

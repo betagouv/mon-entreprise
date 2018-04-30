@@ -484,7 +484,7 @@
 
 - espace: contrat salarié . CDD . motif
   nom: complément formation
-  titre: Complément de formation professionnelle assuré par l'employeur
+  titre: Complément de formation professionnelle 
   formule: contrat salarié . CDD . motif = 'complément formation'
   description: L'employeur s'engage, pour une durée et dans des conditions déterminées par décret, à assurer un complément de formation professionnelle au salarié.
   références:
@@ -512,12 +512,13 @@
 # TODO Attention, il faudrait peut-être prendre en compte les interdictions du CDD.
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
 
-# - espace: contrat salarié
-#   nom: CDD
-#   titre: Contrat à durée déterminée
-#   description: Contrat de travail pour lequel un employeur peut recruter un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
-#   référence: https://fr.wikipedia.org/wiki/Contrat_de_travail_à_durée_déterminée_en_France
-#   # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
+- espace: contrat salarié
+  nom: CDD
+  titre: Contrat à durée déterminée
+  description: Contrat de travail pour lequel un employeur peut recruter un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
+  référence: https://fr.wikipedia.org/wiki/Contrat_de_travail_à_durée_déterminée_en_France
+  par défaut: non
+  # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
 #   implique:
 #     - emploi temporaire
 #     - motif de recours
@@ -638,7 +639,7 @@
 - espace: contrat salarié
   nom: type de contrat
   titre: Type de contrat
-  question: Quelle est la nature du contrat de travail ?
+  question: Quelle est la nature du contrat de travail ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -663,22 +664,26 @@
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
-  formule: salaire brut
+  formule:
+    somme:
+      - salaire de base
+      - indemnités salarié
 
 - espace: contrat salarié
   nom: salaire de base
-  titre: Salaire brut
-  résumé: Le salaire inscrit dans le contrat de travail.
+  titre: Salaire brut de base
+  résumé: Inscrit dans le contrat de travail
   type: salaire
-  question: Quel est le salaire brut mensuel ?
+  question: Quel est le salaire de base mensuel ?
   description: |
-    C'est le salaire de négociation du contrat de travail en France. 
+    C'est le salaire *brut* régulier inscrit dans le contrat de travail.
+    Il peut éventuellement inclure les primes ramenées au mois.
 
+    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
   format: euros
   suggestions:
     salaire médian: 2300
     SMIC: 1500
-    SMIC mi-temps: 750
 
   formule:
     inversion:
@@ -690,18 +695,26 @@
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
-  note: |
-    Ici nous confondons salaire brut et salaire de base, en attendant que l'UI de simulation puisse traiter la différence entre les deux. Il faudrait demander : `salaire brut`, puis un bouton `qu'est-ce que c'est` pour nous guider et décortiquer la formule.
-    La définition du salaire de base est la suivante :
-    Le salaire de base est le salaire brut régulier inscrit dans le contrat. C'est le salaire de négociation entre le salarié et l'employeur. Des primes viendront éventuellement le compléter, on parlera alors de salaire brut.
+
 
 - espace: contrat salarié
   nom: salaire brut
+  description: >
+    C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
   format: euros
   formule:
     somme:
       - salaire de base
+      - avantages salarié
+
+- espace: contrat salarié
+  nom: avantages salarié
+  format: euros
+  formule:
+    somme:
       - indemnités salarié
+      - prévoyance obligatoire cadre
+      - complémentaire santé (employeur)
 
 - espace: contrat salarié
   nom: indemnités salarié
@@ -783,8 +796,8 @@
   nom: salaire net
   titre: Salaire net
   type: salaire
-  question: Quel est le salaire net ?
-  résumé: La somme touchée par le salarié tous les mois.
+  question: Quel est le salaire net mensuel ?
+  résumé: Touché par le salarié tous les mois
   description: |
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
 
@@ -797,15 +810,23 @@
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût social total réel du travail pour l'employeur.
-  formule: salaire total - aides employeur différées
+  formule: salaire total - aides employeur
 
 - espace: contrat salarié
   nom: salaire total
-  titre: Salaire total
-  résumé: La somme totale versée par l'employeur tous les mois.
+  titre: Salaire chargé
+  question: Quel est le salaire mensuel chargé ?
+  résumé: À verser par l'employeur tous les mois
   type: salaire
   description: |
-    C'est le salaire brut, plus les cotisations patronales. C'est le total que l'employeur doit en principe prévoir de verser pour employer un salarié, mais en pratique certaines réductions de cotisation et aides peuvent diminuer cette somme.
+    C'est le salaire brut, plus les cotisations patronales, moins les réductions de cotisations sociales.
+
+    C'est le total que l'employeur doit verser mensuellement pour employer un salarié.
+
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
+
+    Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
+
   formule: salaire total sans réduction - réductions de cotisations
 
 - espace: contrat salarié
@@ -822,12 +843,10 @@
 
 
 - espace: contrat salarié
-  nom: aides employeur différées
-  résumé: Les aides différées dont peut bénéficier l'employeur.
-  description: | 
-        Certaines aides peuvent être demandées par l'employeur pour faciliter une embauche. 
-  
-        Ces aides sont différées : elles ne viennent pas réduire les montants mensuels, mais interviennent par la suite, par exemple sous forme de crédit d'impôt.
+  nom: aides employeur
+  résumé: Pour l'employeur, différées dans le temps
+  description: > 
+    Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
     somme:
       - CICE
@@ -1266,7 +1285,7 @@
     atteindre le nombre minimum de 120 points Agirc,
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
 
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
 
   formule:
     complément:
@@ -1299,11 +1318,10 @@
   description: |
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
 
-  #TODO double négation en attendant d'ajouter 'applicable si'
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
   formule:
     barème:
-      assiette: assiette cotisations sociales #TODO devrait être assiette cotisations sociales. Mais elle contient les primes CDD
+      assiette: assiette cotisations sociales
       multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
@@ -1422,12 +1440,11 @@
   références:
     chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
 
-  #TODO double négation en attendant d'ajouter 'applicable si'
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
 
   formule:
     barème:
-      assiette: salaire de base #TODO assiette cotisations sociales
+      assiette: assiette cotisations sociales
       multiplicateur des tranches: plafond sécurité sociale
       composantes:
         - attributs:
@@ -1576,6 +1593,7 @@
   suggestions:
     basique: 40
     élevé: 100
+
 - espace: contrat salarié
   nom: contribution au dialogue social
   cotisation:
@@ -1606,7 +1624,7 @@
   références:
     calcul: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
 
   formule:
     multiplication:
@@ -1804,12 +1822,13 @@
     branche: santé
   références:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
-  non applicable si: ≠ statut cadre
+  applicable si: statut cadre
   formule:
     multiplication:
       assiette: assiette cotisations sociales
       plafond: plafond sécurité sociale
       taux: 1.5%
+      # TODO attention : il semblerait que ce 1.5% englobe aussi la complémentaire santé ! La confusion serait entretenue par les organismes de prévoyance...
 - espace: contrat salarié
   nom: taxe d'apprentissage
   cotisation:

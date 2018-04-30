@@ -8,18 +8,18 @@
 	width: 1.3em;
 	line-height: 1.3em;
 	border-radius: 0.2em;
-	display: inline-block;
 	margin-left: 0.4em;
+	display: inline-block;
 	padding: 0.15em;
-	opacity: 0.65;
+	opacity: 0.85;
 	border: 1px solid transparent;
 	border-radius: 1em;
 	cursor: pointer;
+	font-size: 120%;
 	vertical-align: baseline;
-	font-size: 95%;
 }
 
-.explicable .icon:hover {
+.explicable :not(.icon) .explicable .icon:hover {
 	opacity: 1;
 }
 /* Add explanation text to icon, feels too heavy

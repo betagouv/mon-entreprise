@@ -7,7 +7,7 @@
 	display: block;
 	padding: 0.3em 1em;
 	font-size: 200%;
-	width: 8em;
+	min-width: 8em;
 	margin: 0 auto;
 	border: none;
 	box-shadow: 0px 9px 14px 0px rgba(0, 0, 0, 0.1);

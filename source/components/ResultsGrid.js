@@ -75,9 +75,8 @@ export let byBranch = analysis => {
 	analysis: state.analysis,
 	targetNames: state.targetNames,
 	situationGate: state.situationGate,
-	inversions: formValueSelector('conversation')(state, 'inversions'),
-	done: state.done,
-	flatRules: state.flatRules
+	flatRules: state.flatRules,
+	inversions: formValueSelector('conversation')(state, 'inversions')
 }))
 @translate()
 export default class ResultsGrid extends Component {
@@ -87,12 +86,9 @@ export default class ResultsGrid extends Component {
 				situationGate,
 				targetNames,
 				inversions,
-				done,
 				flatRules
 			} = this.props,
 			rules = flatRules
-
-		if (!done) return null
 
 		if (!analysis) return null
 
@@ -100,32 +96,87 @@ export default class ResultsGrid extends Component {
 			fromEval = name => find(propEq('dottedName', name), analysis.targets),
 			fromDict = name => analysis.cache[name],
 			get = name =>
-				extract(situationGate(name) || fromEval(name) || fromDict(name))
+				extract(situationGate(name) || fromEval(name) || fromDict(name)),
+			title = rule => rule.title || capitalise0(rule.name)
+
 		let results = byBranch(analysis),
 			brut = get('contrat salarié . salaire brut'),
+			base = get('contrat salarié . salaire de base'),
+			avan = get('contrat salarié . avantages salarié'),
 			net = get('contrat salarié . salaire net'),
 			total = get('contrat salarié . salaire total')
-		let inversion = path(['contrat salarié ', ' salaire de base'], inversions),
+		let inversion = path(['contrat salarié ', ' salaire brut'], inversions),
 			relevantSalaries = new Set(
 				targetNames
 					.concat(inversion ? [nameLeaf(inversion)] : [])
-					.concat(['salaire de base'])
+					.concat(['salaire brut'])
 			)
+		let brutR = findRuleByDottedName(
+			flatRules,
+			'contrat salarié . salaire brut'
+		)
+		let baseR = findRuleByDottedName(
+			flatRules,
+			'contrat salarié . salaire de base'
+		)
+		let avanR = findRuleByDottedName(
+			flatRules,
+			'contrat salarié . avantages salarié'
+		)
 
 		return (
 			<div className="somme resultsGrid">
 				<table>
 					<thead>
 						<tr>
-							<td className="element" />
+							<td className="element category">
+								<Link to={'/règle/' + encodeRuleName(baseR.dottedName)}>
+									<div className="rule-box">
+										<span className="rule-name">{title(baseR)}</span>
+									</div>
+								</Link>
+							</td>
 							<td
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
 								id="sommeBase">
+								{humanFigure(2)(base)}{' '}
+							</td>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<td className="element category">
+								<Link to={'/règle/' + encodeRuleName(avanR.dottedName)}>
+									<div className="rule-box">
+										<span className="rule-name">{title(avanR)}</span>
+									</div>
+								</Link>
+							</td>
+							<td
+								colSpan={(relevantSalaries.size - 1) * 2}
+								className="element value"
+								id="sommeBase">
+								<span className="operator">+ </span>
+								{humanFigure(2)(avan)}{' '}
+							</td>
+						</tr>
+					</thead>
+					<thead>
+						<tr>
+							<td className="element category">
+								<Link to={'/règle/' + encodeRuleName(brutR.dottedName)}>
+									<div className="rule-box">
+										<span className="rule-name">{title(brutR)}</span>
+									</div>
+								</Link>
+							</td>
+							<td
+								colSpan={(relevantSalaries.size - 1) * 2}
+								className="element value"
+								id="sommeBase">
+								<span className="operator">= </span>
 								{humanFigure(2)(brut)}{' '}
-								<span className="annotation">
-									<Trans>Salaire brut</Trans>
-								</span>
 							</td>
 						</tr>
 					</thead>
@@ -167,7 +218,7 @@ export default class ResultsGrid extends Component {
 								<td key="total" className="element value">
 									{humanFigure(2)(total)}{' '}
 									<span className="annotation">
-										<Trans>Salaire total</Trans>
+										<Trans>Salaire chargé</Trans>
 									</span>
 								</td>
 							]}
@@ -278,21 +329,26 @@ class Row extends Component {
 
 // TODO Ce code est beaucoup trop spécifique
 // C'est essentiellement une copie de Row
+@translate()
 class ReductionRow extends Component {
+	static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
 	state = {
 		folded: true
 	}
 	render() {
-		let { relevantSalaries, node } = this.props
+		let { relevantSalaries, node } = this.props,
+			{ i18n } = this.context
 		if (!relevantSalaries.has('salaire total')) return null
-		let value = node ? node.nodeValue : 0
+		let value = node && node.nodeValue ? node.nodeValue : 0
 		let aggregateRow = (
 			<tr
 				key="aggregateRowReductions"
 				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
 					<Trans>Réductions</Trans>&nbsp;<span className="unfoldIndication">
-						{this.state.folded ? 'déplier >' : 'replier'}
+						{this.state.folded ? i18n.t('déplier') + ' >' : i18n.t('replier')}
 					</span>
 				</td>
 				{this.state.folded ? (

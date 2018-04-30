@@ -7,7 +7,9 @@ import {
 	getObjectives
 } from '../source/engine/generateQuestions'
 
-import { reduceSteps } from '../source/reducers'
+import reduceSteps from '../source/reducers/reduceSteps'
+import { popularTargetNames } from '../source/components/TargetSelection'
+
 import yaml from 'js-yaml'
 import dedent from 'dedent-js'
 
@@ -26,11 +28,11 @@ describe('fold', function() {
 			],
 			rules = rawRules.map(enrichRule),
 			reducer = reduceSteps(tracker, rules, stateSelector),
-			action = { type: 'START_CONVERSATION', targetNames: ['startHere'] },
+			action = { type: 'START_CONVERSATION' },
 			// situation = analyseTopDown(rules,"startHere")(stateSelector({})),
 			// objectives = getObjectives(stateSelector({}), situation.root, situation.parsedRules),
 			// missing = collectMissingVariables(stateSelector({}),situation),
-			result = reducer({ foldedSteps: [] }, action)
+			result = reducer({ foldedSteps: [], targetNames: ['startHere'] }, action)
 
 		expect(result).to.have.property('currentQuestion')
 		expect(result.currentQuestion).to.equal('top . aa')
@@ -58,8 +60,8 @@ describe('fold', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{ type: 'START_CONVERSATION', targetNames: ['startHere'] }
+			{ foldedSteps: [], targetNames: ['startHere'] },
+			{ type: 'START_CONVERSATION' }
 		)
 		fakeState['top . aa'] = 1
 		var step2 = reducer(step1, {
@@ -119,8 +121,8 @@ describe('fold', function() {
 			reducer = reduceSteps(tracker, rules, stateSelector)
 
 		var step1 = reducer(
-			{ foldedSteps: [] },
-			{ type: 'START_CONVERSATION', targetNames: ['net'] }
+			{ foldedSteps: [], targetNames: ['net'] },
+			{ type: 'START_CONVERSATION' }
 		)
 
 		expect(step1).to.have.property('currentQuestion')

@@ -1,27 +1,24 @@
-
 .page {
-  max-width: 45em;
-  margin: 1em auto;
-  padding: 0 2em;
-  font-size: 130%;
+	max-width: 45em;
+	margin: 0 auto;
+	padding: 0 0.6em;
 }
-
 
 .page p {
 }
 
 .page h1 {
-  margin: 1em .6em;
-  text-align: center;
-  color: #3C4963;
-  font-size: 220%;
+	margin: 1em 0.6em;
+	text-align: center;
+	color: #3c4963;
+	font-size: 220%;
 }
 
 .page em {
-  font-weight: 600;
-  font-style: normal;
+	font-weight: 600;
+	font-style: normal;
 }
 
 .page a {
-  color: #1548af
+	color: #1548af;
 }

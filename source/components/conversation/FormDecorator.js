@@ -9,7 +9,13 @@ import { capitalise0 } from '../../utils'
 import { path } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
+import { findRuleByDottedName } from 'Engine/rules'
 
+export let buildValidationFunction = valueType => {
+	let validator = valueType ? valueType.validator : {},
+		{ pre = v => v, test = v => true, error } = validator
+	return v => v != undefined && (test(pre(v)) ? undefined : error)
+}
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
 with a header, click actions and more goodies.
@@ -23,11 +29,12 @@ export var FormDecorator = formType => RenderField =>
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
 			themeColours: state.themeColours,
-			getCurrentInversion: dottedName =>
-				formValueSelector('conversation')(state, 'inversions.' + dottedName)
+			situationGate: state.situationGate,
+			flatRules: state.flatRules
 		}),
 		dispatch => ({
-			stepAction: (name, step, source) => dispatch(stepAction(name, step, source)),
+			stepAction: (name, step, source) =>
+				dispatch(stepAction(name, step, source)),
 			setFormValue: (field, value) =>
 				dispatch(change('conversation', field, value))
 		})
@@ -40,17 +47,11 @@ export var FormDecorator = formType => RenderField =>
 			helpVisible: false
 		}
 		render() {
-			let { unfolded } = this.props,
-				{ helpText } = this.props.step
+			let { unfolded } = this.props
 
 			return (
 				<div className={classNames({ step: unfolded }, formType)}>
-					{this.state.helpVisible && this.renderHelpBox(helpText)}
-					<div
-						style={{
-							visibility: this.state.helpVisible ? 'hidden' : 'visible'
-						}}
-					>
+					<div>
 						{/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
 				de la réponse est affiché */}
 						{unfolded ? this.renderUnfolded() : this.renderFolded()}
@@ -61,41 +62,32 @@ export var FormDecorator = formType => RenderField =>
 
 		renderUnfolded() {
 			let {
-				setFormValue,
-				stepAction,
-				step: {
+					setFormValue,
+					stepAction,
 					subquestion,
 					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
 					defaultValue,
-					valueType
-				},
-				fieldName,
-				inversion,
-				inverted,
-				themeColours
-			} = this.props,
-			{ i18n } = this.context
-
-			/* Nos propriétés personnalisées à envoyer au RenderField.
-			Elles sont regroupées dans un objet précis pour pouvoir être enlevées des
-			props passées à ce dernier, car React 15.2 n'aime pas les attributes inconnus
-			des balises html, <input> dans notre cas.
-			*/
-			//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
-			let submit = (cause) => setTimeout(() => stepAction('fold', fieldName, cause), 1),
-				stepProps = {
-					...this.props.step,
-					inverted,
-					submit,
-					setFormValue: (value, name = fieldName) => setFormValue(name, value)
-				}
+					valueType,
+					fieldName,
+					inversion,
+					themeColours
+				} = this.props,
+				{ i18n } = this.context
 
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
-			let { pre = v => v, test, error } = valueType ? valueType.validator : {},
-				validate = test && (v => (v && test(pre(v)) ? undefined : error)),
-				inversionQ = path(['props', 'step', 'inversion', 'question'])(this)
+			let validate = buildValidationFunction(valueType)
+
+			let submit = cause =>
+					//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
+					setTimeout(() => stepAction('fold', fieldName, cause), 1),
+				stepProps = {
+					...this.props,
+					submit,
+					validate,
+					setFormValue: (value, name = fieldName) => setFormValue(name, value)
+				}
 
 			let question = (
 				<h1
@@ -104,13 +96,8 @@ export var FormDecorator = formType => RenderField =>
 						// background: 'none',
 						// color: this.props.themeColours.textColourOnWhite,
 						maxWidth: wideQuestion ? '95%' : ''
-					}}
-				>
-					{
-						inversionQ ?
-							i18n.t(inversionQ)
-						:	this.props.step.question
-					}
+					}}>
+					{this.props.question}
 				</h1>
 			)
 			return (
@@ -140,9 +127,8 @@ export var FormDecorator = formType => RenderField =>
 						<Field
 							component={RenderField}
 							name={fieldName}
-							stepProps={stepProps}
+							{...stepProps}
 							themeColours={themeColours}
-							validate={validate}
 						/>
 					</fieldset>
 				</div>
@@ -154,48 +140,37 @@ export var FormDecorator = formType => RenderField =>
 				stepAction,
 				situationGate,
 				themeColours,
-				step: { title, dottedName },
+				title,
+				dottedName,
 				fieldName,
-				fieldTitle
-			} = this.props
+				fieldTitle,
+				flatRules
+			} = this.props,
+			{ i18n } = this.context
 
-			let answer = situationGate(fieldName)
+			let answer = situationGate(fieldName),
+				rule = findRuleByDottedName(flatRules, dottedName + ' . ' + answer),
+				translatedAnswer = (rule && rule.title) || i18n.t(answer)
 
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
 						<span className="title">{capitalise0(fieldTitle || title)}</span>
-						<span className="answer">{answer}</span>
+						<span className="answer">
+						{translatedAnswer}
+						</span>
 					</span>
 					<button
 						className="edit"
 						onClick={() => stepAction('unfold', dottedName, 'unfold')}
-						style={{ color: themeColours.textColourOnWhite }}
-					>
+						style={{ color: themeColours.textColourOnWhite }}>
 						<i className="fa fa-pencil" aria-hidden="true" />
 						{'  '}
-						<span><Trans>Modifier</Trans></span>
+						<span>
+							<Trans>Modifier</Trans>
+						</span>
 					</button>
 					{}
-				</div>
-			)
-		}
-
-		renderHelpBox(helpText) {
-			let helpComponent =
-				typeof helpText === 'string' ? <p>{helpText}</p> : helpText
-
-			return (
-				<div className="help-box">
-					<a
-						className="close-help"
-						onClick={() => this.setState({ helpVisible: false })}
-					>
-						<span className="close-text">
-							<Trans>revenir</Trans> <span className="icon">&#x2715;</span>
-						</span>
-					</a>
-					{helpComponent}
 				</div>
 			)
 		}

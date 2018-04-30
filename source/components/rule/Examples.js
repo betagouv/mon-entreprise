@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import { evolve, path, isEmpty, compose } from 'ramda'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { disambiguateExampleSituation, collectDefaults } from 'Engine/rules.js'
 import { analyse } from 'Engine/traverse'
 import './Examples.css'
-import { assume } from '../../reducers'
+import { assume } from '../../reducers/reduceSteps'
 import { setExample } from '../../actions'
 
 export let exampleSituationGateWithDefaults = (situationObject, rules) =>
@@ -49,6 +50,7 @@ export let runExamples = (examples, rule, parsedRules) =>
 		setExample: compose(dispatch, setExample)
 	})
 )
+@translate()
 export default class Examples extends Component {
 	render() {
 		let {
@@ -66,15 +68,10 @@ export default class Examples extends Component {
 		return (
 			<div id="examples">
 				<h2>
-					Exemples de calcul{' '}
-					<small>Cliquez sur un exemple pour le tester</small>
+					<Trans i18nKey="examples">Exemples de calcul</Trans>{' '}
+					<small><Trans i18nKey="clickexample">Cliquez sur un exemple pour le tester</Trans></small>
 				</h2>
-				{isEmpty(examples) ? (
-					<p>
-						<i className="fa fa-exclamation-triangle" aria-hidden="true" />
-						<em>Cette règle manque d'exemples...</em>
-					</p>
-				) : (
+				{!isEmpty(examples) && (
 					<ul>
 						{examples.map(
 							({ nom, ok, rule, 'valeur attendue': expected, situation }) => (
@@ -85,11 +82,10 @@ export default class Examples extends Component {
 										selected: currentExample && currentExample.name == nom
 									})}
 									onClick={() =>
-										currentExample
+										currentExample && currentExample.name == nom
 											? setExample(null)
 											: setExample(nom, situation)
-									}
-								>
+									}>
 									<span>
 										{' '}
 										{ok ? (
@@ -103,9 +99,9 @@ export default class Examples extends Component {
 										currentExample &&
 										currentExample.name == nom && (
 											<div className="ko">
-												Ce test ne passe pas
+												<Trans i18nKey="fail">Ce test ne passe pas</Trans>
 												<span>
-													: le résultat attendu était{' '}
+													: <Trans i18nKey="expected">le résultat attendu était</Trans>{' '}
 													<span className="expected">{expected}</span>
 												</span>
 											</div>
@@ -121,9 +117,8 @@ export default class Examples extends Component {
 							<button
 								id="injectSituation"
 								onClick={() => setExample(null)}
-								style={{ background: colour }}
-							>
-								Revenir à votre situation
+								style={{ background: colour }}>
+								<Trans i18nKey="cancelExample">Revenir à votre situation</Trans>
 							</button>
 						</div>
 					)}

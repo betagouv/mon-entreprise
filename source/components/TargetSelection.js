@@ -1,116 +1,215 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
+import formValueTypes from 'Components/conversation/formValueTypes'
 import { findRuleByName } from 'Engine/rules'
-import { reject, curry, pipe, equals, filter, contains, length } from 'ramda'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { propEq, curry } from 'ramda'
 import './TargetSelection.css'
 import BlueButton from './BlueButton'
-export let salaries = ['salaire net', 'salaire de base', 'salaire total']
+import { Field, reduxForm, formValueSelector, change } from 'redux-form'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { RuleValue } from './rule/RuleValueVignette'
+import classNames from 'classnames'
+import ProgressCircle from './ProgressCircle/ProgressCircle'
+import InputSuggestions from 'Components/conversation/InputSuggestions'
+import { buildValidationFunction } from './conversation/FormDecorator'
+export let salaries = ['salaire total', 'salaire de base', 'salaire net']
+export let popularTargetNames = [...salaries, 'aides employeur']
 
-@connect(state => ({
-	flatRules: state.flatRules,
-}))
 @translate()
+@reduxForm({
+	form: 'conversation',
+	destroyOnUnmount: false
+})
+@connect(
+	state => ({
+		getTargetValue: dottedName =>
+			formValueSelector('conversation')(state, dottedName),
+		targets: state.analysis ? state.analysis.targets : [],
+		flatRules: state.flatRules,
+		conversationStarted: state.conversationStarted,
+		activeInput: state.activeTargetInput
+	}),
+	dispatch => ({
+		setFormValue: (field, name) =>
+			dispatch(change('conversation', field, name)),
+		startConversation: () => dispatch({ type: 'START_CONVERSATION' }),
+		setActiveInput: name => dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
+	})
+)
 export default class TargetSelection extends Component {
-	state = {
-		targets: [],
-	}
 	render() {
-		let { targets } = this.state,
-			ready = targets.length > 0
-
+		let { targets, conversationStarted, colours, activeInput } = this.props
+		this.firstEstimationComplete = activeInput && targets.length > 0
 		return (
-			<section id="targetSelection">
-				<h1><Trans i18nKey="targetSelection">Que voulez-vous calculer ?</Trans></h1>
-				{this.renderOutputList()}
-				<div id="action">
-					<p style={{ color: this.props.themeColours.textColourOnWhite }}>
-						<Trans i18nKey="selectMany">Vous pouvez faire plusieurs choix</Trans>
-					</p>
-					<Link to={'/simu/' + targets.join('+')}>
-						<BlueButton disabled={!ready}><Trans>Valider</Trans></BlueButton>
-					</Link>
-				</div>
-			</section>
+			<div id="targetSelection">
+				<section
+					id="targetsContainer"
+					style={{
+						background: colours.colour,
+						color: colours.textColour
+					}}>
+					{this.renderOutputList()}
+				</section>
+				{!this.firstEstimationComplete && (
+					<h1>
+						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
+					</h1>
+				)}
+
+				{this.firstEstimationComplete &&
+					!conversationStarted && (
+						<div id="action">
+							<p>
+								<b>
+									<Trans>Estimation approximative</Trans>
+								</b>{' '}
+								<br />
+								<Trans i18nKey="defaults">pour un CDI non cadre</Trans>
+							</p>
+							<BlueButton onClick={this.props.startConversation}>
+								<Trans>Affiner le calcul</Trans>
+							</BlueButton>
+						</div>
+					)}
+			</div>
 		)
 	}
 
 	renderOutputList() {
-		let { flatRules } = this.props,
-			popularTargets = [...salaries, 'aides employeur différées'].map(
-				curry(findRuleByName)(flatRules)
+		let popularTargets = popularTargetNames.map(
+				curry(findRuleByName)(this.props.flatRules)
 			),
-			{ targets } = this.state,
-			textColourOnWhite = this.props.themeColours.textColourOnWhite,
-			// You can't select 3 salaries, as one must be an input in the next step
-			optionDisabled = name =>
-				contains('salaire', name) &&
-				pipe(
-					reject(equals(name)),
-					filter(contains('salaire')),
-					length,
-					equals(2)
-				)(targets),
-			optionIsChecked = s => targets.includes(s.name)
+			{ conversationStarted, activeInput, setActiveInput, targets } = this.props
 
 		return (
 			<div>
-				<div id="targets">
-					{popularTargets.map(s => (
-						<div key={s.name}>
-							<input
-								id={s.name}
-								type="checkbox"
-								disabled={optionDisabled(s.name)}
-								checked={optionIsChecked(s)}
-								onChange={() =>
-									this.setState({
-										targets: targets.find(t => t === s.name)
-											? reject(t => t === s.name, targets)
-											: [...targets, s.name]
-									})
-								}
-							/>
-							<label
-								htmlFor={s.name}
-								key={s.name}
-								style={
-									optionIsChecked(s)
-										? {
-												color: textColourOnWhite
-											}
-										: {}
-								}
-							>
-								{optionIsChecked(s) ? (
-									<i
-										className="fa fa-check-square-o fa-2x"
-										style={{ color: textColourOnWhite }}
-									/>
-								) : (
-									<i
-										className="fa fa-square-o fa-2x"
-										style={{ color: '#4b4b66' }}
+				<ul id="targets">
+					{popularTargets.map(target => (
+						<li key={target.name}>
+							<div className="main">
+								<Header
+									{...{
+										target,
+										conversationStarted,
+										isActiveInput: activeInput === target.dottedName
+									}}
+								/>
+								<TargetInputOrValue
+									{...{
+										target,
+										targets,
+										firstEstimationComplete: this.firstEstimationComplete,
+										activeInput,
+										setActiveInput,
+										setFormValue: this.props.setFormValue
+									}}
+								/>
+							</div>
+							{activeInput === target.dottedName &&
+								!conversationStarted && (
+									<InputSuggestions
+										suggestions={target.suggestions}
+										onFirstClick={value =>
+											this.props.setFormValue(target.dottedName, '' + value)
+										}
+										colouredBackground={true}
 									/>
 								)}
-								<div>
-									<span className="optionTitle">{s.title || s.name}</span>
-									<p
-										style={
-											optionIsChecked(s)
-												? { color: textColourOnWhite }
-												: { color: '#4b4b66' }
-										}
-									>
-										{s['résumé']}
-									</p>
-								</div>
-							</label>
-						</div>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
+		)
+	}
+}
+
+let Header = ({ target, conversationStarted, isActiveInput }) => {
+	return (
+		<span className="header">
+			{conversationStarted && (
+				<ProgressCircle target={target} isActiveInput={isActiveInput} />
+			)}
+
+			<span className="texts">
+				<span className="optionTitle">
+					<Link to={'/règle/' + target.dottedName}>
+						{target.title || target.name}
+					</Link>
+				</span>
+				{!conversationStarted && <p>{target['résumé']}</p>}
+			</span>
+		</span>
+	)
+}
+
+let validate = buildValidationFunction(formValueTypes['euros'])
+let InputComponent = ({ input, meta: { dirty, error } }) => (
+	<span>
+		{dirty && error && <span className="input-error">{error}</span>}
+		<input type="number" {...input} autoFocus />
+	</span>
+)
+let TargetInputOrValue = ({
+	target,
+	targets,
+	firstEstimationComplete,
+	activeInput,
+	setActiveInput
+}) => (
+	<span className="targetInputOrValue">
+		{activeInput === target.dottedName ? (
+			<Field
+				name={target.dottedName}
+				component={InputComponent}
+				type="text"
+				validate={validate}
+			/>
+		) : (
+			<TargetValue {...{ targets, target, activeInput, setActiveInput }} />
+		)}
+		{(firstEstimationComplete || target.question) && (
+			<span className="unit">€</span>
+		)}
+	</span>
+)
+
+@connect(
+	() => ({}),
+	dispatch => ({
+		setFormValue: (field, name) => dispatch(change('conversation', field, name))
+	})
+)
+class TargetValue extends Component {
+	render() {
+		let {
+				targets,
+				target,
+				setFormValue,
+				activeInput,
+				setActiveInput
+			} = this.props,
+			targetWithValue = targets.find(propEq('dottedName', target.dottedName)),
+			value = targetWithValue && targetWithValue.nodeValue,
+			humanValue = value != null && value.toFixed(0)
+
+		return (
+			<span
+				className={classNames({
+					editable: target.question,
+					attractClick: target.question && targets.length === 0
+				})}
+				onClick={() => {
+					if (!target.question) return
+					if (value != null) {
+						setFormValue(target.dottedName, humanValue + '')
+						setFormValue(activeInput, '')
+					}
+
+					setActiveInput(target.dottedName)
+				}}>
+				<RuleValue value={value} />
+			</span>
 		)
 	}
 }

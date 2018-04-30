@@ -67,9 +67,11 @@
 }
 
 /* Specific to ResultsGrid.css. Somme.js and ResultsGrid.js should be merged */
-
 .resultsGrid table {
 	font-size: 90%;
+}
+.resultsGrid table a {
+	color: inherit;	
 }
 .resultsGrid td {
 	line-height: 1.6em;

@@ -1,14 +1,20 @@
+#RulePage {
+	max-width: 45em;
+	margin: 0 auto
+}
+
 #toSimulation {
-	background: #333350;
-	margin: 0 auto 1em;
+	margin: .6em auto;
 	display: block;
-	width: 20em;
 	color: white;
 	font-size: 180%;
 	text-align: center;
 	padding: .2em .6em;
+	border-radius: .2em;
 }
 
 #toSimulation i {
 	margin: 0 .6em
 }
+
+

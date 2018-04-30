@@ -3,7 +3,7 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import Rule from 'Components/rule/Rule'
 import { analyse } from 'Engine/traverse'
-import { head, path } from 'ramda'
+import { head, path, compose } from 'ramda'
 import {
 	decodeRuleName,
 	nameLeaf,
@@ -11,18 +11,16 @@ import {
 	findRuleByDottedName
 } from 'Engine/rules.js'
 import { encodeRuleName } from 'Engine/rules'
-import { pipe, pluck, join, map } from 'ramda'
+import { pipe, pluck, join, map, pick } from 'ramda'
 import { Link, Redirect } from 'react-router-dom'
 import { animateScroll } from 'react-scroll'
-import './PageRule.css'
+import './RulePage.css'
 import { Namespace } from './rule/Rule'
+import SearchButton from 'Components/SearchButton'
+import { setExample } from '../actions'
 
-@connect(state => ({
-	situationGate: state.situationGate,
-	parsedRules: state.parsedRules,
-	analysis: state.analysis
-}))
 @translate()
+@connect(pick(['situationGate', 'parsedRules', 'analysis', 'themeColours']))
 export default class RulePage extends Component {
 	nameFromParams = path(['match', 'params', 'name'])
 	componentWillMount() {
@@ -37,14 +35,12 @@ export default class RulePage extends Component {
 		}
 	}
 	setRule(name) {
-		let { parsedRules, situationGate } = this.props,
+		let { parsedRules } = this.props,
 			decodedRuleName = decodeRuleName(name)
+
 		if (decodedRuleName.includes(' . ')) {
-			let rule = findRuleByDottedName(parsedRules, decodedRuleName)
-			this.rule =
-				rule &&
-				head(analyse(parsedRules, rule.dottedName)(situationGate).targets)
 			this.multipleMatchingRules = false
+			this.setDottedRule(decodedRuleName)
 			return
 		}
 
@@ -52,8 +48,15 @@ export default class RulePage extends Component {
 			rules = findRulesByName(parsedRules, ruleName)
 		if (!rules.length) return null
 		if (rules.length > 1) this.multipleMatchingRules = rules
+		let dottedName = head(rules).dottedName
+		this.setDottedRule(dottedName)
+	}
+	setDottedRule(dottedName) {
+		let { parsedRules, situationGate } = this.props,
+			rule = findRuleByDottedName(parsedRules, dottedName)
+		if (!rule) return null
 		this.rule = head(
-			analyse(parsedRules, head(rules).dottedName)(situationGate).targets
+			analyse(parsedRules, rule.dottedName)(situationGate).targets
 		)
 	}
 	render() {
@@ -64,28 +67,48 @@ export default class RulePage extends Component {
 		let targets = path(['analysis', 'targets'], this.props)
 
 		return (
-			<>
-				{targets && <BackToSimulation targets={targets} />}
+			<div id="RulePage">
+				{targets && (
+					<BackToSimulation
+						colour={this.props.themeColours.colour}
+						targets={targets}
+					/>
+				)}
+				<SearchButton />
 				<Rule rule={this.rule} />
-			</>
+			</div>
 		)
 	}
 }
 
-let BackToSimulation = ({ targets }) => (
-	<Link
-		id="toSimulation"
-		to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
-	>
-		<i className="fa fa-arrow-circle-left" aria-hidden="true" />
-		<Trans i18nKey="back">Reprendre la simulation</Trans>
-	</Link>
+@connect(
+	state => ({}),
+	dispatch => ({
+		setExample: compose(dispatch, setExample)
+	})
 )
+class BackToSimulation extends Component {
+	render() {
+		let { targets, colour, setExample } = this.props
+		return (
+			<Link
+				onClick={() => setExample(null)}
+				id="toSimulation"
+				to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
+				style={{ background: colour }}>
+				<i className="fa fa-arrow-circle-left" aria-hidden="true" />
+				<Trans i18nKey="back">Reprendre la simulation</Trans>
+			</Link>
+		)
+	}
+}
 
 let DisambiguateRuleQuery = ({ rules }) => (
 	<div className="centeredMessage">
 		<p>
-			<Trans i18nKey="ambiguous">Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?</Trans>
+			<Trans i18nKey="ambiguous">
+				Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?
+			</Trans>
 		</p>
 		<ul>
 			{rules.map(({ dottedName, ns, title }) => (

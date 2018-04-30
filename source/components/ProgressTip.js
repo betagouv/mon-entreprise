@@ -4,57 +4,41 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import './ProgressTip.css'
 import { Line } from 'rc-progress'
+import { pick } from 'ramda'
 
 @withRouter
-@connect(state => ({
-	done: state.done,
-	foldedSteps: state.foldedSteps,
-	nextSteps: state.nextSteps,
-	colour: state.themeColours.colour
-}))
 @translate()
+@connect(
+	pick(['foldedSteps', 'nextSteps', 'themeColours', 'conversationStarted'])
+)
 export default class ProgressTip extends Component {
-	state = {
-		nbFoldedStepsForFirstEstimation: null
-	}
-	componentWillReceiveProps(newProps) {
-		if (newProps.done && this.state.nbFoldedStepsForFirstEstimation == null)
-			this.setState({
-				nbFoldedStepsForFirstEstimation: newProps.foldedSteps.length
-			})
-	}
 	render() {
-		let { done, nextSteps, foldedSteps, colour } = this.props,
+		let {
+				nextSteps,
+				foldedSteps,
+				themeColours: { colour, textColourOnWhite },
+				conversationStarted
+			} = this.props,
 			nbQuestions = nextSteps.length
-		if (!done) return null
+
+		if (!conversationStarted) return null
 		return (
-			<div className="tip">
-				{nbQuestions != 0 &&
-					this.state.nbFoldedStepsForFirstEstimation === foldedSteps.length && (
-						<p><Trans i18nKey="first">Votre première estimation est disponible !</Trans></p>
-					)}
-				{nbQuestions != 0 && (
-					<p>
+				<div className="progressTip">
+					{ nbQuestions != 0
+					?
+					<p style={{ color: textColourOnWhite }}>
 						{nbQuestions === 1
 							?
-							<Trans i18nKey="lastQ">Une dernière question !</Trans>
+							<Trans i18nKey="lastQ">dernière question !</Trans>
 							:
 							<Trans i18nKey="questionsLeft" count={nbQuestions}>
-							Il reste moins de {{nbQuestions}} questions.
+							moins de {{nbQuestions}} questions
 							</Trans>
 						}
-						<Line
-							percent={
-								100 * foldedSteps.length / (foldedSteps.length + nbQuestions)
-							}
-							strokeWidth="1"
-							strokeColor={colour}
-							trailColor="white"
-							strokeLinecap="butt"
-						/>
 					</p>
-				)}
-			</div>
+					:
+					<br/>}
+				</div>
 		)
 	}
 }

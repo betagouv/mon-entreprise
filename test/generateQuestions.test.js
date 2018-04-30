@@ -4,6 +4,7 @@ import { rules as realRules, enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 import {
 	getNextSteps,
+	collectMissingVariablesByTarget,
 	collectMissingVariables
 } from '../source/engine/generateQuestions'
 
@@ -30,7 +31,8 @@ describe('collectMissingVariables', function() {
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
-		expect(result).to.have.property('sum . evt . ko')
+
+		expect(result).to.include('sum . evt . ko')
 	})
 
 	it('should identify missing variables mentioned in expressions', function() {
@@ -48,8 +50,8 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('sum . evt . nyet')
-		expect(result).to.have.property('sum . evt . nope')
+		expect(result).to.include('sum . evt . nyet')
+		expect(result).to.include('sum . evt . nope')
 	})
 
 	it('should ignore missing variables in the formula if not applicable', function() {
@@ -66,7 +68,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should not report missing variables when "one of these" short-circuits', function() {
@@ -74,7 +76,9 @@ describe('collectMissingVariables', function() {
 				{
 					nom: 'startHere',
 					formule: 'trois',
-					'non applicable si': { 'une de ces conditions': ['3 > 2', 'trois'] },
+					'non applicable si': {
+						'une de ces conditions': ['3 > 2', 'trois']
+					},
 					espace: 'sum'
 				},
 				{ nom: 'trois', espace: 'sum' }
@@ -83,19 +87,23 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
 		let rawRules = [
 				{ nom: 'startHere', formule: 'trois', espace: 'top' },
-				{ nom: 'trois', formule: { 'une possibilité': ['ko'] }, espace: 'top' }
+				{
+					nom: 'trois',
+					formule: { 'une possibilité': ['ko'] },
+					espace: 'top'
+				}
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . trois')
+		expect(result).to.include('top . trois')
 	})
 
 	it('should not report missing variables when "une possibilité" is inapplicable', function() {
@@ -112,7 +120,8 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
+		null
 	})
 
 	it('should not report missing variables when "une possibilité" was answered', function() {
@@ -120,13 +129,17 @@ describe('collectMissingVariables', function() {
 
 		let rawRules = [
 				{ nom: 'startHere', formule: 'trois', espace: 'top' },
-				{ nom: 'trois', formule: { 'une possibilité': ['ko'] }, espace: 'top' }
+				{
+					nom: 'trois',
+					formule: { 'une possibilité': ['ko'] },
+					espace: 'top'
+				}
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(mySelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should report missing variables in switch statements', function() {
@@ -148,12 +161,16 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . dix')
+		expect(result).to.include('top . dix')
 	})
 
 	it('should report missing variables in variations', function() {
 		let rawRules = [
-				{ nom: 'startHere', formule: { somme: ['variations'] }, espace: 'top' },
+				{
+					nom: 'startHere',
+					formule: { somme: ['variations'] },
+					espace: 'top'
+				},
 				{
 					nom: 'variations',
 					espace: 'top',
@@ -194,16 +211,20 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . dix')
-		expect(result).to.have.property('top . deux')
-		expect(result).not.to.have.property('top . quatre')
+		expect(result).to.include('top . dix')
+		expect(result).to.include('top . deux')
+		expect(result).not.to.include('top . quatre')
 		// TODO
-		// expect(result).to.have.property('top . trois')
+		// expect(result).to.include('top . trois')
 	})
 
 	it('should not report missing variables in irrelevant variations', function() {
 		let rawRules = [
-				{ nom: 'startHere', formule: { somme: ['variations'] }, espace: 'top' },
+				{
+					nom: 'startHere',
+					formule: { somme: ['variations'] },
+					espace: 'top'
+				},
 				{
 					nom: 'variations',
 					espace: 'top',
@@ -241,7 +262,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should not report missing variables in switch for consequences of false conditions', function() {
@@ -262,7 +283,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 
 	it('should report missing variables in consequence when its condition is unresolved', function() {
@@ -287,8 +308,8 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.property('top . dix')
-		expect(result).to.have.property('top . douze')
+		expect(result).to.include('top . dix')
+		expect(result).to.include('top . douze')
 	})
 
 	it('should not report missing variables when a switch short-circuits', function() {
@@ -310,7 +331,7 @@ describe('collectMissingVariables', function() {
 			analysis = analyse(rules, 'startHere')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.deep.equal({})
+		expect(result).to.be.empty
 	})
 })
 
@@ -335,39 +356,10 @@ describe('nextSteps', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'sum')(stateSelector),
-			result = getNextSteps(stateSelector, analysis)
+			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
-	})
-
-	it('should generate questions from the real rules', function() {
-		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'surcoût CDD')(stateSelector),
-			missing = collectMissingVariables(analysis.targets),
-			result = getNextSteps(stateSelector, analysis)
-
-		// expect(objectives).to.have.lengthOf(4)
-
-		// expect(missing).to.have.property('contrat salarié . type de contrat')
-		// expect(missing).to.have.property('contrat salarié . CDD . événement')
-		// expect(missing).to.have.property('contrat salarié . CDD . motif')
-		// expect(missing).to.have.property('contrat salarié . salaire de base')
-		// expect(missing).to.have.property('contrat salarié . CDD . contrat jeune vacances')
-		// expect(missing).to.have.property('contrat salarié . CDD . durée contrat')
-		// expect(missing).to.have.property('contrat salarié . CDD . congés non pris')
-
-		// One question per missing variable !
-		// expect(R.keys(missing)).to.have.lengthOf(7)
-		// expect(result).to.have.lengthOf(7)
-
-		// expect(R.path(["question","props","label"])(result[0])).to.equal("Quelle est la nature du contrat de travail ?")
-		// expect(R.path(["question","props","label"])(result[1])).to.equal("Pensez-vous être confronté à l'un de ces événements au cours du contrat ?")
-		// expect(R.path(["question","props","label"])(result[2])).to.equal("Quel est le motif de recours au CDD ?")
-		// expect(R.path(["question","props","label"])(result[3])).to.equal("Quel est le salaire brut ?")
-		// expect(R.path(["question","props","label"])(result[4])).to.equal("Est-ce un contrat jeune vacances ?")
-		// expect(R.path(["question","props","label"])(result[5])).to.equal("Quelle est la durée du contrat ?")
-		// expect(R.path(["question","props","label"])(result[6])).to.equal("Combien de jours de congés ne seront pas pris ?")
 	})
 
 	it('should generate questions from the real rules, experimental version', function() {
@@ -379,11 +371,9 @@ describe('nextSteps', function() {
 
 		let rules = parseAll(realRules.map(enrichRule)),
 			analysis = analyse(rules, 'salaire')(stateSelector),
-			missing = collectMissingVariables(analysis.targets),
-			result = getNextSteps(stateSelector, analysis)
+			result = collectMissingVariables(analysis.targets)
 
-		expect(result[0]).to.equal('contrat salarié . salaire de base')
-		expect(result[1]).to.equal('contrat salarié . temps partiel')
+		expect(result[0]).to.equal('contrat salarié . temps partiel')
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function() {
@@ -395,9 +385,48 @@ describe('nextSteps', function() {
 
 		let rules = parseAll(realRules.map(enrichRule)),
 			analysis = analyse(rules, 'salaire net')(stateSelector),
-			missing = collectMissingVariables(analysis.targets),
-			result = getNextSteps(stateSelector, analysis)
+			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.include('contrat salarié . CDD . motif')
+	})
+})
+
+describe('getNextSteps', function() {
+	it('should give priority to questions that advance most targets', function() {
+		let missingVariablesByTarget = {
+			chargé: {
+				effectif: 34.01,
+				cadre: 30
+			},
+			net: {
+				cadre: 10.1
+			},
+			aides: {
+				effectif: 32.0,
+				cadre: 10
+			}
+		}
+
+		let result = getNextSteps(missingVariablesByTarget)
+
+		expect(result[0]).to.equal('cadre')
+	})
+
+	it('should give priority to questions by total weight when advancing the same target count', function() {
+		let missingVariablesByTarget = {
+			chargé: {
+				effectif: 24.01,
+				cadre: 30
+			},
+			net: {
+				effectif: 24.01,
+				cadre: 10.1
+			},
+			aides: {}
+		}
+
+		let result = getNextSteps(missingVariablesByTarget)
+
+		expect(result[0]).to.equal('effectif')
 	})
 })

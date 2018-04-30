@@ -11,13 +11,15 @@ import Helmet from 'react-helmet'
 import { createMarkdownDiv } from 'Engine/marked'
 import Destinataire from './Destinataire'
 import { Link } from 'react-router-dom'
-import { findRuleByNamespace, encodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import {
+	findRuleByNamespace,
+	encodeRuleName,
+	findRuleByDottedName
+} from 'Engine/rules'
 import withColours from '../withColours'
 
-import SearchButton from 'Components/SearchButton'
-
 @connect(state => ({
-	form: state.form,
+	analysis: state.analysis,
 	rules: state.parsedRules,
 	flatRules: state.flatRules,
 	currentExample: state.currentExample
@@ -25,9 +27,9 @@ import SearchButton from 'Components/SearchButton'
 @translate()
 export default class Rule extends Component {
 	render() {
-		let { form, rule, currentExample, rules, flatRules } = this.props,
+		let { rule, currentExample, rules, flatRules, analysis } = this.props,
 			flatRule = findRuleByDottedName(flatRules, rule.dottedName),
-			conversationStarted = !isEmpty(form)
+			conversationStarted = !isEmpty(analysis)
 
 		let { type, name, title, description, question, ns } = flatRule,
 			namespaceRules = findRuleByNamespace(flatRules, rule.dottedName)
@@ -38,7 +40,6 @@ export default class Rule extends Component {
 					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
-				<SearchButton />
 				<RuleMeta
 					{...{
 						ns,
@@ -46,18 +47,21 @@ export default class Rule extends Component {
 						description,
 						question,
 						rule,
+						flatRules,
 						name,
 						title
 					}}
 				/>
 
 				<section id="rule-content">
-					<Algorithm
-						rules={rules}
-						currentExample={currentExample}
-						rule={rule}
-						showValues={conversationStarted || currentExample}
-					/>
+					{flatRule.ns && (
+						<Algorithm
+							rules={rules}
+							currentExample={currentExample}
+							rule={rule}
+							showValues={conversationStarted || currentExample}
+						/>
+					)}
 					{flatRule.note && (
 						<section id="notes">
 							<h3>Note: </h3>
@@ -82,49 +86,64 @@ export default class Rule extends Component {
 	renderReferences = ({ références: refs }) =>
 		refs ? (
 			<div>
-				<h2><Trans>Références</Trans></h2>
+				<h2>
+					<Trans>Références</Trans>
+				</h2>
 				<References refs={refs} />
 			</div>
 		) : null
 }
 
-let NamespaceRulesList = withColours(({ namespaceRules, flatRule, colours }) => (
-	<section>
-		<h2>
-			<Trans>Règles attachées</Trans>
-			<small>
-				<Trans i18nKey="inspace">Ces règles sont dans l'espace de nom</Trans> `{flatRule.title}`
-			</small>
-		</h2>
-		<ul>
-			{namespaceRules.map(r => (
-				<li key={r.name}>
-					<Link
-						style={{
-							color: colours.textColourOnWhite,
-							textDecoration: 'underline'
-						}}
-						to={'/règle/' + encodeRuleName(r.dottedName)}
-					>
-						{r.title || r.name}
-					</Link>
-				</li>
-			))}
-		</ul>
-	</section>
-))
+let NamespaceRulesList = withColours(
+	({ namespaceRules, flatRule, colours }) => (
+		<section>
+			<h2>
+				<Trans>Règles attachées</Trans>
+				<small>
+					<Trans i18nKey="inspace">
+						Ces règles sont dans l'espace de nom
+					</Trans>{' '}
+					`{flatRule.title}`
+				</small>
+			</h2>
+			<ul>
+				{namespaceRules.map(r => (
+					<li key={r.name}>
+						<Link
+							style={{
+								color: colours.textColourOnWhite,
+								textDecoration: 'underline'
+							}}
+							to={'/règle/' + encodeRuleName(r.dottedName)}>
+							{r.title || r.name}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+)
 
-let RuleMeta = ({ ns, type, description, question, rule, name, title }) => (
+let RuleMeta = ({
+	ns,
+	type,
+	description,
+	question,
+	rule,
+	flatRules,
+	name,
+	title
+}) => (
 	<section id="rule-meta">
 		<div id="meta-header">
-			{ns && <Namespace {...{ ns }} />}
+			{ns && <Namespace {...{ ns, flatRules }} />}
 			<h1>{title || capitalise0(name)}</h1>
 		</div>
 		<div id="meta-content">
 			<div id="meta-paragraph">
 				{type && (
 					<span className="rule-type">
-						<span>{type}</span>
+						<span><Trans>{type}</Trans></span>
 					</span>
 				)}
 				{createMarkdownDiv(description || question)}
@@ -134,7 +153,7 @@ let RuleMeta = ({ ns, type, description, question, rule, name, title }) => (
 	</section>
 )
 
-export let Namespace = withColours(({ ns, colours }) => (
+export let Namespace = withColours(({ ns, flatRules, colours }) => (
 	<ul id="namespace">
 		{ns
 			.split(' . ')
@@ -145,24 +164,29 @@ export let Namespace = withColours(({ ns, colours }) => (
 				],
 				[]
 			)
-			.map(fragments => (
-				<li key={fragments.join()}>
-					<Link
-						style={{
-							color: colours.textColourOnWhite,
-							textDecoration: 'underline'
-						}}
-						to={'/règle/' + encodeRuleName(fragments.join(' . '))}
-					>
-						{capitalise0(last(fragments))}
-					</Link>
-					<i
-						style={{ margin: '0 .6em', fontSize: '85%' }}
-						className="fa fa-chevron-right"
-						aria-hidden="true"
-					/>
-				</li>
-			))}
+			.map(fragments => {
+				let ruleName = fragments.join(' . '),
+					rule = findRuleByDottedName(flatRules, ruleName),
+					ruleText = rule.title || capitalise0(rule.name)
+
+				return (
+					<li key={fragments.join()}>
+						<Link
+							style={{
+								color: colours.textColourOnWhite,
+								textDecoration: 'underline'
+							}}
+							to={'/règle/' + encodeRuleName(ruleName)}>
+							{ruleText}
+						</Link>
+						<i
+							style={{ margin: '0 .6em', fontSize: '85%' }}
+							className="fa fa-chevron-right"
+							aria-hidden="true"
+						/>
+					</li>
+				)
+			})}
 	</ul>
 ))
 
@@ -172,8 +196,7 @@ let ReportError = () => (
 			href={
 				'mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans une règle ' +
 				name
-			}
-		>
+			}>
 			<i
 				className="fa fa-exclamation-circle"
 				aria-hidden="true"

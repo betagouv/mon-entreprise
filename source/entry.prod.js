@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { compose, createStore, applyMiddleware } from 'redux'
-import reducers from './reducers'
+import reducers from './reducers/reducers'
 import debounceFormChangeActions from './debounceFormChangeActions'
 import computeThemeColours from './components/themeColours'
 import { getIframeOption, getUrl } from './utils'

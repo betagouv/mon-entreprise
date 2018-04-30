@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { compose, createStore, applyMiddleware } from 'redux'
-import reducers from './reducers'
+import reducers from './reducers/reducers'
 import DevTools from './DevTools'
 import { AppContainer } from 'react-hot-loader'
 import debounceFormChangeActions from './debounceFormChangeActions'
@@ -20,7 +20,7 @@ let initialStore = {
 
 let enhancer = compose(
 	applyMiddleware(debounceFormChangeActions()),
-	DevTools.instrument()
+	DevTools.instrument({ maxAge: 10 })
 )
 
 let initialRules = lang == 'en' ? rules : rulesFr

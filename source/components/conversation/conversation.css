@@ -1,27 +1,38 @@
-#myScrollToElement {
-	min-height: 55%;
-	padding: 1em;
-	transition: 1s min-height;
+.scrollIndication {
+	margin: 0.6em;
+	text-align: center;
 }
 
-#sim.noQuestionsLeft #myScrollToElement {
-	min-height: 0;
+.scrollIndication.down {
+	margin-bottom: 1em;
 }
 
 #foldedSteps {
-	padding: 1em;
-	margin-bottom: 6em;
+	padding: 1em 0;
+	margin-bottom: 1em;
 }
 
 #foldedSteps .header button {
-	font-size: 80%;
-	border: none;
 	display: block;
-	margin: 0 auto;
+	margin: 0 auto 1em;
 }
-#foldedSteps .header button i {
+#foldedSteps button i {
 	margin-right: 0.3em;
+	font-size: 110%;
 	vertical-align: top;
+}
+
+#foldedSteps button {
+	border: none;
+	font-weight: 500;
+}
+
+#myScrollToElement {
+	padding-top: 0.3em;
+}
+
+#currentQuestion {
+	margin-bottom: 4em;
 }
 
 .step {
@@ -36,81 +47,12 @@
 	opacity: 1;
 }
 
-.form-group {
-	position: relative;
-	margin-bottom: 4.5em;
-}
-
-.form-group.explicit > .group-content {
-	margin-left: 1em;
-	padding: 0.8em 0 0 1.3em;
-}
-
-.form-group.folded .group-content {
-	border: none;
-}
-
-.form-group .header {
-	margin: 4em 0 0.6em 0;
-}
-
-.group-items {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-/* Group items animation */
-
-.group-animated-enter {
-	opacity: 0;
-}
-
-.group-animated-enter.group-animated-enter-active {
-	opacity: 1;
-	transition: opacity 300ms ease-in;
-}
-
-.group-animated-leave {
-	opacity: 1;
-	transform: scaleY(1);
-}
-
-.group-animated-leave.group-animated-leave-active {
-	opacity: 0;
-	transform: scaleY(0);
-	transform-origin: top;
-	transition: opacity 200ms ease, transform 200ms ease-out;
-}
-
-/* END Group items animation */
-
-/* Group ignore buttons */
-.form-group .header #ignore {
-	margin-left: 3em;
-}
-
-.group-title {
-	position: relative;
-	display: inline-block;
-}
-.group-title h1 {
-	font-size: 100%;
-	font-weight: 400;
-	padding: 0.5em 0.8em;
-	margin: 0;
-	border-radius: 1em;
-	position: relative;
-	width: 100%;
-	border: 1px solid rgba(0, 0, 0, 0.3);
-}
-
 .step-question {
 	max-width: 70%;
 }
 
 .unfoldedHeader {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -121,9 +63,12 @@
 	color: #333350;
 	display: inline-block;
 	font-size: 110%;
+	box-sizing: border-box;
+	text-align: left;
 	font-weight: 600;
 	padding: 0.6em 1em;
 	margin: 0;
+	margin-right: 0.3em;
 	border-radius: 1.4em;
 	position: relative;
 	/* Give some space for the explicable's icon */
@@ -150,7 +95,6 @@
 /* Our little help icon */
 .help-button {
 	display: inline-block;
-	float: right;
 	margin-top: 0.5em;
 	line-height: 1.1em;
 	border-radius: 1em;
@@ -184,15 +128,17 @@
 }
 
 .step.question .variant > ul {
-	border-left: 1px dashed #ccc;
+	border-right: 1px dashed #ccc;
+	text-align: right;
 	margin-top: 0.6em;
-	padding-left: 0.6em;
+	padding-right: 0.6em;
 	padding-top: 0.6em;
 	margin-left: 1em;
 }
 .step.question .variant > div {
-	padding-left: 0.6em;
+	padding-right: 0.6em;
 	font-weight: 600;
+	text-align: right;
 	font-style: italic;
 }
 
@@ -206,13 +152,21 @@
 	white-space: nowrap;
 }
 .step.question .variantLeaf {
+	display: flex;
+	justify-content: flex-end;
 	margin-bottom: 0.6em;
 }
+
+.step.question .variantLeaf > span:not(.explicable) {
+	margin-right: 2em;
+}
+
 .step.question .variant .variantLeaf {
 	display: inline-block;
 }
 .step.question .variantLeaf.aucun label {
-	font-weight: bold;
+	font-weight: 800;
+	text-decoration: underline;
 }
 
 .step.question .sendWrapper {
@@ -253,16 +207,17 @@
 	vertical-align: middle;
 }
 
-.step input[type='radio'] {
+.step.question input[type='radio'] {
 	display: none;
 }
 
 .step input[type='text'] {
 	border-bottom: 1px solid;
+	border-radius: 0.3em;
 	display: inline-block;
 	line-height: 1.6em;
 	height: 1.6em; /* IE 11 needs this */
-	font-size: 100%;
+	font-size: 130%;
 	padding: 0;
 	padding-right: 0.4em;
 	width: 8em;
@@ -301,42 +256,6 @@
 .step input[type='number']:focus {
 	border-color: #d0d4d8;
 	outline: none;
-}
-
-.step .inputPrefix {
-	margin: 0 1em;
-	font-weight: 600;
-	margin-bottom: 1em;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.inputPrefix select {
-	font-size: 120%;
-}
-
-.step .inputSuggestions {
-	font-style: italic;
-	float: right;
-	clear: right;
-	font-size: 75%;
-	color: #222;
-}
-.step .inputSuggestions ul {
-	padding-left: 0;
-	list-style: none;
-	display: inline-flex;
-	align-items: flex-end;
-}
-.step .inputSuggestions li {
-}
-.step .inputSuggestions span {
-	padding: 0.1em 0.9em;
-	font-weight: 600;
-	cursor: pointer;
-}
-.step .inputSuggestions span:hover {
-	text-decoration: none;
 }
 
 .help-box {
@@ -463,11 +382,6 @@
 
 /* Positioning the animated elements absolutely + transition-delay will make it possible
 for the appearing element to appear without stacking up below the first one */
-#user-next-action {
-	position: relative;
-	height: 2em;
-	margin-bottom: 3em;
-}
 
 .input-tip {
 	position: absolute;
@@ -478,32 +392,6 @@ for the appearing element to appear without stacking up below the first one */
 	margin: auto;
 }
 
-#reinit {
-	position: static;
-	display: block;
-	text-align: center;
-	font-size: 65%;
-}
-
-.user-next-action-animation-enter {
-	opacity: 0;
-}
-
-.user-next-action-animation-enter.user-next-action-animation-enter-active {
-	opacity: 1;
-	transition: opacity 700ms;
-	transition-delay: 700ms;
-}
-
-.user-next-action-animation-leave {
-	opacity: 1;
-}
-
-.user-next-action-animation-leave.user-next-action-animation-leave-active {
-	opacity: 0;
-	transition: opacity 700ms ease;
-}
-
 .foldedQuestion {
 	margin-left: 1.2em;
 }
@@ -512,13 +400,13 @@ for the appearing element to appear without stacking up below the first one */
 	vertical-align: middle;
 	margin-left: 0.5em;
 	border: none;
-	font-size: 80%;
+	padding-right: 0
 }
 
 .foldedQuestion .borderWrapper {
 	padding: 0.1em 0;
 	display: inline-block;
-	width: calc(100% - 6em);
+	width: calc(100% - 7em);
 	border-bottom: 1px solid #eee;
 }
 
@@ -539,4 +427,8 @@ for the appearing element to appear without stacking up below the first one */
 	.keyIcon {
 		display: none;
 	}
+}
+
+.conversationContainer {
+	flex: 1;
 }

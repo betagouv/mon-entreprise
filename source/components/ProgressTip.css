@@ -1,14 +1,15 @@
-#sim .tip {
-	font-style: italic;
-	margin-bottom: -0.3em;
-	text-align: center;
+.progressTip {
+	max-width: 40em;
+	margin: .2em auto;
 }
-#sim .tip p {
-	margin: 0;
+
+.progressTip p {
+		display: inline-block;
+		width: 100%;
+		margin: .1em 0 1.6em;
+		text-align: center;
+		font-weight: 600;
 }
-#sim .tip progress {
-	margin-left: 1em;
-	background: white;
-	border-width: 1px;
-	border-style: solid;
-}
+
+.progressTip i {
+		margin-right: .4em;}

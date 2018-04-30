@@ -61,16 +61,16 @@
     - nom: imbrication nulle
       valeur attendue: null
       variables manquantes:
+        - montant caution
         - dégradation mineure
         - dégradation majeure
-        - montant caution
     - nom: variables manquantes même si innaccessibles
       situation:
         dégradation mineure: non
       valeur attendue: null
       variables manquantes:
-        - dégradation majeure
         - montant caution
+        - dégradation majeure
 
 
 

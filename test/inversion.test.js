@@ -83,7 +83,7 @@ describe('inversions', () => {
 			missing = collectMissingVariables(analysis.targets)
 
 		expect(analysis.targets[0].nodeValue).to.be.null
-		expect(missing).to.have.key('brut')
+		expect(missing).to.include('brut')
 	})
 
 	it('should handle inversions with missing variables', () => {
@@ -130,7 +130,7 @@ describe('inversions', () => {
 			missing = collectMissingVariables(analysis.targets)
 
 		expect(analysis.targets[0].nodeValue).to.be.null
-		expect(missing).to.have.key('cadre')
+		expect(missing).to.include('cadre')
 	})
 
 	it("shouldn't report a missing salary if another salary was input", () => {

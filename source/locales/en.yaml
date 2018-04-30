@@ -1,5 +1,8 @@
-targetSelection: What would you like to estimate ?
-news: Understand the social cost of hiring in France.
+enterSalary: Enter a monthly salary
+news: Get a salary estimate in seconds, describe your situation for more accuracy.
+Estimation approximative: This is an estimate
+defaults: for a permanent (CDI) full-time contract
+Affiner le calcul: Refine this estimate
 selectMany: You may pick more than one
 Valider: Accept
 valider: accept
@@ -16,15 +19,19 @@ unsatisfied: Awaiting your answers…
 Échap: Esc
 Entrée: Enter
 À propos: About (fr)
-Mode plein écran: Full screen
+Plein écran: Fullscreen
 first: Your first estimate is now available!
 lastQ: One last question!
 questionsLeft: Fewer than <1>{{nbQuestions}}</1> questions to go…
 radio_Oui: Yes
 radio_Non: No
 radio_Aucun: None
+oui: yes
+non: no
 déplier: show more
 replier: show less
+transport: transportation
+formation: training
 santé: healthcare
 retraite: pensions
 famille: family allowances
@@ -33,16 +40,17 @@ logement: housing
 autre: other
 Salaire brut: Gross salary
 Salaire net: Net salary
-Salaire total: Total salary
-Salaire de base: Base salary
-Réductions: Reductions
-disclaimer: This estimate takes into account national law but not union negotiated rules, and should not be used as a pay slip. If results differ from a pay slip, we refer you to an accountant or HR expert.
+Salaire chargé: Total salary
+Salaire brut de base: Base salary
+Avantages salarié: Employee benefits
+Réductions: Deductions
+disclaimer: The simulation takes into account national law but not union negotiated rules, and should not be used as a pay slip, though it will help you understand it. Lots of aids for your enterprise exist, explore them on 
 clickForMore: You can click the results below for detailed explanations.
 Quel est le salaire mensuel ?: What is the monthly salary?
 back: Back to your simulation
 ambiguous: More than one rule with this name found. Which one are you looking for ?
 reportError: Report an error
-Références: Relevant legal information
+Références: Relevant legal information (fr)
 Règles attachées: Linked rules
 inspace: These rules are in category
 Pas de sources officielles: No official information
@@ -61,3 +69,35 @@ Qu'est-ce qui n'a pas été ?: What went wrong ?
 satisfaction-email-ou: To start a conversation with us, fill your email address or
 satisfaction-mailto: click here to directly write an email
 envoyer: send
+Recherche: Search
+Règle non applicable: Not applicable
+Situation incomplète: More information needed
+Destinataire: Levied by
+cotisation: contribution
+aide: aid or subsidy
+indemnité: benefit
+salaire: salary
+taxe: tax
+examples: Example situations
+clickexample: Click on a situation to see the result
+fail: This test failed
+expected: the expected result was
+cancelExample: Back to your situation
+non applicable si: not applicable if
+applicable si: applicable if
+une de ces conditions: one of these applies
+toutes ces conditions: all of these apply
+assiette: base
+taux: rate
+facteur: multiplier
+plafond: ceiling
+barème: scale
+composantes: components
+multiplicateur des tranches: bracket amount
+Tranches de l'assiette: Scale brackets
+Taux: Rates
+cible: target
+montant à atteindre: minimum value
+dû par: owed by
+employeur: employer
+salarié: employee

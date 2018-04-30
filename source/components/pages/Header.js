@@ -22,44 +22,37 @@ export class Header extends Component {
 		this.setState({ mobileNavVisible: !this.state.mobileNavVisible })
 
 	render() {
-		let { location } = this.props
-		let appMode = ['/simu', '/règle'].find(t => location.pathname.includes(t))
-		if (this.props.iframe)
-			return screenfull.enabled ? (
-				<div
-					id="iframeFullscreen"
-					onClick={() => screenfull.toggle()}
-					className={appMode ? 'absolute' : ''}
-				>
-					{!appMode && (
-						<span>
-							<Trans>Mode plein écran</Trans>
-						</span>
-					)}
-					<i
-						className="fa fa-arrows-alt"
-						aria-hidden="true"
-						style={{ color: this.props.textColourOnWhite }}
-					/>
-				</div>
-			) : null
-
-		let displayHeader = !appMode
-
-		if (!displayHeader) return null
-
 		return (
 			<div id="header">
-				<Link id="brand" to="/">
-					<img
-						id="logo"
-						src={require('Images/logo/logo-simulateur.svg')}
-						alt="Un service de l'État français"
-					/>
-					<h1>Simulateur d'embauche</h1>
-				</Link>
-				<div id="headerContent">
-					<div id="menuButton">
+				{!this.props.iframe && (
+					<Link id="brand" to="/">
+						<img
+							id="logo"
+							src={require('Images/logo/logo-simulateur.svg')}
+							alt="Un service de l'État français"
+						/>
+						<h1>Simulateur d'embauche</h1>
+					</Link>
+				)}
+				{this.props.iframe &&
+					screenfull.enabled && (
+						<div id="iframeFullscreen" onClick={() => screenfull.toggle()}>
+							<span>
+								<Trans>Plein écran</Trans>
+							</span>
+							<i
+								className="fa fa-arrows-alt"
+								aria-hidden="true"
+								style={{ color: this.props.textColourOnWhite }}
+							/>
+						</div>
+					)}
+				<div id="headerRight">
+					<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
+						<Links toggle={this.togglemobileNavVisible} />
+					</nav>
+					<LangSwitcher />
+					<span id="menuButton">
 						{this.state.mobileNavVisible ? (
 							<i
 								className="fa fa-times"
@@ -73,15 +66,7 @@ export class Header extends Component {
 								onClick={this.togglemobileNavVisible}
 							/>
 						)}
-					</div>
-					<nav className={this.state.mobileNavVisible ? 'visible' : ''}>
-						<Links toggle={this.togglemobileNavVisible} />
-					</nav>
-					<img
-						id="marianne"
-						src={require('Images/marianne.svg')}
-						alt="Un service de l'État français"
-					/>
+					</span>
 				</div>
 			</div>
 		)
@@ -110,7 +95,7 @@ let Links = ({ toggle }) => (
 @connect(null, dispatch => ({
 	changeLanguage: lang => dispatch({ type: CHANGE_LANG, lang })
 }))
-export class Footer extends Component {
+export class LangSwitcher extends Component {
 	static contextTypes = {
 		i18n: PropTypes.object.isRequired
 	}
@@ -125,11 +110,8 @@ export class Footer extends Component {
 		this.context.i18n.changeLanguage(nextLanguage)
 	}
 	render() {
-		let appMode = ['/simu', '/regle'].find(t =>
-			this.props.location.pathname.includes(t)
-		)
 		return (
-			<div id="footer">
+			<span id="langSwitcher">
 				<button onClick={this.changeLanguage}>
 					{do {
 						let languageCode = this.getUnusedLanguageCode()
@@ -139,13 +121,7 @@ export class Footer extends Component {
 						</span>
 					}}
 				</button>
-				{appMode && (
-					<Link to="/à-propos">
-						<Trans>À propos</Trans>{' '}
-						<i className="fa fa-question-circle" aria-hidden="true" />
-					</Link>
-				)}
-			</div>
+			</span>
 		)
 	}
 }
