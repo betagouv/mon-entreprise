@@ -672,7 +672,7 @@
 - espace: contrat salarié
   nom: salaire de base
   titre: Salaire brut de base
-  résumé: Inscrit dans le contrat de travail.
+  résumé: Inscrit dans le contrat de travail
   type: salaire
   question: Quel est le salaire de base mensuel ?
   description: |
@@ -797,7 +797,7 @@
   titre: Salaire net
   type: salaire
   question: Quel est le salaire net mensuel ?
-  résumé: Touché par le salarié tous les mois.
+  résumé: Touché par le salarié tous les mois
   description: |
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
 
@@ -816,7 +816,7 @@
   nom: salaire total
   titre: Salaire chargé
   question: Quel est le salaire mensuel chargé ?
-  résumé: À verser par l'employeur tous les mois.
+  résumé: À verser par l'employeur tous les mois
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales, moins les réductions de cotisations sociales.
@@ -844,7 +844,7 @@
 
 - espace: contrat salarié
   nom: aides employeur
-  résumé: Pour l'employeur, différées dans le temps.
+  résumé: Pour l'employeur, différées dans le temps
   description: > 
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
