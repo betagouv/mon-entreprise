@@ -7,11 +7,15 @@ import screenfull from 'screenfull'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { CHANGE_LANG } from '../../actions'
+import Logo from '../Logo.js'
+
+import { formValueSelector } from 'redux-form'
 
 @withRouter
 @connect(state => ({
 	iframe: state.iframe,
-	textColourOnWhite: state.themeColours.textColourOnWhite
+	textColourOnWhite: state.themeColours.textColourOnWhite,
+	analysis: state.analysis
 }))
 @translate()
 export class Header extends Component {
@@ -22,16 +26,23 @@ export class Header extends Component {
 		this.setState({ mobileNavVisible: !this.state.mobileNavVisible })
 
 	render() {
+		let brutRule =
+				this.props.analysis &&
+				this.props.analysis.cache['contrat salarié . salaire de base'],
+			brut = brutRule && Math.round(brutRule.nodeValue),
+			brutDisplayed = brut
+				? ('' + brut).length < 5
+					? brut + ''
+					: Math.round(+brut / 1000) + 'k'
+				: '2300'
 		return (
 			<div id="header">
 				{!this.props.iframe && (
 					<Link id="brand" to="/">
-						<img
-							id="logo"
-							src={require('Images/logo/logo-simulateur.svg')}
-							alt="Un service de l'État français"
-						/>
-						<h1>Simulateur d'embauche</h1>
+						<Logo salaire={brutDisplayed} />
+						<h1>
+							Simulateur <br /> d'embauche
+						</h1>
 					</Link>
 				)}
 				{this.props.iframe &&

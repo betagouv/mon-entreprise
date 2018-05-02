@@ -7,7 +7,6 @@
 #header #brand {
 	display: flex;
 	align-items: center;
-	max-width: 14em;
 }
 #header h1 {
 	font-size: calc(.8vw + 100%);
@@ -19,8 +18,8 @@
 	margin-bottom: 0.6em;
 }
 
-#header #logo {
-	width: calc(3vw + 2em);
+#header #brand svg {
+	width: calc(2vw + 3em);
 }
 
 #headerRight {
