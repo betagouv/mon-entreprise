@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import HoverDecorator from './HoverDecorator'
 import 'whatwg-fetch'
 import { connect } from 'react-redux'
 import './Satisfaction.css'
@@ -13,7 +12,7 @@ import PropTypes from 'prop-types'
 }))
 @translate()
 export default class Satisfaction extends Component {
-    static contextTypes = {
+	static contextTypes = {
 		i18n: PropTypes.object.isRequired
 	}
 	state = {
@@ -68,11 +67,11 @@ export default class Satisfaction extends Component {
 		if (!answer)
 			return (
 				<div id="satisfaction">
-						<p>
+					<p>
 						<Trans i18nKey="satisfaction">
-								Vous êtes satisfait du simulateur ?
-						</Trans>	
-						</p>
+							Vous êtes satisfait du simulateur ?
+						</Trans>
+					</p>
 					<p>
 						<Smiley
 							text=":)"
@@ -118,8 +117,7 @@ export default class Satisfaction extends Component {
 					id="sendMessage"
 					style={{ color: this.props.textColourOnWhite }}
 					disabled={!validMessage || messageSent}
-					onClick={() => this.sendSatisfaction()}
-				>
+					onClick={() => this.sendSatisfaction()}>
 					{messageSent ? (
 						<i
 							id="messageSent"
@@ -130,23 +128,25 @@ export default class Satisfaction extends Component {
 					) : (
 						<span>
 							<i className="fa fa-paper-plane" aria-hidden="true" />
-							<span className="text"><Trans>envoyer</Trans></span>
+							<span className="text">
+								<Trans>envoyer</Trans>
+							</span>
 						</span>
 					)}
 				</button>
-				<p> 
-						<Trans i18nKey="satisfaction-email-ou" >
-					Pour recevoir une réponse, laissez-nous votre adresse ou{' '}
-			</Trans>
+				<p>
+					<Trans i18nKey="satisfaction-email-ou">
+						Pour recevoir une réponse, laissez-nous votre adresse ou{' '}
+					</Trans>
 					<a
 						href={
 							'mailto:contact@embauche.beta.gouv.fr?subject=Suggestion pour le simulateur ' +
 							this.props.simu
-						}
-					>
-							<Trans i18nKey="satisfaction-mailto">
-									{' '}envoyez-nous directement un mail{' '}
-				</Trans>
+						}>
+						<Trans i18nKey="satisfaction-mailto">
+							{' '}
+							envoyez-nous directement un mail{' '}
+						</Trans>
 						<i
 							className="fa fa-envelope-open-o"
 							aria-hidden="true"
@@ -155,32 +155,6 @@ export default class Satisfaction extends Component {
 					</a>
 				</p>
 			</div>
-		)
-	}
-}
-
-@HoverDecorator
-export class Smiley extends Component {
-	render() {
-		return (
-			<button
-				onClick={() => this.props.clicked(this.props.text)}
-				className="satisfaction-smiley"
-				style={
-					this.props.hover
-						? {
-								background: this.props.hoverColor,
-								color: 'white',
-								borderColor: 'transparent'
-							}
-						: {
-								color: this.props.themeColour,
-								borderColor: this.props.themeColour
-							}
-				}
-			>
-				{this.props.text}
-			</button>
 		)
 	}
 }
