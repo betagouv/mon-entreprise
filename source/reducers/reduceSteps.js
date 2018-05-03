@@ -87,7 +87,6 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	}
 
 	if (action.type === 'START_CONVERSATION') {
-		debugger
 		tracker.push(['trackEvent', 'refine', userInput(state)])
 	}
 
