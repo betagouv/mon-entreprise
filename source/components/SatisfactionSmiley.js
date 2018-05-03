@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import withColours from './withColours'
 import HoverDecorator from './HoverDecorator'
-
+import './SatisfactionSmiley.css'
 @withColours
 @HoverDecorator
-export default class extends Component {
+export default class SatisfactionSmiley extends Component {
 	render() {
 		return (
 			<button
@@ -18,7 +18,7 @@ export default class extends Component {
 								borderColor: 'transparent'
 						  }
 						: {
-								color: this.props.themeColour,
+								color: this.props.colours.colour,
 								borderColor: this.props.colours.colour
 						  }
 				}>

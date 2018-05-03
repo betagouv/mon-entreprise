@@ -4,7 +4,6 @@ import { pick } from 'ramda'
 import Aide from '../Aide'
 import { reduxForm, reset } from 'redux-form'
 import { getInputComponent } from 'Engine/generateQuestions'
-import Satisfaction from '../Satisfaction'
 import { connect } from 'react-redux'
 import './conversation.css'
 
@@ -47,13 +46,10 @@ export default class Conversation extends Component {
 					<>
 						<Aide />
 						<div id="currentQuestion">
-							{currentQuestion ? (
+							{currentQuestion &&
 								getInputComponent({ unfolded: true })(flatRules, targetNames)(
 									currentQuestion
-								)
-							) : (
-								<Satisfaction />
-							)}
+								)}
 						</div>
 					</>
 				) : null}
