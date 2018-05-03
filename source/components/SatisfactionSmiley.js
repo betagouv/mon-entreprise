@@ -8,7 +8,7 @@ export default class extends Component {
 	render() {
 		return (
 			<button
-				onClick={() => this.props.clicked(this.props.text)}
+				onClick={() => this.props.onClick(this.props.text)}
 				className="satisfaction-smiley"
 				style={
 					this.props.hover
