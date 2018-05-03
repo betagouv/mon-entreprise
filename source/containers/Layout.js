@@ -16,33 +16,18 @@ import Mecanisms from 'Components/Mecanisms'
 import Contribution from 'Components/pages/Contribution'
 import Integration from 'Components/pages/Integration'
 import About from 'Components/pages/About'
-import ReactPiwik from 'Components/Tracker'
 import createHistory from 'history/createBrowserHistory'
 import { Header } from 'Components/pages/Header'
-import { getIframeOption } from '../utils'
-
-const piwik = new ReactPiwik({
-	url: 'stats.data.gouv.fr',
-	siteId: 39,
-	trackErrors: true
-})
-let integratorUrl = getIframeOption('integratorUrl')
-ReactPiwik.push([
-	'setCustomVariable',
-	1,
-	'urlPartenaire',
-	decodeURIComponent(integratorUrl || 'https://embauche.beta.gouv.fr'),
-	'visit'
-])
 
 export default class Layout extends Component {
 	history = createHistory()
 	render() {
+		let { tracker } = this.props
 		// track the initial pageview
-		ReactPiwik.push(['trackPageView'])
+		tracker.push(['trackPageView'])
 		return (
 			<I18nextProvider i18n={i18next}>
-				<Router history={piwik.connectToHistory(this.history)}>
+				<Router history={tracker.connectToHistory(this.history)}>
 					<>
 						<Header />
 						<Switch>

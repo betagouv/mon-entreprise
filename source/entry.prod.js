@@ -11,6 +11,22 @@ import Layout from './containers/Layout'
 import { rules, rulesFr } from 'Engine/rules'
 import lang from './i18n'
 
+import ReactPiwik from 'Components/Tracker'
+
+const piwik = new ReactPiwik({
+	url: 'stats.data.gouv.fr',
+	siteId: 39,
+	trackErrors: true
+})
+let integratorUrl = getIframeOption('integratorUrl')
+ReactPiwik.push([
+	'setCustomVariable',
+	1,
+	'urlPartenaire',
+	decodeURIComponent(integratorUrl || 'https://embauche.beta.gouv.fr'),
+	'visit'
+])
+
 let initialStore = {
 	iframe: getUrl().includes('iframe'),
 	themeColours: computeThemeColours(getIframeOption('couleur'))
@@ -19,12 +35,12 @@ let initialStore = {
 let enhancer = compose(applyMiddleware(debounceFormChangeActions()))
 
 let initialRules = lang == 'en' ? rules : rulesFr
-let store = createStore(reducers(initialRules), initialStore, enhancer)
+let store = createStore(reducers(piwik, initialRules), initialStore, enhancer)
 let anchor = document.querySelector('#js')
 
 render(
 	<Provider store={store}>
-		<Layout />
+		<Layout tracker={piwik}/>
 	</Provider>,
 	anchor
 )

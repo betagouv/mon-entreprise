@@ -11,7 +11,12 @@ import { SliderPicker } from 'react-color'
 import { rules, rulesFr } from 'Engine/rules'
 import lang from './i18n'
 
-let store = createStore(reducers(rulesFr))
+let tracker = {
+	push: () => {},
+	connectToHistory: () => {}
+}
+
+let store = createStore(reducers(tracker, rulesFr))
 
 @connect(
 	state => ({ couleur: state.themeColours.colour }),
