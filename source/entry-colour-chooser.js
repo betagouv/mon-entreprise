@@ -13,7 +13,7 @@ import lang from './i18n'
 
 let tracker = {
 	push: () => {},
-	connectToHistory: () => {}
+	connectToHistory: (history) => history
 }
 
 let store = createStore(reducers(tracker, rulesFr))

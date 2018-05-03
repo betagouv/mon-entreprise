@@ -2,9 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { compose, createStore, applyMiddleware } from 'redux'
 import reducers from './reducers/reducers'
-import DevTools from '../DevTools'
+import DevTools from './DevTools'
 import { Provider } from 'react-redux'
-import Layout from './Layout'
+import Layout from './containers/Layout'
 import { AppContainer } from 'react-hot-loader'
 import debounceFormChangeActions from './debounceFormChangeActions'
 import computeThemeColours from './components/themeColours'
@@ -25,7 +25,7 @@ let enhancer = compose(
 
 let tracker = {
 	push: console.log,
-	connectToHistory: () => {}
+	connectToHistory: (history) => history
 }
 
 let initialRules = lang == 'en' ? rules : rulesFr
@@ -35,7 +35,7 @@ let anchor = document.querySelector('#js')
 let App = ({ store }) => (
 	<Provider store={store}>
 		<div id="dev">
-			<Layout />
+			<Layout tracker={tracker} />
 			<DevTools />
 		</div>
 	</Provider>
