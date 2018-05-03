@@ -10,15 +10,15 @@ let url = hiddenVariables =>
 	'https://embauchegouv.typeform.com/to/dvbINf?' +
 	createQueryParams(hiddenVariables)
 
-export default ({ hiddenVariables }) => (
+let TypeFormEmbed = ({ hiddenVariables }) => (
 	<div>
-		<div
-			className="typeform-widget"
-			data-url={url(hiddenVariables)}
+		<a
+			className="typeform-share button"
+			href={url(hiddenVariables)}
 			data-mode="popup"
-			data-auto-open={true}
-			data-hide-headers={true}
-			data-hide-footer={true}
+			data-auto-open
+			data-hide-headers
+			data-hide-footer
 			target="_blank"
 		/>
 		<Helmet
@@ -32,3 +32,5 @@ export default ({ hiddenVariables }) => (
 		/>
 	</div>
 )
+
+export default TypeFormEmbed

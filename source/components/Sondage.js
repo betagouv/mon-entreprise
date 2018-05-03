@@ -1,37 +1,105 @@
 import React, { Component } from 'react'
 import './Sondage.css'
 import { connect } from 'react-redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Smiley from './SatisfactionSmiley'
 import TypeFormEmbed from './TypeFormEmbed'
-import Overlay from './Overlay'
+import PropTypes from 'prop-types'
+import { Trans, translate } from 'react-i18next'
 
 @connect(state => ({
 	targets: state.analysis ? state.analysis.targets : [],
-	activeInput: state.activeTargetInput
+	activeInput: state.activeTargetInput,
+	currentQuestion: state.currentQuestion,
+	conversationStarted: state.conversationStarted
 }))
-export default class extends Component {
-	state = { visible: true, modal: false }
-	onSmileyClick = satisfaction => this.setState({ modal: true, satisfaction })
+@translate()
+export default class Sondage extends Component {
+	state = {
+		visible: false,
+		showForm: false,
+		askFeedbackTime: 'AFTER_FIRST_ESTIMATE'
+	}
+	static contextTypes = {
+		i18n: PropTypes.object.isRequired
+	}
+	static getDerivedStateFromProps(nextProps, currentState) {
+		let feedbackAlreadyAsked = !!document.cookie.includes('feedback_asked=true')
+		let conditions = {
+			AFTER_FIRST_ESTIMATE: nextProps.activeInput && nextProps.targets.length,
+			AFTER_SIMULATION_COMPLETED:
+				!nextProps.currentQuestion && nextProps.conversationStarted
+		}
+		return {
+			visible: conditions[currentState.askFeedbackTime] && !feedbackAlreadyAsked
+		}
+	}
+	componentDidMount() {
+		this.setState({
+			askFeedbackTime:
+				Math.random() > 0.5
+					? 'AFTER_SIMULATION_COMPLETED'
+					: 'AFTER_FIRST_ESTIMATE'
+		})
+	}
 
+	handleClose = () => {
+		this.setState({ visible: false })
+		this.setCookie()
+	}
+	setCookie = () => {
+		document.cookie = 'feedback_asked=true;'
+	}
+	onSmileyClick = satisfaction => {
+		this.setState({ showForm: true, satisfaction, visible: false })
+		this.setCookie()
+	}
 	render() {
-		let { activeInput, targets } = this.props,
-			{ satisfaction, modal, visible } = this.state
+		let { satisfaction, showForm, visible, askFeedbackTime } = this.state
 
-		if (!(activeInput && targets.length)) return null
-		if (!visible) return null
 		return (
-			<div id="sondage">
-				<Smiley text=":)" hoverColor="#16a085" onClick={this.onSmileyClick} />
-				<Smiley text=":|" hoverColor="#f39c12" onClick={this.onSmileyClick} />
-				<button onClick={() => this.setState({ visible: false })}>X</button>
-				{modal && (
-					<Overlay onOuterClick={() => this.setSate({ modal: false })}>
-						<TypeFormEmbed
-							hiddenVariables={{ exterieur: false, satisfaction }}
-						/>
-					</Overlay>
+			<>
+				{showForm && (
+					<TypeFormEmbed
+						hiddenVariables={{
+							exterieur: false,
+							satisfaction,
+							askFeedbackTime,
+							language: this.context.i18n.language
+						}}
+					/>
 				)}
-			</div>
+				<ReactCSSTransitionGroup
+					transitionName="slide-blurred-bottom"
+					transitionEnterTimeout={2800}
+					transitionLeaveTimeout={300}>
+					{visible && (
+						<div className="sondage__container">
+							<div className="sondage">
+								<span className="sondage__text">
+									<Trans>Votre avis nous intéresse !</Trans>
+								</span>
+								<Smiley
+									text=":)"
+									hoverColor="#16a085"
+									onClick={this.onSmileyClick}
+								/>
+								<Smiley
+									text=":|"
+									hoverColor="#f39c12"
+									onClick={this.onSmileyClick}
+								/>
+								<button
+									className="sondage__closeButton unstyledButton"
+									onClick={this.handleClose}
+									aria-label="close">
+									X
+								</button>
+							</div>
+						</div>
+					)}
+				</ReactCSSTransitionGroup>
+			</>
 		)
 	}
 }
