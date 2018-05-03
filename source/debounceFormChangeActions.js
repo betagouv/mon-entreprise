@@ -26,7 +26,7 @@ export default () => {
 		dispatch(action)
 		return new Promise(resolve => {
 			timers[key] = setTimeout(() => {
-				resolve(dispatch({ type: 'USER_INPUT_UPDATE' }))
+				resolve(dispatch({ ...action, type: 'USER_INPUT_UPDATE' }))
 			}, time)
 		})
 	}
