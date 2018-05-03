@@ -8,8 +8,10 @@ import reducers from './reducers/reducers'
 import { changeThemeColour } from './actions'
 import Layout from './containers/Layout'
 import { SliderPicker } from 'react-color'
+import { rules, rulesFr } from 'Engine/rules'
+import lang from './i18n'
 
-let store = createStore(reducers)
+let store = createStore(reducers(rulesFr))
 
 @connect(
 	state => ({ couleur: state.themeColours.colour }),

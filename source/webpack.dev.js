@@ -18,8 +18,8 @@ module.exports = {
 		//
 		// le nom "simulateur" est là pour des raisons historiques
 		//
-		// simulateur: './source/iframe-script.js',
-		// 'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
+		// ,simulateur: './source/iframe-script.js',
+		// ,colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
