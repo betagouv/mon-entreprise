@@ -9,15 +9,24 @@
 }
 #overlayContent {
 	background: white;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	width: 70%;
-	max-width: 40em;
-	border: 2px solid #333350;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 	margin: 1em;
-	padding: 0em 1.5em;
-	min-height: 6em;
+
 	border-radius: 0.3em;
+	border: 2px solid #333350;
+	position: fixed;
+	min-height: 6em;
+}
+
+@media (min-width: 600px) {
+	#overlayContent {
+		width: 70%;
+		transform: translateX(-50%) translateY(-50%);
+		top: 50%;
+		left: 50%;
+		max-width: 40em;
+	}
 }
