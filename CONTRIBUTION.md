@@ -25,3 +25,5 @@ Et ceux spécifiques au projet :
 * :gear: `:gear:` pour une contribution au moteur qui traite les YAML
 * :hammer: `:hammer:` pour une contribution à la base de règles
 * :calendar: `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
+* :chart_with_upwards_trend: `:chart_with_upwards_trend:` pour une amélioration du tracking
+* :alien: `:alien:` pour ajouter des traductions

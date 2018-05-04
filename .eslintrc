@@ -1,28 +1,14 @@
 rules:
-  indent:
-    - 1
-    - tab
   linebreak-style:
     - 2
     - unix
-  semi:
-    - 1
-    - never
   quotes:
-    - 1
+    - 1 // While https://github.com/eslint/eslint/issues/9662#issuecomment-353958854 we don't enforce this
     - single
-  jsx-quotes:
-    - 1
-    - prefer-double
-  no-unused-vars: 1
   no-console: 1
   no-global-assign: 0
   no-unsafe-negation: 0
-  no-undef: 1
-  no-mixed-spaces-and-tabs: 1
-  react/jsx-uses-vars: 2
-  react/jsx-uses-react: 2
-
+  react/prop-types: 0
 parser: babel-eslint
 
 plugins:
@@ -33,6 +19,9 @@ env:
   es6: true
 extends:
   - eslint:recommended
+  - plugin:react/recommended
+  - prettier
+  - prettier/react
 parserOptions:
   ecmaFeatures:
     jsx: true
