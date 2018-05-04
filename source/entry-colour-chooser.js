@@ -29,8 +29,8 @@ class MyComponent extends React.Component {
 		return (
 			<div>
 				<p className="indication">
-					Visualisez sur cette page l’apparence du module pour différentes
-					couleurs principales.
+					Visualisez sur cette page l’apparence du module pour
+					différentes couleurs principales.
 				</p>
 				<SliderPicker
 					color={this.props.couleur}
@@ -41,7 +41,7 @@ class MyComponent extends React.Component {
 					&quot;data-couleur&quot; du script sur votre page est :{' '}
 					<b>{this.props.couleur}</b>
 				</p>
-				<Layout />
+				<Layout tracker={tracker} />
 			</div>
 		)
 	}

@@ -40,7 +40,7 @@ let anchor = document.querySelector('#js')
 
 render(
 	<Provider store={store}>
-		<Layout tracker={piwik}/>
+		<Layout tracker={piwik} />
 	</Provider>,
 	anchor
 )
