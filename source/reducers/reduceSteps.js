@@ -46,12 +46,13 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 		situationWithDefaults(state)
 	)
 
+	let userInput = state =>
+		state.activeTargetInput +
+		':' +
+		answerSource(state)(state.activeTargetInput)
+
 	if (action.type === 'USER_INPUT_UPDATE') {
-		tracker.push([
-			'trackEvent',
-			'input',
-			action.meta.field + ':' + action.payload
-		])
+		tracker.push(['trackEvent', 'input', userInput(state)])
 		return {
 			...state,
 			analysis,
@@ -86,13 +87,7 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	}
 
 	if (action.type === 'START_CONVERSATION') {
-		tracker.push([
-			'trackEvent',
-			'refine',
-			state.activeTargetInput +
-				':' +
-				answerSource(state)(state.activeTargetInput)
-		])
+		tracker.push(['trackEvent', 'refine', userInput(state)])
 	}
 
 	if (

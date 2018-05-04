@@ -49,7 +49,7 @@ function activeTargetInput(state = null, { type, name }) {
 	}
 }
 
-export default (tracker, initialRules) =>
+export default initialRules =>
 	reduceReducers(
 		combineReducers({
 			sessionId: (id = Math.floor(Math.random() * 1000000000000) + '') => id,
@@ -83,7 +83,7 @@ export default (tracker, initialRules) =>
 		}),
 		// cross-cutting concerns because here `state` is the whole state tree
 		reduceSteps(
-			tracker,
+			ReactPiwik,
 			initialRules,
 			formatInputs(initialRules, formValueSelector)
 		)
