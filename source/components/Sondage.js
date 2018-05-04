@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Sondage.css'
 import { connect } from 'react-redux'
+import ReactPiwik from './Tracker'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Smiley from './SatisfactionSmiley'
 import TypeFormEmbed from './TypeFormEmbed'
@@ -51,6 +52,7 @@ export default class Sondage extends Component {
 		document.cookie = 'feedback_asked=true;'
 	}
 	onSmileyClick = satisfaction => {
+		ReactPiwik.push(['trackEvent', 'feedback', 'smiley', satisfaction])
 		this.setState({ showForm: true, satisfaction, visible: false })
 		this.setCookie()
 	}
