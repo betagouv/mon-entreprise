@@ -8,10 +8,14 @@ import reducers from './reducers/reducers'
 import { changeThemeColour } from './actions'
 import Layout from './containers/Layout'
 import { SliderPicker } from 'react-color'
-import { rules, rulesFr } from 'Engine/rules'
-import lang from './i18n'
+import { rulesFr } from 'Engine/rules'
 
-let store = createStore(reducers(rulesFr))
+let tracker = {
+	push: () => {},
+	connectToHistory: history => history
+}
+
+let store = createStore(reducers(tracker, rulesFr))
 
 @connect(
 	state => ({ couleur: state.themeColours.colour }),
@@ -25,18 +29,19 @@ class MyComponent extends React.Component {
 		return (
 			<div>
 				<p className="indication">
-					Visualisez sur cette page l'apparence du module pour différentes
-					couleurs principales.
+					Visualisez sur cette page l’apparence du module pour
+					différentes couleurs principales.
 				</p>
 				<SliderPicker
 					color={this.props.couleur}
 					onChangeComplete={this.changeColour}
 				/>
 				<p className="indication">
-					La couleur sélectionnée, à déclarer comme attribut "data-couleur" du
-					script sur votre page est : <b>{this.props.couleur}</b>
+					La couleur sélectionnée, à déclarer comme attribut
+					&quot;data-couleur&quot; du script sur votre page est :{' '}
+					<b>{this.props.couleur}</b>
 				</p>
-				<Layout />
+				<Layout tracker={tracker} />
 			</div>
 		)
 	}

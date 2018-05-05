@@ -1,4 +1,4 @@
-import { path, head, reject, concat, without, length, map } from 'ramda'
+import { path, head, concat, without, length, map } from 'ramda'
 
 import { rules, collectDefaults, rulesFr } from 'Engine/rules'
 import {
@@ -46,13 +46,12 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 		situationWithDefaults(state)
 	)
 
-	let userInput = state =>
-		state.activeTargetInput +
-		':' +
-		answerSource(state)(state.activeTargetInput)
-
 	if (action.type === 'USER_INPUT_UPDATE') {
-		tracker.push(['trackEvent', 'input', userInput(state)])
+		tracker.push([
+			'trackEvent',
+			'input',
+			action.meta.field + ':' + action.payload
+		])
 		return {
 			...state,
 			analysis,
@@ -87,17 +86,20 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	}
 
 	if (action.type === 'START_CONVERSATION') {
-		tracker.push(['trackEvent', 'refine', userInput(state)])
+		tracker.push([
+			'trackEvent',
+			'refine',
+			state.activeTargetInput +
+				':' +
+				answerSource(state)(state.activeTargetInput)
+		])
 	}
 
-	if (
-		['SET_ACTIVE_TARGET_INPUT', 'START_CONVERSATION'].includes(action.type)
-	) {
+	if (['SET_ACTIVE_TARGET_INPUT', 'START_CONVERSATION'].includes(action.type)) {
 		// Si rien n'a été renseigné (stillBlank) on renvoie state et pas newState
 		// pour éviter que les cases blanches disparaissent, c'est un hack…
 		let stillBlank =
-			state.activeTargetInput &&
-			!answerSource(state)(state.activeTargetInput)
+			state.activeTargetInput && !answerSource(state)(state.activeTargetInput)
 
 		// Il faut recalculer les missingVariablesByTarget à chaque changement d'objectif
 		// car les variables manquantes du salaire de base calculé par inversion dépendent
@@ -126,9 +128,7 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 			),
 			initialAnalysis = analyseMany(state.parsedRules, state.targetNames)(
 				name =>
-					qualifiedTargets.includes(name)
-						? answerSource(state)(name)
-						: null
+					qualifiedTargets.includes(name) ? answerSource(state)(name) : null
 			),
 			initialMissingVariablesByTarget = collectMissingVariablesByTarget(
 				initialAnalysis.targets

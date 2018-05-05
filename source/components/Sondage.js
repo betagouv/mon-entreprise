@@ -66,7 +66,7 @@ export default class Sondage extends Component {
 						hiddenVariables={{
 							exterieur: false,
 							satisfaction,
-							askFeedbackTime,
+							answertiming: askFeedbackTime,
 							language: this.context.i18n.language
 						}}
 					/>

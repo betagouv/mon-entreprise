@@ -13,7 +13,10 @@ export default class Piwik {
 
 		this.options = options
 
-		if (this.options.url === undefined || this.options.siteId === undefined) {
+		if (
+			this.options.url === undefined ||
+			this.options.siteId === undefined
+		) {
 			throw new Error(
 				'PiwikTracker cannot be initialized! SiteId and url are mandatory.'
 			)
@@ -62,6 +65,10 @@ export default class Piwik {
 
 	static push(args) {
 		window._paq.push(args) // eslint-disable-line  no-underscore-dangle
+	}
+
+	push(args) {
+		Piwik.push(args)
 	}
 
 	connectToHistory(history) {
