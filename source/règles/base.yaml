@@ -484,7 +484,7 @@
 
 - espace: contrat salarié . CDD . motif
   nom: complément formation
-  titre: Complément de formation professionnelle 
+  titre: Complément de formation professionnelle
   formule: contrat salarié . CDD . motif = 'complément formation'
   description: L'employeur s'engage, pour une durée et dans des conditions déterminées par décret, à assurer un complément de formation professionnelle au salarié.
   références:
@@ -791,6 +791,7 @@
       - taxe d'apprentissage
       - taxe sur les salaires
       - CDD . cotisations employeur CDD
+      - forfait social
 
 - espace: contrat salarié
   nom: salaire net
@@ -845,7 +846,7 @@
 - espace: contrat salarié
   nom: aides employeur
   résumé: Pour l'employeur, différées dans le temps
-  description: > 
+  description: >
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
     somme:
@@ -1080,7 +1081,7 @@
         entreprise . association non lucrative: oui
         assiette cotisations sociales: 4000
         entreprise . effectif: 50
-      valeur attendue: 0 
+      valeur attendue: 0
     - nom: Non applicable si organisme lucratif
       situation:
         entreprise . association non lucrative: non
@@ -1910,7 +1911,7 @@
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
 
-  références: 
+  références:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
 
@@ -1977,7 +1978,7 @@
   taxe:
     dû par: employeur
 
-  
+
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
   applicable si: entreprise . association non lucrative
 
@@ -2078,3 +2079,38 @@
       situation:
         assiette cotisations sociales: 8000
       valeur attendue: 695.55
+
+- espace: contrat salarié
+  nom: forfait social
+  titre: Forfait social
+  description: |
+    Le forfait social est une contribution versée par l'employeur. Elle est prélevée sur les rémunérations ou gains non soumis aux cotisations et contributions sociales, mais assujettis à la CSG.
+  cotisation:
+    branche: retraite
+    collecteur: URSSAF
+    destinataire: CNAV
+    dû par: employeur
+  références:
+    Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
+    Fiche service-public.gouv.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
+    Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
+  formule:
+    multiplication:
+      assiette: forfait social . assiette taux huit
+      taux: 8%
+    # Les cotisations au taux de 20% ne sont pas encore dans le modèle (interessement, plans d'épargne, indémnités de rupture conventionelles...)
+
+
+- espace: contrat salarié . forfait social
+  nom: assiette taux huit
+  titre: Assiette du forfait social au taux de 8%
+  description: |
+    Assiette comprenant les rémunérations et les gains sur lesquelles s'appliquent la contribution du forfait social au taux de 8%.
+  références:
+    Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
+  non applicable si:
+    entreprise . effectif < 11
+  formule:
+    somme:
+      - complémentaire santé
+      - prévoyance obligatoire cadre
