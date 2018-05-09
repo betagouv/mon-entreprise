@@ -1,44 +1,32 @@
-
 /*
 	Règles CSS d'affichage des algorithmes
 */
 
-
 #rule-rules .situationValue {
 	display: none;
-	padding-left: 1em;
-	font-weight: 700;
-	color: #031bd6;
+	margin-left: 1em;
+	color: rgba(51, 51, 80, 0.8);
+	font-weight: 400;
 }
 
 #rule-rules.showValues .situationValue {
 	display: inline;
 }
 
-#algorithm {
+#rule-rules section {
+	margin: 1em 0;
 }
 
-#rule-rules section {
-	margin: 1em 0 1em 0;
-	font-weight: 500;
-	color: #444
-}
-#rule-rules section > div {
+#rule-rules section:not(h2) {
 	font-size: 90%;
 }
 
-
-#rule-rules  #ruleValue {
+#rule-rules #ruleValue {
 	font-weight: 400;
-	font-size: 160%;
-	margin: 2em 0 1em;
-	color: #031bd6
-}
-
-
-.node {
-	padding-left: 1em;
-	color: #4B4B66
+	text-align: center;
+	font-size: 200%;
+	margin: 1em 0;
+	color: rgb(41, 117, 209);
 }
 
 #declenchement > ul {
@@ -46,87 +34,92 @@
 	list-style-type: none;
 }
 #declenchement > ul > li {
-	margin-bottom: 1em
-}
-
-.mecanism > .nodeHead {
 	margin-bottom: 1em;
 }
 
+.mecanism > .nodeHead {
+	border-color: inherit;
+}
 .mecanism > .nodeHead .name {
-	padding: .05em 1em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0.2em 1em;
+	display: block;
 	background: #34495e;
 	color: white;
 	font-weight: 600;
-	border-radius: .4em;
+	border-bottom-right-radius: 3px;
+}
+.mecanism > .nodeHead .name::first-letter {
+	text-transform: capitalize;
+}
+.mecanism > .nodeHead > .situationValue {
+	top: 0;
+	right: 0;
+	position: absolute;
+	padding: 0.2em 1em;
+	border: 1px solid;
+	border-color: inherit;
+	border-top: none;
+	border-right: none;
+	border-bottom-left-radius: 3px;
 }
 [data-term-definition] {
 	cursor: pointer;
 }
 [data-term-definition]:hover {
-	opacity: .8
+	opacity: 0.8;
 }
 .ruleProp > .nodeHead .name {
 	background: #9b59b6;
 }
-.mecanism li {
+.mecanism.ruleProp {
+	border-color: #9b59b6;
 }
-.mecanism .properties, .mecanism.list ul {
-	margin-top: 0;
-	padding-left: 1em;
-	list-style-type: none;
-	border-left: 1px dashed #ccc;
-}
+
 .mecanism .properties .key {
 	font-weight: 600;
 	display: inline-block;
-	margin-bottom: .6em;
+	margin-bottom: 0.6em;
 	margin-right: 0.8em;
 }
 
 .multiplication > .nodeHead .name {
 	background: #2ecc71;
 }
+.mecanism.multiplication {
+	border-color: #2ecc71;
+}
+.mecanism.multiplication .key {
+	color: #2ecc71;
+}
 
 .multiplication li .key {
-	margin-right: .6em;
+	margin-right: 0.6em;
 }
 
-.mecanism.list > ul {
-	list-style-type: disc;
-}
-.mecanism.list > ul > li {
-	margin-left: .8em;
-	padding-left: .3em;
-}
-
-.maximum .description {
-	font-style: italic;
+.maximum .description,
+.composanteName {
 	font-weight: 600;
-	margin-bottom: .4em;
+	margin-bottom: 0.4em;
 	margin-left: 1em;
 }
 
 .mecanism.conditions > .nodeHead .name {
-	background: #3498db
+	background: #3498db;
+}
+.mecanism.conditions {
+	border-color: #3498db;
 }
 
-.condition {
-	margin-bottom: .6em;
+.mecanism .conditions > ul > li {
+	margin-bottom: 0.6em;
 }
 
 .node.inlineExpression {
 	padding-left: 0;
 	display: inline;
-}
-.inlineExpression .nodeContent {
-	/*border-bottom: 1px solid rgba(51, 51, 80, 0.25);*/
-	/*border-right: 1px solid rgba(51, 51, 80, 0.25);*/
-	/*padding: .5em .6em;*/
-	/*border-radius: .3em;*/
-}
-.nodeHead {
-	display: inline-block;
 }
 .leaf .situationValue {
 	text-align: center;
@@ -140,21 +133,20 @@
 }
 
 .variable .name {
-	color: #5B5B73;
+	color: #5b5b73;
 	text-align: center;
 	margin-top: 1em;
-	padding: .05em .6em;
+	padding: 0.2em 0.6em;
 	line-height: 1.8em;
-	border-radius: .4em;
+	border-radius: 0.4em;
 	font-weight: 600;
 	font-size: 90%;
 	border: 1px solid rgba(51, 51, 80, 0.25);
-	white-space: nowrap
+	white-space: nowrap;
 }
 .variable .name:hover {
 	color: black;
 }
-
 
 .percentage .name {
 	font-size: 110%;
@@ -162,7 +154,7 @@
 }
 
 .inlineExpression .operator {
-	margin: .1em .6em;
+	margin: 0.1em 0.6em;
 	font-size: 150%;
 	font-weight: 600;
 	vertical-align: middle;
@@ -177,51 +169,67 @@
 }
 
 .barème .key {
-	color: #1abc9c
+	color: #1abc9c;
+}
+.mecanism.barème {
+	border-color: #1abc9c;
 }
 
 .barème table {
 	margin-top: 1em;
 	width: 80%;
 	text-align: left;
+	font-weight: 400;
 }
 .barème table td {
-	padding: .1em .4em;
-	/*border: 1px solid #aaa;*/
+	padding: 0.1em 0.4em;
+}
+.barème table tr:first-child {
+	font-weight: 600;
 }
 .barème table tr:nth-child(2n) {
-	background: #f1f1f1
+	background: #f1f1f1;
+}
+
+.mecanism.inversion li {
+	margin-top: 0.6em;
 }
 
 .composantes > .nodeHead .name {
 	background: #3498db;
 }
+.mecanism.composantes {
+	border-color: #3498db;
+}
+.composantes .composanteName::first-letter {
+	text-transform: capitalize;
+}
 
-.composantes > ul > li {
-	display: inline-block;
-}
-.composantes .composante {
-	width: 45%;
-}
-.composantes .composante .content {
-	border-top: 1px solid #3498db;
-	padding: 1em;
-	margin-right: 2em;
-}
-.composantes .composanteAttributes {
+.mecanism ul {
+	margin: 0;
+	padding: 0;
 	list-style-type: none;
-	padding: .2em;
-	color: #3498db;
-}
-.composantes .composanteAttributes span:last-child {
-	font-weight: 600;
 }
 
-.composantes .composantesSymbol {
-	font-size: 160%;
-	color: #3498db;
+.mecanism {
+	border: 1px solid;
+	border-radius: 3px;
+	border-color: #34495e;
+	padding: 1em;
+	padding-top: 3em;
+	position: relative;
+	margin-bottom: 2em;
 }
 
-#rule-content {
-	margin-left: 2em;
+.mecanism .mecanism {
+	margin: 1em;
+	margin-bottom: 1.5em;
+}
+
+.mecanism .key::first-letter {
+	text-transform: capitalize;
+}
+
+.mecanism ul > li {
+	margin-right: 1em;
 }

@@ -629,9 +629,9 @@
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
 
-    Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans ces cas:
-      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
-      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans les cas suivants:
+    - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
   # le contrat salarié est rattaché à l'activité, elle-même rattachée à un individu.
   établissement: Établissement
@@ -729,6 +729,8 @@
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
+  description: Le plafond de Sécurité sociale est le montant maximum des rémunérations ou gains à prendre en compte pour le calcul de certaines cotisations.
+
   #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
   # type de période: mensuel
   formule: 3311
@@ -1582,7 +1584,7 @@
 
 - espace: contrat salarié
   nom: forfait complémentaire santé
-  titre: Forfait de complémentaire santé enteprise
+  titre: Forfait de complémentaire santé entreprise
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
   description: |
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
@@ -1711,6 +1713,10 @@
 - espace: contrat salarié
   nom: FNAL
   titre: Contribution au Fonds National d’Aide au Logement
+  description: |
+    Le fonds national d’aide au logement (Fnal) est une contribution due par tous les employeurs, quelle que soit la taille de l’entreprise.
+
+    Cette contribution assure le financement de l’allocation logement.
   cotisation:
     dû par: employeur
     destinataire: URSSAF

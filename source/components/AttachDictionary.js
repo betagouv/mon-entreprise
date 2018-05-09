@@ -8,12 +8,13 @@ import Overlay from './Overlay'
 // On ajoute à la section la possibilité d'ouvrir un panneau d'explication des termes.
 // Il suffit à la section d'appeler une fonction fournie en lui donnant du JSX
 export let AttachDictionary = dictionary => Decorated =>
-	class extends React.Component {
+	class withDictionary extends Component {
 		state = {
 			term: null,
 			explanation: null
 		}
 		componentDidMount() {
+			// eslint-disable-next-line
 			let decoratedNode = ReactDOM.findDOMNode(this.decorated)
 			decoratedNode.addEventListener('click', e => {
 				let term = e.target.dataset['termDefinition'],
@@ -27,7 +28,7 @@ export let AttachDictionary = dictionary => Decorated =>
 		render() {
 			let { explanation, term } = this.state
 			return (
-				<div style={{ display: 'inline-block' }}>
+				<div>
 					<Decorated
 						ref={decorated => (this.decorated = decorated)}
 						{...this.props}
@@ -36,8 +37,7 @@ export let AttachDictionary = dictionary => Decorated =>
 						<Overlay
 							onOuterClick={() =>
 								this.setState({ term: null, explanation: null })
-							}
-						>
+							}>
 							<div
 								id="dictionaryPanel"
 								dangerouslySetInnerHTML={{

@@ -88,23 +88,22 @@ let decompose = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map((c, i) => [
+					{explanation.map(c => [
 						<li className="composante" key={JSON.stringify(c.composante)}>
 							<ul className="composanteAttributes">
 								{toPairs(c.composante).map(([k, v]) => (
-									<li key={k}>
-										<span><Trans>{k}</Trans>: </span>
-										<span><Trans>{v}</Trans></span>
+									<li key={k} className="composanteName">
+										<span>
+											<Trans>{k}</Trans>:{' '}
+										</span>
+										<span>
+											<Trans>{v}</Trans>
+										</span>
 									</li>
 								))}
 							</ul>
 							<div className="content">{makeJsx(c)}</div>
-						</li>,
-						i < explanation.length - 1 && (
-							<li key="+" className="composantesSymbol">
-								<i className="fa fa-plus-circle" aria-hidden="true" />
-							</li>
-						)
+						</li>
 					])}
 				</ul>
 			}
@@ -154,7 +153,10 @@ let devariate = (recurse, k, v) => {
 		}
 
 		let explanation = map(evaluateOne, node.explanation),
-			candidates = filter(node => node.condition.nodeValue !== false, explanation),
+			candidates = filter(
+				node => node.condition.nodeValue !== false,
+				explanation
+			),
 			satisfied = filter(node => node.condition.nodeValue, explanation),
 			choice = head(satisfied),
 			nodeValue = choice ? choice.nodeValue : null
@@ -226,11 +228,16 @@ export let mecanismOneOf = (recurse, k, v) => {
 			values = pluck('nodeValue', explanation),
 			nodeValue = any(equals(true), values)
 				? true
-				: any(equals(null), values) ? null : false,
+				: any(equals(null), values)
+					? null
+					: false,
 			// Unlike most other array merges of missing variables this is a "flat" merge
 			// because "one of these conditions" tend to be several tests of the same variable
 			// (e.g. contract type is one of x, y, z)
-			missingVariables = nodeValue == null ? reduce(mergeWith(max),{},map(collectNodeMissing,explanation)) : {}
+			missingVariables =
+				nodeValue == null
+					? reduce(mergeWith(max), {}, map(collectNodeMissing, explanation))
+					: {}
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -272,7 +279,9 @@ export let mecanismAllOf = (recurse, k, v) => {
 			values = pluck('nodeValue', explanation),
 			nodeValue = any(equals(false), values)
 				? false // court-circuit
-				: any(equals(null), values) ? null : true,
+				: any(equals(null), values)
+					? null
+					: true,
 			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
@@ -309,12 +318,12 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 
 		let evaluate = (cache, situationGate, parsedRules, node) => {
 			let explanation = evolve(
-				{
-					condition: curry(evaluateNode)(cache, situationGate, parsedRules),
-					consequence: curry(evaluateNode)(cache, situationGate, parsedRules)
-				},
-				node.explanation
-			),
+					{
+						condition: curry(evaluateNode)(cache, situationGate, parsedRules),
+						consequence: curry(evaluateNode)(cache, situationGate, parsedRules)
+					},
+					node.explanation
+				),
 				leftMissing = explanation.condition.missingVariables,
 				investigate = explanation.condition.nodeValue !== false,
 				rightMissing = investigate
@@ -360,10 +369,10 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				isEmpty(nonFalsyTerms)
 					? 0
 					: // c'est un 'null', on renvoie null car des variables sont manquantes
-						getFirst('condValue') == null
+					  getFirst('condValue') == null
 						? null
 						: // c'est un true, on renvoie la valeur de la conséquence
-							getFirst('nodeValue'),
+						  getFirst('nodeValue'),
 			choice = find(node => node.condValue, explanation),
 			missingVariables = choice
 				? choice.missingVariables
@@ -434,13 +443,13 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 
 	if (inversion.inversionChoiceNeeded)
 		return {
-			missingVariables: {[dottedName]:1},
+			missingVariables: { [dottedName]: 1 },
 			nodeValue: null
 		}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let inversionCache = {}
 	let fx = x => {
-		inversionCache = {parseLevel: oldCache.parseLevel+1, op:"<"}
+		inversionCache = { parseLevel: oldCache.parseLevel + 1, op: '<' }
 		return evaluateNode(
 			inversionCache, // with an empty cache
 			n => (dottedName === n ? x : situationGate(n)),
@@ -477,11 +486,13 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 export let mecanismInversion = dottedName => (recurse, k, v) => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let inversion =
-			// avoid the inversion loop !
+				// avoid the inversion loop !
 				situationGate(dottedName) == undefined &&
 				doInversion(cache, situationGate, parsedRules, v, dottedName),
 			// TODO - ceci n'est pas vraiment satisfaisant
-			nodeValue = situationGate(dottedName) ? Number.parseFloat(situationGate(dottedName)) : inversion.nodeValue,
+			nodeValue = situationGate(dottedName)
+				? Number.parseFloat(situationGate(dottedName))
+				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
 
 		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
@@ -558,12 +569,14 @@ export let mecanismReduction = (recurse, k, v) => {
 							v_assiette > plafond
 								? v_assiette
 								: max(0, (1 + taux) * v_assiette - taux * plafond)
-						}
+					  }
 					: v_assiette
 
 		return abattement
 			? val(abattement) == null
-				? montantFranchiséDécoté === 0 ? 0 : null
+				? montantFranchiséDécoté === 0
+					? 0
+					: null
 				: max(0, montantFranchiséDécoté - val(abattement))
 			: montantFranchiséDécoté
 	}
@@ -573,7 +586,7 @@ export let mecanismReduction = (recurse, k, v) => {
 			? {
 					...base,
 					décote: map(recurse, v.décote)
-				}
+			  }
 			: base,
 		evaluate = evaluateObject(objectShape, effect)
 
@@ -626,26 +639,34 @@ export let mecanismProduct = (recurse, k, v) => {
 			child={
 				<ul className="properties">
 					<li key="assiette">
-						<span className="key"><Trans>assiette</Trans>: </span>
+						<span className="key">
+							<Trans>assiette</Trans>:{' '}
+						</span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
 					{(explanation.taux.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
 						<li key="taux">
-							<span className="key"><Trans>taux</Trans>: </span>
+							<span className="key">
+								<Trans>taux</Trans>:{' '}
+							</span>
 							<span className="value">{makeJsx(explanation.taux)}</span>
 						</li>
 					)}
 					{(explanation.facteur.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
 						<li key="facteur">
-							<span className="key"><Trans>facteur</Trans>: </span>
+							<span className="key">
+								<Trans>facteur</Trans>:{' '}
+							</span>
 							<span className="value">{makeJsx(explanation.facteur)}</span>
 						</li>
 					)}
 					{explanation.plafond.nodeValue != Infinity && (
 						<li key="plafond">
-							<span className="key"><Trans>plafond</Trans>: </span>
+							<span className="key">
+								<Trans>plafond</Trans>:{' '}
+							</span>
 							<span className="value">{makeJsx(explanation.plafond)}</span>
 						</li>
 					)}
@@ -724,11 +745,11 @@ export let mecanismScale = (recurse, k, v) => {
 						val(assiette) < min * val(multiplicateur)
 							? memo + 0
 							: memo +
-								(Math.min(val(assiette), max * val(multiplicateur)) -
+							  (Math.min(val(assiette), max * val(multiplicateur)) -
 									min * val(multiplicateur)) *
 									taux.nodeValue,
 					0
-				)
+			  )
 	}
 
 	let explanation = {
@@ -745,11 +766,15 @@ export let mecanismScale = (recurse, k, v) => {
 			child={
 				<ul className="properties">
 					<li key="assiette">
-						<span className="key"><Trans>assiette</Trans>: </span>
+						<span className="key">
+							<Trans>assiette</Trans>:{' '}
+						</span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
 					<li key="multiplicateur">
-						<span className="key"><Trans>multiplicateur des tranches</Trans>: </span>
+						<span className="key">
+							<Trans>multiplicateur des tranches</Trans>:{' '}
+						</span>
 						<span className="value">
 							{makeJsx(explanation['multiplicateur des tranches'])}
 						</span>
@@ -757,8 +782,12 @@ export let mecanismScale = (recurse, k, v) => {
 					<table className="tranches">
 						<thead>
 							<tr>
-								<th><Trans>Tranches de l'assiette</Trans></th>
-								<th><Trans>Taux</Trans></th>
+								<th>
+									<Trans>Tranches de l'assiette</Trans>
+								</th>
+								<th>
+									<Trans>Taux</Trans>
+								</th>
 							</tr>
 							{explanation.tranches.map(
 								({
@@ -777,8 +806,7 @@ export let mecanismScale = (recurse, k, v) => {
 												min
 													? ' bold'
 													: ''
-										}}
-									>
+										}}>
 										<td key="tranche">
 											{maxOnly
 												? '< ' + maxOnly
@@ -901,11 +929,15 @@ export let mecanismComplement = (recurse, k, v) => {
 				child={
 					<ul className="properties">
 						<li key="cible">
-							<span className="key"><Trans>cible</Trans>: </span>
+							<span className="key">
+								<Trans>cible</Trans>:{' '}
+							</span>
 							<span className="value">{makeJsx(explanation.cible)}</span>
 						</li>
 						<li key="mini">
-							<span className="key"><Trans>montant à atteindre</Trans>: </span>
+							<span className="key">
+								<Trans>montant à atteindre</Trans>:{' '}
+							</span>
 							<span className="value">{makeJsx(explanation.montant)}</span>
 						</li>
 					</ul>

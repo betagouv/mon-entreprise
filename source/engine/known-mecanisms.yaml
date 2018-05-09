@@ -109,7 +109,7 @@ applicable si:
 
     La formule de calcul peut donc être ignorée, quel que soit son montant.
 
-    Peut être accompagnée du mécanisme 'non appicable si'.
+    Peut être accompagnée du mécanisme 'non applicable si'.
 
 non applicable si:
   description: |
@@ -119,7 +119,7 @@ non applicable si:
 
     La formule de calcul peut donc être ignorée, quel que soit son montant.
 
-    Peut être accompagnée du mécanisme 'appicable si'.
+    Peut être accompagnée du mécanisme 'applicable si'.
 
 barème:
   type: numeric

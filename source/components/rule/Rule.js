@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import { isEmpty, path, last } from 'ramda'
+import { isEmpty } from 'ramda'
 import { connect } from 'react-redux'
 import './Rule.css'
-import { capitalise0 } from '../../utils'
 import References from './References'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import Helmet from 'react-helmet'
 import { createMarkdownDiv } from 'Engine/marked'
-import Destinataire from './Destinataire'
+import RuleHeader from './Header'
 import { Link } from 'react-router-dom'
 import {
 	findRuleByNamespace,
@@ -40,7 +39,7 @@ export default class Rule extends Component {
 					<title>{title}</title>
 					<meta name="description" content={description} />
 				</Helmet>
-				<RuleMeta
+				<RuleHeader
 					{...{
 						ns,
 						type,
@@ -100,9 +99,7 @@ let NamespaceRulesList = withColours(
 			<h2>
 				<Trans>Règles attachées</Trans>
 				<small>
-					<Trans i18nKey="inspace">
-						Ces règles sont dans l'espace de nom
-					</Trans>{' '}
+					<Trans i18nKey="inspace">Ces règles sont dans l’espace de nom</Trans>{' '}
 					`{flatRule.title}`
 				</small>
 			</h2>
@@ -123,72 +120,6 @@ let NamespaceRulesList = withColours(
 		</section>
 	)
 )
-
-let RuleMeta = ({
-	ns,
-	type,
-	description,
-	question,
-	rule,
-	flatRules,
-	name,
-	title
-}) => (
-	<section id="rule-meta">
-		<div id="meta-header">
-			{ns && <Namespace {...{ ns, flatRules }} />}
-			<h1>{title || capitalise0(name)}</h1>
-		</div>
-		<div id="meta-content">
-			<div id="meta-paragraph">
-				{type && (
-					<span className="rule-type">
-						<span><Trans>{type}</Trans></span>
-					</span>
-				)}
-				{createMarkdownDiv(description || question)}
-			</div>
-			<Destinataire destinataire={path([type, 'destinataire'])(rule)} />
-		</div>
-	</section>
-)
-
-export let Namespace = withColours(({ ns, flatRules, colours }) => (
-	<ul id="namespace">
-		{ns
-			.split(' . ')
-			.reduce(
-				(memo, next) => [
-					...memo,
-					[...(memo.length ? memo.reverse()[0] : []), next]
-				],
-				[]
-			)
-			.map(fragments => {
-				let ruleName = fragments.join(' . '),
-					rule = findRuleByDottedName(flatRules, ruleName),
-					ruleText = rule.title || capitalise0(rule.name)
-
-				return (
-					<li key={fragments.join()}>
-						<Link
-							style={{
-								color: colours.textColourOnWhite,
-								textDecoration: 'underline'
-							}}
-							to={'/règle/' + encodeRuleName(ruleName)}>
-							{ruleText}
-						</Link>
-						<i
-							style={{ margin: '0 .6em', fontSize: '85%' }}
-							className="fa fa-chevron-right"
-							aria-hidden="true"
-						/>
-					</li>
-				)
-			})}
-	</ul>
-))
 
 let ReportError = () => (
 	<button id="reportError">

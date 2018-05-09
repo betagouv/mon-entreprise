@@ -28,6 +28,7 @@ radio_Non: No
 radio_Aucun: None
 oui: yes
 non: no
+inlineExpressionNegation: Not
 déplier: show more
 replier: show less
 transport: transportation
@@ -59,7 +60,7 @@ afficher les sources complémentaires: display additional information sources
 understand: Click any value to see how it was calculated
 input: This rule does not have a formula to compute it. Its value must be supplied through the form.
 Déclenchement: Applicability
-Calcul: Calculation formula
+Détails du calcul: Calculation formula
 Chercher une règle: Find a rule
 Entrez des mots clefs ici: Enter keywords
 noresults: No results

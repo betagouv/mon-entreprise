@@ -1,0 +1,44 @@
+#destinataire {
+	margin-top: 2em;
+	margin-bottom: 1.5em;
+	border: 2px solid rgb(41, 117, 209, 0.7);
+	color: rgb(41, 117, 209, 0.7);
+	padding: 1em;
+	border-radius: 3px;
+}
+
+@media (min-width: 600px) {
+	#destinataire {
+		float: right;
+		clear: right;
+		margin: 1em;
+		margin-top: 0;
+		margin-right: 0;
+	}
+}
+
+#destinataire h3 {
+	text-decoration: none;
+	color: inherit;
+	margin: 0;
+	font-size: inherit;
+	font-weight: 400;
+}
+#destinataire img {
+	max-width: 150px;
+	opacity: 0.8;
+	margin: auto;
+	display: block;
+}
+#destinataireName {
+	text-align: center;
+	font-size: 70%;
+	line-height: 1em;
+	margin-top: 0.3em;
+}
+#destinataire #calligraphy {
+	font-size: 150%;
+	padding: 0.5em;
+	font-weight: bold;
+	text-align: center;
+}

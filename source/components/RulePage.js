@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import Rule from 'Components/rule/Rule'
 import { analyse } from 'Engine/traverse'
 import { head, path, compose } from 'ramda'
 import {
@@ -15,8 +14,9 @@ import { pipe, pluck, join, map, pick } from 'ramda'
 import { Link, Redirect } from 'react-router-dom'
 import { animateScroll } from 'react-scroll'
 import './RulePage.css'
-import { Namespace } from './rule/Rule'
-import SearchButton from 'Components/SearchButton'
+import SearchButton from './SearchButton'
+import Namespace from './rule/Namespace'
+import Rule from './rule/Rule'
 import { setExample } from '../actions'
 
 @translate()
@@ -81,12 +81,9 @@ export default class RulePage extends Component {
 	}
 }
 
-@connect(
-	state => ({}),
-	dispatch => ({
-		setExample: compose(dispatch, setExample)
-	})
-)
+@connect(null, dispatch => ({
+	setExample: compose(dispatch, setExample)
+}))
 class BackToSimulation extends Component {
 	render() {
 		let { targets, colour, setExample } = this.props
@@ -94,7 +91,10 @@ class BackToSimulation extends Component {
 			<Link
 				onClick={() => setExample(null)}
 				id="toSimulation"
-				to={'/simu/' + pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)}
+				to={
+					'/simu/' +
+					pipe(pluck('name'), map(encodeRuleName), join('+'))(targets)
+				}
 				style={{ background: colour }}>
 				<i className="fa fa-arrow-circle-left" aria-hidden="true" />
 				<Trans i18nKey="back">Reprendre la simulation</Trans>
