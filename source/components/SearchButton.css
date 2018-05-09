@@ -2,9 +2,7 @@
 	margin: 0.6em 0;
 	border: none;
 	font-size: 110%;
-	padding: 0 .6em;
-}
-#searchButton i {
+	padding: 0 0.6em;
 }
 #searchButton {
 	display: flex;

@@ -11,15 +11,6 @@ import { analyse } from 'Engine/traverse'
 import { exampleSituationGateWithDefaults } from './Examples'
 import withLanguage from '../withLanguage'
 
-let RuleWithoutFormula = () => (
-	<p>
-		<Trans i18nKey="input">
-			Cette règle n’a pas de formule de calcul pour l’instant. Sa valeur doit
-			donc être renseignée directement.
-		</Trans>
-	</p>
-)
-
 @AttachDictionary(knownMecanisms)
 @translate()
 @withLanguage
@@ -29,14 +20,12 @@ export default class Algorithm extends React.Component {
 				rule: displayedRule,
 				showValues,
 				currentExample,
-				t,
 				rules,
 				language
 			} = this.props,
 			ruleWithoutFormula =
 				!displayedRule['formule'] ||
 				path(['formule', 'explanation', 'une possibilité'], displayedRule)
-
 		let rule = currentExample
 			? head(
 					analyse(rules, displayedRule.dottedName)(
@@ -44,10 +33,20 @@ export default class Algorithm extends React.Component {
 					).targets
 			  )
 			: displayedRule
+		console.log(rule)
 
 		return (
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({ showValues })}>
+					{showValues && rule.nodeValue ? (
+						<div id="ruleValue">
+							<i className="fa fa-calculator" aria-hidden="true" />{' '}
+							{Intl.NumberFormat(language, {
+								style: 'currency',
+								currency: 'EUR'
+							}).format(rule.nodeValue)}
+						</div>
+					) : null}
 					{do {
 						// TODO ce let est incompréhensible !
 						let applicabilityMecanisms = values(rule).filter(
@@ -66,36 +65,19 @@ export default class Algorithm extends React.Component {
 							</section>
 						)
 					}}
-					<section id="formule">
-						<h2>
-							<Trans>Calcul</Trans>
-							{!ruleWithoutFormula && (
+					{!ruleWithoutFormula ? (
+						<section id="formule">
+							<h2>
+								<Trans>Détails du calcul</Trans>
 								<small>
 									<Trans i18nKey="understand">
 										Cliquez sur chaque chaque valeur pour comprendre
 									</Trans>
 								</small>
-							)}
-						</h2>
-						{ruleWithoutFormula ? (
-							<RuleWithoutFormula />
-						) : (
-							makeJsx(rule['formule'])
-						)}
-					</section>
-					<section
-						id="ruleValue"
-						style={{ visibility: showValues ? 'visible' : 'hidden' }}>
-						<i className="fa fa-calculator" aria-hidden="true" />{' '}
-						{rule.nodeValue == 0
-							? t('Règle non applicable')
-							: rule.nodeValue == null
-								? t('Situation incomplète')
-								: Intl.NumberFormat(language, {
-										style: 'currency',
-										currency: 'EUR'
-								  }).format(rule.nodeValue)}
-					</section>
+							</h2>
+							{makeJsx(rule['formule'])}
+						</section>
+					) : null}
 				</section>
 			</div>
 		)

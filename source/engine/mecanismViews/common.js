@@ -1,27 +1,32 @@
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { pick, contains } from 'ramda'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
 import { capitalise0 } from '../../utils'
+import withLanguage from '../../components/withLanguage'
 
-let treatValue = data =>
+let treatValue = (data, language) =>
 	data == null
 		? '?'
 		: typeof data == 'boolean'
 			? { true: 'oui', false: 'non' }[data]
-			: !isNaN(data) ? Math.round(+data * 100) / 100 : data
+			: !isNaN(data)
+				? Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(data)
+				: data
 
-export let NodeValue = ({ data }) => <span>{treatValue(data)}</span>
+export let NodeValue = withLanguage(({ data, language }) => (
+	<span>{treatValue(data, language)}</span>
+))
 
-let NodeValuePointer = ({ data }) => (
-	<span className={'situationValue ' + treatValue(data)}>
-		←&nbsp;
-		<NodeValue data={data} />
-	</span>
-)
+let NodeValuePointer = ({ data }) =>
+	data ? (
+		<span className={'situationValue ' + treatValue(data)}>
+			<NodeValue data={data} />
+		</span>
+	) : null
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export class Node extends Component {
@@ -47,25 +52,25 @@ export class Node extends Component {
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-@connect(
-	pick(['flatRules'])
-)
+@connect(pick(['flatRules']))
 export class Leaf extends Component {
-	render () {
+	render() {
 		let { classes, dottedName, name, value, flatRules } = this.props,
 			rule = findRuleByDottedName(flatRules, dottedName)
 
-		return <span className={classNames(classes, 'leaf')}>
-			{dottedName && (
-				<span className="nodeHead">
-					<Link to={'/règle/' + encodeRuleName(dottedName)}>
-						<span className="name">
-							{rule.title || capitalise0(name)}
-							<NodeValuePointer data={value} />
-						</span>
-					</Link>
-				</span>
-			)}
-		</span>
+		return (
+			<span className={classNames(classes, 'leaf')}>
+				{dottedName && (
+					<span className="nodeHead">
+						<Link to={'/règle/' + encodeRuleName(dottedName)}>
+							<span className="name">
+								{rule.title || capitalise0(name)}
+								<NodeValuePointer data={value} />
+							</span>
+						</Link>
+					</span>
+				)}
+			</span>
+		)
 	}
 }

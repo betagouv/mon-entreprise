@@ -19,8 +19,8 @@ a {
 	text-decoration: none;
 }
 
-h1 {
-	margin: 0 0.1em;
+h1,
+h2 {
 	font-weight: 400;
 }
 
