@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
-import PropTypes from 'prop-types'
 import { FormDecorator } from './FormDecorator'
 import classnames from 'classnames'
 import SendButton from './SendButton'
@@ -9,9 +8,6 @@ import InputSuggestions from './InputSuggestions'
 @FormDecorator('input')
 @translate()
 export default class Input extends Component {
-	static contextTypes = {
-		i18n: PropTypes.object.isRequired
-	}
 	render() {
 		let {
 				input,
@@ -19,13 +15,13 @@ export default class Input extends Component {
 				submit,
 				valueType,
 				meta: { dirty, error, active },
+				t,
 				themeColours
 			} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
 			inputError = dirty && error,
-			submitDisabled = !dirty || inputError,
-			{ i18n } = this.context
+			submitDisabled = !dirty || inputError
 
 		return (
 			<span>
@@ -39,7 +35,7 @@ export default class Input extends Component {
 						className={classnames({ suffixed })}
 						id={'step-' + dottedName}
 						inputMode="numeric"
-						placeholder={i18n.t('votre réponse')}
+						placeholder={t('votre réponse')}
 						style={
 							!active
 								? { border: '2px dashed #ddd' }

@@ -5,7 +5,7 @@ import ReactPiwik from './Tracker'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Smiley from './SatisfactionSmiley'
 import TypeFormEmbed from './TypeFormEmbed'
-import PropTypes from 'prop-types'
+import withLanguage from './withLanguage'
 import { Trans, translate } from 'react-i18next'
 
 @connect(state => ({
@@ -15,14 +15,12 @@ import { Trans, translate } from 'react-i18next'
 	conversationStarted: state.conversationStarted
 }))
 @translate()
+@withLanguage
 export default class Sondage extends Component {
 	state = {
 		visible: false,
 		showForm: false,
 		askFeedbackTime: 'AFTER_FIRST_ESTIMATE'
-	}
-	static contextTypes = {
-		i18n: PropTypes.object.isRequired
 	}
 	static getDerivedStateFromProps(nextProps, currentState) {
 		let feedbackAlreadyAsked = !!document.cookie.includes('feedback_asked=true')
@@ -57,7 +55,8 @@ export default class Sondage extends Component {
 		this.setCookie()
 	}
 	render() {
-		let { satisfaction, showForm, visible, askFeedbackTime } = this.state
+		let { satisfaction, showForm, visible, askFeedbackTime } = this.state,
+			{ language } = this.props
 
 		return (
 			<>
@@ -67,7 +66,7 @@ export default class Sondage extends Component {
 							exterieur: false,
 							satisfaction,
 							answertiming: askFeedbackTime,
-							language: this.context.i18n.language
+							language
 						}}
 					/>
 				)}

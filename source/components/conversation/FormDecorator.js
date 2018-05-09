@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
-import { Field, change, formValueSelector } from 'redux-form'
+import { Field, change } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
-import { path } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
 import { findRuleByDottedName } from 'Engine/rules'
 
 export let buildValidationFunction = valueType => {
 	let validator = valueType ? valueType.validator : {},
-		{ pre = v => v, test = v => true, error } = validator
+		{ pre = v => v, test = () => true, error } = validator
 	return v => v != undefined && (test(pre(v)) ? undefined : error)
 }
 /*
@@ -39,10 +37,8 @@ export var FormDecorator = formType => RenderField =>
 				dispatch(change('conversation', field, value))
 		})
 	)
+	@translate()
 	class extends Component {
-		static contextTypes = {
-			i18n: PropTypes.object.isRequired
-		}
 		state = {
 			helpVisible: false
 		}
@@ -62,17 +58,16 @@ export var FormDecorator = formType => RenderField =>
 
 		renderUnfolded() {
 			let {
-					setFormValue,
-					stepAction,
-					subquestion,
-					possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
-					defaultValue,
-					valueType,
-					fieldName,
-					inversion,
-					themeColours
-				} = this.props,
-				{ i18n } = this.context
+				setFormValue,
+				stepAction,
+				subquestion,
+				possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
+				defaultValue,
+				valueType,
+				fieldName,
+				inversion,
+				themeColours
+			} = this.props
 
 			/* There won't be any answer zone here, widen the question zone */
 			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
@@ -144,21 +139,19 @@ export var FormDecorator = formType => RenderField =>
 				dottedName,
 				fieldName,
 				fieldTitle,
-				flatRules
-			} = this.props,
-			{ i18n } = this.context
+				flatRules,
+				t
+			} = this.props
 
 			let answer = situationGate(fieldName),
 				rule = findRuleByDottedName(flatRules, dottedName + ' . ' + answer),
-				translatedAnswer = (rule && rule.title) || i18n.t(answer)
+				translatedAnswer = (rule && rule.title) || t(answer)
 
 			return (
 				<div className="foldedQuestion">
 					<span className="borderWrapper">
 						<span className="title">{capitalise0(fieldTitle || title)}</span>
-						<span className="answer">
-						{translatedAnswer}
-						</span>
+						<span className="answer">{translatedAnswer}</span>
 					</span>
 					<button
 						className="edit"
@@ -170,7 +163,6 @@ export var FormDecorator = formType => RenderField =>
 							<Trans>Modifier</Trans>
 						</span>
 					</button>
-					{}
 				</div>
 			)
 		}

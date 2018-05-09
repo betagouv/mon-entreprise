@@ -1,6 +1,4 @@
 var webpack = require('webpack'),
-	path = require('path'),
-	HardSourceWebpackPlugin = require('hard-source-webpack-plugin'),
 	common = require('./webpack.common.js')
 
 module.exports = {

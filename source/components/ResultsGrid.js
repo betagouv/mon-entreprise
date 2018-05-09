@@ -1,6 +1,4 @@
 import {
-	curry,
-	evolve,
 	path,
 	propEq,
 	pathEq,
@@ -14,20 +12,19 @@ import {
 	pathOr,
 	toPairs,
 	keys,
-	head,
 	find
 } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
+import withLanguage from './withLanguage'
 import { formValueSelector } from 'redux-form'
 import './Results.css'
 import '../engine/mecanismViews/Somme.css'
 
-import { capitalise0, humanFigure } from '../utils'
+import { capitalise0 } from '../utils'
 import { nameLeaf, encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 
 // Filtered variables and rules can't be filtered in a uniform way, for now
@@ -70,6 +67,12 @@ export let byBranch = analysis => {
 	return result
 }
 
+let formatCurrency = language => number =>
+	Intl.NumberFormat(language, {
+		style: 'currency',
+		currency: 'EUR'
+	}).format(number)
+
 @withRouter
 @connect(state => ({
 	analysis: state.analysis,
@@ -79,6 +82,7 @@ export let byBranch = analysis => {
 	inversions: formValueSelector('conversation')(state, 'inversions')
 }))
 @translate()
+@withLanguage
 export default class ResultsGrid extends Component {
 	render() {
 		let {
@@ -86,7 +90,8 @@ export default class ResultsGrid extends Component {
 				situationGate,
 				targetNames,
 				inversions,
-				flatRules
+				flatRules,
+				language
 			} = this.props,
 			rules = flatRules
 
@@ -123,6 +128,7 @@ export default class ResultsGrid extends Component {
 			flatRules,
 			'contrat salarié . avantages salarié'
 		)
+		let formatLocalizedCurrency = formatCurrency(language)
 
 		return (
 			<div className="somme resultsGrid">
@@ -140,7 +146,7 @@ export default class ResultsGrid extends Component {
 								colSpan={(relevantSalaries.size - 1) * 2}
 								className="element value"
 								id="sommeBase">
-								{humanFigure(2)(base)}{' '}
+								{formatLocalizedCurrency(base)}{' '}
 							</td>
 						</tr>
 					</thead>
@@ -158,7 +164,7 @@ export default class ResultsGrid extends Component {
 								className="element value"
 								id="sommeBase">
 								<span className="operator">+ </span>
-								{humanFigure(2)(avan)}{' '}
+								{formatLocalizedCurrency(avan)}{' '}
 							</td>
 						</tr>
 					</thead>
@@ -176,21 +182,20 @@ export default class ResultsGrid extends Component {
 								className="element value"
 								id="sommeBase">
 								<span className="operator">= </span>
-								{humanFigure(2)(brut)}{' '}
+								{formatLocalizedCurrency(brut)}{' '}
 							</td>
 						</tr>
 					</thead>
 					<tbody>
 						{toPairs(results).map(([branch, values]) => {
 							let props = {
-								key: branch,
 								branch,
 								values,
 								analysis,
 								rules,
 								relevantSalaries
 							}
-							return <Row {...props} />
+							return <Row key={branch} {...props} />
 						})}
 						<ReductionRow
 							node={fromDict('contrat salarié . réductions de cotisations')}
@@ -204,7 +209,7 @@ export default class ResultsGrid extends Component {
 										=
 									</td>
 									<td key="net" className="element value">
-										{humanFigure(2)(net)}{' '}
+										{formatLocalizedCurrency(net)}{' '}
 										<span className="annotation">
 											<Trans>Salaire net</Trans>
 										</span>
@@ -216,7 +221,7 @@ export default class ResultsGrid extends Component {
 									=
 								</td>,
 								<td key="total" className="element value">
-									{humanFigure(2)(total)}{' '}
+									{formatLocalizedCurrency(total)}{' '}
 									<span className="annotation">
 										<Trans>Salaire chargé</Trans>
 									</span>
@@ -231,25 +236,31 @@ export default class ResultsGrid extends Component {
 }
 
 @translate()
+@withLanguage
 class Row extends Component {
-	static contextTypes = {
-		i18n: PropTypes.object.isRequired
-	}
 	state = {
 		folded: true
 	}
 	render() {
-		let { rules, branch, values, analysis, relevantSalaries } = this.props,
+		let {
+				rules,
+				branch,
+				values,
+				analysis,
+				relevantSalaries,
+				language,
+				t
+			} = this.props,
 			detail = byName(values),
 			ruleData = mapObjIndexed(
-				(v, k, o) => findRuleByDottedName(rules, k),
+				(v, k) => findRuleByDottedName(rules, k),
 				detail
 			),
-			{ i18n } = this.context
+			formatLocalizedCurrency = formatCurrency(language)
 
 		let title = name => {
 			let node = ruleData[name]
-			return node.title || capitalise0(i18n.t(node.name))
+			return node.title || capitalise0(t(node.name))
 		}
 
 		let aggregateRow = (
@@ -257,8 +268,8 @@ class Row extends Component {
 				key="aggregateRow"
 				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
-					{capitalise0(i18n.t(branch))}&nbsp;<span className="unfoldIndication">
-						{this.state.folded ? i18n.t('déplier') + ' >' : i18n.t('replier')}
+					{capitalise0(t(branch))}&nbsp;<span className="unfoldIndication">
+						{this.state.folded ? t('déplier') + ' >' : t('replier')}
 					</span>
 				</td>
 				{this.state.folded ? (
@@ -269,7 +280,7 @@ class Row extends Component {
 									-
 								</td>
 								<td key="value1" className="element value">
-									{humanFigure(2)(cell(branch, 'salarié', analysis))}
+									{formatLocalizedCurrency(cell(branch, 'salarié', analysis))}
 								</td>
 							</>
 						)}
@@ -279,7 +290,7 @@ class Row extends Component {
 									+
 								</td>
 								<td key="value2" className="element value">
-									{humanFigure(2)(cell(branch, 'employeur', analysis))}
+									{formatLocalizedCurrency(cell(branch, 'employeur', analysis))}
 								</td>
 							</>
 						)}
@@ -305,7 +316,9 @@ class Row extends Component {
 									-
 								</td>
 								<td key="value1" className="element value">
-									{humanFigure(2)(subCell(detail, subCellName, 'salarié'))}
+									{formatLocalizedCurrency(
+										subCell(detail, subCellName, 'salarié')
+									)}
 								</td>
 							</>
 						)}
@@ -315,7 +328,9 @@ class Row extends Component {
 									+
 								</td>
 								<td key="value2" className="element value">
-									{humanFigure(2)(subCell(detail, subCellName, 'employeur'))}
+									{formatLocalizedCurrency(
+										subCell(detail, subCellName, 'employeur')
+									)}
 								</td>
 							</>
 						)}
@@ -330,25 +345,23 @@ class Row extends Component {
 // TODO Ce code est beaucoup trop spécifique
 // C'est essentiellement une copie de Row
 @translate()
+@withLanguage
 class ReductionRow extends Component {
-	static contextTypes = {
-		i18n: PropTypes.object.isRequired
-	}
 	state = {
 		folded: true
 	}
 	render() {
-		let { relevantSalaries, node } = this.props,
-			{ i18n } = this.context
+		let { relevantSalaries, node, language, t } = this.props
 		if (!relevantSalaries.has('salaire total')) return null
 		let value = node && node.nodeValue ? node.nodeValue : 0
+		let formatLocalizedCurrency = formatCurrency(language)
 		let aggregateRow = (
 			<tr
 				key="aggregateRowReductions"
 				onClick={() => this.setState({ folded: !this.state.folded })}>
 				<td key="category" className="element category name">
 					<Trans>Réductions</Trans>&nbsp;<span className="unfoldIndication">
-						{this.state.folded ? i18n.t('déplier') + ' >' : i18n.t('replier')}
+						{this.state.folded ? t('déplier') + ' >' : t('replier')}
 					</span>
 				</td>
 				{this.state.folded ? (
@@ -359,7 +372,7 @@ class ReductionRow extends Component {
 									+
 								</td>
 								<td key="value1" className="element value">
-									{humanFigure(2)(0)}
+									{formatLocalizedCurrency(0)}
 								</td>
 							</>
 						)}
@@ -369,7 +382,7 @@ class ReductionRow extends Component {
 									-
 								</td>
 								<td key="value2" className="element value">
-									{humanFigure(2)(value)}
+									{formatLocalizedCurrency(value)}
 								</td>
 							</>
 						)}
@@ -393,7 +406,7 @@ class ReductionRow extends Component {
 							+
 						</td>
 						<td key="value1" className="element value">
-							{humanFigure(2)(0)}
+							{formatLocalizedCurrency(0)}
 						</td>
 					</>
 				)}
@@ -403,7 +416,7 @@ class ReductionRow extends Component {
 							-
 						</td>
 						<td key="value2" className="element value">
-							{humanFigure(2)(value)}
+							{formatLocalizedCurrency(value)}
 						</td>
 					</>
 				)}

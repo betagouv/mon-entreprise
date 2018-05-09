@@ -6,9 +6,12 @@
 		"url": "git@github.com:betagouv/syso.git"
 	},
 	"engines": {
-		"node": ">=8.10.0 <10.0.0"
+		"node": ">=8.10.0"
 	},
-	"browserslist": ["> 1% in FR", "not ie < 11"],
+	"browserslist": [
+		"> 1% in FR",
+		"not ie < 11"
+	],
 	"dependencies": {
 		"@babel/core": "=7.0.0-beta.46",
 		"@babel/plugin-proposal-decorators": "=7.0.0-beta.46",
@@ -34,8 +37,6 @@
 		"daggy": "^1.2.0",
 		"dedent-js": "^1.0.1",
 		"deep-assign": "^2.0.0",
-		"eslint": "^4.19.0",
-		"eslint-plugin-react": "^7.7.0",
 		"express": "^4.16.3",
 		"fantasy-combinators": "0.0.1",
 		"fantasy-land": "^3.5.0",
@@ -54,8 +55,6 @@
 		"json-loader": "^0.5.7",
 		"live-server": "^1.2.0",
 		"marked": "^0.3.17",
-		"mocha": "^5.0.4",
-		"mocha-webpack": "^2.0.0-beta.0",
 		"nearley": "^2.13.0",
 		"nearley-loader": "^2.0.0",
 		"npm": "^5.7.1",
@@ -98,28 +97,31 @@
 		"yaml-loader": "^0.5.0"
 	},
 	"scripts": {
-		"pretest":
-			"LIST=`git diff --name-only HEAD..HEAD^ | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
+		"pretest": "LIST=`git diff --name-only HEAD..HEAD^ | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"start": "node source/server.js",
 		"externalize": "node source/externalize.js",
 		"compile": "webpack --config source/webpack.prod.js",
-		"test":
-			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\"",
-		"test-watch":
-			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
-		"test-meca":
-			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
-		"test-rules":
-			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
-		"test-inversions":
-			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
+		"test": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require test/helpers/browser.js  \"./{,!(node_modules)/**/}!(webpack).test.js\"",
+		"test-watch": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
+		"test-meca": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
+		"test-rules": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
+		"test-inversions": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
+		"test-components": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require test/helpers/browser.js \"source/components/**/*.test.js\" --watch",
 		"heroku-postbuild": "yarn install --production=false && yarn compile",
-		"eslint":
-			"LIST=`git diff --cached --name-only HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
-		"eslint-check":
-			"eslint --print-config .eslintrc | eslint-config-prettier-check"
+		"eslint": "LIST=`git diff --cached --name-only HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
+		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
 	},
 	"devDependencies": {
-		"eslint-config-prettier": "^2.9.0"
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"eslint": "^4.19.0",
+		"eslint-config-prettier": "^2.9.0",
+		"eslint-plugin-react": "^7.7.0",
+		"intl": "^1.2.5",
+		"intl-locales-supported": "^1.0.0",
+		"mocha": "^5.0.4",
+		"mocha-webpack": "^2.0.0-beta.0",
+		"sinon": "^4.5.0",
+		"sinon-chai": "^3.0.0"
 	}
 }
