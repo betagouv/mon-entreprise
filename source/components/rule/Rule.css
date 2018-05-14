@@ -5,15 +5,18 @@
 	max-width: 45em;
 	margin: 0 auto;
 }
-
-#reportError {
-	background: #c0392b;
-	color: white;
-	border: none;
-	font-size: 100%;
+.reportErrorContainer {
+	text-align: center;
 	padding: 0.3em 0.6em;
 	margin: 3em auto 0;
-	display: block;
+}
+.reportError {
+	color: #c0392b;
+	font-size: 100%;
+	text-align: center;
+}
+.reportError:hover {
+	color: #b53527;
 }
 
 #notes {

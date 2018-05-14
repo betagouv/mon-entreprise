@@ -77,7 +77,7 @@ export default class Rule extends Component {
 					)}
 					{this.renderReferences(flatRule)}
 				</section>
-				<ReportError />
+				<ReportError name={name} />
 			</div>
 		)
 	}
@@ -121,11 +121,12 @@ let NamespaceRulesList = withColours(
 	)
 )
 
-let ReportError = () => (
-	<button id="reportError">
+let ReportError = ({ name }) => (
+	<div className="reportErrorContainer">
 		<a
+			className="reportError"
 			href={
-				'mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans une règle ' +
+				'mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans la règle : ' +
 				name
 			}>
 			<i
@@ -135,5 +136,5 @@ let ReportError = () => (
 			/>
 			<Trans i18nKey="reportError">Signaler une erreur</Trans>
 		</a>
-	</button>
+	</div>
 )
