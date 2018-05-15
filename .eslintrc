@@ -13,6 +13,7 @@ parser: babel-eslint
 
 plugins:
   - react
+  - flowtype
 env:
   browser: true
   commonjs: true
@@ -25,8 +26,10 @@ overrides:
 
 extends:
   - eslint:recommended
+  - plugin:flowtype/recommended
   - plugin:react/recommended
   - prettier
+  - prettier/flowtype
   - prettier/react
 parserOptions:
   ecmaFeatures:
