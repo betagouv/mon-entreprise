@@ -1,20 +1,24 @@
 {
-  "presets": [
-    ["@babel/env", {
-      "targets": {
-        "browsers": ["last 2 versions", "safari >= 7"]
-      },
-      "modules": false
-    }],
-    "@babel/react"
-  ],
-  "plugins": [
-    ["@babel/plugin-proposal-decorators",{"legacy": true}],
-    "transform-do-expressions",
-    "@babel/plugin-proposal-object-rest-spread",
-    "transform-class-properties",
-    "syntax-dynamic-import",
-    "react-hot-loader/babel",
-    ["webpack-alias", { "config": "./source/webpack.dev.js" }]
-  ]
+	"presets": [
+		[
+			"@babel/env",
+			{
+				"targets": {
+					"browsers": ["last 2 versions", "safari >= 7"]
+				},
+				"modules": false
+			}
+		],
+		"@babel/react",
+		"@babel/flow"
+	],
+	"plugins": [
+		["@babel/plugin-proposal-decorators", { "legacy": true }],
+		"transform-do-expressions",
+		"@babel/plugin-proposal-object-rest-spread",
+		"transform-class-properties",
+		"syntax-dynamic-import",
+		"react-hot-loader/babel",
+		["webpack-alias", { "config": "./source/webpack.dev.js" }]
+	]
 }
