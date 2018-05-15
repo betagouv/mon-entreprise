@@ -2112,5 +2112,5 @@
     entreprise . effectif < 11
   formule:
     somme:
-      - complémentaire santé
+      - complémentaire santé (employeur)
       - prévoyance obligatoire cadre
