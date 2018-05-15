@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 //import styles from './.css'
 // css in conversation.Css
 import { isEmpty, map, pick } from 'ramda'
-import ReactPiwik from '../Tracker'
+import { reset } from 'redux-form'
+import { resetSimulation } from '../../actions'
 import { getInputComponent } from 'Engine/generateQuestions'
 import withColours from '../withColours'
 import { scroller, Element, animateScroll } from 'react-scroll'
@@ -21,20 +22,20 @@ import { scroller, Element, animateScroll } from 'react-scroll'
 		'analysis',
 		'flatRules'
 	]),
-	dispatch => ({
-		reinitialise: () => {
-			ReactPiwik.push(['trackEvent', 'restart', ''])
-			// TODO horrible hack : our state should be refactored to enable resetting the relevant part of it
-			window.location.reload(false)
-		}
-	})
+	{
+		resetSimulation,
+		resetForm: () => reset('conversation')
+	}
 )
 @translate()
-export default class extends Component {
+export default class FoldedSteps extends Component {
+	handleSimulationReset = () => {
+		this.props.resetForm()
+		this.props.resetSimulation()
+	}
 	render() {
 		let {
 			foldedSteps,
-			reinitialise,
 			targetNames,
 			flatRules,
 			themeColours: { textColourOnWhite }
@@ -44,7 +45,9 @@ export default class extends Component {
 		return (
 			<div id="foldedSteps">
 				<div className="header">
-					<button onClick={reinitialise} style={{ color: textColourOnWhite }}>
+					<button
+						onClick={this.handleSimulationReset}
+						style={{ color: textColourOnWhite }}>
 						<i className="fa fa-trash" aria-hidden="true" />
 						<Trans i18nKey="resetAll">Tout effacer</Trans>
 					</button>

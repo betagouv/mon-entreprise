@@ -35,6 +35,8 @@ function conversationStarted(state = false, { type }) {
 		case 'START_CONVERSATION':
 		case 'LOAD_PREVIOUS_SIMULATION':
 			return true
+		case 'RESET_SIMULATION':
+			return false
 		default:
 			return state
 	}
@@ -43,11 +45,29 @@ function activeTargetInput(state = null, { type, name }) {
 	switch (type) {
 		case 'SET_ACTIVE_TARGET_INPUT':
 			return name
+		case 'RESET_SIMULATION':
+			return null
+		default:
+			return state
+	}
+}
+function foldedSteps(state = [], { type }) {
+	switch (type) {
+		case 'RESET_SIMULATION':
+			return []
 		default:
 			return state
 	}
 }
 
+function analysis(state = null, { type }) {
+	switch (type) {
+		case 'RESET_SIMULATION':
+			return null
+		default:
+			return state
+	}
+}
 export default (tracker, initialRules) =>
 	reduceReducers(
 		combineReducers({
@@ -57,14 +77,14 @@ export default (tracker, initialRules) =>
 
 			/* Have forms been filled or ignored ?
 		false means the user is reconsidering its previous input */
-			foldedSteps: (steps = []) => steps,
+			foldedSteps,
 			currentQuestion: (state = null) => state,
 			nextSteps: (state = []) => state,
 			missingVariablesByTarget: (state = {}) => state,
 
 			parsedRules: (state = null) => state,
 			flatRules: (state = null) => state,
-			analysis: (state = null) => state,
+			analysis,
 
 			targetNames: (state = popularTargetNames) => state,
 

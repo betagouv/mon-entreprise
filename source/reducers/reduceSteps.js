@@ -14,6 +14,11 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 		state.parsedRules = parseAll(flatRules)
 	}
 
+	// TODO put this in middleware
+	if (action.type === 'RESET_SIMULATION') {
+		tracker.push(['trackEvent', 'restart', ''])
+	}
+
 	// TODO
 	if (action.type == 'CHANGE_LANG') {
 		if (action.lang == 'fr') {
