@@ -3,7 +3,7 @@
 import type { Store } from 'redux'
 import { serialize, deserialize } from './serialize'
 import type { State } from '../types/State'
-import type { Action } from '../types/Action'
+import type { Action } from '../types/Actions'
 
 const VERSION = 1
 
