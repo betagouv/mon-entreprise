@@ -6,6 +6,7 @@ import DevTools from './DevTools'
 import { Provider } from 'react-redux'
 import Layout from './containers/Layout'
 import { AppContainer } from 'react-hot-loader'
+import { persistState, retrievePersistedState } from './storage/persist'
 import debounceFormChangeActions from './debounceFormChangeActions'
 import computeThemeColours from './components/themeColours'
 import { getIframeOption, getUrl } from './utils'
@@ -13,9 +14,10 @@ import { getIframeOption, getUrl } from './utils'
 import { rules, rulesFr } from 'Engine/rules'
 import lang from './i18n'
 
-let initialStore = {
+let initialState = {
 	iframe: getUrl().includes('iframe'),
-	themeColours: computeThemeColours(getIframeOption('couleur'))
+	themeColours: computeThemeColours(getIframeOption('couleur')),
+	...retrievePersistedState()
 }
 
 let enhancer = compose(
@@ -25,12 +27,14 @@ let enhancer = compose(
 
 let tracker = {
 	push: console.log,
-	connectToHistory: (history) => history
+	connectToHistory: history => history
 }
 
 let initialRules = lang == 'en' ? rules : rulesFr
-let store = createStore(reducers(tracker, initialRules), initialStore, enhancer)
+let store = createStore(reducers(tracker, initialRules), initialState, enhancer)
 let anchor = document.querySelector('#js')
+
+persistState(store)
 
 let App = ({ store }) => (
 	<Provider store={store}>
