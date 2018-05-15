@@ -688,9 +688,6 @@
     - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
     - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
-  # le contrat salarié est rattaché à l'activité, elle-même rattachée à un individu.
-  établissement: Établissement
-
 - espace: contrat salarié
   nom: type de contrat
   titre: Type de contrat
@@ -944,9 +941,9 @@
   nom: régime alsace moselle
   par défaut: non
 
-- nom : entreprise
+- nom: entreprise
   description: |
-    Le contrat lie une entreprise et un employé
+    Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 - espace: entreprise
   nom: effectif
@@ -982,6 +979,15 @@
   description: L'entreprise est une association non lucrative
   question: S'agit-il d'une association à but non lucratif ?
   par défaut: non
+
+
+
+
+  
+- nom: établissement
+  description: |
+    Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
+
 - espace: établissement
   nom: code postal
   titre: Code postal de l'établissement
