@@ -31,13 +31,15 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 			'STEP_ACTION',
 			'USER_INPUT_UPDATE',
 			'START_CONVERSATION',
-			'SET_ACTIVE_TARGET_INPUT'
+			'SET_ACTIVE_TARGET_INPUT',
+			'LOAD_PREVIOUS_SIMULATION'
 		].includes(action.type)
 	)
 		return state
 
 	if (path(['form', 'conversation', 'syncErrors'], state)) return state
 
+	console.log('before: ' + action.type, answerSource(state))
 	// Most rules have default values
 	let rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(answerSource, rulesDefaults)
@@ -58,7 +60,6 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 			situationGate: situationWithDefaults(state)
 		}
 	}
-
 	let nextStepsAnalysis = analyseMany(state.parsedRules, state.targetNames)(
 			answerSource(state)
 		),
@@ -95,7 +96,13 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 		])
 	}
 
-	if (['SET_ACTIVE_TARGET_INPUT', 'START_CONVERSATION'].includes(action.type)) {
+	if (
+		[
+			'SET_ACTIVE_TARGET_INPUT',
+			'START_CONVERSATION',
+			'LOAD_PREVIOUS_SIMULATION'
+		].includes(action.type)
+	) {
 		// Si rien n'a été renseigné (stillBlank) on renvoie state et pas newState
 		// pour éviter que les cases blanches disparaissent, c'est un hack…
 		let stillBlank =

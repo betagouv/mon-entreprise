@@ -5,8 +5,6 @@ import reduceSteps from './reduceSteps'
 import computeThemeColours from 'Components/themeColours'
 import { formatInputs } from 'Engine/rules'
 
-import ReactPiwik from 'Components/Tracker'
-
 import { popularTargetNames } from 'Components/TargetSelection'
 
 function themeColours(state = computeThemeColours(), { type, colour }) {
@@ -35,6 +33,7 @@ function currentExample(state = null, { type, situation, name }) {
 function conversationStarted(state = false, { type }) {
 	switch (type) {
 		case 'START_CONVERSATION':
+		case 'LOAD_PREVIOUS_SIMULATION':
 			return true
 		default:
 			return state
@@ -69,7 +68,7 @@ export default (tracker, initialRules) =>
 
 			targetNames: (state = popularTargetNames) => state,
 
-			situationGate: (state = name => null) => state,
+			situationGate: (state = () => null) => state,
 
 			iframe: (state = false) => state,
 
