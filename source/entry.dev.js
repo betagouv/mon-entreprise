@@ -25,7 +25,7 @@ let enhancer = compose(
 
 let tracker = {
 	push: console.log,
-	connectToHistory: (history) => history
+	connectToHistory: history => history
 }
 
 let initialRules = lang == 'en' ? rules : rulesFr
@@ -36,7 +36,6 @@ let App = ({ store }) => (
 	<Provider store={store}>
 		<div id="dev">
 			<Layout tracker={tracker} />
-			<DevTools />
 		</div>
 	</Provider>
 )

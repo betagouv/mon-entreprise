@@ -5,9 +5,11 @@ import { connect } from 'react-redux'
 import { Field, change } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
+import { init, propEq } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
 import { findRuleByDottedName } from 'Engine/rules'
+import { Namespace } from 'Components/rule/Rule'
 
 export let buildValidationFunction = valueType => {
 	let validator = valueType ? valueType.validator : {},
@@ -66,7 +68,9 @@ export var FormDecorator = formType => RenderField =>
 				valueType,
 				fieldName,
 				inversion,
-				themeColours
+				themeColours,
+				flatRules,
+				dottedName
 			} = this.props
 
 			/* There won't be any answer zone here, widen the question zone */
@@ -95,8 +99,13 @@ export var FormDecorator = formType => RenderField =>
 					{this.props.question}
 				</h1>
 			)
+
 			return (
 				<div>
+					<Namespace
+						ns={flatRules.find(propEq('dottedName', dottedName)).ns}
+						flatRules={flatRules}
+					/>
 					<div className="unfoldedHeader">
 						<div className="step-question">
 							{inversion ? (
