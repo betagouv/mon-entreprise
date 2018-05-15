@@ -233,3 +233,9 @@
 .mecanism ul > li {
 	margin-right: 1em;
 }
+
+.variable,
+.nodeHead,
+.operator {
+	display: inline-block;
+}
