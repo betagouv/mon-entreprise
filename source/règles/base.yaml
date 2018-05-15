@@ -2091,8 +2091,8 @@
     destinataire: CNAV
     dû par: employeur
   références:
-    Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
-    Fiche service-public.gouv.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
+    Fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
     Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
   formule:
     multiplication:
