@@ -1,0 +1,19 @@
+- nom: code commune
+  format: texte
+
+- test: commune éligible
+  formule: 
+    inclusion: 
+      de: code commune
+      dans: liste communes ZRR
+
+  exemples: 
+    - nom: Courmont est en ZRR
+      situation: 
+        code commune: '02227'
+      valeur attendue: oui
+
+    - nom: Brest n'est pas en ZRR
+      situation: 
+        code commune: '29019'
+      valeur attendue: non
