@@ -12,7 +12,7 @@ let treatValue = (data, language) =>
 	data == null
 		? '?'
 		: typeof data == 'boolean'
-			? { true: 'oui', false: 'non' }[data]
+			? { true: '✔', false: '✘' }[data]
 			: !isNaN(data)
 				? Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(data)
 				: data

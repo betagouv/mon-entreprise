@@ -3,6 +3,7 @@
 }
 #rule-meta {
 	content: '';
+	width: 100%;
 	display: table;
 	clear: both;
 }

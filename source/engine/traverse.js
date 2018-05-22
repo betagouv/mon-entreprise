@@ -2,7 +2,6 @@ import React from 'react'
 import {
 	findRuleByDottedName,
 	disambiguateRuleReference,
-	findRuleByName,
 	findRule
 } from './rules'
 import { evaluateVariable } from './variables'
@@ -14,14 +13,11 @@ import {
 	cond,
 	evolve,
 	equals,
-	concat,
 	path,
 	divide,
 	multiply,
 	map,
 	merge,
-	length,
-	flatten,
 	intersection,
 	keys,
 	is,
@@ -61,7 +57,6 @@ import {
 	rewriteNode,
 	makeJsx,
 	mergeMissing,
-	mergeAllMissing,
 	bonus
 } from './evaluation'
 import { anyNull, val, undefOrTrue } from './traverse-common-functions'
@@ -276,6 +271,7 @@ let treat = (rules, rule) => rawNode => {
 			if (parseResult.category == 'percentage') {
 				return {
 					nodeValue: parseResult.nodeValue,
+					// eslint-disable-next-line
 					jsx: () => <span className="percentage">{rawNode}</span>
 				}
 			}
@@ -329,6 +325,7 @@ let treat = (rules, rule) => rawNode => {
 								propEq('category', 'value'),
 								node => ({
 									nodeValue: node.nodeValue,
+									// eslint-disable-next-line
 									jsx: nodeValue => <span className="value">{nodeValue}</span>
 								})
 							],
@@ -336,6 +333,7 @@ let treat = (rules, rule) => rawNode => {
 								propEq('category', 'percentage'),
 								node => ({
 									nodeValue: node.nodeValue,
+									// eslint-disable-next-line
 									jsx: nodeValue => (
 										<span className="value">{nodeValue * 100}%</span>
 									)
@@ -344,15 +342,26 @@ let treat = (rules, rule) => rawNode => {
 						])
 					),
 					operator = parseResult.operator
-
+				let operatorToUnicode = operator =>
+					({
+						'>=': '≥',
+						'<=': '≤',
+						'!=': '≠',
+						'*': '∗',
+						'/': '∕',
+						'-': '−'
+					}[operator] || operator)
 				let jsx = (nodeValue, explanation) => (
 					<Node
 						classes={'inlineExpression ' + parseResult.category}
 						value={nodeValue}
 						child={
 							<span className="nodeContent">
+								<span className="fa fa" />
 								{makeJsx(explanation[0])}
-								<span className="operator">{parseResult.operator}</span>
+								<span className="operator">
+									{operatorToUnicode(parseResult.operator)}
+								</span>
 								{makeJsx(explanation[1])}
 							</span>
 						}
@@ -381,7 +390,6 @@ let treat = (rules, rule) => rawNode => {
 			}
 		},
 		treatOther = rawNode => {
-			console.log() // eslint-disable-line no-console
 			throw new Error(
 				'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 			)
@@ -390,8 +398,8 @@ let treat = (rules, rule) => rawNode => {
 			let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 			if (mecanisms.length != 1) {
+				// eslint-disable-next-line no-console
 				console.log(
-					// eslint-disable-line no-console
 					'Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet',
 					mecanisms,
 					rawNode

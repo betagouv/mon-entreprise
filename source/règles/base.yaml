@@ -255,7 +255,7 @@
         événement: non
         type de contrat: CDD
         assiette cotisations sociales: 2300
-        motif . classique . usage: oui
+        motif: classique . usage
         durée contrat: 1
         plafond sécurité sociale: 3269
       valeur attendue: 11.5

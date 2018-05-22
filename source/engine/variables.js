@@ -15,9 +15,9 @@ let evaluateBottomUp = situationGate => startingFragments => {
 						? rec(dropLast(1)(parentFragments), [
 								last(parentFragments),
 								...childFragments
-							])
+						  ])
 						: situationGate(query) == expectedResult
-				}
+			  }
 	return rec(startingFragments)
 }
 
@@ -31,7 +31,7 @@ export let evaluateVariable = (situationGate, variableName, rule) => {
 		? value
 		: !rule.formule
 			? // c'est une variante, eg. motifs . classique . accroissement d'activité
-				evaluateBottomUp(situationGate)(splitName(variableName))
+			  evaluateBottomUp(situationGate)(splitName(variableName))
 			: rule.formule['une possibilité']
 				? evaluateBottomUp(situationGate)(splitName(variableName))
 				: value
