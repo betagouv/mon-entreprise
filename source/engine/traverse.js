@@ -185,8 +185,7 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 		name: variablePartialName,
 		category: 'variable',
 		fragments,
-		dottedName,
-		type: 'boolean | numeric'
+		dottedName
 	}
 }
 
@@ -240,9 +239,11 @@ let treat = (rules, rule) => rawNode => {
 			let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
 			if (additionnalResults && additionnalResults.length > 0)
-				throw "Attention ! L'expression <" +
-					rawNode +
-					'> ne peut être traitée de façon univoque'
+				throw new Error(
+					"Attention ! L'expression <" +
+						rawNode +
+						'> ne peut être traitée de façon univoque'
+				)
 
 			if (
 				!contains(parseResult.category)([
@@ -254,8 +255,9 @@ let treat = (rules, rule) => rawNode => {
 					'percentage'
 				])
 			)
-				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
-
+				throw new Error(
+					"Attention ! Erreur de traitement de l'expression : " + rawNode
+				)
 			if (parseResult.category == 'variable')
 				return fillVariableNode(rules, rule)(parseResult)
 			if (parseResult.category == 'filteredVariable') {
@@ -464,7 +466,7 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 export let treatRuleRoot = (rules, rule) => {
 	/*
 	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
-	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
+	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si`, `applicable si` et `formule`,
 	qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
 	Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
 	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST
@@ -482,27 +484,21 @@ export let treatRuleRoot = (rules, rule) => {
 				},
 				node
 			),
-			formuleValue = val(evaluated['formule']),
-			isApplicable = do {
-				let e = evaluated
-				val(e['non applicable si']) === true
+			{
+				formule,
+				'non applicable si': notApplicable,
+				'applicable si': applicable
+			} = evaluated,
+			isApplicable =
+				val(notApplicable) === true
 					? false
-					: val(e['applicable si']) === false
+					: val(applicable) === false
 						? false
-						: anyNull([e['non applicable si'], e['applicable si']])
+						: anyNull([notApplicable, applicable])
 							? null
-							: !val(e['non applicable si']) &&
-							  undefOrTrue(val(e['applicable si']))
-			},
-			nodeValue = computeRuleValue(formuleValue, isApplicable)
-
-		let {
-			formule,
-			'non applicable si': notApplicable,
-			'applicable si': applicable
-		} = evaluated
-
-		let condMissing =
+							: !val(notApplicable) && undefOrTrue(val(applicable)),
+			nodeValue = computeRuleValue(val(formule), isApplicable),
+			condMissing =
 				val(notApplicable) === true
 					? {}
 					: val(applicable) === false
@@ -559,7 +555,6 @@ export let treatRuleRoot = (rules, rule) => {
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
-				type: 'numeric',
 				explanation: child
 			}
 		}
