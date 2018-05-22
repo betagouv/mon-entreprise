@@ -13,3 +13,6 @@ AGIRC:
 AGFF:
   image: agff.png
   lien: http://www.agff-info.fr/
+CNAV:
+  image: cnav.png
+  lien: https://fr.wikipedia.org/wiki/Caisse_nationale_de_l%27assurance_vieillesse_des_travailleurs_salari%C3%A9s
