@@ -2,22 +2,49 @@
 	Règles CSS d'affichage des algorithmes
 */
 
-#rule-rules .situationValue {
+.situationValue {
 	display: none;
-	margin-left: 1em;
-	color: rgba(51, 51, 80, 0.8);
+	border-bottom-left-radius: 3px;
 	font-weight: 400;
+	color: black;
+	font-family: monospace;
+}
+#rule-rules .name > .situationValue {
+	border-bottom: 2px solid white;
+	padding-left: 0.4em;
 }
 
 #rule-rules.showValues .situationValue {
-	display: inline;
+	display: inline-block;
+}
+
+.node.inlineExpression:not(.comparison):not(.negation) {
+	padding-left: 0;
+	display: flex;
+	align-items: baseline;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.nodeContent {
+	margin-right: 0.3em;
+}
+#rule-rules
+	.inlineExpression:not(.comparison):not(.negation)
+	> .situationValue {
+	font-size: 90%;
+	margin-left: 0.3em;
+	margin-bottom: 0.6em;
+	margin-top: 0.3em;
+	align-items: flex-end;
+	flex: 1;
+	text-align: right;
 }
 
 #rule-rules section {
 	margin: 1em 0;
 }
 
-#rule-rules section:not(h2) {
+#rule-content {
 	font-size: 90%;
 }
 
@@ -25,8 +52,8 @@
 	font-weight: 400;
 	text-align: center;
 	font-size: 200%;
+	color: inherit;
 	margin: 1em 0;
-	color: rgb(41, 117, 209);
 }
 
 #declenchement > ul {
@@ -55,15 +82,18 @@
 	text-transform: capitalize;
 }
 .mecanism > .nodeHead > .situationValue {
-	top: 0;
+	bottom: 0;
 	right: 0;
 	position: absolute;
 	padding: 0.2em 1em;
 	border: 1px solid;
 	border-color: inherit;
-	border-top: none;
+	font-size: 90%;
+	font-weight: 600;
+	border-bottom: none;
 	border-right: none;
-	border-bottom-left-radius: 3px;
+	border-radius: 0;
+	border-top-left-radius: 3px;
 }
 [data-term-definition] {
 	cursor: pointer;
@@ -117,35 +147,28 @@
 	margin-bottom: 0.6em;
 }
 
-.node.inlineExpression {
-	padding-left: 0;
-	display: inline;
-}
 .leaf .situationValue {
 	text-align: center;
 }
 
-#rule-rules .situationValue.oui {
+#rule-rules .situationValue.✔ {
 	color: #5ab738;
 }
-#rule-rules .situationValue.non {
+#rule-rules .situationValue.✘ {
 	color: #f22c40;
 }
 
 .variable .name {
-	color: #5b5b73;
+	color: blue;
+	border-bottom: 1px solid blue;
 	text-align: center;
-	margin-top: 1em;
-	padding: 0.2em 0.6em;
-	line-height: 1.8em;
-	border-radius: 0.4em;
 	font-weight: 600;
 	font-size: 90%;
-	border: 1px solid rgba(51, 51, 80, 0.25);
 	white-space: nowrap;
 }
+
 .variable .name:hover {
-	color: black;
+	color: rgb(0, 0, 200);
 }
 
 .percentage .name {
@@ -154,9 +177,7 @@
 }
 
 .inlineExpression .operator {
-	margin: 0.1em 0.6em;
-	font-size: 150%;
-	font-weight: 600;
+	margin: 0 0.6em;
 	vertical-align: middle;
 }
 
@@ -194,6 +215,11 @@
 .mecanism.inversion li {
 	margin-top: 0.6em;
 }
+.mecanism.minimum > ul,
+.mecanism.maximum > ul {
+	list-style: disc;
+	margin-left: 1em;
+}
 
 .composantes > .nodeHead .name {
 	background: #3498db;
@@ -216,11 +242,15 @@
 	border-radius: 3px;
 	border-color: #34495e;
 	padding: 1em;
-	padding-top: 2em;
+	padding-top: 1em;
+	padding-bottom: 2em;
 	position: relative;
 	margin-bottom: 2em;
 }
 
+.mecanism > :not(.mecanism) {
+	padding-top: 1em;
+}
 .mecanism .mecanism {
 	margin: 1em;
 	margin-bottom: 1.5em;
@@ -230,12 +260,67 @@
 	text-transform: capitalize;
 }
 
-.mecanism ul > li {
-	margin-right: 1em;
+.mecanism ul.properties > li {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+}
+.mecanism ul > li > .value {
+	flex: 1;
 }
 
 .variable,
 .nodeHead,
 .operator {
 	display: inline-block;
+}
+
+.nodeHead .name .situationValue:not(.✔):not(.✘)::before {
+	content: '(';
+}
+
+.nodeHead .name .situationValue:not(.✔):not(.✘)::after {
+	content: ')';
+}
+
+/* Remove style for conditions */
+
+.situationValue.✘,
+.situationValue.✔ {
+	padding: 0 0.5em;
+	margin-right: 0 !important;
+}
+.mecanism.cond *:not(.nodeContent) > .variable .name,
+.mecanism.variations *:not(.nodeContent) > .variable .name,
+.inlineExpression.comparison,
+.inlineExpression.negation {
+	display: flex;
+	align-items: baseline;
+}
+.mecanism.cond *:not(.nodeContent) > .variable .name .situationValue,
+.mecanism.variations
+	> condition
+	> *:first-child
+	*:not(.nodeContent)
+	> .variable
+	.name
+	.situationValue,
+.inlineExpression.comparison > .situationValue,
+.inlineExpression.negation > .situationValue {
+	order: -1;
+	font-size: 110% !important;
+}
+
+.mecanism.cond *:not(.nodeContent) > .variable .name > .situationValue,
+.mecanism.variations
+	> condition
+	> *:first-child
+	*:not(.nodeContent)
+	> .variable
+	.name
+	> .situationValue {
+	margin-bottom: -5px;
+	background-color: white;
+	font-size: 130% !important;
+	margin-left: 0 !important;
 }

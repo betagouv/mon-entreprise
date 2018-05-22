@@ -15,8 +15,6 @@
 .somme tr:hover {
 	background: rgba(51, 51, 80, 0.02);
 }
-.somme tr:nth-child(2n) {
-}
 .somme tr .element {
 	text-align: left;
 	padding: 0.1em 0.6em;
@@ -39,8 +37,12 @@
 	width: 1em;
 	padding: 0 0.4em;
 	font-weight: 600;
+	border: none !important;
 	font-size: 120%;
 	color: black;
+}
+.somme .operator + .element {
+	border-left: none;
 }
 #rule-rules .somme table .leaf .situationValue {
 	display: none;
@@ -48,8 +50,6 @@
 
 #rule-rules .somme table .situationValue {
 	padding: 0 1em;
-}
-#rule-rules .somme table .situationValue span {
 }
 
 .somme .nested {
@@ -71,7 +71,7 @@
 	font-size: 90%;
 }
 .resultsGrid table a {
-	color: inherit;	
+	color: inherit;
 }
 .resultsGrid td {
 	line-height: 1.6em;

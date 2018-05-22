@@ -1,18 +1,12 @@
 import {
-	flatten,
 	reduce,
 	mergeWith,
-	mergeAll,
-	length,
 	objOf,
 	toPairs,
 	dissoc,
 	add,
 	find,
-	uniq,
-	chain,
 	pluck,
-	concat,
 	map,
 	any,
 	equals,
@@ -21,7 +15,6 @@ import {
 	evolve,
 	curry,
 	filter,
-	all,
 	pipe,
 	head,
 	isEmpty,
@@ -66,6 +59,7 @@ import uniroot from './uniroot'
 
 let constantNode = constant => ({
 	nodeValue: constant,
+	// eslint-disable-next-line
 	jsx: nodeValue => <span className="value">{nodeValue}</span>
 })
 
@@ -506,6 +500,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	return {
 		...v,
 		evaluate,
+		// eslint-disable-next-line
 		jsx: nodeValue => (
 			<Node
 				classes="mecanism inversion"
@@ -536,6 +531,7 @@ export let mecanismSum = (recurse, k, v) => {
 
 	return {
 		evaluate,
+		// eslint-disable-next-line
 		jsx: (nodeValue, explanation) => (
 			<Somme nodeValue={nodeValue} explanation={explanation} />
 		),
@@ -783,7 +779,7 @@ export let mecanismScale = (recurse, k, v) => {
 						<thead>
 							<tr>
 								<th>
-									<Trans>Tranches de l'assiette</Trans>
+									<Trans>Tranches de l&apos;assiette</Trans>
 								</th>
 								<th>
 									<Trans>Taux</Trans>
@@ -801,9 +797,13 @@ export let mecanismScale = (recurse, k, v) => {
 										key={min || minOnly || 0}
 										style={{
 											fontWeight:
-												explanation.assiette.nodeValue *
-													explanation['multiplicateur des tranches'].nodeValue >
-												min
+												explanation.assiette.nodeValue >
+													explanation['multiplicateur des tranches'].nodeValue *
+														min &&
+												max &&
+												explanation.assiette.nodeValue <
+													explanation['multiplicateur des tranches'].nodeValue *
+														max
 													? ' bold'
 													: ''
 										}}>
@@ -921,6 +921,7 @@ export let mecanismComplement = (recurse, k, v) => {
 		type: 'numeric',
 		category: 'mecanism',
 		name: 'complément pour atteindre',
+		// eslint-disable-next-line
 		jsx: (nodeValue, explanation) => (
 			<Node
 				classes="mecanism list complement"
@@ -999,6 +1000,7 @@ export let mecanismSelection = (recurse, k, v) => {
 	return {
 		evaluate,
 		explanation,
+		// eslint-disable-next-line
 		jsx: (nodeValue, explanation) => (
 			<SelectionView nodeValue={nodeValue} explanation={explanation} />
 		)
