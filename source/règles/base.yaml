@@ -1,28 +1,36 @@
 - espace: entreprise
-  nom: dans ZRR
+  nom: commune en ZRR
   formule: 
     inclusion: 
       de: établissement . code commune
       dans: liste communes ZRR
 
 - espace: entreprise
+  nom: ZRR
+
+- espace: entreprise . ZRR
+  nom: intérêt 
+  question: Votre commune vous donne droit à une aide à l'embauche (ZRR), voulez-vous savoir si vous pouvez en bénéficier ? 
+  par défaut: non
+
+- espace: entreprise
   nom: licenciement économique récent
   question: L'entreprise a-t-elle récemment (??) fait un licenciement économique ?
   par défaut: non
 
-- espace: contrat salarié
+- espace: entreprise
   nom: exonération sociale ZRR
   aide:
     type: réduction de cotisations
     thème: aide embauche
-    démarches: oui
   applicable si: 
     toutes ces conditions: 
-      - entreprise . dans ZRR
-      - entreprise . effectif < 50
-  non applicable si: 
-    une de ces conditions: 
-      - entreprise . licenciement économique récent
+      - effectif < 50
+      - commune en ZRR
+      - ZRR . intérêt
+      - ≠ licenciement économique récent 
+        #  non applicable si: 
+        #    une de ces conditions: 
 #     - liste de secteurs à exclure sur service-public.fr
 #     - CDD . durée < 12
 
@@ -34,24 +42,31 @@
     réduction linéaire: 
       assiette:  
         somme: 
-        - maladie
-        - vieillesse
-        - allocations familiales
-        - versement transport
-        - FNAL
-      variable: salaire brut
-      multiplicateur: smic mensuel
+        - contrat salarié . maladie
+        - contrat salarié . vieillesse
+        - contrat salarié . allocations familiales
+        - contrat salarié . versement transport
+        - contrat salarié . FNAL
+      variable: contrat salarié . salaire brut
+      multiplicateur: contrat salarié . smic mensuel
       contraintes: 
         1.5: 1
         2.4: 0
 
   exemples: 
-    - nom: Pas de ZRR dans la commune par défaut
+    - nom: Pas de ZRR à Paris
       situation: 
         entreprise . effectif: 20
-        établissement . code commune: 75020
-        salaire de base: 2300
+        établissement . code commune: '75020'
+        contrat salarié . salaire de base: 2300
       valeur attendue: 0
+    - nom: ZRR dans la commune de Rue
+      situation: 
+        entreprise . effectif: 20
+        établissement . code commune: '80688'
+        contrat salarié . salaire de base: 2300
+        ZRR . intérêt : oui
+      valeur attendue: 762
           
 - espace: contrat salarié . CDD
   nom: CIF
@@ -890,7 +905,7 @@
     le maximum de: 
       - réduction générale
       - exonération JEI
-      - exonération sociale ZRR
+      - entreprise . exonération sociale ZRR
 
 - espace: contrat salarié
   nom: salaire total sans réduction
@@ -910,7 +925,6 @@
     somme:
       - CICE
       - CITS
-      - exonération sociale ZRR
 
 
 - espace: contrat salarié
@@ -995,7 +1009,7 @@
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-  format: nombre
+  format: texte
   suggestions: utilisation d'une API
   par défaut: non
 
@@ -1006,7 +1020,7 @@
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-  format: nombre
+  format: texte
   suggestions: utilisation d'une API
   par défaut: 29019
 
