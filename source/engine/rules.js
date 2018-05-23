@@ -108,7 +108,9 @@ export let disambiguateRuleReference = (
 	return (
 		(found && found.dottedName) ||
 		do {
-			throw new Error(`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`)
+			throw new Error(
+				`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`
+			)
 		}
 	)
 }
@@ -176,8 +178,19 @@ export let translateAll = (translations, flatRules) => {
 	let translationsOf = rule => translations[buildDottedName(rule)],
 		translateProp = (lang, translation) => (rule, prop) => {
 			let propTrans = translation[prop + '.' + lang]
-		    if (prop === 'suggestions' && propTrans)
-				return assoc('suggestions', pipe(toPairs, map(([key,translatedKey]) => [translatedKey, rule.suggestions[key]]), fromPairs)(propTrans), rule)
+			if (prop === 'suggestions' && propTrans)
+				return assoc(
+					'suggestions',
+					pipe(
+						toPairs,
+						map(([key, translatedKey]) => [
+							translatedKey,
+							rule.suggestions[key]
+						]),
+						fromPairs
+					)(propTrans),
+					rule
+				)
 			return propTrans ? assoc(prop, propTrans, rule) : rule
 		},
 		translateRule = (lang, translations, props) => rule => {
@@ -187,7 +200,14 @@ export let translateAll = (translations, flatRules) => {
 				: rule
 		}
 
-	let targets = ['titre', 'description', 'question', 'sous-question', 'résumé', 'suggestions']
+	let targets = [
+		'titre',
+		'description',
+		'question',
+		'sous-question',
+		'résumé',
+		'suggestions'
+	]
 
 	return map(translateRule('en', translations, targets), flatRules)
 }
