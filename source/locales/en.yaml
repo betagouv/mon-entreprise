@@ -1,5 +1,6 @@
 enterSalary: Enter a monthly salary
-news: Get a salary estimate in seconds, describe your situation for more accuracy.
+previousSimulationBanner: Your previous simulation data have been saved.
+previousSimulationBanner.retrieveButton: Retrieve my last simulation 
 Estimation approximative: This is an estimate
 defaults: for a permanent (CDI) full-time contract
 Affiner le calcul: Refine this estimate

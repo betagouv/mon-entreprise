@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { translate } from 'react-i18next'
 import { pick } from 'ramda'
 import Aide from '../Aide'
-import { reduxForm, reset } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { getInputComponent } from 'Engine/generateQuestions'
 import { connect } from 'react-redux'
 import './conversation.css'
@@ -24,13 +24,7 @@ import './conversation.css'
 		'analysis',
 		'flatRules',
 		'conversationStarted'
-	]),
-	dispatch => ({
-		reinitialise: () => {
-			dispatch(reset('conversation'))
-			dispatch({ type: 'SET_CONVERSATION_TARGETS', reset: true })
-		}
-	})
+	])
 )
 export default class Conversation extends Component {
 	render() {

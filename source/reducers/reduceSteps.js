@@ -44,7 +44,6 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 
 	if (path(['form', 'conversation', 'syncErrors'], state)) return state
 
-	console.log('before: ' + action.type, answerSource(state))
 	// Most rules have default values
 	let rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(answerSource, rulesDefaults)

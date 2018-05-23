@@ -2,7 +2,7 @@
 
 import type { Store } from 'redux'
 import { serialize, deserialize } from './serialize'
-import type { State } from '../types/State'
+import type { State, SavedSimulation } from '../types/State'
 import type { Action } from '../types/Actions'
 
 const VERSION = 1
@@ -17,7 +17,7 @@ function throttle(timeout: number, fn: () => void): () => void {
 
 const LOCAL_STORAGE_KEY = 'embauche.gouv.fr::persisted-simulation::v' + VERSION
 
-export function persistState(store: Store<State, Action>) {
+export function persistSimulation(store: Store<State, Action>) {
 	const listener = () => {
 		const state = store.getState()
 		if (!state.conversationStarted) {
@@ -25,15 +25,10 @@ export function persistState(store: Store<State, Action>) {
 		}
 		window.localStorage.setItem(LOCAL_STORAGE_KEY, serialize(state))
 	}
-	if (retrievePersistedState()) {
-		store.dispatch({
-			type: 'LOAD_PREVIOUS_SIMULATION'
-		})
-	}
 	store.subscribe(throttle(1000, listener))
 }
 
-export function retrievePersistedState(): ?State {
+export function retrievePersistedSimulation(): ?SavedSimulation {
 	const serializedState = window.localStorage.getItem(LOCAL_STORAGE_KEY)
 	return serializedState ? deserialize(serializedState) : null
 }

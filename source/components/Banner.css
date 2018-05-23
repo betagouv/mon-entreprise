@@ -1,17 +1,19 @@
-.news-header {
+.banner {
 	display: flex;
 	align-items: center;
-	max-width: 30em;
 	margin: 0 auto;
+	margin-top: 1em;
+	width: 40em;
 	justify-content: center;
-	animation: fade-in 2s;
+	animation: fade-in 1s;
 }
-.news-header p {
+.banner p {
+	text-align: center;
 	color: #4b4b66;
 	font-size: 85%;
 }
 
-.news-header i {
+.banner i {
 	margin-right: 1em;
 }
 
