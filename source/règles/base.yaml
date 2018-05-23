@@ -13,10 +13,18 @@
   question: Votre commune vous donne droit à une aide à l'embauche sur 12 mois (ZRR), voulez-vous savoir si vous pouvez en bénéficier ? 
   par défaut: non
 
-- espace: entreprise
+- espace: entreprise . ZRR
   nom: licenciement économique récent
-  question: L'entreprise a-t-elle récemment (??) fait un licenciement économique ?
+  question: L'entreprise a-t-elle procédé à un licenciement économique dans les 12 derniers mois ?
   par défaut: non
+  
+- espace: entreprise . ZRR
+  nom: acroissement effectif
+  question: L'entreprise embauche-t-elle bien pour acroître son effectif sur 12 mois ?
+  description: L'aide ZRR n'est accordée que si elle couvre une augmentation nette de l'effectif de l'entreprise, sur les 12 premiers mois de l'embauche.
+  références: 
+    détail des conditions d'effectif: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-a-caracter/les-zones-de-revitalisation-rura/conditions.html
+  par défaut: oui
 
 - espace: entreprise
   nom: exonération sociale ZRR
@@ -28,7 +36,8 @@
       - effectif < 50
       - commune en ZRR
       - ZRR . intérêt
-      - ≠ licenciement économique récent 
+      - ≠ ZRR . licenciement économique récent 
+      - ZRR . acroissement effectif
         #  non applicable si: 
         #    une de ces conditions: 
 #     - liste de secteurs à exclure sur service-public.fr
