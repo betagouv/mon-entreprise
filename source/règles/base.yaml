@@ -10,7 +10,7 @@
 
 - espace: entreprise . ZRR
   nom: intérêt 
-  question: Votre commune vous donne droit à une aide à l'embauche (ZRR), voulez-vous savoir si vous pouvez en bénéficier ? 
+  question: Votre commune vous donne droit à une aide à l'embauche sur 12 mois (ZRR), voulez-vous savoir si vous pouvez en bénéficier ? 
   par défaut: non
 
 - espace: entreprise
