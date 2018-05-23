@@ -7,7 +7,8 @@
 
 - espace: entreprise
   nom: ZRR
-
+  par défaut: _ 
+  
 - espace: entreprise . ZRR
   nom: intérêt 
   question: Votre commune vous donne droit à une aide à l'embauche sur 12 mois (ZRR), voulez-vous savoir si vous pouvez en bénéficier ? 
@@ -36,12 +37,12 @@
       - effectif < 50
       - commune en ZRR
       - ZRR . intérêt
-      - ≠ ZRR . licenciement économique récent 
+      - ≠ ZRR . licenciement économique récent # TODO hack : placé ici car mis dans le 'non applicable si' il appparaîtrait avant la question 'intérêt'
       - ZRR . acroissement effectif
-        #  non applicable si: 
-        #    une de ces conditions: 
-#     - liste de secteurs à exclure sur service-public.fr
-#     - CDD . durée < 12
+  non applicable si: 
+    toutes ces conditions: 
+      - contrat salarié . type de contrat = 'CDD'
+      - contrat salarié . CDD . durée contrat < 12 
 
   note: | 
     Nous proposons une implémentation partielle de cette aide complexe, les références contiennent plus de détails. 
@@ -77,6 +78,15 @@
         contrat salarié . salaire de base: 2300
         ZRR . intérêt : oui
       valeur attendue: 762
+    - nom: ZRR mais CDD trop court
+      situation: 
+        entreprise . effectif: 20
+        établissement . code commune: '80688'
+        contrat salarié . salaire de base: 2300
+        ZRR . intérêt : oui
+        contrat salarié . CDD . durée contrat: 10
+        contrat salarié . type de contrat: CDD
+      valeur attendue: 0
 
   références: 
     fiche complète URSSAF: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-a-caracter/les-zones-de-revitalisation-rura.html
