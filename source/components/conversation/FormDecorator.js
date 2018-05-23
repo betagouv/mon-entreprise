@@ -5,11 +5,11 @@ import { connect } from 'react-redux'
 import { Field, change } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
-import { init, propEq } from 'ramda'
+import { propEq } from 'ramda'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
 import { findRuleByDottedName } from 'Engine/rules'
-import { Namespace } from 'Components/rule/Rule'
+import Namespace from 'Components/rule/Namespace'
 
 export let buildValidationFunction = valueType => {
 	let validator = valueType ? valueType.validator : {},
