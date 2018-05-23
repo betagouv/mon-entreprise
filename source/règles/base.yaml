@@ -36,6 +36,7 @@
 
   note: | 
     Nous proposons une implémentation partielle de cette aide complexe, les références contiennent plus de détails. 
+    
     Important : l'aide n'est disponible que pendant 12 mois.
 
   formule: 
@@ -67,6 +68,13 @@
         contrat salarié . salaire de base: 2300
         ZRR . intérêt : oui
       valeur attendue: 762
+
+  références: 
+    fiche complète URSSAF: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-a-caracter/les-zones-de-revitalisation-rura.html
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31048
+    fiche synthétique CCI: https://les-aides.fr/fiche/a5VgGWNG2e3M/urssaf/zrr-zone-de-revitalisation-rurale-exoneration-de-cotisations-sociales.html
+    fiche synthétique AFE: https://www.afecreation.fr/pid538/exoneration-sociales-en-zrr.html
+
           
 - espace: contrat salarié . CDD
   nom: CIF
