@@ -56,3 +56,12 @@ h2 {
 	border-radius: 0;
 	font-size: inherit;
 }
+
+.linkButton {
+	color: rgb(41, 117, 209);
+	text-decoration: underline;
+}
+
+.linkButton:hover {
+	color: rgb(21, 97, 189);
+}

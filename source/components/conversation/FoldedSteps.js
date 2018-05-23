@@ -30,8 +30,8 @@ import { scroller, Element, animateScroll } from 'react-scroll'
 @translate()
 export default class FoldedSteps extends Component {
 	handleSimulationReset = () => {
-		this.props.resetForm()
 		this.props.resetSimulation()
+		this.props.resetForm()
 	}
 	render() {
 		let {
@@ -97,8 +97,8 @@ export class GoToAnswers extends Component {
 				<h3
 					className="scrollIndication up"
 					style={{
-						opacity: this.props.foldedSteps.length != 0 ? 1 : 0,
-						color: this.props.colours.textColourOnWhite
+						color: this.props.colours.textColourOnWhite,
+						visibility: !this.props.foldedSteps.length ? 'hidden' : 'visible'
 					}}>
 					<button
 						className="unstyledButton"

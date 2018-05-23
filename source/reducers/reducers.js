@@ -3,6 +3,8 @@ import reduceReducers from 'reduce-reducers'
 import { reducer as formReducer, formValueSelector } from 'redux-form'
 import reduceSteps from './reduceSteps'
 import computeThemeColours from 'Components/themeColours'
+import storageReducer from '../storage/reducer'
+import { defaultTo, always } from 'ramda'
 import { formatInputs } from 'Engine/rules'
 
 import { popularTargetNames } from 'Components/TargetSelection'
@@ -33,7 +35,6 @@ function currentExample(state = null, { type, situation, name }) {
 function conversationStarted(state = false, { type }) {
 	switch (type) {
 		case 'START_CONVERSATION':
-		case 'LOAD_PREVIOUS_SIMULATION':
 			return true
 		case 'RESET_SIMULATION':
 			return false
@@ -70,31 +71,32 @@ function analysis(state = null, { type }) {
 }
 export default (tracker, initialRules) =>
 	reduceReducers(
+		storageReducer,
 		combineReducers({
-			sessionId: (id = Math.floor(Math.random() * 1000000000000) + '') => id,
+			sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
 			//  this is handled by redux-form, pas touche !
 			form: formReducer,
 
 			/* Have forms been filled or ignored ?
 		false means the user is reconsidering its previous input */
 			foldedSteps,
-			currentQuestion: (state = null) => state,
-			nextSteps: (state = []) => state,
-			missingVariablesByTarget: (state = {}) => state,
-
-			parsedRules: (state = null) => state,
-			flatRules: (state = null) => state,
+			currentQuestion: defaultTo(null),
+			nextSteps: defaultTo([]),
+			missingVariablesByTarget: defaultTo({}),
+			parsedRules: defaultTo(null),
+			flatRules: defaultTo(null),
 			analysis,
 
-			targetNames: (state = popularTargetNames) => state,
+			targetNames: defaultTo(popularTargetNames),
 
-			situationGate: (state = () => null) => state,
+			situationGate: defaultTo(always(null)),
 
-			iframe: (state = false) => state,
+			iframe: defaultTo(false),
 
 			themeColours,
 
 			explainedVariable,
+			previousSimulation: defaultTo(null),
 
 			currentExample,
 			conversationStarted,

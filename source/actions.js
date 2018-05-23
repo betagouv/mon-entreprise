@@ -1,5 +1,8 @@
 /* @flow */
-import type { ResetSimulationAction } from './types/Actions'
+import type {
+	ResetSimulationAction,
+	LoadPreviousSimulationAction
+} from './types/Actions'
 
 // The input "conversation" is composed of "steps"
 // The state keeps track of which of them have been submitted
@@ -26,6 +29,11 @@ export const START_CONVERSATION = 'START_CONVERSATION'
 
 export const CHANGE_THEME_COLOUR = 'CHANGE_THEME_COLOUR'
 
+export function loadPreviousSimulation(): LoadPreviousSimulationAction {
+	return {
+		type: 'LOAD_PREVIOUS_SIMULATION'
+	}
+}
 // $FlowFixMe
 export function changeThemeColour(colour) {
 	return { type: CHANGE_THEME_COLOUR, colour }

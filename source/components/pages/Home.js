@@ -2,14 +2,13 @@ import React from 'react'
 import './Pages.css'
 import './Home.css'
 import Simu from '../Simu'
-import News from '../News'
+import PreviousSimulationBanner from '../PreviousSimulationBanner'
 
-export default () => (
+const Home = () => (
 	<div id="home" className="page">
-		{/*	Use this News component to talk about things that are not naturally discoverable */}
-		{/*	<News /> */}
+		<PreviousSimulationBanner />
 		<Simu />
-		<a href="https://beta.gouv.fr" target="_blank">
+		<a href="https://beta.gouv.fr" target="_blank" rel="noopener noreferrer">
 			<img
 				id="marianne"
 				src={require('Images/marianne.svg')}
@@ -18,3 +17,5 @@ export default () => (
 		</a>
 	</div>
 )
+
+export default Home
