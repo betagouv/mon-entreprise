@@ -1,16 +1,14 @@
+import withColours from 'Components/withColours'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import './SearchButton.css'
 import Overlay from './Overlay'
+import './SearchButton.css'
 import { SearchBar } from './pages/RulesList'
-import withColours from 'Components/withColours'
 
-@connect(
-	state => ({
-		flatRules: state.flatRules
-	})
-)
+@connect(state => ({
+	flatRules: state.flatRules
+}))
 @withColours
 @translate()
 export default class SearchButton extends Component {
@@ -39,17 +37,25 @@ export default class SearchButton extends Component {
 		return (
 			<div id="searchButton">
 				{this.state.visible ? (
-					<Overlay onOuterClick={this.close}>
-						<h2><Trans>Chercher une règle</Trans></h2>
-						<SearchBar showDefaultList={false} finally={this.close} rules={flatRules} />
+					<Overlay onClose={this.close}>
+						<h2>
+							<Trans>Chercher une règle</Trans>
+						</h2>
+						<SearchBar
+							showDefaultList={false}
+							finally={this.close}
+							rules={flatRules}
+						/>
 					</Overlay>
 				) : (
 					<button
 						onClick={() => this.setState({ visible: true })}
-						style={{ color: this.props.colours.colour }}
-					>
+						style={{ color: this.props.colours.colour }}>
 						<i className="fa fa-search" aria-hidden="true" />
-						<span> <Trans>Recherche</Trans></span>
+						<span>
+							{' '}
+							<Trans>Recherche</Trans>
+						</span>
 					</button>
 				)}
 			</div>

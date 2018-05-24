@@ -1,7 +1,7 @@
+import marked from 'Engine/marked'
 import { path } from 'ramda'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import marked from 'Engine/marked'
 import './Dictionary.css'
 import Overlay from './Overlay'
 
@@ -35,9 +35,7 @@ export let AttachDictionary = dictionary => Decorated =>
 					/>
 					{explanation && (
 						<Overlay
-							onOuterClick={() =>
-								this.setState({ term: null, explanation: null })
-							}>
+							onClose={() => this.setState({ term: null, explanation: null })}>
 							<div
 								id="dictionaryPanel"
 								dangerouslySetInnerHTML={{
