@@ -27,3 +27,4 @@ Et ceux spécifiques au projet :
 * :calendar: `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
 * :chart_with_upwards_trend: `:chart_with_upwards_trend:` pour une amélioration du tracking
 * :alien: `:alien:` pour ajouter des traductions
+* :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité 
