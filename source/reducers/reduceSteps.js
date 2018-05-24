@@ -1,25 +1,18 @@
-import { path, head, concat, without, length, map } from 'ramda'
-
-import { rules, collectDefaults, rulesFr } from 'Engine/rules'
 import {
-	getNextSteps,
-	collectMissingVariablesByTarget
+	collectMissingVariablesByTarget,
+	getNextSteps
 } from 'Engine/generateQuestions'
+import { collectDefaults, rules, rulesFr } from 'Engine/rules'
 import { analyseMany, parseAll } from 'Engine/traverse'
+import { concat, head, map, path, without } from 'ramda'
 
-export default (tracker, flatRules, answerSource) => (state, action) => {
+export default (flatRules, answerSource) => (state, action) => {
 	state.flatRules = flatRules
 	// Optimization - don't parse on each analysis
 	if (!state.parsedRules) {
 		state.parsedRules = parseAll(flatRules)
 	}
 
-	// TODO put this in middleware
-	if (action.type === 'RESET_SIMULATION') {
-		tracker.push(['trackEvent', 'restart', ''])
-	}
-
-	// TODO
 	if (action.type == 'CHANGE_LANG') {
 		if (action.lang == 'fr') {
 			flatRules = rulesFr
@@ -53,11 +46,6 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	)
 
 	if (action.type === 'USER_INPUT_UPDATE') {
-		tracker.push([
-			'trackEvent',
-			'input',
-			action.meta.field + ':' + action.payload
-		])
 		return {
 			...state,
 			analysis,
@@ -84,20 +72,6 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 			action.type === 'SET_CONVERSATION_TARGETS' && action.reset
 				? []
 				: state.foldedSteps
-	}
-
-	if (action.type === 'SET_ACTIVE_TARGET_INPUT') {
-		tracker.push(['trackEvent', 'select', state.activeTargetInput])
-	}
-
-	if (action.type === 'START_CONVERSATION') {
-		tracker.push([
-			'trackEvent',
-			'refine',
-			state.activeTargetInput +
-				':' +
-				answerSource(state)(state.activeTargetInput)
-		])
 	}
 
 	if (
@@ -155,19 +129,6 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 	}
 
 	if (action.type == 'STEP_ACTION' && action.name == 'fold') {
-		tracker.push([
-			'trackEvent',
-			'answer:' + action.source,
-			action.step + ': ' + situationWithDefaults(state)(action.step)
-		])
-
-		if (!newState.currentQuestion) {
-			tracker.push([
-				'trackEvent',
-				'done',
-				'after ' + length(newState.foldedSteps) + ' questions'
-			])
-		}
 		let foldedSteps = [...state.foldedSteps, state.currentQuestion]
 
 		return {
@@ -180,8 +141,6 @@ export default (tracker, flatRules, answerSource) => (state, action) => {
 		}
 	}
 	if (action.type == 'STEP_ACTION' && action.name == 'unfold') {
-		tracker.push(['trackEvent', 'unfold', action.step])
-
 		// We are possibly "refolding" a previously open question
 		let previous = state.currentQuestion,
 			// we fold it back into foldedSteps if it had been answered

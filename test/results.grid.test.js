@@ -1,25 +1,21 @@
-import * as R from 'ramda'
 import { expect } from 'chai'
-import { rules as realRules, enrichRule } from '../source/engine/rules'
-import { analyse, parseAll } from '../source/engine/traverse'
-import reduceSteps from '../source/reducers/reduceSteps'
-
+import * as R from 'ramda'
 import {
 	byBranch,
 	byName,
 	cell,
 	subCell
 } from '../source/components/ResultsGrid.js'
-
-let tracker = { push: array => null }
+import { enrichRule, rules as realRules } from '../source/engine/rules'
+import reduceSteps from '../source/reducers/reduceSteps'
 
 describe('results grid', function() {
 	it('should collect branches', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 
 		let rules = realRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{ foldedSteps: [], targetNames: ['salaire net'] },
@@ -45,10 +41,10 @@ describe('results grid', function() {
 
 	it('should collect branches with both targets', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 
 		let rules = realRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{
@@ -81,10 +77,10 @@ describe('results grid', function() {
 
 	it('should collect cells by name', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 
 		let rules = realRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{
@@ -115,10 +111,10 @@ describe('results grid', function() {
 
 	it('should sum cells by branch and payer', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 
 		let rules = realRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{
@@ -142,10 +138,10 @@ describe('results grid', function() {
 
 	it('should access cell values', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 
 		let rules = realRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{
@@ -177,10 +173,10 @@ describe('results grid', function() {
 
 	it('should access taxe sur les salaires', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 
 		let rules = realRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{

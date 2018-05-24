@@ -1,21 +1,21 @@
+import { rules, rulesFr } from 'Engine/rules'
 import React from 'react'
 import { render } from 'react-dom'
-import { compose, createStore, applyMiddleware } from 'redux'
-import reducers from './reducers/reducers'
-import DevTools from './DevTools'
-import { Provider } from 'react-redux'
-import Layout from './containers/Layout'
 import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
+import { applyMiddleware, compose, createStore } from 'redux'
+import DevTools from './DevTools'
+import computeThemeColours from './components/themeColours'
+import Layout from './containers/Layout'
+import lang from './i18n'
+import debounceFormChangeActions from './middlewares/debounceFormChangeActions'
+import trackDomainActions from './middlewares/trackDomainActions'
+import reducers from './reducers/reducers'
 import {
 	persistSimulation,
 	retrievePersistedSimulation
 } from './storage/persist'
-import debounceFormChangeActions from './debounceFormChangeActions'
-import computeThemeColours from './components/themeColours'
 import { getIframeOption, getUrl } from './utils'
-
-import { rules, rulesFr } from 'Engine/rules'
-import lang from './i18n'
 
 let initialState = {
 	iframe: getUrl().includes('iframe'),
@@ -23,18 +23,17 @@ let initialState = {
 	previousSimulation: retrievePersistedSimulation()
 }
 
-let enhancer = compose(
-	applyMiddleware(debounceFormChangeActions()),
-	DevTools.instrument({ maxAge: 10 })
-)
-
 let tracker = {
 	push: console.log,
 	connectToHistory: history => history
 }
+let enhancer = compose(
+	applyMiddleware(debounceFormChangeActions(), trackDomainActions(tracker)),
+	DevTools.instrument({ maxAge: 10 })
+)
 
 let initialRules = lang == 'en' ? rules : rulesFr
-let store = createStore(reducers(tracker, initialRules), initialState, enhancer)
+let store = createStore(reducers(initialRules), initialState, enhancer)
 let anchor = document.querySelector('#js')
 
 persistSimulation(store)

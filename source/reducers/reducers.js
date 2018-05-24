@@ -1,13 +1,12 @@
-import { combineReducers } from 'redux'
-import reduceReducers from 'reduce-reducers'
-import { reducer as formReducer, formValueSelector } from 'redux-form'
-import reduceSteps from './reduceSteps'
-import computeThemeColours from 'Components/themeColours'
-import storageReducer from '../storage/reducer'
-import { defaultTo, always } from 'ramda'
-import { formatInputs } from 'Engine/rules'
-
 import { popularTargetNames } from 'Components/TargetSelection'
+import computeThemeColours from 'Components/themeColours'
+import { formatInputs } from 'Engine/rules'
+import { always, defaultTo } from 'ramda'
+import reduceReducers from 'reduce-reducers'
+import { combineReducers } from 'redux'
+import { formValueSelector, reducer as formReducer } from 'redux-form'
+import storageReducer from '../storage/reducer'
+import reduceSteps from './reduceSteps'
 
 function themeColours(state = computeThemeColours(), { type, colour }) {
 	if (type == 'CHANGE_THEME_COLOUR') return computeThemeColours(colour)
@@ -69,7 +68,7 @@ function analysis(state = null, { type }) {
 			return state
 	}
 }
-export default (tracker, initialRules) =>
+export default initialRules =>
 	reduceReducers(
 		storageReducer,
 		combineReducers({
@@ -103,9 +102,5 @@ export default (tracker, initialRules) =>
 			activeTargetInput
 		}),
 		// cross-cutting concerns because here `state` is the whole state tree
-		reduceSteps(
-			tracker,
-			initialRules,
-			formatInputs(initialRules, formValueSelector)
-		)
+		reduceSteps(initialRules, formatInputs(initialRules, formValueSelector))
 	)
