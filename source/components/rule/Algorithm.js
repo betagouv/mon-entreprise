@@ -32,7 +32,6 @@ export default class Algorithm extends React.Component {
 					).targets
 			  )
 			: displayedRule
-		console.log(rule)
 
 		return (
 			<div id="algorithm">
