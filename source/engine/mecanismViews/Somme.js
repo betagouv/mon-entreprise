@@ -1,10 +1,10 @@
+import { path } from 'ramda'
 import React, { Component } from 'react'
 import { makeJsx } from '../evaluation'
-import { path } from 'ramda'
-import { Node, NodeValue } from './common'
 import './Somme.css'
+import { Node, NodeValue } from './common'
 
-export default ({ explanation, nodeValue }) => (
+const SommeNode = ({ explanation, nodeValue }) => (
 	<Node
 		classes="mecanism somme"
 		name="somme"
@@ -12,12 +12,12 @@ export default ({ explanation, nodeValue }) => (
 		child={<Table explanation={explanation} />}
 	/>
 )
+export default SommeNode
 
 let Table = ({ explanation }) => (
-	<table>
-		<caption />
-		<tbody>{explanation.map((v, i) => <Row key={i} {...{ v, i }} />)}</tbody>
-	</table>
+	<div className="mecanism-somme__table">
+		<div>{explanation.map((v, i) => <Row key={i} {...{ v, i }} />)}</div>
+	</div>
 )
 
 /* La colonne peut au clic afficher une nouvelle colonne qui sera une autre somme imbriquée */
@@ -31,33 +31,30 @@ class Row extends Component {
 			isSomme = rowFormula && rowFormula.name == 'somme'
 
 		return [
-			<tr
+			<div
+				className="mecanism-somme__row"
 				key={v.name}
-				className={isSomme ? '' : 'noNest'}
-				onClick={() => this.setState({ folded: !this.state.folded })}
-			>
-				<td className="operator blank">{i != 0 && '+'}</td>
-				<td className="element">
+				// className={isSomme ? '' : 'noNest'}
+				onClick={() => this.setState({ folded: !this.state.folded })}>
+				<div className="operator blank">{i != 0 && '+'}</div>
+				<div className="element">
 					{makeJsx(v)}
 					{isSomme && (
-						<span className="unfoldIndication">
+						<button className="unfoldIndication unstyledButton">
 							{this.state.folded ? 'déplier' : 'replier'}
-						</span>
+						</button>
 					)}
-				</td>
-				<td className="situationValue value">
+				</div>
+				<div className="situationValue value">
 					<NodeValue data={v.nodeValue} />
-				</td>
-			</tr>,
+				</div>
+			</div>,
 			...(isSomme && !this.state.folded
 				? [
-						<tr className="nested" key={v.name + '-nest'}>
-							<td className="blank" />
-							<td className="nested" colspan="2">
-								<Table explanation={rowFormula.explanation} />
-							</td>
-						</tr>
-					]
+						<div className="nested" key={v.name + '-nest'}>
+							<Table explanation={rowFormula.explanation} />
+						</div>
+				  ]
 				: [])
 		]
 	}
