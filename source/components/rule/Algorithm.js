@@ -1,15 +1,14 @@
+import { makeJsx } from 'Engine/evaluation'
+import knownMecanisms from 'Engine/known-mecanisms.yaml'
+import { analyse } from 'Engine/traverse'
+import classNames from 'classnames'
+import { head, path, values } from 'ramda'
 import React from 'react'
 import { Trans, translate } from 'react-i18next'
-import classNames from 'classnames'
-import { path, values } from 'ramda'
 import { AttachDictionary } from '../AttachDictionary'
-import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import { makeJsx } from 'Engine/evaluation'
-import './Algorithm.css'
-import { head } from 'ramda'
-import { analyse } from 'Engine/traverse'
-import { exampleSituationGateWithDefaults } from './Examples'
 import withLanguage from '../withLanguage'
+import './Algorithm.css'
+import { exampleSituationGateWithDefaults } from './Examples'
 
 @AttachDictionary(knownMecanisms)
 @translate()
@@ -69,11 +68,6 @@ export default class Algorithm extends React.Component {
 						<section id="formule">
 							<h2>
 								<Trans>Détails du calcul</Trans>
-								<small>
-									<Trans i18nKey="understand">
-										Cliquez sur chaque chaque valeur pour comprendre
-									</Trans>
-								</small>
 							</h2>
 							{makeJsx(rule['formule'])}
 						</section>
