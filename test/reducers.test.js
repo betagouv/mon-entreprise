@@ -1,20 +1,10 @@
-import R from 'ramda'
-
 import { expect } from 'chai'
-import { rules as realRules, enrichRule } from '../source/engine/rules'
-import {
-	collectMissingVariables,
-	getObjectives
-} from '../source/engine/generateQuestions'
-
-import reduceSteps from '../source/reducers/reduceSteps'
-import { popularTargetNames } from '../source/components/TargetSelection'
-
-import yaml from 'js-yaml'
 import dedent from 'dedent-js'
+import yaml from 'js-yaml'
+import { enrichRule } from '../source/engine/rules'
+import reduceSteps from '../source/reducers/reduceSteps'
 
-let stateSelector = state => name => null
-let tracker = { push: array => null }
+let stateSelector = () => () => null
 
 describe('fold', function() {
 	it('should start conversation with the first missing variable', function() {
@@ -27,7 +17,7 @@ describe('fold', function() {
 				{ nom: 'bb', question: '?', titre: 'b', espace: 'top' }
 			],
 			rules = rawRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector),
+			reducer = reduceSteps(rules, stateSelector),
 			action = { type: 'START_CONVERSATION' },
 			// situation = analyseTopDown(rules,"startHere")(stateSelector({})),
 			// objectives = getObjectives(stateSelector({}), situation.root, situation.parsedRules),
@@ -40,7 +30,7 @@ describe('fold', function() {
 
 	it('should deal with double unfold', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 
 		let rawRules = [
 				// TODO - this won't work without the indirection, figure out why
@@ -57,7 +47,7 @@ describe('fold', function() {
 				{ nom: 'cc', question: '?', titre: 'c', espace: 'top' }
 			],
 			rules = rawRules.map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{ foldedSteps: [], targetNames: ['startHere'] },
@@ -97,7 +87,7 @@ describe('fold', function() {
 
 	it('should first ask for questions without defaults, then those with defaults', function() {
 		let fakeState = {}
-		let stateSelector = state => name => fakeState[name]
+		let stateSelector = () => name => fakeState[name]
 		let rawRules = dedent`
         - nom: net
           formule: brut - cotisation
@@ -118,7 +108,7 @@ describe('fold', function() {
           par défaut: non
       `,
 			rules = yaml.safeLoad(rawRules).map(enrichRule),
-			reducer = reduceSteps(tracker, rules, stateSelector)
+			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(
 			{ foldedSteps: [], targetNames: ['net'] },
