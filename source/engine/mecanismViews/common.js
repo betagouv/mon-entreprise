@@ -1,12 +1,12 @@
+import classNames from 'classnames'
+import { contains, pick } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
-import { pick, contains } from 'ramda'
-import classNames from 'classnames'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { encodeRuleName, findRuleByDottedName } from '../rules'
-import { capitalise0 } from '../../utils'
+import { Link } from 'react-router-dom'
 import withLanguage from '../../components/withLanguage'
+import { capitalise0 } from '../../utils'
+import { encodeRuleName, findRuleByDottedName } from '../rules'
 
 let treatValue = (data, language) =>
 	data == null
@@ -38,9 +38,11 @@ export class Node extends Component {
 			<div className={classNames(classes, 'node')}>
 				{name && (
 					<span className="nodeHead">
-						<span className="name" data-term-definition={termDefinition}>
+						<button
+							className="name unstyledButton"
+							data-term-definition={termDefinition}>
 							<Trans>{name}</Trans>
-						</span>
+						</button>
 						<NodeValuePointer data={value} />
 					</span>
 				)}

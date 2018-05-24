@@ -19,13 +19,6 @@
 	text-align: left;
 	padding: 0.1em 0.6em;
 }
-.somme .element .unfoldIndication {
-	font-size: 60%;
-	color: #888;
-	cursor: pointer;
-	font-weight: 400;
-	white-space: nowrap;
-}
 .somme tr .value span {
 	text-align: right;
 }
@@ -79,6 +72,7 @@
 }
 .resultsGrid .operator {
 	border-right-color: transparent;
+	margin-right: 0.4em;
 }
 .resultsGrid .element.category {
 	font-weight: 600;
@@ -117,4 +111,73 @@
 
 .detailsRow {
 	background: rgba(51, 51, 80, 0.02);
+}
+
+.mecanism-somme__table {
+	display: flex;
+	max-width: 100%;
+	flex-direction: column;
+}
+
+.mecanism-somme__row {
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	border-top: 1px solid rgba(51, 51, 80, 0.15);
+}
+.mecanism-somme__row:first-child {
+	border-top: none;
+}
+
+.mecanism-somme__row .element {
+	flex: 1;
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+	padding: 0.1em 0.4em;
+	padding-top: 0.2em;
+	overflow: hidden;
+}
+.mecanism-somme__row .element .unfoldIndication {
+	text-transform: capitalize;
+	font-size: 90%;
+	align-self: baseline;
+	flex: 1;
+	text-align: left;
+	color: rgb(51, 51, 80);
+}
+
+.somme > :not(.mecanism-somme__table) .element .unfoldIndication {
+	font-size: 60%;
+	color: #888;
+	cursor: pointer;
+	font-weight: 400;
+	white-space: nowrap;
+}
+
+.mecanism-somme__row .value {
+	padding: 0.1em 0.4em;
+}
+.mecanism-somme__row .operator {
+	align-self: center;
+	display: none;
+}
+
+.mecanism-somme__row .element .variable,
+.mecanism-somme__row .element .nodeHead {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	display: inline-block;
+}
+
+.mecanism-somme__row .element .situationValue {
+	display: none !important;
+}
+
+/* Nested Mecanism */
+.nested .mecanism-somme__row {
+	padding-left: 2em;
+	border-top: 1px dashed rgba(51, 51, 80, 0.15);
+	font-size: 90%;
 }
