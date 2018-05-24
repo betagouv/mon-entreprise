@@ -53,7 +53,8 @@
 	text-align: center;
 	font-size: 200%;
 	color: inherit;
-	margin: 1em 0;
+	margin-bottom: 2em;
+	margin-top: 0.4em;
 }
 
 #declenchement > ul {
@@ -88,7 +89,6 @@
 	padding: 0.2em 1em;
 	border: 1px solid;
 	border-color: inherit;
-	font-size: 90%;
 	font-weight: 600;
 	border-bottom: none;
 	border-right: none;
@@ -158,17 +158,25 @@
 	color: #f22c40;
 }
 
-.variable .name {
+.variable a {
 	color: blue;
+	border: 1px solid transparent;
 	border-bottom: 1px solid blue;
 	text-align: center;
 	font-weight: 600;
 	font-size: 90%;
+	display: inline-block;
 	white-space: nowrap;
 }
 
-.variable .name:hover {
-	color: rgb(0, 0, 200);
+.variable a:hover {
+	color: rgb(0, 0, 150) !important;
+	border-bottom-color: rgb(0, 0, 150);
+}
+.variable a:focus {
+	border: 1px dotted;
+	outline: none;
+
 }
 
 .percentage .name {

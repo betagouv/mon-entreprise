@@ -1,18 +1,34 @@
+import FocusTrap from 'focus-trap-react'
 import React, { Component } from 'react'
 import './Overlay.css'
 
 export default class Overlay extends Component {
 	render() {
+		const { onClose, children, otherProps } = this.props
 		return (
-			<div id="overlayWrapper" onClick={this.props.onOuterClick}>
-				<div
-					id="overlayContent"
-					onClick={e => {
-						e.preventDefault()
-						e.stopPropagation()
+			<div id="overlayWrapper" onClick={onClose}>
+				<FocusTrap
+					focusTrapOptions={{
+						onDeactivate: onClose
 					}}>
-					{this.props.children}
-				</div>
+					<div
+						aria-modal="true"
+						id="overlayContent"
+						{...otherProps}
+						onClick={e => {
+							e.preventDefault()
+							e.stopPropagation()
+						}}>
+						{children}
+						<button
+							aria-label="close"
+							onClick={onClose}
+							className="unstyledButton"
+							id="overlayCloseButton">
+							x
+						</button>
+					</div>
+				</FocusTrap>
 			</div>
 		)
 	}

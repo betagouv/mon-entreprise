@@ -20,7 +20,13 @@
 	position: fixed;
 	min-height: 6em;
 }
-
+#overlayCloseButton {
+	position: absolute;
+	top: 0;
+	font-size: 150%;
+	color: rgba(51, 51, 80, 0.8);
+	right: 0;
+}
 @media (min-width: 600px) {
 	#overlayContent {
 		width: 70%;
