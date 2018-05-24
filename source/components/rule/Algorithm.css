@@ -296,7 +296,7 @@
 .situationValue.✘,
 .situationValue.✔ {
 	padding: 0 0.5em;
-	margin-right: 0 !important;
+	margin-right: -1px !important;
 }
 .mecanism.cond *:not(.nodeContent) > .variable .name,
 .mecanism.variations *:not(.nodeContent) > .variable .name,
