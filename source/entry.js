@@ -7,7 +7,6 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
-import DevTools from './DevTools'
 import computeThemeColours from './components/themeColours'
 import Layout from './containers/Layout'
 import lang from './i18n'
@@ -48,10 +47,8 @@ let initialStore = {
 	previousSimulation: retrievePersistedSimulation()
 }
 
-let enhancer = compose(
-	process.env.NODE_ENV !== 'production'
-		? DevTools.instrument({ maxAge: 10 })
-		: x => x,
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+let enhancer = composeEnhancers(
 	applyMiddleware(debounceFormChangeActions(), trackDomainActions(tracker))
 )
 
@@ -62,10 +59,7 @@ persistSimulation(store)
 
 let App = ({ store }) => (
 	<Provider store={store}>
-		<>
-			<Layout tracker={tracker} />
-			{process.env.NODE_ENV !== 'production' && <DevTools />}
-		</>
+		<Layout tracker={tracker} />
 	</Provider>
 )
 
