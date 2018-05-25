@@ -11,7 +11,13 @@
 	font-family: inherit;
 	font-weight: inherit;
 	min-width: 0;
+	outline: none;
+	width: inherit;
 	color: inherit;
 	background-color: inherit;
 	font-size: inherit;
+}
+
+.currencyInput__input::-ms-clear {
+	display: none;
 }

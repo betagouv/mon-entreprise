@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { dissoc } from 'ramda'
 import classnames from 'classnames'
+import { dissoc } from 'ramda'
+import React, { Component } from 'react'
 import './CurrencyInput.css'
 
 let isCurrencyPrefixed = language =>
@@ -10,6 +10,16 @@ let isCurrencyPrefixed = language =>
 	})
 		.format(12)
 		.match(/€.*12/)
+
+function isIE() {
+	return (
+		navigator.appName == 'Microsoft Internet Explorer' ||
+		(navigator.appName == 'Netscape' &&
+			new RegExp('Trident/.*rv:([0-9]{1,}[.0-9]{0,})').exec(
+				navigator.userAgent
+			) != null)
+	)
+}
 
 class CurrencyInput extends Component {
 	state = {
@@ -27,8 +37,12 @@ class CurrencyInput extends Component {
 		this.adaptInputSize()
 	}
 	adaptInputSize = () => {
+		// Because ch mesurement in IE is not consistent with other browsers, we have to apply a multiplier
+		// https://stackoverflow.com/questions/17825638/css3-ch-unit-inconsistent-between-ie9-and-other-browsers
+		const widthMultiplier = isIE() ? 1.4 : 1
 		if (this.input && isCurrencyPrefixed(this.props.language))
-			this.input.style.width = this.input.value.length + 0.2 + 'ch'
+			this.input.style.width =
+				widthMultiplier * (this.input.value.length + 0.2) + 'ch'
 	}
 	componentDidUpdate = (_, __, cursorPosition) => {
 		this.input.selectionStart = cursorPosition
@@ -44,11 +58,12 @@ class CurrencyInput extends Component {
 			.replace(/,/g, '.')
 			.replace(/[^\d.]/g, '')
 			.replace(/\.(.*)\.(.*)/g, '$1.$2')
-
 		this.setState({ value }, this.adaptInputSize)
+
 		if (value.endsWith('.')) {
 			return
 		}
+
 		if (this.props.onChange) {
 			event.target.value = value
 			this.props.onChange(event)
