@@ -30,6 +30,12 @@ class CurrencyInput extends Component {
 			value: nextProps.value
 		}
 	}
+	shouldComponentUpdate(nextProps, nextState) {
+		return (
+			this.state.value !== nextState.value ||
+			this.props.language !== nextProps.language
+		)
+	}
 	getSnapshotBeforeUpdate = () => {
 		return this.input.selectionStart
 	}
@@ -69,6 +75,7 @@ class CurrencyInput extends Component {
 			this.props.onChange(event)
 		}
 	}
+
 	render() {
 		let forwardedProps = dissoc(
 			['onChange', 'value', 'language', 'className'],
