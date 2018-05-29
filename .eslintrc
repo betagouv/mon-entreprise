@@ -10,6 +10,7 @@ rules:
   no-global-assign: 0
   no-unsafe-negation: 0
   react/prop-types: 0
+  no-restricted-globals: [2, length]
 parser: babel-eslint
 
 plugins:
