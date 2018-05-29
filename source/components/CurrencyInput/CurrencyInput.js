@@ -92,6 +92,7 @@ class CurrencyInput extends Component {
 				<input
 					{...forwardedProps}
 					className="currencyInput__input"
+					inputMode="numeric"
 					onChange={this.handleChange}
 					ref={ref => (this.input = ref)}
 					value={this.state.value}
