@@ -160,7 +160,7 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			explanation,
 			missingVariables
 		)
-		return cache[cacheName]
+		return cacheName
 	}
 
 	let { fragments } = parseResult,
