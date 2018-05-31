@@ -612,19 +612,6 @@ let evolveCond = (name, rule, rules) => value => {
 	}
 }
 
-export let getTargets = (target, rules) => {
-	let multiSimulation = path(['simulateur', 'objectifs'])(target)
-	let targets = multiSimulation
-		? // On a un simulateur qui définit une liste d'objectifs
-		  multiSimulation
-				.map(n => disambiguateRuleReference(rules, target, n))
-				.map(n => findRuleByDottedName(rules, n))
-		: // Sinon on est dans le cas d'une simple variable d'objectif
-		  [target]
-
-	return targets
-}
-
 export let parseAll = flatRules => {
 	let treatOne = rule => treatRuleRoot(flatRules, rule)
 	return map(treatOne, flatRules)
@@ -636,7 +623,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	let cache = { parseLevel: 0 }
 
 	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
-		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
+		targets = parsedTargets.map(t =>
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)
 

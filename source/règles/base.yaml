@@ -604,27 +604,6 @@
         compensation pour congés non pris: 39.6
       valeur attendue: 290
 
-# Cette variable est le point de départ du simulateur "surcout CDD" :-D
-- espace: contrat salarié . CDD
-  nom: surcoût CDD
-  simulateur:
-    objectifs:
-      - salaire net
-      - coût du travail
-      - CDD . surcoût
-    titre: Simulateur CDD
-    sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
-    introduction:
-      notes:
-        - icône: fa-handshake-o
-          texte: Vous avez embauché ou vous réfléchissez à l'embauche d'un salarié en CDD.
-          titre: Votre situation
-        - icône: fa-balance-scale
-          texte: Votre contrat ne peut donc avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
-          titre: Votre obligation
-        # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
-    hypothèses:
-      contrat salarié . type de contrat: CDD
 - nom: contrat salarié
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
@@ -854,15 +833,6 @@
     somme:
       - CICE
       - CITS
-
-- espace: contrat salarié
-  nom: salaire
-  simulateur:
-    objectifs:
-      - salaire net
-      - coût du travail
-    titre: Simulateur de coût d'embauche
-    sous-titre: Découvrir le coût d'embauche et le salaire réel
 
 - espace: contrat salarié
   nom: jours de congés légaux
