@@ -13,18 +13,7 @@ import './conversation.css'
 })
 @translate()
 @connect(
-	pick([
-		'currentQuestion',
-		'foldedSteps',
-		'themeColours',
-		'situationGate',
-		'targetNames',
-		'done',
-		'nextSteps',
-		'analysis',
-		'flatRules',
-		'conversationStarted'
-	])
+	pick(['currentQuestion', 'flatRules', 'targetNames', 'conversationStarted'])
 )
 export default class Conversation extends Component {
 	render() {
