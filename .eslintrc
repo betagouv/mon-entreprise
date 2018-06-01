@@ -6,6 +6,7 @@ rules:
     - 1 // While https://github.com/eslint/eslint/issues/9662#issuecomment-353958854 we don't enforce this
     - single
   no-console: 1
+  no-restricted-globals: [2, "length"]
   no-global-assign: 0
   no-unsafe-negation: 0
   react/prop-types: 0

@@ -13,7 +13,7 @@ export default tracker => ({ getState }) => next => action => {
 			tracker.push([
 				'trackEvent',
 				'done',
-				'after ' + length(newState.foldedSteps) + ' questions'
+				'after ' + newState.foldedSteps.length + ' questions'
 			])
 		}
 	}
