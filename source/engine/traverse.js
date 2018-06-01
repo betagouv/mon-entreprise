@@ -160,7 +160,7 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 			explanation,
 			missingVariables
 		)
-		return cache[cacheName]
+		return cacheName
 	}
 
 	let { fragments } = parseResult,
@@ -612,38 +612,26 @@ let evolveCond = (name, rule, rules) => value => {
 	}
 }
 
-export let getTargets = (target, rules) => {
-	let multiSimulation = path(['simulateur', 'objectifs'])(target)
-	let targets = multiSimulation
-		? // On a un simulateur qui définit une liste d'objectifs
-		  multiSimulation
-				.map(n => disambiguateRuleReference(rules, target, n))
-				.map(n => findRuleByDottedName(rules, n))
-		: // Sinon on est dans le cas d'une simple variable d'objectif
-		  [target]
-
-	return targets
-}
-
 export let parseAll = flatRules => {
 	let treatOne = rule => treatRuleRoot(flatRules, rule)
 	return map(treatOne, flatRules)
 }
 
-export let analyseMany = (parsedRules, targetNames) => situationGate => {
+// This function traverses the target rules evaluating them and they dependencies
+// it populates the values { dottedName => value } hash table return object
+// so that we have the AST (parsedRules) and the current variable values
+export let evaluateMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
-	let cache = { parseLevel: 0 }
+	let values = { parseLevel: 0 }
 
-	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
-		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
-			evaluateNode(cache, situationGate, parsedRules, t)
-		)
+	let parsedTargets = targetNames.map(t => findRule(parsedRules, t))
 
-	// Don't use 'dict' for anything else than ResultsGrid
-	return { targets, cache }
+	parsedTargets.map(t => evaluateNode(values, situationGate, parsedRules, t))
+
+	return values
 }
 
-export let analyse = (parsedRules, target) => {
-	return analyseMany(parsedRules, [target])
+export let evaluate = (parsedRules, target) => {
+	return evaluateMany(parsedRules, [target])
 }

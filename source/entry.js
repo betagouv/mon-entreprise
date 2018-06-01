@@ -13,6 +13,8 @@ import lang from './i18n'
 import debounceFormChangeActions from './middlewares/debounceFormChangeActions'
 import trackDomainActions from './middlewares/trackDomainActions'
 import reducers from './reducers/reducers'
+import DevTools from './DevTools'
+
 import {
 	persistSimulation,
 	retrievePersistedSimulation
@@ -49,7 +51,10 @@ let initialStore = {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 let enhancer = composeEnhancers(
-	applyMiddleware(debounceFormChangeActions(), trackDomainActions(tracker))
+	applyMiddleware(debounceFormChangeActions(), trackDomainActions(tracker)),
+	process.env.NODE_ENV !== 'production'
+		? DevTools.instrument({ maxAge: 10 })
+		: x => x
 )
 
 let initialRules = lang == 'en' ? rules : rulesFr
@@ -59,7 +64,10 @@ persistSimulation(store)
 
 let App = ({ store }) => (
 	<Provider store={store}>
-		<Layout tracker={tracker} />
+		<>
+			<Layout tracker={tracker} />
+			{process.env.NODE_ENV !== 'production' && <DevTools />}
+		</>
 	</Provider>
 )
 

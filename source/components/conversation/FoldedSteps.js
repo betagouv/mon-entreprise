@@ -11,22 +11,10 @@ import withColours from '../withColours'
 import { scroller, Element, animateScroll } from 'react-scroll'
 
 @withColours
-@connect(
-	pick([
-		'currentQuestion',
-		'foldedSteps',
-		'themeColours',
-		'situationGate',
-		'targetNames',
-		'nextSteps',
-		'analysis',
-		'flatRules'
-	]),
-	{
-		resetSimulation,
-		resetForm: () => reset('conversation')
-	}
-)
+@connect(pick(['foldedSteps', 'themeColours', 'targetNames', 'flatRules']), {
+	resetSimulation,
+	resetForm: () => reset('conversation')
+})
 @translate()
 export default class FoldedSteps extends Component {
 	handleSimulationReset = () => {
