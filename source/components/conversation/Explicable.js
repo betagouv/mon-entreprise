@@ -4,6 +4,7 @@ import './Explicable.css'
 import { connect } from 'react-redux'
 import { EXPLAIN_VARIABLE } from '../../actions'
 import { findRuleByDottedName } from 'Engine/rules'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
 
 import ReactPiwik from '../Tracker'
 
@@ -11,7 +12,7 @@ import ReactPiwik from '../Tracker'
 	state => ({
 		explained: state.explainedVariable,
 		textColourOnWhite: state.themeColours.textColourOnWhite,
-		flatRules: state.flatRules
+		flatRules: flatRulesSelector(state)
 	}),
 	dispatch => ({
 		explain: variableName => dispatch({ type: EXPLAIN_VARIABLE, variableName })

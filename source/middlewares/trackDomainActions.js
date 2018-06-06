@@ -1,3 +1,8 @@
+import {
+	formattedSituationSelector,
+	currentQuestionSelector
+} from 'Selectors/analyseSelectors'
+
 export default tracker => ({ getState }) => next => action => {
 	next(action)
 	const newState = getState()
@@ -6,10 +11,10 @@ export default tracker => ({ getState }) => next => action => {
 			'trackEvent',
 			'answer:' + action.source,
 			action.step,
-			newState.situationGate(action.step)
+			formattedSituationSelector(newState)[action.step]
 		])
 
-		if (!newState.currentQuestion) {
+		if (!currentQuestionSelector(newState)) {
 			tracker.push([
 				'trackEvent',
 				'done',
@@ -26,7 +31,7 @@ export default tracker => ({ getState }) => next => action => {
 			'trackEvent',
 			'refine',
 			newState.activeTargetInput,
-			newState.situationGate(newState.activeTargetInput)
+			formattedSituationSelector(newState)[newState.activeTargetInput]
 		])
 	}
 	if (action.type == 'STEP_ACTION' && action.name == 'unfold') {

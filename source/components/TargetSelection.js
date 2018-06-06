@@ -26,6 +26,12 @@ export let popularTargetNames = [
 	'contrat salarié . salaire . net imposable'
 ]
 
+import {
+	flatRulesSelector,
+	noUserInputSelector,
+	analysisWithDefaultsSelector
+} from 'Selectors/analyseSelectors'
+
 @translate()
 @reduxForm({
 	form: 'conversation',
@@ -35,8 +41,9 @@ export let popularTargetNames = [
 	state => ({
 		getTargetValue: dottedName =>
 			formValueSelector('conversation')(state, dottedName),
-		targets: state.analysis ? state.analysis.targets : [],
-		flatRules: state.flatRules,
+		analysis: analysisWithDefaultsSelector(state),
+		flatRules: flatRulesSelector(state),
+		noUserInput: noUserInputSelector(state),
 		conversationStarted: state.conversationStarted,
 		activeInput: state.activeTargetInput
 	}),
@@ -49,8 +56,7 @@ export let popularTargetNames = [
 )
 export default class TargetSelection extends Component {
 	render() {
-		let { targets, conversationStarted, colours, activeInput } = this.props
-		this.firstEstimationComplete = activeInput && targets.length > 0
+		let { conversationStarted, colours, noUserInput } = this.props
 		return (
 			<div id="targetSelection">
 				<section
@@ -61,13 +67,13 @@ export default class TargetSelection extends Component {
 					}}>
 					{this.renderOutputList()}
 				</section>
-				{!this.firstEstimationComplete && (
+				{noUserInput && (
 					<h1>
 						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
 					</h1>
 				)}
 
-				{this.firstEstimationComplete &&
+				{!noUserInput &&
 					!conversationStarted && (
 						<div id="action">
 							<p>
@@ -92,7 +98,15 @@ export default class TargetSelection extends Component {
 		let displayedTargets = displayedTargetNames.map(target =>
 				findRuleByDottedName(this.props.flatRules, target)
 			),
-			{ conversationStarted, activeInput, setActiveInput, targets } = this.props
+			{
+				conversationStarted,
+				activeInput,
+				setActiveInput,
+				analysis,
+				noUserInput
+			} = this.props,
+			targets = analysis ? analysis.targets : []
+
 		return (
 			<div>
 				<ul id="targets">
@@ -110,10 +124,10 @@ export default class TargetSelection extends Component {
 									{...{
 										target,
 										targets,
-										firstEstimationComplete: this.firstEstimationComplete,
 										activeInput,
 										setActiveInput,
-										setFormValue: this.props.setFormValue
+										setFormValue: this.props.setFormValue,
+										noUserInput
 									}}
 								/>
 							</div>
@@ -166,7 +180,7 @@ let CurrencyField = props => {
 }
 
 let TargetInputOrValue = withLanguage(
-	({ target, targets, activeInput, setActiveInput, language }) => (
+	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
 		<span className="targetInputOrValue">
 			{activeInput === target.dottedName ? (
 				<Field
@@ -175,7 +189,9 @@ let TargetInputOrValue = withLanguage(
 					language={language}
 				/>
 			) : (
-				<TargetValue {...{ targets, target, activeInput, setActiveInput }} />
+				<TargetValue
+					{...{ targets, target, activeInput, setActiveInput, noUserInput }}
+				/>
 			)}
 		</span>
 	)
@@ -193,15 +209,17 @@ class TargetValue extends Component {
 				target,
 				setFormValue,
 				activeInput,
-				setActiveInput
+				setActiveInput,
+				noUserInput
 			} = this.props,
 			targetWithValue = targets.find(propEq('dottedName', target.dottedName)),
 			value = targetWithValue && targetWithValue.nodeValue
+
 		return (
 			<span
 				className={classNames({
 					editable: target.question,
-					attractClick: target.question && targets.length === 0
+					attractClick: target.question && noUserInput
 				})}
 				onClick={() => {
 					if (!target.question) return
