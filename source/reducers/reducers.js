@@ -1,12 +1,10 @@
 import { popularTargetNames } from 'Components/TargetSelection'
 import computeThemeColours from 'Components/themeColours'
-import { formatInputs } from 'Engine/rules'
-import { always, defaultTo } from 'ramda'
+import { defaultTo, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
-import { formValueSelector, reducer as formReducer } from 'redux-form'
+import { reducer as formReducer } from 'redux-form'
 import storageReducer from '../storage/reducer'
-import reduceSteps from './reduceSteps'
 
 function themeColours(state = computeThemeColours(), { type, colour }) {
 	if (type == 'CHANGE_THEME_COLOUR') return computeThemeColours(colour)
@@ -51,56 +49,53 @@ function activeTargetInput(state = null, { type, name }) {
 			return state
 	}
 }
-function foldedSteps(state = [], { type }) {
+
+function lang(state = null, { type, lang }) {
 	switch (type) {
-		case 'RESET_SIMULATION':
-			return []
+		case 'SWITCH_LANG':
+			return lang
 		default:
 			return state
 	}
 }
 
-function analysis(state = null, { type }) {
-	switch (type) {
-		case 'RESET_SIMULATION':
-			return null
-		default:
-			return state
-	}
+function conversationSteps(
+	state = { foldedSteps: [], currentQuestion: null },
+	{ type, name, step, currentQuestion }
+) {
+	if (type === 'RESET_SIMULATION') return { foldedSteps: [], unfolded: null }
+	if (type !== 'STEP_ACTION') return state
+
+	if (name === 'fold')
+		return { foldedSteps: [...state.foldedSteps, currentQuestion] }
+	if (name === 'unfold')
+		return {
+			foldedSteps: without([step], state.foldedSteps),
+			unfoldedStep: step
+		}
 }
-export default initialRules =>
-	reduceReducers(
-		storageReducer,
-		combineReducers({
-			sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
-			//  this is handled by redux-form, pas touche !
-			form: formReducer,
 
-			/* Have forms been filled or ignored ?
-		false means the user is reconsidering its previous input */
-			foldedSteps,
-			currentQuestion: defaultTo(null),
-			nextSteps: defaultTo([]),
-			missingVariablesByTarget: defaultTo({}),
-			parsedRules: defaultTo(null),
-			flatRules: defaultTo(null),
-			analysis,
+export default reduceReducers(
+	storageReducer,
+	combineReducers({
+		sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
+		//  this is handled by redux-form, pas touche !
+		form: formReducer,
 
-			targetNames: defaultTo(popularTargetNames),
+		conversationSteps,
+		lang,
 
-			situationGate: defaultTo(always(null)),
+		targetNames: defaultTo(popularTargetNames),
 
-			iframe: defaultTo(false),
+		iframe: defaultTo(false),
 
-			themeColours,
+		themeColours,
 
-			explainedVariable,
-			previousSimulation: defaultTo(null),
+		explainedVariable,
+		previousSimulation: defaultTo(null),
 
-			currentExample,
-			conversationStarted,
-			activeTargetInput
-		}),
-		// cross-cutting concerns because here `state` is the whole state tree
-		reduceSteps(initialRules, formatInputs(initialRules, formValueSelector))
-	)
+		currentExample,
+		conversationStarted,
+		activeTargetInput
+	})
+)

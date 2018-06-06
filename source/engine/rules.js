@@ -3,6 +3,8 @@ import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
 import {
 	assoc,
+	mapObjIndexed,
+	chain,
 	has,
 	pipe,
 	toPairs,
@@ -108,7 +110,9 @@ export let disambiguateRuleReference = (
 	return (
 		(found && found.dottedName) ||
 		do {
-			throw new Error(`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`)
+			throw new Error(
+				`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`
+			)
 		}
 	)
 }
@@ -157,18 +161,46 @@ export let findRuleByNamespace = (allRules, ns) =>
 
 export let queryRule = rule => query => path(query.split(' . '))(rule)
 
-export let formatInputs = (flatRules, formValueSelector) => state => name => {
-	// Our situationGate retrieves data from the "conversation" form
-	// The search below is to apply input conversions such as replacing "," with "."
-	if (name.startsWith('sys.')) return null
-
-	let rule = findRuleByDottedName(flatRules, name),
-		format = rule ? formValueTypes[rule.format] : null,
-		pre = format && format.validator.pre ? format.validator.pre : identity,
-		value = formValueSelector('conversation')(state, name)
-
-	return value && pre(value)
+var findObjectByLabel = function(obj, label) {
+	if (obj.label === label) {
+		return obj
+	}
+	for (var i in obj) {
+		if (obj.hasOwnProperty(i)) {
+			var foundLabel = findObjectByLabel(obj[i], label)
+			if (foundLabel) {
+				return foundLabel
+			}
+		}
+	}
+	return null
 }
+
+// Redux-form stores the form values as a nested object
+// This helper makes a dottedName => value Map
+export let nestedSituationToPathMap = situation => {
+	let rec = (o, currentPath) =>
+		typeof o === 'object'
+			? chain(([k, v]) => rec(v, [...currentPath, k]), toPairs(o))
+			: typeof o === 'string'
+				? [[currentPath.join(' . '), o]]
+				: new Error('oups, all leaf values were expected to be strings')
+
+	return fromPairs(rec(situation, []))
+}
+
+export let formatInputs = (flatRules, pathValueMap) =>
+	pathValueMap.mapObjIndexed((path, value) => {
+		// Our situationGate retrieves data from the "conversation" form
+		// The search below is to apply input conversions such as replacing "," with "."
+		if (name.startsWith('sys.')) return null
+
+		let rule = findRuleByDottedName(flatRules, path),
+			format = rule ? formValueTypes[rule.format] : null,
+			pre = format && format.validator.pre ? format.validator.pre : identity
+
+		return pre(value)
+	})
 
 /* Traduction */
 
@@ -176,8 +208,19 @@ export let translateAll = (translations, flatRules) => {
 	let translationsOf = rule => translations[buildDottedName(rule)],
 		translateProp = (lang, translation) => (rule, prop) => {
 			let propTrans = translation[prop + '.' + lang]
-		    if (prop === 'suggestions' && propTrans)
-				return assoc('suggestions', pipe(toPairs, map(([key,translatedKey]) => [translatedKey, rule.suggestions[key]]), fromPairs)(propTrans), rule)
+			if (prop === 'suggestions' && propTrans)
+				return assoc(
+					'suggestions',
+					pipe(
+						toPairs,
+						map(([key, translatedKey]) => [
+							translatedKey,
+							rule.suggestions[key]
+						]),
+						fromPairs
+					)(propTrans),
+					rule
+				)
 			return propTrans ? assoc(prop, propTrans, rule) : rule
 		},
 		translateRule = (lang, translations, props) => rule => {
@@ -187,7 +230,14 @@ export let translateAll = (translations, flatRules) => {
 				: rule
 		}
 
-	let targets = ['titre', 'description', 'question', 'sous-question', 'résumé', 'suggestions']
+	let targets = [
+		'titre',
+		'description',
+		'question',
+		'sous-question',
+		'résumé',
+		'suggestions'
+	]
 
 	return map(translateRule('en', translations, targets), flatRules)
 }
