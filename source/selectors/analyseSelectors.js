@@ -6,6 +6,8 @@ import {
 
 import { analyseMany, parseAll } from 'Engine/traverse'
 
+import { head, isEmpty } from 'ramda'
+
 import { getFormValues } from 'redux-form'
 import {
 	collectDefaults,
@@ -38,9 +40,14 @@ let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
 )
 
 let targetNamesSelector = state => state.targetNames
-let situationSelector = getFormValues('conversation')
+export let situationSelector = getFormValues('conversation')
 
-let formattedSituationSelector = createSelector(
+export let noUserInputSelector = createSelector(
+	[situationSelector],
+	situation => !situation || isEmpty(situation)
+)
+
+export let formattedSituationSelector = createSelector(
 	[flatRulesSelector, situationSelector],
 	(rules, situation) => formatInputs(rules, nestedSituationToPathMap(situation))
 )
@@ -52,12 +59,12 @@ let situationWithDefaultsSelector = createSelector(
 
 // Debounce this update as in the middleware now
 
-let makeAnalysisSelector = (withDefaults = false) =>
+let makeAnalysisSelector = withDefaults =>
 	createSelector(
 		[
 			parsedRulesSelector,
 			targetNamesSelector,
-			withDefaults ? situationWithDefaultsSelector : situationSelector
+			withDefaults ? situationWithDefaultsSelector : formattedSituationSelector
 		],
 		(parsedRules, targetNames, situation) =>
 			analyseMany(parsedRules, targetNames)(dottedName => situation[dottedName])
@@ -80,7 +87,7 @@ let currentMissingVariablesByTargetSelector = createSelector(
 	analysis => collectMissingVariablesByTarget(analysis.targets)
 )
 
-let missingVariablesByTargetSelector = createSelector(
+export let missingVariablesByTargetSelector = createSelector(
 	[initialAnalysisSelector, currentMissingVariablesByTargetSelector],
 	(initialAnalysis, currentMissingVariablesByTarget) => ({
 		initial: collectMissingVariablesByTarget(initialAnalysis.targets),
@@ -88,8 +95,11 @@ let missingVariablesByTargetSelector = createSelector(
 	})
 )
 
-export let nextSteps = createSelector(
-	[missingVariablesByTargetSelector],
+export let nextStepsSelector = createSelector(
+	[currentMissingVariablesByTargetSelector],
 	getNextSteps
 )
-// currentQuestion = head(nextSteps)
+export let currentQuestionSelector = createSelector(
+	[nextStepsSelector],
+	nextSteps => head(nextSteps)
+)

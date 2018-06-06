@@ -5,7 +5,8 @@ module.exports = {
 			Engine: path.resolve('source/engine/'),
 			Règles: path.resolve('source/règles/'),
 			Components: path.resolve('source/components/'),
-			Images: path.resolve('source/images/')
+			Images: path.resolve('source/images/'),
+			Selectors: path.resolve('source/selectors/')
 		}
 	},
 	output: {

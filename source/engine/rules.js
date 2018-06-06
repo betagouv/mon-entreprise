@@ -181,7 +181,10 @@ var findObjectByLabel = function(obj, label) {
 export let nestedSituationToPathMap = situation => {
 	let rec = (o, currentPath) =>
 		typeof o === 'object'
-			? chain(([k, v]) => rec(v, [...currentPath, k]), toPairs(o))
+			? chain(
+					([k, v]) => rec(v, [...currentPath, k.trimStart().trimEnd()]),
+					toPairs(o)
+			  )
 			: typeof o === 'string'
 				? [[currentPath.join(' . '), o]]
 				: new Error('oups, all leaf values were expected to be strings')
@@ -190,7 +193,7 @@ export let nestedSituationToPathMap = situation => {
 }
 
 export let formatInputs = (flatRules, pathValueMap) =>
-	pathValueMap.mapObjIndexed((path, value) => {
+	mapObjIndexed((value, path) => {
 		// Our situationGate retrieves data from the "conversation" form
 		// The search below is to apply input conversions such as replacing "," with "."
 		if (name.startsWith('sys.')) return null
@@ -200,7 +203,7 @@ export let formatInputs = (flatRules, pathValueMap) =>
 			pre = format && format.validator.pre ? format.validator.pre : identity
 
 		return pre(value)
-	})
+	}, pathValueMap)
 
 /* Traduction */
 
