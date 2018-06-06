@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import { evolve, path, isEmpty, compose } from 'ramda'
+import { evolve, isEmpty, compose } from 'ramda'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { disambiguateExampleSituation, collectDefaults } from 'Engine/rules.js'
 import { analyse } from 'Engine/traverse'
 import './Examples.css'
-import { assume } from '../../reducers/reduceSteps'
 import { setExample } from '../../actions'
+
+// assume "wraps" a given situation function with one that overrides its values with
+// the given assumptions
+let assume = (evaluator, assumptions) => state => name => {
+	let userInput = evaluator(state)(name)
+	return userInput != null ? userInput : assumptions[name]
+}
 
 export let exampleSituationGateWithDefaults = (situationObject, rules) =>
 	assume(() => name => situationObject[name], collectDefaults(rules))()
@@ -69,7 +75,11 @@ export default class Examples extends Component {
 			<div id="examples">
 				<h2>
 					<Trans i18nKey="examples">Exemples de calcul</Trans>{' '}
-					<small><Trans i18nKey="clickexample">Cliquez sur un exemple pour le tester</Trans></small>
+					<small>
+						<Trans i18nKey="clickexample">
+							Cliquez sur un exemple pour le tester
+						</Trans>
+					</small>
 				</h2>
 				{!isEmpty(examples) && (
 					<ul>
@@ -101,7 +111,10 @@ export default class Examples extends Component {
 											<div className="ko">
 												<Trans i18nKey="fail">Ce test ne passe pas</Trans>
 												<span>
-													: <Trans i18nKey="expected">le résultat attendu était</Trans>{' '}
+													:{' '}
+													<Trans i18nKey="expected">
+														le résultat attendu était
+													</Trans>{' '}
 													<span className="expected">{expected}</span>
 												</span>
 											</div>

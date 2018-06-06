@@ -52,8 +52,10 @@ let enhancer = composeEnhancers(
 	applyMiddleware(debounceFormChangeActions(), trackDomainActions(tracker))
 )
 
-let initialRules = lang == 'en' ? rules : rulesFr
-let store = createStore(reducers(initialRules), initialStore, enhancer)
+// let initialRules = lang == 'en' ? rules : rulesFr
+//TODO reintroduce initial language
+//
+let store = createStore(reducers, initialStore, enhancer)
 let anchor = document.querySelector('#js')
 persistSimulation(store)
 
