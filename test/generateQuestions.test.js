@@ -1,14 +1,12 @@
-import * as R from 'ramda'
 import { expect } from 'chai'
-import { rules as realRules, enrichRule } from '../source/engine/rules'
-import { analyse, parseAll } from '../source/engine/traverse'
 import {
-	getNextSteps,
-	collectMissingVariablesByTarget,
-	collectMissingVariables
+	collectMissingVariables,
+	getNextSteps
 } from '../source/engine/generateQuestions'
+import { enrichRule, rules as realRules } from '../source/engine/rules'
+import { analyse, parseAll } from '../source/engine/traverse'
 
-let stateSelector = name => null
+let stateSelector = () => null
 
 describe('collectMissingVariables', function() {
 	it('should identify missing variables', function() {
@@ -184,7 +182,6 @@ describe('collectMissingVariables', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
 										{ de: 1, à: 2, taux: 'trois' },
-										,
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								},
@@ -194,7 +191,6 @@ describe('collectMissingVariables', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
 										{ de: 1, à: 2, taux: 1.8 },
-										,
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								}
@@ -238,7 +234,6 @@ describe('collectMissingVariables', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
 										{ de: 1, à: 2, taux: 'deux' },
-										,
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								},
@@ -247,7 +242,6 @@ describe('collectMissingVariables', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
 										{ de: 1, à: 2, taux: 1.8 },
-										,
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								}
@@ -349,8 +343,8 @@ describe('nextSteps', function() {
 					nom: 'evt',
 					espace: 'top . sum',
 					formule: { 'une possibilité': ['ko'] },
-					titre: 'Truc',
-					question: '?'
+					titre: 'Truc'
+					// question: '?'
 				},
 				{ nom: 'ko', espace: 'top . sum . evt' }
 			],
@@ -380,11 +374,13 @@ describe('nextSteps', function() {
 		let stateSelector = name =>
 			({
 				'contrat salarié . type de contrat': 'CDD',
-				'contrat salarié . salaire de base': '2300'
+				'contrat salarié . salaire . brut de base': '2300'
 			}[name])
 
 		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'salaire net')(stateSelector),
+			analysis = analyse(rules, 'contrat salarié . salaire . net')(
+				stateSelector
+			),
 			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.include('contrat salarié . CDD . motif')

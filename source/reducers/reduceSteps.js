@@ -40,10 +40,10 @@ export default (flatRules, answerSource) => (state, action) => {
 	// Most rules have default values
 	let rulesDefaults = collectDefaults(flatRules),
 		situationWithDefaults = assume(answerSource, rulesDefaults)
-
 	let analysis = analyseMany(state.parsedRules, state.targetNames)(
 		situationWithDefaults(state)
 	)
+	
 
 	if (action.type === 'USER_INPUT_UPDATE') {
 		return {

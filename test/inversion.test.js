@@ -1,10 +1,9 @@
-import { length } from 'ramda'
 import { expect } from 'chai'
-import { rules as realRules, enrichRule } from '../source/engine/rules'
-import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
-import { collectMissingVariables } from '../source/engine/generateQuestions'
-import yaml from 'js-yaml'
 import dedent from 'dedent-js'
+import yaml from 'js-yaml'
+import { collectMissingVariables } from '../source/engine/generateQuestions'
+import { enrichRule, rules as realRules } from '../source/engine/rules'
+import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
 
 describe('inversions', () => {
 	it('should handle non inverted example', () => {
@@ -78,7 +77,7 @@ describe('inversions', () => {
 
       `,
 			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
-			stateSelector = name => null,
+			stateSelector = () => null,
 			analysis = analyse(rules, 'brut')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
@@ -217,15 +216,16 @@ it('complex inversion with composantes', () => {
 
 it('should collect missing variables not too slowly', function() {
 	let stateSelector = name =>
-		({ 'contrat salarié . salaire net': '2300' }[name])
+		({ 'contrat salarié . salaire . net': '2300' }[name])
 
 	let rules = parseAll(realRules.map(enrichRule)),
-		analysis = analyseMany(rules, ['salaire brut', 'salaire total'])(
-			stateSelector
-		)
+		analysis = analyseMany(rules, [
+			'contrat salarié . salaire . brut',
+			'contrat salarié . salaire . total'
+		])(stateSelector)
 
 	let start = Date.now()
-	let missing = collectMissingVariables(analysis.targets)
+	collectMissingVariables(analysis.targets)
 	let elapsed = Date.now() - start
 	expect(elapsed).to.be.below(500)
 })

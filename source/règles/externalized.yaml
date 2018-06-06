@@ -323,7 +323,7 @@ contrat salarié . assiette cotisations sociales:
     (logement, véhicule...).
   titre.en: base for the social contributions
   titre.fr: assiette cotisations sociales
-contrat salarié . salaire de base:
+contrat salarié . salaire . brut de base:
   titre.en: Gross salary
   titre.fr: Salaire brut
   résumé.en: The salary written in the employment contract.
@@ -346,7 +346,7 @@ contrat salarié . salaire de base:
   suggestions.en:
     salaire médian: median salary
     SMIC: minimal salary (SMIC)
-contrat salarié . salaire brut:
+contrat salarié . salaire . brut:
   titre.en: gross salary with benefits
   titre.fr: salaire brut
   description.fr: >
@@ -385,7 +385,7 @@ contrat salarié . cotisations salariales:
 contrat salarié . cotisations patronales:
   titre.en: employer contributions
   titre.fr: cotisations patronales
-contrat salarié . salaire net:
+contrat salarié . salaire . net:
   titre.en: Net salary
   titre.fr: Salaire net
   question.en: What is the net salary?
@@ -416,7 +416,7 @@ contrat salarié . coût du travail:
     réel du travail pour l'employeur.
   titre.en: labor cost
   titre.fr: coût du travail
-contrat salarié . salaire total:
+contrat salarié . salaire . total:
   titre.en: Total salary
   titre.fr: Salaire total
   résumé.en: The total sum paid by the employer every month.
@@ -434,7 +434,7 @@ contrat salarié . salaire total:
 contrat salarié . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
-contrat salarié . salaire total sans réduction:
+contrat salarié . salaire . total sans réduction:
   titre.en: total salary without reduction
   titre.fr: salaire total sans réduction
 contrat salarié . aides employeur:
