@@ -40,6 +40,7 @@ type Branche =
 	| 'retraite'
 	| 'famille'
 	| 'assurance chômage'
+	| 'formation'
 	| 'logement'
 	| 'autres'
 
@@ -55,6 +56,7 @@ export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
 	'retraite',
 	'famille',
 	'assurance chômage',
+ 	'formation',
 	'logement',
 	'autres'
 ]
