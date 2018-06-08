@@ -1,6 +1,6 @@
 .payslip__salarySection {
 	display: grid;
-	grid-template-columns: auto 8em;
+	grid-template-columns: auto 8.2em;
 	grid-gap: 0.3em 0em;
 }
 .payslip__salaryTitle {
@@ -9,7 +9,7 @@
 
 .payslip__cotisationsSection {
 	display: grid;
-	grid-template-columns: auto 8em 8em;
+	grid-template-columns: auto 8.2em 8.2em;
 	grid-gap: 0.3em 0em;
 }
 
@@ -37,6 +37,7 @@
 	padding-bottom: 0.5em;
 	align-self: end;
 	margin-bottom: 0.5em;
+	padding-left: 0.4em;
 }
 
 .payslip__total {
@@ -78,6 +79,6 @@
 	padding-right: 0.2em;
 }
 
-.payslip__salaireNet {
+.payslip__salaireNetàPayer {
 	font-weight: bold;
 }

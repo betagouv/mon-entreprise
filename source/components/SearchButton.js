@@ -53,7 +53,6 @@ export default class SearchButton extends Component {
 						style={{ color: this.props.colours.colour }}>
 						<i className="fa fa-search" aria-hidden="true" />
 						<span>
-							{' '}
 							<Trans>Recherche</Trans>
 						</span>
 					</button>

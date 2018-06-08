@@ -12,7 +12,7 @@ votre réponse: answer here
 reset: Start over
 resetAll: Discard answers
 change: Change answers
-details: Detailed results
+details: Explore the payslip
 revenir: back
 Modifier: Edit
 passer: skip
@@ -104,3 +104,10 @@ montant à atteindre: minimum value
 dû par: owed by
 employeur: employer
 salarié: employee
+Salaire: Salary
+Cotisations sociales: Social contributions
+Part employeur: Employer share
+Part salariale: Employee share
+Total des retenues: Total withheld
+accidents du travail / maladies professionnelles: work accidents / occupational diseases
+autres: other

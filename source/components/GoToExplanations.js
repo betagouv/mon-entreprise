@@ -1,9 +1,9 @@
+import { path } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import './Explanation.css'
 import { connect } from 'react-redux'
-import { scroller, Element } from 'react-scroll'
-import { path } from 'ramda'
+import { Element, scroller } from 'react-scroll'
+import './Explanation.css'
 import withColours from './withColours'
 
 @translate()
@@ -34,7 +34,7 @@ export default class GoToExplanation extends Component {
 						className="unstyledButton"
 						onClick={this.handleScrollToResults}>
 						<i className="fa fa-long-arrow-down" aria-hidden="true" />
-						&nbsp;<Trans i18nKey="details">Comprendre mes résultats</Trans>
+						&nbsp;<Trans i18nKey="details">Explorer la fiche de paie</Trans>
 					</button>
 				</h3>
 			</Element>

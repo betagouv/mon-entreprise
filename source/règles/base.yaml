@@ -729,7 +729,7 @@
 
 - espace: contrat salarié . avantages en nature
   nom: montant
-  titre: Avantages en nature
+  titre: Avantages en nature (montant)
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   question: Quel est le montant mensuel des avantages en nature ?

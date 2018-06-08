@@ -1,6 +1,8 @@
 /* @flow */
 
 import { encodeRuleName } from 'Engine/rules.js'
+import { findRuleByDottedName } from 'Engine/rules'
+
 import {
 	add,
 	concat,
@@ -16,7 +18,7 @@ import {
 	reduce,
 	values
 } from 'ramda'
-import type { State } from '../../../types/State'
+import type { State, FlatRules } from '../../../types/State'
 import type { Analysis } from '../../../types/Analysis'
 
 type Cotisation = Règle & {
@@ -93,6 +95,7 @@ type VariableWithCotisation = {
 	}
 }
 
+
 // Used for type consistency
 const BLANK_COTISATION: Cotisation = {
 	montant: {
@@ -130,11 +133,10 @@ const mergeCotisations: (Cotisation, Cotisation) => Cotisation = mergeWithKey(
 	(key, a, b) => (key === 'montant' ? mergeWith(add, a, b) : b)
 )
 
-function variableToCotisation(variable: VariableWithCotisation): Cotisation {
+const variableToCotisation = (règleLocaliséeSelector: string => Règle) => (variable: VariableWithCotisation): Cotisation => {
 	return mergeCotisations(BLANK_COTISATION, {
-		nom: variable.name,
+		...règleLocaliséeSelector(variable.dottedName),
 		branche: brancheSelector(variable),
-		lien: '/règle/' + encodeRuleName(variable.dottedName),
 		montant: {
 			[duParSelector(variable) === 'salarié'
 				? 'partSalariale'
@@ -155,7 +157,7 @@ function groupByBranche(cotisations: Array<Cotisation>): Cotisations {
 		cotisationsMap[branche]
 	])
 }
-function analysisToCotisations(analysis: Analysis): Cotisations {
+const analysisToCotisations = (analysis: Analysis, règleLocaliséeSelector: string => Règle) : Cotisations => {
 	const variables = [
 		'contrat salarié . cotisations salariales',
 		'contrat salarié . cotisations patronales'
@@ -168,7 +170,7 @@ function analysisToCotisations(analysis: Analysis): Cotisations {
 		values,
 		map(
 			pipe(
-				map(variableToCotisation),
+				map(variableToCotisation(règleLocaliséeSelector)),
 				reduce(mergeCotisations, BLANK_COTISATION)
 			)
 		),
@@ -182,78 +184,84 @@ function analysisToCotisations(analysis: Analysis): Cotisations {
 
 	return cotisations
 }
-
-function analysisRègleSelector(
-	ruleName: string,
-	analysis: Analysis
-): RègleAvecMontant {
+const règleLocaliséeSelector = (localizedFlatRules: FlatRules) => (dottedName: string) : Règle => {
+	if (!localizedFlatRules) {
+		throw new Error(
+			`[LocalizedRègleSelector] Les localizedFlatRules ne doivent pas être 'undefined' ou 'null'`
+		)
+	}
+	const localizedRule = findRuleByDottedName(localizedFlatRules, dottedName);
+	if (!localizedFlatRules) {
+		throw new Error(
+			`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
+		)
+	}
+	return {
+		nom: localizedRule.titre || localizedRule.nom,
+		lien: '/règle/' + encodeRuleName(dottedName)
+	} 
+}
+const règleAvecMontantSelector = (analysis: Analysis, règleLocaliséeSelector: string => Règle) => (dottedName: string) : RègleAvecMontant =>  {
 	if (!analysis) {
 		throw new Error(
-			`[Règle selector] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
+			`[] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
 		)
 	}
 	const rule =
-		analysis.cache[ruleName] ||
-		analysis.targets.find(target => target.dottedName === ruleName)
+		analysis.cache[dottedName] ||
+		analysis.targets.find(target => target.dottedName === dottedName)
 	if (!rule) {
 		throw new Error(
-			`[Règle selector] Impossible de trouver la règle "${ruleName}" dans l'analyse. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
+			`[règleAvecMontantSelector] Impossible de trouver la règle "${dottedName}" dans l'analyse. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
 		)
 	}
-	const { name, titre, dottedName, nodeValue, explanation } = rule
 	return {
-		nom:
-			titre || (explanation && (explanation.titre || explanation.name)) || name,
-		montant: nodeValue || 0,
-		lien: '/règle/' + encodeRuleName(dottedName)
-	}
+		...règleLocaliséeSelector(dottedName),
+		montant: rule.nodeValue || 0,
+	} 
 }
+
 
 // Custom values for flow type checking
 // https://github.com/facebook/flow/issues/2221
-function analysisToFicheDePaie(analysis: Analysis): FicheDePaie {
-	const cotisations = analysisToCotisations(analysis)
-	const cotisationsPatronales = analysisRègleSelector('contrat salarié . cotisations patronales', analysis) 
-	const cotisationsSalariales = analysisRègleSelector('contrat salarié . cotisations salariales', analysis) 
-	const réductionsDeCotisations = analysisRègleSelector('contrat salarié . réductions de cotisations', analysis) 
+function analysisToFicheDePaie(analysis: Analysis, flatRules: FlatRules): FicheDePaie {
+	const règleLocalisée = règleLocaliséeSelector(flatRules);
+	const règleAvecMontant = règleAvecMontantSelector(analysis, règleLocalisée);
+	const cotisations = analysisToCotisations(analysis, règleLocalisée)
+	const cotisationsSalariales = règleAvecMontant('contrat salarié . cotisations salariales') 
+	const cotisationsPatronales = règleAvecMontant('contrat salarié . cotisations patronales') 
+	const réductionsDeCotisations = règleAvecMontant('contrat salarié . réductions de cotisations') 
 	const totalCotisations = {
 		partPatronale: cotisationsPatronales.montant - réductionsDeCotisations.montant,
 		partSalariale: cotisationsSalariales.montant,
 	}
 	return {
-		salaireDeBase: analysisRègleSelector(
-			'contrat salarié . salaire . brut de base',
-			analysis
+		salaireDeBase: règleAvecMontant(
+			'contrat salarié . salaire . brut de base'
 		),
-		avantagesEnNature: analysisRègleSelector(
-			'contrat salarié . avantages en nature . montant',
-			analysis
+		avantagesEnNature: règleAvecMontant(
+			'contrat salarié . avantages en nature . montant'
 		),
-		salaireBrut: analysisRègleSelector(
-			'contrat salarié . salaire . brut',
-			analysis
+		salaireBrut: règleAvecMontant(
+			'contrat salarié . salaire . brut'
 		),
 		cotisations,
 		réductionsDeCotisations,
 		totalCotisations,
-		salaireChargé: analysisRègleSelector(
-			'contrat salarié . salaire . total',
-			analysis
+		salaireChargé: règleAvecMontant(
+			'contrat salarié . salaire . total'
 		),
-		salaireNet: analysisRègleSelector(
-			'contrat salarié . salaire . net',
-			analysis
+		salaireNet: règleAvecMontant(
+			'contrat salarié . salaire . net'
 		),
-		salaireNetImposable: analysisRègleSelector(
-			'contrat salarié . salaire . net imposable',
-			analysis
+		salaireNetImposable: règleAvecMontant(
+			'contrat salarié . salaire . net imposable'
 		),
-		salaireNetàPayer: analysisRègleSelector(
-			'contrat salarié . salaire . net à payer',
-			analysis
+		salaireNetàPayer: règleAvecMontant(
+			'contrat salarié . salaire . net à payer'
 		)
 	}
 }
 
 export default (state: State) =>
-	analysisToFicheDePaie(state.analysis)
+	analysisToFicheDePaie(state.analysis, state.flatRules)

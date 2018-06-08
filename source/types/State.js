@@ -13,6 +13,11 @@ export type SavedSimulation = {
 	foldedSteps: Array<string>
 }
 
+export type FlatRules = {
+	[string]: {
+		titre: string
+	}
+}
 export type State = {
 	form: {
 		conversation: {
@@ -23,5 +28,6 @@ export type State = {
 	foldedSteps: Array<string>,
 	activeTargetInput: TargetInput,
 	conversationStarted: boolean,
-	analysis: Analysis
+	analysis: Analysis,
+	flatRules: FlatRules
 }
