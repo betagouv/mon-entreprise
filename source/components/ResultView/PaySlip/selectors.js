@@ -263,5 +263,4 @@ function analysisToFicheDePaie(analysis: Analysis, flatRules: FlatRules): FicheD
 	}
 }
 
-export default (state: State) =>
-	analysisToFicheDePaie(state.analysis, state.flatRules)
+export default (state: State) => analysisToFicheDePaie(state.analysis, state.flatRules)

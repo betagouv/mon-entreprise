@@ -103,12 +103,17 @@ let decompose = (recurse, k, v) => {
 			}
 		/>
 	)
-
+	
 	let filter = situationGate => c =>
-		!situationGate('sys.filter') ||
-		!c.composante ||
-		!c.composante['dû par'] ||
-		c.composante['dû par'] == situationGate('sys.filter')
+               !situationGate('sys.filter') ||
+               !c.composante ||
+               (!c.composante['dû par'] ||
+			   c.composante['dû par'] == situationGate('sys.filter')) && 
+			   (!c.composante['impôt sur le revenu'] ||
+               c.composante['impôt sur le revenu'] == situationGate('sys.filter'))
+
+
+
 
 	return {
 		explanation,

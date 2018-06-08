@@ -4,7 +4,7 @@ import { expect } from 'chai'
 import paySlipSelector, {
 	COTISATION_BRANCHE_ORDER
 } from '../source/components/ResultView/PaySlip/selectors'
-import { enrichRule, rules as realRules } from '../source/engine/rules'
+import { enrichRule, rulesFr as realRules } from '../source/engine/rules'
 import reduceSteps from '../source/reducers/reduceSteps'
 
 describe('pay slip selector', function() {
@@ -44,6 +44,7 @@ describe('pay slip selector', function() {
 		let cotisationsSanté = (paySlip.cotisations.find(
 			([branche]) => branche === 'santé'
 		) || [])[1].map(cotisation => cotisation.nom)
+		console.log(cotisationsSanté)
 		expect(cotisationsSanté).to.have.lengthOf(3)
 		expect(cotisationsSanté).to.include('maladie')
 		expect(cotisationsSanté).to.include('complémentaire santé')

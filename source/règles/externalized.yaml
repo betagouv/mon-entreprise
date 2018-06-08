@@ -421,7 +421,7 @@ contrat salarié . salaire . net imposable:
   résumé.en: What the employee actually get each month
   description.fr: >
     Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
-    description.en: >
+  description.en: >
     The net salary less tax deductible social contributions and more taxable social benefits. It's the basis used to compute income tax.
 
 contrat salarié . avantages en nature:
@@ -433,7 +433,7 @@ contrat salarié . avantages en nature:
     Benefits in kind consist of the provision by the employer to its employees of goods or services. The provision may be free of charge or with employee participation below their actual value
   note.fr: >
     Les tickets restaurants ne sont pas considéré comme un avantage en nature mais comme un remboursement de frais.
-    note.en: >
+  note.en: >
     The meal vouchers are not considered as a benefit in kind but as a reimbursement of expenses.
   
   question.fr: Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone, réductions...) ?

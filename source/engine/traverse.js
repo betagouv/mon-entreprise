@@ -111,9 +111,9 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 		return originalEval(cache, newSituation, parsedRules, node)
 	}
 	let node = fillVariableNode(rules, rule, filter)(parseResult),
-		// Decorate node with who's paying
-		cotisation = { ...node.cotisation, 'dû par': filter }
-
+	// Decorate node with the composante filter (either who is paying, either tax free)
+	cotisation = { ...node.cotisation, 'dû par': filter, 'impôt sur le revenu': filter }
+	
 	return {
 		...node,
 		cotisation,

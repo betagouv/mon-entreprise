@@ -843,7 +843,7 @@
   formule:
     allègement:
       assiette: salaire . net + avantages sociaux
-      abattement: CSG # (déductible) TODO
+      abattement: CSG (déductible)
 
 
 - espace: contrat salarié . salaire
@@ -1731,11 +1731,11 @@
       assiette: assiette CSG
       composantes:
         - attributs:
-            déductible des impôts: non
+            impôt sur le revenu: déductible
           taux: 2.4%
 
         - attributs:
-            déductible des impôts: oui
+            impôt sur le revenu: non déductible          
           taux: 6.8%
   exemples:
     - nom: "CSG cadre"
