@@ -50,9 +50,7 @@ import {
  */
 
 export let collectMissingVariablesByTarget = targets =>
-	fromPairs(
-		targets.map(target => [target.dottedName, target.missingVariables])
-	)
+	fromPairs(targets.map(target => [target.dottedName, target.missingVariables]))
 
 export let getNextSteps = missingVariablesByTarget => {
 	let byCount = ([, [count]]) => count
@@ -87,8 +85,7 @@ let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = findRuleByDottedName(allRules, path),
 			variant = isVariant(node),
-			variants =
-				variant && unless(is(Array), prop('possibilités'))(variant),
+			variants = variant && unless(is(Array), prop('possibilités'))(variant),
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
 
@@ -111,10 +108,7 @@ let buildPossibleInversion = (rule, rules, targetNames) => {
 
 	if (!inversion) return null
 	let inversionObjects = query('formule . inversion . avec').map(i =>
-			findRuleByDottedName(
-				rules,
-				disambiguateRuleReference(rules, rule, i)
-			)
+			findRuleByDottedName(rules, disambiguateRuleReference(rules, rule, i))
 		),
 		inversions = reject(({ name }) => targetNames.includes(name))(
 			[rule].concat(inversionObjects)
@@ -128,15 +122,11 @@ let buildPossibleInversion = (rule, rules, targetNames) => {
 
 // This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
-export let getInputComponent = ({ unfolded }) => (
-	rules,
-	targetNames
-) => dottedName => {
+export let getInputComponent = (rules, targetNames) => dottedName => {
 	let rule = findRuleByDottedName(rules, dottedName)
 
 	let commonProps = {
 		key: dottedName,
-		unfolded,
 		fieldName: dottedName,
 		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
 	}

@@ -14,14 +14,14 @@ import Sondage from './Sondage'
 @connect(state => ({
 	conversationStarted: state.conversationStarted
 }))
-export default class extends Component {
+export default class Simu extends Component {
 	render() {
 		let { colours, conversationStarted } = this.props
 
 		return (
 			<div id="simu">
-				{/*<FoldedSteps />*/}
 				<div id="focusZone">
+					<FoldedSteps />
 					{/*<GoToAnswers />*/}
 					<TargetSelection colours={colours} />
 					{conversationStarted && (

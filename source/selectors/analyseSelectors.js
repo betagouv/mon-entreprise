@@ -57,7 +57,7 @@ let validatedStepsSelector = state => [
 	state.activeTargetInput
 ]
 
-let validatedSituationSelector = createSelector(
+export let validatedSituationSelector = createSelector(
 	[formattedSituationSelector, validatedStepsSelector],
 	(situation, validatedSteps) => pick(validatedSteps, situation)
 )
