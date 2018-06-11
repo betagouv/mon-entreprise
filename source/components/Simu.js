@@ -4,7 +4,7 @@ import './Simu.css'
 import TargetSelection from './TargetSelection'
 import withColours from './withColours'
 import Conversation from './conversation/Conversation'
-//import ProgressTip from './ProgressTip'
+import ProgressTip from './ProgressTip'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
 //import Explanation from './Explanation'
 import GoToExplanations from './GoToExplanations'
@@ -27,9 +27,11 @@ export default class Simu extends Component {
 				<div id="focusZone">
 					{/*<GoToAnswers />*/}
 					<TargetSelection colours={colours} />
-					{/*<ProgressTip />*/}
 					{conversationStarted && (
-						<Conversation textColourOnWhite={colours.textColourOnWhite} />
+						<>
+							<ProgressTip />
+							<Conversation textColourOnWhite={colours.textColourOnWhite} />
+						</>
 					)}
 					{/*<GoToExplanations />*/}
 				</div>

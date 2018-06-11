@@ -61,13 +61,12 @@ function lang(state = null, { type, lang }) {
 
 function conversationSteps(
 	state = { foldedSteps: [], currentQuestion: null },
-	{ type, name, step, currentQuestion }
+	{ type, name, step }
 ) {
 	if (type === 'RESET_SIMULATION') return { foldedSteps: [], unfolded: null }
 	if (type !== 'STEP_ACTION') return state
 
-	if (name === 'fold')
-		return { foldedSteps: [...state.foldedSteps, currentQuestion] }
+	if (name === 'fold') return { foldedSteps: [...state.foldedSteps, step] }
 	if (name === 'unfold')
 		return {
 			foldedSteps: without([step], state.foldedSteps),

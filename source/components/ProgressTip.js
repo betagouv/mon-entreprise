@@ -1,22 +1,29 @@
-import { pick } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import './ProgressTip.css'
+import { nextStepsSelector } from 'Selectors/analyseSelectors'
+import withColours from './withColours'
 
 @withRouter
 @translate()
-@connect(pick(['foldedSteps', 'nextSteps', 'conversationStarted']))
+@withColours
+@connect(state => ({
+	nextSteps: nextStepsSelector(state)
+}))
 export default class ProgressTip extends Component {
 	render() {
-		let { nextSteps, conversationStarted } = this.props,
+		let {
+				nextSteps,
+				colours: { textColourOnWhite }
+			} = this.props,
 			nbQuestions = nextSteps.length
+		if (nbQuestions === 0) return null
 
-		if (!conversationStarted || nbQuestions === 0) return null
 		return (
 			<div className="progressTip">
-				<p>
+				<p style={{ color: textColourOnWhite }}>
 					{nbQuestions === 1 ? (
 						<Trans i18nKey="lastQ">dernière question !</Trans>
 					) : (

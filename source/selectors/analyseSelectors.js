@@ -6,7 +6,7 @@ import {
 
 import { analyseMany, parseAll } from 'Engine/traverse'
 
-import { head, isEmpty } from 'ramda'
+import { head, isEmpty, pick } from 'ramda'
 
 import { getFormValues } from 'redux-form'
 import {
@@ -52,6 +52,16 @@ export let formattedSituationSelector = createSelector(
 	(rules, situation) => formatInputs(rules, nestedSituationToPathMap(situation))
 )
 
+let validatedStepsSelector = state => [
+	...state.conversationSteps.foldedSteps,
+	state.activeTargetInput
+]
+
+let validatedSituationSelector = createSelector(
+	[formattedSituationSelector, validatedStepsSelector],
+	(situation, validatedSteps) => pick(validatedSteps, situation)
+)
+
 let situationWithDefaultsSelector = createSelector(
 	[ruleDefaultsSelector, formattedSituationSelector],
 	(defaults, situation) => ({ ...defaults, ...situation })
@@ -59,19 +69,19 @@ let situationWithDefaultsSelector = createSelector(
 
 // Debounce this update as in the middleware now
 
-let makeAnalysisSelector = withDefaults =>
+let makeAnalysisSelector = situationSelector =>
 	createSelector(
-		[
-			parsedRulesSelector,
-			targetNamesSelector,
-			withDefaults ? situationWithDefaultsSelector : formattedSituationSelector
-		],
+		[parsedRulesSelector, targetNamesSelector, situationSelector],
 		(parsedRules, targetNames, situation) =>
 			analyseMany(parsedRules, targetNames)(dottedName => situation[dottedName])
 	)
 
-export let analysisWithDefaultsSelector = makeAnalysisSelector(true)
-let analysisWithoutDefaultsSelector = makeAnalysisSelector(false)
+export let analysisWithDefaultsSelector = makeAnalysisSelector(
+	situationWithDefaultsSelector
+)
+let analysisValidatedOnlySelector = makeAnalysisSelector(
+	validatedSituationSelector
+)
 
 // TODO this should really not be fired twice in a user session...
 //
@@ -83,7 +93,7 @@ let initialAnalysisSelector = createSelector(
 )
 
 let currentMissingVariablesByTargetSelector = createSelector(
-	[analysisWithoutDefaultsSelector],
+	[analysisValidatedOnlySelector],
 	analysis => collectMissingVariablesByTarget(analysis.targets)
 )
 
