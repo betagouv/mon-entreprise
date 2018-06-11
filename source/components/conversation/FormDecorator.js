@@ -74,9 +74,7 @@ export var FormDecorator = formType => RenderField =>
 
 			let validate = buildValidationFunction(valueType)
 
-			let submit = cause =>
-					//TODO hack, enables redux-form/CHANGE to update the form state before the traverse functions are run
-					setTimeout(() => stepAction('fold', fieldName, cause), 1),
+			let submit = cause => stepAction('fold', fieldName, cause),
 				stepProps = {
 					...this.props,
 					submit,
