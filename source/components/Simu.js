@@ -23,8 +23,8 @@ export default class Simu extends Component {
 
 		return (
 			<div id="simu">
-				{/*<FoldedSteps />*/}
 				<div id="focusZone">
+					<FoldedSteps />
 					{/*<GoToAnswers />*/}
 					<TargetSelection colours={colours} />
 					{conversationStarted && (

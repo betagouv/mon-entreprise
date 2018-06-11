@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
-import { pick } from 'ramda'
 import Aide from '../Aide'
 import { reduxForm } from 'redux-form'
 import { getInputComponent } from 'Engine/generateQuestions'
@@ -33,9 +32,7 @@ export default class Conversation extends Component {
 				<Aide />
 				<div id="currentQuestion">
 					{currentQuestion &&
-						getInputComponent({ unfolded: true })(flatRules, targetNames)(
-							currentQuestion
-						)}
+						getInputComponent(flatRules, targetNames)(currentQuestion)}
 				</div>
 			</div>
 		)

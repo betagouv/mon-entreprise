@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { translate } from 'react-i18next'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Field, change } from 'redux-form'
 import { stepAction } from '../../actions'
-import { capitalise0 } from '../../utils'
 import Explicable from 'Components/conversation/Explicable'
-import { LinkButton} from 'Components/ui/Button'
 import IgnoreStepButton from './IgnoreStepButton'
-import { findRuleByDottedName } from 'Engine/rules'
 
 export let buildValidationFunction = valueType => {
 	let validator = valueType ? valueType.validator : {},
@@ -27,7 +24,7 @@ export var FormDecorator = formType => RenderField =>
 	@connect(
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
-			situationGate: state.situationGate,
+			themeColours: state.themeColours,
 			flatRules: state.flatRules
 		}),
 		dispatch => ({
@@ -43,20 +40,6 @@ export var FormDecorator = formType => RenderField =>
 			helpVisible: false
 		}
 		render() {
-			let { unfolded } = this.props
-
-			return (
-				<div className={classNames({ step: unfolded }, formType)}>
-					<div>
-						{/* Une étape déjà répondue est marquée 'folded'. Dans ce dernier cas, un résumé
-				de la réponse est affiché */}
-						{unfolded ? this.renderUnfolded() : this.renderFolded()}
-					</div>
-				</div>
-			)
-		}
-
-		renderUnfolded() {
 			let {
 				setFormValue,
 				stepAction,
@@ -93,69 +76,40 @@ export var FormDecorator = formType => RenderField =>
 					{this.props.question}
 				</h1>
 			)
+
 			return (
-				<div>
-					<div className="unfoldedHeader">
-						<div className="step-question">
-							{inversion ? (
-								question
-							) : (
-								<Explicable dottedName={fieldName}>{question}</Explicable>
+				<div className={classNames('step', formType)}>
+					<div>
+						<div className="unfoldedHeader">
+							<div className="step-question">
+								{inversion ? (
+									question
+								) : (
+									<Explicable dottedName={fieldName}>{question}</Explicable>
+								)}
+								<div
+									className="step-subquestion"
+									dangerouslySetInnerHTML={{ __html: subquestion }}
+								/>
+							</div>
+							{defaultValue != null && (
+								<IgnoreStepButton
+									action={() => {
+										setFormValue(fieldName, '' + defaultValue)
+										submit('ignore')
+									}}
+								/>
 							)}
-							<div
-								className="step-subquestion"
-								dangerouslySetInnerHTML={{ __html: subquestion }}
-							/>
 						</div>
-						{defaultValue != null && (
-							<IgnoreStepButton
-								action={() => {
-									setFormValue(fieldName, '' + defaultValue)
-									submit('ignore')
-								}}
+						<fieldset>
+							<Field
+								component={RenderField}
+								name={fieldName}
+								{...stepProps}
+								themeColours={themeColours}
 							/>
-						)}
+						</fieldset>
 					</div>
-					<fieldset>
-						<Field
-							component={RenderField}
-							name={fieldName}
-							{...stepProps}
-							themeColours={themeColours}
-						/>
-					</fieldset>
-				</div>
-			)
-		}
-
-		renderFolded() {
-			let {
-				stepAction,
-				situationGate,
-				title,
-				dottedName,
-				fieldName,
-				fieldTitle,
-				flatRules,
-				t
-			} = this.props
-
-			let answer = situationGate(fieldName),
-				rule = findRuleByDottedName(flatRules, dottedName + ' . ' + answer),
-				translatedAnswer = (rule && rule.title) || t(answer)
-
-			return (
-				<div className="foldedQuestion">
-					<span className="borderWrapper">
-						<span className="title">{capitalise0(fieldTitle || title)}</span>
-						<span className="answer">{translatedAnswer}</span>
-					</span>
-					<LinkButton
-						onClick={() => stepAction('unfold', dottedName, 'unfold')}
-						>
-						<i className="fa fa-pencil" aria-hidden="true" />
-							<Trans>Modifier</Trans>
-					</LinkButton>
 				</div>
 			)
 		}
