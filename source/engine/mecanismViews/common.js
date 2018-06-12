@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { contains, pick } from 'ramda'
+import { contains } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import withLanguage from '../../components/withLanguage'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
 
 let treatValue = (data, language) =>
 	data == null
@@ -54,7 +55,7 @@ export class Node extends Component {
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-@connect(pick(['flatRules']))
+@connect(state => ({ flatRules: flatRulesSelector(state) }))
 export class Leaf extends Component {
 	render() {
 		let { classes, dottedName, name, value, flatRules } = this.props,

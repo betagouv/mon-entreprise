@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { translate } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { encodeRuleName } from 'Engine/rules.js'
@@ -14,8 +14,10 @@ import { Redirect } from 'react-router-dom'
 import Highlighter from 'react-highlight-words'
 import { pick } from 'ramda'
 
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+
 @connect(state => ({
-	flatRules: state.flatRules
+	flatRules: flatRulesSelector(state)
 }))
 export default class RulesList extends Component {
 	render() {
@@ -87,7 +89,7 @@ export class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
-		let { rules, finish = () => null } = this.props,
+		let { rules } = this.props,
 			{ i18n } = this.context,
 			{ selectedOption } = this.state
 
