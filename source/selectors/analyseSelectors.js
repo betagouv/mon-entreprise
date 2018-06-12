@@ -4,7 +4,7 @@ import {
 	getNextSteps
 } from 'Engine/generateQuestions'
 
-import { analyseMany, parseAll } from 'Engine/traverse'
+import { analyseMany, analyse, parseAll } from 'Engine/traverse'
 
 import { head, isEmpty, pick } from 'ramda'
 
@@ -65,6 +65,37 @@ export let validatedSituationSelector = createSelector(
 let situationWithDefaultsSelector = createSelector(
 	[ruleDefaultsSelector, formattedSituationSelector],
 	(defaults, situation) => ({ ...defaults, ...situation })
+)
+
+let analyseRule = (parsedRules, ruleDottedName, situation) =>
+	situation &&
+	analyse(parsedRules, ruleDottedName)(dottedName => situation[dottedName])
+		.targets[0]
+
+export let ruleAnalysisSelector = createSelector(
+	[
+		parsedRulesSelector,
+		(_, { dottedName }) => dottedName,
+		situationWithDefaultsSelector
+	],
+	analyseRule
+)
+
+let exampleSituationSelector = createSelector(
+	[
+		situationWithDefaultsSelector,
+		({ currentExample }) => currentExample && currentExample.situation
+	],
+	(situation, exampleSituation) =>
+		exampleSituation && { ...situation, ...exampleSituation }
+)
+export let exampleAnalysisSelector = createSelector(
+	[
+		parsedRulesSelector,
+		(_, { dottedName }) => dottedName,
+		exampleSituationSelector
+	],
+	analyseRule
 )
 
 // Debounce this update as in the middleware now

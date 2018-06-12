@@ -1,37 +1,22 @@
 import { makeJsx } from 'Engine/evaluation'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import { analyse } from 'Engine/traverse'
 import classNames from 'classnames'
-import { head, path, values } from 'ramda'
+import { path, values } from 'ramda'
 import React from 'react'
 import { Trans, translate } from 'react-i18next'
 import { AttachDictionary } from '../AttachDictionary'
 import withLanguage from '../withLanguage'
 import './Algorithm.css'
-import { exampleSituationGateWithDefaults } from './Examples'
 
 @AttachDictionary(knownMecanisms)
 @translate()
 @withLanguage
 export default class Algorithm extends React.Component {
 	render() {
-		let {
-				rule: displayedRule,
-				showValues,
-				currentExample,
-				rules,
-				language
-			} = this.props,
+		let { rule, showValues, language } = this.props,
 			ruleWithoutFormula =
-				!displayedRule['formule'] ||
-				path(['formule', 'explanation', 'une possibilité'], displayedRule)
-		let rule = currentExample
-			? head(
-					analyse(rules, displayedRule.dottedName)(
-						exampleSituationGateWithDefaults(currentExample.situation, rules)
-					).targets
-			  )
-			: displayedRule
+				!rule['formule'] ||
+				path(['formule', 'explanation', 'une possibilité'], rule)
 
 		return (
 			<div id="algorithm">
