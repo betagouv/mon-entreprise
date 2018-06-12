@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
-import { connect } from 'react-redux'
+import { getInputComponent } from 'Engine/generateQuestions'
 //import styles from './.css'
 // css in conversation.Css
 import { isEmpty, map, pick } from 'ramda'
+import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
+import { connect } from 'react-redux'
+import { animateScroll, Element, scroller } from 'react-scroll'
 import { reset } from 'redux-form'
 import { resetSimulation } from '../../actions'
-import { getInputComponent } from 'Engine/generateQuestions'
+import { LinkButton, SimpleButton } from '../ui/Button'
 import withColours from '../withColours'
-import { scroller, Element, animateScroll } from 'react-scroll'
 
 @withColours
 @connect(
 	pick([
 		'currentQuestion',
 		'foldedSteps',
-		'themeColours',
 		'situationGate',
 		'targetNames',
 		'nextSteps',
@@ -34,23 +34,16 @@ export default class FoldedSteps extends Component {
 		this.props.resetForm()
 	}
 	render() {
-		let {
-			foldedSteps,
-			targetNames,
-			flatRules,
-			themeColours: { textColourOnWhite }
-		} = this.props
+		let { foldedSteps, targetNames, flatRules } = this.props
 
 		if (isEmpty(foldedSteps || [])) return null
 		return (
 			<div id="foldedSteps">
 				<div className="header">
-					<button
-						onClick={this.handleSimulationReset}
-						style={{ color: textColourOnWhite }}>
+					<LinkButton onClick={this.handleSimulationReset}>
 						<i className="fa fa-trash" aria-hidden="true" />
 						<Trans i18nKey="resetAll">Tout effacer</Trans>
-					</button>
+					</LinkButton>
 				</div>
 				{map(
 					getInputComponent({ unfolded: false })(flatRules, targetNames),
@@ -94,19 +87,15 @@ export class GoToAnswers extends Component {
 	render() {
 		return (
 			<Element name="myScrollToElement" id="myScrollToElement">
-				<h3
+				<SimpleButton
+					onClick={this.handleScrollToAnswers}
 					className="scrollIndication up"
 					style={{
-						color: this.props.colours.textColourOnWhite,
 						visibility: !this.props.foldedSteps.length ? 'hidden' : 'visible'
 					}}>
-					<button
-						className="unstyledButton"
-						onClick={this.handleScrollToAnswers}>
-						<i className="fa fa-long-arrow-up" aria-hidden="true" />
-						&nbsp;<Trans i18nKey="change">Modifier mes réponses</Trans>
-					</button>
-				</h3>
+					<i className="fa fa-long-arrow-up" aria-hidden="true" />
+					&nbsp;<Trans i18nKey="change">Modifier mes réponses</Trans>
+				</SimpleButton>
 			</Element>
 		)
 	}

@@ -1,12 +1,13 @@
+import { is } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import { FormDecorator } from './FormDecorator'
-import { answer, answered } from './userAnswerButtonStyle'
 import HoverDecorator from '../HoverDecorator'
+import withColours from '../withColours'
 import Explicable from './Explicable'
-import { is } from 'ramda'
-import SendButton from './SendButton'
+import { FormDecorator } from './FormDecorator'
 import './Question.css'
+import SendButton from './SendButton'
+import { answer, answered } from './userAnswerButtonStyle'
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
 	- nom: motif CDD # La racine, unique, qui formera la Question. Ses enfants sont les choix possibles
@@ -27,12 +28,13 @@ import './Question.css'
 // dont Question est un example
 @FormDecorator('question')
 @translate()
+@withColours
 export default class Question extends Component {
 	render() {
 		let {
 			choices,
 			submit,
-			themeColours,
+			colours,
 			meta: { pristine }
 		} = this.props
 		let choiceElements = is(Array)(choices)
@@ -44,7 +46,7 @@ export default class Question extends Component {
 				<SendButton
 					{...{
 						disabled: pristine,
-						themeColours,
+						colours,
 						error: false,
 						submit
 					}}
@@ -58,7 +60,7 @@ export default class Question extends Component {
 			submit,
 			choices,
 			setFormValue,
-			themeColours
+			colours
 		} = this.props
 
 		return (
@@ -66,7 +68,7 @@ export default class Question extends Component {
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
-						{...{ value, label, input, submit, themeColours, setFormValue }}
+						{...{ value, label, input, submit, colours, setFormValue }}
 					/>
 				))}
 			</ul>
@@ -77,7 +79,7 @@ export default class Question extends Component {
 				input, // vient de redux-form
 				submit,
 				setFormValue,
-				themeColours
+				colours
 			} = this.props,
 			{ name } = input,
 			// seront stockées ainsi dans le state :
@@ -95,7 +97,7 @@ export default class Question extends Component {
 								label: 'Aucun',
 								input,
 								submit,
-								themeColours,
+								colours,
 								dottedName: null,
 								setFormValue
 							}}
@@ -119,7 +121,7 @@ export default class Question extends Component {
 											dottedName,
 											input,
 											submit,
-											themeColours,
+											colours,
 											setFormValue
 										}}
 									/>
@@ -139,17 +141,16 @@ let RadioLabel = props => (
 
 @HoverDecorator
 @translate()
+@withColours
 class RadioLabelContent extends Component {
 	click = value => () => {
 		if (this.props.input.value == value) this.props.submit('dblClick')
 	}
 	render() {
-		let { value, label, input, hover, themeColours } = this.props,
+		let { value, label, input, hover, colours } = this.props,
 			// value = when(is(Object), prop('value'))(choice),
 			labelStyle = Object.assign(
-				value === input.value || hover
-					? answered(themeColours)
-					: answer(themeColours),
+				value === input.value || hover ? answered(colours) : answer(colours),
 				value === '_' ? { fontWeight: 'bold' } : null
 			)
 

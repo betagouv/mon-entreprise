@@ -1,7 +1,7 @@
+import HoverDecorator from 'Components/HoverDecorator'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import './IgnoreStepButton.css'
-import HoverDecorator from 'Components/HoverDecorator'
 
 @HoverDecorator
 @translate()

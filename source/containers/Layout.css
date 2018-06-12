@@ -46,22 +46,3 @@ h2 {
 	width: 20em;
 	textalign: center;
 }
-
-.unstyledButton {
-	color: inherit;
-	padding: 0.3em 1em;
-	font-weight: inherit;
-	font-family: inherit;
-	border: none;
-	border-radius: 0;
-	font-size: inherit;
-}
-
-.linkButton {
-	color: rgb(41, 117, 209);
-	text-decoration: underline;
-}
-
-.linkButton:hover {
-	color: rgb(21, 97, 189);
-}

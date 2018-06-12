@@ -1,42 +1,16 @@
 /* @flow */
+import { compose } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import withLanguage from '../../withLanguage'
+import withColours from '../withColours'
+import Montant from './Montant'
 import './PaySlip.css'
-import ficheDePaieSelector from './selectors'
-import type { FicheDePaie } from './selectors'
-// import type { Analysis } from '../../../types/State'
+import RuleLink from './RuleLink'
+import { ficheDePaieSelector } from './selectors'
+import type { FicheDePaie } from './types'
 
-type ConnectedPropTypes = FicheDePaie
-
-// const RuleLink = ({ link, name }) => {
-// 	;<Link href={link}> name </Link>
-// }
-
-const Montant = withLanguage(
-	({
-		language,
-		children: value,
-		className = ''
-	}: {
-		language: string,
-		className: string,
-		children: number
-	}) => (
-		<span className={'payslip__montant ' + className}>
-			{value === 0
-				? '—'
-				: Intl.NumberFormat(language, {
-						style: 'currency',
-						currency: 'EUR',
-						maximumFractionDigits: 2,
-						minimumFractionDigits: 2
-				  }).format(value)}
-		</span>
-	)
-)
+type ConnectedPropTypes = FicheDePaie & { colours: { lightestColour: string } }
 
 const PaySlip = ({
 	salaireBrut,
@@ -48,6 +22,7 @@ const PaySlip = ({
 	salaireNetàPayer,
 	réductionsDeCotisations,
 	cotisations,
+	colours: { lightestColour },
 	totalCotisations
 }: ConnectedPropTypes) => (
 	<div className="payslip__container">
@@ -58,15 +33,13 @@ const PaySlip = ({
 			</h4>
 			{avantagesEnNature.montant !== 0 ? (
 				<>
-					<Link to={salaireDeBase.lien}>{salaireDeBase.nom}</Link>
+					<RuleLink {...salaireDeBase} />
 					<Montant>{salaireDeBase.montant}</Montant>
-					<Link to={avantagesEnNature.lien}>{avantagesEnNature.nom}</Link>
+					<RuleLink {...avantagesEnNature} />
 					<Montant>{avantagesEnNature.montant}</Montant>
 				</>
 			) : null}
-			<Link className="payslip__brut" to={salaireBrut.lien}>
-				{salaireBrut.nom}
-			</Link>
+			<RuleLink className="payslip__brut" {...salaireBrut} />
 			<Montant className="payslip__brut">{salaireBrut.montant}</Montant>
 		</div>
 		{/* Section cotisations */}
@@ -87,9 +60,16 @@ const PaySlip = ({
 					</h5>
 					{cotisationList.map(cotisation => (
 						<>
-							<Link to={cotisation.lien}>{cotisation.nom}</Link>
-							<Montant>{cotisation.montant.partPatronale}</Montant>
-							<Montant>{cotisation.montant.partSalariale}</Montant>
+							<RuleLink
+								style={{ backgroundColor: lightestColour }}
+								{...cotisation}
+							/>
+							<Montant style={{ backgroundColor: lightestColour }}>
+								{cotisation.montant.partPatronale}
+							</Montant>
+							<Montant style={{ backgroundColor: lightestColour }}>
+								{cotisation.montant.partSalariale}
+							</Montant>
 						</>
 					))}
 				</>
@@ -97,9 +77,7 @@ const PaySlip = ({
 			<h5 className="payslip__cotisationTitle">
 				<Trans>Réductions</Trans>
 			</h5>
-			<Link to={réductionsDeCotisations.lien}>
-				{réductionsDeCotisations.nom}
-			</Link>
+			<RuleLink {...réductionsDeCotisations} />
 			<Montant>{-réductionsDeCotisations.montant}</Montant>
 			<Montant>{0}</Montant>
 			{/* Total cotisation */}
@@ -113,7 +91,7 @@ const PaySlip = ({
 				{totalCotisations.partSalariale}
 			</Montant>
 			{/* Salaire chargé */}
-			<Link to={salaireChargé.lien}>{salaireChargé.nom}</Link>
+			<RuleLink {...salaireChargé} />
 			<Montant>{salaireChargé.montant}</Montant>
 			<Montant>{0}</Montant>
 		</div>
@@ -123,32 +101,34 @@ const PaySlip = ({
 				<Trans>Salaire net</Trans>
 			</h4>
 			{/* Salaire net */}
-			<Link to={salaireNet.lien}>{salaireNet.nom}</Link>
+			<RuleLink {...salaireNet} />
 			<Montant>{salaireNet.montant}</Montant>
 			{avantagesEnNature.montant !== 0 ? (
 				<>
 					{/* Avantages en nature */}
-					<Link to={avantagesEnNature.lien}>{avantagesEnNature.nom}</Link>
+					<RuleLink {...avantagesEnNature} />
 					<Montant>{-avantagesEnNature.montant}</Montant>
 					{/* Salaire net à payer */}
-					<Link
+					<RuleLink
 						className="payslip__salaireNetàPayer"
-						to={salaireNetàPayer.lien}>
-						{salaireNetàPayer.nom}
-					</Link>
+						{...salaireNetàPayer}
+					/>
 					<Montant className="payslip__salaireNetàPayer">
 						{salaireNetàPayer.montant}
 					</Montant>
 				</>
 			) : null}
 			{/* Salaire net imposable */}
-			<Link to={salaireNetImposable.lien}>{salaireNetImposable.nom}</Link>
+			<RuleLink {...salaireNetImposable} />
 			<Montant>{salaireNetImposable.montant}</Montant>
 		</div>
 	</div>
 )
 
-export default connect(
-	ficheDePaieSelector,
-	{}
+export default compose(
+	withColours,
+	connect(
+		ficheDePaieSelector,
+		{}
+	)
 )(PaySlip)

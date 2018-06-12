@@ -1,9 +1,10 @@
 /* @flow */
 
 import { expect } from 'chai'
-import paySlipSelector, {
-	COTISATION_BRANCHE_ORDER
-} from '../source/components/ResultView/PaySlip/selectors'
+import {
+	COTISATION_BRANCHE_ORDER,
+	ficheDePaieSelector
+} from '../source/components/ResultView/selectors'
 import { enrichRule, rulesFr as realRules } from '../source/engine/rules'
 import reduceSteps from '../source/reducers/reduceSteps'
 
@@ -32,7 +33,7 @@ describe('pay slip selector', function() {
 			name: 'fold',
 			step: 'contrat salarié . salaire .brut de base'
 		})
-		paySlip = paySlipSelector(step2)
+		paySlip = ficheDePaieSelector(step2)
 	})
 
 	it('should have cotisations grouped by branches in the proper ordering', function() {
@@ -44,7 +45,6 @@ describe('pay slip selector', function() {
 		let cotisationsSanté = (paySlip.cotisations.find(
 			([branche]) => branche === 'santé'
 		) || [])[1].map(cotisation => cotisation.nom)
-		console.log(cotisationsSanté)
 		expect(cotisationsSanté).to.have.lengthOf(3)
 		expect(cotisationsSanté).to.include('maladie')
 		expect(cotisationsSanté).to.include('complémentaire santé')

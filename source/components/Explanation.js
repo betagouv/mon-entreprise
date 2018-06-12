@@ -4,7 +4,6 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import './Explanation.css'
 import ResultView from './ResultView/ResultView'
-import SearchButton from './SearchButton'
 import withColours from './withColours'
 
 @translate()
@@ -19,10 +18,7 @@ export default class Explanation extends Component {
 
 		return (
 			<section id="explanation">
-				<>
-					<SearchButton />
-					<ResultView />
-				</>
+				<ResultView />
 				<div id="warning">
 					<p>
 						<i className="fa fa-info-circle" aria-hidden="true" />

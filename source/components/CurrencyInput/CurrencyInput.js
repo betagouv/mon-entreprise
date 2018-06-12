@@ -69,8 +69,7 @@ class CurrencyInput extends Component {
 		if (value.endsWith('.')) {
 			return
 		}
-
-		if (this.props.onChange) {
+		if (this.props.onChange && value !== this.props.value) {
 			event.target.value = value
 			this.props.onChange(event)
 		}

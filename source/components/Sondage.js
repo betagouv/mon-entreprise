@@ -7,6 +7,7 @@ import Smiley from './SatisfactionSmiley'
 import TypeFormEmbed from './TypeFormEmbed'
 import withLanguage from './withLanguage'
 import { Trans, translate } from 'react-i18next'
+import withColours from './withColours';
 
 @connect(state => ({
 	targets: state.analysis ? state.analysis.targets : [],
@@ -16,6 +17,7 @@ import { Trans, translate } from 'react-i18next'
 }))
 @translate()
 @withLanguage
+@withColours
 export default class Sondage extends Component {
 	state = {
 		visible: false,
@@ -56,7 +58,7 @@ export default class Sondage extends Component {
 	}
 	render() {
 		let { satisfaction, showForm, visible, askFeedbackTime } = this.state,
-			{ language } = this.props
+			{ language, colours: {colour} } = this.props
 
 		return (
 			<>
@@ -76,7 +78,7 @@ export default class Sondage extends Component {
 					transitionLeaveTimeout={300}>
 					{visible && (
 						<div className="sondage__container">
-							<div className="sondage">
+							<div className="sondage" style={{color: colour, borderColor: colour}}>
 								<span className="sondage__text">
 									<Trans>Votre avis nous intéresse !</Trans>
 								</span>

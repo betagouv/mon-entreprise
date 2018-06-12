@@ -1,0 +1,22 @@
+.ui-unstyledButton {
+	color: inherit;
+	padding: 0.3em 1em;
+	font-weight: inherit;
+	font-family: inherit;
+	border: none;
+	border-radius: 0;
+	font-size: inherit;
+}
+.ui-unstyledButton:hover {
+	opacity: 0.8;
+}
+
+.ui-linkButton {
+	text-decoration: underline;
+	opacity: 1;
+}
+
+.ui-defaultButton {
+	border-radius: 0.3em;
+	border: 1px solid;
+}

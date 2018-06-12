@@ -1,54 +1,42 @@
 /* @flow */
 
-import { encodeRuleName } from 'Engine/rules.js'
 import { findRuleByDottedName } from 'Engine/rules'
-
+import { encodeRuleName } from 'Engine/rules.js'
 import {
 	add,
 	concat,
 	filter,
 	groupBy,
 	map,
+	max,
+	fromPairs,
 	mergeWith,
 	mergeWithKey,
 	path,
 	pathOr,
+	without,
 	pipe,
 	prop,
 	reduce,
-	values
+	values,
+	sort,
+	compose
 } from 'ramda'
-import type { State, FlatRules } from '../../../types/State'
-import type { Analysis } from '../../../types/Analysis'
+import { createSelector } from 'reselect'
 
-type Cotisation = Règle & {
-	branche: Branche,
-	montant: MontantPartagé
-}
-
-type Règle = {
-	nom: string,
-	lien: string
-}
-type RègleAvecMontant = Règle & {
-	montant: number
-}
-
-type Branche =
-	| 'santé'
-	| 'accidents du travail / maladies professionnelles'
-	| 'retraite'
-	| 'famille'
-	| 'assurance chômage'
-	| 'formation'
-	| 'logement'
-	| 'autres'
-
-type MontantPartagé = {
-	partSalariale: number,
-	partPatronale: number
-}
-type Cotisations = Array<[Branche, Array<Cotisation>]>
+import type { State, FlatRules } from '../../types/State'
+import type { Analysis } from '../../types/Analysis'
+import type {
+	VariableWithCotisation,
+	Cotisation,
+	Cotisations,
+	MontantPartagé,
+	Branche,
+	Règle,
+	RègleAvecMontant,
+	FicheDePaie,
+	Répartition
+} from './types'
 
 export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
 	'santé',
@@ -56,47 +44,10 @@ export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
 	'retraite',
 	'famille',
 	'assurance chômage',
- 	'formation',
+	'formation',
 	'logement',
 	'autres'
 ]
-
-export type FicheDePaie = {
-	salaireBrut: RègleAvecMontant,
-	avantagesEnNature: RègleAvecMontant,
-	salaireDeBase: RègleAvecMontant,
-	// TODO supprimer (cf https://github.com/betagouv/syso/issues/242)
-	réductionsDeCotisations: RègleAvecMontant,
-	cotisations: Cotisations,
-	totalCotisations: MontantPartagé,
-	salaireChargé: RègleAvecMontant,
-	salaireNet: RègleAvecMontant,
-	salaireNetImposable: RègleAvecMontant,
-	salaireNetàPayer: RègleAvecMontant
-}
-
-type VariableWithCotisation = {
-	category: 'variable',
-	name: string,
-	title: string,
-	cotisation: {|
-		'dû par'?: 'salarié' | 'employeur',
-		branche?: Branche
-	|},
-	dottedName: string,
-	nodeValue: number,
-	explanation: {
-		cotisation: {
-			'dû par'?: 'salarié' | 'employeur',
-			branche?: Branche
-		},
-		taxe: {
-			'dû par'?: 'salarié' | 'employeur',
-			branche?: Branche
-		}
-	}
-}
-
 
 // Used for type consistency
 const BLANK_COTISATION: Cotisation = {
@@ -135,7 +86,9 @@ const mergeCotisations: (Cotisation, Cotisation) => Cotisation = mergeWithKey(
 	(key, a, b) => (key === 'montant' ? mergeWith(add, a, b) : b)
 )
 
-const variableToCotisation = (règleLocaliséeSelector: string => Règle) => (variable: VariableWithCotisation): Cotisation => {
+const variableToCotisation = (règleLocaliséeSelector: string => Règle) => (
+	variable: VariableWithCotisation
+): Cotisation => {
 	return mergeCotisations(BLANK_COTISATION, {
 		...règleLocaliséeSelector(variable.dottedName),
 		branche: brancheSelector(variable),
@@ -159,7 +112,10 @@ function groupByBranche(cotisations: Array<Cotisation>): Cotisations {
 		cotisationsMap[branche]
 	])
 }
-const analysisToCotisations = (analysis: Analysis, règleLocaliséeSelector: string => Règle) : Cotisations => {
+const analysisToCotisations = (
+	analysis: Analysis,
+	règleLocaliséeSelector: string => Règle
+): Cotisations => {
 	const variables = [
 		'contrat salarié . cotisations salariales',
 		'contrat salarié . cotisations patronales'
@@ -186,13 +142,15 @@ const analysisToCotisations = (analysis: Analysis, règleLocaliséeSelector: str
 
 	return cotisations
 }
-const règleLocaliséeSelector = (localizedFlatRules: FlatRules) => (dottedName: string) : Règle => {
+const règleLocaliséeSelector = (localizedFlatRules: FlatRules) => (
+	dottedName: string
+): Règle => {
 	if (!localizedFlatRules) {
 		throw new Error(
 			`[LocalizedRègleSelector] Les localizedFlatRules ne doivent pas être 'undefined' ou 'null'`
 		)
 	}
-	const localizedRule = findRuleByDottedName(localizedFlatRules, dottedName);
+	const localizedRule = findRuleByDottedName(localizedFlatRules, dottedName)
 	if (!localizedFlatRules) {
 		throw new Error(
 			`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
@@ -201,9 +159,12 @@ const règleLocaliséeSelector = (localizedFlatRules: FlatRules) => (dottedName:
 	return {
 		nom: localizedRule.titre || localizedRule.nom,
 		lien: '/règle/' + encodeRuleName(dottedName)
-	} 
+	}
 }
-const règleAvecMontantSelector = (analysis: Analysis, règleLocaliséeSelector: string => Règle) => (dottedName: string) : RègleAvecMontant =>  {
+const règleAvecMontantSelector = (
+	analysis: Analysis,
+	règleLocaliséeSelector: string => Règle
+) => (dottedName: string): RègleAvecMontant => {
 	if (!analysis) {
 		throw new Error(
 			`[] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
@@ -219,43 +180,44 @@ const règleAvecMontantSelector = (analysis: Analysis, règleLocaliséeSelector:
 	}
 	return {
 		...règleLocaliséeSelector(dottedName),
-		montant: rule.nodeValue || 0,
-	} 
+		montant: rule.nodeValue || 0
+	}
 }
-
 
 // Custom values for flow type checking
 // https://github.com/facebook/flow/issues/2221
-function analysisToFicheDePaie(analysis: Analysis, flatRules: FlatRules): FicheDePaie {
-	const règleLocalisée = règleLocaliséeSelector(flatRules);
-	const règleAvecMontant = règleAvecMontantSelector(analysis, règleLocalisée);
+function analysisToFicheDePaie(
+	analysis: Analysis,
+	flatRules: FlatRules
+): FicheDePaie {
+	const règleLocalisée = règleLocaliséeSelector(flatRules)
+	const règleAvecMontant = règleAvecMontantSelector(analysis, règleLocalisée)
 	const cotisations = analysisToCotisations(analysis, règleLocalisée)
-	const cotisationsSalariales = règleAvecMontant('contrat salarié . cotisations salariales') 
-	const cotisationsPatronales = règleAvecMontant('contrat salarié . cotisations patronales') 
-	const réductionsDeCotisations = règleAvecMontant('contrat salarié . réductions de cotisations') 
+	const cotisationsSalariales = règleAvecMontant(
+		'contrat salarié . cotisations salariales'
+	)
+	const cotisationsPatronales = règleAvecMontant(
+		'contrat salarié . cotisations patronales'
+	)
+	const réductionsDeCotisations = règleAvecMontant(
+		'contrat salarié . réductions de cotisations'
+	)
 	const totalCotisations = {
-		partPatronale: cotisationsPatronales.montant - réductionsDeCotisations.montant,
-		partSalariale: cotisationsSalariales.montant,
+		partPatronale:
+			cotisationsPatronales.montant - réductionsDeCotisations.montant,
+		partSalariale: cotisationsSalariales.montant
 	}
 	return {
-		salaireDeBase: règleAvecMontant(
-			'contrat salarié . salaire . brut de base'
-		),
+		salaireDeBase: règleAvecMontant('contrat salarié . salaire . brut de base'),
 		avantagesEnNature: règleAvecMontant(
 			'contrat salarié . avantages en nature . montant'
 		),
-		salaireBrut: règleAvecMontant(
-			'contrat salarié . salaire . brut'
-		),
+		salaireBrut: règleAvecMontant('contrat salarié . salaire . brut'),
 		cotisations,
 		réductionsDeCotisations,
 		totalCotisations,
-		salaireChargé: règleAvecMontant(
-			'contrat salarié . salaire . total'
-		),
-		salaireNet: règleAvecMontant(
-			'contrat salarié . salaire . net'
-		),
+		salaireChargé: règleAvecMontant('contrat salarié . salaire . total'),
+		salaireNet: règleAvecMontant('contrat salarié . salaire . net'),
 		salaireNetImposable: règleAvecMontant(
 			'contrat salarié . salaire . net imposable'
 		),
@@ -265,4 +227,61 @@ function analysisToFicheDePaie(analysis: Analysis, flatRules: FlatRules): FicheD
 	}
 }
 
-export default (state: State) => analysisToFicheDePaie(state.analysis, state.flatRules)
+export const ficheDePaieSelector = (state: State) =>
+	analysisToFicheDePaie(state.analysis, state.flatRules)
+
+const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
+	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant
+
+const byMontantTotal = (
+	a: [Branche, MontantPartagé],
+	b: [Branche, MontantPartagé]
+): number => {
+	return (
+		b[1].partPatronale +
+		b[1].partSalariale -
+		a[1].partPatronale -
+		a[1].partSalariale
+	)
+}
+
+const REPARTITION_CSG: {[Branche]: number} = {
+	famille: 0.85,
+	santé: 7.75,
+	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale. 
+	// On peut imaginer la partager à toute les composantes concernées 
+	autres: 0.60
+}
+const répartition = (ficheDePaie: FicheDePaie): Répartition => {
+	// $FlowFixMe
+	const cotisations: {[Branche] : Array<Cotisation>} = fromPairs(ficheDePaie.cotisations);
+	const { salaireNet, salaireChargé } = ficheDePaie;
+	const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG');
+	if (!CSG) {
+		throw new Error('[répartition selector]: expect CSG not to be null');
+	}
+	cotisations.autres = without([CSG], cotisations.autres);
+	const rawRépartition:{ [Branche]: MontantPartagé } = map(totalCotisations, cotisations);
+	// $FlowFixMe
+	for (const branche:Branche in REPARTITION_CSG) {
+		rawRépartition[branche] = {
+			partPatronale: rawRépartition[branche].partPatronale + CSG.montant.partPatronale * REPARTITION_CSG[branche]/100,
+			partSalariale: rawRépartition[branche].partSalariale + CSG.montant.partSalariale * REPARTITION_CSG[branche]/100 
+		}
+	}
+	return {
+		// $FlowFixMe
+		répartition: compose(sort(byMontantTotal), Object.entries)(rawRépartition),
+		// $FlowFixMe
+		total: compose(reduce(mergeWith(add), 0), Object.values)(rawRépartition),
+		// $FlowFixMe
+		cotisationMaximum: compose(reduce(max, 0), map(montant => montant.partPatronale + montant.partSalariale), values)(rawRépartition),
+		salaireNet,
+		salaireChargé
+	}
+}
+
+export const répartitionSelector = createSelector(
+	ficheDePaieSelector,
+	répartition
+)
