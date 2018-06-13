@@ -67,11 +67,16 @@ function conversationSteps(
 	if (type !== 'STEP_ACTION') return state
 
 	if (name === 'fold') return { foldedSteps: [...state.foldedSteps, step] }
-	if (name === 'unfold')
+	if (name === 'unfold') {
+		// if a step had already been unfolded, bring it back !
 		return {
-			foldedSteps: without([step], state.foldedSteps),
+			foldedSteps: [
+				...without([step], state.foldedSteps),
+				...(state.unfoldedStep ? [state.unfoldedStep] : [])
+			],
 			unfoldedStep: step
 		}
+	}
 }
 
 export default reduceReducers(
