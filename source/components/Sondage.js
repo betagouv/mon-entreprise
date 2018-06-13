@@ -7,12 +7,15 @@ import Smiley from './SatisfactionSmiley'
 import TypeFormEmbed from './TypeFormEmbed'
 import withLanguage from './withLanguage'
 import { Trans, translate } from 'react-i18next'
+import {
+	noUserInputSelector,
+	nextStepsSelector
+} from 'Selectors/analyseSelectors'
 
 @connect(state => ({
-	targets: state.analysis ? state.analysis.targets : [],
-	activeInput: state.activeTargetInput,
-	currentQuestion: state.currentQuestion,
-	conversationStarted: state.conversationStarted
+	conversationStarted: state.conversationStarted,
+	noUserInput: noUserInputSelector(state),
+	nextSteps: nextStepsSelector(state)
 }))
 @translate()
 @withLanguage
@@ -25,9 +28,9 @@ export default class Sondage extends Component {
 	static getDerivedStateFromProps(nextProps, currentState) {
 		let feedbackAlreadyAsked = !!document.cookie.includes('feedback_asked=true')
 		let conditions = {
-			AFTER_FIRST_ESTIMATE: nextProps.activeInput && nextProps.targets.length,
+			AFTER_FIRST_ESTIMATE: !nextProps.noUserInput,
 			AFTER_SIMULATION_COMPLETED:
-				!nextProps.currentQuestion && nextProps.conversationStarted
+				!nextProps.nextSteps.length && nextProps.conversationStarted
 		}
 		return {
 			visible: conditions[currentState.askFeedbackTime] && !feedbackAlreadyAsked
