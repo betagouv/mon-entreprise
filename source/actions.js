@@ -21,8 +21,8 @@ export function resetSimulation(): ResetSimulationAction {
 }
 
 // $FlowFixMe
-export function setExample(name, situation) {
-	return { type: 'SET_EXAMPLE', situation, name }
+export function setExample(name, situation, dottedName) {
+	return { type: 'SET_EXAMPLE', name, situation, dottedName }
 }
 
 export const START_CONVERSATION = 'START_CONVERSATION'

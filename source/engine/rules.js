@@ -48,7 +48,8 @@ export let enrichRule = (rule, sharedData = {}) => {
 		dottedName = buildDottedName(rule),
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
-		defaultValue = rule['par défaut']
+		defaultValue = rule['par défaut'],
+		examples = rule['exemples']
 
 	return {
 		...rule,
@@ -60,13 +61,16 @@ export let enrichRule = (rule, sharedData = {}) => {
 		dottedName,
 		subquestion,
 		defaultValue,
-		raw: rule
+		raw: rule,
+		examples
 	}
 }
 
 let buildDottedName = rule =>
 	rule['espace'] ? [rule['espace'], rule['nom']].join(' . ') : rule['nom']
 
+// les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
+// comme dans sa formule
 export let disambiguateExampleSituation = (rules, rule) =>
 	pipe(
 		toPairs,

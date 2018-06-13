@@ -19,3 +19,6 @@ export let getIframeOption = optionName => {
 		hasOption && url.split(optionName + '=')[1].split('&')[0]
 	)
 }
+
+// By luck this works as expected for both null and undefined, * but with different branches failing :O *
+export let isFloat = n => Number(n) === n && n % 1 !== 0

@@ -20,10 +20,10 @@ function explainedVariable(state = null, { type, variableName = null }) {
 	}
 }
 
-function currentExample(state = null, { type, situation, name }) {
+function currentExample(state = null, { type, situation, name, dottedName }) {
 	switch (type) {
 		case 'SET_EXAMPLE':
-			return name != null ? { name, situation } : null
+			return name != null ? { name, situation, dottedName } : null
 		default:
 			return state
 	}
