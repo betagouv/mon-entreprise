@@ -69,20 +69,35 @@ let Example = ({
 	rule,
 	currentExample,
 	setExample,
-	themeColours: { colour, textColour }
-}) => (
-	<li
-		key={nom}
-		className={classNames('example', {
-			selected: currentExample && currentExample.name == nom
-		})}
-		onClick={() =>
-			currentExample && currentExample.name == nom
-				? setExample(null)
-				: setExample(nom, situation, rule.dottedName)
-		}>
-		<button className="name" style={{ color: textColour, background: colour }}>
-			{capitalise0(nom)}
-		</button>
-	</li>
-)
+	themeColours: { colour, textColourOnWhite, textColour }
+}) =>
+	do {
+		let selected = currentExample && currentExample.name == nom
+		;<li
+			key={nom}
+			className={classNames('example', {
+				selected
+			})}
+			onClick={() =>
+				selected
+					? setExample(null)
+					: setExample(nom, situation, rule.dottedName)
+			}>
+			<button
+				className="name"
+				style={
+					selected
+						? {
+								background: colour,
+								color: textColour,
+								borderColor: textColourOnWhite
+						  }
+						: {
+								borderColor: textColourOnWhite,
+								color: textColourOnWhite
+						  }
+				}>
+				{capitalise0(nom)}
+			</button>
+		</li>
+	}
