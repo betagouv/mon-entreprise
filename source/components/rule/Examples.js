@@ -65,7 +65,7 @@ export default class Examples extends Component {
 }
 
 let Example = ({
-	ex: { nom, 'valeur attendue': expected, situation },
+	ex: { nom, situation },
 	rule,
 	currentExample,
 	setExample,
