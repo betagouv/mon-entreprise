@@ -14,7 +14,7 @@
 }
 
 #examples ul {
-	padding-left: 0;
+	padding-left: 0.6em;
 	list-style-type: none;
 }
 #examples .example {
@@ -26,29 +26,9 @@
 	font-weight: bold;
 }
 
-#examples i {
-	margin-right: 0.6em;
-}
-
-#examples .example i {
-	font-size: 200%;
-	vertical-align: sub;
-}
-
-#examples .example:not(.ok) {
-	color: #e74c3c;
-}
-
-#examples .example .ko {
-	font-size: 80%;
-	color: #666;
-}
-
-#examples .expected {
-	font-weight: 700;
-	color: #031bd6;
-}
-
-#examples .example.ok i {
-	color: #2ecc71;
+#examples .name {
+	border: none;
+	padding: 0.2em 0.6em;
+	border-radius: 0.2em;
+	font-size: 100%;
 }

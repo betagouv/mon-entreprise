@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import './Rule.css'
 import References from './References'
 import Algorithm from './Algorithm'
-//import Examples from './Examples'
+import Examples from './Examples'
 import Helmet from 'react-helmet'
 import { createMarkdownDiv } from 'Engine/marked'
 import RuleHeader from './Header'
@@ -80,11 +80,11 @@ export default class Rule extends Component {
 							{createMarkdownDiv(flatRule.note)}
 						</section>
 					)}
-					{/*<Examples
+					<Examples
 						currentExample={currentExample}
 						situationExists={valuesToShow}
-						rule={flatRule}
-					/>*/}
+						rule={displayedRule}
+					/>
 					{!isEmpty(namespaceRules) && (
 						<NamespaceRulesList {...{ flatRule, namespaceRules }} />
 					)}

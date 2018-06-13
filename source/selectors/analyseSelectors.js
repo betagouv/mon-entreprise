@@ -14,7 +14,9 @@ import {
 	rules,
 	rulesFr,
 	nestedSituationToPathMap,
-	formatInputs
+	formatInputs,
+	findRuleByDottedName,
+	disambiguateExampleSituation
 } from 'Engine/rules'
 
 /* 
@@ -83,11 +85,18 @@ export let ruleAnalysisSelector = createSelector(
 
 let exampleSituationSelector = createSelector(
 	[
+		parsedRulesSelector,
 		situationWithDefaultsSelector,
-		({ currentExample }) => currentExample && currentExample.situation
+		({ currentExample }) => currentExample
 	],
-	(situation, exampleSituation) =>
-		exampleSituation && { ...situation, ...exampleSituation }
+	(rules, situation, example) =>
+		example && {
+			...situation,
+			...disambiguateExampleSituation(
+				rules,
+				findRuleByDottedName(rules, example.dottedName)
+			)(example.situation)
+		}
 )
 export let exampleAnalysisSelector = createSelector(
 	[
