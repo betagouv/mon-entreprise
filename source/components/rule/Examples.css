@@ -18,16 +18,12 @@
 	list-style-type: none;
 }
 #examples .example {
-	font-weight: 500;
 	margin: 0.6em;
-	cursor: pointer;
-}
-#examples .example.selected .name {
-	font-weight: bold;
 }
 
 #examples .name {
-	border: none;
+	border-width: 1px;
+	border-style: solid;
 	padding: 0.2em 0.6em;
 	border-radius: 0.2em;
 	font-size: 100%;
