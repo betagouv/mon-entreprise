@@ -2132,7 +2132,7 @@
       situation:
         assiette cotisations sociales: 1500
       valeur attendue: 266.25
-    - nom: Haut salaire élevé
+    - nom: Salaire élevé
       situation:
         assiette cotisations sociales: 8000
       valeur attendue: 695.55
