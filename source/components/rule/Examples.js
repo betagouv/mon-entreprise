@@ -9,7 +9,6 @@ import { capitalise0 } from '../../utils'
 
 @connect(
 	state => ({
-		situationGate: state.situationGate,
 		parsedRules: state.parsedRules,
 		themeColours: state.themeColours
 	}),

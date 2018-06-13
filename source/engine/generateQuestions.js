@@ -17,7 +17,6 @@ import {
 	is,
 	prop,
 	pick,
-	reject,
 	identity
 } from 'ramda'
 import React from 'react'
@@ -26,13 +25,8 @@ import Input from 'Components/conversation/Input'
 import Select from 'Components/conversation/select/Select'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
-import InversionInput from '../components/conversation/InversionInput'
 
-import {
-	findRuleByDottedName,
-	disambiguateRuleReference,
-	queryRule
-} from './rules'
+import { findRuleByDottedName, queryRule } from './rules'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -102,27 +96,9 @@ let buildVariantTree = (allRules, path) => {
 	return rec(path)
 }
 
-let buildPossibleInversion = (rule, rules, targetNames) => {
-	let query = queryRule(rule),
-		inversion = query('formule . inversion')
-
-	if (!inversion) return null
-	let inversionObjects = query('formule . inversion . avec').map(i =>
-			findRuleByDottedName(rules, disambiguateRuleReference(rules, rule, i))
-		),
-		inversions = reject(({ name }) => targetNames.includes(name))(
-			[rule].concat(inversionObjects)
-		)
-
-	return {
-		inversions,
-		question: query('formule . inversion . question')
-	}
-}
-
 // This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
-export let getInputComponent = (rules, targetNames) => dottedName => {
+export let getInputComponent = rules => dottedName => {
 	let rule = findRuleByDottedName(rules, dottedName)
 
 	let commonProps = {
@@ -177,27 +153,6 @@ export let getInputComponent = (rules, targetNames) => dottedName => {
 		)
 
 	// Now the numeric input case
-
-	// Check for inversions
-	let inversion = buildPossibleInversion(rule, rules, targetNames)
-
-	/* In the case of an inversion, display a RadioInput component.
-	On click on one of the radios, display the corresponding input.
-	If only one inversion is possible, don't show the radio but show the documentation icon.
-	Else just display the Input component.
-	*/
-
-	if (inversion)
-		return (
-			<InversionInput
-				{...{
-					...commonProps,
-					valueType: formValueTypes[rule.format],
-					suggestions: rule.suggestions,
-					inversion
-				}}
-			/>
-		)
 
 	return (
 		<Input
