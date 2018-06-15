@@ -122,6 +122,20 @@ const PaySlip = ({
 			<RuleLink {...salaireNetImposable} />
 			<Montant>{salaireNetImposable.montant}</Montant>
 		</div>
+		<p>
+			<br />
+			<small>
+				<Trans i18nKey="payslip.notice">
+					Pour plus d&apos;informations concernant votre bulletin de paie,
+					rendez vous sur&nbsp;
+					<a
+						alt="service-public.fr"
+						href="https://www.service-public.fr/particuliers/vosdroits/F559">
+						service-public.fr
+					</a>
+				</Trans>
+			</small>
+		</p>
 	</div>
 )
 

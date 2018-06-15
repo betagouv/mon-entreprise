@@ -119,3 +119,5 @@ Voir ma fiche de paie: View my payslip
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
 Ma fiche de paie: My payslip
+payslip: 
+  notice: For further details on the payslip in France, you can go to <1>service-public.fr (french)</1>
