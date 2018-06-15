@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { CHANGE_LANG } from '../../actions'
 
 @withRouter
 @connect(state => ({
@@ -93,7 +92,7 @@ let Links = ({ toggle }) => (
 @withRouter
 @translate()
 @connect(null, dispatch => ({
-	changeLanguage: lang => dispatch({ type: CHANGE_LANG, lang })
+	changeLanguage: lang => dispatch({ type: 'SWITCH_LANG', lang })
 }))
 export class LangSwitcher extends Component {
 	static contextTypes = {
