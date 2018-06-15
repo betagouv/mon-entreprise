@@ -1,10 +1,15 @@
 .scrollIndication {
-	margin: 0.6em;
-	text-align: center;
+	margin: 0.6em 0;
+	font-size: 110%;
+	font-weight: bold;
 }
 
 .scrollIndication.down {
 	margin-bottom: 1em;
+}
+
+#resultsScrollElement, #myScrollToElement {
+	text-align: center;
 }
 
 #foldedSteps {
@@ -55,7 +60,7 @@
 	margin-bottom: 1em;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .step h1 {
@@ -393,20 +398,20 @@ for the appearing element to appear without stacking up below the first one */
 }
 
 .foldedQuestion {
-	margin-left: 1.2em;
+	margin-left: 0em;
 }
 
 .foldedQuestion .edit {
 	vertical-align: middle;
 	margin-left: 0.5em;
 	border: none;
-	padding-right: 0
+	padding-right: 0;
 }
 
 .foldedQuestion .borderWrapper {
 	padding: 0.1em 0;
 	display: inline-block;
-	width: calc(100% - 7em);
+	width: calc(100% - 8em);
 	border-bottom: 1px solid #eee;
 }
 

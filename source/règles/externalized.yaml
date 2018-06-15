@@ -323,7 +323,7 @@ contrat salarié . assiette cotisations sociales:
     (logement, véhicule...).
   titre.en: base for the social contributions
   titre.fr: assiette cotisations sociales
-contrat salarié . salaire de base:
+contrat salarié . salaire . brut de base:
   titre.en: Gross salary
   titre.fr: Salaire brut
   résumé.en: The salary written in the employment contract.
@@ -346,16 +346,16 @@ contrat salarié . salaire de base:
   suggestions.en:
     salaire médian: median salary
     SMIC: minimal salary (SMIC)
-contrat salarié . salaire brut:
+contrat salarié . salaire . brut:
   titre.en: gross salary with benefits
   titre.fr: salaire brut
   description.fr: >
     C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
   description.en: >
     This is the effective base salary, including all benefits, for the purpose of computing social costs.
-contrat salarié . avantages salarié:
+contrat salarié . avantages sociaux:
   titre.en: employee benefits
-  titre.fr: avantages salarié
+  titre.fr: social benefits
 contrat salarié . statut cadre:
   titre.en: cadre status
   titre.fr: Statut cadre
@@ -385,26 +385,73 @@ contrat salarié . cotisations salariales:
 contrat salarié . cotisations patronales:
   titre.en: employer contributions
   titre.fr: cotisations patronales
-contrat salarié . salaire net:
+contrat salarié . salaire . net:
   titre.en: Net salary
   titre.fr: Salaire net
   question.en: What is the net salary?
   question.fr: Quel est le salaire net ?
   résumé.en: The amount received monthly by the employee.
   résumé.fr: La somme touchée par le salarié tous les mois.
-  description.en: >-
-    The gross salary minus the social contributions is what the employee
-    receives on his bank account.
+  description.en: >
+    The gross salary minus the social contributions.
 
     This amount can vary according to political decisions (increase or decrease in contributions) while the gross salary is contractual: to change it, an amendment to the contract must be signed.
   description.fr: >
     Le salaire brut moins les cotisations sociales, c'est ce que le salarié
     reçoit sur son compte bancaire.
 
-
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
     diminution des cotisations) alors que le salaire brut est contractuel: pour
     le changer, il faut signer un avenant au contrat.
+
+contrat salarié . salaire . net à payer:
+    titre.en: Net salary due
+    titre.fr: Salaire net à payer
+    résumé.fr: Touché par le salarié tous les mois
+    résumé.en: What the employee actually get each month
+    description.fr: >
+      C'est le montant que le salarié touche à la fin du mois.
+    description.en: >
+      It's the amount that the employee get at the end of each month
+
+contrat salarié . salaire . net imposable:
+  titre.en: Net taxable salary
+  titre.fr: Salaire net imposable
+  résumé.fr: Touché par le salarié tous les mois
+  résumé.en: What the employee actually get each month
+  description.fr: >
+    Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
+  description.en: >
+    The net salary less tax deductible social contributions and more taxable social benefits. It's the basis used to compute income tax.
+
+contrat salarié . avantages en nature:
+  titre.fr: Avantages en nature
+  titre.en: Benefits in kind
+  description.fr: >
+    Les avantages en nature sont constitués par la fourniture par l’employeur à ses salariés de biens ou services. La mise à disposition peut être gratuite ou moyennant une participation du salarié inférieure à leur valeur réelle
+  description.en: >
+    Benefits in kind consist of the provision by the employer to its employees of goods or services. The provision may be free of charge or with employee participation below their actual value
+  note.fr: >
+    Les tickets restaurants ne sont pas considéré comme un avantage en nature mais comme un remboursement de frais.
+  note.en: >
+    The meal vouchers are not considered as a benefit in kind but as a reimbursement of expenses.
+  
+  question.fr: Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone, réductions...) ?
+  question.en: Does the employee receive benefits in kind (housing, vehicle, telephone, discounts, etc.)?
+
+
+contrat salarié . avantages en nature . montant:
+  titre.fr: Avantages en nature
+  titre.en: Benefits in kind (amount)
+  description.fr: >
+    Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+  description.en: >
+    Benefits in kind are subject to contributions and income tax. They are taken into account to verify that the minimum wage is reached.
+
+  question.fr: Quel est le montant mensuel des avantages en nature ?
+  question.en: What is the monthly amount of benefits in kind ?
+
+
 contrat salarié . coût du travail:
   description.en: >-
     This is what the employer will actually have to pay to the employee and the collection agencies in total, taking into account grants and subsidies that are paid back to him: this is the actual total social cost of the employee for the employer.
@@ -416,7 +463,8 @@ contrat salarié . coût du travail:
     réel du travail pour l'employeur.
   titre.en: labor cost
   titre.fr: coût du travail
-contrat salarié . salaire total:
+
+contrat salarié . salaire . total:
   titre.en: Total salary
   titre.fr: Salaire total
   résumé.en: The total sum paid by the employer every month.
@@ -434,7 +482,7 @@ contrat salarié . salaire total:
 contrat salarié . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
-contrat salarié . salaire total sans réduction:
+contrat salarié . salaire . total sans réduction:
   titre.en: total salary without reduction
   titre.fr: salaire total sans réduction
 contrat salarié . aides employeur:

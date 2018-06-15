@@ -1,5 +1,6 @@
 /* @flow */
-import type { Situation } from '../types/Situation.js'
+import type { Situation } from './Situation.js'
+import type { Analysis } from './Analysis.js'
 
 export type TargetInput =
 	| 'contrat salarié . salaire de base'
@@ -12,6 +13,11 @@ export type SavedSimulation = {
 	foldedSteps: Array<string>
 }
 
+export type FlatRules = {
+	[string]: {
+		titre: string
+	}
+}
 export type State = {
 	form: {
 		conversation: {
@@ -21,5 +27,7 @@ export type State = {
 	previousSimulation: ?SavedSimulation,
 	foldedSteps: Array<string>,
 	activeTargetInput: TargetInput,
-	conversationStarted: boolean
+	conversationStarted: boolean,
+	analysis: Analysis,
+	flatRules: FlatRules
 }

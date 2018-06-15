@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import './Explanation.css'
 import { connect } from 'react-redux'
-import { scroller, Element } from 'react-scroll'
-import { path } from 'ramda'
+import { Element, scroller } from 'react-scroll'
+import './Explanation.css'
+import { SimpleButton } from './ui/Button'
 import withColours from './withColours'
 
 @translate()
 @withColours
 @connect(state => ({
-	analysis: state.analysis
+	analysis: state.analysis,
+	conversationStarted: state.conversationStarted
 }))
 export default class GoToExplanation extends Component {
 	handleScrollToResults = () => {
@@ -20,23 +21,18 @@ export default class GoToExplanation extends Component {
 		})
 	}
 	render() {
-		let targetRules = path(['analysis', 'targets'], this.props)
-		if (!targetRules) return null
+		let { analysis, conversationStarted } = this.props
+
+		if (!analysis || !analysis.targets || !conversationStarted) return null
 
 		return (
 			<Element name="resultsScrollElement" id="resultsScrollElement">
-				<h3
+				<SimpleButton
 					className="scrollIndication down"
-					style={{
-						color: this.props.colours.textColourOnWhite
-					}}>
-					<button
-						className="unstyledButton"
-						onClick={this.handleScrollToResults}>
-						<i className="fa fa-long-arrow-down" aria-hidden="true" />
-						&nbsp;<Trans i18nKey="details">Comprendre mes résultats</Trans>
-					</button>
-				</h3>
+					onClick={this.handleScrollToResults}>
+					<i className="fa fa-long-arrow-down" aria-hidden="true" />
+					&nbsp;<Trans i18nKey="details">Comprendre mes résultats</Trans>
+				</SimpleButton>
 			</Element>
 		)
 	}

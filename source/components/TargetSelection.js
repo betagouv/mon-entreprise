@@ -1,20 +1,30 @@
-import InputSuggestions from 'Components/conversation/InputSuggestions'
-import { findRuleByName } from 'Engine/rules'
 import classNames from 'classnames'
-import { curry, propEq } from 'ramda'
+import InputSuggestions from 'Components/conversation/InputSuggestions'
+import { findRuleByDottedName } from 'Engine/rules'
+import { propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Field, change, formValueSelector, reduxForm } from 'redux-form'
+import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import BlueButton from './BlueButton'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
-import './TargetSelection.css'
 import { RuleValue } from './rule/RuleValueVignette'
+import './TargetSelection.css'
 import withLanguage from './withLanguage'
-export let salaries = ['salaire total', 'salaire de base', 'salaire net']
-export let popularTargetNames = [...salaries, 'aides employeur']
+
+let salaries = [
+	'contrat salarié . salaire . total',
+	'contrat salarié . salaire . brut de base',
+	'contrat salarié . salaire . net à payer'
+]
+
+let displayedTargetNames = [...salaries, 'contrat salarié . aides employeur']
+export let popularTargetNames = [
+	...displayedTargetNames,
+	'contrat salarié . salaire . net imposable'
+]
 
 @translate()
 @reduxForm({
@@ -63,14 +73,14 @@ export default class TargetSelection extends Component {
 							<p>
 								<b>
 									<Trans>Estimation approximative</Trans>
-								</b>{' '}
+								</b>
 								<br />
 								<Trans i18nKey="defaults">
 									pour une situation par défaut (CDI non cadre).
 								</Trans>
 							</p>
 							<BlueButton onClick={this.props.startConversation}>
-								<Trans>Affiner le calcul</Trans>
+								<Trans>Commencer la simulation</Trans>
 							</BlueButton>
 						</div>
 					)}
@@ -79,15 +89,14 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let popularTargets = popularTargetNames.map(
-				curry(findRuleByName)(this.props.flatRules)
+		let displayedTargets = displayedTargetNames.map(target =>
+				findRuleByDottedName(this.props.flatRules, target)
 			),
 			{ conversationStarted, activeInput, setActiveInput, targets } = this.props
-
 		return (
 			<div>
 				<ul id="targets">
-					{popularTargets.map(target => (
+					{displayedTargets.map(target => (
 						<li key={target.name}>
 							<div className="main">
 								<Header

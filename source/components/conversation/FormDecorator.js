@@ -6,6 +6,7 @@ import { Field, change } from 'redux-form'
 import { stepAction } from '../../actions'
 import { capitalise0 } from '../../utils'
 import Explicable from 'Components/conversation/Explicable'
+import { LinkButton} from 'Components/ui/Button'
 import IgnoreStepButton from './IgnoreStepButton'
 import { findRuleByDottedName } from 'Engine/rules'
 
@@ -26,7 +27,6 @@ export var FormDecorator = formType => RenderField =>
 	@connect(
 		//... this helper directly to the redux state to avoid passing more props
 		state => ({
-			themeColours: state.themeColours,
 			situationGate: state.situationGate,
 			flatRules: state.flatRules
 		}),
@@ -134,7 +134,6 @@ export var FormDecorator = formType => RenderField =>
 			let {
 				stepAction,
 				situationGate,
-				themeColours,
 				title,
 				dottedName,
 				fieldName,
@@ -153,16 +152,12 @@ export var FormDecorator = formType => RenderField =>
 						<span className="title">{capitalise0(fieldTitle || title)}</span>
 						<span className="answer">{translatedAnswer}</span>
 					</span>
-					<button
-						className="edit"
+					<LinkButton
 						onClick={() => stepAction('unfold', dottedName, 'unfold')}
-						style={{ color: themeColours.textColourOnWhite }}>
+						>
 						<i className="fa fa-pencil" aria-hidden="true" />
-						{'  '}
-						<span>
 							<Trans>Modifier</Trans>
-						</span>
-					</button>
+					</LinkButton>
 				</div>
 			)
 		}

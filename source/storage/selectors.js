@@ -13,7 +13,7 @@ export const currentSimulationSelector: State => SavedSimulation = state => ({
 
 export const createStateFromSavedSimulation: (
 	?SavedSimulation
-) => ?State = simulation =>
+) => ?$Supertype<State> = simulation =>
 	simulation && {
 		activeTargetInput: simulation.activeTargetInput,
 		form: {

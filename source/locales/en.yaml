@@ -4,7 +4,7 @@ previousSimulationBanner:
   retrieveButton: Retrieve my last simulation 
 Estimation approximative: This is an estimate
 defaults: for a permanent (CDI) full-time contract
-Affiner le calcul: Refine this estimate
+Commencer la simulation: Start simulation
 selectMany: You may pick more than one
 Valider: Accept
 valider: accept
@@ -12,7 +12,7 @@ votre réponse: answer here
 reset: Start over
 resetAll: Discard answers
 change: Change answers
-details: Detailed results
+details: Understand my results
 revenir: back
 Modifier: Edit
 passer: skip
@@ -104,3 +104,20 @@ montant à atteindre: minimum value
 dû par: owed by
 employeur: employer
 salarié: employee
+impôt sur le revenu: income tax
+déductible: deductible
+non déductible: not deductible
+Salaire: Salary
+Cotisations sociales: Social contributions
+Part employeur: Employer share
+Part salariale: Employee share
+Total des retenues: Total withheld
+accidents du travail / maladies professionnelles: work accidents / occupational diseases
+autres: other
+Où vont mes cotisations ?: Where do my contributions go?
+Voir ma fiche de paie: View my payslip
+Voir la répartition des cotisations: View contribution breakdown
+Cotisations: Contributions
+Ma fiche de paie: My payslip
+payslip: 
+  notice: For further details on the payslip in France, you can go to <1>service-public.fr (french)</1>

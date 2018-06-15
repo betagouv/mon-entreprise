@@ -1,13 +1,15 @@
+import HoverDecorator from 'Components/HoverDecorator'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import HoverDecorator from 'Components/HoverDecorator'
+import withColours from '../withColours'
 
 @HoverDecorator
 @translate()
+@withColours
 export default class SendButton extends Component {
 	getAction() {
 		let { disabled, submit } = this.props
-		return (cause) => (!disabled ? submit(cause) : null)
+		return cause => (!disabled ? submit(cause) : null)
 	}
 	componentDidMount() {
 		// removeEventListener will need the exact same function instance
@@ -23,25 +25,25 @@ export default class SendButton extends Component {
 		this.getAction()('enter')
 	}
 	render() {
-		let { disabled, themeColours, hover } = this.props
+		let { disabled, colours, hover } = this.props
 		return (
 			<span className="sendWrapper">
 				<button
 					className="send"
 					disabled={disabled}
 					style={{
-						color: themeColours.textColour,
-						background: themeColours.colour
+						color: colours.textColour,
+						background: colours.colour
 					}}
-					onClick={(event) => this.getAction()('accept')}
-				>
-					<span className="text"><Trans>valider</Trans></span>
+					onClick={() => this.getAction()('accept')}>
+					<span className="text">
+						<Trans>valider</Trans>
+					</span>
 					<i className="fa fa-check" aria-hidden="true" />
 				</button>
 				<span
 					className="keyIcon"
-					style={{ opacity: hover && !disabled ? 1 : 0 }}
-				>
+					style={{ opacity: hover && !disabled ? 1 : 0 }}>
 					<Trans>Entrée</Trans> ↵
 				</span>
 			</span>

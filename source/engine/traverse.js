@@ -111,9 +111,9 @@ let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
 		return originalEval(cache, newSituation, parsedRules, node)
 	}
 	let node = fillVariableNode(rules, rule, filter)(parseResult),
-		// Decorate node with who's paying
-		cotisation = { ...node.cotisation, 'dû par': filter }
-
+	// Decorate node with the composante filter (either who is paying, either tax free)
+	cotisation = { ...node.cotisation, 'dû par': filter, 'impôt sur le revenu': filter }
+	
 	return {
 		...node,
 		cotisation,
@@ -133,27 +133,27 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 		}
 
 		let variable = findRuleByDottedName(parsedRules, dottedName),
-			variableIsCalculable = variable.formule != null,
+			variableHasFormula = variable.formule != null,
+			variableHasCond = variable['applicable si'] != null || variable['non applicable si'] != null,	
 			situationValue = evaluateVariable(situation, dottedName, variable),
-			needsEvaluation = variableIsCalculable && situationValue == null,
+			needsEvaluation = (variableHasCond || variableHasFormula) && situationValue == null, 
 			parsedRule = needsEvaluation
 				? evaluateNode(cache, situation, parsedRules, variable)
 				: variable,
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			explanation = parsedRule,
 			nodeValue =
-				situationValue != null
+				 situationValue != null
 					? situationValue // cette variable a été directement renseignée
-					: variableIsCalculable
+					: variableHasCond || variableHasFormula
 						? parsedRule.nodeValue // la valeur du calcul fait foi
 						: null, // elle restera donc nulle
-			missingVariables =
-				nodeValue != null // notamment si situationValue != null
-					? {}
-					: variableIsCalculable
-						? parsedRule.missingVariables
-						: { [dottedName]: 1 }
-
+			missingVariables = nodeValue != null  ? {} : 
+				{
+					...(needsEvaluation ? parsedRule.missingVariables : {}),				
+					...(!situationValue ? { [dottedName]: 1 } : {}),
+				}
+			
 		cache[cacheName] = rewriteNode(
 			node,
 			nodeValue,

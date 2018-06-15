@@ -1,0 +1,11 @@
+.result-view-header {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.result-view-header h2 {
+	flex: 1;
+	flex-shrink: 0;
+	white-space: nowrap;
+}

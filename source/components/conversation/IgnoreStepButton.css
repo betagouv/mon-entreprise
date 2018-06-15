@@ -1,14 +1,12 @@
-
 #ignore {
 	position: relative;
 }
 
-#ignoreButton, #ignoreButton:visited {
+#ignoreButton,
+#ignoreButton:visited {
 	cursor: pointer;
-	color: #222;
-	font-weight: 400;
+	color: rgba(0, 0, 0, 0.7);
 	text-decoration: none;
 	border-bottom: 1px solid #666;
-	line-height: 1.2em;
 	font-style: italic;
 }
