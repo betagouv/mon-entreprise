@@ -223,7 +223,8 @@ function analysisToFicheDePaie(
 		),
 		salaireNetàPayer: règleAvecMontant(
 			'contrat salarié . salaire . net à payer'
-		)
+		),
+		nombreHeuresTravaillées: règleAvecMontant('contrat salarié . heures par semaine').montant * 4.33
 	}
 }
 

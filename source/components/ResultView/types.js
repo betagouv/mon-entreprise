@@ -62,7 +62,8 @@ export type FicheDePaie = {
 	salaireChargé: RègleAvecMontant,
 	salaireNet: RègleAvecMontant,
 	salaireNetImposable: RègleAvecMontant,
-	salaireNetàPayer: RègleAvecMontant
+	salaireNetàPayer: RègleAvecMontant,
+	nombreHeuresTravaillées: number
 }
 
 export type Répartition = {
