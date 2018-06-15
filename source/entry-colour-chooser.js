@@ -1,25 +1,23 @@
 import 'core-js/fn/promise'
-import { rulesFr } from 'Engine/rules'
 import React from 'react'
 import { SliderPicker } from 'react-color'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { changeThemeColour } from './actions'
-import Layout from './containers/Layout'
 import reducers from './reducers/reducers'
+import Layout from './containers/Layout'
 
 let tracker = {
 	push: () => {},
 	connectToHistory: history => history
 }
 
-let store = createStore(reducers(rulesFr))
+let store = createStore(reducers)
 
 @connect(
 	state => ({ couleur: state.themeColours.colour }),
 	dispatch => ({
-		changeColour: colour => dispatch(changeThemeColour(colour))
+		changeColour: colour => dispatch({ type: 'CHANGE_THEME_COLOUR', colour })
 	})
 )
 class MyComponent extends React.Component {
