@@ -11,8 +11,8 @@ import { head, isEmpty, pick } from 'ramda'
 import { getFormValues } from 'redux-form'
 import {
 	collectDefaults,
-	rules,
-	rulesFr,
+	rules as baseRulesEn,
+	rulesFr as baseRulesFr,
 	nestedSituationToPathMap,
 	formatInputs,
 	findRuleByDottedName,
@@ -26,11 +26,10 @@ import {
  *
  * */
 
-let langSelector = state => state.lang
-
 export let flatRulesSelector = createSelector(
-	[langSelector],
-	lang => (lang === 'en' ? rules : rulesFr)
+	state => state.lang,
+	state => state.rules,
+	(lang, rules) => rules || (lang === 'en' ? baseRulesEn : baseRulesFr)
 )
 
 let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
