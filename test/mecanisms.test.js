@@ -1,6 +1,6 @@
 /*
 	Les mécanismes sont testés dans mécanismes/ comme le sont les variables directement dans la base YAML.
-	On y créée dans chaque fichier une base YAML autonome, dans laquelle intervient le mécanisme à tester,
+	On construit dans chaque fichier une base YAML autonome, dans laquelle intervient le mécanisme à tester,
 	puis on teste idéalement tous ses comportements sans en faire intervenir d'autres.
 */
 
@@ -53,9 +53,7 @@ describe('Mécanismes', () =>
 									}
 
 									if (expectedMissing) {
-										expect(missing).to.eql(
-											expectedMissing
-										)
+										expect(missing).to.eql(expectedMissing)
 									}
 								})
 						)
