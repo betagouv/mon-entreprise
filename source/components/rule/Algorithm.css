@@ -151,7 +151,7 @@
 	text-align: center;
 }
 
-#rule-rules .situationValue.✔ {
+#rule-rules .situationValue.✅ {
 	color: #5ab738;
 }
 #rule-rules .situationValue.✘ {
@@ -176,7 +176,6 @@
 .variable a:focus {
 	border: 1px dotted;
 	outline: none;
-
 }
 
 .percentage .name {
@@ -283,18 +282,18 @@
 	display: inline-block;
 }
 
-.nodeHead .name .situationValue:not(.✔):not(.✘)::before {
+.nodeHead .name .situationValue:not(.✅):not(.✘)::before {
 	content: '(';
 }
 
-.nodeHead .name .situationValue:not(.✔):not(.✘)::after {
+.nodeHead .name .situationValue:not(.✅):not(.✘)::after {
 	content: ')';
 }
 
 /* Remove style for conditions */
 
 .situationValue.✘,
-.situationValue.✔ {
+.situationValue.✅ {
 	padding: 0 0.5em;
 	margin-right: -1px !important;
 }
