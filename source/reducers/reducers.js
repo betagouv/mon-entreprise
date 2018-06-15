@@ -5,6 +5,7 @@ import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import storageReducer from '../storage/reducer'
+import defaultLang from '../i18n'
 
 function themeColours(state = computeThemeColours(), { type, colour }) {
 	if (type == 'CHANGE_THEME_COLOUR') return computeThemeColours(colour)
@@ -50,7 +51,7 @@ function activeTargetInput(state = null, { type, name }) {
 	}
 }
 
-function lang(state = null, { type, lang }) {
+function lang(state = defaultLang, { type, lang }) {
 	switch (type) {
 		case 'SWITCH_LANG':
 			return lang
