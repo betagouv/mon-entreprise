@@ -10,7 +10,7 @@ import { analyse, parseAll } from '../source/engine/traverse'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
 import * as R from 'ramda'
-import { isFloat } from '../source/components/rule/Examples'
+import { isFloat } from '../source/utils'
 
 describe('Mécanismes', () =>
 	testSuites.map(suite =>
