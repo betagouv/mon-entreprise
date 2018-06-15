@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import { connect } from 'react-redux'
 import { Element, scroller } from 'react-scroll'
 import './Explanation.css'
 import { SimpleButton } from './ui/Button'
@@ -8,10 +7,6 @@ import withColours from './withColours'
 
 @translate()
 @withColours
-@connect(state => ({
-	analysis: state.analysis,
-	conversationStarted: state.conversationStarted
-}))
 export default class GoToExplanation extends Component {
 	handleScrollToResults = () => {
 		scroller.scrollTo('resultsScrollElement', {
@@ -21,10 +16,6 @@ export default class GoToExplanation extends Component {
 		})
 	}
 	render() {
-		let { analysis, conversationStarted } = this.props
-
-		if (!analysis || !analysis.targets || !conversationStarted) return null
-
 		return (
 			<Element name="resultsScrollElement" id="resultsScrollElement">
 				<SimpleButton

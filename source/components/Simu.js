@@ -4,28 +4,28 @@ import './Simu.css'
 import TargetSelection from './TargetSelection'
 import withColours from './withColours'
 import Conversation from './conversation/Conversation'
+import Explanation from 'Components/Explanation'
 import ProgressTip from './ProgressTip'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
 //import Explanation from './Explanation'
 import GoToExplanations from './GoToExplanations'
-import ProgressTip from './ProgressTip'
 import Sondage from './Sondage'
-import TargetSelection from './TargetSelection'
-import withColours from './withColours'
+import { noUserInputSelector } from 'Selectors/analyseSelectors'
 
 @withColours
 @connect(state => ({
+	noUserInput: noUserInputSelector(state),
 	conversationStarted: state.conversationStarted
 }))
 export default class Simu extends Component {
 	render() {
-		let { colours, conversationStarted } = this.props
+		let { colours, conversationStarted, noUserInput } = this.props
 
 		return (
 			<div id="simu">
 				<div id="focusZone">
 					<FoldedSteps />
-					{/*<GoToAnswers />*/}
+					<GoToAnswers />
 					<TargetSelection colours={colours} />
 					{conversationStarted && (
 						<>
@@ -33,9 +33,9 @@ export default class Simu extends Component {
 							<Conversation textColourOnWhite={colours.textColourOnWhite} />
 						</>
 					)}
-					{/*<GoToExplanations />*/}
+					{!noUserInput && <GoToExplanations />}
 				</div>
-				{/* <Explanation /> */}
+				{!noUserInput && <Explanation />}
 				<Sondage />
 			</div>
 		)
