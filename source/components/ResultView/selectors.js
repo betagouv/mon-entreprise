@@ -23,8 +23,12 @@ import {
 	compose
 } from 'ramda'
 import { createSelector } from 'reselect'
+import {
+	analysisWithDefaultsSelector,
+	flatRulesSelector
+} from 'Selectors/analyseSelectors'
 
-import type { State, FlatRules } from '../../types/State'
+import type { FlatRules } from '../../types/State'
 import type { Analysis } from '../../types/Analysis'
 import type {
 	VariableWithCotisation,
@@ -224,12 +228,15 @@ function analysisToFicheDePaie(
 		salaireNetàPayer: règleAvecMontant(
 			'contrat salarié . salaire . net à payer'
 		),
-		nombreHeuresTravaillées: règleAvecMontant('contrat salarié . heures par semaine').montant * 4.33
+		nombreHeuresTravaillées:
+			règleAvecMontant('contrat salarié . heures par semaine').montant * 4.33
 	}
 }
 
-export const ficheDePaieSelector = (state: State) =>
-	analysisToFicheDePaie(state.analysis, state.flatRules)
+export const ficheDePaieSelector = createSelector(
+	[analysisWithDefaultsSelector, flatRulesSelector],
+	(analysis, flatRules) => analysisToFicheDePaie(analysis, flatRules)
+)
 
 const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
 	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant
@@ -246,28 +253,37 @@ const byMontantTotal = (
 	)
 }
 
-const REPARTITION_CSG: {[Branche]: number} = {
+const REPARTITION_CSG: { [Branche]: number } = {
 	famille: 0.85,
 	santé: 7.75,
-	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale. 
-	// On peut imaginer la partager à toute les composantes concernées 
-	autres: 0.60
+	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
+	// On peut imaginer la partager à toute les composantes concernées
+	autres: 0.6
 }
 const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 	// $FlowFixMe
-	const cotisations: {[Branche] : Array<Cotisation>} = fromPairs(ficheDePaie.cotisations);
-	const { salaireNet, salaireChargé } = ficheDePaie;
-	const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG');
+	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
+		ficheDePaie.cotisations
+	)
+	const { salaireNet, salaireChargé } = ficheDePaie
+	const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
 	if (!CSG) {
-		throw new Error('[répartition selector]: expect CSG not to be null');
+		throw new Error('[répartition selector]: expect CSG not to be null')
 	}
-	cotisations.autres = without([CSG], cotisations.autres);
-	const rawRépartition:{ [Branche]: MontantPartagé } = map(totalCotisations, cotisations);
+	cotisations.autres = without([CSG], cotisations.autres)
+	const rawRépartition: { [Branche]: MontantPartagé } = map(
+		totalCotisations,
+		cotisations
+	)
 	// $FlowFixMe
-	for (const branche:Branche in REPARTITION_CSG) {
+	for (const branche: Branche in REPARTITION_CSG) {
 		rawRépartition[branche] = {
-			partPatronale: rawRépartition[branche].partPatronale + CSG.montant.partPatronale * REPARTITION_CSG[branche]/100,
-			partSalariale: rawRépartition[branche].partSalariale + CSG.montant.partSalariale * REPARTITION_CSG[branche]/100 
+			partPatronale:
+				rawRépartition[branche].partPatronale +
+				CSG.montant.partPatronale * REPARTITION_CSG[branche] / 100,
+			partSalariale:
+				rawRépartition[branche].partSalariale +
+				CSG.montant.partSalariale * REPARTITION_CSG[branche] / 100
 		}
 	}
 	return {
@@ -276,7 +292,11 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 		// $FlowFixMe
 		total: compose(reduce(mergeWith(add), 0), Object.values)(rawRépartition),
 		// $FlowFixMe
-		cotisationMaximum: compose(reduce(max, 0), map(montant => montant.partPatronale + montant.partSalariale), values)(rawRépartition),
+		cotisationMaximum: compose(
+			reduce(max, 0),
+			map(montant => montant.partPatronale + montant.partSalariale),
+			values
+		)(rawRépartition),
 		salaireNet,
 		salaireChargé
 	}

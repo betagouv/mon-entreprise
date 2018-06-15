@@ -49,7 +49,7 @@ export default class FoldedSteps extends Component {
 }
 
 @connect(state => ({
-	foldedSteps: state.foldedSteps,
+	foldedSteps: state.conversationSteps.foldedSteps,
 	conversationStarted: state.conversationStarted
 }))
 export class GoToAnswers extends Component {
