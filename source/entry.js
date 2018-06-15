@@ -10,7 +10,6 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import computeThemeColours from './components/themeColours'
 import Layout from './containers/Layout'
 import lang from './i18n'
-import debounceFormChangeActions from './middlewares/debounceFormChangeActions'
 import trackDomainActions from './middlewares/trackDomainActions'
 import reducers from './reducers/reducers'
 import {
@@ -48,9 +47,7 @@ let initialStore = {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-let enhancer = composeEnhancers(
-	applyMiddleware(debounceFormChangeActions(), trackDomainActions(tracker))
-)
+let enhancer = composeEnhancers(applyMiddleware(trackDomainActions(tracker)))
 
 // let initialRules = lang == 'en' ? rules : rulesFr
 //TODO reintroduce initial language
