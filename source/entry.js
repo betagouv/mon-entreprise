@@ -1,7 +1,6 @@
 /* global process: false */
 
 import ReactPiwik from 'Components/Tracker'
-import { rules, rulesFr } from 'Engine/rules'
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
@@ -9,8 +8,6 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import computeThemeColours from './components/themeColours'
 import Layout from './containers/Layout'
-import lang from './i18n'
-import debounceFormChangeActions from './middlewares/debounceFormChangeActions'
 import trackDomainActions from './middlewares/trackDomainActions'
 import reducers from './reducers/reducers'
 import {
@@ -20,7 +17,7 @@ import {
 import { getIframeOption, getUrl } from './utils'
 
 let tracker = {
-	push: console.log,
+	push: console.log, // eslint-disable-line no-console
 	connectToHistory: history => history
 }
 if (process.env.NODE_ENV === 'production') {
@@ -48,12 +45,9 @@ let initialStore = {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-let enhancer = composeEnhancers(
-	applyMiddleware(debounceFormChangeActions(), trackDomainActions(tracker))
-)
+let enhancer = composeEnhancers(applyMiddleware(trackDomainActions(tracker)))
 
-let initialRules = lang == 'en' ? rules : rulesFr
-let store = createStore(reducers(initialRules), initialStore, enhancer)
+let store = createStore(reducers, initialStore, enhancer)
 let anchor = document.querySelector('#js')
 persistSimulation(store)
 

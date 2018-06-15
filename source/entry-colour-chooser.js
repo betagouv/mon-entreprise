@@ -5,7 +5,6 @@ import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers/reducers'
-import { changeThemeColour } from './actions'
 import Layout from './containers/Layout'
 import { SliderPicker } from 'react-color'
 import { rulesFr } from 'Engine/rules'
@@ -20,7 +19,7 @@ let store = createStore(reducers(tracker, rulesFr))
 @connect(
 	state => ({ couleur: state.themeColours.colour }),
 	dispatch => ({
-		changeColour: colour => dispatch(changeThemeColour(colour))
+		changeColour: colour => dispatch({ type: 'CHANGE_THEME_COLOUR', colour })
 	})
 )
 class MyComponent extends React.Component {
@@ -29,8 +28,8 @@ class MyComponent extends React.Component {
 		return (
 			<div>
 				<p className="indication">
-					Visualisez sur cette page l’apparence du module pour
-					différentes couleurs principales.
+					Visualisez sur cette page l’apparence du module pour différentes
+					couleurs principales.
 				</p>
 				<SliderPicker
 					color={this.props.couleur}

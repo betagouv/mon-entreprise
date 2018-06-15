@@ -16,22 +16,37 @@ import {
 	findRuleByDottedName
 } from 'Engine/rules'
 import withColours from '../withColours'
+import {
+	noUserInputSelector,
+	flatRulesSelector,
+	ruleAnalysisSelector,
+	exampleAnalysisSelector
+} from 'Selectors/analyseSelectors'
 
-@connect(state => ({
-	analysis: state.analysis,
-	rules: state.parsedRules,
-	flatRules: state.flatRules,
-	currentExample: state.currentExample
+@connect((state, props) => ({
+	currentExample: state.currentExample,
+	flatRules: flatRulesSelector(state),
+	valuesToShow: !noUserInputSelector(state),
+	analysedRule: ruleAnalysisSelector(state, props),
+	analysedExample: exampleAnalysisSelector(state, props)
 }))
 @translate()
 export default class Rule extends Component {
 	render() {
-		let { rule, currentExample, rules, flatRules, analysis } = this.props,
-			flatRule = findRuleByDottedName(flatRules, rule.dottedName),
-			conversationStarted = !isEmpty(analysis)
+		let {
+				dottedName,
+				currentExample,
+				flatRules,
+				valuesToShow,
+				analysedExample,
+				analysedRule
+			} = this.props,
+			flatRule = findRuleByDottedName(flatRules, dottedName)
 
 		let { type, name, title, description, question, ns } = flatRule,
-			namespaceRules = findRuleByNamespace(flatRules, rule.dottedName)
+			namespaceRules = findRuleByNamespace(flatRules, dottedName)
+
+		let displayedRule = analysedExample || analysedRule
 
 		return (
 			<div id="rule">
@@ -45,7 +60,7 @@ export default class Rule extends Component {
 						type,
 						description,
 						question,
-						rule,
+						flatRule,
 						flatRules,
 						name,
 						title
@@ -55,10 +70,8 @@ export default class Rule extends Component {
 				<section id="rule-content">
 					{flatRule.ns && (
 						<Algorithm
-							rules={rules}
-							currentExample={currentExample}
-							rule={rule}
-							showValues={conversationStarted || currentExample}
+							rule={displayedRule}
+							showValues={valuesToShow || currentExample}
 						/>
 					)}
 					{flatRule.note && (
@@ -69,8 +82,8 @@ export default class Rule extends Component {
 					)}
 					<Examples
 						currentExample={currentExample}
-						situationExists={conversationStarted}
-						rule={flatRule}
+						situationExists={valuesToShow}
+						rule={displayedRule}
 					/>
 					{!isEmpty(namespaceRules) && (
 						<NamespaceRulesList {...{ flatRule, namespaceRules }} />

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import ResultsGrid from 'Components/ResultsGrid'
 import { salaries } from 'Components/TargetSelection'
 import { isEmpty, intersection, head, path } from 'ramda'
 import Rule from 'Components/rule/Rule'
@@ -46,7 +45,6 @@ export default class Explanation extends Component {
 			return (
 				<>
 					<SearchButton />
-					<ResultsGrid />
 				</>
 			) // Problem if targetRules is [salaire net, aides] the Explanation will not explain 'aides'. The user will have to click on Aides to understand it. Should we display a list of <Rule /> sections ?
 

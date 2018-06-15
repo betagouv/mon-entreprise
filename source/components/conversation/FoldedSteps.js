@@ -3,25 +3,22 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 //import styles from './.css'
 // css in conversation.Css
-import { isEmpty, map, pick } from 'ramda'
+import { isEmpty } from 'ramda'
 import { reset } from 'redux-form'
 import { resetSimulation } from '../../actions'
-import { getInputComponent } from 'Engine/generateQuestions'
 import withColours from '../withColours'
 import { scroller, Element, animateScroll } from 'react-scroll'
 
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import FoldedStep from './FoldedStep'
+
 @withColours
 @connect(
-	pick([
-		'currentQuestion',
-		'foldedSteps',
-		'themeColours',
-		'situationGate',
-		'targetNames',
-		'nextSteps',
-		'analysis',
-		'flatRules'
-	]),
+	state => ({
+		foldedSteps: state.conversationSteps.foldedSteps,
+		targetNames: state.targetNames,
+		flatRules: flatRulesSelector(state)
+	}),
 	{
 		resetSimulation,
 		resetForm: () => reset('conversation')
@@ -36,9 +33,7 @@ export default class FoldedSteps extends Component {
 	render() {
 		let {
 			foldedSteps,
-			targetNames,
-			flatRules,
-			themeColours: { textColourOnWhite }
+			colours: { textColourOnWhite }
 		} = this.props
 
 		if (isEmpty(foldedSteps || [])) return null
@@ -52,10 +47,9 @@ export default class FoldedSteps extends Component {
 						<Trans i18nKey="resetAll">Tout effacer</Trans>
 					</button>
 				</div>
-				{map(
-					getInputComponent({ unfolded: false })(flatRules, targetNames),
-					foldedSteps
-				)}
+				{foldedSteps.map(dottedName => (
+					<FoldedStep key={dottedName} dottedName={dottedName} />
+				))}
 			</div>
 		)
 	}

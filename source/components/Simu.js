@@ -1,30 +1,38 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './Simu.css'
 import TargetSelection from './TargetSelection'
 import withColours from './withColours'
 import Conversation from './conversation/Conversation'
 import ProgressTip from './ProgressTip'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
-import Explanation from './Explanation'
+//import Explanation from './Explanation'
 import GoToExplanations from './GoToExplanations'
 import Sondage from './Sondage'
 
 @withColours
-export default class extends Component {
+@connect(state => ({
+	conversationStarted: state.conversationStarted
+}))
+export default class Simu extends Component {
 	render() {
-		let { colours } = this.props
+		let { colours, conversationStarted } = this.props
 
 		return (
 			<div id="simu">
-				<FoldedSteps />
 				<div id="focusZone">
-					<GoToAnswers />
+					<FoldedSteps />
+					{/*<GoToAnswers />*/}
 					<TargetSelection colours={colours} />
-					<ProgressTip />
-					<Conversation textColourOnWhite={colours.textColourOnWhite} />
-					<GoToExplanations />
+					{conversationStarted && (
+						<>
+							<ProgressTip />
+							<Conversation textColourOnWhite={colours.textColourOnWhite} />
+						</>
+					)}
+					{/*<GoToExplanations />*/}
 				</div>
-				<Explanation />
+				{/* <Explanation /> */}
 				<Sondage />
 			</div>
 		)

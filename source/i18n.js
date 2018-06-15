@@ -23,7 +23,7 @@ i18next.init(
 		}
 	},
 	(err, t) => {
-		console.log('Error from i18n load', err, t)
+		console.log('Error from i18n load', err, t) //eslint-disable-line no-console
 	}
 )
 

@@ -12,7 +12,7 @@ let RuleHeader = ({
 	type,
 	description,
 	question,
-	rule,
+	flatRule,
 	flatRules,
 	name,
 	title
@@ -27,7 +27,7 @@ let RuleHeader = ({
 				</span>
 			)}
 		</header>
-		<Destinataire destinataire={path([type, 'destinataire'])(rule)} />
+		<Destinataire destinataire={path([type, 'destinataire'])(flatRule)} />
 		<div id="meta-content">{createMarkdownDiv(description || question)}</div>
 	</section>
 )
