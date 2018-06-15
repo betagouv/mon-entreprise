@@ -7,7 +7,6 @@ import {
 	flatRulesSelector,
 	validatedSituationSelector
 } from 'Selectors/analyseSelectors'
-import { stepAction } from '../../actions'
 
 @translate()
 @connect(
@@ -17,7 +16,8 @@ import { stepAction } from '../../actions'
 		situation: validatedSituationSelector(state)
 	}),
 	dispatch => ({
-		stepAction: (name, step, source) => dispatch(stepAction(name, step, source))
+		stepAction: (name, step, source) =>
+			dispatch({ type: 'STEP_ACTION', name, step, source })
 	})
 )
 export default class FoldedStep extends React.Component {

@@ -3,7 +3,6 @@ import { translate } from 'react-i18next'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { Field, change } from 'redux-form'
-import { stepAction } from '../../actions'
 import Explicable from 'Components/conversation/Explicable'
 import IgnoreStepButton from './IgnoreStepButton'
 
@@ -29,7 +28,7 @@ export var FormDecorator = formType => RenderField =>
 		}),
 		dispatch => ({
 			stepAction: (name, step, source) =>
-				dispatch(stepAction(name, step, source)),
+				dispatch({ type: 'STEP_ACTION', name, step, source }),
 			setFormValue: (field, value) =>
 				dispatch(change('conversation', field, value))
 		})
