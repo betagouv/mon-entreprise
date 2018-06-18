@@ -135,24 +135,49 @@ let fillVariableNode = (rules, rule, filter) => parseResult => {
 		let variable = findRuleByDottedName(parsedRules, dottedName),
 			variableHasFormula = variable.formule != null,
 			variableHasCond = variable['applicable si'] != null || variable['non applicable si'] != null,	
-			situationValue = evaluateVariable(situation, dottedName, variable),
-			needsEvaluation = (variableHasCond || variableHasFormula) && situationValue == null, 
-			parsedRule = needsEvaluation
-				? evaluateNode(cache, situation, parsedRules, variable)
-				: variable,
+			situationValue = evaluateVariable(situation, dottedName, variable),	
+			needsEvaluation = situationValue == null && (variableHasCond || variableHasFormula),
 			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
-			explanation = parsedRule,
-			nodeValue =
-				 situationValue != null
-					? situationValue // cette variable a été directement renseignée
-					: variableHasCond || variableHasFormula
-						? parsedRule.nodeValue // la valeur du calcul fait foi
-						: null, // elle restera donc nulle
-			missingVariables = nodeValue != null  ? {} : 
-				{
-					...(needsEvaluation ? parsedRule.missingVariables : {}),				
-					...(!situationValue ? { [dottedName]: 1 } : {}),
-				}
+			explanation = needsEvaluation 
+				? evaluateNode(cache, situation, parsedRules, variable)
+				: variable
+			
+		let nodeValue;
+		let missingVariables;
+
+		// SITUATION 1 : La variable est directement renseignée
+		if (situationValue != null) {
+			nodeValue = situationValue;
+			missingVariables = {};
+		}
+		// SITUATION 2 : La variable est calculée
+		if (situationValue == null && variableHasFormula) {
+			nodeValue = explanation.nodeValue;
+			missingVariables = explanation.missingVariables;
+		}
+		// SITUATION 3 : La variable est une question sans condition dont la valeur n'a pas été renseignée
+		if(situationValue == null && !variableHasFormula && !variableHasCond) {
+			nodeValue = null
+			missingVariables = { [dottedName]: 1}
+		}
+		// SITUATION 4 : La variable est une question avec conditions
+		if(situationValue == null && !variableHasFormula && variableHasCond) {
+			// SITUATION 4.1 : La condition est connue et vrai
+			if (explanation.isApplicable) {
+				nodeValue = explanation.nodeValue,
+				missingVariables = { [dottedName]: 1}
+			} 
+			// SITUATION 4.2 : La condition est connue et fausse
+			if (explanation.isApplicable === false) {
+				nodeValue = explanation.nodeValue
+				missingVariables = {}
+			}
+			// SITUATION 4.3 : La condition n'est pas connue
+			if (explanation.isApplicable == null) {
+				nodeValue = null
+				missingVariables = explanation.missingVariables
+			}
+		}
 			
 		cache[cacheName] = rewriteNode(
 			node,
