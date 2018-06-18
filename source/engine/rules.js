@@ -187,9 +187,7 @@ export let nestedSituationToPathMap = situation => {
 	let rec = (o, currentPath) =>
 		typeof o === 'object'
 			? chain(([k, v]) => rec(v, [...currentPath, trim(k)]), toPairs(o))
-			: typeof o === 'string'
-				? [[currentPath.join(' . '), o]]
-				: new Error('oups, all leaf values were expected to be strings')
+			: [[currentPath.join(' . '), o + '']]
 
 	return fromPairs(rec(situation, []))
 }

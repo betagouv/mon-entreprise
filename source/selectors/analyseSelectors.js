@@ -28,7 +28,7 @@ import {
 
 export let flatRulesSelector = createSelector(
 	state => state.lang,
-	state => state.rules,
+	(state, props) => props && props.rules,
 	(lang, rules) => rules || (lang === 'en' ? baseRulesEn : baseRulesFr)
 )
 

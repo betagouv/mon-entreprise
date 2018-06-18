@@ -67,7 +67,8 @@ function conversationSteps(
 	if (type === 'RESET_SIMULATION') return { foldedSteps: [], unfolded: null }
 	if (type !== 'STEP_ACTION') return state
 
-	if (name === 'fold') return { foldedSteps: [...state.foldedSteps, step] }
+	if (name === 'fold')
+		return { foldedSteps: [...state.foldedSteps, step], unfoldedStep: null }
 	if (name === 'unfold') {
 		// if a step had already been unfolded, bring it back !
 		return {
