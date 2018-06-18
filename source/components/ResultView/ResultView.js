@@ -16,7 +16,7 @@ type Props = {
 }
 
 const resultViewTitle = {
-	distribution: 'Où vont mes cotisations ?',
+	distribution: 'Mes cotisations',
 	payslip: 'Ma fiche de paie'
 }
 

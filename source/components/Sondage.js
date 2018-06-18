@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
-import './Sondage.css'
-import { connect } from 'react-redux'
-import ReactPiwik from './Tracker'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import Smiley from './SatisfactionSmiley'
-import TypeFormEmbed from './TypeFormEmbed'
-import withLanguage from './withLanguage'
 import { Trans, translate } from 'react-i18next'
-import withColours from './withColours'
+import { connect } from 'react-redux'
 import {
-	noUserInputSelector,
-	nextStepsSelector
+	nextStepsSelector,
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import Smiley from './SatisfactionSmiley'
+import './Sondage.css'
+import ReactPiwik from './Tracker'
+import TypeFormEmbed from './TypeFormEmbed'
+import { SimpleButton } from './ui/Button'
+import withColours from './withColours'
+import withLanguage from './withLanguage'
 
 @connect(state => ({
 	conversationStarted: state.conversationStarted,
@@ -100,12 +101,12 @@ export default class Sondage extends Component {
 									hoverColor="#f39c12"
 									onClick={this.onSmileyClick}
 								/>
-								<button
-									className="sondage__closeButton unstyledButton"
+								<SimpleButton
+									className="sondage__closeButton"
 									onClick={this.handleClose}
 									aria-label="close">
 									X
-								</button>
+								</SimpleButton>
 							</div>
 						</div>
 					)}

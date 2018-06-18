@@ -114,10 +114,11 @@ Part salariale: Employee share
 Total des retenues: Total withheld
 accidents du travail / maladies professionnelles: work accidents / occupational diseases
 autres: other
-Où vont mes cotisations ?: Where do my contributions go?
+Mes cotisations: My contributions
 Voir ma fiche de paie: View my payslip
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
 Ma fiche de paie: My payslip
 payslip: 
   notice: For further details on the payslip in France, you can go to <1>service-public.fr (french)</1>
+  heures: 'Number of hours worked: '

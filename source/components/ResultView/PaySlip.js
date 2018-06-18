@@ -9,16 +9,16 @@ import './PaySlip.css'
 import RuleLink from './RuleLink'
 import { ficheDePaieSelector } from './selectors'
 import type { FicheDePaie } from './types'
-import withLanguage from '../withLanguage';
 
-type ConnectedPropTypes = FicheDePaie & { colours: { lightestColour: string }, language: string }
+type ConnectedPropTypes = FicheDePaie & {
+	colours: { lightestColour: string }
+}
 
 const PaySlip = ({
 	salaireBrut,
 	avantagesEnNature,
 	salaireNet,
 	salaireDeBase,
-	language,
 	salaireChargé,
 	salaireNetImposable,
 	nombreHeuresTravaillées,
@@ -30,10 +30,10 @@ const PaySlip = ({
 }: ConnectedPropTypes) => (
 	<div className="payslip__container">
 		<div className="payslip__hourSection">
-			<Trans i18nKey="payslip.workinghours">Nombre d&apos;heures travaillées : </Trans>
-			{Intl.NumberFormat(language, {
-					maximumFractionDigits: 1,
-			}).format(nombreHeuresTravaillées)}
+			<Trans i18nKey="payslip.heures">
+				Nombre d&apos;heures travaillées :{' '}
+			</Trans>
+			{nombreHeuresTravaillées}
 		</div>
 		{/* Section salaire brut */}
 		<div className="payslip__salarySection">
@@ -150,7 +150,6 @@ const PaySlip = ({
 
 export default compose(
 	withColours,
-	withLanguage,
 	connect(
 		ficheDePaieSelector,
 		{}

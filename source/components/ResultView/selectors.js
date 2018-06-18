@@ -4,23 +4,23 @@ import { findRuleByDottedName } from 'Engine/rules'
 import { encodeRuleName } from 'Engine/rules.js'
 import {
 	add,
+	compose,
 	concat,
 	filter,
+	fromPairs,
 	groupBy,
 	map,
 	max,
-	fromPairs,
 	mergeWith,
 	mergeWithKey,
 	path,
 	pathOr,
-	without,
 	pipe,
 	prop,
 	reduce,
-	values,
 	sort,
-	compose
+	values,
+	without
 } from 'ramda'
 import { createSelector } from 'reselect'
 import {
@@ -228,8 +228,9 @@ function analysisToFicheDePaie(
 		salaireNetàPayer: règleAvecMontant(
 			'contrat salarié . salaire . net à payer'
 		),
-		nombreHeuresTravaillées:
+		nombreHeuresTravaillées: Math.round(
 			règleAvecMontant('contrat salarié . heures par semaine').montant * 4.33
+		)
 	}
 }
 
@@ -280,17 +281,23 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 		rawRépartition[branche] = {
 			partPatronale:
 				rawRépartition[branche].partPatronale +
-				CSG.montant.partPatronale * REPARTITION_CSG[branche] / 100,
+				(CSG.montant.partPatronale * REPARTITION_CSG[branche]) / 100,
 			partSalariale:
 				rawRépartition[branche].partSalariale +
-				CSG.montant.partSalariale * REPARTITION_CSG[branche] / 100
+				(CSG.montant.partSalariale * REPARTITION_CSG[branche]) / 100
 		}
 	}
 	return {
 		// $FlowFixMe
-		répartition: compose(sort(byMontantTotal), Object.entries)(rawRépartition),
+		répartition: compose(
+			sort(byMontantTotal),
+			Object.entries
+		)(rawRépartition),
 		// $FlowFixMe
-		total: compose(reduce(mergeWith(add), 0), Object.values)(rawRépartition),
+		total: compose(
+			reduce(mergeWith(add), 0),
+			Object.values
+		)(rawRépartition),
 		// $FlowFixMe
 		cotisationMaximum: compose(
 			reduce(max, 0),
