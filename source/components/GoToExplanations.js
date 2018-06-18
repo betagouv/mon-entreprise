@@ -3,12 +3,14 @@ import { Trans, translate } from 'react-i18next'
 import { Element, scroller } from 'react-scroll'
 import './conversation/conversation.css'
 import { SimpleButton } from './ui/Button'
-import withColours from './withColours'
+import { default as withColours, default as withTracker } from './withColours'
 
 @translate()
 @withColours
+@withTracker
 export default class GoToExplanation extends Component {
 	handleScrollToResults = () => {
+		this.props.tracker.push(['trackEvent', 'simulation', 'goToExplanation'])
 		scroller.scrollTo('resultsScrollElement', {
 			smooth: true,
 			duration: 200,

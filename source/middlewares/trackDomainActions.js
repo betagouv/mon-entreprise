@@ -1,6 +1,6 @@
 import {
-	formattedSituationSelector,
-	currentQuestionSelector
+	currentQuestionSelector,
+	formattedSituationSelector
 } from 'Selectors/analyseSelectors'
 
 export default tracker => ({ getState }) => next => action => {
@@ -46,5 +46,9 @@ export default tracker => ({ getState }) => next => action => {
 	}
 	if (action.type === 'LOAD_PREVIOUS_SIMULATION') {
 		tracker.push(['trackEvent', 'loadPreviousSimulation'])
+	}
+
+	if (action.type === 'DELETE_PREVIOUS_SIMULATION') {
+		tracker.push(['trackEvent', 'deletePreviousSimulation'])
 	}
 }

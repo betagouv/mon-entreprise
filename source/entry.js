@@ -15,11 +15,9 @@ import {
 	retrievePersistedSimulation
 } from './storage/persist'
 import { getIframeOption, getUrl } from './utils'
+import { defaultTracker, TrackerProvider } from './components/withTracker'
 
-let tracker = {
-	push: console.log, // eslint-disable-line no-console
-	connectToHistory: history => history
-}
+let tracker = defaultTracker
 if (process.env.NODE_ENV === 'production') {
 	tracker = new ReactPiwik({
 		url: 'stats.data.gouv.fr',
@@ -53,7 +51,9 @@ persistSimulation(store)
 
 let App = ({ store }) => (
 	<Provider store={store}>
-		<Layout tracker={tracker} />
+		<TrackerProvider value={tracker}>
+			<Layout/>
+		</TrackerProvider>
 	</Provider>
 )
 

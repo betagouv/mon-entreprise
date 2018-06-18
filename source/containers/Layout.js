@@ -18,13 +18,16 @@ import Integration from 'Components/pages/Integration'
 import About from 'Components/pages/About'
 import createHistory from 'history/createBrowserHistory'
 import { Header } from 'Components/pages/Header'
+import withTracker from '../components/withTracker';
 
-export default class Layout extends Component {
+class Layout extends Component {
 	history = createHistory()
+	componentDidMount() {
+		this.props.tracker.push(['trackPageView'])
+	}
 	render() {
 		let { tracker } = this.props
 		// track the initial pageview
-		tracker.push(['trackPageView'])
 		return (
 			<I18nextProvider i18n={i18next}>
 				<Router history={tracker.connectToHistory(this.history)}>
@@ -50,3 +53,5 @@ export default class Layout extends Component {
 		)
 	}
 }
+
+export default withTracker(Layout)

@@ -1,12 +1,19 @@
 /* @flow */
 import type {
 	ResetSimulationAction,
-	LoadPreviousSimulationAction
+	LoadPreviousSimulationAction,
+	DeletePreviousSimulationAction
 } from './types/Actions'
 
 export function resetSimulation(): ResetSimulationAction {
 	return {
 		type: 'RESET_SIMULATION'
+	}
+}
+
+export function deletePreviousSimulation(): DeletePreviousSimulationAction {
+	return {
+		type: 'DELETE_PREVIOUS_SIMULATION'
 	}
 }
 

@@ -1,19 +1,23 @@
 /* @flow */
 
+import { compose } from 'ramda'
 import React, { PureComponent } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { SimpleButton } from '../ui/Button'
 import Card from '../ui/Card'
+import withTracker from '../withTracker'
 import Distribution from './Distribution'
 import PaySlip from './PaySlip'
 import './ResultView.css'
+import type { Tracker } from '../withTracker'
 
 type State = {
 	resultView: 'distribution' | 'payslip'
 }
 type Props = {
-	conversationStarted: boolean
+	conversationStarted: boolean,
+	tracker: Tracker
 }
 
 const resultViewTitle = {
@@ -25,6 +29,10 @@ class ResultView extends PureComponent<Props, State> {
 	state = {
 		resultView: this.props.conversationStarted ? 'payslip' : 'distribution'
 	}
+	handleClickOnTab = resultView => () => {
+		this.setState({ resultView })
+		this.props.tracker.push(['trackEvent', 'results', 'selectView', resultView])
+	}
 	render() {
 		return (
 			<>
@@ -33,7 +41,7 @@ class ResultView extends PureComponent<Props, State> {
 						<SimpleButton
 							key={resultView}
 							className={this.state.resultView === resultView ? 'selected' : ''}
-							onClick={() => this.setState({ resultView })}>
+							onClick={this.handleClickOnTab(resultView)}>
 							<Trans>{resultViewTitle[resultView]}</Trans>
 						</SimpleButton>
 					))}
@@ -47,10 +55,13 @@ class ResultView extends PureComponent<Props, State> {
 	}
 }
 
-export default connect(
-	state => ({
-		conversationStarted: state.conversationStarted,
-		key: state.conversationStarted
-	}),
-	{}
+export default compose(
+	withTracker,
+	connect(
+		state => ({
+			conversationStarted: state.conversationStarted,
+			key: state.conversationStarted
+		}),
+		{}
+	)
 )(ResultView)

@@ -1,12 +1,13 @@
 import { isEmpty } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { animateScroll, Element, scroller } from 'react-scroll'
 import { reset } from 'redux-form'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { resetSimulation } from '../../actions'
 import { LinkButton, SimpleButton } from '../ui/Button'
+import withTracker from './../withTracker'
 import './conversation.css'
 import FoldedStep from './FoldedStep'
 
@@ -21,7 +22,6 @@ import FoldedStep from './FoldedStep'
 		resetForm: () => reset('conversation')
 	}
 )
-@translate()
 export default class FoldedSteps extends Component {
 	handleSimulationReset = () => {
 		this.props.resetSimulation()
@@ -51,6 +51,7 @@ export default class FoldedSteps extends Component {
 	foldedSteps: state.conversationSteps.foldedSteps,
 	conversationStarted: state.conversationStarted
 }))
+@withTracker
 export class GoToAnswers extends Component {
 	componentDidUpdate(prevProps) {
 		if (!prevProps.conversationStarted && this.props.conversationStarted) {
@@ -59,6 +60,8 @@ export class GoToAnswers extends Component {
 				delay: 0,
 				smooth: true
 			})
+			this.props.tracker.push(['trackEvent', 'simulation', 'goToAnswers'])
+
 			return
 		}
 		if (prevProps.foldedSteps.length === this.props.foldedSteps.length) return
