@@ -10,18 +10,29 @@
 	font-size: 90%;
 	position: relative;
 }
-.distribution-chart__container {
-	max-width: calc(100% - 5.5em);
+.distribution-chart__bar-container {
+	display: flex;
+	align-items: center;
+	flex: 1;
+}
+
+.distribution-chart__bar {
+	border-radius: 0.6em;
+	min-height: 3.5em;
 }
 
 .distribution-chart__item:hover .distribution-chart__bar {
-	opacity: 0.8;
+	opacity: 0.9;
 }
-.distribution-chart__amount--outside {
-	position: relative;
-	left: 5.5em;
-	justify-content: flex-start;
-	min-width: 5em;
+.distribution-chart__amount {
+	display: flex;
+	font-weight: bold;
+	margin-left: 1em;
+}
+.distribution-chart__percent {
+	margin-left: 1em;
+	font-size: 90%;
+	color: rgba(0, 0, 0, 0.7);
 }
 
 @media (max-width: 800px) {
@@ -37,6 +48,10 @@
 		width: auto !important;
 		height: initial !important;
 	}
+	.distribution-chart__bar {
+		min-height: 3em !important;
+	}
+
 	.distribution-chart__branche-name {
 		padding-left: 0.4em;
 		font-size: inherit !important;
@@ -62,16 +77,6 @@
 .distribution-chart__icon {
 	font-size: 200%;
 	height: 1.2em;
-}
-
-.distribution-chart__bar {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	height: 3em;
-	color: white;
-	border-radius: 0.6em;
-	font-weight: bold;
 }
 
 .distribution-chart__branche-name::first-letter {

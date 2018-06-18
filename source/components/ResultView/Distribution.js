@@ -81,7 +81,7 @@ class Distribution extends Component<Props, State> {
 								<Spring
 									config={ANIMATION_SPRING}
 									to={{
-										width: (100 * montant) / cotisationMaximum + '%',
+										flex: montant / cotisationMaximum,
 										opacity: montant ? 1 : 0
 									}}>
 									{styles => (
@@ -98,18 +98,29 @@ class Distribution extends Component<Props, State> {
 													<Trans>{brancheToLabel[branche] || branche}</Trans>
 												</span>
 											</div>
-											<div
-												className="distribution-chart__bar"
-												style={{
-													width: styles.width,
-													backgroundColor: colour,
-													color: colour
-												}}>
-												<Montant
-													numFractionDigit={0}
-													className="distribution-chart__amount--outside">
-													{montant}
-												</Montant>
+											<div className="distribution-chart__bar-container">
+												<div
+													className="distribution-chart__bar"
+													style={{
+														flex: styles.flex,
+														backgroundColor: colour
+													}}
+												/>
+												<div>
+													<Montant
+														className="distribution-chart__amount"
+														numFractionDigit={0}
+														style={{ color: colour }}>
+														{montant}
+													</Montant>
+													<Montant
+														numFractionDigit={0}
+														type="percent"
+														className="distribution-chart__percent">
+														{montant /
+															(total.partPatronale + total.partSalariale)}
+													</Montant>
+												</div>
 											</div>
 										</div>
 									)}
