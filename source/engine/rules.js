@@ -24,7 +24,8 @@ import {
 	reject,
 	reduced,
 	range,
-	last
+	last,
+	trim
 } from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
@@ -185,10 +186,7 @@ var findObjectByLabel = function(obj, label) {
 export let nestedSituationToPathMap = situation => {
 	let rec = (o, currentPath) =>
 		typeof o === 'object'
-			? chain(
-					([k, v]) => rec(v, [...currentPath, k.trimStart().trimEnd()]),
-					toPairs(o)
-			  )
+			? chain(([k, v]) => rec(v, [...currentPath, trim(k)]), toPairs(o))
 			: typeof o === 'string'
 				? [[currentPath.join(' . '), o]]
 				: new Error('oups, all leaf values were expected to be strings')

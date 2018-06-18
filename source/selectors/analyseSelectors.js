@@ -106,8 +106,6 @@ export let exampleAnalysisSelector = createSelector(
 	analyseRule
 )
 
-// Debounce this update as in the middleware now
-
 let makeAnalysisSelector = situationSelector =>
 	createSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],

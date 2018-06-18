@@ -4,7 +4,7 @@ import {
 	rules,
 	enrichRule,
 	translateAll,
-	findVariantsAndRecords
+	nestedSituationToPathMap
 } from '../source/engine/rules'
 
 let stateSelector = (state, name) => null
@@ -66,28 +66,44 @@ describe('rule checks', function() {
 
 describe('translateAll', function() {
 	it('should translate flat rules', function() {
-		let rules = [{
-			"espace":"foo",
-			"nom":"bar",
-			"titre":"Titre",
-			"description":"Description",
-			"question":"Question",
-			"sous-question":"Sous Question",
-		}]
+		let rules = [
+			{
+				espace: 'foo',
+				nom: 'bar',
+				titre: 'Titre',
+				description: 'Description',
+				question: 'Question',
+				'sous-question': 'Sous Question'
+			}
+		]
 		let translations = {
-			"foo . bar":{
-				"titre.en":"TITRE",
-				"description.en":"DESC",
-				"question.en":"QUEST",
-				"sous-question.en":"SOUSQ",
+			'foo . bar': {
+				'titre.en': 'TITRE',
+				'description.en': 'DESC',
+				'question.en': 'QUEST',
+				'sous-question.en': 'SOUSQ'
 			}
 		}
 
-		let result = translateAll(translations, map(enrichRule,rules))
+		let result = translateAll(translations, map(enrichRule, rules))
 
-		expect(result[0]).to.have.property("titre","TITRE")
-		expect(result[0]).to.have.property("description","DESC")
-		expect(result[0]).to.have.property("question","QUEST")
-		expect(result[0]).to.have.property("sous-question","SOUSQ")
+		expect(result[0]).to.have.property('titre', 'TITRE')
+		expect(result[0]).to.have.property('description', 'DESC')
+		expect(result[0]).to.have.property('question', 'QUEST')
+		expect(result[0]).to.have.property('sous-question', 'SOUSQ')
+	})
+})
+describe('misc', function() {
+	it('should unnest nested form values', function() {
+		let values = {
+			'contrat salarié': { salaire: { 'brut de base': '2300' } }
+		}
+
+		let pathMap = nestedSituationToPathMap(values)
+
+		expect(pathMap).to.have.property(
+			'contrat salarié . salaire . brut de base',
+			'2300'
+		)
 	})
 })

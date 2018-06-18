@@ -5,37 +5,28 @@ import {
 	COTISATION_BRANCHE_ORDER,
 	ficheDePaieSelector
 } from '../source/components/ResultView/selectors'
-import { enrichRule, rulesFr as realRules } from '../source/engine/rules'
-import reduceSteps from '../source/reducers/reduceSteps'
+
+import { situationSelector } from '../source/selectors/analyseSelectors'
+
+let state = {
+	form: {
+		conversation: {
+			values: {
+				'contrat salarié': { salaire: { 'brut de base': '2300' } }
+			}
+		}
+	},
+	targetNames: [
+		'contrat salarié . salaire . net à payer',
+		'contrat salarié . salaire . total',
+		'contrat salarié . salaire . net imposable'
+	],
+	conversationStarted: true
+}
+
+let paySlip = ficheDePaieSelector(state)
 
 describe('pay slip selector', function() {
-	let paySlip
-	beforeEach(() => {
-		let fakeState = {}
-		let stateSelector = () => name => fakeState[name]
-		let rules = realRules.map(enrichRule)
-		let reducer = reduceSteps(rules, stateSelector)
-
-		var step1 = reducer(
-			{
-				foldedSteps: [],
-				targetNames: [
-					'contrat salarié . salaire . net à payer',
-					'contrat salarié . salaire . total',
-					'contrat salarié . salaire . net imposable'
-				]
-			},
-			{ type: 'START_CONVERSATION' }
-		)
-		fakeState['contrat salarié . salaire . brut de base'] = 2300
-		var step2 = reducer(step1, {
-			type: 'STEP_ACTION',
-			name: 'fold',
-			step: 'contrat salarié . salaire .brut de base'
-		})
-		paySlip = ficheDePaieSelector(step2)
-	})
-
 	it('should have cotisations grouped by branches in the proper ordering', function() {
 		let branches = paySlip.cotisations.map(([branche]) => branche)
 		expect(branches).to.eql(COTISATION_BRANCHE_ORDER)
