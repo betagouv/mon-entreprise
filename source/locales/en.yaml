@@ -47,7 +47,6 @@ Salaire chargé: Total salary
 Salaire brut de base: Base salary
 Avantages salarié: Employee benefits
 Réductions: Deductions
-disclaimer: The simulation takes into account national law but not union negotiated rules, and should not be used as a pay slip, though it will help you understand it. Lots of aids for your enterprise exist, explore them on 
 clickForMore: You can click the results below for detailed explanations.
 Quel est le salaire mensuel ?: What is the monthly salary?
 back: Back to your simulation
@@ -122,3 +121,4 @@ Ma fiche de paie: My payslip
 payslip: 
   notice: For further details on the payslip in France, you can go to <1>service-public.fr (french)</1>
   heures: 'Number of hours worked: '
+  disclaimer: The simulation takes into account national law but not union negotiated rules, and should not be used as a pay slip, though it will help you understand it. Lots of aids for your enterprise exist, explore them on <1>aides-entreprises.fr (french)</1>.

@@ -1,4 +1,5 @@
 /* @flow */
+import type { FicheDePaie } from './types'
 import { compose } from 'ramda'
 import React, {Fragment} from 'react'
 import { Trans } from 'react-i18next'
@@ -9,7 +10,6 @@ import './PaySlip.css'
 import RuleLink from './RuleLink'
 import { ficheDePaieSelector } from './selectors'
 
-import type { FicheDePaie } from './types'
 
 type ConnectedPropTypes = FicheDePaie & {
 	colours: { lightestColour: string }
@@ -132,19 +132,26 @@ const PaySlip = ({
 			<RuleLink {...salaireNetImposable} />
 			<Montant>{salaireNetImposable.montant}</Montant>
 		</div>
-		<p>
-			<br />
-			<small>
-				<Trans i18nKey="payslip.notice">
-					Pour plus d&apos;informations concernant votre bulletin de paie,
-					rendez vous sur&nbsp;
-					<a
-						alt="service-public.fr"
-						href="https://www.service-public.fr/particuliers/vosdroits/F559">
-						service-public.fr
-					</a>
-				</Trans>
-			</small>
+		<br />
+		<p className="payslip__notice">
+			<Trans i18nKey="payslip.notice">
+				Pour plus d&apos;informations concernant votre bulletin de paie,
+				rendez vous sur&nbsp;
+				<a
+					alt="service-public.fr"
+					href="https://www.service-public.fr/particuliers/vosdroits/F559">
+					service-public.fr
+				</a>
+			</Trans>	
+		</p>
+		<p className="payslip__notice">
+			<Trans i18nKey="payslip.warning-beta">
+							Le simulateur vous aide à comprendre votre bulletin de paie,
+							sans lui être opposable. Il ne prend pour l&apos;instant pas en
+							compte les conventions et accords collectifs, ni la myriade
+							d&apos;aides à explorer sur <a href="https://www.aides-entreprises.fr">
+							aides-entreprises.fr</a>.
+			</Trans>
 		</p>
 	</div>
 )

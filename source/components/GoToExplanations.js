@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { Element, scroller } from 'react-scroll'
-import './Explanation.css'
 import { SimpleButton } from './ui/Button'
 import withColours from './withColours'
 

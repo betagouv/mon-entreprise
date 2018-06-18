@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { noUserInputSelector } from 'Selectors/analyseSelectors'
+import Conversation from './conversation/Conversation'
+import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
+import GoToExplanations from './GoToExplanations'
+import ProgressTip from './ProgressTip'
+import ResultView from './ResultView/ResultView'
 import './Simu.css'
+import Sondage from './Sondage'
 import TargetSelection from './TargetSelection'
 import withColours from './withColours'
-import Conversation from './conversation/Conversation'
-import Explanation from 'Components/Explanation'
-import ProgressTip from './ProgressTip'
-import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
-//import Explanation from './Explanation'
-import GoToExplanations from './GoToExplanations'
-import Sondage from './Sondage'
-import { noUserInputSelector } from 'Selectors/analyseSelectors'
 
 @withColours
 @connect(state => ({
@@ -35,7 +34,7 @@ export default class Simu extends Component {
 					)}
 					{!noUserInput && <GoToExplanations />}
 				</div>
-				{!noUserInput && <Explanation />}
+				{!noUserInput && <ResultView />}
 				<Sondage />
 			</div>
 		)

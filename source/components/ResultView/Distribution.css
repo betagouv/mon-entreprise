@@ -20,7 +20,7 @@
 .distribution-chart__amount--outside {
 	position: relative;
 	left: 5.5em;
-	text-align: left;
+	justify-content: flex-start;
 	min-width: 5em;
 }
 
@@ -91,6 +91,7 @@
 	grid-row-gap: 0.4em;
 	align-items: end;
 	text-align: right;
+	margin-bottom: 1em;
 }
 
 .distribution-chart__total-border {

@@ -6,7 +6,8 @@ import './Montant.css'
 type Props = {
 	children: number,
 	className?: string,
-	style?: { [string]: string }
+	style?: { [string]: string },
+	numFractionDigit?: number
 } & ConnectedProps
 
 type ConnectedProps = {
@@ -15,6 +16,7 @@ type ConnectedProps = {
 
 const Montant = ({
 	language,
+	numFractionDigit = 2,
 	children: value,
 	className = '',
 	style = {}
@@ -25,8 +27,8 @@ const Montant = ({
 			: Intl.NumberFormat(language, {
 					style: 'currency',
 					currency: 'EUR',
-					maximumFractionDigits: 2,
-					minimumFractionDigits: 2
+					maximumFractionDigits: numFractionDigit,
+					minimumFractionDigits: numFractionDigit
 			  }).format(value)}
 	</span>
 )

@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import Button from '../ui/Button'
+import Card from '../ui/Card'
 import Distribution from './Distribution'
 import PaySlip from './PaySlip'
 import './ResultView.css'
@@ -22,16 +23,11 @@ const resultViewTitle = {
 
 class ResultView extends PureComponent<Props, State> {
 	state = {
-		resultView: 'distribution'
-	}
-	static getDerivedStateFromProps(nextProps) {
-		return {
-			resultView: nextProps.conversationStarted ? 'payslip' : 'distribution'
-		}
+		resultView: this.props.conversationStarted ? 'payslip' : 'distribution'
 	}
 	render() {
 		return (
-			<>
+			<Card>
 				<div className="result-view-header">
 					<h2>
 						<Trans>{resultViewTitle[this.state.resultView]}</Trans>
@@ -48,14 +44,15 @@ class ResultView extends PureComponent<Props, State> {
 					)}
 				</div>
 				{this.state.resultView === 'payslip' ? <PaySlip /> : <Distribution />}
-			</>
+			</Card>
 		)
 	}
 }
 
 export default connect(
 	state => ({
-		conversationStarted: state.conversationStarted
+		conversationStarted: state.conversationStarted,
+		key: state.conversationStarted
 	}),
 	{}
 )(ResultView)
