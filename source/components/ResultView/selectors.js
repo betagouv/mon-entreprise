@@ -298,11 +298,11 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 			reduce(mergeWith(add), 0),
 			Object.values
 		)(rawRépartition),
-		// $FlowFixMe
 		cotisationMaximum: compose(
 			reduce(max, 0),
 			map(montant => montant.partPatronale + montant.partSalariale),
 			values
+			// $FlowFixMe
 		)(rawRépartition),
 		salaireNet,
 		salaireChargé

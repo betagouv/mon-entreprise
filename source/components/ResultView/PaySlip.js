@@ -1,6 +1,6 @@
 /* @flow */
 import { compose } from 'ramda'
-import React from 'react'
+import React, {Fragment} from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import withColours from '../withColours'
@@ -8,6 +8,7 @@ import Montant from './Montant'
 import './PaySlip.css'
 import RuleLink from './RuleLink'
 import { ficheDePaieSelector } from './selectors'
+
 import type { FicheDePaie } from './types'
 
 type ConnectedPropTypes = FicheDePaie & {
@@ -63,12 +64,12 @@ const PaySlip = ({
 				<Trans>Part salariale</Trans>
 			</h4>
 			{cotisations.map(([section, cotisationList]) => (
-				<>
+				<Fragment key={section}>
 					<h5 className="payslip__cotisationTitle">
 						<Trans>{section}</Trans>
 					</h5>
 					{cotisationList.map(cotisation => (
-						<>
+						<Fragment key={cotisation.lien}>
 							<RuleLink
 								style={{ backgroundColor: lightestColour }}
 								{...cotisation}
@@ -79,9 +80,9 @@ const PaySlip = ({
 							<Montant style={{ backgroundColor: lightestColour }}>
 								{cotisation.montant.partSalariale}
 							</Montant>
-						</>
+						</Fragment>
 					))}
-				</>
+				</Fragment>
 			))}
 			<h5 className="payslip__cotisationTitle">
 				<Trans>Réductions</Trans>

@@ -5,18 +5,16 @@ import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { Spring, config } from 'react-spring'
+import { config, Spring } from 'react-spring'
+import { compose } from 'redux'
+import withColours from '../withColours'
 import './Distribution.css'
-import './PaySlip'
-import { répartitionSelector } from './selectors'
 import Montant from './Montant'
+import './PaySlip'
 import RuleLink from './RuleLink'
+import { répartitionSelector } from './selectors'
 
-import withColours from '../withColours';
-import { compose } from 'redux';
-import type
- { Répartition, Branche } from './types'
-
+import type { Répartition, Branche } from './types'
 
 const brancheToEmoji: { [Branche]: string } = {
 	retraite: '👵',
@@ -35,7 +33,7 @@ const brancheToLabel: { [Branche]: string } = {
 }
 
 type Props = Répartition & {
-	colours: {colour: string}
+	colours: { colour: string }
 }
 type State = {
 	branchesInViewport: Array<Branche>
@@ -58,7 +56,14 @@ class Distribution extends Component<Props, State> {
 	}
 
 	render() {
-		const { répartition, cotisationMaximum, total, salaireChargé, salaireNet, colours: {colour} } = this.props;
+		const {
+			répartition,
+			cotisationMaximum,
+			total,
+			salaireChargé,
+			salaireNet,
+			colours: { colour }
+		} = this.props
 		return (
 			<>
 				<div className="distribution-chart__container">
@@ -79,7 +84,7 @@ class Distribution extends Component<Props, State> {
 										width: (100 * montant) / cotisationMaximum + '%',
 										opacity: montant ? 1 : 0
 									}}>
-									{(styles) => (
+									{styles => (
 										<div
 											className="distribution-chart__item"
 											style={{
@@ -112,18 +117,26 @@ class Distribution extends Component<Props, State> {
 					})}
 				</div>
 				<div className="distribution-chart__total">
-					<span/><RuleLink {...salaireNet}/><Montant>{salaireNet.montant}</Montant>
-					<span>+</span><Trans>Cotisations</Trans><Montant>{total.partPatronale + total.partSalariale}</Montant>
-					<span/><div className="distribution-chart__total-border" />
-					<span>=</span><RuleLink {...salaireChargé}/><Montant>{salaireChargé.montant}</Montant>
+					<span />
+					<RuleLink {...salaireNet} />
+					<Montant>{salaireNet.montant}</Montant>
+					<span>+</span>
+					<Trans>Cotisations</Trans>
+					<Montant>{total.partPatronale + total.partSalariale}</Montant>
+					<span />
+					<div className="distribution-chart__total-border" />
+					<span>=</span>
+					<RuleLink {...salaireChargé} />
+					<Montant>{salaireChargé.montant}</Montant>
 				</div>
 			</>
 		)
 	}
 }
-export default 
-compose(withColours, 
+export default compose(
+	withColours,
 	connect(
 		répartitionSelector,
 		{}
-	))(Distribution)
+	)
+)(Distribution)

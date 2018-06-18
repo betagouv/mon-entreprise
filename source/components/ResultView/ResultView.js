@@ -53,6 +53,9 @@ class ResultView extends PureComponent<Props, State> {
 	}
 }
 
-export default connect(state => ({
-	conversationStarted: state.conversationStarted
-}))(ResultView)
+export default connect(
+	state => ({
+		conversationStarted: state.conversationStarted
+	}),
+	{}
+)(ResultView)

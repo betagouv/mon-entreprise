@@ -13,13 +13,13 @@
 		"not ie < 11"
 	],
 	"dependencies": {
-		"@babel/core": "=7.0.0-beta.46",
-		"@babel/plugin-proposal-decorators": "=7.0.0-beta.46",
-		"@babel/plugin-proposal-object-rest-spread": "=7.0.0-beta.46",
-		"@babel/plugin-syntax-decorators": "=7.0.0-beta.46",
-		"@babel/polyfill": "=7.0.0-beta.46",
-		"@babel/preset-env": "=7.0.0-beta.46",
-		"@babel/preset-react": "=7.0.0-beta.46",
+		"@babel/core": "=7.0.0-beta.51",
+		"@babel/plugin-proposal-decorators": "=7.0.0-beta.51",
+		"@babel/plugin-proposal-object-rest-spread": "=7.0.0-beta.51",
+		"@babel/plugin-syntax-decorators": "=7.0.0-beta.51",
+		"@babel/polyfill": "=7.0.0-beta.51",
+		"@babel/preset-env": "=7.0.0-beta.51",
+		"@babel/preset-react": "=7.0.0-beta.51",
 		"@researchgate/react-intersection-observer": "^0.7.3",
 		"akh": "^3.1.2",
 		"autoprefixer": "^8.1.0",
@@ -80,7 +80,6 @@
 		"reduce-reducers": "^0.1.2",
 		"redux": "^3.7.2",
 		"redux-form": "^7.3.0",
-		"redux-persist": "^5.9.1",
 		"reselect": "^3.0.1",
 		"screenfull": "^3.3.2",
 		"source-map-support": "^0.5.4",
@@ -109,7 +108,7 @@
 		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
 	},
 	"devDependencies": {
-		"@babel/preset-flow": "^7.0.0-beta.47",
+		"@babel/preset-flow": "^7.0.0-beta.51",
 		"chai": "^4.1.2",
 		"enzyme": "^3.3.0",
 		"enzyme-adapter-react-16": "^1.1.1",
