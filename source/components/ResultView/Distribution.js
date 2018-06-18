@@ -39,7 +39,7 @@ type State = {
 	branchesInViewport: Array<Branche>
 }
 
-const ANIMATION_SPRING = config.stiff
+const ANIMATION_SPRING = config.gentle
 class Distribution extends Component<Props, State> {
 	elementRef = null
 	state = {

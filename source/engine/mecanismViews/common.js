@@ -4,10 +4,11 @@ import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { SimpleButton } from '../../components/ui/Button'
 import withLanguage from '../../components/withLanguage'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
 
 let treatValue = (data, language) =>
 	data == null
@@ -39,11 +40,11 @@ export class Node extends Component {
 			<div className={classNames(classes, 'node')}>
 				{name && (
 					<span className="nodeHead">
-						<button
-							className="name unstyledButton"
+						<SimpleButton
+							className="name"
 							data-term-definition={termDefinition}>
 							<Trans>{name}</Trans>
-						</button>
+						</SimpleButton>
 						<NodeValuePointer data={value} />
 					</span>
 				)}

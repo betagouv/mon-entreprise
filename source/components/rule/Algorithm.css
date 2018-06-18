@@ -75,7 +75,7 @@
 	padding: 0.2em 1em;
 	display: block;
 	background: #34495e;
-	color: white;
+	color: white !important;
 	font-weight: 600;
 	border-bottom-right-radius: 3px;
 }

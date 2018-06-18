@@ -3,7 +3,6 @@ previousSimulationBanner:
   info: Your previous simulation data have been saved.
   retrieveButton: Retrieve my last simulation 
 Estimation approximative: This is an estimate
-defaults: for a permanent (CDI) full-time contract
 Commencer la simulation: Start simulation
 selectMany: You may pick more than one
 Valider: Accept

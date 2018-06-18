@@ -6,7 +6,6 @@
 .payslip__salaryTitle {
 	grid-column-end: span 2;
 }
-
 .payslip__cotisationsSection {
 	display: grid;
 	grid-template-columns: auto 8.2em 8.2em;
@@ -49,7 +48,8 @@
 	font-weight: normal;
 }
 
-.montant {
+.payslip__salarySection .montant,
+.payslip__cotisationsSection .montant {
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-end;

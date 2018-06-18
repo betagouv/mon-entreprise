@@ -1,4 +1,3 @@
-// css in conversation.Css
 import { isEmpty } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
@@ -8,7 +7,7 @@ import { reset } from 'redux-form'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { resetSimulation } from '../../actions'
 import { LinkButton, SimpleButton } from '../ui/Button'
-import Card from '../ui/Card'
+import './conversation.css'
 import FoldedStep from './FoldedStep'
 
 @connect(
@@ -33,19 +32,17 @@ export default class FoldedSteps extends Component {
 
 		if (isEmpty(foldedSteps || [])) return null
 		return (
-			<Card>
-				<div id="foldedSteps">
-					<div className="header">
-						<LinkButton onClick={this.handleSimulationReset}>
-							<i className="fa fa-trash" aria-hidden="true" />
-							<Trans i18nKey="resetAll">Tout effacer</Trans>
-						</LinkButton>
-					</div>
-					{foldedSteps.map(dottedName => (
-						<FoldedStep key={dottedName} dottedName={dottedName} />
-					))}
+			<div id="foldedSteps">
+				<div className="header">
+					<LinkButton onClick={this.handleSimulationReset}>
+						<i className="fa fa-trash" aria-hidden="true" />
+						<Trans i18nKey="resetAll">Tout effacer</Trans>
+					</LinkButton>
 				</div>
-			</Card>
+				{foldedSteps.map(dottedName => (
+					<FoldedStep key={dottedName} dottedName={dottedName} />
+				))}
+			</div>
 		)
 	}
 }

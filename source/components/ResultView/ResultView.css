@@ -1,11 +1,25 @@
-.result-view-header {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
+.result-view__tabs {
+	display: inline-block;
+	box-shadow: 0 -1px 0 0 #d4d4d5, 1px 0 0 0 #d4d4d5, -1px 0 0 0 #d4d4d5;
+	border-top-right-radius: 0.6em;
+	border: none;
+	border-top-left-radius: 0.6em;
+	margin-top: 2em;
+	margin-bottom: -1px;
+	border-bottom: 1px solid transparent;
+}
+.result-view__tabs button {
+	padding: 1em;
+	border-right: 1px solid #d4d4d5;
+}
+.result-view__tabs button.selected {
+	border-bottom: 1px solid white;
+}
+.result-view__tabs button:last-of-type {
+	border-right: none;
 }
 
-.result-view-header h2 {
-	flex: 1;
-	flex-shrink: 0;
-	white-space: nowrap;
+.result-view__body {
+	border-top-left-radius: 0;
+	margin-bottom: 2em;
 }

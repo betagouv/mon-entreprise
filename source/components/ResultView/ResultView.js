@@ -3,7 +3,7 @@
 import React, { PureComponent } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import Button from '../ui/Button'
+import { SimpleButton } from '../ui/Button'
 import Card from '../ui/Card'
 import Distribution from './Distribution'
 import PaySlip from './PaySlip'
@@ -27,24 +27,22 @@ class ResultView extends PureComponent<Props, State> {
 	}
 	render() {
 		return (
-			<Card>
-				<div className="result-view-header">
-					<h2>
-						<Trans>{resultViewTitle[this.state.resultView]}</Trans>
-					</h2>
-					{this.state.resultView === 'distribution' ? (
-						<Button onClick={() => this.setState({ resultView: 'payslip' })}>
-							<Trans>Voir ma fiche de paie</Trans>
-						</Button>
-					) : (
-						<Button
-							onClick={() => this.setState({ resultView: 'distribution' })}>
-							<Trans>Voir la répartition des cotisations</Trans>
-						</Button>
-					)}
+			<>
+				<div className="result-view__tabs">
+					{['distribution', 'payslip'].map(resultView => (
+						<SimpleButton
+							key={resultView}
+							className={this.state.resultView === resultView ? 'selected' : ''}
+							onClick={() => this.setState({ resultView })}>
+							<Trans>{resultViewTitle[resultView]}</Trans>
+						</SimpleButton>
+					))}
+					<div className="white-space" />
 				</div>
-				{this.state.resultView === 'payslip' ? <PaySlip /> : <Distribution />}
-			</Card>
+				<Card className="result-view__body">
+					{this.state.resultView === 'payslip' ? <PaySlip /> : <Distribution />}
+				</Card>
+			</>
 		)
 	}
 }

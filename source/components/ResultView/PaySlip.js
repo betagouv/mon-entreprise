@@ -1,7 +1,7 @@
 /* @flow */
 import type { FicheDePaie } from './types'
 import { compose } from 'ramda'
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import withColours from '../withColours'
@@ -9,7 +9,6 @@ import Montant from './Montant'
 import './PaySlip.css'
 import RuleLink from './RuleLink'
 import { ficheDePaieSelector } from './selectors'
-
 
 type ConnectedPropTypes = FicheDePaie & {
 	colours: { lightestColour: string }
@@ -34,7 +33,7 @@ const PaySlip = ({
 			<Trans i18nKey="payslip.heures">
 				Nombre d&apos;heures travaillées :{' '}
 			</Trans>
-			{nombreHeuresTravaillées}
+			<span className="montant"> {nombreHeuresTravaillées}</span>
 		</div>
 		{/* Section salaire brut */}
 		<div className="payslip__salarySection">
@@ -135,22 +134,21 @@ const PaySlip = ({
 		<br />
 		<p className="payslip__notice">
 			<Trans i18nKey="payslip.notice">
-				Pour plus d&apos;informations concernant votre bulletin de paie,
-				rendez vous sur&nbsp;
+				Pour plus d&apos;informations concernant votre bulletin de paie, rendez
+				vous sur&nbsp;
 				<a
 					alt="service-public.fr"
 					href="https://www.service-public.fr/particuliers/vosdroits/F559">
 					service-public.fr
 				</a>
-			</Trans>	
+			</Trans>
 		</p>
 		<p className="payslip__notice">
-			<Trans i18nKey="payslip.warning-beta">
-							Le simulateur vous aide à comprendre votre bulletin de paie,
-							sans lui être opposable. Il ne prend pour l&apos;instant pas en
-							compte les conventions et accords collectifs, ni la myriade
-							d&apos;aides à explorer sur <a href="https://www.aides-entreprises.fr">
-							aides-entreprises.fr</a>.
+			<Trans i18nKey="payslip.disclaimer">
+				Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
+				être opposable. Il ne prend pour l&apos;instant pas en compte les
+				conventions et accords collectifs, ni la myriade d&apos;aides à explorer
+				sur <a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
 			</Trans>
 		</p>
 	</div>

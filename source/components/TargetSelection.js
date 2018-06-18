@@ -7,6 +7,11 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
+import {
+	analysisWithDefaultsSelector,
+	flatRulesSelector,
+	noUserInputSelector
+} from 'Selectors/analyseSelectors'
 import BlueButton from './BlueButton'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
@@ -25,12 +30,6 @@ export let popularTargetNames = [
 	...displayedTargetNames,
 	'contrat salarié . salaire . net imposable'
 ]
-
-import {
-	flatRulesSelector,
-	noUserInputSelector,
-	analysisWithDefaultsSelector
-} from 'Selectors/analyseSelectors'
 
 @translate()
 @reduxForm({
@@ -80,13 +79,9 @@ export default class TargetSelection extends Component {
 								<b>
 									<Trans>Estimation approximative</Trans>
 								</b>
-								<br />
-								<Trans i18nKey="defaults">
-									pour une situation par défaut (CDI non cadre).
-								</Trans>
 							</p>
 							<BlueButton onClick={this.props.startConversation}>
-								<Trans>Commencer la simulation</Trans>
+								<Trans>Continuer</Trans>
 							</BlueButton>
 						</div>
 					)}

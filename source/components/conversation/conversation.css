@@ -8,8 +8,10 @@
 	margin-bottom: 1em;
 }
 
-#resultsScrollElement, #myScrollToElement {
+#resultsScrollElement,
+#myScrollToElement {
 	text-align: center;
+	font-weight: bold;
 }
 
 #foldedSteps {
@@ -413,6 +415,10 @@ for the appearing element to appear without stacking up below the first one */
 	display: inline-block;
 	width: calc(100% - 8em);
 	border-bottom: 1px solid #eee;
+}
+
+.foldedQuestion:last-of-type .borderWrapper {
+	border-bottom: none;
 }
 
 .keyIcon {
