@@ -8,7 +8,7 @@ const situationSelector: State => Situation = state =>
 export const currentSimulationSelector: State => SavedSimulation = state => ({
 	situation: situationSelector(state),
 	activeTargetInput: state.activeTargetInput,
-	foldedSteps: state.foldedSteps
+	foldedSteps: state.conversationSteps.foldedSteps
 })
 
 export const createStateFromSavedSimulation: (
@@ -21,7 +21,9 @@ export const createStateFromSavedSimulation: (
 				values: simulation.situation
 			}
 		},
-		foldedSteps: simulation.foldedSteps,
+		conversationSteps: {
+			foldedSteps: simulation.foldedSteps 
+		},
 		conversationStarted: true,
 		previousSimulation: null
 	}

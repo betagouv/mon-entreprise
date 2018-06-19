@@ -24,7 +24,10 @@ export type State = {
 		}
 	},
 	previousSimulation: ?SavedSimulation,
-	foldedSteps: Array<string>,
+	conversationSteps: {
+		foldedSteps: Array<string>,
+		currentQuestion: ?string
+	},
 	activeTargetInput: TargetInput,
 	conversationStarted: boolean
 }

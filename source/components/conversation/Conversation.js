@@ -20,7 +20,6 @@ import {
 	targetNames: state.targetNames,
 	conversationStarted: state.conversationStarted,
 	themeColours: state.themeColours,
-	foldedSteps: state.foldedSteps,
 	flatRules: flatRulesSelector(state),
 	currentQuestion: currentQuestionSelector(state)
 }))
