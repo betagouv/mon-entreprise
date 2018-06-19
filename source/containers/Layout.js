@@ -18,7 +18,7 @@ import Integration from 'Components/pages/Integration'
 import About from 'Components/pages/About'
 import createHistory from 'history/createBrowserHistory'
 import { Header } from 'Components/pages/Header'
-import withTracker from '../components/withTracker';
+import withTracker from '../components/withTracker'
 
 class Layout extends Component {
 	history = createHistory()

@@ -1,8 +1,9 @@
 import React from 'react'
-import { Leaf } from './mecanismViews/common'
+import { Node, Leaf } from './mecanismViews/common'
 import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 import { evaluateNode, rewriteNode, makeJsx } from './evaluation'
 import { evaluateVariable } from './variables'
+import { Trans } from 'react-i18next'
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
@@ -11,9 +12,8 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 			cacheName = dottedName + (filter ? '.' + filter : ''),
 			cached = cache[cacheName]
-		if (cached) {
-			return cached
-		}
+
+		if (cached) return cached
 
 		let variable = findRuleByDottedName(parsedRules, dottedName),
 			variableHasFormula = variable.formule != null,
@@ -28,50 +28,40 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 				? evaluateNode(cache, situation, parsedRules, variable)
 				: variable
 
-		let nodeValue
-		let missingVariables
+		let cacheAndNode = (nodeValue, missingVariables) => {
+			cache[cacheName] = rewriteNode(
+				node,
+				nodeValue,
+				explanation,
+				missingVariables
+			)
+			return cache[cacheName]
+		}
 
 		// SITUATION 1 : La variable est directement renseignée
-		if (situationValue != null) {
-			nodeValue = situationValue
-			missingVariables = {}
-		}
+		if (situationValue != null) return cacheAndNode(situationValue, {})
+
 		// SITUATION 2 : La variable est calculée
-		if (situationValue == null && variableHasFormula) {
-			nodeValue = explanation.nodeValue
-			missingVariables = explanation.missingVariables
-		}
+		if (situationValue == null && variableHasFormula)
+			return cacheAndNode(explanation.nodeValue, explanation.missingVariables)
+
 		// SITUATION 3 : La variable est une question sans condition dont la valeur n'a pas été renseignée
-		if (situationValue == null && !variableHasFormula && !variableHasCond) {
-			nodeValue = null
-			missingVariables = { [dottedName]: 1 }
-		}
+		if (situationValue == null && !variableHasFormula && !variableHasCond)
+			return cacheAndNode(null, { [dottedName]: 1 })
+
 		// SITUATION 4 : La variable est une question avec conditions
 		if (situationValue == null && !variableHasFormula && variableHasCond) {
 			// SITUATION 4.1 : La condition est connue et vrai
-			if (explanation.isApplicable) {
-				;(nodeValue = explanation.nodeValue),
-					(missingVariables = { [dottedName]: 1 })
-			}
-			// SITUATION 4.2 : La condition est connue et fausse
-			if (explanation.isApplicable === false) {
-				nodeValue = explanation.nodeValue
-				missingVariables = {}
-			}
-			// SITUATION 4.3 : La condition n'est pas connue
-			if (explanation.isApplicable == null) {
-				nodeValue = null
-				missingVariables = explanation.missingVariables
-			}
-		}
+			if (explanation.isApplicable)
+				return cacheAndNode(explanation.nodeValue, { [dottedName]: 1 })
 
-		cache[cacheName] = rewriteNode(
-			node,
-			nodeValue,
-			explanation,
-			missingVariables
-		)
-		return cache[cacheName]
+			// SITUATION 4.2 : La condition est connue et fausse
+			if (explanation.isApplicable === false)
+				return cacheAndNode(explanation.nodeValue, {})
+			// SITUATION 4.3 : La condition n'est pas connue
+			if (explanation.isApplicable == null)
+				return cacheAndNode(null, explanation.missingVariables)
+		}
 	}
 
 	let { fragments } = parseResult,
@@ -80,6 +70,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 
 	return {
 		evaluate,
+		//eslint-disable-next-line react/display-name
 		jsx: nodeValue => (
 			<Leaf
 				classes="variable"
