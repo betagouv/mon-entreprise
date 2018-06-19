@@ -4,7 +4,6 @@
 	border-top-right-radius: 0.6em;
 	border: none;
 	border-top-left-radius: 0.6em;
-	margin-top: 2em;
 	margin-bottom: -1px;
 	border-bottom: 1px solid transparent;
 }
@@ -17,6 +16,11 @@
 }
 .result-view__tabs button:last-of-type {
 	border-right: none;
+}
+.result-view__header {
+	margin-top: 2em;
+	display: flex;
+	justify-content: space-between;
 }
 
 .result-view__body {

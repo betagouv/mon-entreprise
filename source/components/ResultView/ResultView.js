@@ -4,6 +4,7 @@ import { compose } from 'ramda'
 import React, { PureComponent } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
+import SearchButton from '../SearchButton'
 import { SimpleButton } from '../ui/Button'
 import Card from '../ui/Card'
 import withTracker from '../withTracker'
@@ -36,16 +37,20 @@ class ResultView extends PureComponent<Props, State> {
 	render() {
 		return (
 			<>
-				<div className="result-view__tabs">
-					{['distribution', 'payslip'].map(resultView => (
-						<SimpleButton
-							key={resultView}
-							className={this.state.resultView === resultView ? 'selected' : ''}
-							onClick={this.handleClickOnTab(resultView)}>
-							<Trans>{resultViewTitle[resultView]}</Trans>
-						</SimpleButton>
-					))}
-					<div className="white-space" />
+				<div className="result-view__header">
+					<div className="result-view__tabs">
+						{['distribution', 'payslip'].map(resultView => (
+							<SimpleButton
+								key={resultView}
+								className={
+									this.state.resultView === resultView ? 'selected' : ''
+								}
+								onClick={this.handleClickOnTab(resultView)}>
+								<Trans>{resultViewTitle[resultView]}</Trans>
+							</SimpleButton>
+						))}
+					</div>
+					<SearchButton />
 				</div>
 				<Card className="result-view__body">
 					{this.state.resultView === 'payslip' ? <PaySlip /> : <Distribution />}

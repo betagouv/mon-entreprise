@@ -81,7 +81,7 @@ export default class Sondage extends Component {
 				)}
 				<ReactCSSTransitionGroup
 					transitionName="slide-blurred-bottom"
-					transitionEnterTimeout={2800}
+					transitionEnterTimeout={6800}
 					transitionLeaveTimeout={300}>
 					{visible && (
 						<div className="sondage__container">

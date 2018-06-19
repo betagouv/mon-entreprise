@@ -25,7 +25,7 @@
 
 .slide-blurred-bottom-enter {
 	animation: slide-in-blurred-bottom 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
-	animation-delay: 2s;
+	animation-delay: 6s;
 	transform: translateY(1000px) scaleY(2.5) scaleX(0.2);
 	transform-origin: 50% 100%;
 	filter: blur(40px);
