@@ -3,9 +3,15 @@
 	padding: 1em;
 	margin: 0 auto;
 }
-
+.rule-page__header {
+	display: flex;
+	flex-direction: column;
+}
+.rule-page__search {
+	align-self: flex-end;
+}
 #toSimulation {
-	margin: 0.6em auto;
+	margin: 0.6em 0;
 	display: block;
 	color: white;
 	font-size: 180%;

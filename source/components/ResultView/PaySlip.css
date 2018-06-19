@@ -8,7 +8,7 @@
 }
 .payslip__cotisationsSection {
 	display: grid;
-	grid-template-columns: auto 8.2em 8.2em;
+	grid-template-columns: auto auto auto;
 	grid-gap: 0.3em 0em;
 }
 
@@ -17,6 +17,7 @@
 	margin: 0;
 	margin-top: 1.5em;
 	padding-bottom: 0.5em;
+	padding-left: 0.5em;
 	align-self: end;
 	margin-bottom: 0.5em;
 }

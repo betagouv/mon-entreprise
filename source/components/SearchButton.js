@@ -1,4 +1,3 @@
-import withColours from 'Components/withColours'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -11,7 +10,6 @@ import { SimpleButton } from './ui/Button'
 @connect(state => ({
 	flatRules: flatRulesSelector(state)
 }))
-@withColours
 @translate()
 export default class SearchButton extends Component {
 	componentDidMount() {
@@ -50,7 +48,8 @@ export default class SearchButton extends Component {
 		) : (
 			<SimpleButton
 				onClick={() => this.setState({ visible: true })}
-				style={{ color: this.props.colours.colour }}>
+				className={this.props.className}
+				style={this.props.style}>
 				<i
 					className="fa fa-search"
 					aria-hidden="true"

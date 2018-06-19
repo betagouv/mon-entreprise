@@ -1,24 +1,24 @@
+import { encodeRuleName } from 'Engine/rules'
+import {
+	decodeRuleName,
+	findRuleByDottedName,
+	findRulesByName
+} from 'Engine/rules.js'
+import { compose, head, path } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import { head, path, compose } from 'ramda'
-import {
-	decodeRuleName,
-	findRulesByName,
-	findRuleByDottedName
-} from 'Engine/rules.js'
-import { encodeRuleName } from 'Engine/rules'
 import { Link, Redirect } from 'react-router-dom'
 import { animateScroll } from 'react-scroll'
-import './RulePage.css'
-import SearchButton from './SearchButton'
+import {
+	flatRulesSelector,
+	noUserInputSelector
+} from 'Selectors/analyseSelectors'
+import { setExample } from '../actions'
 import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
-import { setExample } from '../actions'
-import {
-	noUserInputSelector,
-	flatRulesSelector
-} from 'Selectors/analyseSelectors'
+import './RulePage.css'
+import SearchButton from './SearchButton'
 
 @connect(state => ({
 	themeColours: state.themeColours,
@@ -51,19 +51,27 @@ export default class RulePage extends Component {
 	renderRule(dottedName) {
 		return (
 			<div id="RulePage">
-				{!this.props.noUserInputSelector && (
-					<BackToSimulation colour={this.props.themeColours.colour} />
-				)}
-				<SearchButton />
+				<div className="rule-page__header">
+					<SearchButton className="rule-page__search" />
+					{!this.props.noUserInputSelector && (
+						<BackToSimulation colour={this.props.themeColours.colour} />
+					)}
+				</div>
 				<Rule dottedName={dottedName} />
 			</div>
 		)
 	}
 }
 
-@connect(null, dispatch => ({
-	setExample: compose(dispatch, setExample)
-}))
+@connect(
+	null,
+	dispatch => ({
+		setExample: compose(
+			dispatch,
+			setExample
+		)
+	})
+)
 class BackToSimulation extends Component {
 	render() {
 		let { colour, setExample } = this.props

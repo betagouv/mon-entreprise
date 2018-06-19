@@ -1,5 +1,6 @@
 .result-view__tabs {
-	display: inline-block;
+	display: flex;
+	align-items: center;
 	box-shadow: 0 -1px 0 0 #d4d4d5, 1px 0 0 0 #d4d4d5, -1px 0 0 0 #d4d4d5;
 	border-top-right-radius: 0.6em;
 	border: none;
