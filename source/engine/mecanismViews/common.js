@@ -59,7 +59,7 @@ export class Node extends Component {
 @connect(state => ({ flatRules: flatRulesSelector(state) }))
 export class Leaf extends Component {
 	render() {
-		let { classes, dottedName, name, value, flatRules } = this.props,
+		let { classes, dottedName, name, value, flatRules, filter } = this.props,
 			rule = findRuleByDottedName(flatRules, dottedName)
 
 		return (
@@ -68,7 +68,7 @@ export class Leaf extends Component {
 					<span className="nodeHead">
 						<Link to={'/règle/' + encodeRuleName(dottedName)}>
 							<span className="name">
-								{rule.title || capitalise0(name)}
+								{rule.title || capitalise0(name)} {filter}
 								<NodeValuePointer data={value} />
 							</span>
 						</Link>

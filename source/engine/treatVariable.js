@@ -73,7 +73,8 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 		//eslint-disable-next-line react/display-name
 		jsx: nodeValue => (
 			<Leaf
-				classes="variable"
+				classes="variable filtered"
+				filter={filter}
 				name={fragments.join(' . ')}
 				dottedName={dottedName}
 				value={nodeValue}
