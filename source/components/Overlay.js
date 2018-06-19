@@ -1,6 +1,7 @@
 import FocusTrap from 'focus-trap-react'
 import React, { Component } from 'react'
 import './Overlay.css'
+import { SimpleButton } from './ui/Button'
 
 export default class Overlay extends Component {
 	render() {
@@ -20,13 +21,12 @@ export default class Overlay extends Component {
 							e.stopPropagation()
 						}}>
 						{children}
-						<button
+						<SimpleButton
 							aria-label="close"
 							onClick={onClose}
-							className="unstyledButton"
 							id="overlayCloseButton">
 							x
-						</button>
+						</SimpleButton>
 					</div>
 				</FocusTrap>
 			</div>

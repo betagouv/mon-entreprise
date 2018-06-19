@@ -4,6 +4,7 @@
   cotisation:
     destinataire: OPCA
     dû par: employeur
+    branche: formation
 
   non applicable si:
     une de ces conditions:
@@ -81,7 +82,7 @@
       - description: Méthode "du dixième"
         note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
         multiplication:
-          assiette: salaire de base + prime de fin de contrat
+          assiette: salaire . brut de base + prime de fin de contrat
           # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
           # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
           taux: 10%
@@ -96,7 +97,7 @@
         #   soit du nombre moyen de jours ouvrables (ou ouvrés),
         #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
-          assiette: salaire de base + prime de fin de contrat
+          assiette: salaire . brut de base + prime de fin de contrat
           # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
           # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
           taux: congés non pris / durée contrat
@@ -109,7 +110,7 @@
   exemples:
     - nom: pas de congés non pris
       situation:
-        salaire de base: 2300
+        salaire . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 0
         durée contrat: 12
@@ -117,7 +118,7 @@
     - nom: 10 jours non pris
       situation:
         type de contrat: CDD
-        salaire de base: 2300
+        salaire . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 10
         durée contrat: 12
@@ -125,7 +126,7 @@
     - nom: 3 jours non pris
       situation:
         type de contrat: CDD
-        salaire de base: 2300
+        salaire . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 3
         durée contrat: 6
@@ -187,21 +188,21 @@
   # Ici elle est étalée sur un mois moyen
   formule:
     multiplication:
-      assiette: salaire de base
+      assiette: salaire . brut de base
       taux: 10%
 
   exemples:
     - nom: salaire médian
       situation:
         type de contrat: CDD
-        salaire de base: 2300
+        salaire . brut de base: 2300
         motif: classique . accroissement activité
       valeur attendue: 230
 
     - nom: CDD d'usage -> non applicable
       situation:
         motif: classique . usage
-        salaire de base: 2300
+        salaire . brut de base: 2300
       valeur attendue: null
 
 
@@ -220,6 +221,7 @@
     dû par: employeur
     type: majoration
     destinataire: URSSAF
+    branche: assurance chômage
 
   description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
 
@@ -283,7 +285,7 @@
   description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles.
   cotisation:
     dû par: employeur
-    branche: santé
+    branche: accidents du travail / maladies professionnelles
     destinataire: URSSAF
     responsable: CARSAT
 
@@ -567,14 +569,6 @@
   par défaut: non
 
 - espace: contrat salarié . CDD
-  nom: cotisations employeur CDD
-  description: Cotisations employeur spécifiques au CDD
-  formule:
-    somme:
-      - CIF
-      - majoration chômage
-
-- espace: contrat salarié . CDD
   nom: indemnités salarié CDD
   description: Cotisations employeur spécifiques au CDD
   formule:
@@ -594,12 +588,14 @@
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - indemnités salarié CDD
-      - cotisations employeur CDD
+      - CIF
+      - majoration chômage
   exemples:
     - nom: "exemple 1"
       situation:
         indemnités salarié CDD: 100
-        cotisations employeur CDD: 190
+        CIF: 100
+        majoration chômage: 90
         prime de fin de contrat: 60.4
         compensation pour congés non pris: 39.6
       valeur attendue: 290
@@ -609,7 +605,7 @@
   nom: surcoût CDD
   simulateur:
     objectifs:
-      - salaire net
+      - salaire . net
       - coût du travail
       - CDD . surcoût
     titre: Simulateur CDD
@@ -632,9 +628,6 @@
     Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans les cas suivants:
     - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
     - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
-
-  # le contrat salarié est rattaché à l'activité, elle-même rattachée à un individu.
-  établissement: Établissement
 
 - espace: contrat salarié
   nom: type de contrat
@@ -666,20 +659,19 @@
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule:
     somme:
-      - salaire de base
+      - salaire . brut de base
       - indemnités salarié
 
-- espace: contrat salarié
-  nom: salaire de base
+- espace: contrat salarié . salaire
+  nom: brut de base
   titre: Salaire brut de base
   résumé: Inscrit dans le contrat de travail
   type: salaire
   question: Quel est le salaire de base mensuel ?
   description: |
-    C'est le salaire *brut* régulier inscrit dans le contrat de travail.
-    Il peut éventuellement inclure les primes ramenées au mois.
+    C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux partis.
 
-    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
+    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
   format: euros
   suggestions:
     salaire médian: 2300
@@ -690,31 +682,60 @@
       question: Quel est le salaire mensuel ?
       titre: salaire
       avec:
-        - salaire net
-        - salaire total
+        - salaire . net à payer
+        - salaire . total
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
 
 
-- espace: contrat salarié
-  nom: salaire brut
+- espace: contrat salarié . salaire
+  nom: brut
+  titre: Salaire brut
   description: >
     C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
   format: euros
   formule:
     somme:
-      - salaire de base
-      - avantages salarié
+      - salaire . brut de base
+      - indemnités salarié
+      - avantages en nature . montant
+      
 
 - espace: contrat salarié
-  nom: avantages salarié
+  nom: avantages sociaux
+  description: >
+    Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifique à l'entreprise, et fourni par des structure privées (mutuelle, assurance...).
+    Ils sont soumis à l'impots sur le revenus.
   format: euros
   formule:
     somme:
-      - indemnités salarié
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
+
+
+- espace: contrat salarié
+  nom: avantages en nature
+  titre: Avantages en nature
+  description: >
+    Les avantages en nature sont constitués par la fourniture par l’employeur à ses salariés d’un bien ou service. La mise à disposition peut être gratuite ou moyennant une participation du salarié inférieure à leur valeur réelle
+  note: >
+    Les tickets restaurants ne sont pas considéré comme un avantage en nature mais comme un remboursement de frais.
+  question: Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone, réductions...) ?
+  par défaut: non
+
+- espace: contrat salarié . avantages en nature
+  nom: montant
+  titre: Avantages en nature (montant)
+  description: >
+    Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+  question: Quel est le montant mensuel des avantages en nature ?
+  applicable si: avantages en nature
+  suggestions:
+    nourriture: 80
+    véhicule: 260
+  format: euros
+  par défaut: 0
 
 - espace: contrat salarié
   nom: indemnités salarié
@@ -792,31 +813,58 @@
       - versement transport
       - taxe d'apprentissage
       - taxe sur les salaires
-      - CDD . cotisations employeur CDD
+      - CDD . majoration chômage
+      - CDD . CIF
       - forfait social
 
-- espace: contrat salarié
-  nom: salaire net
+
+- espace: contrat salarié . salaire
+  nom: net
   titre: Salaire net
   type: salaire
-  question: Quel est le salaire net mensuel ?
-  résumé: Touché par le salarié tous les mois
   description: |
-    Le salaire brut moins les cotisations sociales, c'est ce que le salarié reçoit sur son compte bancaire.
+    Le salaire brut moins les cotisations sociales. 
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel: pour le changer, il faut signer un avenant au contrat.
   format: euros
-  formule: salaire brut - cotisations salariales
+  formule: salaire . brut - cotisations salariales
+
+
+- espace: contrat salarié . salaire
+  nom: net imposable
+  titre: Salaire net imposable
+  type: salaire 
+  format: euros  
+  description: |
+    Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
+  formule:
+    allègement:
+      assiette: salaire . net + avantages sociaux
+      abattement: CSG (déductible)
+
+
+- espace: contrat salarié . salaire
+  nom: net à payer
+  titre: Salaire net à payer
+  type: salaire 
+  format: euros  
+  question: Quel est le salaire net mensuel ?
+  résumé: Touché par le salarié tous les mois
+  description: |
+    C'est le montant que le salarié touche à la fin du mois.
+  formule: salaire . net - avantages en nature . montant
 
 - espace: contrat salarié
   nom: coût du travail
   description: |
     C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
     des aides et subventions qui lui sont reversées: c'est donc le coût social total réel du travail pour l'employeur.
-  formule: salaire total - aides employeur
+  formule: salaire . total - aides employeur
+  format: euros
+  
 
-- espace: contrat salarié
-  nom: salaire total
+- espace: contrat salarié . salaire
+  nom: total
   titre: Salaire chargé
   question: Quel est le salaire mensuel chargé ?
   résumé: À verser par l'employeur tous les mois
@@ -830,18 +878,18 @@
 
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
-  formule: salaire total sans réduction - réductions de cotisations
+  formule: salaire . total sans réduction - réductions de cotisations
 
 - espace: contrat salarié
   nom: réductions de cotisations
   formule: réduction générale + exonération JEI
 
-- espace: contrat salarié
-  nom: salaire total sans réduction
+- espace: contrat salarié . salaire
+  nom: total sans réduction
   type: salaire
   formule:
     somme:
-      - salaire brut
+      - salaire . brut
       - cotisations patronales
 
 
@@ -859,7 +907,7 @@
   nom: salaire
   simulateur:
     objectifs:
-      - salaire net
+      - salaire . net
       - coût du travail
     titre: Simulateur de coût d'embauche
     sous-titre: Découvrir le coût d'embauche et le salaire réel
@@ -883,9 +931,9 @@
   nom: régime alsace moselle
   par défaut: non
 
-- nom : entreprise
+- nom: entreprise
   description: |
-    Le contrat lie une entreprise et un employé
+    Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 - espace: entreprise
   nom: effectif
@@ -921,6 +969,15 @@
   description: L'entreprise est une association non lucrative
   question: S'agit-il d'une association à but non lucratif ?
   par défaut: non
+
+
+
+
+  
+- nom: établissement
+  description: |
+    Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
+
 - espace: établissement
   nom: code postal
   titre: Code postal de l'établissement
@@ -1383,7 +1440,7 @@
   description: Cotisation au Régime de Garantie des Salaires
   cotisation:
     dû par: employeur
-    branche: chômage
+    branche: assurance chômage
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 
@@ -1434,7 +1491,7 @@
 - espace: contrat salarié
   nom: APEC
   cotisation:
-    branche: chômage
+    branche: assurance chômage
     type de retraite: complémentaire
     destinataire: APEC
   description: |
@@ -1521,7 +1578,7 @@
 - espace: contrat salarié
   nom: chômage
   cotisation:
-    branche: chômage
+    branche: assurance chômage
     destinataire: Pôle emploi
   description: Cotisation d’assurance chômage
   références:
@@ -1680,11 +1737,11 @@
       assiette: assiette CSG
       composantes:
         - attributs:
-            déductible des impôts: non
+            impôt sur le revenu: déductible
           taux: 2.4%
 
         - attributs:
-            déductible des impôts: oui
+            impôt sur le revenu: non déductible          
           taux: 6.8%
   exemples:
     - nom: "CSG cadre"
@@ -1995,18 +2052,18 @@
   exemples:
     - nom: non applicable par défaut
       situation:
-        salaire de base: 2300
+        salaire . brut de base: 2300
       valeur attendue: 0
     - nom: association non lucrative unipersonnelle
       situation:
         entreprise . association non lucrative: oui
-        salaire de base: 2300
+        salaire . brut de base: 2300
         entreprise . effectif: 1
       valeur attendue: 0
     - nom: association non lucrative
       situation:
         entreprise . association non lucrative: oui
-        salaire de base: 2300
+        salaire . brut de base: 2300
         entreprise . effectif: 10
         forfait complémentaire santé: 0
       valeur attendue: 49
@@ -2081,7 +2138,7 @@
       situation:
         assiette cotisations sociales: 1500
       valeur attendue: 266.25
-    - nom: Haut salaire élevé
+    - nom: Salaire élevé
       situation:
         assiette cotisations sociales: 8000
       valeur attendue: 695.55

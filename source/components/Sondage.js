@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
-import './Sondage.css'
-import { connect } from 'react-redux'
-import ReactPiwik from './Tracker'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import Smiley from './SatisfactionSmiley'
-import TypeFormEmbed from './TypeFormEmbed'
-import withLanguage from './withLanguage'
 import { Trans, translate } from 'react-i18next'
+import { connect } from 'react-redux'
+import {
+	nextStepsSelector,
+	noUserInputSelector
+} from 'Selectors/analyseSelectors'
+import Smiley from './SatisfactionSmiley'
+import './Sondage.css'
+import ReactPiwik from './Tracker'
+import TypeFormEmbed from './TypeFormEmbed'
+import { SimpleButton } from './ui/Button'
+import withColours from './withColours'
+import withLanguage from './withLanguage'
 
 @connect(state => ({
-	targets: state.analysis ? state.analysis.targets : [],
-	activeInput: state.activeTargetInput,
-	currentQuestion: state.currentQuestion,
-	conversationStarted: state.conversationStarted
+	conversationStarted: state.conversationStarted,
+	noUserInput: noUserInputSelector(state),
+	nextSteps: nextStepsSelector(state)
 }))
 @translate()
 @withLanguage
+@withColours
 export default class Sondage extends Component {
 	state = {
 		visible: false,
@@ -25,9 +31,9 @@ export default class Sondage extends Component {
 	static getDerivedStateFromProps(nextProps, currentState) {
 		let feedbackAlreadyAsked = !!document.cookie.includes('feedback_asked=true')
 		let conditions = {
-			AFTER_FIRST_ESTIMATE: nextProps.activeInput && nextProps.targets.length,
+			AFTER_FIRST_ESTIMATE: !nextProps.noUserInput,
 			AFTER_SIMULATION_COMPLETED:
-				!nextProps.currentQuestion && nextProps.conversationStarted
+				!nextProps.nextSteps.length && nextProps.conversationStarted
 		}
 		return {
 			visible: conditions[currentState.askFeedbackTime] && !feedbackAlreadyAsked
@@ -56,7 +62,10 @@ export default class Sondage extends Component {
 	}
 	render() {
 		let { satisfaction, showForm, visible, askFeedbackTime } = this.state,
-			{ language } = this.props
+			{
+				language,
+				colours: { colour }
+			} = this.props
 
 		return (
 			<>
@@ -72,11 +81,13 @@ export default class Sondage extends Component {
 				)}
 				<ReactCSSTransitionGroup
 					transitionName="slide-blurred-bottom"
-					transitionEnterTimeout={2800}
+					transitionEnterTimeout={6800}
 					transitionLeaveTimeout={300}>
 					{visible && (
 						<div className="sondage__container">
-							<div className="sondage">
+							<div
+								className="sondage"
+								style={{ color: colour, borderColor: colour }}>
 								<span className="sondage__text">
 									<Trans>Votre avis nous intéresse !</Trans>
 								</span>
@@ -90,12 +101,12 @@ export default class Sondage extends Component {
 									hoverColor="#f39c12"
 									onClick={this.onSmileyClick}
 								/>
-								<button
-									className="sondage__closeButton unstyledButton"
+								<SimpleButton
+									className="sondage__closeButton"
 									onClick={this.handleClose}
 									aria-label="close">
 									X
-								</button>
+								</SimpleButton>
 							</div>
 						</div>
 					)}

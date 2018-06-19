@@ -1,71 +1,57 @@
+import { isEmpty } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-//import styles from './.css'
-// css in conversation.Css
-import { isEmpty, map, pick } from 'ramda'
+import { animateScroll, Element, scroller } from 'react-scroll'
 import { reset } from 'redux-form'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { resetSimulation } from '../../actions'
-import { getInputComponent } from 'Engine/generateQuestions'
-import withColours from '../withColours'
-import { scroller, Element, animateScroll } from 'react-scroll'
+import { LinkButton, SimpleButton } from '../ui/Button'
+import withTracker from './../withTracker'
+import './conversation.css'
+import FoldedStep from './FoldedStep'
 
-@withColours
 @connect(
-	pick([
-		'currentQuestion',
-		'foldedSteps',
-		'themeColours',
-		'situationGate',
-		'targetNames',
-		'nextSteps',
-		'analysis',
-		'flatRules'
-	]),
+	state => ({
+		foldedSteps: state.conversationSteps.foldedSteps,
+		targetNames: state.targetNames,
+		flatRules: flatRulesSelector(state)
+	}),
 	{
 		resetSimulation,
 		resetForm: () => reset('conversation')
 	}
 )
-@translate()
 export default class FoldedSteps extends Component {
 	handleSimulationReset = () => {
 		this.props.resetSimulation()
 		this.props.resetForm()
 	}
 	render() {
-		let {
-			foldedSteps,
-			targetNames,
-			flatRules,
-			themeColours: { textColourOnWhite }
-		} = this.props
+		let { foldedSteps } = this.props
 
 		if (isEmpty(foldedSteps || [])) return null
 		return (
 			<div id="foldedSteps">
 				<div className="header">
-					<button
-						onClick={this.handleSimulationReset}
-						style={{ color: textColourOnWhite }}>
+					<LinkButton onClick={this.handleSimulationReset}>
 						<i className="fa fa-trash" aria-hidden="true" />
 						<Trans i18nKey="resetAll">Tout effacer</Trans>
-					</button>
+					</LinkButton>
 				</div>
-				{map(
-					getInputComponent({ unfolded: false })(flatRules, targetNames),
-					foldedSteps
-				)}
+				{foldedSteps.map(dottedName => (
+					<FoldedStep key={dottedName} dottedName={dottedName} />
+				))}
 			</div>
 		)
 	}
 }
 
-@withColours
 @connect(state => ({
-	foldedSteps: state.foldedSteps,
+	foldedSteps: state.conversationSteps.foldedSteps,
 	conversationStarted: state.conversationStarted
 }))
+@withTracker
 export class GoToAnswers extends Component {
 	componentDidUpdate(prevProps) {
 		if (!prevProps.conversationStarted && this.props.conversationStarted) {
@@ -74,6 +60,8 @@ export class GoToAnswers extends Component {
 				delay: 0,
 				smooth: true
 			})
+			this.props.tracker.push(['trackEvent', 'simulation', 'goToAnswers'])
+
 			return
 		}
 		if (prevProps.foldedSteps.length === this.props.foldedSteps.length) return
@@ -94,19 +82,15 @@ export class GoToAnswers extends Component {
 	render() {
 		return (
 			<Element name="myScrollToElement" id="myScrollToElement">
-				<h3
+				<SimpleButton
+					onClick={this.handleScrollToAnswers}
 					className="scrollIndication up"
 					style={{
-						color: this.props.colours.textColourOnWhite,
 						visibility: !this.props.foldedSteps.length ? 'hidden' : 'visible'
 					}}>
-					<button
-						className="unstyledButton"
-						onClick={this.handleScrollToAnswers}>
-						<i className="fa fa-long-arrow-up" aria-hidden="true" />
-						&nbsp;<Trans i18nKey="change">Modifier mes réponses</Trans>
-					</button>
-				</h3>
+					<i className="fa fa-long-arrow-up" aria-hidden="true" />
+					&nbsp;<Trans i18nKey="change">Modifier mes réponses</Trans>
+				</SimpleButton>
 			</Element>
 		)
 	}

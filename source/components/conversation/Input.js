@@ -1,12 +1,14 @@
+import classnames from 'classnames'
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
+import withColours from '../withColours'
 import { FormDecorator } from './FormDecorator'
-import classnames from 'classnames'
-import SendButton from './SendButton'
 import InputSuggestions from './InputSuggestions'
+import SendButton from './SendButton'
 
 @FormDecorator('input')
 @translate()
+@withColours
 export default class Input extends Component {
 	render() {
 		let {
@@ -16,7 +18,7 @@ export default class Input extends Component {
 				valueType,
 				meta: { dirty, error, active },
 				t,
-				themeColours
+				colours
 			} = this.props,
 			answerSuffix = valueType.suffix,
 			suffixed = answerSuffix != null,
@@ -39,7 +41,7 @@ export default class Input extends Component {
 						style={
 							!active
 								? { border: '2px dashed #ddd' }
-								: { border: `1px solid ${themeColours.textColourOnWhite}` }
+								: { border: `1px solid ${colours.textColourOnWhite}` }
 						}
 					/>
 					{suffixed && (
@@ -50,9 +52,7 @@ export default class Input extends Component {
 							{answerSuffix}
 						</label>
 					)}
-					<SendButton
-						{...{ disabled: submitDisabled, themeColours, error, submit }}
-					/>
+					<SendButton {...{ disabled: submitDisabled, error, submit }} />
 				</div>
 				<InputSuggestions
 					suggestions={this.props.suggestions}

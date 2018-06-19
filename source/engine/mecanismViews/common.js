@@ -1,9 +1,11 @@
 import classNames from 'classnames'
-import { contains, pick } from 'ramda'
+import { contains } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { SimpleButton } from '../../components/ui/Button'
 import withLanguage from '../../components/withLanguage'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
@@ -12,7 +14,7 @@ let treatValue = (data, language) =>
 	data == null
 		? '?'
 		: typeof data == 'boolean'
-			? { true: '✔', false: '✘' }[data]
+			? { true: '✅', false: '✘' }[data]
 			: !isNaN(data)
 				? Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(data)
 				: data
@@ -38,11 +40,11 @@ export class Node extends Component {
 			<div className={classNames(classes, 'node')}>
 				{name && (
 					<span className="nodeHead">
-						<button
-							className="name unstyledButton"
+						<SimpleButton
+							className="name"
 							data-term-definition={termDefinition}>
 							<Trans>{name}</Trans>
-						</button>
+						</SimpleButton>
 						<NodeValuePointer data={value} />
 					</span>
 				)}
@@ -54,10 +56,10 @@ export class Node extends Component {
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-@connect(pick(['flatRules']))
+@connect(state => ({ flatRules: flatRulesSelector(state) }))
 export class Leaf extends Component {
 	render() {
-		let { classes, dottedName, name, value, flatRules } = this.props,
+		let { classes, dottedName, name, value, flatRules, filter } = this.props,
 			rule = findRuleByDottedName(flatRules, dottedName)
 
 		return (
@@ -66,7 +68,7 @@ export class Leaf extends Component {
 					<span className="nodeHead">
 						<Link to={'/règle/' + encodeRuleName(dottedName)}>
 							<span className="name">
-								{rule.title || capitalise0(name)}
+								{rule.title || capitalise0(name)} {filter}
 								<NodeValuePointer data={value} />
 							</span>
 						</Link>

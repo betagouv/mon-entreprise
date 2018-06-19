@@ -19,3 +19,7 @@ suppress_type=$FlowExpectedError
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
+
+module.name_mapper='^Components\(.*\)$' -> '<PROJECT_ROOT>/source/components\1'
+module.name_mapper='^Engine\(.*\)$' -> '<PROJECT_ROOT>/source/engine\1'
+module.name_mapper='^Selectors\(.*\)$' -> '<PROJECT_ROOT>/source/selectors\1'

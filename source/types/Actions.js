@@ -8,4 +8,11 @@ export type ResetSimulationAction = {
 	type: 'RESET_SIMULATION'
 }
 
-export type Action = LoadPreviousSimulationAction | ResetSimulationAction
+export type DeletePreviousSimulationAction = {
+	type: 'DELETE_PREVIOUS_SIMULATION'
+}
+
+export type Action =
+	| LoadPreviousSimulationAction
+	| ResetSimulationAction
+	| DeletePreviousSimulationAction

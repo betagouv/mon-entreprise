@@ -1,44 +1,30 @@
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
+import { nextStepsSelector } from 'Selectors/analyseSelectors'
 import './ProgressTip.css'
-import { Line } from 'rc-progress'
-import { pick } from 'ramda'
 
-@withRouter
-@translate()
-@connect(
-	pick(['foldedSteps', 'nextSteps', 'themeColours', 'conversationStarted'])
-)
+@connect(state => ({
+	nextSteps: nextStepsSelector(state)
+}))
 export default class ProgressTip extends Component {
 	render() {
-		let {
-				nextSteps,
-				foldedSteps,
-				themeColours: { colour, textColourOnWhite },
-				conversationStarted
-			} = this.props,
+		let { nextSteps } = this.props,
 			nbQuestions = nextSteps.length
+		if (nbQuestions === 0) return null
 
-		if (!conversationStarted) return null
 		return (
-				<div className="progressTip">
-					{ nbQuestions != 0
-					?
-					<p style={{ color: textColourOnWhite }}>
-						{nbQuestions === 1
-							?
-							<Trans i18nKey="lastQ">dernière question !</Trans>
-							:
-							<Trans i18nKey="questionsLeft" count={nbQuestions}>
-							moins de {{nbQuestions}} questions
-							</Trans>
-						}
-					</p>
-					:
-					<br/>}
-				</div>
+			<div className="progressTip">
+				<p>
+					{nbQuestions === 1 ? (
+						<Trans i18nKey="lastQ">dernière question !</Trans>
+					) : (
+						<Trans i18nKey="questionsLeft" count={nbQuestions}>
+							moins de {{ nbQuestions }} questions
+						</Trans>
+					)}
+				</p>
+			</div>
 		)
 	}
 }

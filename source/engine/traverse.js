@@ -4,7 +4,11 @@ import {
 	disambiguateRuleReference,
 	findRule
 } from './rules'
-import { evaluateVariable } from './variables'
+import {
+	treatVariable,
+	treatNegatedVariable,
+	treatFilteredVariable
+} from './treatVariable'
 import {
 	contains,
 	propEq,
@@ -35,8 +39,7 @@ import {
 import knownMecanisms from './known-mecanisms.yaml'
 import { Parser } from 'nearley'
 import Grammar from './grammar.ne'
-import { Node, Leaf } from './mecanismViews/common'
-import { Trans } from 'react-i18next'
+import { Node } from './mecanismViews/common'
 import {
 	mecanismOneOf,
 	mecanismAllOf,
@@ -99,131 +102,6 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-// TODO - this is becoming overly specific
-let fillFilteredVariableNode = (rules, rule) => (filter, parseResult) => {
-	let evaluateFiltered = originalEval => (
-		cache,
-		situation,
-		parsedRules,
-		node
-	) => {
-		let newSituation = name => (name == 'sys.filter' ? filter : situation(name))
-		return originalEval(cache, newSituation, parsedRules, node)
-	}
-	let node = fillVariableNode(rules, rule, filter)(parseResult),
-		// Decorate node with who's paying
-		cotisation = { ...node.cotisation, 'dû par': filter }
-
-	return {
-		...node,
-		cotisation,
-		evaluate: evaluateFiltered(node.evaluate)
-	}
-}
-
-let fillVariableNode = (rules, rule, filter) => parseResult => {
-	let evaluate = (cache, situation, parsedRules, node) => {
-		let dottedName = node.dottedName,
-			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
-			// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
-			cacheName = dottedName + (filter ? '.' + filter : ''),
-			cached = cache[cacheName]
-		if (cached) {
-			return cached
-		}
-
-		let variable = findRuleByDottedName(parsedRules, dottedName),
-			variableIsCalculable = variable.formule != null,
-			situationValue = evaluateVariable(situation, dottedName, variable),
-			needsEvaluation = variableIsCalculable && situationValue == null,
-			parsedRule = needsEvaluation
-				? evaluateNode(cache, situation, parsedRules, variable)
-				: variable,
-			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
-			explanation = parsedRule,
-			nodeValue =
-				situationValue != null
-					? situationValue // cette variable a été directement renseignée
-					: variableIsCalculable
-						? parsedRule.nodeValue // la valeur du calcul fait foi
-						: null, // elle restera donc nulle
-			missingVariables =
-				nodeValue != null // notamment si situationValue != null
-					? {}
-					: variableIsCalculable
-						? parsedRule.missingVariables
-						: { [dottedName]: 1 }
-
-		cache[cacheName] = rewriteNode(
-			node,
-			nodeValue,
-			explanation,
-			missingVariables
-		)
-		return cache[cacheName]
-	}
-
-	let { fragments } = parseResult,
-		variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
-
-	let jsx = nodeValue => (
-		<Leaf
-			classes="variable"
-			name={fragments.join(' . ')}
-			dottedName={dottedName}
-			value={nodeValue}
-		/>
-	)
-
-	return {
-		evaluate,
-		jsx,
-		name: variablePartialName,
-		category: 'variable',
-		fragments,
-		dottedName,
-		type: 'boolean | numeric'
-	}
-}
-
-let buildNegatedVariable = variable => {
-	let evaluate = (cache, situation, parsedRules, node) => {
-		let explanation = evaluateNode(
-				cache,
-				situation,
-				parsedRules,
-				node.explanation
-			),
-			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue,
-			missingVariables = explanation.missingVariables
-
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
-	}
-
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="inlineExpression negation"
-			value={nodeValue}
-			child={
-				<span className="nodeContent">
-					<Trans i18nKey="inlineExpressionNegation">Non</Trans>{' '}
-					{makeJsx(explanation)}
-				</span>
-			}
-		/>
-	)
-
-	return {
-		evaluate,
-		jsx,
-		category: 'mecanism',
-		name: 'négation',
-		type: 'boolean',
-		explanation: variable
-	}
-}
-
 let treat = (rules, rule) => rawNode => {
 	// inner functions
 	let reTreat = treat(rules, rule),
@@ -254,16 +132,16 @@ let treat = (rules, rule) => rawNode => {
 				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
 
 			if (parseResult.category == 'variable')
-				return fillVariableNode(rules, rule)(parseResult)
+				return treatVariable(rules, rule)(parseResult)
 			if (parseResult.category == 'filteredVariable') {
-				return fillFilteredVariableNode(rules, rule)(
+				return treatFilteredVariable(rules, rule)(
 					parseResult.filter,
 					parseResult.variable
 				)
 			}
 			if (parseResult.category == 'negatedVariable')
-				return buildNegatedVariable(
-					fillVariableNode(rules, rule)(parseResult.variable)
+				return treatNegatedVariable(
+					treatVariable(rules, rule)(parseResult.variable)
 				)
 
 			// We don't need to handle category == 'value' because YAML then returns it as
@@ -311,16 +189,18 @@ let treat = (rules, rule) => rawNode => {
 					return rewriteNode(node, nodeValue, explanation, missingVariables)
 				}
 
-				let fillFiltered = parseResult =>
-					fillFilteredVariableNode(rules, rule)(
+				let treatFilteredVariableClosure = parseResult =>
+					treatFilteredVariable(rules, rule)(
 						parseResult.filter,
 						parseResult.variable
 					)
-				let fillVariable = fillVariableNode(rules, rule),
-					filledExplanation = parseResult.explanation.map(
+				let explanation = parseResult.explanation.map(
 						cond([
-							[propEq('category', 'variable'), fillVariable],
-							[propEq('category', 'filteredVariable'), fillFiltered],
+							[propEq('category', 'variable'), treatVariable(rules, rule)],
+							[
+								propEq('category', 'filteredVariable'),
+								treatFilteredVariableClosure
+							],
 							[
 								propEq('category', 'value'),
 								node => ({
@@ -376,7 +256,7 @@ let treat = (rules, rule) => rawNode => {
 					category: parseResult.category,
 					type:
 						parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
-					explanation: filledExplanation
+					explanation
 				}
 			}
 		},

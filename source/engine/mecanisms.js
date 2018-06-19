@@ -107,8 +107,10 @@ let decompose = (recurse, k, v) => {
 	let filter = situationGate => c =>
 		!situationGate('sys.filter') ||
 		!c.composante ||
-		!c.composante['dû par'] ||
-		c.composante['dû par'] == situationGate('sys.filter')
+		((!c.composante['dû par'] ||
+			c.composante['dû par'] == situationGate('sys.filter')) &&
+			(!c.composante['impôt sur le revenu'] ||
+				c.composante['impôt sur le revenu'] == situationGate('sys.filter')))
 
 	return {
 		explanation,
@@ -357,7 +359,11 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
 			nonFalsyTerms = filter(node => node.condValue !== false, explanation),
-			getFirst = o => pipe(head, prop(o))(nonFalsyTerms),
+			getFirst = o =>
+				pipe(
+					head,
+					prop(o)
+				)(nonFalsyTerms),
 			nodeValue =
 				// voilà le "numérique" dans le nom de ce mécanisme : il renvoie zéro si aucune condition n'est vérifiée
 				isEmpty(nonFalsyTerms)
