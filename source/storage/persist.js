@@ -1,11 +1,11 @@
 /* @flow */
 
 import type { Store } from 'redux'
-import { serialize, deserialize } from './serialize'
+import { deserialize, serialize } from './serialize'
 import type { State, SavedSimulation } from '../types/State'
 import type { Action } from '../types/Actions'
 
-const VERSION = 1
+const VERSION = 2
 
 function throttle(timeout: number, fn: () => void): () => void {
 	let timeoutId
