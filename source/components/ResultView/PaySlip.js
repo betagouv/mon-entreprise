@@ -134,21 +134,21 @@ const PaySlip = ({
 		<br />
 		<p className="payslip__notice">
 			<Trans i18nKey="payslip.notice">
-				Pour plus d&apos;informations concernant votre bulletin de paie, rendez
-				vous sur&nbsp;
+				Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
+				être opposable. Pour plus d&apos;informations, rendez vous sur&nbsp;
 				<a
 					alt="service-public.fr"
 					href="https://www.service-public.fr/particuliers/vosdroits/F559">
 					service-public.fr
-				</a>
+				</a>.
 			</Trans>
 		</p>
 		<p className="payslip__notice">
 			<Trans i18nKey="payslip.disclaimer">
-				Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
-				être opposable. Il ne prend pour l&apos;instant pas en compte les
-				conventions et accords collectifs, ni la myriade d&apos;aides à explorer
-				sur <a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
+				Il ne prend pour l&apos;instant pas en compte les conventions et accords
+				collectifs, ni la myriade d&apos;aides à explorer sur&nbsp;<a href="https://www.aides-entreprises.fr">
+					aides-entreprises.fr
+				</a>.
 			</Trans>
 		</p>
 	</div>
