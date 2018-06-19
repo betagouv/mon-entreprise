@@ -21,11 +21,11 @@ const PreviousSimulationBanner = ({
 }: ConnectedPropTypes) => (
 	<Banner hidden={!previousSimulation}>
 		<Trans i18nKey="previousSimulationBanner.info">
-			Votre précédente simulation a été automatiquement sauvegardée.
+			Votre précédente simulation a été sauvegardée.
 		</Trans>
 		<LinkButton onClick={loadPreviousSimulation}>
 			<Trans i18nKey="previousSimulationBanner.retrieveButton">
-				Retrouver ma dernière simulation
+				Retrouver ma simulation
 			</Trans>
 		</LinkButton>
 		<LinkButton onClick={deletePreviousSimulation}>
