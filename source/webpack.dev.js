@@ -1,6 +1,4 @@
 var webpack = require('webpack'),
-	path = require('path'),
-	HardSourceWebpackPlugin = require('hard-source-webpack-plugin'),
 	common = require('./webpack.common.js')
 
 module.exports = {
@@ -13,13 +11,13 @@ module.exports = {
 			'@babel/polyfill',
 			'react-hot-loader/patch',
 			'./source/entry.js'
-		]
+		],
+		'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
 		// entrées désactivées pour accélérer la compilation au dev
 		//
 		// le nom "simulateur" est là pour des raisons historiques
 		//
 		// ,simulateur: './source/iframe-script.js',
-		// ,colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),

@@ -4,13 +4,8 @@ import { SliderPicker } from 'react-color'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducers from './reducers/reducers'
 import Layout from './containers/Layout'
-
-let tracker = {
-	push: () => {},
-	connectToHistory: history => history
-}
+import reducers from './reducers/reducers'
 
 let store = createStore(reducers)
 
@@ -38,7 +33,7 @@ class MyComponent extends React.Component {
 					&quot;data-couleur&quot; du script sur votre page est :{' '}
 					<b>{this.props.couleur}</b>
 				</p>
-				<Layout tracker={tracker} />
+				<Layout />
 			</div>
 		)
 	}
