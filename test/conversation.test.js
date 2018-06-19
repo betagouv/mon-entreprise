@@ -1,10 +1,14 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
 import yaml from 'js-yaml'
-import { enrichRule } from '../source/engine/rules'
+import { enrichRule, rulesFr as rules } from '../source/engine/rules'
 import reducers from '../source/reducers/reducers'
-import { currentQuestionSelector } from '../source/selectors/analyseSelectors'
+import {
+	currentQuestionSelector,
+	nextStepsSelector
+} from '../source/selectors/analyseSelectors'
 import { merge, assocPath } from 'ramda'
+import { popularTargetNames } from '../source/components/TargetSelection'
 
 let baseState = {
 	conversationSteps: { foldedSteps: [] },
@@ -132,5 +136,16 @@ describe('conversation', function() {
 		expect(step2.conversationSteps.foldedSteps).to.have.lengthOf(1)
 		expect(step2.conversationSteps.foldedSteps[0]).to.equal('brut')
 		expect(currentQuestionSelector(step2, { rules })).to.equal('cadre')
+	})
+})
+describe('real conversation', function() {
+	it('should not have more than X questions', function() {
+		let state = merge(baseState, {
+				targetNames: popularTargetNames
+			}),
+			nextSteps = nextStepsSelector(state, { rules })
+
+		expect(nextSteps.length).to.be.below(30) // If this breaks, that's good news
+		expect(nextSteps.length).to.be.above(10)
 	})
 })
