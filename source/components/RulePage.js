@@ -44,7 +44,8 @@ export default class RulePage extends Component {
 
 		let rules = findRulesByName(flatRules, decodedRuleName)
 		if (!rules.length) return <Redirect to="/404" />
-		if (rules.length > 1) return <DisambiguateRuleQuery rules={rules} />
+		if (rules.length > 1)
+			return <DisambiguateRuleQuery rules={rules} flatRules={flatRules} />
 		let dottedName = head(rules).dottedName
 		return this.renderRule(dottedName)
 	}
@@ -88,7 +89,7 @@ class BackToSimulation extends Component {
 	}
 }
 
-let DisambiguateRuleQuery = ({ rules }) => (
+let DisambiguateRuleQuery = ({ rules, flatRules }) => (
 	<div className="centeredMessage">
 		<p>
 			<Trans i18nKey="ambiguous">
@@ -98,7 +99,7 @@ let DisambiguateRuleQuery = ({ rules }) => (
 		<ul>
 			{rules.map(({ dottedName, ns, title }) => (
 				<li key={dottedName}>
-					<Namespace ns={ns} />
+					<Namespace ns={ns} flatRules={flatRules} />
 					<Link to={'/règle/' + encodeRuleName(dottedName)}>{title}</Link>
 				</li>
 			))}
