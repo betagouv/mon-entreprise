@@ -3,7 +3,8 @@ import { Trans, translate } from 'react-i18next'
 import { Element, scroller } from 'react-scroll'
 import './conversation/conversation.css'
 import { SimpleButton } from './ui/Button'
-import { default as withColours, default as withTracker } from './withColours'
+import withColours from './withColours'
+import withTracker from './withTracker'
 
 @translate()
 @withColours
