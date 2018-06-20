@@ -1,19 +1,12 @@
 /* @flow */
 
 import type { Store } from 'redux'
+import { debounce } from '../utils'
 import { deserialize, serialize } from './serialize'
 import type { State, SavedSimulation } from '../types/State'
 import type { Action } from '../types/Actions'
 
 const VERSION = 2
-
-function throttle(timeout: number, fn: () => void): () => void {
-	let timeoutId
-	return (...args) => {
-		clearTimeout(timeoutId)
-		timeoutId = setTimeout(() => fn(...args), timeout)
-	}
-}
 
 const LOCAL_STORAGE_KEY = 'embauche.gouv.fr::persisted-simulation::v' + VERSION
 
@@ -25,7 +18,7 @@ export function persistSimulation(store: Store<State, Action>) {
 		}
 		window.localStorage.setItem(LOCAL_STORAGE_KEY, serialize(state))
 	}
-	store.subscribe(throttle(1000, listener))
+	store.subscribe(debounce(1000, listener))
 }
 
 export function retrievePersistedSimulation(): ?SavedSimulation {

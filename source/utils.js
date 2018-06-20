@@ -1,8 +1,10 @@
-export let capitalise0 = name => name[0].toUpperCase() + name.slice(1)
+/* @flow */
+
+export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 
 export let getUrl = () => window.location.href.toString()
 
-export let parseDataAttributes = value =>
+export let parseDataAttributes = (value: any) =>
 	value === 'undefined'
 		? undefined
 		: value === null
@@ -12,7 +14,7 @@ export let parseDataAttributes = value =>
 				: /* value is a normal string */
 				  value
 
-export let getIframeOption = optionName => {
+export let getIframeOption = (optionName: string) => {
 	let url = getUrl(),
 		hasOption = url.includes(optionName + '=')
 	return parseDataAttributes(
@@ -21,4 +23,15 @@ export let getIframeOption = optionName => {
 }
 
 // By luck this works as expected for both null and undefined, * but with different branches failing :O *
-export let isFloat = n => Number(n) === n && n % 1 !== 0
+export let isFloat = (n: number) => Number(n) === n && n % 1 !== 0
+
+export function debounce<ArgType: any>(
+	timeout: number,
+	fn: ArgType => void
+): ArgType => void {
+	let timeoutId
+	return (...args) => {
+		clearTimeout(timeoutId)
+		timeoutId = setTimeout(() => fn(...args), timeout)
+	}
+}
