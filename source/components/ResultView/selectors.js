@@ -281,10 +281,12 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 		rawRépartition[branche] = {
 			partPatronale:
 				rawRépartition[branche].partPatronale +
-				(CSG.montant.partPatronale * REPARTITION_CSG[branche]) / 100,
+				(CSG.montant.partPatronale * (REPARTITION_CSG[branche] / (9.2 / 100))) /
+					100,
 			partSalariale:
 				rawRépartition[branche].partSalariale +
-				(CSG.montant.partSalariale * REPARTITION_CSG[branche]) / 100
+				(CSG.montant.partSalariale * (REPARTITION_CSG[branche] / (9.2 / 100))) /
+					100
 		}
 	}
 	return {
