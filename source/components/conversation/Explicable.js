@@ -1,12 +1,11 @@
-import React from 'react'
 import classNames from 'classnames'
-import './Explicable.css'
-import { connect } from 'react-redux'
-import { EXPLAIN_VARIABLE } from '../../actions'
 import { findRuleByDottedName } from 'Engine/rules'
+import React from 'react'
+import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-
-import ReactPiwik from '../Tracker'
+import { EXPLAIN_VARIABLE } from '../../actions'
+import withTracker from '../withTracker'
+import './Explicable.css'
 
 @connect(
 	state => ({
@@ -18,6 +17,7 @@ import ReactPiwik from '../Tracker'
 		explain: variableName => dispatch({ type: EXPLAIN_VARIABLE, variableName })
 	})
 )
+@withTracker
 export default class Explicable extends React.Component {
 	render() {
 		let {
@@ -25,6 +25,7 @@ export default class Explicable extends React.Component {
 			dottedName,
 			explain,
 			explained,
+			tracker,
 			textColourOnWhite
 		} = this.props
 
@@ -46,7 +47,7 @@ export default class Explicable extends React.Component {
 				<span
 					className="icon"
 					onClick={e => {
-						ReactPiwik.push(['trackEvent', 'help', dottedName])
+						tracker.push(['trackEvent', 'help', dottedName])
 						explain(dottedName)
 						e.preventDefault()
 						e.stopPropagation()
