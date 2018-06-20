@@ -2,7 +2,7 @@ enterSalary: Enter a monthly salary
 previousSimulationBanner: 
   info: Your previous simulation data have been saved.
   retrieveButton: Retrieve my last simulation 
-Estimation approximative: This is an estimate
+Première estimation: First estimate
 Commencer la simulation: Start simulation
 selectMany: You may pick more than one
 Valider: Accept

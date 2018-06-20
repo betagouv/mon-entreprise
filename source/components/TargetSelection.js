@@ -77,7 +77,7 @@ export default class TargetSelection extends Component {
 						<div id="action">
 							<p>
 								<b>
-									<Trans>Estimation approximative</Trans>
+									<Trans>Première estimation</Trans>
 								</b>
 							</p>
 							<BlueButton onClick={this.props.startConversation}>
