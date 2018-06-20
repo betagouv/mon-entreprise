@@ -141,9 +141,9 @@ const analysisToCotisations = (
 				cotisation.montant.partPatronale !== 0 ||
 				cotisation.montant.partSalariale !== 0
 		),
-		groupByBranche
+		groupByBranche,
+		filter(([,brancheCotisation]) => !!brancheCotisation)
 	)(variables)
-
 	return cotisations
 }
 const règleLocaliséeSelector = (localizedFlatRules: FlatRules) => (
@@ -260,22 +260,8 @@ const REPARTITION_CSG: { [Branche]: number } = {
 	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
 	// On peut imaginer la partager à toute les composantes concernées
 	autres: 0.6
-}
-const répartition = (ficheDePaie: FicheDePaie): Répartition => {
-	// $FlowFixMe
-	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
-		ficheDePaie.cotisations
-	)
-	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
-	const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
-	if (!CSG) {
-		throw new Error('[répartition selector]: expect CSG not to be null')
-	}
-	cotisations.autres = without([CSG], cotisations.autres)
-	const rawRépartition: { [Branche]: MontantPartagé } = map(
-		totalCotisations,
-		cotisations
-	)
+};
+function dispatchCSGInPlace(CSG: Cotisation, rawRépartition: {[Branche]: MontantPartagé}): void {
 	// $FlowFixMe
 	for (const branche: Branche in REPARTITION_CSG) {
 		rawRépartition[branche] = {
@@ -289,6 +275,24 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 					100
 		}
 	}
+}
+const répartition = (ficheDePaie: FicheDePaie): Répartition => {
+	// $FlowFixMe
+	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
+		ficheDePaie.cotisations
+	)
+	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
+	const rawRépartition: { [Branche]: MontantPartagé } = map(
+		totalCotisations,
+		cotisations
+	)
+	if (cotisations.autres) {
+		const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
+		if (!CSG) throw new Error('[répartition selector]: expect CSG not to be null')
+		cotisations.autres = without([CSG], cotisations.autres)
+		dispatchCSGInPlace(CSG, rawRépartition);
+	}
+	
 	return {
 		// $FlowFixMe
 		répartition: compose(
