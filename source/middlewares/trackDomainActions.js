@@ -1,5 +1,6 @@
 /* @flow */
 
+// $FlowFixMe
 import { actionTypes } from 'redux-form'
 import {
 	currentQuestionSelector,
