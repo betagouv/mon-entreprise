@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 import {
 	collectMissingVariablesByTarget,
 	getNextSteps
@@ -6,7 +6,7 @@ import {
 
 import { analyseMany, analyse, parseAll } from 'Engine/traverse'
 
-import { head, isEmpty, pick } from 'ramda'
+import { head, isEmpty, pick, equals } from 'ramda'
 
 import { getFormValues } from 'redux-form'
 import {
@@ -18,6 +18,9 @@ import {
 	findRuleByDottedName,
 	disambiguateExampleSituation
 } from 'Engine/rules'
+
+// create a "selector creator" that uses deep equal instead of ===
+const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
 /* 
  *
@@ -41,7 +44,11 @@ let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
 )
 
 let targetNamesSelector = state => state.targetNames
-export let situationSelector = getFormValues('conversation')
+
+export let situationSelector = createDeepEqualSelector(
+	getFormValues('conversation'),
+	x => x
+)
 
 export let noUserInputSelector = createSelector(
 	[situationSelector],
@@ -53,10 +60,13 @@ export let formattedSituationSelector = createSelector(
 	(rules, situation) => formatInputs(rules, nestedSituationToPathMap(situation))
 )
 
-let validatedStepsSelector = state => [
-	...state.conversationSteps.foldedSteps,
-	state.activeTargetInput
-]
+let validatedStepsSelector = createSelector(
+	[
+		state => state.conversationSteps.foldedSteps,
+		state => state.activeTargetInput
+	],
+	(foldedSteps, target) => [...foldedSteps, target]
+)
 
 export let validatedSituationSelector = createSelector(
 	[formattedSituationSelector, validatedStepsSelector],
@@ -107,7 +117,7 @@ export let exampleAnalysisSelector = createSelector(
 )
 
 let makeAnalysisSelector = situationSelector =>
-	createSelector(
+	createDeepEqualSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],
 		(parsedRules, targetNames, situation) =>
 			analyseMany(parsedRules, targetNames)(dottedName => situation[dottedName])
