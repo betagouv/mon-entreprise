@@ -266,7 +266,7 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
 		ficheDePaie.cotisations
 	)
-	const { salaireNet, salaireChargé } = ficheDePaie
+	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
 	const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
 	if (!CSG) {
 		throw new Error('[répartition selector]: expect CSG not to be null')
@@ -307,6 +307,7 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 			// $FlowFixMe
 		)(rawRépartition),
 		salaireNet,
+		réductionsDeCotisations,
 		salaireChargé
 	}
 }

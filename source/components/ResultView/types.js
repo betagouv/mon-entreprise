@@ -69,6 +69,7 @@ export type FicheDePaie = {
 export type Répartition = {
 	répartition: Array<[Branche, MontantPartagé]>,
 	total: MontantPartagé,
+	réductionsDeCotisations: RègleAvecMontant,
 	salaireNet: RègleAvecMontant,
 	salaireChargé: RègleAvecMontant,
 	cotisationMaximum: number
