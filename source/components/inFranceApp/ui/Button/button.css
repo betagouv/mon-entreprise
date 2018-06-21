@@ -1,0 +1,84 @@
+.ui__cta-button:active,
+.ui__cta-button:focus,
+.ui__button:active,
+.ui__button:focus {
+	animation: push-button-down 0.15s ease-out alternate-reverse 2;
+}
+
+.ui__button,
+.ui__cta-button,
+.ui__skip-button {
+	font-size: 1.1rem;
+	padding: 0.8rem 1.6rem;
+	text-decoration: none;
+	border: 1px solid;
+	outline: none;
+	display: inline-block;
+	border-radius: 0.6rem;
+	transition: all 0.2s;
+	margin: 0.8rem 0;
+	margin-right: 1.6em;
+	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+}
+.ui__button {
+	border-color: rgb(41, 117, 209);
+	color: rgb(41, 117, 209);
+}
+.ui__button:hover,
+.ui__button.selected {
+	background-color: rgb(41, 117, 209);
+	color: white;
+	border-color: white;
+}
+
+.ui__cta-button {
+	color: white;
+	border-color: white;
+}
+.ui__cta-button:hover {
+	background-color: rgba(255, 255, 255, 0.9);
+	color: rgb(41, 117, 209);
+	border-color: rgb(41, 117, 209);
+}
+
+.ui__link-button {
+	border: none;
+	display: inline-block;
+	text-decoration: underline;
+	color: rgb(41, 117, 209);
+}
+
+.ui__button_next {
+	color: rgb(41, 117, 209);
+}
+
+.ui__skip-button {
+	opacity: 0.6;
+}
+.ui__skip-button:hover {
+	opacity: 0.8;
+	transform: translateX(3px);
+}
+.ui__skip-button:focus,
+.ui__skip-button:active {
+	animation: push-button-right 0.15s ease-out alternate-reverse 2;
+}
+
+@keyframes push-button-down {
+	from {
+		transform: translate3d(0, 5px, 5px);
+	}
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes push-button-right {
+	from {
+		transform: translate3d(5px, 0, 5px);
+	}
+	to {
+		transform: translate3d(3px, 0, 0);
+	}
+}

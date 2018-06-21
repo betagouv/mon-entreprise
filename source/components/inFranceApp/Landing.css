@@ -1,0 +1,40 @@
+.landing__header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 80vh;
+	color: white;
+}
+.landing__header h1 {
+	color: inherit;
+}
+
+.landing__header header {
+	text-align: center;
+	max-width: 600px;
+}
+.landing__header p {
+	font-size: 2rem;
+	font-weight: lighter;
+}
+.landing__header a {
+	margin-top: 6rem;
+}
+
+.landing__reassurance {
+	height: 20vh;
+	padding: 3rem;
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+.landing__reassurance > * {
+	height: 100%;
+	text-align: center;
+	flex: 1;
+}
+.landing__reassurance img {
+	max-height: 100%;
+	max-width: 100%;
+}
