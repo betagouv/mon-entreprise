@@ -6,6 +6,7 @@
 
 html {
 	box-sizing: border-box;
+	height: 100%;
 }
 *,
 *:before,
@@ -13,6 +14,11 @@ html {
 	box-sizing: inherit;
 }
 
+body {
+	font-family: 'Open Sans';
+	margin: 0;
+	height: 100%;
+}
 [hidden],
 .js-only {
 	display: none;
