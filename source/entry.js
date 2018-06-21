@@ -1,13 +1,18 @@
 /* global process: false */
 
 import ReactPiwik from 'Components/Tracker'
+import createHistory from 'history/createBrowserHistory'
+import i18next from 'i18next'
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { I18nextProvider } from 'react-i18next'
 import { Provider } from 'react-redux'
+import { Router } from 'react-router-dom'
 import { applyMiddleware, compose, createStore } from 'redux'
 import computeThemeColours from './components/themeColours'
-import Layout from './containers/Layout'
+import { defaultTracker, TrackerProvider } from './components/withTracker'
+import Layout from './inFranceApp'
 import trackDomainActions from './middlewares/trackDomainActions'
 import reducers from './reducers/reducers'
 import {
@@ -15,7 +20,6 @@ import {
 	retrievePersistedSimulation
 } from './storage/persist'
 import { getIframeOption, getUrl } from './utils'
-import { defaultTracker, TrackerProvider } from './components/withTracker'
 
 let tracker = defaultTracker
 if (process.env.NODE_ENV === 'production') {
@@ -49,10 +53,16 @@ let store = createStore(reducers, initialStore, enhancer)
 let anchor = document.querySelector('#js')
 persistSimulation(store)
 
+const history = createHistory()
+
 let App = ({ store }) => (
 	<Provider store={store}>
 		<TrackerProvider value={tracker}>
-			<Layout/>
+			<I18nextProvider i18n={i18next}>
+				<Router history={tracker.connectToHistory(history)}>
+					<Layout />
+				</Router>
+			</I18nextProvider>
 		</TrackerProvider>
 	</Provider>
 )
