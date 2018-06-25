@@ -1,13 +1,13 @@
 @import './Button/button.css';
 @import './Typography.css';
 
-.ui__container {
+.ui__.container {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 2rem;
 }
 
-.ui__answer-group {
+.ui__.answer-group {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;

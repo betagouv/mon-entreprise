@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import '../../containers/reset.css'
 import withTracker from '../withTracker'
 import Landing from './Landing'
-import Create from './Steps/Create'
+import CreateMyCompany from './Steps/Create/index'
 import './ui/index.css'
 class Layout extends Component {
 	componentDidMount() {
@@ -21,9 +21,8 @@ class Layout extends Component {
 				</Helmet>
 				<Switch>
 					<Route exact path="/" component={Landing} />
-					<div className="ui__container">
-						<Route path="/steps/creating-my-company" component={Create} />
-						<Route path="/steps/search-my-company" component={Create} />
+					<div className="ui__ container">
+						<Route path="/create-my-company" component={CreateMyCompany} />
 					</div>
 				</Switch>
 			</>

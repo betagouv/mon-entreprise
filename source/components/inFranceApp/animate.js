@@ -1,10 +1,10 @@
 /* @flow */
-import React from 'react'
+import * as React from 'react'
 import { animated, config as configPresets, Trail } from 'react-spring'
 import type { SpringConfig } from 'react-spring'
 
 type Props = {
-	children: Array<Node>,
+	children: Array<React.Node>,
 	config?: SpringConfig,
 	delay?: number
 }
