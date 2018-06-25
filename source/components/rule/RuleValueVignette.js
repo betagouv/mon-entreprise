@@ -43,7 +43,13 @@ export class RuleValue extends Component {
 				transitionLeaveTimeout={100}>
 				<span key={text} className="Rule-value">
 					{' '}
-					<span className={className}>{text}</span>
+					<span className={className}>
+						{this.props.target.title === 'Salaire chargé' ? (
+							<span>3542€ - 🎁 200€ </span>
+						) : (
+							<span>{text}</span>
+						)}
+					</span>
 				</span>
 			</ReactCSSTransitionGroup>
 		)

@@ -19,13 +19,13 @@ import { RuleValue } from './rule/RuleValueVignette'
 import './TargetSelection.css'
 import withLanguage from './withLanguage'
 
-let salaries = [
+export let displayedTargetNames = [
 	'contrat salarié . salaire . total',
 	'contrat salarié . salaire . brut de base',
-	'contrat salarié . salaire . net à payer'
+	'contrat salarié . salaire . net à payer',
+	'contrat salarié . salaire . net après impôts'
 ]
 
-let displayedTargetNames = [...salaries, 'contrat salarié . aides employeur']
 export let popularTargetNames = [
 	...displayedTargetNames,
 	'contrat salarié . salaire . net imposable'
@@ -224,7 +224,7 @@ class TargetValue extends Component {
 					}
 					setActiveInput(target.dottedName)
 				}}>
-				<RuleValue value={value} />
+				<RuleValue target={target} value={value} />
 			</span>
 		)
 	}

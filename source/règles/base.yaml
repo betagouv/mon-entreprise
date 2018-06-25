@@ -685,6 +685,7 @@
       avec:
         - salaire . net à payer
         - salaire . total
+        - salaire . net après impôts
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -855,6 +856,17 @@
     C'est le montant que le salarié touche à la fin du mois.
   formule: salaire . net - avantages en nature . montant
 
+- espace: contrat salarié . salaire
+  nom: net après impôts
+  titre: Salaire net après impôts
+  résumé: Revenu disponible du salarié
+  question: Quel est le revenu net après impôts du salarié ?
+  type: salaire
+  format: euros
+  description: | 
+          Le salaire net après déduction de l'impôt neutre. C'est une bonne estimation du revenu disponible d'une personne en l'absence d'information sur sa famille et son patrimoine.
+  formule: net à payer - 500
+
 - espace: contrat salarié
   nom: coût du travail
   description: |
@@ -868,7 +880,7 @@
   nom: total
   titre: Salaire chargé
   question: Quel est le salaire mensuel chargé ?
-  résumé: Versé par l'employeur tous les mois
+  résumé: Versé par l'employeur 
   type: salaire
   description: |
     C'est le salaire brut, plus les cotisations patronales, moins les réductions de cotisations sociales.
