@@ -5,6 +5,7 @@ import '../../containers/reset.css'
 import withTracker from '../withTracker'
 import Landing from './Landing'
 import CreateMyCompany from './Steps/Create/index'
+import FindMyCompany from './Steps/Find'
 import './ui/index.css'
 class Layout extends Component {
 	componentDidMount() {
@@ -23,6 +24,7 @@ class Layout extends Component {
 					<Route exact path="/" component={Landing} />
 					<div className="ui__ container">
 						<Route path="/create-my-company" component={CreateMyCompany} />
+						<Route path="/find-my-company" component={FindMyCompany} />
 					</div>
 				</Switch>
 			</>
