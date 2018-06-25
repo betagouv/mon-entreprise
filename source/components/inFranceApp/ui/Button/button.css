@@ -1,11 +1,11 @@
-.ui__cta-button:active,
-.ui__button:active {
+.ui__.inverted-button:active,
+.ui__.button:active {
 	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
-.ui__button,
-.ui__cta-button,
-.ui__skip-button {
+.ui__.button,
+.ui__.inverted-button,
+.ui__.skip-button {
 	font-size: 1.1rem;
 	padding: 0.8rem 1.6rem;
 	text-decoration: none;
@@ -19,49 +19,55 @@
 	text-transform: uppercase;
 	font-family: 'Open Sans', sans-serif;
 }
-.ui__button {
+.ui__.button {
 	border-color: rgb(41, 117, 209);
 	color: rgb(41, 117, 209);
 }
-.ui__button:hover,
-.ui__button.selected {
+.ui__.button:hover,
+.ui__.button.selected {
 	background-color: rgb(41, 117, 209);
 	color: white;
 	border-color: white;
 }
-
-.ui__cta-button {
+.ui__.button.cta,
+.ui__.inverted-button.cta {
+	margin: 3em auto;
+	display: inline-block;
+	align-self: center;
+	font-size: 120%;
+}
+.ui__.inverted-button {
 	color: white;
 	border-color: white;
 }
-.ui__cta-button:hover {
+.ui__.inverted-button:hover {
 	background-color: rgba(255, 255, 255, 0.9);
 	color: rgb(41, 117, 209);
 	border-color: rgb(41, 117, 209);
 }
 
-.ui__link-button {
+.ui__.link-button {
 	border: none;
 	display: inline-block;
 	text-decoration: underline;
 	color: rgb(41, 117, 209);
 }
 
-.ui__button_next {
+.ui__.button_next {
 	color: rgb(41, 117, 209);
 }
 
-.ui__skip-button {
+.ui__.skip-button {
 	opacity: 0.6;
 	border-color: black;
 	color: black;
 }
-.ui__skip-button:hover {
+.ui__.skip-button:hover {
 	opacity: 0.8;
 	transform: translateX(3px);
 }
 
-.ui__skip-button:active {
+.ui__.skip-button:active {
 	animation: push-button-right 0.1s ease-out alternate-reverse 2;
 }
 

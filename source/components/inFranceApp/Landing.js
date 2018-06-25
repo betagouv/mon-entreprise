@@ -20,8 +20,8 @@ const Landing = ({ colours: { colour } }) => (
 						<li>Hiring your first employee</li>
 					</ul>
 					<a
-						className="ui__cta-button"
-						href="/steps/creating-my-company"
+						className="ui__ inverted-button cta"
+						href="/create-my-company"
 						alt="the first step to create a company">
 						Take the step by step guide
 					</a>
