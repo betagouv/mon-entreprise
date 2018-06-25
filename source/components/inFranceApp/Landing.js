@@ -1,6 +1,7 @@
 /* @flow */
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
 import withColours from '../withColours'
 import * as Animate from './animate'
@@ -20,12 +21,12 @@ const Landing = ({ colours: { colour } }) => (
 						<li>Costs and social benefits {emoji('💰')}</li>
 						<li>Hiring your first employee {emoji('🤝')}</li>
 					</ul>
-					<a
+					<Link
 						className="ui__ inverted-button cta"
-						href="/create-my-company"
+						to="/create-my-company"
 						alt="the first step to create a company">
 						Take the step by step guide
-					</a>
+					</Link>
 				</Animate.fromBottom>
 			</header>
 		</section>

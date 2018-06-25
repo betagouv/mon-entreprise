@@ -15,11 +15,11 @@ const CreateMyCompany = ({ match }: Props) => (
 			administration.
 		</p>
 		{match.isExact && (
-			<Link className="ui__ button cta" to={match.url + '/choose-legal-setup'}>
+			<Link className="ui__ button cta" to={match.path + '/choose-legal-setup'}>
 				Choose the legal setup
 			</Link>
 		)}
-		<Link className="ui__ link-button" to="/search-my-company">
+		<Link className="ui__ link-button" to="/find-my-company">
 			I already have registered my company
 		</Link>
 	</Animate.fromBottom>
