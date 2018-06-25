@@ -1,8 +1,6 @@
 .ui__cta-button:active,
-.ui__cta-button:focus,
-.ui__button:active,
-.ui__button:focus {
-	animation: push-button-down 0.15s ease-out alternate-reverse 2;
+.ui__button:active {
+	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
 .ui__button,
@@ -12,7 +10,7 @@
 	padding: 0.8rem 1.6rem;
 	text-decoration: none;
 	border: 1px solid;
-	outline: none;
+	/* outline: none; */
 	display: inline-block;
 	border-radius: 0.6rem;
 	transition: all 0.2s;
@@ -55,28 +53,30 @@
 
 .ui__skip-button {
 	opacity: 0.6;
+	border-color: black;
+	color: black;
 }
 .ui__skip-button:hover {
 	opacity: 0.8;
 	transform: translateX(3px);
 }
-.ui__skip-button:focus,
+
 .ui__skip-button:active {
-	animation: push-button-right 0.15s ease-out alternate-reverse 2;
+	animation: push-button-right 0.1s ease-out alternate-reverse 2;
 }
 
 @keyframes push-button-down {
 	from {
-		transform: translate3d(0, 5px, 5px);
+		transform: translateY(3px);
 	}
 	to {
-		transform: translate3d(0, 0, 0);
+		transform: translate3d(0);
 	}
 }
 
 @keyframes push-button-right {
 	from {
-		transform: translate3d(5px, 0, 5px);
+		transform: translate3d(5px, 0, 0);
 	}
 	to {
 		transform: translate3d(3px, 0, 0);

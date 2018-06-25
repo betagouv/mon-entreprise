@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 80vh;
+	min-height: 80vh;
 	color: white;
 }
 .landing__header h1 {
@@ -19,7 +19,7 @@
 	font-weight: lighter;
 }
 .landing__header a {
-	margin-top: 6rem;
+	margin: 6rem auto;
 }
 
 .landing__reassurance {
