@@ -1,4 +1,5 @@
 - espace: contrat salarié . CDD
+  # yo
   nom: CIF
   description: Contribution au financement du congé individuel de formation spécifique aux CDD.
   cotisation:
@@ -880,7 +881,7 @@
   nom: total
   titre: Salaire chargé
   question: Quel est le salaire mensuel chargé ?
-  résumé: À verser par l'employeur tous les mois
+  résumé: Versé par l'employeur
   type: salaire
   format: euros
   description: |
