@@ -87,9 +87,9 @@ fs.writeFile(
 	JSON.stringify(trimmed),
 	function(err) {
 		if (err) {
-			return console.log(err)
+			return console.log(err) //eslint-disable-line no-console
 		}
 
-		console.log("C'est tout bon !")
+		console.log("C'est tout bon !") //eslint-disable-line no-console
 	}
 )

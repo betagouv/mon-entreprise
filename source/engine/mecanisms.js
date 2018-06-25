@@ -975,27 +975,17 @@ export let mecanismSelection = (recurse, k, v) => {
 			dataSource = findRuleByName(parsedRules, dataSourceName),
 			data = dataSource ? dataSource['data'] : null,
 			dataKey = explanation.nodeValue,
-			dataItems =
+			found =
 				data && dataKey && dataSearchField
-					? filter(item => item[dataSearchField] == dataKey, data)
+					? find(item => item[dataSearchField] == dataKey, data)
 					: null,
-			dataItemValues =
-				dataItems && !isEmpty(dataItems) ? values(dataItems) : null,
-			// TODO - over-specific! transform the JSON instead
-			dataItemSubValues =
-				dataItemValues && dataItemValues[0][dataTargetName]
-					? dataItemValues[0][dataTargetName]['taux']
-					: null,
-			sortedSubValues = dataItemSubValues
-				? sortBy(pair => pair[0], toPairs(dataItemSubValues))
-				: null,
 			// return 0 if we found a match for the lookup but not for the specific field,
 			// so that component sums don't sum to null
-			nodeValue = dataItems
-				? sortedSubValues
-					? Number.parseFloat(last(sortedSubValues)[1]) / 100
-					: 0
-				: null,
+			nodeValue =
+				(found &&
+					found[dataTargetName] &&
+					Number.parseFloat(found[dataTargetName]) / 100) ||
+				0,
 			missingVariables = explanation.missingVariables
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
