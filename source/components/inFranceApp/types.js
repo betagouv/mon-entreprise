@@ -1,12 +1,21 @@
 /* @flow */
 
-export type SetCompanyLegalSetupAction = {
-	type: 'SET_COMPANY_LEGAL_SETUP',
+export type CompanyLegalSetup = 'LIMITED_LIABILITY' | 'SOLE_PROPRIETORSHIP'
+export type ChooseCompanyLegalSetupAction = {
+	type: 'CHOOSE_COMPANY_LEGAL_SETUP',
 	setup: CompanyLegalSetup
 }
-export type CompanyLegalSetup = 'LIMITED_LIABILITY' | 'SOLE_PROPRIETORSHIP'
-export type State = {
-	legalSetup: ?CompanyLegalSetup
+
+export type DirectorStatus = 'SALARIED' | 'SELF-EMPLOYED'
+
+export type DefineDirectorStatusAction = {
+	type: 'DEFINE_DIRECTOR_STATUS',
+	status: DirectorStatus
 }
 
-export type Action = SetCompanyLegalSetupAction
+export type State = {
+	legalSetup: ?CompanyLegalSetup,
+	status: ?DirectorStatus
+}
+
+export type Action = ChooseCompanyLegalSetupAction | DefineDirectorStatusAction

@@ -1,11 +1,25 @@
 /* @flow */
-import type { CompanyLegalSetup, SetCompanyLegalSetupAction } from './types'
+import type {
+	ChooseCompanyLegalSetupAction,
+	CompanyLegalSetup,
+	DirectorStatus,
+	DefineDirectorStatusAction
+} from './types'
 
-export function setCompanyLegalSetup(
+export function chooseCompanyLegalSetup(
 	setup: CompanyLegalSetup
-): SetCompanyLegalSetupAction {
+): ChooseCompanyLegalSetupAction {
 	return {
-		type: 'SET_COMPANY_LEGAL_SETUP',
+		type: 'CHOOSE_COMPANY_LEGAL_SETUP',
 		setup
+	}
+}
+
+export function defineCompanyStatus(
+	status: DirectorStatus
+): DefineDirectorStatusAction {
+	return {
+		type: 'DEFINE_DIRECTOR_STATUS',
+		status
 	}
 }
