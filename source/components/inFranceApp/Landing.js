@@ -7,6 +7,7 @@ import * as Animate from './animate'
 import './Landing.css'
 import marianneSvg from './marianne.svg'
 import urssafSvg from './urssaf.svg'
+import emoji from 'react-easy-emoji'
 
 const Landing = ({ colours: { colour } }) => (
 	<>
@@ -15,9 +16,9 @@ const Landing = ({ colours: { colour } }) => (
 				<Animate.fromBottom config={config.slow}>
 					<h1>Launch your business in France</h1>
 					<ul>
-						<li>Incorporation guide</li>
-						<li>Costs and social benefits</li>
-						<li>Hiring your first employee</li>
+						<li>Incorporation guide {emoji('🏗️🏢')}</li>
+						<li>Costs and social benefits {emoji('💰')}</li>
+						<li>Hiring your first employee {emoji('🤝')}</li>
 					</ul>
 					<a
 						className="ui__ inverted-button cta"
