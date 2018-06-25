@@ -18,6 +18,11 @@
 	list-style: none;
 	padding-left: 0;
 }
+.landing__header li img {
+	width: 1.2em !important ;
+	height: 1.2em !important ;
+	vertical-align: middle !important;
+}
 .landing__header a {
 	margin: 6rem auto;
 }
