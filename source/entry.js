@@ -70,7 +70,7 @@ let App = ({ store }) => (
 render(<App store={store} />, anchor)
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-	module.hot.accept('./containers/Layout', () => {
+	module.hot.accept('./components/inFranceApp', () => {
 		render(
 			<AppContainer>
 				<App store={store} />
