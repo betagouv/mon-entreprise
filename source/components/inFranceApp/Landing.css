@@ -14,9 +14,9 @@
 	text-align: center;
 	max-width: 600px;
 }
-.landing__header p {
-	font-size: 2rem;
-	font-weight: lighter;
+.landing__header ul {
+	list-style: none;
+	padding-left: 0;
 }
 .landing__header a {
 	margin: 6rem auto;

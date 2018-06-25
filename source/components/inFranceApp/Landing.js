@@ -13,8 +13,12 @@ const Landing = ({ colours: { colour } }) => (
 		<section className="landing__header" style={{ backgroundColor: colour }}>
 			<header>
 				<Animate.fromBottom config={config.slow}>
-					<h1>Settling a business in France</h1>
-					<p> Create. Hire. Profit.</p>
+					<h1>Launch your business in France</h1>
+					<ul>
+						<li>Incorporation guide</li>
+						<li>Costs and social benefits</li>
+						<li>Hiring your first employee</li>
+					</ul>
 					<a
 						className="ui__cta-button"
 						href="/steps/creating-my-company"
