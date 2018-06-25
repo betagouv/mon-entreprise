@@ -6,3 +6,9 @@
 	margin: 0 auto;
 	padding: 2rem;
 }
+
+.ui__answer-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
