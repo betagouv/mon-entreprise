@@ -4,10 +4,13 @@ import * as Animate from '../animate'
 import { SkipButton } from '../ui/Button'
 import ReactSelect from 'react-select'
 import 'react-select/dist/react-select.css'
+import './Find.css'
+import { Link } from 'react-router-dom'
+import { toPairs } from 'ramda'
 
 export default function Create() {
 	return (
-		<Animate.fromBottom>
+		<>
 			<header className="ui__inverted-colors" style={{ textAlign: 'center' }}>
 				<h1 className="question__title">Find your company</h1>
 				<a className="ui__link-button" href="/steps/-create-my-company">
@@ -16,7 +19,7 @@ export default function Create() {
 			</header>
 			<Search />
 			<SkipButton />
-		</Animate.fromBottom>
+		</>
 	)
 }
 
@@ -26,7 +29,6 @@ class Search extends React.Component {
 		chosen: null
 	}
 	handleChange = input => {
-		console.log({ input })
 		this.setState({ input })
 	}
 	getOptions = input =>
@@ -48,7 +50,15 @@ class Search extends React.Component {
 	//this.inputElement.focus()
 	//}
 	render() {
-		if (this.state.chosen) return <Company {...this.state.input} />
+		if (this.state.chosen)
+			return (
+				<>
+					<Company {...this.state.input} />
+					<Link to="/simulate-costs" className="ui__ button">
+						Simulate costs
+					</Link>
+				</>
+			)
 		return (
 			<>
 				<ReactSelect.Async
@@ -59,7 +69,7 @@ class Search extends React.Component {
 					optionRenderer={({ l1_normalisee, code_postal }) =>
 						l1_normalisee + ` (${code_postal})`
 					}
-					placeholder="Nom d'entreprise (+ code postal)"
+					placeholder="Nom d'entreprise (+ ville)"
 					noResultsText="Nous n'avons trouvé aucune entreprise..."
 					searchPromptText={null}
 					loadingPlaceholder="Recherche en cours..."
@@ -68,7 +78,7 @@ class Search extends React.Component {
 
 				<button
 					onClick={() => this.setState({ chosen: true })}
-					className="ui__button">
+					className="ui__ button">
 					Okay
 				</button>
 			</>
@@ -76,6 +86,26 @@ class Search extends React.Component {
 	}
 }
 
-let Company = ({ l1_normalisee, l4_normalisee, activite_principale }) => (
-	<div>{l1_normalisee + ' ' + activite_principale}</div>
-)
+let companyDataSelection = {
+	l1_normalisee: 'Address',
+	libelle_activite_principale: 'Main activity',
+	libelle_region: 'Region',
+	libelle_tranche_effectif_salarie_entreprise: 'Number of employees',
+	date_creation: 'Creation date'
+}
+
+let Company = data => {
+	return (
+		<ul>
+			{toPairs(data).map(
+				([key, value]) =>
+					companyDataSelection[key] != null ? (
+						<li key={key}>
+							<span className="companyHeader">{companyDataSelection[key]}</span>
+							<p>{value}</p>
+						</li>
+					) : null
+			)}
+		</ul>
+	)
+}
