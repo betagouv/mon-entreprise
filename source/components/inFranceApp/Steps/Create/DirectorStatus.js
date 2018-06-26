@@ -1,9 +1,21 @@
 /* @flow */
 import React from 'react'
+import { connect } from 'react-redux'
+import { defineDirectorStatus } from '../../actions'
 import * as Animate from '../../animate'
 import { SkipButton } from '../../ui/Button'
+import type { DirectorStatus } from '../../types'
+import type { RouterHistory } from 'react-router'
+type Props = {
+	history: RouterHistory,
+	defineDirectorStatus: DirectorStatus => void
+}
 
-const DirectorStatus = () => (
+const goToNextStep = (history: RouterHistory) => {
+	history.push('/create-my-company/number-of-associate')
+}
+
+const DefineDirectorStatus = ({ history, defineDirectorStatus }: Props) => (
 	<Animate.fromBottom>
 		<h2>Defining the director&apos;s status </h2>
 		<p>
@@ -31,11 +43,28 @@ const DirectorStatus = () => (
 		</ul>
 
 		<div className="ui__ answer-group">
-			<button className="ui__ button">Salaried employee</button>
-			<button className="ui__ button">Self-employed</button>
+			<button
+				className="ui__ button"
+				onClick={() => {
+					defineDirectorStatus('SALARIED')
+					goToNextStep(history)
+				}}>
+				Salaried
+			</button>
+			<button
+				className="ui__ button"
+				onClick={() => {
+					defineDirectorStatus('SELF_EMPLOYED')
+					goToNextStep(history)
+				}}>
+				Self-employed
+			</button>
 			<SkipButton />
 		</div>
 	</Animate.fromBottom>
 )
 
-export default DirectorStatus
+export default connect(
+	null,
+	{ defineDirectorStatus }
+)(DefineDirectorStatus)

@@ -1,44 +1,68 @@
 /* @flow */
-import React from 'react';
-import { connect } from 'react-redux';
-import { defineDirectorStatus } from '../../actions';
-import * as Animate from '../../animate';
-import { SkipButton } from '../../ui/Button';
+import { map, whereEq } from 'ramda'
+import React from 'react'
+import { connect } from 'react-redux'
+import * as Animate from '../../animate'
+import { SkipButton } from '../../ui/Button'
 import type { RouterHistory } from 'react-router'
-import type { DirectorStatus , CompanyLegalSetup } from '../../types'
+import type { State as CompanySituation } from '../../types'
+const setMainStatus = () => {}
+const LEGAL_STATUS_DETAILS: { [status: string]: CompanySituation } = {
+	EI: {
+		legalSetup: 'SOLE_PROPRIETORSHIP',
+		directorStatus: 'SELF_EMPLOYED',
+		multipleAssociate: false
+	},
+	EURL: {
+		legalSetup: 'LIMITED_LIABILITY',
+		directorStatus: 'SELF_EMPLOYED',
+		multipleAssociate: false
+	},
+	EIRL: {
+		legalSetup: 'LIMITED_LIABILITY',
+		directorStatus: 'SELF_EMPLOYED',
+		multipleAssociate: false
+	},
+	SARL: {
+		legalSetup: 'LIMITED_LIABILITY',
+		directorStatus: 'SELF_EMPLOYED',
+		multipleAssociate: true
+	},
+	SAS: {
+		legalSetup: 'LIMITED_LIABILITY',
+		directorStatus: 'SALARIED',
+		multipleAssociate: true
+	},
+	SA: {
+		legalSetup: 'LIMITED_LIABILITY',
+		directorStatus: 'SALARIED',
+		multipleAssociate: true
+	},
+	SNC: {
+		legalSetup: 'SOLE_PROPRIETORSHIP',
+		directorStatus: 'SELF_EMPLOYED',
+		multipleAssociate: true
+	},
+	SASU: {
+		legalSetup: 'LIMITED_LIABILITY',
+		directorStatus: 'SELF_EMPLOYED',
+		multipleAssociate: false
+	}
+}
+
+type LegalStatus = $Keys<typeof LEGAL_STATUS_DETAILS>
+const possibleStatusSelector = state =>
+	map(whereEq(state.inFranceApp), LEGAL_STATUS_DETAILS)
+
 type Props = {
 	history: RouterHistory,
-	defineDirectorStatus: DirectorStatus => void
+	possibleStatus: LegalStatus,
+	setMainStatus: LegalStatus => void
 }
 
 const goToNextStep = (history: RouterHistory) => {
 	history.push('/create-my-company/declare-my-business')
 }
-
-const LEGAL_STATUS: {[status: string]: {legalSetup: CompanyLegalSetup, legalEntity: DirectorStatus}} = {
-	EI: { legalSetup: 'SOLE_PROPRIETORSHIP', legalEntity: 'SELF_EMPLOYED'},
-	EURL: { legalSetup: 'LIMITED_LIABILITY', legalEntity: ''},
-	EIRL: { legalSetup: 'LIMITED_LIABILITY', legalEntity: 'SELF_EMPLOYED'},
-	SARL: { legalSetup: 'SOLE_PROPRIETORSHIP', legalEntity: 'SELF_EMPLOYED'},
-	SAS: { legalSetup: 'SOLE_PROPRIETORSHIP', legalEntity: 'SALARIED'},
-	SA: { legalSetup: 'SOLE_PROPRIETORSHIP', legalEntity: 'SELF_EMPLOYED'},
-	SNC: { legalSetup: 'SOLE_PROPRIETORSHIP', legalEntity: 'SELF_EMPLOYED'},
-	SASU: { legalSetup: 'SOLE_PROPRIETORSHIP', legalEntity: 'SELF_EMPLOYED'}
-}
-    type LegalStatus = $Keys<PossibleLegalStatus>
-    
-    const possibleStatus: PossibleLegalStatus = {
-        EI: true,
-        EURL: true,
-        EIRL: true,
-        SARL: true,
-        SAS: true,
-        SA: true,
-	SNC: true,
-	SASU: true
-}
-
-const possibleStatusSelector = state => state.inFrance.
 
 const StatusButton = ({
 	status,
@@ -52,13 +76,13 @@ const StatusButton = ({
 			goToNextStep(history)
 		}}
 		className="ui__ button">
-		{status}
+		Create {status}
 	</button>
 )
 
-const SetMainStatus = ({ history }: Props) => (
+const SetMainStatus = ({ history, possibleStatus }: Props) => (
 	<Animate.fromBottom>
-		<h2>Set the legal status</h2>
+		<h2>Choose the legal status</h2>
 		<p>To carry out your activity, you must choose a legal status.</p>
 		<p>
 			The choice of a legal form of practice depends on several factors: the way
@@ -156,12 +180,12 @@ const SetMainStatus = ({ history }: Props) => (
 				.map(([status]) => (
 					<StatusButton key={status} status={status} history={history} />
 				))}
-			<SkipButton onClick={() => goToNextStep(history)} />
+			<SkipButton onClick={() => goToNextStep(history)}>Do it later</SkipButton>
 		</div>
 	</Animate.fromBottom>
 )
 
 export default connect(
-	null,
-	{ defineDirectorStatus }
+	state => ({ possibleStatus: possibleStatusSelector(state) }),
+	{ setMainStatus }
 )(SetMainStatus)
