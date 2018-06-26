@@ -50,6 +50,7 @@ export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
 	'assurance chômage',
 	'formation',
 	'logement',
+	'transport',
 	'autres'
 ]
 
@@ -142,7 +143,7 @@ const analysisToCotisations = (
 				cotisation.montant.partSalariale !== 0
 		),
 		groupByBranche,
-		filter(([,brancheCotisation]) => !!brancheCotisation)
+		filter(([, brancheCotisation]) => !!brancheCotisation)
 	)(variables)
 	return cotisations
 }
@@ -260,8 +261,11 @@ const REPARTITION_CSG: { [Branche]: number } = {
 	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
 	// On peut imaginer la partager à toute les composantes concernées
 	autres: 0.6
-};
-function dispatchCSGInPlace(CSG: Cotisation, rawRépartition: {[Branche]: MontantPartagé}): void {
+}
+function dispatchCSGInPlace(
+	CSG: Cotisation,
+	rawRépartition: { [Branche]: MontantPartagé }
+): void {
 	// $FlowFixMe
 	for (const branche: Branche in REPARTITION_CSG) {
 		rawRépartition[branche] = {
@@ -288,11 +292,12 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 	)
 	if (cotisations.autres) {
 		const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
-		if (!CSG) throw new Error('[répartition selector]: expect CSG not to be null')
+		if (!CSG)
+			throw new Error('[répartition selector]: expect CSG not to be null')
 		cotisations.autres = without([CSG], cotisations.autres)
-		dispatchCSGInPlace(CSG, rawRépartition);
+		dispatchCSGInPlace(CSG, rawRépartition)
 	}
-	
+
 	return {
 		// $FlowFixMe
 		répartition: compose(

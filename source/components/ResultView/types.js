@@ -21,6 +21,7 @@ export type Branche =
 	| 'assurance chômage'
 	| 'formation'
 	| 'logement'
+	| 'transport'
 	| 'autres'
 
 export type MontantPartagé = {

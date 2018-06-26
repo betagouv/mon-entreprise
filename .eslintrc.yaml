@@ -3,8 +3,9 @@ rules:
     - 2
     - unix
   quotes:
-    - 1 // While https://github.com/eslint/eslint/issues/9662#issuecomment-353958854 we don't enforce this
+    - 1 # While https://github.com/eslint/eslint/issues/9662#issuecomment-353958854 we don't enforce this
     - single
+    - avoidEscape: true
   no-console: 1
   no-restricted-globals: [2, "length"]
   no-global-assign: 0
