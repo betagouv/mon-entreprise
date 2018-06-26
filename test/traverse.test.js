@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import { rules as realRules, enrichRule } from '../source/engine/rules'
-import { analyse, parseAll, getTargets } from '../source/engine/traverse'
+import { analyse, parseAll } from '../source/engine/traverse'
+import { enrichRule } from '../source/engine/rules'
 
-let stateSelector = (state, name) => null
+let stateSelector = () => null
 
 describe('analyse', function() {
 	it('should directly return simple numerical values', function() {
@@ -215,7 +215,6 @@ describe('analyse with mecanisms', function() {
 							tranches: [
 								{ 'en-dessous de': 1, taux: 0.1 },
 								{ de: 1, à: 2, taux: 1.2 },
-								,
 								{ 'au-dessus de': 2, taux: 10 }
 							]
 						}
@@ -241,7 +240,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.05 },
 										{ de: 1, à: 2, taux: 0.4 },
-										,
 										{ 'au-dessus de': 2, taux: 5 }
 									]
 								},
@@ -249,7 +247,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.05 },
 										{ de: 1, à: 2, taux: 0.8 },
-										,
 										{ 'au-dessus de': 2, taux: 5 }
 									]
 								}
@@ -278,7 +275,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
 										{ de: 1, à: 2, taux: 1.2 },
-										,
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								},
@@ -287,7 +283,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.1 },
 										{ de: 1, à: 2, taux: 1.8 },
-										,
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								}
@@ -362,7 +357,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.05 },
 										{ de: 1, à: 2, taux: 0.4 },
-										,
 										{ 'au-dessus de': 2, taux: 5 }
 									],
 									attributs: { 'dû par': 'salarié' }
@@ -371,7 +365,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.05 },
 										{ de: 1, à: 2, taux: 0.8 },
-										,
 										{ 'au-dessus de': 2, taux: 5 }
 									],
 									attributs: { 'dû par': 'employeur' }
@@ -407,7 +400,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.05 },
 										{ de: 1, à: 2, taux: 0.4 },
-										,
 										{ 'au-dessus de': 2, taux: 5 }
 									],
 									attributs: { 'dû par': 'salarié' }
@@ -416,7 +408,6 @@ describe('analyse with mecanisms', function() {
 									tranches: [
 										{ 'en-dessous de': 1, taux: 0.05 },
 										{ de: 1, à: 2, taux: 0.8 },
-										,
 										{ 'au-dessus de': 2, taux: 5 }
 									],
 									attributs: { 'dû par': 'employeur' }

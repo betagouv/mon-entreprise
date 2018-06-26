@@ -23,10 +23,7 @@ import {
 	has,
 	max,
 	min,
-	subtract,
-	values,
-	sortBy,
-	last
+	subtract
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
