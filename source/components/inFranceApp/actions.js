@@ -2,6 +2,7 @@
 import type {
 	ChooseCompanyLegalSetupAction,
 	CompanyLegalSetup,
+	CompanyHaveMultipleAssociateAction,
 	DirectorStatus,
 	DefineDirectorStatusAction
 } from './types'
@@ -15,11 +16,20 @@ export function chooseCompanyLegalSetup(
 	}
 }
 
-export function defineCompanyStatus(
+export function defineDirectorStatus(
 	status: DirectorStatus
 ): DefineDirectorStatusAction {
 	return {
 		type: 'DEFINE_DIRECTOR_STATUS',
 		status
+	}
+}
+
+export function companyHaveMultipleAssociate(
+	multipleAssociate: boolean
+): CompanyHaveMultipleAssociateAction {
+	return {
+		type: 'COMPANY_HAVE_MULTIPLE_ASSOCIATE',
+		multipleAssociate
 	}
 }

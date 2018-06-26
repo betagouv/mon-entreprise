@@ -1,0 +1,54 @@
+/* @flow */
+import React from 'react'
+import { connect } from 'react-redux'
+import { companyHaveMultipleAssociate } from '../../actions'
+import * as Animate from '../../animate'
+import { SkipButton } from '../../ui/Button'
+import type { RouterHistory } from 'react-router'
+
+type Props = {
+	history: RouterHistory,
+	companyHaveMultipleAssociate: boolean => void
+}
+
+const goToNextStep = (history: RouterHistory) => {
+	history.push('/create-my-company/set-legal-status')
+}
+
+const NumberOfAssociate = ({
+	history,
+	companyHaveMultipleAssociate
+}: Props) => (
+	<Animate.fromBottom>
+		<h2>Number of associate </h2>
+		<p>
+			If your company only have one associate, the administrative process is a
+			somewhat simplified.
+		</p>
+
+		<div className="ui__ answer-group">
+			<button
+				onClick={() => {
+					companyHaveMultipleAssociate(false)
+					goToNextStep(history)
+				}}
+				className="ui__ button">
+				Only one associate
+			</button>
+			<button
+				onClick={() => {
+					companyHaveMultipleAssociate(true)
+					goToNextStep(history)
+				}}
+				className="ui__ button">
+				Multiple partners
+			</button>
+			<SkipButton />
+		</div>
+	</Animate.fromBottom>
+)
+
+export default connect(
+	null,
+	{ companyHaveMultipleAssociate }
+)(NumberOfAssociate)

@@ -6,16 +6,25 @@ export type ChooseCompanyLegalSetupAction = {
 	setup: CompanyLegalSetup
 }
 
-export type DirectorStatus = 'SALARIED' | 'SELF-EMPLOYED'
+export type DirectorStatus = 'SALARIED' | 'SELF_EMPLOYED'
 
 export type DefineDirectorStatusAction = {
 	type: 'DEFINE_DIRECTOR_STATUS',
 	status: DirectorStatus
 }
 
-export type State = {
-	legalSetup: ?CompanyLegalSetup,
-	status: ?DirectorStatus
+export type CompanyHaveMultipleAssociateAction = {
+	type: 'COMPANY_HAVE_MULTIPLE_ASSOCIATE',
+	multipleAssociate: boolean
 }
 
-export type Action = ChooseCompanyLegalSetupAction | DefineDirectorStatusAction
+export type State = {
+	legalSetup: ?CompanyLegalSetup,
+	directorStatus: ?DirectorStatus,
+	multipleAssociate: ?boolean
+}
+
+export type Action =
+	| ChooseCompanyLegalSetupAction
+	| DefineDirectorStatusAction
+	| CompanyHaveMultipleAssociateAction
