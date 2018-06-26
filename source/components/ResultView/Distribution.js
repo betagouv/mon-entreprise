@@ -24,6 +24,7 @@ const brancheToEmoji: { [Branche]: string } = {
 	logement: '🏡',
 	'accidents du travail / maladies professionnelles': '☣️',
 	'assurance chômage': '💸',
+	transport: '🚌',
 	autres: '🔧'
 }
 
