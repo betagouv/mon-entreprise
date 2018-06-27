@@ -6,7 +6,6 @@ import {
 } from 'Selectors/analyseSelectors'
 import Conversation from './conversation/Conversation'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
-import GoToExplanations from './GoToExplanations'
 import ProgressTip from './ProgressTip'
 import ResultView from './ResultView/ResultView'
 import './Simu.css'

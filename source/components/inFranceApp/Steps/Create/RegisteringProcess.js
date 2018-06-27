@@ -56,7 +56,7 @@ const RegisterMyCompany = ({ match }: Props) => (
 			registered company, the next steps is to{' '}
 			<strong>hire your first employee</strong>
 		</p>
-		<Link className="ui__ button cta" to="/simulate-my-costs">
+		<Link className="ui__ button cta" to="/hiring-and-social-security">
 			Simulate hiring cost in France
 		</Link>
 	</Animate.fromBottom>

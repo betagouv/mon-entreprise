@@ -24,7 +24,7 @@ const CreateMyCompany = ({ match }: Props) => (
 				<Link className="ui__ button" to={match.path + '/choose-legal-setup'}>
 					Choose the legal status
 				</Link>
-				<Link to={'/simulate-my-cost'} className="ui__ skip-button">
+				<Link to={'/hiring-and-social-security'} className="ui__ skip-button">
 					Do it later ›
 				</Link>
 			</div>
