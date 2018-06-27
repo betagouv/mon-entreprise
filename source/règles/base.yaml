@@ -838,9 +838,11 @@
   description: |
     Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
   formule:
-    allègement:
-      assiette: salaire . net + avantages sociaux
-      abattement: CSG (déductible)
+    somme:
+      - salaire . net
+      - avantages sociaux
+      - CSG (non déductible)
+      - CRDS
 
 
 - espace: contrat salarié . salaire
