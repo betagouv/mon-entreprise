@@ -1,6 +1,9 @@
 @import './Button/button.css';
 @import './Typography.css';
 
+body {
+	overflow-x: hidden;
+}
 .ui__.container {
 	max-width: 800px;
 	margin: 0 auto;
@@ -11,4 +14,16 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;
+}
+
+.ui__.route-trans {
+	display: flex;
+}
+.ui__.route-trans > * {
+	min-width: 100%;
+	margin-right: 2em;
+}
+
+ul.ui__.no-bullet {
+	list-style: none;
 }

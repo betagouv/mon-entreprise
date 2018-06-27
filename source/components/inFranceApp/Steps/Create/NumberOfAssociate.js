@@ -2,7 +2,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { companyHaveMultipleAssociate } from '../../actions'
-import * as Animate from '../../animate'
 import { SkipButton } from '../../ui/Button'
 import type { RouterHistory } from 'react-router'
 
@@ -19,7 +18,7 @@ const NumberOfAssociate = ({
 	history,
 	companyHaveMultipleAssociate
 }: Props) => (
-	<Animate.fromBottom>
+	<>
 		<h2>Number of associate </h2>
 		<p>
 			If your company only have one associate, the administrative process is a
@@ -43,9 +42,9 @@ const NumberOfAssociate = ({
 				className="ui__ button">
 				Multiple partners
 			</button>
-			<SkipButton />
+			<SkipButton onClick={() => goToNextStep(history)} />
 		</div>
-	</Animate.fromBottom>
+	</>
 )
 
 export default connect(

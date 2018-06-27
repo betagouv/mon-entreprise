@@ -2,7 +2,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { defineDirectorStatus } from '../../actions'
-import * as Animate from '../../animate'
 import { SkipButton } from '../../ui/Button'
 import type { DirectorStatus } from '../../types'
 import type { RouterHistory } from 'react-router'
@@ -16,7 +15,7 @@ const goToNextStep = (history: RouterHistory) => {
 }
 
 const DefineDirectorStatus = ({ history, defineDirectorStatus }: Props) => (
-	<Animate.fromBottom>
+	<>
 		<h2>Defining the director&apos;s status </h2>
 		<p>
 			This choice is important because it determines the type of Social Security
@@ -59,9 +58,9 @@ const DefineDirectorStatus = ({ history, defineDirectorStatus }: Props) => (
 				}}>
 				Self-employed
 			</button>
-			<SkipButton />
+			<SkipButton onClick={() => goToNextStep(history)} />
 		</div>
-	</Animate.fromBottom>
+	</>
 )
 
 export default connect(

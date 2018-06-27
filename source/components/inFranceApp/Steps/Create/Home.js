@@ -1,28 +1,35 @@
 /* @flow */
 import React from 'react'
 import { Link } from 'react-router-dom'
-import * as Animate from '../../animate'
 import type { Match } from 'react-router'
 
 type Props = {
 	match: Match
 }
 const CreateMyCompany = ({ match }: Props) => (
-	<Animate.fromBottom>
-		<h1 className="question__title">Create the company</h1>
+	<>
+		<h1 className="question__title">Register a company</h1>
+		<Link className="ui__ link-button" to="/find-my-company">
+			My company is already registered with the French Administration
+		</Link>
 		<p>
-			First of all, you must register your company with the French
-			administration.
+			The French business law defines more than 20 possible legal status to
+			declare a company. It can be quite complicated to find your way through
+			all the acronyms and specific procedures. SASU, EIRL, SAS, CNC... Thanks
+			to this guide, you will quickly find the proper status that suits to your
+			needs, as well as the checklist of the associated steps.
 		</p>
 		{match.isExact && (
-			<Link className="ui__ button cta" to={match.path + '/choose-legal-setup'}>
-				Choose the legal setup
-			</Link>
+			<div className="ui__ answer-group">
+				<Link className="ui__ button" to={match.path + '/choose-legal-setup'}>
+					Choose the legal status
+				</Link>
+				<Link to={'/simulate-my-cost'} className="ui__ skip-button">
+					Do it later ›
+				</Link>
+			</div>
 		)}
-		<Link className="ui__ link-button" to="/find-my-company">
-			I already have registered my company
-		</Link>
-	</Animate.fromBottom>
+	</>
 )
 
 export default CreateMyCompany
