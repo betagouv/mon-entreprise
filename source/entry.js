@@ -10,7 +10,7 @@ import { I18nextProvider } from 'react-i18next'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import { applyMiddleware, compose, createStore } from 'redux'
-import Layout from './components/inFranceApp'
+import Layout from './components/inFranceApp/routes'
 import computeThemeColours from './components/themeColours'
 import { defaultTracker, TrackerProvider } from './components/withTracker'
 import trackDomainActions from './middlewares/trackDomainActions'
@@ -70,7 +70,7 @@ let App = ({ store }) => (
 render(<App store={store} />, anchor)
 
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-	module.hot.accept('./components/inFranceApp', () => {
+	module.hot.accept('./components/inFranceApp/routes', () => {
 		render(
 			<AppContainer>
 				<App store={store} />

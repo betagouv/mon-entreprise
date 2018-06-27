@@ -9,16 +9,18 @@ h2 {
 	font-size: 2.1rem;
 }
 h3 {
-	font-size: 1.9rem;
+	font-size: 1.7rem;
 }
 h4 {
-	font-size: 1.5rem;
-}
-h5 {
 	font-size: 1.3rem;
 }
-h6 {
+h5 {
 	font-size: 1.1rem;
+	font-style: italic;
+}
+h6 {
+	font-size: 1rem;
+	font-weight: bold;
 }
 
 h1,
@@ -28,6 +30,11 @@ h4,
 h5,
 h6 {
 	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h1,
+h2,
+h3 {
 	color: rgb(41, 117, 209);
 }
 
