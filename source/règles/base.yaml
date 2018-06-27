@@ -676,6 +676,16 @@
   suggestions:
     salaire médian: 2300
     SMIC: 1500
+  contrôles: 
+  #    - si: brut de base < smic mensuel
+  #    message: Le salaire saisi semble inférieur au SMIC.
+  #    niveau: avertissement
+    - si: brut de base < 200
+      message: Le simulateur ne prend pour l'instant que des salaires mensuels
+      niveau: bloquant
+    - si: brut de base > 100000
+      message: N'avez-vous pas saisi un zéro de trop ?
+      niveau: information
 
   formule:
     inversion:
