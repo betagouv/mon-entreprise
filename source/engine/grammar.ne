@@ -25,7 +25,7 @@ NegatedVariable -> "≠" _ Variable {% d => ({category: 'negatedVariable', varia
 
 FilteredVariable -> Variable _ Filter {% d => ({category: 'filteredVariable', filter: d[2], variable: d[0] }) %}
 
-Filter -> "(" VariableWord ")" {% d =>d[1] %}
+Filter -> "(" VariableFragment ")" {% d =>d[1] %}
 
 # Modificateurs temporels pas utilisés aujourd'hui
 ModifiedVariable -> Variable _ Modifier {% d => ({category: 'modifiedVariable', modifier: d[2], variable: d[0] }) %}
