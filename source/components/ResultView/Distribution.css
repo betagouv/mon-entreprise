@@ -1,6 +1,6 @@
 .distribution-chart__item {
 	display: flex;
-	margin-top: 1em;
+	margin: 1.5em 0;
 	min-height: 3.5em;
 	padding: 0;
 	width: 100%;
@@ -17,21 +17,32 @@
 }
 
 .distribution-chart__bar {
-	border-radius: 0.6em;
-	min-height: 3.5em;
+	border-radius: 0.4em;
+	min-height: 1.5em;
+}
+
+.distribution-chart__item-content {
+	flex: 1;
+}
+
+.distribution-chart__counterparts {
+	width: 20em;
 }
 
 .distribution-chart__item:hover .distribution-chart__bar {
 	opacity: 0.9;
 }
 .distribution-chart__amount {
-	display: flex;
 	font-weight: bold;
 	margin-left: 1em;
 }
 .distribution-chart__percent {
 	margin-left: 1em;
-	color: rgba(0, 0, 0, 0.7);
+	opacity: 0;
+	transition: 0.3s opacity;
+}
+.distribution-chart__item:hover .distribution-chart__percent {
+	opacity: 1;
 }
 
 @media (max-width: 800px) {
@@ -48,7 +59,7 @@
 		height: initial !important;
 	}
 	.distribution-chart__bar {
-		min-height: 3em !important;
+		min-height: 1.5em !important;
 	}
 
 	.distribution-chart__branche-name {
@@ -65,13 +76,13 @@
 	padding: 0.4em 0;
 	padding-right: 1em;
 	justify-content: space-evenly;
-	width: 9em;
+	width: 6em;
 	flex-grow: 0;
 	flex-shrink: 0;
 }
 
 .distribution-chart__branche-name {
-	font-size: 90%;
+	font-weight: bold;
 }
 .distribution-chart__icon {
 	font-size: 200%;
