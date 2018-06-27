@@ -286,15 +286,18 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 		ficheDePaie.cotisations
 	)
 	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
+	let CSG;
+	if (cotisations.autres) {
+		CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
+		if (!CSG)
+		throw new Error('[répartition selector]: expect CSG not to be null')
+		cotisations.autres = without([CSG], cotisations.autres)
+	}
 	const rawRépartition: { [Branche]: MontantPartagé } = map(
 		totalCotisations,
 		cotisations
 	)
-	if (cotisations.autres) {
-		const CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
-		if (!CSG)
-			throw new Error('[répartition selector]: expect CSG not to be null')
-		cotisations.autres = without([CSG], cotisations.autres)
+	if (CSG) {
 		dispatchCSGInPlace(CSG, rawRépartition)
 	}
 
