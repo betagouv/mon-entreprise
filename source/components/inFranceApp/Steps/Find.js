@@ -54,7 +54,7 @@ class Search extends React.Component {
 			return (
 				<>
 					<Company {...this.state.input} />
-					<Link to="/simulate-costs" className="ui__ button">
+					<Link to="/hiring-and-social-security" className="ui__ button">
 						Simulate costs
 					</Link>
 				</>
