@@ -18,12 +18,14 @@ export type CompanyHaveMultipleAssociateAction = {
 	multipleAssociate: boolean
 }
 
-export type State = {
-	legalSetup: ?CompanyLegalSetup,
-	directorStatus: ?DirectorStatus,
-	multipleAssociate: ?boolean
-}
-
+export type State = {|
+	+companyLegalStatus: {
+		+legalSetup?: CompanyLegalSetup,
+		+directorStatus?: DirectorStatus,
+		+multipleAssociate?: boolean
+	}
+|}
+export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
 	| ChooseCompanyLegalSetupAction
 	| DefineDirectorStatusAction

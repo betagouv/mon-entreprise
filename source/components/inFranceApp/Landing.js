@@ -1,6 +1,7 @@
 /* @flow */
 
 import React from 'react'
+import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
 import withColours from '../withColours'
@@ -8,13 +9,12 @@ import * as Animate from './animate'
 import './Landing.css'
 import marianneSvg from './marianne.svg'
 import urssafSvg from './urssaf.svg'
-import emoji from 'react-easy-emoji'
 
 const Landing = ({ colours: { colour } }) => (
 	<>
 		<section className="landing__header" style={{ backgroundColor: colour }}>
 			<header>
-				<Animate.fromBottom config={config.slow}>
+				<Animate.fromBottom delay={500} config={config.slow}>
 					<h1>Launch your business in France</h1>
 					<ul>
 						<li>Incorporation guide {emoji('🏗️🏢')}</li>

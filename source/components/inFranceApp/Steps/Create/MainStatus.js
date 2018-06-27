@@ -1,13 +1,12 @@
 /* @flow */
-import { map, whereEq } from 'ramda'
+import { map, whereEq, any } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
-import * as Animate from '../../animate'
-import { SkipButton } from '../../ui/Button'
+import { Link } from 'react-router-dom'
 import type { RouterHistory } from 'react-router'
-import type { State as CompanySituation } from '../../types'
+import type { State, CompanyLegalStatus } from '../../types'
 const setMainStatus = () => {}
-const LEGAL_STATUS_DETAILS: { [status: string]: CompanySituation } = {
+const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 	EI: {
 		legalSetup: 'SOLE_PROPRIETORSHIP',
 		directorStatus: 'SELF_EMPLOYED',
@@ -51,56 +50,37 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanySituation } = {
 }
 
 type LegalStatus = $Keys<typeof LEGAL_STATUS_DETAILS>
-const possibleStatusSelector = state =>
-	map(whereEq(state.inFranceApp), LEGAL_STATUS_DETAILS)
+const possibleStatusSelector = (state: {
+	inFranceApp: State
+}): { [LegalStatus]: boolean } =>
+	// $FlowFixMe
+	map(whereEq(state.inFranceApp.companyLegalStatus), LEGAL_STATUS_DETAILS)
 
 type Props = {
 	history: RouterHistory,
-	possibleStatus: LegalStatus,
+	possibleStatus: { [LegalStatus]: boolean },
 	setMainStatus: LegalStatus => void
 }
 
-const goToNextStep = (history: RouterHistory) => {
-	history.push('/create-my-company/declare-my-business')
-}
-
-const StatusButton = ({
-	status,
-	history
-}: {
-	status: LegalStatus,
-	history: RouterHistory
-}) => (
-	<button
-		onClick={() => {
-			goToNextStep(history)
-		}}
-		className="ui__ button">
+const StatusButton = ({ status }: { status: LegalStatus }) => (
+	<Link to={`/create-my-company/register-${status}`} className="ui__ button">
 		Create {status}
-	</button>
+	</Link>
 )
 
-const SetMainStatus = ({ history, possibleStatus }: Props) => (
-	<Animate.fromBottom>
-		<h2>Choose the legal status</h2>
-		<p>To carry out your activity, you must choose a legal status.</p>
-		<p>
-			The choice of a legal form of practice depends on several factors: the way
-			you wish to practice (alone or in a company), the possibility to separate
-			personal and professional wealth, the tax status linked to the envisaged
-			legal framework...
-		</p>
-		<p>
-			This choice is important because it conditions your social protection. The
-			company regime of the executive depends on the legal structure chosen and
-			his function within it.
-		</p>
-		<p>
-			Based on your previous answers, we narrowed it down for you to the
-			following possibilities:
-		</p>
+const SetMainStatus = ({ history, possibleStatus }: Props) => {
+	const atLeastOneStatus = Object.values(possibleStatus).some(x=>x);
+	console.log(atLeastOneStatus, possibleStatus)
+	return (
+	<>
+		<h2>Choosing a legal status</h2>
+		{ atLeastOneStatus ? <p>
+			Based on your previous answers, we narrowed down all the choices to the
+			following possibilitie(s):
+		</p> : <p> We didn&apos;t find any status matching your need. You can go back and change your needs, or choose a status manually from the following list:</p>
+}
 		<ul>
-			{possibleStatus.EI && (
+			{(!atLeastOneStatus || possibleStatus.EI) && (
 				<li>
 					<strong>EI - Entreprise individuelle (Individual business): </strong>
 					Also called company in own name or company in a personal name. No
@@ -108,17 +88,17 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => (
 					are one.
 				</li>
 			)}
-			{possibleStatus.EIRL && (
+			{(!atLeastOneStatus || possibleStatus.EIRL) && (
 				<li>
 					<strong>
 						EIRL - Entrepreneur individuel à responsabilité limitée (Individual
-						entrepreneur with limited liability)
+						entrepreneur with limited liability):{' '}
 					</strong>
 					Protects your property by assigning to your business a professional
 					heritage necessary for the activity.
 				</li>
 			)}
-			{possibleStatus.EURL && (
+			{(!atLeastOneStatus || possibleStatus.EURL) && (
 				<li>
 					<strong>
 						EURL - Entreprise unipersonnelle à responsabilité limitée (Limited
@@ -128,7 +108,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => (
 					its contribution to the capital.
 				</li>
 			)}
-			{possibleStatus.SARL && (
+			{(!atLeastOneStatus || possibleStatus.SARL) && (
 				<li>
 					<strong>
 						SARL - Société à responsabilité limitée (Limited corporation):{' '}
@@ -138,7 +118,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => (
 					capital is freely fixed in the statutes.
 				</li>
 			)}
-			{possibleStatus.SAS && (
+			{(!atLeastOneStatus || possibleStatus.SAS) && (
 				<li>
 					<strong>
 						SAS - Société par action simplifiée (Simplified joint stock
@@ -149,7 +129,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => (
 					the statutes.
 				</li>
 			)}
-			{possibleStatus.SASU && (
+			{(!atLeastOneStatus || possibleStatus.SASU) && (
 				<li>
 					<strong>
 						SASU - Société par action simplifiée unitaire (Simplified personal
@@ -159,13 +139,13 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => (
 					capital is freely fixed in the statutes.
 				</li>
 			)}
-			{possibleStatus.SA && (
+			{(!atLeastOneStatus || possibleStatus.SA) && (
 				<li>
 					<strong>SASU - Société anonyme (Anonymous company):</strong>Company
 					composed of at least 2 shareholders if it is not listed.
 				</li>
 			)}
-			{possibleStatus.SNC && (
+			{(!atLeastOneStatus || possibleStatus.SNC) && (
 				<li>
 					<strong>SNC - Société en nom collectif (Partnership):</strong>The
 					partners are liable indefinitely and severally for the debts of the
@@ -176,15 +156,17 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => (
 		<div className="ui__ answer-group">
 			{/* $FlowFixMe */}
 			{(Object.entries(possibleStatus): Array<[LegalStatus, boolean]>)
-				.filter(([, statusIsVisible]) => statusIsVisible)
+				.filter(([, statusIsVisible]) => statusIsVisible || !atLeastOneStatus)
 				.map(([status]) => (
 					<StatusButton key={status} status={status} history={history} />
 				))}
-			<SkipButton onClick={() => goToNextStep(history)}>Do it later</SkipButton>
+			<Link to="/simulate-my-costs" className="ui__ skip-button">
+				Do it later ›
+			</Link>
 		</div>
-	</Animate.fromBottom>
+	</>
 )
-
+}
 export default connect(
 	state => ({ possibleStatus: possibleStatusSelector(state) }),
 	{ setMainStatus }
