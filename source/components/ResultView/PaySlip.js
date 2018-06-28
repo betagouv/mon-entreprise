@@ -5,10 +5,10 @@ import React, { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import withColours from '../withColours'
+import ficheDePaieSelector from './FicheDePaieSelector'
 import Montant from './Montant'
 import './PaySlip.css'
 import RuleLink from './RuleLink'
-import { ficheDePaieSelector } from './selectors'
 
 type ConnectedPropTypes = FicheDePaie & {
 	colours: { lightestColour: string }

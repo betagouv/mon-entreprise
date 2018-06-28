@@ -12,7 +12,7 @@ import './Distribution.css'
 import Montant from './Montant'
 import './PaySlip'
 import RuleLink from './RuleLink'
-import { répartitionSelector } from './selectors'
+import répartitionSelector from './RépartitionSelector'
 
 import type { Répartition, Branche } from './types'
 
@@ -139,8 +139,7 @@ class Distribution extends Component<Props, State> {
 					<Trans>Cotisations</Trans>
 					<Montant numFractionDigit={2}>
 						{total.partPatronale +
-							total.partSalariale -
-							réductionsDeCotisations.montant}
+							total.partSalariale}
 					</Montant>
 					<span />
 					<div className="distribution-chart__total-border" />

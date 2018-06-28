@@ -1,12 +1,9 @@
 /* @flow */
 
 import { expect } from 'chai'
-import {
-	COTISATION_BRANCHE_ORDER,
-	ficheDePaieSelector
-} from '../source/components/ResultView/selectors'
-
-import { situationSelector } from '../source/selectors/analyseSelectors'
+import ficheDePaieSelector, {
+	COTISATION_BRANCHE_ORDER
+} from '../source/components/ResultView/FicheDePaieSelector'
 
 let state = {
 	form: {

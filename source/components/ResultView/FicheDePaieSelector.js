@@ -4,13 +4,10 @@ import { findRuleByDottedName } from 'Engine/rules'
 import { encodeRuleName } from 'Engine/rules.js'
 import {
 	add,
-	compose,
 	concat,
 	filter,
-	fromPairs,
 	groupBy,
 	map,
-	max,
 	mergeWith,
 	mergeWithKey,
 	path,
@@ -18,9 +15,7 @@ import {
 	pipe,
 	prop,
 	reduce,
-	sort,
-	values,
-	without
+	values
 } from 'ramda'
 import { createSelector } from 'reselect'
 import {
@@ -34,12 +29,10 @@ import type {
 	VariableWithCotisation,
 	Cotisation,
 	Cotisations,
-	MontantPartagé,
 	Branche,
 	Règle,
 	RègleAvecMontant,
-	FicheDePaie,
-	Répartition
+	FicheDePaie
 } from './types'
 
 export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
@@ -55,7 +48,7 @@ export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
 ]
 
 // Used for type consistency
-const BLANK_COTISATION: Cotisation = {
+export const BLANK_COTISATION: Cotisation = {
 	montant: {
 		partPatronale: 0,
 		partSalariale: 0
@@ -87,7 +80,10 @@ function brancheSelector(variable: VariableWithCotisation): Branche {
 }
 
 // $FlowFixMe
-const mergeCotisations: (Cotisation, Cotisation) => Cotisation = mergeWithKey(
+export const mergeCotisations: (
+	Cotisation,
+	Cotisation
+) => Cotisation = mergeWithKey(
 	(key, a, b) => (key === 'montant' ? mergeWith(add, a, b) : b)
 )
 
@@ -235,96 +231,7 @@ function analysisToFicheDePaie(
 	}
 }
 
-export const ficheDePaieSelector = createSelector(
+export default createSelector(
 	[analysisWithDefaultsSelector, flatRulesSelector],
 	(analysis, flatRules) => analysisToFicheDePaie(analysis, flatRules)
-)
-
-const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
-	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant
-
-const byMontantTotal = (
-	a: [Branche, MontantPartagé],
-	b: [Branche, MontantPartagé]
-): number => {
-	return (
-		b[1].partPatronale +
-		b[1].partSalariale -
-		a[1].partPatronale -
-		a[1].partSalariale
-	)
-}
-
-const REPARTITION_CSG: { [Branche]: number } = {
-	famille: 0.85,
-	santé: 7.75,
-	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
-	// On peut imaginer la partager à toute les composantes concernées
-	autres: 0.6
-}
-function dispatchCSGInPlace(
-	CSG: Cotisation,
-	rawRépartition: { [Branche]: MontantPartagé }
-): void {
-	// $FlowFixMe
-	for (const branche: Branche in REPARTITION_CSG) {
-		rawRépartition[branche] = {
-			partPatronale:
-				rawRépartition[branche].partPatronale +
-				(CSG.montant.partPatronale * (REPARTITION_CSG[branche] / (9.2 / 100))) /
-					100,
-			partSalariale:
-				rawRépartition[branche].partSalariale +
-				(CSG.montant.partSalariale * (REPARTITION_CSG[branche] / (9.2 / 100))) /
-					100
-		}
-	}
-}
-const répartition = (ficheDePaie: FicheDePaie): Répartition => {
-	// $FlowFixMe
-	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
-		ficheDePaie.cotisations
-	)
-	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
-	let CSG;
-	if (cotisations.autres) {
-		CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
-		if (!CSG)
-		throw new Error('[répartition selector]: expect CSG not to be null')
-		cotisations.autres = without([CSG], cotisations.autres)
-	}
-	const rawRépartition: { [Branche]: MontantPartagé } = map(
-		totalCotisations,
-		cotisations
-	)
-	if (CSG) {
-		dispatchCSGInPlace(CSG, rawRépartition)
-	}
-
-	return {
-		// $FlowFixMe
-		répartition: compose(
-			sort(byMontantTotal),
-			Object.entries
-		)(rawRépartition),
-		// $FlowFixMe
-		total: compose(
-			reduce(mergeWith(add), 0),
-			Object.values
-		)(rawRépartition),
-		cotisationMaximum: compose(
-			reduce(max, 0),
-			map(montant => montant.partPatronale + montant.partSalariale),
-			values
-			// $FlowFixMe
-		)(rawRépartition),
-		salaireNet,
-		réductionsDeCotisations,
-		salaireChargé
-	}
-}
-
-export const répartitionSelector = createSelector(
-	ficheDePaieSelector,
-	répartition
 )
