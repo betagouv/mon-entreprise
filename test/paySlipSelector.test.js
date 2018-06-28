@@ -9,7 +9,8 @@ let state = {
 	form: {
 		conversation: {
 			values: {
-				'contrat salarié': { salaire: { 'brut de base': '2300' } }
+				'contrat salarié': { salaire: { 'brut de base': '2300' } },
+				entreprise: { effectif: '50' }
 			}
 		}
 	},
@@ -41,7 +42,7 @@ describe('pay slip selector', function() {
 
 	it('should sum all cotisations', function() {
 		const montantTotalCotisations = paySlip.totalCotisations
-		expect(montantTotalCotisations.partPatronale).to.be.closeTo(919, 5)
+		expect(montantTotalCotisations.partPatronale).to.be.closeTo(992, 5)
 		expect(montantTotalCotisations.partSalariale).to.be.closeTo(520, 5)
 	})
 

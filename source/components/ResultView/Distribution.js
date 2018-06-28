@@ -60,7 +60,6 @@ class Distribution extends Component<Props, State> {
 		const {
 			répartition,
 			cotisationMaximum,
-			réductionsDeCotisations,
 			total,
 			salaireChargé,
 			salaireNet,
