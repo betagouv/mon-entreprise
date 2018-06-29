@@ -18,6 +18,7 @@ import ProgressCircle from './ProgressCircle/ProgressCircle'
 import { RuleValue } from './rule/RuleValueVignette'
 import './TargetSelection.css'
 import withLanguage from './withLanguage'
+import Controls from './Controls'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -55,7 +56,7 @@ export let popularTargetNames = [
 )
 export default class TargetSelection extends Component {
 	render() {
-		let { conversationStarted, colours, noUserInput } = this.props
+		let { conversationStarted, colours, noUserInput, analysis } = this.props
 		return (
 			<div id="targetSelection">
 				<section
@@ -67,12 +68,18 @@ export default class TargetSelection extends Component {
 					{this.renderOutputList()}
 				</section>
 				{noUserInput && (
-					<h1>
+					<p className="controls">
 						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
-					</h1>
+					</p>
 				)}
 
+				{analysis &&
+					analysis.blockingInputControls && (
+						<Controls blockingInputControls={analysis.blockingInputControls} />
+					)}
+
 				{!noUserInput &&
+					!(analysis && analysis.blockingInputControls) &&
 					!conversationStarted && (
 						<div id="action">
 							<p>
@@ -122,7 +129,9 @@ export default class TargetSelection extends Component {
 										activeInput,
 										setActiveInput,
 										setFormValue: this.props.setFormValue,
-										noUserInput
+										noUserInput,
+										blockingInputControls:
+											analysis && analysis.blockingInputControls
 									}}
 								/>
 							</div>
@@ -175,7 +184,15 @@ let CurrencyField = props => {
 }
 
 let TargetInputOrValue = withLanguage(
-	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
+	({
+		target,
+		targets,
+		activeInput,
+		setActiveInput,
+		language,
+		noUserInput,
+		blockingInputControls
+	}) => (
 		<span className="targetInputOrValue">
 			{activeInput === target.dottedName ? (
 				<Field
@@ -185,7 +202,14 @@ let TargetInputOrValue = withLanguage(
 				/>
 			) : (
 				<TargetValue
-					{...{ targets, target, activeInput, setActiveInput, noUserInput }}
+					{...{
+						targets,
+						target,
+						activeInput,
+						setActiveInput,
+						noUserInput,
+						blockingInputControls
+					}}
 				/>
 			)}
 		</span>
@@ -200,28 +224,32 @@ let TargetInputOrValue = withLanguage(
 class TargetValue extends Component {
 	render() {
 		let {
-				targets,
-				target,
-				setFormValue,
-				activeInput,
-				setActiveInput,
-				noUserInput
-			} = this.props,
-			targetWithValue = targets.find(propEq('dottedName', target.dottedName)),
+			targets,
+			target,
+			setFormValue,
+			activeInput,
+			setActiveInput,
+			noUserInput,
+			blockingInputControls
+		} = this.props
+
+		let targetWithValue =
+				targets && targets.find(propEq('dottedName', target.dottedName)),
 			value = targetWithValue && targetWithValue.nodeValue
 
 		return (
 			<span
 				className={classNames({
 					editable: target.question,
-					attractClick: target.question && noUserInput
+					attractClick:
+						target.question && (noUserInput || blockingInputControls)
 				})}
 				onClick={() => {
 					if (!target.question) return
-					if (value != null) {
+					if (value != null)
 						setFormValue(target.dottedName, Math.floor(value) + '')
-						setFormValue(activeInput, '')
-					}
+
+					if (activeInput) setFormValue(activeInput, '')
 					setActiveInput(target.dottedName)
 				}}>
 				<RuleValue value={value} />

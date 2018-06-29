@@ -194,10 +194,6 @@ export let treatRuleRoot = (rules, rule) => {
 		}
 	})(rule)
 
-	//	let evaluateControl = () => {
-	//evaluate with situation
-	//return message or null
-	//}
 	let controls =
 		rule['contrôles'] &&
 		rule['contrôles'].map(control => {
@@ -215,6 +211,7 @@ export let treatRuleRoot = (rules, rule) => {
 			return {
 				level: control['niveau'],
 				test: control['si'],
+				message: control['message'],
 				testExpression,
 				...(!otherVariables.length ? { isInputControl: true } : {})
 			}

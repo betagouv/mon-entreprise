@@ -677,12 +677,12 @@
     salaire médian: 2300
     SMIC: 1500
   contrôles: 
+    - si: brut de base < 300
+      message: Entrez un salaire mensuel
+      niveau: bloquant
   #    - si: brut de base < smic mensuel
   #    message: Le salaire saisi semble inférieur au SMIC.
   #    niveau: avertissement
-    - si: brut de base < 200
-      message: Le simulateur ne prend pour l'instant que des salaires mensuels
-      niveau: bloquant
     - si: brut de base > 100000
       message: N'avez-vous pas saisi un zéro de trop ?
       niveau: information
@@ -865,6 +865,10 @@
   description: |
     C'est le montant que le salarié touche à la fin du mois.
   formule: salaire . net - avantages en nature . montant
+  contrôles: 
+    - si: net à payer < 200
+      message: Entrez un salaire mensuel
+      niveau: bloquant
 
 - espace: contrat salarié
   nom: coût du travail
@@ -891,6 +895,10 @@
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
   formule: salaire . total sans réduction - réductions de cotisations
+  contrôles: 
+    - si: total < 400
+      message: Entrez un salaire mensuel
+      niveau: bloquant
 
 - espace: contrat salarié
   nom: réductions de cotisations

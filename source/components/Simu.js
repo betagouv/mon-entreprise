@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { noUserInputSelector } from 'Selectors/analyseSelectors'
+import {
+	noUserInputSelector,
+	analysisWithDefaultsSelector
+} from 'Selectors/analyseSelectors'
 import Conversation from './conversation/Conversation'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
 import GoToExplanations from './GoToExplanations'
@@ -14,11 +17,17 @@ import withColours from './withColours'
 @withColours
 @connect(state => ({
 	noUserInput: noUserInputSelector(state),
+	analysis: analysisWithDefaultsSelector(state),
 	conversationStarted: state.conversationStarted
 }))
 export default class Simu extends Component {
 	render() {
-		let { colours, conversationStarted, noUserInput } = this.props
+		let {
+			colours,
+			conversationStarted,
+			noUserInput,
+			analysis: { blockingInputControls }
+		} = this.props
 
 		return (
 			<div id="simu">
@@ -32,10 +41,10 @@ export default class Simu extends Component {
 							<Conversation textColourOnWhite={colours.textColourOnWhite} />
 						</>
 					)}
-					{!noUserInput && <GoToExplanations />}
+					{!noUserInput && !blockingInputControls && <GoToExplanations />}
 				</div>
-				{!noUserInput && <ResultView />}
-				<Sondage />
+				{!noUserInput && !blockingInputControls && <ResultView />}
+				{!blockingInputControls && <Sondage />}
 			</div>
 		)
 	}
