@@ -1,3 +1,5 @@
+import { treatString, treatNumber, treatObject, treatOther } from './treat'
+
 import React from 'react'
 import {
 	findRuleByDottedName,
@@ -5,56 +7,18 @@ import {
 	findRule
 } from './rules'
 import {
-	treatVariable,
-	treatNegatedVariable,
-	treatFilteredVariable
-} from './treatVariable'
-import {
-	contains,
-	propEq,
 	curry,
 	chain,
 	cond,
 	evolve,
-	equals,
 	path,
-	divide,
-	multiply,
 	map,
 	merge,
-	intersection,
 	keys,
 	is,
-	propOr,
-	always,
-	head,
-	T,
-	gte,
-	lte,
-	lt,
-	gt,
-	add,
-	subtract
+	T
 } from 'ramda'
-import knownMecanisms from './known-mecanisms.yaml'
-import { Parser } from 'nearley'
-import Grammar from './grammar.ne'
 import { Node } from './mecanismViews/common'
-import {
-	mecanismOneOf,
-	mecanismAllOf,
-	mecanismNumericalSwitch,
-	mecanismSum,
-	mecanismProduct,
-	mecanismScale,
-	mecanismMax,
-	mecanismMin,
-	mecanismError,
-	mecanismComplement,
-	mecanismSelection,
-	mecanismInversion,
-	mecanismReduction
-} from './mecanisms'
 import {
 	evaluateNode,
 	rewriteNode,
@@ -63,8 +27,6 @@ import {
 	bonus
 } from './evaluation'
 import { anyNull, val, undefOrTrue } from './traverse-common-functions'
-
-let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -102,222 +64,11 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-let treat = (rules, rule) => rawNode => {
-	// inner functions
-	let reTreat = treat(rules, rule),
-		treatString = rawNode => {
-			/* On a affaire à un string, donc à une expression infixe.
-			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
-			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
-			Cet objet est alors rebalancé à 'treat'.
-			*/
-
-			let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
-
-			if (additionnalResults && additionnalResults.length > 0)
-				throw "Attention ! L'expression <" +
-					rawNode +
-					'> ne peut être traitée de façon univoque'
-
-			if (
-				!contains(parseResult.category)([
-					'variable',
-					'calcExpression',
-					'filteredVariable',
-					'comparison',
-					'negatedVariable',
-					'percentage'
-				])
-			)
-				throw "Attention ! Erreur de traitement de l'expression : " + rawNode
-
-			if (parseResult.category == 'variable')
-				return treatVariable(rules, rule)(parseResult)
-			if (parseResult.category == 'filteredVariable') {
-				return treatFilteredVariable(rules, rule)(
-					parseResult.filter,
-					parseResult.variable
-				)
-			}
-			if (parseResult.category == 'negatedVariable')
-				return treatNegatedVariable(
-					treatVariable(rules, rule)(parseResult.variable)
-				)
-
-			// We don't need to handle category == 'value' because YAML then returns it as
-			// numerical value, not a String: it goes to treatNumber
-			if (parseResult.category == 'percentage') {
-				return {
-					nodeValue: parseResult.nodeValue,
-					// eslint-disable-next-line
-					jsx: () => <span className="percentage">{rawNode}</span>
-				}
-			}
-
-			if (
-				parseResult.category == 'calcExpression' ||
-				parseResult.category == 'comparison'
-			) {
-				let evaluate = (cache, situation, parsedRules, node) => {
-					let operatorFunction = {
-							'*': multiply,
-							'/': divide,
-							'+': add,
-							'-': subtract,
-							'<': lt,
-							'<=': lte,
-							'>': gt,
-							'>=': gte,
-							'=': equals,
-							'!=': (a, b) => !equals(a, b)
-						}[node.operator],
-						explanation = map(
-							curry(evaluateNode)(cache, situation, parsedRules),
-							node.explanation
-						),
-						value1 = explanation[0].nodeValue,
-						value2 = explanation[1].nodeValue,
-						nodeValue =
-							value1 == null || value2 == null
-								? null
-								: operatorFunction(value1, value2),
-						missingVariables = mergeMissing(
-							explanation[0].missingVariables,
-							explanation[1].missingVariables
-						)
-
-					return rewriteNode(node, nodeValue, explanation, missingVariables)
-				}
-
-				let treatFilteredVariableClosure = parseResult =>
-					treatFilteredVariable(rules, rule)(
-						parseResult.filter,
-						parseResult.variable
-					)
-				let explanation = parseResult.explanation.map(
-						cond([
-							[propEq('category', 'variable'), treatVariable(rules, rule)],
-							[
-								propEq('category', 'filteredVariable'),
-								treatFilteredVariableClosure
-							],
-							[
-								propEq('category', 'value'),
-								node => ({
-									nodeValue: node.nodeValue,
-									// eslint-disable-next-line
-									jsx: nodeValue => <span className="value">{nodeValue}</span>
-								})
-							],
-							[
-								propEq('category', 'percentage'),
-								node => ({
-									nodeValue: node.nodeValue,
-									// eslint-disable-next-line
-									jsx: nodeValue => (
-										<span className="value">{nodeValue * 100}%</span>
-									)
-								})
-							]
-						])
-					),
-					operator = parseResult.operator
-				let operatorToUnicode = operator =>
-					({
-						'>=': '≥',
-						'<=': '≤',
-						'!=': '≠',
-						'*': '∗',
-						'/': '∕',
-						'-': '−'
-					}[operator] || operator)
-				let jsx = (nodeValue, explanation) => (
-					<Node
-						classes={'inlineExpression ' + parseResult.category}
-						value={nodeValue}
-						child={
-							<span className="nodeContent">
-								<span className="fa fa" />
-								{makeJsx(explanation[0])}
-								<span className="operator">
-									{operatorToUnicode(parseResult.operator)}
-								</span>
-								{makeJsx(explanation[1])}
-							</span>
-						}
-					/>
-				)
-
-				return {
-					evaluate,
-					jsx,
-					operator,
-					text: rawNode,
-					category: parseResult.category,
-					type:
-						parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
-					explanation
-				}
-			}
-		},
-		treatNumber = rawNode => {
-			return {
-				text: '' + rawNode,
-				category: 'number',
-				nodeValue: rawNode,
-				type: 'numeric',
-				jsx: <span className="number">{rawNode}</span>
-			}
-		},
-		treatOther = rawNode => {
-			throw new Error(
-				'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
-			)
-		},
-		treatObject = rawNode => {
-			let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
-
-			if (mecanisms.length != 1) {
-				// eslint-disable-next-line no-console
-				console.log(
-					'Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet',
-					mecanisms,
-					rawNode
-				)
-				throw new Error('OUPS !')
-			}
-
-			let k = head(mecanisms),
-				v = rawNode[k]
-
-			let dispatch = {
-					'une de ces conditions': mecanismOneOf,
-					'toutes ces conditions': mecanismAllOf,
-					'aiguillage numérique': mecanismNumericalSwitch,
-					somme: mecanismSum,
-					multiplication: mecanismProduct,
-					barème: mecanismScale,
-					'le maximum de': mecanismMax,
-					'le minimum de': mecanismMin,
-					complément: mecanismComplement,
-					sélection: mecanismSelection,
-					'une possibilité': always({
-						...v,
-						'une possibilité': 'oui',
-						missingVariables: { [rule.dottedName]: 1 }
-					}),
-					inversion: mecanismInversion(rule.dottedName),
-					allègement: mecanismReduction
-				},
-				action = propOr(mecanismError, k, dispatch)
-
-			return action(reTreat, k, v)
-		}
-
+export let treat = (rules, rule) => rawNode => {
 	let onNodeType = cond([
-		[is(String), treatString],
+		[is(String), treatString(rules, rule)],
 		[is(Number), treatNumber],
-		[is(Object), treatObject],
+		[is(Object), treatObject(rules, rule)],
 		[T, treatOther]
 	])
 
@@ -441,6 +192,15 @@ export let treatRuleRoot = (rules, rule) => {
 			}
 		}
 	})(rule)
+
+	let evaluateControl = () => {
+		let controls = rule['contrôles']
+		if (!controls) return null
+		//parse Expression
+		//test if cited variable is this
+		//evaluate with situation
+		//return message or null
+	}
 
 	return {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
