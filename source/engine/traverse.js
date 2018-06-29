@@ -193,20 +193,24 @@ export let treatRuleRoot = (rules, rule) => {
 		}
 	})(rule)
 
-	let evaluateControl = () => {
-		let controls = rule['contrôles']
-		if (!controls) return null
-		//parse Expression
-		//test if cited variable is this
-		//evaluate with situation
-		//return message or null
-	}
+	//	let evaluateControl = () => {
+	//evaluate with situation
+	//return message or null
+	//}
+	let controls =
+		rule['contrôles'] &&
+		rule['contrôles'].map(control => {
+			let testExpression = treatString(rules, rule)(control.si)
+			console.log(testExpression)
+			return { ...control, testExpression }
+		})
 
 	return {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
-		parsed: true
+		parsed: true,
+		controls
 	}
 }
 
