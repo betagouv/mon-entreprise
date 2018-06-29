@@ -13,11 +13,15 @@ import urssafSvg from './urssaf.svg'
 const Landing = ({ colours: { colour } }) => (
 	<>
 		<section className="landing__header" style={{ backgroundColor: colour }}>
+			<div className="landing__banner">
+				<img alt="logo urssaf" src={urssafSvg} />
+				<img alt="logo marianne" src={marianneSvg} />
+			</div>
 			<header>
 				<Animate.fromBottom delay={500} config={config.slow}>
 					<h1>Launch your business in France</h1>
 					<ul>
-						<li>Incorporation guide {emoji('🏗️🏢')}</li>
+						<li>Incorporation guide {emoji('🏗️')}</li>
 						<li>Costs and social benefits {emoji('💰')}</li>
 						<li>Hiring your first employee {emoji('🤝')}</li>
 					</ul>
@@ -29,14 +33,6 @@ const Landing = ({ colours: { colour } }) => (
 					</Link>
 				</Animate.fromBottom>
 			</header>
-		</section>
-		<section className="landing__reassurance">
-			<div>
-				<img alt="logo urssaf" src={urssafSvg} />
-			</div>
-			<div>
-				<img alt="logo marianne" src={marianneSvg} />
-			</div>
 		</section>
 		<section className="landing__explanations" />
 		<section className="landing__nav" />
