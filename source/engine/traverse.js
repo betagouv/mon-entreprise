@@ -16,7 +16,8 @@ import {
 	merge,
 	keys,
 	is,
-	T
+	T,
+	hasProp
 } from 'ramda'
 import { Node } from './mecanismViews/common'
 import {
@@ -201,8 +202,22 @@ export let treatRuleRoot = (rules, rule) => {
 		rule['contrôles'] &&
 		rule['contrôles'].map(control => {
 			let testExpression = treatString(rules, rule)(control.si)
-			console.log(testExpression)
-			return { ...control, testExpression }
+			if (!testExpression.explanation)
+				throw new Error(
+					'Ce contrôle ne semble pas être compris :' + control['si']
+				)
+
+			let otherVariables = testExpression.explanation.filter(
+				node =>
+					node.category === 'variable' && node.dottedName !== rule.dottedName
+			)
+
+			return {
+				level: control['niveau'],
+				test: control['si'],
+				testExpression,
+				...(!otherVariables.length ? { isInputControl: true } : {})
+			}
 		})
 
 	return {
@@ -274,10 +289,33 @@ export let parseAll = flatRules => {
 	return map(treatOne, flatRules)
 }
 
+let getBlockingInputControls = (parsedRules, situationGate) => {
+	return parsedRules
+		.map(
+			({ controls, dottedName }) =>
+				situationGate(dottedName) != undefined &&
+				controls &&
+				controls.find(
+					({ isInputControl, level, testExpression }) =>
+						isInputControl &&
+						level === 'bloquant' &&
+						evaluateNode({}, situationGate, parsedRules, testExpression)
+							.nodeValue === true
+				)
+		)
+		.filter(found => found)
+}
+
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = { parseLevel: 0 }
+
+	let blockingInputControls = getBlockingInputControls(
+		parsedRules,
+		situationGate
+	)
+	if (blockingInputControls.length) return { blockingInputControls }
 
 	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
