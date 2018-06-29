@@ -3,7 +3,16 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 2rem;
+}
+
+@media (min-width: 500px) {
+	.landing__header {
+		padding: 1.75rem;
+	}
+	.landing__banner {
+		border-top-left-radius: 0.7rem;
+		border-top-right-radius: 0.7rem;
+	}
 }
 .landing__header h1 {
 	color: inherit;
@@ -11,15 +20,17 @@
 
 .landing__header header {
 	text-align: center;
+	animation: fade-in 1s;
+
 	background: linear-gradient(
-		227deg,
+		80deg,
 		rgba(39, 69, 195, 0.87) 10%,
 		rgba(41, 117, 209, 1) 60%,
 		rgba(200, 40, 120, 0.52) 100%
 	);
 	color: white;
 
-	border: 1px solid rgba(255, 255, 255, 0.9);
+	border: 1px solid rgba(255, 255, 255, 1);
 	padding: 1rem;
 }
 .landing__header ul {
@@ -38,13 +49,18 @@
 .landing__banner {
 	height: 100px;
 	width: 100%;
-	opacity: 0.9;
 	display: flex;
 	justify-content: space-between;
 	background: white;
-	border-top-left-radius: 0.7rem;
-	border-top-right-radius: 0.7rem;
 	padding: 1rem;
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 /* Pris sur urssaf.fr */
 @media (min-width: 1200px) {

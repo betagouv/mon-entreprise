@@ -27,3 +27,7 @@ body {
 ul.ui__.no-bullet {
 	list-style: none;
 }
+
+#js {
+	display: block;
+}
