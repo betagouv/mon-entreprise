@@ -1,4 +1,3 @@
-
 .inputSuggestions {
 	text-align: right;
 }
@@ -11,7 +10,8 @@
 }
 .inputSuggestions li {
 	text-align: center;
-    margin-left: 1em;
+	margin: 0;
+	margin-left: 1em;
 	min-width: 2em;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;

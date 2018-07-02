@@ -1,7 +1,6 @@
 .scrollIndication {
 	margin: 0.6em 0;
 	font-size: 110%;
-	font-weight: bold;
 }
 
 .scrollIndication.down {
@@ -11,7 +10,6 @@
 #resultsScrollElement,
 #myScrollToElement {
 	text-align: center;
-	font-weight: bold;
 }
 
 #foldedSteps {
@@ -39,7 +37,7 @@
 }
 
 #currentQuestion {
-	margin-bottom: 4em;
+	margin-bottom: 2em;
 }
 
 .step {
@@ -54,8 +52,9 @@
 	opacity: 1;
 }
 
-.step-question {
-	max-width: 70%;
+.step-question h1 {
+	font-size: 2rem;
+	color: black;
 }
 
 .unfoldedHeader {
@@ -63,23 +62,6 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-}
-
-.step h1 {
-	border: 2px solid #333350;
-	color: #333350;
-	display: inline-block;
-	font-size: 110%;
-	box-sizing: border-box;
-	text-align: left;
-	font-weight: 600;
-	padding: 0.6em 1em;
-	margin: 0;
-	margin-right: 0.3em;
-	border-radius: 1.4em;
-	position: relative;
-	/* Give some space for the explicable's icon */
-	max-width: 90%;
 }
 
 .step.completed .edit:hover {
@@ -199,8 +181,7 @@
 	padding: 0.25em 0.85em;
 	line-height: 1.8em;
 	border-radius: 1em;
-	font-weight: 600;
-	font-size: 105%;
+	font-size: 120%;
 }
 
 .resume {

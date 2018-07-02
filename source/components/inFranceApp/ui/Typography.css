@@ -1,6 +1,9 @@
 html {
 	font-size: 1em;
 }
+body {
+	font-family: 'Roboto', sans-serif;
+}
 
 h1 {
 	font-size: 3.1rem;
@@ -45,7 +48,6 @@ button {
 p,
 ul {
 	line-height: 1.7rem;
-	font-size: 1.1rem;
 	font-weight: lighter;
 }
 

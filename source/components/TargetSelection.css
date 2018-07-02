@@ -10,17 +10,6 @@
 	font-size: 180%;
 }
 
-#targetSelection #action {
-	text-align: center;
-	margin: 1em auto;
-}
-
-#targetSelection #action p {
-	color: #4b4b66;
-	margin-bottom: 1em;
-	font-size: 120%;
-}
-
 #targetSelection #targets {
 	list-style: none;
 	background: rgba(0, 0, 0, 0.1);
@@ -33,6 +22,7 @@
 #targetSelection #targets > li {
 	padding: 0.6em;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	margin: 0;
 }
 #targetSelection #targets > li .main {
 	display: flex;
