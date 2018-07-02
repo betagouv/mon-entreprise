@@ -1256,12 +1256,15 @@
 
 - espace: contrat salarié
   nom: assiette ATMP réduction générale
-  description: Lorsque le montant de la réduction générale est supérieur au montant de ces cotisations et contributions, la réduction est également imputée sur les cotisations accidents du travail et maladies professionnelles dans la limite de 0,90 % de la rémunération.
   formule:
     multiplication:
-      # En pratique, l'ATMP est toujours supérieur à 0.9%
       assiette: assiette cotisations sociales
-      taux: 0.9%
+      taux: 0.84%
+  note: 
+    En pratique, l'ATMP est toujours supérieure à 0.84%
+  références: 
+    Code de la sécurité sociale - Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036467594
+
 
 
 - espace: contrat salarié
