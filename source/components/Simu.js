@@ -41,7 +41,9 @@ export default class Simu extends Component {
 							</>
 						)}
 					<TargetSelection colours={colours} />
-					{!noUserInput && !blockingInputControls && <GoToExplanations />}
+					<ContinueButton />
+					{conversationStarted &&
+						!blockingInputControls && <GoToExplanations />}
 				</div>
 				{!noUserInput && !blockingInputControls && <ResultView />}
 				{!noUserInput && !blockingInputControls && <ContinueButton />}
