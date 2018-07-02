@@ -28,7 +28,6 @@ let Namespace = ({ ns, flatRules, colours }) => (
 								color: colours.textColourOnWhite,
 								textDecoration: 'underline'
 							}}
-							replace
 							to={'/règle/' + encodeRuleName(ruleName)}>
 							{ruleText}
 						</Link>

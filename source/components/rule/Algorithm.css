@@ -159,24 +159,10 @@
 }
 
 .variable a {
-	color: blue;
-	border: 1px solid transparent;
-	border-bottom: 1px solid blue;
-	text-align: center;
-	font-weight: 600;
-	font-size: 90%;
 	display: inline-block;
 	white-space: nowrap;
 }
 
-.variable a:hover {
-	color: rgb(0, 0, 150) !important;
-	border-bottom-color: rgb(0, 0, 150);
-}
-.variable a:focus {
-	border: 1px dotted;
-	outline: none;
-}
 
 .percentage .name {
 	font-size: 110%;

@@ -30,17 +30,11 @@
 	text-transform: capitalize;
 }
 
-#rule h1 {
-	font-size: 200%;
-}
-#rule h2 {
-	font-size: 150%;
-	font-weight: 400;
-	padding-bottom: 0.1em;
-}
-
 #rule h2 small {
-	font-size: 65%;
+	font-size: 55%;
 	color: rgba(51, 51, 80, 0.8);
-	margin-left: 1em;
+	margin-left: 0.6em;
+}
+#rule h1 {
+	font-size: 2.5rem;
 }

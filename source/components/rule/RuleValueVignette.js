@@ -7,7 +7,7 @@ import './RuleValueVignette.css'
 
 let RuleValueVignette = ({ name, title, nodeValue: ruleValue }) => (
 	<span key={name} className="RuleValueVignette">
-		<Link replace to={'/règle/' + encodeRuleName(name)}>
+		<Link to={'/règle/' + encodeRuleName(name)}>
 			<div className="rule-box">
 				<span className="rule-name">{title}</span>
 				<RuleValue ruleValue={ruleValue} />

@@ -30,7 +30,7 @@
 		rgba(255, 255, 255, 0.52) 55%
 	);
 	background-size: 250%;
-	background-position-x: 100%;
+	background-position-x: 99%;
 }
 .ui__.button:hover,
 .ui__.button.selected {
