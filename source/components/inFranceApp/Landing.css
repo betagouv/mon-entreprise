@@ -21,6 +21,7 @@
 
 .landing__header header {
 	text-align: center;
+	overflow: hidden;
 	animation: fade-in 1s;
 
 	background: linear-gradient(
