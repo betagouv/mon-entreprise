@@ -755,6 +755,8 @@
   #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
   # type de période: mensuel
   formule: 3311
+  références: 
+    arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
 
 - espace: contrat salarié
   nom: plafond sécurité sociale
@@ -1217,7 +1219,7 @@
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
         assiette cotisations sociales: 1498.47
-      valeur attendue: 420.92
+      valeur attendue: 421.69
     - nom: "Nulle au-dessus du plafond"
       situation:
         assiette cotisations sociales: 2398
@@ -1239,10 +1241,10 @@
       assiette: 10 / 6
       variations:
         - si: entreprise . effectif < 20
-          taux: 0.2809
+          taux: 0.2814
           plafond: plafond sécurité sociale
         - si: entreprise . effectif >= 20
-          taux: 0.2849
+          taux: 0.2854
 
 - espace: contrat salarié
   nom: assiette réduction générale
@@ -1256,12 +1258,15 @@
 
 - espace: contrat salarié
   nom: assiette ATMP réduction générale
-  description: Lorsque le montant de la réduction générale est supérieur au montant de ces cotisations et contributions, la réduction est également imputée sur les cotisations accidents du travail et maladies professionnelles dans la limite de 0,90 % de la rémunération.
   formule:
     multiplication:
-      # En pratique, l'ATMP est toujours supérieur à 0.9%
       assiette: assiette cotisations sociales
-      taux: 0.9%
+      taux: 0.84%
+  note: 
+    En pratique, l'ATMP est toujours supérieure à 0.84%
+  références: 
+    Code de la sécurité sociale - Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036467594
+
 
 
 - espace: contrat salarié
