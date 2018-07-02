@@ -1217,7 +1217,7 @@
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
         assiette cotisations sociales: 1498.47
-      valeur attendue: 420.92
+      valeur attendue: 421.69
     - nom: "Nulle au-dessus du plafond"
       situation:
         assiette cotisations sociales: 2398
@@ -1239,10 +1239,10 @@
       assiette: 10 / 6
       variations:
         - si: entreprise . effectif < 20
-          taux: 0.2809
+          taux: 0.2814
           plafond: plafond sécurité sociale
         - si: entreprise . effectif >= 20
-          taux: 0.2849
+          taux: 0.2854
 
 - espace: contrat salarié
   nom: assiette réduction générale
