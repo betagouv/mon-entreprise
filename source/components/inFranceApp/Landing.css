@@ -3,6 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	min-height: 100vh;
 }
 
 @media (min-width: 500px) {
@@ -24,8 +25,8 @@
 
 	background: linear-gradient(
 		80deg,
-		rgba(39, 69, 195, 0.87) 10%,
-		rgba(41, 117, 209, 1) 60%,
+		rgba(39, 69, 195, 0.87) 5%,
+		rgba(41, 117, 209, 1) 50%,
 		rgba(200, 40, 120, 0.52) 100%
 	);
 	color: white;

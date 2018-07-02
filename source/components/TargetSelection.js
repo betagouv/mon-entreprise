@@ -13,7 +13,6 @@ import {
 	noUserInputSelector,
 	blockingInputControlsSelector
 } from 'Selectors/analyseSelectors'
-import BlueButton from './BlueButton'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
 import AnimatedTargetValue from './AnimatedTargetValue'
@@ -52,7 +51,6 @@ export let popularTargetNames = [
 	dispatch => ({
 		setFormValue: (field, name) =>
 			dispatch(change('conversation', field, name)),
-		startConversation: () => dispatch({ type: 'START_CONVERSATION' }),
 		setActiveInput: name => dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
 	})
 )
@@ -83,20 +81,14 @@ export default class TargetSelection extends Component {
 				{blockingInputControls && (
 					<Controls blockingInputControls={blockingInputControls} />
 				)}
-
 				{!noUserInput &&
 					!blockingInputControls &&
 					!conversationStarted && (
-						<div id="action">
-							<p>
-								<b>
-									<Trans>Première estimation</Trans>
-								</b>
-							</p>
-							<BlueButton onClick={this.props.startConversation}>
-								<Trans>Continuer</Trans>
-							</BlueButton>
-						</div>
+						<h3 style={{ textAlign: 'center', color: 'black' }}>
+							<b>
+								<Trans>Première estimation</Trans>
+							</b>
+						</h3>
 					)}
 			</div>
 		)

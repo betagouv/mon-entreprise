@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import './Pages.css'
-import './About.css'
 import { Link } from 'react-router-dom'
-import BlueButton from '../BlueButton'
+import { BlueButton } from '../ui/Button'
+import './About.css'
+import './MailChimp.css'
+import './Pages.css'
 
 export default class About extends Component {
 	render() {
@@ -58,7 +59,7 @@ export default class About extends Component {
 				<p>
 					Par contre, nous recueillons des statistiques anonymes d'usage du
 					site, que nous utilisons dans l'unique but d'améliorer le service,
-					conformément au{' '}
+					conformément aux{' '}
 					<a href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience">
 						recommandations de la CNIL
 					</a>.
@@ -68,8 +69,6 @@ export default class About extends Component {
 		)
 	}
 }
-
-import './MailChimp.css'
 
 let MailChimp = () => (
 	<div id="mc_embed_signup">

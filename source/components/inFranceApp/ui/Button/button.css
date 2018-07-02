@@ -13,21 +13,30 @@
 	/* outline: none; */
 	display: inline-block;
 	border-radius: 0.6rem;
-	transition: all 0.2s;
+	transition: all 0.15s;
 	margin: 0.8rem 0;
 	margin-right: 1.6em;
 	text-transform: uppercase;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 .ui__.button {
 	border-color: rgb(41, 117, 209);
 	color: rgb(41, 117, 209);
+	background: linear-gradient(
+		45deg,
+		rgba(39, 69, 195, 0.87) 5%,
+		rgba(41, 117, 209, 1) 25%,
+		rgba(200, 40, 120, 0.52) 50%,
+		rgba(255, 255, 255, 0.52) 55%
+	);
+	background-size: 250%;
+	background-position-x: 100%;
 }
 .ui__.button:hover,
 .ui__.button.selected {
-	background-color: rgb(41, 117, 209);
-	color: white;
+	background-position-x: 0%;
 	border-color: white;
+	color: white;
 }
 .ui__.button.cta,
 .ui__.inverted-button.cta {

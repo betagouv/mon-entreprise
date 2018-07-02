@@ -4,9 +4,10 @@ import {
 	noUserInputSelector,
 	blockingInputControlsSelector
 } from 'Selectors/analyseSelectors'
+import ContinueButton from './Continue'
 import Conversation from './conversation/Conversation'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
-import ProgressTip from './ProgressTip'
+import GoToExplanations from './GoToExplanations'
 import ResultView from './ResultView/ResultView'
 import './Simu.css'
 import Sondage from './Sondage'
@@ -33,17 +34,17 @@ export default class Simu extends Component {
 				<div id="focusZone">
 					<FoldedSteps />
 					<GoToAnswers />
-					<TargetSelection colours={colours} />
 					{conversationStarted &&
 						!blockingInputControls && (
 							<>
-								<ProgressTip />
 								<Conversation textColourOnWhite={colours.textColourOnWhite} />
 							</>
 						)}
+					<TargetSelection colours={colours} />
 					{!noUserInput && !blockingInputControls && <GoToExplanations />}
 				</div>
 				{!noUserInput && !blockingInputControls && <ResultView />}
+				{!noUserInput && !blockingInputControls && <ContinueButton />}
 				{!blockingInputControls && <Sondage />}
 			</div>
 		)
