@@ -66,7 +66,7 @@ export class Leaf extends Component {
 			<span className={classNames(classes, 'leaf')}>
 				{dottedName && (
 					<span className="nodeHead">
-						<Link replace to={'/règle/' + encodeRuleName(dottedName)}>
+						<Link to={'/règle/' + encodeRuleName(dottedName)}>
 							<span className="name">
 								{rule.title || capitalise0(name)} {filter}
 								<NodeValuePointer data={value} />
