@@ -67,7 +67,6 @@ export default class TargetSelection extends Component {
 				<section
 					id="targetsContainer"
 					style={{
-						background: colours.colour,
 						color: colours.textColour
 					}}>
 					{this.renderOutputList()}

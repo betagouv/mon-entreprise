@@ -8,6 +8,7 @@ import { compose, head, path } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Link, Redirect } from 'react-router-dom'
 import { animateScroll } from 'react-scroll'
 import {
@@ -73,18 +74,21 @@ export default class RulePage extends Component {
 		)
 	})
 )
+@withRouter
 class BackToSimulation extends Component {
 	render() {
-		let { colour, setExample } = this.props
+		let { colour, setExample, history } = this.props
 		return (
-			<Link
-				onClick={() => setExample(null)}
+			<button
 				id="toSimulation"
-				to={'/'}
+				onClick={() => {
+					setExample(null)
+					history.go(-1)
+				}}
 				style={{ background: colour }}>
 				<i className="fa fa-arrow-circle-left" aria-hidden="true" />
 				<Trans i18nKey="back">Reprendre la simulation</Trans>
-			</Link>
+			</button>
 		)
 	}
 }
