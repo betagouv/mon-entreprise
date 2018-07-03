@@ -2,9 +2,6 @@
 	transition: background 0.8s;
 	font-size: 105%;
 }
-.Rule-value .figure {
-	font-weight: bold;
-}
 
 /* Animation of summary figures changes : flash ! */
 .flash-enter {

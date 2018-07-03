@@ -6,7 +6,7 @@
 	list-style: none;
 	display: inline-flex;
 	align-items: flex-end;
-	font-weight: 600;
+	font-weight: 500;
 }
 .inputSuggestions li {
 	text-align: center;
