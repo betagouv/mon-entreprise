@@ -676,7 +676,10 @@
   suggestions:
     salaire médian: 2300
     SMIC: 1500
-
+  contrôles: 
+    - si: brut de base < 300
+      message: Entrez un salaire mensuel
+      niveau: bloquant
   formule:
     inversion:
       question: Quel est le salaire mensuel ?
@@ -857,6 +860,10 @@
   description: |
     C'est le montant que le salarié touche à la fin du mois.
   formule: salaire . net - avantages en nature . montant
+  contrôles: 
+    - si: net à payer < 200
+      message: Entrez un salaire mensuel
+      niveau: bloquant
 
 - espace: contrat salarié
   nom: coût du travail
@@ -883,6 +890,10 @@
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
   formule: salaire . total sans réduction - réductions de cotisations
+  contrôles: 
+    - si: total < 400
+      message: Entrez un salaire mensuel
+      niveau: bloquant
 
 - espace: contrat salarié
   nom: réductions de cotisations

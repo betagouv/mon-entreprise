@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { noUserInputSelector } from 'Selectors/analyseSelectors'
+import {
+	noUserInputSelector,
+	blockingInputControlsSelector
+} from 'Selectors/analyseSelectors'
 import Conversation from './conversation/Conversation'
 import FoldedSteps, { GoToAnswers } from './conversation/FoldedSteps'
 import GoToExplanations from './GoToExplanations'
@@ -14,11 +17,17 @@ import withColours from './withColours'
 @withColours
 @connect(state => ({
 	noUserInput: noUserInputSelector(state),
+	blockingInputControls: blockingInputControlsSelector(state),
 	conversationStarted: state.conversationStarted
 }))
 export default class Simu extends Component {
 	render() {
-		let { colours, conversationStarted, noUserInput } = this.props
+		let {
+			colours,
+			conversationStarted,
+			noUserInput,
+			blockingInputControls
+		} = this.props
 
 		return (
 			<div id="simu">
@@ -26,16 +35,17 @@ export default class Simu extends Component {
 					<FoldedSteps />
 					<GoToAnswers />
 					<TargetSelection colours={colours} />
-					{conversationStarted && (
-						<>
-							<ProgressTip />
-							<Conversation textColourOnWhite={colours.textColourOnWhite} />
-						</>
-					)}
-					{!noUserInput && <GoToExplanations />}
+					{conversationStarted &&
+						!blockingInputControls && (
+							<>
+								<ProgressTip />
+								<Conversation textColourOnWhite={colours.textColourOnWhite} />
+							</>
+						)}
+					{!noUserInput && !blockingInputControls && <GoToExplanations />}
 				</div>
-				{!noUserInput && <ResultView />}
-				<Sondage />
+				{!noUserInput && !blockingInputControls && <ResultView />}
+				{!blockingInputControls && <Sondage />}
 			</div>
 		)
 	}

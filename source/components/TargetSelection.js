@@ -10,7 +10,8 @@ import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
-	noUserInputSelector
+	noUserInputSelector,
+	blockingInputControlsSelector
 } from 'Selectors/analyseSelectors'
 import BlueButton from './BlueButton'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
@@ -18,6 +19,7 @@ import ProgressCircle from './ProgressCircle/ProgressCircle'
 import { RuleValue } from './rule/RuleValueVignette'
 import './TargetSelection.css'
 import withLanguage from './withLanguage'
+import Controls from './Controls'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -41,6 +43,7 @@ export let popularTargetNames = [
 		getTargetValue: dottedName =>
 			formValueSelector('conversation')(state, dottedName),
 		analysis: analysisWithDefaultsSelector(state),
+		blockingInputControls: blockingInputControlsSelector(state),
 		flatRules: flatRulesSelector(state),
 		noUserInput: noUserInputSelector(state),
 		conversationStarted: state.conversationStarted,
@@ -55,7 +58,12 @@ export let popularTargetNames = [
 )
 export default class TargetSelection extends Component {
 	render() {
-		let { conversationStarted, colours, noUserInput } = this.props
+		let {
+			conversationStarted,
+			colours,
+			noUserInput,
+			blockingInputControls
+		} = this.props
 		return (
 			<div id="targetSelection">
 				<section
@@ -67,12 +75,17 @@ export default class TargetSelection extends Component {
 					{this.renderOutputList()}
 				</section>
 				{noUserInput && (
-					<h1>
+					<p className="controls">
 						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
-					</h1>
+					</p>
+				)}
+
+				{blockingInputControls && (
+					<Controls blockingInputControls={blockingInputControls} />
 				)}
 
 				{!noUserInput &&
+					!blockingInputControls &&
 					!conversationStarted && (
 						<div id="action">
 							<p>
@@ -98,7 +111,8 @@ export default class TargetSelection extends Component {
 				activeInput,
 				setActiveInput,
 				analysis,
-				noUserInput
+				noUserInput,
+				blockingInputControls
 			} = this.props,
 			targets = analysis ? analysis.targets : []
 
@@ -112,7 +126,8 @@ export default class TargetSelection extends Component {
 									{...{
 										target,
 										conversationStarted,
-										isActiveInput: activeInput === target.dottedName
+										isActiveInput: activeInput === target.dottedName,
+										blockingInputControls
 									}}
 								/>
 								<TargetInputOrValue
@@ -122,7 +137,8 @@ export default class TargetSelection extends Component {
 										activeInput,
 										setActiveInput,
 										setFormValue: this.props.setFormValue,
-										noUserInput
+										noUserInput,
+										blockingInputControls
 									}}
 								/>
 							</div>
@@ -144,12 +160,18 @@ export default class TargetSelection extends Component {
 	}
 }
 
-let Header = ({ target, conversationStarted, isActiveInput }) => {
+let Header = ({
+	target,
+	conversationStarted,
+	isActiveInput,
+	blockingInputControls
+}) => {
 	return (
 		<span className="header">
-			{conversationStarted && (
-				<ProgressCircle target={target} isActiveInput={isActiveInput} />
-			)}
+			{conversationStarted &&
+				!blockingInputControls && (
+					<ProgressCircle target={target} isActiveInput={isActiveInput} />
+				)}
 
 			<span className="texts">
 				<span className="optionTitle">
@@ -175,7 +197,15 @@ let CurrencyField = props => {
 }
 
 let TargetInputOrValue = withLanguage(
-	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
+	({
+		target,
+		targets,
+		activeInput,
+		setActiveInput,
+		language,
+		noUserInput,
+		blockingInputControls
+	}) => (
 		<span className="targetInputOrValue">
 			{activeInput === target.dottedName ? (
 				<Field
@@ -185,7 +215,14 @@ let TargetInputOrValue = withLanguage(
 				/>
 			) : (
 				<TargetValue
-					{...{ targets, target, activeInput, setActiveInput, noUserInput }}
+					{...{
+						targets,
+						target,
+						activeInput,
+						setActiveInput,
+						noUserInput,
+						blockingInputControls
+					}}
 				/>
 			)}
 		</span>
@@ -200,28 +237,32 @@ let TargetInputOrValue = withLanguage(
 class TargetValue extends Component {
 	render() {
 		let {
-				targets,
-				target,
-				setFormValue,
-				activeInput,
-				setActiveInput,
-				noUserInput
-			} = this.props,
-			targetWithValue = targets.find(propEq('dottedName', target.dottedName)),
+			targets,
+			target,
+			setFormValue,
+			activeInput,
+			setActiveInput,
+			noUserInput,
+			blockingInputControls
+		} = this.props
+
+		let targetWithValue =
+				targets && targets.find(propEq('dottedName', target.dottedName)),
 			value = targetWithValue && targetWithValue.nodeValue
 
 		return (
 			<span
 				className={classNames({
 					editable: target.question,
-					attractClick: target.question && noUserInput
+					attractClick:
+						target.question && (noUserInput || blockingInputControls)
 				})}
 				onClick={() => {
 					if (!target.question) return
-					if (value != null) {
+					if (value != null)
 						setFormValue(target.dottedName, Math.floor(value) + '')
-						setFormValue(activeInput, '')
-					}
+
+					if (activeInput) setFormValue(activeInput, '')
 					setActiveInput(target.dottedName)
 				}}>
 				<RuleValue value={value} />
