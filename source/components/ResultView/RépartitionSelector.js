@@ -14,7 +14,6 @@ import {
 	pipe,
 	reduce,
 	sort,
-	values,
 	without
 } from 'ramda'
 import { createSelector } from 'reselect'
@@ -142,7 +141,7 @@ const répartition = (ficheDePaie: FicheDePaie): Répartition => {
 		cotisationMaximum: compose(
 			reduce(max, 0),
 			map(montant => montant.partPatronale + montant.partSalariale),
-			values
+			Object.values
 			// $FlowFixMe
 		)(répartitionMap),
 		salaireNet,
