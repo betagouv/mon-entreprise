@@ -126,7 +126,8 @@ export default class TargetSelection extends Component {
 									{...{
 										target,
 										conversationStarted,
-										isActiveInput: activeInput === target.dottedName
+										isActiveInput: activeInput === target.dottedName,
+										blockingInputControls
 									}}
 								/>
 								<TargetInputOrValue
@@ -159,12 +160,18 @@ export default class TargetSelection extends Component {
 	}
 }
 
-let Header = ({ target, conversationStarted, isActiveInput }) => {
+let Header = ({
+	target,
+	conversationStarted,
+	isActiveInput,
+	blockingInputControls
+}) => {
 	return (
 		<span className="header">
-			{conversationStarted && (
-				<ProgressCircle target={target} isActiveInput={isActiveInput} />
-			)}
+			{conversationStarted &&
+				!blockingInputControls && (
+					<ProgressCircle target={target} isActiveInput={isActiveInput} />
+				)}
 
 			<span className="texts">
 				<span className="optionTitle">

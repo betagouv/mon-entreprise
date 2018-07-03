@@ -35,12 +35,13 @@ export default class Simu extends Component {
 					<FoldedSteps />
 					<GoToAnswers />
 					<TargetSelection colours={colours} />
-					{conversationStarted && (
-						<>
-							<ProgressTip />
-							<Conversation textColourOnWhite={colours.textColourOnWhite} />
-						</>
-					)}
+					{conversationStarted &&
+						!blockingInputControls && (
+							<>
+								<ProgressTip />
+								<Conversation textColourOnWhite={colours.textColourOnWhite} />
+							</>
+						)}
 					{!noUserInput && !blockingInputControls && <GoToExplanations />}
 				</div>
 				{!noUserInput && !blockingInputControls && <ResultView />}
