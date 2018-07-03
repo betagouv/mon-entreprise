@@ -9,8 +9,14 @@ export default connect(state => ({
 		disabled={disabled}
 		onClick={onClick}
 		className="blueButton"
-		style={{ ...style, background: themeColours.colour }}
-	>
+		style={{
+			...style,
+			background: `linear-gradient(45deg, ${themeColours.darkerColour}, ${
+				themeColours.colour
+			})`,
+			animation: 'AnimatedGradient 6s ease infinite',
+			backgroundSize: '400% 400%'
+		}}>
 		{children}
 	</button>
 ))

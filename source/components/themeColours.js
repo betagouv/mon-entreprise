@@ -10,6 +10,7 @@ export default forcedThemeColour => {
 		colour = forcedThemeColour || defaultColour,
 		lightColour = lightenColour(colour, 10),
 		darkColour = lightenColour(colour, -10),
+		darkerColour = lightenColour(colour, -20),
 		lightestColour = lightenColour(colour, 100),
 		darkestColour = lightenColour(colour, -100),
 		textColour = findContrastedTextColour(colour, true), // the 'simple' version feels better...
@@ -29,6 +30,7 @@ export default forcedThemeColour => {
 		textColourOnWhite,
 		lightColour,
 		darkColour,
+		darkerColour,
 		lightestColour,
 		darkestColour
 	}
