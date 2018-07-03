@@ -37,7 +37,7 @@
 #targetSelection #targets > li p {
 	margin: 0.2em 0 0;
 	opacity: 0.8;
-	line-height: 1.2em;
+	line-height: 1.2rem;
 }
 
 #targetSelection li .header {
@@ -71,7 +71,6 @@
 #targetSelection .targetInputOrValue {
 	font-size: 135%;
 	display: flex;
-	height: 1.4em;
 	justify-content: flex-end;
 	align-items: flex-end;
 	margin-left: 0.6em;
@@ -80,8 +79,11 @@
 #targetSelection .editable {
 	border-bottom: 1px dashed #ffffff91;
 	min-width: 2.5em;
-	height: inherit;
 	display: inline-block;
+}
+
+#targetSelection .attractClick.editable {
+	height: 2.6rem;
 }
 
 #targetSelection .attractClick,
