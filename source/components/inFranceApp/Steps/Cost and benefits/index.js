@@ -41,10 +41,6 @@ class Hiring extends Component<Props, State> {
 							package.
 						</p>
 						<h2>How much does it cost ?</h2>
-						<p>
-							Explore the costs and benefits by entering a salary in the
-							simulator below:
-						</p>
 					</>
 				)}
 				{Simu && <Simu />}

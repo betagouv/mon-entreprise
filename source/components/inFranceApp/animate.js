@@ -24,6 +24,7 @@ export const fromBottom = ({
 		delay={delay}
 		config={config}
 		from={{ opacity: 0, y: 50 }}
+		leave={{ opacity: 0, y: -50 }}
 		to={{ opacity: 1, y: 0 }}>
 		{/* eslint-disable-next-line react/display-name */}
 		{children.map((item, i) => ({ y, ...style }) => (

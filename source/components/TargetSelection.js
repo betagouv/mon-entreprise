@@ -9,16 +9,16 @@ import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
+	blockingInputControlsSelector,
 	flatRulesSelector,
-	noUserInputSelector,
-	blockingInputControlsSelector
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import './TargetSelection.css'
 import withLanguage from './withLanguage'
-import Controls from './Controls'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -45,7 +45,6 @@ export let popularTargetNames = [
 		blockingInputControls: blockingInputControlsSelector(state),
 		flatRules: flatRulesSelector(state),
 		noUserInput: noUserInputSelector(state),
-		conversationStarted: state.conversationStarted,
 		activeInput: state.activeTargetInput
 	}),
 	dispatch => ({
@@ -56,12 +55,7 @@ export let popularTargetNames = [
 )
 export default class TargetSelection extends Component {
 	render() {
-		let {
-			conversationStarted,
-			colours,
-			noUserInput,
-			blockingInputControls
-		} = this.props
+		let { colours, noUserInput, blockingInputControls } = this.props
 		return (
 			<div id="targetSelection">
 				<section
@@ -80,15 +74,6 @@ export default class TargetSelection extends Component {
 				{blockingInputControls && (
 					<Controls blockingInputControls={blockingInputControls} />
 				)}
-				{!noUserInput &&
-					!blockingInputControls &&
-					!conversationStarted && (
-						<h3 style={{ textAlign: 'center', color: 'black' }}>
-							<b>
-								<Trans>Première estimation</Trans>
-							</b>
-						</h3>
-					)}
 			</div>
 		)
 	}
