@@ -10,7 +10,8 @@ import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
-	noUserInputSelector
+	noUserInputSelector,
+	blockingInputControlsSelector
 } from 'Selectors/analyseSelectors'
 import BlueButton from './BlueButton'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
@@ -42,6 +43,7 @@ export let popularTargetNames = [
 		getTargetValue: dottedName =>
 			formValueSelector('conversation')(state, dottedName),
 		analysis: analysisWithDefaultsSelector(state),
+		blockingInputControls: blockingInputControlsSelector(state),
 		flatRules: flatRulesSelector(state),
 		noUserInput: noUserInputSelector(state),
 		conversationStarted: state.conversationStarted,
@@ -56,7 +58,12 @@ export let popularTargetNames = [
 )
 export default class TargetSelection extends Component {
 	render() {
-		let { conversationStarted, colours, noUserInput, analysis } = this.props
+		let {
+			conversationStarted,
+			colours,
+			noUserInput,
+			blockingInputControls
+		} = this.props
 		return (
 			<div id="targetSelection">
 				<section
@@ -73,13 +80,12 @@ export default class TargetSelection extends Component {
 					</p>
 				)}
 
-				{analysis &&
-					analysis.blockingInputControls && (
-						<Controls blockingInputControls={analysis.blockingInputControls} />
-					)}
+				{blockingInputControls && (
+					<Controls blockingInputControls={blockingInputControls} />
+				)}
 
 				{!noUserInput &&
-					!(analysis && analysis.blockingInputControls) &&
+					!blockingInputControls &&
 					!conversationStarted && (
 						<div id="action">
 							<p>
@@ -105,7 +111,8 @@ export default class TargetSelection extends Component {
 				activeInput,
 				setActiveInput,
 				analysis,
-				noUserInput
+				noUserInput,
+				blockingInputControls
 			} = this.props,
 			targets = analysis ? analysis.targets : []
 
@@ -130,8 +137,7 @@ export default class TargetSelection extends Component {
 										setActiveInput,
 										setFormValue: this.props.setFormValue,
 										noUserInput,
-										blockingInputControls:
-											analysis && analysis.blockingInputControls
+										blockingInputControls
 									}}
 								/>
 							</div>

@@ -16,8 +16,7 @@ import {
 	merge,
 	keys,
 	is,
-	T,
-	hasProp
+	T
 } from 'ramda'
 import { Node } from './mecanismViews/common'
 import {
@@ -208,12 +207,14 @@ export let treatRuleRoot = (rules, rule) => {
 					node.category === 'variable' && node.dottedName !== rule.dottedName
 			)
 
+			let isInputControl = !otherVariables.length
+
 			return {
 				level: control['niveau'],
 				test: control['si'],
 				message: control['message'],
 				testExpression,
-				...(!otherVariables.length ? { isInputControl: true } : {})
+				isInputControl
 			}
 		})
 
