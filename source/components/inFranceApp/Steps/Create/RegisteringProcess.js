@@ -18,13 +18,13 @@ const RegisterMyCompany = ({ match }: Props) => (
 		</p>
 		<ul className="ui__ no-bullet">
 			<li>
+				<input type="checkbox" checked /> Choose the legal status
+			</li>
+			<li>
 				<input type="checkbox" /> Finding a corporate name and a trade name
 			</li>
 			<li>
 				<input type="checkbox" /> Find a space (or work at home)
-			</li>
-			<li>
-				<input type="checkbox" checked /> Choose the legal status
 			</li>
 			<li>
 				<input type="checkbox" /> Register your company online on{' '}
@@ -52,13 +52,16 @@ const RegisterMyCompany = ({ match }: Props) => (
 		</ul>
 		<p>
 			You can add this page to your favorite and keep track of your progress in
-			the different administrative tasks. Now that you have a properly
+			the different administrative tasks. 
+			</p><p>Now that you have a properly
 			registered company, the next steps is to{' '}
 			<strong>hire your first employee</strong>
 		</p>
-		<Link className="ui__ button cta" to="/hiring-and-social-security">
+		<div style={{textAlign: 'center'}}>
+		<Link className="ui__ button" to="/hiring-and-social-security">
 			Simulate hiring cost in France
 		</Link>
+		</div>
 	</Animate.fromBottom>
 )
 
