@@ -43,7 +43,6 @@ export default class Simu extends Component {
 							height: displayResults ? 'auto' : 0,
 							opacity: displayResults ? 1 : 0
 						}}
-						delay={2000}
 						native>
 						{styles => (
 							<animated.div
@@ -53,7 +52,7 @@ export default class Simu extends Component {
 									overflow: 'hidden',
 									flexWrap: 'wrap',
 									fontSize: '110%',
-									justifyContent: 'space-between'
+									justifyContent: 'space-evenly'
 								}}>
 								<button
 									className="ui__ link-button"
