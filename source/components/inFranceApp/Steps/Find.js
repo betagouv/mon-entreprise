@@ -1,8 +1,9 @@
 /* @flow */
 import React from 'react'
-import * as Animate from '../animate'
 import { SkipButton } from '../ui/Button'
+// $FlowFixMe
 import ReactSelect from 'react-select'
+// $FlowFixMe
 import 'react-select/dist/react-select.css'
 import './Find.css'
 import { Link } from 'react-router-dom'
@@ -11,10 +12,10 @@ import { toPairs } from 'ramda'
 export default function Create() {
 	return (
 		<>
-			<header className="ui__inverted-colors" style={{ textAlign: 'center' }}>
+			<header className="ui__invertedq-colors" style={{ textAlign: 'center' }}>
 				<h1 className="question__title">Find your company</h1>
 				<a className="ui__link-button" href="/steps/-create-my-company">
-					I don't have a company yet
+					I don&apos;t have a company yet
 				</a>
 			</header>
 			<Search />
@@ -23,15 +24,21 @@ export default function Create() {
 	)
 }
 
-class Search extends React.Component {
+type CompanyType = {[string]: string};
+
+type State = {
+	input: Company,
+	chosen: boolean,
+}
+class Search extends React.Component<{}, State> {
 	state = {
-		input: '',
-		chosen: null
+		input: {},
+		chosen: false
 	}
 	handleChange = input => {
 		this.setState({ input })
 	}
-	getOptions = input =>
+	getOptions = (input: string) =>
 		input.length < 3
 			? Promise.resolve({ options: [] })
 			: fetch(`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`)
@@ -46,9 +53,7 @@ class Search extends React.Component {
 							error
 						) // eslint-disable-line no-console
 					})
-	//	componentDidMount() {
-	//this.inputElement.focus()
-	//}
+	
 	render() {
 		if (this.state.chosen)
 			return (
@@ -94,7 +99,7 @@ let companyDataSelection = {
 	date_creation: 'Creation date'
 }
 
-let Company = data => {
+let Company = (data: CompanyType) => {
 	return (
 		<ul>
 			{toPairs(data).map(
