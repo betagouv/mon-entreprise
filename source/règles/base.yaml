@@ -680,13 +680,6 @@
     - si: brut de base < 300
       message: Entrez un salaire mensuel
       niveau: bloquant
-  #    - si: brut de base < smic mensuel
-  #    message: Le salaire saisi semble inférieur au SMIC.
-  #    niveau: avertissement
-    - si: brut de base > 100000
-      message: N'avez-vous pas saisi un zéro de trop ?
-      niveau: information
-
   formule:
     inversion:
       question: Quel est le salaire mensuel ?
