@@ -2,22 +2,14 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Simu from '../../../Simu'
 import * as Animate from '../../animate'
-import type { ComponentType } from 'react'
-type State = {
-	simu: ?ComponentType<{}>
-}
 
 type Props = {
 	hideText: boolean
 }
 class Hiring extends Component<Props, State> {
-	state = { simu: null }
-	componentDidMount() {
-		import('../../../Simu').then(({ default: simu }) => this.setState({ simu }))
-	}
 	render() {
-		const Simu = this.state.simu
 		return (
 			<Animate.fromBottom>
 				{!this.props.hideText && (
@@ -30,20 +22,20 @@ class Hiring extends Component<Props, State> {
 							benefits are included in the Social Security charges as standard.
 						</p>
 						<p>
-							This easy access to health care and other services ensures that
-							companies can put healthy, highly skilled, and productive
-							employees to work in an attractive market in the heart of Europe.
-						</p>
-						<p>
 							By paying in to this system, all of France’s 2.2 million
 							companies, 3.3 million self-employed workers, and 25 million
-							employees help to finance an all-included social insurance
-							package.
+							employees help to finance the Social Security system
+						</p>
+						<p>
+							As soon as you declare and pay your employees, you automatically
+							entitle them to all of France’s health, maternity, disability, old
+							age, unemployment, occupational accidents and occupational illness
+							insurance programs.
 						</p>
 						<h2>How much does it cost ?</h2>
 					</>
 				)}
-				{Simu && <Simu />}
+				<Simu />
 			</Animate.fromBottom>
 		)
 	}

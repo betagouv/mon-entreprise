@@ -1,5 +1,4 @@
-var webpack = require('webpack'),
-	common = require('./webpack.common.js')
+	const common = require('./webpack.common.js')
 
 module.exports = {
 	...common,

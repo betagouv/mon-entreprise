@@ -10,7 +10,7 @@ module.exports = {
 			'webpack/hot/only-dev-server',
 			'@babel/polyfill',
 			'react-hot-loader/patch',
-			'./source/entry.js'
+			'./source/entry.js',
 		],
 		'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
 		// entrées désactivées pour accélérer la compilation au dev
@@ -20,7 +20,8 @@ module.exports = {
 		// ,simulateur: './source/iframe-script.js',
 	},
 	plugins: [
+		...common.plugins,
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
 	]
 }
