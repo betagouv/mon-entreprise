@@ -8,7 +8,7 @@ import * as Animate from '../../animate'
 type Props = {
 	hideText: boolean
 }
-class Hiring extends Component<Props, State> {
+class Hiring extends Component<Props, {}> {
 	render() {
 		return (
 			<Animate.fromBottom>
