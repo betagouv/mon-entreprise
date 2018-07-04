@@ -13,7 +13,8 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve('./dist/'),
-		filename: '[name].js'
+		filename: '[name].js',
+		publicPath: '/dist/'
 	},
 	module: {
 		rules: [
@@ -81,7 +82,7 @@ module.exports = {
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp(
-						'https://fonts.(?:googleapis|gstatic).com/(.*)'
+						'https://fonts.(?:googleapis|gstatic).com/(.*)|https://cdn.polyfill.io/v2/polyfill.min.js'
 					),
 					handler: 'cacheFirst',
 					options: {
@@ -91,24 +92,6 @@ module.exports = {
 						},
 						cacheableResponse: {
 							statuses: [0, 200]
-						}
-					}
-				},
-				{
-					urlPattern: /\.(?:js|css)$/,
-					handler: 'staleWhileRevalidate',
-					options: {
-						cacheName: 'static-resources'
-					}
-				},
-				{
-					urlPattern: /\.(?:png|gif|jpg|jpeg|svg)$/,
-					handler: 'cacheFirst',
-					options: {
-						cacheName: 'images',
-						expiration: {
-							maxEntries: 60,
-							maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
 						}
 					}
 				}
