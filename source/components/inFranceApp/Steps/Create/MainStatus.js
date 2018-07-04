@@ -76,8 +76,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 			<h2>Choosing a legal status</h2>
 			{atLeastOneStatus ? (
 				<p>
-					Based on your previous answers, we narrowed down all the choices to
-					the following possibilitie(s):
+					Based on your previous answers, you can choose between the following
+					statuses:
 				</p>
 			) : (
 				<p>
@@ -131,7 +131,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				{(!atLeastOneStatus || possibleStatus.SAS) && (
 					<li>
 						<strong>
-							SAS - Société par action simplifiée (Simplified joint stock
+							SAS - Société par actions simplifiées (Simplified joint stock
 							company):{' '}
 						</strong>Composed of at least 2 associates. The financial
 						responsibility of the partners is limited to the amounts of
@@ -142,8 +142,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				{(!atLeastOneStatus || possibleStatus.SASU) && (
 					<li>
 						<strong>
-							SASU - Société par action simplifiée unitaire (Simplified personal
-							joint stock company):{' '}
+							SASU - Société par action simplifiée unipersonnelle (Simplified
+							personal joint stock company):{' '}
 						</strong>Composed of only one associate. The financial
 						responsibility is limited to the amounts of contributions in the
 						capital. The minimum capital is freely fixed in the statutes.
@@ -151,7 +151,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				)}
 				{(!atLeastOneStatus || possibleStatus.SA) && (
 					<li>
-						<strong>SASU - Société anonyme (Anonymous company):</strong>Company
+						<strong>SA - Société anonyme (Anonymous company):</strong>Company
 						composed of at least 2 shareholders if it is not listed.
 					</li>
 				)}

@@ -24,20 +24,20 @@ const DefineDirectorStatus = ({ history, defineDirectorStatus }: Props) => (
 		<p>
 			<strong> Salaried</strong> or <strong>self-employed</strong> ? The
 			director’s Social Security coverage depends on the legal structure that
-			has been chosen and the responsibilities she/he has within it.
+			has been chosen and the responsibilities led within it.
 		</p>
 		<ul>
 			<li>
 				<strong>Salaried employee:</strong> The company director joins and is
 				covered by France’s general Social Security scheme. Social Security
 				contributions are calculated on the basis of the executive&apos;s actual
-				pay and are paid monthly or quarterly.
+				pay and are paid monthly.
 			</li>
 			<li>
 				<strong>Self-employed:</strong> The company director joins and is
-				covered by France’s self-employed scheme called « Sécurité sociale des
-				indépendants ». Contributions due are generally calculated based on
-				employment income as reported to the tax authorities.
+				covered by France’s self-employed scheme called « Sécurité sociale pour
+				les indépendants ». Contributions due are generally calculated based on
+				professional income as reported to the tax authorities.
 			</li>
 		</ul>
 

@@ -30,7 +30,7 @@ const brancheToEmoji: { [Branche]: string } = {
 }
 
 const brancheToCounterparts: { [Branche]: string } = {
-	retraite: 'Guarantees on average 70% of your last activity income.',
+	retraite: 'Guarantees on average 60%-70% of your last activity income.',
 	santé:
 		'Covers most of everyday-life health care needs and 100% for serious illnesses, e.g. hospital stays.',
 	famille:

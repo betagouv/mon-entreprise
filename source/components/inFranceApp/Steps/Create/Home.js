@@ -13,9 +13,9 @@ const CreateMyCompany = ({ match }: Props) => (
 			My company is already registered with the French Administration
 		</Link>
 		<p>
-			The French business law defines more than 20 possible legal status to
-			declare a company. It can be quite complicated to find your way through
-			all the acronyms and specific procedures. SASU, EIRL, SAS, CNC... Thanks
+			The French business law defines more than 20 possible legal statuses to
+			declare a company. It may be quite complicated to find your way through
+			all the acronyms and specific procedures. SAS, SARL, SA, EIRL ... Thanks
 			to this guide, you will quickly find the proper status that suits to your
 			needs, as well as the checklist of the associated steps.
 		</p>
