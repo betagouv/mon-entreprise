@@ -85,6 +85,24 @@ export default class Simu extends Component {
 						)}
 						<TargetSelection colours={colours} />
 					</div>
+					{displayResults && (
+						<Animate.appear>
+							<div style={{ textAlign: 'right' }}>
+								<button
+									className="ui__ button"
+									style={{ margin: 0 }}
+									onClick={onSimulationContinued}>
+									Continue ›
+								</button>
+							</div>
+						</Animate.appear>
+					)}
+					{conversationStarted && (
+						<div className="ui__ answer-group">
+							<button className="ui__ skip-button">Change my answers</button>
+							<button className="ui__ button">See hiring process</button>
+						</div>
+					)}
 				</div>
 
 				{displayResults && (

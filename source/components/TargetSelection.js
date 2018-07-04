@@ -45,6 +45,7 @@ export let popularTargetNames = [
 		blockingInputControls: blockingInputControlsSelector(state),
 		flatRules: flatRulesSelector(state),
 		noUserInput: noUserInputSelector(state),
+		conversationStarted: state.conversationStarted,
 		activeInput: state.activeTargetInput
 	}),
 	dispatch => ({

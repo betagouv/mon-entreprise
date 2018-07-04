@@ -3,6 +3,7 @@ import * as React from 'react'
 import {
 	animated,
 	config as configPresets,
+	Spring,
 	Trail,
 	Transition
 } from 'react-spring'
@@ -66,3 +67,30 @@ export const leftToRight = ({
 		))}
 	</Transition>
 )
+
+type State = {
+	show: boolean
+}
+export class appear extends React.Component<Props, State> {
+	state = {
+		show: false
+	}
+	componentDidMount() {
+		this.setState({ show: true })
+	}
+	render() {
+		const { children, config = configPresets.default, delay = 0 } = this.props
+		return (
+			<Spring
+				native={true}
+				delay={delay}
+				config={config}
+				to={{
+					opacity: this.state.show ? 1 : 0,
+					height: this.state.show ? 'auto' : '0px'
+				}}>
+				{style => <animated.div style={style}>{children}</animated.div>}
+			</Spring>
+		)
+	}
+}

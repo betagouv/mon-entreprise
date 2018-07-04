@@ -2,6 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import * as Animate from '../../animate'
+import siret from './siret.jpg'
 import type { Match } from 'react-router'
 
 type Props = {
@@ -52,22 +53,35 @@ const RegisterMyCompany = ({ match }: Props) => (
 		</ul>
 		<p>
 			You can add this page to your favorite and keep track of your progress in
-			the different administrative tasks. 
-			</p>
-			
+			the different administrative tasks.
+		</p>
+		<p>
 			Once your business has been officially registered, you will receive :
-<ul><li>
-your Siren number, which identifies your company ;</li><li>
-the Siret number, which identifies each place of business operated by the same company.</li>
-</ul>
-<p>It also assigns the APE code for the business sector to which your company or you as a self-employed worker belong. The APE code is used to classify your company’s main operations in relation to the french business nomenclature system (« NAF » code). It also determines the applicable collective agreement as well as the industrial accident rate in the field to which you or your company belong.</p><p>Now that you have a properly
-			registered company, the next steps is to{' '}
+			<ul>
+				<li>your Siren number, which identifies your company ;</li>
+				<li>
+					the Siret number, which identifies each place of business operated by
+					the same company.
+				</li>
+			</ul>
+			<img src={siret} alt="Siret and siren number" />
+		</p>
+		<p>
+			It also assigns the APE code for the business sector to which your company
+			or you as a self-employed worker belong. The APE code is used to classify
+			your company’s main operations in relation to the french business
+			nomenclature system (« NAF » code). It also determines the applicable
+			collective agreement as well as the industrial accident rate in the field
+			to which you or your company belong.
+		</p>
+		<p>
+			Now that you have a properly registered company, the next steps is to{' '}
 			<strong>hire your first employee</strong>
 		</p>
-		<div style={{textAlign: 'center'}}>
-		<Link className="ui__ button" to="/hiring-and-social-security">
-			Simulate hiring cost in France
-		</Link>
+		<div style={{ textAlign: 'center' }}>
+			<Link className="ui__ button" to="/hiring-and-social-security">
+				Simulate hiring cost in France
+			</Link>
 		</div>
 	</Animate.fromBottom>
 )

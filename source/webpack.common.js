@@ -1,4 +1,6 @@
-var path = require('path')
+/* eslint-env node */
+const WorkboxPlugin = require('workbox-webpack-plugin')
+const path = require('path')
 module.exports = {
 	resolve: {
 		alias: {
@@ -11,8 +13,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve('./dist/'),
-		filename: '[name].js',
-		publicPath: '/dist/'
+		filename: '[name].js'
 	},
 	module: {
 		rules: [
@@ -70,5 +71,48 @@ module.exports = {
 				loader: 'babel-loader!nearley-loader'
 			}
 		]
-	}
+	},
+	plugins: [
+		new WorkboxPlugin.GenerateSW({
+			clientsClaim: true,
+			skipWaiting: true,
+			swDest: 'sw.js',
+			navigateFallback: '/',
+			runtimeCaching: [
+				{
+					urlPattern: new RegExp(
+						'https://fonts.(?:googleapis|gstatic).com/(.*)'
+					),
+					handler: 'cacheFirst',
+					options: {
+						cacheName: 'google-fonts',
+						expiration: {
+							maxEntries: 5
+						},
+						cacheableResponse: {
+							statuses: [0, 200]
+						}
+					}
+				},
+				{
+					urlPattern: /\.(?:js|css)$/,
+					handler: 'staleWhileRevalidate',
+					options: {
+						cacheName: 'static-resources'
+					}
+				},
+				{
+					urlPattern: /\.(?:png|gif|jpg|jpeg|svg)$/,
+					handler: 'cacheFirst',
+					options: {
+						cacheName: 'images',
+						expiration: {
+							maxEntries: 60,
+							maxAgeSeconds: 30 * 24 * 60 * 60 // 30 Days
+						}
+					}
+				}
+			]
+		})
+	]
 }
