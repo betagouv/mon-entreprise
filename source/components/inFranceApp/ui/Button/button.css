@@ -25,8 +25,7 @@
 	background: linear-gradient(
 		45deg,
 		rgba(39, 69, 195, 0.87) 5%,
-		rgba(41, 117, 209, 1) 25%,
-		rgba(200, 40, 120, 0.52) 50%,
+		rgba(41, 117, 209, 1) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
 	background-size: 250%;
