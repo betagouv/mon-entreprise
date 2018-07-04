@@ -18,8 +18,9 @@ export type CompanyHaveMultipleAssociateAction = {
 	multipleAssociate: boolean
 }
 
-export type ChangeCompanyCreationChecklistItemAction = {
-	type: 'CHANGE_COMPANY_CREATION_CHECKLIST_ITEM',
+export type ChangeCheckListItemAction = {
+	type: 'CHANGE_CHECKLIST_ITEM',
+	checklist: string,
 	value: boolean,
 	name: string
 }
