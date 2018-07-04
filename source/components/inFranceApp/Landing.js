@@ -21,7 +21,7 @@ const Landing = ({ colours: { colour } }) => (
 				<Animate.fromBottom delay={500} config={config.slow}>
 					<h1>Launch your business in France</h1>
 					<ul>
-						<li>Incorporation guide {emoji('🏗️')}</li>
+						<li>Business creation guide {emoji('🏗️')}</li>
 						<li>Costs and social benefits {emoji('💰')}</li>
 						<li>Hiring your first employee {emoji('🤝')}</li>
 					</ul>

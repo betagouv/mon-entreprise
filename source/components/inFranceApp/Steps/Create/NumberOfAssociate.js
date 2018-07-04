@@ -19,10 +19,10 @@ const NumberOfAssociate = ({
 	companyHaveMultipleAssociate
 }: Props) => (
 	<>
-		<h2>Number of associate </h2>
+		<h2>Number of associates </h2>
 		<p>
-			If your company only have one associate, the administrative process is a
-			somewhat simplified.
+			If your company only have one associate, the administrative process is
+			easier.
 		</p>
 
 		<div className="ui__ answer-group">

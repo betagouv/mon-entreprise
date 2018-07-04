@@ -36,7 +36,7 @@ class Hiring extends Component<Props, State> {
 						</p>
 						<p>
 							By paying in to this system, all of France’s 2.2 million
-							companies, 3.2 million self-employed workers, and 25 million
+							companies, 3.3 million self-employed workers, and 25 million
 							employees help to finance an all-included social insurance
 							package.
 						</p>
