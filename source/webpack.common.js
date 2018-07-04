@@ -9,7 +9,8 @@ module.exports = {
 			Règles: path.resolve('source/règles/'),
 			Components: path.resolve('source/components/'),
 			Images: path.resolve('source/images/'),
-			Selectors: path.resolve('source/selectors/')
+			Selectors: path.resolve('source/selectors/'),
+			InFrance: path.resolve('source/components/inFranceApp/')
 		}
 	},
 	output: {

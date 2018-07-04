@@ -19,13 +19,19 @@ function companyLegalStatus(
 	return state
 }
 
-function companyCreationChecklist(
-	state: { [string]: boolean } = {},
+function checklists(
+	state: { [string]: { [string]: boolean } } = {},
 	action: Action
-): { [string]: boolean } {
+) {
 	switch (action.type) {
-		case 'CHANGE_COMPANY_CREATION_CHECKLIST_ITEM':
-			return { ...state, [action.name]: action.value }
+		case 'CHANGE_CHECKLIST_ITEM':
+			return {
+				...state,
+				[action.checklist]: {
+					...(state[action.checklist] || {}),
+					...{ [action.name]: action.value }
+				}
+			}
 		default:
 			return state
 	}
@@ -45,6 +51,6 @@ function existingCompanyDetails(
 
 export default (combineReducers({
 	companyLegalStatus,
-	companyCreationChecklist,
+	checklists,
 	existingCompanyDetails
 }): (State, Action) => State)
