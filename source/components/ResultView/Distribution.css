@@ -27,6 +27,8 @@
 
 .distribution-chart__counterparts {
 	width: 20em;
+	line-height: 1.2em;
+	font-weight: 300;
 }
 
 .distribution-chart__item:hover .distribution-chart__bar {
@@ -82,7 +84,7 @@
 }
 
 .distribution-chart__branche-name {
-	font-weight: bold;
+	font-weight: 500;
 }
 .distribution-chart__icon {
 	font-size: 200%;
