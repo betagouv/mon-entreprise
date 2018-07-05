@@ -77,38 +77,6 @@
 	text-decoration: underline;
 }
 
-#targetSelection .targetInputOrValue {
-	font-size: 125%;
-	display: flex;
-	height: 1.6em;
-	justify-content: flex-end;
-	align-items: flex-end;
-	margin-left: 0.6em;
-}
-
-#targetSelection .editable {
-	border-bottom: 1px dashed #ffffff91;
-	min-width: 2.5em;
-	height: inherit;
-	display: inline-block;
-}
-
-#targetSelection .attractClick,
-#targetSelection .targetInput {
-	width: 5.5em !important;
-	display: inline-block;
-	text-align: right;
-	font-weight: 700;
-	padding: 0;
-	padding: 0em 0.5em;
-	background: white;
-	border-radius: 0.2em;
-	border: none;
-	box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.45);
-	color: #333;
-	font-size: inherit;
-}
-
 #targetSelection .unit {
 	margin-left: 0.4em;
 	font-size: 110%;

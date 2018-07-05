@@ -1,12 +1,10 @@
-import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import { findRuleByDottedName } from 'Engine/rules'
-import { propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { change, Field, formValueSelector, reduxForm } from 'redux-form'
+import { change, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
@@ -14,12 +12,10 @@ import {
 	blockingInputControlsSelector
 } from 'Selectors/analyseSelectors'
 import BlueButton from './BlueButton'
-import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
-import { RuleValue } from './rule/RuleValueVignette'
 import './TargetSelection.css'
-import withLanguage from './withLanguage'
 import Controls from './Controls'
+import TargetValue from './TargetValue'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -112,7 +108,8 @@ export default class TargetSelection extends Component {
 				setActiveInput,
 				analysis,
 				noUserInput,
-				blockingInputControls
+				blockingInputControls,
+				setFormValue
 			} = this.props,
 			targets = analysis ? analysis.targets : []
 
@@ -130,13 +127,13 @@ export default class TargetSelection extends Component {
 										blockingInputControls
 									}}
 								/>
-								<TargetInputOrValue
+								<TargetValue
 									{...{
 										target,
 										targets,
 										activeInput,
 										setActiveInput,
-										setFormValue: this.props.setFormValue,
+										setFormValue,
 										noUserInput,
 										blockingInputControls
 									}}
@@ -183,90 +180,4 @@ let Header = ({
 			</span>
 		</span>
 	)
-}
-
-let CurrencyField = props => {
-	return (
-		<CurrencyInput
-			className="targetInput"
-			autoFocus
-			{...props.input}
-			{...props}
-		/>
-	)
-}
-
-let TargetInputOrValue = withLanguage(
-	({
-		target,
-		targets,
-		activeInput,
-		setActiveInput,
-		language,
-		noUserInput,
-		blockingInputControls
-	}) => (
-		<span className="targetInputOrValue">
-			{activeInput === target.dottedName ? (
-				<Field
-					name={target.dottedName}
-					component={CurrencyField}
-					language={language}
-				/>
-			) : (
-				<TargetValue
-					{...{
-						targets,
-						target,
-						activeInput,
-						setActiveInput,
-						noUserInput,
-						blockingInputControls
-					}}
-				/>
-			)}
-		</span>
-	)
-)
-@connect(
-	() => ({}),
-	dispatch => ({
-		setFormValue: (field, name) => dispatch(change('conversation', field, name))
-	})
-)
-class TargetValue extends Component {
-	render() {
-		let {
-			targets,
-			target,
-			setFormValue,
-			activeInput,
-			setActiveInput,
-			noUserInput,
-			blockingInputControls
-		} = this.props
-
-		let targetWithValue =
-				targets && targets.find(propEq('dottedName', target.dottedName)),
-			value = targetWithValue && targetWithValue.nodeValue
-
-		return (
-			<span
-				className={classNames({
-					editable: target.question,
-					attractClick:
-						target.question && (noUserInput || blockingInputControls)
-				})}
-				onClick={() => {
-					if (!target.question) return
-					if (value != null)
-						setFormValue(target.dottedName, Math.floor(value) + '')
-
-					if (activeInput) setFormValue(activeInput, '')
-					setActiveInput(target.dottedName)
-				}}>
-				<RuleValue value={value} />
-			</span>
-		)
-	}
 }
