@@ -1,9 +1,9 @@
+import classNames from 'classnames'
+import Explicable from 'Components/conversation/Explicable'
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
-import classNames from 'classnames'
 import { connect } from 'react-redux'
-import { Field, change } from 'redux-form'
-import Explicable from 'Components/conversation/Explicable'
+import { change, Field } from 'redux-form'
 import IgnoreStepButton from './IgnoreStepButton'
 
 export let buildValidationFunction = valueType => {
@@ -44,8 +44,8 @@ export var FormDecorator = formType => RenderField =>
 				stepAction,
 				subquestion,
 				possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
-				defaultValue,
 				valueType,
+				defaultValue,
 				fieldName,
 				inversion,
 				themeColours
@@ -91,6 +91,8 @@ export var FormDecorator = formType => RenderField =>
 									dangerouslySetInnerHTML={{ __html: subquestion }}
 								/>
 							</div>
+						</div>
+						<fieldset>
 							{defaultValue != null && (
 								<IgnoreStepButton
 									action={() => {
@@ -99,8 +101,7 @@ export var FormDecorator = formType => RenderField =>
 									}}
 								/>
 							)}
-						</div>
-						<fieldset>
+
 							<Field
 								component={RenderField}
 								name={fieldName}

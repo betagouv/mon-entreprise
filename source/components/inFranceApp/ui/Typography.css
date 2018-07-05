@@ -1,0 +1,56 @@
+html {
+	font-size: 1em;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+	font-size: 3.1rem;
+}
+h2 {
+	font-size: 2.1rem;
+}
+h3 {
+	font-size: 1.7rem;
+}
+h4 {
+	font-size: 1.3rem;
+}
+h5 {
+	font-size: 1.1rem;
+	font-style: italic;
+}
+h6 {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3 {
+	color: rgb(41, 117, 209);
+}
+
+button {
+	font-weight: normal;
+}
+
+p,
+ul {
+	line-height: 1.7rem;
+}
+
+li {
+	margin-bottom: 1rem;
+}

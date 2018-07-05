@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import './Pages.css'
-import './About.css'
 import { Link } from 'react-router-dom'
-import BlueButton from '../BlueButton'
+import { BlueButton } from '../ui/Button'
+import './About.css'
+import './MailChimp.css'
+import './Pages.css'
 
 export default class About extends Component {
 	render() {
@@ -11,23 +12,23 @@ export default class About extends Component {
 				<h1>À propos</h1>
 				<section>
 					<p>
-						<a href="https://beta.gouv.fr" target="_blank">
-							L'incubateur des services numériques de l'État
+						<a href="https://beta.gouv.fr">
+							L&pos;incubateur des services numériques de l&apos;État
 						</a>{' '}
 						a lancé en 2014 le développement d’une <em>ressource ouverte</em> de
-						calcul des prélèvements sociaux sur les revenus d'activité en
-						France, étape incontournable lors d'une embauche.
+						calcul des prélèvements sociaux sur les revenus d&apos;activité en
+						France, étape incontournable lors d&apos;une embauche.
 					</p>
 					<p>
 						Ce premier service, un{' '}
-						<em>module de simulation des sommes en jeu lors d'une embauche</em>,
+						<em>module de simulation des sommes en jeu lors d&apos;une embauche</em>,
 						peut être{' '}
 						<Link to="/intégrer">intégré facilement et gratuitement</Link> par
 						toute organisation sur son site Web.
 					</p>
 					<p>
 						Suivez nos mises à jour sur{' '}
-						<a href="https://twitter.com/embauchegouv" target="_blank">
+						<a href="https://twitter.com/embauchegouv">
 							twitter <i className="fa fa-twitter" aria-hidden="true" />
 						</a>
 					</p>
@@ -46,18 +47,17 @@ export default class About extends Component {
 				{/* <p>Notre prochaine rencontre OpenLab aura lieu <strong>le mercredi 18 janvier 2017 à 10h</strong>, au 86 allée de Bercy, 75012, salle 381-R</p> */}
 				<h1>Vie privée</h1>
 				<p>
-					Les simulateurs hébergés sur embauche.beta.gouv.fr n'ont pas de
+					Les simulateurs hébergés sur embauche.beta.gouv.fr n&apos;ont pas de
 					mémoire : les données de simulation (salaires, code postal de
-					l'entreprise, etc.) <em>ne sont pas stockées sur nos serveurs</em>.
+					l&apos;entreprise, etc.) <em>ne sont pas stockées sur nos serveurs</em>.
 				</p>
 				<p>
-					Par contre, nous recueillons des statistiques anonymes d'usage du
-					site, que nous utilisons dans l'unique but d'améliorer le service,
+					Par contre, nous recueillons des statistiques anonymes d&apos;usage du
+					site, que nous utilisons dans l&apos;unique but d&apos;améliorer le service,
 					conformément au{' '}
 					<a
 						href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience"
-						target="_blank"
-					>
+						>
 						recommandations de la CNIL
 					</a>.
 				</p>
@@ -66,8 +66,6 @@ export default class About extends Component {
 		)
 	}
 }
-
-import './MailChimp.css'
 
 let MailChimp = () => (
 	<div id="mc_embed_signup">
@@ -78,15 +76,13 @@ let MailChimp = () => (
 			name="mc-embedded-subscribe-form"
 			className="validate"
 			target="_blank"
-			noValidate
-		>
+			noValidate>
 			<div id="mc_embed_signup_scroll">
 				<label htmlFor="mce-EMAIL">
 					Inscrivez-vous à notre liste de diffusion
 				</label>
 				<div
-					style={{ position: 'absolute', left: '-5000px', ariaHidden: 'true' }}
-				>
+					style={{ position: 'absolute', left: '-5000px', ariaHidden: 'true' }}>
 					<input
 						type="text"
 						name="b_732a4d1b0d2e8a1a1fd3d01db_53bed2b6ac"

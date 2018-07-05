@@ -7,6 +7,7 @@ import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { config, Spring } from 'react-spring'
 import { compose } from 'redux'
+import { capitalise0 } from '../../utils'
 import withColours from '../withColours'
 import './Distribution.css'
 import Montant from './Montant'
@@ -26,6 +27,22 @@ const brancheToEmoji: { [Branche]: string } = {
 	'assurance chômage': '💸',
 	transport: '🚌',
 	autres: '🔧'
+}
+
+const brancheToCounterparts: { [Branche]: string } = {
+	retraite: 'Guarantees on average 60%-70% of your last activity income.',
+	santé:
+		'Covers most of everyday-life health care needs and 100% for serious illnesses, e.g. hospital stays.',
+	famille:
+		'Offers a balanced work and family life. Finances day nurseries and various child care. ',
+	formation: 'Gives access to professional training for employees.',
+	logement: 'Helps build new and affordable housing.',
+	'accidents du travail / maladies professionnelles':
+		'Offers full coverage of occupational illnesses or accidents.',
+	'assurance chômage':
+		"Gives income to former employees while they're in search of a new job.",
+	transport: 'Helps keep the price of a public transportation ticket low.',
+	autres: 'Other contributions to the social system.'
 }
 
 const brancheToLabel: { [Branche]: string } = {
@@ -91,37 +108,18 @@ class Distribution extends Component<Props, State> {
 											style={{
 												opacity: styles.opacity
 											}}>
-											<div className="distribution-chart__legend">
-												<span className="distribution-chart__icon">
-													{emoji(brancheToEmoji[branche])}
-												</span>
-												<span className="distribution-chart__branche-name">
-													<Trans>{brancheToLabel[branche] || branche}</Trans>
-												</span>
-											</div>
-											<div className="distribution-chart__bar-container">
-												<div
-													className="distribution-chart__bar"
-													style={{
-														flex: styles.flex,
-														backgroundColor: colour
-													}}
-												/>
-												<div>
-													<Montant
-														className="distribution-chart__amount"
-														numFractionDigit={0}
-														style={{ color: colour }}>
-														{montant}
-													</Montant>
-													<Montant
-														numFractionDigit={0}
-														type="percent"
-														className="distribution-chart__percent">
-														{montant /
-															(total.partPatronale + total.partSalariale)}
-													</Montant>
-												</div>
+											<ChartItemLegend branche={branche} />
+											<div className="distribution-chart__item-content">
+												<p className="distribution-chart__counterparts">
+													<span className="distribution-chart__branche-name">
+														<Trans>
+															{capitalise0(brancheToLabel[branche] || branche)}
+														</Trans>
+													</span>
+													{'. '}
+													{brancheToCounterparts[branche]}
+												</p>
+												<ChartItemBar {...{ styles, colour, montant, total }} />
 											</div>
 										</div>
 									)}
@@ -137,8 +135,7 @@ class Distribution extends Component<Props, State> {
 					<span>+</span>
 					<Trans>Cotisations</Trans>
 					<Montant numFractionDigit={2}>
-						{total.partPatronale +
-							total.partSalariale}
+						{total.partPatronale + total.partSalariale}
 					</Montant>
 					<span />
 					<div className="distribution-chart__total-border" />
@@ -157,3 +154,37 @@ export default compose(
 		{}
 	)
 )(Distribution)
+
+let ChartItemBar = ({ styles, colour, montant, total }) => (
+	<div className="distribution-chart__bar-container">
+		<div
+			className="distribution-chart__bar"
+			style={{
+				flex: styles.flex,
+				backgroundColor: colour
+			}}
+		/>
+		<div>
+			<Montant
+				className="distribution-chart__amount"
+				numFractionDigit={0}
+				style={{ color: colour }}>
+				{montant}
+			</Montant>
+			<Montant
+				numFractionDigit={0}
+				type="percent"
+				className="distribution-chart__percent">
+				{montant / (total.partPatronale + total.partSalariale)}
+			</Montant>
+		</div>
+	</div>
+)
+
+let ChartItemLegend = ({ branche }) => (
+	<div className="distribution-chart__legend">
+		<span className="distribution-chart__icon">
+			{emoji(brancheToEmoji[branche])}
+		</span>
+	</div>
+)

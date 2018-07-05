@@ -21,6 +21,9 @@
 	align-self: end;
 	margin-bottom: 0.5em;
 }
+.payslip__container h4:first-child {
+	padding-left: 0;
+}
 
 .payslip__total {
 	font-weight: bold;
@@ -30,7 +33,6 @@
 
 .payslip__container h5 {
 	margin: 0;
-	font-style: italic;
 }
 .payslip__container h5:not(:first-of-type) {
 	margin-top: 0.6em;
@@ -45,8 +47,6 @@
 
 .payslip__cotisationTitle {
 	grid-column-end: span 3;
-	font-size: inherit;
-	font-weight: normal;
 }
 
 .payslip__salarySection .montant,

@@ -1,5 +1,5 @@
-var webpack = require('webpack'),
-	common = require('./webpack.common.js')
+const common = require('./webpack.common.js')
+const HTMLPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	...common,
@@ -10,5 +10,12 @@ module.exports = {
 		//
 		simulateur: './source/iframe-script.js',
 		'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
-	}
+	},
+	plugins: [		
+		new HTMLPlugin({
+			template: 'example-integration.html',
+			chunks: ['simulateur']
+		}),
+		...common.plugins,
+	]
 }

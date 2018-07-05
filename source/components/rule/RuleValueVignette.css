@@ -24,9 +24,6 @@
 .Rule-value .irrelevant {
 	font-style: normal;
 }
-.Rule-value .figure {
-	font-weight: bold;
-}
 
 /* Animation of summary figures changes : flash ! */
 .flash-enter {

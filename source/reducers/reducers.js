@@ -1,11 +1,12 @@
+import inFranceApp from 'Components/inFranceApp/reducers'
 import { popularTargetNames } from 'Components/TargetSelection'
 import computeThemeColours from 'Components/themeColours'
 import { defaultTo, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import storageReducer from '../storage/reducer'
 import defaultLang from '../i18n'
+import storageReducer from '../storage/reducer'
 
 function themeColours(state = computeThemeColours(), { type, colour }) {
 	if (type == 'CHANGE_THEME_COLOUR') return computeThemeColours(colour)
@@ -102,6 +103,7 @@ export default reduceReducers(
 
 		currentExample,
 		conversationStarted,
-		activeTargetInput
+		activeTargetInput,
+		inFranceApp
 	})
 )

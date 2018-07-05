@@ -59,7 +59,7 @@ contrat salarié . ATMP . taux collectif ATMP:
     l'entreprise ?
   question.en: >-
     What rate of workplace accidents and occupational diseases applies to the
-    company ?
+    company?
   description.en: >-
     Companies with less than 20 employees are subject to this collective rate.
     For larger companies, this rate is modulated (up to 150 employees), and then individualized (beyond 250). The company's rate can be consulted online on [net-entreprise]
@@ -119,7 +119,7 @@ contrat salarié . CDD . événement . rupture pendant période essai:
 contrat salarié . CDD . motif:
   titre.en: Reason for appeal
   titre.fr: Motif de recours
-  question.en: What is the reason for using a fixed-term contract ?
+  question.en: What is the reason for using a fixed-term contract?
   question.fr: Quel est le motif de recours au CDD ?
   description.en: >-
     The CDD is an exceptional contract: the reason for its use must be one
@@ -208,7 +208,7 @@ contrat salarié . CDD . motif . contrat aidé:
 contrat salarié . CDD . durée contrat:
   titre.en: contract duration
   titre.fr: durée du contrat
-  question.en: What is the duration of the contract ?
+  question.en: What is the duration of the contract?
   question.fr: Quelle est la durée du contrat ?
   sous-question.en: >-
     [Click here]
@@ -326,7 +326,7 @@ contrat salarié . assiette cotisations sociales:
 contrat salarié . salaire . brut de base:
   titre.en: Gross salary
   titre.fr: Salaire brut
-  résumé.en: The salary written in the employment contract.
+  résumé.en: Written in the employment contract.
   résumé.fr: Le salaire inscrit dans le contrat de travail.
   question.en: What is the monthly gross salary?
   question.fr: Quel est le salaire brut mensuel ?
@@ -359,7 +359,7 @@ contrat salarié . avantages sociaux:
 contrat salarié . statut cadre:
   titre.en: cadre status
   titre.fr: Statut cadre
-  question.en: Does the employee have the "cadre" status ?
+  question.en: Does the employee have the "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   description.en: >-
     This status is not well defined but recognized by collective agreements and determining
@@ -408,17 +408,17 @@ contrat salarié . salaire . net à payer:
     titre.en: Net salary due
     titre.fr: Salaire net à payer
     résumé.fr: Touché par le salarié tous les mois
-    résumé.en: What the employee actually get each month
+    résumé.en: What the employee actually gets each month
     description.fr: >
       C'est le montant que le salarié touche à la fin du mois.
     description.en: >
-      It's the amount that the employee get at the end of each month
+      It's the amount that the employee gets at the end of each month
 
 contrat salarié . salaire . net imposable:
   titre.en: Net taxable salary
   titre.fr: Salaire net imposable
   résumé.fr: Touché par le salarié tous les mois
-  résumé.en: What the employee actually get each month
+  résumé.en: What the employee actually gets each month
   description.fr: >
     Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
   description.en: >
@@ -449,7 +449,7 @@ contrat salarié . avantages en nature . montant:
     Benefits in kind are subject to contributions and income tax. They are taken into account to verify that the minimum wage is reached.
 
   question.fr: Quel est le montant mensuel des avantages en nature ?
-  question.en: What is the monthly amount of benefits in kind ?
+  question.en: What is the monthly amount of benefits in kind?
 
 
 contrat salarié . coût du travail:
@@ -467,7 +467,7 @@ contrat salarié . coût du travail:
 contrat salarié . salaire . total:
   titre.en: Total salary
   titre.fr: Salaire total
-  résumé.en: The total sum paid by the employer every month.
+  résumé.en: Paid monthly by the employer.
   résumé.fr: La somme totale versée par l'employeur tous les mois.
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the
@@ -486,7 +486,7 @@ contrat salarié . salaire . total sans réduction:
   titre.en: total salary without reduction
   titre.fr: salaire total sans réduction
 contrat salarié . aides employeur:
-  résumé.en: The deferred aids available to the employer.
+  résumé.en: Deferred aids available to the employer.
   résumé.fr: Les aides différées dont peut bénéficier l'employeur.
   titre.en: deferred employer aids
   titre.fr: aides employeur différées
@@ -546,7 +546,7 @@ entreprise . ratio alternants saisi:
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
-  question.en: Is this a non-profit organisation ?
+  question.en: Is this a non-profit organisation?
   question.fr: S'agit-il d'une association à but non lucratif ?
   titre.en: non-profit organisation
   titre.fr: association non lucrative
@@ -606,7 +606,7 @@ contrat salarié . temps partiel:
   titre.en: Part-time
   titre.fr: temps partiel
 contrat salarié . heures par semaine:
-  question.en: What is the number of hours worked per week ?
+  question.en: What is the number of hours worked per week?
   question.fr: >-
     Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
     partiel ?

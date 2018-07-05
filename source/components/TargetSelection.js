@@ -9,17 +9,16 @@ import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
+	blockingInputControlsSelector,
 	flatRulesSelector,
-	noUserInputSelector,
-	blockingInputControlsSelector
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import BlueButton from './BlueButton'
+import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
 import { RuleValue } from './rule/RuleValueVignette'
 import './TargetSelection.css'
 import withLanguage from './withLanguage'
-import Controls from './Controls'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -52,24 +51,17 @@ export let popularTargetNames = [
 	dispatch => ({
 		setFormValue: (field, name) =>
 			dispatch(change('conversation', field, name)),
-		startConversation: () => dispatch({ type: 'START_CONVERSATION' }),
 		setActiveInput: name => dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
 	})
 )
 export default class TargetSelection extends Component {
 	render() {
-		let {
-			conversationStarted,
-			colours,
-			noUserInput,
-			blockingInputControls
-		} = this.props
+		let { colours, noUserInput, blockingInputControls } = this.props
 		return (
 			<div id="targetSelection">
 				<section
 					id="targetsContainer"
 					style={{
-						background: colours.colour,
 						color: colours.textColour
 					}}>
 					{this.renderOutputList()}
@@ -83,21 +75,6 @@ export default class TargetSelection extends Component {
 				{blockingInputControls && (
 					<Controls blockingInputControls={blockingInputControls} />
 				)}
-
-				{!noUserInput &&
-					!blockingInputControls &&
-					!conversationStarted && (
-						<div id="action">
-							<p>
-								<b>
-									<Trans>Première estimation</Trans>
-								</b>
-							</p>
-							<BlueButton onClick={this.props.startConversation}>
-								<Trans>Continuer</Trans>
-							</BlueButton>
-						</div>
-					)}
 			</div>
 		)
 	}
