@@ -50,9 +50,14 @@
 
 .step-question h1:before {
 	content: '›';
-	position: absolute;
-	left: -1.1rem;
 }
+@media (min-width: 500px) {
+	.step-question h1:before {
+		position: absolute;
+		left: -1.1rem;
+	}
+}
+
 .step-question h1 {
 	font-size: 1.7rem;
 	color: rgba(0, 0, 0, 0.8);

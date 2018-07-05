@@ -1,0 +1,57 @@
+@media (min-width: 500px) {
+	.ui__.steps-header nav {
+		height: 10rem;
+	}
+}
+.ui__.steps-header nav {
+	height: 5em;
+	max-width: 100%;
+	display: flex;
+	margin: auto;
+	justify-content: space-between;
+	background: white;
+}
+
+@media (min-width: 500px) {
+	.ui__.steps-header {
+		margin-top: 1.75rem !important;
+	}
+}
+
+.ui__.steps-header a {
+	margin-right: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	transition: all 0.2s;
+	opacity: 0.4;
+}
+.ui__.steps-header a:last-child {
+	margin-right: 0;
+}
+
+.ui__.steps-header a img {
+	height: 80%;
+	transition: all 0.2s;
+}
+
+.ui__.steps-header a:hover {
+	opacity: 0.8;
+}
+.ui__.steps-header a.active {
+	opacity: 1;
+	flex: 1;
+}
+
+.ui__.steps-header .progress {
+	margin-top: 0.6rem;
+	height: 0.5rem;
+	background: rgb(41, 117, 209, 0.2);
+	border-radius: 0.1rem;
+	width: 100%;
+}
+
+.ui__.steps-header .progress .bar {
+	background-color: rgb(41, 117, 209);
+	height: 100%;
+}
