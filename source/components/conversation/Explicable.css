@@ -1,26 +1,17 @@
-.explicable {
-	display: flex;
-	align-items: center;
-}
-
 .explicable .icon {
-	text-align: center;
-	width: 1.3em;
-	line-height: 1.3em;
-	border-radius: 0.2em;
-	margin-left: 0.4em;
 	display: inline-block;
-	padding: 0.15em;
-	opacity: 0.85;
-	border: 1px solid transparent;
-	border-radius: 1em;
+	padding: 0.15rem 0.6rem;
+	height: 100%;
+	margin-left: 0.4rem;
+	opacity: 1;
+	border-radius: 100%;
+	text-align: center;
 	cursor: pointer;
-	font-size: 120%;
-	vertical-align: baseline;
+	vertical-align: middle;
 }
 
-.explicable :not(.icon) .explicable .icon:hover {
-	opacity: 1;
+.explicable .icon:hover {
+	opacity: 0.8;
 }
 /* Add explanation text to icon, feels too heavy
 .explicable .icon:hover::after {

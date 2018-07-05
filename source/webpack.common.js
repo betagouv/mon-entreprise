@@ -1,5 +1,4 @@
 /* eslint-env node */
-const WorkboxPlugin = require('workbox-webpack-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
@@ -84,30 +83,6 @@ module.exports = {
 			chunks: ['colour-chooser'],
 			filename: 'couleur.html'
 		}),
-		new CopyPlugin(['./manifest.webmanifest', './source/images/logo']),
-		new WorkboxPlugin.GenerateSW({
-			clientsClaim: true,
-			skipWaiting: true,
-			// chunks: ['bundle'],
-			swDest: 'sw.js',
-			navigateFallback: '/index.html',
-			runtimeCaching: [
-				{
-					urlPattern: new RegExp(
-						'https://fonts.(?:googleapis|gstatic).com/(.*)|https://cdn.polyfill.io/v2/polyfill.min.js'
-					),
-					handler: 'cacheFirst',
-					options: {
-						cacheName: 'google-fonts',
-						expiration: {
-							maxEntries: 5
-						},
-						cacheableResponse: {
-							statuses: [0, 200]
-						}
-					}
-				}
-			]
-		})
+		new CopyPlugin(['./manifest.webmanifest', './source/images/logo'])
 	]
 }

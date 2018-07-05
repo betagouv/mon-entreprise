@@ -14,13 +14,17 @@ type Props = {
 	config?: SpringConfig,
 	delay?: number
 }
+
+const coerceArray = (
+	children: Array<React.Node> | React.Node
+): Array<React.Node> => (Array.isArray(children) ? children : [children])
 export const fromBottom = ({
 	children,
 	config = configPresets.default,
 	delay = 0
 }: Props) => (
 	<Trail
-		keys={children.map((_, i) => i)}
+		keys={coerceArray(children).map((_, i) => i)}
 		native={true}
 		delay={delay}
 		config={config}
@@ -28,7 +32,7 @@ export const fromBottom = ({
 		leave={{ opacity: 0, y: -50 }}
 		to={{ opacity: 1, y: 0 }}>
 		{/* eslint-disable-next-line react/display-name */}
-		{children.map((item, i) => ({ y, ...style }) => (
+		{coerceArray(children).map((item, i) => ({ y, ...style }) => (
 			<animated.div
 				key={i}
 				style={{
@@ -47,7 +51,7 @@ export const leftToRight = ({
 	delay = 0
 }: Props) => (
 	<Transition
-		keys={children.map((_, i) => i)}
+		keys={coerceArray(children).map((_, i) => i)}
 		native={true}
 		delay={delay}
 		config={config}
@@ -55,7 +59,7 @@ export const leftToRight = ({
 		enter={{ opacity: 1, x: 0 }}
 		leave={{ opacity: 0, x: 100 }}>
 		{/* eslint-disable-next-line react/display-name */}
-		{children.map((item, i) => ({ x, ...style }) => (
+		{coerceArray(children).map((item, i) => ({ x, ...style }) => (
 			<animated.div
 				key={i}
 				style={{

@@ -134,9 +134,10 @@ export default class Question extends Component {
 }
 
 let RadioLabel = props => (
-	<Explicable dottedName={props.dottedName}>
+	<>
 		<RadioLabelContent {...props} />
-	</Explicable>
+		<Explicable dottedName={props.dottedName} />
+	</>
 )
 
 @HoverDecorator
