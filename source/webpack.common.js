@@ -1,5 +1,7 @@
 /* eslint-env node */
 const WorkboxPlugin = require('workbox-webpack-plugin')
+const HTMLPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
 module.exports = {
 	resolve: {
@@ -13,8 +15,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve('./dist/'),
-		filename: '[name].js',
-		publicPath: '/dist/'
+		filename: '[name]_[chunk-hash].js'
 	},
 	module: {
 		rules: [
@@ -74,11 +75,22 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new HTMLPlugin({
+			template: 'index.html',
+			chunks: ['bundle']
+		}),
+		new HTMLPlugin({
+			template: 'couleur.html',
+			chunks: ['colour-chooser'],
+			filename: 'couleur.html'
+		}),
+		new CopyPlugin(['./manifest.webmanifest', './source/images/logo']),
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
+			// chunks: ['bundle'],
 			swDest: 'sw.js',
-			navigateFallback: '/',
+			navigateFallback: '/index.html',
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp(
