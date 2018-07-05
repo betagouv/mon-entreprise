@@ -1,15 +1,15 @@
+import { getInputComponent } from 'Engine/generateQuestions'
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
-import Aide from '../Aide'
-import { reduxForm } from 'redux-form'
-import { getInputComponent } from 'Engine/generateQuestions'
 import { connect } from 'react-redux'
-import './conversation.css'
-
+import { reduxForm } from 'redux-form'
 import {
-	flatRulesSelector,
-	currentQuestionSelector
+	currentQuestionSelector,
+	flatRulesSelector
 } from 'Selectors/analyseSelectors'
+import Aide from '../Aide'
+import * as Animate from '../inFranceApp/animate'
+import './conversation.css'
 
 @reduxForm({
 	form: 'conversation',
@@ -29,10 +29,12 @@ export default class Conversation extends Component {
 		return (
 			<div className="conversationContainer">
 				<Aide />
-				<div id="currentQuestion">
-					{currentQuestion &&
-						getInputComponent(flatRules, targetNames)(currentQuestion)}
-				</div>
+				<Animate.fromBottom>
+					<div id="currentQuestion" key={currentQuestion}>
+						{currentQuestion &&
+							getInputComponent(flatRules, targetNames)(currentQuestion)}
+					</div>
+				</Animate.fromBottom>
 			</div>
 		)
 	}

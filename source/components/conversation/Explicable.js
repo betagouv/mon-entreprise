@@ -30,11 +30,11 @@ export default class Explicable extends React.Component {
 		} = this.props
 
 		// Rien à expliquer ici, ce n'est pas une règle
-		if (dottedName == null) return this.props.children
+		if (dottedName == null) return null
 
 		let rule = findRuleByDottedName(flatRules, dottedName)
 
-		if (rule.description == null) return this.props.children
+		if (rule.description == null) return null
 
 		//TODO montrer les variables de type 'une possibilité'
 
@@ -43,7 +43,6 @@ export default class Explicable extends React.Component {
 				className={classNames('explicable', {
 					explained: dottedName === explained
 				})}>
-				{this.props.children}
 				<span
 					className="icon"
 					onClick={e => {

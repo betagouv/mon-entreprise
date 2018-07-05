@@ -36,10 +36,6 @@
 	padding-top: 0.3em;
 }
 
-#currentQuestion {
-	margin-bottom: 2em;
-}
-
 .step {
 	position: relative;
 }
@@ -52,13 +48,17 @@
 	opacity: 1;
 }
 
+.step-question h1:before {
+	content: '›';
+	position: absolute;
+	left: -1.1rem;
+}
 .step-question h1 {
-	font-size: 2rem;
-	color: black;
+	font-size: 1.7rem;
+	color: rgba(0, 0, 0, 0.8);
 }
 
 .unfoldedHeader {
-	margin-bottom: 1em;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -144,10 +144,6 @@
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 0.6em;
-}
-
-.step.question .variantLeaf > span:not(.explicable) {
-	margin-right: 2em;
 }
 
 .step.question .variant .variantLeaf {
