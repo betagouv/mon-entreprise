@@ -1,60 +1,11 @@
 /* @flow */
-import { map, whereEq } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { possibleStatusSelector } from './selectors'
 import type { RouterHistory } from 'react-router'
-import type { State, CompanyLegalStatus } from '../../types'
+import type { LegalStatus } from './selectors'
 const setMainStatus = () => {}
-const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
-	EI: {
-		legalSetup: 'SOLE_PROPRIETORSHIP',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociate: false
-	},
-	EURL: {
-		legalSetup: 'LIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociate: false
-	},
-	EIRL: {
-		legalSetup: 'LIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociate: false
-	},
-	SARL: {
-		legalSetup: 'LIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociate: true
-	},
-	SAS: {
-		legalSetup: 'LIMITED_LIABILITY',
-		directorStatus: 'SALARIED',
-		multipleAssociate: true
-	},
-	SA: {
-		legalSetup: 'LIMITED_LIABILITY',
-		directorStatus: 'SALARIED',
-		multipleAssociate: true
-	},
-	SNC: {
-		legalSetup: 'SOLE_PROPRIETORSHIP',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociate: true
-	},
-	SASU: {
-		legalSetup: 'LIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociate: false
-	}
-}
-
-type LegalStatus = $Keys<typeof LEGAL_STATUS_DETAILS>
-const possibleStatusSelector = (state: {
-	inFranceApp: State
-}): { [LegalStatus]: boolean } =>
-	// $FlowFixMe
-	map(whereEq(state.inFranceApp.companyLegalStatus), LEGAL_STATUS_DETAILS)
 
 type Props = {
 	history: RouterHistory,
@@ -70,7 +21,6 @@ const StatusButton = ({ status }: { status: LegalStatus }) => (
 
 const SetMainStatus = ({ history, possibleStatus }: Props) => {
 	const atLeastOneStatus = Object.values(possibleStatus).some(x => x)
-	console.log(atLeastOneStatus, possibleStatus)
 	return (
 		<>
 			<h2>Choosing a legal status</h2>
