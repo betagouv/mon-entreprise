@@ -16,7 +16,7 @@ import {
 import BlueButton from './BlueButton'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle/ProgressCircle'
-import { RuleValue } from './rule/RuleValueVignette'
+import AnimatedTargetValue from './AnimatedTargetValue'
 import './TargetSelection.css'
 import withLanguage from './withLanguage'
 import Controls from './Controls'
@@ -236,15 +236,7 @@ let TargetInputOrValue = withLanguage(
 )
 class TargetValue extends Component {
 	render() {
-		let {
-			targets,
-			target,
-			setFormValue,
-			activeInput,
-			setActiveInput,
-			noUserInput,
-			blockingInputControls
-		} = this.props
+		let { targets, target, noUserInput, blockingInputControls } = this.props
 
 		let targetWithValue =
 				targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -257,16 +249,21 @@ class TargetValue extends Component {
 					attractClick:
 						target.question && (noUserInput || blockingInputControls)
 				})}
-				onClick={() => {
-					if (!target.question) return
-					if (value != null)
-						setFormValue(target.dottedName, Math.floor(value) + '')
-
-					if (activeInput) setFormValue(activeInput, '')
-					setActiveInput(target.dottedName)
-				}}>
-				<RuleValue value={value} />
+				tabIndex="0"
+				onClick={this.showField(value)}
+				onFocus={this.showField(value)}>
+				<AnimatedTargetValue value={value} />
 			</span>
 		)
+	}
+	showField(value) {
+		let { target, setFormValue, activeInput, setActiveInput } = this.props
+		return () => {
+			if (!target.question) return
+			if (value != null) setFormValue(target.dottedName, Math.floor(value) + '')
+
+			if (activeInput) setFormValue(activeInput, '')
+			setActiveInput(target.dottedName)
+		}
 	}
 }
