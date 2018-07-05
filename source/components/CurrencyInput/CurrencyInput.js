@@ -81,7 +81,7 @@ class CurrencyInput extends Component {
 			this.props
 		)
 		return (
-			<div
+			<span
 				onClick={this.focusInput}
 				className={classnames(
 					this.props.className,
@@ -97,7 +97,7 @@ class CurrencyInput extends Component {
 					value={this.state.value}
 				/>
 				{!isCurrencyPrefixed(this.props.language) && <>&nbsp;€</>}
-			</div>
+			</span>
 		)
 	}
 }
