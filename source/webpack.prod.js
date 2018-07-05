@@ -13,8 +13,8 @@ module.exports = {
 	},
 	plugins: [		
 		new HTMLPlugin({
-			template: 'entry-colour-chooser.html',
-			chunks: ['colour-chooser']
+			template: 'example-integration.html',
+			chunks: ['simulateur']
 		}),
 		...common.plugins,
 	]
