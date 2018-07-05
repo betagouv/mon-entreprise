@@ -1,20 +1,27 @@
 /* @flow */
+import { equals } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
 import { defineDirectorStatus } from '../../actions'
 import { SkipButton } from '../../ui/Button'
+import { disabledDirectorStatusSelector } from './selectors'
 import type { DirectorStatus } from '../../types'
 import type { RouterHistory } from 'react-router'
 type Props = {
 	history: RouterHistory,
-	defineDirectorStatus: DirectorStatus => void
+	defineDirectorStatus: DirectorStatus => void,
+	disabledDirectorStatus: Array<DirectorStatus>
 }
 
 const goToNextStep = (history: RouterHistory) => {
-	history.push('/create-my-company/number-of-associate')
+	history.push('/create-my-company/set-legal-status')
 }
 
-const DefineDirectorStatus = ({ history, defineDirectorStatus }: Props) => (
+const DefineDirectorStatus = ({
+	history,
+	defineDirectorStatus,
+	disabledDirectorStatus
+}: Props) => (
 	<>
 		<h2>Defining the director&apos;s status </h2>
 		<p>
@@ -40,30 +47,39 @@ const DefineDirectorStatus = ({ history, defineDirectorStatus }: Props) => (
 				professional income as reported to the tax authorities.
 			</li>
 		</ul>
-
+		{!!disabledDirectorStatus.length && (
+			<p>
+				Because of your previous choices, you only have the following
+				possibility for the director status:
+			</p>
+		)}
 		<div className="ui__ answer-group">
-			<button
-				className="ui__ button"
-				onClick={() => {
-					defineDirectorStatus('SALARIED')
-					goToNextStep(history)
-				}}>
-				Salaried
-			</button>
-			<button
-				className="ui__ button"
-				onClick={() => {
-					defineDirectorStatus('SELF_EMPLOYED')
-					goToNextStep(history)
-				}}>
-				Self-employed
-			</button>
+			{!disabledDirectorStatus.find(equals('SALARIED')) && (
+				<button
+					className="ui__ button"
+					onClick={() => {
+						defineDirectorStatus('SALARIED')
+						goToNextStep(history)
+					}}>
+					Salaried
+				</button>
+			)}
+			{!disabledDirectorStatus.find(equals('SELF-EMPLOYED')) && (
+				<button
+					className="ui__ button"
+					onClick={() => {
+						defineDirectorStatus('SELF_EMPLOYED')
+						goToNextStep(history)
+					}}>
+					Self-employed
+				</button>
+			)}
 			<SkipButton onClick={() => goToNextStep(history)} />
 		</div>
 	</>
 )
 
 export default connect(
-	null,
+	state => ({ disabledDirectorStatus: disabledDirectorStatusSelector(state) }),
 	{ defineDirectorStatus }
 )(DefineDirectorStatus)
