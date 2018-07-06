@@ -1,47 +1,44 @@
 /* @flow */
 import React from 'react'
-import { SkipButton } from '../../ui/Button'
 // $FlowFixMe
 import ReactSelect from 'react-select'
 // $FlowFixMe
 import 'react-select/dist/react-select.css'
 import './Find.css'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { toPairs } from 'ramda'
+import { connect } from 'react-redux'
+import { compose }from 'ramda';
+import type {  RouterHistory } from 'react-router'
+import type {  SaveExistingCompanyDetailsAction } from '../../types'
 
-export default function Create() {
-	return (
-		<>
-			<header className="ui__invertedq-colors" style={{ textAlign: 'center' }}>
-				<h1 className="question__title">Find your company</h1>
-				<a className="ui__link-button" href="/steps/my-company">
-					I don&apos;t have a company yet
-				</a>
-			</header>
-			<Search />
-			<SkipButton />
-		</>
-	)
+
+const goToNextStep = (history: RouterHistory) => {
+	history.push('/social-security')
 }
 
 type CompanyType = {[string]: string};
 
 type State = {
-	input: Company,
-	chosen: boolean,
+	input: ?Company,
 }
-class Search extends React.Component<{}, State> {
+
+type Props = {
+	// $FlowFixMe
+	onCompanyDetailsConfirmation: {[string]: string} => void,
+	history: RouterHistory,
+}
+
+class Search extends React.Component<Props, State> {
 	state = {
-		input: {},
-		chosen: false
+		input: null,
+		
 	}
 	handleChange = input => {
 		this.setState({ input })
 	}
 	getOptions = (input: string) =>
-		input.length < 3
-			? Promise.resolve({ options: [] })
-			: fetch(`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`)
+			fetch(`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`)
 					.then(response => {
 						if (!response.ok) console.log('not ok')
 						return response.json()
@@ -55,17 +52,17 @@ class Search extends React.Component<{}, State> {
 					})
 	
 	render() {
-		if (this.state.chosen)
-			return (
-				<>
-					<Company {...this.state.input} />
-					<Link to="/hiring-and-social-security" className="ui__ button">
-						Simulate costs
-					</Link>
-				</>
-			)
+		
 		return (
 			<>
+			<h1 className="question__title">Find your company</h1>
+			<p>
+			<Link to="/my-company">
+				I don&apos;t have a company yet
+			</Link>
+			</p>
+			<p> Thanks to the SIREN database, the public informations of your company will be automatically available for the next steps.</p>
+			
 				<ReactSelect.Async
 					valueKey="id"
 					labelKey="l1_normalisee"
@@ -74,18 +71,24 @@ class Search extends React.Component<{}, State> {
 					optionRenderer={({ l1_normalisee, code_postal }) =>
 						l1_normalisee + ` (${code_postal})`
 					}
-					placeholder="Nom d'entreprise (+ ville)"
-					noResultsText="Nous n'avons trouvé aucune entreprise..."
+					placeholder="Company name and city"
+					noResultsText="We didn't find any matching registered company."
 					searchPromptText={null}
-					loadingPlaceholder="Recherche en cours..."
+					loadingPlaceholder="Searching..."
 					loadOptions={this.getOptions}
 				/>
 
-				<button
-					onClick={() => this.setState({ chosen: true })}
-					className="ui__ button">
-					Okay
-				</button>
+					{!!this.state.input &&
+						<>
+							<Company {...this.state.input} />
+							<button onClick={() => {
+								this.props.onCompanyDetailsConfirmation(this.state.input);
+								goToNextStep(this.props.history)
+							}} className="ui__ button">
+								Confirm and simulate hiring costs
+							</button>
+						</>
+					}
 			</>
 		)
 	}
@@ -106,11 +109,15 @@ let Company = (data: CompanyType) => {
 				([key, value]) =>
 					companyDataSelection[key] != null ? (
 						<li key={key}>
-							<span className="companyHeader">{companyDataSelection[key]}</span>
-							<p>{value}</p>
+							<strong>{companyDataSelection[key]}</strong><br/>
+							{value}
 						</li>
 					) : null
 			)}
 		</ul>
 	)
 }
+
+export default compose(withRouter,connect(null, {
+	onCompanyDetailsConfirmation: (details: {[string]: string}): SaveExistingCompanyDetailsAction => ({ type: 'SAVE_EXISTING_COMPANY_DETAILS', details })
+}))(Search);

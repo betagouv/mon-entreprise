@@ -15,6 +15,8 @@ const CreateMyCompany = ({ match, location }) => (
 		<Animate.fromBottom>
 			<Switch>
 				<Route path={match.path + '/register-:status'} component={Register} />
+
+				<Route path={match.path + '/find'} component={Find} />
 				<Route path={match.path} component={Home} />
 			</Switch>
 			<div className="ui__ route-trans">
@@ -41,14 +43,6 @@ const CreateMyCompany = ({ match, location }) => (
 								render={props => (
 									<animated.div style={style}>
 										<LegalSetup {...props} />
-									</animated.div>
-								)}
-							/>
-							<Route
-								path={match.path + '/find'}
-								render={props => (
-									<animated.div style={style}>
-										<Find {...props} />
 									</animated.div>
 								)}
 							/>

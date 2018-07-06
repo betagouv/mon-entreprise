@@ -24,6 +24,11 @@ export type ChangeCompanyCreationChecklistItemAction = {
 	name: string
 }
 
+export type SaveExistingCompanyDetailsAction = {
+	type: 'SAVE_EXISTING_COMPANY_DETAILS',
+	details: { [string]: string }
+}
+
 export type State = {|
 	+companyLegalStatus: {
 		+legalSetup?: CompanyLegalSetup,
@@ -32,7 +37,8 @@ export type State = {|
 	},
 	+companyCreationChecklist: {
 		[string]: boolean
-	}
+	},
+	+existingCompanyDetails: ?{ [string]: string }
 |}
 export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
@@ -40,3 +46,4 @@ export type Action =
 	| DefineDirectorStatusAction
 	| CompanyHaveMultipleAssociateAction
 	| ChangeCompanyCreationChecklistItemAction
+	| SaveExistingCompanyDetailsAction

@@ -1,6 +1,7 @@
 /* @flow */
 import { createSelector, createStructuredSelector } from 'reselect'
 import {
+	blockingInputControlsSelector,
 	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
@@ -11,7 +12,11 @@ const CHECKLIST_ITEM_NUMBER = 7
 const companyProgressSelector = createSelector(
 	state => state.inFranceApp.companyLegalStatus,
 	state => state.inFranceApp.companyCreationChecklist,
-	(legalStatus, creationChecklist) => {
+	state => state.inFranceApp.existingCompanyDetails,
+	(legalStatus, creationChecklist, companyDetails) => {
+		if (companyDetails) {
+			return 100
+		}
 		const legalStatusProgress = Object.values(legalStatus).length / 3
 		const creationChecklistProgress =
 			Object.values(creationChecklist).filter(Boolean).length /
@@ -29,11 +34,17 @@ const NUMBER_MAX_QUESTION = 18
 const START_SIMULATION_COEFFICIENT = 0.15
 const QUESTIONS_COEFFICIENT = 0.85
 const estimationProgressSelector = state => {
+	const userInputProgress = +(
+		!noUserInputSelector(state) && !blockingInputControlsSelector(state)
+	)
+	const questionsProgress =
+		(state.conversationStarted &&
+			NUMBER_MAX_QUESTION - nextStepsSelector(state).length) /
+		NUMBER_MAX_QUESTION
 	return (
 		100 *
-		(START_SIMULATION_COEFFICIENT * !noUserInputSelector(state) +
-			QUESTIONS_COEFFICIENT *
-				(1 - nextStepsSelector(state).length / NUMBER_MAX_QUESTION))
+		(userInputProgress * START_SIMULATION_COEFFICIENT +
+			questionsProgress * QUESTIONS_COEFFICIENT)
 	)
 }
 
