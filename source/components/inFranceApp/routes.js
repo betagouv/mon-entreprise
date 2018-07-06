@@ -8,6 +8,7 @@ import Landing from './Landing'
 import CreateMyCompany from './Steps/Company/index'
 import CostsBenefits from './Steps/Costs and benefits'
 import StepsHeader from './Steps/Header/StepsHeader'
+import HiringProcess from './Steps/HiringProcess'
 import './ui/index.css'
 class Layout extends Component {
 	componentDidMount() {
@@ -34,6 +35,7 @@ class Layout extends Component {
 							<Route path="/règle/:name" component={RulePage} />
 							<Route path="/my-company" component={CreateMyCompany} />
 							<Route path="/social-security" component={CostsBenefits} />
+							<Route path="/hiring-process" component={HiringProcess} />
 						</div>
 					</>
 				</Switch>
