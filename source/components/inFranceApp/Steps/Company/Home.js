@@ -9,7 +9,7 @@ type Props = {
 const CreateMyCompany = ({ match }: Props) => (
 	<>
 		<h1 className="question__title">Register a company</h1>
-		<Link className="ui__ link-button" to="/find-my-company">
+		<Link className="ui__ link-button" to="/my-company/find">
 			My company is already registered with the French Administration
 		</Link>
 		<p>
@@ -24,7 +24,7 @@ const CreateMyCompany = ({ match }: Props) => (
 				<Link className="ui__ button" to={match.path + '/choose-legal-setup'}>
 					Choose the legal status
 				</Link>
-				<Link to={'/hiring-and-social-security'} className="ui__ skip-button">
+				<Link to={'/social-security'} className="ui__ skip-button">
 					Do it later ›
 				</Link>
 			</div>

@@ -14,7 +14,7 @@ type Props = {
 }
 
 const goToNextStep = (history: RouterHistory) => {
-	history.push('/create-my-company/set-legal-status')
+	history.push('/my-company/set-legal-status')
 }
 
 const DefineDirectorStatus = ({

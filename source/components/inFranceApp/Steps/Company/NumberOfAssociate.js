@@ -11,7 +11,7 @@ type Props = {
 }
 
 const goToNextStep = (history: RouterHistory) => {
-	history.push('/create-my-company/define-director-status')
+	history.push('/my-company/define-director-status')
 }
 
 const NumberOfAssociate = ({
