@@ -1,7 +1,7 @@
 /* @flow */
 
 import { combineReducers } from 'redux'
-import type { Action, CompanyLegalStatus } from './types'
+import type { Action, CompanyLegalStatus, State } from './types'
 
 function companyLegalStatus(
 	state: CompanyLegalStatus = {},
@@ -31,7 +31,20 @@ function companyCreationChecklist(
 	}
 }
 
-export default combineReducers({
+function existingCompanyDetails(
+	state: ?{ [string]: string } = null,
+	action: Action
+): ?{ [string]: string } {
+	switch (action.type) {
+		case 'SAVE_EXISTING_COMPANY_DETAILS':
+			return action.details
+		default:
+			return state
+	}
+}
+
+export default (combineReducers({
 	companyLegalStatus,
-	companyCreationChecklist
-})
+	companyCreationChecklist,
+	existingCompanyDetails
+}): (State, Action) => State)

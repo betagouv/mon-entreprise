@@ -1,9 +1,4 @@
 .Select {
 	margin: 1em 0;
-}
-
-.companyHeader {
-	border-bottom: 1px solid grey;
-	font-weight: 600;
-	display: inline-block;
+	max-width: 30rem;
 }
