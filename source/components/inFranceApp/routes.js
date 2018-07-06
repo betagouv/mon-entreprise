@@ -20,12 +20,6 @@ class Layout extends Component {
 	render() {
 		return (
 			<>
-				<Helmet>
-					<link
-						href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100"
-						rel="stylesheet"
-					/>
-				</Helmet>
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<>
