@@ -14,7 +14,10 @@ const CreateMyCompany = ({ match, location }) => (
 	<>
 		<Animate.fromBottom>
 			<Switch>
-				<Route path={match.path + '/register-:status'} component={Register} />
+				<Route
+					path={match.path + '/register-:status'}
+					component={Register(match)}
+				/>
 
 				<Route path={match.path + '/find'} component={Find} />
 				<Route path={match.path} component={Home} />

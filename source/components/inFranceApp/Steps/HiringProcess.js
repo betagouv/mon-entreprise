@@ -2,11 +2,11 @@
 import React from 'react'
 import CheckList from 'InFrance/CheckList'
 
-let HiringProcess = CheckList({
+export default CheckList({
 	name: 'hire',
 	title: `Checklist to hire an employee`,
 	subtitle: `
-			This checklist will guide you thoughout all the legal steps to
+			This checklist will guide you through the legal steps to
 			hire an employee.
 	`,
 	items: {
@@ -91,5 +91,3 @@ let HiringProcess = CheckList({
 
 	conclusion: ''
 })
-
-export default HiringProcess

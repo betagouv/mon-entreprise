@@ -28,11 +28,7 @@ export default ({ name: checklistName, title, subtitle, items, conclusion }) =>
 			console.log(checklistName, state.inFranceApp) || (
 				<Animate.fromBottom>
 					<h1 className="question__title">{title}</h1>
-					<p>
-						{subtitle}
-						This checklist will guide you thoughout all the necessary steps to
-						register your company with the French administration.
-					</p>
+					<p>{subtitle}</p>
 					<ul className="ui__ no-bullet">
 						{toPairs(items).map(([key, content]) => (
 							<li key={key}>
