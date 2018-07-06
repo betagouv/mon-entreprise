@@ -97,6 +97,13 @@
 	font-size: 80%;
 	padding: 0.4rem 0.8rem;
 	border-radius: 0.3rem;
+
+}
+.ui__.button-container > * {
+	margin-top: 0.5rem;
+}
+.ui__.button-container > :not(:last-child) {
+	margin-right: 0.5rem;
 }
 
 @keyframes push-button-down {
