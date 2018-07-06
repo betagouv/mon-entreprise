@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 import { animated, Spring } from 'react-spring'
 import {
 	blockingInputControlsSelector,
+	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import Conversation from './conversation/Conversation'
 import * as Animate from './inFranceApp/animate'
 import Distribution from './ResultView/Distribution'
+import PaySlip from './ResultView/PaySlip'
 import './Simu.css'
 import TargetSelection from './TargetSelection'
 import withColours from './withColours'
@@ -18,7 +20,8 @@ import withColours from './withColours'
 	state => ({
 		noUserInput: noUserInputSelector(state),
 		blockingInputControls: blockingInputControlsSelector(state),
-		conversationStarted: state.conversationStarted
+		conversationStarted: state.conversationStarted,
+		nextSteps: state.conversationStarted && nextStepsSelector(state)
 	}),
 	{
 		onSimulationContinued: () => ({ type: 'START_CONVERSATION' })
@@ -30,19 +33,23 @@ export default class Simu extends Component {
 			colours,
 			conversationStarted,
 			noUserInput,
+			nextSteps,
 			onSimulationContinued,
 			blockingInputControls
 		} = this.props
+		const firstValidInputEntered =
+			!conversationStarted && !blockingInputControls && !noUserInput
 		const displayConversation = conversationStarted && !blockingInputControls
-		const displayResults =
-			!noUserInput && !blockingInputControls && !conversationStarted
+		const simulationCompleted =
+			!blockingInputControls && conversationStarted && !nextSteps.length
+
 		return (
 			<>
 				<div id="simu">
 					<Spring
 						to={{
-							height: displayResults ? 'auto' : 0,
-							opacity: displayResults ? 1 : 0
+							height: firstValidInputEntered ? 'auto' : 0,
+							opacity: firstValidInputEntered ? 1 : 0
 						}}
 						native>
 						{styles => (
@@ -78,6 +85,24 @@ export default class Simu extends Component {
 							</animated.div>
 						)}
 					</Spring>
+						{conversationStarted &&
+							!nextSteps.length && (
+								<>
+									<h1> No more questions left!</h1>
+									<p>
+										This is the most precise estimate that you can get. However,
+										some special reglementations can impact this result. You can
+										read more about it{' '}
+										<button className="ui__ link-button">here.</button>
+									</p>
+									<p> Want to make your hiring project a reality? </p>
+									<div style={{ textAlign: 'center' }}>
+										<Link className="ui__ button" to="/hiring-process">
+											Go to the hiring process
+										</Link>
+									</div>
+								</>
+							)}
 					<div id="focusZone">
 						{displayConversation && (
 							<>
@@ -86,16 +111,23 @@ export default class Simu extends Component {
 						)}
 						<TargetSelection colours={colours} />
 					</div>
-					{conversationStarted && (
-						<div style={{ textAlign: 'center' }}>
-							<Link className="ui__ button" to="/hiring-process">
-								Go to hiring process
-							</Link>
-						</div>
-					)}
+					{conversationStarted &&
+						!simulationCompleted && (
+							<div style={{ textAlign: 'center' }}>
+								<Link className="ui__ button" to="/hiring-process">
+									Go to the hiring process
+								</Link>
+							</div>
+						)}
+						{simulationCompleted && (
+							<Animate.fromBottom>
+								<h2>Detailed payslip</h2>
+								<PaySlip />
+							</Animate.fromBottom>
+						)}
 				</div>
 
-				{displayResults && (
+				{firstValidInputEntered && (
 					<Animate.fromBottom>
 						<h2>What&apos;s included in my contributions?</h2>
 						<Distribution />

@@ -65,8 +65,10 @@
 	border: none;
 	display: inline-block;
 	font-size: inherit;
-	padding: none;
 	text-decoration: underline;
+	font-family: inherit;
+	padding: 0;
+	margin: 0;
 	color: rgb(41, 117, 209);
 }
 .ui__.link-button:not(:disabled):hover {

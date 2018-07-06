@@ -1,23 +1,20 @@
-import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 import {
 	collectMissingVariablesByTarget,
 	getNextSteps
 } from 'Engine/generateQuestions'
-
-import { analyseMany, analyse, parseAll } from 'Engine/traverse'
-
-import { head, isEmpty, pick, equals } from 'ramda'
-
-import { getFormValues } from 'redux-form'
 import {
 	collectDefaults,
-	rules as baseRulesEn,
-	rulesFr as baseRulesFr,
-	nestedSituationToPathMap,
-	formatInputs,
+	disambiguateExampleSituation,
 	findRuleByDottedName,
-	disambiguateExampleSituation
+	formatInputs,
+	nestedSituationToPathMap,
+	rules as baseRulesEn,
+	rulesFr as baseRulesFr
 } from 'Engine/rules'
+import { analyse, analyseMany, parseAll } from 'Engine/traverse'
+import { equals, head, isEmpty, pick } from 'ramda'
+import { getFormValues } from 'redux-form'
+import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
