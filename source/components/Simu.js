@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { animated, Spring } from 'react-spring'
 import {
 	blockingInputControlsSelector,
@@ -86,9 +87,10 @@ export default class Simu extends Component {
 						<TargetSelection colours={colours} />
 					</div>
 					{conversationStarted && (
-						<div className="ui__ answer-group">
-							<button className="ui__ skip-button">Change my answers</button>
-							<button className="ui__ button">See hiring process</button>
+						<div style={{ textAlign: 'center' }}>
+							<Link className="ui__ button" to="/hiring-process">
+								Go to hiring process
+							</Link>
 						</div>
 					)}
 				</div>
