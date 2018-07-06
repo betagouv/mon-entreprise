@@ -3,10 +3,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import siret from './siret.jpg'
 import type { Match } from 'react-router'
-import CheckList from 'InFrance/CheckList'
+import Checklist from 'InFrance/Checklist'
 
 export default (match: Match) =>
-	CheckList({
+	Checklist({
 		name: 'register',
 		title: `Checklist to register a ${match.params.status || ''}`,
 		subtitle: `

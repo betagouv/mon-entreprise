@@ -18,7 +18,7 @@ export type CompanyHaveMultipleAssociateAction = {
 	multipleAssociate: boolean
 }
 
-export type ChangeCheckListItemAction = {
+export type ChangeChecklistItemAction = {
 	type: 'CHANGE_CHECKLIST_ITEM',
 	checklist: string,
 	value: boolean,
@@ -50,4 +50,4 @@ export type Action =
 	| DefineDirectorStatusAction
 	| CompanyHaveMultipleAssociateAction
 	| SaveExistingCompanyDetailsAction
-	| ChangeCheckListItemAction
+	| ChangeChecklistItemAction
