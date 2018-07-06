@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react'
-import CheckList from 'InFrance/CheckList'
+import Checklist from 'InFrance/Checklist'
 
-export default CheckList({
+export default Checklist({
 	name: 'hire',
 	title: `Checklist to hire an employee`,
 	subtitle: `
