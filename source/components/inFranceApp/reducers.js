@@ -20,7 +20,7 @@ function companyLegalStatus(
 }
 
 function checklists(
-	state: { [string]: { [string]: boolean } } = {},
+	state: { [string]: { [string]: boolean } } = { hire: {}, register: {} },
 	action: Action
 ) {
 	switch (action.type) {
@@ -28,7 +28,7 @@ function checklists(
 			return {
 				...state,
 				[action.checklist]: {
-					...(state[action.checklist] || {}),
+					...state[action.checklist],
 					...{ [action.name]: action.value }
 				}
 			}

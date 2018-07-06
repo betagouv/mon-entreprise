@@ -12,6 +12,7 @@ export default function RegisterMyCompany({ match }: Props) {
 	return (
 		<CheckList
 			{...{
+				name: 'register',
 				title: `Checklist to register a ${match.params.status || ''}`,
 				subtitle: `
 			This checklist will guide you thoughout all the necessary steps to

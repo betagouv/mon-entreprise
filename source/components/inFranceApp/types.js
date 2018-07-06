@@ -36,15 +36,18 @@ export type State = {|
 		+directorStatus?: DirectorStatus,
 		+multipleAssociate?: boolean
 	},
-	+companyCreationChecklist: {
-		[string]: boolean
-	},
-	+existingCompanyDetails: ?{ [string]: string }
+	+existingCompanyDetails: ?{ [string]: string },
+	+checklists: {
+		+register: {
+			[string]: boolean
+		},
+		+hire: { [string]: boolean }
+	}
 |}
 export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
 	| ChooseCompanyLegalSetupAction
 	| DefineDirectorStatusAction
 	| CompanyHaveMultipleAssociateAction
-	| ChangeCompanyCreationChecklistItemAction
 	| SaveExistingCompanyDetailsAction
+	| ChangeCheckListItemAction

@@ -11,7 +11,7 @@ const CHECKLIST_COEFFICIENT = 0.7
 const CHECKLIST_ITEM_NUMBER = 7
 const companyProgressSelector = createSelector(
 	state => state.inFranceApp.companyLegalStatus,
-	state => state.inFranceApp.companyCreationChecklist,
+	state => state.inFranceApp.checklists.register,
 	state => state.inFranceApp.existingCompanyDetails,
 	(legalStatus, creationChecklist, companyDetails) => {
 		if (companyDetails) {
