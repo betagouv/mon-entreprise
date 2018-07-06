@@ -11,6 +11,8 @@ rules:
   no-global-assign: 0
   no-unsafe-negation: 0
   react/prop-types: 0
+  react/jsx-no-target-blank: 0
+  react/no-unescaped-entities: 1
 parser: babel-eslint
 
 plugins:
