@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { SkipButton } from '../ui/Button'
+import { SkipButton } from '../../ui/Button'
 // $FlowFixMe
 import ReactSelect from 'react-select'
 // $FlowFixMe
@@ -14,7 +14,7 @@ export default function Create() {
 		<>
 			<header className="ui__invertedq-colors" style={{ textAlign: 'center' }}>
 				<h1 className="question__title">Find your company</h1>
-				<a className="ui__link-button" href="/steps/-create-my-company">
+				<a className="ui__link-button" href="/steps/my-company">
 					I don&apos;t have a company yet
 				</a>
 			</header>

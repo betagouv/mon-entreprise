@@ -13,7 +13,7 @@ type Props = {
 }
 
 const goToNextStep = (history: RouterHistory) => {
-	history.push('/create-my-company/number-of-associate')
+	history.push('/my-company/number-of-associate')
 }
 const LegalSetup = ({ chooseCompanyLegalSetup, history }: Props) => (
 	<>

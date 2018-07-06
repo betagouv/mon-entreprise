@@ -3,20 +3,18 @@ import { Route, Switch } from 'react-router'
 import { animated, Transition } from 'react-spring'
 import * as Animate from '../../animate'
 import DefineDirectorStatus from './DirectorStatus'
+import Find from './Find'
 import Home from './Home'
 import LegalSetup from './LegalSetup'
 import MainStatus from './MainStatus'
 import NumberOfAssociate from './NumberOfAssociate'
-import RegisteringProcess from './RegisteringProcess'
+import Register from './Register'
 
 const CreateMyCompany = ({ match, location }) => (
 	<>
 		<Animate.fromBottom>
 			<Switch>
-				<Route
-					path={match.path + '/register-:status'}
-					component={RegisteringProcess}
-				/>
+				<Route path={match.path + '/register-:status'} component={Register} />
 				<Route path={match.path} component={Home} />
 			</Switch>
 			<div className="ui__ route-trans">
@@ -43,6 +41,14 @@ const CreateMyCompany = ({ match, location }) => (
 								render={props => (
 									<animated.div style={style}>
 										<LegalSetup {...props} />
+									</animated.div>
+								)}
+							/>
+							<Route
+								path={match.path + '/find'}
+								render={props => (
+									<animated.div style={style}>
+										<Find {...props} />
 									</animated.div>
 								)}
 							/>

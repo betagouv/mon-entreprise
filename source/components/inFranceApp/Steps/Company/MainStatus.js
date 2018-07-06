@@ -14,7 +14,7 @@ type Props = {
 }
 
 const StatusButton = ({ status }: { status: LegalStatus }) => (
-	<Link to={`/create-my-company/register-${status}`} className="ui__ button">
+	<Link to={`/my-company/register-${status}`} className="ui__ button">
 		Create {status}
 	</Link>
 )
@@ -120,7 +120,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 					.map(([status]) => (
 						<StatusButton key={status} status={status} history={history} />
 					))}
-				<Link to="/hiring-and-social-security" className="ui__ skip-button">
+				<Link to="/social-security" className="ui__ skip-button">
 					Do it later ›
 				</Link>
 			</div>

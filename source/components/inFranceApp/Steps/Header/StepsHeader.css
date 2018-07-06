@@ -14,18 +14,23 @@
 
 @media (min-width: 500px) {
 	.ui__.steps-header {
-		margin-top: 1.75rem !important;
+		padding-top: 1.5rem !important;
 	}
 }
 
 .ui__.steps-header a {
 	margin-right: 0.8rem;
-	display: flex;
-	flex-direction: column;
+	min-width: 3.5rem;
 	flex-shrink: 0;
-	transition: all 0.2s;
+	text-align: center;
+	transition: all 0.3s;
 	opacity: 0.4;
 }
+
+.ui__.steps-header a:focus {
+	outline: none;
+}
+
 .ui__.steps-header a:last-child {
 	margin-right: 0;
 }
@@ -44,7 +49,7 @@
 }
 
 .ui__.steps-header .progress {
-	margin-top: 0.6rem;
+	margin-top: 0.4rem;
 	height: 0.5rem;
 	background: rgb(41, 117, 209, 0.2);
 	border-radius: 0.1rem;
@@ -52,6 +57,7 @@
 }
 
 .ui__.steps-header .progress .bar {
+	transition: width 0.3s;
 	background-color: rgb(41, 117, 209);
 	height: 100%;
 }
