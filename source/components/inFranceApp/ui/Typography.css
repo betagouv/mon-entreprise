@@ -12,7 +12,9 @@ body {
 }
 
 h1 {
-	font-size: 3.1rem;
+	font-size: 2.8rem;
+	margin-top: 1rem;
+	margin-bottom: 2rem;
 }
 h2 {
 	font-size: 2.1rem;

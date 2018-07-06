@@ -54,6 +54,7 @@ export default class Simu extends Component {
 						native>
 						{styles => (
 							<animated.div
+							className="ui__ button-container"
 								style={{
 									...styles,
 									display: 'flex',
