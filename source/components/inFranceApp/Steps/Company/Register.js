@@ -36,7 +36,8 @@ export default (match: Match) =>
 				des annonces civiles et commerciales)`,
 			bankAccount:
 				'Open a business bank account and follow the capital deposit procedure if needed',
-			insurance: 'Take out professional insurance'
+			insurance: 'Take out professional insurance',
+			accountant: 'Find a professional accountant'
 		},
 
 		conclusion: (
