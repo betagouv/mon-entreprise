@@ -28,7 +28,7 @@ export default ({ name: checklistName, title, subtitle, items, conclusion }) =>
 			<Animate.fromBottom>
 				<h1 className="question__title">{title}</h1>
 				<p>{subtitle}</p>
-				<ul className="ui__ no-bullet">
+				<ul className="ui__ no-bullet items">
 					{toPairs(items).map(([key, content]) => (
 						<li key={key}>
 							<input
