@@ -33,20 +33,29 @@ export default Checklist({
 		pay: (
 			<>
 				<p>
-					Calculate and declare the social security contributions. You must
-					legally produce :
+					Calculate and declare the social security contributions based on the
+					salary. Every month, you must:
 				</p>
 				<ul>
+					<li>Give a standardised payslip to your employee. EXAMPLE</li>
 					<li>
-						A payslip that conforms to the new simplified standard. HERE IS AN
-						EXAMPLE
-					</li>
-					<li>
-						Monthly declarations through the centralized declaration system
-						called <em>DSN</em>
+						Send these data through the centralized declaration system called{' '}
+						<em>DSN</em>
 					</li>
 				</ul>
 			</>
+		),
+		paySoftware: (
+			<p>
+				With less than 20 employees, payslips and declarations can be done
+				online by the{' '}
+				<a href="www.letese.urssaf.fr" target="_blank">
+					TESE (french)
+				</a>. In any case, you can use{' '}
+				<a href="http://www.dsn-info.fr/convention-charte.htm" target="_blank">
+					private software (french)
+				</a>.
+			</p>
 		),
 		registre: (
 			<p>
@@ -61,17 +70,15 @@ export default Checklist({
 		complementaryInsurance: (
 			<>
 				<p>
-					Some complementary insurances are <em>mandatory</em> and each employee
-					must be enrolled by the employer.
+					Some complementary insurances are <em>mandatory</em>.
 				</p>
 				<ul>
 					<li>
-						Complementary pension : ARRCO for everyone and AGIRC for "cadre"
-						employees. Those are only federations,
+						The AGIRC-ARRCO complementary pension. Those are only federations,
 						<a
 							href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep<Paste>"
 							target="_blank">
-							find your mandatory private pension institution
+							find your assigned pension institution
 						</a>and contact them.
 					</li>
 					You must pay at least half of a private complementary health
@@ -83,7 +90,7 @@ export default Checklist({
 		),
 		workMedicine: (
 			<p>
-				The employer must register a work medicine office, and plan an initial
+				You must register to a work medicine office, and plan an initial
 				appointment for each new hire.
 			</p>
 		)
