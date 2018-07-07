@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react'
 import Checklist from 'InFrance/Checklist'
+import { Link } from 'react-router-dom'
 
 export default Checklist({
 	name: 'hire',
@@ -22,28 +23,13 @@ export default Checklist({
 		),
 		dpae: (
 			<p>
-				Declare the hiring process <strong>8 days before</strong>. It's called
-				the <em>DPAE</em>, and can be{' '}
+				Declare the hiring process <strong>8 days before</strong>. It's called{' '}
+				<em>la DPAE</em>, and can be{' '}
 				<a href="https://www.due.urssaf.fr/declarant/index.jsf" target="_blank">
 					done online{' '}
 				</a>{' '}
-				(french).
+				(french)
 			</p>
-		),
-		pay: (
-			<>
-				<p>
-					Calculate and declare the social security contributions based on the
-					salary. Every month, you must:
-				</p>
-				<ul>
-					<li>Give a standardised payslip to your employee. EXAMPLE</li>
-					<li>
-						Send these data through the centralized declaration system called{' '}
-						<em>DSN</em>
-					</li>
-				</ul>
-			</>
 		),
 		paySoftware: (
 			<p>
@@ -54,7 +40,21 @@ export default Checklist({
 				</a>. In any case, you can use{' '}
 				<a href="http://www.dsn-info.fr/convention-charte.htm" target="_blank">
 					private software (french)
-				</a>.
+				</a>
+			</p>
+		),
+		payslip: (
+			<p>
+				Give a standardised payslip to your employee
+				<Link className="ui__ button" to="/social-security">
+					Get an example payslip
+				</Link>
+			</p>
+		),
+		dsn: (
+			<p>
+				Send these data through the centralized declaration system called{' '}
+				<em>la DSN</em>
 			</p>
 		),
 		registre: (
@@ -63,35 +63,33 @@ export default Checklist({
 				<a
 					href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F1784"
 					target="_blank">
-					More info{' '}
-				</a>(french)
+					More info
+				</a>{' '}
+				(french)
 			</p>
 		),
-		complementaryInsurance: (
-			<>
-				<p>
-					Some complementary insurances are <em>mandatory</em>.
-				</p>
-				<ul>
-					<li>
-						The AGIRC-ARRCO complementary pension. Those are only federations,
-						<a
-							href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep<Paste>"
-							target="_blank">
-							find your assigned pension institution
-						</a>and contact them.
-					</li>
-					You must pay at least half of a private complementary health
-					insurance. The choice is yours, but it must cover a legal basic care
-					basket.
-					<li />
-				</ul>
-			</>
+		complementaryPension: (
+			<p>
+				The AGIRC-ARRCO complementary pension is mandatory. Those are only
+				federations,{' '}
+				<a
+					href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep<Paste>"
+					target="_blank">
+					find your assigned pension institution
+				</a>{' '}
+				and contact them
+			</p>
+		),
+		complementaryHealth: (
+			<p>
+				You must pay at least half of a private complementary health insurance.
+				The choice is yours, but it must cover a legal basic care basket
+			</p>
 		),
 		workMedicine: (
 			<p>
 				You must register to a work medicine office, and plan an initial
-				appointment for each new hire.
+				appointment for each new hire
 			</p>
 		)
 	},
