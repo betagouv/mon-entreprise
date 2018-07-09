@@ -406,23 +406,25 @@ contrat salarié . salaire . net:
 
 contrat salarié . salaire . net à payer:
   titre.en: Net salary due
-  titre.fr: Salaire net à payer
-  résumé.fr: Touché par le salarié tous les mois
-  résumé.en: What the employee actually gets each month
+  résumé.en: WWhat the employee actually gets each month
   description.fr: >
     C'est le montant que le salarié touche à la fin du mois.
   description.en: >
-    It's the amount that the employee gets at the end of each month
+    The amount that the employee gets at the end of each month
 
 contrat salarié . salaire . net imposable:
   titre.en: Net taxable salary
   titre.fr: Salaire net imposable
-  résumé.fr: Touché par le salarié tous les mois
-  résumé.en: What the employee actually gets each month
   description.fr: >
     Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
   description.en: >
     The net salary less tax deductible social contributions and more taxable social benefits. It's the basis used to compute income tax.
+
+
+contrat salarié . salaire . net après impôts:
+  titre.en: Net salary after income tax
+  résumé.en: What the employee actually gets 
+
 
 contrat salarié . avantages en nature:
   titre.fr: Avantages en nature

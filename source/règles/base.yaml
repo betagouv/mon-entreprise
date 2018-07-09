@@ -859,7 +859,7 @@
   type: salaire 
   format: euros  
   question: Quel est le salaire net mensuel ?
-  résumé: Touché par le salarié tous les mois
+  résumé: Touché par le salarié 
   description: |
     C'est le montant que le salarié touche à la fin du mois.
   formule: salaire . net - avantages en nature . montant
