@@ -38,6 +38,7 @@ import {
 	mecanismSum,
 	mecanismProduct,
 	mecanismScale,
+	mecanismLinearScale,
 	mecanismMax,
 	mecanismMin,
 	mecanismError,
@@ -223,13 +224,12 @@ export let treatObject = (rules, rule) => rawNode => {
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 	if (mecanisms.length != 1) {
-		// eslint-disable-next-line no-console
-		console.log(
-			'Erreur : On ne devrait reconnaître que un et un seul mécanisme dans cet objet',
-			mecanisms,
-			rawNode
-		)
-		throw new Error('OUPS !')
+		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet
+			Objet YAML : ${JSON.stringify(rawNode)}
+			Mécanismes implémentés correspondants : ${JSON.stringify(mecanisms)}
+			Cette liste doit avoir un et un seul élément.
+			Vérifier que le mécanisme est dans l'objet 'dispatch' et dans les'knownMecanisms.yaml'
+		`)
 	}
 
 	let k = head(mecanisms),
@@ -242,6 +242,7 @@ export let treatObject = (rules, rule) => rawNode => {
 			somme: mecanismSum,
 			multiplication: mecanismProduct,
 			barème: mecanismScale,
+			'barème linéaire': mecanismLinearScale,
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,

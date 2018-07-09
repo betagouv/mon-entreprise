@@ -702,7 +702,7 @@ export let mecanismProduct = (recurse, k, v) => {
 	à: 1
 	```
 	*/
-let desugarScale = recurse => ({ tranches }) =>
+let desugarScale = recurse => tranches =>
 	tranches
 		.map(
 			t =>
