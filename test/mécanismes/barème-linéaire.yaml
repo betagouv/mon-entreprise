@@ -1,0 +1,31 @@
+- nom: assiette
+  format: €
+
+- test: Barème linéaire en taux
+  formule:
+    barème linéaire:
+      assiette: assiette
+      tranches:
+      - en-dessous de: 1000
+        taux: 5%
+      - de: 1000
+        à: 2000
+        taux: 10%
+      - au-dessus de: 2000
+        taux: 15%
+
+  exemples:
+    - nom: "petite assiette"
+      situation:
+        assiette: 200
+      valeur attendue: 10
+    - nom: "moyenne assiette"
+      situation:
+        assiette: 1500
+      valeur attendue: 150
+    - nom: "grande assiette"
+      situation:
+        assiette: 10000
+      valeur attendue: 1500
+
+
