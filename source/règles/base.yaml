@@ -687,7 +687,7 @@
       avec:
         - salaire . net à payer
         - salaire . total
-        - salaire . net après impôts
+        - salaire . net après impôt
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -869,10 +869,10 @@
       niveau: bloquant
 
 - espace: contrat salarié . salaire
-  nom: net après impôts
-  titre: Salaire net après impôts
+  nom: net après impôt
+  titre: Salaire net après impôt
   résumé: Revenu disponible du salarié
-  question: Quel est le revenu net après impôts du salarié ?
+  question: Quel est le revenu net après impôt du salarié ?
   type: salaire
   format: euros
   description: | 
