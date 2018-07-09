@@ -51,6 +51,7 @@ import {
 
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
+import Barème from './mecanismViews/Barème'
 import Allègement from './mecanismViews/Allègement'
 import Barème from './mecanismViews/Barème'
 import { trancheValue } from './mecanisms/barème'
