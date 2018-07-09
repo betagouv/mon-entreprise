@@ -688,6 +688,7 @@
       avec:
         - salaire . net à payer
         - salaire . total
+        - salaire . net après impôts
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -867,6 +868,21 @@
     - si: net à payer < 200
       message: Entrez un salaire mensuel
       niveau: bloquant
+
+- espace: contrat salarié . salaire
+  nom: net après impôts
+  titre: Salaire net après impôts
+  résumé: Revenu disponible du salarié
+  question: Quel est le revenu net après impôts du salarié ?
+  type: salaire
+  format: euros
+  description: | 
+          Le salaire net après déduction de l'impôt neutre, aussi appelé taux non personnalisé. 
+          
+          C'est une bonne estimation du revenu disponible d'une personne en l'absence d'information sur sa famille et son patrimoine.
+  formule: net à payer - 500
+  références: 
+    Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000033780155&dateTexte=20190101
 
 - espace: contrat salarié
   nom: coût du travail
