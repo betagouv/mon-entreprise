@@ -52,6 +52,7 @@ import {
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Barème from './mecanismViews/Barème'
+import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
 import Allègement from './mecanismViews/Allègement'
 import Barème from './mecanismViews/Barème'
 import { trancheValue } from './mecanisms/barème'
@@ -693,19 +694,16 @@ export let mecanismProduct = (recurse, k, v) => {
 	}
 }
 
-export let mecanismScale = (recurse, k, v) => {
-	// Sous entendu : barème en taux marginaux.
-	// A étendre (avec une propriété type ?) quand les règles en contiendront d'autres.
-	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
-	}
-	if (v.variations) {
-		return devariate(recurse, k, v)
-	}
-
-	// on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
-	let tranches = v['tranches']
+/* on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
+	`en-dessous de: 1`
+	devient
+	```
+	de: 0
+	à: 1
+	```
+	*/
+let desugarScale = recurse => ({ tranches }) =>
+	tranches
 		.map(
 			t =>
 				has('en-dessous de')(t)
@@ -716,10 +714,59 @@ export let mecanismScale = (recurse, k, v) => {
 		)
 		.map(evolve({ taux: recurse }))
 
-	let objectShape = {
-		assiette: false,
-		'multiplicateur des tranches': constantNode(1)
+export let mecanismLinearScale = (recurse, k, v) => {
+	let tranches = desugarScale(recurse)(v['tranches']),
+		objectShape = {
+			assiette: false
+		}
+
+	let effect = ({ assiette, tranches }) => {
+		if (val(assiette) === null) return null
+
+		let matchedTranche = tranches.find(
+			({ de: min, à: max }) => val(assiette) >= min && val(assiette) < max
+		)
+
+		if (!matchedTranche)
+			throw new Error(
+				`Aucune tranche du barème ne correspond à l'assiette. Comment en est-on arrivés là ?`
+			)
+
+		return matchedTranche.taux.nodeValue * val(assiette)
 	}
+
+	let explanation = {
+			...parseObject(recurse, objectShape, v),
+			tranches
+		},
+		evaluate = evaluateObject(objectShape, effect)
+
+	return {
+		evaluate,
+		jsx: BarèmeLinéaire,
+		explanation,
+		category: 'mecanism',
+		name: 'barème linéaire',
+		barème: 'en taux',
+		type: 'numeric'
+	}
+}
+
+export let mecanismScale = (recurse, k, v) => {
+	// Sous entendu : barème en taux marginaux.
+	if (v.composantes) {
+		//mécanisme de composantes. Voir known-mecanisms.md/composantes
+		return decompose(recurse, k, v)
+	}
+	if (v.variations) {
+		return devariate(recurse, k, v)
+	}
+
+	let tranches = desugarScale(recurse)(v['tranches']),
+		objectShape = {
+			assiette: false,
+			'multiplicateur des tranches': constantNode(1)
+		}
 
 	let effect = ({
 		assiette,
