@@ -727,6 +727,7 @@ export let mecanismLinearScale = (recurse, k, v) => {
 			({ de: min, à: max }) => val(assiette) >= min && val(assiette) < max
 		)
 
+		console.log(val(assiette), tranches)
 		if (!matchedTranche)
 			throw new Error(
 				`Aucune tranche du barème ne correspond à l'assiette. Comment en est-on arrivés là ?`
