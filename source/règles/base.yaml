@@ -1293,6 +1293,7 @@
   # TODO - exlure stage, apprentissage
   non applicable si:
     une de ces conditions:
+      - assimilé salarié
       - assiette cotisations sociales > plafond cice
       - entreprise . association non lucrative
 
@@ -1429,6 +1430,7 @@
         - allocations familiales
         - maladie (employeur)
         - vieillesse (employeur)
+
 - espace: contrat salarié
   nom: réduction générale
   aide:
@@ -1445,6 +1447,7 @@
 
   non applicable si:
     une de ces conditions:
+      - assimilé salarié
       - assiette cotisations sociales > plafond réduction générale
       - statut JEI
 
@@ -1689,6 +1692,8 @@
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 
+  non applicable si: assimilé salarié
+
 #  non applicable si: assimilé salarié
 
   formule:
@@ -1830,6 +1835,8 @@
     calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
+
+  non applicable si: assimilé salarié 
 
   formule:
     multiplication:
