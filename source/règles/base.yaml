@@ -670,7 +670,7 @@
     - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
 - espace: contrat salarié
-  nom: type de contrat
+  nom: choix du type de contrat
   titre: Type de contrat
   question: Quelle est la nature du contrat de travail ?
   formule:
@@ -681,6 +681,14 @@
       - CDD
   par défaut: CDI
 
+- espace: contrat salarié
+  nom: type de contrat
+  formule:
+    variations: 
+      - si: assimilé
+        valeur: type de contrat . CDI
+      - sinon: choix type de contrat   
+  
 - espace: contrat salarié . type de contrat
   nom: CDD
   description: Le contrat de travail prévoit explicitement une date de fin.
@@ -791,11 +799,19 @@
   formule: CDD . indemnités salarié CDD
 
 - espace: contrat salarié
-  nom: statut cadre
+  nom: choix statut cadre
   titre: Statut cadre
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   par défaut: non
+
+- espace: contrat salarié
+  nom: statut cadre
+  formule:
+    variations: 
+      - si: assimilé
+        valeur: 'oui'
+      - sinon: choix statut cadre
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
