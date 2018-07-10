@@ -855,7 +855,7 @@
 
 - espace: contrat salarié . salaire
   nom: net à payer
-  titre: Salaire net à payer
+  titre: Salaire net à payer avant impôt
   type: salaire 
   format: euros  
   question: Quel est le salaire net mensuel ?
@@ -870,7 +870,7 @@
 
 - espace: contrat salarié . salaire
   nom: net après impôt
-  titre: Salaire net après impôt
+  titre: Salaire net à payer après impôt
   résumé: Revenu disponible du salarié
   question: Quel est le revenu net après impôt du salarié ?
   type: salaire

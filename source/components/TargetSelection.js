@@ -88,7 +88,7 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let displayedTargets = displayedTargetNames.map(target =>
+		let displayedTargets = popularTargetNames.map(target =>
 				findRuleByDottedName(this.props.flatRules, target)
 			),
 			{
