@@ -1,12 +1,12 @@
 /* @flow */
 
-import React from 'react'
-import type { Node } from 'react'
-import { connect } from 'react-redux'
+import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
-import withColours from './withColours'
+import React from 'react'
+import { connect } from 'react-redux'
 import './Banner.css'
-import type { State } from '../types/State'
+import type { Node } from 'react'
+import type { State } from 'Types/State'
 
 type PropTypes = {
 	hidden: boolean,

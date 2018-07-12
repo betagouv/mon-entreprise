@@ -1,3 +1,5 @@
+import { resetSimulation } from 'Actions/actions'
+import withTracker from 'Components/utils/withTracker'
 import { isEmpty } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
@@ -5,9 +7,7 @@ import { connect } from 'react-redux'
 import { animateScroll, Element, scroller } from 'react-scroll'
 import { reset } from 'redux-form'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { resetSimulation } from '../../actions'
-import { LinkButton, SimpleButton } from '../ui/Button'
-import withTracker from './../withTracker'
+import { LinkButton } from 'Ui/Button'
 import './conversation.css'
 import FoldedStep from './FoldedStep'
 
@@ -82,7 +82,7 @@ export class GoToAnswers extends Component {
 	render() {
 		return (
 			<Element name="myScrollToElement" id="myScrollToElement">
-				<SimpleButton
+				<LinkButton
 					onClick={this.handleScrollToAnswers}
 					className="scrollIndication up"
 					style={{
@@ -90,7 +90,7 @@ export class GoToAnswers extends Component {
 					}}>
 					<i className="fa fa-long-arrow-up" aria-hidden="true" />
 					&nbsp;<Trans i18nKey="change">Modifier mes réponses</Trans>
-				</SimpleButton>
+				</LinkButton>
 			</Element>
 		)
 	}

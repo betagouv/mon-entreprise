@@ -1,13 +1,13 @@
-import React from 'react'
 import { findRuleByDottedName } from 'Engine/rules'
-import { capitalise0 } from '../../utils'
-import { connect } from 'react-redux'
+import React from 'react'
 import { Trans, translate } from 'react-i18next'
+import { connect } from 'react-redux'
 import {
 	flatRulesSelector,
 	validatedSituationSelector
 } from 'Selectors/analyseSelectors'
-import { LinkButton } from 'Components/ui/Button'
+import { LinkButton } from 'Ui/Button'
+import { capitalise0 } from '../../utils'
 
 @translate()
 @connect(

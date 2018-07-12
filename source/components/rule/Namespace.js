@@ -1,8 +1,8 @@
+import withColours from 'Components/utils/withColours'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
-import withColours from '../withColours'
 import './Namespace.css'
 
 let Namespace = ({ ns, flatRules, colours }) => (

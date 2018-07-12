@@ -1,7 +1,7 @@
-import HoverDecorator from 'Components/HoverDecorator'
+import HoverDecorator from 'Components/utils/HoverDecorator'
+import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import withColours from '../withColours'
 
 @HoverDecorator
 @translate()

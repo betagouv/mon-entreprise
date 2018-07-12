@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import withLanguage from 'Components/utils/withLanguage'
 import { findRuleByDottedName } from 'Engine/rules'
 import { propEq } from 'ramda'
 import React, { Component } from 'react'
@@ -15,10 +16,9 @@ import {
 } from 'Selectors/analyseSelectors'
 import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import ProgressCircle from './ProgressCircle/ProgressCircle'
 import AnimatedTargetValue from './AnimatedTargetValue'
+import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
-import withLanguage from './withLanguage'
 
 let salaries = [
 	'contrat salarié . salaire . total',

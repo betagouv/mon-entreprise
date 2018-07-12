@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import './InputSuggestions.css'
-import withColours from '../withColours'
+import withColours from 'Components/utils/withColours'
 import { toPairs } from 'ramda'
+import React, { Component } from 'react'
 import { translate } from 'react-i18next'
+import './InputSuggestions.css'
 
 @withColours
 @translate()

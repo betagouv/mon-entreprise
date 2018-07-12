@@ -1,6 +1,8 @@
 import marked from 'Engine/marked'
 import { path } from 'ramda'
-import React, { Component } from 'react'
+import React, {
+	Component
+} from 'react'
 import ReactDOM from 'react-dom'
 import './Dictionary.css'
 import Overlay from './Overlay'

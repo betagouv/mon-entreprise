@@ -1,10 +1,10 @@
+import { EXPLAIN_VARIABLE } from 'Actions/actions'
 import classNames from 'classnames'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { EXPLAIN_VARIABLE } from '../../actions'
-import withTracker from '../withTracker'
+import withTracker from '../utils/withTracker'
 import './Explicable.css'
 
 @connect(

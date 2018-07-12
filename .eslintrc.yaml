@@ -27,6 +27,8 @@ overrides:
   files: "*.test.js"
   env: 
     mocha: true
+globals: 
+  process: false
 
 extends:
   - eslint:recommended

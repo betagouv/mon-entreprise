@@ -7,20 +7,15 @@ import {
 	formattedSituationSelector
 } from 'Selectors/analyseSelectors'
 import { debounce } from '../utils'
-import type { State } from '../types/State'
-import type { Tracker } from '../components/withTracker'
-
-// Todo : type all actions
-type Action = any
+import type { Tracker } from 'Components/utils/withTracker'
 
 export default (tracker: Tracker) => {
 	const debouncedUserInputTracking = debounce(1000, action =>
 		tracker.push(['trackEvent', 'input', action.meta.field, action.payload])
 	)
 
-	return ({ getState }: Store<State>) => (next: Action => void) => (
-		action: Action
-	) => {
+	// $FlowFixMe
+	return ({ getState }) => next => action => {
 		next(action)
 		const newState = getState()
 		if (action.type == 'STEP_ACTION' && action.name == 'fold') {

@@ -1,10 +1,10 @@
+import withColours from 'Components/utils/withColours'
+import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { Element, scroller } from 'react-scroll'
+import { LinkButton } from 'Ui/Button'
 import './conversation/conversation.css'
-import { SimpleButton } from './ui/Button'
-import withColours from './withColours'
-import withTracker from './withTracker'
 
 @translate()
 @withColours
@@ -21,12 +21,12 @@ export default class GoToExplanation extends Component {
 	render() {
 		return (
 			<Element name="resultsScrollElement" id="resultsScrollElement">
-				<SimpleButton
+				<LinkButton
 					className="scrollIndication down"
 					onClick={this.handleScrollToResults}>
 					<i className="fa fa-long-arrow-down" aria-hidden="true" />
 					&nbsp;<Trans i18nKey="details">Comprendre mes résultats</Trans>
-				</SimpleButton>
+				</LinkButton>
 			</Element>
 		)
 	}

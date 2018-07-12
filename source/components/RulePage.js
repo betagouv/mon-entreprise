@@ -1,3 +1,4 @@
+import { setExample } from 'Actions/actions'
 import { encodeRuleName } from 'Engine/rules'
 import {
 	decodeRuleName,
@@ -15,10 +16,8 @@ import {
 	flatRulesSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import { setExample } from '../actions'
 import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
-import './RulePage.css'
 import SearchButton from './SearchButton'
 
 @connect(state => ({

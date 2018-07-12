@@ -1,8 +1,8 @@
+import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName } from 'Engine/rules'
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Link } from 'react-router-dom'
-import withLanguage from '../withLanguage'
 import './RuleValueVignette.css'
 
 let RuleValueVignette = ({ name, title, nodeValue: ruleValue }) => (

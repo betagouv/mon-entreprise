@@ -1,29 +1,17 @@
 const common = require('./webpack.common.js')
-const HTMLPlugin = require('html-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
 	...common,
 	mode: 'production',
-	entry: {
-		bundle: ['@babel/polyfill', 'whatwg-fetch', './source/entry.js'],
-		// le nom "simulateur" est là pour des raisons historiques
-		//
-		simulateur: './source/iframe-script.js',
-		'colour-chooser': ['@babel/polyfill', './source/entry-colour-chooser.js']
-	},
 	plugins: [
-		new HTMLPlugin({
-			template: 'example-integration.html',
-			chunks: ['simulateur']
-		}),
 		...common.plugins,
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
 			// chunks: ['bundle'],
 			swDest: 'sw.js',
-			navigateFallback: '/index.html',
+			navigateFallback: '/',
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp(

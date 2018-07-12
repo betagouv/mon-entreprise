@@ -1,0 +1,40 @@
+@import './Button/button.css';
+@import './Typography.css';
+@import './reset.css';
+
+body {
+	overflow-x: hidden;
+}
+.ui__.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+.ui__.answer-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+.ui__.route-trans {
+	display: flex;
+}
+.ui__.route-trans > * {
+	min-width: 100%;
+	margin-right: 2em;
+}
+
+.ui__.container {
+	max-width: 45em;
+	margin: 0 auto;
+	padding: 0 0.6em;
+}
+
+ul.ui__.no-bullet {
+	list-style: none;
+}
+
+#js {
+	display: block;
+}

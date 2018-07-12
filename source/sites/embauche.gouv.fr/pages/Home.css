@@ -1,0 +1,19 @@
+#home {
+	margin-top: 4rem;
+}
+
+#logos {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#logos a {
+	margin: 0 0.6em;
+	display: inline-block;
+}
+#logos #marianne img {
+	width: calc(1vw + 4em);
+}
+#logos #urssaf img {
+	width: calc(1vw + 6em);
+}

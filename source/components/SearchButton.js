@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { LinkButton } from 'Ui/Button'
 import Overlay from './Overlay'
-import { SearchBar } from './pages/RulesList'
+import SearchBar from './SearchBar'
 import './SearchButton.css'
-import { SimpleButton } from './ui/Button'
 
 @connect(state => ({
 	flatRules: flatRulesSelector(state)
@@ -46,7 +46,7 @@ export default class SearchButton extends Component {
 				/>
 			</Overlay>
 		) : (
-			<SimpleButton
+			<LinkButton
 				onClick={() => this.setState({ visible: true })}
 				className={this.props.className}
 				style={this.props.style}>
@@ -58,7 +58,7 @@ export default class SearchButton extends Component {
 				<span>
 					<Trans>Rechercher</Trans>
 				</span>
-			</SimpleButton>
+			</LinkButton>
 		)
 	}
 }

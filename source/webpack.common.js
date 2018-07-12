@@ -7,11 +7,17 @@ module.exports = {
 		alias: {
 			Engine: path.resolve('source/engine/'),
 			Règles: path.resolve('source/règles/'),
+			Actions: path.resolve('source/actions/'),
+			Ui: path.resolve('source/components/ui/'),
 			Components: path.resolve('source/components/'),
-			Images: path.resolve('source/images/'),
 			Selectors: path.resolve('source/selectors/'),
-			InFrance: path.resolve('source/components/inFranceApp/')
+			Reducers: path.resolve('source/reducers/'),
+			Types: path.resolve('source/types/')
 		}
+	},
+	entry: {
+		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
+		infrance: ['./source/sites/mycompanyinfrance.fr/entry.js']
 	},
 	output: {
 		path: path.resolve('./dist/'),
@@ -77,13 +83,19 @@ module.exports = {
 	plugins: [
 		new HTMLPlugin({
 			template: 'index.html',
-			chunks: ['bundle']
+			chunks: ['embauche'],
+			filename: 'embauche.html',
+		}),
+		new HTMLPlugin({
+			template: 'index.html',
+			chunks: ['infrance'],
+			filename: 'infrance.html'
 		}),
 		new HTMLPlugin({
 			template: 'couleur.html',
 			chunks: ['colour-chooser'],
 			filename: 'couleur.html'
 		}),
-		new CopyPlugin(['./manifest.webmanifest', './source/images/logo'])
+		new CopyPlugin(['./manifest.webmanifest', './source/sites/embauche.gouv.fr/images/logo'])
 	]
 }

@@ -1,6 +1,6 @@
+import HoverDecorator from 'Components/utils/HoverDecorator'
+import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
-import withColours from './withColours'
-import HoverDecorator from './HoverDecorator'
 import './SatisfactionSmiley.css'
 @withColours
 @HoverDecorator

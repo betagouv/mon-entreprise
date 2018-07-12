@@ -1,9 +1,9 @@
 /* @flow */
 
 import { expect } from 'chai'
-import ficheDePaieSelector, {
+import FicheDePaieSelectors, {
 	COTISATION_BRANCHE_ORDER
-} from '../source/components/ResultView/FicheDePaieSelector'
+} from 'Selectors/ficheDePaieSelectors'
 
 let state = {
 	form: {
@@ -22,7 +22,7 @@ let state = {
 	conversationStarted: true
 }
 
-let paySlip = ficheDePaieSelector(state)
+let paySlip = FicheDePaieSelectors(state)
 
 describe('pay slip selector', function() {
 	it('should have cotisations grouped by branches in the proper ordering', function() {

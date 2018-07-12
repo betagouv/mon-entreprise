@@ -1,4 +1,6 @@
+import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { animated, Spring } from 'react-spring'
@@ -7,13 +9,12 @@ import {
 	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import * as Animate from 'Ui/animate'
 import Conversation from './conversation/Conversation'
-import * as Animate from './inFranceApp/animate'
-import Distribution from './ResultView/Distribution'
-import PaySlip from './ResultView/PaySlip'
+import Distribution from './Distribution'
+import PaySlip from './PaySlip'
 import './Simu.css'
 import TargetSelection from './TargetSelection'
-import withColours from './withColours'
 
 @withColours
 @connect(
@@ -54,7 +55,7 @@ export default class Simu extends Component {
 						native>
 						{styles => (
 							<animated.div
-							className="ui__ button-container"
+								className="ui__ button-container"
 								style={{
 									...styles,
 									display: 'flex',
@@ -66,44 +67,51 @@ export default class Simu extends Component {
 								<button
 									className="ui__ link-button"
 									onClick={onSimulationContinued}>
-									Permanent/Fixed term contract
+									<Trans>CDD</Trans>
 								</button>
 								<button
 									className="ui__ link-button"
 									onClick={onSimulationContinued}>
-									Part-time
+									CDI
 								</button>
 								<button
 									className="ui__ link-button"
 									onClick={onSimulationContinued}>
-									Cadre status
+									<Trans>Cadre</Trans>
 								</button>
 								<button
 									className="ui__ link-button"
 									onClick={onSimulationContinued}>
-									Other
+									<Trans>Temps partiel</Trans>
+								</button>
+								<button
+									className="ui__ link-button"
+									onClick={onSimulationContinued}>
+									<Trans>Autres situations</Trans>
 								</button>
 							</animated.div>
 						)}
 					</Spring>
-						{conversationStarted &&
-							!nextSteps.length && (
-								<>
-									<h1> No more questions left!</h1>
-									<p>
-										This is the most precise estimate that you can get. However,
-										some special reglementations rules can impact this result. You can
-										read more about it{' '}
-										<button className="ui__ link-button">here.</button>
-									</p>
-									<p> Want to make your hiring project a reality? </p>
-									<div style={{ textAlign: 'center' }}>
-										<Link className="ui__ button" to="/hiring-process">
-											Go to the hiring process
-										</Link>
-									</div>
-								</>
-							)}
+					{conversationStarted &&
+						!nextSteps.length && (
+							<>
+								<h1>
+									<Trans>Plus de questions restantes!</Trans>
+								</h1>
+								<p>
+									<Trans>
+										Vous avez atteint l&apos;estimation la plus précise. Vous
+										pouvez maintenant concrétiser votre projet, et apprendre les
+										démarches à suivre pour
+									</Trans>
+								</p>
+								<div style={{ textAlign: 'center' }}>
+									<Link className="ui__ button" to="/hiring-process">
+										Connaître les démarches
+									</Link>
+								</div>
+							</>
+						)}
 					<div id="focusZone">
 						{displayConversation && (
 							<>
@@ -120,12 +128,12 @@ export default class Simu extends Component {
 								</Link>
 							</div>
 						)}
-						{simulationCompleted && (
-							<Animate.fromBottom>
-								<h2>Detailed payslip</h2>
-								<PaySlip />
-							</Animate.fromBottom>
-						)}
+					{simulationCompleted && (
+						<Animate.fromBottom>
+							<h2>Detailed payslip</h2>
+							<PaySlip />
+						</Animate.fromBottom>
+					)}
 				</div>
 
 				{firstValidInputEntered && (

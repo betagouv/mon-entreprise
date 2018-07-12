@@ -1,1 +1,1 @@
-web: yarn run live-server  --entry-file=index.html dist 
+web: yarn run live-server --entry-file=infrance.html dist 

@@ -1,11 +1,11 @@
-import React from 'react'
-import Namespace from './Namespace'
 import { createMarkdownDiv } from 'Engine/marked'
 import { path } from 'ramda'
-import Destinataire from './Destinataire'
+import React from 'react'
 import { Trans } from 'react-i18next'
 import { capitalise0 } from '../../utils'
+import Destinataire from './Destinataire'
 import './Header.css'
+import Namespace from './Namespace'
 
 let RuleHeader = ({
 	ns,

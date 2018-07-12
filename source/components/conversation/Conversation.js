@@ -7,8 +7,8 @@ import {
 	currentQuestionSelector,
 	flatRulesSelector
 } from 'Selectors/analyseSelectors'
+import * as Animate from 'Ui/animate'
 import Aide from '../Aide'
-import * as Animate from '../inFranceApp/animate'
 import './conversation.css'
 
 @reduxForm({

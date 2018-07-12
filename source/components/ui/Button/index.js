@@ -1,32 +1,16 @@
 /* @flow */
-import React from 'react'
-import withColours from '../../withColours'
+import * as React from 'react'
 import './button.css'
-
-const buttonCreator = (buttonClassName, coloursToStyle) =>
-	withColours(({ className = '', style = {}, colours, ...props }) => (
-		<button
-			{...props}
-			style={{
-				...coloursToStyle(colours),
-				...style
-			}}
-			className={buttonClassName + ' ' + className}
-		/>
-	))
-
-export const LinkButton = buttonCreator(
-	'ui-unstyledButton ui-linkButton',
-	colours => ({ color: colours.textColourOnWhite })
+export const SkipButton = (props: React.ElementConfig<'button'>) => (
+	<button className="ui__ skip-button" {...props}>
+		{props.children || 'Skip ›'}
+	</button>
 )
-export const SimpleButton = buttonCreator('ui-unstyledButton', colours => ({
-	color: colours.textColourOnWhite
-}))
-const Button = buttonCreator('ui-unstyledButton ui-defaultButton', colours => ({
-	color: colours.textColourOnWhite,
-	borderColor: colours.colour
-}))
 
-export { default as BlueButton } from './BlueButton'
+export const LinkButton = (props: React.ElementConfig<'button'>) => (
+	<button className="ui__ link-button" {...props} />
+)
 
-export default Button
+export const Button = (props: React.ElementConfig<'button'>) => (
+	<button className="ui__ button" {...props} />
+)

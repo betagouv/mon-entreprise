@@ -1,9 +1,9 @@
+import { groupBy, toPairs } from 'ramda'
 import React from 'react'
 import { Trans, translate } from 'react-i18next'
-import { toPairs, groupBy } from 'ramda'
-import './References.css'
 import references from 'Règles/ressources/références/références.yaml'
 import { capitalise0 } from '../../utils'
+import './References.css'
 
 @translate()
 export default class References extends React.Component {
@@ -13,7 +13,7 @@ export default class References extends React.Component {
 	render() {
 		let { refs } = this.props,
 			{ complementary, official = [] } = groupBy(
-				([name, link]) => (this.findRefKey(link) ? 'official' : 'complementary')
+				([, link]) => (this.findRefKey(link) ? 'official' : 'complementary')
 			)(toPairs(refs)),
 			showComplementary = this.state.showComplementary,
 			showComplementaryButton = !this.state.showComplementary && complementary
@@ -32,13 +32,12 @@ export default class References extends React.Component {
 								<li id="complementary" key="compl">
 									<a
 										href="#/"
-										onClick={() => this.setState({ showComplementary: true })}
-									>
+										onClick={() => this.setState({ showComplementary: true })}>
 										<i className="fa fa-eye" aria-hidden="true" />
 										<Trans>afficher les sources complémentaires</Trans>
 									</a>
 								</li>
-							]
+						  ]
 						: []),
 					...(showComplementary ? complementary.map(this.renderRef) : [])
 				]}
