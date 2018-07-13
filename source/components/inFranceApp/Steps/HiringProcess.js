@@ -1,13 +1,15 @@
 /* @flow */
-import React from 'react'
 import Checklist from 'InFrance/Checklist'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
+// @TODO faire en sorte d'uniformiser les textes de la checklist.
+// @TODO traduire les liens via google translate
 export default Checklist({
 	name: 'hire',
 	title: `Checklist to hire an employee`,
 	subtitle: `
-			This checklist will guide you through the legal steps to
+			This checklist guides you through the legal steps to
 			hire an employee.
 	`,
 	items: {
@@ -23,10 +25,10 @@ export default Checklist({
 		),
 		dpae: (
 			<p>
-				Declare the hiring process <strong>8 days before</strong>. It's called{' '}
-				<em>la DPAE</em>, and can be{' '}
+				You must declare your hiring to the social administration. It must be
+				done within 8 days before any hiring, and can
 				<a href="https://www.due.urssaf.fr/declarant/index.jsf" target="_blank">
-					done online{' '}
+					be done online{' '}
 				</a>{' '}
 				(french)
 			</p>
@@ -39,8 +41,14 @@ export default Checklist({
 					TESE (french)
 				</a>. In any case, you can use{' '}
 				<a href="http://www.dsn-info.fr/convention-charte.htm" target="_blank">
-					private software (french)
+					private payslip software (french)
 				</a>
+			</p>
+		),
+		dsn: (
+			<p>
+				Declare your employee each month{' '}
+				<em>DSN (Déclaration Sociale Nominative)</em>
 			</p>
 		),
 		payslip: (
@@ -49,12 +57,6 @@ export default Checklist({
 				<Link className="ui__ button" to="/social-security">
 					Get an example payslip
 				</Link>
-			</p>
-		),
-		dsn: (
-			<p>
-				Send these data through the centralized declaration system called{' '}
-				<em>la DSN</em>
 			</p>
 		),
 		registre: (

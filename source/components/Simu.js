@@ -92,7 +92,7 @@ export default class Simu extends Component {
 									<h1> No more questions left!</h1>
 									<p>
 										This is the most precise estimate that you can get. However,
-										some special reglementations can impact this result. You can
+										some special reglementations rules can impact this result. You can
 										read more about it{' '}
 										<button className="ui__ link-button">here.</button>
 									</p>

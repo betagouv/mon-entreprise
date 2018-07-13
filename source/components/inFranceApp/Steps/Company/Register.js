@@ -1,9 +1,9 @@
 /* @flow */
+import Checklist from 'InFrance/Checklist'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import siret from './siret.jpg'
 import type { Match } from 'react-router'
-import Checklist from 'InFrance/Checklist'
 
 export default (match: Match) =>
 	Checklist({
@@ -36,8 +36,8 @@ export default (match: Match) =>
 				des annonces civiles et commerciales)`,
 			bankAccount:
 				'Open a business bank account and follow the capital deposit procedure if needed',
-			insurance: 'Take out professional insurance',
-			accountant: 'Find a professional accountant'
+			accountant: 'Choose a certified accountant',
+			insurance: 'Check out needs of professional insurance'
 		},
 
 		conclusion: (

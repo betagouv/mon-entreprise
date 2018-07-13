@@ -14,7 +14,7 @@ class Hiring extends Component<Props, {}> {
 			<Animate.fromBottom>
 				{!this.props.hideText && (
 					<>
-						<h1>Social security: costs and benefits</h1>
+						<h1>Social protection: costs and benefits</h1>
 						<p>
 							France has chosen to provide its citizens with a high-level social
 							safety net. This mandatory system is based on solidarity and
@@ -26,6 +26,17 @@ class Hiring extends Component<Props, {}> {
 							age, unemployment, occupational accidents and occupational illness
 							insurance programs.
 						</p>
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<iframe
+								style={{ margin: 'auto' }}
+								width="560"
+								height="315"
+								src="https://www.youtube-nocookie.com/embed/dN9ZVazSmpc?rel=0&amp;showinfo=0"
+								frameBorder="0"
+								allow="autoplay; encrypted-media"
+								allowFullscreen
+							/>
+						</div>
 						<h2>How much does it cost ?</h2>
 					</>
 				)}
