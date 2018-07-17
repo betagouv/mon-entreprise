@@ -161,7 +161,7 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 				backgroundColor: colour
 			}}
 		/>
-		<div>
+		<div style={{ flex: 0 }}>
 			<Montant
 				className="distribution-chart__amount"
 				numFractionDigit={0}

@@ -10,7 +10,7 @@ const CreateMyCompany = ({ match }: Props) => (
 	<>
 		<h1 className="question__title">Register a company</h1>
 		<Link className="ui__ link-button" to="/my-company/find">
-			My companyaa is already registered with the French Administration
+			My company is already registered with the French Administration
 		</Link>
 		<p>
 			The French business law defines more than 20 possible legal statuses to

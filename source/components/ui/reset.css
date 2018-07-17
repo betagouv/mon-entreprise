@@ -6,7 +6,6 @@
 
 html {
 	box-sizing: border-box;
-	height: 100%;
 }
 *,
 *:before,
@@ -16,7 +15,6 @@ html {
 
 body {
 	margin: 0;
-	height: 100%;
 }
 [hidden],
 .js-only {

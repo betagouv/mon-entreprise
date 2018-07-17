@@ -47,11 +47,20 @@
 	opacity: 1;
 	flex: 1;
 }
+/* IE */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.ui__.steps-header a.active {
+		min-width: 80%;
+	}
+	.ui__.steps-header a {
+		flex-shrink: 1;
+	}
+}
 
 .ui__.steps-header .progress {
 	margin-top: 0.4rem;
 	height: 0.5rem;
-	background: rgb(41, 117, 209, 0.2);
+	background: rgba(41, 117, 209, 0.2);
 	border-radius: 0.1rem;
 	width: 100%;
 }

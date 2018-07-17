@@ -51,6 +51,13 @@
 #targetSelection .progressCircle svg {
 	width: 2em;
 }
+/* IE */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	#targetSelection .progressCircle svg {
+		max-height: 2.5rem;
+	}
+}
+
 #targetSelection .progressCircle i {
 	color: #5de662;
 	font-size: 220%;

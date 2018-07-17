@@ -4,6 +4,7 @@ const common = require('./webpack.common.js')
 const webpackServeWaitpage = require('webpack-serve-waitpage')
 const history = require('connect-history-api-fallback')
 const convert = require('koa-connect')
+
 module.exports = {
 	...common,
 	mode: 'development',

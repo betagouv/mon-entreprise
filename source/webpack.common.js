@@ -16,8 +16,8 @@ module.exports = {
 		}
 	},
 	entry: {
+		infrance: ['./source/sites/mycompanyinfrance.fr/entry.js'],
 		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
-		infrance: ['./source/sites/mycompanyinfrance.fr/entry.js']
 	},
 	output: {
 		path: path.resolve('./dist/'),
@@ -83,13 +83,13 @@ module.exports = {
 	plugins: [
 		new HTMLPlugin({
 			template: 'index.html',
-			chunks: ['embauche'],
-			filename: 'embauche.html',
+			chunks: ['infrance'],
+			filename: 'infrance.html'
 		}),
 		new HTMLPlugin({
 			template: 'index.html',
-			chunks: ['infrance'],
-			filename: 'infrance.html'
+			chunks: ['embauche'],
+			filename: 'embauche.html',
 		}),
 		new HTMLPlugin({
 			template: 'couleur.html',

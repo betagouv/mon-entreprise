@@ -14,7 +14,7 @@ class Hiring extends Component<Props, {}> {
 			<Animate.fromBottom>
 				{!this.props.hideText && (
 					<>
-						<h1>Social protection: costs assssssnd benefits</h1>
+						<h1>Social protection: costs and benefits</h1>
 						<p>
 							France has chosen to provide its citizens with a high-level social
 							safety net. This mandatory system is based on solidarity and

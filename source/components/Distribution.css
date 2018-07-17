@@ -111,3 +111,13 @@
 	grid-column: 2 / span 2;
 	border-top: solid 1px rgba(0, 0, 0, 0.7);
 }
+
+/* IE11 Special */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.distribution-chart__total > * {
+		margin: 8px;
+	}
+	.distribution-chart__total-border {
+		border: none;
+	}
+}

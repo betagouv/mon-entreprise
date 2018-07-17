@@ -65,3 +65,26 @@
 	font-size: 90%;
 	margin-top: 2em;
 }
+
+/* IE */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.payslip__cotisationsSection > h4:nth-child(1),
+	.payslip__cotisationsSection > a,
+	div.payslip__total {
+		width: 50%;
+		display: inline-block;
+	}
+	.payslip__cotisationsSection > h4:not(:nth-child(1)) {
+		width: 25%;
+		display: inline-block;
+	}
+	.payslip__container .montant {
+		display: inline-block;
+		width: 25%;
+		text-align: right;
+	}
+	.payslip__salarySection > a {
+		width: 75%;
+		display: inline-block;
+	}
+}
