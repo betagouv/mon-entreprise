@@ -14,7 +14,7 @@ type Props = {
 }
 
 const StatusButton = ({ status }: { status: LegalStatus }) => (
-	<Link to={`/my-company/register-${status}`} className="ui__ button">
+	<Link to={`/register/register-${status}`} className="ui__ button">
 		Create {status}
 	</Link>
 )

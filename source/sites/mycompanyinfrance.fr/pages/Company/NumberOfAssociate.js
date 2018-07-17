@@ -1,7 +1,7 @@
 /* @flow */
+import { companyHaveMultipleAssociate } from 'Actions/companyStatusActions'
 import React from 'react'
 import { connect } from 'react-redux'
-import { companyHaveMultipleAssociate } from 'Actions/companyStatusActions'
 import { SkipButton } from 'Ui/Button'
 import type { RouterHistory } from 'react-router'
 
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const goToNextStep = (history: RouterHistory) => {
-	history.push('/my-company/define-director-status')
+	history.push('/register/define-director-status')
 }
 
 const NumberOfAssociate = ({

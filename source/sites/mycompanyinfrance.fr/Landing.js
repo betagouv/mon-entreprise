@@ -27,7 +27,7 @@ const Landing = ({ colours: { colour } }) => (
 					</ul>
 					<Link
 						className="ui__ inverted-button cta"
-						to="/my-company"
+						to="/register"
 						alt="the first step to create a company">
 						Take the step by step guide
 					</Link>

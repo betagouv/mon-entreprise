@@ -27,7 +27,7 @@ class InFranceRoute extends Component {
 						<StepsHeader location={location} />
 						<div className="ui__ container">
 							{/* <Route path="/règle/:name" component={RulePage} /> */}
-							<Route path="/my-company" component={CreateMyCompany} />
+							<Route path="/register" component={CreateMyCompany} />
 							<Route path="/social-security" component={CostsBenefits} />
 							<Route path="/hiring-process" component={HiringProcess} />
 						</div>
