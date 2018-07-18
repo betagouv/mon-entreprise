@@ -5,7 +5,7 @@ import * as Animate from 'Ui/animate'
 import DefineDirectorStatus from './DirectorStatus'
 import Find from './Find'
 import Home from './Home'
-import LegalSetup from './LegalSetup'
+import Liability from './Liability'
 import MainStatus from './MainStatus'
 import NumberOfAssociate from './NumberOfAssociate'
 import Register from './Register'
@@ -42,10 +42,10 @@ const CreateMyCompany = ({ match, location }) => (
 					{style => (
 						<Switch location={location}>
 							<Route
-								path={match.path + '/choose-legal-setup'}
+								path={match.path + '/choose-liability'}
 								render={props => (
 									<animated.div style={style}>
-										<LegalSetup {...props} />
+										<Liability {...props} />
 									</animated.div>
 								)}
 							/>

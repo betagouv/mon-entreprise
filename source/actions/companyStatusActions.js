@@ -1,15 +1,15 @@
 /* @flow */
 import type {
-	ChooseCompanyLegalSetupAction,
-	CompanyLegalSetup,
+	ChooseCompanyLiabilityAction,
+	CompanyLiability,
 	CompanyHaveMultipleAssociateAction,
 	DirectorStatus,
 	DefineDirectorStatusAction
 } from 'Types/companyStatusTypes'
 
-export function chooseCompanyLegalSetup(
-	setup: CompanyLegalSetup
-): ChooseCompanyLegalSetupAction {
+export function chooseCompanyLiability(
+	setup: CompanyLiability
+): ChooseCompanyLiabilityAction {
 	return {
 		type: 'CHOOSE_COMPANY_LEGAL_SETUP',
 		setup

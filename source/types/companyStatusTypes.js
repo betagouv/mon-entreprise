@@ -1,9 +1,9 @@
 /* @flow */
 
-export type CompanyLegalSetup = 'LIMITED_LIABILITY' | 'SOLE_PROPRIETORSHIP'
-export type ChooseCompanyLegalSetupAction = {
+export type CompanyLiability = 'LIMITED_LIABILITY' | 'SOLE_PROPRIETORSHIP'
+export type ChooseCompanyLiabilityAction = {
 	type: 'CHOOSE_COMPANY_LEGAL_SETUP',
-	setup: CompanyLegalSetup
+	setup: CompanyLiability
 }
 
 export type DirectorStatus = 'SALARIED' | 'SELF_EMPLOYED'
@@ -32,7 +32,7 @@ export type SaveExistingCompanyDetailsAction = {
 
 export type State = {|
 	+companyLegalStatus: {
-		+legalSetup?: CompanyLegalSetup,
+		+liability?: CompanyLiability,
 		+directorStatus?: DirectorStatus,
 		+multipleAssociate?: boolean
 	},
@@ -46,7 +46,7 @@ export type State = {|
 |}
 export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
-	| ChooseCompanyLegalSetupAction
+	| ChooseCompanyLiabilityAction
 	| DefineDirectorStatusAction
 	| CompanyHaveMultipleAssociateAction
 	| SaveExistingCompanyDetailsAction

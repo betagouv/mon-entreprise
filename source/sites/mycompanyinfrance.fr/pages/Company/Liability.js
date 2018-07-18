@@ -1,21 +1,21 @@
 /* @flow */
-import { chooseCompanyLegalSetup } from 'Actions/companyStatusActions'
+import { chooseCompanyLiability } from 'Actions/companyStatusActions'
 import React from 'react'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 import type { Match, RouterHistory } from 'react-router'
-import type { CompanyLegalSetup } from 'Types/companyStatusTypes'
+import type { CompanyLiability } from 'Types/companyStatusTypes'
 
 type Props = {
 	match: Match,
 	history: RouterHistory,
-	chooseCompanyLegalSetup: CompanyLegalSetup => void
+	chooseCompanyLiability: CompanyLiability => void
 }
 
 const goToNextStep = (history: RouterHistory) => {
 	history.push('/register/number-of-associate')
 }
-const LegalSetup = ({ chooseCompanyLegalSetup, history }: Props) => (
+const Liability = ({ chooseCompanyLiability, history }: Props) => (
 	<>
 		<h2>Choosing the liability </h2>
 		<p>
@@ -27,27 +27,28 @@ const LegalSetup = ({ chooseCompanyLegalSetup, history }: Props) => (
 				<strong>Sole proprietorship: </strong>
 				This is an economic activity conducted by a single natural person, in
 				his own name. It&apos;s less paperwork, but bigger trouble in case of
-				bankeroute.
+				bankruptcy, as your personal wealth can be put to contribution.
 			</li>
 			<li>
 				<strong>Limited liability: </strong>
 				A limited liability company is a corporate structure whereby the company
 				members cannot be held personally liable for the company&apos;s debts or
-				liabilities.
+				liabilities. However, it's heavier to set up, and you need to provide a
+				initial capital.
 			</li>
 		</ul>
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
 					goToNextStep(history)
-					chooseCompanyLegalSetup('SOLE_PROPRIETORSHIP')
+					chooseCompanyLiability('SOLE_PROPRIETORSHIP')
 				}}
 				className="ui__ button">
 				Sole proprietorship
 			</button>
 			<button
 				onClick={() => {
-					chooseCompanyLegalSetup('LIMITED_LIABILITY')
+					chooseCompanyLiability('LIMITED_LIABILITY')
 					goToNextStep(history)
 				}}
 				className="ui__ button">
@@ -63,6 +64,6 @@ const LegalSetup = ({ chooseCompanyLegalSetup, history }: Props) => (
 export default connect(
 	null,
 	{
-		chooseCompanyLegalSetup
+		chooseCompanyLiability
 	}
-)(LegalSetup)
+)(Liability)

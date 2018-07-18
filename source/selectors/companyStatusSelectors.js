@@ -9,42 +9,42 @@ import { map, whereEq } from 'ramda'
 
 const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 	EI: {
-		legalSetup: 'SOLE_PROPRIETORSHIP',
+		liability: 'SOLE_PROPRIETORSHIP',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociate: false
 	},
 	EURL: {
-		legalSetup: 'LIMITED_LIABILITY',
+		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociate: false
 	},
 	EIRL: {
-		legalSetup: 'LIMITED_LIABILITY',
+		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociate: false
 	},
 	SARL: {
-		legalSetup: 'LIMITED_LIABILITY',
+		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociate: true
 	},
 	SAS: {
-		legalSetup: 'LIMITED_LIABILITY',
+		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		multipleAssociate: true
 	},
 	SA: {
-		legalSetup: 'LIMITED_LIABILITY',
+		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		multipleAssociate: true
 	},
 	SNC: {
-		legalSetup: 'SOLE_PROPRIETORSHIP',
+		liability: 'SOLE_PROPRIETORSHIP',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociate: true
 	},
 	SASU: {
-		legalSetup: 'LIMITED_LIABILITY',
+		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociate: false
 	}

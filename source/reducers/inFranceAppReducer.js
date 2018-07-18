@@ -13,7 +13,7 @@ function companyLegalStatus(
 ): CompanyLegalStatus {
 	switch (action.type) {
 		case 'CHOOSE_COMPANY_LEGAL_SETUP':
-			return { ...state, legalSetup: action.setup }
+			return { ...state, liability: action.setup }
 
 		case 'DEFINE_DIRECTOR_STATUS':
 			return { ...state, directorStatus: action.status }

@@ -21,7 +21,7 @@ const CreateMyCompany = ({ match }: Props) => (
 		</p>
 		{match.isExact && (
 			<div className="ui__ answer-group">
-				<Link className="ui__ button" to={match.path + '/choose-legal-setup'}>
+				<Link className="ui__ button" to={match.path + '/choose-liability'}>
 					Choose the legal status
 				</Link>
 				<Link to={'/social-security'} className="ui__ skip-button">
