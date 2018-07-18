@@ -26,8 +26,16 @@
 <body>
 	<div id="js" />
 	<script src="https://use.fontawesome.com/1da10bbdec.js"></script>
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Intl.~locale.en,Intl.~locale.fr,IntersectionObserver,fetch,Array.prototype.find,Object.values,
-	Number.parseFloat&unknown=polyfill"></script>
+	<script type="text/javascript">
+		if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+			// For ie, polyfill everything, as I can't figure what's going on, and which polyfill is missing...
+			document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=all"><\/script>');
+		} else {
+			document.write(
+				'<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Intl.~locale.en,Intl.~locale.fr,IntersectionObserver,fetch,Array.prototype.find,Object.values,Number.parseFloat,Array.prototype.includes,Object.entries,Object.values,Object.keys,Math.log2&unknown=polyfill"><\/script>');
+		}
+	</script>
+
 </body>
 
 </html>

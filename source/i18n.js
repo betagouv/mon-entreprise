@@ -17,7 +17,6 @@ let lang =
 	queryString.parse(location.search)['lang'] ||
 	parseDataAttributes(getFromSessionStorage('lang')) ||
 	'fr'
-console.log('i18n', lang)
 
 setToSessionStorage('lang', lang)
 i18next.init(
@@ -31,7 +30,7 @@ i18next.init(
 		}
 	},
 	(err, t) => {
-		console.log('Error from i18n load', err, t) //eslint-disable-line no-console
+		console && console.error('Error from i18n load', err, t) //eslint-disable-line no-console
 	}
 )
 

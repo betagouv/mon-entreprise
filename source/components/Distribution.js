@@ -4,6 +4,8 @@ import Observer from '@researchgate/react-intersection-observer'
 import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
+import { isIE } from '../utils'
+
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { config, Spring } from 'react-spring'
@@ -157,11 +159,14 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 		<div
 			className="distribution-chart__bar"
 			style={{
-				flex: styles.flex,
-				backgroundColor: colour
+				backgroundColor: colour,
+				...(!isIE() ? 
+					{flex: styles.flex} : 
+					{minWidth: styles.flex * 500 + 'px'}
+				)
 			}}
 		/>
-		<div style={{ flex: 0 }}>
+		<div>
 			<Montant
 				className="distribution-chart__amount"
 				numFractionDigit={0}

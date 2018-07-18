@@ -35,3 +35,13 @@ export function debounce<ArgType: any>(
 		timeoutId = setTimeout(() => fn(...args), timeout)
 	}
 }
+
+export function isIE() {
+	return (
+		navigator.appName == 'Microsoft Internet Explorer' ||
+		(navigator.appName == 'Netscape' &&
+			new RegExp('Trident/.*rv:([0-9]{1,}[.0-9]{0,})').exec(
+				navigator.userAgent
+			) != null)
+	)
+}
