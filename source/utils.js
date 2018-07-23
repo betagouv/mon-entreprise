@@ -1,4 +1,5 @@
 /* @flow */
+import { map } from 'ramda'
 
 export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 
@@ -45,3 +46,13 @@ export function isIE() {
 			) != null)
 	)
 }
+
+export const mapDispatchWithRouter = (actionCreators: Object) => (
+	dispatch: (...any) => void,
+	ownProps: Object
+) =>
+	map(
+		actionCreator => (...args) =>
+			dispatch(actionCreator(...args, ownProps.router)),
+		actionCreators
+	)

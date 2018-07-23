@@ -1,23 +1,14 @@
 /* @flow */
-import { companyHaveMultipleAssociate } from 'Actions/companyStatusActions'
+import { companyHaveMultipleAssociates } from 'Actions/companyStatusActions'
 import React from 'react'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
-import type { RouterHistory } from 'react-router'
 
 type Props = {
-	history: RouterHistory,
-	companyHaveMultipleAssociate: boolean => void
+	companyHaveMultipleAssociates: (?boolean) => void
 }
 
-const goToNextStep = (history: RouterHistory) => {
-	history.push('/register/define-director-status')
-}
-
-const NumberOfAssociate = ({
-	history,
-	companyHaveMultipleAssociate
-}: Props) => (
+const NumberOfAssociate = ({ companyHaveMultipleAssociates }: Props) => (
 	<>
 		<h2>Number of associates </h2>
 		<p>
@@ -28,26 +19,24 @@ const NumberOfAssociate = ({
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
-					companyHaveMultipleAssociate(false)
-					goToNextStep(history)
+					companyHaveMultipleAssociates(false)
 				}}
 				className="ui__ button">
 				Only one associate
 			</button>
 			<button
 				onClick={() => {
-					companyHaveMultipleAssociate(true)
-					goToNextStep(history)
+					companyHaveMultipleAssociates(true)
 				}}
 				className="ui__ button">
 				Multiple partners
 			</button>
-			<SkipButton onClick={() => goToNextStep(history)} />
+			<SkipButton onClick={() => companyHaveMultipleAssociates(null)} />
 		</div>
 	</>
 )
 
 export default connect(
 	null,
-	{ companyHaveMultipleAssociate }
+	{ companyHaveMultipleAssociates }
 )(NumberOfAssociate)

@@ -32,12 +32,12 @@
 	border-color: rgb(41, 117, 209);
 	color: rgb(41, 117, 209);
 	background: linear-gradient(
-		45deg,
+		50deg,
 		rgba(39, 69, 195, 0.87) 5%,
 		rgba(41, 117, 209, 1) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
-	background-size: 250%;
+	background-size: 260%;
 	background-position-x: 99%;
 }
 .ui__.button:not(:disabled):hover,

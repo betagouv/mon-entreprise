@@ -22,10 +22,15 @@ class Hiring extends Component<Props, {}> {
 							<strong>general welfare of its people</strong>.
 						</p>
 						<p>
+							This easy access to health care and other services ensures that
+							companies can put healthy, highly skilled, and productive
+							employees to work in an attractive market in the heart of Europe.
+						</p>
+						<p>
 							As soon as you declare and pay your employees, you automatically
-							entitle them to all of France’s health, maternity, disability, old
-							age, unemployment, occupational accidents and occupational illness
-							insurance programs.
+							entitle them to the general scheme of French Social Security
+							(health, maternity, disability, old age, occupational illness,
+							accident at work) and unemployment insurance.
 						</p>
 						<div style={{ display: 'flex', alignItems: 'center' }}>
 							<iframe

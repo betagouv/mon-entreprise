@@ -1,12 +1,14 @@
 /* @flow */
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 import type { Match } from 'react-router'
-
 type Props = {
-	match: Match
+	match: Match,
+	nextQuestionUrl: string
 }
-const CreateMyCompany = ({ match }: Props) => (
+const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 	<>
 		<h1 className="question__title">Register a company</h1>
 		<Link className="ui__ link-button" to="/register/find">
@@ -21,7 +23,7 @@ const CreateMyCompany = ({ match }: Props) => (
 		</p>
 		{match.isExact && (
 			<div className="ui__ answer-group">
-				<Link className="ui__ button" to={match.path + '/choose-liability'}>
+				<Link className="ui__ button" to={nextQuestionUrl}>
 					Choose the legal status
 				</Link>
 				<Link to={'/social-security'} className="ui__ skip-button">
@@ -32,4 +34,7 @@ const CreateMyCompany = ({ match }: Props) => (
 	</>
 )
 
-export default CreateMyCompany
+export default connect(
+	state => ({ nextQuestionUrl: nextQuestionUrlSelector(state) }),
+	null
+)(CreateMyCompany)

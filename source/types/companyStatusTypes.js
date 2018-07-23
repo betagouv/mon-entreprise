@@ -3,19 +3,25 @@
 export type CompanyLiability = 'LIMITED_LIABILITY' | 'SOLE_PROPRIETORSHIP'
 export type ChooseCompanyLiabilityAction = {
 	type: 'CHOOSE_COMPANY_LEGAL_SETUP',
-	setup: CompanyLiability
+	setup: ?CompanyLiability
 }
 
 export type DirectorStatus = 'SALARIED' | 'SELF_EMPLOYED'
 
 export type DefineDirectorStatusAction = {
 	type: 'DEFINE_DIRECTOR_STATUS',
-	status: DirectorStatus
+	status: ?DirectorStatus
 }
 
-export type CompanyHaveMultipleAssociateAction = {
-	type: 'COMPANY_HAVE_MULTIPLE_ASSOCIATE',
-	multipleAssociate: boolean
+export type CompanyHaveMultipleAssociatesAction = {
+	type: 'COMPANY_HAVE_MULTIPLE_ASSOCIATES',
+	multipleAssociates: ?boolean
+}
+
+
+export type CompanyIsMicroenterpriseAction = {
+	type: 'COMPANY_IS_MICROENTERPRISE',
+	microenterprise: ?boolean
 }
 
 export type ChangeChecklistItemAction = {
@@ -32,9 +38,15 @@ export type SaveExistingCompanyDetailsAction = {
 
 export type State = {|
 	+companyLegalStatus: {
-		+liability?: CompanyLiability,
-		+directorStatus?: DirectorStatus,
-		+multipleAssociate?: boolean
+		/* 
+			Note on the meanings of null / undefined value: 
+			If the key exists and the value is null, the question have been asked, but skipped by the user.
+		 	If the key does not exists, the question still hasn't been asked. 
+		 */
+		+liability?: ?CompanyLiability,
+		+directorStatus?: ?DirectorStatus,
+		+multipleAssociates?: ?boolean,
+		+microenterprise?: ?boolean
 	},
 	+existingCompanyDetails: ?{ [string]: string },
 	+checklists: {
@@ -48,6 +60,7 @@ export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
 	| ChooseCompanyLiabilityAction
 	| DefineDirectorStatusAction
-	| CompanyHaveMultipleAssociateAction
+	| CompanyIsMicroenterpriseAction
+	| CompanyHaveMultipleAssociatesAction
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction

@@ -7,6 +7,8 @@ import Find from './Find'
 import Home from './Home'
 import Liability from './Liability'
 import MainStatus from './MainStatus'
+import Microenterprise from './Microenterprise'
+import RegistrationPending from './RegistrationPending'
 import NumberOfAssociate from './NumberOfAssociate'
 import Register from './Register'
 
@@ -16,8 +18,9 @@ const CreateMyCompany = ({ match, location }) => (
 			<Switch>
 				<Route
 					path={match.path + '/register-:status'}
-					component={Register(match)}
+					component={Register}
 				/>
+				<Route path={match.path + '/registration-pending'} component={RegistrationPending} />
 
 				<Route path={match.path + '/find'} component={Find} />
 				<Route path={match.path} component={Home} />
@@ -42,7 +45,7 @@ const CreateMyCompany = ({ match, location }) => (
 					{style => (
 						<Switch location={location}>
 							<Route
-								path={match.path + '/choose-liability'}
+								path={match.path + '/liability'}
 								render={props => (
 									<animated.div style={style}>
 										<Liability {...props} />
@@ -50,7 +53,7 @@ const CreateMyCompany = ({ match, location }) => (
 								)}
 							/>
 							<Route
-								path={match.path + '/define-director-status'}
+								path={match.path + '/director-status'}
 								render={props => (
 									<animated.div style={style}>
 										<DefineDirectorStatus {...props} />
@@ -58,7 +61,15 @@ const CreateMyCompany = ({ match, location }) => (
 								)}
 							/>
 							<Route
-								path={match.path + '/number-of-associate'}
+								path={match.path + '/microenterprise'}
+								render={props => (
+									<animated.div style={style}>
+										<Microenterprise {...props} />
+									</animated.div>
+								)}
+							/>
+							<Route
+								path={match.path + '/multiple-associates'}
 								render={props => (
 									<animated.div style={style}>
 										<NumberOfAssociate {...props} />
@@ -66,7 +77,7 @@ const CreateMyCompany = ({ match, location }) => (
 								)}
 							/>
 							<Route
-								path={match.path + '/set-legal-status'}
+								path={match.path + '/pick-legal-status'}
 								render={props => (
 									<animated.div style={style}>
 										<MainStatus {...props} />

@@ -13,6 +13,7 @@ type Props = {
 	setMainStatus: LegalStatus => void
 }
 
+
 const StatusButton = ({ status }: { status: LegalStatus }) => (
 	<Link to={`/register/register-${status}`} className="ui__ button">
 		Create {status}
@@ -20,25 +21,16 @@ const StatusButton = ({ status }: { status: LegalStatus }) => (
 )
 
 const SetMainStatus = ({ history, possibleStatus }: Props) => {
-	const atLeastOneStatus = Object.values(possibleStatus).some(x => x)
-	return (
+	const uniqStatus = (Object.values(possibleStatus).filter(Boolean).length === 1);
+		return (
 		<>
-			<h2>Choosing a legal status</h2>
-			{atLeastOneStatus ? (
-				<p>
-					Based on your previous answers, you can choose between the following
-					statuses:
-				</p>
-			) : (
-				<p>
-					{' '}
-					We didn&apos;t find any status matching your need. You can go back and
-					change your needs, or choose a status manually from the following
-					list:
-				</p>
-			)}
+			<h2>Your legal status</h2>
+			{uniqStatus? <p>The following status seems to be the perfect match for your need:</p> : <p>
+				Based on your previous answers, you can choose between the following statuses:
+			</p>}
+
 			<ul>
-				{(!atLeastOneStatus || possibleStatus.EI) && (
+				{possibleStatus.EI && (
 					<li>
 						<strong>
 							EI - Entreprise individuelle (Individual business):{' '}
@@ -48,7 +40,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						wealth are one.
 					</li>
 				)}
-				{(!atLeastOneStatus || possibleStatus.EIRL) && (
+				{possibleStatus.EIRL && (
 					<li>
 						<strong>
 							EIRL - Entrepreneur individuel à responsabilité limitée
@@ -58,7 +50,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						heritage necessary for the activity.
 					</li>
 				)}
-				{(!atLeastOneStatus || possibleStatus.EURL) && (
+				{possibleStatus.EURL && (
 					<li>
 						<strong>
 							EURL - Entreprise unipersonnelle à responsabilité limitée (Limited
@@ -68,7 +60,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						its contribution to the capital.
 					</li>
 				)}
-				{(!atLeastOneStatus || possibleStatus.SARL) && (
+				{possibleStatus.SARL && (
 					<li>
 						<strong>
 							SARL - Société à responsabilité limitée (Limited corporation):{' '}
@@ -78,7 +70,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						capital is freely fixed in the statutes.
 					</li>
 				)}
-				{(!atLeastOneStatus || possibleStatus.SAS) && (
+				{possibleStatus.SAS && (
 					<li>
 						<strong>
 							SAS - Société par actions simplifiées (Simplified joint stock
@@ -89,7 +81,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						the statutes.
 					</li>
 				)}
-				{(!atLeastOneStatus || possibleStatus.SASU) && (
+				{possibleStatus.SASU && (
 					<li>
 						<strong>
 							SASU - Société par action simplifiée unipersonnelle (Simplified
@@ -99,24 +91,36 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						capital. The minimum capital is freely fixed in the statutes.
 					</li>
 				)}
-				{(!atLeastOneStatus || possibleStatus.SA) && (
+				{possibleStatus.SA && (
 					<li>
 						<strong>SA - Société anonyme (Anonymous company):</strong>Company
-						composed of at least 2 shareholders if it is not listed.
+						composed of at least 2 shareholders. The only status that allows you to be listed on the stock exchange. The minimum share capital is €37.000.
 					</li>
 				)}
-				{(!atLeastOneStatus || possibleStatus.SNC) && (
+				{possibleStatus.SNC && (
 					<li>
 						<strong>SNC - Société en nom collectif (Partnership):</strong>The
 						partners are liable indefinitely and severally for the debts of the
 						company.
 					</li>
 				)}
+
+				{possibleStatus['Microenterprise (option EIRL)'] && (
+					<li>
+						<strong>Microenterprise (option EIRL):</strong> The micro-enterprise is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions. With the EIRL option, you have limited liability on your losses.
+					</li>
+				)}
+
+				{possibleStatus.Microenterprise && (
+					<li>
+						<strong>Microenterprise:</strong> The micro-enterprise is a sole proprietorship subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions. 
+					</li>
+				)}
 			</ul>
 			<div className="ui__ answer-group">
 				{/* $FlowFixMe */}
 				{(Object.entries(possibleStatus): Array<[LegalStatus, boolean]>)
-					.filter(([, statusIsVisible]) => statusIsVisible || !atLeastOneStatus)
+					.filter(([, statusIsVisible]) => statusIsVisible)
 					.map(([status]) => (
 						<StatusButton key={status} status={status} history={history} />
 					))}

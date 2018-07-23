@@ -1,75 +1,64 @@
 /* @flow */
-import Checklist from 'Components/Checklist'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import siret from './siret.jpg'
-import type { Match } from 'react-router'
-
-export default (match: Match) =>
-	Checklist({
-		name: 'register',
-		title: `Checklist to register a ${match.params.status || ''}`,
-		subtitle: `
-			This checklist will guide you thoughout all the necessary steps to
-			register your company with the French administration.
-	`,
-		items: {
-			legalStatus: 'Choose the legal status',
-			corporateName: (
-				<p>
-					Find a corporate name (<em>raison sociale</em>, the legal name of your
-					company)
-				</p>
-			),
-			tradeName: 'Find a trade name (for commercial purposes)',
-			space: 'Find a space (or work at home)',
-			registerCfe: (
-				<span>
-					Register your company online on{' '}
-					<a target="_blank" href="https://www.guichet-entreprises.fr/en/">
-						Guichet-entreprises.fr (english)
-					</a>
-				</span>
-			),
-			newspaper: `Have the company's creation published in
-				a newspaper of legal announcements such as the Bodacc (Bulletin officiel
-				des annonces civiles et commerciales)`,
-			bankAccount:
-				'Open a business bank account and follow the capital deposit procedure if needed',
-			accountant: 'Choose a certified accountant',
-			insurance: 'Check out needs of professional insurance'
-		},
-
-		conclusion: (
-			<>
-				<p>
-					Once your business has been officially registered, you will receive :
-				</p>
-				<ul>
-					<li>your Siren number, which identifies your company ;</li>
-					<li>
-						the Siret number, which identifies each place of business operated
-						by the same company.
-					</li>
-				</ul>
-				<img src={siret} alt="Siret and siren number" />
-				<p>
-					It also assigns the APE code for the business sector to which your
-					company or you as a self-employed worker belong. The APE code is used
-					to classify your company’s main operations in relation to the french
-					business nomenclature system (« NAF » code). It also determines the
-					applicable collective agreement as well as the industrial accident
-					rate in the field to which you or your company belong.
-				</p>
-				<p>
-					Now that you have a properly registered company, the next steps is to{' '}
-					<strong>hire your first employee</strong>
-				</p>
-				<div style={{ textAlign: 'center' }}>
-					<Link className="ui__ button" to="/social-security">
-						Simulate hiring cost in France
-					</Link>
-				</div>
-			</>
-		)
-	})
+import type { Match, RouterHistory } from 'react-router'
+type Props = {
+	history: RouterHistory,
+	match: Match
+}
+const Register = ({ match, history }: Props) => (
+	<>
+		<h1>Create a {match.params.status} </h1>
+		<p>
+			<Link to="/register">
+				Not sure about this status? Take our guide to help you choose.
+			</Link>{' '}
+		</p>
+		<p>
+			Register your company to the French administration is the first thing to
+			do. It can be done online with the following data :
+		</p>
+		<ul>
+			<li>
+				<strong>The corporate name</strong>, also called "raison sociale" in
+				french, is the legal name of your company, written on all of your
+				administrative papers. It can be different from the trade name (used for
+				commercial purpose).
+			</li>
+			<li>
+				<strong>The corporate purpose of the company</strong>, also called
+				"object social" is a short phrase describing the activity of your
+				company. As it is legally binding it must be composed with care,
+				possibly with the help of a lawyer.
+			</li>
+			<li>
+				<strong>The social security number of the director</strong>. In case you
+				don't have yet a french social security number...
+			</li>
+			<li>
+				<strong>The address</strong>, the physical space where your company will
+				be incorporated. In certain areas, you can benefit from substantial
+				government aid (exemption from charges, taxes, etc.).
+			</li>
+		</ul>
+		<p>
+			If you don't know where your going to open your company, you can discover
+			the French territories in our <a>incoporation simulator</a>.
+		</p>
+		{/* <p>If the company director is not part of the EU, you'll need a specific visa https://www.economie.gouv.fr/entreprises/etranger-comment-creer-votre-entreprise-france </p> */}
+		<p style={{ textAlign: 'right' }}>
+			<a
+				onClick={() => history.push('/register/registration-pending')}
+				className="ui__ button"
+				href="https://translate.google.com/translate?depth=1&hl=en&rurl=translate.google.com&sl=fr&sp=nmt4&tl=en&u=https://www.guichet-entreprises.fr/en/how-to-create-your-business/"
+				rel="noopener noreferrer"
+				target="_blank">
+				Register my company online
+			</a>
+			<Link to={'/social-security'} className="ui__ skip-button">
+				Do it later ›
+			</Link>
+		</p>
+	</>
+)
+export default Register

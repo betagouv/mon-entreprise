@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore } from 'redux'
+import thunk from 'redux-thunk'
 import computeThemeColours from 'Ui/themeColours'
 import trackDomainActions from './middlewares/trackDomainActions'
 import {
@@ -43,10 +44,7 @@ let initialStore = {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-let enhancer = composeEnhancers(applyMiddleware(trackDomainActions(tracker)))
 
-let store = createStore(reducers, initialStore, enhancer)
-persistSimulation(store)
 if (process.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
 	window.addEventListener('load', () => {
 		navigator.serviceWorker
@@ -61,17 +59,27 @@ if (process.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
 }
 
 export default class Layout extends PureComponent {
-	state = {
-		history: createHistory({
+	constructor(props) {
+		super(props)
+		this.history = createHistory({
 			basename: process.env.NODE_ENV === 'production' ? '' : this.props.basename
 		})
+		const storeEnhancer = composeEnhancers(
+			applyMiddleware(
+				// Allows us to painlessly do route transition in action creators
+				thunk.withExtraArgument(this.history),
+				trackDomainActions(tracker)
+			)
+		)
+		this.store = createStore(reducers, initialStore, storeEnhancer)
+		persistSimulation(this.store)
 	}
 	render() {
 		return (
-			<Provider store={store}>
+			<Provider store={this.store}>
 				<TrackerProvider value={tracker}>
 					<I18nextProvider i18n={i18next}>
-						<Router history={tracker.connectToHistory(this.state.history)}>
+						<Router history={tracker.connectToHistory(this.history)}>
 							<>{this.props.children}</>
 						</Router>
 					</I18nextProvider>

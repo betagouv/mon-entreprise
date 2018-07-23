@@ -3,19 +3,15 @@ import { chooseCompanyLiability } from 'Actions/companyStatusActions'
 import React from 'react'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
-import type { Match, RouterHistory } from 'react-router'
+import type { Match } from 'react-router'
 import type { CompanyLiability } from 'Types/companyStatusTypes'
 
 type Props = {
 	match: Match,
-	history: RouterHistory,
-	chooseCompanyLiability: CompanyLiability => void
+	chooseCompanyLiability: (?CompanyLiability) => void
 }
 
-const goToNextStep = (history: RouterHistory) => {
-	history.push('/register/number-of-associate')
-}
-const Liability = ({ chooseCompanyLiability, history }: Props) => (
+const Liability = ({ chooseCompanyLiability }: Props) => (
 	<>
 		<h2>Choosing the liability </h2>
 		<p>
@@ -40,7 +36,6 @@ const Liability = ({ chooseCompanyLiability, history }: Props) => (
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
-					goToNextStep(history)
 					chooseCompanyLiability('SOLE_PROPRIETORSHIP')
 				}}
 				className="ui__ button">
@@ -49,12 +44,11 @@ const Liability = ({ chooseCompanyLiability, history }: Props) => (
 			<button
 				onClick={() => {
 					chooseCompanyLiability('LIMITED_LIABILITY')
-					goToNextStep(history)
 				}}
 				className="ui__ button">
 				Limited liability
 			</button>
-			<SkipButton onClick={() => goToNextStep(history)} />
+			<SkipButton onClick={() => chooseCompanyLiability(null)} />
 		</div>
 		{/* this is an economic activity conducted by a single natural person, in his own name ; */}
 		{/* Company  : This is an economic activity conducted by a single partner - single member company with limited liability (EURL) - or several partners (limited liability company (SARL), public limited company (SA), simplified joint-stock company (SAS)...). */}
@@ -63,7 +57,5 @@ const Liability = ({ chooseCompanyLiability, history }: Props) => (
 
 export default connect(
 	null,
-	{
-		chooseCompanyLiability
-	}
+	{ chooseCompanyLiability }
 )(Liability)
