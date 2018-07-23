@@ -42,6 +42,7 @@ h5,
 h6 {
 	font-family: 'IBM Plex Sans', sans-serif;
 	font-weight: normal;
+	line-height: initial;
 }
 
 h1,
@@ -54,13 +55,8 @@ button {
 	font-weight: normal;
 }
 
-p,
-ul {
+body {
 	line-height: 1.7rem;
-}
-
-li {
-	margin-bottom: 1rem;
 }
 
 a {

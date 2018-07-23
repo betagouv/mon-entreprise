@@ -31,7 +31,6 @@
 	padding: 0 0.4em;
 	font-weight: 600;
 	border: none !important;
-	font-size: 120%;
 	color: black;
 }
 .somme .operator + .element {
@@ -59,54 +58,8 @@
 	border-bottom: 1px solid rgba(51, 51, 80, 0.15);
 }
 
-/* Specific to ResultsGrid.css. Somme.js and ResultsGrid.js should be merged */
-.resultsGrid table {
-	font-size: 90%;
-}
-.resultsGrid table a {
-	color: inherit;
-}
-.resultsGrid td {
-	line-height: 1.6em;
-	border: 1px solid #e3e3ee;
-}
-.resultsGrid .operator {
-	border-right-color: transparent;
-	margin-right: 0.4em;
-}
-.resultsGrid .element.category {
-	font-weight: 600;
-	font-size: 100%;
-}
-.resultsGrid .detailsRow .name {
-	padding-left: 1.2em;
-}
-.resultsGrid .detailsRow .name:hover {
-	color: #111;
-	text-decoration: underline;
-}
-
-.resultsGrid .name {
-	font-size: 90%;
-}
-.resultsGrid .value {
-	font-weight: 700;
-	color: #031bd6;
-}
 #sommeBase {
 	text-align: center;
-}
-
-.resultsGrid .annotation {
-	color: #333350;
-	border: 1px solid #333350;
-	background: #031bd61a;
-	font-weight: 600;
-	font-size: 95%;
-	padding: 0 0.6em;
-	margin-left: 0.3em;
-	border-radius: 0.2em;
-	white-space: nowrap;
 }
 
 .detailsRow {
@@ -179,5 +132,4 @@
 .nested .mecanism-somme__row {
 	padding-left: 2em;
 	border-top: 1px dashed rgba(51, 51, 80, 0.15);
-	font-size: 90%;
 }

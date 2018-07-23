@@ -2,7 +2,8 @@
 import type {
 	ResetSimulationAction,
 	LoadPreviousSimulationAction,
-	DeletePreviousSimulationAction
+	DeletePreviousSimulationAction,
+	StartConversationAction
 } from 'Types/ActionsTypes'
 
 export function resetSimulation(): ResetSimulationAction {
@@ -14,6 +15,13 @@ export function resetSimulation(): ResetSimulationAction {
 export function deletePreviousSimulation(): DeletePreviousSimulationAction {
 	return {
 		type: 'DELETE_PREVIOUS_SIMULATION'
+	}
+}
+
+export function startConversation(question: ?string): StartConversationAction {
+	return {
+		type: 'START_CONVERSATION',
+		...(question ? { question } : {})
 	}
 }
 

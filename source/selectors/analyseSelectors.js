@@ -159,6 +159,6 @@ export let nextStepsSelector = createSelector(
 	getNextSteps
 )
 export let currentQuestionSelector = createSelector(
-	[nextStepsSelector],
-	nextSteps => head(nextSteps)
+	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
+	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )

@@ -13,6 +13,7 @@ import * as Animate from 'Ui/animate'
 import Conversation from './conversation/Conversation'
 import Distribution from './Distribution'
 import PaySlip from './PaySlip'
+import QuickLink from './QuickLink'
 import './Simu.css'
 import TargetSelection from './TargetSelection'
 
@@ -25,7 +26,7 @@ import TargetSelection from './TargetSelection'
 		nextSteps: state.conversationStarted && nextStepsSelector(state)
 	}),
 	{
-		onSimulationContinued: () => ({ type: 'START_CONVERSATION' })
+		startConversation: () => ({ type: 'START_CONVERSATION' })
 	}
 )
 export default class Simu extends Component {
@@ -35,7 +36,7 @@ export default class Simu extends Component {
 			conversationStarted,
 			noUserInput,
 			nextSteps,
-			onSimulationContinued,
+			startConversation,
 			blockingInputControls
 		} = this.props
 		const firstValidInputEntered =
@@ -64,50 +65,23 @@ export default class Simu extends Component {
 									fontSize: '110%',
 									justifyContent: 'space-evenly'
 								}}>
-								<button
-									className="ui__ link-button"
-									onClick={onSimulationContinued}>
-									<Trans>CDD</Trans>
-								</button>
-								<button
-									className="ui__ link-button"
-									onClick={onSimulationContinued}>
-									CDI
-								</button>
-								<button
-									className="ui__ link-button"
-									onClick={onSimulationContinued}>
-									<Trans>Cadre</Trans>
-								</button>
-								<button
-									className="ui__ link-button"
-									onClick={onSimulationContinued}>
-									<Trans>Temps partiel</Trans>
-								</button>
-								<button
-									className="ui__ link-button"
-									onClick={onSimulationContinued}>
-									<Trans>Autres situations</Trans>
-								</button>
+								<QuickLink />
 							</animated.div>
 						)}
 					</Spring>
 					{conversationStarted &&
 						!nextSteps.length && (
 							<>
-								<h1>
-									<Trans>Plus de questions restantes!</Trans>
-								</h1>
+								<h1>No more questions left!</h1>
 								<p>
 									<Trans>
-										Vous avez atteint l&apos;estimation la plus précise. Vous
-										pouvez maintenant concrétiser votre projet, et apprendre les
-										démarches à suivre pour
+										You have reached the most accurate estimate. You can now
+										turn your hiring project into reality.
 									</Trans>
 								</p>
 								<div style={{ textAlign: 'center' }}>
 									<Link className="ui__ button" to="/hiring-process">
-										Connaître les démarches
+										See the procedures
 									</Link>
 								</div>
 							</>
@@ -148,7 +122,7 @@ export default class Simu extends Component {
 							hiring costs.
 						</p>
 						<p style={{ textAlign: 'center' }}>
-							<button className="ui__ button" onClick={onSimulationContinued}>
+							<button className="ui__ button" onClick={startConversation}>
 								Estimate my real costs
 							</button>
 						</p>

@@ -43,7 +43,7 @@
 }
 .steps-header a.active {
 	opacity: 1;
-	flex: 1;
+	flex-grow: 1;
 }
 /* IE */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

@@ -5,10 +5,10 @@
 body {
 	overflow-x: hidden;
 }
-.ui__.container {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 1rem;
+
+button {
+	border: none;
+	border-radius: 0;
 }
 
 .ui__.answer-group {
@@ -27,7 +27,8 @@ body {
 
 .ui__.container {
 	max-width: 45em;
-	margin: 0 auto;
+	margin-right: auto;
+	margin-left: auto;
 	padding: 0 0.6em;
 }
 
