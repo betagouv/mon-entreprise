@@ -6,27 +6,20 @@ import {
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 
-const LEGAL_STATUS_COEFFICIENT = 0.3
-const CHECKLIST_COEFFICIENT = 0.7
-const CHECKLIST_ITEM_NUMBER = 7
+const STATUS_SELECTION_COEFFICIENT = 0.6
 const companyProgressSelector = createSelector(
 	state => state.inFranceApp.companyLegalStatus,
-	state => state.inFranceApp.checklists.register,
 	state => state.inFranceApp.existingCompanyDetails,
-	(legalStatus, creationChecklist, companyDetails) => {
+	state => state.inFranceApp.companyRegistrationStarted,
+	(legalStatus, companyDetails, companyRegistrationStarted) => {
 		if (companyDetails) {
 			return 100
 		}
-		const legalStatusProgress = Object.values(legalStatus).length / 3
-		const creationChecklistProgress =
-			Object.values(creationChecklist).filter(Boolean).length /
-			CHECKLIST_ITEM_NUMBER
-
-		return (
-			100 *
-			(legalStatusProgress * LEGAL_STATUS_COEFFICIENT +
-				creationChecklistProgress * CHECKLIST_COEFFICIENT)
+		const legalStatusProgress = Math.max(
+			(STATUS_SELECTION_COEFFICIENT * Object.values(legalStatus).length) / 4,
+			companyRegistrationStarted
 		)
+		return 80 * legalStatusProgress
 	}
 )
 

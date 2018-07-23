@@ -5,10 +5,12 @@ import type {
 	CompanyHaveMultipleAssociatesAction,
 	DirectorStatus,
 	CompanyIsMicroenterpriseAction,
+	StartCompanyRegistrationAction,
 	DefineDirectorStatusAction
 } from 'Types/companyStatusTypes'
 import type { RouterHistory } from 'react-router'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
+import { ThunkAction } from 'redux-thunk';
 
 const thenGoToNextQuestion = actionCreator => (...args: any) => (
 	dispatch: any => void,
@@ -46,3 +48,10 @@ export const companyIsMicroenterprise = thenGoToNextQuestion(
 		microenterprise
 	})
 )
+
+export const startCompanyRegistration= () => ((dispatch, _, history)  => {
+	dispatch(({
+		type: 'START_COMPANY_REGISTRATION',
+	}: StartCompanyRegistrationAction))
+	history.push('/register/registration-pending')
+}:ThunkAction )

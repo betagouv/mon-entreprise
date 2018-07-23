@@ -55,9 +55,20 @@ function existingCompanyDetails(
 	}
 }
 
+function companyRegistrationStarted(
+	state: boolean = false,
+	action: Action
+) {
+	if (action.type ==='START_COMPANY_REGISTRATION') {
+		return true;
+	}
+	return state;
+}
+
 // $FlowFixMe
 export default (combineReducers({
 	companyLegalStatus,
 	checklists,
+	companyRegistrationStarted,
 	existingCompanyDetails
 }): (State, Action) => State)

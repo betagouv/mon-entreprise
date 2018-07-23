@@ -1,12 +1,14 @@
 /* @flow */
 import React from 'react'
 import { Link } from 'react-router-dom'
-import type { Match, RouterHistory } from 'react-router'
+import type { Match } from 'react-router'
+import { startCompanyRegistration } from "Actions/companyStatusActions";
+import { connect } from "react-redux";
 type Props = {
-	history: RouterHistory,
+	startCompanyRegistration: () => void,
 	match: Match
 }
-const Register = ({ match, history }: Props) => (
+const Register = ({ match, startCompanyRegistration }: Props) => (
 	<>
 		<h1>Create a {match.params.status} </h1>
 		<p>
@@ -48,7 +50,7 @@ const Register = ({ match, history }: Props) => (
 		{/* <p>If the company director is not part of the EU, you'll need a specific visa https://www.economie.gouv.fr/entreprises/etranger-comment-creer-votre-entreprise-france </p> */}
 		<p style={{ textAlign: 'right' }}>
 			<a
-				onClick={() => history.push('/register/registration-pending')}
+				onClick={startCompanyRegistration}
 				className="ui__ button"
 				href="https://translate.google.com/translate?depth=1&hl=en&rurl=translate.google.com&sl=fr&sp=nmt4&tl=en&u=https://www.guichet-entreprises.fr/en/how-to-create-your-business/"
 				rel="noopener noreferrer"
@@ -61,4 +63,5 @@ const Register = ({ match, history }: Props) => (
 		</p>
 	</>
 )
-export default Register
+export default connect(null, { startCompanyRegistration })
+	(Register)
