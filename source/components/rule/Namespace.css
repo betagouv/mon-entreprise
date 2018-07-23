@@ -8,12 +8,3 @@
 #namespace li {
 	display: inline;
 }
-#namespace a {
-	color: rgba(51, 51, 80, 0.8) !important;
-}
-#namespace a:hover {
-	color: rgba(51, 51, 80, 1) !important;
-}
-
-.namespace__chevron {
-}

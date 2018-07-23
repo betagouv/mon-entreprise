@@ -1,11 +1,10 @@
-import withColours from 'Components/utils/withColours'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
 
-let Namespace = ({ ns, flatRules, colours }) => (
+let Namespace = ({ ns, flatRules }) => (
 	<ul id="namespace">
 		{ns
 			.split(' . ')
@@ -23,23 +22,12 @@ let Namespace = ({ ns, flatRules, colours }) => (
 
 				return (
 					<li key={fragments.join()}>
-						<Link
-							style={{
-								color: colours.textColourOnWhite,
-								textDecoration: 'underline'
-							}}
-							to={'/règle/' + encodeRuleName(ruleName)}>
-							{ruleText}
-						</Link>
-						<i
-							style={{ margin: '0 .6em', fontSize: '85%' }}
-							className="fa fa-chevron-right namespace__chevron"
-							aria-hidden="true"
-						/>
+						<Link to={'/règle/' + encodeRuleName(ruleName)}>{ruleText}</Link>
+						{' › '}
 					</li>
 				)
 			})}
 	</ul>
 )
 
-export default withColours(Namespace)
+export default Namespace

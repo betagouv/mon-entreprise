@@ -5,7 +5,6 @@ import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
 import Overlay from './Overlay'
 import SearchBar from './SearchBar'
-import './SearchButton.css'
 
 @connect(state => ({
 	flatRules: flatRulesSelector(state)

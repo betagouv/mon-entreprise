@@ -18,8 +18,8 @@ import {
 } from 'Selectors/analyseSelectors'
 import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
+import './RulePage.css'
 import SearchButton from './SearchButton'
-
 @connect(state => ({
 	themeColours: state.themeColours,
 	valuesToShow: !noUserInputSelector(state),
@@ -53,10 +53,10 @@ export default class RulePage extends Component {
 		return (
 			<div id="RulePage">
 				<div className="rule-page__header">
-					<SearchButton className="rule-page__search" />
 					{!this.props.noUserInputSelector && (
 						<BackToSimulation colour={this.props.themeColours.colour} />
 					)}
+					<SearchButton className="rule-page__search" />
 				</div>
 				<Rule dottedName={dottedName} />
 			</div>
@@ -85,8 +85,7 @@ class BackToSimulation extends Component {
 					history.go(-1)
 				}}
 				style={{ background: colour }}>
-				<i className="fa fa-arrow-circle-left" aria-hidden="true" />
-				<Trans i18nKey="back">Reprendre la simulation</Trans>
+				⬅️ <Trans i18nKey="back">Reprendre la simulation</Trans>
 			</button>
 		)
 	}

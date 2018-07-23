@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import withLanguage from 'Components/utils/withLanguage'
-import { findRuleByDottedName } from 'Engine/rules'
+import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
@@ -152,7 +152,7 @@ let Header = ({
 
 			<span className="texts">
 				<span className="optionTitle">
-					<Link to={'/règle/' + target.dottedName}>
+					<Link to={'/règle/' + encodeRuleName(target.dottedName)}>
 						{target.title || target.name}
 					</Link>
 				</span>

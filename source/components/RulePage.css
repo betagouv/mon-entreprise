@@ -1,7 +1,5 @@
 #RulePage {
-	max-width: 47em;
-	padding: 1em;
-	margin: 0 auto;
+	margin-top: 1rem;
 }
 .rule-page__header {
 	display: flex;
@@ -9,6 +7,7 @@
 }
 .rule-page__search {
 	align-self: flex-end;
+	text-decoration: none !important;
 }
 #toSimulation {
 	margin: 0.6em 0;
