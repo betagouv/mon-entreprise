@@ -1,10 +1,7 @@
-@media (min-width: 500px) {
-	.ui__.steps-header nav {
-		height: 10rem;
-	}
+.steps-header {
+	margin-bottom: 1rem;
 }
-.ui__.steps-header nav {
-	height: 5em;
+.steps-header nav {
 	max-width: 100%;
 	display: flex;
 	margin: auto;
@@ -13,51 +10,52 @@
 }
 
 @media (min-width: 500px) {
-	.ui__.steps-header {
+	.steps-header {
 		padding-top: 1.5rem !important;
 	}
 }
 
-.ui__.steps-header a {
+.steps-header a {
 	margin-right: 0.8rem;
 	min-width: 4.5rem;
+	text-decoration: none;
 	flex-shrink: 0;
 	text-align: center;
 	transition: all 0.3s;
 	opacity: 0.4;
 }
 
-.ui__.steps-header a:focus {
+.steps-header a:focus {
 	outline: none;
 }
 
-.ui__.steps-header a:last-child {
+.steps-header a:last-child {
 	margin-right: 0;
 }
 
-.ui__.steps-header a img {
-	height: 80%;
+.steps-header a img {
+	height: 4rem;
 	transition: all 0.2s;
 }
 
-.ui__.steps-header a:hover {
+.steps-header a:hover {
 	opacity: 0.8;
 }
-.ui__.steps-header a.active {
+.steps-header a.active {
 	opacity: 1;
 	flex: 1;
 }
 /* IE */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-	.ui__.steps-header a.active {
+	.steps-header a.active {
 		min-width: 80%;
 	}
-	.ui__.steps-header a {
+	.steps-header a {
 		flex-shrink: 1;
 	}
 }
 
-.ui__.steps-header .progress {
+.steps-header .progress {
 	margin-top: 0.4rem;
 	height: 0.5rem;
 	background: rgba(41, 117, 209, 0.2);
@@ -65,7 +63,7 @@
 	width: 100%;
 }
 
-.ui__.steps-header .progress .bar {
+.steps-header .progress .bar {
 	transition: width 0.3s;
 	background-color: rgb(41, 117, 209);
 	height: 100%;
