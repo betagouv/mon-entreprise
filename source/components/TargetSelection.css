@@ -21,6 +21,7 @@
 }
 #targetSelection #targets > li:last-child {
 	margin-bottom: 0;
+	border-bottom: none;
 }
 
 #targetSelection #targets > li {
