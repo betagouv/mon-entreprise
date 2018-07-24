@@ -16,10 +16,9 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 		</Link>
 		<p>
 			The French business law defines more than 20 possible legal statuses to
-			declare a company. It may be quite complicated to find your way through
-			all the acronyms and specific procedures. SAS, SARL, SA, EIRL ... Thanks
-			to this guide, you will quickly find the proper status that suits to your
-			needs, as well as the checklist of the associated steps.
+			declare a company with various acronyms and processes : SAS, SARL, SA,
+			EIRL... Thanks to this guide, you will quickly find the proper status that
+			suits to your needs, as well as the checklist of the associated steps.
 		</p>
 		{match.isExact && (
 			<div className="ui__ answer-group">

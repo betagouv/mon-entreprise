@@ -13,12 +13,7 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => (
 		<h2>Defining the director&apos;s status </h2>
 		<p>
 			This choice is important because it determines the type of Social Security
-			coverage for which the director is eligible.
-		</p>
-		<p>
-			<strong> Salaried</strong> or <strong>self-employed</strong> ? The
-			director’s Social Security coverage depends on the legal structure that
-			has been chosen and the responsibilities led within it.
+			scheme and coverage for which the director is eligible.
 		</p>
 		<ul>
 			<li>
@@ -29,8 +24,8 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => (
 			</li>
 			<li>
 				<strong>Self-employed:</strong> The company director joins and is
-				covered by France’s self-employed scheme called « Sécurité sociale pour
-				les indépendants ». Contributions due are generally calculated based on
+				covered by France’s self-employed scheme called « Sécurité sociale des
+				indépendants ». Contributions due are generally calculated based on
 				professional income as reported to the tax authorities.
 			</li>
 		</ul>

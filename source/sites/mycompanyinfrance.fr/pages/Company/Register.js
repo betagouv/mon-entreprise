@@ -17,19 +17,16 @@ const Register = ({ match, startCompanyRegistration }: Props) => (
 			</Link>{' '}
 		</p>
 		<p>
-			Register your company to the French administration is the first thing to
-			do. It can be done online with the following data :
+			Officially registering online your business is the first thing to do. The following data are required: 
 		</p>
 		<ul>
 			<li>
-				<strong>The corporate name</strong>, also called "raison sociale" in
-				french, is the legal name of your company, written on all of your
+				<strong>The corporate name</strong> (raison sociale) is the legal name of your company, written on all of your
 				administrative papers. It can be different from the trade name (used for
 				commercial purpose).
 			</li>
 			<li>
-				<strong>The corporate purpose of the company</strong>, also called
-				"object social" is a short phrase describing the activity of your
+				<strong>The corporate purpose of the company</strong> (object social) is a short phrase describing the activity of your
 				company. As it is legally binding it must be composed with care,
 				possibly with the help of a lawyer.
 			</li>
@@ -38,9 +35,9 @@ const Register = ({ match, startCompanyRegistration }: Props) => (
 				don't have yet a french social security number...
 			</li>
 			<li>
-				<strong>The address</strong>, the physical space where your company will
-				be incorporated. In certain areas, you can benefit from substantial
-				government aid (exemption from charges, taxes, etc.).
+				<strong>The address</strong> is the physical space where your company will
+				be incorporated. In certain places and situations, you can benefit from substantial
+				public financing (exemption from charges, taxes, etc.).
 			</li>
 		</ul>
 		<p>
@@ -52,7 +49,7 @@ const Register = ({ match, startCompanyRegistration }: Props) => (
 			<a
 				onClick={startCompanyRegistration}
 				className="ui__ button"
-				href="https://translate.google.com/translate?depth=1&hl=en&rurl=translate.google.com&sl=fr&sp=nmt4&tl=en&u=https://www.guichet-entreprises.fr/en/how-to-create-your-business/"
+				href="https://translate.google.fr/translate?sl=fr&tl=en&js=y&prev=_t&hl=fr&ie=UTF-8&u=www.guichet-entreprises.fr&edit-text=&act=url"
 				rel="noopener noreferrer"
 				target="_blank">
 				Register my company online
