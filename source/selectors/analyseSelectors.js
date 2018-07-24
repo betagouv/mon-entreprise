@@ -143,7 +143,7 @@ let initialAnalysisSelector = createSelector(
 
 let currentMissingVariablesByTargetSelector = createSelector(
 	[analysisValidatedOnlySelector],
-	analysis => collectMissingVariablesByTarget(analysis.targets)
+	analysis => analysis.targets ? collectMissingVariablesByTarget(analysis.targets) : []
 )
 
 export let missingVariablesByTargetSelector = createSelector(
