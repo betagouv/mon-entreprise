@@ -1,5 +1,5 @@
 /* @flow */
-import type { RègleAvecMontant, Règle } from './ReglesTypes'
+import type { RègleAvecMontant, Règle } from './RegleTypes'
 
 export type Cotisation = Règle & {
 	branche: Branche,

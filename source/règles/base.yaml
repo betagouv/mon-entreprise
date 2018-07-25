@@ -717,7 +717,7 @@
       - complémentaire santé (employeur)
 
 
-- espace: contrat salarié
+- espace: contrat salarié 
   nom: avantages en nature
   titre: Avantages en nature
   description: >
@@ -733,7 +733,7 @@
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   question: Quel est le montant mensuel des avantages en nature ?
-  applicable si: avantages en nature
+  applicable si: contrat salarié . avantages en nature 
   suggestions:
     nourriture: 80
     véhicule: 260

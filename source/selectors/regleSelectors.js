@@ -2,10 +2,12 @@
 
 import { findRuleByDottedName } from 'Engine/rules'
 import { encodeRuleName } from 'Engine/rules.js'
+import { isNil } from 'ramda'
 import { createSelector } from 'reselect'
 import {
 	analysisWithDefaultsSelector,
-	flatRulesSelector
+	flatRulesSelector,
+	validatedSituationSelector
 } from './analyseSelectors'
 import type { FlatRules } from 'Types/State'
 import type {
@@ -25,22 +27,25 @@ export const règleLocaliséeSelector = createSelector(
 			)
 		}
 		const localizedRule = findRuleByDottedName(localizedFlatRules, dottedName)
-		if (!localizedFlatRules) {
+		if (!localizedRule) {
 			throw new Error(
 				`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
 			)
 		}
 		return {
 			nom: localizedRule.titre || localizedRule.nom,
-			lien: './règle/' + encodeRuleName(dottedName)
+			lien: './règle/' + encodeRuleName(dottedName),
+			id: dottedName,
+			...(localizedRule.format ? { type: localizedRule.format } : {})
 		}
 	}
 )
 
 export const règleValeurSelector = createSelector(
 	analysisWithDefaultsSelector,
+	validatedSituationSelector,
 	règleLocaliséeSelector,
-	(analysis: Analysis, règleLocalisée: string => Règle) => (
+	(analysis: Analysis, situation, règleLocalisée: string => Règle) => (
 		dottedName: string
 	): RègleValeur => {
 		if (!analysis) {
@@ -51,21 +56,28 @@ export const règleValeurSelector = createSelector(
 		const rule =
 			analysis.cache[dottedName] ||
 			analysis.targets.find(target => target.dottedName === dottedName)
-		if (!rule) {
-			console.log(dottedName, analysis.cache[dottedName], analysis)
+
+		let valeur =
+			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situation[dottedName]
+		if (isNil(valeur)) {
 			throw new Error(
-				`[règleValeurSelector] Impossible de trouver la règle "${dottedName}" dans l'analyse. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
+				`[règleValeurSelector] Impossible de trouver la valeur associée à la règle "${dottedName}". Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
 			)
 		}
 
-		const valeur = rule.nodeValue
+		if (valeur === 'oui') {
+			valeur = true
+		}
+		if (valeur === 'non') {
+			valeur = false
+		}
 		if (typeof valeur === 'boolean') {
 			return { type: 'boolean', valeur }
 		}
 		const type =
-			rule.format ||
-			(rule.explanation && rule.explanation.format) ||
-			(Number.isNaN(Number.parseFloat(rule.node)) ? 'string' : 'number')
+			(rule &&
+				(rule.format || (rule.explanation && rule.explanation.format))) ||
+			(Number.isNaN(Number.parseFloat(valeur)) ? 'string' : 'number')
 		// $FlowFixMe
 		return {
 			valeur:
@@ -99,7 +111,7 @@ export const règleAvecValeurSelector = createSelector(
 	(règleValeur, règleLocalisée) => (dottedName: string): RègleAvecValeur =>
 		// $FlowFixMe
 		({
-			...règleLocalisée(dottedName),
-			...règleValeur(dottedName)
+			...règleValeur(dottedName),
+			...règleLocalisée(dottedName)
 		})
 )

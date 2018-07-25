@@ -33,7 +33,7 @@
 	#overlayContent {
 		width: 80%;
 		transform: translateX(-50%) translateY(-50%);
-		top: 30%;
+		top: 30vh;
 		left: 50%;
 		max-width: 40em;
 	}

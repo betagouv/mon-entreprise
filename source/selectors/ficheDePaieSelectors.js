@@ -51,6 +51,8 @@ export const BLANK_COTISATION: Cotisation = {
 		partPatronale: 0,
 		partSalariale: 0
 	},
+	id: 'ERROR_SHOULD_BE_INSTANCIATED',
+	type: 'euros',
 	nom: 'ERROR_SHOULD_BE_INSTANCIATED',
 	lien: 'ERROR_SHOULD_BE_INSTANCIATED',
 	branche: 'autres'

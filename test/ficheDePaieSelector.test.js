@@ -19,7 +19,10 @@ let state = {
 		'contrat salarié . salaire . total',
 		'contrat salarié . salaire . net imposable'
 	],
-	conversationStarted: true
+	conversationStarted: true,
+	conversationSteps: {
+		foldedSteps: []
+	}
 }
 
 let paySlip = FicheDePaieSelectors(state)
