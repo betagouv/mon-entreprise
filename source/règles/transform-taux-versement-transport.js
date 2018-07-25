@@ -7,6 +7,7 @@
 let taux = require('./taux-versement-transport-bruts.json')
 let {
 	sort,
+	filter,
 	head,
 	pipe,
 	map,
@@ -65,6 +66,11 @@ let additionnalResults = villesAvecArrondissements.map(
 let extractLastTaux = pipe(
 	toPairs,
 	sort(([date1], [date2]) => (date1 > date2 ? -1 : 1)),
+	filter(
+		([date]) =>
+			console.log(date, new Date(date) <= Date.now()) ||
+			new Date(date) <= Date.now()
+	),
 	head,
 	([, rate]) => rate
 )
