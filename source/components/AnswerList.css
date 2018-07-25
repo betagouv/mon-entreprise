@@ -1,0 +1,24 @@
+.answer-list table {
+	border-collapse: collapse;
+	width: 100%;
+}
+.answer-list tr:nth-child(2n) {
+	background-color: rgba(41, 117, 209, 0.06);
+}
+
+td {
+	padding: 0 0.8rem;
+}
+
+.answer-list button.answer {
+	padding: 0.8rem;
+	color: inherit;
+	width: 100%;
+	text-align: start;
+	white-space: nowrap;
+	font-weight: 500;
+}
+
+.answer-list button.answer:hover {
+	opacity: 0.8;
+}

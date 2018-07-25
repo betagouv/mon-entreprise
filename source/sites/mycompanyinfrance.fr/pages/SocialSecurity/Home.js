@@ -1,6 +1,6 @@
 /* @flow */
 
-import Simu from 'Components/Simu'
+import Simulateur from 'Components/Simu'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as Animate from 'Ui/animate'
@@ -8,7 +8,7 @@ import * as Animate from 'Ui/animate'
 type Props = {
 	hideText: boolean
 }
-class Hiring extends Component<Props, {}> {
+class SocialSecurity extends Component<Props, {}> {
 	render() {
 		return (
 			<Animate.fromBottom>
@@ -46,7 +46,7 @@ class Hiring extends Component<Props, {}> {
 						<h2>How much does it cost ?</h2>
 					</>
 				)}
-				<Simu />
+				<Simulateur />
 			</Animate.fromBottom>
 		)
 	}
@@ -55,4 +55,4 @@ class Hiring extends Component<Props, {}> {
 export default connect(
 	state => ({ hideText: state.conversationStarted }),
 	{}
-)(Hiring)
+)(SocialSecurity)

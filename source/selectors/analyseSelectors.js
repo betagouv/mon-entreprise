@@ -123,6 +123,7 @@ let makeAnalysisSelector = situationSelector =>
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
 	situationWithDefaultsSelector
 )
+console.log('fu', analysisWithDefaultsSelector)
 let analysisValidatedOnlySelector = makeAnalysisSelector(
 	validatedSituationSelector
 )
@@ -143,7 +144,8 @@ let initialAnalysisSelector = createSelector(
 
 let currentMissingVariablesByTargetSelector = createSelector(
 	[analysisValidatedOnlySelector],
-	analysis => analysis.targets ? collectMissingVariablesByTarget(analysis.targets) : []
+	analysis =>
+		analysis.targets ? collectMissingVariablesByTarget(analysis.targets) : []
 )
 
 export let missingVariablesByTargetSelector = createSelector(

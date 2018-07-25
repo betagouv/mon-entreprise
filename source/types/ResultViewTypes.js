@@ -1,16 +1,9 @@
 /* @flow */
+import type { RègleAvecMontant, Règle } from './ReglesTypes'
 
 export type Cotisation = Règle & {
 	branche: Branche,
 	montant: MontantPartagé
-}
-
-export type Règle = {
-	nom: string,
-	lien: string
-}
-export type RègleAvecMontant = Règle & {
-	montant: number
 }
 
 export type Branche =

@@ -22,7 +22,7 @@ let Namespace = ({ ns, flatRules }) => (
 
 				return (
 					<li key={fragments.join()}>
-						<Link to={'/règle/' + encodeRuleName(ruleName)}>{ruleText}</Link>
+						<Link to={'../règle/' + encodeRuleName(ruleName)}>{ruleText}</Link>
 						{' › '}
 					</li>
 				)

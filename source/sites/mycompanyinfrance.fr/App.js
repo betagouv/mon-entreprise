@@ -1,4 +1,3 @@
-import RulePage from 'Components/RulePage'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
@@ -6,9 +5,9 @@ import 'Ui/index.css'
 import Provider from '../../Provider'
 import Landing from './Landing'
 import CreateMyCompany from './pages/Company'
-import CostsBenefits from './pages/CostsAndBenefits'
 import StepsHeader from './pages/Header/StepsHeader'
 import HiringProcess from './pages/HiringProcess'
+import SocialSecurity from './pages/SocialSecurity'
 
 @withTracker
 class InFranceRoute extends Component {
@@ -28,9 +27,7 @@ class InFranceRoute extends Component {
 						<StepsHeader location={location} />
 						<div className="ui__ container">
 							<Route path="/register" component={CreateMyCompany} />
-							<Route path="/règle/:name" component={RulePage} />
-
-							<Route path="/social-security" component={CostsBenefits} />
+							<Route path="/social-security" component={SocialSecurity} />
 							<Route path="/hiring-process" component={HiringProcess} />
 						</div>
 					</>

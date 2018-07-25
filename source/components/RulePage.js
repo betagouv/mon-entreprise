@@ -76,17 +76,17 @@ export default class RulePage extends Component {
 @withRouter
 class BackToSimulation extends Component {
 	render() {
-		let { colour, setExample, history } = this.props
+		let { colour, setExample } = this.props
 		return (
-			<button
+			<Link
 				id="toSimulation"
+				to=".."
 				onClick={() => {
 					setExample(null)
-					history.go(-1)
 				}}
 				style={{ background: colour }}>
 				⬅️ <Trans i18nKey="back">Reprendre la simulation</Trans>
-			</button>
+			</Link>
 		)
 	}
 }
@@ -102,7 +102,7 @@ let DisambiguateRuleQuery = ({ rules, flatRules }) => (
 			{rules.map(({ dottedName, ns, title }) => (
 				<li key={dottedName}>
 					<Namespace ns={ns} flatRules={flatRules} />
-					<Link to={'/règle/' + encodeRuleName(dottedName)}>{title}</Link>
+					<Link to={'../règle/' + encodeRuleName(dottedName)}>{title}</Link>
 				</li>
 			))}
 		</ul>

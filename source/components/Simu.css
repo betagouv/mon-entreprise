@@ -1,5 +1,9 @@
 #simu {
-	margin-top: 2rem;
 	margin: 0 auto;
+	margin-top: 2rem;
 	max-width: 40em;
+}
+.change-answer-link {
+	font-size: 120%;
+	text-align: center;
 }

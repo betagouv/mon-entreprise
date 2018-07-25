@@ -27,7 +27,7 @@ const QuickLink = ({ startConversation }: Props) => (
 			onClick={() => startConversation('contrat salarié . temps partiel')}>
 			Part time
 		</button>
-		<button className="ui__ link-button" onClick={startConversation}>
+		<button className="ui__ link-button" onClick={() => startConversation()}>
 			Other situations
 		</button>
 	</>

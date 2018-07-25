@@ -19,7 +19,7 @@ type ConnectedPropTypes = PropTypes & {
 }
 
 let Banner = ({
-	hidden,
+	hidden = false,
 	fontAwesomeIcon,
 	colours: { textColourOnWhite },
 	children

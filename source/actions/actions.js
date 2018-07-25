@@ -21,7 +21,7 @@ export function deletePreviousSimulation(): DeletePreviousSimulationAction {
 export function startConversation(question: ?string): StartConversationAction {
 	return {
 		type: 'START_CONVERSATION',
-		...(question ? { question } : {})
+		...(typeof question === 'string' ? { question } : {})
 	}
 }
 

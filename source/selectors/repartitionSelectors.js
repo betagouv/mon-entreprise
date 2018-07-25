@@ -1,6 +1,5 @@
 /* @flow */
 
-import { createSelector } from 'reselect'
 import {
 	add,
 	compose,
@@ -17,6 +16,7 @@ import {
 	sort,
 	without
 } from 'ramda'
+import { createSelector } from 'reselect'
 import FicheDePaieSelectors, {
 	BLANK_COTISATION,
 	mergeCotisations
@@ -26,10 +26,10 @@ import type {
 	Cotisation,
 	MontantPartagé,
 	Branche,
-	RègleAvecMontant,
 	FicheDePaie,
 	Répartition
 } from 'Types/ResultViewTypes'
+import type { RègleAvecMontant } from 'Types/RegleTypes'
 
 const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
 	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant

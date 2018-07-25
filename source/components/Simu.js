@@ -1,3 +1,4 @@
+import { startConversation } from 'Actions/actions'
 import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
@@ -10,6 +11,7 @@ import {
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
+import AnswerList from './AnswerList'
 import Conversation from './conversation/Conversation'
 import Distribution from './Distribution'
 import PaySlip from './PaySlip'
@@ -23,18 +25,23 @@ import TargetSelection from './TargetSelection'
 		noUserInput: noUserInputSelector(state),
 		blockingInputControls: blockingInputControlsSelector(state),
 		conversationStarted: state.conversationStarted,
+		arePreviousAnswers: state.conversationSteps.foldedSteps.length !== 0,
 		nextSteps: state.conversationStarted && nextStepsSelector(state)
 	}),
 	{
-		startConversation: () => ({ type: 'START_CONVERSATION' })
+		startConversation
 	}
 )
 export default class Simu extends Component {
+	state = {
+		displayPreviousAnswers: false
+	}
 	render() {
 		let {
 			colours,
 			conversationStarted,
 			noUserInput,
+			arePreviousAnswers,
 			nextSteps,
 			startConversation,
 			blockingInputControls
@@ -44,10 +51,21 @@ export default class Simu extends Component {
 		const displayConversation = conversationStarted && !blockingInputControls
 		const simulationCompleted =
 			!blockingInputControls && conversationStarted && !nextSteps.length
+		const displayPreviousAnswers =
+			arePreviousAnswers && this.state.displayPreviousAnswers
 
 		return (
 			<>
 				<div id="simu">
+					{arePreviousAnswers && (
+						<div className="change-answer-link">
+							<button
+								className="ui__ link-button"
+								onClick={() => this.setState({ displayPreviousAnswers: true })}>
+								Change my answers
+							</button>
+						</div>
+					)}
 					<Spring
 						to={{
 							height: firstValidInputEntered ? 'auto' : 0,
@@ -69,44 +87,38 @@ export default class Simu extends Component {
 							</animated.div>
 						)}
 					</Spring>
-					{conversationStarted &&
-						!nextSteps.length && (
-							<>
-								<h1>No more questions left!</h1>
-								<p>
-									<Trans>
-										You have reached the most accurate estimate. You can now
-										turn your hiring project into reality.
-									</Trans>
-								</p>
-								<div style={{ textAlign: 'center' }}>
-									<Link className="ui__ button" to="/hiring-process">
-										See the procedures
-									</Link>
-								</div>
-							</>
-						)}
+					{simulationCompleted && (
+						<>
+							<h1>No more questions left!</h1>
+							<p>
+								<Trans>
+									You have reached the most accurate estimate. You can now turn
+									your hiring project into reality.
+								</Trans>
+							</p>
+							<div style={{ textAlign: 'center' }}>
+								<Link className="ui__ button" to="/hiring-process">
+									See the procedures
+								</Link>
+							</div>
+						</>
+					)}
 					<div id="focusZone">
 						{displayConversation && (
-							<>
-								<Conversation textColourOnWhite={colours.textColourOnWhite} />
-							</>
+							<Conversation textColourOnWhite={colours.textColourOnWhite} />
 						)}
 						<TargetSelection colours={colours} />
 					</div>
-					{conversationStarted &&
-						!simulationCompleted && (
-							<div style={{ textAlign: 'center' }}>
-								<Link className="ui__ button" to="/hiring-process">
-									Go to the hiring process
-								</Link>
-							</div>
-						)}
-					{simulationCompleted && (
+					{conversationStarted && (
 						<Animate.fromBottom>
-							<h2>Detailed payslip</h2>
+							<h2>Payslip</h2>
 							<PaySlip />
 						</Animate.fromBottom>
+					)}
+					{displayPreviousAnswers && (
+						<AnswerList
+							onClose={() => this.setState({ displayPreviousAnswers: false })}
+						/>
 					)}
 				</div>
 

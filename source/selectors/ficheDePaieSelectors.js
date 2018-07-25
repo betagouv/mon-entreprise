@@ -1,7 +1,4 @@
 /* @flow */
-
-import { findRuleByDottedName } from 'Engine/rules'
-import { encodeRuleName } from 'Engine/rules.js'
 import {
 	add,
 	concat,
@@ -18,22 +15,23 @@ import {
 	values
 } from 'ramda'
 import { createSelector } from 'reselect'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import {
-	analysisWithDefaultsSelector,
-	flatRulesSelector
-} from 'Selectors/analyseSelectors'
+	règleAvecMontantSelector,
+	règleAvecValeurSelector,
+	règleLocaliséeSelector
+} from 'Selectors/regleSelectors'
 
-import type { FlatRules } from 'Types/State'
 import type { Analysis } from 'Types/Analysis'
 import type {
 	VariableWithCotisation,
 	Cotisation,
 	Cotisations,
 	Branche,
-	Règle,
-	RègleAvecMontant,
 	FicheDePaie
 } from 'Types/ResultViewTypes'
+
+import type { Règle } from 'Types/RegleTypes'
 
 export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
 	'santé',
@@ -110,6 +108,7 @@ function groupByBranche(cotisations: Array<Cotisation>): Cotisations {
 	)
 	return COTISATION_BRANCHE_ORDER.map(branche => [
 		branche,
+		// $FlowFixMe
 		cotisationsMap[branche]
 	])
 }
@@ -143,56 +142,15 @@ const analysisToCotisations = (
 	)(variables)
 	return cotisations
 }
-const règleLocaliséeSelector = (localizedFlatRules: FlatRules) => (
-	dottedName: string
-): Règle => {
-	if (!localizedFlatRules) {
-		throw new Error(
-			`[LocalizedRègleSelector] Les localizedFlatRules ne doivent pas être 'undefined' ou 'null'`
-		)
-	}
-	const localizedRule = findRuleByDottedName(localizedFlatRules, dottedName)
-	if (!localizedFlatRules) {
-		throw new Error(
-			`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
-		)
-	}
-	return {
-		nom: localizedRule.titre || localizedRule.nom,
-		lien: '/règle/' + encodeRuleName(dottedName)
-	}
-}
-const règleAvecMontantSelector = (
-	analysis: Analysis,
-	règleLocaliséeSelector: string => Règle
-) => (dottedName: string): RègleAvecMontant => {
-	if (!analysis) {
-		throw new Error(
-			`[] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
-		)
-	}
-	const rule =
-		analysis.cache[dottedName] ||
-		analysis.targets.find(target => target.dottedName === dottedName)
-	if (!rule) {
-		throw new Error(
-			`[règleAvecMontantSelector] Impossible de trouver la règle "${dottedName}" dans l'analyse. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
-		)
-	}
-	return {
-		...règleLocaliséeSelector(dottedName),
-		montant: rule.nodeValue || 0
-	}
-}
 
 // Custom values for flow type checking
 // https://github.com/facebook/flow/issues/2221
 function analysisToFicheDePaie(
-	analysis: Analysis,
-	flatRules: FlatRules
+	règleAvecMontant,
+	règleAvecValeur,
+	règleLocalisée,
+	analysis
 ): FicheDePaie {
-	const règleLocalisée = règleLocaliséeSelector(flatRules)
-	const règleAvecMontant = règleAvecMontantSelector(analysis, règleLocalisée)
 	const cotisations = analysisToCotisations(analysis, règleLocalisée)
 	const cotisationsSalariales = règleAvecMontant(
 		'contrat salarié . cotisations salariales'
@@ -226,12 +184,17 @@ function analysisToFicheDePaie(
 			'contrat salarié . salaire . net à payer'
 		),
 		nombreHeuresTravaillées: Math.round(
-			règleAvecMontant('contrat salarié . heures par semaine').montant * 4.33
+			règleAvecValeur('contrat salarié . heures par semaine').valeur * 4.33
 		)
 	}
 }
 
 export default createSelector(
-	[analysisWithDefaultsSelector, flatRulesSelector],
-	(analysis, flatRules) => analysisToFicheDePaie(analysis, flatRules)
+	[
+		règleAvecMontantSelector,
+		règleAvecValeurSelector,
+		règleLocaliséeSelector,
+		analysisWithDefaultsSelector
+	],
+	analysisToFicheDePaie
 )

@@ -5,12 +5,13 @@ import './Overlay.css'
 
 export default class Overlay extends Component {
 	render() {
-		const { onClose, children, otherProps } = this.props
+		const { onClose, children, ...otherProps } = this.props
 		return (
 			<div id="overlayWrapper" onClick={onClose}>
 				<FocusTrap
 					focusTrapOptions={{
-						onDeactivate: onClose
+						onDeactivate: onClose,
+						clickOutsideDeactivates: true
 					}}>
 					<div
 						aria-modal="true"

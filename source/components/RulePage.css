@@ -11,11 +11,12 @@
 }
 #toSimulation {
 	margin: 0.6em 0;
+	text-decoration: none !important;
 	display: block;
 	color: white;
-	font-size: 180%;
+	font-size: 150%;
 	text-align: center;
-	padding: 0.2em 0.6em;
+	padding: 0.6em 0.6em;
 	border-radius: 0.2em;
 }
 

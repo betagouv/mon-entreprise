@@ -6,6 +6,7 @@ import { propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
@@ -37,6 +38,7 @@ export let popularTargetNames = [
 	form: 'conversation',
 	destroyOnUnmount: false
 })
+@withRouter
 @connect(
 	state => ({
 		getTargetValue: dottedName =>
@@ -89,7 +91,8 @@ export default class TargetSelection extends Component {
 				setActiveInput,
 				analysis,
 				noUserInput,
-				blockingInputControls
+				blockingInputControls,
+				match
 			} = this.props,
 			targets = analysis ? analysis.targets : []
 
@@ -101,6 +104,7 @@ export default class TargetSelection extends Component {
 							<div className="main">
 								<Header
 									{...{
+										match,
 										target,
 										conversationStarted,
 										isActiveInput: activeInput === target.dottedName,
@@ -141,7 +145,8 @@ let Header = ({
 	target,
 	conversationStarted,
 	isActiveInput,
-	blockingInputControls
+	blockingInputControls,
+	match
 }) => {
 	return (
 		<span className="header">
@@ -152,7 +157,7 @@ let Header = ({
 
 			<span className="texts">
 				<span className="optionTitle">
-					<Link to={'/règle/' + encodeRuleName(target.dottedName)}>
+					<Link to={match.path + '/règle/' + encodeRuleName(target.dottedName)}>
 						{target.title || target.name}
 					</Link>
 				</span>

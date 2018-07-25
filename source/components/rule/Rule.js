@@ -124,7 +124,7 @@ let NamespaceRulesList = withColours(
 								color: colours.textColourOnWhite,
 								textDecoration: 'underline'
 							}}
-							to={'/règle/' + encodeRuleName(r.dottedName)}>
+							to={'../règle/' + encodeRuleName(r.dottedName)}>
 							{r.title || r.name}
 						</Link>
 					</li>

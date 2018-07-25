@@ -75,7 +75,7 @@ export default class SearchBar extends React.Component {
 		if (selectedOption != null) {
 			this.props.finally && this.props.finally()
 			return (
-				<Redirect to={'/règle/' + encodeRuleName(selectedOption.dottedName)} />
+				<Redirect to={'../règle/' + encodeRuleName(selectedOption.dottedName)} />
 			)
 		}
 		return (
@@ -102,7 +102,7 @@ export default class SearchBar extends React.Component {
 						<ul>
 							{rules.map(rule => (
 								<li key={rule.dottedName}>
-									<Link to={'/règle/' + encodeRuleName(rule.name)}>
+									<Link to={'../règle/' + encodeRuleName(rule.name)}>
 										{rule.title || capitalise0(rule.name)}
 									</Link>
 								</li>
