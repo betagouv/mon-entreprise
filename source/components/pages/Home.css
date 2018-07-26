@@ -8,8 +8,8 @@
 	display: inline-block;
 }
 #logos #marianne img {
-	width: calc(2vw + 2.5em);
+	width: calc(1vw + 4em);
 }
 #logos #urssaf img {
-	width: calc(4vw + 3em);
+	width: calc(1vw + 6em);
 }
