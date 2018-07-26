@@ -1,11 +1,4 @@
 [[redirects]]
 from = "https://infrance.org/*"
-to = "https://www.infrance.org/"
-status = 301
-force = false
-
-[[redirects]]
-from = "https://www.infrance.org/*"
-to = "https://www.infrance.org/infrance/:splat"
-status = 301
-force = false
+to = "/infrance.html"
+status = 200
