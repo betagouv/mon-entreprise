@@ -1,4 +1,4 @@
 [[redirects]]
-from = "https://infrance.org/*"
+from = "https://(infrance.org|mycompanyinfrance.fr)/*"
 to = "/infrance.html"
 status = 200
