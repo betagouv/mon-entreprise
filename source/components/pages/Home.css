@@ -1,6 +1,15 @@
-
-#marianne {
+#logos {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#logos a {
+	margin: 0 0.6em;
+	display: inline-block;
+}
+#logos #marianne img {
 	width: calc(2vw + 2.5em);
-	margin: .6em auto;
-	display: block
+}
+#logos #urssaf img {
+	width: calc(4vw + 3em);
 }
