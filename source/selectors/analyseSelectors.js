@@ -123,7 +123,6 @@ let makeAnalysisSelector = situationSelector =>
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
 	situationWithDefaultsSelector
 )
-console.log('fu', analysisWithDefaultsSelector)
 let analysisValidatedOnlySelector = makeAnalysisSelector(
 	validatedSituationSelector
 )

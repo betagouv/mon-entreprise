@@ -54,17 +54,18 @@
 }
 .ui__.button.cta,
 .ui__.inverted-button.cta {
-	margin: 3em auto;
+	margin: 3rem auto;
 	display: inline-block;
 	align-self: center;
 	font-size: 120%;
+	padding: 0.9rem 1.8rem;
 }
 .ui__.inverted-button {
 	color: white;
 	border-color: white;
 }
 .ui__.inverted-button:not(:disabled):hover {
-	background-color: rgba(255, 255, 255, 0.9);
+	background-color: rgba(255, 255, 255, 1);
 	color: rgb(41, 117, 209);
 	border-color: rgb(41, 117, 209);
 }
