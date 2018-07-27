@@ -576,7 +576,12 @@ export let mecanismReduction = (recurse, k, v) => {
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
-				: max(0, montantFranchiséDécoté - val(abattement))
+				: abattement.category === 'percentage'
+					? max(
+							0,
+							montantFranchiséDécoté - val(abattement) * montantFranchiséDécoté
+					  )
+					: max(0, montantFranchiséDécoté - val(abattement))
 			: montantFranchiséDécoté
 	}
 

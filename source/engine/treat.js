@@ -93,6 +93,7 @@ export let treatString = (rules, rule) => rawNode => {
 	if (parseResult.category == 'percentage') {
 		return {
 			nodeValue: parseResult.nodeValue,
+			category: 'percentage',
 			// eslint-disable-next-line
 			jsx: () => <span className="percentage">{rawNode}</span>
 		}
@@ -157,6 +158,7 @@ export let treatString = (rules, rule) => rawNode => {
 						propEq('category', 'percentage'),
 						node => ({
 							nodeValue: node.nodeValue,
+							category: 'percentage',
 							// eslint-disable-next-line
 							jsx: nodeValue => (
 								<span className="value">{nodeValue * 100}%</span>
