@@ -26,8 +26,7 @@
 	);
 	background-size: 200%;
 	color: white;
-	animation: move-background 20s linear infinite;
-	border: 1px solid rgba(255, 255, 255, 1);
+	animation: move-background 15s linear infinite;
 	padding: 1rem;
 }
 @keyframes move-background {
@@ -44,7 +43,7 @@
 }
 
 .landing__banner {
-	height: 100px;
+	height: 5rem;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;

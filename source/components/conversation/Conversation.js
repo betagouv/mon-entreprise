@@ -29,12 +29,13 @@ export default class Conversation extends Component {
 		return (
 			<div className="conversationContainer">
 				<Aide />
-				<Animate.fromBottom>
-					<div id="currentQuestion" key={currentQuestion}>
-						{currentQuestion &&
-							getInputComponent(flatRules, targetNames)(currentQuestion)}
-					</div>
-				</Animate.fromBottom>
+				<div id="currentQuestion" key={currentQuestion}>
+					{currentQuestion && (
+						<Animate.fadeIn>
+							{getInputComponent(flatRules, targetNames)(currentQuestion)}
+						</Animate.fadeIn>
+					)}
+				</div>
 			</div>
 		)
 	}

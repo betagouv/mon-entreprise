@@ -29,18 +29,23 @@ const formatAnswer = (answer, language) => {
 	return answer.valeur
 }
 
-const AnswerList = ({ answers, onClose, language }) => (
+const AnswerList = ({ answers, onClose, language, changeAnswer }) => (
 	<Overlay onClose={onClose} className="answer-list">
 		<h2>My answers</h2>
 		<table>
 			<tbody>
 				{answers.map(answer => (
-					<tr key={answer.nom}>
+					<tr key={answer.id}>
 						<td>
 							<RuleLink {...answer} />
 						</td>
 						<td>
-							<button className="answer">
+							<button
+								className="answer"
+								onClick={() => {
+									changeAnswer(answer.id)
+									onClose()
+								}}>
 								{formatAnswer(answer, language)}
 							</button>{' '}
 						</td>
@@ -59,5 +64,15 @@ const answerWithValueSelector = createSelector(
 
 export default compose(
 	withLanguage,
-	connect(state => ({ answers: answerWithValueSelector(state) }))
+	connect(
+		state => ({ answers: answerWithValueSelector(state) }),
+		dispatch => ({
+			changeAnswer: question =>
+				dispatch({
+					type: 'STEP_ACTION',
+					name: 'unfold',
+					step: question
+				})
+		})
+	)
 )(AnswerList)

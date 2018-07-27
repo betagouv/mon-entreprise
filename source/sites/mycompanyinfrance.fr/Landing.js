@@ -13,8 +13,8 @@ const Landing = ({ colours: { colour } }) => (
 	<>
 		<section className="landing__header" style={{ backgroundColor: colour }}>
 			<div className="landing__banner">
-				<img alt="logo urssaf" src={urssafSvg} />
 				<img alt="logo marianne" src={marianneSvg} />
+				<img alt="logo urssaf" src={urssafSvg} />
 			</div>
 			<header>
 				<Animate.fromBottom delay={500} config={config.slow}>
@@ -41,8 +41,8 @@ const Landing = ({ colours: { colour } }) => (
 			<h2>1. Create your company</h2>
 			<p>
 				Find the legal status that suits you in one minute. Choose the best
-				location for your location. Let us guide you through the different steps
-				up to the registration of your company.
+				location for your enterprise. Let us guide you through the different
+				steps up to the registration of your company.
 			</p>
 
 			<h2>2. Simulate costs and social benefits</h2>

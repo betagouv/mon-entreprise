@@ -21,7 +21,6 @@ const CreateMyCompany = ({ match, location }) => (
 					component={Register}
 				/>
 				<Route path={match.path + '/registration-pending'} component={RegistrationPending} />
-
 				<Route path={match.path + '/find'} component={Find} />
 				<Route path={match.path} component={Home} />
 			</Switch>

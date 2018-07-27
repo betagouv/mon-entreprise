@@ -67,7 +67,7 @@ a {
 	text-decoration: underline;
 	color: rgb(41, 117, 209);
 }
-a:not(:disabled):not(.button):hover {
+a:not(:disabled):not(.button, .inverted-button):hover {
 	opacity: 0.8;
 }
 

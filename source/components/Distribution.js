@@ -4,13 +4,12 @@ import Observer from '@researchgate/react-intersection-observer'
 import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
-import { isIE } from '../utils'
-
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { config, Spring } from 'react-spring'
 import { compose } from 'redux'
 import répartitionSelector from 'Selectors/repartitionSelectors'
+import { isIE } from '../utils'
 import './Distribution.css'
 import Montant from './Montant'
 import './PaySlip'
@@ -95,7 +94,7 @@ class Distribution extends Component<Props, State> {
 						return (
 							<Observer
 								key={branche}
-								threshold={[0.75]}
+								threshold={[0.33]}
 								onChange={this.handleBrancheInViewport(branche)}>
 								<Spring
 									config={ANIMATION_SPRING}
@@ -160,10 +159,9 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 			className="distribution-chart__bar"
 			style={{
 				backgroundColor: colour,
-				...(!isIE() ? 
-					{flex: styles.flex} : 
-					{minWidth: styles.flex * 500 + 'px'}
-				)
+				...(!isIE()
+					? { flex: styles.flex }
+					: { minWidth: styles.flex * 500 + 'px' })
 			}}
 		/>
 		<div>

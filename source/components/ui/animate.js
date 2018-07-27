@@ -18,6 +18,7 @@ type Props = {
 const coerceArray = (
 	children: Array<React.Node> | React.Node
 ): Array<React.Node> => (Array.isArray(children) ? children : [children])
+
 export const fromBottom = ({
 	children,
 	config = configPresets.default,
@@ -51,25 +52,42 @@ export const leftToRight = ({
 	delay = 0
 }: Props) => (
 	<Transition
-		keys={coerceArray(children).map((_, i) => i)}
+		from={{
+			opacity: 0,
+			transform: 'translateX(100%)'
+		}}
+		native
+		keys={location.pathname}
+		enter={{
+			opacity: 1,
+			transform: 'translateX(0%)'
+		}}
+		config={config}
+		delay={delay}
+		leave={{
+			opacity: 0,
+			position: 'absolute',
+			transform: 'translateX(-100%)'
+		}}>
+		{style => <animated.div style={style}>{children}</animated.div>}
+	</Transition>
+)
+
+export const fadeIn = ({
+	children,
+	config = configPresets.default,
+	delay = 0
+}: Props) => (
+	<Spring
 		native={true}
 		delay={delay}
 		config={config}
-		from={{ opacity: 0, x: -100 }}
-		enter={{ opacity: 1, x: 0 }}
-		leave={{ opacity: 0, x: 100 }}>
-		{/* eslint-disable-next-line react/display-name */}
-		{coerceArray(children).map((item, i) => ({ x, ...style }) => (
-			<animated.div
-				key={i}
-				style={{
-					transform: x.interpolate(x => `translate3d(${x}px,0, 0)`),
-					...style
-				}}>
-				{item}
-			</animated.div>
-		))}
-	</Transition>
+		from={{ opacity: 0 }}
+		to={{
+			opacity: 1
+		}}>
+		{style => <animated.div style={style}>{children}</animated.div>}
+	</Spring>
 )
 
 type State = {

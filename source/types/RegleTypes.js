@@ -2,8 +2,9 @@
 
 export type Règle = {
 	nom: string,
-	lien: string,
-	type: string
+	type: string,
+	id: string,
+	lien: string
 }
 
 export type RègleAvecMontant = Règle & {

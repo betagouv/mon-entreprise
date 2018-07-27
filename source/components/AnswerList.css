@@ -6,16 +6,20 @@
 	background-color: rgba(41, 117, 209, 0.06);
 }
 
-td {
+.answer-list td {
 	padding: 0 0.8rem;
 }
 
+.answer-list td:last-of-type {
+	text-align: start;
+}
+
 .answer-list button.answer {
+	display: inline-block;
 	padding: 0.8rem;
 	color: inherit;
 	width: 100%;
 	text-align: start;
-	white-space: nowrap;
 	font-weight: 500;
 }
 
