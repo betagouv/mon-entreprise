@@ -11,7 +11,7 @@ export default class About extends Component {
 				<h1>À propos</h1>
 				<section>
 					<p>
-						<a href="https://beta.gouv.fr" target="_blank">
+						<a href="https://beta.gouv.fr">
 							L'incubateur des services numériques de l'État
 						</a>{' '}
 						a lancé en 2014 le développement d’une <em>ressource ouverte</em> de
@@ -20,14 +20,19 @@ export default class About extends Component {
 					</p>
 					<p>
 						Ce premier service, un{' '}
-						<em>module de simulation des sommes en jeu lors d'une embauche</em>,
-						peut être{' '}
+						<em>simulateur des sommes en jeu lors d'une embauche</em>, peut être{' '}
 						<Link to="/intégrer">intégré facilement et gratuitement</Link> par
 						toute organisation sur son site Web.
 					</p>
+
+					<p>
+						Début 2018, l'<a href="https://acoss.fr">ACOSS</a> (la tête des
+						URSSAF) nous rejoint pour consolider ce simulateur.
+					</p>
+
 					<p>
 						Suivez nos mises à jour sur{' '}
-						<a href="https://twitter.com/embauchegouv" target="_blank">
+						<a href="https://twitter.com/embauchegouv">
 							twitter <i className="fa fa-twitter" aria-hidden="true" />
 						</a>
 					</p>
@@ -54,10 +59,7 @@ export default class About extends Component {
 					Par contre, nous recueillons des statistiques anonymes d'usage du
 					site, que nous utilisons dans l'unique but d'améliorer le service,
 					conformément au{' '}
-					<a
-						href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience"
-						target="_blank"
-					>
+					<a href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience">
 						recommandations de la CNIL
 					</a>.
 				</p>
@@ -78,15 +80,13 @@ let MailChimp = () => (
 			name="mc-embedded-subscribe-form"
 			className="validate"
 			target="_blank"
-			noValidate
-		>
+			noValidate>
 			<div id="mc_embed_signup_scroll">
 				<label htmlFor="mce-EMAIL">
 					Inscrivez-vous à notre liste de diffusion
 				</label>
 				<div
-					style={{ position: 'absolute', left: '-5000px', ariaHidden: 'true' }}
-				>
+					style={{ position: 'absolute', left: '-5000px', ariaHidden: 'true' }}>
 					<input
 						type="text"
 						name="b_732a4d1b0d2e8a1a1fd3d01db_53bed2b6ac"

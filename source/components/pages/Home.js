@@ -8,13 +8,25 @@ const Home = () => (
 	<div id="home" className="page">
 		<PreviousSimulationBanner />
 		<Simu />
-		<a href="https://beta.gouv.fr" target="_blank" rel="noopener noreferrer">
-			<img
+		<div id="logos">
+			<a
 				id="marianne"
-				src={require('Images/marianne.svg')}
-				alt="Un service de l'État français"
-			/>
-		</a>
+				href="https://beta.gouv.fr"
+				target="_blank"
+				rel="noopener noreferrer">
+				<img
+					src={require('Images/marianne.svg')}
+					alt="Un service de l'État français"
+				/>
+			</a>
+			<a
+				id="urssaf"
+				href="https://www.urssaf.fr"
+				target="_blank"
+				rel="noopener noreferrer">
+				<img src={require('Images/urssaf.svg')} alt="Un service des URSSAF" />
+			</a>
+		</div>
 	</div>
 )
 
