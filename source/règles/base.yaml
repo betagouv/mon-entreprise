@@ -2201,19 +2201,23 @@
 
 
 # Ci-dessous une implémentation basique de l'impôt sur le revenu annuel dans le but d'illustrer un post de blog
-#
 
+- nom: impôt
 
 - nom: revenu imposable
+  espace: impôt
   format: euros
 
 - nom: revenu abattu
+  espace: impôt
   formule: 
     allègement:
       assiette: revenu imposable
       abattement: 10%
 
 - nom: impôt sur le revenu
+  espace: impôt
+  description: LALA
   formule:
     barème:  
       assiette: revenu abattu
@@ -2234,6 +2238,7 @@
 
 
 - nom: impôt sur le revenu à payer
+  espace: impôt
   formule: 
     allègement:
       assiette: impôt sur le revenu
