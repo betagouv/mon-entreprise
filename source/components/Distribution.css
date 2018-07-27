@@ -46,19 +46,27 @@
 .distribution-chart__item:hover .distribution-chart__percent {
 	opacity: 1;
 }
-
-@media (max-width: 800px) {
+@media (max-width: 600px) {
 	.distribution-chart__item {
 		flex-direction: column;
 		align-items: stretch;
 	}
 	.distribution-chart__legend {
-		align-items: flex-end !important;
+		align-items: center !important;
 		justify-content: flex-start !important;
 		position: initial !important;
-		flex-direction: row !important;
+		flex-direction: column !important;
 		width: auto !important;
 		height: initial !important;
+	}
+	.distribution-chart__counterparts {
+		display: flex;
+		flex-direction: column;
+		margin: auto;
+		width: auto;
+		margin-bottom: 1rem;
+		text-align: center;
+		align-items: center;
 	}
 	.distribution-chart__bar {
 		min-height: 1.5em !important;

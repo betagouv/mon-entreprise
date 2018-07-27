@@ -32,14 +32,34 @@ non: no
 inlineExpressionNegation: Not
 déplier: show more
 replier: show less
-transport: transportation
-formation: training
-santé: healthcare
-retraite: pensions
-famille: family allowances
-chômage: unemployment
-logement: housing
-autre: other
+branches:
+  assurance chômage: 
+    name: unemployment
+    counterpart: Gives income to former employees while they're in search of a new job.
+  retraite:
+    name: pensions
+    counterpart: Guarantees on average 60%-70% of your last activity income.
+  formation: 
+    name: training
+    counterpart: Gives access to professional training for employees.
+  logement: 
+    name: housing
+    counterpart: Helps build new and affordable housing.
+  transport:
+    name: transportation
+    counterpart: Helps keep the price of a public transportation ticket low.
+  accidents du travail / maladies professionnelles: 
+    name: work accidents / occupational diseases
+    counterpart: Offers full coverage of occupational illnesses or accidents.
+  santé: 
+    name: healthcare
+    counterpart: Covers most of everyday-life health care needs and 100% for serious illnesses, e.g. hospital stays.
+  famille: 
+    name: family allowances
+    counterpart: Offers a balanced work and family life. Finances day nurseries and various child care. 
+  autres: 
+    name: other
+    counterpart: Other contributions to the social system.
 Salaire brut: Gross salary
 Salaire net: Net salary
 Salaire chargé: Total salary
@@ -110,9 +130,6 @@ Cotisations sociales: Social contributions
 Part employeur: Employer share
 Part salariale: Employee share
 Total des retenues: Total withheld
-accidents du travail / maladies professionnelles: work accidents / occupational diseases
-autres: other
-Mes cotisations: My contributions
 Voir ma fiche de paie: View my payslip
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
@@ -121,5 +138,13 @@ payslip:
   notice: This simulation helps you understand your french payslip, but it should not be used as one. For further details, check <1>service-public.fr (french)</1>.
   heures: 'Number of hours worked: '
   disclaimer: It takes into account national law but not union negotiated rules. Lots of aids for your enterprise exist, explore them on <1>aides-entreprises.fr (french)</1>.
+A quoi servent mes cotisations ?: What's included in my contributions?
+Estimer mes coûts réels: Estimate my real costs
+estimate-real-costs: This is a <1>rough estimate</1> based on a pre-made generic contract. French legislation provides for a multitude of special cases, and specific rules that can considerably change hiring costs.
 Effacer: Erase
 Continuer: Continue
+CDI: Permanent
+CDD: Fixed-term
+Cadre: '"Cadre" status'
+Temps partiel: Part time
+Autres: Other situations

@@ -1,6 +1,7 @@
 /* @flow */
 import { startConversation } from 'Actions/actions'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 type Props = {
 	startConversation: (?string) => void
@@ -10,25 +11,25 @@ const QuickLink = ({ startConversation }: Props) => (
 		<button
 			className="ui__ link-button"
 			onClick={() => startConversation('contrat salarié . type de contrat')}>
-			Permanent
+			<Trans>CDI</Trans>
 		</button>
 		<button
 			className="ui__ link-button"
 			onClick={() => startConversation('contrat salarié . type de contrat')}>
-			Fixed-term
+			<Trans>CDD</Trans>
 		</button>
 		<button
 			className="ui__ link-button"
 			onClick={() => startConversation('contrat salarié . statut cadre')}>
-			"Cadre" status
+			<Trans>Cadre</Trans>
 		</button>
 		<button
 			className="ui__ link-button"
 			onClick={() => startConversation('contrat salarié . temps partiel')}>
-			Part time
+			<Trans>Temps partiel</Trans>
 		</button>
 		<button className="ui__ link-button" onClick={() => startConversation()}>
-			Other situations
+			<Trans>Autres</Trans>
 		</button>
 	</>
 )

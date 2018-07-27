@@ -128,18 +128,25 @@ export default class Simu extends Component {
 
 				{firstValidInputEntered && (
 					<Animate.fromBottom>
-						<h2>What&apos;s included in my contributions?</h2>
+						<h2>
+							<Trans>A quoi servent mes cotisations ?</Trans>
+						</h2>
 						<Distribution />
-						<h2>Estimate my real costs</h2>
+						<h2>
+							<Trans>Estimer mes coûts réels</Trans>
+						</h2>
 						<p>
-							This is a <strong>rough estimate</strong> based on a pre-made
-							generic contract. French legislation provides for a multitude of
-							special cases, and specific rules that can considerably change
-							hiring costs.
+							<Trans i18nk="estimate-real-costs">
+								Il s'agit d'une <strong>estimation brut</strong> sur la base
+								d'un contrat générique pré-établi. La législation française
+								prévoit une multitude de cas particuliers et des règles
+								spécifiques qui peuvent modifier considérablement les coûts
+								d'embauche.
+							</Trans>
 						</p>
 						<p style={{ textAlign: 'center' }}>
 							<button className="ui__ button" onClick={startConversation}>
-								Estimate my real costs
+								<Trans>Estimer mes coûts réels</Trans>
 							</button>
 						</p>
 					</Animate.fromBottom>

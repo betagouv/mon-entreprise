@@ -30,19 +30,20 @@ const brancheToEmoji: { [Branche]: string } = {
 }
 
 const brancheToCounterparts: { [Branche]: string } = {
-	retraite: 'Guarantees on average 60%-70% of your last activity income.',
+	retraite: "Garanti en moyenne 60 à 70 % de votre dernier revenu d'activité",
 	santé:
-		'Covers most of everyday-life health care needs and 100% for serious illnesses, e.g. hospital stays.',
+		"Couvre la plupart des besoins de soins de santé de la vie quotidienne et 100 % pour les maladies graves, par exemple les séjours à l'hôpital",
 	famille:
-		'Offers a balanced work and family life. Finances day nurseries and various child care. ',
-	formation: 'Gives access to professional training for employees.',
-	logement: 'Helps build new and affordable housing.',
+		"Offre une vie professionnelle et familiale équilibrée. Finance des crèches et divers services de garde d'enfants.",
+	formation: 'Donne accès à la formation professionnelle pour les employés',
+	logement: 'Aide à la construction de logements neufs et abordables',
 	'accidents du travail / maladies professionnelles':
-		'Offers full coverage of occupational illnesses or accidents.',
+		'Offre une couverture complète des maladies professionnelles ou des accidents',
 	'assurance chômage':
-		"Gives income to former employees while they're in search of a new job.",
-	transport: 'Helps keep the price of a public transportation ticket low.',
-	autres: 'Other contributions to the social system.'
+		"Donne un revenu aux travailleurs à la recherche d'un nouvel emploi.",
+	transport:
+		"Aide à maintenir le prix d'un billet de transport en commun à un bas prix",
+	autres: 'Autres contributions au système social'
 }
 
 const brancheToLabel: { [Branche]: string } = {
@@ -112,10 +113,13 @@ class Distribution extends Component<Props, State> {
 											<div className="distribution-chart__item-content">
 												<p className="distribution-chart__counterparts">
 													<span className="distribution-chart__branche-name">
-														<Trans>{brancheToLabel[branche] || branche}</Trans>
+														<Trans i18nKey={`branche.${branche}.name`}>
+															{brancheToLabel[branche] || branche}
+														</Trans>.{' '}
 													</span>
-													{'. '}
-													{brancheToCounterparts[branche]}
+													<Trans i18nKey={`branche.${branche}.counterpart`}>
+														{brancheToCounterparts[branche]}
+													</Trans>
 												</p>
 												<ChartItemBar {...{ styles, colour, montant, total }} />
 											</div>
