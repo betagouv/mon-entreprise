@@ -17,14 +17,16 @@ export default function Barème(nodeValue, explanation) {
 						</span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
-					<li key="multiplicateur">
-						<span className="key">
-							<Trans>multiplicateur des tranches</Trans>:{' '}
-						</span>
-						<span className="value">
-							{makeJsx(explanation['multiplicateur des tranches'])}
-						</span>
-					</li>
+					{explanation['multiplicateur des tranches'].nodeValue !== 1 && (
+						<li key="multiplicateur">
+							<span className="key">
+								<Trans>multiplicateur des tranches</Trans>:{' '}
+							</span>
+							<span className="value">
+								{makeJsx(explanation['multiplicateur des tranches'])}
+							</span>
+						</li>
+					)}
 					<table className="tranches">
 						<thead>
 							<tr>

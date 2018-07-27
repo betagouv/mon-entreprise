@@ -90,14 +90,7 @@ export let treatString = (rules, rule) => rawNode => {
 
 	// We don't need to handle category == 'value' because YAML then returns it as
 	// numerical value, not a String: it goes to treatNumber
-	if (parseResult.category == 'percentage') {
-		return {
-			nodeValue: parseResult.nodeValue,
-			category: 'percentage',
-			// eslint-disable-next-line
-			jsx: () => <span className="percentage">{rawNode}</span>
-		}
-	}
+	if (parseResult.category == 'percentage') return treatPercentage(parseResult)
 
 	if (
 		parseResult.category == 'calcExpression' ||
@@ -154,17 +147,7 @@ export let treatString = (rules, rule) => rawNode => {
 							jsx: nodeValue => <span className="value">{nodeValue}</span>
 						})
 					],
-					[
-						propEq('category', 'percentage'),
-						node => ({
-							nodeValue: node.nodeValue,
-							category: 'percentage',
-							// eslint-disable-next-line
-							jsx: nodeValue => (
-								<span className="value">{nodeValue * 100}%</span>
-							)
-						})
-					]
+					[propEq('category', 'percentage'), treatPercentage]
 				])
 			),
 			operator = parseResult.operator
@@ -206,15 +189,23 @@ export let treatString = (rules, rule) => rawNode => {
 	}
 }
 
-export let treatNumber = rawNode => {
-	return {
-		text: '' + rawNode,
-		category: 'number',
-		nodeValue: rawNode,
-		type: 'numeric',
-		jsx: <span className="number">{rawNode}</span>
-	}
-}
+export let treatPercentage = node => ({
+	nodeValue: node.nodeValue,
+	category: 'percentage',
+	// eslint-disable-next-line
+	jsx: nodeValue => (
+		<span className="value">{Math.round(nodeValue * 100)} %</span>
+	)
+})
+
+export let treatNumber = rawNode => ({
+	text: '' + rawNode,
+	category: 'number',
+	nodeValue: rawNode,
+	type: 'numeric',
+	jsx: <span className="number">{rawNode}</span>
+})
+
 export let treatOther = rawNode => {
 	throw new Error(
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
