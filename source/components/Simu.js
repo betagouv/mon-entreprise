@@ -63,7 +63,7 @@ export default class Simu extends Component {
 							<button
 								className="ui__ link-button"
 								onClick={() => this.setState({ displayPreviousAnswers: true })}>
-								Change my answers
+								<Trans> Modifier mes réponses</Trans>
 							</button>
 						</div>
 					)}
@@ -90,16 +90,22 @@ export default class Simu extends Component {
 					</Spring>
 					{simulationCompleted && (
 						<>
-							<h1>No more questions left!</h1>
+							<h1>
+								<Trans i18nKey="simulation-end.title">
+									Plus de questions !
+								</Trans>
+							</h1>
 							<p>
-								<Trans>
-									You have reached the most accurate estimate. You can now turn
-									your hiring project into reality.
+								<Trans i18nKey="simulation-end.text">
+									Vous avez atteint l'estimation la plus précise. Vous pouvez
+									maintenant concrétiser votre projet d'embauche.
 								</Trans>
 							</p>
 							<div style={{ textAlign: 'center' }}>
 								<Link className="ui__ button" to="/hiring-process">
-									See the procedures
+									<Trans i18nKey="simulation-end.cta">
+										Connaître les démarches
+									</Trans>
 								</Link>
 							</div>
 						</>
@@ -115,7 +121,9 @@ export default class Simu extends Component {
 					</div>
 					{conversationStarted && (
 						<Animate.fromBottom>
-							<h2>Payslip</h2>
+							<h2>
+								<Trans>Fiche de paie</Trans>
+							</h2>
 							<PaySlip />
 						</Animate.fromBottom>
 					)}

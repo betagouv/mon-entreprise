@@ -130,10 +130,9 @@ Cotisations sociales: Social contributions
 Part employeur: Employer share
 Part salariale: Employee share
 Total des retenues: Total withheld
-Voir ma fiche de paie: View my payslip
+Fiche de paie: My payslip
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
-Ma fiche de paie: My payslip
 payslip: 
   notice: This simulation helps you understand your french payslip, but it should not be used as one. For further details, check <1>service-public.fr (french)</1>.
   heures: 'Number of hours worked: '
@@ -148,3 +147,8 @@ CDD: Fixed-term
 Cadre: '"Cadre" status'
 Temps partiel: Part time
 Autres: Other situations
+Modifier mes réponses: Change my answers
+simulation-end:
+  title: No more questions left!
+  text: You have reached the most accurate estimate. You can now turn your hiring project into reality.
+  cta: Know the procedures
