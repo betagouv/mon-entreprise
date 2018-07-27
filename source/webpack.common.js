@@ -44,10 +44,6 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.html$/,
-				loader: 'html-loader'
-			},
-			{
 				test: /\.(jpe?g|png|svg)$/,
 				use: {
 					loader: 'file-loader',
@@ -84,11 +80,15 @@ module.exports = {
 		new HTMLPlugin({
 			template: 'index.html',
 			chunks: ['infrance'],
+			title: 'My company in france 🇫🇷',
+			description: "The easy guide to help you start your business in france. From registering your company to hiring your first employee.",
 			filename: 'infrance.html'
 		}),
 		new HTMLPlugin({
 			template: 'index.html',
 			chunks: ['embauche'],
+			title: 'Simulateur d\'embauche 🤝',
+			description: "Simulation du prix d'une embauche en France et calcul du salaire net à partir du brut : CDD, statut cadre, cotisations sociales, retraite...",
 			filename: 'embauche.html',
 		}),
 		new HTMLPlugin({
@@ -96,6 +96,6 @@ module.exports = {
 			chunks: ['colour-chooser'],
 			filename: 'couleur.html'
 		}),
-		new CopyPlugin(['./manifest.webmanifest', './source/sites/embauche.gouv.fr/images/logo'])
+		new CopyPlugin(['./manifest.webmanifest', './source/sites/embauche.gouv.fr/images/logo', './robots.txt'])
 	]
 }

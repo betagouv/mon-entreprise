@@ -7,23 +7,95 @@
 	<meta name="viewport" content="initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="google-site-verification" content="C03WwnrJP0FLqf83ibMBA7_N-TLQcwsJaAhqKXppxaE" />
-	<title>🇫🇷 Set up in France</title>
-	<meta name="description" content="Simulation du prix d'une embauche en France et calcul du salaire net à partir du brut : CDD, statut cadre, cotisations sociales, retraite..."
+	<meta name="description" content="<%= htmlWebpackPlugin.options.description %>"
 	 data-react-helmet="true">
 	<!-- data-helmet pour que React Helmet puisse écraser ce meta par défaut -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,600|IBM+Plex+Sans' rel='stylesheet' type='text/css'>
 	<link rel="manifest" href="/manifest.webmanifest">
+	<title><%= htmlWebpackPlugin.options.title %></title>
 	<style>
 		/* Prevent FOUC effect */
-
 		#js {
-			display: none
+			opacity: 0
 		}
+		/* CSS Loader */
+		#lds-ellipsis {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			animation: appear 0.6s;
+			transform: translate(calc(50vw - 32px), 40vh);
+			width: 64px;
+			height: 64px;
+		}
+		#lds-ellipsis div {
+			position: absolute;
+			top: 27px;
+			width: 11px;
+			height: 11px;
+			border-radius: 50%;
+			background: rgb(41, 117, 209);
+			animation-timing-function: cubic-bezier(0, 1, 1, 0);
+		}
+		#lds-ellipsis div:nth-child(1) {
+			left: 6px;
+			animation: lds-ellipsis1 0.6s infinite;
+		}
+		#lds-ellipsis div:nth-child(2) {
+			left: 6px;
+			animation: lds-ellipsis2 0.6s infinite;
+		}
+		#lds-ellipsis div:nth-child(3) {
+			left: 26px;
+			animation: lds-ellipsis2 0.6s infinite;
+		}
+		#lds-ellipsis div:nth-child(4) {
+			left: 45px;
+			animation: lds-ellipsis3 0.6s infinite;
+		}
+		@keyframes appear {
+			from {
+				opacity: 0;
+			}
+			60% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+		@keyframes lds-ellipsis1 {
+			0% {
+				transform: scale(0);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+		@keyframes lds-ellipsis3 {
+			0% {
+				transform: scale(1);
+			}
+			100% {
+				transform: scale(0);
+			}
+		}
+		@keyframes lds-ellipsis2 {
+			0% {
+				transform: translate(0, 0);
+			}
+			100% {
+				transform: translate(19px, 0);
+			}
+		}
+
 	</style>
 	<meta name="theme-color" content="#2975d1">
 </head>
 
 <body>
+	<div id="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 	<div id="js" />
 	<script src="https://use.fontawesome.com/1da10bbdec.js"></script>
 	<script type="text/javascript">
