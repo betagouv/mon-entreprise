@@ -8,6 +8,9 @@ import { AttachDictionary } from '../AttachDictionary'
 import withLanguage from 'Components/utils/withLanguage'
 import './Algorithm.css'
 
+// The showValues prop is passed as a context. It used to be delt in CSS (not(.showValues) display: none), both coexist right now
+import { ShowValuesProvider } from './ShowValuesContext'
+
 @AttachDictionary(knownMecanisms)
 @translate()
 @withLanguage
@@ -30,32 +33,34 @@ export default class Algorithm extends React.Component {
 							}).format(rule.nodeValue)}
 						</div>
 					) : null}
-					{do {
-						// TODO ce let est incompréhensible !
-						let applicabilityMecanisms = values(rule).filter(
-							v => v && v['rulePropType'] == 'cond'
-						)
-						applicabilityMecanisms.length > 0 && (
-							<section id="declenchement">
+					<ShowValuesProvider value={showValues}>
+						{do {
+							// TODO ce let est incompréhensible !
+							let applicabilityMecanisms = values(rule).filter(
+								v => v && v['rulePropType'] == 'cond'
+							)
+							applicabilityMecanisms.length > 0 && (
+								<section id="declenchement">
+									<h2>
+										<Trans>Déclenchement</Trans>
+									</h2>
+									<ul>
+										{applicabilityMecanisms.map(v => (
+											<li key={v.name}>{makeJsx(v)}</li>
+										))}
+									</ul>
+								</section>
+							)
+						}}
+						{!ruleWithoutFormula ? (
+							<section id="formule">
 								<h2>
-									<Trans>Déclenchement</Trans>
+									<Trans>Détails du calcul</Trans>
 								</h2>
-								<ul>
-									{applicabilityMecanisms.map(v => (
-										<li key={v.name}>{makeJsx(v)}</li>
-									))}
-								</ul>
+								{makeJsx(rule['formule'])}
 							</section>
-						)
-					}}
-					{!ruleWithoutFormula ? (
-						<section id="formule">
-							<h2>
-								<Trans>Détails du calcul</Trans>
-							</h2>
-							{makeJsx(rule['formule'])}
-						</section>
-					) : null}
+						) : null}
+					</ShowValuesProvider>
 				</section>
 			</div>
 		)
