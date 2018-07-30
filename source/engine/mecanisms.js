@@ -23,7 +23,8 @@ import {
 	has,
 	max,
 	min,
-	subtract
+	subtract,
+	sum
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -52,6 +53,7 @@ import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Allègement from './mecanismViews/Allègement'
 import Barème from './mecanismViews/Barème'
+import { trancheValue } from './mecanisms/barème'
 import buildSelectionView from './mecanismViews/Selection'
 import uniroot from './uniroot'
 
@@ -727,16 +729,7 @@ export let mecanismScale = (recurse, k, v) => {
 
 		return nulled
 			? null
-			: tranches.reduce(
-					(memo, { de: min, à: max, taux }) =>
-						val(assiette) < min * val(multiplicateur)
-							? memo + 0
-							: memo +
-							  (Math.min(val(assiette), max * val(multiplicateur)) -
-									min * val(multiplicateur)) *
-									taux.nodeValue,
-					0
-			  )
+			: sum(tranches.map(trancheValue(assiette, multiplicateur)))
 	}
 
 	let explanation = {

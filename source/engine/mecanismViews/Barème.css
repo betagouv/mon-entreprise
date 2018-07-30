@@ -1,0 +1,7 @@
+.tranche .activated {
+	background: yellow;
+}
+.tranche .activated:last-child {
+	border: 1px dashed yellow;
+	background: none;
+}

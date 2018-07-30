@@ -2,6 +2,8 @@ import React from 'react'
 import { Node } from './common'
 import { makeJsx } from '../evaluation'
 import { Trans } from 'react-i18next'
+import { trancheValue } from 'Engine/mecanisms/barème'
+import './Barème.css'
 
 export default function Barème(nodeValue, explanation) {
 	return (
@@ -37,43 +39,44 @@ export default function Barème(nodeValue, explanation) {
 									<Trans>Taux</Trans>
 								</th>
 							</tr>
-							{explanation.tranches.map(
-								({
-									'en-dessous de': maxOnly,
-									'au-dessus de': minOnly,
-									de: min,
-									à: max,
-									taux
-								}) => (
-									<tr
-										key={min || minOnly || 0}
-										style={{
-											fontWeight:
-												explanation.assiette.nodeValue >
-													explanation['multiplicateur des tranches'].nodeValue *
-														min &&
-												max &&
-												explanation.assiette.nodeValue <
-													explanation['multiplicateur des tranches'].nodeValue *
-														max
-													? ' bold'
-													: ''
-										}}>
-										<td key="tranche">
-											{maxOnly
-												? `En-dessous de ${maxOnly}`
-												: minOnly
-													? `Au-dessus de ${minOnly}`
-													: `De ${min} à ${max}`}
-										</td>
-										<td key="taux"> {makeJsx(taux)} </td>
-									</tr>
-								)
-							)}
+							{explanation.tranches.map(t => (
+								<Tranche
+									key={t['de'] + t['à']}
+									tranche={t}
+									trancheValue={trancheValue(
+										explanation['assiette'],
+										explanation['multiplicateur de tranches']
+									)(t)}
+								/>
+							))}
 						</thead>
 					</table>
 				</ul>
 			}
 		/>
+	)
+}
+
+function Tranche({
+	tranche: {
+		'en-dessous de': maxOnly,
+		'au-dessus de': minOnly,
+		de: min,
+		à: max,
+		taux
+	},
+	trancheValue
+}) {
+	return (
+		<tr className={trancheValue > 0 ? 'activated' : ''}>
+			<td key="tranche">
+				{maxOnly
+					? `En-dessous de ${maxOnly}`
+					: minOnly
+						? `Au-dessus de ${minOnly}`
+						: `De ${min} à ${max}`}
+			</td>
+			<td key="taux"> {makeJsx(taux)} </td>
+		</tr>
 	)
 }
