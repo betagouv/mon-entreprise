@@ -706,9 +706,9 @@ export let mecanismScale = (recurse, k, v) => {
 		.map(
 			t =>
 				has('en-dessous de')(t)
-					? { de: 0, à: t['en-dessous de'], taux: t.taux }
+					? { ...t, de: 0, à: t['en-dessous de'] }
 					: has('au-dessus de')(t)
-						? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
+						? { ...t, de: t['au-dessus de'], à: Infinity }
 						: t
 		)
 		.map(evolve({ taux: recurse }))

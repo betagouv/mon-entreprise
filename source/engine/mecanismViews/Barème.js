@@ -61,10 +61,10 @@ export default function Barème(nodeValue, explanation) {
 										}}>
 										<td key="tranche">
 											{maxOnly
-												? '< ' + maxOnly
+												? `En-dessous de ${maxOnly}`
 												: minOnly
-													? '> ' + minOnly
-													: `${min} - ${max}`}
+													? `Au-dessus de ${minOnly}`
+													: `De ${min} à ${max}`}
 										</td>
 										<td key="taux"> {makeJsx(taux)} </td>
 									</tr>
