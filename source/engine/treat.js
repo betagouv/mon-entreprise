@@ -153,6 +153,17 @@ export let treatString = (rules, rule) => rawNode => {
 							// eslint-disable-next-line
 							jsx: nodeValue => <span className="value">{nodeValue}</span>
 						})
+					],
+					[
+						propEq('category', 'percentage'),
+						node => ({
+							nodeValue: node.nodeValue,
+							// eslint-disable-next-line
+							jsx: nodeValue => (
+								<span className="value">{nodeValue * 100}%</span>
+							)
+							//the best would be to display the original text before parsing, but nearley does'nt let us access it
+						})
 					]
 				])
 			),

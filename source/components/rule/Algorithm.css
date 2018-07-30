@@ -44,7 +44,6 @@
 	margin: 1em 0;
 }
 
-
 #rule-rules #ruleValue {
 	font-weight: 400;
 	text-align: center;
@@ -159,7 +158,6 @@
 	white-space: nowrap;
 }
 
-
 .percentage .name {
 	font-weight: 500;
 }
@@ -171,33 +169,6 @@
 
 .json {
 	font-size: 60%;
-}
-
-.barème > .nodeHead .name {
-	background: #1abc9c;
-}
-
-.barème .key {
-	color: #1abc9c;
-}
-.mecanism.barème {
-	border-color: #1abc9c;
-}
-
-.barème table {
-	margin-top: 1em;
-	width: 80%;
-	text-align: left;
-	font-weight: 400;
-}
-.barème table td {
-	padding: 0.1em 0.4em;
-}
-.barème table tr:first-child {
-	font-weight: 500;
-}
-.barème table tr:nth-child(2n) {
-	background: #f1f1f1;
 }
 
 .mecanism.inversion li {

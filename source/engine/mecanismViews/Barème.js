@@ -3,7 +3,9 @@ import { Node } from './common'
 import { makeJsx } from '../evaluation'
 import { Trans } from 'react-i18next'
 import { trancheValue } from 'Engine/mecanisms/barème'
+import { NodeValuePointer } from './common'
 import './Barème.css'
+import classNames from 'classnames'
 
 export default function Barème(nodeValue, explanation) {
 	return (
@@ -45,7 +47,7 @@ export default function Barème(nodeValue, explanation) {
 									tranche={t}
 									trancheValue={trancheValue(
 										explanation['assiette'],
-										explanation['multiplicateur de tranches']
+										explanation['multiplicateur des tranches']
 									)(t)}
 								/>
 							))}
@@ -68,7 +70,7 @@ function Tranche({
 	trancheValue
 }) {
 	return (
-		<tr className={trancheValue > 0 ? 'activated' : ''}>
+		<tr className={classNames('tranche', { activated: trancheValue > 0 })}>
 			<td key="tranche">
 				{maxOnly
 					? `En-dessous de ${maxOnly}`
@@ -76,7 +78,7 @@ function Tranche({
 						? `Au-dessus de ${minOnly}`
 						: `De ${min} à ${max}`}
 			</td>
-			<td key="taux"> {makeJsx(taux)} </td>
+			<td key="taux"> {makeJsx(taux)}</td>
 		</tr>
 	)
 }

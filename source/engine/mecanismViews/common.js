@@ -23,7 +23,7 @@ export let NodeValue = withLanguage(({ data, language }) => (
 	<span>{treatValue(data, language)}</span>
 ))
 
-let NodeValuePointer = ({ data }) =>
+export let NodeValuePointer = ({ data }) =>
 	data !== undefined && data !== null ? (
 		<span className={'situationValue ' + treatValue(data)}>
 			<NodeValue data={data} />
