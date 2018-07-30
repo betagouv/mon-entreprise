@@ -701,14 +701,7 @@ export let mecanismScale = (recurse, k, v) => {
 		return devariate(recurse, k, v)
 	}
 
-	/* on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
-	`en-dessous de: 1`
-	devient
-	```
-	de: 0
-	à: 1
-	```
-	*/
+	// on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
 	let tranches = v['tranches']
 		.map(
 			t =>
@@ -730,17 +723,6 @@ export let mecanismScale = (recurse, k, v) => {
 		'multiplicateur des tranches': multiplicateur,
 		tranches
 	}) => {
-		// TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
-		// ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond
-		// sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
-		/*
-			nulled = assiette.nodeValue == null || any(
-				pipe(
-					values, map(val), any(equals(null))
-				)
-			)(tranches),
-		*/
-		// nulled = anyNull([assiette, multiplicateur]),
 		let nulled = val(assiette) == null || val(multiplicateur) == null
 
 		return nulled
