@@ -90,7 +90,14 @@ export let treatString = (rules, rule) => rawNode => {
 
 	// We don't need to handle category == 'value' because YAML then returns it as
 	// numerical value, not a String: it goes to treatNumber
-	if (parseResult.category == 'percentage') return treatPercentage(parseResult)
+	if (parseResult.category == 'percentage')
+		return {
+			nodeValue: parseResult.nodeValue,
+			category: 'percentage',
+			// eslint-disable-next-line
+			jsx: () => <span className="value">{rawNode.split('%')[0]} %</span>
+			//on ajoute l'espace nécessaire en français avant le pourcentage
+		}
 
 	if (
 		parseResult.category == 'calcExpression' ||
@@ -146,8 +153,7 @@ export let treatString = (rules, rule) => rawNode => {
 							// eslint-disable-next-line
 							jsx: nodeValue => <span className="value">{nodeValue}</span>
 						})
-					],
-					[propEq('category', 'percentage'), treatPercentage]
+					]
 				])
 			),
 			operator = parseResult.operator
@@ -188,15 +194,6 @@ export let treatString = (rules, rule) => rawNode => {
 		}
 	}
 }
-
-export let treatPercentage = node => ({
-	nodeValue: node.nodeValue,
-	category: 'percentage',
-	// eslint-disable-next-line
-	jsx: nodeValue => (
-		<span className="value">{Math.round(nodeValue * 100)} %</span>
-	)
-})
 
 export let treatNumber = rawNode => ({
 	text: '' + rawNode,
