@@ -7,6 +7,7 @@ import 'Ui/index.css'
 import Provider from '../../Provider'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Couleur from './pages/Couleur'
 import Contribution from './pages/Contribution'
 import { Header } from './pages/Header'
 import Home from './pages/Home'
@@ -32,8 +33,8 @@ class EmbaucheRoute extends Component {
 					<Route path="/à-propos" component={About} />
 					<Route path="/intégrer" component={Integration} />
 					<Route path="/contribuer" component={Contribution} />
+					<Route path="/couleur" component={Couleur} />
 					<Redirect from="/simulateur" to="/" />
-					<Redirect from="/couleur.html" to="/" />
 					<Route component={Route404} />
 				</Switch>
 			</Provider>

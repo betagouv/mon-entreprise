@@ -1,12 +1,7 @@
 import React from 'react'
 import { SliderPicker } from 'react-color'
-import { render } from 'react-dom'
-import { connect, Provider } from 'react-redux'
-import { createStore } from 'redux'
-import Layout from './containers/Layout'
-import reducers from './reducers/reducers'
-
-let store = createStore(reducers)
+import { connect } from 'react-redux'
+import Home from './Home'
 
 @connect(
 	state => ({ couleur: state.themeColours.colour }),
@@ -14,7 +9,7 @@ let store = createStore(reducers)
 		changeColour: colour => dispatch({ type: 'CHANGE_THEME_COLOUR', colour })
 	})
 )
-class MyComponent extends React.Component {
+export default class Couleur extends React.Component {
 	changeColour = ({ hex }) => this.props.changeColour(hex)
 	render() {
 		return (
@@ -32,14 +27,8 @@ class MyComponent extends React.Component {
 					&quot;data-couleur&quot; du script sur votre page est :{' '}
 					<b>{this.props.couleur}</b>
 				</p>
-				<Layout />
+				<Home />
 			</div>
 		)
 	}
 }
-render(
-	<Provider store={store}>
-		<MyComponent />
-	</Provider>,
-	document.querySelector('#coulorChooser')
-)

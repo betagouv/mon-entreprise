@@ -16,8 +16,8 @@ module.exports = {
 		}
 	},
 	entry: {
-		infrance: ['./source/sites/mycompanyinfrance.fr/entry.js'],
 		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
+		infrance: ['./source/sites/mycompanyinfrance.fr/entry.js'],
 	},
 	output: {
 		path: path.resolve('./dist/'),
@@ -90,11 +90,6 @@ module.exports = {
 			title: 'Simulateur d\'embauche 🤝',
 			description: "Simulation du prix d'une embauche en France et calcul du salaire net à partir du brut : CDD, statut cadre, cotisations sociales, retraite...",
 			filename: 'embauche.html',
-		}),
-		new HTMLPlugin({
-			template: 'couleur.html',
-			chunks: ['colour-chooser'],
-			filename: 'couleur.html'
 		}),
 		new CopyPlugin(['./manifest.webmanifest', './source/sites/embauche.gouv.fr/images/logo', './robots.txt'])
 	]

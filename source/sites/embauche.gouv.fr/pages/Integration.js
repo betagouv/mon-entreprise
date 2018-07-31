@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Integration.css'
-
 export default class MyComponent extends Component {
 	render() {
 		return (
@@ -25,10 +25,7 @@ export default class MyComponent extends Component {
 						Vous pouvez <b>choisir la couleur principale du module</b> pour le
 						fondre dans le thème visuel de votre page : changez simplement la
 						valeur de <i>data-couleur</i> ci-dessus. Pour la choisir, utilisez
-						notre{' '}
-						<a href="/couleur.html" target="_blank">
-							outil interactif
-						</a>.
+						notre <Link to="/couleur">outil interactif</Link>.
 					</p>
 					<p>
 						L'attribut <i>data-lang="en"</i> vous permet quand à lui de choisir
