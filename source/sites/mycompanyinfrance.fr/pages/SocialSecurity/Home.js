@@ -1,10 +1,10 @@
 /* @flow */
 
 import Simulateur from 'Components/Simu'
+import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as Animate from 'Ui/animate'
-
 type Props = {
 	hideText: boolean
 }
@@ -52,7 +52,9 @@ class SocialSecurity extends Component<Props, {}> {
 	}
 }
 
-export default connect(
-	state => ({ hideText: state.conversationStarted }),
-	{}
+export default compose(
+	connect(
+		state => ({ hideText: state.conversationStarted }),
+		{}
+	)
 )(SocialSecurity)

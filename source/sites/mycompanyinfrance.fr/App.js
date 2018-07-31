@@ -1,6 +1,6 @@
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
 import Landing from './Landing'
@@ -31,7 +31,6 @@ class InFranceRoute extends Component {
 							<Route path="/hiring-process" component={HiringProcess} />
 						</div>
 					</>
-					<Route render={() => <Redirect to="/a" />} />
 				</Switch>
 			</Provider>
 		)

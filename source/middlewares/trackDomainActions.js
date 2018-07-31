@@ -45,7 +45,7 @@ export default (tracker: Tracker) => {
 				'trackEvent',
 				'refine',
 				newState.activeTargetInput,
-				formattedSituationSelector(newState)[newState.activeTargetInput]
+				action.question
 			])
 		}
 		if (action.type == 'STEP_ACTION' && action.name == 'unfold') {

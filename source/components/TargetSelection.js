@@ -157,7 +157,7 @@ let Header = ({
 
 			<span className="texts">
 				<span className="optionTitle">
-					<Link to={match.path + 'règle/' + encodeRuleName(target.dottedName)}>
+					<Link to={match.path + '/règle/' + encodeRuleName(target.dottedName)}>
 						{target.title || target.name}
 					</Link>
 				</span>

@@ -17,7 +17,7 @@ export default class RulesList extends Component {
 				<SearchBar
 					showDefaultList={true}
 					rules={flatRules}
-					rulePagesBasePath="./règle"
+					rulePagesBasePath="règle"
 				/>
 			</div>
 		)
