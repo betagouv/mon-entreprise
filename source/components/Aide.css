@@ -1,5 +1,5 @@
 #helpWrapper {
-	margin: 0 auto 2em;
+	margin: 2em auto 0;
 	display: none;
 }
 
@@ -7,7 +7,7 @@
 	border-radius: 0.4em;
 	padding: 0.1em 1em;
 	background: #e7f8e1;
-	border: 1px solid #9fbd94;; 
+	border: 1px solid #9fbd94;
 	position: relative;
 }
 
