@@ -1,3 +1,4 @@
+import { resetSimulation } from 'Actions/actions'
 import Montant from 'Components/Montant'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
@@ -29,9 +30,21 @@ const formatAnswer = (answer, language) => {
 	return answer.valeur
 }
 
-const AnswerList = ({ answers, onClose, language, changeAnswer }) => (
+const AnswerList = ({
+	answers,
+	onClose,
+	language,
+	changeAnswer,
+	resetSimulation
+}) => (
 	<Overlay onClose={onClose} className="answer-list">
 		<h2>My answers</h2>
+		<p style={{ textAlign: 'center' }}>
+			🗑{' '}
+			<button className="ui__ link-button" onClick={resetSimulation}>
+				<Trans>Tout supprimer</Trans>
+			</button>
+		</p>
 		<table>
 			<tbody>
 				{answers.map(answer => (
@@ -67,6 +80,7 @@ export default compose(
 	connect(
 		state => ({ answers: answerWithValueSelector(state) }),
 		dispatch => ({
+			resetSimulation: () => dispatch(resetSimulation()),
 			changeAnswer: question =>
 				dispatch({
 					type: 'STEP_ACTION',
