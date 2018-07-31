@@ -38,7 +38,9 @@ const AnswerList = ({
 	resetSimulation
 }) => (
 	<Overlay onClose={onClose} className="answer-list">
-		<h2>My answers</h2>
+		<h2>
+			<Trans>Mes réponses</Trans>
+		</h2>
 		<p style={{ textAlign: 'center' }}>
 			🗑{' '}
 			<button className="ui__ link-button" onClick={resetSimulation}>
