@@ -10,6 +10,7 @@ module.exports = {
 	mode: 'development',
 	entry: map(concat(['react-hot-loader/patch']), common.entry),
 	serve: {
+		host: '0.0.0.0',
 		add: (app, middleware, options) => {
 			app.use(
 				convert(
