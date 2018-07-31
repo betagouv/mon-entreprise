@@ -22,6 +22,12 @@
 	text-align: start;
 	font-weight: 500;
 }
+.answer-list .answerContent {
+	border-bottom: 1px dashed blue;
+	padding: 0.15em 0em;
+	display: inline-block;
+	min-width: 1.5em;
+}
 
 .answer-list button.answer:hover {
 	opacity: 0.8;

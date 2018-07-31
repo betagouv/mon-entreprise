@@ -3,8 +3,10 @@ import Montant from 'Components/Montant'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
 import withLanguage from 'Components/utils/withLanguage'
+import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import React from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
@@ -16,7 +18,6 @@ const formatAnswer = (answer, language) => {
 		return (
 			<span style={{ textTransform: 'capitalize' }}>
 				<Trans>{answer.valeur ? 'oui' : 'non'}</Trans>{' '}
-				{answer.valeur ? '✅' : <span style={{ color: 'red' }}>✘</span>}
 			</span>
 		)
 	if (answer.type === 'euros') return <Montant>{answer.valeur}</Montant>
@@ -35,14 +36,15 @@ const AnswerList = ({
 	onClose,
 	language,
 	changeAnswer,
-	resetSimulation
+	resetSimulation,
+	colours
 }) => (
 	<Overlay onClose={onClose} className="answer-list">
 		<h2>
 			<Trans>Mes réponses</Trans>
 		</h2>
 		<p style={{ textAlign: 'center' }}>
-			🗑{' '}
+			{emoji('🗑')}{' '}
 			<button className="ui__ link-button" onClick={resetSimulation}>
 				<Trans>Tout supprimer</Trans>
 			</button>
@@ -61,7 +63,11 @@ const AnswerList = ({
 									changeAnswer(answer.id)
 									onClose()
 								}}>
-								{formatAnswer(answer, language)}
+								<span
+									className="answerContent"
+									style={{ borderBottomColor: colours.textColourOnWhite }}>
+									{formatAnswer(answer, language)}
+								</span>
 							</button>{' '}
 						</td>
 					</tr>
@@ -79,6 +85,7 @@ const answerWithValueSelector = createSelector(
 
 export default compose(
 	withLanguage,
+	withColours,
 	connect(
 		state => ({ answers: answerWithValueSelector(state) }),
 		dispatch => ({
