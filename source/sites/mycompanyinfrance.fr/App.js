@@ -19,7 +19,7 @@ class InFranceRoute extends Component {
 	}
 	render() {
 		return (
-			<Provider basename="infrance">
+			<Provider basename="infrance" language="en">
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<>

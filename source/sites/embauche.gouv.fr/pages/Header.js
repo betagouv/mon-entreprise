@@ -107,6 +107,7 @@ export class LangSwitcher extends Component {
 		let nextLanguage = this.getUnusedLanguageCode()
 		this.props.changeLanguage(nextLanguage)
 		this.context.i18n.changeLanguage(nextLanguage)
+		this.forceUpdate();
 	}
 	render() {
 		return (

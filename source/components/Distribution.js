@@ -113,11 +113,11 @@ class Distribution extends Component<Props, State> {
 											<div className="distribution-chart__item-content">
 												<p className="distribution-chart__counterparts">
 													<span className="distribution-chart__branche-name">
-														<Trans i18nKey={`branche.${branche}.name`}>
+														<Trans i18nKey={`branches.${branche}.name`}>
 															{brancheToLabel[branche] || branche}
 														</Trans>.{' '}
 													</span>
-													<Trans i18nKey={`branche.${branche}.counterpart`}>
+													<Trans i18nKey={`branches.${branche}.counterpart`}>
 														{brancheToCounterparts[branche]}
 													</Trans>
 												</p>

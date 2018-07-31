@@ -73,6 +73,9 @@ export default class Layout extends PureComponent {
 		)
 		this.store = createStore(reducers, initialStore, storeEnhancer)
 		persistSimulation(this.store)
+		if (this.props.language) {
+			i18next.changeLanguage(this.props.language)
+		}
 	}
 	render() {
 		return (

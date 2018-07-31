@@ -77,6 +77,7 @@ export default class RulePage extends Component {
 	})
 )
 @withRouter
+@translate() // Triggers rerender when the language changes
 class BackToSimulation extends Component {
 	render() {
 		let { colour, setExample } = this.props

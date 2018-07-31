@@ -2,7 +2,7 @@ import { startConversation } from 'Actions/actions'
 import ScrollToTop from 'Components/utils/ScrollToTop'
 import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { animated, Spring } from 'react-spring'
@@ -22,6 +22,7 @@ import './Simu.css'
 import TargetSelection from './TargetSelection'
 
 @withColours
+@translate() // Triggers rerender when the language changes
 @connect(
 	state => ({
 		noUserInput: noUserInputSelector(state),
@@ -55,7 +56,6 @@ export default class Simu extends Component {
 			!blockingInputControls && conversationStarted && !nextSteps.length
 		const displayPreviousAnswers =
 			arePreviousAnswers && this.state.displayPreviousAnswers
-
 		return (
 			<>
 				<div id="simu">

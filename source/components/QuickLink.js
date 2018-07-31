@@ -1,5 +1,7 @@
 /* @flow */
 import { startConversation } from 'Actions/actions'
+import withLanguage from 'Components/utils/withLanguage'
+import { compose } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -33,9 +35,12 @@ const QuickLink = ({ startConversation }: Props) => (
 		</button>
 	</>
 )
-export default connect(
-	null,
-	{
-		startConversation
-	}
+export default compose(
+	withLanguage,
+	connect(
+		(state, props) => ({ key: props.language }),
+		{
+			startConversation
+		}
+	)
 )(QuickLink)
