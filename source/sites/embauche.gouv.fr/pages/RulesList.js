@@ -14,7 +14,11 @@ export default class RulesList extends Component {
 		return (
 			<div id="RulesList" className="ui__ container">
 				<h1>Explorez notre base de règles</h1>
-				<SearchBar showDefaultList={true} rules={flatRules} />
+				<SearchBar
+					showDefaultList={true}
+					rules={flatRules}
+					rulePagesBasePath="./règle"
+				/>
 			</div>
 		)
 	}

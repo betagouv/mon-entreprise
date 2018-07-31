@@ -51,12 +51,15 @@ export default class RulePage extends Component {
 	}
 	renderRule(dottedName) {
 		return (
-			<div id="RulePage">
+			<div id="RulePage" className="ui__ container">
 				<div className="rule-page__header">
 					{!this.props.noUserInputSelector && (
 						<BackToSimulation colour={this.props.themeColours.colour} />
 					)}
-					<SearchButton className="rule-page__search" />
+					<SearchButton
+						className="rule-page__search"
+						rulePageBasePath="../règle"
+					/>
 				</div>
 				<Rule dottedName={dottedName} />
 			</div>

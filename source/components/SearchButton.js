@@ -42,6 +42,7 @@ export default class SearchButton extends Component {
 					showDefaultList={false}
 					finally={this.close}
 					rules={flatRules}
+					rulePagesBasePath={this.props.rulePagesBasePath}
 				/>
 			</Overlay>
 		) : (

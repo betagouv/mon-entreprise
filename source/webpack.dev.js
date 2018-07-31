@@ -16,11 +16,11 @@ module.exports = {
 					history({
 						rewrites: [
 							{
-								from: /^\/infrance\/.*$/,
+								from: /^\/infrance\/.*$|^\/infrance$/,
 								to: '/infrance.html'
 							},
 							{
-								from: /^\/embauche\/.*$/,
+								from: /^\/embauche\/.*$|^\/embauche$/,
 								to: '/embauche.html'
 							}
 						]
