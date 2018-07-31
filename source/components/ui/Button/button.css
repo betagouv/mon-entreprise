@@ -35,12 +35,12 @@
 	cursor: not-allowed;
 }
 .ui__.button {
-	border-color: rgb(41, 117, 209);
-	color: rgb(41, 117, 209);
+	border-color: var(--colour);
+	color: var(--colour);
 	background: linear-gradient(
 		50deg,
-		rgba(39, 69, 195, 0.87) 5%,
-		rgba(41, 117, 209, 1) 50%,
+		/* color(var(--colour) hue(+20)) 5% */ rgba(39, 69, 195, 0.87) 5%,
+		var(--colour) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
 	background-size: 260%;
@@ -66,8 +66,8 @@
 }
 .ui__.inverted-button:not(:disabled):hover {
 	background-color: rgba(255, 255, 255, 1);
-	color: rgb(41, 117, 209);
-	border-color: rgb(41, 117, 209);
+	color: var(--colour);
+	border-color: var(--colour);
 }
 
 .ui__.link-button {
@@ -78,14 +78,14 @@
 	font-family: inherit;
 	padding: 0;
 	margin: 0;
-	color: rgb(41, 117, 209);
+	color: var(--colour);
 }
 .ui__.link-button:not(:disabled):hover {
 	opacity: 0.8;
 }
 
 .ui__.button_next {
-	color: rgb(41, 117, 209);
+	color: var(--colour);
 }
 
 .ui__.skip-button {

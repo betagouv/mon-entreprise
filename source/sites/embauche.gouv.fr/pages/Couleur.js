@@ -13,7 +13,7 @@ export default class Couleur extends React.Component {
 	changeColour = ({ hex }) => this.props.changeColour(hex)
 	render() {
 		return (
-			<div>
+			<div className="ui__ container">
 				<p className="indication">
 					Visualisez sur cette page l’apparence du module pour différentes
 					couleurs principales.

@@ -1,3 +1,4 @@
+import SetCSSColour from 'Components/utils/SetCssColour'
 import { defaultTracker, TrackerProvider } from 'Components/utils/withTracker'
 import createHistory from 'history/createBrowserHistory'
 import i18next from 'i18next'
@@ -81,6 +82,7 @@ export default class Layout extends PureComponent {
 		return (
 			<Provider store={this.store}>
 				<TrackerProvider value={tracker}>
+					<SetCSSColour />
 					<I18nextProvider i18n={i18next}>
 						<Router history={tracker.connectToHistory(this.history)}>
 							<>{this.props.children}</>

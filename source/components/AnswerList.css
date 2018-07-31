@@ -2,8 +2,8 @@
 	border-collapse: collapse;
 	width: 100%;
 }
-.answer-list tr:nth-child(2n) {
-	background-color: rgba(41, 117, 209, 0.06);
+.answer-list tr:nth-child(2n + 1) {
+	background: none !important;
 }
 
 .answer-list td {

@@ -2,6 +2,10 @@
 @import './Typography.css';
 @import './reset.css';
 
+:root {
+	--colour: rgb(41, 117, 209);
+}
+
 body {
 	overflow-x: hidden;
 }

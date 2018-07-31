@@ -2,8 +2,8 @@ import { resetSimulation } from 'Actions/actions'
 import Montant from 'Components/Montant'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
-import withLanguage from 'Components/utils/withLanguage'
 import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -35,9 +35,9 @@ const AnswerList = ({
 	answers,
 	onClose,
 	language,
+	colours,
 	changeAnswer,
-	resetSimulation,
-	colours
+	resetSimulation
 }) => (
 	<Overlay onClose={onClose} className="answer-list">
 		<h2>
@@ -52,7 +52,7 @@ const AnswerList = ({
 		<table>
 			<tbody>
 				{answers.map(answer => (
-					<tr key={answer.id}>
+					<tr key={answer.id} style={{ background: colours.lightestColour }}>
 						<td>
 							<RuleLink {...answer} />
 						</td>

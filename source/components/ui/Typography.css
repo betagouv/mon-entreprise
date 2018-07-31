@@ -51,7 +51,7 @@ h6 {
 h1,
 h2,
 h3 {
-	color: rgb(41, 117, 209);
+	color: var(--colour);
 }
 
 button {
@@ -68,7 +68,7 @@ a {
 	font-size: inherit;
 	padding: none;
 	text-decoration: underline;
-	color: rgb(41, 117, 209);
+	color: var(--colour);
 }
 a:not(:disabled):not(.button, .inverted-button):hover {
 	opacity: 0.8;

@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { propEq } from 'ramda'
@@ -64,7 +65,12 @@ export default class TargetSelection extends Component {
 				<section
 					id="targetsContainer"
 					style={{
-						color: colours.textColour
+						color: colours.textColour,
+						background: `linear-gradient(
+							60deg,
+							${colours.darkColour} 0%,
+							${colours.colour} 100%
+						)`
 					}}>
 					{this.renderOutputList()}
 				</section>
@@ -167,16 +173,20 @@ let Header = ({
 	)
 }
 
-let CurrencyField = props => {
+let CurrencyField = withColours(props => {
 	return (
 		<CurrencyInput
+			style={{
+				color: props.colours.textColour,
+				borderColor: props.colours.textColour
+			}}
 			className="targetInput"
 			autoFocus
 			{...props.input}
 			{...props}
 		/>
 	)
-}
+})
 
 let TargetInputOrValue = withLanguage(
 	({

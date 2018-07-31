@@ -1,11 +1,6 @@
 #targetsContainer {
 	border-radius: 0.6em;
 	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-	background: linear-gradient(
-		60deg,
-		rgba(39, 69, 195, 0.87) 0%,
-		rgba(41, 117, 209, 1) 100%
-	);
 }
 
 #targetSelection h1 {
@@ -104,8 +99,7 @@
 	padding: 0.2em 0.5em;
 	background: rgba(255, 255, 255, 0);
 	border-radius: 0.2em;
-	border: 2px solid white;
-	color: white;
+	border: 2px solid;
 	font-size: inherit;
 }
 
