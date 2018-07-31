@@ -17,6 +17,7 @@ import Conversation from './conversation/Conversation'
 import Distribution from './Distribution'
 import PaySlip from './PaySlip'
 import QuickLink from './QuickLink'
+import ResultView from './ResultView'
 import './Simu.css'
 import TargetSelection from './TargetSelection'
 
@@ -121,10 +122,7 @@ export default class Simu extends Component {
 					</div>
 					{conversationStarted && (
 						<Animate.fromBottom>
-							<h2>
-								<Trans>Fiche de paie</Trans>
-							</h2>
-							<PaySlip />
+							<ResultView />
 						</Animate.fromBottom>
 					)}
 					{displayPreviousAnswers && (
@@ -140,6 +138,7 @@ export default class Simu extends Component {
 							<Trans>A quoi servent mes cotisations ?</Trans>
 						</h2>
 						<Distribution />
+
 						<h2>
 							<Trans>Estimer mes coûts réels</Trans>
 						</h2>
@@ -157,6 +156,10 @@ export default class Simu extends Component {
 								<Trans>Estimer mes coûts réels</Trans>
 							</button>
 						</p>
+						<h2>
+							<Trans>Fiche de paie</Trans>
+						</h2>
+						<PaySlip />
 					</Animate.fromBottom>
 				)}
 			</>
