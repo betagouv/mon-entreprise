@@ -140,20 +140,20 @@ export default class Simu extends Component {
 						<Distribution />
 
 						<h2>
-							<Trans>Estimer mes coûts réels</Trans>
+							<Trans>Simulation personnalisée</Trans>
 						</h2>
 						<p>
 							<Trans i18nk="estimate-real-costs">
-								Il s'agit d'une <strong>estimation brut</strong> sur la base
-								d'un contrat générique pré-établi. La législation française
-								prévoit une multitude de cas particuliers et des règles
-								spécifiques qui peuvent modifier considérablement les coûts
-								d'embauche.
+								Il s'agit pour l'instant d'une{' '}
+								<strong>première estimation</strong> sur la base d'un contrat
+								générique. La législation française prévoit une multitude de cas
+								particuliers et de règles spécifiques qui modifient
+								considérablement les montant de l'embauche.
 							</Trans>
 						</p>
 						<p style={{ textAlign: 'center' }}>
 							<button className="ui__ button" onClick={startConversation}>
-								<Trans>Estimer mes coûts réels</Trans>
+								<Trans>Faire une simulation personnalisée</Trans>
 							</button>
 						</p>
 						<h2>
