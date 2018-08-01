@@ -32,27 +32,24 @@ const Landing = ({ colours: { colour } }) => (
 		<section className="ui__ container landing-explanation">
 			<h2>1. Create your company {emoji('🏗️')}</h2>
 			<ul>
-				<li>Find the legal status that suits you in one minute.</li>
-				<li>Choose the best location for your enterprise.</li>
+				<li>Find the legal status that suits you</li>
+				<li>Choose the best location for your business</li>
 				<li>
-					Complete the different steps up to the registration of your company.
+					Follow the different steps up to the registration of your company
 				</li>
 			</ul>
 
 			<h2>2. Simulate costs and social benefits {emoji('💶')} </h2>
 			<ul>
-				<li>Discover French social security. </li>
-				<li>Find out about benefits and what is covered. </li>
-				<li>Simulate the contribution amount for all policy types. </li>
-				<li>Navigate between the different sections of a pay slip.</li>
+				<li>Discover French social security and its benefits </li>
+				<li>Simulate the hiring costs </li>
+				<li>Understand the different sections of the payslip</li>
 			</ul>
 			<h2>3. Hire your first employee {emoji('🤝')}</h2>
 			<ul>
-				<li>See the hiring procedures in France. </li>
-				<li>
-					Learn the basics of french labour law. Write an employment contract.{' '}
-				</li>
-				<li>Know the different tools for editing a compliant payslip.</li>
+				<li>Discover the hiring procedures in France </li>
+				<li>Learn the basics of french labour law and employment contract </li>
+				<li>Know the different tools for editing a compliant payslip</li>
 			</ul>
 		</section>
 		<section className="landing__nav" />

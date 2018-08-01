@@ -20,13 +20,16 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => (
 				<strong>Salaried employee:</strong> The company director joins and is
 				covered by France’s general Social Security scheme. Social Security
 				contributions are calculated on the basis of the executive&apos;s actual
-				pay and are paid monthly.
+				pay and are paid monthly. Although more expensive, this scheme offers
+				full social protection (except unemployment).
 			</li>
 			<li>
 				<strong>Self-employed:</strong> The company director joins and is
 				covered by France’s self-employed scheme called « Sécurité sociale des
 				indépendants ». Contributions due are generally calculated based on
-				professional income as reported to the tax authorities.
+				professional income as reported to the tax authorities. Although less
+				expensive this scheme provides basic social protection with additional
+				and paid options needed to improve this protection.
 			</li>
 		</ul>
 		<div className="ui__ answer-group">
