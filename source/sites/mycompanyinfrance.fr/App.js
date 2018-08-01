@@ -30,6 +30,7 @@ class InFranceRoute extends Component {
 							<Route path="/social-security" component={SocialSecurity} />
 							<Route path="/hiring-process" component={HiringProcess} />
 						</div>
+						<footer style={{ margin: '2rem' }} />
 					</>
 				</Switch>
 			</Provider>

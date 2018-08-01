@@ -8,64 +8,76 @@ import * as Animate from 'Ui/animate'
 import type { Match } from 'react-router'
 type Props = {
 	startCompanyRegistration: () => void,
+	statusChooserCompleted: boolean,
 	match: Match
 }
-const Register = ({ match, startCompanyRegistration }: Props) => (
-	<Animate.fromBottom>
+const Register = ({
+	match,
+	startCompanyRegistration,
+	statusChooserCompleted
+}: Props) => {
+	const microenterprise = match.params.status && match.params.status.includes('Microenterprise'); return(	<Animate.fromBottom>
 		<ScrollToTop />
 		<h1>Create a {match.params.status} </h1>
-		<p>
-			<Link to="/register">
-				Not sure about this status? Take our guide to help you choose.
-			</Link>{' '}
-		</p>
+		{!statusChooserCompleted && (
+			<p>
+				<Link to="/register">
+					Not sure about this status? Take our guide to help you choose.
+				</Link>{' '}
+			</p>
+		)}
 		<p>
 			Officially registering online your business is the first thing to do. The
 			following data are required:
 		</p>
 		<ul>
 			<li>
-				<strong>The corporate name</strong> (raison sociale) is the legal name
+				{!microenterprise ?
+				<><strong>The corporate name</strong> (raison sociale) is the legal name
 				of your company, written on all of your administrative papers. It can be
-				different from the trade name (used for commercial purpose).
+				different from the trade name (used for commercial purpose).</>
+				:<><strong>The corporate name</strong> (raison sociale) is your name and surname the legal name of your company, written on all of your administrative papers.</>
+	}
 			</li>
 			<li>
-				<strong>The corporate purpose of the company</strong> (object social) is
-				a short phrase describing the activity of your company. As it is legally
-				binding it must be composed with care, possibly with the help of a
-				lawyer.
+				<strong>The corporate purpose of the company</strong> (object social) is the main activity run. A secondary activity can be registered
 			</li>
 			<li>
-				<strong>The social security number of the director</strong>. In case you
-				don't have yet a french social security number...
+				<strong>The social security number of the director</strong> is not compulsory to register the business but necessary to get a health insurance
 			</li>
 			<li>
-				<strong>The address</strong> is the physical space where your company
+			{!microenterprise ?
+				<><strong>The address</strong> is the physical space where your company
 				will be incorporated. In certain places and situations, you can benefit
 				from substantial public financing (exemption from charges, taxes, etc.).
+				</>: <><strong>The address</strong> is your personal location</>}
 			</li>
 		</ul>
-		<p>
+		{ !microenterprise && <p>
 			If you don't know where your going to open your company, you can discover
 			the French territories in our <a>incoporation simulator</a>.
-		</p>
+		</p>}
 		{/* <p>If the company director is not part of the EU, you'll need a specific visa https://www.economie.gouv.fr/entreprises/etranger-comment-creer-votre-entreprise-france </p> */}
 		<p style={{ textAlign: 'right' }}>
 			<a
-				onClick={startCompanyRegistration}
 				className="ui__ button"
-				href="https://translate.google.fr/translate?sl=fr&tl=en&js=y&prev=_t&hl=fr&ie=UTF-8&u=www.guichet-entreprises.fr&edit-text=&act=url"
-				rel="noopener noreferrer"
-				target="_blank">
+				href="https://account.guichet-entreprises.fr/user/create"
+				{...(!microenterprise ? {rel: "noopener noreferrer",
+				onClick: startCompanyRegistration,
+				target: "_blank"} : {})}>
 				Register my company online
 			</a>
+			
 			<Link to={'/social-security'} className="ui__ skip-button">
 				Do it later ›
 			</Link>
 		</p>
 	</Animate.fromBottom>
-)
+)}
 export default connect(
-	null,
+	state => ({
+		statusChooserCompleted:
+			Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
+	}),
 	{ startCompanyRegistration }
 )(Register)
