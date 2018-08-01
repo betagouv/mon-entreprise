@@ -143,9 +143,9 @@ export default class Simu extends Component {
 							<Trans>Simulation personnalisée</Trans>
 						</h2>
 						<p>
-							<Trans i18nk="estimate-real-costs">
-								Il s'agit pour l'instant d'une{' '}
-								<strong>première estimation</strong> sur la base d'un contrat
+							<Trans i18nKey="custom-simulation">
+								Il s'agit pour l'instant d'une
+								<strong> première estimation</strong> sur la base d'un contrat
 								générique. La législation française prévoit une multitude de cas
 								particuliers et de règles spécifiques qui modifient
 								considérablement les montant de l'embauche.

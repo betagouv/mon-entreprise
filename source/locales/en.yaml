@@ -23,7 +23,6 @@ Entrée: Enter
 Plein écran: Fullscreen
 first: Your first estimate is now available!
 lastQ: One last question!
-questionsLeft: Fewer than <1>{{nbQuestions}}</1> questions to go…
 radio_Oui: Yes
 radio_Non: No
 radio_Aucun: None
@@ -138,8 +137,9 @@ payslip:
   heures: 'Number of hours worked: '
   disclaimer: It takes into account national law but not union negotiated rules. Lots of aids for your enterprise exist, explore them on <1>aides-entreprises.fr (french)</1>.
 A quoi servent mes cotisations ?: What's included in my contributions?
-Estimer mes coûts réels: Estimate my real costs
-estimate-real-costs: This is a <1>rough estimate</1> based on a pre-made generic contract. French legislation provides for a multitude of special cases, and specific rules that can considerably change hiring costs.
+Simulation personnalisée: Custom simulation
+Faire une simulation personnalisée: Do a customized simulation
+custom-simulation: This is currently a <1>rough estimate</1> based on a generic contract. French legislation provides for a multitude of special cases and specific rules which considerably modify the costs of recruitment.
 Effacer: Erase
 Continuer: Continue
 CDI: Permanent
