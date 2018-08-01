@@ -49,10 +49,11 @@
 /* IE */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 	.steps-header a.active {
-		min-width: 80%;
+		min-width: 70%;
 	}
 	.steps-header a {
 		flex-shrink: 1;
+		min-width: 7rem;
 	}
 }
 

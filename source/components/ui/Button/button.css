@@ -35,11 +35,21 @@
 	cursor: not-allowed;
 }
 .ui__.button {
+	/* ie11 */
+	border-color: rgb(41, 117, 209);
 	border-color: var(--colour);
+	/* ie11 */
+	color: rgb(41, 117, 209);
 	color: var(--colour);
 	background: linear-gradient(
 		50deg,
-		/* color(var(--colour) hue(+20)) 5% */ rgba(39, 69, 195, 0.87) 5%,
+		rgba(39, 69, 195, 0.87) 5%,
+		rgb(41, 117, 209) 50%,
+		rgba(255, 255, 255, 0.52) 55%
+	);
+	background: linear-gradient(
+		50deg,
+		rgba(39, 69, 195, 0.87) 5%,
 		var(--colour) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
@@ -66,7 +76,9 @@
 }
 .ui__.inverted-button:not(:disabled):hover {
 	background-color: rgba(255, 255, 255, 1);
+	color: rgb(41, 117, 209);
 	color: var(--colour);
+	border-color: rgb(41, 117, 209);
 	border-color: var(--colour);
 }
 
@@ -78,6 +90,7 @@
 	font-family: inherit;
 	padding: 0;
 	margin: 0;
+	color: rgb(41, 117, 209);
 	color: var(--colour);
 }
 .ui__.link-button:not(:disabled):hover {
@@ -85,6 +98,7 @@
 }
 
 .ui__.button_next {
+	color: rgb(41, 117, 209);
 	color: var(--colour);
 }
 
