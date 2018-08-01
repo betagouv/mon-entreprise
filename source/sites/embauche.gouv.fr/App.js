@@ -6,6 +6,7 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
 import About from './pages/About'
+import IntegrationTest from './pages/IntegrationTest'
 import Contact from './pages/Contact'
 import Couleur from './pages/Couleur'
 import Contribution from './pages/Contribution'
@@ -34,6 +35,7 @@ class EmbaucheRoute extends Component {
 					<Route path="/intégrer" component={Integration} />
 					<Route path="/contribuer" component={Contribution} />
 					<Route path="/couleur" component={Couleur} />
+					<Route path="/integration-test" component={IntegrationTest} />
 					<Redirect from="/simulateur" to="/" />
 					<Route component={Route404} />
 				</Switch>

@@ -16,12 +16,14 @@ module.exports = {
 		}
 	},
 	entry: {
-		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
 		infrance: ['./source/sites/mycompanyinfrance.fr/entry.js'],
+		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
+		// To not introduce breaking into the iframe integration, we serve simulateur.js from a 'dist' subdirectory 
+		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js'],
 	},
 	output: {
 		path: path.resolve('./dist/'),
-		filename: '[name].[hash].js'
+		filename: ({ chunk }) => chunk.name === 'dist/simulateur' ? '[name].js' : '[name].[hash].js'
 	},
 	module: {
 		rules: [

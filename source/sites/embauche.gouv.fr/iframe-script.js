@@ -1,12 +1,22 @@
+
 // Get the "couleur" parameter passed to this script
 let script = document.getElementById('script-simulateur-embauche'),
-	couleur = script.dataset['couleur'],
-	src = script.getAttribute('src'),
+	couleur = script.dataset.couleur,
+	baseUrl = script.dataset.iframeUrl || script.getAttribute('src').split('dist')[0],
 	integratorUrl = encodeURIComponent(window.location.href.toString()),
-	lang = script.dataset['lang']
+	lang = script.dataset.lang,
+	src = baseUrl + `?couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
 
-document.write(`
-<iframe id="simulateurEmbauche" src="${
-	src.split('dist')[0]
-}?couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}" style="border: none; width: 100%; display: block; margin: 0 auto; height: 45em" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
-`)
+const iframe = document.createElement('iframe')
+const iframeAttributes = {
+	id: 'simulateurEmbauche',
+	src,
+	style: "border: none; width: 100%; display: block; margin: 0 auto; height: 45em",
+	allowfullscreen : true,
+	webkitallowfullscreen: true,
+	mozallowfullscreen: true
+}
+Object.entries(iframeAttributes).forEach(([key, value]) => iframe.setAttribute(key, value));
+
+script.replaceWith(iframe, null);
+
