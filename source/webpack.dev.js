@@ -11,6 +11,9 @@ module.exports = {
 	entry: map(concat(['react-hot-loader/patch']), common.entry),
 	serve: {
 		host: '0.0.0.0',
+		hotClient: {
+			host: { client: '*', server: '0.0.0.0' }
+		},
 		add: (app, middleware, options) => {
 			app.use(
 				convert(
