@@ -686,7 +686,7 @@
       titre: salaire
       avec:
         - salaire . net à payer
-        - salaire . total
+        - salaire . total aidé
         - salaire . net après impôt
 
   références:
@@ -1027,7 +1027,18 @@
     somme:
       - salaire . brut
       - cotisations patronales
-
+      
+- espace: contrat salarié . salaire
+  nom: total aidé
+  question: Quel est le salaire total, toutes aides incluses ?
+  résumé: Versé par l'employeur à long terme
+  format: euros  
+  type: salaire
+  formule: total - aides employeur
+  contrôles: 
+    - si: total aidé < 400
+      message: Entrez un salaire mensuel
+      niveau: bloquant
 
 - espace: contrat salarié
   nom: aides employeur
