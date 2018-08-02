@@ -7,6 +7,7 @@ import Find from './Find'
 import Home from './Home'
 import Liability from './Liability'
 import MainStatus from './MainStatus'
+import MinorityDirector from './MinorityDirector'
 import Microenterprise from './Microenterprise'
 import RegistrationPending from './RegistrationPending'
 import NumberOfAssociate from './NumberOfAssociate'
@@ -80,6 +81,14 @@ const CreateMyCompany = ({ match, location }) => (
 								render={props => (
 									<animated.div style={style}>
 										<MainStatus {...props} />
+									</animated.div>
+								)}
+							/>
+							<Route
+								path={match.path + '/minority-director'}
+								render={props => (
+									<animated.div style={style}>
+										<MinorityDirector {...props} />
 									</animated.div>
 								)}
 							/>

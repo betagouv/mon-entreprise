@@ -21,6 +21,8 @@ function companyLegalStatus(
 			return { ...state, multipleAssociates: action.multipleAssociates }
 		case 'COMPANY_IS_MICROENTERPRISE':
 			return { ...state, microenterprise: action.microenterprise }
+			case 'SPECIFY_DIRECTORS_SHARE':
+		return { ...state, minorityDirector: action.minorityDirector }
 	}
 	return state
 }

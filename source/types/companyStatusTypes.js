@@ -38,6 +38,10 @@ export type SaveExistingCompanyDetailsAction = {
 export type StartCompanyRegistrationAction = {
 	type: 'START_COMPANY_REGISTRATION',
 }
+export type DirectorIsInAMinorityAction = {
+	type: 'SPECIFY_DIRECTORS_SHARE',
+	minorityDirector: ?boolean
+}
 export type State = {|
 	+companyLegalStatus: {
 		/* 
@@ -48,7 +52,8 @@ export type State = {|
 		+liability?: ?CompanyLiability,
 		+directorStatus?: ?DirectorStatus,
 		+multipleAssociates?: ?boolean,
-		+microenterprise?: ?boolean
+		+microenterprise?: ?boolean,
+		+minorityDirector?: ?boolean
 	},
 	+existingCompanyDetails: ?{ [string]: string },
 	+companyRegistrationStarted: boolean,
@@ -68,3 +73,4 @@ export type Action =
 	| StartCompanyRegistrationAction
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction
+| DirectorIsInAMinorityAction

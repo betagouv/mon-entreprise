@@ -55,14 +55,24 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						its contribution to the capital.
 					</li>
 				)}
-				{possibleStatus.SARL && (
+				{possibleStatus['SARL (minority director)'] && (
 					<li>
 						<strong>
 							SARL - Société à responsabilité limitée (Limited corporation):{' '}
 						</strong>
 						Composed of at least 2 partners whose financial responsibility is
 						limited to the amounts of contributions in the capital. The minimum
-						capital is freely fixed in the statutes.
+						capital is freely fixed in the statutes. The equality or minority manager or college has the "salaried" status.
+					</li>
+				)}
+				{possibleStatus['SARL (majority director)'] && (
+					<li>
+						<strong>
+							SARL - Société à responsabilité limitée (Limited corporation):{' '}
+						</strong>
+						Composed of at least 2 partners whose financial responsibility is
+						limited to the amounts of contributions in the capital. The minimum
+						capital is freely fixed in the statutes. The majority manager or college has the self employed status.
 					</li>
 				)}
 				{possibleStatus.SAS && (

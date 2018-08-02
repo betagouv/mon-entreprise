@@ -32,7 +32,8 @@ describe('company status selectors', function() {
 					liability: null,
 					directorStatus: null,
 					microenterprise: null,
-					multipleAssociates: null
+					multipleAssociates: null,
+					minorityDirector: null,
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -70,6 +71,7 @@ describe('company status selectors', function() {
 					liability: 'SOLE_PROPRIETORSHIP',
 					multipleAssociates: null,
 					microenterprise: null,
+					minorityDirector: null,
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -87,6 +89,24 @@ describe('company status selectors', function() {
 		it('should first return the question which convey the most information (which eliminates the most statuses ) ', () => {
 			const nextQuestion = nextQuestionSelector(state({}))
 			expect(nextQuestion).to.be.equal('multipleAssociates')
+		})
+
+		it('should interpret missing question in status as not relevant', () => {
+			const nextQuestion = nextQuestionSelector(
+				state({
+					minorityDirector: true
+				})
+			)
+			expect(nextQuestion).not.to.be.equal(null)
+		})
+
+		it('should allow to skip question', () => {
+			const nextQuestion = nextQuestionSelector(
+				state({
+					multipleAssociates: null
+				})
+			)
+			expect(nextQuestion).not.to.be.equal(null)
 		})
 	})
 })

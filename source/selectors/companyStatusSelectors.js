@@ -9,13 +9,15 @@ import {
 	map,
 	pick,
 	sortBy,
-	whereEq
+	mergeWith,
+	isNil,
 } from 'ramda'
 
 const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 	Microenterprise: {
 		liability: 'SOLE_PROPRIETORSHIP',
 		directorStatus: 'SELF_EMPLOYED',
+		minorityDirector: false,
 		multipleAssociates: false,
 		microenterprise: true,
 	},
@@ -23,17 +25,20 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
+		minorityDirector: false,
 		microenterprise: true
 	},
 	EI: {
 		liability: 'SOLE_PROPRIETORSHIP',
 		directorStatus: 'SELF_EMPLOYED',
+		minorityDirector: false,
 		multipleAssociates: false,
 		microenterprise: false
 	},
 	EURL: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
+		minorityDirector: false,
 		multipleAssociates: false,
 		microenterprise: false
 	},
@@ -41,12 +46,21 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
-		microenterprise: false
+		microenterprise: false,
+		minorityDirector: false,
 	},
-	SARL: {
+	'SARL (majority director)': {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: true,
+		minorityDirector: false,
+		microenterprise: false
+	},
+	'SARL (minority director)': {
+		liability: 'LIMITED_LIABILITY',
+		directorStatus: 'SALARIED',
+		multipleAssociates: true,
+		minorityDirector: true,
 		microenterprise: false
 	},
 	SAS: {
@@ -70,17 +84,29 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 	SASU: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
+		minorityDirector: false,
 		multipleAssociates: false,
 		microenterprise: false
 	}
 }
+
 export type LegalStatus = $Keys<typeof LEGAL_STATUS_DETAILS>
+const QUESTION_LIST: Array<Question> = Object.keys(LEGAL_STATUS_DETAILS['SARL (minority director)']);
+
+const isCompatibleStatusWith = 
+	(answers: CompanyLegalStatus) => (status: CompanyLegalStatus) : boolean =>  {
+		const stringify = map(x => !isNil(x) ? JSON.stringify(x) : x)
+		// $FlowFixMe
+		const answerCompatibility = Object.values(mergeWith((answer, statusValue) => (  isNil(answer) || isNil(statusValue) || answer === statusValue), stringify(status), stringify(answers)))
+		const isCompatibleStatus = answerCompatibility.every(x => x !== false);
+		return isCompatibleStatus
+	}
 const possibleStatus = (
-	companyLegalStatus: CompanyLegalStatus
+	answers: CompanyLegalStatus
 ): { [LegalStatus]: boolean } =>
 	map(
 		// $FlowFixMe
-		whereEq(filter(x => x !== null, companyLegalStatus)),
+		isCompatibleStatusWith(answers),
 		LEGAL_STATUS_DETAILS
 	)
 
@@ -91,7 +117,6 @@ export const possibleStatusSelector = (state: {
 
 type Question = $Keys<CompanyLegalStatus>
 
-const QUESTION_LIST: Array<Question> = Object.keys(LEGAL_STATUS_DETAILS.SA);
 export const nextQuestionSelector = (state: {
 	inFranceApp: State
 }): ?Question => {
@@ -109,16 +134,16 @@ export const nextQuestionSelector = (state: {
 			status => status[question]
 		)
 		const frequencyOfAnswers = Object.values(
-			countBy(x => x, answerPopulation)
+			countBy(x => x, answerPopulation.filter(x => x !== undefined))
 		).map(
 			numOccurrence =>
-				// $FlowFixMe
-				numOccurrence / answerPopulation.length
+			// $FlowFixMe
+			numOccurrence / answerPopulation.length
 		)
 		const shannonEntropy = -frequencyOfAnswers
-			.map(p => p * Math.log2(p))
-			// $FlowFixMe
-			.reduce(add, 0)
+		.map(p => p * Math.log2(p))
+		// $FlowFixMe
+		.reduce(add, 0)
 		return [question, shannonEntropy]
 	})
 	const sortedPossibleNextQuestions = sortBy(

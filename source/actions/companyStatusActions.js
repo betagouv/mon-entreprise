@@ -6,6 +6,7 @@ import type {
 	DirectorStatus,
 	CompanyIsMicroenterpriseAction,
 	StartCompanyRegistrationAction,
+	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
 } from 'Types/companyStatusTypes'
 import type { RouterHistory } from 'react-router'
@@ -49,6 +50,12 @@ export const companyIsMicroenterprise = thenGoToNextQuestion(
 	})
 )
 
+export const directorIsInAMinority = thenGoToNextQuestion(
+	(minorityDirector: ?boolean): DirectorIsInAMinorityAction => ({
+		type: 'SPECIFY_DIRECTORS_SHARE',
+		minorityDirector
+	})
+)
 export const startCompanyRegistration= () => ((dispatch, _, history)  => {
 	dispatch(({
 		type: 'START_COMPANY_REGISTRATION',
