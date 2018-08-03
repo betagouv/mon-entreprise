@@ -73,6 +73,9 @@ a {
 	color: rgb(41, 117, 209);
 	color: var(--colour);
 }
+a[href^="https://"]::after, a[href^="http://"]::after {
+	content: '⮵ ';
+}
 a:not(:disabled):not(.button, .inverted-button):hover {
 	opacity: 0.8;
 }

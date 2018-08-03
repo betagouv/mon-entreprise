@@ -58,7 +58,7 @@ const Register = ({
 			</li>
 			{!microenterprise && <li>
 				<strong>The company's status</strong>. The official document, written in French, describing the status choice, naming the associate(s) and the capital contributed. It is recommanded to ask the help of a lawyer for the redaction.
-				{SARL && <a href="media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">Example of status for a SARL</a>}
+				{' '}{SARL && <a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">Example of status for a SARL</a>}
 				{EURL && <a href="https://www.afecreation.fr/cid46379/modele-statuts-types-eurl.html">Example of status for an EURL</a>}
 			</li>}
 		</ul>
