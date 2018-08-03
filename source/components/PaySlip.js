@@ -65,7 +65,7 @@ const PaySlip = ({
 			{cotisations.map(([section, cotisationList]) => (
 				<Fragment key={section}>
 					<h5 className="payslip__cotisationTitle">
-						<Trans>{section}</Trans>
+						<Trans i18nKey={`branches.${section}.name`}>{section}</Trans>
 					</h5>
 					{cotisationList.map(cotisation => (
 						<Fragment key={cotisation.lien}>
