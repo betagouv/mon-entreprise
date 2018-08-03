@@ -114,7 +114,7 @@ export default class Simu extends Component {
 					<div id="focusZone">
 						{displayConversation && (
 							<>
-								<ScrollToTop />
+								<ScrollToTop behavior="smooth" />
 								<Conversation textColourOnWhite={colours.textColourOnWhite} />
 							</>
 						)}
