@@ -1,6 +1,40 @@
 - nom: statut cadre
 
-- test: Variations
+
+- test: variations renvoyant une valeur
+  formule:
+    variations:
+      - si: statut cadre
+        alors: 2300
+      - si: ≠ statut cadre
+        alors: 2100
+
+  exemples:
+    - nom: première proposition vraie
+      situation:
+        statut cadre: oui
+      valeur attendue: 2300
+    - nom: deuxième proposition vraie
+      situation:
+        statut cadre: non
+      valeur attendue: 2100
+
+
+- test: variations avec cas défaut
+  formule:
+    variations:
+      - si: statut cadre
+        alors: 2300
+      - sinon: 2100
+
+  exemples:
+    - nom: proposition par défaut
+      situation:
+        statut cadre: non
+      valeur attendue: 2100
+
+
+- test: variations au sein d'un mécanisme 
   formule:
     multiplication:
       assiette: 100

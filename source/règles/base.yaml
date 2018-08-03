@@ -686,7 +686,7 @@
   formule:
     variations: 
       - si: assimilé
-        valeur: type de contrat . CDI
+        alors: CDI
       - sinon: choix type de contrat   
   
 - espace: contrat salarié . type de contrat
@@ -810,7 +810,7 @@
   formule:
     variations: 
       - si: assimilé
-        valeur: 'oui'
+        alors: 'oui'
       - sinon: choix statut cadre
 
 - espace: contrat salarié
