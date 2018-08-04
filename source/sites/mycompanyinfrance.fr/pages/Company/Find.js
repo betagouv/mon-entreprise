@@ -95,8 +95,10 @@ class Search extends React.Component<Props, State> {
 }
 
 let companyDataSelection = {
-	l1_normalisee: 'Address',
+	l1_normalisee: 'Name',
 	libelle_activite_principale: 'Main activity',
+		l4_normalisee: 'Street', 
+		l6_normalisee: 'City',
 	libelle_region: 'Region',
 	libelle_tranche_effectif_salarie_entreprise: 'Number of employees',
 	date_creation: 'Creation date'
