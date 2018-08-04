@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
 import * as Animate from 'Ui/animate'
 import './Landing.css'
-import marianneSvg from './marianne.svg'
-import urssafSvg from './urssaf.svg'
+import marianneSvg from 'Images/marianne.svg'
+import urssafSvg from 'Images/urssaf.svg'
 
 const Landing = ({ colours: { colour } }) => (
 	<>

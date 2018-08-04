@@ -11,6 +11,9 @@
 	margin: 0 0.6em;
 	display: inline-block;
 }
+#logos a::after {
+	display: none;
+}
 #logos #marianne img {
 	width: calc(1vw + 4em);
 }

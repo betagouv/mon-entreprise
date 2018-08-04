@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import withLanguage from './withLanguage'
+import withLanguage from 'Components/utils/withLanguage'
 
 import './AnimatedTargetValue.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
