@@ -3,7 +3,7 @@ import InputSuggestions from 'Components/conversation/InputSuggestions'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { propEq } from 'ramda'
+import { path, propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -246,19 +246,7 @@ class TargetValue extends Component {
 				onClick={this.showField(value)}
 				onFocus={this.showField(value)}>
 				{target.dottedName.includes("coût d'embauche") ? (
-					do {
-						let [total, aides] = targetWithValue.formule.explanation.explanation
-						;<span>
-							<AnimatedTargetValue value={total.nodeValue} />{' '}
-							{aides.nodeValue && (
-								<span>
-									{' '}
-									- {emoji(aides.explanation.icon)}
-									<AnimatedTargetValue value={aides.nodeValue} />
-								</span>
-							)}
-						</span>
-					}
+					<FormulaGlimpse targetWithValue={targetWithValue} />
 				) : (
 					<AnimatedTargetValue value={value} />
 				)}
@@ -274,5 +262,28 @@ class TargetValue extends Component {
 			if (activeInput) setFormValue(activeInput, '')
 			setActiveInput(target.dottedName)
 		}
+	}
+}
+
+class FormulaGlimpse extends React.Component {
+	render() {
+		let explanation = path(
+			['formule', 'explanation', 'explanation'],
+			this.props.targetWithValue
+		)
+		if (!explanation) return null
+		let [total, aides] = explanation
+		return (
+			<span>
+				<AnimatedTargetValue value={total.nodeValue} />{' '}
+				{aides.nodeValue && (
+					<span>
+						{' '}
+						- {emoji(aides.explanation.icon)}
+						<AnimatedTargetValue value={aides.nodeValue} />
+					</span>
+				)}
+			</span>
+		)
 	}
 }
