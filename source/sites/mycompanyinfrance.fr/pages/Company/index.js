@@ -13,6 +13,16 @@ import RegistrationPending from './RegistrationPending'
 import NumberOfAssociate from './NumberOfAssociate'
 import Register from './Register'
 
+
+const withRouteAnimation = style => AnimatedComponent => {
+	const withRouteAnimation = props => (
+		<animated.div style={style}>
+			<AnimatedComponent {...props} />
+		</animated.div>
+	)
+	return withRouteAnimation;
+}
+
 const CreateMyCompany = ({ match, location }) => (
 	<>
 		<Animate.fromBottom>
@@ -46,51 +56,27 @@ const CreateMyCompany = ({ match, location }) => (
 						<Switch location={location}>
 							<Route
 								path={match.path + '/liability'}
-								render={props => (
-									<animated.div style={style}>
-										<Liability {...props} />
-									</animated.div>
-								)}
+								component={withRouteAnimation(style)(Liability)}
 							/>
 							<Route
 								path={match.path + '/director-status'}
-								render={props => (
-									<animated.div style={style}>
-										<DefineDirectorStatus {...props} />
-									</animated.div>
-								)}
+								component={withRouteAnimation(style)(DefineDirectorStatus)}
 							/>
 							<Route
 								path={match.path + '/microenterprise'}
-								render={props => (
-									<animated.div style={style}>
-										<Microenterprise {...props} />
-									</animated.div>
-								)}
+								component={withRouteAnimation(style)(Microenterprise)}
 							/>
 							<Route
 								path={match.path + '/multiple-associates'}
-								render={props => (
-									<animated.div style={style}>
-										<NumberOfAssociate {...props} />
-									</animated.div>
-								)}
+								component={withRouteAnimation(style)(NumberOfAssociate)}
 							/>
 							<Route
 								path={match.path + '/pick-legal-status'}
-								render={props => (
-									<animated.div style={style}>
-										<MainStatus {...props} />
-									</animated.div>
-								)}
+								component={withRouteAnimation(style)(MainStatus)}
 							/>
 							<Route
 								path={match.path + '/minority-director'}
-								render={props => (
-									<animated.div style={style}>
-										<MinorityDirector {...props} />
-									</animated.div>
-								)}
+								component={withRouteAnimation(style)(MinorityDirector)}
 							/>
 						</Switch>
 					)}

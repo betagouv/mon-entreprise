@@ -76,7 +76,7 @@ a {
 a[href^="https://"]::after, a[href^="http://"]::after {
 	content: '⮵ ';
 }
-a:not(:disabled):not(.button, .inverted-button):hover {
+a:not(:disabled):not(.button):not(.inverted-button):hover {
 	opacity: 0.8;
 }
 

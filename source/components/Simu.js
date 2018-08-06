@@ -1,5 +1,5 @@
 import { startConversation } from 'Actions/actions'
-import ScrollToTop from 'Components/utils/ScrollToTop'
+import Scroll from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
@@ -114,7 +114,7 @@ export default class Simu extends Component {
 					<div id="focusZone">
 						{displayConversation && (
 							<>
-								<ScrollToTop behavior="smooth" />
+								<Scroll.toTop behavior="smooth" />
 								<Conversation textColourOnWhite={colours.textColourOnWhite} />
 							</>
 						)}

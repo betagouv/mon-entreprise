@@ -5,6 +5,7 @@ import 'Ui/index.css'
 import Provider from '../../Provider'
 import Landing from './Landing'
 import CreateMyCompany from './pages/Company'
+import Footer from './pages/Footer/Footer'
 import StepsHeader from './pages/Header/StepsHeader'
 import HiringProcess from './pages/HiringProcess'
 import SocialSecurity from './pages/SocialSecurity'
@@ -30,9 +31,9 @@ class InFranceRoute extends Component {
 							<Route path="/social-security" component={SocialSecurity} />
 							<Route path="/hiring-process" component={HiringProcess} />
 						</div>
-						<footer style={{ margin: '2rem' }} />
 					</>
 				</Switch>
+				<Footer />
 			</Provider>
 		)
 	}

@@ -1,14 +1,17 @@
 /* @flow */
+import Scroll from 'Components/utils/Scroll'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
-import type { Match } from 'react-router'
+
+import type { Match, RouterHistory } from 'react-router'
 type Props = {
 	match: Match,
+	history: RouterHistory,
 	nextQuestionUrl: string
 }
-const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
+const CreateMyCompany = ({ match, nextQuestionUrl, history }: Props) => (
 	<>
 		<h1 className="question__title">Register a company</h1>
 		<Link className="ui__ link-button" to="/register/find">
@@ -30,6 +33,7 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 				</Link>
 			</div>
 		)}
+		{!match.isExact && <Scroll.toElement key={history.location.pathname} />}
 	</>
 )
 

@@ -1,6 +1,6 @@
 /* @flow */
 import { startCompanyRegistration } from 'Actions/companyStatusActions'
-import ScrollToTop from 'Components/utils/ScrollToTop'
+import Scroll from 'Components/utils/Scroll'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -21,7 +21,7 @@ const Register = ({
 	const EURL = match.params.status && match.params.status.includes('EURL');
 	
 	return(	<Animate.fromBottom>
-		<ScrollToTop />
+		<Scroll.toTop />
 		<h1>Create a {match.params.status} </h1>
 		{!statusChooserCompleted && (
 			<p>
