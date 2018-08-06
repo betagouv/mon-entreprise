@@ -1,5 +1,4 @@
 import { startConversation } from 'Actions/actions'
-import Scroll from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import React, { Component } from 'react'
@@ -115,10 +114,7 @@ export default class Simu extends Component {
 					)}
 					<div id="focusZone">
 						{displayConversation && (
-							<>
-								<Scroll.toTop behavior="smooth" />
-								<Conversation textColourOnWhite={colours.textColourOnWhite} />
-							</>
+							<Conversation textColourOnWhite={colours.textColourOnWhite} />
 						)}
 						<TargetSelection colours={colours} />
 					</div>

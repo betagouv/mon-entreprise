@@ -17,9 +17,16 @@ export class ScrollToTop extends Component {
 
 export class ScrollToElement extends Component {
 	static defaultProps = {
-		behavior: 'smooth'
+		behavior: 'smooth',
+		onlyIfNotVisible: false
 	}
 	componentDidMount() {
+		if (
+			this.props.onlyIfNotVisible &&
+			this.ref.getBoundingClientRect().top >= 0
+		) {
+			return
+		}
 		this.ref.scrollIntoView({
 			behavior: this.props.behavior
 		})

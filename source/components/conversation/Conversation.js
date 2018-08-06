@@ -1,3 +1,4 @@
+import { ScrollToElement } from 'Components/utils/Scroll'
 import { getInputComponent } from 'Engine/generateQuestions'
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
@@ -32,6 +33,7 @@ export default class Conversation extends Component {
 				<div id="currentQuestion" key={currentQuestion}>
 					{currentQuestion && (
 						<Animate.fadeIn>
+							<ScrollToElement onlyIfNotVisible />
 							{getInputComponent(flatRules, targetNames)(currentQuestion)}
 						</Animate.fadeIn>
 					)}

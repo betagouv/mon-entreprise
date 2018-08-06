@@ -1,4 +1,5 @@
 import { setExample } from 'Actions/actions'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import { encodeRuleName } from 'Engine/rules'
 import {
 	decodeRuleName,
@@ -11,7 +12,6 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link, Redirect } from 'react-router-dom'
-import { animateScroll } from 'react-scroll'
 import {
 	flatRulesSelector,
 	noUserInputSelector
@@ -27,9 +27,6 @@ import SearchButton from './SearchButton'
 }))
 @translate()
 export default class RulePage extends Component {
-	componentDidMount() {
-		animateScroll.scrollToTop({ duration: 300 })
-	}
 	render() {
 		let { flatRules } = this.props,
 			name = path(['match', 'params', 'name'], this.props),
@@ -52,6 +49,7 @@ export default class RulePage extends Component {
 	renderRule(dottedName) {
 		return (
 			<div id="RulePage" className="ui__ container">
+				<ScrollToTop />
 				<div className="rule-page__header">
 					{!this.props.noUserInputSelector && (
 						<BackToSimulation colour={this.props.themeColours.colour} />
