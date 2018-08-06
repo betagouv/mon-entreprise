@@ -62,10 +62,10 @@ const Register = ({
 				{EURL && <a href="https://www.afecreation.fr/cid46379/modele-statuts-types-eurl.html">Example of status for an EURL</a>}
 			</li>}
 		</ul>
-		{ !microenterprise && <p>
+		{/* { !microenterprise && <p>
 			If you don't know where your going to open your company, you can discover
 			the French territories in our <a>incoporation simulator</a>.
-		</p>}
+		</p>} */}
 		{/* <p>If the company director is not part of the EU, you'll need a specific visa https://www.economie.gouv.fr/entreprises/etranger-comment-creer-votre-entreprise-france </p> */}
 		<p style={{ textAlign: 'right' }}>
 			<a
