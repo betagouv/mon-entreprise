@@ -1,4 +1,5 @@
 import { startConversation } from 'Actions/actions'
+import { ScrollToElement } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import React, { Component } from 'react'
@@ -69,6 +70,7 @@ export default class Simu extends Component {
 							</button>
 						</div>
 					)}
+					{firstValidInputEntered && <ScrollToElement />}
 					<Spring
 						to={{
 							height: firstValidInputEntered ? 'auto' : 0,
@@ -150,7 +152,9 @@ export default class Simu extends Component {
 							</Trans>
 						</p>
 						<p style={{ textAlign: 'center' }}>
-							<button className="ui__ button" onClick={startConversation}>
+							<button
+								className="ui__ button"
+								onClick={() => startConversation()}>
 								<Trans>Faire une simulation personnalisée</Trans>
 							</button>
 						</p>

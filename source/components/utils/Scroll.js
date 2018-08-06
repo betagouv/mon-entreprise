@@ -5,6 +5,7 @@ export class ScrollToTop extends Component {
 		behavior: 'auto'
 	}
 	componentDidMount() {
+		console.log('scrototop')
 		window.scroll({
 			top: 0,
 			behavior: this.props.behavior
@@ -27,6 +28,7 @@ export class ScrollToElement extends Component {
 		) {
 			return
 		}
+		console.log('scrotoelem')
 		this.ref.scrollIntoView({
 			behavior: this.props.behavior
 		})
