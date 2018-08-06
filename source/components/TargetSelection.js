@@ -245,7 +245,7 @@ class TargetValue extends Component {
 				tabIndex="0"
 				onClick={this.showField(value)}
 				onFocus={this.showField(value)}>
-				{target.dottedName.includes('total aidé') ? (
+				{target.dottedName.includes("coût d'embauche") ? (
 					do {
 						let [total, aides] = targetWithValue.formule.explanation.explanation
 						;<span>

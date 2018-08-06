@@ -186,7 +186,7 @@ function analysisToFicheDePaie(
 			'contrat salarié . salaire . net imposable'
 		),
 		salaireNetàPayer: règleAvecMontant(
-			'contrat salarié . salaire . net à payer'
+			'contrat salarié . salaire . net'
 		),
 		nombreHeuresTravaillées: Math.round(
 			règleAvecValeur('contrat salarié . heures par semaine').valeur * 4.33

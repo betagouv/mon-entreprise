@@ -685,8 +685,8 @@
       question: Quel est le salaire mensuel ?
       titre: salaire
       avec:
-        - salaire . net à payer
-        - salaire . total aidé
+        - salaire . coût d'embauche
+        - salaire . net
         - salaire . net après impôt
 
   références:
@@ -827,13 +827,12 @@
 
 
 - espace: contrat salarié . salaire
-  nom: net
+  nom: net de cotisations
   titre: Salaire net
   type: salaire
   description: |
     Le salaire brut moins les cotisations sociales. 
 
-    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel: pour le changer, il faut signer un avenant au contrat.
   format: euros
   formule: salaire . brut - cotisations salariales
 
@@ -847,30 +846,33 @@
     Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
   formule:
     somme:
-      - salaire . net
+      - salaire . net de cotisations
       - avantages sociaux
       - CSG (non déductible)
       - CRDS
 
-
 - espace: contrat salarié . salaire
-  nom: net à payer
-  titre: Salaire net à payer avant impôt
+  nom: net
+  titre: Salaire net 
   type: salaire 
   format: euros  
   question: Quel est le salaire net mensuel ?
-  résumé: Touché par le salarié 
+  résumé: Salaire net avant impôt
   description: |
-    C'est le montant que le salarié touche à la fin du mois.
-  formule: salaire . net - avantages en nature . montant
+    C'est le montant que le salarié toucherait à la fin du mois avant de payer l'impôt sur le revenu.
+    
+    Aussi appelé salaire net à payer (avant impôt à la source).
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
+  formule: salaire . net de cotisations - avantages en nature . montant
   contrôles: 
-    - si: net à payer < 200
+    - si: net < 200
       message: Entrez un salaire mensuel
       niveau: bloquant
 
 - espace: contrat salarié . salaire
   nom: net après impôt
-  titre: Salaire net à payer après impôt
+  titre: Salaire net après impôt
   résumé: Revenu disponible du salarié
   question: Quel est le revenu net après impôt du salarié ?
   type: salaire
@@ -879,7 +881,11 @@
           Le salaire net après déduction de l'impôt neutre, aussi appelé taux non personnalisé. 
           
           C'est une bonne estimation du revenu disponible d'une personne en l'absence d'information sur sa famille et son patrimoine.
-  formule: net à payer - impôt neutre sur le revenu
+  formule: net - impôt neutre sur le revenu
+  contrôles: 
+    - si: net après impôt < 200
+      message: Entrez un salaire mensuel
+      niveau: bloquant
 
 - espace: contrat salarié 
   nom: impôt neutre sur le revenu
@@ -987,8 +993,6 @@
 - espace: contrat salarié
   nom: coût du travail
   description: |
-    C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
-    des aides et subventions qui lui sont reversées: c'est donc le coût social total réel du travail pour l'employeur.
   formule: salaire . total - aides employeur
   format: euros
   
@@ -1029,14 +1033,21 @@
       - cotisations patronales
       
 - espace: contrat salarié . salaire
-  nom: total aidé
-  question: Quel est le salaire total, toutes aides incluses ?
-  résumé: Versé par l'employeur à long terme
+  nom: coût d'embauche
+  question: Quel est le coût d'embauche, toutes aides incluses ?
+  description: | 
+    
+    C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
+    des aides et subventions qui lui sont reversées : c'est donc le coût social total réel à long terme de l'embauche pour l'employeur.
+
+    D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du salarié : je vois dans dans ton travail chaque mois assez de valeur pour te payer ce montant.
+
+  résumé: Coût mensuel - aides
   format: euros  
   type: salaire
   formule: total - aides employeur
   contrôles: 
-    - si: total aidé < 400
+    - si: coût d'embauche < 400
       message: Entrez un salaire mensuel
       niveau: bloquant
 
