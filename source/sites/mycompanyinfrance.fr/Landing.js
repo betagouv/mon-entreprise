@@ -1,14 +1,14 @@
 /* @flow */
 
 import withColours from 'Components/utils/withColours'
+import marianneSvg from 'Images/marianne.svg'
+import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
 import * as Animate from 'Ui/animate'
 import './Landing.css'
-import marianneSvg from 'Images/marianne.svg'
-import urssafSvg from 'Images/urssaf.svg'
 
 const Landing = ({ colours: { colour } }) => (
 	<>
@@ -38,19 +38,33 @@ const Landing = ({ colours: { colour } }) => (
 					Follow the different steps up to the registration of your company
 				</li>
 			</ul>
-
+			<p style={{ textAlign: 'center' }}>
+				<Link to="/register" className="ui__ button">
+					Register your company
+				</Link>
+			</p>
 			<h2>2. Simulate costs and social benefits {emoji('💶')} </h2>
 			<ul>
 				<li>Discover French social security and its benefits </li>
 				<li>Simulate the hiring costs </li>
 				<li>Understand the different sections of the payslip</li>
 			</ul>
+			<p style={{ textAlign: 'center' }}>
+				<Link to="/social-security" className="ui__ button">
+					Simulate hiring costs
+				</Link>
+			</p>
 			<h2>3. Hire your first employee {emoji('🤝')}</h2>
 			<ul>
 				<li>Discover the hiring procedures in France </li>
 				<li>Learn the basics of french labour law and employment contract </li>
 				<li>Know the different tools for editing a compliant payslip</li>
 			</ul>
+			<p style={{ textAlign: 'center' }}>
+				<Link to="/hiring-process" className="ui__ button">
+					Discover hiring process
+				</Link>
+			</p>
 		</section>
 		<section className="landing__nav" />
 	</>
