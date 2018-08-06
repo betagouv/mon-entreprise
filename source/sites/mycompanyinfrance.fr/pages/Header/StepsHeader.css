@@ -23,7 +23,6 @@
 	flex-shrink: 0;
 	text-align: center;
 	transition: all 0.3s;
-	opacity: 0.4;
 }
 
 .steps-header a:focus {
@@ -39,11 +38,10 @@
 	transition: all 0.2s;
 }
 
-.steps-header a:hover {
-	opacity: 0.8;
+.steps-header a:hover img {
+	transform: translateY(-5px);
 }
 .steps-header a.active {
-	opacity: 1;
 	flex-grow: 1;
 }
 /* IE */
