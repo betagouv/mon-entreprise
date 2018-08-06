@@ -21,6 +21,7 @@ import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
+import emoji from 'react-easy-emoji'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -244,7 +245,23 @@ class TargetValue extends Component {
 				tabIndex="0"
 				onClick={this.showField(value)}
 				onFocus={this.showField(value)}>
-				<AnimatedTargetValue value={value} />
+				{target.dottedName.includes('total aidé') ? (
+					do {
+						let [total, aides] = targetWithValue.formule.explanation.explanation
+						;<span>
+							<AnimatedTargetValue value={total.nodeValue} />{' '}
+							{aides.nodeValue && (
+								<span>
+									{' '}
+									- {emoji(aides.explanation.icon)}
+									<AnimatedTargetValue value={aides.nodeValue} />
+								</span>
+							)}
+						</span>
+					}
+				) : (
+					<AnimatedTargetValue value={value} />
+				)}
 			</span>
 		)
 	}
