@@ -1,6 +1,7 @@
 import { startConversation } from 'Actions/actions'
 import Scroll from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -35,6 +36,7 @@ import TargetSelection from './TargetSelection'
 		startConversation
 	}
 )
+@withLanguage
 export default class Simu extends Component {
 	state = {
 		displayPreviousAnswers: false
