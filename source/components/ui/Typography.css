@@ -63,7 +63,9 @@ p,
 ul {
 	line-height: 1.7rem;
 }
-
+li {
+	margin-bottom: 1rem;
+}
 a {
 	border: none;
 	display: inline-block;

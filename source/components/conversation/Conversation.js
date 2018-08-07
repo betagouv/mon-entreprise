@@ -30,10 +30,11 @@ export default class Conversation extends Component {
 		return (
 			<div className="conversationContainer">
 				<Aide />
-				<Scroll.toElement onlyIfNotVisible key={currentQuestion} />
+				<Scroll.toTop behavior="smooth" />
 				<div id="currentQuestion">
 					{currentQuestion && (
 						<Animate.fadeIn>
+							<Scroll.toElement onlyIfNotVisible />
 							{getInputComponent(flatRules, targetNames)(currentQuestion)}
 						</Animate.fadeIn>
 					)}
