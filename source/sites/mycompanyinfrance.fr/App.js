@@ -2,6 +2,7 @@ import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
+import './App.css'
 import Provider from '../../Provider'
 import Landing from './Landing'
 import CreateMyCompany from './pages/Company'
@@ -21,18 +22,20 @@ class InFranceRoute extends Component {
 	render() {
 		return (
 			<Provider basename="infrance" language="en">
-				<Switch>
-					<Route exact path="/" component={Landing} />
-					<>
-						{/* Passing location down to prevent update blocking */}
-						<StepsHeader location={location} />
-						<div className="ui__ container">
-							<Route path="/register" component={CreateMyCompany} />
-							<Route path="/social-security" component={SocialSecurity} />
-							<Route path="/hiring-process" component={HiringProcess} />
-						</div>
-					</>
-				</Switch>
+				<div id="content">
+					<Switch>
+						<Route exact path="/" component={Landing} />
+						<>
+							{/* Passing location down to prevent update blocking */}
+							<StepsHeader location={location} />
+							<div className="ui__ container">
+								<Route path="/register" component={CreateMyCompany} />
+								<Route path="/social-security" component={SocialSecurity} />
+								<Route path="/hiring-process" component={HiringProcess} />
+							</div>
+						</>
+					</Switch>
+				</div>
 				<Footer />
 			</Provider>
 		)
