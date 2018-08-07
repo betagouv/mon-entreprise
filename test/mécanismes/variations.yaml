@@ -40,9 +40,11 @@
       assiette: 100
       variations:
         - si: statut cadre
-          taux: 8%
+          alors: 
+            taux: 8%
         - si: ≠ statut cadre
-          taux: 5%
+          alors:
+            taux: 5%
 
   exemples:
     - nom:

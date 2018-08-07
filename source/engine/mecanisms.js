@@ -123,16 +123,17 @@ let decompose = (recurse, k, v) => {
 	}
 }
 
-let devariate = (recurse, k, v) => {
-	let subProps = dissoc('variations')(v),
-		explanation = v.variations.map(c => ({
-			...recurse(
-				objOf(k, {
-					...subProps,
-					...dissoc('si')(c)
-				})
-			),
-			condition: recurse(c.si)
+/* This function will produce variations of a same mecanism (e.g. product) that share some common properties */
+let devariate = (recurse, mecanismKey, v) => {
+	let fixedProps = dissoc('variations')(v),
+		explanation = v.variations.map(variation => ({
+			...recurse({
+				[mecanismKey]: {
+					...fixedProps,
+					...dissoc('si')(variation)
+				}
+			}),
+			condition: recurse(variation['si'])
 		}))
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -150,18 +151,17 @@ let devariate = (recurse, k, v) => {
 		}
 
 		let explanation = map(evaluateOne, node.explanation),
-			candidates = filter(
+			candidateValues = filter(
 				node => node.condition.nodeValue !== false,
 				explanation
 			),
-			satisfied = filter(node => node.condition.nodeValue, explanation),
-			choice = head(satisfied),
-			nodeValue = choice ? choice.nodeValue : null
+			satisfiedValue = find(node => node.condition.nodeValue, explanation),
+			nodeValue = satisfiedValue ? satisfiedValue.nodeValue : null
 
-		let leftMissing = choice
+		let leftMissing = satisfiedValue
 				? {}
 				: mergeAllMissing(pluck('condition', explanation)),
-			rightMissing = mergeAllMissing(candidates),
+			rightMissing = mergeAllMissing(candidateValues),
 			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
