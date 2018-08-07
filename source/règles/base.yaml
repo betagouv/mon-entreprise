@@ -1162,9 +1162,11 @@
       facteur: 2.083
       variations:
         - si: type de contrat = 'CDD'
-          assiette: CDD . durée contrat
+          alors: 
+            assiette: CDD . durée contrat
         - si: type de contrat = 'CDI'
-          assiette: 12
+          alors:
+            assiette: 12
 
   références:
     fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
@@ -1276,9 +1278,10 @@
       assiette: 1
       variations:
         - si: temps partiel
-          taux: heures par semaine / 35
-        - si: ≠ temps partiel
-          taux: 1
+          alors: 
+            taux: heures par semaine / 35
+        - sinon:
+            taux: 1
 - espace: contrat salarié
   nom: CICE
   aide:
@@ -1482,10 +1485,11 @@
       assiette: 10 / 6
       variations:
         - si: entreprise . effectif < 20
-          taux: 0.2814
+          alors: 
+            taux: 0.2814
           plafond: plafond sécurité sociale
-        - si: entreprise . effectif >= 20
-          taux: 0.2854
+        - sinon: 
+            taux: 0.2854
 
 - espace: contrat salarié
   nom: assiette réduction générale
@@ -1539,49 +1543,51 @@
             dû par: employeur
 
           variations:
-            - si: ≠ statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 1.2%
-                - de: 1
-                  à: 3
-                  taux: 1.3%
-                - au-dessus de: 3
-                  taux: 0%
-
             - si: statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 1.2%
-                - de: 1
-                  à: 8
-                  taux: 1.3%
-                - au-dessus de: 8
-                  taux: 0%
+              alors: 
+                tranches:
+                  - en-dessous de: 1
+                    taux: 1.2%
+                  - de: 1
+                    à: 8
+                    taux: 1.3%
+                  - au-dessus de: 8
+                    taux: 0%
+            - sinon:
+                tranches:
+                  - en-dessous de: 1
+                    taux: 1.2%
+                  - de: 1
+                    à: 3
+                    taux: 1.3%
+                  - au-dessus de: 3
+                    taux: 0%
+
 
         - attributs:
             dû par: salarié
 
           variations:
-            - si: ≠ statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 0.8%
-                - de: 1
-                  à: 3
-                  taux: 0.9%
-                - au-dessus de: 3
-                  taux: 0%
-
             - si: statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 0.8%
-                - de: 1
-                  à: 8
-                  taux: 0.9%
-                - au-dessus de: 8
-                  taux: 0%
+              alors: 
+                tranches:
+                  - en-dessous de: 1
+                    taux: 0.8%
+                  - de: 1
+                    à: 8
+                    taux: 0.9%
+                  - au-dessus de: 8
+                    taux: 0%
+            - sinon:
+                tranches:
+                  - en-dessous de: 1
+                    taux: 0.8%
+                  - de: 1
+                    à: 3
+                    taux: 0.9%
+                  - au-dessus de: 3
+                    taux: 0%
+
 - espace: contrat salarié
   nom: GMP
   cotisation:
@@ -1792,39 +1798,41 @@
             dû par: employeur
           variations:
             - si: statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 4.65%
-                - au-dessus de: 1
-                  taux: 0%
-            - si: ≠ statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 4.65%
-                - de: 1
-                  à: 3
-                  taux: 12.15%
-                - au-dessus de: 3
-                  taux: 0%
+              alors: 
+                tranches:
+                  - en-dessous de: 1
+                    taux: 4.65%
+                  - au-dessus de: 1
+                    taux: 0%
+            - sinon:
+                tranches:
+                  - en-dessous de: 1
+                    taux: 4.65%
+                  - de: 1
+                    à: 3
+                    taux: 12.15%
+                  - au-dessus de: 3
+                    taux: 0%
 
         - attributs:
             dû par: salarié
           variations:
             - si: statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 3.1%
-                - au-dessus de: 1
-                  taux: 0%
-            - si: ≠ statut cadre
-              tranches:
-                - en-dessous de: 1
-                  taux: 3.1%
-                - de: 1
-                  à: 3
-                  taux: 8.1%
-                - au-dessus de: 3
-                  taux: 0%
+              alors: 
+                tranches:
+                  - en-dessous de: 1
+                    taux: 3.1%
+                  - au-dessus de: 1
+                    taux: 0%
+            - sinon:
+                tranches:
+                  - en-dessous de: 1
+                    taux: 3.1%
+                  - de: 1
+                    à: 3
+                    taux: 8.1%
+                  - au-dessus de: 3
+                    taux: 0%
 - espace: contrat salarié
   nom: chômage
   cotisation:
@@ -2035,10 +2043,11 @@
       assiette: assiette cotisations sociales
       variations:
         - si: entreprise . effectif < 20
-          taux: 0.1%
-          plafond: plafond sécurité sociale
-        - si: entreprise . effectif >= 20
-          taux: 0.5%
+          alors: 
+            taux: 0.1%
+            plafond: plafond sécurité sociale
+        - sinon:
+            taux: 0.5%
 
   exemples:
     - nom: SMIC
@@ -2058,10 +2067,11 @@
     multiplication:
       assiette: assiette cotisations sociales
       variations:
-        - si: entreprise . effectif >= 11
-          taux: 1%
         - si: entreprise . effectif < 11
-          taux: 0.55%
+          alors:
+            taux: 0.55%
+        - sinon:
+            taux: 1%
 
 - espace: contrat salarié
   nom: maladie
@@ -2197,15 +2207,20 @@
 
       variations:
       - si: taxe d'apprentissage . csa au taux majoré
-        taux: 0.6%
+        alors: 
+          taux: 0.6%
       - si: entreprise . ratio alternants < 1%
-        taux: 0.4%
+        alors: 
+          taux: 0.4%
       - si: entreprise . ratio alternants < 2%
-        taux: 0.2%
+        alors: 
+          taux: 0.2%
       - si: entreprise . ratio alternants < 3%
-        taux: 0.1%
+        alors: 
+          taux: 0.1%
       - si: entreprise . ratio alternants < 5%
-        taux: 0.05%
+        alors:
+          taux: 0.05%
 
 - espace: contrat salarié . taxe d'apprentissage
   nom: csa au taux majoré
@@ -2322,12 +2337,6 @@
   nom: versement transport
   description: Contribution sur les salaires destinée au financement des transports publics.
   non applicable si: entreprise . effectif < 11
-    # TODO variations sur la période
-    # variations:
-    #   - si: période >= 2016
-    #     condition: entreprise . effectif >= 11
-    #   - si: période < 2016
-    #     condition: entreprise . effectif >= 10
   cotisation:
     branche: transport
     dû par: employeur
