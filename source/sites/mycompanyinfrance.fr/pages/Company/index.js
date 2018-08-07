@@ -11,7 +11,7 @@ import MinorityDirector from './MinorityDirector'
 import Microenterprise from './Microenterprise'
 import RegistrationPending from './RegistrationPending'
 import NumberOfAssociate from './NumberOfAssociate'
-import Register from './Register'
+import CreationChecklist from './CreationChecklist'
 
 
 const withRouteAnimation = style => AnimatedComponent => {
@@ -28,8 +28,8 @@ const CreateMyCompany = ({ match, location }) => (
 		<Animate.fromBottom>
 			<Switch>
 				<Route
-					path={match.path + '/register-:status'}
-					component={Register}
+					path={match.path + '/create-:status'}
+					component={CreationChecklist}
 				/>
 				<Route path={match.path + '/registration-pending'} component={RegistrationPending} />
 				<Route path={match.path + '/find'} component={Find} />

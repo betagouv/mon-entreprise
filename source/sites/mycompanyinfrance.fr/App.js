@@ -29,7 +29,7 @@ class InFranceRoute extends Component {
 							{/* Passing location down to prevent update blocking */}
 							<StepsHeader location={location} />
 							<div className="ui__ container">
-								<Route path="/register" component={CreateMyCompany} />
+								<Route path="/company" component={CreateMyCompany} />
 								<Route path="/social-security" component={SocialSecurity} />
 								<Route path="/hiring-process" component={HiringProcess} />
 							</div>

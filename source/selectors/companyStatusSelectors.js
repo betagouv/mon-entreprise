@@ -159,10 +159,10 @@ export const nextQuestionSelector = (state: {
 export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
 	const nextQuestion = nextQuestionSelector(state)
 	if (!nextQuestion) {
-		return '/register/pick-legal-status'
+		return '/company/pick-legal-status'
 	}
 	return (
-		'/register/' +
+		'/company/' +
 		nextQuestion
 			.replace(/[^a-zA-Z0-9]+/g, '-')
 			.replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')

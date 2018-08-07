@@ -53,7 +53,7 @@ class Search extends React.Component<Props, State> {
 			<div id="findYourCompany">
 				<h1 className="question__title">Find your company</h1>
 				<p>
-					<Link to="/register">I don&apos;t have a company yet</Link>
+					<Link to="/company">I don&apos;t have a company yet</Link>
 				</p>
 				<p>
 					{' '}

@@ -26,7 +26,7 @@ type Props = {
 const StepsHeader = ({ companyProgress, estimationProgress }: Props) => (
 	<header className="steps-header ui__ container">
 		<nav>
-			<NavLink to="/register" activeClassName="active">
+			<NavLink to="/company" activeClassName="active">
 				<img src={companySvg} />
 				<div>My company</div>
 				<Progress percent={companyProgress} />

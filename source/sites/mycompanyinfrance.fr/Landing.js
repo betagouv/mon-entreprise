@@ -22,7 +22,7 @@ const Landing = ({ colours: { colour } }) => (
 					<h1>Start your business in France.</h1>
 					<Link
 						className="ui__ inverted-button cta"
-						to="/register"
+						to="/company"
 						alt="the first step to create a company">
 						Take the step by step guide
 					</Link>
@@ -39,8 +39,8 @@ const Landing = ({ colours: { colour } }) => (
 				</li>
 			</ul>
 			<p style={{ textAlign: 'center' }}>
-				<Link to="/register" className="ui__ button">
-					Register your company
+				<Link to="/company" className="ui__ button">
+					Create your company
 				</Link>
 			</p>
 			<h2>2. Simulate costs and social benefits {emoji('💶')} </h2>
