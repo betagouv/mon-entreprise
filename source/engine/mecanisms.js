@@ -125,14 +125,14 @@ let decompose = (recurse, k, v) => {
 
 let devariateExplanation = (recurse, mecanismKey, v) => {
 	let fixedProps = dissoc('variations')(v),
-		explanation = v.variations.map(variation => ({
-			...recurse({
+		explanation = v.variations.map(({ si, alors, sinon }) => ({
+			consequence: recurse({
 				[mecanismKey]: {
 					...fixedProps,
-					...variation['alors']
+					...(sinon || alors)
 				}
 			}),
-			condition: recurse(variation['si'])
+			condition: sinon ? undefined : recurse(si)
 		}))
 
 	return explanation
@@ -142,37 +142,41 @@ let devariateExplanation = (recurse, mecanismKey, v) => {
 export let mecanismVariations = (recurse, k, v, devariate) => {
 	let explanation = devariate
 		? devariateExplanation(recurse, k, v)
-		: v.map(({ si, alors }) => ({ ...recurse(alors), condition: recurse(si) }))
+		: v.map(
+				({ si, alors, sinon }) =>
+					sinon !== undefined
+						? { consequence: recurse(sinon), condition: undefined }
+						: { consequence: recurse(alors), condition: recurse(si) }
+		  )
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = variation => {
-			let condition = evaluateNode(
-				cache,
-				situationGate,
-				parsedRules,
-				variation.condition
-			)
-			return {
-				...evaluateNode(cache, situationGate, parsedRules, variation),
-				condition
-			}
-		}
-
-		let explanation = map(evaluateOne, node.explanation),
-			candidateValues = filter(
-				node => node.condition.nodeValue !== false,
-				explanation
+		let evaluateVariation = map(
+				prop =>
+					prop === undefined
+						? undefined
+						: evaluateNode(cache, situationGate, parsedRules, prop)
 			),
-			satisfiedValue = find(node => node.condition.nodeValue, explanation),
-			nodeValue = satisfiedValue ? satisfiedValue.nodeValue : null
+			evaluatedExplanation = map(evaluateVariation, node.explanation),
+			satisfiedVariation = find(
+				variation =>
+					!variation.condition || variation.condition.nodeValue === true,
+				evaluatedExplanation
+			),
+			nodeValue = satisfiedVariation
+				? satisfiedVariation.consequence.nodeValue
+				: null
 
-		let leftMissing = satisfiedValue
+		let leftMissing = satisfiedVariation
 				? {}
-				: mergeAllMissing(pluck('condition', explanation)),
-			rightMissing = mergeAllMissing(candidateValues),
+				: mergeAllMissing(pluck('condition', evaluatedExplanation)),
+			candidateVariations = filter(
+				node => !node.condition || node.condition.nodeValue !== false,
+				evaluatedExplanation
+			),
+			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
 			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return rewriteNode(node, nodeValue, evaluatedExplanation, missingVariables)
 	}
 
 	// TODO - find an appropriate representation
@@ -187,7 +191,7 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 						<li className="variation" key={JSON.stringify(c.condition)}>
 							<div className="condition">
 								{makeJsx(c.condition)}
-								<div className="content">{makeJsx(c)}</div>
+								<div className="content">{makeJsx(c.consequence)}</div>
 							</div>
 						</li>
 					))}
