@@ -123,29 +123,37 @@ let decompose = (recurse, k, v) => {
 	}
 }
 
-/* This function will produce variations of a same mecanism (e.g. product) that share some common properties */
-let devariate = (recurse, mecanismKey, v) => {
+let devariateExplanation = (recurse, mecanismKey, v) => {
 	let fixedProps = dissoc('variations')(v),
 		explanation = v.variations.map(variation => ({
 			...recurse({
 				[mecanismKey]: {
 					...fixedProps,
-					...dissoc('si')(variation)
+					...variation['alors']
 				}
 			}),
 			condition: recurse(variation['si'])
 		}))
 
+	return explanation
+}
+
+/* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
+export let mecanismVariations = (recurse, k, v, devariate) => {
+	let explanation = devariate
+		? devariateExplanation(recurse, k, v)
+		: v.map(({ si, alors }) => ({ ...recurse(alors), condition: recurse(si) }))
+
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => {
+		let evaluateOne = variation => {
 			let condition = evaluateNode(
 				cache,
 				situationGate,
 				parsedRules,
-				child.condition
+				variation.condition
 			)
 			return {
-				...evaluateNode(cache, situationGate, parsedRules, child),
+				...evaluateNode(cache, situationGate, parsedRules, variation),
 				condition
 			}
 		}
@@ -614,7 +622,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return devariate(recurse, k, v)
+		return mecanismVariations(recurse, k, v, true)
 	}
 
 	let objectShape = {

@@ -10,28 +10,15 @@
         alors: 2100
 
   exemples:
-    - nom: première proposition vraie
+    - nom: Cadre
       situation:
         statut cadre: oui
       valeur attendue: 2300
-    - nom: deuxième proposition vraie
+    - nom: Non cadre
       situation:
         statut cadre: non
       valeur attendue: 2100
 
-
-- test: variations avec cas défaut
-  formule:
-    variations:
-      - si: statut cadre
-        alors: 2300
-      - sinon: 2100
-
-  exemples:
-    - nom: proposition par défaut
-      situation:
-        statut cadre: non
-      valeur attendue: 2100
 
 
 - test: variations au sein d'un mécanisme 
@@ -47,7 +34,11 @@
             taux: 5%
 
   exemples:
-    - nom:
+    - nom: Non cadre
       situation:
         statut cadre: non
       valeur attendue: 5
+    - nom: Cadre
+      situation:
+        statut cadre: oui
+      valeur attendue: 8

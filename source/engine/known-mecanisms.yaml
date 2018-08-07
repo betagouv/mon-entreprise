@@ -54,10 +54,10 @@ variations:
 
     ```
     si: condition
-    alors
+    alors: valeur
     ```
 
-    `condition` est booléen, `alors` contient les attributs d'un mécanisme numérique, comme `barème` ou `multiplication`.
+    Ce mécanisme peut aussi être utilisé au sein d'un mécanisme compatible, tel que la multiplication ou le barème. Par exemple, certains paramètres de la multiplication seront communs (ex. l'assiette) alors que d'autres (ex. le taux) variront selon une autre variable (ex. statut cadre).
 
 multiplication:
   type: numeric
@@ -156,4 +156,6 @@ allègement:
   description: |
     Permet de réduire le montant d'une variable. 
     Très utilisé dans le contexte des impôts. 
+
+
 
