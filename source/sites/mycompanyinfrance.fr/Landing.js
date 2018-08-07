@@ -30,7 +30,7 @@ const Landing = ({ colours: { colour } }) => (
 			</header>
 		</section>
 		<section className="ui__ container landing-explanation">
-			<h2>1. Create your company </h2>
+			<h2>Your new company </h2>
 			<div className="landing-explanation-content">
 				{emoji('🏗️')}
 				<ul>
@@ -43,7 +43,7 @@ const Landing = ({ colours: { colour } }) => (
 			<p style={{ textAlign: 'center' }}>
 				<Link to="/company">Create your company</Link>
 			</p>
-			<h2>2. Simulate costs and social benefits </h2>
+			<h2>Your business plan</h2>
 			<div className="landing-explanation-content">
 				{emoji('💶')}
 				<ul>
@@ -53,9 +53,9 @@ const Landing = ({ colours: { colour } }) => (
 				</ul>
 			</div>
 			<p style={{ textAlign: 'center' }}>
-				<Link to="/social-security">Simulate hiring costs</Link>
+				<Link to="/social-security">Simulate hiring costs and benefits</Link>
 			</p>
-			<h2>3. Hire your first employee </h2>
+			<h2>Your first employee</h2>
 			<div className="landing-explanation-content">
 				{emoji('🤝')}
 				<ul>
