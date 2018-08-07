@@ -681,13 +681,23 @@
       - CDD
   par défaut: CDI
 
+
+- espace: contrat salarié
+  nom: assimilé salarié
+  description: | 
+    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale. 
+  question: Le salarié est-il considéré comme "assimilé salarié" ?
+  références: 
+    Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
+
+    
 - espace: contrat salarié
   nom: type de contrat
   formule:
     variations: 
-      - si: assimilé
+      - si: assimilé salarié
         alors: CDI
-      - sinon: choix type de contrat   
+      - sinon: choix du type de contrat   
   
 - espace: contrat salarié . type de contrat
   nom: CDD
@@ -809,8 +819,8 @@
   nom: statut cadre
   formule:
     variations: 
-      - si: assimilé
-        alors: 'oui'
+      - si: assimilé salarié
+        alors: oui
       - sinon: choix statut cadre
 
 - espace: contrat salarié

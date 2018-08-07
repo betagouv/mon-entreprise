@@ -3,6 +3,7 @@
 
 main ->
 		  CalcExpression {% id %}
+		| Boolean {% id %}
 		| Variable {% id %}
 		| NegatedVariable {% id %}
 		| ModifiedVariable {% id %}
@@ -54,7 +55,6 @@ ArithmeticOperator -> "+" {% id %}
 	| "/" {% id %}
 
 
-# BooleanVariableExpression -> ("!" _):? Variable {% d => (['BooleanVariableExpression', ...d]) %}
 
 
 Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d => ({
@@ -82,3 +82,9 @@ _ -> [\s]     {% d => null %}
 number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}) %}
 
 percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({category: 'percentage', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))/100}) %}
+
+Boolean -> "oui" {% d=> ({category: 'boolean', nodeValue: true}) %}
+ | "non" {% d=> ({category: 'boolean', nodeValue: false}) %}
+
+
+
