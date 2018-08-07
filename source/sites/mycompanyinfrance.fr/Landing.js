@@ -41,9 +41,7 @@ const Landing = ({ colours: { colour } }) => (
 			</div>
 
 			<p style={{ textAlign: 'center' }}>
-				<Link to="/company" className="ui__ button">
-					Create your company
-				</Link>
+				<Link to="/company">Create your company</Link>
 			</p>
 			<h2>2. Simulate costs and social benefits </h2>
 			<div className="landing-explanation-content">
@@ -55,9 +53,7 @@ const Landing = ({ colours: { colour } }) => (
 				</ul>
 			</div>
 			<p style={{ textAlign: 'center' }}>
-				<Link to="/social-security" className="ui__ button">
-					Simulate hiring costs
-				</Link>
+				<Link to="/social-security">Simulate hiring costs</Link>
 			</p>
 			<h2>3. Hire your first employee </h2>
 			<div className="landing-explanation-content">
@@ -69,9 +65,7 @@ const Landing = ({ colours: { colour } }) => (
 				</ul>
 			</div>
 			<p style={{ textAlign: 'center' }}>
-				<Link to="/hiring-process" className="ui__ button">
-					Discover the hiring process
-				</Link>
+				<Link to="/hiring-process">Discover the hiring process</Link>
 			</p>
 		</section>
 		<section className="landing__nav" />
