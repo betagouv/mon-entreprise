@@ -78,3 +78,15 @@
 	padding: 1rem;
 	max-width: 20rem;
 }
+
+.landing-explanation-content {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.landing-explanation img {
+	width: 72px !important;
+	height: 72px !important;
+	margin: 0 1em 0 2em !important;
+}

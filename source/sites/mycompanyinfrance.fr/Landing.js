@@ -30,34 +30,44 @@ const Landing = ({ colours: { colour } }) => (
 			</header>
 		</section>
 		<section className="ui__ container landing-explanation">
-			<h2>1. Create your company {emoji('🏗️')}</h2>
-			<ul>
-				<li>Find the legal status that suits you</li>
-				<li>Choose the best location for your business</li>
-				<li>Follow the steps up to your company's registration</li>
-			</ul>
+			<h2>1. Create your company </h2>
+			<div className="landing-explanation-content">
+				{emoji('🏗️')}
+				<ul>
+					<li>Find the legal status that suits you</li>
+					<li>Choose the best location for your business</li>
+					<li>Follow the steps up to your company's registration</li>
+				</ul>
+			</div>
+
 			<p style={{ textAlign: 'center' }}>
 				<Link to="/company" className="ui__ button">
 					Create your company
 				</Link>
 			</p>
-			<h2>2. Simulate costs and social benefits {emoji('💶')} </h2>
-			<ul>
-				<li>Discover the French social security</li>
-				<li>Simulate hiring costs </li>
-				<li>Understand the complex french payslip</li>
-			</ul>
+			<h2>2. Simulate costs and social benefits </h2>
+			<div className="landing-explanation-content">
+				{emoji('💶')}
+				<ul>
+					<li>Discover the French social security</li>
+					<li>Simulate hiring costs </li>
+					<li>Understand the complex french payslip</li>
+				</ul>
+			</div>
 			<p style={{ textAlign: 'center' }}>
 				<Link to="/social-security" className="ui__ button">
 					Simulate hiring costs
 				</Link>
 			</p>
-			<h2>3. Hire your first employee {emoji('🤝')}</h2>
-			<ul>
-				<li>Discover the procedures to hire in France</li>
-				<li>Learn the basics of the french labour law</li>
-				<li>Find the tools to edit a compliant payslip</li>
-			</ul>
+			<h2>3. Hire your first employee </h2>
+			<div className="landing-explanation-content">
+				{emoji('🤝')}
+				<ul>
+					<li>Discover the procedures to hire in France</li>
+					<li>Learn the basics of the french labour law</li>
+					<li>Find the tools to edit a compliant payslip</li>
+				</ul>
+			</div>
 			<p style={{ textAlign: 'center' }}>
 				<Link to="/hiring-process" className="ui__ button">
 					Discover the hiring process
