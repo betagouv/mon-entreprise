@@ -34,9 +34,7 @@ const Landing = ({ colours: { colour } }) => (
 			<ul>
 				<li>Find the legal status that suits you</li>
 				<li>Choose the best location for your business</li>
-				<li>
-					Follow the different steps up to the registration of your company
-				</li>
+				<li>Follow the steps up to your company's registration</li>
 			</ul>
 			<p style={{ textAlign: 'center' }}>
 				<Link to="/company" className="ui__ button">
@@ -45,9 +43,9 @@ const Landing = ({ colours: { colour } }) => (
 			</p>
 			<h2>2. Simulate costs and social benefits {emoji('💶')} </h2>
 			<ul>
-				<li>Discover French social security and its benefits </li>
-				<li>Simulate the hiring costs </li>
-				<li>Understand the different sections of the payslip</li>
+				<li>Discover the French social security</li>
+				<li>Simulate hiring costs </li>
+				<li>Understand the complex french payslip</li>
 			</ul>
 			<p style={{ textAlign: 'center' }}>
 				<Link to="/social-security" className="ui__ button">
@@ -56,13 +54,13 @@ const Landing = ({ colours: { colour } }) => (
 			</p>
 			<h2>3. Hire your first employee {emoji('🤝')}</h2>
 			<ul>
-				<li>Discover the hiring procedures in France </li>
-				<li>Learn the basics of french labour law and employment contract </li>
-				<li>Know the different tools for editing a compliant payslip</li>
+				<li>Discover the procedures to hire in France</li>
+				<li>Learn the basics of the french labour law</li>
+				<li>Find the tools to edit a compliant payslip</li>
 			</ul>
 			<p style={{ textAlign: 'center' }}>
 				<Link to="/hiring-process" className="ui__ button">
-					Discover hiring process
+					Discover the hiring process
 				</Link>
 			</p>
 		</section>
