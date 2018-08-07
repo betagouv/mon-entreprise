@@ -6,29 +6,42 @@ import { capitalise0 } from '../../utils'
 import Destinataire from './Destinataire'
 import './Header.css'
 import Namespace from './Namespace'
+import withColours from 'Components/utils/withColours'
 
-let RuleHeader = ({
-	ns,
-	type,
-	description,
-	question,
-	flatRule,
-	flatRules,
-	name,
-	title
-}) => (
-	<section id="rule-meta">
-		{ns && <Namespace {...{ ns, flatRules }} />}
-		<header id="meta-header">
-			<h1>{title || capitalise0(name)}</h1>
-			{type && (
-				<span className="rule-type aa">
-					<Trans>{type}</Trans>
-				</span>
-			)}
-		</header>
-		<Destinataire destinataire={path([type, 'destinataire'])(flatRule)} />
-		<div id="meta-content">{createMarkdownDiv(description || question)}</div>
-	</section>
+let RuleHeader = withColours(
+	({
+		ns,
+		type,
+		description,
+		question,
+		flatRule,
+		flatRules,
+		name,
+		title,
+		colours
+	}) => (
+		<section id="ruleHeader">
+			<header style={{ background: colours.colour }}>
+				{ns && <Namespace {...{ ns, flatRules, colour: colours.textColour }} />}
+				<h1 style={{ color: colours.textColour }}>
+					{title || capitalise0(name)}
+				</h1>
+			</header>
+			<div id="ruleHeader__content">
+				<div id="ruleHeader__description">
+					{createMarkdownDiv(description || question)}
+				</div>
+				<div id="ruleHeader__infobox">
+					{type && (
+						<div className="infobox__item">
+							<h4>Type&nbsp;:</h4>
+							<Trans>{capitalise0(type)}</Trans>
+						</div>
+					)}
+					<Destinataire destinataire={path([type, 'destinataire'])(flatRule)} />
+				</div>
+			</div>
+		</section>
+	)
 )
 export default RuleHeader

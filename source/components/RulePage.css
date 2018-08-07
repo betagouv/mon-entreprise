@@ -3,23 +3,15 @@
 }
 .rule-page__header {
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: 1.3em;
+	text-decoration: none;
 }
 .rule-page__search {
 	align-self: flex-end;
-	text-decoration: none !important;
-}
-#toSimulation {
-	margin: 0.6em 0;
-	text-decoration: none !important;
-	display: block;
-	color: white;
-	font-size: 150%;
-	text-align: center;
-	padding: 0.6em 0.6em;
-	border-radius: 0.2em;
+	text-decoration: none;
 }
 
 #toSimulation i {
-	margin: 0 0.6em;
+	margin: 0 0.4em;
 }

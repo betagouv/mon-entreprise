@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
 
-let Namespace = ({ ns, flatRules }) => (
+let Namespace = ({ ns, flatRules, colour }) => (
 	<ul id="namespace">
 		{ns
 			.split(' . ')
@@ -18,11 +18,14 @@ let Namespace = ({ ns, flatRules }) => (
 			.map(fragments => {
 				let ruleName = fragments.join(' . '),
 					rule = findRuleByDottedName(flatRules, ruleName),
-					ruleText = rule.title || capitalise0(rule.name)
+					ruleText = rule.title || capitalise0(rule.name),
+					style = { color: colour }
 
 				return (
-					<li key={fragments.join()}>
-						<Link to={'../règle/' + encodeRuleName(ruleName)}>{ruleText}</Link>
+					<li style={style} key={fragments.join()}>
+						<Link style={style} to={'../règle/' + encodeRuleName(ruleName)}>
+							{ruleText}
+						</Link>
 						{' › '}
 					</li>
 				)

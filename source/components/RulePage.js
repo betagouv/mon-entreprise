@@ -86,8 +86,9 @@ class BackToSimulation extends Component {
 				onClick={() => {
 					setExample(null)
 				}}
-				style={{ background: colour }}>
-				⬅️ <Trans i18nKey="back">Reprendre la simulation</Trans>
+				style={{ color: colour }}>
+				<i className="fa fa-arrow-left" aria-hidden="true" />
+				<Trans i18nKey="back">Reprendre la simulation</Trans>
 			</Link>
 		)
 	}
