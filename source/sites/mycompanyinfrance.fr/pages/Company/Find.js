@@ -50,7 +50,7 @@ class Search extends React.Component<Props, State> {
 
 	render() {
 		return (
-			<>
+			<div id="findYourCompany">
 				<h1 className="question__title">Find your company</h1>
 				<p>
 					<Link to="/register">I don&apos;t have a company yet</Link>
@@ -69,7 +69,7 @@ class Search extends React.Component<Props, State> {
 					optionRenderer={({ l1_normalisee, code_postal }) =>
 						l1_normalisee + ` (${code_postal})`
 					}
-					placeholder="Company name and city"
+					placeholder="Type your company name"
 					noResultsText="We didn't find any matching registered company."
 					searchPromptText={null}
 					loadingPlaceholder="Searching..."
@@ -89,7 +89,7 @@ class Search extends React.Component<Props, State> {
 						</button>
 					</>
 				)}
-			</>
+			</div>
 		)
 	}
 }
@@ -97,8 +97,8 @@ class Search extends React.Component<Props, State> {
 let companyDataSelection = {
 	l1_normalisee: 'Name',
 	libelle_activite_principale: 'Main activity',
-		l4_normalisee: 'Street', 
-		l6_normalisee: 'City',
+	l4_normalisee: 'Street',
+	l6_normalisee: 'City',
 	libelle_region: 'Region',
 	libelle_tranche_effectif_salarie_entreprise: 'Number of employees',
 	date_creation: 'Creation date'
