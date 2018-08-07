@@ -60,5 +60,5 @@ export const startCompanyRegistration= () => ((dispatch, _, history)  => {
 	dispatch(({
 		type: 'START_COMPANY_REGISTRATION',
 	}: StartCompanyRegistrationAction))
-	history.push('/register/registration-pending')
+	history.push('/company/registration-pending')
 }:ThunkAction )

@@ -8,16 +8,13 @@ import {
 	Transition
 } from 'react-spring'
 import type { SpringConfig } from 'react-spring'
+import type { ChildrenArray, Node } from 'react'
 
 type Props = {
-	children: Array<React.Node>,
+	children: ChildrenArray<Node>,
 	config?: SpringConfig,
 	delay?: number
 }
-
-const coerceArray = (
-	children: Array<React.Node> | React.Node
-): Array<React.Node> => (Array.isArray(children) ? children : [children])
 
 export const fromBottom = ({
 	children,
@@ -25,7 +22,7 @@ export const fromBottom = ({
 	delay = 0
 }: Props) => (
 	<Trail
-		keys={coerceArray(children).map((_, i) => i)}
+		keys={React.Children.map(children, (_, i) => i)}
 		native={true}
 		delay={delay}
 		config={config}
@@ -33,7 +30,7 @@ export const fromBottom = ({
 		leave={{ opacity: 0, y: -50 }}
 		to={{ opacity: 1, y: 0 }}>
 		{/* eslint-disable-next-line react/display-name */}
-		{coerceArray(children).map((item, i) => ({ y, ...style }) => (
+		{React.Children.map(children, (item, i) => ({ y, ...style }) => (
 			<animated.div
 				key={i}
 				style={{
@@ -115,4 +112,11 @@ export class appear extends React.Component<Props, State> {
 			</Spring>
 		)
 	}
+}
+
+export default {
+	appear,
+	fromBottom,
+	leftToRight,
+	fadeIn
 }

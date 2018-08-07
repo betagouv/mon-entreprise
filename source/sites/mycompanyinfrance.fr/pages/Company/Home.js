@@ -13,8 +13,8 @@ type Props = {
 }
 const CreateMyCompany = ({ match, nextQuestionUrl, history }: Props) => (
 	<>
-		<h1 className="question__title">Register a company</h1>
-		<Link className="ui__ link-button" to="/register/find">
+		<h1 className="question__title">Create a company</h1>
+		<Link className="ui__ link-button" to="/company/find">
 			My company is already registered with the French Administration
 		</Link>
 		<p>

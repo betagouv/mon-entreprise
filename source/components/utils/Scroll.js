@@ -5,7 +5,6 @@ export class ScrollToTop extends Component {
 		behavior: 'auto'
 	}
 	componentDidMount() {
-		console.log('scrototop')
 		window.scroll({
 			top: 0,
 			behavior: this.props.behavior
