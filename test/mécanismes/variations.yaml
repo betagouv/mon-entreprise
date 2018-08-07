@@ -20,6 +20,22 @@
       valeur attendue: 2100
 
 
+- test: variations avec cas défaut
+  formule:
+    variations:
+      - si: statut cadre
+        alors: 2300
+      - sinon: 2100
+
+  exemples:
+    - nom: proposition par défaut
+      situation:
+        statut cadre: non
+      valeur attendue: 2100
+
+
+
+
 
 - test: variations au sein d'un mécanisme 
   formule:
@@ -42,3 +58,31 @@
       situation:
         statut cadre: oui
       valeur attendue: 8
+
+
+
+
+
+- test: variations au sein d'un mécanisme avec sinon
+  formule:
+    multiplication:
+      assiette: 100
+      variations:
+        - si: statut cadre
+          alors: 
+            taux: 8%
+        - sinon:
+            taux: 5%
+
+  exemples:
+    - nom: Non cadre
+      situation:
+        statut cadre: non
+      valeur attendue: 5
+    - nom: Cadre
+      situation:
+        statut cadre: oui
+      valeur attendue: 8
+
+
+
