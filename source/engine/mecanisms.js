@@ -24,7 +24,9 @@ import {
 	max,
 	min,
 	subtract,
-	sum
+	sum,
+	isNil,
+	reject
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -168,7 +170,9 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 
 		let leftMissing = satisfiedVariation
 				? {}
-				: mergeAllMissing(pluck('condition', evaluatedExplanation)),
+				: mergeAllMissing(
+						reject(isNil, pluck('condition', evaluatedExplanation))
+				  ),
 			candidateVariations = filter(
 				node => !node.condition || node.condition.nodeValue !== false,
 				evaluatedExplanation

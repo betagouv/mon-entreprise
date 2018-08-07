@@ -61,9 +61,10 @@ describe('inversions', () => {
               assiette: assiette
               variations:
                 - si: cadre
-                  taux: 80%
-                - si: ≠ cadre
-                  taux: 70%
+                  alors:
+                    taux: 80%
+                - sinon:
+                    taux: 70%
 
         - nom: brut
           format: euro
@@ -93,9 +94,10 @@ describe('inversions', () => {
               assiette: assiette
               variations:
                 - si: cadre
-                  taux: 80%
-                - si: ≠ cadre
-                  taux: 70%
+                  alors: 
+                    taux: 80%
+                - sinon:
+                    taux: 70%
 
         - nom: brut
           format: euro
@@ -119,9 +121,10 @@ describe('inversions', () => {
               assiette: 1200
               variations:
                 - si: cadre
-                  taux: 80%
-                - si: ≠ cadre
-                  taux: 70%
+                  alors: 
+                    taux: 80%
+                - sinon:
+                    taux: 70%
       `,
 			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
 			stateSelector = name => ({ net: 2000 }[name]),
@@ -140,9 +143,11 @@ describe('inversions', () => {
               assiette: assiette
               variations:
                 - si: cadre
-                  taux: 80%
+                  alors:
+                    taux: 80%
                 - si: ≠ cadre
-                  taux: 70%
+                  alors: 
+                    taux: 70%
 
         - nom: total
           formule:

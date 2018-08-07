@@ -272,19 +272,23 @@ describe('analyse with mecanisms', function() {
 							variations: [
 								{
 									si: '3 > 4',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 1.2 },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 1.2 },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								},
 								{
 									si: '3 > 2',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 1.8 },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 1.8 },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								}
 							]
 						}

@@ -178,21 +178,25 @@ describe('collectMissingVariables', function() {
 							variations: [
 								{
 									si: 'dix',
-									'multiplicateur des tranches': 'deux',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 'trois' },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										'multiplicateur des tranches': 'deux',
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 'trois' },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								},
 								{
 									si: '3 > 4',
-									'multiplicateur des tranches': 'quatre',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 1.8 },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										'multiplicateur des tranches': 'quatre',
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 1.8 },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								}
 							]
 						}
@@ -231,19 +235,23 @@ describe('collectMissingVariables', function() {
 							variations: [
 								{
 									si: 'dix',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 'deux' },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 'deux' },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								},
 								{
 									si: '3 > 2',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 1.8 },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 1.8 },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								}
 							]
 						}
