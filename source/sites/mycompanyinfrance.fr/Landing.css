@@ -79,6 +79,19 @@
 	max-width: 20rem;
 }
 
+.landing-explanation {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.landing-explanation h2 {
+	text-align: center;
+}
+.landing-explanation p {
+	text-align: center;
+}
+
 .landing-explanation-content {
 	display: flex;
 	align-items: center;

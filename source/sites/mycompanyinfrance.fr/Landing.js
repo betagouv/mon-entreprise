@@ -29,44 +29,49 @@ const Landing = ({ colours: { colour } }) => (
 				</Animate.fromBottom>
 			</header>
 		</section>
-		<section className="ui__ container landing-explanation">
-			<h2>Your new company </h2>
-			<div className="landing-explanation-content">
-				{emoji('🏗️')}
-				<ul>
-					<li>Find the legal status that suits you</li>
-					<li>Choose the best location for your business</li>
-					<li>Follow the steps up to your company's registration</li>
-				</ul>
+		<section className="landing-explanation">
+			<div>
+				<h2>Your new company </h2>
+				<div className="landing-explanation-content">
+					{emoji('🏗️')}
+					<ul>
+						<li>Find the legal status that suits you</li>
+						<li>Choose the best location for your business</li>
+						<li>Follow the steps up to your company's registration</li>
+					</ul>
+				</div>
+				<p>
+					<Link to="/company">Create your company</Link>
+				</p>
 			</div>
-
-			<p style={{ textAlign: 'center' }}>
-				<Link to="/company">Create your company</Link>
-			</p>
-			<h2>Your business plan</h2>
-			<div className="landing-explanation-content">
-				{emoji('💶')}
-				<ul>
-					<li>Discover the French social security</li>
-					<li>Simulate hiring costs </li>
-					<li>Understand the complex french payslip</li>
-				</ul>
+			<div>
+				<h2>Your business plan</h2>
+				<div className="landing-explanation-content">
+					{emoji('💶')}
+					<ul>
+						<li>Discover the French social security</li>
+						<li>Simulate hiring costs </li>
+						<li>Understand the complex french payslip</li>
+					</ul>
+				</div>
+				<p>
+					<Link to="/social-security">Simulate hiring costs and benefits</Link>
+				</p>
 			</div>
-			<p style={{ textAlign: 'center' }}>
-				<Link to="/social-security">Simulate hiring costs and benefits</Link>
-			</p>
-			<h2>Your first employee</h2>
-			<div className="landing-explanation-content">
-				{emoji('🤝')}
-				<ul>
-					<li>Discover the procedures to hire in France</li>
-					<li>Learn the basics of the french labour law</li>
-					<li>Find the tools to edit a compliant payslip</li>
-				</ul>
+			<div>
+				<h2>Your first employee</h2>
+				<div className="landing-explanation-content">
+					{emoji('🤝')}
+					<ul>
+						<li>Discover the procedures to hire in France</li>
+						<li>Learn the basics of the french labour law</li>
+						<li>Find the tools to edit a compliant payslip</li>
+					</ul>
+				</div>
+				<p>
+					<Link to="/hiring-process">Discover the hiring process</Link>
+				</p>
 			</div>
-			<p style={{ textAlign: 'center' }}>
-				<Link to="/hiring-process">Discover the hiring process</Link>
-			</p>
 		</section>
 		<section className="landing__nav" />
 	</>
