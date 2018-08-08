@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { Checklist, CheckItem } from 'Ui/Checklist'
 import type { Match } from 'react-router'
+import siret from './siret.jpg'
+
 
 type Props = {
 	startCompanyRegistration: () => void,
@@ -131,19 +133,55 @@ const Register = ({
 							<a
 								className="ui__ button"
 								href="https://account.guichet-entreprises.fr/user/create"
+								target="blank"
 							>
 								Register my company online
 							</a>
+							<p>
+							<a href="mailto:contact@embauche.beta.gouv.fr">I have trouble to complete the online registration</a>
+							</p>
 							</>
 						}
 					/>
 				</Checklist>			
 			)}
+			<h2>Administrative papers</h2>
+			<p>Once your business has been officially registered, you will receive:</p>
+			<ul>
+				<li>
+					<strong>Your Siret number</strong>
+					, which identifies your company
+				</li>
+				<li>
+					<strong>Your APE code</strong>
+					, which defines your business sector
+				</li>
+				{!microenterprise && <li>
+					<strong>Your K-bis extract</strong>
+					, which certifies that your company is properly registrated
+				</li>}
+			</ul>
+			<h3>Siren and Siret</h3>
+			<p>
+				The Siren number identifies your company while the Siret number identifies
+				each place of business operated by the same company.
+			</p>
+			<img src={siret} alt="Siret and siren number" />
+			<h3>APE Code</h3>
+			<p>
+				The APE code for the business sector to which your company belong. The APE
+				code is used to classify your company’s main operations in relation to the
+				french business nomenclature system (« NAF » code). It also determines the
+				applicable collective agreement as well as the industrial accident rate in
+				the field to which you or your company belong.
+			</p>
+			{!microenterprise && 
 			<p style={{ textAlign: 'right' }}>
 				<Link to={'/social-security'} className="ui__ skip-button">
 					Continue to social security ›
 				</Link>
 			</p>
+			}
 		</Animate.fromBottom>
 	)
 }
