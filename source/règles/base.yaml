@@ -679,6 +679,7 @@
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   références: 
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
+  par défaut: non
 
 
 - espace: contrat salarié
@@ -1884,6 +1885,7 @@
       situation:
         assiette cotisations sociales: 20000
       valeur attendue: 662.2
+
 - espace: contrat salarié
   nom: complémentaire santé
   cotisation:
