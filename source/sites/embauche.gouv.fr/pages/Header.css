@@ -8,9 +8,10 @@
 	display: flex;
 	align-items: center;
 	max-width: 14em;
+	text-decoration: none !important;
 }
 #header h1 {
-	font-size: calc(.8vw + 100%);
+	font-size: calc(0.8vw + 100%);
 	font-weight: 600;
 	display: inline-block;
 	margin-left: 0em;
@@ -24,24 +25,21 @@
 }
 
 #headerRight {
-    display: flex;
+	display: flex;
 	align-items: center;
 }
-
 
 #menuButton {
 	font-size: 220%;
 	color: #3c4963;
-	margin: 0 .1em;
+	margin: 0 0.1em;
 	display: inline-block;
-
 }
 nav {
 	font-size: 110%;
 	display: inline-block;
 	line-height: 2em;
 }
-
 
 nav a {
 	color: #666;
@@ -108,21 +106,22 @@ nav a {
 	font-size: 150%;
 }
 
-
 #langSwitcher button {
-		font-size: 120%;
-		border: none;
-		border-radius: 0;
-		margin: 0 .6em;
-		padding: 0;
-
+	font-size: 120%;
+	border: none;
+	border-radius: 0;
+	margin: 0 0.6em;
+	padding: 0;
 }
 #langSwitcher button:hover {
-		border-bottom: 1px solid black;
+	border-bottom: 1px solid black;
 }
 
 #langSwitcher img {
-		margin-right: .4em;
-		height: .8em;
+	margin-right: 0.4em;
+	height: 0.8em;
 }
 
+.menu-item {
+	text-decoration: none !important;
+}
