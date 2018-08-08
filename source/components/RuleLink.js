@@ -15,7 +15,7 @@ type Props = Règle & {
 }
 const RuleLink = ({ lien, nom, colours: { colour }, match, style }: Props) => (
 	<Link
-		to={match.path + '/' + lien}
+		to={match.path + (match.path.endsWith('/') ? '' : '/') + lien}
 		className="rule-link"
 		style={{ color: colour, ...style }}>
 		{capitalise0(nom)}
