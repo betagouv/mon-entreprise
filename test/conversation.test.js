@@ -110,7 +110,7 @@ describe('conversation', function() {
               assiette: brut
               variations:
                 - si: cadre
-				  alors: 
+                  alors: 
                     taux: 77%
                 - sinon:
                     taux: 80%

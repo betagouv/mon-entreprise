@@ -18,6 +18,11 @@
       situation:
         statut cadre: non
       valeur attendue: 2100
+    - nom: Information manquante
+      situation:
+      valeur attendue: null
+      variables manquantes: 
+        - statut cadre
 
 
 - test: variations avec cas défaut
@@ -32,6 +37,45 @@
       situation:
         statut cadre: non
       valeur attendue: 2100
+    - nom: Information manquante
+      situation:
+      valeur attendue: null
+      variables manquantes: 
+        - statut cadre
+
+- nom: effectif
+  format: nombre
+
+- nom: effectif plafond
+  format: nombre
+
+- test: plusieurs variations et un cas défaut
+  formule: 
+    variations: 
+      - si: effectif > 100
+        alors: 5%
+      - si: effectif > effectif plafond
+        alors: 4%
+      - si: effectif > 20
+        alors: 2%
+      - sinon: 1%
+
+  exemples: 
+    - nom: 1er cas
+      situation: 
+        effectif: 300
+      valeur attendue: 0.05
+    - nom: 2ème cas, non résolu
+      situation: 
+        effectif: 40
+      valeur attendue: null
+      variables manquantes: 
+        - effectif plafond
+    - nom: Cas par défaut
+      situation: 
+        effectif: 20
+        effectif plafond: 60
+      valeur attendue: 0.01 
 
 
 
