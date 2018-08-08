@@ -7,3 +7,8 @@ status = 200
 from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"
 status = 200
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/*"
+to = "/embauche.html"
+status = 200
