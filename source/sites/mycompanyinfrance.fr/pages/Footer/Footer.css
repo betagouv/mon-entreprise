@@ -2,6 +2,7 @@
 	padding-top: 1rem;
 	padding-bottom: 2rem;
 	margin-top: 6rem;
+	background-color: rgba(41, 117, 209, 0.133);
 }
 
 .footer img {
@@ -14,6 +15,10 @@
 .footer a {
 	text-decoration: none;
 }
+.footer a::after {
+	display: none;
+}
+
 .footer a::after {
 	display: none;
 }

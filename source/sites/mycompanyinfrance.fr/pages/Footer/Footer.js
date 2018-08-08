@@ -11,14 +11,14 @@ const Footer = ({ colours: { colour } }) => (
 				Un service fourni par <a href="https://urssaf.fr">l'URSSAF</a> et incubé
 				par <a href="https://beta.gouv.fr">beta.gouv.fr</a>
 			</p>
+			<a href="https://urssaf.fr">
+				<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
+			</a>
 			<a href="https://beta.gouv.fr">
 				<img
 					src={betaGouvSvg}
 					alt="un service de l'état français incubé par beta.gouv.fr"
 				/>
-			</a>
-			<a href="https://urssaf.fr">
-				<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
 			</a>
 		</div>
 	</footer>
