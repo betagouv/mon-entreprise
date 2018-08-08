@@ -8,10 +8,10 @@ import {
 	Transition
 } from 'react-spring'
 import type { SpringConfig } from 'react-spring'
-import type { ChildrenArray, Node } from 'react'
+import type { Node } from 'react'
 
 type Props = {
-	children: ChildrenArray<Node>,
+	children: Node,
 	config?: SpringConfig,
 	delay?: number
 }
