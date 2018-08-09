@@ -35,8 +35,9 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 				This checklist will guide you thoughout all the necessary steps to
 				register your {match.params.status}.
 			</p>
-			{!microenterprise && (
-				<Checklist>
+
+			<Checklist>
+				{!microenterprise && (
 					<CheckItem
 						name="corporateName"
 						title="Find a corporate name"
@@ -49,17 +50,19 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 							</p>
 						}
 					/>
-					<CheckItem
-						name="corporatePurpose"
-						title="Write the corporate purpose of the company"
-						explanations={
-							<p>
-								<strong>The corporate purpose of the company</strong> (object
-								social) is the main activity run. A secondary activity can be
-								registered.
-							</p>
-						}
-					/>
+				)}
+				<CheckItem
+					name="corporatePurpose"
+					title="Write the corporate purpose of the company"
+					explanations={
+						<p>
+							<strong>The corporate purpose of the company</strong> (object
+							social) is the main activity run. A secondary activity can be
+							registered.
+						</p>
+					}
+				/>
+				{!microenterprise && (
 					<CheckItem
 						name="companyAddress"
 						title="Find an address to incorporate the company"
@@ -72,6 +75,8 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 							</p>
 						}
 					/>
+				)}
+				{!microenterprise && (
 					<CheckItem
 						name="companyStatus"
 						title="Write the company statuses"
@@ -94,6 +99,8 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 							</p>
 						}
 					/>
+				)}
+				{!microenterprise && (
 					<CheckItem
 						name="fundsDeposit"
 						title="Deposit capital funds"
@@ -115,6 +122,8 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 							</>
 						}
 					/>
+				)}
+				{!microenterprise && (
 					<CheckItem
 						name="publishCreationNotice"
 						title="Publish a notice of creation in a newspaper"
@@ -152,31 +161,32 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 							</>
 						}
 					/>
-					<CheckItem
-						name="registerCompanyOnline"
-						title="Register your company online"
-						explanations={
-							<>
-								<p>
-									To register your company online, you'll need the company name,
-									purpose, address and statuses.
-								</p>
+				)}
+				<CheckItem
+					name="registerCompanyOnline"
+					title="Register your company online"
+					explanations={
+						<>
+							<p>
+								You can start your online registration process anytime, save it and come back to it as you wish.
+							</p>
+							<p style={{textAlign: 'center'}}>
 								<a
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
 									target="blank">
 									Register my company online
 								</a>
-								<p>
-									<a href="mailto:contact@embauche.beta.gouv.fr">
-										I have trouble to complete the  online registration
-									</a>
-								</p>
-							</>
-						}
-					/>
-				</Checklist>
-			)}
+							</p>
+							<p>
+								<a href="mailto:contact@embauche.beta.gouv.fr">
+									I have trouble to complete the online registration
+								</a>
+							</p>
+						</>
+					}
+				/>
+			</Checklist>
 			<h2>After registration</h2>
 			<p>
 				{' '}
