@@ -47,7 +47,8 @@ const HiringProcess = () => (
 						handled online by the{' '}
 						<a href="http://www.letese.urssaf.fr" target="_blank">
 							Tese (french)
-						</a>. In any case, you can use{' '}
+						</a>
+						. In any case, you can use{' '}
 						<a
 							href="http://www.dsn-info.fr/convention-charte.htm"
 							target="_blank">
@@ -88,13 +89,7 @@ const HiringProcess = () => (
 			<CheckItem
 				name="complementaryHealth"
 				title="Pick a private complementary health insurance"
-				explanations={
-					<p>
-						TODO
-						{/* Covering a legal basic care basket */}
-						{/* Expliquer les deux contrats de complémentaire santé (soins et prévoyance) */}
-					</p>
-				}
+				explanations={null}
 			/>
 			<CheckItem
 				name="workMedicine"
@@ -103,11 +98,14 @@ const HiringProcess = () => (
 			/>
 		</Checklist>
 		<h2>Then each month</h2>
-		<p>
-			Your have to compute the individual social contributions (use a pay
-			software as described above), then declare them through the DSN, and
-			deliver a standardised payslip to your employee.
-		</p>
+		<ul>
+			<li>
+				Compute the individual social contributions (using the pay software you
+				chose)
+			</li>
+			<li>Declare the contributions through the DSN</li>
+			<li>Deliver the standardised payslip to your employee</li>
+		</ul>
 		<Link className="ui__ button" to="/social-security">
 			Get an example payslip
 		</Link>
