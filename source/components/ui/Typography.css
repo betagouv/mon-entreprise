@@ -87,6 +87,6 @@ a:not(:disabled):not(.button):not(.inverted-button):hover {
 }
 
 strong,
-em {
+b {
 	font-weight: 500;
 }

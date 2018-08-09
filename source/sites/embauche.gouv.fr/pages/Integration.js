@@ -22,10 +22,10 @@ export default class MyComponent extends Component {
 						<span>></span>
 					</code>
 					<p>
-						Vous pouvez <b>choisir la couleur principale du module</b> pour le
-						fondre dans le thème visuel de votre page : changez simplement la
-						valeur de <i>data-couleur</i> ci-dessus. Pour la choisir, utilisez
-						notre <Link to="/couleur">outil interactif</Link>.
+						Vous pouvez <strong>choisir la couleur principale du module</strong>{' '}
+						pour le fondre dans le thème visuel de votre page : changez
+						simplement la valeur de <i>data-couleur</i> ci-dessus. Pour la
+						choisir, utilisez notre <Link to="/couleur">outil interactif</Link>.
 					</p>
 					<p>
 						L'attribut <i>data-lang="en"</i> vous permet quand à lui de choisir
