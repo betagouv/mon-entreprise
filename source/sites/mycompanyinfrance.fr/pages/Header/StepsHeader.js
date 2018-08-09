@@ -28,7 +28,7 @@ const StepsHeader = ({ companyProgress, estimationProgress }: Props) => (
 		<nav>
 			<NavLink to="/company" activeClassName="active">
 				<img src={companySvg} />
-				<div>My company</div>
+				<div>Your company</div>
 				<Progress percent={companyProgress} />
 			</NavLink>
 			<NavLink exact to="/social-security" activeClassName="active">
