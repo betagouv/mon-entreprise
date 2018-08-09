@@ -11,6 +11,7 @@
 	text-decoration: none;
 	border: 1px solid;
 	/* outline: none; */
+	line-height: initial;
 	display: inline-block;
 	border-radius: 0.6rem;
 	transition: all 0.15s;
@@ -82,18 +83,35 @@
 	border-color: var(--colour);
 }
 
-.ui__.link-button {
+.ui__.link-button,
+.ui__.dashed-button {
 	border: none;
 	display: inline-block;
 	font-size: inherit;
-	text-decoration: underline;
 	font-family: inherit;
-	padding: 0;
 	margin: 0;
+}
+.ui__.link-button {
+	text-decoration: underline;
+	padding: 0;
 	color: rgb(41, 117, 209);
 	color: var(--colour);
 }
-.ui__.link-button:not(:disabled):hover {
+
+.ui__.dashed-button::before {
+	padding: 0.8rem 0;
+	display: block;
+}
+.ui__.dashed-button {
+	border-bottom: 1px dashed;
+	border-color: rgb(41, 117, 209);
+	color: inherit;
+	border-color: var(--colour);
+	padding: 0.15em 0em;
+}
+
+.ui__.link-button:not(:disabled):hover,
+.ui__.dashed-button:not(:disabled):hover {
 	opacity: 0.8;
 }
 
@@ -112,6 +130,10 @@
 .ui__.skip-button:not(:disabled):hover {
 	opacity: 0.8;
 	transform: translateX(3px);
+}
+
+.answer-list button.answer:hover {
+	opacity: 0.8;
 }
 
 .ui__.skip-button:active {

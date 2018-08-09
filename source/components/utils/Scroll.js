@@ -18,23 +18,38 @@ export class ScrollToTop extends Component {
 export class ScrollToElement extends Component {
 	static defaultProps = {
 		behavior: 'smooth',
+		style: {},
 		onlyIfNotVisible: false
 	}
-	componentDidMount() {
+	scrollIfNeeded = () => {
 		if (
-			this.props.onlyIfNotVisible &&
-			this.ref.getBoundingClientRect().top >= 0
+			this.props.when === false ||
+			(this.props.onlyIfNotVisible &&
+				this.ref.getBoundingClientRect().top >= 0 &&
+				this.ref.getBoundingClientRect().bottom <= window.innerHeight)
 		) {
 			return
 		}
-		console.log('scrotoelem')
 		this.ref.scrollIntoView({
 			behavior: this.props.behavior
 		})
 	}
+	componentDidMount() {
+		this.scrollIfNeeded()
+	}
+	componentDidUpdate() {
+		this.scrollIfNeeded()
+	}
 	render() {
 		return (
-			<div style={{ position: 'absolute' }} ref={ref => (this.ref = ref)} />
+			<div
+				{...this.props}
+				style={{
+					...this.props.style,
+					...(!this.props.children ? { position: 'absolute' } : {})
+				}}
+				ref={ref => (this.ref = ref)}
+			/>
 		)
 	}
 }

@@ -3,9 +3,8 @@
 	position: relative;
 	margin: auto;
 	width: 18px;
+	line-height: 18px;
 	height: 18px;
-	margin-right: 0.9rem;
-	top: 3px;
 	-webkit-tap-highlight-color: transparent;
 	transform: translate3d(0, 0, 0);
 	outline: none !important;
@@ -13,10 +12,10 @@
 .ui__.checkbox:before {
 	content: '';
 	position: absolute;
-	top: -18px;
-	left: -15px;
-	width: 48px;
-	height: 48px;
+	top: -11px;
+	left: -11px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	background: rgba(34, 50, 84, 0.03);
 	opacity: 0;
@@ -65,12 +64,28 @@
 ul.ui__.checklist {
 	padding-left: 0;
 }
-.ui__.checklist > li {
-	margin-bottom: 1rem;
+
+.ui__.checklist-button {
+	color: inherit;
+	padding: 0.6rem;
+	text-align: left;
+	flex: 1;
+	color: var(--colour);
+	font-family: inherit;
+	transition: all 0.1s;
+	font-size: inherit;
+}
+
+.ui__.checklist-button:hover {
+	opacity: 0.8;
+}
+.ui__ .checkItemLabel {
+	display: flex;
+	align-items: center;
 }
 
 .ui__.checklist-explanation {
 	padding-left: 1.4rem;
-	margin-left: 8px;
 	border-left: 2px dashed var(--colour);
+	margin: -0.6rem 0 -0.6rem 8px;
 }
