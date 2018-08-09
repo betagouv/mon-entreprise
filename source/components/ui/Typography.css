@@ -1,9 +1,9 @@
 html {
-	font-size: 1em;
+	font-size: 1.15em;
 }
 @media (max-width: 500px) {
 	html {
-		font-size: 0.8em;
+		font-size: 1em;
 	}
 }
 

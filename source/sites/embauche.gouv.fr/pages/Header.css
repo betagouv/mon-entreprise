@@ -45,6 +45,9 @@ nav a {
 	color: #666;
 }
 @media screen and (max-width: 860px) {
+	#header {
+		padding: 0 1em;
+	}
 	nav {
 		display: none;
 	}
@@ -76,8 +79,6 @@ nav a {
 
 	nav a {
 		margin: 0.8em;
-		font-size: 85%;
-		font-weight: 600;
 		color: #3c4963;
 	}
 }
