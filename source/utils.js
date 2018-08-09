@@ -1,4 +1,5 @@
 /* @flow */
+import { map } from 'ramda'
 
 export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 
@@ -35,3 +36,23 @@ export function debounce<ArgType: any>(
 		timeoutId = setTimeout(() => fn(...args), timeout)
 	}
 }
+
+export function isIE() {
+	return (
+		navigator.appName == 'Microsoft Internet Explorer' ||
+		(navigator.appName == 'Netscape' &&
+			new RegExp('Trident/.*rv:([0-9]{1,}[.0-9]{0,})').exec(
+				navigator.userAgent
+			) != null)
+	)
+}
+
+export const mapDispatchWithRouter = (actionCreators: Object) => (
+	dispatch: (...any) => void,
+	ownProps: Object
+) =>
+	map(
+		actionCreator => (...args) =>
+			dispatch(actionCreator(...args, ownProps.router)),
+		actionCreators
+	)

@@ -4,7 +4,7 @@ import { compose } from 'ramda'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import './Examples.css'
-import { setExample } from '../../actions'
+import { setExample } from 'Actions/actions'
 import { capitalise0 } from '../../utils'
 
 @connect(

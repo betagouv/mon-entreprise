@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
-import { isEmpty } from 'ramda'
-import { connect } from 'react-redux'
-import './Rule.css'
-import References from './References'
-import Algorithm from './Algorithm'
-import Examples from './Examples'
-import Helmet from 'react-helmet'
+import withColours from 'Components/utils/withColours'
 import { createMarkdownDiv } from 'Engine/marked'
-import RuleHeader from './Header'
+import {
+	encodeRuleName,
+	findRuleByDottedName,
+	findRuleByNamespace
+} from 'Engine/rules'
+import { isEmpty } from 'ramda'
+import React, { Component } from 'react'
+import Helmet from 'react-helmet'
+import { Trans, translate } from 'react-i18next'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-	findRuleByNamespace,
-	encodeRuleName,
-	findRuleByDottedName
-} from 'Engine/rules'
-import withColours from '../withColours'
-import {
-	noUserInputSelector,
+	exampleAnalysisSelector,
 	flatRulesSelector,
-	ruleAnalysisSelector,
-	exampleAnalysisSelector
+	noUserInputSelector,
+	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
+import Algorithm from './Algorithm'
+import Examples from './Examples'
+import RuleHeader from './Header'
+import References from './References'
+import './Rule.css'
 
 @connect((state, props) => ({
 	currentExample: state.currentExample,
@@ -124,7 +124,7 @@ let NamespaceRulesList = withColours(
 								color: colours.textColourOnWhite,
 								textDecoration: 'underline'
 							}}
-							to={'/règle/' + encodeRuleName(r.dottedName)}>
+							to={'../règle/' + encodeRuleName(r.dottedName)}>
 							{r.title || r.name}
 						</Link>
 					</li>

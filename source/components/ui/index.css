@@ -1,0 +1,49 @@
+@import './Button/button.css';
+@import './Typography.css';
+@import './reset.css';
+
+:root {
+	--colour: rgb(41, 117, 209);
+}
+
+body {
+	overflow-x: hidden !important;
+}
+
+button {
+	border: none;
+	border-radius: 0;
+}
+
+.ui__.answer-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+.ui__.route-trans {
+	display: flex;
+}
+.ui__.route-trans > * {
+	min-width: 100%;
+	margin-right: 2em;
+}
+
+.ui__.container {
+	max-width: 45em;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0 0.6em;
+}
+
+ul.ui__.no-bullet {
+	list-style: none;
+}
+
+#js {
+	opacity: 1;
+	transition: all 0.4s;
+}
+#lds-ellipsis {
+	display: none;
+}

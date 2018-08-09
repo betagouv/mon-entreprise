@@ -1,3 +1,5 @@
+import { setExample } from 'Actions/actions'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import { encodeRuleName } from 'Engine/rules'
 import {
 	decodeRuleName,
@@ -8,18 +10,16 @@ import { compose, head, path } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Link, Redirect } from 'react-router-dom'
-import { animateScroll } from 'react-scroll'
 import {
 	flatRulesSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import { setExample } from '../actions'
 import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
-
 @connect(state => ({
 	themeColours: state.themeColours,
 	valuesToShow: !noUserInputSelector(state),
@@ -27,9 +27,6 @@ import SearchButton from './SearchButton'
 }))
 @translate()
 export default class RulePage extends Component {
-	componentDidMount() {
-		animateScroll.scrollToTop({ duration: 300 })
-	}
 	render() {
 		let { flatRules } = this.props,
 			name = path(['match', 'params', 'name'], this.props),
@@ -51,12 +48,16 @@ export default class RulePage extends Component {
 	}
 	renderRule(dottedName) {
 		return (
-			<div id="RulePage">
+			<div id="RulePage" className="ui__ container">
+				<ScrollToTop />
 				<div className="rule-page__header">
-					<SearchButton className="rule-page__search" />
 					{!this.props.noUserInputSelector && (
 						<BackToSimulation colour={this.props.themeColours.colour} />
 					)}
+					<SearchButton
+						className="rule-page__search"
+						rulePageBasePath="../règle"
+					/>
 				</div>
 				<Rule dottedName={dottedName} />
 			</div>
@@ -73,17 +74,20 @@ export default class RulePage extends Component {
 		)
 	})
 )
+@withRouter
+@translate() // Triggers rerender when the language changes
 class BackToSimulation extends Component {
 	render() {
 		let { colour, setExample } = this.props
 		return (
 			<Link
-				onClick={() => setExample(null)}
 				id="toSimulation"
-				to={'/'}
+				to=".."
+				onClick={() => {
+					setExample(null)
+				}}
 				style={{ background: colour }}>
-				<i className="fa fa-arrow-circle-left" aria-hidden="true" />
-				<Trans i18nKey="back">Reprendre la simulation</Trans>
+				⬅️ <Trans i18nKey="back">Reprendre la simulation</Trans>
 			</Link>
 		)
 	}
@@ -100,7 +104,7 @@ let DisambiguateRuleQuery = ({ rules, flatRules }) => (
 			{rules.map(({ dottedName, ns, title }) => (
 				<li key={dottedName}>
 					<Namespace ns={ns} flatRules={flatRules} />
-					<Link to={'/règle/' + encodeRuleName(dottedName)}>{title}</Link>
+					<Link to={'../règle/' + encodeRuleName(dottedName)}>{title}</Link>
 				</li>
 			))}
 		</ul>

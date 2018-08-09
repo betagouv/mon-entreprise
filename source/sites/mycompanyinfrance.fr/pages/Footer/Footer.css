@@ -1,0 +1,24 @@
+.footer {
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+	margin-top: 6rem;
+	background-color: rgba(41, 117, 209, 0.133);
+}
+
+.footer img {
+	height: 3rem;
+}
+
+.footer p {
+	opacity: 0.9;
+}
+.footer a {
+	text-decoration: none;
+}
+.footer a::after {
+	display: none;
+}
+
+.footer a::after {
+	display: none;
+}

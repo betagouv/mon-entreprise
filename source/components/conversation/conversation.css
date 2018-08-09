@@ -1,7 +1,6 @@
 .scrollIndication {
 	margin: 0.6em 0;
 	font-size: 110%;
-	font-weight: bold;
 }
 
 .scrollIndication.down {
@@ -11,7 +10,6 @@
 #resultsScrollElement,
 #myScrollToElement {
 	text-align: center;
-	font-weight: bold;
 }
 
 #foldedSteps {
@@ -38,10 +36,6 @@
 	padding-top: 0.3em;
 }
 
-#currentQuestion {
-	margin-bottom: 4em;
-}
-
 .step {
 	position: relative;
 }
@@ -54,32 +48,25 @@
 	opacity: 1;
 }
 
-.step-question {
-	max-width: 70%;
+.step-question h1:before {
+	content: '›';
+}
+@media (min-width: 500px) {
+	.step-question h1:before {
+		position: absolute;
+		left: -1.1rem;
+	}
+}
+
+.step-question h1 {
+	font-size: 1.7rem;
+	color: rgba(0, 0, 0, 0.8);
 }
 
 .unfoldedHeader {
-	margin-bottom: 1em;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-}
-
-.step h1 {
-	border: 2px solid #333350;
-	color: #333350;
-	display: inline-block;
-	font-size: 110%;
-	box-sizing: border-box;
-	text-align: left;
-	font-weight: 600;
-	padding: 0.6em 1em;
-	margin: 0;
-	margin-right: 0.3em;
-	border-radius: 1.4em;
-	position: relative;
-	/* Give some space for the explicable's icon */
-	max-width: 90%;
 }
 
 .step.completed .edit:hover {
@@ -164,10 +151,6 @@
 	margin-bottom: 0.6em;
 }
 
-.step.question .variantLeaf > span:not(.explicable) {
-	margin-right: 2em;
-}
-
 .step.question .variant .variantLeaf {
 	display: inline-block;
 }
@@ -199,8 +182,7 @@
 	padding: 0.25em 0.85em;
 	line-height: 1.8em;
 	border-radius: 1em;
-	font-weight: 600;
-	font-size: 105%;
+	font-size: 120%;
 }
 
 .resume {

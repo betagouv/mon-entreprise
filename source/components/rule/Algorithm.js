@@ -5,7 +5,7 @@ import { path, values } from 'ramda'
 import React from 'react'
 import { Trans, translate } from 'react-i18next'
 import { AttachDictionary } from '../AttachDictionary'
-import withLanguage from '../withLanguage'
+import withLanguage from 'Components/utils/withLanguage'
 import './Algorithm.css'
 
 @AttachDictionary(knownMecanisms)

@@ -4,7 +4,7 @@ import type { Store } from 'redux'
 import { debounce } from '../utils'
 import { deserialize, serialize } from './serialize'
 import type { State, SavedSimulation } from '../types/State'
-import type { Action } from '../types/Actions'
+import type { Action } from 'Types/ActionsTypes'
 
 const VERSION = 2
 

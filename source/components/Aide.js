@@ -1,12 +1,12 @@
+import { EXPLAIN_VARIABLE } from 'Actions/actions'
+import withColours from 'Components/utils/withColours'
 import marked from 'Engine/marked'
 import { findRuleByDottedName } from 'Engine/rules'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { EXPLAIN_VARIABLE } from '../actions'
 import './Aide.css'
 import References from './rule/References'
-import withColours from './withColours'
 @connect(
 	state => ({
 		explained: state.explainedVariable,

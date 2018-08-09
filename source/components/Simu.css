@@ -1,5 +1,7 @@
 #simu {
 	margin: 0 auto;
-	margin-top: 1em;
 	max-width: 40em;
+}
+.change-answer-link {
+	text-align: center;
 }

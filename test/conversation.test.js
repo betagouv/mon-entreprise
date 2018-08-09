@@ -1,14 +1,14 @@
 import { expect } from 'chai'
+import { popularTargetNames } from 'Components/TargetSelection'
 import dedent from 'dedent-js'
+import { enrichRule, rulesFr as rules } from 'Engine/rules'
 import yaml from 'js-yaml'
-import { enrichRule, rulesFr as rules } from '../source/engine/rules'
-import reducers from '../source/reducers/reducers'
+import { assocPath, merge } from 'ramda'
+import reducers from 'Reducers/rootReducer'
 import {
 	currentQuestionSelector,
 	nextStepsSelector
 } from '../source/selectors/analyseSelectors'
-import { merge, assocPath } from 'ramda'
-import { popularTargetNames } from '../source/components/TargetSelection'
 
 let baseState = {
 	conversationSteps: { foldedSteps: [] },

@@ -1,8 +1,8 @@
+import HoverDecorator from 'Components/utils/HoverDecorator'
+import withColours from 'Components/utils/withColours'
 import { is } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
-import HoverDecorator from '../HoverDecorator'
-import withColours from '../withColours'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
@@ -134,9 +134,10 @@ export default class Question extends Component {
 }
 
 let RadioLabel = props => (
-	<Explicable dottedName={props.dottedName}>
+	<>
 		<RadioLabelContent {...props} />
-	</Explicable>
+		<Explicable dottedName={props.dottedName} />
+	</>
 )
 
 @HoverDecorator

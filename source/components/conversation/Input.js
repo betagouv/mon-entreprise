@@ -1,7 +1,7 @@
 import classnames from 'classnames'
+import withColours from 'Components/utils/withColours'
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
-import withColours from '../withColours'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'

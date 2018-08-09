@@ -1,6 +1,7 @@
 import classnames from 'classnames'
 import { dissoc } from 'ramda'
 import React, { Component } from 'react'
+import { isIE } from '../../utils'
 import './CurrencyInput.css'
 
 let isCurrencyPrefixed = language =>
@@ -10,16 +11,6 @@ let isCurrencyPrefixed = language =>
 	})
 		.format(12)
 		.match(/€.*12/)
-
-function isIE() {
-	return (
-		navigator.appName == 'Microsoft Internet Explorer' ||
-		(navigator.appName == 'Netscape' &&
-			new RegExp('Trident/.*rv:([0-9]{1,}[.0-9]{0,})').exec(
-				navigator.userAgent
-			) != null)
-	)
-}
 
 class CurrencyInput extends Component {
 	state = {

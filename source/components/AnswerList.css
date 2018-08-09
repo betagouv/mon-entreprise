@@ -1,0 +1,34 @@
+.answer-list table {
+	border-collapse: collapse;
+	width: 100%;
+}
+.answer-list tr:nth-child(2n + 1) {
+	background: none !important;
+}
+
+.answer-list td {
+	padding: 0 0.8rem;
+}
+
+.answer-list td:last-of-type {
+	text-align: start;
+}
+
+.answer-list button.answer {
+	display: inline-block;
+	padding: 0.8rem;
+	color: inherit;
+	width: 100%;
+	text-align: start;
+	font-weight: 500;
+}
+.answer-list .answerContent {
+	border-bottom: 1px dashed blue;
+	padding: 0.15em 0em;
+	display: inline-block;
+	min-width: 1.5em;
+}
+
+.answer-list button.answer:hover {
+	opacity: 0.8;
+}

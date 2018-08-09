@@ -1,7 +1,7 @@
 /* @flow */
 import type { State, SavedSimulation } from '../types/State.js'
 import { pipe } from 'ramda'
-import { currentSimulationSelector } from './selectors'
+import { currentSimulationSelector } from 'Selectors/storageSelectors'
 
 export const serialize: State => string = pipe(
 	currentSimulationSelector,

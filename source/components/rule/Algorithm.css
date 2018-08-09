@@ -4,6 +4,7 @@
 
 .situationValue {
 	display: none;
+	font-size: 110%;
 	border-bottom-left-radius: 3px;
 	font-weight: 400;
 	color: black;
@@ -31,7 +32,6 @@
 #rule-rules
 	.inlineExpression:not(.comparison):not(.negation)
 	> .situationValue {
-	font-size: 90%;
 	margin-left: 0.3em;
 	margin-bottom: 0.6em;
 	margin-top: 0.3em;
@@ -44,9 +44,6 @@
 	margin: 1em 0;
 }
 
-#rule-content {
-	font-size: 90%;
-}
 
 #rule-rules #ruleValue {
 	font-weight: 400;
@@ -76,7 +73,7 @@
 	display: block;
 	background: #34495e;
 	color: white !important;
-	font-weight: 600;
+	font-weight: 500;
 	border-bottom-right-radius: 3px;
 }
 .mecanism > .nodeHead .name::first-letter {
@@ -86,7 +83,7 @@
 	bottom: 0;
 	right: 0;
 	position: absolute;
-	padding: 0.2em 1em;
+	padding: 0.2rem 1rem;
 	border: 1px solid;
 	border-color: inherit;
 	font-weight: 600;
@@ -109,7 +106,6 @@
 }
 
 .mecanism .properties .key {
-	font-weight: 600;
 	display: inline-block;
 	margin-bottom: 0.6em;
 	margin-right: 0.8em;
@@ -131,7 +127,7 @@
 
 .maximum .description,
 .composanteName {
-	font-weight: 600;
+	font-weight: 500;
 	margin-bottom: 0.4em;
 	margin-left: 1em;
 }
@@ -159,28 +155,13 @@
 }
 
 .variable a {
-	color: blue;
-	border: 1px solid transparent;
-	border-bottom: 1px solid blue;
-	text-align: center;
-	font-weight: 600;
-	font-size: 90%;
 	display: inline-block;
 	white-space: nowrap;
 }
 
-.variable a:hover {
-	color: rgb(0, 0, 150) !important;
-	border-bottom-color: rgb(0, 0, 150);
-}
-.variable a:focus {
-	border: 1px dotted;
-	outline: none;
-}
 
 .percentage .name {
-	font-size: 110%;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .inlineExpression .operator {
@@ -213,7 +194,7 @@
 	padding: 0.1em 0.4em;
 }
 .barème table tr:first-child {
-	font-weight: 600;
+	font-weight: 500;
 }
 .barème table tr:nth-child(2n) {
 	background: #f1f1f1;
@@ -315,7 +296,6 @@
 .inlineExpression.comparison > .situationValue,
 .inlineExpression.negation > .situationValue {
 	order: -1;
-	font-size: 110% !important;
 }
 
 .mecanism.cond *:not(.nodeContent) > .variable .name > .situationValue,
@@ -328,6 +308,5 @@
 	> .situationValue {
 	margin-bottom: -5px;
 	background-color: white;
-	font-size: 130% !important;
 	margin-left: 0 !important;
 }

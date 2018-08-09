@@ -1,10 +1,10 @@
+import { EXPLAIN_VARIABLE } from 'Actions/actions'
 import classNames from 'classnames'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { EXPLAIN_VARIABLE } from '../../actions'
-import withTracker from '../withTracker'
+import withTracker from '../utils/withTracker'
 import './Explicable.css'
 
 @connect(
@@ -30,11 +30,11 @@ export default class Explicable extends React.Component {
 		} = this.props
 
 		// Rien à expliquer ici, ce n'est pas une règle
-		if (dottedName == null) return this.props.children
+		if (dottedName == null) return null
 
 		let rule = findRuleByDottedName(flatRules, dottedName)
 
-		if (rule.description == null) return this.props.children
+		if (rule.description == null) return null
 
 		//TODO montrer les variables de type 'une possibilité'
 
@@ -43,7 +43,6 @@ export default class Explicable extends React.Component {
 				className={classNames('explicable', {
 					explained: dottedName === explained
 				})}>
-				{this.props.children}
 				<span
 					className="icon"
 					onClick={e => {

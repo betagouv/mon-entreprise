@@ -1,0 +1,91 @@
+.ui__.checkbox {
+	cursor: pointer;
+	position: relative;
+	margin: auto;
+	width: 18px;
+	line-height: 18px;
+	height: 18px;
+	-webkit-tap-highlight-color: transparent;
+	transform: translate3d(0, 0, 0);
+	outline: none !important;
+}
+.ui__.checkbox:before {
+	content: '';
+	position: absolute;
+	top: -11px;
+	left: -11px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(34, 50, 84, 0.03);
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+.ui__.checkbox svg {
+	position: relative;
+	z-index: 1;
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke: #c8ccd4;
+	stroke: var(--colour);
+	stroke-width: 1.5;
+	transform: translate3d(0, 0, 0);
+	transition: all 0.2s ease;
+}
+.ui__.checkbox svg path {
+	stroke-dasharray: 60;
+	stroke-dashoffset: 0;
+}
+.ui__.checkbox svg polyline {
+	stroke-dasharray: 22;
+	stroke-dashoffset: 66;
+}
+.ui__.checkbox:hover:before,
+.ui__.checkbox:focus:before {
+	opacity: 1;
+}
+.ui__.checkbox:hover svg {
+	stroke: var(--colour);
+}
+.ui__.checkbox-input:checked + .ui__.checkbox svg {
+	stroke: var(--colour);
+}
+.ui__.checkbox-input:checked + .ui__.checkbox svg path {
+	stroke-dashoffset: 60;
+	transition: all 0.3s linear;
+}
+.ui__.checkbox-input:checked + .ui__.checkbox svg polyline {
+	stroke-dashoffset: 42;
+	transition: all 0.2s linear;
+	transition-delay: 0.15s;
+}
+
+ul.ui__.checklist {
+	padding-left: 0;
+}
+
+.ui__.checklist-button {
+	color: inherit;
+	padding: 0.6rem;
+	text-align: left;
+	flex: 1;
+	color: var(--colour);
+	font-family: inherit;
+	transition: all 0.1s;
+	font-size: inherit;
+}
+
+.ui__.checklist-button:hover {
+	opacity: 0.8;
+}
+.ui__ .checkItemLabel {
+	display: flex;
+	align-items: center;
+}
+
+.ui__.checklist-explanation {
+	padding-left: 1.4rem;
+	border-left: 2px dashed var(--colour);
+	margin: -0.6rem 0 -0.6rem 8px;
+}

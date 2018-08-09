@@ -1,8 +1,7 @@
 import i18next from 'i18next'
 import queryString from 'query-string'
-
-import { getIframeOption, parseDataAttributes } from './utils'
 import enTranslations from './locales/en.yaml'
+import { getIframeOption, parseDataAttributes } from './utils'
 
 let getFromSessionStorage = where =>
 	typeof sessionStorage !== 'undefined' ? sessionStorage[where] : null
@@ -31,7 +30,7 @@ i18next.init(
 		}
 	},
 	(err, t) => {
-		console.log('Error from i18n load', err, t) //eslint-disable-line no-console
+		console && console.error('Error from i18n load', err, t) //eslint-disable-line no-console
 	}
 )
 

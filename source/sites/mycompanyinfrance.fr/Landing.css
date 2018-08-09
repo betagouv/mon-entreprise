@@ -1,0 +1,80 @@
+.landing__header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+.landing__header h1 {
+	color: inherit;
+	font-size: 3rem;
+}
+
+.landing__header header {
+	text-align: center;
+	overflow: hidden;
+	animation: fade-in 1s;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	background: linear-gradient(
+		80deg,
+		rgba(39, 69, 195, 0.87) 0%,
+		rgba(41, 117, 209, 1) 50%,
+		rgba(39, 69, 195, 0.87) 100%,
+		rgba(41, 117, 209, 1) 150%
+	);
+	background-size: 200%;
+	color: white;
+	animation: move-background 15s linear infinite;
+	padding: 1rem;
+}
+@keyframes move-background {
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: 200%;
+	}
+}
+
+.landing__header .cta {
+	margin: 6rem auto;
+}
+
+.landing__banner {
+	height: 5rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	background: white;
+	padding: 1rem;
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+.landing__banner img {
+	height: 100%;
+	width: auto;
+}
+
+.landing-card__img {
+	padding: 1rem;
+	width: 6rem;
+	height: 6rem;
+}
+.landing-card__img img {
+	width: 100% !important;
+	height: auto !important;
+}
+
+.landing-card {
+	margin: 1rem;
+	padding: 1rem;
+	max-width: 20rem;
+}

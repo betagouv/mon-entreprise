@@ -1,25 +1,26 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
-import { findRuleByDottedName } from 'Engine/rules'
+import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
+import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
+	blockingInputControlsSelector,
 	flatRulesSelector,
-	noUserInputSelector,
-	blockingInputControlsSelector
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import BlueButton from './BlueButton'
-import CurrencyInput from './CurrencyInput/CurrencyInput'
-import ProgressCircle from './ProgressCircle/ProgressCircle'
-import AnimatedTargetValue from './AnimatedTargetValue'
-import './TargetSelection.css'
-import withLanguage from './withLanguage'
 import Controls from './Controls'
+import CurrencyInput from './CurrencyInput/CurrencyInput'
+import AnimatedTargetValue from './AnimatedTargetValue'
+import ProgressCircle from './ProgressCircle'
+import './TargetSelection.css'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -38,6 +39,7 @@ export let popularTargetNames = [
 	form: 'conversation',
 	destroyOnUnmount: false
 })
+@withRouter
 @connect(
 	state => ({
 		getTargetValue: dottedName =>
@@ -52,25 +54,23 @@ export let popularTargetNames = [
 	dispatch => ({
 		setFormValue: (field, name) =>
 			dispatch(change('conversation', field, name)),
-		startConversation: () => dispatch({ type: 'START_CONVERSATION' }),
 		setActiveInput: name => dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
 	})
 )
 export default class TargetSelection extends Component {
 	render() {
-		let {
-			conversationStarted,
-			colours,
-			noUserInput,
-			blockingInputControls
-		} = this.props
+		let { colours, noUserInput, blockingInputControls } = this.props
 		return (
 			<div id="targetSelection">
 				<section
 					id="targetsContainer"
 					style={{
-						background: colours.colour,
-						color: colours.textColour
+						color: colours.textColour,
+						background: `linear-gradient(
+							60deg,
+							${colours.darkColour} 0%,
+							${colours.colour} 100%
+						)`
 					}}>
 					{this.renderOutputList()}
 				</section>
@@ -83,21 +83,6 @@ export default class TargetSelection extends Component {
 				{blockingInputControls && (
 					<Controls blockingInputControls={blockingInputControls} />
 				)}
-
-				{!noUserInput &&
-					!blockingInputControls &&
-					!conversationStarted && (
-						<div id="action">
-							<p>
-								<b>
-									<Trans>Première estimation</Trans>
-								</b>
-							</p>
-							<BlueButton onClick={this.props.startConversation}>
-								<Trans>Continuer</Trans>
-							</BlueButton>
-						</div>
-					)}
 			</div>
 		)
 	}
@@ -112,7 +97,8 @@ export default class TargetSelection extends Component {
 				setActiveInput,
 				analysis,
 				noUserInput,
-				blockingInputControls
+				blockingInputControls,
+				match
 			} = this.props,
 			targets = analysis ? analysis.targets : []
 
@@ -124,6 +110,7 @@ export default class TargetSelection extends Component {
 							<div className="main">
 								<Header
 									{...{
+										match,
 										target,
 										conversationStarted,
 										isActiveInput: activeInput === target.dottedName,
@@ -164,7 +151,8 @@ let Header = ({
 	target,
 	conversationStarted,
 	isActiveInput,
-	blockingInputControls
+	blockingInputControls,
+	match
 }) => {
 	return (
 		<span className="header">
@@ -175,7 +163,7 @@ let Header = ({
 
 			<span className="texts">
 				<span className="optionTitle">
-					<Link to={'/règle/' + target.dottedName}>
+					<Link to={match.path + '/règle/' + encodeRuleName(target.dottedName)}>
 						{target.title || target.name}
 					</Link>
 				</span>
@@ -185,16 +173,20 @@ let Header = ({
 	)
 }
 
-let CurrencyField = props => {
+let CurrencyField = withColours(props => {
 	return (
 		<CurrencyInput
+			style={{
+				color: props.colours.textColour,
+				borderColor: props.colours.textColour
+			}}
 			className="targetInput"
 			autoFocus
 			{...props.input}
 			{...props}
 		/>
 	)
-}
+})
 
 let TargetInputOrValue = withLanguage(
 	({

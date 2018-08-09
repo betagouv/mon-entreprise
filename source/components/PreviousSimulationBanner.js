@@ -1,33 +1,39 @@
 /* @flow */
+import {
+	deletePreviousSimulation,
+	loadPreviousSimulation
+} from 'Actions/actions'
 import { compose } from 'ramda'
 import React from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import { deletePreviousSimulation, loadPreviousSimulation } from '../actions'
+import { noUserInputSelector } from 'Selectors/analyseSelectors'
+import { LinkButton } from 'Ui/Button'
 import Banner from './Banner'
-import { LinkButton } from './ui/Button'
 
-import type { SavedSimulation } from '../types/State'
+import type { SavedSimulation } from 'Types/State'
 
 type ConnectedPropTypes = {
 	previousSimulation: SavedSimulation,
 	loadPreviousSimulation: () => void,
+	newSimulationStarted: boolean,
 	deletePreviousSimulation: () => void
 }
 const PreviousSimulationBanner = ({
 	previousSimulation,
 	deletePreviousSimulation,
+	newSimulationStarted,
 	loadPreviousSimulation
 }: ConnectedPropTypes) => (
-	<Banner hidden={!previousSimulation}>
+	<Banner hidden={!previousSimulation || newSimulationStarted}>
 		<Trans i18nKey="previousSimulationBanner.info">
 			Votre précédente simulation a été sauvegardée.
-		</Trans>
+		</Trans>{' '}
 		<LinkButton onClick={loadPreviousSimulation}>
 			<Trans i18nKey="previousSimulationBanner.retrieveButton">
 				Retrouver ma simulation
 			</Trans>
-		</LinkButton>
+		</LinkButton>.{' '}
 		<LinkButton onClick={deletePreviousSimulation}>
 			<Trans>Effacer</Trans>
 		</LinkButton>
@@ -37,7 +43,10 @@ const PreviousSimulationBanner = ({
 export default compose(
 	translate(),
 	connect(
-		({ previousSimulation }) => ({ previousSimulation }),
+		state => ({
+			previousSimulation: state.previousSimulation,
+			newSimulationStarted: !noUserInputSelector(state)
+		}),
 		{
 			loadPreviousSimulation,
 			deletePreviousSimulation

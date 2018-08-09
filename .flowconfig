@@ -21,6 +21,12 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 
-module.name_mapper='^Components\(.*\)$' -> '<PROJECT_ROOT>/source/components\1'
 module.name_mapper='^Engine\(.*\)$' -> '<PROJECT_ROOT>/source/engine\1'
+module.name_mapper='^Règles\(.*\)$' -> '<PROJECT_ROOT>/source/règles\1'
+module.name_mapper='^Ui\(.*\)$' -> '<PROJECT_ROOT>/source/components/ui\1'
+module.name_mapper='^Components\(.*\)$' -> '<PROJECT_ROOT>/source/components\1'
 module.name_mapper='^Selectors\(.*\)$' -> '<PROJECT_ROOT>/source/selectors\1'
+module.name_mapper='^Reducers\(.*\)$' -> '<PROJECT_ROOT>/source/reducers\1'
+module.name_mapper='^Actions\(.*\)$' -> '<PROJECT_ROOT>/source/actions\1'
+module.name_mapper='^Types\(.*\)$' -> '<PROJECT_ROOT>/source/types\1'
+module.name_mapper='^Images\(.*\)$' -> '<PROJECT_ROOT>/source/images\1'

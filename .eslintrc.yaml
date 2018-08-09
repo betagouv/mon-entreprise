@@ -11,6 +11,7 @@ rules:
   no-global-assign: 0
   no-unsafe-negation: 0
   react/prop-types: 0
+  react/jsx-no-target-blank: 0
   react/no-unescaped-entities: 0
 parser: babel-eslint
 
@@ -26,6 +27,8 @@ overrides:
   files: "*.test.js"
   env: 
     mocha: true
+globals: 
+  process: false
 
 extends:
   - eslint:recommended

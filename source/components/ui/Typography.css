@@ -1,0 +1,98 @@
+html {
+	font-size: 1.16em;
+}
+@media (max-width: 500px) {
+	html {
+		font-size: 1em;
+	}
+}
+@media (min-width: 500px) and (max-width: 1920px) {
+	html {
+		font-size: 1.1em;
+	}
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2 {
+	margin-top: 2.5rem;
+	margin-bottom: 1.5rem;
+}
+h1 {
+	font-size: 2.8rem;
+}
+h2 {
+	font-size: 2.1rem;
+}
+h3 {
+	font-size: 1.7rem;
+}
+h4 {
+	font-size: 1.3rem;
+}
+h5 {
+	font-size: 1.1rem;
+	font-style: italic;
+}
+h6 {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-weight: normal;
+	line-height: initial;
+}
+
+h1,
+h2,
+h3 {
+	color: rgb(41, 117, 209);
+	color: var(--colour);
+}
+
+button {
+	font-weight: normal;
+}
+
+p,
+ul {
+	line-height: 1.7rem;
+	margin: 1rem 0;
+}
+a {
+	border: none;
+	display: inline-block;
+	font-size: inherit;
+	padding: none;
+	text-decoration: underline;
+	color: rgb(41, 117, 209);
+	color: var(--colour);
+}
+
+a[href^="https://"]:not(.button):not(.inverted-button)::after, 
+a[href^="http://"]:not(.button):not(.inverted-button)::after {
+	content: '\f08e';
+	font-family: FontAwesome;
+	margin-left: 0.3em;
+	text-decoration: none;
+	display: inline-block;
+}
+
+a:not(:disabled):not(.button):not(.inverted-button):hover {
+	opacity: 0.8;
+}
+
+strong,
+b {
+	font-weight: 500;
+}

@@ -1,9 +1,9 @@
+import classNames from 'classnames'
+import Explicable from 'Components/conversation/Explicable'
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
-import classNames from 'classnames'
 import { connect } from 'react-redux'
-import { Field, change } from 'redux-form'
-import Explicable from 'Components/conversation/Explicable'
+import { change, Field } from 'redux-form'
 import IgnoreStepButton from './IgnoreStepButton'
 
 export let buildValidationFunction = valueType => {
@@ -43,16 +43,12 @@ export var FormDecorator = formType => RenderField =>
 				setFormValue,
 				stepAction,
 				subquestion,
-				possibleChoice, // should be found in the question set theoritically, but it is used for a single choice question -> the question itself is dynamic and cannot be input as code,
-				defaultValue,
 				valueType,
+				defaultValue,
 				fieldName,
 				inversion,
 				themeColours
 			} = this.props
-
-			/* There won't be any answer zone here, widen the question zone */
-			let wideQuestion = formType == 'rhetorical-question' && !possibleChoice
 
 			let validate = buildValidationFunction(valueType)
 
@@ -64,43 +60,27 @@ export var FormDecorator = formType => RenderField =>
 					setFormValue: (value, name = fieldName) => setFormValue(name, value)
 				}
 
-			let question = (
-				<h1
-					style={{
-						// border: '2px solid ' + this.props.themeColours.colour, // higher border width and colour to emphasize focus
-						// background: 'none',
-						// color: this.props.themeColours.textColourOnWhite,
-						maxWidth: wideQuestion ? '95%' : ''
-					}}>
-					{this.props.question}
-				</h1>
-			)
-
 			return (
 				<div className={classNames('step', formType)}>
-					<div>
 						<div className="unfoldedHeader">
 							<div className="step-question">
-								{inversion ? (
-									question
-								) : (
-									<Explicable dottedName={fieldName}>{question}</Explicable>
-								)}
+								<h1> {this.props.question} {!inversion && <Explicable dottedName={fieldName}/>}</h1>
 								<div
 									className="step-subquestion"
 									dangerouslySetInnerHTML={{ __html: subquestion }}
-								/>
+									/>
 							</div>
-							{defaultValue != null && (
-								<IgnoreStepButton
-									action={() => {
-										setFormValue(fieldName, '' + defaultValue)
-										submit('ignore')
-									}}
-								/>
-							)}
 						</div>
+						{defaultValue != null && (
+							<IgnoreStepButton
+								action={() => {
+									setFormValue(fieldName, '' + defaultValue)
+									submit('ignore')
+								}}
+							/>
+						)}
 						<fieldset>
+
 							<Field
 								component={RenderField}
 								name={fieldName}
@@ -108,7 +88,6 @@ export var FormDecorator = formType => RenderField =>
 								themeColours={themeColours}
 							/>
 						</fieldset>
-					</div>
 				</div>
 			)
 		}

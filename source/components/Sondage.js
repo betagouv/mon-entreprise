@@ -10,9 +10,9 @@ import Smiley from './SatisfactionSmiley'
 import './Sondage.css'
 import ReactPiwik from './Tracker'
 import TypeFormEmbed from './TypeFormEmbed'
-import { SimpleButton } from './ui/Button'
-import withColours from './withColours'
-import withLanguage from './withLanguage'
+import { LinkButton } from 'Ui/Button'
+import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
 
 @connect(state => ({
 	conversationStarted: state.conversationStarted,
@@ -101,12 +101,12 @@ export default class Sondage extends Component {
 									hoverColor="#f39c12"
 									onClick={this.onSmileyClick}
 								/>
-								<SimpleButton
+								<LinkButton
 									className="sondage__closeButton"
 									onClick={this.handleClose}
 									aria-label="close">
 									X
-								</SimpleButton>
+								</LinkButton>
 							</div>
 						</div>
 					)}

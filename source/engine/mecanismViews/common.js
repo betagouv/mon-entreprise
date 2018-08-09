@@ -1,12 +1,12 @@
 import classNames from 'classnames'
+import withLanguage from 'Components/utils/withLanguage'
 import { contains } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { SimpleButton } from '../../components/ui/Button'
-import withLanguage from '../../components/withLanguage'
+import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
 
@@ -40,11 +40,9 @@ export class Node extends Component {
 			<div className={classNames(classes, 'node')}>
 				{name && (
 					<span className="nodeHead">
-						<SimpleButton
-							className="name"
-							data-term-definition={termDefinition}>
+						<LinkButton className="name" data-term-definition={termDefinition}>
 							<Trans>{name}</Trans>
-						</SimpleButton>
+						</LinkButton>
 						<NodeValuePointer data={value} />
 					</span>
 				)}
@@ -66,7 +64,7 @@ export class Leaf extends Component {
 			<span className={classNames(classes, 'leaf')}>
 				{dottedName && (
 					<span className="nodeHead">
-						<Link to={'/règle/' + encodeRuleName(dottedName)}>
+						<Link to={'../règle/' + encodeRuleName(dottedName)}>
 							<span className="name">
 								{rule.title || capitalise0(name)} {filter}
 								<NodeValuePointer data={value} />

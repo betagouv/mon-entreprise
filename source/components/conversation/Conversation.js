@@ -1,15 +1,16 @@
+import Scroll from 'Components/utils/Scroll'
+import { getInputComponent } from 'Engine/generateQuestions'
 import React, { Component } from 'react'
 import { translate } from 'react-i18next'
-import Aide from '../Aide'
-import { reduxForm } from 'redux-form'
-import { getInputComponent } from 'Engine/generateQuestions'
 import { connect } from 'react-redux'
-import './conversation.css'
-
+import { reduxForm } from 'redux-form'
 import {
-	flatRulesSelector,
-	currentQuestionSelector
+	currentQuestionSelector,
+	flatRulesSelector
 } from 'Selectors/analyseSelectors'
+import * as Animate from 'Ui/animate'
+import Aide from '../Aide'
+import './conversation.css'
 
 @reduxForm({
 	form: 'conversation',
@@ -29,9 +30,14 @@ export default class Conversation extends Component {
 		return (
 			<div className="conversationContainer">
 				<Aide />
+				<Scroll.toTop behavior="smooth" />
 				<div id="currentQuestion">
-					{currentQuestion &&
-						getInputComponent(flatRules, targetNames)(currentQuestion)}
+					{currentQuestion && (
+						<Animate.fadeIn>
+							<Scroll.toElement onlyIfNotVisible />
+							{getInputComponent(flatRules, targetNames)(currentQuestion)}
+						</Animate.fadeIn>
+					)}
 				</div>
 			</div>
 		)
