@@ -35,9 +35,9 @@ const Landing = ({ colours: { colour } }) => (
 				<div className="landing-explanation-content">
 					{emoji('🏗️')}
 					<ul>
-						<li>Find the legal status that suits you</li>
+						<li>Find the type of company that suits you</li>
 						<li>Choose the best location for your business</li>
-						<li>Follow the steps up to your company's registration</li>
+						<li>Follow the steps to register your company</li>
 					</ul>
 				</div>
 				<p>
@@ -45,13 +45,13 @@ const Landing = ({ colours: { colour } }) => (
 				</p>
 			</div>
 			<div>
-				<h2>Your business plan</h2>
+				<h2>The French social security</h2>
 				<div className="landing-explanation-content">
 					{emoji('💶')}
 					<ul>
-						<li>Discover the French social security</li>
-						<li>Simulate hiring costs </li>
-						<li>Understand the complex french payslip</li>
+						<li>Discover the French social security system</li>
+						<li>Simulate your hiring costs </li>
+						<li>Understand the french payslip</li>
 					</ul>
 				</div>
 				<p>
@@ -64,8 +64,8 @@ const Landing = ({ colours: { colour } }) => (
 					{emoji('🤝')}
 					<ul>
 						<li>Discover the procedures to hire in France</li>
-						<li>Learn the basics of the french labour law</li>
-						<li>Find the tools to edit a compliant payslip</li>
+						<li>Learn the basics of French labour law</li>
+						<li>Find the right tool to make a payslip</li>
 					</ul>
 				</div>
 				<p>
