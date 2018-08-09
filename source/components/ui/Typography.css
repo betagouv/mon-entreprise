@@ -80,6 +80,7 @@ a[href^="https://"]::after, a[href^="http://"]::after {
 	font-family: FontAwesome;
 	margin-left: 0.3em;
 	text-decoration: none;
+	display: inline-block;
 }
 a:not(:disabled):not(.button):not(.inverted-button):hover {
 	opacity: 0.8;
