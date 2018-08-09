@@ -21,13 +21,13 @@ const CreateMyCompany = ({ match, nextQuestionUrl, history }: Props) => (
 		<p>
 			The French business law defines more than 20 possible legal statuses to
 			declare a company with various acronyms and processes : SAS, SARL, SA,
-			EIRL... Thanks to this guide, you will quickly find the proper status that
-			suits to your needs, as well as the checklist of the associated steps.
+			EIRL... This guide will help you find quickly the right status for your
+			needs.
 		</p>
 		{match.isExact && (
 			<div className="ui__ answer-group">
 				<Link className="ui__ button" to={nextQuestionUrl}>
-					Choose the legal status
+					Choose your legal status
 				</Link>
 				<Link to={'/social-security'} className="ui__ skip-button">
 					Do it later ›

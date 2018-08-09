@@ -61,7 +61,7 @@ contrat salarié . ATMP . taux collectif ATMP:
     What rate of workplace accidents and occupational diseases applies to the
     company?
   description.en: >-
-    Companies with less than 20 employees are subject to this collective rate.
+    Companies with fewer than 20 employees are subject to this collective rate.
     For larger companies, this rate is modulated (up to 150 employees), and then individualized (beyond 250). The company's rate can be consulted online on [net-entreprise]
     (http://www.net-entreprises.fr/html/account-accident-travail.htm).
   description.fr: >

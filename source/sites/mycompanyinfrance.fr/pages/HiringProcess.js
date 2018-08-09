@@ -43,7 +43,7 @@ const HiringProcess = () => (
 				title="Choose a payslip software"
 				explanations={
 					<p>
-						With less than 20 employees, payslips and declarations can be
+						With fewer than 20 employees, payslips and declarations can be
 						handled online by the{' '}
 						<a href="http://www.letese.urssaf.fr" target="_blank">
 							Tese (french)

@@ -10,9 +10,9 @@ type Props = {
 
 const NumberOfAssociate = ({ companyHaveMultipleAssociates }: Props) => (
 	<>
-		<h2>Number of associates </h2>
+		<h2>Number of associates</h2>
 		<p>
-			If your company only have one associate, the administrative process is
+			If your company only has one associate, the administrative process is
 			easier.
 		</p>
 
@@ -29,7 +29,7 @@ const NumberOfAssociate = ({ companyHaveMultipleAssociates }: Props) => (
 					companyHaveMultipleAssociates(true)
 				}}
 				className="ui__ button">
-				Multiple partners
+				More than one associate
 			</button>
 			<SkipButton onClick={() => companyHaveMultipleAssociates(null)} />
 		</div>
