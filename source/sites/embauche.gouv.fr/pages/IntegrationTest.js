@@ -10,7 +10,12 @@ export default class IntegrationTest extends Component {
 			window.location.origin + '/dist/simulateur.js'
 		script.dataset.couleur = '#2975D1'
 		script.dataset.iframeUrl =
-			window.location.origin + this.props.history.createHref({})
+			window.location.origin +
+			this.props.history.createHref({
+				search: this.props.location.search.includes('site=embauche')
+					? '?site=embauche'
+					: ''
+			})
 		this.DOMNode.appendChild(script)
 	}
 	render() {

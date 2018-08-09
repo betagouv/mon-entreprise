@@ -30,7 +30,7 @@ export class Header extends Component {
 							src={Logo}
 							alt="Un service de l'État français"
 						/>
-						<h1>Simulateur d'embauche</h1>
+						<h1>Simulateur<br/>d'embauche</h1>
 					</Link>
 				)}
 				{this.props.iframe &&
