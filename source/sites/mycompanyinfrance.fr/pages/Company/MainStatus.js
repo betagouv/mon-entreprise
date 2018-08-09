@@ -62,7 +62,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						</strong>
 						Composed of at least 2 partners whose financial responsibility is
 						limited to the amounts of contributions in the capital. The minimum
-						capital is freely fixed in the statutes. The equality or minority manager or college has the "salaried" status.
+						capital is freely fixed in the statutes. The equality or minority
+						manager or college has the "salaried" status.
 					</li>
 				)}
 				{possibleStatus['SARL (majority director)'] && (
@@ -72,7 +73,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						</strong>
 						Composed of at least 2 partners whose financial responsibility is
 						limited to the amounts of contributions in the capital. The minimum
-						capital is freely fixed in the statutes. The majority manager or college has the self employed status.
+						capital is freely fixed in the statutes. The majority manager or
+						college has the self employed status.
 					</li>
 				)}
 				{possibleStatus.SAS && (
@@ -100,15 +102,16 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 					<li>
 						<strong>SA - Société anonyme (Anonymous company):</strong>Company
 						composed of at least 2 shareholders. The only status that allows you
-						to be listed on the stock exchange (from 7 shareholders). The minimum share capital is
-						€37.000.
+						to be listed on the stock exchange (from 7 shareholders). The
+						minimum share capital is €37.000.
 					</li>
 				)}
 				{possibleStatus.SNC && (
 					<li>
 						<strong>SNC - Société en nom collectif (Partnership):</strong>The
-						partners are liable indefinitely and severally for the debts of the
-						company.
+						liability of the partners for the debts of the company is unified
+						(one partner only can be sued for the entire debt) and indefinite
+						(responsible on the entirety of their personnal wealth).
 					</li>
 				)}
 
