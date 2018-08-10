@@ -9,9 +9,8 @@ to = "/infrance.html"
 status = 200
 
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
-to = "/dist/simulateur.js"
-status = 200
+from = "https://embauche.beta.gouv.fr/modules/v2/*"
+to = "/:splat"
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/*"
