@@ -105,13 +105,16 @@ export default class Simu extends Component {
 									maintenant concrétiser votre projet d'embauche.
 								</Trans>
 							</p>
-							<div style={{ textAlign: 'center' }}>
-								<Link className="ui__ button" to="/hiring-process">
-									<Trans i18nKey="simulation-end.cta">
-										Connaître les démarches
-									</Trans>
-								</Link>
-							</div>
+							{this.props.displayHiringProcedures && (
+								<div style={{ textAlign: 'center' }}>
+									<Link className="ui__ button" to="/hiring-process">
+										<Trans i18nKey="simulation-end.cta">
+											Connaître les démarches
+										</Trans>
+									</Link>
+								</div>
+							)}
+							<br />
 						</>
 					)}
 					<div id="focusZone">
