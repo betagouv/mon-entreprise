@@ -46,7 +46,7 @@ class SocialSecurity extends Component<Props, {}> {
 						<h2>How much does it cost ?</h2>
 					</>
 				)}
-				<Simulateur />
+				<Simulateur displayHiringProcedures />
 			</Animate.fromBottom>
 		)
 	}

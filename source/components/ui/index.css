@@ -5,6 +5,9 @@
 :root {
 	--colour: rgb(41, 117, 209);
 }
+html:fullscreen {
+	background-color: white;
+}
 
 body {
 	overflow-x: hidden !important;
