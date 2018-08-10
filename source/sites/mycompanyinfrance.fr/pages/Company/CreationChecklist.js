@@ -223,7 +223,7 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 							<p>
 								<strong>The APE</strong> code for the business sector to which
 								your company belong. The APE is used to classify your company’s
-								main operations in relation to the french business nomenclature
+								main operations in relation to the French business nomenclature
 								system (« NAF » code). It also determines the applicable
 								collective agreement as well as the industrial accident rate in
 								the field to which you or your company belong.

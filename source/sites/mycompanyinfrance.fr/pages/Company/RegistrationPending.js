@@ -34,7 +34,7 @@ const DuringRegistration = () => (
 		<h3>APE Code</h3>
 		<p>
 			The APE code is used to classify your company’s main operations in the
-			french business nomenclature (« NAF »). It is also used to determine the
+			French business nomenclature (« NAF »). It is also used to determine the
 			your applicable collective agreement as well as your occupational accident
 			rate.
 		</p>

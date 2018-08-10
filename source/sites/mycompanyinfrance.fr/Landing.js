@@ -51,7 +51,7 @@ const Landing = ({ colours: { colour } }) => (
 					<ul>
 						<li>Discover the French social security system</li>
 						<li>Simulate your hiring costs </li>
-						<li>Understand the french payslip</li>
+						<li>Understand the French payslip</li>
 					</ul>
 				</div>
 				<p>
