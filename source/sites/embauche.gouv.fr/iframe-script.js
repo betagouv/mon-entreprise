@@ -1,5 +1,5 @@
+import { forEachObjIndexed } from 'ramda';
 
-// Get the "couleur" parameter passed to this script
 let script = document.getElementById('script-simulateur-embauche'),
 	couleur = script.dataset.couleur,
 	baseUrl = script.dataset.iframeUrl || script.getAttribute('src').split('dist')[0],
@@ -16,7 +16,7 @@ const iframeAttributes = {
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true
 }
-Object.entries(iframeAttributes).forEach(([key, value]) => iframe.setAttribute(key, value));
+forEachObjIndexed((value, key) => iframe.setAttribute(key, value), iframeAttributes)
 
 script.replaceWith(iframe, null);
 
