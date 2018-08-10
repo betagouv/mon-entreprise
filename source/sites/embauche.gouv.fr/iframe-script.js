@@ -5,7 +5,7 @@ let script = document.getElementById('script-simulateur-embauche'),
 	baseUrl = script.dataset.iframeUrl || script.getAttribute('src').split('dist')[0],
 	integratorUrl = encodeURIComponent(window.location.href.toString()),
 	lang = script.dataset.lang,
-	src = baseUrl + `?couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
+	src = baseUrl + `?site=embauche&couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
 
 const iframe = document.createElement('iframe')
 const iframeAttributes = {
