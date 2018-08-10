@@ -103,7 +103,10 @@ const HiringProcess = () => (
 				Compute the individual social contributions (using the pay software you
 				chose)
 			</li>
-			<li>Declare the contributions through the DSN</li>
+			<li>
+				Declare the contributions through the DSN, the new online declaration
+				system
+			</li>
 			<li>Deliver the standardised payslip to your employee</li>
 		</ul>
 		<Link className="ui__ button" to="/social-security">
