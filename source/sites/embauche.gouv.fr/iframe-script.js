@@ -2,7 +2,7 @@
 // Get the "couleur" parameter passed to this script
 let script = document.getElementById('script-simulateur-embauche'),
 	couleur = script.dataset.couleur,
-	baseUrl = script.dataset.iframeUrl || script.getAttribute('src').split('dist')[0],
+	baseUrl = 'https://embauche.beta.gouv.fr/',
 	integratorUrl = encodeURIComponent(window.location.href.toString()),
 	lang = script.dataset.lang,
 	src = baseUrl + `?couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
