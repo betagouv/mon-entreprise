@@ -168,9 +168,10 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 					explanations={
 						<>
 							<p>
-								You can start your online registration process anytime, save it and come back to it as you wish.
+								You can start your online registration process anytime, save it
+								and come back to it as you wish.
 							</p>
-							<p style={{textAlign: 'center'}}>
+							<p style={{ textAlign: 'center' }}>
 								<a
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
@@ -232,11 +233,11 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 				/>
 				{!microenterprise && (
 					<CheckItem
-						name="KbisExtract"
+						name="Kbis"
 						title={
 							<>
-								<strong>Your K-bis extract</strong>, which certifies that your
-								company is properly registrated
+								<strong>Your Kbis</strong>, which certifies that your company is
+								properly registrated
 							</>
 						}
 						explanations={
@@ -244,16 +245,16 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 								<p>
 									When creating a business or declaring an activity, the
 									entrepreneur whose professional activity consists of
-									commercial acts must register with the RCS
+									commercial acts must register with the RCS.
 								</p>
 								<p>
-									The justification of the registration in the RCS is made by
-									the presentation of a document delivered by the clerk's office
-									of the court of commerce: the Kbis extract
+									The proof of registration in the RCS is made by the
+									presentation of a document delivered by the clerk's office of
+									the court of commerce: the Kbis.
 								</p>
 								<p>
-									The extract is the only official and legal document attesting
-									to the legal existence of a commercial enterprise.
+									It is the only official document attesting to the legal
+									existence of a commercial enterprise.
 								</p>
 								<p>
 									In most cases, to be opposable and authentic for
