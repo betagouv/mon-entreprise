@@ -33,11 +33,10 @@ const DuringRegistration = () => (
 		<img src={siret} alt="Siret and siren number" />
 		<h3>APE Code</h3>
 		<p>
-			The APE code for the business sector to which your company belong. The APE
-			code is used to classify your company’s main operations in relation to the
-			french business nomenclature system (« NAF » code). It also determines the
-			applicable collective agreement as well as the industrial accident rate in
-			the field to which you or your company belong.
+			The APE code is used to classify your company’s main operations in the
+			French business nomenclature (« NAF »). It is also used to determine the
+			your applicable collective agreement as well as your occupational accident
+			rate.
 		</p>
 		<h2>Next steps to do</h2>
 		<p>
@@ -63,8 +62,8 @@ const DuringRegistration = () => (
 			</li>
 		</ul>
 		<p>
-			Finally you can, learn more about social security system and simulate your
-			first employee.
+			Finally, you can learn more about the social security system and simulate
+			the hiring of your first employee.
 			<Link to="/social-security">Simulate hiring costs</Link>
 		</p>
 	</>

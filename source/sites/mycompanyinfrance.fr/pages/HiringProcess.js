@@ -18,7 +18,7 @@ const HiringProcess = () => (
 							href="https://www.service-public.fr/particuliers/vosdroits/N19871"
 							target="_blank">
 							{' '}
-							More information (french)
+							More information (French)
 						</a>
 					</p>
 				}
@@ -43,16 +43,16 @@ const HiringProcess = () => (
 				title="Choose a payslip software"
 				explanations={
 					<p>
-						With less than 20 employees, payslips and declarations can be
+						With fewer than 20 employees, payslips and declarations can be
 						handled online by the{' '}
 						<a href="http://www.letese.urssaf.fr" target="_blank">
-							Tese (french)
+							Tese (French)
 						</a>
 						. In any case, you can use{' '}
 						<a
 							href="http://www.dsn-info.fr/convention-charte.htm"
 							target="_blank">
-							private payslip software (french)
+							private payslip software (French)
 						</a>
 					</p>
 				}
@@ -103,7 +103,10 @@ const HiringProcess = () => (
 				Compute the individual social contributions (using the pay software you
 				chose)
 			</li>
-			<li>Declare the contributions through the DSN</li>
+			<li>
+				Declare the contributions through the DSN, the new online declaration
+				system
+			</li>
 			<li>Deliver the standardised payslip to your employee</li>
 		</ul>
 		<Link className="ui__ button" to="/social-security">

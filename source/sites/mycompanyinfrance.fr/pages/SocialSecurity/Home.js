@@ -16,9 +16,9 @@ class SocialSecurity extends Component<Props, {}> {
 					<>
 						<h1>Social protection: costs and benefits</h1>
 						<p>
-							France has chosen to provide its citizens with a high-level social
-							safety net. This mandatory system is based on solidarity and
-							designed to ensure the{' '}
+							France has chosen to provide its citizens with a high-quality
+							social safety net. This mandatory system is based on solidarity
+							and designed to ensure the{' '}
 							<strong>general welfare of its people</strong>.
 						</p>
 						<p>

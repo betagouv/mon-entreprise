@@ -61,7 +61,7 @@ contrat salarié . ATMP . taux collectif ATMP:
     What rate of workplace accidents and occupational diseases applies to the
     company?
   description.en: >-
-    Companies with less than 20 employees are subject to this collective rate.
+    Companies with fewer than 20 employees are subject to this collective rate.
     For larger companies, this rate is modulated (up to 150 employees), and then individualized (beyond 250). The company's rate can be consulted online on [net-entreprise]
     (http://www.net-entreprises.fr/html/account-accident-travail.htm).
   description.fr: >
@@ -96,7 +96,7 @@ contrat salarié . CDD . événement . poursuite du CDD en CDI:
     At the end of the fixed-term contract, without interruption, a permanent contract is signed.
   description.fr: En fin de contrat, le CDD est reconduit en CDI sans interruption.
 contrat salarié . CDD . événement . refus CDI avantageux:
-  titre.en: Refusal of a favorable permanent contract
+  titre.en: Refusal of a favourable permanent contract
   titre.fr: Refus d'un CDI avantageux
   description.en: >-
     The employee, at the end of the fixed-term contract, refuses a renewal on
@@ -345,7 +345,7 @@ contrat salarié . salaire . brut de base:
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
   suggestions.en:
     salaire médian: median salary
-    SMIC: minimal salary (SMIC)
+    SMIC: minimum wage (SMIC)
 contrat salarié . salaire . brut:
   titre.en: gross salary with benefits
   titre.fr: salaire brut
@@ -374,10 +374,10 @@ contrat salarié . plafond sécurité sociale:
   titre.en: social security ceiling
   titre.fr: plafond sécurité sociale
 contrat salarié . smic mensuel temps plein:
-  titre.en: monthly full time minimal salary
+  titre.en: monthly full time minimum wage
   titre.fr: smic mensuel temps plein
 contrat salarié . smic mensuel:
-  titre.en: monthly minimal salary
+  titre.en: monthly minimum wage
   titre.fr: smic mensuel
 contrat salarié . cotisations salariales:
   titre.en: Employee contributions

@@ -53,13 +53,6 @@ h6 {
 	line-height: initial;
 }
 
-h1,
-h2,
-h3 {
-	color: rgb(41, 117, 209);
-	color: var(--colour);
-}
-
 button {
 	font-weight: normal;
 }

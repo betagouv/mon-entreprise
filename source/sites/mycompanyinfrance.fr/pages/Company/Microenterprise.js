@@ -21,8 +21,8 @@ const Microenterprise = ({ companyIsMicroenterprise }: Props) => (
 </ul>
 <p><strong>Note:</strong></p>
 <ul>
-<li>Some activities are excluded from this status. <a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">See the list (french)</a></li>
-<li>Some activities are regulated with a qualification or a professional experience. <a href="https://www.afecreation.fr/pid316/activites-reglementees.html">See the list (french)</a></li>
+<li>Some activities are excluded from this status. <a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">See the list (French)</a></li>
+<li>Some activities are regulated with a qualification or a professional experience. <a href="https://www.afecreation.fr/pid316/activites-reglementees.html">See the list (French)</a></li>
 
 </ul>
 <p>For all other case, it is advised to choose the standard status, which is <strong>Individual Business.</strong></p>
