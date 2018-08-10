@@ -345,7 +345,7 @@ contrat salarié . salaire . brut de base:
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
   suggestions.en:
     salaire médian: median salary
-    SMIC: minimal salary (SMIC)
+    SMIC: minimum wage (SMIC)
 contrat salarié . salaire . brut:
   titre.en: gross salary with benefits
   titre.fr: salaire brut
@@ -374,10 +374,10 @@ contrat salarié . plafond sécurité sociale:
   titre.en: social security ceiling
   titre.fr: plafond sécurité sociale
 contrat salarié . smic mensuel temps plein:
-  titre.en: monthly full time minimal salary
+  titre.en: monthly full time minimum wage
   titre.fr: smic mensuel temps plein
 contrat salarié . smic mensuel:
-  titre.en: monthly minimal salary
+  titre.en: monthly minimum wage
   titre.fr: smic mensuel
 contrat salarié . cotisations salariales:
   titre.en: Employee contributions
