@@ -10,7 +10,7 @@ const Footer = ({ colours: { colour } }) => (
 			<p>
 				This website is provided by the{' '}
 				<a href="https://www.urssaf.fr">URSSAF</a>, the French social security
-				contributions collector, with the help of the French government's
+				contributions collector, with the help of the French government’s
 				startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>.
 			</p>
 			<div id="footerIcons">
