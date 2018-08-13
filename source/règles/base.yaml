@@ -1,13 +1,24 @@
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
-  description: LALALA
   applicable si: indemnité active
-  formule: 200
-  note: C'est une implémentation ultra-simplifiée de cette indemnité
+  formule:
+    multiplication: 
+      assiette: distance annuelle
+      taux: 0.25
+  description: | 
+    Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
+
+    Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait réaliste, correspondant approximativement à 4km par jour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à la verser (la part au-dessus de 200€ devient une prime tout à fait classique).
+
   format: euros
   références: 
     fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
     fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
+
+- espace: contrat salarié . indemnité kilométrique vélo
+  nom: distance annuelle
+  formule: 4 * 218
+  note: 4 km par jour sur 218 jours.
 
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: indemnité active
@@ -19,7 +30,9 @@
 
     Pour bénéficier de l'indemnité de 200€ retenue dans ce calcul, le salarié doit faire 4km (aller-retour) de vélo pour se rendre au travail chaque jour travaillé.
 
-    Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son le salarié, **l'employeur devrait débourser 500€**.
+    Cette indemnité est cumulable avec le remboursement des frais de transport en commun s'il sagit d'un trajet à vélo de rabattement vers une station de transport.
+
+    Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
   par défaut: non
 
 - espace: contrat salarié . CDD
