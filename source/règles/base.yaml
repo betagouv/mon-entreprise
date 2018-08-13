@@ -572,6 +572,7 @@
 
 - espace: contrat salarié . CDD
   nom: durée contrat
+  icône: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
   sous-question: |
@@ -659,6 +660,8 @@
         # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
     hypothèses:
       contrat salarié . type de contrat: CDD
+
+
 - nom: contrat salarié
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.

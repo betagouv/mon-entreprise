@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
+import emoji from 'react-easy-emoji'
 
 let Namespace = ({ ns, flatRules, colour }) => (
 	<ul id="namespace">
@@ -25,6 +26,7 @@ let Namespace = ({ ns, flatRules, colour }) => (
 					<li style={style} key={fragments.join()}>
 						<Link style={style} to={'../règle/' + encodeRuleName(ruleName)}>
 							{ruleText}
+							{rule.icon && <span> {emoji(rule.icon)}</span>}
 						</Link>
 						{' › '}
 					</li>

@@ -6,6 +6,9 @@
 	justify-content: center;
 }
 
+#destinataire a::after {
+	display: none;
+}
 #destinataire img {
 	max-width: 100px;
 	margin: auto;

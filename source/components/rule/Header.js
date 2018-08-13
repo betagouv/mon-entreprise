@@ -7,6 +7,7 @@ import Destinataire from './Destinataire'
 import './Header.css'
 import Namespace from './Namespace'
 import withColours from 'Components/utils/withColours'
+import emoji from 'react-easy-emoji'
 
 let RuleHeader = withColours(
 	({
@@ -18,14 +19,20 @@ let RuleHeader = withColours(
 		flatRules,
 		name,
 		title,
+		icon,
 		colours
 	}) => (
 		<section id="ruleHeader">
 			<header style={{ background: colours.colour }}>
-				{ns && <Namespace {...{ ns, flatRules, colour: colours.textColour }} />}
-				<h1 style={{ color: colours.textColour }}>
-					{title || capitalise0(name)}
-				</h1>
+				<div id="ruleHeader__main">
+					{ns && (
+						<Namespace {...{ ns, flatRules, colour: colours.textColour }} />
+					)}
+					<h1 style={{ color: colours.textColour }}>
+						{title || capitalise0(name)}
+					</h1>
+				</div>
+				{icon && <span id="ruleHeader__icon"> {emoji(icon)}</span>}
 			</header>
 			<div id="ruleHeader__content">
 				<div id="ruleHeader__description">

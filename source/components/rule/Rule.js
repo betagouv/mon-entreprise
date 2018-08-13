@@ -43,7 +43,7 @@ export default class Rule extends Component {
 			} = this.props,
 			flatRule = findRuleByDottedName(flatRules, dottedName)
 
-		let { type, name, title, description, question, ns } = flatRule,
+		let { type, name, title, description, question, ns, icon } = flatRule,
 			namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 		let displayedRule = analysedExample || analysedRule
@@ -63,7 +63,8 @@ export default class Rule extends Component {
 						flatRule,
 						flatRules,
 						name,
-						title
+						title,
+						icon
 					}}
 				/>
 
