@@ -1,3 +1,12 @@
+contrat salarié . indemnité kilométrique vélo:
+  description.en: >-
+    Employer's incitation to the use of bicycles for commuting.
+    This financial aid is not taxed.
+  titre.en: kilometric bicycle allowance
+contrat salarié . indemnité kilométrique vélo . indemnité active:
+  question.en: | 
+    Can the employee take advantage of the kilometric bicycle allowance to go to work ?
+  titre.en: allowance enabled
 contrat salarié . CDD . CIF:
   description.en: >-
     Contribution to the financing of individual training leave, specific to
