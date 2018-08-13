@@ -30,20 +30,20 @@ const brancheToEmoji: { [Branche]: string } = {
 }
 
 const brancheToCounterparts: { [Branche]: string } = {
-	retraite: "Garanti en moyenne 60 à 70 % de votre dernier revenu d'activité",
+	retraite: "Garantit en moyenne 60 à 70 % de votre dernier revenu d'activité.",
 	santé:
-		"Couvre la plupart des besoins de soins de santé de la vie quotidienne et 100 % pour les maladies graves, par exemple les séjours à l'hôpital",
+		"Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.",
 	famille:
 		"Offre une vie professionnelle et familiale équilibrée. Finance des crèches et divers services de garde d'enfants.",
-	formation: 'Donne accès à la formation professionnelle pour les employés',
-	logement: 'Aide à la construction de logements neufs et abordables',
+	formation: "Donne aux employés l'accès à la formation professionnelle.",
+	logement: 'Aide à la construction de logements neufs et abordables.',
 	'accidents du travail / maladies professionnelles':
-		'Offre une couverture complète des maladies professionnelles ou des accidents',
+		'Offre une couverture complète des maladies ou accidents du travail.',
 	'assurance chômage':
-		"Donne un revenu aux travailleurs à la recherche d'un nouvel emploi.",
+		"Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.",
 	transport:
-		"Aide à maintenir le prix d'un billet de transport en commun à un bas prix",
-	autres: 'Autres contributions au système social'
+		"Aide à maintenir le prix d'un billet de transport en commun à un bas prix.",
+	autres: 'Autres contributions au système social.'
 }
 
 const brancheToLabel: { [Branche]: string } = {
