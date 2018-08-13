@@ -1087,6 +1087,7 @@
       
 - espace: contrat salarié . salaire
   nom: coût d'embauche
+  résumé: Coût employeur mensuel - aides
   question: Quel est le coût d'embauche, toutes aides incluses ?
   description: | 
     
@@ -1095,7 +1096,6 @@
 
     D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du salarié : je vois dans dans ton travail chaque mois assez de valeur pour te payer ce montant.
 
-  résumé: Coût mensuel - aides
   format: euros  
   type: salaire
   formule: total - aides employeur
