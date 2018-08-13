@@ -1,3 +1,27 @@
+- espace: contrat salarié
+  nom: indemnité kilométrique vélo
+  description: LALALA
+  applicable si: indemnité active
+  formule: 200
+  note: C'est une implémentation ultra-simplifiée de cette indemnité
+  format: euros
+  références: 
+    fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
+    fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
+
+- espace: contrat salarié . indemnité kilométrique vélo
+  nom: indemnité active
+  question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
+  description: | 
+    Cette indemnité n'est pour l'instant pas obligatoire.
+
+    L'employeur a le choix de la mettre en place dans son entreprise.
+
+    Pour bénéficier de l'indemnité de 200€ retenue dans ce calcul, le salarié doit faire 4km (aller-retour) de vélo pour se rendre au travail chaque jour travaillé.
+
+    Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son le salarié, **l'employeur devrait débourser 500€**.
+  par défaut: non
+
 - espace: contrat salarié . CDD
   nom: CIF
   description: Contribution au financement du congé individuel de formation spécifique aux CDD.
@@ -698,12 +722,14 @@
   titre: Salaire brut
   description: >
     C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
+    Ce salaire peut donc inclure des éléments qui ne sont pas de la monnaie qui sera versée au salarié.
   format: euros
   formule:
     somme:
       - salaire . brut de base
       - indemnités salarié
       - avantages en nature . montant
+      - indemnité kilométrique vélo
       
 
 - espace: contrat salarié
@@ -844,12 +870,22 @@
   format: euros  
   description: |
     Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
+  formule: base - exonérations
+
+- espace: contrat salarié . salaire . net imposable
+  nom: base
   formule:
     somme:
       - salaire . net de cotisations
       - avantages sociaux
       - CSG (non déductible)
       - CRDS
+
+- espace: contrat salarié . salaire . net imposable
+  nom: exonérations
+  formule: 
+    somme: 
+      - indemnité kilométrique vélo
 
 - espace: contrat salarié . salaire
   nom: net
