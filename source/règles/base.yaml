@@ -1,7 +1,7 @@
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
   icône: 🚴
-  applicable si: indemnité active
+  applicable si: indemnité vélo active
   formule:
     multiplication: 
       assiette: distance annuelle
@@ -22,7 +22,7 @@
   note: 4 km par jour sur 218 jours.
 
 - espace: contrat salarié . indemnité kilométrique vélo
-  nom: indemnité active
+  nom: indemnité vélo active
   question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
   description: | 
     Cette indemnité n'est pour l'instant pas obligatoire.
