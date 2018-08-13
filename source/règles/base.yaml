@@ -1,5 +1,6 @@
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
+  icône: 🚴
   applicable si: indemnité active
   formule:
     multiplication: 
