@@ -181,13 +181,13 @@ function analysisToFicheDePaie(
 		réductionsDeCotisations,
 		totalCotisations,
 		salaireChargé: règleAvecMontant('contrat salarié . salaire . total'),
-		salaireNet: règleAvecMontant('contrat salarié . salaire . net'),
+		salaireNetDeCotisations: règleAvecMontant(
+			'contrat salarié . salaire . net de cotisations'
+		),
 		salaireNetImposable: règleAvecMontant(
 			'contrat salarié . salaire . net imposable'
 		),
-		salaireNetàPayer: règleAvecMontant(
-			'contrat salarié . salaire . net'
-		),
+		salaireNet: règleAvecMontant('contrat salarié . salaire . net'),
 		nombreHeuresTravaillées: Math.round(
 			règleAvecValeur('contrat salarié . heures par semaine').valeur * 4.33
 		)

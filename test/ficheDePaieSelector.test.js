@@ -15,7 +15,7 @@ let state = {
 		}
 	},
 	targetNames: [
-		'contrat salarié . salaire . net à payer',
+		'contrat salarié . salaire . net',
 		'contrat salarié . salaire . total',
 		'contrat salarié . salaire . net imposable'
 	],
