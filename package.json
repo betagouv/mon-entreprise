@@ -8,10 +8,7 @@
 	"engines": {
 		"node": ">=8.10.0 <10.0.0"
 	},
-	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
-	],
+	"browserslist": ["> 1% in FR", "not ie < 11"],
 	"dependencies": {
 		"@researchgate/react-intersection-observer": "^0.7.3",
 		"classnames": "^2.2.5",
@@ -50,19 +47,30 @@
 	},
 	"scripts": {
 		"compile": "webpack --config source/webpack.prod.js",
-		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
-		"eslint": "LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
+		"eslint-check":
+			"eslint --print-config .eslintrc | eslint-config-prettier-check",
+		"eslint":
+			"LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"externalize": "node source/externalize.js",
 		"heroku-postbuild": "yarn install --production=false && yarn compile",
 		"prepare": "flow-typed update-cache",
-		"pretest": "LIST=`git diff --name-only --diff-filter=AMR HEAD^..HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi && flow check",
+		"pretest":
+			"LIST=`git diff --name-only --diff-filter=AMR HEAD^..HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi && flow check",
 		"start": "webpack-serve ./source/webpack.dev.js",
-		"test-components": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require test/helpers/browser.js \"source/components/**/*.test.js\" --watch",
-		"test-inversions": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
-		"test-meca": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
-		"test-rules": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
-		"test-watch": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
-		"test": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require test/helpers/browser.js  \"./{,!(node_modules)/**/}!(webpack).test.js\""
+		"test-components":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require test/helpers/browser.js \"source/components/**/*.test.js\" --watch",
+		"test-inversions":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/inversion.test.js\" --watch",
+		"test-meca":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/mecanisms.test.js --watch",
+		"test-rules":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/real-rules.test.js --watch",
+		"test-watch":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js \"test/**/*.test.js\" --watch",
+		"test":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require test/helpers/browser.js  \"./{,!(node_modules)/**/}!(webpack).test.js\"",
+		"test-lib":
+			"mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --require test/helpers/browser.js test/library.test.js --watch"
 	},
 	"devDependencies": {
 		"@babel/core": "=7.0.0-beta.51",
