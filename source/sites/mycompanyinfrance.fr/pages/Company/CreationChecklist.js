@@ -6,15 +6,17 @@ import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { Checklist, CheckItem } from 'Ui/Checklist'
 import type { Match } from 'react-router'
+import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions'
 import siret from './siret.jpg'
 
 type Props = {
-	startCompanyRegistration: () => void,
 	statusChooserCompleted: boolean,
-	match: Match
+	match: Match,
+	onChecklistInitialization: (string, Array<string>) => void,
+	onItemCheck: (name: string, checked: boolean) => void,
 }
 
-const Register = ({ match, statusChooserCompleted }: Props) => {
+const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitialization, onItemCheck }: Props) => {
 	const microenterprise =
 		match.params.status && match.params.status.includes('Microenterprise')
 	const SARL = match.params.status && match.params.status.includes('SARL')
@@ -36,7 +38,10 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 				register your {match.params.status}.
 			</p>
 
-			<Checklist>
+			<Checklist 
+				onInitialization={(items) => onChecklistInitialization(match.params.status || '', items)}
+				onItemCheck={onItemCheck}
+			>
 				{!microenterprise && (
 					<CheckItem
 						name="corporateName"
@@ -164,7 +169,7 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 				)}
 				<CheckItem
 					name="registerCompanyOnline"
-					title="Register your company online"
+					title="Create your company online"
 					explanations={
 						<>
 							<p>
@@ -176,7 +181,7 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
 									target="blank">
-									Register my company online
+									Create my company online
 								</a>
 							</p>
 							<p>
@@ -282,4 +287,7 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 export default connect(state => ({
 	statusChooserCompleted:
 		Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
-}))(Register)
+}), {
+	onChecklistInitialization:  initializeCompanyCreationChecklist,
+	onItemCheck: checkCompanyCreationItem,
+})(CreateCompany)

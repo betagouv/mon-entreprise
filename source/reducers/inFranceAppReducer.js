@@ -2,11 +2,14 @@
 
 import { combineReducers } from 'redux'
 import type {
-	Action,
+	Action as CompanyStatusAction,
 	CompanyLegalStatus,
 	State
 } from 'Types/companyStatusTypes'
-
+import type {
+	Action as CreationChecklistAction,
+} from 'Types/companyCreationChecklistTypes'
+type Action = CompanyStatusAction | CreationChecklistAction
 function companyLegalStatus(
 	state: CompanyLegalStatus = {},
 	action: Action
@@ -27,22 +30,32 @@ function companyLegalStatus(
 	return state
 }
 
-function checklists(
-	state: { [string]: { [string]: boolean } } = { hire: {}, register: {} },
+function companyCreationChecklist(
+	state:  { [string]: boolean } =  {},
 	action: Action
 ) {
 	switch (action.type) {
-		case 'CHANGE_CHECKLIST_ITEM':
+		case 'CHECK_COMPANY_CREATION_ITEM':
 			return {
 				...state,
-				[action.checklist]: {
-					...state[action.checklist],
-					...{ [action.name]: action.value }
-				}
+				[action.name]: action.checked
 			}
+		case 'INITIALIZE_COMPANY_CREATION_CHECKLIST':
+			return action.checklistItems.reduce(
+				(checklist, item) => ({...checklist, [item]: false })
+			, {});
 		default:
 			return state
 	}
+}
+function companyStatusChoice(
+	state: ?string = null,
+	action: Action
+) {
+	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
+		return state;
+	} 
+	return action.statusName
 }
 
 function existingCompanyDetails(
@@ -70,7 +83,8 @@ function companyRegistrationStarted(
 // $FlowFixMe
 export default (combineReducers({
 	companyLegalStatus,
-	checklists,
+	companyStatusChoice,
+	companyCreationChecklist,
 	companyRegistrationStarted,
 	existingCompanyDetails
 }): (State, Action) => State)
