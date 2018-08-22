@@ -18,7 +18,6 @@ export type CompanyHaveMultipleAssociatesAction = {
 	multipleAssociates: ?boolean
 }
 
-
 export type CompanyIsMicroenterpriseAction = {
 	type: 'COMPANY_IS_MICROENTERPRISE',
 	microenterprise: ?boolean
@@ -34,9 +33,6 @@ export type ChangeChecklistItemAction = {
 export type SaveExistingCompanyDetailsAction = {
 	type: 'SAVE_EXISTING_COMPANY_DETAILS',
 	details: { [string]: string }
-}
-export type StartCompanyRegistrationAction = {
-	type: 'START_COMPANY_REGISTRATION',
 }
 export type DirectorIsInAMinorityAction = {
 	type: 'SPECIFY_DIRECTORS_SHARE',
@@ -56,7 +52,6 @@ export type State = {|
 		+minorityDirector?: ?boolean
 	},
 	+existingCompanyDetails: ?{ [string]: string },
-	+companyRegistrationStarted: boolean,
 	+checklists: {
 		+register: {
 			[string]: boolean
@@ -70,7 +65,6 @@ export type Action =
 	| DefineDirectorStatusAction
 	| CompanyIsMicroenterpriseAction
 	| CompanyHaveMultipleAssociatesAction
-	| StartCompanyRegistrationAction
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction
-| DirectorIsInAMinorityAction
+	| DirectorIsInAMinorityAction

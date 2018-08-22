@@ -9,7 +9,11 @@ import type {
 import type {
 	Action as CreationChecklistAction,
 } from 'Types/companyCreationChecklistTypes'
-type Action = CompanyStatusAction | CreationChecklistAction
+import type {
+	Action as HiringChecklist,
+} from 'Types/hiringChecklistTypes'
+type Action = CompanyStatusAction | CreationChecklistAction | HiringChecklist
+
 function companyLegalStatus(
 	state: CompanyLegalStatus = {},
 	action: Action
@@ -30,6 +34,26 @@ function companyLegalStatus(
 	return state
 }
 
+function hiringChecklist(
+	state:  { [string]: boolean } =  {},
+	action: Action
+) {
+	switch (action.type) {
+		case 'CHECK_HIRING_ITEM':
+			return {
+				...state,
+				[action.name]: action.checked
+			}
+		case 'INITIALIZE_HIRING_CHECKLIST':
+			return Object.keys(state).length ? state :  action.checklistItems.reduce(
+				(checklist, item) => ({...checklist, [item]: false })
+			, {});
+		default:
+			return state
+	}
+}
+
+
 function companyCreationChecklist(
 	state:  { [string]: boolean } =  {},
 	action: Action
@@ -41,13 +65,15 @@ function companyCreationChecklist(
 				[action.name]: action.checked
 			}
 		case 'INITIALIZE_COMPANY_CREATION_CHECKLIST':
-			return action.checklistItems.reduce(
-				(checklist, item) => ({...checklist, [item]: false })
-			, {});
+			return Object.keys(state).length ? state : action.checklistItems.reduce(
+					(checklist, item) => ({...checklist, [item]: false })
+					, {})	
+			;
 		default:
 			return state
 	}
 }
+
 function companyStatusChoice(
 	state: ?string = null,
 	action: Action
@@ -69,22 +95,11 @@ function existingCompanyDetails(
 			return state
 	}
 }
-
-function companyRegistrationStarted(
-	state: boolean = false,
-	action: Action
-) {
-	if (action.type ==='START_COMPANY_REGISTRATION') {
-		return true;
-	}
-	return state;
-}
-
 // $FlowFixMe
 export default (combineReducers({
 	companyLegalStatus,
 	companyStatusChoice,
 	companyCreationChecklist,
-	companyRegistrationStarted,
-	existingCompanyDetails
+	existingCompanyDetails,
+	hiringChecklist
 }): (State, Action) => State)

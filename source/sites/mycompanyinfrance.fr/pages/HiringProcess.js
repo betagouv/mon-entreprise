@@ -2,12 +2,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { CheckItem, Checklist } from 'Ui/Checklist'
+import { initializeHiringChecklist, checkHiringItem } from 'Actions/hiringChecklistAction'
+import { connect } from "react-redux";
 
-const HiringProcess = () => (
+const HiringProcess = ({ onChecklistInitialization, onItemCheck, hiringChecklist }) => (
 	<>
 		<h1>Hiring process checklist</h1>
 		<p>All the necessary steps to hire your first employee </p>
-		<Checklist>
+		<Checklist onInitialization={onChecklistInitialization} onItemCheck={onItemCheck} defaultChecked={hiringChecklist}>
 			<CheckItem
 				name="contract"
 				title="Sign an employment contract with your employee"
@@ -115,4 +117,4 @@ const HiringProcess = () => (
 	</>
 )
 
-export default HiringProcess
+export default connect(state => ({ hiringChecklist : state.inFranceApp.hiringChecklist}), {onChecklistInitialization: initializeHiringChecklist, onItemCheck: checkHiringItem})(HiringProcess)

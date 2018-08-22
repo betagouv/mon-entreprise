@@ -58,7 +58,8 @@ button {
 }
 
 p,
-ul {
+ul,
+li {
 	line-height: 1.7rem;
 	margin: 1rem 0;
 }

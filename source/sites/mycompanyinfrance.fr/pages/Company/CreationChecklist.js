@@ -14,9 +14,10 @@ type Props = {
 	match: Match,
 	onChecklistInitialization: (string, Array<string>) => void,
 	onItemCheck: (name: string, checked: boolean) => void,
+	companyCreationChecklist: {[string]: boolean}
 }
 
-const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitialization, onItemCheck }: Props) => {
+const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitialization, onItemCheck, companyCreationChecklist }: Props) => {
 	const microenterprise =
 		match.params.status && match.params.status.includes('Microenterprise')
 	const SARL = match.params.status && match.params.status.includes('SARL')
@@ -41,6 +42,7 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 			<Checklist 
 				onInitialization={(items) => onChecklistInitialization(match.params.status || '', items)}
 				onItemCheck={onItemCheck}
+				defaultChecked={companyCreationChecklist}
 			>
 				{!microenterprise && (
 					<CheckItem
@@ -285,6 +287,7 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 	)
 }
 export default connect(state => ({
+	companyCreationChecklist: state.inFranceApp.companyCreationChecklist,
 	statusChooserCompleted:
 		Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
 }), {
