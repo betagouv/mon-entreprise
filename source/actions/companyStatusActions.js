@@ -5,6 +5,7 @@ import type {
 	CompanyHaveMultipleAssociatesAction,
 	DirectorStatus,
 	CompanyIsMicroenterpriseAction,
+	ResetCompanyStatusAction,
 	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
 } from 'Types/companyStatusTypes'
@@ -54,3 +55,10 @@ export const directorIsInAMinority = thenGoToNextQuestion(
 		minorityDirector
 	})
 )
+
+export const goToCompanyStatusChoice = () => (dispatch: (ResetCompanyStatusAction) => void, _: any, history: RouterHistory) => {
+	dispatch(({
+		type: 'RESET_COMPANY_STATUS_CHOICE'
+	} : ResetCompanyStatusAction))
+	history.push('/company')
+}

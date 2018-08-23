@@ -33,7 +33,7 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 					/>
 				<Route path={match.path + '/find'} component={Find} />
 				{companyStatusChoice && 
-					<Redirect from={match.path} to={match.path + '/create-' + companyStatusChoice} /> 
+					<Redirect exact from={match.path} to={match.path + '/create-' + companyStatusChoice} /> 
 				}
 				<Route path={match.path} component={Home} />
 			</Switch>

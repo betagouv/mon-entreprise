@@ -38,6 +38,9 @@ export type DirectorIsInAMinorityAction = {
 	type: 'SPECIFY_DIRECTORS_SHARE',
 	minorityDirector: ?boolean
 }
+export type ResetCompanyStatusAction = {
+	type: 'RESET_COMPANY_STATUS_CHOICE',
+}
 export type State = {|
 	+companyLegalStatus: {
 		/* 
@@ -68,3 +71,4 @@ export type Action =
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction
 	| DirectorIsInAMinorityAction
+	| ResetCompanyStatusAction
