@@ -75,6 +75,7 @@ ul.ui__.checklist {
 	transition: all 0.1s;
 	font-size: inherit;
 }
+
 .ui__.checklist-button:hover {
 	opacity: 0.8;
 }

@@ -12,6 +12,7 @@
 .landing__header header {
 	text-align: center;
 	overflow: hidden;
+	animation: fade-in 1s;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -49,7 +50,14 @@
 	background: white;
 	padding: 1rem;
 }
-
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
 .landing__banner img {
 	height: 100%;
 	width: auto;

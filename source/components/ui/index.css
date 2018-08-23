@@ -45,8 +45,7 @@ ul.ui__.no-bullet {
 
 #js {
 	opacity: 1;
-	transform: translateY(0px);
-	transition: opacity 0.4s, transform 0.4s;
+	transition: all 0.4s;
 }
 #lds-ellipsis {
 	display: none;

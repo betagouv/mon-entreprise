@@ -88,7 +88,6 @@
 	border: none;
 	display: inline-block;
 	font-size: inherit;
-	font-weight: inherit;
 	font-family: inherit;
 	margin: 0;
 }
@@ -125,16 +124,12 @@
 	opacity: 0.6;
 	border-color: black;
 	border: none;
-	padding: 0.6rem 0;
+	padding: 0.6rem 0.6rem;
 	color: black;
 }
-
 .ui__.skip-button:not(:disabled):hover {
 	opacity: 0.8;
 	transform: translateX(3px);
-}
-.ui__.skip-button.left:not(:disabled):hover {
-	transform: translateX(-3px);
 }
 
 .answer-list button.answer:hover {
@@ -143,9 +138,6 @@
 
 .ui__.skip-button:active {
 	animation: push-button-right 0.1s ease-out alternate-reverse 2;
-}
-.ui__.skip-button.left:active {
-	animation: push-button-left 0.1s ease-out alternate-reverse 2;
 }
 
 .ui__.small.button {
@@ -175,14 +167,5 @@
 	}
 	to {
 		transform: translate3d(3px, 0, 0);
-	}
-}
-
-@keyframes push-button-left {
-	from {
-		transform: translate3d(-5px, 0, 0);
-	}
-	to {
-		transform: translate3d(-3px, 0, 0);
 	}
 }
