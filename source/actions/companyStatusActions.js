@@ -5,12 +5,13 @@ import type {
 	CompanyHaveMultipleAssociatesAction,
 	DirectorStatus,
 	CompanyIsMicroenterpriseAction,
-	ResetCompanyStatusAction,
+	StartCompanyRegistrationAction,
 	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
 } from 'Types/companyStatusTypes'
 import type { RouterHistory } from 'react-router'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
+import { ThunkAction } from 'redux-thunk';
 
 const thenGoToNextQuestion = actionCreator => (...args: any) => (
 	dispatch: any => void,
@@ -55,10 +56,9 @@ export const directorIsInAMinority = thenGoToNextQuestion(
 		minorityDirector
 	})
 )
-
-export const goToCompanyStatusChoice = () => (dispatch: (ResetCompanyStatusAction) => void, _: any, history: RouterHistory) => {
+export const startCompanyRegistration= () => ((dispatch, _, history)  => {
 	dispatch(({
-		type: 'RESET_COMPANY_STATUS_CHOICE'
-	} : ResetCompanyStatusAction))
-	history.push('/company')
-}
+		type: 'START_COMPANY_REGISTRATION',
+	}: StartCompanyRegistrationAction))
+	history.push('/company/registration-pending')
+}:ThunkAction )

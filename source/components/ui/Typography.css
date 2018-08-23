@@ -1,5 +1,5 @@
 html {
-	transition: none !important;
+	font-size: 1.16em;
 }
 @media (max-width: 500px) {
 	html {
@@ -11,14 +11,8 @@ html {
 		font-size: 1.1em;
 	}
 }
-@media (min-width: 1920px) {
-	html {
-		font-size: 1.16em;
-	}
-}
 
 body {
-	font-weight: 400;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -68,9 +62,6 @@ ul {
 	line-height: 1.7rem;
 	margin: 1rem 0;
 }
-li {
-	margin: 0.5rem 0;
-}
 a {
 	border: none;
 	display: inline-block;
@@ -86,7 +77,6 @@ a[href^="http://"]:not(.button):not(.inverted-button)::after {
 	content: '\f08e';
 	font-family: FontAwesome;
 	margin-left: 0.3em;
-	font-size: 80%;
 	text-decoration: none;
 	display: inline-block;
 }

@@ -1,26 +1,13 @@
 /* @flow */
-import {
-	checkHiringItem,
-	initializeHiringChecklist
-} from 'Actions/hiringChecklistAction'
 import React from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
 
-const HiringProcess = ({
-	onChecklistInitialization,
-	onItemCheck,
-	hiringChecklist
-}) => (
-	<Animate.fromBottom>
+const HiringProcess = () => (
+	<>
 		<h1>Hiring process checklist</h1>
 		<p>All the necessary steps to hire your first employee </p>
-		<Checklist
-			onInitialization={onChecklistInitialization}
-			onItemCheck={onItemCheck}
-			defaultChecked={hiringChecklist}>
+		<Checklist>
 			<CheckItem
 				name="contract"
 				title="Sign an employment contract with your employee"
@@ -125,13 +112,7 @@ const HiringProcess = ({
 		<Link className="ui__ button" to="/social-security">
 			Get an example payslip
 		</Link>
-	</Animate.fromBottom>
+	</>
 )
 
-export default connect(
-	state => ({ hiringChecklist: state.inFranceApp.hiringChecklist }),
-	{
-		onChecklistInitialization: initializeHiringChecklist,
-		onItemCheck: checkHiringItem
-	}
-)(HiringProcess)
+export default HiringProcess

@@ -21,14 +21,9 @@ const Progress = ({ percent }) => (
 )
 type Props = {
 	companyProgress: number,
-	estimationProgress: number,
-	hiringProgress: number
+	estimationProgress: number
 }
-const StepsHeader = ({
-	companyProgress,
-	estimationProgress,
-	hiringProgress
-}: Props) => (
+const StepsHeader = ({ companyProgress, estimationProgress }: Props) => (
 	<header className="steps-header ui__ container">
 		<nav>
 			<NavLink to="/company" activeClassName="active">
@@ -44,7 +39,7 @@ const StepsHeader = ({
 			<NavLink to="/hiring-process" activeClassName="active">
 				<img src={hiringSvg} />
 				<div>Hiring process</div>
-				<Progress percent={hiringProgress} />
+				<Progress percent={0} />
 			</NavLink>
 		</nav>
 	</header>

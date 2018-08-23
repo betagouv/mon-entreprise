@@ -46,7 +46,7 @@ let initialStore = {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+if (process.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
 	window.addEventListener('load', () => {
 		navigator.serviceWorker
 			.register('/sw.js')
