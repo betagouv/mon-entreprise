@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import { animated, Transition } from 'react-spring'
 import * as Animate from 'Ui/animate'
 import DefineDirectorStatus from './DirectorStatus'
@@ -7,9 +7,9 @@ import Find from './Find'
 import Home from './Home'
 import Liability from './Liability'
 import MainStatus from './MainStatus'
+import { connect } from "react-redux";
 import MinorityDirector from './MinorityDirector'
 import Microenterprise from './Microenterprise'
-import RegistrationPending from './RegistrationPending'
 import NumberOfAssociate from './NumberOfAssociate'
 import CreationChecklist from './CreationChecklist'
 
@@ -23,17 +23,19 @@ const withRouteAnimation = style => AnimatedComponent => {
 	return withRouteAnimation;
 }
 
-const CreateMyCompany = ({ match, location }) => (
+const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 	<>
 		<Animate.fromBottom>
 			<Switch>
 				<Route
 					path={match.path + '/create-:status'}
 					component={CreationChecklist}
-				/>
-				<Route path={match.path + '/registration-pending'} component={RegistrationPending} />
+					/>
 				<Route path={match.path + '/find'} component={Find} />
-				<Route path={match.path} component={Home} />
+				{companyStatusChoice ? 
+					<Redirect from={match.path} to={match.path + '/create-' + companyStatusChoice} /> :
+					<Route path={match.path} component={Home} />
+				}
 			</Switch>
 			<div className="ui__ route-trans">
 				<Transition
@@ -86,4 +88,4 @@ const CreateMyCompany = ({ match, location }) => (
 	</>
 )
 
-export default CreateMyCompany
+export default connect(state => ({ companyStatusChoice: state.inFranceApp.companyStatusChoice}))(CreateMyCompany)
