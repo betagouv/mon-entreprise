@@ -1,5 +1,5 @@
 .footer {
-	padding-top: 0.3rem;
+	padding-top: 2rem;
 	padding-bottom: 1rem;
 	margin-top: 6rem;
 	background-color: rgba(41, 117, 209, 0.133);
@@ -10,7 +10,8 @@
 }
 
 .footer p {
-	opacity: 0.9;
+	opacity: 0.8;
+	font-size: 0.9rem;
 	margin-bottom: 1.2em;
 }
 .footer a {

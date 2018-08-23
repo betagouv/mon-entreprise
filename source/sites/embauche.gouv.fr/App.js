@@ -1,6 +1,6 @@
 import Mecanisms from 'Components/Mecanisms'
 import RulePage from 'Components/RulePage'
-import withTracker from 'Components/utils/withTracker'
+import TrackPageView from 'Components/utils/TrackPageView'
 import React, { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
@@ -15,14 +15,12 @@ import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
 import Route404 from './pages/Route404'
 import RulesList from './pages/RulesList'
-@withTracker
+
 class EmbaucheRoute extends Component {
-	componentDidMount() {
-		this.props.tracker.push(['trackPageView'])
-	}
 	render() {
 		return (
 			<Provider basename="embauche">
+				<TrackPageView/>
 				<Header />
 				<Switch>
 					<Route exact path="/" component={Home} />
