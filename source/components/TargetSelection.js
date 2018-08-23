@@ -16,9 +16,9 @@ import {
 	flatRulesSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import AnimatedTargetValue from './AnimatedTargetValue'
 import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import AnimatedTargetValue from './AnimatedTargetValue'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
 
@@ -163,7 +163,7 @@ let Header = ({
 
 			<span className="texts">
 				<span className="optionTitle">
-					<Link to={match.path + '/règle/' + encodeRuleName(target.dottedName)}>
+					<Link to={match.path + 'règle/' + encodeRuleName(target.dottedName)}>
 						{target.title || target.name}
 					</Link>
 				</span>
