@@ -178,7 +178,7 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 								You can start your online registration process anytime, save it
 								and come back to it as you wish.
 							</p>
-							<p style={{ textAlign: 'center' }}>
+							<p>
 								<a
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
