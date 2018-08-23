@@ -38,7 +38,11 @@ button {
 	margin-left: auto;
 	padding: 0 0.6em;
 }
-
+p.ui__.notice {
+	font-size: 90%;
+	color: rgba(0, 0, 0, 0.7);
+	margin-top: 2em;
+}
 ul.ui__.no-bullet {
 	list-style: none;
 }
