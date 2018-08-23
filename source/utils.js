@@ -56,3 +56,11 @@ export const mapDispatchWithRouter = (actionCreators: Object) => (
 			dispatch(actionCreator(...args, ownProps.router)),
 		actionCreators
 	)
+
+export function inIframe() {
+	try {
+		return window.self !== window.top
+	} catch (e) {
+		return true
+	}
+}

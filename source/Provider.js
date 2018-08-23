@@ -16,7 +16,7 @@ import {
 	retrievePersistedSimulation
 } from './storage/persist'
 import ReactPiwik from './Tracker'
-import { getIframeOption, getUrl } from './utils'
+import { getIframeOption, getUrl, inIframe } from './utils'
 
 let tracker = defaultTracker
 if (process.env.NODE_ENV === 'production') {
@@ -46,7 +46,11 @@ let initialStore = {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-if (process.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+if (
+	process.env.NODE_ENV === 'production' &&
+	'serviceWorker' in navigator &&
+	!inIframe()
+) {
 	window.addEventListener('load', () => {
 		navigator.serviceWorker
 			.register('/sw.js')

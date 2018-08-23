@@ -18,7 +18,7 @@ type Props = {
 
 export const fromBottom = ({
 	children,
-	config = configPresets.default,
+	config = configPresets.stiff,
 	delay = 0
 }: Props) => (
 	<Trail

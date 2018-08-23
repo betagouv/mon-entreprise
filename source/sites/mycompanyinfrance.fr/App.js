@@ -1,9 +1,9 @@
-import withTracker from 'Components/utils/withTracker'
+import TrackPageView from 'Components/utils/TrackPageView'
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
-import './App.css'
 import Provider from '../../Provider'
+import './App.css'
 import Landing from './Landing'
 import CreateMyCompany from './pages/Company'
 import Footer from './pages/Footer/Footer'
@@ -11,17 +11,16 @@ import StepsHeader from './pages/Header/StepsHeader'
 import HiringProcess from './pages/HiringProcess'
 import SocialSecurity from './pages/SocialSecurity'
 
-@withTracker
 class InFranceRoute extends Component {
 	componentDidMount() {
 		if (typeof sessionStorage !== 'undefined') {
 			sessionStorage['lang'] = 'en'
 		}
-		this.props.tracker.push(['trackPageView'])
 	}
 	render() {
 		return (
 			<Provider basename="infrance" language="en">
+				<TrackPageView />
 				<div id="content">
 					<Switch>
 						<Route exact path="/" component={Landing} />

@@ -6,17 +6,22 @@ import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { Checklist, CheckItem } from 'Ui/Checklist'
 import type { Match } from 'react-router'
+import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions'
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import siret from './siret.jpg'
 
 type Props = {
-	startCompanyRegistration: () => void,
 	statusChooserCompleted: boolean,
-	match: Match
+	match: Match,
+	onChecklistInitialization: (string, Array<string>) => void,
+	onStatusChange: () => void,
+	onItemCheck: (name: string, checked: boolean) => void,
+	companyCreationChecklist: {[string]: boolean}
 }
 
-const Register = ({ match, statusChooserCompleted }: Props) => {
+const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitialization, onItemCheck, companyCreationChecklist, onStatusChange}: Props) => {
 	const microenterprise =
-		match.params.status && match.params.status.includes('Microenterprise')
+		match.params.status && match.params.status.includes('microenterprise')
 	const SARL = match.params.status && match.params.status.includes('SARL')
 	const EURL = match.params.status && match.params.status.includes('EURL')
 
@@ -24,19 +29,22 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 		<Animate.fromBottom>
 			<Scroll.toTop />
 			<h1>Create a {match.params.status} </h1>
-			{!statusChooserCompleted && (
+					{!statusChooserCompleted &&	
 				<p>
-					<Link to="/company">
-						Not sure about this status? Take our guide to help you choose.
-					</Link>{' '}
-				</p>
-			)}
+					<button className="ui__ link-button" onClick={onStatusChange}>
+						Not sure about this status? Take our guide to help you choose
+					</button>
+				</p>}
 			<p>
 				This checklist will guide you thoughout all the necessary steps to
 				register your {match.params.status}.
 			</p>
 
-			<Checklist>
+			<Checklist 
+				onInitialization={(items) => onChecklistInitialization(match.params.status || '', items)}
+				onItemCheck={onItemCheck}
+				defaultChecked={companyCreationChecklist}
+			>
 				{!microenterprise && (
 					<CheckItem
 						name="corporateName"
@@ -164,19 +172,19 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 				)}
 				<CheckItem
 					name="registerCompanyOnline"
-					title="Register your company online"
+					title="Create your company online"
 					explanations={
 						<>
 							<p>
 								You can start your online registration process anytime, save it
 								and come back to it as you wish.
 							</p>
-							<p style={{ textAlign: 'center' }}>
+							<p>
 								<a
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
 									target="blank">
-									Register my company online
+									Create my company online
 								</a>
 							</p>
 							<p>
@@ -271,7 +279,10 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 					/>
 				)}
 			</Checklist>
-			<p style={{ textAlign: 'right' }}>
+			<p style={{ display: 'flex', justifyContent: 'space-between' }}>
+				<button onClick={onStatusChange} className="ui__ skip-button left">
+					‹ Choose another status
+				</button>
 				<Link to={'/social-security'} className="ui__ skip-button">
 					Continue to social security ›
 				</Link>
@@ -280,6 +291,11 @@ const Register = ({ match, statusChooserCompleted }: Props) => {
 	)
 }
 export default connect(state => ({
+	companyCreationChecklist: state.inFranceApp.companyCreationChecklist,
 	statusChooserCompleted:
 		Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
-}))(Register)
+}), {
+	onChecklistInitialization:  initializeCompanyCreationChecklist,
+	onItemCheck: checkCompanyCreationItem,
+	onStatusChange: goToCompanyStatusChoice,
+})(CreateCompany)
