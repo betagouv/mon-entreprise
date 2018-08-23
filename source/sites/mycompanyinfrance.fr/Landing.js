@@ -6,8 +6,6 @@ import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
-import { config } from 'react-spring'
-import * as Animate from 'Ui/animate'
 import './Landing.css'
 
 const Landing = ({ colours: { colour } }) => (
@@ -18,15 +16,13 @@ const Landing = ({ colours: { colour } }) => (
 				<img alt="logo urssaf" src={urssafSvg} />
 			</div>
 			<header>
-				<Animate.fromBottom delay={500} config={config.slow}>
-					<h1>Start your business in France.</h1>
-					<Link
-						className="ui__ inverted-button cta"
-						to="/company"
-						alt="the first step to create a company">
-						Take the step by step guide
-					</Link>
-				</Animate.fromBottom>
+				<h1>Start your business in France.</h1>
+				<Link
+					className="ui__ inverted-button cta"
+					to="/company"
+					alt="the first step to create a company">
+					Take the step by step guide
+				</Link>
 			</header>
 		</section>
 		<section className="landing-explanation">

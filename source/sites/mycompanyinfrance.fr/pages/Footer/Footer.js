@@ -7,12 +7,6 @@ import betaGouvSvg from './logo-betagouv.svg'
 const Footer = ({ colours: { colour } }) => (
 	<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
 		<div className="ui__ container">
-			<p>
-				This website is provided by the{' '}
-				<a href="https://www.urssaf.fr">URSSAF</a>, the French social security
-				contributions collector, with the help of the French government's
-				startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>.
-			</p>
 			<div id="footerIcons">
 				<a href="https://urssaf.fr">
 					<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
@@ -24,6 +18,12 @@ const Footer = ({ colours: { colour } }) => (
 					/>
 				</a>
 			</div>
+			<p>
+				This website is provided by the{' '}
+				<a href="https://www.urssaf.fr">URSSAF</a>, the French social security
+				contributions collector, with the help of the French government's
+				startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>.
+			</p>
 		</div>
 	</footer>
 )

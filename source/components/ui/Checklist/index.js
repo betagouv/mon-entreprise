@@ -4,10 +4,13 @@ import React, { Component } from 'react'
 import Animate from 'Ui/animate'
 import './index.css'
 import type { ChildrenArray, Node, Element } from 'react'
+
 type CheckItemProps = {
 	title: Node,
 	name: string,
-	explanations: Node
+	explanations: Node,
+	onChange?: boolean => void,
+	defaultChecked?: boolean
 }
 type CheckItemState = {
 	displayExplanations: boolean
@@ -15,6 +18,12 @@ type CheckItemState = {
 export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 	state = {
 		displayExplanations: false
+	}
+	handleChecked = (e: SyntheticInputEvent<HTMLInputElement>) => {
+		if (e.target.checked) {
+			this.setState({ displayExplanations: false })
+		}
+		this.props.onChange && this.props.onChange(e.target.checked)
 	}
 	render() {
 		return (
@@ -27,6 +36,8 @@ export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 						style={{ display: 'none' }}
 						name={this.props.name}
 						id={this.props.name}
+						defaultChecked={this.props.defaultChecked}
+						onChange={this.handleChecked}
 					/>
 					<label
 						htmlFor={this.props.name}
@@ -60,15 +71,40 @@ export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 }
 
 type ChecklistProps = {
-	children: ChildrenArray<null | false | Element<typeof CheckItem>>
+	children: ChildrenArray<null | false | Element<typeof CheckItem>>,
+	onItemCheck: (string, boolean) => void,
+	onInitialization: (Array<string>) => void,
+	defaultChecked: { [string]: boolean }
 }
-export const Checklist = ({ children }: ChecklistProps) => {
-	return (
-		<ul className="ui__ no-bullet checklist">
-			{React.Children.map(
-				children,
-				child => child && <li key={child.props.name}>{child}</li>
-			)}
-		</ul>
-	)
+export class Checklist extends Component<ChecklistProps> {
+	checklist: Array<Element<typeof CheckItem>>
+	static defaultProps = {
+		defaultChecked: {},
+		onItemCheck: () => {},
+		onInitialization: () => {}
+	}
+	constructor(props: ChecklistProps) {
+		super(props)
+		this.checklist = React.Children.toArray(props.children)
+			.filter(Boolean)
+			.map(
+				// $FlowFixMe
+				(child: Element<typeof CheckItem>) =>
+					React.cloneElement(child, {
+						onChange: checked => props.onItemCheck(child.props.name, checked),
+						defaultChecked: props.defaultChecked[child.props.name]
+					})
+			)
+		props.onInitialization &&
+			props.onInitialization(this.checklist.map(child => child.props.name))
+	}
+	render() {
+		return (
+			<ul className="ui__ no-bullet checklist">
+				{this.checklist.map(checkItem => (
+					<li key={checkItem.props.name}>{checkItem}</li>
+				))}
+			</ul>
+		)
+	}
 }
