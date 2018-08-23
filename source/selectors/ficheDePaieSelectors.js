@@ -180,9 +180,9 @@ function analysisToFicheDePaie(
 		cotisations,
 		réductionsDeCotisations,
 		totalCotisations,
-		salaireChargé: règleAvecMontant('contrat salarié . salaire . total'),
+		salaireChargé: règleAvecMontant('contrat salarié . rémunération . total'),
 		salaireNetDeCotisations: règleAvecMontant(
-			'contrat salarié . salaire . net de cotisations'
+			'contrat salarié . rémunération . net de cotisations'
 		),
 		salaireNetImposable: règleAvecMontant(
 			'contrat salarié . salaire . net imposable'

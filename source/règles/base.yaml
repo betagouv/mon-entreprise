@@ -726,7 +726,7 @@
       question: Quel est le salaire mensuel ?
       titre: salaire
       avec:
-        - salaire . coût d'embauche
+        - coût d'embauche
         - salaire . net
         - salaire . net après impôt
 
@@ -738,16 +738,19 @@
   nom: brut
   titre: Salaire brut
   description: >
-    C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
-    Ce salaire peut donc inclure des éléments qui ne sont pas de la monnaie qui sera versée au salarié.
+    Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   format: euros
   formule:
     somme:
       - salaire . brut de base
       - indemnités salarié
-      - avantages en nature . montant
       - indemnité kilométrique vélo
-      
+
+- espace: contrat salarié . rémunération
+  nom: brut
+  titre: Rémunération brute
+  format: euros
+  formule: salaire . brut + avantages en nature . montant
 
 - espace: contrat salarié
   nom: avantages sociaux
@@ -868,16 +871,16 @@
       - CDD . CIF
       - forfait social
 
+- espace: contrat salarié
+  nom: rémunération
+  description: La rémunération se distingue du salaire en incluant les avantages non monétaires versés en contrepartie du travail. Elle est donc plus large que les sommes d'argent versées au salarié. 
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: net de cotisations
-  titre: Salaire net
-  type: salaire
-  description: |
-    Le salaire brut moins les cotisations sociales. 
-
+  titre: Rémunération nette de cotisations
+  type: rémunération
   format: euros
-  formule: salaire . brut - cotisations salariales
+  formule: rémunération . brut - cotisations salariales
 
 
 - espace: contrat salarié . salaire
@@ -893,7 +896,7 @@
   nom: base
   formule:
     somme:
-      - salaire . net de cotisations
+      - rémunération . net de cotisations
       - avantages sociaux
       - CSG (non déductible)
       - CRDS
@@ -917,7 +920,7 @@
     Aussi appelé salaire net à payer (avant impôt à la source).
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
-  formule: salaire . net de cotisations - avantages en nature . montant
+  formule: rémunération . net de cotisations - avantages en nature . montant
   contrôles: 
     - si: net < 200
       message: Entrez un salaire mensuel
@@ -1046,19 +1049,19 @@
 - espace: contrat salarié
   nom: coût du travail
   description: |
-  formule: salaire . total - aides employeur
+  formule: rémunération . total - aides employeur
   format: euros
   
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: total
-  titre: Salaire chargé
-  question: Quel est le salaire mensuel chargé ?
+  titre: Rémunération totale
+  question: Quel est la rémunération mensuelle chargée ?
   résumé: Versé par l'employeur
   type: salaire
   format: euros
   description: |
-    C'est le salaire brut, plus les cotisations patronales, moins les réductions de cotisations sociales.
+    C'est la rémunération brute, plus les cotisations patronales, moins les réductions de cotisations sociales.
 
     C'est le total que l'employeur doit verser mensuellement pour employer un salarié.
 
@@ -1066,7 +1069,7 @@
 
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
-  formule: salaire . total sans réduction - réductions de cotisations
+  formule: rémunération . total sans réduction - réductions de cotisations
   contrôles: 
     - si: total < 400
       message: Entrez un salaire mensuel
@@ -1077,15 +1080,16 @@
   format: euros
   formule: réduction générale + exonération JEI
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: total sans réduction
+  titre: Rémunération totale sans réduction
   type: salaire
   formule:
     somme:
-      - salaire . brut
+      - brut
       - cotisations patronales
       
-- espace: contrat salarié . salaire
+- espace: contrat salarié 
   nom: coût d'embauche
   résumé: Coût employeur mensuel - aides
   question: Quel est le coût d'embauche, toutes aides incluses ?
@@ -1098,7 +1102,7 @@
 
   format: euros  
   type: salaire
-  formule: total - aides employeur
+  formule: rémunération . total - aides employeur
   contrôles: 
     - si: coût d'embauche < 400
       message: Entrez un salaire mensuel

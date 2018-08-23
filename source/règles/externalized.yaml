@@ -479,7 +479,7 @@ contrat salarié . coût du travail:
   titre.en: labor cost
   titre.fr: coût du travail
 
-contrat salarié . salaire . total:
+contrat salarié . rémunération . total:
   titre.en: Total salary
   titre.fr: Salaire total
   résumé.en: Paid monthly by the employer.
@@ -497,7 +497,7 @@ contrat salarié . salaire . total:
 contrat salarié . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
-contrat salarié . salaire . total sans réduction:
+contrat salarié . rémunération . total sans réduction:
   titre.en: total salary without reduction
   titre.fr: salaire total sans réduction
 contrat salarié . aides employeur:
