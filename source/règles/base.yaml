@@ -9,7 +9,7 @@
   description: | 
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
 
-    Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait réaliste, correspondant approximativement à 4km par jour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à la verser (la part au-dessus de 200€ devient une prime tout à fait classique).
+  Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
 
   format: euros
   références: 
