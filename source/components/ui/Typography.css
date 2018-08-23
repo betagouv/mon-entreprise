@@ -13,6 +13,7 @@ html {
 }
 
 body {
+	font-weight: 300;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -58,10 +59,12 @@ button {
 }
 
 p,
-ul,
-li {
+ul {
 	line-height: 1.7rem;
 	margin: 1rem 0;
+}
+li {
+	margin: 0.5rem 0;
 }
 a {
 	border: none;
@@ -78,6 +81,7 @@ a[href^="http://"]:not(.button):not(.inverted-button)::after {
 	content: '\f08e';
 	font-family: FontAwesome;
 	margin-left: 0.3em;
+	font-size: 80%;
 	text-decoration: none;
 	display: inline-block;
 }
