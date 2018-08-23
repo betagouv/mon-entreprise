@@ -18,7 +18,7 @@ const Footer = ({ colours: { colour } }) => (
 					/>
 				</a>
 			</div>
-			<p>
+			<p className="ui__ notice">
 				This website is provided by the{' '}
 				<a href="https://www.urssaf.fr">URSSAF</a>, the French social security
 				contributions collector, with the help of the French government's

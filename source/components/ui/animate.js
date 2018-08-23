@@ -45,7 +45,7 @@ export const fromBottom = ({
 
 export const leftToRight = ({
 	children,
-	config = configPresets.default,
+	config = configPresets.stiff,
 	delay = 0
 }: Props) => (
 	<Transition

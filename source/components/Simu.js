@@ -20,6 +20,7 @@ import PaySlip from './PaySlip'
 import QuickLink from './QuickLink'
 import ResultView from './ResultView'
 import './Simu.css'
+import Sondage from './Sondage'
 import TargetSelection from './TargetSelection'
 
 @withColours
@@ -126,6 +127,9 @@ export default class Simu extends Component {
 					{conversationStarted && (
 						<Animate.fromBottom>
 							<ResultView />
+							<div style={{ textAlign: 'center' }}>
+								<Sondage />
+							</div>
 						</Animate.fromBottom>
 					)}
 					{displayPreviousAnswers && (
@@ -165,6 +169,7 @@ export default class Simu extends Component {
 							<Trans>Fiche de paie</Trans>
 						</h2>
 						<PaySlip />
+						<Sondage />
 					</Animate.fromBottom>
 				)}
 			</>

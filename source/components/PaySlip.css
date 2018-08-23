@@ -60,11 +60,6 @@
 .payslip__salaireNetàPayer {
 	font-weight: bold;
 }
-.payslip__notice {
-	color: rgba(0, 0, 0, 0.7);
-	font-size: 90%;
-	margin-top: 2em;
-}
 
 /* IE */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
