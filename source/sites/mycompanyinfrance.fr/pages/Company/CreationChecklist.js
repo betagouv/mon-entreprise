@@ -19,7 +19,7 @@ type Props = {
 
 const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitialization, onItemCheck, companyCreationChecklist }: Props) => {
 	const microenterprise =
-		match.params.status && match.params.status.includes('Microenterprise')
+		match.params.status && match.params.status.includes('microenterprise')
 	const SARL = match.params.status && match.params.status.includes('SARL')
 	const EURL = match.params.status && match.params.status.includes('EURL')
 

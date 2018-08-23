@@ -32,10 +32,10 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 					component={CreationChecklist}
 					/>
 				<Route path={match.path + '/find'} component={Find} />
-				{companyStatusChoice ? 
-					<Redirect from={match.path} to={match.path + '/create-' + companyStatusChoice} /> :
-					<Route path={match.path} component={Home} />
+				{companyStatusChoice && 
+					<Redirect from={match.path} to={match.path + '/create-' + companyStatusChoice} /> 
 				}
+				<Route path={match.path} component={Home} />
 			</Switch>
 			<div className="ui__ route-trans">
 				<Transition

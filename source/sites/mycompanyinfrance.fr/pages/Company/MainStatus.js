@@ -33,6 +33,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						Also called company in own name or company in a personal name. No
 						capital contribution is necessary. Private wealth and corporate
 						wealth are one.
+						<br/>
+						<StatusButton status='EI' history={history} />
 					</li>
 				)}
 				{possibleStatus.EIRL && (
@@ -43,6 +45,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						</strong>
 						Protects your property by assigning to your business a professional
 						heritage necessary for the activity.
+						<br/>
+						<StatusButton status='EIRL' history={history} />
 					</li>
 				)}
 				{possibleStatus.EURL && (
@@ -53,28 +57,27 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						</strong>
 						Company with only one partner. Liability is limited to the amount of
 						its contribution to the capital.
+						<br/>
+						<StatusButton status='EURL' history={history} />
 					</li>
 				)}
-				{possibleStatus['SARL (minority director)'] && (
+				{(possibleStatus['SARL (minority director)'] || 
+						possibleStatus['SARL (majority director)']) && (
 					<li>
 						<strong>
 							SARL - Société à responsabilité limitée (Limited corporation):{' '}
 						</strong>
 						Composed of at least 2 partners whose financial responsibility is
 						limited to the amounts of contributions in the capital. The minimum
-						capital is freely fixed in the statutes. The equality or minority
-						manager or college has the "salaried" status.
-					</li>
-				)}
-				{possibleStatus['SARL (majority director)'] && (
-					<li>
-						<strong>
-							SARL - Société à responsabilité limitée (Limited corporation):{' '}
-						</strong>
-						Composed of at least 2 partners whose financial responsibility is
-						limited to the amounts of contributions in the capital. The minimum
-						capital is freely fixed in the statutes. The majority manager or
-						college has the self employed status.
+						capital is freely fixed in the statutes. {
+							possibleStatus['SARL (minority director)'] &&
+							'The equality or minority manager or college has the "salaried" status.'}
+							{possibleStatus['SARL (majority director)'] &&
+							
+							'The majority manager or college has the self employed status.'
+						} 
+						<br/>
+						<StatusButton status='SARL' history={history} />
 					</li>
 				)}
 				{possibleStatus.SAS && (
@@ -86,6 +89,9 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						responsibility of the partners is limited to the amounts of
 						contributions in the capital. The minimum capital is freely fixed in
 						the statutes.
+
+						<br/>
+						<StatusButton status='SAS' history={history} />
 					</li>
 				)}
 				{possibleStatus.SASU && (
@@ -96,6 +102,9 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						</strong>Composed of only one associate. The financial
 						responsibility is limited to the amounts of contributions in the
 						capital. The minimum capital is freely fixed in the statutes.
+
+						<br/>
+						<StatusButton status='SASU' history={history} />
 					</li>
 				)}
 				{possibleStatus.SA && (
@@ -104,6 +113,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						composed of at least 2 shareholders. The only status that allows you
 						to be listed on the stock exchange (from 7 shareholders). The
 						minimum share capital is €37.000.
+						<br/>
+						<StatusButton status='SA' history={history} />
 					</li>
 				)}
 				{possibleStatus.SNC && (
@@ -112,34 +123,25 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						liability of the partners for the debts of the company is unified
 						(one partner only can be sued for the entire debt) and indefinite
 						(responsible on the entirety of their personnal wealth).
+						<br/>
+						<StatusButton status='SNC' history={history} />
 					</li>
 				)}
 
-				{possibleStatus['Microenterprise (option EIRL)'] && (
+				{(possibleStatus['Microenterprise (option EIRL)'] || possibleStatus['Microenterprise']) && (
 					<li>
-						<strong>Microenterprise (option EIRL):</strong> The micro-enterprise
+						<strong>Microenterprise:</strong> The micro-enterprise
 						is a sole proprietorship company, subject to a flat-rate scheme for
 						the calculation of taxes and the payment of social security
-						contributions. With the EIRL option, you have limited liability on
-						your losses.
+						contributions. {possibleStatus['Microenterprise (option EIRL)'] && 'With the EIRL option, you have limited liability on your losses.'}
+
+						<br/>
+						<StatusButton status='microenterprise' history={history} />
 					</li>
 				)}
 
-				{possibleStatus.Microenterprise && (
-					<li>
-						<strong>Microenterprise:</strong> The micro-enterprise is a sole
-						proprietorship subject to a flat-rate scheme for the calculation of
-						taxes and the payment of social security contributions.
-					</li>
-				)}
 			</ul>
 			<div className="ui__ answer-group">
-				{/* $FlowFixMe */}
-				{(Object.entries(possibleStatus): Array<[LegalStatus, boolean]>)
-					.filter(([, statusIsVisible]) => statusIsVisible)
-					.map(([status]) => (
-						<StatusButton key={status} status={status} history={history} />
-					))}
 				<Link to="/social-security" className="ui__ skip-button">
 					Do it later ›
 				</Link>
