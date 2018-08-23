@@ -172,7 +172,7 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 				)}
 				<CheckItem
 					name="registerCompanyOnline"
-					title="Create your company online"
+					title="Register your company online"
 					explanations={
 						<>
 							<p>
@@ -184,12 +184,7 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
 									target="blank">
-									Create my company online
-								</a>
-							</p>
-							<p>
-								<a href="mailto:contact@embauche.beta.gouv.fr">
-									I have trouble to complete the online registration
+									Register your company
 								</a>
 							</p>
 						</>
