@@ -1,5 +1,5 @@
 html {
-	font-size: 1.16em;
+	transition: none !important;
 }
 @media (max-width: 500px) {
 	html {
@@ -9,6 +9,11 @@ html {
 @media (min-width: 500px) and (max-width: 1920px) {
 	html {
 		font-size: 1.1em;
+	}
+}
+@media (min-width: 1920px) {
+	html {
+		font-size: 1.16em;
 	}
 }
 
