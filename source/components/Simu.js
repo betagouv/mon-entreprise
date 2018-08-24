@@ -67,7 +67,7 @@ export default class Simu extends Component {
 							<button
 								className="ui__ link-button"
 								onClick={() => this.setState({ displayPreviousAnswers: true })}>
-								<Trans> Modifier mes réponses</Trans>
+								<Trans>Modifier mes réponses</Trans>
 							</button>
 						</div>
 					)}
