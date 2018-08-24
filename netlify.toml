@@ -1,4 +1,8 @@
 [[redirects]]
+from = "https://embauche.beta.gouv.fr/stats"
+to = "https://remarkable-ogre.glitch.me/"
+
+[[redirects]]
 from = "https://infrance.org/*"
 to = "/infrance.html"
 status = 200
