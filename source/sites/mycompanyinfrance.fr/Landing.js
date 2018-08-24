@@ -16,13 +16,26 @@ const Landing = ({ colours: { colour } }) => (
 				<img alt="logo urssaf" src={urssafSvg} />
 			</div>
 			<header>
-				<h1>Start your business in France.</h1>
+				<h1>
+					Start your business in France <br />
+					{emoji('🇫🇷')}
+				</h1>
+				<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
+					The ultimate how-to guide, covering everything from incorporation to
+					hiring.
+				</p>
 				<Link
-					className="ui__ inverted-button cta"
+					className="ui__ inverted-button"
 					to="/company"
 					alt="the first step to create a company">
-					Take the step by step guide
+					Get started
 				</Link>
+				<svg
+					className="landing__header__svg"
+					preserveAspectRatio="none"
+					viewBox="0 0 500 150">
+					<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
+				</svg>
 			</header>
 		</section>
 		<section className="landing-explanation">
@@ -37,7 +50,9 @@ const Landing = ({ colours: { colour } }) => (
 					</ul>
 				</div>
 				<p>
-					<Link to="/company">Create your company</Link>
+					<Link className="ui__ skip-button" to="/company">
+						Create your company ›
+					</Link>
 				</p>
 			</div>
 			<div>
@@ -46,12 +61,14 @@ const Landing = ({ colours: { colour } }) => (
 					{emoji('💶')}
 					<ul>
 						<li>Discover the French social security system</li>
-						<li>Simulate your hiring costs </li>
+						<li>Simulate your hiring costs</li>
 						<li>Understand the French payslip</li>
 					</ul>
 				</div>
 				<p>
-					<Link to="/social-security">Simulate hiring costs and benefits</Link>
+					<Link className="ui__ skip-button" to="/social-security">
+						Simulate hiring costs and benefits ›
+					</Link>
 				</p>
 			</div>
 			<div>
@@ -65,7 +82,9 @@ const Landing = ({ colours: { colour } }) => (
 					</ul>
 				</div>
 				<p>
-					<Link to="/hiring-process">Discover the hiring process</Link>
+					<Link className="ui__ skip-button" to="/hiring-process">
+						Discover the hiring process ›
+					</Link>
 				</p>
 			</div>
 		</section>

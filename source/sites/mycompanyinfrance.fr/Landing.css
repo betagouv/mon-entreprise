@@ -10,7 +10,9 @@
 }
 
 .landing__header header {
+	min-height: 30rem;
 	text-align: center;
+	position: relative;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
@@ -25,8 +27,9 @@
 	);
 	background-size: 200%;
 	color: white;
-	animation: move-background 15s linear infinite;
+	animation: move-background 30s linear infinite;
 	padding: 1rem;
+	padding-bottom: 5rem;
 }
 @keyframes move-background {
 	from {
@@ -37,65 +40,68 @@
 	}
 }
 
-.landing__header .cta {
-	margin: 6rem auto;
-}
-
 .landing__banner {
-	height: 5rem;
+	height: 4.4rem;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	background: white;
-	padding: 1rem;
+	padding: 0.6rem;
 }
 
 .landing__banner img {
 	height: 100%;
 	width: auto;
 }
-
-.landing-card__img {
-	padding: 1rem;
-	width: 6rem;
-	height: 6rem;
-}
-.landing-card__img img {
-	width: 100% !important;
-	height: auto !important;
-}
-
-.landing-card {
-	margin: 1rem;
-	padding: 1rem;
-	max-width: 20rem;
+.landing__header__svg {
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 3rem;
 }
 
 .landing-explanation {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
+	padding: 0 1rem;
+}
+.landing-explanation > div {
+	padding: 1rem 3rem;
+}
+@media (max-width: 500px) {
+	.landing-explanation-content {
+		flex-direction: column;
+	}
+	.landing-explanation > div {
+		padding: 1rem 1rem;
+	}
 }
 
 .landing-explanation h2 {
+	font-weight: 300;
 	text-align: center;
-	margin-bottom: 0.3em;
+}
+.landing-explanation ul {
+	margin: 0;
+	padding-left: 1rem;
 }
 .landing-explanation p {
+	margin-top: 0;
 	text-align: center;
 }
 
 .landing-explanation-content {
 	display: flex;
 	align-items: center;
+	padding: 0 1rem;
 	justify-content: flex-start;
-}
-.landing-explanation li {
-	margin-bottom: 0.4em;
 }
 
 .landing-explanation img {
 	width: 72px !important;
 	height: 72px !important;
-	margin: 0 1em 0 2em !important;
+	margin: 0 1rem !important;
 }
