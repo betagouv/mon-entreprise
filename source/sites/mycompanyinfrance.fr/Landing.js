@@ -16,12 +16,19 @@ const Landing = ({ colours: { colour } }) => (
 				<img alt="logo urssaf" src={urssafSvg} />
 			</div>
 			<header>
-				<h1>Start your business in France</h1>
+				<h1>
+					Start your business in France <br />
+					{emoji('🇫🇷')}
+				</h1>
+				<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
+					The ultimate how-to guide, covering everything from incorporation to
+					hiring.
+				</p>
 				<Link
 					className="ui__ inverted-button"
 					to="/company"
 					alt="the first step to create a company">
-					Take the step by step guide
+					Get started
 				</Link>
 				<svg
 					className="landing__header__svg"
