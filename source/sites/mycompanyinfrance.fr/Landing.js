@@ -16,7 +16,7 @@ const Landing = ({ colours: { colour } }) => (
 				<img alt="logo urssaf" src={urssafSvg} />
 			</div>
 			<header>
-				<h1>Start your business in France.</h1>
+				<h1>Start your business in France</h1>
 				<Link
 					className="ui__ inverted-button cta"
 					to="/company"

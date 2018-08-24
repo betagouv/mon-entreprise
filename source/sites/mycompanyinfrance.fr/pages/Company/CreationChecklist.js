@@ -45,20 +45,24 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}
 			>
-				{!microenterprise && (
+				{!microenterprise && 
 					<CheckItem
 						name="corporateName"
 						title="Find a corporate name"
 						explanations={
-							<p>
-								<strong>The corporate name</strong> (raison sociale) is the
+							<><p>
+								<strong>The corporate name</strong> (dénomination sociale) is the
 								legal name of your company, written on all of your
 								administrative papers. It can be different from the trade name
-								(used for commercial purpose).
+								(used for commercial purpose). 
 							</p>
+							<p>
+							It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc.
+							You can check on the <a href="http://bases-marques.inpi.fr/">INPI database</a>.
+							</p>
+							</>
 						}
-					/>
-				)}
+					/>}
 				<CheckItem
 					name="corporatePurpose"
 					title="Write the corporate purpose of the company"
