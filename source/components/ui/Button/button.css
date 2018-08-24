@@ -123,10 +123,9 @@
 
 .ui__.skip-button {
 	opacity: 0.6;
-	border-color: black;
 	border: none;
 	padding: 0.6rem 0;
-	color: black;
+	color: inherit;
 }
 
 .ui__.skip-button:not(:disabled):hover {
