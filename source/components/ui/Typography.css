@@ -74,6 +74,10 @@ p.ui__.lead {
 	line-height: 2.5rem;
 	font-weight: 300;
 }
+ul {
+	list-style: '› ';
+	padding-left: 1.4rem;
+}
 li {
 	margin: 0.5rem 0;
 }
