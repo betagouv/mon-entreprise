@@ -150,7 +150,7 @@ contrat salarié . CDD . motif . classique . remplacement:
   titre.en: Replacement contract
   titre.fr: Contrat de remplacement
   description.en: Replacement of an employee. A list of precise cases is defined by the law.
-  
+
   description.fr: Remplacement
 contrat salarié . CDD . motif . classique . mission:
   titre.en: Mission contract
@@ -218,7 +218,7 @@ contrat salarié . CDD . durée contrat:
     [Cliquez
     ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     pour connaître la durée maximale d'un CDD.
-  suggestions: 
+  suggestions.en:
     18 mois: 18 months
     1 an: 1 year
     6 mois: 6 months
@@ -405,14 +405,14 @@ contrat salarié . salaire . net:
     le changer, il faut signer un avenant au contrat.
 
 contrat salarié . salaire . net à payer:
-    titre.en: Net salary due
-    titre.fr: Salaire net à payer
-    résumé.fr: Touché par le salarié tous les mois
-    résumé.en: What the employee actually gets each month
-    description.fr: >
-      C'est le montant que le salarié touche à la fin du mois.
-    description.en: >
-      It's the amount that the employee gets at the end of each month
+  titre.en: Net salary due
+  titre.fr: Salaire net à payer
+  résumé.fr: Touché par le salarié tous les mois
+  résumé.en: What the employee actually gets each month
+  description.fr: >
+    C'est le montant que le salarié touche à la fin du mois.
+  description.en: >
+    It's the amount that the employee gets at the end of each month
 
 contrat salarié . salaire . net imposable:
   titre.en: Net taxable salary
@@ -435,10 +435,9 @@ contrat salarié . avantages en nature:
     Les tickets restaurants ne sont pas considéré comme un avantage en nature mais comme un remboursement de frais.
   note.en: >
     The meal vouchers are not considered as a benefit in kind but as a reimbursement of expenses.
-  
+
   question.fr: Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone, réductions...) ?
   question.en: Does the employee receive benefits in kind (housing, vehicle, telephone, discounts, etc.)?
-
 
 contrat salarié . avantages en nature . montant:
   titre.fr: Avantages en nature
@@ -450,7 +449,6 @@ contrat salarié . avantages en nature . montant:
 
   question.fr: Quel est le montant mensuel des avantages en nature ?
   question.en: What is the monthly amount of benefits in kind?
-
 
 contrat salarié . coût du travail:
   description.en: >-
@@ -491,9 +489,9 @@ contrat salarié . aides employeur:
   titre.en: deferred employer aids
   titre.fr: aides employeur différées
   description.en: |
-        Some aids can be requested by the employer to help hires.
+    Some aids can be requested by the employer to help hires.
 
-        These aids are deferred : they can for example be given indirectly as a tax credit.
+    These aids are deferred : they can for example be given indirectly as a tax credit.
 
 contrat salarié . salaire:
   titre.en: salary
@@ -812,7 +810,7 @@ contrat salarié . forfait complémentaire santé:
 
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
     libre, tant qu'elle couvre un panier légal de soins.
-  suggestions.en: 
+  suggestions.en:
     basique: low
     élevé: high
 contrat salarié . contribution au dialogue social:
@@ -870,7 +868,7 @@ contrat salarié . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
 contrat salarié . maladie:
-  description.en: Contributions to the national health insurance 
+  description.en: Contributions to the national health insurance
   description.fr: Cotisations de la branche maladie
   titre.en: health insurance
   titre.fr: maladie
@@ -899,7 +897,7 @@ contrat salarié . médecine du travail:
 contrat salarié . participation effort de construction:
   description.en: Employer participation in the home building effort
   description.fr: Participation des employeurs à l'effort de construction
-  titre.en: Participation to home building 
+  titre.en: Participation to home building
   titre.fr: participation effort de construction
 contrat salarié . prévoyance obligatoire cadre:
   titre.en: mandatory life insurance for "cadres"
@@ -907,7 +905,7 @@ contrat salarié . prévoyance obligatoire cadre:
 contrat salarié . taxe d'apprentissage:
   description.en: >-
     The apprenticeship tax enables the financing by companies of the expenses of apprenticeship and
-    technological and professional training 
+    technological and professional training
   description.fr: >-
     La taxe d'apprentissage permet de financer par les entreprises les dépenses
     de l'apprentissage et des formations technologiques et professionnelles
