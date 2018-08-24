@@ -12,7 +12,7 @@ module.exports = {
 			// chunks: ['bundle'],
 			swDest: 'sw.js',
 			navigateFallback: '/',
-			navigateFallbackBlacklist: [/.*\?site=.*$/],
+			navigateFallbackBlacklist: [/.*\?site=.*$/, /^\/stats/],
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp(
