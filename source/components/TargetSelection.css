@@ -94,10 +94,11 @@
 	width: 5.5em !important;
 	display: inline-block;
 	text-align: right;
+	background: rgba(255, 255, 255, 0.2);
+	cursor: text;
 	font-weight: 500;
 	padding: 0;
 	padding: 0.2em 0.5em;
-	background: rgba(255, 255, 255, 0);
 	border-radius: 0.2em;
 	border: 2px solid;
 	font-size: inherit;
