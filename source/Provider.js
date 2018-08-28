@@ -18,6 +18,13 @@ import {
 import ReactPiwik from './Tracker'
 import { getIframeOption, getUrl, inIframe } from './utils'
 
+if (process.env.NODE_ENV === 'production') {
+	// eslint-disable-next-line no-undef
+	Raven.config(
+		'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
+	).install()
+}
+
 let tracker = defaultTracker
 if (process.env.NODE_ENV === 'production') {
 	tracker = new ReactPiwik({
