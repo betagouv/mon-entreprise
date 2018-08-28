@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
+import {
+	persistEverything,
+	retrievePersistedState
+} from '../../storage/persistEverything'
 import './App.css'
 import Landing from './Landing'
 import CreateMyCompany from './pages/Company'
@@ -10,7 +14,6 @@ import Footer from './pages/Footer/Footer'
 import StepsHeader from './pages/Header/StepsHeader'
 import HiringProcess from './pages/HiringProcess'
 import SocialSecurity from './pages/SocialSecurity'
-
 class InFranceRoute extends Component {
 	componentDidMount() {
 		if (typeof sessionStorage !== 'undefined') {
@@ -19,7 +22,11 @@ class InFranceRoute extends Component {
 	}
 	render() {
 		return (
-			<Provider basename="infrance" language="en">
+			<Provider
+				basename="infrance"
+				language="en"
+				initialStore={retrievePersistedState()}
+				onStoreCreated={persistEverything}>
 				<TrackPageView />
 				<div id="content">
 					<Switch>

@@ -11,10 +11,6 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import computeThemeColours from 'Ui/themeColours'
 import trackDomainActions from './middlewares/trackDomainActions'
-import {
-	persistSimulation,
-	retrievePersistedSimulation
-} from './storage/persist'
 import ReactPiwik from './Tracker'
 import { getIframeOption, getUrl, inIframe } from './utils'
 
@@ -47,8 +43,7 @@ if (process.env.NODE_ENV === 'production') {
 
 let initialStore = {
 	iframe: getUrl().includes('iframe'),
-	themeColours: computeThemeColours(getIframeOption('couleur')),
-	previousSimulation: retrievePersistedSimulation()
+	themeColours: computeThemeColours(getIframeOption('couleur'))
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -83,8 +78,12 @@ export default class Layout extends PureComponent {
 				trackDomainActions(tracker)
 			)
 		)
-		this.store = createStore(reducers, initialStore, storeEnhancer)
-		persistSimulation(this.store)
+		this.store = createStore(
+			reducers,
+			{ ...initialStore, ...this.props.initialStore },
+			storeEnhancer
+		)
+		this.props.onStoreCreated(this.store)
 		if (this.props.language) {
 			i18next.changeLanguage(this.props.language)
 		}
