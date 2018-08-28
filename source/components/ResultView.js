@@ -5,9 +5,10 @@ import PaySlip from 'Components/PaySlip'
 import SearchButton from 'Components/SearchButton'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
+import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
 import Card from 'Ui/Card'
 import './ResultView.css'
 import type { Tracker } from 'Components/utils/withTracker'
@@ -17,7 +18,8 @@ type State = {
 }
 type Props = {
 	conversationStarted: boolean,
-	tracker: Tracker
+	tracker: Tracker,
+	displayResults: boolean
 }
 
 const resultViewTitle = {
@@ -25,7 +27,7 @@ const resultViewTitle = {
 	payslip: 'Fiche de paie'
 }
 
-class ResultView extends PureComponent<Props, State> {
+class ResultView extends Component<Props, State> {
 	state = {
 		resultView: this.props.conversationStarted ? 'payslip' : 'distribution'
 	}
@@ -35,27 +37,33 @@ class ResultView extends PureComponent<Props, State> {
 	}
 	render() {
 		return (
-			<>
-				<div className="result-view__header">
-					<div className="result-view__tabs">
-						{['payslip', 'distribution'].map(resultView => (
-							<button
-								key={resultView}
-								className={
-									'ui__ link-button ' +
-									(this.state.resultView === resultView ? 'selected' : '')
-								}
-								onClick={this.handleClickOnTab(resultView)}>
-								<Trans>{resultViewTitle[resultView]}</Trans>
-							</button>
-						))}
+			this.props.displayResults && (
+				<>
+					<div className="result-view__header">
+						<div className="result-view__tabs">
+							{['payslip', 'distribution'].map(resultView => (
+								<button
+									key={resultView}
+									className={
+										'ui__ link-button ' +
+										(this.state.resultView === resultView ? 'selected' : '')
+									}
+									onClick={this.handleClickOnTab(resultView)}>
+									<Trans>{resultViewTitle[resultView]}</Trans>
+								</button>
+							))}
+						</div>
+						<SearchButton rulePageBasePath="./règle" />
 					</div>
-					<SearchButton rulePageBasePath="./règle" />
-				</div>
-				<Card className="result-view__body">
-					{this.state.resultView === 'payslip' ? <PaySlip /> : <Distribution />}
-				</Card>
-			</>
+					<Card className="result-view__body">
+						{this.state.resultView === 'payslip' ? (
+							<PaySlip />
+						) : (
+							<Distribution />
+						)}
+					</Card>
+				</>
+			)
 		)
 	}
 }
@@ -65,7 +73,8 @@ export default compose(
 	connect(
 		state => ({
 			conversationStarted: state.conversationStarted,
-			key: state.conversationStarted
+			key: state.conversationStarted,
+			displayResults: !!ficheDePaieSelectors(state)
 		}),
 		{}
 	)

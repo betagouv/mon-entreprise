@@ -28,12 +28,17 @@ let state = {
 let paySlip = FicheDePaieSelectors(state)
 
 describe('pay slip selector', function() {
+	beforeEach(() => {
+		expect(paySlip).not.to.eq(null)
+	})
 	it('should have cotisations grouped by branches in the proper ordering', function() {
+		// $FlowFixMe
 		let branches = paySlip.cotisations.map(([branche]) => branche)
 		expect(branches).to.eql(COTISATION_BRANCHE_ORDER)
 	})
 
 	it('should collect all cotisations in a branche', function() {
+		// $FlowFixMe
 		let cotisationsSanté = (paySlip.cotisations.find(
 			([branche]) => branche === 'santé'
 		) || [])[1].map(cotisation => cotisation.nom)
@@ -44,12 +49,14 @@ describe('pay slip selector', function() {
 	})
 
 	it('should sum all cotisations', function() {
+		// $FlowFixMe
 		const montantTotalCotisations = paySlip.totalCotisations
 		expect(montantTotalCotisations.partPatronale).to.be.closeTo(992, 5)
 		expect(montantTotalCotisations.partSalariale).to.be.closeTo(520, 5)
 	})
 
 	it('should have value for "salarié" and "employeur" for a cotisation', function() {
+		// $FlowFixMe
 		let cotisationATMP = (paySlip.cotisations.find(
 			([branche]) =>
 				branche === 'accidents du travail / maladies professionnelles'

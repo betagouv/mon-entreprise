@@ -152,7 +152,10 @@ function analysisToFicheDePaie(
 	règleAvecValeur,
 	règleLocalisée,
 	analysis
-): FicheDePaie {
+): ?FicheDePaie {
+	if (!analysis.cache) {
+		return null
+	}
 	const cotisations = analysisToCotisations(analysis, règleLocalisée)
 	const cotisationsSalariales = règleAvecMontant(
 		'contrat salarié . cotisations salariales'
