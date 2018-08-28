@@ -2011,21 +2011,18 @@
       # de la grammaire, on a recours à cette formulation trop compliquée; à simplifier
       assiette: assiette * 12
       tranches:
-        - en-dessous de: 7721
+        - en-dessous de: 7799
           taux: 4.25%
-        - de: 7721
-          à: 15417
+        - de: 7799
+          à: 15572
           taux: 8.5%
-        - de:  15417
-          à: 152279
+        - au-dessus de: 15572
           taux: 13.6%
-        - au-dessus de: 152279
-          taux: 0%
   exemples:
     - nom: salaire médian
       situation:
         assiette: 2300
-      valeur attendue: 2639.16 # calcul annuel : 7721×4.25%+(15417−7721)×8.5%+(27600−15417)×13.6%
+      valeur attendue: 2627.97 
 
 - espace: entreprise . taxe sur les salaires
   nom: barème annuel
@@ -2088,7 +2085,7 @@
         salaire . brut de base: 2300
         entreprise . effectif: 10
         forfait complémentaire santé: 0
-      valeur attendue: 49
+      valeur attendue: 48.1
 
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
