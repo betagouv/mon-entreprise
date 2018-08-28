@@ -49,7 +49,10 @@ export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 						</svg>
 					</label>
 					<button
-						className="ui__ checklist-button "
+						className={
+							'ui__ checklist-button' +
+							(this.state.displayExplanations ? ' opened' : '')
+						}
 						onClick={() =>
 							this.setState(({ displayExplanations }) => ({
 								displayExplanations: !displayExplanations

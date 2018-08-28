@@ -67,6 +67,8 @@ ul.ui__.checklist {
 
 .ui__.checklist-button {
 	color: inherit;
+	display: flex;
+	outline: none;
 	padding: 0.6rem;
 	text-align: left;
 	flex: 1;
@@ -78,6 +80,15 @@ ul.ui__.checklist {
 .ui__.checklist-button:hover {
 	opacity: 0.8;
 }
+.ui__.checklist-button::after {
+	content: '›';
+	margin-left: 0.3rem;
+}
+.ui__.checklist-button.opened::after {
+	transform: rotate(90deg);
+	margin-left: 0.4rem;
+}
+
 .ui__ .checkItemLabel {
 	display: flex;
 	align-items: center;
