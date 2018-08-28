@@ -55,12 +55,6 @@ export type State = {|
 		+minorityDirector?: ?boolean
 	},
 	+existingCompanyDetails: ?{ [string]: string },
-	+checklists: {
-		+register: {
-			[string]: boolean
-		},
-		+hire: { [string]: boolean }
-	}
 |}
 export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =

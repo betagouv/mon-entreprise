@@ -55,32 +55,32 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 						transform: 'translateX(-100%)'
 					}}>
 					{style => (
-						<Switch location={location}>
-							<Route
-								path={match.path + '/liability'}
-								component={withRouteAnimation(style)(Liability)}
-							/>
-							<Route
-								path={match.path + '/director-status'}
-								component={withRouteAnimation(style)(DefineDirectorStatus)}
-							/>
-							<Route
-								path={match.path + '/microenterprise'}
-								component={withRouteAnimation(style)(Microenterprise)}
-							/>
-							<Route
-								path={match.path + '/multiple-associates'}
-								component={withRouteAnimation(style)(NumberOfAssociate)}
-							/>
-							<Route
-								path={match.path + '/pick-legal-status'}
-								component={withRouteAnimation(style)(MainStatus)}
-							/>
-							<Route
-								path={match.path + '/minority-director'}
-								component={withRouteAnimation(style)(MinorityDirector)}
-							/>
-						</Switch>
+							<Switch location={location}>
+								<Route
+									path={match.path + '/liability'}
+									component={withRouteAnimation(style)(Liability)}
+								/>
+								<Route
+									path={match.path + '/director-status'}
+									component={withRouteAnimation(style)(DefineDirectorStatus)}
+								/>
+								<Route
+									path={match.path + '/microenterprise'}
+									component={withRouteAnimation(style)(Microenterprise)}
+								/>
+								<Route
+									path={match.path + '/multiple-associates'}
+									component={withRouteAnimation(style)(NumberOfAssociate)}
+								/>
+								<Route
+									path={match.path + '/pick-legal-status'}
+									component={withRouteAnimation(style)(MainStatus)}
+								/>
+								<Route
+									path={match.path + '/minority-director'}
+									component={withRouteAnimation(style)(MinorityDirector)}
+								/>
+							</Switch>
 					)}
 				</Transition>
 			</div>

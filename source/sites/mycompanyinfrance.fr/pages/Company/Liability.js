@@ -3,11 +3,9 @@ import { chooseCompanyLiability } from 'Actions/companyStatusActions'
 import React from 'react'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
-import type { Match } from 'react-router'
 import type { CompanyLiability } from 'Types/companyStatusTypes'
 
 type Props = {
-	match: Match,
 	chooseCompanyLiability: (?CompanyLiability) => void
 }
 
@@ -26,11 +24,10 @@ const Liability = ({ chooseCompanyLiability }: Props) => (
 				bankruptcy, as your personal wealth can be put to contribution.
 			</li>
 			<li>
-				<strong>Limited liability: </strong>
-				A limited liability company is a corporate structure whereby the company
-				members cannot be held personally liable for the company&apos;s debts or
-				liabilities. However, it's heavier to set up, and you need to provide a
-				initial capital.
+				<strong>Limited liability: </strong>A limited liability company is a
+				corporate structure whereby the company members cannot be held
+				personally liable for the company&apos;s debts or liabilities. However,
+				it's heavier to set up, and you need to provide a initial capital.
 			</li>
 		</ul>
 		<div className="ui__ answer-group">
