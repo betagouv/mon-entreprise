@@ -4,12 +4,12 @@ const WorkboxPlugin = require('workbox-webpack-plugin')
 module.exports = {
 	...common,
 	mode: 'production',
+	devtool: 'source-map',
 	plugins: [
 		...common.plugins,
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
-			// chunks: ['bundle'],
 			swDest: 'sw.js',
 			navigateFallback: '/',
 			navigateFallbackBlacklist: [/.*\?site=.*$/, /^\/stats/],
