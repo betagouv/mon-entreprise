@@ -25,7 +25,7 @@ class InFranceRoute extends Component {
 			<Provider
 				basename="infrance"
 				language="en"
-				initialStore={retrievePersistedState()}
+				initialStore={{ ...retrievePersistedState(), lang: 'en' }}
 				onStoreCreated={persistEverything}>
 				<TrackPageView />
 				<div id="content">

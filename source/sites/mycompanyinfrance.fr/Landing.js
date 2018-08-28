@@ -31,9 +31,9 @@ const Landing = ({ colours: { colour } }) => (
 					Get started
 				</Link>
 				<svg
-					className="landing__header__svg"
+					className="landing__header__svg white"
 					preserveAspectRatio="none"
-					viewBox="0 0 500 150">
+					viewBox="5 0 495 150">
 					<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
 				</svg>
 			</header>
