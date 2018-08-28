@@ -5,6 +5,10 @@ import React, { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
+import {
+	persistSimulation,
+	retrievePersistedSimulation
+} from '../../storage/persistSimulation'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Contribution from './pages/Contribution'
@@ -19,8 +23,13 @@ import RulesList from './pages/RulesList'
 class EmbaucheRoute extends Component {
 	render() {
 		return (
-			<Provider basename="embauche">
-				<TrackPageView/>
+			<Provider
+				basename="embauche"
+				initialStore={{
+					previousSimulation: retrievePersistedSimulation()
+				}}
+				onStoreCreated={persistSimulation}>
+				<TrackPageView />
 				<Header />
 				<Switch>
 					<Route exact path="/" component={Home} />

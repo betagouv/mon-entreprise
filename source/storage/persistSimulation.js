@@ -2,7 +2,7 @@
 
 import type { Store } from 'redux'
 import { debounce } from '../utils'
-import { deserialize, serialize } from './serialize'
+import { deserialize, serialize } from './serializeSimulation'
 import type { State, SavedSimulation } from '../types/State'
 import type { Action } from 'Types/ActionsTypes'
 
