@@ -101,7 +101,10 @@ function applyReduction(
 	)
 }
 
-const répartition = (ficheDePaie: FicheDePaie): Répartition => {
+const répartition = (ficheDePaie: ?FicheDePaie): ?Répartition => {
+	if (!ficheDePaie) {
+		return null
+	}
 	// $FlowFixMe
 	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
 		ficheDePaie.cotisations

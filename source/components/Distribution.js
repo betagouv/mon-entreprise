@@ -51,7 +51,7 @@ const brancheToLabel: { [Branche]: string } = {
 	'assurance chômage': 'chômage'
 }
 
-type Props = Répartition & {
+type Props = ?Répartition & {
 	colours: { colour: string }
 }
 type State = {
@@ -76,13 +76,19 @@ class Distribution extends Component<Props, State> {
 
 	render() {
 		const {
+			colours: { colour },
+			...distribution
+		} = this.props
+		if (!Object.values(distribution).length) {
+			return null
+		}
+		const {
 			répartition,
 			cotisationMaximum,
 			total,
 			salaireChargé,
-			salaireNet,
-			colours: { colour }
-		} = this.props
+			salaireNet
+		} = distribution
 		return (
 			<>
 				<div className="distribution-chart__container">
@@ -115,7 +121,8 @@ class Distribution extends Component<Props, State> {
 													<span className="distribution-chart__branche-name">
 														<Trans i18nKey={`branches.${branche}.name`}>
 															{brancheToLabel[branche] || branche}
-														</Trans>.{' '}
+														</Trans>
+														.{' '}
 													</span>
 													<Trans i18nKey={`branches.${branche}.counterpart`}>
 														{brancheToCounterparts[branche]}

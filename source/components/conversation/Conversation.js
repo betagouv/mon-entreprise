@@ -30,7 +30,6 @@ export default class Conversation extends Component {
 		return (
 			<div className="conversationContainer">
 				<Aide />
-				<Scroll.toTop behavior="smooth" />
 				<div id="currentQuestion">
 					{currentQuestion && (
 						<Animate.fadeIn>

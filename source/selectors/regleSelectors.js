@@ -59,11 +59,11 @@ export const règleValeurSelector = createSelector(
 
 		let valeur =
 			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situation[dottedName]
-		if (isNil(valeur)) {
-			throw new Error(
-				`[règleValeurSelector] Impossible de trouver la valeur associée à la règle "${dottedName}". Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
-			)
-		}
+		// if (isNil(valeur)) {
+		// 	throw new Error(
+		// 		`[règleValeurSelector] Impossible de trouver la valeur associée à la règle "${dottedName}". Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
+		// 	)
+		// }
 
 		if (valeur === 'oui') {
 			valeur = true
