@@ -6,7 +6,6 @@ const state = companyLegalStatus => ({
 	inFranceApp: {
 		companyLegalStatus,
 		existingCompanyDetails: null,
-		checklists: { register: {}, hire: {} }
 	}
 })
 describe('company status selectors', function() {

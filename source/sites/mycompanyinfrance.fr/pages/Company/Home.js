@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 import { isIE } from '../../../../utils'
+import LegalStatusChoices from './LegalStatusChoice'
 
 import type { Match, RouterHistory } from 'react-router'
 type Props = {
@@ -36,6 +37,7 @@ const CreateMyCompany = ({ match, nextQuestionUrl, history }: Props) => (
 		)}
 		{!isIE() &&
 			!match.isExact && <Scroll.toElement key={history.location.pathname} />}
+		<LegalStatusChoices />
 	</>
 )
 

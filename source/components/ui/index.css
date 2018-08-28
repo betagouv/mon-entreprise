@@ -46,6 +46,11 @@ p.ui__.notice {
 ul.ui__.no-bullet {
 	list-style: none;
 }
+span.ui__.enumeration:not(:last-of-type)::after {
+	content: '·';
+	margin: 0 0.3rem;
+	display: inline-block;
+}
 
 #js {
 	opacity: 1;
