@@ -6,6 +6,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 2rem;
 }
 #logos a {
 	margin: 0 0.6em;
