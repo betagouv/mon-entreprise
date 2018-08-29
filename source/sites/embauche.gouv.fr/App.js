@@ -9,6 +9,7 @@ import {
 	persistSimulation,
 	retrievePersistedSimulation
 } from '../../storage/persistSimulation'
+import { inIframe } from '../../utils'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Contribution from './pages/Contribution'
@@ -30,7 +31,7 @@ class EmbaucheRoute extends Component {
 				}}
 				onStoreCreated={persistSimulation}>
 				<TrackPageView />
-				<Header />
+				{!inIframe() && <Header />}
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/contact" component={Contact} />
