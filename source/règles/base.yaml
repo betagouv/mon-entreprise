@@ -1059,9 +1059,9 @@
 
 - espace: contrat salarié . rémunération
   nom: total
-  titre: Rémunération chargée
+  titre: Total chargé
   question: Quel est la rémunération mensuelle chargée ?
-  résumé: Versée par l'employeur
+  résumé: Versé par l'employeur
   type: salaire
   format: euros
   description: |
