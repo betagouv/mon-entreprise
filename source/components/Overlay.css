@@ -12,7 +12,6 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	margin: 1rem;
 	padding: 1.5rem;
 	padding-top: 0;
 	border-radius: 0.3em;
@@ -31,10 +30,10 @@
 }
 @media (min-width: 600px) {
 	#overlayContent {
-		width: 80%;
-		transform: translateX(-50%) translateY(-50%);
-		top: 30vh;
+		transform: translateX(-50%);
+		top: 100px;
 		left: 50%;
+		width: 80%;
 		max-width: 40em;
 	}
 }
