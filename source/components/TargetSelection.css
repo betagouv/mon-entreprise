@@ -62,12 +62,14 @@
 #targetSelection .optionTitle {
 	font-size: 115%;
 }
-#targetSelection .optionTitle a {
+#targetSelection .optionTitle a,
+#targetSelection #aidesGlimpse a {
 	color: inherit;
 	text-decoration: none;
 	font-weight: 500;
 }
-#targetSelection .optionTitle a:hover {
+#targetSelection .optionTitle a:hover,
+#targetSelection #aidesGlimpse a:hover {
 	text-decoration: underline;
 }
 
@@ -79,6 +81,17 @@
 	margin-left: 0.6em;
 }
 
+#targetSelection .targetValue {
+	text-align: right;
+}
+
+#targetSelection #aidesGlimpse {
+	font-size: 75%;
+	margin-top: 0.3em;
+}
+#targetSelection #aidesGlimpse a {
+	font-weight: 300;
+}
 #targetSelection .editable {
 	border-bottom: 1px dashed #ffffff91;
 	min-width: 2.5em;

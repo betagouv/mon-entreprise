@@ -1,6 +1,6 @@
 /* @flow */
 
-import { popularTargetNames } from 'Components/TargetSelection'
+import { simulationTargetNames } from '../config.js'
 import { defaultTo, without } from 'ramda'
 // $FlowFixMe
 import reduceReducers from 'reduce-reducers'
@@ -107,7 +107,7 @@ export default reduceReducers(
 		form: formReducer,
 		conversationSteps,
 		lang,
-		targetNames: defaultTo(popularTargetNames),
+		targetNames: defaultTo(simulationTargetNames),
 		themeColours,
 		explainedVariable,
 		previousSimulation: defaultTo(null),

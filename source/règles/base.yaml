@@ -725,7 +725,7 @@
       question: Quel est le salaire mensuel ?
       titre: salaire
       avec:
-        - coût d'embauche
+        - rémunération . total
         - salaire . net
         - salaire . net après impôt
 
@@ -1059,9 +1059,9 @@
 
 - espace: contrat salarié . rémunération
   nom: total
-  titre: Rémunération totale
+  titre: Rémunération chargée
   question: Quel est la rémunération mensuelle chargée ?
-  résumé: Versé par l'employeur
+  résumé: Versée par l'employeur
   type: salaire
   format: euros
   description: |

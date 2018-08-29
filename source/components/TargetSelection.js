@@ -3,7 +3,7 @@ import InputSuggestions from 'Components/conversation/InputSuggestions'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { path, propEq } from 'ramda'
+import { propEq } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -89,7 +89,7 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let displayedTargets = popularTargetNames.map(target =>
+		let displayedTargets = mainTargetNames.map(target =>
 				findRuleByDottedName(this.props.flatRules, target)
 			),
 			{
@@ -221,12 +221,9 @@ let TargetInputOrValue = withLanguage(
 		</span>
 	)
 )
-@connect(
-	() => ({}),
-	dispatch => ({
-		setFormValue: (field, name) => dispatch(change('conversation', field, name))
-	})
-)
+@connect(dispatch => ({
+	setFormValue: (field, name) => dispatch(change('conversation', field, name))
+}))
 class TargetValue extends Component {
 	render() {
 		let { targets, target, noUserInput, blockingInputControls } = this.props
@@ -236,20 +233,19 @@ class TargetValue extends Component {
 			value = targetWithValue && targetWithValue.nodeValue
 
 		return (
-			<span
-				className={classNames({
-					editable: target.question,
-					attractClick:
-						target.question && (noUserInput || blockingInputControls)
-				})}
-				tabIndex="0"
-				onClick={this.showField(value)}
-				onFocus={this.showField(value)}>
-				{target.dottedName.includes("coût d'embauche") ? (
-					<FormulaGlimpse targetWithValue={targetWithValue} />
-				) : (
+			<span className="targetValue">
+				<div
+					className={classNames({
+						editable: target.question,
+						attractClick:
+							target.question && (noUserInput || blockingInputControls)
+					})}
+					tabIndex="0"
+					onClick={this.showField(value)}
+					onFocus={this.showField(value)}>
 					<AnimatedTargetValue value={value} />
-				)}
+				</div>
+				{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 			</span>
 		)
 	}
@@ -265,25 +261,24 @@ class TargetValue extends Component {
 	}
 }
 
-class FormulaGlimpse extends React.Component {
+@withColours
+@connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
+class AidesGlimpse extends Component {
 	render() {
-		let explanation = path(
-			['formule', 'explanation', 'explanation'],
-			this.props.targetWithValue
+		let aides = this.props.analysis.targets.find(
+			t => t.dottedName === 'contrat salarié . aides employeur'
 		)
-		if (!explanation) return null
-		let [total, aides] = explanation
+		if (!aides.nodeValue) return null
 		return (
-			<span>
-				<AnimatedTargetValue value={total.nodeValue} />{' '}
-				{aides.nodeValue && (
-					<span>
-						{' '}
-						- {emoji(aides.explanation.icon)}
-						<AnimatedTargetValue value={aides.nodeValue} />
-					</span>
-				)}
-			</span>
+			<div id="aidesGlimpse">
+				{' '}
+				- <AnimatedTargetValue value={aides.nodeValue} />{' '}
+				<Link
+					to={'/règle/' + encodeRuleName('contrat salarié . aides employeur')}
+					style={{ color: this.props.colours.textColour }}>
+					d'aides {emoji(aides.icon)}
+				</Link>
+			</div>
 		)
 	}
 }
