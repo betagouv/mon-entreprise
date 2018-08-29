@@ -8,6 +8,7 @@ export default class IframeFooter extends Component {
 	componentDidMount() {
 		screenfull.onchange(() => this.forceUpdate())
 	}
+
 	render() {
 		return (
 			<div
