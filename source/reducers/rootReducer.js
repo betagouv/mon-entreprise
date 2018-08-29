@@ -105,19 +105,12 @@ export default reduceReducers(
 		sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
 		//  this is handled by redux-form, pas touche !
 		form: formReducer,
-
 		conversationSteps,
 		lang,
-
 		targetNames: defaultTo(popularTargetNames),
-
-		iframe: defaultTo(false),
-
 		themeColours,
-
 		explainedVariable,
 		previousSimulation: defaultTo(null),
-
 		currentExample,
 		conversationStarted,
 		activeTargetInput,

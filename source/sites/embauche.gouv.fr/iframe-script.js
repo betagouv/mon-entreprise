@@ -26,6 +26,7 @@ for (var key in iframeAttributes) {
 }
 iframeResizer({
 	interval: 0,
-	heightCalculationMethod: 'lowestElement'
+	scrolling: 'auto',
+	heightCalculationMethod: 'lowestElement',
 }, iframe)
 script.parentNode.insertBefore(iframe, script)

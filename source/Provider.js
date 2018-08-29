@@ -12,7 +12,7 @@ import thunk from 'redux-thunk'
 import computeThemeColours from 'Ui/themeColours'
 import trackDomainActions from './middlewares/trackDomainActions'
 import ReactPiwik from './Tracker'
-import { getIframeOption, getUrl, inIframe } from './utils'
+import { getIframeOption, inIframe } from './utils'
 
 if (process.env.NODE_ENV === 'production') {
 	// eslint-disable-next-line no-undef
@@ -42,7 +42,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 let initialStore = {
-	iframe: getUrl().includes('iframe'),
 	themeColours: computeThemeColours(getIframeOption('couleur'))
 }
 
