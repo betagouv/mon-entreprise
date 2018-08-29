@@ -75,13 +75,7 @@
 
 #targetSelection .targetInputOrValue {
 	font-size: 135%;
-	display: flex;
-	justify-content: flex-end;
-	align-items: flex-end;
 	margin-left: 0.6em;
-}
-
-#targetSelection .targetValue {
 	text-align: right;
 }
 

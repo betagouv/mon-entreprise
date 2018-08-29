@@ -218,12 +218,16 @@ let TargetInputOrValue = withLanguage(
 					}}
 				/>
 			)}
+			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 		</span>
 	)
 )
-@connect(dispatch => ({
-	setFormValue: (field, name) => dispatch(change('conversation', field, name))
-}))
+@connect(
+	null,
+	dispatch => ({
+		setFormValue: (field, name) => dispatch(change('conversation', field, name))
+	})
+)
 class TargetValue extends Component {
 	render() {
 		let { targets, target, noUserInput, blockingInputControls } = this.props
@@ -233,20 +237,17 @@ class TargetValue extends Component {
 			value = targetWithValue && targetWithValue.nodeValue
 
 		return (
-			<span className="targetValue">
-				<div
-					className={classNames({
-						editable: target.question,
-						attractClick:
-							target.question && (noUserInput || blockingInputControls)
-					})}
-					tabIndex="0"
-					onClick={this.showField(value)}
-					onFocus={this.showField(value)}>
-					<AnimatedTargetValue value={value} />
-				</div>
-				{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
-			</span>
+			<div
+				className={classNames({
+					editable: target.question,
+					attractClick:
+						target.question && (noUserInput || blockingInputControls)
+				})}
+				tabIndex="0"
+				onClick={this.showField(value)}
+				onFocus={this.showField(value)}>
+				<AnimatedTargetValue value={value} />
+			</div>
 		)
 	}
 	showField(value) {
@@ -265,10 +266,11 @@ class TargetValue extends Component {
 @connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
 class AidesGlimpse extends Component {
 	render() {
-		let aides = this.props.analysis.targets.find(
-			t => t.dottedName === 'contrat salarié . aides employeur'
-		)
-		if (!aides.nodeValue) return null
+		let targets = this.props.analysis.targets,
+			aides =
+				targets &&
+				targets.find(t => t.dottedName === 'contrat salarié . aides employeur')
+		if (!aides || !aides.nodeValue) return null
 		return (
 			<div id="aidesGlimpse">
 				{' '}
