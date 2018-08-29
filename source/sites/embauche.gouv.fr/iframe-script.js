@@ -16,7 +16,7 @@ const iframeAttributes = {
 	id: 'simulateurEmbauche',
 	src,
 	style:
-		'border: none; width: 100%; display: block; margin: 0 auto',
+		'border: none; width: 100%; display: block; margin: 10px auto; min-height: 700px',
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true
