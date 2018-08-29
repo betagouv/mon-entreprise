@@ -16,6 +16,7 @@ import Contribution from './pages/Contribution'
 import Couleur from './pages/Couleur'
 import { Header } from './pages/Header'
 import Home from './pages/Home'
+import IframeFooter from './pages/IframeFooter'
 import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
 import Route404 from './pages/Route404'
@@ -47,6 +48,7 @@ class EmbaucheRoute extends Component {
 					<Redirect from="/simulateur" to="/" />
 					<Route component={Route404} />
 				</Switch>
+				{inIframe() && <IframeFooter />}
 			</Provider>
 		)
 	}

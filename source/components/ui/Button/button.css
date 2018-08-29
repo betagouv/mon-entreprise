@@ -57,11 +57,17 @@
 	background-size: 260%;
 	background-position-x: 99%;
 }
-.ui__.button:not(:disabled):hover,
+.ui__.button:not(:disabled):not(.simple):hover,
 .ui__.button.selected {
 	background-position-x: 0%;
 	border-color: white;
 	color: white;
+}
+.ui__.button.simple {
+	border: none;
+}
+.ui__.button.simple:hover {
+	opacity: 0.8;
 }
 .ui__.button.cta,
 .ui__.inverted-button.cta {
@@ -149,6 +155,7 @@
 
 .ui__.small.button {
 	font-size: 80%;
+	line-height: 1rem;
 	padding: 0.4rem 0.8rem;
 	border-radius: 0.3rem;
 }

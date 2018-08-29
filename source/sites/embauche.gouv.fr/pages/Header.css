@@ -27,6 +27,8 @@
 
 #headerRight {
 	display: flex;
+	font-size: 110%;
+	line-height: 2em;
 	align-items: center;
 }
 
@@ -37,9 +39,7 @@
 	display: inline-block;
 }
 nav {
-	font-size: 110%;
 	display: inline-block;
-	line-height: 2em;
 }
 
 nav a {
@@ -68,7 +68,6 @@ nav a {
 	}
 	nav.visible a {
 		font-size: 200%;
-		color: #3c4963;
 		display: block;
 		margin: 1.2em;
 	}
@@ -77,53 +76,10 @@ nav a {
 	#menuButton {
 		display: none;
 	}
-
-	nav a {
-		margin: 0.8em;
-		color: #3c4963;
-	}
-}
-
-#iframeFullscreen {
-	font-size: 120%;
-	text-align: center;
-	background: #eee;
-	display: block;
-	width: 12em;
-	margin: 0 auto;
-	padding: 0.4em 1em;
-	cursor: pointer;
-}
-#iframeFullscreen.absolute {
-	padding: 0;
-}
-#iframeFullscreen i {
-	margin-left: 1em;
-}
-
-#iframeFullscreen.absolute i {
-	position: absolute;
-	top: 0.2em;
-	right: 0.3em;
-	font-size: 150%;
-}
-
-#langSwitcher button {
-	font-size: 120%;
-	border: none;
-	border-radius: 0;
-	margin: 0 0.6em;
-	padding: 0;
-}
-#langSwitcher button:hover {
-	border-bottom: 1px solid black;
-}
-
-#langSwitcher img {
-	margin-right: 0.4em;
-	height: 0.8em;
 }
 
 .menu-item {
+	margin: 0.8em !important;
 	text-decoration: none !important;
+	color: #040e19 !important;
 }
