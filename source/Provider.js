@@ -2,6 +2,8 @@ import SetCSSColour from 'Components/utils/SetCssColour'
 import { defaultTracker, TrackerProvider } from 'Components/utils/withTracker'
 import createHistory from 'history/createBrowserHistory'
 import i18next from 'i18next'
+import createRavenMiddleware from 'raven-for-redux'
+import Raven from 'raven-js'
 import React, { PureComponent } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider } from 'react-redux'
@@ -15,7 +17,6 @@ import ReactPiwik from './Tracker'
 import { getIframeOption, inIframe } from './utils'
 
 if (process.env.NODE_ENV === 'production') {
-	// eslint-disable-next-line no-undef
 	Raven.config(
 		'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
 	).install()
@@ -74,6 +75,7 @@ export default class Layout extends PureComponent {
 			applyMiddleware(
 				// Allows us to painlessly do route transition in action creators
 				thunk.withExtraArgument(this.history),
+				createRavenMiddleware(Raven),
 				trackDomainActions(tracker)
 			)
 		)
