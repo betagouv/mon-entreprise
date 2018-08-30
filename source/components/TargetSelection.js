@@ -166,7 +166,7 @@ let Header = ({
 				{!conversationStarted &&
 					target.dottedName.includes('net après impôt') && (
 						<div>
-							<span id="labelNew">Nouveau 2019</span>
+							<span id="labelNew">Janvier 2019</span>
 						</div>
 					)}
 				<span className="optionTitle">
