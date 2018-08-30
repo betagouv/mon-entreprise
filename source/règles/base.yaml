@@ -937,8 +937,9 @@
 
     Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé). 
           
-    C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa famille et son patrimoine.
+    C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
 
+    Pour une simulation plus complète, rendez-vous sur [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm). 
   références: 
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
@@ -951,7 +952,8 @@
 - espace: contrat salarié 
   nom: impôt neutre sur le revenu
   icône: 🏛️
-  description: C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
+  description: >
+    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
   format: euros
   formule:
