@@ -8,7 +8,7 @@ export type Tracker = {
 	connectToHistory: Function
 }
 export const defaultTracker: Tracker = {
-	push: (console && console.log) || (() => {}), // eslint-disable-line no-console
+	push: (console && console.log && console.log.bind(console)) || (() => {}), // eslint-disable-line no-console
 	connectToHistory: history => history
 }
 const TrackerContext = createContext(defaultTracker)
