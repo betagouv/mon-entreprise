@@ -18,53 +18,63 @@ type Props = {
 	onChecklistInitialization: (string, Array<string>) => void,
 	onStatusChange: () => void,
 	onItemCheck: (name: string, checked: boolean) => void,
-	companyCreationChecklist: {[string]: boolean}
+	companyCreationChecklist: { [string]: boolean }
 }
 
-const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitialization, onItemCheck, companyCreationChecklist, onStatusChange}: Props) => {
-	const microenterprise =
-		match.params.status && match.params.status.includes('microenterprise')
-	const SARL = match.params.status && match.params.status.includes('SARL')
-	const EURL = match.params.status && match.params.status.includes('EURL')
-
+const CreateCompany = ({
+	match,
+	statusChooserCompleted,
+	onChecklistInitialization,
+	onItemCheck,
+	companyCreationChecklist,
+	onStatusChange
+}: Props) => {
+	const status = match.params.status
 	return (
 		<Animate.fromBottom>
 			<Scroll.toTop />
 			<h1>Create a {match.params.status} </h1>
-					{!statusChooserCompleted &&	
+			{!statusChooserCompleted && (
 				<p>
 					<button className="ui__ link-button" onClick={onStatusChange}>
 						Not sure about this status? Take our guide to help you choose
 					</button>
-				</p>}
+				</p>
+			)}
 			<p>
 				This checklist will guide you thoughout all the necessary steps to
 				register your {match.params.status}.
 			</p>
-
-			<Checklist 
-				onInitialization={(items) => onChecklistInitialization(match.params.status || '', items)}
+			<h2 style={{ fontSize: '1.5rem' }}>Needed for registration</h2>
+			<Checklist
+				onInitialization={items =>
+					onChecklistInitialization(match.params.status || '', items)
+				}
 				onItemCheck={onItemCheck}
-				defaultChecked={companyCreationChecklist}
-			>
-				{!microenterprise && 
+				defaultChecked={companyCreationChecklist}>
+				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
 					<CheckItem
 						name="corporateName"
 						title="Find a corporate name"
 						explanations={
-							<><p>
-								<strong>The corporate name</strong> (dénomination sociale) is the
-								legal name of your company, written on all of your
-								administrative papers. It can be different from the trade name
-								(used for commercial purpose). 
-							</p>
-							<p>
-							It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc.
-							You can check on the <a href="http://bases-marques.inpi.fr/">INPI database</a>.
-							</p>
+							<>
+								<p>
+									<strong>The corporate name</strong> (dénomination sociale) is
+									the legal name of your company, written on all of your
+									administrative papers. It can be different from the trade name
+									(used for commercial purpose).
+								</p>
+								<p>
+									It is advisable to check that the name is available, i.e. that
+									it does not infringe a name already protected by a trademark,
+									a company name, a trade name, an Internet domain name, etc.
+									You can check on the{' '}
+									<a href="http://bases-marques.inpi.fr/">INPI database</a>.
+								</p>
 							</>
 						}
-					/>}
+					/>
+				)}
 				<CheckItem
 					name="corporatePurpose"
 					title="Write the corporate purpose of the company"
@@ -76,21 +86,26 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 						</p>
 					}
 				/>
-				{!microenterprise && (
+				{status !== 'microenterprise' && (
 					<CheckItem
 						name="companyAddress"
 						title="Find an address to incorporate the company"
 						explanations={
-							<p>
-								<strong>The address</strong> is the physical space where your
-								company will be incorporated. In certain places and situations,
-								you can benefit from substantial public financing (exemption
-								from charges, taxes, etc.).
-							</p>
+							<>
+								<p>
+									<strong>The address</strong> is the physical space where your
+									company will be incorporated. In certain places and
+									situations, you can benefit from substantial public financing
+									(exemption from charges, taxes, etc.).{' '}
+									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
+										More information (french)
+									</a>
+								</p>
+							</>
 						}
 					/>
 				)}
-				{!microenterprise && (
+				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
 					<CheckItem
 						name="companyStatus"
 						title="Write the company statuses"
@@ -114,18 +129,40 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 						}
 					/>
 				)}
-				{!microenterprise && (
+				<CheckItem
+					name="openBankAccount"
+					title="Open a business bank account"
+					explanations={
+						<>
+							<p>
+								The purpose of a <strong>professional bank account</strong> is
+								to separate your company's assets from your personal assets.{' '}
+								{status === 'EI' &&
+									'If its opening is not obligatory for an EI, it is strongly recommended. '}
+								The professional bank account allows you to:
+							</p>
+							<ul>
+								<li>
+									Differentiate your private and professional operations and
+									simplify your cash management
+								</li>
+								<li>Facilitate any tax audit operations.</li>
+							</ul>
+						</>
+					}
+				/>
+				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
 					<CheckItem
 						name="fundsDeposit"
 						title="Deposit capital funds"
 						explanations={
 							<>
 								<p>
-									The deposit of share capital must be made at the time of the
-									incorporation of a company by any person acting on behalf of
-									the company and having received funds from contributions in
-									cash (sum of money) from the creditors of the company
-									(shareholder or partner).{' '}
+									The <strong>deposit of share capital</strong> must be made at
+									the time of the incorporation of a company by any person
+									acting on behalf of the company and having received funds from
+									contributions in cash (sum of money) from the creditors of the
+									company (shareholder or partner).{' '}
 								</p>
 								<p>
 									The deposit consists of a transfer of a sum of money to a
@@ -137,17 +174,17 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 						}
 					/>
 				)}
-				{!microenterprise && (
+				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
 					<CheckItem
 						name="publishCreationNotice"
 						title="Publish a notice of creation in a newspaper"
 						explanations={
 							<>
 								<p>
-									A notice of incorporation of the company must be published in
-									a newspaper of legal announcements (JAL), for a cost of
-									publication that depends on the size of the announcement and
-									the rates charged by the JAL.
+									A <strong>notice of incorporation of the company</strong> must
+									be published in a newspaper of legal announcements (JAL), for
+									a cost of publication that depends on the size of the
+									announcement and the rates charged by the JAL.
 								</p>
 								<p>
 									<a href="https://actulegales.fr/journaux-annonces-legales">
