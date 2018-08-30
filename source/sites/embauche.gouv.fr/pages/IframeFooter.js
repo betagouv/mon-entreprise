@@ -2,11 +2,12 @@ import LangSwitcher from 'Components/LangSwitcher'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import screenfull from 'screenfull'
+import emoji from 'react-easy-emoji';
 
 @translate()
 export default class IframeFooter extends Component {
 	componentDidMount() {
-		screenfull.onchange(() => this.forceUpdate())
+		screenfull.enabled && screenfull.onchange(() => this.forceUpdate())
 	}
 
 	render() {
@@ -27,7 +28,7 @@ export default class IframeFooter extends Component {
 							onClick={() => {
 								screenfull.toggle()
 							}}>
-							🖵&nbsp;
+							{emoji('🖵')}&nbsp;
 							<Trans>Plein écran</Trans>
 						</button>
 					)}
