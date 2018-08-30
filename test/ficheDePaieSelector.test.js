@@ -5,6 +5,8 @@ import FicheDePaieSelectors, {
 	COTISATION_BRANCHE_ORDER
 } from 'Selectors/ficheDePaieSelectors'
 
+import { simulationTargetNames } from 'Components/TargetSelection'
+
 let state = {
 	form: {
 		conversation: {
@@ -14,21 +16,18 @@ let state = {
 			}
 		}
 	},
-	targetNames: [
-		'contrat salarié . salaire . net',
-		'contrat salarié . rémunération . total',
-		'contrat salarié . salaire . net imposable'
-	],
+	targetNames: simulationTargetNames,
 	conversationStarted: true,
 	conversationSteps: {
 		foldedSteps: []
 	}
 }
 
-let paySlip = FicheDePaieSelectors(state)
+let paySlip = null
 
 describe('pay slip selector', function() {
 	beforeEach(() => {
+		paySlip = FicheDePaieSelectors(state)
 		expect(paySlip).not.to.eq(null)
 	})
 	it('should have cotisations grouped by branches in the proper ordering', function() {
