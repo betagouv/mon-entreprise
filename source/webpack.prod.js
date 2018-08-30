@@ -12,7 +12,7 @@ module.exports = {
 			skipWaiting: true,
 			swDest: 'sw.js',
 			navigateFallback: '/',
-			navigateFallbackBlacklist: [/.*\?site=.*$/, /^\/stats/],
+			navigateFallbackBlacklist: [/.*\?s=.*$/, /^\/stats/],
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp(

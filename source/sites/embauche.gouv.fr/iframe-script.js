@@ -1,6 +1,4 @@
-
-
-import { iframeResizer } from 'iframe-resizer';
+import { iframeResizer } from 'iframe-resizer'
 let script = document.getElementById('script-simulateur-embauche'),
 	couleur = script.dataset.couleur,
 	baseUrl =
@@ -9,7 +7,7 @@ let script = document.getElementById('script-simulateur-embauche'),
 	lang = script.dataset.lang,
 	src =
 		baseUrl +
-		`?site=embauche&couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
+		`?s=e&couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
 
 const iframe = document.createElement('iframe')
 const iframeAttributes = {
@@ -24,9 +22,12 @@ const iframeAttributes = {
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])
 }
-iframeResizer({
-	interval: 0,
-	scrolling: 'auto',
-	heightCalculationMethod: 'lowestElement',
-}, iframe)
+iframeResizer(
+	{
+		interval: 0,
+		scrolling: 'auto',
+		heightCalculationMethod: 'lowestElement'
+	},
+	iframe
+)
 script.parentNode.insertBefore(iframe, script)

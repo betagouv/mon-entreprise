@@ -24,7 +24,7 @@ status = 200
 
 [[redirects]]
 from = "/*"
-query = {site = "embauche"}
+query = {s = "e"}
 to = "/embauche.html"
 status = 200
 
