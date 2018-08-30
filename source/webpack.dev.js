@@ -12,6 +12,7 @@ module.exports = {
 	serve: {
 		host: '0.0.0.0',
 		hotClient: {
+			allEntries: true,
 			host: { client: '*', server: '0.0.0.0' }
 		},
 		add: (app, middleware, options) => {
