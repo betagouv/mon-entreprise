@@ -1,5 +1,4 @@
 import { startConversation } from 'Actions/actions'
-import { ScrollToElement } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import React, { Component } from 'react'
@@ -71,7 +70,6 @@ export default class Simu extends Component {
 							</button>
 						</div>
 					)}
-					{firstValidInputEntered && <ScrollToElement />}
 					<Spring
 						to={{
 							height: firstValidInputEntered ? 'auto' : 0,
@@ -87,7 +85,8 @@ export default class Simu extends Component {
 									overflow: 'hidden',
 									flexWrap: 'wrap',
 									fontSize: '110%',
-									justifyContent: 'space-evenly'
+									justifyContent: 'space-evenly',
+									marginBottom: '0.6rem'
 								}}>
 								<QuickLink />
 							</animated.div>

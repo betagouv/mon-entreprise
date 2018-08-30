@@ -16,9 +16,11 @@ type Props = {
 const CreateMyCompany = ({ match, nextQuestionUrl, history }: Props) => (
 	<>
 		<h1 className="question__title">Create your company</h1>
-		<Link className="ui__ link-button" to="/company/find">
-			My company is already registered with the French Administration
-		</Link>
+		<p>
+			<Link className="ui__ link-button" to="/company/find">
+				My company is already registered with the French Administration
+			</Link>
+		</p>
 		<p>
 			The French business law defines more than 20 possible legal statuses to
 			declare a company with various acronyms and processes : SAS, SARL, SA,

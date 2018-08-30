@@ -10,6 +10,7 @@ import MainStatus from './MainStatus'
 import { connect } from "react-redux";
 import MinorityDirector from './MinorityDirector'
 import Microenterprise from './Microenterprise'
+import AfterRegistration from './AfterRegistration'
 import NumberOfAssociate from './NumberOfAssociate'
 import CreationChecklist from './CreationChecklist'
 
@@ -35,6 +36,7 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 				{companyStatusChoice && 
 					<Redirect exact from={match.path} to={match.path + '/create-' + companyStatusChoice} /> 
 				}
+				<Route path={match.path + '/after-registration'} component={AfterRegistration} /> 
 				<Route path={match.path} component={Home} />
 			</Switch>
 			<div className="ui__ route-trans">
