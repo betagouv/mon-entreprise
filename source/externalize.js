@@ -30,7 +30,8 @@ let attributesToExternalize = [
 	'description',
 	'question',
 	'sous-question',
-	'résumé'
+	'résumé',
+	'suggestions'
 ]
 
 let buildDottedName = rule =>
@@ -48,7 +49,7 @@ let promises = rules
 
 				let currentTranslation = currentExternalization[buildDottedName(rule)]
 				//Check if a human traduction exists already for this attribute
-				if (currentTranslation[enTrad])
+				if (currentTranslation && currentTranslation[enTrad])
 					return Promise.resolve({
 						[enTrad]: currentTranslation[enTrad],
 						[frTrad]: v
