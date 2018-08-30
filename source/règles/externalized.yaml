@@ -1,18 +1,62 @@
 contrat salarié . indemnité kilométrique vélo:
   description.en: >-
-    Employer's incitation to the use of bicycles for commuting.
-    This financial aid is not taxed.
+    Employer's incitation to the use of bicycles for commuting. This financial
+    aid is not taxed.
+  description.fr: >
+    Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au
+    travail.
+
+    Nous avons retenu une implémentation simplifiée de cette règle : nous fixons
+    cette indemnité à 200€, car c'est le montant maximum donnant lieu aux
+    exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout
+    à fait accessible, correspondant approximativement à 2km aller et 2km retour
+    pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais
+    l'employeur n'a alors aucune incitation à verser ce supplément : la part
+    au-dessus de 200€ devient une prime classique.
   titre.en: kilometric bicycle allowance
+  titre.fr: indemnité kilométrique vélo
+contrat salarié . indemnité kilométrique vélo . distance annuelle:
+  titre.fr: distance annuelle
+  titre.en: ~~annual distance
 contrat salarié . indemnité kilométrique vélo . indemnité vélo active:
-  question.en: | 
-    Can the employee take advantage of the kilometric bicycle allowance to go to work ?
-  titre.en: allowance enabled
-  description.en: | 
-    The employer has the choice to enable his employees to take advantage of this new financial aid. 
-    What sets it appart from a salary bonus is that it is exonerated from social contributions and income tax up to 200€.
+  question.en: >
+    Can the employee take advantage of the kilometric bicycle allowance to go to
+    work ?
+  question.fr: >-
+    Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au
+    travail ?
+  description.en: >
+    The employer has the choice to enable his employees to take advantage of
+    this new financial aid. 
+
+    What sets it appart from a salary bonus is that it is exonerated from social
+    contributions and income tax up to 200€.
+
 
     To reach 200€, the employee must cycle approximately 4km per day. 
+  description.fr: >
+    Cette indemnité n'est pour l'instant pas obligatoire.
 
+
+    L'employeur a le choix de la mettre en place dans son entreprise.
+
+
+    Pour bénéficier de l'indemnité de 200€ retenue dans ce calcul, le salarié
+    doit faire 4km (aller-retour) de vélo pour se rendre au travail chaque jour
+    travaillé.
+
+
+    Cette indemnité est cumulable avec le remboursement des frais de transport
+    en commun s'il sagit d'un trajet à vélo de rabattement vers une station de
+    transport.
+
+
+    Cette indemnité est exonérée de cotisations sociales et d'impôt sur le
+    revenu. Pour verser une prime de salaire équivalente à son salarié sans ce
+    dispositif, **l'employeur devrait débourser près de 500€ pour un salaire
+    médian**.
+  titre.en: allowance enabled
+  titre.fr: indemnité vélo active
 contrat salarié . CDD . CIF:
   description.en: >-
     Contribution to the financing of individual training leave, specific to
@@ -30,24 +74,25 @@ contrat salarié . CDD . compensation pour congés non pris:
 
 
     It is however common that the employee can not take all his leave before the
-    end of his contract. In that case, he receives a compensatory alowance paid by the employer.
+    end of his contract. In that case, he receives a compensatory alowance paid
+    by the employer.
   description.fr: >
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses
-    congés avant le terme de son contrat, il bénéficie d'une indemnité
-    compensatrice de congés payés.
+    congés avant le terme de son contrat, il bénéficie alors d'une indemnité
+    compensatrice de congés payés versée par l'employeur.
   titre.en: untaken vacation compensation
   titre.fr: compensation pour congés non pris
-contrat salarié . CDD . prime fin de contrat:
-  description.en: >-
-    Amount paid at the end of a fixed-term contract as a compensation for
-    precariousness.
+contrat salarié . CDD . prime de fin de contrat:
   description.fr: Somme versée en fin de CDD comme compensation de précarité.
-  titre.en: end of contract bonus
+  description.en: >-
+    ~~Amount paid at the end of fixed-term contracts as compensation for
+    precariousness.
   titre.fr: prime de fin de contrat
+  titre.en: ~~end of contract bonus
 contrat salarié . CDD . majoration chômage:
   description.en: >-
     Increase in employers' unemployment insurance contributions for short-term
@@ -60,24 +105,24 @@ contrat salarié . CDD . majoration chômage:
 contrat salarié . ATMP:
   titre.en: Contribution for work accidents and occupational diseases
   titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
-  description.en: >-
-    Contribution in respect of work accidents and occupational
-    diseases.
+  description.en: Contribution in respect of work accidents and occupational diseases.
   description.fr: >-
     Cotisation due au titre des Accidents du Travail et Maladies
-    Professionnelles
+    Professionnelles.
 contrat salarié . ATMP . taux collectif ATMP:
   titre.en: ATMP collective rate
   titre.fr: Taux collectif ATMP
-  question.fr: >-
-    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
-    l'entreprise ?
   question.en: >-
     What rate of workplace accidents and occupational diseases applies to the
     company?
+  question.fr: >-
+    Quel taux Accidents du Travail et Maladies Professionnelles s'applique à
+    l'entreprise ?
   description.en: >-
     Companies with fewer than 20 employees are subject to this collective rate.
-    For larger companies, this rate is modulated (up to 150 employees), and then individualized (beyond 250). The company's rate can be consulted online on [net-entreprise]
+    For larger companies, this rate is modulated (up to 150 employees), and then
+    individualized (beyond 250). The company's rate can be consulted online on
+    [net-entreprise]
     (http://www.net-entreprises.fr/html/account-accident-travail.htm).
   description.fr: >
     Les entreprises de moins de 20 salariés sont assujetties à ce taux
@@ -88,16 +133,21 @@ contrat salarié . ATMP . taux collectif ATMP:
 
     concerne en ligne sur
     [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
+  suggestions.fr: atmp-2017
+  suggestions.en: ~~ATMP-2017
 contrat salarié . CDD . événement:
   titre.en: Contract related event
   titre.fr: Événement de contrat
   question.en: Are you expecting any of these events to happen during the contract?
   question.fr: Pensez-vous être confronté à l'un de ces événements au cours du contrat ?
   description.en: >-
-    Some events have a strong impact on the financial obligations of the fixed-term contract.
+    Some events have a strong impact on the financial obligations of the
+    fixed-term contract.
 
 
-    > For example, in the event of a continuation of the fixed-term contract as a permanent contrat, no increase or compensation on the fixed-term contract will be required.
+    > For example, in the event of a continuation of the fixed-term contract as
+    a permanent contrat, no increase or compensation on the fixed-term contract
+    will be required.
   description.fr: >
     Certains événements impactent fortement les obligations du CDD.
 
@@ -108,21 +158,22 @@ contrat salarié . CDD . événement . poursuite du CDD en CDI:
   titre.en: Fixed-term contract continued as permanent
   titre.fr: Poursuite du CDD en CDI
   description.en: >-
-    At the end of the fixed-term contract, without interruption, a permanent contract is signed.
-  description.fr: En fin de contrat, le CDD est reconduit en CDI sans interruption.
+    At the end of the fixed-term contract, without interruption, a permanent
+    contract is signed.
+  description.fr: 'En fin de contrat, le CDD est reconduit en CDI sans interruption.'
 contrat salarié . CDD . événement . refus CDI avantageux:
   titre.en: Refusal of a favourable permanent contract
   titre.fr: Refus d'un CDI avantageux
   description.en: >-
-    The employee, at the end of the fixed-term contract, refuses a renewal on
-    an open-ended contract for a similar job, with a remuneration at least as
+    The employee, at the end of the fixed-term contract, refuses a renewal on an
+    open-ended contract for a similar job, with a remuneration at least as
     advantageous.
   description.fr: >-
     Le salarié, au terme du CDD, refuse une reconduction en CDI pour un emploi
     similaire, et une rémunération au moins aussi avantageuse.
 contrat salarié . CDD . événement . rupture anticipée salarié:
   titre.en: Early termination by the employee
-  titre.fr: Rupture anticipée par le salarié
+  titre.fr: Rupture anticipée du salarié
   description.en: Early termination of the contract at the initiative of the employee.
   description.fr: Rupture anticipée du contrat à l'initiative du salarié.
 contrat salarié . CDD . événement . rupture pour faute grave ou force majeure:
@@ -137,10 +188,10 @@ contrat salarié . CDD . motif:
   question.en: What is the reason for using a fixed-term contract?
   question.fr: Quel est le motif de recours au CDD ?
   description.en: >-
-    The CDD is an exceptional contract: the reason for its use must be one
-    of those specified in the law.
+    The CDD is an exceptional contract: the reason for its use must be one of
+    those specified in the law.
   description.fr: >
-    Le CDD est un contrat d'exception : son recours doit être autorisé par l'un
+    Le CDD est un contrat d'exception: son recours doit être autorisé par l'un
     des motifs spécifiés dans la loi.
 contrat salarié . CDD . motif . classique:
   titre.en: classic reasons
@@ -149,9 +200,9 @@ contrat salarié . CDD . motif . classique . saisonnier:
   titre.en: Seasonal
   titre.fr: Saisonnier
   description.en: >-
-    Seasonal jobs, the tasks of which are to be repeated each year at a
-    roughly fixed frequency, according to the rhythm of the seasons or the
-    collective way of life.
+    Seasonal jobs, the tasks of which are to be repeated each year at a roughly
+    fixed frequency, according to the rhythm of the seasons or the collective
+    way of life.
   description.fr: >-
     Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter
     chaque année selon une périodicité à peu près fixe, en fonction du rythme
@@ -165,8 +216,31 @@ contrat salarié . CDD . motif . classique . remplacement:
   titre.en: Replacement contract
   titre.fr: Contrat de remplacement
   description.en: Replacement of an employee. A list of precise cases is defined by the law.
+  description.fr: >
+    Nous regroupons dans cette catégorie les cas suivants.
 
-  description.fr: Remplacement
+
+    - Remplacement d'un salarié en cas :
+      - D'absence ;
+      - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
+      - De suspension de son contrat de travail ;
+      - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
+      - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
+
+    - Remplacement d'un chef d'entreprise artisanale, industrielle ou
+    commerciale, d'une personne exerçant une profession libérale, de son
+    conjoint participant effectivement à l'activité de l'entreprise à titre
+    professionnel et habituel ou d'un associé non salarié d'une société civile
+    professionnelle, d'une société civile de moyens d'une société d'exercice
+    libéral ou de toute autre personne morale exerçant une profession libérale ;
+
+
+    - Remplacement du chef d'une exploitation agricole ou d'une entreprise
+    mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche
+    maritime, d'un aide familial, d'un associé d'exploitation, ou de leur
+    conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il
+    participe effectivement à l'activité de l'exploitation agricole ou de
+    l'entreprise ;
 contrat salarié . CDD . motif . classique . mission:
   titre.en: Mission contract
   titre.fr: Contrat de mission
@@ -174,21 +248,38 @@ contrat salarié . CDD . motif . classique . mission:
     > Also called a defined object contract.
 
     Recruitment of engineers and executives, within the meaning of collective
-    agreements, to achieve a defined purpose when a collective agreement authorizes its use.
-
+    agreements, to achieve a defined purpose when a collective agreement
+    authorizes its use.
   description.fr: >
     > Aussi appelé contrat à objet défini.
 
-    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de droit conventionnel le prévoit. 
 
+    Recrutement d'ingénieurs et de cadres, au sens des conventions collectives,
+    en vue de la réalisation d'un objet défini lorsqu'un accord de branche
+    étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+
+    - Les nécessités économiques auxquelles ces contrats sont susceptibles
+    d'apporter une réponse adaptée ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini bénéficient de garanties relatives à l'aide au
+    reclassement, à la validation des acquis de l'expérience, à la priorité de
+    réembauche et à l'accès à la formation professionnelle continue et peuvent,
+    au cours du délai de prévenance, mobiliser les moyens disponibles pour
+    organiser la suite de leur parcours professionnel ;
+
+    - Les conditions dans lesquelles les salariés sous contrat à durée
+    déterminée à objet défini ont priorité d'accès aux emplois en contrat à
+    durée indéterminée dans l'entreprise.
 contrat salarié . CDD . motif . classique . usage:
   titre.en: Customary contract
   titre.fr: Contrat d'usage
   description.en: >-
     Jobs for which, in certain sectors of activity defined by decree or by
-    collective agreement, a permanent contract is generally not used because
-    of the nature of the activity carried out and the temporary nature of these jobs.
-
+    collective agreement, a permanent contract is generally not used because of
+    the nature of the activity carried out and the temporary nature of these
+    jobs.
   description.fr: >-
     Emplois pour lesquels, dans certains secteurs d'activité définis par décret
     ou par convention ou accord collectif de travail étendu, il est d'usage
@@ -197,7 +288,7 @@ contrat salarié . CDD . motif . classique . usage:
     temporaire de ces emplois ;
 contrat salarié . CDD . motif . complément formation:
   titre.en: Complementary professional training provided by the employer
-  titre.fr: Complément de formation professionnelle assuré par l'employeur
+  titre.fr: Complément de formation professionnelle
   description.en: >-
     The employer undertakes, for a period and under conditions determined by
     decree, to provide additional professional training to the employee.
@@ -218,8 +309,19 @@ contrat salarié . CDD . motif . issue d'apprentissage:
     obligations du service national dans un délai de moins d'un an après
     l'expiration du contrat d'apprentissage.
 contrat salarié . CDD . motif . contrat aidé:
-  titre.en: Aided contract (CUI, work-study , ...)
+  titre.en: 'Aided contract (CUI, work-study , ...)'
   titre.fr: 'Contrat aidé (CUI, alternance, ...)'
+contrat salarié . CDD:
+  titre.fr: Contrat à durée déterminée
+  titre.en: ~~Fixed term contract
+  description.fr: >-
+    Contrat de travail pour lequel un employeur peut recruter un salarié pour
+    une durée déterminée, car la cause de cette détermination, de la date ou
+    échéance de fin de contrat est prévue explicitement par le Code du travail.
+  description.en: >-
+    ~~Employment contract for which an employer can recruit an employee for a
+    fixed term, because the cause of this determination, the date or the end
+    date of the contract is explicitly provided for by the Labor Code.
 contrat salarié . CDD . durée contrat:
   titre.en: contract duration
   titre.fr: durée du contrat
@@ -238,19 +340,28 @@ contrat salarié . CDD . durée contrat:
     1 an: 1 year
     6 mois: 6 months
     3 mois: 3 months
+  suggestions.fr:
+    18 mois: 18
+    1 an: 12
+    6 mois: 6
+    3 mois: 3
 contrat salarié . CDD . congés non pris:
   titre.en: Untaken paid leave
   titre.fr: Congés non pris
   question.en: How many working days of paid leave will not be taken?
   question.fr: Combien de jours ouvrés de congés ne seront pas pris ?
   description.en: >-
-    How many days of paid leave the employee will not be able to take, given the length of his /
-    her fixed term contract. In working days, compared to 25 days of legal leave
-    for a twelve-month contract.
+    How many days of paid leave the employee will not be able to take, given the
+    length of his / her fixed term contract. In working days, compared to 25
+    days of legal leave for a twelve-month contract.
   description.fr: >-
     Combien de jours de congés ne pourront être pris par l'employé, du fait de
     la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés
     légaux pour un contrat de douze mois.
+  suggestions.fr:
+    3 / 25: 3
+    10 / 25: 10
+  suggestions.en: ~~
 contrat salarié . CDD . contrat jeune vacances:
   titre.en: Young holiday contract
   titre.fr: Contrat jeune vacances
@@ -262,11 +373,6 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-contrat salarié . CDD . cotisations employeur CDD:
-  description.en: Employer contributions specific to the fixed-term contract
-  description.fr: Cotisations employeur spécifiques au CDD
-  titre.en: fixed-term contract employer contributions
-  titre.fr: cotisations employeur CDD
 contrat salarié . CDD . indemnités salarié CDD:
   description.en: Employer contributions specific to the fixed-term contract
   description.fr: Cotisations employeur spécifiques au CDD
@@ -276,9 +382,12 @@ contrat salarié . CDD . surcoût:
   titre.en: Of which additional cost CDD
   titre.fr: Dont surcoût CDD
   description.en: >-
-    The fixed-term contract (CDD) requires the employer to pay some additional employee and social contributions in return for the flexibility provided by this contract.
+    The fixed-term contract (CDD) requires the employer to pay some additional
+    employee and social contributions in return for the flexibility provided by
+    this contract.
 
-    Some are paid at the end of the contract, others with each monthly salary; Here, all of them are reduced to their monthly cost.
+    Some are paid at the end of the contract, others with each monthly salary;
+    Here, all of them are reduced to their monthly cost.
   description.fr: >
     Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
     organismes sociaux, certaines compensations
@@ -296,25 +405,35 @@ contrat salarié . CDD . surcoût CDD:
   titre.fr: surcoût CDD
 contrat salarié:
   description.en: >
-    The contract that binds a company (via its establishment) to an individual, who is then his employee.
+    The contract that binds a company (via its establishment) to an individual,
+    who is then his employee.
 
-    The contract is actually not necessary in French law. The CDI, permanent contract, is considered the default form of the employment relationship between an employee and an employer (Article L1221-2 of the Labor Code)."
+    The contract is actually not necessary in French law. The CDI, permanent
+    contract, is considered the default form of the employment relationship
+    between an employee and an employer (Article L1221-2 of the Labor Code)."
   description.fr: >
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui
     est alors son salarié.
 
 
     Le contrat n'est en fait pas nécessaire dans le droit français, il est
-    possible d'employer quelqu'un sans contrat par exemple dans ces cas:
-      - particuliers employeurs : plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
-      - cdi: La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+    possible d'employer quelqu'un sans contrat par exemple dans les cas
+    suivants:
+
+    - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4
+    semaines consécutives dans l'année.
+
+    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans
+    certains cas. C’est le cas du Contrat de travail à Durée Indéterminée,
+    considéré comme la forme normale et générale de la relation de travail entre
+    un salarié et un employeur (Art. L1221-2 du Code du travail).
   titre.en: employment contract
   titre.fr: contrat salarié
 contrat salarié . type de contrat:
   titre.en: Type of contract
   titre.fr: Type de contrat
   question.en: What is the nature of the employment contract?
-  question.fr: Quelle est la nature du contrat de travail ?
+  question.fr: "Quelle est la nature du contrat de travail\_?"
 contrat salarié . type de contrat . CDD:
   description.en: The employment contract explicitly provides for an end date.
   description.fr: Le contrat de travail prévoit explicitement une date de fin.
@@ -322,67 +441,134 @@ contrat salarié . type de contrat . CDD:
   titre.fr: CDD
 contrat salarié . type de contrat . CDI:
   description.en: >-
-    The employment contract does not mention an end date, or it has not been established : the law makes it a permanent contract by default.
+    The employment contract does not mention an end date, or it has not been
+    established : the law makes it a permanent contract by default.
   description.fr: >-
     Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
     établi.
   titre.en: Permanent (CDI)
   titre.fr: CDI
 contrat salarié . assiette cotisations sociales:
+  titre.en: base for the social contributions
+  titre.fr: Assiette des cotisations sociales
   description.en: >-
-    This is the basis for computing a large number of contributions on salaries. It includes cash compensation (base salary, compensations, bonuses ...) and benefits in kind (housing, vehicle, ...).
+    This is the basis for computing a large number of contributions on salaries.
+    It includes cash compensation (base salary, compensations, bonuses ...) and
+    benefits in kind (housing, vehicle, ...).
   description.fr: >
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre
-    de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en
-    espèces (salaire de base, indemnité, primes...) et les avantages en nature
-    (logement, véhicule...).
-  titre.en: base for the social contributions
-  titre.fr: assiette cotisations sociales
+    de cotisations sur le travail salarié. Elle comprend notamment les
+    rémunérations en espèces (salaire de base, indemnité, primes...) et les
+    avantages en nature (logement, véhicule...).
 contrat salarié . salaire . brut de base:
   titre.en: Gross salary
-  titre.fr: Salaire brut
+  titre.fr: Salaire brut de base
   résumé.en: Written in the employment contract.
-  résumé.fr: Le salaire inscrit dans le contrat de travail.
+  résumé.fr: Inscrit dans le contrat de travail
   question.en: What is the monthly gross salary?
-  question.fr: Quel est le salaire brut mensuel ?
+  question.fr: Quel est le salaire de base mensuel ?
   description.en: >-
     This is the negociated salary written on the employment contract in France.
     It normally includes bonuses computed on a monthly basis.
 
     It does not include employee benefits whether direct (monetary sums added to
-    the base pay such as medical or housing allowances) or indirect (benefits conveyed
-    in non-monetary forms such as food coupons, but whose value is added to the pay
-    slip as part of taxable income).
+    the base pay such as medical or housing allowances) or indirect (benefits
+    conveyed in non-monetary forms such as food coupons, but whose value is
+    added to the pay slip as part of taxable income).
   description.fr: >
-    C'est le salaire *brut* régulier inscrit dans le contrat de travail.
-    Il peut éventuellement inclure les primes ramenées au mois.
+    C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne
+    change jamais entre les mois et ne peut pas être modifié sans signature des
+    deux partis.
 
-    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature...
+
+    Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et
+    primes...
   suggestions.en:
     salaire médian: median salary
     SMIC: minimum wage (SMIC)
+  suggestions.fr:
+    salaire médian: 2300
+    SMIC: 1500
 contrat salarié . salaire . brut:
   titre.en: gross salary with benefits
-  titre.fr: salaire brut
-  description.fr: >
-    C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
+  titre.fr: Salaire brut
   description.en: >
-    This is the effective base salary, including all benefits, for the purpose of computing social costs.
+    This is the effective base salary, including all benefits, for the purpose
+    of computing social costs.
+  description.fr: >
+    Toutes les sommes versées au salarié sous forme monétaire en échange de son
+    travail.
+contrat salarié . rémunération . brut:
+  titre.fr: Rémunération brute
+  titre.en: ~~Gross remuneration
 contrat salarié . avantages sociaux:
+  description.fr: >
+    Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifique à
+    l'entreprise, et fourni par des structure privées (mutuelle, assurance...).
+    Ils sont soumis à l'impots sur le revenus.
+  description.en: >-
+    ~~These are the benefits paid by the employer. They are specific to the
+    company, and provided by private structures (mutual insurance, insurance
+    ...). They are subject to income taxes.
   titre.en: employee benefits
-  titre.fr: social benefits
+  titre.fr: avantages sociaux
+contrat salarié . avantages en nature:
+  titre.en: Benefits in kind
+  titre.fr: Avantages en nature
+  description.en: >
+    Benefits in kind consist of the provision by the employer to its employees
+    of goods or services. The provision may be free of charge or with employee
+    participation below their actual value
+  description.fr: >
+    Les avantages en nature sont constitués par la fourniture par l’employeur à
+    ses salariés d’un bien ou service. La mise à disposition peut être gratuite
+    ou moyennant une participation du salarié inférieure à leur valeur réelle
+  question.en: >-
+    Does the employee receive benefits in kind (housing, vehicle, telephone,
+    discounts, etc.)?
+  question.fr: >-
+    Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone,
+    réductions...) ?
+contrat salarié . avantages en nature . montant:
+  titre.en: Benefits in kind (amount)
+  titre.fr: Avantages en nature (montant)
+  description.en: >
+    Benefits in kind are subject to contributions and income tax. They are taken
+    into account to verify that the minimum wage is reached.
+  description.fr: >
+    Les avantages en nature sont soumis aux cotisations et à l'impot sur le
+    revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
+    atteint.
+  question.en: What is the monthly amount of benefits in kind?
+  question.fr: Quel est le montant mensuel des avantages en nature ?
+  suggestions.fr:
+    nourriture: 80
+    véhicule: 260
+  suggestions.en:
+    nourriture: food
+    véhicule: car
+contrat salarié . indemnités salarié:
+  titre.fr: indemnités salarié
+  titre.en: ~~employee benefits
 contrat salarié . statut cadre:
   titre.en: cadre status
   titre.fr: Statut cadre
   question.en: Does the employee have the "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   description.en: >-
-    This status is not well defined but recognized by collective agreements and determining
-    membership in a specific basic pension plan
+    This status is not well defined but recognized by collective agreements and
+    determining membership in a specific basic pension plan
   description.fr: >-
     Notion mal définie mais reconnue par les conventions collectives et
     déterminant l'appartenance à une caise de retraite de base spécifique
 contrat salarié . plafond sécurité sociale temps plein:
+  description.fr: >-
+    Le plafond de Sécurité sociale est le montant maximum des rémunérations ou
+    gains à prendre en compte pour le calcul de certaines cotisations.
+  description.en: >-
+    ~~The Social Security ceiling is the maximum amount of remuneration or
+    earnings to be taken into account for the calculation of certain
+    contributions.
   titre.en: Full-time social security ceiling
   titre.fr: plafond sécurité sociale temps plein
 contrat salarié . plafond sécurité sociale:
@@ -400,123 +586,189 @@ contrat salarié . cotisations salariales:
 contrat salarié . cotisations patronales:
   titre.en: employer contributions
   titre.fr: cotisations patronales
+contrat salarié . rémunération:
+  description.fr: >-
+    La rémunération se distingue du salaire en incluant les avantages non
+    monétaires versés en contrepartie du travail. Elle est donc plus large que
+    les sommes d'argent versées au salarié.
+  description.en: >-
+    ~~Compensation is distinguished from salary by including non-monetary
+    benefits paid for work. It is therefore wider than the sums of money paid to
+    the employee.
+  titre.fr: rémunération
+  titre.en: ~~remuneration
+contrat salarié . rémunération . net de cotisations:
+  titre.fr: Rémunération nette de cotisations
+  titre.en: ~~Net remuneration of contributions
+contrat salarié . salaire . net imposable:
+  titre.en: Net taxable salary
+  titre.fr: Salaire net imposable
+  description.en: >
+    The net salary less tax deductible social contributions and more taxable
+    social benefits. It's the basis used to compute income tax.
+  description.fr: >
+    Le salaire net ajusté des cotisations déductibles et avantages sociaux
+    imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
+contrat salarié . salaire . net imposable . base:
+  titre.fr: base
+  titre.en: ~~based
+contrat salarié . salaire . net imposable . exonérations:
+  titre.fr: exonérations
+  titre.en: ~~exemptions
 contrat salarié . salaire . net:
   titre.en: Net salary
   titre.fr: Salaire net
   question.en: What is the net salary?
-  question.fr: Quel est le salaire net ?
+  question.fr: Quel est le salaire net mensuel ?
   résumé.en: The amount received monthly by the employee.
-  résumé.fr: La somme touchée par le salarié tous les mois.
+  résumé.fr: Salaire net avant impôt
   description.en: >
     The gross salary minus the social contributions.
 
-    This amount can vary according to political decisions (increase or decrease in contributions) while the gross salary is contractual: to change it, an amendment to the contract must be signed.
+    This amount can vary according to political decisions (increase or decrease
+    in contributions) while the gross salary is contractual: to change it, an
+    amendment to the contract must be signed.
   description.fr: >
-    Le salaire brut moins les cotisations sociales, c'est ce que le salarié
-    reçoit sur son compte bancaire.
+    C'est le montant que le salarié toucherait à la fin du mois avant de payer
+    l'impôt sur le revenu.
+
+
+    Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la
+    source).
+
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
-    diminution des cotisations) alors que le salaire brut est contractuel: pour
-    le changer, il faut signer un avenant au contrat.
-
-contrat salarié . salaire . net à payer:
-  titre.en: Net salary due
-  résumé.en: WWhat the employee actually gets each month
+    diminution des cotisations) alors que le salaire brut est contractuel (pour
+    le changer, il faut signer un avenant au contrat).
+contrat salarié . salaire . net après impôt:
+  titre.fr: Salaire net après impôt
+  titre.en: ~~Net salary after tax
+  résumé.fr: Revenu disponible du salarié
+  résumé.en: ~~Employee's disposable income
+  question.fr: Quel est le revenu net du salarié après impôt ?
+  question.en: ~~What is the net income of the employee after tax?
   description.fr: >
-    C'est le montant que le salarié touche à la fin du mois.
-  description.en: >
-    The amount that the employee gets at the end of each month
-
-contrat salarié . salaire . net imposable:
-  titre.en: Net taxable salary
-  titre.fr: Salaire net imposable
-  description.fr: >
-    Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
-  description.en: >
-    The net salary less tax deductible social contributions and more taxable social benefits. It's the basis used to compute income tax.
+    Le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non
+    personnalisé). 
 
 
-contrat salarié . salaire . net après impôts:
-  titre.en: Net salary after income tax
-  résumé.en: What the employee actually gets 
+    C'est une bonne estimation du revenu disponible d'une personne en l'absence
+    d'informations sur sa famille et son patrimoine.
+  description.en: >-
+    ~~Net pay after deduction of ** neutral ** tax (also called non-personalized
+    rate).
 
 
-contrat salarié . avantages en nature:
-  titre.fr: Avantages en nature
-  titre.en: Benefits in kind
-  description.fr: >
-    Les avantages en nature sont constitués par la fourniture par l’employeur à ses salariés de biens ou services. La mise à disposition peut être gratuite ou moyennant une participation du salarié inférieure à leur valeur réelle
-  description.en: >
-    Benefits in kind consist of the provision by the employer to its employees of goods or services. The provision may be free of charge or with employee participation below their actual value
-  note.fr: >
-    Les tickets restaurants ne sont pas considéré comme un avantage en nature mais comme un remboursement de frais.
-  note.en: >
-    The meal vouchers are not considered as a benefit in kind but as a reimbursement of expenses.
-
-  question.fr: Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone, réductions...) ?
-  question.en: Does the employee receive benefits in kind (housing, vehicle, telephone, discounts, etc.)?
-
-contrat salarié . avantages en nature . montant:
-  titre.fr: Avantages en nature
-  titre.en: Benefits in kind (amount)
-  description.fr: >
-    Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-  description.en: >
-    Benefits in kind are subject to contributions and income tax. They are taken into account to verify that the minimum wage is reached.
-
-  question.fr: Quel est le montant mensuel des avantages en nature ?
-  question.en: What is the monthly amount of benefits in kind?
-
+    This is a good estimate of a person's disposable income in the absence of
+    information about their family and assets.
+contrat salarié . impôt neutre sur le revenu:
+  description.fr: >-
+    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
+    l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
+    revenus du patrimoine importants).
+  description.en: >-
+    ~~This is the scale to be applied to the monthly taxable salary to obtain
+    the tax to be paid monthly for employees who do not want to reveal to their
+    company their tax rate (this rate may reveal, for example, significant
+    wealth income).
+  titre.fr: impôt neutre sur le revenu
+  titre.en: ~~neutral income tax
 contrat salarié . coût du travail:
   description.en: >-
-    This is what the employer will actually have to pay to the employee and the collection agencies in total, taking into account grants and subsidies that are paid back to him: this is the actual total social cost of the employee for the employer.
-  description.fr: >
-    C'est ce que l'employeur devra réellement payer au total au salarié et aux
-    organismes de collecte, en tenant compte
-
-    des aides et subventions qui lui sont reversées: c'est donc le coût total
-    réel du travail pour l'employeur.
+    This is what the employer will actually have to pay to the employee and the
+    collection agencies in total, taking into account grants and subsidies that
+    are paid back to him: this is the actual total social cost of the employee
+    for the employer.
+  description.fr: ''
   titre.en: labor cost
   titre.fr: coût du travail
-
 contrat salarié . rémunération . total:
   titre.en: Total salary
-  titre.fr: Salaire total
+  titre.fr: Total chargé
+  question.fr: Quel est la rémunération mensuelle chargée ?
+  question.en: ~~What is the monthly fee charged?
   résumé.en: Paid monthly by the employer.
-  résumé.fr: La somme totale versée par l'employeur tous les mois.
+  résumé.fr: Versé par l'employeur
   description.en: >-
-    It is the gross salary, plus the employer contributions. It is the
-    total that the employer must in principle plan to pay to employ an employee,
-    but in practice certain reductions in contributions and aids may reduce this
+    It is the gross salary, plus the employer contributions. It is the total
+    that the employer must in principle plan to pay to employ an employee, but
+    in practice certain reductions in contributions and aids may reduce this
     amount.
   description.fr: >
-    C'est le salaire brut, plus les cotisations patronales. C'est le total que
-    l'employeur doit en principe prévoir de verser pour employer un salarié,
-    mais en pratique certaines réductions de cotisation et aides peuvent
-    diminuer cette somme.
+    C'est la rémunération brute, plus les cotisations patronales, moins les
+    réductions de cotisations sociales.
+
+
+    C'est le total que l'employeur doit verser mensuellement pour employer un
+    salarié.
+
+
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à
+    l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du
+    travail fourni.
+
+
+    Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce
+    montant.
 contrat salarié . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
 contrat salarié . rémunération . total sans réduction:
   titre.en: total salary without reduction
-  titre.fr: salaire total sans réduction
+  titre.fr: Rémunération totale sans réduction
+contrat salarié . coût d'embauche:
+  résumé.fr: Coût employeur mensuel - aides
+  résumé.en: ~~Monthly employer cost - aid
+  question.fr: 'Quel est le coût d''embauche, toutes aides incluses ?'
+  question.en: '~~What is the cost of hiring, all help included?'
+  description.fr: >
+
+    C'est ce que l'employeur devra réellement payer au total au salarié et aux
+    organismes de collecte, en tenant compte
+
+    des aides et subventions qui lui sont reversées : c'est donc le **coût
+    social total réel à long terme** de l'embauche pour l'employeur.
+
+
+    D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du
+    salarié : je vois dans dans ton travail chaque mois assez de valeur pour te
+    payer ce montant.
+  description.en: >-
+    ~~This is what the employer will actually have to pay to the employee and
+    the collection agencies in total, taking into account
+
+    aids and subsidies that are paid back to it: this is the ** total real
+    social cost in the long term ** of hiring for the employer.
+
+
+    On the other hand, it is also the value that the employer gives to the
+    employee's work: I see in your work each month enough value to pay you this
+    amount.
+  titre.fr: coût d'embauche
+  titre.en: ~~hiring cost
 contrat salarié . aides employeur:
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: Les aides différées dont peut bénéficier l'employeur.
-  titre.en: deferred employer aids
-  titre.fr: aides employeur différées
-  description.en: |
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
+  description.en: >
     Some aids can be requested by the employer to help hires.
 
-    These aids are deferred : they can for example be given indirectly as a tax credit.
 
+    These aids are deferred : they can for example be given indirectly as a tax
+    credit.
+  description.fr: >
+    Ces aides sont appelées différées, car elles ne consistent pas en une simple
+    réduction des cotisations mensuelles : elles interviendront a posteriori par
+    exemple sous forme de crédit d'impôt.
+  titre.en: deferred employer aids
+  titre.fr: aides employeur
 contrat salarié . salaire:
   titre.en: salary
   titre.fr: salaire
 contrat salarié . jours de congés légaux:
   description.en: >-
-    Working days of paid leave legally acquired by any employee for the year or the
-    contract in the case of a fixed-term contract.
+    Working days of paid leave legally acquired by any employee for the year or
+    the contract in the case of a fixed-term contract.
   description.fr: >-
     Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le
     contrat dans le cas d'un CDD.
@@ -528,7 +780,7 @@ contrat salarié . régime alsace moselle:
 entreprise:
   description.en: The contract binds a company and an employee
   description.fr: |
-    Le contrat lie une entreprise et un employé
+    Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
   titre.en: company
   titre.fr: entreprise
 entreprise . effectif:
@@ -538,6 +790,12 @@ entreprise . effectif:
   description.fr: >
     De nombreuses cotisations patronales varient selon l'effectif de
     l'entreprise.
+  suggestions.fr:
+    '1': 1
+    '20': 20
+    '50': 50
+    '1000': 1000
+  suggestions.en: ~~
   titre.en: workforce
   titre.fr: effectif
 entreprise . ratio alternants:
@@ -545,19 +803,23 @@ entreprise . ratio alternants:
   titre.fr: ratio alternants
 entreprise . ratio alternants saisi:
   question.en: >-
-    What is the fraction of work-study contracts in the average workforce of
-    the company?
+    What is the fraction of work-study contracts in the average workforce of the
+    company?
   question.fr: >-
     Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
     l'entreprise ?
   titre.en: Fraction of alternants
   titre.fr: Fraction d'alternants
   description.en: >-
-    This fraction determines the additional contribution for apprenticeship for the
-    companies concerned.
+    This fraction determines the additional contribution for apprenticeship for
+    the companies concerned.
   description.fr: >
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage
     pour les entreprises concernées.
+  suggestions.fr:
+    '1': 1
+    '5': 5
+  suggestions.en: ~~
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
@@ -565,6 +827,15 @@ entreprise . association non lucrative:
   question.fr: S'agit-il d'une association à but non lucratif ?
   titre.en: non-profit organisation
   titre.fr: association non lucrative
+établissement:
+  description.fr: >
+    Le salarié travaille dans un établissement de l'entreprise, identifié par un
+    code SIRET.
+  description.en: >-
+    ~~The employee works in an establishment of the company, identified by a
+    SIRET code.
+  titre.fr: établissement
+  titre.en: ~~establishment
 établissement . code postal:
   titre.en: Postal code of the establishment
   titre.fr: Code postal de l'établissement
@@ -579,6 +850,8 @@ entreprise . association non lucrative:
 
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
+  suggestions.fr: utilisation d'une API
+  suggestions.en: ~~using an API
 établissement . code commune:
   titre.en: establishment municipality code
   titre.fr: Code commune de l'établissement
@@ -593,6 +866,8 @@ entreprise . association non lucrative:
 
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
+  suggestions.fr: utilisation d'une API
+  suggestions.en: ~~using an API
 établissement . commune:
   titre.en: City of the establishment
   titre.fr: Commune de l'établissement
@@ -610,13 +885,18 @@ entreprise . association non lucrative:
 contrat salarié . temps partiel:
   question.en: Is the contract part-time?
   question.fr: Le contrat est-il à temps partiel ?
-  description.en: |-
-    Two contracts with the same salary, with one being part-time, can lead to slightly different social contribution amounts. 
-    For example, capped contributions or exemptions depending on the legal minimum wage.
-  description.fr: >
-    Le temps partiel peut avoir une influence sur les règles.
+  description.en: >-
+    Two contracts with the same salary, with one being part-time, can lead to
+    slightly different social contribution amounts. 
 
-    Par exemple les cotisations plafonnées ou les exonérations dépendant du
+    For example, capped contributions or exemptions depending on the legal
+    minimum wage.
+  description.fr: >
+    Deux contrats au même salaire, l'un à temps partiel, l'autre à temps
+    complet, peuvent donner lieu à des montants de cotisation différents.
+
+
+    Par exemple pour les cotisations plafonnées ou les exonérations dépendant du
     SMIC.
   titre.en: Part-time
   titre.fr: temps partiel
@@ -628,8 +908,9 @@ contrat salarié . heures par semaine:
   titre.en: hours per week
   titre.fr: heures par semaine
 contrat salarié . quotité de travail:
-  titre.en: work rate
   description.en: Time worked in proportion of the legal full-time quantity.
+  description.fr: Temps de travail en proportion du temps complet légal.
+  titre.en: work rate
   titre.fr: quotité de travail
 contrat salarié . CICE:
   description.en: Competitiveness and Employment Tax Credit (CICE).
@@ -672,9 +953,10 @@ contrat salarié . statut JEI:
   question.en: Do you benefit from the young innovative company status (JEI) for this job?
   question.fr: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
   description.en: >-
-    The status of young innovative company (JEI) was created by the Finance
-    Act for 2004 and allows small companies (PME) under 8 years of age, which devote at least 15% of their expenses to Research and Development to benefit from certain
-    exemptions.
+    The status of young innovative company (JEI) was created by the Finance Act
+    for 2004 and allows small companies (PME) under 8 years of age, which devote
+    at least 15% of their expenses to Research and Development to benefit from
+    certain exemptions.
   description.fr: >
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
@@ -682,18 +964,20 @@ contrat salarié . statut JEI:
     certaines exonérations.
 contrat salarié . exonération JEI:
   description.en: >-
-    Exemption for the companies that obtained the JEI (young innovative company) status.
-  description.fr: >
-    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
-    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
-    moins de leurs charges à de la Recherche et Développement de bénéficier de
-    certaines exonérations.
+    Exemption for the companies that obtained the JEI (young innovative company)
+    status.
+  description.fr: |
+    Exonération pour les jeunes entreprises innovantes (JEI).
   titre.en: JEI exemption
   titre.fr: exonération JEI
 contrat salarié . réduction générale:
   description.en: >-
-    As part of the "liability and solidarity pact", the zero-contribution URSSAF scheme
-    allows the employer of an employee with the minimul legal salary (SMIC) to no longer pay any contributions, except for unemployment insurance. The amount of the reduction is equal to the product of the gross annual remuneration by a coefficient. No particular formality is required to obtain apply it.
+    As part of the "liability and solidarity pact", the zero-contribution URSSAF
+    scheme allows the employer of an employee with the minimul legal salary
+    (SMIC) to no longer pay any contributions, except for unemployment
+    insurance. The amount of the reduction is equal to the product of the gross
+    annual remuneration by a coefficient. No particular formality is required to
+    obtain apply it.
   description.fr: >
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
     zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
@@ -715,16 +999,6 @@ contrat salarié . assiette réduction générale:
   titre.en: general reduction base
   titre.fr: assiette réduction générale
 contrat salarié . assiette ATMP réduction générale:
-  description.en: >-
-    When the amount of the general reduction is greater than the amount of
-    these contributions, the reduction is also deducted from
-    the contributions for industrial accidents and occupational diseases up to
-    the limit of 0.90% of the remuneration.
-  description.fr: >-
-    Lorsque le montant de la réduction générale est supérieur au montant de ces
-    cotisations et contributions, la réduction est également imputée sur les
-    cotisations accidents du travail et maladies professionnelles dans la limite
-    de 0,90 % de la rémunération.
   titre.en: general reduction ATMP base
   titre.fr: assiette ATMP réduction générale
 contrat salarié . plafond réduction générale:
@@ -735,12 +1009,13 @@ contrat salarié . multiplicateur réduction générale:
   titre.fr: multiplicateur réduction générale
 contrat salarié . AGFF:
   description.en: >-
-    Complementary pension contribution (Association for the Management of the Financing Fund of AGIRC and ARRCO).
+    Complementary pension contribution (Association for the Management of the
+    Financing Fund of AGIRC and ARRCO).
   description.fr: >
     Cotisation de retraite complémentaire
 
-    (Cotisation pour l'Association pour la Gestion du Fonds de Financement de
-    l’AGIRC et de l’ARRCO)
+    (Association pour la Gestion du Fonds de Financement de l’AGIRC et de
+    l’ARRCO).
   titre.en: AGFF
   titre.fr: AGFF
 contrat salarié . GMP:
@@ -759,8 +1034,8 @@ contrat salarié . GMP:
   titre.fr: GMP
 contrat salarié . AGIRC:
   description.en: >-
-    Complementary pension contribution for the "cadres". Completes the ARRCO regime,
-    managed by the AGIRC (General Association of Retirement Pensions).
+    Complementary pension contribution for the "cadres". Completes the ARRCO
+    regime, managed by the AGIRC (General Association of Retirement Pensions).
   description.fr: >
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée
     par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
@@ -779,13 +1054,14 @@ contrat salarié . cotisation allocations familiales:
   titre.fr: cotisation allocations familiales
 contrat salarié . réduction allocations familiales:
   titre.en: reduction of family allowances
-  titre.fr: réduction allocations familiales
+  titre.fr: Réduction des allocations familiales
 contrat salarié . plafond réduction allocations familiales:
   titre.en: family allowances reduction ceiling
-  titre.fr: plafond réduction allocations familiales
+  titre.fr: Plafond de la réduction des allocations familiales
 contrat salarié . APEC:
   description.en: >-
-    Compulsory complementary unemployment contribution, for the operation of the APEC (Association for the Employment of "cadres")
+    Compulsory complementary unemployment contribution, for the operation of the
+    APEC (Association for the Employment of "cadres")
   description.fr: |
     Cotisation chômage complémentaire cadre, pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
@@ -793,13 +1069,12 @@ contrat salarié . APEC:
   titre.fr: APEC
 contrat salarié . ARRCO:
   description.en: >-
-    Complementary pension contribution for all employees in the private
-    sector, managed by the Association for the Complementary Pension Plan for
-    Employees
+    Complementary pension contribution for all employees in the private sector,
+    managed by the Association for the Complementary Pension Plan for Employees
   description.fr: >
     Cotisation de retraite complémentaire pour tous les salariés du secteur
     privé, gérée par l'Association pour le Régime de Retraite Complémentaire des
-    salariés
+    salariés.
   titre.en: ARRCO
   titre.fr: ARRCO
 contrat salarié . chômage:
@@ -812,15 +1087,18 @@ contrat salarié . complémentaire santé:
   titre.fr: complémentaire santé
 contrat salarié . forfait complémentaire santé:
   titre.en: Complementary health insurance plan
-  titre.fr: Forfait de complémentaire santé enteprise
+  titre.fr: Forfait de complémentaire santé entreprise
   question.en: >-
-    What is the total monthly amount (employee and employer) of the company's complementary health insurance ?
+    What is the total monthly amount (employee and employer) of the company's
+    complementary health insurance ?
   question.fr: >-
     Quel est le montant mensuel total (salarié et employeur) de la
     complémentaire santé entreprise ?
   description.en: >-
-    The employer has the obligation to propose a complementary
-    health insurance plan. More importantly, he has to take in charge at least half of the amount, which is the repartition we chose for this simulation, or more. The plan is free as long as it covers a legal care basket.
+    The employer has the obligation to propose a complementary health insurance
+    plan. More importantly, he has to take in charge at least half of the
+    amount, which is the repartition we chose for this simulation, or more. The
+    plan is free as long as it covers a legal care basket.
   description.fr: >
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
     doit prendre en charge la moitié du montant,
@@ -830,10 +1108,13 @@ contrat salarié . forfait complémentaire santé:
   suggestions.en:
     basique: low
     élevé: high
+  suggestions.fr:
+    basique: 40
+    élevé: 100
 contrat salarié . contribution au dialogue social:
   description.en: >-
-    Employers' contribution intended to supplement a joint fund dedicated to
-    the financing of trade union organizations and professional organizations of
+    Employers' contribution intended to supplement a joint fund dedicated to the
+    financing of trade union organizations and professional organizations of
     employers.
 
 
@@ -851,8 +1132,8 @@ contrat salarié . contribution au dialogue social:
   titre.fr: contribution au dialogue social
 contrat salarié . cotisation exceptionnelle temporaire:
   description.en: >-
-    Solidarity contribution for the Agirc pension scheme, it does not give additional
-    points to the employee.
+    Solidarity contribution for the Agirc pension scheme, it does not give
+    additional points to the employee.
   description.fr: >
     Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points
     supplémentaires au salarié.
@@ -881,6 +1162,18 @@ contrat salarié . CRDS:
 contrat salarié . FNAL:
   titre.en: Contribution to the National Fund for Housing Assistance
   titre.fr: Contribution au Fonds National d’Aide au Logement
+  description.fr: >
+    Le fonds national d’aide au logement (Fnal) est une contribution due par
+    tous les employeurs, quelle que soit la taille de l’entreprise.
+
+
+    Cette contribution assure le financement de l’allocation logement.
+  description.en: >-
+    ~~The National Housing Fund (Fnal) is a contribution from all employers,
+    regardless of the size of the enterprise.
+
+
+    This contribution ensures the financing of the housing allowance.
 contrat salarié . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
@@ -891,14 +1184,13 @@ contrat salarié . maladie:
   titre.fr: maladie
 contrat salarié . médecine du travail:
   description.en: >-
-    The employer has the obligation to organize an occupational health
-    service, by joining a service for businesses, or by creating an
-    internal service.
+    The employer has the obligation to organize an occupational health service,
+    by joining a service for businesses, or by creating an internal service.
 
 
     In the case of joining a service, the amount of this contribution is not
-    defined by the law, but it must be proportional to the number of employees. We
-    have chosen an indicative amount (see references) adjusted with inflation
+    defined by the law, but it must be proportional to the number of employees.
+    We have chosen an indicative amount (see references) adjusted with inflation
     since 2007.
   description.fr: >
     L'employeur a l'obligation d'organiser un service de santé au travail, en
@@ -912,17 +1204,17 @@ contrat salarié . médecine du travail:
   titre.en: Occupational Medicine
   titre.fr: médecine du travail
 contrat salarié . participation effort de construction:
+  titre.en: Participation to home building
+  titre.fr: Participation à l'effort de construction
   description.en: Employer participation in the home building effort
   description.fr: Participation des employeurs à l'effort de construction
-  titre.en: Participation to home building
-  titre.fr: participation effort de construction
 contrat salarié . prévoyance obligatoire cadre:
   titre.en: mandatory life insurance for "cadres"
-  titre.fr: prévoyance obligatoire cadre
+  titre.fr: Prévoyance obligatoire pour les cadres
 contrat salarié . taxe d'apprentissage:
   description.en: >-
-    The apprenticeship tax enables the financing by companies of the expenses of apprenticeship and
-    technological and professional training
+    The apprenticeship tax enables the financing by companies of the expenses of
+    apprenticeship and technological and professional training
   description.fr: >-
     La taxe d'apprentissage permet de financer par les entreprises les dépenses
     de l'apprentissage et des formations technologiques et professionnelles
@@ -936,7 +1228,7 @@ contrat salarié . contribution supplémentaire à l'apprentissage:
   titre.fr: contribution supplémentaire à l'apprentissage
 contrat salarié . taxe d'apprentissage . csa au taux majoré:
   titre.en: CSA at the higher rate
-  titre.fr: csa au taux majoré
+  titre.fr: CSA au taux majoré
 contrat salarié . taxe sur les salaires . assiette:
   titre.en: base
   titre.fr: assiette
@@ -966,14 +1258,36 @@ contrat salarié . taxe sur les salaires:
   titre.fr: taxe sur les salaires
 contrat salarié . versement transport:
   description.en: Contribution based on the salaries to finance public transports.
-  description.fr: Contribution sur les salaires destinée au financement des transports publics.
+  description.fr: >-
+    Contribution sur les salaires destinée au financement des transports
+    publics.
   titre.en: Transport tax
   titre.fr: versement transport
 établissement . taux du versement transport:
   titre.en: Rate of transport tax
-  titre.fr: Taux du versement transport
+  titre.fr: taux du versement transport
 contrat salarié . vieillesse:
   description.en: Contribution to the basic pension plan of employees.
   description.fr: Cotisation au régime de retraite de base des salariés.
   titre.en: Basic pension contribution
   titre.fr: vieillesse
+contrat salarié . forfait social:
+  titre.fr: Forfait social
+  titre.en: ~~Social package
+  description.fr: >
+    Le forfait social est une contribution versée par l'employeur. Elle est
+    prélevée sur les rémunérations ou gains non soumis aux cotisations et
+    contributions sociales, mais assujettis à la CSG.
+  description.en: >-
+    ~~The social package is a contribution paid by the employer. It is deducted
+    from earnings or earnings not subject to contributions and social
+    contributions, but subject to the CSG.
+contrat salarié . forfait social . assiette taux huit:
+  titre.fr: Assiette du forfait social au taux de 8%
+  titre.en: ~~Basis of the social package at a rate of 8%
+  description.fr: >
+    Assiette comprenant les rémunérations et les gains sur lesquelles
+    s'appliquent la contribution du forfait social au taux de 8%.
+  description.en: >-
+    ~~Base including remunerations and earnings on which the social contribution
+    contribution is applied at a rate of 8%.
