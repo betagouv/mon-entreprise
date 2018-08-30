@@ -12,7 +12,7 @@ export default class Rule extends Component {
 		return destinataire && destinataireData ? (
 			<div className="infobox__item" id="destinataire">
 				<h4>
-					<Trans>Destinaire</Trans>&nbsp;:
+					<Trans>Destinataire</Trans>&nbsp;:
 				</h4>
 				<div>
 					<a href={destinataireData.lien} target="_blank">
