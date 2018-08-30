@@ -1,14 +1,16 @@
 /* @flow */
+import {
+	checkCompanyCreationItem,
+	initializeCompanyCreationChecklist
+} from 'Actions/companyCreationChecklistActions'
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import Scroll from 'Components/utils/Scroll'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
-import { Checklist, CheckItem } from 'Ui/Checklist'
+import { CheckItem, Checklist } from 'Ui/Checklist'
 import type { Match } from 'react-router'
-import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions'
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
-import siret from './siret.jpg'
 
 type Props = {
 	statusChooserCompleted: boolean,
@@ -98,12 +100,12 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 								written in French, describing the status choice, naming the
 								associate(s) and the contributed capital. It is recommanded to
 								ask the help of a lawyer for the redaction.{' '}
-								{SARL && (
+								{status === 'SARL' && (
 									<a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">
 										Example of status for a SARL
 									</a>
 								)}
-								{EURL && (
+								{status === 'EURL' && (
 									<a href="https://www.afecreation.fr/cid46379/modele-statuts-types-eurl.html">
 										Example of status for an EURL
 									</a>
@@ -174,6 +176,7 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 						}
 					/>
 				)}
+
 				<CheckItem
 					name="registerCompanyOnline"
 					title="Register your company online"
@@ -183,118 +186,84 @@ const CreateCompany = ({ match, statusChooserCompleted, onChecklistInitializatio
 								You can start your online registration process anytime, save it
 								and come back to it as you wish.
 							</p>
-							<p>
+							<div style={{ textAlign: 'center' }}>
 								<a
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
 									target="blank">
-									Register your company
+									Start registration process
 								</a>
-							</p>
+							</div>
 						</>
 					}
 				/>
 			</Checklist>
-			<h2>After registration</h2>
-			<p>
-				{' '}
-				Once your business has been officially registered, you will receive:
-			</p>
+			<h2 style={{ fontSize: '1.5rem' }}>
+				Recommended before starting your activity
+			</h2>
+
 			<Checklist>
-				<CheckItem
-					name="siretNumber"
-					title={
-						<>
-							<strong>Your Siret number</strong>, which identifies your company
-						</>
-					}
-					explanations={
-						<>
-							<p>
-								The Siren number identifies your company while the Siret number
-								identifies each place of business operated by the same company.
-								<img src={siret} alt="Siret and siren number" />
-							</p>
-						</>
-					}
-				/>
-				<CheckItem
-					name="APECode"
-					title={
-						<>
-							<strong>Your APE code</strong>, which defines your business sector
-						</>
-					}
-					explanations={
-						<>
-							<p>
-								<strong>The APE</strong> code for the business sector to which
-								your company belong. The APE is used to classify your company’s
-								main operations in relation to the French business nomenclature
-								system (« NAF » code). It also determines the applicable
-								collective agreement as well as the industrial accident rate in
-								the field to which you or your company belong.
-							</p>
-						</>
-					}
-				/>
-				{!microenterprise && (
+				{status !== 'microenterprise' && (
 					<CheckItem
-						name="Kbis"
-						title={
-							<>
-								<strong>Your Kbis</strong>, which certifies that your company is
-								properly registrated
-							</>
-						}
+						name="chooseCertifiedAccountant"
+						title="Choose a certified accountant"
 						explanations={
-							<>
-								<p>
-									When creating a business or declaring an activity, the
-									entrepreneur whose professional activity consists of
-									commercial acts must register with the RCS.
-								</p>
-								<p>
-									The proof of registration in the RCS is made by the
-									presentation of a document delivered by the clerk's office of
-									the court of commerce: the Kbis.
-								</p>
-								<p>
-									It is the only official document attesting to the legal
-									existence of a commercial enterprise.
-								</p>
-								<p>
-									In most cases, to be opposable and authentic for
-									administrative procedures, the extract must be less than 3
-									months old.
-								</p>
-								<p>
-									This document is generally requested when applying for a
-									public tender, opening a professional bank account, purchasing
-									professional equipment from distributors, etc.
-								</p>
-							</>
+							<p>
+								Managing a company brings a number of{' '}
+								<a href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
+									accounting obligations
+								</a>
+								. It is advisable to call in a competent person that can handle
+								accounting for you.
+							</p>
 						}
 					/>
 				)}
+				<CheckItem
+					name="checkoutProfessionalAssuranceNeeds"
+					title="Check out the need for professional insurance"
+					explanations={
+						<>
+							<p>
+								An SME or self-employed person must protect themselves against
+								the main risks to which they are exposed and take out guarantee
+								contracts. Whether it is a tenant or owner of its walls, the
+								company must insure its buildings, its professional equipment,
+								its goods, its raw materials, its vehicles, as well as in terms
+								of civil liability of the company and its managers or in terms
+								of operating loss.
+							</p>
+							<a href="https://www.economie.gouv.fr/entreprises/assurances-obligatoires">
+								More information
+							</a>
+						</>
+					}
+				/>
 			</Checklist>
+			<p className="ui__ notice">
+				You can use these lists to track down your advancement in the business
+				creation process. This page automatically saves your progress.
+			</p>
 			<p style={{ display: 'flex', justifyContent: 'space-between' }}>
 				<button onClick={onStatusChange} className="ui__ skip-button left">
 					‹ Choose another status
 				</button>
-				<Link to={'/social-security'} className="ui__ skip-button">
-					Continue to social security ›
+				<Link to={'/company/after-registration'} className="ui__ skip-button">
+					After registration ›
 				</Link>
 			</p>
 		</Animate.fromBottom>
 	)
 }
-export default connect(state => ({
-	companyCreationChecklist: state.inFranceApp.companyCreationChecklist,
-	statusChooserCompleted:
-		Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
-}), {
-	onChecklistInitialization:  initializeCompanyCreationChecklist,
-	onItemCheck: checkCompanyCreationItem,
-	onStatusChange: goToCompanyStatusChoice,
-})(CreateCompany)
+export default connect(
+	state => ({
+		companyCreationChecklist: state.inFranceApp.companyCreationChecklist,
+		statusChooserCompleted:
+			Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
+	}),
+	{
+		onChecklistInitialization: initializeCompanyCreationChecklist,
+		onItemCheck: checkCompanyCreationItem,
+		onStatusChange: goToCompanyStatusChoice
+	}
+)(CreateCompany)
