@@ -799,7 +799,7 @@
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
-  description: Le plafond de Sécurité sociale est le montant maximum des rémunérations ou gains à prendre en compte pour le calcul de certaines cotisations.
+  description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
 
   #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
   # type de période: mensuel
@@ -1994,9 +1994,7 @@
   nom: FNAL
   titre: Contribution au Fonds National d’Aide au Logement
   description: |
-    Le fonds national d’aide au logement (Fnal) est une contribution due par tous les employeurs, quelle que soit la taille de l’entreprise.
-
-    Cette contribution assure le financement de l’allocation logement.
+    Le fonds national d’aide au logement (Fnal) est une contribution qui assure le financement de l’allocation logement.
   cotisation:
     dû par: employeur
     destinataire: URSSAF
@@ -2387,8 +2385,6 @@
 - espace: contrat salarié . forfait social
   nom: assiette taux huit
   titre: Assiette du forfait social au taux de 8%
-  description: |
-    Assiette comprenant les rémunérations et les gains sur lesquelles s'appliquent la contribution du forfait social au taux de 8%.
   références:
     Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
   non applicable si:

@@ -17,7 +17,7 @@ contrat salarié . indemnité kilométrique vélo:
   titre.fr: indemnité kilométrique vélo
 contrat salarié . indemnité kilométrique vélo . distance annuelle:
   titre.fr: distance annuelle
-  titre.en: ~~annual distance
+  titre.en: annual distance
 contrat salarié . indemnité kilométrique vélo . indemnité vélo active:
   question.en: >
     Can the employee take advantage of the kilometric bicycle allowance to go to
@@ -89,10 +89,10 @@ contrat salarié . CDD . compensation pour congés non pris:
 contrat salarié . CDD . prime de fin de contrat:
   description.fr: Somme versée en fin de CDD comme compensation de précarité.
   description.en: >-
-    ~~Amount paid at the end of fixed-term contracts as compensation for
+    Amount paid at the end of fixed-term contracts as a compensation for
     precariousness.
   titre.fr: prime de fin de contrat
-  titre.en: ~~end of contract bonus
+  titre.en: End of contract bonus
 contrat salarié . CDD . majoration chômage:
   description.en: >-
     Increase in employers' unemployment insurance contributions for short-term
@@ -134,7 +134,6 @@ contrat salarié . ATMP . taux collectif ATMP:
     concerne en ligne sur
     [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
   suggestions.fr: atmp-2017
-  suggestions.en: ~~ATMP-2017
 contrat salarié . CDD . événement:
   titre.en: Contract related event
   titre.fr: Événement de contrat
@@ -313,13 +312,13 @@ contrat salarié . CDD . motif . contrat aidé:
   titre.fr: 'Contrat aidé (CUI, alternance, ...)'
 contrat salarié . CDD:
   titre.fr: Contrat à durée déterminée
-  titre.en: ~~Fixed term contract
+  titre.en: Fixed term contract
   description.fr: >-
     Contrat de travail pour lequel un employeur peut recruter un salarié pour
     une durée déterminée, car la cause de cette détermination, de la date ou
     échéance de fin de contrat est prévue explicitement par le Code du travail.
   description.en: >-
-    ~~Employment contract for which an employer can recruit an employee for a
+    Employment contract for which an employer can recruit an employee for a
     fixed term, because the cause of this determination, the date or the end
     date of the contract is explicitly provided for by the Labor Code.
 contrat salarié . CDD . durée contrat:
@@ -361,7 +360,6 @@ contrat salarié . CDD . congés non pris:
   suggestions.fr:
     3 / 25: 3
     10 / 25: 10
-  suggestions.en: ~~
 contrat salarié . CDD . contrat jeune vacances:
   titre.en: Young holiday contract
   titre.fr: Contrat jeune vacances
@@ -500,16 +498,15 @@ contrat salarié . salaire . brut:
     travail.
 contrat salarié . rémunération . brut:
   titre.fr: Rémunération brute
-  titre.en: ~~Gross remuneration
+  titre.en: Gross remuneration
 contrat salarié . avantages sociaux:
   description.fr: >
     Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifique à
     l'entreprise, et fourni par des structure privées (mutuelle, assurance...).
     Ils sont soumis à l'impots sur le revenus.
   description.en: >-
-    ~~These are the benefits paid by the employer. They are specific to the
-    company, and provided by private structures (mutual insurance, insurance
-    ...). They are subject to income taxes.
+    These are the benefits paid by the employer. They are specific to the
+    company, and provided by private structures. They are subject to income taxes.
   titre.en: employee benefits
   titre.fr: avantages sociaux
 contrat salarié . avantages en nature:
@@ -549,7 +546,7 @@ contrat salarié . avantages en nature . montant:
     véhicule: car
 contrat salarié . indemnités salarié:
   titre.fr: indemnités salarié
-  titre.en: ~~employee benefits
+  titre.en: Employee benefits
 contrat salarié . statut cadre:
   titre.en: cadre status
   titre.fr: Statut cadre
@@ -564,10 +561,9 @@ contrat salarié . statut cadre:
 contrat salarié . plafond sécurité sociale temps plein:
   description.fr: >-
     Le plafond de Sécurité sociale est le montant maximum des rémunérations ou
-    gains à prendre en compte pour le calcul de certaines cotisations.
+    à prendre en compte pour le calcul de certaines cotisations.
   description.en: >-
-    ~~The Social Security ceiling is the maximum amount of remuneration or
-    earnings to be taken into account for the calculation of certain
+    The Social Security ceiling is the maximum amount of remuneration to be taken into account for the calculation of certain
     contributions.
   titre.en: Full-time social security ceiling
   titre.fr: plafond sécurité sociale temps plein
@@ -592,14 +588,13 @@ contrat salarié . rémunération:
     monétaires versés en contrepartie du travail. Elle est donc plus large que
     les sommes d'argent versées au salarié.
   description.en: >-
-    ~~Compensation is distinguished from salary by including non-monetary
-    benefits paid for work. It is therefore wider than the sums of money paid to
-    the employee.
+    The remuneration is distinguished from the salary by including non-monetary
+    benefits paid for work. It is therefore wider than the sums of money received by the employee.
   titre.fr: rémunération
-  titre.en: ~~remuneration
+  titre.en: Remuneration
 contrat salarié . rémunération . net de cotisations:
   titre.fr: Rémunération nette de cotisations
-  titre.en: ~~Net remuneration of contributions
+  titre.en: Remuneration after contributions
 contrat salarié . salaire . net imposable:
   titre.en: Net taxable salary
   titre.fr: Salaire net imposable
@@ -611,10 +606,10 @@ contrat salarié . salaire . net imposable:
     imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
 contrat salarié . salaire . net imposable . base:
   titre.fr: base
-  titre.en: ~~based
+  titre.en: base
 contrat salarié . salaire . net imposable . exonérations:
   titre.fr: exonérations
-  titre.en: ~~exemptions
+  titre.en: exemptions
 contrat salarié . salaire . net:
   titre.en: Net salary
   titre.fr: Salaire net
@@ -642,11 +637,11 @@ contrat salarié . salaire . net:
     le changer, il faut signer un avenant au contrat).
 contrat salarié . salaire . net après impôt:
   titre.fr: Salaire net après impôt
-  titre.en: ~~Net salary after tax
+  titre.en: Net salary after income tax
   résumé.fr: Revenu disponible du salarié
-  résumé.en: ~~Employee's disposable income
+  résumé.en: Employee's disposable income
   question.fr: Quel est le revenu net du salarié après impôt ?
-  question.en: ~~What is the net income of the employee after tax?
+  question.en: What is the net income of the employee after income tax?
   description.fr: >
     Le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non
     personnalisé). 
@@ -655,7 +650,7 @@ contrat salarié . salaire . net après impôt:
     C'est une bonne estimation du revenu disponible d'une personne en l'absence
     d'informations sur sa famille et son patrimoine.
   description.en: >-
-    ~~Net pay after deduction of ** neutral ** tax (also called non-personalized
+    Net salary after deduction of the **neutral** income tax (also called non-personalized
     rate).
 
 
@@ -668,12 +663,12 @@ contrat salarié . impôt neutre sur le revenu:
     leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
   description.en: >-
-    ~~This is the scale to be applied to the monthly taxable salary to obtain
-    the tax to be paid monthly for employees who do not want to reveal to their
-    company their tax rate (this rate may reveal, for example, significant
+    This is the scale to be applied to the monthly taxable salary to obtain
+    the tax to be paid monthly for employees who do not want to reveal their taxe rate to their
+    company (this rate may reveal, for example, significant
     wealth income).
   titre.fr: impôt neutre sur le revenu
-  titre.en: ~~neutral income tax
+  titre.en: neutral income tax
 contrat salarié . coût du travail:
   description.en: >-
     This is what the employer will actually have to pay to the employee and the
@@ -687,7 +682,7 @@ contrat salarié . rémunération . total:
   titre.en: Total salary
   titre.fr: Total chargé
   question.fr: Quel est la rémunération mensuelle chargée ?
-  question.en: ~~What is the monthly fee charged?
+  question.en: What is the monthly remuneration, contributions included ?
   résumé.en: Paid monthly by the employer.
   résumé.fr: Versé par l'employeur
   description.en: >-
@@ -719,9 +714,8 @@ contrat salarié . rémunération . total sans réduction:
   titre.fr: Rémunération totale sans réduction
 contrat salarié . coût d'embauche:
   résumé.fr: Coût employeur mensuel - aides
-  résumé.en: ~~Monthly employer cost - aid
-  question.fr: 'Quel est le coût d''embauche, toutes aides incluses ?'
-  question.en: '~~What is the cost of hiring, all help included?'
+  résumé.en: Monthly employer cost - financial aids
+  question.en: What is the cost of hiring, financial aids included?
   description.fr: >
 
     C'est ce que l'employeur devra réellement payer au total au salarié et aux
@@ -735,18 +729,15 @@ contrat salarié . coût d'embauche:
     salarié : je vois dans dans ton travail chaque mois assez de valeur pour te
     payer ce montant.
   description.en: >-
-    ~~This is what the employer will actually have to pay to the employee and
-    the collection agencies in total, taking into account
-
-    aids and subsidies that are paid back to it: this is the ** total real
-    social cost in the long term ** of hiring for the employer.
+    This is what the employer will actually have to pay to the employee and
+    the social security collectors in total, taking into account the available financial aids and subsidies : this is the **total long term social cost** of hiring for the employer.
 
 
-    On the other hand, it is also the value that the employer gives to the
+    On the other hand, it is also the value that the employer attributes to the
     employee's work: I see in your work each month enough value to pay you this
     amount.
   titre.fr: coût d'embauche
-  titre.en: ~~hiring cost
+  titre.en: Hiring cost
 contrat salarié . aides employeur:
   résumé.en: Deferred aids available to the employer.
   résumé.fr: 'Pour l''employeur, différées dans le temps'
@@ -795,7 +786,6 @@ entreprise . effectif:
     '20': 20
     '50': 50
     '1000': 1000
-  suggestions.en: ~~
   titre.en: workforce
   titre.fr: effectif
 entreprise . ratio alternants:
@@ -819,7 +809,6 @@ entreprise . ratio alternants saisi:
   suggestions.fr:
     '1': 1
     '5': 5
-  suggestions.en: ~~
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
@@ -832,10 +821,10 @@ entreprise . association non lucrative:
     Le salarié travaille dans un établissement de l'entreprise, identifié par un
     code SIRET.
   description.en: >-
-    ~~The employee works in an establishment of the company, identified by a
+    The employee works in one of the company's establishment, identified by a
     SIRET code.
   titre.fr: établissement
-  titre.en: ~~establishment
+  titre.en: establishment
 établissement . code postal:
   titre.en: Postal code of the establishment
   titre.fr: Code postal de l'établissement
@@ -851,7 +840,6 @@ entreprise . association non lucrative:
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
   suggestions.fr: utilisation d'une API
-  suggestions.en: ~~using an API
 établissement . code commune:
   titre.en: establishment municipality code
   titre.fr: Code commune de l'établissement
@@ -867,7 +855,6 @@ entreprise . association non lucrative:
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
   suggestions.fr: utilisation d'une API
-  suggestions.en: ~~using an API
 établissement . commune:
   titre.en: City of the establishment
   titre.fr: Commune de l'établissement
@@ -1163,17 +1150,10 @@ contrat salarié . FNAL:
   titre.en: Contribution to the National Fund for Housing Assistance
   titre.fr: Contribution au Fonds National d’Aide au Logement
   description.fr: >
-    Le fonds national d’aide au logement (Fnal) est une contribution due par
-    tous les employeurs, quelle que soit la taille de l’entreprise.
-
-
-    Cette contribution assure le financement de l’allocation logement.
+    Le fonds national d’aide au logement (Fnal) est une contribution 
+    qui assure le financement de l’allocation logement.
   description.en: >-
-    ~~The National Housing Fund (Fnal) is a contribution from all employers,
-    regardless of the size of the enterprise.
-
-
-    This contribution ensures the financing of the housing allowance.
+    The National Housing Fund (Fnal) is a contribution to ensure the financing of the housing allowance.
 contrat salarié . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
@@ -1273,21 +1253,18 @@ contrat salarié . vieillesse:
   titre.fr: vieillesse
 contrat salarié . forfait social:
   titre.fr: Forfait social
-  titre.en: ~~Social package
+  titre.en: Forfait social
   description.fr: >
     Le forfait social est une contribution versée par l'employeur. Elle est
     prélevée sur les rémunérations ou gains non soumis aux cotisations et
     contributions sociales, mais assujettis à la CSG.
   description.en: >-
-    ~~The social package is a contribution paid by the employer. It is deducted
+    The _forfait social_ is a contribution paid by the employer. It is deducted
     from earnings or earnings not subject to contributions and social
     contributions, but subject to the CSG.
 contrat salarié . forfait social . assiette taux huit:
   titre.fr: Assiette du forfait social au taux de 8%
-  titre.en: ~~Basis of the social package at a rate of 8%
+  titre.en: Basis of the forfait social at a rate of 8%
   description.fr: >
     Assiette comprenant les rémunérations et les gains sur lesquelles
     s'appliquent la contribution du forfait social au taux de 8%.
-  description.en: >-
-    ~~Base including remunerations and earnings on which the social contribution
-    contribution is applied at a rate of 8%.
