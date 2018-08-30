@@ -32,7 +32,9 @@ const PaySlip = ({
 		salaireNet,
 		réductionsDeCotisations,
 		cotisations,
-		totalCotisations
+		totalCotisations,
+		salaireNetAprèsImpôt,
+		impôt
 	} = ficheDePaie
 	return (
 		<div className="payslip__container">
@@ -134,6 +136,10 @@ const PaySlip = ({
 				{/* Salaire net imposable */}
 				<RuleLink {...salaireNetImposable} />
 				<Montant>{salaireNetImposable.montant}</Montant>
+				<RuleLink {...impôt} />
+				<Montant>{impôt.montant}</Montant>
+				<RuleLink {...salaireNetAprèsImpôt} />
+				<Montant>{salaireNetAprèsImpôt.montant}</Montant>
 			</div>
 			<br />
 			<p className="ui__ notice">

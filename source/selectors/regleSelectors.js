@@ -93,6 +93,7 @@ export const règleAvecMontantSelector = createSelector(
 	règleLocaliséeSelector,
 	(règleValeur, règleLocalisée) => (dottedName: string): RègleAvecMontant => {
 		const valeur = règleValeur(dottedName)
+		console.log(valeur)
 		if (!valeur || valeur.type !== 'euros') {
 			throw new Error(
 				`[règleAvecMontantSelector] Le type de valeur de "${dottedName}" n'est pas celui d'un montant`
