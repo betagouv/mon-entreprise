@@ -928,7 +928,7 @@
 - espace: contrat salarié . salaire
   nom: net après impôt
   titre: Salaire net après impôt
-  résumé: Revenu disponible du salarié
+  résumé: Touché par le salarié
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   format: euros
