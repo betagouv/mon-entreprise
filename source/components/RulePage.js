@@ -12,10 +12,8 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link, Redirect } from 'react-router-dom'
-import {
-	flatRulesSelector,
-	noUserInputSelector
-} from 'Selectors/analyseSelectors'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { noUserInputSelector } from 'Selectors/situationSelectors'
 import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
 import './RulePage.css'

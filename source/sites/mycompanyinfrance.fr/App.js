@@ -1,5 +1,6 @@
 import TrackPageView from 'Components/utils/TrackPageView'
 import React, { Component } from 'react'
+import Loadable from 'react-loadable'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -11,9 +12,14 @@ import './App.css'
 import Landing from './Landing'
 import CreateMyCompany from './pages/Company'
 import Footer from './pages/Footer/Footer'
-import StepsHeader from './pages/Header/StepsHeader'
 import HiringProcess from './pages/HiringProcess'
 import SocialSecurity from './pages/SocialSecurity'
+
+const StepsHeader = Loadable({
+	loader: () => import('./pages/Header/StepsHeader'),
+	loading: () => null
+})
+
 class InFranceRoute extends Component {
 	componentDidMount() {
 		if (typeof sessionStorage !== 'undefined') {

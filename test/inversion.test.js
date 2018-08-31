@@ -2,7 +2,8 @@ import { expect } from 'chai'
 import dedent from 'dedent-js'
 import yaml from 'js-yaml'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
-import { enrichRule, rules as realRules } from '../source/engine/rules'
+import { enrichRule } from '../source/engine/rules'
+import { rules as realRules } from '../source/engine/ruleWithVersementTransport'
 import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
 
 describe('inversions', () => {
