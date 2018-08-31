@@ -1,6 +1,7 @@
 /* eslint-env node */
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const PreloadWebpackPlugin = require('preload-webpack-plugin')
 const path = require('path')
 module.exports = {
 	resolve: {
@@ -104,6 +105,7 @@ module.exports = {
 				"Simulation du prix d'une embauche en France et calcul du salaire net à partir du brut : CDD, statut cadre, cotisations sociales, retraite...",
 			filename: 'embauche.html'
 		}),
+		new PreloadWebpackPlugin(),
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			'./source/sites/embauche.gouv.fr/images/logo',
