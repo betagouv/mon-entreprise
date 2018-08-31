@@ -27,6 +27,13 @@ module.exports = {
 		filename: ({ chunk }) =>
 			chunk.name === 'dist/simulateur' ? '[name].js' : '[name].[hash].js'
 	},
+	optimization: {
+		splitChunks: {
+			// include all types of chunks
+			chunks: 'all',
+			name: false
+		  }		  
+	},
 	module: {
 		rules: [
 			{
