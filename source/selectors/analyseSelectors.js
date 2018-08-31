@@ -7,17 +7,19 @@ import {
 	disambiguateExampleSituation,
 	findRuleByDottedName,
 	formatInputs,
-	nestedSituationToPathMap,
+	nestedSituationToPathMap
+} from 'Engine/rules'
+import {
 	rules as baseRulesEn,
 	rulesFr as baseRulesFr
-} from 'Engine/rules'
+} from 'Engine/ruleWithVersementTransport'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { equals, head, isEmpty, pick } from 'ramda'
-import { getFormValues } from 'redux-form'
-import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
+import { head, pick } from 'ramda'
+import { createSelector } from 'reselect'
+import { createDeepEqualSelector } from '../utils'
+import { situationSelector, validatedStepsSelector } from './situationSelectors'
 
 // create a "selector creator" that uses deep equal instead of ===
-const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
 /* 
  *
@@ -42,27 +44,9 @@ let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
 
 let targetNamesSelector = state => state.targetNames
 
-export let situationSelector = createDeepEqualSelector(
-	getFormValues('conversation'),
-	x => x
-)
-
-export let noUserInputSelector = createSelector(
-	[situationSelector],
-	situation => !situation || isEmpty(situation)
-)
-
 export let formattedSituationSelector = createSelector(
 	[flatRulesSelector, situationSelector],
 	(rules, situation) => formatInputs(rules, nestedSituationToPathMap(situation))
-)
-
-let validatedStepsSelector = createSelector(
-	[
-		state => state.conversationSteps.foldedSteps,
-		state => state.activeTargetInput
-	],
-	(foldedSteps, target) => [...foldedSteps, target]
 )
 
 export let validatedSituationSelector = createSelector(

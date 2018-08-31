@@ -3,7 +3,8 @@ import {
 	collectMissingVariables,
 	getNextSteps
 } from '../source/engine/generateQuestions'
-import { enrichRule, rules as realRules } from '../source/engine/rules'
+import { enrichRule } from '../source/engine/rules'
+import { rules as realRules } from '../source/engine/ruleWithVersementTransport'
 import { analyse, parseAll } from '../source/engine/traverse'
 
 let stateSelector = () => null

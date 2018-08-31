@@ -5,10 +5,10 @@
 */
 
 import { AssertionError } from 'chai'
-import { rules } from '../source/engine/rules'
-import { parseAll } from '../source/engine/traverse'
-import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
 import { merge } from 'ramda'
+import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
+import { rules } from '../source/engine/ruleWithVersementTransport'
+import { parseAll } from '../source/engine/traverse'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule

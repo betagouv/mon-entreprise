@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 import { animated, Spring } from 'react-spring'
 import {
 	blockingInputControlsSelector,
-	nextStepsSelector,
-	noUserInputSelector
+	nextStepsSelector
 } from 'Selectors/analyseSelectors'
+import { noUserInputSelector } from 'Selectors/situationSelectors'
 import * as Animate from 'Ui/animate'
 import AnswerList from './AnswerList'
 import Conversation from './conversation/Conversation'

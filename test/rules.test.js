@@ -1,13 +1,11 @@
-import { map } from 'ramda'
 import { expect } from 'chai'
+import { map } from 'ramda'
 import {
-	rules,
 	enrichRule,
-	translateAll,
-	nestedSituationToPathMap
+	nestedSituationToPathMap,
+	translateAll
 } from '../source/engine/rules'
-
-let stateSelector = (state, name) => null
+import { rules } from '../source/engine/ruleWithVersementTransport'
 
 describe('enrichRule', function() {
 	it('should extract the type of the rule', function() {

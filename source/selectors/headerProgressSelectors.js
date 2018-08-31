@@ -2,10 +2,9 @@
 import { createSelector, createStructuredSelector } from 'reselect'
 import {
 	blockingInputControlsSelector,
-	nextStepsSelector,
-	noUserInputSelector
+	nextStepsSelector
 } from 'Selectors/analyseSelectors'
-
+import { noUserInputSelector } from 'Selectors/situationSelectors'
 const STATUS_SELECTION_COEFFICIENT = 0.4
 const NUMBER_MAX_QUESTION_COMPANY = 5
 const companyProgressSelector = createSelector(
