@@ -1,12 +1,12 @@
 import React from 'react'
-import { Node } from './common'
+import { Node, NodeValuePointer, formatNumber } from './common'
 import { makeJsx } from '../evaluation'
 import { Trans } from 'react-i18next'
 import { trancheValue } from 'Engine/mecanisms/barème'
-import { NodeValuePointer } from './common'
 import './Barème.css'
 import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
+import withLanguage from 'Components/utils/withLanguage'
 
 export default function Barème(nodeValue, explanation) {
 	return (
@@ -72,25 +72,29 @@ export default function Barème(nodeValue, explanation) {
 	)
 }
 
-function Tranche({
-	tranche: {
-		'en-dessous de': maxOnly,
-		'au-dessus de': minOnly,
-		de: min,
-		à: max,
-		taux
-	},
-	trancheValue,
-	showValues
-}) {
-	return (
+let Tranche = withLanguage(
+	({
+		tranche: {
+			'en-dessous de': maxOnly,
+			'au-dessus de': minOnly,
+			de: min,
+			à: max,
+			taux
+		},
+		trancheValue,
+		showValues,
+		language
+	}) => (
 		<tr className={classNames('tranche', { activated: trancheValue > 0 })}>
 			<td key="tranche">
 				{maxOnly
-					? `En-dessous de ${maxOnly}`
+					? `En-dessous de ${formatNumber(maxOnly, language)}`
 					: minOnly
-						? `Au-dessus de ${minOnly}`
-						: `De ${min} à ${max}`}
+						? `Au-dessus de ${formatNumber(minOnly, language)}`
+						: `De ${formatNumber(min, language)} à ${formatNumber(
+								max,
+								language
+						  )}`}
 			</td>
 			<td key="taux"> {makeJsx(taux)}</td>
 			{showValues && (
@@ -100,4 +104,4 @@ function Tranche({
 			)}
 		</tr>
 	)
-}
+)
