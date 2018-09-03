@@ -18,8 +18,8 @@
 .barème table td {
 	padding: 0.1em 0.4em;
 }
-.barème table tr:first-child {
-	font-weight: 600;
+.barème table th {
+	font-weight: 500;
 }
 .barème .tranche:nth-child(2n) {
 	background: #f1f1f1;
