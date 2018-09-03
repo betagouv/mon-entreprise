@@ -2204,20 +2204,15 @@
 
 - nom: impôt
 
-- nom: revenu imposable
-  espace: impôt
-  format: euros
-
 - nom: revenu abattu
   espace: impôt
   formule: 
     allègement:
-      assiette: revenu imposable
+      assiette: contrat salarié . salaire . net imposable
       abattement: 10%
 
 - nom: impôt sur le revenu
   espace: impôt
-  description: LALA
   formule:
     barème:  
       assiette: revenu abattu
@@ -2245,7 +2240,7 @@
         plafond: 1177
         taux: 75%
   exemples: 
-    - nom: A
+    - nom: Salaire d'un cadre
       situation: 
-        revenu imposable: 48000
+        contrat salarié . salaire . net imposable: 48000
       valeur attendue: 7253.26  
