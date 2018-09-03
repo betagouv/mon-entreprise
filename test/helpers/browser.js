@@ -1,12 +1,13 @@
-var jsdom = require('jsdom/lib/old-api').jsdom
+var jsdom = require('jsdom')
+const { JSDOM } = jsdom
 
-var exposedProperties = ['window', 'navigator', 'document']
-
-global.document = jsdom('')
+const { document } = new JSDOM('').window
+global.document = document
 global.window = document.defaultView
+window.console = global.console
+
 Object.keys(document.defaultView).forEach(property => {
 	if (typeof global[property] === 'undefined') {
-		exposedProperties.push(property)
 		global[property] = document.defaultView[property]
 	}
 })
@@ -14,6 +15,3 @@ Object.keys(document.defaultView).forEach(property => {
 global.navigator = {
 	userAgent: 'node.js'
 }
-
-documentRef = document
-global.HTMLElement = window.HTMLElement

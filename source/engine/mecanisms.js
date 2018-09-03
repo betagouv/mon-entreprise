@@ -23,7 +23,8 @@ import {
 	has,
 	max,
 	min,
-	subtract
+	subtract,
+	sum
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -51,6 +52,8 @@ import {
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Allègement from './mecanismViews/Allègement'
+import Barème from './mecanismViews/Barème'
+import { trancheValue } from './mecanisms/barème'
 import buildSelectionView from './mecanismViews/Selection'
 import uniroot from './uniroot'
 
@@ -576,7 +579,12 @@ export let mecanismReduction = (recurse, k, v) => {
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
-				: max(0, montantFranchiséDécoté - val(abattement))
+				: abattement.category === 'percentage'
+					? max(
+							0,
+							montantFranchiséDécoté - val(abattement) * montantFranchiséDécoté
+					  )
+					: max(0, montantFranchiséDécoté - val(abattement))
 			: montantFranchiséDécoté
 	}
 
@@ -695,21 +703,14 @@ export let mecanismScale = (recurse, k, v) => {
 		return devariate(recurse, k, v)
 	}
 
-	/* on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
-	`en-dessous de: 1`
-	devient
-	```
-	de: 0
-	à: 1
-	```
-	*/
+	// on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
 	let tranches = v['tranches']
 		.map(
 			t =>
 				has('en-dessous de')(t)
-					? { de: 0, à: t['en-dessous de'], taux: t.taux }
+					? { ...t, de: 0, à: t['en-dessous de'] }
 					: has('au-dessus de')(t)
-						? { de: t['au-dessus de'], à: Infinity, taux: t.taux }
+						? { ...t, de: t['au-dessus de'], à: Infinity }
 						: t
 		)
 		.map(evolve({ taux: recurse }))
@@ -724,31 +725,11 @@ export let mecanismScale = (recurse, k, v) => {
 		'multiplicateur des tranches': multiplicateur,
 		tranches
 	}) => {
-		// TODO traiter la récursion 'de', 'à', 'taux' pour qu'ils puissent contenir des calculs
-		// ou pour les cas où toutes les tranches n'ont pas un multiplicateur commun (ex. plafond
-		// sécurité sociale). Il faudra alors vérifier leur nullité comme ça :
-		/*
-			nulled = assiette.nodeValue == null || any(
-				pipe(
-					values, map(val), any(equals(null))
-				)
-			)(tranches),
-		*/
-		// nulled = anyNull([assiette, multiplicateur]),
 		let nulled = val(assiette) == null || val(multiplicateur) == null
 
 		return nulled
 			? null
-			: tranches.reduce(
-					(memo, { de: min, à: max, taux }) =>
-						val(assiette) < min * val(multiplicateur)
-							? memo + 0
-							: memo +
-							  (Math.min(val(assiette), max * val(multiplicateur)) -
-									min * val(multiplicateur)) *
-									taux.nodeValue,
-					0
-			  )
+			: sum(tranches.map(trancheValue(assiette, multiplicateur)))
 	}
 
 	let explanation = {
@@ -757,80 +738,9 @@ export let mecanismScale = (recurse, k, v) => {
 		},
 		evaluate = evaluateObject(objectShape, effect)
 
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="mecanism barème"
-			name="barème"
-			value={nodeValue}
-			child={
-				<ul className="properties">
-					<li key="assiette">
-						<span className="key">
-							<Trans>assiette</Trans>:{' '}
-						</span>
-						<span className="value">{makeJsx(explanation.assiette)}</span>
-					</li>
-					<li key="multiplicateur">
-						<span className="key">
-							<Trans>multiplicateur des tranches</Trans>:{' '}
-						</span>
-						<span className="value">
-							{makeJsx(explanation['multiplicateur des tranches'])}
-						</span>
-					</li>
-					<table className="tranches">
-						<thead>
-							<tr>
-								<th>
-									<Trans>Tranches de l&apos;assiette</Trans>
-								</th>
-								<th>
-									<Trans>Taux</Trans>
-								</th>
-							</tr>
-							{explanation.tranches.map(
-								({
-									'en-dessous de': maxOnly,
-									'au-dessus de': minOnly,
-									de: min,
-									à: max,
-									taux
-								}) => (
-									<tr
-										key={min || minOnly || 0}
-										style={{
-											fontWeight:
-												explanation.assiette.nodeValue >
-													explanation['multiplicateur des tranches'].nodeValue *
-														min &&
-												max &&
-												explanation.assiette.nodeValue <
-													explanation['multiplicateur des tranches'].nodeValue *
-														max
-													? ' bold'
-													: ''
-										}}>
-										<td key="tranche">
-											{maxOnly
-												? '< ' + maxOnly
-												: minOnly
-													? '> ' + minOnly
-													: `${min} - ${max}`}
-										</td>
-										<td key="taux"> {makeJsx(taux)} </td>
-									</tr>
-								)
-							)}
-						</thead>
-					</table>
-				</ul>
-			}
-		/>
-	)
-
 	return {
 		evaluate,
-		jsx,
+		jsx: Barème,
 		explanation,
 		category: 'mecanism',
 		name: 'barème',

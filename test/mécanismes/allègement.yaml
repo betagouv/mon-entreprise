@@ -70,6 +70,20 @@
       valeur attendue: 59493
 
 
+- test: montant abattu en pourcentage
+  format: €
+  formule: 
+    allègement: 
+      assiette: montant
+      abattement: 15%
+  exemples: 
+    - situation: 
+        montant: 10000
+      valeur attendue: 8500
+    - situation: 
+        montant: 80000
+      valeur attendue: 68000
+
 - test: montant franchisé, décote, abattu
   format: €
   formule: 

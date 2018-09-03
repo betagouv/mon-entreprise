@@ -2196,3 +2196,52 @@
     somme:
       - complémentaire santé (employeur)
       - prévoyance obligatoire cadre
+
+
+
+
+# Ci-dessous une implémentation basique de l'impôt sur le revenu annuel dans le but d'illustrer un post de blog
+
+- nom: impôt
+  description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
+
+- nom: revenu abattu
+  espace: impôt
+  formule: 
+    allègement:
+      assiette: contrat salarié . salaire . net imposable * 12
+      abattement: 10%
+
+- nom: impôt sur le revenu
+  espace: impôt
+  formule:
+    barème:  
+      assiette: revenu abattu
+      tranches:
+         - en-dessous de: 9807
+           taux: 0%
+         - de: 9807
+           à:  27086
+           taux: 14%
+         - de: 27086
+           à: 72617
+           taux: 30%
+         - de: 72617
+           à: 153783
+           taux: 41%
+         - au-dessus de: 153783
+           taux: 45%
+
+- nom: impôt sur le revenu à payer
+  espace: impôt
+  formule: 
+    allègement:
+      assiette: impôt sur le revenu
+      décote:
+        plafond: 1177
+        taux: 75%
+  exemples: 
+    - nom: Salaire d'un cadre
+      situation: 
+        contrat salarié . salaire . net imposable: 4000
+      valeur attendue: 7253.26  

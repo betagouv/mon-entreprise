@@ -15,15 +15,18 @@ let treatValue = (data, language) =>
 		? '?'
 		: typeof data == 'boolean'
 			? { true: '✅', false: '✘' }[data]
-			: !isNaN(data)
-				? Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(data)
-				: data
+			: formatNumber(data, language)
+
+export let formatNumber = (data, language) =>
+	!isNaN(data)
+		? Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(data)
+		: data
 
 export let NodeValue = withLanguage(({ data, language }) => (
 	<span>{treatValue(data, language)}</span>
 ))
 
-let NodeValuePointer = ({ data }) =>
+export let NodeValuePointer = ({ data }) =>
 	data !== undefined && data !== null ? (
 		<span className={'situationValue ' + treatValue(data)}>
 			<NodeValue data={data} />

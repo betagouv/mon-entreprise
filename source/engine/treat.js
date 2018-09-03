@@ -90,13 +90,14 @@ export let treatString = (rules, rule) => rawNode => {
 
 	// We don't need to handle category == 'value' because YAML then returns it as
 	// numerical value, not a String: it goes to treatNumber
-	if (parseResult.category == 'percentage') {
+	if (parseResult.category == 'percentage')
 		return {
 			nodeValue: parseResult.nodeValue,
+			category: 'percentage',
 			// eslint-disable-next-line
-			jsx: () => <span className="percentage">{rawNode}</span>
+			jsx: () => <span className="value">{rawNode.split('%')[0]} %</span>
+			//on ajoute l'espace nécessaire en français avant le pourcentage
 		}
-	}
 
 	if (
 		parseResult.category == 'calcExpression' ||
@@ -161,6 +162,7 @@ export let treatString = (rules, rule) => rawNode => {
 							jsx: nodeValue => (
 								<span className="value">{nodeValue * 100}%</span>
 							)
+							//the best would be to display the original text before parsing, but nearley does'nt let us access it
 						})
 					]
 				])
@@ -204,15 +206,14 @@ export let treatString = (rules, rule) => rawNode => {
 	}
 }
 
-export let treatNumber = rawNode => {
-	return {
-		text: '' + rawNode,
-		category: 'number',
-		nodeValue: rawNode,
-		type: 'numeric',
-		jsx: <span className="number">{rawNode}</span>
-	}
-}
+export let treatNumber = rawNode => ({
+	text: '' + rawNode,
+	category: 'number',
+	nodeValue: rawNode,
+	type: 'numeric',
+	jsx: <span className="number">{rawNode}</span>
+})
+
 export let treatOther = rawNode => {
 	throw new Error(
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'

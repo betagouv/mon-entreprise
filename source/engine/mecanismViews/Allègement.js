@@ -19,7 +19,7 @@ export default function Allègement(nodeValue, rawExplanation) {
 					<ul className="properties">
 						<li key="assiette">
 							<span className="key">assiette: </span>
-							<span className="value">{makeJsx(explanation.assiette)}</span>
+							<span className="value">{makeJsx(rawExplanation.assiette)}</span>
 						</li>
 						{explanation.franchise && (
 							<li key="franchise">
