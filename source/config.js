@@ -1,5 +1,5 @@
 // Each one will be a line in the simulation box
-let mainTargetNames = [
+export let mainTargetNames = [
 	'contrat salarié . rémunération . total',
 	'contrat salarié . salaire . brut de base',
 	'contrat salarié . salaire . net',

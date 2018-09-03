@@ -5,7 +5,7 @@ import FicheDePaieSelectors, {
 	COTISATION_BRANCHE_ORDER
 } from 'Selectors/ficheDePaieSelectors'
 
-import { simulationTargetNames } from 'Components/TargetSelection'
+import { simulationTargetNames } from '../source/config'
 
 let state = {
 	form: {

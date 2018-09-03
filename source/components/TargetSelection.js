@@ -22,6 +22,7 @@ import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
 import emoji from 'react-easy-emoji'
+import { mainTargetNames } from '../config'
 
 let salaries = [
 	'contrat salarié . salaire . total',
