@@ -2203,6 +2203,7 @@
 # Ci-dessous une implémentation basique de l'impôt sur le revenu annuel dans le but d'illustrer un post de blog
 
 - nom: impôt
+  description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
 
 - nom: revenu abattu
   espace: impôt
