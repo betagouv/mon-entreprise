@@ -2208,7 +2208,7 @@
   espace: impôt
   formule: 
     allègement:
-      assiette: contrat salarié . salaire . net imposable
+      assiette: contrat salarié . salaire . net imposable * 12
       abattement: 10%
 
 - nom: impôt sur le revenu
@@ -2242,5 +2242,5 @@
   exemples: 
     - nom: Salaire d'un cadre
       situation: 
-        contrat salarié . salaire . net imposable: 48000
+        contrat salarié . salaire . net imposable: 4000
       valeur attendue: 7253.26  
