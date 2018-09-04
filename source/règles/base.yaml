@@ -815,12 +815,20 @@
   formule: CDD . indemnités salarié CDD
 
 - espace: contrat salarié
-  nom: statut cadre
+  nom: choix du statut cadre
   titre: Statut cadre
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   par défaut: non
 
+
+- espace: contrat salarié
+  nom: statut cadre
+  formule: 
+    variations: 
+    - si: assimilé salarié
+      alors: oui 
+    - sinon: choix du statut cadre
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
