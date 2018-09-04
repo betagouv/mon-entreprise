@@ -2171,6 +2171,7 @@
       plafond: plafond sécurité sociale
       taux: 1.5%
       # TODO attention : il semblerait que ce 1.5% englobe aussi la complémentaire santé ! La confusion serait entretenue par les organismes de prévoyance...
+
 - espace: contrat salarié
   nom: taxe d'apprentissage
   cotisation:
