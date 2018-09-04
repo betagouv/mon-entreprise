@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import screenfull from 'screenfull'
 import emoji from 'react-easy-emoji';
+import { isIE } from '../../../utils';
 
 @translate()
 export default class IframeFooter extends Component {
@@ -22,7 +23,7 @@ export default class IframeFooter extends Component {
 				}}>
 				<LangSwitcher className="ui__ button simple" />
 				{screenfull.enabled &&
-					!screenfull.isFullscreen && (
+					!screenfull.isFullscreen && !isIE() && (
 						<button
 							className="ui__ button small"
 							onClick={() => {
