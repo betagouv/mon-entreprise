@@ -1,23 +1,27 @@
 /* @flow */
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import Loadable from 'react-loadable'
 import { connect } from 'react-redux'
 import * as Animate from 'Ui/animate'
-
-const Simulateur = Loadable({
-	loader: () => import('Components/Simu'),
-	loading() {
-		return null
-	}
-})
+import type Simulateur from 'Components/Simu'
 
 type Props = {
 	hideText: boolean
 }
-
-class SocialSecurity extends Component<Props, {}> {
+type State = {
+	simulateur: ?Simulateur
+}
+class SocialSecurity extends Component<Props, State> {
+	state = {
+		simulateur: null
+	}
+	componentDidMount() {
+		import('Components/Simu').then(Simulateur =>
+			this.setState({ simulateur: Simulateur.default })
+		)
+	}
 	render() {
+		const Simulateur = this.state.simulateur
 		return (
 			<>
 				<Animate.fromBottom>
@@ -56,7 +60,7 @@ class SocialSecurity extends Component<Props, {}> {
 							<h2>How much does it cost ?</h2>
 						</>
 					)}
-					<Simulateur displayHiringProcedures />
+					{Simulateur && <Simulateur displayHiringProcedures />}
 				</Animate.fromBottom>
 			</>
 		)

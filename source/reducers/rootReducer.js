@@ -1,5 +1,6 @@
 /* @flow */
 
+import { popularTargetNames } from 'Components/TargetSelection'
 import { defaultTo, without } from 'ramda'
 // $FlowFixMe
 import reduceReducers from 'reduce-reducers'
@@ -7,7 +8,6 @@ import { combineReducers } from 'redux'
 // $FlowFixMe
 import { reducer as formReducer } from 'redux-form'
 import computeThemeColours from 'Ui/themeColours'
-import { popularTargetNames } from '../config'
 import defaultLang from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'

@@ -3,8 +3,10 @@ import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import { nextStepsSelector } from 'Selectors/analyseSelectors'
-import { noUserInputSelector } from 'Selectors/situationSelectors'
+import {
+	nextStepsSelector,
+	noUserInputSelector
+} from 'Selectors/analyseSelectors'
 import Smiley from './SatisfactionSmiley'
 
 @connect(state => ({
