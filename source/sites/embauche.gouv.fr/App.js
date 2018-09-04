@@ -2,7 +2,6 @@ import Mecanisms from 'Components/Mecanisms'
 import RulePage from 'Components/RulePage'
 import TrackPageView from 'Components/utils/TrackPageView'
 import React, { Component } from 'react'
-import Loadable from 'react-loadable'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -14,22 +13,14 @@ import { inIframe } from '../../utils'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Contribution from './pages/Contribution'
+import Couleur from './pages/Couleur'
 import { Header } from './pages/Header'
 import Home from './pages/Home'
 import IframeFooter from './pages/IframeFooter'
 import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
 import Route404 from './pages/Route404'
-
-const RulesList = Loadable({
-	loader: () => import('./pages/RulesList'),
-	loading: () => null
-})
-
-const Couleur = Loadable({
-	loader: () => import('./pages/Couleur'),
-	loading: () => null
-})
+import RulesList from './pages/RulesList'
 
 class EmbaucheRoute extends Component {
 	render() {
