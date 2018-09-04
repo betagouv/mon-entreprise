@@ -1,6 +1,11 @@
 html {
 	transition: none !important;
 }
+@media print {
+	html {
+		font-size: 1em;
+	}
+}
 @media (max-width: 500px) {
 	html {
 		font-size: 0.9em;

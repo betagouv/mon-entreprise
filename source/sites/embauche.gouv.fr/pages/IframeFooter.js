@@ -33,6 +33,10 @@ export default class IframeFooter extends Component {
 							<Trans>Plein écran</Trans>
 						</button>
 					)}
+				<button className="ui__ button small" onClick={() =>window.print()} >
+					{emoji('🖨')}
+					<Trans>Imprimer</Trans>
+				</button>
 			</div>
 		)
 	}

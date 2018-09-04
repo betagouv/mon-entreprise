@@ -46,7 +46,7 @@
 .distribution-chart__item:hover .distribution-chart__percent {
 	opacity: 1;
 }
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
 	.distribution-chart__item {
 		flex-direction: column;
 		align-items: stretch;
@@ -69,11 +69,17 @@
 		align-items: center;
 	}
 	.distribution-chart__bar {
+		/* Enable printing of background color */
 		min-height: 1.5em !important;
 	}
 
 	.distribution-chart__branche-name {
 		font-size: inherit !important;
+	}
+}
+@media print {
+	.distribution-chart__bar {
+		box-shadow: inset 0 0 0 1000px var(--colour);
 	}
 }
 
