@@ -1,5 +1,6 @@
 import {
 	reduce,
+	reduced,
 	mergeWith,
 	objOf,
 	toPairs,
@@ -159,11 +160,17 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 						: evaluateNode(cache, situationGate, parsedRules, prop)
 			),
 			evaluatedExplanation = map(evaluateVariation, node.explanation),
-			satisfiedVariation = find(
-				variation =>
-					!variation.condition || variation.condition.nodeValue === true,
-				evaluatedExplanation
-			),
+			satisfiedVariation = reduce(
+				(_, variation) =>
+					variation.condition == undefined
+						? reduced(variation) // We've reached the eventual defaut case
+						: variation.condition.nodeValue === null
+							? reduced(null) // one case has missing variables => we can't go further
+							: variation.condition.nodeValue === true
+								? reduced(variation)
+								: null,
+				null
+			)(evaluatedExplanation),
 			nodeValue = satisfiedVariation
 				? satisfiedVariation.consequence.nodeValue
 				: null
