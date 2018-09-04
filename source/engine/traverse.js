@@ -237,7 +237,6 @@ let evolveCond = (name, rule, rules) => value => {
 			),
 			nodeValue = explanation.nodeValue,
 			missingVariables = explanation.missingVariables
-
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 

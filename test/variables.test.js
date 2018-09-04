@@ -18,9 +18,9 @@ describe('evaluateVariable', function() {
 		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.true
 	})
 
-	it("should interpret rules without a formula as boolean-valued, with values other than 'oui' meaning false", function() {
+	it("should interpret rules without a formula as boolean-valued, with 'non' meaning false", function() {
 		let rule = {},
-			state = { condition: 'nope' },
+			state = { condition: 'non' },
 			situationGate = name => state[name]
 
 		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.false

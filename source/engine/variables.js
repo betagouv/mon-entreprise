@@ -18,8 +18,10 @@ let evaluateBottomUp = situationGate => startingFragments => {
 						  ])
 						: situationGate(query) == expectedResult
 			  }
+
 	return rec(startingFragments)
 }
+let formatBooleanValue = { oui: true, non: false }
 
 /* Evalue la valeur d'une variable
 en utilisant la fonction situationGate qui donne accès à la situation courante*/
@@ -27,12 +29,11 @@ export let evaluateVariable = (situationGate, variableName, rule) => {
 	// test rec
 	let value = situationGate(variableName)
 
-	return rule.format != null
-		? value
-		: !rule.formule
-			? // c'est une variante, eg. motifs . classique . accroissement d'activité
-			  evaluateBottomUp(situationGate)(splitName(variableName))
-			: rule.formule['une possibilité']
-				? evaluateBottomUp(situationGate)(splitName(variableName))
-				: value
+	if (rule.format != null) return value
+	//boolean variables don't have a format prop, it's the default
+	if (formatBooleanValue[value] !== undefined) return formatBooleanValue[value]
+	if (rule.formule && rule.formule['une possibilité'])
+		return evaluateBottomUp(situationGate)(splitName(variableName))
+
+	return value
 }
