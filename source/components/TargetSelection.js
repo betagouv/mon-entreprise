@@ -13,15 +13,26 @@ import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	blockingInputControlsSelector,
-	flatRulesSelector
+	flatRulesSelector,
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import { noUserInputSelector } from 'Selectors/situationSelectors'
-import { displayedTargetNames } from '../config'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
+
+let salaries = [
+	'contrat salarié . salaire . total',
+	'contrat salarié . salaire . brut de base',
+	'contrat salarié . salaire . net à payer'
+]
+
+let displayedTargetNames = [...salaries, 'contrat salarié . aides employeur']
+export let popularTargetNames = [
+	...displayedTargetNames,
+	'contrat salarié . salaire . net imposable'
+]
 
 @translate()
 @reduxForm({

@@ -14,9 +14,9 @@ import { Link } from 'react-router-dom'
 import {
 	exampleAnalysisSelector,
 	flatRulesSelector,
+	noUserInputSelector,
 	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
-import { noUserInputSelector } from 'Selectors/situationSelectors'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'

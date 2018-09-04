@@ -1,6 +1,5 @@
 /* @flow */
-import { equals, map } from 'ramda'
-import { createSelectorCreator, defaultMemoize } from 'reselect'
+import { map } from 'ramda'
 
 export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 
@@ -65,8 +64,3 @@ export function inIframe() {
 		return true
 	}
 }
-
-export const createDeepEqualSelector = createSelectorCreator(
-	defaultMemoize,
-	equals
-)

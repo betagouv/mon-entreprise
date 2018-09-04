@@ -1,34 +1,39 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import formValueTypes from 'Components/conversation/formValueTypes'
+import rawRules from 'Règles/base.yaml'
+import translations from 'Règles/externalized.yaml'
 import {
 	assoc,
-	chain,
-	dropLast,
-	fromPairs,
-	has,
-	identity,
-	is,
-	join,
-	last,
-	map,
 	mapObjIndexed,
-	path,
+	chain,
+	has,
 	pipe,
-	propEq,
-	props,
-	range,
-	reduce,
-	reduced,
-	reject,
-	split,
-	take,
 	toPairs,
-	trim,
-	when
+	map,
+	fromPairs,
+	split,
+	join,
+	dropLast,
+	take,
+	propEq,
+	reduce,
+	when,
+	is,
+	props,
+	identity,
+	path,
+	reject,
+	reduced,
+	range,
+	last,
+	trim
 } from 'ramda'
-import { capitalise0 } from '../utils'
-import marked from './marked'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
+import marked from './marked'
+import { capitalise0 } from '../utils'
+import formValueTypes from 'Components/conversation/formValueTypes'
+
+// TODO - should be in UI, not engine
+import taux_versement_transport from 'Règles/taux-versement-transport.json'
 
 // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
@@ -79,15 +84,8 @@ export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 export let splitName = split(' . '),
 	joinName = join(' . ')
 
-export let parentName = pipe(
-	splitName,
-	dropLast(1),
-	joinName
-)
-export let nameLeaf = pipe(
-	splitName,
-	last
-)
+export let parentName = pipe(splitName, dropLast(1), joinName)
+export let nameLeaf = pipe(splitName, last)
 
 export let encodeRuleName = name =>
 	name.replace(/\s\.\s/g, '--').replace(/\s/g, '-')
@@ -138,6 +136,18 @@ export let findRuleByName = (allRules, query) =>
 
 export let findRulesByName = (allRules, query) =>
 	allRules.filter(({ name }) => name === query)
+
+export let searchRules = searchInput =>
+	rules
+		.filter(
+			rule =>
+				rule &&
+				hasKnownRuleType(rule) &&
+				JSON.stringify(rule)
+					.toLowerCase()
+					.indexOf(searchInput) > -1
+		)
+		.map(enrichRule)
 
 export let findRuleByDottedName = (allRules, dottedName) => {
 	return allRules.find(rule => rule.dottedName == dottedName)
@@ -234,3 +244,11 @@ export let translateAll = (translations, flatRules) => {
 
 	return map(translateRule('en', translations, targets), flatRules)
 }
+
+// On enrichit la base de règles avec des propriétés dérivées de celles du YAML
+export let rules = translateAll(translations, rawRules).map(rule =>
+	enrichRule(rule, { taux_versement_transport })
+)
+export let rulesFr = rawRules.map(rule =>
+	enrichRule(rule, { taux_versement_transport })
+)

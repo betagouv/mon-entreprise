@@ -1,25 +1,20 @@
 /* @flow */
+
+import Simulateur from 'Components/Simu'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import Loadable from 'react-loadable'
 import { connect } from 'react-redux'
 import * as Animate from 'Ui/animate'
-
-const Simulateur = Loadable({
-	loader: () => import('Components/Simu'),
-	loading() {
-		return null
-	}
-})
 
 type Props = {
 	hideText: boolean
 }
-
 class SocialSecurity extends Component<Props, {}> {
 	render() {
 		return (
 			<>
+				<ScrollToTop />
 				<Animate.fromBottom>
 					{!this.props.hideText && (
 						<>

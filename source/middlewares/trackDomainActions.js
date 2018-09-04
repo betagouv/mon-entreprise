@@ -2,9 +2,13 @@
 
 // $FlowFixMe
 import { actionTypes } from 'redux-form'
+import {
+	currentQuestionSelector,
+	formattedSituationSelector
+} from 'Selectors/analyseSelectors'
 import { debounce } from '../utils'
 import type { Tracker } from 'Components/utils/withTracker'
-const analyseSelectors = import('Selectors/analyseSelectors')
+
 export default (tracker: Tracker) => {
 	const debouncedUserInputTracking = debounce(1000, action =>
 		tracker.push(['trackEvent', 'input', action.meta.field, action.payload])
@@ -15,26 +19,22 @@ export default (tracker: Tracker) => {
 		next(action)
 		const newState = getState()
 		if (action.type == 'STEP_ACTION' && action.name == 'fold') {
-			analyseSelectors.then(
-				({ formattedSituationSelector, currentQuestionSelector }) => {
-					tracker.push([
-						'trackEvent',
-						'answer:' + action.source,
-						action.step,
-						formattedSituationSelector(newState)[action.step]
-					])
+			tracker.push([
+				'trackEvent',
+				'answer:' + action.source,
+				action.step,
+				formattedSituationSelector(newState)[action.step]
+			])
 
-					if (!currentQuestionSelector(newState)) {
-						tracker.push([
-							'trackEvent',
-							'done',
-							'after ' +
-								newState.conversationSteps.foldedSteps.length +
-								' questions'
-						])
-					}
-				}
-			)
+			if (!currentQuestionSelector(newState)) {
+				tracker.push([
+					'trackEvent',
+					'done',
+					'after ' +
+						newState.conversationSteps.foldedSteps.length +
+						' questions'
+				])
+			}
 		}
 		if (action.type === 'SET_ACTIVE_TARGET_INPUT') {
 			tracker.push(['trackEvent', 'select', newState.activeTargetInput])

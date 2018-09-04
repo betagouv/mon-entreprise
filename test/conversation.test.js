@@ -1,11 +1,10 @@
 import { expect } from 'chai'
+import { popularTargetNames } from 'Components/TargetSelection'
 import dedent from 'dedent-js'
-import { enrichRule } from 'Engine/rules'
-import { rulesFr as rules } from 'Engine/ruleWithVersementTransport'
+import { enrichRule, rulesFr as rules } from 'Engine/rules'
 import yaml from 'js-yaml'
 import { assocPath, merge } from 'ramda'
 import reducers from 'Reducers/rootReducer'
-import { popularTargetNames } from '../source/config'
 import {
 	currentQuestionSelector,
 	nextStepsSelector
