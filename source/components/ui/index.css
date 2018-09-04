@@ -7,8 +7,8 @@
 }
 html:fullscreen {
 	background-color: white;
+	overflow: auto !important;
 }
-
 body {
 	overflow-x: hidden !important;
 }
