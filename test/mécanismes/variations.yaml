@@ -77,9 +77,24 @@
         effectif plafond: 60
       valeur attendue: 0.01 
 
-
-
-
+- test: Variations menant à un booleén 
+  formule: 
+    variations: 
+      - si: statut cadre
+        alors: non
+      - sinon: oui
+  exemples: 
+    - nom: Positif
+      situation: 
+        statut cadre: non
+      valeur attendue: true
+    - nom: Négatif
+      situation: 
+        statut cadre: oui
+      valeur attendue: false
+    - nom: Non résolu
+      situation: 
+      valeur attendue: null
 
 - test: variations au sein d'un mécanisme 
   formule:
