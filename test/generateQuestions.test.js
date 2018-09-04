@@ -218,55 +218,6 @@ describe('collectMissingVariables', function() {
 		// expect(result).to.include('top . trois')
 	})
 
-	it('should not report missing variables in irrelevant variations', function() {
-		let rawRules = [
-				{
-					nom: 'startHere',
-					formule: { somme: ['variations'] },
-					espace: 'top'
-				},
-				{
-					nom: 'variations',
-					espace: 'top',
-					formule: {
-						barème: {
-							assiette: 2008,
-							'multiplicateur des tranches': 1000,
-							variations: [
-								{
-									si: 'dix',
-									alors: {
-										tranches: [
-											{ 'en-dessous de': 1, taux: 0.1 },
-											{ de: 1, à: 2, taux: 'deux' },
-											{ 'au-dessus de': 2, taux: 10 }
-										]
-									}
-								},
-								{
-									si: '3 > 2',
-									alors: {
-										tranches: [
-											{ 'en-dessous de': 1, taux: 0.1 },
-											{ de: 1, à: 2, taux: 1.8 },
-											{ 'au-dessus de': 2, taux: 10 }
-										]
-									}
-								}
-							]
-						}
-					}
-				},
-				{ nom: 'dix', espace: 'top' },
-				{ nom: 'deux', espace: 'top' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
-	})
-
 	it('should not report missing variables in switch for consequences of false conditions', function() {
 		let rawRules = [
 				{
