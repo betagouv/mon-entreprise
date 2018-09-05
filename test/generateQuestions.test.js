@@ -315,20 +315,6 @@ describe('nextSteps', function() {
 		expect(result[0]).to.equal('top . sum . evt')
 	})
 
-	it('should generate questions from the real rules, experimental version', function() {
-		let stateSelector = name =>
-			({
-				'contrat salarié . type de contrat': 'CDI',
-				'entreprise . effectif': '50'
-			}[name])
-
-		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'salaire')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result[0]).to.equal('contrat salarié . temps partiel')
-	})
-
 	it('should ask "motif CDD" if "CDD" applies', function() {
 		let stateSelector = name =>
 			({
