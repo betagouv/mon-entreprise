@@ -50,7 +50,8 @@ export let enrichRule = (rule, sharedData = {}) => {
 		subquestionMarkdown = rule['sous-question'],
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 		defaultValue = rule['par défaut'],
-		examples = rule['exemples']
+		examples = rule['exemples'],
+		icon = rule['icône']
 
 	return {
 		...rule,
@@ -63,7 +64,8 @@ export let enrichRule = (rule, sharedData = {}) => {
 		subquestion,
 		defaultValue,
 		raw: rule,
-		examples
+		examples,
+		icon
 	}
 }
 

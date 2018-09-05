@@ -24,15 +24,17 @@ const PaySlip = ({
 	const {
 		salaireBrut,
 		avantagesEnNature,
-		salaireNet,
+		salaireNetDeCotisations,
 		salaireDeBase,
 		salaireChargé,
 		salaireNetImposable,
 		nombreHeuresTravaillées,
-		salaireNetàPayer,
+		salaireNet,
 		réductionsDeCotisations,
 		cotisations,
-		totalCotisations
+		totalCotisations,
+		salaireNetAprèsImpôt,
+		impôt
 	} = ficheDePaie
 	return (
 		<div className="payslip__container">
@@ -116,27 +118,28 @@ const PaySlip = ({
 				<h4 className="payslip__salaryTitle">
 					<Trans>Salaire net</Trans>
 				</h4>
+				{/* Salaire net imposable */}
+				<RuleLink {...salaireNetImposable} />
+				<Montant>{salaireNetImposable.montant}</Montant>
 				{/* Salaire net */}
-				<RuleLink {...salaireNet} />
-				<Montant>{salaireNet.montant}</Montant>
+				<RuleLink {...salaireNetDeCotisations} />
+				<Montant>{salaireNetDeCotisations.montant}</Montant>
 				{avantagesEnNature.montant !== 0 ? (
 					<>
 						{/* Avantages en nature */}
 						<RuleLink {...avantagesEnNature} />
 						<Montant>{-avantagesEnNature.montant}</Montant>
-						{/* Salaire net à payer */}
-						<RuleLink
-							className="payslip__salaireNetàPayer"
-							{...salaireNetàPayer}
-						/>
-						<Montant className="payslip__salaireNetàPayer">
-							{salaireNetàPayer.montant}
+						{/* Salaire net */}
+						<RuleLink className="payslip__salaireNet" {...salaireNet} />
+						<Montant className="payslip__salaireNet">
+							{salaireNet.montant}
 						</Montant>
 					</>
 				) : null}
-				{/* Salaire net imposable */}
-				<RuleLink {...salaireNetImposable} />
-				<Montant>{salaireNetImposable.montant}</Montant>
+				<RuleLink {...impôt} />
+				<Montant>{-impôt.montant}</Montant>
+				<RuleLink {...salaireNetAprèsImpôt} />
+				<Montant>{salaireNetAprèsImpôt.montant}</Montant>
 			</div>
 			<br />
 			<p className="ui__ notice">

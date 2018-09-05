@@ -22,5 +22,8 @@ jobs:
           name: Install flow-typed
           command: yarn run flow-typed install
       - run:
+          name: Change git config to support UTF8 filename
+          command: git config --global core.quotepath false
+      - run:
           name: test
           command: yarn test

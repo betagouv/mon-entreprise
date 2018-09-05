@@ -221,7 +221,7 @@ it('should collect missing variables not too slowly', function() {
 	let rules = parseAll(realRules.map(enrichRule)),
 		analysis = analyseMany(rules, [
 			'contrat salarié . salaire . brut',
-			'contrat salarié . salaire . total'
+			'contrat salarié . rémunération . total'
 		])(stateSelector)
 
 	let start = Date.now()

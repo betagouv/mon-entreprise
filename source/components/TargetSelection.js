@@ -21,6 +21,8 @@ import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
+import emoji from 'react-easy-emoji'
+import { mainTargetNames } from '../config'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -88,7 +90,7 @@ export default class TargetSelection extends Component {
 	}
 
 	renderOutputList() {
-		let displayedTargets = displayedTargetNames.map(target =>
+		let displayedTargets = mainTargetNames.map(target =>
 				findRuleByDottedName(this.props.flatRules, target)
 			),
 			{
@@ -162,6 +164,12 @@ let Header = ({
 				)}
 
 			<span className="texts">
+				{!conversationStarted &&
+					target.dottedName.includes('net après impôt') && (
+						<div>
+							<span id="labelNew">Janvier 2019</span>
+						</div>
+					)}
 				<span className="optionTitle">
 					<Link to={match.path + 'règle/' + encodeRuleName(target.dottedName)}>
 						{target.title || target.name}
@@ -217,11 +225,12 @@ let TargetInputOrValue = withLanguage(
 					}}
 				/>
 			)}
+			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 		</span>
 	)
 )
 @connect(
-	() => ({}),
+	null,
 	dispatch => ({
 		setFormValue: (field, name) => dispatch(change('conversation', field, name))
 	})
@@ -235,7 +244,7 @@ class TargetValue extends Component {
 			value = targetWithValue && targetWithValue.nodeValue
 
 		return (
-			<span
+			<div
 				className={classNames({
 					editable: target.question,
 					attractClick:
@@ -245,7 +254,7 @@ class TargetValue extends Component {
 				onClick={this.showField(value)}
 				onFocus={this.showField(value)}>
 				<AnimatedTargetValue value={value} />
-			</span>
+			</div>
 		)
 	}
 	showField(value) {
@@ -257,5 +266,28 @@ class TargetValue extends Component {
 			if (activeInput) setFormValue(activeInput, '')
 			setActiveInput(target.dottedName)
 		}
+	}
+}
+
+@withColours
+@connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
+class AidesGlimpse extends Component {
+	render() {
+		let targets = this.props.analysis.targets,
+			aides =
+				targets &&
+				targets.find(t => t.dottedName === 'contrat salarié . aides employeur')
+		if (!aides || !aides.nodeValue) return null
+		return (
+			<div id="aidesGlimpse">
+				{' '}
+				- <AnimatedTargetValue value={aides.nodeValue} />{' '}
+				<Link
+					to={'/règle/' + encodeRuleName('contrat salarié . aides employeur')}
+					style={{ color: this.props.colours.textColour }}>
+					d'aides {emoji(aides.icon)}
+				</Link>
+			</div>
+		)
 	}
 }

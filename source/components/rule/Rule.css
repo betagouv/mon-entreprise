@@ -21,3 +21,7 @@
 #notes {
 	color: #666;
 }
+
+h2 small {
+	font-size: 75%;
+}

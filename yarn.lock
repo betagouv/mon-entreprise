@@ -6655,7 +6655,7 @@ react-highlight-words@^0.11.0:
     highlight-words-core "^1.2.0"
     prop-types "^15.5.8"
 
-react-hot-loader@^4.3.3:
+react-hot-loader@^4.3.5:
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.5.tgz#d8659839d8072d4b78938a776f29f5f1d2a40170"
   dependencies:
@@ -8321,7 +8321,7 @@ webpack-serve-overlay@^0.2.2:
     ansi-html "0.0.7"
     html-entities "^1.2.1"
 
-webpack-serve-waitpage@^1.0.0:
+webpack-serve-waitpage@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/webpack-serve-waitpage/-/webpack-serve-waitpage-1.0.2.tgz#de9b4732532b89fa035402afbe6dbda58cc9e50e"
   dependencies:
@@ -8370,7 +8370,7 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.12.1:
+webpack@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.17.1.tgz#0f026e3d823f3fc604f811ed3ea8f0d9b267fb1e"
   dependencies:

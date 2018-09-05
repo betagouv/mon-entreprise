@@ -43,7 +43,7 @@ export default class Rule extends Component {
 			} = this.props,
 			flatRule = findRuleByDottedName(flatRules, dottedName)
 
-		let { type, name, title, description, question, ns } = flatRule,
+		let { type, name, title, description, question, ns, icon } = flatRule,
 			namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 		let displayedRule = analysedExample || analysedRule
@@ -63,7 +63,8 @@ export default class Rule extends Component {
 						flatRule,
 						flatRules,
 						name,
-						title
+						title,
+						icon
 					}}
 				/>
 
@@ -110,11 +111,8 @@ let NamespaceRulesList = withColours(
 	({ namespaceRules, flatRule, colours }) => (
 		<section>
 			<h2>
-				<Trans>Règles attachées</Trans>
-				<small>
-					<Trans i18nKey="inspace">Ces règles sont dans l’espace de nom</Trans>{' '}
-					`{flatRule.title}`
-				</small>
+				<Trans>Règles du groupe</Trans>
+				<small> «{flatRule.title}»</small>
 			</h2>
 			<ul>
 				{namespaceRules.map(r => (

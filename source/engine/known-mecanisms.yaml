@@ -128,6 +128,13 @@ barème:
     L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un taux spécifique.
     Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable que l'on appelle multiplicateur, par exemple le plafond de la sécurité sociale.
 
+
+barème linéaire:
+  type: numeric
+  description: |
+    C'est un barème en taux non marginaux, très simple. C'est le mécanisme de calcul de l'impôt neutre, aussi appelé impôt non personnalisé.
+    Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette qui correspond à la tranche, et de multiplier le taux associé avec l'assiette.
+
 complément:
   type: numeric
   description: |

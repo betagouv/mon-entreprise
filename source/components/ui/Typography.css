@@ -3,7 +3,7 @@ html {
 }
 @media (max-width: 500px) {
 	html {
-		font-size: 1em;
+		font-size: 0.9em;
 	}
 }
 @media (min-width: 500px) and (max-width: 1920px) {

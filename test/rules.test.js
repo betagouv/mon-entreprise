@@ -50,7 +50,8 @@ describe('rule checks', function() {
 				r.espace &&
 				!r.simulateur &&
 				(!r.formule || r.formule['une possibilité']) &&
-				r.defaultValue == null
+				r.defaultValue == null &&
+				r.question
 		)
 
 		rulesNeedingDefault.map(r =>

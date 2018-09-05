@@ -51,9 +51,10 @@ export default class RulePage extends Component {
 			<div id="RulePage" className="ui__ container">
 				<ScrollToTop />
 				<div className="rule-page__header">
-					{!this.props.noUserInputSelector && (
-						<BackToSimulation colour={this.props.themeColours.colour} />
-					)}
+					<BackToSimulation
+						visible={this.props.valuesToShow}
+						colour={this.props.themeColours.colour}
+					/>
 					<SearchButton
 						className="rule-page__search"
 						rulePageBasePath="../règle"
@@ -78,7 +79,7 @@ export default class RulePage extends Component {
 @translate() // Triggers rerender when the language changes
 class BackToSimulation extends Component {
 	render() {
-		let { colour, setExample } = this.props
+		let { colour, setExample, visible } = this.props
 		return (
 			<Link
 				id="toSimulation"
@@ -86,8 +87,9 @@ class BackToSimulation extends Component {
 				onClick={() => {
 					setExample(null)
 				}}
-				style={{ background: colour }}>
-				⬅️ <Trans i18nKey="back">Reprendre la simulation</Trans>
+				style={{ color: colour, visibility: visible ? 'visible' : 'hidden' }}>
+				<i className="fa fa-arrow-left" aria-hidden="true" />
+				<Trans i18nKey="back">Reprendre la simulation</Trans>
 			</Link>
 		)
 	}

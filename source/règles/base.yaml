@@ -1,3 +1,40 @@
+- espace: contrat salarié
+  nom: indemnité kilométrique vélo
+  icône: 🚴
+  applicable si: indemnité vélo active
+  formule:
+    multiplication: 
+      assiette: distance annuelle
+      taux: 0.25
+  description: | 
+    Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
+    Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
+
+  format: euros
+  références: 
+    fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
+    fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
+
+- espace: contrat salarié . indemnité kilométrique vélo
+  nom: distance annuelle
+  formule: 4 * 218
+  note: 4 km par jour sur 218 jours.
+
+- espace: contrat salarié . indemnité kilométrique vélo
+  nom: indemnité vélo active
+  question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
+  description: | 
+    Cette indemnité n'est pour l'instant pas obligatoire.
+
+    L'employeur a le choix de la mettre en place dans son entreprise.
+
+    Pour bénéficier de l'indemnité de 200€ retenue dans ce calcul, le salarié doit faire 4km (aller-retour) de vélo pour se rendre au travail chaque jour travaillé.
+
+    Cette indemnité est cumulable avec le remboursement des frais de transport en commun s'il sagit d'un trajet à vélo de rabattement vers une station de transport.
+
+    Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
+  par défaut: non
+
 - espace: contrat salarié . CDD
   nom: CIF
   description: Contribution au financement du congé individuel de formation spécifique aux CDD.
@@ -534,6 +571,7 @@
 
 - espace: contrat salarié . CDD
   nom: durée contrat
+  icône: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
   sous-question: |
@@ -621,6 +659,8 @@
         # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
     hypothèses:
       contrat salarié . type de contrat: CDD
+
+
 - nom: contrat salarié
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
@@ -685,8 +725,9 @@
       question: Quel est le salaire mensuel ?
       titre: salaire
       avec:
-        - salaire . net à payer
-        - salaire . total
+        - rémunération . total
+        - salaire . net
+        - salaire . net après impôt
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -696,14 +737,19 @@
   nom: brut
   titre: Salaire brut
   description: >
-    C'est le salaire effectif après prise en compte des avantages salariaux et indemnités, ramenés au mois.
+    Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   format: euros
   formule:
     somme:
       - salaire . brut de base
       - indemnités salarié
-      - avantages en nature . montant
-      
+      - indemnité kilométrique vélo
+
+- espace: contrat salarié . rémunération
+  nom: brut
+  titre: Rémunération brute
+  format: euros
+  formule: salaire . brut + avantages en nature . montant
 
 - espace: contrat salarié
   nom: avantages sociaux
@@ -753,7 +799,7 @@
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
-  description: Le plafond de Sécurité sociale est le montant maximum des rémunérations ou gains à prendre en compte pour le calcul de certaines cotisations.
+  description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
 
   #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
   # type de période: mensuel
@@ -824,17 +870,16 @@
       - CDD . CIF
       - forfait social
 
+- espace: contrat salarié
+  nom: rémunération
+  description: La rémunération se distingue du salaire en incluant les avantages non monétaires versés en contrepartie du travail. Elle est donc plus large que les sommes d'argent versées au salarié. 
 
-- espace: contrat salarié . salaire
-  nom: net
-  titre: Salaire net
-  type: salaire
-  description: |
-    Le salaire brut moins les cotisations sociales. 
-
-    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel: pour le changer, il faut signer un avenant au contrat.
+- espace: contrat salarié . rémunération
+  nom: net de cotisations
+  titre: Rémunération nette de cotisations
+  type: rémunération
   format: euros
-  formule: salaire . brut - cotisations salariales
+  formule: rémunération . brut - cotisations salariales
 
 
 - espace: contrat salarié . salaire
@@ -844,55 +889,197 @@
   format: euros  
   description: |
     Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
+  formule: base - exonérations
+
+- espace: contrat salarié . salaire . net imposable
+  nom: base
   formule:
     somme:
-      - salaire . net
+      - rémunération . net de cotisations
       - avantages sociaux
       - CSG (non déductible)
       - CRDS
 
+- espace: contrat salarié . salaire . net imposable
+  nom: exonérations
+  formule: 
+    somme: 
+      - indemnité kilométrique vélo
 
 - espace: contrat salarié . salaire
-  nom: net à payer
-  titre: Salaire net à payer
+  nom: net
+  titre: Salaire net 
   type: salaire 
   format: euros  
   question: Quel est le salaire net mensuel ?
-  résumé: Touché par le salarié tous les mois
+  résumé: Salaire net avant impôt
   description: |
-    C'est le montant que le salarié touche à la fin du mois.
-  formule: salaire . net - avantages en nature . montant
+    C'est le montant que le salarié toucherait à la fin du mois avant de payer l'impôt sur le revenu.
+    
+    Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la source).
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
+  formule: rémunération . net de cotisations - avantages en nature . montant
   contrôles: 
-    - si: net à payer < 200
+    - si: net < 200
       message: Entrez un salaire mensuel
       niveau: bloquant
+
+- espace: contrat salarié . salaire
+  nom: net après impôt
+  titre: Salaire net après impôt
+  résumé: Touché par le salarié
+  question: Quel est le revenu net du salarié après impôt ?
+  type: salaire
+  format: euros
+  description: | 
+    Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
+
+    Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé) pour la France métropolitaine.
+          
+    C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
+
+    Pour une simulation plus complète, rendez-vous sur [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm). 
+  références: 
+    Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
+
+  formule: net - impôt neutre sur le revenu
+  contrôles: 
+    - si: net après impôt < 200
+      message: Entrez un salaire mensuel
+      niveau: bloquant
+
+- espace: contrat salarié 
+  nom: impôt neutre sur le revenu
+  icône: 🏛️
+  description: >
+    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
+  note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
+  format: euros
+  formule:
+    barème linéaire: 
+      assiette: salaire . net imposable 
+      tranches: 
+        - en-dessous de: 1367
+          taux: 0%
+
+        - de: 1368
+          à: 1419
+          taux: 0.5%
+
+        - de: 1420
+          à: 1510
+          taux: 1.5%
+
+        - de: 1511
+          à: 1613
+          taux: 2.5%
+
+        - de: 1614
+          à: 1723
+          taux: 3.5% 
+                
+        - de: 1724
+          à: 1815
+          taux: 4.5%
+                
+        - de: 1816
+          à: 1936
+          taux: 6%
+
+        - de: 1937
+          à: 2511
+          taux: 7.5%
+
+        - de: 2512
+          à: 2725     
+          taux: 9%
+                
+        - de: 2726
+          à: 2988
+          taux: 10.5%
+
+        - de: 2989
+          à: 3363
+          taux: 12%
+
+        - de: 3364
+          à: 3925
+          taux: 14%
+
+        - de: 3926
+          à: 4706
+          taux: 16%
+
+        - de: 4707
+          à: 5888
+          taux: 18%
+
+        - de: 5889
+          à: 7581   
+          taux: 20%
+
+        - de: 7582                                                
+          à: 10292
+          taux: 24%
+                  
+        - de: 10293
+          à: 14417
+          taux: 28%
+
+        - de: 14418
+          à: 22042
+          taux: 33%
+
+        - de: 22043
+          à: 46500
+          taux: 38%
+
+        - au-dessus de: 46501
+          taux: 43%
+  exemples: 
+        - nom: Très haut salaire
+          situation: 
+            salaire . net imposable: 50000
+          valeur attendue: 21500
+        - nom: Salaire ~ médian
+          situation: 
+            salaire . net imposable: 1700
+          valeur attendue: 59.5
+        - nom: Bas salaire
+          situation: 
+            salaire . net imposable: 1000
+          valeur attendue: 0
+
+
+  références: 
+    Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000033780155&dateTexte=20190101
+    Explication de l'impôt neutre: https://www.economie.gouv.fr/prelevement-a-la-source/taux-prelevement#taux-non-personnalise
 
 - espace: contrat salarié
   nom: coût du travail
   description: |
-    C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
-    des aides et subventions qui lui sont reversées: c'est donc le coût social total réel du travail pour l'employeur.
-  formule: salaire . total - aides employeur
+  formule: rémunération . total - aides employeur
   format: euros
   
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: total
-  titre: Salaire chargé
-  question: Quel est le salaire mensuel chargé ?
-  résumé: À verser par l'employeur tous les mois
+  titre: Total chargé
+  question: Quel est la rémunération mensuelle chargée ?
+  résumé: Versé par l'employeur
   type: salaire
   format: euros
   description: |
-    C'est le salaire brut, plus les cotisations patronales, moins les réductions de cotisations sociales.
+    C'est la rémunération brute, plus les cotisations patronales, moins les réductions de cotisations sociales.
 
     C'est le total que l'employeur doit verser mensuellement pour employer un salarié.
 
-    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme mensuellement en contrepartie du travail fourni.
 
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
-  formule: salaire . total sans réduction - réductions de cotisations
+  formule: rémunération . total sans réduction - réductions de cotisations
   contrôles: 
     - si: total < 400
       message: Entrez un salaire mensuel
@@ -903,18 +1090,38 @@
   format: euros
   formule: réduction générale + exonération JEI
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: total sans réduction
+  titre: Rémunération totale sans réduction
   type: salaire
   formule:
     somme:
-      - salaire . brut
+      - brut
       - cotisations patronales
+      
+- espace: contrat salarié 
+  nom: coût d'embauche
+  résumé: Coût employeur mensuel - aides
+  question: Quel est le coût d'embauche, toutes aides incluses ?
+  description: | 
+    
+    C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
+    des aides et subventions qui lui sont reversées : c'est donc le **coût social total réel à long terme** de l'embauche pour l'employeur.
 
+    D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du salarié : je vois dans dans ton travail assez de valeur pour te payer ce montant.
+
+  format: euros  
+  type: salaire
+  formule: rémunération . total - aides employeur
+  contrôles: 
+    - si: coût d'embauche < 400
+      message: Entrez un salaire mensuel
+      niveau: bloquant
 
 - espace: contrat salarié
   nom: aides employeur
   résumé: Pour l'employeur, différées dans le temps
+  icône: 🎁
   description: >
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
@@ -1079,7 +1286,7 @@
       taux: 6%
 
   exemples:
-    - nom: SMIC
+    - nom: Salaire médian
       situation:
         assiette cotisations sociales: 2300
         entreprise . association non lucrative: non
@@ -1793,9 +2000,7 @@
   nom: FNAL
   titre: Contribution au Fonds National d’Aide au Logement
   description: |
-    Le fonds national d’aide au logement (Fnal) est une contribution due par tous les employeurs, quelle que soit la taille de l’entreprise.
-
-    Cette contribution assure le financement de l’allocation logement.
+    Le fonds national d’aide au logement (Fnal) est une contribution qui assure le financement de l’allocation logement.
   cotisation:
     dû par: employeur
     destinataire: URSSAF
@@ -2186,8 +2391,6 @@
 - espace: contrat salarié . forfait social
   nom: assiette taux huit
   titre: Assiette du forfait social au taux de 8%
-  description: |
-    Assiette comprenant les rémunérations et les gains sur lesquelles s'appliquent la contribution du forfait social au taux de 8%.
   références:
     Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
   non applicable si:
