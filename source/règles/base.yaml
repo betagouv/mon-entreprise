@@ -935,7 +935,7 @@
   description: | 
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
 
-    Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé). 
+    Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé) pour la France métropolitaine.
           
     C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
 
