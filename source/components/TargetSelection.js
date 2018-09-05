@@ -5,6 +5,7 @@ import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { propEq } from 'ramda'
 import React, { Component } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -16,13 +17,12 @@ import {
 	flatRulesSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import { mainTargetNames } from '../config'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
-import emoji from 'react-easy-emoji'
-import { mainTargetNames } from '../config'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -167,7 +167,9 @@ let Header = ({
 				{!conversationStarted &&
 					target.dottedName.includes('net après impôt') && (
 						<div>
-							<span id="labelNew">Janvier 2019</span>
+							<span id="labelNew">
+								<Trans>Janvier 2019</Trans>
+							</span>
 						</div>
 					)}
 				<span className="optionTitle">
@@ -285,7 +287,7 @@ class AidesGlimpse extends Component {
 				<Link
 					to={'/règle/' + encodeRuleName('contrat salarié . aides employeur')}
 					style={{ color: this.props.colours.textColour }}>
-					d'aides {emoji(aides.icon)}
+					<Trans>d'aides</Trans> {emoji(aides.icon)}
 				</Link>
 			</div>
 		)
