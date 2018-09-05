@@ -5,6 +5,10 @@ export class ScrollToTop extends Component {
 		behavior: 'auto'
 	}
 	componentDidMount() {
+		if ('parentIFrame' in window) {
+			window.parentIFrame.scrollToOffset(0, 0)
+			return
+		}
 		window.scroll({
 			top: 0,
 			behavior: this.props.behavior
