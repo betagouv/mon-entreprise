@@ -118,6 +118,9 @@ const PaySlip = ({
 				<h4 className="payslip__salaryTitle">
 					<Trans>Salaire net</Trans>
 				</h4>
+				{/* Salaire net imposable */}
+				<RuleLink {...salaireNetImposable} />
+				<Montant>{salaireNetImposable.montant}</Montant>
 				{/* Salaire net */}
 				<RuleLink {...salaireNetDeCotisations} />
 				<Montant>{salaireNetDeCotisations.montant}</Montant>
@@ -133,11 +136,8 @@ const PaySlip = ({
 						</Montant>
 					</>
 				) : null}
-				{/* Salaire net imposable */}
-				<RuleLink {...salaireNetImposable} />
-				<Montant>{salaireNetImposable.montant}</Montant>
 				<RuleLink {...impôt} />
-				<Montant>{impôt.montant}</Montant>
+				<Montant>{-impôt.montant}</Montant>
 				<RuleLink {...salaireNetAprèsImpôt} />
 				<Montant>{salaireNetAprèsImpôt.montant}</Montant>
 			</div>
