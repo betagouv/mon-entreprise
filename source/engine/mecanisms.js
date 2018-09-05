@@ -777,7 +777,7 @@ export let mecanismScale = (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return devariate(recurse, k, v)
+		return mecanismVariations(recurse, k, v, true)
 	}
 
 	let tranches = desugarScale(recurse)(v['tranches']),
