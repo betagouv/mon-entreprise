@@ -20,14 +20,27 @@
 
 #ruleHeader__content {
 	display: flex;
-	align-items: center;
+	padding-top: 1rem;
 }
-#ruleHeader__content > div {
-	margin: 0 0.6em 0 0.6em;
+@media (max-width: 500px) {
+	#ruleHeader__content {
+		align-items: center;
+		flex-direction: column-reverse;
+		margin: 1rem 0;
+	}
 }
-
+#ruleHeader__description {
+	flex: 1;
+}
+#ruleHeader__infobox {
+	padding: 1rem;
+	padding-top: 0;
+	max-width: 12rem;
+}
 .infobox__item {
 	text-align: center;
+	display: flex;
+	flex-direction: column;
 }
 
 #ruleHeader h4 {

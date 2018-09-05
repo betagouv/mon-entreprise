@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { Trans, translate } from 'react-i18next'
 import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
 import './Destinataire.css'
-import { Trans, translate } from 'react-i18next'
 
 @translate()
 export default class Rule extends Component {
@@ -12,7 +12,8 @@ export default class Rule extends Component {
 		return destinataire && destinataireData ? (
 			<div className="infobox__item" id="destinataire">
 				<h4>
-					<Trans>Destinataire</Trans>&nbsp;:
+					<Trans>Destinataire</Trans>
+					&nbsp;:
 				</h4>
 				<div>
 					<a href={destinataireData.lien} target="_blank">
