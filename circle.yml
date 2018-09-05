@@ -1,23 +1,30 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/mern-starter
     docker:
-      - image: circleci/node:8.10.0
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+          CYPRESS_baseUrl: http://localhost:5000
+    working_directory: ~/app
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
+          name: Restore Yarn and Cypress Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
       - run:
           name: Install Dependencies
-          command: yarn install
+          command: |
+            yarn install --frozen-lockfile
       - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          name: Save Yarn and Cypress Cache
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
-            - ~/.cache/yarn
+            - ~/.cache
       - run:
           name: Install flow-typed
           command: yarn run flow-typed install
@@ -25,5 +32,11 @@ jobs:
           name: Change git config to support UTF8 filename
           command: git config --global core.quotepath false
       - run:
-          name: test
+          name: Linting and unit test
           command: yarn test
+      - run:
+          name: End to end test
+          command: |
+            yarn run compile
+            yarn run serve:embauche &
+            yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
