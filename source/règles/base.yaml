@@ -1067,7 +1067,7 @@
   nom: total
   titre: Total chargé
   question: Quel est la rémunération mensuelle chargée ?
-  résumé: Versé par l'employeur
+  résumé: Dépensé par l'employeur
   type: salaire
   format: euros
   description: |
