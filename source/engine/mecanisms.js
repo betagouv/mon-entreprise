@@ -719,6 +719,13 @@ let desugarScale = recurse => tranches =>
 		.map(evolve({ taux: recurse }))
 
 export let mecanismLinearScale = (recurse, k, v) => {
+	if (v.composantes) {
+		//mécanisme de composantes. Voir known-mecanisms.md/composantes
+		return decompose(recurse, k, v)
+	}
+	if (v.variations) {
+		return mecanismVariations(recurse, k, v, true)
+	}
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
 			assiette: false
