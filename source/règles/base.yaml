@@ -981,7 +981,7 @@
     barème linéaire: 
       assiette: salaire . net imposable 
       variations: 
-        - si: établissement . code commune = 97105 # Basse-Terre en Guadeloupe  
+        - si: établissement . localisation . code commune = 97105 # Basse-Terre en Guadeloupe  
           # en Guadeloupe, à La Réunion et en Martinique
           alors: 
             tranches: 
@@ -1066,7 +1066,7 @@
 
 
 
-        - si: établissement . code commune = 97302 # Cayenne en Guyane
+        - si: établissement . localisation . code commune = 97302 # Cayenne en Guyane
           # en Guyane et à Mayotte
           alors: 
             tranches: 
@@ -1244,12 +1244,12 @@
           valeur attendue: 0
         - nom: Basse-Terre en Guadeloupe
           situation: 
-            établissement . code commune: 97105 
+            établissement . localisation . code commune: 97105 
             salaire . net imposable: 1800
           valeur attendue: 45
         - nom: Cayenne en Guyanne
           situation: 
-            établissement . code commune: 97302
+            établissement . localisation . code commune: 97302
             salaire . net imposable: 1800
           valeur attendue: 27
 
@@ -1409,37 +1409,46 @@
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
 
 - espace: établissement
-  nom: code postal
-  titre: Code postal de l'établissement
-  question: Quel est le code postal de la commune de l'établissement ?
+  nom: localisation
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-  format: nombre
-  suggestions: utilisation d'une API
-  par défaut: non
+  question: Dans quelle commune l'établissement est-il implanté ?
+  API: géo
 
-- espace: établissement
+- espace: établissement . localisation
   nom: code commune
   titre: Code commune de l'établissement
-  question: Dans quelle commune l'établissement est-il implanté ?
-  description: |
-    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
-    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   format: nombre
-  suggestions: utilisation d'une API
   par défaut: 29019
+  formule: 
+    synchronisation: 
+      API: localisation
+      chemin: code
 
-- espace: établissement
+- espace: établissement . localisation
   nom: commune
   titre: Commune de l'établissement
-  question: Dans quelle commune l'établissement est-il implanté ?
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-  # format: objet
   format: texte
-  par défaut: non
+  par défaut: Brest
+  formule: 
+    synchronisation: 
+      API: localisation
+      chemin: nom
+
+- espace: établissement . localisation
+  nom: département
+  titre: Département de l'établissement
+  format: texte
+  par défaut: Finistère
+  formule: 
+    synchronisation: 
+      API: localisation
+      chemin: departement . nom
+
 - espace: contrat salarié
   nom: temps partiel
   question: Le contrat est-il à temps partiel ?
@@ -2542,7 +2551,7 @@
   formule:
     sélection:
       données: taux du versement transport
-      cherche: code commune
+      cherche: localisation . code commune
       dans: codeCommune
       composantes:
         - nom: aot
