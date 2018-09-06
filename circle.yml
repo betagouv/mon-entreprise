@@ -44,18 +44,18 @@ jobs:
           yarn run serve:embauche &
           yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --spec 'cypress/integration/**/!(external-integrations.js)' 
 
-test-production:
-  docker:
-    - image: cypress/base:8
-      environment:
-        ## this enables colors in the output
-        TERM: xterm
-        CYPRESS_baseUrl: http://embauche.beta.gouv.fr
-  steps:
-    - run: npm install --save-dev cypress
-    # We wait an arbitrary 4 min for the deploy (TODO: use netlify hook for triggering a this job)
-    - run: sleep 4 * 60 * 60
-    - run: yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
+  test-production:
+    docker:
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+          CYPRESS_baseUrl: http://embauche.beta.gouv.fr
+    steps:
+      - run: npm install --save-dev cypress
+      # We wait an arbitrary 4 min for the deploy (TODO: use netlify hook for triggering a this job)
+      - run: sleep 4 * 60 * 60
+      - run: yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
 
 workflows:
   version: 2
