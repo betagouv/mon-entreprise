@@ -7,7 +7,7 @@ const salaryInput = inputTitle => {
 	return inputContainer.find('input')
 }
 describe('Landing basic test', function() {
-	it('should not crash when entering salary', function() {
+	it('should not crash', function() {
 		cy.visit('/')
 	})
 	it('should display the simulateur after loading', function() {
