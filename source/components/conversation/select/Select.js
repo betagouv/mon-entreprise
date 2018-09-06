@@ -31,7 +31,7 @@ export default class Select extends Component {
 				submit
 			} = this.props,
 			submitOnChange = option => {
-				onChange(option.code)
+				onChange(option)
 				submit()
 			}
 

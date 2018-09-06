@@ -141,16 +141,9 @@ export let getInputComponent = rules => dottedName => {
 			/>
 		)
 
-	if (typeof rule.suggestions == 'string')
-		return (
-			<Select
-				{...{
-					...commonProps,
-					valueType: formValueTypes[rule.format],
-					suggestions: rule.suggestions
-				}}
-			/>
-		)
+	if (rule.api && rule.api == 'géo') return <Select {...{ commonProps }} />
+
+	if (rule.api) throw new Error("Le seul API implémenté est l'API géo")
 
 	// Now the numeric input case
 

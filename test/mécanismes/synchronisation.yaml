@@ -1,0 +1,14 @@
+- nom: localisation
+
+
+- test: code commune
+  formule: 
+    synchronisation: 
+      API: localisation
+      chemin: code
+  exemples: 
+    - nom: Base
+      situation: 
+        localisation: 
+          code: 29200
+      valeur attendue: 29200

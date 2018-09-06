@@ -965,6 +965,30 @@ export let mecanismSelection = (recurse, k, v) => {
 	}
 }
 
+export let mecanismSynchronisation = (recurse, k, v) => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		let APIExplanation = evaluateNode(
+			cache,
+			situationGate,
+			parsedRules,
+			node.explanation.API
+		)
+		let nodeValue =
+			val(APIExplanation) == null ? null : val(APIExplanation)[v.chemin]
+		let missingVariables = APIExplanation.nodeValue === null ? [v.API] : []
+		let explanation = { ...v, API: APIExplanation }
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
+	}
+
+	return {
+		explanation: { ...v, API: recurse(v.API) },
+		evaluate,
+		jsx: () => <span>API</span>,
+		category: 'mecanism',
+		name: 'synchronisation'
+	}
+}
+
 export let mecanismError = (recurse, k, v) => {
 	throw new Error("Le mécanisme '" + k + "' est inconnu !" + v)
 }
