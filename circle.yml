@@ -44,7 +44,7 @@ jobs:
           yarn run serve:embauche &
           yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --spec 'cypress/integration/**/!(external-integrations.js)' 
 
-production-test:
+test-production:
   docker:
     - image: cypress/base:8
       environment:
@@ -63,7 +63,7 @@ workflows:
     jobs:
       - unit-test
       - end-to-end-test
-      - test-prod:
+      - test-production:
           filters:
             branches:
               only: master
