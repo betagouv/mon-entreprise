@@ -1,4 +1,5 @@
 import withColours from 'Components/utils/withColours'
+import { getInputComponent } from 'Engine/generateQuestions'
 import { createMarkdownDiv } from 'Engine/marked'
 import {
 	encodeRuleName,
@@ -22,6 +23,7 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import { reduxForm } from 'redux-form'
 
 @connect((state, props) => ({
 	currentExample: state.currentExample,
@@ -69,6 +71,7 @@ export default class Rule extends Component {
 				/>
 
 				<section id="rule-content">
+					{flatRule.question && <UserInput {...{ flatRules, dottedName }} />}
 					{flatRule.ns && (
 						<Algorithm
 							rule={displayedRule}
@@ -149,3 +152,14 @@ let ReportError = ({ name }) => (
 		</a>
 	</div>
 )
+
+@reduxForm({
+	form: 'conversation',
+	destroyOnUnmount: false
+})
+class UserInput extends Component {
+	render() {
+		let { flatRules, dottedName } = this.props
+		return getInputComponent(flatRules)(dottedName)
+	}
+}
