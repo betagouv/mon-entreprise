@@ -1,42 +1,75 @@
 version: 2
 jobs:
-  build:
+  unit-test:
+    docker:
+      - image: cypress/base:8
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache
+      - run: |
+          yarn run flow-typed install        
+          git config --global core.quotepath false
+          yarn test
+
+  end-to-end-test:
     docker:
       - image: cypress/base:8
         environment:
           ## this enables colors in the output
           TERM: xterm
           CYPRESS_baseUrl: http://localhost:5000
-    working_directory: ~/app
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn and Cypress Cache
           keys:
             - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
             - v1-deps-{{ .Branch }}
             - v1-deps
-      - run:
-          name: Install Dependencies
-          command: |
-            yarn install --frozen-lockfile
+      - run: yarn install --frozen-lockfile
       - save_cache:
-          name: Save Yarn and Cypress Cache
           key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.cache
-      - run:
-          name: Install flow-typed
-          command: yarn run flow-typed install
-      - run:
-          name: Change git config to support UTF8 filename
-          command: git config --global core.quotepath false
-      - run:
-          name: Linting and unit test
-          command: yarn test
-      - run:
-          name: End to end test
-          command: |
-            yarn run compile
-            yarn run serve:embauche &
-            yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
+      - run: |
+          yarn run compile
+          yarn run serve:embauche &
+          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --spec 'cypress/integration/**/!(external-integrations.js)' 
+
+production-test:
+  docker:
+    - image: cypress/base:8
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
+        CYPRESS_baseUrl: http://embauche.beta.gouv.fr
+  steps:
+    - run: npm install --save-dev cypress
+    # We wait an arbitrary 4 min for the deploy (TODO: use netlify hook for triggering a this job)
+    - run: sleep 4 * 60 * 60
+    - run: yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - unit-test
+      - end-to-end-test
+      - test-prod:
+          filters:
+            branches:
+              only: master
+
+experimental:
+  notify:
+    branches:
+      only:
+        - master

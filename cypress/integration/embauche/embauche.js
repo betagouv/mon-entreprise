@@ -6,6 +6,7 @@ const salaryInput = inputTitle => {
 	inputContainer.click()
 	return inputContainer.find('input')
 }
+
 describe('Landing basic test', function() {
 	it('should not crash', function() {
 		cy.visit('/')
@@ -18,5 +19,15 @@ describe('Landing basic test', function() {
 		cy.visit('/')
 		salaryInput('Salaire net').type('2000')
 		cy.get('.distribution-chart__container')
+	})
+})
+
+describe('Iframe integration test', function() {
+	it('should display an iframe of the simulateur', function() {
+		cy.visit('/integration-test')
+		cy.get('#simulateurEmbauche')
+			.iframe()
+			.contains('Entrez un salaire mensuel')
+		cy.debug()
 	})
 })
