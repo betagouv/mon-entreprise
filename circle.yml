@@ -59,7 +59,7 @@ jobs:
           then
             echo "SUCCESS \o/"
           else
-            curl https://hooks.zapier.com/hooks/catch/3746650/qsp818/;
+            curl -H 'Content-Type: application/json' --request POST -d '{"success": false}' https://hooks.zapier.com/hooks/catch/3746650/qsp818/;
             exit 1;
           fi
 
