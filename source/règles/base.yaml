@@ -679,12 +679,11 @@
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   références: 
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
-  par défaut: non
+  formule: non
 
 
 - espace: contrat salarié
-  nom: choix du type de contrat
-  titre: Type de contrat
+  nom: type de contrat
   question: Quelle est la nature du contrat de travail ?
   formule:
     une possibilité:
@@ -699,21 +698,12 @@
 - espace: contrat salarié . type de contrat
   nom: CDD
   description: Le contrat de travail prévoit explicitement une date de fin.
-  formule: contrat salarié . choix du type de contrat = 'CDD'
+  formule: contrat salarié . type de contrat = 'CDD'
 
 - espace: contrat salarié . type de contrat
   nom: CDI
   description: Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été établi.
-  formule: contrat salarié . choix du type de contrat = 'CDI'
-
-
-- espace: contrat salarié
-  nom: type de contrat
-  formule:
-    variations: 
-      - si: assimilé salarié
-        alors: CDI
-      - sinon: choix du type de contrat   
+  formule: contrat salarié . type de contrat = 'CDI'
 
 - espace: contrat salarié
   nom: assiette cotisations sociales
@@ -815,20 +805,10 @@
   formule: CDD . indemnités salarié CDD
 
 - espace: contrat salarié
-  nom: choix du statut cadre
-  titre: Statut cadre
+  nom: statut cadre
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   par défaut: non
-
-
-- espace: contrat salarié
-  nom: statut cadre
-  formule: 
-    variations: 
-    - si: assimilé salarié
-      alors: oui 
-    - sinon: choix du statut cadre
 
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
