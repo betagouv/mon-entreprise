@@ -8,4 +8,7 @@ describe('Pole emploi test', function() {
 			.iframe()
 			.contains('Entrez un salaire mensuel')
 	})
+	it('should send mail', function() {
+		cy.visit('https://entreprise.pole-emploi.fr/cout-salarie/')
+	})
 })
