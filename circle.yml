@@ -52,6 +52,7 @@ jobs:
           TERM: xterm
           CYPRESS_baseUrl: http://embauche.beta.gouv.fr
     steps:
+      - checkout
       - run: npm install --save-dev cypress
       - run: |
           if ./node_modules/.bin/cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759;
