@@ -7,7 +7,7 @@ rules:
     - single
     - avoidEscape: true
   no-console: 1
-  no-restricted-globals: [2, "length"]
+  no-restricted-globals: [2, 'length']
   no-global-assign: 0
   no-unsafe-negation: 0
   react/prop-types: 0
@@ -23,11 +23,12 @@ env:
   commonjs: true
   es6: true
 
-overrides: 
-  files: "*.test.js"
-  env: 
+overrides:
+  files: ['*.test.js', 'cypress/integration/**/*.js']
+  env:
     mocha: true
-globals: 
+
+globals:
   process: false
 
 extends:
