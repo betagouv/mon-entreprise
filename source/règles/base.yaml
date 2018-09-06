@@ -970,6 +970,262 @@
       message: Entrez un salaire mensuel
       niveau: bloquant
 
+
+
+- espace: contrat salarié . impôt neutre sur le revenu 
+  nom: barème Guadeloupe Réunion Martinique
+  formule:
+    barème linéaire: 
+      assiette: salaire . net imposable 
+      tranches: 
+        - en-dessous de: 1568	
+          taux: 0%
+
+        - de: 1569
+          à: 1662	
+          taux: 0.5%
+
+        - de: 1663 
+          à: 1789	
+          taux: 1.5%
+
+        - de: 1790 
+          à: 1897	
+          taux: 2.5%
+
+        - de: 1898 
+          à: 2062	
+          taux: 3.5%
+
+        - de: 2063 
+          à: 2315	
+          taux: 4.5%
+
+        - de: 2316 
+          à: 2712	
+          taux: 6%
+
+        - de: 2713 
+          à: 3094	
+          taux: 7.5%
+
+        - de: 3095 
+          à: 3601	
+          taux: 9%
+
+        - de: 3602 
+          à: 4307	
+          taux: 10.5%
+
+        - de: 4308 
+          à: 5586	
+          taux: 12%
+
+        - de: 5587 
+          à: 7099	
+          taux: 14%
+
+        - de: 7100 
+          à: 7813	
+          taux: 16%
+
+        - de: 7814 
+          à: 8686	
+          taux: 18%
+
+        - de: 8687 
+          à: 10374	
+          taux: 20%
+
+        - de: 10375 
+          à: 13140	
+          taux: 24%
+
+        - de: 13141 
+          à: 17374	
+          taux: 28%
+
+        - de: 17375 
+          à: 26518	
+          taux: 33%
+
+        - de: 26519 
+          à: 55985	
+          taux: 38%
+
+        - au-dessus de: 55986	
+          taux: 43%
+
+- espace: contrat salarié . impôt neutre sur le revenu
+  nom: barème Guyane Mayotte
+  formule:
+    barème linéaire: 
+      assiette: salaire . net imposable 
+      tranches: 
+        - en-dessous de: 1679	
+          taux: 0%
+
+        - de: 1680
+          à: 1785	
+          taux: 0.5%
+
+        - de: 1786
+          à: 1923	
+          taux: 1.5%
+
+        - de: 1924
+          à: 2111	
+          taux: 2.5%
+
+        - de: 2112
+          à: 2340	
+          taux: 3.5%
+
+        - de: 2341
+          à: 2579	
+          taux: 4.5%
+
+        - de: 2580
+          à: 2988	
+          taux: 6%
+
+        - de: 2989
+          à: 3553	
+          taux: 7.5%
+
+        - de: 3554
+          à: 4379	
+          taux: 9%
+
+        - de: 4380
+          à: 5706	
+          taux: 10.5%
+
+        - de: 5707
+          à: 7063	
+          taux: 12%
+
+        - de: 7064
+          à: 7708	
+          taux: 14%
+
+        - de: 7709
+          à: 8483	
+          taux: 16%
+
+        - de: 8484
+          à: 9431	
+          taux: 18%
+
+        - de: 9432
+          à: 11075	
+          taux: 20%
+
+        - de: 11076
+          à: 13960	
+          taux: 24%
+
+        - de: 13961
+          à: 18293	
+          taux: 28%
+
+        - de: 18294
+          à: 27922	
+          taux: 33%
+
+        - de: 27923
+          à: 58947	
+          taux: 38%
+
+        - au-dessus de: 58948
+          taux: 43%
+
+
+
+- espace: contrat salarié . impôt neutre sur le revenu
+  nom: barème métropolitain
+  formule:
+    barème linéaire: 
+      assiette: salaire . net imposable 
+      tranches: 
+        - en-dessous de: 1367
+          taux: 0%
+
+        - de: 1368
+          à: 1419
+          taux: 0.5%
+
+        - de: 1420
+          à: 1510
+          taux: 1.5%
+
+        - de: 1511
+          à: 1613
+          taux: 2.5%
+
+        - de: 1614
+          à: 1723
+          taux: 3.5% 
+                
+        - de: 1724
+          à: 1815
+          taux: 4.5%
+                
+        - de: 1816
+          à: 1936
+          taux: 6%
+
+        - de: 1937
+          à: 2511
+          taux: 7.5%
+
+        - de: 2512
+          à: 2725     
+          taux: 9%
+                
+        - de: 2726
+          à: 2988
+          taux: 10.5%
+
+        - de: 2989
+          à: 3363
+          taux: 12%
+
+        - de: 3364
+          à: 3925
+          taux: 14%
+
+        - de: 3926
+          à: 4706
+          taux: 16%
+
+        - de: 4707
+          à: 5888
+          taux: 18%
+
+        - de: 5889
+          à: 7581   
+          taux: 20%
+
+        - de: 7582                                                
+          à: 10292
+          taux: 24%
+                  
+        - de: 10293
+          à: 14417
+          taux: 28%
+
+        - de: 14418
+          à: 22042
+          taux: 33%
+
+        - de: 22043
+          à: 46500
+          taux: 38%
+
+        - au-dessus de: 46501
+          taux: 43%
+
 - espace: contrat salarié 
   nom: impôt neutre sur le revenu
   icône: 🏛️
@@ -978,257 +1234,24 @@
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
   format: euros
   formule:
-    barème linéaire: 
-      assiette: salaire . net imposable 
       variations: 
-        - si: établissement . localisation . code commune = 97105 # Basse-Terre en Guadeloupe  
-          # en Guadeloupe, à La Réunion et en Martinique
+        - si: 
+            une de ces conditions: 
+              - établissement . localisation . département = 'Guadeloupe'
+              - établissement . localisation . département = 'La Réunion'
+              - établissement . localisation . département = 'Martinique'
           alors: 
-            tranches: 
-              - en-dessous de: 1568	
-                taux: 0%
-
-              - de: 1569
-                à: 1662	
-                taux: 0.5%
-
-              - de: 1663 
-                à: 1789	
-                taux: 1.5%
-
-              - de: 1790 
-                à: 1897	
-                taux: 2.5%
-
-              - de: 1898 
-                à: 2062	
-                taux: 3.5%
-
-              - de: 2063 
-                à: 2315	
-                taux: 4.5%
-
-              - de: 2316 
-                à: 2712	
-                taux: 6%
-
-              - de: 2713 
-                à: 3094	
-                taux: 7.5%
-
-              - de: 3095 
-                à: 3601	
-                taux: 9%
-
-              - de: 3602 
-                à: 4307	
-                taux: 10.5%
-
-              - de: 4308 
-                à: 5586	
-                taux: 12%
-
-              - de: 5587 
-                à: 7099	
-                taux: 14%
-
-              - de: 7100 
-                à: 7813	
-                taux: 16%
-
-              - de: 7814 
-                à: 8686	
-                taux: 18%
-
-              - de: 8687 
-                à: 10374	
-                taux: 20%
-
-              - de: 10375 
-                à: 13140	
-                taux: 24%
-
-              - de: 13141 
-                à: 17374	
-                taux: 28%
-
-              - de: 17375 
-                à: 26518	
-                taux: 33%
-
-              - de: 26519 
-                à: 55985	
-                taux: 38%
-
-              - au-dessus de: 55986	
-                taux: 43%
+            barème Guadeloupe Réunion Martinique
 
 
-
-
-        - si: établissement . localisation . code commune = 97302 # Cayenne en Guyane
-          # en Guyane et à Mayotte
+        - si:
+            une de ces conditions: 
+              - établissement . localisation . département = 'Guyane'
+              - établissement . localisation . département = 'Mayotte'
           alors: 
-            tranches: 
-              - en-dessous de: 1679	
-                taux: 0%
-
-              - de: 1680
-                à: 1785	
-                taux: 0.5%
-
-              - de: 1786
-                à: 1923	
-                taux: 1.5%
-
-              - de: 1924
-                à: 2111	
-                taux: 2.5%
-
-              - de: 2112
-                à: 2340	
-                taux: 3.5%
-
-              - de: 2341
-                à: 2579	
-                taux: 4.5%
-
-              - de: 2580
-                à: 2988	
-                taux: 6%
-
-              - de: 2989
-                à: 3553	
-                taux: 7.5%
-
-              - de: 3554
-                à: 4379	
-                taux: 9%
-
-              - de: 4380
-                à: 5706	
-                taux: 10.5%
-
-              - de: 5707
-                à: 7063	
-                taux: 12%
-
-              - de: 7064
-                à: 7708	
-                taux: 14%
-
-              - de: 7709
-                à: 8483	
-                taux: 16%
-
-              - de: 8484
-                à: 9431	
-                taux: 18%
-
-              - de: 9432
-                à: 11075	
-                taux: 20%
-
-              - de: 11076
-                à: 13960	
-                taux: 24%
-
-              - de: 13961
-                à: 18293	
-                taux: 28%
-
-              - de: 18294
-                à: 27922	
-                taux: 33%
-
-              - de: 27923
-                à: 58947	
-                taux: 38%
-
-              - au-dessus de: 58948
-                taux: 43%
-
-
-
+            barème Guyane Mayotte
         - sinon: 
-            tranches: 
-              - en-dessous de: 1367
-                taux: 0%
-
-              - de: 1368
-                à: 1419
-                taux: 0.5%
-
-              - de: 1420
-                à: 1510
-                taux: 1.5%
-
-              - de: 1511
-                à: 1613
-                taux: 2.5%
-
-              - de: 1614
-                à: 1723
-                taux: 3.5% 
-                      
-              - de: 1724
-                à: 1815
-                taux: 4.5%
-                      
-              - de: 1816
-                à: 1936
-                taux: 6%
-
-              - de: 1937
-                à: 2511
-                taux: 7.5%
-
-              - de: 2512
-                à: 2725     
-                taux: 9%
-                      
-              - de: 2726
-                à: 2988
-                taux: 10.5%
-
-              - de: 2989
-                à: 3363
-                taux: 12%
-
-              - de: 3364
-                à: 3925
-                taux: 14%
-
-              - de: 3926
-                à: 4706
-                taux: 16%
-
-              - de: 4707
-                à: 5888
-                taux: 18%
-
-              - de: 5889
-                à: 7581   
-                taux: 20%
-
-              - de: 7582                                                
-                à: 10292
-                taux: 24%
-                        
-              - de: 10293
-                à: 14417
-                taux: 28%
-
-              - de: 14418
-                à: 22042
-                taux: 33%
-
-              - de: 22043
-                à: 46500
-                taux: 38%
-
-              - au-dessus de: 46501
-                taux: 43%
+            barème métropolitain
   exemples: 
         - nom: Très haut salaire
           situation: 
@@ -1242,14 +1265,14 @@
           situation: 
             salaire . net imposable: 1000
           valeur attendue: 0
-        - nom: Basse-Terre en Guadeloupe
+        - nom: Guadeloupe
           situation: 
-            établissement . localisation . code commune: 97105 
+            établissement . localisation . département: Guadeloupe
             salaire . net imposable: 1800
           valeur attendue: 45
-        - nom: Cayenne en Guyanne
+        - nom: Guyane
           situation: 
-            établissement . localisation . code commune: 97302
+            établissement . localisation . département: Guyane
             salaire . net imposable: 1800
           valeur attendue: 27
 
