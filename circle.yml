@@ -56,6 +56,7 @@ jobs:
       # We wait an arbitrary 4 min for the deploy (TODO: use netlify hook for triggering a this job)
       - run: sleep 14400
       - run: yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
+      - run
 
 workflows:
   version: 2
@@ -70,6 +71,8 @@ workflows:
 
 experimental:
   notify:
+    webhooks:
+      - url: https://hooks.zapier.com/hooks/catch/3746650/qsp818/
     branches:
       only:
         - master
