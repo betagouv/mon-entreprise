@@ -1,6 +1,7 @@
 import {
 	reduce,
 	reduced,
+	path,
 	mergeWith,
 	objOf,
 	toPairs,
@@ -974,7 +975,9 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 			node.explanation.API
 		)
 		let nodeValue =
-			val(APIExplanation) == null ? null : val(APIExplanation)[v.chemin]
+			val(APIExplanation) == null
+				? null
+				: path(v.chemin.split(' . '))(val(APIExplanation))
 		let missingVariables = APIExplanation.nodeValue === null ? [v.API] : []
 		let explanation = { ...v, API: APIExplanation }
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
