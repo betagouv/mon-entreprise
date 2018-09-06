@@ -1,0 +1,26 @@
+- nom: statut cadre
+  formule: 
+    variations: 
+      - si: 3 > 2
+        alors: oui
+      - sinon: choix du statut cadre
+
+- nom: choix du statut cadre
+  par défaut: non
+
+- test: prévoyance obligatoire cadre
+  applicable si: statut cadre
+  formule:
+    multiplication:
+      assiette: 1500
+      taux: 1.5%
+  exemples: 
+    - nom: Applicabilité
+      situation: 
+        statut cadre: oui
+      valeur attendue: 22.5
+    - nom: Non Applicabilité
+      situation: 
+        statut cadre: non
+      valeur attendue: 0
+

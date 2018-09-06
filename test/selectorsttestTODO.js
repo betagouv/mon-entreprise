@@ -101,9 +101,10 @@ describe('fold', function() {
               assiette: brut
               variations:
                 - si: cadre
-                  taux: 77%
-                - si: ≠ cadre
-                  taux: 80%
+				  alors: 
+				    taux: 77%
+                - sinon:
+                    taux: 80%
         - nom: cadre
           par défaut: non
       `,

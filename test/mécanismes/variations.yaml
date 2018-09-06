@@ -1,17 +1,147 @@
 - nom: statut cadre
 
-- test: Variations
+
+- test: variations renvoyant une valeur
+  formule:
+    variations:
+      - si: statut cadre
+        alors: 2300
+      - si: ≠ statut cadre
+        alors: 2100
+
+  exemples:
+    - nom: Cadre
+      situation:
+        statut cadre: oui
+      valeur attendue: 2300
+    - nom: Non cadre
+      situation:
+        statut cadre: non
+      valeur attendue: 2100
+    - nom: Information manquante
+      situation:
+      valeur attendue: null
+      variables manquantes: 
+        - statut cadre
+
+
+- test: variations avec cas défaut
+  formule:
+    variations:
+      - si: statut cadre
+        alors: 2300
+      - sinon: 2100
+
+  exemples:
+    - nom: proposition par défaut
+      situation:
+        statut cadre: non
+      valeur attendue: 2100
+    - nom: Information manquante
+      situation:
+      valeur attendue: null
+      variables manquantes: 
+        - statut cadre
+
+- nom: effectif
+  format: nombre
+
+- nom: effectif plafond
+  format: nombre
+
+- test: plusieurs variations et un cas défaut
+  formule: 
+    variations: 
+      - si: effectif > 100
+        alors: 5%
+      - si: effectif > effectif plafond
+        alors: 4%
+      - si: effectif > 20
+        alors: 2%
+      - sinon: 1%
+
+  exemples: 
+    - nom: 1er cas
+      situation: 
+        effectif: 300
+      valeur attendue: 0.05
+    - nom: 2ème cas, non résolu
+      situation: 
+        effectif: 40
+      valeur attendue: null
+      variables manquantes: 
+        - effectif plafond
+    - nom: Cas par défaut
+      situation: 
+        effectif: 20
+        effectif plafond: 60
+      valeur attendue: 0.01 
+
+- test: Variations menant à un booleén 
+  formule: 
+    variations: 
+      - si: statut cadre
+        alors: non
+      - sinon: oui
+  exemples: 
+    - nom: Positif
+      situation: 
+        statut cadre: non
+      valeur attendue: true
+    - nom: Négatif
+      situation: 
+        statut cadre: oui
+      valeur attendue: false
+    - nom: Non résolu
+      situation: 
+      valeur attendue: null
+
+- test: variations au sein d'un mécanisme 
   formule:
     multiplication:
       assiette: 100
       variations:
         - si: statut cadre
-          taux: 8%
+          alors: 
+            taux: 8%
         - si: ≠ statut cadre
-          taux: 5%
+          alors:
+            taux: 5%
 
   exemples:
-    - nom:
+    - nom: Non cadre
       situation:
         statut cadre: non
       valeur attendue: 5
+    - nom: Cadre
+      situation:
+        statut cadre: oui
+      valeur attendue: 8
+
+
+
+
+
+- test: variations au sein d'un mécanisme avec sinon
+  formule:
+    multiplication:
+      assiette: 100
+      variations:
+        - si: statut cadre
+          alors: 
+            taux: 8%
+        - sinon:
+            taux: 5%
+
+  exemples:
+    - nom: Non cadre
+      situation:
+        statut cadre: non
+      valeur attendue: 5
+    - nom: Cadre
+      situation:
+        statut cadre: oui
+      valeur attendue: 8
+
+
+

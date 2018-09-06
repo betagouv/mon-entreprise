@@ -1,5 +1,6 @@
 import {
 	reduce,
+	reduced,
 	mergeWith,
 	objOf,
 	toPairs,
@@ -24,7 +25,9 @@ import {
 	max,
 	min,
 	subtract,
-	sum
+	sum,
+	isNil,
+	reject
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -52,6 +55,7 @@ import {
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Barème from './mecanismViews/Barème'
+import Variations from './mecanismViews/Variations'
 import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
 import Allègement from './mecanismViews/Allègement'
 import { trancheValue } from './mecanisms/barème'
@@ -123,75 +127,76 @@ let decompose = (recurse, k, v) => {
 	}
 }
 
-let devariate = (recurse, k, v) => {
-	let subProps = dissoc('variations')(v),
-		explanation = v.variations.map(c => ({
-			...recurse(
-				objOf(k, {
-					...subProps,
-					...dissoc('si')(c)
-				})
-			),
-			condition: recurse(c.si)
+let devariateExplanation = (recurse, mecanismKey, v) => {
+	let fixedProps = dissoc('variations')(v),
+		explanation = v.variations.map(({ si, alors, sinon }) => ({
+			consequence: recurse({
+				[mecanismKey]: {
+					...fixedProps,
+					...(sinon || alors)
+				}
+			}),
+			condition: sinon ? undefined : recurse(si)
 		}))
 
+	return explanation
+}
+
+/* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
+export let mecanismVariations = (recurse, k, v, devariate) => {
+	let explanation = devariate
+		? devariateExplanation(recurse, k, v)
+		: v.map(
+				({ si, alors, sinon }) =>
+					sinon !== undefined
+						? { consequence: recurse(sinon), condition: undefined }
+						: { consequence: recurse(alors), condition: recurse(si) }
+		  )
+
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child => {
-			let condition = evaluateNode(
-				cache,
-				situationGate,
-				parsedRules,
-				child.condition
-			)
-			return {
-				...evaluateNode(cache, situationGate, parsedRules, child),
-				condition
-			}
-		}
-
-		let explanation = map(evaluateOne, node.explanation),
-			candidates = filter(
-				node => node.condition.nodeValue !== false,
-				explanation
+		let evaluateVariation = map(
+				prop =>
+					prop === undefined
+						? undefined
+						: evaluateNode(cache, situationGate, parsedRules, prop)
 			),
-			satisfied = filter(node => node.condition.nodeValue, explanation),
-			choice = head(satisfied),
-			nodeValue = choice ? choice.nodeValue : null
+			evaluatedExplanation = map(evaluateVariation, node.explanation),
+			satisfiedVariation = reduce(
+				(_, variation) =>
+					variation.condition == undefined
+						? reduced(variation) // We've reached the eventual defaut case
+						: variation.condition.nodeValue === null
+							? reduced(null) // one case has missing variables => we can't go further
+							: variation.condition.nodeValue === true
+								? reduced(variation)
+								: null,
+				null
+			)(evaluatedExplanation),
+			nodeValue = satisfiedVariation
+				? satisfiedVariation.consequence.nodeValue
+				: null
 
-		let leftMissing = choice
+		let leftMissing = satisfiedVariation
 				? {}
-				: mergeAllMissing(pluck('condition', explanation)),
-			rightMissing = mergeAllMissing(candidates),
+				: mergeAllMissing(
+						reject(isNil, pluck('condition', evaluatedExplanation))
+				  ),
+			candidateVariations = filter(
+				node => !node.condition || node.condition.nodeValue !== false,
+				evaluatedExplanation
+			),
+			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
 			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return rewriteNode(node, nodeValue, evaluatedExplanation, missingVariables)
 	}
 
 	// TODO - find an appropriate representation
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="mecanism variations"
-			name="variations"
-			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map(c => (
-						<li className="variation" key={JSON.stringify(c.condition)}>
-							<div className="condition">
-								{makeJsx(c.condition)}
-								<div className="content">{makeJsx(c)}</div>
-							</div>
-						</li>
-					))}
-				</ul>
-			}
-		/>
-	)
 
 	return {
 		explanation,
 		evaluate,
-		jsx,
+		jsx: Variations,
 		category: 'mecanism',
 		name: 'variations',
 		type: 'numeric'
@@ -614,7 +619,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return devariate(recurse, k, v)
+		return mecanismVariations(recurse, k, v, true)
 	}
 
 	let objectShape = {
@@ -754,7 +759,7 @@ export let mecanismScale = (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return devariate(recurse, k, v)
+		return mecanismVariations(recurse, k, v, true)
 	}
 
 	let tranches = desugarScale(recurse)(v['tranches']),

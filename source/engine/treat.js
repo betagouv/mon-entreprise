@@ -45,7 +45,8 @@ import {
 	mecanismComplement,
 	mecanismSelection,
 	mecanismInversion,
-	mecanismReduction
+	mecanismReduction,
+	mecanismVariations
 } from './mecanisms'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
@@ -59,10 +60,18 @@ export let treatString = (rules, rule) => rawNode => {
 
 	let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
-	if (additionnalResults && additionnalResults.length > 0)
-		throw "Attention ! L'expression <" +
-			rawNode +
-			'> ne peut être traitée de façon univoque'
+	if (
+		additionnalResults &&
+		additionnalResults.length > 0 &&
+		parseResult.category !== 'boolean'
+	) {
+		// booleans, 'oui' and 'non', have an exceptional resolving precedence
+		throw new Error(
+			"Attention ! L'expression <" +
+				rawNode +
+				'> ne peut être traitée de façon univoque'
+		)
+	}
 
 	if (
 		!contains(parseResult.category)([
@@ -71,10 +80,13 @@ export let treatString = (rules, rule) => rawNode => {
 			'filteredVariable',
 			'comparison',
 			'negatedVariable',
-			'percentage'
+			'percentage',
+			'boolean'
 		])
 	)
-		throw "Attention ! Erreur de traitement de l'expression : " + rawNode
+		throw new Error(
+			"Attention ! Erreur de traitement de l'expression : " + rawNode
+		)
 
 	if (parseResult.category == 'variable')
 		return treatVariable(rules, rule)(parseResult)
@@ -88,6 +100,14 @@ export let treatString = (rules, rule) => rawNode => {
 		return treatNegatedVariable(
 			treatVariable(rules, rule)(parseResult.variable)
 		)
+
+	if (parseResult.category == 'boolean') {
+		return {
+			nodeValue: parseResult.nodeValue,
+			// eslint-disable-next-line
+			jsx: () => <span className="boolean">{rawNode}</span>
+		}
+	}
 
 	// We don't need to handle category == 'value' because YAML then returns it as
 	// numerical value, not a String: it goes to treatNumber
@@ -253,7 +273,8 @@ export let treatObject = (rules, rule) => rawNode => {
 				missingVariables: { [rule.dottedName]: 1 }
 			}),
 			inversion: mecanismInversion(rule.dottedName),
-			allègement: mecanismReduction
+			allègement: mecanismReduction,
+			variations: mecanismVariations
 		},
 		action = propOr(mecanismError, k, dispatch)
 

@@ -178,21 +178,25 @@ describe('collectMissingVariables', function() {
 							variations: [
 								{
 									si: 'dix',
-									'multiplicateur des tranches': 'deux',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 'trois' },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										'multiplicateur des tranches': 'deux',
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 'trois' },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								},
 								{
 									si: '3 > 4',
-									'multiplicateur des tranches': 'quatre',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 1.8 },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
+									alors: {
+										'multiplicateur des tranches': 'quatre',
+										tranches: [
+											{ 'en-dessous de': 1, taux: 0.1 },
+											{ de: 1, à: 2, taux: 1.8 },
+											{ 'au-dessus de': 2, taux: 10 }
+										]
+									}
 								}
 							]
 						}
@@ -212,51 +216,6 @@ describe('collectMissingVariables', function() {
 		expect(result).not.to.include('top . quatre')
 		// TODO
 		// expect(result).to.include('top . trois')
-	})
-
-	it('should not report missing variables in irrelevant variations', function() {
-		let rawRules = [
-				{
-					nom: 'startHere',
-					formule: { somme: ['variations'] },
-					espace: 'top'
-				},
-				{
-					nom: 'variations',
-					espace: 'top',
-					formule: {
-						barème: {
-							assiette: 2008,
-							'multiplicateur des tranches': 1000,
-							variations: [
-								{
-									si: 'dix',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 'deux' },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
-								},
-								{
-									si: '3 > 2',
-									tranches: [
-										{ 'en-dessous de': 1, taux: 0.1 },
-										{ de: 1, à: 2, taux: 1.8 },
-										{ 'au-dessus de': 2, taux: 10 }
-									]
-								}
-							]
-						}
-					}
-				},
-				{ nom: 'dix', espace: 'top' },
-				{ nom: 'deux', espace: 'top' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
 	})
 
 	it('should not report missing variables in switch for consequences of false conditions', function() {
@@ -354,20 +313,6 @@ describe('nextSteps', function() {
 
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
-	})
-
-	it('should generate questions from the real rules, experimental version', function() {
-		let stateSelector = name =>
-			({
-				'contrat salarié . type de contrat': 'CDI',
-				'entreprise . effectif': '50'
-			}[name])
-
-		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'salaire')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result[0]).to.equal('contrat salarié . temps partiel')
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function() {
