@@ -974,11 +974,13 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 			parsedRules,
 			node.explanation.API
 		)
+
 		let nodeValue =
 			val(APIExplanation) == null
 				? null
-				: path(v.chemin.split(' . '))(val(APIExplanation))
-		let missingVariables = APIExplanation.nodeValue === null ? [v.API] : []
+				: path(v.chemin.split(' . '))(JSON.parse(val(APIExplanation)))
+		let missingVariables =
+			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
@@ -986,7 +988,7 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 	return {
 		explanation: { ...v, API: recurse(v.API) },
 		evaluate,
-		jsx: () => <span>API</span>,
+		jsx: (nodeValue, explanation) => <span>{nodeValue}</span>,
 		category: 'mecanism',
 		name: 'synchronisation'
 	}

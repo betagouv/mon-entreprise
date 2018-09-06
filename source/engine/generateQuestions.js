@@ -22,7 +22,7 @@ import {
 import React from 'react'
 import Question from 'Components/conversation/Question'
 import Input from 'Components/conversation/Input'
-import Select from 'Components/conversation/select/Select'
+import SelectGéo from 'Components/conversation/select/SelectGéo'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import formValueTypes from 'Components/conversation/formValueTypes'
 
@@ -116,6 +116,9 @@ export let getInputComponent = rules => dottedName => {
 				}}
 			/>
 		)
+	if (rule.API && rule.API === 'géo')
+		return <SelectGéo {...{ ...commonProps }} />
+	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
 	if (rule.format == null)
 		return (
@@ -140,10 +143,6 @@ export let getInputComponent = rules => dottedName => {
 				}}
 			/>
 		)
-
-	if (rule.api && rule.api == 'géo') return <Select {...{ commonProps }} />
-
-	if (rule.api) throw new Error("Le seul API implémenté est l'API géo")
 
 	// Now the numeric input case
 

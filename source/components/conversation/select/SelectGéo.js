@@ -8,7 +8,9 @@ import './Select.css'
 let getOptions = input =>
 	input.length < 3
 		? Promise.resolve({ options: [] })
-		: fetch(`https://geo.api.gouv.fr/communes?nom=${input}`)
+		: fetch(
+				`https://geo.api.gouv.fr/communes?nom=${input}&fields=nom,code,departement,region&`
+		  )
 				.then(response => {
 					if (!response.ok)
 						return [{ nom: 'Aucune commune trouvée', disabled: true }]
@@ -31,7 +33,8 @@ export default class Select extends Component {
 				submit
 			} = this.props,
 			submitOnChange = option => {
-				onChange(option)
+				// serialize to not mix our data schema and the API response's
+				onChange(JSON.stringify(option))
 				submit()
 			}
 
@@ -40,8 +43,8 @@ export default class Select extends Component {
 				<ReactSelect.Async
 					onChange={submitOnChange}
 					labelKey="nom"
-					optionRenderer={({ nom, codeDepartement }) =>
-						nom + ` (${codeDepartement})`
+					optionRenderer={({ nom, departement }) =>
+						nom + ` (${departement.nom})`
 					}
 					placeholder="Entrez le nom de commune"
 					noResultsText="Nous n'avons trouvé aucune commune"
