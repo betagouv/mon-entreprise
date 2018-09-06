@@ -55,6 +55,7 @@ import {
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Barème from './mecanismViews/Barème'
+import Variations from './mecanismViews/Variations'
 import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
 import Allègement from './mecanismViews/Allègement'
 import { trancheValue } from './mecanisms/barème'
@@ -191,30 +192,11 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 	}
 
 	// TODO - find an appropriate representation
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="mecanism variations"
-			name="variations"
-			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map(c => (
-						<li className="variation" key={JSON.stringify(c.condition)}>
-							<div className="condition">
-								{makeJsx(c.condition)}
-								<div className="content">{makeJsx(c.consequence)}</div>
-							</div>
-						</li>
-					))}
-				</ul>
-			}
-		/>
-	)
 
 	return {
 		explanation,
 		evaluate,
-		jsx,
+		jsx: Variations,
 		category: 'mecanism',
 		name: 'variations',
 		type: 'numeric'
