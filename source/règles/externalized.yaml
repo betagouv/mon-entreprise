@@ -615,7 +615,7 @@ contrat salarié . salaire . net:
   titre.fr: Salaire net
   question.en: What is the net salary?
   question.fr: Quel est le salaire net mensuel ?
-  résumé.en: The amount received monthly by the employee.
+  résumé.en: Received by the employee.
   résumé.fr: Salaire net avant impôt
   description.en: >
     The gross salary minus the social contributions.
@@ -683,7 +683,7 @@ contrat salarié . rémunération . total:
   titre.fr: Total chargé
   question.fr: Quel est la rémunération mensuelle chargée ?
   question.en: What is the monthly remuneration, contributions included ?
-  résumé.en: Paid monthly by the employer.
+  résumé.en: Spent by the employer.
   résumé.fr: Versé par l'employeur
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the total
