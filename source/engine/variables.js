@@ -23,10 +23,9 @@ let evaluateBottomUp = situationGate => startingFragments => {
 }
 let formatBooleanValue = { oui: true, non: false }
 
-/* Evalue la valeur d'une variable
-en utilisant la fonction situationGate qui donne accès à la situation courante*/
-export let evaluateVariable = (situationGate, variableName, rule) => {
-	// test rec
+export let getSituationValue = (situationGate, variableName, rule) => {
+	// get the current situation value
+	// it's the user input or test input, possibly with default values
 	let value = situationGate(variableName)
 
 	if (rule.API) return typeof value == 'string' ? JSON.parse(value) : value

@@ -1,13 +1,13 @@
 import { expect } from 'chai'
-import { evaluateBottomUp, evaluateVariable } from '../source/engine/variables'
+import { evaluateBottomUp, getSituationValue } from '../source/engine/variables'
 
-describe('evaluateVariable', function() {
+describe('getSituationValue', function() {
 	it('should directly return the value of any rule that specifies a format (i.e currency, duration)', function() {
 		let rule = { format: 'euros' },
 			state = { salaire: '2300' },
 			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, 'salaire', rule)).to.equal('2300')
+		expect(getSituationValue(situationGate, 'salaire', rule)).to.equal('2300')
 	})
 
 	it("should interpret rules without a formula as boolean-valued, with 'oui' for true", function() {
@@ -15,7 +15,7 @@ describe('evaluateVariable', function() {
 			state = { condition: 'oui' },
 			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.true
+		expect(getSituationValue(situationGate, 'condition', rule)).to.be.true
 	})
 
 	it("should interpret rules without a formula as boolean-valued, with 'non' meaning false", function() {
@@ -23,7 +23,7 @@ describe('evaluateVariable', function() {
 			state = { condition: 'non' },
 			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.false
+		expect(getSituationValue(situationGate, 'condition', rule)).to.be.false
 	})
 
 	it("should interpret rules with 'one of these', with 'oui' for true", function() {
@@ -31,7 +31,7 @@ describe('evaluateVariable', function() {
 			state = { condition: 'oui' },
 			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, 'condition', rule)).to.be.true
+		expect(getSituationValue(situationGate, 'condition', rule)).to.be.true
 	})
 
 	it('should walk up the namespace chain until it finds the tail as the value', function() {
@@ -42,7 +42,7 @@ describe('evaluateVariable', function() {
 			situationGate = name => state[name]
 
 		expect(
-			evaluateVariable(
+			getSituationValue(
 				situationGate,
 				'contrat salarié . CDD . motif . classique . accroissement activité',
 				rule
@@ -56,7 +56,7 @@ describe('evaluateVariable', function() {
 			situationGate = name => state[name]
 
 		expect(
-			evaluateVariable(
+			getSituationValue(
 				situationGate,
 				'contrat salarié . CDD . motif . classique . accroissement activité',
 				rule
@@ -73,7 +73,7 @@ describe('evaluateVariable', function() {
 			state = { 'univers . ici': 'blanc' },
 			situationGate = name => state[name]
 
-		expect(evaluateVariable(situationGate, 'univers . ici . noir', rule)).to.be
+		expect(getSituationValue(situationGate, 'univers . ici . noir', rule)).to.be
 			.false
 	})
 })

@@ -2,7 +2,7 @@ import React from 'react'
 import { Node, Leaf } from './mecanismViews/common'
 import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 import { evaluateNode, rewriteNode, makeJsx } from './evaluation'
-import { evaluateVariable } from './variables'
+import { getSituationValue } from './variables'
 import { Trans } from 'react-i18next'
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
@@ -20,10 +20,9 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			variableHasCond =
 				variable['applicable si'] != null ||
 				variable['non applicable si'] != null,
-			situationValue = evaluateVariable(situation, dottedName, variable),
+			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
 				situationValue == null && (variableHasCond || variableHasFormula),
-			// evaluateVariable renvoit la valeur déduite de la situation courante renseignée par l'utilisateur
 			explanation = needsEvaluation
 				? evaluateNode(cache, situation, parsedRules, variable)
 				: variable
