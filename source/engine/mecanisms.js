@@ -1,6 +1,5 @@
 import {
 	reduce,
-	reduced,
 	path,
 	mergeWith,
 	objOf,
@@ -33,7 +32,7 @@ import {
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { anyNull, val } from './traverse-common-functions'
-import { Node } from './mecanismViews/common'
+import { Node, SimpleRuleLink } from './mecanismViews/common'
 import {
 	makeJsx,
 	evaluateNode,
@@ -992,7 +991,13 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 	return {
 		explanation: { ...v, API: recurse(v.API) },
 		evaluate,
-		jsx: (nodeValue, explanation) => <span>{nodeValue}</span>,
+		jsx: function Synchronisation(nodeValue, explanation) {
+			return (
+				<p>
+					Obtenu à partir de la saisie <SimpleRuleLink rule={explanation.API} />
+				</p>
+			)
+		},
 		category: 'mecanism',
 		name: 'synchronisation'
 	}
