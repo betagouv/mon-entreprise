@@ -1,5 +1,6 @@
 import Mecanisms from 'Components/Mecanisms'
 import RulePage from 'Components/RulePage'
+import DisableScroll from 'Components/utils/DisableScroll'
 import TrackPageView from 'Components/utils/TrackPageView'
 import React, { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
@@ -33,6 +34,7 @@ class EmbaucheRoute extends Component {
 				onStoreCreated={persistSimulation}>
 				<TrackPageView />
 				{!inIframe() && <Header />}
+				{inIframe() && <DisableScroll />}
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/contact" component={Contact} />
