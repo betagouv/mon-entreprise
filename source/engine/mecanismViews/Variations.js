@@ -15,15 +15,11 @@ export default function Variations(nodeValue, explanation) {
 					{explanation.map(({ condition, consequence, satisfied }) => (
 						<li
 							className={classNames('variation', { satisfied })}
-							key={JSON.stringify(condition | 'sinon')}>
+							key={JSON.stringify(condition || 'sinon')}>
 							<div className="condition">
-								{condition && (
-									<>
-										<span>Si</span> {makeJsx(condition)}
-									</>
-								)}
+								{condition && <span>Si {makeJsx(condition)}</span>}
 								<div className="consequence">
-									<span>{condition ? 'Alors : ' : 'Sinon : '}</span>
+									{condition ? 'Alors : ' : 'Sinon : '}
 									<span className="content">{makeJsx(consequence)}</span>
 								</div>
 							</div>
