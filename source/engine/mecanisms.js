@@ -193,7 +193,7 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
 			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
-		return rewriteNode(node, nodeValue, evaluatedExplanation, missingVariables)
+		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
 	}
 
 	// TODO - find an appropriate representation

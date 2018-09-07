@@ -5,3 +5,6 @@
 	margin-bottom: 1em;
 	list-style: circle;
 }
+.variations > ul > li.satisfied .consequence {
+	background: yellow;
+}
