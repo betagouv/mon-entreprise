@@ -91,6 +91,7 @@ export default class Layout extends PureComponent {
 	}
 	render() {
 		return (
+			// If IE < 11 display nothing
 			<Provider store={this.store}>
 				<TrackerProvider value={tracker}>
 					<SetCSSColour />

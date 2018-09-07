@@ -14,9 +14,27 @@
 	<title>
 		<%= htmlWebpackPlugin.options.title %>
 	</title>
-	<style>
-		/* Prevent FOUC effect */
 
+	<!--[if IE]>
+		<style>
+			#outdated-browser {
+				display: block !important
+			}
+			#lds-ellipsis {
+				display: none !important;
+			}
+		</style>
+	<!--<![endif]-->
+	<style>
+		html[data-useragent*='MSIE 10.0'] #outdated-browser {
+			display: block !important;
+		}
+
+		html[data-useragent*='MSIE 10.0'] #lds-ellipsis {
+			display: none !important;
+		}
+
+		/* Prevent FOUC effect */
 		#js {
 			opacity: 0;
 			transform: translateY(20px);
@@ -113,7 +131,24 @@
 		<div></div>
 		<div></div>
 	</div>
-	<div id="js" />
+	<div id="js"></div>
+
+	</div>
+
+	<!-- OUTDATED BROWSER WARNING -->
+	<div id="outdated-browser" style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; display: none;">
+		<h2 style="margin: 100px auto; max-width: 800px; text-align: center; font-size: 40px; font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;">
+			<img src="images/marianne.svg" alt="Un service de l'État français" style="width: 200px">
+			<br /><br /> Votre navigateur n'est pas supporté. Vous pouvez le mettre à jour ou en installer un nouveau depuis <a style="color: #2975d1"
+			 href="http://outdatedbrowser.com/fr">cette page</a></h2>
+	</div>
+	<script>
+		var doc = document.documentElement;
+		doc.setAttribute('data-useragent', navigator.userAgent);
+	</script>
+
+
+
 	<script src="https://use.fontawesome.com/1da10bbdec.js"></script>
 	<script type="text/javascript">
 		if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
