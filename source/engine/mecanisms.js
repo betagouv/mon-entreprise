@@ -162,17 +162,21 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 						: evaluateNode(cache, situationGate, parsedRules, prop)
 			),
 			evaluatedExplanation = map(evaluateVariation, node.explanation),
-			satisfiedVariation = reduce(
-				(_, variation) =>
-					variation.condition == undefined
-						? reduced(variation) // We've reached the eventual defaut case
-						: variation.condition.nodeValue === null
-							? reduced(null) // one case has missing variables => we can't go further
-							: variation.condition.nodeValue === true
-								? reduced(variation)
-								: null,
-				null
+			// mark the satisfied variation if any in the explanation
+			[, resolvedExplanation] = reduce(
+				([resolved, result], variation) =>
+					resolved
+						? [true, [...result, variation]]
+						: variation.condition == undefined
+							? [true, [...result, { ...variation, satisfied: true }]] // We've reached the eventual defaut case
+							: variation.condition.nodeValue === null
+								? [true, [...result, variation]] // one case has missing variables => we can't go further
+								: variation.condition.nodeValue === true
+									? [true, [...result, { ...variation, satisfied: true }]]
+									: [false, [...result, variation]],
+				[false, []]
 			)(evaluatedExplanation),
+			satisfiedVariation = resolvedExplanation.find(v => v.satisfied),
 			nodeValue = satisfiedVariation
 				? satisfiedVariation.consequence.nodeValue
 				: null
@@ -978,7 +982,8 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 		let nodeValue =
 			val(APIExplanation) == null
 				? null
-				: path(v.chemin.split(' . '))(JSON.parse(val(APIExplanation)))
+				: console.log(APIExplanation) ||
+				  path(v.chemin.split(' . '))(JSON.parse(val(APIExplanation)))
 		let missingVariables =
 			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }
