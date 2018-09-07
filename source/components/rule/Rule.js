@@ -75,13 +75,20 @@ export default class Rule extends Component {
 				/>
 
 				<section id="rule-content">
-					{showValues && displayedRule.nodeValue ? (
+					{displayedRule.nodeValue ? (
 						<div id="ruleValue">
 							<i className="fa fa-calculator" aria-hidden="true" />{' '}
 							{Intl.NumberFormat(language, {
 								style: 'currency',
 								currency: 'EUR'
 							}).format(displayedRule.nodeValue)}
+						</div>
+					) : null}
+
+					{displayedRule.defaultValue != null &&
+					typeof displayedRule.defaultValue !== 'object' ? (
+						<div id="ruleDefault">
+							Valeur par défaut : {displayedRule.defaultValue}
 						</div>
 					) : null}
 
