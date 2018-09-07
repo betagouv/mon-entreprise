@@ -55,7 +55,7 @@ export default class Algorithm extends React.Component {
 						{!ruleWithoutFormula ? (
 							<section id="formule">
 								<h2>
-									<Trans>Détails du calcul</Trans>
+									<Trans>Notre calcul</Trans>
 								</h2>
 								{makeJsx(rule['formule'])}
 							</section>

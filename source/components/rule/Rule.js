@@ -90,7 +90,7 @@ export default class Rule extends Component {
 						rule={displayedRule}
 					/>
 					{!isEmpty(namespaceRules) && (
-						<NamespaceRulesList {...{ flatRule, namespaceRules }} />
+						<NamespaceRulesList {...{ namespaceRules }} />
 					)}
 					{this.renderReferences(flatRule)}
 				</section>
@@ -110,30 +110,27 @@ export default class Rule extends Component {
 		) : null
 }
 
-let NamespaceRulesList = withColours(
-	({ namespaceRules, flatRule, colours }) => (
-		<section>
-			<h2>
-				<Trans>Règles du groupe</Trans>
-				<small> «{flatRule.title}»</small>
-			</h2>
-			<ul>
-				{namespaceRules.map(r => (
-					<li key={r.name}>
-						<Link
-							style={{
-								color: colours.textColourOnWhite,
-								textDecoration: 'underline'
-							}}
-							to={'../règle/' + encodeRuleName(r.dottedName)}>
-							{r.title || r.name}
-						</Link>
-					</li>
-				))}
-			</ul>
-		</section>
-	)
-)
+let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
+	<section>
+		<h2>
+			<Trans>Règles associées</Trans>
+		</h2>
+		<ul>
+			{namespaceRules.map(r => (
+				<li key={r.name}>
+					<Link
+						style={{
+							color: colours.textColourOnWhite,
+							textDecoration: 'underline'
+						}}
+						to={'../règle/' + encodeRuleName(r.dottedName)}>
+						{r.title || r.name}
+					</Link>
+				</li>
+			))}
+		</ul>
+	</section>
+))
 
 let ReportError = ({ name }) => (
 	<div className="reportErrorContainer">
