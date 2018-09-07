@@ -1440,12 +1440,16 @@
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   question: Dans quelle commune l'établissement est-il implanté ?
   API: géo
+  par défaut: 
+    code: 29019
+    nom: Brest
+    departement: 
+      nom: Finistère
 
 - espace: établissement . localisation
   nom: code commune
   titre: Code commune de l'établissement
   format: nombre
-  par défaut: 29019
   formule: 
     synchronisation: 
       API: localisation
@@ -1458,7 +1462,6 @@
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   format: texte
-  par défaut: Brest
   formule: 
     synchronisation: 
       API: localisation
@@ -1468,7 +1471,6 @@
   nom: département
   titre: Département de l'établissement
   format: texte
-  par défaut: Finistère
   formule: 
     synchronisation: 
       API: localisation
