@@ -1435,6 +1435,7 @@
 
 - espace: établissement
   nom: localisation
+  icônes: 🌍
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
