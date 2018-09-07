@@ -964,7 +964,7 @@
   références: 
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
-  formule: net - impôt neutre sur le revenu
+  formule: net - impôt . neutre
   contrôles: 
     - si: net après impôt < 200
       message: Entrez un salaire mensuel
@@ -972,12 +972,12 @@
 
 
 
-- espace: contrat salarié . impôt neutre sur le revenu 
+- espace: impôt . neutre
   nom: barème Guadeloupe Réunion Martinique
   icônes: 🇬🇵🇷🇪 🇲🇶
   formule:
     barème linéaire: 
-      assiette: salaire . net imposable 
+      assiette: contrat salarié . salaire . net imposable 
       tranches: 
         - en-dessous de: 1568	
           taux: 0%
@@ -1057,12 +1057,12 @@
         - au-dessus de: 55986	
           taux: 43%
 
-- espace: contrat salarié . impôt neutre sur le revenu
+- espace: impôt . neutre
   nom: barème Guyane Mayotte
   icônes: 🇬🇾 🇾🇹
   formule:
     barème linéaire: 
-      assiette: salaire . net imposable 
+      assiette: contrat salarié . salaire . net imposable 
       tranches: 
         - en-dessous de: 1679	
           taux: 0%
@@ -1144,11 +1144,11 @@
 
 
 
-- espace: contrat salarié . impôt neutre sur le revenu
+- espace: impôt . neutre 
   nom: barème métropolitain
   formule:
     barème linéaire: 
-      assiette: salaire . net imposable 
+      assiette: contrat salarié . salaire . net imposable 
       tranches: 
         - en-dessous de: 1367
           taux: 0%
@@ -1228,8 +1228,9 @@
         - au-dessus de: 46501
           taux: 43%
 
-- espace: contrat salarié 
-  nom: impôt neutre sur le revenu
+- espace: impôt
+  nom: neutre
+  titre: Impôt neutre sur le revenu
   icônes: 🏛️
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
@@ -1257,25 +1258,25 @@
   exemples: 
         - nom: Très haut salaire
           situation: 
-            salaire . net imposable: 50000
+            contrat salarié . salaire . net imposable: 50000
           valeur attendue: 21500
         - nom: Salaire ~ médian
           situation: 
-            salaire . net imposable: 1700
+            contrat salarié . salaire . net imposable: 1700
           valeur attendue: 59.5
         - nom: Bas salaire
           situation: 
-            salaire . net imposable: 1000
+            contrat salarié . salaire . net imposable: 1000
           valeur attendue: 0
         - nom: Guadeloupe
           situation: 
             établissement . localisation . département: Guadeloupe
-            salaire . net imposable: 1800
+            contrat salarié . salaire . net imposable: 1800
           valeur attendue: 45
         - nom: Guyane
           situation: 
             établissement . localisation . département: Guyane
-            salaire . net imposable: 1800
+            contrat salarié . salaire . net imposable: 1800
           valeur attendue: 27
 
 

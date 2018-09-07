@@ -1,6 +1,7 @@
 import React from 'react'
 import { Node } from './common'
 import { makeJsx } from '../evaluation'
+import './Variations.css'
 
 export default function Variations(nodeValue, explanation) {
 	return (
@@ -15,8 +16,15 @@ export default function Variations(nodeValue, explanation) {
 							className="variation"
 							key={JSON.stringify(c.condition | 'sinon')}>
 							<div className="condition">
-								{c.condition ? <span>Si {makeJsx(c.condition)}</span> : 'Sinon'}
-								<div className="content">{makeJsx(c.consequence)}</div>
+								{c.condition && (
+									<>
+										<span>Si</span> {makeJsx(c.condition)}
+									</>
+								)}
+								<div>
+									<span>{c.condition ? 'Alors : ' : 'Sinon : '}</span>
+									<span className="content">{makeJsx(c.consequence)}</span>
+								</div>
 							</div>
 						</li>
 					))}
