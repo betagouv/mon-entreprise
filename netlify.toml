@@ -9,18 +9,30 @@ to = "/infrance.html"
 status = 200
 
 [[redirects]]
+from = "https://mycompanyinfrance.fr/robots.txt"
+to = "/robots.infrance.txt"
+status = 200
+
+[[redirects]]
 from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"
 status = 200
+
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/modules/v2/*"
 to = "/:splat"
 
 [[redirects]]
+from = "https://embauche.beta.gouv.fr/robots.txt"
+to = "/robots.embauche.txt"
+status = 200
+
+[[redirects]]
 from = "https://embauche.beta.gouv.fr/*"
 to = "/embauche.html"
 status = 200
+
 
 [[redirects]]
 from = "/*"

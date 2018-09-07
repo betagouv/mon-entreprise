@@ -100,7 +100,8 @@ module.exports = {
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			'./source/sites/embauche.gouv.fr/images/logo',
-			'./robots.txt'
+			{ from: './source/sites/embauche.gouv.fr/robots.txt', to: 'robots.embauche.txt' },
+			{ from: './source/sites/mycompanyinfrance.fr/robots.txt', to: 'robots.infrance.txt' },
 		])
 	]
 }
