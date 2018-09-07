@@ -1,6 +1,6 @@
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
-  icône: 🚴
+  icônes: 🚴
   formule: indemnité annuelle / 12
   description: | 
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
@@ -579,7 +579,7 @@
 
 - espace: contrat salarié . CDD
   nom: durée contrat
-  icône: ⏳
+  icônes: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
   sous-question: |
@@ -974,6 +974,7 @@
 
 - espace: contrat salarié . impôt neutre sur le revenu 
   nom: barème Guadeloupe Réunion Martinique
+  icônes: 🇬🇵🇷🇪 🇲🇶
   formule:
     barème linéaire: 
       assiette: salaire . net imposable 
@@ -1058,6 +1059,7 @@
 
 - espace: contrat salarié . impôt neutre sur le revenu
   nom: barème Guyane Mayotte
+  icônes: 🇬🇾 🇾🇹
   formule:
     barème linéaire: 
       assiette: salaire . net imposable 
@@ -1228,7 +1230,7 @@
 
 - espace: contrat salarié 
   nom: impôt neutre sur le revenu
-  icône: 🏛️
+  icônes: 🏛️
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
@@ -1346,7 +1348,7 @@
 - espace: contrat salarié
   nom: aides employeur
   résumé: Pour l'employeur, différées dans le temps
-  icône: 🎁
+  icônes: 🎁
   description: >
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
