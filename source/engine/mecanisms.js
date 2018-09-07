@@ -982,8 +982,7 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 		let nodeValue =
 			val(APIExplanation) == null
 				? null
-				: console.log(APIExplanation) ||
-				  path(v.chemin.split(' . '))(JSON.parse(val(APIExplanation)))
+				: path(v.chemin.split(' . '))(val(APIExplanation))
 		let missingVariables =
 			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }

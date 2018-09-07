@@ -29,6 +29,8 @@ export let evaluateVariable = (situationGate, variableName, rule) => {
 	// test rec
 	let value = situationGate(variableName)
 
+	if (rule.API) return value && JSON.parse(value)
+
 	if (rule.format != null) return value
 	//boolean variables don't have a format prop, it's the default
 	if (formatBooleanValue[value] !== undefined) return formatBooleanValue[value]
