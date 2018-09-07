@@ -24,6 +24,7 @@ import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
 import { reduxForm } from 'redux-form'
+import withLanguage from 'Components/utils/withLanguage'
 
 @connect((state, props) => ({
 	currentExample: state.currentExample,
@@ -33,6 +34,7 @@ import { reduxForm } from 'redux-form'
 	analysedExample: exampleAnalysisSelector(state, props)
 }))
 @translate()
+@withLanguage
 export default class Rule extends Component {
 	render() {
 		let {
@@ -41,7 +43,8 @@ export default class Rule extends Component {
 				flatRules,
 				valuesToShow,
 				analysedExample,
-				analysedRule
+				analysedRule,
+				language
 			} = this.props,
 			flatRule = findRuleByDottedName(flatRules, dottedName)
 
@@ -49,6 +52,7 @@ export default class Rule extends Component {
 			namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 		let displayedRule = analysedExample || analysedRule
+		let showValues = valuesToShow || currentExample
 
 		return (
 			<div id="rule">
@@ -71,12 +75,19 @@ export default class Rule extends Component {
 				/>
 
 				<section id="rule-content">
+					{showValues && displayedRule.nodeValue ? (
+						<div id="ruleValue">
+							<i className="fa fa-calculator" aria-hidden="true" />{' '}
+							{Intl.NumberFormat(language, {
+								style: 'currency',
+								currency: 'EUR'
+							}).format(displayedRule.nodeValue)}
+						</div>
+					) : null}
+
 					{flatRule.question && <UserInput {...{ flatRules, dottedName }} />}
 					{flatRule.ns && (
-						<Algorithm
-							rule={displayedRule}
-							showValues={valuesToShow || currentExample}
-						/>
+						<Algorithm rule={displayedRule} showValues={showValues} />
 					)}
 					{flatRule.note && (
 						<section id="notes">

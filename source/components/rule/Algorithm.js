@@ -24,15 +24,6 @@ export default class Algorithm extends React.Component {
 		return (
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({ showValues })}>
-					{showValues && rule.nodeValue ? (
-						<div id="ruleValue">
-							<i className="fa fa-calculator" aria-hidden="true" />{' '}
-							{Intl.NumberFormat(language, {
-								style: 'currency',
-								currency: 'EUR'
-							}).format(rule.nodeValue)}
-						</div>
-					) : null}
 					<ShowValuesProvider value={showValues}>
 						{do {
 							// TODO ce let est incompréhensible !
