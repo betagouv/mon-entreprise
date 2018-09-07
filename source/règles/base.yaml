@@ -1448,7 +1448,6 @@
 
 - espace: établissement . localisation
   nom: code commune
-  titre: Code commune de l'établissement
   format: nombre
   formule: 
     synchronisation: 
@@ -1457,7 +1456,6 @@
 
 - espace: établissement . localisation
   nom: commune
-  titre: Commune de l'établissement
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
@@ -1469,7 +1467,6 @@
 
 - espace: établissement . localisation
   nom: département
-  titre: Département de l'établissement
   format: texte
   formule: 
     synchronisation: 
