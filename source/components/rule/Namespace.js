@@ -25,8 +25,8 @@ let Namespace = ({ ns, flatRules, colour }) => (
 				return (
 					<li style={style} key={fragments.join()}>
 						<Link style={style} to={'../règle/' + encodeRuleName(ruleName)}>
+							{rule.icon && <span>{emoji(rule.icon)} </span>}
 							{ruleText}
-							{rule.icon && <span> {emoji(rule.icon)}</span>}
 						</Link>
 						{' › '}
 					</li>
