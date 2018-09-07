@@ -656,7 +656,7 @@ contrat salarié . salaire . net après impôt:
 
     This is a good estimate of a person's disposable income in the absence of
     information about their family and assets.
-contrat salarié . impôt neutre sur le revenu:
+impôt . neutre:
   description.fr: >-
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
     l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à

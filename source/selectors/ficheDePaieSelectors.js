@@ -191,7 +191,7 @@ function analysisToFicheDePaie(
 		nombreHeuresTravaillées: Math.round(
 			règleAvecValeur('contrat salarié . heures par semaine').valeur * 4.33
 		),
-		impôt: règleAvecMontant('contrat salarié . impôt neutre sur le revenu'),
+		impôt: règleAvecMontant('impôt . neutre'),
 		salaireNetAprèsImpôt: règleAvecMontant(
 			'contrat salarié . salaire . net après impôt'
 		)
