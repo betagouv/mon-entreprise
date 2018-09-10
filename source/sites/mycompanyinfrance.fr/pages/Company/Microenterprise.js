@@ -30,12 +30,12 @@ const Microenterprise = ({ companyIsMicroenterprise }: Props) => (
 		<p>
 			<strong>Note:</strong> Some activities are excluded from this status (
 			<a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
-				see the list
+				see the list (Fr)
 			</a>
 			). Some activities are regulated with a qualification or a professional
 			experience (
 			<a href="https://www.afecreation.fr/pid316/activites-reglementees.html">
-				see the list
+				see the list (Fr)
 			</a>
 			).
 		</p>

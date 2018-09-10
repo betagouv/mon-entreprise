@@ -98,7 +98,7 @@ const CreateCompany = ({
 									situations, you can benefit from substantial public financing
 									(exemption from charges, taxes, etc.).{' '}
 									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
-										More information (french)
+										More information (Fr)
 									</a>
 								</p>
 							</>

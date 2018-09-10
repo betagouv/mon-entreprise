@@ -31,7 +31,7 @@ const HiringProcess = ({
 							href="https://www.service-public.fr/particuliers/vosdroits/N19871"
 							target="_blank">
 							{' '}
-							More information (French)
+							More information (Fr)
 						</a>
 					</p>
 				}
@@ -46,7 +46,7 @@ const HiringProcess = ({
 						<a
 							href="https://www.due.urssaf.fr/declarant/index.jsf"
 							target="_blank">
-							be done online
+							be done online (Fr)
 						</a>
 					</p>
 				}
@@ -59,13 +59,13 @@ const HiringProcess = ({
 						With fewer than 20 employees, payslips and declarations can be
 						handled online by the{' '}
 						<a href="http://www.letese.urssaf.fr" target="_blank">
-							Tese (French)
+							Tese (Fr)
 						</a>
 						. In any case, you can use{' '}
 						<a
 							href="http://www.dsn-info.fr/convention-charte.htm"
 							target="_blank">
-							private payslip software (French)
+							private payslip software (Fr)
 						</a>
 					</p>
 				}
