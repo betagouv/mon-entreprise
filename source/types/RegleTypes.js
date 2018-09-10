@@ -19,5 +19,4 @@ export type RègleValeur =
 	| { valeur: number, type: 'euros' }
 	| { valeur: number, type: 'number' }
 	| { valeur: string, type: 'string' }
-
 export type RègleAvecValeur = Règle & RègleValeur

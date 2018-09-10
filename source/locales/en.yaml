@@ -77,7 +77,7 @@ Votre avis nous intéresse !: Your opinion matters!
 afficher les sources complémentaires: display additional information sources
 input: This rule does not have a formula to compute it. Its value must be supplied through the form.
 Déclenchement: Applicability
-Détails du calcul: Calculation formula
+Calcul: Formula
 Chercher une règle: Find a rule
 Entrez des mots clefs ici: Enter keywords
 noresults: No results
@@ -97,7 +97,7 @@ aide: aid or subsidy
 indemnité: benefit
 salaire: salary
 taxe: tax
-examples: Example situations
+examples: Examples
 clickexample: Click on a situation to see the result
 fail: This test failed
 expected: the expected result was

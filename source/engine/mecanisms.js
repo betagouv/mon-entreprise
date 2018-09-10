@@ -1,6 +1,6 @@
 import {
 	reduce,
-	reduced,
+	path,
 	mergeWith,
 	objOf,
 	toPairs,
@@ -32,7 +32,7 @@ import {
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { anyNull, val } from './traverse-common-functions'
-import { Node } from './mecanismViews/common'
+import { Node, SimpleRuleLink } from './mecanismViews/common'
 import {
 	makeJsx,
 	evaluateNode,
@@ -161,17 +161,21 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 						: evaluateNode(cache, situationGate, parsedRules, prop)
 			),
 			evaluatedExplanation = map(evaluateVariation, node.explanation),
-			satisfiedVariation = reduce(
-				(_, variation) =>
-					variation.condition == undefined
-						? reduced(variation) // We've reached the eventual defaut case
-						: variation.condition.nodeValue === null
-							? reduced(null) // one case has missing variables => we can't go further
-							: variation.condition.nodeValue === true
-								? reduced(variation)
-								: null,
-				null
+			// mark the satisfied variation if any in the explanation
+			[, resolvedExplanation] = reduce(
+				([resolved, result], variation) =>
+					resolved
+						? [true, [...result, variation]]
+						: variation.condition == undefined
+							? [true, [...result, { ...variation, satisfied: true }]] // We've reached the eventual defaut case
+							: variation.condition.nodeValue === null
+								? [true, [...result, variation]] // one case has missing variables => we can't go further
+								: variation.condition.nodeValue === true
+									? [true, [...result, { ...variation, satisfied: true }]]
+									: [false, [...result, variation]],
+				[false, []]
 			)(evaluatedExplanation),
+			satisfiedVariation = resolvedExplanation.find(v => v.satisfied),
 			nodeValue = satisfiedVariation
 				? satisfiedVariation.consequence.nodeValue
 				: null
@@ -188,7 +192,7 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
 			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
 
-		return rewriteNode(node, nodeValue, evaluatedExplanation, missingVariables)
+		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
 	}
 
 	// TODO - find an appropriate representation
@@ -719,6 +723,13 @@ let desugarScale = recurse => tranches =>
 		.map(evolve({ taux: recurse }))
 
 export let mecanismLinearScale = (recurse, k, v) => {
+	if (v.composantes) {
+		//mécanisme de composantes. Voir known-mecanisms.md/composantes
+		return decompose(recurse, k, v)
+	}
+	if (v.variations) {
+		return mecanismVariations(recurse, k, v, true)
+	}
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
 			assiette: false
@@ -955,6 +966,40 @@ export let mecanismSelection = (recurse, k, v) => {
 		jsx: (nodeValue, explanation) => (
 			<SelectionView nodeValue={nodeValue} explanation={explanation} />
 		)
+	}
+}
+
+export let mecanismSynchronisation = (recurse, k, v) => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		let APIExplanation = evaluateNode(
+			cache,
+			situationGate,
+			parsedRules,
+			node.explanation.API
+		)
+
+		let nodeValue =
+			val(APIExplanation) == null
+				? null
+				: path(v.chemin.split(' . '))(val(APIExplanation))
+		let missingVariables =
+			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
+		let explanation = { ...v, API: APIExplanation }
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
+	}
+
+	return {
+		explanation: { ...v, API: recurse(v.API) },
+		evaluate,
+		jsx: function Synchronisation(nodeValue, explanation) {
+			return (
+				<p>
+					Obtenu à partir de la saisie <SimpleRuleLink rule={explanation.API} />
+				</p>
+			)
+		},
+		category: 'mecanism',
+		name: 'synchronisation'
 	}
 }
 

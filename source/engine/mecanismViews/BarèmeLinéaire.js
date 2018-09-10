@@ -7,7 +7,7 @@ export default function BarèmeLinéaire(nodeValue, explanation) {
 	return (
 		<Node
 			classes="mecanism barèmeLinéaire"
-			name="barèmeLinéaire"
+			name="Barème linéaire"
 			value={nodeValue}
 			child={
 				<ul className="properties">

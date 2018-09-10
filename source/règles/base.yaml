@@ -1,6 +1,6 @@
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
-  icône: 🚴
+  icônes: 🚴
   formule: indemnité annuelle / 12
   description: | 
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
@@ -579,7 +579,7 @@
 
 - espace: contrat salarié . CDD
   nom: durée contrat
-  icône: ⏳
+  icônes: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
   sous-question: |
@@ -956,7 +956,7 @@
   description: | 
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
 
-    Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé) pour la France métropolitaine.
+    Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé).
           
     C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
 
@@ -964,22 +964,191 @@
   références: 
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
-  formule: net - impôt neutre sur le revenu
+  formule: net - impôt . neutre
   contrôles: 
     - si: net après impôt < 200
       message: Entrez un salaire mensuel
       niveau: bloquant
 
-- espace: contrat salarié 
-  nom: impôt neutre sur le revenu
-  icône: 🏛️
-  description: >
-    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
-  note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
-  format: euros
+
+
+- espace: impôt . neutre
+  nom: barème Guadeloupe Réunion Martinique
+  icônes: 🇬🇵🇷🇪 🇲🇶
   formule:
     barème linéaire: 
-      assiette: salaire . net imposable 
+      assiette: contrat salarié . salaire . net imposable 
+      tranches: 
+        - en-dessous de: 1568	
+          taux: 0%
+
+        - de: 1569
+          à: 1662	
+          taux: 0.5%
+
+        - de: 1663 
+          à: 1789	
+          taux: 1.5%
+
+        - de: 1790 
+          à: 1897	
+          taux: 2.5%
+
+        - de: 1898 
+          à: 2062	
+          taux: 3.5%
+
+        - de: 2063 
+          à: 2315	
+          taux: 4.5%
+
+        - de: 2316 
+          à: 2712	
+          taux: 6%
+
+        - de: 2713 
+          à: 3094	
+          taux: 7.5%
+
+        - de: 3095 
+          à: 3601	
+          taux: 9%
+
+        - de: 3602 
+          à: 4307	
+          taux: 10.5%
+
+        - de: 4308 
+          à: 5586	
+          taux: 12%
+
+        - de: 5587 
+          à: 7099	
+          taux: 14%
+
+        - de: 7100 
+          à: 7813	
+          taux: 16%
+
+        - de: 7814 
+          à: 8686	
+          taux: 18%
+
+        - de: 8687 
+          à: 10374	
+          taux: 20%
+
+        - de: 10375 
+          à: 13140	
+          taux: 24%
+
+        - de: 13141 
+          à: 17374	
+          taux: 28%
+
+        - de: 17375 
+          à: 26518	
+          taux: 33%
+
+        - de: 26519 
+          à: 55985	
+          taux: 38%
+
+        - au-dessus de: 55986	
+          taux: 43%
+
+- espace: impôt . neutre
+  nom: barème Guyane Mayotte
+  icônes: 🇬🇾 🇾🇹
+  formule:
+    barème linéaire: 
+      assiette: contrat salarié . salaire . net imposable 
+      tranches: 
+        - en-dessous de: 1679	
+          taux: 0%
+
+        - de: 1680
+          à: 1785	
+          taux: 0.5%
+
+        - de: 1786
+          à: 1923	
+          taux: 1.5%
+
+        - de: 1924
+          à: 2111	
+          taux: 2.5%
+
+        - de: 2112
+          à: 2340	
+          taux: 3.5%
+
+        - de: 2341
+          à: 2579	
+          taux: 4.5%
+
+        - de: 2580
+          à: 2988	
+          taux: 6%
+
+        - de: 2989
+          à: 3553	
+          taux: 7.5%
+
+        - de: 3554
+          à: 4379	
+          taux: 9%
+
+        - de: 4380
+          à: 5706	
+          taux: 10.5%
+
+        - de: 5707
+          à: 7063	
+          taux: 12%
+
+        - de: 7064
+          à: 7708	
+          taux: 14%
+
+        - de: 7709
+          à: 8483	
+          taux: 16%
+
+        - de: 8484
+          à: 9431	
+          taux: 18%
+
+        - de: 9432
+          à: 11075	
+          taux: 20%
+
+        - de: 11076
+          à: 13960	
+          taux: 24%
+
+        - de: 13961
+          à: 18293	
+          taux: 28%
+
+        - de: 18294
+          à: 27922	
+          taux: 33%
+
+        - de: 27923
+          à: 58947	
+          taux: 38%
+
+        - au-dessus de: 58948
+          taux: 43%
+
+
+
+- espace: impôt . neutre 
+  nom: barème métropolitain
+  formule:
+    barème linéaire: 
+      assiette: contrat salarié . salaire . net imposable 
       tranches: 
         - en-dessous de: 1367
           taux: 0%
@@ -1058,19 +1227,56 @@
 
         - au-dessus de: 46501
           taux: 43%
+
+- espace: impôt
+  nom: neutre
+  titre: Impôt neutre sur le revenu
+  description: >
+    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
+  note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
+  format: euros
+  formule:
+      variations: 
+        - si: 
+            une de ces conditions: 
+              - établissement . localisation . département = 'Guadeloupe'
+              - établissement . localisation . département = 'La Réunion'
+              - établissement . localisation . département = 'Martinique'
+          alors: 
+            barème Guadeloupe Réunion Martinique
+
+
+        - si:
+            une de ces conditions: 
+              - établissement . localisation . département = 'Guyane'
+              - établissement . localisation . département = 'Mayotte'
+          alors: 
+            barème Guyane Mayotte
+        - sinon: 
+            barème métropolitain
   exemples: 
         - nom: Très haut salaire
           situation: 
-            salaire . net imposable: 50000
+            contrat salarié . salaire . net imposable: 50000
           valeur attendue: 21500
         - nom: Salaire ~ médian
           situation: 
-            salaire . net imposable: 1700
+            contrat salarié . salaire . net imposable: 1700
           valeur attendue: 59.5
         - nom: Bas salaire
           situation: 
-            salaire . net imposable: 1000
+            contrat salarié . salaire . net imposable: 1000
           valeur attendue: 0
+        - nom: Guadeloupe
+          situation: 
+            établissement . localisation . département: Guadeloupe
+            contrat salarié . salaire . net imposable: 1800
+          valeur attendue: 45
+        - nom: Guyane
+          situation: 
+            établissement . localisation . département: Guyane
+            contrat salarié . salaire . net imposable: 1800
+          valeur attendue: 27
 
 
   références: 
@@ -1142,7 +1348,7 @@
 - espace: contrat salarié
   nom: aides employeur
   résumé: Pour l'employeur, différées dans le temps
-  icône: 🎁
+  icônes: 🎁
   description: >
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
   formule:
@@ -1228,37 +1434,46 @@
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
 
 - espace: établissement
-  nom: code postal
-  titre: Code postal de l'établissement
-  question: Quel est le code postal de la commune de l'établissement ?
+  nom: localisation
+  icônes: 🌍
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-  format: nombre
-  suggestions: utilisation d'une API
-  par défaut: non
+  question: Dans quelle commune l'établissement est-il implanté ?
+  API: géo
+  par défaut: 
+    code: 29019
+    nom: Brest
+    departement: 
+      nom: Finistère
 
-- espace: établissement
+- espace: établissement . localisation
   nom: code commune
-  titre: Code commune de l'établissement
-  question: Dans quelle commune l'établissement est-il implanté ?
-  description: |
-    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
-    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   format: nombre
-  suggestions: utilisation d'une API
-  par défaut: 29019
+  formule: 
+    synchronisation: 
+      API: localisation
+      chemin: code
 
-- espace: établissement
+- espace: établissement . localisation
   nom: commune
-  titre: Commune de l'établissement
-  question: Dans quelle commune l'établissement est-il implanté ?
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-  # format: objet
   format: texte
-  par défaut: non
+  formule: 
+    synchronisation: 
+      API: localisation
+      chemin: nom
+
+- espace: établissement . localisation
+  nom: département
+  format: texte
+  formule: 
+    synchronisation: 
+      API: localisation
+      chemin: departement . nom
+
 - espace: contrat salarié
   nom: temps partiel
   question: Le contrat est-il à temps partiel ?
@@ -2361,7 +2576,7 @@
   formule:
     sélection:
       données: taux du versement transport
-      cherche: code commune
+      cherche: localisation . code commune
       dans: codeCommune
       composantes:
         - nom: aot
@@ -2445,6 +2660,7 @@
 # Ci-dessous une implémentation basique de l'impôt sur le revenu annuel dans le but d'illustrer un post de blog
 
 - nom: impôt
+  icônes: 🏛️
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
 
 - nom: revenu abattu

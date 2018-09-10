@@ -27,6 +27,3 @@
 .barème .tranche.activated {
 	background: yellow !important ;
 }
-.barème .tranche.activated:last-of-type {
-	background: chartreuse;
-}

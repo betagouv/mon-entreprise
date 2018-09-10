@@ -1,4 +1,5 @@
 import withColours from 'Components/utils/withColours'
+import { getInputComponent } from 'Engine/generateQuestions'
 import { createMarkdownDiv } from 'Engine/marked'
 import {
 	encodeRuleName,
@@ -22,6 +23,8 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import { reduxForm } from 'redux-form'
+import withLanguage from 'Components/utils/withLanguage'
 
 @connect((state, props) => ({
 	currentExample: state.currentExample,
@@ -31,6 +34,7 @@ import './Rule.css'
 	analysedExample: exampleAnalysisSelector(state, props)
 }))
 @translate()
+@withLanguage
 export default class Rule extends Component {
 	render() {
 		let {
@@ -39,7 +43,8 @@ export default class Rule extends Component {
 				flatRules,
 				valuesToShow,
 				analysedExample,
-				analysedRule
+				analysedRule,
+				language
 			} = this.props,
 			flatRule = findRuleByDottedName(flatRules, dottedName)
 
@@ -47,6 +52,7 @@ export default class Rule extends Component {
 			namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 		let displayedRule = analysedExample || analysedRule
+		let showValues = valuesToShow || currentExample
 
 		return (
 			<div id="rule">
@@ -69,11 +75,32 @@ export default class Rule extends Component {
 				/>
 
 				<section id="rule-content">
+					{displayedRule.nodeValue ? (
+						<div id="ruleValue">
+							<i className="fa fa-calculator" aria-hidden="true" />{' '}
+							{displayedRule.format === 'euros'
+								? Intl.NumberFormat(language, {
+										style: 'currency',
+										currency: 'EUR'
+								  }).format(displayedRule.nodeValue)
+								: typeof displayedRule.nodeValue !== 'object'
+									? displayedRule.nodeValue
+									: null}
+						</div>
+					) : null}
+
+					{displayedRule.defaultValue != null &&
+					typeof displayedRule.defaultValue !== 'object' ? (
+						<div id="ruleDefault">
+							Valeur par défaut : {displayedRule.defaultValue}
+						</div>
+					) : null}
+
+					{//flatRule.question &&
+					// Fonctionnalité intéressante, à implémenter correctement
+					false && <UserInput {...{ flatRules, dottedName }} />}
 					{flatRule.ns && (
-						<Algorithm
-							rule={displayedRule}
-							showValues={valuesToShow || currentExample}
-						/>
+						<Algorithm rule={displayedRule} showValues={showValues} />
 					)}
 					{flatRule.note && (
 						<section id="notes">
@@ -87,7 +114,7 @@ export default class Rule extends Component {
 						rule={displayedRule}
 					/>
 					{!isEmpty(namespaceRules) && (
-						<NamespaceRulesList {...{ flatRule, namespaceRules }} />
+						<NamespaceRulesList {...{ namespaceRules }} />
 					)}
 					{this.renderReferences(flatRule)}
 				</section>
@@ -107,30 +134,27 @@ export default class Rule extends Component {
 		) : null
 }
 
-let NamespaceRulesList = withColours(
-	({ namespaceRules, flatRule, colours }) => (
-		<section>
-			<h2>
-				<Trans>Règles du groupe</Trans>
-				<small> «{flatRule.title}»</small>
-			</h2>
-			<ul>
-				{namespaceRules.map(r => (
-					<li key={r.name}>
-						<Link
-							style={{
-								color: colours.textColourOnWhite,
-								textDecoration: 'underline'
-							}}
-							to={'../règle/' + encodeRuleName(r.dottedName)}>
-							{r.title || r.name}
-						</Link>
-					</li>
-				))}
-			</ul>
-		</section>
-	)
-)
+let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
+	<section>
+		<h2>
+			<Trans>Règles associées</Trans>
+		</h2>
+		<ul>
+			{namespaceRules.map(r => (
+				<li key={r.name}>
+					<Link
+						style={{
+							color: colours.textColourOnWhite,
+							textDecoration: 'underline'
+						}}
+						to={'../règle/' + encodeRuleName(r.dottedName)}>
+						{r.title || r.name}
+					</Link>
+				</li>
+			))}
+		</ul>
+	</section>
+))
 
 let ReportError = ({ name }) => (
 	<div className="reportErrorContainer">
@@ -149,3 +173,14 @@ let ReportError = ({ name }) => (
 		</a>
 	</div>
 )
+
+@reduxForm({
+	form: 'conversation',
+	destroyOnUnmount: false
+})
+class UserInput extends Component {
+	render() {
+		let { flatRules, dottedName } = this.props
+		return getInputComponent(flatRules)(dottedName)
+	}
+}

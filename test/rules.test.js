@@ -65,6 +65,17 @@ describe('rule checks', function() {
 	})
 })
 
+it('rules with a formula should not have defaults', function() {
+	let errors = rules.filter(
+		r =>
+			r.formule !== undefined &&
+			!r.formule['une possibilité'] &&
+			r.defaultValue !== undefined
+	)
+
+	// variant formulas are an exception, their implementation is to refactor TODO
+	expect(errors).to.be.empty
+})
 describe('translateAll', function() {
 	it('should translate flat rules', function() {
 		let rules = [

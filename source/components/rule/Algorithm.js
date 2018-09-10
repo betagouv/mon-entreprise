@@ -5,7 +5,6 @@ import { path, values } from 'ramda'
 import React from 'react'
 import { Trans, translate } from 'react-i18next'
 import { AttachDictionary } from '../AttachDictionary'
-import withLanguage from 'Components/utils/withLanguage'
 import './Algorithm.css'
 
 // The showValues prop is passed as a context. It used to be delt in CSS (not(.showValues) display: none), both coexist right now
@@ -13,10 +12,9 @@ import { ShowValuesProvider } from './ShowValuesContext'
 
 @AttachDictionary(knownMecanisms)
 @translate()
-@withLanguage
 export default class Algorithm extends React.Component {
 	render() {
-		let { rule, showValues, language } = this.props,
+		let { rule, showValues } = this.props,
 			ruleWithoutFormula =
 				!rule['formule'] ||
 				path(['formule', 'explanation', 'une possibilité'], rule)
@@ -24,15 +22,6 @@ export default class Algorithm extends React.Component {
 		return (
 			<div id="algorithm">
 				<section id="rule-rules" className={classNames({ showValues })}>
-					{showValues && rule.nodeValue ? (
-						<div id="ruleValue">
-							<i className="fa fa-calculator" aria-hidden="true" />{' '}
-							{Intl.NumberFormat(language, {
-								style: 'currency',
-								currency: 'EUR'
-							}).format(rule.nodeValue)}
-						</div>
-					) : null}
 					<ShowValuesProvider value={showValues}>
 						{do {
 							// TODO ce let est incompréhensible !
@@ -55,7 +44,7 @@ export default class Algorithm extends React.Component {
 						{!ruleWithoutFormula ? (
 							<section id="formule">
 								<h2>
-									<Trans>Détails du calcul</Trans>
+									<Trans>Calcul</Trans>
 								</h2>
 								{makeJsx(rule['formule'])}
 							</section>

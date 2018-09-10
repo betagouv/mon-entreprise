@@ -44,15 +44,6 @@
 	margin: 1em 0;
 }
 
-#rule-rules #ruleValue {
-	font-weight: 400;
-	text-align: center;
-	font-size: 200%;
-	color: inherit;
-	margin-bottom: 2em;
-	margin-top: 0.4em;
-}
-
 #declenchement > ul {
 	padding: 0;
 	list-style-type: none;

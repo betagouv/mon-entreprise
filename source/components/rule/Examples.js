@@ -13,7 +13,10 @@ import { capitalise0 } from '../../utils'
 		themeColours: state.themeColours
 	}),
 	dispatch => ({
-		setExample: compose(dispatch, setExample)
+		setExample: compose(
+			dispatch,
+			setExample
+		)
 	})
 )
 @translate()
@@ -32,7 +35,7 @@ export default class Examples extends Component {
 		return (
 			<div id="examples">
 				<h2>
-					<Trans i18nKey="examples">Exemples de calcul</Trans>{' '}
+					<Trans i18nKey="examples">Exemples</Trans>{' '}
 					<small>
 						<Trans i18nKey="clickexample">
 							Cliquez sur un exemple pour le tester
@@ -70,34 +73,31 @@ let Example = ({
 	currentExample,
 	setExample,
 	themeColours: { colour, textColourOnWhite, textColour }
-}) =>
-	do {
-		let selected = currentExample && currentExample.name == nom
-		;<li
-			key={nom}
-			className={classNames('example', {
+}) => do {
+	let selected = currentExample && currentExample.name == nom
+	;<li
+		key={nom}
+		className={classNames('example', {
+			selected
+		})}
+		onClick={() =>
+			selected ? setExample(null) : setExample(nom, situation, rule.dottedName)
+		}>
+		<button
+			className="name"
+			style={
 				selected
-			})}
-			onClick={() =>
-				selected
-					? setExample(null)
-					: setExample(nom, situation, rule.dottedName)
+					? {
+							background: colour,
+							color: textColour,
+							borderColor: textColourOnWhite
+					  }
+					: {
+							borderColor: textColourOnWhite,
+							color: textColourOnWhite
+					  }
 			}>
-			<button
-				className="name"
-				style={
-					selected
-						? {
-								background: colour,
-								color: textColour,
-								borderColor: textColourOnWhite
-						  }
-						: {
-								borderColor: textColourOnWhite,
-								color: textColourOnWhite
-						  }
-				}>
-				{capitalise0(nom)}
-			</button>
-		</li>
-	}
+			{capitalise0(nom)}
+		</button>
+	</li>
+}

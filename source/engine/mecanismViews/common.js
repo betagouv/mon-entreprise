@@ -79,3 +79,11 @@ export class Leaf extends Component {
 		)
 	}
 }
+
+export function SimpleRuleLink({ rule: { dottedName, title, name } }) {
+	return (
+		<Link to={'../règle/' + encodeRuleName(dottedName)}>
+			<span className="name">{title || capitalise0(name)}</span>
+		</Link>
+	)
+}

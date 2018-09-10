@@ -18,7 +18,6 @@ import './conversation.css'
 })
 @translate()
 @connect(state => ({
-	targetNames: state.targetNames,
 	conversationStarted: state.conversationStarted,
 	themeColours: state.themeColours,
 	flatRules: flatRulesSelector(state),
@@ -26,7 +25,7 @@ import './conversation.css'
 }))
 export default class Conversation extends Component {
 	render() {
-		let { currentQuestion, flatRules, targetNames } = this.props
+		let { currentQuestion, flatRules } = this.props
 		return (
 			<div className="conversationContainer">
 				<Aide />
@@ -34,7 +33,7 @@ export default class Conversation extends Component {
 					{currentQuestion && (
 						<Animate.fadeIn>
 							<Scroll.toElement onlyIfNotVisible />
-							{getInputComponent(flatRules, targetNames)(currentQuestion)}
+							{getInputComponent(flatRules)(currentQuestion)}
 						</Animate.fadeIn>
 					)}
 				</div>

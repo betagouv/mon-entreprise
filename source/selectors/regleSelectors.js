@@ -73,6 +73,10 @@ export const règleValeurSelector = createSelector(
 		if (typeof valeur === 'boolean') {
 			return { type: 'boolean', valeur }
 		}
+		if (rule.API || rule.explanation?.API) {
+			//TODO This code is specific to the géo API
+			return { type: 'string', valeur: valeur.nom }
+		}
 		const type =
 			(rule &&
 				(rule.format || (rule.explanation && rule.explanation.format))) ||

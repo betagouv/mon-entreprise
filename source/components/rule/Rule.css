@@ -25,3 +25,17 @@
 h2 small {
 	font-size: 75%;
 }
+
+#rule #ruleValue {
+	font-weight: 400;
+	text-align: center;
+	font-size: 200%;
+	color: inherit;
+	margin-bottom: 1em;
+	margin-top: 0.4em;
+}
+
+#rule #ruleDefault {
+	text-align: center;
+	opacity: 0.75;
+}

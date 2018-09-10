@@ -51,7 +51,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 		defaultValue = rule['par défaut'],
 		examples = rule['exemples'],
-		icon = rule['icône']
+		icon = rule['icônes']
 
 	return {
 		...rule,
@@ -86,8 +86,15 @@ export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 export let splitName = split(' . '),
 	joinName = join(' . ')
 
-export let parentName = pipe(splitName, dropLast(1), joinName)
-export let nameLeaf = pipe(splitName, last)
+export let parentName = pipe(
+	splitName,
+	dropLast(1),
+	joinName
+)
+export let nameLeaf = pipe(
+	splitName,
+	last
+)
 
 export let encodeRuleName = name =>
 	name.replace(/\s\.\s/g, '--').replace(/\s/g, '-')

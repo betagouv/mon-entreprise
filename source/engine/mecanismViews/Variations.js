@@ -1,6 +1,8 @@
 import React from 'react'
 import { Node } from './common'
 import { makeJsx } from '../evaluation'
+import './Variations.css'
+import classNames from 'classnames'
 
 export default function Variations(nodeValue, explanation) {
 	return (
@@ -10,13 +12,16 @@ export default function Variations(nodeValue, explanation) {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(c => (
+					{explanation.map(({ condition, consequence, satisfied }) => (
 						<li
-							className="variation"
-							key={JSON.stringify(c.condition | 'sinon')}>
+							className={classNames('variation', { satisfied })}
+							key={JSON.stringify(condition || 'sinon')}>
 							<div className="condition">
-								{c.condition ? <span>Si {makeJsx(c.condition)}</span> : 'Sinon'}
-								<div className="content">{makeJsx(c.consequence)}</div>
+								{condition && <span>Si {makeJsx(condition)}</span>}
+								<div className="consequence">
+									{condition ? 'Alors : ' : 'Sinon : '}
+									<span className="content">{makeJsx(consequence)}</span>
+								</div>
 							</div>
 						</li>
 					))}

@@ -46,7 +46,8 @@ import {
 	mecanismSelection,
 	mecanismInversion,
 	mecanismReduction,
-	mecanismVariations
+	mecanismVariations,
+	mecanismSynchronisation
 } from './mecanisms'
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
@@ -274,7 +275,8 @@ export let treatObject = (rules, rule) => rawNode => {
 			}),
 			inversion: mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
-			variations: mecanismVariations
+			variations: mecanismVariations,
+			synchronisation: mecanismSynchronisation
 		},
 		action = propOr(mecanismError, k, dispatch)
 
