@@ -102,7 +102,14 @@ const HiringProcess = ({
 			<CheckItem
 				name="complementaryHealth"
 				title="Pick a private complementary health insurance"
-				explanations={null}
+				explanations={
+					<p>
+						You must cover your employees with the private complementary health
+						insurance ("complémentaire santé" or colloquially "mutuelle" in
+						French) of your choice as long as it provides a set of minimum
+						guarantees. The employer must pay at least half of the package.
+					</p>
+				}
 			/>
 			<CheckItem
 				name="workMedicine"
