@@ -96,7 +96,9 @@ export default class Rule extends Component {
 						</div>
 					) : null}
 
-					{flatRule.question && <UserInput {...{ flatRules, dottedName }} />}
+					{//flatRule.question &&
+					// Fonctionnalité intéressante, à implémenter correctement
+					false && <UserInput {...{ flatRules, dottedName }} />}
 					{flatRule.ns && (
 						<Algorithm rule={displayedRule} showValues={showValues} />
 					)}
