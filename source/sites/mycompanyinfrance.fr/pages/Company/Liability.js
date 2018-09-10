@@ -19,15 +19,15 @@ const Liability = ({ chooseCompanyLiability }: Props) => (
 		<ul>
 			<li>
 				<strong>Sole proprietorship: </strong>
-				This is an economic activity conducted by a single natural person, in
-				his own name. It&apos;s less paperwork, but bigger trouble in case of
+				An economic activity conducted by a single natural person, in his own
+				name. It&apos;s less paperwork, but bigger trouble in case of
 				bankruptcy, as your personal wealth can be put to contribution.
 			</li>
 			<li>
-				<strong>Limited liability: </strong>A limited liability company is a
-				corporate structure whereby the company members cannot be held
-				personally liable for the company&apos;s debts or liabilities. However,
-				it's heavier to set up, and you need to provide a initial capital.
+				<strong>Limited liability: </strong>A corporate structure whereby the
+				company members cannot be held personally liable for the company&apos;s
+				debts or liabilities. However, it's heavier to set up, and you need to
+				provide an initial capital.
 			</li>
 		</ul>
 		<div className="ui__ answer-group">
