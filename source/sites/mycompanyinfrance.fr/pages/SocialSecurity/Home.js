@@ -23,19 +23,19 @@ class SocialSecurity extends Component<Props, {}> {
 								France has chosen to provide its citizens with a high-quality
 								social safety net. This mandatory system is based on solidarity
 								and designed to ensure the{' '}
-								<strong>general welfare of its people</strong>.
+								<strong>general welfare of its people</strong>.{' '}
 							</p>
 							<p>
-								This easy access to health care and other services ensures that
-								companies can put healthy, highly skilled, and productive
+								Easy access to health care and other services ensures that
+								companies can put healthy, productive and highly skilled
 								employees to work in an attractive market in the heart of
 								Europe.
 							</p>
 							<p>
 								As soon as you declare and pay your employees, you automatically
 								entitle them to the general scheme of French Social Security
-								(health, maternity, disability, old age, occupational illness,
-								accident at work) and unemployment insurance.
+								(health, maternity, disability, old age, occupational illness
+								and accidents) and unemployment insurance.
 							</p>
 							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<iframe
