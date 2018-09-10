@@ -56,7 +56,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 							personal company):{' '}
 						</strong>
 						Company with only one partner. Liability is limited to the amount of
-						its contribution to the capital.
+						his contribution to the capital.
 						<br />
 						<StatusButton status="EURL" history={history} />
 					</li>
@@ -68,8 +68,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 							SARL - Société à responsabilité limitée (Limited corporation):{' '}
 						</strong>
 						Composed of at least 2 partners whose financial responsibility is
-						limited to the amounts of contributions in the capital. The minimum
-						capital is freely fixed in the statutes.{' '}
+						limited to the amount of their contribution to the company's
+						capital. The minimum capital is freely fixed in the statutes.{' '}
 						{possibleStatus['SARL (minority director)'] &&
 							'The equality or minority manager or college has the "salaried" status.'}
 						{possibleStatus['SARL (majority director)'] &&
@@ -85,8 +85,9 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 							company):{' '}
 						</strong>
 						Composed of at least 2 associates. The financial responsibility of
-						the partners is limited to the amounts of contributions in the
-						capital. The minimum capital is freely fixed in the statutes.
+						the partners is limited to the amount of their contribution to the
+						company's capital. The minimum capital is freely fixed in the
+						statutes.
 						<br />
 						<StatusButton status="SAS" history={history} />
 					</li>
@@ -98,8 +99,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 							personal joint stock company):{' '}
 						</strong>
 						Composed of only one associate. The financial responsibility is
-						limited to the amounts of contributions in the capital. The minimum
-						capital is freely fixed in the statutes.
+						limited to the amount of his contribution to the company's capital.
+						The minimum capital is freely fixed in the statutes.
 						<br />
 						<StatusButton status="SASU" history={history} />
 					</li>
