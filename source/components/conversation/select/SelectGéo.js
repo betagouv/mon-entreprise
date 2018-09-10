@@ -44,7 +44,7 @@ export default class Select extends Component {
 					onChange={submitOnChange}
 					labelKey="nom"
 					optionRenderer={({ nom, departement }) =>
-						nom + ` (${departement.nom})`
+						nom + ` (${departement?.nom})`
 					}
 					placeholder="Entrez le nom de commune"
 					noResultsText="Nous n'avons trouvé aucune commune"
