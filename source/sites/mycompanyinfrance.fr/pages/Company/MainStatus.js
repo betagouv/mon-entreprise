@@ -69,7 +69,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						</strong>
 						Composed of at least 2 partners whose financial responsibility is
 						limited to the amount of their contribution to the company's
-						capital. The minimum capital is freely fixed in the statutes.{' '}
+						capital. The minimum capital is freely fixed in the articles of
+						association.{' '}
 						{possibleStatus['SARL (minority director)'] &&
 							'The equality or minority manager or college has the "salaried" status.'}
 						{possibleStatus['SARL (majority director)'] &&
@@ -87,7 +88,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 						Composed of at least 2 associates. The financial responsibility of
 						the partners is limited to the amount of their contribution to the
 						company's capital. The minimum capital is freely fixed in the
-						statutes.
+						articles of association.
 						<br />
 						<StatusButton status="SAS" history={history} />
 					</li>

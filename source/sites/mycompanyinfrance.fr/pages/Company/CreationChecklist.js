@@ -108,21 +108,22 @@ const CreateCompany = ({
 				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
 					<CheckItem
 						name="companyStatus"
-						title="Write the company statuses"
+						title="Write the company's articles"
 						explanations={
 							<p>
-								<strong>The company's status</strong> is an official document,
-								written in French, describing the status choice, naming the
-								associate(s) and the contributed capital. It is recommanded to
-								ask the help of a lawyer for the redaction.{' '}
+								<strong>The company's articles of association</strong> (
+								<em>les statuts</em> in French), is an official document written
+								in French, describing the status choice, naming the associate(s)
+								and the contributed capital. For more than one associates, it is
+								recommended to ask for the help of a lawyer to write them.{' '}
 								{status === 'SARL' && (
 									<a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">
-										Example of status for a SARL
+										Example of articles for a SARL
 									</a>
 								)}
 								{status === 'EURL' && (
 									<a href="https://www.afecreation.fr/cid46379/modele-statuts-types-eurl.html">
-										Example of status for an EURL
+										Example of articles for an EURL
 									</a>
 								)}
 							</p>
