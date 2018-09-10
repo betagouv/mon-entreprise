@@ -1,38 +1,32 @@
 /* @flow */
 import { startConversation } from 'Actions/actions'
 import withLanguage from 'Components/utils/withLanguage'
-import { compose } from 'ramda'
+import { toPairs, compose } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 type Props = {
 	startConversation: (?string) => void
 }
+
+let quickLinks = {
+	CDD: 'contrat salarié . type de contrat',
+	CDI: 'contrat salarié . type de contrat',
+	Cadre: 'contrat salarié . statut cadre',
+	'Temps partiel': 'contrat salarié . temps partiel',
+	Autres: null
+}
+
 const QuickLink = ({ startConversation }: Props) => (
 	<>
-		<button
-			className="ui__ link-button"
-			onClick={() => startConversation('contrat salarié . type de contrat')}>
-			<Trans>CDI</Trans>
-		</button>
-		<button
-			className="ui__ link-button"
-			onClick={() => startConversation('contrat salarié . type de contrat')}>
-			<Trans>CDD</Trans>
-		</button>
-		<button
-			className="ui__ link-button"
-			onClick={() => startConversation('contrat salarié . statut cadre')}>
-			<Trans>Cadre</Trans>
-		</button>
-		<button
-			className="ui__ link-button"
-			onClick={() => startConversation('contrat salarié . temps partiel')}>
-			<Trans>Temps partiel</Trans>
-		</button>
-		<button className="ui__ link-button" onClick={() => startConversation()}>
-			<Trans>Autres</Trans>
-		</button>
+		{toPairs(quickLinks).map(([label, dottedName]) => (
+			<button
+				key={label}
+				className="ui__ link-button"
+				onClick={() => startConversation(dottedName)}>
+				<Trans>{label}</Trans>
+			</button>
+		))}
 	</>
 )
 export default compose(
