@@ -78,10 +78,14 @@ export default class Rule extends Component {
 					{displayedRule.nodeValue ? (
 						<div id="ruleValue">
 							<i className="fa fa-calculator" aria-hidden="true" />{' '}
-							{Intl.NumberFormat(language, {
-								style: 'currency',
-								currency: 'EUR'
-							}).format(displayedRule.nodeValue)}
+							{displayedRule.format === 'euros'
+								? Intl.NumberFormat(language, {
+										style: 'currency',
+										currency: 'EUR'
+								  }).format(displayedRule.nodeValue)
+								: typeof displayedRule.nodeValue !== 'object'
+									? displayedRule.nodeValue
+									: null}
 						</div>
 					) : null}
 
