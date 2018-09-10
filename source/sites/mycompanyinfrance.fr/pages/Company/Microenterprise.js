@@ -13,11 +13,10 @@ const Microenterprise = ({ companyIsMicroenterprise }: Props) => (
 		<h2>Microenterprise or Individual Business</h2>
 		<p>
 			The micro entreprise is a simplified scheme of declaration and payment,
-			whose tax and social contributions are based on the turnover achieved each
-			month. Available for companies whose annual turnover does not exceed (for
-			the past year) 70 000 € for services providers or 170 000 € for
-			micro-entrepreneurs whose main activity is the sale of goods, catering or
-			the provision of housing.
+			for which tax and social contributions are based on the turnover achieved
+			each month. Available for companies whose annual turnover does not exceed
+			70 000 € for services providers or 170 000 € when the main activity is the
+			sale of goods, catering or the provision of housing.
 		</p>
 		<p>This is an interesting choice if:</p>
 		<ul>
