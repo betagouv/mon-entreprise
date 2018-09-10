@@ -43,8 +43,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 							EIRL - Entrepreneur individuel à responsabilité limitée
 							(Individual entrepreneur with limited liability):{' '}
 						</strong>
-						Protects your property by assigning to your business a professional
-						heritage necessary for the activity.
+						Allows you to protect your personal assets by{' '}
+						assigning a specific heritage to your professional activity.
 						<br />
 						<StatusButton status="EIRL" history={history} />
 					</li>
