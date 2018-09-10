@@ -13,8 +13,8 @@ const Liability = ({ chooseCompanyLiability }: Props) => (
 	<>
 		<h2>Choosing the liability </h2>
 		<p>
-			The legal setup is the framework that allows the company to be created. An
-			entrepreneur can choose between two major legal options:
+			An entrepreneur can choose between two major options for the legal setup
+			of his company:
 		</p>
 		<ul>
 			<li>
