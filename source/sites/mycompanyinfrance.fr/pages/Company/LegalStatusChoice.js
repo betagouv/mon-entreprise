@@ -2,6 +2,7 @@
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { isNil } from 'ramda'
 import React from 'react'
+import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { capitalise0 } from '../../../../utils'
 import type { CompanyLegalStatus } from 'Types/companyStatusTypes'
@@ -11,8 +12,12 @@ const requirementToText = (key, value) => {
 		return capitalise0(value.toLowerCase().replace('_', ' '))
 	}
 	if (typeof value === 'boolean') {
-		return capitalise0(
-			key.replace(/([A-Z]+)*([A-Z][a-z])/g, '$1 $2').toLowerCase()
+		return emoji(
+			capitalise0(
+				key.replace(/([A-Z]+)*([A-Z][a-z])/g, '$1 $2').toLowerCase()
+			) +
+				' ' +
+				(value ? '✅' : '❌')
 		)
 	}
 	return null
