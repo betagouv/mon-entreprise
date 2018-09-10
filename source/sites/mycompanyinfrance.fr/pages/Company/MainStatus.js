@@ -106,7 +106,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				)}
 				{possibleStatus.SA && (
 					<li>
-						<strong>SA - Société anonyme (Anonymous company):</strong>
+						<strong>SA - Société anonyme (Anonymous company): </strong>
 						Company composed of at least 2 shareholders. The only status that
 						allows you to be listed on the stock exchange (from 7 shareholders).
 						The minimum share capital is €37.000.
@@ -116,7 +116,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				)}
 				{possibleStatus.SNC && (
 					<li>
-						<strong>SNC - Société en nom collectif (Partnership):</strong>
+						<strong>SNC - Société en nom collectif (Partnership): </strong>
 						The liability of the partners for the debts of the company is
 						unified (one partner only can be sued for the entire debt) and
 						indefinite (responsible on the entirety of their personnal wealth).
@@ -128,10 +128,10 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				{(possibleStatus['Microenterprise (option EIRL)'] ||
 					possibleStatus['Microenterprise']) && (
 					<li>
-						<strong>Microenterprise:</strong> The micro-enterprise is a sole
-						proprietorship company, subject to a flat-rate scheme for the
-						calculation of taxes and the payment of social security
-						contributions.{' '}
+						<strong>Microenterprise: </strong>
+						The micro-enterprise is a sole proprietorship company, subject to a
+						flat-rate scheme for the calculation of taxes and the payment of
+						social security contributions.{' '}
 						{possibleStatus['Microenterprise (option EIRL)'] &&
 							'With the EIRL option, you have limited liability on your losses.'}
 						<br />
