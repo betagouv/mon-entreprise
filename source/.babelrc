@@ -15,6 +15,7 @@
 	"plugins": [
 		["@babel/plugin-proposal-decorators", { "legacy": true }],
 		"transform-do-expressions",
+		"@babel/plugin-proposal-optional-chaining",
 		"@babel/plugin-proposal-object-rest-spread",
 		"transform-class-properties",
 		"syntax-dynamic-import",
