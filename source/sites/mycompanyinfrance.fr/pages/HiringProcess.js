@@ -16,7 +16,7 @@ const HiringProcess = ({
 }) => (
 	<Animate.fromBottom>
 		<h1>Hiring process checklist</h1>
-		<p>All the necessary steps to hire your first employee </p>
+		<p>The necessary steps to hire your first employee.</p>
 		<Checklist
 			onInitialization={onChecklistInitialization}
 			onItemCheck={onItemCheck}
@@ -31,7 +31,7 @@ const HiringProcess = ({
 							href="https://www.service-public.fr/particuliers/vosdroits/N19871"
 							target="_blank">
 							{' '}
-							More information (French)
+							More information (Fr)
 						</a>
 					</p>
 				}
@@ -41,12 +41,12 @@ const HiringProcess = ({
 				title="Declare your hiring to the social administration"
 				explanations={
 					<p>
-						This can be done though the form called DPAE, must be completed
+						This can be done through the form called DPAE, must be completed
 						within 8 days before any hiring, and can{' '}
 						<a
 							href="https://www.due.urssaf.fr/declarant/index.jsf"
 							target="_blank">
-							be done online
+							be done online (Fr)
 						</a>
 					</p>
 				}
@@ -59,13 +59,13 @@ const HiringProcess = ({
 						With fewer than 20 employees, payslips and declarations can be
 						handled online by the{' '}
 						<a href="http://www.letese.urssaf.fr" target="_blank">
-							Tese (French)
+							Tese (Fr)
 						</a>
 						. In any case, you can use{' '}
 						<a
 							href="http://www.dsn-info.fr/convention-charte.htm"
 							target="_blank">
-							private payslip software (French)
+							private payslip software (Fr)
 						</a>
 					</p>
 				}
@@ -79,7 +79,7 @@ const HiringProcess = ({
 							href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F1784"
 							className="ui__ button"
 							target="_blank">
-							More info
+							More information (Fr)
 						</a>
 					</p>
 				}
@@ -93,7 +93,7 @@ const HiringProcess = ({
 							href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep"
 							className="ui__ button"
 							target="_blank">
-							Find your pension institute
+							Find your pension institute (Fr)
 						</a>
 						{/* // The AGIRC-ARRCO complementary pension is mandatory. Those are only federations,{' '} */}
 					</p>
@@ -102,19 +102,26 @@ const HiringProcess = ({
 			<CheckItem
 				name="complementaryHealth"
 				title="Pick a private complementary health insurance"
-				explanations={null}
+				explanations={
+					<p>
+						You must cover your employees with the private complementary health
+						insurance ("complémentaire santé" or colloquially "mutuelle" in
+						French) of your choice as long as it provides a set of minimum
+						guarantees. The employer must pay at least half of the package.
+					</p>
+				}
 			/>
 			<CheckItem
 				name="workMedicine"
 				title="Register to a work medicine office"
-				explanations={<p> Plan an initial appointment for each new hire</p>}
+				explanations={<p> Plan an initial appointment for each new hire.</p>}
 			/>
 		</Checklist>
 		<h2>Then each month</h2>
 		<ul>
 			<li>
-				Compute the individual social contributions (using the pay software you
-				chose)
+				Compute the individual social contributions (using the chosen payslip
+				software)
 			</li>
 			<li>
 				Declare the contributions through the DSN, the new online declaration

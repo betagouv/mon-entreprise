@@ -1,19 +1,16 @@
 /* @flow */
-import Scroll from 'Components/utils/Scroll'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
-import { isIE } from '../../../../utils'
 import LegalStatusChoices from './LegalStatusChoice'
 
-import type { Match, RouterHistory } from 'react-router'
+import type { Match } from 'react-router'
 type Props = {
 	match: Match,
-	history: RouterHistory,
 	nextQuestionUrl: string
 }
-const CreateMyCompany = ({ match, nextQuestionUrl, history }: Props) => (
+const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 	<>
 		<h1 className="question__title">Create your company</h1>
 		<p>
@@ -37,8 +34,6 @@ const CreateMyCompany = ({ match, nextQuestionUrl, history }: Props) => (
 				</Link>
 			</div>
 		)}
-		{!isIE() &&
-			!match.isExact && <Scroll.toElement key={history.location.pathname} />}
 		<LegalStatusChoices />
 	</>
 )

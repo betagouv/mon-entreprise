@@ -28,8 +28,8 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => (
 				covered by France’s self-employed scheme called « Sécurité sociale des
 				indépendants ». Contributions due are generally calculated based on
 				professional income as reported to the tax authorities. Although less
-				expensive this scheme provides basic social protection with additional
-				and paid options needed to improve this protection.
+				expensive, this scheme provides basic social protection (additional
+				options and private insurance are recommended).
 			</li>
 		</ul>
 		<div className="ui__ answer-group">

@@ -24,7 +24,7 @@ function companyLegalStatus(
 
 		case 'DEFINE_DIRECTOR_STATUS':
 			return { ...state, directorStatus: action.status }
-		case 'COMPANY_HAVE_MULTIPLE_ASSOCIATES':
+		case 'COMPANY_HAS_MULTIPLE_ASSOCIATES':
 			return { ...state, multipleAssociates: action.multipleAssociates }
 		case 'COMPANY_IS_MICROENTERPRISE':
 			return { ...state, microenterprise: action.microenterprise }

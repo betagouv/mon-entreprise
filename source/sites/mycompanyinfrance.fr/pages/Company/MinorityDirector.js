@@ -12,18 +12,18 @@ const MinorityDirector = ({ directorIsInAMinority }: Props) => (
 	<>
 		<h2>Minority or majority director </h2>
 		<p>
-			Some special rules applies depending on the amount of share owned by the
+			Some special rules apply depending on the amount of shares owned by the
 			director.
 		</p>
 		<ul>
 			<li>
-				<strong>Majority director</strong>: The director is in majority, or is
-				part of a managing board that is in majority.
-			</li>
-			<li>
 				<strong>Minority director</strong>: The director is in minority (or
 				equality), or is part of a managing board that is in minority (or
 				equality).
+			</li>
+			<li>
+				<strong>Majority director</strong>: The director is in majority, or is
+				part of a managing board that is in majority.
 			</li>
 		</ul>
 

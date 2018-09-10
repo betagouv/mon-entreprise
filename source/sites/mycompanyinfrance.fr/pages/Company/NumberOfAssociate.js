@@ -1,14 +1,14 @@
 /* @flow */
-import { companyHaveMultipleAssociates } from 'Actions/companyStatusActions'
+import { companyHasMultipleAssociates } from 'Actions/companyStatusActions'
 import React from 'react'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 
 type Props = {
-	companyHaveMultipleAssociates: (?boolean) => void
+	companyHasMultipleAssociates: (?boolean) => void
 }
 
-const NumberOfAssociate = ({ companyHaveMultipleAssociates }: Props) => (
+const NumberOfAssociates = ({ companyHasMultipleAssociates }: Props) => (
 	<>
 		<h2>Number of associates</h2>
 		<p>
@@ -19,24 +19,24 @@ const NumberOfAssociate = ({ companyHaveMultipleAssociates }: Props) => (
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
-					companyHaveMultipleAssociates(false)
+					companyHasMultipleAssociates(false)
 				}}
 				className="ui__ button">
 				Only one associate
 			</button>
 			<button
 				onClick={() => {
-					companyHaveMultipleAssociates(true)
+					companyHasMultipleAssociates(true)
 				}}
 				className="ui__ button">
 				More than one associate
 			</button>
-			<SkipButton onClick={() => companyHaveMultipleAssociates(null)} />
+			<SkipButton onClick={() => companyHasMultipleAssociates(null)} />
 		</div>
 	</>
 )
 
 export default connect(
 	null,
-	{ companyHaveMultipleAssociates }
-)(NumberOfAssociate)
+	{ companyHasMultipleAssociates }
+)(NumberOfAssociates)

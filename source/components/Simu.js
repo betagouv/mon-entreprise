@@ -84,7 +84,7 @@ export default class Simu extends Component {
 									...styles,
 									display: 'flex',
 									overflow: 'hidden',
-									flexWrap: 'wrap',
+									flexWrap: 'wrap-reverse',
 									fontSize: '110%',
 									justifyContent: 'space-evenly',
 									marginBottom: '0.6rem'

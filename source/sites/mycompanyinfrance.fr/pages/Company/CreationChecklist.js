@@ -42,7 +42,7 @@ const CreateCompany = ({
 				</p>
 			)}
 			<p>
-				This checklist will guide you thoughout all the necessary steps to
+				This checklist will guide you throughout all the necessary steps to
 				register your {match.params.status}.
 			</p>
 			<h2 style={{ fontSize: '1.5rem' }}>Needed for registration</h2>
@@ -59,8 +59,8 @@ const CreateCompany = ({
 						explanations={
 							<>
 								<p>
-									<strong>The corporate name</strong> (dénomination sociale) is
-									the legal name of your company, written on all of your
+									<strong>The corporate name</strong> ("dénomination sociale")
+									is the legal name of your company, written on all of your
 									administrative papers. It can be different from the trade name
 									(used for commercial purpose).
 								</p>
@@ -80,8 +80,8 @@ const CreateCompany = ({
 					title="Write the corporate purpose of the company"
 					explanations={
 						<p>
-							<strong>The corporate purpose of the company</strong> (object
-							social) is the main activity run. A secondary activity can be
+							<strong>The corporate purpose of the company</strong> ("objet
+							social") is the main activity run. A secondary activity can be
 							registered.
 						</p>
 					}
@@ -98,7 +98,7 @@ const CreateCompany = ({
 									situations, you can benefit from substantial public financing
 									(exemption from charges, taxes, etc.).{' '}
 									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
-										More information (french)
+										More information (Fr)
 									</a>
 								</p>
 							</>
@@ -108,21 +108,22 @@ const CreateCompany = ({
 				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
 					<CheckItem
 						name="companyStatus"
-						title="Write the company statuses"
+						title="Write the company's articles"
 						explanations={
 							<p>
-								<strong>The company's status</strong> is an official document,
-								written in French, describing the status choice, naming the
-								associate(s) and the contributed capital. It is recommanded to
-								ask the help of a lawyer for the redaction.{' '}
+								<strong>The company's articles of association</strong> ( "les
+								statuts"), is an official document written in French, describing
+								the status choice, naming the associate(s) and the contributed
+								capital. For more than one associate, it is recommended to ask
+								for the help of a lawyer to write them.{' '}
 								{status === 'SARL' && (
 									<a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">
-										Example of status for a SARL
+										Example of articles for a SARL
 									</a>
 								)}
 								{status === 'EURL' && (
 									<a href="https://www.afecreation.fr/cid46379/modele-statuts-types-eurl.html">
-										Example of status for an EURL
+										Example of articles for an EURL
 									</a>
 								)}
 							</p>
@@ -166,9 +167,12 @@ const CreateCompany = ({
 								</p>
 								<p>
 									The deposit consists of a transfer of a sum of money to a
-									blocked account with a bank or the Caisse des dépôts et de
-									consignations or a notary, who must then provide a certificate
-									of deposit of capital.
+									blocked account with a bank or the public{' '}
+									<a href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
+										Caisse des dépôts et consignations
+									</a>{' '}
+									or a notary, who must then provide a certificate of deposit of
+									capital.
 								</p>
 							</>
 						}
@@ -182,18 +186,18 @@ const CreateCompany = ({
 							<>
 								<p>
 									A <strong>notice of incorporation of the company</strong> must
-									be published in a newspaper of legal announcements (JAL), for
-									a cost of publication that depends on the size of the
-									announcement and the rates charged by the JAL.
+									be published in a newspaper of legal announcements ("JAL"),
+									for a cost of publication that depends on the size of the
+									announcement and the rates charged by the chosen newspaper.
 								</p>
 								<p>
 									<a href="https://actulegales.fr/journaux-annonces-legales">
-										Find a newspaper of legal announcements (JAL)
+										Find a newspaper of legal announcements ("JAL")
 									</a>
 								</p>
 								<p>This notice must contain the following information:</p>
 								<ul>
-									<li>The company name and possibly its acronym</li>
+									<li>The company's name and possibly its acronym</li>
 									<li>The legal form</li>
 									<li>The amount of the company's capital</li>
 									<li>The address of the registered office</li>
@@ -271,7 +275,7 @@ const CreateCompany = ({
 								of operating loss.
 							</p>
 							<a href="https://www.economie.gouv.fr/entreprises/assurances-obligatoires">
-								More information
+								More information (Fr)
 							</a>
 						</>
 					}

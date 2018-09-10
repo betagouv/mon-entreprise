@@ -7,6 +7,7 @@
 .ui__.inverted-button,
 .ui__.skip-button {
 	font-size: 1.1rem;
+	display: inline-block;
 	padding: 0.6rem 1.2rem;
 	text-decoration: none;
 	border: 1px solid;
@@ -17,6 +18,7 @@
 	transition: all 0.15s;
 	margin: 0.8rem 0;
 	margin-right: 1rem;
+	text-align: center;
 	text-transform: uppercase;
 	font-family: 'Roboto', sans-serif;
 	font-weight: normal;

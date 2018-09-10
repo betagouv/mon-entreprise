@@ -23,7 +23,14 @@ button {
 	flex-wrap: wrap;
 	justify-content: flex-end;
 }
-
+@media (max-width: 500px) {
+	.ui__.answer-group {
+		flex-direction: column;
+	}
+	.ui__.answer-group > * {
+		margin-right: 0;
+	}
+}
 .ui__.container {
 	max-width: 45em;
 	margin-right: auto;

@@ -24,7 +24,11 @@ const AfterRegistration = ({ companyStatusChoice }: Props) => (
 			number identifies each place of business operated by the same company. The
 			Siret is composed by the Siren followed by the Establishment number.
 			<br />
-			<img src={siret} alt="Siret and siren number" />
+			<img
+				src={siret}
+				alt="Siret and siren number"
+				style={{ maxWidth: '100%' }}
+			/>
 		</p>
 		<h2>The APE code</h2>
 		<p>

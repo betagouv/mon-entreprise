@@ -2,7 +2,7 @@
 import type {
 	ChooseCompanyLiabilityAction,
 	CompanyLiability,
-	CompanyHaveMultipleAssociatesAction,
+	CompanyHasMultipleAssociatesAction,
 	DirectorStatus,
 	CompanyIsMicroenterpriseAction,
 	ResetCompanyStatusAction,
@@ -35,9 +35,9 @@ export const defineDirectorStatus = thenGoToNextQuestion(
 	})
 )
 
-export const companyHaveMultipleAssociates = thenGoToNextQuestion(
-	(multipleAssociates: ?boolean): CompanyHaveMultipleAssociatesAction => ({
-		type: 'COMPANY_HAVE_MULTIPLE_ASSOCIATES',
+export const companyHasMultipleAssociates = thenGoToNextQuestion(
+	(multipleAssociates: ?boolean): CompanyHasMultipleAssociatesAction => ({
+		type: 'COMPANY_HAS_MULTIPLE_ASSOCIATES',
 		multipleAssociates
 	})
 )
@@ -56,9 +56,15 @@ export const directorIsInAMinority = thenGoToNextQuestion(
 	})
 )
 
-export const goToCompanyStatusChoice = () => (dispatch: (ResetCompanyStatusAction) => void, _: any, history: RouterHistory) => {
-	dispatch(({
-		type: 'RESET_COMPANY_STATUS_CHOICE'
-	} : ResetCompanyStatusAction))
+export const goToCompanyStatusChoice = () => (
+	dispatch: ResetCompanyStatusAction => void,
+	_: any,
+	history: RouterHistory
+) => {
+	dispatch(
+		({
+			type: 'RESET_COMPANY_STATUS_CHOICE'
+		}: ResetCompanyStatusAction)
+	)
 	history.push('/company')
 }
