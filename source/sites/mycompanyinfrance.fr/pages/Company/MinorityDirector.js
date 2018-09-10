@@ -12,7 +12,7 @@ const MinorityDirector = ({ directorIsInAMinority }: Props) => (
 	<>
 		<h2>Minority or majority director </h2>
 		<p>
-			Some special rules applies depending on the amount of share owned by the
+			Some special rules apply depending on the amount of shares owned by the
 			director.
 		</p>
 		<ul>
