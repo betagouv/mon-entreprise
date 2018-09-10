@@ -34,42 +34,44 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 					component={CreationChecklist}
 				/>
 				<Route path={match.path + '/find'} component={Find} />
-				{companyStatusChoice && (
+				{companyStatusChoice ? (
 					<Redirect
 						exact
 						from={match.path}
 						to={match.path + '/create-' + companyStatusChoice}
 					/>
+				) : (
+					<Redirect exact from={match.path} to={match.path + '/legal-status'} />
 				)}
 				<Route
 					path={match.path + '/after-registration'}
 					component={AfterRegistration}
 				/>
-				<Route path={match.path} component={Home} />
+				<Route path={match.path + '/legal-status'} component={Home} />
 			</Switch>
 			<Switch location={location}>
 				<Route
-					path={match.path + '/liability'}
+					path={match.path + '/legal-status/liability'}
 					component={withAnimation(Liability)}
 				/>
 				<Route
-					path={match.path + '/director-status'}
+					path={match.path + '/legal-status/director-status'}
 					component={withAnimation(DefineDirectorStatus)}
 				/>
 				<Route
-					path={match.path + '/microenterprise'}
+					path={match.path + '/legal-status/microenterprise'}
 					component={withAnimation(Microenterprise)}
 				/>
 				<Route
-					path={match.path + '/multiple-associates'}
+					path={match.path + '/legal-status/multiple-associates'}
 					component={withAnimation(NumberOfAssociate)}
 				/>
 				<Route
-					path={match.path + '/pick-legal-status'}
+					path={match.path + '/legal-status/pick-legal-status'}
 					component={withAnimation(MainStatus)}
 				/>
 				<Route
-					path={match.path + '/minority-director'}
+					path={match.path + '/legal-status/minority-director'}
 					component={withAnimation(MinorityDirector)}
 				/>
 			</Switch>

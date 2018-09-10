@@ -39,7 +39,10 @@ export type DirectorIsInAMinorityAction = {
 	minorityDirector: ?boolean
 }
 export type ResetCompanyStatusAction = {
-	type: 'RESET_COMPANY_STATUS_CHOICE',
+	type: 'RESET_COMPANY_STATUS_CHOICE'
+}
+export type ResetExistingCompanyDetailsAction = {
+	type: 'RESET_EXISTING_COMPANY_DETAILS'
 }
 export type State = {|
 	+companyLegalStatus: {
@@ -54,7 +57,7 @@ export type State = {|
 		+microenterprise?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
-	+existingCompanyDetails: ?{ [string]: string },
+	+existingCompanyDetails: ?{ [string]: string }
 |}
 export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
@@ -65,4 +68,5 @@ export type Action =
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction
 	| DirectorIsInAMinorityAction
+	| ResetExistingCompanyDetailsAction
 	| ResetCompanyStatusAction

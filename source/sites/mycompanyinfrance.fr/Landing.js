@@ -1,8 +1,6 @@
 /* @flow */
 
 import withColours from 'Components/utils/withColours'
-import marianneSvg from 'Images/marianne.svg'
-import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
@@ -11,10 +9,6 @@ import './Landing.css'
 const Landing = ({ colours: { colour } }) => (
 	<>
 		<section className="landing__header" style={{ backgroundColor: colour }}>
-			<div className="landing__banner">
-				<img alt="logo marianne" src={marianneSvg} />
-				<img alt="logo urssaf" src={urssafSvg} />
-			</div>
 			<header>
 				<h1>
 					Start your business in France <br />
