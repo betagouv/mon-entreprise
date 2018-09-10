@@ -10,9 +10,9 @@ type Props = {
 
 const Microenterprise = ({ companyIsMicroenterprise }: Props) => (
 	<>
-		<h2>Microenterprise or Individual Business</h2>
+		<h2>Micro-enterprise or Individual Business</h2>
 		<p>
-			The micro entreprise is a simplified scheme of declaration and payment,
+			The micro-entreprise is a simplified scheme of declaration and payment,
 			for which tax and social contributions are based on the turnover achieved
 			each month. Available for companies whose annual turnover does not exceed
 			€70,000 for services providers or €170,000 when the main activity is the
@@ -49,7 +49,7 @@ const Microenterprise = ({ companyIsMicroenterprise }: Props) => (
 					companyIsMicroenterprise(true)
 				}}
 				className="ui__ button">
-				Microenterprise
+				Micro-enterprise
 			</button>
 			<button
 				onClick={() => {

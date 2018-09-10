@@ -128,7 +128,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				{(possibleStatus['Microenterprise (option EIRL)'] ||
 					possibleStatus['Microenterprise']) && (
 					<li>
-						<strong>Microenterprise: </strong>
+						<strong>Micro-enterprise: </strong>
 						The micro-enterprise is a sole proprietorship company, subject to a
 						flat-rate scheme for the calculation of taxes and the payment of
 						social security contributions.{' '}
