@@ -13,7 +13,7 @@ export type DefineDirectorStatusAction = {
 	status: ?DirectorStatus
 }
 
-export type CompanyHaveMultipleAssociatesAction = {
+export type CompanyHasMultipleAssociatesAction = {
 	type: 'COMPANY_HAS_MULTIPLE_ASSOCIATES',
 	multipleAssociates: ?boolean
 }
@@ -61,7 +61,7 @@ export type Action =
 	| ChooseCompanyLiabilityAction
 	| DefineDirectorStatusAction
 	| CompanyIsMicroenterpriseAction
-	| CompanyHaveMultipleAssociatesAction
+	| CompanyHasMultipleAssociatesAction
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction
 	| DirectorIsInAMinorityAction
