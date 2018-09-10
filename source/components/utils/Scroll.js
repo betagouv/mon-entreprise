@@ -35,7 +35,9 @@ export class ScrollToElement extends Component {
 			return
 		}
 		this.ref.scrollIntoView({
-			behavior: this.props.behavior
+			behavior: this.props.behavior,
+			block: 'nearest',
+			inline: 'nearest'
 		})
 	}
 	componentDidMount() {

@@ -143,7 +143,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 			</ul>
 			<div className="ui__ answer-group">
 				<Link to="/social-security" className="ui__ skip-button">
-					Do it later ›
+					Choose later ›
 				</Link>
 			</div>
 		</>
