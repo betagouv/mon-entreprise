@@ -27,12 +27,12 @@ const LegalStatusChoice = ({
 	return (
 		!!Object.keys(legalStatus).length && (
 			<>
-				<h2>Company status requirement</h2>
+				<h2>My answers</h2>
 				<p>
 					<button
 						className="ui__ link-button"
 						onClick={goToCompanyStatusChoice}>
-						Reset choices
+						Reset
 					</button>
 				</p>
 				<ul>
