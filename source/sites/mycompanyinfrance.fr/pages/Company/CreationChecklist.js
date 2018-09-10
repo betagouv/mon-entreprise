@@ -42,7 +42,7 @@ const CreateCompany = ({
 				</p>
 			)}
 			<p>
-				This checklist will guide you thoughout all the necessary steps to
+				This checklist will guide you throughout all the necessary steps to
 				register your {match.params.status}.
 			</p>
 			<h2 style={{ fontSize: '1.5rem' }}>Needed for registration</h2>
