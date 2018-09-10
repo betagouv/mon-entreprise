@@ -14,7 +14,7 @@ export type DefineDirectorStatusAction = {
 }
 
 export type CompanyHaveMultipleAssociatesAction = {
-	type: 'COMPANY_HAVE_MULTIPLE_ASSOCIATES',
+	type: 'COMPANY_HAS_MULTIPLE_ASSOCIATES',
 	multipleAssociates: ?boolean
 }
 
