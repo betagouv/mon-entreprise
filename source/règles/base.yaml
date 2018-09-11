@@ -704,11 +704,14 @@
     salaire médian: 2300
     SMIC: 1500
   contrôles: 
+    - si: brut de base < 300
+      message: Entrez un salaire mensuel
+      niveau: bloquant
     - si: brut de base < smic mensuel
       niveau: avertissement
       action:
         cible: contrat salarié . temps partiel
-        texte: Ou est-ce un temps partiel ?
+        texte: Est-ce un temps partiel ?
   formule:
     inversion:
       question: Quel est le salaire mensuel ?

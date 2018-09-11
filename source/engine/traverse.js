@@ -326,8 +326,10 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// This is necessary because our evaluation implementation is not yet fast enough to not freeze slow mobile devices
 	// They could be implemented directly at the redux-form level, but they should also be triggered by the engine used as a library
 	let blockingInputControls = evaluateControls(true)(parsedRules, situationGate)
-	if (blockingInputControls.length) return blockingInputControls
-
+	if (blockingInputControls.length)
+		return {
+			blockingInputControls
+		}
 	let nonBlockingControls = evaluateControls(false)(parsedRules, situationGate)
 
 	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),

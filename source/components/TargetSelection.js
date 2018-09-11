@@ -82,12 +82,12 @@ class TargetSelection extends Component {
 					{this.renderOutputList()}
 				</section>
 				{noUserInput && (
-					<p className="controls">
+					<p className="blockingControl">
 						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
 					</p>
 				)}
 
-				{true && <Controls {...{ blockingInputControls, controls }} />}
+				<Controls {...{ blockingInputControls, controls }} />
 			</div>
 		)
 	}
