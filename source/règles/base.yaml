@@ -1445,14 +1445,10 @@
   nom: quotité de travail
   description: Temps de travail en proportion du temps complet légal.
   formule:
-    multiplication:
-      assiette: 1
-      variations:
-        - si: temps partiel
-          alors:
-            taux: heures par semaine / 35
-        - sinon:
-            taux: 1
+    variations:
+      - si: temps partiel
+        alors: heures par semaine / 35
+      - sinon: 1
 - espace: contrat salarié
   nom: CICE
   aide:
