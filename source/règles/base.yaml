@@ -708,7 +708,7 @@
       niveau: avertissement
       action:
         cible: contrat salarié . temps partiel
-        texte: Choisir un temps partiel
+        texte: Ou est-ce un temps partiel ?
   formule:
     inversion:
       question: Quel est le salaire mensuel ?

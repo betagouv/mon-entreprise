@@ -6,15 +6,15 @@ import { startConversation } from 'Actions/actions'
 
 function Controls({ blockingInputControls, controls, startConversation }) {
 	return (
-		<div>
+		<div id="controlsBlock">
 			{blockingInputControls && (
-				<p className="controls">{blockingInputControls[0].message}</p>
+				<p id="blockingControl">{blockingInputControls[0].message}</p>
 			)}
 			{!blockingInputControls &&
 				controls.length > 0 && (
 					<>
 						{emoji('⚠️')}
-						<ul className="controls">
+						<ul id="controls">
 							{controls.map(({ test, action }) => (
 								<li key={test}>
 									<p>{test}</p>
