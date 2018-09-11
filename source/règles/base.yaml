@@ -1443,9 +1443,9 @@
   API: géo
   par défaut: 
     code: 29019
-    nom: Brest
+    nom: Non renseignée
     departement: 
-      nom: Finistère
+      nom: Non renseigné
 
 - espace: établissement . localisation
   nom: code commune
