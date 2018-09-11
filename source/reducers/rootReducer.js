@@ -79,7 +79,10 @@ function conversationSteps(
 	if (action.type === 'RESET_SIMULATION')
 		return { foldedSteps: [], unfoldedStep: null }
 	if (action.type === 'START_CONVERSATION' && action.question)
-		return { foldedSteps: state.foldedSteps, unfoldedStep: action.question }
+		return {
+			foldedSteps: state.foldedSteps,
+			unfoldedStep: action.question
+		}
 
 	if (action.type !== 'STEP_ACTION') return state
 	const { name, step } = action

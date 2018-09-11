@@ -206,15 +206,23 @@ export let treatRuleRoot = (rules, rule) => {
 				node =>
 					node.category === 'variable' && node.dottedName !== rule.dottedName
 			)
+			let isInputControl = !otherVariables.length,
+				level = control['niveau']
 
-			let isInputControl = !otherVariables.length
+			if (level === 'bloquant' && !isInputControl) {
+				throw new Error(
+					'Un contrôle ne peut être bloquant et invoquer des calculs de variables' +
+						control['si'] +
+						level
+				)
+			}
 
 			return {
 				level: control['niveau'],
 				test: control['si'],
 				message: control['message'],
 				testExpression,
-				isInputControl
+				action: control['action']
 			}
 		})
 
@@ -286,21 +294,27 @@ export let parseAll = flatRules => {
 	return map(treatOne, flatRules)
 }
 
-let getBlockingInputControls = (parsedRules, situationGate) => {
-	return parsedRules
-		.map(
-			({ controls, dottedName }) =>
-				situationGate(dottedName) != undefined &&
-				controls &&
-				controls.find(
-					({ isInputControl, level, testExpression }) =>
-						isInputControl &&
-						level === 'bloquant' &&
-						evaluateNode({}, situationGate, parsedRules, testExpression)
-							.nodeValue === true
+let evaluateControls = blocking => (parsedRules, situationGate) => {
+	return chain(
+		({ controls, dottedName }) =>
+			situationGate(dottedName) != undefined &&
+			controls &&
+			controls
+				.filter(
+					({ level }) =>
+						blocking ? level === 'bloquant' : level !== 'bloquant'
 				)
-		)
-		.filter(found => found)
+				.map(control => ({
+					...control,
+					evaluated: evaluateNode(
+						{},
+						situationGate,
+						parsedRules,
+						control.testExpression
+					)
+				}))
+				.filter(({ evaluated: { nodeValue } }) => nodeValue)
+	)(parsedRules).filter(found => found)
 }
 
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
@@ -308,11 +322,13 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = { parseLevel: 0 }
 
-	let blockingInputControls = getBlockingInputControls(
-		parsedRules,
-		situationGate
-	)
-	if (blockingInputControls.length) return { blockingInputControls }
+	// These controls do not trigger the evaluation of variables of the system : they are input controls
+	// This is necessary because our evaluation implementation is not yet fast enough to not freeze slow mobile devices
+	// They could be implemented directly at the redux-form level, but they should also be triggered by the engine used as a library
+	let blockingInputControls = evaluateControls(true)(parsedRules, situationGate)
+	if (blockingInputControls.length) return blockingInputControls
+
+	let nonBlockingControls = evaluateControls(false)(parsedRules, situationGate)
 
 	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
@@ -320,7 +336,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 		)
 
 	// Don't use 'dict' for anything else than ResultsGrid
-	return { targets, cache }
+	return { targets, cache, controls: nonBlockingControls }
 }
 
 export let analyse = (parsedRules, target) => {

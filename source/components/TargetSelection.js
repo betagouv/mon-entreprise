@@ -61,7 +61,12 @@ export let popularTargetNames = [
 )
 class TargetSelection extends Component {
 	render() {
-		let { colours, noUserInput, blockingInputControls } = this.props
+		let {
+			colours,
+			noUserInput,
+			blockingInputControls,
+			analysis: { controls }
+		} = this.props
 		return (
 			<div id="targetSelection">
 				<section
@@ -82,9 +87,7 @@ class TargetSelection extends Component {
 					</p>
 				)}
 
-				{blockingInputControls && (
-					<Controls blockingInputControls={blockingInputControls} />
-				)}
+				{true && <Controls {...{ blockingInputControls, controls }} />}
 			</div>
 		)
 	}
