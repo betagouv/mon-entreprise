@@ -140,17 +140,17 @@ class Distribution extends Component<Props, State> {
 				<div className="distribution-chart__total">
 					<span />
 					<RuleLink {...salaireNet} />
-					<Montant numFractionDigit={2}>{salaireNet.montant}</Montant>
+					<Montant numFractionDigit={0}>{salaireNet.montant}</Montant>
 					<span>+</span>
 					<Trans>Cotisations</Trans>
-					<Montant numFractionDigit={2}>
+					<Montant numFractionDigit={0}>
 						{total.partPatronale + total.partSalariale}
 					</Montant>
 					<span />
 					<div className="distribution-chart__total-border" />
 					<span>=</span>
 					<RuleLink {...salaireChargé} />
-					<Montant numFractionDigit={2}>{salaireChargé.montant}</Montant>
+					<Montant numFractionDigit={0}>{salaireChargé.montant}</Montant>
 				</div>
 			</>
 		)
