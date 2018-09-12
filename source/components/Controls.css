@@ -18,6 +18,16 @@
 	flex-wrap: wrap;
 }
 
+p#controlExplanation {
+	margin: 0.3em 0 0.6em;
+}
+
+/*Disable links visually */
+#controlExplanation a {
+	color: inherit;
+	text-decoration: none;
+}
+
 /* Display the values of the variables in the explanation of the failed control */
 #controlsBlock .variable .situationValue {
 	display: inline-block;

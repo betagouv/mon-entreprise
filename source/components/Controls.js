@@ -35,7 +35,7 @@ function Controls({ blockingInputControls, controls, startConversation }) {
 													? 'Attention !'
 													: 'Information'}
 											</h3>
-											<p>{makeJsx(evaluated)}</p>
+											<p id="controlExplanation">{makeJsx(evaluated)}</p>
 											{solution && (
 												<div id="solution">
 													{emoji('💡')}
