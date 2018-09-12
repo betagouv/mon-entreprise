@@ -7,54 +7,52 @@ import { animated, Spring } from 'react-spring'
 import { makeJsx } from 'Engine/evaluation'
 
 function Controls({ blockingInputControls, controls, startConversation }) {
+	let control = !blockingInputControls && controls?.[0]
 	return (
 		<div id="controlsBlock">
 			{blockingInputControls && (
 				<p className="blockingControl">{blockingInputControls[0].message}</p>
 			)}
-			{!blockingInputControls && (
-				<Spring
-					to={{
-						height: controls?.length ? 'auto' : 0,
-						opacity: controls?.length ? 1 : 0
-					}}
-					native>
-					{styles =>
-						controls?.length ? (
-							<animated.div id="control" style={styles}>
-								<div id="controlContent">
-									{do {
-										let { level, solution, evaluated } = controls[0]
-										;<>
-											<h3
-												style={{
-													borderBottomColor:
-														level === 'avertissement' ? '#e67e22' : '#34495e'
-												}}>
-												{level === 'avertissement'
-													? 'Attention'
-													: 'Information'}
-											</h3>
-											<p id="controlExplanation">{makeJsx(evaluated)}</p>
-											{solution && (
-												<div id="solution">
-													{emoji('💡')}
-													<button
-														key={solution.cible}
-														className="ui__ link-button"
-														onClick={() => startConversation(solution.cible)}>
-														{solution.texte}
-													</button>
-												</div>
-											)}
-										</>
-									}}
-								</div>
-							</animated.div>
-						) : null
-					}
-				</Spring>
-			)}
+			<Spring
+				to={{
+					height: control ? 'auto' : 0,
+					opacity: control ? 1 : 0
+				}}
+				delay={2000}
+				native>
+				{styles =>
+					!control ? null : (
+						<animated.div id="control" style={styles}>
+							<div id="controlContent">
+								{do {
+									let { level, solution, evaluated } = control
+									;<>
+										<h3
+											style={{
+												borderBottomColor:
+													level === 'avertissement' ? '#e67e22' : '#34495e'
+											}}>
+											{level === 'avertissement' ? 'Attention' : 'Information'}
+										</h3>
+										<div id="controlExplanation">{makeJsx(evaluated)}</div>
+										{solution && (
+											<div id="solution">
+												{emoji('💡')}
+												<button
+													key={solution.cible}
+													className="ui__ link-button"
+													onClick={() => startConversation(solution.cible)}>
+													{solution.texte}
+												</button>
+											</div>
+										)}
+									</>
+								}}
+							</div>
+						</animated.div>
+					)
+				}
+			</Spring>
 		</div>
 	)
 }

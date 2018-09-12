@@ -16,7 +16,7 @@
 	font-size: 90%;
 }
 
-p#controlExplanation {
+#controlExplanation {
 	margin: 0.3em 0 0.6em;
 	display: flex;
 	justify-content: center;
