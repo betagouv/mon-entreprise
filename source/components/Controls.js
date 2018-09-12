@@ -26,7 +26,11 @@ function Controls({ blockingInputControls, controls, startConversation }) {
 									{do {
 										let { level, solution, evaluated } = controls[0]
 										;<>
-											<h3>
+											<h3
+												style={{
+													borderBottomColor:
+														level === 'avertissement' ? '#e67e22' : '#34495e'
+												}}>
 												{level === 'avertissement'
 													? 'Attention !'
 													: 'Information'}

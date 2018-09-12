@@ -6,6 +6,8 @@
 #controlsBlock h3 {
 	text-align: center;
 	margin: 0 0 0.6em;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 }
 
 #controlsBlock #controlContent {
