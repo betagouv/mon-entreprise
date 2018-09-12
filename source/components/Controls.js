@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { startConversation } from 'Actions/actions'
 import { animated, Spring } from 'react-spring'
 import { makeJsx } from 'Engine/evaluation'
+import { createMarkdownDiv } from 'Engine/marked'
 
 function Controls({ blockingInputControls, controls, startConversation }) {
 	let control = !blockingInputControls && controls?.[0]
@@ -25,7 +26,7 @@ function Controls({ blockingInputControls, controls, startConversation }) {
 						<animated.div id="control" style={styles}>
 							<div id="controlContent">
 								{do {
-									let { level, solution, evaluated } = control
+									let { level, message, solution, evaluated } = control
 									;<>
 										<h3
 											style={{
@@ -34,7 +35,10 @@ function Controls({ blockingInputControls, controls, startConversation }) {
 											}}>
 											{level === 'avertissement' ? 'Attention' : 'Information'}
 										</h3>
-										<div id="controlExplanation">{makeJsx(evaluated)}</div>
+										{message && createMarkdownDiv(message)}
+										{!message && (
+											<div id="controlExplanation">{makeJsx(evaluated)}</div>
+										)}
 										{solution && (
 											<div id="solution">
 												{emoji('💡')}

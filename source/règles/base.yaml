@@ -1445,6 +1445,10 @@
   format: nombre
   # contrôle : le code du travail définit la borne inférieure de 24h par semaine. Sauf qu'en réalité, la loi permet très souvent des dérogations.
   par défaut: 35
+  contrôles: 
+    - si: heures par semaine < 24
+      niveau: avertissement
+      message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
 
 - espace: contrat salarié
   nom: quotité de travail
@@ -2079,6 +2083,10 @@
   suggestions:
     basique: 40
     élevé: 100
+  contrôles: 
+    - si: complémentaire santé < 15
+      niveau: avertissement
+      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi
 
 - espace: contrat salarié
   nom: contribution au dialogue social
