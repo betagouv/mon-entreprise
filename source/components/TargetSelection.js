@@ -69,6 +69,12 @@ class TargetSelection extends Component {
 		} = this.props
 		return (
 			<div id="targetSelection">
+				{noUserInput && (
+					<p className="blockingControl">
+						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
+					</p>
+				)}
+				<Controls {...{ blockingInputControls, controls }} />
 				<section
 					id="targetsContainer"
 					style={{
@@ -81,13 +87,6 @@ class TargetSelection extends Component {
 					}}>
 					{this.renderOutputList()}
 				</section>
-				{noUserInput && (
-					<p className="blockingControl">
-						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
-					</p>
-				)}
-
-				<Controls {...{ blockingInputControls, controls }} />
 			</div>
 		)
 	}
