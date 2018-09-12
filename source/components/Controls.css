@@ -3,12 +3,29 @@
 	font-size: 150%;
 }
 
-#controlsBlock #control {
+#controlsBlock h3 {
+	text-align: center;
+	margin: 0 0 0.6em;
+}
+
+#controlsBlock #controlContent {
+	font-size: 90%;
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+/* Display the values of the variables in the explanation of the failed control */
+#controlsBlock .variable .situationValue {
+	display: inline-block;
 }
 #controlsBlock img {
-	width: 2.5em !important;
-	height: 2.5em !important;
+	width: 2em !important;
+	height: 2em !important;
+}
+
+#controlsBlock #solution {
+	display: flex;
+	align-items: center;
 }

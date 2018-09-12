@@ -222,7 +222,7 @@ export let treatRuleRoot = (rules, rule) => {
 				test: control['si'],
 				message: control['message'],
 				testExpression,
-				action: control['action']
+				solution: control['solution']
 			}
 		})
 

@@ -709,7 +709,7 @@
       niveau: bloquant
     - si: brut de base < smic mensuel
       niveau: avertissement
-      action:
+      solution:
         cible: contrat salarié . temps partiel
         texte: Est-ce un temps partiel ?
   formule:
