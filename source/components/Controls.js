@@ -6,9 +6,25 @@ import { startConversation } from 'Actions/actions'
 import { animated, Spring } from 'react-spring'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
+import { currentQuestionSelector } from '../selectors/analyseSelectors'
+import { reject } from 'ramda'
 
-function Controls({ blockingInputControls, controls, startConversation }) {
-	let control = !blockingInputControls && controls?.[0]
+function Controls({
+	blockingInputControls,
+	controls,
+	startConversation,
+	currentQuestion
+}) {
+	let control =
+		!blockingInputControls &&
+		do {
+			let relevantControls = reject(
+				c => c.isInputControl && c.dottedName !== currentQuestion
+			)(controls)
+
+			relevantControls[0]
+		}
+
 	return (
 		<div id="controlsBlock">
 			{blockingInputControls && (
@@ -62,7 +78,10 @@ function Controls({ blockingInputControls, controls, startConversation }) {
 }
 
 export default connect(
-	(state, props) => ({ key: props.language }),
+	(state, props) => ({
+		currentQuestion: currentQuestionSelector(state),
+		key: props.language
+	}),
 	{
 		startConversation
 	}

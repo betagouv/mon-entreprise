@@ -218,11 +218,13 @@ export let treatRuleRoot = (rules, rule) => {
 			}
 
 			return {
+				dottedName: rule.dottedName,
 				level: control['niveau'],
 				test: control['si'],
 				message: control['message'],
 				testExpression,
-				solution: control['solution']
+				solution: control['solution'],
+				isInputControl
 			}
 		})
 

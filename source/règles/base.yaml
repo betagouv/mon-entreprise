@@ -2084,7 +2084,7 @@
     basique: 40
     élevé: 100
   contrôles: 
-    - si: complémentaire santé < 15
+    - si: forfait complémentaire santé < 15
       niveau: avertissement
       message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi
 
