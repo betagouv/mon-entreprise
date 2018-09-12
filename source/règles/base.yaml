@@ -707,7 +707,7 @@
     - si: brut de base < 300
       message: Entrez un salaire mensuel
       niveau: bloquant
-    - si: brut de base < smic mensuel
+    - si: brut de base < SMIC mensuel
       niveau: avertissement
       solution:
         cible: contrat salarié . temps partiel
@@ -806,12 +806,12 @@
   formule: plafond sécurité sociale temps plein * quotité de travail
 
 - espace: contrat salarié
-  nom: smic mensuel temps plein
+  nom: SMIC mensuel temps plein
   formule: 1498.47
 
 - espace: contrat salarié
-  nom: smic mensuel
-  formule: smic mensuel temps plein * quotité de travail
+  nom: SMIC mensuel
+  formule: SMIC mensuel temps plein * quotité de travail
 
 - espace: contrat salarié
   nom: cotisations salariales
@@ -1493,7 +1493,7 @@
 
 - espace: contrat salarié
   nom: plafond cice
-  formule: multiplicateur cice * smic mensuel
+  formule: multiplicateur cice * SMIC mensuel
 
 - espace: contrat salarié
   nom: multiplicateur cice
@@ -1568,7 +1568,7 @@
 
 - espace: contrat salarié . CITS
   nom: plafond
-  formule: multiplicateur * smic mensuel
+  formule: multiplicateur * SMIC mensuel
 
 - espace: contrat salarié . CITS
   nom: multiplicateur
@@ -1597,7 +1597,7 @@
   applicable si: statut JEI
 
   formule:
-    # TODO - le plafonnement à 4,5 smic, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
+    # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
     # il faut fournir un mécanisme "exonération" capable de recalculer une règle en introduisant un plafond
     le minimum de:
       - 1634.39
@@ -1685,8 +1685,8 @@
 
 - espace: contrat salarié
   nom: plafond réduction générale
-  # TODO: calcul du smic proratisé
-  formule: multiplicateur réduction générale * smic mensuel
+  # TODO: calcul du SMIC proratisé
+  formule: multiplicateur réduction générale * SMIC mensuel
 
 - espace: contrat salarié
   nom: multiplicateur réduction générale
@@ -1909,7 +1909,7 @@
 - espace: contrat salarié
   nom: plafond réduction allocations familiales
   titre: Plafond de la réduction des allocations familiales
-  formule: smic mensuel * 3.5
+  formule: SMIC mensuel * 3.5
 
 # TODO - intégrer l'éligibilité à la réduction générale
 # TODO - vérifier si la réduction doit être portée à part sur la fiche de paie
