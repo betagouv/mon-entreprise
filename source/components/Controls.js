@@ -32,7 +32,7 @@ function Controls({ blockingInputControls, controls, startConversation }) {
 														level === 'avertissement' ? '#e67e22' : '#34495e'
 												}}>
 												{level === 'avertissement'
-													? 'Attention !'
+													? 'Attention'
 													: 'Information'}
 											</h3>
 											<p id="controlExplanation">{makeJsx(evaluated)}</p>

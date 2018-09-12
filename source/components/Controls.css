@@ -4,22 +4,22 @@
 }
 
 #controlsBlock h3 {
-	text-align: center;
 	margin: 0 0 0.6em;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
+	width: 5.5em;
+	margin: 0.6em auto;
+	text-align: center;
 }
 
 #controlsBlock #controlContent {
 	font-size: 90%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
 }
 
 p#controlExplanation {
 	margin: 0.3em 0 0.6em;
+	display: flex;
+	justify-content: center;
 }
 
 /*Disable links visually */
@@ -40,4 +40,5 @@ p#controlExplanation {
 #controlsBlock #solution {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
