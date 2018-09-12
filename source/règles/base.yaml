@@ -2218,11 +2218,11 @@
       assiette: assiette CSG
       composantes:
         - attributs:
-            impôt sur le revenu: déductible
+            impôt sur le revenu: non déductible
           taux: 2.4%
 
         - attributs:
-            impôt sur le revenu: non déductible          
+            impôt sur le revenu: déductible          
           taux: 6.8%
   exemples:
     - nom: "CSG cadre"
