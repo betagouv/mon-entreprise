@@ -9,7 +9,7 @@ let getOptions = input =>
 	input.length < 3
 		? Promise.resolve({ options: [] })
 		: fetch(
-				`https://geo.api.gouv.fr/communes?nom=${input}&fields=nom,code,departement,region&`
+				`https://geo.api.gouv.fr/communes?nom=${input}&fields=nom,code,departement,region&boost=population`
 		  )
 				.then(response => {
 					if (!response.ok)
