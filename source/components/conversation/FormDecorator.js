@@ -62,32 +62,40 @@ export var FormDecorator = formType => RenderField =>
 
 			return (
 				<div className={classNames('step', formType)}>
-						<div className="unfoldedHeader">
-							<div className="step-question">
-								<h1> {this.props.question} {!inversion && <Explicable dottedName={fieldName}/>}</h1>
-								<div
-									className="step-subquestion"
-									dangerouslySetInnerHTML={{ __html: subquestion }}
-									/>
-							</div>
+					<div className="unfoldedHeader">
+						<div className="step-question">
+							<h1>
+								{' '}
+								{this.props.question}{' '}
+								{!inversion && <Explicable dottedName={fieldName} />}
+							</h1>
+							<div
+								className="step-subquestion"
+								dangerouslySetInnerHTML={{ __html: subquestion }}
+							/>
 						</div>
-						{defaultValue != null && (
-							<IgnoreStepButton
-								action={() => {
-									setFormValue(fieldName, '' + defaultValue)
-									submit('ignore')
-								}}
-							/>
-						)}
-						<fieldset>
-
-							<Field
-								component={RenderField}
-								name={fieldName}
-								{...stepProps}
-								themeColours={themeColours}
-							/>
-						</fieldset>
+					</div>
+					{defaultValue != null && (
+						<IgnoreStepButton
+							action={() => {
+								setFormValue(
+									fieldName,
+									typeof defaultValue == 'object'
+										? JSON.stringify(defaultValue)
+										: '' + defaultValue
+								)
+								submit('ignore')
+							}}
+						/>
+					)}
+					<fieldset>
+						<Field
+							component={RenderField}
+							name={fieldName}
+							{...stepProps}
+							themeColours={themeColours}
+						/>
+					</fieldset>
 				</div>
 			)
 		}

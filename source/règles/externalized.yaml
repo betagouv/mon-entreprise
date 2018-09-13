@@ -855,9 +855,7 @@ entreprise . association non lucrative:
     calculées à l'échelle de l'établissement et sont fonction de règlementations
     locales.
   suggestions.fr: utilisation d'une API
-établissement . commune:
-  titre.en: City of the establishment
-  titre.fr: Commune de l'établissement
+établissement . localisation:
   question.en: In which city is the establishment located?
   question.fr: Dans quelle commune l'établissement est-il implanté ?
   description.en: |-
