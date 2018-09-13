@@ -317,17 +317,6 @@ contrat salarié . CDD . motif . issue d'apprentissage:
 contrat salarié . CDD . motif . contrat aidé:
   titre.en: 'Aided contract (CUI, work-study , ...)'
   titre.fr: 'Contrat aidé (CUI, alternance, ...)'
-contrat salarié . CDD:
-  titre.fr: Contrat à durée déterminée
-  titre.en: Fixed term contract
-  description.fr: >-
-    Contrat de travail pour lequel un employeur peut recruter un salarié pour
-    une durée déterminée, car la cause de cette détermination, de la date ou
-    échéance de fin de contrat est prévue explicitement par le Code du travail.
-  description.en: >-
-    Employment contract for which an employer can recruit an employee for a
-    fixed term, because the cause of this determination, the date or the end
-    date of the contract is explicitly provided for by the Labor Code.
 contrat salarié . CDD . durée contrat:
   titre.en: contract duration
   titre.fr: durée du contrat
@@ -434,25 +423,12 @@ contrat salarié:
     un salarié et un employeur (Art. L1221-2 du Code du travail).
   titre.en: employment contract
   titre.fr: contrat salarié
-contrat salarié . type de contrat:
-  titre.en: Type of contract
-  titre.fr: Type de contrat
-  question.en: What is the nature of the employment contract?
-  question.fr: "Quelle est la nature du contrat de travail\_?"
-contrat salarié . type de contrat . CDD:
+contrat salarié . CDD:
   description.en: The employment contract explicitly provides for an end date.
   description.fr: Le contrat de travail prévoit explicitement une date de fin.
   titre.en: Fixed term (CDD)
   titre.fr: CDD
-contrat salarié . type de contrat . CDI:
-  description.en: >-
-    The employment contract does not mention an end date, or it has not been
-    established : the law makes it a permanent contract by default.
-  description.fr: >-
-    Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été
-    établi.
-  titre.en: Permanent (CDI)
-  titre.fr: CDI
+  question.en: Is it a fixed-term contract (CDD) ?
 contrat salarié . assiette cotisations sociales:
   titre.en: base for the social contributions
   titre.fr: Assiette des cotisations sociales

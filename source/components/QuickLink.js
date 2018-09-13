@@ -17,7 +17,7 @@ type Props = {
 }
 
 let quickLinks = {
-	CDD: 'contrat salarié . type de contrat',
+	CDD: 'contrat salarié . CDD',
 	Cadre: 'contrat salarié . statut cadre',
 	'Temps partiel': 'contrat salarié . temps partiel',
 	Localisation: 'établissement . localisation',
