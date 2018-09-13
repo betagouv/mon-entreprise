@@ -57,6 +57,12 @@ export const règleValeurSelector = createSelector(
 			analysis.cache[dottedName] ||
 			analysis.targets.find(target => target.dottedName === dottedName)
 
+		if (!rule) {
+			throw new Error(
+				`[règleValeurSelector] Il semble que la valeur d'une règle inconnue de la base a été demandée. Vérifiez son orthographe ou que son espace de nom n'a pas récemment changé.`
+			)
+		}
+
 		let valeur =
 			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situation[dottedName]
 		// if (isNil(valeur)) {

@@ -1439,7 +1439,7 @@
     Par exemple pour les cotisations plafonnées ou les exonérations dépendant du SMIC.
   par défaut: non
 
-- espace: contrat salarié
+- espace: contrat salarié . temps partiel
   nom: heures par semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   format: nombre
@@ -1456,7 +1456,7 @@
   formule:
     variations:
       - si: temps partiel
-        alors: heures par semaine / 35
+        alors: temps partiel . heures par semaine / 35
       - sinon: 1
 - espace: contrat salarié
   nom: CICE
