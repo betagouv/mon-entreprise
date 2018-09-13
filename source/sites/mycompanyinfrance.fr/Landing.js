@@ -5,9 +5,11 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import './Landing.css'
+import Header from './pages/Header/Header'
 
 const Landing = ({ colours: { colour } }) => (
 	<>
+		<Header />
 		<section className="landing__header" style={{ backgroundColor: colour }}>
 			<header>
 				<h1>

@@ -12,16 +12,18 @@
 	background-color: rgb(41, 117, 209);
 	height: 100%;
 }
-
-.navigation {
-	padding: 1rem 2rem 3rem 1rem;
-	margin-right: 2rem;
-	background-color: #f3f3f3;
-	flex: 1;
+.navigation__container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
 	flex-shrink: 0;
+	min-height: 100%;
+	background-color: #f3f3f3;
+}
+
+.navigation {
+	padding: 1rem 2rem 3rem 1rem;
+	flex: 1;
 	min-width: 20rem;
 }
 
@@ -84,4 +86,17 @@
 .navigation > ul > li > :first-child * {
 	text-decoration: none !important;
 	line-height: 2.5rem;
+}
+.navigation__container .mobile__menu {
+	display: none;
+	height: 48px;
+	width: 48px;
+}
+@media (max-width: 500px) {
+	.navigation__container header {
+		background: transparent;
+	}
+	.navigation__container {
+		margin-right: 1rem;
+	}
 }
