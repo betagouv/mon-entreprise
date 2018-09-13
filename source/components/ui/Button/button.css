@@ -56,7 +56,7 @@
 		var(--colour) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
-	background-size: 260%;
+	background-size: 280%;
 	background-position-x: 99%;
 }
 .ui__.button:not(:disabled):not(.simple):hover,

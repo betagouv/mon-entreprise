@@ -1,6 +1,6 @@
 /* @flow */
 
-export type CompanyLiability = 'LIMITED_LIABILITY' | 'SOLE_PROPRIETORSHIP'
+export type CompanyLiability = 'LIMITED_LIABILITY' | 'UNLIMITED_LIABILITY'
 export type ChooseCompanyLiabilityAction = {
 	type: 'CHOOSE_COMPANY_LEGAL_SETUP',
 	setup: ?CompanyLiability

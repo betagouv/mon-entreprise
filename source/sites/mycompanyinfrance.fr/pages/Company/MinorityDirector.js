@@ -10,37 +10,37 @@ type Props = {
 
 const MinorityDirector = ({ directorIsInAMinority }: Props) => (
 	<>
-		<h2>Minority or majority director </h2>
+		<h2>Chairman or managing director </h2>
 		<p>
 			Some special rules apply depending on the amount of shares owned by the
 			director.
 		</p>
 		<ul>
 			<li>
-				<strong>Minority director</strong>: The director is in minority (or
-				equality), or is part of a managing board that is in minority (or
-				equality).
+				<strong>Chairman </strong>: The director is in majority, or is part of a
+				managing board that is in majority.
 			</li>
 			<li>
-				<strong>Majority director</strong>: The director is in majority, or is
-				part of a managing board that is in majority.
+				<strong>Managing director</strong>: The director is in minority (or
+				equality), or is part of a managing board that is in minority (or
+				equality).
 			</li>
 		</ul>
 
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
-					directorIsInAMinority(true)
-				}}
-				className="ui__ button">
-				Minority director
-			</button>
-			<button
-				onClick={() => {
 					directorIsInAMinority(false)
 				}}
 				className="ui__ button">
-				Majority director
+				Chairman
+			</button>
+			<button
+				onClick={() => {
+					directorIsInAMinority(true)
+				}}
+				className="ui__ button">
+				Managing director
 			</button>
 			<SkipButton onClick={() => directorIsInAMinority(null)} />
 		</div>
