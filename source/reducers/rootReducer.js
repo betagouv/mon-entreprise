@@ -69,25 +69,35 @@ function lang(state = defaultLang, { type, lang }) {
 
 type ConversationSteps = {|
 	+foldedSteps: Array<string>,
-	+unfoldedStep: ?string
+	+unfoldedStep: ?string,
+	+priorityNamespace: ?string
 |}
 
 function conversationSteps(
-	state: ConversationSteps = { foldedSteps: [], unfoldedStep: null },
+	state: ConversationSteps = {
+		foldedSteps: [],
+		unfoldedStep: null,
+		priorityNamespace: null
+	},
 	action: Action
 ): ConversationSteps {
 	if (action.type === 'RESET_SIMULATION')
-		return { foldedSteps: [], unfoldedStep: null }
-	if (action.type === 'START_CONVERSATION' && action.question)
+		return { foldedSteps: [], unfoldedStep: null, priorityNamespace: null }
+	if (action.type === 'START_CONVERSATION' && action.priorityNamespace)
 		return {
 			foldedSteps: state.foldedSteps,
-			unfoldedStep: action.question
+			unfoldedStep: null,
+			priorityNamespace: action.priorityNamespace
 		}
 
 	if (action.type !== 'STEP_ACTION') return state
 	const { name, step } = action
 	if (name === 'fold')
-		return { foldedSteps: [...state.foldedSteps, step], unfoldedStep: null }
+		return {
+			foldedSteps: [...state.foldedSteps, step],
+			unfoldedStep: null,
+			priorityNamespace: state.priorityNamespace
+		}
 	if (name === 'unfold') {
 		// if a step had already been unfolded, bring it back !
 		return {
@@ -96,7 +106,8 @@ function conversationSteps(
 				...(state.unfoldedStep ? [state.unfoldedStep] : [])
 			],
 
-			unfoldedStep: step
+			unfoldedStep: step,
+			priorityNamespace: state.priorityNamespace
 		}
 	}
 	return state

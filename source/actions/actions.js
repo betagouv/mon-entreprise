@@ -22,10 +22,12 @@ export const deletePreviousSimulation = () => (
 	deletePersistedSimulation()
 }
 
-export function startConversation(question: ?string): StartConversationAction {
+export function startConversation(
+	priorityNamespace: ?string
+): StartConversationAction {
 	return {
 		type: 'START_CONVERSATION',
-		...(typeof question === 'string' ? { question } : {})
+		...(priorityNamespace ? { priorityNamespace } : {})
 	}
 }
 
