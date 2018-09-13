@@ -13,7 +13,8 @@ function Controls({
 	blockingInputControls,
 	controls,
 	startConversation,
-	currentQuestion
+	currentQuestion,
+	foldedSteps
 }) {
 	let control =
 		!blockingInputControls &&
@@ -55,17 +56,18 @@ function Controls({
 										{!message && (
 											<div id="controlExplanation">{makeJsx(evaluated)}</div>
 										)}
-										{solution && (
-											<div id="solution">
-												{emoji('💡')}
-												<button
-													key={solution.cible}
-													className="ui__ link-button"
-													onClick={() => startConversation(solution.cible)}>
-													{solution.texte}
-												</button>
-											</div>
-										)}
+										{solution &&
+											!foldedSteps.includes(solution.cible) && (
+												<div id="solution">
+													{emoji('💡')}
+													<button
+														key={solution.cible}
+														className="ui__ link-button"
+														onClick={() => startConversation(solution.cible)}>
+														{solution.texte}
+													</button>
+												</div>
+											)}
 									</>
 								}}
 							</div>
@@ -80,6 +82,7 @@ function Controls({
 export default connect(
 	(state, props) => ({
 		currentQuestion: currentQuestionSelector(state),
+		foldedSteps: state.conversationSteps.foldedSteps,
 		key: props.language
 	}),
 	{
