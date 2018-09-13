@@ -2086,7 +2086,7 @@
   contrôles: 
     - si: forfait complémentaire santé < 15
       niveau: avertissement
-      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi
+      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
 - espace: contrat salarié
   nom: contribution au dialogue social

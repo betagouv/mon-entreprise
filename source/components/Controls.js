@@ -35,7 +35,7 @@ function Controls({
 					height: control ? 'auto' : 0,
 					opacity: control ? 1 : 0
 				}}
-				delay={2000}
+				delay={1200}
 				native>
 				{styles =>
 					!control ? null : (
