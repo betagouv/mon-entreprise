@@ -318,7 +318,7 @@ describe('nextSteps', function() {
 	it('should ask "motif CDD" if "CDD" applies', function() {
 		let stateSelector = name =>
 			({
-				'contrat salarié . type de contrat': 'CDD',
+				'contrat salarié . CDD': 'oui',
 				'contrat salarié . salaire . brut de base': '2300'
 			}[name])
 

@@ -62,7 +62,6 @@
 
   non applicable si:
     une de ces conditions:
-      - type de contrat != 'CDD'
       - événement . poursuite du CDD en CDI
       - contrat jeune vacances
       - motif . classique . saisonnier
@@ -79,13 +78,13 @@
   exemples:
     - nom: Non applicable si CDI
       situation:
-        type de contrat: CDI
+        CDD: non
         assiette cotisations sociales: 1480
       valeur attendue: 0
 
     - nom: SMIC
       situation:
-        type de contrat: CDD
+        CDD: oui
         événement: aucun
         motif: accroissement activité
         contrat jeune vacances: non
@@ -95,7 +94,7 @@
 
     - nom: salaire médian
       situation:
-        type de contrat: CDD
+        CDD: oui 
         événement: aucun
         motif: accroissement activité
         contrat jeune vacances: non
@@ -122,7 +121,6 @@
 
   non applicable si:
     une de ces conditions:
-      - type de contrat != 'CDD'
       - événement . poursuite du CDD en CDI
     # TODO Y a-t-il d'autres conditions ? Sinon supprimer la liste
 
@@ -160,7 +158,7 @@
       valeur attendue: 0
     - nom: 10 jours non pris
       situation:
-        type de contrat: CDD
+        CDD: oui
         salaire . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 10
@@ -168,7 +166,7 @@
       valeur attendue: 92
     - nom: 3 jours non pris
       situation:
-        type de contrat: CDD
+        CDD: oui
         salaire . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 3
@@ -232,7 +230,6 @@
 
   non applicable si:
     une de ces conditions:
-      - type de contrat != 'CDD'
 
       # Evènements particuliers
       - événement . poursuite du CDD en CDI
@@ -260,7 +257,7 @@
   exemples:
     - nom: salaire médian
       situation:
-        type de contrat: CDD
+        CDD: oui
         salaire . brut de base: 2300
         motif: classique . accroissement activité
       valeur attendue: 230
@@ -295,7 +292,6 @@
 
   applicable si:
     toutes ces conditions:
-      - type de contrat = 'CDD'
       - durée contrat <= 3
       - motif . classique . usage
 
@@ -309,7 +305,7 @@
     - nom: salaire médian, accroissement d'activité, contrat de 1 mois
       situation:
         événement: non
-        type de contrat: CDD
+        CDD: oui
         assiette cotisations sociales: 2300
         motif: classique . accroissement activité
         durée contrat: 1
@@ -318,7 +314,7 @@
     - nom: salaire médian, motif CDD usage, contrat de 1 mois
       situation:
         événement: non
-        type de contrat: CDD
+        CDD: oui
         assiette cotisations sociales: 2300
         motif: classique . usage
         durée contrat: 1
@@ -393,8 +389,6 @@
 
     > Par exemple, dans l'hypothèse d'une poursuite du CDD en CDI, aucune majoration ou indemnité sur le CDD ne sera à verser.
 
-  non applicable si: type de contrat != 'CDD'
-
   # TODO
   # cette règle devrait n'être affichée que quand son espace, CDD, est valide
   # CDD devrait être valide seulement si un motif de la liste des possibilités a été choisi
@@ -452,7 +446,6 @@
   question: Quel est le motif de recours au CDD ?
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
-  non applicable si: type de contrat != 'CDD'
   formule:
     une possibilité:
       choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
@@ -586,22 +579,6 @@
 # TODO Attention, il faudrait peut-être prendre en compte les interdictions du CDD.
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
 
-- espace: contrat salarié
-  nom: CDD
-  titre: Contrat à durée déterminée
-  description: Contrat de travail pour lequel un employeur peut recruter un salarié pour une durée déterminée, car la cause de cette détermination, de la date ou échéance de fin de contrat est prévue explicitement par le Code du travail.
-  référence: https://fr.wikipedia.org/wiki/Contrat_de_travail_à_durée_déterminée_en_France
-  par défaut: non
-  # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
-#   implique:
-#     - emploi temporaire
-#     - motif de recours
-#   # C'est ici que l'on dit : si le CDD a été choisi, la réponses à motif CDD doit être donnée (on ne peut ne pas y répondre)
-#
-# - Variable: emploi temporaire
-#   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
-#   références:
-#     Code du travail - Article L1242-1
 
 - espace: contrat salarié . CDD
   nom: durée contrat
@@ -697,33 +674,33 @@
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
+
 - espace: contrat salarié
-  nom: type de contrat
-  question: Quelle est la nature du contrat de travail ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - CDI
-        - CDD
-  par défaut: CDI
-  contrôles:
-    - si: type de contrat = 'CDD'
+  nom: CDD
+  question: Est-ce un contrat à durée déterminée (CDD) ?
+  description: | 
+    Par défaut, faire travailler quelqu'un en France établit auutomatiquement un CDI à temps plein.
+    Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date d fin.
+
+  par défaut: non
+  # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
+#   implique:
+#     - emploi temporaire
+#     - motif de recours
+#   # C'est ici que l'on dit : si le CDD a été choisi, la réponses à motif CDD doit être donnée (on ne peut ne pas y répondre)
+#
+# - Variable: emploi temporaire
+#   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
+#   références:
+#     Code du travail - Article L1242-1
+#
+  contrôles: 
+    - si: CDD = 'oui'
       niveau: information
       message: |
         Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
-
         [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
 
-- espace: contrat salarié . type de contrat
-  nom: CDD
-  description: Le contrat de travail prévoit explicitement une date de fin.
-  formule: contrat salarié . type de contrat = 'CDD'
-
-- espace: contrat salarié . type de contrat
-  nom: CDI
-  description: Le contrat de travail ne mentionne pas de date de fin, ou n'a pas été établi.
-  formule: contrat salarié . type de contrat = 'CDI'
 
 - espace: contrat salarié
   nom: assiette cotisations sociales

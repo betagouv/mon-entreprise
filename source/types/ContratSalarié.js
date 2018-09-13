@@ -4,7 +4,7 @@ import type { CDD } from './CDD'
 
 export type ContratSalarié = {
 	'salaire total'?: string,
-	'type de contrat'?: 'CDI' | 'CDD',
+	'CDD'?: OuiNon,
 	'temps partiel'?: OuiNon,
 	'heure par semaine'?: string,
 	'statut cadre'?: OuiNon,
