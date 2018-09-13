@@ -1,4 +1,4 @@
-import { startConversation } from 'Actions/actions'
+import { resetSimulation, startConversation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
@@ -7,6 +7,7 @@ import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { animated, Spring } from 'react-spring'
+import { reset } from 'redux-form'
 import {
 	blockingInputControlsSelector,
 	nextStepsSelector,
@@ -33,9 +34,13 @@ import TargetSelection from './TargetSelection'
 		arePreviousAnswers: state.conversationSteps.foldedSteps.length !== 0,
 		nextSteps: state.conversationStarted && nextStepsSelector(state)
 	}),
-	{
-		startConversation
-	}
+	dispatch => ({
+		startConversation: () => dispatch(startConversation()),
+		resetSimulation: () => {
+			dispatch(resetSimulation())
+			dispatch(reset('conversation'))
+		}
+	})
 )
 @withLanguage
 export default class Simu extends Component {
@@ -50,6 +55,7 @@ export default class Simu extends Component {
 			arePreviousAnswers,
 			nextSteps,
 			startConversation,
+			resetSimulation,
 			blockingInputControls
 		} = this.props
 		const firstValidInputEntered =
@@ -62,6 +68,11 @@ export default class Simu extends Component {
 		return (
 			<>
 				<div id="simu">
+					{displayConversation && (
+						<button className="ui__ button small" onClick={resetSimulation}>
+							&larr;
+						</button>
+					)}
 					{arePreviousAnswers && (
 						<div className="change-answer-link">
 							<button

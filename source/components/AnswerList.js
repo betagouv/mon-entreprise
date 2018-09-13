@@ -9,6 +9,7 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
+import { reset } from 'redux-form'
 import { createSelector } from 'reselect'
 import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
 import './AnswerList.css'
@@ -89,7 +90,10 @@ export default compose(
 	connect(
 		state => ({ answers: answerWithValueSelector(state) }),
 		dispatch => ({
-			resetSimulation: () => dispatch(resetSimulation()),
+			resetSimulation: () => {
+				dispatch(resetSimulation())
+				dispatch(reset('conversation'))
+			},
 			changeAnswer: question =>
 				dispatch({
 					type: 'STEP_ACTION',
