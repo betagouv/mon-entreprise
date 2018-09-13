@@ -6,10 +6,11 @@ import { SkipButton } from 'Ui/Button'
 import type { CompanyLiability } from 'Types/companyStatusTypes'
 
 type Props = {
+	multipleAssociates: ?boolean,
 	chooseCompanyLiability: (?CompanyLiability) => void
 }
 
-const Liability = ({ chooseCompanyLiability }: Props) => (
+const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 	<>
 		<h2>Choosing the liability </h2>
 		<p>
@@ -18,10 +19,24 @@ const Liability = ({ chooseCompanyLiability }: Props) => (
 		</p>
 		<ul>
 			<li>
-				<strong>Sole proprietorship: </strong>
-				An economic activity conducted by a single natural person, in his own
-				name. It&apos;s less paperwork, but bigger trouble in case of
-				bankruptcy, as your personal wealth can be put to contribution.
+				{multipleAssociates === false ? (
+					<>
+						<strong>Sole proprietorship: </strong>
+						An economic activity conducted by a single natural person, in his
+						own name. It&apos;s less paperwork, but bigger trouble in case of
+						bankruptcy, as your personal wealth can be put to contribution.
+					</>
+				) : (
+					<>
+						<strong>
+							Unlimited {multipleAssociates === true && 'joint and several'}{' '}
+							liability:{' '}
+						</strong>
+						The financial liability of the shareholders is not limited to their
+						contribution. In case of bankruptcy, their personal wealth can be
+						put to contribution
+					</>
+				)}
 			</li>
 			<li>
 				<strong>Limited liability: </strong>A corporate structure whereby the
@@ -33,10 +48,12 @@ const Liability = ({ chooseCompanyLiability }: Props) => (
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
-					chooseCompanyLiability('SOLE_PROPRIETORSHIP')
+					chooseCompanyLiability('UNLIMITED_LIABILITY')
 				}}
 				className="ui__ button">
-				Sole proprietorship
+				{multipleAssociates === false
+					? 'Sole proprietorship'
+					: 'Unlimited Liability'}
 			</button>
 			<button
 				onClick={() => {
@@ -53,6 +70,8 @@ const Liability = ({ chooseCompanyLiability }: Props) => (
 )
 
 export default connect(
-	null,
+	state => ({
+		multipleAssociates: state.inFranceApp.companyLegalStatus.multipleAssociates
+	}),
 	{ chooseCompanyLiability }
 )(Liability)

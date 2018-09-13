@@ -15,7 +15,7 @@ import {
 
 const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 	Microenterprise: {
-		liability: 'SOLE_PROPRIETORSHIP',
+		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
@@ -29,7 +29,7 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 		microenterprise: true
 	},
 	EI: {
-		liability: 'SOLE_PROPRIETORSHIP',
+		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
@@ -76,7 +76,7 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 		microenterprise: false
 	},
 	SNC: {
-		liability: 'SOLE_PROPRIETORSHIP',
+		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: true,
 		microenterprise: false

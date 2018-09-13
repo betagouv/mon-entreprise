@@ -13,7 +13,7 @@ describe('company status selectors', function() {
 		it('should return null there is only one status possible', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
-					liability: 'SOLE_PROPRIETORSHIP',
+					liability: 'UNLIMITED_LIABILITY',
 					directorStatus: 'SELF_EMPLOYED',
 					multipleAssociates: true
 				})
@@ -66,7 +66,7 @@ describe('company status selectors', function() {
 		it('should not return a question which can lead to no matching status', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
-					liability: 'SOLE_PROPRIETORSHIP',
+					liability: 'UNLIMITED_LIABILITY',
 					multipleAssociates: null,
 					microenterprise: null,
 					minorityDirector: null,
