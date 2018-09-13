@@ -696,7 +696,6 @@
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
-  formule: non
 
 - espace: contrat salarié
   nom: type de contrat
@@ -844,6 +843,14 @@
 
 - espace: contrat salarié
   nom: statut cadre
+  formule: 
+    variations: 
+      - si: assimilé salarié
+        alors: oui
+      - sinon: choix
+
+- espace: contrat salarié . statut cadre
+  nom: choix
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   par défaut: non
@@ -1751,9 +1758,6 @@
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 
   non applicable si: assimilé salarié
-
-  #  non applicable si: assimilé salarié
-
   période: flexible
   formule:
     multiplication:
