@@ -16,7 +16,6 @@ type Props = {
 	delay?: number
 }
 
-// Todo : better animate with fromRight on desktop
 export const fromBottom = ({
 	children,
 	config = configPresets.stiff,

@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
 
-const forEachParent = (node, fn) => {
-	if (!node) {
-		return
-	}
-	fn(node)
-	forEachParent(node.parentNode, fn)
-}
 export class ScrollToTop extends Component {
 	static defaultProps = {
 		behavior: 'auto'
@@ -16,20 +9,13 @@ export class ScrollToTop extends Component {
 			window.parentIFrame.scrollToOffset(0, 0)
 			return
 		}
-		forEachParent(this.ref, elem => (elem.scrollTop = 0))
 		window.scroll({
 			top: 0,
 			behavior: this.props.behavior
 		})
 	}
 	render() {
-		return (
-			<div
-				ref={ref => {
-					this.ref = ref
-				}}
-			/>
-		)
+		return null
 	}
 }
 

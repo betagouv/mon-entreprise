@@ -1,5 +1,4 @@
 /* @flow */
-import classnames from 'classnames'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import React, { Component } from 'react'
 import Animate from 'Ui/animate'
@@ -50,9 +49,10 @@ export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 						</svg>
 					</label>
 					<button
-						className={classnames('ui__ checklist-button', {
-							opened: this.state.displayExplanations
-						})}
+						className={
+							'ui__ checklist-button' +
+							(this.state.displayExplanations ? ' opened' : '')
+						}
 						onClick={() =>
 							this.setState(({ displayExplanations }) => ({
 								displayExplanations: !displayExplanations

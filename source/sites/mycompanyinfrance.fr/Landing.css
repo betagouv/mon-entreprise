@@ -40,6 +40,19 @@
 	}
 }
 
+.landing__banner {
+	height: 4.4rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	background: white;
+	padding: 0.6rem;
+}
+
+.landing__banner img {
+	height: 100%;
+	width: auto;
+}
 .landing__header__svg {
 	position: absolute;
 	bottom: -1px;

@@ -48,11 +48,11 @@
 	opacity: 1;
 }
 
-.step-question h1::before {
+.step-question h1:before {
 	content: '›';
 }
 @media (min-width: 500px) {
-	.step-question h1::before {
+	.step-question h1:before {
 		position: absolute;
 		left: -1.1rem;
 	}

@@ -92,8 +92,7 @@
 }
 
 .ui__.link-button,
-.ui__.dashed-button,
-.ui__.text-button {
+.ui__.dashed-button {
 	border: none;
 	display: inline-block;
 	font-size: inherit;
@@ -101,15 +100,9 @@
 	font-family: inherit;
 	margin: 0;
 }
-.ui__.link-button,
-.ui__.text-button {
-	text-decoration: none;
-	color: inherit;
-	text-align: left;
-	padding: 0;
-}
 .ui__.link-button {
 	text-decoration: underline;
+	padding: 0;
 	color: rgb(41, 117, 209);
 	color: var(--colour);
 }
@@ -121,12 +114,12 @@
 .ui__.dashed-button {
 	border-bottom: 1px dashed;
 	border-color: rgb(41, 117, 209);
+	color: inherit;
 	border-color: var(--colour);
 	padding: 0.15em 0em;
 }
 
 .ui__.link-button:not(:disabled):hover,
-.ui__.text-button:not(:disabled):hover,
 .ui__.dashed-button:not(:disabled):hover {
 	opacity: 0.8;
 }
