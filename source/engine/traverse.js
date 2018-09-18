@@ -92,10 +92,10 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 export let treatRuleRoot = (rules, rule) => {
 	/*
 	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
-	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si` et `formule`,
+	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si`, `applicable si` et `formule`,
 	qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
 	Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
-	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST
+	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST. Elles seront exécutées à l'évaluation.
 	*/
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
