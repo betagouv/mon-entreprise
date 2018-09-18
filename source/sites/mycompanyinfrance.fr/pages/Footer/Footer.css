@@ -12,7 +12,7 @@
 
 #footerIcons {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 }
 #footerIcons a::after {
 	display: none;
