@@ -32,12 +32,10 @@ button {
 	}
 }
 .ui__.container {
-	max-width: 750px;
-	margin: auto;
-	padding: 0 0.6rem;
-	padding-top: 1.5rem;
-	padding-bottom: 2rem;
-	flex: 1000;
+	max-width: 45em;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0 0.6em;
 }
 p.ui__.notice {
 	font-size: 90%;

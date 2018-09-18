@@ -11,8 +11,8 @@ import './App.css'
 import Landing from './Landing'
 import CompanyIndex from './pages/Company'
 import Footer from './pages/Footer/Footer'
+import StepsHeader from './pages/Header/StepsHeader'
 import HiringProcess from './pages/HiringProcess'
-import Navigation from './pages/Navigation/Navigation'
 import SocialSecurity from './pages/SocialSecurity'
 class InFranceRoute extends Component {
 	componentDidMount() {
@@ -31,20 +31,18 @@ class InFranceRoute extends Component {
 				<div id="content">
 					<Switch>
 						<Route exact path="/" component={Landing} />
-						<div className="app-container">
+						<>
 							{/* Passing location down to prevent update blocking */}
-							<Navigation location={location} />
-							<div className="app-content">
-								<div className="ui__ container">
-									<Route path="/company" component={CompanyIndex} />
-									<Route path="/social-security" component={SocialSecurity} />
-									<Route path="/hiring-process" component={HiringProcess} />
-								</div>
-								<Footer />
+							<StepsHeader location={location} />
+							<div className="ui__ container">
+								<Route path="/company" component={CompanyIndex} />
+								<Route path="/social-security" component={SocialSecurity} />
+								<Route path="/hiring-process" component={HiringProcess} />
 							</div>
-						</div>
+						</>
 					</Switch>
 				</div>
+				<Footer />
 			</Provider>
 		)
 	}
