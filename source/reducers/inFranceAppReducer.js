@@ -6,12 +6,8 @@ import type {
 	CompanyLegalStatus,
 	State
 } from 'Types/companyStatusTypes'
-import type {
-	Action as CreationChecklistAction,
-} from 'Types/companyCreationChecklistTypes'
-import type {
-	Action as HiringChecklist,
-} from 'Types/hiringChecklistTypes'
+import type { Action as CreationChecklistAction } from 'Types/companyCreationChecklistTypes'
+import type { Action as HiringChecklist } from 'Types/hiringChecklistTypes'
 type Action = CompanyStatusAction | CreationChecklistAction | HiringChecklist
 
 function companyLegalStatus(
@@ -36,10 +32,7 @@ function companyLegalStatus(
 	return state
 }
 
-function hiringChecklist(
-	state:  { [string]: boolean } =  {},
-	action: Action
-) {
+function hiringChecklist(state: { [string]: boolean } = {}, action: Action) {
 	switch (action.type) {
 		case 'CHECK_HIRING_ITEM':
 			return {
@@ -47,17 +40,19 @@ function hiringChecklist(
 				[action.name]: action.checked
 			}
 		case 'INITIALIZE_HIRING_CHECKLIST':
-			return Object.keys(state).length ? state :  action.checklistItems.reduce(
-				(checklist, item) => ({...checklist, [item]: false })
-			, {});
+			return Object.keys(state).length
+				? state
+				: action.checklistItems.reduce(
+						(checklist, item) => ({ ...checklist, [item]: false }),
+						{}
+				  )
 		default:
 			return state
 	}
 }
 
-
 function companyCreationChecklist(
-	state:  { [string]: boolean } =  {},
+	state: { [string]: boolean } = {},
 	action: Action
 ) {
 	switch (action.type) {
@@ -67,27 +62,26 @@ function companyCreationChecklist(
 				[action.name]: action.checked
 			}
 		case 'INITIALIZE_COMPANY_CREATION_CHECKLIST':
-			return Object.keys(state).length ? state : action.checklistItems.reduce(
-					(checklist, item) => ({...checklist, [item]: false })
-					, {})	
-			;
-		case 'RESET_COMPANY_STATUS_CHOICE': 
-				return {};
+			return Object.keys(state).length
+				? state
+				: action.checklistItems.reduce(
+						(checklist, item) => ({ ...checklist, [item]: false }),
+						{}
+				  )
+		case 'RESET_COMPANY_STATUS_CHOICE':
+			return {}
 		default:
 			return state
 	}
 }
 
-function companyStatusChoice(
-	state: ?string = null,
-	action: Action
-) {
+function companyStatusChoice(state: ?string = null, action: Action) {
 	if (action.type === 'RESET_COMPANY_STATUS_CHOICE') {
 		return null
 	}
 	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
-		return state;
-	} 
+		return state
+	}
 	return action.statusName
 }
 
@@ -98,6 +92,8 @@ function existingCompanyDetails(
 	switch (action.type) {
 		case 'SAVE_EXISTING_COMPANY_DETAILS':
 			return action.details
+		case 'RESET_EXISTING_COMPANY_DETAILS':
+			return null
 		default:
 			return state
 	}

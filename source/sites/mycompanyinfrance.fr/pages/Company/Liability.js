@@ -14,8 +14,8 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 	<>
 		<h2>Choosing the liability </h2>
 		<p>
-			An entrepreneur can choose between two major options for the legal setup
-			of his company:
+			An entrepreneur can choose between several options for the legal setup of
+			his company:
 		</p>
 		<ul>
 			<li>
@@ -38,6 +38,7 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 					</>
 				)}
 			</li>
+
 			<li>
 				<strong>Limited liability: </strong>A corporate structure whereby the
 				company members cannot be held personally liable for the company&apos;s
