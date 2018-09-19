@@ -37,11 +37,21 @@ class SocialSecurity extends Component<Props, {}> {
 								(health, maternity, disability, old age, occupational illness
 								and accidents) and unemployment insurance.
 							</p>
-							<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div
+								style={{
+									position: 'relative',
+									width: '100%',
+									height: '0',
+									paddingBottom: '56.25%'
+								}}>
 								<iframe
-									style={{ margin: 'auto' }}
-									width="560"
-									height="315"
+									style={{
+										position: 'absolute',
+										top: 0,
+										left: 0,
+										width: '100%',
+										height: '100%'
+									}}
 									src="https://www.youtube-nocookie.com/embed/dN9ZVazSmpc?rel=0&amp;showinfo=0"
 									frameBorder="0"
 									allow="autoplay; encrypted-media"
