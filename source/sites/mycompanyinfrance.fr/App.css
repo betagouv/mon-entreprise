@@ -14,6 +14,9 @@ body,
 }
 .app-content {
 	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
 	overflow: auto;
 }
 
@@ -24,6 +27,6 @@ body,
 	}
 	.app-container {
 		overflow: auto;
-		height: auto;
+		min-height: 100vh;
 	}
 }

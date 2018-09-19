@@ -1,24 +1,28 @@
 /* @flow */
 
 import withColours from 'Components/utils/withColours'
+import marianneSvg from 'Images/marianne.svg'
+import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
+import Footer from '../layout/Footer/Footer'
 import './Landing.css'
-import Header from './pages/Header/Header'
 
 const Landing = ({ colours: { colour } }) => (
 	<>
-		<Header />
-		<section className="landing__header" style={{ backgroundColor: colour }}>
+		<header className="landing__header">
+			<img alt="logo marianne" src={marianneSvg} />
+			<img alt="logo urssaf" src={urssafSvg} />
+		</header>
+		<section className="landing__banner" style={{ backgroundColor: colour }}>
 			<header>
 				<h1>
 					Start your business in France <br />
 					{emoji('🇫🇷')}
 				</h1>
 				<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
-					The ultimate how-to guide, covering everything from incorporation to
-					hiring.
+					The ultimate how-to guide, from incorporation to hiring.
 				</p>
 				<Link
 					className="ui__ inverted-button"
@@ -27,7 +31,7 @@ const Landing = ({ colours: { colour } }) => (
 					Get started
 				</Link>
 				<svg
-					className="landing__header__svg white"
+					className="landing__banner__svg white"
 					preserveAspectRatio="none"
 					viewBox="5 0 495 150">
 					<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
@@ -84,7 +88,7 @@ const Landing = ({ colours: { colour } }) => (
 				</p>
 			</div>
 		</section>
-		<section className="landing__nav" />
+		<Footer />
 	</>
 )
 

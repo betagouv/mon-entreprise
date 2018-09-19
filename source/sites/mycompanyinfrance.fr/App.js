@@ -8,11 +8,12 @@ import {
 	retrievePersistedState
 } from '../../storage/persistEverything'
 import './App.css'
-import Landing from './Landing'
+import Footer from './layout/Footer/Footer'
+import Navigation from './layout/Navigation/Navigation'
+import ProgressHeader from './layout/ProgressHeader/ProgressHeader'
 import CompanyIndex from './pages/Company'
-import Footer from './pages/Footer/Footer'
 import HiringProcess from './pages/HiringProcess'
-import Navigation from './pages/Navigation/Navigation'
+import Landing from './pages/Landing'
 import SocialSecurity from './pages/SocialSecurity'
 class InFranceRoute extends Component {
 	componentDidMount() {
@@ -35,7 +36,8 @@ class InFranceRoute extends Component {
 							{/* Passing location down to prevent update blocking */}
 							<Navigation location={location} />
 							<div className="app-content">
-								<div className="ui__ container">
+								<ProgressHeader />
+								<div className="ui__ container" style={{ flex: 1 }}>
 									<Route path="/company" component={CompanyIndex} />
 									<Route path="/social-security" component={SocialSecurity} />
 									<Route path="/hiring-process" component={HiringProcess} />

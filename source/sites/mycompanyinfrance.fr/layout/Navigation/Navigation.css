@@ -18,7 +18,7 @@
 	align-items: flex-end;
 	flex-shrink: 0;
 	min-height: 100%;
-	background-color: #f3f3f3;
+	background-color: rgb(227, 237, 249);
 }
 
 .navigation {
@@ -85,8 +85,15 @@
 .navigation > ul > li > :first-child,
 .navigation > ul > li > :first-child * {
 	text-decoration: none !important;
-	line-height: 2.5rem;
+	line-height: 3rem;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-weight: 300;
+	font-size: 1.5rem;
 }
+.navigation > ul > li > :first-child .navigation__caret {
+	visibility: hidden;
+}
+
 .navigation__container .mobile__menu {
 	display: none;
 	height: 48px;

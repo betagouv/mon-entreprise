@@ -5,7 +5,6 @@ import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
-import Header from '../Header/Header'
 import './Navigation.css'
 import NavOpener from './NavOpener'
 import SideBar from './SideBar'
@@ -34,7 +33,6 @@ const StepsHeader = ({
 }: Props) => (
 	<SideBar>
 		<div className="navigation__container">
-			<Header />
 			<nav className="navigation">
 				<ul>
 					<li>
@@ -42,7 +40,7 @@ const StepsHeader = ({
 							to="/company"
 							title={
 								<>
-									Company formation {emoji('🏗️')}{' '}
+									Your company {emoji('🏗️')}{' '}
 									{companyProgress === 100 && emoji('🌞')}
 									<Progress percent={companyProgress} />
 								</>
