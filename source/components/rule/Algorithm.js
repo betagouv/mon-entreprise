@@ -11,29 +11,22 @@ export default compose(withNamespaces())(
 	class Algorithm extends React.Component {
 		render() {
 			let { rule, showValues } = this.props
-
 			return (
 				<div id="algorithm">
 					<section id="rule-rules" className={classNames({ showValues })}>
 						<ShowValuesProvider value={showValues}>
-							{do {
-								// TODO ce let est incompréhensible !
-								let applicabilityMecanisms = values(rule).filter(
-									v => v && v['rulePropType'] == 'cond'
-								)
-								applicabilityMecanisms.length > 0 && (
-									<section id="declenchement">
-										<h2>
-											<Trans>Déclenchement</Trans>
-										</h2>
-										<ul>
-											{applicabilityMecanisms.map(v => (
-												<li key={v.name}>{makeJsx(v)}</li>
-											))}
-										</ul>
-									</section>
-								)
-							}}
+							<section id="declenchement">
+								<h2>
+									<Trans>Déclenchement</Trans>
+								</h2>
+								<ul>
+									{[
+										'parentDependency',
+										'applicable si',
+										'non applicable si'
+									].map(k => rule[k] && <li key={k}>{makeJsx(rule[k])}</li>)}
+								</ul>
+							</section>
 							{do {
 								let formula =
 										rule['formule'] ||

@@ -669,8 +669,8 @@
 
 - espace: contrat salarié
   nom: assimilé salarié
-  description: |
-    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale.
+  description: | 
+    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   par défaut: non
   références: 
