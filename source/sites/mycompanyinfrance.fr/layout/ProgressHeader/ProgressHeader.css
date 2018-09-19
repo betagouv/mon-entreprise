@@ -45,7 +45,7 @@
 
 .steps-header a.active img {
 	border-color: rgb(41, 117, 209);
-	border-style: dashed;
+	border-style: solid;
 	border-color: var(--colour);
 }
 /* IE */
