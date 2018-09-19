@@ -21,6 +21,7 @@ let quickLinks = {
 	Cadre: 'contrat salarié . statut cadre',
 	'Temps partiel': 'contrat salarié . temps partiel',
 	Localisation: 'établissement . localisation',
+	'Assimilé salarié': 'contrat salarié . assimilé salarié',
 	Autres: null
 }
 
