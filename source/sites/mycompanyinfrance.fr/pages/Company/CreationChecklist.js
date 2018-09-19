@@ -6,10 +6,12 @@ import {
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import Scroll from 'Components/utils/Scroll'
 import React from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
+import StatusDescription from './StatusDescription'
 import type { Match } from 'react-router'
 
 type Props = {
@@ -30,16 +32,34 @@ const CreateCompany = ({
 	onStatusChange
 }: Props) => {
 	const status = match.params.status
+	if (!match.params.status) {
+		return null
+	}
 	return (
 		<Animate.fromBottom>
+			<Helmet>
+				<title>Create a {match.params.status}</title>
+				<meta
+					name="description"
+					content={`A complete checklist to help you create a company with the ${
+						match.params.status
+					} status with the French administration.`}
+				/>
+			</Helmet>
 			<Scroll.toTop />
 			<h1>Create a {match.params.status} </h1>
 			{!statusChooserCompleted && (
-				<p>
-					<button className="ui__ link-button" onClick={onStatusChange}>
-						Not sure about this status? Take our guide to help you choose
-					</button>
-				</p>
+				<>
+					{' '}
+					<p>
+						<button className="ui__ link-button" onClick={onStatusChange}>
+							Not sure about this status? Take our guide to help you choose
+						</button>
+					</p>
+					<p>
+						<StatusDescription status={match.params.status} />
+					</p>
+				</>
 			)}
 			<p>
 				This checklist will guide you throughout all the necessary steps to

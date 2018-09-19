@@ -1,6 +1,7 @@
 /* @flow */
 import { defineDirectorStatus } from 'Actions/companyStatusActions'
 import React from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 import type { DirectorStatus } from 'Types/companyStatusTypes'
@@ -10,6 +11,13 @@ type Props = {
 }
 const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => (
 	<>
+		<Helmet>
+			<title>Defining the director's status</title>
+			<meta
+				name="description"
+				content="This choice is important because it determines the type of Social Security scheme and coverage for which the director is eligible. Each option has legal implications, and lead to a different status when creating your company in France"
+			/>
+		</Helmet>
 		<h2>Defining the director&apos;s status </h2>
 		<p>
 			This choice is important because it determines the type of Social Security

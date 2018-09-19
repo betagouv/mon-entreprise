@@ -4,6 +4,7 @@ import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import * as Animate from 'Ui/animate'
 
@@ -14,6 +15,14 @@ class SocialSecurity extends Component<Props, {}> {
 	render() {
 		return (
 			<>
+				<Helmet>
+					<title>Social security in France: costs and benefits</title>
+					<meta
+						name="description"
+						content="France has chosen to provide its citizens with a high-quality
+						social safety net. Discover the costs and benefits of French social security by simulating a concrete case of hiring in your company."
+					/>
+				</Helmet>
 				<ScrollToTop />
 				<Animate.fromBottom>
 					{!this.props.hideText && (

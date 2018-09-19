@@ -104,7 +104,9 @@ const isCompatibleStatusWith = (answers: CompanyLegalStatus) => (
 		mergeWith(
 			(answer, statusValue) =>
 				isNil(answer) || isNil(statusValue) || answer === statusValue,
+			// $FlowFixMe
 			stringify(status),
+			// $FlowFixMe
 			stringify(answers)
 		)
 	)
