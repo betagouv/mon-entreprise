@@ -52,7 +52,12 @@ export let enrichRule = (rule, sharedData = {}) => {
 			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 			defaultValue = rule['par défaut'],
 			examples = rule['exemples'],
-			icon = rule['icônes']
+			icon = rule['icônes'],
+			justNamespace =
+				!rule.formule &&
+				!rule.question &&
+				!rule['non applicable si'] &&
+				!rule['applicable si']
 
 		return {
 			...rule,
@@ -66,7 +71,8 @@ export let enrichRule = (rule, sharedData = {}) => {
 			defaultValue,
 			raw: rule,
 			examples,
-			icon
+			icon,
+			justNamespace
 		}
 	} catch (e) {
 		throw new Error('Problem enriching ' + JSON.stringify(rule))
@@ -105,17 +111,24 @@ export let encodeRuleName = name =>
 export let decodeRuleName = name =>
 	name.replace(/--/g, ' . ').replace(/-/g, ' ')
 
+export let ruleParents = dottedName => {
+	let fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
+	return range(1, fragments.length)
+		.map(nbEl => take(nbEl)(fragments))
+		.reverse() //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
+}
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
  */
 export let disambiguateRuleReference = (
 	allRules,
-	{ ns, name },
+	{ dottedName, name },
 	partialName
 ) => {
-	let fragments = ns ? [...ns.split(' . '), name] : [], // ex. [CDD . événements . rupture]
-		pathPossibilities = range(0, fragments.length + 1) // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
-			.map(nbEl => take(nbEl)(fragments))
-			.reverse(),
+	let pathPossibilities = [
+			[], // the top level namespace
+			...ruleParents(dottedName), // the parents namespace
+			splitName(dottedName) // the rule's own namespace
+		],
 		found = reduce(
 			(res, path) =>
 				when(is(Object), reduced)(
