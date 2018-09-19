@@ -11,6 +11,7 @@ let stateSelector = () => null
 describe('collectMissingVariables', function() {
 	it('should identify missing variables', function() {
 		let rawRules = [
+				{ nom: 'sum' },
 				{
 					nom: 'startHere',
 					formule: 2,
@@ -35,6 +36,8 @@ describe('collectMissingVariables', function() {
 
 	it('should identify missing variables mentioned in expressions', function() {
 		let rawRules = [
+				{ nom: 'sum' },
+				{ nom: 'evt', espace: 'sum' },
 				{
 					nom: 'startHere',
 					formule: 2,
@@ -54,6 +57,7 @@ describe('collectMissingVariables', function() {
 
 	it('should ignore missing variables in the formula if not applicable', function() {
 		let rawRules = [
+				{ nom: 'sum' },
 				{
 					nom: 'startHere',
 					formule: 'trois',
@@ -71,6 +75,7 @@ describe('collectMissingVariables', function() {
 
 	it('should not report missing variables when "one of these" short-circuits', function() {
 		let rawRules = [
+				{ nom: 'sum' },
 				{
 					nom: 'startHere',
 					formule: 'trois',
@@ -90,6 +95,7 @@ describe('collectMissingVariables', function() {
 
 	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', formule: 'trois', espace: 'top' },
 				{
 					nom: 'trois',
@@ -106,6 +112,7 @@ describe('collectMissingVariables', function() {
 
 	it('should not report missing variables when "une possibilité" is inapplicable', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', formule: 'trois', espace: 'top' },
 				{
 					nom: 'trois',
@@ -126,6 +133,7 @@ describe('collectMissingVariables', function() {
 		let mySelector = name => ({ 'top . trois': 'ko' }[name])
 
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', formule: 'trois', espace: 'top' },
 				{
 					nom: 'trois',
@@ -142,6 +150,7 @@ describe('collectMissingVariables', function() {
 
 	it('should report missing variables in switch statements', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: {
@@ -164,6 +173,7 @@ describe('collectMissingVariables', function() {
 
 	it('should report missing variables in variations', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: { somme: ['variations'] },
@@ -220,6 +230,7 @@ describe('collectMissingVariables', function() {
 
 	it('should not report missing variables in switch for consequences of false conditions', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: {
@@ -241,6 +252,7 @@ describe('collectMissingVariables', function() {
 
 	it('should report missing variables in consequence when its condition is unresolved', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: {
@@ -267,6 +279,7 @@ describe('collectMissingVariables', function() {
 
 	it('should not report missing variables when a switch short-circuits', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: {
@@ -289,8 +302,57 @@ describe('collectMissingVariables', function() {
 })
 
 describe('nextSteps', function() {
+	it('should generate questions for simple situations', function() {
+		let rawRules = [
+				{ nom: 'top' },
+				{ nom: 'sum', formule: 'deux', espace: 'top' },
+				{
+					nom: 'deux',
+					formule: 2,
+					'non applicable si': 'top . sum . evt',
+					espace: 'top'
+				},
+				{
+					nom: 'evt',
+					espace: 'top . sum',
+					titre: 'Truc',
+					question: '?'
+				}
+			],
+			rules = parseAll(rawRules.map(enrichRule)),
+			analysis = analyse(rules, 'sum')(stateSelector),
+			result = collectMissingVariables(analysis.targets)
+
+		expect(result).to.have.lengthOf(1)
+		expect(result[0]).to.equal('top . sum . evt')
+	})
 	it('should generate questions', function() {
 		let rawRules = [
+				{ nom: 'top' },
+				{ nom: 'sum', formule: 'deux', espace: 'top' },
+				{
+					nom: 'deux',
+					formule: 'sum . evt',
+					espace: 'top'
+				},
+				{
+					nom: 'evt',
+					espace: 'top . sum',
+					question: '?'
+				}
+			],
+			rules = parseAll(rawRules.map(enrichRule)),
+			analysis = analyse(rules, 'sum')(stateSelector),
+			result = collectMissingVariables(analysis.targets)
+
+		//		console.log('analysis', JSON.stringify(analysis, null, 4))
+
+		expect(result).to.have.lengthOf(1)
+		expect(result[0]).to.equal('top . sum . evt')
+	})
+	it('should generate questions with more intricate situation', function() {
+		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'sum', formule: { somme: [2, 'deux'] }, espace: 'top' },
 				{
 					nom: 'deux',

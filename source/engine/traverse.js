@@ -4,7 +4,9 @@ import React from 'react'
 import {
 	findRuleByDottedName,
 	disambiguateRuleReference,
-	findRule
+	findRule,
+	ruleParents,
+	joinName
 } from './rules'
 import {
 	curry,
@@ -16,7 +18,8 @@ import {
 	merge,
 	keys,
 	is,
-	T
+	T,
+	tail
 } from 'ramda'
 import { Node } from './mecanismViews/common'
 import {
@@ -105,19 +108,23 @@ export let treatRuleRoot = (rules, rule) => {
 			evaluated = evolve(
 				{
 					formule: evolveRule,
+					parentDependency: evolveRule,
 					'non applicable si': evolveRule,
 					'applicable si': evolveRule
 				},
 				node
 			),
+			parentValue = val(evaluated['parentDependency']),
 			formuleValue = val(evaluated['formule']),
 			isApplicable = do {
 				let e = evaluated
-				val(e['non applicable si']) === true
+				parentValue === false
+					? false
+					: val(e['non applicable si']) === true
 					? false
 					: val(e['applicable si']) === false
 					? false
-					: anyNull([e['non applicable si'], e['applicable si']])
+					: anyNull([e['non applicable si'], e['applicable si'], parentValue])
 					? null
 					: !val(e['non applicable si']) && undefOrTrue(val(e['applicable si']))
 			},
@@ -125,6 +132,7 @@ export let treatRuleRoot = (rules, rule) => {
 
 		let {
 			formule,
+			parentDependency,
 			'non applicable si': notApplicable,
 			'applicable si': applicable
 		} = evaluated
@@ -135,6 +143,7 @@ export let treatRuleRoot = (rules, rule) => {
 					: val(applicable) === false
 					? {}
 					: merge(
+							(parentDependency && parentDependency.missingVariables) || {},
 							(notApplicable && notApplicable.missingVariables) || {},
 							(applicable && applicable.missingVariables) || {}
 					  ),
@@ -155,13 +164,58 @@ export let treatRuleRoot = (rules, rule) => {
 		return { ...evaluated, nodeValue, isApplicable, missingVariables }
 	}
 
+	// A parent dependency means that one of a rule's parents is a boolean question
+	// When the question is resolved to false, then the whole branch under it is disactivate, non applicable
+	// It lets those children omit parent applicability tests
+	let parentDependencies = ruleParents(rule.dottedName)
+			.reverse()
+			.map(joinName),
+		parentDependency = parentDependencies.find(
+			parent => rules.find(r => r.dottedName === parent)?.booleanNamespace
+		)
+
 	let parsedRoot = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
 		// condition d'applicabilité de la règle
+		parentDependency: parent => {
+			let evaluate = (cache, situationGate, parsedRules, node) => {
+				let explanation = evaluateNode(
+						cache,
+						situationGate,
+						parsedRules,
+						node.explanation
+					),
+					[nodeValue, missingVariables] =
+						explanation.nodeValue === null
+							? [null, { [explanation.dottedName]: 1 }]
+							: explanation.nodeValue === false
+							? [false, {}]
+							: [true, {}]
+
+				return rewriteNode(node, nodeValue, explanation, missingVariables)
+			}
+
+			let child = treat(rules, rule)(parent)
+
+			let jsx = (nodeValue, explanation) => (
+				<div>Dépendance : {makeJsx(explanation)}</div>
+			)
+
+			return {
+				evaluate,
+				jsx,
+				category: 'ruleProp',
+				rulePropType: 'formula',
+				name: 'formule',
+				type: 'numeric',
+				explanation: child
+			}
+		},
 		'non applicable si': evolveCond('non applicable si', rule, rules),
 		'applicable si': evolveCond('applicable si', rule, rules),
+		// formule de calcul
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
 				let explanation = evaluateNode(
@@ -190,7 +244,7 @@ export let treatRuleRoot = (rules, rule) => {
 				explanation: child
 			}
 		}
-	})(rule)
+	})({ ...rule, ...(parentDependency ? { parentDependency } : {}) })
 
 	let controls =
 		rule['contrôles'] &&

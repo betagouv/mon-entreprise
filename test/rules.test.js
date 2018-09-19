@@ -9,8 +9,6 @@ import {
 	nestedSituationToPathMap
 } from '../source/engine/rules'
 
-let stateSelector = (state, name) => null
-
 describe('enrichRule', function() {
 	it('should extract the type of the rule', function() {
 		let rule = { nom: 'retraite', cotisation: {} }
@@ -57,6 +55,7 @@ describe('rule checks', function() {
 		)
 
 		rulesNeedingDefault.map(r =>
+			//eslint-disable-next-line
 			console.log(
 				'cette règle, ',
 				r.dottedName,
