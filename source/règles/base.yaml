@@ -651,6 +651,7 @@
   exemples:
     - nom: 'exemple 1'
       situation:
+        CDD: oui
         indemnités salarié CDD: 100
         CIF: 100
         majoration chômage: 90
@@ -671,7 +672,8 @@
   description: |
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale.
   question: Le salarié est-il considéré comme "assimilé salarié" ?
-  références:
+  par défaut: non
+  références: 
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
 
