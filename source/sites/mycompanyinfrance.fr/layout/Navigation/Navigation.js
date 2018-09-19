@@ -55,7 +55,7 @@ const StepsHeader = ({
 													title="Legal status guide">
 													<ul>
 														<li>
-															<NavLink to="/company/legal-status/multiple-associates">
+															<NavLink to="/company/legal-status/number-of-associates">
 																Number of associates
 															</NavLink>
 														</li>
@@ -75,13 +75,13 @@ const StepsHeader = ({
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/microenterprise">
+															<NavLink to="/company/legal-status/micro-enterprise">
 																Micro-enterprise
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/pick-legal-status">
-																Possible status list
+															<NavLink to="/company/legal-status/list">
+																Status list
 															</NavLink>
 														</li>
 													</ul>
@@ -98,7 +98,7 @@ const StepsHeader = ({
 													title="Creation process checklist">
 													<ul>
 														<li>
-															<NavLink to="/company/create-microenterprise">
+															<NavLink to="/company/create-micro-enterprise">
 																Micro-enterprise
 															</NavLink>
 														</li>

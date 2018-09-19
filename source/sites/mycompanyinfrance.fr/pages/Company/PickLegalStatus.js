@@ -43,8 +43,8 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 							EIRL - Entrepreneur individuel à responsabilité limitée
 							(Individual entrepreneur with limited liability):{' '}
 						</strong>
-						Allows you to protect your personal assets by{' '}
-						assigning a specific heritage to your professional activity.
+						Allows you to protect your personal assets by assigning a specific
+						heritage to your professional activity.
 						<br />
 						<StatusButton status="EIRL" history={history} />
 					</li>
@@ -127,17 +127,17 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 					</li>
 				)}
 
-				{(possibleStatus['Microenterprise (option EIRL)'] ||
-					possibleStatus['Microenterprise']) && (
+				{(possibleStatus['Micro-enterprise (option EIRL)'] ||
+					possibleStatus['Micro-enterprise']) && (
 					<li>
 						<strong>Micro-enterprise: </strong>
 						The micro-enterprise is a sole proprietorship company, subject to a
 						flat-rate scheme for the calculation of taxes and the payment of
 						social security contributions.{' '}
-						{possibleStatus['Microenterprise (option EIRL)'] &&
+						{possibleStatus['Micro-enterprise (option EIRL)'] &&
 							'With the EIRL option, you have limited liability on your losses.'}
 						<br />
-						<StatusButton status="microenterprise" history={history} />
+						<StatusButton status="micro-enterprise" history={history} />
 					</li>
 				)}
 			</ul>

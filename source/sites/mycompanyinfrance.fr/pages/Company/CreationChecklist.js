@@ -52,7 +52,7 @@ const CreateCompany = ({
 				}
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}>
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="corporateName"
 						title="Find a corporate name"
@@ -86,7 +86,7 @@ const CreateCompany = ({
 						</p>
 					}
 				/>
-				{status !== 'microenterprise' && (
+				{status !== 'micro-enterprise' && (
 					<CheckItem
 						name="companyAddress"
 						title="Find an address to incorporate the company"
@@ -105,7 +105,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="companyStatus"
 						title="Write the company's articles"
@@ -152,7 +152,7 @@ const CreateCompany = ({
 						</>
 					}
 				/>
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="fundsDeposit"
 						title="Deposit capital funds"
@@ -168,7 +168,7 @@ const CreateCompany = ({
 								<p>
 									The deposit consists of a transfer of a sum of money to a
 									blocked account with a bank or the public{' '}
-									<a href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
+									<a href="https://consignations.caissedesdepots.fr/enterprise/creer-votre-enterprise/creation-dentreprise-deposez-votre-capital-social">
 										Caisse des dépôts et consignations
 									</a>{' '}
 									or a notary, who must then provide a certificate of deposit of
@@ -178,7 +178,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="publishCreationNotice"
 						title="Publish a notice of creation in a newspaper"
@@ -244,7 +244,7 @@ const CreateCompany = ({
 			</h2>
 
 			<Checklist>
-				{status !== 'microenterprise' && (
+				{status !== 'micro-enterprise' && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title="Choose a certified accountant"

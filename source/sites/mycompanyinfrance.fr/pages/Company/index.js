@@ -9,10 +9,10 @@ import DefineDirectorStatus from './DirectorStatus'
 import Find from './Find'
 import Home from './Home'
 import Liability from './Liability'
-import MainStatus from './MainStatus'
 import Microenterprise from './Microenterprise'
 import MinorityDirector from './MinorityDirector'
 import NumberOfAssociate from './NumberOfAssociate'
+import PickLegalStatus from './PickLegalStatus'
 
 const withAnimation = Component => {
 	const AnimateRouteComponent = (...props) => (
@@ -59,20 +59,20 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 					component={withAnimation(DefineDirectorStatus)}
 				/>
 				<Route
-					path={match.path + '/legal-status/microenterprise'}
+					path={match.path + '/legal-status/micro-enterprise'}
 					component={withAnimation(Microenterprise)}
 				/>
 				<Route
-					path={match.path + '/legal-status/multiple-associates'}
+					path={match.path + '/legal-status/number-of-associates'}
 					component={withAnimation(NumberOfAssociate)}
-				/>
-				<Route
-					path={match.path + '/legal-status/pick-legal-status'}
-					component={withAnimation(MainStatus)}
 				/>
 				<Route
 					path={match.path + '/legal-status/minority-director'}
 					component={withAnimation(MinorityDirector)}
+				/>
+				<Route
+					path={match.path + '/legal-status/list'}
+					component={withAnimation(PickLegalStatus)}
 				/>
 			</Switch>
 		</Animate.fromBottom>

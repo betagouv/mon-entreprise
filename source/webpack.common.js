@@ -102,6 +102,7 @@ module.exports = {
 			'./source/sites/embauche.gouv.fr/images/logo',
 			{ from: './source/sites/embauche.gouv.fr/robots.txt', to: 'robots.embauche.txt' },
 			{ from: './source/sites/mycompanyinfrance.fr/robots.txt', to: 'robots.infrance.txt' },
+			{ from: './source/sites/mycompanyinfrance.fr/sitemap.txt', to: 'sitemap.infrance.txt' },
 		])
 	]
 }

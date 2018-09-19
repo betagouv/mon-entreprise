@@ -43,9 +43,9 @@ export const companyHasMultipleAssociates = thenGoToNextQuestion(
 )
 
 export const companyIsMicroenterprise = thenGoToNextQuestion(
-	(microenterprise: ?boolean): CompanyIsMicroenterpriseAction => ({
+	(microEnterprise: ?boolean): CompanyIsMicroenterpriseAction => ({
 		type: 'COMPANY_IS_MICROENTERPRISE',
-		microenterprise
+		microEnterprise
 	})
 )
 
