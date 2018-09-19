@@ -47,6 +47,7 @@ const CreateCompany = ({
 			</p>
 			<h2 style={{ fontSize: '1.5rem' }}>Needed for registration</h2>
 			<Checklist
+				key={match.params.status}
 				onInitialization={items =>
 					onChecklistInitialization(match.params.status || '', items)
 				}
