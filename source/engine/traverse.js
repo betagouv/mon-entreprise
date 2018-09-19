@@ -18,8 +18,7 @@ import {
 	merge,
 	keys,
 	is,
-	T,
-	tail
+	T
 } from 'ramda'
 import { Node } from './mecanismViews/common'
 import {
@@ -30,6 +29,7 @@ import {
 	bonus
 } from './evaluation'
 import { anyNull, val, undefOrTrue } from './traverse-common-functions'
+import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -200,14 +200,24 @@ export let treatRuleRoot = (rules, rule) => {
 			let child = treat(rules, rule)(parent)
 
 			let jsx = (nodeValue, explanation) => (
-				<div>Dépendance : {makeJsx(explanation)}</div>
+				<ShowValuesConsumer>
+					{showValues =>
+						!showValues ? (
+							<div>Active seulement si {makeJsx(explanation)}</div>
+						) : nodeValue === true ? (
+							<div>Active car {makeJsx(explanation)}</div>
+						) : nodeValue === false ? (
+							<div>Non active car {makeJsx(explanation)}</div>
+						) : null
+					}
+				</ShowValuesConsumer>
 			)
 
 			return {
 				evaluate,
 				jsx,
 				category: 'ruleProp',
-				rulePropType: 'formula',
+				rulePropType: 'cond',
 				name: 'formule',
 				type: 'numeric',
 				explanation: child
