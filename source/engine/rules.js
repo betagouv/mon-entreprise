@@ -53,11 +53,8 @@ export let enrichRule = (rule, sharedData = {}) => {
 			defaultValue = rule['par défaut'],
 			examples = rule['exemples'],
 			icon = rule['icônes'],
-			justNamespace =
-				!rule.formule &&
-				!rule.question &&
-				!rule['non applicable si'] &&
-				!rule['applicable si']
+			booleanNamespace =
+				rule.question && (!rule.format || rule.format === 'booléen')
 
 		return {
 			...rule,
@@ -72,7 +69,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 			raw: rule,
 			examples,
 			icon,
-			justNamespace
+			booleanNamespace
 		}
 	} catch (e) {
 		throw new Error('Problem enriching ' + JSON.stringify(rule))
