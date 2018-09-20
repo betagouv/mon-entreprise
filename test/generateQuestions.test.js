@@ -373,8 +373,8 @@ describe('nextSteps', function() {
 			analysis = analyse(rules, 'sum')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.lengthOf(1)
-		expect(result[0]).to.equal('top . sum . evt')
+		expect(result).to.have.lengthOf(2)
+		expect(result).to.eql(['top . sum', 'top . sum . evt'])
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function() {

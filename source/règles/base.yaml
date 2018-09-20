@@ -2316,8 +2316,10 @@
   exemples:
     - nom: salaire médian
       situation:
+        contrat salarié . taxe sur les salaires: oui
         assiette: 2300
       valeur attendue: 2627.97
+
 
 - espace: entreprise . taxe sur les salaires
   nom: barème
