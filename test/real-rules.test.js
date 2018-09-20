@@ -36,7 +36,7 @@ let parsedRules = parseAll(rules)
 describe('Tests des règles de notre base de règles', () =>
 	parsedRules.map(rule => {
 		if (!rule.exemples) return null
-		describe(rule.name, () => {
+		describe(rule.dottedName, () => {
 			let examples = runExamples(rule.exemples, rule)
 			examples.map(example =>
 				it(example.nom + '', () => {
