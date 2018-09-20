@@ -193,12 +193,14 @@ export let treatRuleRoot = (rules, rule) => {
 						parsedRules,
 						node.explanation
 					),
-					[nodeValue, missingVariables] =
-						explanation.nodeValue === null
-							? [null, { [explanation.dottedName]: 1 }]
-							: explanation.nodeValue === false
-							? [false, {}]
-							: [true, {}]
+					variant =
+						explanation.explanation.formule?.explanation?.['une possibilité'],
+					[nodeValue, missingVariables] = !isEmpty(explanation.missingVariables)
+						? [null, variant ? {} : { [explanation.dottedName]: 1 }]
+						: explanation.explanation.isApplicable === false ||
+						  explanation.nodeValue == false
+						? [false, {}]
+						: [true, {}]
 
 				return rewriteNode(node, nodeValue, explanation, missingVariables)
 			}
