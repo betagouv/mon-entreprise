@@ -25,7 +25,7 @@ const MinorityDirector = ({ directorIsInAMinority }: Props) => (
 		</p>
 		<ul>
 			<li>
-				<strong>Chairman </strong>: The director is in majority, or is part of a
+				<strong>Chairman</strong>: The director is in majority, or is part of a
 				managing board that is in majority.
 			</li>
 			<li>

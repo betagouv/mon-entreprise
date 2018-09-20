@@ -99,7 +99,7 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 				{possibleStatus.SA && (
 					<li>
 						<strong>SA - Société anonyme (Anonymous company): </strong>
-						<StatusDescription status="SAS" />
+						<StatusDescription status="SA" />
 						<br />
 						<StatusButton status="SA" history={history} />
 					</li>

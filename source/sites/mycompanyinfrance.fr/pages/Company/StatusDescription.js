@@ -10,14 +10,13 @@ type Props = {
 const StatusDescription = ({ status }: Props) =>
 	status === 'EI' ? (
 		<>
-			Companies with EI status are also called company in own name or company in
-			a personal name. No capital contribution is necessary. Private wealth and
-			corporate wealth are one.
+			Also called company in own name or company in a personal name. No capital
+			contribution is necessary. Private wealth and corporate wealth are one.
 		</>
 	) : status === 'EIRL' ? (
 		<>
-			The EIRL status allows you to protect your personal assets by assigning a
-			specific heritage to your professional activity.
+			Allows you to protect your personal assets by assigning a specific
+			heritage to your professional activity.
 		</>
 	) : status === 'EURL' ? (
 		<>
@@ -26,37 +25,34 @@ const StatusDescription = ({ status }: Props) =>
 		</>
 	) : status.includes('SARL') ? (
 		<>
-			Companies with SARL status are composed of at least 2 partners whose
-			financial responsibility is limited to the amount of their contribution to
-			the company's capital. The minimum capital is freely fixed in the articles
-			of association.
+			Composed of at least 2 partners whose financial responsibility is limited
+			to the amount of their contribution to the company's capital. The minimum
+			capital is freely fixed in the articles of association.
 		</>
 	) : status === 'SAS' ? (
 		<>
-			Companies with SAS status are composed of at least 2 associates. The
-			financial responsibility of the partners is limited to the amount of their
-			contribution to the company's capital. The minimum capital is freely fixed
-			in the articles of association.
+			Composed of at least 2 associates. The financial responsibility of the
+			partners is limited to the amount of their contribution to the company's
+			capital. The minimum capital is freely fixed in the articles of
+			association.
 		</>
 	) : status === 'SASU' ? (
 		<>
-			Companies with SASU status are composed of only one associate. The
-			financial responsibility is limited to the amount of his contribution to
-			the company's capital. The minimum capital is freely fixed in the
-			statutes.
+			Composed of only one associate. The financial responsibility is limited to
+			the amount of his contribution to the company's capital. The minimum
+			capital is freely fixed in the statutes.
 		</>
 	) : status === 'SA' ? (
 		<>
-			Companies with SA status are composed of at least 2 shareholders. This is
-			the only status that allows you to be listed on the stock exchange (from 7
-			shareholders). The minimum share capital is €37.000.
+			Composed of at least 2 shareholders. This is the only status that allows
+			you to be listed on the stock exchange (from 7 shareholders). The minimum
+			share capital is €37.000.
 		</>
 	) : status === 'SNC' ? (
 		<>
-			In a company with the SNC status, the liability of the partners for the
-			debts of the company is unified (one partner only can be sued for the
-			entire debt) and indefinite (responsible on the entirety of their
-			personnal wealth).
+			The liability of the partners for the debts of the company is unified (one
+			partner only can be sued for the entire debt) and indefinite (responsible
+			on the entirety of their personnal wealth).
 		</>
 	) : status.toLowerCase().includes['micro-enterprise'] ? (
 		<>
