@@ -1,9 +1,11 @@
 /* @flow */
 import classnames from 'classnames'
 import { ScrollToElement } from 'Components/utils/Scroll'
+import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import Animate from 'Ui/animate'
 import './index.css'
+import type { Tracker } from 'Components/utils/withTracker'
 import type { ChildrenArray, Node, Element } from 'react'
 
 type CheckItemProps = {
@@ -11,12 +13,13 @@ type CheckItemProps = {
 	name: string,
 	explanations: Node,
 	onChange?: boolean => void,
+	tracker: Tracker,
 	defaultChecked?: boolean
 }
 type CheckItemState = {
 	displayExplanations: boolean
 }
-export class CheckItem extends Component<CheckItemProps, CheckItemState> {
+class CheckItemComponent extends Component<CheckItemProps, CheckItemState> {
 	state = {
 		displayExplanations: false
 	}
@@ -25,6 +28,23 @@ export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 			this.setState({ displayExplanations: false })
 		}
 		this.props.onChange && this.props.onChange(e.target.checked)
+		this.props.tracker.push([
+			'trackEvent',
+			'CheckItem',
+			e.target.checked ? 'check' : 'uncheck',
+			this.props.name
+		])
+	}
+	handleClick = () => {
+		this.props.tracker.push([
+			'trackEvent',
+			'CheckItem',
+			'click',
+			this.props.name
+		])
+		this.setState(({ displayExplanations }) => ({
+			displayExplanations: !displayExplanations
+		}))
 	}
 	render() {
 		return (
@@ -53,11 +73,7 @@ export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 						className={classnames('ui__ checklist-button', {
 							opened: this.state.displayExplanations
 						})}
-						onClick={() =>
-							this.setState(({ displayExplanations }) => ({
-								displayExplanations: !displayExplanations
-							}))
-						}>
+						onClick={this.handleClick}>
 						{this.props.title}
 					</button>
 				</div>
@@ -73,6 +89,7 @@ export class CheckItem extends Component<CheckItemProps, CheckItemState> {
 		)
 	}
 }
+export const CheckItem = withTracker(CheckItemComponent)
 
 type ChecklistProps = {
 	children: ChildrenArray<null | false | Element<typeof CheckItem>>,
@@ -94,18 +111,23 @@ export class Checklist extends Component<ChecklistProps> {
 			.map(
 				// $FlowFixMe
 				(child: Element<typeof CheckItem>) =>
+					// $FlowFixMe
 					React.cloneElement(child, {
+						// $FlowFixMe
 						onChange: checked => props.onItemCheck(child.props.name, checked),
+						// $FlowFixMe
 						defaultChecked: props.defaultChecked[child.props.name]
 					})
 			)
 		props.onInitialization &&
+			// $FlowFixMe
 			props.onInitialization(this.checklist.map(child => child.props.name))
 	}
 	render() {
 		return (
 			<ul className="ui__ no-bullet checklist">
 				{this.checklist.map(checkItem => (
+					// $FlowFixMe
 					<li key={checkItem.props.name}>{checkItem}</li>
 				))}
 			</ul>

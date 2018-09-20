@@ -4,7 +4,11 @@ import React, { Component, createContext } from 'react'
 import type { ComponentType } from 'react'
 
 export type Tracker = {
-	push: (Array<string>) => void,
+	push: (
+		| ['trackEvent', string, string]
+		| ['trackEvent', string, string, string]
+		| ['trackEvent', string, string, string, number]
+	) => void,
 	connectToHistory: Function
 }
 export const defaultTracker: Tracker = {
