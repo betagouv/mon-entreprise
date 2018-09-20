@@ -72,6 +72,11 @@
 .landing-explanation > div {
 	padding: 1rem 3rem;
 }
+.landing-explanation-content img {
+	border: 1px solid var(--colour);
+	border-radius: 100%;
+	border: 1px solid rgba(41, 117, 209, 1);
+}
 @media (max-width: 500px) {
 	.landing-explanation-content {
 		flex-direction: column;
