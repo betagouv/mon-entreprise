@@ -128,6 +128,7 @@
 		"sinon": "^4.5.0",
 		"sinon-chai": "^3.0.0",
 		"source-map-support": "^0.5.4",
+		"static-site-generator-webpack-plugin": "^3.4.1",
 		"style-loader": "^0.20.3",
 		"url-loader": "^1.0.1",
 		"webpack": "^4.20.1",

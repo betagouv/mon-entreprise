@@ -1,0 +1,18 @@
+.feedback-page {
+	align-items: flex-start;
+	display: none;
+	justify-content: center;
+	padding: 0.6rem !important;
+}
+.feedback-page.visible {
+	display: flex;
+}
+
+@keyframes flip-in {
+	from {
+	}
+	to {
+		transform: rotateX(0);
+		opacity: 1;
+	}
+}

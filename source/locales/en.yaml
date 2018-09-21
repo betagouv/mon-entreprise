@@ -153,11 +153,21 @@ simulation-end:
   text: You have reached the most accurate estimate. You can now turn your hiring project into reality.
   cta: Know the procedures
 feedback:
+  question: Was this information useful to you?
   bad:
-    headline: We're sorry we didn't give you complete satisfaction
-    support: If you wish, you can send us an email at <1>contact@embauche.beta.gouv.fr</1>. We guarantee to answer you as quickly as possible, and to do everything we can to help you.
-  good:
-    headline: Thanks for your feedback!
-    support: If you have a remark, or an idea of improvement, do not hesitate to contact us directly by mail at <1>contact@embauche.beta.gouv.fr</1>
+    headline: We're sorry we didn't give you complete satisfaction.
+    question: What was the main problem?
+    answer:
+      notUnderstandable: This page lacks clarity
+      notRelevant: This page has content that does not apply to me
+      poorContent: I don't find what I'm looking for
+      other: Other
+    form:
+      headline: Your feedback is valuable to us in order to continuously improve this site. What should we work on to better meet your expectations?
+      email: Your email (if you would like an answer from us)
+  thanks: Thank you for your feedback!
 Janvier 2019: January 2019
 d'aides: of aid
+Oui: Yes
+Non: No
+Envoyer: Send
