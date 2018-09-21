@@ -1351,6 +1351,8 @@
   icônes: 🎁
   description: >
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
+
+    Le simulateur est loin d'être exhaustif : de très nombreuses aides existent. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   formule:
     somme:
       - CICE
