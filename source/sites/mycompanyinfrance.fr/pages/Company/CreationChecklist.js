@@ -189,7 +189,7 @@ const CreateCompany = ({
 								<p>
 									The deposit consists of a transfer of a sum of money to a
 									blocked account with a bank or the public{' '}
-									<a href="https://consignations.caissedesdepots.fr/enterprise/creer-votre-enterprise/creation-dentreprise-deposez-votre-capital-social">
+									<a href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
 										Caisse des dépôts et consignations
 									</a>{' '}
 									or a notary, who must then provide a certificate of deposit of
