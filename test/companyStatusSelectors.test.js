@@ -29,7 +29,7 @@ describe('company status selectors', function() {
 				state({
 					liability: null,
 					directorStatus: null,
-					microenterprise: null,
+					microEnterprise: null,
 					multipleAssociates: null,
 					minorityDirector: null,
 				})
@@ -68,7 +68,7 @@ describe('company status selectors', function() {
 				state({
 					liability: 'UNLIMITED_LIABILITY',
 					multipleAssociates: null,
-					microenterprise: null,
+					microEnterprise: null,
 					minorityDirector: null,
 				})
 			)

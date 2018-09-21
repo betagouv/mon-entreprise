@@ -1,6 +1,7 @@
 /* @flow */
 import { compose, toPairs } from 'ramda'
 import React from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 // $FlowFixMe
@@ -51,6 +52,13 @@ class Search extends React.Component<Props, State> {
 	render() {
 		return (
 			<div id="findYourCompany">
+				<Helmet>
+					<title>Find your company</title>
+					<meta
+						name="description"
+						content="Find your existing company, and start simulate hiring cost customized to your situation"
+					/>
+				</Helmet>
 				<h1 className="question__title">Find your company</h1>
 				<p>
 					<Link to="/company">I don&apos;t have a company yet</Link>

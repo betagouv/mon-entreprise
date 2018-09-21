@@ -31,12 +31,14 @@ button {
 		margin-right: 0;
 	}
 }
+
 .ui__.container {
-	max-width: 45em;
-	margin-right: auto;
-	margin-left: auto;
-	padding: 0 0.6em;
+	width: 100%;
+	max-width: 750px;
+	margin: auto;
+	padding: 0 0.6rem;
 }
+
 p.ui__.notice {
 	font-size: 90%;
 	color: rgba(0, 0, 0, 0.7);

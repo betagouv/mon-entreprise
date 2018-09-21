@@ -13,6 +13,7 @@ from = "https://mycompanyinfrance.fr/robots.txt"
 to = "/robots.infrance.txt"
 status = 200
 
+
 [[redirects]]
 from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"

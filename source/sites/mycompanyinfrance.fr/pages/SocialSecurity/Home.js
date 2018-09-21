@@ -4,6 +4,7 @@ import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import * as Animate from 'Ui/animate'
 
@@ -14,6 +15,14 @@ class SocialSecurity extends Component<Props, {}> {
 	render() {
 		return (
 			<>
+				<Helmet>
+					<title>Social security in France: costs and benefits</title>
+					<meta
+						name="description"
+						content="France has chosen to provide its citizens with a high-quality
+						social safety net. Discover the costs and benefits of French social security by simulating a concrete case of hiring in your company."
+					/>
+				</Helmet>
 				<ScrollToTop />
 				<Animate.fromBottom>
 					{!this.props.hideText && (
@@ -37,11 +46,21 @@ class SocialSecurity extends Component<Props, {}> {
 								(health, maternity, disability, old age, occupational illness
 								and accidents) and unemployment insurance.
 							</p>
-							<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div
+								style={{
+									position: 'relative',
+									width: '100%',
+									height: '0',
+									paddingBottom: '56.25%'
+								}}>
 								<iframe
-									style={{ margin: 'auto' }}
-									width="560"
-									height="315"
+									style={{
+										position: 'absolute',
+										top: 0,
+										left: 0,
+										width: '100%',
+										height: '100%'
+									}}
 									src="https://www.youtube-nocookie.com/embed/dN9ZVazSmpc?rel=0&amp;showinfo=0"
 									frameBorder="0"
 									allow="autoplay; encrypted-media"

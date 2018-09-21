@@ -4,6 +4,7 @@ import {
 	initializeHiringChecklist
 } from 'Actions/hiringChecklistAction'
 import React from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
@@ -15,6 +16,13 @@ const HiringProcess = ({
 	hiringChecklist
 }) => (
 	<Animate.fromBottom>
+		<Helmet>
+			<title>Hiring process in France: the complete checklist</title>
+			<meta
+				name="description"
+				content="All the necessary steps to hire your first employee in France."
+			/>
+		</Helmet>
 		<h1>Hiring process checklist</h1>
 		<p>The necessary steps to hire your first employee.</p>
 		<Checklist

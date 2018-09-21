@@ -6,23 +6,26 @@ import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
+import companySvg from '../images/company.svg'
+import estimateSvg from '../images/estimate.svg'
+import hiringSvg from '../images/hiring.svg'
+import Footer from '../layout/Footer/Footer'
 import './Landing.css'
 
 const Landing = ({ colours: { colour } }) => (
 	<>
-		<section className="landing__header" style={{ backgroundColor: colour }}>
-			<div className="landing__banner">
-				<img alt="logo marianne" src={marianneSvg} />
-				<img alt="logo urssaf" src={urssafSvg} />
-			</div>
+		<header className="landing__header">
+			<img alt="logo marianne" src={marianneSvg} />
+			<img alt="logo urssaf" src={urssafSvg} />
+		</header>
+		<section className="landing__banner" style={{ backgroundColor: colour }}>
 			<header>
 				<h1>
 					Start your business in France <br />
 					{emoji('🇫🇷')}
 				</h1>
 				<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
-					The ultimate how-to guide, covering everything from incorporation to
-					hiring.
+					The ultimate how-to guide, from incorporation to hiring.
 				</p>
 				<Link
 					className="ui__ inverted-button"
@@ -31,7 +34,7 @@ const Landing = ({ colours: { colour } }) => (
 					Get started
 				</Link>
 				<svg
-					className="landing__header__svg white"
+					className="landing__banner__svg white"
 					preserveAspectRatio="none"
 					viewBox="5 0 495 150">
 					<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
@@ -42,10 +45,9 @@ const Landing = ({ colours: { colour } }) => (
 			<div>
 				<h2>Your new company </h2>
 				<div className="landing-explanation-content">
-					{emoji('🏗️')}
+					<img alt="Your new company" src={companySvg} />
 					<ul>
 						<li>Find the type of company that suits you</li>
-						<li>Choose the best location for your business</li>
 						<li>Follow the steps to register your company</li>
 					</ul>
 				</div>
@@ -58,11 +60,10 @@ const Landing = ({ colours: { colour } }) => (
 			<div>
 				<h2>The French social security</h2>
 				<div className="landing-explanation-content">
-					{emoji('💶')}
+					<img alt="Social security" src={estimateSvg} />
 					<ul>
 						<li>Discover the French social security system</li>
 						<li>Simulate your hiring costs</li>
-						<li>Understand the French payslip</li>
 					</ul>
 				</div>
 				<p>
@@ -74,11 +75,10 @@ const Landing = ({ colours: { colour } }) => (
 			<div>
 				<h2>Your first employee</h2>
 				<div className="landing-explanation-content">
-					{emoji('🤝')}
+					<img alt="Social security" src={hiringSvg} />
 					<ul>
 						<li>Discover the procedures to hire in France</li>
 						<li>Learn the basics of French labour law</li>
-						<li>Find the right tool to make a payslip</li>
 					</ul>
 				</div>
 				<p>
@@ -88,7 +88,7 @@ const Landing = ({ colours: { colour } }) => (
 				</p>
 			</div>
 		</section>
-		<section className="landing__nav" />
+		<Footer />
 	</>
 )
 

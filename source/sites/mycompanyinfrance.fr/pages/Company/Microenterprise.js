@@ -3,6 +3,7 @@ import { companyIsMicroenterprise } from 'Actions/companyStatusActions'
 import React from 'react'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
+import Helmet from 'react-helmet';
 
 type Props = {
 	companyIsMicroenterprise: (?boolean) => void
@@ -10,6 +11,15 @@ type Props = {
 
 const Microenterprise = ({ companyIsMicroenterprise }: Props) => (
 	<>
+		<Helmet>
+			<title>Micro-enterprise or Individual Business in France</title>
+			<meta
+				name="description"
+				content="The micro-entreprise is a simplified scheme of declaration and payment,
+				for which tax and social contributions are based on the turnover achieved
+				each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly."
+			/>
+		</Helmet>
 		<h2>Micro-enterprise or Individual Business</h2>
 		<p>
 			The micro-entreprise is a simplified scheme of declaration and payment,

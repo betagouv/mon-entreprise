@@ -1,15 +1,15 @@
-.landing__header {
+.landing__banner {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
 }
-.landing__header h1 {
+.landing__banner h1 {
 	color: inherit;
 	font-size: 3rem;
 }
 
-.landing__header header {
+.landing__banner header {
 	min-height: 30rem;
 	text-align: center;
 	position: relative;
@@ -39,21 +39,22 @@
 		background-position-x: 200%;
 	}
 }
-
-.landing__banner {
-	height: 4.4rem;
+.landing__header {
+	height: 3.5rem;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	background: white;
+	flex-shrink: 0;
 	padding: 0.6rem;
 }
 
-.landing__banner img {
+.landing__header img {
 	height: 100%;
 	width: auto;
 }
-.landing__header__svg {
+
+.landing__banner__svg {
 	position: absolute;
 	bottom: -1px;
 	left: 0;
@@ -70,6 +71,11 @@
 }
 .landing-explanation > div {
 	padding: 1rem 3rem;
+}
+.landing-explanation-content img {
+	border: 1px solid var(--colour);
+	border-radius: 100%;
+	border: 1px solid rgba(41, 117, 209, 1);
 }
 @media (max-width: 500px) {
 	.landing-explanation-content {

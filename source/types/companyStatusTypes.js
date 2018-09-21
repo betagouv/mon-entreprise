@@ -1,6 +1,7 @@
 /* @flow */
 
 export type CompanyLiability = 'LIMITED_LIABILITY' | 'UNLIMITED_LIABILITY'
+
 export type ChooseCompanyLiabilityAction = {
 	type: 'CHOOSE_COMPANY_LEGAL_SETUP',
 	setup: ?CompanyLiability
@@ -20,7 +21,7 @@ export type CompanyHasMultipleAssociatesAction = {
 
 export type CompanyIsMicroenterpriseAction = {
 	type: 'COMPANY_IS_MICROENTERPRISE',
-	microenterprise: ?boolean
+	microEnterprise: ?boolean
 }
 
 export type ChangeChecklistItemAction = {
@@ -39,7 +40,10 @@ export type DirectorIsInAMinorityAction = {
 	minorityDirector: ?boolean
 }
 export type ResetCompanyStatusAction = {
-	type: 'RESET_COMPANY_STATUS_CHOICE',
+	type: 'RESET_COMPANY_STATUS_CHOICE'
+}
+export type ResetExistingCompanyDetailsAction = {
+	type: 'RESET_EXISTING_COMPANY_DETAILS'
 }
 export type State = {|
 	+companyLegalStatus: {
@@ -51,10 +55,10 @@ export type State = {|
 		+liability?: ?CompanyLiability,
 		+directorStatus?: ?DirectorStatus,
 		+multipleAssociates?: ?boolean,
-		+microenterprise?: ?boolean,
+		+microEnterprise?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
-	+existingCompanyDetails: ?{ [string]: string },
+	+existingCompanyDetails: ?{ [string]: string }
 |}
 export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
@@ -65,4 +69,5 @@ export type Action =
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction
 	| DirectorIsInAMinorityAction
+	| ResetExistingCompanyDetailsAction
 	| ResetCompanyStatusAction

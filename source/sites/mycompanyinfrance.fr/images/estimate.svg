@@ -5,15 +5,14 @@
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
 	.st1{fill:rgb(41, 117, 209);}
-	.st2{fill:rgb(41, 117, 209, 0.7);}
+	.st2{
+		fill:rgb(105,158,223);
+		fill:rgb(41, 117, 209, 0.7);
+	}
 	.st3{fill:none;stroke:rgb(41, 117, 209);stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st4{fill:none;stroke:#FFFFFF;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
-<g>
-	<path class="st0" d="M24,47.5C11,47.5,0.5,37,0.5,24S11,0.5,24,0.5S47.5,11,47.5,24S37,47.5,24,47.5z"/>
-	<path class="st1" d="M24,1c12.7,0,23,10.3,23,23S36.7,47,24,47S1,36.7,1,24S11.3,1,24,1 M24,0C10.7,0,0,10.7,0,24s10.7,24,24,24
-		s24-10.7,24-24S37.3,0,24,0L24,0z"/>
-</g>
+
 <path class="st2" d="M37.3,24v9.5c0,1.2-2.6,3.8-3.8,3.8H24V24H37.3z"/>
 <path class="st3" d="M11,15.5c0-2.6,2.1-4.8,4.8-4.8h16.6c2.6,0,4.8,2.1,4.8,4.8v16.9c0,2.6-2.1,4.8-4.8,4.8H15.8
 	c-2.6,0-4.8-2.1-4.8-4.8V15.5z"/>
