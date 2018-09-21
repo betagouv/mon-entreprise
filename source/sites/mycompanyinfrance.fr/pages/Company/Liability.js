@@ -16,7 +16,7 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 			<title>Choosing the liability for your company in France</title>
 			<meta
 				name="description"
-				content="Sole proprietorship or limited liability? Each option has legal implications, and lead to a different status for creating your company in France"
+				content="Sole proprietorship or limited liability? Each option has legal implications, and leads to a different status for creating your company in France"
 			/>
 		</Helmet>
 		<h2>Choosing the liability </h2>
