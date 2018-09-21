@@ -1349,8 +1349,10 @@
   nom: aides employeur
   résumé: Pour l'employeur, différées dans le temps
   icônes: 🎁
-  description: >
+  description: |
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
+
+    Le simulateur est loin d'être exhaustif : de très nombreuses aides existent. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   formule:
     somme:
       - CICE
@@ -1509,7 +1511,9 @@
     thème: aide bas salaires
     démarches: non
   description: |
-    Crédit d'impôt pour la compétitivité et l'emploi
+    Crédit d'impôt pour la compétitivité et l'emploi. C'est une réduction des cotisations sociales sur les salaires, mais indirecte, car sous forme d'allègement fiscal. Il devrait être remplacé en 2019 par une réduction directe des cotisations sociales. 
+
+    Plus d'infos sur la fiche [service-public.fr](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31326).
   références:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31326
 
