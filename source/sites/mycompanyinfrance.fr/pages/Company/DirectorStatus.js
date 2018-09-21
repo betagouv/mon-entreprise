@@ -15,13 +15,13 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => (
 			<title>Defining the director's status</title>
 			<meta
 				name="description"
-				content="This choice is important because it determines the type of Social Security scheme and coverage for which the director is eligible. Each option has legal implications, and lead to a different status when creating your company in France"
+				content="This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France"
 			/>
 		</Helmet>
 		<h2>Defining the director&apos;s status </h2>
 		<p>
-			This choice is important because it determines the type of Social Security
-			scheme and coverage for which the director is eligible.
+			This choice is important because it determines the director's Social Security
+			scheme and coverage.
 		</p>
 		<ul>
 			<li>
