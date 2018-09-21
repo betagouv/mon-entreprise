@@ -5,7 +5,10 @@
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
 	.st1{fill:rgb(41, 117, 209);}
-	.st2{fill:rgb(41, 117, 209, 0.7);}
+	.st2{
+		fill:rgb(105,158,223);
+		fill:rgb(41, 117, 209, 0.7);
+	}
 	.st3{fill:none;stroke:rgb(41, 117, 209);stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st4{fill:none;stroke:#FFFFFF;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>

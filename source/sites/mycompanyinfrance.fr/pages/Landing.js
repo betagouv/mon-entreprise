@@ -6,6 +6,9 @@ import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
+import companySvg from '../images/company.svg'
+import estimateSvg from '../images/estimate.svg'
+import hiringSvg from '../images/hiring.svg'
 import Footer from '../layout/Footer/Footer'
 import './Landing.css'
 
@@ -42,10 +45,9 @@ const Landing = ({ colours: { colour } }) => (
 			<div>
 				<h2>Your new company </h2>
 				<div className="landing-explanation-content">
-					{emoji('🏗️')}
+					<img alt="Your new company" src={companySvg} />
 					<ul>
 						<li>Find the type of company that suits you</li>
-						<li>Choose the best location for your business</li>
 						<li>Follow the steps to register your company</li>
 					</ul>
 				</div>
@@ -58,11 +60,10 @@ const Landing = ({ colours: { colour } }) => (
 			<div>
 				<h2>The French social security</h2>
 				<div className="landing-explanation-content">
-					{emoji('💶')}
+					<img alt="Social security" src={estimateSvg} />
 					<ul>
 						<li>Discover the French social security system</li>
 						<li>Simulate your hiring costs</li>
-						<li>Understand the French payslip</li>
 					</ul>
 				</div>
 				<p>
@@ -74,11 +75,10 @@ const Landing = ({ colours: { colour } }) => (
 			<div>
 				<h2>Your first employee</h2>
 				<div className="landing-explanation-content">
-					{emoji('🤝')}
+					<img alt="Social security" src={hiringSvg} />
 					<ul>
 						<li>Discover the procedures to hire in France</li>
 						<li>Learn the basics of French labour law</li>
-						<li>Find the right tool to make a payslip</li>
 					</ul>
 				</div>
 				<p>

@@ -21,7 +21,7 @@ export type CompanyHasMultipleAssociatesAction = {
 
 export type CompanyIsMicroenterpriseAction = {
 	type: 'COMPANY_IS_MICROENTERPRISE',
-	microenterprise: ?boolean
+	microEnterprise: ?boolean
 }
 
 export type ChangeChecklistItemAction = {
@@ -55,7 +55,7 @@ export type State = {|
 		+liability?: ?CompanyLiability,
 		+directorStatus?: ?DirectorStatus,
 		+multipleAssociates?: ?boolean,
-		+microenterprise?: ?boolean,
+		+microEnterprise?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
 	+existingCompanyDetails: ?{ [string]: string }

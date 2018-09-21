@@ -5,6 +5,9 @@ import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
+import companySvg from '../../images/company.svg'
+import estimateSvg from '../../images/estimate.svg'
+import hiringSvg from '../../images/hiring.svg'
 import './Navigation.css'
 import NavOpener from './NavOpener'
 import SideBar from './SideBar'
@@ -38,10 +41,14 @@ const StepsHeader = ({
 					<li>
 						<NavOpener
 							to="/company"
+							exact={false}
 							title={
 								<>
-									Your company {emoji('🏗️')}{' '}
-									{companyProgress === 100 && emoji('🌞')}
+									Your company
+									<img
+										style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
+										src={companySvg}
+									/>
 									<Progress percent={companyProgress} />
 								</>
 							}>
@@ -55,7 +62,7 @@ const StepsHeader = ({
 													title="Legal status guide">
 													<ul>
 														<li>
-															<NavLink to="/company/legal-status/multiple-associates">
+															<NavLink to="/company/legal-status/number-of-associates">
 																Number of associates
 															</NavLink>
 														</li>
@@ -75,13 +82,13 @@ const StepsHeader = ({
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/microenterprise">
+															<NavLink to="/company/legal-status/micro-enterprise">
 																Micro-enterprise
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/pick-legal-status">
-																Possible status list
+															<NavLink to="/company/legal-status/list">
+																Status list
 															</NavLink>
 														</li>
 													</ul>
@@ -98,7 +105,7 @@ const StepsHeader = ({
 													title="Creation process checklist">
 													<ul>
 														<li>
-															<NavLink to="/company/create-microenterprise">
+															<NavLink to="/company/create-micro-enterprise">
 																Micro-enterprise
 															</NavLink>
 														</li>
@@ -145,14 +152,22 @@ const StepsHeader = ({
 					</li>
 					<li>
 						<NavLink exact to="/social-security">
-							Social security {emoji('💶')}{' '}
+							Social security
+							<img
+								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
+								src={estimateSvg}
+							/>
 							{estimationProgress === 100 && emoji('🌞')}
 							<Progress percent={estimationProgress} />
 						</NavLink>
 					</li>
 					<li>
 						<NavLink to="/hiring-process">
-							Hiring process {emoji('🤝')}{' '}
+							Hiring process
+							<img
+								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
+								src={hiringSvg}
+							/>
 							{hiringProgress === 100 && emoji('🌞')}
 							<Progress percent={hiringProgress} />
 						</NavLink>

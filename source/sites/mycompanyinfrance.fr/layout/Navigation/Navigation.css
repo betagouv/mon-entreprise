@@ -93,6 +93,10 @@
 .navigation > ul > li > :first-child .navigation__caret {
 	visibility: hidden;
 }
+.navigation > ul > li > .navigation__item.opened {
+	color: var(--colour);
+	color: rgb(41, 117, 209);
+}
 
 .navigation__container .mobile__menu {
 	display: none;

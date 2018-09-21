@@ -34,6 +34,9 @@
 		rgba(255, 255, 255, 0) 70%
 	);
 }
+.menu__button:hover {
+	opacity: 0.8;
+}
 .menu__button img {
 	height: 100%;
 }

@@ -37,7 +37,9 @@ class InFranceRoute extends Component {
 							<Navigation location={location} />
 							<div className="app-content">
 								<ProgressHeader />
-								<div className="ui__ container" style={{ flex: 1 }}>
+								<div
+									className="ui__ container"
+									style={{ flexGrow: 1, flexShrink: 0 }}>
 									<Route path="/company" component={CompanyIndex} />
 									<Route path="/social-security" component={SocialSecurity} />
 									<Route path="/hiring-process" component={HiringProcess} />

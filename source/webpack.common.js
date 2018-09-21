@@ -84,9 +84,9 @@ module.exports = {
 		new HTMLPlugin({
 			template: 'index.html',
 			chunks: ['infrance'],
-			title: 'My company in France 🇫🇷',
+			title: 'A step-by-step guide to start business in France 🇫🇷',
 			description:
-				'The easy and official guide to help you start your business in France. From registering your company to hiring your first employee.',
+				'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
 			filename: 'infrance.html'
 		}),
 		new HTMLPlugin({
@@ -102,6 +102,7 @@ module.exports = {
 			'./source/sites/embauche.gouv.fr/images/logo',
 			{ from: './source/sites/embauche.gouv.fr/robots.txt', to: 'robots.embauche.txt' },
 			{ from: './source/sites/mycompanyinfrance.fr/robots.txt', to: 'robots.infrance.txt' },
+			{ from: './source/sites/mycompanyinfrance.fr/sitemap.txt', to: 'sitemap.infrance.txt' },
 		])
 	]
 }

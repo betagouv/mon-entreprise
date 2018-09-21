@@ -1,10 +1,10 @@
 /* @flow */
 import { chooseCompanyLiability } from 'Actions/companyStatusActions'
 import React from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 import type { CompanyLiability } from 'Types/companyStatusTypes'
-
 type Props = {
 	multipleAssociates: ?boolean,
 	chooseCompanyLiability: (?CompanyLiability) => void
@@ -12,6 +12,13 @@ type Props = {
 
 const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 	<>
+		<Helmet>
+			<title>Choosing the liability for your company in France</title>
+			<meta
+				name="description"
+				content="Sole proprietorship or limited liability? Each option has legal implications, and lead to a different status for creating your company in France"
+			/>
+		</Helmet>
 		<h2>Choosing the liability </h2>
 		<p>
 			An entrepreneur can choose between several options for the legal setup of

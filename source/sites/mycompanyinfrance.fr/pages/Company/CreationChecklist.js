@@ -6,10 +6,12 @@ import {
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import Scroll from 'Components/utils/Scroll'
 import React from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
+import StatusDescription from './StatusDescription'
 import type { Match } from 'react-router'
 
 type Props = {
@@ -30,16 +32,34 @@ const CreateCompany = ({
 	onStatusChange
 }: Props) => {
 	const status = match.params.status
+	if (!match.params.status) {
+		return null
+	}
 	return (
 		<Animate.fromBottom>
+			<Helmet>
+				<title>Create a {match.params.status}</title>
+				<meta
+					name="description"
+					content={`A complete checklist to help you create a company with the ${
+						match.params.status
+					} status with the French administration.`}
+				/>
+			</Helmet>
 			<Scroll.toTop />
 			<h1>Create a {match.params.status} </h1>
 			{!statusChooserCompleted && (
-				<p>
-					<button className="ui__ link-button" onClick={onStatusChange}>
-						Not sure about this status? Take our guide to help you choose
-					</button>
-				</p>
+				<>
+					{' '}
+					<p>
+						<button className="ui__ link-button" onClick={onStatusChange}>
+							Not sure about this status? Take our guide to help you choose
+						</button>
+					</p>
+					<p>
+						<StatusDescription status={match.params.status} />
+					</p>
+				</>
 			)}
 			<p>
 				This checklist will guide you throughout all the necessary steps to
@@ -47,12 +67,13 @@ const CreateCompany = ({
 			</p>
 			<h2 style={{ fontSize: '1.5rem' }}>Needed for registration</h2>
 			<Checklist
+				key={match.params.status}
 				onInitialization={items =>
 					onChecklistInitialization(match.params.status || '', items)
 				}
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}>
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="corporateName"
 						title="Find a corporate name"
@@ -86,7 +107,7 @@ const CreateCompany = ({
 						</p>
 					}
 				/>
-				{status !== 'microenterprise' && (
+				{status !== 'micro-enterprise' && (
 					<CheckItem
 						name="companyAddress"
 						title="Find an address to incorporate the company"
@@ -105,7 +126,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="companyStatus"
 						title="Write the company's articles"
@@ -152,7 +173,7 @@ const CreateCompany = ({
 						</>
 					}
 				/>
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="fundsDeposit"
 						title="Deposit capital funds"
@@ -168,7 +189,7 @@ const CreateCompany = ({
 								<p>
 									The deposit consists of a transfer of a sum of money to a
 									blocked account with a bank or the public{' '}
-									<a href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
+									<a href="https://consignations.caissedesdepots.fr/enterprise/creer-votre-enterprise/creation-dentreprise-deposez-votre-capital-social">
 										Caisse des dépôts et consignations
 									</a>{' '}
 									or a notary, who must then provide a certificate of deposit of
@@ -178,7 +199,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'microentreprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="publishCreationNotice"
 						title="Publish a notice of creation in a newspaper"
@@ -244,7 +265,7 @@ const CreateCompany = ({
 			</h2>
 
 			<Checklist>
-				{status !== 'microenterprise' && (
+				{status !== 'micro-enterprise' && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title="Choose a certified accountant"

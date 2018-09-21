@@ -1,15 +1,23 @@
 /* @flow */
 import { directorIsInAMinority } from 'Actions/companyStatusActions'
 import React from 'react'
+import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
-
 type Props = {
 	directorIsInAMinority: (?boolean) => void
 }
 
 const MinorityDirector = ({ directorIsInAMinority }: Props) => (
 	<>
+		<Helmet>
+			<title>Chairman or managing director </title>
+			<meta
+				name="description"
+				content="Some special rules apply depending on the amount of shares owned by the
+				director and this can lead to a different status when creating your company in France"
+			/>
+		</Helmet>
 		<h2>Chairman or managing director </h2>
 		<p>
 			Some special rules apply depending on the amount of shares owned by the
@@ -17,7 +25,7 @@ const MinorityDirector = ({ directorIsInAMinority }: Props) => (
 		</p>
 		<ul>
 			<li>
-				<strong>Chairman </strong>: The director is in majority, or is part of a
+				<strong>Chairman</strong>: The director is in majority, or is part of a
 				managing board that is in majority.
 			</li>
 			<li>

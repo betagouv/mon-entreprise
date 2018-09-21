@@ -5,9 +5,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
-import companySvg from './company.svg'
-import estimateSvg from './estimate.svg'
-import hiringSvg from './hiring.svg'
+import companySvg from '../../images/company.svg'
+import estimateSvg from '../../images/estimate.svg'
+import hiringSvg from '../../images/hiring.svg'
 import './ProgressHeader.css'
 const Progress = ({ percent }) => (
 	<div className="progress">
