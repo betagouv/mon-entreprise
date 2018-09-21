@@ -54,7 +54,7 @@ const StatusDescription = ({ status }: Props) =>
 			partner only can be sued for the entire debt) and indefinite (responsible
 			on the entirety of their personnal wealth).
 		</>
-	) : status.toLowerCase().includes['micro-enterprise'] ? (
+	) : status.toLowerCase().includes('micro-enterprise') ? (
 		<>
 			The micro-enterprise is a sole proprietorship company, subject to a
 			flat-rate scheme for the calculation of taxes and the payment of social

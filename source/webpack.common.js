@@ -84,7 +84,7 @@ module.exports = {
 		new HTMLPlugin({
 			template: 'index.html',
 			chunks: ['infrance'],
-			title: 'A step-by-step guide to start business in France 🇫🇷',
+			title: 'My company in France: A step-by-step guide to start a business in France',
 			description:
 				'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
 			filename: 'infrance.html'
