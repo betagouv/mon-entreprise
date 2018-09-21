@@ -1,8 +1,11 @@
 /* @flow */
 
 import classnames from 'classnames'
+import withTracker from 'Components/utils/withTracker'
+import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
+import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { ChildrenArray, Node, Element } from 'react'
 
@@ -11,7 +14,8 @@ type Props = {
 	children: ChildrenArray<Element<any>>,
 	title: Node,
 	location: Location,
-	to?: ?string
+	to?: ?string,
+	tracker: Tracker
 }
 type State = {
 	opened: boolean,
@@ -58,7 +62,13 @@ class NavOpener extends Component<Props, State> {
 			  }
 			: null
 	}
-	handleToggle = () => {
+	handleToggle = event => {
+		this.props.tracker.push([
+			'trackEvent',
+			'Sidebar',
+			'click',
+			event.target.textContent
+		])
 		this.setState(({ opened }) => ({ opened: !opened, controlled: true }))
 	}
 
@@ -78,7 +88,18 @@ class NavOpener extends Component<Props, State> {
 						›
 					</button>
 					{this.props.to ? (
-						<NavLink to={this.props.to} exact className="ui__ text-button">
+						<NavLink
+							to={this.props.to}
+							onClick={event =>
+								this.props.tracker.push([
+									'trackEvent',
+									'Sidebar',
+									'click',
+									event.target.textContent
+								])
+							}
+							exact
+							className="ui__ text-button">
 							{this.props.title}
 						</NavLink>
 					) : (
@@ -95,4 +116,7 @@ class NavOpener extends Component<Props, State> {
 	}
 }
 
-export default withRouter(NavOpener)
+export default compose(
+	withTracker,
+	withRouter
+)(NavOpener)

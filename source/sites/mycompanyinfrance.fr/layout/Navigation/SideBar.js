@@ -1,9 +1,28 @@
+/* @flow */
+
 import classnames from 'classnames'
+import withTracker from 'Components/utils/withTracker'
+import { compose } from 'ramda'
 import React from 'react'
 import { withRouter } from 'react-router'
 import backSvg from './back.svg'
 import mobileMenuSvg from './mobile-menu.svg'
 import './SideBar.css'
+import type { Tracker } from 'Components/utils/withTracker'
+import type { Node } from 'react'
+import type { Location } from 'react-router-dom'
+
+type State = {
+	opened: boolean,
+	sticky: boolean
+}
+
+type Props = {
+	tracker: Tracker,
+	location: Location,
+	/* ownProps */
+	children: Node
+}
 
 const bigScreen = window.matchMedia('(min-width: 1500px)')
 const isParent = (parentNode, children) => {
@@ -15,31 +34,39 @@ const isParent = (parentNode, children) => {
 	}
 	return isParent(parentNode, children.parentNode)
 }
-class SideBar extends React.Component {
+
+class SideBar extends React.Component<Props, State> {
 	state = {
 		opened: false,
 		sticky: bigScreen.matches
 	}
+	ref = null
 	componentDidMount() {
 		window.addEventListener('click', this.handleClick)
 		bigScreen.addListener(this.handleMediaQueryChange)
 	}
 	componentWillUnmount() {
-		window.removeEventListener('click', this.mediaQueryChanged)
+		window.removeEventListener('click', this.handleClick)
 		bigScreen.removeListener(this.handleMediaQueryChange)
 	}
 	handleClick = event => {
-		if (!this.state.sticky && !isParent(this.ref, event.target)) {
-			this.setState({ opened: false })
+		if (
+			!this.state.sticky &&
+			!isParent(this.ref, event.target) &&
+			this.state.opened
+		) {
+			this.handleClose()
 		}
 	}
 	handleMediaQueryChange = () => {
 		this.setState({ sticky: bigScreen.matches })
 	}
 	handleClose = () => {
+		this.props.tracker.push(['trackEvent', 'Sidebar', 'close'])
 		this.setState({ opened: false })
 	}
 	handleOpen = () => {
+		this.props.tracker.push(['trackEvent', 'Sidebar', 'open'])
 		this.setState({ opened: true })
 	}
 
@@ -68,4 +95,7 @@ class SideBar extends React.Component {
 	}
 }
 
-export default withRouter(SideBar)
+export default compose(
+	withRouter,
+	withTracker
+)(SideBar)

@@ -2,6 +2,9 @@ import Mecanisms from 'Components/Mecanisms'
 import RulePage from 'Components/RulePage'
 import DisableScroll from 'Components/utils/DisableScroll'
 import TrackPageView from 'Components/utils/TrackPageView'
+import { defaultTracker } from 'Components/utils/withTracker'
+import createRavenMiddleware from 'raven-for-redux'
+import Raven from 'raven-js'
 import React, { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
@@ -10,7 +13,9 @@ import {
 	persistSimulation,
 	retrievePersistedSimulation
 } from '../../storage/persistSimulation'
-import { inIframe } from '../../utils'
+import ReactPiwik from '../../Tracker'
+import { getIframeOption, inIframe } from '../../utils'
+import trackDomainActions from './middlewares/trackDomainActions'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Contribution from './pages/Contribution'
@@ -23,6 +28,34 @@ import IntegrationTest from './pages/IntegrationTest'
 import Route404 from './pages/Route404'
 import RulesList from './pages/RulesList'
 
+if (process.env.NODE_ENV === 'production') {
+	Raven.config(
+		'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
+	).install()
+}
+
+let tracker = defaultTracker
+if (process.env.NODE_ENV === 'production') {
+	tracker = new ReactPiwik({
+		url: 'stats.data.gouv.fr',
+		siteId: 39,
+		trackErrors: true
+	})
+}
+
+if (process.env.NODE_ENV === 'production') {
+	let integratorUrl = getIframeOption('integratorUrl')
+	ReactPiwik.push([
+		'setCustomVariable',
+		1,
+		'urlPartenaire',
+		decodeURIComponent(integratorUrl || location.origin),
+		'visit'
+	])
+}
+
+const middlewares = [createRavenMiddleware(Raven), trackDomainActions(tracker)]
+
 class EmbaucheRoute extends Component {
 	render() {
 		return (
@@ -31,6 +64,8 @@ class EmbaucheRoute extends Component {
 				initialStore={{
 					previousSimulation: retrievePersistedSimulation()
 				}}
+				reduxMiddlewares={middlewares}
+				tracker={tracker}
 				onStoreCreated={persistSimulation}>
 				<TrackPageView />
 				{!inIframe() && <Header />}
