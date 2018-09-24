@@ -11,7 +11,10 @@ let nestedSituationToStateSelector = nestedSituation => dottedName =>
 		...nestedSituationToPathMap(nestedSituation)
 	}[dottedName])
 
-export default (targetNames, nestedSituation) =>
-	analyseMany(parsedRules, targetNames)(
-		nestedSituationToStateSelector(nestedSituation)
-	)
+export default {
+	eval: (targetNames, nestedSituation) =>
+		analyseMany(parsedRules, targetNames)(
+			nestedSituationToStateSelector(nestedSituation)
+		),
+	a: () => 7
+}
