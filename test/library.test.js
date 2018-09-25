@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import Syso from '../source/engine/index'
 import { propEq } from 'ramda'
 import dedent from 'dedent-js'
-console.log(Syso)
+import sasuYaml from 'yaml-loader!../source/règles/sasu.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
@@ -17,15 +17,44 @@ describe('library', function() {
 	})
 
 	it('should let the user replace the default rules', function() {
-		let newRules = `
+		let rules = `
 - nom: yo
   formule: 90890
 - nom: ya
   formule:  yo + 1
 `
 
-		let evaluated = Syso.evaluate(['ya'], {}, newRules)
+		let evaluated = Syso.evaluate(['ya'], {}, { base: rules })
 
 		expect(evaluated.targets[0].nodeValue).to.equal(90891)
+	})
+	it('should let the user add rules to the default ones', function() {
+		let rules = `
+- nom: yo
+  formule: 1
+- nom: ya
+  formule:  contrat salarié . salaire . net + yo
+`
+
+		let evaluated = Syso.evaluate(
+			['ya'],
+			{
+				'contrat salarié . salaire . brut de base': 2300
+			},
+			{ extra: rules }
+		)
+
+		expect(evaluated.targets[0].nodeValue).to.be.closeTo(1780.41, 1)
+	})
+	it('should let the user extend the rules constellation in a serious manner', function() {
+		let evaluated = Syso.evaluate(
+			['ya'],
+			{
+				'contrat salarié . salaire . brut de base': 2300
+			},
+			{ extra: sasuYaml }
+		)
+
+		expect(evaluated.targets[0].nodeValue).to.be.closeTo(1780.41, 1)
 	})
 })
