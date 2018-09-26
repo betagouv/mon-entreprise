@@ -1,47 +1,14 @@
 const { map, concat } = require('ramda')
 const webpack = require('webpack')
 const common = require('./webpack.common.js')
-const webpackServeWaitpage = require('webpack-serve-waitpage')
-const history = require('connect-history-api-fallback')
-const convert = require('koa-connect')
 
 module.exports = {
 	...common,
 	mode: 'development',
-	entry: map(concat(['react-hot-loader/patch']), common.entry),
-	serve: {
-		host: '0.0.0.0',
-		hotClient: {
-			allEntries: true,
-			host: { client: '*', server: '0.0.0.0' }
-		},
-		add: (app, middleware, options) => {
-			app.use(
-				convert(
-					history({
-						rewrites: [
-							{
-								from: /^\/embauche\/.*$|^\/embauche$/,
-								to: '/embauche.html'
-							},
-							{
-								from: /^\/infrance\/.*$|^\/infrance$/,
-								to: '/infrance.html'
-							}
-						]
-					})
-				)
-			)
-
-			app.use(
-				webpackServeWaitpage(options, {
-					theme: 'material'
-				})
-			)
-		}
-	},
+	entry: map(concat(['webpack-hot-middleware/client']), common.entry),
 	plugins: [
 		...common.plugins,
-		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' })
+		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
+		new webpack.HotModuleReplacementPlugin()
 	]
 }
