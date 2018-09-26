@@ -1,27 +1,31 @@
-- nom: chiffre affaire
+- nom: chiffre affaires
   format: euros
 
 - nom: charges
-  par defaut: 0
+  par défaut: 0
   format: euros
 
 - nom: répartition salaire sur dividendes
-  par defaut: 1
-
+  par défaut: .3
 
 - nom: impôt sur les sociétés
   formule: 
     barème: 
       assiette: dividendes . brut
       tranches: 
-        - en-dessous de: 38000
+        - en-dessous de: 38120 
           taux: 15%
-        - au-dessus de: 38000
+        - de: 38120
+          à: 500000
           taux: 28%
+        - au-dessus de: 500000
+          taux: 33.3%
+  références: 
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
 - espace: dividendes
   nom: brut 
-  formule: chiffre affaire - salaire total
+  formule: chiffre affaires - salaire total
 
 - espace: dividendes
   nom: net
@@ -41,14 +45,13 @@
               - sinon: 12.8%
 
 - nom: exonération impôt X
+  par défaut: non
 
 
 - nom: salaire total
-  formule: chiffre affaire * répartition salaire sur dividendes 
+  formule: chiffre affaires * répartition salaire sur dividendes 
 
   #-> on en deduit le net car le total a une valeur 
-
-
 
 - nom: revenu disponible
   formule: contrat salarié . salaire . net après impôt + dividendes . net

@@ -8,12 +8,10 @@ import {
 } from './rules'
 import yaml from 'js-yaml'
 
-let defaultRules = parseAll(rulesFr)
-
 // The public evaluation function takes a nested object of input values
-let nestedSituationToStateSelector = nestedSituation => dottedName =>
+let nestedSituationToStateSelector = rules => nestedSituation => dottedName =>
 	({
-		...collectDefaults(rulesFr),
+		...collectDefaults(rules),
 		...nestedSituationToPathMap(nestedSituation)
 	}[dottedName])
 
@@ -25,15 +23,15 @@ export default {
 		let rules = rulesConfig
 			? do {
 					let { base, extra } = rulesConfig
-					parseAll([
+					;[
 						...(base ? enrichRules(base) : rulesFr),
 						...(extra ? enrichRules(extra) : [])
-					])
+					]
 			  }
-			: defaultRules
+			: rulesFr
 
-		return analyseMany(rules, targetNames)(
-			nestedSituationToStateSelector(nestedSituation)
+		return analyseMany(parseAll(rules), targetNames)(
+			nestedSituationToStateSelector(rules)(nestedSituation)
 		)
 	}
 }
