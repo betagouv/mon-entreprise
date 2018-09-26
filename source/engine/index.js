@@ -19,7 +19,7 @@ let enrichRules = input =>
 	(typeof input === 'string' ? yaml.safeLoad(input) : input).map(enrichRule)
 
 export default {
-	evaluate: (targetNames, nestedSituation, rulesConfig) => {
+	evaluate: (targetInput, nestedSituation, rulesConfig) => {
 		let rules = rulesConfig
 			? do {
 					let { base, extra } = rulesConfig
@@ -30,8 +30,12 @@ export default {
 			  }
 			: rulesFr
 
-		return analyseMany(parseAll(rules), targetNames)(
-			nestedSituationToStateSelector(rules)(nestedSituation)
-		)
+		let evaluation = analyseMany(
+			parseAll(rules),
+			Array.isArray(targetInput) ? targetInput : [targetInput]
+		)(nestedSituationToStateSelector(rules)(nestedSituation))
+
+		let values = evaluation.targets.map(t => t.nodeValue)
+		return Array.isArray(targetInput) ? values : values[0]
 	}
 }
