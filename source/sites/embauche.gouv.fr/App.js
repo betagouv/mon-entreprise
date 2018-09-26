@@ -1,3 +1,4 @@
+import PageFeedback from 'Components/Feedback/PageFeedback'
 import Mecanisms from 'Components/Mecanisms'
 import RulePage from 'Components/RulePage'
 import DisableScroll from 'Components/utils/DisableScroll'
@@ -85,6 +86,7 @@ class EmbaucheRoute extends Component {
 					<Redirect from="/simulateur" to="/" />
 					<Route component={Route404} />
 				</Switch>
+				<PageFeedback blacklist={['/']} />
 				{inIframe() && <IframeFooter />}
 			</Provider>
 		)

@@ -1,5 +1,6 @@
 /* @flow */
 
+import { ScrollToElement } from 'Components/utils/Scroll'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
@@ -32,7 +33,7 @@ class FeedbackForm extends Component<Props> {
 
 	render() {
 		return (
-			<div>
+			<ScrollToElement onlyIfNotVisible>
 				<div style={{ textAlign: 'end' }}>
 					<button
 						onClick={this.handleClose}
@@ -82,7 +83,7 @@ class FeedbackForm extends Component<Props> {
 						</button>
 					</p>
 				</form>
-			</div>
+			</ScrollToElement>
 		)
 	}
 }

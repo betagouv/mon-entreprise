@@ -50,7 +50,7 @@ class RulePage extends Component {
 		return (
 			<div id="RulePage">
 				<ScrollToTop />
-				<div className="rule-page__header">
+				<div className="rule-page__header ui__ container">
 					<BackToSimulation
 						visible={this.props.valuesToShow}
 						colour={this.props.themeColours.colour}

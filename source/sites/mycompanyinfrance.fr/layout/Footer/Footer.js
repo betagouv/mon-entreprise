@@ -3,16 +3,13 @@ import withColours from 'Components/utils/withColours'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 import { feedbackBlacklist } from '../../config'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
 
-const Footer = ({ colours: { colour }, location }) => (
+const Footer = ({ colours: { colour } }) => (
 	<div className="footer-container">
-		{!feedbackBlacklist.includes(location.pathname) && (
-			<PageFeedback key={location.pathname} />
-		)}
+		<PageFeedback blacklist={feedbackBlacklist} />
 		<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
 			<div className="ui__ container">
 				<div id="footerIcons">
@@ -37,7 +34,4 @@ const Footer = ({ colours: { colour }, location }) => (
 	</div>
 )
 
-export default compose(
-	withRouter,
-	withColours
-)(Footer)
+export default compose(withColours)(Footer)
