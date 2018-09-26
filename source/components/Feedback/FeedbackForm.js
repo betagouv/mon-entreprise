@@ -73,6 +73,8 @@ class FeedbackForm extends Component<Props> {
 						</p>
 					</label>
 					<input type="email" name="email" />
+					<input hidden name="url" value={window.location.href} />
+					<input hidden name="pageTitle" value={document.title} />
 					<br />
 					<p>
 						<button className="ui__ button small" type="submit">
