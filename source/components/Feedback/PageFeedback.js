@@ -1,6 +1,5 @@
 /* @flow */
 
-import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
@@ -16,61 +15,72 @@ type Props = {
 	tracker: Tracker
 }
 type State = {
-	useful: ?boolean,
-	visible: boolean
+	showForm: boolean,
+	showThanks: boolean
 }
 
 class PageFeedback extends Component<Props, State> {
 	state = {
-		useful: null,
-		visible: true
+		showForm: false,
+		showThanks: false
 	}
 
-	handleClose = () => {
-		this.setState({ visible: false })
-	}
 	handleFeedback = ({ useful }) => {
 		this.props.tracker.push([
 			'trackEvent',
 			'Feedback',
-			'page usefulness rated',
+			'rate page usefulness',
 			this.props.location.pathname,
 			useful ? 10 : 0
 		])
-		this.setState({ useful })
+		this.setState({ showThanks: useful, showForm: !useful })
 	}
-	handleErrorReporting = () => {}
+	handleErrorReporting = () => {
+		this.props.tracker.push([
+			'trackEvent',
+			'Feedback',
+			'report error',
+			this.props.location.pathname
+		])
+		this.setState({ showForm: true })
+	}
 	render() {
 		return (
-			<div
-				className={classnames(
-					'feedback-page',
-					'ui__ container notice',
-					this.state.visible && 'visible'
-				)}>
-				{this.state.useful === null ? (
-					<>
-						<Trans i18nKey="feedback.question">
-							Cette page vous a-t-elle été utile ?
-						</Trans>{' '}
-						<button
-							style={{ marginLeft: '0.6rem' }}
-							className="ui__ link-button"
-							onClick={() => this.handleFeedback({ useful: true })}>
-							<Trans>Oui</Trans>
-						</button>{' '}
-						<button
-							style={{ marginLeft: '0.6rem' }}
-							className="ui__ link-button"
-							onClick={() => this.handleFeedback({ useful: false })}>
-							<Trans>Non</Trans>
-						</button>
-					</>
-				) : this.state.useful === true ? (
+			<div className="feedback-page ui__ container notice">
+				{!this.state.showForm &&
+					!this.state.showThanks && (
+						<>
+							<div style={{ flex: 1 }}>
+								<Trans i18nKey="feedback.question">
+									Cette page vous a-t-elle été utile ?
+								</Trans>{' '}
+								<button
+									style={{ marginLeft: '0.4rem' }}
+									className="ui__ link-button"
+									onClick={() => this.handleFeedback({ useful: true })}>
+									<Trans>Oui</Trans>
+								</button>{' '}
+								<button
+									style={{ marginLeft: '0.4rem' }}
+									className="ui__ link-button"
+									onClick={() => this.handleFeedback({ useful: false })}>
+									<Trans>Non</Trans>
+								</button>
+							</div>
+							<button
+								className="ui__ link-button"
+								onClick={this.handleErrorReporting}>
+								<Trans i18nKey="feedback.reportError">Report an error</Trans>
+							</button>{' '}
+						</>
+					)}
+				{this.state.showThanks && (
 					<Trans i18nKey="feedback.thanks">Merci pour votre retour !</Trans>
-				) : (
-					/* this.state.useful === false ? */
-					<Form onEnd={this.handleClose} />
+				)}
+				{this.state.showForm && (
+					<Form
+						onEnd={() => this.setState({ showThanks: true, showForm: false })}
+					/>
 				)}
 			</div>
 		)
