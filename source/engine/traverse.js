@@ -333,7 +333,14 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 		}
 	let nonBlockingControls = evaluateControls(false)(parsedRules, situationGate)
 
-	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
+	let parsedTargets = targetNames.map(t => {
+			let parsedTarget = findRule(parsedRules, t)
+			if (!parsedTarget)
+				throw new Error(
+					`L'objectif de calcul "${t}" ne semble pas  exister dans la base de règles`
+				)
+			return parsedTarget
+		}),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)
