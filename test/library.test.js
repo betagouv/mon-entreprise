@@ -47,7 +47,7 @@ describe('library', function() {
 	})
 	it('should let the user extend the rules constellation in a serious manner', function() {
 		let evaluated = Syso.evaluate(
-			['salaire total'],
+			['dividendes . net'],
 			{
 				'chiffre affaires': 5000
 			},
