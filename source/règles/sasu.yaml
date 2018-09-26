@@ -8,10 +8,11 @@
 - nom: répartition salaire sur dividendes
   par défaut: .3
 
+
 - nom: impôt sur les sociétés
   formule: 
     barème: 
-      assiette: dividendes . brut
+      assiette: bénéfice
       tranches: 
         - en-dessous de: 38120 
           taux: 15%
@@ -23,9 +24,12 @@
   références: 
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
-- espace: dividendes
-  nom: brut 
+- nom: bénéfice 
   formule: chiffre affaires - salaire total
+
+- espace: dividendes
+  nom: brut
+  formule: bénéfice - impôt sur les sociétés
 
 - espace: dividendes
   nom: net
