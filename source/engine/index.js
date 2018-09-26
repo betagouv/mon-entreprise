@@ -17,7 +17,8 @@ let nestedSituationToStateSelector = nestedSituation => dottedName =>
 		...nestedSituationToPathMap(nestedSituation)
 	}[dottedName])
 
-let enrichYaml = string => yaml.safeLoad(string).map(enrichRule)
+let enrichRules = input =>
+	(typeof input === 'string' ? yaml.safeLoad(input) : input).map(enrichRule)
 
 export default {
 	evaluate: (targetNames, nestedSituation, rulesConfig) => {
@@ -25,8 +26,8 @@ export default {
 			? do {
 					let { base, extra } = rulesConfig
 					parseAll([
-						...(base ? enrichYaml(base) : rulesFr),
-						...(extra ? enrichYaml(extra) : [])
+						...(base ? enrichRules(base) : rulesFr),
+						...(extra ? enrichRules(extra) : [])
 					])
 			  }
 			: defaultRules
