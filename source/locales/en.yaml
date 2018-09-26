@@ -155,17 +155,10 @@ simulation-end:
 feedback:
   question: Was this information useful to you?
   bad:
-    headline: We're sorry we didn't give you complete satisfaction.
-    question: What was the main problem?
-    answer:
-      notUnderstandable: This page lacks clarity
-      notRelevant: This page has content that does not apply to me
-      poorContent: I don't find what I'm looking for
-      other: Other
     form:
       headline: Your feedback is valuable to us in order to continuously improve this site. What should we work on to better meet your expectations?
       email: Your email (if you would like an answer from us)
-  thanks: Thank you for your feedback!
+  thanks: Thank for your feedback!
 Janvier 2019: January 2019
 d'aides: of aid
 Oui: Yes
