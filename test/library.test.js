@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import Syso from '../source/engine/index'
 import { propEq } from 'ramda'
-import dedent from 'dedent-js'
-import sasuYaml from 'yaml-loader!../source/règles/sasu.yaml'
+import sasuRules from '../source/règles/sasu.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
@@ -52,7 +51,7 @@ describe('library', function() {
 			{
 				'contrat salarié . salaire . brut de base': 2300
 			},
-			{ extra: sasuYaml }
+			{ extra: sasuRules }
 		)
 
 		expect(evaluated.targets[0].nodeValue).to.be.closeTo(1780.41, 1)
