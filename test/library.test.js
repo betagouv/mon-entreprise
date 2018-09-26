@@ -47,13 +47,13 @@ describe('library', function() {
 	})
 	it('should let the user extend the rules constellation in a serious manner', function() {
 		let evaluated = Syso.evaluate(
-			['ya'],
+			['salaire total'],
 			{
-				'contrat salarié . salaire . brut de base': 2300
+				'chiffre affaires': 5000
 			},
 			{ extra: sasuRules }
 		)
 
-		expect(evaluated.targets[0].nodeValue).to.be.closeTo(1780.41, 1)
+		expect(evaluated.targets[0].nodeValue).to.be.closeTo(1500, 1)
 	})
 })
