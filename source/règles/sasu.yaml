@@ -55,10 +55,11 @@
 - nom: salaire total
   formule: chiffre affaires * répartition salaire sur dividendes 
 
-  #-> on en deduit le net car le total a une valeur 
+- nom: net après impôt
+  format: euros
 
 - nom: revenu disponible
-  formule: contrat salarié . salaire . net après impôt + dividendes . net
+  formule: net après impôt + dividendes . net
 
 
 
