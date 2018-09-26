@@ -1,49 +1,57 @@
-- nom: chiffre d'affaire
-
+- nom: chiffre affaire
+  format: euros
 
 - nom: charges
   par defaut: 0
+  format: euros
 
-- nom: repartition salaire sur dividendes
-  par defaut: 100%
+- nom: répartition salaire sur dividendes
+  par defaut: 1
 
-- nom: impot sur les societes
+
+- nom: impôt sur les sociétés
   formule: 
-    bareme: 
-      assiette: benefices
+    barème: 
+      assiette: dividendes . brut
       tranches: 
         - en-dessous de: 38000
-	  taux: 15%
-	- au-dessus de: 38000
-	  taux: 28%
+          taux: 15%
+        - au-dessus de: 38000
+          taux: 28%
 
-- nom: prelevement forfaitaire unique 
+- espace: dividendes
+  nom: brut 
+  formule: chiffre affaire - salaire total
+
+- espace: dividendes
+  nom: net
+  formule: brut - prélèvement forfaitaire unique
+
+- nom: prélèvement forfaitaire unique 
+  espace: dividendes
   formule: 
     multiplication: 
-      assiette: dividendes
+      assiette: brut
       composantes: 
-        - part: CSG
-	  taux: 17.2%
-	- part: impot
-	  taux: 
-	    variations: 
-	      - si: exoneration impot X
-	        alors: 0%
-	      - sinon: 12.8%
+        - taux: 17.2%
+        - taux: 
+            variations: 
+              - si: exonération impôt X
+                alors: 0%
+              - sinon: 12.8%
+
+- nom: exonération impôt X
 
 
-??
+- nom: salaire total
+  formule: chiffre affaire * répartition salaire sur dividendes 
 
-salaire total = chiffre d'affaires * repartition 
-
--> on en deduit le net car le total a une valeur 
-
-- nom: dividendes 
-  formule: chiffre d'affaires * repartition 
+  #-> on en deduit le net car le total a une valeur 
 
 
 
-revenu disponible: salaire apres impot + revenus des dividendes
+- nom: revenu disponible
+  formule: contrat salarié . salaire . net après impôt + dividendes . net
 
 
 
