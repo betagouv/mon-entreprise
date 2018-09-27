@@ -14,15 +14,15 @@ const Footer = ({ colours: { colour } }) => (
 				<a href="https://beta.gouv.fr">
 					<img
 						src={betaGouvSvg}
-						alt="un service de l'état français incubé par beta.gouv.fr"
+						alt="un service de l’Etat français incubé par beta.gouv.fr"
 					/>
 				</a>
 			</div>
 			<p className="ui__ notice">
 				This website is provided by the{' '}
 				<a href="https://www.urssaf.fr">URSSAF</a>, the French social security
-				contributions collector, with the help of the French government's
-				startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>.
+				contributions collector, and the government’s public startup incubator,{' '}
+				<a href="https://beta.gouv.fr">beta.gouv.fr</a>.
 			</p>
 		</div>
 	</footer>
