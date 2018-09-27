@@ -716,18 +716,19 @@
   titre: Salaire brut de base
   résumé: Inscrit dans le contrat de travail
   type: salaire
-  question: Quel est le salaire de base mensuel ?
+  question: Quel est le salaire de base ?
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux partis.
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
   format: euros
+  période: mois
   suggestions:
     salaire médian: 2300
     SMIC: 1500
   contrôles: 
     - si: brut de base < 300
-      message: Entrez un salaire mensuel
+      message: Entrez un salaire raisonnable
       niveau: bloquant
     - si: brut de base < SMIC mensuel
       niveau: avertissement
@@ -740,7 +741,7 @@
         Le salaire saisi est élevé. Pour rappel, le simulateur ne fonctionne qu'avec des salaires mensuels.
   formule:
     inversion:
-      question: Quel est le salaire mensuel ?
+      question: Quel est le salaire ?
       titre: salaire
       avec:
         - rémunération . total
@@ -795,8 +796,9 @@
   titre: Avantages en nature (montant)
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-  question: Quel est le montant mensuel des avantages en nature ?
-  applicable si: contrat salarié . avantages en nature
+  question: Quel est le montant des avantages en nature ?
+  applicable si: contrat salarié . avantages en nature 
+  période: mois
   suggestions:
     nourriture: 80
     véhicule: 260
@@ -820,26 +822,23 @@
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
-
-  #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
-  # type de période: mensuel
+  période: mois
   formule: 3311
   références:
     arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
 
 - espace: contrat salarié
   nom: plafond sécurité sociale
-  #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
-  # type de période: mensuel
   formule: plafond sécurité sociale temps plein * quotité de travail
 
 - espace: contrat salarié
-  nom: SMIC mensuel temps plein
+  nom: SMIC temps plein
+  période: mois
   formule: 1498.47
 
 - espace: contrat salarié
-  nom: SMIC mensuel
-  formule: SMIC mensuel temps plein * quotité de travail
+  nom: SMIC
+  formule: SMIC temps plein * quotité de travail
 
 - espace: contrat salarié
   nom: cotisations salariales
@@ -925,10 +924,10 @@
 
 - espace: contrat salarié . salaire
   nom: net
-  titre: Salaire net
-  type: salaire
-  format: euros
-  question: Quel est le salaire net mensuel ?
+  titre: Salaire net 
+  type: salaire 
+  format: euros  
+  question: Quel est le salaire net ?
   résumé: Salaire net avant impôt
   description: |
     C'est le montant que le salarié toucherait à la fin du mois avant de payer l'impôt sur le revenu.
@@ -937,9 +936,10 @@
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
   formule: rémunération . net de cotisations - avantages en nature . montant
-  contrôles:
+  période: mois
+  contrôles: 
     - si: net < 200
-      message: Entrez un salaire mensuel
+      message: Entrez un salaire raisonnable
       niveau: bloquant
 
 - espace: contrat salarié . salaire
@@ -961,14 +961,16 @@
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
   formule: net - impôt . neutre
-  contrôles:
+  période: mois
+  contrôles: 
     - si: net après impôt < 200
-      message: Entrez un salaire mensuel
+      message: Entrez un salaire raisonnable
       niveau: bloquant
 
 - espace: impôt . neutre
   nom: barème Guadeloupe Réunion Martinique
   icônes: 🇬🇵🇷🇪 🇲🇶
+  période: mois
   formule:
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
@@ -1054,6 +1056,7 @@
 - espace: impôt . neutre
   nom: barème Guyane Mayotte
   icônes: 🇬🇾 🇾🇹
+  période: mois
   formule:
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
@@ -1138,6 +1141,7 @@
 
 - espace: impôt . neutre
   nom: barème métropolitain
+  période: mois
   formule:
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
@@ -1279,23 +1283,23 @@
 - espace: contrat salarié . rémunération
   nom: total
   titre: Total chargé
-  question: Quel est la rémunération mensuelle chargée ?
+  question: Quel est la rémunération chargée ?
   résumé: Dépensé par l'employeur
   type: salaire
   format: euros
   description: |
     C'est la rémunération brute, plus les cotisations patronales, moins les réductions de cotisations sociales.
 
-    C'est le total que l'employeur doit verser mensuellement pour employer un salarié.
+    C'est le total que l'employeur doit verser pour employer un salarié.
 
-    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme mensuellement en contrepartie du travail fourni.
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
 
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
   formule: rémunération . total sans réduction - réductions de cotisations
   contrôles:
     - si: total < 400
-      message: Entrez un salaire mensuel
+      message: Entrez un salaire raisonnable
       niveau: bloquant
 
 - espace: contrat salarié
@@ -1314,7 +1318,7 @@
 
 - espace: contrat salarié
   nom: coût d'embauche
-  résumé: Coût employeur mensuel - aides
+  résumé: Coût employeur - aides
   question: Quel est le coût d'embauche, toutes aides incluses ?
   description: |
 
@@ -1326,9 +1330,10 @@
   format: euros
   type: salaire
   formule: rémunération . total - aides employeur
-  contrôles:
+  période: mois
+  contrôles: 
     - si: coût d'embauche < 400
-      message: Entrez un salaire mensuel
+      message: Entrez un salaire raisonnable
       niveau: bloquant
 
 - espace: contrat salarié
@@ -1525,7 +1530,7 @@
 
 - espace: contrat salarié
   nom: plafond cice
-  formule: multiplicateur cice * SMIC mensuel
+  formule: multiplicateur cice * SMIC 
 
 - espace: contrat salarié
   nom: multiplicateur cice
@@ -1539,17 +1544,14 @@
       taux: 4%
 
 - espace: contrat salarié . CITS
-  nom: abattement mensuel par salarié
+  nom: abattement par salarié
   formule:
     multiplication:
       assiette: entreprise . taxe sur les salaires . abattement associations
       taux: 1 / entreprise . effectif
-      facteur: 1 / 12
   note: |
-    Cette variable révèle deux lacunes de notre modélisation :
-      - on ne peut pas spécifier plusieurs salariés à l'entreprise, et donc calculer correctement le CITS. On fait donc comme si l'unique salarié simulé était le salarié type, multiplié.
-      - on ne gère pas la conversion entre les périodes temporelles.
-    On les résoud en exploitant à tort les capacités du mécanisme multiplication.
+    Cette variable révèle une lacune de notre modélisation : on ne peut pas spécifier plusieurs salariés à l'entreprise, et donc calculer correctement le CITS. On fait donc comme si l'unique salarié simulé était le salarié type, multiplié.
+    On la résoud en exploitant à tort les capacités du mécanisme multiplication.
 
 - espace: contrat salarié
   nom: CITS
@@ -1572,7 +1574,7 @@
   formule:
     allègement:
       assiette: non abattu
-      abattement: abattement mensuel par salarié
+      abattement: abattement par salarié
 
   exemples:
     - nom: Petite association, non applicable car taxe sur les salaires nulle (car abattue)
@@ -1600,7 +1602,7 @@
 
 - espace: contrat salarié . CITS
   nom: plafond
-  formule: multiplicateur * SMIC mensuel
+  formule: multiplicateur * SMIC 
 
 - espace: contrat salarié . CITS
   nom: multiplicateur
@@ -1717,8 +1719,7 @@
 
 - espace: contrat salarié
   nom: plafond réduction générale
-  # TODO: calcul du SMIC proratisé
-  formule: multiplicateur réduction générale * SMIC mensuel
+  formule: multiplicateur réduction générale * SMIC 
 
 - espace: contrat salarié
   nom: multiplicateur réduction générale
@@ -1941,7 +1942,7 @@
 - espace: contrat salarié
   nom: plafond réduction allocations familiales
   titre: Plafond de la réduction des allocations familiales
-  formule: SMIC mensuel * 3.5
+  formule: SMIC * 3.5
 
 # TODO - intégrer l'éligibilité à la réduction générale
 # TODO - vérifier si la réduction doit être portée à part sur la fiche de paie
@@ -2101,6 +2102,7 @@
   nom: forfait complémentaire santé
   titre: Forfait de complémentaire santé entreprise
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
+  période: mois
   description: |
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
@@ -2475,11 +2477,12 @@
 
 - espace: entreprise . taxe sur les salaires
   nom: abattement associations
+  période: année
   formule: 20507
 
 - espace: entreprise
   nom: taxe sur les salaires
-
+  période: année
   formule:
     allègement:
       assiette: barème annuel
