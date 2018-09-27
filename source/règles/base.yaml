@@ -856,7 +856,6 @@
       - CSG
       - CRDS
       - cotisation exceptionnelle temporaire (salarié)
-      - chômage (salarié)
       - APEC (salarié)
       - complémentaire santé (salarié)
 
@@ -2062,6 +2061,7 @@
   cotisation:
     branche: assurance chômage
     destinataire: Pôle emploi
+    dû par: employeur
   description: Cotisation d’assurance chômage
   références:
     calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
@@ -2077,29 +2077,24 @@
 
       composantes:
         - attributs:
-            dû par: employeur
+            composante: base
           taux: 4%
 
         - attributs:
-            dû par: employeur
             composante: contribution exceptionnelle temporaire
           description: |
             Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
           taux: 0.05%
 
-        - attributs:
-            dû par: salarié
-          taux: 0.95%
-
   exemples:
     - nom: SMIC
       situation:
         assiette cotisations sociales: 1500
-      valeur attendue: 75
+      valeur attendue: 60.75
     - nom: Haut salaire
       situation:
         assiette cotisations sociales: 20000
-      valeur attendue: 662.2
+      valeur attendue: 536.4
 
 - espace: contrat salarié
   nom: complémentaire santé

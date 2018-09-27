@@ -51,7 +51,7 @@ describe('pay slip selector', function() {
 		// $FlowFixMe
 		const montantTotalCotisations = paySlip.totalCotisations
 		expect(montantTotalCotisations.partPatronale).to.be.closeTo(992, 5)
-		expect(montantTotalCotisations.partSalariale).to.be.closeTo(520, 5)
+		expect(montantTotalCotisations.partSalariale).to.be.closeTo(498, 5)
 	})
 
 	it('should have value for "salarié" and "employeur" for a cotisation', function() {
