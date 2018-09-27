@@ -67,7 +67,7 @@ class SocialSecurity extends Component<Props, {}> {
 									allowFullScreen
 								/>
 							</div>
-							<h2>How much does it cost ?</h2>
+							<h2>How much does it cost to hire ?</h2>
 						</>
 					)}
 					<Simulateur displayHiringProcedures />
