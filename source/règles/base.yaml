@@ -619,8 +619,7 @@
     Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux organismes sociaux, certaines compensations
     financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4.
 
-    Certaines sont versées en
-    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
+    Certaines sont versées en fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - indemnités salarié CDD
@@ -1545,13 +1544,9 @@
 
 - espace: contrat salarié . CITS
   nom: abattement par salarié
-  formule:
-    multiplication:
-      assiette: entreprise . taxe sur les salaires . abattement associations
-      taux: 1 / entreprise . effectif
+  formule: entreprise . taxe sur les salaires . abattement associations / entreprise . effectif
   note: |
     Cette variable révèle une lacune de notre modélisation : on ne peut pas spécifier plusieurs salariés à l'entreprise, et donc calculer correctement le CITS. On fait donc comme si l'unique salarié simulé était le salarié type, multiplié.
-    On la résoud en exploitant à tort les capacités du mécanisme multiplication.
 
 - espace: contrat salarié
   nom: CITS
@@ -2315,7 +2310,8 @@
 
     Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est pas défini par la loi, mais il doit être proportionnel au nombre d'employés. Nous avons choisi un montant indicatif (voir les références) ajusté avec l'inflation depuis 2007.
 
-  formule: 80 / 12
+  période: année
+  formule: 80
 - espace: contrat salarié
   nom: participation effort de construction
   titre: Participation à l'effort de construction
@@ -2448,15 +2444,14 @@
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
 - espace: contrat salarié . taxe sur les salaires
-  nom: barème annuel
+  nom: barème
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
+  période: année
   formule:
     barème:
-      # TODO - les barèmes étant exprimés en base annuelle, et également à cause des limitations
-      # de la grammaire, on a recours à cette formulation trop compliquée; à simplifier
-      assiette: assiette * 12
+      assiette: assiette
       tranches:
         - en-dessous de: 7799
           taux: 4.25%
@@ -2472,8 +2467,9 @@
       valeur attendue: 2627.97
 
 - espace: entreprise . taxe sur les salaires
-  nom: barème annuel
-  formule: contrat salarié . taxe sur les salaires . barème annuel * effectif
+  nom: barème 
+  formule:
+    contrat salarié . taxe sur les salaires . barème * effectif
 
 - espace: entreprise . taxe sur les salaires
   nom: abattement associations
@@ -2485,7 +2481,7 @@
   période: année
   formule:
     allègement:
-      assiette: barème annuel
+      assiette: barème
       franchise: 1200
       décote:
         plafond: 2040
@@ -2496,19 +2492,16 @@
     Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
     Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
 
-- espace: contrat salarié . taxe sur les salaires
-  nom: montant annuel
-  formule: entreprise . taxe sur les salaires / entreprise . effectif
 
 - espace: contrat salarié
   nom: taxe sur les salaires
   taxe:
     dû par: employeur
-
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
   applicable si: entreprise . association non lucrative
 
-  formule: montant annuel / 12
+  période: mois
+  formule: entreprise . taxe sur les salaires / entreprise . effectif
 
   note: Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
 
