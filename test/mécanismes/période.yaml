@@ -1,39 +1,21 @@
 # This is not a mecanism test, but we make use of the simplicity of declaring tests in YAML, only available for mecanisms for now
 
-- test: Barème mensuel
-  formule:
-    barème:
-      assiette: 3000
-      tranches:
-      - en-dessous de: 5000 
-        taux: 4.65%
-      - de: 5000
-        à: 15000
-        taux: 3%
-      - au-dessus de: 15000
-        taux: 1%
-
-  exemples:
-    - nom: "petite assiette"
-      situation:
-        assiette: 3000
-        base: 5000
-      valeur attendue: 139.5
 
 
     
 
-- nom: assiette
+- nom: assiette mensuelle
+  période: mois
   format: €
 
-- test: Barème annuel
+- test: Périodes, barème annuel assiette mensuelle
   période: année
   formule:
     barème:
       # cette formule appellant l'assiette est annuelle : 
       # si l'assiette est aussi annuelle dans le contexte de la simulation actuelle, c'est bon
       # sinon une conversion est nécessaire et faite automatiquement par le moteur
-      assiette: assiette
+      assiette: assiette mensuelle
       tranches:
       # ce sont ces chiffres là qui imposent à la règle d'être annuelle
       # de plus, les règles annuelles de la loi sont rarement traduites officiellement en d'autres périodes
@@ -46,9 +28,80 @@
         taux: 1%
 
   exemples:
-    - nom: "petite assiette"
-      situation:
+    - situation:
+        assiette mensuelle: 3000
+      valeur attendue: 1575
+
+
+- nom: assiette annuelle
+  période: année
+  format: €
+
+- test: Périodes, barème mensuel assiette annuelle
+  période: mois
+  formule:
+    barème:
+      # cette formule appellant l'assiette est annuelle : 
+      # si l'assiette est aussi annuelle dans le contexte de la simulation actuelle, c'est bon
+      # sinon une conversion est nécessaire et faite automatiquement par le moteur
+      assiette: assiette annuelle
+      tranches:
+      # ce sont ces chiffres là qui imposent à la règle d'être annuelle
+      # de plus, les règles annuelles de la loi sont rarement traduites officiellement en d'autres périodes
+      - en-dessous de: 2500
+        taux: 4.65%
+      - de: 2500
+        à: 7500
+        taux: 3%
+      - au-dessus de: 7500
+        taux: 1%
+
+  exemples:
+    - situation:
+        assiette annuelle: 36000
+      valeur attendue: 131.25
+
+- nom: assiette
+  format: €
+
+- test: Périodes, période dans la situation
+  période: année
+  formule:
+    barème:
+      assiette: assiette
+      tranches:
+      - en-dessous de: 30000
+        taux: 4.65%
+      - de: 30000
+        à: 90000
+        taux: 3%
+      - au-dessus de: 90000
+        taux: 1%
+
+  exemples:
+    - situation:
         période: mois
         assiette: 3000
       valeur attendue: 1575
+    - situation:
+        période: année
+        assiette: 36000
+      valeur attendue: 1575
+
+
+- nom: assiette deux
+  période: mois
+  format: €
+
+- test: Périodes, variable neutre appelant variable mensuelle
+  formule:
+    multiplication:
+      assiette: assiette deux
+      taux: 10%
+
+  exemples:
+    - situation:
+        période: mois
+        assiette deux: 3000
+      valeur attendue: 300
 

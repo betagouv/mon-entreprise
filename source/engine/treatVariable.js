@@ -6,6 +6,54 @@ import { getSituationValue } from './variables'
 import { Trans } from 'react-i18next'
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
+	let variable = treatVariableTimeless(rules, rule, filter)(parseResult)
+	let evaluate = (cache, situation, parsedRules, node) => {
+		let explanation = evaluateNode(
+			cache,
+			situation,
+			parsedRules,
+			node.explanation
+		)
+		let nodeValue = explanation.nodeValue
+		if (nodeValue == null)
+			return rewriteNode(
+				node,
+				nodeValue,
+				explanation,
+				explanation.missingVariables
+			)
+
+		let ruleToTransform = findRuleByDottedName(
+			rules,
+			node.explanation.dottedName
+		)
+
+		let variablePeriod = ruleToTransform['période'] || situation('période')
+
+		let newNodeValue =
+			rule['période'] === 'mois' && variablePeriod === 'année'
+				? nodeValue / 12
+				: rule['période'] === 'année' && variablePeriod === 'mois'
+					? nodeValue * 12
+					: nodeValue
+
+		return rewriteNode(
+			node,
+			newNodeValue,
+			explanation,
+			explanation.missingVariables
+		)
+	}
+
+	return {
+		type: 'periodTransform',
+		jsx: () => null,
+		explanation: variable,
+		evaluate
+	}
+}
+
+export let treatVariableTimeless = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
