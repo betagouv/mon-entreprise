@@ -23,8 +23,9 @@ export let getIframeOption = (optionName: string) => {
 	)
 }
 
-// By luck this works as expected for both null and undefined, * but with different branches failing :O *
-export let isFloat = (n: number) => Number(n) === n && n % 1 !== 0
+export function isNumeric(val: number) {
+	return Number(parseFloat(val)) === val
+}
 
 export function debounce<ArgType: any>(
 	timeout: number,
