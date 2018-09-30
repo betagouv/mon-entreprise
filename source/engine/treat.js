@@ -241,7 +241,7 @@ export let treatOther = rawNode => {
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	)
 }
-export let treatObject = (rules, rule) => rawNode => {
+export let treatObject = (rules, rule, treatOptions) => rawNode => {
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 	if (mecanisms.length != 1) {
@@ -280,5 +280,5 @@ export let treatObject = (rules, rule) => rawNode => {
 		},
 		action = propOr(mecanismError, k, dispatch)
 
-	return action(treat(rules, rule), k, v)
+	return action(treat(rules, rule, treatOptions), k, v)
 }
