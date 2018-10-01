@@ -17,9 +17,15 @@
   références: 
     fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
     fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
+  exemples: 
+    - nom: active
+      situation: 
+        indemnité vélo active: oui
+      valeur attendue: 200
 
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: distance annuelle
+  période: année
   formule: 4 * 218
   note: 4 km par jour sur 218 jours.
 
@@ -2308,9 +2314,9 @@
     L'employeur a l'obligation d'organiser un service de santé au travail, en adhérant à un service interentreprises, ou en créant un service interne.
 
     Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est pas défini par la loi, mais il doit être proportionnel au nombre d'employés. Nous avons choisi un montant indicatif (voir les références) ajusté avec l'inflation depuis 2007.
-
   période: année
   formule: 80
+
 - espace: contrat salarié
   nom: participation effort de construction
   titre: Participation à l'effort de construction
