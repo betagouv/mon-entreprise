@@ -28,12 +28,14 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			node.explanation.dottedName
 		)
 
-		let variablePeriod = ruleToTransform['période'] || situation('période')
+		let environmentPeriod = situation('période') || 'mois'
+		let callingPeriod = rule['période'] || environmentPeriod
+		let calledPeriod = ruleToTransform['période'] || environmentPeriod
 
 		let newNodeValue =
-			rule['période'] === 'mois' && variablePeriod === 'année'
+			callingPeriod === 'mois' && calledPeriod === 'année'
 				? nodeValue / 12
-				: rule['période'] === 'année' && variablePeriod === 'mois'
+				: callingPeriod === 'année' && calledPeriod === 'mois'
 					? nodeValue * 12
 					: nodeValue
 
