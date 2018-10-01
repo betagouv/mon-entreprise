@@ -27,7 +27,8 @@ import { Node } from './mecanismViews/common'
 import {
 	treatVariable,
 	treatNegatedVariable,
-	treatFilteredVariable
+	treatFilteredVariable,
+	treatPeriodTransform
 } from './treatVariable'
 import { treat } from './traverse'
 import knownMecanisms from './known-mecanisms.yaml'
@@ -90,9 +91,13 @@ export let treatString = (rules, rule) => rawNode => {
 		)
 
 	if (parseResult.category == 'variable')
-		return treatVariable(rules, rule)(parseResult)
+		return treatPeriodTransform(rules, rule)(
+			treatVariable(rules, rule)(parseResult)
+		)
 	if (parseResult.category == 'filteredVariable')
-		return treatFilteredVariable(rules, rule)
+		return treatPeriodTransform(rules, rule)(
+			treatFilteredVariable(rules, rule)(parseResult)
+		)
 	if (parseResult.category == 'negatedVariable')
 		return treatNegatedVariable(
 			treatVariable(rules, rule)(parseResult.variable)
@@ -154,10 +159,19 @@ export let treatString = (rules, rule) => rawNode => {
 
 		let explanation = parseResult.explanation.map(
 				cond([
-					[propEq('category', 'variable'), treatVariable(rules, rule)],
+					[
+						propEq('category', 'variable'),
+						parseResult =>
+							treatPeriodTransform(rules, rule)(
+								treatVariable(rules, rule)(parseResult)
+							)
+					],
 					[
 						propEq('category', 'filteredVariable'),
-						treatFilteredVariable(rules, rule)
+						parseResult =>
+							treatPeriodTransform(rules, rule)(
+								treatFilteredVariable(rules, rule)(parseResult)
+							)
 					],
 					[
 						propEq('category', 'value'),
