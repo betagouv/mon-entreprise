@@ -24,7 +24,7 @@ ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
 NegatedVariable -> "≠" _ Variable {% d => ({category: 'negatedVariable', variable: d[2] }) %}
 
-FilteredVariable -> Variable _ Filter {% d => ({category: 'filteredVariable', filter: d[2], variable: d[0] }) %}
+FilteredVariable -> Variable _ Filter {% d => ({category: 'variable', filter: d[2], variable: d[0] }) %}
 
 Filter -> "(" VariableFragment ")" {% d =>d[1] %}
 

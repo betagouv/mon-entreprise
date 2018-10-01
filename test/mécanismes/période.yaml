@@ -1,9 +1,6 @@
 # This is not a mecanism test, but we make use of the simplicity of declaring tests in YAML, only available for mecanisms for now
 
 
-
-    
-
 - nom: assiette mensuelle
   période: mois
   format: €
@@ -120,4 +117,16 @@
         période: mois
         assiette trois: 36000
       valeur attendue: 300
+
+- nom: applicabilité
+
+- test: Périodes, pas de transformation si la variable n'est pas numérique
+  période: année
+  applicable si: applicabilité
+  formule: 239
+
+  exemples:
+    - situation:
+        applicabilité: oui
+      valeur attendue: 239
 
