@@ -91,12 +91,8 @@ export let treatString = (rules, rule) => rawNode => {
 
 	if (parseResult.category == 'variable')
 		return treatVariable(rules, rule)(parseResult)
-	if (parseResult.category == 'filteredVariable') {
-		return treatFilteredVariable(rules, rule)(
-			parseResult.filter,
-			parseResult.variable
-		)
-	}
+	if (parseResult.category == 'filteredVariable')
+		return treatFilteredVariable(rules, rule)
 	if (parseResult.category == 'negatedVariable')
 		return treatNegatedVariable(
 			treatVariable(rules, rule)(parseResult.variable)
@@ -156,17 +152,12 @@ export let treatString = (rules, rule) => rawNode => {
 			return rewriteNode(node, nodeValue, explanation, missingVariables)
 		}
 
-		let treatFilteredVariableClosure = parseResult =>
-			treatFilteredVariable(rules, rule)(
-				parseResult.filter,
-				parseResult.variable
-			)
 		let explanation = parseResult.explanation.map(
 				cond([
 					[propEq('category', 'variable'), treatVariable(rules, rule)],
 					[
 						propEq('category', 'filteredVariable'),
-						treatFilteredVariableClosure
+						treatFilteredVariable(rules, rule)
 					],
 					[
 						propEq('category', 'value'),
