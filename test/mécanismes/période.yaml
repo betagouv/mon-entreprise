@@ -105,3 +105,19 @@
         assiette deux: 3000
       valeur attendue: 300
 
+- nom: assiette trois
+  période: année
+  format: €
+
+- test: Périodes, variable neutre appelant variable annuelle
+  formule:
+    multiplication:
+      assiette: assiette trois
+      taux: 10%
+
+  exemples:
+    - situation:
+        période: mois
+        assiette trois: 36000
+      valeur attendue: 300
+
