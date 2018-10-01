@@ -123,8 +123,11 @@ const analysisToCotisations = (
 		'contrat salarié . cotisations patronales'
 	]
 		.map(name => analysis.cache[name])
+		// the last 'explanation' is because variables are wrapped in a period transform node
 		.map(pathOr([], ['explanation', 'formule', 'explanation', 'explanation']))
 		.reduce(concat, [])
+		.map(prop('explanation'))
+
 	const cotisations = pipe(
 		groupBy(prop('dottedName')),
 		values,
