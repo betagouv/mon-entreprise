@@ -4,57 +4,7 @@ import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 import { evaluateNode, rewriteNode, makeJsx } from './evaluation'
 import { getSituationValue } from './variables'
 import { Trans } from 'react-i18next'
-
-// This function is a wrapper that can apply temporal transformations to the value of the variable.
-// See the période.yaml test suite for details
-export let treatPeriodTransform = (rules, rule) => variable => {
-	let evaluate = (cache, situation, parsedRules, node) => {
-		let explanation = evaluateNode(
-			cache,
-			situation,
-			parsedRules,
-			node.explanation
-		)
-		let nodeValue = explanation.nodeValue
-		if (nodeValue == null)
-			return rewriteNode(
-				node,
-				nodeValue,
-				explanation,
-				explanation.missingVariables
-			)
-
-		let ruleToTransform = findRuleByDottedName(
-			rules,
-			node.explanation.dottedName
-		)
-
-		let environmentPeriod = situation('période') || 'mois'
-		let callingPeriod = rule['période'] || environmentPeriod
-		let calledPeriod = ruleToTransform['période'] || environmentPeriod
-
-		let newNodeValue =
-			callingPeriod === 'mois' && calledPeriod === 'année'
-				? nodeValue / 12
-				: callingPeriod === 'année' && calledPeriod === 'mois'
-					? nodeValue * 12
-					: nodeValue
-
-		return rewriteNode(
-			node,
-			newNodeValue,
-			explanation,
-			explanation.missingVariables
-		)
-	}
-
-	return {
-		type: 'periodTransform',
-		jsx: () => null,
-		explanation: variable,
-		evaluate
-	}
-}
+import { isNumeric } from '../utils'
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
@@ -143,32 +93,74 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 	}
 }
 
-// TODO - this is becoming overly specific
-export let treatFilteredVariable = (rules, rule) => parseResult => {
-	let evaluateFiltered = originalEval => (
+// This function is a wrapper that can apply :
+// - temporal transformations to the value of the variable.
+// See the période.yaml test suite for details
+// - filters on the variable to select one part of the variable's 'composantes'
+
+// TODO - the implementations of filters is really bad. It injects a hack in the situation to make the composante mecanism compute only one of its branch. It is then stored in the cache under a new key, dottedName.filter. This mecanism should just query the variable tree to get the active composante's value...
+export let treatVariableTransforms = (rules, rule) => parseResult => {
+	let evaluateTransforms = originalEval => (
 		cache,
 		situation,
 		parsedRules,
 		node
 	) => {
-		let newSituation = name =>
+		// Filter transformation
+		let filteringSituation = name =>
 			name == 'sys.filter' ? parseResult.filter : situation(name)
-		return originalEval(cache, newSituation, parsedRules, node)
+		let filteredNode = originalEval(
+			cache,
+			parseResult.filter ? filteringSituation : situation,
+			parsedRules,
+			node
+		)
+
+		let nodeValue = filteredNode.nodeValue
+
+		// Temporal transformation
+		if (nodeValue == null || !isNumeric(nodeValue)) return filteredNode
+
+		let ruleToTransform = findRuleByDottedName(
+			rules,
+			filteredNode.explanation.dottedName
+		)
+
+		let environmentPeriod = situation('période') || 'mois'
+		let callingPeriod = rule['période'] || environmentPeriod
+		let calledPeriod = ruleToTransform['période'] || environmentPeriod
+
+		let transformedNodeValue =
+			callingPeriod === 'mois' && calledPeriod === 'année'
+				? nodeValue / 12
+				: callingPeriod === 'année' && calledPeriod === 'mois'
+					? nodeValue * 12
+					: nodeValue
+
+		return rewriteNode(
+			filteredNode,
+			transformedNodeValue,
+			filteredNode.explanation,
+			filteredNode.missingVariables
+		)
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(
-			parseResult.variable
-		),
-		// Decorate node with the composante filter (either who is paying, either tax free)
-		cotisation = {
-			...node.cotisation,
-			'dû par': parseResult.filter,
-			'impôt sur le revenu': parseResult.filter
-		}
+		parseResult.variable || parseResult
+	)
 
 	return {
 		...node,
-		cotisation,
-		evaluate: evaluateFiltered(node.evaluate)
+		// Decorate node with the composante filter (either who is paying, either tax free)
+		...(parseResult.filter
+			? {
+					cotisation: {
+						...node.cotisation,
+						'dû par': parseResult.filter,
+						'impôt sur le revenu': parseResult.filter
+					}
+			  }
+			: {}),
+		evaluate: evaluateTransforms(node.evaluate)
 	}
 }
 
