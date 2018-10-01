@@ -721,7 +721,6 @@
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
   format: euros
-  période: mois
   suggestions:
     salaire médian: 2300
     SMIC: 1500
@@ -797,7 +796,6 @@
     Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   question: Quel est le montant des avantages en nature ?
   applicable si: contrat salarié . avantages en nature 
-  période: mois
   suggestions:
     nourriture: 80
     véhicule: 260
@@ -935,9 +933,9 @@
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
   formule: rémunération . net de cotisations - avantages en nature . montant
-  période: mois
   contrôles: 
     - si: net < 200
+      période: mois
       message: Entrez un salaire raisonnable
       niveau: bloquant
 
@@ -960,7 +958,6 @@
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
   formule: net - impôt . neutre
-  période: mois
   contrôles: 
     - si: net après impôt < 200
       message: Entrez un salaire raisonnable
@@ -1329,7 +1326,6 @@
   format: euros
   type: salaire
   formule: rémunération . total - aides employeur
-  période: mois
   contrôles: 
     - si: coût d'embauche < 400
       message: Entrez un salaire raisonnable
@@ -2500,7 +2496,6 @@
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
   applicable si: entreprise . association non lucrative
 
-  période: mois
   formule: entreprise . taxe sur les salaires / entreprise . effectif
 
   note: Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
