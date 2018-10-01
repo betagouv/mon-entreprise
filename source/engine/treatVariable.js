@@ -143,22 +143,25 @@ export let treatVariableTimeless = (rules, rule, filter) => parseResult => {
 }
 
 // TODO - this is becoming overly specific
-export let treatFilteredVariable = (rules, rule) => (filter, parseResult) => {
+export let treatFilteredVariable = (rules, rule) => parseResult => {
 	let evaluateFiltered = originalEval => (
 		cache,
 		situation,
 		parsedRules,
 		node
 	) => {
-		let newSituation = name => (name == 'sys.filter' ? filter : situation(name))
+		let newSituation = name =>
+			name == 'sys.filter' ? parseResult.filter : situation(name)
 		return originalEval(cache, newSituation, parsedRules, node)
 	}
-	let node = treatVariable(rules, rule, filter)(parseResult),
+	let node = treatVariable(rules, rule, parseResult.filter)(
+			parseResult.variable
+		),
 		// Decorate node with the composante filter (either who is paying, either tax free)
 		cotisation = {
 			...node.cotisation,
-			'dû par': filter,
-			'impôt sur le revenu': filter
+			'dû par': parseResult.filter,
+			'impôt sur le revenu': parseResult.filter
 		}
 
 	return {
