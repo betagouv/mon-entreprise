@@ -6,10 +6,11 @@
   format: euros
 
 - nom: répartition salaire sur dividendes
-  par défaut: .3
+  par défaut: 0.5
 
 
 - nom: impôt sur les sociétés
+  période: année
   formule: 
     barème: 
       assiette: bénéfice
@@ -27,6 +28,8 @@
 - nom: bénéfice 
   formule: chiffre affaires - salaire total
 
+- nom: dividendes
+
 - espace: dividendes
   nom: brut
   formule: bénéfice - impôt sur les sociétés
@@ -42,14 +45,8 @@
       assiette: brut
       composantes: 
         - taux: 17.2%
-        - taux: 
-            variations: 
-              - si: exonération impôt X
-                alors: 0%
-              - sinon: 12.8%
+        - taux: 12.8%
 
-- nom: exonération impôt X
-  par défaut: non
 
 
 - nom: salaire total

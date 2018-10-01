@@ -46,15 +46,16 @@ describe('library', function() {
 		expect(value).to.be.closeTo(1802, 1)
 	})
 	it('should let the user extend the rules constellation in a serious manner', function() {
+		let CA = 550 * 16
 		let salaireTotal = Syso.evaluate(
 			'salaire total',
 			{
-				'chiffre affaires': 5000
+				'chiffre affaires': CA
 			},
 			{ extra: sasuRules }
 		)
 
-		console.log(salaireTotal)
+		console.log({ salaireTotal })
 		let salaireNetAprèsImpôt = Syso.evaluate(
 			'contrat salarié . salaire . net après impôt',
 			{
@@ -62,16 +63,16 @@ describe('library', function() {
 			}
 		)
 
-		console.log(salaireNetAprèsImpôt)
+		console.log({ salaireNetAprèsImpôt })
 
-		let revenuDisponible = Syso.evaluate(
-			'revenu disponible',
+		let [revenuDisponible, dividendes] = Syso.evaluate(
+			['revenu disponible', 'dividendes . net'],
 			{
 				'net après impôt': salaireNetAprèsImpôt,
-				'chiffre affaires': 5000
+				'chiffre affaires': CA
 			},
 			{ extra: sasuRules }
 		)
-		console.log(revenuDisponible)
+		console.log({ revenuDisponible, dividendes })
 	})
 })
