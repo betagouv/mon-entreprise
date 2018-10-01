@@ -9,7 +9,7 @@ describe('library', function() {
 		let value = Syso.evaluate(target, {
 			'contrat salarié': { salaire: { 'brut de base': 2300 } }
 		})
-		expect(value).to.be.within(1779, 1780)
+		expect(value).to.be.within(1800, 1803)
 	})
 
 	it('should let the user replace the default rules', function() {
@@ -43,7 +43,7 @@ describe('library', function() {
 			{ extra: rules }
 		)
 
-		expect(value).to.be.closeTo(1780.41, 1)
+		expect(value).to.be.closeTo(1802, 1)
 	})
 	it('should let the user extend the rules constellation in a serious manner', function() {
 		let salaireTotal = Syso.evaluate(
