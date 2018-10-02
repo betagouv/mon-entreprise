@@ -297,25 +297,21 @@ export let parseAll = flatRules => {
 }
 
 let evaluateControls = blocking => (parsedRules, situationGate) => {
-	return chain(
-		({ controls, dottedName }) =>
-			situationGate(dottedName) != undefined &&
-			controls &&
-			controls
-				.filter(
-					({ level }) =>
-						blocking ? level === 'bloquant' : level !== 'bloquant'
+	return chain(({ controls }) =>
+		controls
+			?.filter(
+				({ level }) => (blocking ? level === 'bloquant' : level !== 'bloquant')
+			)
+			.map(control => ({
+				...control,
+				evaluated: evaluateNode(
+					{},
+					situationGate,
+					parsedRules,
+					control.testExpression
 				)
-				.map(control => ({
-					...control,
-					evaluated: evaluateNode(
-						{},
-						situationGate,
-						parsedRules,
-						control.testExpression
-					)
-				}))
-				.filter(({ evaluated: { nodeValue } }) => nodeValue)
+			}))
+			.filter(({ evaluated: { nodeValue } }) => nodeValue)
 	)(parsedRules).filter(found => found)
 }
 
@@ -339,7 +335,8 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)
 
-	// Don't use 'dict' for anything else than ResultsGrid
+	console.log({ nonBlockingControls })
+
 	return { targets, cache, controls: nonBlockingControls }
 }
 
