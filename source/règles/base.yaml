@@ -723,6 +723,7 @@
     somme:
       - salaire . brut de base
       - indemnités salarié
+      - avantages en nature . montant
 
 - espace: contrat salarié . salaire
   nom: brut de base
