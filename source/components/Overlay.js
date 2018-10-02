@@ -27,7 +27,7 @@ export default class Overlay extends Component {
 								aria-label="close"
 								onClick={onClose}
 								id="overlayCloseButton">
-								x
+								×
 							</LinkButton>
 						</div>
 					</FocusTrap>

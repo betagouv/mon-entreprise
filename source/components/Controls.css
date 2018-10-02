@@ -53,6 +53,7 @@
 }
 
 #controlsBlock .hide {
+	font-size: 200%;
 	position: absolute;
-	right: 1em;
+	right: 0em;
 }

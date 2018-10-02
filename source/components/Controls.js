@@ -1,5 +1,6 @@
 import React from 'react'
 import './Controls.css'
+import { LinkButton } from 'Ui/Button'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { startConversation, hideControl } from 'Actions/actions'
@@ -53,9 +54,12 @@ function Controls({
 													</div>
 												)}
 										</div>
-										<span className="hide" onClick={() => hideControl(test)}>
-											X
-										</span>
+										<button
+											className="hide"
+											aria-label="close"
+											onClick={() => hideControl(test)}>
+											×
+										</button>
 									</li>
 								)
 						)}
