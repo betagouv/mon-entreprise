@@ -14,6 +14,10 @@
 	align-items: center;
 	padding: 0.1em 0.6em;
 	border-radius: 0.3em;
+
+	/*For the .hide element */
+	position: relative;
+	padding-right: 2em;
 }
 #controlsBlock .controlText p {
 	line-height: 1.3rem;
@@ -37,10 +41,18 @@
 	display: inline-block;
 }
 #controlsBlock img {
-	margin: 0 1em 0 0 !important;
+	margin: 0 0.6em 0 !important;
 	width: 1.6em !important;
 	height: 1.6em !important;
 }
 
 #controlsBlock #solution {
+}
+
+#controlsBlock {
+}
+
+#controlsBlock .hide {
+	position: absolute;
+	right: 1em;
 }

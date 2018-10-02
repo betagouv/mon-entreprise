@@ -335,8 +335,6 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 			evaluateNode(cache, situationGate, parsedRules, t)
 		)
 
-	console.log({ nonBlockingControls })
-
 	return { targets, cache, controls: nonBlockingControls }
 }
 

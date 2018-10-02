@@ -2,21 +2,20 @@ import React from 'react'
 import './Controls.css'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
-import { startConversation } from 'Actions/actions'
+import { startConversation, hideControl } from 'Actions/actions'
 import { animated, Spring } from 'react-spring'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
-import { currentQuestionSelector } from '../selectors/analyseSelectors'
-import { reject } from 'ramda'
 import withColours from './utils/withColours'
 
 function Controls({
 	blockingInputControls,
 	controls,
 	startConversation,
-	currentQuestion,
+	hideControl,
 	foldedSteps,
-	colours
+	colours,
+	hiddenControls
 }) {
 	return (
 		<div id="controlsBlock">
@@ -26,14 +25,13 @@ function Controls({
 			{!blockingInputControls && (
 				<>
 					<ul>
-						{controls.map(control => (
-							<li
-								key={control.si}
-								className="control"
-								style={{ background: colours.lightenColour(45) }}>
-								{do {
-									let { level, message, solution, evaluated } = control
-									;<>
+						{controls.map(
+							({ level, test, message, solution, evaluated }) =>
+								hiddenControls.includes(test) ? null : (
+									<li
+										key={test}
+										className="control"
+										style={{ background: colours.lightenColour(45) }}>
 										{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
 										<div className="controlText">
 											{message && createMarkdownDiv(message)}
@@ -55,10 +53,12 @@ function Controls({
 													</div>
 												)}
 										</div>
-									</>
-								}}
-							</li>
-						))}
+										<span className="hide" onClick={() => hideControl(test)}>
+											X
+										</span>
+									</li>
+								)
+						)}
 					</ul>
 				</>
 			)}
@@ -68,11 +68,12 @@ function Controls({
 
 export default connect(
 	(state, props) => ({
-		currentQuestion: currentQuestionSelector(state),
 		foldedSteps: state.conversationSteps.foldedSteps,
-		key: props.language
+		key: props.language,
+		hiddenControls: state.hiddenControls
 	}),
-	{
-		startConversation
-	}
+	dispatch => ({
+		startConversation: cible => dispatch(startConversation(cible)),
+		hideControl: id => dispatch(hideControl(id))
+	})
 )(withColours(Controls))

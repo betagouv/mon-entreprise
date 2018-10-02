@@ -112,6 +112,11 @@ function conversationSteps(
 	}
 	return state
 }
+function hiddenControls(state = [], { type, id }) {
+	if (type === 'HIDE_CONTROL') {
+		return [...state, id]
+	} else return state
+}
 
 export default reduceReducers(
 	storageReducer,
@@ -126,6 +131,7 @@ export default reduceReducers(
 		explainedVariable,
 		previousSimulation: defaultTo(null),
 		currentExample,
+		hiddenControls,
 		conversationStarted,
 		activeTargetInput,
 		inFranceApp: inFranceAppReducer

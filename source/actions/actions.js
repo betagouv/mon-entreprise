@@ -42,4 +42,8 @@ export function loadPreviousSimulation(): LoadPreviousSimulationAction {
 	}
 }
 
+export function hideControl(id: string) {
+	return { type: 'HIDE_CONTROL', id }
+}
+
 export const EXPLAIN_VARIABLE = 'EXPLAIN_VARIABLE'
