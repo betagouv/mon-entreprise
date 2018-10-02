@@ -773,6 +773,7 @@
 
 - espace: contrat salarié
   nom: indemnités salarié
+  format: euros
   formule:
     somme:
       - CDD . indemnités salarié CDD
