@@ -3,25 +3,27 @@
 	font-size: 150%;
 }
 
-#controlsBlock h3 {
-	font-size: 130%;
-	margin: 0 0 0.6em;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	width: 5.5em;
-	margin: 0.6em auto;
-	text-align: center;
+#controlsBlock ul {
+	list-style: none;
+	padding: 0;
 }
-
-#controlsBlock #controlContent {
-	font-size: 90%;
-	margin-bottom: 0.6em;
+#controlsBlock .control {
+	margin: 1em 0;
+	font-size: 95%;
+	display: flex;
+	align-items: center;
+	padding: 0.1em 0.6em;
+	border-radius: 0.3em;
+}
+#controlsBlock .controlText p {
+	line-height: 1.3rem;
+	margin: 0.6em;
 }
 
 #controlExplanation {
-	margin: 0.3em 0 0.6em;
-	display: flex;
-	justify-content: center;
+}
+#controlExplanation > div {
+	display: inline;
 }
 
 /*Disable links visually */
@@ -35,12 +37,10 @@
 	display: inline-block;
 }
 #controlsBlock img {
-	width: 2em !important;
-	height: 2em !important;
+	margin: 0 1em 0 0 !important;
+	width: 1.6em !important;
+	height: 1.6em !important;
 }
 
 #controlsBlock #solution {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
