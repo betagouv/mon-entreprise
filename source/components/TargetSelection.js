@@ -71,7 +71,9 @@ class TargetSelection extends Component {
 			<div id="targetSelection">
 				{noUserInput && (
 					<p className="blockingControl">
-						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
+						<Trans i18nKey="enterSalary">
+							Entrez un salaire <b>mensuel</b>
+						</Trans>
 					</p>
 				)}
 				<Controls {...{ blockingInputControls, controls }} />
