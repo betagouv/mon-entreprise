@@ -712,6 +712,11 @@
       solution:
         cible: contrat salarié . temps partiel
         texte: Est-ce un temps partiel ?
+    - si: brut de base > 10000
+      niveau: information
+      message: | 
+        Le salaire saisi est élevé ! 
+        Rappel : le simulateur ne fonctionne que sur des salaires mensuels.
   formule:
     inversion:
       question: Quel est le salaire mensuel ?
@@ -720,6 +725,8 @@
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
+
+
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
