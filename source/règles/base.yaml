@@ -670,6 +670,13 @@
         - CDI
         - CDD
   par défaut: CDI
+  contrôles: 
+    - si: type de contrat = 'CDD'
+      niveau: information
+      message: | 
+        Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
+        
+        [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
 
 - espace: contrat salarié . type de contrat
   nom: CDD
