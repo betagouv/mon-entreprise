@@ -25,3 +25,7 @@ export function retrievePersistedSimulation(): ?SavedSimulation {
 	const serializedState = window.localStorage.getItem(LOCAL_STORAGE_KEY)
 	return serializedState ? deserialize(serializedState) : null
 }
+
+export function deletePersistedSimulation(): void {
+	window.localStorage.removeItem(LOCAL_STORAGE_KEY)
+}
