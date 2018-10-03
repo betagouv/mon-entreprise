@@ -687,7 +687,7 @@
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
-  formule: salaire . brut - indemnité kilométrique vélo
+  formule: rémunération . brut - indemnité kilométrique vélo
 
 - espace: contrat salarié . salaire
   nom: brut de base
@@ -728,7 +728,6 @@
   formule:
     somme:
       - salaire . brut de base
-      - avantages en nature . montant
       - indemnités salarié
 
 - espace: contrat salarié . rémunération
