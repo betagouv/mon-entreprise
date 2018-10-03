@@ -176,7 +176,8 @@ function analysisToFicheDePaie(
 		avantagesEnNature: règleAvecMontant(
 			'contrat salarié . avantages en nature . montant'
 		),
-		salaireBrut: règleAvecMontant('contrat salarié . salaire . brut'),
+		indemnitésSalarié: règleAvecMontant('contrat salarié . indemnités salarié'),
+		salaireBrut: règleAvecMontant('contrat salarié . rémunération . brut'),
 		cotisations,
 		réductionsDeCotisations,
 		totalCotisations,
@@ -184,8 +185,8 @@ function analysisToFicheDePaie(
 		salaireNetDeCotisations: règleAvecMontant(
 			'contrat salarié . rémunération . net de cotisations'
 		),
-		salaireNetImposable: règleAvecMontant(
-			'contrat salarié . salaire . net imposable'
+		rémunérationNetteImposable: règleAvecMontant(
+			'contrat salarié . rémunération . net imposable'
 		),
 		salaireNet: règleAvecMontant('contrat salarié . salaire . net'),
 		nombreHeuresTravaillées: Math.round(

@@ -595,7 +595,7 @@ contrat salarié . rémunération:
 contrat salarié . rémunération . net de cotisations:
   titre.fr: Rémunération nette de cotisations
   titre.en: Remuneration after contributions
-contrat salarié . salaire . net imposable:
+contrat salarié . rémunération . net imposable:
   titre.en: Net taxable salary
   titre.fr: Salaire net imposable
   description.en: >
@@ -604,10 +604,10 @@ contrat salarié . salaire . net imposable:
   description.fr: >
     Le salaire net ajusté des cotisations déductibles et avantages sociaux
     imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
-contrat salarié . salaire . net imposable . base:
+contrat salarié . rémunération . net imposable . base:
   titre.fr: base
   titre.en: base
-contrat salarié . salaire . net imposable . exonérations:
+contrat salarié . rémunération . net imposable . exonérations:
   titre.fr: exonérations
   titre.en: exemptions
 contrat salarié . salaire . net:

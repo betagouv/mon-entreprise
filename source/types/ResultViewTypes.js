@@ -48,6 +48,7 @@ export type VariableWithCotisation = {
 export type FicheDePaie = {
 	salaireBrut: RègleAvecMontant,
 	avantagesEnNature: RègleAvecMontant,
+	indemnitésSalarié: RègleAvecMontant,
 	salaireDeBase: RègleAvecMontant,
 	// TODO supprimer (cf https://github.com/betagouv/syso/issues/242)
 	réductionsDeCotisations: RègleAvecMontant,
@@ -55,7 +56,7 @@ export type FicheDePaie = {
 	totalCotisations: MontantPartagé,
 	salaireChargé: RègleAvecMontant,
 	salaireNetDeCotisations: RègleAvecMontant,
-	salaireNetImposable: RègleAvecMontant,
+	rémunérationNetteImposable: RègleAvecMontant,
 	salaireNet: RègleAvecMontant,
 	nombreHeuresTravaillées: number
 }
