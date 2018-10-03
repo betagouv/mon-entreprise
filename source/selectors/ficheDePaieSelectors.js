@@ -176,6 +176,7 @@ function analysisToFicheDePaie(
 		avantagesEnNature: règleAvecMontant(
 			'contrat salarié . avantages en nature . montant'
 		),
+		indemnitésSalarié: règleAvecMontant('contrat salarié . indemnités salarié'),
 		salaireBrut: règleAvecMontant('contrat salarié . salaire . brut'),
 		cotisations,
 		réductionsDeCotisations,
