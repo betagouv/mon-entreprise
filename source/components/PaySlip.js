@@ -27,7 +27,6 @@ const PaySlip = ({
 		salaireNetDeCotisations,
 		salaireDeBase,
 		salaireChargé,
-		indemnitésSalarié,
 		salaireNetImposable,
 		nombreHeuresTravaillées,
 		salaireNet,
@@ -50,25 +49,14 @@ const PaySlip = ({
 				<h4 className="payslip__salaryTitle">
 					<Trans>Salaire</Trans>
 				</h4>
-				{(avantagesEnNature.montant !== 0 ||
-					indemnitésSalarié.montant !== 0) && (
+				{avantagesEnNature.montant !== 0 ? (
 					<>
 						<RuleLink {...salaireDeBase} />
 						<Montant>{salaireDeBase.montant}</Montant>
-					</>
-				)}
-				{avantagesEnNature.montant !== 0 && (
-					<>
 						<RuleLink {...avantagesEnNature} />
 						<Montant>{avantagesEnNature.montant}</Montant>
 					</>
-				)}
-				{indemnitésSalarié.montant !== 0 && (
-					<>
-						<RuleLink {...indemnitésSalarié} />
-						<Montant>{indemnitésSalarié.montant}</Montant>
-					</>
-				)}
+				) : null}
 				<RuleLink className="payslip__brut" {...salaireBrut} />
 				<Montant className="payslip__brut">{salaireBrut.montant}</Montant>
 			</div>
