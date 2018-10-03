@@ -185,8 +185,8 @@ function analysisToFicheDePaie(
 		salaireNetDeCotisations: règleAvecMontant(
 			'contrat salarié . rémunération . net de cotisations'
 		),
-		salaireNetImposable: règleAvecMontant(
-			'contrat salarié . salaire . net imposable'
+		rémunérationNetteImposable: règleAvecMontant(
+			'contrat salarié . rémunération . net imposable'
 		),
 		salaireNet: règleAvecMontant('contrat salarié . salaire . net'),
 		nombreHeuresTravaillées: Math.round(

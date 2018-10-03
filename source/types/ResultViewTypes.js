@@ -56,7 +56,7 @@ export type FicheDePaie = {
 	totalCotisations: MontantPartagé,
 	salaireChargé: RègleAvecMontant,
 	salaireNetDeCotisations: RègleAvecMontant,
-	salaireNetImposable: RègleAvecMontant,
+	rémunérationNetteImposable: RègleAvecMontant,
 	salaireNet: RègleAvecMontant,
 	nombreHeuresTravaillées: number
 }

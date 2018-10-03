@@ -33,7 +33,7 @@ let salaries = [
 let displayedTargetNames = [...salaries, 'contrat salarié . aides employeur']
 export let popularTargetNames = [
 	...displayedTargetNames,
-	'contrat salarié . salaire . net imposable'
+	'contrat salarié . rémunération . net imposable'
 ]
 
 @translate()
@@ -59,7 +59,7 @@ export let popularTargetNames = [
 		setActiveInput: name => dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
 	})
 )
-export default class TargetSelection extends Component {
+class TargetSelection extends Component {
 	render() {
 		let { colours, noUserInput, blockingInputControls } = this.props
 		return (
@@ -293,3 +293,5 @@ class AidesGlimpse extends Component {
 		)
 	}
 }
+
+export default TargetSelection

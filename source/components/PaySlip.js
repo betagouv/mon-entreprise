@@ -28,7 +28,7 @@ const PaySlip = ({
 		salaireDeBase,
 		salaireChargé,
 		indemnitésSalarié,
-		salaireNetImposable,
+		rémunérationNetteImposable,
 		nombreHeuresTravaillées,
 		salaireNet,
 		réductionsDeCotisations,
@@ -130,9 +130,9 @@ const PaySlip = ({
 				<h4 className="payslip__salaryTitle">
 					<Trans>Salaire net</Trans>
 				</h4>
-				{/* Salaire net imposable */}
-				<RuleLink {...salaireNetImposable} />
-				<Montant>{salaireNetImposable.montant}</Montant>
+				{/* Rémunération nette imposable */}
+				<RuleLink {...rémunérationNetteImposable} />
+				<Montant>{rémunérationNetteImposable.montant}</Montant>
 				{/* Salaire net */}
 				<RuleLink {...salaireNetDeCotisations} />
 				<Montant>{salaireNetDeCotisations.montant}</Montant>

@@ -866,16 +866,16 @@
   format: euros
   formule: rémunération . brut - cotisations salariales
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: net imposable
   titre: Salaire net imposable
   type: salaire
   format: euros
   description: |
-    Le salaire net ajusté des cotisations déductibles et avantages sociaux imposables. C'est la base utilisée pour calculer l'impot sur le revenu.
+    C'est la base utilisée pour calculer l'impôt sur le revenu.
   formule: base - exonérations
 
-- espace: contrat salarié . salaire . net imposable
+- espace: contrat salarié . rémunération . net imposable
   nom: base
   formule:
     somme:
@@ -884,7 +884,7 @@
       - CSG (non déductible)
       - CRDS
 
-- espace: contrat salarié . salaire . net imposable
+- espace: contrat salarié . rémunération . net imposable
   nom: exonérations
   formule:
     somme:
@@ -938,7 +938,7 @@
   icônes: 🇬🇵🇷🇪 🇲🇶
   formule:
     barème linéaire:
-      assiette: contrat salarié . salaire . net imposable
+      assiette: contrat salarié . rémunération . net imposable
       tranches:
         - en-dessous de: 1568
           taux: 0%
@@ -1023,7 +1023,7 @@
   icônes: 🇬🇾 🇾🇹
   formule:
     barème linéaire:
-      assiette: contrat salarié . salaire . net imposable
+      assiette: contrat salarié . rémunération . net imposable
       tranches:
         - en-dessous de: 1679
           taux: 0%
@@ -1107,7 +1107,7 @@
   nom: barème métropolitain
   formule:
     barème linéaire:
-      assiette: contrat salarié . salaire . net imposable
+      assiette: contrat salarié . rémunération . net imposable
       tranches:
         - en-dessous de: 1367
           taux: 0%
@@ -1212,25 +1212,25 @@
   exemples:
     - nom: Très haut salaire
       situation:
-        contrat salarié . salaire . net imposable: 50000
+        contrat salarié . rémunération . net imposable: 50000
       valeur attendue: 21500
     - nom: Salaire ~ médian
       situation:
-        contrat salarié . salaire . net imposable: 1700
+        contrat salarié . rémunération . net imposable: 1700
       valeur attendue: 59.5
     - nom: Bas salaire
       situation:
-        contrat salarié . salaire . net imposable: 1000
+        contrat salarié . rémunération . net imposable: 1000
       valeur attendue: 0
     - nom: Guadeloupe
       situation:
         établissement . localisation . département: Guadeloupe
-        contrat salarié . salaire . net imposable: 1800
+        contrat salarié . rémunération . net imposable: 1800
       valeur attendue: 45
     - nom: Guyane
       situation:
         établissement . localisation . département: Guyane
-        contrat salarié . salaire . net imposable: 1800
+        contrat salarié . rémunération . net imposable: 1800
       valeur attendue: 27
 
   références:
@@ -2601,7 +2601,7 @@
   espace: impôt
   formule:
     allègement:
-      assiette: contrat salarié . salaire . net imposable * 12
+      assiette: contrat salarié . rémunération . net imposable * 12
       abattement: 10%
 
 - nom: impôt sur le revenu
@@ -2635,5 +2635,5 @@
   exemples:
     - nom: Salaire d'un cadre
       situation:
-        contrat salarié . salaire . net imposable: 4000
+        contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
