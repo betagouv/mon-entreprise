@@ -5,6 +5,7 @@ import type {
 	DeletePreviousSimulationAction,
 	StartConversationAction
 } from 'Types/ActionsTypes'
+import { deletePersistedSimulation } from '../storage/persistSimulation'
 
 export function resetSimulation(): ResetSimulationAction {
 	return {
@@ -12,10 +13,13 @@ export function resetSimulation(): ResetSimulationAction {
 	}
 }
 
-export function deletePreviousSimulation(): DeletePreviousSimulationAction {
-	return {
+export const deletePreviousSimulation = () => (
+	dispatch: DeletePreviousSimulationAction => void
+) => {
+	dispatch({
 		type: 'DELETE_PREVIOUS_SIMULATION'
-	}
+	})
+	deletePersistedSimulation()
 }
 
 export function startConversation(question: ?string): StartConversationAction {
