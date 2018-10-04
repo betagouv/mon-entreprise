@@ -563,10 +563,14 @@
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
   format: mois
   suggestions:
-    18 mois: 18
-    1 an: 12
-    6 mois: 6
-    3 mois: 3
+    - texte: 18 mois
+      valeur: 18
+    - texte: 1 an
+      valeur: 12
+    - texte: 6 mois
+      valeur: 6
+    - texte: 3 mois
+      valeur: 3
   # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
   par défaut: 1
 
@@ -577,8 +581,10 @@
   description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux pour un contrat de douze mois.
   format: jours
   suggestions:
-    3 / 25: 3
-    10 / 25: 10
+    - texte: 2 / 25
+      valeur: 3
+    - texte: 10 / 25
+      valeur: 10
   par défaut: 0
 
 - espace: contrat salarié . CDD
@@ -708,8 +714,10 @@
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
   format: euros
   suggestions:
-    salaire médian: 2300
-    SMIC: 1500
+    - texte: salaire médian
+      valeur: 2300
+    - texte: SMIC
+      valeur: 1500
   contrôles: 
     - si: brut de base < 300
       message: Entrez un salaire mensuel
@@ -784,8 +792,10 @@
   question: Quel est le montant mensuel des avantages en nature ?
   applicable si: contrat salarié . avantages en nature
   suggestions:
-    nourriture: 80
-    véhicule: 260
+    - texte: nourriture
+      valeur: 80
+    - texte: véhicule
+      valeur: 260
   format: euros
   par défaut: 0
 
@@ -1371,10 +1381,10 @@
     De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
   format: nombre
   suggestions:
-    1: 1
-    20: 20
-    50: 50
-    1000: 1000
+    - 1
+    - 20
+    - 50 
+    - 1000
   par défaut: 1
 
 - espace: entreprise
@@ -1389,8 +1399,8 @@
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
   format: pourcentage
   suggestions:
-    1: 1
-    5: 5
+    - 1
+    - 5
   par défaut: 0
 
 - espace: entreprise
@@ -2095,8 +2105,10 @@
   format: euros
   par défaut: 40
   suggestions:
-    basique: 40
-    élevé: 100
+    - texte: basique
+      valeur: 40
+    - texte: élevé
+      valeur: 100
   contrôles: 
     - si: forfait complémentaire santé < 15
       niveau: avertissement
