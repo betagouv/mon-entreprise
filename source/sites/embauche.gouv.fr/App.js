@@ -27,6 +27,7 @@ import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
 import Route404 from './pages/Route404'
 import RulesList from './pages/RulesList'
+import I18n from './pages/I18n'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -72,6 +73,7 @@ class EmbaucheRoute extends Component {
 				{inIframe() && <DisableScroll />}
 				<Switch>
 					<Route exact path="/" component={Home} />
+					<Route exact path="/i18n" component={I18n} />
 					<Route path="/contact" component={Contact} />
 					<Route path="/règle/:name" component={RulePage} />
 					<Redirect from="/simu/*" to="/" />
