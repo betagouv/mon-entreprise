@@ -6,6 +6,7 @@ import { startConversation, hideControl } from 'Actions/actions'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
 import withColours from './utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
 
 function Controls({
 	blockingInputControls,
@@ -14,8 +15,18 @@ function Controls({
 	hideControl,
 	foldedSteps,
 	colours,
-	hiddenControls
+	hiddenControls,
+	language
 }) {
+	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
+	if (language === 'en')
+		return blockingInputControls?.[0]?.message ==
+			'Entrez un salaire mensuel' ? (
+			<p className="blockingControl">
+				Enter a <b>monthly</b> salary.
+			</p>
+		) : null
+
 	return (
 		<div id="controlsBlock">
 			{blockingInputControls && (
@@ -78,4 +89,4 @@ export default connect(
 		startConversation: cible => dispatch(startConversation(cible)),
 		hideControl: id => dispatch(hideControl(id))
 	})
-)(withColours(Controls))
+)(withColours(withLanguage(Controls)))
