@@ -9,7 +9,7 @@ export type ResetSimulationAction = {
 }
 export type StartConversationAction = {
 	type: 'START_CONVERSATION',
-	question?: string
+	priorityNamespace?: string
 }
 export type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'

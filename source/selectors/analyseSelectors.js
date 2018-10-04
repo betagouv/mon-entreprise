@@ -12,7 +12,7 @@ import {
 	rulesFr as baseRulesFr
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { equals, head, isEmpty, pick } from 'ramda'
+import { equals, head, isEmpty, pick, contains } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 
@@ -160,6 +160,13 @@ export let nextStepsSelector = createSelector(
 	getNextSteps
 )
 export let currentQuestionSelector = createSelector(
-	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
-	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
+	[
+		nextStepsSelector,
+		state => state.conversationSteps.unfoldedStep,
+		state => state.conversationSteps.priorityNamespace
+	],
+	(nextSteps, unfoldedStep, priorityNamespace) =>
+		unfoldedStep ||
+		(priorityNamespace && nextSteps.find(contains(priorityNamespace))) ||
+		head(nextSteps)
 )

@@ -22,6 +22,7 @@ export default forcedThemeColour => {
 
 	return {
 		colour,
+		lightenColour: amount => lightenColour(colour, amount),
 		textColour,
 		inverseTextColour,
 		lighterTextColour,

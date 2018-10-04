@@ -22,10 +22,12 @@ export const deletePreviousSimulation = () => (
 	deletePersistedSimulation()
 }
 
-export function startConversation(question: ?string): StartConversationAction {
+export function startConversation(
+	priorityNamespace: ?string
+): StartConversationAction {
 	return {
 		type: 'START_CONVERSATION',
-		...(typeof question === 'string' ? { question } : {})
+		...(priorityNamespace ? { priorityNamespace } : {})
 	}
 }
 
@@ -38,6 +40,10 @@ export function loadPreviousSimulation(): LoadPreviousSimulationAction {
 	return {
 		type: 'LOAD_PREVIOUS_SIMULATION'
 	}
+}
+
+export function hideControl(id: string) {
+	return { type: 'HIDE_CONTROL', id }
 }
 
 export const EXPLAIN_VARIABLE = 'EXPLAIN_VARIABLE'

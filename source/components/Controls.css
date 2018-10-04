@@ -1,4 +1,59 @@
-.controls {
+.blockingControl {
 	text-align: center;
 	font-size: 150%;
+}
+
+#controlsBlock ul {
+	list-style: none;
+	padding: 0;
+}
+#controlsBlock .control {
+	margin: 1em 0;
+	font-size: 95%;
+	display: flex;
+	align-items: center;
+	padding: 0.1em 0.6em;
+	border-radius: 0.3em;
+
+	/*For the .hide element */
+	position: relative;
+	padding-right: 2em;
+}
+#controlsBlock .controlText p {
+	line-height: 1.3rem;
+	margin: 0.6em;
+}
+
+#controlExplanation {
+}
+#controlExplanation > div {
+	display: inline;
+}
+
+/*Disable links visually */
+#controlExplanation a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Display the values of the variables in the explanation of the failed control */
+#controlsBlock .variable .situationValue {
+	display: inline-block;
+}
+#controlsBlock img {
+	margin: 0 0.6em 0 !important;
+	width: 1.6em !important;
+	height: 1.6em !important;
+}
+
+#controlsBlock #solution {
+}
+
+#controlsBlock {
+}
+
+#controlsBlock .hide {
+	font-size: 200%;
+	position: absolute;
+	right: 0em;
 }

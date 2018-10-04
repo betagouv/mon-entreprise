@@ -61,9 +61,22 @@ export let popularTargetNames = [
 )
 class TargetSelection extends Component {
 	render() {
-		let { colours, noUserInput, blockingInputControls } = this.props
+		let {
+			colours,
+			noUserInput,
+			blockingInputControls,
+			analysis: { controls }
+		} = this.props
 		return (
 			<div id="targetSelection">
+				{noUserInput && (
+					<p className="blockingControl">
+						<Trans i18nKey="enterSalary">
+							Entrez un salaire <b>mensuel</b>
+						</Trans>
+					</p>
+				)}
+				<Controls {...{ blockingInputControls, controls }} />
 				<section
 					id="targetsContainer"
 					style={{
@@ -76,15 +89,6 @@ class TargetSelection extends Component {
 					}}>
 					{this.renderOutputList()}
 				</section>
-				{noUserInput && (
-					<p className="controls">
-						<Trans i18nKey="enterSalary">Entrez un salaire mensuel</Trans>
-					</p>
-				)}
-
-				{blockingInputControls && (
-					<Controls blockingInputControls={blockingInputControls} />
-				)}
 			</div>
 		)
 	}
