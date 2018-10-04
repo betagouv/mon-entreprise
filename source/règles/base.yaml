@@ -722,8 +722,7 @@
     - si: brut de base > 10000
       niveau: information
       message: | 
-        Le salaire saisi est élevé ! 
-        Rappel : le simulateur ne fonctionne que sur des salaires mensuels.
+        Le salaire saisi est élevé. Pour rappel, le simulateur ne fonctionne qu'avec des salaires mensuels.
   formule:
     inversion:
       question: Quel est le salaire mensuel ?
