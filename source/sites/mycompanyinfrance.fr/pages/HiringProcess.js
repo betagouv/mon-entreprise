@@ -137,7 +137,7 @@ const HiringProcess = ({
 			</li>
 			<li>Deliver the standardised payslip to your employee</li>
 		</ul>
-		<Link className="ui__ button" to="/social-security">
+		<Link className="ui__ button" to="/social-security/simulation">
 			Get an example payslip
 		</Link>
 	</Animate.fromBottom>

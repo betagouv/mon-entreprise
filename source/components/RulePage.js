@@ -83,7 +83,7 @@ class BackToSimulation extends Component {
 		return (
 			<Link
 				id="toSimulation"
-				to=".."
+				to="../simulation"
 				onClick={() => {
 					setExample(null)
 				}}

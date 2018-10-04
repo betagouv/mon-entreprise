@@ -64,3 +64,6 @@ export function inIframe() {
 		return true
 	}
 }
+
+export const normalizeBasePath = (basePath: string) =>
+	basePath + (basePath.endsWith('/') ? '' : '/')

@@ -9,35 +9,63 @@ import './Feedback.css'
 import Form from './FeedbackForm'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
+import type { Node } from 'react'
 
 type Props = {
 	location: Location,
 	blacklist: Array<string>,
-	tracker: Tracker
+	customMessage?: Node,
+	tracker: Tracker,
+	customEventName?: string
 }
 type State = {
 	showForm: boolean,
 	showThanks: boolean
 }
 
+const localStorageKey = (feedback: [string, string]) =>
+	`app::feedback::${feedback.join('::')}`
+const saveFeedbackOccurrenceInLocalStorage = ([name, path, rating]: [
+	string,
+	string,
+	number
+]) => {
+	localStorage.setItem(localStorageKey([name, path]), JSON.stringify(rating))
+}
+const feedbackAlreadyGiven = (feedback: [string, string]) => {
+	return !!localStorage.getItem(localStorageKey(feedback))
+}
+
 class PageFeedback extends Component<Props, State> {
 	static defaultProps = {
 		blacklist: []
 	}
-	state = {
-		showForm: false,
-		showThanks: false
+	feedbackAlreadyGiven: boolean
+	feedbackAlreadyGiven = false
+	constructor(props) {
+		super(props)
+		this.state = {
+			showForm: false,
+			showThanks: false
+		}
+		this.feedbackAlreadyGiven = feedbackAlreadyGiven([
+			this.props.customEventName || 'rate page usefulness',
+			this.props.location.pathname
+		])
 	}
 
 	handleFeedback = ({ useful }) => {
-		this.props.tracker.push([
-			'trackEvent',
-			'Feedback',
-			'rate page usefulness',
+		const feedback = [
+			this.props.customEventName || 'rate page usefulness',
 			this.props.location.pathname,
 			useful ? 10 : 0
-		])
-		this.setState({ showThanks: useful, showForm: !useful })
+		]
+		this.props.tracker.push(['trackEvent', 'Feedback', ...feedback])
+		saveFeedbackOccurrenceInLocalStorage(feedback)
+		this.setState({
+			showThanks: useful,
+			showForm: !useful
+		})
 	}
 	handleErrorReporting = () => {
 		this.props.tracker.push([
@@ -49,6 +77,9 @@ class PageFeedback extends Component<Props, State> {
 		this.setState({ showForm: true })
 	}
 	render() {
+		if (this.feedbackAlreadyGiven) {
+			return null
+		}
 		return (
 			!this.props.blacklist.includes(this.props.location.pathname) && (
 				<div className="feedback-page ui__ container notice">
@@ -56,9 +87,11 @@ class PageFeedback extends Component<Props, State> {
 						!this.state.showThanks && (
 							<>
 								<div style={{ flex: 1 }}>
-									<Trans i18nKey="feedback.question">
-										Cette page vous a-t-elle été utile ?
-									</Trans>{' '}
+									{this.props.customMessage || (
+										<Trans i18nKey="feedback.question">
+											Cette page vous a-t-elle été utile ?
+										</Trans>
+									)}{' '}
 									<button
 										style={{ marginLeft: '0.4rem' }}
 										className="ui__ link-button"
@@ -75,7 +108,9 @@ class PageFeedback extends Component<Props, State> {
 								<button
 									className="ui__ link-button"
 									onClick={this.handleErrorReporting}>
-									<Trans i18nKey="feedback.reportError">Report an error</Trans>
+									<Trans i18nKey="feedback.reportError">
+										Signaler une erreur
+									</Trans>
 								</button>{' '}
 							</>
 						)}
@@ -105,7 +140,7 @@ const PageFeedbackWithRouter = ({ location, ...props }) => (
 )
 
 export default compose(
-	withRouter,
 	translate(),
-	withTracker
+	withTracker,
+	withRouter
 )(PageFeedbackWithRouter)

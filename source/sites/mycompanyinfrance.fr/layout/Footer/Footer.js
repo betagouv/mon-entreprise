@@ -3,6 +3,7 @@ import withColours from 'Components/utils/withColours'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React from 'react'
+import { withRouter } from 'react-router'
 import { feedbackBlacklist } from '../../config'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
@@ -34,4 +35,7 @@ const Footer = ({ colours: { colour } }) => (
 	</div>
 )
 
-export default compose(withColours)(Footer)
+export default compose(
+	withRouter,
+	withColours
+)(Footer)

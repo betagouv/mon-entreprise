@@ -46,7 +46,6 @@ const StepsHeader = ({
 				<Progress percent={companyProgress} />
 			</NavLink>
 			<NavLink
-				exact
 				to="/social-security"
 				activeClassName="active"
 				onClick={() =>

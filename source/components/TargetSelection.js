@@ -18,6 +18,7 @@ import {
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import { mainTargetNames } from '../config'
+import { normalizeBasePath } from '../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
@@ -160,6 +161,10 @@ let Header = ({
 	blockingInputControls,
 	match
 }) => {
+	const ruleLink =
+		normalizeBasePath(match.path).replace(/simulation\/$/, '') +
+		'règle/' +
+		encodeRuleName(target.dottedName)
 	return (
 		<span className="header">
 			{conversationStarted &&
@@ -177,9 +182,7 @@ let Header = ({
 						</div>
 					)}
 				<span className="optionTitle">
-					<Link to={match.path + 'règle/' + encodeRuleName(target.dottedName)}>
-						{target.title || target.name}
-					</Link>
+					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
 				{!conversationStarted && <p>{target['résumé']}</p>}
 			</span>
@@ -276,6 +279,7 @@ class TargetValue extends Component {
 }
 
 @withColours
+@withRouter
 @connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
 class AidesGlimpse extends Component {
 	render() {
@@ -289,7 +293,11 @@ class AidesGlimpse extends Component {
 				{' '}
 				- <AnimatedTargetValue value={aides.nodeValue} />{' '}
 				<Link
-					to={'/règle/' + encodeRuleName('contrat salarié . aides employeur')}
+					to={
+						this.props.match.path +
+						'/règle/' +
+						encodeRuleName('contrat salarié . aides employeur')
+					}
 					style={{ color: this.props.colours.textColour }}>
 					<Trans>d'aides</Trans> {emoji(aides.icon)}
 				</Link>

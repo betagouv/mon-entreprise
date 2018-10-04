@@ -73,6 +73,7 @@ class EmbaucheRoute extends Component {
 				{inIframe() && <DisableScroll />}
 				<Switch>
 					<Route exact path="/" component={Home} />
+					<Route exact path="/simulation" component={Home} />
 					<Route path="/contact" component={Contact} />
 					<Route path="/règle/:name" component={RulePage} />
 					<Redirect from="/simu/*" to="/" />
@@ -86,7 +87,7 @@ class EmbaucheRoute extends Component {
 					<Redirect from="/simulateur" to="/" />
 					<Route component={Route404} />
 				</Switch>
-				<PageFeedback blacklist={['/']} />
+				<PageFeedback blacklist={['/', '/simulation']} />
 				{inIframe() && <IframeFooter />}
 			</Provider>
 		)
