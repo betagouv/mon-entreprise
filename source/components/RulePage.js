@@ -26,7 +26,7 @@ import SearchButton from './SearchButton'
 	flatRules: flatRulesSelector(state)
 }))
 @translate()
-export default class RulePage extends Component {
+class RulePage extends Component {
 	render() {
 		let { flatRules } = this.props,
 			name = path(['match', 'params', 'name'], this.props),
@@ -48,9 +48,9 @@ export default class RulePage extends Component {
 	}
 	renderRule(dottedName) {
 		return (
-			<div id="RulePage" className="ui__ container">
+			<div id="RulePage">
 				<ScrollToTop />
-				<div className="rule-page__header">
+				<div className="rule-page__header ui__ container">
 					<BackToSimulation
 						visible={this.props.valuesToShow}
 						colour={this.props.themeColours.colour}
@@ -83,7 +83,7 @@ class BackToSimulation extends Component {
 		return (
 			<Link
 				id="toSimulation"
-				to=".."
+				to="../simulation"
 				onClick={() => {
 					setExample(null)
 				}}
@@ -112,3 +112,5 @@ let DisambiguateRuleQuery = ({ rules, flatRules }) => (
 		</ul>
 	</div>
 )
+
+export default RulePage

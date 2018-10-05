@@ -2,14 +2,14 @@
 
 import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { compose } from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { connect } from 'react-redux'
 import * as Animate from 'Ui/animate'
+import type { Match, Location } from 'react-router'
 
 type Props = {
-	hideText: boolean
+	match: Match,
+	location: Location
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
@@ -25,7 +25,7 @@ class SocialSecurity extends Component<Props, {}> {
 				</Helmet>
 				<ScrollToTop />
 				<Animate.fromBottom>
-					{!this.props.hideText && (
+					{this.props.match.isExact && (
 						<>
 							<h1>Social protection: costs and benefits</h1>
 							<p>
@@ -70,16 +70,11 @@ class SocialSecurity extends Component<Props, {}> {
 							<h2>How much does it cost to hire ?</h2>
 						</>
 					)}
-					<Simulateur displayHiringProcedures />
+					<Simulateur displayHiringProcedures key={location.pathname} />
 				</Animate.fromBottom>
 			</>
 		)
 	}
 }
 
-export default compose(
-	connect(
-		state => ({ hideText: state.conversationStarted }),
-		{}
-	)
-)(SocialSecurity)
+export default SocialSecurity

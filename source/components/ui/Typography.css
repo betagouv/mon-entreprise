@@ -120,3 +120,7 @@ strong,
 b {
 	font-weight: 500;
 }
+
+textarea {
+	font-family: inherit;
+}

@@ -1,4 +1,5 @@
 import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
 import { getInputComponent } from 'Engine/generateQuestions'
 import { createMarkdownDiv } from 'Engine/marked'
 import {
@@ -12,6 +13,7 @@ import Helmet from 'react-helmet'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { reduxForm } from 'redux-form'
 import {
 	exampleAnalysisSelector,
 	flatRulesSelector,
@@ -23,8 +25,6 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import { reduxForm } from 'redux-form'
-import withLanguage from 'Components/utils/withLanguage'
 
 @connect((state, props) => ({
 	currentExample: state.currentExample,
@@ -35,7 +35,7 @@ import withLanguage from 'Components/utils/withLanguage'
 }))
 @translate()
 @withLanguage
-export default class Rule extends Component {
+class Rule extends Component {
 	render() {
 		let {
 				dottedName,
@@ -55,7 +55,7 @@ export default class Rule extends Component {
 		let showValues = valuesToShow || currentExample
 
 		return (
-			<div id="rule">
+			<div id="rule" className="ui__ container">
 				<Helmet>
 					<title>{title}</title>
 					<meta name="description" content={description} />
@@ -118,7 +118,6 @@ export default class Rule extends Component {
 					)}
 					{this.renderReferences(flatRule)}
 				</section>
-				<ReportError name={name} />
 			</div>
 		)
 	}
@@ -156,24 +155,6 @@ let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
 	</section>
 ))
 
-let ReportError = ({ name }) => (
-	<div className="reportErrorContainer">
-		<a
-			className="reportError"
-			href={
-				'mailto:contact@embauche.beta.gouv.fr?subject=Erreur dans la règle : ' +
-				name
-			}>
-			<i
-				className="fa fa-exclamation-circle"
-				aria-hidden="true"
-				style={{ marginRight: '.6em' }}
-			/>
-			<Trans i18nKey="reportError">Signaler une erreur</Trans>
-		</a>
-	</div>
-)
-
 @reduxForm({
 	form: 'conversation',
 	destroyOnUnmount: false
@@ -184,3 +165,5 @@ class UserInput extends Component {
 		return getInputComponent(flatRules)(dottedName)
 	}
 }
+
+export default Rule

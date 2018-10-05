@@ -1,6 +1,8 @@
+.footer-container {
+	margin-top: 2rem;
+}
 .footer {
 	background-color: rgba(41, 117, 209, 0.133);
-	margin-top: 2rem;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 }

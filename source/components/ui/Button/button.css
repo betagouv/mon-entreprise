@@ -162,7 +162,8 @@
 	animation: push-button-left 0.1s ease-out alternate-reverse 2;
 }
 
-.ui__.small.button {
+.ui__.small.button,
+.ui__.small.inverted-button {
 	font-size: 80%;
 	line-height: 1rem;
 	padding: 0.4rem 0.8rem;

@@ -39,7 +39,7 @@ button {
 	padding: 0 0.6rem;
 }
 
-p.ui__.notice {
+.ui__.notice {
 	font-size: 90%;
 	color: rgba(0, 0, 0, 0.7);
 	margin-top: 2em;

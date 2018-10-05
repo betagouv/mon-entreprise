@@ -10,7 +10,8 @@
 	<meta name="google-site-verification" content="C03WwnrJP0FLqf83ibMBA7_N-TLQcwsJaAhqKXppxaE" />
 	<meta name="description" content="<%= htmlWebpackPlugin.options.description %>" data-react-helmet="true">
 	<!-- data-helmet pour que React Helmet puisse écraser ce meta par défaut -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,600|IBM+Plex+Sans:300,400' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,600|IBM+Plex+Sans:300,400' rel='stylesheet'
+	 type='text/css'>
 	<link rel="manifest" href="/manifest.webmanifest">
 	<title>
 		<%= htmlWebpackPlugin.options.title %>
@@ -136,12 +137,21 @@
 
 	</div>
 
+	<!-- A little help for the Netlify bots if you're not using a SSG -->
+	<form name="feedback" netlify netlify-honeypot="bot-field" hidden>
+		<textarea name="message"></textarea>
+		<input type="email" name="email" />
+		<input hidden name="pageTitle" />
+		<input name="url" />
+	</form>
+
+
 	<!-- OUTDATED BROWSER WARNING -->
 	<div id="outdated-browser" style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; display: none;">
 		<h2 style="margin: 100px auto; max-width: 800px; text-align: center; font-size: 40px; font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;">
 			<img src="images/marianne.svg" alt="Un service de l'État français" style="width: 200px">
-			<br /><br /> Votre navigateur n'est pas supporté. Vous pouvez le mettre à jour ou en installer un nouveau depuis <a style="color: #2975d1"
-			 href="http://outdatedbrowser.com/fr">cette page</a></h2>
+			<br /><br /> Votre navigateur n'est pas supporté. Vous pouvez le mettre à jour ou en installer un nouveau depuis <a
+			 style="color: #2975d1" href="http://outdatedbrowser.com/fr">cette page</a></h2>
 	</div>
 	<script>
 		var doc = document.documentElement;

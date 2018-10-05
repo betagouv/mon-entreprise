@@ -6,6 +6,9 @@ import type {
 	StartConversationAction
 } from 'Types/ActionsTypes'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
+import { normalizeBasePath } from '../utils'
+
+import type { RouterHistory } from 'react-router-dom'
 
 export function resetSimulation(): ResetSimulationAction {
 	return {
@@ -22,13 +25,18 @@ export const deletePreviousSimulation = () => (
 	deletePersistedSimulation()
 }
 
-export function startConversation(
-	priorityNamespace: ?string
-): StartConversationAction {
-	return {
+export const startConversation = (priorityNamespace: ?string) => (
+	dispatch: StartConversationAction => void,
+	_: any,
+	history: RouterHistory
+) => {
+	dispatch({
 		type: 'START_CONVERSATION',
 		...(priorityNamespace ? { priorityNamespace } : {})
-	}
+	})
+	const simulationPath =
+		normalizeBasePath(history.location.pathname) + 'simulation'
+	history.push(simulationPath)
 }
 
 // $FlowFixMe

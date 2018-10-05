@@ -1,8 +1,5 @@
 #rule {
-	height: 100%;
-	padding-bottom: 10%;
-	max-width: 45em;
-	margin: 0 auto;
+	margin: 1rem auto;
 }
 .reportErrorContainer {
 	text-align: center;

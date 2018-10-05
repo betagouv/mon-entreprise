@@ -176,15 +176,17 @@ export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
 	if (!nextQuestion) {
 		return '/company/legal-status/list'
 	}
-	return nextQuestion in questionToUrl
-		? // $FlowFixMe
-		  `/company/legal-status/${questionToUrl[nextQuestion]}`
-		: nextQuestion
-				.replace(/[^a-zA-Z0-9]+/g, '-')
-				.replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
-				.replace(/([a-z])([A-Z])/g, '$1-$2')
-				.replace(/([0-9])([^0-9])/g, '$1-$2')
-				.replace(/([^0-9])([0-9])/g, '$1-$2')
-				.replace(/-+/g, '-')
-				.toLowerCase()
+	return `/company/legal-status/${
+		nextQuestion in questionToUrl
+			? // $FlowFixMe
+			  questionToUrl[nextQuestion]
+			: nextQuestion
+					.replace(/[^a-zA-Z0-9]+/g, '-')
+					.replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+					.replace(/([a-z])([A-Z])/g, '$1-$2')
+					.replace(/([0-9])([^0-9])/g, '$1-$2')
+					.replace(/([^0-9])([0-9])/g, '$1-$2')
+					.replace(/-+/g, '-')
+					.toLowerCase()
+	}`
 }
