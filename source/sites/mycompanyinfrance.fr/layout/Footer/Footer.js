@@ -1,4 +1,5 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
+import LegalNotice from 'Components/LegalNotice'
 import withColours from 'Components/utils/withColours'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
@@ -30,6 +31,7 @@ const Footer = ({ colours: { colour } }) => (
 					contributions collector, and the government’s public startup
 					incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>.
 				</p>
+				<LegalNotice />
 			</div>
 		</footer>
 	</div>

@@ -168,3 +168,28 @@ Non: No
 Continuer la simulation: Continue simulation
 Envoyer: Send
 Retour: Back
+legalNotice:
+  title: Legal notice
+  editeur:
+    title: Publisher
+    content: >
+      Incubator of digital services,<1></1>
+      Direction interministérielle du numérique et du système
+      d'information et de communication de l'Etat (DINSIC),<3></3>
+      Services of the Prime Minister
+  publication:
+    title: Director of publication
+    content: M. Yann-Gaël Amghar, Director of Acoss
+  hosting:
+    title: Hosting provider
+    content: >
+      Netlify, <1></1>
+      610 22nd Street, Suite 315, <3></3>
+      San Francisco, CA 94107 <5></5>
+      Website : <7>https://www.netlify.com</7>
+  contact:
+    title: Contact
+    content: >
+      <0>
+        contact@embauche.beta.gouv.fr
+      </0>
