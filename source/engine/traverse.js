@@ -297,10 +297,13 @@ export let parseAll = flatRules => {
 }
 
 let evaluateControls = blocking => (parsedRules, situationGate) => {
-	return chain(({ controls }) =>
+	return chain(({ controls, dottedName }) =>
 		controls
 			?.filter(
-				({ level }) => (blocking ? level === 'bloquant' : level !== 'bloquant')
+				({ level }) =>
+					blocking
+						? level === 'bloquant' && situationGate(dottedName) != undefined
+						: level !== 'bloquant'
 			)
 			.map(control => ({
 				...control,
