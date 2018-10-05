@@ -55,6 +55,12 @@ class PageFeedback extends Component<Props, State> {
 	}
 
 	handleFeedback = ({ useful }) => {
+		this.props.tracker.push([
+			'trackEvent',
+			'Feedback',
+			useful ? 'positive rating' : 'negative rating',
+			this.props.location.pathname
+		])
 		const feedback = [
 			this.props.customEventName || 'rate page usefulness',
 			this.props.location.pathname,
