@@ -19,10 +19,10 @@ let enrichRules = input =>
 	(typeof input === 'string' ? yaml.safeLoad(input) : input).map(enrichRule)
 
 export default {
-	evaluate: (targetInput, nestedSituation, rulesConfig) => {
-		let rules = rulesConfig
+	evaluate: (targetInput, nestedSituation, config) => {
+		let rules = config
 			? do {
-					let { base, extra } = rulesConfig
+					let { base, extra } = config
 					;[
 						...(base ? enrichRules(base) : rulesFr),
 						...(extra ? enrichRules(extra) : [])
@@ -35,7 +35,10 @@ export default {
 			Array.isArray(targetInput) ? targetInput : [targetInput]
 		)(nestedSituationToStateSelector(rules)(nestedSituation))
 
+		if (config.debug) return evaluation
+
 		let values = evaluation.targets.map(t => t.nodeValue)
+
 		return Array.isArray(targetInput) ? values : values[0]
 	}
 }
