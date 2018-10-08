@@ -1,7 +1,7 @@
 {
 	"name": "syso",
 	"license": "MIT",
-	"version": "0.6.2",
+	"version": "0.0.7",
 	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build similar simulators and computations.",
 	"main": "./dist/engine.js",
 	"files": ["dist/engine.js"],
@@ -69,7 +69,8 @@
 		"test-common": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js \"./{,!(node_modules)/**/}!(webpack).test.js\"",
 		"test": "yarn test-common",
 		"test-components": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage ---require test/helpers/browser.js \"source/components/**/*.test.js\" --watch",
-		"test-lib": "yarn test-common --grep 'library'"
+		"test-lib": "yarn test-common --grep 'library'",
+		"compile-lib": "yarn webpack --config source/webpack.lib.js"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.0",
@@ -115,6 +116,7 @@
 		"http-server": "^0.11.1",
 		"intl": "^1.2.5",
 		"intl-locales-supported": "^1.0.0",
+		"isomorphic-style-loader": "^4.0.0",
 		"js-yaml": "^3.12.0",
 		"jsdom": "^12.0.0",
 		"json-loader": "^0.5.7",
@@ -129,7 +131,7 @@
 		"sinon": "^4.5.0",
 		"sinon-chai": "^3.0.0",
 		"source-map-support": "^0.5.4",
-		"style-loader": "^0.20.3",
+		"style-loader": "^0.23.1",
 		"url-loader": "^1.0.1",
 		"webpack": "^4.20.1",
 		"webpack-cli": "^3.1.1",
