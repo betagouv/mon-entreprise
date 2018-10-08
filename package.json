@@ -1,7 +1,7 @@
 {
 	"name": "syso",
 	"license": "MIT",
-	"version": "0.6.1",
+	"version": "0.6.2",
 	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build similar simulators and computations.",
 	"main": "./dist/engine.js",
 	"files": ["dist/engine.js"],
