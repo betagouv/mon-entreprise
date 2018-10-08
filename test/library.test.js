@@ -75,4 +75,58 @@ describe('library', function() {
 		)
 		console.log({ revenuDisponible, dividendes })
 	})
+
+	it('temp', function() {
+		let règles = `
+- nom:  revenu imposable
+  question: Quel est votre revenu imposable ?
+  format: euros
+
+- nom: revenu abattu
+  formule:
+    allègement:
+      assiette: revenu imposable
+      abattement: 10%
+
+
+- nom: impôt sur le revenu
+  formule:
+    barème:
+      assiette: revenu abattu
+      tranches:
+        - en-dessous de: 9807
+          taux: 0%
+        - de: 9807
+          à: 27086
+          taux: 14%
+        - de: 27086
+          à: 72617
+          taux: 30%
+        - de: 72617
+          à: 153783
+          taux: 41%
+        - au-dessus de: 153783
+          taux: 45%
+
+
+- nom: impôt sur le revenu à payer
+  formule:
+    allègement:
+      assiette: impôt sur le revenu
+      décote:
+        plafond: 1177
+        taux: 75%
+`
+
+		let target = 'impôt sur le revenu à payer'
+
+		let value = Syso.evaluate(
+			target,
+			{ 'revenu imposable': '48000' },
+			{ extra: règles }
+		)
+		console.log(value)
+
+		expect(value).to.equal(7000)
+	})
 })
