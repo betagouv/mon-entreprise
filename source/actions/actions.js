@@ -34,9 +34,12 @@ export const startConversation = (priorityNamespace: ?string) => (
 		type: 'START_CONVERSATION',
 		...(priorityNamespace ? { priorityNamespace } : {})
 	})
-	const simulationPath =
-		normalizeBasePath(history.location.pathname) + 'simulation'
-	history.push(simulationPath)
+	const currentPath = normalizeBasePath(history.location.pathname)
+	if (currentPath.endsWith('/simulation/')) {
+		return
+	}
+
+	history.push(currentPath + 'simulation')
 }
 
 // $FlowFixMe
