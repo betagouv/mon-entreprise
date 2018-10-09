@@ -64,7 +64,7 @@ class Simulation extends Component {
 		const displayPreviousAnswers =
 			arePreviousAnswers && this.state.displayPreviousAnswers
 		const simulationHomePath = normalizeBasePath(match.path).replace(
-			/simulation\/$/,
+			/\/simulation\/$/,
 			''
 		)
 		return (
@@ -162,18 +162,19 @@ class Simulation extends Component {
 					validInputEntered && (
 						<Animate.fromBottom>
 							<div style={{ textAlign: 'center' }}>
-								{arePreviousAnswers && (
-									<button className="ui__ button" onClick={startConversation}>
-										<Trans>Continuer la simulation</Trans>
-									</button>
-								)}
+								{arePreviousAnswers &&
+									conversationStarted && (
+										<button className="ui__ button" onClick={startConversation}>
+											<Trans>Continuer la simulation</Trans>
+										</button>
+									)}
 							</div>
 							<h2>
 								<Trans>A quoi servent mes cotisations ?</Trans>
 							</h2>
 							<Distribution />
 
-							{!arePreviousAnswers && (
+							{!(arePreviousAnswers && conversationStarted) && (
 								<>
 									<h2>
 										<Trans>Simulation personnalisée</Trans>

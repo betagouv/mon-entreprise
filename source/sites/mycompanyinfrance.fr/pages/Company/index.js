@@ -13,6 +13,7 @@ import Microenterprise from './Microenterprise'
 import MinorityDirector from './MinorityDirector'
 import NumberOfAssociate from './NumberOfAssociate'
 import PickLegalStatus from './PickLegalStatus'
+import YourCompany from './YourCompany'
 
 const withAnimation = Component => {
 	const AnimateRouteComponent = (...props) => (
@@ -25,15 +26,29 @@ const withAnimation = Component => {
 	return AnimateRouteComponent
 }
 
-const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
+const CreateMyCompany = ({
+	match,
+	location,
+	companyStatusChoice,
+	existingCompany
+}) => (
 	<>
 		<Animate.fromBottom>
 			<Switch>
+				<Route path={match.path + '/your-company'} component={YourCompany} />
 				<Route
 					path={match.path + '/create-:status'}
 					component={CreationChecklist}
 				/>
 				<Route path={match.path + '/find'} component={Find} />
+				<Route
+					path={match.path + '/after-registration'}
+					component={AfterRegistration}
+				/>
+				<Route path={match.path + '/legal-status'} component={Home} />
+				{existingCompany && (
+					<Redirect exact from={match.path} to={match.path + '/your-company'} />
+				)}
 				{companyStatusChoice ? (
 					<Redirect
 						exact
@@ -43,11 +58,6 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 				) : (
 					<Redirect exact from={match.path} to={match.path + '/legal-status'} />
 				)}
-				<Route
-					path={match.path + '/after-registration'}
-					component={AfterRegistration}
-				/>
-				<Route path={match.path + '/legal-status'} component={Home} />
 			</Switch>
 			<Switch location={location}>
 				<Route
@@ -80,5 +90,6 @@ const CreateMyCompany = ({ match, location, companyStatusChoice }) => (
 )
 
 export default connect(state => ({
-	companyStatusChoice: state.inFranceApp.companyStatusChoice
+	companyStatusChoice: state.inFranceApp.companyStatusChoice,
+	existingCompany: state.inFranceApp.existingCompanyDetails
 }))(CreateMyCompany)

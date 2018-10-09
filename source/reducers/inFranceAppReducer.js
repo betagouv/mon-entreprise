@@ -4,8 +4,9 @@ import { combineReducers } from 'redux'
 import type {
 	Action as CompanyStatusAction,
 	CompanyLegalStatus,
+	ExistingCompanyDetails,
 	State
-} from 'Types/companyStatusTypes'
+} from 'Types/companyTypes'
 import type { Action as CreationChecklistAction } from 'Types/companyCreationChecklistTypes'
 import type { Action as HiringChecklist } from 'Types/hiringChecklistTypes'
 type Action = CompanyStatusAction | CreationChecklistAction | HiringChecklist
@@ -86,9 +87,9 @@ function companyStatusChoice(state: ?string = null, action: Action) {
 }
 
 function existingCompanyDetails(
-	state: ?{ [string]: string } = null,
+	state: ?ExistingCompanyDetails = null,
 	action: Action
-): ?{ [string]: string } {
+): ?ExistingCompanyDetails {
 	switch (action.type) {
 		case 'SAVE_EXISTING_COMPANY_DETAILS':
 			return action.details

@@ -4,7 +4,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
-import type { DirectorStatus } from 'Types/companyStatusTypes'
+import type { DirectorStatus } from 'Types/companyTypes'
 
 type Props = {
 	defineDirectorStatus: (?DirectorStatus) => void

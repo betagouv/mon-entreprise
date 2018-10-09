@@ -8,7 +8,7 @@ import type {
 	ResetCompanyStatusAction,
 	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
-} from 'Types/companyStatusTypes'
+} from 'Types/companyTypes'
 import type { RouterHistory } from 'react-router'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 
