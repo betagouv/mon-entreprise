@@ -64,7 +64,7 @@ class PageFeedback extends Component<Props, State> {
 		const feedback = [
 			this.props.customEventName || 'rate page usefulness',
 			this.props.location.pathname,
-			useful ? 10 : 0
+			useful ? 10 : 0.1
 		]
 		this.props.tracker.push(['trackEvent', 'Feedback', ...feedback])
 		saveFeedbackOccurrenceInLocalStorage(feedback)

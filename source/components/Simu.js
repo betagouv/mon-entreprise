@@ -82,17 +82,20 @@ class Simulation extends Component {
 								/>
 								<Trans>Retour</Trans>
 							</Link>
-							{arePreviousAnswers && (
-								<div className="change-answer-link">
-									<button
-										className="ui__ link-button"
-										onClick={() =>
-											this.setState({ displayPreviousAnswers: true })
-										}>
-										<Trans>Modifier mes réponses</Trans>
-									</button>
-								</div>
-							)}
+
+							<div
+								className="change-answer-link"
+								style={{
+									visibility: arePreviousAnswers ? 'visible' : 'hidden'
+								}}>
+								<button
+									className="ui__ link-button"
+									onClick={() =>
+										this.setState({ displayPreviousAnswers: true })
+									}>
+									<Trans>Modifier mes réponses</Trans>
+								</button>
+							</div>
 							{displayPreviousAnswers && (
 								<AnswerList
 									onClose={() =>

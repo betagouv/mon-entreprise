@@ -1,3 +1,4 @@
+import { LegalNoticeContent } from 'Components/LegalNotice'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './About.css'
@@ -25,8 +26,9 @@ export default class About extends Component {
 					</p>
 
 					<p>
-						Début 2018, l'<a href="https://acoss.fr">ACOSS</a> (la tête des
-						URSSAF) nous rejoint pour consolider ce simulateur.
+						Début 2018, l'
+						<a href="https://acoss.fr">ACOSS</a> (la tête des URSSAF) nous
+						rejoint pour consolider ce simulateur.
 					</p>
 
 					<p>
@@ -60,9 +62,11 @@ export default class About extends Component {
 					conformément aux{' '}
 					<a href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience">
 						recommandations de la CNIL
-					</a>.
+					</a>
+					.
 				</p>
 				<iframe src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr" />
+				<LegalNoticeContent />
 			</section>
 		)
 	}
