@@ -20,8 +20,7 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 				name="description"
 				content="The French business law defines more than 20 possible legal statuses to
 				declare a company with various acronyms and processes : SAS, SARL, SA,
-				EIRL... This guide will help you find quickly the right status for your
-				needs."
+				EIRL... This guide quickly helps you to find the right status for your company project"
 			/>
 		</Helmet>
 		<p>
