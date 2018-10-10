@@ -19,8 +19,7 @@ class SocialSecurity extends Component<Props, {}> {
 					<title>Social security in France: costs and benefits</title>
 					<meta
 						name="description"
-						content="France has chosen to provide its citizens with a high-quality
-						social safety net. Discover the costs and benefits of French social security by simulating a concrete case of hiring in your company."
+						content="Discover the costs and benefits of French social security and protection (welfare) by simulating a concrete case of hiring in your company."
 					/>
 				</Helmet>
 				<ScrollToTop />

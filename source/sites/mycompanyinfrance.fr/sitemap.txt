@@ -1,5 +1,4 @@
 https://mycompanyinfrance.fr
-
 https://mycompanyinfrance.fr/infrance/company/legal-status
 https://mycompanyinfrance.fr/infrance/company/legal-status/number-of-associates
 https://mycompanyinfrance.fr/infrance/company/legal-status/director-status
@@ -7,7 +6,6 @@ https://mycompanyinfrance.fr/infrance/company/legal-status/liability
 https://mycompanyinfrance.fr/infrance/company/legal-status/minority-director
 https://mycompanyinfrance.fr/infrance/company/legal-status/micro-enterprise
 https://mycompanyinfrance.fr/infrance/company/legal-status/list
-
 https://mycompanyinfrance.fr/infrance/company/create-micro-enterprise
 https://mycompanyinfrance.fr/infrance/company/create-EI
 https://mycompanyinfrance.fr/infrance/company/create-EIRL
@@ -18,8 +16,6 @@ https://mycompanyinfrance.fr/infrance/company/create-SAS
 https://mycompanyinfrance.fr/infrance/company/create-SASU
 https://mycompanyinfrance.fr/infrance/company/create-SNC
 https://mycompanyinfrance.fr/infrance/company/after-registration
-
 https://mycompanyinfrance.fr/infrance/company/find
-
 https://mycompanyinfrance.fr/infrance/social-security
 https://mycompanyinfrance.fr/infrance/hiring-process
