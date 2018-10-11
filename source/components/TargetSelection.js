@@ -294,8 +294,11 @@ class AidesGlimpse extends Component {
 				- <AnimatedTargetValue value={aides.nodeValue} />{' '}
 				<Link
 					to={
-						this.props.match.path +
-						'/règle/' +
+						normalizeBasePath(this.props.match.path).replace(
+							/simulation\/$/,
+							''
+						) +
+						'règle/' +
 						encodeRuleName('contrat salarié . aides employeur')
 					}
 					style={{ color: this.props.colours.textColour }}>
