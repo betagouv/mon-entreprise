@@ -5,7 +5,7 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { capitalise0 } from '../../../../utils'
-import type { CompanyLegalStatus } from 'Types/companyStatusTypes'
+import type { CompanyLegalStatus } from 'Types/companyTypes'
 
 const requirementToText = (key, value) => {
 	if (typeof value === 'string') {

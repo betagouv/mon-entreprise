@@ -31,9 +31,15 @@ export type ChangeChecklistItemAction = {
 	name: string
 }
 
+export type ExistingCompanyDetails = {
+	siret: string,
+	effectif?: number,
+	localisation?: Object,
+	apiDetails: { [string]: string }
+}
 export type SaveExistingCompanyDetailsAction = {
 	type: 'SAVE_EXISTING_COMPANY_DETAILS',
-	details: { [string]: string }
+	details: ExistingCompanyDetails
 }
 export type DirectorIsInAMinorityAction = {
 	type: 'SPECIFY_DIRECTORS_SHARE',
@@ -58,7 +64,7 @@ export type State = {|
 		+microEnterprise?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
-	+existingCompanyDetails: ?{ [string]: string }
+	+existingCompanyDetails: ?ExistingCompanyDetails
 |}
 export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
 export type Action =

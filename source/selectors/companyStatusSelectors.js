@@ -1,6 +1,6 @@
 /* @flow */
 
-import type { State, CompanyLegalStatus } from 'Types/companyStatusTypes'
+import type { State, CompanyLegalStatus } from 'Types/companyTypes'
 import {
 	add,
 	countBy,

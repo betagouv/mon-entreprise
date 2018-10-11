@@ -1,5 +1,6 @@
 /* @flow */
-import { compose, toPairs } from 'ramda'
+import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
+import { compose } from 'ramda'
 import React from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
@@ -9,17 +10,15 @@ import ReactSelect from 'react-select'
 // $FlowFixMe
 import 'react-select/dist/react-select.css'
 import './Find.css'
+import { CompanyDetails as Company } from './YourCompany'
 import type { RouterHistory } from 'react-router'
-import type { SaveExistingCompanyDetailsAction } from 'Types/companyStatusTypes'
 
 const goToNextStep = (history: RouterHistory) => {
 	history.push('/social-security')
 }
 
-type CompanyType = { [string]: string }
-
 type State = {
-	input: ?Company
+	input: ?{ [string]: string }
 }
 
 type Props = {
@@ -38,10 +37,10 @@ class Search extends React.Component<Props, State> {
 	getOptions = (input: string) =>
 		fetch(`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`)
 			.then(response => {
-				if (!response.ok) console.log('not ok')
-				return response.json()
+				if (response.ok) {
+					return response.json().then(json => ({ options: json.etablissement }))
+				}
 			})
-			.then(json => ({ options: json.etablissement }))
 			.catch(function(error) {
 				console.log(
 					'Erreur dans la recherche de communes à partir du code postal',
@@ -102,44 +101,12 @@ class Search extends React.Component<Props, State> {
 	}
 }
 
-let companyDataSelection = {
-	l1_normalisee: 'Name',
-	libelle_activite_principale: 'Main activity',
-	l4_normalisee: 'Street',
-	l6_normalisee: 'City',
-	libelle_region: 'Region',
-	libelle_tranche_effectif_salarie_entreprise: 'Number of employees',
-	date_creation: 'Creation date'
-}
-
-let Company = (data: CompanyType) => {
-	return (
-		<ul>
-			{toPairs(data).map(
-				([key, value]) =>
-					companyDataSelection[key] != null ? (
-						<li key={key}>
-							<strong>{companyDataSelection[key]}</strong>
-							<br />
-							{value}
-						</li>
-					) : null
-			)}
-		</ul>
-	)
-}
-
 export default compose(
 	withRouter,
 	connect(
 		null,
 		{
-			onCompanyDetailsConfirmation: (details: {
-				[string]: string
-			}): SaveExistingCompanyDetailsAction => ({
-				type: 'SAVE_EXISTING_COMPANY_DETAILS',
-				details
-			})
+			onCompanyDetailsConfirmation: saveExistingCompanyDetails
 		}
 	)
 )(Search)

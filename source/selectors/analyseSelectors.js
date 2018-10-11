@@ -12,9 +12,10 @@ import {
 	rulesFr as baseRulesFr
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { equals, head, isEmpty, pick, contains } from 'ramda'
+import { contains, equals, head, isEmpty, isNil, path, pick } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
+import { mainTargetNames } from '../config'
 
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
@@ -49,7 +50,12 @@ export let situationSelector = createDeepEqualSelector(
 
 export let noUserInputSelector = createSelector(
 	[situationSelector],
-	situation => !situation || isEmpty(situation)
+	situation =>
+		!situation ||
+		isEmpty(situation) ||
+		mainTargetNames.every(dottedTarget =>
+			isNil(path(dottedTarget.split('.'), situation))
+		)
 )
 
 export let formattedSituationSelector = createSelector(

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { FormDecorator } from '../FormDecorator'
 import ReactSelect from 'react-select'
-
 import 'react-select/dist/react-select.css'
+import { FormDecorator } from '../FormDecorator'
 import './Select.css'
 
 let getOptions = input =>
@@ -26,7 +25,7 @@ let getOptions = input =>
 				})
 
 @FormDecorator('select')
-export default class Select extends Component {
+class Select extends Component {
 	render() {
 		let {
 				input: { onChange },
@@ -56,3 +55,4 @@ export default class Select extends Component {
 		)
 	}
 }
+export default Select

@@ -1,16 +1,24 @@
 /* @flow */
 
-import { simulationTargetNames } from '../config.js'
-import { defaultTo, without } from 'ramda'
+import {
+	compose,
+	defaultTo,
+	isNil,
+	lensPath,
+	over,
+	set,
+	uniq,
+	without
+} from 'ramda'
 // $FlowFixMe
 import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
 // $FlowFixMe
 import { reducer as formReducer } from 'redux-form'
 import computeThemeColours from 'Ui/themeColours'
+import { simulationTargetNames } from '../config.js'
 import defaultLang from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
-import storageReducer from './storageReducer'
 import type { Action } from 'Types/ActionsTypes'
 
 // TODO : use context API instead
@@ -118,8 +126,40 @@ function hiddenControls(state = [], { type, id }) {
 	} else return state
 }
 
+const addAnswerToSituation = (dottedName, value, state) => {
+	const dottedPath = dottedName.split(' . ')
+	return compose(
+		set(lensPath(['form', 'conversation', 'values', ...dottedPath]), value),
+		over(lensPath(['conversationSteps', 'foldedSteps']), (steps = []) =>
+			uniq([...steps, dottedName])
+		)
+	)(state)
+}
+
+const existingCompanyReducer = (state, action) => {
+	if (action.type !== 'SAVE_EXISTING_COMPANY_DETAILS') {
+		return state
+	}
+	const details = action.details
+	let newState = state
+	if (details.localisation) {
+		newState = addAnswerToSituation(
+			'établissement . localisation',
+			JSON.stringify(details.localisation),
+			newState
+		)
+	}
+	if (!isNil(details.effectif)) {
+		newState = addAnswerToSituation(
+			'entreprise . effectif',
+			details.effectif,
+			newState
+		)
+	}
+	return newState
+}
 export default reduceReducers(
-	storageReducer,
+	existingCompanyReducer,
 	combineReducers({
 		sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
 		//  this is handled by redux-form, pas touche !

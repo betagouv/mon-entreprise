@@ -4,7 +4,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
-import type { CompanyLiability } from 'Types/companyStatusTypes'
+import type { CompanyLiability } from 'Types/companyTypes'
 type Props = {
 	multipleAssociates: ?boolean,
 	chooseCompanyLiability: (?CompanyLiability) => void

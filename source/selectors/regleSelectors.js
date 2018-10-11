@@ -60,6 +60,11 @@ export const règleValeurSelector = createSelector(
 		let valeur =
 			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situation[dottedName]
 
+		if (isNil(valeur)) {
+			console.warn(
+				`[règleValeurSelector] Impossible de trouver la valeur associée à la règle "${dottedName}". Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName. Vérifiez aussi qu'il ne manque pas une valeur par défaut à une règle nécessaire au calcul.`
+			)
+		}
 		if (valeur === 'oui') {
 			valeur = true
 		}
@@ -69,7 +74,7 @@ export const règleValeurSelector = createSelector(
 		if (typeof valeur === 'boolean') {
 			return { type: 'boolean', valeur }
 		}
-		if (rule.API || rule.explanation?.API) {
+		if (rule?.API || rule?.explanation?.API) {
 			//TODO This code is specific to the géo API
 			return { type: 'string', valeur: valeur.nom }
 		}
