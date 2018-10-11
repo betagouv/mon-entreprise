@@ -2,6 +2,7 @@
 
 import type { Store } from 'redux'
 import { debounce } from '../utils'
+import safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
 import type { State, SavedSimulation } from '../types/State'
 import type { Action } from 'Types/ActionsTypes'
@@ -16,16 +17,16 @@ export function persistSimulation(store: Store<State, Action>) {
 		if (!state.conversationStarted) {
 			return
 		}
-		window.localStorage.setItem(LOCAL_STORAGE_KEY, serialize(state))
+		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, serialize(state))
 	}
 	store.subscribe(debounce(1000, listener))
 }
 
 export function retrievePersistedSimulation(): ?SavedSimulation {
-	const serializedState = window.localStorage.getItem(LOCAL_STORAGE_KEY)
+	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 	return serializedState ? deserialize(serializedState) : null
 }
 
 export function deletePersistedSimulation(): void {
-	window.localStorage.removeItem(LOCAL_STORAGE_KEY)
+	safeLocalStorage.removeItem(LOCAL_STORAGE_KEY)
 }
