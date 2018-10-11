@@ -74,13 +74,11 @@ export default class LegalNotice extends Component {
 	render() {
 		return (
 			<>
-				<p style={{ textAlign: 'center' }} className="ui__ notice">
-					<button onClick={this.handleOpen} className="ui__ link-button">
-						<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
-					</button>
-				</p>
+				<button onClick={this.handleOpen} className="ui__ link-button">
+					<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
+				</button>
 				{this.state.opened && (
-					<Overlay onClose={this.handleClose}>
+					<Overlay onClose={this.handleClose} style={{ textAlign: 'left' }}>
 						<ScrollToTop />
 						<LegalNoticeContent />
 					</Overlay>

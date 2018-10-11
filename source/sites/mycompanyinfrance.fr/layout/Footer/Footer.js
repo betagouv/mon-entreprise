@@ -8,6 +8,7 @@ import { withRouter } from 'react-router'
 import { feedbackBlacklist } from '../../config'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
+import Privacy from './Privacy'
 
 const Footer = ({ colours: { colour } }) => (
 	<div className="footer-container">
@@ -31,7 +32,11 @@ const Footer = ({ colours: { colour } }) => (
 					contributions collector, and the government’s public startup
 					incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>.
 				</p>
-				<LegalNotice />
+				<p className="ui__ notice" style={{ textAlign: 'center' }}>
+					<LegalNotice />
+					{'  •  '}
+					<Privacy />
+				</p>
 			</div>
 		</footer>
 	</div>
