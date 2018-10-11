@@ -20,6 +20,12 @@ describe('Landing basic test', function() {
 		salaryInput('Salaire net').type('2000')
 		cy.get('.distribution-chart__container')
 	})
+	it('should allow to navigate to the aid page', function() {
+		cy.visit('/')
+		salaryInput('Salaire net').type('2000')
+		cy.contains("d'aides").click()
+		cy.contains('Aides employeur')
+	})
 })
 
 describe('Iframe integration test', function() {
