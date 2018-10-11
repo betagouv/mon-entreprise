@@ -1,2 +1,3 @@
 User-agent: *
+Allow: /sitemap.infrance.txt
 Disallow: /
