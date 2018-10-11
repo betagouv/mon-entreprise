@@ -17,10 +17,14 @@ export class ScrollToTop extends Component {
 			return
 		}
 		forEachParent(this.ref, elem => (elem.scrollTop = 0))
-		window.scroll({
-			top: 0,
-			behavior: this.props.behavior
-		})
+		try {
+			window.scroll({
+				top: 0,
+				behavior: this.props.behavior
+			})
+		} catch (e) {
+			window.scroll(0, 0)
+		}
 	}
 	render() {
 		return (
