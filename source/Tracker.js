@@ -36,6 +36,23 @@ export default class Piwik {
 
 		window._paq = window._paq || [] // eslint-disable-line  no-underscore-dangle
 
+		// DPRG Compliant Piwik
+		// See https://www.cnil.fr/sites/default/files/typo/document/Configuration_piwik.pdf
+		Piwik.push([
+			function() {
+				var self = this
+				function getOriginalVisitorCookieTimeout() {
+					var now = new Date(),
+						nowTs = Math.round(now.getTime() / 1000),
+						visitorInfo = self.getVisitorInfo()
+					var createTs = parseInt(visitorInfo[2])
+					var cookieTimeout = 33696000 // 13 mois en secondes
+					var originalTimeout = createTs + cookieTimeout - nowTs
+					return originalTimeout
+				}
+				this.setVisitorCookieTimeout(getOriginalVisitorCookieTimeout())
+			}
+		])
 		Piwik.push(['setSiteId', this.options.siteId])
 		Piwik.push(['setTrackerUrl', `${url}piwik.php`])
 
