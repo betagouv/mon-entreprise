@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { Trans, translate } from 'react-i18next'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
+import safeLocalStorage from '../../storage/safeLocalStorage'
 import './Feedback.css'
 import Form from './FeedbackForm'
 import type { Tracker } from 'Components/utils/withTracker'
@@ -30,10 +31,13 @@ const saveFeedbackOccurrenceInLocalStorage = ([name, path, rating]: [
 	string,
 	number
 ]) => {
-	localStorage.setItem(localStorageKey([name, path]), JSON.stringify(rating))
+	safeLocalStorage.setItem(
+		localStorageKey([name, path]),
+		JSON.stringify(rating)
+	)
 }
 const feedbackAlreadyGiven = (feedback: [string, string]) => {
-	return !!localStorage.getItem(localStorageKey(feedback))
+	return !!safeLocalStorage.getItem(localStorageKey(feedback))
 }
 
 class PageFeedback extends Component<Props, State> {
