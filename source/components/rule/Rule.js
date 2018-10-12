@@ -78,7 +78,7 @@ class Rule extends Component {
 					{displayedRule.nodeValue ? (
 						<div id="ruleValue">
 							<i className="fa fa-calculator" aria-hidden="true" />{' '}
-							{displayedRule.format === 'euros'
+							{displayedRule.format === 'euros' || displayedRule.formule
 								? Intl.NumberFormat(language, {
 										style: 'currency',
 										currency: 'EUR'
