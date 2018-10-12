@@ -9,6 +9,7 @@ import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
+import mecanismColours from './colours'
 
 let treatValue = (data, language) =>
 	data == null
@@ -40,10 +41,17 @@ export class Node extends Component {
 			termDefinition = contains('mecanism', classes) && name
 
 		return (
-			<div className={classNames(classes, 'node')}>
+			<div
+				className={classNames(classes, 'node')}
+				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
 				{name && (
 					<span className="nodeHead">
-						<LinkButton className="name" data-term-definition={termDefinition}>
+						<LinkButton
+							className="name"
+							style={
+								termDefinition ? { background: mecanismColours(name) } : {}
+							}
+							data-term-definition={termDefinition}>
 							<Trans>{name}</Trans>
 						</LinkButton>
 						<NodeValuePointer data={value} />
@@ -54,6 +62,19 @@ export class Node extends Component {
 			</div>
 		)
 	}
+}
+
+export function InlineMecanism({ name }) {
+	return (
+		<span className="inlineMecanism">
+			<LinkButton
+				className="name"
+				data-term-definition={name}
+				style={{ background: mecanismColours(name) }}>
+				<Trans>{name}</Trans>
+			</LinkButton>
+		</span>
+	)
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)

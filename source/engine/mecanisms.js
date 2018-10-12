@@ -58,6 +58,7 @@ import Barème from './mecanismViews/Barème'
 import Variations from './mecanismViews/Variations'
 import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
 import Allègement from './mecanismViews/Allègement'
+import Composantes from './mecanismViews/Composantes'
 import { trancheValue } from './mecanisms/barème'
 import buildSelectionView from './mecanismViews/Selection'
 import uniroot from './uniroot'
@@ -80,35 +81,6 @@ let decompose = (recurse, k, v) => {
 			composante: c.nom ? { nom: c.nom } : c.attributs
 		}))
 
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="mecanism composantes"
-			name="composantes"
-			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map(c => [
-						<li className="composante" key={JSON.stringify(c.composante)}>
-							<ul className="composanteAttributes">
-								{toPairs(c.composante).map(([k, v]) => (
-									<li key={k} className="composanteName">
-										<span>
-											<Trans>{k}</Trans>:{' '}
-										</span>
-										<span>
-											<Trans>{v}</Trans>
-										</span>
-									</li>
-								))}
-							</ul>
-							<div className="content">{makeJsx(c)}</div>
-						</li>
-					])}
-				</ul>
-			}
-		/>
-	)
-
 	let filter = situationGate => c =>
 		!situationGate('sys.filter') ||
 		!c.composante ||
@@ -119,7 +91,7 @@ let decompose = (recurse, k, v) => {
 
 	return {
 		explanation,
-		jsx,
+		jsx: Composantes,
 		evaluate: evaluateArrayWithFilter(filter, add, 0),
 		category: 'mecanism',
 		name: 'composantes',

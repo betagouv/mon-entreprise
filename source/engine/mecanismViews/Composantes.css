@@ -1,0 +1,20 @@
+.composantes > ol {
+	list-style: none;
+	counter-reset: li;
+	padding-left: 1em;
+}
+
+.composantes > ol > li.composante::before {
+	counter-increment: li;
+}
+.composantes > ol > li.composante::before {
+	content: counter(li) ')';
+	color: grey;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+}
+
+.composantes .composanteAttributes {
+	display: inline-block;
+}

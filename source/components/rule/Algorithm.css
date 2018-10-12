@@ -59,12 +59,19 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 0.2em 1em;
-	display: block;
-	background: #34495e;
+}
+.inlineMecanism .name,
+.mecanism > .nodeHead .name {
+	padding: 0.2em 0.8em;
+	display: inline-block;
 	color: white !important;
 	font-weight: 500;
-	border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 6px;
+}
+.inlineMecanism .name {
+	margin: 0 0.1em;
+	padding: 0.2em 0.4em;
+	border-radius: 6px;
 }
 .mecanism > .nodeHead .name::first-letter {
 	text-transform: capitalize;
@@ -88,12 +95,6 @@
 [data-term-definition]:hover {
 	opacity: 0.8;
 }
-.ruleProp > .nodeHead .name {
-	background: #9b59b6;
-}
-.mecanism.ruleProp {
-	border-color: #9b59b6;
-}
 
 .mecanism .properties .key {
 	display: inline-block;
@@ -101,12 +102,6 @@
 	margin-right: 0.8em;
 }
 
-.multiplication > .nodeHead .name {
-	background: #2ecc71;
-}
-.mecanism.multiplication {
-	border-color: #2ecc71;
-}
 .mecanism.multiplication .key {
 	color: #2ecc71;
 }
@@ -120,13 +115,6 @@
 	font-weight: 500;
 	margin-bottom: 0.4em;
 	margin-left: 1em;
-}
-
-.mecanism.conditions > .nodeHead .name {
-	background: #3498db;
-}
-.mecanism.conditions {
-	border-color: #3498db;
 }
 
 .mecanism .conditions > ul > li {
@@ -171,12 +159,6 @@
 	margin-left: 1em;
 }
 
-.composantes > .nodeHead .name {
-	background: #3498db;
-}
-.mecanism.composantes {
-	border-color: #3498db;
-}
 .composantes .composanteName::first-letter {
 	text-transform: capitalize;
 }
@@ -190,7 +172,6 @@
 .mecanism {
 	border: 1px solid;
 	border-radius: 3px;
-	border-color: #34495e;
 	padding: 1em;
 	padding-top: 1em;
 	padding-bottom: 2em;
