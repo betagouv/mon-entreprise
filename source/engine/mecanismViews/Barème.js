@@ -9,7 +9,7 @@ import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 
 export default function Barème(nodeValue, explanation) {
-	return (
+	let Comp = withLanguage(({ language }) => (
 		<ShowValuesConsumer>
 			{showValues => (
 				<Node
@@ -53,6 +53,7 @@ export default function Barème(nodeValue, explanation) {
 										<Tranche
 											key={tranche['de'] + tranche['à']}
 											{...{
+												language,
 												tranche,
 												showValues,
 												trancheValue: trancheValue(
@@ -64,50 +65,61 @@ export default function Barème(nodeValue, explanation) {
 									))}
 								</thead>
 							</table>
+							{showValues && (
+								<>
+									<b>
+										<Trans>Taux final</Trans> :{' '}
+									</b>
+									{formatNumber(
+										(nodeValue / explanation['assiette'].nodeValue) * 100,
+										language
+									)}{' '}
+									%
+								</>
+							)}
 						</ul>
 					}
 				/>
 			)}
 		</ShowValuesConsumer>
-	)
+	))
+	return <Comp />
 }
 
-let Tranche = withLanguage(
-	({
-		tranche: {
-			'en-dessous de': maxOnly,
-			'au-dessus de': minOnly,
-			de: min,
-			à: max,
-			taux
-		},
-		trancheValue,
-		showValues,
-		language
-	}) => (
-		<tr className={classNames('tranche', { activated: trancheValue > 0 })}>
-			<td key="tranche">
-				{maxOnly ? (
-					<>
-						<Trans>En-dessous de</Trans> {formatNumber(maxOnly, language)}
-					</>
-				) : minOnly ? (
-					<>
-						<Trans>Au-dessus de</Trans> {formatNumber(minOnly, language)}
-					</>
-				) : (
-					<>
-						<Trans>De</Trans> {formatNumber(min, language)} <Trans>à</Trans>{' '}
-						{formatNumber(max, language)}
-					</>
-				)}
-			</td>
-			<td key="taux"> {makeJsx(taux)}</td>
-			{showValues && (
-				<td key="value">
-					<NodeValuePointer data={trancheValue} />
-				</td>
+let Tranche = ({
+	tranche: {
+		'en-dessous de': maxOnly,
+		'au-dessus de': minOnly,
+		de: min,
+		à: max,
+		taux
+	},
+	trancheValue,
+	showValues,
+	language
+}) => (
+	<tr className={classNames('tranche', { activated: trancheValue > 0 })}>
+		<td key="tranche">
+			{maxOnly ? (
+				<>
+					<Trans>En-dessous de</Trans> {formatNumber(maxOnly, language)}
+				</>
+			) : minOnly ? (
+				<>
+					<Trans>Au-dessus de</Trans> {formatNumber(minOnly, language)}
+				</>
+			) : (
+				<>
+					<Trans>De</Trans> {formatNumber(min, language)} <Trans>à</Trans>{' '}
+					{formatNumber(max, language)}
+				</>
 			)}
-		</tr>
-	)
+		</td>
+		<td key="taux"> {makeJsx(taux)}</td>
+		{showValues && (
+			<td key="value">
+				<NodeValuePointer data={trancheValue} />
+			</td>
+		)}
+	</tr>
 )
