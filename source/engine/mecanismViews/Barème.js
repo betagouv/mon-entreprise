@@ -8,8 +8,8 @@ import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 
-export default function Barème(nodeValue, explanation) {
-	let Comp = withLanguage(({ language }) => (
+let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
+	return (
 		<ShowValuesConsumer>
 			{showValues => (
 				<Node
@@ -82,9 +82,12 @@ export default function Barème(nodeValue, explanation) {
 				/>
 			)}
 		</ShowValuesConsumer>
-	))
-	return <Comp />
-}
+	)
+})
+
+export default (nodeValue, explanation) => (
+	<Comp {...{ nodeValue, explanation }} />
+)
 
 let Tranche = ({
 	tranche: {

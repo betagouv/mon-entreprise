@@ -7,10 +7,16 @@ import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import withLanguage from 'Components/utils/withLanguage'
 import { Trans } from 'react-i18next'
 
-export default function Variations(nodeValue, explanation) {
-	let Comp = withLanguage(({ language }) => (
+let Comp = withLanguage(function Variations({
+	language,
+	nodeValue,
+	explanation
+}) {
+	return (
 		<Node
 			classes="mecanism variations"
+			name="variations"
+			inline
 			value={nodeValue}
 			child={
 				<>
@@ -46,6 +52,8 @@ export default function Variations(nodeValue, explanation) {
 				</>
 			}
 		/>
-	))
-	return <Comp />
-}
+	)
+})
+export default (nodeValue, explanation) => (
+	<Comp {...{ nodeValue, explanation }} />
+)

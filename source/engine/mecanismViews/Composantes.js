@@ -7,8 +7,12 @@ import { toPairs } from 'ramda'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import withLanguage from 'Components/utils/withLanguage'
 
-export default function Composantes(nodeValue, explanation) {
-	let Comp = withLanguage(({ language }) => (
+let Comp = withLanguage(function Composantes({
+	language,
+	nodeValue,
+	explanation
+}) {
+	return (
 		<Node
 			classes="mecanism composantes"
 			name="composantes"
@@ -43,6 +47,9 @@ export default function Composantes(nodeValue, explanation) {
 				</>
 			}
 		/>
-	))
-	return <Comp />
-}
+	)
+})
+
+export default (nodeValue, explanation) => (
+	<Comp {...{ nodeValue, explanation }} />
+)
