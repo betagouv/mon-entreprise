@@ -31,8 +31,13 @@ export default function Variations(nodeValue, explanation) {
 										</span>
 									)}
 									<div className="consequence">
-										{condition ? <Trans>Alors</Trans> : <Trans>Sinon</Trans>} :{' '}
-										<span className="content">{makeJsx(consequence)}</span>
+										<span className="consequenceType">
+											{condition ? <Trans>Alors</Trans> : <Trans>Sinon</Trans>}{' '}
+											:
+										</span>
+										<span className="consequenceContent">
+											{makeJsx(consequence)}
+										</span>
 									</div>
 								</div>
 							</li>

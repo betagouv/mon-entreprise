@@ -5,7 +5,11 @@
 	margin-bottom: 1em;
 	list-style: circle;
 }
-.variations > ul > li.satisfied .consequence {
+
+.variations > ul > li .consequenceType {
+	padding: 0 0.2em;
+	margin: 0 0.3em;
+}
+.variations > ul > li.satisfied .consequenceType {
 	background: yellow;
-	padding: 0 0.6em;
 }
