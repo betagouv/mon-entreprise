@@ -4,16 +4,19 @@ import { makeJsx } from '../evaluation'
 import './Composantes.css'
 import { Trans } from 'react-i18next'
 import { toPairs } from 'ramda'
+import writtenNumbers from '../../locales/writtenNumbers.yaml'
+import withLanguage from 'Components/utils/withLanguage'
 
 export default function Variations(nodeValue, explanation) {
-	return (
+	let Comp = withLanguage(({ language }) => (
 		<Node
 			classes="mecanism composantes"
 			value={nodeValue}
 			child={
 				<>
 					<p>
-						Cette règle est la somme de deux{' '}
+						Cette règle est la somme de{' '}
+						{writtenNumbers[language][explanation.length]}{' '}
 						<InlineMecanism name="composantes" /> :
 					</p>
 					<ol>
@@ -38,5 +41,6 @@ export default function Variations(nodeValue, explanation) {
 				</>
 			}
 		/>
-	)
+	))
+	return <Comp />
 }
