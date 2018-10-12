@@ -37,29 +37,25 @@ export let NodeValuePointer = ({ data }) =>
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export class Node extends Component {
 	render() {
-		let { classes, name, value, child } = this.props,
+		let { classes, name, value, child, inline } = this.props,
 			termDefinition = contains('mecanism', classes) && name
 
 		return (
 			<div
-				className={classNames(classes, 'node')}
-				style={
-					termDefinition
-						? { borderColor: mecanismColours(name) }
-						: {
-								paddingTop: 0
-						  }
-				}>
+				className={classNames(classes, 'node', { inline })}
+				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
 				{name && (
 					<span className="nodeHead">
-						<LinkButton
-							className="name"
-							style={
-								termDefinition ? { background: mecanismColours(name) } : {}
-							}
-							data-term-definition={termDefinition}>
-							<Trans>{name}</Trans>
-						</LinkButton>
+						{!inline && (
+							<LinkButton
+								className="name"
+								style={
+									termDefinition ? { background: mecanismColours(name) } : {}
+								}
+								data-term-definition={termDefinition}>
+								<Trans>{name}</Trans>
+							</LinkButton>
+						)}
 						<NodeValuePointer data={value} />
 					</span>
 				)}

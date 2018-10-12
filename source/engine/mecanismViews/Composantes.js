@@ -11,6 +11,8 @@ export default function Composantes(nodeValue, explanation) {
 	let Comp = withLanguage(({ language }) => (
 		<Node
 			classes="mecanism composantes"
+			name="composantes"
+			inline
 			value={nodeValue}
 			child={
 				<>
