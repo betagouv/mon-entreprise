@@ -7,7 +7,7 @@ import { toPairs } from 'ramda'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import withLanguage from 'Components/utils/withLanguage'
 
-export default function Variations(nodeValue, explanation) {
+export default function Composantes(nodeValue, explanation) {
 	let Comp = withLanguage(({ language }) => (
 		<Node
 			classes="mecanism composantes"
@@ -15,7 +15,7 @@ export default function Variations(nodeValue, explanation) {
 			child={
 				<>
 					<p>
-						Cette règle est la somme de{' '}
+						<Trans>Cette règle est la somme de</Trans>{' '}
 						{writtenNumbers[language][explanation.length]}{' '}
 						<InlineMecanism name="composantes" /> :
 					</p>

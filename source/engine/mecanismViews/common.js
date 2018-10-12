@@ -43,7 +43,13 @@ export class Node extends Component {
 		return (
 			<div
 				className={classNames(classes, 'node')}
-				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
+				style={
+					termDefinition
+						? { borderColor: mecanismColours(name) }
+						: {
+								paddingTop: 0
+						  }
+				}>
 				{name && (
 					<span className="nodeHead">
 						<LinkButton

@@ -1,5 +1,5 @@
-.variations > ul {
-	margin-left: 0.6em;
+.mecanism.variations > ul {
+	margin-left: 1em;
 }
 .variations > ul > li {
 	margin-bottom: 1em;
@@ -7,4 +7,5 @@
 }
 .variations > ul > li.satisfied .consequence {
 	background: yellow;
+	padding: 0 0.6em;
 }
