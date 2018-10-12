@@ -113,8 +113,8 @@ plafond: ceiling
 barème: scale
 composantes: components
 multiplicateur des tranches: bracket amount
-Tranches de l'assiette: Scale brackets
-Taux: Rates
+Tranche de l'assiette: Scale bracket
+Taux: Rate
 cible: target
 montant à atteindre: minimum value
 dû par: owed by
@@ -199,3 +199,8 @@ Cette règle présente: This rule has
 Si: If
 Sinon: Else
 Alors: Then
+Résultat: Result
+De: From
+à: to
+En-dessous de: Below
+Au-dessus de: Above

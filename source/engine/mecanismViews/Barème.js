@@ -38,14 +38,14 @@ export default function Barème(nodeValue, explanation) {
 								<thead>
 									<tr>
 										<th>
-											<Trans>Tranches de l&apos;assiette</Trans>
+											<Trans>Tranche de l&apos;assiette</Trans>
 										</th>
 										<th>
 											<Trans>Taux</Trans>
 										</th>
 										{showValues && (
 											<th>
-												<Trans>Valeurs</Trans>
+												<Trans>Résultat</Trans>
 											</th>
 										)}
 									</tr>
@@ -87,14 +87,20 @@ let Tranche = withLanguage(
 	}) => (
 		<tr className={classNames('tranche', { activated: trancheValue > 0 })}>
 			<td key="tranche">
-				{maxOnly
-					? `En-dessous de ${formatNumber(maxOnly, language)}`
-					: minOnly
-						? `Au-dessus de ${formatNumber(minOnly, language)}`
-						: `De ${formatNumber(min, language)} à ${formatNumber(
-								max,
-								language
-						  )}`}
+				{maxOnly ? (
+					<>
+						<Trans>En-dessous de</Trans> {formatNumber(maxOnly, language)}
+					</>
+				) : minOnly ? (
+					<>
+						<Trans>Au-dessus de</Trans> {formatNumber(minOnly, language)}
+					</>
+				) : (
+					<>
+						<Trans>De</Trans> {formatNumber(min, language)} <Trans>à</Trans>{' '}
+						{formatNumber(max, language)}
+					</>
+				)}
 			</td>
 			<td key="taux"> {makeJsx(taux)}</td>
 			{showValues && (
