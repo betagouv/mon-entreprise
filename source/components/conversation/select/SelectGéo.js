@@ -45,6 +45,10 @@ class Select extends Component {
 					optionRenderer={({ nom, departement }) =>
 						nom + ` (${departement?.nom})`
 					}
+					filterOptions={options => {
+						// Do no filtering, just return all options
+						return options
+					}}
 					placeholder="Entrez le nom de commune"
 					noResultsText="Nous n'avons trouvé aucune commune"
 					searchPromptText={null}
