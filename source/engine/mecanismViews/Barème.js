@@ -85,6 +85,7 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 	)
 })
 
+//eslint-disable-next-line
 export default (nodeValue, explanation) => (
 	<Comp {...{ nodeValue, explanation }} />
 )

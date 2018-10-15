@@ -50,6 +50,7 @@ let Comp = withLanguage(function Composantes({
 	)
 })
 
+// eslint-disable-next-line
 export default (nodeValue, explanation) => (
 	<Comp {...{ nodeValue, explanation }} />
 )

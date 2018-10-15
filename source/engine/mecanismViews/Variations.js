@@ -54,6 +54,7 @@ let Comp = withLanguage(function Variations({
 		/>
 	)
 })
+// eslint-disable-next-line
 export default (nodeValue, explanation) => (
 	<Comp {...{ nodeValue, explanation }} />
 )
