@@ -109,6 +109,13 @@ contrat salarié . ATMP:
   description.fr: >-
     Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles.
+contrat salarié . ATMP . taux réduit:
+  titre.en: reduced rate for risk-free activity
+  question.en: Is the activity of the establishment or employee without risk ? 
+  description.en: |
+    This rate corresponds to: 
+      - small companies whose activity is not risky, for example IT consulting 
+      - the new "support function rate": for companies with fewer than 150 employees, employees in support functions (for example, secretarial, accounting, human resources) contribute at a reduced rate.
 contrat salarié . ATMP . taux collectif ATMP:
   titre.en: ATMP collective rate
   titre.fr: Taux collectif ATMP
