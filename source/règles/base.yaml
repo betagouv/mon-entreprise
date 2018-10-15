@@ -317,7 +317,26 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: ATMP . taux collectif ATMP / 100
+      taux:
+        variations: 
+          - si: taux réduit 
+            alors: 1%
+          - sinon: ATMP . taux collectif ATMP / 100
+
+   
+- espace: contrat salarié . ATMP
+  nom: taux réduit 
+  titre: taux réduit pour activité sans risque
+  question: L'activité de l'établissement ou du salarié est-elle sans risque ? 
+  description: |
+    Ce taux correspond :
+    - aux petites entreprises dont l'activité n'est pas risquée, par exemple du conseil en informatique
+    - au nouveau "taux support" : pour les entreprises d'effectif inférieur à 150, les salariés des fonctions support (par exemple, secrétariat, comptabilité, ressources humaines) cotisent à un taux réduit. 
+  applicable si: entreprise . effectif <= 150
+  par défaut: non
+  références: 
+    fiche ameli.fr: https://www.ameli.fr/employeur/actualites/evolution-de-la-tarification-de-lassurance-maladie-risques-professionnels-ce-qui-change
+
 
 - espace: contrat salarié . ATMP
   nom: taux collectif ATMP

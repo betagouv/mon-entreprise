@@ -43,6 +43,30 @@
       variables manquantes: 
         - statut cadre
 
+
+- nom: base
+  format: euros
+
+- test: variations avec cas défaut calculé
+  formule:
+    variations:
+      - si: statut cadre
+        alors: 2300
+      - sinon: base / 4
+
+  exemples:
+    - nom: Cas défaut à calculer
+      situation:
+        statut cadre: non
+      valeur attendue: null
+      variables manquantes:
+        - base
+    - nom: Cas défaut ignoré si variation résolue 
+      situation:
+        statut cadre: oui
+      valeur attendue: 2300
+      variables manquantes: []
+
 - nom: effectif
   format: nombre
 
