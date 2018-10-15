@@ -52,14 +52,18 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 		if (situationValue == null && !variableHasFormula && variableHasCond) {
 			// SITUATION 4.1 : La condition est connue et vrai
 			if (explanation.isApplicable)
-				return cacheAndNode(explanation.nodeValue, { [dottedName]: 1 })
+				return variable.question
+					? cacheAndNode(null, { [dottedName]: 1 })
+					: cacheAndNode(true, {})
 
 			// SITUATION 4.2 : La condition est connue et fausse
-			if (explanation.isApplicable === false)
-				return cacheAndNode(explanation.nodeValue, {})
+			if (explanation.isApplicable === false) return cacheAndNode(false, {})
 			// SITUATION 4.3 : La condition n'est pas connue
 			if (explanation.isApplicable == null)
-				return cacheAndNode(null, explanation.missingVariables)
+				return cacheAndNode(null, {
+					...explanation.missingVariables,
+					...(variable.question ? { [dottedName]: 1 } : {})
+				})
 		}
 	}
 
