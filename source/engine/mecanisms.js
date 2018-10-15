@@ -180,17 +180,17 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 				? satisfiedVariation.consequence.nodeValue
 				: null
 
-		let leftMissing = satisfiedVariation
-				? {}
-				: mergeAllMissing(
-						reject(isNil, pluck('condition', evaluatedExplanation))
-				  ),
+		let leftMissing = mergeAllMissing(
+				reject(isNil, pluck('condition', evaluatedExplanation))
+			),
 			candidateVariations = filter(
 				node => !node.condition || node.condition.nodeValue !== false,
 				evaluatedExplanation
 			),
 			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
-			missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
+			missingVariables = satisfiedVariation
+				? collectNodeMissing(satisfiedVariation.consequence)
+				: mergeMissing(bonus(leftMissing), rightMissing)
 
 		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
 	}
@@ -526,9 +526,9 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 					<div>
 						<div>avec</div>
 						<ul>
-							{v.avec
-								.map(recurse)
-								.map(el => <li key={el.name}>{makeJsx(el)}</li>)}
+							{v.avec.map(recurse).map(el => (
+								<li key={el.name}>{makeJsx(el)}</li>
+							))}
 						</ul>
 					</div>
 				}
