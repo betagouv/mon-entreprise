@@ -4,9 +4,9 @@ This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and 
 
 It's a React, Redux, Webpack website hosted on Netlify with no backend.
 
-The hiring simulator, available on both websites, embeds a model of the french tax system as a YAML domain specific language. It enables displaying the computing rules on the Web and having a single source of logic for both the computation engine (a JS library) and the end-user conversation-like form.
+The hiring simulator, available on both websites, embeds a [model](https://github.com/betagouv/syso/blob/master/source/règles/base.yaml) of the french tax system as a YAML domain specific language. It enables displaying the computing rules on the Web and having a single source of logic for both the computation engine (a JS library) and the generated end-user conversation-like form.
 
-Developed by the french public startup incubator, [beta.gouv.fr](http://beta.gouv.fr/).
+Developed by the french public startup incubator, [beta.gouv.fr](https://beta.gouv.fr/).
 
 Most of the documentation (including issues and the wiki) is written in french, raise an [issue](https://github.com/betagouv/syso/issues/new) if you are interested and do not speak French.
 
