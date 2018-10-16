@@ -1,18 +1,16 @@
+![La loi papier sur la page de droite du dessin de l'énorme livre de droit, sera (page de droite) augmentée par du code interprétable](https://raw.githubusercontent.com/betagouv/syso/master/source/sites/embauche.gouv.fr/images/logo.png)
 
-![La loi papier sur la page de droite du dessin de l'énorme livre de droit, sera (page de droite) augmentée par du code interprếtable](https://github.com/laem/syso/blob/master/source/images/logo.png)
+This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and [embauche.beta.gouv.fr](https://embauche.beta.gouv.fr).
 
+It's a React, Redux, Webpack website hosted on Netlify with no backend.
 
-Ce dépôt contient les règles des prélèvements sur les rémunérations salariales en France, et les expose sous forme de simulateurs Web : calcul du salaire net à partir du brut, etc.
+The hiring simulator, available on both websites, embeds a [model](https://github.com/betagouv/syso/blob/master/source/règles/base.yaml) of the french tax system as a YAML domain specific language. It enables displaying the computing rules on the Web and having a single source of logic for both the computation engine (a JS library) and the generated end-user conversation-like form.
 
-L'objectif à plus long terme est d'explorer comment des domaines legislatifs peuvent être encodés de façon interprétable (par un ordinateur) et lisible (par un humain).
+Developed by the french public startup incubator, [beta.gouv.fr](https://beta.gouv.fr/).
 
-Développé à l'incubateur des services numériques de l'État, [beta.gouv.fr](http://beta.gouv.fr/).
+Most of the documentation (including issues and the wiki) is written in french, raise an [issue](https://github.com/betagouv/syso/issues/new) if you are interested and do not speak French.
 
-> Lisez notre [wiki](https://github.com/sgmap/syso/wiki/Home/) pour plus d'informations.
-
-
-Pour les développeurs
---------------------------
+## Run it
 
 ```
 yarn install
@@ -20,19 +18,10 @@ yarn install
 yarn start
 ```
 
-C'est une appli en React, Redux, ES6-ES7, Webpack, Ramda, qui exploite la loi codée en YAML.
-Les fichiers YAML sont principalement du code préfixé : opérateur puis liste ou objet d'opérandes, donc proches d'un AST. Les feuilles de cet arbre par contre sont en style infixe et parsées avec Nearley.js.
-Ce gros object est interprété par un moteur JS. Les mécanismes de calcul exposent une représentation JSX qui permet d'expliquer les calculs sur le Web.
+## Supported browsers
 
-Les fichiers YAML ainsi que le code du moteur ne sont aujourd'hui pas très bien ordonnés, et nous n'avons pas de documentation technique : mieux vaut nous contacter avant de faire un plongeon dans le code.
+The website will run well on modern browsers. IE 11 works, but can have visual glitches and performance issues.
 
-> Note : vous ne trouverez pas de `const` dans l'appli, tous les `let` (sauf exception signalée) se comportant comme des `const` (ne sont pas réassignés), sauf pour les vraies constantes dans `actions.js`.
+This compatibility is tested thanks to [BrowserStack](http://browserstack.com/)'s free open source program.
 
-
-Navigateurs supportés
---------------------------
-
-Toutes les versions récentes de Firefox, Chrome, Edge et Safari sont parfaitement supportées. Le rendu n'est pas optimal sur IE 11, mais le site est fonctionnel.
-
-Nous testons cette compatibilité grâce à [BrowserStack](http://browserstack.com/) qui s'engage pour les logiciels libres.
 ![Logo de Browserstack, notre solution de tests manuels](https://i.imgur.com/dQwLjXA.png)
