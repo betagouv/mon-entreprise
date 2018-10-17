@@ -28,6 +28,7 @@ import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
 import Route404 from './pages/Route404'
 import RulesList from './pages/RulesList'
+import Source from './pages/Source'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -79,6 +80,7 @@ class EmbaucheRoute extends Component {
 					<Redirect from="/simu/*" to="/" />
 					<Route path="/règles" component={RulesList} />
 					<Route path="/exemples" component={ExampleSituations} />
+					<Route path="/source" component={Source} />
 					<Route path="/mecanismes" component={Mecanisms} />
 					<Route path="/à-propos" component={About} />
 					<Route path="/intégrer" component={Integration} />

@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 const { universal, web } = require('./webpack.commonLoaders.js')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports = {
 	resolve: {
@@ -88,6 +89,7 @@ module.exports = {
 				from: './source/sites/mycompanyinfrance.fr/sitemap.en.txt',
 				to: 'sitemap.infrance.en.txt'
 			}
-		])
+		]),
+		new MonacoWebpackPlugin()
 	]
 }
