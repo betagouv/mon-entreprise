@@ -19,8 +19,8 @@ import computeThemeColours from 'Ui/themeColours'
 import { simulationTargetNames } from '../config.js'
 import defaultLang from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
+import storageReducer from './storageReducer'
 import type { Action } from 'Types/ActionsTypes'
-
 // TODO : use context API instead
 function themeColours(state = computeThemeColours(), { type, colour }) {
 	if (type == 'CHANGE_THEME_COLOUR') return computeThemeColours(colour)
@@ -160,6 +160,7 @@ const existingCompanyReducer = (state, action) => {
 }
 export default reduceReducers(
 	existingCompanyReducer,
+	storageReducer,
 	combineReducers({
 		sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
 		//  this is handled by redux-form, pas touche !

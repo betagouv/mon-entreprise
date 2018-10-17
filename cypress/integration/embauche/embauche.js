@@ -28,6 +28,21 @@ describe('Landing basic test', function() {
 	})
 })
 
+describe('Simulation saving test', function() {
+	it('should save the current simulation', function() {
+		cy.visit('/')
+		salaryInput('Salaire net').type('5471')
+		cy.contains('Autres').click()
+		cy.contains('passer').click()
+		cy.contains('passer').click()
+		// Wanted to use cypress.clock(), but can't because of piwik changing Date prototype (!)
+		cy.wait(1100)
+		cy.visit('/')
+		cy.contains('Retrouver ma simulation').click()
+		salaryInput('Salaire net').should('have.value', '5471')
+	})
+})
+
 describe('Iframe integration test', function() {
 	it('should display an iframe of the simulateur', function() {
 		cy.visit('/integration-test')
