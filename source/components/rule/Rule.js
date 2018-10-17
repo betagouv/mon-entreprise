@@ -25,6 +25,8 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import { AttachDictionary } from '../AttachDictionary'
+import knownMecanisms from 'Engine/known-mecanisms.yaml'
 
 export default compose(
 	connect((state, props) => ({
@@ -34,6 +36,7 @@ export default compose(
 		analysedRule: ruleAnalysisSelector(state, props),
 		analysedExample: exampleAnalysisSelector(state, props)
 	})),
+	AttachDictionary(knownMecanisms),
 	withI18n(),
 	withLanguage
 )(

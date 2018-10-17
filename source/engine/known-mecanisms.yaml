@@ -163,3 +163,11 @@ synchronisation:
     Pour éviter trop de saisies à l'utilisateur, certaines informations sont récupérées à partir de ce que l'on appelle des API. Ce sont des services auxquels ont fait appel pour obtenir des informations sur un sujet précis. Par exemple, l'État français fournit gratuitement l'API géo, qui permet à partir du nom d'une ville, d'obtenir son code postal, son département, la population etc.
     Ce mécanismes `synchronisation` permet de faire le lien entre les règles de notre système et les réponses de ces API.
 
+
+période: 
+  description: |
+    Une régle qui a une période, c'est une règle qui ne peut être calculée que sur cette période. Une règle qui n'a pas de période peut-être calculée quelle que soit la période la situation. 
+
+    Ainsi, dans une simulation mensuelle (période: "mois"), si `indemnité kilométrique vélo` (de période neutre) appelle `distance annuelle` et que cette dernière est définie sur l'année (période: "année"), alors la valeur de cette dernière sera divisée par 12 avant d'être passée à cette première. L'inverse est également vrai, en multipliant par 12.
+
+    Par défaut, la période de la simulation est mensuelle.
