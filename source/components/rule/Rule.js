@@ -25,7 +25,10 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import { AttachDictionary } from '../AttachDictionary'
+import knownMecanisms from 'Engine/known-mecanisms.yaml'
 
+@AttachDictionary(knownMecanisms)
 @connect((state, props) => ({
 	currentExample: state.currentExample,
 	flatRules: flatRulesSelector(state),

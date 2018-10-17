@@ -1,8 +1,6 @@
 import marked from 'Engine/marked'
 import { path } from 'ramda'
-import React, {
-	Component
-} from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './Dictionary.css'
 import Overlay from './Overlay'
@@ -25,7 +23,7 @@ export let AttachDictionary = dictionary => Decorated =>
 			})
 		}
 		renderExplanationMarkdown(explanation, term) {
-			return marked(`### Mécanisme: ${term}\n\n${explanation}`)
+			return marked(`### Mécanisme : ${term}\n\n${explanation}`)
 		}
 		render() {
 			let { explanation, term } = this.state

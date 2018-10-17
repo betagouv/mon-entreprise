@@ -38,19 +38,28 @@ let RuleHeader = withColours(
 				<div id="ruleHeader__description">
 					{createMarkdownDiv(description || question)}
 				</div>
-				{(type || path([type, 'destinataire'])(flatRule)) && (
-					<div id="ruleHeader__infobox">
-						{type && (
-							<div className="infobox__item">
-								<h4>Type&nbsp;:</h4>
-								<Trans>{capitalise0(type)}</Trans>
+				<div id="ruleHeader__infobox">
+					{type && (
+						<div className="infobox__item">
+							<h4>Type&nbsp;:</h4>
+							<Trans>{capitalise0(type)}</Trans>
+						</div>
+					)}
+					{flatRule['période'] && (
+						<div className="infobox__item">
+							<h4>{emoji('⏱️')} Période :</h4>
+							<div className="inlineMecanism">
+								<span
+									className="name"
+									data-term-definition="période"
+									style={{ background: '#8e44ad' }}>
+									{flatRule['période']}
+								</span>
 							</div>
-						)}
-						<Destinataire
-							destinataire={path([type, 'destinataire'])(flatRule)}
-						/>
-					</div>
-				)}
+						</div>
+					)}
+					<Destinataire destinataire={path([type, 'destinataire'])(flatRule)} />
+				</div>
 			</div>
 		</section>
 	)

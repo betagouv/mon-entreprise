@@ -25,6 +25,7 @@
 
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: distance annuelle
+  description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
   période: année
   formule: 4 * 218
   note: 4 km par jour sur 218 jours.
