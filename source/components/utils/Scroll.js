@@ -52,11 +52,17 @@ export class ScrollToElement extends Component {
 		) {
 			return
 		}
-		this.ref.scrollIntoView({
-			behavior: this.props.behavior,
-			block: 'nearest',
-			inline: 'nearest'
-		})
+		try {
+			this.ref.scrollIntoView({
+				behavior: this.props.behavior,
+				block: 'nearest',
+				inline: 'nearest'
+			})
+		} catch (error) {
+			this.ref.scrollIntoView({
+				behavior: this.props.behavior
+			})
+		}
 	}
 	componentDidMount() {
 		this.scrollIfNeeded()
