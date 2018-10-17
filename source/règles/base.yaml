@@ -734,7 +734,7 @@
     - si: brut de base < 300
       message: Entrez un salaire raisonnable
       niveau: bloquant
-    - si: brut de base < SMIC mensuel
+    - si: brut de base < SMIC
       niveau: avertissement
       solution:
         cible: contrat salarié . temps partiel
