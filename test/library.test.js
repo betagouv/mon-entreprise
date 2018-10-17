@@ -1,6 +1,5 @@
 import { expect } from 'chai'
 import Syso from '../source/engine/index'
-import { propEq } from 'ramda'
 import sasuRules from '../source/règles/sasu.yaml'
 
 describe('library', function() {
@@ -76,7 +75,7 @@ describe('library', function() {
 		console.log({ revenuDisponible, dividendes })
 	})
 
-	it('temp', function() {
+	it('should let the user define a simplified revenue tax system', function() {
 		let règles = `
 - nom:  revenu imposable
   question: Quel est votre revenu imposable ?
@@ -123,10 +122,8 @@ describe('library', function() {
 		let value = Syso.evaluate(
 			target,
 			{ 'revenu imposable': '48000' },
-			{ extra: règles }
+			{ base: règles }
 		)
-		console.log(value)
-
-		expect(value).to.equal(7000)
+		expect(value).to.equal(7253.26)
 	})
 })
