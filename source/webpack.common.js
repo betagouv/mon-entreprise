@@ -2,6 +2,7 @@
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
+
 module.exports = {
 	resolve: {
 		alias: {

@@ -1,24 +1,31 @@
-[[redirects]]
-from = "https://embauche.beta.gouv.fr/stats"
-to = "https://rough-college.glitch.me/"
-status = 200
 
-[[redirects]]
-from = "https://infrance.org/*"
-to = "/infrance.html"
-status = 200
+# InFrance PRODUCTION settings 
 
 [[redirects]]
 from = "https://mycompanyinfrance.fr/robots.txt"
 to = "/robots.infrance.txt"
 status = 200
 
+[[redirects]]
+from = "https://mycompanyinfrance.fr"
+to = "/prerender/infrance/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mycompanyinfrance.fr"
+to = "/prerender/infrance/social-security/index.html"
+status = 200
 
 [[redirects]]
 from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"
 status = 200
 
+# Embauche PRODUCTION settings
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/stats"
+to = "https://rough-college.glitch.me/"
+status = 200
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/modules/v2/*"
@@ -30,8 +37,20 @@ to = "/robots.embauche.txt"
 status = 200
 
 [[redirects]]
+from = "https://embauche.beta.gouv.fr/"
+to = "/prerender/embauche/index.html"
+status = 200
+
+[[redirects]]
 from = "https://embauche.beta.gouv.fr/*"
 to = "/embauche.html"
+status = 200
+
+# Redirect for embauche in staging and development settings
+[[redirects]]
+from = "/"
+query = {s = "e"}
+to = "/prerender/embauche/index.html"
 status = 200
 
 
@@ -39,6 +58,17 @@ status = 200
 from = "/*"
 query = {s = "e"}
 to = "/embauche.html"
+status = 200
+
+# Redirect for infrance in staging and development settings
+[[redirects]]
+from = "/"
+to = "/prerender/infrance/index.html"
+status = 200
+
+[[redirects]]
+from = "/social-security"
+to = "/prerender/infrance/social-security/index.html"
 status = 200
 
 [[redirects]]

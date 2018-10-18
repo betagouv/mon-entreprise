@@ -67,7 +67,7 @@ class Search extends React.Component<Props, State> {
 					Thanks to the SIREN database, the public informations of your company
 					will be automatically available for the next steps.
 				</p>
-
+				{/* $FlowFixMe */}
 				<ReactSelect.Async
 					valueKey="id"
 					labelKey="l1_normalisee"
@@ -82,7 +82,6 @@ class Search extends React.Component<Props, State> {
 					loadingPlaceholder="Searching..."
 					loadOptions={this.getOptions}
 				/>
-
 				{!!this.state.input && (
 					<>
 						<Company {...this.state.input} />
