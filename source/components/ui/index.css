@@ -56,7 +56,6 @@ span.ui__.enumeration:not(:last-of-type)::after {
 #js {
 	opacity: 1;
 	transform: translateY(0px);
-	transition: opacity 0.4s, transform 0.4s;
 }
 #lds-ellipsis {
 	display: none;
