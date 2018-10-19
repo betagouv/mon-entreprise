@@ -4787,6 +4787,11 @@ https-proxy-agent@^2.2.0, https-proxy-agent@^2.2.1:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
+i18next-locize-backend@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/i18next-locize-backend/-/i18next-locize-backend-1.6.0.tgz#4a95c19fa2bee623c1d61ce5a80a76a123f7ff92"
+  integrity sha512-3+hlwM7eC8MclWIfZ89hXwir4HC5YKUxrx+aLWWPC1H1hrB9dFh4uxve1o2HqJnravOrg247xHvW8xGv9h/Asg==
+
 i18next@^10.0.7:
   version "10.6.0"
   resolved "http://registry.npmjs.org/i18next/-/i18next-10.6.0.tgz#90ffd9f9bc617f34b9a12e037260f524445f7684"
@@ -5716,6 +5721,11 @@ locate-path@^3.0.0:
   dependencies:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
+
+locize-editor@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/locize-editor/-/locize-editor-1.7.0.tgz#3c14abb93f6d7c4e197511221f8c4a3954e63502"
+  integrity sha512-KdxAlwViz3KjGDEH3WIgaaUDw8XS8GNPpUDNAXM/vnRUryJgkA3n6DrDAeKJ99nixlx7G7+SZ9FZx2ZV9mIv8w==
 
 lodash-es@^4.17.10, lodash-es@^4.17.5, lodash-es@^4.2.1:
   version "4.17.11"

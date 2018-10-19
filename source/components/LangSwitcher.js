@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
 import { translate } from 'react-i18next'
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
 const languageCodeToEmoji = {
@@ -12,13 +11,7 @@ const languageCodeToEmoji = {
 
 @withRouter
 @translate()
-@connect(
-	null,
-	dispatch => ({
-		changeLanguage: lang => dispatch({ type: 'SWITCH_LANG', lang })
-	})
-)
-export default class LangSwitcher extends Component {
+class LangSwitcher extends Component {
 	static contextTypes = {
 		i18n: PropTypes.object.isRequired
 	}
@@ -29,7 +22,6 @@ export default class LangSwitcher extends Component {
 
 	changeLanguage = () => {
 		let nextLanguage = this.getUnusedLanguageCode()
-		this.props.changeLanguage(nextLanguage)
 		this.context.i18n.changeLanguage(nextLanguage)
 		this.forceUpdate()
 	}
@@ -44,3 +36,5 @@ export default class LangSwitcher extends Component {
 		)
 	}
 }
+
+export default LangSwitcher
