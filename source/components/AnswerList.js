@@ -28,7 +28,8 @@ const formatAnswer = (answer, language) => {
 			answer.valeur
 		)
 	}
-	if (answer.type === 'string') return <Trans>{answer.valeur}</Trans>
+	// TODO : translation
+	if (answer.type === 'string') return answer.valeur
 	return answer.valeur
 }
 
