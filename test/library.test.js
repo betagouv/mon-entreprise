@@ -1,6 +1,7 @@
 import { expect } from 'chai'
 import Syso from '../source/engine/index'
 import sasuRules from '../source/règles/sasu.yaml'
+import co2 from '../source/règles/co2.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
@@ -123,6 +124,20 @@ describe('library', function() {
 			target,
 			{ 'revenu imposable': '48000' },
 			{ base: règles }
+		)
+		expect(value).to.equal(7253.26)
+	})
+	it('should let let user define a rule base on a completely different subject', function() {
+		let target = 'impact'
+
+		let value = Syso.evaluate(
+			target,
+			{
+				'nombre de douches': 30,
+				'chauffage . type': 'gaz',
+				'durée de la douche': 7
+			},
+			{ base: co2 }
 		)
 		expect(value).to.equal(7253.26)
 	})
