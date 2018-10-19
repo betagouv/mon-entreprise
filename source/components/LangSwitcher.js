@@ -5,8 +5,8 @@ import { translate } from 'react-i18next'
 import { withRouter } from 'react-router'
 
 const languageCodeToEmoji = {
-	en: '🇬🇧',
-	fr: '🇫🇷'
+	'en-UK': '🇬🇧',
+	'fr-FR': '🇫🇷'
 }
 
 @withRouter
@@ -17,7 +17,7 @@ class LangSwitcher extends Component {
 	}
 	getUnusedLanguageCode = () => {
 		let languageCode = this.context.i18n.language
-		return !languageCode || languageCode === 'fr' ? 'en' : 'fr'
+		return !languageCode || languageCode === 'fr-FR' ? 'en-UK' : 'fr-FR'
 	}
 
 	changeLanguage = () => {
@@ -31,7 +31,8 @@ class LangSwitcher extends Component {
 			<button
 				className={this.props.className || 'ui__ link-button'}
 				onClick={this.changeLanguage}>
-				{emoji(languageCodeToEmoji[languageCode])} {languageCode.toUpperCase()}
+				{emoji(languageCodeToEmoji[languageCode])}{' '}
+				{languageCode.slice(0, 2).toUpperCase()}
 			</button>
 		)
 	}

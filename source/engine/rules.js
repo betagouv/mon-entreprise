@@ -1,39 +1,38 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import rawRules from 'Règles/base.yaml'
-import translations from 'Règles/externalized.yaml'
+import formValueTypes from 'Components/conversation/formValueTypes'
 import {
 	assoc,
-	mapObjIndexed,
 	chain,
-	has,
-	pipe,
-	toPairs,
-	map,
-	fromPairs,
-	split,
-	join,
 	dropLast,
-	take,
-	propEq,
-	reduce,
-	when,
-	is,
-	props,
+	fromPairs,
+	has,
 	identity,
-	path,
-	reject,
-	reduced,
-	range,
+	is,
+	join,
 	last,
-	trim
+	map,
+	mapObjIndexed,
+	path,
+	pipe,
+	propEq,
+	props,
+	range,
+	reduce,
+	reduced,
+	reject,
+	split,
+	take,
+	toPairs,
+	trim,
+	when
 } from 'ramda'
-import possibleVariableTypes from './possibleVariableTypes.yaml'
-import marked from './marked'
-import { capitalise0 } from '../utils'
-import formValueTypes from 'Components/conversation/formValueTypes'
-
+import rawRules from 'Règles/base.yaml'
+import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
 import taux_versement_transport from 'Règles/taux-versement-transport.json'
+import { capitalise0 } from '../utils'
+import marked from './marked'
+import possibleVariableTypes from './possibleVariableTypes.yaml'
 
 // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************

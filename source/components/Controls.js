@@ -1,12 +1,12 @@
-import React from 'react'
-import './Controls.css'
-import emoji from 'react-easy-emoji'
-import { connect } from 'react-redux'
-import { startConversation, hideControl } from 'Actions/actions'
+import { hideControl, startConversation } from 'Actions/actions'
+import withLanguage from 'Components/utils/withLanguage'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
+import React from 'react'
+import emoji from 'react-easy-emoji'
+import { connect } from 'react-redux'
+import './Controls.css'
 import withColours from './utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
 
 function Controls({
 	blockingInputControls,
@@ -19,7 +19,7 @@ function Controls({
 	language
 }) {
 	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
-	if (language === 'en')
+	if (language === 'en-UK')
 		return blockingInputControls?.[0]?.message ==
 			'Entrez un salaire mensuel' ? (
 			<p className="blockingControl">
