@@ -41,7 +41,7 @@ export default class Layout extends PureComponent {
 		this.history = createHistory({
 			basename: process.env.NODE_ENV === 'production' ? '' : this.props.basename
 		})
-		this.props.tracker.connectToHistory(this.history)
+		this.props.tracker?.connectToHistory(this.history)
 		const storeEnhancer = composeEnhancers(
 			applyMiddleware(
 				// Allows us to painlessly do route transition in action creators
@@ -54,7 +54,7 @@ export default class Layout extends PureComponent {
 			{ ...initialStore, ...this.props.initialStore },
 			storeEnhancer
 		)
-		this.props.onStoreCreated(this.store)
+		this.props.onStoreCreated && this.props.onStoreCreated(this.store)
 		if (this.props.language) {
 			i18next.changeLanguage(this.props.language)
 		}
