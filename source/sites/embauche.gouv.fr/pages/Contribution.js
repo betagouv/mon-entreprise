@@ -10,12 +10,16 @@ export default class Contribution extends Component {
 		return (
 			<section className="ui__ container" id="contribution">
 				<h1>Contribuer</h1>
+				<div>
+					AAllez allez allez, levez les bras en l'air, allez allez allez
+				</div>
 				<p>
 					Tout le développement se fait de façon transparente et contributive
 					sur{' '}
 					<a href="https://github.com/sgmap/syso" target="_blank">
 						GitHub
-					</a>.
+					</a>
+					.
 				</p>
 			</section>
 		)
