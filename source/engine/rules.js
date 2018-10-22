@@ -73,7 +73,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 	}
 }
 
-let buildDottedName = rule =>
+export let buildDottedName = rule =>
 	rule['espace'] ? [rule['espace'], rule['nom']].join(' . ') : rule['nom']
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
