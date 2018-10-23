@@ -710,11 +710,12 @@ export let mecanismLinearScale = (recurse, k, v) => {
 	let effect = ({ assiette, tranches }) => {
 		if (val(assiette) === null) return null
 
+		let roundedAssiette = Math.round(val(assiette))
+
 		let matchedTranche = tranches.find(
-			({ de: min, à: max }) => val(assiette) >= min && val(assiette) < max
+			({ de: min, à: max }) => roundedAssiette >= min && roundedAssiette <= max
 		)
 
-		if (!matchedTranche) return 0
 		return matchedTranche.taux.nodeValue * val(assiette)
 	}
 

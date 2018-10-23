@@ -39,8 +39,9 @@ export default function BarèmeLinéaire(nodeValue, explanation) {
 										key={min || minOnly || 0}
 										style={{
 											fontWeight:
-												explanation.assiette.nodeValue > min &&
-												(!max || explanation.assiette.nodeValue < max)
+												Math.round(explanation.assiette.nodeValue) >= min &&
+												(!max ||
+													Math.round(explanation.assiette.nodeValue) <= max)
 													? ' bold'
 													: ''
 										}}>
