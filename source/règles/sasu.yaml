@@ -1,7 +1,9 @@
 - nom: chiffre affaires
+  période: flexible
   format: euros
 
 - nom: charges
+  période: flexible
   par défaut: 0
   format: euros
 
@@ -26,19 +28,23 @@
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
 - nom: bénéfice 
+  période: flexible
   formule: chiffre affaires - salaire total
 
 - nom: dividendes
 
 - espace: dividendes
+  période: flexible
   nom: brut
   formule: bénéfice - impôt sur les sociétés
 
 - espace: dividendes
+  période: flexible
   nom: net
   formule: brut - prélèvement forfaitaire unique
 
 - nom: prélèvement forfaitaire unique 
+  période: flexible
   espace: dividendes
   formule: 
     multiplication: 
@@ -50,12 +56,15 @@
 
 
 - nom: salaire total
+  période: flexible
   formule: chiffre affaires * répartition salaire sur dividendes 
 
 - nom: net après impôt
+  période: flexible
   format: euros
 
 - nom: revenu disponible
+  période: flexible
   formule: net après impôt + dividendes . net
 
 

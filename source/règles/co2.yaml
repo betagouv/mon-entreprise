@@ -5,16 +5,15 @@
 # - ?
 
 - nom: impact
-  période: année
+  période: flexible
   formule: impact par douche * nombre de douches
 
 - nom: nombre de douches
-  période: mois
-  question: Combien prenez-vous de douches par mois ?
+  période: flexible
+  question: Combien prenez-vous de douches par ?
   format: nombre
   suggestions:
    - 30
-
 
 - nom: impact par douche
   formule: impact par litre * litres d'eau

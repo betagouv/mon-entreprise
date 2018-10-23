@@ -4,7 +4,6 @@ import { findRuleByDottedName, disambiguateRuleReference } from './rules'
 import { evaluateNode, rewriteNode, makeJsx } from './evaluation'
 import { getSituationValue } from './variables'
 import { Trans } from 'react-i18next'
-import { isNumeric } from '../utils'
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
