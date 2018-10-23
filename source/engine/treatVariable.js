@@ -131,18 +131,24 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		let calledPeriod = ruleToTransform['période'] || environmentPeriod
 
 		let transformedNodeValue =
-			callingPeriod === 'mois' && calledPeriod === 'année'
-				? nodeValue / 12
-				: callingPeriod === 'année' && calledPeriod === 'mois'
-					? nodeValue * 12
-					: nodeValue
+				callingPeriod === 'mois' && calledPeriod === 'année'
+					? nodeValue / 12
+					: callingPeriod === 'année' && calledPeriod === 'mois'
+						? nodeValue * 12
+						: nodeValue,
+			periodTransform = nodeValue !== transformedNodeValue
 
-		return rewriteNode(
-			filteredNode,
+		let result = rewriteNode(
+			{
+				...filteredNode,
+				periodTransform: periodTransform,
+				...(periodTransform ? { originPeriodValue: nodeValue } : {})
+			},
 			transformedNodeValue,
 			filteredNode.explanation,
 			filteredNode.missingVariables
 		)
+		return result
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(
 		parseResult.variable || parseResult

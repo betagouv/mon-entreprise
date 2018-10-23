@@ -1,6 +1,34 @@
 # This is not a mecanism test, but we make use of the simplicity of declaring tests in YAML, only available for mecanisms for now
 
 
+- test: impact des douches
+  période: année
+  formule: 1 * nombre de douches
+
+  exemples: 
+    - situation: 
+        nombre de douches: 30
+      valeur attendue: 360
+
+- nom: nombre de douches
+  période: mois
+  question: Combien prenez-vous de douches par mois ?
+  format: nombre
+  suggestions:
+   - 30
+
+- nom: impact par douche
+  formule: 1
+  unité: kgCO2e
+
+- test: impact des douches erroné
+  période: année
+  formule: impact par douche * nombre de douches
+  exemples: 
+    - situation: 
+        nombre de douches: 30
+      valeur attendue: 360
+
 - nom: assiette mensuelle
   période: mois
   format: €
