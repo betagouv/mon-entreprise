@@ -1800,7 +1800,7 @@
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
 
   applicable si: statut cadre
-
+  période: mois
   formule:
     complément:
       composantes:
