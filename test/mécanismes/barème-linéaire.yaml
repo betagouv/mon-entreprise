@@ -6,10 +6,11 @@
     barème linéaire:
       assiette: assiette
       tranches:
-      - en-dessous de: 1000
+      - de: 0
+        à: 999
         taux: 5%
       - de: 1000
-        à: 2000
+        à: 1999
         taux: 10%
       - au-dessus de: 2000
         taux: 15%
@@ -27,5 +28,12 @@
       situation:
         assiette: 10000
       valeur attendue: 1500
-
+    - nom: "pour choisir la tranche, l'assiette est arrondie au préalable"
+      situation:
+        assiette: 999.3
+      valeur attendue: 49.965
+    - nom: "pour choisir la tranche, l'assiette est arrondie au préalable (2)"
+      situation:
+        assiette: 999.6
+      valeur attendue: 99.96
 

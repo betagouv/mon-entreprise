@@ -977,7 +977,8 @@
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
       tranches:
-        - en-dessous de: 1568
+        - de: 0
+          à: 1568
           taux: 0%
 
         - de: 1569
@@ -1062,7 +1063,8 @@
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
       tranches:
-        - en-dessous de: 1679
+        - de: 0
+          à: 1679
           taux: 0%
 
         - de: 1680
@@ -1146,7 +1148,8 @@
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
       tranches:
-        - en-dessous de: 1367
+        - de: 0
+          à: 1367
           taux: 0%
 
         - de: 1368
