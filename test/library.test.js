@@ -128,17 +128,18 @@ describe('library', function() {
 		expect(value).to.equal(7253.26)
 	})
 	it('should let let user define a rule base on a completely different subject', function() {
-		let target = 'impact'
+		let targets = ['impact']
 
 		let value = Syso.evaluate(
-			target,
+			targets,
 			{
 				'nombre de douches': 30,
 				'chauffage . type': 'gaz',
-				'durée de la douche': 7
+				'durée de la douche': 10
 			},
-			{ base: co2 }
+			{ base: co2, debug: true }
 		)
+		console.log(JSON.stringify(value.targets[0], null, 4))
 		expect(value).to.equal(7253.26)
 	})
 })
