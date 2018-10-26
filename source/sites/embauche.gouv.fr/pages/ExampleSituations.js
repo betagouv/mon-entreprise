@@ -9,12 +9,16 @@ import {
 	parsedRulesSelector
 } from 'Selectors/analyseSelectors'
 import withColours from 'Components/utils/withColours'
+import emoji from 'react-easy-emoji'
 
-class ExempleSituations extends Component {
+class ExampleSituations extends Component {
 	render() {
 		return (
 			<div className="ui__ container" id="exampleSituations">
-				<h1>Exemples de calculs</h1>
+				<h1>
+					{emoji('💡 ')}
+					Quelques exemples...
+				</h1>
 				<ul>
 					{examples.map(ex => (
 						<Example ex={ex} key={ex.nom} />
@@ -76,4 +80,4 @@ class Example extends Component {
 	}
 }
 
-export default ExempleSituations
+export default ExampleSituations

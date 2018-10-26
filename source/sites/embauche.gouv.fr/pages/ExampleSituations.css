@@ -1,8 +1,12 @@
+#exampleSituations ul {
+	margin-top: 1.5em;
+}
 #exampleSituations .example {
 	border-bottom: 1px solid #eee;
 	width: 100%;
 	display: flex;
 	justify-items: space-between;
+	align-items: center;
 }
 #exampleSituations .example h2 {
 	width: 30%;
