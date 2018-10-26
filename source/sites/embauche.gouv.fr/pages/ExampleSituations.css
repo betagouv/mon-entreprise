@@ -1,0 +1,34 @@
+#exampleSituations .example {
+	border-bottom: 1px solid #eee;
+	width: 100%;
+	display: flex;
+	justify-items: space-between;
+}
+#exampleSituations .example h2 {
+	width: 30%;
+	display: inline-block;
+}
+#exampleSituations .example ul {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	list-style: none;
+}
+#exampleSituations .example h2 {
+	font-size: 120%;
+}
+#exampleSituations .example li {
+	padding-top: 0;
+}
+#exampleSituations .example h3 {
+	font-size: 100%;
+	font-weight: 600;
+	color: #444;
+}
+#exampleSituations .example .figure {
+	font-size: 110%;
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+}

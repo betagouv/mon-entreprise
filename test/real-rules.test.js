@@ -1,9 +1,3 @@
-/*
-  Les mécanismes sont testés dans mécanismes/ comme le sont les variables directement dans la base YAML.
-  On y créée dans chaque fichier une base YAML autonome, dans laquelle intervient le mécanisme à tester,
-  puis on teste idéalement tous ses comportements sans en faire intervenir d'autres.
-*/
-
 import { AssertionError } from 'chai'
 import { rules } from '../source/engine/rules'
 import { parseAll } from '../source/engine/traverse'
