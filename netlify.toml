@@ -7,6 +7,11 @@ to = "/robots.infrance.txt"
 status = 200
 
 [[redirects]]
+from = "https://mycompanyinfrance.fr/sitemap.txt"
+to = "/sitemap.infrance.txt"
+status = 200
+
+[[redirects]]
 from = "https://mycompanyinfrance.fr"
 to = "/prerender/infrance/index.html"
 status = 200
