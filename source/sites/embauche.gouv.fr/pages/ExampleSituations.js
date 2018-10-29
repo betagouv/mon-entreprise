@@ -17,7 +17,7 @@ class ExampleSituations extends Component {
 			<div className="ui__ container" id="exampleSituations">
 				<h1>
 					{emoji('💡 ')}
-					Quelques exemples...
+					Quelques exemples
 				</h1>
 				<ul>
 					{examples.map(ex => (

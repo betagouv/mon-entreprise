@@ -11,6 +11,7 @@
 #exampleSituations .example h2 {
 	width: 30%;
 	display: inline-block;
+	font-size: 120%;
 }
 #exampleSituations .example ul {
 	width: 100%;
@@ -20,7 +21,6 @@
 	list-style: none;
 }
 #exampleSituations .example h2 {
-	font-size: 120%;
 }
 #exampleSituations .example li {
 	padding-top: 0;
