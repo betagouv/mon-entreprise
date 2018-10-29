@@ -20,6 +20,7 @@
 	align-items: center;
 	justify-content: space-around;
 	list-style: none;
+	flex-wrap: wrap;
 }
 #exampleSituations .example li {
 	padding-top: 0;
