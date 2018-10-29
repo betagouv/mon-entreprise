@@ -11,16 +11,14 @@ export default class About extends Component {
 				<h1>À propos</h1>
 				<section>
 					<p>
-						<a href="https://beta.gouv.fr">
-							L'incubateur des services numériques de l'État
-						</a>{' '}
-						a lancé en 2014 le développement d’une <em>ressource ouverte</em> de
-						calcul des prélèvements sociaux sur les revenus d'activité en
-						France, étape incontournable lors d'une embauche.
+						<a href="https://beta.gouv.fr">BetaGouv</a> a lancé en 2014 le
+						développement d’un moteur ouvert de calcul des cotisations sociales
+						en France, étape incontournable pour embaucher ou négocier un
+						salaire.
 					</p>
 					<p>
-						Ce premier service, un{' '}
-						<em>simulateur des sommes en jeu lors d'une embauche</em>, peut être{' '}
+						Ce premier service, un simulateur des sommes en jeu lors d'une
+						embauche, peut être{' '}
 						<Link to="/intégrer">intégré facilement et gratuitement</Link> par
 						toute organisation sur son site Web.
 					</p>
@@ -28,9 +26,11 @@ export default class About extends Component {
 					<p>
 						Début 2018, l'
 						<a href="https://acoss.fr">ACOSS</a> (la tête des URSSAF) nous
-						rejoint pour consolider ce simulateur.
+						rejoint pour consolider ce simulateur, le traduire en anglais et
+						lancer{' '}
+						<a href="https://mycompanyinfrance.fr">mycompanyinfrance.fr</a>, un
+						guide de création d'entreprise en France.
 					</p>
-
 					<p>
 						Suivez nos mises à jour sur{' '}
 						<a href="https://twitter.com/embauchegouv">
@@ -38,15 +38,22 @@ export default class About extends Component {
 						</a>
 					</p>
 				</section>
+				<h1>Contribuez !</h1>
 				<section>
 					<p>
-						Ce travail est fait en commun : venez définir avec nous la feuille
-						de route du service (implémentation des conventions collectives,
-						ajout des statuts autres que le travail salarié, ...).
+						Venez définir avec nous la feuille de route du service
+						(implémentation des conventions collectives, ajout des statuts
+						autres que le travail salarié, ...).
 					</p>
 					<MailChimp />
 					<p>
 						Ou <Link to="/contact">contactez-nous</Link> directement.
+					</p>
+					<p>
+						Le code est ouvert et contributif, rendez-vous sur{' '}
+						<a href="https://github.com/betagouv/syso/">
+							GitHub <i className="fa fa-github" aria-hidden="true" />
+						</a>
 					</p>
 				</section>
 				{/* <p>Notre prochaine rencontre OpenLab aura lieu <strong>le mercredi 18 janvier 2017 à 10h</strong>, au 86 allée de Bercy, 75012, salle 381-R</p> */}

@@ -1,5 +1,6 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import Mecanisms from 'Components/Mecanisms'
+import ExampleSituations from './pages/ExampleSituations'
 import RulePage from 'Components/RulePage'
 import DisableScroll from 'Components/utils/DisableScroll'
 import TrackPageView from 'Components/utils/TrackPageView'
@@ -19,7 +20,6 @@ import { getIframeOption, inIframe } from '../../utils'
 import trackDomainActions from './middlewares/trackDomainActions'
 import About from './pages/About'
 import Contact from './pages/Contact'
-import Contribution from './pages/Contribution'
 import Couleur from './pages/Couleur'
 import { Header } from './pages/Header'
 import Home from './pages/Home'
@@ -78,10 +78,10 @@ class EmbaucheRoute extends Component {
 					<Route path="/règle/:name" component={RulePage} />
 					<Redirect from="/simu/*" to="/" />
 					<Route path="/règles" component={RulesList} />
+					<Route path="/exemples" component={ExampleSituations} />
 					<Route path="/mecanismes" component={Mecanisms} />
 					<Route path="/à-propos" component={About} />
 					<Route path="/intégrer" component={Integration} />
-					<Route path="/contribuer" component={Contribution} />
 					<Route path="/couleur" component={Couleur} />
 					<Route path="/integration-test" component={IntegrationTest} />
 					<Redirect from="/simulateur" to="/" />

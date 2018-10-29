@@ -8,9 +8,6 @@ import Logo from '../images/logo/logo-simulateur.svg'
 import './Header.css'
 
 @withRouter
-@connect(state => ({
-	textColourOnWhite: state.themeColours.textColourOnWhite
-}))
 @translate()
 export class Header extends Component {
 	state = {
@@ -58,14 +55,14 @@ export class Header extends Component {
 
 let Links = ({ toggle }) => (
 	<div id="links" onClick={toggle}>
+		<Link className="menu-item" to="/exemples">
+			Exemples
+		</Link>
 		<Link className="menu-item" to="/intégrer">
 			Intégrer le module
 		</Link>
-		<Link className="menu-item" to="/contribuer">
-			Contribuer
-		</Link>
 		<Link className="menu-item" to="/règles">
-			Toutes nos règles
+			Nos règles
 		</Link>
 		<Link className="menu-item" to="/à-propos">
 			À propos

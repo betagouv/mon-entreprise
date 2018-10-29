@@ -1,0 +1,37 @@
+#exampleSituations ul {
+	margin-top: 1.5em;
+}
+#exampleSituations .example {
+	border-bottom: 1px solid #eee;
+	width: 100%;
+	display: flex;
+	justify-items: space-between;
+	align-items: center;
+}
+#exampleSituations .example h2 {
+	width: 25%;
+	display: inline-block;
+	font-size: 120%;
+	text-align: center;
+}
+#exampleSituations .example ul {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	list-style: none;
+}
+#exampleSituations .example li {
+	padding-top: 0;
+}
+#exampleSituations .example h3 {
+	font-size: 95%;
+	font-weight: 600;
+	color: #444;
+}
+#exampleSituations .example .figure {
+	font-size: 110%;
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+}

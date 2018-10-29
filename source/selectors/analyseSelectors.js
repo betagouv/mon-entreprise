@@ -33,11 +33,11 @@ export let flatRulesSelector = createSelector(
 	(lang, rules) => rules || (lang === 'en' ? baseRulesEn : baseRulesFr)
 )
 
-let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
+export let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
 	parseAll(rules)
 )
 
-let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
+export let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
 	collectDefaults(rules)
 )
 
