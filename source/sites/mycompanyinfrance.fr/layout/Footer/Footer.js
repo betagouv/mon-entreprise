@@ -16,7 +16,7 @@ const Footer = ({ colours: { colour } }) => (
 		<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
 			<div className="ui__ container">
 				<div id="footerIcons">
-					<a href="https://urssaf.fr">
+					<a href="https://www.urssaf.fr">
 						<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
 					</a>
 					<a href="https://beta.gouv.fr">
