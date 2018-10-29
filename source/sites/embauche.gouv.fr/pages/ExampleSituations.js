@@ -57,7 +57,7 @@ class Example extends Component {
 					})
 				},
 				net,
-				{ ...netAprèsImpôts, title: 'Net après impôt' }
+				{ ...netAprèsImpôts, title: 'Après impôt' }
 			]
 
 		return (
@@ -74,6 +74,19 @@ class Example extends Component {
 							</span>
 						</li>
 					))}{' '}
+					<li key="%">
+						<h3>Prélèvements</h3>
+						<span
+							style={{ color: colours.textColourOnWhite }}
+							className="figure">
+							{do {
+								let de = figures[0].nodeValue,
+									à = figures[3].nodeValue
+								Math.round(((de - à) / de) * 100)
+							}}{' '}
+							%
+						</span>
+					</li>
 				</ul>
 			</li>
 		)

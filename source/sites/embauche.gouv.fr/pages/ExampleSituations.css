@@ -9,9 +9,10 @@
 	align-items: center;
 }
 #exampleSituations .example h2 {
-	width: 30%;
+	width: 25%;
 	display: inline-block;
 	font-size: 120%;
+	text-align: center;
 }
 #exampleSituations .example ul {
 	width: 100%;
@@ -20,13 +21,11 @@
 	justify-content: space-around;
 	list-style: none;
 }
-#exampleSituations .example h2 {
-}
 #exampleSituations .example li {
 	padding-top: 0;
 }
 #exampleSituations .example h3 {
-	font-size: 100%;
+	font-size: 95%;
 	font-weight: 600;
 	color: #444;
 }
