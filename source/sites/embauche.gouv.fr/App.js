@@ -20,7 +20,6 @@ import { getIframeOption, inIframe } from '../../utils'
 import trackDomainActions from './middlewares/trackDomainActions'
 import About from './pages/About'
 import Contact from './pages/Contact'
-import Contribution from './pages/Contribution'
 import Couleur from './pages/Couleur'
 import { Header } from './pages/Header'
 import Home from './pages/Home'
@@ -83,7 +82,6 @@ class EmbaucheRoute extends Component {
 					<Route path="/mecanismes" component={Mecanisms} />
 					<Route path="/à-propos" component={About} />
 					<Route path="/intégrer" component={Integration} />
-					<Route path="/contribuer" component={Contribution} />
 					<Route path="/couleur" component={Couleur} />
 					<Route path="/integration-test" component={IntegrationTest} />
 					<Redirect from="/simulateur" to="/" />

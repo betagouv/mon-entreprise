@@ -61,9 +61,6 @@ let Links = ({ toggle }) => (
 		<Link className="menu-item" to="/intégrer">
 			Intégrer le module
 		</Link>
-		<Link className="menu-item" to="/contribuer">
-			Contribuer
-		</Link>
 		<Link className="menu-item" to="/règles">
 			Toutes nos règles
 		</Link>
