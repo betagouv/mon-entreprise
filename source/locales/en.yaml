@@ -205,3 +205,25 @@ De: From
 En-dessous de: Below
 Au-dessus de: Above
 Taux final: Final rate
+
+Créez votre entreprise: Start your business in France
+subtitle: The ultimate how-to guide, from incorporation to hiring.
+Commencer: Get started
+accueil: 
+  entreprise: 
+    titre: Your new company
+    1: Find the type of company that suits you
+    2: Follow the steps to register your company
+    action: Create your company ›
+  sécu:
+    titre: The French social security
+    1: Discover the French social security system
+    2: Simulate your hiring costs
+    action: Simulate hiring costs and benefits ›
+  embauche: 
+    titre: Your first employee
+    1: Discover the procedures to hire in France
+    2: Learn the basics of French labour law
+    action: Discover the hiring process ›
+
+piedDePage: This website is provided by the <1>URSSAF</1>, the French social security contributions collector, and the government’s public startup incubator, <4>beta.gouv.fr</4>.

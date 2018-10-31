@@ -11,85 +11,130 @@ import estimateSvg from '../images/estimate.svg'
 import hiringSvg from '../images/hiring.svg'
 import Footer from '../layout/Footer/Footer'
 import './Landing.css'
+import { Trans } from 'react-i18next'
+import { translate } from 'react-i18next'
 
-const Landing = ({ colours: { colour } }) => (
-	<>
-		<header className="landing__header">
-			<img alt="logo marianne" src={marianneSvg} />
-			<img alt="logo urssaf" src={urssafSvg} />
-		</header>
-		<section className="landing__banner" style={{ backgroundColor: colour }}>
-			<header>
-				<h1>
-					Start your business in France <br />
-					{emoji('🇫🇷')}
-				</h1>
-				<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
-					The ultimate how-to guide, from incorporation to hiring.
-				</p>
-				<Link
-					className="ui__ inverted-button"
-					to="/company"
-					alt="the first step to create a company">
-					Get started
-				</Link>
-				<svg
-					className="landing__banner__svg white"
-					preserveAspectRatio="none"
-					viewBox="5 0 495 150">
-					<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
-				</svg>
+export default translate()(
+	withColours(({ colours: { colour } }) => (
+		<>
+			<header className="landing__header">
+				<img alt="logo marianne" src={marianneSvg} />
+				<img alt="logo urssaf" src={urssafSvg} />
 			</header>
-		</section>
-		<section className="landing-explanation">
-			<div>
-				<h2>Your new company </h2>
-				<div className="landing-explanation-content">
-					<img alt="Your new company" src={companySvg} />
-					<ul>
-						<li>Find the type of company that suits you</li>
-						<li>Follow the steps to register your company</li>
-					</ul>
-				</div>
-				<p>
-					<Link className="ui__ skip-button" to="/company">
-						Create your company ›
+			<section className="landing__banner" style={{ backgroundColor: colour }}>
+				<header>
+					<h1>
+						<Trans>Créez votre entreprise</Trans>
+						<br />
+						{emoji('🇫🇷')}
+					</h1>
+					<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
+						<Trans i18nKey="subtitle">
+							Le guide ultime, de la forme juridique à l'embauche.
+						</Trans>
+					</p>
+					<Link
+						className="ui__ inverted-button"
+						to="/company"
+						alt="the first step to create a company">
+						<Trans>Commencer</Trans>
 					</Link>
-				</p>
-			</div>
-			<div>
-				<h2>The French social security</h2>
-				<div className="landing-explanation-content">
-					<img alt="Social security" src={estimateSvg} />
-					<ul>
-						<li>Discover the French social security system</li>
-						<li>Simulate your hiring costs</li>
-					</ul>
+					<svg
+						className="landing__banner__svg white"
+						preserveAspectRatio="none"
+						viewBox="5 0 495 150">
+						<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
+					</svg>
+				</header>
+			</section>
+			<section className="landing-explanation">
+				<div>
+					<h2>
+						<Trans i18nKey="accueil.entreprise.titre">
+							Votre projet d'entreprise
+						</Trans>
+					</h2>
+					<div className="landing-explanation-content">
+						<img alt="Your new company" src={companySvg} />
+						<ul>
+							<li>
+								<Trans i18nKey="accueil.entreprise.1">
+									Trouver la forme juridique adaptée
+								</Trans>
+							</li>
+							<li>
+								<Trans i18nKey="accueil.entreprise.2">
+									Suivre les étapes pour créer l'entreprise
+								</Trans>
+							</li>
+						</ul>
+					</div>
+					<p>
+						<Link className="ui__ skip-button" to="/company">
+							<Trans i18nKey="accueil.entreprise.action">
+								Créez votre entreprise ›
+							</Trans>
+						</Link>
+					</p>
 				</div>
-				<p>
-					<Link className="ui__ skip-button" to="/social-security">
-						Simulate hiring costs and benefits ›
-					</Link>
-				</p>
-			</div>
-			<div>
-				<h2>Your first employee</h2>
-				<div className="landing-explanation-content">
-					<img alt="Social security" src={hiringSvg} />
-					<ul>
-						<li>Discover the procedures to hire in France</li>
-						<li>Learn the basics of French labour law</li>
-					</ul>
+				<div>
+					<h2>
+						<Trans i18nKey="accueil.sécu.titre">La sécurité sociale</Trans>
+					</h2>
+					<div className="landing-explanation-content">
+						<img alt="Social security" src={estimateSvg} />
+						<ul>
+							<li>
+								<Trans i18nKey="accueil.sécu.1">
+									Découvrez le système de sécurité sociale
+								</Trans>
+							</li>
+							<li>
+								<Trans i18nKey="accueil.sécu.2">
+									Simulez le coût d'embauche
+								</Trans>
+							</li>
+						</ul>
+					</div>
+					<p>
+						<Link className="ui__ skip-button" to="/social-security">
+							<Trans i18nKey="accueil.sécu.action">
+								Découvrez le coût et les avantages ›
+							</Trans>
+						</Link>
+					</p>
 				</div>
-				<p>
-					<Link className="ui__ skip-button" to="/hiring-process">
-						Discover the hiring process ›
-					</Link>
-				</p>
-			</div>
-		</section>
-		<Footer />
-	</>
+				<div>
+					<h2>
+						<Trans i18nKey="accueil.embauche.titre">
+							Votre premier employé
+						</Trans>
+					</h2>
+					<div className="landing-explanation-content">
+						<img alt="Social security" src={hiringSvg} />
+						<ul>
+							<li>
+								<Trans i18nKey="accueil.embauche.1">
+									Découvrez les démarches pour embaucher
+								</Trans>
+							</li>
+							<li>
+								<Trans i18nKey="accueil.embauche.2">
+									Découvrez les bases du droit du travail
+								</Trans>
+							</li>
+						</ul>
+					</div>
+					<p>
+						<Link className="ui__ skip-button" to="/hiring-process">
+							<Trans i18nKey="accueil.embauche.action">
+								Découvrez le proccessus d'embauche
+							</Trans>
+						</Link>
+					</p>
+				</div>
+			</section>
+			<Footer />
+		</>
+	))
 )
-
-export default withColours(Landing)

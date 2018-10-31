@@ -9,6 +9,8 @@ import { feedbackBlacklist } from '../../config'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
 import Privacy from './Privacy'
+import LangSwitcher from 'Components/LangSwitcher'
+import { Trans, translate } from 'react-i18next'
 
 const Footer = ({ colours: { colour } }) => (
 	<div className="footer-container">
@@ -27,15 +29,18 @@ const Footer = ({ colours: { colour } }) => (
 					</a>
 				</div>
 				<p className="ui__ notice">
-					This website is provided by the{' '}
-					<a href="https://www.urssaf.fr">URSSAF</a>, the French social security
-					contributions collector, and the government’s public startup
-					incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>.
+					<Trans i18nKey="piedDePage">
+						Ce site est développé par l'
+						<a href="https://www.urssaf.fr">URSSAF</a> et{' '}
+						<a href="https://beta.gouv.fr">beta.gouv.fr</a>.
+					</Trans>
 				</p>
 				<p className="ui__ notice" style={{ textAlign: 'center' }}>
 					<LegalNotice />
 					{'  •  '}
 					<Privacy />
+					{'  •  '}
+					<LangSwitcher />
 				</p>
 			</div>
 		</footer>
@@ -44,5 +49,6 @@ const Footer = ({ colours: { colour } }) => (
 
 export default compose(
 	withRouter,
-	withColours
+	withColours,
+	translate()
 )(Footer)

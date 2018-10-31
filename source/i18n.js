@@ -21,7 +21,7 @@ let lang =
 setToSessionStorage('lang', lang)
 i18next.init(
 	{
-		debug: false,
+		debug: true,
 		lng: lang,
 		resources: {
 			en: {
