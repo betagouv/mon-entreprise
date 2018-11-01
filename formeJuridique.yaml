@@ -1,0 +1,143 @@
+- nom: forme juridique
+  formule:  
+    une possibilité parmi: 
+      - micro entreprise
+      - micro entreprise option EIRL
+      - EI
+      - EURL
+      - EIRL
+      - SARL
+      - SAS
+      - SA
+      - SNC
+      - SASU
+
+- nom: EI
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - régime du directeur = 'indépendant'
+      - nombre d'associés = 1
+  non applicable si: 
+    une de ces conditions: 
+      - responsabilité limitée
+
+- nom: EIRL
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'indépendant'
+      - nombre d'associés = 1
+
+- nom: EIRL
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'indépendant'
+      - nombre d'associés = 1
+
+- nom: micro entreprise
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - régime du directeur = 'indépendant'
+      - nombre d'associés = 1
+  non applicable si:
+    une de ces conditions: 
+      - responsabilité limitée
+
+- nom: micro entreprise option EIRL
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'indépendant'
+      - nombre d'associés = 1
+
+- nom: SARL
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'indépendant'
+      - nombre d'associés > 1
+
+- nom: SARL
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'indépendant'
+      - nombre d'associés > 1
+
+- nom: directeur minoritaire
+  applicable si: nombre d'associés > 1
+
+- nom: SARL
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'indépendant'
+      - nombre d'associés > 1
+
+
+- nom: SAS
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'assimilé salarié'
+      - nombre d'associés > 1
+
+- nom: SASU
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'assimilé salarié'
+      - nombre d'associés = 1
+
+- nom: SA
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - responsabilité limitée
+      - régime du directeur = 'assimilé salarié'
+      - nombre d'associés > 1
+
+
+
+- nom: SNC
+  espace: forme juridique
+  applicable si: 
+    toutes ces conditions: 
+      - régime du directeur = 'indépendant'
+      - nombre d'associés > 1
+  non applicable si: 
+    une de ces conditions:
+      - responsabilité limitée
+
+
+
+
+
+- nom: régime du directeur
+  formule: 
+    une possibilité parmi: 
+      - assimilé salarié
+      - indépendant
+
+- nom: assimilé salarié
+  espace: régime du directeur
+  non applicable si: 
+    toutes ces conditions:
+      - forme juridique = 'SARL'
+      - directeur majoritaire
+
+- nom: nombre d'associés
+  format: nombre
+
+- nom: responsabilité limitée
