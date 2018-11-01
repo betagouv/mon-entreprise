@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import { React, T } from 'Components'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -8,8 +8,6 @@ import LegalStatusChoices from './LegalStatusChoice'
 
 import type { Match } from 'react-router'
 
-import { Trans, translate } from 'react-i18next'
-
 type Props = {
 	match: Match,
 	nextQuestionUrl: string
@@ -17,7 +15,7 @@ type Props = {
 const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 	<>
 		<h1 className="question__title">
-			<Trans>Créez votre entreprise</Trans>
+			<T>Créez votre entreprise</T>
 		</h1>
 		<Helmet>
 			<title>Trouvez la bonne forme juridique pour votre entreprise.</title>
@@ -30,26 +28,24 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 		</Helmet>
 		<p>
 			<Link className="ui__ link-button" to="/company/find">
-				<Trans i18nKey="entreprise.existeDéjà">
-					Mon entreprise existe déjà
-				</Trans>
+				<T k="entreprise.existeDéjà">Mon entreprise existe déjà</T>
 			</Link>
 		</p>
 		<p>
-			<Trans i18nKey="entreprise.formeJuridique.intro">
+			<T k="entreprise.formeJuridique.intro">
 				Le droit des sociétés définit plus de 20 statuts juridiques possibles
 				pour déclarer une société avec différents acronymes et démarches : SAS,
 				SARL, SA, EIRL.... Ce guide vous aide à trouver rapidement le statut qui
 				vous convient.
-			</Trans>
+			</T>
 		</p>
 		{match.isExact && (
 			<div className="ui__ answer-group">
 				<Link className="ui__ button" to={nextQuestionUrl}>
-					<Trans>Choisir la forme juridique</Trans>
+					<T>Choisir la forme juridique</T>
 				</Link>
 				<Link to={'/social-security'} className="ui__ skip-button">
-					<Trans>Passer</Trans> ›
+					<T>Passer</T> ›
 				</Link>
 			</div>
 		)}
@@ -60,4 +56,4 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 export default connect(
 	state => ({ nextQuestionUrl: nextQuestionUrlSelector(state) }),
 	null
-)(translate()(CreateMyCompany))
+)(CreateMyCompany)

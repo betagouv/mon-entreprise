@@ -14,6 +14,7 @@ import MinorityDirector from './MinorityDirector'
 import NumberOfAssociate from './NumberOfAssociate'
 import PickLegalStatus from './PickLegalStatus'
 import YourCompany from './YourCompany'
+import { translate } from 'react-i18next'
 
 const withAnimation = Component => {
 	const AnimateRouteComponent = (...props) => (
@@ -92,4 +93,4 @@ const CreateMyCompany = ({
 export default connect(state => ({
 	companyStatusChoice: state.inFranceApp.companyStatusChoice,
 	existingCompany: state.inFranceApp.existingCompanyDetails
-}))(CreateMyCompany)
+}))(translate()(CreateMyCompany))

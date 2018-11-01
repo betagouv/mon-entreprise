@@ -1,6 +1,6 @@
 /* @flow */
 import { chooseCompanyLiability } from 'Actions/companyStatusActions'
-import React from 'react'
+import { React, T } from 'Components'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
@@ -19,38 +19,52 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 				content="Sole proprietorship or limited liability? Each option has legal implications, and leads to a different status for creating your company in France"
 			/>
 		</Helmet>
-		<h2>Choosing the liability </h2>
+		<h2>
+			<T>Responsabilité de l'entreprise</T>
+		</h2>
 		<p>
-			An entrepreneur can choose between several options for the legal setup of
-			his company:
+			<T k="responsabilité.intro">Plusieurs options légales s'offrent à vous</T>
+			:
 		</p>
 		<ul>
 			<li>
 				{multipleAssociates === false ? (
-					<>
-						<strong>Sole proprietorship: </strong>
-						An economic activity conducted by a single natural person, in his
-						own name. It&apos;s less paperwork, but bigger trouble in case of
-						bankruptcy, as your personal wealth can be put to contribution.
-					</>
+					<T k="responsabilité.1">
+						<strong>Entreprise individuelle :</strong>
+						Une activité économique exercée par une seule personne physique, en
+						son nom propre. Moins de paperasse, mais plus de problèmes en cas de
+						faillite, car votre patrimoine personnel peut être mis à
+						contribution.
+					</T>
 				) : (
 					<>
 						<strong>
-							Unlimited {multipleAssociates === true && 'joint and several'}{' '}
-							liability:{' '}
+							{multipleAssociates ? (
+								<T k="responsabilité.2">
+									Responsabilité illimitée conjointe et solidaire{' '}
+								</T>
+							) : (
+								<T k="responsabilité.2bis">Responsabilité illimitée </T>
+							)}
+							:{' '}
 						</strong>
-						The financial liability of the shareholders is not limited to their
-						contribution. In case of bankruptcy, their personal wealth can be
-						put to contribution
+						<T k="responsabilité.2Description">
+							La responsabilité financière des actionnaires ne se limite pas à
+							leur apport. En cas de faillite, leur patrimoine personnel peut
+							être mis à contribution
+						</T>
 					</>
 				)}
 			</li>
 
 			<li>
-				<strong>Limited liability: </strong>A corporate structure whereby the
-				company members cannot be held personally liable for the company&apos;s
-				debts or liabilities. However, it's heavier to set up, and you need to
-				provide an initial capital.
+				<T k="responsabilité.3">
+					<strong>Responsabilité limitée : </strong>
+					Structure organisationnelle dans laquelle le Les membres de la société
+					ne peuvent être tenus personnellement responsables des dettes ou
+					obligations de la société. Cependant, c'est plus lourd à mettre en
+					place, et vous devez fournir un capital initial.
+				</T>
 			</li>
 		</ul>
 		<div className="ui__ answer-group">

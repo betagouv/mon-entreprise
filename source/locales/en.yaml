@@ -236,3 +236,14 @@ entreprise:
 Choisir la forme juridique: Choose your legal status
 Passer: Do it later 
 
+Responsabilité de l'entreprise: Liability
+responsabilité: 
+  intro: An entrepreneur can choose between several options for the legal setup of his company
+  1: "<0>Sole proprietorship</0>: An economic activity conducted by a single natural person, in his own name. It's less paperwork, but bigger trouble in case of bankruptcy, as your personal wealth can be put to contribution."
+  2: Unlimited liability
+  2bis: Unlimited joint and several liability
+  2Description: The financial liability of the shareholders is not limited to their contribution. In case of bankruptcy, their personal wealth can be put to contribution
+  3: "<0>Limited liability</0>: A corporate structure whereby the
+                      company members cannot be held personally liable for the                                                                                                        company's debts or liabilities. However, it's heavier to set up,
+                      and you need to provide an initial capital."
+  
