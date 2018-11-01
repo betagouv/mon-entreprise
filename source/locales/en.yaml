@@ -227,3 +227,12 @@ accueil:
     action: Discover the hiring process ›
 
 piedDePage: This website is provided by the <1>URSSAF</1>, the French social security contributions collector, and the government’s public startup incubator, <4>beta.gouv.fr</4>.
+
+entreprise:
+  existeDéjà: My company is already registered with the French Administration
+  formeJuridique:
+    intro: "The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs."
+
+Choisir la forme juridique: Choose your legal status
+Passer: Do it later 
+
