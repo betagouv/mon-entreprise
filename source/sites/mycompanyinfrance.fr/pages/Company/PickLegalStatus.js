@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import { React, T } from 'Components'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -18,7 +18,7 @@ type Props = {
 
 const StatusButton = ({ status }: { status: LegalStatus }) => (
 	<Link to={`/company/create-${status}`} className="ui__ button">
-		Create {status}
+		<T>Créer une</T> <strong>{status}</strong>
 	</Link>
 )
 
@@ -28,7 +28,9 @@ const SetMainStatus = ({ history, possibleStatus }: Props) => {
 			<Helmet>
 				<title>Legal status list for creating your company in France</title>
 			</Helmet>
-			<h2>Your legal status</h2>
+			<h2>
+				<T>Votre forme juridique</T>
+			</h2>
 
 			<ul>
 				{possibleStatus.EI && (

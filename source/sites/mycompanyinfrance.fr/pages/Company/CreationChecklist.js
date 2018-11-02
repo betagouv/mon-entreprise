@@ -5,7 +5,7 @@ import {
 } from 'Actions/companyCreationChecklistActions'
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import Scroll from 'Components/utils/Scroll'
-import React from 'react'
+import { React, T } from 'Components'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -47,13 +47,17 @@ const CreateCompany = ({
 				/>
 			</Helmet>
 			<Scroll.toTop />
-			<h1>Create a {match.params.status} </h1>
+			<h1>
+				<T>Créer une</T> {match.params.status}{' '}
+			</h1>
 			{!statusChooserCompleted && (
 				<>
 					{' '}
 					<p>
 						<button className="ui__ link-button" onClick={onStatusChange}>
-							Not sure about this status? Take our guide to help you choose
+							<T k="incertain">
+								Pas convaincu par cette forme juridique ? Suivez notre guide !
+							</T>
 						</button>
 					</p>
 					<p>
