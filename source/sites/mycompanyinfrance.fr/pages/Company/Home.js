@@ -32,7 +32,7 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 			</Link>
 		</p>
 		<p>
-			<T k="entreprise.formeJuridique.intro">
+			<T k="formeJuridique.intro">
 				Le droit des sociétés définit plus de 20 statuts juridiques possibles
 				pour déclarer une société avec différents acronymes et démarches : SAS,
 				SARL, SA, EIRL.... Ce guide vous aide à trouver rapidement le statut qui
@@ -45,7 +45,7 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 					<T>Choisir la forme juridique</T>
 				</Link>
 				<Link to={'/social-security'} className="ui__ skip-button">
-					<T>Passer</T> ›
+					<T>Plus tard</T> ›
 				</Link>
 			</div>
 		)}

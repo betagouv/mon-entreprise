@@ -73,16 +73,18 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 					chooseCompanyLiability('UNLIMITED_LIABILITY')
 				}}
 				className="ui__ button">
-				{multipleAssociates === false
-					? 'Sole proprietorship'
-					: 'Unlimited Liability'}
+				{multipleAssociates === false ? (
+					<T k="bouton1">Entreprise individuelle</T>
+				) : (
+					<T k="bouton2">Responsabilité illimitée</T>
+				)}
 			</button>
 			<button
 				onClick={() => {
 					chooseCompanyLiability('LIMITED_LIABILITY')
 				}}
 				className="ui__ button">
-				Limited liability
+				<T k="bouton3">Responsabilité limitée</T>
 			</button>
 			<SkipButton onClick={() => chooseCompanyLiability(null)} />
 		</div>

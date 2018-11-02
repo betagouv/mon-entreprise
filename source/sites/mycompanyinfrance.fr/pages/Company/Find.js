@@ -1,7 +1,7 @@
 /* @flow */
 import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
 import { compose } from 'ramda'
-import React from 'react'
+import { React, T } from 'Components'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
@@ -12,6 +12,7 @@ import 'react-select/dist/react-select.css'
 import './Find.css'
 import { CompanyDetails as Company } from './YourCompany'
 import type { RouterHistory } from 'react-router'
+import { translate } from 'react-i18next'
 
 const goToNextStep = (history: RouterHistory) => {
 	history.push('/social-security')
@@ -49,6 +50,7 @@ class Search extends React.Component<Props, State> {
 			})
 
 	render() {
+		let { t } = this.props
 		return (
 			<div id="findYourCompany">
 				<Helmet>
@@ -58,14 +60,20 @@ class Search extends React.Component<Props, State> {
 						content="Find your existing company, and start simulate hiring cost customized to your situation"
 					/>
 				</Helmet>
-				<h1 className="question__title">Find your company</h1>
+				<h1 className="question__title">
+					<T k="trouver.titre">Trouver mon entreprise</T>
+				</h1>
 				<p>
-					<Link to="/company">I don&apos;t have a company yet</Link>
+					<Link to="/company">
+						<T k="trouver.non">Je n'ai pas encore d'entreprise</T>
+					</Link>
 				</p>
 				<p>
-					{' '}
-					Thanks to the SIREN database, the public informations of your company
-					will be automatically available for the next steps.
+					<T k="trouver.description">
+						Grâce à la base SIREN, les données publiques sur votre entreprise
+						seront automatiquement disponibles pour la suite du parcours sur le
+						site.
+					</T>
 				</p>
 				{/* $FlowFixMe */}
 				<ReactSelect.Async
@@ -76,10 +84,10 @@ class Search extends React.Component<Props, State> {
 					optionRenderer={({ l1_normalisee, code_postal }) =>
 						l1_normalisee + ` (${code_postal})`
 					}
-					placeholder="Type your company name"
-					noResultsText="We didn't find any matching registered company."
+					placeholder={t('Entrez le nom de votre société')}
+					noResultsText={t("Nous n'avons rien trouvé")}
 					searchPromptText={null}
-					loadingPlaceholder="Searching..."
+					loadingPlaceholder={t('Recherche en cours...')}
 					loadOptions={this.getOptions}
 				/>
 				{!!this.state.input && (
@@ -91,7 +99,7 @@ class Search extends React.Component<Props, State> {
 								goToNextStep(this.props.history)
 							}}
 							className="ui__ button">
-							Confirm and simulate hiring costs
+							<T k="trouver.ok">Confirm and simulate hiring costs</T>
 						</button>
 					</>
 				)}
@@ -107,5 +115,6 @@ export default compose(
 		{
 			onCompanyDetailsConfirmation: saveExistingCompanyDetails
 		}
-	)
+	),
+	translate()
 )(Search)

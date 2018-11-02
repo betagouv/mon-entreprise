@@ -29,7 +29,8 @@ const CreateCompany = ({
 	onChecklistInitialization,
 	onItemCheck,
 	companyCreationChecklist,
-	onStatusChange
+	onStatusChange,
+	t
 }: Props) => {
 	const status = match.params.status
 	if (!match.params.status) {
@@ -66,10 +67,15 @@ const CreateCompany = ({
 				</>
 			)}
 			<p>
-				This checklist will guide you throughout all the necessary steps to
-				register your {match.params.status}.
+				<T k="entreprise.tâches.intro">
+					Voici la liste des tâches nécessaires pour créer votre
+				</T>
+				&nbsp;
+				{match.params.status}.
 			</p>
-			<h2 style={{ fontSize: '1.5rem' }}>Needed for registration</h2>
+			<h2 style={{ fontSize: '1.5rem' }}>
+				<T k="entreprise.tâches.titre1">Pour créer votre société</T>
+			</h2>
 			<Checklist
 				key={match.params.status}
 				onInitialization={items =>
@@ -80,7 +86,9 @@ const CreateCompany = ({
 				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="corporateName"
-						title="Find a corporate name"
+						title={
+							<T k="entreprise.tâches.nom.titre">Trouver un nom d'entreprise</T>
+						}
 						explanations={
 							<>
 								<p>
@@ -102,7 +110,11 @@ const CreateCompany = ({
 				)}
 				<CheckItem
 					name="corporatePurpose"
-					title="Write the corporate purpose of the company"
+					title={
+						<T k="entreprise.tâches.objetSocial.titre">
+							Déterminer l'objet social
+						</T>
+					}
 					explanations={
 						<p>
 							<strong>The corporate purpose of the company</strong> ("objet
@@ -114,7 +126,11 @@ const CreateCompany = ({
 				{status !== 'micro-enterprise' && (
 					<CheckItem
 						name="companyAddress"
-						title="Find an address to incorporate the company"
+						title={
+							<T k="entreprise.tâches.adresse.titre">
+								Choisir une adresse pour le siège
+							</T>
+						}
 						explanations={
 							<>
 								<p>
@@ -133,7 +149,9 @@ const CreateCompany = ({
 				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="companyStatus"
-						title="Write the company's articles"
+						title={
+							<T k="entreprise.tâches.statuts.titre">Écrire les statuts</T>
+						}
 						explanations={
 							<p>
 								<strong>The company's articles of association</strong> ( "les
@@ -157,7 +175,9 @@ const CreateCompany = ({
 				)}
 				<CheckItem
 					name="openBankAccount"
-					title="Open a business bank account"
+					title={
+						<T k="entreprise.tâches.banque.titre">Ouvrir un compte bancaire</T>
+					}
 					explanations={
 						<>
 							<p>
@@ -180,7 +200,7 @@ const CreateCompany = ({
 				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="fundsDeposit"
-						title="Deposit capital funds"
+						title={<T k="entreprise.tâches.dépôt.titre">Déposer le capital</T>}
 						explanations={
 							<>
 								<p>
@@ -205,8 +225,12 @@ const CreateCompany = ({
 				)}
 				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
+						title={
+							<T k="entreprise.tâches.journal.titre">
+								Publier une annonce de création dans un journal
+							</T>
+						}
 						name="publishCreationNotice"
-						title="Publish a notice of creation in a newspaper"
 						explanations={
 							<>
 								<p>
@@ -245,7 +269,11 @@ const CreateCompany = ({
 
 				<CheckItem
 					name="registerCompanyOnline"
-					title="Register your company online"
+					title={
+						<T k="entreprise.tâches.formulaire.titre">
+							Créer l'entreprise en ligne
+						</T>
+					}
 					explanations={
 						<>
 							<p>
@@ -265,14 +293,20 @@ const CreateCompany = ({
 				/>
 			</Checklist>
 			<h2 style={{ fontSize: '1.5rem' }}>
-				Recommended before starting your activity
+				<T k="entreprise.tâches.titre2">
+					Recommandées avant le début de l'activité
+				</T>
 			</h2>
 
 			<Checklist>
 				{status !== 'micro-enterprise' && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
-						title="Choose a certified accountant"
+						title={
+							<T k="entreprise.tâches.comptable.titre">
+								Choisir un comptable certifié
+							</T>
+						}
 						explanations={
 							<p>
 								Managing a company brings a number of{' '}
@@ -287,7 +321,11 @@ const CreateCompany = ({
 				)}
 				<CheckItem
 					name="checkoutProfessionalAssuranceNeeds"
-					title="Check out the need for professional insurance"
+					title={
+						<T k="entreprise.tâches.assurance.titre">
+							Jugez de la nécessité de prendre une assurance
+						</T>
+					}
 					explanations={
 						<>
 							<p>
@@ -307,15 +345,17 @@ const CreateCompany = ({
 				/>
 			</Checklist>
 			<p className="ui__ notice">
-				You can use these lists to track down your advancement in the business
-				creation process. This page automatically saves your progress.
+				<T k="entreprise.tâches.avancement">
+					Utilisez cette liste pour suivre votre avancement dans les démarches.
+					Il est automatiquement sauvegardé dans votre navigateur.
+				</T>
 			</p>
 			<p style={{ display: 'flex', justifyContent: 'space-between' }}>
 				<button onClick={onStatusChange} className="ui__ skip-button left">
-					‹ Choose another status
+					‹ <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
 				<Link to={'/company/after-registration'} className="ui__ skip-button">
-					After registration ›
+					<T k="entreprise.tâches.ensuite">Après la création</T>›
 				</Link>
 			</p>
 		</Animate.fromBottom>

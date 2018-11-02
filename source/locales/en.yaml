@@ -139,7 +139,7 @@ A quoi servent mes cotisations ?: What's included in my contributions?
 Simulation personnalisée: Custom simulation
 Faire une simulation personnalisée: Do a customized simulation
 custom-simulation: This is currently a <1>rough estimate</1> based on a generic contract. French legislation provides for a multitude of special cases and specific rules which considerably modify the costs of recruitment.
-Effacer: Erase
+Effacer: Reset
 Continuer: Continue
 CDI: Permanent
 CDD: Fixed-term
@@ -209,6 +209,7 @@ Taux final: Final rate
 Créez votre entreprise: Start your business in France
 subtitle: The ultimate how-to guide, from incorporation to hiring.
 Commencer: Get started
+Passer: Skip
 accueil: 
   entreprise: 
     titre: Your new company
@@ -230,25 +231,52 @@ piedDePage: This website is provided by the <1>URSSAF</1>, the French social sec
 
 entreprise:
   existeDéjà: My company is already registered with the French Administration
+  tâches:
+    intro: This checklist will guide you throughout all the necessary steps to register your
+    titre1: Needed for registration
+    nom: 
+      titre: Find a corporate name
+    objetSocial: 
+      titre: Write the corporate purpose of the company
+    adresse: 
+      titre: Find an address to incorporate the company
+    statuts: 
+      titre: Write the company's articles
+    banque: 
+      titre: Open a business bank account
+    capital: 
+      titre: Deposit capital funds
+    journal:
+      titre: Publish a notice of creation in a newspaper
+    formulaire: 
+      titre: Register your company online
+    titre2: Recommended before starting your activity
+    comptable:
+      titre: Choose a certified accountant
+    assurance: 
+      titre: Check out the need for professional insurance
+    avancement: Use these lists to track down your advancement in the business creation process. It is automatically saved in your browser.
+    retour: Choose another status
+    ensuite: After registration 
 
 formeJuridique:
   incertain: Not sure about this status? Take our guide to help you choose
-	intro: "The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs."
-	EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
-	EIRL: Allows you to protect your personal assets by assigning a specific heritage to your professional activity.
-	EURL: Companies with EURL status only have one partner. Liability is limited to the amount of the unique partner's contribution to the capital.
-	SARL: Composed of at least 2 partners whose financial responsibility is limited to the amount of their contribution to the company's capital. The minimum capital is freely fixed in the articles of association.
-	SAS: Société ayant au moins 2 associés. La responsabilité financière des associés est limitée au montant de leur apport au capital de la société. Le capital minimum est fixé librement dans les statuts.
-	SASU: Composed of only one associate. The financial responsibility is limited to the amount of his contribution to the company's capital. The minimum capital is freely fixed in the statutes.
-	SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
-	SNC: The liability of the partners for the debts of the company is unified (one	partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
-	micro: The micro-enterprise is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  intro: "The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs."
+  EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
+  EIRL: Allows you to protect your personal assets by assigning a specific heritage to your professional activity.
+  EURL: Companies with EURL status only have one partner. Liability is limited to the amount of the unique partner's contribution to the capital.
+  SARL: Composed of at least 2 partners whose financial responsibility is limited to the amount of their contribution to the company's capital. The minimum capital is freely fixed in the articles of association.
+  SAS: Société ayant au moins 2 associés. La responsabilité financière des associés est limitée au montant de leur apport au capital de la société. Le capital minimum est fixé librement dans les statuts.
+  SASU: Composed of only one associate. The financial responsibility is limited to the amount of his contribution to the company's capital. The minimum capital is freely fixed in the statutes.
+  SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
+  SNC: The liability of the partners for the debts of the company is unified (one	partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
+  micro: The micro-enterprise is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
 
 Votre forme juridique: Your legal status
 Créer une: Create a
 
 Choisir la forme juridique: Choose your legal status
-Passer: Do it later 
+Plus tard: Do it later 
 
 Responsabilité de l'entreprise: Liability
 responsabilité: 
@@ -260,4 +288,22 @@ responsabilité:
   3: "<0>Limited liability</0>: A corporate structure whereby the
                       company members cannot be held personally liable for the                                                                                                        company's debts or liabilities. However, it's heavier to set up,
                       and you need to provide an initial capital."
+  bouton1: Sole proprietorship
+  bouton2: Unlimited liability
+  bouton3: Limited liability
   
+
+associés: 
+  titre: Number of associates
+  description: If your company only has one associate, the administrative process is easier.
+  choix1: Only one associate
+  choix2: More than one associate
+
+trouver:
+  titre:  Find your company
+  non: I don't have a company yet
+  description: Thanks to the SIREN database, the public information of your company will be used automatically in the next steps.
+
+Entrez le nom de votre société: Type your company name
+Nous n'avons rien trouvé: We didn't find any matching registered company.
+Recherche en cours...: Searching...

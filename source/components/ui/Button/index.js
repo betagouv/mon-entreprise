@@ -1,16 +1,22 @@
 /* @flow */
-import * as React from 'react'
+import { React, T } from 'Components'
+import type { ElementConfig } from 'react'
 import './button.css'
-export const SkipButton = (props: React.ElementConfig<'button'>) => (
+
+export const SkipButton = (props: ElementConfig<'button'>) => (
 	<button {...props} className={'ui__ skip-button ' + props.className}>
-		{props.children || 'Skip ›'}
+		{props.children || (
+			<>
+				<T>Passer</T> ›
+			</>
+		)}
 	</button>
 )
 
-export const LinkButton = (props: React.ElementConfig<'button'>) => (
+export const LinkButton = (props: ElementConfig<'button'>) => (
 	<button {...props} className={'ui__ link-button ' + props.className} />
 )
 
-export const Button = (props: React.ElementConfig<'button'>) => (
+export const Button = (props: ElementConfig<'button'>) => (
 	<button {...props} className={'ui__ button ' + props.className} />
 )
