@@ -716,6 +716,7 @@ export let mecanismLinearScale = (recurse, k, v) => {
 			({ de: min, à: max }) => roundedAssiette >= min && roundedAssiette <= max
 		)
 
+		if (!matchedTranche) return 0
 		return matchedTranche.taux.nodeValue * val(assiette)
 	}
 
