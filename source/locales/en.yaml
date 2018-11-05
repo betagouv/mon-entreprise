@@ -307,3 +307,24 @@ trouver:
 Entrez le nom de votre société: Type your company name
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Recherche en cours...: Searching...
+
+après: 
+  titre: After registration
+  entreprise: company
+  intro: Once your <2>{{companyStatusChoice}}</2> has been successfully registered, you'll have access to the following
+  siret:
+    titre: The Siret number
+    description: The Siren number <1>identifies your company</1> while the Siret number identifies each place of business operated by the same company. The Siret is composed by the Siren followed by the establishment number.
+  ape: 
+    titre: The APE code
+    description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.
+  kbis: 
+    titre: The Kbis
+    description:
+      1: It is the only official document attesting to <1>the legal existence of a commercial enterprise</1>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old. 
+      2: This document is generally requested when applying for a public tender, opening a professional bank account, purchasing professional equipment from distributors, etc.
+
+  actions:
+    retour: Creation checklist
+    avance: Go to social security
+
