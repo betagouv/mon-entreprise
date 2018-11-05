@@ -32,7 +32,7 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 		</h2>
 		<p>
 			<T k="après.siret.description">
-				Le numéro Sirent <strong>est l'identifiant de votre entreprise</strong>{' '}
+				Le numéro Siren <strong>est l'identifiant de votre entreprise</strong>{' '}
 				tandis que le numéro Siret identifie chaque établissement de la même
 				entreprise. Le Siret commence par le Siren, auquel on ajoute le numéro
 				d'établissement.
@@ -49,25 +49,25 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 		</h2>
 		<p>
 			<T k="après.ape.description">
-				Le code APE correspond au <strong>secteur</strong> de votre entreprise.
-				Il classifie la branche principale de votre entreprise dans la
-				nomenclature nationale d'activités françaises (code « NAF »). Il
+				Le code APE correspond au <strong>secteur d'activité</strong> de votre
+				entreprise. Il classifie la branche principale de votre entreprise dans
+				la nomenclature nationale d'activités françaises (code « NAF »). Il
 				détermine aussi la convention collective applicable à l'entreprise, et
 				en partie le taux de la cotisation accident du travail et maladies
-				professionnelles qu'elle devra payer.
+				professionnelles à payer.
 			</T>
 		</p>
 		{companyStatusChoice !== 'microentreprise' && (
 			<>
 				<h2>
-					<T k="après.kbis.titre">The Kbis</T>
+					<T k="après.kbis.titre">Le Kbis</T>
 				</h2>
 				<p>
 					<T k="après.kbis.description.1">
-						C'est le seul document officiel qui atteste de
+						C'est le document officiel qui atteste de{' '}
 						<strong>l'existence légale d'une entreprise commerciale</strong>. Le
-						plus souvent, pour être considéré par les procédures
-						administratives, il doit dater de moins de 3 mois.
+						plus souvent, pour être valable par les procédures administratives,
+						il doit dater de moins de 3 mois.
 					</T>
 				</p>
 				<p>

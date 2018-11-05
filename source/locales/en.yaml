@@ -236,25 +236,63 @@ entreprise:
     titre1: Needed for registration
     nom: 
       titre: Find a corporate name
+      description: | 
+        <0><0>The corporate name</0> ("dénomination sociale") is the legal name of your company, written on all of your administrative papers. It can be different from the trade name (used for commercial purpose).</0>
+        <1>It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc. You can check on the <2>INPI database</2>.</1>
     objetSocial: 
       titre: Write the corporate purpose of the company
+      description: The <1>corporate purpose</1> of the company ("objet social") is the main activity run. A secondary activity can be registered.
     adresse: 
       titre: Find an address to incorporate the company
+      description: <0><0>The address</0> is the physical space where your company will be incorporated. In certain places and situations, you can benefit from substantial public financing (exemption from charges, taxes, etc.). <3>More information (Fr)</3></0>
     statuts: 
       titre: Write the company's articles
+      exemple: Example articles for your
+      description: <0>The company's articles of association</0> ( "les statuts"), is an official document written in French, describing the status choice, naming the associate(s) and the contributed capital. For more than one associate, it is recommended to ask for the help of a lawyer to write them.
     banque: 
       titre: Open a business bank account
+      description:
+        1: The purpose of a <1>professional bank account</1> is to separate your company's assets from your personal assets.
+        2: "The professional bank account allows you to:"
+        EI: If its opening is not obligatory for an EI, it is strongly recommended.
+        liste: |
+          <0>Differentiate your private and professional operations and simplify your cash management</0>
+          <1>Facilitate any tax audit operations.</1>
     capital: 
       titre: Deposit capital funds
+      description: <0>The <1>deposit of share capital</1>  must be made at the time of the incorporation of a company by any person acting on behalf of the company and having received funds from contributions in cash (sum of money) from the creditors of the company (shareholder or partner).</0><1>The deposit consists of a transfer of a sum of money to a blocked account with a bank or the public <2>Caisse des dépôts et consignations</2> or a notary, who must then provide a certificate of deposit of capital.</1> 
     journal:
       titre: Publish a notice of creation in a newspaper
+      description: |
+        <0>A <1>a notice of incorporation of the company</1> must be published in a newspaper of legal announcements (« JAL »), for a cost of publication that depends on the size of the announcement and the rates charged by the chosen newspaper.</0><1><0>Find a newspaper of legal announcements</0></1><2>For a SARL or EURL, the notice must contain the following information:</2>
+        <3>
+        <0>The company's name and possibly its acronym</0>
+        <1>The legal form</1>
+        <2>The amount of the company's capital</2>
+        <3>The address of the registered office</3>
+        <4>The corporate purpose</4>
+        <5>The duration of the company</5>
+        <6>
+          The full name and address of the manager and of the persons
+          with general authority to bind the company to third parties,
+          and of the statutory auditors (if appointed)
+        </6>
+        <7>
+          The place and number of the RCS with which the company is
+          registered
+        </7>
+        </3>
+
     formulaire: 
       titre: Register your company online
+      description: <0>You can start your online registration process anytime, save it and come back to it as you wish.</0><1><0>Start registration process</0></1>
     titre2: Recommended before starting your activity
     comptable:
       titre: Choose a certified accountant
+      description: Managing a company brings a number of <1>accounting obligations</1>. It is advisable to call in a competent person or use a website that can handle accounting for you.
     assurance: 
       titre: Check out the need for professional insurance
+      description: <0>An SME or self-employed person must protect themselves against the main risks to which they are exposed and take out guarantee contracts. Whether it is a tenant or owner of its walls, the company must insure its buildings, its professional equipment, its goods, its raw materials, its vehicles, as well as in terms of civil liability of the company and its managers or in terms of operating loss.</0><1>More information (Fr)</1>
     avancement: Use these lists to track down your advancement in the business creation process. It is automatically saved in your browser.
     retour: Choose another status
     ensuite: After registration 
@@ -269,7 +307,7 @@ formeJuridique:
   SAS: Société ayant au moins 2 associés. La responsabilité financière des associés est limitée au montant de leur apport au capital de la société. Le capital minimum est fixé librement dans les statuts.
   SASU: Composed of only one associate. The financial responsibility is limited to the amount of his contribution to the company's capital. The minimum capital is freely fixed in the statutes.
   SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
-  SNC: The liability of the partners for the debts of the company is unified (one	partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
+  SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
   micro: The micro-enterprise is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
 
 Votre forme juridique: Your legal status
@@ -321,10 +359,12 @@ après:
   kbis: 
     titre: The Kbis
     description:
-      1: It is the only official document attesting to <1>the legal existence of a commercial enterprise</1>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old. 
+      1: It is the official document attesting to <1>the legal existence of a commercial enterprise</1>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old. 
       2: This document is generally requested when applying for a public tender, opening a professional bank account, purchasing professional equipment from distributors, etc.
 
   actions:
     retour: Creation checklist
     avance: Go to social security
 
+sécu:
+  1: France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people</strong>.{' '}

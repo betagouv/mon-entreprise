@@ -28,10 +28,10 @@ class SocialSecurity extends Component<Props, {}> {
 						<>
 							<h1>Social protection: costs and benefits</h1>
 							<p>
-								France has chosen to provide its citizens with a high-quality
-								social safety net. This mandatory system is based on solidarity
-								and designed to ensure the{' '}
-								<strong>general welfare of its people</strong>.{' '}
+								La France a choisi d'offrir à ses citoyens une protection
+								sociale de qualité. Ce système obligatoire repose sur la
+								solidarité et vise à assurer le{' '}
+								<strong>bien-être général de la population</strong>.
 							</p>
 							<p>
 								Easy access to health care and other services ensures that

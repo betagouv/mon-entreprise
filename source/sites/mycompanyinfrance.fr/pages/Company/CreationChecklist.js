@@ -56,7 +56,7 @@ const CreateCompany = ({
 					{' '}
 					<p>
 						<button className="ui__ link-button" onClick={onStatusChange}>
-							<T k="incertain">
+							<T k="formeJuridique.incertain">
 								Pas convaincu par cette forme juridique ? Suivez notre guide !
 							</T>
 						</button>
@@ -90,21 +90,21 @@ const CreateCompany = ({
 							<T k="entreprise.tâches.nom.titre">Trouver un nom d'entreprise</T>
 						}
 						explanations={
-							<>
+							<T k="entreprise.tâches.nom.description">
 								<p>
-									<strong>The corporate name</strong> ("dénomination sociale")
-									is the legal name of your company, written on all of your
-									administrative papers. It can be different from the trade name
-									(used for commercial purpose).
+									<strong>La dénomination sociale</strong> est le nom de votre
+									entreprise aux yeux de la loi, écrit sur tous vos documents
+									administratifs. Il peut être différent de votre nom
+									commercial.
 								</p>
 								<p>
-									It is advisable to check that the name is available, i.e. that
-									it does not infringe a name already protected by a trademark,
-									a company name, a trade name, an Internet domain name, etc.
-									You can check on the{' '}
-									<a href="http://bases-marques.inpi.fr/">INPI database</a>.
+									Il est conseillé de vérifier que le nom est disponible,
+									c'est-à-dire qu'il ne porte pas atteinte à un nom déjà protégé
+									par une marque, une raison sociale, un nom commercial, un nom
+									de domaine Internet, etc. Vous pouvez vérifier dans la base de
+									données <a href="http://bases-marques.inpi.fr/">INPI</a>.
 								</p>
-							</>
+							</T>
 						}
 					/>
 				)}
@@ -117,9 +117,11 @@ const CreateCompany = ({
 					}
 					explanations={
 						<p>
-							<strong>The corporate purpose of the company</strong> ("objet
-							social") is the main activity run. A secondary activity can be
-							registered.
+							<T k="entreprise.tâches.objetSocial.description">
+								L'
+								<strong>objet social</strong> est l'activité principale de la
+								société. Une activité secondaire peut être enregistrée.
+							</T>
 						</p>
 					}
 				/>
@@ -132,17 +134,17 @@ const CreateCompany = ({
 							</T>
 						}
 						explanations={
-							<>
+							<T k="entreprise.tâches.adresse.description">
 								<p>
-									<strong>The address</strong> is the physical space where your
-									company will be incorporated. In certain places and
-									situations, you can benefit from substantial public financing
-									(exemption from charges, taxes, etc.).{' '}
+									<strong>L'adresse</strong> est l'espace physique où votre
+									entreprise sera incorporée. Dans certains lieux et certaines
+									situations, vous pouvez bénéficier d'un financement public
+									important (exonération de charges, de taxes, etc.).
 									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
-										More information (Fr)
+										Plus d'infos
 									</a>
 								</p>
-							</>
+							</T>
 						}
 					/>
 				)}
@@ -154,20 +156,15 @@ const CreateCompany = ({
 						}
 						explanations={
 							<p>
-								<strong>The company's articles of association</strong> ( "les
-								statuts"), is an official document written in French, describing
-								the status choice, naming the associate(s) and the contributed
-								capital. For more than one associate, it is recommended to ask
-								for the help of a lawyer to write them.{' '}
-								{status === 'SARL' && (
-									<a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">
-										Example of articles for a SARL
-									</a>
-								)}
-								{status === 'EURL' && (
-									<a href="https://www.afecreation.fr/cid46379/modele-statuts-types-eurl.html">
-										Example of articles for an EURL
-									</a>
+								<T k="entreprise.tâches.statuts.description">
+									<strong>Les statuts</strong> de l'entreprise sont un document
+									officiel qui donne le choix de la forme juridique, nomme les
+									associés et leurs contributions au capital. Dans le cas où il
+									y a plus d'un associé, il est recommandé de faire appel à un
+									juriste pour les rédiger.{' '}
+								</T>
+								{['SARL', 'EURL'].includes(status) && (
+									<StatutsExample status={status} />
 								)}
 							</p>
 						}
@@ -181,18 +178,29 @@ const CreateCompany = ({
 					explanations={
 						<>
 							<p>
-								The purpose of a <strong>professional bank account</strong> is
-								to separate your company's assets from your personal assets.{' '}
-								{status === 'EI' &&
-									'If its opening is not obligatory for an EI, it is strongly recommended. '}
-								The professional bank account allows you to:
+								<T k="entreprise.tâches.banque.description.1">
+									Le but d'un <strong>compte bancaire d'entreprise</strong> est
+									de séparer les actifs de l'entreprise des vôtres
+								</T>
+								{status === 'EI' && (
+									<T k="entreprise.tâches.banque.EI">
+										{' '}
+										If its opening is not obligatory for an EI, it is strongly
+										recommended.{' '}
+									</T>
+								)}
+								<T k="entreprise.tâches.banque.description.2">
+									Le compte d'entreprise vous permet de :
+								</T>
 							</p>
 							<ul>
-								<li>
-									Differentiate your private and professional operations and
-									simplify your cash management
-								</li>
-								<li>Facilitate any tax audit operations.</li>
+								<T k="entreprise.tâches.banque.description.liste">
+									<li>
+										Différencier vos opérations privées et professionnelles et
+										simplifier votre gestion de trésorerie
+									</li>
+									<li>Faciliter toute opération de contrôle fiscal.</li>
+								</T>
 							</ul>
 						</>
 					}
@@ -200,26 +208,28 @@ const CreateCompany = ({
 				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
 					<CheckItem
 						name="fundsDeposit"
-						title={<T k="entreprise.tâches.dépôt.titre">Déposer le capital</T>}
+						title={
+							<T k="entreprise.tâches.capital.titre">Déposer le capital</T>
+						}
 						explanations={
-							<>
+							<T k="entreprise.tâches.capital.description">
 								<p>
-									The <strong>deposit of share capital</strong> must be made at
-									the time of the incorporation of a company by any person
-									acting on behalf of the company and having received funds from
-									contributions in cash (sum of money) from the creditors of the
-									company (shareholder or partner).{' '}
+									Le <strong>dépôt du capital social</strong> doit être fait au
+									moment de la constitution d'une société par une personne
+									agissant au nom de la société et ayant reçu des apports en
+									numéraire (somme d'argent) de la part des créanciers de la
+									société (actionnaire ou associé).
 								</p>
 								<p>
-									The deposit consists of a transfer of a sum of money to a
-									blocked account with a bank or the public{' '}
+									Le dépôt consiste en un transfert d'une somme d'argent sur un
+									compte bloqué auprès d'une banque ou de la{' '}
 									<a href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
 										Caisse des dépôts et consignations
 									</a>{' '}
-									or a notary, who must then provide a certificate of deposit of
-									capital.
+									ou d'un notaire, qui doit alors fournir un certificat de dépôt
+									du capital.
 								</p>
-							</>
+							</T>
 						}
 					/>
 				)}
@@ -232,37 +242,40 @@ const CreateCompany = ({
 						}
 						name="publishCreationNotice"
 						explanations={
-							<>
+							<T k="entreprise.tâches.journal.description">
 								<p>
-									A <strong>notice of incorporation of the company</strong> must
-									be published in a newspaper of legal announcements ("JAL"),
-									for a cost of publication that depends on the size of the
-									announcement and the rates charged by the chosen newspaper.
+									Une <strong>annonce légal de création d'entreprise</strong>{' '}
+									doit être publié dans un journal d'annonces légales (« JAL »),
+									pour un coût de publication qui dépend du volume de l'annonce
+									et des tarifs pratiqués par le journal choisi{' '}
 								</p>
 								<p>
 									<a href="https://actulegales.fr/journaux-annonces-legales">
-										Find a newspaper of legal announcements ("JAL")
+										Trouver un journal d'annonces légales (JAL)
 									</a>
 								</p>
-								<p>This notice must contain the following information:</p>
+								<p>
+									Pour une SARL ou EURL, cette annonce doit contenir les
+									informations suivantes :{' '}
+								</p>
 								<ul>
-									<li>The company's name and possibly its acronym</li>
-									<li>The legal form</li>
-									<li>The amount of the company's capital</li>
-									<li>The address of the registered office</li>
-									<li>The corporate purpose</li>
-									<li>The duration of the company</li>
+									<li>Le nom de l'entreprise et éventuellement son acronyme</li>
+									<li>La forme juridique</li>
+									<li>Le capital de l'entreprise</li>
+									<li>L'adresse du siège</li>
+									<li>L'objet social</li>
+									<li>La durée de l'entreprise</li>
 									<li>
-										The full name and address of the manager and of the persons
-										with general authority to bind the company to third parties,
-										and of the statutory auditors (if appointed)
+										Les noms, prénoms et adresses des dirigeants et des
+										personnes ayant le pouvoir d'engager la société envers les
+										tiers
 									</li>
 									<li>
-										The place and number of the RCS with which the company is
-										registered
+										Le lieu et le numéro du RCS auprès duquel la société est
+										immatriculée
 									</li>
 								</ul>
-							</>
+							</T>
 						}
 					/>
 				)}
@@ -275,20 +288,20 @@ const CreateCompany = ({
 						</T>
 					}
 					explanations={
-						<>
+						<T k="entreprise.tâches.formulaire.description">
 							<p>
-								You can start your online registration process anytime, save it
-								and come back to it as you wish.
+								Vous pouvez faire votre d'inscription en ligne à tout moment,
+								l'enregistrer et y revenir comme vous le souhaitez.{' '}
 							</p>
 							<div style={{ textAlign: 'center' }}>
 								<a
 									className="ui__ button"
 									href="https://account.guichet-entreprises.fr/user/create"
 									target="blank">
-									Start registration process
+									Faire la démarche en ligne
 								</a>
 							</div>
-						</>
+						</T>
 					}
 				/>
 			</Checklist>
@@ -309,12 +322,14 @@ const CreateCompany = ({
 						}
 						explanations={
 							<p>
-								Managing a company brings a number of{' '}
-								<a href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
-									accounting obligations
-								</a>
-								. It is advisable to call in a competent person that can handle
-								accounting for you.
+								<T k="entreprise.tâches.comptable.description">
+									La gestion d'une entreprise impose un certain nombre d'
+									<a href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
+										obligations comptables
+									</a>
+									. Il est conseillé de faire appel aux services d'un comptable
+									ou d'un logiciel de comptabilité en ligne.
+								</T>
 							</p>
 						}
 					/>
@@ -323,24 +338,24 @@ const CreateCompany = ({
 					name="checkoutProfessionalAssuranceNeeds"
 					title={
 						<T k="entreprise.tâches.assurance.titre">
-							Jugez de la nécessité de prendre une assurance
+							Juger de la nécessité de prendre une assurance
 						</T>
 					}
 					explanations={
-						<>
+						<T k="entreprise.tâches.assurance.description">
 							<p>
-								An SME or self-employed person must protect themselves against
-								the main risks to which they are exposed and take out guarantee
-								contracts. Whether it is a tenant or owner of its walls, the
-								company must insure its buildings, its professional equipment,
-								its goods, its raw materials, its vehicles, as well as in terms
-								of civil liability of the company and its managers or in terms
-								of operating loss.
+								Une PME ou un travailleur indépendant doit se protéger contre
+								les principaux risques auxquels il est exposé et souscrire des
+								contrats de garantie. Qu'elle soit locataire ou propriétaire de
+								ses murs, l'entreprise doit assurer ses immeubles, son matériel
+								professionnel, ses biens, ses matières premières, ses véhicules,
+								ainsi qu'en matière de responsabilité civile de l'entreprise et
+								de ses dirigeants ou en matière de perte d'exploitation.
 							</p>
 							<a href="https://www.economie.gouv.fr/entreprises/assurances-obligatoires">
-								More information (Fr)
+								Plus d'infos
 							</a>
-						</>
+						</T>
 					}
 				/>
 			</Checklist>
@@ -373,3 +388,10 @@ export default connect(
 		onStatusChange: goToCompanyStatusChoice
 	}
 )(CreateCompany)
+
+let StatutsExample = ({ status }) => (
+	<a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">
+		<T k="entreprise.tâches.statuts.exemple">Exemple de statuts pour votre</T>
+		{status}
+	</a>
+)
