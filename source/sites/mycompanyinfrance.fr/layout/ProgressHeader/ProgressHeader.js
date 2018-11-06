@@ -2,7 +2,7 @@
 
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import React from 'react'
+import { React, T } from 'Components'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
@@ -11,6 +11,8 @@ import estimateSvg from '../../images/estimate.svg'
 import hiringSvg from '../../images/hiring.svg'
 import './ProgressHeader.css'
 import type { Tracker } from 'Components/utils/withTracker'
+import { translate } from 'react-i18next'
+
 const Progress = ({ percent }) => (
 	<div className="progress">
 		<div
@@ -42,7 +44,9 @@ const StepsHeader = ({
 					tracker.push(['trackEvent', 'Header', 'click', 'Your company'])
 				}>
 				<img src={companySvg} />
-				<div>Your company</div>
+				<div>
+					<T>Votre entreprise</T>
+				</div>
 				<Progress percent={companyProgress} />
 			</NavLink>
 			<NavLink
@@ -52,7 +56,10 @@ const StepsHeader = ({
 					tracker.push(['trackEvent', 'Header', 'click', 'Social security'])
 				}>
 				<img src={estimateSvg} />
-				<div>Social security</div>
+				<div>
+					<T>Protection sociale</T>
+				</div>
+
 				<Progress percent={estimationProgress} />
 			</NavLink>
 			<NavLink
@@ -62,7 +69,10 @@ const StepsHeader = ({
 					tracker.push(['trackEvent', 'Header', 'click', 'Hiring process'])
 				}>
 				<img src={hiringSvg} />
-				<div>Hiring process</div>
+				<div>
+					<T>Embaucher</T>
+				</div>
+
 				<Progress percent={hiringProgress} />
 			</NavLink>
 		</nav>
@@ -75,5 +85,6 @@ export default compose(
 	connect(
 		selectors,
 		{}
-	)
+	),
+	translate()
 )(StepsHeader)
