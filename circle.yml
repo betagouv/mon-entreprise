@@ -54,7 +54,7 @@ jobs:
     steps:
       - checkout
       - run: npm install --save-dev cypress
-      - run: sleep 60
+      - run: sleep 120
       - run: |
           if ./node_modules/.bin/cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759;
           then
