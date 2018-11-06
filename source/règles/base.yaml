@@ -880,6 +880,8 @@
       - vieillesse (salarié)
       - maladie (salarié)
       - retraite complémentaire (salarié)
+      - contribution d'équilibre général (salarié)
+      - contribution d'équilibre technique (salarié)
       - CSG
       - CRDS
       - APEC (salarié)
@@ -898,6 +900,8 @@
       - médecine du travail
       - vieillesse (employeur)
       - retraite complémentaire (employeur)
+      - contribution d'équilibre général (employeur)
+      - contribution d'équilibre technique (employeur)
       - allocations familiales
       - chômage (employeur)
       - APEC (employeur)
@@ -1745,6 +1749,67 @@
 - espace: contrat salarié
   nom: multiplicateur réduction générale
   formule: 1.6
+
+- espace: contrat salarié
+  nom: contribution d'équilibre général
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC-ARRCO
+  formule:
+    barème:
+      assiette: assiette cotisations sociales
+      multiplicateur des tranches: plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          tranches:
+            - en-dessous de: 1
+              taux: 1.29%
+            - de: 1
+              à: 8
+              taux:
+                1.62%
+            - au-dessus de: 8
+              taux: 0%
+
+        - attributs:
+            dû par: salarié
+          tranches:
+            - en-dessous de: 1
+              taux: 0.86%
+            - de: 1
+              à: 8
+              taux:
+                1.08%
+            - au-dessus de: 8
+              taux: 0%
+
+  références:
+    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+
+- espace: contrat salarié
+  nom: contribution d'équilibre technique
+  cotisation:
+    branche: retraite
+    type de retraite: complémentaire
+    destinataire: AGIRC-ARRCO
+  applicable si: assiette cotisations sociales > plafond sécurité sociale
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      plafond: 8 * plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 0.21%
+        - attributs:
+            dû par: salarié
+          taux: 0.14%
+  références:
+    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+
+
 
 - espace: contrat salarié
   nom: retraite complémentaire
