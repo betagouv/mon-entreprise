@@ -2,7 +2,7 @@
 
 import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import React, { Component } from 'react'
+import { React, Component, T } from 'Components'
 import Helmet from 'react-helmet'
 import * as Animate from 'Ui/animate'
 import type { Match, Location } from 'react-router'
@@ -25,8 +25,8 @@ class SocialSecurity extends Component<Props, {}> {
 				<ScrollToTop />
 				<Animate.fromBottom>
 					{this.props.match.isExact && (
-						<>
-							<h1>Social protection: costs and benefits</h1>
+						<T k="sécu">
+							<h1>Protection sociale : coût et avantages</h1>
 							<p>
 								La France a choisi d'offrir à ses citoyens une protection
 								sociale de qualité. Ce système obligatoire repose sur la
@@ -34,16 +34,15 @@ class SocialSecurity extends Component<Props, {}> {
 								<strong>bien-être général de la population</strong>.
 							</p>
 							<p>
-								Easy access to health care and other services ensures that
-								companies can put healthy, productive and highly skilled
-								employees to work in an attractive market in the heart of
-								Europe.
+								L'accès facile aux soins de santé et à d'autres services permet
+								aux entreprises d'employer des travailleurs en bonne santé,
+								productifs et hautement qualifiés.
 							</p>
 							<p>
-								As soon as you declare and pay your employees, you automatically
-								entitle them to the general scheme of French Social Security
-								(health, maternity, disability, old age, occupational illness
-								and accidents) and unemployment insurance.
+								Dès que vous déclarez et payez vos salariés, vous leur donnez
+								automatiquement droit au régime général de la Sécurité sociale
+								française (santé, maternité, invalidité, vieillesse, maladie
+								professionnelle et accidents) et à l'assurance chômage.
 							</p>
 							<div
 								style={{
@@ -66,8 +65,8 @@ class SocialSecurity extends Component<Props, {}> {
 									allowFullScreen
 								/>
 							</div>
-							<h2>How much does it cost to hire ?</h2>
-						</>
+							<h2>Combien coûte une embauche ?</h2>
+						</T>
 					)}
 					<Simulateur displayHiringProcedures key={location.pathname} />
 				</Animate.fromBottom>
