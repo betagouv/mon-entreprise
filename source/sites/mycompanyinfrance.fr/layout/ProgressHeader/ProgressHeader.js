@@ -70,7 +70,7 @@ const StepsHeader = ({
 				}>
 				<img src={hiringSvg} />
 				<div>
-					<T>Embaucher</T>
+					<T>Embauche</T>
 				</div>
 
 				<Progress percent={hiringProgress} />

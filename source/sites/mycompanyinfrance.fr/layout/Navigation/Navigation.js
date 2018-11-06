@@ -1,6 +1,6 @@
 /* @flow */
 import { compose } from 'ramda'
-import React from 'react'
+import { React, T } from 'Components'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
@@ -44,7 +44,7 @@ const StepsHeader = ({
 							exact={false}
 							title={
 								<>
-									Your company
+									<T>Votre entreprise</T>
 									<img
 										style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 										src={companySvg}
@@ -152,7 +152,7 @@ const StepsHeader = ({
 					</li>
 					<li>
 						<NavLink exact to="/social-security">
-							Social security
+							<T>Protection sociale</T>
 							<img
 								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 								src={estimateSvg}
@@ -163,7 +163,7 @@ const StepsHeader = ({
 					</li>
 					<li>
 						<NavLink to="/hiring-process">
-							Hiring process
+							<T>Embauche</T>
 							<img
 								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 								src={hiringSvg}

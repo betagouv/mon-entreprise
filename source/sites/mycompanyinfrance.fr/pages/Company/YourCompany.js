@@ -2,7 +2,7 @@
 
 import withLanguage from 'Components/utils/withLanguage'
 import { toPairs } from 'ramda'
-import React from 'react'
+import { React, T } from 'Components'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import type { ResetExistingCompanyDetailsAction } from 'Types/companyTypes'
@@ -58,7 +58,9 @@ export const CompanyDetails = (data: { [string]: string }) => {
 const YourCompany = ({ companyDetails, resetCompanyDetails }) => (
 	<>
 		{!companyDetails && <Redirect to="/company" />}
-		<h1>Your company</h1>
+		<h1>
+			<T>Your company</T>
+		</h1>
 		<CompanyDetails {...companyDetails.apiDetails} />
 		<p>
 			<Link onClick={resetCompanyDetails} to="/company/find">
