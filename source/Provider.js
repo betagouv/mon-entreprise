@@ -41,6 +41,7 @@ export default class Layout extends PureComponent {
 		this.history = createHistory({
 			basename: process.env.NODE_ENV === 'production' ? '' : this.props.basename
 		})
+		this.props.tracker.connectToHistory(this.history)
 		const storeEnhancer = composeEnhancers(
 			applyMiddleware(
 				// Allows us to painlessly do route transition in action creators
@@ -65,7 +66,7 @@ export default class Layout extends PureComponent {
 				<TrackerProvider value={this.props.tracker}>
 					<SetCSSColour />
 					<I18nextProvider i18n={i18next}>
-						<Router history={this.props.tracker.connectToHistory(this.history)}>
+						<Router history={this.history}>
 							<>{this.props.children}</>
 						</Router>
 					</I18nextProvider>

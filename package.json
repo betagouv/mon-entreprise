@@ -80,7 +80,7 @@
 		"@babel/preset-flow": "^7.0.0-beta.51",
 		"@babel/preset-react": "^7.0.0",
 		"akh": "^3.1.2",
-		"autoprefixer": "^8.6.3",
+		"autoprefixer": "^9.3.1",
 		"babel-eslint": "^9.0.0",
 		"babel-loader": "^8.0.2",
 		"babel-plugin-syntax-dynamic-import": "^6.18.0",

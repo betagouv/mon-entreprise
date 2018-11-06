@@ -10,7 +10,6 @@
 	<meta name="google-site-verification" content="C03WwnrJP0FLqf83ibMBA7_N-TLQcwsJaAhqKXppxaE" />
 	<!-- vérification pour Bing Webmaster -->
 	<meta name="msvalidate.01" content="65161AFDF93A706CED3F68C7621C00D7" />
-
 	<meta name="description" content="<%= htmlWebpackPlugin.options.description %>" data-react-helmet="true">
 	<!-- data-helmet pour que React Helmet puisse écraser ce meta par défaut -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,600|IBM+Plex+Sans:300,400' rel='stylesheet'
@@ -29,7 +28,7 @@
 				display: none !important;
 			}
 		</style>
-	<!--<![endif]-->
+		<!--<![endif]-->
 	<style>
 		html[data-useragent*='MSIE 10.0'] #outdated-browser {
 			display: block !important;
@@ -157,21 +156,20 @@
 			<br /><br /> Votre navigateur n'est pas supporté. Vous pouvez le mettre à jour ou en installer un nouveau depuis <a
 			 style="color: #2975d1" href="http://outdatedbrowser.com/fr">cette page</a></h2>
 	</div>
-	<script>
+
+
+	<script src="https://use.fontawesome.com/1da10bbdec.js"></script>
+
+	<script type="text/javascript">
 		var doc = document.documentElement;
 		doc.setAttribute('data-useragent', navigator.userAgent);
-	</script>
-
-
-	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Intl.~locale.en,Intl.~locale.fr,IntersectionObserver,fetch,Array.prototype.find,Object.values,Number.parseFloat,Array.prototype.includes,Object.entries,Object.values,Object.keys,Math.log2&unknown=polyfill"></script>
-	<script src="https://use.fontawesome.com/1da10bbdec.js"></script>
-	<script type="text/javascript">
-		if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
-			// For ie, polyfill everything, as I can't figure what's going on, and which polyfill is missing...
+		if (/MSIE \d|Trident.*rv:|Google/.test(navigator.userAgent)) {
+			// For ie or google, polyfill everything, as I can't figure what's going on, and which polyfill is missing...
 			document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=all"><\/script>');
+		} else {
+			document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Intl.~locale.en,Intl.~locale.fr,IntersectionObserver,fetch,Array.prototype.find,Object.values,Number.parseFloat,Array.prototype.includes,Object.entries,Object.values,Object.keys,Math.log2&unknown=polyfill"><\/script>');
 		}
 	</script>
-
 </body>
 
 </html>
