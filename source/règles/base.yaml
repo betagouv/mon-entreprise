@@ -879,13 +879,9 @@
     somme:
       - vieillesse (salarié)
       - maladie (salarié)
-      - ARRCO (salarié)
-      - AGIRC (salarié)
-      - GMP (salarié)
-      - AGFF (salarié)
+      - retraite complémentaire (salarié)
       - CSG
       - CRDS
-      - cotisation exceptionnelle temporaire (salarié)
       - APEC (salarié)
       - complémentaire santé (salarié)
 
@@ -901,11 +897,7 @@
       - complémentaire santé (employeur)
       - médecine du travail
       - vieillesse (employeur)
-      - ARRCO (employeur)
-      - AGIRC (employeur)
-      - GMP (employeur)
-      - AGFF (employeur)
-      - cotisation exceptionnelle temporaire (employeur)
+      - retraite complémentaire (employeur)
       - allocations familiales
       - chômage (employeur)
       - APEC (employeur)
@@ -1755,115 +1747,14 @@
   formule: 1.6
 
 - espace: contrat salarié
-  nom: AGFF
-  période: flexible
+  nom: retraite complémentaire
   cotisation:
     branche: retraite
     type de retraite: complémentaire
-    destinataire: AGFF
+    destinataire: AGIRC-ARRCO
   description: |
-    Cotisation de retraite complémentaire
-    (Association pour la Gestion du Fonds de Financement de l’AGIRC et de l’ARRCO).
-  référence: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+    Cotisation de retraite complémentaire. Remplace les cotisations AGIRC et ARRCO qui étaient avant 2019 séparées.
 
-  formule:
-    barème:
-      assiette: assiette cotisations sociales
-      multiplicateur des tranches: plafond sécurité sociale
-      composantes:
-        - attributs:
-            dû par: employeur
-
-          variations:
-            - si: statut cadre
-              alors:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 1.2%
-                  - de: 1
-                    à: 8
-                    taux: 1.3%
-                  - au-dessus de: 8
-                    taux: 0%
-            - sinon:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 1.2%
-                  - de: 1
-                    à: 3
-                    taux: 1.3%
-                  - au-dessus de: 3
-                    taux: 0%
-
-        - attributs:
-            dû par: salarié
-
-          variations:
-            - si: statut cadre
-              alors:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 0.8%
-                  - de: 1
-                    à: 8
-                    taux: 0.9%
-                  - au-dessus de: 8
-                    taux: 0%
-            - sinon:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 0.8%
-                  - de: 1
-                    à: 3
-                    taux: 0.9%
-                  - au-dessus de: 3
-                    taux: 0%
-
-- espace: contrat salarié
-  nom: GMP
-  cotisation:
-    branche: retraite
-    type de retraite: complémentaire
-    destinataire: AGIRC
-  description: |
-    Les salariés relevant du régime Agirc qui n'ont pas un salaire suffisant pour
-    atteindre le nombre minimum de 120 points Agirc,
-    ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
-
-  applicable si: statut cadre
-  période: mois
-  formule:
-    complément:
-      composantes:
-        - attributs:
-            dû par: employeur
-          cible: AGIRC (employeur)
-          montant: 45.11 * quotité de travail
-        - attributs:
-            dû par: salarié
-          cible: AGIRC (salarié)
-          montant: 27.60 * quotité de travail
-
-  note: Le mécanisme de complément de la cotisation AGIRC nous évite d'avoir à utiliser le "salaire charnière"
-
-  # TODO
-  # - harmoniser la syntaxe de ce 'complément' avec les systèmes de réduction de cotisation. C'est pareil avec une addition finalement
-  # - on pourrait aussi se dire que cette formule est un complément de AGIRC,
-  # donc que les conditions d'applicabilité d'AGIRC n'ont pas à être répétées
-
-  références:
-    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
-    circulaire 2017 -07-DT: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
-- espace: contrat salarié
-  nom: AGIRC
-  cotisation:
-    branche: retraite
-    type de retraite: complémentaire
-    destinataire: AGIRC
-  description: |
-    Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
-
-  applicable si: statut cadre
   période: flexible
   formule:
     barème:
@@ -1874,10 +1765,10 @@
             dû par: employeur
           tranches:
             - en-dessous de: 1
-              taux: 0%
+              taux: 4.72%
             - de: 1
               à: 8
-              taux: 12.75%
+              taux: 12.95%
             - au-dessus de: 8
               taux: 0%
 
@@ -1885,20 +1776,17 @@
             dû par: salarié
           tranches:
             - en-dessous de: 1
-              taux: 0%
+              taux: 3.15%
             - de: 1
               à: 8
-              taux: 7.8%
+              taux: 8.64%
             - au-dessus de: 8
               taux: 0%
 
-  note: |
-    Il existe une tranche C, de 4 à 8 fois la base, sur laquelle la répartition des cotisations est décidée au sein de l’entreprise jusqu’à 20 %. De 20 % à 20,30 %, la répartition est la suivante : 66,67 % à la charge du salarié et 33,33 % pour l’employeur.
-
   références:
-    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
-    garantie minimale de points: http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
+    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
 
+            
 - espace: contrat salarié
   nom: AGS
   description: Cotisation au Régime de Garantie des Salaires
@@ -1992,62 +1880,7 @@
               taux: 0.024%
             - au-dessus de: 4
               taux: 0%
-- espace: contrat salarié
-  nom: ARRCO
-  cotisation:
-    branche: retraite
-    type de retraite: complémentaire
-    destinataire: ARRCO
-  description: |
-    Cotisation de retraite complémentaire pour tous les salariés du secteur privé, gérée par l'Association pour le Régime de Retraite Complémentaire des salariés.
-  références:
-    calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
-  période: flexible
-  formule:
-    barème:
-      assiette: assiette cotisations sociales
-      multiplicateur des tranches: plafond sécurité sociale
-      composantes:
-        - attributs:
-            dû par: employeur
-          variations:
-            - si: statut cadre
-              alors:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 4.65%
-                  - au-dessus de: 1
-                    taux: 0%
-            - sinon:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 4.65%
-                  - de: 1
-                    à: 3
-                    taux: 12.15%
-                  - au-dessus de: 3
-                    taux: 0%
-
-        - attributs:
-            dû par: salarié
-          variations:
-            - si: statut cadre
-              alors:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 3.1%
-                  - au-dessus de: 1
-                    taux: 0%
-            - sinon:
-                tranches:
-                  - en-dessous de: 1
-                    taux: 3.1%
-                  - de: 1
-                    à: 3
-                    taux: 8.1%
-                  - au-dessus de: 3
-                    taux: 0%
 - espace: contrat salarié
   nom: chômage
   cotisation:
@@ -2224,33 +2057,6 @@
     multiplication:
       assiette: assiette cotisations sociales
       taux: 0.016%
-- espace: contrat salarié
-  nom: cotisation exceptionnelle temporaire
-  acronyme: CET
-  cotisation:
-    branche: retraite
-    type de retraite: complémentaire
-    destinataire: AGIRC
-  description: |
-    Cotisation de solidarité pour le régime Agirc, elle ne donne pas de points supplémentaires au salarié.
-  références:
-    calcul: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
-
-  applicable si: statut cadre
-  période: flexible
-
-  formule:
-    multiplication:
-      assiette: assiette cotisations sociales
-      plafond: 8 * plafond sécurité sociale
-      composantes:
-        - attributs:
-            dû par: employeur
-          taux: 0.22%
-
-        - attributs:
-            dû par: salarié
-          taux: 0.13%
 
 - espace: contrat salarié
   note: Cette assiette est complexe, cette version n'est qu'une simplification.
