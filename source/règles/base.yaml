@@ -1761,35 +1761,22 @@
   cotisation:
     dû par: employeur
     branche: famille
+  formule:
+    multiplication:
+      assiette: assiette cotisations sociales
+      taux: 
+        variations: 
+          - si: 
+              toutes ces conditions:
+                - assiette cotisations sociales < plafond de réduction 
+                - ≠ statut JEI
+            alors: 3.45%
+          - sinon: 5.25%
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
 
-  formule: cotisation allocations familiales - réduction allocations familiales
-
-- espace: contrat salarié
-  nom: cotisation allocations familiales
-  période: flexible
-  formule:
-    multiplication:
-      assiette: assiette cotisations sociales
-      taux: 5.25%
-
-- espace: contrat salarié
-  nom: réduction allocations familiales
-  titre: Réduction des allocations familiales
-  applicable si:
-    toutes ces conditions:
-      - assiette cotisations sociales < plafond réduction allocations familiales
-      - ≠ statut JEI
-
-  période: flexible
-  formule:
-    multiplication:
-      assiette: assiette cotisations sociales
-      taux: 1.8%
-
-- espace: contrat salarié
-  nom: plafond réduction allocations familiales
+- espace: contrat salarié . allocations familiales
+  nom: plafond de réduction
   titre: Plafond de la réduction des allocations familiales
   période: flexible
   formule: SMIC * 3.5
