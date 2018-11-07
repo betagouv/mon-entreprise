@@ -1610,6 +1610,8 @@
       - maladie (employeur)
       - vieillesse (employeur)
       - assiette ATMP réduction générale
+      - retraite complémentaire (employeur)
+      - contribution d'équilibre général (employeur)
 
 - espace: contrat salarié
   nom: assiette ATMP réduction générale
