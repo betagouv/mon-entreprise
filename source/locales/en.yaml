@@ -410,3 +410,10 @@ Entreprise Individuelle: Individual Business
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
+status du directeur:
+  page:
+    description: This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France
+  titre: Defining the director's status
+  description: <0>This choice is important because it determines the director's Social Security scheme and coverage.</0><1><0><0>Salaried employee:</0> The company director joins and is covered by France’s general Social Security scheme. Social Security contributions are calculated on the basis of the executive's actual pay and are paid monthly. Although more expensive, this scheme offers full social protection (except unemployment).</0><1><0>Self-employed:</0> The company director joins and is covered by France’s self-employed scheme called « Sécurité sociale des indépendants ». Contributions due are generally calculated based on professional income as reported to the tax authorities. Although less expensive, this scheme provides basic social protection (additional options and private insurance are recommended).</1></1>
+Assimilé salarié: Salaried
+Indépendant: Self-employed

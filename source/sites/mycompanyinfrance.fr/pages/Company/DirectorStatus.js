@@ -1,66 +1,83 @@
 /* @flow */
 import { defineDirectorStatus } from 'Actions/companyStatusActions'
-import React from 'react'
+import { React, T } from 'Components'
+import { compose } from 'ramda'
 import Helmet from 'react-helmet'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 import type { DirectorStatus } from 'Types/companyTypes'
 
 type Props = {
-	defineDirectorStatus: (?DirectorStatus) => void
+	defineDirectorStatus: (?DirectorStatus) => void,
+	t: (string, string) => string
 }
-const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => (
+const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 	<>
 		<Helmet>
-			<title>Defining the director's status</title>
+			<title>
+				{t('status du directeur.titre', 'Définir le statut du directeur')}
+			</title>
 			<meta
 				name="description"
-				content="This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France"
+				content={t(
+					'status du directeur.page.description',
+					`Ce choix est important parce qu'il détermine le régime de sécurité sociale et la couverture sociale de l'administrateur. Chaque option a des implications juridiques et conduit à un statut différent lors de la création de votre entreprise.`
+				)}
 			/>
 		</Helmet>
-		<h2>Defining the director&apos;s status </h2>
-		<p>
-			This choice is important because it determines the director's Social Security
-			scheme and coverage.
-		</p>
-		<ul>
-			<li>
-				<strong>Salaried employee:</strong> The company director joins and is
-				covered by France’s general Social Security scheme. Social Security
-				contributions are calculated on the basis of the executive&apos;s actual
-				pay and are paid monthly. Although more expensive, this scheme offers
-				full social protection (except unemployment).
-			</li>
-			<li>
-				<strong>Self-employed:</strong> The company director joins and is
-				covered by France’s self-employed scheme called « Sécurité sociale des
-				indépendants ». Contributions due are generally calculated based on
-				professional income as reported to the tax authorities. Although less
-				expensive, this scheme provides basic social protection (additional
-				options and private insurance are recommended).
-			</li>
-		</ul>
+		<h2>
+			<T k="status du directeur.titre">Définir le status du directeur</T>
+		</h2>
+		<T k="status du directeur.description">
+			<p>
+				Ce choix est important parce qu'il détermine le régime de sécurité
+				sociale et la couverture sociale du dirigeant.
+			</p>
+			<ul>
+				<li>
+					<strong>Assimilé salarié :</strong> Le directeur de l'entreprise est
+					couvert par le régime général de la Sécurité sociale française. Les
+					cotisations sont calculées sur la base de la rémunération du dirigeant
+					et sont payés mensuellement. Bien qu'il soit plus coûteux, ce
+					programme offre une protection sociale complète (à l'exception du
+					chômage).
+				</li>
+				<li>
+					<strong>Indépendant :</strong> Le directeur de l'entreprise est
+					couvert par le régime de la Sécurité sociale des travailleurs
+					indépendants. Les cotisations dues sont généralement calculées en
+					fonction des revenus professionnels déclarés à l'administration
+					fiscale. Bien que moins coûteux, ce régime offre une protection
+					sociale limitée (des options supplémentaires et une assurance privée
+					sont recommandées).
+				</li>
+			</ul>
+		</T>
 		<div className="ui__ answer-group">
 			<button
 				className="ui__ button"
 				onClick={() => {
 					defineDirectorStatus('SALARIED')
 				}}>
-				Salaried
+				<T>Assimilé salarié</T>
 			</button>
 			<button
 				className="ui__ button"
 				onClick={() => {
 					defineDirectorStatus('SELF_EMPLOYED')
 				}}>
-				Self-employed
+				<T>Indépendant</T>
 			</button>
 			<SkipButton onClick={() => defineDirectorStatus(null)} />
 		</div>
 	</>
 )
 
-export default connect(
-	null,
-	{ defineDirectorStatus }
+export default compose(
+	translate(),
+	connect(
+		null,
+		{ defineDirectorStatus }
+	)
 )(DefineDirectorStatus)
