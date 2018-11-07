@@ -1799,25 +1799,16 @@
 
   période: flexible
   formule:
-    barème:
+     multiplication:
       assiette: assiette cotisations sociales
-      multiplicateur des tranches: plafond sécurité sociale
+      plafond: 4 * plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
-          tranches:
-            - en-dessous de: 4
-              taux: 0.036%
-            - au-dessus de: 4
-              taux: 0%
-
+          taux: 0.036%
         - attributs:
             dû par: salarié
-          tranches:
-            - en-dessous de: 4
-              taux: 0.024%
-            - au-dessus de: 4
-              taux: 0%
+          taux: 0.024%
 
 - espace: contrat salarié
   nom: chômage
