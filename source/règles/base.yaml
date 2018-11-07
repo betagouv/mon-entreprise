@@ -1637,6 +1637,7 @@
 
 - espace: contrat salarié
   nom: contribution d'équilibre général
+  description: Cette cotisation créée en 2019 permet à la fois de compenser les charges résultant des départs à la retraite avant 67 ans et d’honorer les engagements retraite des personnes qui ont cotisé à la GMP, une ancienne cotisation de compensation pour les cadres.
   cotisation:
     branche: retraite
     type de retraite: complémentaire
