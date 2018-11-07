@@ -60,14 +60,14 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 					companyIsMicroenterprise(true)
 				}}
 				className="ui__ button">
-				Micro-enterprise
+				<T>Micro-entreprise</T>
 			</button>
 			<button
 				onClick={() => {
 					companyIsMicroenterprise(false)
 				}}
 				className="ui__ button">
-				Individual Business
+				<T>Entreprise Individuelle</T>
 			</button>
 			<SkipButton onClick={() => companyIsMicroenterprise(null)} />
 		</div>
