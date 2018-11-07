@@ -32,6 +32,7 @@ describe('library', function() {
 - nom: yo
   formule: 1
 - nom: ya
+  période: flexible
   formule:  contrat salarié . salaire . net + yo
 `
 
@@ -128,7 +129,7 @@ describe('library', function() {
 		expect(value).to.equal(7253.26)
 	})
 	it('should let let user define a rule base on a completely different subject', function() {
-		let targets = ['impact']
+		let targets = 'impact'
 
 		let value = Syso.evaluate(
 			targets,
@@ -137,9 +138,9 @@ describe('library', function() {
 				'chauffage . type': 'gaz',
 				'durée de la douche': 10
 			},
-			{ base: co2, debug: true }
+			{ base: co2, debug: false }
 		)
-		console.log(JSON.stringify(value.targets[0], null, 4))
+		//console.log(JSON.stringify(value.targets[0], null, 4))
 		expect(value).to.equal(7253.26)
 	})
 })
