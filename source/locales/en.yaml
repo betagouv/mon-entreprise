@@ -195,7 +195,7 @@ legalNotice:
       </0>
 
 Cette règle est la somme de: This rule is the sum of
-Cette règle présente: This rule has 
+Cette règle présente: This rule has
 Si: If
 Sinon: Else
 Alors: Then
@@ -210,8 +210,8 @@ Créez votre entreprise: Start your business in France
 subtitle: The ultimate how-to guide, from incorporation to hiring.
 Commencer: Get started
 Passer: Skip
-accueil: 
-  entreprise: 
+accueil:
+  entreprise:
     titre: Your new company
     1: Find the type of company that suits you
     2: Follow the steps to register your company
@@ -221,7 +221,7 @@ accueil:
     1: Discover the French social security system
     2: Simulate your hiring costs
     action: Simulate hiring costs and benefits ›
-  embauche: 
+  embauche:
     titre: Your first employee
     1: Discover the procedures to hire in France
     2: Learn the basics of French labour law
@@ -234,33 +234,33 @@ entreprise:
   tâches:
     intro: This checklist will guide you throughout all the necessary steps to register your
     titre1: Needed for registration
-    nom: 
+    nom:
       titre: Find a corporate name
-      description: | 
+      description: |
         <0><0>The corporate name</0> ("dénomination sociale") is the legal name of your company, written on all of your administrative papers. It can be different from the trade name (used for commercial purpose).</0>
         <1>It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc. You can check on the <2>INPI database</2>.</1>
-    objetSocial: 
+    objetSocial:
       titre: Write the corporate purpose of the company
       description: The <1>corporate purpose</1> of the company ("objet social") is the main activity run. A secondary activity can be registered.
-    adresse: 
+    adresse:
       titre: Find an address to incorporate the company
-      description: <0><0>The address</0> is the physical space where your company will be incorporated. In certain places and situations, you can benefit from substantial public financing (exemption from charges, taxes, etc.). <3>More information (Fr)</3></0>
-    statuts: 
+      description: <0><0>The address</0> is the physical space where your company will be incorporated. In certain places and situations, you can benefit from substantial public financing (exemption from charges, taxes, etc.). <2>More information (Fr)</2></0>
+    statuts:
       titre: Write the company's articles
       exemple: Example articles for your
       description: <0>The company's articles of association</0> ( "les statuts"), is an official document written in French, describing the status choice, naming the associate(s) and the contributed capital. For more than one associate, it is recommended to ask for the help of a lawyer to write them.
-    banque: 
+    banque:
       titre: Open a business bank account
       description:
         1: The purpose of a <1>professional bank account</1> is to separate your company's assets from your personal assets.
-        2: "The professional bank account allows you to:"
+        2: 'The professional bank account allows you to:'
         EI: If its opening is not obligatory for an EI, it is strongly recommended.
         liste: |
           <0>Differentiate your private and professional operations and simplify your cash management</0>
           <1>Facilitate any tax audit operations.</1>
-    capital: 
+    capital:
       titre: Deposit capital funds
-      description: <0>The <1>deposit of share capital</1>  must be made at the time of the incorporation of a company by any person acting on behalf of the company and having received funds from contributions in cash (sum of money) from the creditors of the company (shareholder or partner).</0><1>The deposit consists of a transfer of a sum of money to a blocked account with a bank or the public <2>Caisse des dépôts et consignations</2> or a notary, who must then provide a certificate of deposit of capital.</1> 
+      description: <0>The <1>deposit of share capital</1>  must be made at the time of the incorporation of a company by any person acting on behalf of the company and having received funds from contributions in cash (sum of money) from the creditors of the company (shareholder or partner).</0><1>The deposit consists of a transfer of a sum of money to a blocked account with a bank or the public <2>Caisse des dépôts et consignations</2> or a notary, who must then provide a certificate of deposit of capital.</1>
     journal:
       titre: Publish a notice of creation in a newspaper
       description: |
@@ -283,23 +283,23 @@ entreprise:
         </7>
         </3>
 
-    formulaire: 
+    formulaire:
       titre: Register your company online
       description: <0>You can start your online registration process anytime, save it and come back to it as you wish.</0><1><0>Start registration process</0></1>
     titre2: Recommended before starting your activity
     comptable:
       titre: Choose a certified accountant
       description: Managing a company brings a number of <1>accounting obligations</1>. It is advisable to call in a competent person or use a website that can handle accounting for you.
-    assurance: 
+    assurance:
       titre: Check out the need for professional insurance
       description: <0>An SME or self-employed person must protect themselves against the main risks to which they are exposed and take out guarantee contracts. Whether it is a tenant or owner of its walls, the company must insure its buildings, its professional equipment, its goods, its raw materials, its vehicles, as well as in terms of civil liability of the company and its managers or in terms of operating loss.</0><1>More information (Fr)</1>
     avancement: Use these lists to track down your advancement in the business creation process. It is automatically saved in your browser.
     retour: Choose another status
-    ensuite: After registration 
+    ensuite: After registration
 
 formeJuridique:
   incertain: Not sure about this status? Take our guide to help you choose
-  intro: "The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs."
+  intro: 'The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs.'
   EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
   EIRL: Allows you to protect your personal assets by assigning a specific heritage to your professional activity.
   EURL: Companies with EURL status only have one partner. Liability is limited to the amount of the unique partner's contribution to the capital.
@@ -314,31 +314,64 @@ Votre forme juridique: Your legal status
 Créer une: Create a
 
 Choisir la forme juridique: Choose your legal status
-Plus tard: Do it later 
+Plus tard: Do it later
 
 Responsabilité de l'entreprise: Liability
-responsabilité: 
+responsabilité:
+  titre: Choosing the company liability in France
+  description: Sole proprietorship or limited liability? Each option has legal implications, and leads to a different status for creating your company in France
   intro: An entrepreneur can choose between several options for the legal setup of his company
   1: "<0>Sole proprietorship</0>: An economic activity conducted by a single natural person, in his own name. It's less paperwork, but bigger trouble in case of bankruptcy, as your personal wealth can be put to contribution."
   2: Unlimited liability
   2bis: Unlimited joint and several liability
   2Description: The financial liability of the shareholders is not limited to their contribution. In case of bankruptcy, their personal wealth can be put to contribution
   3: "<0>Limited liability</0>: A corporate structure whereby the
-                      company members cannot be held personally liable for the                                                                                                        company's debts or liabilities. However, it's heavier to set up,
-                      and you need to provide an initial capital."
+    company members cannot be held personally liable for the                                                                                                        company's debts or liabilities. However, it's heavier to set up,
+    and you need to provide an initial capital."
   bouton1: Sole proprietorship
   bouton2: Unlimited liability
   bouton3: Limited liability
-  
 
-associés: 
+microentreprise:
+  page:
+    titre: Difference between microenterprise or Individual Business in France
+    description: |
+      The micro-entreprise is a simplified scheme of declaration and payment,
+      for which tax and social contributions are based on the turnover achieved
+      each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
+  titre: Microenterprise or Individual Business
+  description: >
+    <0>
+      The micro-entreprise is a simplified scheme of declaration and payment, for which tax and social contributions 
+      are based on the turnover achieved each month. Available for companies whose annual 
+      turnover does not exceed €70,000 for services providers or €170,000 when the main activity 
+      is the sale of goods, catering or the provision of housing.
+    </0>
+    <1>
+      This is an interesting choice if:
+    </1>
+    <2>
+      <0>You do not need a lot of capital and important expenses to run your activity</0>
+      <1>You want to test the viability or plan it to be small</1>
+      <2>You want the minimum amount of paperwork to get started</2>
+    </2>
+    <3>
+      <0>Note:</0>
+      Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities 
+      are regulated with a qualification or a professional experience (<4>see the list [fr])</4>).
+    </3>
+    <4>
+      For all the other cases, it is advised to choose the standard status, which 
+      is <1>Individual Business.</1>
+    </4>
+associés:
   titre: Number of associates
   description: If your company only has one associate, the administrative process is easier.
   choix1: Only one associate
   choix2: More than one associate
 
 trouver:
-  titre:  Find your company
+  titre: Find your company
   non: I don't have a company yet
   description: Thanks to the SIREN database, the public information of your company will be used automatically in the next steps.
 
@@ -346,29 +379,28 @@ Entrez le nom de votre société: Type your company name
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Recherche en cours...: Searching...
 
-après: 
+après:
   titre: After registration
   entreprise: company
   intro: Once your <2>{{companyStatusChoice}}</2> has been successfully registered, you'll have access to the following
   siret:
     titre: The Siret number
     description: The Siren number <1>identifies your company</1> while the Siret number identifies each place of business operated by the same company. The Siret is composed by the Siren followed by the establishment number.
-  ape: 
+  ape:
     titre: The APE code
     description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.
-  kbis: 
+  kbis:
     titre: The Kbis
     description:
-      1: It is the official document attesting to <1>the legal existence of a commercial enterprise</1>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old. 
+      1: It is the official document attesting to <1>the legal existence of a commercial enterprise</1>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old.
       2: This document is generally requested when applying for a public tender, opening a professional bank account, purchasing professional equipment from distributors, etc.
 
   actions:
     retour: Creation checklist
     avance: Go to social security
 
-sécu: | 
+sécu: |
   <0>Social protection: costs and benefits</0><1>France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people</2>.</1><2>Easy access to health care and other services ensures that companies can put healthy, productive and highly skilled employees to work in an attractive market in the heart of Europe.</2><3>As soon as you declare and pay your employees, you automatically entitle them to the general scheme of French Social Security (health, maternity, disability, old age, occupational illness and accidents) and unemployment insurance.</3><4><0></0></4><5>How much does it cost to hire ?</5>
-
 
 Votre entreprise: Your company
 Protection sociale: Social security

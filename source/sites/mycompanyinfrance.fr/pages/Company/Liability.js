@@ -13,10 +13,22 @@ type Props = {
 const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 	<>
 		<Helmet>
-			<title>Choosing the liability for your company in France</title>
+			<title>
+				<T k="responsabilité.titre">
+					Choisir la responsabilité de l'entreprise
+				</T>
+			</title>
 			<meta
 				name="description"
-				content="Sole proprietorship or limited liability? Each option has legal implications, and leads to a different status for creating your company in France"
+				content={
+					<T k="responsabilité.description">
+						{' '}
+						Responsabilité limitée ? entreprise individuelle ? Chaque option a
+						des implications juridiques et conduit à un statut différent pour la
+						création de votre entreprise en France. Ce guide vous aide à choisir
+						entre les différentes forme de responsabilité.
+					</T>
+				}
 			/>
 		</Helmet>
 		<h2>
@@ -51,7 +63,7 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 						<T k="responsabilité.2Description">
 							La responsabilité financière des actionnaires ne se limite pas à
 							leur apport. En cas de faillite, leur patrimoine personnel peut
-							être mis à contribution
+							être mis à contribution.
 						</T>
 					</>
 				)}
@@ -60,10 +72,10 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 			<li>
 				<T k="responsabilité.3">
 					<strong>Responsabilité limitée : </strong>
-					Structure organisationnelle dans laquelle le Les membres de la société
+					Structure organisationnelle dans laquelle le/les membres de la société
 					ne peuvent être tenus personnellement responsables des dettes ou
-					obligations de la société. Cependant, c'est plus lourd à mettre en
-					place, et vous devez fournir un capital initial.
+					obligations de la société. En revanche, les démarches de création sont
+					un peu plus lourde, et vous devez fournir un capital initial.
 				</T>
 			</li>
 		</ul>

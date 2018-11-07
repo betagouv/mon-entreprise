@@ -1,14 +1,15 @@
 /* @flow */
-import { ScrollToTop } from 'Components/utils/Scroll'
 import { React, T } from 'Components'
+import { ScrollToTop } from 'Components/utils/Scroll'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import siret from './siret.jpg'
-import { translate } from 'react-i18next'
 
 type Props = {
-	companyStatusChoice: string
+	companyStatusChoice: string,
+	t: (string, string) => string
 }
 
 const AfterRegistration = ({ t, companyStatusChoice }: Props) => (

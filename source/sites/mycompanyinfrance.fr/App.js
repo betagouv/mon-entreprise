@@ -3,6 +3,7 @@ import { defaultTracker } from 'Components/utils/withTracker'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
+import { translate } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -20,7 +21,6 @@ import CompanyIndex from './pages/Company'
 import HiringProcess from './pages/HiringProcess'
 import Landing from './pages/Landing'
 import SocialSecurity from './pages/SocialSecurity'
-import { translate } from 'react-i18next'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -52,7 +52,7 @@ class InFranceRoute extends Component {
 		return (
 			<Provider
 				basename="infrance"
-				language="en"
+				language="fr"
 				tracker={tracker}
 				reduxMiddlewares={middlewares}
 				initialStore={{ ...retrievePersistedState(), lang: 'en' }}
