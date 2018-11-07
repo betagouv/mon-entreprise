@@ -118,16 +118,33 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		let nodeValue = filteredNode.nodeValue
 
 		// Temporal transformation
-		if (nodeValue == null || !isNumeric(nodeValue)) return filteredNode
-
+		if (nodeValue == null) return filteredNode
 		let ruleToTransform = findRuleByDottedName(
 			rules,
 			filteredNode.explanation.dottedName
 		)
+		if (!rule.période) {
+			if (ruleToTransform.période == 'flexible')
+				throw new Error(
+					`Attention, une variable sans période, ${
+						rule.dottedName
+					}, qui appelle une variable à période flexible, ${
+						ruleToTransform.dottedName
+					}, c'est suspect ! 
+				`
+				)
+
+			return filteredNode
+		}
+		if (!ruleToTransform.période) return filteredNode
 
 		let environmentPeriod = situation('période') || 'mois'
-		let callingPeriod = rule['période'] || environmentPeriod
-		let calledPeriod = ruleToTransform['période'] || environmentPeriod
+		let callingPeriod =
+			rule.période == 'flexible' ? environmentPeriod : rule.période
+		let calledPeriod =
+			ruleToTransform.période == 'flexible'
+				? environmentPeriod
+				: ruleToTransform.période
 
 		let transformedNodeValue =
 				callingPeriod === 'mois' && calledPeriod === 'année'
