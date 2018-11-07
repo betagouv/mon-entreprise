@@ -1612,6 +1612,8 @@
       - assiette ATMP réduction générale
       - retraite complémentaire (employeur)
       - contribution d'équilibre général (employeur)
+  références:
+    changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
 
 - espace: contrat salarié
   nom: assiette ATMP réduction générale
@@ -2121,7 +2123,7 @@
   références:
     fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
-
+    Réduction 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/une-reduction-des-cotisations-pa.html
   période: flexible
   formule:
     multiplication:
