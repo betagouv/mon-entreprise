@@ -2431,10 +2431,10 @@
     multiplication:
       assiette: assiette cotisations sociales
       taux:
-        0.68%
-        # exception:
-        #   si: régime géographique = Alsace-Moselle
-        #   2016: 0.44%
+        variations: 
+          - si: régime alsace moselle
+            alors: 0.44%
+          - sinon: 0.68%
 
 - espace: contrat salarié
   nom: contribution supplémentaire à l'apprentissage
