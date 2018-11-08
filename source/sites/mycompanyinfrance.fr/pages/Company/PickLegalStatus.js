@@ -10,6 +10,8 @@ import type { RouterHistory } from 'react-router'
 import {compose} from 'ramda'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import withLanguage from 'Components/utils/withLanguage'
+import type { TFunction } from 'react-i18next'
+
 const setMainStatus = () => {}
 
 type Props = {
@@ -17,12 +19,12 @@ type Props = {
 	possibleStatus: { [LegalStatus]: boolean },
 	setMainStatus: LegalStatus => void,
 	language: string,
-	t: (string, string) => string,
+	t: TFunction
 }
 
 const StatusButton = ({ status }: { status: LegalStatus }) => (
 	<Link to={`/company/create-${status}`} className="ui__ button">
-		<T>Créer une</T> <strong>{status}</strong>
+		<T>Créer une</T> {status}
 	</Link>
 )
 

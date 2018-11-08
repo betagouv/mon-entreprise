@@ -232,7 +232,11 @@ piedDePage: This website is provided by the <1>URSSAF</1>, the French social sec
 entreprise:
   existeDéjà: My company is already registered with the French Administration
   tâches:
-    intro: This checklist will guide you throughout all the necessary steps to register your
+    page:
+      description: A complete todo list to help you create a {{companyStatus}} with the French administration.`
+      titre: Create a {{companyStatus}} in France
+    titre: Create a <1>{{companyStatus}}</1>
+    intro: This todo list will guide you throughout all the necessary steps to register your
     titre1: Needed for registration
     nom:
       titre: Find a corporate name
@@ -426,3 +430,50 @@ gérant minoritaire:
     <0>Some special rules apply depending on the amount of shares owned by the director.</0><1><0><0>Chairman</0>: The director is in majority, or is part of a managing board that is in majority.</0><1><0>Managing director</0>: The director is in minority (or equality), or is part of a managing board that is in minority (or equality).</1></1>
 Gérant majoritaire: Chairman
 Gérant minoritaire: Managing director
+
+Plus d'informations: More information (fr)
+
+embauche:
+  tâches:
+    page:
+      titre: >
+        Hiring procedure in France
+      description: All the necessary steps to hire your first employee in France.
+    titre: Hiring process checklist
+    description: All the necessary steps to hire your first employee.
+    contrat:
+      titre: Sign an employment contract with your employee
+    dpae:
+      titre: Declare your hiring t  o the social administration
+      description: >
+        This can be done through the form called DPAE, must be completed
+        within 8 days before any hiring, and can <2>be done online (Fr)</2>
+    logiciel de paie:
+      titre: Choose a payslip software
+      description: >
+        With fewer than 20 employees, payslips and declarations can be
+        handled online by the <2> Tese (Fr)</2>, a tool developped by the french 
+        social administration. You can also use <5>a private payslip software (Fr)</5>
+    registre:
+      titre: Keep an updated staff register
+    pension:
+      titre: Contact your assigned compulsory complementary pension institution
+      description: Find your pension institute (Fr)
+    complémentaire santé:
+      titre: Pick a private complementary health insurance
+      description: >
+        You must cover your employees with the private complementary health
+        insurance ("complémentaire santé" or colloquially "mutuelle" in
+        French) of your choice as long as it provides a set of minimum
+        guarantees. The employer must pay at least half of the package.
+    medecine:
+      titre: Register to a work medicine office
+      description: Don't forget to plan an initial appointment for each new hire.
+  chaque mois: >
+    <0>Then each month</0>
+    <1>
+      <0>Compute the individual social contributions (using the chosen payslip software)</0>
+      <1>Declare the contributions through the DSN, the new online declaration system</1>
+      <2>Deliver the standardised payslip to your employee</2>
+    </1>
+    <2>Get an example payslip</2>

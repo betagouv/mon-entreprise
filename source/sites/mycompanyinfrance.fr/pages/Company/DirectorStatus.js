@@ -7,10 +7,11 @@ import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 import type { DirectorStatus } from 'Types/companyTypes'
+import type { TFunction } from 'react-i18next'
 
 type Props = {
 	defineDirectorStatus: (?DirectorStatus) => void,
-	t: (string, string) => string
+	t: TFunction
 }
 const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 	<>

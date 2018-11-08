@@ -3,8 +3,10 @@ import {
 	checkHiringItem,
 	initializeHiringChecklist
 } from 'Actions/hiringChecklistAction'
-import React from 'react'
+import { React, T } from 'Components'
+import { compose } from 'ramda'
 import Helmet from 'react-helmet'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
@@ -13,25 +15,41 @@ import { CheckItem, Checklist } from 'Ui/Checklist'
 const HiringProcess = ({
 	onChecklistInitialization,
 	onItemCheck,
-	hiringChecklist
+	hiringChecklist,
+	t
 }) => (
 	<Animate.fromBottom>
 		<Helmet>
-			<title>Hiring process in France: the complete checklist</title>
+			<title>
+				{t(['embauche.tâches.page.titre', `Les formalités pour embaucher`])}
+			</title>
 			<meta
 				name="description"
-				content="All the necessary steps to hire your first employee in France."
+				content={t(
+					'embauche.tâches.page.description',
+					`Toutes les démarches nécessaires à l'embauche de votre premier salarié.`
+				)}
 			/>
 		</Helmet>
-		<h1>Hiring process checklist</h1>
-		<p>The necessary steps to hire your first employee.</p>
+		<h1>
+			<T k="embauche.tâches.titre">Les formalités pour embaucher</T>
+		</h1>
+		<p>
+			<T k="embauche.tâches.description">
+				Toutes les étapes nécessaires à l'embauche de votre premier employé.
+			</T>
+		</p>
 		<Checklist
 			onInitialization={onChecklistInitialization}
 			onItemCheck={onItemCheck}
 			defaultChecked={hiringChecklist}>
 			<CheckItem
 				name="contract"
-				title="Sign an employment contract with your employee"
+				title={
+					<T k="embauche.tâches.contrat.titre">
+						Signer un contrat de travail avec votre employé
+					</T>
+				}
 				explanations={
 					<p>
 						<a
@@ -39,69 +57,93 @@ const HiringProcess = ({
 							href="https://www.service-public.fr/particuliers/vosdroits/N19871"
 							target="_blank">
 							{' '}
-							More information (Fr)
+							<T>Plus d'informations</T>
 						</a>
 					</p>
 				}
 			/>
 			<CheckItem
 				name="dpae"
-				title="Declare your hiring to the social administration"
+				title={
+					<T k="embauche.tâches.dpae.titre">
+						Déclarez votre embauche à l'administration sociale
+					</T>
+				}
 				explanations={
 					<p>
-						This can be done through the form called DPAE, must be completed
-						within 8 days before any hiring, and can{' '}
-						<a
-							href="https://www.due.urssaf.fr/declarant/index.jsf"
-							target="_blank">
-							be done online (Fr)
-						</a>
+						<T k="embauche.tâches.dpae.description">
+							Ceci peut être fait par le biais du formulaire appelé DPAE, doit
+							être complété dans les 8 jours avant toute embauche, et peut{' '}
+							<a
+								href="https://www.due.urssaf.fr/declarant/index.jsf"
+								target="_blank">
+								être effectué en ligne
+							</a>
+							.
+						</T>
 					</p>
 				}
 			/>
 			<CheckItem
 				name="paySoftware"
-				title="Choose a payslip software"
+				title={
+					<T k="embauche.tâches.logiciel de paie.titre">
+						Choisir un logiciel de paie
+					</T>
+				}
 				explanations={
 					<p>
-						With fewer than 20 employees, payslips and declarations can be
-						handled online by the{' '}
-						<a href="http://www.letese.urssaf.fr" target="_blank">
-							Tese (Fr)
-						</a>
-						. In any case, you can use{' '}
-						<a
-							href="http://www.dsn-info.fr/convention-charte.htm"
-							target="_blank">
-							private payslip software (Fr)
-						</a>
+						<T k="embauche.tâches.logiciel de paie.description">
+							Avec moins de 20 employés, les fiches de paie et les déclarations
+							peuvent être traitées en ligne par le{' '}
+							<a href="http://www.letese.urssaf.fr" target="_blank">
+								Tese (Fr)
+							</a>
+							. Vous pouvez aussi utiliser un{' '}
+							<a
+								href="http://www.dsn-info.fr/convention-charte.htm"
+								target="_blank">
+								logiciel de paie privé
+							</a>
+						</T>
 					</p>
 				}
 			/>
 			<CheckItem
 				name="registre"
-				title="Keep an updated staff register"
+				title={
+					<T k="embauche.tâches.registre.titre">
+						Tenir un registre des employés à jour
+					</T>
+				}
 				explanations={
 					<p>
 						<a
 							href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F1784"
 							className="ui__ button"
 							target="_blank">
-							More information (Fr)
+							<T>Plus d'informations</T>
 						</a>
 					</p>
 				}
 			/>
 			<CheckItem
 				name="complementaryPension"
-				title="Contact your assigned compulsory complementary pension institution"
+				title={
+					<T k="embauche.tâches.pension.titre">
+						Prendre contact avec l'institution de prévoyance complémentaire
+						obligatoire qui vous est assignée
+					</T>
+				}
 				explanations={
 					<p>
 						<a
 							href="https://www.espace-entreprise.agirc-arrco.fr/simape/#/donneesDep"
 							className="ui__ button"
 							target="_blank">
-							Find your pension institute (Fr)
+							<T k="embauche.tâches.pension.description">
+								Trouvez votre institut de prévoyance
+							</T>
 						</a>
 						{/* // The AGIRC-ARRCO complementary pension is mandatory. Those are only federations,{' '} */}
 					</p>
@@ -109,44 +151,66 @@ const HiringProcess = ({
 			/>
 			<CheckItem
 				name="complementaryHealth"
-				title="Pick a private complementary health insurance"
+				title={
+					<T k="embauche.tâches.complémentaire santé.titre">
+						Choisir une complémentaire santé
+					</T>
+				}
 				explanations={
 					<p>
-						You must cover your employees with the private complementary health
-						insurance ("complémentaire santé" or colloquially "mutuelle" in
-						French) of your choice as long as it provides a set of minimum
-						guarantees. The employer must pay at least half of the package.
+						<T k="embauche.tâches.complémentaire santé.description">
+							Vous devez couvrir vos salariés avec l'assurance complémentaire
+							santé privée de votre choix (aussi appelée "mutuelle"), pour
+							autant qu'elle offre un ensemble de garanties minimales.
+							L'employeur doit payer au moins la moitié du forfait.
+						</T>
 					</p>
 				}
 			/>
 			<CheckItem
 				name="workMedicine"
-				title="Register to a work medicine office"
-				explanations={<p> Plan an initial appointment for each new hire.</p>}
+				title={
+					<T k="embauche.tâches.medecine.titre">
+						S'inscrire à un bureau de médecine du travail
+					</T>
+				}
+				explanations={
+					<p>
+						<T k="embauche.tâches.medecine.description">
+							N'oubliez pas de planifier un rendez-vous initial pour chaque
+							nouvelle embauche.
+						</T>
+					</p>
+				}
 			/>
 		</Checklist>
-		<h2>Then each month</h2>
-		<ul>
-			<li>
-				Compute the individual social contributions (using the chosen payslip
-				software)
-			</li>
-			<li>
-				Declare the contributions through the DSN, the new online declaration
-				system
-			</li>
-			<li>Deliver the standardised payslip to your employee</li>
-		</ul>
-		<Link className="ui__ button" to="/social-security/simulation">
-			Get an example payslip
-		</Link>
+		<T k="embauche.chaque mois">
+			<h2>Tous les mois</h2>
+			<ul>
+				<li>
+					Calculer les cotisations sociales individuelles (à l'aide du logiciel
+					de paie choisi)
+				</li>
+				<li>
+					Déclarer les contributions par le biais de la DSN, le nouveau système
+					de déclaration en ligne
+				</li>
+				<li>Remettre la fiche de paie à votre employé</li>
+			</ul>
+			<Link className="ui__ button" to="/social-security/simulation">
+				Obtenir un exemple de fiche de paie
+			</Link>
+		</T>
 	</Animate.fromBottom>
 )
 
-export default connect(
-	state => ({ hiringChecklist: state.inFranceApp.hiringChecklist }),
-	{
-		onChecklistInitialization: initializeHiringChecklist,
-		onItemCheck: checkHiringItem
-	}
+export default compose(
+	translate(),
+	connect(
+		state => ({ hiringChecklist: state.inFranceApp.hiringChecklist }),
+		{
+			onChecklistInitialization: initializeHiringChecklist,
+			onItemCheck: checkHiringItem
+		}
+	)
 )(HiringProcess)

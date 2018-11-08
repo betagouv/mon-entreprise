@@ -6,10 +6,11 @@ import Helmet from 'react-helmet'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
+import type { TFunction } from 'react-i18next'
 
 type Props = {
 	directorIsInAMinority: (?boolean) => void,
-	t: (string, string) => string
+	t: TFunction
 }
 
 const MinorityDirector = ({ directorIsInAMinority, t }: Props) => (

@@ -4,15 +4,18 @@ import {
 	initializeCompanyCreationChecklist
 } from 'Actions/companyCreationChecklistActions'
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
-import Scroll from 'Components/utils/Scroll'
 import { React, T } from 'Components'
+import Scroll from 'Components/utils/Scroll'
+import { compose } from 'ramda'
 import Helmet from 'react-helmet'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
 import StatusDescription from './StatusDescription'
 import type { Match } from 'react-router'
+import type { TFunction } from 'react-i18next'
 
 type Props = {
 	statusChooserCompleted: boolean,
@@ -20,6 +23,7 @@ type Props = {
 	onChecklistInitialization: (string, Array<string>) => void,
 	onStatusChange: () => void,
 	onItemCheck: (name: string, checked: boolean) => void,
+	t: TFunction,
 	companyCreationChecklist: { [string]: boolean }
 }
 
@@ -39,17 +43,27 @@ const CreateCompany = ({
 	return (
 		<Animate.fromBottom>
 			<Helmet>
-				<title>Create a {match.params.status}</title>
+				<title>
+					{t(['entreprise.tâches.page.titre', 'Créer une {{companyStatus}}'], {
+						companyStatus: match.params.status
+					})}
+				</title>
 				<meta
 					name="description"
-					content={`A complete checklist to help you create a company with the ${
-						match.params.status
-					} status with the French administration.`}
+					content={t(
+						[
+							'entreprise.tâches.page.description',
+							`Une liste complète des démarches à faire pour vous aider à créer une {{companyStatus}} auprès de l'administration française.`
+						],
+						{ companyStatus: match.params.status }
+					)}
 				/>
 			</Helmet>
 			<Scroll.toTop />
 			<h1>
-				<T>Créer une</T> {match.params.status}{' '}
+				<T k="entreprise.tâches.titre">
+					Créer une {{ companyStatus: match.params.status }}
+				</T>
 			</h1>
 			{!statusChooserCompleted && (
 				<>
@@ -376,17 +390,20 @@ const CreateCompany = ({
 		</Animate.fromBottom>
 	)
 }
-export default connect(
-	state => ({
-		companyCreationChecklist: state.inFranceApp.companyCreationChecklist,
-		statusChooserCompleted:
-			Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
-	}),
-	{
-		onChecklistInitialization: initializeCompanyCreationChecklist,
-		onItemCheck: checkCompanyCreationItem,
-		onStatusChange: goToCompanyStatusChoice
-	}
+export default compose(
+	translate(),
+	connect(
+		state => ({
+			companyCreationChecklist: state.inFranceApp.companyCreationChecklist,
+			statusChooserCompleted:
+				Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
+		}),
+		{
+			onChecklistInitialization: initializeCompanyCreationChecklist,
+			onItemCheck: checkCompanyCreationItem,
+			onStatusChange: goToCompanyStatusChoice
+		}
+	)
 )(CreateCompany)
 
 let StatutsExample = ({ status }) => (

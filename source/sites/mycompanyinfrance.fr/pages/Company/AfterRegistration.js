@@ -6,10 +6,11 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import siret from './siret.jpg'
+import type { TFunction } from 'react-i18next'
 
 type Props = {
 	companyStatusChoice: string,
-	t: (string, string) => string
+	t: TFunction
 }
 
 const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
