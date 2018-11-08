@@ -851,6 +851,7 @@
   formule:
     somme:
       - vieillesse (salarié)
+      - maladie (salarié)
       - ARRCO (salarié)
       - AGIRC (salarié)
       - GMP (salarié)
@@ -2316,7 +2317,6 @@
   nom: maladie
   cotisation:
     branche: santé
-    dû par: employeur
   description: Cotisations de la branche maladie
   références:
     fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
@@ -2325,13 +2325,23 @@
     multiplication:
       assiette: assiette cotisations sociales
       composantes:
-        - attributs: # On va ici surcharger la Cotisation incomplète définie plus haut
+        - attributs:
             composante: maladie, maternité, invalidité, décès
+            dû par: employeur
           taux: 13%
+        - attributs: 
+            composante: maladie, maternité, invalidité, décès
+            dû par: salarié
+          taux:
+            variations: 
+              - si: régime alsace moselle
+                alors: 1.5%
+              - sinon: 0% 
 
         - attributs:
             composante: Contribution Solidarité Autonomie
             abbréviation: CSA
+            dû par: employeur
           références:
             - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
             - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
