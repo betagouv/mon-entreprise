@@ -1,34 +1,44 @@
 /* @flow */
 import { chooseCompanyLiability } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
+import { compose } from 'ramda'
 import Helmet from 'react-helmet'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 import type { CompanyLiability } from 'Types/companyTypes'
+import type { TFunction } from 'react-i18next'
+
 type Props = {
 	multipleAssociates: ?boolean,
-	chooseCompanyLiability: (?CompanyLiability) => void
+	chooseCompanyLiability: (?CompanyLiability) => void,
+	t: TFunction
 }
 
-const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
+const Liability = ({
+	chooseCompanyLiability,
+	multipleAssociates,
+	t
+}: Props) => (
 	<>
 		<Helmet>
 			<title>
-				<T k="responsabilité.titre">
-					Choisir la responsabilité de l'entreprise
-				</T>
+				{t([
+					'responsabilité.titre',
+					'Choisir la responsabilité de mon entreprise'
+				])}
 			</title>
 			<meta
 				name="description"
-				content={
-					<T k="responsabilité.description">
-						{' '}
+				content={t(
+					'responsabilité.description',
+					`
 						Responsabilité limitée ? entreprise individuelle ? Chaque option a
 						des implications juridiques et conduit à un statut différent pour la
 						création de votre entreprise en France. Ce guide vous aide à choisir
 						entre les différentes forme de responsabilité.
-					</T>
-				}
+					`
+				)}
 			/>
 		</Helmet>
 		<h2>
@@ -42,7 +52,7 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 			<li>
 				{multipleAssociates === false ? (
 					<T k="responsabilité.1">
-						<strong>Entreprise individuelle :</strong>
+						<strong>Entreprise individuelle : </strong>
 						Une activité économique exercée par une seule personne physique, en
 						son nom propre. Moins de paperasse, mais plus de problèmes en cas de
 						faillite, car votre patrimoine personnel peut être mis à
@@ -105,9 +115,13 @@ const Liability = ({ chooseCompanyLiability, multipleAssociates }: Props) => (
 	</>
 )
 
-export default connect(
-	state => ({
-		multipleAssociates: state.inFranceApp.companyLegalStatus.multipleAssociates
-	}),
-	{ chooseCompanyLiability }
+export default compose(
+	translate(),
+	connect(
+		state => ({
+			multipleAssociates:
+				state.inFranceApp.companyLegalStatus.multipleAssociates
+		}),
+		{ chooseCompanyLiability }
+	)
 )(Liability)

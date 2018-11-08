@@ -194,11 +194,10 @@ const CreateCompany = ({
 							<p>
 								<T k="entreprise.tâches.banque.description.1">
 									Le but d'un <strong>compte bancaire d'entreprise</strong> est
-									de séparer les actifs de l'entreprise des vôtres
-								</T>
+									de séparer les actifs de l'entreprise des vôtres.
+								</T>{' '}
 								{status === 'EI' && (
 									<T k="entreprise.tâches.banque.EI">
-										{' '}
 										If its opening is not obligatory for an EI, it is strongly
 										recommended.{' '}
 									</T>
@@ -376,7 +375,8 @@ const CreateCompany = ({
 			<p className="ui__ notice">
 				<T k="entreprise.tâches.avancement">
 					Utilisez cette liste pour suivre votre avancement dans les démarches.
-					Il est automatiquement sauvegardé dans votre navigateur.
+					Votre progression est automatiquement sauvegardée dans votre
+					navigateur.
 				</T>
 			</p>
 			<p style={{ display: 'flex', justifyContent: 'space-between' }}>
