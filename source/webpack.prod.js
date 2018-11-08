@@ -39,7 +39,7 @@ const prerenderConfig = () => ({
 // Replace style-loader with MiniCssExtractPlugin.loader
 common.module.rules
 	.find(rule => rule.test.test('a.css'))
-	.use.find(loader => loader.loader === 'style-loader').loader =
+	.use.find(loader => (loader || loader.loader) === 'style-loader').loader =
 	MiniCssExtractPlugin.loader
 module.exports = {
 	...common,
