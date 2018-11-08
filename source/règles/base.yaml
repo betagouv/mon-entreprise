@@ -142,7 +142,7 @@
 
         multiplication:
           assiette: prime maintient de salaire
-          facteur: 1 / durée contrat
+          taux: 1 / durée contrat
 
 
   exemples:

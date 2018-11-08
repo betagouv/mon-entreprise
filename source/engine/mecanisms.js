@@ -643,7 +643,7 @@ export let mecanismProduct = (recurse, k, v) => {
 						</li>
 					)}
 					{(explanation.facteur.nodeValue != 1 ||
-						explanation.taux.category == 'calcExpression') && (
+						explanation.facteur.category == 'calcExpression') && (
 						<li key="facteur">
 							<span className="key">
 								<Trans>facteur</Trans>:{' '}
