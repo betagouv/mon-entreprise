@@ -2137,6 +2137,10 @@
 - espace: contrat salarié
   nom: régime alsace moselle
   titre: Régime Alsace-Moselle
+  description: |
+    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements. 
+    
+    Attention, c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
   applicable si: 
     une de ces conditions:
       - établissement . localisation . département = 'Bas-Rhin'
