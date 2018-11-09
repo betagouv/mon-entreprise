@@ -11,6 +11,7 @@ import type {
 } from 'Types/companyTypes'
 import type { RouterHistory } from 'react-router'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
+import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths';
 
 const thenGoToNextQuestion = actionCreator => (...args: any) => (
 	dispatch: any => void,
@@ -66,5 +67,5 @@ export const goToCompanyStatusChoice = () => (
 			type: 'RESET_COMPANY_STATUS_CHOICE'
 		}: ResetCompanyStatusAction)
 	)
-	history.push('/company')
+	history.push(sitePaths().entreprise.index)
 }

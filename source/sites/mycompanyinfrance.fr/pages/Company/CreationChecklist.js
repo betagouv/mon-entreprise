@@ -13,8 +13,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
+import sitePaths from '../../sitePaths'
 import StatusDescription from './StatusDescription'
 import type { Match } from 'react-router'
+
 import type { TFunction } from 'react-i18next'
 
 type Props = {
@@ -36,8 +38,8 @@ const CreateCompany = ({
 	onStatusChange,
 	t
 }: Props) => {
-	const status = match.params.status
-	if (!match.params.status) {
+	const companyStatus = match.params.status
+	if (!companyStatus) {
 		return null
 	}
 	return (
@@ -45,7 +47,7 @@ const CreateCompany = ({
 			<Helmet>
 				<title>
 					{t(['entreprise.tâches.page.titre', 'Créer une {{companyStatus}}'], {
-						companyStatus: match.params.status
+						companyStatus
 					})}
 				</title>
 				<meta
@@ -55,15 +57,13 @@ const CreateCompany = ({
 							'entreprise.tâches.page.description',
 							`Une liste complète des démarches à faire pour vous aider à créer une {{companyStatus}} auprès de l'administration française.`
 						],
-						{ companyStatus: match.params.status }
+						{ companyStatus }
 					)}
 				/>
 			</Helmet>
 			<Scroll.toTop />
 			<h1>
-				<T k="entreprise.tâches.titre">
-					Créer une {{ companyStatus: match.params.status }}
-				</T>
+				<T k="entreprise.tâches.titre">Créer une {{ companyStatus }}</T>
 			</h1>
 			{!statusChooserCompleted && (
 				<>
@@ -76,7 +76,7 @@ const CreateCompany = ({
 						</button>
 					</p>
 					<p>
-						<StatusDescription status={match.params.status} />
+						<StatusDescription companyStatus={companyStatus} />
 					</p>
 				</>
 			)}
@@ -85,19 +85,19 @@ const CreateCompany = ({
 					Voici la liste des tâches nécessaires pour créer votre
 				</T>
 				&nbsp;
-				{match.params.status}.
+				{companyStatus}.
 			</p>
 			<h2 style={{ fontSize: '1.5rem' }}>
 				<T k="entreprise.tâches.titre1">Pour créer votre société</T>
 			</h2>
 			<Checklist
-				key={match.params.status}
+				key={companyStatus}
 				onInitialization={items =>
-					onChecklistInitialization(match.params.status || '', items)
+					onChecklistInitialization(companyStatus || '', items)
 				}
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}>
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
 					<CheckItem
 						name="corporateName"
 						title={
@@ -139,7 +139,7 @@ const CreateCompany = ({
 						</p>
 					}
 				/>
-				{status !== 'micro-enterprise' && (
+				{companyStatus !== 'micro-enterprise' && (
 					<CheckItem
 						name="companyAddress"
 						title={
@@ -162,7 +162,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
 					<CheckItem
 						name="companyStatus"
 						title={
@@ -177,8 +177,8 @@ const CreateCompany = ({
 									y a plus d'un associé, il est recommandé de faire appel à un
 									juriste pour les rédiger.{' '}
 								</T>
-								{['SARL', 'EURL'].includes(status) && (
-									<StatutsExample status={status} />
+								{['SARL', 'EURL'].includes(companyStatus) && (
+									<StatutsExample companyStatus={companyStatus} />
 								)}
 							</p>
 						}
@@ -196,10 +196,10 @@ const CreateCompany = ({
 									Le but d'un <strong>compte bancaire d'entreprise</strong> est
 									de séparer les actifs de l'entreprise des vôtres.
 								</T>{' '}
-								{status === 'EI' && (
+								{companyStatus === 'EI' && (
 									<T k="entreprise.tâches.banque.EI">
-										If its opening is not obligatory for an EI, it is strongly
-										recommended.{' '}
+										Si son ouverture n'est pas obligatoire pour un IE, elle
+										reste fortement recommandée.{' '}
 									</T>
 								)}
 								<T k="entreprise.tâches.banque.description.2">
@@ -218,7 +218,7 @@ const CreateCompany = ({
 						</>
 					}
 				/>
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
 					<CheckItem
 						name="fundsDeposit"
 						title={
@@ -246,7 +246,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(status) && (
+				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
 					<CheckItem
 						title={
 							<T k="entreprise.tâches.journal.titre">
@@ -325,7 +325,7 @@ const CreateCompany = ({
 			</h2>
 
 			<Checklist>
-				{status !== 'micro-enterprise' && (
+				{companyStatus !== 'micro-enterprise' && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={
@@ -383,7 +383,7 @@ const CreateCompany = ({
 				<button onClick={onStatusChange} className="ui__ skip-button left">
 					‹ <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
-				<Link to={'/company/after-registration'} className="ui__ skip-button">
+				<Link to={sitePaths().entreprise.après} className="ui__ skip-button">
 					<T k="entreprise.tâches.ensuite">Après la création</T>›
 				</Link>
 			</p>
@@ -406,9 +406,9 @@ export default compose(
 	)
 )(CreateCompany)
 
-let StatutsExample = ({ status }) => (
+let StatutsExample = ({ companyStatus }) => (
 	<a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">
 		<T k="entreprise.tâches.statuts.exemple">Exemple de statuts pour votre</T>
-		{status}
+		{companyStatus}
 	</a>
 )

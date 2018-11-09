@@ -1,11 +1,13 @@
 /* @flow */
 
+import { React, T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
 import { toPairs } from 'ramda'
-import { React, T } from 'Components'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
+import sitePaths from '../../sitePaths'
 import type { ResetExistingCompanyDetailsAction } from 'Types/companyTypes'
+
 let companyDataSelection = {
 	l1_normalisee: 'Name',
 	libelle_activite_principale: 'Main activity',
@@ -57,18 +59,18 @@ export const CompanyDetails = (data: { [string]: string }) => {
 
 const YourCompany = ({ companyDetails, resetCompanyDetails }) => (
 	<>
-		{!companyDetails && <Redirect to="/company" />}
+		{!companyDetails && <Redirect to={sitePaths().entreprise.index} />}
 		<h1>
 			<T>Your company</T>
 		</h1>
 		<CompanyDetails {...companyDetails.apiDetails} />
 		<p>
-			<Link onClick={resetCompanyDetails} to="/company/find">
+			<Link onClick={resetCompanyDetails} to={sitePaths().entreprise.trouver}>
 				This is not my company
 			</Link>
 		</p>
 		<p>
-			<Link to="/social-security" className="ui__ button">
+			<Link to={sitePaths().sécuritéSociale.index} className="ui__ button">
 				Simulate hiring costs
 			</Link>
 		</p>

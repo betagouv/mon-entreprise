@@ -1,21 +1,22 @@
 /* @flow */
 import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
-import { compose } from 'ramda'
 import { React, T } from 'Components'
+import { compose } from 'ramda'
 import Helmet from 'react-helmet'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 // $FlowFixMe
 import ReactSelect from 'react-select'
 // $FlowFixMe
 import 'react-select/dist/react-select.css'
+import sitePaths from '../../sitePaths'
 import './Find.css'
 import { CompanyDetails as Company } from './YourCompany'
 import type { RouterHistory } from 'react-router'
-import { translate } from 'react-i18next'
 
 const goToNextStep = (history: RouterHistory) => {
-	history.push('/social-security')
+	history.push(sitePaths().sécuritéSociale.index)
 }
 
 type State = {
@@ -64,7 +65,7 @@ class Search extends React.Component<Props, State> {
 					<T k="trouver.titre">Trouver mon entreprise</T>
 				</h1>
 				<p>
-					<Link to="/company">
+					<Link to={sitePaths().entreprise.index}>
 						<T k="trouver.non">Je n'ai pas encore d'entreprise</T>
 					</Link>
 				</p>

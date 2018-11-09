@@ -5,14 +5,14 @@ import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans, translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import companySvg from '../images/company.svg'
 import estimateSvg from '../images/estimate.svg'
 import hiringSvg from '../images/hiring.svg'
 import Footer from '../layout/Footer/Footer'
+import sitePaths from '../sitePaths'
 import './Landing.css'
-import { Trans } from 'react-i18next'
-import { translate } from 'react-i18next'
 
 export default translate()(
 	withColours(({ colours: { colour } }) => (
@@ -35,7 +35,7 @@ export default translate()(
 					</p>
 					<Link
 						className="ui__ inverted-button"
-						to="/company"
+						to={sitePaths().entreprise.index}
 						alt="the first step to create a company">
 						<Trans>Commencer</Trans>
 					</Link>
@@ -70,7 +70,9 @@ export default translate()(
 						</ul>
 					</div>
 					<p>
-						<Link className="ui__ skip-button" to="/company">
+						<Link
+							className="ui__ skip-button"
+							to={sitePaths().entreprise.index}>
 							<Trans i18nKey="accueil.entreprise.action">
 								Créez votre entreprise ›
 							</Trans>
@@ -97,7 +99,9 @@ export default translate()(
 						</ul>
 					</div>
 					<p>
-						<Link className="ui__ skip-button" to="/social-security">
+						<Link
+							className="ui__ skip-button"
+							to={sitePaths().sécuritéSociale.index}>
 							<Trans i18nKey="accueil.sécu.action">
 								Découvrez le coût et les avantages ›
 							</Trans>
@@ -126,7 +130,9 @@ export default translate()(
 						</ul>
 					</div>
 					<p>
-						<Link className="ui__ skip-button" to="/hiring-process">
+						<Link
+							className="ui__ skip-button"
+							to={sitePaths().démarcheEmbauche.index}>
 							<Trans i18nKey="accueil.embauche.action">
 								Découvrez le proccessus d'embauche
 							</Trans>

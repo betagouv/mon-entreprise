@@ -1,8 +1,10 @@
 import React from 'react'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router'
 import * as Animate from 'Ui/animate'
 import { ScrollToElement } from '../../../../components/utils/Scroll'
+import sitePaths from '../../sitePaths'
 import AfterRegistration from './AfterRegistration'
 import CreationChecklist from './CreationChecklist'
 import DefineDirectorStatus from './DirectorStatus'
@@ -14,8 +16,6 @@ import MinorityDirector from './MinorityDirector'
 import NumberOfAssociate from './NumberOfAssociate'
 import PickLegalStatus from './PickLegalStatus'
 import YourCompany from './YourCompany'
-import { translate } from 'react-i18next'
-
 const withAnimation = Component => {
 	const AnimateRouteComponent = (...props) => (
 		<ScrollToElement onlyIfNotVisible>
@@ -32,63 +32,77 @@ const CreateMyCompany = ({
 	location,
 	companyStatusChoice,
 	existingCompany
-}) => (
-	<>
-		<Animate.fromBottom>
-			<Switch>
-				<Route path={match.path + '/your-company'} component={YourCompany} />
-				<Route
-					path={match.path + '/create-:status'}
-					component={CreationChecklist}
-				/>
-				<Route path={match.path + '/find'} component={Find} />
-				<Route
-					path={match.path + '/after-registration'}
-					component={AfterRegistration}
-				/>
-				<Route path={match.path + '/legal-status'} component={Home} />
-				{existingCompany && (
-					<Redirect exact from={match.path} to={match.path + '/your-company'} />
-				)}
-				{companyStatusChoice ? (
-					<Redirect
-						exact
-						from={match.path}
-						to={match.path + '/create-' + companyStatusChoice}
+}) => {
+	const paths = sitePaths()
+	return (
+		<>
+			<Animate.fromBottom>
+				<Switch>
+					<Route
+						path={paths.entreprise.monEntreprise}
+						component={YourCompany}
 					/>
-				) : (
-					<Redirect exact from={match.path} to={match.path + '/legal-status'} />
-				)}
-			</Switch>
-			<Switch location={location}>
-				<Route
-					path={match.path + '/legal-status/liability'}
-					component={withAnimation(Liability)}
-				/>
-				<Route
-					path={match.path + '/legal-status/director-status'}
-					component={withAnimation(DefineDirectorStatus)}
-				/>
-				<Route
-					path={match.path + '/legal-status/micro-enterprise'}
-					component={withAnimation(Microenterprise)}
-				/>
-				<Route
-					path={match.path + '/legal-status/number-of-associates'}
-					component={withAnimation(NumberOfAssociate)}
-				/>
-				<Route
-					path={match.path + '/legal-status/minority-director'}
-					component={withAnimation(MinorityDirector)}
-				/>
-				<Route
-					path={match.path + '/legal-status/list'}
-					component={withAnimation(PickLegalStatus)}
-				/>
-			</Switch>
-		</Animate.fromBottom>
-	</>
-)
+					<Route
+						path={paths.entreprise.créer(':status')}
+						component={CreationChecklist}
+					/>
+					<Route path={paths.entreprise.trouver} component={Find} />
+					<Route path={paths.entreprise.après} component={AfterRegistration} />
+					<Route
+						path={paths.entreprise.statusJuridique.index}
+						component={Home}
+					/>
+					{existingCompany && (
+						<Redirect
+							exact
+							from={match.path}
+							to={paths.entreprise.monEntreprise}
+						/>
+					)}
+					{companyStatusChoice ? (
+						<Redirect
+							exact
+							from={match.path}
+							to={paths.entreprise.créer(companyStatusChoice)}
+						/>
+					) : (
+						<Redirect
+							exact
+							from={match.path}
+							to={paths.entreprise.statusJuridique.index}
+						/>
+					)}
+				</Switch>
+				<Switch location={location}>
+					<Route
+						path={paths.entreprise.statusJuridique.liability}
+						component={withAnimation(Liability)}
+					/>
+					<Route
+						path={paths.entreprise.statusJuridique.directorStatus}
+						component={withAnimation(DefineDirectorStatus)}
+					/>
+					<Route
+						path={paths.entreprise.statusJuridique.microEnterprise}
+						component={withAnimation(Microenterprise)}
+					/>
+					<Route
+						path={paths.entreprise.statusJuridique.multipleAssociates}
+						component={withAnimation(NumberOfAssociate)}
+					/>
+					<Route
+						path={paths.entreprise.statusJuridique.minorityDirector}
+						component={withAnimation(MinorityDirector)}
+					/>
+					<Route
+						path={paths.entreprise.statusJuridique.liste}
+						component={withAnimation(PickLegalStatus)}
+					/>
+				</Switch>
+			</Animate.fromBottom>
+		</>
+	)
+}
 
 export default connect(state => ({
 	companyStatusChoice: state.inFranceApp.companyStatusChoice,

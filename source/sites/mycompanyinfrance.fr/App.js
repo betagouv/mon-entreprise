@@ -21,6 +21,7 @@ import CompanyIndex from './pages/Company'
 import HiringProcess from './pages/HiringProcess'
 import Landing from './pages/Landing'
 import SocialSecurity from './pages/SocialSecurity'
+import sitePaths from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -66,24 +67,35 @@ class InFranceRoute extends Component {
 	}
 }
 
-let RouterSwitch = translate()(() => (
-	<Switch>
-		<Route exact path="/" component={Landing} />
-		<div className="app-container">
-			{/* Passing location down to prevent update blocking */}
-			<Navigation location={location} />
-			<div className="app-content">
-				<ProgressHeader />
-				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
-					<Route path="/company" component={CompanyIndex} />
-					<Route path="/social-security" component={SocialSecurity} />
-					<Route path="/hiring-process" component={HiringProcess} />
+let RouterSwitch = translate()(() => {
+	const paths = sitePaths()
+	return (
+		<Switch>
+			<Route exact path="/" component={Landing} />
+			<div className="app-container">
+				{/* Passing location down to prevent update blocking */}
+				<Navigation location={location} />
+				<div className="app-content">
+					<ProgressHeader />
+					<div
+						className="ui__ container"
+						style={{ flexGrow: 1, flexShrink: 0 }}>
+						<Route path={paths.entreprise.index} component={CompanyIndex} />
+						<Route
+							path={paths.sécuritéSociale.index}
+							component={SocialSecurity}
+						/>
+						<Route
+							path={paths.démarcheEmbauche.index}
+							component={HiringProcess}
+						/>
+					</div>
+					<Footer />
 				</div>
-				<Footer />
 			</div>
-		</div>
-	</Switch>
-))
+		</Switch>
+	)
+})
 
 let ExportedApp = InFranceRoute
 

@@ -403,8 +403,12 @@ après:
     retour: Creation checklist
     avance: Go to social security
 
-sécu: |
-  <0>Social protection: costs and benefits</0><1>France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people</2>.</1><2>Easy access to health care and other services ensures that companies can put healthy, productive and highly skilled employees to work in an attractive market in the heart of Europe.</2><3>As soon as you declare and pay your employees, you automatically entitle them to the general scheme of French Social Security (health, maternity, disability, old age, occupational illness and accidents) and unemployment insurance.</3><4><0></0></4><5>How much does it cost to hire ?</5>
+sécu:
+  page:
+    titre: 'Social security in France: costs and benefits'
+    description: Découvrez les coûts et avantages de la sécurité sociale française en simulant un cas concret d'embauche dans votre entreprise.
+  content: |
+    <0>Social protection: costs and benefits</0><1>France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people</2>.</1><2>Easy access to health care and other services ensures that companies can put healthy, productive and highly skilled employees to work in an attractive market in the heart of Europe.</2><3>As soon as you declare and pay your employees, you automatically entitle them to the general scheme of French Social Security (health, maternity, disability, old age, occupational illness and accidents) and unemployment insurance.</3><4><0></0></4><5>How much does it cost to hire ?</5>
 
 Votre entreprise: Your company
 Protection sociale: Social security
@@ -480,3 +484,23 @@ embauche:
 
 Guide du status juridique: Legal status guide
 Démarches de création: Creation process checklist
+
+path:
+  entreprise:
+    index: '/company'
+    monEntreprise: '/my-company'
+    créer: '/create-a-{{companyStatus}}'
+    trouver: '/find'
+    après: '/after-registration'
+    statusJuridique:
+      index: '/legal-status'
+      liste: '/list'
+      gérantMinoritaire: '/chairman-or-managing-director'
+      responsabilité: '/liability'
+      statusDirigeant: '/directors-status'
+      nombreAssociés: '/multiple-associates'
+      microEntreprise: '/micro-enterprise-or-individual-business'
+  sécurité sociale:
+    index: '/social-security'
+  démarche embauche:
+    index: '/hiring-process'

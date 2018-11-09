@@ -1,7 +1,7 @@
 /* @flow */
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { isNil } from 'ramda'
 import { React, T } from 'Components'
+import { isNil } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { capitalise0 } from '../../../../utils'

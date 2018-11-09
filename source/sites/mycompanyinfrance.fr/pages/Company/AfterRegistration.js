@@ -5,6 +5,7 @@ import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
+import sitePaths from '../../sitePaths'
 import siret from './siret.jpg'
 import type { TFunction } from 'react-i18next'
 
@@ -82,10 +83,10 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 			</>
 		)}
 		<p style={{ display: 'flex', justifyContent: 'space-between' }}>
-			<Link to="/company" className="ui__ skip-button left">
+			<Link to={sitePaths().entreprise.index} className="ui__ skip-button left">
 				‹ <T k="après.actions.retour">Démarche de création</T>
 			</Link>
-			<Link to="/social-security" className="ui__ skip-button">
+			<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
 				<T k="après.actions.avance">Sécu et coût d'embauche </T>›
 			</Link>
 		</p>

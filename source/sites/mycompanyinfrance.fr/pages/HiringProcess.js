@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
+import sitePaths from '../sitePaths'
 
 const HiringProcess = ({
 	onChecklistInitialization,
@@ -197,7 +198,7 @@ const HiringProcess = ({
 				</li>
 				<li>Remettre la fiche de paie à votre employé</li>
 			</ul>
-			<Link className="ui__ button" to="/social-security/simulation">
+			<Link className="ui__ button" to={sitePaths().sécuritéSociale.simulation}>
 				Obtenir un exemple de fiche de paie
 			</Link>
 		</T>

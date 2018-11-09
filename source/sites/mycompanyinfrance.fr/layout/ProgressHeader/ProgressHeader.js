@@ -1,17 +1,18 @@
 /* @flow */
 
+import { React, T } from 'Components'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import { React, T } from 'Components'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
 import companySvg from '../../images/company.svg'
 import estimateSvg from '../../images/estimate.svg'
 import hiringSvg from '../../images/hiring.svg'
+import sitePaths from '../../sitePaths'
 import './ProgressHeader.css'
 import type { Tracker } from 'Components/utils/withTracker'
-import { translate } from 'react-i18next'
 
 const Progress = ({ percent }) => (
 	<div className="progress">
@@ -38,7 +39,7 @@ const StepsHeader = ({
 	<header className="steps-header">
 		<nav className="ui__ container">
 			<NavLink
-				to="/company"
+				to={sitePaths().entreprise.index}
 				activeClassName="active"
 				onClick={() =>
 					tracker.push(['trackEvent', 'Header', 'click', 'Your company'])
@@ -50,7 +51,7 @@ const StepsHeader = ({
 				<Progress percent={companyProgress} />
 			</NavLink>
 			<NavLink
-				to="/social-security"
+				to={sitePaths().sécuritéSociale.index}
 				activeClassName="active"
 				onClick={() =>
 					tracker.push(['trackEvent', 'Header', 'click', 'Social security'])
@@ -63,7 +64,7 @@ const StepsHeader = ({
 				<Progress percent={estimationProgress} />
 			</NavLink>
 			<NavLink
-				to="/hiring-process"
+				to={sitePaths().démarcheEmbauche.index}
 				activeClassName="active"
 				onClick={() =>
 					tracker.push(['trackEvent', 'Header', 'click', 'Hiring process'])

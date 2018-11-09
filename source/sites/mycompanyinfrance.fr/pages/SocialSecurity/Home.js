@@ -1,25 +1,32 @@
 /* @flow */
 
+import { Component, React, T } from 'Components'
 import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { React, Component, T } from 'Components'
 import Helmet from 'react-helmet'
+import { translate } from 'react-i18next'
 import * as Animate from 'Ui/animate'
 import type { Match, Location } from 'react-router'
-
+import type { TFunction } from 'react-i18next'
 type Props = {
 	match: Match,
-	location: Location
+	location: Location,
+	t: TFunction
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
 		return (
 			<>
 				<Helmet>
-					<title>Social security in France: costs and benefits</title>
+					<title>
+						{this.props.t(
+							'sécu.page.titre',
+							"Sécurité sociale et coût d'embauche"
+						)}
+					</title>
 					<meta
 						name="description"
-						content="Discover the costs and benefits of French social security and protection (welfare) by simulating a concrete case of hiring in your company."
+						content={this.props.t('sécu.page.description')}
 					/>
 				</Helmet>
 				<ScrollToTop />
@@ -75,4 +82,4 @@ class SocialSecurity extends Component<Props, {}> {
 	}
 }
 
-export default SocialSecurity
+export default translate()(SocialSecurity)

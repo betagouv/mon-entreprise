@@ -34,4 +34,4 @@ i18next.init(
 	}
 )
 
-export default lang
+export default i18next

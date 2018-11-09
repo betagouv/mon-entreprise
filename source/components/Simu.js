@@ -15,6 +15,7 @@ import {
 	validInputEnteredSelector
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
+import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 import { normalizeBasePath } from '../utils'
 import Conversation from './conversation/Conversation'
 import Distribution from './Distribution'
@@ -118,7 +119,9 @@ class Simulation extends Component {
 									</p>
 									{this.props.displayHiringProcedures && (
 										<div style={{ textAlign: 'center' }}>
-											<Link className="ui__ button" to="/hiring-process">
+											<Link
+												className="ui__ button"
+												to={sitePaths().démarcheEmbauche}>
 												<Trans i18nKey="simulation-end.cta">
 													Connaître les démarches
 												</Trans>

@@ -10,7 +10,9 @@ import type { RouterHistory } from 'react-router'
 import {compose} from 'ramda'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import withLanguage from 'Components/utils/withLanguage'
-import type { TFunction } from 'react-i18next'
+import type
+{ TFunction } from 'react-i18next'
+import sitePaths from '../../sitePaths';
 
 const setMainStatus = () => {}
 
@@ -23,7 +25,7 @@ type Props = {
 }
 
 const StatusButton = ({ status }: { status: LegalStatus }) => (
-	<Link to={`/company/create-${status}`} className="ui__ button">
+	<Link to={sitePaths().entreprise.créer(status)} className="ui__ button">
 		<T>Créer une</T> {status}
 	</Link>
 )
@@ -135,7 +137,7 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 				)}
 			</ul>
 			<div className="ui__ answer-group">
-				<Link to="/social-security" className="ui__ skip-button">
+				<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
 					Choose later ›
 				</Link>
 			</div>
