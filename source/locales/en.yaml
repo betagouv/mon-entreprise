@@ -207,6 +207,7 @@ Au-dessus de: Above
 Taux final: Final rate
 
 Créez votre entreprise: Start your business in France
+Créer votre entreprise: Create your company
 subtitle: The ultimate how-to guide, from incorporation to hiring.
 Commencer: Get started
 Passer: Skip
@@ -375,6 +376,8 @@ associés:
   choix2: More than one associate
 
 trouver:
+  page:
+    description: Find your existing company, and start simulate hiring cost customized to your situation
   titre: Find your company
   non: I don't have a company yet
   description: Thanks to the SIREN database, the public information of your company will be used automatically in the next steps.
@@ -488,7 +491,7 @@ Démarches de création: Creation process checklist
 path:
   entreprise:
     index: '/company'
-    monEntreprise: '/my-company'
+    votreEntreprise: '/my-company'
     créer: '/create-a-{{companyStatus}}'
     trouver: '/find'
     après: '/after-registration'

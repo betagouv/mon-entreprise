@@ -59,7 +59,7 @@ const StepsHeader = ({
 							}>
 							<ul>
 								<li>
-									<NavOpener title={t('Créez votre entreprise')}>
+									<NavOpener title={t('Créer votre entreprise')}>
 										<ul>
 											<li>
 												<NavOpener
@@ -199,7 +199,7 @@ const StepsHeader = ({
 								</li>
 								<li>
 									<NavLink to={sitePaths().entreprise.trouver}>
-										<T k="trouver.titre">Trouver mon entreprise</T>
+										<T k="trouver.titre">Retrouver votre entreprise</T>
 									</NavLink>
 								</li>
 							</ul>

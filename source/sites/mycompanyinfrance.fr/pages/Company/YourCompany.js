@@ -61,17 +61,17 @@ const YourCompany = ({ companyDetails, resetCompanyDetails }) => (
 	<>
 		{!companyDetails && <Redirect to={sitePaths().entreprise.index} />}
 		<h1>
-			<T>Your company</T>
+			<T>Votre entreprise</T>
 		</h1>
 		<CompanyDetails {...companyDetails.apiDetails} />
 		<p>
 			<Link onClick={resetCompanyDetails} to={sitePaths().entreprise.trouver}>
-				This is not my company
+				<T>Ce n'est pas mon entreprise</T>
 			</Link>
 		</p>
 		<p>
 			<Link to={sitePaths().sécuritéSociale.index} className="ui__ button">
-				Simulate hiring costs
+				Simuler un salaire
 			</Link>
 		</p>
 	</>

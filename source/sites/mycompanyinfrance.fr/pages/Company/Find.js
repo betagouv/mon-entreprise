@@ -5,7 +5,8 @@ import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 // $FlowFixMe
 import ReactSelect from 'react-select'
 // $FlowFixMe
@@ -55,14 +56,17 @@ class Search extends React.Component<Props, State> {
 		return (
 			<div id="findYourCompany">
 				<Helmet>
-					<title>Find your company</title>
+					<title>{t('trouver.titre', 'Retrouver votre entreprise')}</title>
 					<meta
 						name="description"
-						content="Find your existing company, and start simulate hiring cost customized to your situation"
+						content={t(
+							'trouver.page.description',
+							"Trouvez votre entreprise existante et commencez à simuler des coûts d'embauche adaptés à votre situation."
+						)}
 					/>
 				</Helmet>
 				<h1 className="question__title">
-					<T k="trouver.titre">Trouver mon entreprise</T>
+					<T k="trouver.titre">Retrouver votre entreprise</T>
 				</h1>
 				<p>
 					<Link to={sitePaths().entreprise.index}>
@@ -100,7 +104,7 @@ class Search extends React.Component<Props, State> {
 								goToNextStep(this.props.history)
 							}}
 							className="ui__ button">
-							<T k="trouver.ok">Confirm and simulate hiring costs</T>
+							<T k="trouver.ok">Confirmer et simuler un salaire</T>
 						</button>
 					</>
 				)}

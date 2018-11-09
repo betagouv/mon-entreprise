@@ -6,12 +6,15 @@ const constructLocalizedSitePath = () =>
 		index: '',
 		entreprise: {
 			index: i18n.t('path.entreprise.index', '/entreprise'),
-			monEntreprise: i18n.t('path.entreprise.monEntreprise', '/mon-entreprise'),
+			votreEntreprise: i18n.t(
+				'path.entreprise.votreEntreprise',
+				'/votre-entreprise'
+			),
 			créer: (companyStatus: string) =>
 				i18n.t(['path.entreprise.créer', '/créer-une-{{companyStatus}}'], {
 					companyStatus
 				}),
-			trouver: i18n.t('path.entreprise.trouver', '/retrouver-mon-entreprise'),
+			trouver: i18n.t('path.entreprise.trouver', '/retrouver-votre-entreprise'),
 			après: i18n.t('path.entreprise.après', '/après-la-création'),
 			statusJuridique: {
 				index: i18n.t(

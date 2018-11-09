@@ -39,7 +39,7 @@ const CreateMyCompany = ({
 			<Animate.fromBottom>
 				<Switch>
 					<Route
-						path={paths.entreprise.monEntreprise}
+						path={paths.entreprise.votreEntreprise}
 						component={YourCompany}
 					/>
 					<Route
@@ -56,7 +56,7 @@ const CreateMyCompany = ({
 						<Redirect
 							exact
 							from={match.path}
-							to={paths.entreprise.monEntreprise}
+							to={paths.entreprise.votreEntreprise}
 						/>
 					)}
 					{companyStatusChoice ? (
