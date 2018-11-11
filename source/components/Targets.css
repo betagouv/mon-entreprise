@@ -1,0 +1,33 @@
+#targets {
+	width: 60%;
+	margin: 5% auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#targets > .content {
+	border-radius: 6px;
+	border: 3px solid var(--colour);
+	padding: 1em;
+	min-width: 60%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#targets > .icon {
+	margin: 0 0.6em;
+	font-size: 200%;
+	color: var(--colour);
+}
+#targets .value {
+	font-weight: 600;
+}
+#targets .unit {
+	font-weight: normal;
+	color: #666;
+}
+
+#targets .explanation {
+	font-size: 140%;
+	text-decoration: none;
+}
