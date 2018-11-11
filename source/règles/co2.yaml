@@ -10,13 +10,15 @@
 
 - nom: nombre de douches
   période: flexible
-  question: Combien prenez-vous de douches par ?
+  question: Combien prenez-vous de douches ?
   format: nombre
+  par défaut: 30
   suggestions:
-   - 30
+    Une par jour: 30
 
 - nom: impact par douche
-  formule: impact par litre * litres d'eau
+  formule: 4
+  #  formule: impact par litre * litres d'eau
 
 - nom: impact par litre
   formule: impact par litre froid + chauffage . impact par litre

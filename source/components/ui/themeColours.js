@@ -6,7 +6,7 @@ const lightenColour = (hex, x) => {
 }
 export default forcedThemeColour => {
 	let // Use the default theme colour if the host page hasn't made a choice
-		defaultColour = '#2975D1',
+		defaultColour = '#27ae60',
 		colour = forcedThemeColour || defaultColour,
 		lightColour = lightenColour(colour, 10),
 		darkColour = lightenColour(colour, -10),
