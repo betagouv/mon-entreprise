@@ -1,0 +1,10 @@
+#GenericSimulation {
+}
+#GenericSimulation > button {
+	padding: 0.6em 1em;
+	text-align: center;
+	margin: 1em auto;
+	display: block;
+	border-radius: 6px;
+	font-weight: 500;
+}
