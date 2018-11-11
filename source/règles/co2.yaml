@@ -6,6 +6,7 @@
 
 - nom: impact
   période: flexible
+  unité: kgCO2eq
   formule: impact par douche * nombre de douches
 
 - nom: nombre de douches
@@ -41,7 +42,7 @@
   par défaut: non
 
 - nom: impact par litre froid
-  unité:  kgCO2e/l
+  unité:  kgCO2eq/l
   formule: 0.000132
 
 
@@ -58,7 +59,7 @@
 
 - espace: chauffage
   nom: impact par kWh
-  unité: kgCO2e/kWh PCI
+  unité: kgCO2eq/kWh PCI
   formule: 
     variations: 
       - si: type = 'gaz'
