@@ -15,6 +15,9 @@ rules:
   react/no-unescaped-entities: 0
   react/display-name: 1
 parser: babel-eslint
+parserOptions: 
+    ecmaFeatures: 
+      legacyDecorators: true
 
 plugins:
   - react
