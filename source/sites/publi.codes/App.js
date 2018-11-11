@@ -10,7 +10,10 @@ import GenericSimulation from 'Components/GenericSimulation'
 class App extends Component {
 	render() {
 		return (
-			<Provider basename="embauche" initialStore={{}} reduxMiddlewares={[]}>
+			<Provider
+				basename="embauche"
+				initialStore={{ targetNames: ['impact'] }}
+				reduxMiddlewares={[]}>
 				<Switch>
 					<Route exact path="/" component={GenericSimulation} />
 					<Route path="/règle/:name" component={RulePage} />

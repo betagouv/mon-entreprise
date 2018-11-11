@@ -1,5 +1,5 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import rawRules from 'Règles/base.yaml'
+import rawRules from 'Règles/co2.yaml'
 import translations from 'Règles/externalized.yaml'
 import {
 	assoc,
