@@ -20,6 +20,7 @@ import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
 import HiringProcess from './pages/HiringProcess'
 import Landing from './pages/Landing'
+import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
 import sitePaths from './sitePaths'
 
@@ -46,14 +47,14 @@ const middlewares = [
 class InFranceRoute extends Component {
 	componentDidMount() {
 		if (typeof sessionStorage !== 'undefined') {
-			sessionStorage['lang'] = 'en'
+			sessionStorage['lang'] = this.props.language
 		}
 	}
 	render() {
 		return (
 			<Provider
-				basename="infrance"
-				language="fr"
+				basename={this.props.basename}
+				language={this.props.language}
 				tracker={tracker}
 				reduxMiddlewares={middlewares}
 				initialStore={{ ...retrievePersistedState(), lang: 'en' }}
@@ -89,6 +90,9 @@ let RouterSwitch = translate()(() => {
 							path={paths.démarcheEmbauche.index}
 							component={HiringProcess}
 						/>
+						{process.env.NODE_ENV !== 'production' && (
+							<Route exact path="/sitemap" component={Sitemap} />
+						)}
 					</div>
 					<Footer />
 				</div>

@@ -13,10 +13,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
-import sitePaths from '../../sitePaths'
+import sitePaths, { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
+import Page404 from '../404'
 import StatusDescription from './StatusDescription'
 import type { Match } from 'react-router'
-
 import type { TFunction } from 'react-i18next'
 
 type Props = {
@@ -38,16 +38,18 @@ const CreateCompany = ({
 	onStatusChange,
 	t
 }: Props) => {
-	const companyStatus = match.params.status
+	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
+		status => t(status) === match.params.status
+	)
 	if (!companyStatus) {
-		return null
+		return <Page404 />
 	}
 	return (
 		<Animate.fromBottom>
 			<Helmet>
 				<title>
 					{t(['entreprise.tâches.page.titre', 'Créer une {{companyStatus}}'], {
-						companyStatus
+						companyStatus: t(companyStatus)
 					})}
 				</title>
 				<meta
@@ -57,13 +59,15 @@ const CreateCompany = ({
 							'entreprise.tâches.page.description',
 							`Une liste complète des démarches à faire pour vous aider à créer une {{companyStatus}} auprès de l'administration française.`
 						],
-						{ companyStatus }
+						{ companyStatus: t(companyStatus) }
 					)}
 				/>
 			</Helmet>
 			<Scroll.toTop />
 			<h1>
-				<T k="entreprise.tâches.titre">Créer une {{ companyStatus }}</T>
+				<T k="entreprise.tâches.titre">
+					Créer une {{ companyStatus: t(companyStatus) }}
+				</T>
 			</h1>
 			{!statusChooserCompleted && (
 				<>
@@ -76,28 +80,21 @@ const CreateCompany = ({
 						</button>
 					</p>
 					<p>
-						<StatusDescription companyStatus={companyStatus} />
+						<StatusDescription status={companyStatus} />
 					</p>
 				</>
 			)}
-			<p>
-				<T k="entreprise.tâches.intro">
-					Voici la liste des tâches nécessaires pour créer votre
-				</T>
-				&nbsp;
-				{companyStatus}.
-			</p>
 			<h2 style={{ fontSize: '1.5rem' }}>
 				<T k="entreprise.tâches.titre1">Pour créer votre société</T>
 			</h2>
 			<Checklist
 				key={companyStatus}
 				onInitialization={items =>
-					onChecklistInitialization(companyStatus || '', items)
+					onChecklistInitialization(companyStatus, items)
 				}
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}>
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
+				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
 					<CheckItem
 						name="corporateName"
 						title={
@@ -139,7 +136,7 @@ const CreateCompany = ({
 						</p>
 					}
 				/>
-				{companyStatus !== 'micro-enterprise' && (
+				{companyStatus !== 'micro-entreprise' && (
 					<CheckItem
 						name="companyAddress"
 						title={
@@ -162,7 +159,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
+				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
 					<CheckItem
 						name="companyStatus"
 						title={
@@ -246,7 +243,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
+				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
 					<CheckItem
 						title={
 							<T k="entreprise.tâches.journal.titre">

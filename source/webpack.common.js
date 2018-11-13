@@ -18,8 +18,10 @@ module.exports = {
 		}
 	},
 	entry: {
-		infrance: ['./source/sites/mycompanyinfrance.fr/entry.js'],
+		infrance: ['./source/sites/mycompanyinfrance.fr/entry.en.js'],
+		'mon-entreprise': ['./source/sites/mycompanyinfrance.fr/entry.fr.js'],
 		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
+		
 		// To not introduce breaking into the iframe integration, we serve simulateur.js from a 'dist' subdirectory
 		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js']
 	},
@@ -99,6 +101,15 @@ module.exports = {
 				"Simulation du prix d'une embauche en France et calcul du salaire net à partir du brut : CDD, statut cadre, cotisations sociales, retraite...",
 			filename: 'embauche.html'
 		}),
+		new HTMLPlugin({
+			template: 'index.html',
+			chunks: ['mon-entreprise'],
+			title:
+				'Mon-entreprise : Un guide pas à pas pour créer une entreprise en France',
+			description:
+				'Du status juridique à premier embauche, vous trouverez ici toutes les ressources nécessaires pour démarrer votre activité.',
+			filename: 'mon-entreprise.html'
+		}),
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			'./source/sites/embauche.gouv.fr/images/logo',
@@ -111,8 +122,13 @@ module.exports = {
 				to: 'robots.infrance.txt'
 			},
 			{
-				from: './source/sites/mycompanyinfrance.fr/sitemap.txt',
-				to: 'sitemap.infrance.txt'
+				from: './source/sites/mycompanyinfrance.fr/sitemap.fr.txt',
+				to: 'sitemap.infrance.fr.txt'
+			},
+			
+			{
+				from: './source/sites/mycompanyinfrance.fr/sitemap.en.txt',
+				to: 'sitemap.infrance.en.txt'
 			}
 		])
 	]

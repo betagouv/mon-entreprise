@@ -32,7 +32,7 @@ class SocialSecurity extends Component<Props, {}> {
 				<ScrollToTop />
 				<Animate.fromBottom>
 					{this.props.match.isExact && (
-						<T k="sécu">
+						<T k="sécu.content">
 							<h1>Protection sociale : coût et avantages</h1>
 							<p>
 								La France a choisi d'offrir à ses citoyens une protection

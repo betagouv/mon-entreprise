@@ -7,18 +7,14 @@ const config = require('./webpack.dev.js')
 const compiler = webpack(config)
 const history = require('connect-history-api-fallback')
 
+const rewrite = basename => ({
+	from: new RegExp(`^/${basename}/(.*)$|^/${basename}$`),
+	to: `/${basename}.html`
+})
+
 app.use(
 	history({
-		rewrites: [
-			{
-				from: /^\/embauche\/.*$|^\/embauche$/,
-				to: '/embauche.html'
-			},
-			{
-				from: /^\/infrance\/.*$|^\/infrance$/,
-				to: '/infrance.html'
-			}
-		]
+		rewrites: ['embauche', 'infrance', 'mon-entreprise'].map(rewrite)
 	})
 )
 

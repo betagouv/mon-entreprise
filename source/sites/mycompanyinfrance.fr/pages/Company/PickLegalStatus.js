@@ -10,8 +10,7 @@ import type { RouterHistory } from 'react-router'
 import {compose} from 'ramda'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import withLanguage from 'Components/utils/withLanguage'
-import type
-{ TFunction } from 'react-i18next'
+import type { TFunction } from 'react-i18next'
 import sitePaths from '../../sitePaths';
 
 const setMainStatus = () => {}
@@ -24,11 +23,11 @@ type Props = {
 	t: TFunction
 }
 
-const StatusButton = ({ status }: { status: LegalStatus }) => (
+const StatusButton = translate()(({ status, t }: { status: LegalStatus, t: TFunction }) => (
 	<Link to={sitePaths().entreprise.créer(status)} className="ui__ button">
-		<T>Créer une</T> {status}
+		<T>Créer une</T> {t(status)}
 	</Link>
-)
+))
 
 const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 	return (
@@ -129,10 +128,10 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 				{(possibleStatus['Micro-enterprise (option EIRL)'] ||
 					possibleStatus['Micro-enterprise']) && (
 					<li>
-						<strong><T>Micro-enterprise</T>{language === 'fr' && ' '}: </strong>
-						<StatusDescription status="micro-enterprise" />
+						<strong><T>Micro-enterprise</T>{language === 'fr' && ' (auto-entrepreneur) '}: </strong>
+						<StatusDescription status="micro-entreprise" />
 						<br />
-						<StatusButton status="micro-enterprise" history={history} />
+						<StatusButton status="micro-entreprise" history={history} />
 					</li>
 				)}
 			</ul>

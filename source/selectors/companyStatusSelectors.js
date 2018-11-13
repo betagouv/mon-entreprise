@@ -92,6 +92,7 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 }
 
 export type LegalStatus = $Keys<typeof LEGAL_STATUS_DETAILS>
+
 const QUESTION_LIST: Array<Question> = Object.keys(
 	LEGAL_STATUS_DETAILS['SARL (minority director)']
 )

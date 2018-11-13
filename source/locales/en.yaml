@@ -237,7 +237,6 @@ entreprise:
       description: A complete todo list to help you create a {{companyStatus}} with the French administration.`
       titre: Create a {{companyStatus}} in France
     titre: Create a <1>{{companyStatus}}</1>
-    intro: This todo list will guide you throughout all the necessary steps to register your
     titre1: Needed for registration
     nom:
       titre: Find a corporate name
@@ -503,7 +502,9 @@ path:
       statusDirigeant: '/directors-status'
       nombreAssociés: '/multiple-associates'
       microEntreprise: '/micro-enterprise-or-individual-business'
-  sécurité sociale:
+  sécuritéSociale:
     index: '/social-security'
-  démarche embauche:
+  démarcheEmbauche:
     index: '/hiring-process'
+
+micro-entreprise: micro-enterprise

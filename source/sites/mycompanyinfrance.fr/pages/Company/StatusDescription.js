@@ -58,7 +58,7 @@ const StatusDescription = ({ status }: Props) =>
 			(un seul associé peut être poursuivi pour la totalité de la dette) et
 			indéfinie (responsable sur la totalité de son patrimoine personnel).
 		</T>
-	) : status.toLowerCase().includes('micro-enterprise') ? (
+	) : status.includes('micro-entreprise') ? (
 		<T k="formeJuridique.micro">
 			La micro-entreprise est une entreprise individuelle, soumise à un régime
 			forfaitaire pour le calcul des impôts et le paiement des cotisations de

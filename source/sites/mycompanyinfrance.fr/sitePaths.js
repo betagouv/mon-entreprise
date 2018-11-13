@@ -1,58 +1,74 @@
 /* @flow */
-import { map } from 'ramda'
+import { map, reduce, toPairs, zipObj } from 'ramda'
 import i18n from '../../i18n'
-const constructLocalizedSitePath = () =>
-	constructSitePaths('', {
+import type { LegalStatus } from 'Selectors/companyStatusSelectors'
+
+export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
+	'EI',
+	'EIRL',
+	'EURL',
+	'SAS',
+	'SARL',
+	'SASU',
+	'SNC',
+	'micro-entreprise'
+]
+
+const translateTo = language => (str1, str2, options = {}) =>
+	i18n.t([str1, str2].filter(Boolean), {
+		...(language ? { lng: language } : {}),
+		...options
+	})
+const constructLocalizedSitePath = language => {
+	const t = translateTo(language)
+	return constructSitePaths('', {
 		index: '',
 		entreprise: {
-			index: i18n.t('path.entreprise.index', '/entreprise'),
-			votreEntreprise: i18n.t(
+			index: t('path.entreprise.index', '/entreprise'),
+			votreEntreprise: t(
 				'path.entreprise.votreEntreprise',
 				'/votre-entreprise'
 			),
-			créer: (companyStatus: string) =>
-				i18n.t(['path.entreprise.créer', '/créer-une-{{companyStatus}}'], {
-					companyStatus
+			créer: (companyStatus: LegalStatus | ':status') =>
+				t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
+					companyStatus:
+						companyStatus === ':status' ? ':status' : t(companyStatus)
 				}),
-			trouver: i18n.t('path.entreprise.trouver', '/retrouver-votre-entreprise'),
-			après: i18n.t('path.entreprise.après', '/après-la-création'),
+			trouver: t('path.entreprise.trouver', '/retrouver-votre-entreprise'),
+			après: t('path.entreprise.après', '/après-la-création'),
 			statusJuridique: {
-				index: i18n.t(
-					'path.entreprise.statusJuridique.index',
-					'/status-juridique'
-				),
-				liste: i18n.t('path.entreprise.statusJuridique.liste', '/liste'),
-				liability: i18n.t(
+				index: t('path.entreprise.statusJuridique.index', '/status-juridique'),
+				liste: t('path.entreprise.statusJuridique.liste', '/liste'),
+				liability: t(
 					'path.entreprise.statusJuridique.responsabilité',
 					'/responsabilité'
 				),
-				directorStatus: i18n.t(
+				directorStatus: t(
 					'path.entreprise.statusJuridique.statusDirigeant',
 					'/status-du-dirigeant'
 				),
-				microEnterprise: i18n.t(
+				microEnterprise: t(
 					'path.entreprise.statusJuridique.microEntreprise',
 					'/micro-entreprise-ou-entreprise-individuelle'
 				),
-				multipleAssociates: i18n.t(
+				multipleAssociates: t(
 					'path.entreprise.statusJuridique.nombreAssociés',
 					'/nombre-associés'
 				),
-				minorityDirector: i18n.t(
+				minorityDirector: t(
 					'path.entreprise.statusJuridique.gérantMinoritaire',
 					'/gérant-majoritaire-ou-minoritaire'
 				)
 			}
 		},
 		sécuritéSociale: {
-			index: i18n.t('path.sécuritéSociale', '/sécurité-sociale'),
-			simulation: '/simulation'
+			index: t('path.sécuritéSociale.index', '/sécurité-sociale')
 		},
 		démarcheEmbauche: {
-			index: i18n.t('path.démarcheEmbauche', '/démarches-embauche')
+			index: t('path.démarcheEmbauche.index', '/démarches-embauche')
 		}
 	})
-
+}
 const constructSitePaths = (
 	root: string,
 	{ index, ...sitePaths }: { index: string }
@@ -63,8 +79,8 @@ const constructSitePaths = (
 			typeof value === 'string'
 				? root + index + value
 				: typeof value === 'function'
-					? (...args) => root + index + value(...args)
-					: constructSitePaths(root + index, value),
+				? (...args) => root + index + value(...args)
+				: constructSitePaths(root + index, value),
 		sitePaths
 	)
 })
@@ -75,3 +91,36 @@ i18n.on('languageChanged', () => {
 })
 
 export default () => sitePath
+const deepReduce = (fn, initialValue, object: Object) =>
+	reduce(
+		(acc, [key, value]) =>
+			typeof value === 'object'
+				? deepReduce(fn, acc, value)
+				: fn(acc, value, key),
+		initialValue,
+		toPairs(object)
+	)
+
+export const generateSiteMap = (sitePaths: Object) =>
+	deepReduce(
+		(paths, path, key) => [
+			...paths,
+			...(typeof path === 'function' && key === 'créer'
+				? LANDING_LEGAL_STATUS_LIST.map(path)
+				: [path])
+		],
+		[],
+		sitePaths
+	)
+
+const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(path =>
+	(process.env.EN_SITE || `/infrance${path}`).replace('${path}', path)
+)
+const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(path =>
+	(process.env.FR_SITE || `/mon-entreprise${path}`).replace('${path}', path)
+)
+
+export const hrefLangLink = {
+	en: zipObj(enSiteMap, frSiteMap.map(href => [{ href, hrefLang: 'fr' }])),
+	fr: zipObj(frSiteMap, enSiteMap.map(href => [{ href, hrefLang: 'en' }]))
+}
