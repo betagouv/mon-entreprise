@@ -158,49 +158,47 @@ class Simulation extends Component {
 						/>
 					)}
 				</div>
-				{!location.pathname.endsWith('/simulation') &&
-					validInputEntered && (
-						<Animate.fromBottom>
-							<div style={{ textAlign: 'center' }}>
-								{arePreviousAnswers &&
-									conversationStarted && (
-										<button className="ui__ button" onClick={startConversation}>
-											<Trans>Continuer la simulation</Trans>
-										</button>
-									)}
-							</div>
-							<h2>
-								<Trans>A quoi servent mes cotisations ?</Trans>
-							</h2>
-							<Distribution />
-
-							{!(arePreviousAnswers && conversationStarted) && (
-								<>
-									<h2>
-										<Trans>Simulation personnalisée</Trans>
-									</h2>
-									<p>
-										<Trans i18nKey="custom-simulation">
-											Il s'agit pour l'instant d'une
-											<strong> première estimation</strong> sur la base d'un
-											contrat générique. La législation française prévoit une
-											multitude de cas particuliers et de règles spécifiques qui
-											modifient considérablement les montant de l'embauche.
-										</Trans>
-									</p>
-									<p style={{ textAlign: 'center' }}>
-										<button className="ui__ button" onClick={startConversation}>
-											<Trans>Faire une simulation personnalisée</Trans>
-										</button>
-									</p>
-								</>
+				{!location.pathname.endsWith('/simulation') && validInputEntered && (
+					<Animate.fromBottom>
+						<div style={{ textAlign: 'center' }}>
+							{arePreviousAnswers && conversationStarted && (
+								<button className="ui__ button" onClick={startConversation}>
+									<Trans>Continuer la simulation</Trans>
+								</button>
 							)}
-							<h2>
-								<Trans>Fiche de paie</Trans>
-							</h2>
-							<PaySlip />
-						</Animate.fromBottom>
-					)}
+						</div>
+						<h2>
+							<Trans>A quoi servent mes cotisations ?</Trans>
+						</h2>
+						<Distribution />
+
+						{!(arePreviousAnswers && conversationStarted) && (
+							<>
+								<h2>
+									<Trans>Simulation personnalisée</Trans>
+								</h2>
+								<p>
+									<Trans i18nKey="custom-simulation">
+										Il s'agit pour l'instant d'une
+										<strong> première estimation</strong> sur la base d'un
+										contrat générique. La législation française prévoit une
+										multitude de cas particuliers et de règles spécifiques qui
+										modifient considérablement les montant de l'embauche.
+									</Trans>
+								</p>
+								<p style={{ textAlign: 'center' }}>
+									<button className="ui__ button" onClick={startConversation}>
+										<Trans>Faire une simulation personnalisée</Trans>
+									</button>
+								</p>
+							</>
+						)}
+						<h2>
+							<Trans>Fiche de paie mensuelle</Trans>
+						</h2>
+						<PaySlip />
+					</Animate.fromBottom>
+				)}
 			</>
 		)
 	}
