@@ -741,18 +741,18 @@
     salaire médian: 2300
     SMIC: 1500
   contrôles: 
-    - si: brut de base < 300
+    - si: brut de base [mensuel] < 300
       message: Entrez un salaire raisonnable
       niveau: bloquant
-    - si: brut de base < SMIC
+    - si: brut de base [mensuel] < SMIC [mensuel]
       niveau: avertissement
       solution:
         cible: contrat salarié . temps partiel
         texte: Est-ce un temps partiel ?
-    - si: brut de base > 10000
+    - si: brut de base [mensuel] > 10000
       niveau: information
       message: | 
-        Le salaire saisi est élevé. Pour rappel, le simulateur ne fonctionne qu'avec des salaires mensuels.
+        Le salaire saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
   formule:
     inversion:
       question: Quel est le salaire ?
@@ -964,7 +964,7 @@
   période: flexible
   formule: rémunération . net de cotisations - avantages en nature . montant
   contrôles: 
-    - si: net < 200
+    - si: net [mensuel] < 200
       période: mois
       message: Entrez un salaire raisonnable
       niveau: bloquant
@@ -990,7 +990,7 @@
 
   formule: net - impôt . neutre
   contrôles: 
-    - si: net après impôt < 200
+    - si: net après impôt [mensuel] < 200
       message: Entrez un salaire raisonnable
       niveau: bloquant
 
@@ -1331,7 +1331,7 @@
 
   formule: rémunération . total sans réduction - réductions de cotisations
   contrôles:
-    - si: total < 400
+    - si: total [mensuel] < 400
       message: Entrez un salaire raisonnable
       niveau: bloquant
 
@@ -1367,7 +1367,7 @@
   type: salaire
   formule: rémunération . total - aides employeur
   contrôles: 
-    - si: coût d'embauche < 400
+    - si: coût d'embauche [mensuel] < 400
       message: Entrez un salaire raisonnable
       niveau: bloquant
 
@@ -2122,7 +2122,7 @@
         alors: en alsace moselle
       - sinon: en france
   contrôles: 
-    - si: forfait complémentaire santé < 15
+    - si: forfait complémentaire santé [mois] < 15
       niveau: avertissement
       message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 

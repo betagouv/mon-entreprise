@@ -148,3 +148,10 @@
         assiette trois: 36000
       valeur attendue: 300
 
+
+- test: Périodes, préfixe de modification temporelle
+  formule: assiette trois [mensuel]
+  exemples: 
+    - situation: 
+        assiette trois: 12000
+      valeur attendue: 1000
