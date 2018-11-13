@@ -19,7 +19,7 @@ app.use(
 				to: '/infrance.html'
 			},
 			{
-				from: /^\/publicodes\/.*$|^\/publicodes/,
+				from: /^\/publicodes\/.*$|^\/publicodes$/,
 				to: '/publicodes.html'
 			}
 		]
