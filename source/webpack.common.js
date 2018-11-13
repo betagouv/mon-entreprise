@@ -29,11 +29,7 @@ module.exports = {
 		publicodes: ['./source/sites/publi.codes/entry.js']
 	},
 	output: {
-		path: path.resolve('./dist/'),
-		filename: ({ chunk }) =>
-			['dist/simulateur'].includes(chunk.name)
-				? '[name].js'
-				: '[name].[hash].js'
+		path: path.resolve('./dist/')
 	},
 	module: {
 		rules: [...web, ...universal]
