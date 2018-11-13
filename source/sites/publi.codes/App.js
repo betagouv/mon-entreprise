@@ -11,7 +11,7 @@ class App extends Component {
 	render() {
 		return (
 			<Provider
-				basename="embauche"
+				basename="publicodes"
 				initialStore={{ targetNames: ['impact'] }}
 				reduxMiddlewares={[]}>
 				<Switch>
