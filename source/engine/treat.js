@@ -55,7 +55,7 @@ let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 export let treatString = (rules, rule) => rawNode => {
 	/* On a affaire à un string, donc à une expression infixe.
 			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
-			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
+			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel), CalcExpression ou Comparison.
 			Cet objet est alors rebalancé à 'treat'.
 			*/
 

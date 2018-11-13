@@ -123,7 +123,12 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			rules,
 			filteredNode.explanation.dottedName
 		)
-		if (!rule.période) {
+
+		let inlinePeriodTransform = { mensuel: 'mois', annuel: 'année' }[
+			parseResult.temporalTransform
+		]
+
+		if (!rule.période && !inlinePeriodTransform) {
 			if (ruleToTransform.période == 'flexible')
 				throw new Error(
 					`Attention, une variable sans période, ${
@@ -140,7 +145,8 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 
 		let environmentPeriod = situation('période') || 'mois'
 		let callingPeriod =
-			rule.période == 'flexible' ? environmentPeriod : rule.période
+			inlinePeriodTransform ||
+			(rule.période == 'flexible' ? environmentPeriod : rule.période)
 		let calledPeriod =
 			ruleToTransform.période == 'flexible'
 				? environmentPeriod
@@ -150,9 +156,11 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 				callingPeriod === 'mois' && calledPeriod === 'année'
 					? nodeValue / 12
 					: callingPeriod === 'année' && calledPeriod === 'mois'
-						? nodeValue * 12
-						: nodeValue,
+					? nodeValue * 12
+					: nodeValue,
 			periodTransform = nodeValue !== transformedNodeValue
+		if (inlinePeriodTransform)
+			console.log(situation('période'), transformedNodeValue)
 
 		let result = rewriteNode(
 			{

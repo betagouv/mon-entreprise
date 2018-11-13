@@ -6,7 +6,7 @@ main ->
 		| Boolean {% id %}
 		| Variable {% id %}
 		| NegatedVariable {% id %}
-		| ModifiedVariable {% id %}
+		| TemporalVariable {% id %}
 		| FilteredVariable {% id %}
 		| percentage {% id %}
 		| Comparison {% id %}
@@ -18,7 +18,7 @@ Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	explanation: [d[0], d[4]]
 }) %}
 
-Comparable -> (number | percentage | CalcExpression | Variable | Constant) {% d => d[0][0] %}
+Comparable -> (number | percentage | CalcExpression | Variable | TemporalVariable | Constant) {% d => d[0][0] %}
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
@@ -28,12 +28,11 @@ FilteredVariable -> Variable _ Filter {% d => ({category: 'variable', filter: d[
 
 Filter -> "(" VariableFragment ")" {% d =>d[1] %}
 
-# Modificateurs temporels pas utilisés aujourd'hui
-ModifiedVariable -> Variable _ Modifier {% d => ({category: 'modifiedVariable', modifier: d[2], variable: d[0] }) %}
+TemporalVariable -> Variable _ TemporalTransform {% d => ({...d[0], temporalTransform: d[2] }) %}
 
-Modifier -> "[" TemporalModifier "]" {% d =>d[1][0] %}
+TemporalTransform -> "[" Temporalities "]" {% d =>d[1] %}
 
-TemporalModifier -> "annuel" | "mensuel" | "jour ouvré" {% id %}
+Temporalities -> "annuel" | "mensuel" {% id %}
 #-----
 
 
