@@ -3,7 +3,7 @@ import { companyIsMicroenterprise } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
-import { translate } from 'react-i18next'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
 import type { TFunction } from 'react-i18next'
@@ -101,7 +101,7 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 )
 
 export default compose(
-	translate(),
+	withI18n(),
 	connect(
 		null,
 		{ companyIsMicroenterprise }

@@ -16,15 +16,15 @@ let RuleValueVignette = ({ name, title, nodeValue: ruleValue }) => (
 	</span>
 )
 
-@withLanguage
-export class RuleValue extends Component {
-	render() {
-		let { value, language } = this.props
-		let unsatisfied = value == null,
-			irrelevant = value == 0
-		let [className, text] = irrelevant
-			? ['irrelevant', '0']
-			: unsatisfied
+export const RuleValue = withLanguage(
+	class RuleValue extends Component {
+		render() {
+			let { value, language } = this.props
+			let unsatisfied = value == null,
+				irrelevant = value == 0
+			let [className, text] = irrelevant
+				? ['irrelevant', '0']
+				: unsatisfied
 				? ['unsatisfied', '']
 				: [
 						'figure',
@@ -35,18 +35,19 @@ export class RuleValue extends Component {
 							minimumFractionDigits: 0
 						}).format(value)
 				  ]
-		return (
-			<ReactCSSTransitionGroup
-				transitionName="flash"
-				transitionEnterTimeout={100}
-				transitionLeaveTimeout={100}>
-				<span key={text} className="Rule-value">
-					{' '}
-					<span className={className}>{text}</span>
-				</span>
-			</ReactCSSTransitionGroup>
-		)
+			return (
+				<ReactCSSTransitionGroup
+					transitionName="flash"
+					transitionEnterTimeout={100}
+					transitionLeaveTimeout={100}>
+					<span key={text} className="Rule-value">
+						{' '}
+						<span className={className}>{text}</span>
+					</span>
+				</ReactCSSTransitionGroup>
+			)
+		}
 	}
-}
+)
 
 export default RuleValueVignette

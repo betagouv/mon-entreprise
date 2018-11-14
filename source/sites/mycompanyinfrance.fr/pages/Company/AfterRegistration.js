@@ -1,7 +1,8 @@
 /* @flow */
 import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { translate } from 'react-i18next'
+import { compose } from 'ramda'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
@@ -25,7 +26,7 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 				Une fois que votre{' '}
 				{{
 					companyStatusChoice:
-						companyStatusChoice || t('après.entreprise', 'entreprise')
+						companyStatusChoice || t(['après.entreprise', 'entreprise'])
 				}}{' '}
 				aura été créée, vous recevrez les informations suivantes :
 			</T>
@@ -93,6 +94,9 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 	</Animate.fromBottom>
 )
 
-export default connect(state => ({
-	companyStatusChoice: state.inFranceApp.companyStatusChoice
-}))(translate()(AfterRegistration))
+export default compose(
+	connect(state => ({
+		companyStatusChoice: state.inFranceApp.companyStatusChoice
+	})),
+	withI18n()
+)(AfterRegistration)

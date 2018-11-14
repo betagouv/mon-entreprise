@@ -6,7 +6,7 @@ import {
 import { React, T } from 'Components'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
-import { translate } from 'react-i18next'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
@@ -198,7 +198,9 @@ const HiringProcess = ({
 				</li>
 				<li>Remettre la fiche de paie à votre employé</li>
 			</ul>
-			<Link className="ui__ button" to={sitePaths().sécuritéSociale + '/simulation'}>
+			<Link
+				className="ui__ button"
+				to={sitePaths().sécuritéSociale + '/simulation'}>
 				Obtenir un exemple de fiche de paie
 			</Link>
 		</T>
@@ -206,7 +208,7 @@ const HiringProcess = ({
 )
 
 export default compose(
-	translate(),
+	withI18n(),
 	connect(
 		state => ({ hiringChecklist: state.inFranceApp.hiringChecklist }),
 		{

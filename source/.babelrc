@@ -13,11 +13,10 @@
 		"@babel/flow"
 	],
 	"plugins": [
-		["@babel/plugin-proposal-decorators", { "legacy": true }],
-		"transform-do-expressions",
+		"@babel/plugin-proposal-class-properties",
 		"@babel/plugin-proposal-optional-chaining",
 		"@babel/plugin-proposal-object-rest-spread",
-		"transform-class-properties",
+		"transform-do-expressions",
 		"syntax-dynamic-import",
 		"react-hot-loader/babel",
 		["webpack-alias", { "config": "./source/webpack.dev.js" }]

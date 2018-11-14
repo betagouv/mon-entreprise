@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { FormDecorator } from '../FormDecorator'
 import ReactSelect from 'react-select'
-import SelectOption from './SelectOption.js'
 import 'react-select/dist/react-select.css'
+import { FormDecorator } from '../FormDecorator'
 import './Select.css'
+import SelectOption from './SelectOption.js'
 
 class ReactSelectWrapper extends Component {
 	render() {
@@ -42,8 +42,7 @@ class ReactSelectWrapper extends Component {
 	}
 }
 
-@FormDecorator('select')
-export default class Select extends Component {
+class Select extends Component {
 	state = {
 		options: null
 	}
@@ -80,3 +79,5 @@ export default class Select extends Component {
 			)
 	}
 }
+
+export default FormDecorator('select')(Select)

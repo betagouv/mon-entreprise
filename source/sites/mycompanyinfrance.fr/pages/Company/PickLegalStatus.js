@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
-import {translate} from 'react-i18next';
+import { withI18n } from 'react-i18next';
 import StatusDescription from './StatusDescription'
 import type { RouterHistory } from 'react-router'
 import {compose} from 'ramda'
@@ -23,7 +23,7 @@ type Props = {
 	t: TFunction
 }
 
-const StatusButton = translate()(({ status, t }: { status: LegalStatus, t: TFunction }) => (
+const StatusButton = withI18n()(({ status, t }: { status: LegalStatus, t: TFunction }) => (
 	<Link to={sitePaths().entreprise.créer(status)} className="ui__ button">
 		<T>Créer une</T> {t(status)}
 	</Link>
@@ -143,7 +143,7 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 		</>
 	)
 }
-export default compose(translate(), withLanguage, connect(
+export default compose(withI18n(), withLanguage, connect(
 	state => ({ possibleStatus: possibleStatusSelector(state) }),
 	{ setMainStatus }
 ))(SetMainStatus)

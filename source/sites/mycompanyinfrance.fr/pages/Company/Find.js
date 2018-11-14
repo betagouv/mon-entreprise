@@ -3,7 +3,7 @@ import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
 import { React, T } from 'Components'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
-import { translate } from 'react-i18next'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -121,5 +121,5 @@ export default compose(
 			onCompanyDetailsConfirmation: saveExistingCompanyDetails
 		}
 	),
-	translate()
+	withI18n()
 )(Search)

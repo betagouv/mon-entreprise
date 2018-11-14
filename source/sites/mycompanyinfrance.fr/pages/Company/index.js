@@ -1,5 +1,5 @@
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router'
 import * as Animate from 'Ui/animate'
@@ -107,4 +107,4 @@ const CreateMyCompany = ({
 export default connect(state => ({
 	companyStatusChoice: state.inFranceApp.companyStatusChoice,
 	existingCompany: state.inFranceApp.existingCompanyDetails
-}))(translate()(CreateMyCompany))
+}))(withI18n()(CreateMyCompany))

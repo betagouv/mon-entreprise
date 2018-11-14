@@ -24,39 +24,39 @@ let getOptions = input =>
 					return { options: [] }
 				})
 
-@FormDecorator('select')
-class Select extends Component {
-	render() {
-		let {
-				input: { onChange },
-				submit
-			} = this.props,
-			submitOnChange = option => {
-				// serialize to not mix our data schema and the API response's
-				onChange(JSON.stringify(option))
-				submit()
-			}
+export default FormDecorator('select')(
+	class Select extends Component {
+		render() {
+			let {
+					input: { onChange },
+					submit
+				} = this.props,
+				submitOnChange = option => {
+					// serialize to not mix our data schema and the API response's
+					onChange(JSON.stringify(option))
+					submit()
+				}
 
-		return (
-			<div className="select-answer commune">
-				<ReactSelect.Async
-					onChange={submitOnChange}
-					labelKey="nom"
-					optionRenderer={({ nom, departement }) =>
-						nom + ` (${departement?.nom})`
-					}
-					filterOptions={options => {
-						// Do no filtering, just return all options
-						return options
-					}}
-					placeholder="Entrez le nom de commune"
-					noResultsText="Nous n'avons trouvé aucune commune"
-					searchPromptText={null}
-					loadingPlaceholder="Recherche en cours..."
-					loadOptions={getOptions}
-				/>
-			</div>
-		)
+			return (
+				<div className="select-answer commune">
+					<ReactSelect.Async
+						onChange={submitOnChange}
+						labelKey="nom"
+						optionRenderer={({ nom, departement }) =>
+							nom + ` (${departement?.nom})`
+						}
+						filterOptions={options => {
+							// Do no filtering, just return all options
+							return options
+						}}
+						placeholder="Entrez le nom de commune"
+						noResultsText="Nous n'avons trouvé aucune commune"
+						searchPromptText={null}
+						loadingPlaceholder="Recherche en cours..."
+						loadOptions={getOptions}
+					/>
+				</div>
+			)
+		}
 	}
-}
-export default Select
+)

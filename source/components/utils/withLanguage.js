@@ -1,20 +1,19 @@
-import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { withI18n } from 'react-i18next'
 
 export default function withLanguage(WrappedComponent) {
-	return class WithLanguage extends Component {
-		static contextTypes = {
-			i18n: PropTypes.object.isRequired
+	return withI18n()(
+		class WithLanguage extends Component {
+			static displayName = `withLanguage(${Component.displayName ||
+				Component.name})`
+			render() {
+				return (
+					<WrappedComponent
+						{...this.props}
+						language={this.props.i18n.language + ''}
+					/>
+				)
+			}
 		}
-		static displayName = `withLanguage(${Component.displayName ||
-			Component.name})`
-		render() {
-			return (
-				<WrappedComponent
-					{...this.props}
-					language={this.context.i18n.language + ''}
-				/>
-			)
-		}
-	}
+	)
 }

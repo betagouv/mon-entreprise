@@ -5,7 +5,7 @@ import {
 } from 'Actions/actions'
 import { compose } from 'ramda'
 import React from 'react'
-import { Trans, translate } from 'react-i18next'
+import { Trans, withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
@@ -33,7 +33,8 @@ const PreviousSimulationBanner = ({
 			<Trans i18nKey="previousSimulationBanner.retrieveButton">
 				Retrouver ma simulation
 			</Trans>
-		</LinkButton>.{' '}
+		</LinkButton>
+		.{' '}
 		<LinkButton onClick={deletePreviousSimulation}>
 			<Trans>Effacer</Trans>
 		</LinkButton>
@@ -41,7 +42,7 @@ const PreviousSimulationBanner = ({
 )
 
 export default compose(
-	translate(),
+	withI18n(),
 	connect(
 		state => ({
 			previousSimulation: state.previousSimulation,

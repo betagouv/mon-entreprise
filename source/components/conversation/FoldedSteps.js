@@ -9,7 +9,7 @@ import { LinkButton } from 'Ui/Button'
 import './conversation.css'
 import FoldedStep from './FoldedStep'
 
-@connect(
+export default connect(
 	state => ({
 		foldedSteps: state.conversationSteps.foldedSteps,
 		targetNames: state.targetNames,
@@ -19,28 +19,29 @@ import FoldedStep from './FoldedStep'
 		resetSimulation,
 		resetForm: () => reset('conversation')
 	}
-)
-export default class FoldedSteps extends Component {
-	handleSimulationReset = () => {
-		this.props.resetSimulation()
-		this.props.resetForm()
-	}
-	render() {
-		let { foldedSteps } = this.props
+)(
+	class FoldedSteps extends Component {
+		handleSimulationReset = () => {
+			this.props.resetSimulation()
+			this.props.resetForm()
+		}
+		render() {
+			let { foldedSteps } = this.props
 
-		if (isEmpty(foldedSteps || [])) return null
-		return (
-			<div id="foldedSteps">
-				<div className="header">
-					<LinkButton onClick={this.handleSimulationReset}>
-						<i className="fa fa-trash" aria-hidden="true" />
-						<Trans i18nKey="resetAll">Tout effacer</Trans>
-					</LinkButton>
+			if (isEmpty(foldedSteps || [])) return null
+			return (
+				<div id="foldedSteps">
+					<div className="header">
+						<LinkButton onClick={this.handleSimulationReset}>
+							<i className="fa fa-trash" aria-hidden="true" />
+							<Trans i18nKey="resetAll">Tout effacer</Trans>
+						</LinkButton>
+					</div>
+					{foldedSteps.map(dottedName => (
+						<FoldedStep key={dottedName} dottedName={dottedName} />
+					))}
 				</div>
-				{foldedSteps.map(dottedName => (
-					<FoldedStep key={dottedName} dottedName={dottedName} />
-				))}
-			</div>
-		)
+			)
+		}
 	}
-}
+)

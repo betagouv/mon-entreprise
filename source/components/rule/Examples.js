@@ -1,58 +1,59 @@
-import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
-import { compose } from 'ramda'
-import classNames from 'classnames'
-import { connect } from 'react-redux'
-import './Examples.css'
 import { setExample } from 'Actions/actions'
+import classNames from 'classnames'
+import { compose } from 'ramda'
+import React, { Component } from 'react'
+import { Trans, withI18n } from 'react-i18next'
+import { connect } from 'react-redux'
 import { capitalise0 } from '../../utils'
+import './Examples.css'
 
-@connect(
-	state => ({
-		parsedRules: state.parsedRules,
-		themeColours: state.themeColours
-	}),
-	dispatch => ({
-		setExample: compose(
-			dispatch,
-			setExample
-		)
-	})
-)
-@translate()
-export default class Examples extends Component {
-	render() {
-		let {
-				situationExists,
-				rule,
-				themeColours,
-				setExample,
-				currentExample
-			} = this.props,
-			{ examples } = rule
+export default compose(
+	connect(
+		state => ({
+			parsedRules: state.parsedRules,
+			themeColours: state.themeColours
+		}),
+		dispatch => ({
+			setExample: compose(
+				dispatch,
+				setExample
+			)
+		})
+	),
+	withI18n()
+)(
+	class Examples extends Component {
+		render() {
+			let {
+					situationExists,
+					rule,
+					themeColours,
+					setExample,
+					currentExample
+				} = this.props,
+				{ examples } = rule
 
-		if (!examples) return null
-		return (
-			<div id="examples">
-				<h2>
-					<Trans i18nKey="examples">Exemples</Trans>{' '}
-					<small>
-						<Trans i18nKey="clickexample">
-							Cliquez sur un exemple pour le tester
-						</Trans>
-					</small>
-				</h2>
-				<ul>
-					{examples.map(ex => (
-						<Example
-							key={ex.nom}
-							{...{ ex, rule, currentExample, setExample, themeColours }}
-						/>
-					))}
-				</ul>
+			if (!examples) return null
+			return (
+				<div id="examples">
+					<h2>
+						<Trans i18nKey="examples">Exemples</Trans>{' '}
+						<small>
+							<Trans i18nKey="clickexample">
+								Cliquez sur un exemple pour le tester
+							</Trans>
+						</small>
+					</h2>
+					<ul>
+						{examples.map(ex => (
+							<Example
+								key={ex.nom}
+								{...{ ex, rule, currentExample, setExample, themeColours }}
+							/>
+						))}
+					</ul>
 
-				{situationExists &&
-					currentExample && (
+					{situationExists && currentExample && (
 						<div>
 							<button
 								id="injectSituation"
@@ -62,10 +63,11 @@ export default class Examples extends Component {
 							</button>
 						</div>
 					)}
-			</div>
-		)
+				</div>
+			)
+		}
 	}
-}
+)
 
 let Example = ({
 	ex: { nom, situation },

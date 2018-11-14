@@ -5,7 +5,7 @@ import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, translate } from 'react-i18next'
+import { Trans, withI18n } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import companySvg from '../images/company.svg'
 import estimateSvg from '../images/estimate.svg'
@@ -14,7 +14,7 @@ import Footer from '../layout/Footer/Footer'
 import sitePaths from '../sitePaths'
 import './Landing.css'
 
-export default translate()(
+export default withI18n()(
 	withColours(({ colours: { colour } }) => (
 		<>
 			<header className="landing__header">

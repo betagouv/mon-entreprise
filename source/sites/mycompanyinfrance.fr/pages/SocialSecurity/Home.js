@@ -4,7 +4,7 @@ import { Component, React, T } from 'Components'
 import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import Helmet from 'react-helmet'
-import { translate } from 'react-i18next'
+import { withI18n } from 'react-i18next'
 import * as Animate from 'Ui/animate'
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
@@ -82,4 +82,4 @@ class SocialSecurity extends Component<Props, {}> {
 	}
 }
 
-export default translate()(SocialSecurity)
+export default withI18n()(SocialSecurity)

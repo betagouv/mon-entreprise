@@ -1,3 +1,5 @@
+/* @flow */
+
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
 import withColours from 'Components/utils/withColours'
@@ -6,7 +8,7 @@ import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
-import { Trans, translate } from 'react-i18next'
+import { Trans, withI18n } from 'react-i18next'
 import { withRouter } from 'react-router'
 import i18n from '../../../../i18n'
 import { feedbackBlacklist } from '../../config'
@@ -80,5 +82,5 @@ const Footer = ({ colours: { colour } }) => {
 export default compose(
 	withRouter,
 	withColours,
-	translate()
+	withI18n()
 )(Footer)
