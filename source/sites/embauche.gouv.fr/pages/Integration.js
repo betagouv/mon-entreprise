@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import urssafLogo from '../../../images/urssaf.svg'
 import './Integration.css'
 export default class MyComponent extends Component {
 	render() {
@@ -11,11 +12,13 @@ export default class MyComponent extends Component {
 					<code>
 						<span>{'<'}</span>
 						<em>
-							script<br />
+							script
+							<br />
 							id
-						</em>="script-simulateur-embauche" <em>
-							data-couleur
-						</em>="<span id="scriptColor">#2975D1</span>" <em>src</em>="https://embauche.beta.gouv.fr/dist/simulateur.js">
+						</em>
+						="script-simulateur-embauche" <em>data-couleur</em>="
+						<span id="scriptColor">#2975D1</span>" <em>src</em>
+						="https://embauche.beta.gouv.fr/dist/simulateur.js">
 						<span>{'<'}</span>
 						<span>/</span>
 						<em>script</em>
@@ -38,6 +41,12 @@ export default class MyComponent extends Component {
 
 					<div id="integrationList">
 						<article>
+							<a href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2018.html?ut=estimateurs">
+								<img src={urssafLogo} alt="urssaf.fr" />
+								<h2>URSSAF</h2>
+							</a>
+						</article>
+						<article>
 							<a href="http://les-aides.fr/embauche">
 								<img
 									src={require('../images/accueil/cci.png')}
@@ -53,14 +62,6 @@ export default class MyComponent extends Component {
 								<h2>APEC</h2>
 							</a>
 						</article>
-
-						{/* <article>
-							<a href="http://www.aides-creations.fr/simulateur-charges/">
-								<img src="img/aides-creations.png" alt="Aides-Créations.com"/>
-								<h2>Créateur de business plan<br/>
-									Aides-Créations.com</h2>
-							</a>
-						</article> */}
 
 						<article>
 							<a href="http://travail-emploi.gouv.fr/emploi/accompagnement-des-tpe-pme/tpe-pme/article/le-simulateur-du-cout-d-embauche">
@@ -86,7 +87,8 @@ export default class MyComponent extends Component {
 							<a href="mailto:contact@embauche.beta.gouv.fr?subject=Proposition de réutilisation">
 								<span className="question-mark">?</span>
 								<h2>
-									Une idée&nbsp;?<br />
+									Une idée&nbsp;?
+									<br />
 									Contactez-nous&nbsp;!
 								</h2>
 							</a>
