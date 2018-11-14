@@ -24,6 +24,7 @@ import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
+import PeriodSwitch from './PeriodSwitch'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -70,14 +71,9 @@ class TargetSelection extends Component {
 		} = this.props
 		return (
 			<div id="targetSelection">
-				{noUserInput && (
-					<p className="blockingControl">
-						<Trans i18nKey="enterSalary">
-							Entrez un salaire <b>mensuel</b>
-						</Trans>
-					</p>
-				)}
+				{noUserInput && <p className="blockingControl" />}
 				<Controls {...{ blockingInputControls, controls }} />
+				<PeriodSwitch />
 				<section
 					id="targetsContainer"
 					style={{
@@ -136,16 +132,15 @@ class TargetSelection extends Component {
 									}}
 								/>
 							</div>
-							{activeInput === target.dottedName &&
-								!conversationStarted && (
-									<InputSuggestions
-										suggestions={target.suggestions}
-										onFirstClick={value =>
-											this.props.setFormValue(target.dottedName, '' + value)
-										}
-										colouredBackground={true}
-									/>
-								)}
+							{activeInput === target.dottedName && !conversationStarted && (
+								<InputSuggestions
+									suggestions={target.suggestions}
+									onFirstClick={value =>
+										this.props.setFormValue(target.dottedName, '' + value)
+									}
+									colouredBackground={true}
+								/>
+							)}
 						</li>
 					))}
 				</ul>
@@ -167,20 +162,18 @@ let Header = ({
 		encodeRuleName(target.dottedName)
 	return (
 		<span className="header">
-			{conversationStarted &&
-				!blockingInputControls && (
-					<ProgressCircle target={target} isActiveInput={isActiveInput} />
-				)}
+			{conversationStarted && !blockingInputControls && (
+				<ProgressCircle target={target} isActiveInput={isActiveInput} />
+			)}
 
 			<span className="texts">
-				{!conversationStarted &&
-					target.dottedName.includes('net après impôt') && (
-						<div>
-							<span id="labelNew">
-								<Trans>Janvier 2019</Trans>
-							</span>
-						</div>
-					)}
+				{!conversationStarted && target.dottedName.includes('net après impôt') && (
+					<div>
+						<span id="labelNew">
+							<Trans>Janvier 2019</Trans>
+						</span>
+					</div>
+				)}
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>

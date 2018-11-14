@@ -58,7 +58,6 @@ class Rule extends Component {
 			namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 		let displayedRule = analysedExample || analysedRule
-		let showValues = valuesToShow || currentExample
 
 		return (
 			<>
@@ -98,8 +97,8 @@ class Rule extends Component {
 												currency: 'EUR'
 										  }).format(displayedRule.nodeValue)
 										: typeof displayedRule.nodeValue !== 'object'
-											? displayedRule.nodeValue
-											: null}
+										? displayedRule.nodeValue
+										: null}
 								</div>
 							) : null}
 
@@ -114,7 +113,10 @@ class Rule extends Component {
 							// Fonctionnalité intéressante, à implémenter correctement
 							false && <UserInput {...{ flatRules, dottedName }} />}
 							{flatRule.ns && (
-								<Algorithm rule={displayedRule} showValues={showValues} />
+								<Algorithm
+									rule={displayedRule}
+									showValues={valuesToShow || currentExample}
+								/>
 							)}
 							{flatRule.note && (
 								<section id="notes">
