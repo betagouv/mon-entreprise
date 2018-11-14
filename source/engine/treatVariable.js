@@ -159,8 +159,6 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 					? nodeValue * 12
 					: nodeValue,
 			periodTransform = nodeValue !== transformedNodeValue
-		if (inlinePeriodTransform)
-			console.log(situation('période'), transformedNodeValue)
 
 		let result = rewriteNode(
 			{

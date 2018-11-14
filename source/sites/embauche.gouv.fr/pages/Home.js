@@ -40,32 +40,35 @@ const Home = translate()(
 					</a>
 				)}
 			</div>
-			<p
-				style={{
-					textAlign: 'center',
-					width: '60%',
-					margin: '0 auto',
-					lineHeight: '1.3em',
-					color: '#333'
-				}}>
-				{emoji('🚀 ')}
-				{language == 'fr' ? (
-					<span>
-						{' '}
-						Découvrez notre nouveau guide de création d'entreprise sur{' '}
-						<a href="https://mycompanyinfrance.fr">mycompanyinfrance.fr</a>{' '}
-						(anglais)
-					</span>
-				) : (
-					<span>
-						Discover{' '}
-						<a href="https://mycompanyinfrance.fr">mycompanyinfrance.fr</a>, our
-						new guide to start your business in France
-					</span>
-				)}
-			</p>
+			<PubInfrance language={language} />
 		</div>
 	))
 )
 
 export default Home
+
+let PubInfrance = ({ language }) => (
+	<p
+		style={{
+			textAlign: 'center',
+			width: '60%',
+			margin: '2rem auto',
+			lineHeight: '1.3em',
+			color: '#333'
+		}}>
+		{emoji('🚀 ')}
+		{language == 'fr' ? (
+			<span>
+				{' '}
+				Découvrez notre nouveau guide de création d'entreprise sur{' '}
+				<a href="https://mycompanyinfrance.fr">mycompanyinfrance.fr</a>{' '}
+				(anglais)
+			</span>
+		) : (
+			<span>
+				Discover <a href="https://mycompanyinfrance.fr">mycompanyinfrance.fr</a>
+				, our new guide to start your business in France
+			</span>
+		)}
+	</p>
+)

@@ -1,3 +1,10 @@
+- nom: période
+  par défaut: mois
+  une possibilité: 
+    - mois
+    - année
+
+
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
   icônes: 🚴

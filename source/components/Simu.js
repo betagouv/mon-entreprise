@@ -20,6 +20,7 @@ import Conversation from './conversation/Conversation'
 import Distribution from './Distribution'
 import PageFeedback from './Feedback/PageFeedback'
 import PaySlip from './PaySlip'
+import PeriodSwitch from './PeriodSwitch'
 import QuickLink from './QuickLink'
 import ResultView from './ResultView'
 import './Simu.css'
@@ -137,6 +138,7 @@ class Simulation extends Component {
 						</>
 					)}
 					<TargetSelection colours={colours} />
+					<PeriodSwitch />
 					{location.pathname.endsWith('/simulation') && (
 						<>
 							{conversationStarted && (
@@ -147,6 +149,7 @@ class Simulation extends Component {
 							)}
 						</>
 					)}
+
 					{validInputEntered && (
 						<PageFeedback
 							customMessage={
