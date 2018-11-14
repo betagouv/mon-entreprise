@@ -508,3 +508,17 @@ path:
     index: '/hiring-process'
 
 micro-entreprise: micro-enterprise
+privacyContent: >
+  <0>$t(Vie privée)</0>
+  <1>
+    We do not store any personal data on our servers. All the information 
+    you provide (salaries, company postal code, SIREN etc.) is saved only 
+    on your browser. No one else can have access to it but you.
+  </1>
+  <2>
+    However, we do collect anonymous statistics on site usage, which we use 
+    for the sole purpose of improving the service, in accordance with the 
+    <2>recommendations of the CNIL</2> and the DPRG directive.
+  </2>
+  <3>You can opt out below.</3>
+Vie privée: Privacy

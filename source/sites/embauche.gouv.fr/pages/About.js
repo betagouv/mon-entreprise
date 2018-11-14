@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './About.css'
 import './MailChimp.css'
+import PrivacyContent from 'Components/PrivacyContent';
 
 export default class About extends Component {
 	render() {
@@ -57,22 +58,7 @@ export default class About extends Component {
 					</p>
 				</section>
 				{/* <p>Notre prochaine rencontre OpenLab aura lieu <strong>le mercredi 18 janvier 2017 à 10h</strong>, au 86 allée de Bercy, 75012, salle 381-R</p> */}
-				<h1>Vie privée</h1>
-				<p>
-					Les simulateurs hébergés sur embauche.beta.gouv.fr n'ont pas de
-					mémoire : les données de simulation (salaires, code postal de
-					l'entreprise, etc.) <em>ne sont pas stockées sur nos serveurs</em>.
-				</p>
-				<p>
-					Par contre, nous recueillons des statistiques anonymes d'usage du
-					site, que nous utilisons dans l'unique but d'améliorer le service,
-					conformément aux{' '}
-					<a href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience">
-						recommandations de la CNIL
-					</a>
-					.
-				</p>
-				<iframe src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr" />
+				<PrivacyContent/>
 				<LegalNoticeContent />
 			</section>
 		)
