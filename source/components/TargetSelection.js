@@ -24,6 +24,7 @@ import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
+import PeriodSwitch from './PeriodSwitch'
 
 let salaries = [
 	'contrat salarié . salaire . total',
@@ -73,14 +74,9 @@ const TargetSelection = compose(
 			} = this.props
 			return (
 				<div id="targetSelection">
-					{noUserInput && (
-						<p className="blockingControl">
-							<Trans i18nKey="enterSalary">
-								Entrez un salaire <b>mensuel</b>
-							</Trans>
-						</p>
-					)}
+					{noUserInput && <p className="blockingControl" />}
 					<Controls {...{ blockingInputControls, controls }} />
+					<PeriodSwitch />
 					<section
 						id="targetsContainer"
 						style={{

@@ -141,6 +141,36 @@ export default compose(
 				</>
 			)
 		}
+							{//flatRule.question &&
+							// Fonctionnalité intéressante, à implémenter correctement
+							false && <UserInput {...{ flatRules, dottedName }} />}
+							{flatRule.ns && (
+								<Algorithm
+									rule={displayedRule}
+									showValues={valuesToShow || currentExample}
+								/>
+							)}
+							{flatRule.note && (
+								<section id="notes">
+									<h3>Note: </h3>
+									{createMarkdownDiv(flatRule.note)}
+								</section>
+							)}
+							<Examples
+								currentExample={currentExample}
+								situationExists={valuesToShow}
+								rule={displayedRule}
+							/>
+							{!isEmpty(namespaceRules) && (
+								<NamespaceRulesList {...{ namespaceRules }} />
+							)}
+							{this.renderReferences(flatRule)}
+						</section>
+					</div>
+				)}
+			</>
+		)
+	}
 
 		renderReferences = ({ références: refs }) =>
 			refs ? (
