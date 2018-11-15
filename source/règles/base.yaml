@@ -736,6 +736,10 @@
   période: flexible
   formule: rémunération . brut - indemnité kilométrique vélo
 
+
+- espace: contrat salarié
+  nom: salaire
+  
 - espace: contrat salarié . salaire
   nom: brut de base
   titre: Salaire brut de base
