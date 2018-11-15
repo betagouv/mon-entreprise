@@ -36,3 +36,15 @@ h2 small {
 	text-align: center;
 	opacity: 0.75;
 }
+
+#toggleRuleSource {
+	width: 100%;
+}
+#rule #toggleRuleSource {
+	text-align: right;
+	padding-right: 5em;
+}
+#toggleRuleSource img {
+	width: 2em !important;
+	height: 2em !important;
+}

@@ -58,15 +58,13 @@ class Rule extends Component {
 			namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 		let displayedRule = analysedExample || analysedRule
-
 		return (
 			<>
-				<button
-					onClick={() => this.setState({ viewSource: !this.state.viewSource })}>
-					{emoji('🔍')}
-				</button>
 				{this.state.viewSource ? (
-					<Source dottedName={dottedName} />
+					<>
+						{this.renderToggleSourceButton()}
+						<Source dottedName={dottedName} />
+					</>
 				) : (
 					<div id="rule" className="ui__ container">
 						<Helmet>
@@ -86,7 +84,7 @@ class Rule extends Component {
 								icon
 							}}
 						/>
-
+						{this.renderToggleSourceButton()}
 						<section id="rule-content">
 							{displayedRule.nodeValue ? (
 								<div id="ruleValue">
@@ -140,6 +138,16 @@ class Rule extends Component {
 		)
 	}
 
+	renderToggleSourceButton() {
+		let { viewSource } = this.state
+		return (
+			<button
+				id="toggleRuleSource"
+				onClick={() => this.setState({ viewSource: !viewSource })}>
+				{emoji(viewSource ? '📖' : '✍️')}
+			</button>
+		)
+	}
 	renderReferences = ({ références: refs }) =>
 		refs ? (
 			<div>
