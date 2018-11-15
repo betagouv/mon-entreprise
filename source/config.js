@@ -9,5 +9,6 @@ export let mainTargetNames = [
 // Some others will be displayed too so need to be computed
 export let simulationTargetNames = [
 	...mainTargetNames,
-	'contrat salarié . aides employeur'
+	'contrat salarié . aides employeur',
+	'contrat salarié . rémunération . net imposable'
 ]

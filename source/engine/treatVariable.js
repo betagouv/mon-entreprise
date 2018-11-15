@@ -14,7 +14,6 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			cached = cache[cacheName]
 
 		if (cached) return cached
-
 		let variable = findRuleByDottedName(parsedRules, dottedName),
 			variableHasFormula = variable.formule != null,
 			variableHasCond =
@@ -22,10 +21,10 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 				variable['non applicable si'] != null,
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
-				situationValue == null && (variableHasCond || variableHasFormula),
-			explanation = needsEvaluation
-				? evaluateNode(cache, situation, parsedRules, variable)
-				: variable
+				situationValue == null && (variableHasCond || variableHasFormula)
+		let explanation = needsEvaluation
+			? evaluateNode(cache, situation, parsedRules, variable)
+			: variable
 
 		let cacheAndNode = (nodeValue, missingVariables) => {
 			cache[cacheName] = rewriteNode(

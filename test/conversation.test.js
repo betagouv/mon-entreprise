@@ -1,5 +1,4 @@
 import { expect } from 'chai'
-import { popularTargetNames } from 'Components/TargetSelection'
 import dedent from 'dedent-js'
 import { enrichRule, rulesFr as rules } from 'Engine/rules'
 import yaml from 'js-yaml'
