@@ -17,12 +17,14 @@ import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
 import Privacy from './Privacy'
 const Footer = ({ colours: { colour } }) => {
-
 	const hrefLink =
 		hrefLangLink[i18n.language][
-			decodeURIComponent(window.location.pathname).replace(/^\/$/, '')
+			decodeURIComponent(
+				(process.env.NODE_ENV === 'production' ? window.location.host : '') +
+					window.location.pathname
+			).replace(/^\/$/, '')
 		] || []
-	console.log('yayayayyay', hrefLangLink, hrefLink)
+	console.log(hrefLangLink, hrefLink)
 	return (
 		<div className="footer-container">
 			<Helmet>
