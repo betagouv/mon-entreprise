@@ -23,15 +23,9 @@ const Footer = ({ colours: { colour } }) => {
 				(process.env.NODE_ENV === 'production'
 					? window.location.protocol + '//' + window.location.host
 					: '') + window.location.pathname
-			).replace(/^\/$/, '')
+			).replace(/\/$/, '')
 		] || []
-	console.log(
-		hrefLangLink,
-		hrefLink,
-		(process.env.NODE_ENV === 'production'
-			? window.location.protocol + '//' + window.location.host
-			: '') + window.location.pathname
-	)
+
 	return (
 		<div className="footer-container">
 			<Helmet>
