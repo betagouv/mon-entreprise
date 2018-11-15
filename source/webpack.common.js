@@ -86,7 +86,6 @@ module.exports = {
 	},
 	plugins: [
 		new EnvironmentPlugin({
-			'NODE_ENV': 'developement', 
 			'EN_SITE': '/infrance${path}',
 			'FR_SITE': '/mon-entreprise${path}'
 	}),

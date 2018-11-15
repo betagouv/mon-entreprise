@@ -43,7 +43,7 @@ const CreateMyCompany = ({ match, nextQuestionUrl }: Props) => (
 		{match.isExact && (
 			<div className="ui__ answer-group">
 				<Link className="ui__ button" to={nextQuestionUrl}>
-					<T>Choisir la forme juridique</T>
+					<T>Commencer</T>
 				</Link>
 				<Link
 					to={sitePaths().sécuritéSociale.index}
