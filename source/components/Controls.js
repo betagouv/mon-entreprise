@@ -1,12 +1,13 @@
-import React from 'react'
-import './Controls.css'
-import emoji from 'react-easy-emoji'
-import { connect } from 'react-redux'
-import { startConversation, hideControl } from 'Actions/actions'
+import { hideControl, startConversation } from 'Actions/actions'
+import withLanguage from 'Components/utils/withLanguage'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
+import { compose } from 'ramda'
+import React from 'react'
+import emoji from 'react-easy-emoji'
+import { connect } from 'react-redux'
+import './Controls.css'
 import withColours from './utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
 
 function Controls({
 	blockingInputControls,
@@ -41,7 +42,9 @@ function Controls({
 									<li
 										key={test}
 										className="control"
-										style={{ background: colours.lightenColour(45) }}>
+										style={{
+											background: colours.lighterColour
+										}}>
 										{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
 										<div className="controlText">
 											{message && createMarkdownDiv(message)}
@@ -79,14 +82,18 @@ function Controls({
 	)
 }
 
-export default connect(
-	(state, props) => ({
-		foldedSteps: state.conversationSteps.foldedSteps,
-		key: props.language,
-		hiddenControls: state.hiddenControls
-	}),
-	dispatch => ({
-		startConversation: cible => dispatch(startConversation(cible)),
-		hideControl: id => dispatch(hideControl(id))
-	})
-)(withColours(withLanguage(Controls)))
+export default compose(
+	connect(
+		(state, props) => ({
+			foldedSteps: state.conversationSteps.foldedSteps,
+			key: props.language,
+			hiddenControls: state.hiddenControls
+		}),
+		dispatch => ({
+			startConversation: cible => dispatch(startConversation(cible)),
+			hideControl: id => dispatch(hideControl(id))
+		})
+	),
+	withColours,
+	withLanguage
+)(Controls)

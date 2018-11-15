@@ -4,14 +4,13 @@ import PropTypes from 'prop-types'
 import { pick } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
-import { translate } from 'react-i18next'
+import { withI18n } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import { capitalise0 } from '../utils'
 
-@translate()
-export default class SearchBar extends React.Component {
+class SearchBar extends React.Component {
 	static contextTypes = {
 		i18n: PropTypes.object.isRequired
 	}
@@ -99,24 +98,25 @@ export default class SearchBar extends React.Component {
 						this.inputElement = el
 					}}
 				/>
-				{this.props.showDefaultList &&
-					!this.state.inputValue && (
-						<ul>
-							{rules.map(rule => (
-								<li key={rule.dottedName}>
-									<Link
-										to={
-											this.props.rulePagesBasePath +
-											'/' +
-											encodeRuleName(rule.name)
-										}>
-										{rule.title || capitalise0(rule.name)}
-									</Link>
-								</li>
-							))}
-						</ul>
-					)}
+				{this.props.showDefaultList && !this.state.inputValue && (
+					<ul>
+						{rules.map(rule => (
+							<li key={rule.dottedName}>
+								<Link
+									to={
+										this.props.rulePagesBasePath +
+										'/' +
+										encodeRuleName(rule.name)
+									}>
+									{rule.title || capitalise0(rule.name)}
+								</Link>
+							</li>
+						))}
+					</ul>
+				)}
 			</>
 		)
 	}
 }
+
+export default withI18n()(SearchBar)

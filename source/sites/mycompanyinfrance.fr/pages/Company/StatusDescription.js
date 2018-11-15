@@ -1,65 +1,69 @@
 /* @flow */
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import { React, T } from 'Components'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
-
 type Props = {
 	status: LegalStatus
 }
 
 const StatusDescription = ({ status }: Props) =>
 	status === 'EI' ? (
-		<>
-			Also called company in own name or company in a personal name. No capital
-			contribution is necessary. Private wealth and corporate wealth are one.
-		</>
+		<T k="formeJuridique.EI">
+			Également appelée société en nom propre. Aucun capital n'est nécessaire.
+			Le capital privé et le capital de l'entreprise ne font qu'un.
+		</T>
 	) : status === 'EIRL' ? (
-		<>
-			Allows you to protect your personal assets by assigning a specific
-			heritage to your professional activity.
-		</>
+		<T k="formeJuridique.EIRL">
+			Permet de protéger son patrimoine personnel en attribuant un capital
+			spécifique à son activité professionnelle.
+		</T>
 	) : status === 'EURL' ? (
-		<>
-			Companies with EURL status only have one partner. Liability is limited to
-			the amount of his contribution to the capital.
-		</>
+		<T k="formeJuridique.EURL">
+			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
+			de l'apport de capital de l'unique associé.
+		</T>
 	) : status.includes('SARL') ? (
-		<>
-			Composed of at least 2 partners whose financial responsibility is limited
-			to the amount of their contribution to the company's capital. The minimum
-			capital is freely fixed in the articles of association.
-		</>
+		<T k="formeJuridique.SARL">
+			Société ayant au moins deux associés dont la responsabilité financière est
+			limitée au montant de leur apport au capital. Le capital minimum est fixé
+			librement dans les statuts. Les associés se répartissent des parts
+			sociales toutes identiques, et la société est dirigée par un ou plusieurs
+			gérants qui sont forcément des personnes physiques. Le fonctionnement
+			d'une SARL n'est pas libre, il est encadré par le code du commerce.
+		</T>
 	) : status === 'SAS' ? (
-		<>
-			Composed of at least 2 associates. The financial responsibility of the
-			partners is limited to the amount of their contribution to the company's
-			capital. The minimum capital is freely fixed in the articles of
-			association.
-		</>
+		<T k="formeJuridique.SAS">
+			Société ayant au moins deux associés. La responsabilité financière des
+			associés est limitée au montant de leur apport au capital de la société.
+			Le capital minimum est fixé librement dans les statuts. Les associés se
+			répartissent des actions qui peuvent être de plusieurs catégories, et la
+			société est dirigée notamment par un président qui peut être une personne
+			morale (une autre société). Le fonctionnement d'une SAS est peu encadré
+			par la législation.
+		</T>
 	) : status === 'SASU' ? (
-		<>
-			Composed of only one associate. The financial responsibility is limited to
-			the amount of his contribution to the company's capital. The minimum
-			capital is freely fixed in the statutes.
-		</>
+		<T k="formeJuridique.SASU">
+			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
+			de l'apport de capital de l'unique associé.
+		</T>
 	) : status === 'SA' ? (
-		<>
-			Composed of at least 2 shareholders. This is the only status that allows
-			you to be listed on the stock exchange (from 7 shareholders). The minimum
-			share capital is €37.000.
-		</>
+		<T k="formeJuridique.SA">
+			Société ayant au moins deux actionnaires. C'est le seul statut qui permet
+			d'être coté en bourse (à partir de 7 actionnaires). Le capital social
+			minimum est de 37.000 €.
+		</T>
 	) : status === 'SNC' ? (
-		<>
-			The liability of the partners for the debts of the company is unified (one
-			partner only can be sued for the entire debt) and indefinite (responsible
-			on the entirety of their personnal wealth).
-		</>
-	) : status.toLowerCase().includes('micro-enterprise') ? (
-		<>
-			The micro-enterprise is a sole proprietorship company, subject to a
-			flat-rate scheme for the calculation of taxes and the payment of social
-			security contributions.{' '}
-		</>
+		<T k="formeJuridique.SNC">
+			La responsabilité des associés pour les dettes de la société est solidaire
+			(un seul associé peut être poursuivi pour la totalité de la dette) et
+			indéfinie (responsable sur la totalité de son patrimoine personnel).
+		</T>
+	) : status.includes('micro-entreprise') ? (
+		<T k="formeJuridique.micro">
+			La micro-entreprise est une entreprise individuelle, soumise à un régime
+			forfaitaire pour le calcul des impôts et le paiement des cotisations de
+			sécurité sociale.
+		</T>
 	) : /* Otherwise */ null
 
 export default StatusDescription

@@ -1,20 +1,24 @@
 /* @flow */
 
+import { React, T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
 import { toPairs } from 'ramda'
-import React from 'react'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
+import sitePaths from '../../sitePaths'
 import type { ResetExistingCompanyDetailsAction } from 'Types/companyTypes'
-let companyDataSelection = {
-	l1_normalisee: 'Name',
-	libelle_activite_principale: 'Main activity',
-	l4_normalisee: 'Street',
-	l6_normalisee: 'City',
-	libelle_region: 'Region',
-	libelle_tranche_effectif_salarie_entreprise: 'Number of employees',
-	date_creation: 'Creation date'
-}
+import type { TFunction } from 'react-i18next'
+
+let companyDataSelection = t => ({
+	l1_normalisee: t('Nom'),
+	libelle_activite_principale: t('Activité principale'),
+	l4_normalisee: t('Adresse'),
+	l6_normalisee: t('Ville'),
+	libelle_region: t('Région'),
+	libelle_tranche_effectif_salarie_entreprise: t("Nombre d'employés"),
+	date_creation: t('Date de création')
+})
 
 const YYYYMMDDToDate = (date: string): Date =>
 	new Date(date.replace(/^([\d]{4})([\d]{2})([\d]{2})$/, '$1/$2/$3'))
@@ -34,14 +38,15 @@ const LocaleDate = withLanguage(
 		}).format(date)
 )
 
-export const CompanyDetails = (data: { [string]: string }) => {
-	return (
-		<ul>
-			{toPairs(data).map(
-				([key, value]) =>
-					companyDataSelection[key] != null ? (
+export const CompanyDetails = withI18n()(
+	({ t, ...data }: { t: TFunction, [string]: string }) => {
+		const localizedCompanyDataSelection = companyDataSelection(t)
+		return (
+			<ul>
+				{toPairs(data).map(([key, value]) =>
+					localizedCompanyDataSelection[key] != null ? (
 						<li key={key}>
-							<strong>{companyDataSelection[key]}</strong>
+							<strong>{localizedCompanyDataSelection[key]}</strong>
 							<br />
 							{key === 'date_creation' ? (
 								<LocaleDate date={YYYYMMDDToDate(value)} />
@@ -50,24 +55,27 @@ export const CompanyDetails = (data: { [string]: string }) => {
 							)}
 						</li>
 					) : null
-			)}
-		</ul>
-	)
-}
+				)}
+			</ul>
+		)
+	}
+)
 
 const YourCompany = ({ companyDetails, resetCompanyDetails }) => (
 	<>
-		{!companyDetails && <Redirect to="/company" />}
-		<h1>Your company</h1>
+		{!companyDetails && <Redirect to={sitePaths().entreprise.index} />}
+		<h1>
+			<T>Votre entreprise</T>
+		</h1>
 		<CompanyDetails {...companyDetails.apiDetails} />
 		<p>
-			<Link onClick={resetCompanyDetails} to="/company/find">
-				This is not my company
+			<Link onClick={resetCompanyDetails} to={sitePaths().entreprise.trouver}>
+				<T>Ce n'est pas mon entreprise</T>
 			</Link>
 		</p>
 		<p>
-			<Link to="/social-security" className="ui__ button">
-				Simulate hiring costs
+			<Link to={sitePaths().sécuritéSociale.index} className="ui__ button">
+				Simuler un salaire
 			</Link>
 		</p>
 	</>

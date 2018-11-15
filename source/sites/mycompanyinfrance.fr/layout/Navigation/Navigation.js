@@ -1,16 +1,19 @@
 /* @flow */
+import { React, T } from 'Components'
 import { compose } from 'ramda'
-import React from 'react'
 import emoji from 'react-easy-emoji'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
 import companySvg from '../../images/company.svg'
 import estimateSvg from '../../images/estimate.svg'
 import hiringSvg from '../../images/hiring.svg'
+import sitePaths from '../../sitePaths'
 import './Navigation.css'
 import NavOpener from './NavOpener'
 import SideBar from './SideBar'
+import type { TFunction } from 'react-i18next'
 
 const Progress = ({ percent }) => (
 	<div className="progress">
@@ -26,10 +29,12 @@ type Props = {
 	companyProgress: number,
 	estimationProgress: number,
 	hiringProgress: number,
-	companyStatusChoice: string
+	companyStatusChoice: string,
+	t: TFunction
 }
 const StepsHeader = ({
 	companyProgress,
+	t,
 	estimationProgress,
 	hiringProgress,
 	companyStatusChoice
@@ -40,11 +45,11 @@ const StepsHeader = ({
 				<ul>
 					<li>
 						<NavOpener
-							to="/company"
+							to={sitePaths().entreprise.index}
 							exact={false}
 							title={
 								<>
-									Your company
+									<T>Votre entreprise</T>
 									<img
 										style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 										src={companySvg}
@@ -54,41 +59,64 @@ const StepsHeader = ({
 							}>
 							<ul>
 								<li>
-									<NavOpener title="Register a new company">
+									<NavOpener title={t('Créer votre entreprise')}>
 										<ul>
 											<li>
 												<NavOpener
-													to="/company/legal-status"
-													title="Legal status guide">
+													to={sitePaths().entreprise.statusJuridique}
+													title={t('Guide du statut juridique')}>
 													<ul>
 														<li>
-															<NavLink to="/company/legal-status/number-of-associates">
-																Number of associates
+															<NavLink
+																to={
+																	sitePaths().entreprise.statusJuridique
+																		.multipleAssociates
+																}>
+																<T>Nombre d'associés</T>
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/director-status">
-																Director status
+															<NavLink
+																to={
+																	sitePaths().entreprise.statusJuridique
+																		.directorStatus
+																}>
+																<T>Status du dirigeant</T>
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/liability">
-																Liability
+															<NavLink
+																to={
+																	sitePaths().entreprise.statusJuridique
+																		.liability
+																}>
+																<T>Responsabilité</T>
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/minority-director">
-																Minority director
+															<NavLink
+																to={
+																	sitePaths().entreprise.statusJuridique
+																		.minorityDirector
+																}>
+																<T>Gérant majoritaire ou minoritaire</T>
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/micro-enterprise">
-																Micro-enterprise
+															<NavLink
+																to={
+																	sitePaths().entreprise.statusJuridique
+																		.microEnterprise
+																}>
+																<T>Micro-entreprise ou EI</T>
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/legal-status/list">
-																Status list
+															<NavLink
+																to={
+																	sitePaths().entreprise.statusJuridique.liste
+																}>
+																<T>Liste des status</T>
 															</NavLink>
 														</li>
 													</ul>
@@ -99,60 +127,87 @@ const StepsHeader = ({
 												<NavOpener
 													to={
 														companyStatusChoice
-															? `/company/create-${companyStatusChoice}`
+															? sitePaths().entreprise.créer(
+																	companyStatusChoice
+															  )
 															: null
 													}
-													title="Creation process checklist">
+													title={t('Démarches de création')}>
 													<ul>
 														<li>
-															<NavLink to="/company/create-micro-enterprise">
-																Micro-enterprise
+															<NavLink
+																to={sitePaths().entreprise.créer(
+																	'micro-enterprise'
+																)}>
+																<T>Micro-entreprise</T>
 															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-EI">EI</NavLink>
+															<NavLink to={sitePaths().entreprise.créer('EI')}>
+																EI
+															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-EIRL">EIRL</NavLink>
+															<NavLink
+																to={sitePaths().entreprise.créer('EIRL')}>
+																EIRL
+															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-EURL">EURL</NavLink>
+															<NavLink
+																to={sitePaths().entreprise.créer('EURL')}>
+																EURL
+															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-SA">SA</NavLink>
+															<NavLink to={sitePaths().entreprise.créer('SA')}>
+																SA
+															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-SARL">SARL</NavLink>
+															<NavLink
+																to={sitePaths().entreprise.créer('SARL')}>
+																SARL
+															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-SAS">SAS</NavLink>
+															<NavLink to={sitePaths().entreprise.créer('SAS')}>
+																SAS
+															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-SASU">SASU</NavLink>
+															<NavLink
+																to={sitePaths().entreprise.créer('SASU')}>
+																SASU
+															</NavLink>
 														</li>
 														<li>
-															<NavLink to="/company/create-SNC">SNC</NavLink>
+															<NavLink to={sitePaths().entreprise.créer('SNC')}>
+																SNC
+															</NavLink>
 														</li>
 													</ul>
 												</NavOpener>
 											</li>
 											<li>
-												<NavLink to="/company/after-registration">
-													After registration
+												<NavLink to={sitePaths().entreprise.après}>
+													<T k="entreprise.tâches.ensuite">Après la création</T>
 												</NavLink>
 											</li>
 										</ul>
 									</NavOpener>
 								</li>
 								<li>
-									<NavLink to="/company/find">Find an existing company</NavLink>
+									<NavLink to={sitePaths().entreprise.trouver}>
+										<T k="trouver.titre">Retrouver votre entreprise</T>
+									</NavLink>
 								</li>
 							</ul>
 						</NavOpener>
 					</li>
 					<li>
-						<NavLink exact to="/social-security">
-							Social security
+						<NavLink exact to={sitePaths().sécuritéSociale.index}>
+							<T>Protection sociale</T>
 							<img
 								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 								src={estimateSvg}
@@ -162,8 +217,8 @@ const StepsHeader = ({
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/hiring-process">
-							Hiring process
+						<NavLink to={sitePaths().démarcheEmbauche.index}>
+							<T>Embauche</T>
 							<img
 								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 								src={hiringSvg}
@@ -180,6 +235,7 @@ const StepsHeader = ({
 
 export default compose(
 	withRouter,
+	withI18n(),
 	connect(
 		state => ({
 			...selectors(state),

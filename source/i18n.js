@@ -21,7 +21,6 @@ let lang =
 setToSessionStorage('lang', lang)
 i18next.init(
 	{
-		debug: false,
 		lng: lang,
 		resources: {
 			en: {
@@ -34,4 +33,4 @@ i18next.init(
 	}
 )
 
-export default lang
+export default i18next

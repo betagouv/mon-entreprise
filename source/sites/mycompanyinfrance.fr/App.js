@@ -3,6 +3,7 @@ import { defaultTracker } from 'Components/utils/withTracker'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
+import { withI18n } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -19,7 +20,9 @@ import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
 import HiringProcess from './pages/HiringProcess'
 import Landing from './pages/Landing'
+import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
+import sitePaths from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -44,43 +47,59 @@ const middlewares = [
 class InFranceRoute extends Component {
 	componentDidMount() {
 		if (typeof sessionStorage !== 'undefined') {
-			sessionStorage['lang'] = 'en'
+			sessionStorage['lang'] = this.props.language
 		}
 	}
 	render() {
 		return (
 			<Provider
-				basename="infrance"
-				language="en"
+				basename={this.props.basename}
+				language={this.props.language}
 				tracker={tracker}
 				reduxMiddlewares={middlewares}
 				initialStore={{ ...retrievePersistedState(), lang: 'en' }}
 				onStoreCreated={persistEverything}>
 				<TrackPageView />
 				<div id="content">
-					<Switch>
-						<Route exact path="/" component={Landing} />
-						<div className="app-container">
-							{/* Passing location down to prevent update blocking */}
-							<Navigation location={location} />
-							<div className="app-content">
-								<ProgressHeader />
-								<div
-									className="ui__ container"
-									style={{ flexGrow: 1, flexShrink: 0 }}>
-									<Route path="/company" component={CompanyIndex} />
-									<Route path="/social-security" component={SocialSecurity} />
-									<Route path="/hiring-process" component={HiringProcess} />
-								</div>
-								<Footer />
-							</div>
-						</div>
-					</Switch>
+					<RouterSwitch />
 				</div>
 			</Provider>
 		)
 	}
 }
+
+let RouterSwitch = withI18n()(() => {
+	const paths = sitePaths()
+	return (
+		<Switch>
+			<Route exact path="/" component={Landing} />
+			<div className="app-container">
+				{/* Passing location down to prevent update blocking */}
+				<Navigation location={location} />
+				<div className="app-content">
+					<ProgressHeader />
+					<div
+						className="ui__ container"
+						style={{ flexGrow: 1, flexShrink: 0 }}>
+						<Route path={paths.entreprise.index} component={CompanyIndex} />
+						<Route
+							path={paths.sécuritéSociale.index}
+							component={SocialSecurity}
+						/>
+						<Route
+							path={paths.démarcheEmbauche.index}
+							component={HiringProcess}
+						/>
+						{process.env.NODE_ENV !== 'production' && (
+							<Route exact path="/sitemap" component={Sitemap} />
+						)}
+					</div>
+					<Footer />
+				</div>
+			</div>
+		</Switch>
+	)
+})
 
 let ExportedApp = InFranceRoute
 

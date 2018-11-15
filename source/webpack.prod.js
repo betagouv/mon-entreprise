@@ -79,7 +79,8 @@ module.exports = {
 				/.*\?s=.*$/,
 				/^\/stats/,
 				/^\/robots\.txt$/,
-				/^\/sitemap\.infrance\.txt$/
+				/^\/sitemap\.infrance\.fr\.txt$/,
+				/^\/sitemap\.infrance\.en\.txt$/
 			]
 		}),
 		new PrerenderSPAPlugin({
@@ -87,6 +88,12 @@ module.exports = {
 			outputDir: path.resolve('dist', 'prerender', 'infrance'),
 			routes: ['/', '/social-security'],
 			indexPath: path.resolve('dist', 'infrance.html')
+		}),
+		new PrerenderSPAPlugin({
+			...prerenderConfig(),
+			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
+			routes: ['/', '/sécurité-sociale'],
+			indexPath: path.resolve('dist', 'mon-entreprise.html')
 		}),
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),

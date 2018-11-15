@@ -8,7 +8,7 @@ status = 200
 
 [[redirects]]
 from = "https://mycompanyinfrance.fr/sitemap.txt"
-to = "/sitemap.infrance.txt"
+to = "/sitemap.infrance.en.txt"
 status = 200
 
 [[redirects]]
@@ -17,7 +17,7 @@ to = "/prerender/infrance/index.html"
 status = 200
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr"
+from = "https://mycompanyinfrance.fr/social-security"
 to = "/prerender/infrance/social-security/index.html"
 status = 200
 
@@ -25,6 +25,33 @@ status = 200
 from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"
 status = 200
+
+# Mon-entreprise PRODUCTION settings
+[[redirects]]
+from = "https://mon-entreprise.beta.gouv.fr/robots.txt"
+to = "/robots.infrance.txt"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.beta.gouv.fr/sitemap.txt"
+to = "/sitemap.infrance.fr.txt"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.beta.gouv.fr"
+to = "/prerender/mon-entreprise/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.beta.gouv.fr/sécurité-sociale"
+to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.beta.gouv.fr/*"
+to = "/mon-entreprise.html"
+status = 200
+
 
 # Embauche PRODUCTION settings
 [[redirects]]
@@ -58,25 +85,53 @@ query = {s = "e"}
 to = "/prerender/embauche/index.html"
 status = 200
 
-
 [[redirects]]
 from = "/*"
 query = {s = "e"}
 to = "/embauche.html"
 status = 200
 
-# Redirect for infrance in staging and development settings
+# Redirect to mycompanyinfrance in staging and development settings
 [[redirects]]
 from = "/"
+query = {s = "m"}
 to = "/prerender/infrance/index.html"
 status = 200
 
 [[redirects]]
 from = "/social-security"
+query = {s = "m"}
 to = "/prerender/infrance/social-security/index.html"
 status = 200
 
 [[redirects]]
 from = "/*"
+query = {s = "m"}
 to = "/infrance.html"
 status = 200
+
+# Redirect to mon-entreprise in staging and development settings
+[[redirects]]
+from = "/"
+to = "/prerender/mon-entreprise/index.html"
+status = 200
+
+[[redirects]]
+from = "/sécurité-sociale"
+to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
+status = 200
+
+[[redirects]]
+from = "/*"
+to = "/mon-entreprise.html"
+status = 200
+
+
+
+[context.deploy-preview.environment]
+EN_SITE = "${path}?s=m"
+FR_SITE = "${path}"
+
+[context.production.environment]
+EN_SITE = "https://mycompanyinfrance.fr${path}"
+FR_SITE = "https://mon-entreprise.beta.gouv.fr${path}"

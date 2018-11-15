@@ -1,49 +1,55 @@
 /* @flow */
 
+import { Component, React, T } from 'Components'
 import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import React, { Component } from 'react'
 import Helmet from 'react-helmet'
+import { withI18n } from 'react-i18next'
 import * as Animate from 'Ui/animate'
 import type { Match, Location } from 'react-router'
-
+import type { TFunction } from 'react-i18next'
 type Props = {
 	match: Match,
-	location: Location
+	location: Location,
+	t: TFunction
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
 		return (
 			<>
 				<Helmet>
-					<title>Social security in France: costs and benefits</title>
+					<title>
+						{this.props.t(
+							'sécu.page.titre',
+							"Sécurité sociale et coût d'embauche"
+						)}
+					</title>
 					<meta
 						name="description"
-						content="Discover the costs and benefits of French social security and protection (welfare) by simulating a concrete case of hiring in your company."
+						content={this.props.t('sécu.page.description')}
 					/>
 				</Helmet>
 				<ScrollToTop />
 				<Animate.fromBottom>
 					{this.props.match.isExact && (
-						<>
-							<h1>Social protection: costs and benefits</h1>
+						<T k="sécu.content">
+							<h1>Protection sociale : coût et avantages</h1>
 							<p>
-								France has chosen to provide its citizens with a high-quality
-								social safety net. This mandatory system is based on solidarity
-								and designed to ensure the{' '}
-								<strong>general welfare of its people</strong>.{' '}
+								La France a choisi d'offrir à ses citoyens une protection
+								sociale de qualité. Ce système obligatoire repose sur la
+								solidarité et vise à assurer le{' '}
+								<strong>bien-être général de la population</strong>.
 							</p>
 							<p>
-								Easy access to health care and other services ensures that
-								companies can put healthy, productive and highly skilled
-								employees to work in an attractive market in the heart of
-								Europe.
+								L'accès facile aux soins de santé et à d'autres services permet
+								aux entreprises d'employer des travailleurs en bonne santé,
+								productifs et hautement qualifiés.
 							</p>
 							<p>
-								As soon as you declare and pay your employees, you automatically
-								entitle them to the general scheme of French Social Security
-								(health, maternity, disability, old age, occupational illness
-								and accidents) and unemployment insurance.
+								Dès que vous déclarez et payez vos salariés, vous leur donnez
+								automatiquement droit au régime général de la Sécurité sociale
+								française (santé, maternité, invalidité, vieillesse, maladie
+								professionnelle et accidents) et à l'assurance chômage.
 							</p>
 							<div
 								style={{
@@ -66,8 +72,8 @@ class SocialSecurity extends Component<Props, {}> {
 									allowFullScreen
 								/>
 							</div>
-							<h2>How much does it cost to hire ?</h2>
-						</>
+							<h2>Combien coûte une embauche ?</h2>
+						</T>
 					)}
 					<Simulateur displayHiringProcedures key={location.pathname} />
 				</Animate.fromBottom>
@@ -76,4 +82,4 @@ class SocialSecurity extends Component<Props, {}> {
 	}
 }
 
-export default SocialSecurity
+export default withI18n()(SocialSecurity)

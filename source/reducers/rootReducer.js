@@ -17,7 +17,7 @@ import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import computeThemeColours from 'Ui/themeColours'
 import { simulationTargetNames } from '../config.js'
-import defaultLang from '../i18n'
+import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'
 import type { Action } from 'Types/ActionsTypes'
@@ -66,7 +66,7 @@ function activeTargetInput(state = null, { type, name }) {
 	}
 }
 
-function lang(state = defaultLang, { type, lang }) {
+function lang(state = i18n.language, { type, lang }) {
 	switch (type) {
 		case 'SWITCH_LANG':
 			return lang

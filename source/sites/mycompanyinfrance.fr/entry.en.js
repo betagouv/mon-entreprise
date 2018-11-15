@@ -4,4 +4,4 @@ import App from './App'
 
 let anchor = document.querySelector('#js')
 
-render(<App />, anchor)
+render(<App language="en" basename="infrance" />, anchor)

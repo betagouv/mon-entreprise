@@ -1,79 +1,109 @@
 /* @flow */
 import { companyIsMicroenterprise } from 'Actions/companyStatusActions'
-import React from 'react'
+import { React, T } from 'Components'
+import { compose } from 'ramda'
+import Helmet from 'react-helmet'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { SkipButton } from 'Ui/Button'
-import Helmet from 'react-helmet';
+import type { TFunction } from 'react-i18next'
 
 type Props = {
-	companyIsMicroenterprise: (?boolean) => void
+	companyIsMicroenterprise: (?boolean) => void,
+	t: TFunction
 }
 
-const Microenterprise = ({ companyIsMicroenterprise }: Props) => (
+const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 	<>
 		<Helmet>
-			<title>Micro-enterprise or Individual Business in France</title>
+			<title>
+				{t(
+					'microentreprise.page.titre',
+					'Différence entre microentreprise et entreprise individuelle'
+				)}
+			</title>
 			<meta
 				name="description"
-				content="The micro-entreprise is a simplified scheme of declaration and payment,
-				for which tax and social contributions are based on the turnover achieved
-				each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly."
+				content={
+					<T k="microentreprise.page.description">
+						La micro-entreprise est un système simplifié de déclaration et de
+						paiement, pour lesquelles les impôts et cotisations sociales sont
+						basés sur le chiffre d'affaires réalisé chaque mois. C'est un choix
+						intéressant si vous n'avez pas besoin de beaucoup de capital et que
+						vous souhaitez démarrer rapidement.
+					</T>
+				}
 			/>
 		</Helmet>
-		<h2>Micro-enterprise or Individual Business</h2>
-		<p>
-			The micro-entreprise is a simplified scheme of declaration and payment,
-			for which tax and social contributions are based on the turnover achieved
-			each month. Available for companies whose annual turnover does not exceed
-			€70,000 for services providers or €170,000 when the main activity is the
-			sale of goods, catering or the provision of housing.
-		</p>
-		<p>This is an interesting choice if:</p>
-		<ul>
-			<li>
-				You do not need a lot of capital and important expenses to run your
-				activity
-			</li>
-			<li>You want to test the viability or plan it to be small</li>
-			<li>You want the minimum amount of paperwork to get started</li>
-		</ul>
-		<p>
-			<strong>Note:</strong> Some activities are excluded from this status (
-			<a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
-				see the list (Fr)
-			</a>
-			). Some activities are regulated with a qualification or a professional
-			experience (
-			<a href="https://www.afecreation.fr/pid316/activites-reglementees.html">
-				see the list (Fr)
-			</a>
-			).
-		</p>
-		<p>
-			For all the other cases, it is advised to choose the standard status,
-			which is <strong>Individual Business.</strong>
-		</p>
+		<h2>
+			<T k="microentreprise.titre">
+				Micro-enterprise ou entreprise individuelle (EI) ?
+			</T>
+		</h2>
+		<T k="microentreprise.description">
+			<p>
+				La micro-entreprise est un régime simplifié de déclaration et de
+				paiement, pour lequel l'impôt et les cotisations sociales sont basés sur
+				le chiffre d'affaires réalisé chaque mois. Disponible pour les
+				entreprises dont le chiffre d'affaires annuel ne dépasse pas 70.000 €
+				pour les prestataires de services ou 170.000 € lorsque l'activité
+				principale est la vente de biens, la restauration ou la fourniture de
+				logements.
+			</p>
+			<p>C'est un choix intéressant si :</p>
+			<ul>
+				<li>
+					Vous n'avez pas besoin de beaucoup de capital et de dépenses
+					importantes pour mener votre activité
+				</li>
+				<li>
+					Vous voulez tester la viabilité de votre modèle, ou prévoyez de rester
+					petits
+				</li>
+				<li>Vous voulez la quantité minimale de paperasse pour commencer</li>
+			</ul>
+			<p>
+				<strong>Note</strong> : Certaines activités sont exclus de ce statut (
+				<a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
+					{' '}
+					voir la liste
+				</a>
+				). Certaines activités sont réglementées avec une qualification ou une
+				expérience professionnelle (
+				<a href="https://www.afecreation.fr/pid316/activites-reglementees.html">
+					voir la liste
+				</a>
+				).
+			</p>
+			<p>
+				Pour tous les autres cas, il est conseillé de choisir le statut
+				standard, qui est <strong>l'Entreprise Individuelle</strong>.
+			</p>
+		</T>
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
 					companyIsMicroenterprise(true)
 				}}
 				className="ui__ button">
-				Micro-enterprise
+				<T>Micro-entreprise</T>
 			</button>
 			<button
 				onClick={() => {
 					companyIsMicroenterprise(false)
 				}}
 				className="ui__ button">
-				Individual Business
+				<T>Entreprise Individuelle</T>
 			</button>
 			<SkipButton onClick={() => companyIsMicroenterprise(null)} />
 		</div>
 	</>
 )
 
-export default connect(
-	null,
-	{ companyIsMicroenterprise }
+export default compose(
+	withI18n(),
+	connect(
+		null,
+		{ companyIsMicroenterprise }
+	)
 )(Microenterprise)

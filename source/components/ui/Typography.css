@@ -85,13 +85,6 @@ ul {
 li {
 	padding: 0.2em 0;
 }
-li:last-of-type {
-	padding-bottom: 0;
-}
-li:first-of-type {
-	padding-top: 0;
-}
-
 a {
 	border: none;
 	display: inline-block;

@@ -2,7 +2,7 @@
 
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
-import { Trans, translate } from 'react-i18next'
+import { Trans, withI18n } from 'react-i18next'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import safeLocalStorage from '../../storage/safeLocalStorage'
@@ -93,37 +93,36 @@ class PageFeedback extends Component<Props, State> {
 		return (
 			!this.props.blacklist.includes(this.props.location.pathname) && (
 				<div className="feedback-page ui__ container notice">
-					{!this.state.showForm &&
-						!this.state.showThanks && (
-							<>
-								<div style={{ flex: 1 }}>
-									{this.props.customMessage || (
-										<Trans i18nKey="feedback.question">
-											Cette page vous a-t-elle été utile ?
-										</Trans>
-									)}{' '}
-									<button
-										style={{ marginLeft: '0.4rem' }}
-										className="ui__ link-button"
-										onClick={() => this.handleFeedback({ useful: true })}>
-										<Trans>Oui</Trans>
-									</button>{' '}
-									<button
-										style={{ marginLeft: '0.4rem' }}
-										className="ui__ link-button"
-										onClick={() => this.handleFeedback({ useful: false })}>
-										<Trans>Non</Trans>
-									</button>
-								</div>
-								<button
-									className="ui__ link-button"
-									onClick={this.handleErrorReporting}>
-									<Trans i18nKey="feedback.reportError">
-										Signaler une erreur
+					{!this.state.showForm && !this.state.showThanks && (
+						<>
+							<div style={{ flex: 1 }}>
+								{this.props.customMessage || (
+									<Trans i18nKey="feedback.question">
+										Cette page vous a-t-elle été utile ?
 									</Trans>
+								)}{' '}
+								<button
+									style={{ marginLeft: '0.4rem' }}
+									className="ui__ link-button"
+									onClick={() => this.handleFeedback({ useful: true })}>
+									<Trans>Oui</Trans>
 								</button>{' '}
-							</>
-						)}
+								<button
+									style={{ marginLeft: '0.4rem' }}
+									className="ui__ link-button"
+									onClick={() => this.handleFeedback({ useful: false })}>
+									<Trans>Non</Trans>
+								</button>
+							</div>
+							<button
+								className="ui__ link-button"
+								onClick={this.handleErrorReporting}>
+								<Trans i18nKey="feedback.reportError">
+									Signaler une erreur
+								</Trans>
+							</button>{' '}
+						</>
+					)}
 					{this.state.showThanks && (
 						<div>
 							<Trans i18nKey="feedback.thanks">
@@ -150,7 +149,7 @@ const PageFeedbackWithRouter = ({ location, ...props }) => (
 )
 
 export default compose(
-	translate(),
+	withI18n(),
 	withTracker,
 	withRouter
 )(PageFeedbackWithRouter)

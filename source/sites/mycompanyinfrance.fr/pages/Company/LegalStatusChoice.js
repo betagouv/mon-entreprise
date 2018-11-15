@@ -1,7 +1,7 @@
 /* @flow */
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
+import { React, T } from 'Components'
 import { isNil } from 'ramda'
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { capitalise0 } from '../../../../utils'
@@ -32,12 +32,14 @@ const LegalStatusChoice = ({
 	return (
 		!!Object.keys(legalStatus).length && (
 			<>
-				<h2>My answers</h2>
+				<h2>
+					<T>Mes réponses</T>
+				</h2>
 				<p>
 					<button
 						className="ui__ link-button"
 						onClick={goToCompanyStatusChoice}>
-						Reset
+						<T>Effacer</T>
 					</button>
 				</p>
 				<ul>

@@ -7,10 +7,10 @@ import {
 	findRuleByDottedName,
 	findRuleByNamespace
 } from 'Engine/rules'
-import { isEmpty } from 'ramda'
+import { compose, isEmpty } from 'ramda'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { Trans, translate } from 'react-i18next'
+import { Trans, withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { reduxForm } from 'redux-form'
@@ -26,112 +26,115 @@ import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
 
-@connect((state, props) => ({
-	currentExample: state.currentExample,
-	flatRules: flatRulesSelector(state),
-	valuesToShow: !noUserInputSelector(state),
-	analysedRule: ruleAnalysisSelector(state, props),
-	analysedExample: exampleAnalysisSelector(state, props)
-}))
-@translate()
-@withLanguage
-class Rule extends Component {
-	render() {
-		let {
-				dottedName,
-				currentExample,
-				flatRules,
-				valuesToShow,
-				analysedExample,
-				analysedRule,
-				language
-			} = this.props,
-			flatRule = findRuleByDottedName(flatRules, dottedName)
+export default compose(
+	connect((state, props) => ({
+		currentExample: state.currentExample,
+		flatRules: flatRulesSelector(state),
+		valuesToShow: !noUserInputSelector(state),
+		analysedRule: ruleAnalysisSelector(state, props),
+		analysedExample: exampleAnalysisSelector(state, props)
+	})),
+	withI18n(),
+	withLanguage
+)(
+	class Rule extends Component {
+		render() {
+			let {
+					dottedName,
+					currentExample,
+					flatRules,
+					valuesToShow,
+					analysedExample,
+					analysedRule,
+					language
+				} = this.props,
+				flatRule = findRuleByDottedName(flatRules, dottedName)
 
-		let { type, name, title, description, question, ns, icon } = flatRule,
-			namespaceRules = findRuleByNamespace(flatRules, dottedName)
+			let { type, name, title, description, question, ns, icon } = flatRule,
+				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
-		let displayedRule = analysedExample || analysedRule
-		let showValues = valuesToShow || currentExample
+			let displayedRule = analysedExample || analysedRule
+			let showValues = valuesToShow || currentExample
 
-		return (
-			<div id="rule" className="ui__ container">
-				<Helmet>
-					<title>{title}</title>
-					<meta name="description" content={description} />
-				</Helmet>
-				<RuleHeader
-					{...{
-						ns,
-						type,
-						description,
-						question,
-						flatRule,
-						flatRules,
-						name,
-						title,
-						icon
-					}}
-				/>
+			return (
+				<div id="rule" className="ui__ container">
+					<Helmet>
+						<title>{title}</title>
+						<meta name="description" content={description} />
+					</Helmet>
+					<RuleHeader
+						{...{
+							ns,
+							type,
+							description,
+							question,
+							flatRule,
+							flatRules,
+							name,
+							title,
+							icon
+						}}
+					/>
 
-				<section id="rule-content">
-					{displayedRule.nodeValue ? (
-						<div id="ruleValue">
-							<i className="fa fa-calculator" aria-hidden="true" />{' '}
-							{displayedRule.format === 'euros' || displayedRule.formule
-								? Intl.NumberFormat(language, {
-										style: 'currency',
-										currency: 'EUR'
-								  }).format(displayedRule.nodeValue)
-								: typeof displayedRule.nodeValue !== 'object'
+					<section id="rule-content">
+						{displayedRule.nodeValue ? (
+							<div id="ruleValue">
+								<i className="fa fa-calculator" aria-hidden="true" />{' '}
+								{displayedRule.format === 'euros' || displayedRule.formule
+									? Intl.NumberFormat(language, {
+											style: 'currency',
+											currency: 'EUR'
+									  }).format(displayedRule.nodeValue)
+									: typeof displayedRule.nodeValue !== 'object'
 									? displayedRule.nodeValue
 									: null}
-						</div>
-					) : null}
+							</div>
+						) : null}
 
-					{displayedRule.defaultValue != null &&
-					typeof displayedRule.defaultValue !== 'object' ? (
-						<div id="ruleDefault">
-							Valeur par défaut : {displayedRule.defaultValue}
-						</div>
-					) : null}
+						{displayedRule.defaultValue != null &&
+						typeof displayedRule.defaultValue !== 'object' ? (
+							<div id="ruleDefault">
+								Valeur par défaut : {displayedRule.defaultValue}
+							</div>
+						) : null}
 
-					{//flatRule.question &&
-					// Fonctionnalité intéressante, à implémenter correctement
-					false && <UserInput {...{ flatRules, dottedName }} />}
-					{flatRule.ns && (
-						<Algorithm rule={displayedRule} showValues={showValues} />
-					)}
-					{flatRule.note && (
-						<section id="notes">
-							<h3>Note: </h3>
-							{createMarkdownDiv(flatRule.note)}
-						</section>
-					)}
-					<Examples
-						currentExample={currentExample}
-						situationExists={valuesToShow}
-						rule={displayedRule}
-					/>
-					{!isEmpty(namespaceRules) && (
-						<NamespaceRulesList {...{ namespaceRules }} />
-					)}
-					{this.renderReferences(flatRule)}
-				</section>
-			</div>
-		)
+						{//flatRule.question &&
+						// Fonctionnalité intéressante, à implémenter correctement
+						false && <UserInput {...{ flatRules, dottedName }} />}
+						{flatRule.ns && (
+							<Algorithm rule={displayedRule} showValues={showValues} />
+						)}
+						{flatRule.note && (
+							<section id="notes">
+								<h3>Note: </h3>
+								{createMarkdownDiv(flatRule.note)}
+							</section>
+						)}
+						<Examples
+							currentExample={currentExample}
+							situationExists={valuesToShow}
+							rule={displayedRule}
+						/>
+						{!isEmpty(namespaceRules) && (
+							<NamespaceRulesList {...{ namespaceRules }} />
+						)}
+						{this.renderReferences(flatRule)}
+					</section>
+				</div>
+			)
+		}
+
+		renderReferences = ({ références: refs }) =>
+			refs ? (
+				<div>
+					<h2>
+						<Trans>Références</Trans>
+					</h2>
+					<References refs={refs} />
+				</div>
+			) : null
 	}
-
-	renderReferences = ({ références: refs }) =>
-		refs ? (
-			<div>
-				<h2>
-					<Trans>Références</Trans>
-				</h2>
-				<References refs={refs} />
-			</div>
-		) : null
-}
+)
 
 let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
 	<section>
@@ -155,15 +158,14 @@ let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
 	</section>
 ))
 
-@reduxForm({
+const UserInput = reduxForm({
 	form: 'conversation',
 	destroyOnUnmount: false
-})
-class UserInput extends Component {
-	render() {
-		let { flatRules, dottedName } = this.props
-		return getInputComponent(flatRules)(dottedName)
+})(
+	class UserInput extends Component {
+		render() {
+			let { flatRules, dottedName } = this.props
+			return getInputComponent(flatRules)(dottedName)
+		}
 	}
-}
-
-export default Rule
+)

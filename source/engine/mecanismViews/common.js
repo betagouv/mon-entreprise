@@ -15,8 +15,8 @@ let treatValue = (data, language) =>
 	data == null
 		? '?'
 		: typeof data == 'boolean'
-			? { true: '✅', false: '✘' }[data]
-			: formatNumber(data, language)
+		? { true: '✅', false: '✘' }[data]
+		: formatNumber(data, language)
 
 export let formatNumber = (data, language) =>
 	!isNaN(data)
@@ -80,28 +80,29 @@ export function InlineMecanism({ name }) {
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-@connect(state => ({ flatRules: flatRulesSelector(state) }))
-export class Leaf extends Component {
-	render() {
-		let { classes, dottedName, name, value, flatRules, filter } = this.props,
-			rule = findRuleByDottedName(flatRules, dottedName)
+export const Leaf = connect(state => ({ flatRules: flatRulesSelector(state) }))(
+	class Leaf extends Component {
+		render() {
+			let { classes, dottedName, name, value, flatRules, filter } = this.props,
+				rule = findRuleByDottedName(flatRules, dottedName)
 
-		return (
-			<span className={classNames(classes, 'leaf')}>
-				{dottedName && (
-					<span className="nodeHead">
-						<Link to={'../règle/' + encodeRuleName(dottedName)}>
-							<span className="name">
-								{rule.title || capitalise0(name)} {filter}
-								<NodeValuePointer data={value} />
-							</span>
-						</Link>
-					</span>
-				)}
-			</span>
-		)
+			return (
+				<span className={classNames(classes, 'leaf')}>
+					{dottedName && (
+						<span className="nodeHead">
+							<Link to={'../règle/' + encodeRuleName(dottedName)}>
+								<span className="name">
+									{rule.title || capitalise0(name)} {filter}
+									<NodeValuePointer data={value} />
+								</span>
+							</Link>
+						</span>
+					)}
+				</span>
+			)
+		}
 	}
-}
+)
 
 export function SimpleRuleLink({ rule: { dottedName, title, name } }) {
 	return (

@@ -1,7 +1,8 @@
 import Scroll from 'Components/utils/Scroll'
 import { getInputComponent } from 'Engine/generateQuestions'
+import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { translate } from 'react-i18next'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import {
@@ -12,32 +13,35 @@ import * as Animate from 'Ui/animate'
 import Aide from '../Aide'
 import './conversation.css'
 
-@reduxForm({
-	form: 'conversation',
-	destroyOnUnmount: false
-})
-@translate()
-@connect(state => ({
-	conversationStarted: state.conversationStarted,
-	themeColours: state.themeColours,
-	flatRules: flatRulesSelector(state),
-	currentQuestion: currentQuestionSelector(state)
-}))
-export default class Conversation extends Component {
-	render() {
-		let { currentQuestion, flatRules } = this.props
-		return (
-			<div className="conversationContainer">
-				<Aide />
-				<div id="currentQuestion">
-					{currentQuestion && (
-						<Animate.fadeIn>
-							<Scroll.toElement onlyIfNotVisible />
-							{getInputComponent(flatRules)(currentQuestion)}
-						</Animate.fadeIn>
-					)}
+export default compose(
+	reduxForm({
+		form: 'conversation',
+		destroyOnUnmount: false
+	}),
+	withI18n(),
+	connect(state => ({
+		conversationStarted: state.conversationStarted,
+		themeColours: state.themeColours,
+		flatRules: flatRulesSelector(state),
+		currentQuestion: currentQuestionSelector(state)
+	}))
+)(
+	class Conversation extends Component {
+		render() {
+			let { currentQuestion, flatRules } = this.props
+			return (
+				<div className="conversationContainer">
+					<Aide />
+					<div id="currentQuestion">
+						{currentQuestion && (
+							<Animate.fadeIn>
+								<Scroll.toElement onlyIfNotVisible />
+								{getInputComponent(flatRules)(currentQuestion)}
+							</Animate.fadeIn>
+						)}
+					</div>
 				</div>
-			</div>
-		)
+			)
+		}
 	}
-}
+)

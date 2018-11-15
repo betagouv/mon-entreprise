@@ -1,28 +1,46 @@
 /* @flow */
+import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import React from 'react'
+import { compose } from 'ramda'
+import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
+import sitePaths from '../../sitePaths'
 import siret from './siret.jpg'
+import type { TFunction } from 'react-i18next'
 
 type Props = {
-	companyStatusChoice: string
+	companyStatusChoice: string,
+	t: TFunction
 }
 
-const AfterRegistration = ({ companyStatusChoice }: Props) => (
+const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 	<Animate.fromBottom>
 		<ScrollToTop />
-		<h1>After registration</h1>
+		<h1>
+			<T k="après.titre">Après la création</T>
+		</h1>
 		<p>
-			Once your {companyStatusChoice || 'company'} have been successfully
-			registered, you'll have access to the following:
+			<T k="après.intro">
+				Une fois que votre{' '}
+				{{
+					companyStatusChoice:
+						companyStatusChoice || t(['après.entreprise', 'entreprise'])
+				}}{' '}
+				aura été créée, vous recevrez les informations suivantes :
+			</T>
 		</p>
-		<h2>The Siret number</h2>
+		<h2>
+			<T k="après.siret.titre">Le numéro Siret</T>
+		</h2>
 		<p>
-			The Siren number <strong>identifies your company</strong> while the Siret
-			number identifies each place of business operated by the same company. The
-			Siret is composed by the Siren followed by the Establishment number.
+			<T k="après.siret.description">
+				Le numéro Siren <strong>est l'identifiant de votre entreprise</strong>{' '}
+				tandis que le numéro Siret identifie chaque établissement de la même
+				entreprise. Le Siret commence par le Siren, auquel on ajoute le numéro
+				d'établissement.
+			</T>
 			<br />
 			<img
 				src={siret}
@@ -30,41 +48,55 @@ const AfterRegistration = ({ companyStatusChoice }: Props) => (
 				style={{ maxWidth: '100%' }}
 			/>
 		</p>
-		<h2>The APE code</h2>
+		<h2>
+			<T k="après.ape.titre">Le code APE</T>
+		</h2>
 		<p>
-			The APE code for the <strong>business sector</strong> to which your
-			company belong. The APE is used to classify your company’s main operations
-			in relation to the French business nomenclature system (« NAF » code). It
-			also determines the applicable collective agreement as well as the
-			industrial accident rate in the field to which you or your company belong.
+			<T k="après.ape.description">
+				Le code APE correspond au <strong>secteur d'activité</strong> de votre
+				entreprise. Il classifie la branche principale de votre entreprise dans
+				la nomenclature nationale d'activités françaises (code « NAF »). Il
+				détermine aussi la convention collective applicable à l'entreprise, et
+				en partie le taux de la cotisation accident du travail et maladies
+				professionnelles à payer.
+			</T>
 		</p>
 		{companyStatusChoice !== 'microentreprise' && (
 			<>
-				<h2>The Kbis</h2>
+				<h2>
+					<T k="après.kbis.titre">Le Kbis</T>
+				</h2>
 				<p>
-					It is the only official document attesting to{' '}
-					<strong>the legal existence of a commercial enterprise</strong>. In
-					most cases, to be opposable and authentic for administrative
-					procedures, the extract must be less than 3 months old.{' '}
+					<T k="après.kbis.description.1">
+						C'est le document officiel qui atteste de{' '}
+						<strong>l'existence légale d'une entreprise commerciale</strong>. Le
+						plus souvent, pour être valable par les procédures administratives,
+						il doit dater de moins de 3 mois.
+					</T>
 				</p>
 				<p>
-					This document is generally requested when applying for a public
-					tender, opening a professional bank account, purchasing professional
-					equipment from distributors, etc.
+					<T k="après.kbis.description.2">
+						Ce document est généralement demandé lors de la candidature à un
+						appel d'offre public, de l'ouverture d'un compte bancaire, d'achats
+						d'équipement professionnel auprès de fournisseurs, etc.
+					</T>
 				</p>
 			</>
 		)}
 		<p style={{ display: 'flex', justifyContent: 'space-between' }}>
-			<Link to="/company" className="ui__ skip-button left">
-				‹ Creation checklist
+			<Link to={sitePaths().entreprise.index} className="ui__ skip-button left">
+				‹ <T k="après.actions.retour">Démarche de création</T>
 			</Link>
-			<Link to="/social-security" className="ui__ skip-button">
-				Go to social security ›
+			<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
+				<T k="après.actions.avance">Sécu et coût d'embauche </T>›
 			</Link>
 		</p>
 	</Animate.fromBottom>
 )
 
-export default connect(state => ({
-	companyStatusChoice: state.inFranceApp.companyStatusChoice
-}))(AfterRegistration)
+export default compose(
+	connect(state => ({
+		companyStatusChoice: state.inFranceApp.companyStatusChoice
+	})),
+	withI18n()
+)(AfterRegistration)

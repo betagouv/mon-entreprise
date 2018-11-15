@@ -12,6 +12,7 @@ import {
 	pick,
 	sortBy
 } from 'ramda'
+import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 
 const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 	'Micro-enterprise': {
@@ -91,6 +92,7 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 }
 
 export type LegalStatus = $Keys<typeof LEGAL_STATUS_DETAILS>
+
 const QUESTION_LIST: Array<Question> = Object.keys(
 	LEGAL_STATUS_DETAILS['SARL (minority director)']
 )
@@ -169,24 +171,10 @@ export const nextQuestionSelector = (state: {
 }
 
 export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
-	const questionToUrl = {
-		multipleAssociates: 'number-of-associates'
-	}
+	const paths = sitePaths()
 	const nextQuestion = nextQuestionSelector(state)
 	if (!nextQuestion) {
-		return '/company/legal-status/list'
+		return paths.entreprise.statusJuridique.liste
 	}
-	return `/company/legal-status/${
-		nextQuestion in questionToUrl
-			? // $FlowFixMe
-			  questionToUrl[nextQuestion]
-			: nextQuestion
-					.replace(/[^a-zA-Z0-9]+/g, '-')
-					.replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
-					.replace(/([a-z])([A-Z])/g, '$1-$2')
-					.replace(/([0-9])([^0-9])/g, '$1-$2')
-					.replace(/([^0-9])([0-9])/g, '$1-$2')
-					.replace(/-+/g, '-')
-					.toLowerCase()
-	}`
+	return paths.entreprise.statusJuridique[nextQuestion]
 }

@@ -1,12 +1,13 @@
 import withTracker from 'Components/utils/withTracker'
 import { Component } from 'react'
 
-@withTracker
-export default class TrackPageView extends Component {
-	componentDidMount() {
-		this.props.tracker.push(['trackPageView'])
+export default withTracker(
+	class TrackPageView extends Component {
+		componentDidMount() {
+			this.props.tracker.push(['trackPageView'])
+		}
+		render() {
+			return null
+		}
 	}
-	render() {
-		return null
-	}
-}
+)

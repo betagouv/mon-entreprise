@@ -7,10 +7,9 @@ import URSSAF from 'Images/urssaf.svg'
 import './Home.css'
 import { inIframe } from '../../../utils'
 import emoji from 'react-easy-emoji'
-import translate from 'react-i18next/dist/commonjs/translate'
 import withLanguage from 'Components/utils/withLanguage'
 
-const Home = translate()(
+const Home = 
 	withLanguage(({ language }) => (
 		<div id="home" className="ui__ container">
 			<PreviousSimulationBanner />
@@ -66,6 +65,5 @@ const Home = translate()(
 			</p>
 		</div>
 	))
-)
 
 export default Home
