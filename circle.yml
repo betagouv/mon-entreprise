@@ -50,7 +50,7 @@ jobs:
         environment:
           ## this enables colors in the output
           TERM: xterm
-          CYPRESS_baseUrl: http://embauche.beta.gouv.fr
+          CYPRESS_baseUrl: https://embauche.beta.gouv.fr
     steps:
       - checkout
       - run: npm install --save-dev cypress

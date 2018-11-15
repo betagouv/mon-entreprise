@@ -1,6 +1,7 @@
 /* eslint-env node */
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 
 module.exports = {
@@ -84,6 +85,11 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new EnvironmentPlugin({
+			'NODE_ENV': 'developement', 
+			'EN_SITE': '/infrance${path}',
+			'FR_SITE': '/mon-entreprise${path}'
+	}),
 		new HTMLPlugin({
 			template: 'index.html',
 			chunks: ['infrance'],

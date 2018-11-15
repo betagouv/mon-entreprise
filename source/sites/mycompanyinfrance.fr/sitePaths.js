@@ -114,10 +114,10 @@ export const generateSiteMap = (sitePaths: Object) =>
 	)
 
 const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(path =>
-	(process.env.EN_SITE || `/infrance${path}`).replace('${path}', path)
+	(process.env.EN_SITE || '').replace('${path}', path)
 )
 const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(path =>
-	(process.env.FR_SITE || `/mon-entreprise${path}`).replace('${path}', path)
+	(process.env.FR_SITE || '').replace('${path}', path)
 )
 
 export const hrefLangLink = {
