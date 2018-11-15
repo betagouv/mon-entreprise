@@ -129,9 +129,9 @@ status = 200
 
 
 [context.deploy-preview.environment]
-EN_SITE = "${path}?s=m"
-FR_SITE = "${path}"
+  EN_SITE = "${path}?s=m"
+  FR_SITE = "${path}"
 
 [context.production.environment]
-EN_SITE = "https://mycompanyinfrance.fr${path}"
-FR_SITE = "https://mon-entreprise.beta.gouv.fr${path}"
+  EN_SITE = "https://mycompanyinfrance.fr${path}"
+  FR_SITE = "https://mon-entreprise.beta.gouv.fr${path}"
