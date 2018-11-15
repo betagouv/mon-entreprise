@@ -756,8 +756,7 @@
     salaire médian: 2300
     SMIC: 1500
   contrôles: 
-    - si: brut de base [mensuel] < 300
-      message: Entrez un salaire raisonnable
+    - si: brut de base [mensuel] < 50
       niveau: bloquant
     - si: brut de base [mensuel] < SMIC [mensuel]
       niveau: avertissement
@@ -978,9 +977,7 @@
   période: flexible
   formule: rémunération . net de cotisations - avantages en nature . montant
   contrôles: 
-    - si: net [mensuel] < 200
-      période: mois
-      message: Entrez un salaire raisonnable
+    - si: net [mensuel] < 30
       niveau: bloquant
 
 - espace: contrat salarié . salaire
@@ -1004,8 +1001,7 @@
 
   formule: net - impôt . neutre
   contrôles: 
-    - si: net après impôt [mensuel] < 200
-      message: Entrez un salaire raisonnable
+    - si: net après impôt [mensuel] < 20
       niveau: bloquant
 
 - espace: impôt . neutre
@@ -1345,8 +1341,7 @@
 
   formule: rémunération . total sans réduction - réductions de cotisations
   contrôles:
-    - si: total [mensuel] < 400
-      message: Entrez un salaire raisonnable
+    - si: total [mensuel] < 100
       niveau: bloquant
 
 - espace: contrat salarié
@@ -1381,8 +1376,7 @@
   type: salaire
   formule: rémunération . total - aides employeur
   contrôles: 
-    - si: coût d'embauche [mensuel] < 400
-      message: Entrez un salaire raisonnable
+    - si: coût d'embauche [mensuel] < 100
       niveau: bloquant
 
 - espace: contrat salarié
