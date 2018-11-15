@@ -1,52 +1,54 @@
 /* @flow */
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { isNil } from 'ramda'
-import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
-import { capitalise0 } from '../../../../utils'
+import { Link } from 'react-router-dom'
+import sitePaths from '../../sitePaths'
 import type { CompanyLegalStatus } from 'Types/companyTypes'
 
 const requirementToText = (key, value) => {
-	if (typeof value === 'string') {
-		return capitalise0(value.toLowerCase().replace('_', ' '))
+	switch (key) {
+		case 'multipleAssociates':
+			return value ? <T>Plusieurs associés</T> : <T>Un seul associé</T>
+		case 'liability':
+			return value === 'LIMITED_LIABILITY' ? (
+				<T>Responsabilité limitée</T>
+			) : (
+				<T>Sans responsabilité limitée</T>
+			)
+		case 'directorStatus':
+			return value === 'SELF_EMPLOYED' ? (
+				<T>Indépendant</T>
+			) : (
+				<T>Assimilé salarié</T>
+			)
+		case 'microEnterprise':
+			return value ? (
+				<T>Option micro-entrepreneur</T>
+			) : (
+				<T>Pas de régime de micro-entreprise</T>
+			)
+		case 'minorityDirector':
+			return value ? <T>Gérant minoritaire</T> : <T>Gérant majoritaire</T>
 	}
-	if (typeof value === 'boolean') {
-		return emoji(
-			capitalise0(
-				key.replace(/([A-Z]+)*([A-Z][a-z])/g, '$1 $2').toLowerCase()
-			) +
-				' ' +
-				(value ? '✅' : '❌')
-		)
-	}
-	return null
 }
 
 type Props = CompanyLegalStatus & { goToCompanyStatusChoice: () => void }
 
-const LegalStatusChoice = ({
-	goToCompanyStatusChoice,
-	...legalStatus
-}: Props) => {
+const LegalStatusChoice = ({ ...legalStatus }: Props) => {
 	return (
 		!!Object.keys(legalStatus).length && (
 			<>
-				<h2>
-					<T>Mes réponses</T>
-				</h2>
-				<p>
-					<button
-						className="ui__ link-button"
-						onClick={goToCompanyStatusChoice}>
-						<T>Effacer</T>
-					</button>
-				</p>
+				<h2> Vos choix : </h2>
 				<ul>
 					{Object.entries(legalStatus).map(
 						([key, value]) =>
 							!isNil(value) && (
-								<li key={key}>{requirementToText(key, value)}</li>
+								<li key={key}>
+									<Link to={sitePaths().entreprise.statusJuridique[key]}>
+										{requirementToText(key, value)}
+									</Link>
+								</li>
 							)
 					)}
 				</ul>
@@ -57,5 +59,5 @@ const LegalStatusChoice = ({
 
 export default connect(
 	state => state.inFranceApp.companyLegalStatus,
-	{ goToCompanyStatusChoice }
+	() => ({})
 )(LegalStatusChoice)

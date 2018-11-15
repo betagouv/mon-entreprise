@@ -11,13 +11,14 @@ import { compose } from 'ramda'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import withLanguage from 'Components/utils/withLanguage'
 import type { TFunction } from 'react-i18next'
-import sitePaths from '../../sitePaths'
 
-const setMainStatus = () => {}
+import sitePaths from '../../sitePaths';
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 
 type Props = {
 	history: RouterHistory,
 	possibleStatus: { [LegalStatus]: boolean },
+	onStartAgain: () => void,
 	setMainStatus: LegalStatus => void,
 	language: string,
 	t: TFunction
@@ -31,7 +32,7 @@ const StatusButton = withI18n()(
 	)
 )
 
-const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
+const SetMainStatus = ({ history, possibleStatus, onStartAgain, t, language }: Props) => {
 	return (
 		<>
 			<Helmet>
@@ -152,21 +153,30 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 					</li>
 				)}
 			</ul>
-			<div className="ui__ answer-group">
-				<Link
-					to={sitePaths().sécuritéSociale.index}
-					className="ui__ skip-button">
-					Choose later ›
+
+			<div 
+				className="ui__ answer-group" 
+				style={{
+					display: 'flex', 
+					justifyContent: 'space-between'
+				}}
+			>
+				<button onClick={onStartAgain} className="ui__ skip-button left">
+					‹ <T>Recommencer</T>
+				</button>
+				<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
+					<T>Choisir plus tard</T> ›
 				</Link>
 			</div>
 		</>
 	)
 }
+
 export default compose(
 	withI18n(),
 	withLanguage,
 	connect(
 		state => ({ possibleStatus: possibleStatusSelector(state) }),
-		{ setMainStatus }
+		{ onStartAgain: goToCompanyStatusChoice }
 	)
 )(SetMainStatus)
