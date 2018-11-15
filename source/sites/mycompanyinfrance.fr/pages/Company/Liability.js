@@ -96,9 +96,9 @@ const Liability = ({
 				}}
 				className="ui__ button">
 				{multipleAssociates === false ? (
-					<T k="bouton1">Entreprise individuelle</T>
+					<T k="responsabilité.bouton1">Entreprise individuelle</T>
 				) : (
-					<T k="bouton2">Responsabilité illimitée</T>
+					<T k="responsabilité.bouton2">Responsabilité illimitée</T>
 				)}
 			</button>
 			<button
@@ -106,7 +106,7 @@ const Liability = ({
 					chooseCompanyLiability('LIMITED_LIABILITY')
 				}}
 				className="ui__ button">
-				<T k="bouton3">Responsabilité limitée</T>
+				<T k="responsabilité.bouton3">Responsabilité limitée</T>
 			</button>
 			<SkipButton onClick={() => chooseCompanyLiability(null)} />
 		</div>
