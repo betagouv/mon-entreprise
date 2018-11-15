@@ -67,14 +67,11 @@ const TargetSelection = compose(
 		render() {
 			let {
 				colours,
-				noUserInput,
-				blockingInputControls,
 				analysis: { controls }
 			} = this.props
 			return (
 				<div id="targetSelection">
-					{noUserInput && <p className="blockingControl" />}
-					<Controls {...{ blockingInputControls, controls }} />
+					<Controls {...{ controls }} />
 					<section
 						id="targetsContainer"
 						style={{

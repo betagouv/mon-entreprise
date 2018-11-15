@@ -10,74 +10,51 @@ import './Controls.css'
 import withColours from './utils/withColours'
 
 function Controls({
-	blockingInputControls,
 	controls,
 	startConversation,
 	hideControl,
 	foldedSteps,
 	colours,
-	hiddenControls,
-	language
+	hiddenControls
 }) {
-	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
-	if (language === 'en')
-		return blockingInputControls?.[0]?.message ==
-			'Entrez un salaire mensuel' ? (
-			<p className="blockingControl">
-				Enter a <b>monthly</b> salary.
-			</p>
-		) : null
-
+	if (!controls?.length) return null
 	return (
 		<div id="controlsBlock">
-			{blockingInputControls && (
-				<p className="blockingControl">{blockingInputControls[0].message}</p>
-			)}
-			{!blockingInputControls && (
-				<>
-					<ul>
-						{controls.map(
-							({ level, test, message, solution, evaluated }) =>
-								hiddenControls.includes(test) ? null : (
-									<li
-										key={test}
-										className="control"
-										style={{
-											background: colours.lighterColour
-										}}>
-										{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
-										<div className="controlText">
-											{message && createMarkdownDiv(message)}
-											{!message && (
-												<span id="controlExplanation">
-													{makeJsx(evaluated)}
-												</span>
-											)}
-											{solution &&
-												!foldedSteps.includes(solution.cible) && (
-													<div id="solution">
-														{/*emoji('💡')*/}
-														<button
-															key={solution.cible}
-															className="ui__ link-button"
-															onClick={() => startConversation(solution.cible)}>
-															{solution.texte}
-														</button>
-													</div>
-												)}
-										</div>
+			<ul>
+				{controls.map(({ level, test, message, solution, evaluated }) =>
+					hiddenControls.includes(test) ? null : (
+						<li
+							key={test}
+							className="control"
+							style={{ background: colours.lightenColour(45) }}>
+							{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
+							<div className="controlText">
+								{message && createMarkdownDiv(message)}
+								{!message && (
+									<span id="controlExplanation">{makeJsx(evaluated)}</span>
+								)}
+								{solution && !foldedSteps.includes(solution.cible) && (
+									<div id="solution">
+										{/*emoji('💡')*/}
 										<button
-											className="hide"
-											aria-label="close"
-											onClick={() => hideControl(test)}>
-											×
+											key={solution.cible}
+											className="ui__ link-button"
+											onClick={() => startConversation(solution.cible)}>
+											{solution.texte}
 										</button>
-									</li>
-								)
-						)}
-					</ul>
-				</>
-			)}
+									</div>
+								)}
+							</div>
+							<button
+								className="hide"
+								aria-label="close"
+								onClick={() => hideControl(test)}>
+								×
+							</button>
+						</li>
+					)
+				)}
+			</ul>
 		</div>
 	)
 }
