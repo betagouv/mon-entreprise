@@ -75,12 +75,13 @@ module.exports = {
 				}
 			],
 			navigateFallback: '/fallback',
+			navigateFallbackWhitelist: [/^\/[^_]+$/], // fallback for anything that doesn't start with
 			navigateFallbackBlacklist: [
 				/.*\?s=.*$/,
 				/^\/stats/,
 				/^\/robots\.txt$/,
 				/^\/sitemap\.infrance\.fr\.txt$/,
-				/^\/sitemap\.infrance\.en\.txt$/
+				/^\/sitemap\.infrance\.en\.txt$/,
 			]
 		}),
 		new PrerenderSPAPlugin({
