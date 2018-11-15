@@ -1,6 +1,5 @@
 describe('Pole emploi test', function() {
 	it('should display an iframe of the simulateur', function() {
-		cy.clearCache()
 		cy.on('uncaught:exception', err => {
 			return !err.message.contains('Unexpected token <')
 		})
