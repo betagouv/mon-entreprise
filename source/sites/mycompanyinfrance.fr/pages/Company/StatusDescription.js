@@ -18,8 +18,7 @@ const StatusDescription = ({ status }: Props) =>
 			spécifique à son activité professionnelle. La société et l'individu
 			constituent la même personne. Ne convient pas si l'associé unique est une
 			personne morale (entreprise) ou si vous pensez accueillir d'autres
-			associés au cours du développement de votre entreprise (choississez EURL
-			dans ce cas).
+			associés au cours de votre développement (choisissez EURL dans ce cas).
 		</T>
 	) : status === 'EURL' ? (
 		<T k="formeJuridique.EURL">

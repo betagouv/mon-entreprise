@@ -10,6 +10,7 @@ import type {
 	DefineDirectorStatusAction
 } from 'Types/companyTypes'
 import type { RouterHistory } from 'react-router'
+import { dropWhile } from "ramda";
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths';
 
@@ -68,4 +69,22 @@ export const goToCompanyStatusChoice = () => (
 		}: ResetCompanyStatusAction)
 	)
 	history.push(sitePaths().entreprise.index)
+}
+
+
+export const resetCompanyStatusChoice = (from: string) => (
+	dispatch: ResetCompanyStatusAction => void,
+	getState: ()=> any
+) => {
+	const answeredQuestion = Object.keys(getState().inFranceApp.companyLegalStatus);
+	const answersToReset = dropWhile(a => a !== from, answeredQuestion)
+	if (!answersToReset.length) {
+		return
+	}
+	dispatch(
+		({
+			type: 'RESET_COMPANY_STATUS_CHOICE',
+			answersToReset,
+		}: ResetCompanyStatusAction)
+	)
 }

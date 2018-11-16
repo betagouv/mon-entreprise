@@ -3,9 +3,9 @@ import { React, T } from 'Components'
 import { isNil } from 'ramda'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Animate from 'Ui/animate'
 import sitePaths from '../../sitePaths'
 import type { CompanyLegalStatus } from 'Types/companyTypes'
-
 const requirementToText = (key, value) => {
 	switch (key) {
 		case 'multipleAssociates':
@@ -39,18 +39,22 @@ const LegalStatusChoice = ({ ...legalStatus }: Props) => {
 	return (
 		!!Object.keys(legalStatus).length && (
 			<>
-				<h2> Vos choix : </h2>
+				<h2>
+					<T>Vos choix : </T>
+				</h2>
 				<ul>
-					{Object.entries(legalStatus).map(
-						([key, value]) =>
-							!isNil(value) && (
-								<li key={key}>
-									<Link to={sitePaths().entreprise.statusJuridique[key]}>
-										{requirementToText(key, value)}
-									</Link>
-								</li>
-							)
-					)}
+					<Animate.fromBottom>
+						{Object.entries(legalStatus).map(
+							([key, value]) =>
+								!isNil(value) && (
+									<li key={key}>
+										<Link to={sitePaths().entreprise.statusJuridique[key]}>
+											{requirementToText(key, value)}
+										</Link>
+									</li>
+								)
+						)}
+					</Animate.fromBottom>
 				</ul>
 			</>
 		)

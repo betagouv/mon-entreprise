@@ -46,7 +46,8 @@ export type DirectorIsInAMinorityAction = {
 	minorityDirector: ?boolean
 }
 export type ResetCompanyStatusAction = {
-	type: 'RESET_COMPANY_STATUS_CHOICE'
+	type: 'RESET_COMPANY_STATUS_CHOICE',
+	answersToReset?: Array<string>
 }
 export type ResetExistingCompanyDetailsAction = {
 	type: 'RESET_EXISTING_COMPANY_DETAILS'

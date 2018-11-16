@@ -1,5 +1,6 @@
 /* @flow */
 
+import { omit } from 'ramda'
 import { combineReducers } from 'redux'
 import type {
 	Action as CompanyStatusAction,
@@ -28,7 +29,7 @@ function companyLegalStatus(
 		case 'SPECIFY_DIRECTORS_SHARE':
 			return { ...state, minorityDirector: action.minorityDirector }
 		case 'RESET_COMPANY_STATUS_CHOICE':
-			return {}
+			return action.answersToReset ? omit(action.answersToReset, state) : {}
 	}
 	return state
 }
