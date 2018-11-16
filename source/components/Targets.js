@@ -23,7 +23,7 @@ export default class Targets extends React.Component {
 					{/*<span className="title">{title}</span>
 					{' : '} */}
 					<span className="figure">
-						<span className="value">{nodeValue}</span>{' '}
+						<span className="value">{nodeValue?.toFixed(1)}</span>{' '}
 						<span className="unit">{unit}</span>
 					</span>
 					<Link
