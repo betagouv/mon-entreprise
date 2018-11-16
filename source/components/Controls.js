@@ -15,9 +15,12 @@ function Controls({
 	hideControl,
 	foldedSteps,
 	colours,
-	hiddenControls
+	hiddenControls,
+	language
 }) {
 	if (!controls?.length) return null
+	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
+	if (language === 'en') return null
 	return (
 		<div id="controlsBlock">
 			<ul>
@@ -58,7 +61,6 @@ function Controls({
 		</div>
 	)
 }
-
 export default compose(
 	connect(
 		(state, props) => ({
