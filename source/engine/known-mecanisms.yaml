@@ -166,8 +166,8 @@ synchronisation:
 
 période: 
   description: |
-    Une régle qui a une période, c'est une règle qui ne peut être calculée que sur cette période. Une règle qui n'a pas de période peut-être calculée quelle que soit la période la situation. 
+    Une régle qui a une période `mois` ou `année`, c'est une règle qui ne peut être calculée que sur cette période. La période est `flexible` quand le calcul est valable quelle que soit la période choisie. D'autres règles ne changent pas de valeur en fonction de la période.
 
-    Ainsi, dans une simulation mensuelle (période: "mois"), si `indemnité kilométrique vélo` (de période neutre) appelle `distance annuelle` et que cette dernière est définie sur l'année (période: "année"), alors la valeur de cette dernière sera divisée par 12 avant d'être passée à cette première. L'inverse est également vrai, en multipliant par 12.
+    Par exemple, dans une simulation mensuelle, si `indemnité kilométrique vélo` (de période flexible) appelle la règle `distance annuelle`, qui est définie sur l'année, alors la valeur de cette dernière sera divisée par 12 avant d'être passée à cette première. L'inverse est également vrai, en multipliant par 12.
 
     Par défaut, la période de la simulation est mensuelle.
