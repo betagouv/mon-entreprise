@@ -110,6 +110,7 @@
 - nom: durée de la douche
   question: Combien de temps dure votre douche en général ?
   format: nombre
+  par défaut: 5
   suggestions: 
     expresse: 2
     moyenne: 5
