@@ -38,6 +38,7 @@ h2 small {
 }
 
 #toggleRuleSource {
+	margin-top: 1em;
 	width: 100%;
 }
 #rule #toggleRuleSource {
@@ -45,6 +46,6 @@ h2 small {
 	padding-right: 5em;
 }
 #toggleRuleSource img {
-	width: 2em !important;
-	height: 2em !important;
+	width: 1.5em !important;
+	height: 1.5em !important;
 }
