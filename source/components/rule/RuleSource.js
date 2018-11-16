@@ -14,8 +14,9 @@ export default class Source extends Component {
 		return (
 			<div id="Source" className="ui__ container">
 				<h2>
-					{emoji('⛰️ ')}
-					Source de <code>{dottedName}</code>
+					{emoji('⚙️ ')}
+					Code source <br />
+					<code>{dottedName}</code>
 				</h2>
 				<Suspense fallback={<div>Chargement du code source...</div>}>
 					<MonacoEditor
