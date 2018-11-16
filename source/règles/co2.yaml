@@ -18,8 +18,7 @@
     Une par jour: 30
 
 - nom: impact par douche
-  formule: 4
-  #  formule: impact par litre * litres d'eau
+  formule: impact par litre * litres d'eau
 
 - nom: impact par litre
   formule: impact par litre froid + chauffage . impact par litre
@@ -51,9 +50,19 @@
   question: Comment est chauffée votre eau ?
   formule: 
     une possibilité: 
-      - gaz
-      - fioul
-      - électricité
+      choix obligatoire: oui 
+      possibilités:
+        - gaz
+        - fioul
+        - électricité
+  par défaut: gaz
+
+- espace: chauffage . type
+  nom: gaz
+- espace: chauffage . type
+  nom: fioul
+- espace: chauffage . type
+  nom: électricité
 
 # définir ces éléments un par un
 
@@ -102,9 +111,6 @@
   question: Combien de temps dure votre douche en général ?
   format: nombre
   suggestions: 
-    - texte: expresse
-      valeur: 2
-    - texte: moyenne
-      valeur: 5
-    - texte: lente
-      valeur: 10
+    expresse: 2
+    moyenne: 5
+    lente: 10
