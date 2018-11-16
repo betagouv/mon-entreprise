@@ -15,12 +15,17 @@ const StatusDescription = ({ status }: Props) =>
 	) : status === 'EIRL' ? (
 		<T k="formeJuridique.EIRL">
 			Permet de protéger son patrimoine personnel en attribuant un capital
-			spécifique à son activité professionnelle.
+			spécifique à son activité professionnelle. La société et l'individu
+			constituent la même personne. Ne convient pas si l'associé unique est une
+			personne morale (entreprise) ou si vous pensez accueillir d'autres
+			associés au cours du développement de votre entreprise (choississez EURL
+			dans ce cas).
 		</T>
 	) : status === 'EURL' ? (
 		<T k="formeJuridique.EURL">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-			de l'apport de capital de l'unique associé.
+			de l'apport de capital de l'unique associé. Evolue en SARL lors de
+			l'arrivée de nouveaux associés dans la société.
 		</T>
 	) : status.includes('SARL') ? (
 		<T k="formeJuridique.SARL">
@@ -44,7 +49,8 @@ const StatusDescription = ({ status }: Props) =>
 	) : status === 'SASU' ? (
 		<T k="formeJuridique.SASU">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-			de l'apport de capital de l'unique associé.
+			de l'apport de capital de l'unique associé. Le fonctionnement d'une SASU
+			est peu encadré par la législation.
 		</T>
 	) : status === 'SA' ? (
 		<T k="formeJuridique.SA">
