@@ -7,6 +7,7 @@ import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
 import withColours from './utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
+import { compose } from 'ramda'
 
 function Controls({
 	controls,
@@ -14,9 +15,12 @@ function Controls({
 	hideControl,
 	foldedSteps,
 	colours,
-	hiddenControls
+	hiddenControls,
+	language
 }) {
 	if (!controls?.length) return null
+	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
+	if (language === 'en') return null
 	return (
 		<div id="controlsBlock">
 			<ul>
@@ -57,15 +61,18 @@ function Controls({
 		</div>
 	)
 }
-
-export default connect(
-	(state, props) => ({
-		foldedSteps: state.conversationSteps.foldedSteps,
-		key: props.language,
-		hiddenControls: state.hiddenControls
-	}),
-	dispatch => ({
-		startConversation: cible => dispatch(startConversation(cible)),
-		hideControl: id => dispatch(hideControl(id))
-	})
-)(withColours(withLanguage(Controls)))
+export default compose(
+	connect(
+		(state, props) => ({
+			foldedSteps: state.conversationSteps.foldedSteps,
+			key: props.language,
+			hiddenControls: state.hiddenControls
+		}),
+		dispatch => ({
+			startConversation: cible => dispatch(startConversation(cible)),
+			hideControl: id => dispatch(hideControl(id))
+		})
+	),
+	withColours,
+	withLanguage
+)(Controls)
