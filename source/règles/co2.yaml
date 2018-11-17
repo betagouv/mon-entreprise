@@ -4,12 +4,18 @@
 # bloquant : 
 # - ?
 
-- nom: impact
+- nom: douche
+  icônes: 🚿
+
+- espace: douche
+  nom: impact
+  icônes: 🍃
   période: flexible
   unité: kgCO2eq
   formule: impact par douche * nombre de douches
 
-- nom: nombre de douches
+- espace: douche
+  nom: nombre
   période: flexible
   question: Combien prenez-vous de douches ?
   format: nombre
@@ -17,17 +23,23 @@
   suggestions:
     Une par jour: 30
 
-- nom: impact par douche
+- espace: douche
+  nom: impact par douche
   formule: impact par litre * litres d'eau
 
-- nom: impact par litre
+- espace: douche
+  nom: impact par litre
   formule: impact par litre froid + chauffage . impact par litre
 
-- nom: litres d'eau
+
+- espace: douche
+  icônes: 🇱
+  nom: litres d'eau
   formule: 
     durée de la douche * litres par minute
 
-- nom: litres par minute
+- espace: douche
+  nom: litres par minute
   formule: 
     variations: 
       - si: pomme de douche économe
@@ -36,13 +48,24 @@
   références: 
     économise l'eau: https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain  
 
-- nom: pomme de douche économe
+
+- espace: douche
+  nom: pomme de douche économe
   question: Utilisez-vous une pomme de douche économe ?
   par défaut: non
 
-- nom: impact par litre froid
+
+- nom: eau
+  icônes: 💧
+
+- espace: eau
+  nom: impact par litre froid
   unité:  kgCO2eq/l
   formule: 0.000132
+
+
+- nom: chauffage
+  icônes: 🔥
 
 
 - espace: chauffage
@@ -59,10 +82,13 @@
 
 - espace: chauffage . type
   nom: gaz
+  icônes: 🔵
 - espace: chauffage . type
   nom: fioul
+  icônes: 🛢️
 - espace: chauffage . type
   nom: électricité
+  icônes: ⚡
 
 # définir ces éléments un par un
 
@@ -107,7 +133,9 @@
       #      fioul: 50
       #      électricité: 2
 
-- nom: durée de la douche
+
+- espace: douche
+  nom: durée de la douche
   question: Combien de temps dure votre douche en général ?
   format: nombre
   par défaut: 5
