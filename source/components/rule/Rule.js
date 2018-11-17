@@ -118,12 +118,10 @@ export default compose(
 								{//flatRule.question &&
 								// Fonctionnalité intéressante, à implémenter correctement
 								false && <UserInput {...{ flatRules, dottedName }} />}
-								{flatRule.ns && (
-									<Algorithm
-										rule={displayedRule}
-										showValues={valuesToShow || currentExample}
-									/>
-								)}
+								<Algorithm
+									rule={displayedRule}
+									showValues={valuesToShow || currentExample}
+								/>
 								{flatRule.note && (
 									<section id="notes">
 										<h3>Note: </h3>
