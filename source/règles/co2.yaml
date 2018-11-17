@@ -112,6 +112,6 @@
   format: nombre
   par défaut: 5
   suggestions: 
-    expresse: 2
-    moyenne: 5
-    lente: 10
+    expresse: 5
+    moyenne: 10
+    lente: 20
