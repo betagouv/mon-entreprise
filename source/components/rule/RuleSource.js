@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from 'react'
 import yaml from 'js-yaml'
-import rules from 'Règles/base.yaml'
+import rules from 'Règles/co2.yaml'
 import emoji from 'react-easy-emoji'
 import { buildDottedName } from 'Engine/rules'
 
