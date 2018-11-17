@@ -1,5 +1,5 @@
 #targets {
-	width: 60%;
+	width: 100%;
 	margin: 5% auto;
 	display: flex;
 	justify-content: center;
@@ -9,7 +9,7 @@
 	border-radius: 6px;
 	border: 3px solid var(--colour);
 	padding: 1em;
-	min-width: 60%;
+	min-width: 16em;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -17,7 +17,6 @@
 #targets > .icon {
 	margin: 0 0.6em;
 	font-size: 200%;
-	color: var(--colour);
 }
 #targets .value {
 	font-weight: 600;

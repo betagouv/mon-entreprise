@@ -44,6 +44,8 @@ export default compose(
 
 			let rules = findRulesByName(flatRules, decodedRuleName)
 			if (!rules.length) return <Redirect to="/404" />
+			if (rules.find(({ ns }) => ns == null))
+				return this.renderRule(decodedRuleName)
 			if (rules.length > 1)
 				return <DisambiguateRuleQuery rules={rules} flatRules={flatRules} />
 			let dottedName = head(rules).dottedName
