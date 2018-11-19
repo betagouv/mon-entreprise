@@ -4,14 +4,14 @@ import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
-import { withI18n } from 'react-i18next';
+import { withI18n } from 'react-i18next'
 import StatusDescription from './StatusDescription'
 import type { RouterHistory } from 'react-router'
-import {compose} from 'ramda'
+import { compose } from 'ramda'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import withLanguage from 'Components/utils/withLanguage'
 import type { TFunction } from 'react-i18next'
-import sitePaths from '../../sitePaths';
+import sitePaths from '../../sitePaths'
 
 const setMainStatus = () => {}
 
@@ -23,17 +23,24 @@ type Props = {
 	t: TFunction
 }
 
-const StatusButton = withI18n()(({ status, t }: { status: LegalStatus, t: TFunction }) => (
-	<Link to={sitePaths().entreprise.créer(status)} className="ui__ button">
-		<T>Créer une</T> {t(status)}
-	</Link>
-))
+const StatusButton = withI18n()(
+	({ status, t }: { status: LegalStatus, t: TFunction }) => (
+		<Link to={sitePaths().entreprise.créer(status)} className="ui__ button">
+			<T>Créer une</T> {t(status)}
+		</Link>
+	)
+)
 
 const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 	return (
 		<>
 			<Helmet>
-				<title>{t('listeformejuridique.page.titre', 'Liste des statuts juridiques pour la création de votre entreprise')}</title>
+				<title>
+					{t(
+						'listeformejuridique.page.titre',
+						'Liste des statuts juridiques pour la création de votre entreprise'
+					)}
+				</title>
 			</Helmet>
 			<h2>
 				<T>Votre forme juridique</T>
@@ -43,7 +50,8 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 				{possibleStatus.EI && (
 					<li>
 						<strong>
-							EI - Entreprise individuelle {language !== 'fr' && '(Individual business)'}:{' '}
+							EI - Entreprise individuelle{' '}
+							{language !== 'fr' && '(Individual business)'}:{' '}
 						</strong>
 						<StatusDescription status="EI" />
 						<br />
@@ -54,7 +62,9 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 					<li>
 						<strong>
 							EIRL - Entrepreneur individuel à responsabilité limitée{' '}
-							{language !== 'fr' && '(Individual entrepreneur with limited liability)'}:{' '}
+							{language !== 'fr' &&
+								'(Individual entrepreneur with limited liability)'}
+							:{' '}
 						</strong>
 						<StatusDescription status="EIRL" />
 						<br />
@@ -99,7 +109,8 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 					<li>
 						<strong>
 							SASU - Société par action simplifiée unipersonnelle{' '}
-							{language !== 'fr' && '(Simplified personal joint stock company)'}:{' '}
+							{language !== 'fr' && '(Simplified personal joint stock company)'}
+							:{' '}
 						</strong>
 						<StatusDescription status="SASU" />
 						<br />
@@ -108,8 +119,9 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 				)}
 				{possibleStatus.SA && (
 					<li>
-						<strong>SA - Société anonyme{' '}
-						{language !== 'fr' && '(Anonymous company)'}:{' '}</strong>
+						<strong>
+							SA - Société anonyme {language !== 'fr' && '(Anonymous company)'}:{' '}
+						</strong>
 						<StatusDescription status="SA" />
 						<br />
 						<StatusButton status="SA" history={history} />
@@ -117,18 +129,23 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 				)}
 				{possibleStatus.SNC && (
 					<li>
-						<strong>SNC - Société en nom collectif{' '}
-						{language !== 'fr' && '(Partnership)'}:{' '} </strong>
+						<strong>
+							SNC - Société en nom collectif{' '}
+							{language !== 'fr' && '(Partnership)'}:{' '}
+						</strong>
 						<StatusDescription status="SNC" />
 						<br />
 						<StatusButton status="SNC" history={history} />
 					</li>
 				)}
 
-				{(possibleStatus['Micro-enterprise (option EIRL)'] ||
-					possibleStatus['Micro-enterprise']) && (
+				{(possibleStatus['Micro-entreprise (option EIRL)'] ||
+					possibleStatus['Micro-entreprise']) && (
 					<li>
-						<strong><T>Micro-enterprise</T>{language === 'fr' && ' (auto-entrepreneur) '}: </strong>
+						<strong>
+							<T>Micro-entreprise</T>
+							{language === 'fr' && ' (auto-entrepreneur) '}:{' '}
+						</strong>
 						<StatusDescription status="micro-entreprise" />
 						<br />
 						<StatusButton status="micro-entreprise" history={history} />
@@ -136,14 +153,20 @@ const SetMainStatus = ({ history, possibleStatus, t, language }: Props) => {
 				)}
 			</ul>
 			<div className="ui__ answer-group">
-				<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
+				<Link
+					to={sitePaths().sécuritéSociale.index}
+					className="ui__ skip-button">
 					Choose later ›
 				</Link>
 			</div>
 		</>
 	)
 }
-export default compose(withI18n(), withLanguage, connect(
-	state => ({ possibleStatus: possibleStatusSelector(state) }),
-	{ setMainStatus }
-))(SetMainStatus)
+export default compose(
+	withI18n(),
+	withLanguage,
+	connect(
+		state => ({ possibleStatus: possibleStatusSelector(state) }),
+		{ setMainStatus }
+	)
+)(SetMainStatus)

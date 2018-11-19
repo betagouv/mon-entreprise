@@ -37,7 +37,7 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 		</Helmet>
 		<h2>
 			<T k="microentreprise.titre">
-				Micro-enterprise ou entreprise individuelle (EI) ?
+				Micro-entreprise ou entreprise individuelle (EI) ?
 			</T>
 		</h2>
 		<T k="microentreprise.description">

@@ -215,7 +215,7 @@ const CreateCompany = ({
 						</>
 					}
 				/>
-				{!['EI', 'EIRL', 'micro-enterprise'].includes(companyStatus) && (
+				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
 					<CheckItem
 						name="fundsDeposit"
 						title={
@@ -322,7 +322,7 @@ const CreateCompany = ({
 			</h2>
 
 			<Checklist>
-				{companyStatus !== 'micro-enterprise' && (
+				{companyStatus !== 'micro-entreprise' && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={

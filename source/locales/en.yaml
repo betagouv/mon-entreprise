@@ -505,7 +505,7 @@ path:
       responsabilité: '/liability'
       statusDirigeant: '/directors-status'
       nombreAssociés: '/multiple-associates'
-      microEntreprise: '/micro-enterprise-or-individual-business'
+      microEntreprise: '/micro-entreprise-or-individual-business'
   sécuritéSociale:
     index: '/social-security'
   démarcheEmbauche:

@@ -143,7 +143,7 @@ const StepsHeader = ({
 														<li>
 															<NavLink
 																to={sitePaths().entreprise.créer(
-																	'micro-enterprise'
+																	'micro-entreprise'
 																)}>
 																<T>Micro-entreprise</T>
 															</NavLink>
