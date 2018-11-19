@@ -1,8 +1,11 @@
+.step .inputSuggestions {
+	margin: 1em;
+}
 .inputSuggestions {
 	text-align: right;
 }
 .inputSuggestions ul {
-	margin: 0;
+	margin: 0.3em 0;
 	padding-left: 0;
 	list-style: none;
 	display: inline-flex;
@@ -12,6 +15,8 @@
 .inputSuggestions li {
 	text-align: center;
 	margin: 0;
+	padding: 0;
+	line-height: 1.3em;
 	margin-left: 1em;
 	min-width: 2em;
 	border-bottom-width: 1px;

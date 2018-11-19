@@ -26,7 +26,7 @@ export default compose(
 					dottedName,
 					submit,
 					valueType,
-					meta: { dirty, error, active },
+					meta: { dirty, error },
 					t,
 					colours,
 					rulePeriod,
@@ -52,17 +52,10 @@ export default compose(
 							id={'step-' + dottedName}
 							inputMode="numeric"
 							placeholder={t('votre réponse')}
-							style={
-								!active
-									? { border: '2px dashed #ddd' }
-									: { border: `1px solid ${colours.textColourOnWhite}` }
-							}
+							style={{ border: `1px solid ${colours.textColourOnWhite}` }}
 						/>
 						{suffixed && (
-							<label
-								className="suffix"
-								htmlFor={'step-' + dottedName}
-								style={!active ? { color: '#888' } : { color: '#222' }}>
+							<label className="suffix" htmlFor={'step-' + dottedName}>
 								{answerSuffix}
 								{rulePeriod && (
 									<span>
