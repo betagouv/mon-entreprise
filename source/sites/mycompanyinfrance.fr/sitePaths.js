@@ -11,7 +11,8 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'SARL',
 	'SASU',
 	'SNC',
-	'micro-entreprise'
+	'micro-entreprise',
+	'SA'
 ]
 
 const translateTo = language => (str1, str2, options = {}) =>
