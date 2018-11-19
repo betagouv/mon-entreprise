@@ -12,7 +12,7 @@
   icônes: 🍃
   période: flexible
   unité: kgCO2eq
-  formule: impact par douche * nombre de douches
+  formule: impact par douche * douche . nombre 
 
 - espace: douche
   nom: nombre
@@ -29,7 +29,7 @@
 
 - espace: douche
   nom: impact par litre
-  formule: impact par litre froid + chauffage . impact par litre
+  formule: eau . impact par litre froid + chauffage . impact par litre
 
 
 - espace: douche
