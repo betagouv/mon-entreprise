@@ -424,7 +424,7 @@ Entreprise Individuelle: Individual Business
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
-status du directeur:
+statut du directeur:
   page:
     description: This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France
   titre: Defining the director's status
@@ -488,7 +488,7 @@ embauche:
     </1>
     <2>Get an example payslip</2>
 
-Guide du status juridique: Legal status guide
+Guide du statut juridique: Legal status guide
 Démarches de création: Creation process checklist
 
 path:
@@ -534,3 +534,5 @@ Ville: City
 Région: Region
 Nombre d'employés: Number of employees
 Date de création: Creation date
+
+Liste des statuts: Legal status list
