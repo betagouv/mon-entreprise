@@ -851,6 +851,7 @@
   formule:
     somme:
       - vieillesse (salarié)
+      - maladie (salarié)
       - ARRCO (salarié)
       - AGIRC (salarié)
       - GMP (salarié)
@@ -1376,10 +1377,6 @@
 
   références:
     fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
-
-- espace: contrat salarié
-  nom: régime alsace moselle
-  par défaut: non
 
 - nom: entreprise
   description: |
@@ -2107,21 +2104,60 @@
 - espace: contrat salarié
   nom: forfait complémentaire santé
   titre: Forfait de complémentaire santé entreprise
-  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
   description: |
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
   références:
     les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
+  formule: 
+    variations: 
+      - si: régime alsace moselle
+        alors: en alsace moselle
+      - sinon: en france
+  contrôles: 
+    - si: forfait complémentaire santé < 15
+      niveau: avertissement
+      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
+
+- espace: contrat salarié . forfait complémentaire santé
+  nom: en alsace moselle
+  titre: forfait complémentaire santé en Alsace-Moselle
+  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise (régime Alsace-Moselle) ?
+  description: |
+    Pour des raisons historiques, la couverture sociale santé des salariés d'Alsace-Moselle est plus forte. En conséquence, le prix des forfaits de complémentaire santé qui leur sont proposés sont inférieurs. 
+    Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70% du prix moyen en France.
+  références: 
+    étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
+  format: euros
+  par défaut: 30
+  suggestions:
+    basique: 30
+    élevé: 70
+
+- espace: contrat salarié
+  nom: régime alsace moselle
+  titre: Régime Alsace-Moselle
+  description: |
+    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements. 
+    
+    Attention, c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
+  applicable si: 
+    une de ces conditions:
+      - établissement . localisation . département = 'Bas-Rhin'
+      - établissement . localisation . département = 'Haut-Rhin'
+      - établissement . localisation . département = 'Moselle'
+
+
+
+- espace: contrat salarié . forfait complémentaire santé
+  nom: en france
+  titre: forfait complémentaire santé en France
+  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
   format: euros
   par défaut: 40
   suggestions:
     basique: 40
     élevé: 100
-  contrôles: 
-    - si: forfait complémentaire santé < 15
-      niveau: avertissement
-      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
 - espace: contrat salarié
   nom: contribution au dialogue social
@@ -2285,7 +2321,6 @@
   nom: maladie
   cotisation:
     branche: santé
-    dû par: employeur
   description: Cotisations de la branche maladie
   références:
     fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
@@ -2294,13 +2329,23 @@
     multiplication:
       assiette: assiette cotisations sociales
       composantes:
-        - attributs: # On va ici surcharger la Cotisation incomplète définie plus haut
+        - attributs:
             composante: maladie, maternité, invalidité, décès
+            dû par: employeur
           taux: 13%
+        - attributs: 
+            composante: maladie, maternité, invalidité, décès
+            dû par: salarié
+          taux:
+            variations: 
+              - si: régime alsace moselle
+                alors: 1.5%
+              - sinon: 0% 
 
         - attributs:
             composante: Contribution Solidarité Autonomie
             abbréviation: CSA
+            dû par: employeur
           références:
             - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
             - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
@@ -2390,10 +2435,10 @@
     multiplication:
       assiette: assiette cotisations sociales
       taux:
-        0.68%
-        # exception:
-        #   si: régime géographique = Alsace-Moselle
-        #   2016: 0.44%
+        variations: 
+          - si: régime alsace moselle
+            alors: 0.44%
+          - sinon: 0.68%
 
 - espace: contrat salarié
   nom: contribution supplémentaire à l'apprentissage

@@ -1077,32 +1077,33 @@ contrat salarié . chômage:
 contrat salarié . complémentaire santé:
   titre.en: Complementary health insurance
   titre.fr: complémentaire santé
-contrat salarié . forfait complémentaire santé:
-  titre.en: Complementary health insurance plan
-  titre.fr: Forfait de complémentaire santé entreprise
-  question.en: >-
-    What is the total monthly amount (employee and employer) of the company's
-    complementary health insurance ?
-  question.fr: >-
-    Quel est le montant mensuel total (salarié et employeur) de la
-    complémentaire santé entreprise ?
+contrat salarié . forfait complémentaire santé: 
+  titre.en: Complementary health insurance package
   description.en: >-
     The employer has the obligation to propose a complementary health insurance
     plan. More importantly, he has to take in charge at least half of the
     amount, which is the repartition we chose for this simulation, or more. The
     plan is free as long as it covers a legal care basket.
-  description.fr: >
-    L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
-    doit prendre en charge la moitié du montant,
+contrat salarié . forfait complémentaire santé . en alsace moselle:
+  titre.en: Complementary health insurance plan (Alsace-Moselle)
+  question.en: >-
+    What is the total monthly amount (employee and employer) of the company's
+    complementary health insurance (Alsace-Moselle) ?
+  description.en: |
+    For historical reasons, the social health coverage of the employees of the Alsace and Moselle historical regions is higher. As a result, the price of the complementary health insurance packages that private companies offer to them is lower.
 
-    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
-    libre, tant qu'elle couvre un panier légal de soins.
+    A study by Meilleureassurance.com allows us to assume that it is worth on average ~ 70% of the average price in France. 
   suggestions.en:
     basique: low
     élevé: high
-  suggestions.fr:
-    basique: 40
-    élevé: 100
+contrat salarié . forfait complémentaire santé . en france:
+  titre.en: Complementary health insurance plan (France)
+  question.en: >-
+    What is the total monthly amount (employee and employer) of the company's
+    complementary health insurance ?
+  suggestions.en:
+    basique: low
+    élevé: high
 contrat salarié . contribution au dialogue social:
   description.en: >-
     Employers' contribution intended to supplement a joint fund dedicated to the
