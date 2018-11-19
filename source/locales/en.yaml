@@ -328,7 +328,7 @@ responsabilité:
   1: "<0>Sole proprietorship</0>: An economic activity conducted by a single natural person, in his own name. It's less paperwork, but bigger trouble in case of bankruptcy, as your personal wealth can be put to contribution."
   2: Unlimited liability
   2bis: Unlimited joint and several liability
-  2Description: The financial liability of the shareholders is not limited to their contribution. In case of bankruptcy, their personal wealth can be put to contribution
+  2Description: The financial liability of the shareholders is not limited to their contribution. In case of bankruptcy, their personal wealth can be put to contribution.
   3: "<0>Limited liability</0>: A corporate structure whereby the
     company members cannot be held personally liable for the                                                                                                        company's debts or liabilities. However, it's heavier to set up,
     and you need to provide an initial capital."
@@ -399,7 +399,7 @@ après:
   kbis:
     titre: The Kbis
     description:
-      1: It is the official document attesting to <1>the legal existence of a commercial enterprise</1>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old.
+      1: It is the official document attesting to <2>the legal existence of a commercial enterprise</2>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old.
       2: This document is generally requested when applying for a public tender, opening a professional bank account, purchasing professional equipment from distributors, etc.
 
   actions:
