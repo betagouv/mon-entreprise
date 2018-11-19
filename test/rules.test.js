@@ -63,6 +63,20 @@ describe('rule checks', function() {
 		)
 		expect(rulesNeedingDefault).to.be.empty
 	})
+	it('rules with a period should have defaults with a period', function() {
+		let problems = rules.filter(
+			({ defaultValue, dottedName, période }) => période && defaultValue
+		)
+
+		problems.map(({ dottedName }) =>
+			console.log(
+				'La valeur par défaut de ',
+				dottedName,
+				' devrait avoir une période'
+			)
+		)
+		expect(problems).to.be.empty
+	})
 })
 
 it('rules with a formula should not have defaults', function() {
