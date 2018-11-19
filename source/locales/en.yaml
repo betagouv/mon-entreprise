@@ -321,7 +321,7 @@ Choisir la forme juridique: Choose your legal status
 Plus tard: Do it later
 
 Responsabilité de l'entreprise: Liability
-réponsabilité:
+responsabilité:
   titre: Choosing the company liability in France
   description: Sole proprietorship or limited liability? Each option has legal implications, and leads to a different status for creating your company in France
   intro: An entrepreneur can choose between several options for the legal setup of his company
@@ -380,6 +380,7 @@ trouver:
   titre: Find your company
   non: I don't have a company yet
   description: Thanks to the SIREN database, the public information of your company will be used automatically in the next steps.
+  ok: Confirm and simulate hiring costs
 
 Entrez le nom de votre société: Type your company name
 Nous n'avons rien trouvé: We didn't find any matching registered company.
@@ -413,6 +414,9 @@ sécu:
     <0>Social protection: costs and benefits</0><1>France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people</2>.</1><2>Easy access to health care and other services ensures that companies can put healthy, productive and highly skilled employees to work in an attractive market in the heart of Europe.</2><3>As soon as you declare and pay your employees, you automatically entitle them to the general scheme of French Social Security (health, maternity, disability, old age, occupational illness and accidents) and unemployment insurance.</3><4><0></0></4><5>How much does it cost to hire ?</5>
 
 Votre entreprise: Your company
+Ce n'est pas mon entreprise: This is not my company
+Simuler une embauche: Simulate a hire
+
 Protection sociale: Social security
 Embauche: Hiring process
 Micro-entreprise: Micro-enterprise
