@@ -75,7 +75,7 @@ const YourCompany = ({ companyDetails, resetCompanyDetails }) => (
 		</p>
 		<p>
 			<Link to={sitePaths().sécuritéSociale.index} className="ui__ button">
-				Simuler un salaire
+				<T>Simuler une embauche</T>
 			</Link>
 		</p>
 	</>

@@ -72,7 +72,7 @@ const StepsHeader = ({
 																	sitePaths().entreprise.statusJuridique
 																		.multipleAssociates
 																}>
-																<T>Nombre d'associés</T>
+																<T k="associés.titre">Nombre d'associés</T>
 															</NavLink>
 														</li>
 														<li>
@@ -81,7 +81,9 @@ const StepsHeader = ({
 																	sitePaths().entreprise.statusJuridique
 																		.directorStatus
 																}>
-																<T>Status du dirigeant</T>
+																<T k="statut du directeur.titre">
+																	Statut du dirigeant
+																</T>
 															</NavLink>
 														</li>
 														<li>
@@ -90,7 +92,7 @@ const StepsHeader = ({
 																	sitePaths().entreprise.statusJuridique
 																		.liability
 																}>
-																<T>Responsabilité</T>
+																<T k="responsabilité.titre">Responsabilité</T>
 															</NavLink>
 														</li>
 														<li>
@@ -99,7 +101,9 @@ const StepsHeader = ({
 																	sitePaths().entreprise.statusJuridique
 																		.minorityDirector
 																}>
-																<T>Gérant majoritaire ou minoritaire</T>
+																<T k="gérant minoritaire.titre">
+																	Gérant majoritaire ou minoritaire
+																</T>
 															</NavLink>
 														</li>
 														<li>
@@ -108,7 +112,9 @@ const StepsHeader = ({
 																	sitePaths().entreprise.statusJuridique
 																		.microEnterprise
 																}>
-																<T>Micro-entreprise ou EI</T>
+																<T k="microentreprise.titre">
+																	Micro-entreprise ou EI
+																</T>
 															</NavLink>
 														</li>
 														<li>
@@ -116,7 +122,7 @@ const StepsHeader = ({
 																to={
 																	sitePaths().entreprise.statusJuridique.liste
 																}>
-																<T>Liste des status</T>
+																<T>Liste des statuts</T>
 															</NavLink>
 														</li>
 													</ul>
@@ -137,7 +143,7 @@ const StepsHeader = ({
 														<li>
 															<NavLink
 																to={sitePaths().entreprise.créer(
-																	'micro-enterprise'
+																	'micro-entreprise'
 																)}>
 																<T>Micro-entreprise</T>
 															</NavLink>

@@ -15,14 +15,14 @@ import {
 import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 
 const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
-	'Micro-enterprise': {
+	'Micro-entreprise': {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
 		microEnterprise: true
 	},
-	'Micro-enterprise (option EIRL)': {
+	'Micro-entreprise (option EIRL)': {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,

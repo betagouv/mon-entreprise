@@ -7,14 +7,14 @@ https://mycompanyinfrance.fr/company/create-a-SAS
 https://mycompanyinfrance.fr/company/create-a-SARL
 https://mycompanyinfrance.fr/company/create-a-SASU
 https://mycompanyinfrance.fr/company/create-a-SNC
-https://mycompanyinfrance.fr/company/create-a-micro-enterprise
+https://mycompanyinfrance.fr/company/create-a-micro-entreprise
 https://mycompanyinfrance.fr/company/find
 https://mycompanyinfrance.fr/company/after-registration
 https://mycompanyinfrance.fr/company/legal-status
 https://mycompanyinfrance.fr/company/legal-status/list
 https://mycompanyinfrance.fr/company/legal-status/liability
 https://mycompanyinfrance.fr/company/legal-status/directors-status
-https://mycompanyinfrance.fr/company/legal-status/micro-enterprise-or-individual-business
+https://mycompanyinfrance.fr/company/legal-status/micro-entreprise-or-individual-business
 https://mycompanyinfrance.fr/company/legal-status/multiple-associates
 https://mycompanyinfrance.fr/company/legal-status/chairman-or-managing-director
 https://mycompanyinfrance.fr/social-security

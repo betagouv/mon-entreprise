@@ -17,20 +17,20 @@ const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 	<>
 		<Helmet>
 			<title>
-				{t('status du directeur.titre', 'Définir le statut du directeur')}
+				{t('statut du directeur.titre', 'Définir le statut du directeur')}
 			</title>
 			<meta
 				name="description"
 				content={t(
-					'status du directeur.page.description',
+					'statut du directeur.page.description',
 					`Ce choix est important parce qu'il détermine le régime de sécurité sociale et la couverture sociale de l'administrateur. Chaque option a des implications juridiques et conduit à un statut différent lors de la création de votre entreprise.`
 				)}
 			/>
 		</Helmet>
 		<h2>
-			<T k="status du directeur.titre">Définir le status du directeur</T>
+			<T k="statut du directeur.titre">Définir le statut du directeur</T>
 		</h2>
-		<T k="status du directeur.description">
+		<T k="statut du directeur.description">
 			<p>
 				Ce choix est important parce qu'il détermine le régime de sécurité
 				sociale et la couverture sociale du dirigeant.
