@@ -60,18 +60,14 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-			let showValues = valuesToShow || currentExample
 
 			return (
 				<>
-					<button
-						onClick={() =>
-							this.setState({ viewSource: !this.state.viewSource })
-						}>
-						{emoji('🔍')}
-					</button>
 					{this.state.viewSource ? (
-						<Source dottedName={dottedName} />
+						<>
+							{this.renderToggleSourceButton()}
+							<Source dottedName={dottedName} />
+						</>
 					) : (
 						<div id="rule" className="ui__ container">
 							<Helmet>
@@ -92,6 +88,7 @@ export default compose(
 								}}
 							/>
 
+							{this.renderToggleSourceButton()}
 							<section id="rule-content">
 								{displayedRule.nodeValue ? (
 									<div id="ruleValue">
@@ -118,7 +115,10 @@ export default compose(
 								// Fonctionnalité intéressante, à implémenter correctement
 								false && <UserInput {...{ flatRules, dottedName }} />}
 								{flatRule.ns && (
-									<Algorithm rule={displayedRule} showValues={showValues} />
+									<Algorithm
+										rule={displayedRule}
+										showValues={valuesToShow || currentExample}
+									/>
 								)}
 								{flatRule.note && (
 									<section id="notes">
@@ -141,37 +141,17 @@ export default compose(
 				</>
 			)
 		}
-							{//flatRule.question &&
-							// Fonctionnalité intéressante, à implémenter correctement
-							false && <UserInput {...{ flatRules, dottedName }} />}
-							{flatRule.ns && (
-								<Algorithm
-									rule={displayedRule}
-									showValues={valuesToShow || currentExample}
-								/>
-							)}
-							{flatRule.note && (
-								<section id="notes">
-									<h3>Note: </h3>
-									{createMarkdownDiv(flatRule.note)}
-								</section>
-							)}
-							<Examples
-								currentExample={currentExample}
-								situationExists={valuesToShow}
-								rule={displayedRule}
-							/>
-							{!isEmpty(namespaceRules) && (
-								<NamespaceRulesList {...{ namespaceRules }} />
-							)}
-							{this.renderReferences(flatRule)}
-						</section>
-					</div>
-				)}
-			</>
-		)
-	}
 
+		renderToggleSourceButton() {
+			let { viewSource } = this.state
+			return (
+				<button
+					id="toggleRuleSource"
+					onClick={() => this.setState({ viewSource: !viewSource })}>
+					{emoji(viewSource ? '📖' : '✍️')}
+				</button>
+			)
+		}
 		renderReferences = ({ références: refs }) =>
 			refs ? (
 				<div>
