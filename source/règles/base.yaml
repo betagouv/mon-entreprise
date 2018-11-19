@@ -2131,7 +2131,7 @@
         alors: en alsace moselle
       - sinon: en france
   contrôles: 
-    - si: forfait complémentaire santé [mois] < 15
+    - si: forfait complémentaire santé [mensuel] < 15
       niveau: avertissement
       message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 

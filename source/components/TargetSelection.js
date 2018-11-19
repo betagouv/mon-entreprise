@@ -124,6 +124,7 @@ export default compose(
 										onFirstClick={value =>
 											this.props.setFormValue(target.dottedName, '' + value)
 										}
+										rulePeriod={target.période}
 										colouredBackground={true}
 									/>
 								)}

@@ -29,7 +29,7 @@ function Controls({
 						<li
 							key={test}
 							className="control"
-							style={{ background: colours.lightenColour(45) }}>
+							style={{ background: colours.lighterColour }}>
 							{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
 							<div className="controlText">
 								{message && createMarkdownDiv(message)}

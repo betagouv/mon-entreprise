@@ -65,6 +65,7 @@ export default compose(
 						suggestions={this.props.suggestions}
 						onFirstClick={value => this.props.setFormValue('' + value)}
 						onSecondClick={() => this.props.submit('suggestion')}
+						rulePeriod={this.props.rulePeriod}
 					/>
 					{inputError && <span className="step-input-error">{error}</span>}
 				</span>
