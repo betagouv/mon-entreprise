@@ -238,7 +238,7 @@
 	font-size: 110%;
 	vertical-align: baseline;
 	transition: color 0.1s;
-	margin: 0 1.5em 0.1em 0.6em;
+	margin: 0 0.6em;
 }
 
 .step input[type='text']:focus,

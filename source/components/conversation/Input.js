@@ -1,17 +1,22 @@
 import classnames from 'classnames'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
-import React, { Component } from 'react'
+import { React, Component, T } from 'Components'
 import { withI18n } from 'react-i18next'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'
+import { connect } from 'react-redux'
+import { formValueSelector } from 'redux-form'
 
 export default compose(
 	FormDecorator('input'),
 	withI18n(),
-	withColours
+	withColours,
+	connect(state => ({
+		period: formValueSelector('conversation')(state, 'période')
+	}))
 )(
 	class Input extends Component {
 		debouncedOnChange = debounce(750, this.props.input.onChange)
@@ -23,7 +28,9 @@ export default compose(
 					valueType,
 					meta: { dirty, error, active },
 					t,
-					colours
+					colours,
+					rulePeriod,
+					period
 				} = this.props,
 				answerSuffix = valueType.suffix,
 				suffixed = answerSuffix != null,
@@ -57,6 +64,19 @@ export default compose(
 								htmlFor={'step-' + dottedName}
 								style={!active ? { color: '#888' } : { color: '#222' }}>
 								{answerSuffix}
+								{rulePeriod && (
+									<span>
+										{' '}
+										<T>par</T>{' '}
+										<T>
+											{
+												{ mois: 'mois', année: 'an' }[
+													rulePeriod === 'flexible' ? period : rulePeriod
+												]
+											}
+										</T>
+									</span>
+								)}
 							</label>
 						)}
 						<SendButton {...{ disabled: submitDisabled, error, submit }} />
