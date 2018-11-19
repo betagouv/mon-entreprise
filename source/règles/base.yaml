@@ -2122,7 +2122,7 @@
 - espace: contrat salarié . forfait complémentaire santé
   nom: en alsace moselle
   titre: forfait complémentaire santé en Alsace-Moselle
-  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
+  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise (régime Alsace-Moselle) ?
   description: |
     Pour des raisons historiques, la couverture sociale santé des salariés d'Alsace-Moselle est plus forte. En conséquence, le prix des forfaits de complémentaire santé qui leur sont proposés sont inférieurs. 
     Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70% du prix moyen en France.
