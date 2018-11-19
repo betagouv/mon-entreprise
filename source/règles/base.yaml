@@ -1501,6 +1501,9 @@
     - si: heures par semaine < 24
       niveau: avertissement
       message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+    - si: heures par semaine > 35
+      niveau: avertissement
+      message: Le simulateur ne gère pas encore les heures supplémentaires.
 
 - espace: contrat salarié
   nom: quotité de travail
