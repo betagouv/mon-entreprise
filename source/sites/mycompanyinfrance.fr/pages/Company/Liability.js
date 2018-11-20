@@ -85,7 +85,7 @@ const Liability = ({
 					Structure organisationnelle dans laquelle le/les membres de la société
 					ne peuvent être tenus personnellement responsables des dettes ou
 					obligations de la société. En revanche, les démarches de création sont
-					un peu plus lourde, et vous devez fournir un capital initial.
+					un peu plus lourdes, et vous devez fournir un capital initial.
 				</T>
 			</li>
 		</ul>
