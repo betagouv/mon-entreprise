@@ -4,7 +4,6 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 const { universal, web } = require('./webpack.commonLoaders.js')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports = {
 	resolve: {
@@ -24,7 +23,7 @@ module.exports = {
 		infrance: ['./source/sites/mycompanyinfrance.fr/entry.en.js'],
 		'mon-entreprise': ['./source/sites/mycompanyinfrance.fr/entry.fr.js'],
 		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
-		
+
 		// To not introduce breaking into the iframe integration, we serve simulateur.js from a 'dist' subdirectory
 		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js']
 	},
@@ -40,9 +39,9 @@ module.exports = {
 	},
 	plugins: [
 		new EnvironmentPlugin({
-			'EN_SITE': '/infrance${path}',
-			'FR_SITE': '/mon-entreprise${path}'
-	}),
+			EN_SITE: '/infrance${path}',
+			FR_SITE: '/mon-entreprise${path}'
+		}),
 		new HTMLPlugin({
 			template: 'index.html',
 			chunks: ['infrance'],
@@ -84,12 +83,11 @@ module.exports = {
 				from: './source/sites/mycompanyinfrance.fr/sitemap.fr.txt',
 				to: 'sitemap.infrance.fr.txt'
 			},
-			
+
 			{
 				from: './source/sites/mycompanyinfrance.fr/sitemap.en.txt',
 				to: 'sitemap.infrance.en.txt'
 			}
-		]),
-		new MonacoWebpackPlugin()
+		])
 	]
 }
