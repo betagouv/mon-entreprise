@@ -19,7 +19,9 @@ export default class Targets extends React.Component {
 		return (
 			<div id="targets">
 				<span className="icon">→</span>
-				<span className="content">
+				<span
+					className="content"
+					style={{ color: this.props.colours.textColour }}>
 					{/*<span className="title">{title}</span>
 					{' : '} */}
 					<span className="figure">
