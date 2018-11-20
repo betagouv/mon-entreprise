@@ -1,6 +1,5 @@
 import { encodeRuleName } from 'Engine/rules.js'
 import Fuse from 'fuse.js'
-import PropTypes from 'prop-types'
 import { pick } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
@@ -11,9 +10,6 @@ import 'react-select/dist/react-select.css'
 import { capitalise0 } from '../utils'
 
 class SearchBar extends React.Component {
-	static contextTypes = {
-		i18n: PropTypes.object.isRequired
-	}
 	componentDidMount() {
 		this.inputElement.focus()
 	}
@@ -67,8 +63,7 @@ class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
-		let { rules } = this.props,
-			{ i18n } = this.context,
+		let { i18n, rules } = this.props,
 			{ selectedOption } = this.state
 
 		if (selectedOption != null) {
