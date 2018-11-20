@@ -640,6 +640,11 @@
     - si: congés non pris > congés dus en jours ouvrés
       message: Attention, un salarié acquiert 2.08 jours de congés ouvrés par mois.
       niveau: avertissement
+      solution: 
+        cible: contrat salarié . CDD . durée contrat
+        texte: Définir la durée de contrat
+
+
 
 - espace: contrat salarié . CDD
   nom: contrat jeune vacances
