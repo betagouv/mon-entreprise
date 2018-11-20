@@ -21,6 +21,7 @@ button {
 .ui__.answer-group {
 	display: flex;
 	justify-content: flex-end;
+	align-items: center;
 }
 @media (max-width: 500px) {
 	.ui__.answer-group {
@@ -29,7 +30,7 @@ button {
 	.ui__.answer-group > * {
 		flex-grow: 1;
 		flex-shrink: 0;
-		margin-right: 0;
+		margin: 0.5rem !important;
 	}
 }
 

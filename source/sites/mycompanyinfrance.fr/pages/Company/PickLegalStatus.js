@@ -153,14 +153,7 @@ const SetMainStatus = ({ history, possibleStatus, goBackToPreviousQuestion, t, l
 					</li>
 				)}
 			</ul>
-
-			<div 
-				className="ui__ answer-group" 
-				style={{
-					display: 'flex', 
-					justifyContent: 'space-between'
-				}}
-			>
+			<div className="ui__ answer-group">
 				<button onClick={goBackToPreviousQuestion} className="ui__ skip-button left">
 					‹ <T>Précédent</T>
 				</button>
