@@ -10,10 +10,7 @@ import { ShowValuesProvider } from './ShowValuesContext'
 export default compose(withI18n())(
 	class Algorithm extends React.Component {
 		render() {
-			let { rule, showValues } = this.props,
-				ruleWithoutFormula =
-					!rule['formule'] ||
-					path(['formule', 'explanation', 'une possibilité'], rule)
+			let { rule, showValues } = this.props
 
 			return (
 				<div id="algorithm">
@@ -37,14 +34,22 @@ export default compose(withI18n())(
 									</section>
 								)
 							}}
-							{!ruleWithoutFormula ? (
-								<section id="formule">
-									<h2>
-										<Trans>Calcul</Trans>
-									</h2>
-									{makeJsx(rule['formule'])}
-								</section>
-							) : null}
+							{do {
+								let formula =
+										rule['formule'] ||
+										(rule.category === 'variable' && rule.explanation.formule),
+									displayFormula =
+										formula &&
+										!path(['formule', 'explanation', 'une possibilité'], rule)
+								displayFormula && (
+									<section id="formule">
+										<h2>
+											<Trans>Calcul</Trans>
+										</h2>
+										{makeJsx(formula)}
+									</section>
+								)
+							}}
 						</ShowValuesProvider>
 					</section>
 				</div>

@@ -86,8 +86,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 		name: variablePartialName,
 		category: 'variable',
 		fragments,
-		dottedName,
-		type: 'boolean | numeric'
+		dottedName
 	}
 }
 
