@@ -43,15 +43,14 @@ const PreviousAnswers = ({
 	return (
 		<>
 			{!!Object.keys(legalStatus).length && (
-				<button onClick={goToCompanyStatusChoice} className="ui__ link-button">
-					<T>Recommencer</T>
+				<button
+					onClick={goToCompanyStatusChoice}
+					className="ui__ skip-button left">
+					⟲ <T>Recommencer</T>
 				</button>
 			)}
 			{Object.values(legalStatus).some(answer => answer !== null) && (
 				<>
-					<h2>
-						<T>Vos choix : </T>
-					</h2>
 					<ul>
 						<Animate.fromBottom>
 							{Object.entries(legalStatus).map(

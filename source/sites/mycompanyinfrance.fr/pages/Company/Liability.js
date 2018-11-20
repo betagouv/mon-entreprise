@@ -92,6 +92,13 @@ const Liability = ({
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
+					chooseCompanyLiability('LIMITED_LIABILITY')
+				}}
+				className="ui__ button">
+				<T k="responsabilité.bouton3">Responsabilité limitée</T>
+			</button>
+			<button
+				onClick={() => {
 					chooseCompanyLiability('UNLIMITED_LIABILITY')
 				}}
 				className="ui__ button">
@@ -100,13 +107,6 @@ const Liability = ({
 				) : (
 					<T k="responsabilité.bouton2">Responsabilité illimitée</T>
 				)}
-			</button>
-			<button
-				onClick={() => {
-					chooseCompanyLiability('LIMITED_LIABILITY')
-				}}
-				className="ui__ button">
-				<T k="responsabilité.bouton3">Responsabilité limitée</T>
 			</button>
 		</div>
 		<CompanyStatusNavigation onSkip={() => chooseCompanyLiability(null)} />
