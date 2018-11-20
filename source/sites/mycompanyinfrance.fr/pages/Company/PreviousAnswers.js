@@ -1,4 +1,5 @@
 /* @flow */
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { isNil } from 'ramda'
 import { connect } from 'react-redux'
@@ -35,33 +36,43 @@ const requirementToText = (key, value) => {
 
 type Props = CompanyLegalStatus & { goToCompanyStatusChoice: () => void }
 
-const LegalStatusChoice = ({ ...legalStatus }: Props) => {
+const PreviousAnswers = ({
+	goToCompanyStatusChoice,
+	...legalStatus
+}: Props) => {
 	return (
-		!!Object.keys(legalStatus).length && (
-			<>
-				<h2>
-					<T>Vos choix : </T>
-				</h2>
-				<ul>
-					<Animate.fromBottom>
-						{Object.entries(legalStatus).map(
-							([key, value]) =>
-								!isNil(value) && (
-									<li key={key}>
-										<Link to={sitePaths().entreprise.statusJuridique[key]}>
-											{requirementToText(key, value)}
-										</Link>
-									</li>
-								)
-						)}
-					</Animate.fromBottom>
-				</ul>
-			</>
-		)
+		<>
+			{!!Object.keys(legalStatus).length && (
+				<button onClick={goToCompanyStatusChoice} className="ui__ link-button">
+					<T>Recommencer</T>
+				</button>
+			)}
+			{Object.values(legalStatus).some(answer => answer !== null) && (
+				<>
+					<h2>
+						<T>Vos choix : </T>
+					</h2>
+					<ul>
+						<Animate.fromBottom>
+							{Object.entries(legalStatus).map(
+								([key, value]) =>
+									!isNil(value) && (
+										<li key={key}>
+											<Link to={sitePaths().entreprise.statusJuridique[key]}>
+												{requirementToText(key, value)}
+											</Link>
+										</li>
+									)
+							)}
+						</Animate.fromBottom>
+					</ul>
+				</>
+			)}
+		</>
 	)
 }
 
 export default connect(
 	state => state.inFranceApp.companyLegalStatus,
-	() => ({})
-)(LegalStatusChoice)
+	{ goToCompanyStatusChoice }
+)(PreviousAnswers)

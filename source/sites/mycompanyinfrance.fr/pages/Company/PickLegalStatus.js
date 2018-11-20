@@ -13,12 +13,12 @@ import withLanguage from 'Components/utils/withLanguage'
 import type { TFunction } from 'react-i18next'
 
 import sitePaths from '../../sitePaths';
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
+import { goBackToPreviousQuestion } from 'Actions/companyStatusActions'
 
 type Props = {
 	history: RouterHistory,
 	possibleStatus: { [LegalStatus]: boolean },
-	onStartAgain: () => void,
+	goBackToPreviousQuestion: () => void,
 	setMainStatus: LegalStatus => void,
 	language: string,
 	t: TFunction
@@ -32,7 +32,7 @@ const StatusButton = withI18n()(
 	)
 )
 
-const SetMainStatus = ({ history, possibleStatus, onStartAgain, t, language }: Props) => {
+const SetMainStatus = ({ history, possibleStatus, goBackToPreviousQuestion, t, language }: Props) => {
 	return (
 		<>
 			<Helmet>
@@ -161,8 +161,8 @@ const SetMainStatus = ({ history, possibleStatus, onStartAgain, t, language }: P
 					justifyContent: 'space-between'
 				}}
 			>
-				<button onClick={onStartAgain} className="ui__ skip-button left">
-					‹ <T>Recommencer</T>
+				<button onClick={goBackToPreviousQuestion} className="ui__ skip-button left">
+					‹ <T>Précédent</T>
 				</button>
 				<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
 					<T>Choisir plus tard</T> ›
@@ -177,6 +177,6 @@ export default compose(
 	withLanguage,
 	connect(
 		state => ({ possibleStatus: possibleStatusSelector(state) }),
-		{ onStartAgain: goToCompanyStatusChoice }
+		{ goBackToPreviousQuestion }
 	)
 )(SetMainStatus)

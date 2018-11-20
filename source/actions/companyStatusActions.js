@@ -9,6 +9,7 @@ import type {
 	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
 } from 'Types/companyTypes'
+import { last } from "ramda";
 import type { RouterHistory } from 'react-router'
 import { dropWhile } from "ramda";
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
@@ -87,4 +88,21 @@ export const resetCompanyStatusChoice = (from: string) => (
 			answersToReset,
 		}: ResetCompanyStatusAction)
 	)
+}
+
+export const goBackToPreviousQuestion = () => (
+	dispatch: ResetCompanyStatusAction => void, 
+	getState: () => any,
+	history: RouterHistory
+) => {
+	const previousQuestion = last(Object.keys(getState().inFranceApp.companyLegalStatus));
+	if (previousQuestion) {
+		dispatch(
+			({
+				type: 'RESET_COMPANY_STATUS_CHOICE',
+				answersToReset: [previousQuestion],
+			}: ResetCompanyStatusAction)
+		)
+	}
+	history.push(sitePaths().entreprise.statusJuridique[previousQuestion || 'index'])
 }

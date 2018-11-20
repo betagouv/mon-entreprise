@@ -6,7 +6,7 @@ import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
-import { SkipButton } from 'Ui/Button'
+import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { TFunction } from 'react-i18next'
 
 type Props = {
@@ -64,8 +64,10 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates, t }: Props) => (
 				className="ui__ button">
 				<T k="associés.choix2">Plusieurs associés</T>
 			</button>
-			<SkipButton onClick={() => companyHasMultipleAssociates(null)} />
 		</div>
+		<CompanyStatusNavigation
+			onSkip={() => companyHasMultipleAssociates(null)}
+		/>
 	</>
 )
 

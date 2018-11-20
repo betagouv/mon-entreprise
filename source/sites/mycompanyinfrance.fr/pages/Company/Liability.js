@@ -5,7 +5,7 @@ import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
-import { SkipButton } from 'Ui/Button'
+import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { CompanyLiability } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
 
@@ -108,8 +108,8 @@ const Liability = ({
 				className="ui__ button">
 				<T k="responsabilité.bouton3">Responsabilité limitée</T>
 			</button>
-			<SkipButton onClick={() => chooseCompanyLiability(null)} />
 		</div>
+		<CompanyStatusNavigation onSkip={() => chooseCompanyLiability(null)} />
 		{/* this is an economic activity conducted by a single natural person, in his own name ; */}
 		{/* Company  : This is an economic activity conducted by a single partner - single member company with limited liability (EURL) - or several partners (limited liability company (SARL), public limited company (SA), simplified joint-stock company (SAS)...). */}
 	</>

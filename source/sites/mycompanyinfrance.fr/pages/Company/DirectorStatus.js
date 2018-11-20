@@ -5,7 +5,7 @@ import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
-import { SkipButton } from 'Ui/Button'
+import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { DirectorStatus } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
 
@@ -70,8 +70,8 @@ const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 				}}>
 				<T>Indépendant</T>
 			</button>
-			<SkipButton onClick={() => defineDirectorStatus(null)} />
 		</div>
+		<CompanyStatusNavigation onSkip={() => defineDirectorStatus(null)} />
 	</>
 )
 

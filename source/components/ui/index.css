@@ -20,14 +20,15 @@ button {
 
 .ui__.answer-group {
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: flex-end;
 }
 @media (max-width: 500px) {
 	.ui__.answer-group {
-		flex-direction: column;
+		flex-wrap: wrap;
 	}
 	.ui__.answer-group > * {
+		flex-grow: 1;
+		flex-shrink: 0;
 		margin-right: 0;
 	}
 }

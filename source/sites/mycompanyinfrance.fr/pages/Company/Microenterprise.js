@@ -5,7 +5,8 @@ import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
-import { SkipButton } from 'Ui/Button'
+import CompanyStatusNavigation from './CompanyStatusNavigation'
+
 import type { TFunction } from 'react-i18next'
 
 type Props = {
@@ -95,8 +96,8 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 				className="ui__ button">
 				<T>Entreprise Individuelle</T>
 			</button>
-			<SkipButton onClick={() => companyIsMicroenterprise(null)} />
 		</div>
+		<CompanyStatusNavigation onSkip={() => companyIsMicroenterprise(null)}/>
 	</>
 )
 

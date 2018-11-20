@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 import sitePaths from '../../sitePaths'
-import LegalStatusChoices from './LegalStatusChoice'
+import PreviousAnswers from './PreviousAnswers'
 import type { TFunction } from 'react-i18next'
 
 import type { Match, Location } from 'react-router'
@@ -81,7 +81,7 @@ const CreateMyCompany = ({
 					</div>
 				</>
 			)}
-			<LegalStatusChoices />
+			<PreviousAnswers />
 		</>
 	)
 }
