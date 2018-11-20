@@ -1,14 +1,27 @@
 .Rule-value {
-	transition: background 0.8s;
 	font-size: 105%;
+	position: relative;
 }
 
-/* Animation of summary figures changes : flash ! */
-.flash-enter {
-	background: rgba(255, 255, 255, 1);
-}
-
-.flash-leave {
-	/* Completely hide the button while it's being animated and before it's removed from the DOM. */
+.evaporate {
 	display: none;
+	font-size: 80%;
+	/* text-shadow: 0 0 2px var(--colour); */
+}
+.evaporate-enter {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: -20px;
+	opacity: 1;
+	animation: evaporate 1.3s ease-out;
+}
+@keyframes evaporate {
+	50% {
+		opacity: 1;
+	}
+	to {
+		transform: translateY(-15px);
+		opacity: 0;
+	}
 }
