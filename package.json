@@ -4,7 +4,9 @@
 	"version": "0.0.7",
 	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build similar simulators and computations.",
 	"main": "./dist/engine.js",
-	"files": ["dist/engine.js"],
+	"files": [
+		"dist/engine.js"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/syso.git"
@@ -12,7 +14,10 @@
 	"engines": {
 		"node": ">=8.10.0"
 	},
-	"browserslist": ["> 1% in FR", "not ie < 11"],
+	"browserslist": [
+		"> 1% in FR",
+		"not ie < 11"
+	],
 	"dependencies": {
 		"@researchgate/react-intersection-observer": "^0.7.3",
 		"classnames": "^2.2.5",
@@ -55,6 +60,7 @@
 	},
 	"scripts": {
 		"compile": "webpack --config source/webpack.prod.js",
+		"stats": "webpack --config source/webpack.prod.js --profile --json > stats.json",
 		"serve:embauche": "cp dist/embauche.html dist/index.html && serve -s dist",
 		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
 		"eslint": "LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
@@ -86,6 +92,7 @@
 		"autoprefixer": "^9.3.1",
 		"babel-eslint": "^9.0.0",
 		"babel-loader": "^8.0.2",
+		"babel-plugin-ramda": "^1.6.3",
 		"babel-plugin-syntax-dynamic-import": "^6.18.0",
 		"babel-plugin-transform-do-expressions": "^6.22.0",
 		"babel-plugin-webpack-alias": "^2.1.2",
@@ -136,7 +143,7 @@
 		"style-loader": "^0.23.1",
 		"url-loader": "^1.0.1",
 		"webpack": "^4.26.0",
-		"webpack-cli": "^3.1.1",
+		"webpack-cli": "^3.1.2",
 		"webpack-dev-middleware": "^3.4.0",
 		"webpack-hot-middleware": "^2.24.2",
 		"webpack-pwa-manifest": "^3.6.2",

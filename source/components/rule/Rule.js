@@ -8,7 +8,7 @@ import {
 	findRuleByNamespace
 } from 'Engine/rules'
 import { compose, isEmpty } from 'ramda'
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import Helmet from 'react-helmet'
 import { Trans, withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -28,7 +28,8 @@ import './Rule.css'
 import { AttachDictionary } from '../AttachDictionary'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import emoji from 'react-easy-emoji'
-import Source from './RuleSource'
+
+let LazySource = React.lazy(() => import('./RuleSource'))
 
 export default compose(
 	connect((state, props) => ({
@@ -66,7 +67,9 @@ export default compose(
 					{this.state.viewSource ? (
 						<>
 							{this.renderToggleSourceButton()}
-							<Source dottedName={dottedName} />
+							<Suspense fallback={<div>Chargement du code source...</div>}>
+								<LazySource dottedName={dottedName} />
+							</Suspense>
 						</>
 					) : (
 						<div id="rule" className="ui__ container">

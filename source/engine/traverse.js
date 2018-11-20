@@ -297,8 +297,8 @@ export let parseAll = flatRules => {
 
 let evaluateControls = blocking => (cache, parsedRules, situationGate) => {
 	return chain(({ controls, dottedName }) =>
-		controls
-			?.filter(({ level }) =>
+		(controls || [])
+			.filter(({ level }) =>
 				blocking
 					? level === 'bloquant' && situationGate(dottedName) != undefined
 					: level !== 'bloquant'

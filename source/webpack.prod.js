@@ -81,7 +81,7 @@ module.exports = {
 				/^\/stats/,
 				/^\/robots\.txt$/,
 				/^\/sitemap\.infrance\.fr\.txt$/,
-				/^\/sitemap\.infrance\.en\.txt$/,
+				/^\/sitemap\.infrance\.en\.txt$/
 			]
 		}),
 		new PrerenderSPAPlugin({

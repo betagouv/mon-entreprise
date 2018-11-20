@@ -20,9 +20,9 @@ module.exports = {
 		}
 	},
 	entry: {
-		infrance: ['./source/sites/mycompanyinfrance.fr/entry.en.js'],
-		'mon-entreprise': ['./source/sites/mycompanyinfrance.fr/entry.fr.js'],
 		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
+		'mon-entreprise': ['./source/sites/mycompanyinfrance.fr/entry.fr.js'],
+		infrance: ['./source/sites/mycompanyinfrance.fr/entry.en.js'],
 
 		// To not introduce breaking into the iframe integration, we serve simulateur.js from a 'dist' subdirectory
 		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js']

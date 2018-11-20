@@ -20,5 +20,8 @@
 		"syntax-dynamic-import",
 		"react-hot-loader/babel",
 		["webpack-alias", { "config": "./source/webpack.dev.js" }]
+		,  ["ramda", {
+      "useES": true
+    }]
 	]
 }

@@ -6,7 +6,7 @@ import {
 	nestedSituationToPathMap,
 	enrichRule
 } from './rules'
-import yaml from 'js-yaml'
+import { safeLoad } from 'js-yaml'
 
 // The public evaluation function takes a nested object of input values
 let nestedSituationToStateSelector = rules => nestedSituation => dottedName =>
@@ -16,7 +16,7 @@ let nestedSituationToStateSelector = rules => nestedSituation => dottedName =>
 	}[dottedName])
 
 let enrichRules = input =>
-	(typeof input === 'string' ? yaml.safeLoad(input) : input).map(enrichRule)
+	(typeof input === 'string' ? safeLoad(input) : input).map(enrichRule)
 
 export default {
 	evaluate: (targetInput, nestedSituation, config) => {

@@ -1,10 +1,9 @@
-import React, { Component, Suspense } from 'react'
-import yaml from 'js-yaml'
+import React, { Component } from 'react'
+import { safeDump } from 'js-yaml'
 import rules from 'Règles/base.yaml'
 import emoji from 'react-easy-emoji'
 import { buildDottedName } from 'Engine/rules'
-
-let ColoredYaml = React.lazy(() => import('./ColoredYaml'))
+import ColoredYaml from './ColoredYaml'
 
 export default class RuleSource extends Component {
 	render() {
@@ -18,9 +17,7 @@ export default class RuleSource extends Component {
 					Code source <br />
 					<code>{dottedName}</code>
 				</h2>
-				<Suspense fallback={<div>Chargement du code source...</div>}>
-					<ColoredYaml source={yaml.safeDump(source)} />
-				</Suspense>
+				<ColoredYaml source={safeDump(source)} />
 			</div>
 		)
 	}
