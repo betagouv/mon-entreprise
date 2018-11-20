@@ -58,6 +58,7 @@ export default compose(
 				nextSteps,
 				startConversation,
 				blockingInputControls,
+				displayHiringProcedures,
 				match,
 				validInputEntered,
 				location
@@ -120,7 +121,7 @@ export default compose(
 												pouvez maintenant concrétiser votre projet d'embauche.
 											</Trans>
 										</p>
-										{this.props.displayHiringProcedures && (
+										{displayHiringProcedures && (
 											<div style={{ textAlign: 'center' }}>
 												<Link
 													className="ui__ button"
