@@ -9,11 +9,11 @@ export let parseDataAttributes = (value: any) =>
 	value === 'undefined'
 		? undefined
 		: value === null
-			? null
-			: !isNaN(value)
-				? +value
-				: /* value is a normal string */
-				  value
+		? null
+		: !isNaN(value)
+		? +value
+		: /* value is a normal string */
+		  value
 
 export let getIframeOption = (optionName: string) => {
 	let url = getUrl(),

@@ -33,7 +33,7 @@ export default withLanguage(
 				})
 				this.previousValue = null
 				this.timeoutId = null
-			}, 200)
+			}, 250)
 		}
 		format = value => {
 			return value == null
@@ -73,7 +73,7 @@ class Evaporate extends PureComponent<{ children: string, style: Object }> {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="evaporate"
-				transitionEnterTimeout={1000}
+				transitionEnterTimeout={1300}
 				transitionLeaveTimeout={1}>
 				<span
 					key={this.props.children}
