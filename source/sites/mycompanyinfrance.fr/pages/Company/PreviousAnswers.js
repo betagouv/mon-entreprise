@@ -25,7 +25,7 @@ const requirementToText = (key, value) => {
 			)
 		case 'microEnterprise':
 			return value ? (
-				<T>Option micro-entrepreneur</T>
+				<T>Avec option micro-entrepreneur</T>
 			) : (
 				<T>Pas de régime de micro-entreprise</T>
 			)

@@ -302,6 +302,11 @@ entreprise:
     ensuite: After registration
 
 formeJuridique:
+  page:
+    titre: Which legal status should you choose for your company in France?
+    description: >
+      The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide quickly helps you to find the right status for your company project in France.
+  titre: Choose the legal status
   incertain: Not sure about this status? Take our guide to help you choose
   intro: 'The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs.'
   EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
@@ -546,5 +551,16 @@ Ville: City
 Région: Region
 Nombre d'employés: Number of employees
 Date de création: Creation date
-
 Liste des statuts: Legal status list
+
+Recommencer: Start again
+
+Plusieurs associés: Several partners
+Un seul associé: Only one partner
+Responsabilité limitée: Limited liability
+Sans responsabilité limitée: Without limited liability
+Avec option micro-entrepreneur: With micro-entrepreneur option
+Pas de régime de micro-entreprise: No microenterprise scheme
+
+Précédent: Previous
+Choisir plus tard: Choose later

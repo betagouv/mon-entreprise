@@ -44,20 +44,21 @@ const CreateMyCompany = ({
 			<Helmet>
 				<title>
 					{t(
-						'entreprise.statusJuridique.page.titre',
+						'formeJuridique.page.titre',
 						'Quel statut juridique choisir pour votre entreprise ?'
 					)}
 				</title>
 				<meta
 					name="description"
-					content="The French business law defines more than 20 possible legal statuses to
-				declare a company with various acronyms and processes : SAS, SARL, SA,
-				EIRL... This guide quickly helps you to find the right status for your company project"
+					content={t(
+						'formeJuridique.page.description',
+						"Le droit des affaires français définit plus de 20 statuts juridiques possibles pour déclarer une société avec différents acronymes et processus : SAS, SARL, SA, EIRL.... Ce guide vous aide rapidement à trouver le bon statut pour votre projet d'entreprise"
+					)}
 				/>
 			</Helmet>
 
 			<h1 className="question__title">
-				<T>Choisir le statut juridique</T>
+				<T k="formeJuridique.titre">Choisir le statut juridique</T>
 			</h1>
 			{match.isExact && (
 				<>
