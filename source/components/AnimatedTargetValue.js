@@ -48,18 +48,22 @@ export default withLanguage(
 		render() {
 			const formattedValue = this.format(this.props.value)
 			const formattedDifference = this.format(this.state.difference)
+			const shouldDisplayDifference =
+				Math.abs(this.state.difference) > 1 &&
+				formattedDifference !== formattedValue &&
+				this.props.value != null &&
+				this.state.difference < 0.5 * this.props.value
 			return (
 				<>
 					<span key={this.props.value} className="Rule-value">
-						{Math.abs(this.state.difference) > 1 &&
-							formattedDifference !== formattedValue && (
-								<Evaporate
-									style={{
-										color: this.state.difference > 0 ? 'chartreuse' : 'red'
-									}}>
-									{(this.state.difference > 0 ? '+' : '') + formattedDifference}
-								</Evaporate>
-							)}{' '}
+						{shouldDisplayDifference && (
+							<Evaporate
+								style={{
+									color: this.state.difference > 0 ? 'chartreuse' : 'red'
+								}}>
+								{(this.state.difference > 0 ? '+' : '') + formattedDifference}
+							</Evaporate>
+						)}{' '}
 						<span>{this.format(this.props.value)}</span>
 					</span>
 				</>
@@ -73,7 +77,7 @@ class Evaporate extends PureComponent<{ children: string, style: Object }> {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="evaporate"
-				transitionEnterTimeout={1300}
+				transitionEnterTimeout={1600}
 				transitionLeaveTimeout={1}>
 				<span
 					key={this.props.children}

@@ -13,13 +13,19 @@
 	position: absolute;
 	right: 0;
 	top: -20px;
-	opacity: 1;
-	animation: evaporate 1.3s ease-out;
+	opacity: 0;
+	animation: evaporate 1.6s ease-out;
+	transform: scaleY(0.1);
 }
 @keyframes evaporate {
-	50% {
+	5% {
+		opacity: 1;
+		transform: scaleY(1);
+	}
+	70% {
 		opacity: 1;
 	}
+
 	to {
 		transform: translateY(-15px);
 		opacity: 0;
