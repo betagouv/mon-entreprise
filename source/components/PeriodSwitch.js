@@ -4,6 +4,7 @@ import { Field } from 'redux-form'
 import './PeriodSwitch.css'
 import { reduxForm } from 'redux-form'
 import { compose } from 'ramda'
+import emoji from 'react-easy-emoji'
 
 export default compose(
 	reduxForm({
@@ -15,24 +16,22 @@ export default compose(
 )(function PeriodSwitch() {
 	return (
 		<div id="PeriodSwitch">
-			<>
-				<label>
-					<Field name="période" component="input" type="radio" value="mois" />
-					<span />
-					<span className="radioText">
-						<Trans>Mois</Trans>
-					</span>
-				</label>
+			<label>
+				<Field name="période" component="input" type="radio" value="mois" />
+				<span />
+				<span className="radioText">
+					<Trans>Mois</Trans>
+				</span>
+			</label>
+			<span style={{ fontSize: '1.5em' }}>{emoji('⏳')}</span>
+			<label>
+				<Field name="période" component="input" type="radio" value="année" />
+				<span />
 
-				<label>
-					<Field name="période" component="input" type="radio" value="année" />
-					<span />
-
-					<span className="radioText">
-						<Trans>Année</Trans>
-					</span>
-				</label>
-			</>
+				<span className="radioText">
+					<Trans>Année</Trans>
+				</span>
+			</label>
 		</div>
 	)
 })

@@ -1,6 +1,8 @@
 #PeriodSwitch {
-	text-align: center;
 	margin: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #PeriodSwitch label {
