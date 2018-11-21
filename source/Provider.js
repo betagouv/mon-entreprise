@@ -11,6 +11,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import computeThemeColours from 'Ui/themeColours'
 import { getIframeOption, inIframe } from './utils'
+import { enableBatching } from 'redux-batched-actions'
 
 let initialStore = {
 	themeColours: computeThemeColours(getIframeOption('couleur'))
@@ -50,7 +51,7 @@ export default class Layout extends PureComponent {
 			)
 		)
 		this.store = createStore(
-			reducers,
+			enableBatching(reducers),
 			{ ...initialStore, ...this.props.initialStore },
 			storeEnhancer
 		)
