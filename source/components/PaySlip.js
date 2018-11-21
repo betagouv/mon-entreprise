@@ -40,9 +40,7 @@ const PaySlip = ({
 	return (
 		<div className="payslip__container">
 			<div className="payslip__hourSection">
-				<Trans i18nKey="payslip.heures">
-					Nombre d&apos;heures travaillées :{' '}
-				</Trans>
+				<Trans i18nKey="payslip.heures">Heures travaillées par mois : </Trans>
 				<span className="montant"> {nombreHeuresTravaillées}</span>
 			</div>
 			{/* Section salaire brut */}
