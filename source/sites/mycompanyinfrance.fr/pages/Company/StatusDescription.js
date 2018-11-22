@@ -15,12 +15,16 @@ const StatusDescription = ({ status }: Props) =>
 	) : status === 'EIRL' ? (
 		<T k="formeJuridique.EIRL">
 			Permet de protéger son patrimoine personnel en attribuant un capital
-			spécifique à son activité professionnelle.
+			spécifique à son activité professionnelle. La société et l'individu
+			constituent la même personne. Ne convient pas si l'associé unique est une
+			personne morale (entreprise) ou si vous pensez accueillir d'autres
+			associés au cours de votre développement (choisissez EURL dans ce cas).
 		</T>
 	) : status === 'EURL' ? (
 		<T k="formeJuridique.EURL">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-			de l'apport de capital de l'unique associé.
+			de l'apport de capital de l'unique associé. Evolue en SARL lors de
+			l'arrivée de nouveaux associés dans la société.
 		</T>
 	) : status.includes('SARL') ? (
 		<T k="formeJuridique.SARL">
@@ -44,7 +48,8 @@ const StatusDescription = ({ status }: Props) =>
 	) : status === 'SASU' ? (
 		<T k="formeJuridique.SASU">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-			de l'apport de capital de l'unique associé.
+			de l'apport de capital de l'unique associé. Le fonctionnement d'une SASU
+			est peu encadré par la législation.
 		</T>
 	) : status === 'SA' ? (
 		<T k="formeJuridique.SA">
@@ -58,11 +63,17 @@ const StatusDescription = ({ status }: Props) =>
 			(un seul associé peut être poursuivi pour la totalité de la dette) et
 			indéfinie (responsable sur la totalité de son patrimoine personnel).
 		</T>
-	) : status.includes('micro-entreprise') ? (
+	) : status === 'micro-entreprise' ? (
 		<T k="formeJuridique.micro">
 			La micro-entreprise est une entreprise individuelle, soumise à un régime
 			forfaitaire pour le calcul des impôts et le paiement des cotisations de
 			sécurité sociale.
+		</T>
+	) : status === 'micro-entreprise-EIRL' ? (
+		<T k="formeJuridique.micro-EIRL">
+			La micro-entreprise en EIRL est une entreprise individuelle à
+			responsabilité limité, soumise à un régime forfaitaire pour le calcul des
+			impôts et le paiement des cotisations de sécurité sociale.
 		</T>
 	) : /* Otherwise */ null
 

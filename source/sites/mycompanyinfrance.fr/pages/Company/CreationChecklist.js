@@ -41,6 +41,11 @@ const CreateCompany = ({
 	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
 		status => t(status) === match.params.status
 	)
+	const isMicroenterprise = [
+		'micro-entreprise',
+		'micro-entreprise-EIRL'
+	].includes(companyStatus)
+	const isEI = isMicroenterprise || ['EI', 'EIRL'].includes(companyStatus)
 	if (!companyStatus) {
 		return <Page404 />
 	}
@@ -71,7 +76,6 @@ const CreateCompany = ({
 			</h1>
 			{!statusChooserCompleted && (
 				<>
-					{' '}
 					<p>
 						<button className="ui__ link-button" onClick={onStatusChange}>
 							<T k="formeJuridique.incertain">
@@ -94,7 +98,7 @@ const CreateCompany = ({
 				}
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}>
-				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
+				{!isEI && (
 					<CheckItem
 						name="corporateName"
 						title={
@@ -136,7 +140,7 @@ const CreateCompany = ({
 						</p>
 					}
 				/>
-				{companyStatus !== 'micro-entreprise' && (
+				{!isMicroenterprise && (
 					<CheckItem
 						name="companyAddress"
 						title={
@@ -159,7 +163,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
+				{!isEI && (
 					<CheckItem
 						name="companyStatus"
 						title={
@@ -194,7 +198,7 @@ const CreateCompany = ({
 									de séparer les actifs de l'entreprise des vôtres.
 								</T>{' '}
 								{companyStatus === 'EI' && (
-									<T k="entreprise.tâches.banque.EI">
+									<T k="entreprise.tâches.banque.description.EI">
 										Si son ouverture n'est pas obligatoire pour un IE, elle
 										reste fortement recommandée.{' '}
 									</T>
@@ -215,7 +219,7 @@ const CreateCompany = ({
 						</>
 					}
 				/>
-				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
+				{!isEI && (
 					<CheckItem
 						name="fundsDeposit"
 						title={
@@ -243,7 +247,42 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{!['EI', 'EIRL', 'micro-entreprise'].includes(companyStatus) && (
+				{companyStatus.includes('EIRL') && (
+					<CheckItem
+						name="declarationOfAssignement"
+						title={
+							<T k="entreprise.tâches.affectation.titre">
+								Effectuer une déclaration d'affectation de patrimoine
+							</T>
+						}
+						explanations={
+							<T k="entreprise.tâches.affectation.description">
+								<p>
+									La <strong>déclaration d'affectation du patrimoine</strong>{' '}
+									permet de séparer le patrimoine professionnel de votre
+									patrimoine personnel, qui devient alors insaisissable. Cette
+									démarche est gratuite si elle est effectué au moment de la
+									création d'entreprise.
+								</p>
+								<p>
+									Pour cela, il suffit simplement de déclarer quelles biens sont
+									affectés au patrimoine de votre entreprise. Tous les apports
+									nécessaires à votre activité professionnelle doivent y figurer
+									(par exemple : fond de commerce, marque, brevet, ou encore
+									matériel professionnel). Vous pouvez vous charger vous-même de
+									l'évaluation de la valeur du bien si celle ci ne dépasse pas
+									les 30 000 €.
+								</p>
+								<p>
+									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F31538">
+										Plus d'informations
+									</a>
+								</p>
+							</T>
+						}
+					/>
+				)}
+				{!isEI && (
 					<CheckItem
 						title={
 							<T k="entreprise.tâches.journal.titre">
@@ -322,7 +361,7 @@ const CreateCompany = ({
 			</h2>
 
 			<Checklist>
-				{companyStatus !== 'micro-entreprise' && (
+				{!isMicroenterprise && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={

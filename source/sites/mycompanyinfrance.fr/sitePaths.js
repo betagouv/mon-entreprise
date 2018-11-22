@@ -12,6 +12,7 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'SASU',
 	'SNC',
 	'micro-entreprise',
+	'micro-entreprise-EIRL',
 	'SA'
 ]
 

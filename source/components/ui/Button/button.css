@@ -139,7 +139,8 @@
 .ui__.skip-button {
 	opacity: 0.6;
 	border: none;
-	padding: 0.6rem 0;
+	padding: 0;
+
 	color: inherit;
 }
 

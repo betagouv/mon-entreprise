@@ -5,7 +5,7 @@ import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withI18n } from 'react-i18next'
 import { connect } from 'react-redux'
-import { SkipButton } from 'Ui/Button'
+import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { CompanyLiability } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
 
@@ -85,11 +85,18 @@ const Liability = ({
 					Structure organisationnelle dans laquelle le/les membres de la société
 					ne peuvent être tenus personnellement responsables des dettes ou
 					obligations de la société. En revanche, les démarches de création sont
-					un peu plus lourde, et vous devez fournir un capital initial.
+					un peu plus lourdes, et vous devez fournir un capital initial.
 				</T>
 			</li>
 		</ul>
 		<div className="ui__ answer-group">
+			<button
+				onClick={() => {
+					chooseCompanyLiability('LIMITED_LIABILITY')
+				}}
+				className="ui__ button">
+				<T k="responsabilité.bouton3">Responsabilité limitée</T>
+			</button>
 			<button
 				onClick={() => {
 					chooseCompanyLiability('UNLIMITED_LIABILITY')
@@ -101,15 +108,8 @@ const Liability = ({
 					<T k="responsabilité.bouton2">Responsabilité illimitée</T>
 				)}
 			</button>
-			<button
-				onClick={() => {
-					chooseCompanyLiability('LIMITED_LIABILITY')
-				}}
-				className="ui__ button">
-				<T k="responsabilité.bouton3">Responsabilité limitée</T>
-			</button>
-			<SkipButton onClick={() => chooseCompanyLiability(null)} />
 		</div>
+		<CompanyStatusNavigation onSkip={() => chooseCompanyLiability(null)} />
 		{/* this is an economic activity conducted by a single natural person, in his own name ; */}
 		{/* Company  : This is an economic activity conducted by a single partner - single member company with limited liability (EURL) - or several partners (limited liability company (SARL), public limited company (SA), simplified joint-stock company (SAS)...). */}
 	</>

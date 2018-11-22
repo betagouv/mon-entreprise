@@ -55,13 +55,20 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 			<T k="après.ape.description">
 				Le code APE correspond au <strong>secteur d'activité</strong> de votre
 				entreprise. Il classifie la branche principale de votre entreprise dans
-				la nomenclature nationale d'activités françaises (code « NAF »). Il
-				détermine aussi la convention collective applicable à l'entreprise, et
-				en partie le taux de la cotisation accident du travail et maladies
-				professionnelles à payer.
+				la nomenclature nationale d'activités françaises (code « NAF »).{' '}
+				<span
+					style={
+						companyStatusChoice.match(/micro-entreprise|EI/)
+							? { display: 'none' }
+							: {}
+					}>
+					Il détermine aussi la convention collective applicable à l'entreprise,
+					et en partie le taux de la cotisation accident du travail et maladies
+					professionnelles à payer.
+				</span>
 			</T>
 		</p>
-		{companyStatusChoice !== 'microentreprise' && (
+		{!companyStatusChoice.includes('micro-entreprise') && (
 			<>
 				<h2>
 					<T k="après.kbis.titre">Le Kbis</T>

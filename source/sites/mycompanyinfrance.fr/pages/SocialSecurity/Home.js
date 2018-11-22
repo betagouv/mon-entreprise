@@ -3,15 +3,19 @@
 import { Component, React, T } from 'Components'
 import Simulateur from 'Components/Simu'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import withLanguage from 'Components/utils/withLanguage'
+import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withI18n } from 'react-i18next'
 import * as Animate from 'Ui/animate'
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
+
 type Props = {
 	match: Match,
 	location: Location,
-	t: TFunction
+	t: TFunction,
+	language: string
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
@@ -66,7 +70,9 @@ class SocialSecurity extends Component<Props, {}> {
 										width: '100%',
 										height: '100%'
 									}}
-									src="https://www.youtube-nocookie.com/embed/dN9ZVazSmpc?rel=0&amp;showinfo=0"
+									src={`https://www.youtube-nocookie.com/embed/${
+										this.props.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
+									}?rel=0&amp;showinfo=0`}
 									frameBorder="0"
 									allow="autoplay; encrypted-media"
 									allowFullScreen
@@ -82,4 +88,7 @@ class SocialSecurity extends Component<Props, {}> {
 	}
 }
 
-export default withI18n()(SocialSecurity)
+export default compose(
+	withI18n(),
+	withLanguage
+)(SocialSecurity)
