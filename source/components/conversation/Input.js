@@ -3,6 +3,7 @@ import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { withI18n } from 'react-i18next'
+import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'
@@ -13,6 +14,7 @@ export default compose(
 	withColours
 )(
 	class Input extends Component {
+		debouncedOnChange = debounce(750, this.props.input.onChange)
 		render() {
 			let {
 					input,
@@ -27,16 +29,18 @@ export default compose(
 				suffixed = answerSuffix != null,
 				inputError = dirty && error,
 				submitDisabled = !dirty || inputError
-
 			return (
 				<span>
 					<div className="answer">
 						<input
-							ref={el => {
-								this.inputElement = el
-							}}
 							type="text"
-							{...input}
+							key={input.value}
+							autoFocus
+							defaultValue={input.value}
+							onChange={e => {
+								e.persist()
+								this.debouncedOnChange(e)
+							}}
 							className={classnames({ suffixed })}
 							id={'step-' + dottedName}
 							inputMode="numeric"

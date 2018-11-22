@@ -43,18 +43,16 @@ export var FormDecorator = formType => RenderField =>
 			}
 			render() {
 				let {
-					setFormValue,
 					stepAction,
 					subquestion,
 					valueType,
 					defaultValue,
 					fieldName,
 					inversion,
+					setFormValue,
 					themeColours
 				} = this.props
-
 				let validate = buildValidationFunction(valueType)
-
 				let submit = cause => stepAction('fold', fieldName, cause),
 					stepProps = {
 						...this.props,
