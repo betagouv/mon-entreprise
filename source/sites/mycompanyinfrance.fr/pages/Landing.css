@@ -65,19 +65,20 @@
 }
 
 .landing__choice {
-	display: block;
+	display: flex;
+	align-items: center;
 	padding: 1rem;
 	margin: 1rem;
 	border: 1px solid;
 	border-color: rgba(41, 117, 209);
-	opacity: 0.8 !important;
+	opacity: 0.9 !important;
 	border-radius: 0.6rem;
 	text-decoration: none;
 	font-size: 1.2rem;
 	transition: opacity, box-shadow 0.2s;
 }
 .landing__choice img {
-	margin-right: 0.5rem !important;
+	margin-right: 0.8rem !important;
 	transition: transform 0.2s;
 }
 

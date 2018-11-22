@@ -34,7 +34,7 @@ export default withNamespaces()(
 					</svg>
 				</header>
 			</section>
-			<section className="ui__ container">
+			<section className="ui__ container" style={{ paddingBottom: '2rem' }}>
 				<div className="landing__header">
 					<img alt="logo marianne" src={marianneSvg} />
 					<img alt="logo urssaf" src={urssafSvg} />
@@ -48,6 +48,7 @@ export default withNamespaces()(
 					</Link>
 					<Link className="landing__choice " to={'/'}>
 						{emoji('🏡')} Déclarer mon activité d'économie collaborative
+						(airbnb, leboncoin, blablacar...)
 					</Link>
 
 					<Link
