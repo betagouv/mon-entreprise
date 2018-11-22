@@ -1,28 +1,40 @@
 /* @flow */
 
-import type { State, CompanyLegalStatus } from 'Types/companyTypes'
+import type { State, LegalStatusRequirements } from 'Types/companyTypes'
 import {
 	add,
+	any,
 	countBy,
 	difference,
 	filter,
+	flatten,
 	isNil,
 	map,
+	mergeAll,
 	mergeWith,
 	pick,
 	sortBy
 } from 'ramda'
 import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 
-const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
-	'Micro-entreprise': {
+const LEGAL_STATUS_DETAILS: {
+	[status: string]: Array<LegalStatusRequirements> | LegalStatusRequirements
+} = {
+	'micro-entreprise': {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
 		microEnterprise: true
 	},
-	'Micro-entreprise (option EIRL)': {
+	EIRL: {
+		liability: 'LIMITED_LIABILITY',
+		directorStatus: 'SELF_EMPLOYED',
+		multipleAssociates: false,
+		microEnterprise: false,
+		minorityDirector: false
+	},
+	'micro-entreprise-EIRL': {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
@@ -36,38 +48,40 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 		multipleAssociates: false,
 		microEnterprise: false
 	},
-	EURL: {
-		liability: 'LIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		minorityDirector: false,
-		multipleAssociates: false,
-		microEnterprise: false
-	},
-	EIRL: {
-		liability: 'LIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociates: false,
-		microEnterprise: false,
-		minorityDirector: false
-	},
-	'SARL (majority director)': {
-		liability: 'LIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociates: true,
-		minorityDirector: false,
-		microEnterprise: false
-	},
-	'SARL (minority director)': {
+	SASU: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
-		multipleAssociates: true,
-		minorityDirector: true,
+		minorityDirector: false,
+		multipleAssociates: false,
 		microEnterprise: false
 	},
 	SAS: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
+		microEnterprise: false
+	},
+	SARL: [
+		{
+			liability: 'LIMITED_LIABILITY',
+			directorStatus: 'SELF_EMPLOYED',
+			multipleAssociates: true,
+			minorityDirector: false,
+			microEnterprise: false
+		},
+		{
+			liability: 'LIMITED_LIABILITY',
+			directorStatus: 'SALARIED',
+			multipleAssociates: true,
+			minorityDirector: true,
+			microEnterprise: false
+		}
+	],
+	EURL: {
+		liability: 'LIMITED_LIABILITY',
+		directorStatus: 'SELF_EMPLOYED',
+		minorityDirector: false,
+		multipleAssociates: false,
 		microEnterprise: false
 	},
 	SA: {
@@ -81,24 +95,20 @@ const LEGAL_STATUS_DETAILS: { [status: string]: CompanyLegalStatus } = {
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: true,
 		microEnterprise: false
-	},
-	SASU: {
-		liability: 'LIMITED_LIABILITY',
-		directorStatus: 'SALARIED',
-		minorityDirector: false,
-		multipleAssociates: false,
-		microEnterprise: false
 	}
 }
 
 export type LegalStatus = $Keys<typeof LEGAL_STATUS_DETAILS>
+type Question = $Keys<LegalStatusRequirements>
 
+// $FlowFixMe
 const QUESTION_LIST: Array<Question> = Object.keys(
-	LEGAL_STATUS_DETAILS['SARL (minority director)']
+	// $FlowFixMe
+	mergeAll(flatten(Object.values(LEGAL_STATUS_DETAILS)))
 )
 
-const isCompatibleStatusWith = (answers: CompanyLegalStatus) => (
-	status: CompanyLegalStatus
+const isCompatibleStatusWith = (answers: LegalStatusRequirements) => (
+	statusRequirements: LegalStatusRequirements
 ): boolean => {
 	const stringify = map(x => (!isNil(x) ? JSON.stringify(x) : x))
 	// $FlowFixMe
@@ -107,7 +117,7 @@ const isCompatibleStatusWith = (answers: CompanyLegalStatus) => (
 			(answer, statusValue) =>
 				isNil(answer) || isNil(statusValue) || answer === statusValue,
 			// $FlowFixMe
-			stringify(status),
+			stringify(statusRequirements),
 			// $FlowFixMe
 			stringify(answers)
 		)
@@ -116,11 +126,13 @@ const isCompatibleStatusWith = (answers: CompanyLegalStatus) => (
 	return isCompatibleStatus
 }
 const possibleStatus = (
-	answers: CompanyLegalStatus
+	answers: LegalStatusRequirements
 ): { [LegalStatus]: boolean } =>
 	map(
-		// $FlowFixMe
-		isCompatibleStatusWith(answers),
+		statusRequirements =>
+			Array.isArray(statusRequirements)
+				? any(isCompatibleStatusWith(answers), statusRequirements)
+				: isCompatibleStatusWith(answers)(statusRequirements),
 		LEGAL_STATUS_DETAILS
 	)
 
@@ -129,21 +141,19 @@ export const possibleStatusSelector = (state: {
 }): { [LegalStatus]: boolean } =>
 	possibleStatus(state.inFranceApp.companyLegalStatus)
 
-type Question = $Keys<CompanyLegalStatus>
-
 export const nextQuestionSelector = (state: {
 	inFranceApp: State
 }): ?Question => {
-	const companyLegalStatus = state.inFranceApp.companyLegalStatus
-	const questionAnswered = Object.keys(companyLegalStatus)
+	const legalStatusRequirements = state.inFranceApp.companyLegalStatus
+	const questionAnswered = Object.keys(legalStatusRequirements)
 	const possibleStatusList = pick(
-		Object.keys(filter(Boolean, possibleStatus(companyLegalStatus))),
+		Object.keys(filter(Boolean, possibleStatus(legalStatusRequirements))),
 		LEGAL_STATUS_DETAILS
 	)
 
 	const unansweredQuestions = difference(QUESTION_LIST, questionAnswered)
 	const shannonEntropyByQuestion = unansweredQuestions.map(question => {
-		const answerPopulation = Object.values(possibleStatusList).map(
+		const answerPopulation = flatten(Object.values(possibleStatusList)).map(
 			// $FlowFixMe
 			status => status[question]
 		)

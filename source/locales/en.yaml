@@ -297,6 +297,24 @@ entreprise:
     assurance:
       titre: Check out the need for professional insurance
       description: <0>An SME or self-employed person must protect themselves against the main risks to which they are exposed and take out guarantee contracts. Whether it is a tenant or owner of its walls, the company must insure its buildings, its professional equipment, its goods, its raw materials, its vehicles, as well as in terms of civil liability of the company and its managers or in terms of operating loss.</0><1>More information (Fr)</1>
+    affectation:
+      titre: Make a declaration of asset allocation
+      description: >
+        <0>
+          The <1>declaration of asset allocation</1> allows you to separate professional 
+          assets from your personal assets, which then becomes unseizable. This procedure 
+          is free of charge if it is carried out at the time of the creation
+          of a company.
+        </0>
+        <1>
+          To do so, simply declare which assets are allocated to the patrimony of your company. 
+          All the contributions necessary for your professional activity must be included 
+          (for example: goodwill, trademark, patent, or professional equipment). You can do 
+          the valuation of the asset yourself if it does not exceed €30,000. 
+        </1>
+        <2>
+          <0>$t(Plus d'informations)</0>
+        </2>
     avancement: Use these lists to track down your advancement in the business creation process. It is automatically saved in your browser.
     retour: Choose another status
     ensuite: After registration
@@ -318,6 +336,7 @@ formeJuridique:
   SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
   SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
   micro: The micro-enterprise is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  micro-EIRL: The EIRL micro-enterprise is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
 
 Votre forme juridique: Your legal status
 Créer une: Create a
@@ -412,7 +431,7 @@ après:
     description: The Siren number <1>identifies your company</1> while the Siret number identifies each place of business operated by the same company. The Siret is composed by the Siren followed by the establishment number.
   ape:
     titre: The APE code
-    description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.
+    description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). <3>It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.</3>
   kbis:
     titre: The Kbis
     description:
@@ -436,7 +455,6 @@ Simuler une embauche: Simulate a hire
 
 Protection sociale: Social security
 Embauche: Hiring process
-Micro-entreprise: Micro-enterprise
 Entreprise Individuelle: Individual Business
 listeformejuridique:
   page:
@@ -528,7 +546,9 @@ path:
   démarcheEmbauche:
     index: '/hiring-process'
 
-micro-entreprise: micro-enterprise
+Micro-entreprise: Micro-enterprise
+Micro-entreprise en EIRL: EIRL micro-enterprise
+micro-entreprise-EIRL: EIRL-micro-enterprise
 privacyContent: >
   <0>$t(Vie privée)</0>
   <1>

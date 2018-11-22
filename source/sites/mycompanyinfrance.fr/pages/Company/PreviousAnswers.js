@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import sitePaths from '../../sitePaths'
-import type { CompanyLegalStatus } from 'Types/companyTypes'
+import type { LegalStatusRequirements } from 'Types/companyTypes'
 const requirementToText = (key, value) => {
 	switch (key) {
 		case 'multipleAssociates':
@@ -34,7 +34,7 @@ const requirementToText = (key, value) => {
 	}
 }
 
-type Props = CompanyLegalStatus & { goToCompanyStatusChoice: () => void }
+type Props = LegalStatusRequirements & { goToCompanyStatusChoice: () => void }
 
 const PreviousAnswers = ({
 	goToCompanyStatusChoice,

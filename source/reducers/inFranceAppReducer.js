@@ -4,7 +4,7 @@ import { omit } from 'ramda'
 import { combineReducers } from 'redux'
 import type {
 	Action as CompanyStatusAction,
-	CompanyLegalStatus,
+	LegalStatusRequirements,
 	ExistingCompanyDetails,
 	State
 } from 'Types/companyTypes'
@@ -13,9 +13,9 @@ import type { Action as HiringChecklist } from 'Types/hiringChecklistTypes'
 type Action = CompanyStatusAction | CreationChecklistAction | HiringChecklist
 
 function companyLegalStatus(
-	state: CompanyLegalStatus = {},
+	state: LegalStatusRequirements = {},
 	action: Action
-): CompanyLegalStatus {
+): LegalStatusRequirements {
 	switch (action.type) {
 		case 'CHOOSE_COMPANY_LEGAL_SETUP':
 			return { ...state, liability: action.setup }

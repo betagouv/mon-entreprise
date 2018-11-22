@@ -63,11 +63,17 @@ const StatusDescription = ({ status }: Props) =>
 			(un seul associé peut être poursuivi pour la totalité de la dette) et
 			indéfinie (responsable sur la totalité de son patrimoine personnel).
 		</T>
-	) : status.includes('micro-entreprise') ? (
+	) : status === 'micro-entreprise' ? (
 		<T k="formeJuridique.micro">
 			La micro-entreprise est une entreprise individuelle, soumise à un régime
 			forfaitaire pour le calcul des impôts et le paiement des cotisations de
 			sécurité sociale.
+		</T>
+	) : status === 'micro-entreprise-EIRL' ? (
+		<T k="formeJuridique.micro-EIRL">
+			La micro-entreprise en EIRL est une entreprise individuelle à
+			responsabilité limité, soumise à un régime forfaitaire pour le calcul des
+			impôts et le paiement des cotisations de sécurité sociale.
 		</T>
 	) : /* Otherwise */ null
 

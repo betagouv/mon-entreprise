@@ -67,7 +67,7 @@ export type State = {|
 	},
 	+existingCompanyDetails: ?ExistingCompanyDetails
 |}
-export type CompanyLegalStatus = $PropertyType<State, 'companyLegalStatus'>
+export type LegalStatusRequirements = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
 	| ChooseCompanyLiabilityAction
 	| DefineDirectorStatusAction
