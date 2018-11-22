@@ -1,14 +1,13 @@
 - nom: période
   par défaut: mois
-  une possibilité: 
+  une possibilité:
     - mois
     - année
-
 
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
   icônes: 🚴
-  description: | 
+  description: |
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
 
     Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
@@ -21,12 +20,12 @@
           assiette: distance annuelle
           taux: 0.25
       - 200
-  références: 
+  références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
     fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
-  exemples: 
+  exemples:
     - nom: active
-      situation: 
+      situation:
         indemnité vélo active: oui
       valeur attendue: 200
 
@@ -130,7 +129,7 @@
   formule:
     le maximum de:
       - description: Méthode "du dixième"
-        note: | 
+        note: |
           Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
           > Une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
         multiplication:
@@ -150,7 +149,6 @@
         multiplication:
           assiette: prime maintient de salaire
           taux: 1 / durée contrat
-
 
   exemples:
     - nom: pas de congés non pris
@@ -190,7 +188,6 @@
     Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
     assiette de l'indemnité, circulaire drt 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
 
-
 - espace: contrat salarié . CDD . compensation pour congés non pris
   nom: proportion congés non pris
   formule: congés non pris / congés dus en jours ouvrés
@@ -201,7 +198,7 @@
   formule: contrat salarié . congés dus par mois * durée contrat
 
 - espace: contrat salarié
-  nom: congés dus par mois 
+  nom: congés dus par mois
   unité: jours ouvré
   formule: 25 / 12
 
@@ -355,24 +352,23 @@
     multiplication:
       assiette: assiette cotisations sociales
       taux:
-        variations: 
-          - si: taux réduit 
+        variations:
+          - si: taux réduit
             alors: 1%
           - sinon: ATMP . taux collectif ATMP / 100
 
 - espace: contrat salarié . ATMP
-  nom: taux réduit 
+  nom: taux réduit
   titre: taux réduit pour activité sans risque
-  question: L'activité de l'établissement ou du salarié est-elle sans risque ? 
+  question: L'activité de l'établissement ou du salarié est-elle sans risque ?
   description: |
     Ce taux correspond :
     - aux petites entreprises dont l'activité n'est pas risquée, par exemple du conseil en informatique
-    - au nouveau "taux support" : pour les entreprises d'effectif inférieur à 150, les salariés des fonctions support (par exemple, secrétariat, comptabilité, ressources humaines) cotisent à un taux réduit. 
+    - au nouveau "taux support" : pour les entreprises d'effectif inférieur à 150, les salariés des fonctions support (par exemple, secrétariat, comptabilité, ressources humaines) cotisent à un taux réduit.
   applicable si: entreprise . effectif <= 150
   par défaut: non
-  références: 
+  références:
     fiche ameli.fr: https://www.ameli.fr/employeur/actualites/evolution-de-la-tarification-de-lassurance-maladie-risques-professionnels-ce-qui-change
-
 
 - espace: contrat salarié . ATMP
   nom: taux collectif ATMP
@@ -417,6 +413,7 @@
   titre: Poursuite du CDD en CDI
   description: En fin de contrat, le CDD est reconduit en CDI sans interruption.
   formule: contrat salarié . CDD . événement = 'poursuite du CDD en CDI'
+
   # TODO quand cette variable est appelée par une autre variable,
   # on devrait pouvoir poser la question, puis proposer un bouton qui permette d'aider l'utilisateur à
   # y répondre, en lui expliquant la formule suivante :
@@ -425,7 +422,6 @@
   #   une possibilité:
   #   - embauche en CDI suivant le CDD
   #   - CDD requalifié en CDI # quand ça arrive ?
-
 - espace: contrat salarié . CDD . événement
   nom: refus CDI avantageux
   titre: Refus d'un CDI avantageux
@@ -437,14 +433,14 @@
   titre: Rupture anticipée du salarié
   description: Rupture anticipée du contrat à l'initiative du salarié.
   formule: contrat salarié . CDD . événement = 'rupture anticipée salarié'
-  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 - espace: contrat salarié . CDD . événement
   nom: rupture pour faute grave ou force majeure
   titre: Rupture pour faute grave ou force majeure
   formule: contrat salarié . CDD . événement = 'rupture pour faute grave ou force majeure'
-  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 
+  # ces variables peuvent être attachées à un groupe ruptures pour plus de clarté
 - espace: contrat salarié . CDD . événement
   nom: rupture pendant période essai
   titre: Rupture pendant la période d'essai
@@ -628,23 +624,21 @@
 - espace: contrat salarié . CDD
   nom: congés non pris
   question: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
-  description: | 
+  description: |
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat. 
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
   format: jours
   suggestions:
-    3 : 3
+    3: 3
     10: 10
   par défaut: 0
-  contrôles: 
+  contrôles:
     - si: congés non pris > congés dus en jours ouvrés
       message: Attention, un salarié acquiert 2.08 jours de congés ouvrés par mois.
       niveau: avertissement
-      solution: 
+      solution:
         cible: contrat salarié . CDD . durée contrat
         texte: Définir la durée de contrat
-
-
 
 - espace: contrat salarié . CDD
   nom: contrat jeune vacances
@@ -656,7 +650,7 @@
 
 - espace: contrat salarié . CDD
   nom: indemnités salarié CDD
-  période: flexible 
+  période: flexible
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:
@@ -671,7 +665,7 @@
     financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4.
 
     Certaines sont versées en fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
-  période: flexible 
+  période: flexible
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - indemnités salarié CDD
@@ -714,12 +708,12 @@
         - CDI
         - CDD
   par défaut: CDI
-  contrôles: 
+  contrôles:
     - si: type de contrat = 'CDD'
       niveau: information
-      message: | 
+      message: |
         Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
-        
+
         [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
 
 - espace: contrat salarié . type de contrat
@@ -741,10 +735,9 @@
   période: flexible
   formule: rémunération . brut - indemnité kilométrique vélo
 
-
 - espace: contrat salarié
   nom: salaire
-  
+
 - espace: contrat salarié . salaire
   nom: brut de base
   titre: Salaire brut de base
@@ -760,7 +753,7 @@
   suggestions:
     salaire médian: 2300
     SMIC: 1500
-  contrôles: 
+  contrôles:
     - si: brut de base [mensuel] < 50
       niveau: bloquant
     - si: brut de base [mensuel] < SMIC [mensuel]
@@ -770,7 +763,7 @@
         texte: Est-ce un temps partiel ?
     - si: brut de base [mensuel] > 10000
       niveau: information
-      message: | 
+      message: |
         Le salaire saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
   formule:
     inversion:
@@ -832,7 +825,7 @@
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   question: Quel est le montant des avantages en nature ?
-  applicable si: contrat salarié . avantages en nature 
+  applicable si: contrat salarié . avantages en nature
   période: flexible
   suggestions:
     nourriture: 80
@@ -969,9 +962,9 @@
 
 - espace: contrat salarié . salaire
   nom: net
-  titre: Salaire net 
-  type: salaire 
-  format: euros  
+  titre: Salaire net
+  type: salaire
+  format: euros
   question: Quel est le salaire net ?
   résumé: Salaire net avant impôt
   description: |
@@ -982,7 +975,7 @@
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
   période: flexible
   formule: rémunération . net de cotisations - avantages en nature . montant
-  contrôles: 
+  contrôles:
     - si: net [mensuel] < 30
       niveau: bloquant
 
@@ -1006,7 +999,7 @@
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
   formule: net - impôt . neutre
-  contrôles: 
+  contrôles:
     - si: net après impôt [mensuel] < 20
       niveau: bloquant
 
@@ -1381,7 +1374,7 @@
   période: flexible
   type: salaire
   formule: rémunération . total - aides employeur
-  contrôles: 
+  contrôles:
     - si: coût d'embauche [mensuel] < 100
       niveau: bloquant
 
@@ -1401,7 +1394,6 @@
 
 - espace: contrat salarié
   nom: salaire
-
 
 - nom: entreprise
   description: |
@@ -1502,7 +1494,7 @@
   format: nombre
   # contrôle : le code du travail définit la borne inférieure de 24h par semaine. Sauf qu'en réalité, la loi permet très souvent des dérogations.
   par défaut: 35
-  contrôles: 
+  contrôles:
     - si: heures par semaine < 24
       niveau: avertissement
       message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
@@ -1559,7 +1551,7 @@
 - espace: contrat salarié
   nom: plafond CICE
   période: flexible
-  formule: multiplicateur CICE * SMIC 
+  formule: multiplicateur CICE * SMIC
 
 - espace: contrat salarié
   nom: multiplicateur CICE
@@ -1631,7 +1623,7 @@
 - espace: contrat salarié . CITS
   nom: plafond
   période: flexible
-  formule: multiplicateur * SMIC 
+  formule: multiplicateur * SMIC
 
 - espace: contrat salarié . CITS
   nom: multiplicateur
@@ -1756,7 +1748,7 @@
 - espace: contrat salarié
   nom: plafond réduction générale
   période: flexible
-  formule: multiplicateur réduction générale * SMIC 
+  formule: multiplicateur réduction générale * SMIC
 
 - espace: contrat salarié
   nom: multiplicateur réduction générale
@@ -1885,8 +1877,7 @@
               taux: 0%
             - de: 1
               à: 8
-              taux:
-                12.75%
+              taux: 12.75%
             - au-dessus de: 8
               taux: 0%
 
@@ -1897,8 +1888,7 @@
               taux: 0%
             - de: 1
               à: 8
-              taux:
-                7.8%
+              taux: 7.8%
             - au-dessus de: 8
               taux: 0%
 
@@ -2101,30 +2091,62 @@
 
 - espace: contrat salarié
   nom: complémentaire santé
+  description: |
+    L'Assurance maladie (Sécurité sociale) ne rembourse pas complètement vos dépenses de santé.
+
+    La complémentaire santé d'entreprise complète ces remboursements, en totalité ou en partie.
+
+    En plus de la complémentaire santé, le dispositif collectif de l'entreprise peut proposer d'autres garanties (garanties décès, garantie dépendance, etc.).
   cotisation:
     branche: santé
   références:
-    Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F20739
   période: flexible
   formule:
     multiplication:
-      assiette: forfait complémentaire santé
+      assiette: forfait
       composantes:
         # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
         - attributs:
             dû par: employeur
-          taux: 50%
+          taux: part employeur / 100
         - attributs:
             dû par: salarié
-          taux: 50%
+          taux: part salarié / 100
   exemples:
     - nom: forfait à 40€
       situation:
-        forfait complémentaire santé: 40
+        forfait: 40
       valeur attendue: 40
+    - nom: forfait à 100€ payé par l'employeur
+      situation:
+        forfait: 100
+        part employeur: 100
+      valeur attendue: 100
 
-- espace: contrat salarié
-  nom: forfait complémentaire santé
+
+- espace: contrat salarié . complémentaire santé
+  nom: part employeur
+  description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
+  question: Quel est la part de la complémentaire santé payée par l'employeur ?
+  format: pourcentage
+  suggestions:
+    50%: 50
+    100%: 100
+  par défaut: 50
+  contrôles:
+    - si: part employeur < 50
+      niveau: avertissement
+      message: La part employeur de la complémentaire santé doit être de 50% au minimum
+
+- espace: contrat salarié . complémentaire santé
+  nom: part salarié
+  description: Part de la complémentaire santé payée par l'employé. Ne peut pas être supérieure à 50%
+  format: pourcentage
+  formule: 100 - part employeur
+
+- espace: contrat salarié . complémentaire santé
+  nom: forfait
   titre: Forfait de complémentaire santé entreprise
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
   période: flexible
@@ -2133,24 +2155,24 @@
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
   références:
     les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
-  formule: 
-    variations: 
+  formule:
+    variations:
       - si: régime alsace moselle
         alors: en alsace moselle
       - sinon: en france
-  contrôles: 
-    - si: forfait complémentaire santé [mensuel] < 15
+  contrôles:
+    - si: forfait [mensuel] < 15
       niveau: avertissement
       message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
-- espace: contrat salarié . forfait complémentaire santé
+- espace: contrat salarié . complémentaire santé . forfait
   nom: en alsace moselle
   titre: forfait complémentaire santé en Alsace-Moselle
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise (régime Alsace-Moselle) ?
   description: |
     Pour des raisons historiques, la couverture sociale santé des salariés d'Alsace-Moselle est plus forte. En conséquence, le prix des forfaits de complémentaire santé qui leur sont proposés sont inférieurs. 
     Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70% du prix moyen en France.
-  références: 
+  références:
     étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
   période: mois
   format: euros
@@ -2159,22 +2181,7 @@
     basique: 30
     élevé: 70
 
-- espace: contrat salarié
-  nom: régime alsace moselle
-  titre: Régime Alsace-Moselle
-  description: |
-    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements. 
-    
-    Attention, c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
-  applicable si: 
-    une de ces conditions:
-      - établissement . localisation . département = 'Bas-Rhin'
-      - établissement . localisation . département = 'Haut-Rhin'
-      - établissement . localisation . département = 'Moselle'
-
-
-
-- espace: contrat salarié . forfait complémentaire santé
+- espace: contrat salarié . complémentaire santé . forfait
   nom: en france
   titre: forfait complémentaire santé en France
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
@@ -2184,6 +2191,19 @@
   suggestions:
     basique: 40
     élevé: 100
+
+- espace: contrat salarié
+  nom: régime alsace moselle
+  titre: Régime Alsace-Moselle
+  description: |
+    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements. 
+
+    Attention, c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
+  applicable si:
+    une de ces conditions:
+      - établissement . localisation . département = 'Bas-Rhin'
+      - établissement . localisation . département = 'Haut-Rhin'
+      - établissement . localisation . département = 'Moselle'
 
 - espace: contrat salarié
   nom: contribution au dialogue social
@@ -2283,13 +2303,13 @@
     - nom: 'CSG cadre'
       situation:
         assiette cotisations sociales: 1500
-        forfait complémentaire santé: 40
+        complémentaire santé . forfait: 40
         statut cadre: oui
       valeur attendue: 139.495
     - nom: 'CSG non cadre'
       situation:
         assiette cotisations sociales: 1500
-        forfait complémentaire santé: 40
+        complémentaire santé . forfait: 40
       valeur attendue: 137.425
 
 - espace: contrat salarié
@@ -2369,14 +2389,14 @@
             composante: maladie, maternité, invalidité, décès
             dû par: employeur
           taux: 13%
-        - attributs: 
+        - attributs:
             composante: maladie, maternité, invalidité, décès
             dû par: salarié
           taux:
-            variations: 
+            variations:
               - si: régime alsace moselle
                 alors: 1.5%
-              - sinon: 0% 
+              - sinon: 0%
 
         - attributs:
             composante: Contribution Solidarité Autonomie
@@ -2476,7 +2496,7 @@
     multiplication:
       assiette: assiette cotisations sociales
       taux:
-        variations: 
+        variations:
           - si: régime alsace moselle
             alors: 0.44%
           - sinon: 0.68%
@@ -2563,10 +2583,9 @@
       valeur attendue: 2627.97
 
 - espace: entreprise . taxe sur les salaires
-  nom: barème 
+  nom: barème
   période: flexible
-  formule:
-    contrat salarié . taxe sur les salaires . barème * effectif
+  formule: contrat salarié . taxe sur les salaires . barème * effectif
 
 - espace: entreprise . taxe sur les salaires
   nom: abattement associations
@@ -2588,7 +2607,6 @@
   note: |
     Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
     Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
-
 
 - espace: contrat salarié
   nom: taxe sur les salaires
@@ -2618,7 +2636,7 @@
         entreprise . association non lucrative: oui
         salaire . brut de base: 2300
         entreprise . effectif: 10
-        forfait complémentaire santé: 0
+        complémentaire santé . forfait: 0
       valeur attendue: 48.1
 
   références:
