@@ -1,6 +1,6 @@
 import { encodeRuleName } from 'Engine/rules.js'
 import Fuse from 'fuse.js'
-import { pick } from 'ramda'
+import { sortBy, pick } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
 import { withI18n } from 'react-i18next'
@@ -95,7 +95,7 @@ class SearchBar extends React.Component {
 				/>
 				{this.props.showDefaultList && !this.state.inputValue && (
 					<ul>
-						{rules.map(rule => (
+						{sortBy(rule => rule.title, rules).map(rule => (
 							<li key={rule.dottedName}>
 								<Link
 									to={
