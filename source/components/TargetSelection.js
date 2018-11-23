@@ -155,13 +155,6 @@ let Header = ({
 			)}
 
 			<span className="texts">
-				{!conversationStarted && target.dottedName.includes('net après impôt') && (
-					<div>
-						<span id="labelNew">
-							<Trans>Janvier 2019</Trans>
-						</span>
-					</div>
-				)}
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
