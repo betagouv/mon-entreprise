@@ -87,7 +87,8 @@ export default compose(
 									flatRules,
 									name,
 									title,
-									icon
+									icon,
+									valuesToShow
 								}}
 							/>
 
