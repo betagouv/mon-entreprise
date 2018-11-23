@@ -2,7 +2,7 @@ import { setExample } from 'Actions/actions'
 import classNames from 'classnames'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { capitalise0 } from '../../utils'
 import './Examples.css'
@@ -20,7 +20,7 @@ export default compose(
 			)
 		})
 	),
-	withI18n()
+	withNamespaces()
 )(
 	class Examples extends Component {
 		render() {

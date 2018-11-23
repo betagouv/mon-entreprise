@@ -8,7 +8,7 @@ import {
 } from 'Engine/rules.js'
 import { compose, head, path } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link, Redirect } from 'react-router-dom'
@@ -27,7 +27,7 @@ export default compose(
 		valuesToShow: !noUserInputSelector(state),
 		flatRules: flatRulesSelector(state)
 	})),
-	withI18n()
+	withNamespaces()
 )(
 	class RulePage extends Component {
 		render() {
@@ -81,7 +81,7 @@ const BackToSimulation = compose(
 		})
 	),
 	withRouter,
-	withI18n()
+	withNamespaces()
 )(
 	// Triggers rerender when the language changes
 	class BackToSimulation extends Component {

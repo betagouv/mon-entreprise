@@ -3,7 +3,7 @@ import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { compose, toPairs } from 'ramda'
 import Helmet from 'react-helmet'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
@@ -96,5 +96,5 @@ export default compose(
 		}),
 		{ resetCompanyStatusChoice }
 	),
-	withI18n()
+	withNamespaces()
 )(CreateMyCompany)

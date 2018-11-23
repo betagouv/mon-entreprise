@@ -2,11 +2,11 @@ import HoverDecorator from 'Components/utils/HoverDecorator'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 
 export default compose(
 	HoverDecorator,
-	withI18n(),
+	withNamespaces(),
 	withColours
 )(
 	class SendButton extends Component {

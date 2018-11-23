@@ -197,7 +197,7 @@ export default compose(
 											<strong> première estimation</strong> sur la base d'un
 											contrat générique. La législation française prévoit une
 											multitude de cas particuliers et de règles spécifiques qui
-											modifient considérablement les montant de l'embauche.
+											modifient considérablement les montants de l'embauche.
 										</Trans>
 									</p>
 									<p style={{ textAlign: 'center' }}>

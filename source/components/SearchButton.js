@@ -1,6 +1,6 @@
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
@@ -11,7 +11,7 @@ export default compose(
 	connect(state => ({
 		flatRules: flatRulesSelector(state)
 	})),
-	withI18n()
+	withNamespaces()
 )(
 	class SearchButton extends Component {
 		componentDidMount() {

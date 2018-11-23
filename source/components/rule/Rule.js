@@ -10,7 +10,7 @@ import {
 import { compose, isEmpty } from 'ramda'
 import React, { Component, Suspense } from 'react'
 import Helmet from 'react-helmet'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { reduxForm } from 'redux-form'
@@ -40,7 +40,7 @@ export default compose(
 		analysedExample: exampleAnalysisSelector(state, props)
 	})),
 	AttachDictionary(knownMecanisms),
-	withI18n(),
+	withNamespaces(),
 	withLanguage
 )(
 	class Rule extends Component {

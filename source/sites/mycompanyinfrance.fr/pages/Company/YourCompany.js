@@ -3,7 +3,7 @@
 import { React, T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
 import { toPairs } from 'ramda'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import sitePaths from '../../sitePaths'
@@ -38,7 +38,7 @@ const LocaleDate = withLanguage(
 		}).format(date)
 )
 
-export const CompanyDetails = withI18n()(
+export const CompanyDetails = withNamespaces()(
 	({ t, ...data }: { t: TFunction, [string]: string }) => {
 		const localizedCompanyDataSelection = companyDataSelection(t)
 		return (

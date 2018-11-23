@@ -2,7 +2,7 @@
 import { React, T } from 'Components'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
@@ -241,7 +241,7 @@ const StepsHeader = ({
 
 export default compose(
 	withRouter,
-	withI18n(),
+	withNamespaces(),
 	connect(
 		state => ({
 			...selectors(state),

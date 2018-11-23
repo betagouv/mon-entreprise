@@ -1,14 +1,14 @@
 import withColours from 'Components/utils/withColours'
 import { compose, toPairs } from 'ramda'
 import React, { Component } from 'react'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import './InputSuggestions.css'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 
 export default compose(
 	withColours,
-	withI18n(),
+	withNamespaces(),
 	connect(state => ({
 		period: formValueSelector('conversation')(state, 'période')
 	}))

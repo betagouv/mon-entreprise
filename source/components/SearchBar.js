@@ -3,7 +3,7 @@ import Fuse from 'fuse.js'
 import { sortBy, pick } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
@@ -114,4 +114,4 @@ class SearchBar extends React.Component {
 	}
 }
 
-export default withI18n()(SearchBar)
+export default withNamespaces()(SearchBar)
