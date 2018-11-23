@@ -13,7 +13,7 @@ describe('Landing basic test', function() {
 	})
 	it('should display the simulateur after loading', function() {
 		cy.visit('/')
-		cy.contains('Entrez un salaire mensuel')
+		cy.contains('Touché par le salarié')
 	})
 	it('should display cotisation repartition when entering net salary', function() {
 		cy.visit('/')
