@@ -79,11 +79,15 @@ let updateSituation = (toPeriod, batchPeriodChange, situation, rules) => {
 				change(
 					'conversation',
 					dottedName,
-					situation.période === 'mois' && toPeriod === 'année'
-						? value * 12
-						: situation.période === 'année' && toPeriod === 'mois'
-						? value / 12
-						: console.log('oups')
+					Math.round(
+						situation.période === 'mois' && toPeriod === 'année'
+							? value * 12
+							: situation.période === 'année' && toPeriod === 'mois'
+							? value / 12
+							: do {
+									throw new Error('Oups, changement de période invalide')
+							  }
+					)
 				),
 			needConversation
 		),
