@@ -141,6 +141,6 @@ describe('library', function() {
 			{ base: co2, debug: false }
 		)
 		//console.log(JSON.stringify(value.targets[0], null, 4))
-		expect(value).to.equal(7253.26)
+		expect(value).to.be.within(40, 41)
 	})
 })
