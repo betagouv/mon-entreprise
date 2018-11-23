@@ -1,8 +1,7 @@
 import { expect } from 'chai'
-import { popularTargetNames } from 'Components/TargetSelection'
 import dedent from 'dedent-js'
 import { enrichRule, rulesFr as rules } from 'Engine/rules'
-import yaml from 'js-yaml'
+import { safeLoad } from 'js-yaml'
 import { assocPath, merge } from 'ramda'
 import reducers from 'Reducers/rootReducer'
 import { simulationTargetNames } from '../source/config'
@@ -117,7 +116,7 @@ describe('conversation', function() {
         - nom: cadre
           par défaut: non
       `,
-			rules = yaml.safeLoad(rawRules).map(enrichRule)
+			rules = safeLoad(rawRules).map(enrichRule)
 
 		let step1 = merge(baseState, {
 			targetNames: ['net']

@@ -2,7 +2,7 @@
 import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { compose } from 'ramda'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
@@ -105,5 +105,5 @@ export default compose(
 	connect(state => ({
 		companyStatusChoice: state.inFranceApp.companyStatusChoice
 	})),
-	withI18n()
+	withNamespaces()
 )(AfterRegistration)

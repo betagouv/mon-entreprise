@@ -125,6 +125,7 @@ const analysisToCotisations = (
 		.map(name => analysis.cache[name])
 		.map(pathOr([], ['explanation', 'formule', 'explanation', 'explanation']))
 		.reduce(concat, [])
+
 	const cotisations = pipe(
 		groupBy(prop('dottedName')),
 		values,

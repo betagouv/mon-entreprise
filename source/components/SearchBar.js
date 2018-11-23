@@ -1,19 +1,15 @@
 import { encodeRuleName } from 'Engine/rules.js'
 import Fuse from 'fuse.js'
-import PropTypes from 'prop-types'
-import { pick } from 'ramda'
+import { sortBy, pick } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import { capitalise0 } from '../utils'
 
 class SearchBar extends React.Component {
-	static contextTypes = {
-		i18n: PropTypes.object.isRequired
-	}
 	componentDidMount() {
 		this.inputElement.focus()
 	}
@@ -67,8 +63,7 @@ class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
-		let { rules } = this.props,
-			{ i18n } = this.context,
+		let { i18n, rules } = this.props,
 			{ selectedOption } = this.state
 
 		if (selectedOption != null) {
@@ -100,7 +95,7 @@ class SearchBar extends React.Component {
 				/>
 				{this.props.showDefaultList && !this.state.inputValue && (
 					<ul>
-						{rules.map(rule => (
+						{sortBy(rule => rule.title, rules).map(rule => (
 							<li key={rule.dottedName}>
 								<Link
 									to={
@@ -119,4 +114,4 @@ class SearchBar extends React.Component {
 	}
 }
 
-export default withI18n()(SearchBar)
+export default withNamespaces()(SearchBar)

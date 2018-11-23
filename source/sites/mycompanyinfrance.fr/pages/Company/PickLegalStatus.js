@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { filter } from 'ramda'
 import { Link } from 'react-router-dom'
 import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import StatusDescription from './StatusDescription'
 import type { RouterHistory } from 'react-router'
 import { compose } from 'ramda'
@@ -25,7 +25,7 @@ type Props = {
 	t: TFunction
 }
 
-const StatusButton = withI18n()(
+const StatusButton = withNamespaces()(
 	({ status, t }: { status: LegalStatus, t: TFunction }) => (
 		<div style={{textAlign: 'right'}}>
 
@@ -131,7 +131,7 @@ const SetMainStatus = ({
 }
 
 export default compose(
-	withI18n(),
+	withNamespaces(),
 	withLanguage,
 	connect(
 		state => ({ possibleStatus: possibleStatusSelector(state) }),

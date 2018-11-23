@@ -1,11 +1,11 @@
 import LangSwitcher from 'Components/LangSwitcher'
 import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import screenfull from 'screenfull'
 import { isIE } from '../../../utils'
 
-export default withI18n()(
+export default withNamespaces()(
 	class IframeFooter extends Component {
 		componentDidMount() {
 			screenfull.enabled && screenfull.onchange(() => this.forceUpdate())

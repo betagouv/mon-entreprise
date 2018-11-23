@@ -84,10 +84,10 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 	isApplicable === true
 		? formuleValue
 		: isApplicable === false
-			? 0
-			: formuleValue == 0
-				? 0
-				: null
+		? 0
+		: formuleValue == 0
+		? 0
+		: null
 
 export let treatRuleRoot = (rules, rule) => {
 	/*
@@ -116,11 +116,10 @@ export let treatRuleRoot = (rules, rule) => {
 				val(e['non applicable si']) === true
 					? false
 					: val(e['applicable si']) === false
-						? false
-						: anyNull([e['non applicable si'], e['applicable si']])
-							? null
-							: !val(e['non applicable si']) &&
-							  undefOrTrue(val(e['applicable si']))
+					? false
+					: anyNull([e['non applicable si'], e['applicable si']])
+					? null
+					: !val(e['non applicable si']) && undefOrTrue(val(e['applicable si']))
 			},
 			nodeValue = computeRuleValue(formuleValue, isApplicable)
 
@@ -134,11 +133,11 @@ export let treatRuleRoot = (rules, rule) => {
 				val(notApplicable) === true
 					? {}
 					: val(applicable) === false
-						? {}
-						: merge(
-								(notApplicable && notApplicable.missingVariables) || {},
-								(applicable && applicable.missingVariables) || {}
-						  ),
+					? {}
+					: merge(
+							(notApplicable && notApplicable.missingVariables) || {},
+							(applicable && applicable.missingVariables) || {}
+					  ),
 			collectInFormule = isApplicable !== false,
 			formMissing =
 				(collectInFormule && formule && formule.missingVariables) || {},
@@ -296,19 +295,18 @@ export let parseAll = flatRules => {
 	return map(treatOne, flatRules)
 }
 
-let evaluateControls = blocking => (parsedRules, situationGate) => {
+let evaluateControls = blocking => (cache, parsedRules, situationGate) => {
 	return chain(({ controls, dottedName }) =>
-		controls
-			?.filter(
-				({ level }) =>
-					blocking
-						? level === 'bloquant' && situationGate(dottedName) != undefined
-						: level !== 'bloquant'
+		(controls || [])
+			.filter(({ level }) =>
+				blocking
+					? level === 'bloquant' && situationGate(dottedName) != undefined
+					: level !== 'bloquant'
 			)
 			.map(control => ({
 				...control,
 				evaluated: evaluateNode(
-					{},
+					cache,
 					situationGate,
 					parsedRules,
 					control.testExpression
@@ -326,18 +324,35 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// These controls do not trigger the evaluation of variables of the system : they are input controls
 	// This is necessary because our evaluation implementation is not yet fast enough to not freeze slow mobile devices
 	// They could be implemented directly at the redux-form level, but they should also be triggered by the engine used as a library
-	let blockingInputControls = evaluateControls(true)(parsedRules, situationGate)
+	let blockingInputControls = evaluateControls(true)(
+		cache,
+		parsedRules,
+		situationGate
+	)
 	if (blockingInputControls.length)
 		return {
 			blockingInputControls
 		}
-	let nonBlockingControls = evaluateControls(false)(parsedRules, situationGate)
 
-	let parsedTargets = targetNames.map(t => findRule(parsedRules, t)),
-		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(t =>
-			evaluateNode(cache, situationGate, parsedRules, t)
+	let nonBlockingControls = evaluateControls(false)(
+		cache,
+		parsedRules,
+		situationGate
+	)
+
+	let parsedTargets = targetNames.map(t => {
+			let parsedTarget = findRule(parsedRules, t)
+			if (!parsedTarget)
+				throw new Error(
+					`L'objectif de calcul "${t}" ne semble pas  exister dans la base de règles`
+				)
+			return parsedTarget
+		}),
+		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(
+			t =>
+				cache[t.dottedName] || // This check exists because it is not done in treatRuleRoot's eval, while it is in treatVariable. This should be merged : we should probably call treatVariable here : targetNames could be expressions (hence with filters) TODO
+				evaluateNode(cache, situationGate, parsedRules, t)
 		)
-
 	return { targets, cache, controls: nonBlockingControls }
 }
 

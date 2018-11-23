@@ -1,18 +1,19 @@
+- nom: période
+  par défaut: mois
+  une possibilité: 
+    - mois
+    - année
+
+
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
   icônes: 🚴
-  formule: indemnité annuelle / 12
-  description: |
+  description: | 
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
 
     Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
   format: euros
-  références:
-    fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
-    fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
-
-- espace: contrat salarié . indemnité kilométrique vélo
-  nom: indemnité annuelle
+  période: année
   applicable si: indemnité vélo active
   formule:
     le minimum de:
@@ -20,10 +21,19 @@
           assiette: distance annuelle
           taux: 0.25
       - 200
-  format: euros
+  références: 
+    fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
+    fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
+  exemples: 
+    - nom: active
+      situation: 
+        indemnité vélo active: oui
+      valeur attendue: 200
 
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: distance annuelle
+  description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
+  période: année
   formule: 4 * 218
   note: 4 km par jour sur 218 jours.
 
@@ -49,6 +59,7 @@
     destinataire: OPCA
     dû par: employeur
     branche: formation
+  période: flexible
 
   non applicable si:
     une de ces conditions:
@@ -108,6 +119,7 @@
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie alors d'une indemnité compensatrice de congés payés versée par l'employeur.
+  période: mois
 
   non applicable si:
     une de ces conditions:
@@ -115,38 +127,30 @@
       - événement . poursuite du CDD en CDI
     # TODO Y a-t-il d'autres conditions ? Sinon supprimer la liste
 
-  # TODO aspect temporel
-  # L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
-
-  #TODO cette formule pourrait être clarifiée,
-  # probablement grâce à un vrai mécanisme de calcul temporel pour faire les conversions
   formule:
     le maximum de:
       - description: Méthode "du dixième"
-        note: Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
+        note: | 
+          Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci a accompli des heures supplémentaires.
+          > Une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
         multiplication:
-          assiette: salaire . brut de base + prime de fin de contrat
-          # une indemnité égale au dixième de la rémunération brute totale perçue par le salarié au cours de la période de référence.
-          # TODO ici nous prenons le salaire mensuel, la simulation est limitée à tout ramener au mois.
+          assiette: assiette mensuelle
           taux: 10%
-          facteur: congés non pris / jours de congés légaux # jours ouvrés, probablement le plus commun
+          facteur: proportion congés non pris
 
       - description: Méthode "maintien du salaire"
-        note: Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a bénéficié d’une augmentation de salaire.
+        note: |
+          Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a bénéficié d’une augmentation de salaire.
+          > Pour effectuer le calcul, l'employeur peut tenir compte soit :
+            - de l'horaire réel du mois,
+            - du nombre moyen de jours ouvrables (ou ouvrés),
+            - du nombre réel de jours ouvrables (ou ouvrés).
         référence: https://www.service-public.fr/particuliers/vosdroits/F33359
 
-        # Pour effectuer le calcul, l'employeur peut tenir compte :
-        #   soit de l'horaire réel du mois,
-        #   soit du nombre moyen de jours ouvrables (ou ouvrés),
-        #   soit du nombre réel de jours ouvrables (ou ouvrés).
         multiplication:
-          assiette: salaire . brut de base + prime de fin de contrat
-          # TODO /12 car dans les limites de la simulation actuelle on doit tout ramener au mois
-          # Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat
-          taux: congés non pris / durée contrat
-          # salaire journalier
-          # mensuel / nombre moyen de jours ouvrés par mois
-          facteur: 1 / 21
+          assiette: prime maintient de salaire
+          taux: 1 / durée contrat
+
 
   exemples:
     - nom: pas de congés non pris
@@ -174,6 +178,7 @@
       valeur attendue: 55.21
 
   note: |
+    L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
 
     À noter, la loi El Khomri modifie l'article L3141-12:
     - avant : Les congés peuvent être pris dès l'ouverture des droits [...]
@@ -185,8 +190,39 @@
     Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
     assiette de l'indemnité, circulaire drt 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
 
+
+- espace: contrat salarié . CDD . compensation pour congés non pris
+  nom: proportion congés non pris
+  formule: congés non pris / congés dus en jours ouvrés
+
+- espace: contrat salarié . CDD
+  nom: congés dus en jours ouvrés
+  unité: jours ouvré
+  formule: contrat salarié . congés dus par mois * durée contrat
+
+- espace: contrat salarié
+  nom: congés dus par mois 
+  unité: jours ouvré
+  formule: 25 / 12
+
+- espace: contrat salarié . CDD . compensation pour congés non pris
+  nom: prime maintient de salaire
+  formule: salaire journalier * congés non pris
+
+- espace: contrat salarié . CDD . compensation pour congés non pris
+  période: mois
+  nom: assiette mensuelle
+  formule: salaire . brut de base + prime de fin de contrat
+
+- espace: contrat salarié . CDD . compensation pour congés non pris
+  nom: salaire journalier
+  unité: jour ouvré
+  formule: assiette mensuelle / 21
+  notes: On retient 21 comme nombre de jours ouvrés moyens par mois
+
 - espace: contrat salarié . CDD
   nom: prime de fin de contrat
+  période: flexible
   indemnité:
     destinataire: salarié
 
@@ -248,6 +284,7 @@
 
 - espace: contrat salarié . CDD
   nom: majoration chômage
+  période: flexible
   cotisation:
     dû par: employeur
     type: majoration
@@ -313,7 +350,7 @@
     branche: accidents du travail / maladies professionnelles
     destinataire: URSSAF
     responsable: CARSAT
-
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -323,7 +360,6 @@
             alors: 1%
           - sinon: ATMP . taux collectif ATMP / 100
 
-   
 - espace: contrat salarié . ATMP
   nom: taux réduit 
   titre: taux réduit pour activité sans risque
@@ -591,14 +627,24 @@
 
 - espace: contrat salarié . CDD
   nom: congés non pris
-  titre: Congés non pris
-  question: Combien de jours ouvrés de congés ne seront pas pris ?
-  description: Combien de jours de congés ne pourront être pris par l'employé, du fait de la durée de son CDD. En jours ouvrés, par rapport aux 25 jours de congés légaux pour un contrat de douze mois.
+  question: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
+  description: | 
+    Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat. 
+    Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
   format: jours
   suggestions:
-    3 / 25: 3
-    10 / 25: 10
+    3 : 3
+    10: 10
   par défaut: 0
+  contrôles: 
+    - si: congés non pris > congés dus en jours ouvrés
+      message: Attention, un salarié acquiert 2.08 jours de congés ouvrés par mois.
+      niveau: avertissement
+      solution: 
+        cible: contrat salarié . CDD . durée contrat
+        texte: Définir la durée de contrat
+
+
 
 - espace: contrat salarié . CDD
   nom: contrat jeune vacances
@@ -610,6 +656,7 @@
 
 - espace: contrat salarié . CDD
   nom: indemnités salarié CDD
+  période: flexible 
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:
@@ -623,8 +670,8 @@
     Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux organismes sociaux, certaines compensations
     financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4.
 
-    Certaines sont versées en
-    fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
+    Certaines sont versées en fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
+  période: flexible 
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - indemnités salarié CDD
@@ -639,28 +686,6 @@
         prime de fin de contrat: 60.4
         compensation pour congés non pris: 39.6
       valeur attendue: 290
-
-# Cette variable est le point de départ du simulateur "surcout CDD" :-D
-- espace: contrat salarié . CDD
-  nom: surcoût CDD
-  simulateur:
-    objectifs:
-      - salaire . net
-      - coût du travail
-      - CDD . surcoût
-    titre: Simulateur CDD
-    sous-titre: Découvrir le surcoût employeur du CDD par rapport au CDI
-    introduction:
-      notes:
-        - icône: fa-handshake-o
-          texte: Vous avez embauché ou vous réfléchissez à l'embauche d'un salarié en CDD.
-          titre: Votre situation
-        - icône: fa-balance-scale
-          texte: Votre contrat ne peut donc avoir ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
-          titre: Votre obligation
-        # CIF, majoration chômage, indemnité de fin de contrat, indemnité compensatrice des congés payés
-    hypothèses:
-      contrat salarié . type de contrat: CDD
 
 - nom: contrat salarié
   description: |
@@ -713,45 +738,48 @@
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
+  période: flexible
   formule: rémunération . brut - indemnité kilométrique vélo
 
+
+- espace: contrat salarié
+  nom: salaire
+  
 - espace: contrat salarié . salaire
   nom: brut de base
   titre: Salaire brut de base
   résumé: Inscrit dans le contrat de travail
   type: salaire
-  question: Quel est le salaire de base mensuel ?
+  question: Quel est le salaire de base ?
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux partis.
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
+  période: flexible
   format: euros
   suggestions:
     salaire médian: 2300
     SMIC: 1500
   contrôles: 
-    - si: brut de base < 300
-      message: Entrez un salaire mensuel
+    - si: brut de base [mensuel] < 50
       niveau: bloquant
-    - si: brut de base < SMIC mensuel
+    - si: brut de base [mensuel] < SMIC [mensuel]
       niveau: avertissement
       solution:
         cible: contrat salarié . temps partiel
         texte: Est-ce un temps partiel ?
-    - si: brut de base > 10000
+    - si: brut de base [mensuel] > 10000
       niveau: information
       message: | 
-        Le salaire saisi est élevé. Pour rappel, le simulateur ne fonctionne qu'avec des salaires mensuels.
+        Le salaire saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
   formule:
     inversion:
-      question: Quel est le salaire mensuel ?
+      question: Quel est le salaire ?
       titre: salaire
       avec:
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
-
-
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -762,6 +790,7 @@
   description: >
     Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   format: euros
+  période: flexible
   formule:
     somme:
       - salaire . brut de base
@@ -771,6 +800,7 @@
   nom: brut
   titre: Rémunération brute
   format: euros
+  période: flexible
   formule: salaire . brut + avantages en nature . montant
 
 - espace: contrat salarié
@@ -779,6 +809,7 @@
     Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifique à l'entreprise, et fourni par des structure privées (mutuelle, assurance...).
     Ils sont soumis à l'impots sur le revenus.
   format: euros
+  période: flexible
   formule:
     somme:
       - prévoyance obligatoire cadre
@@ -786,6 +817,7 @@
 
 - espace: contrat salarié
   nom: avantages en nature
+  icônes: 🛏️🚗🥗📱
   titre: Avantages en nature
   description: >
     Les avantages en nature sont constitués par la fourniture par l’employeur à ses salariés d’un bien ou service. La mise à disposition peut être gratuite ou moyennant une participation du salarié inférieure à leur valeur réelle
@@ -799,8 +831,9 @@
   titre: Avantages en nature (montant)
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-  question: Quel est le montant mensuel des avantages en nature ?
-  applicable si: contrat salarié . avantages en nature
+  question: Quel est le montant des avantages en nature ?
+  applicable si: contrat salarié . avantages en nature 
+  période: flexible
   suggestions:
     nourriture: 80
     véhicule: 260
@@ -809,6 +842,7 @@
 
 - espace: contrat salarié
   nom: indemnités salarié
+  période: flexible
   format: euros
   formule:
     somme:
@@ -824,30 +858,30 @@
 - espace: contrat salarié
   nom: plafond sécurité sociale temps plein
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
-
-  #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
-  # type de période: mensuel
+  période: mois
   formule: 3311
   références:
     arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
 
 - espace: contrat salarié
   nom: plafond sécurité sociale
-  #TODO peut-être à déplacer ? Doit être accessible par d'autres types d'activité que contrat salarié
-  # type de période: mensuel
+  période: flexible
   formule: plafond sécurité sociale temps plein * quotité de travail
 
 - espace: contrat salarié
-  nom: SMIC mensuel temps plein
+  nom: SMIC temps plein
+  période: mois
   formule: 1498.47
 
 - espace: contrat salarié
-  nom: SMIC mensuel
-  formule: SMIC mensuel temps plein * quotité de travail
+  nom: SMIC
+  période: flexible
+  formule: SMIC temps plein * quotité de travail
 
 - espace: contrat salarié
   nom: cotisations salariales
   format: euros
+  période: flexible
   formule:
     somme:
       - vieillesse (salarié)
@@ -864,6 +898,7 @@
 
 - espace: contrat salarié
   nom: cotisations patronales
+  période: flexible
   format: euros
   formule:
     somme:
@@ -902,6 +937,7 @@
   titre: Rémunération nette de cotisations
   type: rémunération
   format: euros
+  période: flexible
   formule: rémunération . brut - cotisations salariales
 
 - espace: contrat salarié . rémunération
@@ -911,10 +947,12 @@
   format: euros
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
+  période: flexible
   formule: base - exonérations
 
 - espace: contrat salarié . rémunération . net imposable
   nom: base
+  période: flexible
   formule:
     somme:
       - rémunération . net de cotisations
@@ -924,16 +962,17 @@
 
 - espace: contrat salarié . rémunération . net imposable
   nom: exonérations
+  période: flexible
   formule:
     somme:
       - indemnité kilométrique vélo
 
 - espace: contrat salarié . salaire
   nom: net
-  titre: Salaire net
-  type: salaire
-  format: euros
-  question: Quel est le salaire net mensuel ?
+  titre: Salaire net 
+  type: salaire 
+  format: euros  
+  question: Quel est le salaire net ?
   résumé: Salaire net avant impôt
   description: |
     C'est le montant que le salarié toucherait à la fin du mois avant de payer l'impôt sur le revenu.
@@ -941,10 +980,10 @@
     Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la source).
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
+  période: flexible
   formule: rémunération . net de cotisations - avantages en nature . montant
-  contrôles:
-    - si: net < 200
-      message: Entrez un salaire mensuel
+  contrôles: 
+    - si: net [mensuel] < 30
       niveau: bloquant
 
 - espace: contrat salarié . salaire
@@ -954,6 +993,7 @@
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   format: euros
+  période: flexible
   description: |
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
 
@@ -966,14 +1006,14 @@
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
   formule: net - impôt . neutre
-  contrôles:
-    - si: net après impôt < 200
-      message: Entrez un salaire mensuel
+  contrôles: 
+    - si: net après impôt [mensuel] < 20
       niveau: bloquant
 
 - espace: impôt . neutre
   nom: barème Guadeloupe Réunion Martinique
   icônes: 🇬🇵🇷🇪 🇲🇶
+  période: mois
   formule:
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
@@ -1060,6 +1100,7 @@
 - espace: impôt . neutre
   nom: barème Guyane Mayotte
   icônes: 🇬🇾 🇾🇹
+  période: mois
   formule:
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
@@ -1145,6 +1186,7 @@
 
 - espace: impôt . neutre
   nom: barème métropolitain
+  période: mois
   formule:
     barème linéaire:
       assiette: contrat salarié . rémunération . net imposable
@@ -1235,6 +1277,7 @@
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
   format: euros
+  période: flexible
   formule:
     variations:
       - si:
@@ -1280,6 +1323,7 @@
 
 - espace: contrat salarié
   nom: coût du travail
+  période: flexible
   description: |
   formule: rémunération . total - aides employeur
   format: euros
@@ -1287,32 +1331,34 @@
 - espace: contrat salarié . rémunération
   nom: total
   titre: Total chargé
-  question: Quel est la rémunération mensuelle chargée ?
+  question: Quel est la rémunération chargée ?
   résumé: Dépensé par l'employeur
   type: salaire
   format: euros
+  période: flexible
   description: |
     C'est la rémunération brute, plus les cotisations patronales, moins les réductions de cotisations sociales.
 
-    C'est le total que l'employeur doit verser mensuellement pour employer un salarié.
+    C'est le total que l'employeur doit verser pour employer un salarié.
 
-    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme mensuellement en contrepartie du travail fourni.
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
 
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
   formule: rémunération . total sans réduction - réductions de cotisations
   contrôles:
-    - si: total < 400
-      message: Entrez un salaire mensuel
+    - si: total [mensuel] < 100
       niveau: bloquant
 
 - espace: contrat salarié
   nom: réductions de cotisations
+  période: flexible
   format: euros
   formule: réduction générale + exonération JEI
 
 - espace: contrat salarié . rémunération
   nom: total sans réduction
+  période: flexible
   titre: Rémunération totale sans réduction
   type: salaire
   formule:
@@ -1322,7 +1368,7 @@
 
 - espace: contrat salarié
   nom: coût d'embauche
-  résumé: Coût employeur mensuel - aides
+  résumé: Coût employeur - aides
   question: Quel est le coût d'embauche, toutes aides incluses ?
   description: |
 
@@ -1332,17 +1378,18 @@
     D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du salarié : je vois dans dans ton travail assez de valeur pour te payer ce montant.
 
   format: euros
+  période: flexible
   type: salaire
   formule: rémunération . total - aides employeur
-  contrôles:
-    - si: coût d'embauche < 400
-      message: Entrez un salaire mensuel
+  contrôles: 
+    - si: coût d'embauche [mensuel] < 100
       niveau: bloquant
 
 - espace: contrat salarié
   nom: aides employeur
   résumé: Pour l'employeur, différées dans le temps
   icônes: 🎁
+  période: flexible
   description: |
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
 
@@ -1354,29 +1401,7 @@
 
 - espace: contrat salarié
   nom: salaire
-  simulateur:
-    objectifs:
-      - salaire . net
-      - coût du travail
-    titre: Simulateur de coût d'embauche
-    sous-titre: Découvrir le coût d'embauche et le salaire réel
 
-- espace: contrat salarié
-  nom: jours de congés légaux
-  description: Jours ouvrés de congés acquis légalement par tout salarié pour l'année ou le contrat dans le cas d'un CDD.
-  formule:
-    multiplication:
-      facteur: 2.083
-      variations:
-        - si: type de contrat = 'CDD'
-          alors:
-            assiette: CDD . durée contrat
-        - si: type de contrat = 'CDI'
-          alors:
-            assiette: 12
-
-  références:
-    fiche: https://www.service-public.fr/particuliers/vosdroits/F2258
 
 - nom: entreprise
   description: |
@@ -1481,6 +1506,9 @@
     - si: heures par semaine < 24
       niveau: avertissement
       message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+    - si: heures par semaine > 35
+      niveau: avertissement
+      message: Le simulateur ne gère pas encore les heures supplémentaires.
 
 - espace: contrat salarié
   nom: quotité de travail
@@ -1492,6 +1520,7 @@
       - sinon: 1
 - espace: contrat salarié
   nom: CICE
+  période: flexible
   aide:
     type: avantage fiscal
     thème: aide bas salaires
@@ -1507,7 +1536,7 @@
   non applicable si:
     une de ces conditions:
       - assimilé salarié
-      - assiette cotisations sociales > plafond cice
+      - assiette cotisations sociales > plafond CICE
       - entreprise . association non lucrative
 
   formule:
@@ -1528,14 +1557,16 @@
       valeur attendue: 0
 
 - espace: contrat salarié
-  nom: plafond cice
-  formule: multiplicateur cice * SMIC mensuel
+  nom: plafond CICE
+  période: flexible
+  formule: multiplicateur CICE * SMIC 
 
 - espace: contrat salarié
-  nom: multiplicateur cice
+  nom: multiplicateur CICE
   formule: 2.5
 
 - espace: contrat salarié . CITS
+  période: flexible
   nom: non abattu
   formule:
     multiplication:
@@ -1543,17 +1574,11 @@
       taux: 4%
 
 - espace: contrat salarié . CITS
-  nom: abattement mensuel par salarié
-  formule:
-    multiplication:
-      assiette: entreprise . taxe sur les salaires . abattement associations
-      taux: 1 / entreprise . effectif
-      facteur: 1 / 12
+  nom: abattement par salarié
+  période: flexible
+  formule: entreprise . taxe sur les salaires . abattement associations / entreprise . effectif
   note: |
-    Cette variable révèle deux lacunes de notre modélisation :
-      - on ne peut pas spécifier plusieurs salariés à l'entreprise, et donc calculer correctement le CITS. On fait donc comme si l'unique salarié simulé était le salarié type, multiplié.
-      - on ne gère pas la conversion entre les périodes temporelles.
-    On les résoud en exploitant à tort les capacités du mécanisme multiplication.
+    Cette variable révèle une lacune de notre modélisation : on ne peut pas spécifier plusieurs salariés à l'entreprise, et donc calculer correctement le CITS. On fait donc comme si l'unique salarié simulé était le salarié type, multiplié.
 
 - espace: contrat salarié
   nom: CITS
@@ -1573,10 +1598,11 @@
 
   note: Le CITS est un crédit sur la taxe sur les salaires. Celle-ci est abattue de ~20k. Le CITS est lui-même abattu de ~20k ! Quel intérêt, pourquoi ne pas simplement supprimer l'abattement initial ? Parce que dans certains cas, une entreprise d'un salarié au SMIC, 4% des rémunérations annuelles < abattement de 20k. Donc le crédit est nul. Donc la taxe sur les salaires reste abattue comme initialement prévu.
 
+  période: flexible
   formule:
     allègement:
       assiette: non abattu
-      abattement: abattement mensuel par salarié
+      abattement: abattement par salarié
 
   exemples:
     - nom: Petite association, non applicable car taxe sur les salaires nulle (car abattue)
@@ -1604,7 +1630,8 @@
 
 - espace: contrat salarié . CITS
   nom: plafond
-  formule: multiplicateur * SMIC mensuel
+  période: flexible
+  formule: multiplicateur * SMIC 
 
 - espace: contrat salarié . CITS
   nom: multiplicateur
@@ -1631,7 +1658,7 @@
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
 
   applicable si: statut JEI
-
+  période: mois
   formule:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
     # il faut fournir un mécanisme "exonération" capable de recalculer une règle en introduisant un plafond
@@ -1662,6 +1689,8 @@
       - assiette cotisations sociales > plafond réduction générale
       - statut JEI
 
+  période: flexible
+
   formule:
     le minimum de:
       - assiette réduction générale
@@ -1679,14 +1708,17 @@
 
 - espace: contrat salarié
   nom: réduction générale constante
+  période: flexible
   formule: coefficient réduction générale * plafond réduction générale
 
 - espace: contrat salarié
   nom: réduction générale variable
+  période: flexible
   formule: coefficient réduction générale * assiette cotisations sociales
 
 - espace: contrat salarié
   nom: coefficient réduction générale
+  période: flexible
   formule:
     multiplication:
       # TODO - encore obtenu algébriquement mais sans signification
@@ -1701,6 +1733,7 @@
 
 - espace: contrat salarié
   nom: assiette réduction générale
+  période: flexible
   formule:
     somme:
       - allocations familiales
@@ -1711,6 +1744,7 @@
 
 - espace: contrat salarié
   nom: assiette ATMP réduction générale
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -1721,8 +1755,8 @@
 
 - espace: contrat salarié
   nom: plafond réduction générale
-  # TODO: calcul du SMIC proratisé
-  formule: multiplicateur réduction générale * SMIC mensuel
+  période: flexible
+  formule: multiplicateur réduction générale * SMIC 
 
 - espace: contrat salarié
   nom: multiplicateur réduction générale
@@ -1730,6 +1764,7 @@
 
 - espace: contrat salarié
   nom: AGFF
+  période: flexible
   cotisation:
     branche: retraite
     type de retraite: complémentaire
@@ -1804,7 +1839,7 @@
     ont la garantie de les obtenir en contrepartie d'une cotisation forfaitaire.
 
   applicable si: statut cadre
-
+  période: mois
   formule:
     complément:
       composantes:
@@ -1837,6 +1872,7 @@
     Cotisation de retraite complémentaire cadre. Complète le régime ARRCO, gérée par l'AGIRC (Association Générale des Institutions de Retraite des Cadres)
 
   applicable si: statut cadre
+  période: flexible
   formule:
     barème:
       assiette: assiette cotisations sociales
@@ -1851,17 +1887,6 @@
               à: 8
               taux:
                 12.75%
-                # 2016: 12.75%
-                # 2015: 12.75%
-                # 2014: 12.68%
-                # 2006: 12.6%
-                # 1999: 12.5%
-                # 1998: 11.875%
-                # 1997: 11.25%
-                # 1996: 10.625%
-                # 1995: 10.%
-                # 1994: 8.47%
-                # 1993: 7.02%
             - au-dessus de: 8
               taux: 0%
 
@@ -1874,17 +1899,6 @@
               à: 8
               taux:
                 7.8%
-                # 2016: 7.8%
-                # 2015: 7.8%
-                # 2014: 7.75%
-                # 2006: 7.7%
-                # 1999: 7.5%
-                # 1998: 6.875%
-                # 1997: 6.25%
-                # 1996: 5.625%
-                # 1995: 5%
-                # 1994: 3.63%
-                # 1993-07: 2.34%
             - au-dessus de: 8
               taux: 0%
 
@@ -1894,6 +1908,7 @@
   références:
     calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
     garantie minimale de points: http://www.journaldunet.com/management/pratique/primes-et-avantages/5079/gmp-2016-la-garantie-minimale-de-points-calcul-et-montant.html
+
 - espace: contrat salarié
   nom: AGS
   description: Cotisation au Régime de Garantie des Salaires
@@ -1907,6 +1922,7 @@
 
   #  non applicable si: assimilé salarié
 
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -1914,6 +1930,7 @@
       taux: 0.15%
 - espace: contrat salarié
   nom: allocations familiales
+  période: flexible
   cotisation:
     dû par: employeur
     branche: famille
@@ -1924,6 +1941,7 @@
 
 - espace: contrat salarié
   nom: cotisation allocations familiales
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -1937,6 +1955,7 @@
       - assiette cotisations sociales < plafond réduction allocations familiales
       - ≠ statut JEI
 
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -1945,10 +1964,9 @@
 - espace: contrat salarié
   nom: plafond réduction allocations familiales
   titre: Plafond de la réduction des allocations familiales
-  formule: SMIC mensuel * 3.5
+  période: flexible
+  formule: SMIC * 3.5
 
-# TODO - intégrer l'éligibilité à la réduction générale
-# TODO - vérifier si la réduction doit être portée à part sur la fiche de paie
 - espace: contrat salarié
   nom: APEC
   cotisation:
@@ -1963,6 +1981,7 @@
 
   applicable si: statut cadre
 
+  période: flexible
   formule:
     barème:
       assiette: assiette cotisations sociales
@@ -1994,6 +2013,7 @@
   références:
     calcul des cotisations: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
+  période: flexible
   formule:
     barème:
       assiette: assiette cotisations sociales
@@ -2051,6 +2071,7 @@
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
 
   non applicable si: assimilé salarié
+  période: flexible
 
   formule:
     multiplication:
@@ -2084,6 +2105,7 @@
     branche: santé
   références:
     Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
+  période: flexible
   formule:
     multiplication:
       assiette: forfait complémentaire santé
@@ -2104,6 +2126,8 @@
 - espace: contrat salarié
   nom: forfait complémentaire santé
   titre: Forfait de complémentaire santé entreprise
+  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
+  période: flexible
   description: |
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
@@ -2115,7 +2139,7 @@
         alors: en alsace moselle
       - sinon: en france
   contrôles: 
-    - si: forfait complémentaire santé < 15
+    - si: forfait complémentaire santé [mensuel] < 15
       niveau: avertissement
       message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
@@ -2128,6 +2152,7 @@
     Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70% du prix moyen en France.
   références: 
     étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
+  période: mois
   format: euros
   par défaut: 30
   suggestions:
@@ -2153,6 +2178,7 @@
   nom: en france
   titre: forfait complémentaire santé en France
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
+  période: mois
   format: euros
   par défaut: 40
   suggestions:
@@ -2173,6 +2199,7 @@
     - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
 
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2190,6 +2217,7 @@
     calcul: http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 
   applicable si: statut cadre
+  période: flexible
 
   formule:
     multiplication:
@@ -2207,6 +2235,7 @@
 - espace: contrat salarié
   note: Cette assiette est complexe, cette version n'est qu'une simplification.
   nom: assiette CSG
+  période: flexible
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
@@ -2218,6 +2247,7 @@
 
 - espace: contrat salarié
   nom: assiette CSG abattue
+  période: flexible
   formule:
     barème:
       assiette: assiette cotisations sociales
@@ -2237,6 +2267,7 @@
   description: |
     Contribution sociale généralisée.
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
+  période: flexible
   formule:
     multiplication:
       assiette: assiette CSG
@@ -2267,6 +2298,7 @@
     impôt: oui
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale
+  période: flexible
   formule:
     multiplication:
       assiette: assiette CSG
@@ -2282,6 +2314,7 @@
     branche: logement
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2307,6 +2340,7 @@
     branche: formation
     # TODO majoration pour les entreprises de travail temporaire
 
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2325,6 +2359,8 @@
   références:
     fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
+
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2364,8 +2400,9 @@
     L'employeur a l'obligation d'organiser un service de santé au travail, en adhérant à un service interentreprises, ou en créant un service interne.
 
     Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est pas défini par la loi, mais il doit être proportionnel au nombre d'employés. Nous avons choisi un montant indicatif (voir les références) ajusté avec l'inflation depuis 2007.
+  période: année
+  formule: 80
 
-  formule: 80 / 12
 - espace: contrat salarié
   nom: participation effort de construction
   titre: Participation à l'effort de construction
@@ -2382,15 +2419,16 @@
     L'employeur a le choix entre verser cet impôt à un "organisme du 1 % patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
 
   applicable si: entreprise . effectif >= 20
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
       taux: 0.45%
 
   # TODO cas agricole, et autres statuts spécifiques
-  # TODO décalage d'un an : salaire N-1 pour paiement en N
 # TODO: cette contribution est un minimum légal (méconnu semble-t-il), il faudrait pouvoir
 # indiquer le taux appliqué par l'entreprise
+#
 - espace: contrat salarié
   nom: prévoyance obligatoire cadre
   titre: Prévoyance obligatoire pour les cadres
@@ -2400,6 +2438,7 @@
   références:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
   applicable si: statut cadre
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2424,6 +2463,7 @@
   non applicable si: entreprise . association non lucrative
   # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
   # -> pas de taxe ni contribution d'apprentissage
+  période: flexible
   formule:
     somme:
       - taxe d'apprentissage de base
@@ -2431,6 +2471,7 @@
 
 - espace: contrat salarié
   nom: taxe d'apprentissage de base
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2448,6 +2489,7 @@
       - entreprise . effectif < 250
       - entreprise . ratio alternants >= 5%
 
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2480,7 +2522,6 @@
 - espace: contrat salarié . taxe d'apprentissage
   nom: csa au taux majoré
   titre: CSA au taux majoré
-
   formule:
     toutes ces conditions:
       - entreprise . effectif >= 2000
@@ -2488,6 +2529,7 @@
 
 - espace: contrat salarié . taxe sur les salaires
   nom: assiette
+  période: flexible
   formule:
     somme:
       - assiette cotisations sociales
@@ -2498,15 +2540,14 @@
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
 - espace: contrat salarié . taxe sur les salaires
-  nom: barème annuel
+  nom: barème
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
+  période: année
   formule:
     barème:
-      # TODO - les barèmes étant exprimés en base annuelle, et également à cause des limitations
-      # de la grammaire, on a recours à cette formulation trop compliquée; à simplifier
-      assiette: assiette * 12
+      assiette: assiette
       tranches:
         - en-dessous de: 7799
           taux: 4.25%
@@ -2522,19 +2563,22 @@
       valeur attendue: 2627.97
 
 - espace: entreprise . taxe sur les salaires
-  nom: barème annuel
-  formule: contrat salarié . taxe sur les salaires . barème annuel * effectif
+  nom: barème 
+  période: flexible
+  formule:
+    contrat salarié . taxe sur les salaires . barème * effectif
 
 - espace: entreprise . taxe sur les salaires
   nom: abattement associations
+  période: année
   formule: 20507
 
 - espace: entreprise
   nom: taxe sur les salaires
-
+  période: année
   formule:
     allègement:
-      assiette: barème annuel
+      assiette: barème
       franchise: 1200
       décote:
         plafond: 2040
@@ -2545,19 +2589,16 @@
     Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
     Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
 
-- espace: contrat salarié . taxe sur les salaires
-  nom: montant annuel
-  formule: entreprise . taxe sur les salaires / entreprise . effectif
 
 - espace: contrat salarié
   nom: taxe sur les salaires
   taxe:
     dû par: employeur
-
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
   applicable si: entreprise . association non lucrative
 
-  formule: montant annuel / 12
+  période: flexible
+  formule: entreprise . taxe sur les salaires / entreprise . effectif
 
   note: Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
 
@@ -2590,6 +2631,7 @@
   cotisation:
     branche: transport
     dû par: employeur
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2619,6 +2661,7 @@
     destinataire: CNAV
     # CTP: 100
   description: Cotisation au régime de retraite de base des salariés.
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2663,6 +2706,7 @@
     Fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
     Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
+  période: flexible
   formule:
     multiplication:
       assiette: forfait social . assiette taux huit
@@ -2675,6 +2719,7 @@
   références:
     Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
   non applicable si: entreprise . effectif < 11
+  période: flexible
   formule:
     somme:
       - complémentaire santé (employeur)
@@ -2688,13 +2733,15 @@
 
 - nom: revenu abattu
   espace: impôt
+  période: flexible
   formule:
     allègement:
-      assiette: contrat salarié . rémunération . net imposable * 12
+      assiette: contrat salarié . rémunération . net imposable
       abattement: 10%
 
 - nom: impôt sur le revenu
   espace: impôt
+  période: année
   formule:
     barème:
       assiette: revenu abattu
@@ -2715,6 +2762,7 @@
 
 - nom: impôt sur le revenu à payer
   espace: impôt
+  période: année
   formule:
     allègement:
       assiette: impôt sur le revenu

@@ -1,0 +1,34 @@
+#PeriodSwitch {
+	margin: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#PeriodSwitch label {
+	margin: 0 0.4em;
+	color: var(--colour);
+}
+
+#PeriodSwitch input[type='radio'] {
+	display: none;
+}
+
+input[type='radio'] + span {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin: 0 0.3em;
+	vertical-align: middle;
+	border-radius: 20px;
+	cursor: pointer;
+	box-shadow: 0 0 0px 1px rgb(41, 117, 209);
+}
+
+input[type='radio']:checked + span {
+	background: var(--colour);
+	border: 4px solid white;
+}
+input[type='radio']:checked ~ .radioText {
+	font-weight: 500;
+}

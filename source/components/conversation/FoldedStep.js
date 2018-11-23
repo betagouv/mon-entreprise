@@ -1,7 +1,7 @@
 import { findRuleByDottedName } from 'Engine/rules'
 import { compose } from 'ramda'
 import React from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import {
 	flatRulesSelector,
@@ -11,7 +11,7 @@ import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 
 export default compose(
-	withI18n(),
+	withNamespaces(),
 	connect(
 		state => ({
 			flatRules: flatRulesSelector(state),

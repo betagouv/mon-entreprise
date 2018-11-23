@@ -63,6 +63,20 @@ describe('rule checks', function() {
 		)
 		expect(rulesNeedingDefault).to.be.empty
 	})
+	it('rules with a period should not have a flexible period', function() {
+		let problems = rules.filter(
+			({ defaultValue, période }) => période === 'flexible' && defaultValue
+		)
+
+		problems.map(({ dottedName }) =>
+			console.log(
+				'La valeur règle ',
+				dottedName,
+				" a une période flexible et une valeur par défaut. C'est un problème, car on ne sait pas pour quelle période ce défaut est défini. "
+			)
+		)
+		expect(problems).to.be.empty
+	})
 })
 
 it('rules with a formula should not have defaults', function() {

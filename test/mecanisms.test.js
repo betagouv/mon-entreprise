@@ -10,7 +10,7 @@ import { analyse, parseAll } from '../source/engine/traverse'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
 import * as R from 'ramda'
-import { isFloat } from '../source/utils'
+import { isNumeric } from '../source/utils'
 
 describe('Mécanismes', () =>
 	testSuites.map(suite =>
@@ -45,8 +45,7 @@ describe('Mécanismes', () =>
 										missing = collectMissingVariables(analysis.targets),
 										target = analysis.targets[0]
 
-									// console.log('JSON.stringify(analysis', JSON.stringify(analysis))
-									if (isFloat(valeur)) {
+									if (isNumeric(valeur)) {
 										expect(target.nodeValue).to.be.closeTo(valeur, 0.001)
 									} else if (valeur !== undefined) {
 										expect(target).to.have.property('nodeValue', valeur)

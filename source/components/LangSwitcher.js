@@ -1,7 +1,7 @@
 import { compose } from 'ramda'
 import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
@@ -12,7 +12,7 @@ const languageCodeToEmoji = {
 
 export default compose(
 	withRouter,
-	withI18n(),
+	withNamespaces(),
 	connect(
 		null,
 		dispatch => ({

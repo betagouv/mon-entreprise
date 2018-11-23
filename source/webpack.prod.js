@@ -39,7 +39,7 @@ const prerenderConfig = () => ({
 // Replace style-loader with MiniCssExtractPlugin.loader
 common.module.rules
 	.find(rule => rule.test.test('a.css'))
-	.use.find(loader => loader.loader === 'style-loader').loader =
+	.use.find(loader => (loader || loader.loader) === 'style-loader').loader =
 	MiniCssExtractPlugin.loader
 module.exports = {
 	...common,
@@ -81,7 +81,7 @@ module.exports = {
 				/^\/stats/,
 				/^\/robots\.txt$/,
 				/^\/sitemap\.infrance\.fr\.txt$/,
-				/^\/sitemap\.infrance\.en\.txt$/,
+				/^\/sitemap\.infrance\.en\.txt$/
 			]
 		}),
 		new PrerenderSPAPlugin({

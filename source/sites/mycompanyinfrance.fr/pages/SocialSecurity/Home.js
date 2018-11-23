@@ -6,7 +6,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import withLanguage from 'Components/utils/withLanguage'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import * as Animate from 'Ui/animate'
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
@@ -89,6 +89,6 @@ class SocialSecurity extends Component<Props, {}> {
 }
 
 export default compose(
-	withI18n(),
+	withNamespaces(),
 	withLanguage
 )(SocialSecurity)

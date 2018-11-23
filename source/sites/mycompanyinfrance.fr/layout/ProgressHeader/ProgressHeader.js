@@ -3,7 +3,7 @@
 import { React, T } from 'Components'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
 import selectors from 'Selectors/progressSelectors'
@@ -87,5 +87,5 @@ export default compose(
 		selectors,
 		{}
 	),
-	withI18n()
+	withNamespaces()
 )(StepsHeader)

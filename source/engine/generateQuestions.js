@@ -151,7 +151,8 @@ export let getInputComponent = rules => dottedName => {
 			{...{
 				...commonProps,
 				valueType: formValueTypes[rule.format],
-				suggestions: rule.suggestions
+				suggestions: rule.suggestions,
+				rulePeriod: rule.période
 			}}
 		/>
 	)

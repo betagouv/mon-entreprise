@@ -5,7 +5,7 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -22,15 +22,17 @@ import Conversation from './conversation/Conversation'
 import Distribution from './Distribution'
 import PageFeedback from './Feedback/PageFeedback'
 import PaySlip from './PaySlip'
+import PeriodSwitch from './PeriodSwitch'
 import QuickLink from './QuickLink'
 import ResultView from './ResultView'
 import './Simu.css'
 import TargetSelection from './TargetSelection'
+import { formValueSelector } from 'redux-form'
 
 export default compose(
 	withRouter,
 	withColours,
-	withI18n(), // Triggers rerender when the language changes
+	withNamespaces(), // Triggers rerender when the language changes
 	connect(
 		state => ({
 			blockingInputControls: blockingInputControlsSelector(state),
@@ -38,7 +40,8 @@ export default compose(
 			validInputEntered: validInputEnteredSelector(state),
 			arePreviousAnswers: state.conversationSteps.foldedSteps.length !== 0,
 			nextSteps: state.conversationStarted && nextStepsSelector(state),
-			userInput: noUserInputSelector(state)
+			userInput: noUserInputSelector(state),
+			period: formValueSelector('conversation')(state, 'période')
 		}),
 		{
 			startConversation
@@ -61,7 +64,8 @@ export default compose(
 				displayHiringProcedures,
 				match,
 				validInputEntered,
-				location
+				location,
+				period
 			} = this.props
 			const displayConversation = conversationStarted && !blockingInputControls
 			const simulationCompleted =
@@ -146,6 +150,7 @@ export default compose(
 							</>
 						)}
 						<TargetSelection colours={colours} />
+						<PeriodSwitch />
 						{location.pathname.endsWith('/simulation') && (
 							<>
 								{conversationStarted && (
@@ -192,7 +197,7 @@ export default compose(
 											<strong> première estimation</strong> sur la base d'un
 											contrat générique. La législation française prévoit une
 											multitude de cas particuliers et de règles spécifiques qui
-											modifient considérablement les montant de l'embauche.
+											modifient considérablement les montants de l'embauche.
 										</Trans>
 									</p>
 									<p style={{ textAlign: 'center' }}>
@@ -203,7 +208,11 @@ export default compose(
 								</>
 							)}
 							<h2>
-								<Trans>Fiche de paie</Trans>
+								<Trans>
+									{period === 'mois'
+										? 'Fiche de paie mensuelle'
+										: 'Détail annuel des cotisations'}
+								</Trans>
 							</h2>
 							<PaySlip />
 						</Animate.fromBottom>

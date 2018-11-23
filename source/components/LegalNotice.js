@@ -1,9 +1,9 @@
 import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { Component } from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 
-export const LegalNoticeContent = withI18n()(() => (
+export const LegalNoticeContent = withNamespaces()(() => (
 	<>
 		<h1>
 			<Trans i18nKey="legalNotice.title">Mentions légales</Trans>

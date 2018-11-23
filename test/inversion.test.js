@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
-import yaml from 'js-yaml'
+import { safeLoad } from 'js-yaml'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
 import { enrichRule, rules as realRules } from '../source/engine/rules'
 import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
@@ -20,7 +20,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
       `,
-			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			analysis = analyse(rules, 'net')(stateSelector)
 
 		expect(analysis.targets[0].nodeValue).to.be.closeTo(1771, 0.001)
@@ -44,7 +44,7 @@ describe('inversions', () => {
               avec:
                 - net
       `,
-			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			analysis = analyse(rules, 'brut')(stateSelector)
 
 		expect(analysis.targets[0].nodeValue).to.be.closeTo(
@@ -77,7 +77,7 @@ describe('inversions', () => {
           formule: 67 + brut
 
       `,
-			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			stateSelector = () => null,
 			analysis = analyse(rules, 'brut')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
@@ -126,7 +126,7 @@ describe('inversions', () => {
                 - sinon:
                     taux: 70%
       `,
-			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			stateSelector = name => ({ net: 2000 }[name]),
 			analysis = analyse(rules, 'brut')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
@@ -169,7 +169,7 @@ describe('inversions', () => {
           formule: 67 + brut
 
       `,
-			rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			stateSelector = name => ({ net: 2000, cadre: 'oui' }[name]),
 			analysis = analyse(rules, 'total')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
@@ -210,7 +210,7 @@ it('complex inversion with composantes', () => {
               - net
               - total
     `,
-		rules = parseAll(yaml.safeLoad(rawRules).map(enrichRule)),
+		rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 		stateSelector = name => ({ net: 2000 }[name]),
 		analysis = analyse(rules, 'total')(stateSelector),
 		missing = collectMissingVariables(analysis.targets)

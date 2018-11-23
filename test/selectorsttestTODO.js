@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
-import yaml from 'js-yaml'
+import { safeLoad } from 'js-yaml'
 import { enrichRule } from '../source/engine/rules'
 import reduceSteps from '../source/reducers/reduceSteps'
 
@@ -108,7 +108,7 @@ describe('fold', function() {
         - nom: cadre
           par défaut: non
       `,
-			rules = yaml.safeLoad(rawRules).map(enrichRule),
+			rules = safeLoad(rawRules).map(enrichRule),
 			reducer = reduceSteps(rules, stateSelector)
 
 		var step1 = reducer(

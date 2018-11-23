@@ -27,7 +27,7 @@ import { Node } from './mecanismViews/common'
 import {
 	treatVariable,
 	treatNegatedVariable,
-	treatFilteredVariable
+	treatVariableTransforms
 } from './treatVariable'
 import { treat } from './traverse'
 import knownMecanisms from './known-mecanisms.yaml'
@@ -55,7 +55,7 @@ let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 export let treatString = (rules, rule) => rawNode => {
 	/* On a affaire à un string, donc à une expression infixe.
 			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
-			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel (TODO)), CalcExpression ou Comparison.
+			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel), CalcExpression ou Comparison.
 			Cet objet est alors rebalancé à 'treat'.
 			*/
 
@@ -90,13 +90,7 @@ export let treatString = (rules, rule) => rawNode => {
 		)
 
 	if (parseResult.category == 'variable')
-		return treatVariable(rules, rule)(parseResult)
-	if (parseResult.category == 'filteredVariable') {
-		return treatFilteredVariable(rules, rule)(
-			parseResult.filter,
-			parseResult.variable
-		)
-	}
+		return treatVariableTransforms(rules, rule)(parseResult)
 	if (parseResult.category == 'negatedVariable')
 		return treatNegatedVariable(
 			treatVariable(rules, rule)(parseResult.variable)
@@ -156,17 +150,11 @@ export let treatString = (rules, rule) => rawNode => {
 			return rewriteNode(node, nodeValue, explanation, missingVariables)
 		}
 
-		let treatFilteredVariableClosure = parseResult =>
-			treatFilteredVariable(rules, rule)(
-				parseResult.filter,
-				parseResult.variable
-			)
 		let explanation = parseResult.explanation.map(
 				cond([
-					[propEq('category', 'variable'), treatVariable(rules, rule)],
 					[
-						propEq('category', 'filteredVariable'),
-						treatFilteredVariableClosure
+						propEq('category', 'variable'),
+						treatVariableTransforms(rules, rule)
 					],
 					[
 						propEq('category', 'value'),
@@ -241,7 +229,7 @@ export let treatOther = rawNode => {
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	)
 }
-export let treatObject = (rules, rule) => rawNode => {
+export let treatObject = (rules, rule, treatOptions) => rawNode => {
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 	if (mecanisms.length != 1) {
@@ -280,5 +268,5 @@ export let treatObject = (rules, rule) => rawNode => {
 		},
 		action = propOr(mecanismError, k, dispatch)
 
-	return action(treat(rules, rule), k, v)
+	return action(treat(rules, rule, treatOptions), k, v)
 }

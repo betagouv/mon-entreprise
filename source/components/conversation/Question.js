@@ -2,7 +2,7 @@ import HoverDecorator from 'Components/utils/HoverDecorator'
 import withColours from 'Components/utils/withColours'
 import { compose, is } from 'ramda'
 import React, { Component } from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
@@ -29,7 +29,7 @@ import { answer, answered } from './userAnswerButtonStyle'
 // dont Question est un example
 export default compose(
 	FormDecorator('question'),
-	withI18n(),
+	withNamespaces(),
 	withColours
 )(
 	class Question extends Component {
@@ -145,7 +145,7 @@ let RadioLabel = props => (
 
 const RadioLabelContent = compose(
 	HoverDecorator,
-	withI18n(),
+	withNamespaces(),
 	withColours
 )(
 	class RadioLabelContent extends Component {

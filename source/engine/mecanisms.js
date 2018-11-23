@@ -118,19 +118,17 @@ let devariateExplanation = (recurse, mecanismKey, v) => {
 export let mecanismVariations = (recurse, k, v, devariate) => {
 	let explanation = devariate
 		? devariateExplanation(recurse, k, v)
-		: v.map(
-				({ si, alors, sinon }) =>
-					sinon !== undefined
-						? { consequence: recurse(sinon), condition: undefined }
-						: { consequence: recurse(alors), condition: recurse(si) }
+		: v.map(({ si, alors, sinon }) =>
+				sinon !== undefined
+					? { consequence: recurse(sinon), condition: undefined }
+					: { consequence: recurse(alors), condition: recurse(si) }
 		  )
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateVariation = map(
-				prop =>
-					prop === undefined
-						? undefined
-						: evaluateNode(cache, situationGate, parsedRules, prop)
+		let evaluateVariation = map(prop =>
+				prop === undefined
+					? undefined
+					: evaluateNode(cache, situationGate, parsedRules, prop)
 			),
 			evaluatedExplanation = map(evaluateVariation, node.explanation),
 			// mark the satisfied variation if any in the explanation
@@ -139,12 +137,12 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 					resolved
 						? [true, [...result, variation]]
 						: variation.condition == undefined
-							? [true, [...result, { ...variation, satisfied: true }]] // We've reached the eventual defaut case
-							: variation.condition.nodeValue === null
-								? [true, [...result, variation]] // one case has missing variables => we can't go further
-								: variation.condition.nodeValue === true
-									? [true, [...result, { ...variation, satisfied: true }]]
-									: [false, [...result, variation]],
+						? [true, [...result, { ...variation, satisfied: true }]] // We've reached the eventual defaut case
+						: variation.condition.nodeValue === null
+						? [true, [...result, variation]] // one case has missing variables => we can't go further
+						: variation.condition.nodeValue === true
+						? [true, [...result, { ...variation, satisfied: true }]]
+						: [false, [...result, variation]],
 				[false, []]
 			)(evaluatedExplanation),
 			satisfiedVariation = resolvedExplanation.find(v => v.satisfied),
@@ -207,8 +205,8 @@ export let mecanismOneOf = (recurse, k, v) => {
 			nodeValue = any(equals(true), values)
 				? true
 				: any(equals(null), values)
-					? null
-					: false,
+				? null
+				: false,
 			// Unlike most other array merges of missing variables this is a "flat" merge
 			// because "one of these conditions" tend to be several tests of the same variable
 			// (e.g. contract type is one of x, y, z)
@@ -258,8 +256,8 @@ export let mecanismAllOf = (recurse, k, v) => {
 			nodeValue = any(equals(false), values)
 				? false // court-circuit
 				: any(equals(null), values)
-					? null
-					: true,
+				? null
+				: true,
 			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
@@ -351,10 +349,10 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				isEmpty(nonFalsyTerms)
 					? 0
 					: // c'est un 'null', on renvoie null car des variables sont manquantes
-					  getFirst('condValue') == null
-						? null
-						: // c'est un true, on renvoie la valeur de la conséquence
-						  getFirst('nodeValue'),
+					getFirst('condValue') == null
+					? null
+					: // c'est un true, on renvoie la valeur de la conséquence
+					  getFirst('nodeValue'),
 			choice = find(node => node.condValue, explanation),
 			missingVariables = choice
 				? choice.missingVariables
@@ -448,14 +446,14 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		return attempt
 	}
 
-	let tolerancePercentage = 0.00001,
+	let tolerance = 0.1,
 		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
 		nodeValue = uniroot(
 			x => fx(x).nodeValue - fixedObjectiveValue,
 			0,
 			1000000000,
-			tolerancePercentage * fixedObjectiveValue,
-			100
+			tolerance,
+			10
 		)
 
 	return {
@@ -476,9 +474,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
-
 		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
-
 		// TODO - we need this so that ResultsGrid will work, but it's
 		// just not right
 		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
@@ -546,15 +542,15 @@ export let mecanismReduction = (recurse, k, v) => {
 			val(franchise) && v_assiette < val(franchise)
 				? 0
 				: décote
-					? do {
-							let plafond = val(décote.plafond),
-								taux = val(décote.taux)
+				? do {
+						let plafond = val(décote.plafond),
+							taux = val(décote.taux)
 
-							v_assiette > plafond
-								? v_assiette
-								: max(0, (1 + taux) * v_assiette - taux * plafond)
-					  }
-					: v_assiette
+						v_assiette > plafond
+							? v_assiette
+							: max(0, (1 + taux) * v_assiette - taux * plafond)
+				  }
+				: v_assiette
 
 		return abattement
 			? val(abattement) == null
@@ -562,11 +558,11 @@ export let mecanismReduction = (recurse, k, v) => {
 					? 0
 					: null
 				: abattement.category === 'percentage'
-					? max(
-							0,
-							montantFranchiséDécoté - val(abattement) * montantFranchiséDécoté
-					  )
-					: max(0, montantFranchiséDécoté - val(abattement))
+				? max(
+						0,
+						montantFranchiséDécoté - val(abattement) * montantFranchiséDécoté
+				  )
+				: max(0, montantFranchiséDécoté - val(abattement))
 			: montantFranchiséDécoté
 	}
 
@@ -613,8 +609,8 @@ export let mecanismProduct = (recurse, k, v) => {
 			val(facteur) === 0
 			? 0
 			: anyNull([taux, assiette, facteur, plafond])
-				? null
-				: mult(val(assiette), val(taux), val(facteur), val(plafond))
+			? null
+			: mult(val(assiette), val(taux), val(facteur), val(plafond))
 	}
 
 	let explanation = parseObject(recurse, objectShape, v),
@@ -643,7 +639,7 @@ export let mecanismProduct = (recurse, k, v) => {
 						</li>
 					)}
 					{(explanation.facteur.nodeValue != 1 ||
-						explanation.taux.category == 'calcExpression') && (
+						explanation.facteur.category == 'calcExpression') && (
 						<li key="facteur">
 							<span className="key">
 								<Trans>facteur</Trans>:{' '}
@@ -684,13 +680,12 @@ export let mecanismProduct = (recurse, k, v) => {
 	*/
 let desugarScale = recurse => tranches =>
 	tranches
-		.map(
-			t =>
-				has('en-dessous de')(t)
-					? { ...t, de: 0, à: t['en-dessous de'] }
-					: has('au-dessus de')(t)
-						? { ...t, de: t['au-dessus de'], à: Infinity }
-						: t
+		.map(t =>
+			has('en-dessous de')(t)
+				? { ...t, de: 0, à: t['en-dessous de'] }
+				: has('au-dessus de')(t)
+				? { ...t, de: t['au-dessus de'], à: Infinity }
+				: t
 		)
 		.map(evolve({ taux: recurse }))
 

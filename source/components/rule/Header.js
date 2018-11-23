@@ -8,6 +8,7 @@ import { capitalise0 } from '../../utils'
 import Destinataire from './Destinataire'
 import './Header.css'
 import Namespace from './Namespace'
+import PeriodSwitch from 'Components/PeriodSwitch'
 
 let RuleHeader = withColours(
 	({
@@ -20,7 +21,8 @@ let RuleHeader = withColours(
 		name,
 		title,
 		icon,
-		colours
+		colours,
+		valuesToShow
 	}) => (
 		<section id="ruleHeader">
 			<header style={{ background: colours.colour }}>
@@ -38,19 +40,35 @@ let RuleHeader = withColours(
 				<div id="ruleHeader__description">
 					{createMarkdownDiv(description || question)}
 				</div>
-				{(type || path([type, 'destinataire'])(flatRule)) && (
-					<div id="ruleHeader__infobox">
-						{type && (
+				<div id="ruleHeader__infobox">
+					{type && (
+						<div className="infobox__item">
+							<h4>Type&nbsp;:</h4>
+							<Trans>{capitalise0(type)}</Trans>
+						</div>
+					)}
+					{do {
+						let period = flatRule['période']
+						period && (
 							<div className="infobox__item">
-								<h4>Type&nbsp;:</h4>
-								<Trans>{capitalise0(type)}</Trans>
+								<h4>Période :</h4>
+								{valuesToShow && period === 'flexible' ? (
+									<PeriodSwitch />
+								) : (
+									<div className="inlineMecanism">
+										<span
+											className="name"
+											data-term-definition="période"
+											style={{ background: '#8e44ad' }}>
+											{period}
+										</span>
+									</div>
+								)}
 							</div>
-						)}
-						<Destinataire
-							destinataire={path([type, 'destinataire'])(flatRule)}
-						/>
-					</div>
-				)}
+						)
+					}}
+					<Destinataire destinataire={path([type, 'destinataire'])(flatRule)} />
+				</div>
 			</div>
 		</section>
 	)

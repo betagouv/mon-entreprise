@@ -2,7 +2,7 @@ import Scroll from 'Components/utils/Scroll'
 import { getInputComponent } from 'Engine/generateQuestions'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import {
@@ -18,7 +18,7 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
-	withI18n(),
+	withNamespaces(),
 	connect(state => ({
 		conversationStarted: state.conversationStarted,
 		themeColours: state.themeColours,

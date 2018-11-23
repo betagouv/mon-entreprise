@@ -1,0 +1,71 @@
+- nom: chiffre affaires
+  période: flexible
+  format: euros
+
+- nom: charges
+  période: flexible
+  par défaut: 0
+  format: euros
+
+- nom: répartition salaire sur dividendes
+  par défaut: 0.5
+
+
+- nom: impôt sur les sociétés
+  période: année
+  formule: 
+    barème: 
+      assiette: bénéfice
+      tranches: 
+        - en-dessous de: 38120 
+          taux: 15%
+        - de: 38120
+          à: 500000
+          taux: 28%
+        - au-dessus de: 500000
+          taux: 33.3%
+  références: 
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
+
+- nom: bénéfice 
+  période: flexible
+  formule: chiffre affaires - salaire total
+
+- nom: dividendes
+
+- espace: dividendes
+  période: flexible
+  nom: brut
+  formule: bénéfice - impôt sur les sociétés
+
+- espace: dividendes
+  période: flexible
+  nom: net
+  formule: brut - prélèvement forfaitaire unique
+
+- nom: prélèvement forfaitaire unique 
+  période: flexible
+  espace: dividendes
+  formule: 
+    multiplication: 
+      assiette: brut
+      composantes: 
+        - taux: 17.2%
+        - taux: 12.8%
+
+
+
+- nom: salaire total
+  période: flexible
+  formule: chiffre affaires * répartition salaire sur dividendes 
+
+- nom: net après impôt
+  période: flexible
+  format: euros
+
+- nom: revenu disponible
+  période: flexible
+  formule: net après impôt + dividendes . net
+
+
+

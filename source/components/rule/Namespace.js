@@ -18,8 +18,13 @@ let Namespace = ({ ns, flatRules, colour }) => (
 			)
 			.map(fragments => {
 				let ruleName = fragments.join(' . '),
-					rule = findRuleByDottedName(flatRules, ruleName),
-					ruleText = rule.title || capitalise0(rule.name),
+					rule = findRuleByDottedName(flatRules, ruleName)
+				if (!rule) {
+					throw new Error(
+						`Attention, il se peut que la règle, ${ruleName}, ait été définie avec un namespace qui n'existe pas ?`
+					)
+				}
+				let ruleText = rule.title || capitalise0(rule.name),
 					style = { color: colour }
 
 				return (

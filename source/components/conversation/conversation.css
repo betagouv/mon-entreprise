@@ -114,7 +114,6 @@
 
 .step fieldset ul {
 	list-style-type: none;
-	padding-left: 2em;
 }
 
 .step.question .variant {
@@ -122,18 +121,17 @@
 }
 
 .step.question .variant > ul {
-	border-right: 1px dashed #ccc;
+	border-right: 1px dashed #333;
 	text-align: right;
-	margin-top: 0.6em;
 	padding-right: 0.6em;
 	padding-top: 0.6em;
+	padding-left: 2em;
 	margin-left: 1em;
 }
 .step.question .variant > div {
 	padding-right: 0.6em;
 	font-weight: 600;
 	text-align: right;
-	font-style: italic;
 }
 
 .step.question fieldset > div {
@@ -222,6 +220,8 @@
 
 .step input::placeholder {
 	font-style: italic;
+	color: var(--colour);
+	opacity: 0.85;
 }
 
 .step input.suffixed {
@@ -238,10 +238,10 @@
 	font-size: 110%;
 	vertical-align: baseline;
 	transition: color 0.1s;
-	margin: 0 1.5em 0.1em 0.6em;
+	margin: 0 0.6em;
+	color: rgba(0, 0, 0, 0.8);
 }
-
-.step input[type='text']:focus,
+.step input .step input[type='text']:focus,
 .step input[type='number']:focus {
 	border-color: #d0d4d8;
 	outline: none;

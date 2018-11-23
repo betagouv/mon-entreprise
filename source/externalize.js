@@ -1,4 +1,4 @@
-var yaml = require('js-yaml')
+var { safeLoad, safeDump } = require('js-yaml')
 var fs = require('fs')
 var translate = require('google-translate-api')
 var path = require('path')
@@ -17,11 +17,11 @@ translate(
 		console.error(err)
 	})
 
-let rules = yaml.safeLoad(
+let rules = safeLoad(
 	fs.readFileSync(path.resolve('source/règles/base.yaml'), 'utf-8')
 )
 
-let currentExternalization = yaml.safeLoad(
+let currentExternalization = safeLoad(
 	fs.readFileSync(path.resolve(externalizationPath), 'utf-8')
 )
 
@@ -67,5 +67,5 @@ let promises = rules
 	)
 
 Promise.all(promises).then(resolved =>
-	fs.writeFileSync(externalizationPath, yaml.safeDump(R.mergeAll(resolved)))
+	fs.writeFileSync(externalizationPath, safeDump(R.mergeAll(resolved)))
 )

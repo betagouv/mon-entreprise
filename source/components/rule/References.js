@@ -1,11 +1,11 @@
 import { groupBy, toPairs } from 'ramda'
 import React from 'react'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import references from 'Règles/ressources/références/références.yaml'
 import { capitalise0 } from '../../utils'
 import './References.css'
 
-export default withI18n()(
+export default withNamespaces()(
 	class References extends React.Component {
 		state = {
 			showComplementary: false

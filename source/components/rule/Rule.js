@@ -8,9 +8,9 @@ import {
 	findRuleByNamespace
 } from 'Engine/rules'
 import { compose, isEmpty } from 'ramda'
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import Helmet from 'react-helmet'
-import { Trans, withI18n } from 'react-i18next'
+import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { reduxForm } from 'redux-form'
@@ -25,6 +25,11 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import { AttachDictionary } from '../AttachDictionary'
+import knownMecanisms from 'Engine/known-mecanisms.yaml'
+import emoji from 'react-easy-emoji'
+
+let LazySource = React.lazy(() => import('./RuleSource'))
 
 export default compose(
 	connect((state, props) => ({
@@ -34,10 +39,12 @@ export default compose(
 		analysedRule: ruleAnalysisSelector(state, props),
 		analysedExample: exampleAnalysisSelector(state, props)
 	})),
-	withI18n(),
+	AttachDictionary(knownMecanisms),
+	withNamespaces(),
 	withLanguage
 )(
 	class Rule extends Component {
+		state = { viewSource: false }
 		render() {
 			let {
 					dottedName,
@@ -54,76 +61,101 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-			let showValues = valuesToShow || currentExample
 
 			return (
-				<div id="rule" className="ui__ container">
-					<Helmet>
-						<title>{title}</title>
-						<meta name="description" content={description} />
-					</Helmet>
-					<RuleHeader
-						{...{
-							ns,
-							type,
-							description,
-							question,
-							flatRule,
-							flatRules,
-							name,
-							title,
-							icon
-						}}
-					/>
+				<>
+					{this.state.viewSource ? (
+						<>
+							{this.renderToggleSourceButton()}
+							<Suspense fallback={<div>Chargement du code source...</div>}>
+								<LazySource dottedName={dottedName} />
+							</Suspense>
+						</>
+					) : (
+						<div id="rule" className="ui__ container">
+							<Helmet>
+								<title>{title}</title>
+								<meta name="description" content={description} />
+							</Helmet>
+							<RuleHeader
+								{...{
+									ns,
+									type,
+									description,
+									question,
+									flatRule,
+									flatRules,
+									name,
+									title,
+									icon,
+									valuesToShow
+								}}
+							/>
 
-					<section id="rule-content">
-						{displayedRule.nodeValue ? (
-							<div id="ruleValue">
-								<i className="fa fa-calculator" aria-hidden="true" />{' '}
-								{displayedRule.format === 'euros' || displayedRule.formule
-									? Intl.NumberFormat(language, {
-											style: 'currency',
-											currency: 'EUR'
-									  }).format(displayedRule.nodeValue)
-									: typeof displayedRule.nodeValue !== 'object'
-									? displayedRule.nodeValue
-									: null}
-							</div>
-						) : null}
+							{this.renderToggleSourceButton()}
+							<section id="rule-content">
+								{displayedRule.nodeValue ? (
+									<div id="ruleValue">
+										<i className="fa fa-calculator" aria-hidden="true" />{' '}
+										{displayedRule.format === 'euros' || displayedRule.formule
+											? Intl.NumberFormat(language, {
+													style: 'currency',
+													currency: 'EUR'
+											  }).format(displayedRule.nodeValue)
+											: typeof displayedRule.nodeValue !== 'object'
+											? displayedRule.nodeValue
+											: null}
+									</div>
+								) : null}
 
-						{displayedRule.defaultValue != null &&
-						typeof displayedRule.defaultValue !== 'object' ? (
-							<div id="ruleDefault">
-								Valeur par défaut : {displayedRule.defaultValue}
-							</div>
-						) : null}
+								{displayedRule.defaultValue != null &&
+								typeof displayedRule.defaultValue !== 'object' ? (
+									<div id="ruleDefault">
+										Valeur par défaut : {displayedRule.defaultValue}
+									</div>
+								) : null}
 
-						{//flatRule.question &&
-						// Fonctionnalité intéressante, à implémenter correctement
-						false && <UserInput {...{ flatRules, dottedName }} />}
-						{flatRule.ns && (
-							<Algorithm rule={displayedRule} showValues={showValues} />
-						)}
-						{flatRule.note && (
-							<section id="notes">
-								<h3>Note: </h3>
-								{createMarkdownDiv(flatRule.note)}
+								{//flatRule.question &&
+								// Fonctionnalité intéressante, à implémenter correctement
+								false && <UserInput {...{ flatRules, dottedName }} />}
+								{flatRule.ns && (
+									<Algorithm
+										rule={displayedRule}
+										showValues={valuesToShow || currentExample}
+									/>
+								)}
+								{flatRule.note && (
+									<section id="notes">
+										<h3>Note: </h3>
+										{createMarkdownDiv(flatRule.note)}
+									</section>
+								)}
+								<Examples
+									currentExample={currentExample}
+									situationExists={valuesToShow}
+									rule={displayedRule}
+								/>
+								{!isEmpty(namespaceRules) && (
+									<NamespaceRulesList {...{ namespaceRules }} />
+								)}
+								{this.renderReferences(flatRule)}
 							</section>
-						)}
-						<Examples
-							currentExample={currentExample}
-							situationExists={valuesToShow}
-							rule={displayedRule}
-						/>
-						{!isEmpty(namespaceRules) && (
-							<NamespaceRulesList {...{ namespaceRules }} />
-						)}
-						{this.renderReferences(flatRule)}
-					</section>
-				</div>
+						</div>
+					)}
+				</>
 			)
 		}
 
+		renderToggleSourceButton() {
+			let { viewSource } = this.state
+			return (
+				<button
+					id="toggleRuleSource"
+					onClick={() => this.setState({ viewSource: !viewSource })}>
+					{emoji(viewSource ? '📖' : '✍️')}
+				</button>
+			)
+		}
 		renderReferences = ({ références: refs }) =>
 			refs ? (
 				<div>

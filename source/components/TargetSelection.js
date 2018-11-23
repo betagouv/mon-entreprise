@@ -25,19 +25,7 @@ import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
 
-let salaries = [
-	'contrat salarié . salaire . total',
-	'contrat salarié . salaire . brut de base',
-	'contrat salarié . salaire . net à payer'
-]
-
-let displayedTargetNames = [...salaries, 'contrat salarié . aides employeur']
-export let popularTargetNames = [
-	...displayedTargetNames,
-	'contrat salarié . rémunération . net imposable'
-]
-
-const TargetSelection = compose(
+export default compose(
 	translate(),
 	reduxForm({
 		form: 'conversation',
@@ -67,20 +55,11 @@ const TargetSelection = compose(
 		render() {
 			let {
 				colours,
-				noUserInput,
-				blockingInputControls,
 				analysis: { controls }
 			} = this.props
 			return (
 				<div id="targetSelection">
-					{noUserInput && (
-						<p className="blockingControl">
-							<Trans i18nKey="enterSalary">
-								Entrez un salaire <b>mensuel</b>
-							</Trans>
-						</p>
-					)}
-					<Controls {...{ blockingInputControls, controls }} />
+					<Controls {...{ controls }} />
 					<section
 						id="targetsContainer"
 						style={{
@@ -145,6 +124,7 @@ const TargetSelection = compose(
 										onFirstClick={value =>
 											this.props.setFormValue(target.dottedName, '' + value)
 										}
+										rulePeriod={target.période}
 										colouredBackground={true}
 									/>
 								)}
@@ -175,13 +155,6 @@ let Header = ({
 			)}
 
 			<span className="texts">
-				{!conversationStarted && target.dottedName.includes('net après impôt') && (
-					<div>
-						<span id="labelNew">
-							<Trans>Janvier 2019</Trans>
-						</span>
-					</div>
-				)}
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
@@ -317,5 +290,3 @@ const AidesGlimpse = compose(
 		}
 	}
 )
-
-export default TargetSelection

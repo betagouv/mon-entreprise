@@ -128,12 +128,13 @@ Cotisations sociales: Social contributions
 Part employeur: Employer share
 Part salariale: Employee share
 Total des retenues: Total withheld
-Fiche de paie: Payslip
+Fiche de paie mensuelle: Monthly payslip
+Détail annuel des cotisations: Annual detail of your contributions 
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
 payslip:
   notice: This simulation helps you understand your French payslip, but it should not be used as one. For further details, check <1>service-public.fr (French)</1>.
-  heures: 'Number of hours worked: '
+  heures: 'Hours worked per month: '
   disclaimer: It takes into account national law but not union negotiated rules. Lots of financial aids for your enterprise exist, explore them on <1>aides-entreprises.fr (French)</1>.
 A quoi servent mes cotisations ?: What's included in my contributions?
 Simulation personnalisée: Custom simulation
@@ -584,3 +585,10 @@ Pas de régime de micro-entreprise: No microenterprise scheme
 
 Précédent: Previous
 Choisir plus tard: Choose later
+
+Mois: Month
+Année: Year
+mois: month
+an: year
+par: per
+Explorez notre base de règles: Explore our rules

@@ -1,0 +1,157 @@
+# This is not a mecanism test, but we make use of the simplicity of declaring tests in YAML, only available for mecanisms for now
+
+- nom: nombre de douches
+  période: mois
+  question: Combien prenez-vous de douches par mois ?
+  format: nombre
+  suggestions:
+   - 30
+
+- test: impact des douches
+  période: année
+  formule: 1 * nombre de douches
+
+  exemples: 
+    - situation: 
+        nombre de douches: 30
+      valeur attendue: 360
+
+- nom: impact par douche
+  formule: 1
+  unité: kgCO2e
+
+- test: impact des douches erroné
+  période: année
+  formule: impact par douche * nombre de douches
+  exemples: 
+    - situation: 
+        nombre de douches: 30
+      valeur attendue: 360
+
+- nom: assiette mensuelle
+  période: mois
+  format: €
+
+- test: Périodes, barème annuel assiette mensuelle
+  période: année
+  formule:
+    barème:
+      # cette formule appellant l'assiette est annuelle : 
+      # si l'assiette est aussi annuelle dans le contexte de la simulation actuelle, c'est bon
+      # sinon une conversion est nécessaire et faite automatiquement par le moteur
+      assiette: assiette mensuelle
+      tranches:
+      # ce sont ces chiffres là qui imposent à la règle d'être annuelle
+      # de plus, les règles annuelles de la loi sont rarement traduites officiellement en d'autres périodes
+      - en-dessous de: 30000
+        taux: 4.65%
+      - de: 30000
+        à: 90000
+        taux: 3%
+      - au-dessus de: 90000
+        taux: 1%
+
+  exemples:
+    - situation:
+        assiette mensuelle: 3000
+      valeur attendue: 1575
+
+
+- nom: assiette annuelle
+  période: année
+  format: €
+
+- test: Périodes, barème mensuel assiette annuelle
+  période: mois
+  formule:
+    barème:
+      # cette formule appellant l'assiette est annuelle : 
+      # si l'assiette est aussi annuelle dans le contexte de la simulation actuelle, c'est bon
+      # sinon une conversion est nécessaire et faite automatiquement par le moteur
+      assiette: assiette annuelle
+      tranches:
+      # ce sont ces chiffres là qui imposent à la règle d'être annuelle
+      # de plus, les règles annuelles de la loi sont rarement traduites officiellement en d'autres périodes
+      - en-dessous de: 2500
+        taux: 4.65%
+      - de: 2500
+        à: 7500
+        taux: 3%
+      - au-dessus de: 7500
+        taux: 1%
+
+  exemples:
+    - situation:
+        assiette annuelle: 36000
+      valeur attendue: 131.25
+
+- nom: assiette
+  période: flexible
+  format: €
+
+- test: Périodes, période dans la situation
+  période: année
+  formule:
+    barème:
+      assiette: assiette
+      tranches:
+      - en-dessous de: 30000
+        taux: 4.65%
+      - de: 30000
+        à: 90000
+        taux: 3%
+      - au-dessus de: 90000
+        taux: 1%
+
+  exemples:
+    - situation:
+        période: mois
+        assiette: 3000
+      valeur attendue: 1575
+    - situation:
+        période: année
+        assiette: 36000
+      valeur attendue: 1575
+
+
+- nom: assiette deux
+  période: mois
+  format: €
+
+- test: Périodes, variable neutre appelant variable mensuelle
+  période: flexible
+  formule:
+    multiplication:
+      assiette: assiette deux
+      taux: 10%
+
+  exemples:
+    - situation:
+        période: mois
+        assiette deux: 3000
+      valeur attendue: 300
+
+- nom: assiette trois
+  période: année
+  format: €
+
+- test: Périodes, variable neutre appelant variable annuelle
+  période: flexible
+  formule:
+    multiplication:
+      assiette: assiette trois
+      taux: 10%
+
+  exemples:
+    - situation:
+        période: mois
+        assiette trois: 36000
+      valeur attendue: 300
+
+
+- test: Périodes, préfixe de modification temporelle
+  formule: assiette trois [mensuel]
+  exemples: 
+    - situation: 
+        assiette trois: 12000
+      valeur attendue: 1000

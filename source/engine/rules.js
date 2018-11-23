@@ -41,35 +41,39 @@ import taux_versement_transport from 'Règles/taux-versement-transport.json'
 
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = (rule, sharedData = {}) => {
-	let type = possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
-		name = rule['nom'],
-		title = capitalise0(rule['titre'] || name),
-		ns = rule['espace'],
-		data = rule['données'] ? sharedData[rule['données']] : null,
-		dottedName = buildDottedName(rule),
-		subquestionMarkdown = rule['sous-question'],
-		subquestion = subquestionMarkdown && marked(subquestionMarkdown),
-		defaultValue = rule['par défaut'],
-		examples = rule['exemples'],
-		icon = rule['icônes']
+	try {
+		let type = possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
+			name = rule['nom'],
+			title = capitalise0(rule['titre'] || name),
+			ns = rule['espace'],
+			data = rule['données'] ? sharedData[rule['données']] : null,
+			dottedName = buildDottedName(rule),
+			subquestionMarkdown = rule['sous-question'],
+			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
+			defaultValue = rule['par défaut'],
+			examples = rule['exemples'],
+			icon = rule['icônes']
 
-	return {
-		...rule,
-		type,
-		name,
-		title,
-		ns,
-		data,
-		dottedName,
-		subquestion,
-		defaultValue,
-		raw: rule,
-		examples,
-		icon
+		return {
+			...rule,
+			type,
+			name,
+			title,
+			ns,
+			data,
+			dottedName,
+			subquestion,
+			defaultValue,
+			raw: rule,
+			examples,
+			icon
+		}
+	} catch (e) {
+		throw new Error('Problem enriching ' + JSON.stringify(rule))
 	}
 }
 
-let buildDottedName = rule =>
+export let buildDottedName = rule =>
 	rule['espace'] ? [rule['espace'], rule['nom']].join(' . ') : rule['nom']
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
@@ -102,7 +106,7 @@ export let decodeRuleName = name =>
 	name.replace(/--/g, ' . ').replace(/-/g, ' ')
 
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
-*/
+ */
 export let disambiguateRuleReference = (
 	allRules,
 	{ ns, name },

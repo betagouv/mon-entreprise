@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 
 export default function withLanguage(WrappedComponent) {
-	return withI18n()(
+	return withNamespaces()(
 		class WithLanguage extends Component {
 			static displayName = `withLanguage(${Component.displayName ||
 				Component.name})`

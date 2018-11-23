@@ -3,7 +3,7 @@ import { defaultTracker } from 'Components/utils/withTracker'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
-import { withI18n } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -68,7 +68,7 @@ class InFranceRoute extends Component {
 	}
 }
 
-let RouterSwitch = withI18n()(() => {
+let RouterSwitch = withNamespaces()(() => {
 	const paths = sitePaths()
 	return (
 		<Switch>
