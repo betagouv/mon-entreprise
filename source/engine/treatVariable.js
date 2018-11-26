@@ -126,8 +126,12 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			parseResult.temporalTransform
 		]
 
+		// Exceptions
 		if (!rule.période && !inlinePeriodTransform) {
-			if (ruleToTransform.période == 'flexible')
+			if (
+				ruleToTransform.période == 'flexible' &&
+				!cache.checkingParentDependencies.includes(rule.dottedName)
+			)
 				throw new Error(
 					`Attention, une variable sans période, ${
 						rule.dottedName

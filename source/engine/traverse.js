@@ -165,12 +165,13 @@ export let treatRuleRoot = (rules, rule) => {
 		return { ...evaluated, nodeValue, isApplicable, missingVariables }
 	}
 
-	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is calculable, so it can be false
-	// When it is resolved to false, then the whole branch under it is disactivate, non applicable
-	// It lets those children omit parent applicability tests
+	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is calculable or input, so it can be false
+	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
+	// It lets those children omit obvious and repetitive parent applicability tests
 	let parentDependencies = ruleParents(rule.dottedName).map(joinName),
 		parentDependency = parentDependencies.find(
-			parent => rules.find(r => r.dottedName === parent)?.calculableNamespace
+			//Find the first "calculable" parent
+			parent => findRuleByDottedName(rules, parent)?.calculableNamespace
 		)
 
 	let parsedRoot = evolve({
@@ -181,6 +182,7 @@ export let treatRuleRoot = (rules, rule) => {
 		parentDependency: parent => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
 				let cpd = cache.checkingParentDependencies || []
+				//avoid loops
 				if (cpd.includes(rule.dottedName))
 					return rewriteNode(node, true, null, {})
 
