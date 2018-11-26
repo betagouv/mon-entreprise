@@ -5,8 +5,7 @@ import {
 	findRuleByDottedName,
 	disambiguateRuleReference,
 	findRule,
-	ruleParents,
-	joinName
+	findParentDependency
 } from './rules'
 import {
 	curry,
@@ -18,8 +17,7 @@ import {
 	merge,
 	keys,
 	is,
-	T,
-	isEmpty
+	T
 } from 'ramda'
 import { Node } from './mecanismViews/common'
 import {
@@ -165,14 +163,7 @@ export let treatRuleRoot = (rules, rule) => {
 		return { ...evaluated, nodeValue, isApplicable, missingVariables }
 	}
 
-	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is calculable or input, so it can be false
-	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
-	// It lets those children omit obvious and repetitive parent applicability tests
-	let parentDependencies = ruleParents(rule.dottedName).map(joinName),
-		parentDependency = parentDependencies.find(
-			//Find the first "calculable" parent
-			parent => findRuleByDottedName(rules, parent)?.calculableNamespace
-		)
+	let parentDependency = findParentDependency(rules, rule)
 
 	let root = { ...rule, ...(parentDependency ? { parentDependency } : {}) }
 
@@ -182,34 +173,9 @@ export let treatRuleRoot = (rules, rule) => {
 
 		// condition d'applicabilité de la règle
 		parentDependency: parent => {
-			let evaluate = (cache, situationGate, parsedRules, node) => {
-				let cpd = cache.checkingParentDependencies || []
-				//avoid loops
-				if (cpd.includes(rule.dottedName))
-					return rewriteNode(node, true, null, {})
-
-				let explanation = evaluateNode(
-						{
-							...cache,
-							checkingParentDependencies: [...cpd, rule.dottedName]
-						},
-						situationGate,
-						parsedRules,
-						node.explanation
-					),
-					variant =
-						explanation.explanation.formule?.explanation?.['une possibilité'],
-					[nodeValue, missingVariables] = !isEmpty(explanation.missingVariables)
-						? [null, variant ? {} : { [explanation.dottedName]: 1 }]
-						: explanation.explanation.isApplicable === false ||
-						  explanation.nodeValue == false
-						? [false, {}]
-						: [true, {}]
-
-				return rewriteNode(node, nodeValue, explanation, missingVariables)
-			}
-
-			let child = treat(rules, rule)(parent)
+			console.log('pd', parent.dottedName)
+			let node = treat(rules, rule)(parent.dottedName)
+			console.log('pdnode', node)
 
 			let jsx = (nodeValue, explanation) => (
 				<ShowValuesConsumer>
@@ -226,13 +192,14 @@ export let treatRuleRoot = (rules, rule) => {
 			)
 
 			return {
-				evaluate,
+				evaluate: (cache, situation, parsedRules) =>
+					node.evaluate(cache, situation, parsedRules, node),
 				jsx,
 				category: 'ruleProp',
 				rulePropType: 'cond',
-				name: 'formule',
+				name: 'parentDependency',
 				type: 'numeric',
-				explanation: child
+				explanation: node
 			}
 		},
 		'non applicable si': evolveCond('non applicable si', rule, rules),

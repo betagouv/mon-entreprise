@@ -2131,7 +2131,6 @@
 - espace: contrat salarié . complémentaire santé
   nom: forfait
   titre: Forfait de complémentaire santé entreprise
-  question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
   période: flexible
   description: |
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,

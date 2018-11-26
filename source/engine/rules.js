@@ -52,12 +52,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 			defaultValue = rule['par défaut'],
 			examples = rule['exemples'],
-			icon = rule['icônes'],
-			calculableNamespace =
-				rule.question ||
-				rule['non applicable si'] ||
-				rule['applicable si'] ||
-				rule.formule
+			icon = rule['icônes']
 
 		return {
 			...rule,
@@ -71,8 +66,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 			defaultValue,
 			raw: rule,
 			examples,
-			icon,
-			calculableNamespace
+			icon
 		}
 	} catch (e) {
 		throw new Error('Problem enriching ' + JSON.stringify(rule))
@@ -278,3 +272,16 @@ export let rules = translateAll(translations, rawRules).map(rule =>
 export let rulesFr = rawRules.map(rule =>
 	enrichRule(rule, { taux_versement_transport })
 )
+
+export let findParentDependency = (rules, rule) => {
+	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
+	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
+	// It lets those children omit obvious and repetitive parent applicability tests
+	let parentDependencies = ruleParents(rule.dottedName).map(joinName)
+	return parentDependencies
+		.map(parent => findRuleByDottedName(rules, parent))
+		.find(
+			//Find the first "calculable" parent
+			({ question, format }) => question && !format //implicitly, the format is boolean
+		)
+}
