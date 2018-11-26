@@ -517,43 +517,4 @@ describe('Implicit parent applicability', function() {
 			analyse(rules, 'CDD . surcoût')(name => ({ CDD: false }[name])).targets[0]
 		).to.have.property('nodeValue', 0)
 	})
-	it('should make a variable non applicable if one parent is non applicable', function() {
-		let rawRules = [
-				{ nom: 'CDD', question: 'CDD ?', 'non applicable si': 'exception' },
-				{ nom: 'exception', question: 'Suivez-vous le lapin blanc ?' },
-				{ nom: 'surcoût', formule: 10, espace: 'CDD' }
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'CDD . surcoût')(name => ({ exception: true }[name]))
-				.targets[0]
-		).to.have.property('nodeValue', 0)
-	})
-	it('should not go through eval loops from parent to children to parent', function() {
-		let rawRules = [
-				{
-					nom: 'CDD',
-					question: 'CDD ?',
-					'non applicable si': 'exception > 3'
-				},
-				{
-					espace: 'CDD',
-					nom: 'surcoût',
-					formule: 'annuel / 12'
-				},
-				{
-					espace: 'CDD . surcoût',
-					nom: 'annuel',
-					formule: 24
-				},
-				{
-					nom: 'exception',
-					formule: 'CDD . surcoût * 3'
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'CDD . surcoût . annuel')(name => ({}[name])).targets[0]
-		).to.have.property('nodeValue', 0)
-	})
 })

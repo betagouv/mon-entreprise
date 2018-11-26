@@ -1,6 +1,10 @@
 import React from 'react'
 import { Node, Leaf } from './mecanismViews/common'
-import { findRuleByDottedName, disambiguateRuleReference } from './rules'
+import {
+	findRuleByDottedName,
+	disambiguateRuleReference,
+	findParentDependency
+} from './rules'
 import { evaluateNode, rewriteNode, makeJsx } from './evaluation'
 import { getSituationValue } from './variables'
 import { Trans } from 'react-i18next'
@@ -21,7 +25,12 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 				variable['non applicable si'] != null,
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
-				situationValue == null && (variableHasCond || variableHasFormula)
+				situationValue == null &&
+				(variableHasCond ||
+					variableHasFormula ||
+					findParentDependency(rules, variable))
+
+		console.log(dottedName, 'needseval')
 		let explanation = needsEvaluation
 			? evaluateNode(cache, situation, parsedRules, variable)
 			: variable
