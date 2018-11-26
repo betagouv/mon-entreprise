@@ -1595,10 +1595,10 @@
       variations:
         - si: entreprise . effectif < 20
           alors:
-            taux: 0.2814
+            taux: 0.2809
           plafond: plafond sécurité sociale
         - sinon:
-            taux: 0.2854
+            taux: 0.2849
 
 - espace: contrat salarié
   nom: assiette réduction générale
