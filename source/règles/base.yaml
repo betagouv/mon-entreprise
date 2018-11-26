@@ -1642,6 +1642,7 @@
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
+  période: flexible
   formule:
     barème:
       assiette: assiette cotisations sociales
@@ -1681,6 +1682,7 @@
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
   applicable si: assiette cotisations sociales > plafond sécurité sociale
+  période: flexible
   formule:
     multiplication:
       assiette: assiette cotisations sociales
@@ -2148,7 +2150,8 @@
 
 - espace: contrat salarié . maladie
   nom: plafond de réduction employeur
-  formule: 2.5 * SMIC mensuel
+  période: flexible
+  formule: 2.5 * SMIC
 
 
 - espace: contrat salarié
