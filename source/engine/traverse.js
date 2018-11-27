@@ -8,16 +8,17 @@ import {
 	findParentDependency
 } from './rules'
 import {
-	curry,
 	chain,
 	cond,
 	evolve,
 	path,
 	map,
-	merge,
+	mergeAll,
 	keys,
 	is,
-	T
+	T,
+	pipe,
+	pick
 } from 'ramda'
 import { Node } from './mecanismViews/common'
 import {
@@ -103,50 +104,41 @@ export let treatRuleRoot = (rules, rule) => {
 		//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
 		cache.parseLevel++
 
-		let evolveRule = curry(evaluateNode)(cache, situationGate, parsedRules),
-			evaluated = evolve(
-				{
-					formule: evolveRule,
-					parentDependency: evolveRule,
-					'non applicable si': evolveRule,
-					'applicable si': evolveRule
-				},
-				node
-			),
-			a =
-				node.dottedName.includes('jeune va') &&
-				console.log(evaluated['parentDependency']),
-			parentValue = val(evaluated['parentDependency']),
-			formuleValue = val(evaluated['formule']),
-			isApplicable = do {
-				let e = evaluated
-				parentValue === false
+		let evaluatedAttributes = pipe(
+				pick([
+					'formule',
+					'parentDependency',
+					'non applicable si',
+					'applicable si'
+				]),
+				map(value => evaluateNode(cache, situationGate, parsedRules, value))
+			)(node),
+			{
+				formule,
+				parentDependency,
+				'non applicable si': notApplicable,
+				'applicable si': applicable
+			} = evaluatedAttributes,
+			isApplicable =
+				val(parentDependency) === false
 					? false
-					: val(e['non applicable si']) === true
+					: val(notApplicable) === true
 					? false
-					: val(e['applicable si']) === false
+					: val(applicable) === false
 					? false
-					: anyNull([e['non applicable si'], e['applicable si'], parentValue])
+					: anyNull([notApplicable, applicable, parentDependency])
 					? null
-					: !val(e['non applicable si']) && undefOrTrue(val(e['applicable si']))
-			},
-			nodeValue = computeRuleValue(formuleValue, isApplicable)
-
-		let {
-			formule,
-			parentDependency,
-			'non applicable si': notApplicable,
-			'applicable si': applicable
-		} = evaluated
+					: !val(notApplicable) && undefOrTrue(val(applicable)),
+			nodeValue = computeRuleValue(val(formule), isApplicable)
 
 		let condMissing =
 				isApplicable === false
 					? {}
-					: merge(
-							(parentDependency && parentDependency.missingVariables) || {},
-							(notApplicable && notApplicable.missingVariables) || {},
-							(applicable && applicable.missingVariables) || {}
-					  ),
+					: mergeAll([
+							parentDependency?.missingVariables || {},
+							notApplicable?.missingVariables || {},
+							applicable?.missingVariables || {}
+					  ]),
 			collectInFormule = isApplicable !== false,
 			formMissing =
 				(collectInFormule && formule && formule.missingVariables) || {},
@@ -161,7 +153,13 @@ export let treatRuleRoot = (rules, rule) => {
 		cache.parseLevel--
 		//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
 		//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
-		return { ...evaluated, nodeValue, isApplicable, missingVariables }
+		return {
+			...node,
+			...evaluatedAttributes,
+			nodeValue,
+			isApplicable,
+			missingVariables
+		}
 	}
 
 	let parentDependency = findParentDependency(rules, rule)
@@ -174,7 +172,6 @@ export let treatRuleRoot = (rules, rule) => {
 
 		// condition d'applicabilité de la règle
 		parentDependency: parent => {
-			console.log('pd from ', rule.dottedName, parent.dottedName)
 			let node = treat(rules, rule)(parent.dottedName)
 
 			let jsx = (nodeValue, explanation) => (

@@ -1429,6 +1429,7 @@
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   question: Dans quelle commune l'établissement est-il implanté ?
+  format: objet
   API: géo
   par défaut:
     code: 29019
@@ -1953,6 +1954,7 @@
       - établissement . localisation . département = 'Bas-Rhin'
       - établissement . localisation . département = 'Haut-Rhin'
       - établissement . localisation . département = 'Moselle'
+
 
 - espace: contrat salarié
   nom: contribution au dialogue social
