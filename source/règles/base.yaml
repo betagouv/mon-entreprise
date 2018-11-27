@@ -1569,7 +1569,16 @@
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
         assiette cotisations sociales: 1498.47
-      valeur attendue: 421.69
+      valeur attendue: 420.93
+    - nom: "Salaire proche du SMIC"
+      situation:
+        assiette cotisations sociales: 1516.7
+      valeur attendue: 412.4
+      # Explication : (0,2809÷0,6)×(1,6×(1498,5÷1516,7)−1)×1516,7
+    - nom: "Résiduelle pour un salaire médian"
+      situation:
+        assiette cotisations sociales: 2300
+      valeur attendue: 45.69
     - nom: 'Nulle au-dessus du plafond'
       situation:
         assiette cotisations sociales: 2398
