@@ -1928,7 +1928,7 @@
         alors: en alsace moselle
       - sinon: en france
   contrôles:
-    - si: forfait [mensuel] < 15
+    - si: forfait complémentaire santé [mensuel] < 15
       niveau: avertissement
       message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
@@ -2546,3 +2546,27 @@
       situation:
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
+
+- nom: retraite
+  icônes: 👵
+  type: branche
+  description: >
+    Tous les salariés en France cotisent tout au long de leur vie professionnelle
+    pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser
+    leur activité.
+
+    Le système des retraites est actuellement fondé sur le principe de la 
+    « répartition ». Cela veut dire que les cotisations des actifs financent 
+    les pensions des retraités.
+
+    La retraite en France en quelques chiffres : 
+      - **103%** :  le revenu des plus de 65 ans en pourcentage du revenu moyen (le plus élevé de l'OCDE)
+      - **25 ans** : le nombre d'année en moyenne passée à la retraite (le plus élevé de l'OCDE)
+      - **75%** : le taux de remplacement pour un salaire moyen et des annuitées complètes
+
+    La retraite est la plus élevée des cotisations sociales. Elle peut être considéré comme 
+    un salaire différé, puisque vos cotisations vous assurerons un revenu lors de votre départ
+    à la retraite.
+
+  références:
+    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
