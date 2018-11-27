@@ -30,7 +30,8 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 					variableHasFormula ||
 					findParentDependency(rules, variable))
 
-		console.log(dottedName, 'needseval')
+		//		if (dottedName.includes('jeune va')) debugger
+
 		let explanation = needsEvaluation
 			? evaluateNode(cache, situation, parsedRules, variable)
 			: variable
