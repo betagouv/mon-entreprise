@@ -2593,7 +2593,31 @@
       - **11,7 % ** du PIB consacré aux dépenses de santé, le 5ème de l'OCDE
       - **82,4 ans** d'esperance de vie moyenne en france (dans le top 10 mondial)
 
-
   références:
     ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+
+- nom: chômage
+  espace: cotisation
+  icônes: 💸
+  type: branche
+  description: >
+    Depuis 1958, l’Assurance chômage protège tous les salariés du privé et certains 
+    du secteur public lorsqu’ils perdent leur emploi. Elle leur verse une allocation et
+    favorise leur retour à l’emploi grâce à des aides. 
+
+    Fonctionnant comme une assurance,  elle indemnise ceux qui ont cotisé, en fonction 
+    de leur ancien salaire. Mais elle est aussi solidaire, puisqu’elle mutualise les 
+    risques et compense mieux la perte d’un bas salaire que d’un haut revenu.
+
+    Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher 
+    un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
+
+    L'assurance maladie en France en quelques chiffres :
+      - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne
+      - **2,7 millions** de chômeurs indémnisés chaque mois
+      - **1 020 €** : montant de l'allocation nette par moi
+      - **51 %** des allocataires cumulent allocation et salaire
+
+  références:
+    Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
