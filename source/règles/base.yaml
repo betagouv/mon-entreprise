@@ -1556,16 +1556,16 @@
   non applicable si:
     une de ces conditions:
       - assimilé salarié
-      - assiette cotisations sociales > plafond réduction générale
+      - assiette cotisations sociales > plafond de l'assiette
       - statut JEI
 
   période: flexible
 
   formule:
     le minimum de:
-      - assiette réduction générale
-      # TODO - cette expression correspond algébriquement mais n'a pas de sens métier, que faire ?
-      - réduction générale constante - réduction générale variable
+      - assiette
+      - multiplicateur * écart au plafond de l'assiette
+  notes: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
   exemples:
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
@@ -1585,33 +1585,26 @@
         assiette cotisations sociales: 2398
       valeur attendue: 0
 
-- espace: contrat salarié
-  nom: réduction générale constante
+- espace: contrat salarié . réduction générale
+  nom: écart au plafond de l'assiette
   période: flexible
-  formule: coefficient réduction générale * plafond réduction générale
+  formule: plafond de l'assiette - assiette cotisations sociales
 
-- espace: contrat salarié
-  nom: réduction générale variable
-  période: flexible
-  formule: coefficient réduction générale * assiette cotisations sociales
+- espace: contrat salarié . réduction générale
+  nom: multiplicateur
+  formule: paramètre T / 0.6
 
-- espace: contrat salarié
-  nom: coefficient réduction générale
-  période: flexible
+- espace: contrat salarié . réduction générale
+  nom: paramètre T
   formule:
-    multiplication:
-      # TODO - encore obtenu algébriquement mais sans signification
-      assiette: 10 / 6
-      variations:
-        - si: entreprise . effectif < 20
-          alors:
-            taux: 0.2809
-          plafond: plafond sécurité sociale
-        - sinon:
-            taux: 0.2849
+    variations:
+      - si: entreprise . effectif < 20
+        alors: 0.2809
+      - sinon: 0.2849
 
-- espace: contrat salarié
-  nom: assiette réduction générale
+- espace: contrat salarié . réduction générale
+  nom: assiette
+  titre: Assiette de la réduction générale
   période: flexible
   formule:
     somme:
@@ -1619,14 +1612,14 @@
       - FNAL (employeur)
       - maladie (employeur)
       - vieillesse (employeur)
-      - assiette ATMP réduction générale
+      - part de la cotisation ATMP
       - retraite complémentaire (employeur)
       - contribution d'équilibre général (employeur)
   références:
     changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
 
-- espace: contrat salarié
-  nom: assiette ATMP réduction générale
+- espace: contrat salarié . réduction générale . assiette
+  nom: part de la cotisation ATMP
   période: flexible
   formule:
     multiplication:
@@ -1636,14 +1629,10 @@
   références:
     Code de la sécurité sociale - Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036467594
 
-- espace: contrat salarié
-  nom: plafond réduction générale
+- espace: contrat salarié . réduction générale
+  nom: plafond de l'assiette
   période: flexible
-  formule: multiplicateur réduction générale * SMIC
-
-- espace: contrat salarié
-  nom: multiplicateur réduction générale
-  formule: 1.6
+  formule: 1.6 * SMIC 
 
 - espace: contrat salarié
   nom: contribution d'équilibre général
