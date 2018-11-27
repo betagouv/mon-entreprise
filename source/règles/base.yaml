@@ -2547,7 +2547,10 @@
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
 
+- nom: cotisation
+
 - nom: retraite
+  espace: cotisation
   icônes: 👵
   type: branche
   description: >
@@ -2560,9 +2563,9 @@
     les pensions des retraités.
 
     La retraite en France en quelques chiffres : 
-      - **103%** :  le revenu des plus de 65 ans en pourcentage du revenu moyen (le plus élevé de l'OCDE)
+      - **103 %** :  le revenu des plus de 65 ans en pourcentage du revenu moyen (le plus élevé de l'OCDE)
       - **25 ans** : le nombre d'année en moyenne passée à la retraite (le plus élevé de l'OCDE)
-      - **75%** : le taux de remplacement pour un salaire moyen et des annuitées complètes
+      - **75 %** : le taux de remplacement en pourcentage du salaire net après annuitées complètes
 
     La retraite est la plus élevée des cotisations sociales. Elle peut être considéré comme 
     un salaire différé, puisque vos cotisations vous assurerons un revenu lors de votre départ
@@ -2570,3 +2573,27 @@
 
   références:
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
+
+- nom: santé
+  espace: cotisation
+  icônes: 🏥
+  type: branche
+  description: >
+    L’Assurance Maladie protège durablement la santé de chacun – dans sa vie personnelle ou professionnelle – en agissant auprès de tous. 
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé.
+
+    Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+    L'assurance maladie en France en quelques chiffres : 
+      - **92 %** des dépenses de santé remboursée par l'assurance maladie et la complémentaire (un des plus élevé au monde)
+      - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), 
+      **entièrement pris en charge par la sécurité sociale**
+      - **11,7 % ** du PIB consacré aux dépenses de santé, le 5ème de l'OCDE
+      - **82,4 ans** d'esperance de vie moyenne en france (dans le top 10 mondial)
+
+
+  références:
+    ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
+    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
