@@ -68,6 +68,26 @@ const constructLocalizedSitePath = language => {
 		},
 		démarcheEmbauche: {
 			index: t('path.démarcheEmbauche.index', '/démarches-embauche')
+		},
+		économieCollaborative: {
+			index: t('path.économieCollaborative.index', '/économie-collaborative'),
+			locationLogement: t(
+				'path.économieCollaborative.locationLogement',
+				'/location-de-logements-ou-chambre-d-hôtes'
+			),
+			locationBien: t(
+				'path.économieCollaborative.locationBiens',
+				'/location-de-biens'
+			),
+			venteService: t(
+				'path.économieCollaborative.venteServices',
+				'/vente-de-services'
+			),
+			venteBiens: t('path.économieCollaborative.venteBiens', '/vente-de-biens'),
+			coConsommation: t(
+				'path.économieCollaborative.coConsommation',
+				'/co-consommation'
+			)
 		}
 	})
 }

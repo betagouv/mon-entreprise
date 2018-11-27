@@ -18,7 +18,7 @@ export default withNamespaces()(
 			<section className="landing__banner" style={{ backgroundColor: colour }}>
 				<header>
 					<h1>
-						<Trans>L'entreprise simplifiée</Trans>
+						<Trans>Mon entreprise simplifiée</Trans>
 					</h1>
 					<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
 						<Trans i18nKey="subtitle">
@@ -47,14 +47,14 @@ export default withNamespaces()(
 						{emoji('💡')} Créer une nouvelle entreprise
 					</Link>
 					<Link className="landing__choice " to={'/'}>
-						{emoji('🏡')} Déclarer mon activité d'économie collaborative
-						(airbnb, leboncoin, blablacar...)
+						{emoji('🏡')} Déclarer une petite activité rémunératrice (airbnb,
+						leboncoin, blablacar...)
 					</Link>
 
 					<Link
 						className="landing__choice "
 						to={sitePaths().sécuritéSociale.index}>
-						{emoji('💶')} Estimer les cotisations et les taxes
+						{emoji('💶')} Estimer les cotisations, taxes et impôts
 					</Link>
 
 					<Link
