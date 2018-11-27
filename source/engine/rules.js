@@ -25,7 +25,9 @@ import {
 	reduced,
 	range,
 	last,
-	trim
+	trim,
+	isNil,
+	find
 } from 'ramda'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import marked from './marked'
@@ -278,10 +280,12 @@ export let findParentDependency = (rules, rule) => {
 	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
 	// It lets those children omit obvious and repetitive parent applicability tests
 	let parentDependencies = ruleParents(rule.dottedName).map(joinName)
-	return parentDependencies
-		.map(parent => findRuleByDottedName(rules, parent))
-		.find(
+	return pipe(
+		map(parent => findRuleByDottedName(rules, parent)),
+		reject(isNil),
+		find(
 			//Find the first "calculable" parent
-			({ question, format }) => question && !format //implicitly, the format is boolean
+			({ question, format, formule }) => question && !format && !formule //implicitly, the format is boolean
 		)
+	)(parentDependencies)
 }

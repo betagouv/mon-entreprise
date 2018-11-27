@@ -113,6 +113,9 @@ export let treatRuleRoot = (rules, rule) => {
 				},
 				node
 			),
+			a =
+				node.dottedName.includes('jeune va') &&
+				console.log(evaluated['parentDependency']),
 			parentValue = val(evaluated['parentDependency']),
 			formuleValue = val(evaluated['formule']),
 			isApplicable = do {
@@ -137,9 +140,7 @@ export let treatRuleRoot = (rules, rule) => {
 		} = evaluated
 
 		let condMissing =
-				val(notApplicable) === true
-					? {}
-					: val(applicable) === false
+				isApplicable === false
 					? {}
 					: merge(
 							(parentDependency && parentDependency.missingVariables) || {},
@@ -173,9 +174,8 @@ export let treatRuleRoot = (rules, rule) => {
 
 		// condition d'applicabilité de la règle
 		parentDependency: parent => {
-			console.log('pd', parent.dottedName)
+			console.log('pd from ', rule.dottedName, parent.dottedName)
 			let node = treat(rules, rule)(parent.dottedName)
-			console.log('pdnode', node)
 
 			let jsx = (nodeValue, explanation) => (
 				<ShowValuesConsumer>
@@ -253,9 +253,10 @@ export let treatRuleRoot = (rules, rule) => {
 
 			if (level === 'bloquant' && !isInputControl) {
 				throw new Error(
-					'Un contrôle ne peut être bloquant et invoquer des calculs de variables' +
-						control['si'] +
-						level
+					`Un contrôle ne peut être bloquant et invoquer des calculs de variables : 
+						${control['si']}
+						${level}
+						`
 				)
 			}
 
