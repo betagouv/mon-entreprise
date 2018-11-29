@@ -81,7 +81,7 @@ const StepsHeader = ({
 																	sitePaths().entreprise.statusJuridique
 																		.directorStatus
 																}>
-																<T k="statut du directeur.titre">
+																<T k="statut du dirigeant.titre">
 																	Statut du dirigeant
 																</T>
 															</NavLink>
