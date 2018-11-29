@@ -17,6 +17,7 @@ import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import computeThemeColours from 'Ui/themeColours'
 import { simulationTargetNames } from '../config.js'
+import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'
 import type { Action } from 'Types/ActionsTypes'
@@ -60,6 +61,15 @@ function activeTargetInput(state = null, { type, name }) {
 			return name
 		case 'RESET_SIMULATION':
 			return null
+		default:
+			return state
+	}
+}
+
+function lang(state = i18n.language, { type, lang }) {
+	switch (type) {
+		case 'SWITCH_LANG':
+			return lang
 		default:
 			return state
 	}
@@ -156,6 +166,7 @@ export default reduceReducers(
 		//  this is handled by redux-form, pas touche !
 		form: formReducer,
 		conversationSteps,
+		lang,
 		targetNames: defaultTo(simulationTargetNames),
 		themeColours,
 		explainedVariable,

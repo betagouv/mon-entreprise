@@ -8,10 +8,10 @@ import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore } from 'redux'
+import { enableBatching } from 'redux-batched-actions'
 import thunk from 'redux-thunk'
 import computeThemeColours from 'Ui/themeColours'
 import { getIframeOption, inIframe } from './utils'
-import { enableBatching } from 'redux-batched-actions'
 
 let initialStore = {
 	themeColours: computeThemeColours(getIframeOption('couleur'))
@@ -50,15 +50,16 @@ export default class Layout extends PureComponent {
 				...props.reduxMiddlewares
 			)
 		)
+		if (this.props.language) {
+			i18next.changeLanguage(this.props.language)
+			this.props.initialStore.lang = this.props.language
+		}
 		this.store = createStore(
 			enableBatching(reducers),
 			{ ...initialStore, ...this.props.initialStore },
 			storeEnhancer
 		)
 		this.props.onStoreCreated(this.store)
-		if (this.props.language) {
-			i18next.changeLanguage(this.props.language)
-		}
 	}
 	render() {
 		return (
