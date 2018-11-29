@@ -10,6 +10,8 @@ import { withNamespaces } from 'react-i18next'
 import * as Animate from 'Ui/animate'
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
+import Overlay from 'Components/Overlay'
+import Video from './Video'
 
 type Props = {
 	match: Match,
@@ -37,7 +39,7 @@ class SocialSecurity extends Component<Props, {}> {
 				<Animate.fromBottom>
 					{this.props.match.isExact && (
 						<T k="sécu.content">
-							<h1>Protection sociale : coût et avantages</h1>
+							<h1>Protection sociale : coûts et avantages</h1>
 							<p>
 								La France a choisi d'offrir à ses citoyens une protection
 								sociale de qualité. Ce système obligatoire repose sur la
@@ -55,29 +57,8 @@ class SocialSecurity extends Component<Props, {}> {
 								française (santé, maternité, invalidité, vieillesse, maladie
 								professionnelle et accidents) et à l'assurance chômage.
 							</p>
-							<div
-								style={{
-									position: 'relative',
-									width: '100%',
-									height: '0',
-									paddingBottom: '56.25%'
-								}}>
-								<iframe
-									style={{
-										position: 'absolute',
-										top: 0,
-										left: 0,
-										width: '100%',
-										height: '100%'
-									}}
-									src={`https://www.youtube-nocookie.com/embed/${
-										this.props.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
-									}?rel=0&amp;showinfo=0`}
-									frameBorder="0"
-									allow="autoplay; encrypted-media"
-									allowFullScreen
-								/>
-							</div>
+							<Video />
+
 							<h2>Combien coûte une embauche ?</h2>
 						</T>
 					)}
