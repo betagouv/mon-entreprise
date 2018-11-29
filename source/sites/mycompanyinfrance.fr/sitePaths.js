@@ -64,7 +64,12 @@ const constructLocalizedSitePath = language => {
 			}
 		},
 		sécuritéSociale: {
-			index: t('path.sécuritéSociale.index', '/sécurité-sociale')
+			index: t('path.sécuritéSociale.index', '/sécurité-sociale'),
+			'assimilé-salarié': t(
+				'path.sécuritéSociale.assimilé-salarié',
+				'/assimilé-salarié'
+			),
+			salarié: t('path.sécuritéSociale.salarié', '/salarié')
 		},
 		démarcheEmbauche: {
 			index: t('path.démarcheEmbauche.index', '/démarches-embauche')
