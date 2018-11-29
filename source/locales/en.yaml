@@ -129,7 +129,7 @@ Part employeur: Employer share
 Part salariale: Employee share
 Total des retenues: Total withheld
 Fiche de paie mensuelle: Monthly payslip
-Détail annuel des cotisations: Annual detail of your contributions 
+Détail annuel des cotisations: Annual detail of your contributions
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
 payslip:
@@ -460,7 +460,7 @@ Entreprise Individuelle: Individual Business
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
-statut du directeur:
+statut du dirigeant:
   page:
     description: This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France
   titre: Defining the director's status
