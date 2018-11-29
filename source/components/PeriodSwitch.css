@@ -11,7 +11,8 @@
 }
 
 #PeriodSwitch input[type='radio'] {
-	display: none;
+	position: fixed;
+	left: -100%;
 }
 
 input[type='radio'] + span {
@@ -24,10 +25,16 @@ input[type='radio'] + span {
 	cursor: pointer;
 	box-shadow: 0 0 0px 1px rgb(41, 117, 209);
 }
+input[type='radio'] ~ span {
+	cursor: pointer;
+}
 
 input[type='radio']:checked + span {
 	background: var(--colour);
 	border: 4px solid white;
+}
+input[type='radio']:focus ~ .radioText {
+	border: 1px dotted gray;
 }
 input[type='radio']:checked ~ .radioText {
 	font-weight: 500;

@@ -1,17 +1,16 @@
-import React from 'react'
-import { Trans, translate } from 'react-i18next'
-import { Field } from 'redux-form'
-import './PeriodSwitch.css'
-import { reduxForm, change } from 'redux-form'
-import { compose, map, filter, toPairs } from 'ramda'
-import emoji from 'react-easy-emoji'
-import { batchActions } from 'redux-batched-actions'
-import { connect } from 'react-redux'
-import {
-	situationSelector,
-	flatRulesSelector
-} from 'Selectors/analyseSelectors'
 import { findRuleByDottedName, nestedSituationToPathMap } from 'Engine/rules'
+import { compose, filter, map, toPairs } from 'ramda'
+import React from 'react'
+import emoji from 'react-easy-emoji'
+import { Trans, translate } from 'react-i18next'
+import { connect } from 'react-redux'
+import { batchActions } from 'redux-batched-actions'
+import { change, Field, reduxForm } from 'redux-form'
+import {
+	flatRulesSelector,
+	situationSelector
+} from 'Selectors/analyseSelectors'
+import './PeriodSwitch.css'
 
 export default compose(
 	reduxForm({
@@ -38,7 +37,7 @@ export default compose(
 					component="input"
 					type="radio"
 					value="mois"
-					onChange={e =>
+					onChange={() =>
 						updateSituation('mois', batchPeriodChange, situation, rules)
 					}
 				/>
@@ -54,7 +53,7 @@ export default compose(
 					component="input"
 					type="radio"
 					value="année"
-					onChange={e =>
+					onChange={() =>
 						updateSituation('année', batchPeriodChange, situation, rules)
 					}
 				/>
