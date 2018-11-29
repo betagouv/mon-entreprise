@@ -546,6 +546,8 @@ path:
       microEntreprise: '/micro-entreprise-or-individual-business'
   sécuritéSociale:
     index: '/social-security'
+    assimilé-salarié: '/assimilated-salaried'
+    salarié: '/salaried'
   démarcheEmbauche:
     index: '/hiring-process'
 
