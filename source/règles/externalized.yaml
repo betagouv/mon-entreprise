@@ -1290,3 +1290,114 @@ contrat salarié . complémentaire santé . part employeur:
 contrat salarié . complémentaire santé . part salarié:
   titre.en: employee share
   description.en: Share of the complementary health insurance paid by the employee. Cannot be more than 50%.
+branche de la protection sociale:
+  titre.en: social welfare branch
+  description.en: >
+    Social protection in France is composed of 5 main branches: sickness, family, accidents at work and occupational diseases, retirement and unemployment. In addition, there are also contributions for vocational training and transport.
+
+branche de la protection sociale . retraite:
+  titre.en: pensions
+  description courte.en: Guarantees on average 60%-70% of your last income.
+  description.en: |
+    All employees in France contribute throughout their working lives to benefit from a pension plan as soon as they are old enough to stop working their activity.
+
+    The pension system is currently based on the principle of the "distribution". This means that asset contributions finance retirement pensions.
+
+    ## Retirement in France in a few figures
+      - **103%**: income of people over 65 as a percentage of average income (highest in the OECD)  
+      - **25 years**: the average number of years spent in retirement (the highest in the OECD)  
+      - **75%**: the replacement rate as a percentage of net salary after full annuities
+
+    Pensions are the highest of social security contributions. It can be considered a deferred salary, since your contributions will provide you with income when you retire.
+
+branche de la protection sociale . santé:
+  titre.en: healthcare
+  description courte.en: Covers most everyday health care and 100% of serious illnesses such as hospital stays.
+  description.en: |
+    Health Insurance protects the health of everyone on a long-term basis - in their personal or professional life - by acting on behalf of everyone. 
+
+    In concrete terms, it supports 60 million insured throughout their lives, by taking charge of their care regardless of their resources, situation or state of health. It thus guarantees universal access to rights and allows access to health care.
+
+    Thanks to it, you are covered on most health care services. In the event of a serious or long-term illness, 100% of the care is reimbursed.
+
+    ## Health insurance in France in a few figures
+      - **92%** of health expenses reimbursed by health and supplementary insurance (one of the highest in the world)
+      - **€30,000 / year / patient** : health expenditure of a person with [cystic fibrosis](https://en.wikipedia.org/wiki/Cystic_fibrosis), **fully covered by social security**
+      - **11.7%** of GDP spent on health expenditure, the 5th of the OECD
+      - **82.4 years** of average life expectancy in France (in the top 10 worldwide)
+
+  références.en:
+    - Cleiss: https://www.cleiss.fr/docs/regimes/regime_france/an_1.html
+
+branche de la protection sociale . assurance chômage:
+  titre.en: unemployment
+  description courte.en: Gives income to former employees while they're looking for a new job.
+  description.en: |
+    Since 1958, the Unemployment Insurance has been protecting all private and some public sector employees when they lose their jobs. It provides them with an allowance and promotes their return to employment through assistance. 
+
+    Operating as an insurance, it compensates those who have contributed, based on their former salary. But it is also supportive, since it pools risks and compensates better for the loss of a low salary than a high income.
+
+    Thanks to it, all those who involuntarily lose their jobs can receive income in the form of an allowance as long as they have made sufficient contributions.
+
+    ## Health insurance in France in a few figures
+      - 72%** of old net salary: average percentage of unemployment benefit    
+      - 2.7 million** unemployed people compensated each month    
+      - 1,020 €****: amount of the net allowance per month  
+      - 51%** of recipients combine allowance and salary
+
+branche de la protection sociale . famille:
+  titre.en: family
+  description courte.en: Offers a balanced professional and family life. Financing of nurseries and various childcare services
+  description.en: |
+    Created in 1945, the Family branch is one of the main actors of French family policy. Currently, it has two priority missions:
+      - Helping families in their daily lives, facilitating, in particular, the reconciliation of family and professional life;  
+      - Develop solidarity with the most vulnerable, including people with disabilities.
+
+    To fulfil these missions, it relies on two levers: 
+      - The payment of financial benefits to families (family and social benefits, housing subsidies and minimum social benefits such as assistance for disabled adults and active solidarity income)
+      - Support for families and the setting up or co-financing of various
+      community services and facilities for them (such as nurseries)
+
+    Its objective is to provide a global offer of services, as close as possible to the inhabitants, by fighting against territorial and social inequalities
+
+    ## Family allowances in France in a few figures:
+      - **2.6** children wanted in France on average (one of the highest figures in Europe)
+      - **19%** share of expenditure allocated to early childhood
+      
+
+? branche de la protection sociale . accidents du travail et maladies professionnelles
+: titre.en: Work accidents / occupational diseases
+  description courte.en: Offers full coverage of occupational illnesses or accidents
+  description.en: |
+    Occupational injury and disease insurance (AT/MP) is the oldest branch of social security: it is based on principles dating back to 1898 and which were incorporated into the law of 31 December 1946.
+
+    [🎞️ See video [fr]](https://www.youtube.com/watch?v=NaGI_deZJD8)
+
+    The AT/MP contribution covers the risks of accidents at work, commuting accidents and occupational diseases for employees covered by the general scheme.
+
+    This contribution is mandatory and is the sole responsibility of the employer.
+
+    To find out about occupational risks and set up preventive actions, the [AT/MP account [fr]](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) is a service open to all companies in the general social security system
+
+    In the case of accidents at work, medical and surgical care is reimbursed at 100% on the basis of social security reimbursement (BRSS) within the limits of the Social Security rates.
+
+branche de la protection sociale . transport:
+  titre.en: transportation
+  description courte.en: Helps keep the price of a public transportation ticket low.
+  description.en: |
+    This contribution is paid in full to the [mobility authority](https://fr.wikipedia.org/wiki/Autorit%C3%A9_mobility_organiser%C3%A9) in the area where the company is located. It can then be used to subsidize existing public transport or to develop new transport infrastructure (tramway, metro, bus, etc.).
+
+    ## The transport payment in a few figures 
+    - **45% discount** on the cost of public transport in the 12 largest conurbations in France. 
+    - **€263 / year / inhabitant** in purchasing power gains for Île-de-France residents
+
+branche de la protection sociale . autres:
+  titre.en: other
+  description courte.en: Other contributions to the social system.
+  description.en: |
+    Cross-cutting contributions to the social system. For example, there is the CRDS (contribution for the repayment of the social debt) which is a tax intended to reduce the debt of the Social Security.
+
+branche de la protection sociale . formation:
+  titre.en: training
+  description courte.en: Gives employees access to professional training.
+  description.en: Vocational training enables each person, regardless of their status, to acquire and update their knowledge and skills, to increase their level of qualification and to promote their professional development.

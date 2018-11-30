@@ -31,35 +31,6 @@ non: no
 inlineExpressionNegation: Not
 déplier: show more
 replier: show less
-branches:
-  assurance chômage:
-    name: unemployment
-    counterpart: Gives income to former employees while they're looking for a new job.
-  retraite:
-    name: pensions
-    counterpart: Guarantees on average 60%-70% of your last income.
-  formation:
-    name: training
-    counterpart: Gives access to professional training for employees.
-  logement:
-    name: housing
-    counterpart: Helps build new and affordable housing.
-  transport:
-    name: transportation
-    counterpart: Lowers the price of a public transportation ticket.
-  accidents du travail / maladies professionnelles:
-    name: work accidents / occupational diseases
-    counterpart: Offers full coverage of occupational illnesses or accidents.
-  santé:
-    name: healthcare
-    counterpart: Covers most of everyday-life health care needs and 100% for serious illnesses, e.g. hospital stays.
-  famille:
-    name: family allowances
-    counterpart: Offers a balanced work and family life. Finances day nurseries and various child care.
-  autres:
-    name: other
-    counterpart: Other contributions to the social system.
-
 Salaire brut: Gross salary
 Salaire net: Net salary
 Salaire chargé: Total salary
@@ -593,6 +564,5 @@ mois: month
 an: year
 par: per
 Explorez notre base de règles: Explore our rules
-
 
 maj2019: The simulation is up-to-date in 2019.

@@ -1,6 +1,6 @@
-import { groupBy, toPairs } from 'ramda'
+import { toPairs } from 'ramda'
 import React from 'react'
-import { Trans, withNamespaces } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import references from 'Règles/ressources/références/références.yaml'
 import { capitalise0 } from '../../utils'
 import './References.css'
@@ -12,39 +12,8 @@ export default withNamespaces()(
 		}
 		render() {
 			let { refs } = this.props,
-				{ complementary, official = [] } = groupBy(([, link]) =>
-					this.findRefKey(link) ? 'official' : 'complementary'
-				)(toPairs(refs)),
-				showComplementary = this.state.showComplementary,
-				showComplementaryButton = !this.state.showComplementary && complementary
-
-			return (
-				<ul className="references">
-					{[
-						...official.map(this.renderRef),
-						official.length == 0 ? (
-							<li id="noOfficialReferences">
-								<Trans>Pas de sources officielles</Trans>
-							</li>
-						) : null,
-						...(showComplementaryButton
-							? [
-									<li id="complementary" key="compl">
-										<a
-											href="#/"
-											onClick={() =>
-												this.setState({ showComplementary: true })
-											}>
-											<i className="fa fa-eye" aria-hidden="true" />
-											<Trans>afficher les sources complémentaires</Trans>
-										</a>
-									</li>
-							  ]
-							: []),
-						...(showComplementary ? complementary.map(this.renderRef) : [])
-					]}
-				</ul>
-			)
+				references = toPairs(refs)
+			return <ul className="references">{references.map(this.renderRef)}</ul>
 		}
 		renderRef = ([name, link]) => {
 			let refKey = this.findRefKey(link),

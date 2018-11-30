@@ -21,6 +21,7 @@ import FicheDePaieSelectors, {
 	BLANK_COTISATION,
 	mergeCotisations
 } from './ficheDePaieSelectors'
+import { règleLocaliséeSelector } from './regleSelectors'
 
 import type {
 	Cotisation,
@@ -29,7 +30,7 @@ import type {
 	FicheDePaie,
 	Répartition
 } from 'Types/ResultViewTypes'
-import type { RègleAvecMontant } from 'Types/RegleTypes'
+import type { RègleAvecMontant, Règle } from 'Types/RegleTypes'
 
 const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
 	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant
@@ -47,11 +48,11 @@ const byMontantTotal = (
 }
 
 const REPARTITION_CSG: { [Branche]: number } = {
-	famille: 0.85,
-	santé: 7.75,
+	'branche de la protection sociale . famille': 0.85,
+	'branche de la protection sociale . santé': 7.75,
 	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
 	// On peut imaginer la partager à toute les composantes concernées
-	autres: 0.6
+	'branche de la protection sociale . autres': 0.6
 }
 function applyCSGInPlace(
 	CSG: Cotisation,
@@ -77,7 +78,7 @@ const brancheConcernéeParLaRéduction = [
 	'retraite',
 	'logement',
 	'famille'
-]
+].map(branche => 'branche de la protection sociale . ' + branche)
 function applyReduction(
 	réduction: RègleAvecMontant,
 	répartitionMap: { [Branche]: MontantPartagé }
@@ -101,22 +102,34 @@ function applyReduction(
 	)
 }
 
-const répartition = (ficheDePaie: ?FicheDePaie): ?Répartition => {
+const répartition = (
+	ficheDePaie: ?FicheDePaie,
+	règle: string => Règle
+): ?Répartition => {
 	if (!ficheDePaie) {
 		return null
 	}
 	// $FlowFixMe
 	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
-		ficheDePaie.cotisations
+		map(
+			([brancheRègle, cotisations]) => [brancheRègle.id, cotisations],
+			ficheDePaie.cotisations
+		)
 	)
 	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
 	let CSG
-	if (cotisations.autres) {
-		CSG = cotisations.autres.find(({ nom }) => nom === 'CSG')
+	const autresCotisations =
+		cotisations['branche de la protection sociale . autres']
+	if (autresCotisations) {
+		CSG = autresCotisations.find(({ id }) => id === 'contrat salarié . CSG')
 		if (!CSG)
 			throw new Error('[répartition selector]: expect CSG not to be null')
-		cotisations.autres = without([CSG], cotisations.autres)
+		cotisations['branche de la protection sociale . autres'] = without(
+			[CSG],
+			autresCotisations
+		)
 	}
+
 	let répartitionMap: { [Branche]: MontantPartagé } = map(
 		totalCotisations,
 		cotisations
@@ -130,6 +143,7 @@ const répartition = (ficheDePaie: ?FicheDePaie): ?Répartition => {
 		// $FlowFixMe
 		répartition: compose(
 			sort(byMontantTotal),
+			map(([id, cotisation]) => [règle(id), cotisation]),
 			Object.entries,
 			filter(
 				({ partPatronale, partSalariale }) =>
@@ -152,4 +166,8 @@ const répartition = (ficheDePaie: ?FicheDePaie): ?Répartition => {
 	}
 }
 
-export default createSelector(FicheDePaieSelectors, répartition)
+export default createSelector(
+	FicheDePaieSelectors,
+	règleLocaliséeSelector,
+	répartition
+)

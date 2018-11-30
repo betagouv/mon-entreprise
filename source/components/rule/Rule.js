@@ -1,6 +1,7 @@
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { getInputComponent } from 'Engine/generateQuestions'
+import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import { createMarkdownDiv } from 'Engine/marked'
 import {
 	encodeRuleName,
@@ -9,6 +10,7 @@ import {
 } from 'Engine/rules'
 import { compose, isEmpty } from 'ramda'
 import React, { Component, Suspense } from 'react'
+import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -20,14 +22,12 @@ import {
 	noUserInputSelector,
 	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
+import { AttachDictionary } from '../AttachDictionary'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import { AttachDictionary } from '../AttachDictionary'
-import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import emoji from 'react-easy-emoji'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
