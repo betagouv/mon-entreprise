@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from 'react'
 import yaml from 'js-yaml'
-import rules from 'Règles/co2.yaml'
 import emoji from 'react-easy-emoji'
 import { buildDottedName } from 'Engine/rules'
 
@@ -9,7 +8,9 @@ let MonacoEditor = React.lazy(() => import('react-monaco-editor'))
 export default class Source extends Component {
 	render() {
 		let { dottedName } = this.props,
-			source = rules.filter(rule => buildDottedName(rule).includes(dottedName))
+			source = rawRules.filter(rule =>
+				buildDottedName(rule).includes(dottedName)
+			)
 
 		return (
 			<div id="Source" className="ui__ container">

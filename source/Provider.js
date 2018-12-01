@@ -11,6 +11,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import computeThemeColours from 'Ui/themeColours'
 import { getIframeOption, inIframe } from './utils'
+import { safeLoad } from 'js-yaml'
 
 let initialStore = {
 	themeColours: computeThemeColours(getIframeOption('couleur'))
@@ -58,20 +59,33 @@ export default class Layout extends PureComponent {
 		if (this.props.language) {
 			i18next.changeLanguage(this.props.language)
 		}
+		this.state = { loadingRules: true }
+	}
+	componentDidMount() {
+		fetch('https://raw.githubusercontent.com/laem/publi.codes/master/co2.yaml')
+			.then(response => response.text())
+			.then(text => {
+				window.rawRules = safeLoad(text)
+				this.setState({ loadingRules: false })
+			})
 	}
 	render() {
 		return (
 			// If IE < 11 display nothing
-			<Provider store={this.store}>
-				<TrackerProvider value={this.props.tracker}>
-					<SetCSSColour />
-					<I18nextProvider i18n={i18next}>
-						<Router history={this.history}>
-							<>{this.props.children}</>
-						</Router>
-					</I18nextProvider>
-				</TrackerProvider>
-			</Provider>
+			this.state.loadingRules ? (
+				<div>Attends 2 secondes...</div>
+			) : (
+				<Provider store={this.store}>
+					<TrackerProvider value={this.props.tracker}>
+						<SetCSSColour />
+						<I18nextProvider i18n={i18next}>
+							<Router history={this.history}>
+								<>{this.props.children}</>
+							</Router>
+						</I18nextProvider>
+					</TrackerProvider>
+				</Provider>
+			)
 		)
 	}
 }

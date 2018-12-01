@@ -1,5 +1,4 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import rawRules from 'Règles/co2.yaml'
 import translations from 'Règles/externalized.yaml'
 import {
 	assoc,
@@ -35,7 +34,6 @@ import formValueTypes from 'Components/conversation/formValueTypes'
 // TODO - should be in UI, not engine
 import taux_versement_transport from 'Règles/taux-versement-transport.json'
 
-// console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
  Méthodes agissant sur une règle */
 
@@ -259,9 +257,9 @@ export let translateAll = (translations, flatRules) => {
 }
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = translateAll(translations, rawRules).map(rule =>
-	enrichRule(rule, { taux_versement_transport })
-)
-export let rulesFr = rawRules.map(rule =>
-	enrichRule(rule, { taux_versement_transport })
-)
+export let rules = () =>
+	translateAll(translations, rawRules).map(rule =>
+		enrichRule(rule, { taux_versement_transport })
+	)
+export let rulesFr = () =>
+	rawRules.map(rule => enrichRule(rule, { taux_versement_transport }))
