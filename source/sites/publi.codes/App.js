@@ -12,7 +12,7 @@ class App extends Component {
 		return (
 			<Provider
 				basename="publicodes"
-				initialStore={{ targetNames: ['impact'] }}
+				initialStore={{ targetNames: ['transport . impact'] }}
 				reduxMiddlewares={[]}>
 				<Switch>
 					<Route exact path="/" component={GenericSimulation} />

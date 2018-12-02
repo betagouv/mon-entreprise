@@ -77,8 +77,9 @@ let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {
-		let node = findRuleByDottedName(allRules, path),
-			variant = isVariant(node),
+		let node = findRuleByDottedName(allRules, path)
+		if (!node) throw new Error(`La règle ${path} est introuvable`)
+		let variant = isVariant(node),
 			variants = variant && unless(is(Array), prop('possibilités'))(variant),
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
