@@ -1,0 +1,191 @@
+- nom: chiffre affaires
+  période: flexible
+  format: euros
+
+- nom: base des cotisations
+  formule: chiffre d'affaires #- charges
+
+- nom: catégorie d'activité
+  formule: 
+    une possibilité: 
+      - vente de biens
+      - prestation de service
+
+- espace: catégorie d'activité
+  nom: vente de biens
+  description: Vente de biens, logements, nourriture.
+
+- espace: catégorie d'activité
+  nom: prestation de service
+  formule:
+    une possibilité: 
+      - restauration ou hébergement
+      - commerciale ou artisanale
+      - libérale
+
+- espace: catégorie d'activité . prestation de service
+  nom: commerciale ou artisanale
+  description: Prestation de service nécessitant du matériel ou du savoir-faire manuel
+- espace: catégorie d'activité . prestation de service
+  nom: libérale
+  description: Profession de service libérale, que l'on peut considérer comme intellectuelle et unique à chaque vente.
+
+
+- nom: indépendants
+
+- espace: indépendants 
+  nom: cotisations
+  références:
+    assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
+  formule: 
+    somme: 
+      - CSG et CRDS . assiette
+      - formation professionnelle
+
+- espace: indépendants . cotisations
+  nom: maladie
+  formule:  
+    variations:
+      - si: catégorie d'activité = 'prestation de service . libérale'
+        alors:
+          0: 1.5%
+          1.1: 6.5%
+      - sinon: artisans commerçants
+
+            
+- espace: indépendants . cotisations
+  nom: indemnités journalières maladie
+  formule:
+    multiplication: 
+      assiette: base des cotisations
+      taux: 0.85%
+      plafond: 5 * plafond sécurité sociale
+
+- espace: indépendants . cotisations . maladie
+  nom: artisans commerçants
+  formule: barème + part revenus élevés
+
+- espace: indépendants . cotisations . maladie . artisans commerçants 
+  nom: barème
+    barème continu: 
+      assiette: base des cotisations
+      multiplicateur des tranches: plafond sécurité sociale
+      points: 
+        0: 0%
+        0.4: 3.16%
+        1.1: 6.35%
+
+- espace: indépendants . cotisations . maladie . artisans commerçants 
+  nom: part revenus élevés 
+  applicable si: base des cotisations > seuil
+  formule:
+    multiplication: 
+      assiette: base des cotisations
+      taux: 0.15%
+
+- espace: indépendants . cotisations . maladie . artisans commerçants . part revenus élevés 
+  nom: seuil
+  formule: 5 * plafond sécurité sociale
+
+
+- espace: indépendants . cotisations
+  nom: retraite de base
+  formule: 
+      variations:
+        - si: catégorie d'activité = 'prestation de service . libérale'
+          alors:
+            barème:
+              assiette: base des cotisations
+              tranches:
+                - en-dessous de: 39732
+                  taux: 8.23%
+                - de: 39732
+                  à: 198660
+                  taux: 1.87%
+                - au-dessus de: 198660
+                  taux: 0%
+        - sinon: artisans commerçants
+          alors: 
+            barème:
+              assiette: base des cotisations
+              tranches: 
+                - en-dessous de: 39732
+                  taux: 17.75%
+                - au-dessus de: 39732
+                  taux: 0.6%
+
+- espace: indépendants . cotisations
+  nom: retraite complémentaire
+  formule:
+    barème:
+      assiette: base des cotisations
+      tranches:
+        - en-dessous de: 37846
+          taux: 7%
+        - de: 37846
+          à: 4 * plafond sécurité sociale
+          taux: 8%
+        - au-dessus de: 4 * plafond sécurité sociale
+          taux: 0%
+  # TODO valable uniquement pour les artisans commerçants.
+  # 8 régimes différents pour les libéraux
+  # Implémenter au moins le régime CNAVPL, interprofessionnel
+
+
+- espace: indépendants . cotisations
+  nom: invalidité et décès
+  formule:
+    multiplication: 
+      assiette: base des cotisations
+      plafond: plafond sécurité sociale
+      taux: 1.3%
+
+      # TODO invalidité décès pour les libéraux
+      # 3 classes, 76, 228, 380€
+
+- espace: indépendants . cotisations
+  nom: CSG et CRDS
+  formule:  
+    multiplication: 
+      assiette: assiette
+      composantes:
+         - attributs:
+             impôt sur le revenu: non déductible
+           taux: 2.4%
+
+          - attributs: 
+              impôt sur le revenu: déductible
+            taux: 6.8%
+
+- espace: indépendants . cotisations . CSG et CRDS
+  nom: assiette
+  formule: 
+    somme:
+      - base des cotisations
+      - maladie
+      - retraite de base
+      - retraite complémentaire
+        # TODO la retraite complémentaire libéraux (sas 8 régimes) est elle dans la base de la CSG ?
+      - invalidité et décès
+      - allocations familiales
+
+- espace: indépendants . cotisations . formation professionnelle
+  formule: 
+   multiplication:
+     assiette: base des cotisations
+     taux: 0.29%
+     plafond: plafond de la sécurité sociale
+     # C'est le taux pour les artisans. 
+     # TODO Pour les commerçants, le taux est de 0.25%
+     #
+- espace: indépendants . cotisations
+  nom: allocations familiales
+  formule:
+    barème continu:
+      0: 0%
+      1.1: 0%
+      1.4: 3.1% 
+
+
+- nom: indépendants . revenu net de cotisations
+  formule: base des cotisations - cotisations
