@@ -2565,10 +2565,10 @@
 
     ## La retraite en France en quelques chiffres 
       - **103 %** :  le revenu des plus de 65 ans en pourcentage du revenu moyen (le plus élevé de l'OCDE)  
-      - **25 ans** : le nombre d'année en moyenne passée à la retraite (le plus élevé de l'OCDE)  
-      - **75 %** : le taux de remplacement en pourcentage du salaire net après annuités complètes
+      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE)  
+      - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
 
-    La retraite est la plus élevée des cotisations sociales. Elle peut être considéré comme un salaire différé, puisque vos cotisations vous assurerons un revenu lors de votre départ à la retraite.
+    La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
 
   références:
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
@@ -2579,17 +2579,16 @@
   type: branche
   description courte: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.
   description: |
-    L’Assurance Maladie protège durablement la santé de chacun – dans sa vie personnelle ou professionnelle – en agissant auprès de tous. 
+    L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
 
     Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
 
     Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
     ## L'assurance maladie en France en quelques chiffres
-      - **92 %** des dépenses de santé remboursée par l'assurance maladie et la complémentaire en moyenne
-      - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), 
-      ,entièrement prise en charge par la sécurité sociale
-      - **11,7 % ** du PIB consacré aux dépenses de santé, le 5ème de l'OCDE
+      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire 
+      - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), entièrement prise en charge par la sécurité sociale
+      - **11,7 % ** du PIB consacrés aux dépenses de santé, le 5ème de l'OCDE
       - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial)
 
   références:
@@ -2611,7 +2610,7 @@
     ## L'assurance maladie en France en quelques chiffres 
       - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne    
       - **2,7 millions** de chômeurs indemnisés chaque mois    
-      - **1 020 €** : montant de l'allocation nette par mois  
+      - **1 020 €** : montant de l'allocation nette moyenne par mois  
       - **51 %** des allocataires cumulent allocation et salaire
 
   références:
@@ -2632,8 +2631,6 @@
       - L’accompagnement des familles et la mise en place ou le cofinancement de différents
       services et équipements collectifs qui leur sont destinés (comme les crèches)
 
-    Son objectif est de proposer une offre globale de services, au plus près des habitants, en luttant contre les inégalités territoriales et sociale
-
     ## Les allocations familiales en France en quelques chiffres
       - **19 %** part des dépenses allouées à la petite enfance
       - **2,6** enfants souhaités en France en moyenne (un des chiffre les plus elevé d'Europe)
@@ -2646,7 +2643,7 @@
   icônes: ☣️
   description courte: Offre une couverture complète des maladies ou accidents du travail.
   description: |
-    L’assurance AT/MP (accident du travail et maladie professionnelle) est la plus ancienne branche de la Sécurité sociale : elle relève de principes qui remontent à l’année 1898 et qui ont été reprise dans la loi du 31 décembre 1946.
+    L’assurance AT/MP (accident du travail et maladie professionnelle) est la plus ancienne branche de la Sécurité sociale : elle relève de principes qui remontent à l’année 1898 et qui ont été repris dans la loi du 31 décembre 1946.
 
     [🎞️ Voir la vidéo](https://www.youtube.com/watch?v=NaGI_deZJD8 )
 
@@ -2654,9 +2651,9 @@
 
     Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
     
-    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale
+    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
 
-    En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés à 100% sur la base de remboursement sécurité sociale (BRSS) dans la limite des tarifs de la Sécurité sociale.
+    En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
 
   références:
     ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp
