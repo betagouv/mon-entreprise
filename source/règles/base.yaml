@@ -2547,14 +2547,14 @@
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
 
-- nom: branche de la protection sociale
+- nom: protection sociale
   description: >
     La protection sociale est composée de 5 branches principales : maladie, famille, accidents 
     du travail et maladie professionnelles, retraite et chômage. A cela s'ajoutent
     aussi les cotisations pour la formation professionnelle et le transport.
 
 - nom: retraite
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: 👵
   type: branche
   description courte: Garantit en moyenne 60 à 70 % de votre dernier revenu d'activité après 65
@@ -2574,7 +2574,7 @@
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
 
 - nom: santé
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: 🏥
   type: branche
   description courte: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.
@@ -2597,7 +2597,7 @@
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
 
 - nom: assurance chômage
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: 💸
   type: assurance
   description courte: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
@@ -2618,7 +2618,7 @@
     Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
 
 - nom: famille
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: 👶
   type: branche
   description courte: Offre une vie professionnelle et familiale équilibrée. Finance des crèches et divers services de garde d'enfants
@@ -2642,7 +2642,7 @@
     Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
 
 - nom: accidents du travail et maladies professionnelles
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: ☣️
   description courte: Offre une couverture complète des maladies ou accidents du travail.
   description: |
@@ -2666,19 +2666,19 @@
 
 
 - nom: formation
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: 👩‍🎓
   description courte: Donne aux employés l'accès à la formation professionnelle.
   description: La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
 
 - nom: autres
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: 🔧
   description courte: Autres contributions au système social.
   description: Les contributions transverses au système social. On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette social) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale.
 
 - nom: transport
-  espace: branche de la protection sociale
+  espace: protection sociale
   icônes: 🚌
   description courte: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
   description: |

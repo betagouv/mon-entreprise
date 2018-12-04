@@ -1290,12 +1290,13 @@ contrat salarié . complémentaire santé . part employeur:
 contrat salarié . complémentaire santé . part salarié:
   titre.en: employee share
   description.en: Share of the complementary health insurance paid by the employee. Cannot be more than 50%.
-branche de la protection sociale:
-  titre.en: social welfare branch
+
+protection sociale:
+  titre.en: social welfare
   description.en: >
     Social protection in France is composed of 5 main branches: sickness, family, accidents at work and occupational diseases, retirement and unemployment. In addition, there are also contributions for vocational training and transport.
 
-branche de la protection sociale . retraite:
+protection sociale . retraite:
   titre.en: pensions
   description courte.en: Guarantees on average 60%-70% of your last income.
   description.en: |
@@ -1310,7 +1311,7 @@ branche de la protection sociale . retraite:
 
     Pensions are the highest of social security contributions. It can be considered a deferred salary, since your contributions will provide you with income when you retire.
 
-branche de la protection sociale . santé:
+protection sociale . santé:
   titre.en: healthcare
   description courte.en: Covers most everyday health care and 100% of serious illnesses such as hospital stays.
   description.en: |
@@ -1329,7 +1330,7 @@ branche de la protection sociale . santé:
   références.en:
     - Cleiss: https://www.cleiss.fr/docs/regimes/regime_france/an_1.html
 
-branche de la protection sociale . assurance chômage:
+protection sociale . assurance chômage:
   titre.en: unemployment
   description courte.en: Gives income to former employees while they're looking for a new job.
   description.en: |
@@ -1345,7 +1346,7 @@ branche de la protection sociale . assurance chômage:
       - **1,020 €****: amount of the net allowance per month  
       - **51%** of recipients combine allowance and salary
 
-branche de la protection sociale . famille:
+protection sociale . famille:
   titre.en: family
   description courte.en: Offers a balanced professional and family life. Financing of nurseries and various childcare services
   description.en: |
@@ -1365,8 +1366,8 @@ branche de la protection sociale . famille:
       - **19%** share of expenditure allocated to early childhood
       
 
-? branche de la protection sociale . accidents du travail et maladies professionnelles
-: titre.en: Work accidents / occupational diseases
+protection sociale . accidents du travail et maladies professionnelles:
+  titre.en: Work accidents / occupational diseases
   description courte.en: Offers full coverage of occupational illnesses or accidents
   description.en: |
     Occupational injury and disease insurance (AT/MP) is the oldest branch of social security: it is based on principles dating back to 1898 and which were incorporated into the law of 31 December 1946.
@@ -1381,7 +1382,7 @@ branche de la protection sociale . famille:
 
     In the case of accidents at work, medical and surgical care is reimbursed at 100% on the basis of social security reimbursement (BRSS) within the limits of the Social Security rates.
 
-branche de la protection sociale . transport:
+protection sociale . transport:
   titre.en: transportation
   description courte.en: Helps keep the price of a public transportation ticket low.
   description.en: |
@@ -1391,13 +1392,13 @@ branche de la protection sociale . transport:
     - **45% discount** on the cost of public transport in the 12 largest conurbations in France. 
     - **€263 / year / inhabitant** in purchasing power gains for Île-de-France residents
 
-branche de la protection sociale . autres:
+protection sociale . autres:
   titre.en: other
   description courte.en: Other contributions to the social system.
   description.en: |
     Cross-cutting contributions to the social system. For example, there is the CRDS (contribution for the repayment of the social debt) which is a tax intended to reduce the debt of the Social Security.
 
-branche de la protection sociale . formation:
+protection sociale . formation:
   titre.en: training
   description courte.en: Gives employees access to professional training.
   description.en: Vocational training enables each person, regardless of their status, to acquire and update their knowledge and skills, to increase their level of qualification and to promote their professional development.

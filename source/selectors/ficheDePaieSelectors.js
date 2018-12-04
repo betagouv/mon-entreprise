@@ -34,14 +34,14 @@ import type {
 import type { Règle } from 'Types/RegleTypes'
 
 export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
-	'branche de la protection sociale . santé',
-	'branche de la protection sociale . accidents du travail et maladies professionnelles',
-	'branche de la protection sociale . retraite',
-	'branche de la protection sociale . famille',
-	'branche de la protection sociale . assurance chômage',
-	'branche de la protection sociale . formation',
-	'branche de la protection sociale . transport',
-	'branche de la protection sociale . autres'
+	'protection sociale . santé',
+	'protection sociale . accidents du travail et maladies professionnelles',
+	'protection sociale . retraite',
+	'protection sociale . famille',
+	'protection sociale . assurance chômage',
+	'protection sociale . formation',
+	'protection sociale . transport',
+	'protection sociale . autres'
 ]
 
 // Used for type consistency
@@ -54,7 +54,7 @@ export const BLANK_COTISATION: Cotisation = {
 	type: 'euros',
 	nom: 'ERROR_SHOULD_BE_INSTANCIATED',
 	lien: 'ERROR_SHOULD_BE_INSTANCIATED',
-	branche: 'branche de la protection sociale . autres'
+	branche: 'protection sociale . autres'
 }
 
 function duParSelector(
@@ -77,7 +77,7 @@ function brancheSelector(variable: VariableWithCotisation): Branche {
 	].map(p => path(p, variable))
 	return (
 		// $FlowFixMe
-		'branche de la protection sociale . ' +
+		'protection sociale . ' +
 		(branches.filter(Boolean)[0] || 'autres')
 	)
 }

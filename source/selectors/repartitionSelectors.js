@@ -48,11 +48,11 @@ const byMontantTotal = (
 }
 
 const REPARTITION_CSG: { [Branche]: number } = {
-	'branche de la protection sociale . famille': 0.85,
-	'branche de la protection sociale . santé': 7.75,
+	'protection sociale . famille': 0.85,
+	'protection sociale . santé': 7.75,
 	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
 	// On peut imaginer la partager à toute les composantes concernées
-	'branche de la protection sociale . autres': 0.6
+	'protection sociale . autres': 0.6
 }
 function applyCSGInPlace(
 	CSG: Cotisation,
@@ -78,7 +78,7 @@ const brancheConcernéeParLaRéduction = [
 	'retraite',
 	'logement',
 	'famille'
-].map(branche => 'branche de la protection sociale . ' + branche)
+].map(branche => 'protection sociale . ' + branche)
 function applyReduction(
 	réduction: RègleAvecMontant,
 	répartitionMap: { [Branche]: MontantPartagé }
@@ -119,12 +119,12 @@ const répartition = (
 	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
 	let CSG
 	const autresCotisations =
-		cotisations['branche de la protection sociale . autres']
+		cotisations['protection sociale . autres']
 	if (autresCotisations) {
 		CSG = autresCotisations.find(({ id }) => id === 'contrat salarié . CSG')
 		if (!CSG)
 			throw new Error('[répartition selector]: expect CSG not to be null')
-		cotisations['branche de la protection sociale . autres'] = without(
+		cotisations['protection sociale . autres'] = without(
 			[CSG],
 			autresCotisations
 		)
