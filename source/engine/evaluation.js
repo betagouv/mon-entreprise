@@ -80,7 +80,10 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 
 export let parseObject = (recurse, objectShape, value) => {
 	let recurseOne = key => defaultValue => {
-		if (!value[key] && !defaultValue) throw "Il manque une valeur '" + key + "'"
+		if (!value[key] && !defaultValue)
+			throw new Error(
+				`Il manque une valeur '${key}' dans ${JSON.stringify(value)} `
+			)
 		return value[key] ? recurse(value[key]) : defaultValue
 	}
 	let transforms = fromPairs(map(k => [k, recurseOne(k)], keys(objectShape)))
