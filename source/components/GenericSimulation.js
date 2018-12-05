@@ -23,8 +23,8 @@ export default class YO extends React.Component {
 		return (
 			<div id="GenericSimulation">
 				<header>
-					<img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=014e46e03c4b8f6472e77c50c5088377&auto=format&fit=crop&w=800&q=80" />
-					<h1>Quel est l'impact de vos douches ? </h1>
+					<img src="https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" />
+					<h1>Quel est l'impact de votre véhicule ? </h1>
 				</header>
 				<div className="ui__ container" id="simulationContent">
 					{!isEmpty(previousAnswers) && (
