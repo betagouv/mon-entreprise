@@ -68,3 +68,17 @@ export function inIframe() {
 
 export const normalizeBasePath = (basePath: string) =>
 	basePath + (basePath.endsWith('/') ? '' : '/')
+
+export function softCatch<ArgType: any, ReturnType: any>(
+	fn: ArgType => ReturnType
+): ArgType => ReturnType | null {
+	return function(...args) {
+		try {
+			return fn(...args)
+		} catch (e) {
+			// eslint-disable-next-line no-console
+			console.warn(e)
+			return null
+		}
+	}
+}

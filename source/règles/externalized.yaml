@@ -33,7 +33,7 @@ contrat salarié . indemnité kilométrique vélo . indemnité vélo active:
     contributions and income tax up to 200€.
 
 
-    To reach 200€, the employee must cycle approximately 4km per day. 
+    To reach 200€, the employee must cycle approximately 4km per day.
   description.fr: >
     Cette indemnité n'est pour l'instant pas obligatoire.
 
@@ -111,7 +111,7 @@ contrat salarié . ATMP:
     Professionnelles.
 contrat salarié . ATMP . taux réduit:
   titre.en: reduced rate for risk-free activity
-  question.en: Is the activity of the establishment or employee without risk ? 
+  question.en: Is the activity of the establishment or employee without risk ?
   description.en: |
     This rate corresponds to: 
       - small companies whose activity is not risky, for example IT consulting 
@@ -747,7 +747,7 @@ contrat salarié . coût d'embauche:
   titre.en: Hiring cost
 contrat salarié . aides employeur:
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: 'Pour l''employeur, différées dans le temps'
+  résumé.fr: "Pour l'employeur, différées dans le temps"
   description.en: >
     Some aids can be requested by the employer to help hires.
 
@@ -1074,17 +1074,25 @@ contrat salarié . chômage:
   description.fr: Cotisation d’assurance chômage
   titre.en: unemployment
   titre.fr: chômage
+
 contrat salarié . complémentaire santé:
   titre.en: Complementary health insurance
   titre.fr: complémentaire santé
-contrat salarié . forfait complémentaire santé: 
+  description.en: |
+    Health Insurance (Social Security) does not fully reimburse your health expenses.
+
+    The complementary company health insurance supplements these reimbursements, in whole or in part.
+
+    In addition to complementary health insurance, the company's collective system can offer other guarantees (death benefits, long-term care benefits, etc.).
+
+contrat salarié . complémentaire santé . forfait:
   titre.en: Complementary health insurance package
   description.en: >-
     The employer has the obligation to propose a complementary health insurance
     plan. More importantly, he has to take in charge at least half of the
     amount, which is the repartition we chose for this simulation, or more. The
     plan is free as long as it covers a legal care basket.
-contrat salarié . forfait complémentaire santé . en alsace moselle:
+contrat salarié . complémentaire santé . forfait . en alsace moselle:
   titre.en: Complementary health insurance plan (Alsace-Moselle)
   question.en: >-
     What is the total monthly amount (employee and employer) of the company's
@@ -1092,11 +1100,11 @@ contrat salarié . forfait complémentaire santé . en alsace moselle:
   description.en: |
     For historical reasons, the social health coverage of the employees of the Alsace and Moselle historical regions is higher. As a result, the price of the complementary health insurance packages that private companies offer to them is lower.
 
-    A study by Meilleureassurance.com allows us to assume that it is worth on average ~ 70% of the average price in France. 
+    A study by Meilleureassurance.com allows us to assume that it is worth on average ~ 70% of the average price in France.
   suggestions.en:
     basique: low
     élevé: high
-contrat salarié . forfait complémentaire santé . en france:
+contrat salarié . complémentaire santé . forfait . en france:
   titre.en: Complementary health insurance plan (France)
   question.en: >-
     What is the total monthly amount (employee and employer) of the company's
@@ -1274,3 +1282,11 @@ contrat salarié . forfait social . assiette taux huit:
   description.fr: >
     Assiette comprenant les rémunérations et les gains sur lesquelles
     s'appliquent la contribution du forfait social au taux de 8%.
+
+contrat salarié . complémentaire santé . part employeur:
+  titre.en: employer share
+  description.en: Share of complementary health insurance paid by the employer. Must be at least 50%.
+
+contrat salarié . complémentaire santé . part salarié:
+  titre.en: employee share
+  description.en: Share of the complementary health insurance paid by the employee. Cannot be more than 50%.

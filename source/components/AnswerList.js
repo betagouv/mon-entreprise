@@ -1,3 +1,5 @@
+/* @flow */
+
 import { resetSimulation } from 'Actions/actions'
 import Montant from 'Components/Montant'
 import Overlay from 'Components/Overlay'
@@ -9,9 +11,11 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
+// $FlowFixMe
 import { reset } from 'redux-form'
 import { createSelector } from 'reselect'
 import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
+import { softCatch } from '../utils'
 import './AnswerList.css'
 
 const formatAnswer = (answer, language) => {
@@ -81,7 +85,7 @@ const AnswerList = ({
 const answerWithValueSelector = createSelector(
 	state => state.conversationSteps.foldedSteps,
 	règleAvecValeurSelector,
-	(answers, getRegle) => answers.map(getRegle)
+	(answers, getRègle) => answers.map(softCatch(getRègle)).filter(Boolean)
 )
 
 export default compose(
@@ -89,7 +93,7 @@ export default compose(
 	withColours,
 	connect(
 		state => ({ answers: answerWithValueSelector(state) }),
-		dispatch => ({
+		(dispatch: Function) => ({
 			resetSimulation: () => {
 				dispatch(resetSimulation())
 				dispatch(reset('conversation'))

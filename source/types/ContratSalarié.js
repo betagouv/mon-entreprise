@@ -9,7 +9,9 @@ export type ContratSalarié = {
 	'heure par semaine'?: string,
 	'statut cadre'?: OuiNon,
 	'statut JEI'?: OuiNon,
-	'forfait complémentaire santé'?: string,
+	'complémentaire santé'?: {
+		forfait?: string
+	},
 	ATMP: {
 		'taux collectif ATMP': string
 	},
