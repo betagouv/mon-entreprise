@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { analyse, parseAll } from '../source/engine/traverse'
 import { enrichRule } from '../source/engine/rules'
+import { analyse, parseAll } from '../source/engine/traverse'
 
 let stateSelector = () => null
 
