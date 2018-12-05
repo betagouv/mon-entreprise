@@ -1,0 +1,86 @@
+- espace: communs
+  nom: plafon de la sécurité sociale
+  format: euros
+  formule: 39732
+- espace: économie collaborative
+  nom: type d'activité
+  description: >
+    L’économie collaborative repose sur le partage ou l’échange entre particuliers de biens (voiture, logement, outils…), de services ou de connaissances.
+    La mise en relation entre les personnes concernées se fait par l’intermédiaire de plateformes numériques, les offices du tourisme ou directement entre particuliers.
+    Vous vendez ou louez des biens, proposez des services rémunérés… ?
+    Les recettes issues de ces activités lorsqu’elles dépassent certains seuils, doivent être déclarées.
+    Elles sont soumises à cotisations sociales et ouvrent droit à ce titre à des prestations sociales.
+    Elles sont également susceptibles d’être imposées et doivent être déclarées à l’administration fiscale.
+    Selon le type d’activité, plusieurs options d’affiliation s’offrent à vous.
+  question: Quel est le type d'activité concerné ?
+  formule:
+    une possibilité:
+      - location de logement de courte durée
+      - location de biens
+      - vente de services
+      - vente de biens
+      - co-consommation
+  références:
+    - https://www.urssaf.fr/portail/home/espaces-dedies/activites-relevant-de-leconomie.html
+    - https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Economie-collaborative.pdf
+  par défaut: usage
+- espace: économie collaborative . type d'activité
+  nom: location de logement
+  formule:
+    une possibilité:
+      - meublé de courte durée
+      - meublé de tourisme classé
+      - chambre d'hôtes
+- espace: économie collaborative . type d'activité . location de logement
+  nom: meublé de courte durée
+  formule: économie collaborative . type d'activité = 'location de logement . meublé de courte durée'
+- espace: économie collaborative . type d'activité . location de logement
+  nom: meublé de tourisme classé
+  formule: économie collaborative . type d'activité = 'location de logement . meublé de tourisme classé'
+- espace: économie collaborative . type d'activité . location de logement
+  nom: chambre d'hôtes
+  formule: économie collaborative . type d'activité = 'location de logement . chambre d'hôtes'
+- espace: économie collaborative . type d'activité
+  nom: locations de biens
+  formule: économie collaborative . type d'activité = location de biens
+- espace: économie collaborative . type d'activité
+  nom: locations de services
+  formule: économie collaborative . type d'activité = location de services
+- espace: économie collaborative . type d'activité
+  nom: vente de biens
+  formule: économie collaborative . type d'activité = vente de biens
+- espace: économie collaborative . type d'activité
+  nom: co-consommation
+  formule: économie collaborative . type d'activité = co-consommation
+- espace: économie collaborative
+  nom: seuil de déclaration de l'activité
+  format: euros
+  non applicable si: type d'activité = 'co-consommation'
+  formule:
+    variations:
+      - si:
+          une de ces conditions:
+            - type d'activité = 'location de logement . meublé de courte durée'
+            - type d'activité = 'location de logement . meublé de tourisme classé'
+        alors: 23000
+      - si: type d'activité = 'location de logement . chambre d'hôtes'
+        alors: 5100
+      - si: type d'activité = 'location de biens'
+        alors: 0.2 * communs . plafond de la sécurité sociale
+      - sinon: 0
+- espace: activité actuelle
+  nom: chiffre d'affaire annuel
+  format: euros
+  question: Quel est le chiffre d'affaire annuel de votre activité ?
+- espace: économie collaborative
+  nom: comment déclarer
+  nom applicable si: type d'activité = 'co-consommation'
+  applicable si: recette annuelle > seuil de déclaration de l'activité
+  formule:
+    une possibilité:
+      - cumul avec mes revenus professionels
+      - option pour le régime général
+      - créer une entreprise
+      - créer une micro entreprise
+- espace: entreprise actuelle
+  nom:

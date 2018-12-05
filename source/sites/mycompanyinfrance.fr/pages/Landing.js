@@ -50,11 +50,10 @@ export default withNamespaces()(
 						{emoji('🏡')} Déclarer une petite activité rémunératrice (airbnb,
 						leboncoin, blablacar...)
 					</Link>
-
 					<Link
 						className="landing__choice "
 						to={sitePaths().sécuritéSociale.index}>
-						{emoji('💶')} Estimer les cotisations, taxes et impôts
+						{emoji('💶')} Estimer les cotisations et la protection sociale
 					</Link>
 
 					<Link
