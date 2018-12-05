@@ -4,7 +4,9 @@
 	"version": "0.7.0",
 	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build cool forms that asks the question needed to compute an objective.",
 	"main": "./dist/engine.js",
-	"files": ["dist/engine.js"],
+	"files": [
+		"dist/engine.js"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/syso.git"
@@ -12,7 +14,10 @@
 	"engines": {
 		"node": ">=8.10.0"
 	},
-	"browserslist": ["> 1% in FR", "not ie < 11"],
+	"browserslist": [
+		"> 1% in FR",
+		"not ie < 11"
+	],
 	"dependencies": {
 		"@researchgate/react-intersection-observer": "^0.7.3",
 		"classnames": "^2.2.5",
