@@ -136,6 +136,13 @@ barème linéaire:
     Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette qui correspond à la tranche, et de multiplier le taux associé avec l'assiette.
     Un montant fixe pour chaque tranche peut aussi remplacer le taux, rendant le barème encore plus simple, mais moins "juste", car moins continu.
 
+barème continu:
+  type: numeric
+  description: |
+    Ce barème définit des points A(x1, y1) B(x2, y2) C(x3, y3) etc. On trace alors une droite entre ces points. x correspond à l'assiette du barème, et y au taux qui va être appliqué à l'assiette pour déterminer le montant du calcul.
+    Les x1, x2, peuvent éventuellement être des unités d'un multiplicateur.
+
+
 complément:
   type: numeric
   description: |

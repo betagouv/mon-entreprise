@@ -1,0 +1,40 @@
+- nom: base
+  format: nombre
+  formule: 300
+
+- nom: assiette
+  format: nombre
+
+- test: Simple
+  formule:
+    barème continu: 
+      assiette: assiette
+      multiplicateur: base
+      points: 
+        0: 0%
+        0.4: 3.16%
+        1.1: 6.35%
+      
+  exemples: 
+    - nom: Premier intervale
+      situation: 
+        assiette: 10
+      valeur attendue: 0.026
+    - nom: Deuxième intervale
+      situation: 
+        assiette: 120
+      valeur attendue: 3.792
+    - nom: Premier point 
+      situation: 
+        assiette: 150
+      valeur attendue: 5.423
+    - nom: Deuxième point 
+      situation: 
+        assiette: 330
+      valeur attendue: 20.955
+    - nom: Au-delà 
+      situation: 
+        assiette: 1000
+      valeur attendue: 63.5
+        
+        
