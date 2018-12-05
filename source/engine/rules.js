@@ -71,6 +71,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 			icon
 		}
 	} catch (e) {
+		console.log(e)
 		throw new Error('Problem enriching ' + JSON.stringify(rule))
 	}
 }
