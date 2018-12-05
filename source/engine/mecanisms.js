@@ -3,7 +3,6 @@ import {
 	path,
 	mergeWith,
 	objOf,
-	toPairs,
 	dissoc,
 	add,
 	find,
@@ -27,7 +26,12 @@ import {
 	subtract,
 	sum,
 	isNil,
-	reject
+	reject,
+	aperture,
+	sort,
+	toPairs,
+	reduced,
+	last
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -775,6 +779,57 @@ export let mecanismScale = (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'barème',
 		barème: 'en taux marginaux',
+		type: 'numeric'
+	}
+}
+
+export let mecanismContinuousScale = (recurse, k, v) => {
+	let objectShape = {
+		assiette: false,
+		multiplicateur: constantNode(1)
+	}
+	let effect = ({ assiette, multiplicateur, points }) => {
+		if (anyNull([assiette, multiplicateur])) return null
+		//We'll build a linear function given the two constraints that must be respected
+		return pipe(
+			toPairs,
+			// we don't rely on the sorting of objects
+			sort(([k1], [k2]) => k1 - k2),
+			points => [...points, [Infinity, last(points)[1]]],
+			aperture(2),
+			reduce((_, [[lowerLimit, lowerRate], [upperLimit, upperRate]]) => {
+				let x1 = val(multiplicateur) * lowerLimit,
+					x2 = val(multiplicateur) * upperLimit,
+					y1 = val(assiette) * val(recurse(lowerRate)),
+					y2 = val(assiette) * val(recurse(upperRate))
+				if (val(assiette) > x1 && val(assiette) <= x2) {
+					// Outside of these 2 limits, it's a linear function a * x + b
+					let a = (y2 - y1) / (x2 - x1),
+						b = y1 - x1 * a
+					return reduced(a * val(assiette) + b)
+				}
+			}, 0)
+		)(points)
+	}
+	let explanation = {
+			...parseObject(recurse, objectShape, v),
+			points: v.points
+		},
+		evaluate = evaluateObject(objectShape, effect)
+	let jsx = (nodeValue, explanation) => (
+		<Node
+			classes="mecanism réductionLinéaire"
+			name="réductionLinéaire"
+			value={nodeValue}
+			child={<div> Réduction linéaire </div>}
+		/>
+	)
+	return {
+		evaluate,
+		jsx,
+		explanation,
+		category: 'mecanism',
+		name: 'réduction linéaire',
 		type: 'numeric'
 	}
 }
