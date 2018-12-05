@@ -7,6 +7,6 @@ describe('Pole emploi test', function() {
 		cy.reload(true)
 		cy.get('#simulateurEmbauche')
 			.iframe()
-			.contains('Entrez un salaire mensuel')
+			.contains('Touché par le salarié')
 	})
 })
