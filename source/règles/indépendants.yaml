@@ -115,20 +115,50 @@
 
 - espace: indépendants . cotisations
   nom: retraite complémentaire
+  notes: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
-    barème:
-      assiette: base des cotisations
-      tranches:
-        - en-dessous de: 37846
-          taux: 7%
-        - de: 37846
-          à: 4 * plafond sécurité sociale
-          taux: 8%
-        - au-dessus de: 4 * plafond sécurité sociale
-          taux: 0%
-  # TODO valable uniquement pour les artisans commerçants.
-  # 8 régimes différents pour les libéraux
-  # Implémenter au moins le régime CNAVPL, interprofessionnel
+    variations: 
+      - si: catégorie d'activité = 'prestation de service . libérale'
+        alors: 
+          barème linéaire: 
+            assiette: base des cotisations
+            tranches: 
+              - en-dessous de: 26580
+                montant: 1277
+              - de: 26581 
+                à: 49280
+                montant: 2553
+              - de: 49281
+                à: 57850
+                montant: 3830
+              - de: 57851
+                à: 66400
+                montant: 6384
+              - de: 66401
+                à: 83060
+                montant:  8937
+              - de:  83061
+                à: 103180
+                montant: 14044 
+              - de: 103181
+                à: 123300
+                montant: 15320 
+              - au-dessus de: 123300
+                montant: 15597
+      - sinon: 
+          barème:
+            assiette: base des cotisations
+            tranches:
+              - en-dessous de: 37846
+                taux: 7%
+              - de: 37846
+                à: 4 * plafond sécurité sociale
+                taux: 8%
+              - au-dessus de: 4 * plafond sécurité sociale
+                taux: 0%
+        # TODO valable uniquement pour les artisans commerçants.
+        # 8 régimes différents pour les libéraux
+        # Implémenter au moins le régime CNAVPL, interprofessionnel
 
 
 - espace: indépendants . cotisations
