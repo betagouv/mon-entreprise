@@ -37,3 +37,39 @@
         assiette: 999.6
       valeur attendue: 99.96
 
+- test: Barème linéaire en montant
+  formule:
+    barème linéaire:
+      assiette: assiette
+      tranches:
+      - de: 0
+        à: 999
+        montant: 50
+      - de: 1000
+        à: 1999
+        montant: 170
+      - au-dessus de: 2000
+        montant: 400
+
+  exemples:
+    - nom: "petite assiette"
+      situation:
+        assiette: 200
+      valeur attendue: 50
+    - nom: "moyenne assiette"
+      situation:
+        assiette: 1500
+      valeur attendue: 170
+    - nom: "grande assiette"
+      situation:
+        assiette: 10000
+      valeur attendue: 400
+    - nom: "pour choisir la tranche, l'assiette est arrondie au préalable"
+      situation:
+        assiette: 999.3
+      valeur attendue: 50
+    - nom: "pour choisir la tranche, l'assiette est arrondie au préalable (2)"
+      situation:
+        assiette: 999.6
+      valeur attendue: 170
+

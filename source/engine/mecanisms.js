@@ -712,7 +712,9 @@ export let mecanismLinearScale = (recurse, k, v) => {
 		)
 
 		if (!matchedTranche) return 0
-		return matchedTranche.taux.nodeValue * val(assiette)
+		if (matchedTranche.taux)
+			return matchedTranche.taux.nodeValue * val(assiette)
+		return matchedTranche.montant
 	}
 
 	let explanation = {

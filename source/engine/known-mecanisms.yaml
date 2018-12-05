@@ -134,6 +134,7 @@ barème linéaire:
   description: |
     C'est un barème en taux non marginaux, très simple. C'est le mécanisme de calcul de l'impôt neutre, aussi appelé impôt non personnalisé.
     Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette qui correspond à la tranche, et de multiplier le taux associé avec l'assiette.
+    Un montant fixe pour chaque tranche peut aussi remplacer le taux, rendant le barème encore plus simple, mais moins "juste", car moins continu.
 
 complément:
   type: numeric
