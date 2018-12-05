@@ -93,17 +93,16 @@
   formule: 
       variations:
         - si: catégorie d'activité = 'prestation de service . libérale'
-          alors:
-            barème:
+          alors: 
+            multiplication: 
               assiette: base des cotisations
-              tranches:
-                - en-dessous de: 39732
-                  taux: 8.23%
-                - de: 39732
-                  à: 198660
-                  taux: 1.87%
-                - au-dessus de: 198660
-                  taux: 0%
+              composantes:
+                - nom: tranche 1
+                    plafond: 39732
+                    taux: 8.23%
+                - nom: tranche 2
+                    plafond: 198660
+                    taux: 1.87%
         - sinon: artisans commerçants
           alors: 
             barème:
