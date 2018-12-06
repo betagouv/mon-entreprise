@@ -2564,14 +2564,15 @@
     Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
 
     ## La retraite en France en quelques chiffres 
-      - **103 %** :  le revenu des plus de 65 ans en pourcentage du revenu moyen (le plus élevé de l'OCDE)  
-      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE)  
+      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)  
+      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)  
       - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
 
     La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
 
   références:
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
+    INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
 
 - nom: santé
   espace: protection sociale
@@ -2588,8 +2589,8 @@
     ## L'assurance maladie en France en quelques chiffres
       - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire 
       - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), entièrement prise en charge par la sécurité sociale
-      - **11,7 % ** du PIB consacrés aux dépenses de santé, le 5ème de l'OCDE
-      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial)
+      - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
 
   références:
     ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
@@ -2607,7 +2608,7 @@
 
     Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
 
-    ## L'assurance maladie en France en quelques chiffres 
+    ## L'assurance chômage en France en quelques chiffres 
       - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne    
       - **2,7 millions** de chômeurs indemnisés chaque mois    
       - **1 020 €** : montant de l'allocation nette moyenne par mois  
@@ -2615,6 +2616,7 @@
 
   références:
     Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
+    ameli.fr: https://www.ameli.fr/simulateur/public/index.php/index/calcul
 
 - nom: famille
   espace: protection sociale
@@ -2633,10 +2635,12 @@
 
     ## Les allocations familiales en France en quelques chiffres
       - **19 %** part des dépenses allouées à la petite enfance
-      - **2,6** enfants souhaités en France en moyenne (un des chiffre les plus elevé d'Europe)
+      - **900 € / mois**: montant de l'allocation aux adultes handicapés
+      - **75 %** des mères avec un enfant à charge travaillent (dont seulement 30% en temps partiel)
 
   références:
-    Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
+    CAF: https://www.caf.fr/sites/default/files/plaquette branche famille francais.pdf
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F12242
 
 - nom: accidents du travail et maladies professionnelles
   espace: protection sociale
@@ -2666,13 +2670,19 @@
   espace: protection sociale
   icônes: 👩‍🎓
   description courte: Donne aux employés l'accès à la formation professionnelle.
-  description: La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
+  description: |
+    La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
+    
+    Pour avoir un compte rendu personnalisé de vos droits à la formation, rendez vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr)
 
 - nom: autres
   espace: protection sociale
   icônes: 🔧
   description courte: Autres contributions au système social.
-  description: Les contributions transverses au système social. On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette social) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale.
+  description: |
+    Toutes les contributions transverses au système social. 
+  
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette social) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
 
 - nom: transport
   espace: protection sociale

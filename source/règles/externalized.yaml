@@ -1305,7 +1305,7 @@ protection sociale . retraite:
     The pension system is currently based on the principle of the "distribution". This means that asset contributions finance retirement pensions.
 
     ## Retirement in France in a few figures
-      - **103%**: income of people over 65 as a percentage of average income (highest in the OECD)  
+      - **2094 € / month**: Average standard of living for people over 65 (compared to the rest of the population, it is the highest in the OECD 🥇)  
       - **25 years**: the average number of years spent in retirement (the highest in the OECD)  
       - **75%**: the replacement rate as a percentage of net salary after full annuities
 
@@ -1325,13 +1325,14 @@ protection sociale . santé:
       - **92%** of health expenses reimbursed by health and supplementary insurance (one of the highest in the world)
       - **€30,000 / year / patient** : health expenditure of a person with [cystic fibrosis](https://en.wikipedia.org/wiki/Cystic_fibrosis), **fully covered by social security**
       - **11.7%** of GDP spent on health expenditure, the 5th of the OECD
-      - **82.4 years** of average life expectancy in France (in the top 10 worldwide)
+      - **82.4 years** of average life expectancy in France (in the top 10 worldwide 🏅)
+      - **€1,468 / month** : allowance paid by the social security system for maternity leave (average salary)
 
   références.en:
     - Cleiss: https://www.cleiss.fr/docs/regimes/regime_france/an_1.html
 
 protection sociale . assurance chômage:
-  titre.en: unemployment
+  titre.en: unemployment insurance
   description courte.en: Gives income to former employees while they're looking for a new job.
   description.en: |
     Since 1958, the Unemployment Insurance has been protecting all private and some public sector employees when they lose their jobs. It provides them with an allowance and promotes their return to employment through assistance. 
@@ -1340,7 +1341,7 @@ protection sociale . assurance chômage:
 
     Thanks to it, all those who involuntarily lose their jobs can receive income in the form of an allowance as long as they have made sufficient contributions.
 
-    ## Health insurance in France in a few figures
+    ## Unemployment insurance in France in a few figures
       - **72%** of old net salary: average percentage of unemployment benefit    
       - **2.7 million** unemployed people compensated each month    
       - **1,020 €****: amount of the net allowance per month  
@@ -1362,8 +1363,9 @@ protection sociale . famille:
     Its objective is to provide a global offer of services, as close as possible to the inhabitants, by fighting against territorial and social inequalities
 
     ## Family allowances in France in a few figures:
-      - **2.6** children wanted in France on average (one of the highest figures in Europe)
+      - **900 € / month**: amount of the allowance for disabled adults
       - **19%** share of expenditure allocated to early childhood
+      - **75%** of mothers with a dependent child work (only 30% part-time)
       
 
 protection sociale . accidents du travail et maladies professionnelles:
@@ -1396,9 +1398,14 @@ protection sociale . autres:
   titre.en: other
   description courte.en: Other contributions to the social system.
   description.en: |
-    Cross-cutting contributions to the social system. For example, there is the CRDS (contribution for the repayment of the social debt) which is a tax intended to reduce the debt of the Social Security.
+    Cross-cutting contributions to the social system. 
+
+    For example, there is the CRDS (contribution for the repayment of the social debt) which is a tax intended to reduce the debt of the Social Security, and thus ensure the sustainability of social protection for your children and grandchildren.
 
 protection sociale . formation:
   titre.en: training
   description courte.en: Gives employees access to professional training.
-  description.en: Vocational training enables each person, regardless of their status, to acquire and update their knowledge and skills, to increase their level of qualification and to promote their professional development.
+  description.en: |
+    Vocational training enables each person, regardless of their status, to acquire and update their knowledge and skills, to increase their level of qualification and to promote their professional development.
+
+     For a personalized report on your training rights, go to [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr)
