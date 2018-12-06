@@ -225,7 +225,7 @@ entreprise:
     statuts:
       titre: Write the company's articles
       exemple: Example articles for your
-      description: <0>The company's articles of association</0> ( "les statuts"), is an official document written in French, describing the status choice, naming the associate(s) and the contributed capital. For more than one associate, it is recommended to ask for the help of a lawyer to write them.
+      description: The company's articles of association ( "les statuts"), is an official document written in French, describing the status choice, naming the associate(s) and the contributed capital. <2>For more than one associate, it is recommended to ask for the help of a lawyer to write them.</2>
     banque:
       titre: Open a business bank account
       description:
@@ -241,7 +241,7 @@ entreprise:
     journal:
       titre: Publish a notice of creation in a newspaper
       description: |
-        <0>A <1>a notice of incorporation of the company</1> must be published in a newspaper of legal announcements (« JAL »), for a cost of publication that depends on the size of the announcement and the rates charged by the chosen newspaper.</0><1><0>Find a newspaper of legal announcements</0></1><2>For a SARL or EURL, the notice must contain the following information:</2>
+        <0>A notice of incorporation of the company must be published in a newspaper of legal announcements (« JAL » in French), for a cost of publication that depends on the size of the announcement and the rates charged by the chosen newspaper.</0><1><0>Find a newspaper of legal announcements</0></1><2>The notice must contain the following information:</2>
         <3>
         <0>The company's name and possibly its acronym</0>
         <1>The legal form</1>
@@ -302,9 +302,9 @@ formeJuridique:
   intro: 'The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs.'
   EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
   EIRL: Allows you to protect your personal assets by allocating specific capital to your professional activity. Society and the individual are the same person. Not suitable if the sole shareholder is a legal entity (company) or if you plan to welcome other shareholders during the development of your company (choose EURL in this case).
-  EURL: The company has only one partner. Liability is limited to the amount of the capital contribution of the sole shareholder. Evolves into a limited liability company when new partners join the company.
+  EURL: The company has only one partner. Liability is limited to the amount of the capital contribution of the sole shareholder. Evolves into a SARL when new partners join the company.
   SARL: Composed of at least 2 partners whose financial responsibility is limited to the amount of their contribution to the company's capital. The minimum capital is freely fixed in the articles of association.
-  SAS: Company with at least 2 partners. The financial liability of the shareholders is limited to the amount of their contribution to the company's capital. The minimum capital is freely set in the Articles of Association.
+  SAS: Company with at least 2 partners. The financial liability of the shareholders is limited to the amount of their contribution to the company's capital. The minimum capital is freely set in the Articles of Association. An SAS is characterised by a high degree of flexibility in terms of functioning (tailor-made statutes).
   SASU: Composed of only one partner. The financial responsibility is limited to the amount of his contribution to the company's capital. The minimum capital is freely fixed in the Articles of Association.
   SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
   SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).

@@ -54,7 +54,7 @@ const Liability = ({
 					<T k="responsabilité.1">
 						<strong>Entreprise individuelle : </strong>
 						Une activité économique exercée par une seule personne physique, en
-						son nom propre. Moins de paperasse, mais plus de problèmes en cas de
+						son nom propre. Moins de formalités, mais plus de risques en cas de
 						faillite, car votre patrimoine personnel peut être mis à
 						contribution.
 					</T>
@@ -82,10 +82,10 @@ const Liability = ({
 			<li>
 				<T k="responsabilité.3">
 					<strong>Responsabilité limitée : </strong>
-					Structure organisationnelle dans laquelle le/les membres de la société
-					ne peuvent être tenus personnellement responsables des dettes ou
-					obligations de la société. En revanche, les démarches de création sont
-					un peu plus lourdes, et vous devez fournir un capital initial.
+					Option dans laquelle le/les membres de la société ne peuvent être
+					tenus personnellement responsables des dettes ou obligations de la
+					société. En revanche, les démarches de création sont un peu plus
+					lourdes, et vous devez fournir un capital initial.
 				</T>
 			</li>
 		</ul>
