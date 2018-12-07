@@ -1,4 +1,8 @@
 
+[[redirects]]
+from = "https://indeps.netlify.com/*"
+to = "/publicodes.html"
+status = 200
 # InFrance PRODUCTION settings 
 
 [[redirects]]
