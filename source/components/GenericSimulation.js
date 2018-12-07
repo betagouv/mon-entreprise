@@ -26,7 +26,7 @@ export default compose(
 				<div id="GenericSimulation">
 					<header>
 						<img src="https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" />
-						<h1>Quel est l'impact de votre véhicule ? </h1>
+						<h1>Quel est l'impact de votre transport ? </h1>
 					</header>
 					<div className="ui__ container" id="simulationContent">
 						{!isEmpty(previousAnswers) && (

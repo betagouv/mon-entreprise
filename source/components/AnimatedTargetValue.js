@@ -36,14 +36,7 @@ export default withLanguage(
 			}, 250)
 		}
 		format = value => {
-			return value == null
-				? ''
-				: Intl.NumberFormat(this.props.language, {
-						style: 'currency',
-						currency: 'EUR',
-						maximumFractionDigits: 0,
-						minimumFractionDigits: 0
-				  }).format(value)
+			return value == null ? '' : value
 		}
 		render() {
 			const formattedValue = this.format(this.props.value)

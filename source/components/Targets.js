@@ -6,6 +6,7 @@ import withColours from 'Components/utils/withColours'
 import { Link } from 'react-router-dom'
 import emoji from 'react-easy-emoji'
 import { compose } from 'ramda'
+import AnimatedTargetValue from './AnimatedTargetValue'
 export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
 	withColours
@@ -27,7 +28,9 @@ export default compose(
 						{/*<span className="title">{title}</span>
 					{' : '} */}
 						<span className="figure">
-							<span className="value">{nodeValue?.toFixed(1)}</span>{' '}
+							<span className="value">
+								<AnimatedTargetValue value={nodeValue?.toFixed(1)} />
+							</span>{' '}
 							<span className="unit">{unit}</span>
 						</span>
 						<Link
