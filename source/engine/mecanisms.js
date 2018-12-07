@@ -135,6 +135,7 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 					: evaluateNode(cache, situationGate, parsedRules, prop)
 			),
 			evaluatedExplanation = map(evaluateVariation, node.explanation),
+			ya = console.log(evaluatedExplanation),
 			// mark the satisfied variation if any in the explanation
 			[, resolvedExplanation] = reduce(
 				([resolved, result], variation) =>

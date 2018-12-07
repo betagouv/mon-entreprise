@@ -1,8 +1,3 @@
-# espace de nom implicite : douche 
-# non bloquant : 
-# - période: semaine
-# bloquant : 
-# - ?
 
 - nom: douche
   icônes: 🚿
@@ -70,7 +65,7 @@
 
 - espace: chauffage
   nom: type
-  question: Comment est chauffée votre eau ?
+  question: Votre eau est chauffée comment ?
   formule: 
     une possibilité: 
       choix obligatoire: oui 
@@ -143,3 +138,153 @@
     expresse: 5
     moyenne: 10
     lente: 20
+    
+- nom: transport
+- espace: transport
+  nom: mode
+  notes: >-
+    Attention, il faut vérifier si les chiffres incluent la construction du
+    véhicule lui-même, et pas seulement le carburant.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - voiture
+        - train
+        - métro
+        - bus
+        - tram
+        - vélo
+        - à pieds
+  par défaut: voiture . essence ou diesel
+  références:
+    RATP: 'https://www.ratp.fr/node/2581'
+- espace: transport . mode
+  nom: bus
+- espace: transport . mode
+  nom: tram
+- espace: transport . mode
+  nom: métro
+- espace: transport . mode
+  nom: vélo
+- espace: transport . mode
+  nom: à pieds
+- espace: transport . mode 
+  nom: voiture
+  formule: 
+    une possibilité: 
+      - essence
+      - diesel
+      - électrique
+  références:
+    IFP: >-
+      http://www.smartgrids-cre.fr/index.php?p=vehicules-electriques-bilan-carbone
+    source belge: >-
+      https://www.delijn.be/fr/overdelijn/organisatie/zorgzaam-ondernemen/milieu/co2-uitstoot-voertuigen.html
+- espace: transport . mode . voiture
+  nom: électrique
+- espace: transport . mode . voiture
+  nom: essence
+- espace: transport . mode . voiture
+  nom: diesel
+- espace: transport . mode
+  nom: train
+  formule:
+    une possibilité:
+      - TGV
+      - TER
+      - Intercité
+      - Transilien
+  références:
+    chiffres SNCF: >-
+      https://www.oui.sncf/aide/calcul-des-emissions-de-co2-sur-votre-trajet-en-train
+- espace: transport . mode . train
+  nom: TGV
+- espace: transport . mode . train
+  nom: Intercité
+- espace: transport . mode . train
+  nom: TER
+- espace: transport . mode . train
+  nom: Transilien
+
+- espace: transport
+  nom: impact par km
+  formule: 
+    variations: 
+      - si: 
+          une de ces conditions: 
+            - mode = 'voiture . essence'
+            - mode = 'voiture . diesel'
+            - mode = 'voiture . électrique'
+        alors: voiture par personne
+      - si: mode = 'train . Intercité'
+        alors: 0.0118
+      - si: mode = 'train . TGV'
+        alors: 0.0032
+      - si: mode = 'train . Transilien'
+        alors:  0.0064
+      - si: mode = 'train . TER'
+        alors:  0.0292
+      - si: mode = 'bus'
+        alors: 0.095
+      - si: mode = 'métro'
+        alors: 0.0038
+      - si: mode = 'tram'
+        alors: 0.0031
+      - sinon: 0
+   
+- espace: transport . mode . voiture
+  nom: passagers
+  question: Combien de personnes voyagent dans votre voiture en moyenne (vous compris) ?
+  format: nombre
+  par défaut: 1
+
+- espace: transport . impact par km 
+  nom: voiture par personne
+  description: |
+    Une voiture approche en général une tonne. Quel que soit le mode de propulsion, déplacer une personne de quelques dizaines de kilo, l'autosoliste, dans un véhicule qui fait 10 fois son poids ne sera jamais écologique.
+
+  formule: voiture / mode . voiture . passagers
+
+
+- espace: transport . impact par km 
+  nom: voiture
+  formule: 
+    variations: 
+      - si: mode = 'voiture . essence'
+        alors: 0.206
+      - si: mode = 'voiture . diesel'
+        alors: 0.250
+      - si: mode = 'voiture . électrique'
+        alors: 0.015
+
+ #mécanisme correspondance à ajouter
+ #formule: 
+  #  correspondance: 
+   #   sur: mode
+    #  table: 
+     #   voiture . essence ou diesel: 0.206
+      #  voiture . électrique: 0.015
+       # bus: 0.095
+        #train . Intercité:  0.0118
+        #train . TER; 0.0292
+        #train . transilien: 0.0064
+        #train . TGV: 0.0032
+        #métro: 0.0038
+        #tram: 0.0031
+        #vélo: 0
+        #à pieds: 0
+        
+- espace: transport
+  nom: impact 
+  période: flexible
+  formule: impact par km * km parcourus
+  unité: kgCO2eq
+  
+
+- espace: transport
+  nom: km parcourus
+  période: flexible
+  question: Combien de kilomètres parcourez-vous ?
+  format: nombre
+  par défaut: 300
