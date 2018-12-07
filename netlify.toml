@@ -110,6 +110,14 @@ query = {s = "m"}
 to = "/infrance.html"
 status = 200
 
+
+[[redirects]]
+from = "https://co2.netlify.com/*"
+to = "/publicodes.html"
+status = 200
+
+
+
 # Redirect to mon-entreprise in staging and development settings
 [[redirects]]
 from = "/"
