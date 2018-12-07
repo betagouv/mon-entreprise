@@ -1,5 +1,5 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import rawRules from 'Règles/co2.yaml'
+import rawRules from 'Règles/indépendants.yaml'
 import translations from 'Règles/externalized.yaml'
 import {
 	assoc,
@@ -54,13 +54,15 @@ export let enrichRule = (rule, sharedData = {}) => {
 			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 			defaultValue = rule['par défaut'],
 			examples = rule['exemples'],
-			icon = rule['icônes']
+			icon = rule['icônes'],
+			question = rule['question'] || title
 
 		return {
 			...rule,
 			type,
 			name,
 			title,
+			question,
 			ns,
 			data,
 			dottedName,

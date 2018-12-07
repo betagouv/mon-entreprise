@@ -16,7 +16,7 @@ export default compose(
 	reduxForm({
 		form: 'conversation',
 		destroyOnUnmount: false,
-		initialValues: { période: 'mois' }
+		initialValues: { période: 'année' }
 	}),
 	translate(),
 	connect(
@@ -68,9 +68,9 @@ export default compose(
 })
 
 let updateSituation = (toPeriod, batchPeriodChange, situation, rules) => {
-	let needConversation = filter(([dottedName, value]) => {
+	let needConvertion = filter(([dottedName, value]) => {
 		let rule = findRuleByDottedName(rules, dottedName)
-		return value != null && rule.période === 'flexible'
+		return value != null && rule?.période === 'flexible'
 	})(toPairs(situation))
 	let actions = [
 		...map(
@@ -88,10 +88,11 @@ let updateSituation = (toPeriod, batchPeriodChange, situation, rules) => {
 							  }
 					)
 				),
-			needConversation
+			needConvertion
 		),
 		change('conversation', 'période', toPeriod)
 	]
+	console.log({ actions })
 
 	batchPeriodChange(actions)
 }

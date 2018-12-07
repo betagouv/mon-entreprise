@@ -6,13 +6,16 @@ import Provider from '../../Provider'
 import Route404 from '../embauche.gouv.fr/pages/Route404'
 import RulesList from '../embauche.gouv.fr/pages/RulesList'
 import GenericSimulation from 'Components/GenericSimulation'
+import { simulationTargetNames } from '../../config'
 
 class App extends Component {
 	render() {
 		return (
 			<Provider
 				basename="publicodes"
-				initialStore={{ targetNames: ['transport . impact'] }}
+				initialStore={{
+					targetNames: simulationTargetNames
+				}}
 				reduxMiddlewares={[]}>
 				<Switch>
 					<Route exact path="/" component={GenericSimulation} />

@@ -20,7 +20,7 @@ import { mainTargetNames } from '../config'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
-/* 
+/*
  *
  * We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
  *
@@ -33,12 +33,14 @@ export let flatRulesSelector = createSelector(
 	(lang, rules) => rules || (lang === 'en' ? baseRulesEn : baseRulesFr)
 )
 
-export let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
-	parseAll(rules)
+export let parsedRulesSelector = createSelector(
+	[flatRulesSelector],
+	rules => parseAll(rules)
 )
 
-export let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
-	collectDefaults(rules)
+export let ruleDefaultsSelector = createSelector(
+	[flatRulesSelector],
+	rules => collectDefaults(rules)
 )
 
 let targetNamesSelector = state => state.targetNames
@@ -50,12 +52,7 @@ export let situationSelector = createDeepEqualSelector(
 
 export let noUserInputSelector = createSelector(
 	[situationSelector],
-	situation =>
-		!situation ||
-		isEmpty(situation) ||
-		mainTargetNames.every(dottedTarget =>
-			isNil(path(dottedTarget.split('.'), situation))
-		)
+	situation => console.log({ situation }) || !situation || isEmpty(situation)
 )
 
 export let formattedSituationSelector = createSelector(

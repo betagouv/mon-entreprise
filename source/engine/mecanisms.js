@@ -818,10 +818,10 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 		evaluate = evaluateObject(objectShape, effect)
 	let jsx = (nodeValue, explanation) => (
 		<Node
-			classes="mecanism réductionLinéaire"
-			name="réductionLinéaire"
+			classes="mecanism barèmeContinu"
+			name="barèmeContinu"
 			value={nodeValue}
-			child={<div> Réduction linéaire </div>}
+			child={<div> Barème continu </div>}
 		/>
 	)
 	return {
@@ -829,7 +829,7 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 		jsx,
 		explanation,
 		category: 'mecanism',
-		name: 'réduction linéaire',
+		name: 'barème continu',
 		type: 'numeric'
 	}
 }

@@ -1,3 +1,8 @@
+- nom: période
+  par défaut: mois
+  une possibilité: 
+    - mois
+    - année
 - nom: plafond sécurité sociale
   formule: 3311
   période: mois
@@ -14,6 +19,8 @@
   par défaut: prestation de service . libérale
   formule: 
     une possibilité: 
+      choix obligatoire: oui
+      possibilités:
       - vente de biens
       - prestation de service
 
@@ -36,6 +43,8 @@
 - espace: catégorie d'activité . prestation de service
   nom: libérale
   description: Profession de service libérale, que l'on peut considérer comme intellectuelle et unique à chaque vente.
+- espace: catégorie d'activité . prestation de service
+  nom: restauration ou hébergement
 
 
 - nom: indépendants
@@ -50,7 +59,7 @@
       - maladie
       - retraite de base
       - retraite complémentaire
-        # TODO la retraite complémentaire libéraux (sas 8 régimes) est elle dans la base de la CSG ?
+      - indemnités journalières maladie
       - invalidité et décès
       - allocations familiales
 
@@ -186,9 +195,9 @@
               - en-dessous de: 37846
                 taux: 7%
               - de: 37846
-                à: 4 * plafond sécurité sociale
+                à: 158928
                 taux: 8%
-              - au-dessus de: 4 * plafond sécurité sociale
+              - au-dessus de: 158928
                 taux: 0%
         # TODO valable uniquement pour les artisans commerçants.
         # 8 régimes différents pour les libéraux
@@ -216,7 +225,7 @@
       composantes:
         - attributs:
             impôt sur le revenu: non déductible
-          taux: 2.4%
+          taux: 2.9%
 
         - attributs: 
             impôt sur le revenu: déductible
@@ -224,6 +233,7 @@
 
 - espace: indépendants . prélèvements . CSG et CRDS
   nom: assiette
+  note: Il faut vérifier que l'assiette de la CSG et CRDS est correcte. Pourquoi les cotisations sont-elles dans l'assiette ? La retraite complémentaire doit l'être aussi ?
   période: flexible
   formule: 
     somme:

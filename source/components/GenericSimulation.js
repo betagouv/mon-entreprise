@@ -7,6 +7,8 @@ import withColours from 'Components/utils/withColours'
 import Targets from 'Components/Targets'
 import './GenericSimulation.css'
 import { nextStepsSelector } from 'Selectors/analyseSelectors'
+import { reduxForm } from 'redux-form'
+import PeriodSwitch from 'Components/PeriodSwitch'
 
 export default compose(
 	withColours,
@@ -21,12 +23,12 @@ export default compose(
 		}
 		render() {
 			let { colours, noNextSteps, previousAnswers } = this.props
-			console.log(noNextSteps)
 			return (
 				<div id="GenericSimulation">
 					<header>
-						<img src="https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" />
-						<h1>Quel est l'impact de votre véhicule ? </h1>
+						<img src="https://images.unsplash.com/photo-1488722796624-0aa6f1bb6399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+						<h1>Quel revenu au régime des indépendants ?</h1>
+						<PeriodSwitch />
 					</header>
 					<div className="ui__ container" id="simulationContent">
 						{!isEmpty(previousAnswers) && (

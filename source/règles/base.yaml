@@ -213,7 +213,7 @@
   nom: salaire journalier
   unité: jour ouvré
   formule: assiette mensuelle / 21
-  notes: On retient 21 comme nombre de jours ouvrés moyens par mois
+  note: On retient 21 comme nombre de jours ouvrés moyens par mois
 
 - espace: contrat salarié . CDD
   nom: prime de fin de contrat

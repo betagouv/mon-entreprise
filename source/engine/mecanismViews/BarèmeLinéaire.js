@@ -24,7 +24,9 @@ export default function BarèmeLinéaire(nodeValue, explanation) {
 									<Trans>Tranches</Trans>
 								</th>
 								<th>
-									<Trans>Taux</Trans>
+									<Trans>
+										{explanation.tranches[0].taux != null ? 'Taux' : 'Montant'}
+									</Trans>
 								</th>
 							</tr>
 							{explanation.tranches.map(
@@ -33,7 +35,8 @@ export default function BarèmeLinéaire(nodeValue, explanation) {
 									'au-dessus de': minOnly,
 									de: min,
 									à: max,
-									taux
+									taux,
+									montant
 								}) => (
 									<tr
 										key={min || minOnly || 0}
@@ -49,10 +52,13 @@ export default function BarèmeLinéaire(nodeValue, explanation) {
 											{maxOnly
 												? '< ' + maxOnly
 												: minOnly
-													? '> ' + minOnly
-													: `${min} - ${max}`}
+												? '> ' + minOnly
+												: `${min} - ${max}`}
 										</td>
-										<td key="taux"> {makeJsx(taux)} </td>
+										<td key="taux">
+											{' '}
+											{taux != null ? makeJsx(taux) : montant}{' '}
+										</td>
 									</tr>
 								)
 							)}
