@@ -26,7 +26,7 @@ from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"
 status = 200
 
-# Mon-entreprise PRODUCTION settings
+# Mon-entreprise.beta PRODUCTION settings (temporary)
 [[redirects]]
 from = "https://mon-entreprise.beta.gouv.fr/robots.txt"
 to = "/robots.infrance.txt"
@@ -49,6 +49,33 @@ status = 200
 
 [[redirects]]
 from = "https://mon-entreprise.beta.gouv.fr/*"
+to = "/mon-entreprise.html"
+status = 200
+
+
+# Mon-entreprise.fr PRODUCTION settings
+[[redirects]]
+from = "https://mon-entreprise.fr/robots.txt"
+to = "/robots.infrance.txt"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.fr/sitemap.txt"
+to = "/sitemap.infrance.fr.txt"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.fr"
+to = "/prerender/mon-entreprise/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.fr/sécurité-sociale"
+to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.fr/*"
 to = "/mon-entreprise.html"
 status = 200
 
@@ -134,4 +161,4 @@ status = 200
 
 [context.production.environment]
   EN_SITE = "https://mycompanyinfrance.fr${path}"
-  FR_SITE = "https://mon-entreprise.beta.gouv.fr${path}"
+  FR_SITE = "https://mon-entreprise.fr${path}"
