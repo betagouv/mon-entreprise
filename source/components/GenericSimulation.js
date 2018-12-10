@@ -6,23 +6,33 @@ import Conversation from 'Components/conversation/Conversation'
 import withColours from 'Components/utils/withColours'
 import Targets from 'Components/Targets'
 import './GenericSimulation.css'
-import { nextStepsSelector } from 'Selectors/analyseSelectors'
+import {
+	nextStepsSelector,
+	analysisWithDefaultsSelector
+} from 'Selectors/analyseSelectors'
 import { reduxForm } from 'redux-form'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import Controls from './Controls'
 
 export default compose(
 	withColours,
 	connect(state => ({
 		previousAnswers: state.conversationSteps.foldedSteps,
-		noNextSteps: nextStepsSelector(state).length == 0
+		noNextSteps: nextStepsSelector(state).length == 0,
+		analysis: analysisWithDefaultsSelector(state)
 	}))
 )(
-	class YO extends React.Component {
+	class extends React.Component {
 		state = {
 			displayAnswers: false
 		}
 		render() {
-			let { colours, noNextSteps, previousAnswers } = this.props
+			let {
+				colours,
+				noNextSteps,
+				previousAnswers,
+				analysis: { controls }
+			} = this.props
 			return (
 				<div id="GenericSimulation">
 					<header>
@@ -50,6 +60,7 @@ export default compose(
 						<Conversation
 							textColourOnWhite={this.props.colours.textColourOnWhite}
 						/>
+						<Controls {...{ controls }} />
 						{noNextSteps && (
 							<>
 								<h2>Plus de questions ! </h2>

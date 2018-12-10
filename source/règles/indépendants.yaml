@@ -268,3 +268,106 @@
   nom: revenu net de cotisations
   période: flexible
   formule: base des cotisations - prélèvements
+
+
+
+
+- nom: micro entreprise
+
+- espace: micro entreprise 
+  nom: base des cotisations
+  formule: chiffre d'affaires
+  période: flexible
+  contrôles:
+    - si: base des cotisations > plafond
+      message: Attention, vous dépassez le plafond de la micro-entreprise. Vous devez créer une entreprise normale.
+      niveau: avertissement
+
+- espace: micro entreprise
+  nom: plafond
+  période: année
+  formule:
+    variations: 
+        - si: catégorie d'activité = 'prestation de service . libérale'
+          alors: 70000
+        - si: catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+          alors: 70000
+        - sinon: 170000
+
+
+
+- espace: micro entreprise
+  nom: revenu net de cotisations
+  formule: base des cotisations - cotisations
+  période: flexible
+
+
+- espace: micro entreprise
+  nom: cotisations
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: base des cotisations
+      taux: 
+        variations: 
+          - si: catégorie d'activité = 'prestation de service . libérale'
+            alors: 22%
+          - si: catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+            alors: 22%
+          - sinon: 12.8%
+
+- espace: micro entreprise . impôt sur le revenu
+  nom: abattement
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: revenu net de cotisations
+      taux: 
+        variations: 
+          - si: catégorie d'activité = 'prestation de service . libérale'
+            alors: 34%
+          - si: catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+            alors: 50%
+          - sinon: 71%
+
+- espace: micro entreprise . impôt sur le revenu
+  nom: revenu abattu
+  période: flexible
+  formule: revenu net de cotisations - abattement
+
+# TODO mettre en commun le barème de l'impôt entre les différents régimes
+- espace: micro entreprise . impôt sur le revenu
+  nom: avant décôte
+  période: année
+  formule:
+    barème:
+      assiette: revenu abattu
+      tranches:
+        - en-dessous de: 9807
+          taux: 0%
+        - de: 9807
+          à: 27086
+          taux: 14%
+        - de: 27086
+          à: 72617
+          taux: 30%
+        - de: 72617
+          à: 153783
+          taux: 41%
+        - au-dessus de: 153783
+          taux: 45%
+
+- espace: micro entreprise
+  nom: impôt sur le revenu
+  période: année
+  formule:
+    allègement:
+      assiette: avant décôte
+      décote:
+        plafond: 1177
+        taux: 75%
+
+- espace: micro entreprise
+  nom: revenu net d'impôt
+  période: flexible
+  formule: revenu net de cotisations - impôt sur le revenu
