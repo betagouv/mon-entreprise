@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import Syso from '../source/engine/index'
-import indeps from '../source/règles/indépendants.yaml'
+import indeps from '../source/règles/base.yaml'
 
 describe('indeps', function() {
 	it('allez là', function() {

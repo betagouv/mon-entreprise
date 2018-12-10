@@ -660,6 +660,7 @@
       valeur attendue: 290
 
 - nom: contrat salarié
+  icônes: 📄
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
 
@@ -834,8 +835,7 @@
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
   par défaut: non
 
-- espace: contrat salarié
-  nom: plafond sécurité sociale temps plein
+- nom: plafond sécurité sociale
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
   période: mois
   formule: 3377
@@ -847,7 +847,7 @@
 - espace: contrat salarié
   nom: plafond sécurité sociale
   période: flexible
-  formule: plafond sécurité sociale temps plein * quotité de travail
+  formule: plafond sécurité sociale * quotité de travail
 
 - espace: contrat salarié
   nom: SMIC temps plein
@@ -2488,12 +2488,26 @@
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
 
-- nom: revenu abattu
-  espace: impôt
+- espace: impôt
+  nom: revenu abattu
+  description: | 
+    L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de 10%) pour prendre en compte une estimation des *frais professionnels* de l'activité rémunérée. 
+    Par exemple, on peut considérer qu'un salarié use ses chaussures pour aller au travail. Ces chaussures, il les a acheté avec son argent, donc du revenu sur lequel il a injustement payé de l'impôt.
   période: flexible
   formule:
+    somme: 
+      - revenu abattu par défaut
+      - micro entreprise . impôt . revenu abattu
+
+- espace: impôt
+  nom: revenu abattu par défaut
+  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+  formule:
     allègement:
-      assiette: contrat salarié . rémunération . net imposable
+      assiette: 
+        somme: 
+          - contrat salarié . rémunération . net imposable
+          - indépendant . revenu imposable
       abattement: 10%
 
 - nom: impôt sur le revenu
@@ -2531,3 +2545,350 @@
       situation:
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
+
+
+- espace: entreprise
+  nom: chiffre d'affaires
+  période: flexible
+  format: euros
+
+- espace: indépendant
+  nom: base des cotisations
+  formule: entreprise . chiffre d'affaires
+  période: flexible
+
+- nom: entreprise . catégorie d'activité
+  par défaut: prestation de service . libérale
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+      - vente de biens
+      - prestation de service
+
+- espace: entreprise . catégorie d'activité
+  nom: vente de biens
+  description: Vente de biens, logements, nourriture.
+
+- espace: entreprise . catégorie d'activité
+  nom: prestation de service
+  par défaut: libérale
+  formule:
+    une possibilité: 
+      - restauration ou hébergement
+      - commerciale ou artisanale
+      - libérale
+
+- espace: entreprise . catégorie d'activité . prestation de service
+  nom: commerciale ou artisanale
+  description: Prestation de service nécessitant du matériel ou du savoir-faire manuel
+- espace: entreprise . catégorie d'activité . prestation de service
+  nom: libérale
+  description: Profession de service libérale, que l'on peut considérer comme intellectuelle et unique à chaque vente.
+- espace: entreprise . catégorie d'activité . prestation de service
+  nom: restauration ou hébergement
+
+
+- nom: indépendant
+  question: Activité à la sécurité sociale des indépendants ?
+
+- espace: indépendant
+  nom: cotisations
+  période: flexible
+  références:
+    assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
+  formule: 
+    somme: 
+      - maladie
+      - retraite de base
+      - retraite complémentaire
+      - indemnités journalières maladie
+      - invalidité et décès
+      - allocations familiales
+
+- espace: indépendant
+  nom: prélèvements
+  période: flexible
+  formule: 
+    somme: 
+      - cotisations
+      - formation professionnelle
+      - CSG et CRDS
+
+
+- espace: indépendant . cotisations
+  période: flexible
+  nom: maladie
+  formule:  
+    variations:
+      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+        alors:
+          barème continu: 
+            assiette: base des cotisations 
+            multiplicateur: plafond sécurité sociale
+            points: 
+              0: 1.5%
+              1.1: 6.5%
+      - sinon: artisans commerçants
+
+            
+- espace: indépendant . cotisations
+  nom: indemnités journalières maladie
+  période: flexible
+  formule:
+    multiplication: 
+      assiette: base des cotisations
+      taux: 0.85%
+      plafond: 5 * plafond sécurité sociale
+
+- espace: indépendant . cotisations . maladie
+  nom: artisans commerçants
+  période: flexible
+  formule: barème + part revenus élevés
+
+- espace: indépendant . cotisations . maladie . artisans commerçants 
+  nom: barème
+  période: flexible
+  formule:
+    barème continu: 
+      assiette: base des cotisations
+      multiplicateur: plafond sécurité sociale
+      points: 
+        0: 0%
+        0.4: 3.16%
+        1.1: 6.35%
+
+- espace: indépendant . cotisations . maladie . artisans commerçants 
+  nom: part revenus élevés 
+  période: flexible
+  applicable si: base des cotisations > seuil
+  formule:
+    multiplication: 
+      assiette: base des cotisations
+      taux: 0.15%
+
+- espace: indépendant . cotisations . maladie . artisans commerçants . part revenus élevés 
+  nom: seuil
+  période: flexible
+  formule: 5 * plafond sécurité sociale
+
+
+- espace: indépendant . cotisations
+  nom: retraite de base
+  période: année
+  formule: 
+      variations:
+        - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+          alors: 
+            multiplication: 
+              assiette: base des cotisations
+              composantes:
+                - nom: tranche 1
+                  plafond: 39732
+                  taux: 8.23%
+                - nom: tranche 2
+                  plafond: 198660
+                  taux: 1.87%
+        - sinon:
+            barème:
+              assiette: base des cotisations
+              tranches: 
+                - en-dessous de: 39732
+                  taux: 17.75%
+                - au-dessus de: 39732
+                  taux: 0.6%
+
+- espace: indépendant . cotisations
+  nom: retraite complémentaire
+  période: année
+  notes: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
+  formule:
+    variations: 
+      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+        alors: 
+          barème linéaire: 
+            assiette: base des cotisations
+            tranches: 
+              - en-dessous de: 26580
+                montant: 1277
+              - de: 26581 
+                à: 49280
+                montant: 2553
+              - de: 49281
+                à: 57850
+                montant: 3830
+              - de: 57851
+                à: 66400
+                montant: 6384
+              - de: 66401
+                à: 83060
+                montant:  8937
+              - de:  83061
+                à: 103180
+                montant: 14044 
+              - de: 103181
+                à: 123300
+                montant: 15320 
+              - au-dessus de: 123300
+                montant: 15597
+      - sinon: 
+          barème:
+            assiette: base des cotisations
+            tranches:
+              - en-dessous de: 37846
+                taux: 7%
+              - de: 37846
+                à: 158928
+                taux: 8%
+              - au-dessus de: 158928
+                taux: 0%
+        # TODO valable uniquement pour les artisans commerçants.
+        # 8 régimes différents pour les libéraux
+        # Implémenter au moins le régime CNAVPL, interprofessionnel
+
+
+- espace: indépendant . cotisations
+  nom: invalidité et décès
+  période: flexible
+  formule:
+    multiplication: 
+      assiette: base des cotisations
+      plafond: plafond sécurité sociale
+      taux: 1.3%
+
+      # TODO invalidité décès pour les libéraux
+      # 3 classes, 76, 228, 380€
+
+- espace: indépendant . prélèvements
+  nom: CSG et CRDS
+  période: flexible
+  formule:  
+    multiplication: 
+      assiette: assiette
+      composantes:
+        - attributs:
+            impôt sur le revenu: non déductible
+          taux: 2.9%
+
+        - attributs: 
+            impôt sur le revenu: déductible
+          taux: 6.8%
+
+- espace: indépendant . prélèvements . CSG et CRDS
+  nom: assiette
+  note: Il faut vérifier que l'assiette de la CSG et CRDS est correcte. Pourquoi les cotisations sont-elles dans l'assiette ? La retraite complémentaire doit l'être aussi ?
+  période: flexible
+  formule: 
+    somme:
+      - base des cotisations
+      - cotisations
+
+- espace: indépendant . prélèvements
+  nom: formation professionnelle
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: base des cotisations
+      taux: 0.29%
+      plafond: plafond sécurité sociale
+     # C'est le taux pour les artisans. 
+     # TODO Pour les commerçants, le taux est de 0.25%
+     #
+- espace: indépendant . cotisations
+  nom: allocations familiales
+  période: flexible
+  formule:
+    barème continu:
+      assiette: base des cotisations
+      multiplicateur: plafond sécurité sociale
+      points:
+        0: 0%
+        1.1: 0%
+        1.4: 3.1% 
+
+
+- espace: indépendant 
+  nom: revenu net de cotisations
+  période: flexible
+  formule: base des cotisations - prélèvements
+
+- espace: indépendant 
+  nom: revenu net de cotisations
+  période: flexible
+  formule: base des cotisations - prélèvements
+
+- espace: indépendant 
+  nom: revenu imposable
+  période: flexible
+  formule: revenu net de cotisations
+  note: | 
+    Attention ! Cette variable n'est pas encore implémentée. Le revenu imposable est plus élevé que le revenu net de cotisations !! 
+
+
+
+
+- nom: micro entreprise
+  icônes: μ
+  question: Activité en micro-entreprise ?
+
+- espace: micro entreprise 
+  nom: base des cotisations
+  formule: entreprise . chiffre d'affaires
+  période: flexible
+  contrôles:
+    - si: base des cotisations > plafond
+      message: Attention, vous dépassez le plafond de la micro-entreprise. Vous devez créer une entreprise normale.
+      niveau: avertissement
+
+- espace: micro entreprise
+  nom: plafond
+  période: année
+  formule:
+    variations: 
+        - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+          alors: 70000
+        - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+          alors: 70000
+        - sinon: 170000
+
+
+
+- espace: micro entreprise
+  nom: revenu net de cotisations
+  formule: base des cotisations - cotisations
+  période: flexible
+
+
+- espace: micro entreprise
+  nom: cotisations
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: base des cotisations
+      taux: 
+        variations: 
+          - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+            alors: 22%
+          - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+            alors: 22%
+          - sinon: 12.8%
+
+- espace: micro entreprise . impôt
+  nom: abattement
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: revenu net de cotisations
+      taux: 
+        variations: 
+          - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+            alors: 34%
+          - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+            alors: 50%
+          - sinon: 71%
+
+- espace: micro entreprise . impôt
+  nom: revenu abattu
+  période: flexible
+  formule: revenu net de cotisations - abattement
+
