@@ -22,7 +22,7 @@ import {
 	add,
 	subtract
 } from 'ramda'
-import { evaluateNode, rewriteNode, makeJsx, mergeMissing } from './evaluation'
+import { evaluateNode, makeJsx, mergeMissing } from './evaluation'
 import { Node } from './mecanismViews/common'
 import {
 	treatVariable,
@@ -147,7 +147,7 @@ export let treatString = (rules, rule) => rawNode => {
 					explanation[1].missingVariables
 				)
 
-			return rewriteNode(node, nodeValue, explanation, missingVariables)
+				return { ...node, nodeValue, explanation, missingVariables }
 		}
 
 		let explanation = parseResult.explanation.map(

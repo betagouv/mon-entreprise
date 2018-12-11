@@ -36,7 +36,6 @@ import { Node, SimpleRuleLink } from './mecanismViews/common'
 import {
 	makeJsx,
 	evaluateNode,
-	rewriteNode,
 	evaluateArray,
 	evaluateArrayWithFilter,
 	evaluateObject,
@@ -162,7 +161,7 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
 
-		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
+		return {...node, nodeValue, explanation: resolvedExplanation, missingVariables }
 	}
 
 	// TODO - find an appropriate representation
@@ -215,7 +214,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 					? reduce(mergeWith(max), {}, map(collectNodeMissing, explanation))
 					: {}
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
@@ -260,7 +259,7 @@ export let mecanismAllOf = (recurse, k, v) => {
 				: true,
 			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return {...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
@@ -358,7 +357,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				? choice.missingVariables
 				: mergeAllMissing(explanation)
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return {...node, nodeValue, explanation, missingVariables }
 	}
 
 	let explanation = map(parseCondition, terms)
@@ -474,11 +473,10 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
-		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
-		// TODO - we need this so that ResultsGrid will work, but it's
-		// just not right
-		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
-		return evaluatedNode
+			// TODO - we need this so that ResultsGrid will work, but it's
+			// just not right
+			toPairs(inversion.inversionCache).forEach(([k, v]) => (cache[k] = v))
+		return { ...node, nodeValue, explanation: null, missingVariables }
 	}
 
 	return {
@@ -923,7 +921,7 @@ export let mecanismSelection = (recurse, k, v) => {
 				0,
 			missingVariables = explanation.missingVariables
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let SelectionView = buildSelectionView(dataTargetName)
@@ -954,7 +952,7 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 		let missingVariables =
 			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {

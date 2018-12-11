@@ -23,7 +23,6 @@ import {
 import { Node } from './mecanismViews/common'
 import {
 	evaluateNode,
-	rewriteNode,
 	makeJsx,
 	mergeMissing,
 	bonus
@@ -213,7 +212,7 @@ export let treatRuleRoot = (rules, rule) => {
 					nodeValue = explanation.nodeValue,
 					missingVariables = explanation.missingVariables
 
-				return rewriteNode(node, nodeValue, explanation, missingVariables)
+				return {...node, nodeValue, explanation, missingVariables }
 			}
 
 			let child = treat(rules, rule)(value)
@@ -287,7 +286,7 @@ let evolveCond = (name, rule, rules) => value => {
 			),
 			nodeValue = explanation.nodeValue,
 			missingVariables = explanation.missingVariables
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+			return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let child = treat(rules, rule)(value)

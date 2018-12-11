@@ -1,16 +1,16 @@
 import {
 	add,
-	map,
-	pluck,
 	any,
 	equals,
-	reduce,
-	mergeWith,
+	evolve,
+	filter,
 	fromPairs,
 	keys,
-	values,
-	evolve,
-	filter
+	map,
+	mergeWith,
+	pluck,
+	reduce,
+	values
 } from 'ramda'
 
 export let makeJsx = node =>
@@ -30,13 +30,6 @@ export let mergeMissing = (left, right) =>
 export let evaluateNode = (cache, situationGate, parsedRules, node) =>
 	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
 
-export let rewriteNode = (node, nodeValue, explanation, missingVariables) => ({
-	...node,
-	nodeValue,
-	explanation,
-	missingVariables
-})
-
 export let evaluateArray = (reducer, start) => (
 	cache,
 	situationGate,
@@ -53,7 +46,7 @@ export let evaluateArray = (reducer, start) => (
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
 	//	console.log("".padStart(cache.parseLevel), missingVariables)
-	return rewriteNode(node, nodeValue, explanation, missingVariables)
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
@@ -75,7 +68,7 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
 
-	return rewriteNode(node, nodeValue, explanation, missingVariables)
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export let parseObject = (recurse, objectShape, value) => {
@@ -101,5 +94,5 @@ export let evaluateObject = (objectShape, effect) => (
 		nodeValue = effect(explanation),
 		missingVariables = mergeAllMissing(values(explanation))
 	//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
-	return rewriteNode(node, nodeValue, explanation, missingVariables)
+	return { ...node, nodeValue, explanation, missingVariables }
 }

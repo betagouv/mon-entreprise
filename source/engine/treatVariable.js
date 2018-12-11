@@ -1,13 +1,13 @@
 import React from 'react'
-import { Node, Leaf } from './mecanismViews/common'
-import {
-	findRuleByDottedName,
-	disambiguateRuleReference,
-	findParentDependency
-} from './rules'
-import { evaluateNode, rewriteNode, makeJsx } from './evaluation'
-import { getSituationValue } from './variables'
 import { Trans } from 'react-i18next'
+import { evaluateNode, makeJsx } from './evaluation'
+import { Leaf, Node } from './mecanismViews/common'
+import {
+	disambiguateRuleReference,
+	findParentDependency,
+	findRuleByDottedName
+} from './rules'
+import { getSituationValue } from './variables'
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
@@ -36,40 +36,39 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			? evaluateNode(cache, situation, parsedRules, variable)
 			: variable
 
-		let cacheAndNode = (nodeValue, missingVariables) => {
-			cache[cacheName] = rewriteNode(
-				node,
-				nodeValue,
-				explanation,
-				missingVariables
-			)
+		let cacheAndReturnNode = (nodeValue, missingVariables) => {
+			cache[cacheName] = { ...node, nodeValue, explanation, missingVariables }
 			return cache[cacheName]
 		}
 
 		// SITUATION 1 : La variable est directement renseignée
-		if (situationValue != null) return cacheAndNode(situationValue, {})
+		if (situationValue != null) return cacheAndReturnNode(situationValue, {})
 
 		// SITUATION 2 : La variable est calculée
 		if (situationValue == null && variableHasFormula)
-			return cacheAndNode(explanation.nodeValue, explanation.missingVariables)
+			return cacheAndReturnNode(
+				explanation.nodeValue,
+				explanation.missingVariables
+			)
 
 		// SITUATION 3 : La variable est une question sans condition dont la valeur n'a pas été renseignée
 		if (situationValue == null && !variableHasFormula && !variableHasCond)
-			return cacheAndNode(null, { [dottedName]: 1 })
+			return cacheAndReturnNode(null, { [dottedName]: 1 })
 
 		// SITUATION 4 : La variable est une question avec conditions
 		if (situationValue == null && !variableHasFormula && variableHasCond) {
 			// SITUATION 4.1 : La condition est connue et vrai
 			if (explanation.isApplicable)
 				return variable.question
-					? cacheAndNode(null, { [dottedName]: 1 })
-					: cacheAndNode(true, {})
+					? cacheAndReturnNode(null, { [dottedName]: 1 })
+					: cacheAndReturnNode(true, {})
 
 			// SITUATION 4.2 : La condition est connue et fausse
-			if (explanation.isApplicable === false) return cacheAndNode(false, {})
+			if (explanation.isApplicable === false)
+				return cacheAndReturnNode(false, {})
 			// SITUATION 4.3 : La condition n'est pas connue
 			if (explanation.isApplicable == null)
-				return cacheAndNode(null, {
+				return cacheAndReturnNode(null, {
 					...explanation.missingVariables,
 					...(variable.question ? { [dottedName]: 1 } : {})
 				})
@@ -172,17 +171,12 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 					: nodeValue,
 			periodTransform = nodeValue !== transformedNodeValue
 
-		let result = rewriteNode(
-			{
-				...filteredNode,
-				periodTransform: periodTransform,
-				...(periodTransform ? { originPeriodValue: nodeValue } : {})
-			},
-			transformedNodeValue,
-			filteredNode.explanation,
-			filteredNode.missingVariables
-		)
-		return result
+		return {
+			...filteredNode,
+			periodTransform,
+			nodeValue: transformedNodeValue,
+			...(periodTransform ? { originPeriodValue: nodeValue } : {})
+		}
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(
 		parseResult.variable || parseResult
@@ -215,7 +209,7 @@ export let treatNegatedVariable = variable => {
 			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue,
 			missingVariables = explanation.missingVariables
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let jsx = (nodeValue, explanation) => (
