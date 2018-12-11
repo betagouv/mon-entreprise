@@ -1,13 +1,13 @@
-import { map } from 'ramda'
 import { expect } from 'chai'
 import {
-	rules,
 	disambiguateRuleReference,
-	ruleParents,
 	enrichRule,
-	translateAll,
-	nestedSituationToPathMap
-} from '../source/engine/rules'
+	nestedSituationToPathMap,
+	ruleParents,
+	translateAll
+} from 'Engine/rules'
+import { map } from 'ramda'
+import { rules } from 'Règles'
 
 describe('enrichRule', function() {
 	it('should extract the type of the rule', function() {
@@ -33,14 +33,6 @@ describe('enrichRule', function() {
 			'contrat salarié . CDD'
 		)
 	})
-
-	it('should render Markdown in sub-questions', function() {
-		let rule = { nom: 'quoi', 'sous-question': '**wut**' }
-		expect(enrichRule(rule)).to.have.property(
-			'subquestion',
-			'<p><strong>wut</strong></p>\n'
-		)
-	})
 })
 
 describe('rule checks', function() {
@@ -49,7 +41,7 @@ describe('rule checks', function() {
 			r =>
 				r.espace &&
 				!r.simulateur &&
-				(!r.formule || r.formule['une possibilité']) &&
+				(!r.formule || r.formule['une possibilité parmi']) &&
 				r.defaultValue == null &&
 				r.question
 		)
@@ -84,7 +76,7 @@ it('rules with a formula should not have defaults', function() {
 	let errors = rules.filter(
 		r =>
 			r.formule !== undefined &&
-			!r.formule['une possibilité'] &&
+			!r.formule['une possibilité parmi'] &&
 			r.defaultValue !== undefined
 	)
 
@@ -99,16 +91,14 @@ describe('translateAll', function() {
 				nom: 'bar',
 				titre: 'Titre',
 				description: 'Description',
-				question: 'Question',
-				'sous-question': 'Sous Question'
+				question: 'Question'
 			}
 		]
 		let translations = {
 			'foo . bar': {
 				'titre.en': 'TITRE',
 				'description.en': 'DESC',
-				'question.en': 'QUEST',
-				'sous-question.en': 'SOUSQ'
+				'question.en': 'QUEST'
 			}
 		}
 
@@ -117,7 +107,6 @@ describe('translateAll', function() {
 		expect(result[0]).to.have.property('titre', 'TITRE')
 		expect(result[0]).to.have.property('description', 'DESC')
 		expect(result[0]).to.have.property('question', 'QUEST')
-		expect(result[0]).to.have.property('sous-question', 'SOUSQ')
 	})
 })
 describe('misc', function() {

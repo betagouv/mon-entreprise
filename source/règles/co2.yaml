@@ -47,7 +47,7 @@
   nom: type
   question: Comment est chauffée votre eau ?
   formule: 
-    une possibilité: 
+    une possibilité parmi: 
       - gaz
       - fioul
       - électricité

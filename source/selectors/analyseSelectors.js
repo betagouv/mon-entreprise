@@ -7,14 +7,13 @@ import {
 	disambiguateExampleSituation,
 	findRuleByDottedName,
 	formatInputs,
-	nestedSituationToPathMap,
-	rules as baseRulesEn,
-	rulesFr as baseRulesFr
+	nestedSituationToPathMap
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import { contains, equals, head, isEmpty, isNil, path, pick } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
+import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Règles'
 import { mainTargetNames } from '../config'
 
 // create a "selector creator" that uses deep equal instead of ===

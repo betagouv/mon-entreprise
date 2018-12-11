@@ -32,7 +32,6 @@
         dégradation majeure: oui
       valeur attendue: null
 
-
 - nom: montant caution
   format: €
 
@@ -43,7 +42,6 @@
       dégradation majeure:
         montant caution > 2000: 20%
         montant caution > 1000: 10%
-
 
   exemples:
     - nom: imbrication simple
@@ -71,7 +69,4 @@
       variables manquantes:
         - montant caution
         - dégradation majeure
-
-
-
 # pouvoir tester les variables inconnues mais requises ?

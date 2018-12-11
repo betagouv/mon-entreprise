@@ -1,6 +1,7 @@
+import { isNil } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { evaluateNode, makeJsx } from './evaluation'
+import { evaluateNode, makeJsx, mergeMissing } from './evaluation'
 import { Leaf, Node } from './mecanismViews/common'
 import {
 	disambiguateRuleReference,
@@ -18,61 +19,43 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			cached = cache[cacheName]
 
 		if (cached) return cached
+
 		let variable = findRuleByDottedName(parsedRules, dottedName),
-			variableHasFormula = variable.formule != null,
+			situationValue = getSituationValue(situation, dottedName, variable),
 			variableHasCond =
 				variable['applicable si'] != null ||
-				variable['non applicable si'] != null,
-			situationValue = getSituationValue(situation, dottedName, variable),
-			needsEvaluation =
-				situationValue == null &&
-				(variableHasCond ||
-					variableHasFormula ||
-					findParentDependency(rules, variable))
+				variable['non applicable si'] != null ||
+				findParentDependency(rules, variable),
+			needsEvaluation = isNil(situationValue) || variableHasCond
 
-		//		if (dottedName.includes('jeune va')) debugger
-
-		let explanation = needsEvaluation
-			? evaluateNode(cache, situation, parsedRules, variable)
-			: variable
-
-		let cacheAndReturnNode = (nodeValue, missingVariables) => {
-			cache[cacheName] = { ...node, nodeValue, explanation, missingVariables }
-			return cache[cacheName]
+		let explanation = variable
+		if (needsEvaluation) {
+			// In order to prevent circular dependencies from creating infinite loop, we cache as soon as the evaluation is pending.
+			cache[cacheName] = {
+				...node,
+				nodeValue: null
+			}
+			explanation = evaluateNode(cache, situation, parsedRules, variable)
 		}
 
-		// SITUATION 1 : La variable est directement renseignée
-		if (situationValue != null) return cacheAndReturnNode(situationValue, {})
+		const missingVariables = mergeMissing(
+			explanation.missingVariables,
+			isNil(situationValue) &&
+				explanation.isApplicable !== false &&
+				((variable.question && isNil(explanation.nodeValue)) ||
+					!variable.formule) && { [dottedName]: 1 }
+		)
 
-		// SITUATION 2 : La variable est calculée
-		if (situationValue == null && variableHasFormula)
-			return cacheAndReturnNode(
-				explanation.nodeValue,
-				explanation.missingVariables
-			)
+		const nodeValue =
+			!isNil(situationValue) && explanation.isApplicable != false
+				? situationValue
+				: !isNil(explanation.nodeValue)
+				? explanation.nodeValue
+				: null
 
-		// SITUATION 3 : La variable est une question sans condition dont la valeur n'a pas été renseignée
-		if (situationValue == null && !variableHasFormula && !variableHasCond)
-			return cacheAndReturnNode(null, { [dottedName]: 1 })
-
-		// SITUATION 4 : La variable est une question avec conditions
-		if (situationValue == null && !variableHasFormula && variableHasCond) {
-			// SITUATION 4.1 : La condition est connue et vrai
-			if (explanation.isApplicable)
-				return variable.question
-					? cacheAndReturnNode(null, { [dottedName]: 1 })
-					: cacheAndReturnNode(true, {})
-
-			// SITUATION 4.2 : La condition est connue et fausse
-			if (explanation.isApplicable === false)
-				return cacheAndReturnNode(false, {})
-			// SITUATION 4.3 : La condition n'est pas connue
-			if (explanation.isApplicable == null)
-				return cacheAndReturnNode(null, {
-					...explanation.missingVariables,
-					...(variable.question ? { [dottedName]: 1 } : {})
-				})
-		}
+		cache[cacheName] = { ...node, nodeValue, explanation, missingVariables }
+		// console.log('variable ', dottedName, nodeValue, missingVariables)
+		return cache[cacheName]
 	}
 
 	let { fragments } = parseResult,

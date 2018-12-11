@@ -31,7 +31,7 @@ import {
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { anyNull, val } from './traverse-common-functions'
+import { val } from './traverse-common-functions'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
 import {
 	makeJsx,
@@ -601,14 +601,12 @@ export let mecanismProduct = (recurse, k, v) => {
 	let effect = ({ assiette, taux, facteur, plafond }) => {
 		let mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond) * rate * facteur
-		return val(taux) === 0 ||
-			val(taux) === false ||
-			val(assiette) === 0 ||
-			val(facteur) === 0
-			? 0
-			: anyNull([taux, assiette, facteur, plafond])
-			? null
-			: mult(val(assiette), val(taux), val(facteur), val(plafond))
+		const params = [assiette, taux,facteur, plafond].map(val);
+		return (
+			any(equals(0), params) ? 0 :
+			any(isNil, params) ? null :
+			mult(...params)
+		)
 	}
 
 	let explanation = parseObject(recurse, objectShape, v),
@@ -967,6 +965,44 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 		},
 		category: 'mecanism',
 		name: 'synchronisation'
+	}
+}
+
+export let mecanismOnePossibility = (recurse, k, v) => {
+	let explanation = v.map(recurse)
+	// let onlyOneOf = (value, variable) => value === null && variable === null ? null : value === true && variable !== true ? true; 
+	// let evaluate = evaluateArray(, null)
+
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		const evaluations = explanation.map(node => node.evaluate(cache, situationGate, parsedRules, node));
+		const missingVariables = mergeAllMissing(evaluations.map(e => e.explanation));
+		return {...node, nodeValue: undefined, missingVariables}
+	}
+
+	let jsx = (nodeValue, explanation) => (
+		<Node
+			classes="mecanism list one-possibility"
+			name="Une possibilité parmi"
+			value={nodeValue}
+			child={
+				<ul>
+					{explanation.map((item, i) => (
+						<li key={i}>
+							<div className="description">{v[i].description}</div>
+							{makeJsx(item)}
+						</li>
+					))}
+				</ul>
+			}
+		/>
+	)
+
+	return {
+		evaluate,
+		explanation,
+		jsx,
+		category: 'mecanism',
+		name: 'une possibilité parmi'
 	}
 }
 

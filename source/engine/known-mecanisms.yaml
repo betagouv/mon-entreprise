@@ -6,7 +6,7 @@ sélection:
   description: |
     C'est tout simplement une valeur numérique exprimée en pourcentage.
 
-une possibilité:
+une possibilité parmi:
   type: enum
 
 inversion:

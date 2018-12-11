@@ -3,7 +3,7 @@
   valeur:
     # Cette syntaxe indique que l'activité est une alternative entre plusieurs autres concepts incompatibles : c'est ce que l'on appelle une variante.
     # Ce qui ne veux pas dire que le cumul de plusieurs activités est impossible (etc. salariat et indépendant), mais celui-ci est défini en amont dans le concept d'individu.
-    une possibilité:
+    une possibilité parmi:
       - contrat salarié
       - indépendant
       - fonction publique

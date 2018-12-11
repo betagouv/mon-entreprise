@@ -27,7 +27,7 @@
 
 - établissement . compte AT/MP: appréciation du risque
   valeur:
-    une possibilité:
+    une possibilité parmi:
       - très élevé
       - élevé
       - moyen

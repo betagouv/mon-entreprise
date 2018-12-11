@@ -1,6 +1,6 @@
 - nom: période
   par défaut: mois
-  une possibilité:
+  une possibilité parmi:
     - mois
     - année
 
@@ -394,7 +394,7 @@
   # CDD devrait être valide seulement si un motif de la liste des possibilités a été choisi
   # elle apparaîtrait alors forcément _après_ la question du motif
   formule:
-    une possibilité:
+    une possibilité parmi:
       - poursuite du CDD en CDI
       - refus CDI avantageux
       - rupture anticipée salarié
@@ -413,7 +413,7 @@
   # y répondre, en lui expliquant la formule suivante :
   #
   # formule:
-  #   une possibilité:
+  #   une possibilité parmi:
   #   - embauche en CDI suivant le CDD
   #   - CDD requalifié en CDI # quand ça arrive ?
 - espace: contrat salarié . CDD . événement
@@ -447,9 +447,10 @@
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
   formule:
-    une possibilité:
-      choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
-      possibilités:
+    une possibilité parmi:
+      # TODO
+      # choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
+      # possibilités:
         - classique
         - contrat aidé
         - complément formation
@@ -466,7 +467,7 @@
   nom: classique
   titre: motifs classiques
   formule:
-    une possibilité:
+    une possibilité parmi:
       - remplacement
       - accroissement activité
       - saisonnier
@@ -585,7 +586,7 @@
   icônes: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
-  sous-question: |
+  description: |
     [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211

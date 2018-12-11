@@ -18,7 +18,7 @@ export let makeJsx = node =>
 		? node.jsx(node.nodeValue, node.explanation)
 		: node.jsx
 
-export let collectNodeMissing = node => node.missingVariables || {}
+export let collectNodeMissing = node => node?.missingVariables || {}
 
 export let bonus = (missings, hasCondition = true) =>
 	hasCondition ? map(x => x + 0.0001, missings || {}) : missings

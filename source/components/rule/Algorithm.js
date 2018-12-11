@@ -33,7 +33,7 @@ export default compose(withNamespaces())(
 										(rule.category === 'variable' && rule.explanation.formule),
 									displayFormula =
 										formula &&
-										!path(['formule', 'explanation', 'une possibilité'], rule)
+										!path(['formule', 'explanation', 'une possibilité parmi'], rule)
 								displayFormula && (
 									<section id="formule">
 										<h2>

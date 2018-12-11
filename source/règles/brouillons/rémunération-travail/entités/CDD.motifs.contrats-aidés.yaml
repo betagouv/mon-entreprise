@@ -6,7 +6,7 @@
   titre: Contrat aidé (CUI, alternance, ...)
   # Voir le TODO de contrat salarié . CDD . événement . poursuite du CDD en CDI
   # formule:
-  #   une possibilité:
+  #   une possibilité parmi:
   #   - contrat unique d'insertion
   #   - emplois d'avenir
   #   - CDD sénior
@@ -20,7 +20,7 @@
   nom: contrat unique d'insertion
   # Voir le TODO de contrat salarié . CDD . événement . poursuite du CDD en CDI
   # formule:
-  #   une possibilité:
+  #   une possibilité parmi:
   #   - CUI-CAE
   #   - CUI-CIE
   références:
@@ -40,7 +40,7 @@
   nom: alternance
   # Voir le TODO de contrat salarié . CDD . événement . poursuite du CDD en CDI
   # formule:
-  #   une possibilité:
+  #   une possibilité parmi:
   #   - apprentissage
   #   - professionnalisation
 

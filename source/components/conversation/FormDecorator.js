@@ -44,7 +44,6 @@ export var FormDecorator = formType => RenderField =>
 			render() {
 				let {
 					stepAction,
-					subquestion,
 					valueType,
 					defaultValue,
 					fieldName,
@@ -70,10 +69,6 @@ export var FormDecorator = formType => RenderField =>
 									{this.props.question}{' '}
 									{!inversion && <Explicable dottedName={fieldName} />}
 								</h1>
-								<div
-									className="step-subquestion"
-									dangerouslySetInnerHTML={{ __html: subquestion }}
-								/>
 							</div>
 						</div>
 						{defaultValue != null && (

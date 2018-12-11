@@ -74,18 +74,6 @@
 	color: white;
 }
 
-.step-subquestion {
-	margin: 0.3em;
-	font-style: italic;
-	font-size: 80%;
-	margin-left: 1em;
-}
-.step-subquestion p {
-	display: inline;
-	color: #666;
-	margin: 0;
-}
-
 /* Our little help icon */
 .help-button {
 	display: inline-block;

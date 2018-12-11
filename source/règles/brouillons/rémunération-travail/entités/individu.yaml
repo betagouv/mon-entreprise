@@ -7,7 +7,7 @@
 
 - individu: sexe
   valeur:
-    une possibilité:
+    une possibilité parmi:
       - masculin
       - féminin
 

@@ -13,7 +13,6 @@ import {
 	intersection,
 	keys,
 	propOr,
-	always,
 	head,
 	gte,
 	lte,
@@ -45,6 +44,7 @@ import {
 	mecanismComplement,
 	mecanismSelection,
 	mecanismInversion,
+	mecanismOnePossibility,
 	mecanismReduction,
 	mecanismVariations,
 	mecanismSynchronisation
@@ -237,7 +237,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			Objet YAML : ${JSON.stringify(rawNode)}
 			Mécanismes implémentés correspondants : ${JSON.stringify(mecanisms)}
 			Cette liste doit avoir un et un seul élément.
-			Vérifier que le mécanisme est dans l'objet 'dispatch' et dans les'knownMecanisms.yaml'
+			Vérifier que le mécanisme est dans l'objet 'dispatch' et dans les 'knownMecanisms.yaml'
 		`)
 	}
 
@@ -256,11 +256,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,
 			sélection: mecanismSelection,
-			'une possibilité': always({
-				...v,
-				'une possibilité': 'oui',
-				missingVariables: { [rule.dottedName]: 1 }
-			}),
+			'une possibilité parmi': mecanismOnePossibility,
 			inversion: mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
 			variations: mecanismVariations,

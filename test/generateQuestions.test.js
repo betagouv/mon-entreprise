@@ -1,10 +1,11 @@
 import { expect } from 'chai'
+import { enrichRule } from 'Engine/rules'
+import { analyse, parseAll } from 'Engine/traverse'
+import { rules as realRules } from 'Règles'
 import {
 	collectMissingVariables,
 	getNextSteps
 } from '../source/engine/generateQuestions'
-import { enrichRule, rules as realRules } from '../source/engine/rules'
-import { analyse, parseAll } from '../source/engine/traverse'
 
 let stateSelector = () => null
 
@@ -21,7 +22,7 @@ describe('collectMissingVariables', function() {
 				{
 					nom: 'evt',
 					espace: 'sum',
-					formule: { 'une possibilité': ['ko'] },
+					formule: { 'une possibilité parmi': ['ko'] },
 					titre: 'Truc',
 					question: '?'
 				},
@@ -88,61 +89,6 @@ describe('collectMissingVariables', function() {
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
-	})
-
-	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'startHere', formule: 'trois', espace: 'top' },
-				{
-					nom: 'trois',
-					formule: { 'une possibilité': ['ko'] },
-					espace: 'top'
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.include('top . trois')
-	})
-
-	it('should not report missing variables when "une possibilité" is inapplicable', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'startHere', formule: 'trois', espace: 'top' },
-				{
-					nom: 'trois',
-					formule: { 'une possibilité': ['ko'] },
-					'non applicable si': 1,
-					espace: 'top'
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
-		null
-	})
-
-	it('should not report missing variables when "une possibilité" was answered', function() {
-		let mySelector = name => ({ 'top . trois': 'ko' }[name])
-
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'startHere', formule: 'trois', espace: 'top' },
-				{
-					nom: 'trois',
-					formule: { 'une possibilité': ['ko'] },
-					espace: 'top'
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(mySelector),
 			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.be.empty
@@ -363,7 +309,7 @@ describe('nextSteps', function() {
 				{
 					nom: 'evt',
 					espace: 'top . sum',
-					formule: { 'une possibilité': ['ko'] },
+					formule: { 'une possibilité parmi': ['ko'] },
 					titre: 'Truc',
 					question: '?'
 				},
@@ -373,8 +319,7 @@ describe('nextSteps', function() {
 			analysis = analyse(rules, 'sum')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.lengthOf(2)
-		expect(result).to.eql(['top . sum', 'top . sum . evt'])
+		expect(result).to.eql(['top . sum . evt'])
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function() {

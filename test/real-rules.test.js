@@ -1,8 +1,8 @@
 import { AssertionError } from 'chai'
-import { rules } from '../source/engine/rules'
-import { parseAll } from '../source/engine/traverse'
-import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
 import { merge } from 'ramda'
+import { rules } from 'Règles'
+import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
+import { parseAll } from '../source/engine/traverse'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
@@ -23,8 +23,8 @@ let runExamples = (examples, rule) =>
 				exampleValue === goal
 					? true
 					: typeof goal === 'number'
-						? Math.abs((exampleValue - goal) / goal) < 0.001
-						: goal === null && exampleValue === 0
+					? Math.abs((exampleValue - goal) / goal) < 0.001
+					: goal === null && exampleValue === 0
 
 		return merge(ex, {
 			ok,

@@ -322,11 +322,11 @@ contrat salarié . CDD . durée contrat:
   titre.fr: durée du contrat
   question.en: What is the duration of the contract?
   question.fr: Quelle est la durée du contrat ?
-  sous-question.en: >-
+  description.en: >-
     [Click here]
     (https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     to know the maximum duration of a fixed-term contract.
-  sous-question.fr: >
+  description.fr: >
     [Cliquez
     ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     pour connaître la durée maximale d'un CDD.

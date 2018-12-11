@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
 	resolve: common.resolve,
-	entry: './source/engine/index.js',
+	entry: './source/libraryIndex.js',
 	mode: 'development',
 	devtool: 'source-map',
 	output: {

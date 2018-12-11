@@ -72,7 +72,7 @@ export let getNextSteps = missingVariablesByTarget => {
 export let collectMissingVariables = targets =>
 	getNextSteps(collectMissingVariablesByTarget(targets))
 
-let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
+let isVariant = rule => queryRule(rule.raw)('formule . une possibilité parmi')
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {

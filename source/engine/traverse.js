@@ -13,7 +13,6 @@ import {
 	evolve,
 	path,
 	map,
-	mergeAll,
 	keys,
 	is,
 	T,
@@ -25,6 +24,7 @@ import {
 	evaluateNode,
 	makeJsx,
 	mergeMissing,
+	mergeAllMissing,
 	bonus
 } from './evaluation'
 import { anyNull, val, undefOrTrue } from './traverse-common-functions'
@@ -100,7 +100,6 @@ export let treatRuleRoot = (rules, rule) => {
 	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST. Elles seront exécutées à l'évaluation.
 	*/
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
 		cache.parseLevel++
 
 		let evaluatedAttributes = pipe(
@@ -119,28 +118,30 @@ export let treatRuleRoot = (rules, rule) => {
 				'applicable si': applicable
 			} = evaluatedAttributes,
 			isApplicable =
-				val(parentDependency) === false
-					? false
-					: val(notApplicable) === true
-					? false
-					: val(applicable) === false
-					? false
-					: anyNull([notApplicable, applicable, parentDependency])
-					? null
-					: !val(notApplicable) && undefOrTrue(val(applicable)),
+			val(parentDependency) === false
+			? false
+			: val(notApplicable) === true
+			? false
+			: val(applicable) === false
+			? false
+			: anyNull([notApplicable, applicable, parentDependency])
+			? null
+			: !val(notApplicable) && undefOrTrue(val(applicable)),
 			nodeValue = computeRuleValue(val(formule), isApplicable)
+			
+			// console.log(node.dottedName, evaluatedAttributes);
+	
 
 		let condMissing =
 				isApplicable === false
 					? {}
-					: mergeAll([
-							parentDependency?.missingVariables || {},
-							notApplicable?.missingVariables || {},
-							applicable?.missingVariables || {}
-					  ]),
+					: mergeAllMissing([
+							parentDependency,
+							notApplicable,
+							applicable
+						]),
 			collectInFormule = isApplicable !== false,
-			formMissing =
-				(collectInFormule && formule && formule.missingVariables) || {},
+			formMissing = (collectInFormule && formule && formule.missingVariables) || {},
 			// On veut abaisser le score des conséquences par rapport aux conditions,
 			// mais seulement dans le cas où une condition est effectivement présente
 			hasCondition = keys(condMissing).length > 0,
@@ -148,10 +149,8 @@ export let treatRuleRoot = (rules, rule) => {
 				bonus(condMissing, hasCondition),
 				formMissing
 			)
-
+		// console.log('yayaya', node.dottedName, collectInFormule, formule, formule.missingVariables);
 		cache.parseLevel--
-		//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
-		//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
 		return {
 			...node,
 			...evaluatedAttributes,
@@ -170,36 +169,9 @@ export let treatRuleRoot = (rules, rule) => {
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
 		// condition d'applicabilité de la règle
-		parentDependency: parent => {
-			let node = treat(rules, rule)(parent.dottedName)
-
-			let jsx = (nodeValue, explanation) => (
-				<ShowValuesConsumer>
-					{showValues =>
-						!showValues ? (
-							<div>Active seulement si {makeJsx(explanation)}</div>
-						) : nodeValue === true ? (
-							<div>Active car {makeJsx(explanation)}</div>
-						) : nodeValue === false ? (
-							<div>Non active car {makeJsx(explanation)}</div>
-						) : null
-					}
-				</ShowValuesConsumer>
-			)
-
-			return {
-				evaluate: (cache, situation, parsedRules) =>
-					node.evaluate(cache, situation, parsedRules, node),
-				jsx,
-				category: 'ruleProp',
-				rulePropType: 'cond',
-				name: 'parentDependency',
-				type: 'numeric',
-				explanation: node
-			}
-		},
-		'non applicable si': evolveCond('non applicable si', rule, rules),
-		'applicable si': evolveCond('applicable si', rule, rules),
+		parentDependency: evolveParentDependancy(rules, rule),
+		'non applicable si': evolveCond('non applicable si', rules, rule),
+		'applicable si': evolveCond('applicable si', rules, rule),
 		// formule de calcul
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -275,8 +247,36 @@ export let treatRuleRoot = (rules, rule) => {
 		controls
 	}
 }
+let evolveParentDependancy = (rules, rule) => parent => {
+	let parentNode = treat(rules, rule)(parent.dottedName)
 
-let evolveCond = (name, rule, rules) => value => {
+	let jsx = (nodeValue, explanation) => (
+		<ShowValuesConsumer>
+			{showValues =>
+				!showValues ? (
+					<div>Active seulement si {makeJsx(explanation)}</div>
+				) : nodeValue === true ? (
+					<div>Active car {makeJsx(explanation)}</div>
+				) : nodeValue === false ? (
+					<div>Non active car {makeJsx(explanation)}</div>
+				) : null
+			}
+		</ShowValuesConsumer>
+	)
+
+	return {
+		evaluate: (cache, situation, parsedRules, node, evaluationStack) =>
+			parentNode.evaluate(cache, situation, parsedRules, parentNode, evaluationStack),
+		jsx,
+		category: 'ruleProp',
+		rulePropType: 'cond',
+		name: 'parentDependency',
+		type: 'numeric',
+		explanation: parentNode
+	}
+}
+
+let evolveCond = (name, rules, rule) => value => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let explanation = evaluateNode(
 				cache,

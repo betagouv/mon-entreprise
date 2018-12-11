@@ -4,6 +4,8 @@
 - nom: sucre
   format: kg
 
+- nom: sucre
+- nom: farine
 - nom: poids total
   test: Somme
   formule:

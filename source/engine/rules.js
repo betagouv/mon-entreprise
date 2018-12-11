@@ -1,41 +1,35 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import rawRules from 'Règles/base.yaml'
-import translations from 'Règles/externalized.yaml'
+import formValueTypes from 'Components/conversation/formValueTypes'
 import {
 	assoc,
-	mapObjIndexed,
 	chain,
-	has,
-	pipe,
-	toPairs,
-	map,
-	fromPairs,
-	split,
-	join,
 	dropLast,
-	take,
-	propEq,
-	reduce,
-	when,
-	is,
-	props,
+	find,
+	fromPairs,
+	has,
 	identity,
-	path,
-	reject,
-	reduced,
-	range,
-	last,
-	trim,
+	is,
 	isNil,
-	find
+	join,
+	last,
+	map,
+	mapObjIndexed,
+	path,
+	pipe,
+	propEq,
+	props,
+	range,
+	reduce,
+	reduced,
+	reject,
+	split,
+	take,
+	toPairs,
+	trim,
+	when
 } from 'ramda'
-import possibleVariableTypes from './possibleVariableTypes.yaml'
-import marked from './marked'
 import { capitalise0 } from '../utils'
-import formValueTypes from 'Components/conversation/formValueTypes'
-
-// TODO - should be in UI, not engine
-import taux_versement_transport from 'Règles/taux-versement-transport.json'
+import possibleVariableTypes from './possibleVariableTypes.yaml'
 
 // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
@@ -50,8 +44,6 @@ export let enrichRule = (rule, sharedData = {}) => {
 			ns = rule['espace'],
 			data = rule['données'] ? sharedData[rule['données']] : null,
 			dottedName = buildDottedName(rule),
-			subquestionMarkdown = rule['sous-question'],
-			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 			defaultValue = rule['par défaut'],
 			examples = rule['exemples'],
 			icon = rule['icônes']
@@ -64,7 +56,6 @@ export let enrichRule = (rule, sharedData = {}) => {
 			ns,
 			data,
 			dottedName,
-			subquestion,
 			defaultValue,
 			raw: rule,
 			examples,
@@ -159,18 +150,6 @@ export let findRuleByName = (allRules, query) =>
 export let findRulesByName = (allRules, query) =>
 	allRules.filter(({ name }) => name === query)
 
-export let searchRules = searchInput =>
-	rules
-		.filter(
-			rule =>
-				rule &&
-				hasKnownRuleType(rule) &&
-				JSON.stringify(rule)
-					.toLowerCase()
-					.indexOf(searchInput) > -1
-		)
-		.map(enrichRule)
-
 export let findRuleByDottedName = (allRules, dottedName) => {
 	return allRules.find(rule => rule.dottedName == dottedName)
 }
@@ -255,25 +234,10 @@ export let translateAll = (translations, flatRules) => {
 				: rule
 		}
 
-	let targets = [
-		'titre',
-		'description',
-		'question',
-		'sous-question',
-		'résumé',
-		'suggestions'
-	]
+	let targets = ['titre', 'description', 'question', 'résumé', 'suggestions']
 
 	return map(translateRule('en', translations, targets), flatRules)
 }
-
-// On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = translateAll(translations, rawRules).map(rule =>
-	enrichRule(rule, { taux_versement_transport })
-)
-export let rulesFr = rawRules.map(rule =>
-	enrichRule(rule, { taux_versement_transport })
-)
 
 export let findParentDependency = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
@@ -285,7 +249,13 @@ export let findParentDependency = (rules, rule) => {
 		reject(isNil),
 		find(
 			//Find the first "calculable" parent
-			({ question, format, formule }) => question && !format && !formule //implicitly, the format is boolean
+			({ question, format, formule, dottedName }) =>
+				(question && !format && !formule) || //implicitly, the format is boolean
+				(question &&
+					formule &&
+					formule['une possibilité parmi']?.some(
+						ruleName => dottedName + ' . ' + ruleName === rule.dottedName
+					))
 		)
 	)(parentDependencies)
 }

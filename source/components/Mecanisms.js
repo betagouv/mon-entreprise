@@ -1,7 +1,7 @@
 // Page listing the engine's currently implemented mecanisms and their tests
-import React, { Component } from 'react'
 import knownMecanims from 'Engine/known-mecanisms.yaml'
 import { fromPairs, has, toPairs } from 'ramda'
+import React, { Component } from 'react'
 import './Mecanisms.css'
 
 let directoryLoader = require.context('../../test/mécanismes/', true, /.yaml$/),

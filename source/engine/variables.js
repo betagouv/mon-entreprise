@@ -1,26 +1,3 @@
-import { isEmpty, dropLast, last } from 'ramda'
-import { splitName, joinName } from './rules'
-
-let evaluateBottomUp = situationGate => startingFragments => {
-	let rec = (parentFragments, childFragments = []) =>
-		parentFragments.length == 0
-			? null
-			: do {
-					let query = joinName(parentFragments),
-						expectedResult = isEmpty(childFragments)
-							? 'oui'
-							: joinName(childFragments)
-
-					situationGate(query) == null
-						? rec(dropLast(1)(parentFragments), [
-								last(parentFragments),
-								...childFragments
-						  ])
-						: situationGate(query) == expectedResult
-			  }
-
-	return rec(startingFragments)
-}
 let formatBooleanValue = { oui: true, non: false }
 
 export let getSituationValue = (situationGate, variableName, rule) => {
@@ -33,8 +10,5 @@ export let getSituationValue = (situationGate, variableName, rule) => {
 	if (rule.format != null) return value
 	//boolean variables don't have a format prop, it's the default
 	if (formatBooleanValue[value] !== undefined) return formatBooleanValue[value]
-	if (rule.formule && rule.formule['une possibilité'])
-		return evaluateBottomUp(situationGate)(splitName(variableName))
-
 	return value
 }
