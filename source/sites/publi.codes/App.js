@@ -5,7 +5,7 @@ import 'Ui/index.css'
 import Provider from '../../Provider'
 import Route404 from '../embauche.gouv.fr/pages/Route404'
 import RulesList from '../embauche.gouv.fr/pages/RulesList'
-import GenericSimulation from 'Components/GenericSimulation'
+import ComparativeSimulation from 'Components/ComparativeSimulation'
 import { simulationTargetNames } from '../../config'
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
 				}}
 				reduxMiddlewares={[]}>
 				<Switch>
-					<Route exact path="/" component={GenericSimulation} />
+					<Route exact path="/" component={ComparativeSimulation} />
 					<Route path="/règle/:name" component={RulePage} />
 					<Route path="/règles" component={RulesList} />
 					<Route component={Route404} />

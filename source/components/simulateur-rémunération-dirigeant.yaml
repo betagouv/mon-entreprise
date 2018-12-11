@@ -1,0 +1,7 @@
+- nom: Revenu en indépendant
+  situation: 
+    indépendant: oui
+- situation: 
+    micro entreprise: oui
+  nom: revenu en micro-entreprise
+

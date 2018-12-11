@@ -131,7 +131,10 @@ export let disambiguateRuleReference = (
 		found = reduce(
 			(res, path) =>
 				when(is(Object), reduced)(
-					findRuleByDottedName(allRules, [...path, partialName].join(' . '))
+					do {
+						let dottedNameToCheck = [...path, partialName].join(' . ')
+						findRuleByDottedName(allRules, dottedNameToCheck)
+					}
 				),
 			null,
 			pathPossibilities

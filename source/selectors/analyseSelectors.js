@@ -12,10 +12,9 @@ import {
 	rulesFr as baseRulesFr
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { contains, equals, head, isEmpty, isNil, path, pick } from 'ramda'
+import { contains, equals, head, isEmpty, pick } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
-import { mainTargetNames } from '../config'
 
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
@@ -52,7 +51,7 @@ export let situationSelector = createDeepEqualSelector(
 
 export let noUserInputSelector = createSelector(
 	[situationSelector],
-	situation => console.log({ situation }) || !situation || isEmpty(situation)
+	situation => !situation || isEmpty(situation)
 )
 
 export let formattedSituationSelector = createSelector(
@@ -68,14 +67,20 @@ let validatedStepsSelector = createSelector(
 	(foldedSteps, target) => [...foldedSteps, target]
 )
 
-export let validatedSituationSelector = createSelector(
-	[formattedSituationSelector, validatedStepsSelector],
-	(situation, validatedSteps) => pick(validatedSteps, situation)
+let situationBranchesSelector = createSelector(
+	[formattedSituationSelector, (state, props) => props?.branches || [{}]],
+	(situation, branches) =>
+		branches.map(branchPatch => ({ ...situation, ...branchPatch }))
+)
+export let validatedSituationsSelector = createSelector(
+	[situationBranchesSelector, validatedStepsSelector],
+	(situations, validatedSteps) => situations.map(s => pick(validatedSteps, s))
 )
 
-let situationWithDefaultsSelector = createSelector(
-	[ruleDefaultsSelector, formattedSituationSelector],
-	(defaults, situation) => ({ ...defaults, ...situation })
+let situationsWithDefaultsSelector = createSelector(
+	[ruleDefaultsSelector, situationBranchesSelector],
+	(defaults, situations) =>
+		situations.map(situation => ({ ...defaults, ...situation }))
 )
 
 let analyseRule = (parsedRules, ruleDottedName, situation) =>
@@ -87,20 +92,21 @@ export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, { dottedName }) => dottedName,
-		situationWithDefaultsSelector
+		situationsWithDefaultsSelector
 	],
-	analyseRule
+	(rules, dottedName, situations) =>
+		analyseRule(rules, dottedName, situations[0])
 )
 
 let exampleSituationSelector = createSelector(
 	[
 		parsedRulesSelector,
-		situationWithDefaultsSelector,
+		situationsWithDefaultsSelector,
 		({ currentExample }) => currentExample
 	],
-	(rules, situation, example) =>
+	(rules, situations, example) =>
 		example && {
-			...situation,
+			...situations[0],
 			...disambiguateExampleSituation(
 				rules,
 				findRuleByDottedName(rules, example.dottedName)
@@ -119,15 +125,19 @@ export let exampleAnalysisSelector = createSelector(
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],
-		(parsedRules, targetNames, situation) =>
-			analyseMany(parsedRules, targetNames)(dottedName => situation[dottedName])
+		(parsedRules, targetNames, situations) => {
+			let analyses = situations.map(s =>
+				analyseMany(parsedRules, targetNames)(dottedName => s[dottedName])
+			)
+			return situations.length === 1 ? analyses[0] : analyses
+		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
-	situationWithDefaultsSelector
+	situationsWithDefaultsSelector
 )
 let analysisValidatedOnlySelector = makeAnalysisSelector(
-	validatedSituationSelector
+	validatedSituationsSelector
 )
 
 export let blockingInputControlsSelector = state => {

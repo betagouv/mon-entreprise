@@ -7,7 +7,7 @@ import { createSelector } from 'reselect'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
-	validatedSituationSelector
+	validatedSituationsSelector
 } from './analyseSelectors'
 import type { FlatRules } from 'Types/State'
 import type {
@@ -43,9 +43,9 @@ export const règleLocaliséeSelector = createSelector(
 
 export const règleValeurSelector = createSelector(
 	analysisWithDefaultsSelector,
-	validatedSituationSelector,
+	validatedSituationsSelector,
 	règleLocaliséeSelector,
-	(analysis: Analysis, situation, règleLocalisée: string => Règle) => (
+	(analysis: Analysis, situations, règleLocalisée: string => Règle) => (
 		dottedName: string
 	): RègleValeur => {
 		if (!analysis) {
@@ -58,7 +58,9 @@ export const règleValeurSelector = createSelector(
 			analysis.targets.find(target => target.dottedName === dottedName)
 
 		let valeur =
-			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situation[dottedName]
+			rule && !isNil(rule.nodeValue)
+				? rule.nodeValue
+				: situations[0][dottedName]
 
 		if (isNil(valeur)) {
 			console.warn(
