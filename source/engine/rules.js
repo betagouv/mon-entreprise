@@ -54,15 +54,13 @@ export let enrichRule = (rule, sharedData = {}) => {
 			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
 			defaultValue = rule['par défaut'],
 			examples = rule['exemples'],
-			icon = rule['icônes'],
-			question = rule['question'] || title
+			icon = rule['icônes']
 
 		return {
 			...rule,
 			type,
 			name,
 			title,
-			question,
 			ns,
 			data,
 			dottedName,

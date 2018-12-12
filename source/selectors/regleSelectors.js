@@ -7,7 +7,7 @@ import { createSelector } from 'reselect'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
-	validatedSituationsSelector
+	validatedSituationBranchesSelector
 } from './analyseSelectors'
 import type { FlatRules } from 'Types/State'
 import type {
@@ -43,7 +43,7 @@ export const règleLocaliséeSelector = createSelector(
 
 export const règleValeurSelector = createSelector(
 	analysisWithDefaultsSelector,
-	validatedSituationsSelector,
+	validatedSituationBranchesSelector,
 	règleLocaliséeSelector,
 	(analysis: Analysis, situations, règleLocalisée: string => Règle) => (
 		dottedName: string

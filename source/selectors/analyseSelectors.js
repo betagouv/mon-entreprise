@@ -12,7 +12,19 @@ import {
 	rulesFr as baseRulesFr
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { contains, equals, head, isEmpty, pick } from 'ramda'
+import {
+	map,
+	mergeDeepWith,
+	pipe,
+	add,
+	contains,
+	equals,
+	head,
+	isEmpty,
+	pick,
+	reduce,
+	intersection
+} from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 
@@ -66,15 +78,26 @@ let validatedStepsSelector = createSelector(
 	],
 	(foldedSteps, target) => [...foldedSteps, target]
 )
-
+let branchesSelector = (state, props) => props?.branches || [{}]
 let situationBranchesSelector = createSelector(
-	[formattedSituationSelector, (state, props) => props?.branches || [{}]],
+	[formattedSituationSelector, branchesSelector],
 	(situation, branches) =>
-		branches.map(branchPatch => ({ ...situation, ...branchPatch }))
+		branches.map(({ situation: branchSituation }) => ({
+			...situation,
+			...branchSituation
+		}))
 )
-export let validatedSituationsSelector = createSelector(
-	[situationBranchesSelector, validatedStepsSelector],
-	(situations, validatedSteps) => situations.map(s => pick(validatedSteps, s))
+export let validatedSituationSelector = createSelector(
+	[formattedSituationSelector, validatedStepsSelector],
+	(situation, validatedSteps) => pick(validatedSteps, situation)
+)
+export let validatedSituationBranchesSelector = createSelector(
+	[validatedSituationSelector, branchesSelector],
+	(situation, branches) =>
+		branches.map(({ situation: branchSituation }) => ({
+			...situation,
+			...branchSituation
+		}))
 )
 
 let situationsWithDefaultsSelector = createSelector(
@@ -129,7 +152,7 @@ let makeAnalysisSelector = situationSelector =>
 			let analyses = situations.map(s =>
 				analyseMany(parsedRules, targetNames)(dottedName => s[dottedName])
 			)
-			return situations.length === 1 ? analyses[0] : analyses
+			return analyses
 		}
 	)
 
@@ -137,7 +160,7 @@ export let analysisWithDefaultsSelector = makeAnalysisSelector(
 	situationsWithDefaultsSelector
 )
 let analysisValidatedOnlySelector = makeAnalysisSelector(
-	validatedSituationsSelector
+	validatedSituationBranchesSelector
 )
 
 export let blockingInputControlsSelector = state => {
@@ -160,8 +183,11 @@ let initialAnalysisSelector = createSelector(
 
 let currentMissingVariablesByTargetSelector = createSelector(
 	[analysisValidatedOnlySelector],
-	analysis =>
-		analysis.targets ? collectMissingVariablesByTarget(analysis.targets) : []
+	analyses =>
+		pipe(
+			map(analysis => collectMissingVariablesByTarget(analysis.targets)),
+			reduce((memo, next) => mergeDeepWith(add)(memo, next), {})
+		)(analyses)
 )
 
 export let missingVariablesByTargetSelector = createSelector(
@@ -173,8 +199,12 @@ export let missingVariablesByTargetSelector = createSelector(
 )
 
 export let nextStepsSelector = createSelector(
-	[currentMissingVariablesByTargetSelector],
-	getNextSteps
+	[currentMissingVariablesByTargetSelector, (_, { questions }) => questions],
+	(mv, questions) => {
+		let nextSteps = getNextSteps(mv)
+		if (questions) return intersection(nextSteps, questions)
+		return nextSteps
+	}
 )
 export let currentQuestionSelector = createSelector(
 	[

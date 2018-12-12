@@ -661,6 +661,7 @@
 
 - nom: contrat salarié
   icônes: 📄
+  question: Activité salariée ?
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
 
@@ -2561,6 +2562,7 @@
 
 - espace: entreprise
   nom: chiffre d'affaires
+  question: Quel chiffre d'affaires ?
   période: flexible
   format: euros
 

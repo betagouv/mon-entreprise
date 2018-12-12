@@ -1,7 +1,23 @@
-- nom: Revenu en indépendant
-  situation: 
-    indépendant: oui
-- situation: 
-    micro entreprise: oui
-  nom: revenu en micro-entreprise
+questions: 
+  - entreprise . chiffre d'affaires
+  - entreprise . catégorie d'activité
+branches: 
+  - nom: Revenu en indépendant
+    situation: 
+      indépendant: oui
+      micro entreprise: non
+      contrat salarié: non
+  - nom: Revenu en micro-entreprise
+    situation: 
+      micro entreprise: oui
+      indépendant: non
+      contrat salarié: non
+  - nom: Revenu au régime général
+    situation: 
+      micro entreprise: non
+      indépendant: non
+      contrat salarié: oui
+      contrat salarié . assimilé salarié: oui
+      contrat salarié . rémunération . total: 100000
+
 

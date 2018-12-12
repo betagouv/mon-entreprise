@@ -6,11 +6,11 @@ import withColours from 'Components/utils/withColours'
 import { Link } from 'react-router-dom'
 import emoji from 'react-easy-emoji'
 import { compose } from 'ramda'
-import branches from './simulateur-rémunération-dirigeant.yaml'
+import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 
 export default compose(
 	connect(state => ({
-		analyses: analysisWithDefaultsSelector(state, { branches })
+		analyses: analysisWithDefaultsSelector(state, simulationConfig)
 	})),
 	withColours
 )(
@@ -26,7 +26,7 @@ export default compose(
 								let { title, nodeValue, dottedName } = analysis.targets[0]
 								return (
 									<li>
-										{branches[i].nom}
+										{simulationConfig.branches[i].nom}
 										<span className="figure">
 											<span className="value">{nodeValue?.toFixed(1)}</span>{' '}
 										</span>

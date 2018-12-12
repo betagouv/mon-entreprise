@@ -10,17 +10,16 @@ import {
 	nextStepsSelector,
 	analysisWithDefaultsSelector
 } from 'Selectors/analyseSelectors'
-import { reduxForm } from 'redux-form'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import Controls from './Controls'
-import situations from './simulateur-rémunération-dirigeant.yaml'
+import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 
 export default compose(
 	withColours,
 	connect(state => ({
 		previousAnswers: state.conversationSteps.foldedSteps,
-		noNextSteps: nextStepsSelector(state).length == 0,
-		analysis: analysisWithDefaultsSelector(state)
+		noNextSteps: nextStepsSelector(state, simulationConfig).length == 0,
+		analysis: analysisWithDefaultsSelector(state, simulationConfig)
 	}))
 )(
 	class extends React.Component {
@@ -59,6 +58,7 @@ export default compose(
 							/>
 						)}
 						<Conversation
+							simulationConfig={simulationConfig}
 							textColourOnWhite={this.props.colours.textColourOnWhite}
 						/>
 						<Controls {...{ controls }} />
