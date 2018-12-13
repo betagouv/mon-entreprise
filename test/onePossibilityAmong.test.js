@@ -5,7 +5,7 @@ import { analyse, parseAll } from 'Engine/traverse'
 
 let stateSelector = () => null
 describe('onePossibilityAmong', function() {
-	describe.skip('value', () => {
+	describe('value', () => {
 		it('should throw if not all the possibility are defined as children of the namespace', function() {
 			let rawRules = [
 				{
@@ -50,11 +50,11 @@ describe('onePossibilityAmong', function() {
 				rules = parseAll(rawRules.map(enrichRule))
 
 			expect(
-				analyse(rules, 'entreprise')(stateSelector).targets[0]
-			).to.have.property('nodeValue', null)
+				analyse(rules, 'entreprise . statut')(stateSelector).targets[0]
+			).to.have.property('value', undefined)
 			expect(
 				analyse(rules, 'entreprise . statut . SAS')(stateSelector).targets[0]
-			).to.have.property('nodeValue', null)
+			).to.have.property('value', undefined)
 		})
 		it('should have mutually exclusive possibility', function() {
 			let rawRules = [
@@ -83,12 +83,12 @@ describe('onePossibilityAmong', function() {
 
 			expect(
 				analyse(rules, 'entreprise . statut . SAS')(stateSelector).targets[0]
-			).to.have.property('nodeValue', 'non')
+			).to.have.property('value', 'non')
 			expect(
 				analyse(rules, 'entreprise . statut . EI')(stateSelector).targets[0]
-			).to.have.property('nodeValue', 'non')
+			).to.have.property('value', 'non')
 		})
-		it('should throw when logical impossibility', function() {
+		it.only('should throw when logical impossibility', function() {
 			// TODO : use blocking control instead?
 			let rawRules = [
 					{
@@ -112,7 +112,8 @@ describe('onePossibilityAmong', function() {
 				rules = parseAll(rawRules.map(enrichRule))
 
 			expect(
-				() => analyse(rules, 'entreprise . statut')(stateSelector).targets[0]
+				() =>
+					analyse(rules, 'entreprise . statut . SARL')(stateSelector).targets[0]
 			).to.throw(
 				`Impossibilité logique : 'entreprise . statut' ne peut pas être à la fois 'SARL' et 'SAS'`
 			)
@@ -154,10 +155,10 @@ describe('onePossibilityAmong', function() {
 				rules = parseAll(rawRules.map(enrichRule))
 			expect(
 				analyse(rules, 'entreprise . statut . SAS')(stateSelector).targets[0]
-			).to.have.property('nodeValue', 'oui')
+			).to.have.property('value', 'oui')
 			expect(
 				analyse(rules, 'entreprise . statut')(stateSelector).targets[0]
-			).to.have.property('nodeValue', 'SAS')
+			).to.have.property('value', 'SAS')
 		})
 	})
 

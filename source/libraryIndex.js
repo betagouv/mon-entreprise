@@ -36,7 +36,7 @@ export default {
 		)(nestedSituationToStateSelector(rules)(nestedSituation))
 
 		if (config?.debug) return evaluation
-		let values = evaluation.targets.map(t => t.nodeValue)
+		let values = evaluation.targets.map(t => t.value)
 
 		return Array.isArray(targetInput) ? values : values[0]
 	}

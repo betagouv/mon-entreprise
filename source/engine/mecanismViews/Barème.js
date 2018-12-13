@@ -1,5 +1,5 @@
 import React from 'react'
-import { Node, NodeValuePointer, formatNumber } from './common'
+import { Node, valuePointer, formatNumber } from './common'
 import { makeJsx } from '../evaluation'
 import { Trans } from 'react-i18next'
 import { trancheValue } from 'Engine/mecanisms/barème'
@@ -8,14 +8,14 @@ import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 
-let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
+let Comp = withLanguage(function Barème({ language, value, explanation }) {
 	return (
 		<ShowValuesConsumer>
 			{showValues => (
 				<Node
 					classes="mecanism barème"
 					name="barème"
-					value={nodeValue}
+					value={value}
 					child={
 						<ul className="properties">
 							<li key="assiette">
@@ -24,7 +24,7 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 								</span>
 								<span className="value">{makeJsx(explanation.assiette)}</span>
 							</li>
-							{explanation['multiplicateur des tranches'].nodeValue !== 1 && (
+							{explanation['multiplicateur des tranches'].value !== 1 && (
 								<li key="multiplicateur">
 									<span className="key">
 										<Trans>multiplicateur des tranches</Trans>:{' '}
@@ -71,7 +71,7 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 										<Trans>Taux final</Trans> :{' '}
 									</b>
 									{formatNumber(
-										(nodeValue / explanation['assiette'].nodeValue) * 100,
+										(value / explanation['assiette'].value) * 100,
 										language
 									)}{' '}
 									%
@@ -86,8 +86,8 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 })
 
 //eslint-disable-next-line
-export default (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation }} />
+export default (value, explanation) => (
+	<Comp {...{ value, explanation }} />
 )
 
 let Tranche = ({
@@ -122,7 +122,7 @@ let Tranche = ({
 		<td key="taux"> {makeJsx(taux)}</td>
 		{showValues && (
 			<td key="value">
-				<NodeValuePointer data={trancheValue} />
+				<valuePointer data={trancheValue} />
 			</td>
 		)}
 	</tr>

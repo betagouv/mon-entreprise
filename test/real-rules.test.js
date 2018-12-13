@@ -17,7 +17,7 @@ let runExamples = (examples, rule) =>
 				},
 				{ dottedName: rule.dottedName }
 			),
-			exampleValue = runExample.nodeValue,
+			exampleValue = runExample.value,
 			goal = ex['valeur attendue'],
 			ok =
 				exampleValue === goal
@@ -43,9 +43,9 @@ describe('Tests des règles de notre base de règles', () =>
 					if (!example.ok)
 						throw new AssertionError(`
               Valeur attendue : ${example['valeur attendue']}
-			  Valeur obtenue : ${example.rule.nodeValue} 
+			  Valeur obtenue : ${example.rule.value} 
 			  ${
-					example.rule.nodeValue === null
+					example.rule.value === null
 						? 'Variables manquantes : ' +
 						  JSON.stringify(example.rule.missingVariables, null, 4)
 						: ''

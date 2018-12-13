@@ -20,6 +20,7 @@ import {
 	props,
 	range,
 	reduce,
+	filter,
 	reduced,
 	reject,
 	split,
@@ -239,7 +240,7 @@ export let translateAll = (translations, flatRules) => {
 	return map(translateRule('en', translations, targets), flatRules)
 }
 
-export let findParentDependency = (rules, rule) => {
+export let findParentDependency = (rules, rule, dependancyTest) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
 	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
 	// It lets those children omit obvious and repetitive parent applicability tests
@@ -247,15 +248,6 @@ export let findParentDependency = (rules, rule) => {
 	return pipe(
 		map(parent => findRuleByDottedName(rules, parent)),
 		reject(isNil),
-		find(
-			//Find the first "calculable" parent
-			({ question, format, formule, dottedName }) =>
-				(question && !format && !formule) || //implicitly, the format is boolean
-				(question &&
-					formule &&
-					formule['une possibilité parmi']?.some(
-						ruleName => dottedName + ' . ' + ruleName === rule.dottedName
-					))
-		)
+		filter(dependancyTest)
 	)(parentDependencies)
 }

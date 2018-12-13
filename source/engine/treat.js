@@ -98,7 +98,7 @@ export let treatString = (rules, rule) => rawNode => {
 
 	if (parseResult.category == 'boolean') {
 		return {
-			nodeValue: parseResult.nodeValue,
+			value: parseResult.value,
 			// eslint-disable-next-line
 			jsx: () => <span className="boolean">{rawNode}</span>
 		}
@@ -108,7 +108,7 @@ export let treatString = (rules, rule) => rawNode => {
 	// numerical value, not a String: it goes to treatNumber
 	if (parseResult.category == 'percentage')
 		return {
-			nodeValue: parseResult.nodeValue,
+			value: parseResult.value,
 			category: 'percentage',
 			// eslint-disable-next-line
 			jsx: () => <span className="value">{rawNode.split('%')[0]} %</span>
@@ -136,9 +136,9 @@ export let treatString = (rules, rule) => rawNode => {
 					curry(evaluateNode)(cache, situation, parsedRules),
 					node.explanation
 				),
-				value1 = explanation[0].nodeValue,
-				value2 = explanation[1].nodeValue,
-				nodeValue =
+				value1 = explanation[0].value,
+				value2 = explanation[1].value,
+				value =
 					value1 == null || value2 == null
 						? null
 						: operatorFunction(value1, value2),
@@ -147,7 +147,7 @@ export let treatString = (rules, rule) => rawNode => {
 					explanation[1].missingVariables
 				)
 
-				return { ...node, nodeValue, explanation, missingVariables }
+				return { ...node, value, explanation, missingVariables }
 		}
 
 		let explanation = parseResult.explanation.map(
@@ -159,18 +159,18 @@ export let treatString = (rules, rule) => rawNode => {
 					[
 						propEq('category', 'value'),
 						node => ({
-							nodeValue: node.nodeValue,
+							value: node.value,
 							// eslint-disable-next-line
-							jsx: nodeValue => <span className="value">{nodeValue}</span>
+							jsx: value => <span className="value">{value}</span>
 						})
 					],
 					[
 						propEq('category', 'percentage'),
 						node => ({
-							nodeValue: node.nodeValue,
+							value: node.value,
 							// eslint-disable-next-line
-							jsx: nodeValue => (
-								<span className="value">{nodeValue * 100}%</span>
+							jsx: value => (
+								<span className="value">{value * 100}%</span>
 							)
 							//the best would be to display the original text before parsing, but nearley does'nt let us access it
 						})
@@ -187,10 +187,10 @@ export let treatString = (rules, rule) => rawNode => {
 				'/': '∕',
 				'-': '−'
 			}[operator] || operator)
-		let jsx = (nodeValue, explanation) => (
+		let jsx = (value, explanation) => (
 			<Node
 				classes={'inlineExpression ' + parseResult.category}
-				value={nodeValue}
+				value={value}
 				child={
 					<span className="nodeContent">
 						<span className="fa fa" />
@@ -219,7 +219,7 @@ export let treatString = (rules, rule) => rawNode => {
 export let treatNumber = rawNode => ({
 	text: '' + rawNode,
 	category: 'number',
-	nodeValue: rawNode,
+	value: rawNode,
 	type: 'numeric',
 	jsx: <span className="number">{rawNode}</span>
 })

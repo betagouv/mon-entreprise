@@ -4,19 +4,19 @@ import taux_versement_transport from 'Règles/taux-versement-transport.json'
 import { Node } from './common'
 
 let indexOf = explanation =>
-	explanation.nodeValue
+	explanation.value
 		? findIndex(
-				x => x['nomLaposte'] == explanation.nodeValue,
+				x => x['nomLaposte'] == explanation.value,
 				taux_versement_transport
 			)
 		: 0
 let indexOffset = 8
 
-export default dataTargetName => ({ nodeValue, explanation }) => (
+export default dataTargetName => ({ value, explanation }) => (
 	<Node
 		classes="mecanism"
 		name="sélection"
-		value={nodeValue}
+		value={value}
 		child={
 			<BigTable explanation={explanation} dataTargetName={dataTargetName} />
 		}

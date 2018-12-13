@@ -33,7 +33,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			// In order to prevent circular dependencies from creating infinite loop, we cache as soon as the evaluation is pending.
 			cache[cacheName] = {
 				...node,
-				nodeValue: null
+				value: null
 			}
 			explanation = evaluateNode(cache, situation, parsedRules, variable)
 		}
@@ -42,19 +42,19 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			explanation.missingVariables,
 			isNil(situationValue) &&
 				explanation.isApplicable !== false &&
-				((variable.question && isNil(explanation.nodeValue)) ||
+				((variable.question && isNil(explanation.value)) ||
 					!variable.formule) && { [dottedName]: 1 }
 		)
 
-		const nodeValue =
+		const value =
 			!isNil(situationValue) && explanation.isApplicable != false
 				? situationValue
-				: !isNil(explanation.nodeValue)
-				? explanation.nodeValue
+				: !isNil(explanation.value)
+				? explanation.value
 				: null
 
-		cache[cacheName] = { ...node, nodeValue, explanation, missingVariables }
-		// console.log('variable ', dottedName, nodeValue, missingVariables)
+		cache[cacheName] = { ...node, value, explanation, missingVariables }
+		// console.log('variable ', dottedName, value, missingVariables)
 		return cache[cacheName]
 	}
 
@@ -65,13 +65,13 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 	return {
 		evaluate,
 		//eslint-disable-next-line react/display-name
-		jsx: nodeValue => (
+		jsx: value => (
 			<Leaf
 				classes="variable filtered"
 				filter={filter}
 				name={fragments.join(' . ')}
 				dottedName={dottedName}
-				value={nodeValue}
+				value={value}
 			/>
 		),
 
@@ -105,10 +105,10 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			node
 		)
 
-		let nodeValue = filteredNode.nodeValue
+		let value = filteredNode.value
 
 		// Temporal transformation
-		if (nodeValue == null) return filteredNode
+		if (value == null) return filteredNode
 		let ruleToTransform = findRuleByDottedName(
 			rules,
 			filteredNode.explanation.dottedName
@@ -146,19 +146,19 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 				? environmentPeriod
 				: ruleToTransform.période
 
-		let transformedNodeValue =
+		let transformedvalue =
 				callingPeriod === 'mois' && calledPeriod === 'année'
-					? nodeValue / 12
+					? value / 12
 					: callingPeriod === 'année' && calledPeriod === 'mois'
-					? nodeValue * 12
-					: nodeValue,
-			periodTransform = nodeValue !== transformedNodeValue
+					? value * 12
+					: value,
+			periodTransform = value !== transformedvalue
 
 		return {
 			...filteredNode,
 			periodTransform,
-			nodeValue: transformedNodeValue,
-			...(periodTransform ? { originPeriodValue: nodeValue } : {})
+			value: transformedvalue,
+			...(periodTransform ? { originPeriodValue: value } : {})
 		}
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(
@@ -189,16 +189,16 @@ export let treatNegatedVariable = variable => {
 				parsedRules,
 				node.explanation
 			),
-			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue,
+			value = explanation.value == null ? null : !explanation.value,
 			missingVariables = explanation.missingVariables
 
-		return { ...node, nodeValue, explanation, missingVariables }
+		return { ...node, value, explanation, missingVariables }
 	}
 
-	let jsx = (nodeValue, explanation) => (
+	let jsx = (value, explanation) => (
 		<Node
 			classes="inlineExpression negation"
-			value={nodeValue}
+			value={value}
 			child={
 				<span className="nodeContent">
 					<Trans i18nKey="inlineExpressionNegation">Non</Trans>{' '}

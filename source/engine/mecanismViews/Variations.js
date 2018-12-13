@@ -9,7 +9,7 @@ import { Trans } from 'react-i18next'
 
 let Comp = withLanguage(function Variations({
 	language,
-	nodeValue,
+	value,
 	explanation
 }) {
 	return (
@@ -17,7 +17,7 @@ let Comp = withLanguage(function Variations({
 			classes="mecanism variations"
 			name="variations"
 			inline
-			value={nodeValue}
+			value={value}
 			child={
 				<>
 					<p>
@@ -55,6 +55,6 @@ let Comp = withLanguage(function Variations({
 	)
 })
 // eslint-disable-next-line
-export default (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation }} />
+export default (value, explanation) => (
+	<Comp {...{ value, explanation }} />
 )

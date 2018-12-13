@@ -160,16 +160,14 @@ export let treatRuleRoot = (rules, rule) => {
 		}
 	}
 
-	let parentDependency = findParentDependency(rules, rule)
-
-	let root = { ...rule, ...(parentDependency ? { parentDependency } : {}) }
-
+	
+	
+	
 	let parsedRoot = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
 		// condition d'applicabilité de la règle
-		parentDependency: evolveParentDependancy(rules, rule),
 		'non applicable si': evolveCond('non applicable si', rules, rule),
 		'applicable si': evolveCond('applicable si', rules, rule),
 		// formule de calcul
@@ -201,7 +199,7 @@ export let treatRuleRoot = (rules, rule) => {
 				explanation: child
 			}
 		}
-	})(root)
+	})(rule)
 
 	let controls =
 		rule['contrôles'] &&

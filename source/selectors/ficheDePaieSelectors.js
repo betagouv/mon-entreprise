@@ -96,7 +96,7 @@ const variableToCotisation = (règleLocaliséeSelector: string => Règle) => (
 		montant: {
 			[duParSelector(variable) === 'salarié'
 				? 'partSalariale'
-				: 'partPatronale']: variable.nodeValue
+				: 'partPatronale']: variable.value
 		}
 	})
 }

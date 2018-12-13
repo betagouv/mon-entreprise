@@ -23,14 +23,14 @@ export let formatNumber = (data, language) =>
 		? Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(data)
 		: data
 
-export let NodeValue = withLanguage(({ data, language }) => (
+export let value = withLanguage(({ data, language }) => (
 	<span>{treatValue(data, language)}</span>
 ))
 
-export let NodeValuePointer = ({ data }) =>
+export let valuePointer = ({ data }) =>
 	data !== undefined && data !== null ? (
 		<span className={'situationValue ' + treatValue(data)}>
-			<NodeValue data={data} />
+			<value data={data} />
 		</span>
 	) : null
 
@@ -56,11 +56,11 @@ export class Node extends Component {
 								<Trans>{name}</Trans>
 							</LinkButton>
 						)}
-						<NodeValuePointer data={value} />
+						<valuePointer data={value} />
 					</span>
 				)}
 				{child}
-				{!name && <NodeValuePointer data={value} />}
+				{!name && <valuePointer data={value} />}
 			</div>
 		)
 	}
@@ -93,7 +93,7 @@ export const Leaf = connect(state => ({ flatRules: flatRulesSelector(state) }))(
 							<Link to={'../règle/' + encodeRuleName(dottedName)}>
 								<span className="name">
 									{rule.title || capitalise0(name)} {filter}
-									<NodeValuePointer data={value} />
+									<valuePointer data={value} />
 								</span>
 							</Link>
 						</span>

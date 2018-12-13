@@ -230,7 +230,7 @@ describe('simplified tree walks', function() {
 
 	const AnnF = daggy.tagged('AnnF', ['fr', 'a'])
 	let ann = ({ fst, snd }) => Fx(AnnF(fst, snd))
-	let nodeValue = annf => {
+	let value = annf => {
 		let { fr, a } = unFix(annf)
 		return a
 	}
@@ -241,7 +241,7 @@ describe('simplified tree walks', function() {
 	// synthesize combine l'application d'un algèbre fourni f et de l'annotation
 	let synthesize = f => {
 		let algebra = f =>
-			R.compose(ann, fork(R.identity, R.compose(f, R.map(nodeValue))))
+			R.compose(ann, fork(R.identity, R.compose(f, R.map(value))))
 		return fold(algebra(f))
 	}
 
@@ -249,7 +249,7 @@ describe('simplified tree walks', function() {
 
 	it('should annotate tree with evaluation results', function() {
 		let tree = add(num(45), add(num(15), num(10))),
-			result = nodeValue(annotate({}, tree)).getOrElse(null)
+			result = value(annotate({}, tree)).getOrElse(null)
 		expect(result).to.equal(70)
 	})
 
