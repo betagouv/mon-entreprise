@@ -1,23 +1,25 @@
+titre: |
+  Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise en fonction de son choix de régime social.
 questions: 
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
 branches: 
-  - nom: Revenu en indépendant
-    situation: 
-      indépendant: oui
-      micro entreprise: non
-      contrat salarié: non
-  - nom: Revenu en micro-entreprise
+  - nom: Micro-entreprise
     situation: 
       micro entreprise: oui
       indépendant: non
       contrat salarié: non
-  - nom: Revenu au régime général
+  - nom: Indépendant (ex-RSI)
+    situation: 
+      indépendant: oui
+      micro entreprise: non
+      contrat salarié: non
+  - nom: Régime général (assimilé salarié)
     situation: 
       micro entreprise: non
       indépendant: non
       contrat salarié: oui
       contrat salarié . assimilé salarié: oui
-      contrat salarié . rémunération . total: 100000
-
+raccourcis:
+  contrat salarié . rémunération . total: entreprise . chiffre d'affaires
 

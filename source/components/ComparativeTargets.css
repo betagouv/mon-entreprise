@@ -1,0 +1,32 @@
+#targets {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#targets > .content > ul > li {
+	margin: 1em;
+	border-radius: 6px;
+	background: var(--colour);
+	padding: 1em;
+	width: 16em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#targets > .icon {
+	margin: 0 0.6em;
+	font-size: 200%;
+	color: var(--colour);
+}
+#targets .value {
+	font-size: 180%;
+}
+#targets .unit {
+}
+
+#targets .explanation {
+	font-size: 150%;
+	text-decoration: none;
+	line-height: 0;
+}

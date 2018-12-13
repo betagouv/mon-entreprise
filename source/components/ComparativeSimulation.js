@@ -5,7 +5,7 @@ import Answers from 'Components/AnswerList'
 import Conversation from 'Components/conversation/Conversation'
 import withColours from 'Components/utils/withColours'
 import ComparativeTargets from 'Components/ComparativeTargets'
-import './GenericSimulation.css'
+import './ComparativeSimulation.css'
 import {
 	nextStepsSelector,
 	analysisWithDefaultsSelector
@@ -34,13 +34,11 @@ export default compose(
 				analysis: { controls }
 			} = this.props
 			return (
-				<div id="GenericSimulation">
+				<div id="ComparativeSimulation" className="ui__ container">
 					<header>
-						<img src="https://images.unsplash.com/photo-1488722796624-0aa6f1bb6399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
-						<h1>Quel revenu au régime des indépendants ?</h1>
-						<PeriodSwitch />
+						<h1>{simulationConfig.titre}</h1>
 					</header>
-					<div className="ui__ container" id="simulationContent">
+					<div id="simulationContent">
 						{!isEmpty(previousAnswers) && (
 							<button
 								style={{
@@ -68,6 +66,7 @@ export default compose(
 								<p>Vous avez atteint l'estimation la plus précise.</p>
 							</>
 						)}
+						<PeriodSwitch />
 						<ComparativeTargets />
 					</div>
 				</div>

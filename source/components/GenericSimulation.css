@@ -19,7 +19,7 @@
 }
 #GenericSimulation img {
 	max-width: 800px;
-	max-height: 24em;
+	max-height: 18em;
 }
 @media (min-width: 1200px) {
 	#GenericSimulation header > h1 {

@@ -1,12 +1,13 @@
 import React from 'react'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { connect } from 'react-redux'
-import './Targets.css'
+import './ComparativeTargets.css'
 import withColours from 'Components/utils/withColours'
 import { Link } from 'react-router-dom'
 import emoji from 'react-easy-emoji'
 import { compose } from 'ramda'
 import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
+import AnimatedTargetValue from './AnimatedTargetValue'
 
 export default compose(
 	connect(state => ({
@@ -14,7 +15,7 @@ export default compose(
 	})),
 	withColours
 )(
-	class Targets extends React.Component {
+	class ComparativeTargets extends React.Component {
 		render() {
 			return (
 				<div id="targets">
@@ -23,12 +24,15 @@ export default compose(
 						style={{ color: this.props.colours.textColour }}>
 						<ul>
 							{this.props.analyses.map((analysis, i) => {
-								let { title, nodeValue, dottedName } = analysis.targets[0]
+								let { title, nodeValue, dottedName } = analysis.targets[0],
+									name = simulationConfig.branches[i].nom
 								return (
-									<li>
-										{simulationConfig.branches[i].nom}
+									<li key={name}>
+										{name}
 										<span className="figure">
-											<span className="value">{nodeValue?.toFixed(1)}</span>{' '}
+											<span className="value">
+												<AnimatedTargetValue value={nodeValue} />
+											</span>{' '}
 										</span>
 										<Link
 											title="Quel est calcul ?"

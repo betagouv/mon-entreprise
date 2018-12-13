@@ -2562,7 +2562,7 @@
 
 - espace: entreprise
   nom: chiffre d'affaires
-  question: Quel chiffre d'affaires ?
+  question: Quel est votre chiffre d'affaires ?
   période: flexible
   format: euros
 
@@ -2572,6 +2572,7 @@
   période: flexible
 
 - nom: entreprise . catégorie d'activité
+  question: Quelle est votre catégorie d'activité ?
   par défaut: prestation de service . libérale
   formule: 
     une possibilité: 

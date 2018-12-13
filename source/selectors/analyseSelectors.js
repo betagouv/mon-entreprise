@@ -147,10 +147,17 @@ export let exampleAnalysisSelector = createSelector(
 
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
-		[parsedRulesSelector, targetNamesSelector, situationSelector],
-		(parsedRules, targetNames, situations) => {
-			let analyses = situations.map(s =>
-				analyseMany(parsedRules, targetNames)(dottedName => s[dottedName])
+		[
+			parsedRulesSelector,
+			targetNamesSelector,
+			situationSelector,
+			(_, { raccourcis: valueShortcuts }) => valueShortcuts
+		],
+		(parsedRules, targetNames, situations, valueShortcuts) => {
+			let analyses = situations.map(situation =>
+				analyseMany(parsedRules, targetNames)(
+					dottedName => situation[valueShortcuts[dottedName] || dottedName]
+				)
 			)
 			return analyses
 		}
