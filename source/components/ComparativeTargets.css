@@ -3,21 +3,29 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
 }
-#targets > .content > ul > li {
+#targets ul {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+}
+#targets li {
 	margin: 1em;
-	border-radius: 6px;
 	background: var(--colour);
 	padding: 1em;
-	width: 16em;
+	width: 12em;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
+	border-radius: 0.6em;
+	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
-#targets > .icon {
-	margin: 0 0.6em;
-	font-size: 200%;
-	color: var(--colour);
+#targets .title {
+	margin-bottom: 0.6em;
 }
 #targets .value {
 	font-size: 180%;

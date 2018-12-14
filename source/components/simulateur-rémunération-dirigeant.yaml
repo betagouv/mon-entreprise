@@ -14,7 +14,7 @@ branches:
       indépendant: oui
       micro entreprise: non
       contrat salarié: non
-  - nom: Régime général (assimilé salarié)
+  - nom: Assimilé salarié
     situation: 
       micro entreprise: non
       indépendant: non

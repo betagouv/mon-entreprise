@@ -10,7 +10,6 @@ import {
 	nextStepsSelector,
 	analysisWithDefaultsSelector
 } from 'Selectors/analyseSelectors'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import Controls from './Controls'
 import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 
@@ -66,7 +65,6 @@ export default compose(
 								<p>Vous avez atteint l'estimation la plus précise.</p>
 							</>
 						)}
-						<PeriodSwitch />
 						<ComparativeTargets />
 					</div>
 				</div>

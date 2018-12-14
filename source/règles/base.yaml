@@ -2557,6 +2557,7 @@
       - micro entreprise . revenu net de cotisations
 
 - nom: revenu net d'impôt
+  titre: Revenu net de cotisations et d'impôt
   période: flexible
   formule: revenu net de cotisations - impôt . impôt sur le revenu à payer
 
