@@ -16,8 +16,7 @@
 	align-items: center;
 	margin: 1em 0;
 }
-#ComparativeSimulation header > h1 {
-	font-size: 120%;
+#ComparativeSimulation header > p {
 	margin: 0.3em 0;
 }
 

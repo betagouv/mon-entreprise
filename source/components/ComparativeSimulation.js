@@ -12,6 +12,7 @@ import {
 } from 'Selectors/analyseSelectors'
 import Controls from './Controls'
 import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
+import { createMarkdownDiv } from 'Engine/marked'
 
 export default compose(
 	withColours,
@@ -35,7 +36,7 @@ export default compose(
 			return (
 				<div id="ComparativeSimulation" className="ui__ container">
 					<header>
-						<h1>{simulationConfig.titre}</h1>
+						<p>{createMarkdownDiv(simulationConfig.titre)}</p>
 					</header>
 					<div id="simulationContent">
 						{!isEmpty(previousAnswers) && (
