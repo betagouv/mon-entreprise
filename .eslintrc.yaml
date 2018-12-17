@@ -14,9 +14,6 @@ rules:
   react/jsx-no-target-blank: 0
   react/no-unescaped-entities: 0
 parser: babel-eslint
-parserOptions: 
-    ecmaFeatures: 
-      legacyDecorators: true
 
 plugins:
   - react
