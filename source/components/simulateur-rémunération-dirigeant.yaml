@@ -1,7 +1,8 @@
 titre: |
   Calcul du **revenu du travailleur indépendant ou dirigeant d'entreprise**, en fonction de son choix de régime social.
 
-  L'impôt est calculé pour un célibataire sans enfants et sans autre revenu. Version beta, améliorations à venir !
+  Tout le chiffre d'affaire sert à payer le dirigeant. L'impôt est calculé pour un célibataire sans enfants et sans autre revenu. Version beta, améliorations à venir !
+objectif: revenu net d'impôt
 questions: 
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité

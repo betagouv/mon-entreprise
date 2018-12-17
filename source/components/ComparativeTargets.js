@@ -1,5 +1,8 @@
 import React from 'react'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import {
+	flatRulesSelector,
+	analysisWithDefaultsSelector
+} from 'Selectors/analyseSelectors'
 import { connect } from 'react-redux'
 import './ComparativeTargets.css'
 import withColours from 'Components/utils/withColours'
@@ -9,23 +12,29 @@ import { compose } from 'ramda'
 import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import { findRuleByDottedName } from 'Engine/rules'
 
 export default compose(
 	connect(state => ({
+		target: findRuleByDottedName(
+			flatRulesSelector(state),
+			simulationConfig.objectif
+		),
 		analyses: analysisWithDefaultsSelector(state, simulationConfig)
 	})),
 	withColours
 )(
 	class ComparativeTargets extends React.Component {
 		render() {
-			let { colours, analyses } = this.props
+			let { colours, analyses, target } = this.props
 			return (
 				<div id="targets">
-					<h3>{analyses[0].targets[0].title}</h3>
+					<h3>{target.title}</h3>
 					<PeriodSwitch />
 					<ul>
 						{analyses.map((analysis, i) => {
-							let { title, nodeValue, dottedName } = analysis.targets[0],
+							if (!analysis.targets) return null
+							let { nodeValue, dottedName } = analysis.targets[0],
 								name = simulationConfig.branches[i].nom
 							return (
 								<li

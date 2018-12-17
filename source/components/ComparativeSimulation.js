@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { isEmpty, compose } from 'ramda'
+import { isEmpty, compose, chain, uniqBy } from 'ramda'
 import Answers from 'Components/AnswerList'
 import Conversation from 'Components/conversation/Conversation'
 import withColours from 'Components/utils/withColours'
@@ -19,7 +19,7 @@ export default compose(
 	connect(state => ({
 		previousAnswers: state.conversationSteps.foldedSteps,
 		noNextSteps: nextStepsSelector(state, simulationConfig).length == 0,
-		analysis: analysisWithDefaultsSelector(state, simulationConfig)
+		analyses: analysisWithDefaultsSelector(state, simulationConfig)
 	}))
 )(
 	class extends React.Component {
@@ -27,12 +27,12 @@ export default compose(
 			displayAnswers: false
 		}
 		render() {
-			let {
-				colours,
-				noNextSteps,
-				previousAnswers,
-				analysis: { controls }
-			} = this.props
+			let { colours, noNextSteps, previousAnswers, analyses } = this.props
+			let controls = uniqBy(
+				({ test, dottedName }) => test + dottedName,
+				chain(({ controls }) => controls, analyses)
+			)
+
 			return (
 				<div id="ComparativeSimulation" className="ui__ container">
 					<header>{createMarkdownDiv(simulationConfig.titre)}</header>
