@@ -86,13 +86,12 @@ let updateSituation = (toPeriod, batchPeriodChange, situation, rules) => {
 							: do {
 									throw new Error('Oups, changement de période invalide')
 							  }
-					)
+					) + ''
 				),
 			needConvertion
 		),
 		change('conversation', 'période', toPeriod)
 	]
-	console.log({ actions })
 
 	batchPeriodChange(actions)
 }

@@ -35,9 +35,7 @@ export default compose(
 			} = this.props
 			return (
 				<div id="ComparativeSimulation" className="ui__ container">
-					<header>
-						<p>{createMarkdownDiv(simulationConfig.titre)}</p>
-					</header>
+					<header>{createMarkdownDiv(simulationConfig.titre)}</header>
 					<div id="simulationContent">
 						{!isEmpty(previousAnswers) && (
 							<button
