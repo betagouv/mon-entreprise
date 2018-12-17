@@ -15,18 +15,23 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import { findRuleByDottedName } from 'Engine/rules'
 
 export default compose(
-	connect(state => ({
-		target: findRuleByDottedName(
-			flatRulesSelector(state),
-			simulationConfig.objectif
-		),
-		analyses: analysisWithDefaultsSelector(state, simulationConfig)
-	})),
+	connect(
+		state => ({
+			target: findRuleByDottedName(
+				flatRulesSelector(state),
+				simulationConfig.objectif
+			),
+			analyses: analysisWithDefaultsSelector(state, simulationConfig)
+		}),
+		dispatch => ({
+			setSituationBranch: id => dispatch({ type: 'SET_SITUATION_BRANCH', id })
+		})
+	),
 	withColours
 )(
 	class ComparativeTargets extends React.Component {
 		render() {
-			let { colours, analyses, target } = this.props
+			let { colours, analyses, target, setSituationBranch } = this.props
 			return (
 				<div id="targets">
 					<h3>{target.title}</h3>
@@ -57,6 +62,7 @@ export default compose(
 										title="Quel est calcul ?"
 										style={{ color: this.props.colours.colour }}
 										to={'/règle/' + dottedName}
+										onClick={() => setSituationBranch(i)}
 										className="explanation">
 										{emoji('📖')}
 									</Link>

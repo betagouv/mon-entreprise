@@ -1914,7 +1914,6 @@
   contrôles:
     - si: forfait [mensuel] < 15
       niveau: avertissement
-      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
 - espace: contrat salarié . complémentaire santé . forfait
   nom: en alsace moselle

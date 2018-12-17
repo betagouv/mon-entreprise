@@ -45,6 +45,15 @@ function currentExample(state = null, { type, situation, name, dottedName }) {
 	}
 }
 
+function situationBranch(state = null, { type, id }) {
+	switch (type) {
+		case 'SET_SITUATION_BRANCH':
+			return id
+		default:
+			return state
+	}
+}
+
 function conversationStarted(state = false, action: Action) {
 	switch (action.type) {
 		case 'START_CONVERSATION':
@@ -172,6 +181,7 @@ export default reduceReducers(
 		explainedVariable,
 		previousSimulation: defaultTo(null),
 		currentExample,
+		situationBranch,
 		hiddenControls,
 		conversationStarted,
 		activeTargetInput,

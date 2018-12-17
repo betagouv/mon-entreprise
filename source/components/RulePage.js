@@ -20,12 +20,14 @@ import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
+import simulationConfig from 'Components/simulateur-rémunération-dirigeant.yaml'
 
 export default compose(
 	connect(state => ({
 		themeColours: state.themeColours,
 		valuesToShow: !noUserInputSelector(state),
-		flatRules: flatRulesSelector(state)
+		flatRules: flatRulesSelector(state),
+		situationBranch: simulationConfig.branches[state.situationBranch]?.nom
 	})),
 	withNamespaces()
 )(
@@ -52,6 +54,7 @@ export default compose(
 			return this.renderRule(dottedName)
 		}
 		renderRule(dottedName) {
+			let { situationBranch } = this.props
 			return (
 				<div id="RulePage">
 					<ScrollToTop />
@@ -60,12 +63,15 @@ export default compose(
 							visible={this.props.valuesToShow}
 							colour={this.props.themeColours.colour}
 						/>
+						{situationBranch && (
+							<span id="situationBranch">{situationBranch}</span>
+						)}
 						<SearchButton
 							className="rule-page__search"
 							rulePageBasePath="../règle"
 						/>
 					</div>
-					<Rule dottedName={dottedName} />
+					<Rule {...simulationConfig} dottedName={dottedName} />
 				</div>
 			)
 		}

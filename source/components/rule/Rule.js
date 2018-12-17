@@ -56,11 +56,11 @@ export default compose(
 					language
 				} = this.props,
 				flatRule = findRuleByDottedName(flatRules, dottedName)
-
 			let { type, name, title, description, question, ns, icon } = flatRule,
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
+			console.log('ana', analysedRule)
 
 			return (
 				<>

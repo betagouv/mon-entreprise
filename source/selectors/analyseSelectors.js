@@ -79,6 +79,7 @@ let validatedStepsSelector = createSelector(
 	(foldedSteps, target) => [...foldedSteps, target]
 )
 let branchesSelector = (state, props) => props?.branches || [{}]
+
 let situationBranchesSelector = createSelector(
 	[formattedSituationSelector, branchesSelector],
 	(situation, branches) =>
@@ -106,19 +107,24 @@ let situationsWithDefaultsSelector = createSelector(
 		situations.map(situation => ({ ...defaults, ...situation }))
 )
 
-let analyseRule = (parsedRules, ruleDottedName, situation) =>
-	situation &&
-	analyse(parsedRules, ruleDottedName)(dottedName => situation[dottedName])
-		.targets[0]
+let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
+	analyse(parsedRules, ruleDottedName)(situationGate).targets[0]
 
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, { dottedName }) => dottedName,
-		situationsWithDefaultsSelector
+		situationsWithDefaultsSelector,
+		state => state.situationBranch || 0,
+		(_, { raccourcis: valueShortcuts }) => valueShortcuts || {}
 	],
-	(rules, dottedName, situations) =>
-		analyseRule(rules, dottedName, situations[0])
+	(rules, dottedName, situations, situationBranch, valueShortcuts) =>
+		analyseRule(
+			rules,
+			dottedName,
+			dottedName =>
+				situations[situationBranch][valueShortcuts[dottedName] || dottedName]
+		)
 )
 
 let exampleSituationSelector = createSelector(
@@ -142,7 +148,9 @@ export let exampleAnalysisSelector = createSelector(
 		(_, { dottedName }) => dottedName,
 		exampleSituationSelector
 	],
-	analyseRule
+	(rules, dottedName, situation) =>
+		situation &&
+		analyseRule(rules, dottedName, dottedName => situation[dottedName])
 )
 
 let makeAnalysisSelector = situationSelector =>

@@ -18,7 +18,6 @@ function Controls({
 	hiddenControls,
 	language
 }) {
-	console.log('C', controls)
 	if (!controls?.length) return null
 	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
 	if (language === 'en') return null

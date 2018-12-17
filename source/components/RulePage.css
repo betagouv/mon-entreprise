@@ -15,3 +15,10 @@
 #toSimulation i {
 	margin: 0 0.4em;
 }
+
+#situationBranch {
+	color: white;
+	background: #333;
+	border-radius: 0.3em;
+	padding: 0.2em 0.6em;
+}
