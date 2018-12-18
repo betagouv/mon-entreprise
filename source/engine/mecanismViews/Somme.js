@@ -2,13 +2,13 @@ import { path } from 'ramda'
 import React, { Component } from 'react'
 import { makeJsx } from '../evaluation'
 import './Somme.css'
-import { Node, value } from './common'
+import { Node, NodeValue } from './common'
 
-const SommeNode = ({ explanation, value }) => (
+const SommeNode = ({ explanation, nodeValue }) => (
 	<Node
 		classes="mecanism somme"
 		name="somme"
-		value={value}
+		value={nodeValue}
 		child={<Table explanation={explanation} />}
 	/>
 )
@@ -46,7 +46,7 @@ class Row extends Component {
 					)}
 				</div>
 				<div className="situationValue value">
-					<value data={v.value} />
+					<NodeValue data={v.nodeValue} />
 				</div>
 			</div>,
 			...(isSomme && !this.state.folded

@@ -3,10 +3,10 @@ import { Node } from './common'
 import { makeJsx } from '../evaluation'
 import { mapObjIndexed, map, values } from 'ramda'
 
-export default function Allègement(value, rawExplanation) {
-	// properties with a value of 0 are not interesting to display
+export default function Allègement(nodeValue, rawExplanation) {
+	// properties with a nodeValue of 0 are not interesting to display
 	let explanation = map(
-		k => (k && k.value !== 0 ? k : null),
+		k => (k && k.nodeValue !== 0 ? k : null),
 		rawExplanation
 	)
 	return (
@@ -14,7 +14,7 @@ export default function Allègement(value, rawExplanation) {
 			<Node
 				classes="mecanism allègement"
 				name="allègement"
-				value={value}
+				value={nodeValue}
 				child={
 					<ul className="properties">
 						<li key="assiette">

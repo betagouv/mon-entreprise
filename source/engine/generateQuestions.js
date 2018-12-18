@@ -35,8 +35,8 @@ import { findRuleByDottedName, queryRule } from './rules'
 	encore été renseignées
 
 	TODO perf : peut-on le faire en même temps que l'on traverse l'AST ?
-	Oui sûrement, cette liste se complète en remontant l'arbre. En fait, on le fait déjà pour value,
-	et quand value vaut null, c'est qu'il y a des missingVariables ! Il suffit donc de remplacer les
+	Oui sûrement, cette liste se complète en remontant l'arbre. En fait, on le fait déjà pour nodeValue,
+	et quand nodeValue vaut null, c'est qu'il y a des missingVariables ! Il suffit donc de remplacer les
 	null par un tableau, et d'ailleurs utiliser des fonction d'aide pour mutualiser ces tests.
 
 	missingVariables: {variable: [objectives]}

@@ -225,7 +225,7 @@ const TargetValue = connect(
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
-				value = targetWithValue && targetWithValue.value
+				value = targetWithValue && targetWithValue.nodeValue
 
 			return (
 				<div
@@ -268,11 +268,11 @@ const AidesGlimpse = compose(
 					targets.find(
 						t => t.dottedName === 'contrat salarié . aides employeur'
 					)
-			if (!aides || !aides.value) return null
+			if (!aides || !aides.nodeValue) return null
 			return (
 				<div id="aidesGlimpse">
 					{' '}
-					- <AnimatedTargetValue value={aides.value} />{' '}
+					- <AnimatedTargetValue value={aides.nodeValue} />{' '}
 					<Link
 						to={
 							normalizeBasePath(this.props.match.path).replace(

@@ -3,12 +3,12 @@ import { makeJsx } from '../evaluation'
 import { Node } from './common'
 import { Trans } from 'react-i18next'
 
-export default function BarèmeLinéaire(value, explanation) {
+export default function BarèmeLinéaire(nodeValue, explanation) {
 	return (
 		<Node
 			classes="mecanism barèmeLinéaire"
 			name="Barème linéaire"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul className="properties">
 					<li key="assiette">
@@ -39,9 +39,9 @@ export default function BarèmeLinéaire(value, explanation) {
 										key={min || minOnly || 0}
 										style={{
 											fontWeight:
-												Math.round(explanation.assiette.value) >= min &&
+												Math.round(explanation.assiette.nodeValue) >= min &&
 												(!max ||
-													Math.round(explanation.assiette.value) <= max)
+													Math.round(explanation.assiette.nodeValue) <= max)
 													? ' bold'
 													: ''
 										}}>

@@ -46,9 +46,9 @@ describe('Mécanismes', () =>
 										target = analysis.targets[0]
 
 									if (isNumeric(valeur)) {
-										expect(target.value).to.be.closeTo(valeur, 0.001)
+										expect(target.nodeValue).to.be.closeTo(valeur, 0.001)
 									} else if (valeur !== undefined) {
-										expect(target).to.have.property('value', valeur)
+										expect(target).to.have.property('nodeValue', valeur)
 									}
 
 									if (expectedMissing) {

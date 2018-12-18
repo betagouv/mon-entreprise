@@ -94,16 +94,16 @@ export default compose(
 
 							{this.renderToggleSourceButton()}
 							<section id="rule-content">
-								{displayedRule.value ? (
+								{displayedRule.nodeValue ? (
 									<div id="ruleValue">
 										<i className="fa fa-calculator" aria-hidden="true" />{' '}
 										{displayedRule.format === 'euros' || displayedRule.formule
 											? Intl.NumberFormat(language, {
 													style: 'currency',
 													currency: 'EUR'
-											  }).format(displayedRule.value)
-											: typeof displayedRule.value !== 'object'
-											? displayedRule.value
+											  }).format(displayedRule.nodeValue)
+											: typeof displayedRule.nodeValue !== 'object'
+											? displayedRule.nodeValue
 											: null}
 									</div>
 								) : null}

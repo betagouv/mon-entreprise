@@ -1,26 +1,71 @@
-import { add, any, curry, dissoc, equals, evolve, filter, find, has, head, is, isEmpty, isNil, keys, map, max, mergeWith, min, objOf, path, pipe, pluck, prop, propEq, reduce, reject, subtract, sum, toPairs } from 'ramda';
-import React from 'react';
-import { Trans } from 'react-i18next';
-import 'react-virtualized/styles.css';
-import { bonus, collectNodeMissing, evaluateArray, evaluateArrayWithFilter, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, mergeMissing, parseObject } from './evaluation';
-import { trancheValue } from './mecanisms/barème';
-import Allègement from './mecanismViews/Allègement';
-import Barème from './mecanismViews/Barème';
-import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire';
-import { Node, SimpleRuleLink } from './mecanismViews/common';
-import Composantes from './mecanismViews/Composantes';
-import buildSelectionView from './mecanismViews/Selection';
-import Somme from './mecanismViews/Somme';
-import Variations from './mecanismViews/Variations';
-import { disambiguateRuleReference, findRuleByDottedName, findRuleByName } from './rules';
-import { val } from './traverse-common-functions';
-import uniroot from './uniroot';
+import {
+	reduce,
+	path,
+	mergeWith,
+	objOf,
+	toPairs,
+	dissoc,
+	add,
+	find,
+	pluck,
+	map,
+	any,
+	equals,
+	is,
+	keys,
+	evolve,
+	curry,
+	filter,
+	pipe,
+	head,
+	isEmpty,
+	propEq,
+	prop,
+	has,
+	max,
+	min,
+	subtract,
+	sum,
+	isNil,
+	reject
+} from 'ramda'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import { val } from './traverse-common-functions'
+import { Node, SimpleRuleLink } from './mecanismViews/common'
+import {
+	makeJsx,
+	evaluateNode,
+	evaluateArray,
+	evaluateArrayWithFilter,
+	evaluateObject,
+	parseObject,
+	collectNodeMissing,
+	mergeAllMissing,
+	mergeMissing,
+	bonus
+} from './evaluation'
+import {
+	findRuleByName,
+	disambiguateRuleReference,
+	findRuleByDottedName
+} from './rules'
 
+import 'react-virtualized/styles.css'
+import Somme from './mecanismViews/Somme'
+import Barème from './mecanismViews/Barème'
+import Variations from './mecanismViews/Variations'
+import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
+import Allègement from './mecanismViews/Allègement'
+import Composantes from './mecanismViews/Composantes'
+import { trancheValue } from './mecanisms/barème'
+import buildSelectionView from './mecanismViews/Selection'
+import uniroot from './uniroot'
 
 let constantNode = constant => ({
-	value: constant,
+	nodeValue: constant,
 	// eslint-disable-next-line
-	jsx: value => <span className="value">{value}</span>
+	jsx: nodeValue => <span className="value">{nodeValue}</span>
 })
 
 let decompose = (recurse, k, v) => {
@@ -92,23 +137,23 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 						? [true, [...result, variation]]
 						: variation.condition == undefined
 						? [true, [...result, { ...variation, satisfied: true }]] // We've reached the eventual defaut case
-						: variation.condition.value === null
+						: variation.condition.nodeValue === null
 						? [true, [...result, variation]] // one case has missing variables => we can't go further
-						: variation.condition.value === true
+						: variation.condition.nodeValue === true
 						? [true, [...result, { ...variation, satisfied: true }]]
 						: [false, [...result, variation]],
 				[false, []]
 			)(evaluatedExplanation),
 			satisfiedVariation = resolvedExplanation.find(v => v.satisfied),
-			value = satisfiedVariation
-				? satisfiedVariation.consequence.value
+			nodeValue = satisfiedVariation
+				? satisfiedVariation.consequence.nodeValue
 				: null
 
 		let leftMissing = mergeAllMissing(
 				reject(isNil, pluck('condition', evaluatedExplanation))
 			),
 			candidateVariations = filter(
-				node => !node.condition || node.condition.value !== false,
+				node => !node.condition || node.condition.nodeValue !== false,
 				evaluatedExplanation
 			),
 			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
@@ -116,7 +161,7 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
 
-		return {...node, value, explanation: resolvedExplanation, missingVariables }
+		return {...node, nodeValue, explanation: resolvedExplanation, missingVariables }
 	}
 
 	// TODO - find an appropriate representation
@@ -136,11 +181,11 @@ export let mecanismOneOf = (recurse, k, v) => {
 
 	let explanation = map(recurse, v)
 
-	let jsx = (value, explanation) => (
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism conditions list"
 			name="une de ces conditions"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul>
 					{explanation.map(item => (
@@ -155,8 +200,8 @@ export let mecanismOneOf = (recurse, k, v) => {
 		let evaluateOne = child =>
 				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
-			values = pluck('value', explanation),
-			value = any(equals(true), values)
+			values = pluck('nodeValue', explanation),
+			nodeValue = any(equals(true), values)
 				? true
 				: any(equals(null), values)
 				? null
@@ -165,11 +210,11 @@ export let mecanismOneOf = (recurse, k, v) => {
 			// because "one of these conditions" tend to be several tests of the same variable
 			// (e.g. contract type is one of x, y, z)
 			missingVariables =
-				value == null
+				nodeValue == null
 					? reduce(mergeWith(max), {}, map(collectNodeMissing, explanation))
 					: {}
 
-		return { ...node, value, explanation, missingVariables }
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
@@ -187,11 +232,11 @@ export let mecanismAllOf = (recurse, k, v) => {
 
 	let explanation = map(recurse, v)
 
-	let jsx = (value, explanation) => (
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism conditions list"
 			name="toutes ces conditions"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul>
 					{explanation.map(item => (
@@ -206,15 +251,15 @@ export let mecanismAllOf = (recurse, k, v) => {
 		let evaluateOne = child =>
 				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
-			values = pluck('value', explanation),
-			value = any(equals(false), values)
+			values = pluck('nodeValue', explanation),
+			nodeValue = any(equals(false), values)
 				? false // court-circuit
 				: any(equals(null), values)
 				? null
 				: true,
-			missingVariables = value == null ? mergeAllMissing(explanation) : {}
+			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
-		return {...node, value, explanation, missingVariables }
+		return {...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
@@ -255,7 +300,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 					node.explanation
 				),
 				leftMissing = explanation.condition.missingVariables,
-				investigate = explanation.condition.value !== false,
+				investigate = explanation.condition.nodeValue !== false,
 				rightMissing = investigate
 					? explanation.consequence.missingVariables
 					: {},
@@ -265,12 +310,12 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				...node,
 				explanation,
 				missingVariables,
-				value: explanation.consequence.value,
-				condValue: explanation.condition.value
+				nodeValue: explanation.consequence.nodeValue,
+				condValue: explanation.condition.nodeValue
 			}
 		}
 
-		let jsx = (value, { condition, consequence }) => (
+		let jsx = (nodeValue, { condition, consequence }) => (
 			<div className="condition">
 				{makeJsx(condition)}
 				<div>{makeJsx(consequence)}</div>
@@ -298,7 +343,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 					head,
 					prop(o)
 				)(nonFalsyTerms),
-			value =
+			nodeValue =
 				// voilà le "numérique" dans le nom de ce mécanisme : il renvoie zéro si aucune condition n'est vérifiée
 				isEmpty(nonFalsyTerms)
 					? 0
@@ -306,22 +351,22 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 					getFirst('condValue') == null
 					? null
 					: // c'est un true, on renvoie la valeur de la conséquence
-					  getFirst('value'),
+					  getFirst('nodeValue'),
 			choice = find(node => node.condValue, explanation),
 			missingVariables = choice
 				? choice.missingVariables
 				: mergeAllMissing(explanation)
 
-		return {...node, value, explanation, missingVariables }
+		return {...node, nodeValue, explanation, missingVariables }
 	}
 
 	let explanation = map(parseCondition, terms)
 
-	let jsx = (value, explanation) => (
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism numericalSwitch list"
 			name="aiguillage numérique"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul>
 					{explanation.map(item => (
@@ -378,7 +423,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	if (inversion.inversionChoiceNeeded)
 		return {
 			missingVariables: { [dottedName]: 1 },
-			value: null
+			nodeValue: null
 		}
 	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 	let inversionCache = {}
@@ -396,14 +441,14 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	// considérer que l'inversion est impossible du fait de variables manquantes
 	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
 	let attempt = fx(1000)
-	if (attempt.value == null) {
+	if (attempt.nodeValue == null) {
 		return attempt
 	}
 
 	let tolerance = 0.1,
 		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
-		value = uniroot(
-			x => fx(x).value - fixedObjectiveValue,
+		nodeValue = uniroot(
+			x => fx(x).nodeValue - fixedObjectiveValue,
 			0,
 			1000000000,
 			tolerance,
@@ -411,7 +456,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		)
 
 	return {
-		value,
+		nodeValue,
 		missingVariables: {},
 		inversionCache
 	}
@@ -424,25 +469,25 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				situationGate(dottedName) == undefined &&
 				doInversion(cache, situationGate, parsedRules, v, dottedName),
 			// TODO - ceci n'est pas vraiment satisfaisant
-			value = situationGate(dottedName)
+			nodeValue = situationGate(dottedName)
 				? Number.parseFloat(situationGate(dottedName))
-				: inversion.value,
+				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
 			// TODO - we need this so that ResultsGrid will work, but it's
 			// just not right
 			toPairs(inversion.inversionCache).forEach(([k, v]) => (cache[k] = v))
-		return { ...node, value, explanation: null, missingVariables }
+		return { ...node, nodeValue, explanation: null, missingVariables }
 	}
 
 	return {
 		...v,
 		evaluate,
 		// eslint-disable-next-line
-		jsx: value => (
+		jsx: nodeValue => (
 			<Node
 				classes="mecanism inversion"
 				name="inversion"
-				value={value}
+				value={nodeValue}
 				child={
 					<div>
 						<div>avec</div>
@@ -469,8 +514,8 @@ export let mecanismSum = (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (value, explanation) => (
-			<Somme value={value} explanation={explanation} />
+		jsx: (nodeValue, explanation) => (
+			<Somme nodeValue={nodeValue} explanation={explanation} />
 		),
 		explanation,
 		category: 'mecanism',
@@ -567,11 +612,11 @@ export let mecanismProduct = (recurse, k, v) => {
 	let explanation = parseObject(recurse, objectShape, v),
 		evaluate = evaluateObject(objectShape, effect)
 
-	let jsx = (value, explanation) => (
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism multiplication"
 			name="multiplication"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul className="properties">
 					<li key="assiette">
@@ -580,7 +625,7 @@ export let mecanismProduct = (recurse, k, v) => {
 						</span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
-					{(explanation.taux.value != 1 ||
+					{(explanation.taux.nodeValue != 1 ||
 						explanation.taux.category == 'calcExpression') && (
 						<li key="taux">
 							<span className="key">
@@ -589,7 +634,7 @@ export let mecanismProduct = (recurse, k, v) => {
 							<span className="value">{makeJsx(explanation.taux)}</span>
 						</li>
 					)}
-					{(explanation.facteur.value != 1 ||
+					{(explanation.facteur.nodeValue != 1 ||
 						explanation.facteur.category == 'calcExpression') && (
 						<li key="facteur">
 							<span className="key">
@@ -598,7 +643,7 @@ export let mecanismProduct = (recurse, k, v) => {
 							<span className="value">{makeJsx(explanation.facteur)}</span>
 						</li>
 					)}
-					{explanation.plafond.value != Infinity && (
+					{explanation.plafond.nodeValue != Infinity && (
 						<li key="plafond">
 							<span className="key">
 								<Trans>plafond</Trans>:{' '}
@@ -663,7 +708,7 @@ export let mecanismLinearScale = (recurse, k, v) => {
 		)
 
 		if (!matchedTranche) return 0
-		return matchedTranche.taux.value * val(assiette)
+		return matchedTranche.taux.nodeValue * val(assiette)
 	}
 
 	let explanation = {
@@ -733,11 +778,11 @@ export let mecanismMax = (recurse, k, v) => {
 
 	let evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
 
-	let jsx = (value, explanation) => (
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism list maximum"
 			name="le maximum de"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul>
 					{explanation.map((item, i) => (
@@ -766,11 +811,11 @@ export let mecanismMin = (recurse, k, v) => {
 
 	let evaluate = evaluateArray(min, Infinity)
 
-	let jsx = (value, explanation) => (
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism list minimum"
 			name="le minimum de"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul>
 					{explanation.map((item, i) => (
@@ -814,11 +859,11 @@ export let mecanismComplement = (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'complément pour atteindre',
 		// eslint-disable-next-line
-		jsx: (value, explanation) => (
+		jsx: (nodeValue, explanation) => (
 			<Node
 				classes="mecanism list complement"
 				name="complément"
-				value={value}
+				value={nodeValue}
 				child={
 					<ul className="properties">
 						<li key="cible">
@@ -860,21 +905,21 @@ export let mecanismSelection = (recurse, k, v) => {
 			),
 			dataSource = findRuleByName(parsedRules, dataSourceName),
 			data = dataSource ? dataSource['data'] : null,
-			dataKey = explanation.value,
+			dataKey = explanation.nodeValue,
 			found =
 				data && dataKey && dataSearchField
 					? find(item => item[dataSearchField] == dataKey, data)
 					: null,
 			// return 0 if we found a match for the lookup but not for the specific field,
 			// so that component sums don't sum to null
-			value =
+			nodeValue =
 				(found &&
 					found[dataTargetName] &&
 					Number.parseFloat(found[dataTargetName]) / 100) ||
 				0,
 			missingVariables = explanation.missingVariables
 
-		return { ...node, value, explanation, missingVariables }
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let SelectionView = buildSelectionView(dataTargetName)
@@ -883,8 +928,8 @@ export let mecanismSelection = (recurse, k, v) => {
 		evaluate,
 		explanation,
 		// eslint-disable-next-line
-		jsx: (value, explanation) => (
-			<SelectionView value={value} explanation={explanation} />
+		jsx: (nodeValue, explanation) => (
+			<SelectionView nodeValue={nodeValue} explanation={explanation} />
 		)
 	}
 }
@@ -898,20 +943,20 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 			node.explanation.API
 		)
 
-		let value =
+		let nodeValue =
 			val(APIExplanation) == null
 				? null
 				: path(v.chemin.split(' . '))(val(APIExplanation))
 		let missingVariables =
 			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }
-		return { ...node, value, explanation, missingVariables }
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
 		explanation: { ...v, API: recurse(v.API) },
 		evaluate,
-		jsx: function Synchronisation(value, explanation) {
+		jsx: function Synchronisation(nodeValue, explanation) {
 			return (
 				<p>
 					Obtenu à partir de la saisie <SimpleRuleLink rule={explanation.API} />
@@ -925,24 +970,20 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 
 export let mecanismOnePossibility = (recurse, k, v) => {
 	let explanation = v.map(recurse)
+	// let onlyOneOf = (value, variable) => value === null && variable === null ? null : value === true && variable !== true ? true; 
+	// let evaluate = evaluateArray(, null)
+
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		console.log('YAYAYYAYAY')
 		const evaluations = explanation.map(node => node.evaluate(cache, situationGate, parsedRules, node));
 		const missingVariables = mergeAllMissing(evaluations.map(e => e.explanation));
-		console.log('YALA', evaluations.map(node => [node.dottedName, node.value]))
-		const possibilityValues = evaluations.filter(node => !!node.value)
-		if (possibilityValues.length > 1) {
-			throw new Error(`Impossibilité logique : ${k} ne peut pas être à la fois ${possibilityValues.slice(0, -2).join(', ') + ' ' + possibilityValues.slice(-2).join(' et ')}`)
-		}
-		const value = possibilityValues[0] || null;
-		return {...node, value, missingVariables}
+		return {...node, nodeValue: undefined, missingVariables}
 	}
 
-	let jsx = (value, explanation) => (
+	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="mecanism list one-possibility"
 			name="Une possibilité parmi"
-			value={value}
+			value={nodeValue}
 			child={
 				<ul>
 					{explanation.map((item, i) => (
@@ -961,7 +1002,6 @@ export let mecanismOnePossibility = (recurse, k, v) => {
 		explanation,
 		jsx,
 		category: 'mecanism',
-		type: 'enum',
 		name: 'une possibilité parmi'
 	}
 }

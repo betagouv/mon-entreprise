@@ -24,7 +24,7 @@ describe('inversions', () => {
 			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			analysis = analyse(rules, 'net')(stateSelector)
 
-		expect(analysis.targets[0].value).to.be.closeTo(1771, 0.001)
+		expect(analysis.targets[0].nodeValue).to.be.closeTo(1771, 0.001)
 	})
 
 	it('should handle simple inversion', () => {
@@ -48,7 +48,7 @@ describe('inversions', () => {
 			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			analysis = analyse(rules, 'brut')(stateSelector)
 
-		expect(analysis.targets[0].value).to.be.closeTo(
+		expect(analysis.targets[0].nodeValue).to.be.closeTo(
 			2000 / (77 / 100),
 			0.0001 * 2000
 		)
@@ -83,7 +83,7 @@ describe('inversions', () => {
 			analysis = analyse(rules, 'brut')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
-		expect(analysis.targets[0].value).to.be.null
+		expect(analysis.targets[0].nodeValue).to.be.null
 		expect(missing).to.include('brut')
 	})
 
@@ -132,7 +132,7 @@ describe('inversions', () => {
 			analysis = analyse(rules, 'brut')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
-		expect(analysis.targets[0].value).to.be.null
+		expect(analysis.targets[0].nodeValue).to.be.null
 		expect(missing).to.include('cadre')
 	})
 
@@ -175,7 +175,7 @@ describe('inversions', () => {
 			analysis = analyse(rules, 'total')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
-		expect(analysis.targets[0].value).to.equal(3750)
+		expect(analysis.targets[0].nodeValue).to.equal(3750)
 		expect(missing).to.be.empty
 	})
 	it('complex inversion with composantes', () => {
@@ -214,7 +214,7 @@ describe('inversions', () => {
 			analysis = analyse(rules, 'total')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
-		expect(analysis.targets[0].value).to.equal(3750)
+		expect(analysis.targets[0].nodeValue).to.equal(3750)
 		expect(missing).to.be.empty
 	})
 	it('should collect missing variables not too slowly', function() {

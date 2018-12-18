@@ -56,7 +56,7 @@ const Example = compose(
 						let dottedName = 'contrat salarié . salaire . brut de base'
 						;({
 							dottedName,
-							value: situation[dottedName],
+							nodeValue: situation[dottedName],
 							title: 'Salaire brut'
 						})
 					},
@@ -74,7 +74,7 @@ const Example = compose(
 								<span
 									style={{ color: colours.textColourOnWhite }}
 									className="figure">
-									{Math.round(t.value)} €
+									{Math.round(t.nodeValue)} €
 								</span>
 							</li>
 						))}{' '}
@@ -84,8 +84,8 @@ const Example = compose(
 								style={{ color: colours.textColourOnWhite }}
 								className="figure">
 								{do {
-									let de = figures[0].value,
-										à = figures[3].value
+									let de = figures[0].nodeValue,
+										à = figures[3].nodeValue
 									Math.round(((de - à) / de) * 100)
 								}}{' '}
 								%

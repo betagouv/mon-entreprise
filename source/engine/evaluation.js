@@ -15,7 +15,7 @@ import {
 
 export let makeJsx = node =>
 	typeof node.jsx == 'function'
-		? node.jsx(node.value, node.explanation)
+		? node.jsx(node.nodeValue, node.explanation)
 		: node.jsx
 
 export let collectNodeMissing = node => node?.missingVariables || {}
@@ -39,14 +39,14 @@ export let evaluateArray = (reducer, start) => (
 	let evaluateOne = child =>
 			evaluateNode(cache, situationGate, parsedRules, child),
 		explanation = map(evaluateOne, node.explanation),
-		values = pluck('value', explanation),
-		value = any(equals(null), values)
+		values = pluck('nodeValue', explanation),
+		nodeValue = any(equals(null), values)
 			? null
 			: reduce(reducer, start, values),
 		missingVariables =
-			node.value == null ? mergeAllMissing(explanation) : {}
+			node.nodeValue == null ? mergeAllMissing(explanation) : {}
 	//	console.log("".padStart(cache.parseLevel), missingVariables)
-	return { ...node, value, explanation, missingVariables }
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
@@ -61,14 +61,14 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 			evaluateOne,
 			filter(evaluationFilter(situationGate), node.explanation)
 		),
-		values = pluck('value', explanation),
-		value = any(equals(null), values)
+		values = pluck('nodeValue', explanation),
+		nodeValue = any(equals(null), values)
 			? null
 			: reduce(reducer, start, values),
 		missingVariables =
-			node.value == null ? mergeAllMissing(explanation) : {}
+			node.nodeValue == null ? mergeAllMissing(explanation) : {}
 
-	return { ...node, value, explanation, missingVariables }
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export let parseObject = (recurse, objectShape, value) => {
@@ -91,8 +91,8 @@ export let evaluateObject = (objectShape, effect) => (
 
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		explanation = evolve(fromPairs(transforms))(node.explanation),
-		value = effect(explanation),
+		nodeValue = effect(explanation),
 		missingVariables = mergeAllMissing(values(explanation))
 	//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
-	return { ...node, value, explanation, missingVariables }
+	return { ...node, nodeValue, explanation, missingVariables }
 }

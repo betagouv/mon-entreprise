@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Link } from 'react-router-dom'
 import './RuleValueVignette.css'
 
-let RuleValueVignette = ({ name, title, value: ruleValue }) => (
+let RuleValueVignette = ({ name, title, nodeValue: ruleValue }) => (
 	<span key={name} className="RuleValueVignette">
 		<Link to={'../règle/' + encodeRuleName(name)}>
 			<div className="rule-box">

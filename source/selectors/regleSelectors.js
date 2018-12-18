@@ -58,7 +58,7 @@ export const règleValeurSelector = createSelector(
 			analysis.targets.find(target => target.dottedName === dottedName)
 
 		let valeur =
-			rule && !isNil(rule.value) ? rule.value : situation[dottedName]
+			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situation[dottedName]
 
 		if (isNil(valeur)) {
 			console.warn(

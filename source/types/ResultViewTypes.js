@@ -32,7 +32,7 @@ export type VariableWithCotisation = {
 		branche?: Branche
 	|},
 	dottedName: string,
-	value: number,
+	nodeValue: number,
 	explanation: {
 		cotisation: {
 			'dû par'?: 'salarié' | 'employeur',
