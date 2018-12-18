@@ -174,14 +174,19 @@
 - espace: transport . mode
   nom: bus
 - espace: transport . mode
+  icônes: 🚗
   nom: voiture
 - espace: transport . mode
+  icônes: 🚋
   nom: tram
 - espace: transport . mode
+  icônes: 🚇
   nom: métro
 - espace: transport . mode
+  icônes: 🚴
   nom: vélo
 - espace: transport . mode
+  icônes: 🚶
   nom: à pieds
 - espace: transport . voiture
   nom: gabarit
@@ -227,10 +232,13 @@
     source belge: >-
       https://www.delijn.be/fr/overdelijn/organisatie/zorgzaam-ondernemen/milieu/co2-uitstoot-voertuigen.html
 - espace: transport . voiture . type
+  icônes: ⚡
   nom: électrique
 - espace: transport . voiture . type
+  icônes: 🛢️
   nom: essence
 - espace: transport . voiture . type
+  icônes: 🛢️
   nom: diesel
 - espace: transport . mode
   nom: train
@@ -244,6 +252,7 @@
     chiffres SNCF: >-
       https://www.oui.sncf/aide/calcul-des-emissions-de-co2-sur-votre-trajet-en-train
 - espace: transport . mode . train
+  icônes: 🚄
   nom: TGV
 - espace: transport . mode . train
   nom: Intercité
@@ -334,6 +343,7 @@
         #à pieds: 0
         
 - espace: transport
+  icônes: 🌫️
   nom: impact 
   période: flexible
   formule: impact par km * km parcourus
@@ -342,6 +352,7 @@
 
 - espace: transport
   nom: km parcourus
+  icônes: 🗺️
   période: flexible
   question: Combien de kilomètres parcourez-vous ?
   format: nombre
