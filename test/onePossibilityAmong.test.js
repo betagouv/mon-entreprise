@@ -5,30 +5,28 @@ import { analyse, parseAll } from 'Engine/traverse'
 
 let stateSelector = () => null
 describe('onePossibilityAmong', function() {
-	describe.skip('value', () => {
-		it('should throw if not all the possibility are defined as children of the namespace', function() {
+	describe('treat', () => {
+		it('should throw if one of the possibility is not a variable', () => {
 			let rawRules = [
 				{
-					espace: 'entreprise',
 					nom: 'statut',
 					formule: {
-						'une possibilité parmi': ['SARL', 'SAS']
+						'une possibilité parmi': ['SARL', "SAS = 'oui'"]
 					}
 				},
 				{
-					espace: 'entreprise',
 					nom: 'SARL'
 				},
 				{
-					espace: 'entreprise . statut',
 					nom: 'SAS'
 				}
 			]
-
-			expect(parseAll(rawRules.map(enrichRule)).to.throw)(
-				`Erreur dans l'arbre des règles : il manque la variable 'SARL' dans le namespace 'entreprise . statut'`
+			expect(() => parseAll(rawRules.map(enrichRule))).to.throw(
+				`Attention ! Le mecanisme "une possibilité parmi" ne fonctionne qu'avec des nom de variables`
 			)
 		})
+	})
+	describe('evaluate', () => {
 		it('should be undetermined by default', function() {
 			let rawRules = [
 					{
@@ -56,7 +54,7 @@ describe('onePossibilityAmong', function() {
 				analyse(rules, 'entreprise . statut . SAS')(stateSelector).targets[0]
 			).to.have.property('nodeValue', null)
 		})
-		it('should have mutually exclusive possibility', function() {
+		it.only('should have mutually exclusive possibility', function() {
 			let rawRules = [
 					{
 						espace: 'entreprise',

@@ -1,35 +1,8 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import formValueTypes from 'Components/conversation/formValueTypes'
-import {
-	assoc,
-	chain,
-	dropLast,
-	find,
-	fromPairs,
-	has,
-	identity,
-	is,
-	isNil,
-	join,
-	last,
-	map,
-	mapObjIndexed,
-	path,
-	pipe,
-	propEq,
-	props,
-	range,
-	reduce,
-	reduced,
-	reject,
-	split,
-	take,
-	toPairs,
-	trim,
-	when
-} from 'ramda'
-import { capitalise0 } from '../utils'
-import possibleVariableTypes from './possibleVariableTypes.yaml'
+import formValueTypes from 'Components/conversation/formValueTypes';
+import { assoc, chain, dropLast, find, fromPairs, has, identity, is, isNil, join, last, map, mapObjIndexed, path, pipe, propEq, props, range, reduce, reduced, reject, split, take, toPairs, trim, when } from 'ramda';
+import { capitalise0 } from '../utils';
+import possibleVariableTypes from './possibleVariableTypes.yaml';
 
 // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
@@ -249,13 +222,8 @@ export let findParentDependency = (rules, rule) => {
 		reject(isNil),
 		find(
 			//Find the first "calculable" parent
-			({ question, format, formule, dottedName }) =>
-				(question && !format && !formule) || //implicitly, the format is boolean
-				(question &&
-					formule &&
-					formule['une possibilité parmi']?.some(
-						ruleName => dottedName + ' . ' + ruleName === rule.dottedName
-					))
+			({ question, format, formule }) =>
+				(question && !format && !formule) //implicitly, the format is boolean
 		)
 	)(parentDependencies)
 }

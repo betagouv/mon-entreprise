@@ -61,7 +61,6 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 	let { fragments } = parseResult,
 		variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
-
 	return {
 		evaluate,
 		//eslint-disable-next-line react/display-name

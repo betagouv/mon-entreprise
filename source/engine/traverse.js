@@ -19,6 +19,7 @@ import {
 	pipe,
 	pick
 } from 'ramda'
+import BooleanEngine from './BooleanEngine'
 import { Node } from './mecanismViews/common'
 import {
 	evaluateNode,
@@ -66,11 +67,11 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-export let treat = (rules, rule) => rawNode => {
+export let treat = (rules, rule, booleanEngine) => rawNode => {
 	let onNodeType = cond([
-		[is(String), treatString(rules, rule)],
+		[is(String), treatString(rules, rule, booleanEngine)],
 		[is(Number), treatNumber],
-		[is(Object), treatObject(rules, rule)],
+		[is(Object), treatObject(rules, rule, booleanEngine)],
 		[T, treatOther]
 	])
 
@@ -91,7 +92,11 @@ export let computeRuleValue = (formuleValue, isApplicable) =>
 		? 0
 		: null
 
-export let treatRuleRoot = (rules, rule) => {
+const getRootRuleType = (parsedRule) => 
+	parsedRule.formule?.type || Number.isNaN(parseInt(parsedRule.defaultValue, 10)) && 'numeric' || typeof parsedRule.defaultEvaluate === 'object' && 'object' || (['oui', 'non'].includes(parsedRule.defaultValue) || parsedRule.defaultValue === 'undefined') && 'boolean'
+
+
+export let treatRuleRoot = (rules, rule, booleanEngine) => {
 	/*
 	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
 	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si`, `applicable si` et `formule`,
@@ -169,9 +174,9 @@ export let treatRuleRoot = (rules, rule) => {
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
 		// condition d'applicabilité de la règle
-		parentDependency: evolveParentDependancy(rules, rule),
-		'non applicable si': evolveCond('non applicable si', rules, rule),
-		'applicable si': evolveCond('applicable si', rules, rule),
+		parentDependency: evolveParentDependancy(rules, rule, booleanEngine),
+		'non applicable si': evolveCond('non applicable si', rules, rule, booleanEngine),
+		'applicable si': evolveCond('applicable si', rules, rule, booleanEngine),
 		// formule de calcul
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -187,7 +192,7 @@ export let treatRuleRoot = (rules, rule) => {
 				return {...node, nodeValue, explanation, missingVariables }
 			}
 
-			let child = treat(rules, rule)(value)
+			let child = treat(rules, rule, booleanEngine)(value)
 
 			let jsx = (nodeValue, explanation) => makeJsx(explanation)
 
@@ -197,7 +202,7 @@ export let treatRuleRoot = (rules, rule) => {
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
-				type: 'numeric',
+				type: child.type || 'numeric',
 				explanation: child
 			}
 		}
@@ -206,7 +211,7 @@ export let treatRuleRoot = (rules, rule) => {
 	let controls =
 		rule['contrôles'] &&
 		rule['contrôles'].map(control => {
-			let testExpression = treatString(rules, rule)(control.si)
+			let testExpression = treatString(rules, rule, booleanEngine)(control.si)
 			if (!testExpression.explanation)
 				throw new Error(
 					'Ce contrôle ne semble pas être compris :' + control['si']
@@ -243,12 +248,13 @@ export let treatRuleRoot = (rules, rule) => {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
+		type: getRootRuleType(parsedRoot),
 		parsed: true,
 		controls
 	}
 }
-let evolveParentDependancy = (rules, rule) => parent => {
-	let parentNode = treat(rules, rule)(parent.dottedName)
+let evolveParentDependancy = (rules, rule, booleanEngine) => parent => {
+	let parentNode = treat(rules, rule, booleanEngine)(parent.dottedName)
 
 	let jsx = (nodeValue, explanation) => (
 		<ShowValuesConsumer>
@@ -276,7 +282,7 @@ let evolveParentDependancy = (rules, rule) => parent => {
 	}
 }
 
-let evolveCond = (name, rules, rule) => value => {
+let evolveCond = (name, rules, rule, booleanEngine) => value => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let explanation = evaluateNode(
 				cache,
@@ -289,7 +295,7 @@ let evolveCond = (name, rules, rule) => value => {
 			return { ...node, nodeValue, explanation, missingVariables }
 	}
 
-	let child = treat(rules, rule)(value)
+	let child = treat(rules, rule, booleanEngine)(value)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -331,7 +337,8 @@ export let getTargets = (target, rules) => {
 }
 
 export let parseAll = flatRules => {
-	let treatOne = rule => treatRuleRoot(flatRules, rule)
+	const booleanEngine = new BooleanEngine();
+	let treatOne = rule => treatRuleRoot(flatRules, rule, booleanEngine)
 	return map(treatOne, flatRules)
 }
 

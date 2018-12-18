@@ -53,6 +53,7 @@ import {
 
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
+import { Rules } from './BooleanEngine'
 import Barème from './mecanismViews/Barème'
 import Variations from './mecanismViews/Variations'
 import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
@@ -68,7 +69,7 @@ let constantNode = constant => ({
 	jsx: nodeValue => <span className="value">{nodeValue}</span>
 })
 
-let decompose = (recurse, k, v) => {
+let decompose = (recurse, k, v, booleanEngine) => {
 	let subProps = dissoc('composantes')(v),
 		explanation = v.composantes.map(c => ({
 			...recurse(
@@ -98,7 +99,7 @@ let decompose = (recurse, k, v) => {
 	}
 }
 
-let devariateExplanation = (recurse, mecanismKey, v) => {
+let devariateExplanation = (recurse, mecanismKey, v, booleanEngine) => {
 	let fixedProps = dissoc('variations')(v),
 		explanation = v.variations.map(({ si, alors, sinon }) => ({
 			consequence: recurse({
@@ -114,9 +115,9 @@ let devariateExplanation = (recurse, mecanismKey, v) => {
 }
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
-export let mecanismVariations = (recurse, k, v, devariate) => {
+export let mecanismVariations = (recurse, k, v, booleanEngine, devariate) => {
 	let explanation = devariate
-		? devariateExplanation(recurse, k, v)
+		? devariateExplanation(recurse, k, v, booleanEngine)
 		: v.map(({ si, alors, sinon }) =>
 				sinon !== undefined
 					? { consequence: recurse(sinon), condition: undefined }
@@ -176,10 +177,10 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 	}
 }
 
-export let mecanismOneOf = (recurse, k, v) => {
-	if (!is(Array, v)) throw new Error('should be array')
+export let mecanismOneOf = (recurse, k, v, booleanEngine) => {
+	if (!is(Array, v, booleanEngine)) throw new Error('should be array')
 
-	let explanation = map(recurse, v)
+	let explanation = map(recurse, v, booleanEngine)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -227,10 +228,10 @@ export let mecanismOneOf = (recurse, k, v) => {
 	}
 }
 
-export let mecanismAllOf = (recurse, k, v) => {
-	if (!is(Array, v)) throw new Error('should be array')
+export let mecanismAllOf = (recurse, k, v, booleanEngine) => {
+	if (!is(Array, v, booleanEngine)) throw new Error('should be array')
 
-	let explanation = map(recurse, v)
+	let explanation = map(recurse, v, booleanEngine)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -272,12 +273,12 @@ export let mecanismAllOf = (recurse, k, v) => {
 	}
 }
 
-export let mecanismNumericalSwitch = (recurse, k, v) => {
+export let mecanismNumericalSwitch = (recurse, k, v, booleanEngine) => {
 	// Si "l'aiguillage" est une constante ou une référence directe à une variable;
 	// l'utilité de ce cas correspond à un appel récursif au mécanisme
-	if (is(String, v)) return recurse(v)
+	if (is(String, v, booleanEngine)) return recurse(v)
 
-	if (!is(Object, v) || keys(v).length == 0) {
+	if (!is(Object, v, booleanEngine) || keys(v).length == 0) {
 		throw new Error(
 			'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
 		)
@@ -462,7 +463,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	}
 }
 
-export let mecanismInversion = dottedName => (recurse, k, v) => {
+export let mecanismInversion = dottedName => (recurse, k, v, booleanEngine) => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let inversion =
 				// avoid the inversion loop !
@@ -506,7 +507,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	}
 }
 
-export let mecanismSum = (recurse, k, v) => {
+export let mecanismSum = (recurse, k, v, booleanEngine) => {
 	let explanation = v.map(recurse)
 
 	let evaluate = evaluateArray(add, 0)
@@ -524,7 +525,7 @@ export let mecanismSum = (recurse, k, v) => {
 	}
 }
 
-export let mecanismReduction = (recurse, k, v) => {
+export let mecanismReduction = (recurse, k, v, booleanEngine) => {
 	let objectShape = {
 		assiette: false,
 		abattement: constantNode(0),
@@ -564,7 +565,7 @@ export let mecanismReduction = (recurse, k, v) => {
 			: montantFranchiséDécoté
 	}
 
-	let base = parseObject(recurse, objectShape, v),
+	let base = parseObject(recurse, objectShape, v, booleanEngine),
 		explanation = v.décote
 			? {
 					...base,
@@ -583,13 +584,13 @@ export let mecanismReduction = (recurse, k, v) => {
 	}
 }
 
-export let mecanismProduct = (recurse, k, v) => {
+export let mecanismProduct = (recurse, k, v, booleanEngine) => {
 	if (v.composantes) {
 		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
+		return decompose(recurse, k, v, booleanEngine)
 	}
 	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
+		return mecanismVariations(recurse, k, v, booleanEngine, true)
 	}
 
 	let objectShape = {
@@ -609,7 +610,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		)
 	}
 
-	let explanation = parseObject(recurse, objectShape, v),
+	let explanation = parseObject(recurse, objectShape, v, booleanEngine),
 		evaluate = evaluateObject(objectShape, effect)
 
 	let jsx = (nodeValue, explanation) => (
@@ -685,13 +686,13 @@ let desugarScale = recurse => tranches =>
 		)
 		.map(evolve({ taux: recurse }))
 
-export let mecanismLinearScale = (recurse, k, v) => {
+export let mecanismLinearScale = (recurse, k, v, booleanEngine) => {
 	if (v.composantes) {
 		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
+		return decompose(recurse, k, v, booleanEngine)
 	}
 	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
+		return mecanismVariations(recurse, k, v, booleanEngine, true)
 	}
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
@@ -712,7 +713,7 @@ export let mecanismLinearScale = (recurse, k, v) => {
 	}
 
 	let explanation = {
-			...parseObject(recurse, objectShape, v),
+			...parseObject(recurse, objectShape, v, booleanEngine),
 			tranches
 		},
 		evaluate = evaluateObject(objectShape, effect)
@@ -728,14 +729,14 @@ export let mecanismLinearScale = (recurse, k, v) => {
 	}
 }
 
-export let mecanismScale = (recurse, k, v) => {
+export let mecanismScale = (recurse, k, v, booleanEngine) => {
 	// Sous entendu : barème en taux marginaux.
 	if (v.composantes) {
 		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
+		return decompose(recurse, k, v, booleanEngine)
 	}
 	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
+		return mecanismVariations(recurse, k, v, booleanEngine, true)
 	}
 
 	let tranches = desugarScale(recurse)(v['tranches']),
@@ -757,7 +758,7 @@ export let mecanismScale = (recurse, k, v) => {
 	}
 
 	let explanation = {
-			...parseObject(recurse, objectShape, v),
+			...parseObject(recurse, objectShape, v, booleanEngine),
 			tranches
 		},
 		evaluate = evaluateObject(objectShape, effect)
@@ -773,7 +774,7 @@ export let mecanismScale = (recurse, k, v) => {
 	}
 }
 
-export let mecanismMax = (recurse, k, v) => {
+export let mecanismMax = (recurse, k, v, booleanEngine) => {
 	let explanation = v.map(recurse)
 
 	let evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
@@ -806,7 +807,7 @@ export let mecanismMax = (recurse, k, v) => {
 	}
 }
 
-export let mecanismMin = (recurse, k, v) => {
+export let mecanismMin = (recurse, k, v, booleanEngine) => {
 	let explanation = v.map(recurse)
 
 	let evaluate = evaluateArray(min, Infinity)
@@ -839,10 +840,10 @@ export let mecanismMin = (recurse, k, v) => {
 	}
 }
 
-export let mecanismComplement = (recurse, k, v) => {
+export let mecanismComplement = (recurse, k, v, booleanEngine) => {
 	if (v.composantes) {
 		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
+		return decompose(recurse, k, v, booleanEngine)
 	}
 
 	let objectShape = { cible: false, montant: false }
@@ -850,7 +851,7 @@ export let mecanismComplement = (recurse, k, v) => {
 		let nulled = val(cible) == null
 		return nulled ? null : subtract(val(montant), min(val(cible), val(montant)))
 	}
-	let explanation = parseObject(recurse, objectShape, v)
+	let explanation = parseObject(recurse, objectShape, v, booleanEngine)
 
 	return {
 		evaluate: evaluateObject(objectShape, effect),
@@ -885,10 +886,10 @@ export let mecanismComplement = (recurse, k, v) => {
 	}
 }
 
-export let mecanismSelection = (recurse, k, v) => {
+export let mecanismSelection = (recurse, k, v, booleanEngine) => {
 	if (v.composantes) {
 		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
+		return decompose(recurse, k, v, booleanEngine)
 	}
 
 	let dataSourceName = v['données']
@@ -934,7 +935,7 @@ export let mecanismSelection = (recurse, k, v) => {
 	}
 }
 
-export let mecanismSynchronisation = (recurse, k, v) => {
+export let mecanismSynchronisation = (recurse, k, v, booleanEngine) => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let APIExplanation = evaluateNode(
 			cache,
@@ -968,11 +969,15 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 	}
 }
 
-export let mecanismOnePossibility = (recurse, k, v) => {
+export let mecanismOnePossibility = (recurse, k, v, booleanEngine) => {
 	let explanation = v.map(recurse)
-	// let onlyOneOf = (value, variable) => value === null && variable === null ? null : value === true && variable !== true ? true; 
-	// let evaluate = evaluateArray(, null)
 
+	if (explanation.some(node => node.category !== 'variable')) {
+		throw new Error(`Attention ! Le mecanisme "une possibilité parmi" ne fonctionne qu'avec des nom de variables`);
+	}
+	
+	booleanEngine.addRule(Rules.OnePossibilityAmong(...explanation.map(node => node.dottedName)))
+	
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		const evaluations = explanation.map(node => node.evaluate(cache, situationGate, parsedRules, node));
 		const missingVariables = mergeAllMissing(evaluations.map(e => e.explanation));
@@ -1006,6 +1011,6 @@ export let mecanismOnePossibility = (recurse, k, v) => {
 	}
 }
 
-export let mecanismError = (recurse, k, v) => {
+export let mecanismError = (recurse, k, v, booleanEngine) => {
 	throw new Error("Le mécanisme '" + k + "' est inconnu !" + v)
 }

@@ -52,7 +52,7 @@ import {
 
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
-export let treatString = (rules, rule) => rawNode => {
+export let treatString = (rules, rule, booleanEngine) => rawNode => {
 	/* On a affaire à un string, donc à une expression infixe.
 			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
 			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel), CalcExpression ou Comparison.
@@ -229,7 +229,7 @@ export let treatOther = rawNode => {
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	)
 }
-export let treatObject = (rules, rule, treatOptions) => rawNode => {
+export let treatObject = (rules, rule, booleanEngine) => rawNode => {
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 	if (mecanisms.length != 1) {
@@ -264,5 +264,5 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 		},
 		action = propOr(mecanismError, k, dispatch)
 
-	return action(treat(rules, rule, treatOptions), k, v)
+	return action(treat(rules, rule, booleanEngine), k, v, booleanEngine)
 }
