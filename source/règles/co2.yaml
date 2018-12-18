@@ -157,6 +157,7 @@
   notes: >-
     Attention, il faut vérifier si les chiffres incluent la construction du
     véhicule lui-même, et pas seulement le carburant.
+  question: Comment vous déplacez-vous ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -353,7 +354,7 @@
 - espace: transport
   nom: km parcourus
   icônes: 🗺️
-  période: flexible
+  période: mois
   question: Combien de kilomètres parcourez-vous ?
-  format: nombre
+  format: km
   par défaut: 300

@@ -27,6 +27,11 @@ let jours = {
 	human: value => value + ' ' + 'jours',
 	validator: int
 }
+let km = {
+	suffix: 'km',
+	human: value => value + ' ' + 'km',
+	validator: int
+}
 
 let nombre = {
 	human: value => value.replace(/./g, ','),
@@ -44,5 +49,6 @@ export default {
 	mois,
 	jours,
 	nombre,
-	texte
+		texte,
+		km
 }

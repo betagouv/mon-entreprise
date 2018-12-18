@@ -7,6 +7,7 @@ import withColours from 'Components/utils/withColours'
 import Targets from 'Components/Targets'
 import './GenericSimulation.css'
 import { nextStepsSelector } from 'Selectors/analyseSelectors'
+import PeriodSwitch from './PeriodSwitch'
 
 export default compose(
 	withColours,
@@ -55,6 +56,7 @@ export default compose(
 							</>
 						)}
 						<Targets />
+						<PeriodSwitch />
 					</div>
 				</div>
 			)
