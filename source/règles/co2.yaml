@@ -138,6 +138,18 @@
     expresse: 5
     moyenne: 10
     lente: 20
+
+
+
+
+
+
+
+
+
+
+
+
     
 - nom: transport
 - espace: transport
@@ -162,6 +174,8 @@
 - espace: transport . mode
   nom: bus
 - espace: transport . mode
+  nom: voiture
+- espace: transport . mode
   nom: tram
 - espace: transport . mode
   nom: métro
@@ -169,10 +183,41 @@
   nom: vélo
 - espace: transport . mode
   nom: à pieds
-- espace: transport . mode 
-  nom: voiture
+- espace: transport . voiture
+  nom: gabarit
+  question: Quel est la taille de votre voiture ?
+  applicable si: mode = 'voiture'
+  par défaut: moyenne
   formule: 
     une possibilité: 
+      choix obligatoire: oui
+      possibilités: 
+      - petite
+      - moyenne
+      - berline
+      - SUV
+
+- espace: transport . voiture . gabarit
+  nom: petite
+  description: Par exemple, une Peugeot 205 ou une Renault Twingo. 
+- espace: transport . voiture . gabarit
+  nom: moyenne
+  description: Par exemple, une Renault Clio.
+- espace: transport . voiture . gabarit
+  nom: berline
+  description: De longues voitures confortables.
+- espace: transport . voiture . gabarit
+  nom: SUV
+  description: Ce sont des grosses voitures qui se vendent beaucoup récemment. Par exemple, une Peugeot 3008.
+- espace: transport . voiture
+  nom: type
+  question: Quel propulsion ?
+  applicable si: mode = 'voiture'
+  par défaut: essence
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités: 
       - essence
       - diesel
       - électrique
@@ -181,11 +226,11 @@
       http://www.smartgrids-cre.fr/index.php?p=vehicules-electriques-bilan-carbone
     source belge: >-
       https://www.delijn.be/fr/overdelijn/organisatie/zorgzaam-ondernemen/milieu/co2-uitstoot-voertuigen.html
-- espace: transport . mode . voiture
+- espace: transport . voiture . type
   nom: électrique
-- espace: transport . mode . voiture
+- espace: transport . voiture . type
   nom: essence
-- espace: transport . mode . voiture
+- espace: transport . voiture . type
   nom: diesel
 - espace: transport . mode
   nom: train
@@ -211,11 +256,7 @@
   nom: impact par km
   formule: 
     variations: 
-      - si: 
-          une de ces conditions: 
-            - mode = 'voiture . essence'
-            - mode = 'voiture . diesel'
-            - mode = 'voiture . électrique'
+      - si: mode = 'voiture' 
         alors: voiture par personne
       - si: mode = 'train . Intercité'
         alors: 0.0118
@@ -233,30 +274,47 @@
         alors: 0.0031
       - sinon: 0
    
-- espace: transport . mode . voiture
+- espace: transport . voiture
   nom: passagers
   question: Combien de personnes voyagent dans votre voiture en moyenne (vous compris) ?
   format: nombre
   par défaut: 1
+
+- espace: transport
+  nom: voiture
 
 - espace: transport . impact par km 
   nom: voiture par personne
   description: |
     Une voiture approche en général une tonne. Quel que soit le mode de propulsion, déplacer une personne de quelques dizaines de kilo, l'autosoliste, dans un véhicule qui fait 10 fois son poids ne sera jamais écologique.
 
-  formule: voiture / mode . voiture . passagers
+  formule: impact par km . voiture / voiture . passagers
 
 
 - espace: transport . impact par km 
   nom: voiture
   formule: 
     variations: 
-      - si: mode = 'voiture . essence'
-        alors: 0.206
-      - si: mode = 'voiture . diesel'
-        alors: 0.250
-      - si: mode = 'voiture . électrique'
+      - si: voiture . type = 'essence'
+        alors: diesel * 0.8
+      - si: voiture . type = 'diesel'
+        alors: diesel
+      - si: voiture . type = 'électrique'
         alors: 0.015
+
+- espace: transport . impact par km
+  nom: diesel
+  note: Ces chiffres ne sont que de grossières estimations. 
+  formule:
+    variations: 
+      - si: voiture . gabarit = 'petite'
+        alors: 0.2
+      - si: voiture . gabarit = 'moyenne'
+        alors: 0.25
+      - si: voiture . gabarit = 'berline'
+        alors: 0.35
+      - si: voiture . gabarit = 'SUV'
+        alors: 0.4
 
  #mécanisme correspondance à ajouter
  #formule: 
