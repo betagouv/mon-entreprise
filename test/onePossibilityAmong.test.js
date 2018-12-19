@@ -57,34 +57,32 @@ describe('onePossibilityAmong', function() {
 		it.only('should have mutually exclusive possibility', function() {
 			let rawRules = [
 					{
-						espace: 'entreprise',
-						nom: 'statut',
+						nom: 'statut juridique',
 						formule: {
 							'une possibilité parmi': ['SARL', 'SAS', 'EI']
 						}
 					},
 					{
-						espace: 'entreprise . statut',
 						nom: 'SARL',
 						formule: 'oui'
 					},
 					{
-						espace: 'entreprise . statut',
 						nom: 'SAS'
 					},
 					{
-						espace: 'entreprise . statut',
 						nom: 'EI'
 					}
 				],
 				rules = parseAll(rawRules.map(enrichRule))
 
-			expect(
-				analyse(rules, 'entreprise . statut . SAS')(stateSelector).targets[0]
-			).to.have.property('nodeValue', 'non')
-			expect(
-				analyse(rules, 'entreprise . statut . EI')(stateSelector).targets[0]
-			).to.have.property('nodeValue', 'non')
+			expect(analyse(rules, 'SAS')(stateSelector).targets[0]).to.have.property(
+				'nodeValue',
+				'non'
+			)
+			expect(analyse(rules, 'EI')(stateSelector).targets[0]).to.have.property(
+				'nodeValue',
+				'non'
+			)
 		})
 		it('should throw when logical impossibility', function() {
 			// TODO : use blocking control instead?

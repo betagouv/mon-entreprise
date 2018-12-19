@@ -976,10 +976,10 @@ export let mecanismOnePossibility = (recurse, k, v, booleanEngine) => {
 		throw new Error(`Attention ! Le mecanisme "une possibilité parmi" ne fonctionne qu'avec des nom de variables`);
 	}
 	
-	booleanEngine.addRule(Rules.OnePossibilityAmong(...explanation.map(node => node.dottedName)))
+	booleanEngine.addRule(new Rules.OnePossibilityAmong(...explanation.map(node => node.dottedName)))
 	
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		const evaluations = explanation.map(node => node.evaluate(cache, situationGate, parsedRules, node));
+		const evaluations = explanation.map(node => node.evaluate(cache, situationGate, parsedRules, node))
 		const missingVariables = mergeAllMissing(evaluations.map(e => e.explanation));
 		return {...node, nodeValue: undefined, missingVariables}
 	}

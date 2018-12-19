@@ -90,10 +90,10 @@ export let treatString = (rules, rule, booleanEngine) => rawNode => {
 		)
 
 	if (parseResult.category == 'variable')
-		return treatVariableTransforms(rules, rule)(parseResult)
+		return treatVariableTransforms(rules, rule, booleanEngine)(parseResult)
 	if (parseResult.category == 'negatedVariable')
 		return treatNegatedVariable(
-			treatVariable(rules, rule)(parseResult.variable)
+			treatVariable(rules, rule, booleanEngine)(parseResult.variable)
 		)
 
 	if (parseResult.category == 'boolean') {
@@ -154,7 +154,7 @@ export let treatString = (rules, rule, booleanEngine) => rawNode => {
 				cond([
 					[
 						propEq('category', 'variable'),
-						treatVariableTransforms(rules, rule)
+						treatVariableTransforms(rules, rule, booleanEngine)
 					],
 					[
 						propEq('category', 'value'),

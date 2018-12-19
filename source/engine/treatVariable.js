@@ -1,6 +1,7 @@
 import { isNil } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
+import { Rules } from './BooleanEngine'
 import { evaluateNode, makeJsx, mergeMissing } from './evaluation'
 import { Leaf, Node } from './mecanismViews/common'
 import {
@@ -10,7 +11,12 @@ import {
 } from './rules'
 import { getSituationValue } from './variables'
 
-export let treatVariable = (rules, rule, filter) => parseResult => {
+export let treatVariable = (
+	rules,
+	rule,
+	booleanEngine,
+	filter
+) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -30,11 +36,6 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 
 		let explanation = variable
 		if (needsEvaluation) {
-			// In order to prevent circular dependencies from creating infinite loop, we cache as soon as the evaluation is pending.
-			cache[cacheName] = {
-				...node,
-				nodeValue: null
-			}
 			explanation = evaluateNode(cache, situation, parsedRules, variable)
 		}
 
@@ -46,12 +47,20 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 					!variable.formule) && { [dottedName]: 1 }
 		)
 
-		const nodeValue =
+		let nodeValue =
 			!isNil(situationValue) && explanation.isApplicable != false
 				? situationValue
 				: !isNil(explanation.nodeValue)
 				? explanation.nodeValue
 				: null
+
+		if ([true, false].includes(nodeValue) && explanation.isApplicable) {
+			booleanEngine.addRule(
+				situationValue
+					? new Rules.True(dottedName)
+					: new Rules.False(dottedName)
+			)
+		}
 
 		cache[cacheName] = { ...node, nodeValue, explanation, missingVariables }
 		// console.log('variable ', dottedName, nodeValue, missingVariables)
@@ -87,7 +96,11 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 // - filters on the variable to select one part of the variable's 'composantes'
 
 // TODO - the implementations of filters is really bad. It injects a hack in the situation to make the composante mecanism compute only one of its branch. It is then stored in the cache under a new key, dottedName.filter. This mecanism should just query the variable tree to get the active composante's value...
-export let treatVariableTransforms = (rules, rule) => parseResult => {
+export let treatVariableTransforms = (
+	rules,
+	rule,
+	booleanEngine
+) => parseResult => {
 	let evaluateTransforms = originalEval => (
 		cache,
 		situation,
@@ -160,7 +173,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			...(periodTransform ? { originPeriodValue: nodeValue } : {})
 		}
 	}
-	let node = treatVariable(rules, rule, parseResult.filter)(
+	let node = treatVariable(rules, rule, booleanEngine, parseResult.filter)(
 		parseResult.variable || parseResult
 	)
 
