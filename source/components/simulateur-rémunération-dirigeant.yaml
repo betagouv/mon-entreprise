@@ -25,4 +25,5 @@ branches:
       contrat salarié . assimilé salarié: oui
 raccourcis:
   contrat salarié . rémunération . total: entreprise . chiffre d'affaires
+  indépendant . revenu brut: entreprise . chiffre d'affaires
 

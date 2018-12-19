@@ -2567,8 +2567,16 @@
   format: euros
 
 - espace: indépendant
-  nom: base des cotisations
-  formule: entreprise . chiffre d'affaires
+  nom: revenu net de cotisations
+  description: C'est le revenu professionel
+  formule: 
+    inversion: 
+      avec: 
+        - revenu brut
+
+- espace: indépendant
+  nom: revenu brut
+  formule: revenu net de cotisations + prélèvements
   période: flexible
 
 - nom: entreprise . catégorie d'activité
@@ -2639,7 +2647,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           barème continu: 
-            assiette: base des cotisations 
+            assiette: revenu net de cotisations 
             multiplicateur: plafond sécurité sociale temps plein
             points: 
               0: 1.5%
@@ -2652,7 +2660,7 @@
   période: flexible
   formule:
     multiplication: 
-      assiette: base des cotisations
+      assiette: revenu net de cotisations
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
@@ -2666,7 +2674,7 @@
   période: flexible
   formule:
     barème continu: 
-      assiette: base des cotisations
+      assiette: revenu net de cotisations
       multiplicateur: plafond sécurité sociale temps plein
       points: 
         0: 0%
@@ -2676,10 +2684,10 @@
 - espace: indépendant . cotisations . maladie . artisans commerçants 
   nom: part revenus élevés 
   période: flexible
-  applicable si: base des cotisations > seuil
+  applicable si: revenu net de cotisations > seuil
   formule:
     multiplication: 
-      assiette: base des cotisations
+      assiette: revenu net de cotisations
       taux: 0.15%
 
 - espace: indépendant . cotisations . maladie . artisans commerçants . part revenus élevés 
@@ -2696,7 +2704,7 @@
         - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
           alors: 
             multiplication: 
-              assiette: base des cotisations
+              assiette: revenu net de cotisations
               composantes:
                 - nom: tranche 1
                   plafond: 39732
@@ -2706,7 +2714,7 @@
                   taux: 1.87%
         - sinon:
             barème:
-              assiette: base des cotisations
+              assiette: revenu net de cotisations
               tranches: 
                 - en-dessous de: 39732
                   taux: 17.75%
@@ -2722,7 +2730,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors: 
           barème linéaire: 
-            assiette: base des cotisations
+            assiette: revenu net de cotisations
             tranches: 
               - en-dessous de: 26580
                 montant: 1277
@@ -2748,7 +2756,7 @@
                 montant: 15597
       - sinon: 
           barème:
-            assiette: base des cotisations
+            assiette: revenu net de cotisations
             tranches:
               - en-dessous de: 37846
                 taux: 7%
@@ -2767,7 +2775,7 @@
   période: flexible
   formule:
     multiplication: 
-      assiette: base des cotisations
+      assiette: revenu net de cotisations
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
 
@@ -2795,7 +2803,7 @@
   période: flexible
   formule: 
     somme:
-      - base des cotisations
+      - revenu net de cotisations
       - cotisations
 
 - espace: indépendant . prélèvements
@@ -2803,7 +2811,7 @@
   période: flexible
   formule: 
     multiplication:
-      assiette: base des cotisations
+      assiette: revenu net de cotisations
       taux: 0.29%
       plafond: plafond sécurité sociale temps plein
      # C'est le taux pour les artisans. 
@@ -2814,7 +2822,7 @@
   période: flexible
   formule:
     barème continu:
-      assiette: base des cotisations
+      assiette: revenu net de cotisations
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
@@ -2823,14 +2831,15 @@
 
 
 - espace: indépendant 
-  nom: revenu net de cotisations
+  nom: revenu brut
   période: flexible
-  formule: base des cotisations - prélèvements
+  formule: revenu net de cotisations + prélèvements
 
 - espace: indépendant 
   nom: revenu imposable
   période: flexible
   formule: revenu net de cotisations
+  # TODO
   note: | 
     Attention ! Cette variable n'est pas encore implémentée. Le revenu imposable est plus élevé que le revenu net de cotisations !! 
 
