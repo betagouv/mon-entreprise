@@ -453,8 +453,11 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	let tolerance = 0.1,
 		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
 		nodeValue = uniroot(
-			x => fx(x).nodeValue - fixedObjectiveValue,
-			0,
+			x => {
+				let y = fx(x)
+				return y.nodeValue - fixedObjectiveValue
+			},
+			1,
 			1000000000,
 			tolerance,
 			10

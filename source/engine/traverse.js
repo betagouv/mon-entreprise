@@ -83,15 +83,6 @@ export let treat = (rules, rule) => rawNode => {
 		: { ...parsedNode, evaluate: defaultEvaluate }
 }
 
-export let computeRuleValue = (formuleValue, isApplicable) =>
-	isApplicable === true
-		? formuleValue
-		: isApplicable === false
-		? 0
-		: formuleValue == 0
-		? 0
-		: null
-
 export let treatRuleRoot = (rules, rule) => {
 	/*
 	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
@@ -105,16 +96,10 @@ export let treatRuleRoot = (rules, rule) => {
 		cache.parseLevel++
 
 		let evaluatedAttributes = pipe(
-				pick([
-					'formule',
-					'parentDependency',
-					'non applicable si',
-					'applicable si'
-				]),
+				pick(['parentDependency', 'non applicable si', 'applicable si']),
 				map(value => evaluateNode(cache, situationGate, parsedRules, value))
 			)(node),
 			{
-				formule,
 				parentDependency,
 				'non applicable si': notApplicable,
 				'applicable si': applicable
@@ -129,7 +114,26 @@ export let treatRuleRoot = (rules, rule) => {
 					: anyNull([notApplicable, applicable, parentDependency])
 					? null
 					: !val(notApplicable) && undefOrTrue(val(applicable)),
-			nodeValue = computeRuleValue(val(formule), isApplicable)
+			evaluateFormula = () =>
+				node.formule &&
+				evaluateNode(cache, situationGate, parsedRules, node.formule),
+			// evaluate the formula lazily, only if the applicability is known
+			evaluatedFormula =
+				isApplicable === true
+					? evaluateFormula()
+					: isApplicable === false
+					? undefined
+					: // TODO should we also wait to resolve the missing variables of the applicability conditions before evaluating (and thus collecting the missing variables of) the formula ?
+					  evaluateFormula(),
+			neverNullEvaluatedFormula = evaluatedFormula || {
+				...node.formule,
+				missingVariables: {},
+				nodeValue: 0
+			},
+			{
+				missingVariables: formulaMissingVariables,
+				nodeValue
+			} = neverNullEvaluatedFormula
 
 		let condMissing =
 				isApplicable === false
@@ -139,15 +143,12 @@ export let treatRuleRoot = (rules, rule) => {
 							notApplicable?.missingVariables || {},
 							applicable?.missingVariables || {}
 					  ]),
-			collectInFormule = isApplicable !== false,
-			formMissing =
-				(collectInFormule && formule && formule.missingVariables) || {},
 			// On veut abaisser le score des conséquences par rapport aux conditions,
 			// mais seulement dans le cas où une condition est effectivement présente
 			hasCondition = keys(condMissing).length > 0,
 			missingVariables = mergeMissing(
 				bonus(condMissing, hasCondition),
-				formMissing
+				formulaMissingVariables
 			)
 
 		cache.parseLevel--
@@ -156,6 +157,7 @@ export let treatRuleRoot = (rules, rule) => {
 		return {
 			...node,
 			...evaluatedAttributes,
+			...{ formule: neverNullEvaluatedFormula },
 			nodeValue,
 			isApplicable,
 			missingVariables
