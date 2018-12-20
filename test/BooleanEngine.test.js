@@ -22,7 +22,8 @@ describe('BooleanEngine', () => {
 		)
 	})
 	it('should return missing variables when unknown', () => {
-		engine.addRule(new Rules.False('x'))
+		engine.addRule(new Rules.Or('x', 'y'))
+		engine.addRule(new Rules.Or('y', 'z'))
 		expect(engine.evaluate('x')).to.eq(['x'])
 	})
 	describe('onePossibilityAmong', () => {

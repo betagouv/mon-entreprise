@@ -2,9 +2,6 @@
 import satSolve from 'boolean-sat'
 
 class BooleanRule {
-	getVariables = (): Array<string> => {
-		throw new Error('Abstract method')
-	}
 	toCnf = (): Array<Clause> => {
 		throw new Error('Abstract method')
 	}
@@ -62,9 +59,6 @@ class OnePossibilityAmong extends BooleanRule {
 			new Clause([], this.variables)
 		]
 	}
-	getVariables = () => {
-		return this.variables
-	}
 }
 
 class True extends Clause {
@@ -79,7 +73,14 @@ class False extends Clause {
 	}
 }
 
+class Or extends Clause {
+	constructor(...variables: Array<string>) {
+		super(variables, [])
+	}
+}
+
 const booleanCorrelation = ({ s01, s00, s10, s11 }) => {
+	console.log(s01, s00, s10, s11)
 	return (
 		(s11 * s00 - s01 * s10) /
 		Math.sqrt((s10 + s11) * (s01 + s00) * (s11 + s01) * (s00 + s10))
@@ -182,8 +183,12 @@ class Solution {
 }
 
 class SatSolver {
-	clauses: Array<Clause> = []
-	solutions: Array<Solution> = []
+	clauses: Array<Clause>
+	solutions: Array<Solution>
+	constructor() {
+		this.clauses = []
+		this.solutions = []
+	}
 	addClause(clause: Clause) {
 		this.clauses.push(clause)
 		this.solutions = this.solutions
@@ -233,19 +238,28 @@ class SatSolver {
 
 export default class BooleanEngine {
 	rules: Array<BooleanRule> = []
-	solver: SatSolver = new SatSolver()
+	solver: SatSolver
+	constructor() {
+		this.rules = []
+		this.solver = new SatSolver()
+	}
 	addRule = (rule: BooleanRule) => {
 		this.rules.push(rule)
 		rule.toCnf().forEach(clause => this.solver.addClause(clause))
 	}
 	// TODO : if not applicable, add possibility to remove rule
 	evaluate = (variable: string) => {
-		return this.solver.evaluate(variable)
+		const value = this.solver.evaluate(variable)
+		if (value === null) {
+			return this.solver.collectMissings(variable)
+		}
+		return value
 	}
 }
 
 export const Rules = {
 	OnePossibilityAmong,
 	True,
+	Or,
 	False
 }
