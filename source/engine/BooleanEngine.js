@@ -73,13 +73,60 @@ class False extends Clause {
 	}
 }
 
+const booleanCorrelation = ({ s01, s00, s10, s11 }) => {
+	return (
+		(s11 * s00 - s01 * s10) /
+		Math.sqrt((s10 + s11) * (s01 + s00) * (s11 + s01) * (s00 + s10))
+	)
+}
+
 class Solution {
 	solution: Clause
+	clauses: Clause
+	static computeCorrelation = (
+		solutions: Array<Solution>,
+		variable: string
+	): Array<[string, number]> => {
+		const booleanDependencies: {
+			[string]: { s00: number, s11: number, s01: number, s10: number }
+		} = solutions[0].getVariables().reduce(
+			(acc, variable) => ({
+				[variable]: { s00: 0, s11: 0, s10: 0, s01: 0 },
+				...acc
+			}),
+			{}
+		)
+		solutions.forEach(solution =>
+			solution.getVariables().forEach(variable2 => {
+				const [value1, value2] = [variable, variable2].map(solution.getValue)
+				if (value1 && value2) {
+					booleanDependencies[variable2].s11 = +1
+				}
+				if (value1 && !value2) {
+					booleanDependencies[variable2].s10 = +1
+				}
+				if (!value1 && value2) {
+					booleanDependencies[variable2].s01 = +1
+				}
+				if (!value1 && !value2) {
+					booleanDependencies[variable2].s00 = +1
+				}
+			})
+		)
+
+		return Object.entries(booleanDependencies).map(
+			([variable, booleanDependency]) => [
+				variable,
+				// $FlowFixMe
+				booleanCorrelation(booleanDependency)
+			]
+		)
+	}
 	constructor(clauses: Array<Clause>, excludedSolutions: Array<Solution> = []) {
 		const variables = []
 		const cnf = [
-			clauses,
-			excludedSolutions.map(solution => solution.negate())
+			...clauses,
+			...excludedSolutions.map(solution => solution.negate())
 		].map(clause =>
 			clause.getVariables().map(variable => {
 				const variableNumber: number = variables.indexOf(variable) + 1
@@ -105,20 +152,27 @@ class Solution {
 	negate = (): Clause => {
 		return this.solution
 	}
-	isCompatibleWith = (clause: Clause) => {
-		new Solution(clause)
+	compatibleWith = (clause: Clause): Solution => {
+		return new Solution([clause, ...this.solution.negate()])
+	}
+	getValue = (variable: string): boolean => {
+		return this.solution.getVariables().indexOf(variable) === -1
+			? null
+			: !this.solution.isNegated(variable)
+	}
+	getVariables = () => {
+		return this.solution.getVariables()
 	}
 }
 
 class SatSolver {
 	clauses: Array<Clause> = []
-	solutions: Array<Solution> = []
-
+	solutions: Array<$ReadOnly<Solution>> = []
 	addClause(clause: Clause) {
 		this.clauses.push(clause)
-		this.solutions = this.solutions.filter(
-			solution => !solution.isCompatibleWith(clause)
-		)
+		this.solutions = this.solutions
+			.map(solution => solution.compatibleWith(clause))
+			.filter(Boolean)
 		if (!this.solutions.length) {
 			this.solve()
 		}
@@ -131,9 +185,19 @@ class SatSolver {
 		this.throwIfNotSat()
 		return solution
 	}
-	findAllSolutions() {}
-	evaluate(variable: string) {
-		// const variable =
+
+	evaluate(variable: string): ?boolean {
+		const isTrue = !!new Solution([...this.clauses, new True(variable)])
+		const isFalse = !!new Solution([...this.clauses, new False(variable)])
+		if (isTrue && isFalse) {
+			return null
+		}
+		return isTrue
+	}
+
+	collectMissings(variable: string): Array<Boolean> {
+		const correlations = Solution.computeCorrelation(this.solutions, variable)
+		console.log(correlations)
 	}
 	throwIfNotSat = () => {
 		if (!this.solutions.length) {
@@ -142,38 +206,22 @@ class SatSolver {
 			)
 		}
 	}
-
-	evaluate = (variable: string): ?boolean => {
-		if (!(variable in this.variableToNumber)) {
-			return null
-		}
-		const isTrue = satSolve(this.numVars, [
-			...this.cnf,
-			new True(variable).toNumbers(this.variableToNumber)
-		])
-		const isFalse = satSolve(this.numVars, [
-			...this.cnf,
-			new False(variable).toNumbers(this.variableToNumber)
-		])
-		return isTrue && isFalse ? null : isTrue ? true : false
-	}
 }
 
 export default class BooleanEngine {
 	rules: Array<BooleanRule> = []
-	evaluation: Evaluation = new Evaluation()
+	solver: SatSolver = new SatSolver()
 	addRule = (rule: BooleanRule) => {
 		this.rules.push(rule)
-		rule.toCnf().forEach(clause => this.evaluation.addClause(clause))
+		rule.toCnf().forEach(clause => this.solver.addClause(clause))
 	}
 	// TODO : if not applicable, add possibility to remove rule
 	evaluate = (variable: string) => {
-		const evaluation = this.evaluation.evaluate(variable)
+		const evaluation = this.solver.evaluate(variable)
 		if (evaluation === null) {
-			return this.collectMissings(variable)
+			return this.solver.collectMissings(variable)
 		}
 	}
-	collectMissings = (variable: string) => {}
 }
 
 export const Rules = {
