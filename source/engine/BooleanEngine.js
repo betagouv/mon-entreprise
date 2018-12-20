@@ -34,6 +34,12 @@ class Clause extends BooleanRule {
 			...this.negatedVariables.map(variable => new True(variable))
 		]
 	}
+	toString = (): string => {
+		return [
+			this.variables.join(', '),
+			this.negatedVariables.map(x => 'not ' + x).join(', ')
+		].join(', ')
+	}
 }
 
 class OnePossibilityAmong extends BooleanRule {
@@ -82,7 +88,6 @@ const booleanCorrelation = ({ s01, s00, s10, s11 }) => {
 
 class Solution {
 	solution: Clause
-	clauses: Clause
 	static computeCorrelation = (
 		solutions: Array<Solution>,
 		variable: string
@@ -139,47 +144,59 @@ class Solution {
 			})
 		)
 		const solution = satSolve(variables.length, cnf)
+		// console.log(cnf, solution)
 		if (!solution) {
 			return null
 		}
 		const falseVariables = []
 		const trueVariables = []
-		solution.forEach((value, index) => {
-			;(value ? trueVariables : falseVariables).push(variables[index - 1])
+		solution.slice(1).forEach((value, index) => {
+			;(value ? trueVariables : falseVariables).push(variables[index])
 		})
 		this.solution = new Clause(trueVariables, falseVariables)
 	}
 	negate = (): Clause => {
 		return this.solution
 	}
-	compatibleWith = (clause: Clause): Solution => {
+	addClause = (clause: Clause): Solution => {
+		if (!this.exists()) {
+			return this
+		}
 		return new Solution([clause, ...this.solution.negate()])
 	}
 	getValue = (variable: string): boolean => {
-		return this.solution.getVariables().indexOf(variable) === -1
-			? null
-			: !this.solution.isNegated(variable)
+		if (this.solution.getVariables().indexOf(variable) === -1) {
+			throw new Error('Variable not in solution')
+		}
+		return !this.solution.isNegated(variable)
 	}
 	getVariables = () => {
 		return this.solution.getVariables()
+	}
+	exists = (): boolean => {
+		return !!this.solution
+	}
+	toString = (): string => {
+		return this.exists() ? 'None' : this.solution.toString()
 	}
 }
 
 class SatSolver {
 	clauses: Array<Clause> = []
-	solutions: Array<$ReadOnly<Solution>> = []
+	solutions: Array<Solution> = []
 	addClause(clause: Clause) {
 		this.clauses.push(clause)
 		this.solutions = this.solutions
-			.map(solution => solution.compatibleWith(clause))
-			.filter(Boolean)
+			.map(solution => solution.addClause(clause))
+			.filter(solution => !solution.exists())
+
 		if (!this.solutions.length) {
 			this.solve()
 		}
 	}
 	solve() {
 		const solution = new Solution(this.clauses, this.solutions)
-		if (solution) {
+		if (solution.exists()) {
 			this.solutions.push(solution)
 		}
 		this.throwIfNotSat()
@@ -187,15 +204,21 @@ class SatSolver {
 	}
 
 	evaluate(variable: string): ?boolean {
-		const isTrue = !!new Solution([...this.clauses, new True(variable)])
-		const isFalse = !!new Solution([...this.clauses, new False(variable)])
-		if (isTrue && isFalse) {
+		const trueSolution = new Solution([...this.clauses, new True(variable)])
+		if (!trueSolution.exists()) {
+			return false
+		}
+
+		this.solutions.push(trueSolution)
+		const falseSolution = new Solution([...this.clauses, new False(variable)])
+		if (falseSolution.exists()) {
+			this.solutions.push(falseSolution)
 			return null
 		}
-		return isTrue
+		return true
 	}
 
-	collectMissings(variable: string): Array<Boolean> {
+	collectMissings(variable: string): void {
 		const correlations = Solution.computeCorrelation(this.solutions, variable)
 		console.log(correlations)
 	}
@@ -217,10 +240,7 @@ export default class BooleanEngine {
 	}
 	// TODO : if not applicable, add possibility to remove rule
 	evaluate = (variable: string) => {
-		const evaluation = this.solver.evaluate(variable)
-		if (evaluation === null) {
-			return this.solver.collectMissings(variable)
-		}
+		return this.solver.evaluate(variable)
 	}
 }
 
