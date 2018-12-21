@@ -805,7 +805,6 @@
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   question: Quel est le montant des avantages en nature ?
-  applicable si: contrat salarié . avantages en nature
   période: flexible
   suggestions:
     nourriture: 80
