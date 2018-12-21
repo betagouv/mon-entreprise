@@ -12,7 +12,7 @@ branches:
       micro entreprise: oui
       indépendant: non
       contrat salarié: non
-  - nom: Indépendant (ex-RSI)
+  - nom: Indépendant
     situation: 
       indépendant: oui
       micro entreprise: non
@@ -23,6 +23,7 @@ branches:
       indépendant: non
       contrat salarié: oui
       contrat salarié . assimilé salarié: oui
+      contrat salarié . ATMP . taux réduit: oui
 raccourcis:
   contrat salarié . rémunération . total: entreprise . chiffre d'affaires
   indépendant . revenu brut: entreprise . chiffre d'affaires
