@@ -13,6 +13,7 @@ import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import { findRuleByDottedName } from 'Engine/rules'
+import { formValueSelector } from 'redux-form'
 
 export default compose(
 	connect(
@@ -21,7 +22,11 @@ export default compose(
 				flatRulesSelector(state),
 				simulationConfig.objectif
 			),
-			analyses: analysisWithDefaultsSelector(state, simulationConfig)
+			analyses: analysisWithDefaultsSelector(state, simulationConfig),
+			chiffreAffaires: formValueSelector('conversation')(
+				state,
+				"entreprise . chiffre d'affaires"
+			)
 		}),
 		dispatch => ({
 			setSituationBranch: id => dispatch({ type: 'SET_SITUATION_BRANCH', id })
@@ -31,7 +36,13 @@ export default compose(
 )(
 	class ComparativeTargets extends React.Component {
 		render() {
-			let { colours, analyses, target, setSituationBranch } = this.props
+			let {
+				colours,
+				analyses,
+				target,
+				setSituationBranch,
+				chiffreAffaires
+			} = this.props
 			return (
 				<div id="targets">
 					<h3>{target.title}</h3>
@@ -57,15 +68,22 @@ export default compose(
 										<span className="value">
 											<AnimatedTargetValue value={nodeValue} />
 										</span>{' '}
+										<Link
+											title="Quel est calcul ?"
+											style={{ color: this.props.colours.colour }}
+											to={'/règle/' + dottedName}
+											onClick={() => setSituationBranch(i)}
+											className="explanation">
+											{emoji('📖')}
+										</Link>
 									</span>
-									<Link
-										title="Quel est calcul ?"
-										style={{ color: this.props.colours.colour }}
-										to={'/règle/' + dottedName}
-										onClick={() => setSituationBranch(i)}
-										className="explanation">
-										{emoji('📖')}
-									</Link>
+									<small>
+										Soit{' '}
+										{Math.round(
+											((chiffreAffaires - nodeValue) / +chiffreAffaires) * 100
+										)}{' '}
+										% de prélèvements
+									</small>
 								</li>
 							)
 						})}
