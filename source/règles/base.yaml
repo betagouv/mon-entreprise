@@ -2837,10 +2837,7 @@
 - espace: indépendant 
   nom: revenu imposable
   période: flexible
-  formule: revenu net de cotisations
-  # TODO
-  note: | 
-    Attention ! Cette variable n'est pas encore implémentée. Le revenu imposable est plus élevé que le revenu net de cotisations !! 
+  formule: revenu net de cotisations + prélèvements . CSG et CRDS (non déductible)
 
 
 
