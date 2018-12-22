@@ -2893,7 +2893,7 @@
   période: flexible
   formule: 
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: base des cotisations
       taux: 
         variations: 
           - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
@@ -2905,5 +2905,5 @@
 - espace: micro entreprise . impôt
   nom: revenu abattu
   période: flexible
-  formule: revenu net de cotisations - abattement
+  formule: base des cotisations - abattement
 
