@@ -752,8 +752,8 @@
   format: euros
   suggestions:
     salaire médian: 2300
-    SMIC: 1500
-  contrôles:
+    SMIC: 1522
+  contrôles: 
     - si: brut de base [mensuel] < 50
       niveau: bloquant
     - si: brut de base [mensuel] < SMIC [mensuel]
@@ -866,7 +866,9 @@
 - espace: contrat salarié
   nom: SMIC temps plein
   période: mois
-  formule: 1498.47
+  formule: 1521.22
+  références: 
+    décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
 
 - espace: contrat salarié
   nom: SMIC
