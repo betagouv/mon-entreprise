@@ -1776,6 +1776,7 @@
               toutes ces conditions:
                 - assiette cotisations sociales < plafond de réduction 
                 - ≠ statut JEI
+                - ≠ assimilé salarié
             alors: 3.45%
           - sinon: 5.25%
   références:
@@ -2129,7 +2130,11 @@
             dû par: employeur
           taux: 
             variations: 
-              - si: assiette cotisations sociales < plafond de réduction employeur
+              - si: 
+                  toutes ces conditions: 
+                    - assiette cotisations sociales < plafond de réduction employeur
+                    - ≠ statut JEI
+                    - ≠ assimilé salarié
                 alors: 7%
               - sinon: 13%
         - attributs: 
