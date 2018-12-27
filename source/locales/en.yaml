@@ -46,7 +46,7 @@ branches:
     counterpart: Helps build new and affordable housing.
   transport:
     name: transportation
-    counterpart: Helps keep the price of a public transportation ticket low.
+    counterpart: Lowers the price of a public transportation ticket.
   accidents du travail / maladies professionnelles:
     name: work accidents / occupational diseases
     counterpart: Offers full coverage of occupational illnesses or accidents.
@@ -59,6 +59,7 @@ branches:
   autres:
     name: other
     counterpart: Other contributions to the social system.
+
 Salaire brut: Gross salary
 Salaire net: Net salary
 Salaire chargé: Total salary
