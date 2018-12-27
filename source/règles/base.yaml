@@ -1569,22 +1569,22 @@
       - multiplicateur * écart au plafond de l'assiette
   notes: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
   exemples:
+    # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
-        assiette cotisations sociales: 1498.47
-      valeur attendue: 420.93
+        assiette cotisations sociales: 1521.22
+      valeur attendue: 427.31
     - nom: "Salaire proche du SMIC"
       situation:
-        assiette cotisations sociales: 1516.7
-      valeur attendue: 412.4
-      # Explication : (0,2809÷0,6)×(1,6×(1498,5÷1516,7)−1)×1516,7
+        assiette cotisations sociales: 1530
+      valeur attendue: 423.2
     - nom: "Résiduelle pour un salaire médian"
       situation:
         assiette cotisations sociales: 2300
-      valeur attendue: 45.69
+      valeur attendue: 62.71
     - nom: 'Nulle au-dessus du plafond'
       situation:
-        assiette cotisations sociales: 2398
+        assiette cotisations sociales: 2434
       valeur attendue: 0
 
 - espace: contrat salarié . réduction générale
