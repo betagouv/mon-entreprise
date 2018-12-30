@@ -9,7 +9,7 @@ describe('library', function() {
 		let value = Syso.evaluate(target, {
 			'contrat salarié': { salaire: { 'brut de base': 2300 } }
 		})
-		expect(value).to.be.within(1800, 1803)
+		expect(value).to.be.within(1798, 1800)
 	})
 
 	it('should let the user replace the default rules', function() {
@@ -44,7 +44,7 @@ describe('library', function() {
 			{ extra: rules }
 		)
 
-		expect(value).to.be.closeTo(1802, 1)
+		expect(value).to.be.closeTo(1799, 1)
 	})
 	it('should let the user extend the rules constellation in a serious manner', function() {
 		let CA = 550 * 16
@@ -56,7 +56,6 @@ describe('library', function() {
 			{ extra: sasuRules }
 		)
 
-		console.log({ salaireTotal })
 		let salaireNetAprèsImpôt = Syso.evaluate(
 			'contrat salarié . salaire . net après impôt',
 			{
@@ -64,7 +63,6 @@ describe('library', function() {
 			}
 		)
 
-		console.log({ salaireNetAprèsImpôt })
 
 		let [revenuDisponible, dividendes] = Syso.evaluate(
 			['revenu disponible', 'dividendes . net'],
@@ -74,7 +72,9 @@ describe('library', function() {
 			},
 			{ extra: sasuRules }
 		)
-		console.log({ revenuDisponible, dividendes })
+
+		expect(revenuDisponible).to.be.closeTo(4811, 1)
+		expect(dividendes).to.be.closeTo(2507, 1)
 	})
 
 	it('should let the user define a simplified revenue tax system', function() {
