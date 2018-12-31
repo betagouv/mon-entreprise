@@ -20,11 +20,11 @@ describe('Landing basic test', function() {
 		salaryInput('Salaire net').type('2000')
 		cy.get('.distribution-chart__container')
 	})
-	it('should allow to navigate to the aid page', function() {
+	it('should allow to navigate to a documentation page', function() {
 		cy.visit('/')
 		salaryInput('Salaire net').type('2000')
-		cy.contains("d'aides").click()
-		cy.contains('Aides employeur')
+		cy.contains("Total chargé").click()
+		cy.contains(`C'est le total que l'employeur doit verser pour employer un salarié`)
 	})
 })
 

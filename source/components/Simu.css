@@ -5,3 +5,7 @@
 .change-answer-link {
 	text-align: center;
 }
+
+#updateMessage a::after {
+    display: none
+}
