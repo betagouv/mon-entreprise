@@ -1970,6 +1970,7 @@
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
 
   période: flexible
+  non applicable si: assimilé salarié
   formule:
     multiplication:
       assiette: assiette cotisations sociales
