@@ -141,7 +141,7 @@
 		"serve-handler": "^5.0.5",
 		"sinon": "^4.5.0",
 		"sinon-chai": "^3.0.0",
-		"source-map-support": "^0.5.4",
+		"source-map-support": "^0.5.9",
 		"style-loader": "^0.23.1",
 		"url-loader": "^1.0.1",
 		"webpack": "^4.26.0",
