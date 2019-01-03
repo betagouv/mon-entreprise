@@ -21,10 +21,31 @@ describe('BooleanEngine', () => {
 			'Impossibilité logique'
 		)
 	})
-	it('should return missing variables when unknown', () => {
-		engine.addRule(new Rules.Or('x', 'y'))
-		engine.addRule(new Rules.Or('y', 'z'))
-		expect(engine.evaluate('x')).to.eq(['x'])
+	describe('collectMissings', () => {
+		it('should return missing variables with their score when unknown', () => {
+			engine.addRule(new Rules.Or('x', 'y'))
+			engine.addRule(new Rules.Or('y', 'z'))
+			const missings = engine.evaluate('x')
+			expect(missings).to.be.an('object')
+			expect(missings).to.include({ x: 1, y: 0.5 })
+		})
+		it('should not return variable that are not correlated with the target', () => {
+			engine.addRule(new Rules.Or('x', 'y'))
+			engine.addRule(
+				new Rules.OnePossibilityAmong('a', 'b', 'c', 'd', 'e', 'f', 'g')
+			)
+			const missings = engine.evaluate('x')
+			expect(missings).to.be.an('object')
+			expect(missings).to.not.have.any.keys('a', 'b', 'c', 'd', 'e', 'f', 'g')
+		})
+		it('should not return variables that are not missing', () => {
+			engine.addRule(new Rules.Or('x', 'y'))
+			engine.addRule(new Rules.Or('y', 'z'))
+			engine.addRule(new Rules.True('y'))
+			const missings = engine.evaluate('x')
+			expect(missings).to.be.an('object')
+			expect(missings).to.not.have.property('y')
+		})
 	})
 	describe('onePossibilityAmong', () => {
 		it('should solve everything when one is true', () => {

@@ -1,5 +1,6 @@
 /* @flow */
 import satSolve from 'boolean-sat'
+import { compose, filter, map } from 'ramda'
 
 class BooleanRule {
 	toCnf = (): Array<Clause> => {
@@ -84,18 +85,19 @@ class Or extends Clause {
 }
 
 const booleanCorrelation = ({ s01, s00, s10, s11 }) => {
-	console.log(s01, s00, s10, s11)
-	return (
-		(s11 * s00 - s01 * s10) /
-		Math.sqrt((s10 + s11) * (s01 + s00) * (s11 + s01) * (s00 + s10))
-	)
+	// https://en.wikipedia.org/wiki/Phi_coefficient
+	const D = (s10 + s11) * (s01 + s00) * (s11 + s01) * (s00 + s10)
+	if (D === 0) {
+		return 0
+	}
+	return (s11 * s00 - s01 * s10) / Math.sqrt(D)
 }
 
 class Solution extends Clause {
 	static computeCorrelation = (
 		solutions: Array<Solution>,
 		variable: string
-	): Array<[string, number]> => {
+	): { [string]: number } => {
 		const booleanDependencies: {
 			[string]: { s00: number, s11: number, s01: number, s10: number }
 		} = solutions[0].getVariables().reduce(
@@ -122,13 +124,12 @@ class Solution extends Clause {
 				}
 			})
 		)
-
-		return Object.entries(booleanDependencies).map(
-			([variable, booleanDependency]) => [
-				variable,
-				// $FlowFixMe
-				booleanCorrelation(booleanDependency)
-			]
+		return map(
+			compose(
+				Math.abs,
+				booleanCorrelation
+			),
+			booleanDependencies
 		)
 	}
 	static computeNewSolution(
@@ -151,7 +152,6 @@ class Solution extends Clause {
 			})
 		)
 		const solution = satSolve(variables.length, cnf)
-		// console.log(cnf, solution)
 		if (!solution) {
 			return null
 		}
@@ -162,9 +162,6 @@ class Solution extends Clause {
 		})
 		return new Solution(trueVariables, falseVariables)
 	}
-	negate = (): Clause => {
-		return this
-	}
 	getValue = (variable: string): boolean => {
 		if (this.getVariables().indexOf(variable) === -1) {
 			throw new Error(
@@ -173,8 +170,8 @@ class Solution extends Clause {
 		}
 		return !this.isNegated(variable)
 	}
-	addClause = (clause: Clause): ?Solution => {
-		return Solution.computeNewSolution([this, clause])
+	appliesTo = (clauses: Array<Clause>): ?Solution => {
+		return Solution.computeNewSolution([...this.negate(), ...clauses])
 	}
 }
 
@@ -188,23 +185,24 @@ class SatSolver {
 	addClause(clause: Clause) {
 		this.clauses.push(clause)
 		this.solutions = this.solutions
-			.map(solution => solution.addClause(clause))
+			.map(solution => solution.appliesTo(this.clauses))
 			.filter(Boolean)
-
-		if (!this.solutions.length) {
-			this.solve()
-		}
+		this.solve()
 	}
 	solve() {
 		const solution = Solution.computeNewSolution(this.clauses, this.solutions)
 		if (solution) {
 			this.solutions.push(solution)
 		}
-		this.throwIfNotSat()
+		if (!this.solutions.length) {
+			throw new Error(
+				'Impossibilité logique : les règles spécifiées ne sont pas compatibles entre elles'
+			)
+		}
 		return solution
 	}
 
-	evaluate(variable: string): ?boolean {
+	evaluate(variable: string): boolean | null {
 		const trueSolution = Solution.computeNewSolution([
 			...this.clauses,
 			new True(variable)
@@ -212,7 +210,6 @@ class SatSolver {
 		if (!trueSolution) {
 			return false
 		}
-
 		this.solutions.push(trueSolution)
 		const falseSolution = Solution.computeNewSolution([
 			...this.clauses,
@@ -225,16 +222,26 @@ class SatSolver {
 		return true
 	}
 
-	collectMissings(variable: string): void {
-		const correlations = Solution.computeCorrelation(this.solutions, variable)
-		console.log(correlations)
-	}
-	throwIfNotSat = () => {
+	collectMissings(variable: string): { [string]: number } {
 		if (!this.solutions.length) {
-			throw new Error(
-				'Impossibilité logique : les règles spécifiées ne sont pas compatibles entre elles'
-			)
+			throw new Error('Should be called after evaluate')
 		}
+		/* 	TODO : 
+			- rendre l'algorithme deterministe ? (fonctionne ici par échantillonage pour des soucis de perf)
+			- isoler les groupe de variables indépendant dans le SatSolver ? 
+		*/
+		const representativePopulationSize =
+			this.solutions[0].getVariables().length * 4
+		while (
+			this.solutions.length < representativePopulationSize &&
+			this.solve()
+		) {
+			null
+		}
+		return filter(
+			correlation => correlation !== 0,
+			Solution.computeCorrelation(this.solutions, variable)
+		)
 	}
 }
 
@@ -250,7 +257,7 @@ export default class BooleanEngine {
 		rule.toCnf().forEach(clause => this.solver.addClause(clause))
 	}
 	// TODO : if not applicable, add possibility to remove rule
-	evaluate = (variable: string) => {
+	evaluate = (variable: string): boolean | { [string]: number } => {
 		const value = this.solver.evaluate(variable)
 		if (value === null) {
 			return this.solver.collectMissings(variable)
