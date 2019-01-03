@@ -24,12 +24,16 @@ class Clause extends BooleanRule {
 	isNegated = (variable: string): boolean => {
 		return this.negatedVariables.indexOf(variable) !== -1
 	}
+
 	negate = (): Array<Clause> => {
 		// De Morgan laws
 		return [
 			...this.variables.map(variable => new False(variable)),
 			...this.negatedVariables.map(variable => new True(variable))
 		]
+	}
+	invert = (): Clause => {
+		return new Clause(this.negatedVariables, this.variables)
 	}
 	toString = (): string => {
 		return [
@@ -87,8 +91,7 @@ const booleanCorrelation = ({ s01, s00, s10, s11 }) => {
 	)
 }
 
-class Solution {
-	solution: Clause
+class Solution extends Clause {
 	static computeCorrelation = (
 		solutions: Array<Solution>,
 		variable: string
@@ -128,11 +131,14 @@ class Solution {
 			]
 		)
 	}
-	constructor(clauses: Array<Clause>, excludedSolutions: Array<Solution> = []) {
+	static computeNewSolution(
+		clauses: Array<Clause>,
+		excludedSolutions: Array<Solution> = []
+	): ?Solution {
 		const variables = []
 		const cnf = [
 			...clauses,
-			...excludedSolutions.map(solution => solution.negate())
+			...excludedSolutions.map(solution => solution.invert())
 		].map(clause =>
 			clause.getVariables().map(variable => {
 				const variableNumber: number = variables.indexOf(variable) + 1
@@ -154,31 +160,21 @@ class Solution {
 		solution.slice(1).forEach((value, index) => {
 			;(value ? trueVariables : falseVariables).push(variables[index])
 		})
-		this.solution = new Clause(trueVariables, falseVariables)
+		return new Solution(trueVariables, falseVariables)
 	}
 	negate = (): Clause => {
-		return this.solution
-	}
-	addClause = (clause: Clause): Solution => {
-		if (!this.exists()) {
-			return this
-		}
-		return new Solution([clause, ...this.solution.negate()])
+		return this
 	}
 	getValue = (variable: string): boolean => {
-		if (this.solution.getVariables().indexOf(variable) === -1) {
-			throw new Error('Variable not in solution')
+		if (this.getVariables().indexOf(variable) === -1) {
+			throw new Error(
+				`Variable '${variable}' not in solution '${this.toString()}'`
+			)
 		}
-		return !this.solution.isNegated(variable)
+		return !this.isNegated(variable)
 	}
-	getVariables = () => {
-		return this.solution.getVariables()
-	}
-	exists = (): boolean => {
-		return !!this.solution
-	}
-	toString = (): string => {
-		return this.exists() ? 'None' : this.solution.toString()
+	addClause = (clause: Clause): ?Solution => {
+		return Solution.computeNewSolution([this, clause])
 	}
 }
 
@@ -193,15 +189,15 @@ class SatSolver {
 		this.clauses.push(clause)
 		this.solutions = this.solutions
 			.map(solution => solution.addClause(clause))
-			.filter(solution => !solution.exists())
+			.filter(Boolean)
 
 		if (!this.solutions.length) {
 			this.solve()
 		}
 	}
 	solve() {
-		const solution = new Solution(this.clauses, this.solutions)
-		if (solution.exists()) {
+		const solution = Solution.computeNewSolution(this.clauses, this.solutions)
+		if (solution) {
 			this.solutions.push(solution)
 		}
 		this.throwIfNotSat()
@@ -209,14 +205,20 @@ class SatSolver {
 	}
 
 	evaluate(variable: string): ?boolean {
-		const trueSolution = new Solution([...this.clauses, new True(variable)])
-		if (!trueSolution.exists()) {
+		const trueSolution = Solution.computeNewSolution([
+			...this.clauses,
+			new True(variable)
+		])
+		if (!trueSolution) {
 			return false
 		}
 
 		this.solutions.push(trueSolution)
-		const falseSolution = new Solution([...this.clauses, new False(variable)])
-		if (falseSolution.exists()) {
+		const falseSolution = Solution.computeNewSolution([
+			...this.clauses,
+			new False(variable)
+		])
+		if (falseSolution) {
 			this.solutions.push(falseSolution)
 			return null
 		}
