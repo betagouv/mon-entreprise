@@ -2568,6 +2568,7 @@
 
 - espace: indépendant
   nom: revenu net de cotisations
+  titre: Revenu net en tant qu'indépendant
   description: C'est le revenu professionel
   formule: 
     inversion: 
@@ -2871,6 +2872,7 @@
 
 - espace: micro entreprise
   nom: revenu net de cotisations
+  titre: Revenu net d'une micro-entreprise
   formule: base des cotisations - cotisations
   période: flexible
 
