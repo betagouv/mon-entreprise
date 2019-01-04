@@ -2569,7 +2569,13 @@
 - espace: indépendant
   nom: revenu net de cotisations
   titre: Revenu net en tant qu'indépendant
-  description: C'est le revenu professionel
+  description: | 
+    
+    C'est le revenu professionel du travailleur indépendant. 
+  
+    Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché. 
+
+    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
   formule: 
     inversion: 
       avec: 
