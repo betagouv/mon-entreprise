@@ -10,7 +10,6 @@ import {
 	nextStepsSelector,
 	analysisWithDefaultsSelector
 } from 'Selectors/analyseSelectors'
-import Controls from './Controls'
 import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 import { createMarkdownDiv } from 'Engine/marked'
 
@@ -28,10 +27,6 @@ export default compose(
 		}
 		render() {
 			let { colours, noNextSteps, previousAnswers, analyses } = this.props
-			let controls = uniqBy(
-				({ test, dottedName }) => test + dottedName,
-				chain(({ controls }) => controls, analyses)
-			)
 
 			return (
 				<div id="ComparativeSimulation" className="ui__ container">
@@ -57,7 +52,6 @@ export default compose(
 							simulationConfig={simulationConfig}
 							textColourOnWhite={this.props.colours.textColourOnWhite}
 						/>
-						<Controls {...{ controls }} />
 						{noNextSteps && (
 							<>
 								<h2>Plus de questions ! </h2>

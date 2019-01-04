@@ -38,3 +38,12 @@
 	text-decoration: none;
 	line-height: 0;
 }
+#targets #microNotApplicable {
+		font-style: italic;
+		text-align: center;
+		font-size: 90%;
+}
+#targets .microNotApplicable {
+													opacity: 0.85;
+													filter: grayscale(80%)
+											  }

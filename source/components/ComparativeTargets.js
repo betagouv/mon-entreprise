@@ -52,38 +52,56 @@ export default compose(
 							if (!analysis.targets) return null
 							let { nodeValue, dottedName } = analysis.targets[0],
 								name = simulationConfig.branches[i].nom
+
+							let microNotApplicable =
+								name === 'Micro-entreprise' &&
+								analysis.controls?.find(({ test }) =>
+									test.includes('base des cotisations > plafond')
+								)
+
 							return (
 								<li
 									style={{
-										color: colours.textColour,
-										background: `linear-gradient(
-							60deg,
-							${colours.darkColour} 0%,
-							${colours.colour} 100%
-						)`
+										...{
+											color: colours.textColour,
+											background: `linear-gradient(
+											60deg,
+											${colours.darkColour} 0%,
+											${colours.colour} 100%
+										)`
+										},
+										...(microNotApplicable: {})
 									}}
+									className={microNotApplicable ? 'microNotApplicable' : ''}
 									key={name}>
 									<span className="title">{name}</span>
-									<span className="figure">
-										<span className="value">
-											<AnimatedTargetValue value={nodeValue} />
-										</span>{' '}
-										<Link
-											title="Quel est calcul ?"
-											style={{ color: this.props.colours.colour }}
-											to={'/règle/' + dottedName}
-											onClick={() => setSituationBranch(i)}
-											className="explanation">
-											{emoji('📖')}
-										</Link>
-									</span>
-									<small>
-										Soit{' '}
-										{Math.round(
-											((chiffreAffaires - nodeValue) / +chiffreAffaires) * 100
-										)}{' '}
-										% de prélèvements
-									</small>
+									{microNotApplicable ? (
+										<p id="microNotApplicable">{microNotApplicable.message}</p>
+									) : (
+										<>
+											<span className="figure">
+												<span className="value">
+													<AnimatedTargetValue value={nodeValue} />
+												</span>{' '}
+												<Link
+													title="Quel est calcul ?"
+													style={{ color: this.props.colours.colour }}
+													to={'/règle/' + dottedName}
+													onClick={() => setSituationBranch(i)}
+													className="explanation">
+													{emoji('📖')}
+												</Link>
+											</span>
+											<small>
+												Soit{' '}
+												{Math.round(
+													((chiffreAffaires - nodeValue) / +chiffreAffaires) *
+														100
+												)}{' '}
+												% de prélèvements
+											</small>
+										</>
+									)}
 								</li>
 							)
 						})}

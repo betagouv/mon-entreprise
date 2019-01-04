@@ -2854,7 +2854,7 @@
   période: flexible
   contrôles:
     - si: base des cotisations > plafond
-      message: Attention, vous dépassez le plafond de la micro-entreprise. Vous devez créer une entreprise normale.
+      message: Le plafond de la micro-entreprise est dépassé. 
       niveau: avertissement
 
 - espace: micro entreprise
