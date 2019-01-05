@@ -1,66 +1,65 @@
 import {
-	reduce,
-	path,
-	mergeWith,
-	objOf,
-	toPairs,
-	dissoc,
 	add,
-	find,
-	pluck,
-	map,
 	any,
-	equals,
-	is,
-	keys,
-	evolve,
 	curry,
+	dissoc,
+	equals,
+	evolve,
 	filter,
-	pipe,
-	head,
-	isEmpty,
-	propEq,
-	prop,
+	find,
 	has,
+	head,
+	is,
+	isEmpty,
+	isNil,
+	keys,
+	map,
 	max,
+	mergeWith,
 	min,
+	objOf,
+	path,
+	pipe,
+	pluck,
+	prop,
+	propEq,
+	reduce,
+	reject,
 	subtract,
 	sum,
-	isNil,
-	reject
+	toPairs
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { val } from './traverse-common-functions'
-import { Node, SimpleRuleLink } from './mecanismViews/common'
+import 'react-virtualized/styles.css'
+import { Rules } from './BooleanEngine'
 import {
-	makeJsx,
-	evaluateNode,
+	bonus,
+	collectNodeMissing,
 	evaluateArray,
 	evaluateArrayWithFilter,
+	evaluateNode,
 	evaluateObject,
-	parseObject,
-	collectNodeMissing,
+	makeJsx,
 	mergeAllMissing,
 	mergeMissing,
-	bonus
+	parseObject
 } from './evaluation'
-import {
-	findRuleByName,
-	disambiguateRuleReference,
-	findRuleByDottedName
-} from './rules'
-
-import 'react-virtualized/styles.css'
-import Somme from './mecanismViews/Somme'
-import { Rules } from './BooleanEngine'
-import Barème from './mecanismViews/Barème'
-import Variations from './mecanismViews/Variations'
-import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
-import Allègement from './mecanismViews/Allègement'
-import Composantes from './mecanismViews/Composantes'
 import { trancheValue } from './mecanisms/barème'
+import Allègement from './mecanismViews/Allègement'
+import Barème from './mecanismViews/Barème'
+import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
+import { Node, SimpleRuleLink } from './mecanismViews/common'
+import Composantes from './mecanismViews/Composantes'
 import buildSelectionView from './mecanismViews/Selection'
+import Somme from './mecanismViews/Somme'
+import Variations from './mecanismViews/Variations'
+import {
+	disambiguateRuleReference,
+	findRuleByDottedName,
+	findRuleByName
+} from './rules'
+import { val } from './traverse-common-functions'
 import uniroot from './uniroot'
 
 let constantNode = constant => ({
@@ -162,7 +161,12 @@ export let mecanismVariations = (recurse, k, v, booleanEngine, devariate) => {
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
 
-		return {...node, nodeValue, explanation: resolvedExplanation, missingVariables }
+		return {
+			...node,
+			nodeValue,
+			explanation: resolvedExplanation,
+			missingVariables
+		}
 	}
 
 	// TODO - find an appropriate representation
@@ -260,7 +264,7 @@ export let mecanismAllOf = (recurse, k, v, booleanEngine) => {
 				: true,
 			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
-		return {...node, nodeValue, explanation, missingVariables }
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
@@ -358,7 +362,7 @@ export let mecanismNumericalSwitch = (recurse, k, v, booleanEngine) => {
 				? choice.missingVariables
 				: mergeAllMissing(explanation)
 
-		return {...node, nodeValue, explanation, missingVariables }
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let explanation = map(parseCondition, terms)
@@ -474,9 +478,9 @@ export let mecanismInversion = dottedName => (recurse, k, v, booleanEngine) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
-			// TODO - we need this so that ResultsGrid will work, but it's
-			// just not right
-			toPairs(inversion.inversionCache).forEach(([k, v]) => (cache[k] = v))
+		// TODO - we need this so that ResultsGrid will work, but it's
+		// just not right
+		toPairs(inversion.inversionCache).forEach(([k, v]) => (cache[k] = v))
 		return { ...node, nodeValue, explanation: null, missingVariables }
 	}
 
@@ -602,12 +606,12 @@ export let mecanismProduct = (recurse, k, v, booleanEngine) => {
 	let effect = ({ assiette, taux, facteur, plafond }) => {
 		let mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond) * rate * facteur
-		const params = [assiette, taux,facteur, plafond].map(val);
-		return (
-			any(equals(0), params) ? 0 :
-			any(isNil, params) ? null :
-			mult(...params)
-		)
+		const params = [assiette, taux, facteur, plafond].map(val)
+		return any(equals(0), params)
+			? 0
+			: any(isNil, params)
+			? null
+			: mult(...params)
 	}
 
 	let explanation = parseObject(recurse, objectShape, v, booleanEngine),
@@ -973,15 +977,24 @@ export let mecanismOnePossibility = (recurse, k, v, booleanEngine) => {
 	let explanation = v.map(recurse)
 
 	if (explanation.some(node => node.category !== 'variable')) {
-		throw new Error(`Attention ! Le mecanisme "une possibilité parmi" ne fonctionne qu'avec des nom de variables`);
+		throw new Error(
+			`Attention ! Le mecanisme "une possibilité parmi" ne fonctionne qu'avec des nom de variables`
+		)
 	}
-	
-	booleanEngine.addRule(new Rules.OnePossibilityAmong(...explanation.map(node => node.dottedName)))
-	
+
+	booleanEngine.addRule(
+		new Rules.OnePossibilityAmong(...explanation.map(node => node.dottedName))
+	)
+
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		const evaluations = explanation.map(node => node.evaluate(cache, situationGate, parsedRules, node))
-		const missingVariables = mergeAllMissing(evaluations.map(e => e.explanation));
-		return {...node, nodeValue: undefined, missingVariables}
+		const evaluations = explanation.map(node =>
+			node.evaluate(cache, situationGate, parsedRules, node)
+		)
+		const nodeValue = isNil(evaluations[0].nodeValue) ? undefined : evaluations.find(({nodeValue}) => nodeValue).dottedName
+		const missingVariables = mergeAllMissing(
+			evaluations.map(e => e.explanation)
+		)
+		return { ...node, nodeValue, missingVariables }
 	}
 
 	let jsx = (nodeValue, explanation) => (

@@ -51,17 +51,16 @@ class OnePossibilityAmong extends BooleanRule {
 		this.variables = variables
 	}
 	toCnf = (): Array<Clause> => {
+		// One possibility among [a,b,c] is transformed to :
+		// [not a or not b] and [not b or not c] and [not a or not c] and [a or b or c]
 		return [
-			...Array(this.variables.length)
-				.fill(this.variables)
-				.map(
-					(variables: Array<string>, i: number) =>
-						new Clause(
-							[variables[i]],
-							[...variables.slice(0, i), ...variables.slice(i + 1)]
-						)
-				),
-			new Clause([], this.variables)
+			new Clause(this.variables, []),
+			...this.variables
+				.reduce(
+					(acc, x, i, array) => acc.concat(array.slice(i + 1).map(y => [x, y])),
+					[]
+				)
+				.map(negatedTuple => new Clause([], negatedTuple))
 		]
 	}
 }
@@ -202,7 +201,10 @@ class SatSolver {
 		return solution
 	}
 
-	evaluate(variable: string): boolean | null {
+	evaluate(variable: string): boolean | undefined {
+		if (this.solutions[0].getVariables().indexOf(variable) === -1) {
+			return undefined
+		}
 		const trueSolution = Solution.computeNewSolution([
 			...this.clauses,
 			new True(variable)
@@ -217,15 +219,12 @@ class SatSolver {
 		])
 		if (falseSolution) {
 			this.solutions.push(falseSolution)
-			return null
+			return undefined
 		}
 		return true
 	}
 
 	collectMissings(variable: string): { [string]: number } {
-		if (!this.solutions.length) {
-			throw new Error('Should be called after evaluate')
-		}
 		/* 	TODO : 
 			- rendre l'algorithme deterministe ? (fonctionne ici par échantillonage pour des soucis de perf)
 			- isoler les groupe de variables indépendant dans le SatSolver ? 
@@ -257,12 +256,11 @@ export default class BooleanEngine {
 		rule.toCnf().forEach(clause => this.solver.addClause(clause))
 	}
 	// TODO : if not applicable, add possibility to remove rule
-	evaluate = (variable: string): boolean | { [string]: number } => {
-		const value = this.solver.evaluate(variable)
-		if (value === null) {
-			return this.solver.collectMissings(variable)
-		}
-		return value
+	evaluate = (variable: string): boolean | undefined => {
+		return this.solver.evaluate(variable)
+	}
+	collectMissings = (variable: string): { [string]: number } => {
+		return this.solver.collectMissings(variable)
 	}
 }
 

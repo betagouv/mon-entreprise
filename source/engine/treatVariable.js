@@ -35,6 +35,8 @@ export let treatVariable = (
 			needsEvaluation = isNil(situationValue) || variableHasCond
 
 		let explanation = variable
+		// We fill the cache in order to prevent infinite loop with circular dependancies
+		cache[cacheName] = explanation
 		if (needsEvaluation) {
 			explanation = evaluateNode(cache, situation, parsedRules, variable)
 		}
@@ -54,7 +56,11 @@ export let treatVariable = (
 				? explanation.nodeValue
 				: null
 
-		if ([true, false].includes(nodeValue) && explanation.isApplicable) {
+		if (
+			[true, false].includes(nodeValue) &&
+			explanation.isApplicable &&
+			typeof situationValue === 'boolean'
+		) {
 			booleanEngine.addRule(
 				situationValue
 					? new Rules.True(dottedName)
@@ -63,7 +69,6 @@ export let treatVariable = (
 		}
 
 		cache[cacheName] = { ...node, nodeValue, explanation, missingVariables }
-		// console.log('variable ', dottedName, nodeValue, missingVariables)
 		return cache[cacheName]
 	}
 

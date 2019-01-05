@@ -4,7 +4,7 @@ import { enrichRule } from 'Engine/rules'
 import { analyse, parseAll } from 'Engine/traverse'
 
 let stateSelector = () => null
-describe('onePossibilityAmong', function() {
+describe.only('onePossibilityAmong', function() {
 	describe('treat', () => {
 		it('should throw if one of the possibility is not a variable', () => {
 			let rawRules = [
@@ -48,13 +48,13 @@ describe('onePossibilityAmong', function() {
 				rules = parseAll(rawRules.map(enrichRule))
 
 			expect(
-				analyse(rules, 'entreprise')(stateSelector).targets[0]
-			).to.have.property('nodeValue', null)
+				analyse(rules, 'entreprise . statut')(stateSelector).targets[0]
+			).to.have.property('nodeValue', undefined)
 			expect(
 				analyse(rules, 'entreprise . statut . SAS')(stateSelector).targets[0]
-			).to.have.property('nodeValue', null)
+			).to.have.property('nodeValue', undefined)
 		})
-		it.only('should have mutually exclusive possibility', function() {
+		it('should have mutually exclusive possibility', function() {
 			let rawRules = [
 					{
 						nom: 'statut juridique',

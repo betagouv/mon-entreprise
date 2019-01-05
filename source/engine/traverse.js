@@ -123,7 +123,7 @@ export let treatRuleRoot = (rules, rule, booleanEngine) => {
 				'applicable si': applicable
 			} = evaluatedAttributes,
 			
-			booleanEvaluation = booleanEngine.evaluate(node.dottedName),
+
 			isApplicable =
 			val(parentDependency) === false
 			? false
@@ -133,11 +133,14 @@ export let treatRuleRoot = (rules, rule, booleanEngine) => {
 			? false
 			: anyNull([notApplicable, applicable, parentDependency])
 			? null
-			: !val(notApplicable) && undefOrTrue(val(applicable)),
-			nodeValue = computeRuleValue(booleanEvaluation !== null ?  booleanEvaluation : val(formule), isApplicable)
-			
-			// console.log(node.dottedName, evaluatedAttributes);
-	
+			: !val(notApplicable) && undefOrTrue(val(applicable));
+					
+		const booleanEvaluation = booleanEngine.evaluate(node.dottedName);
+		if (booleanEvaluation === undefined) {
+			const missings = booleanEngine.collectDependantNodes(node.dottedName);
+			forEach(missing => missing.evaluate())
+		}
+		const nodeValue = computeRuleValue(booleanEvaluation !== undefined ?  booleanEvaluation : val(formule), isApplicable)
 
 		let condMissing =
 				isApplicable === false
