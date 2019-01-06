@@ -60,7 +60,6 @@ import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Barème from './mecanismViews/Barème'
 import Variations from './mecanismViews/Variations'
-import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
 import Allègement from './mecanismViews/Allègement'
 import Composantes from './mecanismViews/Composantes'
 import { trancheValue } from './mecanisms/barème'
@@ -732,7 +731,7 @@ export let mecanismLinearScale = (recurse, k, v) => {
 
 	return {
 		evaluate,
-		jsx: BarèmeLinéaire,
+		jsx: Barème('linéaire'),
 		explanation,
 		category: 'mecanism',
 		name: 'barème linéaire',
@@ -766,7 +765,7 @@ export let mecanismScale = (recurse, k, v) => {
 
 		return nulled
 			? null
-			: sum(tranches.map(trancheValue(assiette, multiplicateur)))
+			: sum(tranches.map(trancheValue('marginal')(assiette, multiplicateur)))
 	}
 
 	let explanation = {
@@ -777,7 +776,7 @@ export let mecanismScale = (recurse, k, v) => {
 
 	return {
 		evaluate,
-		jsx: Barème,
+		jsx: Barème('marginal'),
 		explanation,
 		category: 'mecanism',
 		name: 'barème',
