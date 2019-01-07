@@ -4,7 +4,6 @@ import { expect } from 'chai'
 import FicheDePaieSelectors, {
 	COTISATION_BRANCHE_ORDER
 } from 'Selectors/ficheDePaieSelectors'
-
 import { simulationTargetNames } from '../source/config'
 
 let state = {
@@ -33,13 +32,13 @@ describe('pay slip selector', function() {
 	it('should have cotisations grouped by branches in the proper ordering', function() {
 		// $FlowFixMe
 		let branches = paySlip.cotisations.map(([branche]) => branche)
-		expect(branches).to.eql(COTISATION_BRANCHE_ORDER)
+		expect(branches.map(({ id }) => id)).to.eql(COTISATION_BRANCHE_ORDER)
 	})
 
 	it('should collect all cotisations in a branche', function() {
 		// $FlowFixMe
 		let cotisationsSanté = (paySlip.cotisations.find(
-			([branche]) => branche === 'santé'
+			([branche]) => branche.nom === 'santé'
 		) || [])[1].map(cotisation => cotisation.nom)
 		expect(cotisationsSanté).to.have.lengthOf(3)
 		expect(cotisationsSanté).to.include('maladie')
@@ -58,7 +57,7 @@ describe('pay slip selector', function() {
 		// $FlowFixMe
 		let cotisationATMP = (paySlip.cotisations.find(
 			([branche]) =>
-				branche === 'accidents du travail / maladies professionnelles'
+				branche.nom === 'accidents du travail et maladies professionnelles'
 		) || [])[1][0]
 		expect(cotisationATMP.montant.partSalariale).to.be.closeTo(0, 0.1)
 		let defaultATMPRate = 2.22 / 100

@@ -45,11 +45,6 @@ class SocialSecurity extends Component<Props, {}> {
 								<strong>bien-être général de la population</strong>.
 							</p>
 							<p>
-								L'accès facile aux soins de santé et à d'autres services permet
-								aux entreprises d'employer des travailleurs en bonne santé,
-								productifs et hautement qualifiés.
-							</p>
-							<p>
 								Dès que vous déclarez et payez vos salariés, vous leur donnez
 								automatiquement droit au régime général de la Sécurité sociale
 								française (santé, maternité, invalidité, vieillesse, maladie
