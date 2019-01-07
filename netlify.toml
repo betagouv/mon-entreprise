@@ -2,6 +2,11 @@
 # InFrance PRODUCTION settings 
 
 [[redirects]]
+from = "https://www.mycompanyinfrance.fr/*"
+to = "https://mycompanyinfrance.fr/*"
+status = 301
+
+[[redirects]]
 from = "https://mycompanyinfrance.fr/robots.txt"
 to = "/robots.infrance.txt"
 status = 200
