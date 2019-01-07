@@ -1,6 +1,5 @@
-import React from 'react'
 import Simulateur from 'Components/Simu'
-
+import React from 'react'
 import { connect } from 'react-redux'
 import { change } from 'redux-form'
 
@@ -13,7 +12,7 @@ export default connect(
 			)
 	})
 )(
-	class extends React.Component {
+	class SimulateurAssimilé extends React.Component {
 		constructor(props) {
 			super(props)
 			this.props.setAssimilé('oui')

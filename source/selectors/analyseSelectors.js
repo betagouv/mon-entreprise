@@ -13,18 +13,18 @@ import {
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
-	map,
-	mergeDeepWith,
-	pipe,
 	add,
 	contains,
+	dissoc,
 	equals,
 	head,
-	isEmpty,
-	pick,
-	reduce,
 	intersection,
-	dissoc
+	isEmpty,
+	map,
+	mergeDeepWith,
+	pick,
+	pipe,
+	reduce
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -120,7 +120,7 @@ export let ruleAnalysisSelector = createSelector(
 		(_, { dottedName }) => dottedName,
 		situationsWithDefaultsSelector,
 		state => state.situationBranch || 0,
-		(_, { raccourcis: valueShortcuts }) => valueShortcuts || {}
+		(_, props) => props?.raccourcis || {}
 	],
 	(rules, dottedName, situations, situationBranch, valueShortcuts) =>
 		analyseRule(
@@ -163,7 +163,7 @@ let makeAnalysisSelector = situationSelector =>
 			parsedRulesSelector,
 			targetNamesSelector,
 			situationSelector,
-			(_, { raccourcis: valueShortcuts }) => valueShortcuts
+			(_, props) => props?.raccourcis || {}
 		],
 		(parsedRules, targetNames, situations, valueShortcuts) => {
 			let analyses = situations.map(situation =>
