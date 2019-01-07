@@ -94,7 +94,7 @@
 
     - nom: salaire médian
       situation:
-        CDD: oui 
+        CDD: oui
         événement: aucun
         motif: accroissement activité
         contrat jeune vacances: non
@@ -230,7 +230,6 @@
 
   non applicable si:
     une de ces conditions:
-
       # Evènements particuliers
       - événement . poursuite du CDD en CDI
       - événement . refus CDI avantageux
@@ -579,7 +578,6 @@
 # TODO Attention, il faudrait peut-être prendre en compte les interdictions du CDD.
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
 
-
 - espace: contrat salarié . CDD
   nom: durée contrat
   icônes: ⏳
@@ -671,40 +669,38 @@
 
 - espace: contrat salarié
   nom: assimilé salarié
-  description: | 
+  description: |
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   par défaut: non
-  références: 
+  références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
-
 
 - espace: contrat salarié
   nom: CDD
   question: Est-ce un contrat à durée déterminée (CDD) ?
-  description: | 
+  description: |
     Par défaut, faire travailler quelqu'un en France établit auutomatiquement un CDI à temps plein.
     Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date d fin.
 
   par défaut: non
   # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
-#   implique:
-#     - emploi temporaire
-#     - motif de recours
-#   # C'est ici que l'on dit : si le CDD a été choisi, la réponses à motif CDD doit être donnée (on ne peut ne pas y répondre)
-#
-# - Variable: emploi temporaire
-#   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
-#   références:
-#     Code du travail - Article L1242-1
-#
-  contrôles: 
+  #   implique:
+  #     - emploi temporaire
+  #     - motif de recours
+  #   # C'est ici que l'on dit : si le CDD a été choisi, la réponses à motif CDD doit être donnée (on ne peut ne pas y répondre)
+  #
+  # - Variable: emploi temporaire
+  #   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
+  #   références:
+  #     Code du travail - Article L1242-1
+  #
+  contrôles:
     - si: CDD = 'oui'
       niveau: information
       message: |
         Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
         [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
-
 
 - espace: contrat salarié
   nom: assiette cotisations sociales
@@ -733,7 +729,7 @@
   suggestions:
     salaire médian: 2300
     SMIC: 1522
-  contrôles: 
+  contrôles:
     - si: brut de base [mensuel] < 50
       niveau: bloquant
     - si: brut de base [mensuel] < SMIC [mensuel]
@@ -823,8 +819,8 @@
 
 - espace: contrat salarié
   nom: statut cadre
-  formule: 
-    variations: 
+  formule:
+    variations:
       - si: assimilé salarié
         alors: oui
       - sinon: choix statut cadre
@@ -853,7 +849,7 @@
   nom: SMIC temps plein
   période: mois
   formule: 1521.22
-  références: 
+  références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
 
 - espace: contrat salarié
@@ -1374,7 +1370,7 @@
 
     Le simulateur n'intègre pas les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   formule: 0
-  note: 
+  note:
 
 - espace: contrat salarié
   nom: salaire
@@ -1561,11 +1557,11 @@
       situation:
         assiette cotisations sociales: 1521.22
       valeur attendue: 427.31
-    - nom: "Salaire proche du SMIC"
+    - nom: 'Salaire proche du SMIC'
       situation:
         assiette cotisations sociales: 1530
       valeur attendue: 423.2
-    - nom: "Résiduelle pour un salaire médian"
+    - nom: 'Résiduelle pour un salaire médian'
       situation:
         assiette cotisations sociales: 2300
       valeur attendue: 62.71
@@ -1621,7 +1617,7 @@
 - espace: contrat salarié . réduction générale
   nom: plafond de l'assiette
   période: flexible
-  formule: 1.6 * SMIC 
+  formule: 1.6 * SMIC
 
 - espace: contrat salarié
   nom: contribution d'équilibre général
@@ -1643,8 +1639,7 @@
               taux: 1.29%
             - de: 1
               à: 8
-              taux:
-                1.62%
+              taux: 1.62%
             - au-dessus de: 8
               taux: 0%
 
@@ -1655,8 +1650,7 @@
               taux: 0.86%
             - de: 1
               à: 8
-              taux:
-                1.08%
+              taux: 1.08%
             - au-dessus de: 8
               taux: 0%
 
@@ -1684,8 +1678,6 @@
           taux: 0.14%
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
-
-
 
 - espace: contrat salarié
   nom: retraite complémentaire
@@ -1727,7 +1719,6 @@
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
 
-            
 - espace: contrat salarié
   nom: AGS
   description: Cotisation au Régime de Garantie des Salaires
@@ -1754,11 +1745,11 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: 
-        variations: 
-          - si: 
+      taux:
+        variations:
+          - si:
               toutes ces conditions:
-                - assiette cotisations sociales < plafond de réduction 
+                - assiette cotisations sociales < plafond de réduction
                 - ≠ statut JEI
                 - ≠ assimilé salarié
             alors: 3.45%
@@ -1788,7 +1779,7 @@
 
   période: flexible
   formule:
-     multiplication:
+    multiplication:
       assiette: assiette cotisations sociales
       plafond: 4 * plafond sécurité sociale
       composantes:
@@ -1875,7 +1866,6 @@
         part employeur: 100
       valeur attendue: 100
 
-
 - espace: contrat salarié . complémentaire santé
   nom: part employeur
   description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
@@ -1953,7 +1943,6 @@
       - établissement . localisation . département = 'Bas-Rhin'
       - établissement . localisation . département = 'Haut-Rhin'
       - établissement . localisation . département = 'Moselle'
-
 
 - espace: contrat salarié
   nom: contribution au dialogue social
@@ -2112,23 +2101,23 @@
         - attributs:
             composante: maladie, maternité, invalidité, décès
             dû par: employeur
-          taux: 
-            variations: 
-              - si: 
-                  toutes ces conditions: 
+          taux:
+            variations:
+              - si:
+                  toutes ces conditions:
                     - assiette cotisations sociales < plafond de réduction employeur
                     - ≠ statut JEI
                     - ≠ assimilé salarié
                 alors: 7%
               - sinon: 13%
-        - attributs: 
+        - attributs:
             composante: maladie, maternité, invalidité, décès
             dû par: salarié
           taux:
             variations:
               - si: régime alsace moselle
                 alors: 1.5%
-              - sinon: 0% 
+              - sinon: 0%
         - attributs:
             composante: Contribution Solidarité Autonomie
             abbréviation: CSA
@@ -2142,7 +2131,6 @@
   nom: plafond de réduction employeur
   période: flexible
   formule: 2.5 * SMIC
-
 
 - espace: contrat salarié
   nom: médecine du travail
@@ -2321,7 +2309,6 @@
         assiette: 2300
       valeur attendue: 2627.97
 
-
 - espace: entreprise . taxe sur les salaires
   nom: barème
   période: flexible
@@ -2490,12 +2477,12 @@
 
 - espace: impôt
   nom: revenu abattu
-  description: | 
+  description: |
     L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de 10%) pour prendre en compte une estimation des *frais professionnels* de l'activité rémunérée. 
     Par exemple, on peut considérer qu'un salarié use ses chaussures pour aller au travail. Ces chaussures, il les a acheté avec son argent, donc du revenu sur lequel il a injustement payé de l'impôt.
   période: flexible
   formule:
-    somme: 
+    somme:
       - revenu abattu par défaut
       - micro entreprise . impôt . revenu abattu
 
@@ -2505,8 +2492,8 @@
   description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   formule:
     allègement:
-      assiette: 
-        somme: 
+      assiette:
+        somme:
           - contrat salarié . rémunération . net imposable
           - indépendant . revenu imposable
       abattement: 10%
@@ -2549,8 +2536,8 @@
 
 - nom: revenu net de cotisations
   période: flexible
-  formule: 
-    somme: 
+  formule:
+    somme:
       - contrat salarié . salaire . net
       - indépendant . revenu net de cotisations
       - micro entreprise . revenu net de cotisations
@@ -2562,23 +2549,23 @@
 
 - espace: entreprise
   nom: chiffre d'affaires
-  question: Quel est votre chiffre d'affaires ?
+  question: Quel est votre chiffre d'affaires H.T. ?
   période: flexible
   format: euros
 
 - espace: indépendant
   nom: revenu net de cotisations
   titre: Revenu net en tant qu'indépendant
-  description: | 
-    
+  description: |
+
     C'est le revenu professionel du travailleur indépendant. 
-  
+
     Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché. 
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
-  formule: 
-    inversion: 
-      avec: 
+  formule:
+    inversion:
+      avec:
         - revenu brut
 
 - espace: indépendant
@@ -2589,12 +2576,12 @@
 - nom: entreprise . catégorie d'activité
   question: Quelle est votre catégorie d'activité ?
   par défaut: prestation de service . libérale
-  formule: 
-    une possibilité: 
+  formule:
+    une possibilité:
       choix obligatoire: oui
       possibilités:
-      - vente de biens
-      - prestation de service
+        - vente de biens
+        - prestation de service
 
 - espace: entreprise . catégorie d'activité
   nom: vente de biens
@@ -2604,7 +2591,7 @@
   nom: prestation de service
   par défaut: libérale
   formule:
-    une possibilité: 
+    une possibilité:
       - restauration ou hébergement
       - commerciale ou artisanale
       - libérale
@@ -2618,7 +2605,6 @@
 - espace: entreprise . catégorie d'activité . prestation de service
   nom: restauration ou hébergement
 
-
 - nom: indépendant
   question: Activité à la sécurité sociale des indépendants ?
 
@@ -2627,8 +2613,8 @@
   période: flexible
   références:
     assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
-  formule: 
-    somme: 
+  formule:
+    somme:
       - maladie
       - retraite de base
       - retraite complémentaire
@@ -2639,34 +2625,32 @@
 - espace: indépendant
   nom: prélèvements
   période: flexible
-  formule: 
-    somme: 
+  formule:
+    somme:
       - cotisations
       - formation professionnelle
       - CSG et CRDS
 
-
 - espace: indépendant . cotisations
   période: flexible
   nom: maladie
-  formule:  
+  formule:
     variations:
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
-          barème continu: 
-            assiette: revenu net de cotisations 
+          barème continu:
+            assiette: revenu net de cotisations
             multiplicateur: plafond sécurité sociale temps plein
-            points: 
+            points:
               0: 1.5%
               1.1: 6.5%
       - sinon: artisans commerçants
 
-            
 - espace: indépendant . cotisations
   nom: indemnités journalières maladie
   période: flexible
   formule:
-    multiplication: 
+    multiplication:
       assiette: revenu net de cotisations
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
@@ -2676,72 +2660,71 @@
   période: flexible
   formule: barème + part revenus élevés
 
-- espace: indépendant . cotisations . maladie . artisans commerçants 
+- espace: indépendant . cotisations . maladie . artisans commerçants
   nom: barème
   période: flexible
   formule:
-    barème continu: 
+    barème continu:
       assiette: revenu net de cotisations
       multiplicateur: plafond sécurité sociale temps plein
-      points: 
+      points:
         0: 0%
         0.4: 3.16%
         1.1: 6.35%
 
-- espace: indépendant . cotisations . maladie . artisans commerçants 
-  nom: part revenus élevés 
+- espace: indépendant . cotisations . maladie . artisans commerçants
+  nom: part revenus élevés
   période: flexible
   applicable si: revenu net de cotisations > seuil
   formule:
-    multiplication: 
+    multiplication:
       assiette: revenu net de cotisations
       taux: 0.15%
 
-- espace: indépendant . cotisations . maladie . artisans commerçants . part revenus élevés 
+- espace: indépendant . cotisations . maladie . artisans commerçants . part revenus élevés
   nom: seuil
   période: flexible
   formule: 5 * plafond sécurité sociale temps plein
 
-
 - espace: indépendant . cotisations
   nom: retraite de base
   période: année
-  formule: 
-      variations:
-        - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-          alors: 
-            multiplication: 
-              assiette: revenu net de cotisations
-              composantes:
-                - nom: tranche 1
-                  plafond: 39732
-                  taux: 8.23%
-                - nom: tranche 2
-                  plafond: 198660
-                  taux: 1.87%
-        - sinon:
-            barème:
-              assiette: revenu net de cotisations
-              tranches: 
-                - en-dessous de: 39732
-                  taux: 17.75%
-                - au-dessus de: 39732
-                  taux: 0.6%
+  formule:
+    variations:
+      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+        alors:
+          multiplication:
+            assiette: revenu net de cotisations
+            composantes:
+              - nom: tranche 1
+                plafond: 39732
+                taux: 8.23%
+              - nom: tranche 2
+                plafond: 198660
+                taux: 1.87%
+      - sinon:
+          barème:
+            assiette: revenu net de cotisations
+            tranches:
+              - en-dessous de: 39732
+                taux: 17.75%
+              - au-dessus de: 39732
+                taux: 0.6%
 
 - espace: indépendant . cotisations
   nom: retraite complémentaire
   période: année
   notes: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
-    variations: 
+    variations:
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-        alors: 
-          barème linéaire: 
+        alors:
+          barème linéaire:
             assiette: revenu net de cotisations
-            tranches: 
+            tranches:
               - en-dessous de: 26580
                 montant: 1277
-              - de: 26581 
+              - de: 26581
                 à: 49280
                 montant: 2553
               - de: 49281
@@ -2752,16 +2735,16 @@
                 montant: 6384
               - de: 66401
                 à: 83060
-                montant:  8937
-              - de:  83061
+                montant: 8937
+              - de: 83061
                 à: 103180
-                montant: 14044 
+                montant: 14044
               - de: 103181
                 à: 123300
-                montant: 15320 
+                montant: 15320
               - au-dessus de: 123300
                 montant: 15597
-      - sinon: 
+      - sinon:
           barème:
             assiette: revenu net de cotisations
             tranches:
@@ -2776,12 +2759,11 @@
         # 8 régimes différents pour les libéraux
         # Implémenter au moins le régime CNAVPL, interprofessionnel
 
-
 - espace: indépendant . cotisations
   nom: invalidité et décès
   période: flexible
   formule:
-    multiplication: 
+    multiplication:
       assiette: revenu net de cotisations
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
@@ -2792,15 +2774,15 @@
 - espace: indépendant . prélèvements
   nom: CSG et CRDS
   période: flexible
-  formule:  
-    multiplication: 
+  formule:
+    multiplication:
       assiette: assiette
       composantes:
         - attributs:
             impôt sur le revenu: non déductible
           taux: 2.9%
 
-        - attributs: 
+        - attributs:
             impôt sur le revenu: déductible
           taux: 6.8%
 
@@ -2808,7 +2790,7 @@
   nom: assiette
   note: Il faut vérifier que l'assiette de la CSG et CRDS est correcte. Pourquoi les cotisations sont-elles dans l'assiette ? La retraite complémentaire doit l'être aussi ?
   période: flexible
-  formule: 
+  formule:
     somme:
       - revenu net de cotisations
       - cotisations
@@ -2816,14 +2798,14 @@
 - espace: indépendant . prélèvements
   nom: formation professionnelle
   période: flexible
-  formule: 
+  formule:
     multiplication:
       assiette: revenu net de cotisations
       taux: 0.29%
       plafond: plafond sécurité sociale temps plein
-     # C'est le taux pour les artisans. 
-     # TODO Pour les commerçants, le taux est de 0.25%
-     #
+      # C'est le taux pour les artisans.
+      # TODO Pour les commerçants, le taux est de 0.25%
+      #
 - espace: indépendant . cotisations
   nom: allocations familiales
   période: flexible
@@ -2834,47 +2816,41 @@
       points:
         0: 0%
         1.1: 0%
-        1.4: 3.1% 
+        1.4: 3.1%
 
-
-- espace: indépendant 
+- espace: indépendant
   nom: revenu brut
   période: flexible
   formule: revenu net de cotisations + prélèvements
 
-- espace: indépendant 
+- espace: indépendant
   nom: revenu imposable
   période: flexible
   formule: revenu net de cotisations + prélèvements . CSG et CRDS (non déductible)
-
-
-
 
 - nom: micro entreprise
   icônes: μ
   question: Activité en micro-entreprise ?
 
-- espace: micro entreprise 
+- espace: micro entreprise
   nom: base des cotisations
   formule: entreprise . chiffre d'affaires
   période: flexible
   contrôles:
     - si: base des cotisations > plafond
-      message: Le plafond de la micro-entreprise est dépassé. 
+      message: Le plafond de la micro-entreprise est dépassé.
       niveau: avertissement
 
 - espace: micro entreprise
   nom: plafond
   période: année
   formule:
-    variations: 
-        - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-          alors: 70000
-        - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
-          alors: 70000
-        - sinon: 170000
-
-
+    variations:
+      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+        alors: 70000
+      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+        alors: 70000
+      - sinon: 170000
 
 - espace: micro entreprise
   nom: revenu net de cotisations
@@ -2882,15 +2858,14 @@
   formule: base des cotisations - cotisations
   période: flexible
 
-
 - espace: micro entreprise
   nom: cotisations
   période: flexible
-  formule: 
+  formule:
     multiplication:
       assiette: base des cotisations
-      taux: 
-        variations: 
+      taux:
+        variations:
           - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
             alors: 22%
           - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
@@ -2900,11 +2875,11 @@
 - espace: micro entreprise . impôt
   nom: abattement
   période: flexible
-  formule: 
+  formule:
     multiplication:
       assiette: base des cotisations
-      taux: 
-        variations: 
+      taux:
+        variations:
           - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
             alors: 34%
           - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
@@ -2915,4 +2890,3 @@
   nom: revenu abattu
   période: flexible
   formule: base des cotisations - abattement
-

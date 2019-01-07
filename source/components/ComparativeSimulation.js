@@ -1,18 +1,18 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { isEmpty, compose, chain, uniqBy } from 'ramda'
 import Answers from 'Components/AnswerList'
+import ComparativeTargets from 'Components/ComparativeTargets'
 import Conversation from 'Components/conversation/Conversation'
 import withColours from 'Components/utils/withColours'
-import ComparativeTargets from 'Components/ComparativeTargets'
-import './ComparativeSimulation.css'
+import { createMarkdownDiv } from 'Engine/marked'
+import { compose, isEmpty } from 'ramda'
+import React from 'react'
+import { connect } from 'react-redux'
 import {
-	nextStepsSelector,
 	analysisWithDefaultsSelector,
+	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import './ComparativeSimulation.css'
 import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
-import { createMarkdownDiv } from 'Engine/marked'
 
 export default compose(
 	withColours,
@@ -23,21 +23,15 @@ export default compose(
 		noUserInput: noUserInputSelector(state)
 	}))
 )(
-	class extends React.Component {
+	class ComparativeSimulation extends React.Component {
 		state = {
 			displayAnswers: false
 		}
 		render() {
-			let {
-				colours,
-				noNextSteps,
-				previousAnswers,
-				analyses,
-				noUserInput
-			} = this.props
+			let { colours, noNextSteps, previousAnswers, noUserInput } = this.props
 
 			return (
-				<div id="ComparativeSimulation" className="ui__ container">
+				<div id="ComparativeSimulation">
 					<header>{createMarkdownDiv(simulationConfig.titre)}</header>
 					<div id="simulationContent">
 						{!isEmpty(previousAnswers) && (

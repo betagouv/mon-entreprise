@@ -9,7 +9,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	align-items: center;
+	/* align-items: center; */
 	flex-wrap: wrap;
 }
 #targets li {
@@ -18,7 +18,8 @@
 	padding: 1em;
 	width: 12em;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
 	border-radius: 0.6em;
@@ -39,11 +40,11 @@
 	line-height: 0;
 }
 #targets #microNotApplicable {
-		font-style: italic;
-		text-align: center;
-		font-size: 90%;
+	font-style: italic;
+	text-align: center;
+	font-size: 90%;
 }
 #targets .microNotApplicable {
-													opacity: 0.85;
-													filter: grayscale(80%)
-											  }
+	opacity: 0.85;
+	filter: grayscale(80%);
+}
