@@ -64,15 +64,12 @@ export default compose(
 							return (
 								<li
 									style={{
-										...{
-											color: colours.textColour,
-											background: `linear-gradient(
+										color: colours.textColour,
+										background: `linear-gradient(
 											60deg,
 											${colours.darkColour} 0%,
 											${colours.colour} 100%
 										)`
-										},
-										...(microNotApplicable: {})
 									}}
 									className={microNotApplicable ? 'microNotApplicable' : ''}
 									key={name}>
