@@ -3,7 +3,7 @@
 
 [[redirects]]
 from = "https://www.mycompanyinfrance.fr/*"
-to = "https://mycompanyinfrance.fr/*"
+to = "https://mycompanyinfrance.fr/:splat"
 status = 301
 
 [[redirects]]
