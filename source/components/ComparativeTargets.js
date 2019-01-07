@@ -41,10 +41,12 @@ export default compose(
 				analyses,
 				target,
 				setSituationBranch,
-				chiffreAffaires
+				chiffreAffaires,
+				hide
 			} = this.props
+			console.log(hide)
 			return (
-				<div id="targets">
+				<div id="targets" style={{ display: hide ? 'none' : 'block' }}>
 					<h3>{target.title}</h3>
 					<PeriodSwitch />
 					<ul>

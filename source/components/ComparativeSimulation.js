@@ -8,7 +8,8 @@ import ComparativeTargets from 'Components/ComparativeTargets'
 import './ComparativeSimulation.css'
 import {
 	nextStepsSelector,
-	analysisWithDefaultsSelector
+	analysisWithDefaultsSelector,
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 import { createMarkdownDiv } from 'Engine/marked'
@@ -18,7 +19,8 @@ export default compose(
 	connect(state => ({
 		previousAnswers: state.conversationSteps.foldedSteps,
 		noNextSteps: nextStepsSelector(state, simulationConfig).length == 0,
-		analyses: analysisWithDefaultsSelector(state, simulationConfig)
+		analyses: analysisWithDefaultsSelector(state, simulationConfig),
+		noUserInput: noUserInputSelector(state)
 	}))
 )(
 	class extends React.Component {
@@ -26,7 +28,13 @@ export default compose(
 			displayAnswers: false
 		}
 		render() {
-			let { colours, noNextSteps, previousAnswers, analyses } = this.props
+			let {
+				colours,
+				noNextSteps,
+				previousAnswers,
+				analyses,
+				noUserInput
+			} = this.props
 
 			return (
 				<div id="ComparativeSimulation" className="ui__ container">
@@ -58,7 +66,8 @@ export default compose(
 								<p>Vous avez atteint l'estimation la plus précise.</p>
 							</>
 						)}
-						<ComparativeTargets />
+
+						<ComparativeTargets hide={noUserInput} />
 					</div>
 				</div>
 			)

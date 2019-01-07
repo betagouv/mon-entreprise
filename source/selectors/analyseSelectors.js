@@ -23,7 +23,8 @@ import {
 	isEmpty,
 	pick,
 	reduce,
-	intersection
+	intersection,
+	dissoc
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -63,7 +64,10 @@ export let situationSelector = createDeepEqualSelector(
 
 export let noUserInputSelector = createSelector(
 	[situationSelector],
-	situation => !situation || isEmpty(situation)
+	situation =>
+		!situation ||
+		console.log(situation) ||
+		isEmpty(dissoc('période', situation))
 )
 
 export let formattedSituationSelector = createSelector(
