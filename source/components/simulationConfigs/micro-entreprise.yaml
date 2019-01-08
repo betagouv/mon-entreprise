@@ -2,16 +2,14 @@ titre: |
   Calcul du **revenu du travailleur indépendant ou dirigeant d'entreprise**, en fonction de son choix de régime social.
 
   Nous faisons l'hypothèse suivante : l'impôt est calculé pour un célibataire sans enfants et sans autre revenu. 
-  
+
   Version beta, beaucoup d'améliorations à venir !
-objectifs: 
+objectifs:
   - revenu net d'impôt
-questions: 
+questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
-branches: 
-  - nom: Micro-entreprise
-    situation: 
-      micro entreprise: oui
-      indépendant: non
-      contrat salarié: non
+situation:
+  micro entreprise: oui
+  indépendant: non
+  contrat salarié: non

@@ -156,7 +156,7 @@ function analysisToFicheDePaie(
 	règleAvecMontant,
 	règleAvecValeur,
 	règleLocalisée,
-	[analysis]
+	analysis
 ): ?FicheDePaie {
 	if (!analysis.cache) {
 		return null

@@ -5,7 +5,6 @@ import { compose, isEmpty } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-	analysisWithDefaultsSelector,
 	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
@@ -16,7 +15,6 @@ export default compose(
 	connect(state => ({
 		previousAnswers: state.conversationSteps.foldedSteps,
 		noNextSteps: nextStepsSelector(state).length == 0,
-		analyses: analysisWithDefaultsSelector(state),
 		noUserInput: noUserInputSelector(state)
 	}))
 )(

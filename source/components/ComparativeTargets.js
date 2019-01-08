@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { formValueSelector } from 'redux-form'
 import {
-	analysisListWithDefaultsSelector,
+	analysisWithDefaultsSelector,
 	flatRulesSelector
 } from 'Selectors/analyseSelectors'
 import AnimatedTargetValue from './AnimatedTargetValue'
@@ -21,7 +21,7 @@ export default compose(
 				state.simulationConfig?.objectifs[0]
 			),
 			simulationBranches: state.simulationConfig?.branches,
-			analyses: analysisListWithDefaultsSelector(state),
+			analyses: analysisWithDefaultsSelector(state),
 			chiffreAffaires: formValueSelector('conversation')(
 				state,
 				"entreprise . chiffre d'affaires"

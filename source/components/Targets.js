@@ -17,7 +17,7 @@ export default compose(
 				nodeValue,
 				unité: unit,
 				dottedName
-			} = this.props.analysis[0].targets[0]
+			} = this.props.analysis.targets[0]
 			return (
 				<div id="targets">
 					<span className="icon">→</span>

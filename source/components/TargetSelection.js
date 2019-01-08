@@ -30,6 +30,7 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
+	withColours,
 	withRouter,
 	connect(
 		state => ({
@@ -84,7 +85,7 @@ export default compose(
 					conversationStarted,
 					activeInput,
 					setActiveInput,
-					analysis: analysis,
+					analysis,
 					noUserInput,
 					blockingInputControls,
 					match
@@ -222,11 +223,10 @@ const TargetValue = connect(
 	class TargetValue extends Component {
 		render() {
 			let { targets, target, noUserInput, blockingInputControls } = this.props
-
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
 				value = targetWithValue && targetWithValue.nodeValue
-
+			console.log(target.dottedName, targets, targetWithValue)
 			return (
 				<div
 					className={classNames({
