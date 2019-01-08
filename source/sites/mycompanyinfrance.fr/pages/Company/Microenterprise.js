@@ -58,13 +58,12 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 					importantes pour mener votre activité
 				</li>
 				<li>
-					Vous voulez tester la viabilité de votre modèle, ou prévoyez de rester
-					petits
+				Vous voulez tester la viabilité de votre modèle (activité ou projet), ou prévoyez de rester petits (une petite activité)
 				</li>
-				<li>Vous voulez la quantité minimale de paperasse pour commencer</li>
+				<li>vous souhaitez un minimum de formalités (ou démarches) pour commencer</li>
 			</ul>
 			<p>
-				<strong>Note</strong> : Certaines activités sont exclus de ce statut (
+				<strong>Note</strong> : Certaines activités sont exclues de ce statut (
 				<a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
 					{' '}
 					voir la liste

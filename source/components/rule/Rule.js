@@ -1,6 +1,7 @@
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { getInputComponent } from 'Engine/generateQuestions'
+import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import { createMarkdownDiv } from 'Engine/marked'
 import {
 	encodeRuleName,
@@ -9,6 +10,7 @@ import {
 } from 'Engine/rules'
 import { compose, isEmpty } from 'ramda'
 import React, { Component, Suspense } from 'react'
+import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -20,14 +22,13 @@ import {
 	noUserInputSelector,
 	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
+import Animate from 'Ui/animate'
+import { AttachDictionary } from '../AttachDictionary'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import { AttachDictionary } from '../AttachDictionary'
-import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import emoji from 'react-easy-emoji'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -73,71 +74,75 @@ export default compose(
 						</>
 					) : (
 						<div id="rule" className="ui__ container">
-							<Helmet>
-								<title>{title}</title>
-								<meta name="description" content={description} />
-							</Helmet>
-							<RuleHeader
-								{...{
-									ns,
-									type,
-									description,
-									question,
-									flatRule,
-									flatRules,
-									name,
-									title,
-									icon,
-									valuesToShow
-								}}
-							/>
-
-							{this.renderToggleSourceButton()}
-							<section id="rule-content">
-								{displayedRule.nodeValue ? (
-									<div id="ruleValue">
-										<i className="fa fa-calculator" aria-hidden="true" />{' '}
-										{displayedRule.format === 'euros' || displayedRule.formule
-											? Intl.NumberFormat(language, {
-													style: 'currency',
-													currency: 'EUR'
-											  }).format(displayedRule.nodeValue)
-											: typeof displayedRule.nodeValue !== 'object'
-											? displayedRule.nodeValue
-											: null}
-									</div>
-								) : null}
-
-								{displayedRule.defaultValue != null &&
-								typeof displayedRule.defaultValue !== 'object' ? (
-									<div id="ruleDefault">
-										Valeur par défaut : {displayedRule.defaultValue}
-									</div>
-								) : null}
-
-								{//flatRule.question &&
-								// Fonctionnalité intéressante, à implémenter correctement
-								false && <UserInput {...{ flatRules, dottedName }} />}
-								<Algorithm
-									rule={displayedRule}
-									showValues={valuesToShow || currentExample}
+							<Animate.fromBottom key={title}>
+								<Helmet>
+									<title>{title}</title>
+									<meta name="description" content={description} />
+								</Helmet>
+								<RuleHeader
+									{...{
+										ns,
+										type,
+										description,
+										question,
+										flatRule,
+										flatRules,
+										name,
+										title,
+										icon,
+										valuesToShow
+									}}
 								/>
-								{flatRule.note && (
-									<section id="notes">
-										<h3>Note: </h3>
-										{createMarkdownDiv(flatRule.note)}
-									</section>
-								)}
-								<Examples
-									currentExample={currentExample}
-									situationExists={valuesToShow}
-									rule={displayedRule}
-								/>
-								{!isEmpty(namespaceRules) && (
-									<NamespaceRulesList {...{ namespaceRules }} />
-								)}
-								{this.renderReferences(flatRule)}
-							</section>
+
+								{this.renderToggleSourceButton()}
+								<section id="rule-content">
+									{displayedRule.nodeValue ? (
+										<div id="ruleValue">
+											<i className="fa fa-calculator" aria-hidden="true" />{' '}
+											{displayedRule.format === 'euros' || displayedRule.formule
+												? Intl.NumberFormat(language, {
+														style: 'currency',
+														currency: 'EUR'
+												  }).format(displayedRule.nodeValue)
+												: typeof displayedRule.nodeValue !== 'object'
+												? displayedRule.nodeValue
+												: null}
+										</div>
+									) : null}
+
+									{displayedRule.defaultValue != null &&
+									typeof displayedRule.defaultValue !== 'object' ? (
+										<div id="ruleDefault">
+											Valeur par défaut : {displayedRule.defaultValue}
+										</div>
+									) : null}
+
+									{//flatRule.question &&
+									// Fonctionnalité intéressante, à implémenter correctement
+									false && <UserInput {...{ flatRules, dottedName }} />}
+									{flatRule.ns && (
+										<Algorithm
+											rule={displayedRule}
+											showValues={valuesToShow || currentExample}
+										/>
+									)}
+									{flatRule.note && (
+										<section id="notes">
+											<h3>Note: </h3>
+											{createMarkdownDiv(flatRule.note)}
+										</section>
+									)}
+									<Examples
+										currentExample={currentExample}
+										situationExists={valuesToShow}
+										rule={displayedRule}
+									/>
+									{!isEmpty(namespaceRules) && (
+										<NamespaceRulesList {...{ namespaceRules }} />
+									)}
+									{this.renderReferences(flatRule)}
+								</section>
+							</Animate.fromBottom>
 						</div>
 					)}
 				</>

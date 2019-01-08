@@ -26,7 +26,7 @@
 }
 
 .distribution-chart__counterparts {
-	width: 20em;
+	width: 25em;
 	line-height: 1.2em;
 	font-weight: 300;
 }
@@ -56,6 +56,7 @@
 		justify-content: flex-start !important;
 		position: initial !important;
 		flex-direction: column !important;
+		padding-right: 0 !important;
 		width: auto !important;
 		height: initial !important;
 	}
@@ -98,7 +99,6 @@
 
 .distribution-chart__branche-name {
 	font-weight: 500;
-	text-transform: capitalize;
 }
 .distribution-chart__icon {
 	font-size: 200%;

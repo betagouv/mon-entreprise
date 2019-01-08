@@ -47,13 +47,8 @@ class SocialSecurity extends Component<Props, {}> {
 									solidarité et vise à assurer le{' '}
 									<strong>bien-être général de la population</strong>.
 								</p>
-								<p>
-									L'accès facile aux soins de santé et à d'autres services
-									permet aux entreprises d'employer des travailleurs en bonne
-									santé, productifs et hautement qualifiés.
-								</p>
-								<Video />
 							</T>
+							<Video />
 							<h2>Que voulez-vous estimer ?</h2>
 
 							<p>
@@ -62,7 +57,7 @@ class SocialSecurity extends Component<Props, {}> {
 									protection sociale.
 								</T>
 							</p>
-							<div className="ui__ answer-group">
+							<div style={{ textAlign: 'center' }}>
 								<Link
 									className="ui__ button"
 									to={sitePaths().sécuritéSociale['assimilé-salarié']}>

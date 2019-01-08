@@ -35,7 +35,12 @@ export const règleLocaliséeSelector = createSelector(
 		return {
 			nom: localizedRule.titre || localizedRule.nom,
 			lien: 'règle/' + encodeRuleName(dottedName),
+
 			id: dottedName,
+			...(localizedRule.shortDescription
+				? { descriptionCourte: localizedRule.shortDescription }
+				: {}),
+			...(localizedRule.icon ? { icône: localizedRule.icon } : {}),
 			...(localizedRule.format ? { type: localizedRule.format } : {})
 		}
 	}

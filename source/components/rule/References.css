@@ -30,16 +30,18 @@
 	font-size: 95%;
 }
 .references .imageWrapper {
-	width: 8em;
-	display: inline-block;
+	width: 6rem;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 1rem;
 }
 .references img {
+	max-height: 3rem;
 	vertical-align: sub;
-	max-height: 3em;
-	max-width: 5em;
+	max-width: 100%;
 	border-radius: 0.3em;
-	margin: 0 auto;
-	display: block;
 }
 
 li#complementary {

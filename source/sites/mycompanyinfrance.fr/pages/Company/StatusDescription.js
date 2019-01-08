@@ -23,8 +23,8 @@ const StatusDescription = ({ status }: Props) =>
 	) : status === 'EURL' ? (
 		<T k="formeJuridique.EURL">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-			de l'apport de capital de l'unique associé. Evolue en SARL lors de
-			l'arrivée de nouveaux associés dans la société.
+			de l'apport de capital. Evolue en SARL lors de l'arrivée de nouveaux
+			associés dans la société.
 		</T>
 	) : status.includes('SARL') ? (
 		<T k="formeJuridique.SARL">
@@ -33,7 +33,7 @@ const StatusDescription = ({ status }: Props) =>
 			librement dans les statuts. Les associés se répartissent des parts
 			sociales toutes identiques, et la société est dirigée par un ou plusieurs
 			gérants qui sont forcément des personnes physiques. Le fonctionnement
-			d'une SARL n'est pas libre, il est encadré par le code du commerce.
+			d'une SARL est encadré par le code du commerce.
 		</T>
 	) : status === 'SAS' ? (
 		<T k="formeJuridique.SAS">
@@ -41,15 +41,15 @@ const StatusDescription = ({ status }: Props) =>
 			associés est limitée au montant de leur apport au capital de la société.
 			Le capital minimum est fixé librement dans les statuts. Les associés se
 			répartissent des actions qui peuvent être de plusieurs catégories, et la
-			société est dirigée notamment par un président qui peut être une personne
-			morale (une autre société). Le fonctionnement d'une SAS est peu encadré
-			par la législation.
+			société est dirigée par un président qui peut être une personne morale
+			(une autre société). La SAS se caractérise par une grande souplesse de
+			fonctionnement (statuts sur mesure).
 		</T>
 	) : status === 'SASU' ? (
 		<T k="formeJuridique.SASU">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-			de l'apport de capital de l'unique associé. Le fonctionnement d'une SASU
-			est peu encadré par la législation.
+			de l'apport de capital de l'unique associé (qui peut être une personne
+			morale).
 		</T>
 	) : status === 'SA' ? (
 		<T k="formeJuridique.SA">

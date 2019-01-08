@@ -81,10 +81,10 @@ const PaySlip = ({
 				<h4>
 					<Trans>Part salariale</Trans>
 				</h4>
-				{cotisations.map(([section, cotisationList]) => (
-					<Fragment key={section}>
+				{cotisations.map(([branche, cotisationList]) => (
+					<Fragment key={branche.id}>
 						<h5 className="payslip__cotisationTitle">
-							<Trans i18nKey={`branches.${section}.name`}>{section}</Trans>
+							<RuleLink {...branche} />
 						</h5>
 						{cotisationList.map(cotisation => (
 							<Fragment key={cotisation.lien}>

@@ -20,7 +20,6 @@
 
 #ruleHeader__content {
 	display: flex;
-	padding-top: 1rem;
 }
 @media (max-width: 500px) {
 	#ruleHeader__content {
@@ -31,6 +30,7 @@
 }
 #ruleHeader__description {
 	flex: 1;
+	padding-top: 1rem;
 }
 #ruleHeader__infobox {
 	padding: 1rem;

@@ -44,6 +44,11 @@ const CreateCompany = ({
 	const isMicroenterprise = [
 		'micro-entreprise',
 		'micro-entreprise-EIRL'
+	].includes(companyStatus);
+	const multipleAssociates = [
+		'SARL',
+		'SAS',
+		'SA'
 	].includes(companyStatus)
 	const isEI = isMicroenterprise || ['EI', 'EIRL'].includes(companyStatus)
 	if (!companyStatus) {
@@ -172,11 +177,12 @@ const CreateCompany = ({
 						explanations={
 							<p>
 								<T k="entreprise.tâches.statuts.description">
-									<strong>Les statuts</strong> de l'entreprise sont un document
-									officiel qui donne le choix de la forme juridique, nomme les
-									associés et leurs contributions au capital. Dans le cas où il
-									y a plus d'un associé, il est recommandé de faire appel à un
-									juriste pour les rédiger.{' '}
+									Il s'agit d'un document officiel qui intègre la forme juridique, nomme les
+									associés et leurs contributions au capital.{' '}
+									<span style={{display: multipleAssociates ? 'visible' : 'none'}}>
+										Dans le cas d'une création d'entreprise avec plusieurs associés, il est recommandé 
+										de faire appel à un juriste pour les rédiger.{' '}
+									</span>
 								</T>
 								{['SARL', 'EURL'].includes(companyStatus) && (
 									<StatutsExample companyStatus={companyStatus} />
@@ -293,9 +299,8 @@ const CreateCompany = ({
 						explanations={
 							<T k="entreprise.tâches.journal.description">
 								<p>
-									Une <strong>annonce légal de création d'entreprise</strong>{' '}
-									doit être publié dans un journal d'annonces légales (« JAL »),
-									pour un coût de publication qui dépend du volume de l'annonce
+									Vous devez publier la création de votre entreprise dans un journal 
+									d'annonces légales (« JAL »), pour un coût de publication qui dépend du volume de l'annonce
 									et des tarifs pratiqués par le journal choisi{' '}
 								</p>
 								<p>
@@ -304,8 +309,7 @@ const CreateCompany = ({
 									</a>
 								</p>
 								<p>
-									Pour une SARL ou EURL, cette annonce doit contenir les
-									informations suivantes :{' '}
+									Cette annonce doit contenir les informations suivantes :{' '}
 								</p>
 								<ul>
 									<li>Le nom de l'entreprise et éventuellement son acronyme</li>
@@ -339,8 +343,7 @@ const CreateCompany = ({
 					explanations={
 						<T k="entreprise.tâches.formulaire.description">
 							<p>
-								Vous pouvez faire votre d'inscription en ligne à tout moment,
-								l'enregistrer et y revenir comme vous le souhaitez.{' '}
+								Vous pouvez faire votre inscription en ligne à tout moment, l'enregistrer et y revenir comme vous le souhaitez. 
 							</p>
 							<div style={{ textAlign: 'center' }}>
 								<a
