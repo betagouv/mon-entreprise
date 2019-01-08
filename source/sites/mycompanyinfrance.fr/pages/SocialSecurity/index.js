@@ -12,7 +12,7 @@ const SocialSecurityRoutes = ({ match }) => (
 	<>
 		<ScrollToTop />
 		<Switch>
-			<Route path={`${match.path}`} component={Home} />
+			<Route exact path={`${match.path}`} component={Home} />
 			<Route path={`${match.path}/règle/:name`} component={RulePage} />
 			<Route path={`${match.path}/salarié`} component={Salarié} />
 			<Route

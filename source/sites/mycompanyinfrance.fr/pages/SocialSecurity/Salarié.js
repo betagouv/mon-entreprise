@@ -2,7 +2,6 @@ import Simulateur from 'Components/Simu'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import React from 'react'
-
 const Salarié = () => (
 	<>
 		<p>
