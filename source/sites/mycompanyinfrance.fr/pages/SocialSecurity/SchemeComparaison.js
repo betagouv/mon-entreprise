@@ -4,10 +4,6 @@ import withSimulationConfig from 'Components/simulationConfigs/withSimulationCon
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const Simulation = withSimulationConfig(ComparaisonConfig)(
-	ComparativeSimulation
-)
-
 const SchemeComparaisonPage = () => (
 	<>
 		<Helmet>
@@ -17,8 +13,18 @@ const SchemeComparaisonPage = () => (
 			</title>
 		</Helmet>
 		<h1>Comparaison des différents régimes de cotisation</h1>
-		<Simulation />
+		<p>
+			Calcul du{' '}
+			<strong>
+				revenu du travailleur indépendant ou dirigeant d'entreprise
+			</strong>
+			, en fonction de son choix de régime social. Nous faisons les hypothèses
+			suivantes : tout le chiffre d'affaire sert à payer le dirigeant. L'impôt
+			est calculé pour un célibataire sans enfants et sans autre revenu. Version
+			beta, beaucoup d'améliorations à venir !
+		</p>
+		<ComparativeSimulation />
 	</>
 )
 
-export default SchemeComparaisonPage
+export default withSimulationConfig(ComparaisonConfig)(SchemeComparaisonPage)

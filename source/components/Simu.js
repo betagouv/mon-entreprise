@@ -1,14 +1,16 @@
 import { startConversation } from 'Actions/actions'
+import { Component, React, T } from 'Components'
 import AnswerList from 'Components/AnswerList'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { compose } from 'ramda'
-import { React, Component, T } from 'Components'
+import emoji from 'react-easy-emoji'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
+import { formValueSelector } from 'redux-form'
 import {
 	blockingInputControlsSelector,
 	nextStepsSelector,
@@ -27,13 +29,8 @@ import QuickLink from './QuickLink'
 import ResultView from './ResultView'
 import './Simu.css'
 import TargetSelection from './TargetSelection'
-import { formValueSelector } from 'redux-form'
-import emoji from 'react-easy-emoji'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig';
-import salariéConfig from 'Components/simulationConfigs/salarié.yaml';
 
 export default compose(
-	withSimulationConfig(salariéConfig),
 	withRouter,
 	withColours,
 	withNamespaces(), // Triggers rerender when the language changes
