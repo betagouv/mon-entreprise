@@ -92,6 +92,7 @@ export default compose(
 				} = this.props,
 				targets = analysis ? analysis.targets : []
 
+			console.log(targets)
 			return (
 				<div>
 					<ul id="targets">
@@ -226,7 +227,6 @@ const TargetValue = connect(
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
 				value = targetWithValue && targetWithValue.nodeValue
-			console.log(target.dottedName, targets, targetWithValue)
 			return (
 				<div
 					className={classNames({

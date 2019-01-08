@@ -79,11 +79,11 @@ let validatedStepsSelector = createSelector(
 	(foldedSteps, target) => [...foldedSteps, target]
 )
 let branchesSelector = state => state.simulationConfig?.branches
-let configSituationSelector = state => state.simulationConfig?.situation
+let configSituationSelector = state => state.simulationConfig?.situation || {}
 const createSituationBrancheSelector = situationSelector =>
 	createSelector(
 		[situationSelector, branchesSelector, configSituationSelector],
-		(situation, branches, configSituation = {}) => {
+		(situation, branches, configSituation) => {
 			if (branches) {
 				return branches.map(({ situation: branchSituation }) => ({
 					...situation,
@@ -92,7 +92,7 @@ const createSituationBrancheSelector = situationSelector =>
 				}))
 			}
 			if (configSituation) {
-				return { ...situation, ...configSituation.situation }
+				return { ...situation, ...configSituation }
 			}
 			return situation
 		}
@@ -128,13 +128,14 @@ export let ruleAnalysisSelector = createSelector(
 		state => state.situationBranch || 0,
 		shortcutsSelector
 	],
-	(rules, dottedName, situations, situationBranch, valueShortcuts) =>
-		analyseRule(rules, dottedName, dottedName => {
+	(rules, dottedName, situations, situationBranch, valueShortcuts) => {
+		return analyseRule(rules, dottedName, dottedName => {
 			const currentSituation = Array.isArray(situations)
 				? situations[situationBranch]
 				: situations
 			return currentSituation[valueShortcuts[dottedName] || dottedName]
 		})
+	}
 )
 
 let exampleSituationSelector = createSelector(
@@ -171,14 +172,15 @@ let makeAnalysisSelector = situationSelector =>
 			situationSelector,
 			shortcutsSelector
 		],
-		(parsedRules, targetNames, situations, valueShortcuts) =>
-			mapOrApply(
+		(parsedRules, targetNames, situations, valueShortcuts) => {
+			return mapOrApply(
 				situation =>
-					analyseMany(parsedRules, targetNames)(
-						dottedName => situation[valueShortcuts[dottedName] || dottedName]
-					),
+					analyseMany(parsedRules, targetNames)(dottedName => {
+						return situation[valueShortcuts[dottedName] || dottedName]
+					}),
 				situations
 			)
+		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
@@ -237,7 +239,6 @@ export let nextStepsSelector = createSelector(
 	],
 	(mv, questions, valueShortcuts) => {
 		let nextSteps = getNextSteps(mv)
-		console.log('yalla', nextSteps, questions)
 		// .map(
 		// 	dottedName => valueShortcuts[dottedName] || dottedName
 		// )
