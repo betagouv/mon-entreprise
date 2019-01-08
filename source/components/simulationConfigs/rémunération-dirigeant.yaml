@@ -1,27 +1,27 @@
 titre: |
   Calcul du **revenu du travailleur indépendant ou dirigeant d'entreprise**, en fonction de son choix de régime social.
 
-  Nous faisons les hypothèses suivantes : tout le chiffre d'affaire sert à payer le dirigeant. L'impôt est calculé pour un célibataire sans enfants et sans autre revenu. 
-  
+  Nous faisons les hypothèses suivantes : tout le chiffre d'affaires sert à payer le dirigeant. L'impôt est calculé pour un célibataire sans enfants et sans autre revenu. 
+
   Version beta, beaucoup d'améliorations à venir !
-objectifs: 
+objectifs:
   - revenu net d'impôt
-questions: 
+questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
-branches: 
+branches:
   - nom: Micro-entreprise
-    situation: 
+    situation:
       micro entreprise: oui
       indépendant: non
       contrat salarié: non
   - nom: Indépendant
-    situation: 
+    situation:
       indépendant: oui
       micro entreprise: non
       contrat salarié: non
   - nom: Assimilé salarié
-    situation: 
+    situation:
       micro entreprise: non
       indépendant: non
       contrat salarié: oui
@@ -30,4 +30,3 @@ branches:
 raccourcis:
   contrat salarié . rémunération . total: entreprise . chiffre d'affaires
   indépendant . revenu brut: entreprise . chiffre d'affaires
-

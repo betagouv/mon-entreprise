@@ -19,7 +19,7 @@ const SchemeComparaisonPage = () => (
 				revenu du travailleur indépendant ou dirigeant d'entreprise
 			</strong>
 			, en fonction de son choix de régime social. Nous faisons les hypothèses
-			suivantes : tout le chiffre d'affaire sert à payer le dirigeant. L'impôt
+			suivantes : tout le chiffre d'affaires sert à payer le dirigeant. L'impôt
 			est calculé pour un célibataire sans enfants et sans autre revenu. Version
 			beta, beaucoup d'améliorations à venir !
 		</p>

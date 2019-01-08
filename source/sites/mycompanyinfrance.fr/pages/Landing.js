@@ -22,8 +22,8 @@ export default withNamespaces()(
 					</h1>
 					<p className="ui__ lead" style={{ maxWidth: '35rem' }}>
 						<Trans i18nKey="subtitle">
-							Toutes les ressources pour créer et administrer votre activité en
-							toute simplicité.
+							Les ressources pour créer et administrer votre activité en toute
+							simplicité.
 						</Trans>
 					</p>
 
@@ -45,7 +45,7 @@ export default withNamespaces()(
 				</h2>
 				<Animate.fromBottom>
 					<Link className="landing__choice " to={sitePaths().entreprise.index}>
-						{emoji('💡')} Créer une nouvelle entreprise
+						{emoji('💡')} Créer une entreprise
 					</Link>
 
 					<Link
