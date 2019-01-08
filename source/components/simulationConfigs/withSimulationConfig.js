@@ -1,5 +1,4 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 
 export default config => SimulationComponent =>
@@ -15,15 +14,7 @@ export default config => SimulationComponent =>
 			}
 			render() {
 				if (!this.props.simulationConfig) return null
-				return (
-					<>
-						<Helmet>
-							<title>TITRE PAGE</title>
-						</Helmet>
-						<h1>Titre HTML</h1>
-						<SimulationComponent config={config} />
-					</>
-				)
+				return <SimulationComponent />
 			}
 		}
 	)

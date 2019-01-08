@@ -29,10 +29,11 @@ import './Simu.css'
 import TargetSelection from './TargetSelection'
 import { formValueSelector } from 'redux-form'
 import emoji from 'react-easy-emoji'
-import SimulationDecorator from 'Components/simulationConfig/SimulationDecorator'
+import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig';
+import salariéConfig from 'Components/simulationConfigs/salarié.yaml';
 
 export default compose(
-	SimulationDecorator,
+	withSimulationConfig(salariéConfig),
 	withRouter,
 	withColours,
 	withNamespaces(), // Triggers rerender when the language changes
