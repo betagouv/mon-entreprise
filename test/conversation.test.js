@@ -4,7 +4,6 @@ import { enrichRule, rulesFr as rules } from 'Engine/rules'
 import { safeLoad } from 'js-yaml'
 import { assocPath, merge } from 'ramda'
 import reducers from 'Reducers/rootReducer'
-import { simulationTargetNames } from '../source/config'
 import {
 	currentQuestionSelector,
 	nextStepsSelector
@@ -142,7 +141,6 @@ describe('conversation', function() {
 describe('real conversation', function() {
 	it('should not have more than X questions', function() {
 		let state = merge(baseState, {
-				targetNames: simulationTargetNames
 			}),
 			nextSteps = nextStepsSelector(state, { rules })
 

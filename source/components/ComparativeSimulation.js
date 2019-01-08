@@ -5,6 +5,7 @@ import withColours from 'Components/utils/withColours'
 import { createMarkdownDiv } from 'Engine/marked'
 import { compose, isEmpty } from 'ramda'
 import React from 'react'
+import Animate from 'Ui/animate'
 import { connect } from 'react-redux'
 import {
 	analysisWithDefaultsSelector,
@@ -58,7 +59,7 @@ export default compose(
 							</>
 						)}
 
-						<ComparativeTargets hide={noUserInput} />
+						{!noUserInput && <Animate.fromBottom><ComparativeTargets /></Animate.fromBottom>}
 					</div>
 				</div>
 			)

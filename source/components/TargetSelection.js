@@ -40,7 +40,8 @@ export default compose(
 			flatRules: flatRulesSelector(state),
 			noUserInput: noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
-			activeInput: state.activeTargetInput
+			activeInput: state.activeTargetInput,
+			mainTargetNames: state.simulationConfig.objectifs
 		}),
 		dispatch => ({
 			setFormValue: (field, name) =>
@@ -76,7 +77,7 @@ export default compose(
 		}
 
 		renderOutputList() {
-			let displayedTargets = mainTargetNames.map(target =>
+			let displayedTargets = this.props.mainTargetNames.map(target =>
 					findRuleByDottedName(this.props.flatRules, target)
 				),
 				{

@@ -10,7 +10,6 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	margin: 1em 0;
 }
 #ComparativeSimulation header > p {
 	margin: 0.3em 0;
@@ -20,6 +19,3 @@
 	margin-top: 1rem;
 }
 
-#ComparativeSimulation .conversationContainer {
-	margin-bottom: 10%;
-}

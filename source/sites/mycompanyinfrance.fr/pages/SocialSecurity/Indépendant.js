@@ -1,10 +1,20 @@
-import Simulateur from 'Components/Simu'
+import Simulateur from 'Components/ComparativeSimulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import React from 'react'
+import {Helmet} from 'react-helmet'
 
 const Indépendant = () => (
-	<>
+	<><Helmet>
+	<title>
+		Dirigeant indépendant : cotisations et protection sociale
+	</title>
+	<meta 
+		name="description" 
+		content="Simulez votre rémunération en tant que dirigeant indépendant. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime des indépendants (TNS)" 
+	/>
+</Helmet>
+<h1>Dirigeant indépendant </h1>
 		<p>
 			Relèvent de la sécurité sociale des indépendants, les travailleurs
 			indépendants suivants :

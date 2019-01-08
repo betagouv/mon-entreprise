@@ -13,7 +13,6 @@ import AnimatedTargetValue from './AnimatedTargetValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import { findRuleByDottedName } from 'Engine/rules'
 import { formValueSelector } from 'redux-form'
-
 export default compose(
 	connect(
 		state => ({
@@ -42,11 +41,13 @@ export default compose(
 				target,
 				setSituationBranch,
 				chiffreAffaires,
-				hide,
 				simulationBranches
 			} = this.props
+			if(!simulationBranches) {
+				return null;
+			}
 			return (
-				<div id="targets" style={{ display: hide ? 'none' : 'block' }}>
+				<div id="comparative-targets">
 					<h3>{target.title}</h3>
 					<PeriodSwitch />
 					<ul>

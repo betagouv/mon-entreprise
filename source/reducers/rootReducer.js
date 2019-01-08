@@ -16,7 +16,6 @@ import { combineReducers } from 'redux'
 // $FlowFixMe
 import { reducer as formReducer } from 'redux-form'
 import computeThemeColours from 'Ui/themeColours'
-import { simulationTargetNames } from '../config.js'
 import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'

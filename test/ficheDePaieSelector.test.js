@@ -5,7 +5,6 @@ import FicheDePaieSelectors, {
 	COTISATION_BRANCHE_ORDER
 } from 'Selectors/ficheDePaieSelectors'
 
-import { simulationTargetNames } from '../source/config'
 
 let state = {
 	form: {
@@ -16,7 +15,6 @@ let state = {
 			}
 		}
 	},
-	targetNames: simulationTargetNames,
 	conversationStarted: true,
 	conversationSteps: {
 		foldedSteps: []
