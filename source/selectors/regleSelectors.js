@@ -53,7 +53,7 @@ export const règleValeurSelector = createSelector(
 	(analysis: Analysis, situations, règleLocalisée: string => Règle) => (
 		dottedName: string
 	): RègleValeur => {
-		if (!analysis) {
+		if (!analysis || !analysis.cache) {
 			throw new Error(
 				`[règleValeurSelector] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
 			)

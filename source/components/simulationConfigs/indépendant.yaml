@@ -3,11 +3,9 @@ objectifs:
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
-branches:
-  - nom: Indépendant
-    situation:
-      indépendant: oui
-      micro entreprise: non
-      contrat salarié: non
+situation:
+  indépendant: oui
+  micro entreprise: non
+  contrat salarié: non
 raccourcis:
   indépendant . revenu brut: entreprise . chiffre d'affaires

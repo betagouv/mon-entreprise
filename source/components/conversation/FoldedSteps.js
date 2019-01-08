@@ -3,7 +3,6 @@ import { isEmpty } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { reset } from 'redux-form'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
 import './conversation.css'
@@ -16,14 +15,12 @@ export default connect(
 		flatRules: flatRulesSelector(state)
 	}),
 	{
-		resetSimulation,
-		resetForm: () => reset('conversation')
+		resetSimulation
 	}
 )(
 	class FoldedSteps extends Component {
 		handleSimulationReset = () => {
 			this.props.resetSimulation()
-			this.props.resetForm()
 		}
 		render() {
 			let { foldedSteps } = this.props

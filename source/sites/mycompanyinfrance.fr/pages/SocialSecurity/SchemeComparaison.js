@@ -1,4 +1,5 @@
-import ComparativeSimulation from 'Components/ComparativeSimulation'
+import ComparativeTargets from 'Components/ComparativeTargets'
+import SimpleSimulation from 'Components/SimpleSimulation'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import React from 'react'
@@ -23,7 +24,9 @@ const SchemeComparaisonPage = () => (
 			est calculé pour un célibataire sans enfants et sans autre revenu. Version
 			beta, beaucoup d'améliorations à venir !
 		</p>
-		<ComparativeSimulation />
+		<SimpleSimulation>
+			<ComparativeTargets />
+		</SimpleSimulation>
 	</>
 )
 

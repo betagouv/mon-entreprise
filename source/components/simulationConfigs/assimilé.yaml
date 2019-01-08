@@ -1,21 +1,13 @@
-titre: |
-  Calcul du **revenu du dirigeant d'entreprise assimilé salarié**.
-
-  Nous faisons les hypothèses suivantes : tout le chiffre d'affaires sert à payer le dirigeant. L'impôt est calculé pour un célibataire sans enfants et sans autre revenu. 
-
-  Version beta, beaucoup d'améliorations à venir !
 objectifs:
   - revenu net d'impôt
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
-branches:
-  - nom: Assimilé salarié
-    situation:
-      micro entreprise: non
-      indépendant: non
-      contrat salarié: oui
-      contrat salarié . assimilé salarié: oui
-      contrat salarié . ATMP . taux réduit: oui
+situation:
+  micro entreprise: non
+  indépendant: non
+  contrat salarié: oui
+  contrat salarié . assimilé salarié: oui
+  contrat salarié . ATMP . taux réduit: oui
 raccourcis:
   contrat salarié . rémunération . total: entreprise . chiffre d'affaires

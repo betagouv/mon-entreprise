@@ -27,7 +27,7 @@ import PaySlip from './PaySlip'
 import PeriodSwitch from './PeriodSwitch'
 import QuickLink from './QuickLink'
 import ResultView from './ResultView'
-import './Simu.css'
+import './SalarySimulation.css'
 import TargetSelection from './TargetSelection'
 
 export default compose(

@@ -1,8 +1,9 @@
-import Simulateur from 'Components/ComparativeSimulation'
+import SimpleSimulation from 'Components/SimpleSimulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 const AssimiléSalarié = () => (
 	<>
@@ -10,9 +11,9 @@ const AssimiléSalarié = () => (
 			<title>
 				Dirigeant assimilé salarié : cotisations et protection sociale
 			</title>
-			<meta 
-				name="description" 
-				content="Simulez votre rémunération en tant que dirigeant assimilé salarié. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime général" 
+			<meta
+				name="description"
+				content="Simulez votre rémunération en tant que dirigeant assimilé salarié. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime général"
 			/>
 		</Helmet>
 		<h1>Assimilé salarié : cotisation et droits</h1>
@@ -22,7 +23,9 @@ const AssimiléSalarié = () => (
 			général. Les cotisations sociales sont proches de celles des salariés, à
 			quelques exceptions près (chômage en moins).
 		</p>
-		<Simulateur />
+		<SimpleSimulation>
+			<TargetSelection />
+		</SimpleSimulation>
 	</>
 )
 export default withSimulationConfig(assimiléConfig)(AssimiléSalarié)

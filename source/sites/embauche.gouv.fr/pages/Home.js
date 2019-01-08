@@ -1,5 +1,5 @@
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
-import Simu from 'Components/Simu'
+import Simu from 'Components/SalarySimulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import Marianne from 'Images/marianne.svg'

@@ -5,15 +5,19 @@ import type {
 	DeletePreviousSimulationAction,
 	StartConversationAction
 } from 'Types/ActionsTypes'
+import { reset } from 'redux-form'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
 import { normalizeBasePath } from '../utils'
 
 import type { RouterHistory } from 'react-router-dom'
 
-export function resetSimulation(): ResetSimulationAction {
-	return {
-		type: 'RESET_SIMULATION'
-	}
+export const resetSimulation = () => (dispatch: any => void): void => {
+	dispatch(reset('conversation'))
+	dispatch(
+		({
+			type: 'RESET_SIMULATION'
+		}: ResetSimulationAction)
+	)
 }
 
 export const deletePreviousSimulation = () => (
