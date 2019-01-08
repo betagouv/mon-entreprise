@@ -4,7 +4,8 @@ titre: |
   Nous faisons les hypothèses suivantes : tout le chiffre d'affaire sert à payer le dirigeant. L'impôt est calculé pour un célibataire sans enfants et sans autre revenu. 
   
   Version beta, beaucoup d'améliorations à venir !
-objectif: revenu net d'impôt
+objectifs: 
+  - revenu net d'impôt
 questions: 
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité

@@ -1,0 +1,20 @@
+titre: |
+  Calcul du **revenu du travailleur indépendant ou dirigeant d'entreprise au régime des indépendants**.
+
+  Nous faisons les hypothèses suivantes : tout le chiffre d'affaire sert à payer le dirigeant. L'impôt est calculé pour un célibataire sans enfants et sans autre revenu. 
+  
+  Version beta, beaucoup d'améliorations à venir !
+objectifs: 
+  - revenu net d'impôt
+questions: 
+  - entreprise . chiffre d'affaires
+  - entreprise . catégorie d'activité
+branches: 
+  - nom: Indépendant
+    situation: 
+      indépendant: oui
+      micro entreprise: non
+      contrat salarié: non
+raccourcis:
+  indépendant . revenu brut: entreprise . chiffre d'affaires
+
