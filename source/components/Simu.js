@@ -4,7 +4,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { compose } from 'ramda'
-import {React,  Component, T} from 'Components'
+import { React, Component, T } from 'Components'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router'
@@ -29,8 +29,10 @@ import './Simu.css'
 import TargetSelection from './TargetSelection'
 import { formValueSelector } from 'redux-form'
 import emoji from 'react-easy-emoji'
+import SimulationDecorator from 'Components/simulationConfig/SimulationDecorator'
 
 export default compose(
+	SimulationDecorator,
 	withRouter,
 	withColours,
 	withNamespaces(), // Triggers rerender when the language changes
@@ -66,8 +68,8 @@ export default compose(
 				match,
 				validInputEntered,
 				location,
-					period,
-					noUserInput
+				period,
+				noUserInput
 			} = this.props
 			const displayConversation = conversationStarted && !blockingInputControls
 			const simulationCompleted =
@@ -81,8 +83,19 @@ export default compose(
 			return (
 				<>
 					<div id="simu">
-							{noUserInput &&
-											<p id="updateMessage" style={{fontStyle: 'italic', textAlign: 'center'}}>{emoji('🌟')} <T k="maj2019">Le simulateur est à jour aux taux 2019 – <a href="https://github.com/betagouv/syso/issues/441">détails</a></T></p>}
+						{noUserInput && (
+							<p
+								id="updateMessage"
+								style={{ fontStyle: 'italic', textAlign: 'center' }}>
+								{emoji('🌟')}{' '}
+								<T k="maj2019">
+									Le simulateur est à jour aux taux 2019 –{' '}
+									<a href="https://github.com/betagouv/syso/issues/441">
+										détails
+									</a>
+								</T>
+							</p>
+						)}
 						<QuickLink />
 						{location.pathname.endsWith('/simulation') && (
 							<>

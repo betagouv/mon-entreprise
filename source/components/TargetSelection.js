@@ -17,7 +17,6 @@ import {
 	flatRulesSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import { mainTargetNames } from '../config'
 import { normalizeBasePath } from '../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import Controls from './Controls'
