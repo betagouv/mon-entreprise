@@ -177,9 +177,14 @@ let makeAnalysisSelector = situationSelector =>
 		}
 	)
 
-export let analysisWithDefaultsSelector = makeAnalysisSelector(
+export let analysisListWithDefaultsSelector = makeAnalysisSelector(
 	situationsWithDefaultsSelector
 )
+export let analysisWithDefaultsSelector = createSelector(
+	[analysisListWithDefaultsSelector],
+	analysisList => analysisList[0]
+)
+
 let analysisValidatedOnlySelector = makeAnalysisSelector(
 	validatedSituationBranchesSelector
 )

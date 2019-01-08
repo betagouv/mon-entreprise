@@ -84,7 +84,7 @@ export default compose(
 					conversationStarted,
 					activeInput,
 					setActiveInput,
-					analysis,
+					analysis: analysis,
 					noUserInput,
 					blockingInputControls,
 					match

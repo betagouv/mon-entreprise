@@ -1,18 +1,18 @@
-import React from 'react'
-import {
-	flatRulesSelector,
-	analysisWithDefaultsSelector
-} from 'Selectors/analyseSelectors'
-import { connect } from 'react-redux'
-import './ComparativeTargets.css'
-import withColours from 'Components/utils/withColours'
-import { Link } from 'react-router-dom'
-import emoji from 'react-easy-emoji'
-import { compose } from 'ramda'
-import AnimatedTargetValue from './AnimatedTargetValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import withColours from 'Components/utils/withColours'
 import { findRuleByDottedName } from 'Engine/rules'
+import { compose } from 'ramda'
+import React from 'react'
+import emoji from 'react-easy-emoji'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { formValueSelector } from 'redux-form'
+import {
+	analysisListWithDefaultsSelector,
+	flatRulesSelector
+} from 'Selectors/analyseSelectors'
+import AnimatedTargetValue from './AnimatedTargetValue'
+import './ComparativeTargets.css'
 export default compose(
 	connect(
 		state => ({
@@ -21,7 +21,7 @@ export default compose(
 				state.simulationConfig?.objectifs[0]
 			),
 			simulationBranches: state.simulationConfig?.branches,
-			analyses: analysisWithDefaultsSelector(state),
+			analyses: analysisListWithDefaultsSelector(state),
 			chiffreAffaires: formValueSelector('conversation')(
 				state,
 				"entreprise . chiffre d'affaires"
@@ -43,8 +43,8 @@ export default compose(
 				chiffreAffaires,
 				simulationBranches
 			} = this.props
-			if(!simulationBranches) {
-				return null;
+			if (!simulationBranches) {
+				return null
 			}
 			return (
 				<div id="comparative-targets">

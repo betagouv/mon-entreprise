@@ -77,8 +77,7 @@ function brancheSelector(variable: VariableWithCotisation): Branche {
 	].map(p => path(p, variable))
 	return (
 		// $FlowFixMe
-		'protection sociale . ' +
-		(branches.filter(Boolean)[0] || 'autres')
+		'protection sociale . ' + (branches.filter(Boolean)[0] || 'autres')
 	)
 }
 
@@ -157,7 +156,7 @@ function analysisToFicheDePaie(
 	règleAvecMontant,
 	règleAvecValeur,
 	règleLocalisée,
-	analysis
+	[analysis]
 ): ?FicheDePaie {
 	if (!analysis.cache) {
 		return null

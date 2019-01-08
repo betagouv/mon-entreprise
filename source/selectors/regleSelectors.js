@@ -50,7 +50,7 @@ export const règleValeurSelector = createSelector(
 	analysisWithDefaultsSelector,
 	validatedSituationBranchesSelector,
 	règleLocaliséeSelector,
-	(analysis: Analysis, situations, règleLocalisée: string => Règle) => (
+	([analysis]: Analysis, situations, règleLocalisée: string => Règle) => (
 		dottedName: string
 	): RègleValeur => {
 		if (!analysis || !analysis.cache) {

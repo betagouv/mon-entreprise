@@ -1,11 +1,11 @@
-import React from 'react'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import { connect } from 'react-redux'
-import './Targets.css'
 import withColours from 'Components/utils/withColours'
-import { Link } from 'react-router-dom'
-import emoji from 'react-easy-emoji'
 import { compose } from 'ramda'
+import React from 'react'
+import emoji from 'react-easy-emoji'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import './Targets.css'
 export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
 	withColours
@@ -17,7 +17,7 @@ export default compose(
 				nodeValue,
 				unité: unit,
 				dottedName
-			} = this.props.analysis.targets[0]
+			} = this.props.analysis[0].targets[0]
 			return (
 				<div id="targets">
 					<span className="icon">→</span>
