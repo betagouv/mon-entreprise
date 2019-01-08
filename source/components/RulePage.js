@@ -20,14 +20,14 @@ import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
-import simulationConfig from 'Components/simulateur-rémunération-dirigeant.yaml'
 
 export default compose(
 	connect(state => ({
 		themeColours: state.themeColours,
 		valuesToShow: !noUserInputSelector(state),
 		flatRules: flatRulesSelector(state),
-		situationBranch: simulationConfig.branches[state.situationBranch]?.nom
+		situationBranch:
+			state.simulationConfig?.branches[state.situationBranch]?.nom
 	})),
 	withNamespaces()
 )(
@@ -71,7 +71,7 @@ export default compose(
 							rulePageBasePath="../règle"
 						/>
 					</div>
-					<Rule {...simulationConfig} dottedName={dottedName} />
+					<Rule dottedName={dottedName} />
 				</div>
 			)
 		}

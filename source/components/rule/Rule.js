@@ -32,12 +32,12 @@ import emoji from 'react-easy-emoji'
 let LazySource = React.lazy(() => import('./RuleSource'))
 
 export default compose(
-	connect((state, props) => ({
+	connect(state => ({
 		currentExample: state.currentExample,
 		flatRules: flatRulesSelector(state),
 		valuesToShow: !noUserInputSelector(state),
-		analysedRule: ruleAnalysisSelector(state, props),
-		analysedExample: exampleAnalysisSelector(state, props)
+		analysedRule: ruleAnalysisSelector(state),
+		analysedExample: exampleAnalysisSelector(state)
 	})),
 	AttachDictionary(knownMecanisms),
 	withNamespaces(),

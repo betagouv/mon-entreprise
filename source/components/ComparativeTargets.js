@@ -9,7 +9,6 @@ import withColours from 'Components/utils/withColours'
 import { Link } from 'react-router-dom'
 import emoji from 'react-easy-emoji'
 import { compose } from 'ramda'
-import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import { findRuleByDottedName } from 'Engine/rules'
@@ -20,9 +19,10 @@ export default compose(
 		state => ({
 			target: findRuleByDottedName(
 				flatRulesSelector(state),
-				simulationConfig.objectif
+				state.simulationConfig?.objectifs[0]
 			),
-			analyses: analysisWithDefaultsSelector(state, simulationConfig),
+			simulationBranches: state.simulationConfig?.branches,
+			analyses: analysisWithDefaultsSelector(state),
 			chiffreAffaires: formValueSelector('conversation')(
 				state,
 				"entreprise . chiffre d'affaires"
@@ -42,9 +42,9 @@ export default compose(
 				target,
 				setSituationBranch,
 				chiffreAffaires,
-				hide
+				hide,
+				simulationBranches
 			} = this.props
-			console.log(hide)
 			return (
 				<div id="targets" style={{ display: hide ? 'none' : 'block' }}>
 					<h3>{target.title}</h3>
@@ -53,7 +53,7 @@ export default compose(
 						{analyses.map((analysis, i) => {
 							if (!analysis.targets) return null
 							let { nodeValue, dottedName } = analysis.targets[0],
-								name = simulationConfig.branches[i].nom
+								name = simulationBranches[i].nom
 
 							let microNotApplicable =
 								name === 'Micro-entreprise' &&

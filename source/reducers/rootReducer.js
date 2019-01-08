@@ -135,6 +135,12 @@ function hiddenControls(state = [], { type, id }) {
 	} else return state
 }
 
+function simulationConfig(state = null, { type, config }) {
+	if (type === 'SET_SIMULATION_CONFIG') {
+		return config
+	} else return state
+}
+
 const addAnswerToSituation = (dottedName, value, state) => {
 	const dottedPath = dottedName.split(' . ')
 	return compose(
@@ -176,7 +182,7 @@ export default reduceReducers(
 		form: formReducer,
 		conversationSteps,
 		lang,
-		targetNames: defaultTo(simulationTargetNames),
+		simulationConfig,
 		themeColours,
 		explainedVariable,
 		previousSimulation: defaultTo(null),

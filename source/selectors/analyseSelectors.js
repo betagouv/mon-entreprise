@@ -55,7 +55,7 @@ export let ruleDefaultsSelector = createSelector(
 	rules => collectDefaults(rules)
 )
 
-let targetNamesSelector = state => state.targetNames
+let targetNamesSelector = state => state.simulationConfig?.objectifs
 
 export let situationSelector = createDeepEqualSelector(
 	getFormValues('conversation'),
@@ -82,7 +82,7 @@ let validatedStepsSelector = createSelector(
 	],
 	(foldedSteps, target) => [...foldedSteps, target]
 )
-let branchesSelector = (state, props) => props?.branches || [{}]
+let branchesSelector = state => state.simulationConfig?.branches || [{}]
 
 let situationBranchesSelector = createSelector(
 	[formattedSituationSelector, branchesSelector],
@@ -114,13 +114,15 @@ let situationsWithDefaultsSelector = createSelector(
 let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
 	analyse(parsedRules, ruleDottedName)(situationGate).targets[0]
 
+let shortcutsSelector = state => state.simulationConfig?.raccourcis || [{}]
+
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, { dottedName }) => dottedName,
 		situationsWithDefaultsSelector,
 		state => state.situationBranch || 0,
-		(_, props) => props?.raccourcis || {}
+		shortcutsSelector
 	],
 	(rules, dottedName, situations, situationBranch, valueShortcuts) =>
 		analyseRule(
@@ -163,7 +165,7 @@ let makeAnalysisSelector = situationSelector =>
 			parsedRulesSelector,
 			targetNamesSelector,
 			situationSelector,
-			(_, props) => props?.raccourcis || {}
+			shortcutsSelector
 		],
 		(parsedRules, targetNames, situations, valueShortcuts) => {
 			let analyses = situations.map(situation =>
@@ -218,7 +220,10 @@ export let missingVariablesByTargetSelector = createSelector(
 )
 
 export let nextStepsSelector = createSelector(
-	[currentMissingVariablesByTargetSelector, (_, { questions }) => questions],
+	[
+		currentMissingVariablesByTargetSelector,
+		state => state.simulationConfig?.questions
+	],
 	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)
 		if (questions) return intersection(nextSteps, questions)

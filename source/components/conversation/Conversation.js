@@ -19,11 +19,11 @@ export default compose(
 		destroyOnUnmount: false
 	}),
 	withNamespaces(),
-	connect((state, { simulationConfig }) => ({
+	connect(state => ({
 		conversationStarted: state.conversationStarted,
 		themeColours: state.themeColours,
 		flatRules: flatRulesSelector(state),
-		currentQuestion: currentQuestionSelector(state, simulationConfig)
+		currentQuestion: currentQuestionSelector(state)
 	}))
 )(
 	class Conversation extends Component {

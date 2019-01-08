@@ -12,14 +12,13 @@ import {
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import './ComparativeSimulation.css'
-import simulationConfig from './simulateur-rémunération-dirigeant.yaml'
 
 export default compose(
 	withColours,
 	connect(state => ({
 		previousAnswers: state.conversationSteps.foldedSteps,
-		noNextSteps: nextStepsSelector(state, simulationConfig).length == 0,
-		analyses: analysisWithDefaultsSelector(state, simulationConfig),
+		noNextSteps: nextStepsSelector(state).length == 0,
+		analyses: analysisWithDefaultsSelector(state),
 		noUserInput: noUserInputSelector(state)
 	}))
 )(
@@ -32,7 +31,6 @@ export default compose(
 
 			return (
 				<div id="ComparativeSimulation">
-					<header>{createMarkdownDiv(simulationConfig.titre)}</header>
 					<div id="simulationContent">
 						{!isEmpty(previousAnswers) && (
 							<button
@@ -51,7 +49,6 @@ export default compose(
 							/>
 						)}
 						<Conversation
-							simulationConfig={simulationConfig}
 							textColourOnWhite={this.props.colours.textColourOnWhite}
 						/>
 						{noNextSteps && (
