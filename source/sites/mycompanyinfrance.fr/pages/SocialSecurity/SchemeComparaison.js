@@ -3,6 +3,7 @@ import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirig
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { createMarkdownDiv } from 'Engine/marked'
 
 const SchemeComparaisonPage = () => (
 	<>
@@ -12,17 +13,10 @@ const SchemeComparaisonPage = () => (
 				différents régimes
 			</title>
 		</Helmet>
-		<h1>Comparaison des différents régimes de cotisation</h1>
-		<p>
-			Calcul du{' '}
-			<strong>
-				revenu du travailleur indépendant ou dirigeant d'entreprise
-			</strong>
-			, en fonction de son choix de régime social. Nous faisons les hypothèses
-			suivantes : tout le chiffre d'affaire sert à payer le dirigeant. L'impôt
-			est calculé pour un célibataire sans enfants et sans autre revenu. Version
-			beta, beaucoup d'améliorations à venir !
-		</p>
+		<h1>
+			Comparaison des régimes <small id="betaTag">alpha</small>
+		</h1>
+		<header>{createMarkdownDiv(ComparaisonConfig.titre)}</header>
 		<ComparativeSimulation />
 	</>
 )

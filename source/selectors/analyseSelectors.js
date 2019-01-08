@@ -114,22 +114,18 @@ let situationsWithDefaultsSelector = createSelector(
 let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
 	analyse(parsedRules, ruleDottedName)(situationGate).targets[0]
 
-let shortcutsSelector = state => state.simulationConfig?.raccourcis || [{}]
-
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, { dottedName }) => dottedName,
 		situationsWithDefaultsSelector,
-		state => state.situationBranch || 0,
-		shortcutsSelector
+		state => state.situationBranch || 0
 	],
 	(rules, dottedName, situations, situationBranch, valueShortcuts) =>
 		analyseRule(
 			rules,
 			dottedName,
-			dottedName =>
-				situations[situationBranch][valueShortcuts[dottedName] || dottedName]
+			dottedName => situations[situationBranch][dottedName]
 		)
 )
 
@@ -161,16 +157,11 @@ export let exampleAnalysisSelector = createSelector(
 
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
-		[
-			parsedRulesSelector,
-			targetNamesSelector,
-			situationSelector,
-			shortcutsSelector
-		],
-		(parsedRules, targetNames, situations, valueShortcuts) => {
+		[parsedRulesSelector, targetNamesSelector, situationSelector],
+		(parsedRules, targetNames, situations) => {
 			let analyses = situations.map(situation =>
 				analyseMany(parsedRules, targetNames)(
-					dottedName => situation[valueShortcuts[dottedName] || dottedName]
+					dottedName => situation[dottedName]
 				)
 			)
 			return analyses
