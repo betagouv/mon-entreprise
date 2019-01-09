@@ -188,3 +188,22 @@ export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
 	}
 	return paths.entreprise.statusJuridique[nextQuestion]
 }
+
+export  const régimeSelector = (state: { inFranceApp: State }): 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null => {
+	const companyStatusChoice = state.inFranceApp.companyStatusChoice
+	const companyLegalStatus = state.inFranceApp.companyLegalStatus
+	if (!companyStatusChoice) {
+		return null;
+	}
+	if(companyStatusChoice === 'micro-entreprise') {
+
+		return 'micro-entreprise'
+	}
+	if(companyStatusChoice.includes('EI') || companyStatusChoice === 'EURL' || companyStatusChoice === 'SARL' && companyLegalStatus?.minorityDirector === false) {
+		return 'indépendant'
+	}
+	if(companyStatusChoice.includes('SAS') || companyStatusChoice === 'SARL' && companyLegalStatus?.minorityDirector === true) {
+		return 'assimilé-salarié'
+	}
+	return null;
+}

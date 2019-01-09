@@ -1,15 +1,15 @@
 import SimpleSimulation from 'Components/SimpleSimulation'
-import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
+import indépendantConfig from 'Components/simulationConfigs/micro-entreprise.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 
-const Indépendant = () => (
+const MicroEntreprise = () => (
 	<>
 		<Helmet>
 			<title>
-				Auto-entrepreneur : cotisations et protection sociale{' '}
+				Micro-entreprise : cotisations et protection sociale{' '}
 				<small id="betaTag">alpha</small>
 			</title>
 			<meta
@@ -17,9 +17,9 @@ const Indépendant = () => (
 				content="Simulez votre rémunération en tant que dirigeant indépendant. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime des indépendants (TNS)"
 			/>
 		</Helmet>
-		<h1>Auto-entrepreneur : cotisations et droits </h1>
+		<h1>Micro-entreprise : cotisations et droits </h1>
 		<p>
-			Les auto-entrepreneurs relèvent de la sécurité sociale des indépendants.
+			Les micro-entreprises relèvent de la sécurité sociale des indépendants.
 		</p>
 		<p>
 			La sécurité sociale des indépendants ne couvre ni les accidents du
@@ -31,4 +31,4 @@ const Indépendant = () => (
 		</SimpleSimulation>
 	</>
 )
-export default withSimulationConfig(indépendantConfig)(Indépendant)
+export default withSimulationConfig(indépendantConfig)(MicroEntreprise)

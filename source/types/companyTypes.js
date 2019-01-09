@@ -65,7 +65,8 @@ export type State = {|
 		+microEnterprise?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
-	+existingCompanyDetails: ?ExistingCompanyDetails
+	+existingCompanyDetails: ?ExistingCompanyDetails,
+	+companyStatusChoice: ?('SARL' | 'SAS' | 'SASU' | 'SARL' | 'micro-entreprise' | 'EURL' | 'EIRL' | 'EI')
 |}
 export type LegalStatusRequirements = $PropertyType<State, 'companyLegalStatus'>
 export type Action =

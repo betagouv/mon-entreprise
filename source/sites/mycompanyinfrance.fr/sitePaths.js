@@ -69,6 +69,15 @@ const constructLocalizedSitePath = language => {
 				'path.sécuritéSociale.assimilé-salarié',
 				'/assimilé-salarié'
 			),
+			indépendant: t('path.sécuritéSociale.indépendant', '/indépendant'),
+			'micro-entreprise': t(
+				'path.sécuritéSociale.micro-entreprise',
+				'/micro-entreprise'
+			),
+			comparaison: t(
+				'path.sécuritéSociale.comparaison',
+				'/comparaison-assimilé-salarié-indépendant-et-micro-entreprise'
+			),
 			salarié: t('path.sécuritéSociale.salarié', '/salarié')
 		},
 		démarcheEmbauche: {

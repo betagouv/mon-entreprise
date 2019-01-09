@@ -6,7 +6,9 @@ import withLanguage from 'Components/utils/withLanguage'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { régimeSelector } from 'Selectors/companyStatusSelectors'
 import * as Animate from 'Ui/animate'
 import sitePaths from '../../sitePaths'
 import Video from './Video'
@@ -17,6 +19,7 @@ type Props = {
 	match: Match,
 	location: Location,
 	t: TFunction,
+	régime: 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null,
 	language: string
 }
 class SocialSecurity extends Component<Props, {}> {
@@ -49,7 +52,7 @@ class SocialSecurity extends Component<Props, {}> {
 								</p>
 							</T>
 							<Video />
-							<h2>Que voulez-vous estimer ?</h2>
+							<h2>Que souhaitez-vous estimer ?</h2>
 
 							<p>
 								<T k="sécu.simulation.intro">
@@ -60,13 +63,17 @@ class SocialSecurity extends Component<Props, {}> {
 							<div style={{ textAlign: 'center' }}>
 								<Link
 									className="ui__ button"
-									to={sitePaths().sécuritéSociale['assimilé-salarié']}>
+									to={
+										this.props.régime
+											? sitePaths().sécuritéSociale[this.props.régime]
+											: sitePaths().sécuritéSociale.comparaison
+									}>
 									<T>La rémunération du dirigeant</T>
 								</Link>
 								<Link
 									className="ui__ button"
 									to={sitePaths().sécuritéSociale.salarié}>
-									<T>Le salaire de l'employé</T>
+									<T>Le salaire d'un employé</T>
 								</Link>
 							</div>
 						</>
@@ -79,5 +86,8 @@ class SocialSecurity extends Component<Props, {}> {
 
 export default compose(
 	withNamespaces(),
-	withLanguage
+	withLanguage,
+	connect(state => ({
+		régime: régimeSelector(state)
+	}))
 )(SocialSecurity)
