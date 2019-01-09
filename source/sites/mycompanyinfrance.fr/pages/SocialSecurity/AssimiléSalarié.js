@@ -9,14 +9,18 @@ const AssimiléSalarié = () => (
 	<>
 		<Helmet>
 			<title>
-				Dirigeant assimilé salarié : cotisations et protection sociale
+				Dirigeant assimilé salarié : cotisations et protection sociale{' '}
+				<small id="betaTag">alpha</small>
 			</title>
 			<meta
 				name="description"
 				content="Simulez votre rémunération en tant que dirigeant assimilé salarié. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime général"
 			/>
 		</Helmet>
-		<h1>Assimilé salarié : cotisation et droits</h1>
+		<h1>
+			Assimilé salarié : cotisation et droits
+			<small id="betaTag">alpha</small>
+		</h1>
 		<p>
 			Les gérants égalitaires ou minoritaires de SARL ou les dirigeants de SA et
 			SAS sont <strong>assimilés&nbsp;salariés</strong> et relèvent du régime

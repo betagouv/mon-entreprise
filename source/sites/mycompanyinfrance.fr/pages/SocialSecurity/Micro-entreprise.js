@@ -8,25 +8,19 @@ import { Helmet } from 'react-helmet'
 const Indépendant = () => (
 	<>
 		<Helmet>
-			<title>Dirigeant indépendant : cotisations et protection sociale </title>
+			<title>
+				Auto-entrepreneur : cotisations et protection sociale{' '}
+				<small id="betaTag">alpha</small>
+			</title>
 			<meta
 				name="description"
 				content="Simulez votre rémunération en tant que dirigeant indépendant. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime des indépendants (TNS)"
 			/>
 		</Helmet>
-		<h1>
-			Dirigeant indépendant : cotisations et droits
-			<small id="betaTag">alpha</small>
-		</h1>
+		<h1>Auto-entrepreneur : cotisations et droits </h1>
 		<p>
-			Relèvent de la sécurité sociale des indépendants, les travailleurs
-			indépendants suivants :
+			Les auto-entrepreneurs relèvent de la sécurité sociale des indépendants.
 		</p>
-		<ul>
-			<li> entrepreneurs individuels et EIRL</li>
-			<li> gérants et associés de SNC et EURL</li>
-			<li> gérant majoritaire de SARL</li>
-		</ul>
 		<p>
 			La sécurité sociale des indépendants ne couvre ni les accidents du
 			travail, ni la perte d'emploi (assurance-chômage). Pour être couvert, le

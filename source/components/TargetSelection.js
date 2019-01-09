@@ -20,7 +20,6 @@ import {
 } from 'Selectors/analyseSelectors'
 import { normalizeBasePath } from '../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
-import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
@@ -55,13 +54,9 @@ export default compose(
 )(
 	class TargetSelection extends Component {
 		render() {
-			let {
-				colours,
-				analysis: { controls }
-			} = this.props
+			let { colours } = this.props
 			return (
 				<div id="targetSelection">
-					<Controls {...{ controls }} />
 					<section
 						id="targetsContainer"
 						style={{

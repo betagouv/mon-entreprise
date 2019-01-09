@@ -8,14 +8,17 @@ const Salarié = () => (
 	<>
 		<Helmet>
 			<title>
-				Salarié au régime général : cotisations et protection sociale
+				Salarié au régime général : cotisations et protection sociale{' '}
 			</title>
 			<meta
 				name="description"
 				content="Simulez les cotisations d'un salarié au régime général. Calcul complet de toutes les cotisations. Découvrez les contreparties garanties par sécurité sociale"
 			/>
 		</Helmet>
-		<h1>Salarié au régime général</h1>
+		<h1>
+			Salarié au régime général
+			<small id="betaTag">alpha</small>
+		</h1>
 		<p>
 			Dès que l'embauche d'un salarié est déclarée et qu'il est payé, il est
 			couvert par le régime général de la Sécurité sociale (santé, maternité,
