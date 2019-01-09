@@ -6,7 +6,7 @@ titre: |
 
 objectifs:
   - revenu disponible
-  - entreprise . rémunération totale du dirigeant
+  - ratio de prélèvements
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
@@ -29,6 +29,3 @@ branches:
       contrat salarié: oui
       contrat salarié . assimilé salarié: oui
       contrat salarié . ATMP . taux réduit: oui
-raccourcis:
-  contrat salarié . rémunération . total: entreprise . rémunération totale du dirigeant
-  indépendant . revenu brut: entreprise . rémunération totale du dirigeant

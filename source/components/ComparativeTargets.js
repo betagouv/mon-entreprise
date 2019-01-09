@@ -43,10 +43,9 @@ export default compose(
 			}
 			// We retrieve the values necessary to compute the global % of taxes
 			// This is not elegant
-			let revenuTotal = analyses[0].targets.find(
-					t => t.dottedName === 'entreprise . rémunération totale du dirigeant'
-				)?.nodeValue,
-				getRevenuNet = analyse => analyse.cache["revenu net d'impôt"]?.nodeValue
+			let ratioPrélèvements = analysis =>
+				analysis.targets.find(t => t.dottedName === 'ratio de prélèvements')
+					?.nodeValue
 
 			return (
 				<div id="comparative-targets">
@@ -96,12 +95,8 @@ export default compose(
 											</span>
 											<small>
 												Soit{' '}
-												{Math.round(
-													((revenuTotal - getRevenuNet(analysis)) /
-														+revenuTotal) *
-														100
-												)}{' '}
-												% de prélèvements
+												{Math.round((1 - ratioPrélèvements(analysis)) * 100)} %
+												de prélèvements
 											</small>
 										</>
 									)}

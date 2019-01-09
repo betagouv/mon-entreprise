@@ -3085,4 +3085,10 @@
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
 
-
+- nom: ratio de prélèvements
+  formule: 
+    variations: 
+      - si: micro entreprise
+        alors: revenu net d'impôt / entreprise . chiffre d'affaires
+      - sinon: revenu net d'impôt / entreprise . rémunération totale du dirigeant
+  période: flexible
