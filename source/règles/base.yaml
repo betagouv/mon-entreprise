@@ -339,7 +339,7 @@
   description: Cotisation due au titre des Accidents du Travail et Maladies Professionnelles.
   cotisation:
     dû par: employeur
-    branche: accidents du travail / maladies professionnelles
+    branche: accidents du travail et maladies professionnelles
     destinataire: URSSAF
     responsable: CARSAT
   période: flexible
@@ -1902,7 +1902,7 @@
         alors: en alsace moselle
       - sinon: en france
   contrôles:
-    - si: forfait [mensuel] < 15
+    - si:  complémentaire santé . forfait [mensuel] < 15
       niveau: avertissement
 
 - espace: contrat salarié . complémentaire santé . forfait
@@ -2045,7 +2045,7 @@
   cotisation:
     dû par: employeur
     destinataire: URSSAF
-    branche: logement
+    branche: famille
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
   période: flexible
@@ -2935,3 +2935,154 @@
   nom: revenu abattu
   période: flexible
   formule: base des cotisations - abattement
+- nom: protection sociale
+  description: >
+    La protection sociale est composée de 5 branches principales : maladie, famille, accidents 
+    du travail et maladie professionnelles, retraite et chômage. A cela s'ajoutent
+    aussi les cotisations pour la formation professionnelle et le transport.
+
+- nom: retraite
+  espace: protection sociale
+  icônes: 👵
+  type: branche
+  description courte: Garantit en moyenne 60 à 70 % de votre dernier revenu d'activité après 65
+  description: |
+    Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
+
+    Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
+
+    ## La retraite en France en quelques chiffres 
+      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)  
+      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)  
+      - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
+
+    La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
+
+  références:
+    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
+    INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
+
+- nom: santé
+  espace: protection sociale
+  icônes: 🏥
+  type: branche
+  description courte: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.
+  description: |
+    L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
+
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+    ## L'assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire 
+      - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), entièrement prise en charge par la sécurité sociale
+      - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+
+  références:
+    ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
+    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+
+- nom: assurance chômage
+  espace: protection sociale
+  icônes: 💸
+  type: assurance
+  description courte: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
+  description: >
+    Depuis 1958, l’Assurance chômage protège tous les salariés du privé et certains du secteur public lorsqu’ils perdent leur emploi. Elle leur verse une allocation et favorise leur retour à l’emploi grâce à des aides. 
+
+    Fonctionnant comme une assurance,  elle indemnise ceux qui ont cotisé, en fonction de leur ancien salaire. Mais elle est aussi solidaire, puisqu’elle mutualise les risques et compense mieux la perte d’un bas salaire que d’un haut revenu.
+
+    Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
+
+    ## L'assurance chômage en France en quelques chiffres 
+      - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne    
+      - **2,7 millions** de chômeurs indemnisés chaque mois    
+      - **1 020 €** : montant de l'allocation nette moyenne par mois  
+      - **51 %** des allocataires cumulent allocation et salaire
+
+  références:
+    Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
+    ameli.fr: https://www.ameli.fr/simulateur/public/index.php/index/calcul
+
+- nom: famille
+  espace: protection sociale
+  icônes: 👶
+  type: branche
+  description courte: Offre une vie professionnelle et familiale équilibrée. Finance des crèches et divers services de garde d'enfants
+  description: |
+    Créée en 1945, la branche Famille est l’un des principaux acteurs de la politique familiale française. Actuellement, elle a deux missions prioritaires :
+      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la conciliation entre vie familiale et vie professionnelle 
+      - Développer la solidarité envers les plus vulnérables, dont les personnes handicapées
+
+    Pour remplir ces missions, elle s’appuie sur deux leviers : 
+      - Le versement de prestations financières aux familles (prestations familiales et sociales, aides au logement et minima sociaux comme l’aide aux adultes handicapés et le revenu de solidarité active) 
+      - L’accompagnement des familles et la mise en place ou le cofinancement de différents
+      services et équipements collectifs qui leur sont destinés (comme les crèches)
+
+    ## Les allocations familiales en France en quelques chiffres
+      - **19 %** part des dépenses allouées à la petite enfance
+      - **900 € / mois**: montant de l'allocation aux adultes handicapés
+      - **75 %** des mères avec un enfant à charge travaillent (dont seulement 30% en temps partiel)
+
+  références:
+    CAF: https://www.caf.fr/sites/default/files/plaquette branche famille francais.pdf
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F12242
+
+- nom: accidents du travail et maladies professionnelles
+  espace: protection sociale
+  icônes: ☣️
+  description courte: Offre une couverture complète des maladies ou accidents du travail.
+  description: |
+    L’assurance AT/MP (accident du travail et maladie professionnelle) est la plus ancienne branche de la Sécurité sociale : elle relève de principes qui remontent à l’année 1898 et qui ont été repris dans la loi du 31 décembre 1946.
+
+    [🎞️ Voir la vidéo](https://www.youtube.com/watch?v=NaGI_deZJD8 )
+
+    La cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.
+
+    Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
+    
+    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
+
+    En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
+
+  références:
+    ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp
+    service-public.fr (AT): https://www.service-public.fr/particuliers/vosdroits/F31881
+    service-public.fr (MP): https://www.service-public.fr/particuliers/vosdroits/F31880
+
+
+
+- nom: formation
+  espace: protection sociale
+  icônes: 👩‍🎓
+  description courte: Donne aux employés l'accès à la formation professionnelle.
+  description: |
+    La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
+    
+    Pour avoir un compte rendu personnalisé de vos droits à la formation, rendez vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr)
+
+- nom: autres
+  espace: protection sociale
+  icônes: 🔧
+  description courte: Autres contributions au système social.
+  description: |
+    Toutes les contributions transverses au système social. 
+  
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette social) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
+
+- nom: transport
+  espace: protection sociale
+  icônes: 🚌
+  description courte: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
+  description: |
+    Cette contribution est reversée intégralement à l'[autorité organisatrice de la mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9) de la zone ou est implantée l'entreprise. Celle-ci peut ensuite l'utiliser pour subventionner les transports en commun existants ou pour développer de nouvelles infrastructures de transport (tramway, métro, bus...).
+    
+    ## Le versement transport en quelques chiffres 
+    - **45% de réduction** sur le coût des transports en communs dans les 12 plus grandes agglomérations de France. 
+    - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
+  références:
+    wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+

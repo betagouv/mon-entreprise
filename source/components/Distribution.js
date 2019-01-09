@@ -14,47 +14,13 @@ import './Distribution.css'
 import Montant from './Montant'
 import './PaySlip'
 import RuleLink from './RuleLink'
-
-import type { Répartition, Branche } from 'Types/ResultViewTypes.js'
-
-const brancheToEmoji: { [Branche]: string } = {
-	retraite: '👵',
-	santé: '🏥',
-	famille: '👶',
-	formation: '👩‍🎓',
-	logement: '🏡',
-	'accidents du travail / maladies professionnelles': '☣️',
-	'assurance chômage': '💸',
-	transport: '🚌',
-	autres: '🔧'
-}
-
-const brancheToCounterparts: { [Branche]: string } = {
-	retraite: "Garantit en moyenne 60 à 70 % de votre dernier revenu d'activité.",
-	santé:
-		"Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.",
-	famille:
-		"Offre une vie professionnelle et familiale équilibrée. Finance des crèches et divers services de garde d'enfants.",
-	formation: "Donne aux employés l'accès à la formation professionnelle.",
-	logement: 'Aide à la construction de logements neufs et abordables.',
-	'accidents du travail / maladies professionnelles':
-		'Offre une couverture complète des maladies ou accidents du travail.',
-	'assurance chômage':
-		"Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.",
-	transport: "Permet de baisser le prix d'un ticket de transport en commun.",
-	autres: 'Autres contributions au système social.'
-}
-
-const brancheToLabel: { [Branche]: string } = {
-	'accidents du travail / maladies professionnelles': 'accidents',
-	'assurance chômage': 'chômage'
-}
+import type { Répartition } from 'Types/ResultViewTypes.js'
 
 type Props = ?Répartition & {
 	colours: { colour: string }
 }
 type State = {
-	branchesInViewport: Array<Branche>
+	branchesInViewport: Array<string>
 }
 
 const ANIMATION_SPRING = config.gentle
@@ -93,15 +59,15 @@ class Distribution extends Component<Props, State> {
 				<div className="distribution-chart__container">
 					{répartition.map(([branche, { partPatronale, partSalariale }]) => {
 						const brancheInViewport =
-							this.state.branchesInViewport.indexOf(branche) !== -1
+							this.state.branchesInViewport.indexOf(branche.id) !== -1
 						const montant = brancheInViewport
 							? partPatronale + partSalariale
 							: 0
 						return (
 							<Observer
-								key={branche}
+								key={branche.id}
 								threshold={[0.33]}
-								onChange={this.handleBrancheInViewport(branche)}>
+								onChange={this.handleBrancheInViewport(branche.id)}>
 								<Spring
 									config={ANIMATION_SPRING}
 									to={{
@@ -114,18 +80,14 @@ class Distribution extends Component<Props, State> {
 											style={{
 												opacity: styles.opacity
 											}}>
-											<ChartItemLegend branche={branche} />
+											<BranchIcône icône={branche.icône} />
 											<div className="distribution-chart__item-content">
 												<p className="distribution-chart__counterparts">
 													<span className="distribution-chart__branche-name">
-														<Trans i18nKey={`branches.${branche}.name`}>
-															{brancheToLabel[branche] || branche}
-														</Trans>
-														.{' '}
+														<RuleLink {...branche} />
 													</span>
-													<Trans i18nKey={`branches.${branche}.counterpart`}>
-														{brancheToCounterparts[branche]}
-													</Trans>
+													{' : '}
+													{branche.descriptionCourte}
 												</p>
 												<ChartItemBar {...{ styles, colour, montant, total }} />
 											</div>
@@ -191,10 +153,8 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 	</div>
 )
 
-let ChartItemLegend = ({ branche }) => (
+let BranchIcône = ({ icône }) => (
 	<div className="distribution-chart__legend">
-		<span className="distribution-chart__icon">
-			{emoji(brancheToEmoji[branche])}
-		</span>
+		<span className="distribution-chart__icon">{emoji(icône)}</span>
 	</div>
 )

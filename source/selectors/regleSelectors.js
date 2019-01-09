@@ -35,7 +35,12 @@ export const règleLocaliséeSelector = createSelector(
 		return {
 			nom: localizedRule.titre || localizedRule.nom,
 			lien: 'règle/' + encodeRuleName(dottedName),
+
 			id: dottedName,
+			...(localizedRule.shortDescription
+				? { descriptionCourte: localizedRule.shortDescription }
+				: {}),
+			...(localizedRule.icon ? { icône: localizedRule.icon } : {}),
 			...(localizedRule.format ? { type: localizedRule.format } : {})
 		}
 	}
@@ -48,7 +53,7 @@ export const règleValeurSelector = createSelector(
 	(analysis: Analysis, situations, règleLocalisée: string => Règle) => (
 		dottedName: string
 	): RègleValeur => {
-		if (!analysis) {
+		if (!analysis || !analysis.cache) {
 			throw new Error(
 				`[règleValeurSelector] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
 			)
@@ -59,9 +64,7 @@ export const règleValeurSelector = createSelector(
 				analysis.targets.find(target => target.dottedName === dottedName))
 
 		let valeur =
-			rule && !isNil(rule.nodeValue)
-				? rule.nodeValue
-				: situations[0][dottedName]
+			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situations[dottedName]
 
 		if (isNil(valeur)) {
 			console.warn(

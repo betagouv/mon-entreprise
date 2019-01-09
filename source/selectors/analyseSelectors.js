@@ -20,11 +20,8 @@ import {
 	head,
 	intersection,
 	isEmpty,
-	map,
 	mergeDeepWith,
-	pick,
-	pipe,
-	reduce
+	pick
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -38,6 +35,8 @@ const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
  *
  *
  * */
+
+const mapOrApply = (fn, x) => (Array.isArray(x) ? x.map(fn) : fn(x))
 
 export let flatRulesSelector = createSelector(
 	state => state.lang,
@@ -64,10 +63,7 @@ export let situationSelector = createDeepEqualSelector(
 
 export let noUserInputSelector = createSelector(
 	[situationSelector],
-	situation =>
-		!situation ||
-		console.log(situation) ||
-		isEmpty(dissoc('période', situation))
+	situation => !situation || isEmpty(dissoc('période', situation))
 )
 
 export let formattedSituationSelector = createSelector(
@@ -82,33 +78,41 @@ let validatedStepsSelector = createSelector(
 	],
 	(foldedSteps, target) => [...foldedSteps, target]
 )
-let branchesSelector = state => state.simulationConfig?.branches || [{}]
+let branchesSelector = state => state.simulationConfig?.branches
+let configSituationSelector = state => state.simulationConfig?.situation || {}
+const createSituationBrancheSelector = situationSelector =>
+	createSelector(
+		[situationSelector, branchesSelector, configSituationSelector],
+		(situation, branches, configSituation) => {
+			if (branches) {
+				return branches.map(({ situation: branchSituation }) => ({
+					...situation,
+					...configSituation.situation,
+					...branchSituation
+				}))
+			}
+			if (configSituation) {
+				return { ...situation, ...configSituation }
+			}
+			return situation
+		}
+	)
 
-let situationBranchesSelector = createSelector(
-	[formattedSituationSelector, branchesSelector],
-	(situation, branches) =>
-		branches.map(({ situation: branchSituation }) => ({
-			...situation,
-			...branchSituation
-		}))
+export let situationBranchesSelector = createSituationBrancheSelector(
+	formattedSituationSelector
 )
 export let validatedSituationSelector = createSelector(
 	[formattedSituationSelector, validatedStepsSelector],
 	(situation, validatedSteps) => pick(validatedSteps, situation)
 )
-export let validatedSituationBranchesSelector = createSelector(
-	[validatedSituationSelector, branchesSelector],
-	(situation, branches) =>
-		branches.map(({ situation: branchSituation }) => ({
-			...situation,
-			...branchSituation
-		}))
+export let validatedSituationBranchesSelector = createSituationBrancheSelector(
+	validatedSituationSelector
 )
 
 let situationsWithDefaultsSelector = createSelector(
 	[ruleDefaultsSelector, situationBranchesSelector],
 	(defaults, situations) =>
-		situations.map(situation => ({ ...defaults, ...situation }))
+		mapOrApply(situation => ({ ...defaults, ...situation }), situations)
 )
 
 let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
@@ -121,12 +125,14 @@ export let ruleAnalysisSelector = createSelector(
 		situationsWithDefaultsSelector,
 		state => state.situationBranch || 0
 	],
-	(rules, dottedName, situations, situationBranch, valueShortcuts) =>
-		analyseRule(
-			rules,
-			dottedName,
-			dottedName => situations[situationBranch][dottedName]
-		)
+	(rules, dottedName, situations, situationBranch) => {
+		return analyseRule(rules, dottedName, dottedName => {
+			const currentSituation = Array.isArray(situations)
+				? situations[situationBranch]
+				: situations
+			return currentSituation[dottedName]
+		})
+	}
 )
 
 let exampleSituationSelector = createSelector(
@@ -137,7 +143,7 @@ let exampleSituationSelector = createSelector(
 	],
 	(rules, situations, example) =>
 		example && {
-			...situations[0],
+			...(situations[0] || situations),
 			...disambiguateExampleSituation(
 				rules,
 				findRuleByDottedName(rules, example.dottedName)
@@ -159,18 +165,20 @@ let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],
 		(parsedRules, targetNames, situations) => {
-			let analyses = situations.map(situation =>
-				analyseMany(parsedRules, targetNames)(
-					dottedName => situation[dottedName]
-				)
+			return mapOrApply(
+				situation =>
+					analyseMany(parsedRules, targetNames)(dottedName => {
+						return situation[dottedName]
+					}),
+				situations
 			)
-			return analyses
 		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
 	situationsWithDefaultsSelector
 )
+
 let analysisValidatedOnlySelector = makeAnalysisSelector(
 	validatedSituationBranchesSelector
 )
@@ -195,11 +203,16 @@ let initialAnalysisSelector = createSelector(
 
 let currentMissingVariablesByTargetSelector = createSelector(
 	[analysisValidatedOnlySelector],
-	analyses =>
-		pipe(
-			map(analysis => collectMissingVariablesByTarget(analysis.targets)),
-			reduce((memo, next) => mergeDeepWith(add)(memo, next), {})
-		)(analyses)
+	analyses => {
+		const variables = mapOrApply(
+			analysis => collectMissingVariablesByTarget(analysis.targets),
+			analyses
+		)
+		if (Array.isArray(variables)) {
+			return variables.reduce((acc, next) => mergeDeepWith(add)(acc, next), {})
+		}
+		return variables
+	}
 )
 
 export let missingVariablesByTargetSelector = createSelector(
@@ -217,6 +230,7 @@ export let nextStepsSelector = createSelector(
 	],
 	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)
+
 		if (questions) return intersection(nextSteps, questions)
 		return nextSteps
 	}

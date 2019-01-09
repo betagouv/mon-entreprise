@@ -34,15 +34,14 @@ import type {
 import type { Règle } from 'Types/RegleTypes'
 
 export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
-	'santé',
-	'accidents du travail / maladies professionnelles',
-	'retraite',
-	'famille',
-	'assurance chômage',
-	'formation',
-	'logement',
-	'transport',
-	'autres'
+	'protection sociale . santé',
+	'protection sociale . accidents du travail et maladies professionnelles',
+	'protection sociale . retraite',
+	'protection sociale . famille',
+	'protection sociale . assurance chômage',
+	'protection sociale . formation',
+	'protection sociale . transport',
+	'protection sociale . autres'
 ]
 
 // Used for type consistency
@@ -55,7 +54,7 @@ export const BLANK_COTISATION: Cotisation = {
 	type: 'euros',
 	nom: 'ERROR_SHOULD_BE_INSTANCIATED',
 	lien: 'ERROR_SHOULD_BE_INSTANCIATED',
-	branche: 'autres'
+	branche: 'protection sociale . autres'
 }
 
 function duParSelector(
@@ -76,15 +75,18 @@ function brancheSelector(variable: VariableWithCotisation): Branche {
 		['explanation', 'cotisation', 'branche'],
 		['explanation', 'taxe', 'branche']
 	].map(p => path(p, variable))
-	return branches.filter(Boolean)[0] || 'autres'
+	return (
+		// $FlowFixMe
+		'protection sociale . ' + (branches.filter(Boolean)[0] || 'autres')
+	)
 }
 
 // $FlowFixMe
 export const mergeCotisations: (
 	Cotisation,
 	Cotisation
-) => Cotisation = mergeWithKey(
-	(key, a, b) => (key === 'montant' ? mergeWith(add, a, b) : b)
+) => Cotisation = mergeWithKey((key, a, b) =>
+	key === 'montant' ? mergeWith(add, a, b) : b
 )
 
 const variableToCotisation = (règleLocaliséeSelector: string => Règle) => (
@@ -100,7 +102,9 @@ const variableToCotisation = (règleLocaliséeSelector: string => Règle) => (
 		}
 	})
 }
-function groupByBranche(cotisations: Array<Cotisation>): Cotisations {
+const groupByBranche = (règleLocaliséeSelector: string => Règle) => (
+	cotisations: Array<Cotisation>
+): Cotisations => {
 	const cotisationsMap = cotisations.reduce(
 		(acc, cotisation) => ({
 			...acc,
@@ -109,7 +113,7 @@ function groupByBranche(cotisations: Array<Cotisation>): Cotisations {
 		{}
 	)
 	return COTISATION_BRANCHE_ORDER.map(branche => [
-		branche,
+		règleLocaliséeSelector(branche),
 		// $FlowFixMe
 		cotisationsMap[branche]
 	])
@@ -140,7 +144,7 @@ const analysisToCotisations = (
 				cotisation.montant.partPatronale !== 0 ||
 				cotisation.montant.partSalariale !== 0
 		),
-		groupByBranche,
+		groupByBranche(règleLocaliséeSelector),
 		filter(([, brancheCotisation]) => !!brancheCotisation)
 	)(variables)
 	return cotisations

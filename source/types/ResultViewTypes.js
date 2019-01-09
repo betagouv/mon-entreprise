@@ -7,21 +7,20 @@ export type Cotisation = Règle & {
 }
 
 export type Branche =
-	| 'santé'
-	| 'accidents du travail / maladies professionnelles'
-	| 'retraite'
-	| 'famille'
-	| 'assurance chômage'
-	| 'formation'
-	| 'logement'
-	| 'transport'
-	| 'autres'
+	| 'protection sociale . santé'
+	| 'protection sociale . accidents du travail et maladies professionnelles'
+	| 'protection sociale . retraite'
+	| 'protection sociale . famille'
+	| 'protection sociale . assurance chômage'
+	| 'protection sociale . formation'
+	| 'protection sociale . transport'
+	| 'protection sociale . autres'
 
 export type MontantPartagé = {
 	partSalariale: number,
 	partPatronale: number
 }
-export type Cotisations = Array<[Branche, Array<Cotisation>]>
+export type Cotisations = Array<[Règle, Array<Cotisation>]>
 
 export type VariableWithCotisation = {
 	category: 'variable',
@@ -62,7 +61,7 @@ export type FicheDePaie = {
 }
 
 export type Répartition = {
-	répartition: Array<[Branche, MontantPartagé]>,
+	répartition: Array<[Règle, MontantPartagé]>,
 	total: MontantPartagé,
 	salaireNet: RègleAvecMontant,
 	salaireChargé: RègleAvecMontant,

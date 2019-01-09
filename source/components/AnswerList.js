@@ -11,8 +11,6 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-// $FlowFixMe
-import { reset } from 'redux-form'
 import { createSelector } from 'reselect'
 import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
 import { softCatch } from '../utils'
@@ -96,7 +94,6 @@ export default compose(
 		(dispatch: Function) => ({
 			resetSimulation: () => {
 				dispatch(resetSimulation())
-				dispatch(reset('conversation'))
 			},
 			changeAnswer: question =>
 				dispatch({

@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
@@ -30,6 +31,7 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
+	withColours,
 	withRouter,
 	connect(
 		state => ({
@@ -72,6 +74,7 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
+					<PeriodSwitch />
 				</div>
 			)
 		}
@@ -222,11 +225,9 @@ const TargetValue = connect(
 	class TargetValue extends Component {
 		render() {
 			let { targets, target, noUserInput, blockingInputControls } = this.props
-
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
 				value = targetWithValue && targetWithValue.nodeValue
-
 			return (
 				<div
 					className={classNames({

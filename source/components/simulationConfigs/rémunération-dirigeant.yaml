@@ -3,27 +3,27 @@ titre: |
 
     - Pour les sociétés, nous considérons pour l'instant que tout le chiffre d'affaires part dans les charges et la rémunération du dirigeant : zéro bénéfice en fin d'année.
     - L'impôt sur le revenu est calculé pour un célibataire sans enfants et sans autre revenu. 
-  
-objectifs: 
+
+objectifs:
   - revenu disponible
   - entreprise . rémunération totale du dirigeant
-questions: 
+questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
   - entreprise . charges
-branches: 
+branches:
   - nom: Micro-entreprise
-    situation: 
+    situation:
       micro entreprise: oui
       indépendant: non
       contrat salarié: non
   - nom: Indépendant
-    situation: 
+    situation:
       indépendant: oui
       micro entreprise: non
       contrat salarié: non
   - nom: Assimilé salarié
-    situation: 
+    situation:
       micro entreprise: non
       indépendant: non
       contrat salarié: oui
@@ -32,4 +32,3 @@ branches:
 raccourcis:
   contrat salarié . rémunération . total: entreprise . rémunération totale du dirigeant
   indépendant . revenu brut: entreprise . rémunération totale du dirigeant
-
