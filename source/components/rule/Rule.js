@@ -61,7 +61,6 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-			console.log('ana', analysedRule)
 
 			return (
 				<>

@@ -1,15 +1,21 @@
 titre: |
-  Calcul du **revenu du travailleur indépendant ou dirigeant d'entreprise**, en fonction de son choix de régime social.
+  **Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise**, en fonction du régime de protection sociale.
 
-  Nous faisons l'hypothèse suivante : l'impôt est calculé pour un célibataire sans enfants et sans autre revenu. 
+    - Pour les sociétés, nous considérons pour l'instant que tout le chiffre d'affaires part dans les charges et la rémunération du dirigeant : zéro bénéfice en fin d'année.
+    - L'impôt sur le revenu est calculé pour un célibataire sans enfants et sans autre revenu. 
 
-  Version beta, beaucoup d'améliorations à venir !
 objectifs:
-  - revenu net d'impôt
+  - entreprise . rémunération totale du dirigeant
+  - revenu disponible
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
+  - entreprise . charges
+
 situation:
   micro entreprise: oui
   indépendant: non
   contrat salarié: non
+raccourcis:
+  contrat salarié . rémunération . total: entreprise . rémunération totale du dirigeant
+  indépendant . revenu brut: entreprise . rémunération totale du dirigeant

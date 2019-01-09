@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
@@ -73,6 +74,7 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
+					<PeriodSwitch />
 				</div>
 			)
 		}
@@ -92,7 +94,6 @@ export default compose(
 				} = this.props,
 				targets = analysis ? analysis.targets : []
 
-			console.log(targets)
 			return (
 				<div>
 					<ul id="targets">
