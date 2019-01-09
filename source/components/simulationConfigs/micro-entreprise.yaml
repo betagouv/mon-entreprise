@@ -5,12 +5,8 @@ titre: |
     - L'impôt sur le revenu est calculé pour un célibataire sans enfants et sans autre revenu. 
 
 objectifs:
-  - entreprise . rémunération totale du dirigeant
-  - revenu disponible
-questions:
   - entreprise . chiffre d'affaires
-  - entreprise . catégorie d'activité
-  - entreprise . charges
+  - revenu disponible
 
 situation:
   micro entreprise: oui

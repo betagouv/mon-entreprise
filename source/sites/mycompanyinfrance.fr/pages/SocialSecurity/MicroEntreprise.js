@@ -8,16 +8,16 @@ import { Helmet } from 'react-helmet'
 const MicroEntreprise = () => (
 	<>
 		<Helmet>
-			<title>
-				Micro-entreprise : cotisations et protection sociale{' '}
-				<small id="betaTag">alpha</small>
-			</title>
+			<title>Micro-entreprise : cotisations et protection sociale </title>
 			<meta
 				name="description"
 				content="Simulez votre rémunération en tant que dirigeant indépendant. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime des indépendants (TNS)"
 			/>
 		</Helmet>
-		<h1>Micro-entreprise : cotisations et droits </h1>
+		<h1>
+			Micro-entreprise : cotisations et droits
+			<small id="betaTag">alpha</small>
+		</h1>
 		<p>
 			Les micro-entreprises relèvent de la sécurité sociale des indépendants.
 		</p>

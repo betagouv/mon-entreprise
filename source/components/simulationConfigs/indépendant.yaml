@@ -7,10 +7,7 @@ titre: |
 objectifs:
   - entreprise . rémunération totale du dirigeant
   - revenu disponible
-questions:
-  - entreprise . chiffre d'affaires
-  - entreprise . catégorie d'activité
-  - entreprise . charges
+
 situation:
   indépendant: oui
   micro entreprise: non

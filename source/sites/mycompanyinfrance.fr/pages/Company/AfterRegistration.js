@@ -95,7 +95,7 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 				‹ <T k="après.actions.retour">Démarche de création</T>
 			</Link>
 			<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
-				<T k="après.actions.avance">Sécu et coût d'embauche </T>›
+				<T k="après.actions.avance">Estimez vos cotisations </T>›
 			</Link>
 		</p>
 	</Animate.fromBottom>
