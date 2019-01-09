@@ -21,11 +21,7 @@ export default compose(
 				state.simulationConfig?.objectifs[0]
 			),
 			simulationBranches: state.simulationConfig?.branches,
-			analyses: analysisWithDefaultsSelector(state),
-			chiffreAffaires: formValueSelector('conversation')(
-				state,
-				"entreprise . chiffre d'affaires"
-			)
+			analyses: analysisWithDefaultsSelector(state)
 		}),
 		dispatch => ({
 			setSituationBranch: id => dispatch({ type: 'SET_SITUATION_BRANCH', id })
@@ -40,12 +36,18 @@ export default compose(
 				analyses,
 				target,
 				setSituationBranch,
-				chiffreAffaires,
 				simulationBranches
 			} = this.props
-			if(!simulationBranches) {
-				return null;
+			if (!simulationBranches) {
+				return null
 			}
+			// We retrieve the values necessary to compute the global % of taxes
+			// This is not elegant
+			let revenuTotal = analyses[0].targets.find(
+					t => t.dottedName === 'entreprise . rémunération totale du dirigeant'
+				)?.nodeValue,
+				getRevenuNet = analyse => analyse.cache["revenu net d'impôt"]?.nodeValue
+
 			return (
 				<div id="comparative-targets">
 					<h3>{target.title}</h3>
@@ -95,7 +97,8 @@ export default compose(
 											<small>
 												Soit{' '}
 												{Math.round(
-													((chiffreAffaires - nodeValue) / +chiffreAffaires) *
+													((revenuTotal - getRevenuNet(analysis)) /
+														+revenuTotal) *
 														100
 												)}{' '}
 												% de prélèvements
