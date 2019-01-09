@@ -54,8 +54,9 @@ export const règleValeurSelector = createSelector(
 			)
 		}
 		const rule =
-			analysis.cache[dottedName] ||
-			analysis.targets.find(target => target.dottedName === dottedName)
+			!Array.isArray(analysis) && // It's an array if we're in a comparative simulation.
+			(analysis.cache[dottedName] ||
+				analysis.targets.find(target => target.dottedName === dottedName))
 
 		let valeur =
 			rule && !isNil(rule.nodeValue)
