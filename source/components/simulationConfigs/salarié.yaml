@@ -4,5 +4,5 @@ objectifs:
   - contrat salarié . salaire . net
   - contrat salarié . salaire . net après impôt
 situation:
-  contrat salarié: non
+  contrat salarié: oui
   contrat salarié . assimilé salarié: non
