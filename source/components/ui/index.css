@@ -62,3 +62,14 @@ span.ui__.enumeration:not(:last-of-type)::after {
 #lds-ellipsis {
 	display: none;
 }
+
+#betaTag {
+	background: #333;
+	text-transform: uppercase;
+	color: white;
+	font-weight: 500;
+	border-radius: 1em;
+	padding: .1em .5em;
+	font-size: 1rem;
+	vertical-align: middle;
+}

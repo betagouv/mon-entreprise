@@ -1321,6 +1321,7 @@
     Des [aides différées](/règle/aides employeur) peuvent venir diminuer ce montant.
 
   formule: rémunération . total sans réduction - réductions de cotisations
+  alternative: entreprise . rémunération totale du dirigeant
   contrôles:
     - si: total [mensuel] < 100
       niveau: bloquant
@@ -2547,11 +2548,54 @@
   période: flexible
   formule: revenu net de cotisations - impôt . impôt sur le revenu à payer
 
+- nom: revenu disponible
+  titre: Revenu disponible (net de cotisations et d'impôt)
+  période: flexible
+  formule: revenu net d'impôt - entreprise . charges non déductibles
+
 - espace: entreprise
   nom: chiffre d'affaires
   question: Quel est votre chiffre d'affaires H.T. ?
   période: flexible
   format: euros
+
+- espace: entreprise
+  nom: rémunération totale du dirigeant
+  description: C'est la rémunération "super-brute" du dirigeant, qui inclut toutes les cotisations sociales à payer. C'est aussi la valeur monétaire du travail du dirigeant.
+  période: flexible
+  formule: chiffre d'affaires - charges
+
+- espace: entreprise
+  nom: charges
+  question: Quelles sont les charges H.T. de l'entreprise ?
+  description: | 
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci. Pour les sociétés et entreprises hors micro-entreprise, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la micro-entreprise, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
+    
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
+
+    Par exemple, les charges peuvent être : 
+    
+    - achat de matières premières pour une activité de production
+    - achat de produits en vue de leur revente, pour une activité commerciale 
+    - frais de repas : le supplément par rapport au coût d'un repas à domicile
+
+    Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans. 
+
+    A l'inverse, un téléphone portable à moins de 500€ peut être assimilé à une charge sans immobilisation.
+
+  références: 
+    Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973 
+
+  période: flexible
+  par défaut: 0
+  format: euros
+
+- espace: entreprise 
+  nom: charges non déductibles
+  applicable si: micro entreprise
+  formule: charges
+  période: flexible
+
 
 - espace: indépendant
   nom: revenu net de cotisations
@@ -2571,6 +2615,7 @@
 - espace: indépendant
   nom: revenu brut
   formule: revenu net de cotisations + prélèvements
+  alternative: entreprise . rémunération totale du dirigeant
   période: flexible
 
 - nom: entreprise . catégorie d'activité

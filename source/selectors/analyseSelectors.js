@@ -118,22 +118,19 @@ let situationsWithDefaultsSelector = createSelector(
 let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
 	analyse(parsedRules, ruleDottedName)(situationGate).targets[0]
 
-let shortcutsSelector = state => state.simulationConfig?.raccourcis || [{}]
-
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, { dottedName }) => dottedName,
 		situationsWithDefaultsSelector,
-		state => state.situationBranch || 0,
-		shortcutsSelector
+		state => state.situationBranch || 0
 	],
-	(rules, dottedName, situations, situationBranch, valueShortcuts) => {
+	(rules, dottedName, situations, situationBranch) => {
 		return analyseRule(rules, dottedName, dottedName => {
 			const currentSituation = Array.isArray(situations)
 				? situations[situationBranch]
 				: situations
-			return currentSituation[valueShortcuts[dottedName] || dottedName]
+			return currentSituation[dottedName]
 		})
 	}
 )
@@ -166,17 +163,12 @@ export let exampleAnalysisSelector = createSelector(
 
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
-		[
-			parsedRulesSelector,
-			targetNamesSelector,
-			situationSelector,
-			shortcutsSelector
-		],
-		(parsedRules, targetNames, situations, valueShortcuts) => {
+		[parsedRulesSelector, targetNamesSelector, situationSelector],
+		(parsedRules, targetNames, situations) => {
 			return mapOrApply(
 				situation =>
 					analyseMany(parsedRules, targetNames)(dottedName => {
-						return situation[valueShortcuts[dottedName] || dottedName]
+						return situation[dottedName]
 					}),
 				situations
 			)
@@ -234,14 +226,11 @@ export let missingVariablesByTargetSelector = createSelector(
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulationConfig?.questions,
-		shortcutsSelector
+		state => state.simulationConfig?.questions
 	],
-	(mv, questions, valueShortcuts) => {
+	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)
-		// .map(
-		// 	dottedName => valueShortcuts[dottedName] || dottedName
-		// )
+
 		if (questions) return intersection(nextSteps, questions)
 		return nextSteps
 	}
