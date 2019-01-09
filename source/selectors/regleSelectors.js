@@ -50,10 +50,10 @@ export const règleValeurSelector = createSelector(
 	analysisWithDefaultsSelector,
 	validatedSituationBranchesSelector,
 	règleLocaliséeSelector,
-	(analysis: Analysis, situations, règleLocalisée: string => Règle) => (
+	(analysis: Analysis, situation, règleLocalisée: string => Règle) => (
 		dottedName: string
 	): RègleValeur => {
-		if (!analysis || !analysis.cache) {
+		if (!analysis) {
 			throw new Error(
 				`[règleValeurSelector] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
 			)
@@ -64,7 +64,11 @@ export const règleValeurSelector = createSelector(
 				analysis.targets.find(target => target.dottedName === dottedName))
 
 		let valeur =
-			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situations[dottedName]
+			rule && !isNil(rule.nodeValue)
+				? rule.nodeValue
+				: Array.isArray(situation)
+				? situation[0][dottedName]
+				: situation[dottedName]
 
 		if (isNil(valeur)) {
 			console.warn(
