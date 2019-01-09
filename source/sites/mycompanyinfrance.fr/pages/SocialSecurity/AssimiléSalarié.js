@@ -9,8 +9,7 @@ const AssimiléSalarié = () => (
 	<>
 		<Helmet>
 			<title>
-				Dirigeant assimilé salarié : cotisations et protection sociale{' '}
-				<small id="betaTag">alpha</small>
+				Dirigeant assimilé salarié : cotisations et protection sociale
 			</title>
 			<meta
 				name="description"
