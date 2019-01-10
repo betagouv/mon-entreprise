@@ -402,37 +402,40 @@ export let findInversion = (situationGate, parsedRules, v, dottedName) => {
 	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
 	le salaire net, a été renseigné ?
 	*/
-	let fixedObjective = inversions
-		.map(i =>
-			disambiguateRuleReference(
-				parsedRules,
-				parsedRules.find(propEq('dottedName', dottedName)),
-				i
+	let candidates = inversions
+			.map(i =>
+				disambiguateRuleReference(
+					parsedRules,
+					parsedRules.find(propEq('dottedName', dottedName)),
+					i
+				)
 			)
-		)
-		.map(name => {
-			let userInput = situationGate(name) != undefined
-			let rule = findRuleByDottedName(parsedRules, name)
-			/* When the fixedObjectiveValue is null, the inversion can't be done : the user needs to set the target's value
-			 * But the objectiveRule can also have an 'alternative' property,
-			 * which must point to a rule whose value either is set by the user,
-			 * or is calculated according to a formula that does not depend on the rule being inversed.
-			 * This alternative's value will be used as a target.
-			 * */
-			let alternativeRule =
-				!userInput &&
-				rule.alternative &&
-				findRuleByDottedName(parsedRules, rule.alternative)
-			if (!userInput && !alternativeRule) return null
-			return {
-				fixedObjectiveRule: rule,
-				fixedObjectiveValue: userInput,
-				alternativeRule
-			}
-		})
-		.find(candidate => candidate != null)
+			.map(name => {
+				let userInput = situationGate(name) != undefined
+				let rule = findRuleByDottedName(parsedRules, name)
+				/* When the fixedObjectiveValue is null, the inversion can't be done : the user needs to set the target's value
+				 * But the objectiveRule can also have an 'alternative' property,
+				 * which must point to a rule whose value either is set by the user,
+				 * or is calculated according to a formula that does not depend on the rule being inversed.
+				 * This alternative's value will be used as a target.
+				 * */
+				let alternativeRule =
+					!userInput &&
+					rule.alternative &&
+					findRuleByDottedName(parsedRules, rule.alternative)
+				if (!userInput && !alternativeRule) return null
+				return {
+					fixedObjectiveRule: rule,
+					userInput,
+					fixedObjectiveValue: situationGate(name),
+					alternativeRule
+				}
+			}),
+		candidateWithUserInput = candidates.find(c => c && c.userInput)
 
-	return fixedObjective
+	return (
+		candidateWithUserInput || candidates.find(candidate => candidate != null)
+	)
 }
 
 let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
