@@ -43,9 +43,9 @@ export default compose(
 			}
 			// We retrieve the values necessary to compute the global % of taxes
 			// This is not elegant
-			let ratioPrélèvements = analysis =>
+			let getRatioPrélèvements = analysis =>
 				analysis.targets.find(t => t.dottedName === 'ratio de prélèvements')
-					?.nodeValue
+					
 
 			return (
 				<div id="comparative-targets">
@@ -62,6 +62,9 @@ export default compose(
 								analysis.controls?.find(({ test }) =>
 									test.includes('base des cotisations > plafond')
 								)
+
+						
+								let ratioPrélèvements = getRatioPrélèvements(analysis)
 
 							return (
 								<li
@@ -95,8 +98,8 @@ export default compose(
 											</span>
 											<small>
 												Soit{' '}
-												{Math.round((1 - ratioPrélèvements(analysis)) * 100)} %
-												de prélèvements
+												{Math.round((1 - ratioPrélèvements.nodeValue) * 100)} %
+												de <Link style={{color: 'white'}} to={'/règle/' + ratioPrélèvements.dottedName} >prélèvements</Link>
 											</small>
 										</>
 									)}
