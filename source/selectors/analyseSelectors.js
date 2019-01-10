@@ -15,6 +15,7 @@ import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
 	contains,
+	difference,
 	dissoc,
 	equals,
 	head,
@@ -226,12 +227,18 @@ export let missingVariablesByTargetSelector = createSelector(
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulationConfig?.questions
+		state => state.simulationConfig?.questions,
+		state => state.simulationConfig?.objectifs
 	],
 	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)
 
-		if (questions) return intersection(nextSteps, questions)
+		if (questions && questions.blacklist) {
+			return difference(nextSteps, questions.blacklist)
+		}
+		if (questions) {
+			return intersection(nextSteps, questions)
+		}
 		return nextSteps
 	}
 )

@@ -33,7 +33,7 @@ const Indépendant = () => (
 			professionnel peut souscrire volontairement des assurances spécifiques.
 		</p>
 		<SimpleSimulation>
-			<TargetSelection />
+			<TargetSelection keepFormValues />
 		</SimpleSimulation>
 	</>
 )

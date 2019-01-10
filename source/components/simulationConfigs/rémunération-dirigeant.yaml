@@ -11,6 +11,7 @@ questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
   - entreprise . charges
+
 branches:
   - nom: Micro-entreprise
     situation:

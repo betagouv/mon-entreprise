@@ -16,7 +16,8 @@ import {
 	analysisWithDefaultsSelector,
 	blockingInputControlsSelector,
 	flatRulesSelector,
-	noUserInputSelector
+	noUserInputSelector,
+	situationBranchesSelector
 } from 'Selectors/analyseSelectors'
 import { normalizeBasePath } from '../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
@@ -85,7 +86,8 @@ export default compose(
 					analysis,
 					noUserInput,
 					blockingInputControls,
-					match
+					match,
+					keepFormValues
 				} = this.props,
 				targets = analysis ? analysis.targets : []
 
@@ -107,11 +109,13 @@ export default compose(
 									<TargetInputOrValue
 										{...{
 											target,
+
 											targets,
 											activeInput,
 											setActiveInput,
 											setFormValue: this.props.setFormValue,
 											noUserInput,
+											keepFormValues,
 											blockingInputControls
 										}}
 									/>
@@ -185,6 +189,7 @@ let TargetInputOrValue = withLanguage(
 		setActiveInput,
 		language,
 		noUserInput,
+		keepFormValues,
 		blockingInputControls
 	}) => (
 		<span className="targetInputOrValue">
@@ -201,6 +206,7 @@ let TargetInputOrValue = withLanguage(
 						target,
 						activeInput,
 						setActiveInput,
+						keepFormValues,
 						noUserInput,
 						blockingInputControls
 					}}
@@ -212,17 +218,26 @@ let TargetInputOrValue = withLanguage(
 )
 
 const TargetValue = connect(
-	null,
+	state => ({ situation: situationBranchesSelector(state) }),
 	dispatch => ({
 		setFormValue: (field, name) => dispatch(change('conversation', field, name))
 	})
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target, noUserInput, blockingInputControls } = this.props
+			let {
+				targets,
+				target,
+				noUserInput,
+				blockingInputControls,
+				situation
+			} = this.props
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
-				value = targetWithValue && targetWithValue.nodeValue
+				value =
+					situation[target.dottedName] ||
+					(targetWithValue && targetWithValue.nodeValue)
+			console.log(target.dottedName, situation[target.dottedName])
 			return (
 				<div
 					className={classNames({
@@ -238,13 +253,19 @@ const TargetValue = connect(
 			)
 		}
 		showField(value) {
-			let { target, setFormValue, activeInput, setActiveInput } = this.props
+			let {
+				target,
+				setFormValue,
+				activeInput,
+				setActiveInput,
+				keepFormValues
+			} = this.props
 			return () => {
 				if (!target.question) return
 				if (value != null)
 					setFormValue(target.dottedName, Math.floor(value) + '')
 
-				if (activeInput) setFormValue(activeInput, '')
+				if (activeInput && !keepFormValues) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)
 			}
 		}

@@ -5,17 +5,16 @@
 	flex-wrap: wrap;
 }
 #comparative-targets ul {
-	width: 100%;
+	padding: 0;
 	display: flex;
 	justify-content: space-around;
-	/* align-items: center; */
 	flex-wrap: wrap;
 }
 #comparative-targets li {
-	margin: 1em;
+	margin: 0.8rem;
 	background: var(--colour);
-	padding: 1em;
-	width: 12em;
+	padding: 1rem;
+	width: 12rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

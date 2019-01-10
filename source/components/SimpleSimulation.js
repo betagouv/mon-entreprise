@@ -46,8 +46,7 @@ export default compose(
 							<p>Vous avez atteint l'estimation la plus précise.</p>
 						</>
 					)}
-
-					{!noUserInput && <Animate.fromBottom>{children}</Animate.fromBottom>}
+					{!noUserInput && <Animate.fromBottom> {children}</Animate.fromBottom>}
 				</>
 			)
 		}

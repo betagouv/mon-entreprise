@@ -27,7 +27,7 @@ const AssimiléSalarié = () => (
 			quelques exceptions près (chômage en moins).
 		</p>
 		<SimpleSimulation>
-			<TargetSelection />
+			<TargetSelection keepFormValues />
 		</SimpleSimulation>
 	</>
 )
