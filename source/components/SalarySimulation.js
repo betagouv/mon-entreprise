@@ -185,7 +185,7 @@ export default compose(
 							/>
 						)}
 					</div>
-					{!location.pathname.endsWith('/simulation') && validInputEntered && (
+					{/* {!location.pathname.endsWith('/simulation') && validInputEntered && (
 						<Animate.fromBottom>
 							<div style={{ textAlign: 'center' }}>
 								{arePreviousAnswers && conversationStarted && (
@@ -229,7 +229,7 @@ export default compose(
 							</h2>
 							<PaySlip />
 						</Animate.fromBottom>
-					)}
+					)} */}
 				</>
 			)
 		}

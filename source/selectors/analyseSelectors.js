@@ -186,6 +186,7 @@ let analysisValidatedOnlySelector = makeAnalysisSelector(
 
 export let blockingInputControlsSelector = state => {
 	let analysis = analysisWithDefaultsSelector(state)
+	console.log('analysis blocked', analysis.blockingInputControls)
 	return analysis && analysis.blockingInputControls
 }
 

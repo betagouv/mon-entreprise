@@ -2551,6 +2551,7 @@
 - nom: revenu disponible
   titre: Revenu disponible (net de cotisations et d'impôt)
   période: flexible
+  question: Quel revenu voulez-vous toucher ? 
   formule: revenu net d'impôt - entreprise . charges non déductibles
 
 - espace: entreprise
@@ -2611,6 +2612,7 @@
     inversion:
       avec:
         - revenu brut
+        - revenu disponible
 
 - espace: indépendant
   nom: revenu brut

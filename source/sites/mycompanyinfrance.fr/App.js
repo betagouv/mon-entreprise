@@ -7,10 +7,6 @@ import { withNamespaces } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
-import {
-	persistEverything,
-	retrievePersistedState
-} from '../../storage/persistEverything'
 import ReactPiwik from '../../Tracker'
 import './App.css'
 import Footer from './layout/Footer/Footer'
@@ -57,8 +53,7 @@ class InFranceRoute extends Component {
 				language={this.props.language}
 				tracker={tracker}
 				reduxMiddlewares={middlewares}
-				initialStore={{ ...retrievePersistedState(), lang: 'en' }}
-				onStoreCreated={persistEverything}>
+				initialStore={{ lang: 'en' }}>
 				<TrackPageView />
 				<div id="content">
 					<RouterSwitch />

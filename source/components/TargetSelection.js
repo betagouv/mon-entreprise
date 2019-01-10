@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
@@ -16,22 +15,22 @@ import {
 	analysisWithDefaultsSelector,
 	blockingInputControlsSelector,
 	flatRulesSelector,
-	noUserInputSelector,
-	situationBranchesSelector
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import { normalizeBasePath } from '../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
+import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
 
 export default compose(
 	translate(),
+	withColours,
 	reduxForm({
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
-	withColours,
 	withRouter,
 	connect(
 		state => ({
@@ -43,7 +42,7 @@ export default compose(
 			noUserInput: noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
-			mainTargetNames: state.simulationConfig.objectifs
+			objectifs: state?.simulationConfig?.objectifs || []
 		}),
 		dispatch => ({
 			setFormValue: (field, name) =>
@@ -55,9 +54,13 @@ export default compose(
 )(
 	class TargetSelection extends Component {
 		render() {
-			let { colours } = this.props
+			let {
+				colours,
+				analysis: { controls }
+			} = this.props
 			return (
 				<div id="targetSelection">
+					<Controls {...{ controls }} />
 					<section
 						id="targetsContainer"
 						style={{
@@ -70,13 +73,12 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
-					<PeriodSwitch />
 				</div>
 			)
 		}
 
 		renderOutputList() {
-			let displayedTargets = this.props.mainTargetNames.map(target =>
+			let displayedTargets = this.props.objectifs.map(target =>
 					findRuleByDottedName(this.props.flatRules, target)
 				),
 				{
@@ -86,8 +88,7 @@ export default compose(
 					analysis,
 					noUserInput,
 					blockingInputControls,
-					match,
-					keepFormValues
+					match
 				} = this.props,
 				targets = analysis ? analysis.targets : []
 
@@ -109,13 +110,11 @@ export default compose(
 									<TargetInputOrValue
 										{...{
 											target,
-
 											targets,
 											activeInput,
 											setActiveInput,
 											setFormValue: this.props.setFormValue,
 											noUserInput,
-											keepFormValues,
 											blockingInputControls
 										}}
 									/>
@@ -189,7 +188,6 @@ let TargetInputOrValue = withLanguage(
 		setActiveInput,
 		language,
 		noUserInput,
-		keepFormValues,
 		blockingInputControls
 	}) => (
 		<span className="targetInputOrValue">
@@ -206,7 +204,6 @@ let TargetInputOrValue = withLanguage(
 						target,
 						activeInput,
 						setActiveInput,
-						keepFormValues,
 						noUserInput,
 						blockingInputControls
 					}}
@@ -218,26 +215,19 @@ let TargetInputOrValue = withLanguage(
 )
 
 const TargetValue = connect(
-	state => ({ situation: situationBranchesSelector(state) }),
+	null,
 	dispatch => ({
 		setFormValue: (field, name) => dispatch(change('conversation', field, name))
 	})
 )(
 	class TargetValue extends Component {
 		render() {
-			let {
-				targets,
-				target,
-				noUserInput,
-				blockingInputControls,
-				situation
-			} = this.props
+			let { targets, target, noUserInput, blockingInputControls } = this.props
+
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
-				value =
-					situation[target.dottedName] ||
-					(targetWithValue && targetWithValue.nodeValue)
-			console.log(target.dottedName, situation[target.dottedName])
+				value = targetWithValue && targetWithValue.nodeValue
+
 			return (
 				<div
 					className={classNames({
@@ -253,19 +243,13 @@ const TargetValue = connect(
 			)
 		}
 		showField(value) {
-			let {
-				target,
-				setFormValue,
-				activeInput,
-				setActiveInput,
-				keepFormValues
-			} = this.props
+			let { target, setFormValue, activeInput, setActiveInput } = this.props
 			return () => {
 				if (!target.question) return
 				if (value != null)
 					setFormValue(target.dottedName, Math.floor(value) + '')
 
-				if (activeInput && !keepFormValues) setFormValue(activeInput, '')
+				if (activeInput) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)
 			}
 		}

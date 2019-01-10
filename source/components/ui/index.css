@@ -69,7 +69,8 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	color: white;
 	font-weight: 500;
 	border-radius: 1em;
-	padding: .1em .5em;
+	padding: 0.1em 0.5em;
+	margin: 1rem;
 	font-size: 1rem;
 	vertical-align: middle;
 }

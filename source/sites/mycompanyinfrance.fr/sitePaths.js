@@ -82,6 +82,9 @@ const constructLocalizedSitePath = language => {
 		},
 		démarcheEmbauche: {
 			index: t('path.démarcheEmbauche.index', '/démarches-embauche')
+		},
+		documentation: {
+			index: t('path.documentation.index', '/documentation')
 		}
 	})
 }
