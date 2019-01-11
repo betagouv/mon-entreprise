@@ -746,9 +746,11 @@
       question: Quel est le salaire ?
       titre: salaire
       avec:
+        - entreprise . chiffre d'affaires
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
+        - revenu disponible
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -1321,7 +1323,6 @@
     Des [aides différées](/documentation/aides-employeur) peuvent venir diminuer ce montant.
 
   formule: rémunération . total sans réduction - réductions de cotisations
-  alternative: entreprise . rémunération totale du dirigeant
   contrôles:
     - si: total [mensuel] < 100
       niveau: bloquant
@@ -2564,13 +2565,27 @@
   résumé: Le montant des ventes réalisées
   période: flexible
   format: euros
+  formule: 
+    variations: 
+      - si: micro entreprise 
+        alors: micro entreprise . chiffre d'affaires
+      - sinon: rémunération totale du dirigeant + charges
+
+- espace: micro entreprise
+  nom: chiffre d'affaires
+  formule: 
+    inversion: 
+      avec:
+        - revenu disponible
 
 - espace: entreprise 
   nom: rémunération totale du dirigeant
   description: C'est la rémunération "super-brute" du dirigeant, qui inclut toutes les cotisations sociales à payer. C'est aussi la valeur monétaire du travail du dirigeant.
   période: flexible
-  formule: chiffre d'affaires - charges
-
+  formule: 
+    somme: 
+      - contrat salarié . rémunération . total
+      - indépendant . revenu brut
 
 - espace: entreprise 
   nom: charges
@@ -2621,11 +2636,11 @@
       avec:
         - revenu brut
         - revenu disponible
+        - entreprise . chiffre d'affaires
 
 - espace: indépendant
   nom: revenu brut
   formule: revenu net de cotisations + prélèvements
-  alternative: entreprise . rémunération totale du dirigeant
   période: flexible
 
 - nom: entreprise . catégorie d'activité
