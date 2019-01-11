@@ -19,7 +19,7 @@ const SchemeComparaisonPage = () => (
 			Comparaison des régimes <small id="betaTag">alpha</small>
 		</h1>
 		<header>{createMarkdownDiv(ComparaisonConfig.titre)}</header>
-		<SimpleSimulation>
+		<SimpleSimulation hideUntilUserInput>
 			<ComparativeTargets />
 		</SimpleSimulation>
 	</>

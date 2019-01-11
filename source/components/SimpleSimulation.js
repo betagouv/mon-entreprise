@@ -23,14 +23,25 @@ export default compose(
 			displayAnswers: false
 		}
 		render() {
-			let { children, noNextSteps, previousAnswers } = this.props
+			let {
+				children,
+				noNextSteps,
+				previousAnswers,
+				noUserInput,
+				hideUntilUserInput
+			} = this.props
 			return (
 				<>
 					{this.state.displayAnswers && (
 						<Answers onClose={() => this.setState({ displayAnswers: false })} />
 					)}
-
-					<Animate.fromBottom> {children}</Animate.fromBottom>
+					{!isEmpty(previousAnswers) && (
+						<button
+							className="ui__ button small plain"
+							onClick={() => this.setState({ displayAnswers: true })}>
+							Mes réponses
+						</button>
+					)}
 					<Conversation
 						textColourOnWhite={this.props.colours.textColourOnWhite}
 					/>
@@ -40,12 +51,8 @@ export default compose(
 							<p>Vous avez atteint l'estimation la plus précise.</p>
 						</>
 					)}
-					{!isEmpty(previousAnswers) && (
-						<button
-							className="ui__ button small plain"
-							onClick={() => this.setState({ displayAnswers: true })}>
-							Mes réponses
-						</button>
+					{(!hideUntilUserInput || !noUserInput) && (
+						<Animate.fromBottom>{children}</Animate.fromBottom>
 					)}
 				</>
 			)

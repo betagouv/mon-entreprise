@@ -6,7 +6,6 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { formValueSelector } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector
@@ -45,7 +44,6 @@ export default compose(
 			// This is not elegant
 			let getRatioPrélèvements = analysis =>
 				analysis.targets.find(t => t.dottedName === 'ratio de prélèvements')
-					
 
 			return (
 				<div id="comparative-targets">
@@ -63,8 +61,7 @@ export default compose(
 									test.includes('base des cotisations > plafond')
 								)
 
-						
-								let ratioPrélèvements = getRatioPrélèvements(analysis)
+							let ratioPrélèvements = getRatioPrélèvements(analysis)
 
 							return (
 								<li
@@ -99,7 +96,12 @@ export default compose(
 											<small>
 												Soit{' '}
 												{Math.round((1 - ratioPrélèvements.nodeValue) * 100)} %
-												de <Link style={{color: 'white'}} to={'/règle/' + ratioPrélèvements.dottedName} >prélèvements</Link>
+												de{' '}
+												<Link
+													style={{ color: 'white' }}
+													to={'/règle/' + ratioPrélèvements.dottedName}>
+													prélèvements
+												</Link>
 											</small>
 										</>
 									)}

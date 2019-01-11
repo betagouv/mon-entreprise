@@ -8,10 +8,7 @@ objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
   - revenu disponible
-questions:
-  blacklist:
-    - entreprise . chiffre d'affaires
-    - revenu disponible
+
 situation:
   micro entreprise: non
   indépendant: non

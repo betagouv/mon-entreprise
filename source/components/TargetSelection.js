@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
@@ -19,7 +20,6 @@ import {
 } from 'Selectors/analyseSelectors'
 import { normalizeBasePath } from '../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
-import Controls from './Controls'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
@@ -60,7 +60,7 @@ export default compose(
 			} = this.props
 			return (
 				<div id="targetSelection">
-					<Controls {...{ controls }} />
+					{/* <Controls {...{ controls }} /> */}
 					<section
 						id="targetsContainer"
 						style={{
@@ -73,6 +73,7 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
+					<PeriodSwitch />
 				</div>
 			)
 		}

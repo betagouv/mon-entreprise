@@ -2549,7 +2549,8 @@
   formule: revenu net de cotisations - impôt . impôt sur le revenu à payer
 
 - nom: revenu disponible
-  titre: Revenu disponible (net de cotisations et d'impôt)
+  titre: Revenu disponible
+  résumé: Après déductions des cotisations et de l'impôt
   période: flexible
   question: Quel revenu voulez-vous toucher ? 
   formule: revenu net d'impôt - entreprise . charges non déductibles
@@ -2557,20 +2558,24 @@
 - espace: entreprise
   nom: chiffre d'affaires
   question: Quel est votre chiffre d'affaires H.T. ?
+  résumé: Le montant des ventes réalisées
   période: flexible
   format: euros
 
-- espace: entreprise
+- espace: entreprise 
   nom: rémunération totale du dirigeant
   description: C'est la rémunération "super-brute" du dirigeant, qui inclut toutes les cotisations sociales à payer. C'est aussi la valeur monétaire du travail du dirigeant.
   période: flexible
   formule: chiffre d'affaires - charges
 
-- espace: entreprise
+
+- espace: entreprise 
   nom: charges
-  question: Quelles sont les charges H.T. de l'entreprise ?
+  résumé: Toutes les dépenses nécessaire à l'activité de l'entreprise
+  question: Quelles sont les charges H.T. de l'entreprise (hors rémunération) ?
   description: | 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci. Pour les sociétés et entreprises hors micro-entreprise, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la micro-entreprise, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
+    
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunérations. Pour les sociétés et entreprises hors micro-entreprise, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la micro-entreprise, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
     
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
 
