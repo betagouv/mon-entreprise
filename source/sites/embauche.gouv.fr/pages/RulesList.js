@@ -1,5 +1,5 @@
+import { Component, React, T } from 'Components'
 import SearchBar from 'Components/SearchBar'
-import { React, Component, T } from 'Components'
 import { connect } from 'react-redux'
 import 'react-select/dist/react-select.css'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
@@ -16,11 +16,7 @@ export default connect(state => ({
 					<h1>
 						<T>Explorez notre base de règles</T>
 					</h1>
-					<SearchBar
-						showDefaultList={true}
-						rules={flatRules}
-						rulePagesBasePath="règle"
-					/>
+					<SearchBar showDefaultList={true} rules={flatRules} />
 				</div>
 			)
 		}

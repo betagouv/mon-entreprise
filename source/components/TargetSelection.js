@@ -3,6 +3,7 @@ import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { compose, propEq } from 'ramda'
 import React, { Component } from 'react'
@@ -18,7 +19,6 @@ import {
 	flatRulesSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import { normalizeBasePath } from '../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
@@ -139,32 +139,32 @@ export default compose(
 	}
 )
 
-let Header = ({
-	target,
-	conversationStarted,
-	isActiveInput,
-	blockingInputControls,
-	match
-}) => {
-	const ruleLink =
-		normalizeBasePath(match.path).replace(/simulation\/$/, '') +
-		'règle/' +
-		encodeRuleName(target.dottedName)
-	return (
-		<span className="header">
-			{conversationStarted && !blockingInputControls && (
-				<ProgressCircle target={target} isActiveInput={isActiveInput} />
-			)}
+let Header = withSitePaths(
+	({
+		target,
+		conversationStarted,
+		isActiveInput,
+		blockingInputControls,
+		sitePaths
+	}) => {
+		const ruleLink =
+			sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
+		return (
+			<span className="header">
+				{conversationStarted && !blockingInputControls && (
+					<ProgressCircle target={target} isActiveInput={isActiveInput} />
+				)}
 
-			<span className="texts">
-				<span className="optionTitle">
-					<Link to={ruleLink}>{target.title || target.name}</Link>
+				<span className="texts">
+					<span className="optionTitle">
+						<Link to={ruleLink}>{target.title || target.name}</Link>
+					</span>
+					{!conversationStarted && <p>{target['résumé']}</p>}
 				</span>
-				{!conversationStarted && <p>{target['résumé']}</p>}
 			</span>
-		</span>
-	)
-}
+		)
+	}
+)
 
 let CurrencyField = withColours(props => {
 	return (
@@ -260,6 +260,7 @@ const TargetValue = connect(
 const AidesGlimpse = compose(
 	withColours,
 	withRouter,
+	withSitePaths,
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
 )(
 	class AidesGlimpse extends Component {
@@ -277,11 +278,8 @@ const AidesGlimpse = compose(
 					- <AnimatedTargetValue value={aides.nodeValue} />{' '}
 					<Link
 						to={
-							normalizeBasePath(this.props.match.path).replace(
-								/simulation\/$/,
-								''
-							) +
-							'règle/' +
+							this.props.sitePaths.documentation.index +
+							'/' +
 							encodeRuleName('contrat salarié . aides employeur')
 						}
 						style={{ color: this.props.colours.textColour }}>

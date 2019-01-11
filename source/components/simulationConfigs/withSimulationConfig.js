@@ -1,4 +1,3 @@
-import { resetSimulation } from 'Actions/actions'
 import React from 'react'
 import { connect } from 'react-redux'
 
@@ -8,7 +7,6 @@ export default config => SimulationComponent =>
 		dispatch => ({
 			setSimulation: () => {
 				dispatch({ type: 'SET_SIMULATION_CONFIG', config })
-				dispatch(resetSimulation())
 			}
 		})
 	)(

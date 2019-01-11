@@ -105,9 +105,9 @@ export let nameLeaf = pipe(
 )
 
 export let encodeRuleName = name =>
-	name.replace(/\s\.\s/g, '--').replace(/\s/g, '-')
+	encodeURI(name.replace(/\s\.\s/g, '/').replace(/\s/g, '-'))
 export let decodeRuleName = name =>
-	name.replace(/--/g, ' . ').replace(/-/g, ' ')
+	decodeURI(name.replace(/\//g, ' . ').replace(/-/g, ' '))
 
 export let ruleParents = dottedName => {
 	let fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]

@@ -1,21 +1,26 @@
 /* @flow */
 import withColours from 'Components/utils/withColours'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import React from 'react'
-import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import { capitalise0, normalizeBasePath } from '../utils'
+import { capitalise0 } from '../utils'
 import './RuleLink.css'
 import type { Règle } from 'Types/RegleTypes'
-import type { Match } from 'react-router'
+
 type Props = Règle & {
-	match: Match,
+	sitePaths: Object,
 	style: CSSStyleDeclaration,
 	colours: { colour: string }
 }
-const RuleLink = ({ lien, nom, colours: { colour }, match, style }: Props) => {
-	const newPath =
-		normalizeBasePath(match.path).replace(/simulation\/$/, '') + lien
+const RuleLink = ({
+	lien,
+	nom,
+	colours: { colour },
+	style,
+	sitePaths
+}: Props) => {
+	const newPath = sitePaths.documentation.index + '/' + lien
 	return (
 		<Link
 			to={newPath}
@@ -27,6 +32,6 @@ const RuleLink = ({ lien, nom, colours: { colour }, match, style }: Props) => {
 }
 
 export default compose(
-	withRouter,
+	withSitePaths,
 	withColours
 )(RuleLink)

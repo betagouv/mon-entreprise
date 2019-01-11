@@ -1,14 +1,15 @@
 /* @flow */
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
-import sitePaths from '../../sitePaths'
 import PreviousAnswers from './PreviousAnswers'
+
 import type { TFunction } from 'react-i18next'
 
 import type { Match, Location } from 'react-router'
@@ -19,10 +20,12 @@ type Props = {
 	guideAlreadyStarted: boolean,
 	resetCompanyStatusChoice: (?string) => void,
 	t: TFunction,
-	location: Location
+	location: Location,
+	sitePaths: Object
 }
 const CreateMyCompany = ({
 	match,
+	sitePaths,
 	nextQuestionUrl,
 	guideAlreadyStarted,
 	resetCompanyStatusChoice,
@@ -31,7 +34,7 @@ const CreateMyCompany = ({
 }: Props) => {
 	if (!match.isExact) {
 		const companyStatusCurrentQuestionName = (toPairs(
-			sitePaths().entreprise.statusJuridique
+			sitePaths.entreprise.statusJuridique
 		).find(([, pathname]) => location.pathname === pathname) || [])[0]
 		resetCompanyStatusChoice(companyStatusCurrentQuestionName)
 	}
@@ -75,7 +78,7 @@ const CreateMyCompany = ({
 							{!guideAlreadyStarted ? <T>Commencer</T> : <T>Reprendre</T>}
 						</Link>
 						<Link
-							to={sitePaths().sécuritéSociale.index}
+							to={sitePaths.sécuritéSociale.index}
 							className="ui__ skip-button">
 							<T>Plus tard</T> ›
 						</Link>
@@ -96,5 +99,6 @@ export default compose(
 		}),
 		{ resetCompanyStatusChoice }
 	),
+	withSitePaths,
 	withNamespaces()
 )(CreateMyCompany)

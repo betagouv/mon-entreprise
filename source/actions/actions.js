@@ -51,6 +51,17 @@ export function setExample(name, situation, dottedName) {
 	return { type: 'SET_EXAMPLE', name, situation, dottedName }
 }
 
+export const goBackToSimulation = () => (
+	dispatch: any => void,
+	_: any,
+	history: RouterHistory
+): void => {
+	while (history.location.pathname.includes('documentation')) {
+		history.goBack()
+	}
+	dispatch({ type: 'SET_EXAMPLE', name: null })
+}
+
 export function loadPreviousSimulation(): LoadPreviousSimulationAction {
 	return {
 		type: 'LOAD_PREVIOUS_SIMULATION'

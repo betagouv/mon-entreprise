@@ -39,13 +39,12 @@ export default compose(
 			return this.state.visible ? (
 				<Overlay onClose={this.close}>
 					<h2>
-						<Trans>Chercher une règle</Trans>
+						<Trans>Chercher dans la documentation</Trans>
 					</h2>
 					<SearchBar
 						showDefaultList={false}
 						finally={this.close}
 						rules={flatRules}
-						rulePagesBasePath={this.props.rulePagesBasePath}
 					/>
 				</Overlay>
 			) : (

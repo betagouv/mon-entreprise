@@ -1,5 +1,6 @@
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { getInputComponent } from 'Engine/generateQuestions'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import { createMarkdownDiv } from 'Engine/marked'
@@ -29,16 +30,17 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import sitePaths from '../../sites/mycompanyinfrance.fr/sitePaths';
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
 export default compose(
-	connect(state => ({
+	connect((state, props) => ({
 		currentExample: state.currentExample,
 		flatRules: flatRulesSelector(state),
 		valuesToShow: !noUserInputSelector(state),
-		analysedRule: ruleAnalysisSelector(state),
-		analysedExample: exampleAnalysisSelector(state)
+		analysedRule: ruleAnalysisSelector(state, props),
+		analysedExample: exampleAnalysisSelector(state, props)
 	})),
 	AttachDictionary(knownMecanisms),
 	withNamespaces(),
@@ -73,7 +75,7 @@ export default compose(
 						</>
 					) : (
 						<div id="rule" className="ui__ container">
-							<Animate.fromBottom key={title}>
+							<Animate.fromBottom>
 								<Helmet>
 									<title>{title}</title>
 									<meta name="description" content={description} />
@@ -170,7 +172,8 @@ export default compose(
 	}
 )
 
-let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
+let NamespaceRulesList = compose(withColours, withSitePaths)(({ namespaceRules, colours, sitePaths }) => {
+	return (
 	<section>
 		<h2>
 			<Trans>Règles associées</Trans>
@@ -183,14 +186,15 @@ let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
 							color: colours.textColourOnWhite,
 							textDecoration: 'underline'
 						}}
-						to={'../règle/' + encodeRuleName(r.dottedName)}>
+						to={sitePaths.documentation.index + '/' + encodeRuleName(r.dottedName)}>
 						{r.title || r.name}
 					</Link>
 				</li>
 			))}
 		</ul>
 	</section>
-))
+)
+					})
 
 const UserInput = reduxForm({
 	form: 'conversation',

@@ -1,6 +1,7 @@
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
-import { findRuleByDottedName } from 'Engine/rules'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -26,7 +27,8 @@ export default compose(
 			setSituationBranch: id => dispatch({ type: 'SET_SITUATION_BRANCH', id })
 		})
 	),
-	withColours
+	withColours,
+	withSitePaths
 )(
 	class ComparativeTargets extends React.Component {
 		render() {
@@ -35,6 +37,7 @@ export default compose(
 				analyses,
 				target,
 				setSituationBranch,
+				sitePaths,
 				simulationBranches
 			} = this.props
 			if (!simulationBranches) {
@@ -44,7 +47,6 @@ export default compose(
 			// This is not elegant
 			let getRatioPrélèvements = analysis =>
 				analysis.targets.find(t => t.dottedName === 'ratio de prélèvements')
-
 			return (
 				<div id="comparative-targets">
 					<h3>{target.title}</h3>
@@ -87,7 +89,11 @@ export default compose(
 												<Link
 													title="Quel est calcul ?"
 													style={{ color: this.props.colours.colour }}
-													to={'/règle/' + dottedName}
+													to={
+														sitePaths.documentation.index +
+														'/' +
+														encodeRuleName(dottedName)
+													}
 													onClick={() => setSituationBranch(i)}
 													className="explanation">
 													{emoji('📖')}
@@ -99,7 +105,11 @@ export default compose(
 												de{' '}
 												<Link
 													style={{ color: 'white' }}
-													to={'/règle/' + ratioPrélèvements.dottedName}>
+													to={
+														sitePaths.documentation.index +
+														'/' +
+														encodeRuleName(ratioPrélèvements.dottedName)
+													}>
 													prélèvements
 												</Link>
 											</small>

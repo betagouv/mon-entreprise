@@ -1,6 +1,7 @@
+import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules.js'
 import Fuse from 'fuse.js'
-import { sortBy, pick } from 'ramda'
+import { compose, pick, sortBy } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
 import { withNamespaces } from 'react-i18next'
@@ -70,7 +71,11 @@ class SearchBar extends React.Component {
 			this.props.finally && this.props.finally()
 			return (
 				<Redirect
-					to={'../règle/' + encodeRuleName(selectedOption.dottedName)}
+					to={
+						this.props.sitePaths.documentation.index +
+						'/' +
+						encodeRuleName(selectedOption.dottedName)
+					}
 				/>
 			)
 		}
@@ -99,7 +104,7 @@ class SearchBar extends React.Component {
 							<li key={rule.dottedName}>
 								<Link
 									to={
-										this.props.rulePagesBasePath +
+										this.props.sitePaths.documentation.index +
 										'/' +
 										encodeRuleName(rule.name)
 									}>
@@ -114,4 +119,7 @@ class SearchBar extends React.Component {
 	}
 }
 
-export default withNamespaces()(SearchBar)
+export default compose(
+	withSitePaths,
+	withNamespaces()
+)(SearchBar)

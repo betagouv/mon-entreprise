@@ -12,8 +12,10 @@ import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
+import withSitePaths from 'Components/utils/withSitePaths'
+
 import { CheckItem, Checklist } from 'Ui/Checklist'
-import sitePaths, { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
+import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
 import Page404 from '../404'
 import StatusDescription from './StatusDescription'
 import type { Match } from 'react-router'
@@ -24,6 +26,7 @@ type Props = {
 	match: Match,
 	onChecklistInitialization: (string, Array<string>) => void,
 	onStatusChange: () => void,
+	sitePaths: Object,
 	onItemCheck: (name: string, checked: boolean) => void,
 	t: TFunction,
 	companyCreationChecklist: { [string]: boolean }
@@ -34,6 +37,7 @@ const CreateCompany = ({
 	statusChooserCompleted,
 	onChecklistInitialization,
 	onItemCheck,
+	sitePaths,
 	companyCreationChecklist,
 	onStatusChange,
 	t
@@ -422,7 +426,7 @@ const CreateCompany = ({
 				<button onClick={onStatusChange} className="ui__ skip-button left">
 					‹ <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
-				<Link to={sitePaths().entreprise.après} className="ui__ skip-button">
+				<Link to={sitePaths.entreprise.après} className="ui__ skip-button">
 					<T k="entreprise.tâches.ensuite">Après la création</T>›
 				</Link>
 			</p>
@@ -431,6 +435,7 @@ const CreateCompany = ({
 }
 export default compose(
 	withNamespaces(),
+	withSitePaths,
 	connect(
 		state => ({
 			companyCreationChecklist: state.inFranceApp.companyCreationChecklist,

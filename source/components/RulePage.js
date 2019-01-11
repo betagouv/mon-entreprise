@@ -1,4 +1,4 @@
-import { setExample } from 'Actions/actions'
+import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { encodeRuleName } from 'Engine/rules'
 import {
@@ -25,9 +25,9 @@ export default compose(
 	connect(state => ({
 		themeColours: state.themeColours,
 		valuesToShow: !noUserInputSelector(state),
-		flatRules: flatRulesSelector(state),
-		situationBranch:
-			state.simulationConfig?.branches[state.situationBranch]?.nom
+		flatRules: flatRulesSelector(state)
+		// situationBranch:
+		// 	state.simulationConfig?.branches[state.situationBranch]?.nom
 	})),
 	withNamespaces()
 )(
@@ -57,7 +57,7 @@ export default compose(
 			let { situationBranch } = this.props
 			return (
 				<div id="RulePage">
-					<ScrollToTop />
+					<ScrollToTop key={situationBranch + dottedName} />
 					<div className="rule-page__header ui__ container">
 						<BackToSimulation
 							visible={this.props.valuesToShow}
@@ -66,10 +66,7 @@ export default compose(
 						{situationBranch && (
 							<span id="situationBranch">{situationBranch}</span>
 						)}
-						<SearchButton
-							className="rule-page__search"
-							rulePageBasePath="../règle"
-						/>
+						<SearchButton className="rule-page__search" rulePageBasePath="" />
 					</div>
 					<Rule dottedName={dottedName} />
 				</div>
@@ -81,12 +78,7 @@ export default compose(
 const BackToSimulation = compose(
 	connect(
 		null,
-		dispatch => ({
-			setExample: compose(
-				dispatch,
-				setExample
-			)
-		})
+		{ goBackToSimulation }
 	),
 	withRouter,
 	withNamespaces()
@@ -94,18 +86,20 @@ const BackToSimulation = compose(
 	// Triggers rerender when the language changes
 	class BackToSimulation extends Component {
 		render() {
-			let { colour, setExample, visible } = this.props
+			let { goBackToSimulation, visible } = this.props
 			return (
-				<Link
-					id="toSimulation"
+				<button
 					to="../simulation"
-					onClick={() => {
-						setExample(null)
-					}}
-					style={{ color: colour, visibility: visible ? 'visible' : 'hidden' }}>
-					<i className="fa fa-arrow-left" aria-hidden="true" />
+					className="ui__ link-button"
+					onClick={goBackToSimulation}
+					style={{ visibility: visible ? 'visible' : 'hidden' }}>
+					<i
+						className="fa fa-arrow-left"
+						aria-hidden="true"
+						style={{ paddingRight: '0.2rem' }}
+					/>
 					<Trans i18nKey="back">Reprendre la simulation</Trans>
-				</Link>
+				</button>
 			)
 		}
 	}
@@ -122,7 +116,7 @@ let DisambiguateRuleQuery = ({ rules, flatRules }) => (
 			{rules.map(({ dottedName, ns, title }) => (
 				<li key={dottedName}>
 					<Namespace ns={ns} flatRules={flatRules} />
-					<Link to={'../règle/' + encodeRuleName(dottedName)}>{title}</Link>
+					<Link to={'' + encodeRuleName(dottedName)}>{title}</Link>
 				</li>
 			))}
 		</ul>

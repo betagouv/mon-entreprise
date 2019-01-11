@@ -1,11 +1,12 @@
 /* @flow */
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
-import { isNil } from 'ramda'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose, isNil } from 'ramda'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import sitePaths from '../../sitePaths'
+
 import type { LegalStatusRequirements } from 'Types/companyTypes'
 const requirementToText = (key, value) => {
 	switch (key) {
@@ -38,6 +39,7 @@ type Props = LegalStatusRequirements & { goToCompanyStatusChoice: () => void }
 
 const PreviousAnswers = ({
 	goToCompanyStatusChoice,
+	sitePaths,
 	...legalStatus
 }: Props) => {
 	return (
@@ -57,7 +59,7 @@ const PreviousAnswers = ({
 								([key, value]) =>
 									!isNil(value) && (
 										<li key={key}>
-											<Link to={sitePaths().entreprise.statusJuridique[key]}>
+											<Link to={sitePaths.entreprise.statusJuridique[key]}>
 												{requirementToText(key, value)}
 											</Link>
 										</li>
@@ -71,7 +73,10 @@ const PreviousAnswers = ({
 	)
 }
 
-export default connect(
-	state => state.inFranceApp.companyLegalStatus,
-	{ goToCompanyStatusChoice }
+export default compose(
+	connect(
+		state => state.inFranceApp.companyLegalStatus,
+		{ goToCompanyStatusChoice }
+	),
+	withSitePaths
 )(PreviousAnswers)
