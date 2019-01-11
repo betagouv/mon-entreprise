@@ -3,6 +3,7 @@
 import { Component, React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
@@ -10,8 +11,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { régimeSelector } from 'Selectors/companyStatusSelectors'
 import * as Animate from 'Ui/animate'
-import sitePaths from '../../sitePaths'
 import Video from './Video'
+
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
 
@@ -20,27 +21,23 @@ type Props = {
 	location: Location,
 	t: TFunction,
 	régime: 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null,
+	sitePaths: Object,
 	language: string
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
+		const { t, match, régime, sitePaths } = this.props
 		return (
 			<>
 				<Helmet>
 					<title>
-						{this.props.t(
-							'sécu.page.titre',
-							"Sécurité sociale et coût d'embauche"
-						)}
+						{t('sécu.page.titre', "Sécurité sociale et coût d'embauche")}
 					</title>
-					<meta
-						name="description"
-						content={this.props.t('sécu.page.description')}
-					/>
+					<meta name="description" content={t('sécu.page.description')} />
 				</Helmet>
 				<ScrollToTop />
 				<Animate.fromBottom>
-					{this.props.match.isExact && (
+					{match.isExact && (
 						<>
 							<T k="sécu.content">
 								<h1>Protection sociale : coûts et avantages</h1>
@@ -64,15 +61,15 @@ class SocialSecurity extends Component<Props, {}> {
 								<Link
 									className="ui__ button"
 									to={
-										this.props.régime
-											? sitePaths().sécuritéSociale[this.props.régime]
-											: sitePaths().sécuritéSociale.comparaison
+										régime
+											? sitePaths.sécuritéSociale[régime]
+											: sitePaths.sécuritéSociale.comparaison
 									}>
 									<T>La rémunération du dirigeant</T>
 								</Link>
 								<Link
 									className="ui__ button"
-									to={sitePaths().sécuritéSociale.salarié}>
+									to={sitePaths.sécuritéSociale.salarié}>
 									<T>Le salaire d'un employé</T>
 								</Link>
 							</div>
@@ -87,6 +84,7 @@ class SocialSecurity extends Component<Props, {}> {
 export default compose(
 	withNamespaces(),
 	withLanguage,
+	withSitePaths,
 	connect(state => ({
 		régime: régimeSelector(state)
 	}))

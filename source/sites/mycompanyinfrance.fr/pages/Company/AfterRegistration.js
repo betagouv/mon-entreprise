@@ -1,21 +1,22 @@
 /* @flow */
 import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import sitePaths from '../../sitePaths'
 import siret from './siret.jpg'
 import type { TFunction } from 'react-i18next'
 
 type Props = {
 	companyStatusChoice: string,
+	sitePaths: Object,
 	t: TFunction
 }
 
-const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
+const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 	<Animate.fromBottom>
 		<ScrollToTop />
 		<h1>
@@ -91,10 +92,10 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 			</>
 		)}
 		<p style={{ display: 'flex', justifyContent: 'space-between' }}>
-			<Link to={sitePaths().entreprise.index} className="ui__ skip-button left">
+			<Link to={sitePaths.entreprise.index} className="ui__ skip-button left">
 				‹ <T k="après.actions.retour">Démarche de création</T>
 			</Link>
-			<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
+			<Link to={sitePaths.sécuritéSociale.index} className="ui__ skip-button">
 				<T k="après.actions.avance">Estimez vos cotisations </T>›
 			</Link>
 		</p>
@@ -105,5 +106,6 @@ export default compose(
 	connect(state => ({
 		companyStatusChoice: state.inFranceApp.companyStatusChoice
 	})),
-	withNamespaces()
+	withNamespaces(),
+	withSitePaths
 )(AfterRegistration)

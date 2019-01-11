@@ -1,20 +1,24 @@
 import withColours from 'Components/utils/withColours'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import sitePaths from '../../sites/mycompanyinfrance.fr/sitePaths';
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import './Targets.css'
 export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
-	withColours
+	withColours,
+	withSitePaths,
 )(
 	class Targets extends React.Component {
 		render() {
 			let {
 				title,
 				nodeValue,
+				sitePaths,
 				unité: unit,
 				dottedName
 			} = this.props.analysis.targets[0]
@@ -33,7 +37,7 @@ export default compose(
 						<Link
 							title="Quel est calcul ?"
 							style={{ color: this.props.colours.colour }}
-							to={'/règle/' + dottedName}
+							to={sitePaths.documentation.index + '/' + dottedName}
 							className="explanation">
 							{emoji('📖')}
 						</Link>

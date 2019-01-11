@@ -1,40 +1,39 @@
 /* @flow */
-import { React, T } from 'Components'
-import Helmet from 'react-helmet'
-import { connect } from 'react-redux'
-import { filter } from 'ramda'
-import { Link } from 'react-router-dom'
-import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
-import { withNamespaces } from 'react-i18next'
-import StatusDescription from './StatusDescription'
+import { goBackToPreviousQuestion } from 'Actions/companyStatusActions';
+import { React, T } from 'Components';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose, filter } from 'ramda';
+import Helmet from 'react-helmet';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { possibleStatusSelector } from 'Selectors/companyStatusSelectors';
+import StatusDescription from './StatusDescription';
 import type { RouterHistory } from 'react-router'
-import { compose } from 'ramda'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
-import withLanguage from 'Components/utils/withLanguage'
 import type { TFunction } from 'react-i18next'
-
-import sitePaths from '../../sitePaths'
-import { goBackToPreviousQuestion } from 'Actions/companyStatusActions'
 
 type Props = {
 	history: RouterHistory,
 	possibleStatus: { [LegalStatus]: boolean },
 	goBackToPreviousQuestion: () => void,
+	sitePaths: Object,
 	setMainStatus: LegalStatus => void,
 	language: string,
 	t: TFunction
 }
 
-const StatusButton = withNamespaces()(
-	({ status, t }: { status: LegalStatus, t: TFunction }) => (
+const StatusButton = withSitePaths(withNamespaces()(
+	({ status, t, sitePaths }: { status: LegalStatus, t: TFunction, sitePaths: Object }) => (
 		<div style={{textAlign: 'right'}}>
 
-		<Link to={sitePaths().entreprise.créer(status)} className="ui__ button">
+		<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
 			<T>Créer une</T> {t(status)}
 		</Link>
 		</div>
 	)
-)
+))
 const StatusTitle = ({ status, language }) =>
 	status === 'EI' ? (
 		<>
@@ -85,6 +84,7 @@ const SetMainStatus = ({
 	history,
 	possibleStatus,
 	goBackToPreviousQuestion,
+	sitePaths,
 	t,
 	language
 }: Props) => {
@@ -121,7 +121,7 @@ const SetMainStatus = ({
 					‹ <T>Précédent</T>
 				</button>
 				<Link
-					to={sitePaths().sécuritéSociale.index}
+					to={sitePaths.sécuritéSociale.index}
 					className="ui__ skip-button">
 					<T>Choisir plus tard</T> ›
 				</Link>
@@ -132,6 +132,7 @@ const SetMainStatus = ({
 
 export default compose(
 	withNamespaces(),
+	withSitePaths,
 	withLanguage,
 	connect(
 		state => ({ possibleStatus: possibleStatusSelector(state) }),

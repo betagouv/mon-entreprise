@@ -1,4 +1,5 @@
 import SetCSSColour from 'Components/utils/SetCssColour'
+import { SitePathProvider } from 'Components/utils/withSitePaths'
 import { TrackerProvider } from 'Components/utils/withTracker'
 import createHistory from 'history/createBrowserHistory'
 import i18next from 'i18next'
@@ -66,12 +67,14 @@ export default class Layout extends PureComponent {
 			// If IE < 11 display nothing
 			<Provider store={this.store}>
 				<TrackerProvider value={this.props.tracker}>
-					<SetCSSColour />
-					<I18nextProvider i18n={i18next}>
-						<Router history={this.history}>
-							<>{this.props.children}</>
-						</Router>
-					</I18nextProvider>
+					<SitePathProvider value={this.props.sitePaths}>
+						<SetCSSColour />
+						<I18nextProvider i18n={i18next}>
+							<Router history={this.history}>
+								<>{this.props.children}</>
+							</Router>
+						</I18nextProvider>
+					</SitePathProvider>
 				</TrackerProvider>
 			</Provider>
 		)

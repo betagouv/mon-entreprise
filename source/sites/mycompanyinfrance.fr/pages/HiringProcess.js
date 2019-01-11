@@ -4,6 +4,7 @@ import {
 	initializeHiringChecklist
 } from 'Actions/hiringChecklistAction'
 import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
@@ -11,10 +12,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
-import sitePaths from '../sitePaths'
 
 const HiringProcess = ({
 	onChecklistInitialization,
+	sitePaths,
 	onItemCheck,
 	hiringChecklist,
 	t
@@ -200,7 +201,7 @@ const HiringProcess = ({
 			</ul>
 			<Link
 				className="ui__ button"
-				to={sitePaths().sécuritéSociale.index + '/simulation'}>
+				to={sitePaths.sécuritéSociale.index + '/simulation'}>
 				Obtenir un exemple de fiche de paie
 			</Link>
 		</T>
@@ -209,6 +210,7 @@ const HiringProcess = ({
 
 export default compose(
 	withNamespaces(),
+	withSitePaths,
 	connect(
 		state => ({ hiringChecklist: state.inFranceApp.hiringChecklist }),
 		{

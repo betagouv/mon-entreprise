@@ -15,6 +15,7 @@ import {
 	pick,
 	sortBy
 } from 'ramda'
+//TODO : use react context
 import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 
 const LEGAL_STATUS_DETAILS: {

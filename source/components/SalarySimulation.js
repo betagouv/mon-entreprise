@@ -1,9 +1,12 @@
 import { startConversation } from 'Actions/actions'
 import { Component, React, T } from 'Components'
 import AnswerList from 'Components/AnswerList'
+import Distribution from 'Components/Distribution'
+import PaySlip from 'Components/PaySlip'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { Trans, withNamespaces } from 'react-i18next'
@@ -18,12 +21,9 @@ import {
 	validInputEnteredSelector
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
-import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 import { normalizeBasePath } from '../utils'
 import Conversation from './conversation/Conversation'
-import Distribution from './Distribution'
 import PageFeedback from './Feedback/PageFeedback'
-import PaySlip from './PaySlip'
 import QuickLink from './QuickLink'
 import ResultView from './ResultView'
 import './SalarySimulation.css'
@@ -47,7 +47,8 @@ export default compose(
 			startConversation
 		}
 	),
-	withLanguage
+	withLanguage,
+	withSitePaths
 )(
 	class Simulation extends Component {
 		state = {
@@ -59,13 +60,13 @@ export default compose(
 				conversationStarted,
 				arePreviousAnswers,
 				nextSteps,
-				startConversation,
 				blockingInputControls,
 				displayHiringProcedures,
 				match,
 				validInputEntered,
-				location,
 				period,
+				location,
+				sitePaths,
 				noUserInput
 			} = this.props
 			const displayConversation = conversationStarted && !blockingInputControls
@@ -143,7 +144,7 @@ export default compose(
 											<div style={{ textAlign: 'center' }}>
 												<Link
 													className="ui__ button"
-													to={sitePaths().démarcheEmbauche}>
+													to={sitePaths.démarcheEmbauche}>
 													<Trans i18nKey="simulation-end.cta">
 														Connaître les démarches
 													</Trans>
@@ -185,7 +186,7 @@ export default compose(
 							/>
 						)}
 					</div>
-					{/* {!location.pathname.endsWith('/simulation') && validInputEntered && (
+					{!location.pathname.endsWith('/simulation') && validInputEntered && (
 						<Animate.fromBottom>
 							<div style={{ textAlign: 'center' }}>
 								{arePreviousAnswers && conversationStarted && (
@@ -229,7 +230,7 @@ export default compose(
 							</h2>
 							<PaySlip />
 						</Animate.fromBottom>
-					)} */}
+					)}
 				</>
 			)
 		}

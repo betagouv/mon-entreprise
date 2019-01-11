@@ -1,9 +1,10 @@
 import React from 'react'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
+import { compose } from 'ramda'
 import { Redirect, Route, Switch } from 'react-router'
 import * as Animate from 'Ui/animate'
-import sitePaths from '../../sitePaths'
+import withSitePaths from 'Components/utils/withSitePaths'
 import AfterRegistration from './AfterRegistration'
 import CreationChecklist from './CreationChecklist'
 import DefineDirectorStatus from './DirectorStatus'
@@ -28,71 +29,72 @@ const CreateMyCompany = ({
 	match,
 	location,
 	companyStatusChoice,
-	existingCompany
+	existingCompany,
+	sitePaths,
 }) => {
-	const paths = sitePaths()
+	
 	return (
 		<>
 			<Animate.fromBottom>
 				<Switch>
 					<Route
-						path={paths.entreprise.votreEntreprise}
+						path={sitePaths.entreprise.votreEntreprise}
 						component={YourCompany}
 					/>
 					<Route
-						path={paths.entreprise.créer(':status')}
+						path={sitePaths.entreprise.créer(':status')}
 						component={CreationChecklist}
 					/>
-					<Route path={paths.entreprise.trouver} component={Find} />
-					<Route path={paths.entreprise.après} component={AfterRegistration} />
+					<Route path={sitePaths.entreprise.trouver} component={Find} />
+					<Route path={sitePaths.entreprise.après} component={AfterRegistration} />
 					<Route
-						path={paths.entreprise.statusJuridique.index}
+						path={sitePaths.entreprise.statusJuridique.index}
 						component={Home}
 					/>
 					{existingCompany && (
 						<Redirect
 							exact
 							from={match.path}
-							to={paths.entreprise.votreEntreprise}
+							to={sitePaths.entreprise.votreEntreprise}
 						/>
 					)}
 					{companyStatusChoice ? (
 						<Redirect
 							exact
 							from={match.path}
-							to={paths.entreprise.créer(companyStatusChoice)}
+							to={sitePaths.entreprise.créer(companyStatusChoice)}
 						/>
 					) : (
 						<Redirect
 							exact
 							from={match.path}
-							to={paths.entreprise.statusJuridique.index}
+							to={sitePaths.entreprise.statusJuridique.index}
 						/>
 					)}
 				</Switch>
 				<Switch location={location}>
 					<Route
-						path={paths.entreprise.statusJuridique.liability}
+						path={sitePaths.entreprise.statusJuridique.liability}
 						component={withAnimation(Liability)}
 					/>
 					<Route
-						path={paths.entreprise.statusJuridique.directorStatus}
+						path={sitePaths.entreprise.statusJuridique.directorStatus}
 						component={withAnimation(DefineDirectorStatus)}
 					/>
 					<Route
-						path={paths.entreprise.statusJuridique.microEnterprise}
+						path={sitePaths.entreprise.statusJuridique.microEnterprise}
 						component={withAnimation(Microenterprise)}
 					/>
 					<Route
-						path={paths.entreprise.statusJuridique.multipleAssociates}
+						path={sitePaths.entreprise.statusJuridique.multipleAssociates}
 						component={withAnimation(NumberOfAssociate)}
 					/>
 					<Route
-						path={paths.entreprise.statusJuridique.minorityDirector}
+						path={sitePaths.entreprise.statusJuridique.minorityDirector}
 						component={withAnimation(MinorityDirector)}
 					/>
 					<Route
-						path={paths.entreprise.statusJuridique.liste}
+						path={sitePaths.entreprise.statusJuridique.liste}
 						component={withAnimation(PickLegalStatus)}
 					/>
 				</Switch>
@@ -101,7 +103,11 @@ const CreateMyCompany = ({
 	)
 }
 
-export default connect(state => ({
-	companyStatusChoice: state.inFranceApp.companyStatusChoice,
-	existingCompany: state.inFranceApp.existingCompanyDetails
-}))(withNamespaces()(CreateMyCompany))
+export default compose(
+	connect(state => ({
+		companyStatusChoice: state.inFranceApp.companyStatusChoice,
+		existingCompany: state.inFranceApp.existingCompanyDetails
+	})),
+	withNamespaces(), 
+	withSitePaths
+)(CreateMyCompany)

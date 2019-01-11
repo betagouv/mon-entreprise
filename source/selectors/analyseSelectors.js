@@ -122,7 +122,7 @@ let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
-		(_, { dottedName }) => dottedName,
+		(_, props) => props.dottedName,
 		situationsWithDefaultsSelector,
 		state => state.situationBranch || 0
 	],
@@ -154,7 +154,7 @@ let exampleSituationSelector = createSelector(
 export let exampleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
-		(_, { dottedName }) => dottedName,
+		(_, props) => props.dottedName,
 		exampleSituationSelector
 	],
 	(rules, dottedName, situation) =>

@@ -1,5 +1,8 @@
+import RulePage from 'Components/RulePage'
 import TrackPageView from 'Components/utils/TrackPageView'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { defaultTracker } from 'Components/utils/withTracker'
+import { compose } from 'ramda'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
@@ -7,6 +10,10 @@ import { withNamespaces } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
+import {
+	persistEverything,
+	retrievePersistedState
+} from '../../storage/persistEverything'
 import ReactPiwik from '../../Tracker'
 import './App.css'
 import Footer from './layout/Footer/Footer'
@@ -47,13 +54,16 @@ class InFranceRoute extends Component {
 		}
 	}
 	render() {
+		const paths = sitePaths()
 		return (
 			<Provider
 				basename={this.props.basename}
 				language={this.props.language}
 				tracker={tracker}
+				sitePaths={paths}
 				reduxMiddlewares={middlewares}
-				initialStore={{ lang: 'en' }}>
+				onStoreCreated={persistEverything}
+				initialStore={retrievePersistedState()}>
 				<TrackPageView />
 				<div id="content">
 					<RouterSwitch />
@@ -63,8 +73,10 @@ class InFranceRoute extends Component {
 	}
 }
 
-let RouterSwitch = withNamespaces()(() => {
-	const paths = sitePaths()
+let RouterSwitch = compose(
+	withNamespaces(),
+	withSitePaths
+)(({ sitePaths }) => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Landing} />
@@ -76,14 +88,18 @@ let RouterSwitch = withNamespaces()(() => {
 					<div
 						className="ui__ container"
 						style={{ flexGrow: 1, flexShrink: 0 }}>
-						<Route path={paths.entreprise.index} component={CompanyIndex} />
+						<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
 						<Route
-							path={paths.sécuritéSociale.index}
+							path={sitePaths.sécuritéSociale.index}
 							component={SocialSecurity}
 						/>
 						<Route
-							path={paths.démarcheEmbauche.index}
+							path={sitePaths.démarcheEmbauche.index}
 							component={HiringProcess}
+						/>
+						<Route
+							path={sitePaths.documentation.index + '/:name+'}
+							component={RulePage}
 						/>
 						{process.env.NODE_ENV !== 'production' && (
 							<Route exact path="/sitemap" component={Sitemap} />
