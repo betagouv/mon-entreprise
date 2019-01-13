@@ -1,5 +1,6 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import {
 	decodeRuleName,
@@ -8,13 +9,15 @@ import {
 } from 'Engine/rules.js'
 import { compose, head, path } from 'ramda'
 import React, { Component } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link, Redirect } from 'react-router-dom'
 import {
 	flatRulesSelector,
-	noUserInputSelector
+	noUserInputSelector,
+	situationBranchNameSelector
 } from 'Selectors/analyseSelectors'
 import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
@@ -23,12 +26,11 @@ import SearchButton from './SearchButton'
 
 export default compose(
 	connect(state => ({
-		themeColours: state.themeColours,
 		valuesToShow: !noUserInputSelector(state),
-		flatRules: flatRulesSelector(state)
-		// situationBranch:
-		// 	state.simulationConfig?.branches[state.situationBranch]?.nom
+		flatRules: flatRulesSelector(state),
+		brancheName: situationBranchNameSelector(state)
 	})),
+	withSitePaths,
 	withNamespaces()
 )(
 	class RulePage extends Component {
@@ -54,18 +56,23 @@ export default compose(
 			return this.renderRule(dottedName)
 		}
 		renderRule(dottedName) {
-			let { situationBranch } = this.props
+			let { brancheName, sitePaths } = this.props
+			console.log(brancheName)
 			return (
 				<div id="RulePage">
-					<ScrollToTop key={situationBranch + dottedName} />
-					<div className="rule-page__header ui__ container">
-						<BackToSimulation
-							visible={this.props.valuesToShow}
-							colour={this.props.themeColours.colour}
-						/>
-						{situationBranch && (
-							<span id="situationBranch">{situationBranch}</span>
+					<ScrollToTop key={brancheName + dottedName} />
+					<div className="rule-page__header">
+						{this.props.valuesToShow ? (
+							<BackToSimulation />
+						) : (
+							<span>
+								{emoji('🧾')}{' '}
+								<Link to={sitePaths.sécuritéSociale.index}>
+									Calculer vos cotisations
+								</Link>
+							</span>
 						)}
+						{brancheName && <span id="situationBranch">{brancheName}</span>}
 						<SearchButton className="rule-page__search" rulePageBasePath="" />
 					</div>
 					<Rule dottedName={dottedName} />
@@ -86,13 +93,12 @@ const BackToSimulation = compose(
 	// Triggers rerender when the language changes
 	class BackToSimulation extends Component {
 		render() {
-			let { goBackToSimulation, visible } = this.props
+			let { goBackToSimulation } = this.props
 			return (
 				<button
 					to="../simulation"
 					className="ui__ link-button"
-					onClick={goBackToSimulation}
-					style={{ visibility: visible ? 'visible' : 'hidden' }}>
+					onClick={goBackToSimulation}>
 					<i
 						className="fa fa-arrow-left"
 						aria-hidden="true"

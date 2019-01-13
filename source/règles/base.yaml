@@ -2553,6 +2553,9 @@
   résumé: Après déductions des cotisations et de l'impôt
   période: flexible
   question: Quel revenu voulez-vous toucher ? 
+  description: |
+    Il s'agit du revenu net de cotisations et d'impôts. 
+    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
   formule: revenu net d'impôt - entreprise . charges non déductibles
 
 - espace: entreprise

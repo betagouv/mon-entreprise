@@ -83,7 +83,8 @@
 .ui__.button.simple {
 	border: none;
 }
-.ui__.button.simple:hover {
+.ui__.button.simple:hover,
+.ui__.button.simple.selected {
 	opacity: 0.8;
 }
 .ui__.button.cta,
@@ -98,7 +99,8 @@
 	color: white;
 	border-color: white;
 }
-.ui__.inverted-button:not(:disabled):hover {
+.ui__.inverted-button:not(:disabled):hover,
+.ui__.inverted-button:not(:disabled).selected {
 	background-color: rgba(255, 255, 255, 1);
 	color: rgb(41, 117, 209);
 	color: var(--colour);
@@ -142,7 +144,10 @@
 
 .ui__.link-button:not(:disabled):hover,
 .ui__.text-button:not(:disabled):hover,
-.ui__.dashed-button:not(:disabled):hover {
+.ui__.dashed-button:not(:disabled):hover,
+.ui__.link-button:not(:disabled).selected,
+.ui__.text-button:not(:disabled).selected,
+.ui__.dashed-button:not(:disabled).selected {
 	opacity: 0.8;
 }
 
