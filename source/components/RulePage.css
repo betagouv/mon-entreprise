@@ -4,16 +4,12 @@
 .rule-page__header {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 1.3em;
+	margin-bottom: 1rem;
 	text-decoration: none;
 }
 .rule-page__search {
 	align-self: flex-end;
 	text-decoration: none;
-}
-
-#toSimulation i {
-	margin: 0 0.4em;
 }
 
 #situationBranch {

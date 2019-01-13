@@ -4,8 +4,6 @@ import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
-import { capitalise0 } from '../../utils'
-import './Examples.css'
 
 export default compose(
 	connect(
@@ -35,7 +33,7 @@ export default compose(
 
 			if (!examples) return null
 			return (
-				<div id="examples">
+				<>
 					<h2>
 						<Trans i18nKey="examples">Exemples</Trans>{' '}
 						<small>
@@ -54,16 +52,13 @@ export default compose(
 					</ul>
 
 					{situationExists && currentExample && (
-						<div>
-							<button
-								id="injectSituation"
-								onClick={() => setExample(null)}
-								style={{ background: themeColours.colour }}>
-								<Trans i18nKey="cancelExample">Revenir à votre situation</Trans>
-							</button>
-						</div>
+						<button
+							className="ui__ button small"
+							onClick={() => setExample(null)}>
+							<Trans i18nKey="cancelExample">Revenir à votre situation</Trans>
+						</button>
 					)}
-				</div>
+				</>
 			)
 		}
 	}
@@ -73,33 +68,22 @@ let Example = ({
 	ex: { nom, situation },
 	rule,
 	currentExample,
-	setExample,
-	themeColours: { colour, textColourOnWhite, textColour }
-}) => do {
+	setExample
+}) => {
 	let selected = currentExample && currentExample.name == nom
-	;<li
-		key={nom}
-		className={classNames('example', {
-			selected
-		})}
-		onClick={() =>
-			selected ? setExample(null) : setExample(nom, situation, rule.dottedName)
-		}>
-		<button
-			className="name"
-			style={
-				selected
-					? {
-							background: colour,
-							color: textColour,
-							borderColor: textColourOnWhite
-					  }
-					: {
-							borderColor: textColourOnWhite,
-							color: textColourOnWhite
-					  }
-			}>
-			{capitalise0(nom)}
-		</button>
-	</li>
+	return (
+		<li key={nom}>
+			<button
+				onClick={() =>
+					selected
+						? setExample(null)
+						: setExample(nom, situation, rule.dottedName)
+				}
+				className={classNames('ui__ button small', {
+					selected
+				})}>
+				{nom}
+			</button>
+		</li>
+	)
 }

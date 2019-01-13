@@ -81,6 +81,7 @@ let validatedStepsSelector = createSelector(
 )
 let branchesSelector = state => state.simulationConfig?.branches
 let configSituationSelector = state => state.simulationConfig?.situation || {}
+
 const createSituationBrancheSelector = situationSelector =>
 	createSelector(
 		[situationSelector, branchesSelector, configSituationSelector],
@@ -102,6 +103,12 @@ const createSituationBrancheSelector = situationSelector =>
 export let situationBranchesSelector = createSituationBrancheSelector(
 	formattedSituationSelector
 )
+export let situationBranchNameSelector = createSelector(
+	[branchesSelector, state => state.situationBranch],
+	(branches, currentBranch) =>
+		branches && currentBranch && branches[currentBranch].nom
+)
+
 export let validatedSituationSelector = createSelector(
 	[formattedSituationSelector, validatedStepsSelector],
 	(situation, validatedSteps) => pick(validatedSteps, situation)

@@ -74,7 +74,7 @@ export default compose(
 							</Suspense>
 						</>
 					) : (
-						<div id="rule" className="ui__ container">
+						<div id="rule" >
 							<Animate.fromBottom>
 								<Helmet>
 									<title>{title}</title>
