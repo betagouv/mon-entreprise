@@ -1,22 +1,19 @@
 import React from 'react'
-import { Node, NodeValuePointer, formatNumber } from './common'
-import { makeJsx } from '../evaluation'
+import { Node } from './common'
 import { Trans } from 'react-i18next'
-import { trancheValue } from 'Engine/mecanisms/barème'
 import './Barème.css'
-import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 import { BarèmeAttributes } from './Barème'
 import { toPairs } from 'ramda'
 
-let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
+let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 	return (
 		<ShowValuesConsumer>
 			{showValues => (
 				<Node
-					classes="mecanism"
-					name="barèmeContinu"
+					classes="mecanism barème"
+					name="barème continu"
 					value={nodeValue}
 					child={
 						<ul className="properties">
@@ -30,26 +27,25 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 										<th>
 											<Trans>Taux</Trans>
 										</th>
-										{showValues && (
-											<th>
-												<Trans>Résultat</Trans>
-											</th>
-										)}
 									</tr>
 								</thead>
 								<tbody>
 									{toPairs(explanation.points).map(([seuil, taux]) => (
-										<Point
-											{...{
-												language,
-												seuil,
-												taux,
-												showValues
-											}}
-										/>
+										<tr key={seuil} className="tranche">
+											<td key="tranche">{seuil}</td>
+											<td key="taux"> {taux}</td>
+										</tr>
 									))}
 								</tbody>
 							</table>
+							{showValues && (
+								<span style={{ background: 'yellow' }}>
+									<b>
+										<Trans>Votre taux </Trans> :{' '}
+									</b>
+									{(100 * explanation.taux).toFixed(1)} %
+								</span>
+							)}
 						</ul>
 					}
 				/>
@@ -62,12 +58,3 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 export default (nodeValue, explanation) => (
 	<Comp {...{ nodeValue, explanation }} />
 )
-
-let Point = ({ seuil, taux, showValues, language }) => {
-	return (
-		<tr>
-			<td key="tranche">{seuil}</td>
-			<td key="taux"> {taux}</td>
-		</tr>
-	)
-}

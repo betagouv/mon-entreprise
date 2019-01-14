@@ -840,7 +840,7 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 	let effect = ({ assiette, multiplicateur, points }) => {
 		if (anyNull([assiette, multiplicateur])) return null
 		//We'll build a linear function given the two constraints that must be respected
-		return pipe(
+		let result = pipe(
 			toPairs,
 			// we don't rely on the sorting of objects
 			sort(([k1], [k2]) => k1 - k2),
@@ -854,11 +854,20 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 				if (val(assiette) > x1 && val(assiette) <= x2) {
 					// Outside of these 2 limits, it's a linear function a * x + b
 					let a = (y2 - y1) / (x2 - x1),
-						b = y1 - x1 * a
-					return reduced(a * val(assiette) + b)
+						b = y1 - x1 * a,
+						nodeValue = a * val(assiette) + b
+					return reduced({
+						nodeValue,
+						additionalExplanation: {
+							seuil: val(assiette) / val(multiplicateur),
+							taux: nodeValue / val(assiette)
+						}
+					})
 				}
 			}, 0)
 		)(points)
+
+		return result
 	}
 	let explanation = {
 			...parseObject(recurse, objectShape, v),

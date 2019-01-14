@@ -10,7 +10,8 @@ import {
 	keys,
 	values,
 	evolve,
-	filter
+	filter,
+	is
 } from 'ramda'
 
 export let makeJsx = node =>
@@ -100,8 +101,13 @@ export let evaluateObject = (objectShape, effect) => (
 		evaluateNode(cache, situationGate, parsedRules, child)
 
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
-		explanation = evolve(fromPairs(transforms))(node.explanation),
-		nodeValue = effect(explanation),
+		automaticExplanation = evolve(fromPairs(transforms))(node.explanation)
+	// the result of effect can either be just a nodeValue, or an object {additionalExplanation, nodeValue}. The latter is useful for a richer JSX visualisation of the mecanism : the view should not duplicate code to recompute intermediate values (e.g. for a marginal 'barème', the marginal 'tranche')
+	let evaluated = effect(automaticExplanation),
+		explanation = is(Object, evaluated)
+			? { ...automaticExplanation, ...evaluated.additionalExplanation }
+			: automaticExplanation,
+		nodeValue = is(Object, evaluated) ? evaluated.nodeValue : evaluated,
 		missingVariables = mergeAllMissing(values(explanation))
 	//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
