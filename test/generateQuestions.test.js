@@ -189,7 +189,7 @@ describe('collectMissingVariables', function() {
 								{
 									si: 'dix',
 									alors: {
-										'multiplicateur des tranches': 'deux',
+										multiplicateur: 'deux',
 										tranches: [
 											{ 'en-dessous de': 1, taux: 0.1 },
 											{ de: 1, à: 2, taux: 'trois' },
@@ -200,7 +200,7 @@ describe('collectMissingVariables', function() {
 								{
 									si: '3 > 4',
 									alors: {
-										'multiplicateur des tranches': 'quatre',
+										multiplicateur: 'quatre',
 										tranches: [
 											{ 'en-dessous de': 1, taux: 0.1 },
 											{ de: 1, à: 2, taux: 1.8 },

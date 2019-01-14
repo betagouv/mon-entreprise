@@ -1632,7 +1632,7 @@
   formule:
     barème:
       assiette: assiette cotisations sociales
-      multiplicateur des tranches: plafond sécurité sociale
+      multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
@@ -1694,7 +1694,7 @@
   formule:
     barème:
       assiette: assiette cotisations sociales
-      multiplicateur des tranches: plafond sécurité sociale
+      multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
@@ -1986,7 +1986,7 @@
   formule:
     barème:
       assiette: assiette cotisations sociales
-      multiplicateur des tranches: plafond sécurité sociale
+      multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
       tranches:
         - en-dessous de: 4

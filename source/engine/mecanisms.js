@@ -804,14 +804,10 @@ export let mecanismScale = (recurse, k, v) => {
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
 			assiette: false,
-			'multiplicateur des tranches': constantNode(1)
+			multiplicateur: constantNode(1)
 		}
 
-	let effect = ({
-		assiette,
-		'multiplicateur des tranches': multiplicateur,
-		tranches
-	}) => {
+	let effect = ({ assiette, multiplicateur: multiplicateur, tranches }) => {
 		let nulled = val(assiette) == null || val(multiplicateur) == null
 
 		return nulled

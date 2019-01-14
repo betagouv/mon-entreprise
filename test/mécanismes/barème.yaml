@@ -8,7 +8,7 @@
   formule:
     barème:
       assiette: assiette
-      multiplicateur des tranches: base
+      multiplicateur: base
       tranches:
       - en-dessous de: 1
         taux: 4.65%
@@ -40,7 +40,7 @@
   formule:
     barème:
       assiette: assiette
-      multiplicateur des tranches: base
+      multiplicateur: base
       composantes:
         - tranches:
           - en-dessous de: 1
@@ -72,7 +72,7 @@
 #   formule:
 #     barème:
 #       assiette: assiette
-#       multiplicateur des tranches: base
+#       multiplicateur: base
 #       tranches:
 #       - en-dessous de: 1
 #         taux: taux variable
