@@ -139,9 +139,13 @@ barème linéaire:
 barème continu:
   type: numeric
   description: |
-    Ce barème définit des points A(x1, y1) B(x2, y2) C(x3, y3) etc. On trace alors une droite entre ces points. x correspond à l'assiette du barème, et y au taux qui va être appliqué à l'assiette pour déterminer le montant du calcul.
-    Les x1, x2, peuvent éventuellement être des unités d'un multiplicateur.
+    Désolé, ce mécanisme est quelque peu compliqué, accrochez-vous !
 
+    Le barème définit des points, constitués d'un seuil et d'un taux correspondant. Par exemple `1 : 6%` et `2 : 8%`. L'assiette du barème est placée au bon endroit entre ces seuils, et on en déduit le taux qui lui correspond. 
+
+    Dans notre exemple, si l'assiette vaut 1, le taux est 6%. Si elle vaut 2, le taux est 8%. Et si elle est entre les deux, par exemple 1.5, alors le taux est 7%. Et ainsi de suite.
+
+    Dans ce type de barème, il y a souvent un multiplicateur de l'assiette, par exemple le plafond de la sécurité sociale : les seuils sont des petits nombres comme 1 ou 1.5, mais ils correspondent en réalité à `1 * 3311€` et `1.5 * 3311€`.
 
 complément:
   type: numeric
