@@ -30,7 +30,7 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import sitePaths from '../../sites/mycompanyinfrance.fr/sitePaths';
+import sitePaths from '../../sites/mycompanyinfrance.fr/sitePaths'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -74,7 +74,7 @@ export default compose(
 							</Suspense>
 						</>
 					) : (
-						<div id="rule" >
+						<div id="rule">
 							<Animate.fromBottom>
 								<Helmet>
 									<title>{title}</title>
@@ -121,12 +121,10 @@ export default compose(
 									{//flatRule.question &&
 									// Fonctionnalité intéressante, à implémenter correctement
 									false && <UserInput {...{ flatRules, dottedName }} />}
-									{flatRule.ns && (
-										<Algorithm
-											rule={displayedRule}
-											showValues={valuesToShow || currentExample}
-										/>
-									)}
+									<Algorithm
+										rule={displayedRule}
+										showValues={valuesToShow || currentExample}
+									/>
 									{flatRule.note && (
 										<section id="notes">
 											<h3>Note: </h3>
@@ -172,29 +170,36 @@ export default compose(
 	}
 )
 
-let NamespaceRulesList = compose(withColours, withSitePaths)(({ namespaceRules, colours, sitePaths }) => {
+let NamespaceRulesList = compose(
+	withColours,
+	withSitePaths
+)(({ namespaceRules, colours, sitePaths }) => {
 	return (
-	<section>
-		<h2>
-			<Trans>Règles associées</Trans>
-		</h2>
-		<ul>
-			{namespaceRules.map(r => (
-				<li key={r.name}>
-					<Link
-						style={{
-							color: colours.textColourOnWhite,
-							textDecoration: 'underline'
-						}}
-						to={sitePaths.documentation.index + '/' + encodeRuleName(r.dottedName)}>
-						{r.title || r.name}
-					</Link>
-				</li>
-			))}
-		</ul>
-	</section>
-)
-					})
+		<section>
+			<h2>
+				<Trans>Règles associées</Trans>
+			</h2>
+			<ul>
+				{namespaceRules.map(r => (
+					<li key={r.name}>
+						<Link
+							style={{
+								color: colours.textColourOnWhite,
+								textDecoration: 'underline'
+							}}
+							to={
+								sitePaths.documentation.index +
+								'/' +
+								encodeRuleName(r.dottedName)
+							}>
+							{r.title || r.name}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+})
 
 const UserInput = reduxForm({
 	form: 'conversation',
