@@ -219,7 +219,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							tranches: [
 								{ 'en-dessous de': 1, taux: 0.1 },
 								{ de: 1, à: 2, taux: 1.2 },
@@ -242,7 +242,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							composantes: [
 								{
 									tranches: [
@@ -276,7 +276,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							variations: [
 								{
 									si: '3 > 4',
@@ -366,7 +366,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							composantes: [
 								{
 									tranches: [
@@ -410,7 +410,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							composantes: [
 								{
 									tranches: [

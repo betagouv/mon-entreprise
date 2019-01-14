@@ -113,7 +113,7 @@ facteur: multiplier
 plafond: ceiling
 barème: scale
 composantes: components
-multiplicateur des tranches: bracket amount
+multiplicateur: multiplier
 Tranche de l'assiette: Scale bracket
 Taux: Rate
 cible: target

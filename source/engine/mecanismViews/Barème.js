@@ -16,14 +16,14 @@ export let BarèmeAttributes = ({ explanation }) => (
 			</span>
 			<span className="value">{makeJsx(explanation.assiette)}</span>
 		</li>
-		{explanation['multiplicateur des tranches'] &&
-			explanation['multiplicateur des tranches'].nodeValue !== 1 && (
+		{explanation['multiplicateur'] &&
+			explanation['multiplicateur'].nodeValue !== 1 && (
 				<li key="multiplicateur">
 					<span className="key">
-						<Trans>multiplicateur des tranches</Trans>:{' '}
+						<Trans>multiplicateur</Trans>:{' '}
 					</span>
 					<span className="value">
-						{makeJsx(explanation['multiplicateur des tranches'])}
+						{makeJsx(explanation['multiplicateur'])}
 					</span>
 				</li>
 			)}
@@ -76,7 +76,7 @@ let Component = withLanguage(function Barème({
 												showValues,
 												trancheValue: trancheValue(barèmeType)(
 													explanation['assiette'],
-													explanation['multiplicateur des tranches']
+													explanation['multiplicateur']
 												)(tranche)
 											}}
 										/>
