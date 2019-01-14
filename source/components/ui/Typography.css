@@ -74,8 +74,8 @@ ul {
 	margin: 0 0 1rem;
 }
 p.ui__.lead {
-	font-size: 1.7rem;
-	line-height: 2.5rem;
+	font-size: 150%;
+	line-height: 150%;
 	font-weight: 300;
 }
 ul {

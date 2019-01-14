@@ -9,8 +9,8 @@ import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
-import Card from 'Ui/Card'
 import './ResultView.css'
+
 import type { Tracker } from 'Components/utils/withTracker'
 
 type State = {
@@ -55,13 +55,13 @@ class ResultView extends Component<Props, State> {
 						</div>
 						<SearchButton rulePageBasePath="./règle" />
 					</div>
-					<Card className="result-view__body">
+					<div className="ui__ card result-view__body">
 						{this.state.resultView === 'payslip' ? (
 							<PaySlip />
 						) : (
 							<Distribution />
 						)}
-					</Card>
+					</div>
 				</>
 			)
 		)

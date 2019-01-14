@@ -1,13 +1,11 @@
 import HoverDecorator from 'Components/utils/HoverDecorator'
-import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, withNamespaces } from 'react-i18next'
 
 export default compose(
 	HoverDecorator,
-	withNamespaces(),
-	withColours
+	withNamespaces()
 )(
 	class SendButton extends Component {
 		getAction() {
@@ -28,16 +26,12 @@ export default compose(
 			this.getAction()('enter')
 		}
 		render() {
-			let { disabled, colours, hover } = this.props
+			let { disabled, hover } = this.props
 			return (
 				<span className="sendWrapper">
 					<button
-						className="send"
+						className="ui__ button plain"
 						disabled={disabled}
-						style={{
-							color: colours.textColour,
-							background: colours.colour
-						}}
 						onClick={() => this.getAction()('accept')}>
 						<span className="text">
 							<Trans>valider</Trans> ✓

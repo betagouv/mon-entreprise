@@ -1,5 +1,5 @@
-.ui__.inverted-button:active,
-.ui__.button:active {
+.ui__.inverted-button:not(:disabled):active,
+.ui__.button:not(:disabled):active {
 	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
@@ -14,9 +14,9 @@
 	/* outline: none; */
 	line-height: initial;
 	display: inline-block;
-	border-radius: 0.6rem;
+	border-radius: 0.3rem;
 	transition: all 0.15s;
-	margin: 0.8rem 0;
+	margin: 0.6rem 0;
 	margin-right: 1rem;
 	text-align: center;
 	text-transform: uppercase;
@@ -34,7 +34,7 @@
 .ui__.button:disabled,
 .ui__.inverted-button:disabled,
 .ui__.skip-button:disabled {
-	opacity: 0.7;
+	opacity: 0.5;
 	cursor: not-allowed;
 }
 .ui__.button {

@@ -1,5 +1,6 @@
 import Answers from 'Components/AnswerList'
 import Conversation from 'Components/conversation/Conversation'
+import { ScrollToElement } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import { compose, isEmpty } from 'ramda'
 import React from 'react'
@@ -42,18 +43,20 @@ export default compose(
 							Mes réponses
 						</button>
 					)}
-					<Conversation
-						textColourOnWhite={this.props.colours.textColourOnWhite}
-					/>
-					{noNextSteps && (
-						<>
-							<h2>Plus de questions ! </h2>
-							<p>Vous avez atteint l'estimation la plus précise.</p>
-						</>
-					)}
-					{(!hideUntilUserInput || !noUserInput) && (
-						<Animate.fromBottom>{children}</Animate.fromBottom>
-					)}
+					<ScrollToElement>
+						<Conversation
+							textColourOnWhite={this.props.colours.textColourOnWhite}
+						/>
+						{noNextSteps && (
+							<>
+								<h2>Plus de questions ! </h2>
+								<p>Vous avez atteint l'estimation la plus précise.</p>
+							</>
+						)}
+						{(!hideUntilUserInput || !noUserInput) && (
+							<Animate.fromBottom>{children}</Animate.fromBottom>
+						)}
+					</ScrollToElement>
 				</>
 			)
 		}

@@ -57,7 +57,6 @@ export default compose(
 		}
 		renderRule(dottedName) {
 			let { brancheName, sitePaths } = this.props
-			console.log(brancheName)
 			return (
 				<div id="RulePage">
 					<ScrollToTop key={brancheName + dottedName} />

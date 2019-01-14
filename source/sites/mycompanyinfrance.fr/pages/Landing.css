@@ -71,7 +71,7 @@
 	border: 1px solid;
 	border-color: rgba(41, 117, 209);
 	opacity: 0.8 !important;
-	border-radius: 0.6rem;
+	border-radius: 0.3rem;
 	text-decoration: none;
 	font-size: 1.2rem;
 	transition: opacity, box-shadow 0.2s;

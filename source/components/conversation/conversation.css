@@ -282,30 +282,6 @@
 	position: relative;
 }
 
-.step .send {
-	padding: 0.1em 0.4em 0em 1em;
-	background: none;
-	cursor: pointer;
-	border: 1px solid;
-	border-radius: 0.4em;
-	line-height: 0em;
-}
-
-.step .send:disabled {
-	opacity: 0.2;
-}
-
-.step .send i {
-	margin: 0 0.3em;
-	font-size: 160%;
-}
-
-.step .send .text {
-	text-transform: uppercase;
-	font-size: 135%;
-	line-height: 2em;
-}
-
 .answer {
 	display: flex;
 	justify-content: flex-end;
@@ -410,7 +386,7 @@ for the appearing element to appear without stacking up below the first one */
 	font-weight: bold;
 	background: #ddd;
 	color: white;
-	margin-left: 0.6em;
+	top: -1rem;
 	padding: 0.5em 0.4em;
 	border-radius: 0.2em;
 	transition: 0.2s opacity;

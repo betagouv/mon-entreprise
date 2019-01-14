@@ -64,6 +64,7 @@ export default compose(
 				displayHiringProcedures,
 				match,
 				validInputEntered,
+
 				period,
 				location,
 				sitePaths,

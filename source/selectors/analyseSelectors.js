@@ -171,15 +171,28 @@ export let exampleAnalysisSelector = createSelector(
 
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
-		[parsedRulesSelector, targetNamesSelector, situationSelector],
-		(parsedRules, targetNames, situations) => {
-			return mapOrApply(
+		[
+			parsedRulesSelector,
+			targetNamesSelector,
+			situationSelector,
+			(_, props) => props?.situationBranchName,
+			branchesSelector
+		],
+		(parsedRules, targetNames, situations, branchName, branches) => {
+			const analysedSituations = mapOrApply(
 				situation =>
 					analyseMany(parsedRules, targetNames)(dottedName => {
 						return situation[dottedName]
 					}),
 				situations
 			)
+			if (!Array.isArray(analysedSituations) || !branchName || !branches) {
+				return analysedSituations
+			}
+			const branchIndex = branches.findIndex(
+				branch => branch.nom === branchName
+			)
+			return analysedSituations[branchIndex]
 		}
 	)
 

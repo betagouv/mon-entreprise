@@ -1,7 +1,6 @@
 /* @flow */
 
 import { resetSimulation } from 'Actions/actions'
-import Montant from 'Components/Montant'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
 import withColours from 'Components/utils/withColours'
@@ -13,6 +12,7 @@ import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
+import Montant from 'Ui/Montant'
 import { softCatch } from '../utils'
 import './AnswerList.css'
 

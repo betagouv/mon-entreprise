@@ -36,7 +36,7 @@ export default compose(
 							}
 						/>
 						<button
-							className="send"
+							className="ui__ button plain"
 							style={{
 								visibility: sendButtonDisabled ? 'hidden' : 'visible',
 								color: themeColours.textColour,

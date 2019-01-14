@@ -1,5 +1,6 @@
 @import './Button/button.css';
 @import './Typography.css';
+@import './Card.css';
 @import './reset.css';
 
 :root {
@@ -39,6 +40,9 @@ button {
 	max-width: 800px;
 	margin: auto;
 	padding: 0 0.6rem;
+}
+.ui__.container .ui__.full-width {
+	margin: 0 calc((800px - 100vw) / 2);
 }
 
 .ui__.notice {

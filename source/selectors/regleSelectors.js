@@ -69,13 +69,7 @@ export const règleValeurSelector = createSelector(
 				: Array.isArray(situation)
 				? situation[0][dottedName]
 				: situation[dottedName]
-		console.log(
-			dottedName,
-			valeur,
-			situation,
-			analysis.cache,
-			analysis.cache[dottedName]
-		)
+
 		if (isNil(valeur)) {
 			console.warn(
 				`[règleValeurSelector] Impossible de trouver la valeur associée à la règle "${dottedName}". Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName. Vérifiez aussi qu'il ne manque pas une valeur par défaut à une règle nécessaire au calcul.`

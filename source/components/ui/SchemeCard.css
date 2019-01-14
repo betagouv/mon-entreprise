@@ -1,0 +1,23 @@
+.scheme-card__container {
+	min-width: 25rem;
+	margin: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+.scheme-card__header {
+	text-align: center;
+}
+.scheme-card__icon {
+	font-size: 2rem;
+}
+.scheme-card__title {
+	margin: 0.5rem 0;
+}
+.scheme-card__subtitle {
+	font-size: 120%;
+	color: gray;
+	font-weight: 300;
+}
+.scheme-card__content {
+	flex: 1;
+}
