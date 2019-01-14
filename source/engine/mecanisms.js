@@ -59,6 +59,7 @@ import {
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Barème from './mecanismViews/Barème'
+import BarèmeContinu from './mecanismViews/BarèmeContinu'
 import Variations from './mecanismViews/Variations'
 import Allègement from './mecanismViews/Allègement'
 import Composantes from './mecanismViews/Composantes'
@@ -868,17 +869,9 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 			points: v.points
 		},
 		evaluate = evaluateObject(objectShape, effect)
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="mecanism barèmeContinu"
-			name="barèmeContinu"
-			value={nodeValue}
-			child={<div> Barème continu </div>}
-		/>
-	)
 	return {
 		evaluate,
-		jsx,
+		jsx: BarèmeContinu,
 		explanation,
 		category: 'mecanism',
 		name: 'barème continu',

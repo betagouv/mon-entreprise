@@ -8,7 +8,29 @@ import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 
-let Comp = withLanguage(function Barème({
+export let BarèmeAttributes = ({ explanation }) => (
+	<>
+		<li key="assiette">
+			<span className="key">
+				<Trans>assiette</Trans>:{' '}
+			</span>
+			<span className="value">{makeJsx(explanation.assiette)}</span>
+		</li>
+		{explanation['multiplicateur des tranches'] &&
+			explanation['multiplicateur des tranches'].nodeValue !== 1 && (
+				<li key="multiplicateur">
+					<span className="key">
+						<Trans>multiplicateur des tranches</Trans>:{' '}
+					</span>
+					<span className="value">
+						{makeJsx(explanation['multiplicateur des tranches'])}
+					</span>
+				</li>
+			)}
+	</>
+)
+
+let Component = withLanguage(function Barème({
 	language,
 	nodeValue,
 	explanation,
@@ -23,23 +45,7 @@ let Comp = withLanguage(function Barème({
 					value={nodeValue}
 					child={
 						<ul className="properties">
-							<li key="assiette">
-								<span className="key">
-									<Trans>assiette</Trans>:{' '}
-								</span>
-								<span className="value">{makeJsx(explanation.assiette)}</span>
-							</li>
-							{explanation['multiplicateur des tranches'] &&
-								explanation['multiplicateur des tranches'].nodeValue !== 1 && (
-									<li key="multiplicateur">
-										<span className="key">
-											<Trans>multiplicateur des tranches</Trans>:{' '}
-										</span>
-										<span className="value">
-											{makeJsx(explanation['multiplicateur des tranches'])}
-										</span>
-									</li>
-								)}
+							<BarèmeAttributes explanation={explanation} />
 							<table className="tranches">
 								<thead>
 									<tr>
@@ -59,6 +65,8 @@ let Comp = withLanguage(function Barème({
 											</th>
 										)}
 									</tr>
+								</thead>
+								<tbody>
 									{explanation.tranches.map(tranche => (
 										<Tranche
 											key={tranche['de'] + tranche['à']}
@@ -73,7 +81,7 @@ let Comp = withLanguage(function Barème({
 											}}
 										/>
 									))}
-								</thead>
+								</tbody>
 							</table>
 							{showValues && barèmeType === 'marginal' && (
 								<>
@@ -97,7 +105,7 @@ let Comp = withLanguage(function Barème({
 
 //eslint-disable-next-line
 export default barèmeType => (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation, barèmeType }} />
+	<Component {...{ nodeValue, explanation, barèmeType }} />
 )
 
 let Tranche = ({
