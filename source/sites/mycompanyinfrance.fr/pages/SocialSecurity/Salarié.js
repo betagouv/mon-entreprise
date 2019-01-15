@@ -1,4 +1,4 @@
-import Simulateur from 'Components/SalarySimulation'
+import SalarySimulation from 'Components/SalarySimulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import React from 'react'
@@ -24,7 +24,7 @@ const Salarié = () => (
 			couvert par le régime général de la Sécurité sociale (santé, maternité,
 			invalidité, vieillesse, maladie professionnelle et accidents) et chômage.
 		</p>
-		<Simulateur />
+		<SalarySimulation />
 	</>
 )
 export default withSimulationConfig(salariéConfig)(Salarié)
