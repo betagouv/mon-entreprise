@@ -7,8 +7,7 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { compose, propEq } from 'ramda'
 import React, { Component } from 'react'
-import emoji from 'react-easy-emoji'
-import { Trans, translate } from 'react-i18next'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -54,10 +53,7 @@ export default compose(
 )(
 	class TargetSelection extends Component {
 		render() {
-			let {
-				colours,
-				analysis: { controls }
-			} = this.props
+			let { colours } = this.props
 			return (
 				<div id="targetSelection">
 					{/* <Controls {...{ controls }} /> */}
@@ -210,7 +206,6 @@ let TargetInputOrValue = withLanguage(
 					}}
 				/>
 			)}
-			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 		</span>
 	)
 )
@@ -253,40 +248,6 @@ const TargetValue = connect(
 				if (activeInput) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)
 			}
-		}
-	}
-)
-
-const AidesGlimpse = compose(
-	withColours,
-	withRouter,
-	withSitePaths,
-	connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
-)(
-	class AidesGlimpse extends Component {
-		render() {
-			let targets = this.props.analysis.targets,
-				aides =
-					targets &&
-					targets.find(
-						t => t.dottedName === 'contrat salarié . aides employeur'
-					)
-			if (!aides || !aides.nodeValue) return null
-			return (
-				<div id="aidesGlimpse">
-					{' '}
-					- <AnimatedTargetValue value={aides.nodeValue} />{' '}
-					<Link
-						to={
-							this.props.sitePaths.documentation.index +
-							'/' +
-							encodeRuleName('contrat salarié . aides employeur')
-						}
-						style={{ color: this.props.colours.textColour }}>
-						<Trans>d'aides</Trans> {emoji(aides.icon)}
-					</Link>
-				</div>
-			)
 		}
 	}
 )
