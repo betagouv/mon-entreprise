@@ -7,6 +7,10 @@ titre: |
 objectifs:
   - entreprise . chiffre d'affaires
   - revenu disponible
+  - entreprise . charges
+
+questions: 
+  - entreprise . catégorie d'activé
 
 situation:
   micro entreprise: oui

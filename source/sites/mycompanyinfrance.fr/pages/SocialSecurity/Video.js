@@ -16,7 +16,7 @@ export default class Video extends Component {
 	}
 	render() {
 		return (
-			<>
+			<p>
 				<button onClick={this.handleOpen} className="ui__ link-button">
 					<T k="sécu.video">La sécurité sociale en vidéo</T>
 					{emoji(' 📽️')}
@@ -49,7 +49,7 @@ export default class Video extends Component {
 						</div>
 					</Overlay>
 				)}
-			</>
+			</p>
 		)
 	}
 }

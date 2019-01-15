@@ -15,6 +15,7 @@ import Video from './Video'
 
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
+import emoji from 'react-easy-emoji'
 
 type Props = {
 	match: Match,
@@ -49,15 +50,14 @@ class SocialSecurity extends Component<Props, {}> {
 								</p>
 							</T>
 							<Video />
-							<h2>Que souhaitez-vous estimer ?</h2>
-
 							<p>
 								<T k="sécu.simulation.intro">
 									Le dirigeant de l'entreprise et les salariés n'ont pas la même
 									protection sociale.
 								</T>
 							</p>
-							<div style={{ textAlign: 'center' }}>
+							<h2>Que souhaitez-vous estimer ?</h2>
+							<div>
 								<Link
 									className="ui__ button"
 									to={
@@ -65,11 +65,13 @@ class SocialSecurity extends Component<Props, {}> {
 											? sitePaths.sécuritéSociale[régime]
 											: sitePaths.sécuritéSociale.comparaison
 									}>
+									{emoji('👔 ')}
 									<T>La rémunération du dirigeant</T>
 								</Link>
 								<Link
 									className="ui__ button"
 									to={sitePaths.sécuritéSociale.salarié}>
+									{emoji('👥 ')}
 									<T>Le salaire d'un employé</T>
 								</Link>
 							</div>
