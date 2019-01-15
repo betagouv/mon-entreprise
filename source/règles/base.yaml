@@ -3111,5 +3111,10 @@
   description: | 
     Les prélèvements incluent les cotisations sociales, la CSG, l'impôt sur le revenu.
     Attention, pour les micro-entreprise, nous incluons les charges dans ce ratio de prélèvements, car les charges ne sont pas déductibles. Cela permet de comparer le ratio de prélèvements entre les différents régimes.
+  formule: 1 - ratio de revenu
+  période: flexible
+ 
+- nom: ratio de revenu
   formule: revenu disponible / entreprise . rémunération totale du dirigeant
   période: flexible
+ 

@@ -2,9 +2,14 @@
 import RuleLink from 'Components/RuleLink'
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
-import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
+import {
+	règleAvecMontantSelector,
+	règleAvecValeurSelector
+} from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
+import Montant from 'Ui/Montant'
 import './ComparativeTargets.css'
 import SchemeCard from './ui/SchemeCard'
 // export default compose(
@@ -115,6 +120,15 @@ import SchemeCard from './ui/SchemeCard'
 // 		}
 // 	}
 // )
+const connectRègles = (situationBranchName: string) =>
+	connect(state => ({
+		revenuDisponible: règleAvecMontantSelector(state, {
+			situationBranchName
+		})('revenu disponible'),
+		prélèvements: règleAvecValeurSelector(state, {
+			situationBranchName
+		})('ratio de prélèvements')
+	}))
 
 const ComparativeTargets = () => (
 	<Animate.fromBottom config={config.gentle}>
@@ -133,76 +147,86 @@ const ComparativeTargets = () => (
 	</Animate.fromBottom>
 )
 
-const Indépendant = connect(state => ({
-	revenuDisponible: règleAvecMontantSelector(state, {
-		situationBranchName: 'Indépendant'
-	})('revenu disponible')
-}))(({ revenuDisponible }) => (
-	<SchemeCard
-		title="Indépendants"
-		subtitle="La protection à la carte"
-		amount={revenuDisponible.montant}
-		icon="👩‍🔧"
-		amountDesc={<RuleLink {...revenuDisponible} />}
-		features={[
-			'Régime des indépendants',
-			'Complémentaire santé et prévoyance facultatives',
-			'Accidents du travail non couverts',
-			'Retraite faible (41% du brut en moyenne)',
-			'Indemnités journalières plus faibles',
-			'Montant minimum de cotisations',
-			'Comptabilité plus exigeante',
-			'Calcul des cotisations décalé'
-		]}
-	/>
-))
+const Indépendant = connectRègles('Indépendant')(
+	({ revenuDisponible, prélèvements }) => (
+		<SchemeCard
+			title="Indépendants"
+			subtitle="La protection à la carte"
+			amount={revenuDisponible.montant}
+			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
+			icon="👩‍🔧"
+			amountDesc={<RuleLink {...revenuDisponible} />}
+			features={[
+				'Régime des indépendants',
+				'Complémentaire santé et prévoyance facultatives',
+				'Accidents du travail non couverts',
+				'Retraite faible (41% du brut en moyenne)',
+				'Indemnités journalières plus faibles',
+				'Montant minimum de cotisations',
+				'Comptabilité plus exigeante',
+				'Calcul des cotisations décalé'
+			]}
+		/>
+	)
+)
 
-const AssimiléSalarié = connect(state => ({
-	revenuDisponible: règleAvecMontantSelector(state, {
-		situationBranchName: 'Assimilé salarié'
-	})('revenu disponible')
-}))(({ revenuDisponible }) => (
-	<SchemeCard
-		title="Assimilé salarié"
-		subtitle="Le régime tout compris"
-		amount={revenuDisponible.montant}
-		featured="Le choix de 58% des entrepreneurs (hors EI)"
-		icon="☂"
-		amountDesc={<RuleLink {...revenuDisponible} />}
-		features={[
-			'Régime général',
-			'Complémentaire santé et prévoyance incluse',
-			'Accidents du travail couverts',
-			'Retraite élevée (62 % du brut)',
-			'Pas de minimum de paie',
-			"Seuil pour l'activation des droits (4000€/an)",
-			'Fiche de paie mensuels',
-			'Prélèvement immédiat'
-		]}
-	/>
-))
+const AssimiléSalarié = connectRègles('Assimilé salarié')(
+	({ revenuDisponible, prélèvements }) => (
+		<SchemeCard
+			title="Assimilé salarié"
+			subtitle="Le régime tout compris"
+			amount={revenuDisponible.montant}
+			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
+			featured="Le choix de 58% des entrepreneurs (hors EI)"
+			icon="☂"
+			amountDesc={<RuleLink {...revenuDisponible} />}
+			features={[
+				'Régime général',
+				'Complémentaire santé et prévoyance incluse',
+				'Accidents du travail couverts',
+				'Retraite élevée (62 % du brut)',
+				'Pas de minimum de paie',
+				"Seuil pour l'activation des droits (4000€/an)",
+				'Fiche de paie mensuels',
+				'Prélèvement immédiat'
+			]}
+		/>
+	)
+)
 
-const MicroEntreprise = connect(state => ({
-	revenuDisponible: règleAvecMontantSelector(state, {
-		situationBranchName: 'Micro-entreprise'
-	})('revenu disponible')
-}))(({ revenuDisponible }) => (
-	<SchemeCard
-		title="Micro-entreprise"
-		subtitle="Pour les petites activités"
-		amountDesc={<RuleLink {...revenuDisponible} />}
-		icon="🚶‍♂️"
-		amount={revenuDisponible.montant}
-		features={[
-			'Régime des indépendants',
-			'Pas de déduction des charges',
-			'Pas de déduction fiscale pour la mutuelle (Madelin)',
-			"Seuil de chiffre d'affaire",
-			"Durée de l'ACCRE plus élevée",
-			'Pas de CFE la première année',
-			'Comptabilité simplifiée'
-		]}
-	/>
-))
+const MicroEntreprise = connectRègles('Micro-entreprise')(
+	({ revenuDisponible, prélèvements }) => (
+		<SchemeCard
+			title="Micro-entreprise"
+			subtitle="Pour les petites activités"
+			amountDesc={<RuleLink {...revenuDisponible} />}
+			icon="🚶‍♂️"
+			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
+			amount={revenuDisponible.montant}
+			features={[
+				'Régime des indépendants',
+				'Pas de déduction des charges',
+				'Pas de déduction fiscale pour la mutuelle (Madelin)',
+				"Seuil de chiffre d'affaire",
+				"Durée de l'ACCRE plus élevée",
+				'Pas de CFE la première année',
+				'Comptabilité simplifiée'
+			]}
+		/>
+	)
+)
+
+const PrélèvementNotice = ({ prélèvements }) => (
+	<>
+		soit{' '}
+		<Montant
+			style={{ fontFamily: 'inherit' }}
+			type="percent"
+			numFractionDigit={0}>
+			{prélèvements.valeur}
+		</Montant>{' '}
+		de <Link to={prélèvements.lien}>prélèvements</Link>
+	</>
+)
 
 export default ComparativeTargets

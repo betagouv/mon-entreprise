@@ -53,8 +53,8 @@ button {
 }
 
 .ui__.notice {
-	font-size: 90%;
-	color: rgba(0, 0, 0, 0.7);
+	font-size: 85%;
+	color: rgba(0, 0, 0, 0.6);
 	margin-top: 2em;
 }
 ul.ui__.no-bullet {

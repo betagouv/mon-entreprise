@@ -16,6 +16,7 @@ type Props = {
 	},
 	features: Array<Node>,
 	amountDesc: Node,
+	amountNotice: Node,
 	featured?: Node,
 	icon: string
 }
@@ -25,6 +26,7 @@ const SchemeCard = ({
 	amount,
 	amountDesc,
 	icon,
+	amountNotice,
 	featured,
 	features
 }: Props) => (
@@ -45,12 +47,17 @@ const SchemeCard = ({
 			<span className="scheme-card__icon">{emoji(icon)} </span>
 			<h3 className="scheme-card__title">{title}</h3>
 			{amount && (
-				<div className="ui__ card plain scheme-card__amount">
-					{amountDesc}
-					<p className="ui__ lead" style={{ margin: '0.6rem 0 0' }}>
-						<AnimatedTargetValue value={amount} />
+				<>
+					<div className="ui__ card plain scheme-card__amount">
+						{amountDesc}
+						<p className="ui__ lead" style={{ margin: '0.6rem 0 0' }}>
+							<AnimatedTargetValue value={amount} />
+						</p>
+					</div>
+					<p className="ui__ notice" style={{ marginTop: '-0.6rem' }}>
+						{amountNotice}
 					</p>
-				</div>
+				</>
 			)}
 			<h4 className="scheme-card__subtitle">{subtitle}</h4>
 			<ul className="scheme-card__content">
