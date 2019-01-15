@@ -16,6 +16,7 @@ type Props = {
 	},
 	features: Array<Node>,
 	amountDesc: Node,
+	onSchemeChoice: () => void,
 	amountNotice: Node,
 	onAmountClick: () => void,
 	featured?: Node,
@@ -26,6 +27,7 @@ const SchemeCard = ({
 	subtitle,
 	amount,
 	amountDesc,
+	onSchemeChoice,
 	icon,
 	amountNotice,
 	onAmountClick,
@@ -68,7 +70,9 @@ const SchemeCard = ({
 				))}
 			</ul>
 			<p style={{ textAlign: 'center' }}>
-				<button className="ui__ button plain">Choisir ce régime</button>
+				<button onClick={onSchemeChoice} className="ui__ button plain">
+					Choisir ce régime
+				</button>
 			</p>
 		</div>
 	</div>

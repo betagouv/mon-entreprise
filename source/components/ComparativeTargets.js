@@ -1,5 +1,9 @@
 /* @flow */
 import { setSituationBranch } from 'Actions/actions'
+import {
+	companyIsMicroenterprise,
+	defineDirectorStatus
+} from 'Actions/companyStatusActions'
 import RuleLink from 'Components/RuleLink'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
@@ -132,9 +136,11 @@ const connectRègles = (situationBranchName: string) =>
 				situationBranchName
 			})('ratio de prélèvements')
 		}),
-		(dispatch: any => void, props) => ({
-			setSituationBranch: () => dispatch(setSituationBranch(props.branchIndex))
-		})
+		{
+			setSituationBranch,
+			companyIsMicroenterprise,
+			defineDirectorStatus
+		}
 	)
 
 const ComparativeTargets = () => (
@@ -147,19 +153,26 @@ const ComparativeTargets = () => (
 				justifyContent: 'center',
 				alignItems: 'stretch'
 			}}>
-			<Indépendant branchIndex={1} />
-			<AssimiléSalarié branchIndex={2} />
 			<MicroEntreprise branchIndex={0} />
+			<AssimiléSalarié branchIndex={2} />
+			<Indépendant branchIndex={1} />
 		</div>
 	</Animate.fromBottom>
 )
 
 const Indépendant = connectRègles('Indépendant')(
-	({ revenuDisponible, prélèvements, setSituationBranch }) => (
+	({
+		revenuDisponible,
+		prélèvements,
+		branchIndex,
+		setSituationBranch,
+		defineDirectorStatus,
+		companyIsMicroenterprise
+	}) => (
 		<SchemeCard
 			title="Indépendants"
 			subtitle="La protection à la carte"
-			onAmountClick={setSituationBranch}
+			onAmountClick={() => setSituationBranch(branchIndex)}
 			amount={revenuDisponible.montant}
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			icon="👩‍🔧"
@@ -174,20 +187,30 @@ const Indépendant = connectRègles('Indépendant')(
 				'Comptabilité plus exigeante',
 				'Calcul des cotisations décalé'
 			]}
+			onSchemeChoice={() => {
+				defineDirectorStatus('SELF_EMPLOYED')
+				companyIsMicroenterprise(false)
+			}}
 		/>
 	)
 )
 
 const AssimiléSalarié = connectRègles('Assimilé salarié')(
-	({ revenuDisponible, prélèvements, setSituationBranch }) => (
+	({
+		revenuDisponible,
+		prélèvements,
+		branchIndex,
+		setSituationBranch,
+		defineDirectorStatus
+	}) => (
 		<SchemeCard
 			title="Assimilé salarié"
+			onAmountClick={() => setSituationBranch(branchIndex)}
 			subtitle="Le régime tout compris"
 			amount={revenuDisponible.montant}
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			featured="Le choix de 58% des entrepreneurs (hors EI)"
 			icon="☂"
-			onAmountClick={setSituationBranch}
 			amountDesc={<RuleLink {...revenuDisponible} />}
 			features={[
 				'Régime général',
@@ -199,17 +222,24 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 				'Fiche de paie mensuels',
 				'Prélèvement immédiat'
 			]}
+			onSchemeChoice={() => defineDirectorStatus('SALARIED')}
 		/>
 	)
 )
 
 const MicroEntreprise = connectRègles('Micro-entreprise')(
-	({ revenuDisponible, prélèvements, setSituationBranch }) => (
+	({
+		revenuDisponible,
+		prélèvements,
+		setSituationBranch,
+		companyIsMicroenterprise,
+		branchIndex
+	}) => (
 		<SchemeCard
 			title="Micro-entreprise"
 			subtitle="Pour les petites activités"
+			onAmountClick={() => setSituationBranch(branchIndex)}
 			amountDesc={<RuleLink {...revenuDisponible} />}
-			onAmountClick={setSituationBranch}
 			icon="🚶‍♂️"
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			amount={revenuDisponible.montant}
@@ -222,6 +252,7 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 				'Pas de CFE la première année',
 				'Comptabilité simplifiée'
 			]}
+			onSchemeChoice={() => companyIsMicroenterprise(true)}
 		/>
 	)
 )
