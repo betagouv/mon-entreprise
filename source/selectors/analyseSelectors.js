@@ -171,33 +171,34 @@ export let exampleAnalysisSelector = createSelector(
 
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
-		[
-			parsedRulesSelector,
-			targetNamesSelector,
-			situationSelector,
-			(_, props) => props?.situationBranchName,
-			branchesSelector
-		],
-		(parsedRules, targetNames, situations, branchName, branches) => {
-			const analysedSituations = mapOrApply(
+		[parsedRulesSelector, targetNamesSelector, situationSelector],
+		(parsedRules, targetNames, situations) =>
+			mapOrApply(
 				situation =>
 					analyseMany(parsedRules, targetNames)(dottedName => {
 						return situation[dottedName]
 					}),
 				situations
 			)
-			if (!Array.isArray(analysedSituations) || !branchName || !branches) {
-				return analysedSituations
-			}
-			const branchIndex = branches.findIndex(
-				branch => branch.nom === branchName
-			)
-			return analysedSituations[branchIndex]
-		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
 	situationsWithDefaultsSelector
+)
+
+export let branchAnalyseSelector = createSelector(
+	[
+		analysisWithDefaultsSelector,
+		(_, props) => props?.situationBranchName,
+		branchesSelector
+	],
+	(analysedSituations, branchName, branches) => {
+		if (!Array.isArray(analysedSituations) || !branchName || !branches) {
+			return analysedSituations
+		}
+		const branchIndex = branches.findIndex(branch => branch.nom === branchName)
+		return analysedSituations[branchIndex]
+	}
 )
 
 let analysisValidatedOnlySelector = makeAnalysisSelector(

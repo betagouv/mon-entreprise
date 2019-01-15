@@ -1,4 +1,5 @@
 /* @flow */
+import RuleLink from 'Components/RuleLink'
 import React from 'react'
 import { connect } from 'react-redux'
 import { config } from 'react-spring'
@@ -116,20 +117,20 @@ import SchemeCard from './ui/SchemeCard'
 // )
 
 const ComparativeTargets = () => (
-	<div
-		className="ui__ full-width"
-		style={{
-			display: 'flex',
-			flexWrap: 'wrap',
-			justifyContent: 'center',
-			alignItems: 'stretch'
-		}}>
-		<Animate.fromBottom config={config.gentle}>
+	<Animate.fromBottom config={config.gentle}>
+		<div
+			className="ui__ full-width"
+			style={{
+				display: 'flex',
+				flexWrap: 'wrap',
+				justifyContent: 'center',
+				alignItems: 'stretch'
+			}}>
 			<Indépendant />
 			<AssimiléSalarié />
 			<MicroEntreprise />
-		</Animate.fromBottom>
-	</div>
+		</div>
+	</Animate.fromBottom>
 )
 
 const Indépendant = connect(state => ({
@@ -142,6 +143,7 @@ const Indépendant = connect(state => ({
 		subtitle="La protection à la carte"
 		amount={revenuDisponible.montant}
 		icon="👩‍🔧"
+		amountDesc={<RuleLink {...revenuDisponible} />}
 		features={[
 			'Régime des indépendants',
 			'Complémentaire santé et prévoyance facultatives',
@@ -164,7 +166,9 @@ const AssimiléSalarié = connect(state => ({
 		title="Assimilé salarié"
 		subtitle="Le régime tout compris"
 		amount={revenuDisponible.montant}
+		featured="Le choix de 58% des entrepreneurs (hors EI)"
 		icon="☂"
+		amountDesc={<RuleLink {...revenuDisponible} />}
 		features={[
 			'Régime général',
 			'Complémentaire santé et prévoyance incluse',
@@ -185,7 +189,8 @@ const MicroEntreprise = connect(state => ({
 }))(({ revenuDisponible }) => (
 	<SchemeCard
 		title="Micro-entreprise"
-		subtitle="Pour une petite activité"
+		subtitle="Pour les petites activités"
+		amountDesc={<RuleLink {...revenuDisponible} />}
 		icon="🚶‍♂️"
 		amount={revenuDisponible.montant}
 		features={[

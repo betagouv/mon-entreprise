@@ -1,7 +1,13 @@
 .scheme-card__container {
-	min-width: 25rem;
-	margin: 1rem;
+	width: 25rem;
 	display: flex;
+	flex-direction: column;
+}
+
+.scheme-card__inside {
+	display: flex;
+	flex: 1;
+	align-items: center;
 	flex-direction: column;
 }
 .scheme-card__header {
@@ -14,10 +20,33 @@
 	margin: 0.5rem 0;
 }
 .scheme-card__subtitle {
-	font-size: 120%;
-	color: gray;
-	font-weight: 300;
+	color: rgba(0, 0, 0, 0.7);
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.scheme-card__featured-text {
+	color: var(--colour);
+	text-transform: uppercase;
+	text-align: center;
+	margin: -1rem -1rem 1rem;
+	align-self: stretch;
+	/* visibility: hidden; */
+	font-family: 'IBM Plex Sans', sans-serif;
+	padding: 0.5rem;
+	border-bottom: 1px solid var(--colour);
 }
 .scheme-card__content {
 	flex: 1;
+	align-self: stretch;
+}
+
+.scheme-card__amount {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	align-items: center;
+	width: fit-content;
+	margin: 1rem auto;
 }

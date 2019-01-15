@@ -4,7 +4,9 @@
 @import './reset.css';
 
 :root {
-	--colour: rgb(41, 117, 209);
+	--colour: yellow;
+	--darkColour: green;
+	--textColour: red;
 }
 html:fullscreen {
 	background-color: white;
@@ -43,6 +45,11 @@ button {
 }
 .ui__.container .ui__.full-width {
 	margin: 0 calc((800px - 100vw) / 2);
+}
+@media (max-width: 800px) {
+	.ui__.container .ui__.full-width {
+		margin: 0;
+	}
 }
 
 .ui__.notice {

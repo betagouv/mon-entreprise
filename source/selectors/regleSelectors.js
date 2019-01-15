@@ -5,7 +5,7 @@ import { encodeRuleName } from 'Engine/rules.js'
 import { isNil } from 'ramda'
 import { createSelector } from 'reselect'
 import {
-	analysisWithDefaultsSelector,
+	branchAnalyseSelector,
 	flatRulesSelector,
 	validatedSituationBranchesSelector
 } from './analyseSelectors'
@@ -47,7 +47,7 @@ export const règleLocaliséeSelector = createSelector(
 )
 
 export const règleValeurSelector = createSelector(
-	analysisWithDefaultsSelector,
+	branchAnalyseSelector,
 	validatedSituationBranchesSelector,
 	règleLocaliséeSelector,
 	(analysis: Analysis, situation, règleLocalisée: string => Règle) => (

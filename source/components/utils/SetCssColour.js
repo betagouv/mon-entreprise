@@ -3,7 +3,9 @@ import withColours from './withColours'
 
 class SetCSSColour extends Component {
 	updateCSSColour = () => {
-		document.body.style.setProperty('--colour', this.props.colours.colour)
+		Object.entries(this.props.colours).forEach(([key, value]) => {
+			document.body.style.setProperty(`--${key}`, value)
+		}, this.props.colours)
 	}
 	constructor(props) {
 		super(props)
