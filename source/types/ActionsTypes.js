@@ -14,6 +14,10 @@ export type StartConversationAction = {
 export type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
 }
+export type SetSituationBranchAction = {
+	type: 'SET_SITUATION_BRANCH',
+	id: number
+}
 export type StepAction = {
 	type: 'STEP_ACTION',
 	name: 'fold' | 'unfold',
@@ -22,6 +26,7 @@ export type StepAction = {
 
 export type Action =
 	| StartConversationAction
+	| SetSituationBranchAction
 	| LoadPreviousSimulationAction
 	| ResetSimulationAction
 	| DeletePreviousSimulationAction

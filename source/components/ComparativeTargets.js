@@ -1,5 +1,7 @@
 /* @flow */
+import { setSituationBranch } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
+import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -121,14 +123,19 @@ import SchemeCard from './ui/SchemeCard'
 // 	}
 // )
 const connectRègles = (situationBranchName: string) =>
-	connect(state => ({
-		revenuDisponible: règleAvecMontantSelector(state, {
-			situationBranchName
-		})('revenu disponible'),
-		prélèvements: règleAvecValeurSelector(state, {
-			situationBranchName
-		})('ratio de prélèvements')
-	}))
+	connect(
+		state => ({
+			revenuDisponible: règleAvecMontantSelector(state, {
+				situationBranchName
+			})('revenu disponible'),
+			prélèvements: règleAvecValeurSelector(state, {
+				situationBranchName
+			})('ratio de prélèvements')
+		}),
+		(dispatch: any => void, props) => ({
+			setSituationBranch: () => dispatch(setSituationBranch(props.branchIndex))
+		})
+	)
 
 const ComparativeTargets = () => (
 	<Animate.fromBottom config={config.gentle}>
@@ -140,18 +147,19 @@ const ComparativeTargets = () => (
 				justifyContent: 'center',
 				alignItems: 'stretch'
 			}}>
-			<Indépendant />
-			<AssimiléSalarié />
-			<MicroEntreprise />
+			<Indépendant branchIndex={1} />
+			<AssimiléSalarié branchIndex={2} />
+			<MicroEntreprise branchIndex={0} />
 		</div>
 	</Animate.fromBottom>
 )
 
 const Indépendant = connectRègles('Indépendant')(
-	({ revenuDisponible, prélèvements }) => (
+	({ revenuDisponible, prélèvements, setSituationBranch }) => (
 		<SchemeCard
 			title="Indépendants"
 			subtitle="La protection à la carte"
+			onAmountClick={setSituationBranch}
 			amount={revenuDisponible.montant}
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			icon="👩‍🔧"
@@ -171,7 +179,7 @@ const Indépendant = connectRègles('Indépendant')(
 )
 
 const AssimiléSalarié = connectRègles('Assimilé salarié')(
-	({ revenuDisponible, prélèvements }) => (
+	({ revenuDisponible, prélèvements, setSituationBranch }) => (
 		<SchemeCard
 			title="Assimilé salarié"
 			subtitle="Le régime tout compris"
@@ -179,6 +187,7 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			featured="Le choix de 58% des entrepreneurs (hors EI)"
 			icon="☂"
+			onAmountClick={setSituationBranch}
 			amountDesc={<RuleLink {...revenuDisponible} />}
 			features={[
 				'Régime général',
@@ -195,11 +204,12 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 )
 
 const MicroEntreprise = connectRègles('Micro-entreprise')(
-	({ revenuDisponible, prélèvements }) => (
+	({ revenuDisponible, prélèvements, setSituationBranch }) => (
 		<SchemeCard
 			title="Micro-entreprise"
 			subtitle="Pour les petites activités"
 			amountDesc={<RuleLink {...revenuDisponible} />}
+			onAmountClick={setSituationBranch}
 			icon="🚶‍♂️"
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			amount={revenuDisponible.montant}
@@ -216,7 +226,7 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 	)
 )
 
-const PrélèvementNotice = ({ prélèvements }) => (
+const PrélèvementNotice = withSitePaths(({ prélèvements, sitePaths }) => (
 	<>
 		soit{' '}
 		<Montant
@@ -225,8 +235,10 @@ const PrélèvementNotice = ({ prélèvements }) => (
 			numFractionDigit={0}>
 			{prélèvements.valeur}
 		</Montant>{' '}
-		de <Link to={prélèvements.lien}>prélèvements</Link>
+		de{' '}
+		<Link to={sitePaths.documentation.index + '/' + prélèvements.lien}>
+			prélèvements
+		</Link>
 	</>
-)
-
+))
 export default ComparativeTargets

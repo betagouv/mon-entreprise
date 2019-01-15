@@ -17,6 +17,7 @@ type Props = {
 	features: Array<Node>,
 	amountDesc: Node,
 	amountNotice: Node,
+	onAmountClick: () => void,
 	featured?: Node,
 	icon: string
 }
@@ -27,6 +28,7 @@ const SchemeCard = ({
 	amountDesc,
 	icon,
 	amountNotice,
+	onAmountClick,
 	featured,
 	features
 }: Props) => (
@@ -47,7 +49,7 @@ const SchemeCard = ({
 			<span className="scheme-card__icon">{emoji(icon)} </span>
 			<h3 className="scheme-card__title">{title}</h3>
 			{amount && (
-				<>
+				<div onClick={onAmountClick}>
 					<div className="ui__ card plain scheme-card__amount">
 						{amountDesc}
 						<p className="ui__ lead" style={{ margin: '0.6rem 0 0' }}>
@@ -57,7 +59,7 @@ const SchemeCard = ({
 					<p className="ui__ notice" style={{ marginTop: '-0.6rem' }}>
 						{amountNotice}
 					</p>
-				</>
+				</div>
 			)}
 			<h4 className="scheme-card__subtitle">{subtitle}</h4>
 			<ul className="scheme-card__content">
