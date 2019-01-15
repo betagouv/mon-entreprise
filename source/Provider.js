@@ -53,7 +53,8 @@ export default class Layout extends PureComponent {
 		)
 		if (this.props.language) {
 			i18next.changeLanguage(this.props.language)
-			this.props.initialStore.lang = this.props.language
+			if (this.props.initialStore)
+				this.props.initialStore.lang = this.props.language
 		}
 		this.store = createStore(
 			enableBatching(reducers),
