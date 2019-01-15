@@ -21,6 +21,7 @@ import {
 	head,
 	intersection,
 	isEmpty,
+	isNil,
 	mergeDeepWith,
 	pick
 } from 'ramda'
@@ -106,7 +107,7 @@ export let situationBranchesSelector = createSituationBrancheSelector(
 export let situationBranchNameSelector = createSelector(
 	[branchesSelector, state => state.situationBranch],
 	(branches, currentBranch) =>
-		branches && currentBranch && branches[currentBranch].nom
+		branches && !isNil(currentBranch) && branches[currentBranch].nom
 )
 
 export let validatedSituationSelector = createSelector(
