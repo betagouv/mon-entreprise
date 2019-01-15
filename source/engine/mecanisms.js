@@ -128,37 +128,53 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 		  )
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateVariation = map(prop =>
+		let evaluateVariationProp = prop =>
 				prop === undefined
 					? undefined
-					: evaluateNode(cache, situationGate, parsedRules, prop)
-			),
-			evaluatedExplanation = map(evaluateVariation, node.explanation),
+					: evaluateNode(cache, situationGate, parsedRules, prop),
 			// mark the satisfied variation if any in the explanation
 			[, resolvedExplanation] = reduce(
-				([resolved, result], variation) =>
-					resolved
-						? [true, [...result, variation]]
-						: variation.condition == undefined
-						? [true, [...result, { ...variation, satisfied: true }]] // We've reached the eventual defaut case
-						: variation.condition.nodeValue === null
-						? [true, [...result, variation]] // one case has missing variables => we can't go further
-						: variation.condition.nodeValue === true
-						? [true, [...result, { ...variation, satisfied: true }]]
-						: [false, [...result, variation]],
+				([resolved, result], variation) => {
+					if (resolved) return [true, [...result, variation]]
+
+					// evaluate the condition
+					let evaluatedCondition = evaluateVariationProp(variation.condition)
+
+					if (evaluatedCondition == undefined) {
+						// We've reached the eventual defaut case
+						let evaluatedVariation = {
+							consequence: evaluateVariationProp(variation.consequence),
+							satisfied: true
+						}
+						return [true, [...result, evaluatedVariation]]
+					}
+
+					if (evaluatedCondition.nodeValue === null)
+						// one case has missing variables => we can't go further
+						return [true, [...result, variation]]
+					if (evaluatedCondition.nodeValue === true) {
+						let evaluatedVariation = {
+							condition: evaluatedCondition,
+							consequence: evaluateVariationProp(variation.consequence),
+							satisfied: true
+						}
+						return [true, [...result, evaluatedVariation]]
+					}
+					return [false, [...result, variation]]
+				},
 				[false, []]
-			)(evaluatedExplanation),
+			)(node.explanation),
 			satisfiedVariation = resolvedExplanation.find(v => v.satisfied),
 			nodeValue = satisfiedVariation
 				? satisfiedVariation.consequence.nodeValue
 				: null
 
 		let leftMissing = mergeAllMissing(
-				reject(isNil, pluck('condition', evaluatedExplanation))
+				reject(isNil, pluck('condition', resolvedExplanation))
 			),
 			candidateVariations = filter(
 				node => !node.condition || node.condition.nodeValue !== false,
-				evaluatedExplanation
+				resolvedExplanation
 			),
 			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
 			missingVariables = satisfiedVariation

@@ -2568,15 +2568,11 @@
   formule: 
     variations: 
       - si: micro entreprise 
-        alors: micro entreprise . chiffre d'affaires
+        alors:
+          inversion: 
+            avec:
+              - revenu disponible
       - sinon: rémunération totale du dirigeant + charges
-
-- espace: micro entreprise
-  nom: chiffre d'affaires
-  formule: 
-    inversion: 
-      avec:
-        - revenu disponible
 
 - espace: entreprise 
   nom: rémunération totale du dirigeant
