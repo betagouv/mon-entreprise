@@ -61,17 +61,28 @@
 
 #targetSelection .optionTitle {
 	font-size: 115%;
+	font-weight: 500;
 }
-#targetSelection .optionTitle a,
-#targetSelection #aidesGlimpse a {
+#targetSelection .optionTitle a {
 	color: inherit;
 	text-decoration: none;
-	font-weight: 500;
 }
 #targetSelection .optionTitle a:hover,
 #targetSelection #aidesGlimpse a:hover {
 	text-decoration: underline;
 }
+
+@media (hover: none) { 
+
+		#targetSelection .optionTitle {
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			border-radius: 0.25em;
+			padding: 0.05em .4em;
+			font-size: 125%;
+			font-weight: 400;
+		}
+}
+
 
 #targetSelection #labelNew {
 	background: #e2011c; /* Couleur de la marianne */
