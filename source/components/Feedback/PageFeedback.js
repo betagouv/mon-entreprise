@@ -95,26 +95,29 @@ class PageFeedback extends Component<Props, State> {
 				<div className="feedback-page ui__ container notice">
 					{!this.state.showForm && !this.state.showThanks && (
 						<>
-							<div style={{ flex: 1 }}>
+							<div>
 								{this.props.customMessage || (
 									<Trans i18nKey="feedback.question">
-										Cette page vous a-t-elle été utile ?
+										Cette page vous est utile ?
 									</Trans>
 								)}{' '}
-								<button
-									style={{ marginLeft: '0.4rem' }}
-									className="ui__ link-button"
-									onClick={() => this.handleFeedback({ useful: true })}>
-									<Trans>Oui</Trans>
-								</button>{' '}
-								<button
-									style={{ marginLeft: '0.4rem' }}
-									className="ui__ link-button"
-									onClick={() => this.handleFeedback({ useful: false })}>
-									<Trans>Non</Trans>
-								</button>
+								<div style={{ display: 'inline-block' }}>
+									<button
+										style={{ marginLeft: '0.4rem' }}
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: true })}>
+										<Trans>Oui</Trans>
+									</button>{' '}
+									<button
+										style={{ marginLeft: '0.4rem' }}
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: false })}>
+										<Trans>Non</Trans>
+									</button>
+								</div>
 							</div>
 							<button
+								style={{ textAlign: 'right' }}
 								className="ui__ link-button"
 								onClick={this.handleErrorReporting}>
 								<Trans i18nKey="feedback.reportError">

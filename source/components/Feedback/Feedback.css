@@ -1,5 +1,7 @@
 .feedback-page {
 	align-items: flex-start;
 	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
 	padding: 0.6rem !important;
 }
