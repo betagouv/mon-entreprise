@@ -1,9 +1,3 @@
-titre: |
-  **Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise**, en fonction du régime de protection sociale.
-
-    - Pour les sociétés, nous considérons pour l'instant que tout le chiffre d'affaires part dans les charges et la rémunération du dirigeant : zéro bénéfice en fin d'année.
-    - L'impôt sur le revenu est calculé pour un célibataire sans enfants et sans autre revenu. 
-
 objectifs:
   - entreprise . chiffre d'affaires
   - revenu disponible
@@ -16,6 +10,3 @@ situation:
   micro entreprise: oui
   indépendant: non
   contrat salarié: non
-raccourcis:
-  contrat salarié . rémunération . total: entreprise . rémunération totale du dirigeant
-  indépendant . revenu brut: entreprise . rémunération totale du dirigeant

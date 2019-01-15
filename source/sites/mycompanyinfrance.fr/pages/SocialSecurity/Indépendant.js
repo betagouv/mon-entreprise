@@ -19,22 +19,21 @@ const Indépendant = () => (
 			<small id="betaTag">alpha</small>
 		</h1>
 		<p>
-			Relèvent de la sécurité sociale des indépendants, les travailleurs
-			indépendants suivants :
+			Les personnes suivantes relèvent de la sécurité sociale des indépendants :
 		</p>
 		<ul>
 			<li> entrepreneurs individuels et EIRL</li>
 			<li> gérants et associés de SNC et EURL</li>
 			<li> gérant majoritaire de SARL</li>
 		</ul>
+		<SimpleSimulation>
+			<TargetSelection keepFormValues />
+		</SimpleSimulation>
 		<p>
 			La sécurité sociale des indépendants ne couvre ni les accidents du
 			travail, ni la perte d'emploi (assurance-chômage). Pour être couvert, le
 			professionnel peut souscrire volontairement des assurances spécifiques.
 		</p>
-		<SimpleSimulation>
-			<TargetSelection keepFormValues />
-		</SimpleSimulation>
 	</>
 )
 export default withSimulationConfig(indépendantConfig)(Indépendant)
