@@ -1,5 +1,6 @@
 .scheme-card__container {
 	width: 25rem;
+	margin: 1rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -20,12 +21,11 @@
 	margin: 0.5rem 0;
 }
 .scheme-card__subtitle {
-	color: rgba(0, 0, 0, 0.7);
+	color: var(--grayColour);
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
-.scheme-card__featured-text {
-	color: var(--colour);
+.scheme-card__top-text {
 	text-transform: uppercase;
 	text-align: center;
 	margin: -1rem -1rem 1rem;
@@ -33,7 +33,17 @@
 	/* visibility: hidden; */
 	font-family: 'IBM Plex Sans', sans-serif;
 	padding: 0.5rem;
+}
+.scheme-card__top-text--hidden {
+	visibility: hidden;
+}
+.scheme-card__top-text--featured {
+	color: var(--colour);
 	border-bottom: 1px solid var(--colour);
+}
+.scheme-card__top-text--disabled {
+	color: var(--grayColour);
+	border-bottom: 1px solid #d4d4d5;
 }
 .scheme-card__content {
 	flex: 1;

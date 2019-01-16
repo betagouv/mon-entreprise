@@ -19,6 +19,7 @@ type Props = {
 	onSchemeChoice: () => void,
 	amountNotice: Node,
 	onAmountClick: () => void,
+	disabled?: string,
 	featured?: Node,
 	icon: string
 }
@@ -30,23 +31,26 @@ const SchemeCard = ({
 	onSchemeChoice,
 	icon,
 	amountNotice,
+	disabled,
 	onAmountClick,
 	featured,
 	features
 }: Props) => (
 	<div
-		className={classnames(
-			'scheme-card__container',
-			featured ? 'ui__ card coloured' : null
-		)}>
+		className={classnames('scheme-card__container', {
+			'ui__ card coloured': featured,
+			'ui__ card disabled': disabled
+		})}>
 		<div
-			className="scheme-card__featured-text"
-			style={{ visibility: featured ? 'visible' : 'hidden' }}>
-			{featured || 'nop'}
+			className={`scheme-card__top-text scheme-card__top-text--${
+				featured ? 'featured' : disabled ? 'disabled' : 'hidden'
+			}`}
+			style={{ visibility: featured || disabled ? 'visible' : 'hidden' }}>
+			{featured || disabled || 'nop'}
 		</div>
 		<div
 			className={classnames('scheme-card__inside', {
-				'ui__ card': !featured
+				'ui__ card': !featured && !disabled
 			})}>
 			<span className="scheme-card__icon">{emoji(icon)} </span>
 			<h3 className="scheme-card__title">{title}</h3>
@@ -70,7 +74,9 @@ const SchemeCard = ({
 				))}
 			</ul>
 			<p style={{ textAlign: 'center' }}>
-				<button onClick={onSchemeChoice} className="ui__ button plain">
+				<button
+					onClick={onSchemeChoice}
+					className={'ui__ button ' + (disabled ? 'simple' : ' plain')}>
 					Choisir ce régime
 				</button>
 			</p>

@@ -25,8 +25,8 @@ let RuleHeader = withColours(
 		valuesToShow
 	}) => (
 		<section id="ruleHeader">
-			<header style={{ background: colours.colour }}>
-				<div id="ruleHeader__main">
+			<header className="ui__ plain card">
+				<div>
 					{ns && (
 						<Namespace {...{ ns, flatRules, colour: colours.textColour }} />
 					)}

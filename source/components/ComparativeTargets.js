@@ -10,6 +10,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
+import {branchAnalyseSelector} from 'Selectors/analyseSelectors'
 import {
 	règleAvecMontantSelector,
 	règleAvecValeurSelector
@@ -26,7 +27,7 @@ import SchemeCard from './ui/SchemeCard'
 // 				state.simulationConfig?.objectifs[0]
 // 			),
 // 			simulationBranches: state.simulationConfig?.branches,
-// 			analyses: analysisWithDefaultsSelector(state)
+// 			analyses: branchAnalyseSelector(state)
 // 		}),
 // 		dispatch => ({
 // 			setSituationBranch: id => dispatch({ type: 'SET_SITUATION_BRANCH', id })
@@ -134,7 +135,10 @@ const connectRègles = (situationBranchName: string) =>
 			})('revenu disponible'),
 			prélèvements: règleAvecValeurSelector(state, {
 				situationBranchName
-			})('ratio de prélèvements')
+			})('ratio de prélèvements'),
+			analysis: branchAnalyseSelector(state, {
+				situationBranchName
+			})
 		}),
 		{
 			setSituationBranch,
@@ -179,13 +183,12 @@ const Indépendant = connectRègles('Indépendant')(
 			amountDesc={<RuleLink {...revenuDisponible} />}
 			features={[
 				'Régime des indépendants',
-				'Complémentaire santé et prévoyance facultatives',
+				'Complémentaire santé et prévoyance non incluses',
 				'Accidents du travail non couverts',
-				'Retraite faible (41% du brut en moyenne)',
+				'Retraite faible (41% du dernier brut)',
 				'Indemnités journalières plus faibles',
 				'Montant minimum de cotisations',
-				'Comptabilité plus exigeante',
-				'Calcul des cotisations décalé'
+				'Cotisations en décalage de deux ans'
 			]}
 			onSchemeChoice={() => {
 				defineDirectorStatus('SELF_EMPLOYED')
@@ -209,18 +212,18 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 			subtitle="Le régime tout compris"
 			amount={revenuDisponible.montant}
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
-			featured="Le choix de 58% des entrepreneurs (hors EI)"
+			featured="Le choix de 58% des dirigeants de sociétés"
 			icon="☂"
 			amountDesc={<RuleLink {...revenuDisponible} />}
 			features={[
 				'Régime général',
-				'Complémentaire santé et prévoyance incluse',
+				'Complémentaires santé et prévoyance incluses',
 				'Accidents du travail couverts',
-				'Retraite élevée (62 % du brut)',
-				'Pas de minimum de paie',
+				'Retraite élevée (62 % du dernier brut)',
+				'Pas de cotisations minimales',
 				"Seuil pour l'activation des droits (4000€/an)",
-				'Fiche de paie mensuels',
-				'Prélèvement immédiat'
+				'Fiches de paie mensuelles',
+				'Prélèvement des cotisations à la source'
 			]}
 			onSchemeChoice={() => defineDirectorStatus('SALARIED')}
 		/>
@@ -233,12 +236,16 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 		prélèvements,
 		setSituationBranch,
 		companyIsMicroenterprise,
-		branchIndex
+		branchIndex,
+		analysis,
 	}) => (
 		<SchemeCard
 			title="Micro-entreprise"
 			subtitle="Pour les petites activités"
 			onAmountClick={() => setSituationBranch(branchIndex)}
+			disabled={
+				(analysis.controls && analysis.controls.find(({ test }) => test.includes('base des cotisations > plafond')) || {}).message
+			}
 			amountDesc={<RuleLink {...revenuDisponible} />}
 			icon="🚶‍♂️"
 			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
@@ -247,10 +254,9 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 				'Régime des indépendants',
 				'Pas de déduction des charges',
 				'Pas de déduction fiscale pour la mutuelle (Madelin)',
-				"Seuil de chiffre d'affaire",
+				"Seuil de chiffre d'affaires",
 				"Durée de l'ACCRE plus élevée",
-				'Pas de CFE la première année',
-				'Comptabilité simplifiée'
+				'Comptabilité réduite au minimum'
 			]}
 			onSchemeChoice={() => companyIsMicroenterprise(true)}
 		/>

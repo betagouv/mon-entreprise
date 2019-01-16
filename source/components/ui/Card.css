@@ -1,14 +1,31 @@
 .ui__.card {
 	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 	padding: 1rem;
-	margin: 1rem;
 	border-radius: 0.3rem;
 	max-width: 100%;
+}
+.ui__.card.disabled .ui__.button.simple,
+.ui__.card.disabled a {
+	/* opacity: 0.7; */
+	color: var(--grayColour);
 }
 
 .ui__.card.plain {
 	color: var(--textColour);
 	background: linear-gradient(60deg, var(--darkColour) 0%, var(--colour) 100%);
+}
+.ui__.card.disabled img {
+	filter: saturate(0);
+}
+
+.ui__.card.disabled .ui__.card.plain,
+.ui__.card.disabled.plain {
+	background: linear-gradient(
+		60deg,
+		var(--grayColour) -40%,
+		var(--grayColour) 70%
+	);
+	opacity: 0.7;
 }
 
 .ui__.card.plain a {

@@ -13,6 +13,7 @@ export default forcedThemeColour => {
 		lighterColour = lightenColour(colour, 45),
 		lightestColour = lightenColour(colour, 100),
 		darkestColour = lightenColour(colour, -100),
+		grayColour = '#00000099',
 		textColour = findContrastedTextColour(colour, true), // the 'simple' version feels better...
 		inverseTextColour = textColour === '#ffffff' ? '#000' : '#fff',
 		lightenTextColour = textColour =>
@@ -28,6 +29,7 @@ export default forcedThemeColour => {
 		lighterTextColour,
 		lighterInverseTextColour,
 		textColourOnWhite,
+		grayColour,
 		darkColour,
 		lightColour,
 		lighterColour,
