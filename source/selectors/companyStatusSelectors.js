@@ -196,7 +196,7 @@ export  const régimeSelector = (state: { inFranceApp: State }): 'indépendant' 
 	if (!companyStatusChoice) {
 		return null;
 	}
-	if(companyStatusChoice === 'micro-entreprise') {
+	if(companyStatusChoice.includes('micro-entreprise')) {
 
 		return 'micro-entreprise'
 	}
