@@ -2583,6 +2583,7 @@
     somme: 
       - contrat salarié . rémunération . total
       - indépendant . revenu brut
+      - micro entreprise . base des cotisations
 
 - espace: entreprise 
   nom: charges
