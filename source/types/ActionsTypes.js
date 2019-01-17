@@ -7,6 +7,10 @@ export type LoadPreviousSimulationAction = {
 export type ResetSimulationAction = {
 	type: 'RESET_SIMULATION'
 }
+export type SetSimulationConfigAction = {
+	type: 'RESET_SIMULATION',
+	config: Object
+}
 export type StartConversationAction = {
 	type: 'START_CONVERSATION',
 	priorityNamespace?: string

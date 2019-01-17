@@ -118,7 +118,10 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 				'Fiches de paie mensuelles',
 				'Prélèvement des cotisations à la source'
 			]}
-			onSchemeChoice={() => defineDirectorStatus('SALARIED')}
+			onSchemeChoice={() => {
+				defineDirectorStatus('SALARIED')
+				companyIsMicroenterprise(false)
+			}}
 		/>
 	)
 )
@@ -163,7 +166,10 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 					"Durée de l'ACCRE plus élevée",
 					'Comptabilité réduite au minimum'
 				]}
-				onSchemeChoice={() => companyIsMicroenterprise(true)}
+				onSchemeChoice={() => {
+					defineDirectorStatus('SELF_EMPLOYED')
+					companyIsMicroenterprise(true)
+				}}
 			/>
 		)
 	}

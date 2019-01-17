@@ -4,6 +4,7 @@ import type {
 	LoadPreviousSimulationAction,
 	DeletePreviousSimulationAction,
 	StartConversationAction,
+	SetSituationConfigAction,
 	SetSituationBranchAction
 } from 'Types/ActionsTypes'
 import { reset } from 'redux-form'
@@ -24,6 +25,13 @@ export const resetSimulation = () => (dispatch: any => void): void => {
 export const setSituationBranch = (id: number): SetSituationBranchAction => ({
 	type: 'SET_SITUATION_BRANCH',
 	id
+})
+
+export const setSimulationConfig = (
+	config: Object
+): SetSituationConfigAction => ({
+	type: 'SET_SIMULATION_CONFIG',
+	config
 })
 
 export const deletePreviousSimulation = () => (

@@ -35,11 +35,14 @@ const requirementToText = (key, value) => {
 	}
 }
 
-type Props = LegalStatusRequirements & { goToCompanyStatusChoice: () => void }
+type Props = LegalStatusRequirements & {
+	goToCompanyStatusChoice: () => void,
+	sitePaths: Object
+}
 
 const PreviousAnswers = ({
-	goToCompanyStatusChoice,
 	sitePaths,
+	goToCompanyStatusChoice,
 	...legalStatus
 }: Props) => {
 	return (

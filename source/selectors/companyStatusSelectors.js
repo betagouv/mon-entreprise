@@ -194,15 +194,15 @@ export  const régimeSelector = (state: { inFranceApp: State }): 'indépendant' 
 	const companyStatusChoice = state.inFranceApp.companyStatusChoice
 	const companyLegalStatus = state.inFranceApp.companyLegalStatus
 	if (!companyStatusChoice) {
-		if (companyLegalStatus.directorStatus === 'SALARIED') {
-			return "assimilé-salarié"
-		} 
-		if (companyLegalStatus.directorStatus === 'SELF-EMPLOYED') {
-			return "indépendant"
-		} 
 		if(companyLegalStatus.microEnterprise === true) {
 			return "micro-entreprise"
 		}
+		if (companyLegalStatus.directorStatus === 'SALARIED') {
+			return "assimilé-salarié"
+		} 
+		if (companyLegalStatus.directorStatus === 'SELF_EMPLOYED') {
+			return "indépendant"
+		} 
 		return null;
 	}
 	if(companyStatusChoice.includes('micro-entreprise')) {
