@@ -6,6 +6,7 @@
 }
 
 .scheme-card__inside {
+	height: 100%;
 	display: flex;
 	flex: 1;
 	align-items: center;
@@ -49,7 +50,9 @@
 	flex: 1;
 	align-self: stretch;
 }
-
+.scheme-card__cta {
+	text-align: center;
+}
 .scheme-card__amount {
 	display: flex;
 	flex-direction: column;
@@ -60,32 +63,54 @@
 	width: fit-content;
 	margin: 1rem auto;
 }
-
+.scheme-card__amount p {
+	margin-top: 0.6rem;
+	margin-bottom: 0rem;
+}
 @media (max-width: 800px) {
-	.scheme-card__content {
-		display: none;
+	.scheme-card__title::before {
+		content: '▶';
+		font-size: 1rem;
+		margin-right: 0.6rem;
+		transition: transform 0.3s;
+	}
+	.scheme-card__title--unfold::before {
+		transform: rotate(90deg);
+	}
+
+	.scheme-card__title {
+		position: relative;
+		display: flex;
+		align-items: center;
+		font-weight: 500;
+		order: -1;
 	}
 	.scheme-card__icon {
-		/* display: none; */
-		order: 1;
-		margin-left: 0.6rem;
+		margin-left: 0.3rem;
+		flex: 1;
+		text-align: right;
+		font-size: 1.6rem;
 	}
 	.scheme-card__subtitle {
-		order: -1;
 		margin: 0;
 		font-size: 1.2rem;
-		/* max-width: 50%; */
 	}
 	.scheme-card__container {
 		margin: 0;
 	}
-	.scheme-card__container + .scheme-card__container--top-text {
+	.scheme-card__container--featured {
+		order: -1;
+	}
+	.scheme-card__container--disabled {
+		order: 1;
 		margin-top: 2rem;
 	}
 	.scheme-card__header {
 		display: flex;
-		order: -2;
+		flex-wrap: wrap;
 		align-items: center;
+		cursor: pointer;
+		justify-content: flex-start;
 		font-size: 1rem;
 	}
 	.scheme-card__header + div {
@@ -104,8 +129,15 @@
 	}
 	.scheme-card__amount + p {
 		margin: 0;
+		text-align: center;
 	}
-	.scheme-card__cta {
+	.scheme-card__cta:not(.scheme-card__cta--visible) {
+		display: none;
+	}
+	.scheme-card__content {
+		margin-top: 1rem;
+	}
+	.scheme-card__content:not(.scheme-card__content--visible) {
 		display: none;
 	}
 }

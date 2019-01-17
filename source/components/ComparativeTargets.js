@@ -5,12 +5,13 @@ import {
 	defineDirectorStatus
 } from 'Actions/companyStatusActions'
 import RuleLink from 'Components/RuleLink'
+import PeriodSwitch from 'Components/PeriodSwitch';
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
-import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
+import { branchAnalyseSelector, noUserInputSelector } from 'Selectors/analyseSelectors'
 import {
 	règleAvecMontantSelector,
 	règleAvecValeurSelector
@@ -23,10 +24,10 @@ import SchemeCard from './ui/SchemeCard'
 const connectRègles = (situationBranchName: string) =>
 	connect(
 		state => ({
-			revenuDisponible: règleAvecMontantSelector(state, {
+			revenuDisponible: !noUserInputSelector(state) && règleAvecMontantSelector(state, {
 				situationBranchName
 			})('revenu disponible'),
-			prélèvements: règleAvecValeurSelector(state, {
+			prélèvements: !noUserInputSelector(state) && règleAvecValeurSelector(state, {
 				situationBranchName
 			})('ratio de prélèvements'),
 		}),
@@ -56,12 +57,12 @@ const ComparativeTargets = connect(state => {
 				justifyContent: 'center',
 				alignItems: 'stretch'
 			}}>
-			{!plafondMicroEntrepriseDépassé && <MicroEntreprise branchIndex={0}/>}
+			<MicroEntreprise branchIndex={0} plafondDépassé={plafondMicroEntrepriseDépassé && plafondMicroEntrepriseDépassé.message}/>
 			<AssimiléSalarié branchIndex={2} />
 			<Indépendant branchIndex={1} />
-			{plafondMicroEntrepriseDépassé && <MicroEntreprise branchIndex={0} plafondDépassé={plafondMicroEntrepriseDépassé.message}/>}
 
 		</div>
+			<PeriodSwitch/>
 	</Animate.fromBottom>
 ))
 

@@ -13,6 +13,7 @@ import type { Node } from 'react'
 type Props = {
 	children: Node,
 	config?: SpringConfig,
+	style?: Object,
 	delay?: number
 }
 
@@ -20,6 +21,7 @@ type Props = {
 export const fromBottom = ({
 	children,
 	config = configPresets.stiff,
+	style: inheritedStyle = {},
 	delay = 0
 }: Props) => (
 	<Trail
@@ -36,7 +38,8 @@ export const fromBottom = ({
 				key={i}
 				style={{
 					transform: y.interpolate(y => `translate3d(0, ${y}px,0)`),
-					...style
+					...style,
+					...inheritedStyle
 				}}>
 				{item}
 			</animated.div>
