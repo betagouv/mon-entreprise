@@ -123,8 +123,10 @@ Mes réponses: My answers
 Modifier mes réponses: Change my answers
 simulation-end:
   title: No more questions left!
-  text: You have reached the most accurate estimate. You can now turn your hiring project into reality.
-  cta: Know the procedures
+  text: You have reached the most accurate estimate. 
+  hiring:
+    text: You can now turn your hiring project into reality.
+    cta: Know the procedures
 feedback:
   simulator: Do you like this simulator ?
   reportError: Report an error

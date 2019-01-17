@@ -3,13 +3,9 @@
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import SearchButton from 'Components/SearchButton'
-import withTracker from 'Components/utils/withTracker'
-import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
-import { connect } from 'react-redux'
-import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
-import './ResultView.css'
+import './SalaryCompactExplanation.css'
 
 import type { Tracker } from 'Components/utils/withTracker'
 
@@ -27,7 +23,7 @@ const resultViewTitle = {
 	payslip: 'Fiche de paie'
 }
 
-class ResultView extends Component<Props, State> {
+export default class SalaryCompactExplanation extends Component<Props, State> {
 	state = {
 		resultView: this.props.conversationStarted ? 'payslip' : 'distribution'
 	}
@@ -67,15 +63,3 @@ class ResultView extends Component<Props, State> {
 		)
 	}
 }
-
-export default compose(
-	withTracker,
-	connect(
-		state => ({
-			conversationStarted: state.conversationStarted,
-			key: state.conversationStarted,
-			displayResults: !!ficheDePaieSelectors(state)
-		}),
-		{}
-	)
-)(ResultView)

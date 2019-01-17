@@ -1,5 +1,5 @@
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
-import Simu from 'Components/SalarySimulation'
+import { SalarySimulation } from '../../mycompanyinfrance.fr/pages/SocialSecurity/Salarié'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import Marianne from 'Images/marianne.svg'
@@ -12,7 +12,7 @@ import './Home.css'
 const Home = () => (
 	<div id="home" className="ui__ container">
 		<PreviousSimulationBanner />
-		<Simu />
+		<SalarySimulation />
 		<div id="logos">
 			<a
 				id="marianne"

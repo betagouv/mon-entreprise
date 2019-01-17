@@ -6,6 +6,10 @@ questions:
   - entreprise . charges
   - entreprise . catégorie d'activité
 
+questions à l'affiche: 
+  Charges: entreprise . charges
+  Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
+
 situation:
   indépendant: oui
   micro entreprise: non

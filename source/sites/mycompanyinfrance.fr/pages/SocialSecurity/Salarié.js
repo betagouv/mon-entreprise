@@ -1,8 +1,33 @@
-import SalarySimulation from 'Components/SalarySimulation'
+import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import React from 'react'
+import { React, T } from 'Components'
 import { Helmet } from 'react-helmet'
+import TargetSelection from 'Components/TargetSelection'
+import SalaryExplanation from 'Components/SalaryExplanation'
+import { Link } from 'react-router-dom'
+import sitePaths from '../../sitePaths'
+
+export let SalarySimulation = () => (
+	<Simulation
+		targetsTriggerConversation={true}
+		customEndMessages={
+			<>
+				<T k="simulation-end.hiring.text">
+					Vous avez atteint l'estimation la plus précise. Vous pouvez maintenant
+					concrétiser votre projet d'embauche.
+				</T>
+				<div style={{ textAlign: 'center' }}>
+					<Link className="ui__ button" to={sitePaths().démarcheEmbauche}>
+						<T k="simulation-end.cta">Connaître les démarches</T>
+					</Link>
+				</div>
+			</>
+		}
+		targets={<TargetSelection />}
+		explanation={<SalaryExplanation />}
+	/>
+)
 
 const Salarié = () => (
 	<>
