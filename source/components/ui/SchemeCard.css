@@ -1,6 +1,6 @@
 .scheme-card__container {
 	width: 24rem;
-	margin: 1.2rem;
+	margin: 1rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -59,4 +59,53 @@
 	align-items: center;
 	width: fit-content;
 	margin: 1rem auto;
+}
+
+@media (max-width: 800px) {
+	.scheme-card__content {
+		display: none;
+	}
+	.scheme-card__icon {
+		/* display: none; */
+		order: 1;
+		margin-left: 0.6rem;
+	}
+	.scheme-card__subtitle {
+		order: -1;
+		margin: 0;
+		font-size: 1.2rem;
+		/* max-width: 50%; */
+	}
+	.scheme-card__container {
+		margin: 0;
+	}
+	.scheme-card__container + .scheme-card__container--top-text {
+		margin-top: 2rem;
+	}
+	.scheme-card__header {
+		display: flex;
+		order: -2;
+		align-items: center;
+		font-size: 1rem;
+	}
+	.scheme-card__header + div {
+		/* flex: 1; */
+		text-align: center;
+		width: 100%;
+	}
+	.scheme-card__amount {
+		flex-direction: row;
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+	.scheme-card__amount p {
+		margin: 0;
+	}
+	.scheme-card__amount + p {
+		margin: 0;
+	}
+	.scheme-card__cta {
+		display: none;
+	}
 }

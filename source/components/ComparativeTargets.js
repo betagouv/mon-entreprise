@@ -29,9 +29,6 @@ const connectRègles = (situationBranchName: string) =>
 			prélèvements: règleAvecValeurSelector(state, {
 				situationBranchName
 			})('ratio de prélèvements'),
-			analysis: branchAnalyseSelector(state, {
-				situationBranchName
-			})
 		}),
 		{
 			setSituationBranch,
@@ -40,7 +37,16 @@ const connectRègles = (situationBranchName: string) =>
 		}
 	)
 
-const ComparativeTargets = () => (
+const ComparativeTargets = connect(state => {
+	const analyse = branchAnalyseSelector(state, {
+		situationBranchName: 'Micro-entreprise'
+	});
+	return { 
+		plafondMicroEntrepriseDépassé: analyse.controls && analyse.controls.find(({ test }) =>
+			test.includes('base des cotisations > plafond')
+		)
+	}
+})(({plafondMicroEntrepriseDépassé}) => (
 	<Animate.fromBottom config={config.gentle}>
 		<div
 			className="ui__ full-width"
@@ -50,12 +56,14 @@ const ComparativeTargets = () => (
 				justifyContent: 'center',
 				alignItems: 'stretch'
 			}}>
-			<MicroEntreprise branchIndex={0} />
+			{!plafondMicroEntrepriseDépassé && <MicroEntreprise branchIndex={0}/>}
 			<AssimiléSalarié branchIndex={2} />
 			<Indépendant branchIndex={1} />
+			{plafondMicroEntrepriseDépassé && <MicroEntreprise branchIndex={0} plafondDépassé={plafondMicroEntrepriseDépassé.message}/>}
+
 		</div>
 	</Animate.fromBottom>
-)
+))
 
 const Indépendant = connectRègles('Indépendant')(
 	({
@@ -133,27 +141,15 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 		setSituationBranch,
 		companyIsMicroenterprise,
 		branchIndex,
-		analysis
+		plafondDépassé,
 	}) => {
-		const disabledMessage = (
-			(analysis.controls &&
-				analysis.controls.find(({ test }) =>
-					test.includes('base des cotisations > plafond')
-				)) ||
-			{}
-		).message
+		
 		return (
 			<SchemeCard
 				title="Micro-entreprise"
 				subtitle="Pour les petites activités"
 				onAmountClick={() => setSituationBranch(branchIndex)}
-				disabled={
-					disabledMessage && (
-						<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353">
-							{disabledMessage}
-						</a>
-					)
-				}
+				disabled={plafondDépassé}
 				amountDesc={<RuleLink {...revenuDisponible} />}
 				icon="🚶‍♂️"
 				amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}

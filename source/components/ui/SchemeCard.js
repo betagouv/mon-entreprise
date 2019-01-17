@@ -39,7 +39,8 @@ const SchemeCard = ({
 	<div
 		className={classnames('scheme-card__container', {
 			'ui__ card coloured': featured,
-			'ui__ card disabled': disabled
+			'ui__ card disabled': disabled,
+			'scheme-card__container--top-text': featured || disabled
 		})}>
 		<div
 			className={`scheme-card__top-text scheme-card__top-text--${
@@ -52,13 +53,15 @@ const SchemeCard = ({
 			className={classnames('scheme-card__inside', {
 				'ui__ card': !featured && !disabled
 			})}>
-			<span className="scheme-card__icon">{emoji(icon)} </span>
-			<h3 className="scheme-card__title">{title}</h3>
+			<header className="scheme-card__header">
+				<span className="scheme-card__icon">{emoji(icon)} </span>
+				<h3 className="scheme-card__title">{title}</h3>
+			</header>
 			{amount && (
 				<div onClick={onAmountClick}>
 					<div className="ui__ card plain scheme-card__amount">
 						{amountDesc}
-						<p className="ui__ lead" style={{ margin: '0.6rem 0 0' }}>
+						<p className="ui__ lead">
 							<AnimatedTargetValue value={amount} />
 						</p>
 					</div>
@@ -73,7 +76,7 @@ const SchemeCard = ({
 					<li key={index}>{feature}</li>
 				))}
 			</ul>
-			<p style={{ textAlign: 'center' }}>
+			<p className="scheme-card__cta">
 				<button
 					onClick={onSchemeChoice}
 					className={'ui__ button ' + (disabled ? 'simple' : ' plain')}>

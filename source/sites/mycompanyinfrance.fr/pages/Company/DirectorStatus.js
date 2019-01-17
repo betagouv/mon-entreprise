@@ -38,22 +38,17 @@ const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 			<ul>
 				<li>
 					<strong>Assimilé salarié :</strong> Le dirigeant de l'entreprise est
-					couvert par le régime général de la Sécurité sociale française. Les
-					cotisations sont calculées sur la base de la rémunération du dirigeant
-					et sont payés mensuellement. Bien qu'il soit plus coûteux, ce
-					programme offre une protection sociale complète (à l'exception du
-					chômage).
+					couvert par le régime général de la Sécurité sociale française.
 				</li>
 				<li>
 					<strong>Indépendant :</strong> Le dirigeant de l'entreprise est
 					couvert par le régime de la Sécurité sociale des travailleurs
-					indépendants. Les cotisations dues sont généralement calculées en
-					fonction des revenus professionnels déclarés à l'administration
-					fiscale. Bien que moins coûteux, ce régime offre une protection
-					sociale limitée (des options supplémentaires et une assurance privée
-					sont recommandées).
+					indépendants.
 				</li>
 			</ul>
+			<p>
+				<button className="ui__ button plain">Découvrir les différences</button>
+			</p>
 		</T>
 		<div className="ui__ answer-group">
 			<button
