@@ -1,6 +1,6 @@
 .scheme-card__container {
-	width: 25rem;
-	margin: 1rem;
+	width: 24rem;
+	margin: 1.2rem;
 	display: flex;
 	flex-direction: column;
 }

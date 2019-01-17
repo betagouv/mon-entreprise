@@ -19,7 +19,7 @@ type Props = {
 	onSchemeChoice: () => void,
 	amountNotice: Node,
 	onAmountClick: () => void,
-	disabled?: string,
+	disabled?: ?Node,
 	featured?: Node,
 	icon: string
 }

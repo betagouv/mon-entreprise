@@ -2906,7 +2906,7 @@
   période: flexible
   contrôles:
     - si: base des cotisations > plafond
-      message: Le plafond de la micro-entreprise est dépassé.
+      message: Seuil de chiffre d'affaires dépassé
       niveau: avertissement
 
 - espace: micro entreprise

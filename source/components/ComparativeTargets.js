@@ -10,7 +10,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
-import {branchAnalyseSelector} from 'Selectors/analyseSelectors'
+import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import {
 	règleAvecMontantSelector,
 	règleAvecValeurSelector
@@ -19,114 +19,7 @@ import Animate from 'Ui/animate'
 import Montant from 'Ui/Montant'
 import './ComparativeTargets.css'
 import SchemeCard from './ui/SchemeCard'
-// export default compose(
-// 	connect(
-// 		state => ({
-// 			target: findRuleByDottedName(
-// 				flatRulesSelector(state),
-// 				state.simulationConfig?.objectifs[0]
-// 			),
-// 			simulationBranches: state.simulationConfig?.branches,
-// 			analyses: branchAnalyseSelector(state)
-// 		}),
-// 		dispatch => ({
-// 			setSituationBranch: id => dispatch({ type: 'SET_SITUATION_BRANCH', id })
-// 		})
-// 	),
-// 	withColours,
-// 	withSitePaths
-// )(
-// 	class ComparativeTargets extends React.Component {
-// 		render() {
-// 			let {
-// 				colours,
-// 				analyses,
-// 				target,
-// 				setSituationBranch,
-// 				sitePaths,
-// 				simulationBranches
-// 			} = this.props
-// 			if (!simulationBranches) {
-// 				return null
-// 			}
-// 			// We retrieve the values necessary to compute the global % of taxes
-// 			// This is not elegant
-// 			let getRatioPrélèvements = analysis =>
-// 				analysis.targets.find(t => t.dottedName === 'ratio de prélèvements')
-// 			return (
-// 				<>
-// 						{analyses.map((analysis, i) => {
-// 							if (!analysis.targets) return null
-// 							let { nodeValue, dottedName } = analysis.targets[0],
-// 								name = simulationBranches[i].nom
 
-// 							let microNotApplicable =
-// 								name === 'Micro-entreprise' &&
-// 								analysis.controls?.find(({ test }) =>
-// 									test.includes('base des cotisations > plafond')
-// 								)
-
-// 							let ratioPrélèvements = getRatioPrélèvements(analysis)
-
-// 							return (
-// 								<li
-// 									style={{
-// 										color: colours.textColour,
-// 										background: `linear-gradient(
-// 											60deg,
-// 											${colours.darkColour} 0%,
-// 											${colours.colour} 100%
-// 										)`
-// 									}}
-// 									className={microNotApplicable ? 'microNotApplicable' : ''}
-// 									key={name}>
-// 									<span className="title">{name}</span>
-// 									{microNotApplicable ? (
-// 										<p id="microNotApplicable">{microNotApplicable.message}</p>
-// 									) : (
-// 										<>
-// 											<span className="figure">
-// 												<span className="value">
-// 													<AnimatedTargetValue value={nodeValue} />
-// 												</span>{' '}
-// 												<Link
-// 													title="Quel est calcul ?"
-// 													style={{ color: this.props.colours.colour }}
-// 													to={
-// 														sitePaths.documentation.index +
-// 														'/' +
-// 														encodeRuleName(dottedName)
-// 													}
-// 													onClick={() => setSituationBranch(i)}
-// 													className="explanation">
-// 													{emoji('📖')}
-// 												</Link>
-// 											</span>
-// 											<small>
-// 												Soit{' '}
-// 												{Math.round((1 - ratioPrélèvements.nodeValue) * 100)} %
-// 												de{' '}
-// 												<Link
-// 													style={{ color: 'white' }}
-// 													to={
-// 														sitePaths.documentation.index +
-// 														'/' +
-// 														encodeRuleName(ratioPrélèvements.dottedName)
-// 													}>
-// 													prélèvements
-// 												</Link>
-// 											</small>
-// 										</>
-// 									)}
-// 								</li>
-// 							)
-// 						})}
-// 					</ul>
-// 				</div>
-// 			)
-// 		}
-// 	}
-// )
 const connectRègles = (situationBranchName: string) =>
 	connect(
 		state => ({
@@ -237,30 +130,43 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 		setSituationBranch,
 		companyIsMicroenterprise,
 		branchIndex,
-		analysis,
-	}) => (
-		<SchemeCard
-			title="Micro-entreprise"
-			subtitle="Pour les petites activités"
-			onAmountClick={() => setSituationBranch(branchIndex)}
-			disabled={
-				(analysis.controls && analysis.controls.find(({ test }) => test.includes('base des cotisations > plafond')) || {}).message
-			}
-			amountDesc={<RuleLink {...revenuDisponible} />}
-			icon="🚶‍♂️"
-			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
-			amount={revenuDisponible.montant}
-			features={[
-				'Régime des indépendants',
-				'Pas de déduction des charges',
-				'Pas de déduction fiscale pour la mutuelle (Madelin)',
-				"Seuil de chiffre d'affaires",
-				"Durée de l'ACCRE plus élevée",
-				'Comptabilité réduite au minimum'
-			]}
-			onSchemeChoice={() => companyIsMicroenterprise(true)}
-		/>
-	)
+		analysis
+	}) => {
+		const disabledMessage = (
+			(analysis.controls &&
+				analysis.controls.find(({ test }) =>
+					test.includes('base des cotisations > plafond')
+				)) ||
+			{}
+		).message
+		return (
+			<SchemeCard
+				title="Micro-entreprise"
+				subtitle="Pour les petites activités"
+				onAmountClick={() => setSituationBranch(branchIndex)}
+				disabled={
+					disabledMessage && (
+						<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353">
+							{disabledMessage}
+						</a>
+					)
+				}
+				amountDesc={<RuleLink {...revenuDisponible} />}
+				icon="🚶‍♂️"
+				amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
+				amount={revenuDisponible.montant}
+				features={[
+					'Régime des indépendants',
+					'Pas de déduction des charges',
+					'Pas de déduction fiscale pour la mutuelle (Madelin)',
+					"Seuil de chiffre d'affaires",
+					"Durée de l'ACCRE plus élevée",
+					'Comptabilité réduite au minimum'
+				]}
+				onSchemeChoice={() => companyIsMicroenterprise(true)}
+			/>
+		)
+	}
 )
 
 const PrélèvementNotice = withSitePaths(({ prélèvements, sitePaths }) => (
