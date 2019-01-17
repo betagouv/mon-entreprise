@@ -16,26 +16,21 @@ type Props = {
 	validInputEntered: boolean
 }
 
-let quickLinks = {
-	CDD: 'contrat salarié . CDD',
-	Cadre: 'contrat salarié . statut cadre',
-	'Temps partiel': 'contrat salarié . temps partiel',
-	Localisation: 'établissement . localisation',
-	Autres: null
-}
-
-const QuickLink = ({
+const QuickLinks = ({
 	startConversation,
 	location,
-	validInputEntered
+	validInputEntered,
+	quickLinks,
+	conversationStarted
 }: Props) => {
-	const show = !location.pathname.endsWith('/simulation') && validInputEntered
+	const show = validInputEntered && !conversationStarted
 	return (
 		<Spring
 			to={{
 				height: show ? 'auto' : 0,
 				opacity: show ? 1 : 0
 			}}
+			config={{ delay: show ? 5000 : 0 }}
 			native>
 			{styles => (
 				<animated.div
@@ -69,10 +64,12 @@ export default compose(
 	connect(
 		(state, props) => ({
 			key: props.language,
-			validInputEntered: validInputEnteredSelector(state)
+			validInputEntered: validInputEnteredSelector(state),
+			conversationStarted: state.conversationStarted,
+			quickLinks: state.simulation?.config["questions à l'affiche"]
 		}),
 		{
 			startConversation
 		}
 	)
-)(QuickLink)
+)(QuickLinks)

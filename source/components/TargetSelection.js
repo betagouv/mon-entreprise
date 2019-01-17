@@ -22,6 +22,7 @@ import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
+import QuickLinks from './QuickLinks'
 
 export default compose(
 	translate(),
@@ -56,6 +57,7 @@ export default compose(
 			let { colours } = this.props
 			return (
 				<div id="targetSelection">
+					<QuickLinks />
 					{/* <Controls {...{ controls }} /> */}
 					<section
 						id="targetsContainer"

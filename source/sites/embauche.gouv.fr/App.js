@@ -73,7 +73,6 @@ class EmbaucheRoute extends Component {
 				{inIframe() && <DisableScroll />}
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route exact path="/simulation" component={Home} />
 					<Route path="/contact" component={Contact} />
 					<Route path="/règle/:name" component={RulePage} />
 					<Redirect from="/simu/*" to="/" />

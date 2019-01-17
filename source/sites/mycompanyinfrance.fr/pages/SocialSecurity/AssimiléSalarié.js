@@ -1,4 +1,4 @@
-import SimpleSimulation from 'Components/SimpleSimulation'
+import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import TargetSelection from 'Components/TargetSelection'
@@ -24,11 +24,18 @@ const AssimiléSalarié = () => (
 			Les gérants égalitaires ou minoritaires de SARL ou les dirigeants de SA et
 			SAS sont <strong>assimilés&nbsp;salariés</strong> et relèvent du régime
 			général. Les cotisations sociales sont proches de celles des salariés, à
-			quelques exceptions près (chômage en moins).
+			quelques exceptions près (réductions employeur et chômage en moins).
 		</p>
-		<SimpleSimulation>
-			<TargetSelection />
-		</SimpleSimulation>
+		<Simulation
+			targetsTriggerConversation={true}
+			targets={<TargetSelection />}
+			explication={
+				<p>
+					Le dirigeant a la même protection sociale qu'un salarié, mis à part le
+					chômage.
+				</p>
+			}
+		/>
 	</>
 )
 export default withSimulationConfig(assimiléConfig)(AssimiléSalarié)

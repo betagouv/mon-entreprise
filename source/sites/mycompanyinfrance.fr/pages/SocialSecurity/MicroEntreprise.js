@@ -1,4 +1,4 @@
-import SimpleSimulation from 'Components/SimpleSimulation'
+import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/micro-entreprise.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import TargetSelection from 'Components/TargetSelection'
@@ -26,9 +26,19 @@ const MicroEntreprise = () => (
 			travail, ni la perte d'emploi (assurance-chômage). Pour être couvert, le
 			professionnel peut souscrire volontairement des assurances spécifiques.
 		</p>
-		<SimpleSimulation>
-			<TargetSelection keepFormValues />
-		</SimpleSimulation>
+		<Simulation
+			targetsTriggerConversation={true}
+			targets={<TargetSelection />}
+			explication={
+				<p>
+					La sécurité sociale des indépendants ne couvre ni les accidents du
+					travail, ni la perte d'emploi (assurance-chômage), et offre une
+					retraite plus faible que celle des salariés. Pour être couvert, le
+					professionnel peut souscrire volontairement des assurances
+					spécifiques.
+				</p>
+			}
+		/>
 	</>
 )
 export default withSimulationConfig(indépendantConfig)(MicroEntreprise)

@@ -9,7 +9,6 @@ import type {
 } from 'Types/ActionsTypes'
 import { reset } from 'redux-form'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
-import { normalizeBasePath } from '../utils'
 
 import type { RouterHistory } from 'react-router-dom'
 
@@ -51,19 +50,12 @@ export const deletePreviousSimulation = () => (
 
 export const startConversation = (priorityNamespace: ?string) => (
 	dispatch: StartConversationAction => void,
-	_: any,
-	history: RouterHistory
+	_: any
 ) => {
 	dispatch({
 		type: 'START_CONVERSATION',
 		...(priorityNamespace ? { priorityNamespace } : {})
 	})
-	const currentPath = normalizeBasePath(history.location.pathname)
-	if (currentPath.endsWith('/simulation/')) {
-		return
-	}
-
-	history.push(currentPath + 'simulation')
 }
 
 // $FlowFixMe

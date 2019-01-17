@@ -95,7 +95,6 @@ const BackToSimulation = compose(
 			let { goBackToSimulation } = this.props
 			return (
 				<button
-					to="../simulation"
 					className="ui__ link-button"
 					onClick={goBackToSimulation}>
 					<i

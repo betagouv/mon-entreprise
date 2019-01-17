@@ -1,5 +1,5 @@
 import ComparativeTargets from 'Components/ComparativeTargets'
-import SimpleSimulation from 'Components/SimpleSimulation'
+import Simulation from 'Components/Simulation'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { createMarkdownDiv } from 'Engine/marked'
@@ -19,9 +19,11 @@ const SchemeComparaisonPage = () => (
 			Comparaison des régimes <small id="betaTag">alpha</small>
 		</h1>
 		<header>{createMarkdownDiv(ComparaisonConfig.titre)}</header>
-		<SimpleSimulation hideUntilUserInput>
-			<ComparativeTargets />
-		</SimpleSimulation>
+		<Simulation
+			targetsTriggerConversation={false}
+			targets={<ComparativeTargets />}
+			explication={<p />}
+		/>
 	</>
 )
 

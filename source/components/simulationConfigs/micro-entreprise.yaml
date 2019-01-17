@@ -1,10 +1,14 @@
 objectifs:
   - entreprise . chiffre d'affaires
   - revenu disponible
-  - entreprise . charges
 
 questions: 
-  - entreprise . catégorie d'activé
+  - entreprise . catégorie d'activité
+  - entreprise . charges
+
+questions à l'affiche: 
+  Charges: entreprise . charges
+  Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
 
 situation:
   micro entreprise: oui

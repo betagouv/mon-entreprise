@@ -1,7 +1,12 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - entreprise . charges
   - revenu disponible
+
+questions: 
+  - entreprise . charges
+
+questions à l'affiche: 
+  Charges: entreprise . charges
 
 situation:
   micro entreprise: non

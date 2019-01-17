@@ -201,7 +201,7 @@ const HiringProcess = ({
 			</ul>
 			<Link
 				className="ui__ button"
-				to={sitePaths.sécuritéSociale.index + '/simulation'}>
+				to={sitePaths.sécuritéSociale.salarié}>
 				Obtenir un exemple de fiche de paie
 			</Link>
 		</T>

@@ -1,4 +1,4 @@
-import SimpleSimulation from 'Components/SimpleSimulation'
+import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import TargetSelection from 'Components/TargetSelection'
@@ -26,14 +26,19 @@ const Indépendant = () => (
 			<li> gérants et associés de SNC et EURL</li>
 			<li> gérant majoritaire de SARL</li>
 		</ul>
-		<SimpleSimulation>
-			<TargetSelection keepFormValues />
-		</SimpleSimulation>
-		<p>
-			La sécurité sociale des indépendants ne couvre ni les accidents du
-			travail, ni la perte d'emploi (assurance-chômage). Pour être couvert, le
-			professionnel peut souscrire volontairement des assurances spécifiques.
-		</p>
+		<Simulation
+			targetsTriggerConversation={true}
+			targets={<TargetSelection />}
+			explication={
+				<p>
+					La sécurité sociale des indépendants ne couvre ni les accidents du
+					travail, ni la perte d'emploi (assurance-chômage), et offre une
+					retraite plus faible que celle des salariés. Pour être couvert, le
+					professionnel peut souscrire volontairement des assurances
+					spécifiques.
+				</p>
+			}
+		/>
 	</>
 )
 export default withSimulationConfig(indépendantConfig)(Indépendant)

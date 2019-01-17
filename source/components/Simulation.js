@@ -3,7 +3,7 @@ import Conversation from 'Components/conversation/Conversation'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import { compose, isEmpty } from 'ramda'
-import React from 'react'
+import { React, T } from 'Components'
 import { connect } from 'react-redux'
 import {
 	nextStepsSelector,
@@ -12,13 +12,15 @@ import {
 	validInputEnteredSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
+import PageFeedback from 'Components/Feedback/PageFeedback'
 
 export default compose(
 	withColours,
 	connect(state => ({
 		conversationStarted: state.conversationStarted,
 		previousAnswers: state.conversationSteps.foldedSteps,
-		noNextSteps: nextStepsSelector(state).length == 0,
+		noNextSteps:
+			state.conversationStarted && nextStepsSelector(state).length == 0,
 		noUserInput: noUserInputSelector(state),
 		blockingInputControls: blockingInputControlsSelector(state),
 		validInputEntered: validInputEnteredSelector(state)
@@ -34,11 +36,15 @@ export default compose(
 				previousAnswers,
 				noUserInput,
 				conversationStarted,
-				hideUntilUserInput,
-				blockingInputControls
+				blockingInputControls,
+				validInputEntered,
+				targetsTriggerConversation
 			} = this.props
 			let arePreviousAnswers = previousAnswers.length > 0,
-				displayConversation = conversationStarted && !blockingInputControls
+				displayConversation =
+					(!targetsTriggerConversation || conversationStarted) &&
+					!blockingInputControls,
+				showTargets = targetsTriggerConversation || !noUserInput
 			return (
 				<>
 					{this.state.displayAnswers && (
@@ -49,9 +55,10 @@ export default compose(
 							className="ui__ button small plain"
 							style={{
 								visibility: arePreviousAnswers ? 'visible' : 'hidden'
-							}}>
-							onClick={() => this.setState({ displayAnswers: true })}> Mes
-							réponses
+							}}
+							onClick={() => this.setState({ displayAnswers: true })}>
+							{' '}
+							Mes réponses
 						</button>
 					)}
 
@@ -62,17 +69,29 @@ export default compose(
 							/>
 							{noNextSteps && (
 								<>
-									<h2>Plus de questions ! </h2>
-									<p>Vous avez atteint l'estimation la plus précise.</p>
-									{this.props.customEndMessage && (
-										<p>{this.props.customEndMessage}</p>
-									)}
+									<h1>
+										<T k="simulation-end.title">Plus de questions !</T>
+									</h1>
+									<T k="simulation-end.text">
+										Vous avez atteint l'estimation la plus précise.
+									</T>
+									{this.props.customEndMessages}
 								</>
 							)}
 						</>
 					)}
-					<Animate.fromBottom>{this.props.targets}</Animate.fromBottom>
-					{!noUserInput && this.props.explication}
+					{showTargets && (
+						<Animate.fromBottom>{this.props.targets}</Animate.fromBottom>
+					)}
+					{validInputEntered && (
+						<PageFeedback
+							customMessage={
+								<T k="feedback.simulator">Ce simulateur vous a plu ?</T>
+							}
+							customEventName="rate simulator"
+						/>
+					)}
+					{!noUserInput && this.props.explanation}
 				</>
 			)
 		}
