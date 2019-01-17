@@ -134,9 +134,9 @@ function hiddenControls(state = [], { type, id }) {
 	} else return state
 }
 
-function simulationConfig(state = null, { type, config }) {
-	if (type === 'SET_SIMULATION_CONFIG') {
-		return config
+function simulation(state = null, { type, config, url }) {
+	if (type === 'SET_SIMULATION') {
+		return { config, url }
 	} else return state
 }
 
@@ -181,7 +181,7 @@ export default reduceReducers(
 		form: formReducer,
 		conversationSteps,
 		lang,
-		simulationConfig,
+		simulation,
 		themeColours,
 		explainedVariable,
 		previousSimulation: defaultTo(null),

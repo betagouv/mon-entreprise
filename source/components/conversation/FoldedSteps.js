@@ -11,7 +11,7 @@ import FoldedStep from './FoldedStep'
 export default connect(
 	state => ({
 		foldedSteps: state.conversationSteps.foldedSteps,
-		targetNames: state.simulationConfig?.objectifs,
+		targetNames: state.simulation?.config.objectifs,
 		flatRules: flatRulesSelector(state)
 	}),
 	{

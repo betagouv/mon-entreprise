@@ -41,7 +41,7 @@ export default compose(
 			noUserInput: noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
-			objectifs: state?.simulationConfig?.objectifs || []
+			objectifs: state.simulation?.config.objectifs || []
 		}),
 		dispatch => ({
 			setFormValue: (field, name) =>

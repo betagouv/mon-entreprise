@@ -56,7 +56,7 @@ export let ruleDefaultsSelector = createSelector(
 	rules => collectDefaults(rules)
 )
 
-let targetNamesSelector = state => state.simulationConfig?.objectifs
+let targetNamesSelector = state => state.simulation?.config.objectifs
 
 export let situationSelector = createDeepEqualSelector(
 	getFormValues('conversation'),
@@ -80,8 +80,8 @@ let validatedStepsSelector = createSelector(
 	],
 	(foldedSteps, target) => [...foldedSteps, target]
 )
-let branchesSelector = state => state.simulationConfig?.branches
-let configSituationSelector = state => state.simulationConfig?.situation || {}
+let branchesSelector = state => state.simulation?.config.branches
+let configSituationSelector = state => state.simulation?.config.situation || {}
 
 const createSituationBrancheSelector = situationSelector =>
 	createSelector(
@@ -249,8 +249,8 @@ export let missingVariablesByTargetSelector = createSelector(
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulationConfig?.questions,
-		state => state.simulationConfig?.objectifs
+		state => state.simulation?.config.questions,
+		state => state.simulation?.config.objectifs
 	],
 	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)

@@ -8,7 +8,7 @@ export type ResetSimulationAction = {
 	type: 'RESET_SIMULATION'
 }
 export type SetSimulationConfigAction = {
-	type: 'RESET_SIMULATION',
+	type: 'SET_SIMULATION',
 	config: Object
 }
 export type StartConversationAction = {
