@@ -5,13 +5,16 @@ import {
 	defineDirectorStatus
 } from 'Actions/companyStatusActions'
 import RuleLink from 'Components/RuleLink'
-import PeriodSwitch from 'Components/PeriodSwitch';
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
-import { branchAnalyseSelector, noUserInputSelector } from 'Selectors/analyseSelectors'
+import {
+	branchAnalyseSelector,
+	noUserInputSelector
+} from 'Selectors/analyseSelectors'
 import {
 	règleAvecMontantSelector,
 	règleAvecValeurSelector
@@ -24,12 +27,16 @@ import SchemeCard from './ui/SchemeCard'
 const connectRègles = (situationBranchName: string) =>
 	connect(
 		state => ({
-			revenuDisponible: !noUserInputSelector(state) && règleAvecMontantSelector(state, {
-				situationBranchName
-			})('revenu disponible'),
-			prélèvements: !noUserInputSelector(state) && règleAvecValeurSelector(state, {
-				situationBranchName
-			})('ratio de prélèvements'),
+			revenuDisponible:
+				!noUserInputSelector(state) &&
+				règleAvecMontantSelector(state, {
+					situationBranchName
+				})('revenu disponible'),
+			prélèvements:
+				!noUserInputSelector(state) &&
+				règleAvecValeurSelector(state, {
+					situationBranchName
+				})('ratio de prélèvements')
 		}),
 		{
 			setSituationBranch,
@@ -41,13 +48,15 @@ const connectRègles = (situationBranchName: string) =>
 const ComparativeTargets = connect(state => {
 	const analyse = branchAnalyseSelector(state, {
 		situationBranchName: 'Micro-entreprise'
-	});
-	return { 
-		plafondMicroEntrepriseDépassé: analyse.controls && analyse.controls.find(({ test }) =>
-			test.includes('base des cotisations > plafond')
-		)
+	})
+	return {
+		plafondMicroEntrepriseDépassé:
+			analyse.controls &&
+			analyse.controls.find(({ test }) =>
+				test.includes('base des cotisations > plafond')
+			)
 	}
-})(({plafondMicroEntrepriseDépassé}) => (
+})(({ plafondMicroEntrepriseDépassé }) => (
 	<Animate.fromBottom config={config.gentle}>
 		<div
 			className="ui__ full-width"
@@ -57,12 +66,16 @@ const ComparativeTargets = connect(state => {
 				justifyContent: 'center',
 				alignItems: 'stretch'
 			}}>
-			<MicroEntreprise branchIndex={0} plafondDépassé={plafondMicroEntrepriseDépassé && plafondMicroEntrepriseDépassé.message}/>
+			<MicroEntreprise
+				branchIndex={0}
+				plafondDépassé={
+					plafondMicroEntrepriseDépassé && plafondMicroEntrepriseDépassé.message
+				}
+			/>
 			<AssimiléSalarié branchIndex={2} />
 			<Indépendant branchIndex={1} />
-
 		</div>
-			<PeriodSwitch/>
+		<PeriodSwitch />
 	</Animate.fromBottom>
 ))
 
@@ -76,7 +89,7 @@ const Indépendant = connectRègles('Indépendant')(
 		companyIsMicroenterprise
 	}) => (
 		<SchemeCard
-			title="Indépendants"
+			title="Indépendant"
 			subtitle="La protection à la carte"
 			onAmountClick={() => setSituationBranch(branchIndex)}
 			amount={revenuDisponible.montant}
@@ -142,9 +155,8 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 		setSituationBranch,
 		companyIsMicroenterprise,
 		branchIndex,
-		plafondDépassé,
+		plafondDépassé
 	}) => {
-		
 		return (
 			<SchemeCard
 				title="Micro-entreprise"
@@ -159,7 +171,7 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 					'Régime des indépendants',
 					'Pas de déduction des charges',
 					'Pas de déduction fiscale pour la mutuelle (Madelin)',
-					"Seuil de chiffre d'affaires",
+					"Chiffre d'affaires plafonné",
 					"Durée de l'ACCRE plus élevée",
 					'Comptabilité réduite au minimum'
 				]}
