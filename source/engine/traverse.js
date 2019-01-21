@@ -115,25 +115,28 @@ export let treatRuleRoot = (rules, rule) => {
 					? null
 					: !val(notApplicable) && undefOrTrue(val(applicable)),
 			evaluateFormula = () =>
-				node.formule &&
-				evaluateNode(cache, situationGate, parsedRules, node.formule),
+				node.formule
+					? evaluateNode(cache, situationGate, parsedRules, node.formule)
+					: {},
 			// evaluate the formula lazily, only if the applicability is known
 			evaluatedFormula =
 				isApplicable === true
 					? evaluateFormula()
 					: isApplicable === false
-					? undefined
-					: // TODO should we also wait to resolve the missing variables of the applicability conditions before evaluating (and thus collecting the missing variables of) the formula ?
-					  evaluateFormula(),
-			neverNullEvaluatedFormula = evaluatedFormula || {
-				...node.formule,
-				missingVariables: {},
-				nodeValue: 0
-			},
+					? {
+							...node.formule,
+							missingVariables: {},
+							nodeValue: 0
+					  }
+					: {
+							...node.formule,
+							missingVariables: {},
+							nodeValue: null
+					  },
 			{
 				missingVariables: formulaMissingVariables,
 				nodeValue
-			} = neverNullEvaluatedFormula
+			} = evaluatedFormula
 
 		let condMissing =
 				isApplicable === false
@@ -157,7 +160,7 @@ export let treatRuleRoot = (rules, rule) => {
 		return {
 			...node,
 			...evaluatedAttributes,
-			...{ formule: neverNullEvaluatedFormula },
+			...{ formule: evaluatedFormula },
 			nodeValue,
 			isApplicable,
 			missingVariables
