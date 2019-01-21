@@ -99,7 +99,6 @@ export default compose(
 								<section id="rule-content">
 									{displayedRule.nodeValue ? (
 										<div id="ruleValue">
-											<i className="fa fa-calculator" aria-hidden="true" />{' '}
 											{displayedRule.format === 'euros' || displayedRule.formule
 												? Intl.NumberFormat(language, {
 														style: 'currency',

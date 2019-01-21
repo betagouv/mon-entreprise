@@ -105,7 +105,7 @@ const HiringProcess = ({
 							<a
 								href="http://www.dsn-info.fr/convention-charte.htm"
 								target="_blank">
-								logiciel de paie privé
+								logiciel de paie privé.
 							</a>
 						</T>
 					</p>
@@ -199,9 +199,7 @@ const HiringProcess = ({
 				</li>
 				<li>Remettre la fiche de paie à votre employé</li>
 			</ul>
-			<Link
-				className="ui__ button"
-				to={sitePaths.sécuritéSociale.salarié}>
+			<Link className="ui__ button" to={sitePaths.sécuritéSociale.salarié}>
 				Obtenir un exemple de fiche de paie
 			</Link>
 		</T>

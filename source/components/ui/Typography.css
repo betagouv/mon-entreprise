@@ -96,16 +96,6 @@ a {
 	color: var(--colour);
 }
 
-a[href^="https://"]:not(.button):not(.inverted-button)::after, 
-a[href^="http://"]:not(.button):not(.inverted-button)::after {
-	content: '\f08e';
-	font-family: FontAwesome;
-	margin-left: 0.3em;
-	font-size: 80%;
-	text-decoration: none;
-	display: inline-block;
-}
-
 a:not(:disabled):not(.button):not(.inverted-button):hover {
 	opacity: 0.8;
 }

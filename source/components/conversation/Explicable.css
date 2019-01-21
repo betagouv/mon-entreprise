@@ -4,7 +4,6 @@
 	height: 100%;
 	margin-left: 0.4rem;
 	opacity: 1;
-	border-radius: 100%;
 	text-align: center;
 	cursor: pointer;
 	vertical-align: middle;
@@ -13,11 +12,3 @@
 .explicable .icon:hover {
 	opacity: 0.8;
 }
-/* Add explanation text to icon, feels too heavy
-.explicable .icon:hover::after {
-  content: '+ d\'infos';
-  margin-left: .2em;
-  font-size: 90%;
-  opacity: .3
-}
-*/

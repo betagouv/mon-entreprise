@@ -24,11 +24,11 @@
 	display: block;
 }
 
-#help i.fa-times-circle {
-	font-size: 120%;
+#help #closeHelp {
+	font-size: 150%;
 	position: absolute;
-	top: 0.6em;
-	right: 0.6em;
+	top: 0.4em;
+	right: 0em;
 	cursor: pointer;
 }
 

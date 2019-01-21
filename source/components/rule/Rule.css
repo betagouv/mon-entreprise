@@ -25,10 +25,9 @@ h2 small {
 
 #rule #ruleValue {
 	font-weight: 400;
-	text-align: center;
 	font-size: 200%;
 	color: inherit;
-	margin-bottom: 1em;
+	margin-bottom: 0.6em;
 	margin-top: 0.4em;
 }
 

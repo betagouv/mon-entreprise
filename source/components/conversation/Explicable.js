@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import withTracker from '../utils/withTracker'
 import './Explicable.css'
+import emoji from 'react-easy-emoji'
 
 export default compose(
 	connect(
@@ -54,17 +55,8 @@ export default compose(
 							explain(dottedName)
 							e.preventDefault()
 							e.stopPropagation()
-						}}
-						style={
-							dottedName === explained
-								? {
-										opacity: 1,
-										background: textColourOnWhite,
-										color: 'white'
-								  }
-								: { color: textColourOnWhite }
-						}>
-						<i className="fa fa-book" aria-hidden="true" />
+						}}>
+						{emoji(dottedName === explained ? '📖' : '📘')}
 					</span>
 				</span>
 			)

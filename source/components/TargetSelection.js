@@ -20,7 +20,6 @@ import {
 } from 'Selectors/analyseSelectors'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import ProgressCircle from './ProgressCircle'
 import './TargetSelection.css'
 import QuickLinks from './QuickLinks'
 
@@ -137,32 +136,20 @@ export default compose(
 	}
 )
 
-let Header = withSitePaths(
-	({
-		target,
-		conversationStarted,
-		isActiveInput,
-		blockingInputControls,
-		sitePaths
-	}) => {
-		const ruleLink =
-			sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
-		return (
-			<span className="header">
-				{conversationStarted && !blockingInputControls && (
-					<ProgressCircle target={target} isActiveInput={isActiveInput} />
-				)}
-
-				<span className="texts">
-					<span className="optionTitle">
-						<Link to={ruleLink}>{target.title || target.name}</Link>
-					</span>
-					{!conversationStarted && <p>{target['résumé']}</p>}
+let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
+	const ruleLink =
+		sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
+	return (
+		<span className="header">
+			<span className="texts">
+				<span className="optionTitle">
+					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
+				{!conversationStarted && <p>{target['résumé']}</p>}
 			</span>
-		)
-	}
-)
+		</span>
+	)
+})
 
 let CurrencyField = withColours(props => {
 	return (

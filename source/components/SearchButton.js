@@ -6,6 +6,7 @@ import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
 import Overlay from './Overlay'
 import SearchBar from './SearchBar'
+import emoji from 'react-easy-emoji'
 
 export default compose(
 	connect(state => ({
@@ -52,11 +53,7 @@ export default compose(
 					onClick={() => this.setState({ visible: true })}
 					className={this.props.className}
 					style={this.props.style}>
-					<i
-						className="fa fa-search"
-						aria-hidden="true"
-						style={{ marginRight: '0.4em' }}
-					/>
+					{emoji('🔍 ')}
 					<span>
 						<Trans>Rechercher</Trans>
 					</span>

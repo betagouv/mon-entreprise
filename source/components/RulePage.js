@@ -23,6 +23,7 @@ import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
+import backSvg from 'Images/back.svg'
 
 export default compose(
 	connect(state => ({
@@ -95,13 +96,10 @@ const BackToSimulation = compose(
 			let { goBackToSimulation } = this.props
 			return (
 				<button
+					style={{ display: 'flex', alignItems: 'center' }}
 					className="ui__ link-button"
 					onClick={goBackToSimulation}>
-					<i
-						className="fa fa-arrow-left"
-						aria-hidden="true"
-						style={{ paddingRight: '0.2rem' }}
-					/>
+					<img src={backSvg} style={{ marginRight: '0.3em', width: '1.2em' }} />
 					<Trans i18nKey="back">Reprendre la simulation</Trans>
 				</button>
 			)
