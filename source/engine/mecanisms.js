@@ -151,7 +151,8 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 
 					if (evaluatedCondition.nodeValue === null)
 						// one case has missing variables => we can't go further
-						return [true, [...result, variation]]
+						return [true, [...result, { condition: evaluatedCondition }]]
+
 					if (evaluatedCondition.nodeValue === true) {
 						let evaluatedVariation = {
 							condition: evaluatedCondition,
@@ -176,7 +177,9 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 				node => !node.condition || node.condition.nodeValue !== false,
 				resolvedExplanation
 			),
-			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
+			rightMissing = mergeAllMissing(
+				reject(isNil, pluck('consequence', candidateVariations))
+			),
 			missingVariables = satisfiedVariation
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
