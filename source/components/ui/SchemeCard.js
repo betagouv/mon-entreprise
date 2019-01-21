@@ -1,5 +1,6 @@
 /* @flow */
 import classnames from 'classnames'
+import { isNil } from 'ramda'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Animate from 'Ui/animate'
@@ -40,6 +41,7 @@ function SchemeCard({
 	const [descriptionVisibility, setDescriptionVisibility] = useState(false)
 	const toggleDescriptionVisibility = () =>
 		setDescriptionVisibility(!descriptionVisibility)
+
 	return (
 		<div
 			className={classnames('scheme-card__container', {
@@ -70,10 +72,14 @@ function SchemeCard({
 					</h3>
 					<h4 className="scheme-card__subtitle">{subtitle}</h4>
 				</header>
-				{amount && (
+				{!isNil(amount) && (
 					<Animate.fromBottom>
 						<div onClick={onAmountClick}>
-							<div className="ui__ card plain scheme-card__amount">
+							<div
+								className={
+									'ui__ card scheme-card__amount plain ' +
+									(Number.isNaN(amount) ? 'disabled' : '')
+								}>
 								{amountDesc}
 								<p className="ui__ lead">
 									<AnimatedTargetValue value={amount} />

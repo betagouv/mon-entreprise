@@ -91,14 +91,16 @@ export const règleValeurSelector = createSelector(
 		const type =
 			(rule &&
 				(rule.format || (rule.explanation && rule.explanation.format))) ||
-			(Number.isNaN(Number.parseFloat(valeur)) ? 'string' : 'number')
+			(!Number.isNaN(valeur) && Number.isNaN(Number.parseFloat(valeur))
+				? 'string'
+				: 'number')
 		// $FlowFixMe
 		return {
+			type,
 			valeur:
-				type !== 'string'
-					? Number.parseFloat(valeur)
-					: règleLocalisée(`${dottedName} . ${valeur}`).nom,
-			type
+				type === 'string'
+					? règleLocalisée(`${dottedName} . ${valeur}`).nom
+					: Number.parseFloat(valeur)
 		}
 	}
 )

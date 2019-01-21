@@ -20,7 +20,7 @@ const SchemeComparaisonPage = () => (
 		</h1>
 		<header>{createMarkdownDiv(ComparaisonConfig.titre)}</header>
 		<Simulation
-			targetsTriggerConversation={false}
+			showTargetsAnyway
 			targets={<ComparativeTargets />}
 			explication={<p />}
 		/>

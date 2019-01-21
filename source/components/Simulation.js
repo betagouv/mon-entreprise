@@ -1,18 +1,17 @@
+import { React, T } from 'Components'
 import Answers from 'Components/AnswerList'
 import Conversation from 'Components/conversation/Conversation'
-import { ScrollToElement } from 'Components/utils/Scroll'
+import PageFeedback from 'Components/Feedback/PageFeedback'
 import withColours from 'Components/utils/withColours'
 import { compose, isEmpty } from 'ramda'
-import { React, T } from 'Components'
 import { connect } from 'react-redux'
 import {
+	blockingInputControlsSelector,
 	nextStepsSelector,
 	noUserInputSelector,
-	blockingInputControlsSelector,
 	validInputEnteredSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
-import PageFeedback from 'Components/Feedback/PageFeedback'
 
 export default compose(
 	withColours,
@@ -38,13 +37,15 @@ export default compose(
 				conversationStarted,
 				blockingInputControls,
 				validInputEntered,
+				showTargetsAnyway,
 				targetsTriggerConversation
 			} = this.props
 			let arePreviousAnswers = previousAnswers.length > 0,
 				displayConversation =
 					(!targetsTriggerConversation || conversationStarted) &&
 					!blockingInputControls,
-				showTargets = targetsTriggerConversation || !noUserInput
+				showTargets =
+					targetsTriggerConversation || !noUserInput || showTargetsAnyway
 			return (
 				<>
 					{this.state.displayAnswers && (
