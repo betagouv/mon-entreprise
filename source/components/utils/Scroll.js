@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { dissoc } from 'ramda'
 
 const forEachParent = (node, fn) => {
 	if (!node) {
@@ -73,7 +74,7 @@ export class ScrollToElement extends Component {
 	render() {
 		return (
 			<div
-				{...this.props}
+				{...dissoc('onlyIfNotVisible', this.props)}
 				style={{
 					...this.props.style,
 					...(!this.props.children ? { position: 'absolute' } : {})

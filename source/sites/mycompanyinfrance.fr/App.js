@@ -79,35 +79,40 @@ let RouterSwitch = compose(
 )(({ sitePaths }) => {
 	return (
 		<Switch>
-			<Route exact path="/" component={Landing} />
-			<div className="app-container">
-				{/* Passing location down to prevent update blocking */}
-				<Navigation location={location} />
-				<div className="app-content">
-					<ProgressHeader />
-					<div
-						className="ui__ container"
-						style={{ flexGrow: 1, flexShrink: 0 }}>
-						<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
-						<Route
-							path={sitePaths.sécuritéSociale.index}
-							component={SocialSecurity}
-						/>
-						<Route
-							path={sitePaths.démarcheEmbauche.index}
-							component={HiringProcess}
-						/>
-						<Route
-							path={sitePaths.documentation.index + '/:name+'}
-							component={RulePage}
-						/>
-						{process.env.NODE_ENV !== 'production' && (
-							<Route exact path="/sitemap" component={Sitemap} />
-						)}
+			<>
+				<Route exact path="/" component={Landing} />
+				<div className="app-container">
+					{/* Passing location down to prevent update blocking */}
+					<Navigation location={location} />
+					<div className="app-content">
+						<ProgressHeader />
+						<div
+							className="ui__ container"
+							style={{ flexGrow: 1, flexShrink: 0 }}>
+							<Route
+								path={sitePaths.entreprise.index}
+								component={CompanyIndex}
+							/>
+							<Route
+								path={sitePaths.sécuritéSociale.index}
+								component={SocialSecurity}
+							/>
+							<Route
+								path={sitePaths.démarcheEmbauche.index}
+								component={HiringProcess}
+							/>
+							<Route
+								path={sitePaths.documentation.index + '/:name+'}
+								component={RulePage}
+							/>
+							{process.env.NODE_ENV !== 'production' && (
+								<Route exact path="/sitemap" component={Sitemap} />
+							)}
+						</div>
+						<Footer />
 					</div>
-					<Footer />
 				</div>
-			</div>
+			</>
 		</Switch>
 	)
 })
