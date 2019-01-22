@@ -8,12 +8,19 @@ import { connect } from 'react-redux'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { DirectorStatus } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import withSitePaths from 'Components/utils/withSitePaths'
 
 type Props = {
 	defineDirectorStatus: (?DirectorStatus) => void,
-	t: TFunction
+	t: TFunction,
+	sitePaths: Object
 }
-const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
+const DefineDirectorStatus = ({
+	defineDirectorStatus,
+	t,
+	sitePaths
+}: Props) => (
 	<>
 		<Helmet>
 			<title>
@@ -47,7 +54,11 @@ const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 				</li>
 			</ul>
 			<p>
-				<button className="ui__ button plain">Découvrir les différences</button>
+				<Link
+					className="ui__ button plain"
+					to={sitePaths.sécuritéSociale.comparaison}>
+					<T k="simulation-end.cta">Comparer ces régimes</T>
+				</Link>
 			</p>
 		</T>
 		<div className="ui__ answer-group">
@@ -75,5 +86,6 @@ export default compose(
 	connect(
 		null,
 		{ defineDirectorStatus }
-	)
+	),
+	withSitePaths
 )(DefineDirectorStatus)
