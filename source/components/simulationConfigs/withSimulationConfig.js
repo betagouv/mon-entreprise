@@ -11,10 +11,11 @@ export default config => SimulationComponent =>
 		}
 	)(
 		class DecoratedSimulation extends React.Component {
-			componentDidMount() {
-				if (config !== this.props.config) {
-					this.props.resetSimulation()
-					this.props.setSimulationConfig(config)
+			constructor(props) {
+				super(props)
+				if (config !== props.config) {
+					props.resetSimulation()
+					props.setSimulationConfig(config)
 				}
 			}
 			render() {
