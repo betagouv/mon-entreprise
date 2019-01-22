@@ -84,14 +84,6 @@ export default compose(
 					{showTargets && (
 						<Animate.fromBottom>{this.props.targets}</Animate.fromBottom>
 					)}
-					{validInputEntered && (
-						<PageFeedback
-							customMessage={
-								<T k="feedback.simulator">Ce simulateur vous a plu ?</T>
-							}
-							customEventName="rate simulator"
-						/>
-					)}
 					{!noUserInput && this.props.explanation}
 				</>
 			)
