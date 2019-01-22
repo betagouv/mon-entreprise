@@ -24,7 +24,7 @@ button {
 .ui__.answer-group {
 	display: flex;
 	align-items: center;
-	justify-content: end;
+	justify-content: flex-end;
 }
 @media (max-width: 500px) {
 	.ui__.answer-group {
