@@ -39,8 +39,9 @@ const DefineDirectorStatus = ({
 		</h2>
 		<T k="statut du dirigeant.description">
 			<p>
-				Ce choix est important parce qu'il détermine le régime de sécurité
-				sociale et la couverture sociale du dirigeant.
+				Ce choix est important car il détermine le régime de sécurité sociale et
+				la couverture sociale du dirigeant. Le montant et les modalités de
+				paiement des cotisations sociales sont également impactés.
 			</p>
 			<ul>
 				<li>
