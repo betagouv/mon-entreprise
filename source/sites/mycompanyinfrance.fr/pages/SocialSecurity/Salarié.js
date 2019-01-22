@@ -1,12 +1,12 @@
+import { React, T } from 'Components'
+import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import { React, T } from 'Components'
-import { Helmet } from 'react-helmet'
 import TargetSelection from 'Components/TargetSelection'
-import SalaryExplanation from 'Components/SalaryExplanation'
-import { Link } from 'react-router-dom'
 import withSitePaths from 'Components/utils/withSitePaths'
+import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
 
 export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 	<Simulation
@@ -39,10 +39,7 @@ const Salarié = () => (
 				content="Simulez les cotisations d'un salarié au régime général. Calcul complet de toutes les cotisations. Découvrez les contreparties garanties par sécurité sociale"
 			/>
 		</Helmet>
-		<h1>
-			Salarié au régime général
-			<small id="betaTag">alpha</small>
-		</h1>
+		<h1>Salarié au régime général</h1>
 		<p>
 			Dès que l'embauche d'un salarié est déclarée et qu'il est payé, il est
 			couvert par le régime général de la Sécurité sociale (santé, maternité,

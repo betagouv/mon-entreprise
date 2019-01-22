@@ -9,11 +9,10 @@ import type {
 	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
 } from 'Types/companyTypes'
-import { last } from "ramda";
-import type { RouterHistory } from 'react-router'
-import { dropWhile } from "ramda";
+import { dropWhile, last } from 'ramda'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
-import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths';
+import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
+import type { RouterHistory } from 'react-router'
 
 const thenGoToNextQuestion = actionCreator => (...args: any) => (
 	dispatch: any => void,
@@ -72,12 +71,13 @@ export const goToCompanyStatusChoice = () => (
 	history.push(sitePaths().entreprise.index)
 }
 
-
 export const resetCompanyStatusChoice = (from: string) => (
 	dispatch: ResetCompanyStatusAction => void,
-	getState: ()=> any
+	getState: () => any
 ) => {
-	const answeredQuestion = Object.keys(getState().inFranceApp.companyLegalStatus);
+	const answeredQuestion = Object.keys(
+		getState().inFranceApp.companyLegalStatus
+	)
 	const answersToReset = dropWhile(a => a !== from, answeredQuestion)
 	if (!answersToReset.length) {
 		return
@@ -85,24 +85,28 @@ export const resetCompanyStatusChoice = (from: string) => (
 	dispatch(
 		({
 			type: 'RESET_COMPANY_STATUS_CHOICE',
-			answersToReset,
+			answersToReset
 		}: ResetCompanyStatusAction)
 	)
 }
 
 export const goBackToPreviousQuestion = () => (
-	dispatch: ResetCompanyStatusAction => void, 
+	dispatch: ResetCompanyStatusAction => void,
 	getState: () => any,
 	history: RouterHistory
 ) => {
-	const previousQuestion = last(Object.keys(getState().inFranceApp.companyLegalStatus));
+	const previousQuestion = last(
+		Object.keys(getState().inFranceApp.companyLegalStatus)
+	)
 	if (previousQuestion) {
 		dispatch(
 			({
 				type: 'RESET_COMPANY_STATUS_CHOICE',
-				answersToReset: [previousQuestion],
+				answersToReset: [previousQuestion]
 			}: ResetCompanyStatusAction)
 		)
 	}
-	history.push(sitePaths().entreprise.statusJuridique[previousQuestion || 'index'])
+	history.push(
+		sitePaths().entreprise.statutJuridique[previousQuestion || 'index']
+	)
 }

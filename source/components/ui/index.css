@@ -55,7 +55,6 @@ button {
 .ui__.notice {
 	font-size: 85%;
 	color: rgba(0, 0, 0, 0.6);
-	margin-top: 2em;
 }
 ul.ui__.no-bullet {
 	list-style: none;
@@ -72,16 +71,4 @@ span.ui__.enumeration:not(:last-of-type)::after {
 }
 #lds-ellipsis {
 	display: none;
-}
-
-#betaTag {
-	background: #333;
-	text-transform: uppercase;
-	color: white;
-	font-weight: 500;
-	border-radius: 1em;
-	padding: 0.1em 0.5em;
-	margin: 1rem;
-	font-size: 1rem;
-	vertical-align: middle;
 }

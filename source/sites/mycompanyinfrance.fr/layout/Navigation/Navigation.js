@@ -66,13 +66,13 @@ const StepsHeader = ({
 										<ul>
 											<li>
 												<NavOpener
-													to={sitePaths.entreprise.statusJuridique}
+													to={sitePaths.entreprise.statutJuridique}
 													title={t('Guide du statut juridique')}>
 													<ul>
 														<li>
 															<NavLink
 																to={
-																	sitePaths.entreprise.statusJuridique
+																	sitePaths.entreprise.statutJuridique
 																		.multipleAssociates
 																}>
 																<T k="associés.titre">Nombre d'associés</T>
@@ -81,7 +81,7 @@ const StepsHeader = ({
 														<li>
 															<NavLink
 																to={
-																	sitePaths.entreprise.statusJuridique
+																	sitePaths.entreprise.statutJuridique
 																		.directorStatus
 																}>
 																<T k="statut du dirigeant.titre">
@@ -92,7 +92,7 @@ const StepsHeader = ({
 														<li>
 															<NavLink
 																to={
-																	sitePaths.entreprise.statusJuridique.liability
+																	sitePaths.entreprise.statutJuridique.liability
 																}>
 																<T k="responsabilité.titre">Responsabilité</T>
 															</NavLink>
@@ -100,7 +100,7 @@ const StepsHeader = ({
 														<li>
 															<NavLink
 																to={
-																	sitePaths.entreprise.statusJuridique
+																	sitePaths.entreprise.statutJuridique
 																		.minorityDirector
 																}>
 																<T k="gérant minoritaire.titre">
@@ -111,7 +111,7 @@ const StepsHeader = ({
 														<li>
 															<NavLink
 																to={
-																	sitePaths.entreprise.statusJuridique
+																	sitePaths.entreprise.statutJuridique
 																		.microEnterprise
 																}>
 																<T k="microentreprise.titre">
@@ -121,7 +121,7 @@ const StepsHeader = ({
 														</li>
 														<li>
 															<NavLink
-																to={sitePaths.entreprise.statusJuridique.liste}>
+																to={sitePaths.entreprise.statutJuridique.liste}>
 																<T>Liste des statuts</T>
 															</NavLink>
 														</li>

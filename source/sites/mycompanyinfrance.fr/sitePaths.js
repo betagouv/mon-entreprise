@@ -38,27 +38,27 @@ const constructLocalizedSitePath = language => {
 				}),
 			trouver: t('path.entreprise.trouver', '/retrouver-votre-entreprise'),
 			après: t('path.entreprise.après', '/après-la-création'),
-			statusJuridique: {
-				index: t('path.entreprise.statusJuridique.index', '/status-juridique'),
-				liste: t('path.entreprise.statusJuridique.liste', '/liste'),
+			statutJuridique: {
+				index: t('path.entreprise.statutJuridique.index', '/statut-juridique'),
+				liste: t('path.entreprise.statutJuridique.liste', '/liste'),
 				liability: t(
-					'path.entreprise.statusJuridique.responsabilité',
+					'path.entreprise.statutJuridique.responsabilité',
 					'/responsabilité'
 				),
 				directorStatus: t(
-					'path.entreprise.statusJuridique.statusDirigeant',
-					'/status-du-dirigeant'
+					'path.entreprise.statutJuridique.statutDirigeant',
+					'/statut-du-dirigeant'
 				),
 				microEnterprise: t(
-					'path.entreprise.statusJuridique.microEntreprise',
+					'path.entreprise.statutJuridique.microEntreprise',
 					'/micro-entreprise-ou-entreprise-individuelle'
 				),
 				multipleAssociates: t(
-					'path.entreprise.statusJuridique.nombreAssociés',
+					'path.entreprise.statutJuridique.nombreAssociés',
 					'/nombre-associés'
 				),
 				minorityDirector: t(
-					'path.entreprise.statusJuridique.gérantMinoritaire',
+					'path.entreprise.statutJuridique.gérantMinoritaire',
 					'/gérant-majoritaire-ou-minoritaire'
 				)
 			}

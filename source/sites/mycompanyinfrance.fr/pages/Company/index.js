@@ -1,10 +1,10 @@
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose } from 'ramda'
 import React from 'react'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
-import { compose } from 'ramda'
 import { Redirect, Route, Switch } from 'react-router'
 import * as Animate from 'Ui/animate'
-import withSitePaths from 'Components/utils/withSitePaths'
 import AfterRegistration from './AfterRegistration'
 import CreationChecklist from './CreationChecklist'
 import DefineDirectorStatus from './DirectorStatus'
@@ -30,9 +30,8 @@ const CreateMyCompany = ({
 	location,
 	companyStatusChoice,
 	existingCompany,
-	sitePaths,
+	sitePaths
 }) => {
-	
 	return (
 		<>
 			<Animate.fromBottom>
@@ -46,9 +45,12 @@ const CreateMyCompany = ({
 						component={CreationChecklist}
 					/>
 					<Route path={sitePaths.entreprise.trouver} component={Find} />
-					<Route path={sitePaths.entreprise.après} component={AfterRegistration} />
 					<Route
-						path={sitePaths.entreprise.statusJuridique.index}
+						path={sitePaths.entreprise.après}
+						component={AfterRegistration}
+					/>
+					<Route
+						path={sitePaths.entreprise.statutJuridique.index}
 						component={Home}
 					/>
 					{existingCompany && (
@@ -68,33 +70,33 @@ const CreateMyCompany = ({
 						<Redirect
 							exact
 							from={match.path}
-							to={sitePaths.entreprise.statusJuridique.index}
+							to={sitePaths.entreprise.statutJuridique.index}
 						/>
 					)}
 				</Switch>
 				<Switch location={location}>
 					<Route
-						path={sitePaths.entreprise.statusJuridique.liability}
+						path={sitePaths.entreprise.statutJuridique.liability}
 						component={withAnimation(Liability)}
 					/>
 					<Route
-						path={sitePaths.entreprise.statusJuridique.directorStatus}
+						path={sitePaths.entreprise.statutJuridique.directorStatus}
 						component={withAnimation(DefineDirectorStatus)}
 					/>
 					<Route
-						path={sitePaths.entreprise.statusJuridique.microEnterprise}
+						path={sitePaths.entreprise.statutJuridique.microEnterprise}
 						component={withAnimation(Microenterprise)}
 					/>
 					<Route
-						path={sitePaths.entreprise.statusJuridique.multipleAssociates}
+						path={sitePaths.entreprise.statutJuridique.multipleAssociates}
 						component={withAnimation(NumberOfAssociate)}
 					/>
 					<Route
-						path={sitePaths.entreprise.statusJuridique.minorityDirector}
+						path={sitePaths.entreprise.statutJuridique.minorityDirector}
 						component={withAnimation(MinorityDirector)}
 					/>
 					<Route
-						path={sitePaths.entreprise.statusJuridique.liste}
+						path={sitePaths.entreprise.statutJuridique.liste}
 						component={withAnimation(PickLegalStatus)}
 					/>
 				</Switch>
@@ -108,6 +110,6 @@ export default compose(
 		companyStatusChoice: state.inFranceApp.companyStatusChoice,
 		existingCompany: state.inFranceApp.existingCompanyDetails
 	})),
-	withNamespaces(), 
+	withNamespaces(),
 	withSitePaths
 )(CreateMyCompany)

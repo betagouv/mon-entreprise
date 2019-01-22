@@ -1,3 +1,4 @@
+import AlphaWarning from 'Components/AlphaWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
@@ -16,16 +17,14 @@ const AssimiléSalarié = () => (
 				content="Simulez votre rémunération en tant que dirigeant assimilé salarié. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime général"
 			/>
 		</Helmet>
-		<h1>
-			Assimilé salarié : cotisation et droits
-			<small id="betaTag">alpha</small>
-		</h1>
+		<h1>Assimilé salarié : cotisation et droits</h1>
 		<p>
 			Les gérants égalitaires ou minoritaires de SARL ou les dirigeants de SA et
 			SAS sont <strong>assimilés&nbsp;salariés</strong> et relèvent du régime
 			général. Les cotisations sociales sont proches de celles des salariés, à
 			quelques exceptions près (réductions employeur et chômage en moins).
 		</p>
+		<AlphaWarning />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}

@@ -185,35 +185,45 @@ export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
 	const paths = sitePaths()
 	const nextQuestion = nextQuestionSelector(state)
 	if (!nextQuestion) {
-		return paths.entreprise.statusJuridique.liste
+		return paths.entreprise.statutJuridique.liste
 	}
-	return paths.entreprise.statusJuridique[nextQuestion]
+	return paths.entreprise.statutJuridique[nextQuestion]
 }
 
-export  const régimeSelector = (state: { inFranceApp: State }): 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null => {
+export const régimeSelector = (state: {
+	inFranceApp: State
+}): 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null => {
 	const companyStatusChoice = state.inFranceApp.companyStatusChoice
 	const companyLegalStatus = state.inFranceApp.companyLegalStatus
 	if (!companyStatusChoice) {
-		if(companyLegalStatus.microEnterprise === true) {
-			return "micro-entreprise"
+		if (companyLegalStatus.microEnterprise === true) {
+			return 'micro-entreprise'
 		}
 		if (companyLegalStatus.directorStatus === 'SALARIED') {
-			return "assimilé-salarié"
-		} 
+			return 'assimilé-salarié'
+		}
 		if (companyLegalStatus.directorStatus === 'SELF_EMPLOYED') {
-			return "indépendant"
-		} 
-		return null;
+			return 'indépendant'
+		}
+		return null
 	}
-	if(companyStatusChoice.includes('micro-entreprise')) {
-
+	if (companyStatusChoice.includes('micro-entreprise')) {
 		return 'micro-entreprise'
 	}
-	if(companyStatusChoice.includes('EI') || companyStatusChoice === 'EURL' || companyStatusChoice === 'SARL' && companyLegalStatus?.minorityDirector === false) {
+	if (
+		companyStatusChoice.includes('EI') ||
+		companyStatusChoice === 'EURL' ||
+		(companyStatusChoice === 'SARL' &&
+			companyLegalStatus?.minorityDirector === false)
+	) {
 		return 'indépendant'
 	}
-	if(companyStatusChoice.includes('SAS') || companyStatusChoice === 'SARL' && companyLegalStatus?.minorityDirector === true) {
+	if (
+		companyStatusChoice.includes('SAS') ||
+		(companyStatusChoice === 'SARL' &&
+			companyLegalStatus?.minorityDirector === true)
+	) {
 		return 'assimilé-salarié'
 	}
-	return null;
+	return null
 }

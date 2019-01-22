@@ -123,7 +123,7 @@ Mes réponses: My answers
 Modifier mes réponses: Change my answers
 simulation-end:
   title: No more questions left!
-  text: You have reached the most accurate estimate. 
+  text: You have reached the most accurate estimate.
   hiring:
     text: You can now turn your hiring project into reality.
     cta: Know the procedures
@@ -203,7 +203,7 @@ accueil:
     2: Learn the basics of French labour law
     action: Discover the hiring process ›
 
-piedDePage: 
+piedDePage:
 
 entreprise:
   existeDéjà: My company is already registered with the French Administration
@@ -512,12 +512,12 @@ path:
     créer: '/create-a-{{companyStatus}}'
     trouver: '/find'
     après: '/after-registration'
-    statusJuridique:
+    statutJuridique:
       index: '/legal-status'
       liste: '/list'
       gérantMinoritaire: '/chairman-or-managing-director'
       responsabilité: '/liability'
-      statusDirigeant: '/directors-status'
+      statutDirigeant: '/directors-status'
       nombreAssociés: '/multiple-associates'
       microEntreprise: '/micro-entreprise-or-individual-business'
   sécuritéSociale:

@@ -62,7 +62,7 @@ const PreviousAnswers = ({
 								([key, value]) =>
 									!isNil(value) && (
 										<li key={key}>
-											<Link to={sitePaths.entreprise.statusJuridique[key]}>
+											<Link to={sitePaths.entreprise.statutJuridique[key]}>
 												{requirementToText(key, value)}
 											</Link>
 										</li>

@@ -34,7 +34,7 @@ const CreateMyCompany = ({
 }: Props) => {
 	if (!match.isExact) {
 		const companyStatusCurrentQuestionName = (toPairs(
-			sitePaths.entreprise.statusJuridique
+			sitePaths.entreprise.statutJuridique
 		).find(([, pathname]) => location.pathname === pathname) || [])[0]
 		resetCompanyStatusChoice(companyStatusCurrentQuestionName)
 	}
