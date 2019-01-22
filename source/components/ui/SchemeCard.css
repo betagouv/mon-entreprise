@@ -1,14 +1,17 @@
 .scheme-card__container {
 	width: 24rem;
 	margin: 1rem;
+}
+.scheme-card__container:not(.is-IE) {
 	display: flex;
 	flex-direction: column;
 }
 
 .scheme-card__inside {
-	height: 100%;
-	display: flex;
 	flex: 1;
+}
+.scheme-card__inside:not(.is-IE) {
+	display: flex;
 	align-items: center;
 	flex-direction: column;
 }

@@ -4,6 +4,7 @@ import { isNil } from 'ramda'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Animate from 'Ui/animate'
+import { isIE } from '../../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import './SchemeCard.css'
 import type { Node } from 'react'
@@ -46,7 +47,8 @@ function SchemeCard({
 		<div
 			className={classnames('scheme-card__container', {
 				'ui__ card disabled scheme-card__container--disabled': disabled,
-				'ui__ card coloured scheme-card__container--featured': featured
+				'ui__ card coloured scheme-card__container--featured': featured,
+				'is-IE': isIE()
 			})}>
 			<div
 				className={`scheme-card__top-text scheme-card__top-text--${
@@ -57,7 +59,8 @@ function SchemeCard({
 			</div>
 			<div
 				className={classnames('scheme-card__inside', {
-					'ui__ card': !featured && !disabled
+					'ui__ card': !featured && !disabled,
+					'is-IE': isIE()
 				})}>
 				<header
 					className="scheme-card__header"
