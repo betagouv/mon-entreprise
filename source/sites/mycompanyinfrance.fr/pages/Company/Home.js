@@ -74,7 +74,7 @@ const CreateMyCompany = ({
 						</T>
 					</p>
 					<div className="ui__ answer-group">
-						<Link className="ui__ button" to={nextQuestionUrl}>
+						<Link className="ui__ button plain" to={nextQuestionUrl}>
 							{!guideAlreadyStarted ? <T>Commencer</T> : <T>Reprendre</T>}
 						</Link>
 						<Link

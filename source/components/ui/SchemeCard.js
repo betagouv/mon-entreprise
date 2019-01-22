@@ -108,9 +108,7 @@ function SchemeCard({
 						'scheme-card__cta ' +
 						(descriptionVisibility ? 'scheme-card__cta--visible' : '')
 					}>
-					<button
-						onClick={onSchemeChoice}
-						className={'ui__ button ' + (disabled ? 'simple' : ' plain')}>
+					<button onClick={onSchemeChoice} className={'ui__ button'}>
 						Choisir ce régime
 					</button>
 				</p>
