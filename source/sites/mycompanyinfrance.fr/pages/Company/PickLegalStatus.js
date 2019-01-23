@@ -1,15 +1,15 @@
 /* @flow */
-import { goBackToPreviousQuestion } from 'Actions/companyStatusActions';
-import { React, T } from 'Components';
-import withLanguage from 'Components/utils/withLanguage';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { compose, filter } from 'ramda';
-import Helmet from 'react-helmet';
-import { withNamespaces } from 'react-i18next';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { possibleStatusSelector } from 'Selectors/companyStatusSelectors';
-import StatusDescription from './StatusDescription';
+import { goBackToPreviousQuestion } from 'Actions/companyStatusActions'
+import { React, T } from 'Components'
+import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose, filter } from 'ramda'
+import Helmet from 'react-helmet'
+import { withNamespaces } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
+import StatusDescription from './StatusDescription'
 import type { RouterHistory } from 'react-router'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import type { TFunction } from 'react-i18next'
@@ -24,21 +24,29 @@ type Props = {
 	t: TFunction
 }
 
-const StatusButton = withSitePaths(withNamespaces()(
-	({ status, t, sitePaths }: { status: LegalStatus, t: TFunction, sitePaths: Object }) => (
-		<div style={{textAlign: 'right'}}>
-
-		<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
-			<T>Créer une</T> {t(status)}
-		</Link>
-		</div>
+const StatusButton = withSitePaths(
+	withNamespaces()(
+		({
+			status,
+			t,
+			sitePaths
+		}: {
+			status: LegalStatus,
+			t: TFunction,
+			sitePaths: Object
+		}) => (
+			<div style={{ textAlign: 'right' }}>
+				<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
+					<T>Créer une</T> {t(status)}
+				</Link>
+			</div>
+		)
 	)
-))
+)
 const StatusTitle = ({ status, language }) =>
 	status === 'EI' ? (
 		<>
-			Entreprise individuelle{' '}
-			{language !== 'fr' && '(Individual business)'}:{' '}
+			Entreprise individuelle {language !== 'fr' && '(Individual business)'}:{' '}
 		</>
 	) : status === 'EIRL' ? (
 		<>
@@ -76,7 +84,9 @@ const StatusTitle = ({ status, language }) =>
 		</>
 	) : status === 'micro-entreprise-EIRL' ? (
 		<>
-			<T>Micro-entreprise en EIRL</T>{language === 'fr' && ' '}{':'}
+			<T>Micro-entreprise en EIRL</T>
+			{language === 'fr' && ' '}
+			{':'}
 		</>
 	) : null
 
@@ -117,12 +127,12 @@ const SetMainStatus = ({
 			<div className="ui__ answer-group">
 				<button
 					onClick={goBackToPreviousQuestion}
-					className="ui__ skip-button left">
+					className="ui__ simple skip button left">
 					‹ <T>Précédent</T>
 				</button>
 				<Link
 					to={sitePaths.sécuritéSociale.index}
-					className="ui__ skip-button">
+					className="ui__ simple skip button">
 					<T>Choisir plus tard</T> ›
 				</Link>
 			</div>

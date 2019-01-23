@@ -6,18 +6,18 @@ import {
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import Scroll from 'Components/utils/Scroll'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
-import withSitePaths from 'Components/utils/withSitePaths'
-
 import { CheckItem, Checklist } from 'Ui/Checklist'
 import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
 import Page404 from '../404'
 import StatusDescription from './StatusDescription'
+
 import type { Match } from 'react-router'
 import type { TFunction } from 'react-i18next'
 
@@ -48,12 +48,8 @@ const CreateCompany = ({
 	const isMicroenterprise = [
 		'micro-entreprise',
 		'micro-entreprise-EIRL'
-	].includes(companyStatus);
-	const multipleAssociates = [
-		'SARL',
-		'SAS',
-		'SA'
 	].includes(companyStatus)
+	const multipleAssociates = ['SARL', 'SAS', 'SA'].includes(companyStatus)
 	const isEI = isMicroenterprise || ['EI', 'EIRL'].includes(companyStatus)
 	if (!companyStatus) {
 		return <Page404 />
@@ -181,11 +177,16 @@ const CreateCompany = ({
 						explanations={
 							<p>
 								<T k="entreprise.tâches.statuts.description">
-									Il s'agit d'un document officiel qui intègre la forme juridique, nomme les
-									associés et leurs contributions au capital.{' '}
-									<span style={{display: multipleAssociates ? 'visible' : 'none'}}>
-										Dans le cas d'une création d'entreprise avec plusieurs associés, il est recommandé 
-										de faire appel à un juriste pour les rédiger.{' '}
+									Il s'agit d'un document officiel qui intègre la forme
+									juridique, nomme les associés et leurs contributions au
+									capital.{' '}
+									<span
+										style={{
+											display: multipleAssociates ? 'visible' : 'none'
+										}}>
+										Dans le cas d'une création d'entreprise avec plusieurs
+										associés, il est recommandé de faire appel à un juriste pour
+										les rédiger.{' '}
 									</span>
 								</T>
 								{['SARL', 'EURL'].includes(companyStatus) && (
@@ -303,18 +304,17 @@ const CreateCompany = ({
 						explanations={
 							<T k="entreprise.tâches.journal.description">
 								<p>
-									Vous devez publier la création de votre entreprise dans un journal 
-									d'annonces légales (« JAL »), pour un coût de publication qui dépend du volume de l'annonce
-									et des tarifs pratiqués par le journal choisi{' '}
+									Vous devez publier la création de votre entreprise dans un
+									journal d'annonces légales (« JAL »), pour un coût de
+									publication qui dépend du volume de l'annonce et des tarifs
+									pratiqués par le journal choisi{' '}
 								</p>
 								<p>
 									<a href="https://actulegales.fr/journaux-annonces-legales">
 										Trouver un journal d'annonces légales (JAL)
 									</a>
 								</p>
-								<p>
-									Cette annonce doit contenir les informations suivantes :{' '}
-								</p>
+								<p>Cette annonce doit contenir les informations suivantes : </p>
 								<ul>
 									<li>Le nom de l'entreprise et éventuellement son acronyme</li>
 									<li>La forme juridique</li>
@@ -347,7 +347,8 @@ const CreateCompany = ({
 					explanations={
 						<T k="entreprise.tâches.formulaire.description">
 							<p>
-								Vous pouvez faire votre inscription en ligne à tout moment, l'enregistrer et y revenir comme vous le souhaitez. 
+								Vous pouvez faire votre inscription en ligne à tout moment,
+								l'enregistrer et y revenir comme vous le souhaitez.
 							</p>
 							<div style={{ textAlign: 'center' }}>
 								<a
@@ -423,10 +424,14 @@ const CreateCompany = ({
 				</T>
 			</p>
 			<p style={{ display: 'flex', justifyContent: 'space-between' }}>
-				<button onClick={onStatusChange} className="ui__ skip-button left">
+				<button
+					onClick={onStatusChange}
+					className="ui__ simple skip button left">
 					‹ <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
-				<Link to={sitePaths.entreprise.après} className="ui__ skip-button">
+				<Link
+					to={sitePaths.entreprise.après}
+					className="ui__ simple skip button">
 					<T k="entreprise.tâches.ensuite">Après la création</T>›
 				</Link>
 			</p>

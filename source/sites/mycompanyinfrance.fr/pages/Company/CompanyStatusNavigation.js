@@ -18,7 +18,7 @@ export default connect(
 )(({ goBackToPreviousQuestion, onSkip }: Props) => (
 	<div className="ui__ answer-group">
 		<button
-			className="ui__ skip-button left"
+			className="ui__ simple skip button left"
 			onClick={goBackToPreviousQuestion}>
 			‹ <T>Précédent</T>
 		</button>

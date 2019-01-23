@@ -79,7 +79,7 @@ const CreateMyCompany = ({
 						</Link>
 						<Link
 							to={sitePaths.sécuritéSociale.index}
-							className="ui__ skip-button">
+							className="ui__ simple skip button">
 							<T>Plus tard</T> ›
 						</Link>
 					</div>

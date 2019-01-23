@@ -50,7 +50,7 @@ const PreviousAnswers = ({
 			{!!Object.keys(legalStatus).length && (
 				<button
 					onClick={goToCompanyStatusChoice}
-					className="ui__ skip-button left">
+					className="ui__ simple skip button left">
 					⟲ <T>Recommencer</T>
 				</button>
 			)}

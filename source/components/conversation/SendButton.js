@@ -40,7 +40,7 @@ export default compose(
 					<span
 						className="keyIcon"
 						style={{ opacity: hover && !disabled ? 1 : 0 }}>
-						<Trans>Entrée</Trans> ↵
+						<Trans>Entrée</Trans>↵
 					</span>
 				</span>
 			)
