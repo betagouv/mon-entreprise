@@ -18,10 +18,11 @@ import {
 	flatRulesSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import './TargetSelection.css'
 import QuickLinks from './QuickLinks'
+import './TargetSelection.css'
 
 export default compose(
 	translate(),
@@ -59,7 +60,7 @@ export default compose(
 					<QuickLinks />
 					{/* <Controls {...{ controls }} /> */}
 					<section
-						id="targetsContainer"
+						className="ui__ plain card"
 						style={{
 							color: colours.textColour,
 							background: `linear-gradient(
@@ -118,14 +119,16 @@ export default compose(
 									/>
 								</div>
 								{activeInput === target.dottedName && !conversationStarted && (
-									<InputSuggestions
-										suggestions={target.suggestions}
-										onFirstClick={value =>
-											this.props.setFormValue(target.dottedName, '' + value)
-										}
-										rulePeriod={target.période}
-										colouredBackground={true}
-									/>
+									<Animate.fromTop>
+										<InputSuggestions
+											suggestions={target.suggestions}
+											onFirstClick={value =>
+												this.props.setFormValue(target.dottedName, '' + value)
+											}
+											rulePeriod={target.période}
+											colouredBackground={true}
+										/>
+									</Animate.fromTop>
 								)}
 							</li>
 						))}

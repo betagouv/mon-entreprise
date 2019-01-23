@@ -1,6 +1,5 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import {
 	decodeRuleName,
@@ -23,7 +22,6 @@ import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
-import backSvg from 'Images/back.svg'
 
 export default compose(
 	connect(state => ({
@@ -31,7 +29,7 @@ export default compose(
 		flatRules: flatRulesSelector(state),
 		brancheName: situationBranchNameSelector(state)
 	})),
-	withSitePaths,
+
 	withNamespaces()
 )(
 	class RulePage extends Component {
@@ -57,23 +55,14 @@ export default compose(
 			return this.renderRule(dottedName)
 		}
 		renderRule(dottedName) {
-			let { brancheName, sitePaths } = this.props
+			let { brancheName } = this.props
 			return (
-				<div id="RulePage">
+				<div id="RulePage" className="ui__ container">
 					<ScrollToTop key={brancheName + dottedName} />
 					<div className="rule-page__header">
-						{this.props.valuesToShow ? (
-							<BackToSimulation />
-						) : (
-							<span>
-								{emoji('🧾')}{' '}
-								<Link to={sitePaths.sécuritéSociale.index}>
-									Calculer vos cotisations
-								</Link>
-							</span>
-						)}
+						{this.props.valuesToShow ? <BackToSimulation /> : <span />}
 						{brancheName && <span id="situationBranch">{brancheName}</span>}
-						<SearchButton className="rule-page__search" rulePageBasePath="" />
+						<SearchButton />
 					</div>
 					<Rule dottedName={dottedName} />
 				</div>
@@ -95,11 +84,8 @@ const BackToSimulation = compose(
 		render() {
 			let { goBackToSimulation } = this.props
 			return (
-				<button
-					style={{ display: 'flex', alignItems: 'center' }}
-					className="ui__ link-button"
-					onClick={goBackToSimulation}>
-					<img src={backSvg} style={{ marginRight: '0.3em', width: '1.2em' }} />
+				<button className="ui__ link-button" onClick={goBackToSimulation}>
+					{emoji('⬅️')}
 					<Trans i18nKey="back">Reprendre la simulation</Trans>
 				</button>
 			)

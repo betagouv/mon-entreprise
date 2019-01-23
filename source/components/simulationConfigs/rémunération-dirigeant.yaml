@@ -9,6 +9,9 @@ questions:
   - entreprise . catégorie d'activité
   - entreprise . charges
 
+situation:
+  période: année
+
 branches:
   - nom: Micro-entreprise
     situation:

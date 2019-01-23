@@ -118,7 +118,7 @@ export let validatedSituationBranchesSelector = createSituationBrancheSelector(
 	validatedSituationSelector
 )
 
-let situationsWithDefaultsSelector = createSelector(
+export let situationsWithDefaultsSelector = createSelector(
 	[ruleDefaultsSelector, situationBranchesSelector],
 	(defaults, situations) =>
 		mapOrApply(situation => ({ ...defaults, ...situation }), situations)

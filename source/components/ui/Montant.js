@@ -6,7 +6,7 @@ import './Montant.css'
 type Props = {
 	children: number,
 	className?: string,
-	type: 'currency' | 'percent',
+	type: 'currency' | 'percent' | 'decimal',
 	style?: { [string]: string },
 	numFractionDigit?: number
 } & ConnectedProps

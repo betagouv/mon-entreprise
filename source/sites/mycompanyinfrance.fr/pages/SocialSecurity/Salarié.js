@@ -16,11 +16,13 @@ export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 				<T k="simulation-end.hiring.text">
 					Vous pouvez maintenant concrétiser votre projet d'embauche.
 				</T>
-				<div style={{ textAlign: 'center' }}>
-					<Link className="ui__ button" to={sitePaths.démarcheEmbauche.index}>
-						<T k="simulation-end.cta">Connaître les démarches</T>
-					</Link>
-				</div>
+				{sitePaths.démarcheEmbauche && (
+					<div style={{ textAlign: 'center' }}>
+						<Link className="ui__ button" to={sitePaths.démarcheEmbauche.index}>
+							<T k="simulation-end.cta">Connaître les démarches</T>
+						</Link>
+					</div>
+				)}
 			</>
 		}
 		targets={<TargetSelection />}

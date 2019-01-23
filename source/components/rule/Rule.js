@@ -9,7 +9,7 @@ import {
 	findRuleByDottedName,
 	findRuleByNamespace
 } from 'Engine/rules'
-import { compose, isEmpty } from 'ramda'
+import { compose, isEmpty, isNil } from 'ramda'
 import React, { Component, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
@@ -24,13 +24,13 @@ import {
 	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
+import Montant from 'Ui/Montant'
 import { AttachDictionary } from '../AttachDictionary'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import sitePaths from '../../sites/mycompanyinfrance.fr/sitePaths'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -44,6 +44,7 @@ export default compose(
 	})),
 	AttachDictionary(knownMecanisms),
 	withNamespaces(),
+	withSitePaths,
 	withLanguage
 )(
 	class Rule extends Component {
@@ -54,6 +55,7 @@ export default compose(
 					currentExample,
 					flatRules,
 					valuesToShow,
+					sitePaths,
 					analysedExample,
 					analysedRule,
 					language
@@ -63,7 +65,8 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-
+			let ruleFormat = displayedRule.format || displayedRule.explanation?.format
+			console.log('ruleFormat', ruleFormat)
 			return (
 				<>
 					{this.state.viewSource ? (
@@ -97,26 +100,44 @@ export default compose(
 
 								{this.renderToggleSourceButton()}
 								<section id="rule-content">
-									{displayedRule.nodeValue ? (
+									{!isNil(displayedRule.nodeValue) && (
 										<div id="ruleValue">
-											{displayedRule.format === 'euros' || displayedRule.formule
-												? Intl.NumberFormat(language, {
-														style: 'currency',
-														currency: 'EUR'
-												  }).format(displayedRule.nodeValue)
-												: typeof displayedRule.nodeValue !== 'object'
-												? displayedRule.nodeValue
-												: null}
+											{['euros', 'pourcentage'].includes(ruleFormat) ||
+											displayedRule.formule ? (
+												<Montant
+													type={
+														ruleFormat === 'euros'
+															? 'currency'
+															: ruleFormat === 'pourcentage'
+															? 'percent'
+															: 'decimal'
+													}>
+													{displayedRule.nodeValue}
+												</Montant>
+											) : typeof displayedRule.nodeValue !== 'object' ? (
+												displayedRule.nodeValue
+											) : null}
 										</div>
-									) : null}
-
+									)}
 									{displayedRule.defaultValue != null &&
 									typeof displayedRule.defaultValue !== 'object' ? (
 										<div id="ruleDefault">
 											Valeur par défaut : {displayedRule.defaultValue}
 										</div>
 									) : null}
-
+									{!valuesToShow && (
+										<div style={{ textAlign: 'center' }}>
+											<Link
+												className="ui__ plain button"
+												to={
+													sitePaths.sécuritéSociale
+														? sitePaths.sécuritéSociale.index
+														: sitePaths.index
+												}>
+												Simuler ma situation
+											</Link>
+										</div>
+									)}
 									{//flatRule.question &&
 									// Fonctionnalité intéressante, à implémenter correctement
 									false && <UserInput {...{ flatRules, dottedName }} />}

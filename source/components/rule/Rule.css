@@ -1,6 +1,3 @@
-#rule {
-	margin: 1rem auto;
-}
 .reportErrorContainer {
 	text-align: center;
 	padding: 0.3em 0.6em;
@@ -25,6 +22,7 @@ h2 small {
 
 #rule #ruleValue {
 	font-weight: 400;
+	text-align: center;
 	font-size: 200%;
 	color: inherit;
 	margin-bottom: 0.6em;

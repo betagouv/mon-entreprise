@@ -14,8 +14,10 @@ export default config => SimulationComponent =>
 			constructor(props) {
 				super(props)
 				if (config !== props.config) {
-					props.resetSimulation()
 					props.setSimulationConfig(config)
+					if (props.config) {
+						props.resetSimulation()
+					}
 				}
 			}
 			render() {

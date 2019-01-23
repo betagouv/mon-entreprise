@@ -49,7 +49,7 @@ export default class SalaryCompactExplanation extends Component<Props, State> {
 								</button>
 							))}
 						</div>
-						<SearchButton rulePageBasePath="./règle" />
+						<SearchButton />
 					</div>
 					<div className="ui__ card result-view__body">
 						{this.state.resultView === 'payslip' ? (

@@ -1,6 +1,6 @@
 import { findRuleByDottedName, nestedSituationToPathMap } from 'Engine/rules'
 import { compose, filter, map, toPairs } from 'ramda'
-import React from 'react'
+import React, { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, translate } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -8,27 +8,50 @@ import { batchActions } from 'redux-batched-actions'
 import { change, Field, reduxForm } from 'redux-form'
 import {
 	flatRulesSelector,
-	situationSelector
+	situationSelector,
+	situationsWithDefaultsSelector
 } from 'Selectors/analyseSelectors'
 import './PeriodSwitch.css'
 
 export default compose(
 	reduxForm({
 		form: 'conversation',
-		destroyOnUnmount: false,
-		initialValues: { période: 'année' }
+		destroyOnUnmount: false
 	}),
 	translate(),
 	connect(
-		state => ({
-			rules: flatRulesSelector(state),
-			situation: nestedSituationToPathMap(situationSelector(state))
-		}),
+		state => {
+			let situation = situationsWithDefaultsSelector(state)
+			if (Array.isArray(situation)) {
+				situation = situation[0]
+			}
+
+			return {
+				rules: flatRulesSelector(state),
+				situation: nestedSituationToPathMap(situationSelector(state)),
+				initialPériode: situation.période
+			}
+		},
 		dispatch => ({
 			batchPeriodChange: actions => dispatch(batchActions(actions))
 		})
 	)
-)(function PeriodSwitch({ situation, rules, batchPeriodChange }) {
+)(function PeriodSwitch({
+	situation,
+	rules,
+	batchPeriodChange,
+	initialPériode
+}) {
+	useEffect(() => {
+		!situation.période &&
+			updateSituation(
+				initialPériode || 'année',
+				batchPeriodChange,
+				situation,
+				rules
+			)
+		return
+	})
 	return (
 		<div id="PeriodSwitch">
 			<label>

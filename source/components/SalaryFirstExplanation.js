@@ -2,17 +2,10 @@
 
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
-import SearchButton from 'Components/SearchButton'
-import withTracker from 'Components/utils/withTracker'
-import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
-import { connect } from 'react-redux'
-import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
 
-import type { Tracker } from 'Components/utils/withTracker'
-
-export default class SalaryFirstExplanation extends Component<Props, State> {
+export default class SalaryFirstExplanation extends Component {
 	render() {
 		return (
 			<>

@@ -48,7 +48,12 @@ const AnswerList = ({
 		</h2>
 		<p style={{ textAlign: 'center' }}>
 			{emoji('🗑')}{' '}
-			<button className="ui__ link-button" onClick={resetSimulation}>
+			<button
+				className="ui__ link-button"
+				onClick={() => {
+					resetSimulation()
+					onClose()
+				}}>
 				<Trans>Effacer</Trans>
 			</button>
 		</p>

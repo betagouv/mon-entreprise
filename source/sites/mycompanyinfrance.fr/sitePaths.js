@@ -1,6 +1,7 @@
 /* @flow */
-import { map, reduce, toPairs, zipObj } from 'ramda'
+import { reduce, toPairs, zipObj } from 'ramda'
 import i18n from '../../i18n'
+import { constructSitePaths } from '../../utils'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
@@ -88,21 +89,6 @@ const constructLocalizedSitePath = language => {
 		}
 	})
 }
-const constructSitePaths = (
-	root: string,
-	{ index, ...sitePaths }: { index: string }
-) => ({
-	index: root + index,
-	...map(
-		value =>
-			typeof value === 'string'
-				? root + index + value
-				: typeof value === 'function'
-				? (...args) => root + index + value(...args)
-				: constructSitePaths(root + index, value),
-		sitePaths
-	)
-})
 
 let sitePath = constructLocalizedSitePath()
 i18n.on('languageChanged', () => {

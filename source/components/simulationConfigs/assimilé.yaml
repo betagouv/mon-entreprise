@@ -2,10 +2,10 @@ objectifs:
   - entreprise . chiffre d'affaires
   - revenu disponible
 
-questions: 
+questions:
   - entreprise . charges
 
-questions à l'affiche: 
+questions à l'affiche:
   Charges: entreprise . charges
 
 situation:
@@ -16,3 +16,4 @@ situation:
   contrat salarié . CDD: non
   contrat salarié . temps partiel: non
   contrat salarié . ATMP . taux réduit: oui
+  période: année

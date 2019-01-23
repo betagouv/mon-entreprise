@@ -1,3 +1,34 @@
+# 302 Redirect following URL changes (waiting the hostname change to mon-entreprise.fr for 301)
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--salaire--net-après-impôt"
+to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/salaire/net-après-impôt"
+status = 302
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/règle/prime-de-fin-de-contrat"
+to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/CDD/prime-de-fin-de-contrat"
+status = 302
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--salaire--brut-de-base"
+to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/salaire/brut-de-base"
+status = 302
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--rémunération-total"
+to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/rémunération/total"
+status = 302
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/règle/contribution-au-dialogue-social"
+to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/contribution-au-dialogue-social"
+status = 302
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--CDD--motif--complément-formation"
+to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/CDD/motif/complément-formation"
+status = 302
+
 # InFrance PRODUCTION settings 
 
 [[redirects]]

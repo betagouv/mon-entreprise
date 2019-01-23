@@ -4,7 +4,7 @@ objectifs:
   - contrat salarié . salaire . net
   - contrat salarié . salaire . net après impôt
 
-questions à l'affiche: 
+questions à l'affiche:
   CDD: contrat salarié . CDD
   Cadre: contrat salarié . statut cadre
   Temps partiel: contrat salarié . temps partiel
@@ -15,3 +15,4 @@ situation:
   contrat salarié . assimilé salarié: non
   indépendant: non
   micro entreprise: non
+  période: mois

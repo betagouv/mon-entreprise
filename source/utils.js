@@ -82,3 +82,19 @@ export function softCatch<ArgType: any, ReturnType: any>(
 		}
 	}
 }
+
+export const constructSitePaths = (
+	root: string,
+	{ index, ...sitePaths }: { index: string }
+) => ({
+	index: root + index,
+	...map(
+		value =>
+			typeof value === 'string'
+				? root + index + value
+				: typeof value === 'function'
+				? (...args) => root + index + value(...args)
+				: constructSitePaths(root + index, value),
+		sitePaths
+	)
+})

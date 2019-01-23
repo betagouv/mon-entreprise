@@ -119,6 +119,12 @@
 	font-family: inherit;
 	margin: 0;
 }
+.ui__.link-button img[src*='twemoji.maxcdn'],
+.ui__.dashed-button img[src*='twemoji.maxcdn'],
+.ui__.text-button img[src*='twemoji.maxcdn'] {
+	margin-right: 0.2rem !important;
+	margin-left: 0.2rem !important;
+}
 .ui__.link-button,
 .ui__.text-button {
 	text-decoration: none;

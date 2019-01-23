@@ -15,7 +15,6 @@
 }
 .Rule-value {
 	transition: background 0.8s;
-	font-size: 105%;
 }
 .Rule-value .unsatisfied {
 	font-style: italic;

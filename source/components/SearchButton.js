@@ -1,12 +1,11 @@
 import { compose } from 'ramda'
 import React, { Component } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { LinkButton } from 'Ui/Button'
 import Overlay from './Overlay'
 import SearchBar from './SearchBar'
-import emoji from 'react-easy-emoji'
 
 export default compose(
 	connect(state => ({
@@ -49,15 +48,12 @@ export default compose(
 					/>
 				</Overlay>
 			) : (
-				<LinkButton
-					onClick={() => this.setState({ visible: true })}
-					className={this.props.className}
-					style={this.props.style}>
-					{emoji('🔍 ')}
-					<span>
-						<Trans>Rechercher</Trans>
-					</span>
-				</LinkButton>
+				<button
+					className="ui__ link-button"
+					onClick={() => this.setState({ visible: true })}>
+					{emoji('🔍')}
+					<Trans>Rechercher</Trans>
+				</button>
 			)
 		}
 	}

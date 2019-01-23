@@ -46,6 +46,34 @@ export const fromBottom = ({
 		))}
 	</Trail>
 )
+export const fromTop = ({
+	children,
+	config = configPresets.stiff,
+	style: inheritedStyle = {},
+	delay = 0
+}: Props) => (
+	<Trail
+		keys={React.Children.map(children, (_, i) => i)}
+		native={true}
+		delay={delay}
+		config={config}
+		leave={{ opacity: 0, y: 50 }}
+		from={{ opacity: 0, y: -50 }}
+		to={{ opacity: 1, y: 0 }}>
+		{/* eslint-disable-next-line react/display-name */}
+		{React.Children.map(children, (item, i) => ({ y, ...style }) => (
+			<animated.div
+				key={i}
+				style={{
+					transform: y.interpolate(y => `translate3d(0, ${y}px,0)`),
+					...style,
+					...inheritedStyle
+				}}>
+				{item}
+			</animated.div>
+		))}
+	</Trail>
+)
 
 export const leftToRight = ({
 	children,
@@ -122,5 +150,6 @@ export default {
 	appear,
 	fromBottom,
 	leftToRight,
+	fromTop,
 	fadeIn
 }

@@ -2782,6 +2782,7 @@
 - espace: indépendant . cotisations
   nom: retraite complémentaire
   période: année
+  format: euros
   notes: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
