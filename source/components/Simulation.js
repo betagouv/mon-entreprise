@@ -20,7 +20,9 @@ export default compose(
 			conversationStarted: state.conversationStarted,
 			previousAnswers: state.conversationSteps.foldedSteps,
 			noNextSteps:
-				state.conversationStarted && nextStepsSelector(state).length == 0,
+				state.conversationStarted &&
+				!blockingInputControlsSelector(state) &&
+				nextStepsSelector(state).length == 0,
 			noUserInput: noUserInputSelector(state),
 			blockingInputControls: blockingInputControlsSelector(state),
 			validInputEntered: validInputEnteredSelector(state)
