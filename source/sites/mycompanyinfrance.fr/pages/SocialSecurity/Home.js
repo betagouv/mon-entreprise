@@ -5,6 +5,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
+import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -15,7 +16,6 @@ import Video from './Video'
 
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
-import emoji from 'react-easy-emoji'
 
 type Props = {
 	match: Match,
@@ -57,7 +57,7 @@ class SocialSecurity extends Component<Props, {}> {
 								</T>
 							</p>
 							<h2>Que souhaitez-vous estimer ?</h2>
-							<div>
+							<div className="ui__ button-container">
 								<Link
 									className="ui__ button"
 									to={

@@ -55,21 +55,21 @@ export default compose(
 						<Answers onClose={() => this.setState({ displayAnswers: false })} />
 					)}
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-						{arePreviousAnswers && (
+						{arePreviousAnswers ? (
 							<button
 								className="ui__ small button "
 								onClick={() => this.setState({ displayAnswers: true })}>
 								Voir mes réponses
 							</button>
+						) : (
+							<span />
 						)}
-						{displayConversation ? (
+						{displayConversation && (
 							<button
 								className="ui__ small simple skip button left"
 								onClick={() => resetSimulation()}>
 								⟲ <T>Recommencer</T>
 							</button>
-						) : (
-							<span />
 						)}
 					</div>
 
