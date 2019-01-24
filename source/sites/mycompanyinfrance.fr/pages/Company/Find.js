@@ -104,7 +104,7 @@ class Search extends React.Component<Props, State> {
 								goToNextStep(this.props.history, sitePaths)
 							}}
 							className="ui__ button">
-							<T k="trouver.ok">Confirmer et simuler un salaire</T>
+							<T k="trouver.ok">Confirmer et simuler vos cotisations</T>
 						</button>
 					</>
 				)}

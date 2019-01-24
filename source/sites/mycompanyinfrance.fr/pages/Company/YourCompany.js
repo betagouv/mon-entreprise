@@ -2,11 +2,11 @@
 
 import { React, T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
-import { toPairs, compose } from 'ramda'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose, toPairs } from 'ramda'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import withSitePaths from 'Components/utils/withSitePaths'
 import type { ResetExistingCompanyDetailsAction } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
 
@@ -75,20 +75,23 @@ const YourCompany = ({ companyDetails, resetCompanyDetails, sitePaths }) => (
 		</p>
 		<p>
 			<Link to={sitePaths.sécuritéSociale.index} className="ui__ button">
-				<T>Simuler une embauche</T>
+				<T>Simuler vos cotisations</T>
 			</Link>
 		</p>
 	</>
 )
 
-export default compose(withSitePaths, connect(
-	state => ({
-		companyDetails: state.inFranceApp.existingCompanyDetails
-	}),
-	(dispatch: ResetExistingCompanyDetailsAction => void) => ({
-		resetCompanyDetails: () =>
-			dispatch({
-				type: 'RESET_EXISTING_COMPANY_DETAILS'
-			})
-	})
-))(YourCompany)
+export default compose(
+	withSitePaths,
+	connect(
+		state => ({
+			companyDetails: state.inFranceApp.existingCompanyDetails
+		}),
+		(dispatch: ResetExistingCompanyDetailsAction => void) => ({
+			resetCompanyDetails: () =>
+				dispatch({
+					type: 'RESET_EXISTING_COMPANY_DETAILS'
+				})
+		})
+	)
+)(YourCompany)

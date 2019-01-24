@@ -16,11 +16,9 @@ import {
 	add,
 	contains,
 	difference,
-	dissoc,
 	equals,
 	head,
 	intersection,
-	isEmpty,
 	isNil,
 	mergeDeepWith,
 	pick
@@ -56,21 +54,36 @@ export let ruleDefaultsSelector = createSelector(
 	rules => collectDefaults(rules)
 )
 
-let targetNamesSelector = state => state.simulation?.config.objectifs
+export let targetNamesSelector = state => state.simulation?.config.objectifs
 
 export let situationSelector = createDeepEqualSelector(
 	getFormValues('conversation'),
 	x => x
 )
 
-export let noUserInputSelector = createSelector(
-	[situationSelector],
-	situation => !situation || isEmpty(dissoc('période', situation))
-)
-
 export let formattedSituationSelector = createSelector(
 	[flatRulesSelector, situationSelector],
 	(rules, situation) => formatInputs(rules, nestedSituationToPathMap(situation))
+)
+
+export let noUserInputSelector = createSelector(
+	[
+		formattedSituationSelector,
+		targetNamesSelector,
+		state => state.simulation?.config?.bloquant
+	],
+	(situation, targetNames, bloquant) => {
+		if (!situation) {
+			return true
+		}
+		const situations = Object.keys(situation)
+		const allBlockingAreAnswered =
+			bloquant && bloquant.every(rule => situations.includes(rule))
+		const targetIsAnswered =
+			targetNames &&
+			targetNames.some(target => Object.keys(situation).includes(target))
+		return !(allBlockingAreAnswered || targetIsAnswered)
+	}
 )
 
 let validatedStepsSelector = createSelector(

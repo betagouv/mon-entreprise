@@ -1,4 +1,5 @@
 /* @flow */
+import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 
 export type CompanyLiability = 'LIMITED_LIABILITY' | 'UNLIMITED_LIABILITY'
 
@@ -35,6 +36,7 @@ export type ExistingCompanyDetails = {
 	siret: string,
 	effectif?: number,
 	localisation?: Object,
+	legalStatus?: LegalStatus,
 	apiDetails: { [string]: string }
 }
 export type SaveExistingCompanyDetailsAction = {
@@ -52,6 +54,7 @@ export type ResetCompanyStatusAction = {
 export type ResetExistingCompanyDetailsAction = {
 	type: 'RESET_EXISTING_COMPANY_DETAILS'
 }
+
 export type State = {|
 	+companyLegalStatus: {
 		/* 
@@ -66,7 +69,7 @@ export type State = {|
 		+minorityDirector?: ?boolean
 	},
 	+existingCompanyDetails: ?ExistingCompanyDetails,
-	+companyStatusChoice: ?('SARL' | 'SAS' | 'SASU' | 'SARL' | 'micro-entreprise' | 'EURL' | 'EIRL' | 'EI')
+	+companyStatusChoice: ?LegalStatus
 |}
 export type LegalStatusRequirements = $PropertyType<State, 'companyLegalStatus'>
 export type Action =

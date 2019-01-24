@@ -8,7 +8,8 @@ questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
   - entreprise . charges
-
+bloquant:
+  - entreprise . chiffre d'affaires
 situation:
   période: année
 

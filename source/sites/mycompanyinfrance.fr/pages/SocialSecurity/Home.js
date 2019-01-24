@@ -21,13 +21,14 @@ type Props = {
 	match: Match,
 	location: Location,
 	t: TFunction,
+	showFindYourCompanyLink: boolean,
 	régime: 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null,
 	sitePaths: Object,
 	language: string
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
-		const { t, match, régime, sitePaths } = this.props
+		const { t, match, régime, sitePaths, showFindYourCompanyLink } = this.props
 		return (
 			<>
 				<Helmet>
@@ -37,47 +38,50 @@ class SocialSecurity extends Component<Props, {}> {
 					<meta name="description" content={t('sécu.page.description')} />
 				</Helmet>
 				<ScrollToTop />
-				<Animate.fromBottom>
-					{match.isExact && (
-						<>
-							<T k="sécu.content">
-								<h1>Protection sociale : coûts et avantages</h1>
-								<p>
-									La France a choisi d'offrir à ses citoyens une protection
-									sociale de qualité. Ce système obligatoire repose sur la
-									solidarité et vise à assurer le{' '}
-									<strong>bien-être général de la population</strong>.
-								</p>
-							</T>
-							<Video />
+
+				{match.isExact && (
+					<Animate.fromBottom>
+						<T k="sécu.content">
+							<h1>Protection sociale : coûts et avantages</h1>
 							<p>
-								<T k="sécu.simulation.intro">
-									Le dirigeant de l'entreprise et les salariés n'ont pas la même
-									protection sociale.
-								</T>
+								La France a choisi d'offrir à ses citoyens une protection
+								sociale de qualité. Ce système obligatoire repose sur la
+								solidarité et vise à assurer le{' '}
+								<strong>bien-être général de la population</strong>.
 							</p>
-							<h2>Que souhaitez-vous estimer ?</h2>
-							<div className="ui__ answer-group">
-								<Link
-									className="ui__ button"
-									to={
-										régime
-											? sitePaths.sécuritéSociale[régime]
-											: sitePaths.sécuritéSociale.comparaison
-									}>
-									{emoji('👔 ')}
-									<T>La rémunération du dirigeant</T>
+						</T>
+						{showFindYourCompanyLink && (
+							<p>
+								Si vous possédez déjà une entreprise, nous pouvons
+								<strong>automatiquement personnaliser</strong> vos simulations à
+								votre situation. Il vous suffit juste de{' '}
+								<Link to={sitePaths.entreprise.trouver}>
+									renseigner le nom de votre entreprise.
 								</Link>
-								<Link
-									className="ui__ button"
-									to={sitePaths.sécuritéSociale.salarié}>
-									{emoji('👥 ')}
-									<T>Le salaire d'un employé</T>
-								</Link>
-							</div>
-						</>
-					)}
-				</Animate.fromBottom>
+							</p>
+						)}
+						<br />
+						<h2 style={{ textAlign: 'center' }}>
+							{emoji('🧭')} Que souhaitez vous estimer ?
+						</h2>
+						<Link
+							className="landing__choice "
+							to={
+								régime
+									? sitePaths.sécuritéSociale[régime]
+									: sitePaths.sécuritéSociale.comparaison
+							}>
+							{emoji('👔')} La rémunération du dirigeant
+						</Link>
+						<Link
+							className="landing__choice "
+							to={sitePaths.sécuritéSociale.salarié}>
+							{emoji('👥')} Le salaire d'un employé
+						</Link>
+						<br />
+						<Video />
+					</Animate.fromBottom>
+				)}
 			</>
 		)
 	}
@@ -88,6 +92,10 @@ export default compose(
 	withLanguage,
 	withSitePaths,
 	connect(state => ({
-		régime: régimeSelector(state)
+		régime: régimeSelector(state),
+		showFindYourCompanyLink:
+			!state.inFranceApp.existingCompanyDetails &&
+			!Object.keys(state.inFranceApp.companyLegalStatus).length &&
+			!state.inFranceApp.companyStatusChoice
 	}))
 )(SocialSecurity)

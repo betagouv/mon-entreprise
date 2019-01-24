@@ -6,7 +6,7 @@ import withSimulationConfig from 'Components/simulationConfigs/withSimulationCon
 import { createMarkdownDiv } from 'Engine/marked'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-
+import Animate from 'Ui/animate'
 const SchemeComparaisonPage = () => (
 	<>
 		<Helmet>
@@ -15,14 +15,16 @@ const SchemeComparaisonPage = () => (
 				différents régimes
 			</title>
 		</Helmet>
-		<h1>Comparaison des régimes</h1>
-		<header>{createMarkdownDiv(ComparaisonConfig.titre)}</header>
-		<AlphaWarning />
-		<Simulation
-			showTargetsAnyway
-			targets={<ComparativeTargets />}
-			explication={<p />}
-		/>
+		<Animate.fromBottom>
+			<h1>Comparaison des régimes</h1>
+			<header>{createMarkdownDiv(ComparaisonConfig.titre)}</header>
+			<AlphaWarning />
+			<Simulation
+				showTargetsAnyway
+				targets={<ComparativeTargets />}
+				explication={<p />}
+			/>
+		</Animate.fromBottom>
 	</>
 )
 

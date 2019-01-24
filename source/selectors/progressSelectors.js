@@ -5,6 +5,7 @@ import {
 	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
+import { softCatch } from '../utils'
 
 const STATUS_SELECTION_COEFFICIENT = 0.4
 const NUMBER_MAX_QUESTION_COMPANY = 5
@@ -45,7 +46,8 @@ const START_SIMULATION_COEFFICIENT = 0.15
 const QUESTIONS_COEFFICIENT = 0.85
 const estimationProgressSelector = state => {
 	const userInputProgress = +(
-		!noUserInputSelector(state) && !blockingInputControlsSelector(state)
+		!noUserInputSelector(state) &&
+		!softCatch(blockingInputControlsSelector)(state)
 	)
 	const questionsProgress =
 		(state.conversationStarted &&

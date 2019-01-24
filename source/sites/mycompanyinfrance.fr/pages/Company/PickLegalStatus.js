@@ -35,7 +35,7 @@ const StatusButton = withSitePaths(
 			t: TFunction,
 			sitePaths: Object
 		}) => (
-			<div style={{ textAlign: 'right' }}>
+			<div className='ui__ answer-group'>
 				<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
 					<T>Créer une</T> {t(status)}
 				</Link>
@@ -118,8 +118,7 @@ const SetMainStatus = ({
 						<strong>
 							<StatusTitle status={status} language={language} />
 						</strong>{' '}
-						<StatusDescription status={status} />
-						<br />
+						<p><StatusDescription status={status} /></p>
 						<StatusButton status={status} history={history} />
 					</li>
 				))}

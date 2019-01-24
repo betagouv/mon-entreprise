@@ -2,11 +2,9 @@
 import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
-import emoji from 'react-easy-emoji'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
-import selectors from 'Selectors/progressSelectors'
 import companySvg from '../../images/company.svg'
 import estimateSvg from '../../images/estimate.svg'
 import hiringSvg from '../../images/hiring.svg'
@@ -16,16 +14,6 @@ import SideBar from './SideBar'
 
 import type { TFunction } from 'react-i18next'
 
-const Progress = ({ percent }) => (
-	<div className="progress">
-		<div
-			className="bar"
-			style={{
-				width: `${percent}%`
-			}}
-		/>
-	</div>
-)
 type Props = {
 	companyProgress: number,
 	estimationProgress: number,
@@ -34,14 +22,7 @@ type Props = {
 	companyStatusChoice: string,
 	t: TFunction
 }
-const StepsHeader = ({
-	companyProgress,
-	t,
-	estimationProgress,
-	hiringProgress,
-	sitePaths,
-	companyStatusChoice
-}: Props) => (
+const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 	<SideBar>
 		<div className="navigation__container">
 			<nav className="navigation">
@@ -57,7 +38,6 @@ const StepsHeader = ({
 										style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 										src={companySvg}
 									/>
-									<Progress percent={companyProgress} />
 								</>
 							}>
 							<ul>
@@ -206,15 +186,60 @@ const StepsHeader = ({
 						</NavOpener>
 					</li>
 					<li>
-						<NavLink exact to={sitePaths.sécuritéSociale.index}>
-							<T>Protection sociale</T>
-							<img
-								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
-								src={estimateSvg}
-							/>
-							{estimationProgress === 100 && emoji('🌞')}
-							<Progress percent={estimationProgress} />
-						</NavLink>
+						<NavOpener
+							exact
+							to={sitePaths.sécuritéSociale.index}
+							title={
+								<>
+									<T>Protection sociale</T>
+									<img
+										style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
+										src={estimateSvg}
+									/>
+								</>
+							}>
+							<ul>
+								<li>
+									<NavOpener title={<T>Statut du dirigeant</T>}>
+										<ul>
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale['assimilé-salarié']}>
+													<T>Assimilé salarié</T>
+												</NavLink>
+											</li>
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale.indépendant}>
+													<T>Indépendant</T>
+												</NavLink>
+											</li>
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale['micro-entreprise']}>
+													<T>Micro-entreprise</T>
+												</NavLink>
+											</li>
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale.comparaison}>
+													<T>Comparaison des régimes</T>
+												</NavLink>
+											</li>
+										</ul>
+									</NavOpener>
+								</li>
+								<li>
+									<NavLink exact to={sitePaths.sécuritéSociale.salarié}>
+										<T>Simulateur de coût d'embauche</T>
+									</NavLink>
+								</li>
+							</ul>
+						</NavOpener>
 					</li>
 					<li>
 						<NavLink to={sitePaths.démarcheEmbauche.index}>
@@ -223,8 +248,6 @@ const StepsHeader = ({
 								style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 								src={hiringSvg}
 							/>
-							{hiringProgress === 100 && emoji('🌞')}
-							<Progress percent={hiringProgress} />
 						</NavLink>
 					</li>
 				</ul>
@@ -239,7 +262,6 @@ export default compose(
 	withSitePaths,
 	connect(
 		state => ({
-			...selectors(state),
 			companyStatusChoice: state.inFranceApp.companyStatusChoice
 		}),
 		{}

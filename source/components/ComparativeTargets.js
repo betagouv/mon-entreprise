@@ -4,40 +4,40 @@ import {
 	companyIsMicroenterprise,
 	defineDirectorStatus
 } from 'Actions/companyStatusActions'
-import RuleLink from 'Components/RuleLink'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import RuleLink from 'Components/RuleLink'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
-import {
-	branchAnalyseSelector,
-	noUserInputSelector
-} from 'Selectors/analyseSelectors'
+import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import {
 	règleAvecMontantSelector,
 	règleAvecValeurSelector
 } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import Montant from 'Ui/Montant'
+import { validInputEnteredSelector } from '../selectors/analyseSelectors'
 import './ComparativeTargets.css'
 import SchemeCard from './ui/SchemeCard'
 
 const connectRègles = (situationBranchName: string) =>
 	connect(
-		state => ({
-			revenuDisponible:
-				!noUserInputSelector(state) &&
-				règleAvecMontantSelector(state, {
-					situationBranchName
-				})('revenu disponible'),
-			prélèvements:
-				!noUserInputSelector(state) &&
-				règleAvecValeurSelector(state, {
-					situationBranchName
-				})('ratio de prélèvements')
-		}),
+		state => {
+			return {
+				revenuDisponible:
+					validInputEnteredSelector(state) &&
+					règleAvecMontantSelector(state, {
+						situationBranchName
+					})('revenu disponible'),
+				prélèvements:
+					validInputEnteredSelector(state) &&
+					règleAvecValeurSelector(state, {
+						situationBranchName
+					})('ratio de prélèvements')
+			}
+		},
 		{
 			setSituationBranch,
 			companyIsMicroenterprise,
@@ -184,19 +184,22 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 	}
 )
 
-const PrélèvementNotice = withSitePaths(({ prélèvements, sitePaths }) => (
-	<>
-		soit{' '}
-		<Montant
-			style={{ fontFamily: 'inherit' }}
-			type="percent"
-			numFractionDigit={0}>
-			{prélèvements.valeur}
-		</Montant>{' '}
-		de{' '}
-		<Link to={sitePaths.documentation.index + '/' + prélèvements.lien}>
-			prélèvements
-		</Link>
-	</>
-))
+const PrélèvementNotice = withSitePaths(
+	({ prélèvements, sitePaths }) =>
+		prélèvements && (
+			<>
+				soit{' '}
+				<Montant
+					style={{ fontFamily: 'inherit' }}
+					type="percent"
+					numFractionDigit={0}>
+					{prélèvements.valeur}
+				</Montant>{' '}
+				de{' '}
+				<Link to={sitePaths.documentation.index + '/' + prélèvements.lien}>
+					prélèvements
+				</Link>
+			</>
+		)
+)
 export default ComparativeTargets
