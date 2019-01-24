@@ -90,7 +90,7 @@ const createSituationBrancheSelector = situationSelector =>
 			if (branches) {
 				return branches.map(({ situation: branchSituation }) => ({
 					...situation,
-					...configSituation.situation,
+					...configSituation,
 					...branchSituation
 				}))
 			}

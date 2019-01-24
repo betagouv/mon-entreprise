@@ -65,14 +65,7 @@ class EmbaucheRoute extends Component {
 			<Provider
 				basename="embauche"
 				initialStore={{
-					previousSimulation: retrievePersistedSimulation(),
-					form: {
-						conversation: {
-							values: {
-								période: 'mois'
-							}
-						}
-					}
+					previousSimulation: retrievePersistedSimulation()
 				}}
 				sitePaths={paths}
 				reduxMiddlewares={middlewares}
