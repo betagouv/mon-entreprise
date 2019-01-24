@@ -25,6 +25,13 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	flex-wrap: wrap;
+	margin-bottom: 1rem;
+}
+@media (min-width: 500px) {
+	.ui__.answer-group > :not(:last-child) {
+		margin-right: 1rem;
+	}
 }
 @media (max-width: 500px) {
 	.ui__.answer-group {

@@ -57,7 +57,7 @@ class SocialSecurity extends Component<Props, {}> {
 								</T>
 							</p>
 							<h2>Que souhaitez-vous estimer ?</h2>
-							<div className="ui__ button-container">
+							<div className="ui__ answer-group">
 								<Link
 									className="ui__ button"
 									to={

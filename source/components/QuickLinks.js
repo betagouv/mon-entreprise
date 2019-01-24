@@ -18,7 +18,6 @@ type Props = {
 
 const QuickLinks = ({
 	startConversation,
-	location,
 	validInputEntered,
 	quickLinks,
 	conversationStarted
@@ -34,7 +33,7 @@ const QuickLinks = ({
 			native>
 			{styles => (
 				<animated.div
-					className="ui__ button-container"
+					className="ui__ answer-group"
 					style={{
 						...styles,
 						display: 'flex',

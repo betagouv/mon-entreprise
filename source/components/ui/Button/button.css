@@ -191,17 +191,7 @@
 	padding: 0.4rem 0.8rem;
 	border-radius: 0.3rem;
 }
-.ui__.button-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-end;
-}
-.ui__.button-container > * {
-	margin: 0;
-}
-.ui__.button-container > :not(:last-child) {
-	margin-right: 1rem;
-}
+
 
 @keyframes push-button-down {
 	from {
