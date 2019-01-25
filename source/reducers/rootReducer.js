@@ -156,6 +156,12 @@ const existingCompanyReducer = (state, action) => {
 	}
 	return newState
 }
+
+function rules(state = null, { type, rules }) {
+	if (type === 'SET_RULES') {
+		return rules
+	} else return state
+}
 export default reduceReducers(
 	existingCompanyReducer,
 	storageReducer,
@@ -173,6 +179,7 @@ export default reduceReducers(
 		hiddenControls,
 		conversationStarted,
 		activeTargetInput,
-		inFranceApp: inFranceAppReducer
+		inFranceApp: inFranceAppReducer,
+		rules
 	})
 )

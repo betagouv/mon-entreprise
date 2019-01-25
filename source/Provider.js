@@ -12,6 +12,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { enableBatching } from 'redux-batched-actions'
 import thunk from 'redux-thunk'
 import { getIframeOption, inIframe } from './utils'
+import RulesProvider from './RulesProvider'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -74,21 +75,24 @@ export default class Provider extends PureComponent {
 }`
 		document.body.appendChild(css)
 	}
+
 	render() {
 		return (
 			// If IE < 11 display nothing
 			<ReduxProvider store={this.store}>
-				<ThemeColoursProvider colour={getIframeOption('couleur')}>
-					<TrackerProvider value={this.props.tracker}>
-						<SitePathProvider value={this.props.sitePaths}>
-							<I18nextProvider i18n={i18next}>
-								<Router history={this.history}>
-									<>{this.props.children}</>
-								</Router>
-							</I18nextProvider>
-						</SitePathProvider>
-					</TrackerProvider>
-				</ThemeColoursProvider>
+				<RulesProvider>
+					<ThemeColoursProvider colour={getIframeOption('couleur')}>
+						<TrackerProvider value={this.props.tracker}>
+							<SitePathProvider value={this.props.sitePaths}>
+								<I18nextProvider i18n={i18next}>
+									<Router history={this.history}>
+										<>{this.props.children}</>
+									</Router>
+								</I18nextProvider>
+							</SitePathProvider>
+						</TrackerProvider>
+					</ThemeColoursProvider>
+				</RulesProvider>
 			</ReduxProvider>
 		)
 	}
