@@ -5,7 +5,6 @@ const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 
 module.exports = {
-
 	resolve: {
 		alias: {
 			Engine: path.resolve('source/engine/'),
@@ -25,10 +24,11 @@ module.exports = {
 		infrance: './source/sites/mycompanyinfrance.fr/entry.en.js',
 
 		// To not introduce breaking into the iframe integration, we serve simulateur.js from a 'dist' subdirectory
-		'dist/simulateur': './source/sites/embauche.gouv.fr/iframe-script.js',
+		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js'],
+		publicodes: ['./source/sites/publicodes/entry.js']
 	},
 	output: {
-		path: path.resolve('./dist/'),
+		path: path.resolve('./dist/')
 	},
 	plugins: [
 		new EnvironmentPlugin({
@@ -58,11 +58,18 @@ module.exports = {
 			template: 'index.html',
 			inject: false,
 			chunks: ['mon-entreprise'],
-			title:
-				"Mon-entreprise.fr : Le guide officiel du créateur d'entreprise",
+			title: "Mon-entreprise.fr : Le guide officiel du créateur d'entreprise",
 			description:
 				'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 			filename: 'mon-entreprise.html'
+		}),
+		new HTMLPlugin({
+			template: 'index.html',
+			chunks: ['publi.codes'],
+			title: 'publicodes ✍️',
+			description:
+				'Une base de connaissance ? Du code ? Les deux à la fois. Lancement imminent !',
+			filename: 'publicodes.html'
 		}),
 
 		new CopyPlugin([
@@ -85,7 +92,6 @@ module.exports = {
 				to: 'sitemap.infrance.en.txt'
 			},
 			{
-
 				from: './source/sites/mycompanyinfrance.fr/images',
 				to: 'static-images'
 			}
