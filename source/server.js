@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
 
 app.use(
 	history({
-		rewrites: ['infrance', 'mon-entreprise'].map(rewrite)
+		rewrites: ['infrance', 'mon-entreprise', 'publicodes'].map(rewrite)
 	})
 )
 

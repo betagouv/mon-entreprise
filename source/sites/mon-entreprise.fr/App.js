@@ -55,6 +55,7 @@ const middlewares = [
 	trackSimulatorActions(tracker)
 ]
 
+<<<<<<< HEAD
 function InFranceRoute({ basename, language }) {
 	useEffect(() => {
 		setToSessionStorage('lang', language)
@@ -63,6 +64,10 @@ function InFranceRoute({ basename, language }) {
 	return (
 		<Provider
 			basename={basename}
+				rulesConfig={{
+					repo: 'laem/publi.codes',
+					path: 'syso.yaml'
+				}}
 			language={language}
 			tracker={tracker}
 			sitePaths={paths}

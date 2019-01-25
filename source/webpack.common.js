@@ -22,7 +22,8 @@ module.exports.default = {
 		'mon-entreprise': './source/sites/mon-entreprise.fr/entry.fr.js',
 		infrance: './source/sites/mon-entreprise.fr/entry.en.js',
 		'simulateur-iframe-integration':
-			'./source/sites/mon-entreprise.fr/iframe-integration-script.js'
+			'./source/sites/mon-entreprise.fr/iframe-integration-script.js',
+		publicodes: './source/sites/publicodes/entry.js'
 	},
 	output: {
 		path: path.resolve('./dist/')
@@ -33,6 +34,7 @@ module.exports.default = {
 			FR_SITE: '/mon-entreprise${path}',
 			MASTER: false
 		}),
+		new HTMLPlugin({}),
 
 		new CopyPlugin([
 			'./manifest.webmanifest',
@@ -151,5 +153,16 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		filename: 'mon-entreprise.html',
 		shareImage: 'https://mon-entreprise.fr/images/logo-share.png',
 		logo: 'images/logo.svg'
+	}),
+	new HTMLPlugin({
+		inject: false,
+
+		template: 'index.html',
+		chunks: ['publi.codes'],
+		title: 'publicodes ✍️',
+		description:
+			'Une base de connaissance ? Du code ? Les deux à la fois. Lancement imminent !',
+		filename: 'publicodes.html',
+		logo: 'https://futur.eco/images/logo.png'
 	})
 ]
