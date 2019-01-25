@@ -62,7 +62,7 @@ class InFranceRoute extends Component {
 				basename={this.props.basename}
 				rulesConfig={{
 					repo: 'laem/publi.codes',
-					path: 'syso.yaml'
+					filePath: 'syso.yaml'
 				}}
 				language={this.props.language}
 				tracker={tracker}

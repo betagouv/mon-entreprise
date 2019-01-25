@@ -66,7 +66,7 @@ class EmbaucheRoute extends Component {
 				basename="embauche"
 				rulesConfig={{
 					repo: 'laem/publi.codes',
-					path: 'syso.yaml'
+					filePath: 'syso.yaml'
 				}}
 				initialStore={{
 					previousSimulation: retrievePersistedSimulation()
