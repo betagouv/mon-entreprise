@@ -61,7 +61,7 @@ module.exports = {
 			title:
 				'Mon-entreprise : Un guide pas à pas pour créer une entreprise en France',
 			description:
-				'Du status juridique à premier embauche, vous trouverez ici toutes les ressources nécessaires pour démarrer votre activité.',
+				'Du statut juridique à la première embauche, vous trouverez ici toutes les ressources nécessaires pour démarrer votre activité.',
 			filename: 'mon-entreprise.html'
 		}),
 		
