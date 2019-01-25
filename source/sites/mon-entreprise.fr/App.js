@@ -66,7 +66,7 @@ function InFranceRoute({ basename, language }) {
 			basename={basename}
 				rulesConfig={{
 					repo: 'laem/publi.codes',
-					path: 'syso.yaml'
+					filePath: 'syso.yaml'
 				}}
 			language={language}
 			tracker={tracker}

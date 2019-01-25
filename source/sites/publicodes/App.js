@@ -5,6 +5,7 @@ import 'Ui/index.css'
 import Provider from '../../Provider'
 import Route404 from '../embauche.gouv.fr/pages/Route404'
 import RulesList from '../embauche.gouv.fr/pages/RulesList'
+import sitePaths from './sitePaths'
 
 class App extends Component {
 	render() {
@@ -13,14 +14,14 @@ class App extends Component {
 				basename="publicodes"
 				rulesConfig={{
 					repo: 'laem/publi.codes',
-					path: 'co2.yaml'
+					filePath: 'co2.yaml'
 				}}
+				sitePaths={sitePaths()}
 				initialStore={{ targetNames: ['transport . impact'] }}
 				reduxMiddlewares={[]}>
 				<Switch>
-					<Route exact path="/" component={<div>YAYA</div>} />
 					<Route path="/documentation/:name" component={RulePage} />
-					<Route path="/documentation" component={RulesList} />
+					<Route exact path="/" component={RulesList} />
 					<Route component={Route404} />
 				</Switch>
 			</Provider>
