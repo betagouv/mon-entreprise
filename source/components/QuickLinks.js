@@ -29,7 +29,7 @@ const QuickLinks = ({
 				height: show ? 'auto' : 0,
 				opacity: show ? 1 : 0
 			}}
-			config={{ delay: show ? 5000 : 0 }}
+			config={{ delay: show ? 4000 : 0 }}
 			native>
 			{styles => (
 				<animated.div
