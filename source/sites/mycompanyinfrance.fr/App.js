@@ -6,6 +6,7 @@ import { compose } from 'ramda'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
@@ -82,8 +83,12 @@ let RouterSwitch = compose(withNamespaces())(() => {
 	)
 })
 
-const App = withSitePaths(({ sitePaths }) => (
+const App = compose(
+	withSitePaths,
+	withNamespaces()
+)(({ sitePaths, t }) => (
 	<div className="app-container">
+		<Helmet titleTemplate={`%s | ${t(['siteName', 'mon-entreprise.fr'])}`} />
 		{/* Passing location down to prevent update blocking */}
 		<Navigation location={location} />
 		<div className="app-content">

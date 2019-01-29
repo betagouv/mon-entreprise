@@ -38,8 +38,8 @@ button {
 		flex-wrap: wrap;
 	}
 	.ui__.answer-group > * {
-		flex-grow: 1;
-		flex-shrink: 0;
+		flex: 1;
+		white-space: nowrap;
 		margin: 0.5rem !important;
 	}
 }

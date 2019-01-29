@@ -59,9 +59,9 @@ module.exports = {
 			template: 'index.html',
 			chunks: ['mon-entreprise'],
 			title:
-				'Mon-entreprise : Un guide pas à pas pour créer une entreprise en France',
+				'Mon-entreprise.fr : Le guide officiel pour créer et administrer votre activité',
 			description:
-				'Du statut juridique à la première embauche, vous trouverez ici toutes les ressources nécessaires pour démarrer votre activité.',
+				'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 			filename: 'mon-entreprise.html'
 		}),
 		

@@ -48,7 +48,7 @@ const CreateMyCompany = ({
 				<title>
 					{t(
 						'formeJuridique.page.titre',
-						'Quel statut juridique choisir pour votre entreprise ?'
+						'Quel statut juridique choisir : le guide pas à pas'
 					)}
 				</title>
 				<meta
