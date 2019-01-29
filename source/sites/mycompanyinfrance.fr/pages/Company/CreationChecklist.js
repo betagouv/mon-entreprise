@@ -423,16 +423,18 @@ const CreateCompany = ({
 					navigateur.
 				</T>
 			</p>
-			<p className="ui__ answer-group" style={{justifyContent: 'space-between' }}>
+			<p
+				className="ui__ answer-group"
+				style={{ justifyContent: 'space-between' }}>
 				<button
 					onClick={onStatusChange}
 					className="ui__ simple skip button left">
-					‹ <T k="entreprise.tâches.retour">Choisir un autre statut</T>
+					← <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
 				<Link
 					to={sitePaths.entreprise.après}
 					className="ui__ simple skip button">
-					<T k="entreprise.tâches.ensuite">Après la création</T> ›
+					<T k="entreprise.tâches.ensuite">Après la création</T> →
 				</Link>
 			</p>
 		</Animate.fromBottom>

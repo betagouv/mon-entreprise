@@ -35,7 +35,7 @@ const StatusButton = withSitePaths(
 			t: TFunction,
 			sitePaths: Object
 		}) => (
-			<div className='ui__ answer-group'>
+			<div className="ui__ answer-group">
 				<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
 					<T>Créer une</T> {t(status)}
 				</Link>
@@ -118,7 +118,9 @@ const SetMainStatus = ({
 						<strong>
 							<StatusTitle status={status} language={language} />
 						</strong>{' '}
-						<p><StatusDescription status={status} /></p>
+						<p>
+							<StatusDescription status={status} />
+						</p>
 						<StatusButton status={status} history={history} />
 					</li>
 				))}
@@ -127,12 +129,12 @@ const SetMainStatus = ({
 				<button
 					onClick={goBackToPreviousQuestion}
 					className="ui__ simple skip button left">
-					‹ <T>Précédent</T>
+					← <T>Précédent</T>
 				</button>
 				<Link
 					to={sitePaths.sécuritéSociale.index}
 					className="ui__ simple skip button">
-					<T>Choisir plus tard</T> ›
+					<T>Choisir plus tard</T> →
 				</Link>
 			</div>
 		</>

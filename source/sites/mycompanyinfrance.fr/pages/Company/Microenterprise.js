@@ -62,7 +62,7 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 					ou prévoyez de rester petits (une petite activité)
 				</li>
 				<li>
-					vous souhaitez un minimum de formalités (ou démarches) pour commencer
+					Vous souhaitez un minimum de formalités (ou démarches) pour commencer
 				</li>
 			</ul>
 			<p>

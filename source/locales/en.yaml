@@ -186,24 +186,6 @@ Créer votre entreprise: Create your company
 subtitle: The ultimate how-to guide, from incorporation to hiring.
 Commencer: Get started
 Passer: Skip
-accueil:
-  entreprise:
-    titre: Your new company
-    1: Find the type of company that suits you
-    2: Follow the steps to register your company
-    action: Create your company ›
-  sécu:
-    titre: The French social security
-    1: Discover the French social security system
-    2: Simulate your hiring costs
-    action: Simulate hiring costs and benefits ›
-  embauche:
-    titre: Your first employee
-    1: Discover the procedures to hire in France
-    2: Learn the basics of French labour law
-    action: Discover the hiring process ›
-
-piedDePage:
 
 entreprise:
   existeDéjà: My company is already registered with the French Administration

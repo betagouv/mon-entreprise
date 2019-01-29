@@ -20,7 +20,7 @@ export default connect(
 		<button
 			className="ui__ simple skip button left"
 			onClick={goBackToPreviousQuestion}>
-			‹ <T>Précédent</T>
+			← <T>Précédent</T>
 		</button>
 		{onSkip && <SkipButton onClick={onSkip} />}
 	</div>

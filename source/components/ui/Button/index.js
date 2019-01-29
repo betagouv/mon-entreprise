@@ -7,7 +7,7 @@ export const SkipButton = (props: ElementConfig<'button'>) => (
 	<button {...props} className={'ui__ simple skip button ' + props.className}>
 		{props.children || (
 			<>
-				<T>Passer</T> ›
+				<T>Passer</T> →
 			</>
 		)}
 	</button>
