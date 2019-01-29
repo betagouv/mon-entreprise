@@ -33,19 +33,19 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 			</T>
 		</p>
 		<h2>
-			<T k="après.siret.titre">Le numéro Siret</T>
+			<T k="après.siret.titre">Le numéro SIRET</T>
 		</h2>
 		<p>
 			<T k="après.siret.description">
-				Le numéro Siren <strong>est l'identifiant de votre entreprise</strong>{' '}
-				tandis que le numéro Siret identifie chaque établissement de la même
-				entreprise. Le Siret commence par le Siren, auquel on ajoute le numéro
+				Le numéro SIREN <strong>est l'identifiant de votre entreprise</strong>{' '}
+				tandis que le numéro SIRET identifie chaque établissement de la même
+				entreprise. Le SIRET commence par le SIREN, auquel on ajoute le numéro
 				d'établissement.
 			</T>
 			<br />
 			<img
 				src={siret}
-				alt="Siret and siren number"
+				alt="SIRET and SIREN number"
 				style={{ maxWidth: '100%' }}
 			/>
 		</p>
