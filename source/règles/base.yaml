@@ -966,7 +966,7 @@
 - espace: contrat salarié . salaire
   nom: net après impôt
   titre: Salaire net après impôt
-  résumé: Touché par le salarié
+  résumé: Touché sur le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   format: euros
@@ -1903,7 +1903,7 @@
         alors: en alsace moselle
       - sinon: en france
   contrôles:
-    - si:  complémentaire santé . forfait [mensuel] < 15
+    - si: complémentaire santé . forfait [mensuel] < 15
       niveau: avertissement
 
 - espace: contrat salarié . complémentaire santé . forfait
@@ -2554,7 +2554,7 @@
   format: euros
   résumé: Après déductions des cotisations et de l'impôt
   période: flexible
-  question: Quel revenu voulez-vous toucher ? 
+  question: Quel revenu voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de cotisations et d'impôts. 
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
@@ -2566,37 +2566,37 @@
   résumé: Le montant des ventes réalisées
   période: flexible
   format: euros
-  formule: 
-    variations: 
-      - si: micro entreprise 
+  formule:
+    variations:
+      - si: micro entreprise
         alors:
-          inversion: 
+          inversion:
             avec:
               - revenu disponible
       - sinon: rémunération totale du dirigeant + charges
 
-- espace: entreprise 
+- espace: entreprise
   nom: rémunération totale du dirigeant
   description: C'est la rémunération "super-brute" du dirigeant, qui inclut toutes les cotisations sociales à payer. C'est aussi la valeur monétaire du travail du dirigeant.
   période: flexible
-  formule: 
-    somme: 
+  formule:
+    somme:
       - contrat salarié . rémunération . total
       - indépendant . revenu brut
       - micro entreprise . base des cotisations
 
-- espace: entreprise 
+- espace: entreprise
   nom: charges
   résumé: Toutes les dépenses nécessaire à l'activité de l'entreprise
   question: Quelles sont les charges H.T. de l'entreprise (hors rémunération) ?
-  description: | 
-    
+  description: |
+
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunérations. Pour les sociétés et entreprises hors micro-entreprise, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la micro-entreprise, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
-    
+
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
 
     Par exemple, les charges peuvent être : 
-    
+
     - achat de matières premières pour une activité de production
     - achat de produits en vue de leur revente, pour une activité commerciale 
     - frais de repas : le supplément par rapport au coût d'un repas à domicile
@@ -2605,19 +2605,18 @@
 
     A l'inverse, un téléphone portable à moins de 500€ peut être assimilé à une charge sans immobilisation.
 
-  références: 
-    Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973 
+  références:
+    Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
 
   période: flexible
   par défaut: 0
   format: euros
 
-- espace: entreprise 
+- espace: entreprise
   nom: charges non déductibles
   applicable si: micro entreprise
   formule: charges
   période: flexible
-
 
 - espace: indépendant
   nom: revenu net de cotisations
@@ -3066,7 +3065,7 @@
     La cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.
 
     Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
-    
+
     Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
 
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
@@ -3076,15 +3075,13 @@
     service-public.fr (AT): https://www.service-public.fr/particuliers/vosdroits/F31881
     service-public.fr (MP): https://www.service-public.fr/particuliers/vosdroits/F31880
 
-
-
 - nom: formation
   espace: protection sociale
   icônes: 👩‍🎓
   description courte: Donne aux employés l'accès à la formation professionnelle.
   description: |
     La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
-    
+
     Pour avoir un compte rendu personnalisé de vos droits à la formation, rendez vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr)
 
 - nom: autres
@@ -3093,7 +3090,7 @@
   description courte: Autres contributions au système social.
   description: |
     Toutes les contributions transverses au système social. 
-  
+
     On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette social) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
 
 - nom: transport
@@ -3102,7 +3099,7 @@
   description courte: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
   description: |
     Cette contribution est reversée intégralement à l'[autorité organisatrice de la mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9) de la zone ou est implantée l'entreprise. Celle-ci peut ensuite l'utiliser pour subventionner les transports en commun existants ou pour développer de nouvelles infrastructures de transport (tramway, métro, bus...).
-    
+
     ## Le versement transport en quelques chiffres 
     - **45% de réduction** sur le coût des transports en communs dans les 12 plus grandes agglomérations de France. 
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
@@ -3116,8 +3113,7 @@
     Attention, pour les micro-entreprise, nous incluons les charges dans ce ratio de prélèvements, car les charges ne sont pas déductibles. Cela permet de comparer le ratio de prélèvements entre les différents régimes.
   formule: 1 - ratio de revenu
   période: flexible
- 
+
 - nom: ratio de revenu
   formule: revenu disponible / entreprise . rémunération totale du dirigeant
   période: flexible
- 
