@@ -25,6 +25,7 @@ import {
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
+import { softCatch } from '../utils'
 
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
@@ -253,17 +254,16 @@ let currentMissingVariablesByTargetSelector = createSelector(
 
 export let missingVariablesByTargetSelector = createSelector(
 	[initialAnalysisSelector, currentMissingVariablesByTargetSelector],
-	(initialAnalysis, currentMissingVariablesByTarget) => ({
+	softCatch((initialAnalysis, currentMissingVariablesByTarget) => ({
 		initial: collectMissingVariablesByTarget(initialAnalysis.targets),
 		current: currentMissingVariablesByTarget
-	})
+	}))
 )
 
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulation?.config.questions,
-		state => state.simulation?.config.objectifs
+		state => state.simulation?.config.questions
 	],
 	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)
