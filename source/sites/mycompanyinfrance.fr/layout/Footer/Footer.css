@@ -18,6 +18,7 @@
 #footerIcons {
 	display: flex;
 	justify-content: space-around;
+	margin-bottom: 1em;
 }
 #footerIcons a::after {
 	display: none;
