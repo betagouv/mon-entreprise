@@ -17,7 +17,7 @@ const PrivacyContent = ({ language }) => (
 				du site, que nous utilisons dans le seul but d'améliorer le service,
 				conformément aux{' '}
 				<a href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience">
-					recommandations de la cnil
+					recommandations de la CNIL
 				</a>{' '}
 				et à la directive RGPD.
 			</p>
