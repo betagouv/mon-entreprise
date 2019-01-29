@@ -159,7 +159,7 @@ const CreateCompany = ({
 									<strong>L'adresse</strong> est l'espace physique où votre
 									entreprise sera incorporée. Dans certains lieux et certaines
 									situations, vous pouvez bénéficier d'un financement public
-									important (exonération de charges, de taxes, etc.).
+									important (exonération de charges, de taxes, etc.).{' '}
 									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
 										Plus d'infos
 									</a>

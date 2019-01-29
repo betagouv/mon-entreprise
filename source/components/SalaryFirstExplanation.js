@@ -10,7 +10,7 @@ export default class SalaryFirstExplanation extends Component {
 		return (
 			<>
 				<h2>
-					<Trans>A quoi servent mes cotisations ?</Trans>
+					<Trans>À quoi servent mes cotisations ?</Trans>
 				</h2>
 				<Distribution />
 
