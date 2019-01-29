@@ -61,7 +61,7 @@ class SocialSecurity extends Component<Props, {}> {
 							</p>
 						)}
 						<br />
-						<h2 style={{ textAlign: 'center' }}>
+						<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
 							{emoji('🧭')} Que souhaitez vous estimer ?
 						</h2>
 						<Link

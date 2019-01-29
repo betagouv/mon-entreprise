@@ -160,7 +160,7 @@
 	opacity: 0.6;
 	border: none;
 	padding: 0;
-
+	will-change: transform;
 	color: inherit;
 }
 
