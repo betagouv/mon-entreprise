@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
@@ -54,11 +55,12 @@ export default compose(
 )(
 	class TargetSelection extends Component {
 		render() {
-			let { colours } = this.props
+			let { colours, analysis } = this.props
+
 			return (
 				<div id="targetSelection">
 					<QuickLinks />
-					{/* <Controls {...{ controls }} /> */}
+					<Controls controls={analysis.controls} />
 					<section
 						className="ui__ plain card"
 						style={{

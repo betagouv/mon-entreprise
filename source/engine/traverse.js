@@ -102,7 +102,7 @@ export let treatRuleRoot = (rules, rule) => {
 			{
 				parentDependency,
 				'non applicable si': notApplicable,
-				'applicable si': applicable
+				'applicable si': applicable,
 			} = evaluatedAttributes,
 			isApplicable =
 				val(parentDependency) === false
@@ -137,6 +137,7 @@ export let treatRuleRoot = (rules, rule) => {
 				missingVariables: formulaMissingVariables,
 				nodeValue
 			} = evaluatedFormula
+
 
 		let condMissing =
 				isApplicable === false
@@ -240,7 +241,7 @@ export let treatRuleRoot = (rules, rule) => {
 	let controls =
 		rule['contrôles'] &&
 		rule['contrôles'].map(control => {
-			let testExpression = treatString(rules, rule)(control.si)
+			let testExpression = treat(rules, rule)(control.si)
 			if (!testExpression.explanation)
 				throw new Error(
 					'Ce contrôle ne semble pas être compris :' + control['si']

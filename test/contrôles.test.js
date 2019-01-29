@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { enrichRule } from '../source/engine/rules'
-import { parseAll, analyseMany } from '../source/engine/traverse'
+import { analyseMany, parseAll } from '../source/engine/traverse'
 
 describe('controls', function() {
 	let rawRules = [
@@ -9,6 +9,7 @@ describe('controls', function() {
 				formule: 'brut - cotisation'
 			},
 			{ nom: 'cotisation', formule: 235 },
+			{ nom: 'résident en France', formule: 'oui' },
 			{
 				nom: 'brut',
 				format: 'euro',
@@ -25,7 +26,6 @@ describe('controls', function() {
 						niveau: 'bloquant',
 						message: 'Toujours pas, nous avons des standards en France !'
 					},
-
 					{
 						si: 'brut < 1500',
 						niveau: 'avertissement',
@@ -35,6 +35,13 @@ describe('controls', function() {
 						si: 'brut > 100000',
 						niveau: 'information',
 						message: 'Oulah ! Oulah !'
+					},
+					{
+						si: {
+							'toutes ces conditions': ['brut > 1000000', 'résident en France']
+						},
+						niveau: 'information',
+						message: 'Vous êtes un contribuable hors-pair !'
 					}
 				]
 			}
@@ -66,5 +73,15 @@ describe('controls', function() {
 			)
 
 		expect(blockingInputControls).to.be.undefined
+	})
+	it('Should allow imbricated conditions', function() {
+		let situationGate = dottedName => ({ brut: 2000000 }[dottedName]),
+			{ controls } = analyseMany(parsedRules, ['net'])(situationGate)
+
+		expect(
+			controls.find(
+				({ message }) => message === 'Vous êtes un contribuable hors-pair !'
+			)
+		).to.exist
 	})
 })

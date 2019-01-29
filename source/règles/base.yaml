@@ -732,8 +732,13 @@
   contrôles:
     - si: brut de base [mensuel] < 50
       niveau: bloquant
-    - si: brut de base [mensuel] < SMIC [mensuel]
+    - si: 
+        toutes ces conditions:
+          - brut de base [mensuel] < SMIC [mensuel]
+          - ≠ assimilé salarié
       niveau: avertissement
+      message: |
+        Le salaire saisi est inférieur au SMIC.
       solution:
         cible: contrat salarié . temps partiel
         texte: Est-ce un temps partiel ?

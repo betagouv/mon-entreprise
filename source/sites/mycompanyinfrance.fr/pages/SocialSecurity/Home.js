@@ -52,7 +52,7 @@ class SocialSecurity extends Component<Props, {}> {
 						</T>
 						{showFindYourCompanyLink && (
 							<p>
-								Si vous possédez déjà une entreprise, nous pouvons
+								Si vous possédez déjà une entreprise, nous pouvons{' '}
 								<strong>automatiquement personnaliser</strong> vos simulations à
 								votre situation. Il vous suffit juste de{' '}
 								<Link to={sitePaths.entreprise.trouver}>

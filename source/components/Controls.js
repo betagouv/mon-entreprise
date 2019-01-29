@@ -32,20 +32,19 @@ function Controls({
 							style={{ background: colours.lighterColour }}>
 							{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
 							<div className="controlText">
-								{message && createMarkdownDiv(message)}
-								{!message && (
+								{message ? (
+									createMarkdownDiv(message)
+								) : (
 									<span id="controlExplanation">{makeJsx(evaluated)}</span>
 								)}
+								&nbsp;
 								{solution && !foldedSteps.includes(solution.cible) && (
-									<div id="solution">
-										{/*emoji('💡')*/}
-										<button
-											key={solution.cible}
-											className="ui__ link-button"
-											onClick={() => startConversation(solution.cible)}>
-											{solution.texte}
-										</button>
-									</div>
+									<button
+										key={solution.cible}
+										className="ui__ link-button"
+										onClick={() => startConversation(solution.cible)}>
+										{solution.texte}
+									</button>
 								)}
 							</div>
 							<button
