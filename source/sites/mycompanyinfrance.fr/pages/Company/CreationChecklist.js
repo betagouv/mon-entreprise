@@ -432,7 +432,7 @@ const CreateCompany = ({
 				<Link
 					to={sitePaths.entreprise.après}
 					className="ui__ simple skip button">
-					<T k="entreprise.tâches.ensuite">Après la création</T>›
+					<T k="entreprise.tâches.ensuite">Après la création</T> ›
 				</Link>
 			</p>
 		</Animate.fromBottom>
