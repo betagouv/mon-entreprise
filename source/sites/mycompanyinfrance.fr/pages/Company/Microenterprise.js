@@ -46,8 +46,8 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 				La micro-entreprise est un régime simplifié de déclaration et de
 				paiement, pour lequel l'impôt et les cotisations sociales sont basés sur
 				le chiffre d'affaires réalisé chaque mois. Disponible pour les
-				entreprises dont le chiffre d'affaires annuel ne dépasse pas 70.000 €
-				pour les prestataires de services ou 170.000 € lorsque l'activité
+				entreprises dont le chiffre d'affaires annuel ne dépasse pas 70 000 €
+				pour les prestataires de services ou 170 000 € lorsque l'activité
 				principale est la vente de biens, la restauration ou la fourniture de
 				logements.
 			</p>
@@ -58,9 +58,12 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 					importantes pour mener votre activité
 				</li>
 				<li>
-				Vous voulez tester la viabilité de votre modèle (activité ou projet), ou prévoyez de rester petits (une petite activité)
+					Vous voulez tester la viabilité de votre modèle (activité ou projet),
+					ou prévoyez de rester petits (une petite activité)
 				</li>
-				<li>vous souhaitez un minimum de formalités (ou démarches) pour commencer</li>
+				<li>
+					vous souhaitez un minimum de formalités (ou démarches) pour commencer
+				</li>
 			</ul>
 			<p>
 				<strong>Note</strong> : Certaines activités sont exclues de ce statut (
@@ -96,7 +99,7 @@ const Microenterprise = ({ companyIsMicroenterprise, t }: Props) => (
 				<T>Entreprise Individuelle</T>
 			</button>
 		</div>
-		<CompanyStatusNavigation onSkip={() => companyIsMicroenterprise(null)}/>
+		<CompanyStatusNavigation onSkip={() => companyIsMicroenterprise(null)} />
 	</>
 )
 
