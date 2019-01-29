@@ -44,7 +44,7 @@ export default compose(
 				<img alt="logo marianne" src={marianneSvg} />
 				<img alt="logo urssaf" src={urssafSvg} />
 			</div>
-			<h2 style={{ textAlign: 'center' }}>
+			<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
 				{emoji('🧭')} Que souhaitez vous faire ?
 			</h2>
 			<Animate.fromBottom>

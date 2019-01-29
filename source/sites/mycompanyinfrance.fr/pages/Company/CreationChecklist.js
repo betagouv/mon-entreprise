@@ -364,7 +364,7 @@ const CreateCompany = ({
 			</Checklist>
 			<h2 style={{ fontSize: '1.5rem' }}>
 				<T k="entreprise.tâches.titre2">
-					Recommandées avant le début de l'activité
+					Recommandé avant le début de l'activité
 				</T>
 			</h2>
 
@@ -423,7 +423,7 @@ const CreateCompany = ({
 					navigateur.
 				</T>
 			</p>
-			<p style={{ display: 'flex', justifyContent: 'space-between' }}>
+			<p className="ui__ answer-group" style={{justifyContent: 'space-between' }}>
 				<button
 					onClick={onStatusChange}
 					className="ui__ simple skip button left">

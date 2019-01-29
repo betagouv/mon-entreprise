@@ -26,7 +26,7 @@ button {
 	align-items: center;
 	justify-content: flex-end;
 	flex-wrap: wrap;
-	margin-bottom: 1rem;
+	margin: 1rem 0;
 }
 @media (min-width: 500px) {
 	.ui__.answer-group > :not(:last-child) {
