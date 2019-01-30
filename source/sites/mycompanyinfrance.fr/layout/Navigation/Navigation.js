@@ -92,10 +92,10 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 															<NavLink
 																to={
 																	sitePaths.entreprise.statutJuridique
-																		.microEnterprise
+																		.autoEntrepreneur
 																}>
-																<T k="microentreprise.titre">
-																	Micro-entreprise ou EI
+																<T k="autoentrepreneur.titre">
+																	Auto-entrepreneur ou EI
 																</T>
 															</NavLink>
 														</li>
@@ -121,9 +121,9 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 														<li>
 															<NavLink
 																to={sitePaths.entreprise.créer(
-																	'micro-entreprise'
+																	'auto-entrepreneur'
 																)}>
-																<T>Micro-entreprise</T>
+																<T>Auto-entrepreneur</T>
 															</NavLink>
 														</li>
 														<li>
@@ -219,8 +219,8 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 											<li>
 												<NavLink
 													exact
-													to={sitePaths.sécuritéSociale['micro-entreprise']}>
-													<T>Micro-entreprise</T>
+													to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
+													<T>Auto-entrepreneur</T>
 												</NavLink>
 											</li>
 											<li>

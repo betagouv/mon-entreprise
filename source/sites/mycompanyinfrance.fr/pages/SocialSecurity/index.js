@@ -3,9 +3,9 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import AssimiléSalarié from './AssimiléSalarié'
+import AutoEntrepreneur from './AutoEntrepreneur'
 import Home from './Home'
 import Indépendant from './Indépendant'
-import MicroEntreprise from './MicroEntreprise'
 import Salarié from './Salarié'
 import SchemeComparaison from './SchemeComparaison'
 
@@ -28,8 +28,8 @@ const SocialSecurityRoutes = ({ sitePaths }) => (
 				component={Indépendant}
 			/>
 			<Route
-				path={sitePaths.sécuritéSociale['micro-entreprise']}
-				component={MicroEntreprise}
+				path={sitePaths.sécuritéSociale['auto-entrepreneur']}
+				component={AutoEntrepreneur}
 			/>
 		</Switch>
 	</>

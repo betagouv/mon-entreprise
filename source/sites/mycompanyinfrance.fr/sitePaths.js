@@ -12,8 +12,8 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'SARL',
 	'SASU',
 	'SNC',
-	'micro-entreprise',
-	'micro-entreprise-EIRL',
+	'auto-entrepreneur',
+	'auto-entrepreneur-EIRL',
 	'SA'
 ]
 
@@ -33,10 +33,28 @@ const constructLocalizedSitePath = language => {
 				'/votre-entreprise'
 			),
 			créer: (companyStatus: LegalStatus | ':status') =>
-				t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
-					companyStatus:
-						companyStatus === ':status' ? ':status' : t(companyStatus)
-				}),
+				companyStatus === ':status'
+					? `(${t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
+							companyStatus: ':status'
+					  })}|${t(
+							'path.entreprise.devenirAutoEntrepreneur',
+							'/devenir-{{autoEntrepreneur}}',
+							{
+								autoEntrepreneur: ':status'
+							}
+					  )})`
+					: companyStatus.includes('auto-entrepreneur')
+					? t(
+							'path.entreprise.devenirAutoEntrepreneur',
+							'/devenir-{{autoEntrepreneur}}',
+							{
+								autoEntrepreneur: companyStatus
+							}
+					  )
+					: t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
+							companyStatus: ':status'
+					  }),
+
 			trouver: t('path.entreprise.trouver', '/retrouver-votre-entreprise'),
 			après: t('path.entreprise.après', '/après-la-création'),
 			statutJuridique: {
@@ -50,9 +68,9 @@ const constructLocalizedSitePath = language => {
 					'path.entreprise.statutJuridique.statutDirigeant',
 					'/statut-du-dirigeant'
 				),
-				microEnterprise: t(
-					'path.entreprise.statutJuridique.microEntreprise',
-					'/micro-entreprise-ou-entreprise-individuelle'
+				autoEntrepreneur: t(
+					'path.entreprise.statutJuridique.autoEntrepreneur',
+					'/auto-entrepreneur-ou-entreprise-individuelle'
 				),
 				multipleAssociates: t(
 					'path.entreprise.statutJuridique.nombreAssociés',
@@ -71,13 +89,13 @@ const constructLocalizedSitePath = language => {
 				'/assimilé-salarié'
 			),
 			indépendant: t('path.sécuritéSociale.indépendant', '/indépendant'),
-			'micro-entreprise': t(
-				'path.sécuritéSociale.micro-entreprise',
-				'/micro-entreprise'
+			'auto-entrepreneur': t(
+				'path.sécuritéSociale.auto-entrepreneur',
+				'/auto-entrepreneur'
 			),
 			comparaison: t(
 				'path.sécuritéSociale.comparaison',
-				'/comparaison-assimilé-salarié-indépendant-et-micro-entreprise'
+				'/comparaison-assimilé-salarié-indépendant-et-auto-entrepreneur'
 			),
 			salarié: t('path.sécuritéSociale.salarié', '/salarié')
 		},

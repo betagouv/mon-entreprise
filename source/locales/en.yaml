@@ -191,10 +191,12 @@ entreprise:
   existeDéjà: My company is already registered with the French Administration
   tâches:
     page:
-      description: A complete todo list to help you create a {{companyStatus}} with the French administration.`
-      titre: Create a {{companyStatus}} in France
-    titre: Create a <1>{{companyStatus}}</1>
-    titre1: Needed for registration
+      autoEntrepreneur:
+        description: A complete todo list to help you become {{autoEntrepreneur}} in France.`
+        titre: How to become {{autoEntrepreneur}}
+      entreprise:
+        description: A complete todo list to help you create a {{companyStatus}} with the French administration.`
+        titre: Create a {{companyStatus}} in France
     nom:
       titre: Find a corporate name
       description: |
@@ -292,12 +294,12 @@ formeJuridique:
   SASU: Composed of only one partner. The financial responsibility is limited to the amount of his contribution to the company's capital. The minimum capital is freely fixed in the Articles of Association.
   SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
   SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
-  micro: The micro-enterprise is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
-  micro-EIRL: The EIRL micro-enterprise is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  micro: The auto-entrepreneur is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  micro-EIRL: The EIRL auto-entrepreneur is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
 
 Votre forme juridique: Your legal status
 Créer une: Create a
-
+Devenir: Become
 Choisir la forme juridique: Choose your legal status
 Plus tard: Do it later
 
@@ -317,17 +319,17 @@ responsabilité:
   bouton2: Unlimited liability
   bouton3: Limited liability
 
-microentreprise:
+autoentrepreneur:
   page:
-    titre: Difference between microenterprise or Individual Business in France
+    titre: Auto-entrepreneur
     description: |
-      The micro-entreprise is a simplified scheme of declaration and payment,
+      The auto-entrepreneur benefits from a simplified scheme of declaration and payment,
       for which tax and social contributions are based on the turnover achieved
       each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
-  titre: Microenterprise or Individual Business
+  titre: Auto-entrepeneur
   description: >
     <0>
-      The micro-entreprise is a simplified scheme of declaration and payment, for which tax and social contributions 
+      The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions 
       are based on the turnover achieved each month. Available for companies whose annual 
       turnover does not exceed €70,000 for services providers or €170,000 when the main activity 
       is the sale of goods, catering or the provision of housing.
@@ -337,7 +339,7 @@ microentreprise:
     </1>
     <2>
       <0>You do not need a lot of capital and important expenses to run your activity</0>
-      <1>You want to test the viability or plan it to be small</1>
+      <1>You want to test the viability of your business</1>
       <2>You want the minimum amount of paperwork to get started</2>
     </2>
     <3>
@@ -492,6 +494,7 @@ path:
     index: '/company'
     votreEntreprise: '/my-company'
     créer: '/create-a-{{companyStatus}}'
+    autoEntrepreneur: '/become-{{companyStatus}}'
     trouver: '/find'
     après: '/after-registration'
     statutJuridique:
@@ -501,7 +504,7 @@ path:
       responsabilité: '/liability'
       statutDirigeant: '/directors-status'
       nombreAssociés: '/multiple-associates'
-      microEntreprise: '/micro-entreprise-or-individual-business'
+      autoEntrepreneur: '/auto-entrepreneur'
   sécuritéSociale:
     index: '/social-security'
     assimilé-salarié: '/assimilated-salaried'
@@ -509,9 +512,8 @@ path:
   démarcheEmbauche:
     index: '/hiring-process'
 
-Micro-entreprise: Micro-enterprise
-Micro-entreprise en EIRL: EIRL micro-enterprise
-micro-entreprise-EIRL: EIRL-micro-enterprise
+Auto-entrepreneur en EIRL: auto-entrepreneur with EIRL option
+auto-entrepreneur-EIRL: auto-entrepreneur-with-EIRL-option
 privacyContent: >
   <0>$t(Vie privée)</0>
   <1>
@@ -542,8 +544,8 @@ Plusieurs associés: Several partners
 Un seul associé: Only one partner
 Responsabilité limitée: Limited liability
 Sans responsabilité limitée: Without limited liability
-Avec option micro-entrepreneur: With micro-entrepreneur option
-Pas de régime de micro-entreprise: No microenterprise scheme
+Auto-entrepreneur: Auto-entrepreneur
+Pas en auto-entrepreneur: Not in auto-entrepreneur
 
 Précédent: Previous
 Choisir plus tard: Choose later

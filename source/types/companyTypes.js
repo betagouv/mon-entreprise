@@ -20,9 +20,9 @@ export type CompanyHasMultipleAssociatesAction = {
 	multipleAssociates: ?boolean
 }
 
-export type CompanyIsMicroenterpriseAction = {
+export type IsAutoentrepreneurAction = {
 	type: 'COMPANY_IS_MICROENTERPRISE',
-	microEnterprise: ?boolean
+	autoEntrepreneur: ?boolean
 }
 
 export type ChangeChecklistItemAction = {
@@ -65,7 +65,7 @@ export type State = {|
 		+liability?: ?CompanyLiability,
 		+directorStatus?: ?DirectorStatus,
 		+multipleAssociates?: ?boolean,
-		+microEnterprise?: ?boolean,
+		+autoEntrepreneur?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
 	+existingCompanyDetails: ?ExistingCompanyDetails,
@@ -75,7 +75,7 @@ export type LegalStatusRequirements = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
 	| ChooseCompanyLiabilityAction
 	| DefineDirectorStatusAction
-	| CompanyIsMicroenterpriseAction
+	| IsAutoentrepreneurAction
 	| CompanyHasMultipleAssociatesAction
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction

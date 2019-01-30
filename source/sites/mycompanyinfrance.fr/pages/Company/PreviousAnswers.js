@@ -24,12 +24,8 @@ const requirementToText = (key, value) => {
 			) : (
 				<T>Assimilé salarié</T>
 			)
-		case 'microEnterprise':
-			return value ? (
-				<T>Avec option micro-entrepreneur</T>
-			) : (
-				<T>Pas de régime de micro-entreprise</T>
-			)
+		case 'autoEntrepreneur':
+			return value ? <T>Auto-entrepreneur</T> : <T>Pas en auto-entrepreneur</T>
 		case 'minorityDirector':
 			return value ? <T>Gérant minoritaire</T> : <T>Gérant majoritaire</T>
 	}

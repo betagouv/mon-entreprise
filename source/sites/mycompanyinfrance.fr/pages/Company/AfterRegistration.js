@@ -59,7 +59,7 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 				la nomenclature nationale d'activités françaises (code « NAF »).{' '}
 				<span
 					style={
-						companyStatusChoice.match(/micro-entreprise|EI/)
+						companyStatusChoice.match(/auto-entrepreneur|EI/)
 							? { display: 'none' }
 							: {}
 					}>
@@ -69,7 +69,7 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 				</span>
 			</T>
 		</p>
-		{!companyStatusChoice.includes('micro-entreprise') && (
+		{!companyStatusChoice.includes('auto-entrepreneur') && (
 			<>
 				<h2>
 					<T k="après.kbis.titre">Le Kbis</T>

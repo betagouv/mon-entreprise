@@ -21,46 +21,46 @@ import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 const LEGAL_STATUS_DETAILS: {
 	[status: string]: Array<LegalStatusRequirements> | LegalStatusRequirements
 } = {
-	'micro-entreprise': {
+	'auto-entrepreneur': {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: true
+		autoEntrepreneur: true
 	},
 	EIRL: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
-		microEnterprise: false,
+		autoEntrepreneur: false,
 		minorityDirector: false
 	},
-	'micro-entreprise-EIRL': {
+	'auto-entrepreneur-EIRL': {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
 		minorityDirector: false,
-		microEnterprise: true
+		autoEntrepreneur: true
 	},
 	EI: {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SASU: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SAS: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SARL: [
 		{
@@ -68,14 +68,14 @@ const LEGAL_STATUS_DETAILS: {
 			directorStatus: 'SELF_EMPLOYED',
 			multipleAssociates: true,
 			minorityDirector: false,
-			microEnterprise: false
+			autoEntrepreneur: false
 		},
 		{
 			liability: 'LIMITED_LIABILITY',
 			directorStatus: 'SALARIED',
 			multipleAssociates: true,
 			minorityDirector: true,
-			microEnterprise: false
+			autoEntrepreneur: false
 		}
 	],
 	EURL: {
@@ -83,19 +83,20 @@ const LEGAL_STATUS_DETAILS: {
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SA: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SNC: {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: true,
-		microEnterprise: false
+		minorityDirector: false,
+		autoEntrepreneur: false
 	}
 }
 
@@ -192,12 +193,12 @@ export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
 
 export const régimeSelector = (state: {
 	inFranceApp: State
-}): 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null => {
+}): 'indépendant' | 'assimilé-salarié' | 'auto-entrepreneur' | null => {
 	const companyStatusChoice = state.inFranceApp.companyStatusChoice
 	const companyLegalStatus = state.inFranceApp.companyLegalStatus
 	if (!companyStatusChoice) {
-		if (companyLegalStatus.microEnterprise === true) {
-			return 'micro-entreprise'
+		if (companyLegalStatus.autoEntrepreneur === true) {
+			return 'auto-entrepreneur'
 		}
 		if (companyLegalStatus.directorStatus === 'SALARIED') {
 			return 'assimilé-salarié'
@@ -207,8 +208,8 @@ export const régimeSelector = (state: {
 		}
 		return null
 	}
-	if (companyStatusChoice.includes('micro-entreprise')) {
-		return 'micro-entreprise'
+	if (companyStatusChoice.includes('auto-entrepreneur')) {
+		return 'auto-entrepreneur'
 	}
 	if (
 		companyStatusChoice.includes('EI') ||

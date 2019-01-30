@@ -4,7 +4,7 @@ import type {
 	CompanyLiability,
 	CompanyHasMultipleAssociatesAction,
 	DirectorStatus,
-	CompanyIsMicroenterpriseAction,
+	IsAutoentrepreneurAction,
 	ResetCompanyStatusAction,
 	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
@@ -44,10 +44,10 @@ export const companyHasMultipleAssociates = thenGoToNextQuestion(
 	})
 )
 
-export const companyIsMicroenterprise = thenGoToNextQuestion(
-	(microEnterprise: ?boolean): CompanyIsMicroenterpriseAction => ({
+export const isAutoentrepreneur = thenGoToNextQuestion(
+	(autoEntrepreneur: ?boolean): IsAutoentrepreneurAction => ({
 		type: 'COMPANY_IS_MICROENTERPRISE',
-		microEnterprise
+		autoEntrepreneur
 	})
 )
 

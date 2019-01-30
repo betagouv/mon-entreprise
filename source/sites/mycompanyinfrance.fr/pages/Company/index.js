@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router'
 import * as Animate from 'Ui/animate'
 import AfterRegistration from './AfterRegistration'
+import AutoEntrepreneur from './AutoEntrepreneur'
 import CreationChecklist from './CreationChecklist'
 import DefineDirectorStatus from './DirectorStatus'
 import Find from './Find'
 import Home from './Home'
 import Liability from './Liability'
-import Microenterprise from './Microenterprise'
 import MinorityDirector from './MinorityDirector'
 import NumberOfAssociate from './NumberOfAssociate'
 import PickLegalStatus from './PickLegalStatus'
@@ -84,8 +84,8 @@ const CreateMyCompany = ({
 						component={withAnimation(DefineDirectorStatus)}
 					/>
 					<Route
-						path={sitePaths.entreprise.statutJuridique.microEnterprise}
-						component={withAnimation(Microenterprise)}
+						path={sitePaths.entreprise.statutJuridique.autoEntrepreneur}
+						component={withAnimation(AutoEntrepreneur)}
 					/>
 					<Route
 						path={sitePaths.entreprise.statutJuridique.multipleAssociates}

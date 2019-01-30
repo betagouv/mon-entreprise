@@ -22,7 +22,7 @@ type Props = {
 	location: Location,
 	t: TFunction,
 	showFindYourCompanyLink: boolean,
-	régime: 'indépendant' | 'assimilé-salarié' | 'micro-entreprise' | null,
+	régime: 'indépendant' | 'assimilé-salarié' | 'auto-entrepreneur' | null,
 	sitePaths: Object,
 	language: string
 }

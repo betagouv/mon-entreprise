@@ -2596,7 +2596,7 @@
   question: Quelles sont les charges H.T. de l'entreprise (hors rémunération) ?
   description: |
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunérations. Pour les sociétés et entreprises hors micro-entreprise, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la micro-entreprise, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunérations. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la auto-entrepreneur, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
 
@@ -2903,7 +2903,7 @@
 
 - nom: micro entreprise
   icônes: μ
-  question: Activité en micro-entreprise ?
+  question: Activité en auto-entrepreneur ?
 
 - espace: micro entreprise
   nom: base des cotisations
@@ -2927,7 +2927,7 @@
 
 - espace: micro entreprise
   nom: revenu net de cotisations
-  titre: Revenu net d'une micro-entreprise
+  titre: Revenu net d'une auto-entrepreneur
   formule: base des cotisations - cotisations
   période: flexible
 
@@ -3115,7 +3115,7 @@
   description: |
     Les prélèvements incluent les cotisations sociales, la CSG, l'impôt sur le revenu.
 
-    Attention, pour les micro-entreprise, nous incluons les charges dans ce ratio de prélèvements, car les charges ne sont pas déductibles. Cela permet de comparer le ratio de prélèvements entre les différents régimes.
+    Attention, pour les auto-entrepreneur, nous incluons les charges dans ce ratio de prélèvements, car les charges ne sont pas déductibles. Cela permet de comparer le ratio de prélèvements entre les différents régimes.
   formule: 1 - ratio de revenu
   période: flexible
 

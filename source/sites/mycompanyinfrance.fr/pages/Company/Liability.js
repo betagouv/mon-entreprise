@@ -85,7 +85,7 @@ const Liability = ({
 					Option dans laquelle le/les membres de la société ne peuvent être
 					tenus personnellement responsables des dettes ou obligations de la
 					société. En revanche, les démarches de création sont un peu plus
-					lourdes, et vous devez fournir un capital initial.
+					lourdes, et vous devez apporter un capital initial.
 				</T>
 			</li>
 		</ul>

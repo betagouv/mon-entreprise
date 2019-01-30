@@ -1,7 +1,7 @@
 /* @flow */
 import { setSituationBranch } from 'Actions/actions'
 import {
-	companyIsMicroenterprise,
+	isAutoentrepreneur,
 	defineDirectorStatus
 } from 'Actions/companyStatusActions'
 import PeriodSwitch from 'Components/PeriodSwitch'
@@ -40,23 +40,23 @@ const connectRègles = (situationBranchName: string) =>
 		},
 		{
 			setSituationBranch,
-			companyIsMicroenterprise,
+			isAutoentrepreneur,
 			defineDirectorStatus
 		}
 	)
 
 const ComparativeTargets = connect(state => {
 	const analyse = branchAnalyseSelector(state, {
-		situationBranchName: 'Micro-entreprise'
+		situationBranchName: 'Auto-entrepreneur'
 	})
 	return {
-		plafondMicroEntrepriseDépassé:
+		plafondAutoEntrepreneurDépassé:
 			analyse.controls &&
 			analyse.controls.find(({ test }) =>
 				test.includes('base des cotisations > plafond')
 			)
 	}
-})(({ plafondMicroEntrepriseDépassé }) => (
+})(({ plafondAutoEntrepreneurDépassé }) => (
 	<Animate.fromBottom config={config.gentle}>
 		<div
 			className="ui__ full-width"
@@ -66,10 +66,10 @@ const ComparativeTargets = connect(state => {
 				justifyContent: 'center',
 				alignItems: 'stretch'
 			}}>
-			<MicroEntreprise
+			<AutoEntrepreneur
 				branchIndex={0}
 				plafondDépassé={
-					plafondMicroEntrepriseDépassé && plafondMicroEntrepriseDépassé.message
+					plafondAutoEntrepreneurDépassé && plafondAutoEntrepreneurDépassé.message
 				}
 			/>
 			<AssimiléSalarié branchIndex={2} />
@@ -86,7 +86,7 @@ const Indépendant = connectRègles('Indépendant')(
 		branchIndex,
 		setSituationBranch,
 		defineDirectorStatus,
-		companyIsMicroenterprise
+		isAutoentrepreneur
 	}) => (
 		<SchemeCard
 			title="Indépendant"
@@ -107,7 +107,7 @@ const Indépendant = connectRègles('Indépendant')(
 			]}
 			onSchemeChoice={() => {
 				defineDirectorStatus('SELF_EMPLOYED')
-				companyIsMicroenterprise(false)
+				isAutoentrepreneur(false)
 			}}
 		/>
 	)
@@ -142,24 +142,24 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 			]}
 			onSchemeChoice={() => {
 				defineDirectorStatus('SALARIED')
-				companyIsMicroenterprise(false)
+				isAutoentrepreneur(false)
 			}}
 		/>
 	)
 )
 
-const MicroEntreprise = connectRègles('Micro-entreprise')(
+const AutoEntrepreneur = connectRègles('Auto-entrepreneur')(
 	({
 		revenuDisponible,
 		prélèvements,
 		setSituationBranch,
-		companyIsMicroenterprise,
+		isAutoentrepreneur,
 		branchIndex,
 		plafondDépassé
 	}) => {
 		return (
 			<SchemeCard
-				title="Micro-entreprise"
+				title="Auto-entrepreneur"
 				subtitle="Pour les petites activités"
 				onAmountClick={() => setSituationBranch(branchIndex)}
 				disabled={plafondDépassé}
@@ -177,7 +177,7 @@ const MicroEntreprise = connectRègles('Micro-entreprise')(
 				]}
 				onSchemeChoice={() => {
 					defineDirectorStatus('SELF_EMPLOYED')
-					companyIsMicroenterprise(true)
+					isAutoentrepreneur(true)
 				}}
 			/>
 		)

@@ -14,7 +14,7 @@ situation:
   période: année
 
 branches:
-  - nom: Micro-entreprise
+  - nom: Auto-entrepreneur
     situation:
       micro entreprise: oui
       indépendant: non

@@ -37,7 +37,7 @@ const StatusButton = withSitePaths(
 		}) => (
 			<div className="ui__ answer-group">
 				<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
-					<T>Créer une</T> {t(status)}
+		{status.includes('auto-entrepreneur') ? <T>Devenir</T> :<T>Créer une</T>} {t(status)}
 				</Link>
 			</div>
 		)
@@ -77,14 +77,14 @@ const StatusTitle = ({ status, language }) =>
 		<>SA - Société anonyme {language !== 'fr' && '(Anonymous company)'}: </>
 	) : status === 'SNC' ? (
 		<>SNC - Société en nom collectif {language !== 'fr' && '(Partnership)'}: </>
-	) : status === 'micro-entreprise' ? (
+	) : status === 'auto-entrepreneur' ? (
 		<>
-			<T>Micro-entreprise</T>
-			{language === 'fr' && ' (auto-entrepreneur) '}:{' '}
+			<T>Auto-entrepreneur</T>
+			{language === 'fr' && ' '}:{' '}
 		</>
-	) : status === 'micro-entreprise-EIRL' ? (
+	) : status === 'auto-entrepreneur-EIRL' ? (
 		<>
-			<T>Micro-entreprise en EIRL</T>
+			<T>Auto-entrepreneur en EIRL</T>
 			{language === 'fr' && ' '}
 			{':'}
 		</>

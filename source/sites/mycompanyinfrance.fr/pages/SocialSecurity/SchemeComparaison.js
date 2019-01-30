@@ -11,7 +11,7 @@ const SchemeComparaisonPage = () => (
 	<>
 		<Helmet>
 			<title>
-				Assimilé salarié, indépendant, micro-entreprise : comparaison des
+				Assimilé salarié, indépendant, auto-entrepreneur : comparaison des
 				différents régimes
 			</title>
 		</Helmet>

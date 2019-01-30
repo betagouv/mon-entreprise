@@ -45,40 +45,61 @@ const CreateCompany = ({
 	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
 		status => t(status) === match.params.status
 	)
-	const isMicroenterprise = [
-		'micro-entreprise',
-		'micro-entreprise-EIRL'
+	const isAutoentrepreneur = [
+		'auto-entrepreneur',
+		'auto-entrepreneur-EIRL'
 	].includes(companyStatus)
 	const multipleAssociates = ['SARL', 'SAS', 'SA'].includes(companyStatus)
-	const isEI = isMicroenterprise || ['EI', 'EIRL'].includes(companyStatus)
+	const isEI = isAutoentrepreneur || ['EI', 'EIRL'].includes(companyStatus)
 	if (!companyStatus) {
 		return <Page404 />
 	}
+	const titre = isAutoentrepreneur
+		? t(
+				[
+					'entreprise.tâches.page.autoEntrepreneur.titre',
+					'Comment devenir {{autoEntrepreneur}}'
+				],
+				{
+					autoEntrepreneur: t(companyStatus)
+				}
+		  )
+		: t(
+				[
+					'entreprise.tâches.page.entreprise.titre',
+					'Créer une {{companyStatus}}'
+				],
+				{
+					companyStatus: t(companyStatus)
+				}
+		  )
 	return (
 		<Animate.fromBottom>
 			<Helmet>
-				<title>
-					{t(['entreprise.tâches.page.titre', 'Créer une {{companyStatus}}'], {
-						companyStatus: t(companyStatus)
-					})}
-				</title>
+				<title>{titre}</title>
 				<meta
 					name="description"
-					content={t(
-						[
-							'entreprise.tâches.page.description',
-							`Une liste complète des démarches à faire pour vous aider à créer une {{companyStatus}} auprès de l'administration française.`
-						],
-						{ companyStatus: t(companyStatus) }
-					)}
+					content={
+						isAutoentrepreneur
+							? t(
+									[
+										'entreprise.tâches.page.autoEntrepreneur.description',
+										`La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.`
+									],
+									{ autoEntrepreneur: t(companyStatus) }
+							  )
+							: t(
+									[
+										'entreprise.tâches.page.description',
+										`La liste complète des démarches à faire pour créer une {{companyStatus}} auprès de l'administration française.`
+									],
+									{ companyStatus: t(companyStatus) }
+							  )
+					}
 				/>
 			</Helmet>
 			<Scroll.toTop />
-			<h1>
-				<T k="entreprise.tâches.titre">
-					Créer une {{ companyStatus: t(companyStatus) }}
-				</T>
-			</h1>
+			<h1>{titre}</h1>
 			{!statusChooserCompleted && (
 				<>
 					<p>
@@ -93,9 +114,6 @@ const CreateCompany = ({
 					</p>
 				</>
 			)}
-			<h2 style={{ fontSize: '1.5rem' }}>
-				<T k="entreprise.tâches.titre1">Pour créer votre société</T>
-			</h2>
 			<Checklist
 				key={companyStatus}
 				onInitialization={items =>
@@ -139,13 +157,13 @@ const CreateCompany = ({
 						<p>
 							<T k="entreprise.tâches.objetSocial.description">
 								L'
-								<strong>objet social</strong> est l'activité principale de la
-								société. Une activité secondaire peut être enregistrée.
+								<strong>objet social</strong> est l'activité principale de
+								l'entreprise. Une activité secondaire peut être enregistrée.
 							</T>
 						</p>
 					}
 				/>
-				{!isMicroenterprise && (
+				{!isAutoentrepreneur && (
 					<CheckItem
 						name="companyAddress"
 						title={
@@ -369,7 +387,7 @@ const CreateCompany = ({
 			</h2>
 
 			<Checklist>
-				{!isMicroenterprise && (
+				{!isAutoentrepreneur && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={
