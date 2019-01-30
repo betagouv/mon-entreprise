@@ -60,6 +60,7 @@ import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Barème from './mecanismViews/Barème'
 import BarèmeContinu from './mecanismViews/BarèmeContinu'
+import InversionNumérique from './mecanismViews/InversionNumérique'
 import Variations from './mecanismViews/Variations'
 import Allègement from './mecanismViews/Allègement'
 import Composantes from './mecanismViews/Composantes'
@@ -516,7 +517,11 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	return {
 		nodeValue,
 		missingVariables: {},
-		inversionCache
+		inversionCache,
+		inversedWith: {
+			rule: fixedObjectiveRule,
+			value: fixedObjectiveValue
+		}
 	}
 }
 
@@ -531,7 +536,15 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
-		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
+		let evaluatedNode = rewriteNode(
+			node,
+			nodeValue,
+			{
+				...evolve({ avec: map(recurse) }, v),
+				inversedWith: inversion?.inversedWith
+			},
+			missingVariables
+		)
 		// TODO - we need this so that ResultsGrid will work, but it's
 		// just not right
 		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
@@ -541,26 +554,10 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	return {
 		...v,
 		evaluate,
-		// eslint-disable-next-line
-		jsx: nodeValue => (
-			<Node
-				classes="mecanism inversion"
-				name="inversion"
-				value={nodeValue}
-				child={
-					<div>
-						<div>avec</div>
-						<ul>
-							{v.avec.map(recurse).map(el => (
-								<li key={el.name}>{makeJsx(el)}</li>
-							))}
-						</ul>
-					</div>
-				}
-			/>
-		),
+		explanation: evolve({ avec: map(recurse) }, v),
+		jsx: InversionNumérique,
 		category: 'mecanism',
-		name: 'inversion',
+		name: 'inversion numérique',
 		type: 'numeric'
 	}
 }

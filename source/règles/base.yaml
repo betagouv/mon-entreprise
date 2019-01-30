@@ -747,7 +747,7 @@
       message: |
         Le salaire saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
   formule:
-    inversion:
+    inversion numérique:
       question: Quel est le salaire ?
       titre: salaire
       avec:
@@ -2575,7 +2575,7 @@
     variations:
       - si: micro entreprise
         alors:
-          inversion:
+          inversion numérique:
             avec:
               - revenu disponible
       - sinon: rémunération totale du dirigeant + charges
@@ -2634,7 +2634,7 @@
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
   formule:
-    inversion:
+    inversion numérique:
       avec:
         - revenu brut
         - revenu disponible

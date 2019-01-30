@@ -263,7 +263,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 				'une possibilité': 'oui',
 				missingVariables: { [rule.dottedName]: 1 }
 			}),
-			inversion: mecanismInversion(rule.dottedName),
+			'inversion numérique': mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
 			variations: mecanismVariations,
 			synchronisation: mecanismSynchronisation

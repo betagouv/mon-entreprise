@@ -9,7 +9,7 @@ sélection:
 une possibilité:
   type: enum
 
-inversion:
+inversion numérique:
   type: numeric
   description: |
     La formule de calcul de cette variable n'est pas connue, souvent elle n'a même pas de sens. Mais le mécanisme `inversion` indique qu'elle peut être _estimée_ à partir de l'un des _objectifs_ listés sous l'attribut `avec`. Il faut alors renseigner une valeur cible pour cet objectif.
