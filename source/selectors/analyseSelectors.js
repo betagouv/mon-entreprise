@@ -1,31 +1,10 @@
-import {
-	collectMissingVariablesByTarget,
-	getNextSteps
-} from 'Engine/generateQuestions'
-import {
-	collectDefaults,
-	disambiguateExampleSituation,
-	findRuleByDottedName,
-	formatInputs,
-	nestedSituationToPathMap,
-	rules as baseRulesEn,
-	rulesFr as baseRulesFr
-} from 'Engine/rules'
-import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import {
-	add,
-	contains,
-	difference,
-	equals,
-	head,
-	intersection,
-	isNil,
-	mergeDeepWith,
-	pick
-} from 'ramda'
-import { getFormValues } from 'redux-form'
-import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
-import { softCatch } from '../utils'
+import { collectMissingVariablesByTarget, getNextSteps } from 'Engine/generateQuestions';
+import { collectDefaults, disambiguateExampleSituation, findRuleByDottedName, formatInputs, nestedSituationToPathMap, rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules';
+import { analyse, analyseMany, parseAll } from 'Engine/traverse';
+import { add, contains, difference, equals, head, intersection, isNil, mergeDeepWith, pick } from 'ramda';
+import { getFormValues } from 'redux-form';
+import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
+import { softCatch } from '../utils';
 
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
@@ -103,13 +82,13 @@ const createSituationBrancheSelector = situationSelector =>
 		(situation, branches, configSituation) => {
 			if (branches) {
 				return branches.map(({ situation: branchSituation }) => ({
-					...situation,
 					...configSituation,
-					...branchSituation
+					...branchSituation,
+					...situation,
 				}))
 			}
 			if (configSituation) {
-				return { ...situation, ...configSituation }
+				return {  ...configSituation, ...situation }
 			}
 			return situation
 		}

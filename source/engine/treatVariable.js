@@ -1,13 +1,9 @@
-import React from 'react'
-import { Trans } from 'react-i18next'
-import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
-import { Leaf, Node } from './mecanismViews/common'
-import {
-	disambiguateRuleReference,
-	findParentDependency,
-	findRuleByDottedName
-} from './rules'
-import { getSituationValue } from './variables'
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { evaluateNode, makeJsx, rewriteNode } from './evaluation';
+import { Leaf, Node } from './mecanismViews/common';
+import { disambiguateRuleReference, findParentDependency, findRuleByDottedName } from './rules';
+import { getSituationValue } from './variables';
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
@@ -147,22 +143,23 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 						rule.dottedName
 					}, qui appelle une variable à période flexible, ${
 						ruleToTransform.dottedName
-					}, c'est suspect ! 
+					}, c'est suspect !
 				`
 				)
 
 			return filteredNode
 		}
 		if (!ruleToTransform.période) return filteredNode
-
 		let environmentPeriod = situation('période') || 'mois'
+		console.log(rule.dottedName, environmentPeriod)
 		let callingPeriod =
-			inlinePeriodTransform ||
-			(rule.période == 'flexible' ? environmentPeriod : rule.période)
+		inlinePeriodTransform ||
+		(rule.période === 'flexible' ? environmentPeriod : rule.période)
 		let calledPeriod =
-			ruleToTransform.période == 'flexible'
-				? environmentPeriod
-				: ruleToTransform.période
+		ruleToTransform.période === 'flexible'
+		? environmentPeriod
+		: ruleToTransform.période
+
 
 		let transformedNodeValue =
 				callingPeriod === 'mois' && calledPeriod === 'année'

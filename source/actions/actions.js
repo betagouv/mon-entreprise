@@ -7,18 +7,18 @@ import type {
 	SetSimulationConfigAction,
 	SetSituationBranchAction
 } from 'Types/ActionsTypes'
-import { reset } from 'redux-form'
-import { deletePersistedSimulation } from '../storage/persistSimulation'
+import { reset } from 'redux-form';
+import { deletePersistedSimulation } from '../storage/persistSimulation';
 
 import type { RouterHistory } from 'react-router-dom'
 
 export const resetSimulation = () => (dispatch: any => void): void => {
-	dispatch(reset('conversation'))
 	dispatch(
 		({
 			type: 'RESET_SIMULATION'
 		}: ResetSimulationAction)
 	)
+	dispatch(reset('conversation'))
 }
 
 export const setSituationBranch = (id: number): SetSituationBranchAction => ({

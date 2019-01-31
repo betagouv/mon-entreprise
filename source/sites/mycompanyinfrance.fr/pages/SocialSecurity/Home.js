@@ -1,18 +1,18 @@
 /* @flow */
 
-import { Component, React, T } from 'Components'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import withLanguage from 'Components/utils/withLanguage'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import emoji from 'react-easy-emoji'
-import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { régimeSelector } from 'Selectors/companyStatusSelectors'
-import * as Animate from 'Ui/animate'
-import Video from './Video'
+import { Component, React, T } from 'Components';
+import { ScrollToTop } from 'Components/utils/Scroll';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import emoji from 'react-easy-emoji';
+import Helmet from 'react-helmet';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { régimeSelector } from 'Selectors/companyStatusSelectors';
+import * as Animate from 'Ui/animate';
+import Video from './Video';
 
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
@@ -60,25 +60,32 @@ class SocialSecurity extends Component<Props, {}> {
 								</Link>
 							</p>
 						)}
+						{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(window.location.hostname) ? <>
 						<br />
 						<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
 							Que souhaitez vous estimer ?
 						</h2>
 						<Link
-							className="landing__choice "
-							to={
-								régime
-									? sitePaths.sécuritéSociale[régime]
-									: sitePaths.sécuritéSociale.comparaison
-							}>
+						className="landing__choice "
+						to={
+							régime
+							? sitePaths.sécuritéSociale[régime]
+							: sitePaths.sécuritéSociale.comparaison
+						}>
 							{emoji('👔')} La rémunération du dirigeant
 						</Link>
 						<Link
-							className="landing__choice "
-							to={sitePaths.sécuritéSociale.salarié}>
+						className="landing__choice "
+						to={sitePaths.sécuritéSociale.salarié}>
 							{emoji('👥')} Le salaire d'un employé
 						</Link>
 						<br />
+					</> : <Link
+						className="landing__choice "
+						to={sitePaths.sécuritéSociale.salarié}>
+							{emoji('👥')} Estimer les cotisations sociales pour une embauche
+						</Link>}
+
 						<Video />
 					</Animate.fromBottom>
 				)}

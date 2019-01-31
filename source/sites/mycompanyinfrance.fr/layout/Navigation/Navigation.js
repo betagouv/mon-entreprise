@@ -1,16 +1,16 @@
 /* @flow */
-import { React, T } from 'Components'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import { withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { NavLink, withRouter } from 'react-router-dom'
-import companySvg from '../../images/company.svg'
-import estimateSvg from '../../images/estimate.svg'
-import hiringSvg from '../../images/hiring.svg'
-import './Navigation.css'
-import NavOpener from './NavOpener'
-import SideBar from './SideBar'
+import { React, T } from 'Components';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { NavLink, withRouter } from 'react-router-dom';
+import companySvg from '../../images/company.svg';
+import estimateSvg from '../../images/estimate.svg';
+import hiringSvg from '../../images/hiring.svg';
+import './Navigation.css';
+import NavOpener from './NavOpener';
+import SideBar from './SideBar';
 
 import type { TFunction } from 'react-i18next'
 
@@ -199,6 +199,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 								</>
 							}>
 							<ul>
+							{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(window.location.hostname) &&
 								<li>
 									<NavOpener title={<T>Statut du dirigeant</T>}>
 										<ul>
@@ -232,7 +233,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 											</li>
 										</ul>
 									</NavOpener>
-								</li>
+								</li>}
 								<li>
 									<NavLink exact to={sitePaths.sécuritéSociale.salarié}>
 										<T>Simulateur de coût d'embauche</T>
