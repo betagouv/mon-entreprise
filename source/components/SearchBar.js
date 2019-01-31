@@ -1,5 +1,5 @@
 import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName } from 'Engine/rules.js'
+import { encodeRuleName, parentName } from 'Engine/rules.js'
 import Fuse from 'fuse.js'
 import { compose, pick, sortBy } from 'ramda'
 import React from 'react'
@@ -100,13 +100,27 @@ class SearchBar extends React.Component {
 				/>
 				{this.props.showDefaultList && !this.state.inputValue && (
 					<ul>
-						{sortBy(rule => rule.title, rules).map(rule => (
-							<li key={rule.dottedName}>
+						{sortBy(rule => rule.dottedName, rules).map(rule => (
+							<li style={{ margin: '1em' }} key={rule.dottedName}>
+								<div
+									style={{
+										color: '#333',
+										fontWeight: '300',
+										fontSize: '90%',
+										lineHeight: '.9em'
+									}}>
+									{parentName(rule.dottedName)
+										? parentName(rule.dottedName)
+												.split(' . ')
+												.map(capitalise0)
+												.join(' - ')
+										: null}
+								</div>
 								<Link
 									to={
 										this.props.sitePaths.documentation.index +
 										'/' +
-										encodeRuleName(rule.name)
+										encodeRuleName(rule.dottedName)
 									}>
 									{rule.title || capitalise0(rule.name)}
 								</Link>
