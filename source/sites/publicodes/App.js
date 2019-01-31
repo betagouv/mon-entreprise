@@ -6,6 +6,7 @@ import Provider from '../../Provider'
 import Route404 from '../embauche.gouv.fr/pages/Route404'
 import RulesList from '../embauche.gouv.fr/pages/RulesList'
 import sitePaths from './sitePaths'
+import Landing from './Landing'
 
 class App extends Component {
 	render() {
@@ -20,8 +21,9 @@ class App extends Component {
 				initialStore={{ targetNames: ['transport . impact'] }}
 				reduxMiddlewares={[]}>
 				<Switch>
+					<Route exact path="/" component={Landing} />
 					<Route path="/documentation/:name" component={RulePage} />
-					<Route exact path="/" component={RulesList} />
+					<Route path="/documentation" component={RulesList} />
 					<Route component={Route404} />
 				</Switch>
 			</Provider>
