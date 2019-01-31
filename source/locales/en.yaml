@@ -101,6 +101,7 @@ Part employeur: Employer share
 Part salariale: Employee share
 Total des retenues: Total withheld
 Fiche de paie mensuelle: Monthly payslip
+Fiche de paie: Payslip
 Détail annuel des cotisations: Annual detail of your contributions
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
@@ -120,7 +121,7 @@ Cadre: '"Cadre" status'
 Temps partiel: Part time
 Autres: Other situations
 Mes réponses: My answers
-Modifier mes réponses: Change my answers
+Voir mes réponses: See my answers
 simulation-end:
   title: No more questions left!
   text: You have reached the most accurate estimate.
@@ -180,10 +181,6 @@ De: From
 En-dessous de: Below
 Au-dessus de: Above
 Taux final: Final rate
-
-Créez votre entreprise: Start your business in France
-Créer votre entreprise: Create your company
-subtitle: The ultimate how-to guide, from incorporation to hiring.
 Commencer: Get started
 Passer: Skip
 
@@ -260,16 +257,16 @@ entreprise:
       titre: Make a declaration of asset allocation
       description: >
         <0>
-          The <1>declaration of asset allocation</1> allows you to separate professional 
-          assets from your personal assets, which then becomes unseizable. This procedure 
+          The <1>declaration of asset allocation</1> allows you to separate professional
+          assets from your personal assets, which then becomes unseizable. This procedure
           is free of charge if it is carried out at the time of the creation
           of a company.
         </0>
         <1>
-          To do so, simply declare which assets are allocated to the patrimony of your company. 
-          All the contributions necessary for your professional activity must be included 
-          (for example: goodwill, trademark, patent, or professional equipment). You can do 
-          the valuation of the asset yourself if it does not exceed €30,000. 
+          To do so, simply declare which assets are allocated to the patrimony of your company.
+          All the contributions necessary for your professional activity must be included
+          (for example: goodwill, trademark, patent, or professional equipment). You can do
+          the valuation of the asset yourself if it does not exceed €30,000.
         </1>
         <2>
           <0>$t(Plus d'informations)</0>
@@ -329,9 +326,9 @@ autoentrepreneur:
   titre: Auto-entrepeneur
   description: >
     <0>
-      The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions 
-      are based on the turnover achieved each month. Available for companies whose annual 
-      turnover does not exceed €70,000 for services providers or €170,000 when the main activity 
+      The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions
+      are based on the turnover achieved each month. Available for companies whose annual
+      turnover does not exceed €70,000 for services providers or €170,000 when the main activity
       is the sale of goods, catering or the provision of housing.
     </0>
     <1>
@@ -344,11 +341,11 @@ autoentrepreneur:
     </2>
     <3>
       <0>Note:</0>
-      Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities 
+      Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities
       are regulated with a qualification or a professional experience (<4>see the list [fr])</4>).
     </3>
     <4>
-      For all the other cases, it is advised to choose the standard status, which 
+      For all the other cases, it is advised to choose the standard status, which
       is <1>Individual Business.</1>
     </4>
 associés:
@@ -358,12 +355,12 @@ associés:
   titre: Number of partners
   description: >
     <0>
-      A company with only one partner is easier to create and manage. A shareholder 
-      may be a natural person (an individual) or a legal person (for example, 
+      A company with only one partner is easier to create and manage. A shareholder
+      may be a natural person (an individual) or a legal person (for example,
       another company).
     </0>
     <1>
-      Note: this choice is not final. You can start your company on your own, 
+      Note: this choice is not final. You can start your company on your own,
       and welcome new partners as your business grows.
     </1>
   choix1: Only one partner
@@ -411,6 +408,7 @@ sécu:
       France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people
     </1>
   video: Social security explained visually
+  entrepriseCrée: If you already own a company, we can <2>automatically customize</2> your simulations to your situation. All you have to do is <5>enter the name of your company</5>.
 
 Votre entreprise: Your company
 Ce n'est pas mon entreprise: This is not my company
@@ -460,7 +458,7 @@ embauche:
       titre: Choose a payslip software
       description: >
         With fewer than 20 employees, payslips and declarations can be
-        handled online by the <2> Tese (Fr)</2>, a tool developped by the french 
+        handled online by the <2> Tese (Fr)</2>, a tool developped by the french
         social administration. You can also use <5>a private payslip software (Fr)</5>
     registre:
       titre: Keep an updated staff register
@@ -486,6 +484,13 @@ embauche:
     </1>
     <2>Get an example payslip</2>
 
+simulateur-salarié:
+  page:
+    titre: Estimate employee hiring cost
+    description: Simulate an employee's contributions to the social security. Official complete calculation of all contributions. Discover the counterparties guaranteed by social security
+  titre: Estimate social contributions for an employee
+  description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
+
 Guide du statut juridique: Legal status guide
 Démarches de création: Creation process checklist
 
@@ -494,7 +499,7 @@ path:
     index: '/company'
     votreEntreprise: '/my-company'
     créer: '/create-a-{{companyStatus}}'
-    autoEntrepreneur: '/become-{{companyStatus}}'
+    devenirAutoEntrepreneur: '/become-{{autoEntrepreneur}}'
     trouver: '/find'
     après: '/after-registration'
     statutJuridique:
@@ -517,13 +522,13 @@ auto-entrepreneur-EIRL: auto-entrepreneur-with-EIRL-option
 privacyContent: >
   <0>$t(Vie privée)</0>
   <1>
-    We do not store any personal data on our servers. All the information 
-    you provide (salaries, company postal code, SIREN etc.) is saved only 
+    We do not store any personal data on our servers. All the information
+    you provide (salaries, company postal code, SIREN etc.) is saved only
     on your browser. No one else can have access to it but you.
   </1>
   <2>
-    However, we do collect anonymous statistics on site usage, which we use 
-    for the sole purpose of improving the service, in accordance with the 
+    However, we do collect anonymous statistics on site usage, which we use
+    for the sole purpose of improving the service, in accordance with the
     <2>recommendations of the CNIL</2> and the DPRG directive.
   </2>
   <3>You can opt out below.</3>
@@ -555,7 +560,24 @@ Année: Year
 mois: month
 an: year
 par: per
-Explorez notre base de règles: Explore our rules
+Explorez notre documentation: Explore our documentation
 
 maj2019: The simulation is up-to-date in 2019.
-siteName: mycompanyinfrance.fr
+siteName: My company in France
+
+Simuler ma situation: Simulate my situation
+Exemples: Examples
+Intégrer le simulateur: Integrate the simulator
+
+# Landing infrance
+Que souhaitez vous faire ?: What do you want to do?
+Créer votre entreprise: Create your company
+subtitle: The official guide for entrepreneurs
+Connaître les démarches d'embauche: Know the hiring procedures
+Estimer les cotisations et les taxes: Estimate contributions and taxes
+Créer une entreprise: Create a company in France
+Déclarer mon activité d'économie collaborative: Declare my activity in the sharing economy
+prochainement: soon
+
+Estimer les cotisations sociales pour une embauche: Estimate the social security contributions for a hiring
+À quoi servent mes cotisations ?: How are my contributions distributed?

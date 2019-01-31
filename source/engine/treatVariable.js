@@ -151,7 +151,6 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		}
 		if (!ruleToTransform.période) return filteredNode
 		let environmentPeriod = situation('période') || 'mois'
-		console.log(rule.dottedName, environmentPeriod)
 		let callingPeriod =
 		inlinePeriodTransform ||
 		(rule.période === 'flexible' ? environmentPeriod : rule.période)

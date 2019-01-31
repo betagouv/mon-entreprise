@@ -4,7 +4,7 @@ import { analyse, analyseMany, parseAll } from 'Engine/traverse';
 import { add, contains, difference, equals, head, intersection, isNil, mergeDeepWith, pick } from 'ramda';
 import { getFormValues } from 'redux-form';
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
-import { softCatch } from '../utils';
+import { mapOrApply, softCatch } from '../utils';
 
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
@@ -16,7 +16,6 @@ const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
  *
  * */
 
-const mapOrApply = (fn, x) => (Array.isArray(x) ? x.map(fn) : fn(x))
 
 export let flatRulesSelector = createSelector(
 	state => state.lang,

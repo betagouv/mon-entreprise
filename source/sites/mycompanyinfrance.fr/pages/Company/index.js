@@ -1,21 +1,21 @@
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import React from 'react'
-import { withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Redirect, Route, Switch } from 'react-router'
-import * as Animate from 'Ui/animate'
-import AfterRegistration from './AfterRegistration'
-import AutoEntrepreneur from './AutoEntrepreneur'
-import CreationChecklist from './CreationChecklist'
-import DefineDirectorStatus from './DirectorStatus'
-import Find from './Find'
-import Home from './Home'
-import Liability from './Liability'
-import MinorityDirector from './MinorityDirector'
-import NumberOfAssociate from './NumberOfAssociate'
-import PickLegalStatus from './PickLegalStatus'
-import YourCompany from './YourCompany'
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import React from 'react';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router';
+import * as Animate from 'Ui/animate';
+import AfterRegistration from './AfterRegistration';
+import AutoEntrepreneur from './AutoEntrepreneur';
+import CreationChecklist from './CreationChecklist';
+import DefineDirectorStatus from './DirectorStatus';
+import Find from './Find';
+import Home from './Home';
+import Liability from './Liability';
+import MinorityDirector from './MinorityDirector';
+import NumberOfAssociate from './NumberOfAssociate';
+import PickLegalStatus from './PickLegalStatus';
+import YourCompany from './YourCompany';
 const withAnimation = Component => {
 	const AnimateRouteComponent = (...props) => (
 		<Animate.fromBottom>
@@ -32,6 +32,7 @@ const CreateMyCompany = ({
 	existingCompany,
 	sitePaths
 }) => {
+	console.log('sitapath', sitePaths.entreprise.créer(':status'))
 	return (
 		<>
 			<Animate.fromBottom>
@@ -40,10 +41,7 @@ const CreateMyCompany = ({
 						path={sitePaths.entreprise.votreEntreprise}
 						component={YourCompany}
 					/>
-					<Route
-						path={sitePaths.entreprise.créer(':status')}
-						component={CreationChecklist}
-					/>
+					{sitePaths.entreprise.créer(':status').map(path => <Route path={path} key={path} component={CreationChecklist} />)}
 					<Route path={sitePaths.entreprise.trouver} component={Find} />
 					<Route
 						path={sitePaths.entreprise.après}

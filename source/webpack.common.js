@@ -59,12 +59,12 @@ module.exports = {
 			template: 'index.html',
 			chunks: ['mon-entreprise'],
 			title:
-				'Mon-entreprise.fr : Le guide officiel pour créer et administrer votre activité',
+				"Mon-entreprise.fr : Le guide officiel du créateur d'entreprise",
 			description:
 				'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 			filename: 'mon-entreprise.html'
 		}),
-		
+
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			'./source/sites/embauche.gouv.fr/images/logo',

@@ -1,12 +1,14 @@
-import { React, T } from 'Components'
-import SalaryExplanation from 'Components/SalaryExplanation'
-import Simulation from 'Components/Simulation'
-import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import TargetSelection from 'Components/TargetSelection'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
+import { React, T } from 'Components';
+import SalaryExplanation from 'Components/SalaryExplanation';
+import Simulation from 'Components/Simulation';
+import salariéConfig from 'Components/simulationConfigs/salarié.yaml';
+import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig';
+import TargetSelection from 'Components/TargetSelection';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import { Helmet } from 'react-helmet';
+import { withNamespaces } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 	<Simulation
@@ -30,24 +32,25 @@ export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 	/>
 ))
 
-const Salarié = () => (
+const Salarié = ({t}) => (
 	<>
 		<Helmet>
 			<title>
-				Salarié au régime général : cotisations et protection sociale{' '}
+				{t(['simulateur-salarié.page.titre', 'Salarié au régime général : cotisations et protection sociale'])}
 			</title>
 			<meta
 				name="description"
-				content="Simulez les cotisations d'un salarié au régime général. Calcul complet de toutes les cotisations. Découvrez les contreparties garanties par sécurité sociale"
+				content={t(['simulateur-salarié.page.description', "Simulez les cotisations d'un salarié au régime général. Calcul complet de toutes les cotisations. Découvrez les contreparties garanties par sécurité sociale"])}
 			/>
 		</Helmet>
-		<h1>Salarié au régime général</h1>
-		<p>
+		<h1><T k="simulateur-salarié.titre">Salarié au régime général</T></h1>
+		<p><T k="simulateur-salarié.description">
 			Dès que l'embauche d'un salarié est déclarée et qu'il est payé, il est
 			couvert par le régime général de la Sécurité sociale (santé, maternité,
 			invalidité, vieillesse, maladie professionnelle et accidents) et chômage.
+			</T>
 		</p>
 		<SalarySimulation />
 	</>
 )
-export default withSimulationConfig(salariéConfig)(Salarié)
+export default compose(withNamespaces(), withSimulationConfig(salariéConfig))(Salarié)

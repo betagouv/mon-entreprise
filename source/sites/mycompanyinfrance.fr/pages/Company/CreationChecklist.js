@@ -1,22 +1,19 @@
 /* @flow */
-import {
-	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist
-} from 'Actions/companyCreationChecklistActions'
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { React, T } from 'Components'
-import Scroll from 'Components/utils/Scroll'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import * as Animate from 'Ui/animate'
-import { CheckItem, Checklist } from 'Ui/Checklist'
-import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
-import Page404 from '../404'
-import StatusDescription from './StatusDescription'
+import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions';
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions';
+import { React, T } from 'Components';
+import Scroll from 'Components/utils/Scroll';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import Helmet from 'react-helmet';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import * as Animate from 'Ui/animate';
+import { CheckItem, Checklist } from 'Ui/Checklist';
+import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths';
+import Page404 from '../404';
+import StatusDescription from './StatusDescription';
 
 import type { Match } from 'react-router'
 import type { TFunction } from 'react-i18next'
@@ -45,6 +42,7 @@ const CreateCompany = ({
 	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
 		status => t(status) === match.params.status
 	)
+	console.log('yopyop', status, companyStatus)
 	const isAutoentrepreneur = [
 		'auto-entrepreneur',
 		'auto-entrepreneur-EIRL'

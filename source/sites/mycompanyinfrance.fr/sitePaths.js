@@ -1,7 +1,7 @@
 /* @flow */
-import { reduce, toPairs, zipObj } from 'ramda'
-import i18n from '../../i18n'
-import { constructSitePaths } from '../../utils'
+import { reduce, toPairs, zipObj } from 'ramda';
+import i18n from '../../i18n';
+import { constructSitePaths } from '../../utils';
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
@@ -34,15 +34,15 @@ const constructLocalizedSitePath = language => {
 			),
 			créer: (companyStatus: LegalStatus | ':status') =>
 				companyStatus === ':status'
-					? `(${t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
+					? [t('path.entreprise.créer', '/créer-une-{{companyStatus}}',{
 							companyStatus: ':status'
-					  })}|${t(
+					  }), t(
 							'path.entreprise.devenirAutoEntrepreneur',
 							'/devenir-{{autoEntrepreneur}}',
 							{
 								autoEntrepreneur: ':status'
 							}
-					  )})`
+					  )]
 					: companyStatus.includes('auto-entrepreneur')
 					? t(
 							'path.entreprise.devenirAutoEntrepreneur',
@@ -52,7 +52,7 @@ const constructLocalizedSitePath = language => {
 							}
 					  )
 					: t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
-							companyStatus: ':status'
+							companyStatus
 					  }),
 
 			trouver: t('path.entreprise.trouver', '/retrouver-votre-entreprise'),

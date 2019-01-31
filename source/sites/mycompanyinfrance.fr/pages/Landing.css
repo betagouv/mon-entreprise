@@ -85,8 +85,7 @@
 .landing__choice--soon img {
 	filter: saturate(0%);
 }
-.landing__choice--soon::after {
-	content: 'prochainement';
+.landing__choice-label {
 	position: absolute;
 	top: 0;
 	font-size: 66%;

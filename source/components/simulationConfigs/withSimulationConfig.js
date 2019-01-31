@@ -1,6 +1,6 @@
-import { resetSimulation, setSimulationConfig } from 'Actions/actions'
-import React from 'react'
-import { connect } from 'react-redux'
+import { resetSimulation, setSimulationConfig } from 'Actions/actions';
+import React from 'react';
+import { connect } from 'react-redux';
 
 export default config => SimulationComponent =>
 	connect(
@@ -22,7 +22,7 @@ export default config => SimulationComponent =>
 			}
 			render() {
 				if (!this.props.config) return null
-				return <SimulationComponent />
+				return <SimulationComponent {...this.props}/>
 			}
 		}
 	)

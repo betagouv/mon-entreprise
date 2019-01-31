@@ -82,6 +82,8 @@ export function softCatch<ArgType: any, ReturnType: any>(
 		}
 	}
 }
+export const mapOrApply = (fn, x) => (Array.isArray(x) ? x.map(fn) : fn(x))
+
 
 export const constructSitePaths = (
 	root: string,
@@ -93,7 +95,7 @@ export const constructSitePaths = (
 			typeof value === 'string'
 				? root + index + value
 				: typeof value === 'function'
-				? (...args) => root + index + value(...args)
+				? (...args) => mapOrApply(x => root + index + x, value(...args))
 				: constructSitePaths(root + index, value),
 		sitePaths
 	)
