@@ -42,7 +42,6 @@ const CreateCompany = ({
 	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
 		status => t(status) === match.params.status
 	)
-	console.log('yopyop', status, companyStatus)
 	const isAutoentrepreneur = [
 		'auto-entrepreneur',
 		'auto-entrepreneur-EIRL'

@@ -12,12 +12,12 @@ const VERSION = 1
 const LOCAL_STORAGE_KEY = 'mycompanyinfrance::persisted-everything:v' + VERSION
 
 type OptionsType = {
-	except: Array<string>
+	except?: Array<string>
 }
-export const persistEverything = ({ except = [] }:OptionsType) => (store: Store<State, Action>): void => {
+export const persistEverything = (options?:OptionsType = {}) => (store: Store<State, Action>): void => {
 	const listener = () => {
 		const state = store.getState()
-		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(omit(except, state)))
+		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(omit(options.except || [], state)))
 	}
 	store.subscribe(debounce(1000, listener))
 }

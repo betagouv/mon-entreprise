@@ -60,7 +60,7 @@ class InFranceRoute extends Component {
 				tracker={tracker}
 				sitePaths={paths}
 				reduxMiddlewares={middlewares}
-				onStoreCreated={persistEverything}
+				onStoreCreated={persistEverything()}
 				initialStore={{ ...retrievePersistedState() }}>
 				<TrackPageView />
 				<div id="content">

@@ -32,7 +32,6 @@ const CreateMyCompany = ({
 	existingCompany,
 	sitePaths
 }) => {
-	console.log('sitapath', sitePaths.entreprise.créer(':status'))
 	return (
 		<>
 			<Animate.fromBottom>

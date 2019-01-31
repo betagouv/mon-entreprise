@@ -56,7 +56,8 @@ export default class Layout extends PureComponent {
 			enableBatching(reducers),
 			this.props.initialStore,
 			storeEnhancer
-		)
+			)
+			console.log(this.props.initialStore, this.store.getState())
 		this.props.onStoreCreated && this.props.onStoreCreated(this.store)
 	}
 	render() {
