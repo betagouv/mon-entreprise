@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import withTracker from 'Components/utils/withTracker'
-import { compose } from 'ramda'
-import { connect } from 'react-redux'
-import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
-import './SalaryCompactExplanation.css'
-import SalaryFirstExplanation from './SalaryFirstExplanation'
-import SalaryCompactExplanation from './SalaryCompactExplanation'
-import * as Animate from 'Ui/animate'
-import { startConversation } from 'Actions/actions'
-import { formValueSelector } from 'redux-form'
+import { startConversation } from 'Actions/actions';
+import withTracker from 'Components/utils/withTracker';
+import { compose } from 'ramda';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { formValueSelector } from 'redux-form';
+import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors';
+import * as Animate from 'Ui/animate';
+import SalaryCompactExplanation from './SalaryCompactExplanation';
+import './SalaryCompactExplanation.css';
+import SalaryFirstExplanation from './SalaryFirstExplanation';
 
 export default compose(
 	withTracker,
@@ -27,7 +27,7 @@ export default compose(
 	class SalaryExplanation extends Component {
 		render() {
 			return (
-				<Animate.fromBottom>
+				<Animate.fromBottom delay={1000}>
 					{!this.props.conversationStarted ? (
 						<SalaryFirstExplanation {...this.props} />
 					) : (

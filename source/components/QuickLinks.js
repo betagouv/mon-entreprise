@@ -1,19 +1,21 @@
 /* @flow */
-import { startConversation } from 'Actions/actions'
-import withLanguage from 'Components/utils/withLanguage'
-import { compose, toPairs } from 'ramda'
-import React from 'react'
-import { Trans } from 'react-i18next'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { animated, Spring } from 'react-spring'
-import { validInputEnteredSelector } from 'Selectors/analyseSelectors'
+import { startConversation } from 'Actions/actions';
+import withLanguage from 'Components/utils/withLanguage';
+import { compose, toPairs } from 'ramda';
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { animated, Spring } from 'react-spring';
+import { validInputEnteredSelector } from 'Selectors/analyseSelectors';
 import type { Location } from 'react-router'
 
 type Props = {
 	startConversation: (?string) => void,
 	location: Location,
-	validInputEntered: boolean
+	validInputEntered: boolean,
+	quickLinks: {[string]: string},
+	conversationStarted: boolean
 }
 
 const QuickLinks = ({
@@ -29,7 +31,7 @@ const QuickLinks = ({
 				height: show ? 'auto' : 0,
 				opacity: show ? 1 : 0
 			}}
-			config={{ delay: show ? 4000 : 0 }}
+			config={{ delay: show ? 2000 : 0 }}
 			native>
 			{styles => (
 				<animated.div
