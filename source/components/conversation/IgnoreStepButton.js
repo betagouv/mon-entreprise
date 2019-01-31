@@ -1,9 +1,9 @@
-import HoverDecorator from 'Components/utils/HoverDecorator'
-import withColours from 'Components/utils/withColours'
-import { compose } from 'ramda'
-import React, { Component } from 'react'
-import { Trans, withNamespaces } from 'react-i18next'
-import './IgnoreStepButton.css'
+import HoverDecorator from 'Components/utils/HoverDecorator';
+import withColours from 'Components/utils/withColours';
+import { compose } from 'ramda';
+import React, { Component } from 'react';
+import { Trans, withNamespaces } from 'react-i18next';
+import './IgnoreStepButton.css';
 
 export default compose(
 	HoverDecorator,
@@ -31,7 +31,7 @@ export default compose(
 					<button
 						className="ui__  small simple skip button"
 						onClick={this.props.action}>
-						<Trans>passer</Trans>
+						<Trans>passer</Trans> →
 					</button>
 					<span
 						className="keyIcon"
