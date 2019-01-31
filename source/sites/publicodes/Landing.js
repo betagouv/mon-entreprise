@@ -22,6 +22,14 @@ class Search extends React.Component {
 	render() {
 		return (
 			<input
+				style={{
+					display: 'block',
+					width: '80%',
+					margin: '0 auto',
+					border: '1px solid black',
+					fontSize: '2rem',
+					borderRadius: '.3rem'
+				}}
 				type="text"
 				value={this.state.input}
 				onChange={input => this.setState({ input })}
