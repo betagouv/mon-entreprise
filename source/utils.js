@@ -1,5 +1,5 @@
 /* @flow */
-import { map } from 'ramda'
+import { map } from 'ramda';
 
 export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 

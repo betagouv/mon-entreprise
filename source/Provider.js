@@ -1,22 +1,18 @@
-import SetCSSColour from 'Components/utils/SetCssColour'
-import { SitePathProvider } from 'Components/utils/withSitePaths'
-import { TrackerProvider } from 'Components/utils/withTracker'
-import createHistory from 'history/createBrowserHistory'
-import i18next from 'i18next'
-import React, { PureComponent } from 'react'
-import { I18nextProvider } from 'react-i18next'
-import { Provider } from 'react-redux'
-import { Router } from 'react-router-dom'
-import reducers from 'Reducers/rootReducer'
-import { applyMiddleware, compose, createStore } from 'redux'
-import { enableBatching } from 'redux-batched-actions'
-import thunk from 'redux-thunk'
-import computeThemeColours from 'Ui/themeColours'
-import { getIframeOption, inIframe } from './utils'
-
-let initialStore = {
-	themeColours: computeThemeColours(getIframeOption('couleur'))
-}
+import SetCSSColour from 'Components/utils/SetCssColour';
+import { ThemeColoursProvider } from 'Components/utils/withColours';
+import { SitePathProvider } from 'Components/utils/withSitePaths';
+import { TrackerProvider } from 'Components/utils/withTracker';
+import createHistory from 'history/createBrowserHistory';
+import i18next from 'i18next';
+import React, { PureComponent } from 'react';
+import { I18nextProvider } from 'react-i18next';
+import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import reducers from 'Reducers/rootReducer';
+import { applyMiddleware, compose, createStore } from 'redux';
+import { enableBatching } from 'redux-batched-actions';
+import thunk from 'redux-thunk';
+import { getIframeOption, inIframe } from './utils';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -58,7 +54,7 @@ export default class Layout extends PureComponent {
 		}
 		this.store = createStore(
 			enableBatching(reducers),
-			{ ...initialStore, ...this.props.initialStore },
+			this.props.initialStore,
 			storeEnhancer
 		)
 		this.props.onStoreCreated && this.props.onStoreCreated(this.store)
@@ -67,6 +63,7 @@ export default class Layout extends PureComponent {
 		return (
 			// If IE < 11 display nothing
 			<Provider store={this.store}>
+			<ThemeColoursProvider colour={getIframeOption('couleur')}>
 				<TrackerProvider value={this.props.tracker}>
 					<SitePathProvider value={this.props.sitePaths}>
 						<SetCSSColour />
@@ -77,6 +74,7 @@ export default class Layout extends PureComponent {
 						</I18nextProvider>
 					</SitePathProvider>
 				</TrackerProvider>
+				</ThemeColoursProvider>
 			</Provider>
 		)
 	}

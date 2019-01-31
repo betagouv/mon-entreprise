@@ -1,30 +1,15 @@
 /* @flow */
 
-import {
-	compose,
-	defaultTo,
-	isNil,
-	lensPath,
-	over,
-	set,
-	uniq,
-	without
-} from 'ramda'
+import { compose, defaultTo, isNil, lensPath, over, set, uniq, without } from 'ramda';
 // $FlowFixMe
-import reduceReducers from 'reduce-reducers'
-import { combineReducers } from 'redux'
+import reduceReducers from 'reduce-reducers';
+import { combineReducers } from 'redux';
 // $FlowFixMe
-import { reducer as formReducer } from 'redux-form'
-import computeThemeColours from 'Ui/themeColours'
-import i18n from '../i18n'
-import inFranceAppReducer from './inFranceAppReducer'
-import storageReducer from './storageReducer'
+import { reducer as formReducer } from 'redux-form';
+import i18n from '../i18n';
+import inFranceAppReducer from './inFranceAppReducer';
+import storageReducer from './storageReducer';
 import type { Action } from 'Types/ActionsTypes'
-// TODO : use context API instead
-function themeColours(state = computeThemeColours(), { type, colour }) {
-	if (type == 'CHANGE_THEME_COLOUR') return computeThemeColours(colour)
-	else return state
-}
 
 function explainedVariable(state = null, { type, variableName = null }) {
 	switch (type) {
@@ -182,7 +167,6 @@ export default reduceReducers(
 		conversationSteps,
 		lang,
 		simulation,
-		themeColours,
 		explainedVariable,
 		previousSimulation: defaultTo(null),
 		currentExample,
