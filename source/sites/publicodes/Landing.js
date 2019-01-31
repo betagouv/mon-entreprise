@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom'
 
 export default () => (
 	<div className="ui__ container">
-		<p>
+		<p style={{ marginTop: '5rem' }}>
 			Le <strong>dérèglement climatique</strong> n'est plus une menace mais une
-			actualité. <Link to="/à-propos">En savoir plus</Link>.{' '}
-		</p>
-		<p>
-			Comment éviter la catastrophe ? Chaque aspect de notre vie moderne a un
-			impact.
+			actualité. Comment éviter la catastrophe ? Chaque aspect de notre vie
+			moderne a un impact. <Link to="/à-propos">En savoir plus</Link>.{' '}
 		</p>
 		<h1>Quel est l'impact de ...</h1>
 		<Search />
@@ -25,21 +22,24 @@ class Search extends React.Component {
 				style={{
 					display: 'block',
 					width: '80%',
-					margin: '0 auto',
 					border: '1px solid black',
 					fontSize: '2rem',
-					borderRadius: '.3rem'
+					borderRadius: '.3rem',
+					boxShadow: '#06060624 4px 6px 15px'
 				}}
 				type="text"
 				value={this.state.input}
-				onChange={input => this.setState({ input })}
+				onChange={event => {
+					console.log('Enregistrer la saisie dans un JSON en ligne') ||
+						this.setState({ input: event.target.value })
+				}}
 			/>
 		)
 	}
 }
 
 let Suggestions = () => (
-	<>
+	<section style={{ marginTop: '4rem' }}>
 		<h2>Suggestions </h2>
 		<ul>
 			<li>{emoji('🚿 ')}Mes douches</li>
@@ -47,5 +47,5 @@ let Suggestions = () => (
 			<li>{emoji('🛫 ')} Mes voyages en avion</li>
 			<li>{emoji('🏡 ')}Mon logement</li>
 		</ul>
-	</>
+	</section>
 )
