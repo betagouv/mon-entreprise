@@ -16,7 +16,6 @@
 
 	/*For the .hide element */
 	position: relative;
-	padding-right: 2em;
 }
 #controlsBlock .controlText {
 	display: flex;
@@ -56,6 +55,7 @@
 
 #controlsBlock .hide {
 	font-size: 200%;
-	position: absolute;
+	padding: 0;
+	margin: 0;
 	right: 0em;
 }

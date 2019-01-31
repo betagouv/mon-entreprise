@@ -600,7 +600,7 @@
   nom: congés non pris
   question: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
   description: |
-    Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat. 
+    Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
   format: jours
   suggestions:
@@ -732,7 +732,7 @@
   contrôles:
     - si: brut de base [mensuel] < 50
       niveau: bloquant
-    - si: 
+    - si:
         toutes ces conditions:
           - brut de base [mensuel] < SMIC [mensuel]
           - ≠ assimilé salarié
@@ -742,10 +742,13 @@
       solution:
         cible: contrat salarié . temps partiel
         texte: Est-ce un temps partiel ?
-    - si: brut de base [mensuel] > 10000
+    - si:
+        toutes ces conditions:
+          - brut de base [mensuel] > 10000
+          - période = 'mois'
       niveau: information
       message: |
-        Le salaire saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
+        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
   formule:
     inversion numérique:
       question: Quel est le salaire ?
@@ -980,7 +983,7 @@
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
 
     Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé).
-          
+
     C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
 
     Pour une simulation plus complète, rendez-vous sur [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
@@ -1916,7 +1919,7 @@
   titre: forfait complémentaire santé en Alsace-Moselle
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise (régime Alsace-Moselle) ?
   description: |
-    Pour des raisons historiques, la couverture sociale santé des salariés d'Alsace-Moselle est plus forte. En conséquence, le prix des forfaits de complémentaire santé qui leur sont proposés sont inférieurs. 
+    Pour des raisons historiques, la couverture sociale santé des salariés d'Alsace-Moselle est plus forte. En conséquence, le prix des forfaits de complémentaire santé qui leur sont proposés sont inférieurs.
     Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70% du prix moyen en France.
   références:
     étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
@@ -1942,7 +1945,7 @@
   nom: régime alsace moselle
   titre: Régime Alsace-Moselle
   description: |
-    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements. 
+    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements.
 
     Attention, c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
   applicable si:
@@ -2485,7 +2488,7 @@
 - espace: impôt
   nom: revenu abattu
   description: |
-    L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de 10%) pour prendre en compte une estimation des *frais professionnels* de l'activité rémunérée. 
+    L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de 10%) pour prendre en compte une estimation des *frais professionnels* de l'activité rémunérée.
     Par exemple, on peut considérer qu'un salarié use ses chaussures pour aller au travail. Ces chaussures, il les a acheté avec son argent, donc du revenu sur lequel il a injustement payé de l'impôt.
   période: flexible
   formule:
@@ -2561,7 +2564,7 @@
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
-    Il s'agit du revenu net de cotisations et d'impôts. 
+    Il s'agit du revenu net de cotisations et d'impôts.
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
   formule: revenu net d'impôt - entreprise . charges non déductibles
 
@@ -2600,13 +2603,13 @@
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
 
-    Par exemple, les charges peuvent être : 
+    Par exemple, les charges peuvent être :
 
     - achat de matières premières pour une activité de production
-    - achat de produits en vue de leur revente, pour une activité commerciale 
+    - achat de produits en vue de leur revente, pour une activité commerciale
     - frais de repas : le supplément par rapport au coût d'un repas à domicile
 
-    Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans. 
+    Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans.
 
     A l'inverse, un téléphone portable à moins de 500€ peut être assimilé à une charge sans immobilisation.
 
@@ -2628,9 +2631,9 @@
   titre: Revenu net en tant qu'indépendant
   description: |
 
-    C'est le revenu professionel du travailleur indépendant. 
+    C'est le revenu professionel du travailleur indépendant.
 
-    Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché. 
+    Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
   formule:
@@ -2965,7 +2968,7 @@
   formule: base des cotisations - abattement
 - nom: protection sociale
   description: >
-    La protection sociale est composée de 5 branches principales : maladie, famille, accidents 
+    La protection sociale est composée de 5 branches principales : maladie, famille, accidents
     du travail et maladie professionnelles, retraite et chômage. A cela s'ajoutent
     aussi les cotisations pour la formation professionnelle et le transport.
 
@@ -2979,9 +2982,9 @@
 
     Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
 
-    ## La retraite en France en quelques chiffres 
-      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)  
-      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)  
+    ## La retraite en France en quelques chiffres
+      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)
+      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)
       - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
 
     La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
@@ -3003,7 +3006,7 @@
     Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
     ## L'assurance maladie en France en quelques chiffres
-      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire 
+      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
       - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), entièrement prise en charge par la sécurité sociale
       - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)
       - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
@@ -3018,16 +3021,16 @@
   type: assurance
   description courte: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
   description: >
-    Depuis 1958, l’Assurance chômage protège tous les salariés du privé et certains du secteur public lorsqu’ils perdent leur emploi. Elle leur verse une allocation et favorise leur retour à l’emploi grâce à des aides. 
+    Depuis 1958, l’Assurance chômage protège tous les salariés du privé et certains du secteur public lorsqu’ils perdent leur emploi. Elle leur verse une allocation et favorise leur retour à l’emploi grâce à des aides.
 
     Fonctionnant comme une assurance,  elle indemnise ceux qui ont cotisé, en fonction de leur ancien salaire. Mais elle est aussi solidaire, puisqu’elle mutualise les risques et compense mieux la perte d’un bas salaire que d’un haut revenu.
 
     Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
 
-    ## L'assurance chômage en France en quelques chiffres 
-      - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne    
-      - **2,7 millions** de chômeurs indemnisés chaque mois    
-      - **1 020 €** : montant de l'allocation nette moyenne par mois  
+    ## L'assurance chômage en France en quelques chiffres
+      - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne
+      - **2,7 millions** de chômeurs indemnisés chaque mois
+      - **1 020 €** : montant de l'allocation nette moyenne par mois
       - **51 %** des allocataires cumulent allocation et salaire
 
   références:
@@ -3041,11 +3044,11 @@
   description courte: Offre une vie professionnelle et familiale équilibrée. Finance des crèches et divers services de garde d'enfants.
   description: |
     Créée en 1945, la branche Famille est l’un des principaux acteurs de la politique familiale française. Actuellement, elle a deux missions prioritaires :
-      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la conciliation entre vie familiale et vie professionnelle 
+      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la conciliation entre vie familiale et vie professionnelle
       - Développer la solidarité envers les plus vulnérables, dont les personnes handicapées
 
-    Pour remplir ces missions, elle s’appuie sur deux leviers : 
-      - Le versement de prestations financières aux familles (prestations familiales et sociales, aides au logement et minima sociaux comme l’aide aux adultes handicapés et le revenu de solidarité active) 
+    Pour remplir ces missions, elle s’appuie sur deux leviers :
+      - Le versement de prestations financières aux familles (prestations familiales et sociales, aides au logement et minima sociaux comme l’aide aux adultes handicapés et le revenu de solidarité active)
       - L’accompagnement des familles et la mise en place ou le cofinancement de différents
       services et équipements collectifs qui leur sont destinés (comme les crèches)
 
@@ -3094,7 +3097,7 @@
   icônes: 🔧
   description courte: Autres contributions au système social.
   description: |
-    Toutes les contributions transverses au système social. 
+    Toutes les contributions transverses au système social.
 
     On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette social) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
 
@@ -3105,8 +3108,8 @@
   description: |
     Cette contribution est reversée intégralement à l'[autorité organisatrice de la mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9) de la zone ou est implantée l'entreprise. Celle-ci peut ensuite l'utiliser pour subventionner les transports en commun existants ou pour développer de nouvelles infrastructures de transport (tramway, métro, bus...).
 
-    ## Le versement transport en quelques chiffres 
-    - **45% de réduction** sur le coût des transports en communs dans les 12 plus grandes agglomérations de France. 
+    ## Le versement transport en quelques chiffres
+    - **45% de réduction** sur le coût des transports en communs dans les 12 plus grandes agglomérations de France.
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
