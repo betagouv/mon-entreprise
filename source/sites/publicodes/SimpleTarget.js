@@ -5,8 +5,9 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import sitePaths from '../../sites/mycompanyinfrance.fr/sitePaths'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import './Targets.css'
+import './SimpleTarget.css'
 
 export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),

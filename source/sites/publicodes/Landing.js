@@ -1,11 +1,14 @@
 import { React, emoji } from 'Components'
 import { Link } from 'react-router-dom'
+import simulateurs from './simulateurs.yaml'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { connect } from 'react-redux'
+import { findRuleByDottedName } from 'Engine/rules'
 
 export default () => (
 	<div className="ui__ container">
 		<p style={{ marginTop: '5rem' }}>
-			Le <strong>dérèglement climatique</strong> n'est plus une menace mais une
-			actualité. Comment éviter la catastrophe ? Chaque aspect de notre vie
+				Le <strong>dérèglement climatique</strong> n'est plus une menace lointaine et incertaine, c'est une <strong>actualité</strong>. Comment éviter la catastrophe ? Chaque aspect de notre vie
 			moderne a un impact. <Link to="/à-propos">En savoir plus</Link>.{' '}
 		</p>
 		<h1>Quel est l'impact de ...</h1>
@@ -38,14 +41,19 @@ class Search extends React.Component {
 	}
 }
 
-let Suggestions = () => (
-	<section style={{ marginTop: '4rem' }}>
-		<h2>Suggestions </h2>
-		<ul>
-			<li>{emoji('🚿 ')}Mes douches</li>
-			<li>{emoji('🚶‍♀️ 🚲 🚆 🚗 ')}Mes déplacements quotidien</li>
-			<li>{emoji('🛫 ')} Mes voyages en avion</li>
-			<li>{emoji('🏡 ')}Mon logement</li>
-		</ul>
-	</section>
+let Suggestions = connect(state => ({ rules: flatRulesSelector(state) }))(
+	({ rules }) => (
+		<section style={{ marginTop: '4rem' }}>
+			<h2>Suggestions </h2>
+			<ul>
+				{simulateurs
+					.map(dottedName => findRuleByDottedName(rules, dottedName))
+					.map(({ dottedName, title }) => (
+						<li key={dottedName}>
+							<Link to={'/simulateur/' + dottedName}>{title}</Link>
+						</li>
+					))}
+			</ul>
+		</section>
+	)
 )

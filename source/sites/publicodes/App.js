@@ -7,6 +7,7 @@ import Route404 from '../embauche.gouv.fr/pages/Route404'
 import RulesList from '../embauche.gouv.fr/pages/RulesList'
 import sitePaths from './sitePaths'
 import Landing from './Landing'
+import Simulateur from './Simulateur'
 
 class App extends Component {
 	render() {
@@ -18,12 +19,12 @@ class App extends Component {
 					filePath: 'co2.yaml'
 				}}
 				sitePaths={sitePaths()}
-				initialStore={{ targetNames: ['transport . impact'] }}
 				reduxMiddlewares={[]}>
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route path="/documentation/:name" component={RulePage} />
 					<Route path="/documentation" component={RulesList} />
+					<Route path="/simulateur/:name" component={Simulateur} />
 					<Route component={Route404} />
 				</Switch>
 			</Provider>
