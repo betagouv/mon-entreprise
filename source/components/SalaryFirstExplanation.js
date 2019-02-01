@@ -1,11 +1,17 @@
 /* @flow */
 
-import Distribution from 'Components/Distribution'
-import PaySlip from 'Components/PaySlip'
-import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
+import Distribution from 'Components/Distribution';
+import PaySlip from 'Components/PaySlip';
+import React, { Component } from 'react';
+import { Trans } from 'react-i18next';
 
-export default class SalaryFirstExplanation extends Component {
+type Props = {
+	arePreviousAnswers: boolean,
+	conversationStarted: boolean,
+	startConversation: () => void,
+	period: 'mois' | 'année'
+}
+export default class SalaryFirstExplanation extends Component<Props> {
 	render() {
 		return (
 			<>

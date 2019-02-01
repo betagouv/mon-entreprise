@@ -1,16 +1,15 @@
 /* @flow */
 
 import React, { Component, createContext } from 'react'
-import type { ComponentType } from 'react'
 
 export type SitePaths = Object
 
-const SitePathsContext = createContext({})
+const SitePathsContext: React$Context<SitePaths> = createContext({})
 
 export const SitePathProvider = SitePathsContext.Provider
 export default function withSitePaths<Props: { sitePaths: SitePaths }>(
-	WrappedComponent: ComponentType<Props>
-) {
+	WrappedComponent: React$ComponentType<Props>
+): React$ComponentType<$Diff<Props, {sitePaths: SitePaths}>> {
 	class WithSitePaths extends Component<
 		$Diff<Props, { sitePaths: SitePaths }>
 	> {

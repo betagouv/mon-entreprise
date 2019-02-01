@@ -256,7 +256,7 @@ export let treatRuleRoot = (rules, rule) => {
 
 			if (level === 'bloquant' && !isInputControl) {
 				throw new Error(
-					`Un contrôle ne peut être bloquant et invoquer des calculs de variables : 
+					`Un contrôle ne peut être bloquant et invoquer des calculs de variables :
 						${control['si']}
 						${level}
 						`
@@ -367,7 +367,6 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = { parseLevel: 0 }
-
 	// These controls do not trigger the evaluation of variables of the system : they are input controls
 	// This is necessary because our evaluation implementation is not yet fast enough to not freeze slow mobile devices
 	// They could be implemented directly at the redux-form level, but they should also be triggered by the engine used as a library

@@ -1,7 +1,6 @@
 /* @flow */
 
 import { compose, defaultTo, isNil, lensPath, over, set, uniq, without } from 'ramda';
-// $FlowFixMe
 import reduceReducers from 'reduce-reducers';
 import { combineReducers } from 'redux';
 // $FlowFixMe

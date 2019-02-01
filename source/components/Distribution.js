@@ -14,10 +14,11 @@ import { isIE } from '../utils'
 import './Distribution.css'
 import './PaySlip'
 import RuleLink from './RuleLink'
+import type { ThemeColours } from 'Components/utils/withColours'
 import type { Répartition } from 'Types/ResultViewTypes.js'
 
 type Props = ?Répartition & {
-	colours: { colour: string }
+	colours: ThemeColours
 }
 type State = {
 	branchesInViewport: Array<string>
@@ -42,6 +43,7 @@ class Distribution extends Component<Props, State> {
 	render() {
 		const {
 			colours: { colour },
+			// $FlowFixMe
 			...distribution
 		} = this.props
 		if (!Object.values(distribution).length) {

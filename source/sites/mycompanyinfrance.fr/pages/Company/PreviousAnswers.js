@@ -30,7 +30,7 @@ const requirementToText = (key, value) => {
 			return value ? <T>Gérant minoritaire</T> : <T>Gérant majoritaire</T>
 	}
 }
-
+type OwnProps = {}
 type Props = LegalStatusRequirements & {
 	goToCompanyStatusChoice: () => void,
 	sitePaths: Object
@@ -72,10 +72,10 @@ const PreviousAnswers = ({
 	)
 }
 
-export default compose(
+export default (compose(
 	connect(
 		state => state.inFranceApp.companyLegalStatus,
 		{ goToCompanyStatusChoice }
 	),
 	withSitePaths
-)(PreviousAnswers)
+)(PreviousAnswers): React$ComponentType<OwnProps>)

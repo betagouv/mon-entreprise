@@ -1,9 +1,9 @@
 /* @flow */
 
-import { expect } from 'chai'
-import FicheDePaieSelectors, {
-	COTISATION_BRANCHE_ORDER
-} from 'Selectors/ficheDePaieSelectors'
+import { expect } from 'chai';
+import FicheDePaieSelectors, { COTISATION_BRANCHE_ORDER } from 'Selectors/ficheDePaieSelectors';
+// $FlowFixMe
+import salariéConfig from 'Components/simulationConfigs/salarié.yaml';
 
 let state = {
 	form: {
@@ -13,6 +13,9 @@ let state = {
 				entreprise: { effectif: '50' }
 			}
 		}
+	},
+	simulation: {
+		config: salariéConfig,
 	},
 	conversationStarted: true,
 	conversationSteps: {
@@ -25,6 +28,7 @@ let paySlip = null
 describe('pay slip selector', function() {
 	beforeEach(() => {
 		paySlip = FicheDePaieSelectors(state)
+
 		expect(paySlip).not.to.eq(null)
 	})
 	it('should have cotisations grouped by branches in the proper ordering', function() {

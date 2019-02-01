@@ -660,6 +660,7 @@
 - nom: contrat salarié
   icônes: 📄
   question: Activité salariée ?
+  par défaut: oui
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
 
@@ -2494,7 +2495,7 @@
   formule:
     somme:
       - revenu abattu par défaut
-      - micro entreprise . impôt . revenu abattu
+      - autoentrepreneur . impôt . revenu abattu
 
 - espace: impôt
   nom: revenu abattu par défaut
@@ -2550,7 +2551,7 @@
     somme:
       - contrat salarié . salaire . net
       - indépendant . revenu net de cotisations
-      - micro entreprise . revenu net de cotisations
+      - autoentrepreneur . revenu net de cotisations
 
 - nom: revenu net d'impôt
   titre: Revenu net de cotisations et d'impôt
@@ -2576,7 +2577,7 @@
   format: euros
   formule:
     variations:
-      - si: micro entreprise
+      - si: autoentrepreneur
         alors:
           inversion numérique:
             avec:
@@ -2591,7 +2592,7 @@
     somme:
       - contrat salarié . rémunération . total
       - indépendant . revenu brut
-      - micro entreprise . base des cotisations
+      - autoentrepreneur . base des cotisations
 
 - espace: entreprise
   nom: charges
@@ -2622,7 +2623,7 @@
 
 - espace: entreprise
   nom: charges non déductibles
-  applicable si: micro entreprise
+  applicable si: autoentrepreneur
   formule: charges
   période: flexible
 
@@ -2681,6 +2682,7 @@
   nom: restauration ou hébergement
 
 - nom: indépendant
+  par défaut: non
   question: Activité à la sécurité sociale des indépendants ?
 
 - espace: indépendant
@@ -2904,11 +2906,12 @@
   période: flexible
   formule: revenu net de cotisations + prélèvements . CSG et CRDS (non déductible)
 
-- nom: micro entreprise
-  icônes: μ
+- nom: autoentrepreneur
+  icônes: 🚶
+  par défaut: non
   question: Activité en auto-entrepreneur ?
 
-- espace: micro entreprise
+- espace: autoentrepreneur
   nom: base des cotisations
   formule: entreprise . chiffre d'affaires
   période: flexible
@@ -2917,7 +2920,7 @@
       message: Seuil de chiffre d'affaires dépassé
       niveau: avertissement
 
-- espace: micro entreprise
+- espace: autoentrepreneur
   nom: plafond
   période: année
   formule:
@@ -2928,13 +2931,13 @@
         alors: 70000
       - sinon: 170000
 
-- espace: micro entreprise
+- espace: autoentrepreneur
   nom: revenu net de cotisations
   titre: Revenu net d'une auto-entrepreneur
   formule: base des cotisations - cotisations
   période: flexible
 
-- espace: micro entreprise
+- espace: autoentrepreneur
   nom: cotisations
   période: flexible
   formule:
@@ -2948,7 +2951,7 @@
             alors: 22%
           - sinon: 12.8%
 
-- espace: micro entreprise . impôt
+- espace: autoentrepreneur . impôt
   nom: abattement
   période: flexible
   formule:
@@ -2962,7 +2965,7 @@
             alors: 50%
           - sinon: 71%
 
-- espace: micro entreprise . impôt
+- espace: autoentrepreneur . impôt
   nom: revenu abattu
   période: flexible
   formule: base des cotisations - abattement

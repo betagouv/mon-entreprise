@@ -1,20 +1,21 @@
 /* @flow */
-import { React, T } from 'Components';
-import { ScrollToTop } from 'Components/utils/Scroll';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { compose } from 'ramda';
-import { withNamespaces } from 'react-i18next';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Animate from 'Ui/animate';
-import siret from './siret.jpg';
+import { React, T } from 'Components'
+import { ScrollToTop } from 'Components/utils/Scroll'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose } from 'ramda'
+import { withNamespaces } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import Animate from 'Ui/animate'
+import siret from './siret.jpg'
 import type { TFunction } from 'react-i18next'
 
+type OwnProps = {}
 type Props = {
 	companyStatusChoice: string,
 	sitePaths: Object,
 	t: TFunction
-}
+} & OwnProps
 
 const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 	<Animate.fromBottom>
@@ -59,7 +60,8 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 				la nomenclature nationale d'activités françaises (code « NAF »).{' '}
 				<span
 					style={
-						companyStatusChoice && companyStatusChoice.match(/auto-entrepreneur|EI/)
+						companyStatusChoice &&
+						companyStatusChoice.match(/auto-entrepreneur|EI/)
 							? { display: 'none' }
 							: {}
 					}>
@@ -106,10 +108,10 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 	</Animate.fromBottom>
 )
 
-export default compose(
+export default (compose(
 	connect(state => ({
 		companyStatusChoice: state.inFranceApp.companyStatusChoice
 	})),
 	withNamespaces(),
 	withSitePaths
-)(AfterRegistration)
+)(AfterRegistration): React$ComponentType<OwnProps>)

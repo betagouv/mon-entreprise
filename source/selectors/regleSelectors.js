@@ -17,10 +17,15 @@ import type {
 	RègleAvecValeur
 } from 'Types/RegleTypes'
 import type { Analysis } from 'Types/Analysis'
+import type { InputSelector } from 'reselect'
 
-export const règleLocaliséeSelector = createSelector(
+export const règleLocaliséeSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => Règle
+> = createSelector(
 	flatRulesSelector,
-	(localizedFlatRules: FlatRules) => (dottedName: string): Règle => {
+	(localizedFlatRules: ?FlatRules) => (dottedName: string): Règle => {
 		if (!localizedFlatRules) {
 			throw new Error(
 				`[LocalizedRègleSelector] Les localizedFlatRules ne doivent pas être 'undefined' ou 'null'`
@@ -46,7 +51,11 @@ export const règleLocaliséeSelector = createSelector(
 	}
 )
 
-export const règleValeurSelector = createSelector(
+export const règleValeurSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => RègleValeur
+> = createSelector(
 	branchAnalyseSelector,
 	validatedSituationBranchesSelector,
 	règleLocaliséeSelector,
@@ -84,7 +93,7 @@ export const règleValeurSelector = createSelector(
 		if (typeof valeur === 'boolean') {
 			return { type: 'boolean', valeur }
 		}
-		if (rule?.API || rule?.explanation?.API) {
+		if (rule && (rule.API || rule.explanation?.API)) {
 			//TODO This code is specific to the géo API
 			return { type: 'string', valeur: valeur.nom }
 		}
@@ -94,7 +103,6 @@ export const règleValeurSelector = createSelector(
 			(!Number.isNaN(valeur) && Number.isNaN(Number.parseFloat(valeur))
 				? 'string'
 				: 'number')
-		// $FlowFixMe
 		return {
 			type,
 			valeur:
@@ -105,7 +113,11 @@ export const règleValeurSelector = createSelector(
 	}
 )
 
-export const règleAvecMontantSelector = createSelector(
+export const règleAvecMontantSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => RègleAvecMontant
+> = createSelector(
 	règleValeurSelector,
 	règleLocaliséeSelector,
 	(règleValeur, règleLocalisée) => (dottedName: string): RègleAvecMontant => {
@@ -121,13 +133,17 @@ export const règleAvecMontantSelector = createSelector(
 		}
 	}
 )
-export const règleAvecValeurSelector = createSelector(
+export const règleAvecValeurSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => RègleAvecValeur
+> = createSelector(
 	règleValeurSelector,
 	règleLocaliséeSelector,
 	(règleValeur, règleLocalisée) => (dottedName: string): RègleAvecValeur =>
 		// $FlowFixMe
 		({
-			...règleValeur(dottedName),
-			...règleLocalisée(dottedName)
+			...règleLocalisée(dottedName),
+			...règleValeur(dottedName)
 		})
 )

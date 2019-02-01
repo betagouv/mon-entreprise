@@ -1,8 +1,8 @@
 /* @flow */
 import { setSituationBranch } from 'Actions/actions'
 import {
-	isAutoentrepreneur,
-	defineDirectorStatus
+	defineDirectorStatus,
+	isAutoentrepreneur
 } from 'Actions/companyStatusActions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
@@ -21,11 +21,17 @@ import Montant from 'Ui/Montant'
 import { validInputEnteredSelector } from '../selectors/analyseSelectors'
 import './ComparativeTargets.css'
 import SchemeCard from './ui/SchemeCard'
+import type {
+	Règle,
+	RègleAvecMontant,
+	RègleValeur,
+	RègleAvecValeur
+} from 'Types/RegleTypes'
 
 const connectRègles = (situationBranchName: string) =>
 	connect(
 		state => {
-			return {
+			return ({
 				revenuDisponible:
 					validInputEnteredSelector(state) &&
 					règleAvecMontantSelector(state, {
@@ -36,7 +42,10 @@ const connectRègles = (situationBranchName: string) =>
 					règleAvecValeurSelector(state, {
 						situationBranchName
 					})('ratio de prélèvements')
-			}
+			}: {
+				revenuDisponible: RègleAvecMontant,
+				prélèvements: RègleAvecValeur
+			})
 		},
 		{
 			setSituationBranch,
@@ -45,7 +54,10 @@ const connectRègles = (situationBranchName: string) =>
 		}
 	)
 
-const ComparativeTargets = connect(state => {
+type ComparativeTargetsProps = {
+	plafondAutoEntrepreneurDépassé: ?{ message: string }
+}
+const ComparativeTargets: React$ComponentType<{}> = connect(state => {
 	const analyse = branchAnalyseSelector(state, {
 		situationBranchName: 'Auto-entrepreneur'
 	})
@@ -56,7 +68,7 @@ const ComparativeTargets = connect(state => {
 				test.includes('base des cotisations > plafond')
 			)
 	}
-})(({ plafondAutoEntrepreneurDépassé }) => (
+})(({ plafondAutoEntrepreneurDépassé }: ComparativeTargetsProps) => (
 	<Animate.fromBottom config={config.gentle}>
 		<div
 			className="ui__ full-width"
@@ -69,7 +81,8 @@ const ComparativeTargets = connect(state => {
 			<AutoEntrepreneur
 				branchIndex={0}
 				plafondDépassé={
-					plafondAutoEntrepreneurDépassé && plafondAutoEntrepreneurDépassé.message
+					plafondAutoEntrepreneurDépassé &&
+					plafondAutoEntrepreneurDépassé.message
 				}
 			/>
 			<AssimiléSalarié branchIndex={2} />
@@ -184,9 +197,13 @@ const AutoEntrepreneur = connectRègles('Auto-entrepreneur')(
 	}
 )
 
+type PrélèvementNoticeProps = {
+	prélèvements: ?RègleAvecValeur,
+	sitePaths: Object
+}
 const PrélèvementNotice = withSitePaths(
-	({ prélèvements, sitePaths }) =>
-		prélèvements && (
+	({ prélèvements, sitePaths }: PrélèvementNoticeProps) =>
+		!!prélèvements && (
 			<>
 				soit{' '}
 				<Montant

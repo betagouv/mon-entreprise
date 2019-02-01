@@ -7,11 +7,13 @@ import { Link } from 'react-router-dom'
 import { capitalise0 } from '../utils'
 import './RuleLink.css'
 import type { Règle } from 'Types/RegleTypes'
+import type { ThemeColours } from 'Components/utils/withColours'
+
 
 type Props = Règle & {
 	sitePaths: Object,
 	style: CSSStyleDeclaration,
-	colours: { colour: string }
+	colours: ThemeColours
 }
 const RuleLink = ({
 	lien,

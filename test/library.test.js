@@ -1,7 +1,7 @@
-import { expect } from 'chai'
-import Syso from '../source/engine/index'
-import sasuRules from '../source/règles/sasu.yaml'
-import co2 from '../source/règles/co2.yaml'
+import { expect } from 'chai';
+import Syso from '../source/engine/index';
+import co2 from '../source/règles/co2.yaml';
+import sasuRules from '../source/règles/sasu.yaml';
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
@@ -141,6 +141,6 @@ describe('library', function() {
 			{ base: co2, debug: false }
 		)
 		//console.log(JSON.stringify(value.targets[0], null, 4))
-		expect(value).to.be.within(40, 41)
+		expect(value).to.be.within(20, 21)
 	})
 })

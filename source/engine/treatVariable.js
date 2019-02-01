@@ -41,6 +41,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			)
 			return cache[cacheName]
 		}
+		const variableScore = variable.defaultValue ? 1 : 2;
 
 		// SITUATION 1 : La variable est directement renseignée
 		if (situationValue != null) return cacheAndNode(situationValue, {})
@@ -51,14 +52,14 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 
 		// SITUATION 3 : La variable est une question sans condition dont la valeur n'a pas été renseignée
 		if (situationValue == null && !variableHasFormula && !variableHasCond)
-			return cacheAndNode(null, { [dottedName]: 1 })
+			return cacheAndNode(null, { [dottedName]: variableScore })
 
 		// SITUATION 4 : La variable est une question avec conditions
 		if (situationValue == null && !variableHasFormula && variableHasCond) {
 			// SITUATION 4.1 : La condition est connue et vrai
 			if (explanation.isApplicable)
 				return variable.question
-					? cacheAndNode(null, { [dottedName]: 1 })
+					? cacheAndNode(null, { [dottedName]: variableScore })
 					: cacheAndNode(true, {})
 
 			// SITUATION 4.2 : La condition est connue et fausse
@@ -67,7 +68,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			if (explanation.isApplicable == null)
 				return cacheAndNode(null, {
 					...explanation.missingVariables,
-					...(variable.question ? { [dottedName]: 1 } : {})
+					...(variable.question ? { [dottedName]: variableScore } : {})
 				})
 		}
 	}

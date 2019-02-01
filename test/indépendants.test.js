@@ -1,17 +1,19 @@
-import { expect } from 'chai'
-import Syso from '../source/engine/index'
-import indeps from '../source/règles/base.yaml'
+import { expect } from 'chai';
+import Syso from '../source/engine/index';
 
 describe('indeps', function() {
-	it('allez là', function() {
+	it.only('should compute income for indépendant', function() {
 		let values = Syso.evaluate(
-			['indépendants . revenu net de cotisations'],
-			{ "chiffre d'affaires": 100000 },
-			{
-				base: indeps
-			}
+			['revenu disponible'],
+			{ "entreprise . chiffre d'affaires": 70000,
+			'entreprise . charges' : 2000,
+				indépendant: 'oui',
+				'auto-entrepreneur': 'non',
+				'contrat salarié': 'non',
+				période: 'année'
+		   }
 		)
 
-		expect(values[0]).to.equal(201)
+		expect(values[0]).to.equal(42166)
 	})
 })

@@ -118,8 +118,7 @@ const répartition = (
 	)
 	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
 	let CSG
-	const autresCotisations =
-		cotisations['protection sociale . autres']
+	const autresCotisations = cotisations['protection sociale . autres']
 	if (autresCotisations) {
 		CSG = autresCotisations.find(({ id }) => id === 'contrat salarié . CSG')
 		if (!CSG)
@@ -130,6 +129,7 @@ const répartition = (
 		)
 	}
 
+	// $FlowFixMe
 	let répartitionMap: { [Branche]: MontantPartagé } = map(
 		totalCotisations,
 		cotisations
@@ -166,6 +166,7 @@ const répartition = (
 	}
 }
 
+// $FlowFixMe
 export default createSelector(
 	FicheDePaieSelectors,
 	règleLocaliséeSelector,

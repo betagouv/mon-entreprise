@@ -1,7 +1,6 @@
 /* @flow */
 import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
 import { React, T } from 'Components'
-// $FlowFixMe
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
@@ -25,8 +24,7 @@ type State = {
 }
 
 type Props = {
-	// $FlowFixMe
-	onCompanyDetailsConfirmation: ({ [string]: string }) => void,
+	//onCompanyDetailsConfirmation: ({ [string]: string }) => void,
 	history: RouterHistory
 }
 

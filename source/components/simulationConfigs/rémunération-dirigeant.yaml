@@ -16,17 +16,17 @@ situation:
 branches:
   - nom: Auto-entrepreneur
     situation:
-      micro entreprise: oui
+      auto-entrepreneur: oui
       indépendant: non
       contrat salarié: non
   - nom: Indépendant
     situation:
       indépendant: oui
-      micro entreprise: non
+      auto-entrepreneur: non
       contrat salarié: non
   - nom: Assimilé salarié
     situation:
-      micro entreprise: non
+      auto-entrepreneur: non
       indépendant: non
       contrat salarié: oui
       contrat salarié . assimilé salarié: oui

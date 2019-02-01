@@ -18,9 +18,9 @@ let Banner = ({ hidden = false, children }: PropTypes) =>
 		</div>
 	) : null
 
-export default connect(
+export default (connect(
 	(state: State, { hidden }: PropTypes) => ({
 		hidden: hidden || state.conversationStarted
 	}),
 	{}
-)(Banner)
+)(Banner): React$ComponentType<PropTypes>)

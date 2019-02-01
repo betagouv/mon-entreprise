@@ -1,7 +1,7 @@
-import { compose } from 'ramda'
-import React, { Component } from 'react'
-import { Trans, withNamespaces } from 'react-i18next'
-import { FormDecorator } from './FormDecorator'
+import { compose } from 'ramda';
+import React, { Component } from 'react';
+import { Trans, withNamespaces } from 'react-i18next';
+import { FormDecorator } from './FormDecorator';
 
 export default compose(
 	FormDecorator('text-area'),

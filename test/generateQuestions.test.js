@@ -1,10 +1,7 @@
-import { expect } from 'chai'
-import {
-	collectMissingVariables,
-	getNextSteps
-} from '../source/engine/generateQuestions'
-import { enrichRule, rules as realRules } from '../source/engine/rules'
-import { analyse, parseAll } from '../source/engine/traverse'
+import { expect } from 'chai';
+import { collectMissingVariables, getNextSteps } from '../source/engine/generateQuestions';
+import { enrichRule, rules as realRules } from '../source/engine/rules';
+import { analyse, parseAll } from '../source/engine/traverse';
 
 let stateSelector = () => null
 
@@ -380,6 +377,7 @@ describe('nextSteps', function() {
 	it('should ask "motif CDD" if "CDD" applies', function() {
 		let stateSelector = name =>
 			({
+				'contrat salarié': 'oui',
 				'contrat salarié . CDD': 'oui',
 				'contrat salarié . salaire . brut de base': '2300'
 			}[name])

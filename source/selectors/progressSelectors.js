@@ -68,6 +68,7 @@ const hiringProgressSelector = state => {
 	return (100 * hiringChecklist.filter(Boolean).length) / hiringChecklist.length
 }
 
+// $FlowFixMe
 export default createStructuredSelector({
 	companyProgress: companyProgressSelector,
 	estimationProgress: estimationProgressSelector,

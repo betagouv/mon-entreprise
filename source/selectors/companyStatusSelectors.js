@@ -113,14 +113,11 @@ const isCompatibleStatusWith = (answers: LegalStatusRequirements) => (
 	statusRequirements: LegalStatusRequirements
 ): boolean => {
 	const stringify = map(x => (!isNil(x) ? JSON.stringify(x) : x))
-	// $FlowFixMe
 	const answerCompatibility = Object.values(
 		mergeWith(
 			(answer, statusValue) =>
 				isNil(answer) || isNil(statusValue) || answer === statusValue,
-			// $FlowFixMe
 			stringify(statusRequirements),
-			// $FlowFixMe
 			stringify(answers)
 		)
 	)

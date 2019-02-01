@@ -7,6 +7,7 @@ import type {
 	SetSimulationConfigAction,
 	SetSituationBranchAction
 } from 'Types/ActionsTypes'
+// $FlowFixMe
 import { reset } from 'redux-form';
 import { deletePersistedSimulation } from '../storage/persistSimulation';
 
@@ -50,7 +51,6 @@ export const deletePreviousSimulation = () => (
 
 export const startConversation = (priorityNamespace: ?string) => (
 	dispatch: StartConversationAction => void,
-	_: any
 ) => {
 	dispatch({
 		type: 'START_CONVERSATION',

@@ -6,6 +6,7 @@ const state = companyLegalStatus => ({
 	inFranceApp: {
 		companyLegalStatus,
 		existingCompanyDetails: null,
+		companyStatusChoice: null,
 	}
 })
 describe('company status selectors', function() {
@@ -15,7 +16,7 @@ describe('company status selectors', function() {
 				state({
 					liability: 'UNLIMITED_LIABILITY',
 					directorStatus: 'SELF_EMPLOYED',
-					multipleAssociates: true
+					multipleAssociates: true,
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)

@@ -14,6 +14,7 @@ import type { TFunction } from 'react-i18next'
 
 import type { Match, Location } from 'react-router'
 
+type OwnProps = {}
 type Props = {
 	match: Match,
 	nextQuestionUrl: string,
@@ -22,7 +23,7 @@ type Props = {
 	t: TFunction,
 	location: Location,
 	sitePaths: Object
-}
+} & OwnProps
 const CreateMyCompany = ({
 	match,
 	sitePaths,
@@ -90,7 +91,7 @@ const CreateMyCompany = ({
 	)
 }
 
-export default compose(
+export default (compose(
 	connect(
 		state => ({
 			nextQuestionUrl: nextQuestionUrlSelector(state),
@@ -101,4 +102,4 @@ export default compose(
 	),
 	withSitePaths,
 	withNamespaces()
-)(CreateMyCompany)
+)(CreateMyCompany): React$ComponentType<OwnProps>)

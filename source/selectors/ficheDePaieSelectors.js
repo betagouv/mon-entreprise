@@ -115,7 +115,7 @@ const groupByBranche = (règleLocaliséeSelector: string => Règle) => (
 	return COTISATION_BRANCHE_ORDER.map(branche => [
 		règleLocaliséeSelector(branche),
 		// $FlowFixMe
-		cotisationsMap[branche]
+		cotisathe]
 	])
 }
 const analysisToCotisations = (

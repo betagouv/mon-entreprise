@@ -9,7 +9,7 @@ questions à l'affiche:
   Charges: entreprise . charges
 
 situation:
-  micro entreprise: non
+  auto-entrepreneur: non
   indépendant: non
   contrat salarié: oui
   contrat salarié . assimilé salarié: oui

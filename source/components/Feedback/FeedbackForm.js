@@ -4,7 +4,6 @@ import { ScrollToElement } from 'Components/utils/Scroll'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
-import { compose } from 'redux'
 import type { Tracker } from 'Components/utils/withTracker'
 
 type Props = { onEnd: () => void, tracker: Tracker }
@@ -19,7 +18,6 @@ class FeedbackForm extends Component<Props> {
 			'written feedback submitted'
 		])
 		e.preventDefault()
-		// $FlowFixMe
 		fetch('/', {
 			method: 'POST',
 			// $FlowFixMe
@@ -88,4 +86,4 @@ class FeedbackForm extends Component<Props> {
 	}
 }
 
-export default compose(withTracker)(FeedbackForm)
+export default withTracker(FeedbackForm)

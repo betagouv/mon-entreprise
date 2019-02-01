@@ -82,7 +82,9 @@ export function softCatch<ArgType: any, ReturnType: any>(
 		}
 	}
 }
-export const mapOrApply = (fn, x) => (Array.isArray(x) ? x.map(fn) : fn(x))
+export function mapOrApply<A, B>(fn: A=>B, x: Array<A> | A): Array<B> | B {
+	return Array.isArray(x) ? x.map(fn) : fn(x)
+}
 
 
 export const constructSitePaths = (

@@ -1,16 +1,17 @@
 /* @flow */
 
-import Distribution from 'Components/Distribution'
-import PaySlip from 'Components/PaySlip'
-import SearchButton from 'Components/SearchButton'
-import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
-import './SalaryCompactExplanation.css'
+import Distribution from 'Components/Distribution';
+import PaySlip from 'Components/PaySlip';
+import SearchButton from 'Components/SearchButton';
+import React, { Component } from 'react';
+import { Trans } from 'react-i18next';
+import './SalaryCompactExplanation.css';
 
 import type { Tracker } from 'Components/utils/withTracker'
 
+type ResultView = 'distribution' | 'payslip';
 type State = {
-	resultView: 'distribution' | 'payslip'
+	resultView: ResultView
 }
 type Props = {
 	conversationStarted: boolean,
@@ -27,7 +28,7 @@ export default class SalaryCompactExplanation extends Component<Props, State> {
 	state = {
 		resultView: this.props.conversationStarted ? 'payslip' : 'distribution'
 	}
-	handleClickOnTab = resultView => () => {
+	handleClickOnTab = (resultView: ResultView) => () => {
 		this.setState({ resultView })
 		this.props.tracker.push(['trackEvent', 'results', 'selectView', resultView])
 	}
