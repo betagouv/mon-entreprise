@@ -1,18 +1,18 @@
 /* @flow */
 
-import { Component, React, T } from 'Components'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import withLanguage from 'Components/utils/withLanguage'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import emoji from 'react-easy-emoji'
-import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { régimeSelector } from 'Selectors/companyStatusSelectors'
-import * as Animate from 'Ui/animate'
-import Video from './Video'
+import { Component, React, T } from 'Components';
+import { ScrollToTop } from 'Components/utils/Scroll';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import emoji from 'react-easy-emoji';
+import Helmet from 'react-helmet';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { régimeSelector } from 'Selectors/companyStatusSelectors';
+import * as Animate from 'Ui/animate';
+import Video from './Video';
 
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
@@ -62,7 +62,7 @@ class SocialSecurity extends Component<Props, {}> {
 								</T>
 							</p>
 						)}
-						{['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+						{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
 							window.location.hostname
 						) ? (
 							<>
