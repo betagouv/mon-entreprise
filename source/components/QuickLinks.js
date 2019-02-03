@@ -10,11 +10,13 @@ import { animated, Spring } from 'react-spring';
 import { validInputEnteredSelector } from 'Selectors/analyseSelectors';
 import type { Location } from 'react-router'
 
-type Props = {
+type OwnProps = {
+	quickLinks: {[string]: string},
+}
+type Props = OwnProps & {
 	startConversation: (?string) => void,
 	location: Location,
 	validInputEntered: boolean,
-	quickLinks: {[string]: string},
 	conversationStarted: boolean
 }
 
@@ -59,7 +61,7 @@ const QuickLinks = ({
 	)
 }
 
-export default compose(
+export default (compose(
 	withLanguage,
 	withRouter,
 	connect(
@@ -73,4 +75,4 @@ export default compose(
 			startConversation
 		}
 	)
-)(QuickLinks)
+)(QuickLinks): React$ComponentType<OwnProps>)

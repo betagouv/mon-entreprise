@@ -4,7 +4,8 @@ import withSitePaths from 'Components/utils/withSitePaths';
 import { compose } from 'ramda';
 import { withNamespaces } from 'react-i18next';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, } from 'react-router-dom';
+import {  withRouter } from "react-router";
 import companySvg from '../../images/company.svg';
 import estimateSvg from '../../images/estimate.svg';
 import hiringSvg from '../../images/hiring.svg';
@@ -14,7 +15,8 @@ import SideBar from './SideBar';
 
 import type { TFunction } from 'react-i18next'
 
-type Props = {
+type OwnProps = {};
+type Props = OwnProps & {
 	companyProgress: number,
 	estimationProgress: number,
 	sitePaths: Object,
@@ -257,7 +259,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 	</SideBar>
 )
 
-export default compose(
+export default (compose(
 	withRouter,
 	withNamespaces(),
 	withSitePaths,
@@ -267,4 +269,4 @@ export default compose(
 		}),
 		{}
 	)
-)(StepsHeader)
+)(StepsHeader): React$ComponentType<OwnProps>)

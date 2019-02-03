@@ -23,6 +23,10 @@ env:
   browser: true
   commonjs: true
   es6: true
+settings:
+  react:
+    version: detect
+    flowVersion: detect
 
 overrides:
   files: ['*.test.js', 'cypress/integration/**/*.js']

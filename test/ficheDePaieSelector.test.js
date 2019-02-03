@@ -27,6 +27,7 @@ let paySlip = null
 
 describe('pay slip selector', function() {
 	beforeEach(() => {
+		// $FlowFixMe
 		paySlip = FicheDePaieSelectors(state)
 
 		expect(paySlip).not.to.eq(null)

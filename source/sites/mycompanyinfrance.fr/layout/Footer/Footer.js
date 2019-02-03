@@ -7,8 +7,6 @@ import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Trans, withNamespaces } from 'react-i18next'
-import { withRouter } from 'react-router'
 import i18n from '../../../../i18n'
 import { feedbackBlacklist } from '../../config'
 import { hrefLangLink } from '../../sitePaths'
@@ -87,7 +85,5 @@ const Footer = ({ colours: { colour } }) => {
 	)
 }
 export default compose(
-	withRouter,
 	withColours,
-	withNamespaces()
 )(Footer)

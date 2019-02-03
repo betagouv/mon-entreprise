@@ -195,6 +195,7 @@ function analysisToFicheDePaie(
 		),
 		salaireNet: règleAvecMontant('contrat salarié . salaire . net'),
 		nombreHeuresTravaillées: Math.round(
+			// $FlowFixMe
 			règleAvecValeur('contrat salarié . temps partiel . heures par semaine')
 				.valeur * 4.33
 		),
@@ -204,7 +205,7 @@ function analysisToFicheDePaie(
 		)
 	}
 }
-
+// $FlowFixMe
 export default createSelector(
 	[
 		règleAvecMontantSelector,

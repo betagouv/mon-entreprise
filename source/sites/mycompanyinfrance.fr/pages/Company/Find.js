@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom'
 import ReactSelect from 'react-select'
 // $FlowFixMe
 import 'react-select/dist/react-select.css'
+import type { SitePaths } from 'Components/utils/withSitePaths'
+import type { TFunction } from 'react-i18next'
 import './Find.css'
 import { CompanyDetails as Company } from './YourCompany'
 import type { RouterHistory } from 'react-router'
@@ -22,10 +24,11 @@ const goToNextStep = (history: RouterHistory, sitePaths: Object) => {
 type State = {
 	input: ?{ [string]: string }
 }
-
+type OwnProps = {}
 type Props = {
-	//onCompanyDetailsConfirmation: ({ [string]: string }) => void,
-	history: RouterHistory
+	history: RouterHistory,
+	t: TFunction,
+	sitePaths: SitePaths,
 }
 
 class Search extends React.Component<Props, State> {
@@ -111,9 +114,9 @@ class Search extends React.Component<Props, State> {
 	}
 }
 
-export default compose(
-	withRouter,
+export default (compose(
 	withSitePaths,
+	withRouter,
 	connect(
 		null,
 		{
@@ -121,4 +124,4 @@ export default compose(
 		}
 	),
 	withNamespaces()
-)(Search)
+)(Search): React$ComponentType<OwnProps>)

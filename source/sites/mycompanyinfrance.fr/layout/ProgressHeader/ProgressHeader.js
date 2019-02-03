@@ -6,7 +6,8 @@ import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { withRouter } from "react-router";
 import selectors from 'Selectors/progressSelectors'
 import companySvg from '../../images/company.svg'
 import estimateSvg from '../../images/estimate.svg'
@@ -24,8 +25,10 @@ const Progress = ({ percent }) => (
 			}}
 		/>
 	</div>
+
 )
-type Props = {
+type OwnProps = {}
+type Props = OwnProps & {
 	companyProgress: number,
 	estimationProgress: number,
 	hiringProgress: number,
@@ -83,13 +86,13 @@ const StepsHeader = ({
 	</header>
 )
 
-export default compose(
-	withRouter,
+export default (compose(
 	withTracker,
 	connect(
 		selectors,
 		{}
-	),
+		),
+	withRouter,
 	withNamespaces(),
 	withSitePaths
-)(StepsHeader)
+)(StepsHeader): React$ComponentType<OwnProps>)

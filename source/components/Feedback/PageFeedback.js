@@ -3,7 +3,7 @@
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, withNamespaces } from 'react-i18next'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import { compose } from 'redux'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 import './Feedback.css'
@@ -12,12 +12,15 @@ import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { Node } from 'react'
 
-type Props = {
-	location: Location,
+
+type OwnProps = {
 	blacklist: Array<string>,
 	customMessage?: Node,
-	tracker: Tracker,
 	customEventName?: string
+}
+type Props = OwnProps & {
+	location: Location,
+	tracker: Tracker,
 }
 type State = {
 	showForm: boolean,
@@ -150,9 +153,8 @@ class PageFeedback extends Component<Props, State> {
 const PageFeedbackWithRouter = ({ location, ...props }) => (
 	<PageFeedback {...props} location={location} key={location.pathname} />
 )
-
-export default compose(
+export default (compose(
+	withRouter,
 	withNamespaces(),
 	withTracker,
-	withRouter
-)(PageFeedbackWithRouter)
+)(PageFeedbackWithRouter): React$ComponentType<OwnProps>)
