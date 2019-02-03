@@ -40,7 +40,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
       `,
@@ -69,7 +69,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
         - nom: cadre
@@ -94,7 +94,7 @@ describe('inversions', () => {
               assiette: assiette
               variations:
                 - si: cadre
-                  alors: 
+                  alors:
                     taux: 80%
                 - sinon:
                     taux: 70%
@@ -102,7 +102,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
         - nom: cadre
@@ -121,7 +121,7 @@ describe('inversions', () => {
               assiette: 1200
               variations:
                 - si: cadre
-                  alors: 
+                  alors:
                     taux: 80%
                 - sinon:
                     taux: 70%
@@ -146,7 +146,7 @@ describe('inversions', () => {
                   alors:
                     taux: 80%
                 - si: ≠ cadre
-                  alors: 
+                  alors:
                     taux: 70%
 
         - nom: total
@@ -158,7 +158,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
                 - total
@@ -174,7 +174,7 @@ describe('inversions', () => {
 			analysis = analyse(rules, 'total')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
-		expect(analysis.targets[0].nodeValue).to.equal(3750)
+		expect(analysis.targets[0].nodeValue).to.be.closeTo(3750, 1)
 		expect(missing).to.be.empty
 	})
 	it('complex inversion with composantes', () => {
@@ -203,7 +203,7 @@ describe('inversions', () => {
       - nom: brut
         format: euro
         formule:
-          inversion:
+          inversion numérique:
             avec:
               - net
               - total
@@ -213,7 +213,7 @@ describe('inversions', () => {
 			analysis = analyse(rules, 'total')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
-		expect(analysis.targets[0].nodeValue).to.equal(3750)
+		expect(analysis.targets[0].nodeValue).to.be.closeTo(3750, 1)
 		expect(missing).to.be.empty
 	})
 	it('should collect missing variables not too slowly', function() {

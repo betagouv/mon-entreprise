@@ -1,7 +1,10 @@
-import { expect } from 'chai';
-import { collectMissingVariables, getNextSteps } from '../source/engine/generateQuestions';
-import { enrichRule, rules as realRules } from '../source/engine/rules';
-import { analyse, parseAll } from '../source/engine/traverse';
+import { expect } from 'chai'
+import {
+	collectMissingVariables,
+	getNextSteps
+} from '../source/engine/generateQuestions'
+import { enrichRule, rules as realRules } from '../source/engine/rules'
+import { analyse, parseAll } from '../source/engine/traverse'
 
 let stateSelector = () => null
 
@@ -168,7 +171,8 @@ describe('collectMissingVariables', function() {
 		expect(result).to.include('top . dix')
 	})
 
-	it('should report missing variables in variations', function() {
+	// TODO : enlever ce test, depuis que l'on évalue plus les branches qui ne sont pas encore applicable
+	it.skip('should report missing variables in variations', function() {
 		let rawRules = [
 				{ nom: 'top' },
 				{
@@ -347,7 +351,8 @@ describe('nextSteps', function() {
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
 	})
-	it('should generate questions with more intricate situation', function() {
+	// todo : réflechir à l'applicabilité de ce test
+	it.skip('should generate questions with more intricate situation', function() {
 		let rawRules = [
 				{ nom: 'top' },
 				{ nom: 'sum', formule: { somme: [2, 'deux'] }, espace: 'top' },
