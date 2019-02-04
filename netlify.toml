@@ -1,32 +1,32 @@
 # 302 Redirect following URL changes (waiting the hostname change to mon-entreprise.fr for 301)
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--salaire--net-après-impôt"
-to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/salaire/net-après-impôt"
+to = "/documentation/contrat-salarié/salaire/net-après-impôt"
 status = 302
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/règle/prime-de-fin-de-contrat"
-to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/CDD/prime-de-fin-de-contrat"
+to = "/documentation/contrat-salarié/CDD/prime-de-fin-de-contrat"
 status = 302
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--salaire--brut-de-base"
-to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/salaire/brut-de-base"
+to = "/documentation/contrat-salarié/salaire/brut-de-base"
 status = 302
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--rémunération-total"
-to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/rémunération/total"
+to = "/documentation/contrat-salarié/rémunération/total"
 status = 302
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/règle/contribution-au-dialogue-social"
-to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/contribution-au-dialogue-social"
+to = "/documentation/contrat-salarié/contribution-au-dialogue-social"
 status = 302
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/règle/contrat-salarié--CDD--motif--complément-formation"
-to = "https://embauche.beta.gouv.fr/documentation/contrat-salarié/CDD/motif/complément-formation"
+to = "/documentation/contrat-salarié/CDD/motif/complément-formation"
 status = 302
 
 # InFrance PRODUCTION settings
@@ -61,33 +61,6 @@ from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"
 status = 200
 
-# Mon-entreprise.beta PRODUCTION settings (temporary)
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/robots.txt"
-to = "/robots.infrance.txt"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/sitemap.txt"
-to = "/sitemap.infrance.fr.txt"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr"
-to = "/prerender/mon-entreprise/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/sécurité-sociale"
-to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/*"
-to = "/mon-entreprise.html"
-status = 200
-
-
 # Mon-entreprise.fr PRODUCTION settings
 [[redirects]]
 from = "https://mon-entreprise.fr/robots.txt"
@@ -102,11 +75,6 @@ status = 200
 [[redirects]]
 from = "https://mon-entreprise.fr"
 to = "/prerender/mon-entreprise/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.fr/sécurité-sociale"
-to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
 status = 200
 
 [[redirects]]
