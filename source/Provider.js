@@ -1,18 +1,18 @@
-import SetCSSColour from 'Components/utils/SetCssColour';
-import { ThemeColoursProvider } from 'Components/utils/withColours';
-import { SitePathProvider } from 'Components/utils/withSitePaths';
-import { TrackerProvider } from 'Components/utils/withTracker';
-import createHistory from 'history/createBrowserHistory';
-import i18next from 'i18next';
-import React, { PureComponent } from 'react';
-import { I18nextProvider } from 'react-i18next';
-import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom';
-import reducers from 'Reducers/rootReducer';
-import { applyMiddleware, compose, createStore } from 'redux';
-import { enableBatching } from 'redux-batched-actions';
-import thunk from 'redux-thunk';
-import { getIframeOption, inIframe } from './utils';
+import SetCSSColour from 'Components/utils/SetCssColour'
+import { ThemeColoursProvider } from 'Components/utils/withColours'
+import { SitePathProvider } from 'Components/utils/withSitePaths'
+import { TrackerProvider } from 'Components/utils/withTracker'
+import createHistory from 'history/createBrowserHistory'
+import i18next from 'i18next'
+import React, { PureComponent } from 'react'
+import { I18nextProvider } from 'react-i18next'
+import { Provider as ReduxProvider } from 'react-redux'
+import { Router } from 'react-router-dom'
+import reducers from 'Reducers/rootReducer'
+import { applyMiddleware, compose, createStore } from 'redux'
+import { enableBatching } from 'redux-batched-actions'
+import thunk from 'redux-thunk'
+import { getIframeOption, inIframe } from './utils'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -33,7 +33,7 @@ if (
 	})
 }
 
-export default class Layout extends PureComponent {
+export default class Provider extends PureComponent {
 	constructor(props) {
 		super(props)
 		this.history = createHistory({
@@ -56,27 +56,26 @@ export default class Layout extends PureComponent {
 			enableBatching(reducers),
 			this.props.initialStore,
 			storeEnhancer
-			)
-			console.log(this.props.initialStore, this.store.getState())
+		)
 		this.props.onStoreCreated && this.props.onStoreCreated(this.store)
 	}
 	render() {
 		return (
 			// If IE < 11 display nothing
-			<Provider store={this.store}>
-			<ThemeColoursProvider colour={getIframeOption('couleur')}>
-				<TrackerProvider value={this.props.tracker}>
-					<SitePathProvider value={this.props.sitePaths}>
-						<SetCSSColour />
-						<I18nextProvider i18n={i18next}>
-							<Router history={this.history}>
-								<>{this.props.children}</>
-							</Router>
-						</I18nextProvider>
-					</SitePathProvider>
-				</TrackerProvider>
+			<ReduxProvider store={this.store}>
+				<ThemeColoursProvider colour={getIframeOption('couleur')}>
+					<TrackerProvider value={this.props.tracker}>
+						<SitePathProvider value={this.props.sitePaths}>
+							<SetCSSColour />
+							<I18nextProvider i18n={i18next}>
+								<Router history={this.history}>
+									<>{this.props.children}</>
+								</Router>
+							</I18nextProvider>
+						</SitePathProvider>
+					</TrackerProvider>
 				</ThemeColoursProvider>
-			</Provider>
+			</ReduxProvider>
 		)
 	}
 }

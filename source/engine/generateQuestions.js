@@ -1,11 +1,31 @@
-import formValueTypes from 'Components/conversation/formValueTypes';
-import Input from 'Components/conversation/Input';
-import Question from 'Components/conversation/Question';
-import SelectGéo from 'Components/conversation/select/SelectGéo';
-import SelectAtmp from 'Components/conversation/select/SelectTauxRisque';
-import { add, countBy, descend, flatten, fromPairs, head, identity, is, keys, map, mergeWith, pair, pick, prop, reduce, sortWith, toPairs, unless, values } from 'ramda';
-import React from 'react';
-import { findRuleByDottedName, queryRule } from './rules';
+import formValueTypes from 'Components/conversation/formValueTypes'
+import Input from 'Components/conversation/Input'
+import Question from 'Components/conversation/Question'
+import SelectGéo from 'Components/conversation/select/SelectGéo'
+import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
+import {
+	add,
+	countBy,
+	descend,
+	flatten,
+	fromPairs,
+	head,
+	identity,
+	is,
+	keys,
+	map,
+	mergeWith,
+	pair,
+	pick,
+	prop,
+	reduce,
+	sortWith,
+	toPairs,
+	unless,
+	values
+} from 'ramda'
+import React from 'react'
+import { findRuleByDottedName, queryRule } from './rules'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES

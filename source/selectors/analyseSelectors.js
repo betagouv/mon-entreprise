@@ -246,6 +246,7 @@ export let nextStepsSelector = createSelector(
 	],
 	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)
+		console.log(nextSteps, questions)
 
 		if (questions && questions.blacklist) {
 			return difference(nextSteps, questions.blacklist)
