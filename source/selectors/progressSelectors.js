@@ -44,7 +44,7 @@ const companyProgressSelector = createSelector(
 const NUMBER_MAX_QUESTION_SIMULATION = 18
 const START_SIMULATION_COEFFICIENT = 0.15
 const QUESTIONS_COEFFICIENT = 0.85
-const estimationProgressSelector = state => {
+export const estimationProgressSelector = state => {
 	const userInputProgress = +(
 		!noUserInputSelector(state) &&
 		!softCatch(blockingInputControlsSelector)(state)

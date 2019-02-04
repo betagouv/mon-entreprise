@@ -13,7 +13,7 @@ describe('Landing basic test', function() {
 	})
 	it('should display the simulateur after loading', function() {
 		cy.visit('/')
-		cy.contains('Touché par le salarié')
+		cy.contains('Touché sur le compte bancaire')
 	})
 	it('should display cotisation repartition when entering net salary', function() {
 		cy.visit('/')
@@ -23,8 +23,10 @@ describe('Landing basic test', function() {
 	it('should allow to navigate to a documentation page', function() {
 		cy.visit('/')
 		salaryInput('Salaire net').type('2000')
-		cy.contains("Total chargé").click()
-		cy.contains(`C'est le total que l'employeur doit verser pour employer un salarié`)
+		cy.contains('Total chargé').click()
+		cy.contains(
+			`C'est le total que l'employeur doit verser pour employer un salarié`
+		)
 	})
 })
 
@@ -32,7 +34,7 @@ describe('Simulation saving test', function() {
 	it('should save the current simulation', function() {
 		cy.visit('/')
 		salaryInput('Salaire net').type('5471')
-		cy.contains('Autres').click()
+		cy.contains('CDD').click()
 		cy.contains('passer').click()
 		cy.contains('passer').click()
 		// Wanted to use cypress.clock(), but can't because of piwik changing Date prototype (!)

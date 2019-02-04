@@ -6,8 +6,8 @@ import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
-import { withRouter } from "react-router";
 import selectors from 'Selectors/progressSelectors'
 import companySvg from '../../images/company.svg'
 import estimateSvg from '../../images/estimate.svg'
@@ -16,7 +16,7 @@ import './ProgressHeader.css'
 
 import type { Tracker } from 'Components/utils/withTracker'
 
-const Progress = ({ percent }) => (
+export const Progress = ({ percent }: { percent: number }) => (
 	<div className="progress">
 		<div
 			className="bar"
@@ -25,7 +25,6 @@ const Progress = ({ percent }) => (
 			}}
 		/>
 	</div>
-
 )
 type OwnProps = {}
 type Props = OwnProps & {
@@ -91,7 +90,7 @@ export default (compose(
 	connect(
 		selectors,
 		{}
-		),
+	),
 	withRouter,
 	withNamespaces(),
 	withSitePaths
