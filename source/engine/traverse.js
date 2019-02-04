@@ -247,10 +247,10 @@ export let treatRuleRoot = (rules, rule) => {
 					'Ce contrôle ne semble pas être compris :' + control['si']
 				)
 
-			let otherVariables = testExpression.explanation.filter(
-				node =>
+				let otherVariables = testExpression.explanation.filter(
+					node =>
 					node.category === 'variable' && node.dottedName !== rule.dottedName
-			)
+					)
 			let isInputControl = !otherVariables.length,
 				level = control['niveau']
 
