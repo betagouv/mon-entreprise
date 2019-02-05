@@ -3,7 +3,7 @@
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, withNamespaces } from 'react-i18next'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import { compose } from 'redux'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 import './Feedback.css'
@@ -12,12 +12,15 @@ import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { Node } from 'react'
 
-type Props = {
-	location: Location,
+
+type OwnProps = {
 	blacklist: Array<string>,
 	customMessage?: Node,
-	tracker: Tracker,
 	customEventName?: string
+}
+type Props = OwnProps & {
+	location: Location,
+	tracker: Tracker,
 }
 type State = {
 	showForm: boolean,
@@ -95,26 +98,29 @@ class PageFeedback extends Component<Props, State> {
 				<div className="feedback-page ui__ container notice">
 					{!this.state.showForm && !this.state.showThanks && (
 						<>
-							<div style={{ flex: 1 }}>
+							<div>
 								{this.props.customMessage || (
 									<Trans i18nKey="feedback.question">
-										Cette page vous a-t-elle été utile ?
+										Cette page vous est utile ?
 									</Trans>
 								)}{' '}
-								<button
-									style={{ marginLeft: '0.4rem' }}
-									className="ui__ link-button"
-									onClick={() => this.handleFeedback({ useful: true })}>
-									<Trans>Oui</Trans>
-								</button>{' '}
-								<button
-									style={{ marginLeft: '0.4rem' }}
-									className="ui__ link-button"
-									onClick={() => this.handleFeedback({ useful: false })}>
-									<Trans>Non</Trans>
-								</button>
+								<div style={{ display: 'inline-block' }}>
+									<button
+										style={{ marginLeft: '0.4rem' }}
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: true })}>
+										<Trans>Oui</Trans>
+									</button>{' '}
+									<button
+										style={{ marginLeft: '0.4rem' }}
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: false })}>
+										<Trans>Non</Trans>
+									</button>
+								</div>
 							</div>
 							<button
+								style={{ textAlign: 'right' }}
 								className="ui__ link-button"
 								onClick={this.handleErrorReporting}>
 								<Trans i18nKey="feedback.reportError">
@@ -147,9 +153,8 @@ class PageFeedback extends Component<Props, State> {
 const PageFeedbackWithRouter = ({ location, ...props }) => (
 	<PageFeedback {...props} location={location} key={location.pathname} />
 )
-
-export default compose(
+export default (compose(
+	withRouter,
 	withNamespaces(),
 	withTracker,
-	withRouter
-)(PageFeedbackWithRouter)
+)(PageFeedbackWithRouter): React$ComponentType<OwnProps>)

@@ -23,13 +23,15 @@ input[type='radio'] + span {
 	vertical-align: middle;
 	border-radius: 20px;
 	cursor: pointer;
-	box-shadow: 0 0 0px 1px rgb(41, 117, 209);
+	box-shadow: 0 0 0px 1px #297da1;
+	box-shadow: 0 0 0px 1px var(--colour);
 }
 input[type='radio'] ~ span {
 	cursor: pointer;
 }
 
 input[type='radio']:checked + span {
+	background: #297da1;
 	background: var(--colour);
 	border: 4px solid white;
 }

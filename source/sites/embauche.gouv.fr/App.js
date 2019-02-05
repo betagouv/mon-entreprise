@@ -7,6 +7,7 @@ import { defaultTracker } from 'Components/utils/withTracker'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
+import { withNamespaces } from 'react-i18next'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -28,6 +29,7 @@ import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
 import Route404 from './pages/Route404'
 import RulesList from './pages/RulesList'
+import sitePaths from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -56,7 +58,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const middlewares = [createRavenMiddleware(Raven), trackDomainActions(tracker)]
-
+const paths = sitePaths()
 class EmbaucheRoute extends Component {
 	render() {
 		return (
@@ -65,34 +67,37 @@ class EmbaucheRoute extends Component {
 				initialStore={{
 					previousSimulation: retrievePersistedSimulation()
 				}}
+				sitePaths={paths}
 				reduxMiddlewares={middlewares}
 				tracker={tracker}
 				onStoreCreated={persistSimulation}>
 				<TrackPageView />
 				{!inIframe() && <Header />}
 				{inIframe() && <DisableScroll />}
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route exact path="/simulation" component={Home} />
-					<Route path="/contact" component={Contact} />
-					<Route path="/règle/:name" component={RulePage} />
-					<Redirect from="/simu/*" to="/" />
-					<Route path="/règles" component={RulesList} />
-					<Route path="/exemples" component={ExampleSituations} />
-					<Route path="/mecanismes" component={Mecanisms} />
-					<Route path="/à-propos" component={About} />
-					<Route path="/intégrer" component={Integration} />
-					<Route path="/couleur" component={Couleur} />
-					<Route path="/integration-test" component={IntegrationTest} />
-					<Redirect from="/simulateur" to="/" />
-					<Route component={Route404} />
-				</Switch>
+				<RouterSwitch />
 				<PageFeedback blacklist={['/', '/simulation']} />
 				{inIframe() && <IframeFooter />}
 			</Provider>
 		)
 	}
 }
+const RouterSwitch = withNamespaces()(() => (
+	<Switch>
+		<Route exact path="/" component={Home} />
+		<Route path="/contact" component={Contact} />
+		<Route path={paths.documentation.index + '/:name+'} component={RulePage} />
+		<Route path={paths.documentation.index} component={RulesList} />
+		<Redirect from="/simu/*" to="/" />
+		<Route path="/exemples" component={ExampleSituations} />
+		<Route path="/mecanismes" component={Mecanisms} />
+		<Route path="/à-propos" component={About} />
+		<Route path="/intégrer" component={Integration} />
+		<Route path="/couleur" component={Couleur} />
+		<Route path="/integration-test" component={IntegrationTest} />
+		<Redirect from="/simulateur" to="/" />
+		<Route component={Route404} />
+	</Switch>
+))
 
 let ExportedApp = EmbaucheRoute
 

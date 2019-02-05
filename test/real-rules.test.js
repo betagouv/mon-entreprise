@@ -36,14 +36,20 @@ let parsedRules = parseAll(rules)
 describe('Tests des règles de notre base de règles', () =>
 	parsedRules.map(rule => {
 		if (!rule.exemples) return null
-		describe(rule.name, () => {
+		describe(rule.dottedName, () => {
 			let examples = runExamples(rule.exemples, rule)
 			examples.map(example =>
 				it(example.nom + '', () => {
 					if (!example.ok)
 						throw new AssertionError(`
               Valeur attendue : ${example['valeur attendue']}
-              Valeur obtenue : ${example.rule.nodeValue}
+			  Valeur obtenue : ${example.rule.nodeValue} 
+			  ${
+					example.rule.nodeValue === null
+						? 'Variables manquantes : ' +
+						  JSON.stringify(example.rule.missingVariables, null, 4)
+						: ''
+				}
             `)
 				})
 			)

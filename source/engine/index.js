@@ -1,12 +1,7 @@
 // This file exports the functions of the public computing library
-import { analyseMany, parseAll } from './traverse.js'
-import {
-	rulesFr,
-	collectDefaults,
-	nestedSituationToPathMap,
-	enrichRule
-} from './rules'
-import { safeLoad } from 'js-yaml'
+import { safeLoad } from 'js-yaml';
+import { collectDefaults, enrichRule, nestedSituationToPathMap, rulesFr } from './rules';
+import { analyseMany, parseAll } from './traverse.js';
 
 // The public evaluation function takes a nested object of input values
 let nestedSituationToStateSelector = rules => nestedSituation => dottedName =>
@@ -34,7 +29,6 @@ export default {
 			parseAll(rules),
 			Array.isArray(targetInput) ? targetInput : [targetInput]
 		)(nestedSituationToStateSelector(rules)(nestedSituation))
-
 		if (config?.debug) return evaluation
 
 		let values = evaluation.targets.map(t => t.nodeValue)

@@ -1,6 +1,7 @@
 import LangSwitcher from 'Components/LangSwitcher'
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
+import { T } from "Components";
 import { Link } from 'react-router-dom'
 import { withNamespaces } from 'react-i18next'
 import Logo from '../images/logo/logo-simulateur.svg'
@@ -58,16 +59,16 @@ export const Header = compose(
 let Links = ({ toggle }) => (
 	<div id="links" onClick={toggle}>
 		<Link className="menu-item" to="/exemples">
-			Exemples
+			<T>Exemples</T>
 		</Link>
 		<Link className="menu-item" to="/intégrer">
-			Intégrer le module
+			<T>Intégrer le simulateur</T>
 		</Link>
-		<Link className="menu-item" to="/règles">
-			Nos règles
+		<Link className="menu-item" to="/documentation">
+			<T>Documentation</T>
 		</Link>
 		<Link className="menu-item" to="/à-propos">
-			À propos
+			<T>À propos</T>
 		</Link>
 	</div>
 )

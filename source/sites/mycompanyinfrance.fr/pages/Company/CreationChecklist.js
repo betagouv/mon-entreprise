@@ -1,21 +1,20 @@
 /* @flow */
-import {
-	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist
-} from 'Actions/companyCreationChecklistActions'
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { React, T } from 'Components'
-import Scroll from 'Components/utils/Scroll'
-import { compose } from 'ramda'
-import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import * as Animate from 'Ui/animate'
-import { CheckItem, Checklist } from 'Ui/Checklist'
-import sitePaths, { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
-import Page404 from '../404'
-import StatusDescription from './StatusDescription'
+import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions';
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions';
+import { React, T } from 'Components';
+import Scroll from 'Components/utils/Scroll';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import Helmet from 'react-helmet';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import * as Animate from 'Ui/animate';
+import { CheckItem, Checklist } from 'Ui/Checklist';
+import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths';
+import Page404 from '../404';
+import StatusDescription from './StatusDescription';
+
 import type { Match } from 'react-router'
 import type { TFunction } from 'react-i18next'
 
@@ -24,6 +23,7 @@ type Props = {
 	match: Match,
 	onChecklistInitialization: (string, Array<string>) => void,
 	onStatusChange: () => void,
+	sitePaths: Object,
 	onItemCheck: (name: string, checked: boolean) => void,
 	t: TFunction,
 	companyCreationChecklist: { [string]: boolean }
@@ -34,6 +34,7 @@ const CreateCompany = ({
 	statusChooserCompleted,
 	onChecklistInitialization,
 	onItemCheck,
+	sitePaths,
 	companyCreationChecklist,
 	onStatusChange,
 	t
@@ -41,44 +42,61 @@ const CreateCompany = ({
 	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
 		status => t(status) === match.params.status
 	)
-	const isMicroenterprise = [
-		'micro-entreprise',
-		'micro-entreprise-EIRL'
-	].includes(companyStatus);
-	const multipleAssociates = [
-		'SARL',
-		'SAS',
-		'SA'
+	const isAutoentrepreneur = [
+		'auto-entrepreneur',
+		'auto-entrepreneur-EIRL'
 	].includes(companyStatus)
-	const isEI = isMicroenterprise || ['EI', 'EIRL'].includes(companyStatus)
+	const multipleAssociates = ['SARL', 'SAS', 'SA'].includes(companyStatus)
+	const isEI = isAutoentrepreneur || ['EI', 'EIRL'].includes(companyStatus)
 	if (!companyStatus) {
 		return <Page404 />
 	}
+	const titre = isAutoentrepreneur
+		? t(
+				[
+					'entreprise.tâches.page.autoEntrepreneur.titre',
+					'Comment devenir {{autoEntrepreneur}}'
+				],
+				{
+					autoEntrepreneur: t(companyStatus)
+				}
+		  )
+		: t(
+				[
+					'entreprise.tâches.page.entreprise.titre',
+					'Créer une {{companyStatus}}'
+				],
+				{
+					companyStatus: t(companyStatus)
+				}
+		  )
 	return (
 		<Animate.fromBottom>
 			<Helmet>
-				<title>
-					{t(['entreprise.tâches.page.titre', 'Créer une {{companyStatus}}'], {
-						companyStatus: t(companyStatus)
-					})}
-				</title>
+				<title>{titre}</title>
 				<meta
 					name="description"
-					content={t(
-						[
-							'entreprise.tâches.page.description',
-							`Une liste complète des démarches à faire pour vous aider à créer une {{companyStatus}} auprès de l'administration française.`
-						],
-						{ companyStatus: t(companyStatus) }
-					)}
+					content={
+						isAutoentrepreneur
+							? t(
+									[
+										'entreprise.tâches.page.autoEntrepreneur.description',
+										`La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.`
+									],
+									{ autoEntrepreneur: t(companyStatus) }
+							  )
+							: t(
+									[
+										'entreprise.tâches.page.description',
+										`La liste complète des démarches à faire pour créer une {{companyStatus}} auprès de l'administration française.`
+									],
+									{ companyStatus: t(companyStatus) }
+							  )
+					}
 				/>
 			</Helmet>
 			<Scroll.toTop />
-			<h1>
-				<T k="entreprise.tâches.titre">
-					Créer une {{ companyStatus: t(companyStatus) }}
-				</T>
-			</h1>
+			<h1>{titre}</h1>
 			{!statusChooserCompleted && (
 				<>
 					<p>
@@ -93,9 +111,6 @@ const CreateCompany = ({
 					</p>
 				</>
 			)}
-			<h2 style={{ fontSize: '1.5rem' }}>
-				<T k="entreprise.tâches.titre1">Pour créer votre société</T>
-			</h2>
 			<Checklist
 				key={companyStatus}
 				onInitialization={items =>
@@ -139,13 +154,13 @@ const CreateCompany = ({
 						<p>
 							<T k="entreprise.tâches.objetSocial.description">
 								L'
-								<strong>objet social</strong> est l'activité principale de la
-								société. Une activité secondaire peut être enregistrée.
+								<strong>objet social</strong> est l'activité principale de
+								l'entreprise. Une activité secondaire peut être enregistrée.
 							</T>
 						</p>
 					}
 				/>
-				{!isMicroenterprise && (
+				{!isAutoentrepreneur && (
 					<CheckItem
 						name="companyAddress"
 						title={
@@ -159,7 +174,7 @@ const CreateCompany = ({
 									<strong>L'adresse</strong> est l'espace physique où votre
 									entreprise sera incorporée. Dans certains lieux et certaines
 									situations, vous pouvez bénéficier d'un financement public
-									important (exonération de charges, de taxes, etc.).
+									important (exonération de charges, de taxes, etc.).{' '}
 									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
 										Plus d'infos
 									</a>
@@ -177,11 +192,16 @@ const CreateCompany = ({
 						explanations={
 							<p>
 								<T k="entreprise.tâches.statuts.description">
-									Il s'agit d'un document officiel qui intègre la forme juridique, nomme les
-									associés et leurs contributions au capital.{' '}
-									<span style={{display: multipleAssociates ? 'visible' : 'none'}}>
-										Dans le cas d'une création d'entreprise avec plusieurs associés, il est recommandé 
-										de faire appel à un juriste pour les rédiger.{' '}
+									Il s'agit d'un document officiel qui intègre la forme
+									juridique, nomme les associés et leurs contributions au
+									capital.{' '}
+									<span
+										style={{
+											display: multipleAssociates ? 'visible' : 'none'
+										}}>
+										Dans le cas d'une création d'entreprise avec plusieurs
+										associés, il est recommandé de faire appel à un juriste pour
+										les rédiger.{' '}
 									</span>
 								</T>
 								{['SARL', 'EURL'].includes(companyStatus) && (
@@ -299,18 +319,17 @@ const CreateCompany = ({
 						explanations={
 							<T k="entreprise.tâches.journal.description">
 								<p>
-									Vous devez publier la création de votre entreprise dans un journal 
-									d'annonces légales (« JAL »), pour un coût de publication qui dépend du volume de l'annonce
-									et des tarifs pratiqués par le journal choisi{' '}
+									Vous devez publier la création de votre entreprise dans un
+									journal d'annonces légales (« JAL »), pour un coût de
+									publication qui dépend du volume de l'annonce et des tarifs
+									pratiqués par le journal choisi{' '}
 								</p>
 								<p>
 									<a href="https://actulegales.fr/journaux-annonces-legales">
 										Trouver un journal d'annonces légales (JAL)
 									</a>
 								</p>
-								<p>
-									Cette annonce doit contenir les informations suivantes :{' '}
-								</p>
+								<p>Cette annonce doit contenir les informations suivantes : </p>
 								<ul>
 									<li>Le nom de l'entreprise et éventuellement son acronyme</li>
 									<li>La forme juridique</li>
@@ -343,7 +362,8 @@ const CreateCompany = ({
 					explanations={
 						<T k="entreprise.tâches.formulaire.description">
 							<p>
-								Vous pouvez faire votre inscription en ligne à tout moment, l'enregistrer et y revenir comme vous le souhaitez. 
+								Vous pouvez faire votre inscription en ligne à tout moment,
+								l'enregistrer et y revenir comme vous le souhaitez.
 							</p>
 							<div style={{ textAlign: 'center' }}>
 								<a
@@ -359,12 +379,12 @@ const CreateCompany = ({
 			</Checklist>
 			<h2 style={{ fontSize: '1.5rem' }}>
 				<T k="entreprise.tâches.titre2">
-					Recommandées avant le début de l'activité
+					Recommandé avant le début de l'activité
 				</T>
 			</h2>
 
 			<Checklist>
-				{!isMicroenterprise && (
+				{!isAutoentrepreneur && (
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={
@@ -418,12 +438,18 @@ const CreateCompany = ({
 					navigateur.
 				</T>
 			</p>
-			<p style={{ display: 'flex', justifyContent: 'space-between' }}>
-				<button onClick={onStatusChange} className="ui__ skip-button left">
-					‹ <T k="entreprise.tâches.retour">Choisir un autre statut</T>
+			<p
+				className="ui__ answer-group"
+				style={{ justifyContent: 'space-between' }}>
+				<button
+					onClick={onStatusChange}
+					className="ui__ simple skip button left">
+					← <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
-				<Link to={sitePaths().entreprise.après} className="ui__ skip-button">
-					<T k="entreprise.tâches.ensuite">Après la création</T>›
+				<Link
+					to={sitePaths.entreprise.après}
+					className="ui__ simple skip button">
+					<T k="entreprise.tâches.ensuite">Après la création</T> →
 				</Link>
 			</p>
 		</Animate.fromBottom>
@@ -431,6 +457,7 @@ const CreateCompany = ({
 }
 export default compose(
 	withNamespaces(),
+	withSitePaths,
 	connect(
 		state => ({
 			companyCreationChecklist: state.inFranceApp.companyCreationChecklist,

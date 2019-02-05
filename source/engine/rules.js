@@ -17,13 +17,15 @@ import {
 	propEq,
 	props,
 	range,
+	trim,
+	isNil,
+	find,
 	reduce,
 	reduced,
 	reject,
 	split,
 	take,
 	toPairs,
-	trim,
 	when
 } from 'ramda'
 import rawRules from 'Règles/base.yaml'
@@ -70,6 +72,7 @@ export let enrichRule = (rule, sharedData = {}) => {
 			shortDescription
 		}
 	} catch (e) {
+		console.log(e)
 		throw new Error('Problem enriching ' + JSON.stringify(rule))
 	}
 }
@@ -102,25 +105,35 @@ export let nameLeaf = pipe(
 )
 
 export let encodeRuleName = name =>
-	name.replace(/\s\.\s/g, '--').replace(/\s/g, '-')
+	encodeURI(name.replace(/\s\.\s/g, '/').replace(/\s/g, '-'))
 export let decodeRuleName = name =>
-	name.replace(/--/g, ' . ').replace(/-/g, ' ')
+	decodeURI(name.replace(/\//g, ' . ').replace(/-/g, ' '))
 
+export let ruleParents = dottedName => {
+	let fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
+	return range(1, fragments.length)
+		.map(nbEl => take(nbEl)(fragments))
+		.reverse() //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
+}
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
  */
 export let disambiguateRuleReference = (
 	allRules,
-	{ ns, name },
+	{ dottedName, name },
 	partialName
 ) => {
-	let fragments = ns ? [...ns.split(' . '), name] : [], // ex. [CDD . événements . rupture]
-		pathPossibilities = range(0, fragments.length + 1) // -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
-			.map(nbEl => take(nbEl)(fragments))
-			.reverse(),
+	let pathPossibilities = [
+			[], // the top level namespace
+			...ruleParents(dottedName), // the parents namespace
+			splitName(dottedName) // the rule's own namespace
+		],
 		found = reduce(
 			(res, path) =>
 				when(is(Object), reduced)(
-					findRuleByDottedName(allRules, [...path, partialName].join(' . '))
+					do {
+						let dottedNameToCheck = [...path, partialName].join(' . ')
+						findRuleByDottedName(allRules, dottedNameToCheck)
+					}
 				),
 			null,
 			pathPossibilities
@@ -267,3 +280,18 @@ export let rules = translateAll(translations, rawRules).map(rule =>
 export let rulesFr = rawRules.map(rule =>
 	enrichRule(rule, { taux_versement_transport })
 )
+
+export let findParentDependency = (rules, rule) => {
+	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
+	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
+	// It lets those children omit obvious and repetitive parent applicability tests
+	let parentDependencies = ruleParents(rule.dottedName).map(joinName)
+	return pipe(
+		map(parent => findRuleByDottedName(rules, parent)),
+		reject(isNil),
+		find(
+			//Find the first "calculable" parent
+			({ question, format, formule }) => question && !format && !formule //implicitly, the format is boolean
+		)
+	)(parentDependencies)
+}

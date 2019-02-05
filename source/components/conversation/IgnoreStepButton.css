@@ -2,10 +2,3 @@
 	position: relative;
 	text-align: right;
 }
-
-#ignoreButton,
-#ignoreButton:visited {
-	cursor: pointer;
-	text-decoration: none;
-	font-style: italic;
-}

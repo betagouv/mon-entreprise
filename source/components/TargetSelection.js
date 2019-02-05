@@ -1,12 +1,14 @@
 import classNames from 'classnames'
+import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { compose, propEq } from 'ramda'
 import React, { Component } from 'react'
-import emoji from 'react-easy-emoji'
-import { Trans, translate } from 'react-i18next'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -15,18 +17,20 @@ import {
 	analysisWithDefaultsSelector,
 	blockingInputControlsSelector,
 	flatRulesSelector,
+	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import { mainTargetNames } from '../config'
-import { normalizeBasePath } from '../utils'
-import AnimatedTargetValue from './AnimatedTargetValue'
-import Controls from './Controls'
+import Animate from 'Ui/animate'
+import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
+import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import ProgressCircle from './ProgressCircle'
+import QuickLinks from './QuickLinks'
 import './TargetSelection.css'
 
+const MAX_NUMBER_QUESTION = 18
 export default compose(
 	translate(),
+	withColours,
 	reduxForm({
 		form: 'conversation',
 		destroyOnUnmount: false
@@ -39,9 +43,13 @@ export default compose(
 			analysis: analysisWithDefaultsSelector(state),
 			blockingInputControls: blockingInputControlsSelector(state),
 			flatRules: flatRulesSelector(state),
+			progress:
+				(100 * (MAX_NUMBER_QUESTION - nextStepsSelector(state))) /
+				MAX_NUMBER_QUESTION,
 			noUserInput: noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
-			activeInput: state.activeTargetInput
+			activeInput: state.activeTargetInput,
+			objectifs: state.simulation?.config.objectifs || []
 		}),
 		dispatch => ({
 			setFormValue: (field, name) =>
@@ -53,15 +61,15 @@ export default compose(
 )(
 	class TargetSelection extends Component {
 		render() {
-			let {
-				colours,
-				analysis: { controls }
-			} = this.props
+			let { colours, analysis, progress } = this.props
+
 			return (
 				<div id="targetSelection">
-					<Controls {...{ controls }} />
+					<QuickLinks />
+					<Controls controls={analysis.controls} />
+					<div style={{height: '10px'}}><Progress percent={progress}/></div>
 					<section
-						id="targetsContainer"
+						className="ui__ plain card"
 						style={{
 							color: colours.textColour,
 							background: `linear-gradient(
@@ -72,12 +80,13 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
+					<PeriodSwitch />
 				</div>
 			)
 		}
 
 		renderOutputList() {
-			let displayedTargets = mainTargetNames.map(target =>
+			let displayedTargets = this.props.objectifs.map(target =>
 					findRuleByDottedName(this.props.flatRules, target)
 				),
 				{
@@ -119,14 +128,16 @@ export default compose(
 									/>
 								</div>
 								{activeInput === target.dottedName && !conversationStarted && (
-									<InputSuggestions
-										suggestions={target.suggestions}
-										onFirstClick={value =>
-											this.props.setFormValue(target.dottedName, '' + value)
-										}
-										rulePeriod={target.période}
-										colouredBackground={true}
-									/>
+									<Animate.fromTop>
+										<InputSuggestions
+											suggestions={target.suggestions}
+											onFirstClick={value =>
+												this.props.setFormValue(target.dottedName, '' + value)
+											}
+											rulePeriod={target.période}
+											colouredBackground={true}
+										/>
+									</Animate.fromTop>
 								)}
 							</li>
 						))}
@@ -137,23 +148,11 @@ export default compose(
 	}
 )
 
-let Header = ({
-	target,
-	conversationStarted,
-	isActiveInput,
-	blockingInputControls,
-	match
-}) => {
+let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
 	const ruleLink =
-		normalizeBasePath(match.path).replace(/simulation\/$/, '') +
-		'règle/' +
-		encodeRuleName(target.dottedName)
+		sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
 	return (
 		<span className="header">
-			{conversationStarted && !blockingInputControls && (
-				<ProgressCircle target={target} isActiveInput={isActiveInput} />
-			)}
-
 			<span className="texts">
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
@@ -162,7 +161,7 @@ let Header = ({
 			</span>
 		</span>
 	)
-}
+})
 
 let CurrencyField = withColours(props => {
 	return (
@@ -208,7 +207,6 @@ let TargetInputOrValue = withLanguage(
 					}}
 				/>
 			)}
-			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 		</span>
 	)
 )
@@ -251,42 +249,6 @@ const TargetValue = connect(
 				if (activeInput) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)
 			}
-		}
-	}
-)
-
-const AidesGlimpse = compose(
-	withColours,
-	withRouter,
-	connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
-)(
-	class AidesGlimpse extends Component {
-		render() {
-			let targets = this.props.analysis.targets,
-				aides =
-					targets &&
-					targets.find(
-						t => t.dottedName === 'contrat salarié . aides employeur'
-					)
-			if (!aides || !aides.nodeValue) return null
-			return (
-				<div id="aidesGlimpse">
-					{' '}
-					- <AnimatedTargetValue value={aides.nodeValue} />{' '}
-					<Link
-						to={
-							normalizeBasePath(this.props.match.path).replace(
-								/simulation\/$/,
-								''
-							) +
-							'règle/' +
-							encodeRuleName('contrat salarié . aides employeur')
-						}
-						style={{ color: this.props.colours.textColour }}>
-						<Trans>d'aides</Trans> {emoji(aides.icon)}
-					</Link>
-				</div>
-			)
 		}
 	}
 )

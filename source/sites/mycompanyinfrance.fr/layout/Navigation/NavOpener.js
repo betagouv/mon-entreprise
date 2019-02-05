@@ -4,17 +4,19 @@ import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
+import { withRouter } from "react-router";
+import { NavLink } from 'react-router-dom'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { ChildrenArray, Node, Element } from 'react'
 
-type Props = {
-	// to: string,
+type OwnProps = {
 	children: ChildrenArray<Element<any>>,
-	title: Node,
-	location: Location,
 	to?: ?string,
+	title: Node,
+}
+type Props = OwnProps & {
+	location: Location,
 	tracker: Tracker
 }
 type State = {
@@ -116,7 +118,7 @@ class NavOpener extends Component<Props, State> {
 	}
 }
 
-export default compose(
+export default (compose(
 	withTracker,
 	withRouter
-)(NavOpener)
+)(NavOpener): React$ComponentType<OwnProps>)

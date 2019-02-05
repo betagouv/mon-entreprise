@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import withLanguage from 'Components/utils/withLanguage'
-import { contains } from 'ramda'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose, contains } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -80,17 +81,33 @@ export function InlineMecanism({ name }) {
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export const Leaf = connect(state => ({ flatRules: flatRulesSelector(state) }))(
+export const Leaf = compose(
+	withSitePaths,
+	connect(state => ({ flatRules: flatRulesSelector(state) }))
+)(
 	class Leaf extends Component {
 		render() {
-			let { classes, dottedName, name, value, flatRules, filter } = this.props,
+			let {
+					classes,
+					dottedName,
+					name,
+					value,
+					flatRules,
+					filter,
+					sitePaths
+				} = this.props,
 				rule = findRuleByDottedName(flatRules, dottedName)
 
 			return (
 				<span className={classNames(classes, 'leaf')}>
 					{dottedName && (
 						<span className="nodeHead">
-							<Link to={'../règle/' + encodeRuleName(dottedName)}>
+							<Link
+								to={
+									sitePaths.documentation.index +
+									'/' +
+									encodeRuleName(dottedName)
+								}>
 								<span className="name">
 									{rule.title || capitalise0(name)} {filter}
 									<NodeValuePointer data={value} />
@@ -106,7 +123,7 @@ export const Leaf = connect(state => ({ flatRules: flatRulesSelector(state) }))(
 
 export function SimpleRuleLink({ rule: { dottedName, title, name } }) {
 	return (
-		<Link to={'../règle/' + encodeRuleName(dottedName)}>
+		<Link to={encodeRuleName(dottedName)}>
 			<span className="name">{title || capitalise0(name)}</span>
 		</Link>
 	)

@@ -1,31 +1,30 @@
-import {
-	flatten,
-	keys,
-	reduce,
-	mergeWith,
-	add,
-	values,
-	sortWith,
-	descend,
-	fromPairs,
-	countBy,
-	toPairs,
-	pair,
-	map,
-	head,
-	unless,
-	is,
-	prop,
-	pick,
-	identity
-} from 'ramda'
-import React from 'react'
-import Question from 'Components/conversation/Question'
+import formValueTypes from 'Components/conversation/formValueTypes'
 import Input from 'Components/conversation/Input'
+import Question from 'Components/conversation/Question'
 import SelectGéo from 'Components/conversation/select/SelectGéo'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
-import formValueTypes from 'Components/conversation/formValueTypes'
-
+import {
+	add,
+	countBy,
+	descend,
+	flatten,
+	fromPairs,
+	head,
+	identity,
+	is,
+	keys,
+	map,
+	mergeWith,
+	pair,
+	pick,
+	prop,
+	reduce,
+	sortWith,
+	toPairs,
+	unless,
+	values
+} from 'ramda'
+import React from 'react'
 import { findRuleByDottedName, queryRule } from './rules'
 
 /*
@@ -43,7 +42,7 @@ import { findRuleByDottedName, queryRule } from './rules'
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariablesByTarget = targets =>
+export let collectMissingVariablesByTarget = (targets = []) =>
 	fromPairs(targets.map(target => [target.dottedName, target.missingVariables]))
 
 export let getNextSteps = missingVariablesByTarget => {
@@ -66,7 +65,6 @@ export let getNextSteps = missingVariablesByTarget => {
 		),
 		pairs = toPairs(missingByCompound),
 		sortedPairs = sortWith([descend(byCount), descend(byScore)], pairs)
-
 	return map(head, sortedPairs)
 }
 
@@ -77,8 +75,9 @@ let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {
-		let node = findRuleByDottedName(allRules, path),
-			variant = isVariant(node),
+		let node = findRuleByDottedName(allRules, path)
+		if (!node) throw new Error(`La règle ${path} est introuvable`)
+		let variant = isVariant(node),
 			variants = variant && unless(is(Array), prop('possibilités'))(variant),
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']

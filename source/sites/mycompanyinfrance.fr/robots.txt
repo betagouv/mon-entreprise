@@ -1,3 +1,2 @@
 User-agent: *
-Sitemap: https://mycompanyinfrance.fr/sitemap.txt
-Disallow: 
+Disallow:

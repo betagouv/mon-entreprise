@@ -37,11 +37,12 @@ export default compose(
 			return (
 				<div id="helpWrapper" className="active">
 					<section id="help">
-						<i
-							className="fa fa-times-circle"
+						<button
+							id="closeHelp"
 							onClick={stopExplaining}
-							style={{ color: colours.colour }}
-						/>
+							style={{ color: colours.colour }}>
+							✖️
+						</button>
 						<p
 							dangerouslySetInnerHTML={{
 								__html: this.renderExplanationMarkdown(text, rule.title)

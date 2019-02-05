@@ -1,4 +1,5 @@
 /* @flow */
+import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 
 export type CompanyLiability = 'LIMITED_LIABILITY' | 'UNLIMITED_LIABILITY'
 
@@ -19,9 +20,9 @@ export type CompanyHasMultipleAssociatesAction = {
 	multipleAssociates: ?boolean
 }
 
-export type CompanyIsMicroenterpriseAction = {
+export type IsAutoentrepreneurAction = {
 	type: 'COMPANY_IS_MICROENTERPRISE',
-	microEnterprise: ?boolean
+	autoEntrepreneur: ?boolean
 }
 
 export type ChangeChecklistItemAction = {
@@ -35,6 +36,7 @@ export type ExistingCompanyDetails = {
 	siret: string,
 	effectif?: number,
 	localisation?: Object,
+	legalStatus?: LegalStatus,
 	apiDetails: { [string]: string }
 }
 export type SaveExistingCompanyDetailsAction = {
@@ -52,6 +54,7 @@ export type ResetCompanyStatusAction = {
 export type ResetExistingCompanyDetailsAction = {
 	type: 'RESET_EXISTING_COMPANY_DETAILS'
 }
+
 export type State = {|
 	+companyLegalStatus: {
 		/* 
@@ -62,16 +65,17 @@ export type State = {|
 		+liability?: ?CompanyLiability,
 		+directorStatus?: ?DirectorStatus,
 		+multipleAssociates?: ?boolean,
-		+microEnterprise?: ?boolean,
+		+autoEntrepreneur?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
-	+existingCompanyDetails: ?ExistingCompanyDetails
+	+existingCompanyDetails: ?ExistingCompanyDetails,
+	+companyStatusChoice: ?LegalStatus
 |}
 export type LegalStatusRequirements = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
 	| ChooseCompanyLiabilityAction
 	| DefineDirectorStatusAction
-	| CompanyIsMicroenterpriseAction
+	| IsAutoentrepreneurAction
 	| CompanyHasMultipleAssociatesAction
 	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction

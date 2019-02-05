@@ -1,15 +1,9 @@
-import { expect } from 'chai'
-import dedent from 'dedent-js'
-import { enrichRule, rulesFr as rules } from 'Engine/rules'
-import { safeLoad } from 'js-yaml'
-import { assocPath, merge } from 'ramda'
-import reducers from 'Reducers/rootReducer'
-import { simulationTargetNames } from '../source/config'
-import {
-	currentQuestionSelector,
-	nextStepsSelector
-} from '../source/selectors/analyseSelectors'
-
+import { expect } from 'chai';
+import { enrichRule, rulesFr as rules } from 'Engine/rules';
+import { assocPath, merge } from 'ramda';
+import reducers from 'Reducers/rootReducer';
+import salariéConfig from '../source/components/simulationConfigs/salarié.yaml';
+import { currentQuestionSelector, nextStepsSelector } from '../source/selectors/analyseSelectors';
 let baseState = {
 	conversationSteps: { foldedSteps: [] },
 	form: { conversation: { values: {} } }
@@ -27,7 +21,7 @@ describe('conversation', function() {
 			],
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
-				targetNames: ['startHere']
+				simulation: { config: { objectifs: ['startHere']}}
 			}),
 			currentQuestion = currentQuestionSelector(state, { rules })
 
@@ -51,7 +45,7 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
-			targetNames: ['startHere']
+			simulation: { config: { objectifs: ['startHere']}}
 		})
 		let step2 = reducers(
 			assocPath(
@@ -96,32 +90,49 @@ describe('conversation', function() {
 	})
 
 	it('should first ask for questions without defaults, then those with defaults', function() {
-		let rawRules = dedent`
-        - nom: net
-          formule: brut - cotisation
+		let rawRules = [
+			{  nom: 'net',
+				formule: 'brut - cotisation'
+			},
+			{
+				nom: 'brut',
+				question: 'Quel est le salaire brut ?',
+				format: 'euro'
+			},
+			{
+				nom: 'cotisation',
+				formule: {
+					multiplication: {
+						assiette: 'brut',
+						variations: [
+							{
+								si: 'cadre',
+								alors: {
+									taux: '77%'
+								}
+							}, {
+								sinon: {
+									taux: '80%'
+								}
 
-        - nom: brut
-          format: euro
+							}
+						]
 
-        - nom: cotisation
-          formule:
-            multiplication:
-              assiette: brut
-              variations:
-                - si: cadre
-                  alors: 
-                    taux: 77%
-                - sinon:
-                    taux: 80%
-        - nom: cadre
-          par défaut: non
-      `,
-			rules = safeLoad(rawRules).map(enrichRule)
+					}
+				}
+			},
+			{
+				nom: 'cadre',
+				question: 'Est-ce un cadre ?',
+				'par défaut': 'non'
+			}
+		]
+      ,
+			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
-			targetNames: ['net']
+			simulation: { config: { objectifs: ['net']}}
 		})
-
 		expect(currentQuestionSelector(step1, { rules })).to.equal('brut')
 
 		let step2 = reducers(
@@ -142,7 +153,7 @@ describe('conversation', function() {
 describe('real conversation', function() {
 	it('should not have more than X questions', function() {
 		let state = merge(baseState, {
-				targetNames: simulationTargetNames
+			simulation: { config: salariéConfig }
 			}),
 			nextSteps = nextStepsSelector(state, { rules })
 

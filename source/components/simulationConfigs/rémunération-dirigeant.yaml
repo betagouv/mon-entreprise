@@ -1,0 +1,33 @@
+titre: |
+  Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise.
+
+objectifs:
+  - revenu disponible
+  - ratio de prélèvements
+questions:
+  - entreprise . chiffre d'affaires
+  - entreprise . catégorie d'activité
+  - entreprise . charges
+bloquant:
+  - entreprise . chiffre d'affaires
+situation:
+  période: année
+
+branches:
+  - nom: Auto-entrepreneur
+    situation:
+      autoentrepreneur: oui
+      indépendant: non
+      contrat salarié: non
+  - nom: Indépendant
+    situation:
+      indépendant: oui
+      autoentrepreneur: non
+      contrat salarié: non
+  - nom: Assimilé salarié
+    situation:
+      autoentrepreneur: non
+      indépendant: non
+      contrat salarié: oui
+      contrat salarié . assimilé salarié: oui
+      contrat salarié . ATMP . taux réduit: oui

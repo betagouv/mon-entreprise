@@ -1,11 +1,11 @@
-import classNames from 'classnames'
-import Explicable from 'Components/conversation/Explicable'
-import { compose } from 'ramda'
-import React, { Component } from 'react'
-import { withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { change, Field } from 'redux-form'
-import IgnoreStepButton from './IgnoreStepButton'
+import classNames from 'classnames';
+import Explicable from 'Components/conversation/Explicable';
+import { compose } from 'ramda';
+import React, { Component } from 'react';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { change, Field } from 'redux-form';
+import IgnoreStepButton from './IgnoreStepButton';
 
 export let buildValidationFunction = valueType => {
 	let validator = valueType ? valueType.validator : {},
@@ -25,7 +25,6 @@ export var FormDecorator = formType => RenderField =>
 		connect(
 			//... this helper directly to the redux state to avoid passing more props
 			state => ({
-				themeColours: state.themeColours,
 				flatRules: state.flatRules
 			}),
 			dispatch => ({
@@ -50,7 +49,6 @@ export var FormDecorator = formType => RenderField =>
 					fieldName,
 					inversion,
 					setFormValue,
-					themeColours
 				} = this.props
 				let validate = buildValidationFunction(valueType)
 				let submit = cause => stepAction('fold', fieldName, cause),
@@ -94,7 +92,6 @@ export var FormDecorator = formType => RenderField =>
 								component={RenderField}
 								name={fieldName}
 								{...stepProps}
-								themeColours={themeColours}
 							/>
 						</fieldset>
 					</div>

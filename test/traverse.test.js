@@ -6,16 +6,16 @@ let stateSelector = () => null
 
 describe('analyse', function() {
 	it('should directly return simple numerical values', function() {
-		let rule = { name: 'startHere', formule: 3269 }
-		let rules = parseAll([rule])
+		let rule = { nom: 'startHere', formule: 3269 }
+		let rules = parseAll([rule].map(enrichRule))
 		expect(
 			analyse(rules, 'startHere')(stateSelector).targets[0]
 		).to.have.property('nodeValue', 3269)
 	})
 
 	it('should compute expressions combining constants', function() {
-		let rule = { name: 'startHere', formule: '32 + 69' }
-		let rules = parseAll([rule])
+		let rule = { nom: 'startHere', formule: '32 + 69' }
+		let rules = parseAll([rule].map(enrichRule))
 		expect(
 			analyse(rules, 'startHere')(stateSelector).targets[0]
 		).to.have.property('nodeValue', 101)
@@ -25,6 +25,7 @@ describe('analyse', function() {
 describe('analyse on raw rules', function() {
 	it('should handle direct referencing of a variable', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', formule: 'dix', espace: 'top' },
 				{ nom: 'dix', formule: 10, espace: 'top' }
 			],
@@ -36,6 +37,7 @@ describe('analyse on raw rules', function() {
 
 	it('should handle expressions referencing other rules', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', formule: '3259 + dix', espace: 'top' },
 				{ nom: 'dix', formule: 10, espace: 'top' }
 			],
@@ -47,6 +49,7 @@ describe('analyse on raw rules', function() {
 
 	it('should handle applicability conditions', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', formule: '3259 + dix', espace: 'top' },
 				{ nom: 'dix', formule: 10, espace: 'top', 'non applicable si': 'vrai' },
 				{ nom: 'vrai', formule: '2 > 1', espace: 'top' }
@@ -59,6 +62,7 @@ describe('analyse on raw rules', function() {
 
 	it('should handle comparisons', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', formule: '3259 > dix', espace: 'top' },
 				{ nom: 'dix', formule: 10, espace: 'top' }
 			],
@@ -109,6 +113,7 @@ describe('analyse with mecanisms', function() {
 
 	it('should handle switch statements', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: {
@@ -129,7 +134,10 @@ describe('analyse with mecanisms', function() {
 	})
 
 	it('should handle percentages', function() {
-		let rawRules = [{ nom: 'startHere', formule: '35%', espace: 'top' }],
+		let rawRules = [
+				{ nom: 'top' },
+				{ nom: 'startHere', formule: '35%', espace: 'top' }
+			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
 			analyse(rules, 'startHere')(stateSelector).targets[0]
@@ -211,7 +219,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							tranches: [
 								{ 'en-dessous de': 1, taux: 0.1 },
 								{ de: 1, à: 2, taux: 1.2 },
@@ -234,7 +242,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							composantes: [
 								{
 									tranches: [
@@ -268,7 +276,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							variations: [
 								{
 									si: '3 > 4',
@@ -313,6 +321,7 @@ describe('analyse with mecanisms', function() {
 
 	it('should handle complements', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: { complément: { cible: 'dix', montant: 93 } },
@@ -328,6 +337,7 @@ describe('analyse with mecanisms', function() {
 
 	it('should handle components in complements', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					formule: {
@@ -348,6 +358,7 @@ describe('analyse with mecanisms', function() {
 
 	it('should handle filtering on components', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{ nom: 'startHere', espace: 'top', formule: 'composed (salarié)' },
 				{
 					nom: 'composed',
@@ -355,7 +366,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							composantes: [
 								{
 									tranches: [
@@ -386,6 +397,7 @@ describe('analyse with mecanisms', function() {
 
 	it('should compute consistent values', function() {
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					nom: 'startHere',
 					espace: 'top',
@@ -398,7 +410,7 @@ describe('analyse with mecanisms', function() {
 					formule: {
 						barème: {
 							assiette: 2008,
-							'multiplicateur des tranches': 1000,
+							multiplicateur: 1000,
 							composantes: [
 								{
 									tranches: [
@@ -440,6 +452,7 @@ describe('analyse with mecanisms', function() {
 			]
 		}
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					espace: 'top',
 					nom: 'startHere',
@@ -470,6 +483,7 @@ describe('analyse with mecanisms', function() {
 			]
 		}
 		let rawRules = [
+				{ nom: 'top' },
 				{
 					espace: 'top',
 					nom: 'startHere',
@@ -488,6 +502,19 @@ describe('analyse with mecanisms', function() {
 			rules = parseAll(rawRules.map(rule => enrichRule(rule, data)))
 		expect(
 			analyse(rules, 'startHere')(stateSelector).targets[0]
+		).to.have.property('nodeValue', 0)
+	})
+})
+
+describe('Implicit parent applicability', function() {
+	it('should make a variable non applicable if one parent is input to false', function() {
+		let rawRules = [
+				{ nom: 'CDD', question: 'CDD ?' },
+				{ nom: 'surcoût', formule: 10, espace: 'CDD' }
+			],
+			rules = parseAll(rawRules.map(enrichRule))
+		expect(
+			analyse(rules, 'CDD . surcoût')(name => ({ CDD: false }[name])).targets[0]
 		).to.have.property('nodeValue', 0)
 	})
 })

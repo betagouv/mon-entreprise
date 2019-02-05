@@ -5,9 +5,9 @@ import { encodeRuleName } from 'Engine/rules.js'
 import { isNil } from 'ramda'
 import { createSelector } from 'reselect'
 import {
-	analysisWithDefaultsSelector,
+	branchAnalyseSelector,
 	flatRulesSelector,
-	validatedSituationSelector
+	validatedSituationBranchesSelector
 } from './analyseSelectors'
 import type { FlatRules } from 'Types/State'
 import type {
@@ -17,10 +17,15 @@ import type {
 	RègleAvecValeur
 } from 'Types/RegleTypes'
 import type { Analysis } from 'Types/Analysis'
+import type { InputSelector } from 'reselect'
 
-export const règleLocaliséeSelector = createSelector(
+export const règleLocaliséeSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => Règle
+> = createSelector(
 	flatRulesSelector,
-	(localizedFlatRules: FlatRules) => (dottedName: string): Règle => {
+	(localizedFlatRules: ?FlatRules) => (dottedName: string): Règle => {
 		if (!localizedFlatRules) {
 			throw new Error(
 				`[LocalizedRègleSelector] Les localizedFlatRules ne doivent pas être 'undefined' ou 'null'`
@@ -34,7 +39,7 @@ export const règleLocaliséeSelector = createSelector(
 		}
 		return {
 			nom: localizedRule.titre || localizedRule.nom,
-			lien: 'règle/' + encodeRuleName(dottedName),
+			lien: encodeRuleName(dottedName),
 
 			id: dottedName,
 			...(localizedRule.shortDescription
@@ -46,9 +51,13 @@ export const règleLocaliséeSelector = createSelector(
 	}
 )
 
-export const règleValeurSelector = createSelector(
-	analysisWithDefaultsSelector,
-	validatedSituationSelector,
+export const règleValeurSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => RègleValeur
+> = createSelector(
+	branchAnalyseSelector,
+	validatedSituationBranchesSelector,
 	règleLocaliséeSelector,
 	(analysis: Analysis, situation, règleLocalisée: string => Règle) => (
 		dottedName: string
@@ -59,11 +68,16 @@ export const règleValeurSelector = createSelector(
 			)
 		}
 		const rule =
-			analysis.cache[dottedName] ||
-			analysis.targets.find(target => target.dottedName === dottedName)
+			!Array.isArray(analysis) && // It's an array if we're in a comparative simulation.
+			(analysis.cache[dottedName] ||
+				analysis.targets.find(target => target.dottedName === dottedName))
 
 		let valeur =
-			rule && !isNil(rule.nodeValue) ? rule.nodeValue : situation[dottedName]
+			rule && !isNil(rule.nodeValue)
+				? rule.nodeValue
+				: Array.isArray(situation)
+				? situation[0][dottedName]
+				: situation[dottedName]
 
 		if (isNil(valeur)) {
 			console.warn(
@@ -79,26 +93,31 @@ export const règleValeurSelector = createSelector(
 		if (typeof valeur === 'boolean') {
 			return { type: 'boolean', valeur }
 		}
-		if (rule?.API || rule?.explanation?.API) {
+		if (rule && (rule.API || rule.explanation?.API)) {
 			//TODO This code is specific to the géo API
 			return { type: 'string', valeur: valeur.nom }
 		}
 		const type =
 			(rule &&
 				(rule.format || (rule.explanation && rule.explanation.format))) ||
-			(Number.isNaN(Number.parseFloat(valeur)) ? 'string' : 'number')
-		// $FlowFixMe
+			(!Number.isNaN(valeur) && Number.isNaN(Number.parseFloat(valeur))
+				? 'string'
+				: 'number')
 		return {
+			type,
 			valeur:
-				type !== 'string'
-					? Number.parseFloat(valeur)
-					: règleLocalisée(`${dottedName} . ${valeur}`).nom,
-			type
+				type === 'string'
+					? règleLocalisée(`${dottedName} . ${valeur}`).nom
+					: Number.parseFloat(valeur)
 		}
 	}
 )
 
-export const règleAvecMontantSelector = createSelector(
+export const règleAvecMontantSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => RègleAvecMontant
+> = createSelector(
 	règleValeurSelector,
 	règleLocaliséeSelector,
 	(règleValeur, règleLocalisée) => (dottedName: string): RègleAvecMontant => {
@@ -114,13 +133,17 @@ export const règleAvecMontantSelector = createSelector(
 		}
 	}
 )
-export const règleAvecValeurSelector = createSelector(
+export const règleAvecValeurSelector: InputSelector<
+	{ lang: string },
+	{ rules?: FlatRules },
+	(dottedName: string) => RègleAvecValeur
+> = createSelector(
 	règleValeurSelector,
 	règleLocaliséeSelector,
 	(règleValeur, règleLocalisée) => (dottedName: string): RègleAvecValeur =>
 		// $FlowFixMe
 		({
-			...règleValeur(dottedName),
-			...règleLocalisée(dottedName)
+			...règleLocalisée(dottedName),
+			...règleValeur(dottedName)
 		})
 )

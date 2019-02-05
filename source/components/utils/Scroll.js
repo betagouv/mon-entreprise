@@ -1,3 +1,4 @@
+import { omit } from 'ramda'
 import React, { Component } from 'react'
 
 const forEachParent = (node, fn) => {
@@ -73,7 +74,7 @@ export class ScrollToElement extends Component {
 	render() {
 		return (
 			<div
-				{...this.props}
+				{...omit(['onlyIfNotVisible', 'when'], this.props)}
 				style={{
 					...this.props.style,
 					...(!this.props.children ? { position: 'absolute' } : {})

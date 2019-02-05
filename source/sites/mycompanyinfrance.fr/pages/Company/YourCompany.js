@@ -2,11 +2,11 @@
 
 import { React, T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
-import { toPairs } from 'ramda'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose, toPairs } from 'ramda'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import sitePaths from '../../sitePaths'
 import type { ResetExistingCompanyDetailsAction } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
 
@@ -61,34 +61,37 @@ export const CompanyDetails = withNamespaces()(
 	}
 )
 
-const YourCompany = ({ companyDetails, resetCompanyDetails }) => (
+const YourCompany = ({ companyDetails, resetCompanyDetails, sitePaths }) => (
 	<>
-		{!companyDetails && <Redirect to={sitePaths().entreprise.index} />}
+		{!companyDetails && <Redirect to={sitePaths.entreprise.index} />}
 		<h1>
 			<T>Votre entreprise</T>
 		</h1>
 		<CompanyDetails {...companyDetails.apiDetails} />
 		<p>
-			<Link onClick={resetCompanyDetails} to={sitePaths().entreprise.trouver}>
+			<Link onClick={resetCompanyDetails} to={sitePaths.entreprise.trouver}>
 				<T>Ce n'est pas mon entreprise</T>
 			</Link>
 		</p>
 		<p>
-			<Link to={sitePaths().sécuritéSociale.index} className="ui__ button">
-				<T>Simuler une embauche</T>
+			<Link to={sitePaths.sécuritéSociale.index} className="ui__ button">
+				<T>Simuler vos cotisations</T>
 			</Link>
 		</p>
 	</>
 )
 
-export default connect(
-	state => ({
-		companyDetails: state.inFranceApp.existingCompanyDetails
-	}),
-	(dispatch: ResetExistingCompanyDetailsAction => void) => ({
-		resetCompanyDetails: () =>
-			dispatch({
-				type: 'RESET_EXISTING_COMPANY_DETAILS'
-			})
-	})
+export default compose(
+	withSitePaths,
+	connect(
+		state => ({
+			companyDetails: state.inFranceApp.existingCompanyDetails
+		}),
+		(dispatch: ResetExistingCompanyDetailsAction => void) => ({
+			resetCompanyDetails: () =>
+				dispatch({
+					type: 'RESET_EXISTING_COMPANY_DETAILS'
+				})
+		})
+	)
 )(YourCompany)

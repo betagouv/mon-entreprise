@@ -13,21 +13,21 @@
 
 - nom: impôt sur les sociétés
   période: année
-  formule: 
-    barème: 
+  formule:
+    barème:
       assiette: bénéfice
-      tranches: 
-        - en-dessous de: 38120 
+      tranches:
+        - en-dessous de: 38120
           taux: 15%
         - de: 38120
           à: 500000
           taux: 28%
         - au-dessus de: 500000
           taux: 33.3%
-  références: 
+  références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
-- nom: bénéfice 
+- nom: bénéfice
   période: flexible
   formule: chiffre affaires - salaire total
 
@@ -43,13 +43,13 @@
   nom: net
   formule: brut - prélèvement forfaitaire unique
 
-- nom: prélèvement forfaitaire unique 
+- nom: prélèvement forfaitaire unique
   période: flexible
   espace: dividendes
-  formule: 
-    multiplication: 
+  formule:
+    multiplication:
       assiette: brut
-      composantes: 
+      composantes:
         - taux: 17.2%
         - taux: 12.8%
 
@@ -57,15 +57,12 @@
 
 - nom: salaire total
   période: flexible
-  formule: chiffre affaires * répartition salaire sur dividendes 
+  formule: chiffre affaires * répartition salaire sur dividendes
 
-- nom: net après impôt
-  période: flexible
-  format: euros
 
 - nom: revenu disponible
   période: flexible
-  formule: net après impôt + dividendes . net
+  formule: contrat salarié . salaire . net après impôt + dividendes . net
 
 
 

@@ -1,0 +1,20 @@
+.beta__container {
+	padding-left: 1rem;
+	border-top-left-radius: 0.3rem;
+
+	border-left: 3px solid #333;
+}
+.beta__tag {
+	font-size: 80%;
+	line-height: 1rem;
+	padding: 0.4rem 0.8rem;
+	background: #333;
+	margin-left: -1rem;
+	text-transform: uppercase;
+	color: white;
+	border-bottom-right-radius: 0.3rem;
+	border-top-right-radius: 0.3rem;
+	display: inline-block;
+	margin-bottom: 0.6rem;
+	vertical-align: middle;
+}

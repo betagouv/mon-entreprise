@@ -39,6 +39,7 @@ import {
 	mecanismProduct,
 	mecanismScale,
 	mecanismLinearScale,
+	mecanismContinuousScale,
 	mecanismMax,
 	mecanismMin,
 	mecanismError,
@@ -252,6 +253,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			multiplication: mecanismProduct,
 			barème: mecanismScale,
 			'barème linéaire': mecanismLinearScale,
+			'barème continu': mecanismContinuousScale,
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,
@@ -261,7 +263,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 				'une possibilité': 'oui',
 				missingVariables: { [rule.dottedName]: 1 }
 			}),
-			inversion: mecanismInversion(rule.dottedName),
+			'inversion numérique': mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
 			variations: mecanismVariations,
 			synchronisation: mecanismSynchronisation

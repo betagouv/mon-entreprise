@@ -40,7 +40,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
       `,
@@ -69,7 +69,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
         - nom: cadre
@@ -94,7 +94,7 @@ describe('inversions', () => {
               assiette: assiette
               variations:
                 - si: cadre
-                  alors: 
+                  alors:
                     taux: 80%
                 - sinon:
                     taux: 70%
@@ -102,7 +102,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
         - nom: cadre
@@ -121,7 +121,7 @@ describe('inversions', () => {
               assiette: 1200
               variations:
                 - si: cadre
-                  alors: 
+                  alors:
                     taux: 80%
                 - sinon:
                     taux: 70%
@@ -146,7 +146,7 @@ describe('inversions', () => {
                   alors:
                     taux: 80%
                 - si: ≠ cadre
-                  alors: 
+                  alors:
                     taux: 70%
 
         - nom: total
@@ -158,7 +158,7 @@ describe('inversions', () => {
         - nom: brut
           format: euro
           formule:
-            inversion:
+            inversion numérique:
               avec:
                 - net
                 - total
@@ -174,13 +174,11 @@ describe('inversions', () => {
 			analysis = analyse(rules, 'total')(stateSelector),
 			missing = collectMissingVariables(analysis.targets)
 
-		expect(analysis.targets[0].nodeValue).to.equal(3750)
+		expect(analysis.targets[0].nodeValue).to.be.closeTo(3750, 1)
 		expect(missing).to.be.empty
 	})
-})
-
-it('complex inversion with composantes', () => {
-	let rawRules = dedent`
+	it('complex inversion with composantes', () => {
+		let rawRules = dedent`
       - nom: net
         formule:
           multiplication:
@@ -205,32 +203,32 @@ it('complex inversion with composantes', () => {
       - nom: brut
         format: euro
         formule:
-          inversion:
+          inversion numérique:
             avec:
               - net
               - total
     `,
-		rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-		stateSelector = name => ({ net: 2000 }[name]),
-		analysis = analyse(rules, 'total')(stateSelector),
-		missing = collectMissingVariables(analysis.targets)
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
+			stateSelector = name => ({ net: 2000 }[name]),
+			analysis = analyse(rules, 'total')(stateSelector),
+			missing = collectMissingVariables(analysis.targets)
 
-	expect(analysis.targets[0].nodeValue).to.equal(3750)
-	expect(missing).to.be.empty
-})
+		expect(analysis.targets[0].nodeValue).to.be.closeTo(3750, 1)
+		expect(missing).to.be.empty
+	})
+	it('should collect missing variables not too slowly', function() {
+		let stateSelector = name =>
+			({ 'contrat salarié . salaire . net': '2300' }[name])
 
-it('should collect missing variables not too slowly', function() {
-	let stateSelector = name =>
-		({ 'contrat salarié . salaire . net': '2300' }[name])
+		let rules = parseAll(realRules.map(enrichRule)),
+			analysis = analyseMany(rules, [
+				'contrat salarié . salaire . brut',
+				'contrat salarié . rémunération . total'
+			])(stateSelector)
 
-	let rules = parseAll(realRules.map(enrichRule)),
-		analysis = analyseMany(rules, [
-			'contrat salarié . salaire . brut',
-			'contrat salarié . rémunération . total'
-		])(stateSelector)
-
-	let start = Date.now()
-	collectMissingVariables(analysis.targets)
-	let elapsed = Date.now() - start
-	expect(elapsed).to.be.below(500)
+		let start = Date.now()
+		collectMissingVariables(analysis.targets)
+		let elapsed = Date.now() - start
+		expect(elapsed).to.be.below(1500)
+	})
 })

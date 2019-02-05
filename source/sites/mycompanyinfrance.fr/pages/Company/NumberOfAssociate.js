@@ -34,20 +34,18 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates, t }: Props) => (
 		<h2>
 			<T k="associés.titre">Nombre d'associés</T>
 		</h2>
-		<p>
-			<T k="associés.description">
-				<p>
-					Une entreprise avec un seul associé est plus simple à créer et gérer.
-					Un associé peut-être une personne physique (un individu) ou une
-					personne morale (par exemple une autre société).
-				</p>
-				<p>
-					Note : ce choix n'est pas définitif. Vous pouvez tout à fait commencer
-					votre société seul, et accueillir de nouveaux associés au cours de
-					votre développement.
-				</p>
-			</T>
-		</p>
+		<T k="associés.description">
+			<p>
+				Une entreprise avec un seul associé est plus simple à créer et gérer. Un
+				associé peut-être une personne physique (un individu) ou une personne
+				morale (par exemple une société).
+			</p>
+			<p>
+				Note : ce choix n'est pas définitif. Vous pouvez tout à fait commencer
+				votre société seul, et accueillir de nouveaux associés au cours de votre
+				développement.
+			</p>
+		</T>
 
 		<div className="ui__ answer-group">
 			<button

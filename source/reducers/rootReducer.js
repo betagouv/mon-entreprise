@@ -1,31 +1,14 @@
 /* @flow */
 
-import {
-	compose,
-	defaultTo,
-	isNil,
-	lensPath,
-	over,
-	set,
-	uniq,
-	without
-} from 'ramda'
+import { compose, defaultTo, isNil, lensPath, over, set, uniq, without } from 'ramda';
+import reduceReducers from 'reduce-reducers';
+import { combineReducers } from 'redux';
 // $FlowFixMe
-import reduceReducers from 'reduce-reducers'
-import { combineReducers } from 'redux'
-// $FlowFixMe
-import { reducer as formReducer } from 'redux-form'
-import computeThemeColours from 'Ui/themeColours'
-import { simulationTargetNames } from '../config.js'
-import i18n from '../i18n'
-import inFranceAppReducer from './inFranceAppReducer'
-import storageReducer from './storageReducer'
+import { reducer as formReducer } from 'redux-form';
+import i18n from '../i18n';
+import inFranceAppReducer from './inFranceAppReducer';
+import storageReducer from './storageReducer';
 import type { Action } from 'Types/ActionsTypes'
-// TODO : use context API instead
-function themeColours(state = computeThemeColours(), { type, colour }) {
-	if (type == 'CHANGE_THEME_COLOUR') return computeThemeColours(colour)
-	else return state
-}
 
 function explainedVariable(state = null, { type, variableName = null }) {
 	switch (type) {
@@ -40,6 +23,15 @@ function currentExample(state = null, { type, situation, name, dottedName }) {
 	switch (type) {
 		case 'SET_EXAMPLE':
 			return name != null ? { name, situation, dottedName } : null
+		default:
+			return state
+	}
+}
+
+function situationBranch(state = null, { type, id }) {
+	switch (type) {
+		case 'SET_SITUATION_BRANCH':
+			return id
 		default:
 			return state
 	}
@@ -126,6 +118,12 @@ function hiddenControls(state = [], { type, id }) {
 	} else return state
 }
 
+function simulation(state = null, { type, config, url }) {
+	if (type === 'SET_SIMULATION') {
+		return { config, url }
+	} else return state
+}
+
 const addAnswerToSituation = (dottedName, value, state) => {
 	const dottedPath = dottedName.split(' . ')
 	return compose(
@@ -167,11 +165,11 @@ export default reduceReducers(
 		form: formReducer,
 		conversationSteps,
 		lang,
-		targetNames: defaultTo(simulationTargetNames),
-		themeColours,
+		simulation,
 		explainedVariable,
 		previousSimulation: defaultTo(null),
 		currentExample,
+		situationBranch,
 		hiddenControls,
 		conversationStarted,
 		activeTargetInput,

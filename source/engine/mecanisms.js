@@ -3,7 +3,6 @@ import {
 	path,
 	mergeWith,
 	objOf,
-	toPairs,
 	dissoc,
 	add,
 	find,
@@ -27,7 +26,12 @@ import {
 	subtract,
 	sum,
 	isNil,
-	reject
+	reject,
+	aperture,
+	sort,
+	toPairs,
+	reduced,
+	last
 } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -55,8 +59,9 @@ import {
 import 'react-virtualized/styles.css'
 import Somme from './mecanismViews/Somme'
 import Barème from './mecanismViews/Barème'
+import BarèmeContinu from './mecanismViews/BarèmeContinu'
+import InversionNumérique from './mecanismViews/InversionNumérique'
 import Variations from './mecanismViews/Variations'
-import BarèmeLinéaire from './mecanismViews/BarèmeLinéaire'
 import Allègement from './mecanismViews/Allègement'
 import Composantes from './mecanismViews/Composantes'
 import { trancheValue } from './mecanisms/barème'
@@ -125,39 +130,58 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 		  )
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateVariation = map(prop =>
+		let evaluateVariationProp = prop =>
 				prop === undefined
 					? undefined
-					: evaluateNode(cache, situationGate, parsedRules, prop)
-			),
-			evaluatedExplanation = map(evaluateVariation, node.explanation),
+					: evaluateNode(cache, situationGate, parsedRules, prop),
 			// mark the satisfied variation if any in the explanation
 			[, resolvedExplanation] = reduce(
-				([resolved, result], variation) =>
-					resolved
-						? [true, [...result, variation]]
-						: variation.condition == undefined
-						? [true, [...result, { ...variation, satisfied: true }]] // We've reached the eventual defaut case
-						: variation.condition.nodeValue === null
-						? [true, [...result, variation]] // one case has missing variables => we can't go further
-						: variation.condition.nodeValue === true
-						? [true, [...result, { ...variation, satisfied: true }]]
-						: [false, [...result, variation]],
+				([resolved, result], variation) => {
+					if (resolved) return [true, [...result, variation]]
+
+					// evaluate the condition
+					let evaluatedCondition = evaluateVariationProp(variation.condition)
+
+					if (evaluatedCondition == undefined) {
+						// We've reached the eventual defaut case
+						let evaluatedVariation = {
+							consequence: evaluateVariationProp(variation.consequence),
+							satisfied: true
+						}
+						return [true, [...result, evaluatedVariation]]
+					}
+
+					if (evaluatedCondition.nodeValue === null)
+						// one case has missing variables => we can't go further
+						return [true, [...result, { condition: evaluatedCondition }]]
+
+					if (evaluatedCondition.nodeValue === true) {
+						let evaluatedVariation = {
+							condition: evaluatedCondition,
+							consequence: evaluateVariationProp(variation.consequence),
+							satisfied: true
+						}
+						return [true, [...result, evaluatedVariation]]
+					}
+					return [false, [...result, variation]]
+				},
 				[false, []]
-			)(evaluatedExplanation),
+			)(node.explanation),
 			satisfiedVariation = resolvedExplanation.find(v => v.satisfied),
 			nodeValue = satisfiedVariation
 				? satisfiedVariation.consequence.nodeValue
 				: null
 
 		let leftMissing = mergeAllMissing(
-				reject(isNil, pluck('condition', evaluatedExplanation))
+				reject(isNil, pluck('condition', resolvedExplanation))
 			),
 			candidateVariations = filter(
 				node => !node.condition || node.condition.nodeValue !== false,
-				evaluatedExplanation
+				resolvedExplanation
 			),
-			rightMissing = mergeAllMissing(pluck('consequence', candidateVariations)),
+			rightMissing = mergeAllMissing(
+				reject(isNil, pluck('consequence', candidateVariations))
+			),
 			missingVariables = satisfiedVariation
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
@@ -388,7 +412,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 	}
 }
 
-export let findInversion = (situationGate, rules, v, dottedName) => {
+export let findInversion = (situationGate, parsedRules, v, dottedName) => {
 	let inversions = v.avec
 	if (!inversions)
 		throw new Error(
@@ -399,34 +423,65 @@ export let findInversion = (situationGate, rules, v, dottedName) => {
 	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
 	le salaire net, a été renseigné ?
 	*/
-	let fixedObjective = inversions
-		.map(i =>
-			disambiguateRuleReference(
-				rules,
-				rules.find(propEq('dottedName', dottedName)),
-				i
+	let candidates = inversions
+			.map(i =>
+				disambiguateRuleReference(
+					parsedRules,
+					parsedRules.find(propEq('dottedName', dottedName)),
+					i
+				)
 			)
-		)
-		.find(name => situationGate(name) != undefined)
+			.map(name => {
+				let userInput = situationGate(name) != undefined
+				let rule = findRuleByDottedName(parsedRules, name)
+				/* When the fixedObjectiveValue is null, the inversion can't be done : the user needs to set the target's value
+				 * But the objectiveRule can also have an 'alternative' property,
+				 * which must point to a rule whose value either is set by the user,
+				 * or is calculated according to a formula that does not depend on the rule being inversed.
+				 * This alternative's value will be used as a target.
+				 * */
+				let alternativeRule =
+					!userInput &&
+					rule.alternative &&
+					findRuleByDottedName(parsedRules, rule.alternative)
+				if (!userInput && !alternativeRule) return null
+				return {
+					fixedObjectiveRule: rule,
+					userInput,
+					fixedObjectiveValue: situationGate(name),
+					alternativeRule
+				}
+			}),
+		candidateWithUserInput = candidates.find(c => c && c.userInput)
 
-	if (fixedObjective == null) return { inversionChoiceNeeded: true }
-	//par exemple, fixedObjective = 'salaire net', et v('salaire net') == 2000
-	return {
-		fixedObjective,
-		fixedObjectiveValue: situationGate(fixedObjective),
-		fixedObjectiveRule: findRuleByDottedName(rules, fixedObjective)
-	}
+	return (
+		candidateWithUserInput || candidates.find(candidate => candidate != null)
+	)
 }
 
 let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	let inversion = findInversion(situationGate, parsedRules, v, dottedName)
 
-	if (inversion.inversionChoiceNeeded)
+	if (!inversion)
 		return {
 			missingVariables: { [dottedName]: 1 },
 			nodeValue: null
 		}
-	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
+	let { fixedObjectiveValue, fixedObjectiveRule, alternativeRule } = inversion
+
+	let evaluatedAlternative =
+		alternativeRule &&
+		evaluateNode(oldCache, situationGate, parsedRules, alternativeRule)
+	if (evaluatedAlternative && evaluatedAlternative.nodeValue == null)
+		return {
+			missingVariables: evaluatedAlternative.missingVariables,
+			nodeValue: null
+		}
+
+	let objectiveValue = evaluatedAlternative
+		? evaluatedAlternative.nodeValue
+		: fixedObjectiveValue
+
 	let inversionCache = {}
 	let fx = x => {
 		inversionCache = { parseLevel: oldCache.parseLevel + 1, op: '<' }
@@ -449,8 +504,11 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	let tolerance = 0.1,
 		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
 		nodeValue = uniroot(
-			x => fx(x).nodeValue - fixedObjectiveValue,
-			0,
+			x => {
+				let y = fx(x)
+				return y.nodeValue - objectiveValue
+			},
+			1,
 			1000000000,
 			tolerance,
 			10
@@ -459,7 +517,11 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	return {
 		nodeValue,
 		missingVariables: {},
-		inversionCache
+		inversionCache,
+		inversedWith: {
+			rule: fixedObjectiveRule,
+			value: fixedObjectiveValue
+		}
 	}
 }
 
@@ -474,7 +536,15 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
-		let evaluatedNode = rewriteNode(node, nodeValue, null, missingVariables)
+		let evaluatedNode = rewriteNode(
+			node,
+			nodeValue,
+			{
+				...evolve({ avec: map(recurse) }, v),
+				inversedWith: inversion?.inversedWith
+			},
+			missingVariables
+		)
 		// TODO - we need this so that ResultsGrid will work, but it's
 		// just not right
 		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
@@ -484,26 +554,10 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	return {
 		...v,
 		evaluate,
-		// eslint-disable-next-line
-		jsx: nodeValue => (
-			<Node
-				classes="mecanism inversion"
-				name="inversion"
-				value={nodeValue}
-				child={
-					<div>
-						<div>avec</div>
-						<ul>
-							{v.avec.map(recurse).map(el => (
-								<li key={el.name}>{makeJsx(el)}</li>
-							))}
-						</ul>
-					</div>
-				}
-			/>
-		),
+		explanation: evolve({ avec: map(recurse) }, v),
+		jsx: InversionNumérique,
 		category: 'mecanism',
-		name: 'inversion',
+		name: 'inversion numérique',
 		type: 'numeric'
 	}
 }
@@ -712,7 +766,9 @@ export let mecanismLinearScale = (recurse, k, v) => {
 		)
 
 		if (!matchedTranche) return 0
-		return matchedTranche.taux.nodeValue * val(assiette)
+		if (matchedTranche.taux)
+			return matchedTranche.taux.nodeValue * val(assiette)
+		return matchedTranche.montant
 	}
 
 	let explanation = {
@@ -723,7 +779,7 @@ export let mecanismLinearScale = (recurse, k, v) => {
 
 	return {
 		evaluate,
-		jsx: BarèmeLinéaire,
+		jsx: Barème('linéaire'),
 		explanation,
 		category: 'mecanism',
 		name: 'barème linéaire',
@@ -745,19 +801,15 @@ export let mecanismScale = (recurse, k, v) => {
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
 			assiette: false,
-			'multiplicateur des tranches': constantNode(1)
+			multiplicateur: constantNode(1)
 		}
 
-	let effect = ({
-		assiette,
-		'multiplicateur des tranches': multiplicateur,
-		tranches
-	}) => {
+	let effect = ({ assiette, multiplicateur: multiplicateur, tranches }) => {
 		let nulled = val(assiette) == null || val(multiplicateur) == null
 
 		return nulled
 			? null
-			: sum(tranches.map(trancheValue(assiette, multiplicateur)))
+			: sum(tranches.map(trancheValue('marginal')(assiette, multiplicateur)))
 	}
 
 	let explanation = {
@@ -768,11 +820,63 @@ export let mecanismScale = (recurse, k, v) => {
 
 	return {
 		evaluate,
-		jsx: Barème,
+		jsx: Barème('marginal'),
 		explanation,
 		category: 'mecanism',
 		name: 'barème',
 		barème: 'en taux marginaux',
+		type: 'numeric'
+	}
+}
+
+export let mecanismContinuousScale = (recurse, k, v) => {
+	let objectShape = {
+		assiette: false,
+		multiplicateur: constantNode(1)
+	}
+	let effect = ({ assiette, multiplicateur, points }) => {
+		if (anyNull([assiette, multiplicateur])) return null
+		//We'll build a linear function given the two constraints that must be respected
+		let result = pipe(
+			toPairs,
+			// we don't rely on the sorting of objects
+			sort(([k1], [k2]) => k1 - k2),
+			points => [...points, [Infinity, last(points)[1]]],
+			aperture(2),
+			reduce((_, [[lowerLimit, lowerRate], [upperLimit, upperRate]]) => {
+				let x1 = val(multiplicateur) * lowerLimit,
+					x2 = val(multiplicateur) * upperLimit,
+					y1 = val(assiette) * val(recurse(lowerRate)),
+					y2 = val(assiette) * val(recurse(upperRate))
+				if (val(assiette) > x1 && val(assiette) <= x2) {
+					// Outside of these 2 limits, it's a linear function a * x + b
+					let a = (y2 - y1) / (x2 - x1),
+						b = y1 - x1 * a,
+						nodeValue = a * val(assiette) + b
+					return reduced({
+						nodeValue,
+						additionalExplanation: {
+							seuil: val(assiette) / val(multiplicateur),
+							taux: nodeValue / val(assiette)
+						}
+					})
+				}
+			}, 0)
+		)(points)
+
+		return result
+	}
+	let explanation = {
+			...parseObject(recurse, objectShape, v),
+			points: v.points
+		},
+		evaluate = evaluateObject(objectShape, effect)
+	return {
+		evaluate,
+		jsx: BarèmeContinu,
+		explanation,
+		category: 'mecanism',
+		name: 'barème continu',
 		type: 'numeric'
 	}
 }

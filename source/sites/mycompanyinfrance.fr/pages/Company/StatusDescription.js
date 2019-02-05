@@ -9,8 +9,8 @@ type Props = {
 const StatusDescription = ({ status }: Props) =>
 	status === 'EI' ? (
 		<T k="formeJuridique.EI">
-			Également appelée société en nom propre. Aucun capital n'est nécessaire.
-			Le capital privé et le capital de l'entreprise ne font qu'un.
+			Aucun apport en capital n'est nécessaire. Le capital privé et le capital
+			de l'entreprise ne font qu'un.
 		</T>
 	) : status === 'EIRL' ? (
 		<T k="formeJuridique.EIRL">
@@ -63,17 +63,17 @@ const StatusDescription = ({ status }: Props) =>
 			(un seul associé peut être poursuivi pour la totalité de la dette) et
 			indéfinie (responsable sur la totalité de son patrimoine personnel).
 		</T>
-	) : status === 'micro-entreprise' ? (
+	) : status === 'auto-entrepreneur' ? (
 		<T k="formeJuridique.micro">
-			La micro-entreprise est une entreprise individuelle, soumise à un régime
-			forfaitaire pour le calcul des impôts et le paiement des cotisations de
-			sécurité sociale.
+			Un auto-entrepreneur exerce son activité en entreprise individuelle, avec
+			un régime forfaitaire pour le calcul des impôts et le paiement des
+			cotisations de sécurité sociale.
 		</T>
-	) : status === 'micro-entreprise-EIRL' ? (
+	) : status === 'auto-entrepreneur-EIRL' ? (
 		<T k="formeJuridique.micro-EIRL">
-			La micro-entreprise en EIRL est une entreprise individuelle à
-			responsabilité limité, soumise à un régime forfaitaire pour le calcul des
-			impôts et le paiement des cotisations de sécurité sociale.
+			Un auto-entrepreneur option EIRL exerce son activité en entreprise
+			individuelle à responsabilité limité, avec à un régime forfaitaire pour le
+			calcul des impôts et le paiement des cotisations de sécurité sociale.
 		</T>
 	) : /* Otherwise */ null
 

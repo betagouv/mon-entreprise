@@ -1,9 +1,12 @@
 @import './Button/button.css';
 @import './Typography.css';
+@import './Card.css';
 @import './reset.css';
 
 :root {
-	--colour: rgb(41, 117, 209);
+	--colour: yellow;
+	--darkColour: green;
+	--textColour: red;
 }
 html:fullscreen {
 	background-color: white;
@@ -21,15 +24,22 @@ button {
 .ui__.answer-group {
 	display: flex;
 	align-items: center;
-	justify-content: end;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	margin: 1rem 0;
+}
+@media (min-width: 500px) {
+	.ui__.answer-group > :not(:last-child) {
+		margin-right: 1rem;
+	}
 }
 @media (max-width: 500px) {
 	.ui__.answer-group {
 		flex-wrap: wrap;
 	}
 	.ui__.answer-group > * {
-		flex-grow: 1;
-		flex-shrink: 0;
+		flex: 1;
+		white-space: nowrap;
 		margin: 0.5rem !important;
 	}
 }
@@ -37,14 +47,23 @@ button {
 .ui__.container {
 	width: 100%;
 	max-width: 800px;
-	margin: auto;
-	padding: 0 0.6rem;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 0.6rem;
+	padding-left: 0.6rem;
+}
+.ui__.container .ui__.full-width {
+	margin: 0 calc((800px - 100vw) / 2);
+}
+@media (max-width: 800px) {
+	.ui__.container .ui__.full-width {
+		margin: 0;
+	}
 }
 
 .ui__.notice {
-	font-size: 90%;
-	color: rgba(0, 0, 0, 0.7);
-	margin-top: 2em;
+	font-size: 85%;
+	color: rgba(0, 0, 0, 0.6);
 }
 ul.ui__.no-bullet {
 	list-style: none;

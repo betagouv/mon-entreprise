@@ -26,6 +26,6 @@
 }
 
 .result-view__body {
-	border-top-left-radius: 0;
+	border-top-left-radius: 0 !important;
 	margin-bottom: 2em;
 }

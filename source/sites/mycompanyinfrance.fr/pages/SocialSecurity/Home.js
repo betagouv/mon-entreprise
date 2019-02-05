@@ -1,13 +1,19 @@
 /* @flow */
 
-import { Component, React, T } from 'Components'
-import Simulateur from 'Components/Simu'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import withLanguage from 'Components/utils/withLanguage'
-import { compose } from 'ramda'
-import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
-import * as Animate from 'Ui/animate'
+import { Component, React, T } from 'Components';
+import { ScrollToTop } from 'Components/utils/Scroll';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import emoji from 'react-easy-emoji';
+import Helmet from 'react-helmet';
+import { withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { régimeSelector } from 'Selectors/companyStatusSelectors';
+import * as Animate from 'Ui/animate';
+import Video from './Video';
+
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
 
@@ -15,69 +21,83 @@ type Props = {
 	match: Match,
 	location: Location,
 	t: TFunction,
+	showFindYourCompanyLink: boolean,
+	régime: 'indépendant' | 'assimilé-salarié' | 'auto-entrepreneur' | null,
+	sitePaths: Object,
 	language: string
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
+		const { t, match, régime, sitePaths, showFindYourCompanyLink } = this.props
 		return (
 			<>
 				<Helmet>
 					<title>
-						{this.props.t(
-							'sécu.page.titre',
-							"Sécurité sociale et coût d'embauche"
-						)}
+						{t('sécu.page.titre', "Sécurité sociale et coût d'embauche")}
 					</title>
-					<meta
-						name="description"
-						content={this.props.t('sécu.page.description')}
-					/>
+					<meta name="description" content={t('sécu.page.description')} />
 				</Helmet>
 				<ScrollToTop />
-				<Animate.fromBottom>
-					{this.props.match.isExact && (
+
+				{match.isExact && (
+					<Animate.fromBottom>
 						<T k="sécu.content">
-							<h1>Protection sociale : coût et avantages</h1>
+							<h1>Protection sociale : coûts et avantages</h1>
 							<p>
 								La France a choisi d'offrir à ses citoyens une protection
 								sociale de qualité. Ce système obligatoire repose sur la
 								solidarité et vise à assurer le{' '}
 								<strong>bien-être général de la population</strong>.
 							</p>
-							<p>
-								Dès que vous déclarez et payez vos salariés, vous leur donnez
-								automatiquement droit au régime général de la Sécurité sociale
-								française (santé, maternité, invalidité, vieillesse, maladie
-								professionnelle et accidents) et à l'assurance chômage.
-							</p>
-							<div
-								style={{
-									position: 'relative',
-									width: '100%',
-									height: '0',
-									paddingBottom: '56.25%'
-								}}>
-								<iframe
-									style={{
-										position: 'absolute',
-										top: 0,
-										left: 0,
-										width: '100%',
-										height: '100%'
-									}}
-									src={`https://www.youtube-nocookie.com/embed/${
-										this.props.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
-									}?rel=0&amp;showinfo=0`}
-									frameBorder="0"
-									allow="autoplay; encrypted-media"
-									allowFullScreen
-								/>
-							</div>
-							<h2>Combien coûte une embauche ?</h2>
 						</T>
-					)}
-					<Simulateur displayHiringProcedures key={location.pathname} />
-				</Animate.fromBottom>
+						{showFindYourCompanyLink && (
+							<p>
+								<T k="sécu.entrepriseCrée">
+									Si vous possédez déjà une entreprise, nous pouvons{' '}
+									<strong>automatiquement personnaliser</strong> vos simulations
+									à votre situation. Il vous suffit juste de{' '}
+									<Link to={sitePaths.entreprise.trouver}>
+										renseigner le nom de votre entreprise.
+									</Link>
+								</T>
+							</p>
+						)}
+						{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+							window.location.hostname
+						) ? (
+							<>
+								<br />
+								<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
+									Que souhaitez vous estimer ?
+								</h2>
+								<Link
+									className="landing__choice "
+									to={
+										régime
+											? sitePaths.sécuritéSociale[régime]
+											: sitePaths.sécuritéSociale.comparaison
+									}>
+									{emoji('👔')} La rémunération du dirigeant
+								</Link>
+								<Link
+									className="landing__choice "
+									to={sitePaths.sécuritéSociale.salarié}>
+									{emoji('👥')} Le salaire d'un employé
+								</Link>
+								<br />
+							</>
+						) : (
+							<Link
+								className="landing__choice "
+								to={sitePaths.sécuritéSociale.salarié}>
+								{emoji('👥')}{' '}
+								<T>Estimer les cotisations sociales pour une embauche</T>
+							</Link>
+						)}
+
+						<Video />
+					</Animate.fromBottom>
+				)}
 			</>
 		)
 	}
@@ -85,5 +105,13 @@ class SocialSecurity extends Component<Props, {}> {
 
 export default compose(
 	withNamespaces(),
-	withLanguage
+	withLanguage,
+	withSitePaths,
+	connect(state => ({
+		régime: régimeSelector(state),
+		showFindYourCompanyLink:
+			!state.inFranceApp.existingCompanyDetails &&
+			!Object.keys(state.inFranceApp.companyLegalStatus).length &&
+			!state.inFranceApp.companyStatusChoice
+	}))
 )(SocialSecurity)

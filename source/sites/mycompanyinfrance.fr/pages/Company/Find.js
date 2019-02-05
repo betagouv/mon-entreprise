@@ -1,33 +1,34 @@
 /* @flow */
 import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
 import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-// $FlowFixMe
 import ReactSelect from 'react-select'
 // $FlowFixMe
 import 'react-select/dist/react-select.css'
-import sitePaths from '../../sitePaths'
+import type { SitePaths } from 'Components/utils/withSitePaths'
+import type { TFunction } from 'react-i18next'
 import './Find.css'
 import { CompanyDetails as Company } from './YourCompany'
 import type { RouterHistory } from 'react-router'
 
-const goToNextStep = (history: RouterHistory) => {
-	history.push(sitePaths().sécuritéSociale.index)
+const goToNextStep = (history: RouterHistory, sitePaths: Object) => {
+	history.push(sitePaths.sécuritéSociale.index)
 }
 
 type State = {
 	input: ?{ [string]: string }
 }
-
+type OwnProps = {}
 type Props = {
-	// $FlowFixMe
-	onCompanyDetailsConfirmation: ({ [string]: string }) => void,
-	history: RouterHistory
+	history: RouterHistory,
+	t: TFunction,
+	sitePaths: SitePaths,
 }
 
 class Search extends React.Component<Props, State> {
@@ -52,7 +53,7 @@ class Search extends React.Component<Props, State> {
 			})
 
 	render() {
-		let { t } = this.props
+		let { t, sitePaths } = this.props
 		return (
 			<div id="findYourCompany">
 				<Helmet>
@@ -69,7 +70,7 @@ class Search extends React.Component<Props, State> {
 					<T k="trouver.titre">Retrouver votre entreprise</T>
 				</h1>
 				<p>
-					<Link to={sitePaths().entreprise.index}>
+					<Link to={sitePaths.entreprise.index}>
 						<T k="trouver.non">Je n'ai pas encore d'entreprise</T>
 					</Link>
 				</p>
@@ -101,10 +102,10 @@ class Search extends React.Component<Props, State> {
 						<button
 							onClick={() => {
 								this.props.onCompanyDetailsConfirmation(this.state.input)
-								goToNextStep(this.props.history)
+								goToNextStep(this.props.history, sitePaths)
 							}}
 							className="ui__ button">
-							<T k="trouver.ok">Confirmer et simuler un salaire</T>
+							<T k="trouver.ok">Confirmer et simuler vos cotisations</T>
 						</button>
 					</>
 				)}
@@ -113,7 +114,8 @@ class Search extends React.Component<Props, State> {
 	}
 }
 
-export default compose(
+export default (compose(
+	withSitePaths,
 	withRouter,
 	connect(
 		null,
@@ -122,4 +124,4 @@ export default compose(
 		}
 	),
 	withNamespaces()
-)(Search)
+)(Search): React$ComponentType<OwnProps>)

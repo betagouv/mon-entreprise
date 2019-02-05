@@ -1,11 +1,12 @@
 /* @flow */
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
-import { isNil } from 'ramda'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose, isNil } from 'ramda'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import sitePaths from '../../sitePaths'
+
 import type { LegalStatusRequirements } from 'Types/companyTypes'
 const requirementToText = (key, value) => {
 	switch (key) {
@@ -23,20 +24,20 @@ const requirementToText = (key, value) => {
 			) : (
 				<T>Assimilé salarié</T>
 			)
-		case 'microEnterprise':
-			return value ? (
-				<T>Avec option micro-entrepreneur</T>
-			) : (
-				<T>Pas de régime de micro-entreprise</T>
-			)
+		case 'autoEntrepreneur':
+			return value ? <T>Auto-entrepreneur</T> : <T>Pas en auto-entrepreneur</T>
 		case 'minorityDirector':
 			return value ? <T>Gérant minoritaire</T> : <T>Gérant majoritaire</T>
 	}
 }
-
-type Props = LegalStatusRequirements & { goToCompanyStatusChoice: () => void }
+type OwnProps = {}
+type Props = LegalStatusRequirements & {
+	goToCompanyStatusChoice: () => void,
+	sitePaths: Object
+}
 
 const PreviousAnswers = ({
+	sitePaths,
 	goToCompanyStatusChoice,
 	...legalStatus
 }: Props) => {
@@ -45,7 +46,7 @@ const PreviousAnswers = ({
 			{!!Object.keys(legalStatus).length && (
 				<button
 					onClick={goToCompanyStatusChoice}
-					className="ui__ skip-button left">
+					className="ui__ simple small skip button left">
 					⟲ <T>Recommencer</T>
 				</button>
 			)}
@@ -57,7 +58,7 @@ const PreviousAnswers = ({
 								([key, value]) =>
 									!isNil(value) && (
 										<li key={key}>
-											<Link to={sitePaths().entreprise.statusJuridique[key]}>
+											<Link to={sitePaths.entreprise.statutJuridique[key]}>
 												{requirementToText(key, value)}
 											</Link>
 										</li>
@@ -71,7 +72,10 @@ const PreviousAnswers = ({
 	)
 }
 
-export default connect(
-	state => state.inFranceApp.companyLegalStatus,
-	{ goToCompanyStatusChoice }
-)(PreviousAnswers)
+export default (compose(
+	connect(
+		state => state.inFranceApp.companyLegalStatus,
+		{ goToCompanyStatusChoice }
+	),
+	withSitePaths
+)(PreviousAnswers): React$ComponentType<OwnProps>)

@@ -12,16 +12,16 @@ type ownProps = {
 type Props = ownProps & {
 	goBackToPreviousQuestion: () => void
 }
-export default connect(
+export default (connect(
 	null,
 	{ goBackToPreviousQuestion }
 )(({ goBackToPreviousQuestion, onSkip }: Props) => (
 	<div className="ui__ answer-group">
 		<button
-			className="ui__ skip-button left"
+			className="ui__ simple skip button left"
 			onClick={goBackToPreviousQuestion}>
-			‹ <T>Précédent</T>
+			← <T>Précédent</T>
 		</button>
 		{onSkip && <SkipButton onClick={onSkip} />}
 	</div>
-))
+)): React$ComponentType<ownProps>)

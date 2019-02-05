@@ -2,12 +2,12 @@ import { map } from 'ramda'
 import { expect } from 'chai'
 import {
 	rules,
+	disambiguateRuleReference,
+	ruleParents,
 	enrichRule,
 	translateAll,
 	nestedSituationToPathMap
 } from '../source/engine/rules'
-
-let stateSelector = (state, name) => null
 
 describe('enrichRule', function() {
 	it('should extract the type of the rule', function() {
@@ -55,6 +55,7 @@ describe('rule checks', function() {
 		)
 
 		rulesNeedingDefault.map(r =>
+			//eslint-disable-next-line
 			console.log(
 				'cette règle, ',
 				r.dottedName,
@@ -130,6 +131,55 @@ describe('misc', function() {
 		expect(pathMap).to.have.property(
 			'contrat salarié . salaire . brut de base',
 			'2300'
+		)
+	})
+	it('should procude an array of the parents of a rule', function() {
+		let rawRules = [
+			{ nom: 'CDD', question: 'CDD ?' },
+			{ nom: 'taxe', formule: 'montant annuel / 12', espace: 'CDD' },
+			{
+				nom: 'montant annuel',
+				formule: '20 - exonération annuelle',
+				espace: 'CDD . taxe'
+			},
+			{
+				nom: 'exonération annuelle',
+				formule: 20,
+				espace: 'CDD . taxe . montant annuel'
+			}
+		]
+
+		let parents = ruleParents(rawRules.map(enrichRule)[3].dottedName)
+		expect(parents).to.eql([
+			['CDD', 'taxe', 'montant annuel'],
+			['CDD', 'taxe'],
+			['CDD']
+		])
+	})
+	it("should disambiguate a reference to another rule in a rule, given the latter's namespace", function() {
+		let rawRules = [
+			{ nom: 'CDD', question: 'CDD ?' },
+			{ nom: 'taxe', formule: 'montant annuel / 12', espace: 'CDD' },
+			{
+				nom: 'montant annuel',
+				formule: '20 - exonération annuelle',
+				espace: 'CDD . taxe'
+			},
+			{
+				nom: 'exonération annuelle',
+				formule: 20,
+				espace: 'CDD . taxe . montant annuel'
+			}
+		]
+
+		let enrichedRules = rawRules.map(enrichRule),
+			resolved = disambiguateRuleReference(
+				enrichedRules,
+				enrichedRules[2],
+				'exonération annuelle'
+			)
+		expect(resolved).to.eql(
+			'CDD . taxe . montant annuel . exonération annuelle'
 		)
 	})
 })

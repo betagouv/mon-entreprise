@@ -35,6 +35,10 @@
 .navigation li {
 	padding: 0;
 }
+.navigation > ul > li > ul {
+	visibility: visible !important;
+	height: auto !important;
+}
 .navigation__item:not(.opened) + ul {
 	visibility: hidden;
 	height: 0;

@@ -52,7 +52,8 @@ export default withLanguage(
 				Math.abs(this.state.difference) > 1 &&
 				formattedDifference !== formattedValue &&
 				this.props.value != null &&
-				this.state.difference < 0.5 * this.props.value
+				this.state.difference < 0.5 * this.props.value &&
+				!Number.isNaN(this.props.value)
 			return (
 				<>
 					<span key={this.props.value} className="Rule-value">
@@ -64,7 +65,11 @@ export default withLanguage(
 								{(this.state.difference > 0 ? '+' : '') + formattedDifference}
 							</Evaporate>
 						)}{' '}
-						<span>{this.format(this.props.value)}</span>
+						<span>
+							{Number.isNaN(this.props.value)
+								? '—'
+								: this.format(this.props.value)}
+						</span>
 					</span>
 				</>
 			)

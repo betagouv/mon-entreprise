@@ -1,0 +1,19 @@
+objectifs:
+  - entreprise . chiffre d'affaires
+  - contrat salarié . salaire . net après impôt
+
+questions:
+  - entreprise . charges
+
+questions à l'affiche:
+  Charges: entreprise . charges
+
+situation:
+  autoentrepreneur: non
+  indépendant: non
+  contrat salarié: oui
+  contrat salarié . assimilé salarié: oui
+  contrat salarié . CDD: non
+  contrat salarié . temps partiel: non
+  contrat salarié . ATMP . taux réduit: oui
+  période: année

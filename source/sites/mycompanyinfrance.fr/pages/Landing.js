@@ -1,146 +1,76 @@
 /* @flow */
 
+import { T } from 'Components'
 import withColours from 'Components/utils/withColours'
+import withSitePaths from 'Components/utils/withSitePaths'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
+import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, withNamespaces } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import companySvg from '../images/company.svg'
-import estimateSvg from '../images/estimate.svg'
-import hiringSvg from '../images/hiring.svg'
 import Footer from '../layout/Footer/Footer'
-import sitePaths from '../sitePaths'
 import './Landing.css'
+import type { ThemeColours } from 'Components/utils/withColours'
+import type { SitePaths } from 'Components/utils/withSitePaths'
 
-export default withNamespaces()(
-	withColours(({ colours: { colour } }) => (
-		<>
-			<header className="landing__header">
+type Props = {
+	colours: ThemeColours,
+	sitePaths: SitePaths
+}
+export default compose(
+	withSitePaths,
+	withColours,
+	withNamespaces()
+)(({ colours: { colour }, sitePaths }: Props) => (
+	<div className="app-content">
+		<section className="landing__banner" style={{ backgroundColor: colour }}>
+			<header>
+				<h1>
+					<T k="siteName">Mon-entreprise.fr</T>
+				</h1>
+				<p className="ui__ lead" style={{ maxWidth: '35rem' }}>
+					<T k="subtitle">Le guide officiel du créateur d'entreprise</T>
+				</p>
+
+				<svg
+					className="landing__banner__svg white"
+					preserveAspectRatio="none"
+					viewBox="5 0 495 150">
+					<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
+				</svg>
+			</header>
+		</section>
+		<section className="ui__ container" style={{ flex: 1 }}>
+			<div className="landing__header">
 				<img alt="logo marianne" src={marianneSvg} />
 				<img alt="logo urssaf" src={urssafSvg} />
-			</header>
-			<section className="landing__banner" style={{ backgroundColor: colour }}>
-				<header>
-					<h1>
-						<Trans>Créez votre entreprise</Trans>
-						<br />
-						{emoji('🇫🇷')}
-					</h1>
-					<p className="ui__ lead" style={{ maxWidth: '30rem' }}>
-						<Trans i18nKey="subtitle">
-							Le guide ultime, de la forme juridique à l'embauche.
-						</Trans>
-					</p>
-					<Link
-						className="ui__ inverted-button"
-						to={sitePaths().entreprise.index}
-						alt="the first step to create a company">
-						<Trans>Commencer</Trans>
-					</Link>
-					<svg
-						className="landing__banner__svg white"
-						preserveAspectRatio="none"
-						viewBox="5 0 495 150">
-						<path fill="white" d="M 0 150 Q 150 0 500 0 L 500 150 Z" />
-					</svg>
-				</header>
-			</section>
-			<section className="landing-explanation">
-				<div>
-					<h2>
-						<Trans i18nKey="accueil.entreprise.titre">
-							Votre projet d'entreprise
-						</Trans>
-					</h2>
-					<div className="landing-explanation-content">
-						<img alt="Your new company" src={companySvg} />
-						<ul>
-							<li>
-								<Trans i18nKey="accueil.entreprise.1">
-									Trouver la forme juridique adaptée
-								</Trans>
-							</li>
-							<li>
-								<Trans i18nKey="accueil.entreprise.2">
-									Suivre les étapes pour créer l'entreprise
-								</Trans>
-							</li>
-						</ul>
-					</div>
-					<p>
-						<Link
-							className="ui__ skip-button"
-							to={sitePaths().entreprise.index}>
-							<Trans i18nKey="accueil.entreprise.action">
-								Créez votre entreprise ›
-							</Trans>
-						</Link>
-					</p>
-				</div>
-				<div>
-					<h2>
-						<Trans i18nKey="accueil.sécu.titre">La sécurité sociale</Trans>
-					</h2>
-					<div className="landing-explanation-content">
-						<img alt="Social security" src={estimateSvg} />
-						<ul>
-							<li>
-								<Trans i18nKey="accueil.sécu.1">
-									Découvrez le système de sécurité sociale
-								</Trans>
-							</li>
-							<li>
-								<Trans i18nKey="accueil.sécu.2">
-									Simulez le coût d'embauche
-								</Trans>
-							</li>
-						</ul>
-					</div>
-					<p>
-						<Link
-							className="ui__ skip-button"
-							to={sitePaths().sécuritéSociale.index}>
-							<Trans i18nKey="accueil.sécu.action">
-								Découvrez le coût et les avantages ›
-							</Trans>
-						</Link>
-					</p>
-				</div>
-				<div>
-					<h2>
-						<Trans i18nKey="accueil.embauche.titre">
-							Votre premier employé
-						</Trans>
-					</h2>
-					<div className="landing-explanation-content">
-						<img alt="Social security" src={hiringSvg} />
-						<ul>
-							<li>
-								<Trans i18nKey="accueil.embauche.1">
-									Découvrez les démarches pour embaucher
-								</Trans>
-							</li>
-							<li>
-								<Trans i18nKey="accueil.embauche.2">
-									Découvrez les bases du droit du travail
-								</Trans>
-							</li>
-						</ul>
-					</div>
-					<p>
-						<Link
-							className="ui__ skip-button"
-							to={sitePaths().démarcheEmbauche.index}>
-							<Trans i18nKey="accueil.embauche.action">
-								Découvrez le proccessus d'embauche
-							</Trans>
-						</Link>
-					</p>
-				</div>
-			</section>
-			<Footer />
-		</>
-	))
-)
+			</div>
+			<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
+				<T>Que souhaitez vous faire ?</T>
+			</h2>
+			<Link className="landing__choice " to={sitePaths.entreprise.index}>
+				{emoji('💡')} <T>Créer une entreprise</T>
+			</Link>
+			<Link className="landing__choice " to={sitePaths.sécuritéSociale.index}>
+				{emoji('💶')} <T>Estimer les cotisations et les taxes</T>
+			</Link>
+			<Link className="landing__choice" to={sitePaths.démarcheEmbauche.index}>
+				{emoji('🤝')} <T>Connaître les démarches d'embauche</T>
+			</Link>
+			<Link className="landing__choice landing__choice--soon" to={'/'}>
+				<span className="landing__choice-label">
+					<T>prochainement</T>
+				</span>
+				{emoji('🏡')} <T>Déclarer mon activité d'économie collaborative</T>
+			</Link>
+			{/*
+				<Link className="landing__choice landing__choice--soon" to={'/'}>
+					{emoji('🌍')} Démarrer une activité en France en tant qu'entrepreneur
+					étranger
+				</Link> */}
+		</section>
+		<Footer />
+	</div>
+))

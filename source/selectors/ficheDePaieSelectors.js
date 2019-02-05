@@ -77,8 +77,7 @@ function brancheSelector(variable: VariableWithCotisation): Branche {
 	].map(p => path(p, variable))
 	return (
 		// $FlowFixMe
-		'protection sociale . ' +
-		(branches.filter(Boolean)[0] || 'autres')
+		'protection sociale . ' + (branches.filter(Boolean)[0] || 'autres')
 	)
 }
 
@@ -117,7 +116,7 @@ const groupByBranche = (règleLocaliséeSelector: string => Règle) => (
 		règleLocaliséeSelector(branche),
 		// $FlowFixMe
 		cotisationsMap[branche]
-	])
+])
 }
 const analysisToCotisations = (
 	analysis: Analysis,
@@ -196,6 +195,7 @@ function analysisToFicheDePaie(
 		),
 		salaireNet: règleAvecMontant('contrat salarié . salaire . net'),
 		nombreHeuresTravaillées: Math.round(
+			// $FlowFixMe
 			règleAvecValeur('contrat salarié . temps partiel . heures par semaine')
 				.valeur * 4.33
 		),
@@ -205,7 +205,7 @@ function analysisToFicheDePaie(
 		)
 	}
 }
-
+// $FlowFixMe
 export default createSelector(
 	[
 		règleAvecMontantSelector,

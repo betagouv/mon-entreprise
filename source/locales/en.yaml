@@ -50,7 +50,7 @@ afficher les sources complémentaires: display additional information sources
 input: This rule does not have a formula to compute it. Its value must be supplied through the form.
 Déclenchement: Applicability
 Calcul: Formula
-Chercher une règle: Find a rule
+Chercher dans la documentation: Search the documentation
 Entrez des mots clefs ici: Enter keywords
 noresults: No results
 cliquez pour insérer cette suggestion: click to insert this suggestion
@@ -84,7 +84,7 @@ facteur: multiplier
 plafond: ceiling
 barème: scale
 composantes: components
-multiplicateur des tranches: bracket amount
+multiplicateur: multiplier
 Tranche de l'assiette: Scale bracket
 Taux: Rate
 cible: target
@@ -101,6 +101,7 @@ Part employeur: Employer share
 Part salariale: Employee share
 Total des retenues: Total withheld
 Fiche de paie mensuelle: Monthly payslip
+Fiche de paie: Payslip
 Détail annuel des cotisations: Annual detail of your contributions
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
@@ -120,11 +121,13 @@ Cadre: '"Cadre" status'
 Temps partiel: Part time
 Autres: Other situations
 Mes réponses: My answers
-Modifier mes réponses: Change my answers
+Voir mes réponses: See my answers
 simulation-end:
   title: No more questions left!
-  text: You have reached the most accurate estimate. You can now turn your hiring project into reality.
-  cta: Know the procedures
+  text: You have reached the most accurate estimate.
+  hiring:
+    text: You can now turn your hiring project into reality.
+    cta: Know the procedures
 feedback:
   simulator: Do you like this simulator ?
   reportError: Report an error
@@ -178,39 +181,19 @@ De: From
 En-dessous de: Below
 Au-dessus de: Above
 Taux final: Final rate
-
-Créez votre entreprise: Start your business in France
-Créer votre entreprise: Create your company
-subtitle: The ultimate how-to guide, from incorporation to hiring.
 Commencer: Get started
 Passer: Skip
-accueil:
-  entreprise:
-    titre: Your new company
-    1: Find the type of company that suits you
-    2: Follow the steps to register your company
-    action: Create your company ›
-  sécu:
-    titre: The French social security
-    1: Discover the French social security system
-    2: Simulate your hiring costs
-    action: Simulate hiring costs and benefits ›
-  embauche:
-    titre: Your first employee
-    1: Discover the procedures to hire in France
-    2: Learn the basics of French labour law
-    action: Discover the hiring process ›
-
-piedDePage: This website is provided by the <1>URSSAF</1>, the French social security contributions collector, and the government’s public startup incubator, <4>beta.gouv.fr</4>.
 
 entreprise:
   existeDéjà: My company is already registered with the French Administration
   tâches:
     page:
-      description: A complete todo list to help you create a {{companyStatus}} with the French administration.`
-      titre: Create a {{companyStatus}} in France
-    titre: Create a <1>{{companyStatus}}</1>
-    titre1: Needed for registration
+      autoEntrepreneur:
+        description: A complete todo list to help you become {{autoEntrepreneur}} in France.`
+        titre: How to become {{autoEntrepreneur}}
+      entreprise:
+        description: A complete todo list to help you create a {{companyStatus}} with the French administration.`
+        titre: Create a {{companyStatus}} in France
     nom:
       titre: Find a corporate name
       description: |
@@ -274,16 +257,16 @@ entreprise:
       titre: Make a declaration of asset allocation
       description: >
         <0>
-          The <1>declaration of asset allocation</1> allows you to separate professional 
-          assets from your personal assets, which then becomes unseizable. This procedure 
+          The <1>declaration of asset allocation</1> allows you to separate professional
+          assets from your personal assets, which then becomes unseizable. This procedure
           is free of charge if it is carried out at the time of the creation
           of a company.
         </0>
         <1>
-          To do so, simply declare which assets are allocated to the patrimony of your company. 
-          All the contributions necessary for your professional activity must be included 
-          (for example: goodwill, trademark, patent, or professional equipment). You can do 
-          the valuation of the asset yourself if it does not exceed €30,000. 
+          To do so, simply declare which assets are allocated to the patrimony of your company.
+          All the contributions necessary for your professional activity must be included
+          (for example: goodwill, trademark, patent, or professional equipment). You can do
+          the valuation of the asset yourself if it does not exceed €30,000.
         </1>
         <2>
           <0>$t(Plus d'informations)</0>
@@ -308,12 +291,12 @@ formeJuridique:
   SASU: Composed of only one partner. The financial responsibility is limited to the amount of his contribution to the company's capital. The minimum capital is freely fixed in the Articles of Association.
   SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
   SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
-  micro: The micro-enterprise is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
-  micro-EIRL: The EIRL micro-enterprise is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  micro: The auto-entrepreneur is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  micro-EIRL: The EIRL auto-entrepreneur is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
 
 Votre forme juridique: Your legal status
 Créer une: Create a
-
+Devenir: Become
 Choisir la forme juridique: Choose your legal status
 Plus tard: Do it later
 
@@ -333,19 +316,19 @@ responsabilité:
   bouton2: Unlimited liability
   bouton3: Limited liability
 
-microentreprise:
+autoentrepreneur:
   page:
-    titre: Difference between microenterprise or Individual Business in France
+    titre: Auto-entrepreneur
     description: |
-      The micro-entreprise is a simplified scheme of declaration and payment,
+      The auto-entrepreneur benefits from a simplified scheme of declaration and payment,
       for which tax and social contributions are based on the turnover achieved
       each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
-  titre: Microenterprise or Individual Business
+  titre: Auto-entrepeneur
   description: >
     <0>
-      The micro-entreprise is a simplified scheme of declaration and payment, for which tax and social contributions 
-      are based on the turnover achieved each month. Available for companies whose annual 
-      turnover does not exceed €70,000 for services providers or €170,000 when the main activity 
+      The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions
+      are based on the turnover achieved each month. Available for companies whose annual
+      turnover does not exceed €70,000 for services providers or €170,000 when the main activity
       is the sale of goods, catering or the provision of housing.
     </0>
     <1>
@@ -353,16 +336,16 @@ microentreprise:
     </1>
     <2>
       <0>You do not need a lot of capital and important expenses to run your activity</0>
-      <1>You want to test the viability or plan it to be small</1>
+      <1>You want to test the viability of your business</1>
       <2>You want the minimum amount of paperwork to get started</2>
     </2>
     <3>
       <0>Note:</0>
-      Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities 
+      Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities
       are regulated with a qualification or a professional experience (<4>see the list [fr])</4>).
     </3>
     <4>
-      For all the other cases, it is advised to choose the standard status, which 
+      For all the other cases, it is advised to choose the standard status, which
       is <1>Individual Business.</1>
     </4>
 associés:
@@ -372,12 +355,12 @@ associés:
   titre: Number of partners
   description: >
     <0>
-      A company with only one partner is easier to create and manage. A shareholder 
-      may be a natural person (an individual) or a legal person (for example, 
+      A company with only one partner is easier to create and manage. A shareholder
+      may be a natural person (an individual) or a legal person (for example,
       another company).
     </0>
     <1>
-      Note: this choice is not final. You can start your company on your own, 
+      Note: this choice is not final. You can start your company on your own,
       and welcome new partners as your business grows.
     </1>
   choix1: Only one partner
@@ -400,8 +383,8 @@ après:
   entreprise: company
   intro: Once your <2>{{companyStatusChoice}}</2> has been successfully registered, you'll have access to the following
   siret:
-    titre: The Siret number
-    description: The Siren number <1>identifies your company</1> while the Siret number identifies each place of business operated by the same company. The Siret is composed by the Siren followed by the establishment number.
+    titre: The SIRET number
+    description: The SIREN number <1>identifies your company</1> while the SIRET number identifies each place of business operated by the same company. The SIRET is composed by the SIREN followed by the establishment number.
   ape:
     titre: The APE code
     description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). <3>It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.</3>
@@ -422,13 +405,10 @@ sécu:
   content: |
     <0>Social protection: costs and benefits</0>
     <1>
-      France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people</2>.
+      France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people
     </1>
-    <2>
-      As soon as you declare and pay your employees, you automatically entitle them to the general scheme of French Social Security (health, maternity, disability, old age, occupational illness and accidents) and unemployment insurance.
-    </2>
-    <3><0></0></3>
-    <4>How much does it cost to hire ?</4>
+  video: Social security explained visually
+  entrepriseCrée: If you already own a company, we can <2>automatically customize</2> your simulations to your situation. All you have to do is <5>enter the name of your company</5>.
 
 Votre entreprise: Your company
 Ce n'est pas mon entreprise: This is not my company
@@ -478,7 +458,7 @@ embauche:
       titre: Choose a payslip software
       description: >
         With fewer than 20 employees, payslips and declarations can be
-        handled online by the <2> Tese (Fr)</2>, a tool developped by the french 
+        handled online by the <2> Tese (Fr)</2>, a tool developped by the french
         social administration. You can also use <5>a private payslip software (Fr)</5>
     registre:
       titre: Keep an updated staff register
@@ -504,6 +484,13 @@ embauche:
     </1>
     <2>Get an example payslip</2>
 
+simulateur-salarié:
+  page:
+    titre: Estimate employee hiring cost
+    description: Simulate an employee's contributions to the social security. Official complete calculation of all contributions. Discover the counterparties guaranteed by social security
+  titre: Estimate social contributions for an employee
+  description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
+
 Guide du statut juridique: Legal status guide
 Démarches de création: Creation process checklist
 
@@ -512,34 +499,36 @@ path:
     index: '/company'
     votreEntreprise: '/my-company'
     créer: '/create-a-{{companyStatus}}'
+    devenirAutoEntrepreneur: '/become-{{autoEntrepreneur}}'
     trouver: '/find'
     après: '/after-registration'
-    statusJuridique:
+    statutJuridique:
       index: '/legal-status'
       liste: '/list'
       gérantMinoritaire: '/chairman-or-managing-director'
       responsabilité: '/liability'
-      statusDirigeant: '/directors-status'
+      statutDirigeant: '/directors-status'
       nombreAssociés: '/multiple-associates'
-      microEntreprise: '/micro-entreprise-or-individual-business'
+      autoEntrepreneur: '/auto-entrepreneur'
   sécuritéSociale:
     index: '/social-security'
+    assimilé-salarié: '/assimilated-salaried'
+    salarié: '/salaried'
   démarcheEmbauche:
     index: '/hiring-process'
 
-Micro-entreprise: Micro-enterprise
-Micro-entreprise en EIRL: EIRL micro-enterprise
-micro-entreprise-EIRL: EIRL-micro-enterprise
+Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
+auto-entrepreneur-EIRL: auto-entrepreneur-EIRL
 privacyContent: >
   <0>$t(Vie privée)</0>
   <1>
-    We do not store any personal data on our servers. All the information 
-    you provide (salaries, company postal code, SIREN etc.) is saved only 
+    We do not store any personal data on our servers. All the information
+    you provide (salaries, company postal code, SIREN etc.) is saved only
     on your browser. No one else can have access to it but you.
   </1>
   <2>
-    However, we do collect anonymous statistics on site usage, which we use 
-    for the sole purpose of improving the service, in accordance with the 
+    However, we do collect anonymous statistics on site usage, which we use
+    for the sole purpose of improving the service, in accordance with the
     <2>recommendations of the CNIL</2> and the DPRG directive.
   </2>
   <3>You can opt out below.</3>
@@ -560,8 +549,8 @@ Plusieurs associés: Several partners
 Un seul associé: Only one partner
 Responsabilité limitée: Limited liability
 Sans responsabilité limitée: Without limited liability
-Avec option micro-entrepreneur: With micro-entrepreneur option
-Pas de régime de micro-entreprise: No microenterprise scheme
+Auto-entrepreneur: Auto-entrepreneur
+Pas en auto-entrepreneur: Not in auto-entrepreneur
 
 Précédent: Previous
 Choisir plus tard: Choose later
@@ -571,6 +560,24 @@ Année: Year
 mois: month
 an: year
 par: per
-Explorez notre base de règles: Explore our rules
+Explorez notre documentation: Explore our documentation
 
 maj2019: The simulation is up-to-date in 2019.
+siteName: My company in France
+
+Simuler ma situation: Simulate my situation
+Exemples: Examples
+Intégrer le simulateur: Integrate the simulator
+
+# Landing infrance
+Que souhaitez vous faire ?: What do you want to do?
+Créer votre entreprise: Create your company
+subtitle: The official guide for entrepreneurs
+Connaître les démarches d'embauche: Know the hiring procedures
+Estimer les cotisations et les taxes: Estimate contributions and taxes
+Créer une entreprise: Create a company in France
+Déclarer mon activité d'économie collaborative: Declare my activity in the sharing economy
+prochainement: soon
+
+Estimer les cotisations sociales pour une embauche: Estimate the social security contributions for a hiring
+À quoi servent mes cotisations ?: How are my contributions distributed?

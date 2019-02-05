@@ -1,11 +1,10 @@
-.ui__.inverted-button:active,
-.ui__.button:active {
+.ui__.inverted-button:not(:disabled):active,
+.ui__.button:not(:disabled):active {
 	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
 .ui__.button,
-.ui__.inverted-button,
-.ui__.skip-button {
+.ui__.inverted-button {
 	font-size: 1.1rem;
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
@@ -14,10 +13,8 @@
 	/* outline: none; */
 	line-height: initial;
 	display: inline-block;
-	border-radius: 0.6rem;
+	border-radius: 0.3rem;
 	transition: all 0.15s;
-	margin: 0.8rem 0;
-	margin-right: 1rem;
 	text-align: center;
 	text-transform: uppercase;
 	font-family: 'Roboto', sans-serif;
@@ -25,16 +22,9 @@
 	cursor: pointer;
 }
 
-.ui__.button:last-child,
-.ui__.inverted-button:last-child,
-.ui__.skip-button:last-child {
-	margin-right: 0;
-}
-
 .ui__.button:disabled,
-.ui__.inverted-button:disabled,
-.ui__.skip-button:disabled {
-	opacity: 0.7;
+.ui__.inverted-button:disabled {
+	opacity: 0.5;
 	cursor: not-allowed;
 }
 .ui__.button {
@@ -44,13 +34,13 @@
 	/* ie11 */
 	color: rgb(41, 117, 209);
 	color: var(--colour);
-	background: linear-gradient(
+	background-image: linear-gradient(
 		50deg,
 		rgba(39, 69, 195, 0.87) 5%,
 		rgb(41, 117, 209) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
-	background: linear-gradient(
+	background-image: linear-gradient(
 		50deg,
 		rgba(39, 69, 195, 0.87) 5%,
 		var(--colour) 50%,
@@ -59,16 +49,36 @@
 	background-size: 280%;
 	background-position-x: 99%;
 }
+.ui__.button.plain {
+	background-image: linear-gradient(
+		50deg,
+		rgba(39, 69, 195, 0.87) 5%,
+		rgb(41, 117, 209) 50%,
+		rgba(41, 117, 209, 0.9) 55%
+	);
+	background-image: linear-gradient(
+		50deg,
+		rgba(39, 69, 195, 0.87) 5%,
+		var(--colour) 50%,
+		rgba(41, 117, 209, 0.9) 55%
+	);
+	color: white;
+}
 .ui__.button:not(:disabled):not(.simple):hover,
 .ui__.button.selected {
 	background-position-x: 0%;
 	border-color: white;
 	color: white;
 }
-.ui__.button.simple {
+
+.ui__.button.simple,
+.ui__.button.simple.small {
 	border: none;
+	padding-left: 0;
+	padding-right: 0;
 }
-.ui__.button.simple:hover {
+.ui__.button.simple:hover,
+.ui__.button.simple.selected {
 	opacity: 0.8;
 }
 .ui__.button.cta,
@@ -83,7 +93,8 @@
 	color: white;
 	border-color: white;
 }
-.ui__.inverted-button:not(:disabled):hover {
+.ui__.inverted-button:not(:disabled):hover,
+.ui__.inverted-button:not(:disabled).selected {
 	background-color: rgba(255, 255, 255, 1);
 	color: rgb(41, 117, 209);
 	color: var(--colour);
@@ -100,6 +111,12 @@
 	font-weight: inherit;
 	font-family: inherit;
 	margin: 0;
+}
+.ui__.link-button img[src*='twemoji.maxcdn'],
+.ui__.dashed-button img[src*='twemoji.maxcdn'],
+.ui__.text-button img[src*='twemoji.maxcdn'] {
+	margin-right: 0.2rem !important;
+	margin-left: 0.2rem !important;
 }
 .ui__.link-button,
 .ui__.text-button {
@@ -127,7 +144,10 @@
 
 .ui__.link-button:not(:disabled):hover,
 .ui__.text-button:not(:disabled):hover,
-.ui__.dashed-button:not(:disabled):hover {
+.ui__.dashed-button:not(:disabled):hover,
+.ui__.link-button:not(:disabled).selected,
+.ui__.text-button:not(:disabled).selected,
+.ui__.dashed-button:not(:disabled).selected {
 	opacity: 0.8;
 }
 
@@ -136,19 +156,19 @@
 	color: var(--colour);
 }
 
-.ui__.skip-button {
+.ui__.skip.button {
 	opacity: 0.6;
 	border: none;
 	padding: 0;
-
+	will-change: transform;
 	color: inherit;
 }
 
-.ui__.skip-button:not(:disabled):hover {
+.ui__.skip.button:not(:disabled):hover {
 	opacity: 0.8;
 	transform: translateX(3px);
 }
-.ui__.skip-button.left:not(:disabled):hover {
+.ui__.skip.button.left:not(:disabled):hover {
 	transform: translateX(-3px);
 }
 
@@ -156,10 +176,10 @@
 	opacity: 0.8;
 }
 
-.ui__.skip-button:active {
+.ui__.skip.button:active {
 	animation: push-button-right 0.1s ease-out alternate-reverse 2;
 }
-.ui__.skip-button.left:active {
+.ui__.skip.button.left:active {
 	animation: push-button-left 0.1s ease-out alternate-reverse 2;
 }
 
@@ -167,15 +187,11 @@
 .ui__.small.inverted-button {
 	font-size: 80%;
 	line-height: 1rem;
+	transition: all 0.08s;
 	padding: 0.4rem 0.8rem;
 	border-radius: 0.3rem;
 }
-.ui__.button-container > * {
-	margin-top: 0.5rem;
-}
-.ui__.button-container > :not(:last-child) {
-	margin-right: 0.5rem;
-}
+
 
 @keyframes push-button-down {
 	from {

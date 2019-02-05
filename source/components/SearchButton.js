@@ -1,9 +1,9 @@
 import { compose } from 'ramda'
 import React, { Component } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans, withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { LinkButton } from 'Ui/Button'
 import Overlay from './Overlay'
 import SearchBar from './SearchBar'
 
@@ -39,29 +39,21 @@ export default compose(
 			return this.state.visible ? (
 				<Overlay onClose={this.close}>
 					<h2>
-						<Trans>Chercher une règle</Trans>
+						<Trans>Chercher dans la documentation</Trans>
 					</h2>
 					<SearchBar
 						showDefaultList={false}
 						finally={this.close}
 						rules={flatRules}
-						rulePagesBasePath={this.props.rulePagesBasePath}
 					/>
 				</Overlay>
 			) : (
-				<LinkButton
-					onClick={() => this.setState({ visible: true })}
-					className={this.props.className}
-					style={this.props.style}>
-					<i
-						className="fa fa-search"
-						aria-hidden="true"
-						style={{ marginRight: '0.4em' }}
-					/>
-					<span>
-						<Trans>Rechercher</Trans>
-					</span>
-				</LinkButton>
+				<button
+					className="ui__ link-button"
+					onClick={() => this.setState({ visible: true })}>
+					{emoji('🔍')}
+					<Trans>Rechercher</Trans>
+				</button>
 			)
 		}
 	}

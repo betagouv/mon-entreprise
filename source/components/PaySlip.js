@@ -6,7 +6,7 @@ import React, { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import FicheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
-import Montant from './Montant'
+import Montant from 'Ui/Montant'
 import './PaySlip.css'
 import RuleLink from './RuleLink'
 
@@ -166,8 +166,11 @@ const PaySlip = ({
 			</p>
 			<p className="ui__ notice">
 				<Trans i18nKey="payslip.disclaimer">
-					Il ne prend pour l'instant pas en compte les accords et
-					conventions collectives, ni la myriade d'aides aux entreprises. Trouvez votre convention collective <a href="https://socialgouv.github.io/conventions-collectives">ici</a>, et explorez les aides sur&nbsp;
+					Il ne prend pour l'instant pas en compte les accords et conventions
+					collectives, ni la myriade d'aides aux entreprises. Trouvez votre
+					convention collective{' '}
+					<a href="https://socialgouv.github.io/conventions-collectives">ici</a>
+					, et explorez les aides sur&nbsp;
 					<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
 				</Trans>
 			</p>

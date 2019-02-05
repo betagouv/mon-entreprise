@@ -8,32 +8,44 @@ import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 
-let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
+export let BarèmeAttributes = ({ explanation }) => (
+	<>
+		<li key="assiette">
+			<span className="key">
+				<Trans>assiette</Trans>:{' '}
+			</span>
+			<span className="value">{makeJsx(explanation.assiette)}</span>
+		</li>
+		{explanation['multiplicateur'] &&
+			explanation['multiplicateur'].nodeValue !== 1 && (
+				<li key="multiplicateur">
+					<span className="key">
+						<Trans>multiplicateur</Trans>:{' '}
+					</span>
+					<span className="value">
+						{makeJsx(explanation['multiplicateur'])}
+					</span>
+				</li>
+			)}
+	</>
+)
+
+let Component = withLanguage(function Barème({
+	language,
+	nodeValue,
+	explanation,
+	barèmeType
+}) {
 	return (
 		<ShowValuesConsumer>
 			{showValues => (
 				<Node
 					classes="mecanism barème"
-					name="barème"
+					name={barèmeType === 'marginal' ? 'barème' : 'barème linéaire'}
 					value={nodeValue}
 					child={
 						<ul className="properties">
-							<li key="assiette">
-								<span className="key">
-									<Trans>assiette</Trans>:{' '}
-								</span>
-								<span className="value">{makeJsx(explanation.assiette)}</span>
-							</li>
-							{explanation['multiplicateur des tranches'].nodeValue !== 1 && (
-								<li key="multiplicateur">
-									<span className="key">
-										<Trans>multiplicateur des tranches</Trans>:{' '}
-									</span>
-									<span className="value">
-										{makeJsx(explanation['multiplicateur des tranches'])}
-									</span>
-								</li>
-							)}
+							<BarèmeAttributes explanation={explanation} />
 							<table className="tranches">
 								<thead>
 									<tr>
@@ -41,14 +53,20 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 											<Trans>Tranche de l&apos;assiette</Trans>
 										</th>
 										<th>
-											<Trans>Taux</Trans>
+											<Trans>
+												{explanation.tranches[0].taux != null
+													? 'Taux'
+													: 'Montant'}
+											</Trans>
 										</th>
-										{showValues && (
+										{showValues && explanation.tranches[0].taux != null && (
 											<th>
 												<Trans>Résultat</Trans>
 											</th>
 										)}
 									</tr>
+								</thead>
+								<tbody>
 									{explanation.tranches.map(tranche => (
 										<Tranche
 											key={tranche['de'] + tranche['à']}
@@ -56,16 +74,16 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 												language,
 												tranche,
 												showValues,
-												trancheValue: trancheValue(
+												trancheValue: trancheValue(barèmeType)(
 													explanation['assiette'],
-													explanation['multiplicateur des tranches']
+													explanation['multiplicateur']
 												)(tranche)
 											}}
 										/>
 									))}
-								</thead>
+								</tbody>
 							</table>
-							{showValues && (
+							{showValues && barèmeType === 'marginal' && (
 								<>
 									<b>
 										<Trans>Taux final</Trans> :{' '}
@@ -86,8 +104,8 @@ let Comp = withLanguage(function Barème({ language, nodeValue, explanation }) {
 })
 
 //eslint-disable-next-line
-export default (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation }} />
+export default barèmeType => (nodeValue, explanation) => (
+	<Component {...{ nodeValue, explanation, barèmeType }} />
 )
 
 let Tranche = ({
@@ -96,34 +114,39 @@ let Tranche = ({
 		'au-dessus de': minOnly,
 		de: min,
 		à: max,
-		taux
+		taux,
+		montant
 	},
 	trancheValue,
 	showValues,
 	language
-}) => (
-	<tr className={classNames('tranche', { activated: trancheValue > 0 })}>
-		<td key="tranche">
-			{maxOnly ? (
-				<>
-					<Trans>En-dessous de</Trans> {formatNumber(maxOnly, language)}
-				</>
-			) : minOnly ? (
-				<>
-					<Trans>Au-dessus de</Trans> {formatNumber(minOnly, language)}
-				</>
-			) : (
-				<>
-					<Trans>De</Trans> {formatNumber(min, language)} <Trans>à</Trans>{' '}
-					{formatNumber(max, language)}
-				</>
-			)}
-		</td>
-		<td key="taux"> {makeJsx(taux)}</td>
-		{showValues && (
-			<td key="value">
-				<NodeValuePointer data={trancheValue} />
+}) => {
+	let activated = trancheValue > 0
+	console.log(trancheValue, min, max)
+	return (
+		<tr className={classNames('tranche', { activated })}>
+			<td key="tranche">
+				{maxOnly ? (
+					<>
+						<Trans>En-dessous de</Trans> {formatNumber(maxOnly, language)}
+					</>
+				) : minOnly ? (
+					<>
+						<Trans>Au-dessus de</Trans> {formatNumber(minOnly, language)}
+					</>
+				) : (
+					<>
+						<Trans>De</Trans> {formatNumber(min, language)} <Trans>à</Trans>{' '}
+						{formatNumber(max, language)}
+					</>
+				)}
 			</td>
-		)}
-	</tr>
-)
+			<td key="taux"> {taux != null ? makeJsx(taux) : montant}</td>
+			{showValues && taux != null && (
+				<td key="value">
+					<NodeValuePointer data={trancheValue} />
+				</td>
+			)}
+		</tr>
+	)
+}

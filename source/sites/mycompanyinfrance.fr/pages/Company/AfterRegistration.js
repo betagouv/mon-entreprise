@@ -1,21 +1,23 @@
 /* @flow */
 import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import sitePaths from '../../sitePaths'
 import siret from './siret.jpg'
 import type { TFunction } from 'react-i18next'
 
+type OwnProps = {}
 type Props = {
 	companyStatusChoice: string,
+	sitePaths: Object,
 	t: TFunction
-}
+} & OwnProps
 
-const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
+const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 	<Animate.fromBottom>
 		<ScrollToTop />
 		<h1>
@@ -32,19 +34,19 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 			</T>
 		</p>
 		<h2>
-			<T k="après.siret.titre">Le numéro Siret</T>
+			<T k="après.siret.titre">Le numéro SIRET</T>
 		</h2>
 		<p>
 			<T k="après.siret.description">
-				Le numéro Siren <strong>est l'identifiant de votre entreprise</strong>{' '}
-				tandis que le numéro Siret identifie chaque établissement de la même
-				entreprise. Le Siret commence par le Siren, auquel on ajoute le numéro
+				Le numéro SIREN <strong>est l'identifiant de votre entreprise</strong>{' '}
+				tandis que le numéro SIRET identifie chaque établissement de la même
+				entreprise. Le SIRET commence par le SIREN, auquel on ajoute le numéro
 				d'établissement.
 			</T>
 			<br />
 			<img
 				src={siret}
-				alt="Siret and siren number"
+				alt="SIRET and SIREN number"
 				style={{ maxWidth: '100%' }}
 			/>
 		</p>
@@ -58,7 +60,8 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 				la nomenclature nationale d'activités françaises (code « NAF »).{' '}
 				<span
 					style={
-						companyStatusChoice.match(/micro-entreprise|EI/)
+						companyStatusChoice &&
+						companyStatusChoice.match(/auto-entrepreneur|EI/)
 							? { display: 'none' }
 							: {}
 					}>
@@ -68,7 +71,7 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 				</span>
 			</T>
 		</p>
-		{!companyStatusChoice.includes('micro-entreprise') && (
+		{companyStatusChoice && !companyStatusChoice.includes('auto-entrepreneur') && (
 			<>
 				<h2>
 					<T k="après.kbis.titre">Le Kbis</T>
@@ -91,19 +94,24 @@ const AfterRegistration = ({ t, companyStatusChoice }: Props) => (
 			</>
 		)}
 		<p style={{ display: 'flex', justifyContent: 'space-between' }}>
-			<Link to={sitePaths().entreprise.index} className="ui__ skip-button left">
-				‹ <T k="après.actions.retour">Démarche de création</T>
+			<Link
+				to={sitePaths.entreprise.index}
+				className="ui__ simple skip button left">
+				← <T k="après.actions.retour">Démarche de création</T>
 			</Link>
-			<Link to={sitePaths().sécuritéSociale.index} className="ui__ skip-button">
-				<T k="après.actions.avance">Sécu et coût d'embauche </T>›
+			<Link
+				to={sitePaths.sécuritéSociale.index}
+				className="ui__ simple skip button">
+				<T k="après.actions.avance">Estimez vos cotisations </T>→
 			</Link>
 		</p>
 	</Animate.fromBottom>
 )
 
-export default compose(
+export default (compose(
 	connect(state => ({
 		companyStatusChoice: state.inFranceApp.companyStatusChoice
 	})),
-	withNamespaces()
-)(AfterRegistration)
+	withNamespaces(),
+	withSitePaths
+)(AfterRegistration): React$ComponentType<OwnProps>)

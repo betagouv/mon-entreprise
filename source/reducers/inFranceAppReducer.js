@@ -25,7 +25,7 @@ function companyLegalStatus(
 		case 'COMPANY_HAS_MULTIPLE_ASSOCIATES':
 			return { ...state, multipleAssociates: action.multipleAssociates }
 		case 'COMPANY_IS_MICROENTERPRISE':
-			return { ...state, microEnterprise: action.microEnterprise }
+			return { ...state, autoEntrepreneur: action.autoEntrepreneur }
 		case 'SPECIFY_DIRECTORS_SHARE':
 			return { ...state, minorityDirector: action.minorityDirector }
 		case 'RESET_COMPANY_STATUS_CHOICE':
@@ -78,8 +78,15 @@ function companyCreationChecklist(
 }
 
 function companyStatusChoice(state: ?string = null, action: Action) {
-	if (action.type === 'RESET_COMPANY_STATUS_CHOICE') {
+	if (
+		['RESET_COMPANY_STATUS_CHOICE', 'RESET_EXISTING_COMPANY_DETAILS'].includes(
+			action.type
+		)
+	) {
 		return null
+	}
+	if (action.type === 'SAVE_EXISTING_COMPANY_DETAILS') {
+		return action.details.legalStatus
 	}
 	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
 		return state

@@ -2,26 +2,26 @@
 
 import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
+import backSvg from 'Images/back.svg'
+import mobileMenuSvg from 'Images/mobile-menu.svg'
 import { compose } from 'ramda'
 import React from 'react'
 import { withRouter } from 'react-router'
-import backSvg from './back.svg'
-import mobileMenuSvg from './mobile-menu.svg'
 import './SideBar.css'
 import type { Tracker } from 'Components/utils/withTracker'
-import type { Node } from 'react'
 import type { Location } from 'react-router-dom'
 
+type OwnProps = {|
+	children: React$Node
+|}
+
+type Props = OwnProps & {
+	tracker: Tracker,
+	location: Location,
+}
 type State = {
 	opened: boolean,
 	sticky: boolean
-}
-
-type Props = {
-	tracker: Tracker,
-	location: Location,
-	/* ownProps */
-	children: Node
 }
 
 const bigScreen = window.matchMedia('(min-width: 1500px)')
@@ -95,7 +95,7 @@ class SideBar extends React.Component<Props, State> {
 	}
 }
 
-export default compose(
+export default (compose(
+	withTracker,
 	withRouter,
-	withTracker
-)(SideBar)
+)(SideBar): React$ComponentType<OwnProps>)

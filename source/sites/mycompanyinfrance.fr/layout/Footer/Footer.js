@@ -7,14 +7,13 @@ import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Trans, withNamespaces } from 'react-i18next'
-import { withRouter } from 'react-router'
 import i18n from '../../../../i18n'
 import { feedbackBlacklist } from '../../config'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
 import Privacy from './Privacy'
+
 const Footer = ({ colours: { colour } }) => {
 	const hrefLink =
 		hrefLangLink[i18n.language][
@@ -51,13 +50,15 @@ const Footer = ({ colours: { colour } }) => {
 							/>
 						</a>
 					</div>
-					<p className="ui__ notice">
-						<Trans i18nKey="piedDePage">
-							Ce site est développé par l'
-							<a href="https://www.urssaf.fr">URSSAF</a> et{' '}
-							<a href="https://beta.gouv.fr">beta.gouv.fr</a>.
-						</Trans>
-					</p>
+					{i18n.language === 'en' && (
+						<p className="ui__ notice">
+							This website is provided by the{' '}
+							<a href="https://www.urssaf.fr">URSSAF</a>, the French social
+							security contributions collector, and the government’s public
+							startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>
+							.
+						</p>
+					)}
 					<p className="ui__ notice" style={{ textAlign: 'center' }}>
 						<LegalNotice />
 						{'  •  '}
@@ -84,7 +85,5 @@ const Footer = ({ colours: { colour } }) => {
 	)
 }
 export default compose(
-	withRouter,
 	withColours,
-	withNamespaces()
 )(Footer)

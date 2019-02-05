@@ -1,18 +1,18 @@
-import { EXPLAIN_VARIABLE } from 'Actions/actions'
-import classNames from 'classnames'
-import { findRuleByDottedName } from 'Engine/rules'
-import { compose } from 'ramda'
-import React from 'react'
-import { connect } from 'react-redux'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import withTracker from '../utils/withTracker'
-import './Explicable.css'
+import { EXPLAIN_VARIABLE } from 'Actions/actions';
+import classNames from 'classnames';
+import { findRuleByDottedName } from 'Engine/rules';
+import { compose } from 'ramda';
+import React from 'react';
+import emoji from 'react-easy-emoji';
+import { connect } from 'react-redux';
+import { flatRulesSelector } from 'Selectors/analyseSelectors';
+import withTracker from '../utils/withTracker';
+import './Explicable.css';
 
 export default compose(
 	connect(
 		state => ({
 			explained: state.explainedVariable,
-			textColourOnWhite: state.themeColours.textColourOnWhite,
 			flatRules: flatRulesSelector(state)
 		}),
 		dispatch => ({
@@ -30,7 +30,6 @@ export default compose(
 				explain,
 				explained,
 				tracker,
-				textColourOnWhite
 			} = this.props
 
 			// Rien à expliquer ici, ce n'est pas une règle
@@ -54,17 +53,8 @@ export default compose(
 							explain(dottedName)
 							e.preventDefault()
 							e.stopPropagation()
-						}}
-						style={
-							dottedName === explained
-								? {
-										opacity: 1,
-										background: textColourOnWhite,
-										color: 'white'
-								  }
-								: { color: textColourOnWhite }
-						}>
-						<i className="fa fa-book" aria-hidden="true" />
+						}}>
+						{emoji(dottedName === explained ? '📖' : '📘')}
 					</span>
 				</span>
 			)

@@ -20,14 +20,14 @@ const prerenderConfig = () => ({
 		})
 		// Remove loader
 		$('#outdated-browser').after(`
-			<style> 
+			<style>
 				#js {
 					opacity: 1;
 					transform: translateY(0px);
 				}
 				#lds-ellipsis {
 					display: none;
-				}	
+				}
 			</style>
 		`)
 		// Remove piwik script
@@ -88,13 +88,13 @@ module.exports = {
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),
 			outputDir: path.resolve('dist', 'prerender', 'infrance'),
-			routes: ['/', '/social-security'],
+			routes: ['/'],
 			indexPath: path.resolve('dist', 'infrance.html')
 		}),
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),
 			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
-			routes: ['/', '/sécurité-sociale'],
+			routes: ['/'],
 			indexPath: path.resolve('dist', 'mon-entreprise.html')
 		}),
 		new PrerenderSPAPlugin({

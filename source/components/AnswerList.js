@@ -1,7 +1,6 @@
 /* @flow */
 
 import { resetSimulation } from 'Actions/actions'
-import Montant from 'Components/Montant'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
 import withColours from 'Components/utils/withColours'
@@ -11,10 +10,9 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-// $FlowFixMe
-import { reset } from 'redux-form'
 import { createSelector } from 'reselect'
 import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
+import Montant from 'Ui/Montant'
 import { softCatch } from '../utils'
 import './AnswerList.css'
 
@@ -50,7 +48,12 @@ const AnswerList = ({
 		</h2>
 		<p style={{ textAlign: 'center' }}>
 			{emoji('🗑')}{' '}
-			<button className="ui__ link-button" onClick={resetSimulation}>
+			<button
+				className="ui__ link-button"
+				onClick={() => {
+					resetSimulation()
+					onClose()
+				}}>
 				<Trans>Effacer</Trans>
 			</button>
 		</p>
@@ -96,7 +99,6 @@ export default compose(
 		(dispatch: Function) => ({
 			resetSimulation: () => {
 				dispatch(resetSimulation())
-				dispatch(reset('conversation'))
 			},
 			changeAnswer: question =>
 				dispatch({

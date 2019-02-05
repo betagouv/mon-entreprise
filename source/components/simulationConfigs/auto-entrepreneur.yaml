@@ -1,0 +1,17 @@
+objectifs:
+  - entreprise . chiffre d'affaires
+  - revenu disponible
+
+questions:
+  - entreprise . catégorie d'activité
+  - entreprise . charges
+
+questions à l'affiche:
+  Charges: entreprise . charges
+  Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
+
+situation:
+  autoentrepreneur: oui
+  indépendant: non
+  contrat salarié: non
+  période: année

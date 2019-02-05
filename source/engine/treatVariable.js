@@ -1,9 +1,9 @@
-import React from 'react'
-import { Node, Leaf } from './mecanismViews/common'
-import { findRuleByDottedName, disambiguateRuleReference } from './rules'
-import { evaluateNode, rewriteNode, makeJsx } from './evaluation'
-import { getSituationValue } from './variables'
-import { Trans } from 'react-i18next'
+import React from 'react';
+import { Trans } from 'react-i18next';
+import { evaluateNode, makeJsx, rewriteNode } from './evaluation';
+import { Leaf, Node } from './mecanismViews/common';
+import { disambiguateRuleReference, findParentDependency, findRuleByDottedName } from './rules';
+import { getSituationValue } from './variables';
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
@@ -21,7 +21,13 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 				variable['non applicable si'] != null,
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
-				situationValue == null && (variableHasCond || variableHasFormula)
+				situationValue == null &&
+				(variableHasCond ||
+					variableHasFormula ||
+					findParentDependency(rules, variable))
+
+		//		if (dottedName.includes('jeune va')) debugger
+
 		let explanation = needsEvaluation
 			? evaluateNode(cache, situation, parsedRules, variable)
 			: variable
@@ -35,6 +41,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			)
 			return cache[cacheName]
 		}
+		const variableScore = variable.defaultValue ? 1 : 2;
 
 		// SITUATION 1 : La variable est directement renseignée
 		if (situationValue != null) return cacheAndNode(situationValue, {})
@@ -45,14 +52,14 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 
 		// SITUATION 3 : La variable est une question sans condition dont la valeur n'a pas été renseignée
 		if (situationValue == null && !variableHasFormula && !variableHasCond)
-			return cacheAndNode(null, { [dottedName]: 1 })
+			return cacheAndNode(null, { [dottedName]: variableScore })
 
 		// SITUATION 4 : La variable est une question avec conditions
 		if (situationValue == null && !variableHasFormula && variableHasCond) {
 			// SITUATION 4.1 : La condition est connue et vrai
 			if (explanation.isApplicable)
 				return variable.question
-					? cacheAndNode(null, { [dottedName]: 1 })
+					? cacheAndNode(null, { [dottedName]: variableScore })
 					: cacheAndNode(true, {})
 
 			// SITUATION 4.2 : La condition est connue et fausse
@@ -61,7 +68,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			if (explanation.isApplicable == null)
 				return cacheAndNode(null, {
 					...explanation.missingVariables,
-					...(variable.question ? { [dottedName]: 1 } : {})
+					...(variable.question ? { [dottedName]: variableScore } : {})
 				})
 		}
 	}
@@ -126,29 +133,33 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			parseResult.temporalTransform
 		]
 
+		// Exceptions
 		if (!rule.période && !inlinePeriodTransform) {
-			if (ruleToTransform.période == 'flexible')
+			if (
+				ruleToTransform.période == 'flexible' &&
+				!cache.checkingParentDependencies.includes(rule.dottedName)
+			)
 				throw new Error(
 					`Attention, une variable sans période, ${
 						rule.dottedName
 					}, qui appelle une variable à période flexible, ${
 						ruleToTransform.dottedName
-					}, c'est suspect ! 
+					}, c'est suspect !
 				`
 				)
 
 			return filteredNode
 		}
 		if (!ruleToTransform.période) return filteredNode
-
 		let environmentPeriod = situation('période') || 'mois'
 		let callingPeriod =
-			inlinePeriodTransform ||
-			(rule.période == 'flexible' ? environmentPeriod : rule.période)
+		inlinePeriodTransform ||
+		(rule.période === 'flexible' ? environmentPeriod : rule.période)
 		let calledPeriod =
-			ruleToTransform.période == 'flexible'
-				? environmentPeriod
-				: ruleToTransform.période
+		ruleToTransform.période === 'flexible'
+		? environmentPeriod
+		: ruleToTransform.période
+
 
 		let transformedNodeValue =
 				callingPeriod === 'mois' && calledPeriod === 'année'

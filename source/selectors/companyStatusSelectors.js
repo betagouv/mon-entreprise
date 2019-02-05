@@ -15,51 +15,52 @@ import {
 	pick,
 	sortBy
 } from 'ramda'
+//TODO : use react context
 import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 
 const LEGAL_STATUS_DETAILS: {
 	[status: string]: Array<LegalStatusRequirements> | LegalStatusRequirements
 } = {
-	'micro-entreprise': {
+	'auto-entrepreneur': {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: true
+		autoEntrepreneur: true
 	},
 	EIRL: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
-		microEnterprise: false,
+		autoEntrepreneur: false,
 		minorityDirector: false
 	},
-	'micro-entreprise-EIRL': {
+	'auto-entrepreneur-EIRL': {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
 		minorityDirector: false,
-		microEnterprise: true
+		autoEntrepreneur: true
 	},
 	EI: {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SASU: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SAS: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SARL: [
 		{
@@ -67,14 +68,14 @@ const LEGAL_STATUS_DETAILS: {
 			directorStatus: 'SELF_EMPLOYED',
 			multipleAssociates: true,
 			minorityDirector: false,
-			microEnterprise: false
+			autoEntrepreneur: false
 		},
 		{
 			liability: 'LIMITED_LIABILITY',
 			directorStatus: 'SALARIED',
 			multipleAssociates: true,
 			minorityDirector: true,
-			microEnterprise: false
+			autoEntrepreneur: false
 		}
 	],
 	EURL: {
@@ -82,19 +83,20 @@ const LEGAL_STATUS_DETAILS: {
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SA: {
 		liability: 'LIMITED_LIABILITY',
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
-		microEnterprise: false
+		autoEntrepreneur: false
 	},
 	SNC: {
 		liability: 'UNLIMITED_LIABILITY',
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: true,
-		microEnterprise: false
+		minorityDirector: false,
+		autoEntrepreneur: false
 	}
 }
 
@@ -111,14 +113,11 @@ const isCompatibleStatusWith = (answers: LegalStatusRequirements) => (
 	statusRequirements: LegalStatusRequirements
 ): boolean => {
 	const stringify = map(x => (!isNil(x) ? JSON.stringify(x) : x))
-	// $FlowFixMe
 	const answerCompatibility = Object.values(
 		mergeWith(
 			(answer, statusValue) =>
 				isNil(answer) || isNil(statusValue) || answer === statusValue,
-			// $FlowFixMe
 			stringify(statusRequirements),
-			// $FlowFixMe
 			stringify(answers)
 		)
 	)
@@ -184,7 +183,45 @@ export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
 	const paths = sitePaths()
 	const nextQuestion = nextQuestionSelector(state)
 	if (!nextQuestion) {
-		return paths.entreprise.statusJuridique.liste
+		return paths.entreprise.statutJuridique.liste
 	}
-	return paths.entreprise.statusJuridique[nextQuestion]
+	return paths.entreprise.statutJuridique[nextQuestion]
+}
+
+export const régimeSelector = (state: {
+	inFranceApp: State
+}): 'indépendant' | 'assimilé-salarié' | 'auto-entrepreneur' | null => {
+	const companyStatusChoice = state.inFranceApp.companyStatusChoice
+	const companyLegalStatus = state.inFranceApp.companyLegalStatus
+	if (!companyStatusChoice) {
+		if (companyLegalStatus.autoEntrepreneur === true) {
+			return 'auto-entrepreneur'
+		}
+		if (companyLegalStatus.directorStatus === 'SALARIED') {
+			return 'assimilé-salarié'
+		}
+		if (companyLegalStatus.directorStatus === 'SELF_EMPLOYED') {
+			return 'indépendant'
+		}
+		return null
+	}
+	if (companyStatusChoice.includes('auto-entrepreneur')) {
+		return 'auto-entrepreneur'
+	}
+	if (
+		companyStatusChoice.includes('EI') ||
+		companyStatusChoice === 'EURL' ||
+		(companyStatusChoice === 'SARL' &&
+			companyLegalStatus?.minorityDirector === false)
+	) {
+		return 'indépendant'
+	}
+	if (
+		companyStatusChoice.includes('SAS') ||
+		(companyStatusChoice === 'SARL' &&
+			companyLegalStatus?.minorityDirector === true)
+	) {
+		return 'assimilé-salarié'
+	}
+	return null
 }

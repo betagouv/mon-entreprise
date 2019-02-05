@@ -1,28 +1,32 @@
 /* @flow */
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
-import sitePaths from '../../sitePaths'
 import PreviousAnswers from './PreviousAnswers'
+
 import type { TFunction } from 'react-i18next'
 
 import type { Match, Location } from 'react-router'
 
+type OwnProps = {}
 type Props = {
 	match: Match,
 	nextQuestionUrl: string,
 	guideAlreadyStarted: boolean,
 	resetCompanyStatusChoice: (?string) => void,
 	t: TFunction,
-	location: Location
-}
+	location: Location,
+	sitePaths: Object
+} & OwnProps
 const CreateMyCompany = ({
 	match,
+	sitePaths,
 	nextQuestionUrl,
 	guideAlreadyStarted,
 	resetCompanyStatusChoice,
@@ -31,7 +35,7 @@ const CreateMyCompany = ({
 }: Props) => {
 	if (!match.isExact) {
 		const companyStatusCurrentQuestionName = (toPairs(
-			sitePaths().entreprise.statusJuridique
+			sitePaths.entreprise.statutJuridique
 		).find(([, pathname]) => location.pathname === pathname) || [])[0]
 		resetCompanyStatusChoice(companyStatusCurrentQuestionName)
 	}
@@ -45,7 +49,7 @@ const CreateMyCompany = ({
 				<title>
 					{t(
 						'formeJuridique.page.titre',
-						'Quel statut juridique choisir pour votre entreprise ?'
+						'Quel statut juridique choisir : le guide pas à pas'
 					)}
 				</title>
 				<meta
@@ -71,13 +75,13 @@ const CreateMyCompany = ({
 						</T>
 					</p>
 					<div className="ui__ answer-group">
-						<Link className="ui__ button" to={nextQuestionUrl}>
+						<Link className="ui__ button plain" to={nextQuestionUrl}>
 							{!guideAlreadyStarted ? <T>Commencer</T> : <T>Reprendre</T>}
 						</Link>
 						<Link
-							to={sitePaths().sécuritéSociale.index}
-							className="ui__ skip-button">
-							<T>Plus tard</T> ›
+							to={sitePaths.sécuritéSociale.index}
+							className="ui__ simple skip button">
+							<T>Plus tard</T> →
 						</Link>
 					</div>
 				</>
@@ -87,7 +91,7 @@ const CreateMyCompany = ({
 	)
 }
 
-export default compose(
+export default (compose(
 	connect(
 		state => ({
 			nextQuestionUrl: nextQuestionUrlSelector(state),
@@ -96,5 +100,6 @@ export default compose(
 		}),
 		{ resetCompanyStatusChoice }
 	),
+	withSitePaths,
 	withNamespaces()
-)(CreateMyCompany)
+)(CreateMyCompany): React$ComponentType<OwnProps>)

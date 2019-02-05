@@ -1,6 +1,7 @@
 /* @flow */
 import { isNil } from 'ramda'
 import type { SaveExistingCompanyDetailsAction } from 'Types/companyTypes'
+import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 
 const getCommuneByCodeInsee = function(codeInsee: string) {
 	return fetch(
@@ -31,6 +32,32 @@ const getCommuneByCodePostal = function(codePostal: string) {
 		})
 }
 
+const getLegalStatus = (codeNatureJuridique: string): ?LegalStatus => {
+	// see https://www.insee.fr/fr/information/2028129
+	if (codeNatureJuridique.match(/^1000$/)) {
+		return 'EI'
+	}
+	if (codeNatureJuridique.match(/^52..$/)) {
+		return 'SNC'
+	}
+	if (codeNatureJuridique === '5498') {
+		return 'EURL'
+	}
+	if (codeNatureJuridique.match(/^54..$/)) {
+		return 'SARL'
+	}
+	if (codeNatureJuridique.match(/^55..$/)) {
+		return 'SA'
+	}
+	if (codeNatureJuridique === '5720') {
+		return 'SASU'
+	}
+	if (codeNatureJuridique.match(/^57..$/)) {
+		return 'SAS'
+	}
+	return null
+}
+
 export const saveExistingCompanyDetails = (details: { [string]: string }) => (
 	dispatch: SaveExistingCompanyDetailsAction => void
 ) => {
@@ -39,7 +66,7 @@ export const saveExistingCompanyDetails = (details: { [string]: string }) => (
 		10
 	)
 	effectif = isNaN(effectif) ? null : effectif
-
+	const legalStatus = getLegalStatus(details.nature_juridique_entreprise)
 	getCommuneByCodeInsee(details.departement + details.commune)
 		.catch(err => {
 			console.warn(err)
@@ -56,6 +83,7 @@ export const saveExistingCompanyDetails = (details: { [string]: string }) => (
 					siret: details.siret,
 					...(!isNil(effectif) ? { effectif } : null),
 					...(commune ? { localisation: commune } : null),
+					...(legalStatus ? { legalStatus } : {}),
 					apiDetails: details
 				}
 			})

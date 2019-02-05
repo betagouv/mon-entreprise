@@ -1,20 +1,17 @@
 /* @flow */
 
-import Distribution from 'Components/Distribution'
-import PaySlip from 'Components/PaySlip'
-import SearchButton from 'Components/SearchButton'
-import withTracker from 'Components/utils/withTracker'
-import { compose } from 'ramda'
-import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
-import { connect } from 'react-redux'
-import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
-import Card from 'Ui/Card'
-import './ResultView.css'
+import Distribution from 'Components/Distribution';
+import PaySlip from 'Components/PaySlip';
+import SearchButton from 'Components/SearchButton';
+import React, { Component } from 'react';
+import { Trans } from 'react-i18next';
+import './SalaryCompactExplanation.css';
+
 import type { Tracker } from 'Components/utils/withTracker'
 
+type ResultView = 'distribution' | 'payslip';
 type State = {
-	resultView: 'distribution' | 'payslip'
+	resultView: ResultView
 }
 type Props = {
 	conversationStarted: boolean,
@@ -27,11 +24,11 @@ const resultViewTitle = {
 	payslip: 'Fiche de paie'
 }
 
-class ResultView extends Component<Props, State> {
+export default class SalaryCompactExplanation extends Component<Props, State> {
 	state = {
 		resultView: this.props.conversationStarted ? 'payslip' : 'distribution'
 	}
-	handleClickOnTab = resultView => () => {
+	handleClickOnTab = (resultView: ResultView) => () => {
 		this.setState({ resultView })
 		this.props.tracker.push(['trackEvent', 'results', 'selectView', resultView])
 	}
@@ -53,29 +50,17 @@ class ResultView extends Component<Props, State> {
 								</button>
 							))}
 						</div>
-						<SearchButton rulePageBasePath="./règle" />
+						<SearchButton />
 					</div>
-					<Card className="result-view__body">
+					<div className="ui__ card result-view__body">
 						{this.state.resultView === 'payslip' ? (
 							<PaySlip />
 						) : (
 							<Distribution />
 						)}
-					</Card>
+					</div>
 				</>
 			)
 		)
 	}
 }
-
-export default compose(
-	withTracker,
-	connect(
-		state => ({
-			conversationStarted: state.conversationStarted,
-			key: state.conversationStarted,
-			displayResults: !!ficheDePaieSelectors(state)
-		}),
-		{}
-	)
-)(ResultView)

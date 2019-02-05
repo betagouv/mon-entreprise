@@ -1,34 +1,28 @@
-import withColours from 'Components/utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
-import { getInputComponent } from 'Engine/generateQuestions'
-import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import { createMarkdownDiv } from 'Engine/marked'
-import {
-	encodeRuleName,
-	findRuleByDottedName,
-	findRuleByNamespace
-} from 'Engine/rules'
-import { compose, isEmpty } from 'ramda'
-import React, { Component, Suspense } from 'react'
-import emoji from 'react-easy-emoji'
-import Helmet from 'react-helmet'
-import { Trans, withNamespaces } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { reduxForm } from 'redux-form'
-import {
-	exampleAnalysisSelector,
-	flatRulesSelector,
-	noUserInputSelector,
-	ruleAnalysisSelector
-} from 'Selectors/analyseSelectors'
-import Animate from 'Ui/animate'
-import { AttachDictionary } from '../AttachDictionary'
-import Algorithm from './Algorithm'
-import Examples from './Examples'
-import RuleHeader from './Header'
-import References from './References'
-import './Rule.css'
+import { T } from "Components";
+import withColours from 'Components/utils/withColours';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { getInputComponent } from 'Engine/generateQuestions';
+import knownMecanisms from 'Engine/known-mecanisms.yaml';
+import { createMarkdownDiv } from 'Engine/marked';
+import { encodeRuleName, findRuleByDottedName, findRuleByNamespace } from 'Engine/rules';
+import { compose, isEmpty, isNil } from 'ramda';
+import React, { Component, Suspense } from 'react';
+import emoji from 'react-easy-emoji';
+import Helmet from 'react-helmet';
+import { Trans, withNamespaces } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { reduxForm } from 'redux-form';
+import { exampleAnalysisSelector, flatRulesSelector, noUserInputSelector, ruleAnalysisSelector } from 'Selectors/analyseSelectors';
+import Animate from 'Ui/animate';
+import Montant from 'Ui/Montant';
+import { AttachDictionary } from '../AttachDictionary';
+import Algorithm from './Algorithm';
+import Examples from './Examples';
+import RuleHeader from './Header';
+import References from './References';
+import './Rule.css';
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -42,6 +36,7 @@ export default compose(
 	})),
 	AttachDictionary(knownMecanisms),
 	withNamespaces(),
+	withSitePaths,
 	withLanguage
 )(
 	class Rule extends Component {
@@ -52,17 +47,16 @@ export default compose(
 					currentExample,
 					flatRules,
 					valuesToShow,
+					sitePaths,
 					analysedExample,
 					analysedRule,
-					language
 				} = this.props,
 				flatRule = findRuleByDottedName(flatRules, dottedName)
-
 			let { type, name, title, description, question, ns, icon } = flatRule,
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-
+			let ruleFormat = displayedRule.format || displayedRule.explanation?.format
 			return (
 				<>
 					{this.state.viewSource ? (
@@ -73,8 +67,8 @@ export default compose(
 							</Suspense>
 						</>
 					) : (
-						<div id="rule" className="ui__ container">
-							<Animate.fromBottom key={title}>
+						<div id="rule">
+							<Animate.fromBottom>
 								<Helmet>
 									<title>{title}</title>
 									<meta name="description" content={description} />
@@ -96,36 +90,51 @@ export default compose(
 
 								{this.renderToggleSourceButton()}
 								<section id="rule-content">
-									{displayedRule.nodeValue ? (
+									{!isNil(displayedRule.nodeValue) && (
 										<div id="ruleValue">
-											<i className="fa fa-calculator" aria-hidden="true" />{' '}
-											{displayedRule.format === 'euros' || displayedRule.formule
-												? Intl.NumberFormat(language, {
-														style: 'currency',
-														currency: 'EUR'
-												  }).format(displayedRule.nodeValue)
-												: typeof displayedRule.nodeValue !== 'object'
-												? displayedRule.nodeValue
-												: null}
+											{['euros', 'pourcentage'].includes(ruleFormat) ||
+											displayedRule.formule ? (
+												<Montant
+													type={
+														ruleFormat === 'euros'
+															? 'currency'
+															: ruleFormat === 'pourcentage'
+															? 'percent'
+															: 'decimal'
+													}>
+													{displayedRule.nodeValue}
+												</Montant>
+											) : typeof displayedRule.nodeValue !== 'object' ? (
+												displayedRule.nodeValue
+											) : null}
 										</div>
-									) : null}
-
+									)}
 									{displayedRule.defaultValue != null &&
 									typeof displayedRule.defaultValue !== 'object' ? (
 										<div id="ruleDefault">
 											Valeur par défaut : {displayedRule.defaultValue}
 										</div>
 									) : null}
-
+									{!valuesToShow && (
+										<div style={{ textAlign: 'center' }}>
+											<Link
+												className="ui__ plain button"
+												to={
+													sitePaths.sécuritéSociale
+														? sitePaths.sécuritéSociale.index
+														: sitePaths.index
+												}>
+												<T>Simuler ma situation</T>
+											</Link>
+										</div>
+									)}
 									{//flatRule.question &&
 									// Fonctionnalité intéressante, à implémenter correctement
 									false && <UserInput {...{ flatRules, dottedName }} />}
-									{flatRule.ns && (
-										<Algorithm
-											rule={displayedRule}
-											showValues={valuesToShow || currentExample}
-										/>
-									)}
+									<Algorithm
+										rule={displayedRule}
+										showValues={valuesToShow || currentExample}
+									/>
 									{flatRule.note && (
 										<section id="notes">
 											<h3>Note: </h3>
@@ -171,27 +180,36 @@ export default compose(
 	}
 )
 
-let NamespaceRulesList = withColours(({ namespaceRules, colours }) => (
-	<section>
-		<h2>
-			<Trans>Règles associées</Trans>
-		</h2>
-		<ul>
-			{namespaceRules.map(r => (
-				<li key={r.name}>
-					<Link
-						style={{
-							color: colours.textColourOnWhite,
-							textDecoration: 'underline'
-						}}
-						to={'../règle/' + encodeRuleName(r.dottedName)}>
-						{r.title || r.name}
-					</Link>
-				</li>
-			))}
-		</ul>
-	</section>
-))
+let NamespaceRulesList = compose(
+	withColours,
+	withSitePaths
+)(({ namespaceRules, colours, sitePaths }) => {
+	return (
+		<section>
+			<h2>
+				<Trans>Règles associées</Trans>
+			</h2>
+			<ul>
+				{namespaceRules.map(r => (
+					<li key={r.name}>
+						<Link
+							style={{
+								color: colours.textColourOnWhite,
+								textDecoration: 'underline'
+							}}
+							to={
+								sitePaths.documentation.index +
+								'/' +
+								encodeRuleName(r.dottedName)
+							}>
+							{r.title || r.name}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+})
 
 const UserInput = reduxForm({
 	form: 'conversation',

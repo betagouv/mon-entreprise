@@ -1,19 +1,26 @@
 /* @flow */
 import { defineDirectorStatus } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { DirectorStatus } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
 
 type Props = {
 	defineDirectorStatus: (?DirectorStatus) => void,
-	t: TFunction
+	t: TFunction,
+	sitePaths: Object
 }
-const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
+const DefineDirectorStatus = ({
+	defineDirectorStatus,
+	t,
+	sitePaths
+}: Props) => (
 	<>
 		<Helmet>
 			<title>
@@ -32,28 +39,31 @@ const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 		</h2>
 		<T k="statut du dirigeant.description">
 			<p>
-				Ce choix est important parce qu'il détermine le régime de sécurité
-				sociale et la couverture sociale du dirigeant.
+				Ce choix est important car il détermine le régime de sécurité sociale et
+				la couverture sociale du dirigeant. Le montant et les modalités de
+				paiement des cotisations sociales sont également impactés.
 			</p>
 			<ul>
 				<li>
 					<strong>Assimilé salarié :</strong> Le dirigeant de l'entreprise est
-					couvert par le régime général de la Sécurité sociale française. Les
-					cotisations sont calculées sur la base de la rémunération du dirigeant
-					et sont payés mensuellement. Bien qu'il soit plus coûteux, ce
-					programme offre une protection sociale complète (à l'exception du
-					chômage).
+					couvert par le régime général de la Sécurité sociale française.
 				</li>
 				<li>
 					<strong>Indépendant :</strong> Le dirigeant de l'entreprise est
 					couvert par le régime de la Sécurité sociale des travailleurs
-					indépendants. Les cotisations dues sont généralement calculées en
-					fonction des revenus professionnels déclarés à l'administration
-					fiscale. Bien que moins coûteux, ce régime offre une protection
-					sociale limitée (des options supplémentaires et une assurance privée
-					sont recommandées).
+					indépendants.
 				</li>
 			</ul>
+			{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+							window.location.hostname
+						) && <p>
+				<Link
+					className="ui__ button plain"
+					to={sitePaths.sécuritéSociale.comparaison}>
+					<T k="simulation-end.cta">Comparer ces régimes</T>
+				</Link>
+			</p>
+			}
 		</T>
 		<div className="ui__ answer-group">
 			<button
@@ -80,5 +90,6 @@ export default compose(
 	connect(
 		null,
 		{ defineDirectorStatus }
-	)
+	),
+	withSitePaths
 )(DefineDirectorStatus)

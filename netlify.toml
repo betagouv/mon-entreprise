@@ -1,5 +1,6 @@
 
-# InFrance PRODUCTION settings 
+
+# InFrance PRODUCTION settings
 
 [[redirects]]
 from = "https://www.mycompanyinfrance.fr/*"
@@ -31,33 +32,6 @@ from = "https://mycompanyinfrance.fr/*"
 to = "/infrance.html"
 status = 200
 
-# Mon-entreprise.beta PRODUCTION settings (temporary)
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/robots.txt"
-to = "/robots.infrance.txt"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/sitemap.txt"
-to = "/sitemap.infrance.fr.txt"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr"
-to = "/prerender/mon-entreprise/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/sécurité-sociale"
-to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.beta.gouv.fr/*"
-to = "/mon-entreprise.html"
-status = 200
-
-
 # Mon-entreprise.fr PRODUCTION settings
 [[redirects]]
 from = "https://mon-entreprise.fr/robots.txt"
@@ -72,11 +46,6 @@ status = 200
 [[redirects]]
 from = "https://mon-entreprise.fr"
 to = "/prerender/mon-entreprise/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.fr/sécurité-sociale"
-to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
 status = 200
 
 [[redirects]]
@@ -100,6 +69,14 @@ from = "https://embauche.beta.gouv.fr/robots.txt"
 to = "/robots.embauche.txt"
 status = 200
 
+# When in iframe, we don't prerender the page
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/"
+query = {iframe=":iframe", s=":e", couleur=":couleur", integratorUrl=":integratorUrl", lang=":lang"}
+to = "/embauche.html?iframe=:iframe&s=:e&couleur=:couleur&integratorUrl=:integratorUrl&lang=:lang"
+status = 200
+
+# Otherwise, we redirect to a prerendered version for the home
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/"
 to = "/prerender/embauche/index.html"
@@ -130,11 +107,6 @@ query = {s = "m"}
 to = "/prerender/infrance/index.html"
 status = 200
 
-[[redirects]]
-from = "/social-security"
-query = {s = "m"}
-to = "/prerender/infrance/social-security/index.html"
-status = 200
 
 [[redirects]]
 from = "/*"
@@ -147,12 +119,6 @@ status = 200
 from = "/"
 to = "/prerender/mon-entreprise/index.html"
 status = 200
-
-[[redirects]]
-from = "/sécurité-sociale"
-to = "/prerender/mon-entreprise/sécurité-sociale/index.html"
-status = 200
-
 [[redirects]]
 from = "/*"
 to = "/mon-entreprise.html"

@@ -9,15 +9,16 @@ import { connect } from 'react-redux'
 import { config, Spring } from 'react-spring'
 import { compose } from 'redux'
 import répartitionSelector from 'Selectors/repartitionSelectors'
+import Montant from 'Ui/Montant'
 import { isIE } from '../utils'
 import './Distribution.css'
-import Montant from './Montant'
 import './PaySlip'
 import RuleLink from './RuleLink'
+import type { ThemeColours } from 'Components/utils/withColours'
 import type { Répartition } from 'Types/ResultViewTypes.js'
 
 type Props = ?Répartition & {
-	colours: { colour: string }
+	colours: ThemeColours
 }
 type State = {
 	branchesInViewport: Array<string>
@@ -42,6 +43,7 @@ class Distribution extends Component<Props, State> {
 	render() {
 		const {
 			colours: { colour },
+			// $FlowFixMe
 			...distribution
 		} = this.props
 		if (!Object.values(distribution).length) {

@@ -9,7 +9,7 @@ sélection:
 une possibilité:
   type: enum
 
-inversion:
+inversion numérique:
   type: numeric
   description: |
     La formule de calcul de cette variable n'est pas connue, souvent elle n'a même pas de sens. Mais le mécanisme `inversion` indique qu'elle peut être _estimée_ à partir de l'un des _objectifs_ listés sous l'attribut `avec`. Il faut alors renseigner une valeur cible pour cet objectif.
@@ -134,6 +134,18 @@ barème linéaire:
   description: |
     C'est un barème en taux non marginaux, très simple. C'est le mécanisme de calcul de l'impôt neutre, aussi appelé impôt non personnalisé.
     Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette qui correspond à la tranche, et de multiplier le taux associé avec l'assiette.
+    Un montant fixe pour chaque tranche peut aussi remplacer le taux, rendant le barème encore plus simple, mais moins "juste", car moins continu.
+
+barème continu:
+  type: numeric
+  description: |
+    Désolé, ce mécanisme est quelque peu compliqué, accrochez-vous !
+
+    Le barème définit des points, constitués d'un seuil et d'un taux correspondant. Par exemple `1 : 6%` et `2 : 8%`. L'assiette du barème est placée au bon endroit entre ces seuils, et on en déduit le taux qui lui correspond. 
+
+    Dans notre exemple, si l'assiette vaut 1, le taux est 6%. Si elle vaut 2, le taux est 8%. Et si elle est entre les deux, par exemple 1.5, alors le taux est 7%. Et ainsi de suite.
+
+    Dans ce type de barème, il y a souvent un multiplicateur de l'assiette, par exemple le plafond de la sécurité sociale : les seuils sont des petits nombres comme 1 ou 1.5, mais ils correspondent en réalité à `1 * 3311€` et `1.5 * 3311€`.
 
 complément:
   type: numeric

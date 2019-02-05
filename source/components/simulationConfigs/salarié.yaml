@@ -1,0 +1,18 @@
+objectifs:
+  - contrat salarié . rémunération . total
+  - contrat salarié . salaire . brut de base
+  - contrat salarié . salaire . net
+  - contrat salarié . salaire . net après impôt
+
+questions à l'affiche:
+  CDD: contrat salarié . CDD
+  Cadre: contrat salarié . statut cadre
+  Temps partiel: contrat salarié . temps partiel
+  Localisation: établissement . localisation
+
+situation:
+  contrat salarié: oui
+  contrat salarié . assimilé salarié: non
+  indépendant: non
+  autoentrepreneur: non
+  période: mois

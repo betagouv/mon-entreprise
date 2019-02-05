@@ -25,14 +25,10 @@ module.exports = {
 		infrance: ['./source/sites/mycompanyinfrance.fr/entry.en.js'],
 
 		// To not introduce breaking into the iframe integration, we serve simulateur.js from a 'dist' subdirectory
-		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js']
+		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js'],
 	},
 	output: {
-		path: path.resolve('./dist/'),
-		filename: ({ chunk }) =>
-			['dist/simulateur'].includes(chunk.name)
-				? '[name].js'
-				: '[name].[hash].js'
+		path: path.resolve('./dist/')
 	},
 	module: {
 		rules: [...web, ...universal]
@@ -63,11 +59,12 @@ module.exports = {
 			template: 'index.html',
 			chunks: ['mon-entreprise'],
 			title:
-				'Mon-entreprise : Un guide pas à pas pour créer une entreprise en France',
+				"Mon-entreprise.fr : Le guide officiel du créateur d'entreprise",
 			description:
-				'Du status juridique à premier embauche, vous trouverez ici toutes les ressources nécessaires pour démarrer votre activité.',
+				'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 			filename: 'mon-entreprise.html'
 		}),
+
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			'./source/sites/embauche.gouv.fr/images/logo',
@@ -83,10 +80,14 @@ module.exports = {
 				from: './source/sites/mycompanyinfrance.fr/sitemap.fr.txt',
 				to: 'sitemap.infrance.fr.txt'
 			},
-
 			{
 				from: './source/sites/mycompanyinfrance.fr/sitemap.en.txt',
 				to: 'sitemap.infrance.en.txt'
+			},
+			{
+
+				from: './source/sites/mycompanyinfrance.fr/images',
+				to: 'static-images'
 			}
 		])
 	]
