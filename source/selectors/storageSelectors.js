@@ -3,7 +3,7 @@ import type { Situation } from 'Types/Situation.js'
 import type { SavedSimulation, State } from 'Types/State.js'
 
 const situationSelector: State => Situation = state =>
-	state.form.conversation.values
+	state.form.conversation?.values
 
 export const currentSimulationSelector: State => SavedSimulation = state => ({
 	situation: situationSelector(state),

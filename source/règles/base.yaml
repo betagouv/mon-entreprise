@@ -2570,6 +2570,34 @@
   formule: revenu net d'impôt - entreprise . charges non déductibles
 
 - espace: entreprise
+  nom: année d'activité
+  question: Quelle est l'age de l'entreprise en années d'activité ?
+  description: | 
+    Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
+
+    Il doit pour cela contrôler son entreprise. C'est le cas pour une entreprise à un associé, et donc pour une auto-entreprise.
+
+    Pour les auto-entreprises, cette réduction est même prolongée pendant un total de 3 ans, de façon dégressive.
+  formule: 
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités:
+        - première année
+        - deuxième année
+        - troisième année
+        - régime de croisière
+  par défaut: régime de croisière
+
+- espace: entreprise . année d'activité
+  nom: première année
+- espace: entreprise . année d'activité
+  nom: deuxième année
+- espace: entreprise . année d'activité
+  nom: troisième année
+- espace: entreprise . année d'activité
+  nom: régime de croisière
+
+- espace: entreprise
   nom: chiffre d'affaires
   question: Quel est votre chiffre d'affaires H.T. ?
   résumé: Le montant des ventes réalisées
@@ -2934,9 +2962,19 @@
 - espace: autoentrepreneur
   nom: revenu net de cotisations
   titre: Revenu net d'une auto-entrepreneur
-  formule: base des cotisations - cotisations
+  formule: base des cotisations - cotisations après réductions
   période: flexible
 
+- espace: autoentrepreneur
+  nom: cotisations après réductions
+  formule: cotisations * taux de réduction de cotisation
+  période: flexible
+
+- espace: autoentrepreneur
+  nom: taux de réduction de cotisation
+  formule: 1 - réduction ACRE
+  période: flexible
+  
 - espace: autoentrepreneur
   nom: cotisations
   période: flexible
@@ -2950,6 +2988,20 @@
           - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
             alors: 22%
           - sinon: 12.8%
+
+- espace: autoentrepreneur
+  nom: réduction ACRE
+  période: flexible
+  non applicable si: impôt . revenu abattu > plafond sécurité sociale temps plein
+  formule: 
+    variations: 
+      - si: entreprise . année d'activité = 'première année'
+        alors: 75%
+      - si: entreprise . année d'activité = 'deuxième année'
+        alors: 50%
+      - si: entreprise . année d'activité = 'troisième année'
+        alors: 25%
+      - sinon: 0%
 
 - espace: autoentrepreneur . impôt
   nom: abattement
