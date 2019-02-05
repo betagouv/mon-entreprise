@@ -242,6 +242,7 @@ let currentMissingVariablesByTargetSelector = createSelector(
 			analysis => collectMissingVariablesByTarget(analysis.targets),
 			analyses
 		)
+		console.log('MV', variables)
 		if (Array.isArray(variables)) {
 			return variables.reduce((acc, next) => mergeDeepWith(add)(acc, next), {})
 		}
@@ -281,6 +282,7 @@ export let currentQuestionSelector = createSelector(
 		state => state.conversationSteps.priorityNamespace
 	],
 	(nextSteps, unfoldedStep, priorityNamespace) =>
+		console.log('nextSteps', nextSteps, 'prio', priorityNamespace) ||
 		unfoldedStep ||
 		(priorityNamespace && nextSteps.find(contains(priorityNamespace))) ||
 		head(nextSteps)
