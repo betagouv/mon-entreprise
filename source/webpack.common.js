@@ -84,7 +84,11 @@ module.exports = {
 				from: './source/sites/mycompanyinfrance.fr/sitemap.en.txt',
 				to: 'sitemap.infrance.en.txt'
 			},
-			'./source/sites/mycompanyinfrance.fr/images',
+			{
+
+				from: './source/sites/mycompanyinfrance.fr/images',
+				to: 'static-images'
+			}
 		])
 	]
 }
