@@ -1,15 +1,15 @@
 /* @flow */
 import { defineDirectorStatus } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { DirectorStatus } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import withSitePaths from 'Components/utils/withSitePaths'
 
 type Props = {
 	defineDirectorStatus: (?DirectorStatus) => void,
@@ -54,13 +54,16 @@ const DefineDirectorStatus = ({
 					indépendants.
 				</li>
 			</ul>
-			<p>
+			{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+							window.location.hostname
+						) && <p>
 				<Link
 					className="ui__ button plain"
 					to={sitePaths.sécuritéSociale.comparaison}>
 					<T k="simulation-end.cta">Comparer ces régimes</T>
 				</Link>
 			</p>
+			}
 		</T>
 		<div className="ui__ answer-group">
 			<button

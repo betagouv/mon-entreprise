@@ -80,11 +80,11 @@ module.exports = {
 				from: './source/sites/mycompanyinfrance.fr/sitemap.fr.txt',
 				to: 'sitemap.infrance.fr.txt'
 			},
-
 			{
 				from: './source/sites/mycompanyinfrance.fr/sitemap.en.txt',
 				to: 'sitemap.infrance.en.txt'
-			}
+			},
+			'./source/sites/mycompanyinfrance.fr/images',
 		])
 	]
 }
