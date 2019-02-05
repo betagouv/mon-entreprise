@@ -78,6 +78,7 @@
 .landing__choice--soon {
 	border-color: lightgray;
 	color: gray;
+	position: relative;
 	opacity: 0.8;
 	pointer-events: none;
 	cursor: default;
