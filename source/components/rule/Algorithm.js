@@ -10,7 +10,7 @@ import { ShowValuesProvider } from './ShowValuesContext';
 let Conditions = ({
 	parentDependency,
 	'applicable si': applicable,
-	'non applicable': notApplicable
+	'non applicable si': notApplicable
 }) => {
 	let listElements = [
 		parentDependency?.nodeValue === false && (
