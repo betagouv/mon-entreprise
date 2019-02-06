@@ -1,7 +1,7 @@
 /* @flow */
-import { reduce, toPairs, zipObj } from 'ramda';
-import i18n from '../../i18n';
-import { constructSitePaths } from '../../utils';
+import { reduce, toPairs, zipObj } from 'ramda'
+import i18n from '../../i18n'
+import { constructSitePaths } from '../../utils'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
@@ -34,15 +34,18 @@ const constructLocalizedSitePath = language => {
 			),
 			créer: (companyStatus: LegalStatus | ':status') =>
 				companyStatus === ':status'
-					? [t('path.entreprise.créer', '/créer-une-{{companyStatus}}',{
-							companyStatus: ':status'
-					  }), t(
-							'path.entreprise.devenirAutoEntrepreneur',
-							'/devenir-{{autoEntrepreneur}}',
-							{
-								autoEntrepreneur: ':status'
-							}
-					  )]
+					? [
+							t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
+								companyStatus: ':status'
+							}),
+							t(
+								'path.entreprise.devenirAutoEntrepreneur',
+								'/devenir-{{autoEntrepreneur}}',
+								{
+									autoEntrepreneur: ':status'
+								}
+							)
+					  ]
 					: companyStatus.includes('auto-entrepreneur')
 					? t(
 							'path.entreprise.devenirAutoEntrepreneur',
@@ -108,9 +111,9 @@ const constructLocalizedSitePath = language => {
 	})
 }
 
-let sitePath = constructLocalizedSitePath()
+let sitePath = constructLocalizedSitePath(i18n.language)
 i18n.on('languageChanged', () => {
-	sitePath = constructLocalizedSitePath()
+	sitePath = constructLocalizedSitePath(i18n.language)
 })
 
 export default () => sitePath
@@ -136,16 +139,22 @@ export const generateSiteMap = (sitePaths: Object) =>
 		sitePaths
 	)
 
-type LangLink = Array<{ href: string, hrefLang: 'fr' | 'en'}>
+type LangLink = Array<{ href: string, hrefLang: 'fr' | 'en' }>
 type SiteMap = Array<string>
-const enSiteMap:SiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(path =>
-	(process.env.EN_SITE || '').replace('${path}', path)
-)
-const frSiteMap:SiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(path =>
-	(process.env.FR_SITE || '').replace('${path}', path)
-)
+const enSiteMap: SiteMap = generateSiteMap(
+	constructLocalizedSitePath('en')
+).map(path => (process.env.EN_SITE || '').replace('${path}', path))
+const frSiteMap: SiteMap = generateSiteMap(
+	constructLocalizedSitePath('fr')
+).map(path => (process.env.FR_SITE || '').replace('${path}', path))
 
 export const hrefLangLink = {
-	en: zipObj<string, LangLink>(enSiteMap, frSiteMap.map(href => [{ href, hrefLang: 'fr' }])),
-	fr: zipObj<string, LangLink>(frSiteMap, enSiteMap.map(href => [{ href, hrefLang: 'en' }]))
+	en: zipObj<string, LangLink>(
+		enSiteMap,
+		frSiteMap.map(href => [{ href, hrefLang: 'fr' }])
+	),
+	fr: zipObj<string, LangLink>(
+		frSiteMap,
+		enSiteMap.map(href => [{ href, hrefLang: 'en' }])
+	)
 }
