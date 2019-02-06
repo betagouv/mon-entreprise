@@ -671,6 +671,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		evaluate = evaluateObject(objectShape, effect)
 
 	let jsx = (nodeValue, explanation) => (
+		// The rate and factor and threshold are given defaut neutral values. If there is nothing to explain, don't display them at all
 		<Node
 			classes="mecanism multiplication"
 			name="multiplication"
@@ -683,8 +684,7 @@ export let mecanismProduct = (recurse, k, v) => {
 						</span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
-					{(explanation.taux.nodeValue != 1 ||
-						explanation.taux.category == 'calcExpression') && (
+					{explanation.taux.explanation && (
 						<li key="taux">
 							<span className="key">
 								<Trans>taux</Trans>:{' '}
@@ -692,8 +692,7 @@ export let mecanismProduct = (recurse, k, v) => {
 							<span className="value">{makeJsx(explanation.taux)}</span>
 						</li>
 					)}
-					{(explanation.facteur.nodeValue != 1 ||
-						explanation.facteur.category == 'calcExpression') && (
+					{explanation.facteur.explanation && (
 						<li key="facteur">
 							<span className="key">
 								<Trans>facteur</Trans>:{' '}
@@ -701,7 +700,7 @@ export let mecanismProduct = (recurse, k, v) => {
 							<span className="value">{makeJsx(explanation.facteur)}</span>
 						</li>
 					)}
-					{explanation.plafond.nodeValue != Infinity && (
+					{explanation.plafond.explanation && (
 						<li key="plafond">
 							<span className="key">
 								<Trans>plafond</Trans>:{' '}
@@ -852,12 +851,14 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 					// Outside of these 2 limits, it's a linear function a * x + b
 					let a = (y2 - y1) / (x2 - x1),
 						b = y1 - x1 * a,
-						nodeValue = a * val(assiette) + b
+						nodeValue = a * val(assiette) + b,
+						taux = nodeValue / val(assiette)
 					return reduced({
-						nodeValue,
+						nodeValue:
+							v['retourne seulement le taux'] === 'oui' ? taux : nodeValue,
 						additionalExplanation: {
 							seuil: val(assiette) / val(multiplicateur),
-							taux: nodeValue / val(assiette)
+							taux
 						}
 					})
 				}

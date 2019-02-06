@@ -5,7 +5,7 @@ import './Barème.css'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 import { BarèmeAttributes } from './Barème'
-import { toPairs } from 'ramda'
+import { sortObjectByKeys } from 'Engine/mecanismViews/common'
 
 let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 	return (
@@ -30,7 +30,7 @@ let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 									</tr>
 								</thead>
 								<tbody>
-									{toPairs(explanation.points).map(([seuil, taux]) => (
+									{sortObjectByKeys(explanation.points).map(([seuil, taux]) => (
 										<tr key={seuil} className="tranche">
 											<td key="tranche">{seuil}</td>
 											<td key="taux"> {taux}</td>
@@ -46,6 +46,9 @@ let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 									{(100 * explanation.taux).toFixed(1)} %
 								</span>
 							)}
+							<p>
+								Ce barème <strong>ne retourne que le taux</strong>.
+							</p>
 						</ul>
 					}
 				/>
