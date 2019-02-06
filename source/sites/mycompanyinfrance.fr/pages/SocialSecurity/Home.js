@@ -68,7 +68,7 @@ class SocialSecurity extends Component<Props, {}> {
 							<>
 								<br />
 								<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
-									Que souhaitez vous estimer ?
+									Que souhaitez-vous estimer ?
 								</h2>
 								<Link
 									className="landing__choice "

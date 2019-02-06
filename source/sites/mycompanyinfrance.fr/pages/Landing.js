@@ -48,7 +48,7 @@ export default compose(
 				<img alt="logo urssaf" src={urssafSvg} />
 			</div>
 			<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
-				<T>Que souhaitez vous faire ?</T>
+				<T>Que souhaitez-vous faire ?</T>
 			</h2>
 			<Link className="landing__choice " to={sitePaths.entreprise.index}>
 				{emoji('💡')} <T>Créer une entreprise</T>
