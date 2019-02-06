@@ -6,6 +6,7 @@ import withColours from 'Components/utils/withColours'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React from 'react'
+import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
 import i18n from '../../../../i18n'
 import { feedbackBlacklist } from '../../config'
@@ -62,7 +63,7 @@ const Footer = ({ colours: { colour } }) => {
 						<LegalNotice />
 						{'  •  '}
 						<Privacy />
-						{/* {!!hrefLink.length && '  •  '}
+						{!!hrefLink.length && '  •  '}
 						{hrefLink.map(({ hrefLang, href }) => (
 							<a
 								href={href}
@@ -76,13 +77,11 @@ const Footer = ({ colours: { colour } }) => {
 									hrefLang
 								)}
 							</a>
-						))} */}
+						))}
 					</p>
 				</div>
 			</footer>
 		</div>
 	)
 }
-export default compose(
-	withColours,
-)(Footer)
+export default compose(withColours)(Footer)
