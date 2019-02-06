@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
-import { compose, contains } from 'ramda'
+import { sort, compose, contains, toPairs, pipe } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -128,3 +128,9 @@ export function SimpleRuleLink({ rule: { dottedName, title, name } }) {
 		</Link>
 	)
 }
+
+export let sortObjectByKeys = pipe(
+	toPairs,
+	// we don't rely on the sorting of objects
+	sort(([k1], [k2]) => k1 - k2)
+)

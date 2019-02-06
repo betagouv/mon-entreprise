@@ -38,3 +38,29 @@
       valeur attendue: 63.5
         
         
+- nom: base deux
+  format: nombre
+  formule: 300
+
+- nom: assiette deux
+  format: nombre
+
+- test: Retour de taux, pas d'assiette
+  formule:
+    barème continu:
+      assiette: assiette deux
+      multiplicateur: base deux
+      points:
+        0: 100%
+        0.75: 100%
+        1: 0%
+      retourne seulement le taux: oui
+  exemples: 
+    - nom: Premier intervale
+      situation: 
+        assiette deux: 10
+      valeur attendue: 0.026
+    - nom: Deuxième intervale
+      situation: 
+        assiette deux: 120
+      valeur attendue: 3.792
