@@ -363,8 +363,8 @@ associés:
       Note: this choice is not final. You can start your company on your own,
       and welcome new partners as your business grows.
     </1>
-  choix1: Only one partner
-  choix2: More than one partner
+  choix1: Alone
+  choix2: Several partners
 
 trouver:
   page:
