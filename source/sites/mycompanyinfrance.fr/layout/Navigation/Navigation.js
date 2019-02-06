@@ -12,7 +12,6 @@ import hiringSvg from '../../images/hiring.svg';
 import './Navigation.css';
 import NavOpener from './NavOpener';
 import SideBar from './SideBar';
-
 import type { TFunction } from 'react-i18next'
 
 type OwnProps = {};
@@ -30,6 +29,9 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 			<nav className="navigation">
 				<ul>
 					<li>
+						<NavLink to='/' exact className="navigationItem"><T>Accueil</T></NavLink>
+					</li>
+						<li>
 						<NavOpener
 							to={sitePaths.entreprise.index}
 							exact={false}

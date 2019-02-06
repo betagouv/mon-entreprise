@@ -32,7 +32,7 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates, t }: Props) => (
 			/>
 		</Helmet>
 		<h2>
-			<T k="associés.titre">Nombre d'associés</T>
+			<T k="associés.titre">Seul ou à plusieurs</T>
 		</h2>
 		<T k="associés.description">
 			<p>
@@ -53,14 +53,14 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates, t }: Props) => (
 					companyHasMultipleAssociates(false)
 				}}
 				className="ui__ button">
-				<T k="associés.choix1">Un associé</T>
+				<T k="associés.choix1">Seul</T>
 			</button>
 			<button
 				onClick={() => {
 					companyHasMultipleAssociates(true)
 				}}
 				className="ui__ button">
-				<T k="associés.choix2">Plusieurs associés</T>
+				<T k="associés.choix2">Plusieurs personnes</T>
 			</button>
 		</div>
 		<CompanyStatusNavigation
