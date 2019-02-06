@@ -29,7 +29,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 			<nav className="navigation">
 				<ul>
 					<li>
-						<NavLink to='/' title='Accueil'/>
+						<NavLink to='/' exact className="navigationItem">Accueil</NavLink>
 					</li>
 						<li>
 						<NavOpener
