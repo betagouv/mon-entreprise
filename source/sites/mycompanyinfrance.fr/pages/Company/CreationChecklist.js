@@ -1,19 +1,22 @@
 /* @flow */
-import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions';
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions';
-import { React, T } from 'Components';
-import Scroll from 'Components/utils/Scroll';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { compose } from 'ramda';
-import Helmet from 'react-helmet';
-import { withNamespaces } from 'react-i18next';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import * as Animate from 'Ui/animate';
-import { CheckItem, Checklist } from 'Ui/Checklist';
-import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths';
-import Page404 from '../404';
-import StatusDescription from './StatusDescription';
+import {
+	checkCompanyCreationItem,
+	initializeCompanyCreationChecklist
+} from 'Actions/companyCreationChecklistActions'
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
+import { React, T } from 'Components'
+import Scroll from 'Components/utils/Scroll'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose } from 'ramda'
+import Helmet from 'react-helmet'
+import { withNamespaces } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import * as Animate from 'Ui/animate'
+import { CheckItem, Checklist } from 'Ui/Checklist'
+import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
+import Page404 from '../404'
+import StatusDescription from './StatusDescription'
 
 import type { Match } from 'react-router'
 import type { TFunction } from 'react-i18next'
@@ -368,7 +371,11 @@ const CreateCompany = ({
 							<div style={{ textAlign: 'center' }}>
 								<a
 									className="ui__ button"
-									href="https://account.guichet-entreprises.fr/user/create"
+									href={
+										isAutoentrepreneur
+											? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil.html'
+											: 'https://account.guichet-entreprises.fr/user/create'
+									}
 									target="blank">
 									Faire la démarche en ligne
 								</a>

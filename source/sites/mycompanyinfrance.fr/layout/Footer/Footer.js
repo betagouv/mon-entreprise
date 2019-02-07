@@ -23,7 +23,6 @@ const Footer = ({ colours: { colour } }) => {
 					: '') + window.location.pathname
 			).replace(/\/$/, '')
 		] || []
-
 	return (
 		<div className="footer-container">
 			<Helmet>
