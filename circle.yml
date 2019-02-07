@@ -34,18 +34,23 @@ jobs:
         type: enum
         enum: ['embauche', 'mon-entreprise']
         default: mon-entreprise
+      language:
+        type: enum
+        enum: ['fr', 'en']
+        default: 'fr'
     docker:
       - image: cypress/base:8
         environment:
           ## this enables colors in the output
           TERM: xterm
           CYPRESS_baseUrl: http://localhost:5000
+
     steps:
       - install
       - run: |
           yarn run compile
           yarn run serve:<< parameters.site >> &
-          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --spec 'cypress/integration/<< parameters.cypress_folder >>/**/*.js'
+          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=<< parameters.language >> --spec 'cypress/integration/<< parameters.cypress_folder >>/**/*.js'
 
   production-end-to-end-test:
     parameters:
@@ -56,6 +61,10 @@ jobs:
         type: enum
         enum: ['embauche', 'mon-entreprise', 'external']
         default: mon-entreprise
+      language:
+        type: enum
+        enum: ['fr', 'en']
+        default: 'fr'
     docker:
       - image: cypress/base:8
         environment:
@@ -67,7 +76,7 @@ jobs:
       - run: npm install --save-dev cypress
       - run: sleep 300
       - run: |
-          if ./node_modules/.bin/cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --spec 'cypress/integration/<< parameters.cypress_folder >>/**/*.js';
+          if ./node_modules/.bin/cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --spec 'cypress/integration/<< parameters.cypress_folder >>/**/*.js';
           then
             echo "SUCCESS \o/"
           else
@@ -81,38 +90,47 @@ workflows:
     jobs:
       - unit-test
       - end-to-end-test:
+          name: 'embauche end-to-end'
           site: embauche
           cypress_folder: embauche
-      # - end-to-end-test:
-      #     site: mon-entreprise
-      #     cypress_folder: mon-entreprise
-      # - end-to-end-test:
-      #     site: mycompanyinfrance
-      #     cypress_folder: mon-entreprise
+      - end-to-end-test:
+          name: 'mon-entreprise end-to-end'
+          site: mon-entreprise
+          cypress_folder: mon-entreprise
+      - end-to-end-test:
+          name: 'mycompanyinfrance end-to-end'
+          site: mycompanyinfrance
+          cypress_folder: mon-entreprise
+          language: 'en'
       - production-end-to-end-test:
+          name: 'https://embauche.beta.gouv.fr end-to-end'
           site: 'https://embauche.beta.gouv.fr'
           cypress_folder: 'embauche'
           filters:
             branches:
               only: master
-      # - production-end-to-end-test:
-      #     site: 'https://mon-entreprise.fr'
-      #     cypress_folder: 'mon-entreprise'
-      #     filters:
-      #       branches:
-      #         only: master
-      # - production-end-to-end-test:
-      #     site: 'https://mycompanyinfrance.fr'
-      #     cypress_folder: 'mon-entreprise'
-      #     filters:
-      #       branches:
-      #         only: master
-      # - production-end-to-end-test:
-      #     site: 'https://demo.mon-entreprise.fr'
-      #     cypress_folder: 'embauche'
-      #     filters:
-      #       branches:
-      #         only: demo
+      - production-end-to-end-test:
+          name: 'https://mon-entreprise.fr end-to-end'
+          site: 'https://mon-entreprise.fr'
+          cypress_folder: 'mon-entreprise'
+          filters:
+            branches:
+              only: master
+      - production-end-to-end-test:
+          name: 'https://mycompanyinfrance.fr end-to-end'
+          site: 'https://mycompanyinfrance.fr'
+          cypress_folder: 'mon-entreprise'
+          language: 'en'
+          filters:
+            branches:
+              only: master
+      - production-end-to-end-test:
+          name: 'https://demo.mon-entreprise.fr end-to-end'
+          site: 'https://demo.mon-entreprise.fr'
+          cypress_folder: 'embauche'
+          filters:
+            branches:
+              only: demo
       - production-end-to-end-test:
           cypress_folder: 'external'
           filters:

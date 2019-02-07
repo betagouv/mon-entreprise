@@ -1,8 +1,9 @@
-cy.default
 describe('Landing test', function() {
+	console.log('language', Cypress.env('language'), Cypress.env())
+	const fr = Cypress.env('language') === 'fr'
 	it('should not crash', function() {
 		cy.visit('/')
-		cy.contains('mon-entreprise.fr')
+		cy.contains(fr ? 'Mon-entreprise.fr' : 'My company in France')
 	})
 	it('should display urssaf and marianne logo', function() {
 		cy.visit('/')
@@ -11,7 +12,11 @@ describe('Landing test', function() {
 	})
 	it('should display actionnable items', function() {
 		cy.visit('/')
-		cy.contains('Créer une entreprise').should('be.')
-		cy.contains('Estimer les cotisations et taxes')
+		cy.contains(fr ? 'Créer une entreprise' : 'Create a company in France')
+		cy.contains(
+			fr
+				? 'Estimer les cotisations et les taxes'
+				: 'Estimate contributions and taxes'
+		)
 	})
 })

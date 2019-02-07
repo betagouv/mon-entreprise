@@ -1,5 +1,8 @@
 {
 	"projectId": "jxcngh",
-	"baseUrl": "http://localhost:8080/embauche",
+	"baseUrl": "http://localhost:8080/mon-entreprise",
+	"env": {
+		"language": "fr"
+	},
 	"chromeWebSecurity": false
 }
