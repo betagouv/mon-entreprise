@@ -373,7 +373,7 @@ const CreateCompany = ({
 									className="ui__ button"
 									href={
 										isAutoentrepreneur
-											? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil.html'
+											? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html'
 											: 'https://account.guichet-entreprises.fr/user/create'
 									}
 									target="blank">
