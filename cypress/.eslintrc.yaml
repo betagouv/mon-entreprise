@@ -1,5 +1,4 @@
 globals:
   cy: false
   Cypress: false
-ecmaFeatures:
-  requireConfigFile: false
+parser: esprima
