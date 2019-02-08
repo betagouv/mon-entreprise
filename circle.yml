@@ -49,8 +49,8 @@ jobs:
       - install
       - run: |
           yarn run compile
-          yarn run serve:<< parameters.site >> &
-          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=<< parameters.language >> --spec 'cypress/integration/<< parameters.cypress_folder >>/**/*.js'
+          yarn run << parameters.site >>:serve &
+          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.cypress_folder >>'
 
   production-end-to-end-test:
     parameters:
@@ -76,7 +76,7 @@ jobs:
       - run: npm install --save-dev cypress
       - run: sleep 300
       - run: |
-          if ./node_modules/.bin/cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --spec 'cypress/integration/<< parameters.cypress_folder >>/**/*.js';
+          if ./node_modules/.bin/cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.cypress_folder >>;
           then
             echo "SUCCESS \o/"
           else

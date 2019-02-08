@@ -1,5 +1,4 @@
 describe('Landing test', function() {
-	console.log('language', Cypress.env('language'), Cypress.env())
 	const fr = Cypress.env('language') === 'fr'
 	it('should not crash', function() {
 		cy.visit('/')

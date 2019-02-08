@@ -4,5 +4,6 @@
 	"env": {
 		"language": "fr"
 	},
+	"integrationFolder": "cypress/integration/mon-entreprise",
 	"chromeWebSecurity": false
 }
