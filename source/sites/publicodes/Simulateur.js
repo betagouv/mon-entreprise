@@ -16,6 +16,7 @@ export default props => {
 			<h1>TITRE</h1>
 			<p>TEXTE INTRO</p>
 			<Simulation
+				showTargetsAnyway
 				targetsTriggerConversation={false}
 				targets={<Target />}
 				explication={<p>PTITE EXPLICATION DU RESULTAT</p>}
