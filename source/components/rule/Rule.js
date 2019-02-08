@@ -10,7 +10,7 @@ import { compose, isEmpty, isNil } from 'ramda';
 import React, { Component, Suspense } from 'react';
 import emoji from 'react-easy-emoji';
 import Helmet from 'react-helmet';
-import { Trans, withNamespaces } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
@@ -35,7 +35,7 @@ export default compose(
 		analysedExample: exampleAnalysisSelector(state, props)
 	})),
 	AttachDictionary(knownMecanisms),
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths,
 	withLanguage
 )(

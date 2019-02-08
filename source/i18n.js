@@ -1,5 +1,6 @@
 import i18next from 'i18next'
 import queryString from 'query-string'
+import { initReactI18next } from 'react-i18next'
 import enTranslations from './locales/en.yaml'
 import { getIframeOption, parseDataAttributes } from './utils'
 
@@ -19,7 +20,7 @@ let lang =
 	'fr'
 
 setToSessionStorage('lang', lang)
-i18next.init(
+i18next.use(initReactI18next).init(
 	{
 		lng: lang,
 		resources: {

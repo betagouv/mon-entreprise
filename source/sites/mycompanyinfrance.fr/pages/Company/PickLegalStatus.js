@@ -5,7 +5,7 @@ import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, filter } from 'ramda'
 import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
@@ -25,7 +25,7 @@ type Props = {
 }
 
 const StatusButton = withSitePaths(
-	withNamespaces()(
+	withTranslation()(
 		({
 			status,
 			t,
@@ -142,7 +142,7 @@ const SetMainStatus = ({
 }
 
 export default compose(
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths,
 	withLanguage,
 	connect(

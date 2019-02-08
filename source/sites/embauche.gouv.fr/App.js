@@ -7,7 +7,7 @@ import { defaultTracker } from 'Components/utils/withTracker'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -81,7 +81,7 @@ class EmbaucheRoute extends Component {
 		)
 	}
 }
-const RouterSwitch = withNamespaces()(() => (
+const RouterSwitch = withTranslation()(() => (
 	<Switch>
 		<Route exact path="/" component={Home} />
 		<Route path="/contact" component={Contact} />

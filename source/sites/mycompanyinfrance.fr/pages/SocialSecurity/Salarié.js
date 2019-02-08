@@ -7,7 +7,7 @@ import TargetSelection from 'Components/TargetSelection';
 import withSitePaths from 'Components/utils/withSitePaths';
 import { compose } from 'ramda';
 import { Helmet } from 'react-helmet';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 export let SalarySimulation = withSitePaths(({ sitePaths }) => (
@@ -53,4 +53,4 @@ const Salarié = ({t}) => (
 		<SalarySimulation />
 	</>
 )
-export default compose(withNamespaces(), withSimulationConfig(salariéConfig))(Salarié)
+export default compose(withTranslation(), withSimulationConfig(salariéConfig))(Salarié)

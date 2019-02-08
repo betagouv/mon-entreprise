@@ -2,12 +2,12 @@ import HoverDecorator from 'Components/utils/HoverDecorator';
 import withColours from 'Components/utils/withColours';
 import { compose } from 'ramda';
 import React, { Component } from 'react';
-import { Trans, withNamespaces } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 import './IgnoreStepButton.css';
 
 export default compose(
 	HoverDecorator,
-	withNamespaces(),
+	withTranslation(),
 	withColours
 )(
 	class IgnoreStepButton extends Component {

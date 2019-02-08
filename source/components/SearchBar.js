@@ -4,7 +4,7 @@ import Fuse from 'fuse.js'
 import { compose, pick, sortBy } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
@@ -121,5 +121,5 @@ class SearchBar extends React.Component {
 
 export default compose(
 	withSitePaths,
-	withNamespaces()
+	withTranslation()
 )(SearchBar)

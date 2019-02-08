@@ -8,7 +8,7 @@ import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Footer from '../layout/Footer/Footer'
 import './Landing.css'
@@ -22,7 +22,7 @@ type Props = {
 export default compose(
 	withSitePaths,
 	withColours,
-	withNamespaces()
+	withTranslation()
 )(({ colours: { colour }, sitePaths }: Props) => (
 	<div className="app-content">
 		<section className="landing__banner" style={{ backgroundColor: colour }}>

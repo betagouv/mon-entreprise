@@ -7,7 +7,7 @@ import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -23,7 +23,7 @@ import HiringProcess from './pages/HiringProcess'
 import Landing from './pages/Landing'
 import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
-import sitePaths from './sitePaths'
+import { constructLocalizedSitePath } from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -52,7 +52,7 @@ class InFranceRoute extends Component {
 		}
 	}
 	render() {
-		const paths = sitePaths()
+		const paths = constructLocalizedSitePath(this.props.language)
 		return (
 			<Provider
 				basename={this.props.basename}
@@ -71,7 +71,7 @@ class InFranceRoute extends Component {
 	}
 }
 
-let RouterSwitch = compose(withNamespaces())(() => {
+let RouterSwitch = compose(withTranslation())(() => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Landing} />
@@ -82,7 +82,7 @@ let RouterSwitch = compose(withNamespaces())(() => {
 
 const App = compose(
 	withSitePaths,
-	withNamespaces()
+	withTranslation()
 )(({ sitePaths, t }) => (
 	<div className="app-container">
 		<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />

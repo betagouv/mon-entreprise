@@ -2,14 +2,12 @@
 
 import React, { Component, createContext } from 'react'
 
-export type SitePaths = Object
-
 const SitePathsContext: React$Context<SitePaths> = createContext({})
 
 export const SitePathProvider = SitePathsContext.Provider
 export default function withSitePaths<Props: { sitePaths: SitePaths }>(
 	WrappedComponent: React$ComponentType<Props>
-): React$ComponentType<$Diff<Props, {sitePaths: SitePaths}>> {
+): React$ComponentType<$Diff<Props, { sitePaths: SitePaths }>> {
 	class WithSitePaths extends Component<
 		$Diff<Props, { sitePaths: SitePaths }>
 	> {
@@ -26,3 +24,5 @@ export default function withSitePaths<Props: { sitePaths: SitePaths }>(
 	}
 	return WithSitePaths
 }
+
+export type SitePaths = Object

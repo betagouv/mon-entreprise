@@ -3,7 +3,7 @@ import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
@@ -112,6 +112,6 @@ export default (compose(
 	connect(state => ({
 		companyStatusChoice: state.inFranceApp.companyStatusChoice
 	})),
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths
 )(AfterRegistration): React$ComponentType<OwnProps>)

@@ -3,14 +3,14 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { T } from "Components";
 import { Link } from 'react-router-dom'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import Logo from '../images/logo/logo-simulateur.svg'
 import './Header.css'
 import { compose } from 'ramda';
 
 export const Header = compose(
 	withRouter,
-	withNamespaces()
+	withTranslation()
 )(
 	class Header extends Component {
 		state = {

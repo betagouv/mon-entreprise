@@ -4,7 +4,7 @@ import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
@@ -92,6 +92,6 @@ export default (compose(
 		{}
 	),
 	withRouter,
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths
 )(StepsHeader): React$ComponentType<OwnProps>)

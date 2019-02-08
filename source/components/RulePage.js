@@ -5,7 +5,7 @@ import { decodeRuleName, findRuleByDottedName, findRulesByName } from 'Engine/ru
 import { compose, head, path } from 'ramda';
 import React, { Component } from 'react';
 import emoji from 'react-easy-emoji';
-import { Trans, withNamespaces } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link, Redirect } from 'react-router-dom';
@@ -23,7 +23,7 @@ export default compose(
 		brancheName: situationBranchNameSelector(state)
 	})),
 
-	withNamespaces()
+	withTranslation()
 )(
 	class RulePage extends Component {
 		render() {
@@ -70,7 +70,7 @@ const BackToSimulation = compose(
 		{ goBackToSimulation }
 	),
 	withRouter,
-	withNamespaces()
+	withTranslation()
 )(
 	// Triggers rerender when the language changes
 	class BackToSimulation extends Component {

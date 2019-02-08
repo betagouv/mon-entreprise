@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { makeJsx } from 'Engine/evaluation';
 import { any, compose, identity, path } from 'ramda';
 import React from 'react';
-import { Trans, withNamespaces } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 import './Algorithm.css';
 // The showValues prop is passed as a context. It used to be delt in CSS (not(.showValues) display: none), both coexist right now
 import { ShowValuesProvider } from './ShowValuesContext';
@@ -30,7 +30,7 @@ let Conditions = ({
 	) : null
 }
 
-export default compose(withNamespaces())(
+export default compose(withTranslation())(
 	class Algorithm extends React.Component {
 		render() {
 			let { rule, showValues } = this.props

@@ -2,7 +2,7 @@ import Scroll from 'Components/utils/Scroll';
 import { getInputComponent } from 'Engine/generateQuestions';
 import { compose } from 'ramda';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { currentQuestionSelector, flatRulesSelector } from 'Selectors/analyseSelectors';
@@ -15,7 +15,7 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
-	withNamespaces(),
+	withTranslation(),
 	connect(state => ({
 		conversationStarted: state.conversationStarted,
 		flatRules: flatRulesSelector(state),

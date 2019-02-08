@@ -1,7 +1,7 @@
 import withSitePaths from 'Components/utils/withSitePaths';
 import { compose } from 'ramda';
 import React from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router';
 import * as Animate from 'Ui/animate';
@@ -107,6 +107,6 @@ export default compose(
 		companyStatusChoice: state.inFranceApp.companyStatusChoice,
 		existingCompany: state.inFranceApp.existingCompanyDetails
 	})),
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths
 )(CreateMyCompany)

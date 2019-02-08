@@ -2,7 +2,7 @@
 
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
-import { Trans, withNamespaces } from 'react-i18next'
+import { Trans, withTranslation } from 'react-i18next'
 import { withRouter } from 'react-router'
 import { compose } from 'redux'
 import safeLocalStorage from '../../storage/safeLocalStorage'
@@ -155,6 +155,6 @@ const PageFeedbackWithRouter = ({ location, ...props }) => (
 )
 export default (compose(
 	withRouter,
-	withNamespaces(),
+	withTranslation(),
 	withTracker,
 )(PageFeedbackWithRouter): React$ComponentType<OwnProps>)

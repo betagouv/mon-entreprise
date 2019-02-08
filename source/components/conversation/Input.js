@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import { React, Component, T } from 'Components'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
@@ -12,7 +12,7 @@ import { formValueSelector } from 'redux-form'
 
 export default compose(
 	FormDecorator('input'),
-	withNamespaces(),
+	withTranslation(),
 	withColours,
 	connect(state => ({
 		period: formValueSelector('conversation')(state, 'période')
