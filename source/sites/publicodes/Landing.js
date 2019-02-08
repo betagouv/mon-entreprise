@@ -7,8 +7,8 @@ export default () => (
 		<p style={{ marginTop: '5rem' }}>
 			Le <strong>dérèglement climatique</strong> n'est plus une menace lointaine
 			et incertaine, c'est une <strong>actualité</strong>. Comment éviter la
-			catastrophe ? Chaque aspect de notre vie moderne a un impact.{' '}
-			<Link to="/à-propos">En savoir plus</Link>.{' '}
+			catastrophe ? Chaque aspect de notre vie moderne a un impact. Il suffit de
+			le savoir ! <Link to="/à-propos">En savoir plus</Link>.{' '}
 		</p>
 		<h1>Quel est l'impact de ...</h1>
 		<Search />
