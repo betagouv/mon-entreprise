@@ -1,2 +1,9 @@
 User-agent: *
-Disallow:
+Disallow: /social-security/comparaison-assimilé-salarié-indépendant-et-auto-entrepreneur
+Disallow: /social-security/assimilated-salaried
+Disallow: /social-security/indépendant
+Disallow: /social-security/auto-entrepreneur
+Disallow: /sécurité-sociale/assimilé-salarié
+Disallow: /sécurité-sociale/indépendant
+Disallow: /sécurité-sociale/auto-entrepreneur
+Disallow: /sécurité-sociale/comparaison-assimilé-salarié-indépendant-et-auto-entrepreneur

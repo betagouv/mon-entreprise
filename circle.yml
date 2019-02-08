@@ -29,15 +29,15 @@ jobs:
     parameters:
       site:
         type: enum
-        enum: ['embauche', 'mon-entreprise', 'mycompanyinfrance']
+        enum: [embauche, mon-entreprise, mycompanyinfrance]
       cypress_folder:
         type: enum
-        enum: ['embauche', 'mon-entreprise']
+        enum: [embauche, mon-entreprise]
         default: mon-entreprise
       language:
         type: enum
-        enum: ['fr', 'en']
-        default: 'fr'
+        enum: [fr, en]
+        default: fr
     docker:
       - image: cypress/base:8
         environment:
@@ -50,7 +50,7 @@ jobs:
       - run: |
           yarn run compile
           yarn run << parameters.site >>:serve &
-          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.cypress_folder >>'
+          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.cypress_folder >>
 
   production-end-to-end-test:
     parameters:
@@ -59,12 +59,12 @@ jobs:
         default: ''
       cypress_folder:
         type: enum
-        enum: ['embauche', 'mon-entreprise', 'external']
+        enum: [embauche, mon-entreprise, external]
         default: mon-entreprise
       language:
         type: enum
-        enum: ['fr', 'en']
-        default: 'fr'
+        enum: [fr, en]
+        default: fr
     docker:
       - image: cypress/base:8
         environment:
