@@ -72,7 +72,7 @@ const Footer = ({ colours: { colour } }) => {
 								{hrefLang === 'fr' ? (
 									<> Passer en français {emoji('🇫🇷')}</>
 								) : hrefLang === 'en' ? (
-									<> Switch to english {emoji('🇬🇧')}</>
+									<> Switch to English {emoji('🇬🇧')}</>
 								) : (
 									hrefLang
 								)}
