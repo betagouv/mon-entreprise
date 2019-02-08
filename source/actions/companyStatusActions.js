@@ -1,4 +1,7 @@
 /* @flow */
+
+import { dropWhile, last } from 'ramda'
+import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 import type {
 	ChooseCompanyLiabilityAction,
 	CompanyLiability,
@@ -9,19 +12,17 @@ import type {
 	DirectorIsInAMinorityAction,
 	DefineDirectorStatusAction
 } from 'Types/companyTypes'
-import { dropWhile, last } from 'ramda'
-import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
-import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
-import type { RouterHistory } from 'react-router'
+import type { Thunk } from 'Types/ActionsTypes'
 
-const thenGoToNextQuestion = actionCreator => (...args: any) => (
-	dispatch: any => void,
-	getState: () => any,
-	history: RouterHistory
-) => {
-	dispatch(actionCreator(...args))
-	history.push(nextQuestionUrlSelector(getState()))
-}
+// Bug : last et dropline sont automatiquement enlevé par le formatOnSave de visual studio code sinon
+// eslint-disable-next-line
+let x = [dropWhile, last]
+
+const thenGoToNextQuestion = actionCreator => (...args: any) =>
+	((dispatch, getState, { history, sitePaths }) => {
+		dispatch(actionCreator(...args))
+		history.push(nextQuestionUrlSelector(getState(), { sitePaths }))
+	}: Thunk<any>)
 
 export const chooseCompanyLiability = thenGoToNextQuestion(
 	(setup: ?CompanyLiability): ChooseCompanyLiabilityAction => ({
@@ -58,23 +59,22 @@ export const directorIsInAMinority = thenGoToNextQuestion(
 	})
 )
 
-export const goToCompanyStatusChoice = () => (
-	dispatch: ResetCompanyStatusAction => void,
-	_: any,
-	history: RouterHistory
+export const goToCompanyStatusChoice = (): Thunk<ResetCompanyStatusAction> => (
+	dispatch,
+	_,
+	{ history, sitePaths }
 ) => {
 	dispatch(
 		({
 			type: 'RESET_COMPANY_STATUS_CHOICE'
 		}: ResetCompanyStatusAction)
 	)
-	history.push(sitePaths().entreprise.index)
+	history.push(sitePaths.entreprise.index)
 }
 
-export const resetCompanyStatusChoice = (from: string) => (
-	dispatch: ResetCompanyStatusAction => void,
-	getState: () => any
-) => {
+export const resetCompanyStatusChoice = (
+	from: string
+): Thunk<ResetCompanyStatusAction> => (dispatch, getState) => {
 	const answeredQuestion = Object.keys(
 		getState().inFranceApp.companyLegalStatus
 	)
@@ -82,31 +82,27 @@ export const resetCompanyStatusChoice = (from: string) => (
 	if (!answersToReset.length) {
 		return
 	}
-	dispatch(
-		({
-			type: 'RESET_COMPANY_STATUS_CHOICE',
-			answersToReset
-		}: ResetCompanyStatusAction)
-	)
+	dispatch({
+		type: 'RESET_COMPANY_STATUS_CHOICE',
+		answersToReset
+	})
 }
 
-export const goBackToPreviousQuestion = () => (
-	dispatch: ResetCompanyStatusAction => void,
-	getState: () => any,
-	history: RouterHistory
+export const goBackToPreviousQuestion = (): Thunk<ResetCompanyStatusAction> => (
+	dispatch,
+	getState,
+	{ history, sitePaths }
 ) => {
 	const previousQuestion = last(
 		Object.keys(getState().inFranceApp.companyLegalStatus)
 	)
 	if (previousQuestion) {
-		dispatch(
-			({
-				type: 'RESET_COMPANY_STATUS_CHOICE',
-				answersToReset: [previousQuestion]
-			}: ResetCompanyStatusAction)
-		)
+		dispatch({
+			type: 'RESET_COMPANY_STATUS_CHOICE',
+			answersToReset: [previousQuestion]
+		})
 	}
 	history.push(
-		sitePaths().entreprise.statutJuridique[previousQuestion || 'index']
+		sitePaths.entreprise.statutJuridique[previousQuestion || 'index']
 	)
 }

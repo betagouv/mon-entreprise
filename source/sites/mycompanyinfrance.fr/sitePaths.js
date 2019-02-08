@@ -22,7 +22,7 @@ const translateTo = language => (str1, str2, options = {}) =>
 		...(language ? { lng: language } : {}),
 		...options
 	})
-const constructLocalizedSitePath = language => {
+export const constructLocalizedSitePath = (language: string) => {
 	const t = translateTo(language)
 	return constructSitePaths('', {
 		index: '',
@@ -111,12 +111,6 @@ const constructLocalizedSitePath = language => {
 	})
 }
 
-let sitePath = constructLocalizedSitePath(i18n.language)
-i18n.on('languageChanged', () => {
-	sitePath = constructLocalizedSitePath(i18n.language)
-})
-
-export default () => sitePath
 const deepReduce = (fn, initialValue, object: Object) =>
 	reduce(
 		(acc, [key, value]) =>

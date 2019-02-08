@@ -7,7 +7,7 @@ import withSitePaths from 'Components/utils/withSitePaths';
 import { compose } from 'ramda';
 import emoji from 'react-easy-emoji';
 import Helmet from 'react-helmet';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { régimeSelector } from 'Selectors/companyStatusSelectors';
@@ -104,7 +104,7 @@ class SocialSecurity extends Component<Props, {}> {
 }
 
 export default compose(
-	withNamespaces(),
+	withTranslation(),
 	withLanguage,
 	withSitePaths,
 	connect(state => ({

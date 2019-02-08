@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Explicable from 'Components/conversation/Explicable';
 import { compose } from 'ramda';
 import React, { Component } from 'react';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { change, Field } from 'redux-form';
 import IgnoreStepButton from './IgnoreStepButton';
@@ -34,7 +34,7 @@ export var FormDecorator = formType => RenderField =>
 					dispatch(change('conversation', field, value))
 			})
 		),
-		withNamespaces()
+		withTranslation()
 	)(
 		class extends Component {
 			state = {

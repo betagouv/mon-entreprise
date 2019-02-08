@@ -1,11 +1,31 @@
-
-import { collectMissingVariablesByTarget, getNextSteps } from 'Engine/generateQuestions';
-import { collectDefaults, disambiguateExampleSituation, findRuleByDottedName, formatInputs, nestedSituationToPathMap, rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules';
-import { analyse, analyseMany, parseAll } from 'Engine/traverse';
-import { add, contains, difference, equals, head, intersection, isNil, mergeDeepWith, pick } from 'ramda';
-import { getFormValues } from 'redux-form';
-import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect';
-import { mapOrApply, softCatch } from '../utils';
+import {
+	collectMissingVariablesByTarget,
+	getNextSteps
+} from 'Engine/generateQuestions'
+import {
+	collectDefaults,
+	disambiguateExampleSituation,
+	findRuleByDottedName,
+	formatInputs,
+	nestedSituationToPathMap,
+	rules as baseRulesEn,
+	rulesFr as baseRulesFr
+} from 'Engine/rules'
+import { analyse, analyseMany, parseAll } from 'Engine/traverse'
+import {
+	add,
+	contains,
+	difference,
+	equals,
+	head,
+	intersection,
+	isNil,
+	mergeDeepWith,
+	pick
+} from 'ramda'
+import { getFormValues } from 'redux-form'
+import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
+import { mapOrApply, softCatch } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
@@ -16,9 +36,7 @@ const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
  *
  * */
 
-
-export let flatRulesSelector
-	= createSelector(
+export let flatRulesSelector = createSelector(
 	state => state.lang,
 	(state, props) => props && props.rules,
 	(lang, rules) => rules || (lang === 'en' ? baseRulesEn : baseRulesFr)
@@ -84,11 +102,11 @@ const createSituationBrancheSelector = situationSelector =>
 				return branches.map(({ situation: branchSituation }) => ({
 					...configSituation,
 					...branchSituation,
-					...situation,
+					...situation
 				}))
 			}
 			if (configSituation) {
-				return {  ...configSituation, ...situation }
+				return { ...configSituation, ...situation }
 			}
 			return situation || {}
 		}
@@ -246,7 +264,6 @@ export let nextStepsSelector = createSelector(
 	],
 	(mv, questions) => {
 		let nextSteps = getNextSteps(mv)
-		console.log(nextSteps, questions)
 
 		if (questions && questions.blacklist) {
 			return difference(nextSteps, questions.blacklist)

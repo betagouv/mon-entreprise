@@ -8,10 +8,9 @@ import type {
 	SetSituationBranchAction
 } from 'Types/ActionsTypes'
 // $FlowFixMe
-import { reset } from 'redux-form';
-import { deletePersistedSimulation } from '../storage/persistSimulation';
-
-import type { RouterHistory } from 'react-router-dom'
+import { reset } from 'redux-form'
+import { deletePersistedSimulation } from '../storage/persistSimulation'
+import type { Thunk } from 'Types/ActionsTypes'
 
 export const resetSimulation = () => (dispatch: any => void): void => {
 	dispatch(
@@ -27,11 +26,9 @@ export const setSituationBranch = (id: number): SetSituationBranchAction => ({
 	id
 })
 
-export const setSimulationConfig = (config: Object) => (
-	dispatch: SetSimulationConfigAction => void,
-	_: any,
-	history: RouterHistory
-): void => {
+export const setSimulationConfig = (
+	config: Object
+): Thunk<SetSimulationConfigAction> => (dispatch, _, { history }): void => {
 	const url = history.location.pathname
 	dispatch({
 		type: 'SET_SIMULATION',
@@ -50,7 +47,7 @@ export const deletePreviousSimulation = () => (
 }
 
 export const startConversation = (priorityNamespace: ?string) => (
-	dispatch: StartConversationAction => void,
+	dispatch: StartConversationAction => void
 ) => {
 	dispatch({
 		type: 'START_CONVERSATION',
@@ -63,11 +60,11 @@ export function setExample(name, situation, dottedName) {
 	return { type: 'SET_EXAMPLE', name, situation, dottedName }
 }
 
-export const goBackToSimulation = () => (
-	dispatch: any => void,
-	getState: any,
-	history: RouterHistory
-): void => {
+export const goBackToSimulation = (): Thunk<any> => (
+	dispatch,
+	getState,
+	{ history }
+) => {
 	dispatch({ type: 'SET_EXEMPLE', name: null })
 	history.push(getState().simulation.url)
 }

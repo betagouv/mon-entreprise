@@ -1,5 +1,9 @@
 {
 	"projectId": "jxcngh",
-	"baseUrl": "http://localhost:8080/embauche",
+	"baseUrl": "http://localhost:8080/mon-entreprise",
+	"env": {
+		"language": "fr"
+	},
+	"integrationFolder": "cypress/integration/mon-entreprise",
 	"chromeWebSecurity": false
 }

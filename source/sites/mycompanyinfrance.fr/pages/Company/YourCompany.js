@@ -4,7 +4,7 @@ import { React, T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import type { ResetExistingCompanyDetailsAction } from 'Types/companyTypes'
@@ -38,7 +38,7 @@ const LocaleDate = withLanguage(
 		}).format(date)
 )
 
-export const CompanyDetails = withNamespaces()(
+export const CompanyDetails = withTranslation()(
 	({ t, ...data }: { t: TFunction, [string]: string }) => {
 		const localizedCompanyDataSelection = companyDataSelection(t)
 		return (

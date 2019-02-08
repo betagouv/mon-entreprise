@@ -7,7 +7,7 @@ import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
@@ -207,7 +207,7 @@ const HiringProcess = ({
 )
 
 export default compose(
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths,
 	connect(
 		state => ({ hiringChecklist: state.inFranceApp.hiringChecklist }),

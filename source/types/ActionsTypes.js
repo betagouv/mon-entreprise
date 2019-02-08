@@ -1,3 +1,6 @@
+import type { SitePaths } from 'Components/utils/withSitePaths'
+import type { RouterHistory } from 'react-router'
+
 /* @flow */
 
 export type LoadPreviousSimulationAction = {
@@ -35,3 +38,9 @@ export type Action =
 	| ResetSimulationAction
 	| DeletePreviousSimulationAction
 	| StepAction
+
+export type Thunk<Action: Object> = (
+	dispatch: (Action) => void,
+	getState: () => any,
+	{ history: RouterHistory, sitePaths: SitePaths }
+) => void

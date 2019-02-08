@@ -1,11 +1,11 @@
 import { compose } from 'ramda';
 import React, { Component } from 'react';
-import { Trans, withNamespaces } from 'react-i18next';
+import { Trans, withTranslation } from 'react-i18next';
 import { FormDecorator } from './FormDecorator';
 
 export default compose(
 	FormDecorator('text-area'),
-	withNamespaces()
+	withTranslation()
 )(
 	class Input extends Component {
 		render() {

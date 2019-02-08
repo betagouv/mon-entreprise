@@ -8,7 +8,7 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { compose, propEq } from 'ramda'
 import React, { Component } from 'react'
-import { translate } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -29,7 +29,7 @@ import './TargetSelection.css'
 
 const MAX_NUMBER_QUESTION = 18
 export default compose(
-	translate(),
+	withTranslation(),
 	withColours,
 	reduxForm({
 		form: 'conversation',

@@ -9,7 +9,7 @@ import Scroll from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
@@ -463,7 +463,7 @@ const CreateCompany = ({
 	)
 }
 export default compose(
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths,
 	connect(
 		state => ({

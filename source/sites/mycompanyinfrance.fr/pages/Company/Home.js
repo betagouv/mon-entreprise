@@ -1,10 +1,11 @@
 /* @flow */
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { React, T } from 'Components'
+import { T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
+import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
@@ -33,39 +34,42 @@ const CreateMyCompany = ({
 	t,
 	location
 }: Props) => {
-	if (!match.isExact) {
-		const companyStatusCurrentQuestionName = (toPairs(
-			sitePaths.entreprise.statutJuridique
-		).find(([, pathname]) => location.pathname === pathname) || [])[0]
-		resetCompanyStatusChoice(companyStatusCurrentQuestionName)
-	}
+	useEffect(() => {
+		if (!match.isExact) {
+			const companyStatusCurrentQuestionName = (toPairs(
+				sitePaths.entreprise.statutJuridique
+			).find(([, pathname]) => location.pathname === pathname) || [])[0]
+			resetCompanyStatusChoice(companyStatusCurrentQuestionName)
+			return
+		}
+	})
 
 	return (
 		<>
 			{match.isExact && guideAlreadyStarted && (
 				<Redirect to={nextQuestionUrl} />
 			)}
-			<Helmet>
-				<title>
-					{t(
-						'formeJuridique.page.titre',
-						'Quel statut juridique choisir : le guide pas à pas'
-					)}
-				</title>
-				<meta
-					name="description"
-					content={t(
-						'formeJuridique.page.description',
-						"Le droit des affaires français définit plus de 20 statuts juridiques possibles pour déclarer une société avec différents acronymes et processus : SAS, SARL, SA, EIRL.... Ce guide vous aide rapidement à trouver le bon statut pour votre projet d'entreprise"
-					)}
-				/>
-			</Helmet>
 
 			<h1 className="question__title">
 				<T k="formeJuridique.titre">Choisir le statut juridique</T>
 			</h1>
 			{match.isExact && (
 				<>
+					<Helmet>
+						<title>
+							{t(
+								'formeJuridique.page.titre',
+								'Quel statut juridique choisir : le guide pas à pas'
+							)}
+						</title>
+						<meta
+							name="description"
+							content={t(
+								'formeJuridique.page.description',
+								"Le droit des affaires français définit plus de 20 statuts juridiques possibles pour déclarer une société avec différents acronymes et processus : SAS, SARL, SA, EIRL.... Ce guide vous aide rapidement à trouver le bon statut pour votre projet d'entreprise"
+							)}
+						/>
+					</Helmet>
 					<p>
 						<T k="formeJuridique.intro">
 							Le droit des sociétés définit plus de 20 statuts juridiques
@@ -92,14 +96,14 @@ const CreateMyCompany = ({
 }
 
 export default (compose(
+	withSitePaths,
 	connect(
-		state => ({
-			nextQuestionUrl: nextQuestionUrlSelector(state),
+		(state, { sitePaths }) => ({
+			nextQuestionUrl: nextQuestionUrlSelector(state, { sitePaths }),
 			guideAlreadyStarted: !!Object.keys(state.inFranceApp.companyLegalStatus)
 				.length
 		}),
 		{ resetCompanyStatusChoice }
 	),
-	withSitePaths,
-	withNamespaces()
+	withTranslation()
 )(CreateMyCompany): React$ComponentType<OwnProps>)

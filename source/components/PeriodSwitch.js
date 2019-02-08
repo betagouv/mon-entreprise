@@ -2,7 +2,7 @@ import { findRuleByDottedName, nestedSituationToPathMap } from 'Engine/rules'
 import { compose, filter, map, toPairs } from 'ramda'
 import React, { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, translate } from 'react-i18next'
+import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { batchActions } from 'redux-batched-actions'
 import { change, Field, reduxForm } from 'redux-form'
@@ -18,7 +18,7 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
-	translate(),
+	withTranslation(),
 	connect(
 		state => {
 			let situation = situationsWithDefaultsSelector(state)

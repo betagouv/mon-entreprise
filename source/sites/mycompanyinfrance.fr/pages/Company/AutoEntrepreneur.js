@@ -3,7 +3,7 @@ import { isAutoentrepreneur } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { compose } from 'ramda'
 import Helmet from 'react-helmet'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
 
@@ -97,7 +97,7 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 )
 
 export default compose(
-	withNamespaces(),
+	withTranslation(),
 	connect(
 		null,
 		{ isAutoentrepreneur }

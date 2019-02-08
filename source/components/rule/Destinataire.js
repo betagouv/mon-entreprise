@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Trans, withNamespaces } from 'react-i18next'
+import { Trans, withTranslation } from 'react-i18next'
 import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
 import './Destinataire.css'
 
-export default withNamespaces()(
+export default withTranslation()(
 	class Rule extends Component {
 		render() {
 			let { destinataire } = this.props,

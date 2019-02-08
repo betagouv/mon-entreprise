@@ -6,14 +6,12 @@ const SiteMap = ({ sitePaths }) => (
 	<>
 		<h1>Sitemap</h1>
 		<pre>
-			{generateSiteMap(
-				sitePaths.map(path => (
-					<span key={path}>
-						{path}
-						<br />
-					</span>
-				))
-			)}
+			{generateSiteMap(sitePaths).map(path => (
+				<span key={path}>
+					{path}
+					<br />
+				</span>
+			))}
 		</pre>
 	</>
 )

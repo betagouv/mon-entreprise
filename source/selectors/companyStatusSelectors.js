@@ -1,6 +1,7 @@
 /* @flow */
 
 import type { State, LegalStatusRequirements } from 'Types/companyTypes'
+import type { SitePaths } from 'Components/utils/withSitePaths'
 import {
 	add,
 	any,
@@ -15,8 +16,6 @@ import {
 	pick,
 	sortBy
 } from 'ramda'
-//TODO : use react context
-import sitePaths from '../sites/mycompanyinfrance.fr/sitePaths'
 
 const LEGAL_STATUS_DETAILS: {
 	[status: string]: Array<LegalStatusRequirements> | LegalStatusRequirements
@@ -179,13 +178,15 @@ export const nextQuestionSelector = (state: {
 	return sortedPossibleNextQuestions[0]
 }
 
-export const nextQuestionUrlSelector = (state: { inFranceApp: State }) => {
-	const paths = sitePaths()
+export const nextQuestionUrlSelector = (
+	state: { inFranceApp: State },
+	{ sitePaths }: { sitePaths: SitePaths }
+) => {
 	const nextQuestion = nextQuestionSelector(state)
 	if (!nextQuestion) {
-		return paths.entreprise.statutJuridique.liste
+		return sitePaths.entreprise.statutJuridique.liste
 	}
-	return paths.entreprise.statutJuridique[nextQuestion]
+	return sitePaths.entreprise.statutJuridique[nextQuestion]
 }
 
 export const régimeSelector = (state: {

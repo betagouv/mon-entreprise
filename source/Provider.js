@@ -43,7 +43,10 @@ export default class Provider extends PureComponent {
 		const storeEnhancer = composeEnhancers(
 			applyMiddleware(
 				// Allows us to painlessly do route transition in action creators
-				thunk.withExtraArgument(this.history),
+				thunk.withExtraArgument({
+					history: this.history,
+					sitePaths: this.props.sitePaths
+				}),
 				...props.reduxMiddlewares
 			)
 		)

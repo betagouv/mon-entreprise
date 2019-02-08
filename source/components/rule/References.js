@@ -1,11 +1,11 @@
 import { toPairs } from 'ramda'
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import references from 'Règles/ressources/références/références.yaml'
 import { capitalise0 } from '../../utils'
 import './References.css'
 
-export default withNamespaces()(
+export default withTranslation()(
 	class References extends React.Component {
 		state = {
 			showComplementary: false

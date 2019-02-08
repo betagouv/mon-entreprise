@@ -1,7 +1,7 @@
 import { compose } from 'ramda'
 import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, withNamespaces } from 'react-i18next'
+import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import Overlay from './Overlay'
@@ -11,7 +11,7 @@ export default compose(
 	connect(state => ({
 		flatRules: flatRulesSelector(state)
 	})),
-	withNamespaces()
+	withTranslation()
 )(
 	class SearchButton extends Component {
 		componentDidMount() {

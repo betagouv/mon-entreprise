@@ -2,7 +2,7 @@
 import { React, T } from 'Components';
 import withSitePaths from 'Components/utils/withSitePaths';
 import { compose } from 'ramda';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { NavLink, } from 'react-router-dom';
 import {  withRouter } from "react-router";
@@ -263,7 +263,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 
 export default (compose(
 	withRouter,
-	withNamespaces(),
+	withTranslation(),
 	withSitePaths,
 	connect(
 		state => ({
