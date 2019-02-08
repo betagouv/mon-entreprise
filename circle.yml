@@ -43,6 +43,8 @@ jobs:
         environment:
           ## this enables colors in the output
           TERM: xterm
+          EN_SITE: '${path}'
+          FR_SITE: '${path}'
           CYPRESS_baseUrl: http://localhost:5000
 
     steps:
