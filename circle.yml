@@ -56,7 +56,7 @@ jobs:
     parameters:
       site:
         type: string
-        default: ''
+        default: 'https://mon-entreprise.fr'
       cypress_folder:
         type: enum
         enum: [embauche, mon-entreprise, external]
@@ -103,21 +103,20 @@ workflows:
           cypress_folder: mon-entreprise
           language: 'en'
       - production-end-to-end-test:
-          name: 'https://embauche.beta.gouv.fr end-to-end'
+          name: 'embauche.beta.gouv.fr end-to-end'
           site: 'https://embauche.beta.gouv.fr'
           cypress_folder: 'embauche'
           filters:
             branches:
               only: master
       - production-end-to-end-test:
-          name: 'https://mon-entreprise.fr end-to-end'
-          site: 'https://mon-entreprise.fr'
+          name: 'mon-entreprise.fr end-to-end'
           cypress_folder: 'mon-entreprise'
           filters:
             branches:
               only: master
       - production-end-to-end-test:
-          name: 'https://mycompanyinfrance.fr end-to-end'
+          name: 'mycompanyinfrance.fr end-to-end'
           site: 'https://mycompanyinfrance.fr'
           cypress_folder: 'mon-entreprise'
           language: 'en'
@@ -125,13 +124,14 @@ workflows:
             branches:
               only: master
       - production-end-to-end-test:
-          name: 'https://demo.mon-entreprise.fr end-to-end'
+          name: 'demo.mon-entreprise.fr end-to-end'
           site: 'https://demo.mon-entreprise.fr'
           cypress_folder: 'embauche'
           filters:
             branches:
               only: demo
       - production-end-to-end-test:
+          name: external integrations (URSSAF, pole emploi)
           cypress_folder: 'external'
           filters:
             branches:
