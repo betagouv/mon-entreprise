@@ -19,7 +19,6 @@ export default compose(
 			let {
 				title,
 				nodeValue,
-				sitePaths,
 				unité: unit,
 				dottedName
 			} = this.props.analysis.targets[0]
@@ -38,7 +37,7 @@ export default compose(
 						<Link
 							title="Quel est calcul ?"
 							style={{ color: this.props.colours.colour }}
-							to={sitePaths.documentation.index + '/' + dottedName}
+							to={this.props.sitePaths.documentation.index + '/' + dottedName}
 							className="explanation">
 							{emoji('📖')}
 						</Link>

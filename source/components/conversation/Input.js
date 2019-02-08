@@ -32,7 +32,7 @@ export default compose(
 					rulePeriod,
 					period
 				} = this.props,
-				answerSuffix = valueType.suffix,
+				answerSuffix = valueType?.suffix,
 				suffixed = answerSuffix != null,
 				inputError = dirty && error,
 				submitDisabled = !dirty || inputError
