@@ -21,16 +21,19 @@ class Search extends React.Component {
 	state = { input: '' }
 	render() {
 		return (
-			<>
-				{emoji('🔎')}
+			<div
+				css={`
+					display: flex;
+					align-items: flex-end;
+				`}>
 				<input
 					css={`
 						display: inline-block;
 						width: 80%;
-						border: 3px solid var(--colour);
-						font-size: 2rem;
-						border-radius: 0.3rem;
-						box-shadow: #06060624 4px 6px 15px;
+						border: 1px solid #ddd;
+						font-size: 180%;
+						border-radius: 1rem;
+						padding: 0 0.3rem;
 					`}
 					type="text"
 					value={this.state.input}
@@ -39,7 +42,17 @@ class Search extends React.Component {
 							this.setState({ input: event.target.value })
 					}}
 				/>
-			</>
+				<span
+					css={`
+						margin-left: 1em;
+						img {
+							width: 1.5em !important;
+							height: 1.5em !important;
+						}
+					`}>
+					{emoji('🔍')}
+				</span>
+			</div>
 		)
 	}
 }
