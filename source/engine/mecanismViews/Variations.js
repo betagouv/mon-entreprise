@@ -42,7 +42,7 @@ let Comp = withLanguage(function Variations({
 											:
 										</span>
 										<span className="consequenceContent">
-											{makeJsx(consequence)}
+											{consequence && makeJsx(consequence)}
 										</span>
 									</div>
 								</div>
