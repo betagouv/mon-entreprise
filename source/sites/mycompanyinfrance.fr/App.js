@@ -24,6 +24,7 @@ import Landing from './pages/Landing'
 import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
 import { constructLocalizedSitePath } from './sitePaths'
+import Route404 from 'Components/Route404'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -91,22 +92,25 @@ const App = compose(
 		<div className="app-content">
 			<ProgressHeader />
 			<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
-				<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
-				<Route
-					path={sitePaths.sécuritéSociale.index}
-					component={SocialSecurity}
-				/>
-				<Route
-					path={sitePaths.démarcheEmbauche.index}
-					component={HiringProcess}
-				/>
-				<Route
-					path={sitePaths.documentation.index + '/:name+'}
-					component={RulePage}
-				/>
-				{process.env.NODE_ENV !== 'production' && (
-					<Route exact path="/sitemap" component={Sitemap} />
-				)}
+				<Switch>
+					<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
+					<Route
+						path={sitePaths.sécuritéSociale.index}
+						component={SocialSecurity}
+					/>
+					<Route
+						path={sitePaths.démarcheEmbauche.index}
+						component={HiringProcess}
+					/>
+					<Route
+						path={sitePaths.documentation.index + '/:name+'}
+						component={RulePage}
+					/>
+					{process.env.NODE_ENV !== 'production' && (
+						<Route exact path="/sitemap" component={Sitemap} />
+					)}
+					<Route component={Route404} />
+				</Switch>
 			</div>
 			<Footer />
 		</div>

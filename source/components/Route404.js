@@ -1,8 +1,9 @@
-import React from 'react'
+import { React, T } from 'Components'
 import { Link } from 'react-router-dom'
 import image from '../images/map-directions.png'
+import emoji from 'react-easy-emoji'
 
-const Page404 = () => (
+export default () => (
 	<div
 		style={{
 			color: '#333350',
@@ -10,13 +11,16 @@ const Page404 = () => (
 			width: '15em',
 			textAlign: 'center'
 		}}>
-		<h2>On peut facilement se perdre dans la législation...</h2>
+		<p>
+			<T k="404.message">Cette page n'existe pas ou n'existe plus</T>
+			{emoji(' 🙅')}
+		</p>
 		<Link to="/">
 			{/* TODO: credits for the image to add: https://thenounproject.com/term/treasure-map/96666/ */}
 			<img style={{ margin: '3%' }} width="100%" src={image} />
-			<em>Revenir en lieu sûr</em>
+			<em>
+				<T k="404.action">Revenir en lieu sûr</T>
+			</em>
 		</Link>
 	</div>
 )
-
-export default Page404
