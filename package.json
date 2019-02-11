@@ -23,7 +23,7 @@
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"focus-trap-react": "^3.1.2",
-		"fuse.js": "^3.2.1",
+		"fuse.js": "^3.4.2",
 		"i18next": "^14.1.1",
 		"iframe-resizer": "^3.6.2",
 		"marked": "^0.3.17",
