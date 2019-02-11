@@ -5,6 +5,7 @@ import withSimulationConfig from 'Components/simulationConfigs/withSimulationCon
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { AvertissementProtectionSocialeIndépendants } from './Indépendant'
 
 const AutoEntrepreneur = () => (
 	<>
@@ -28,15 +29,7 @@ const AutoEntrepreneur = () => (
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
-			explication={
-				<p>
-					La sécurité sociale des indépendants ne couvre ni les accidents du
-					travail, ni la perte d'emploi (assurance-chômage), et offre une
-					retraite plus faible que celle des salariés. Pour être couvert, le
-					professionnel peut souscrire volontairement des assurances
-					spécifiques.
-				</p>
-			}
+			explanation={<AvertissementProtectionSocialeIndépendants />}
 		/>
 	</>
 )
