@@ -1,13 +1,13 @@
-import { EXPLAIN_VARIABLE } from 'Actions/actions';
-import classNames from 'classnames';
-import { findRuleByDottedName } from 'Engine/rules';
-import { compose } from 'ramda';
-import React from 'react';
-import emoji from 'react-easy-emoji';
-import { connect } from 'react-redux';
-import { flatRulesSelector } from 'Selectors/analyseSelectors';
-import withTracker from '../utils/withTracker';
-import './Explicable.css';
+import { EXPLAIN_VARIABLE } from 'Actions/actions'
+import classNames from 'classnames'
+import { findRuleByDottedName } from 'Engine/rules'
+import { compose } from 'ramda'
+import React from 'react'
+import emoji from 'react-easy-emoji'
+import { connect } from 'react-redux'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import withTracker from '../utils/withTracker'
+import './Explicable.css'
 
 export default compose(
 	connect(
@@ -24,13 +24,7 @@ export default compose(
 )(
 	class Explicable extends React.Component {
 		render() {
-			let {
-				flatRules,
-				dottedName,
-				explain,
-				explained,
-				tracker,
-			} = this.props
+			let { flatRules, dottedName, explain, explained, tracker } = this.props
 
 			// Rien à expliquer ici, ce n'est pas une règle
 			if (dottedName == null) return null
@@ -41,7 +35,7 @@ export default compose(
 
 			//TODO montrer les variables de type 'une possibilité'
 
-			return (
+			return dottedName === explained ? null : (
 				<span
 					className={classNames('explicable', {
 						explained: dottedName === explained
@@ -54,7 +48,7 @@ export default compose(
 							e.preventDefault()
 							e.stopPropagation()
 						}}>
-						{emoji(dottedName === explained ? '📖' : '📘')}
+						{emoji('ℹ️')}
 					</span>
 				</span>
 			)
