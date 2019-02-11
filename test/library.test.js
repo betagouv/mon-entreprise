@@ -1,7 +1,7 @@
-import { expect } from 'chai';
-import Syso from '../source/engine/index';
-import co2 from '../source/règles/co2.yaml';
-import sasuRules from '../source/règles/sasu.yaml';
+import { expect } from 'chai'
+import Syso from '../source/engine/index'
+import co2 from '../source/règles/co2.yaml'
+import sasuRules from '../source/règles/sasu.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
@@ -46,7 +46,7 @@ describe('library', function() {
 
 		expect(value).to.be.closeTo(1799, 1)
 	})
-	it.only('should let the user extend the rules constellation in a serious manner', function() {
+	it('should let the user extend the rules constellation in a serious manner', function() {
 		let CA = 550 * 16
 		let salaireTotal = Syso.evaluate(
 			'salaire total',
@@ -62,7 +62,6 @@ describe('library', function() {
 				'contrat salarié': { rémunération: { total: salaireTotal } }
 			}
 		)
-
 
 		let [revenuDisponible, dividendes] = Syso.evaluate(
 			['revenu disponible', 'dividendes . net'],
