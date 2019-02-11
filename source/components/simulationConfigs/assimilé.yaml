@@ -4,6 +4,7 @@ objectifs:
 
 questions:
   - entreprise . charges
+  - entreprise . année d'activité
 
 questions à l'affiche:
   Charges: entreprise . charges
