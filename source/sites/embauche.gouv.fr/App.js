@@ -27,7 +27,7 @@ import Home from './pages/Home'
 import IframeFooter from './pages/IframeFooter'
 import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
-import Route404 from './pages/Route404'
+import Route404 from 'Components/Route404'
 import RulesList from './pages/RulesList'
 import sitePaths from './sitePaths'
 

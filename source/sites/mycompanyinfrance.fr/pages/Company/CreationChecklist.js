@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
 import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
-import Page404 from '../404'
+import Route404 from 'Components/Route404'
 import StatusDescription from './StatusDescription'
 
 import type { Match } from 'react-router'
@@ -52,7 +52,7 @@ const CreateCompany = ({
 	const multipleAssociates = ['SARL', 'SAS', 'SA'].includes(companyStatus)
 	const isEI = isAutoentrepreneur || ['EI', 'EIRL'].includes(companyStatus)
 	if (!companyStatus) {
-		return <Page404 />
+		return <Route404 />
 	}
 	const titre = isAutoentrepreneur
 		? t(
