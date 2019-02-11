@@ -26,21 +26,30 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => (
 		css={`
 			font-size: 120%;
 			list-style-type: none;
-			border: 3px solid var(--colour);
 			border-radius: 1.5rem;
 			padding: 1rem;
 			margin: 1rem;
 			width: 12rem;
-			min-height: 6em;
+			min-height: 7em;
 			position: relative;
 			display: flex;
 			align-items: center;
 			justify-content: middle;
 			text-align: center;
 			flex-wrap: wrap;
-			${formule ? '' : 'filter: grayscale(70%); opacity: 0.6'}
+			${formule ? '' : 'filter: grayscale(70%); opacity: 0.6;'}
+
+			background: var(--colour);
+			color: white;
+			:hover {
+				box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+			}
+			a {
+				color: white;
+				text-decoration: none;
+			}
 		`}>
-		<div css="width: 100%; img { width: 1.6rem !important; height: 1.6rem !important}}">
+		<div css="width: 100%; img { width: 1.8rem !important; height: 1.8rem !important}}">
 			{icônes && emoji(icônes + ' ')}
 		</div>
 		<Link css="width: 100%" to={formule ? '/simulateur/' + dottedName : '#'}>
