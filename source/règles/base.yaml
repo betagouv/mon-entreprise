@@ -1339,7 +1339,40 @@
   nom: réductions de cotisations
   période: flexible
   format: euros
-  formule: réduction générale + exonération JEI
+  formule: 
+    somme:
+      - réduction générale
+      - exonération JEI
+      - réduction ACRE
+
+- espace: contrat salarié
+  nom: réduction ACRE
+  applicable si: 
+    toutes ces conditions: 
+      - assimilé salarié
+      - entreprise . année d'activité = 'première année'
+  période: flexible
+  formule: 
+    multiplication:
+      assiette:
+        somme:
+          - maladie
+          - allocations familiales
+          - vieillesse
+      taux: taux
+
+- espace: contrat salarié . réduction ACRE
+  nom: taux
+  période: flexible
+  formule:
+    barème continu:
+      assiette: assiette cotisations sociales
+      multiplicateur: plafond sécurité sociale temps plein
+      points:
+        0: 100%
+        0.75: 100%
+        1: 0%
+      retourne seulement le taux: oui
 
 - espace: contrat salarié . rémunération
   nom: total sans réduction
