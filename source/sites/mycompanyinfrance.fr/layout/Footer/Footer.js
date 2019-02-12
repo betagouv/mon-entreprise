@@ -5,25 +5,28 @@ import LegalNotice from 'Components/LegalNotice'
 import withColours from 'Components/utils/withColours'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
-import React from 'react'
+import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
 import i18n from '../../../../i18n'
+import safeLocalStorage from '../../../../storage/safeLocalStorage'
 import { feedbackBlacklist } from '../../config'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
 import Privacy from './Privacy'
 
+const LOCAL_STORAGE_KEY = 'app::newsletter::registered'
+const userAlreadyRegistered: boolean = false
+// JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
 const Footer = ({ colours: { colour } }) => {
-	console.log(
-		hrefLangLink,
-		decodeURIComponent(
-			(process.env.NODE_ENV === 'production'
-				? window.location.protocol + '//' + window.location.host
-				: '') + window.location.pathname
-		).replace(/\/$/, '')
+	const [showNewsletterForm, toggleNewsletterForm] = useState(
+		!userAlreadyRegistered
 	)
+	const onSubmit = () => {
+		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(true))
+		setTimeout(() => toggleNewsletterForm(false), 0)
+	}
 	const hrefLink =
 		hrefLangLink[i18n.language][
 			decodeURIComponent(
@@ -48,24 +51,38 @@ const Footer = ({ colours: { colour } }) => {
 			<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
 				<div className="ui__ container">
 					<div style={{ textAlign: 'center' }}>
-						<h3>Inscrivez-vous à notre newsletter</h3>
-						<p>
-							Vous aurez accès à des conseils sur la création, et vous pourrez
-							accéder aux nouvelles fonctionalités en avant-première !
-						</p>
-						<div className="footer__registerContainer">
-							<label htmlFor="footer__registerEmail" className="ui__ notice">
-								Email
-							</label>
-							<div className="footer__registerField">
-								<input id="footer__registerEmail" type="email" />
-								<input
-									className="ui__ plain button"
-									type="submit"
-									value="S'inscrire"
-								/>
-							</div>
-						</div>
+						{showNewsletterForm && (
+							<>
+								<h3>Inscrivez-vous à notre newsletter</h3>
+								<p>
+									Vous aurez accès à des conseils sur la création, et vous
+									pourrez accéder aux nouvelles fonctionalités en avant-première
+									!
+								</p>
+								<form
+									className="footer__registerContainer"
+									action="https://gouv.us13.list-manage.com/subscribe/post?u=732a4d1b0d2e8a1a1fd3d01db&amp;id=f146678e48"
+									method="post"
+									onSubmit={onSubmit}
+									id="mc-embedded-subscribe-form"
+									name="mc-embedded-subscribe-form"
+									target="_blank">
+									<label htmlFor="mce-EMAIL" className="ui__ notice">
+										Email
+									</label>
+									<div className="footer__registerField">
+										<input type="email" name="EMAIL" id="mce-EMAIL" />
+										<input
+											className="ui__ plain button"
+											type="submit"
+											value="S'inscrire"
+											name="subscribe"
+											id="mc-embedded-subscribe"
+										/>
+									</div>
+								</form>
+							</>
+						)}
 						<div id="footerIcons">
 							<a href="https://www.urssaf.fr">
 								<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
@@ -113,4 +130,7 @@ const Footer = ({ colours: { colour } }) => {
 		</div>
 	)
 }
-export default compose(withColours)(Footer)
+export default compose(
+	React.memo,
+	withColours
+)(Footer)

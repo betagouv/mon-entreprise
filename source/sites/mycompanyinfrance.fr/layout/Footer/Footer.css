@@ -17,9 +17,8 @@
 
 #footerIcons {
 	display: flex;
-	margin-top: 2rem;
+	margin: 1rem 0;
 	justify-content: space-around;
-	margin-bottom: 1em;
 }
 #footerIcons a::after {
 	display: none;
@@ -30,7 +29,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
 }
 .footer__registerField {
 	display: flex;
