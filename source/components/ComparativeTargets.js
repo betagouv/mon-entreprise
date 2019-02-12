@@ -18,7 +18,7 @@ import {
 } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import Montant from 'Ui/Montant'
-import { validInputEnteredSelector } from '../selectors/analyseSelectors'
+import { noUserInputSelector } from '../selectors/analyseSelectors'
 import './ComparativeTargets.css'
 import SchemeCard from './ui/SchemeCard'
 import type {
@@ -33,12 +33,12 @@ const connectRègles = (situationBranchName: string) =>
 		state => {
 			return ({
 				revenuDisponible:
-					validInputEnteredSelector(state) &&
+					!noUserInputSelector(state) &&
 					règleAvecMontantSelector(state, {
 						situationBranchName
 					})('revenu disponible'),
 				prélèvements:
-					validInputEnteredSelector(state) &&
+					!noUserInputSelector(state) &&
 					règleAvecValeurSelector(state, {
 						situationBranchName
 					})('ratio de prélèvements')
