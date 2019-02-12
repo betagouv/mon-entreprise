@@ -3,6 +3,7 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
 import withColours from 'Components/utils/withColours'
+import withTracker from 'Components/utils/withTracker'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React, { useState } from 'react'
@@ -19,12 +20,13 @@ import Privacy from './Privacy'
 const LOCAL_STORAGE_KEY = 'app::newsletter::registered'
 const userAlreadyRegistered: boolean = false
 // JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
-const Footer = ({ colours: { colour } }) => {
+const Footer = ({ colours: { colour }, tracker }) => {
 	const [showNewsletterForm, toggleNewsletterForm] = useState(
 		!userAlreadyRegistered
 	)
 	const onSubmit = () => {
 		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(true))
+		tracker.push(['trackEvent', 'Newsletter', 'registered'])
 		setTimeout(() => toggleNewsletterForm(false), 0)
 	}
 	const hrefLink =
@@ -132,5 +134,6 @@ const Footer = ({ colours: { colour } }) => {
 }
 export default compose(
 	React.memo,
+	withTracker,
 	withColours
 )(Footer)
