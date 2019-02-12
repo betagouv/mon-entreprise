@@ -13,6 +13,21 @@ commands:
           key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - ~/.cache
+  cypress:
+    parameters:
+      language:
+        type: enum
+        enum: [fr, en]
+        default: fr
+      integration_folder:
+        type: enum
+        enum: [mon-entreprise, external, embauche]
+        default: mon-entreprise
+      base_url:
+        type: string
+        default: https://mon-entreprise.fr
+    steps:
+      - run: CYPRESS_baseUrl=<< parameters.base_url >> yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.integration_folder >>
 
 jobs:
   unit-test:
@@ -29,51 +44,65 @@ jobs:
     docker:
       - image: cypress/base:8
         environment:
-          ## this enables colors in the output
           TERM: xterm
     steps:
       - install
-      - run: |
-          yarn run compile-dev
-          yarn run serve-dev &
-          # Run mon-entreprise
-          CYPRESS_baseUrl=http://localhost:5000 yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
-          # Run mycompanyinfrance
-          CYPRESS_baseUrl=http://localhost:5001 yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=en
-          # Run embauche
-          CYPRESS_baseUrl=http://localhost:5002 yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --config integrationFolder=cypress/integration/embauche
+      - run: yarn run compile-dev
+      - run:
+          command: yarn run serve-dev
+          background: true
+      - cypress:
+          base_url: http://localhost:5000
+      - cypress:
+          base_url: http://localhost:5001
+          language: en
+      - cypress:
+          base_url: http://localhost:5002
+          integration_folder: embauche
 
-  production-end-to-end-test:
-    parameters:
-      site:
-        type: string
-        default: 'https://mon-entreprise.fr'
-      cypress_folder:
-        type: enum
-        enum: [embauche, mon-entreprise, external]
-        default: mon-entreprise
-      language:
-        type: enum
-        enum: [fr, en]
-        default: fr
+  demo-end-to-end-test:
     docker:
       - image: cypress/base:8
         environment:
-          ## this enables colors in the output
           TERM: xterm
-          CYPRESS_baseUrl: << parameters.site >>
     steps:
       - checkout
       - run: npm install --save-dev cypress
-      - run: sleep 300
-      - run: |
-          if ./node_modules/.bin/cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.cypress_folder >>;
-          then
-            echo "SUCCESS \o/"
-          else
+      - run: sleep 200
+      - cypress:
+          base_url: http://demo.mon-entreprise.fr
+      - cypress:
+          base_url: http://demo.mon-entreprise.fr?s=m
+          language: en
+      - cypress:
+          base_url: http://demo.mon-entreprise.fr?s=e
+          integration_folder: embauche
+
+  production-end-to-end-test:
+    docker:
+      - image: cypress/base:8
+        environment:
+          TERM: xterm
+    parameters:
+    steps:
+      - checkout
+      - run: npm install --save-dev cypress
+      - run: sleep 200
+      - cypress:
+          base_url: https://mon-entreprise.fr
+      - cypress:
+          base_url: https://mycompanyinfrance.fr
+          language: en
+      - cypress:
+          base_url: https://embauche.beta.gouv.fr
+          integration_folder: embauche
+      - cypress:
+          integration_folder: external
+      - run:
+          name: Send email if test failed
+          when: on_fail
+          command: >
             curl -H 'Content-Type: application/json' --request POST -d '{"success": false}' https://hooks.zapier.com/hooks/catch/3746650/qsp818/;
-            exit 1;
-          fi
 
 workflows:
   version: 2
@@ -81,37 +110,11 @@ workflows:
     jobs:
       - unit-test
       - end-to-end-test
-      - production-end-to-end-test:
-          name: 'embauche.beta.gouv.fr end-to-end'
-          site: 'https://embauche.beta.gouv.fr'
-          cypress_folder: 'embauche'
-          filters:
-            branches:
-              only: master
-      - production-end-to-end-test:
-          name: 'mon-entreprise.fr end-to-end'
-          cypress_folder: 'mon-entreprise'
-          filters:
-            branches:
-              only: master
-      - production-end-to-end-test:
-          name: 'mycompanyinfrance.fr end-to-end'
-          site: 'https://mycompanyinfrance.fr'
-          cypress_folder: 'mon-entreprise'
-          language: 'en'
-          filters:
-            branches:
-              only: master
-      - production-end-to-end-test:
-          name: 'demo.mon-entreprise.fr end-to-end'
-          site: 'https://demo.mon-entreprise.fr'
-          cypress_folder: 'embauche'
+      - demo-end-to-end-test:
           filters:
             branches:
               only: demo
       - production-end-to-end-test:
-          name: external integrations (URSSAF, pole emploi)
-          cypress_folder: 'external'
           filters:
             branches:
               only: master
