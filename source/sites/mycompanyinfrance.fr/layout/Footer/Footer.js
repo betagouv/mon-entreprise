@@ -16,6 +16,14 @@ import betaGouvSvg from './logo-betagouv.svg'
 import Privacy from './Privacy'
 
 const Footer = ({ colours: { colour } }) => {
+	console.log(
+		hrefLangLink,
+		decodeURIComponent(
+			(process.env.NODE_ENV === 'production'
+				? window.location.protocol + '//' + window.location.host
+				: '') + window.location.pathname
+		).replace(/\/$/, '')
+	)
 	const hrefLink =
 		hrefLangLink[i18n.language][
 			decodeURIComponent(

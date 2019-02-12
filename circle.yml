@@ -26,33 +26,22 @@ jobs:
           yarn test
 
   end-to-end-test:
-    parameters:
-      site:
-        type: enum
-        enum: [embauche, mon-entreprise, mycompanyinfrance]
-      cypress_folder:
-        type: enum
-        enum: [embauche, mon-entreprise]
-        default: mon-entreprise
-      language:
-        type: enum
-        enum: [fr, en]
-        default: fr
     docker:
       - image: cypress/base:8
         environment:
           ## this enables colors in the output
           TERM: xterm
-          EN_SITE: '${path}'
-          FR_SITE: '${path}'
-          CYPRESS_baseUrl: http://localhost:5000
-
     steps:
       - install
       - run: |
-          yarn run compile
-          yarn run << parameters.site >>:serve &
-          yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.cypress_folder >>
+          yarn run compile-dev
+          yarn run serve-dev &
+          # Run mon-entreprise
+          CYPRESS_baseUrl=http://localhost:5000 yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759
+          # Run mycompanyinfrance
+          CYPRESS_baseUrl=http://localhost:5001 yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --env language=en
+          # Run embauche
+          CYPRESS_baseUrl=http://localhost:5002 yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759  --config integrationFolder=cypress/integration/embauche
 
   production-end-to-end-test:
     parameters:
@@ -91,19 +80,7 @@ workflows:
   test:
     jobs:
       - unit-test
-      - end-to-end-test:
-          name: 'embauche end-to-end'
-          site: embauche
-          cypress_folder: embauche
-      - end-to-end-test:
-          name: 'mon-entreprise end-to-end'
-          site: mon-entreprise
-          cypress_folder: mon-entreprise
-      - end-to-end-test:
-          name: 'mycompanyinfrance end-to-end'
-          site: mycompanyinfrance
-          cypress_folder: mon-entreprise
-          language: 'en'
+      - end-to-end-test
       - production-end-to-end-test:
           name: 'embauche.beta.gouv.fr end-to-end'
           site: 'https://embauche.beta.gouv.fr'
