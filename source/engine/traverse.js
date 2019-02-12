@@ -138,6 +138,11 @@ export let treatRuleRoot = (rules, rule) => {
 				nodeValue
 			} = evaluatedFormula
 
+		// if isApplicable === true
+		// evaluateControls
+		// attache them to the node for further usage
+		// do not output missingVariables for now
+
 		let condMissing =
 				isApplicable === false
 					? {}
