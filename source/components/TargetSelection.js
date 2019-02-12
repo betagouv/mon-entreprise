@@ -5,7 +5,7 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { compose, propEq } from 'ramda'
+import { compose, propEq, chain } from 'ramda'
 import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
-	blockingInputControlsSelector,
 	flatRulesSelector,
 	nextStepsSelector,
 	noUserInputSelector
@@ -40,7 +39,6 @@ export default compose(
 			getTargetValue: dottedName =>
 				formValueSelector('conversation')(state, dottedName),
 			analysis: analysisWithDefaultsSelector(state),
-			blockingInputControls: blockingInputControlsSelector(state),
 			flatRules: flatRulesSelector(state),
 			progress:
 				(100 * (MAX_NUMBER_QUESTION - nextStepsSelector(state))) /
@@ -65,7 +63,9 @@ export default compose(
 			return (
 				<div id="targetSelection">
 					<QuickLinks />
-					<Controls controls={analysis.controls} />
+					<Controls
+						controls={chain(({ contrôles }) => contrôles, analysis.cache)}
+					/>
 					<div style={{ height: '10px' }}>
 						<Progress percent={progress} />
 					</div>
@@ -95,7 +95,6 @@ export default compose(
 					setActiveInput,
 					analysis,
 					noUserInput,
-					blockingInputControls,
 					match
 				} = this.props,
 				targets = analysis ? analysis.targets : []
@@ -113,8 +112,7 @@ export default compose(
 											match,
 											target,
 											conversationStarted,
-											isActiveInput: activeInput === target.dottedName,
-											blockingInputControls
+											isActiveInput: activeInput === target.dottedName
 										}}
 									/>
 									{!target.question && (
@@ -133,8 +131,7 @@ export default compose(
 											activeInput,
 											setActiveInput,
 											setFormValue: this.props.setFormValue,
-											noUserInput,
-											blockingInputControls
+											noUserInput
 										}}
 									/>
 								</div>
@@ -190,15 +187,7 @@ let CurrencyField = withColours(props => {
 })
 
 let TargetInputOrValue = withLanguage(
-	({
-		target,
-		targets,
-		activeInput,
-		setActiveInput,
-		language,
-		noUserInput,
-		blockingInputControls
-	}) => (
+	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
 		<span className="targetInputOrValue">
 			{activeInput === target.dottedName ? (
 				<Field
@@ -213,8 +202,7 @@ let TargetInputOrValue = withLanguage(
 						target,
 						activeInput,
 						setActiveInput,
-						noUserInput,
-						blockingInputControls
+						noUserInput
 					}}
 				/>
 			)}
@@ -230,7 +218,7 @@ const TargetValue = connect(
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target, noUserInput, blockingInputControls } = this.props
+			let { targets, target, noUserInput } = this.props
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -240,8 +228,7 @@ const TargetValue = connect(
 				<div
 					className={classNames({
 						editable: target.question,
-						attractClick:
-							target.question && (noUserInput || blockingInputControls)
+						attractClick: target.question && noUserInput
 					})}
 					tabIndex="0"
 					onClick={this.showField(value)}

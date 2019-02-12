@@ -85,12 +85,12 @@ export let treat = (rules, rule) => rawNode => {
 
 export let treatRuleRoot = (rules, rule) => {
 	/*
-	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
-	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si`, `applicable si` et `formule`,
-	qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
-	Ces mécanismes ou variables sont descendues à leur tour grâce à `treat()`.
-	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST. Elles seront exécutées à l'évaluation.
-	*/
+		The treatRuleRoot function will traverse the tree of the `rule` and produce an AST, an object containing other objects containing other objects...
+		Some of the attributes of the rule are dynamic, they need to be parsed. It is the case of  `non applicable si`, `applicable si`, `formule`, `contrôles`.
+		These attributes' values themselves may have  mechanism properties (e. g. `barème`) or inline expressions (e. g. `maVariable + 3`).
+		These mechanisms or variables are in turn traversed by `treat()`. During this processing, 'evaluate' and'jsx' functions are attached to the objects of the AST. They will be evaluated during the evaluation phase, called "analyse".
+*/
+
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
 		cache.parseLevel++
@@ -138,6 +138,11 @@ export let treatRuleRoot = (rules, rule) => {
 				nodeValue
 			} = evaluatedFormula
 
+		// if isApplicable === true
+		// evaluateControls
+		// attache them to the node for further usage
+		// do not output missingVariables for now
+
 		let condMissing =
 				isApplicable === false
 					? {}
@@ -154,6 +159,20 @@ export let treatRuleRoot = (rules, rule) => {
 				formulaMissingVariables
 			)
 
+		let evaluateControls = node.contrôles && val(parentDependency) !== false
+		console.log(node.name, evaluateControls)
+		let contrôles =
+			evaluateControls &&
+			node.contrôles.map(control => ({
+				...control,
+				evaluated: evaluateNode(
+					cache,
+					situationGate,
+					parsedRules,
+					control.testExpression
+				)
+			}))
+
 		cache.parseLevel--
 		//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
 		//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
@@ -161,6 +180,7 @@ export let treatRuleRoot = (rules, rule) => {
 			...node,
 			...evaluatedAttributes,
 			...{ formule: evaluatedFormula },
+			contrôles,
 			nodeValue,
 			isApplicable,
 			missingVariables
@@ -235,45 +255,12 @@ export let treatRuleRoot = (rules, rule) => {
 				explanation: child
 			}
 		},
-		contrôles: list =>
-			list.map(control => {
-				let testExpression = treat(rules, rule)(control.si)
-
-				return {
-					dottedName: rule.dottedName,
-					level: control['niveau'],
-					test: control['si'],
-					message: control['message'],
-					testExpression,
-					solution: control['solution']
-				}
-			})
-	})(root)
-
-	let controls =
-		rule['contrôles'] &&
-		rule['contrôles'].map(control => {
+		contrôles: map(control => {
 			let testExpression = treat(rules, rule)(control.si)
 			if (!testExpression.explanation)
 				throw new Error(
 					'Ce contrôle ne semble pas être compris :' + control['si']
 				)
-
-			let otherVariables = testExpression.explanation.filter(
-				node =>
-					node.category === 'variable' && node.dottedName !== rule.dottedName
-			)
-			let isInputControl = !otherVariables.length,
-				level = control['niveau']
-
-			if (level === 'bloquant' && !isInputControl) {
-				throw new Error(
-					`Un contrôle ne peut être bloquant et invoquer des calculs de variables :
-						${control['si']}
-						${level}
-						`
-				)
-			}
 
 			return {
 				dottedName: rule.dottedName,
@@ -281,10 +268,10 @@ export let treatRuleRoot = (rules, rule) => {
 				test: control['si'],
 				message: control['message'],
 				testExpression,
-				solution: control['solution'],
-				isInputControl
+				solution: control['solution']
 			}
 		})
+	})(root)
 
 	return {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes

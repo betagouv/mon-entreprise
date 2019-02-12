@@ -1,14 +1,14 @@
-import { startConversation } from 'Actions/actions';
-import withTracker from 'Components/utils/withTracker';
-import { compose } from 'ramda';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { formValueSelector } from 'redux-form';
-import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors';
-import * as Animate from 'Ui/animate';
-import SalaryCompactExplanation from './SalaryCompactExplanation';
-import './SalaryCompactExplanation.css';
-import SalaryFirstExplanation from './SalaryFirstExplanation';
+import { startConversation } from 'Actions/actions'
+import withTracker from 'Components/utils/withTracker'
+import { compose } from 'ramda'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { formValueSelector } from 'redux-form'
+import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
+import * as Animate from 'Ui/animate'
+import SalaryCompactExplanation from './SalaryCompactExplanation'
+import './SalaryCompactExplanation.css'
+import SalaryFirstExplanation from './SalaryFirstExplanation'
 
 export default compose(
 	withTracker,
