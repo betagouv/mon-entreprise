@@ -66,5 +66,14 @@ export default (tracker: Tracker) => {
 		if (action.type === 'DELETE_PREVIOUS_SIMULATION') {
 			tracker.push(['trackEvent', 'previousSimulation', 'delete'])
 		}
+
+		if (action.type === 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
+			tracker.push([
+				'trackEvent',
+				'Creation',
+				'status chosen',
+				action.statusName
+			])
+		}
 	}
 }
