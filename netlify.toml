@@ -125,10 +125,6 @@ to = "/mon-entreprise.html"
 status = 200
 
 
-[context.demo]
-  EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"
-  FR_SITE = "https://demo.mon-entreprise.fr${path}"
-
 [context.deploy-preview.environment]
   EN_SITE = "${path}?s=m"
   FR_SITE = "${path}"
@@ -136,3 +132,7 @@ status = 200
 [context.production.environment]
   EN_SITE = "https://mycompanyinfrance.fr${path}"
   FR_SITE = "https://mon-entreprise.fr${path}"
+
+[context."demo"]
+  EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"
+  FR_SITE = "https://demo.mon-entreprise.fr${path}"
