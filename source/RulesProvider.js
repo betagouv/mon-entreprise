@@ -10,7 +10,7 @@ export default connect(
 		constructor(props) {
 			super(props)
 			fetch(
-				'http://35.204.177.108:9000/getRulesFile?' +
+				'https://publicodes.netlify.com/.netlify/functions/getRulesFile?' +
 					toPairs(props.rulesConfig)
 						.map(([k, v]) => k + '=' + v)
 						.join('&'),
