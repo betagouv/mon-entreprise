@@ -76,5 +76,13 @@ export default (tracker: Tracker) => {
 		if (action.type === 'RESET_SIMULATION') {
 			tracker.push(['trackEvent', 'Simulator', 'reset simulation'])
 		}
+		if (action.type === 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
+			tracker.push([
+				'trackEvent',
+				'Creation',
+				'status chosen',
+				action.statusName
+			])
+		}
 	}
 }
