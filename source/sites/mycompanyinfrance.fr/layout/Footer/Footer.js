@@ -1,5 +1,6 @@
 /* @flow */
 
+import { T } from 'Components'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
 import withColours from 'Components/utils/withColours'
@@ -9,6 +10,7 @@ import { compose } from 'ramda'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
+import { withTranslation } from 'react-i18next'
 import i18n from '../../../../i18n'
 import safeLocalStorage from '../../../../storage/safeLocalStorage'
 import { feedbackBlacklist } from '../../config'
@@ -17,10 +19,12 @@ import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
 import Privacy from './Privacy'
 
+type OwnProps = {}
+
 const LOCAL_STORAGE_KEY = 'app::newsletter::registered'
-const userAlreadyRegistered: boolean = false
-// JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
-const Footer = ({ colours: { colour }, tracker }) => {
+const userAlreadyRegistered: boolean =
+	JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
+const Footer = ({ colours: { colour }, tracker, t }) => {
 	const [showNewsletterForm, toggleNewsletterForm] = useState(
 		!userAlreadyRegistered
 	)
@@ -55,11 +59,17 @@ const Footer = ({ colours: { colour }, tracker }) => {
 					<div style={{ textAlign: 'center' }}>
 						{showNewsletterForm && (
 							<>
-								<h3>Inscrivez-vous à notre newsletter</h3>
+								<h3>
+									<T k="newsletter.register.title">
+										Inscrivez-vous à notre newsletter
+									</T>
+								</h3>
 								<p>
-									Vous aurez accès à des conseils sur la création, et vous
-									pourrez accéder aux nouvelles fonctionalités en avant-première
-									!
+									<T k="newsletter.register.description">
+										Vous aurez accès à des conseils sur la création
+										d'entreprise, et vous pourrez accéder aux nouvelles
+										fonctionnalités en avant-première !
+									</T>
 								</p>
 								<form
 									className="footer__registerContainer"
@@ -77,7 +87,7 @@ const Footer = ({ colours: { colour }, tracker }) => {
 										<input
 											className="ui__ plain button"
 											type="submit"
-											value="S'inscrire"
+											value={t("S'inscrire")}
 											name="subscribe"
 											id="mc-embedded-subscribe"
 										/>
@@ -132,8 +142,9 @@ const Footer = ({ colours: { colour }, tracker }) => {
 		</div>
 	)
 }
-export default compose(
+export default (compose(
 	React.memo,
+	withTranslation(),
 	withTracker,
 	withColours
-)(Footer)
+)(Footer): React$ComponentType<OwnProps>)
