@@ -47,17 +47,38 @@ const Footer = ({ colours: { colour } }) => {
 			<PageFeedback blacklist={feedbackBlacklist} />
 			<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
 				<div className="ui__ container">
-					<div id="footerIcons">
-						<a href="https://www.urssaf.fr">
-							<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
-						</a>
-						<a href="https://beta.gouv.fr">
-							<img
-								src={betaGouvSvg}
-								alt="un service de l’Etat français incubé par beta.gouv.fr"
-							/>
-						</a>
+					<div style={{ textAlign: 'center' }}>
+						<h3>Inscrivez-vous à notre newsletter</h3>
+						<p>
+							Vous aurez accès à des conseils sur la création, et vous pourrez
+							accéder aux nouvelles fonctionalités en avant-première !
+						</p>
+						<div className="footer__registerContainer">
+							<label htmlFor="footer__registerEmail" className="ui__ notice">
+								Email
+							</label>
+							<div className="footer__registerField">
+								<input id="footer__registerEmail" type="email" />
+								<input
+									className="ui__ plain button"
+									type="submit"
+									value="S'inscrire"
+								/>
+							</div>
+						</div>
+						<div id="footerIcons">
+							<a href="https://www.urssaf.fr">
+								<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
+							</a>
+							<a href="https://beta.gouv.fr">
+								<img
+									src={betaGouvSvg}
+									alt="un service de l’Etat français incubé par beta.gouv.fr"
+								/>
+							</a>
+						</div>
 					</div>
+
 					{i18n.language === 'en' && (
 						<p className="ui__ notice">
 							This website is provided by the{' '}
