@@ -238,6 +238,10 @@ export let treatRuleRoot = (rules, rule) => {
 		contrôles: list =>
 			list.map(control => {
 				let testExpression = treat(rules, rule)(control.si)
+				if (!testExpression.explanation)
+					throw new Error(
+						'Ce contrôle ne semble pas être compris :' + control['si']
+					)
 
 				return {
 					dottedName: rule.dottedName,
@@ -249,42 +253,6 @@ export let treatRuleRoot = (rules, rule) => {
 				}
 			})
 	})(root)
-
-	let controls =
-		rule['contrôles'] &&
-		rule['contrôles'].map(control => {
-			let testExpression = treat(rules, rule)(control.si)
-			if (!testExpression.explanation)
-				throw new Error(
-					'Ce contrôle ne semble pas être compris :' + control['si']
-				)
-
-			let otherVariables = testExpression.explanation.filter(
-				node =>
-					node.category === 'variable' && node.dottedName !== rule.dottedName
-			)
-			let isInputControl = !otherVariables.length,
-				level = control['niveau']
-
-			if (level === 'bloquant' && !isInputControl) {
-				throw new Error(
-					`Un contrôle ne peut être bloquant et invoquer des calculs de variables :
-						${control['si']}
-						${level}
-						`
-				)
-			}
-
-			return {
-				dottedName: rule.dottedName,
-				level: control['niveau'],
-				test: control['si'],
-				message: control['message'],
-				testExpression,
-				solution: control['solution'],
-				isInputControl
-			}
-		})
 
 	return {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
