@@ -3050,7 +3050,10 @@
 - espace: autoentrepreneur
   nom: réduction ACRE
   période: flexible
-  non applicable si: impôt . revenu abattu > plafond sécurité sociale temps plein
+  non applicable si:
+    une de ces conditions: 
+      - impôt . revenu abattu > plafond sécurité sociale temps plein
+      - entreprise . année d'activité = 'régime de croisière'
   formule: 
     variations: 
       - si: entreprise . année d'activité = 'première année'
