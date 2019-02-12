@@ -583,6 +583,12 @@ Estimer les cotisations sociales pour une embauche: Estimate the social security
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Accueil: Home
 
-404: 
+404:
   message: This page does not exist or no longer exists
   action: Return to safe place
+
+newsletter:
+  register:
+    title: Register to our newsletter
+    description: You will have access to advice on starting a business, and you will be able to access the new features in preview!
+S'inscrire: Register
