@@ -25,10 +25,11 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 				variable['non applicable si'] != null,
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
-				situationValue == null &&
-				(variableHasCond ||
-					variableHasFormula ||
-					findParentDependency(rules, variable))
+				variable['contrôles'] ||
+				(situationValue == null &&
+					(variableHasCond ||
+						variableHasFormula ||
+						findParentDependency(rules, variable)))
 
 		//		if (dottedName.includes('jeune va')) debugger
 
@@ -160,6 +161,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			ruleToTransform.période === 'flexible'
 				? environmentPeriod
 				: ruleToTransform.période
+
 		let transformedNodeValue =
 				callingPeriod === 'mois' && calledPeriod === 'année'
 					? nodeValue / 12

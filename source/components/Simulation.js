@@ -10,10 +10,8 @@ import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import { connect } from 'react-redux'
 import {
-	blockingInputControlsSelector,
 	nextStepsSelector,
-	noUserInputSelector,
-	validInputEnteredSelector
+	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 
@@ -24,12 +22,8 @@ export default compose(
 			conversationStarted: state.conversationStarted,
 			previousAnswers: state.conversationSteps.foldedSteps,
 			noNextSteps:
-				state.conversationStarted &&
-				!blockingInputControlsSelector(state) &&
-				nextStepsSelector(state).length == 0,
-			noUserInput: noUserInputSelector(state),
-			blockingInputControls: blockingInputControlsSelector(state),
-			validInputEntered: validInputEnteredSelector(state)
+				state.conversationStarted && nextStepsSelector(state).length == 0,
+			noUserInput: noUserInputSelector(state)
 		}),
 		{ resetSimulation }
 	)
@@ -46,14 +40,12 @@ export default compose(
 				conversationStarted,
 				resetSimulation,
 				noFeedback,
-				blockingInputControls,
 				showTargetsAnyway,
 				targetsTriggerConversation
 			} = this.props
 			let arePreviousAnswers = previousAnswers.length > 0,
 				displayConversation =
-					(!targetsTriggerConversation || conversationStarted) &&
-					!blockingInputControls,
+					!targetsTriggerConversation || conversationStarted,
 				showTargets =
 					targetsTriggerConversation || !noUserInput || showTargetsAnyway
 			return (
