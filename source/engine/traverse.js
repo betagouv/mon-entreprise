@@ -166,6 +166,17 @@ export let treatRuleRoot = (rules, rule) => {
 			...node,
 			...evaluatedAttributes,
 			...{ formule: evaluatedFormula },
+			...{
+				contrôles: node.contrôles.map(control => ({
+					...control,
+					evaluated: evaluateNode(
+						cache,
+						situationGate,
+						parsedRules,
+						control.testExpression
+					)
+				}))
+			},
 			nodeValue,
 			isApplicable,
 			missingVariables

@@ -6,7 +6,7 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { compose, propEq } from 'ramda'
+import { compose, propEq, chain } from 'ramda'
 import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -64,7 +64,9 @@ export default compose(
 			return (
 				<div id="targetSelection">
 					<QuickLinks />
-					<Controls controls={analysis.controls} />
+					<Controls
+						controls={chain(({ contrôles }) => contrôles, analysis.cache)}
+					/>
 					<div style={{ height: '10px' }}>
 						<Progress percent={progress} />
 					</div>
