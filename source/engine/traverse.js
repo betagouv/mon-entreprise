@@ -88,7 +88,7 @@ export let treatRuleRoot = (rules, rule) => {
 	La fonction treatRuleRoot va descendre l'arbre de la règle `rule` et produire un AST, un objet contenant d'autres objets contenant d'autres objets...
 	Aujourd'hui, une règle peut avoir (comme propriétés à parser) `non applicable si`, `applicable si` et `formule`,
 	qui ont elles-mêmes des propriétés de type mécanisme (ex. barème) ou des expressions en ligne (ex. maVariable + 3).
-	Ces mécanismes où variables sont descendues à leur tour grâce à `treat()`.
+	Ces mécanismes ou variables sont descendues à leur tour grâce à `treat()`.
 	Lors de ce traitement, des fonctions 'evaluate' et `jsx` sont attachés aux objets de l'AST. Elles seront exécutées à l'évaluation.
 	*/
 	let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -102,7 +102,7 @@ export let treatRuleRoot = (rules, rule) => {
 			{
 				parentDependency,
 				'non applicable si': notApplicable,
-				'applicable si': applicable,
+				'applicable si': applicable
 			} = evaluatedAttributes,
 			isApplicable =
 				val(parentDependency) === false
@@ -118,7 +118,7 @@ export let treatRuleRoot = (rules, rule) => {
 				node.formule
 					? evaluateNode(cache, situationGate, parsedRules, node.formule)
 					: {},
-			// evaluate the formula lazily, only if the applicability is known
+			// evaluate the formula lazily, only if the applicability is known and true
 			evaluatedFormula =
 				isApplicable === true
 					? evaluateFormula()
@@ -137,7 +137,6 @@ export let treatRuleRoot = (rules, rule) => {
 				missingVariables: formulaMissingVariables,
 				nodeValue
 			} = evaluatedFormula
-
 
 		let condMissing =
 				isApplicable === false
@@ -235,7 +234,20 @@ export let treatRuleRoot = (rules, rule) => {
 				type: 'numeric',
 				explanation: child
 			}
-		}
+		},
+		contrôles: list =>
+			list.map(control => {
+				let testExpression = treat(rules, rule)(control.si)
+
+				return {
+					dottedName: rule.dottedName,
+					level: control['niveau'],
+					test: control['si'],
+					message: control['message'],
+					testExpression,
+					solution: control['solution']
+				}
+			})
 	})(root)
 
 	let controls =
@@ -247,10 +259,10 @@ export let treatRuleRoot = (rules, rule) => {
 					'Ce contrôle ne semble pas être compris :' + control['si']
 				)
 
-				let otherVariables = testExpression.explanation.filter(
-					node =>
+			let otherVariables = testExpression.explanation.filter(
+				node =>
 					node.category === 'variable' && node.dottedName !== rule.dottedName
-					)
+			)
 			let isInputControl = !otherVariables.length,
 				level = control['niveau']
 
@@ -278,8 +290,7 @@ export let treatRuleRoot = (rules, rule) => {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
-		parsed: true,
-		controls
+		parsed: true
 	}
 }
 
@@ -342,49 +353,10 @@ export let parseAll = flatRules => {
 	return map(treatOne, flatRules)
 }
 
-let evaluateControls = blocking => (cache, parsedRules, situationGate) => {
-	return chain(({ controls, dottedName }) =>
-		(controls || [])
-			.filter(({ level }) =>
-				blocking
-					? level === 'bloquant' && situationGate(dottedName) != undefined
-					: level !== 'bloquant'
-			)
-			.map(control => ({
-				...control,
-				evaluated: evaluateNode(
-					cache,
-					situationGate,
-					parsedRules,
-					control.testExpression
-				)
-			}))
-			.filter(({ evaluated: { nodeValue } }) => nodeValue)
-	)(parsedRules).filter(found => found)
-}
-
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = { parseLevel: 0 }
-	// These controls do not trigger the evaluation of variables of the system : they are input controls
-	// This is necessary because our evaluation implementation is not yet fast enough to not freeze slow mobile devices
-	// They could be implemented directly at the redux-form level, but they should also be triggered by the engine used as a library
-	let blockingInputControls = evaluateControls(true)(
-		cache,
-		parsedRules,
-		situationGate
-	)
-	if (blockingInputControls.length)
-		return {
-			blockingInputControls
-		}
-
-	let nonBlockingControls = evaluateControls(false)(
-		cache,
-		parsedRules,
-		situationGate
-	)
 
 	let parsedTargets = targetNames.map(t => {
 			let parsedTarget = findRule(parsedRules, t)
@@ -399,7 +371,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 				cache[t.dottedName] || // This check exists because it is not done in treatRuleRoot's eval, while it is in treatVariable. This should be merged : we should probably call treatVariable here : targetNames could be expressions (hence with filters) TODO
 				evaluateNode(cache, situationGate, parsedRules, t)
 		)
-	return { targets, cache, controls: nonBlockingControls }
+	return { targets, cache }
 }
 
 export let analyse = (parsedRules, target) => {
