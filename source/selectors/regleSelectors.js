@@ -72,6 +72,8 @@ export const règleValeurSelector: InputSelector<
 			(analysis.cache[dottedName] ||
 				analysis.targets.find(target => target.dottedName === dottedName))
 
+		if (rule == undefined) return null
+
 		let valeur =
 			rule && !isNil(rule.nodeValue)
 				? rule.nodeValue
@@ -103,6 +105,7 @@ export const règleValeurSelector: InputSelector<
 			(!Number.isNaN(valeur) && Number.isNaN(Number.parseFloat(valeur))
 				? 'string'
 				: 'number')
+
 		return {
 			type,
 			valeur:

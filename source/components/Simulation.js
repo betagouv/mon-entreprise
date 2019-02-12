@@ -7,7 +7,6 @@ import { compose } from 'ramda'
 import { connect } from 'react-redux'
 import {
 	nextStepsSelector,
-	noUserInputSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
@@ -20,8 +19,7 @@ export default compose(
 			previousAnswers: state.conversationSteps.foldedSteps,
 			noNextSteps:
 				state.conversationStarted && nextStepsSelector(state).length == 0,
-			noUserInput: noUserInputSelector(state),
-			userInput: !noUserInputSelector(state)
+			noUserInput: noUserInputSelector(state)
 		}),
 		{ resetSimulation }
 	)
