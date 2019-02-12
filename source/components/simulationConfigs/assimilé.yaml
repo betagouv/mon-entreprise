@@ -8,6 +8,7 @@ questions:
 
 questions à l'affiche:
   Charges: entreprise . charges
+  Année d'activité: entreprise . année d'activité
 
 situation:
   autoentrepreneur: non
