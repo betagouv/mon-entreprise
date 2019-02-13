@@ -122,7 +122,6 @@ let Tranche = ({
 	language
 }) => {
 	let activated = trancheValue > 0
-	console.log(trancheValue, min, max)
 	return (
 		<tr className={classNames('tranche', { activated })}>
 			<td key="tranche">
