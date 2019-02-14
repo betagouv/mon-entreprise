@@ -759,7 +759,7 @@
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
-        - revenu disponible
+        - revenu net
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -974,7 +974,7 @@
 - espace: contrat salarié . salaire
   nom: net après impôt
   titre: Salaire net après impôt
-  résumé: Touché sur le compte bancaire
+  résumé: Versé sur son compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   format: euros
@@ -984,7 +984,7 @@
 
     Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé).
 
-    C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
+    C'est une bonne estimation du revenu net d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
 
     Pour une simulation plus complète, rendez-vous sur [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
   références:
@@ -2573,12 +2573,12 @@
 
 - nom: impôt sur le revenu à payer
   espace: impôt
-  période: année
+  période: flexible
   formule:
     allègement:
       assiette: impôt sur le revenu
       décote:
-        plafond: 1177
+        plafond: plafond de décote
         taux: 75%
   exemples:
     - nom: Salaire d'un cadre
@@ -2586,12 +2586,17 @@
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
 
+- nom: plafond de décote
+  espace: impôt
+  période: année
+  formule: 1177
+
 - nom: revenu net de cotisations
   période: flexible
   formule:
     somme:
       - contrat salarié . salaire . net
-      - indépendant . revenu net de cotisations
+      - indépendant . revenu professionnel
       - autoentrepreneur . revenu net de cotisations
 
 - nom: revenu net d'impôt
@@ -2599,10 +2604,10 @@
   période: flexible
   formule: revenu net de cotisations - impôt . impôt sur le revenu à payer
 
-- nom: revenu disponible
-  titre: Revenu disponible
+- nom: revenu net
+  titre: Revenu net
   format: euros
-  résumé: Après déductions des cotisations et de l'impôt
+  résumé: Après cotisations et impôt sur le revenu
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
@@ -2650,7 +2655,7 @@
         alors:
           inversion numérique:
             avec:
-              - revenu disponible
+              - revenu net
       - sinon: rémunération totale du dirigeant + charges
 
 - espace: entreprise
@@ -2709,7 +2714,7 @@
   période: flexible
   formule:
     barème continu:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 100%
@@ -2718,11 +2723,13 @@
       retourne seulement le taux: oui
 
 - espace: indépendant
-  nom: revenu net de cotisations
-  titre: Revenu net en tant qu'indépendant
+  nom: revenu professionnel
+  titre: Revenu professionnel
+  résumé: Revenu net de cotisations
+  question: Quel est votre revenu professionnel ?
   description: |
 
-    C'est le revenu professionel du travailleur indépendant.
+    C'est le revenu net de cotisations du travailleur indépendant.
 
   Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
 
@@ -2731,12 +2738,12 @@
     inversion numérique:
       avec:
         - revenu brut
-        - revenu disponible
+        - revenu net
         - entreprise . chiffre d'affaires
 
 - espace: indépendant
   nom: revenu brut
-  formule: revenu net de cotisations + prélèvements
+  formule: revenu professionnel + cotisations et contributions
   période: flexible
 
 - nom: entreprise . catégorie d'activité
@@ -2795,7 +2802,7 @@
       - allocations familiales
 
 - espace: indépendant
-  nom: prélèvements
+  nom: cotisations et contributions
   période: flexible
   formule:
     somme:
@@ -2811,7 +2818,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           barème continu:
-            assiette: revenu net de cotisations
+            assiette: revenu professionnel
             multiplicateur: plafond sécurité sociale temps plein
             points:
               0: 1.5%
@@ -2823,7 +2830,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
@@ -2837,7 +2844,7 @@
   période: flexible
   formule:
     barème continu:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
@@ -2847,10 +2854,10 @@
 - espace: indépendant . cotisations . maladie . artisans commerçants
   nom: part revenus élevés
   période: flexible
-  applicable si: revenu net de cotisations > seuil
+  applicable si: revenu professionnel > seuil
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       taux: 0.15%
 
 - espace: indépendant . cotisations . maladie . artisans commerçants . part revenus élevés
@@ -2866,7 +2873,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           multiplication:
-            assiette: revenu net de cotisations
+            assiette: revenu professionnel
             composantes:
               - nom: tranche 1
                 plafond: 39732
@@ -2876,7 +2883,7 @@
                 taux: 1.87%
       - sinon:
           barème:
-            assiette: revenu net de cotisations
+            assiette: revenu professionnel
             tranches:
               - en-dessous de: 39732
                 taux: 17.75%
@@ -2893,7 +2900,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           barème linéaire:
-            assiette: revenu net de cotisations
+            assiette: revenu professionnel
             tranches:
               - en-dessous de: 26580
                 montant: 1277
@@ -2919,7 +2926,7 @@
                 montant: 15597
       - sinon:
           barème:
-            assiette: revenu net de cotisations
+            assiette: revenu professionnel
             tranches:
               - en-dessous de: 37846
                 taux: 7%
@@ -2937,14 +2944,14 @@
   période: flexible
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
 
-- espace: indépendant . prélèvements
+- espace: indépendant . cotisations et contributions
   nom: CSG et CRDS
   période: flexible
   formule:
@@ -2959,21 +2966,21 @@
             impôt sur le revenu: déductible
           taux: 6.8%
 
-- espace: indépendant . prélèvements . CSG et CRDS
+- espace: indépendant . cotisations et contributions . CSG et CRDS
   nom: assiette
   note: Il faut vérifier que l'assiette de la CSG et CRDS est correcte. Pourquoi les cotisations sont-elles dans l'assiette ? La retraite complémentaire doit l'être aussi ?
   période: flexible
   formule:
     somme:
-      - revenu net de cotisations
+      - revenu professionnel
       - cotisations
 
-- espace: indépendant . prélèvements
+- espace: indépendant . cotisations et contributions
   nom: formation professionnelle
   période: flexible
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       taux: 0.29%
       plafond: plafond sécurité sociale temps plein
       # C'est le taux pour les artisans.
@@ -2984,7 +2991,7 @@
   période: flexible
   formule:
     barème continu:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
@@ -2994,12 +3001,12 @@
 - espace: indépendant
   nom: revenu brut
   période: flexible
-  formule: revenu net de cotisations + prélèvements
+  formule: revenu professionnel + cotisations et contributions
 
 - espace: indépendant
   nom: revenu imposable
   période: flexible
-  formule: revenu net de cotisations + prélèvements . CSG et CRDS (non déductible)
+  formule: revenu professionnel + cotisations et contributions . CSG et CRDS (non déductible)
 
 - nom: autoentrepreneur
   icônes: 🚶
@@ -3251,5 +3258,5 @@
   période: flexible
 
 - nom: ratio de revenu
-  formule: revenu disponible / entreprise . rémunération totale du dirigeant
+  formule: revenu net / entreprise . rémunération totale du dirigeant
   période: flexible

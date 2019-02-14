@@ -10,7 +10,6 @@
 - nom: répartition salaire sur dividendes
   par défaut: 0.5
 
-
 - nom: impôt sur les sociétés
   période: année
   formule:
@@ -53,16 +52,10 @@
         - taux: 17.2%
         - taux: 12.8%
 
-
-
 - nom: salaire total
   période: flexible
   formule: chiffre affaires * répartition salaire sur dividendes
 
-
-- nom: revenu disponible
+- nom: revenu net
   période: flexible
   formule: contrat salarié . salaire . net après impôt + dividendes . net
-
-
-

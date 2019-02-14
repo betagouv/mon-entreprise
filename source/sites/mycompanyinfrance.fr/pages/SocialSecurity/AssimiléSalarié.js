@@ -4,8 +4,8 @@ import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import emoji from 'react-easy-emoji'
+import { Helmet } from 'react-helmet'
 
 const AssimiléSalarié = () => (
 	<>
@@ -31,8 +31,8 @@ const AssimiléSalarié = () => (
 			targets={<TargetSelection />}
 			explanation={
 				<p>
-					{emoji('☂️ ')}Le dirigeant a la même protection sociale qu'un salarié,
-					mis à part le chômage.
+					{emoji('☂️ ')} Le dirigeant a la même protection sociale qu'un
+					salarié, mis à part le chômage.
 				</p>
 			}
 		/>

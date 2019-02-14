@@ -1,8 +1,9 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - indépendant . prélèvements
+  - indépendant . cotisations et contributions
+  - indépendant . revenu professionnel
   - impôt . impôt sur le revenu à payer
-  - revenu disponible
+  - revenu net
 
 questions:
   - entreprise . charges

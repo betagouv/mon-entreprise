@@ -36,7 +36,7 @@ const connectRègles = (situationBranchName: string) =>
 					validInputEnteredSelector(state) &&
 					règleAvecMontantSelector(state, {
 						situationBranchName
-					})('revenu disponible'),
+					})('revenu net'),
 				prélèvements:
 					validInputEnteredSelector(state) &&
 					règleAvecValeurSelector(state, {
