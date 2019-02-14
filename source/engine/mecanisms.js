@@ -584,7 +584,7 @@ export let mecanismReduction = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
 		abattement: constantNode(0),
-		franchise: constantNode(0)
+		franchise: constantNode(0),
 	}
 
 	let effect = ({ assiette, abattement, franchise, décote }) => {

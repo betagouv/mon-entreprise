@@ -160,7 +160,6 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			ruleToTransform.période === 'flexible'
 				? environmentPeriod
 				: ruleToTransform.période
-
 		let transformedNodeValue =
 				callingPeriod === 'mois' && calledPeriod === 'année'
 					? nodeValue / 12
@@ -179,6 +178,13 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			filteredNode.explanation,
 			filteredNode.missingVariables
 		)
+		console.group(ruleToTransform.dottedName)
+		console.log('ruleToTransform.dottedName', ruleToTransform.dottedName)
+		console.log('rule.dottedName', rule.dottedName)
+		console.log('environmentPeriod', environmentPeriod)
+		console.log('callingPeriod', callingPeriod)
+		console.log('calledPeriod', calledPeriod)
+		console.groupEnd()
 		return result
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(

@@ -27,7 +27,7 @@ contrat salarié . indemnité kilométrique vélo . indemnité vélo active:
     travail ?
   description.en: >
     The employer has the choice to enable his employees to take advantage of
-    this new financial aid. 
+    this new financial aid.
 
     What sets it appart from a salary bonus is that it is exonerated from social
     contributions and income tax up to 200€.
@@ -113,8 +113,8 @@ contrat salarié . ATMP . taux réduit:
   titre.en: reduced rate for risk-free activity
   question.en: Is the activity of the establishment or employee without risk ?
   description.en: |
-    This rate corresponds to: 
-      - small companies whose activity is not risky, for example IT consulting 
+    This rate corresponds to:
+      - small companies whose activity is not risky, for example IT consulting
       - the new "support function rate": for companies with fewer than 150 employees, employees in support functions (for example, secretarial, accounting, human resources) contribute at a reduced rate.
 contrat salarié . ATMP . taux collectif ATMP:
   titre.en: ATMP collective rate
@@ -559,10 +559,10 @@ contrat salarié . smic mensuel temps plein:
 contrat salarié . smic mensuel:
   titre.en: monthly minimum wage
   titre.fr: smic mensuel
-contrat salarié . cotisations salariales:
+contrat salarié . cotisations . salariales:
   titre.en: Employee contributions
   titre.fr: cotisations salariales
-contrat salarié . cotisations patronales:
+contrat salarié . cotisations . patronales:
   titre.en: employer contributions
   titre.fr: cotisations patronales
 contrat salarié . rémunération:
@@ -627,7 +627,7 @@ contrat salarié . salaire . net après impôt:
   question.en: What is the net income of the employee after income tax?
   description.fr: >
     Le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non
-    personnalisé). 
+    personnalisé).
 
 
     C'est une bonne estimation du revenu disponible d'une personne en l'absence
@@ -855,7 +855,7 @@ contrat salarié . temps partiel:
   question.fr: Le contrat est-il à temps partiel ?
   description.en: >-
     Two contracts with the same salary, with one being part-time, can lead to
-    slightly different social contribution amounts. 
+    slightly different social contribution amounts.
 
     For example, capped contributions or exemptions depending on the legal
     minimum wage.
@@ -1140,7 +1140,7 @@ contrat salarié . FNAL:
   titre.en: Contribution to the National Fund for Housing Assistance
   titre.fr: Contribution au Fonds National d’Aide au Logement
   description.fr: >
-    Le fonds national d’aide au logement (Fnal) est une contribution 
+    Le fonds national d’aide au logement (Fnal) est une contribution
     qui assure le financement de l’allocation logement.
   description.en: >-
     The National Housing Fund (Fnal) is a contribution to ensure the financing of the housing allowance.
@@ -1281,8 +1281,8 @@ protection sociale . retraite:
     The pension system is currently based on the principle of the "distribution". This means that asset contributions finance retirement pensions.
 
     ## Retirement in France in a few figures
-      - **2094 € / month**: Average standard of living for people over 65 (compared to the rest of the population, it is the highest in the OECD 🥇)  
-      - **25 years**: the average number of years spent in retirement (the highest in the OECD)  
+      - **2094 € / month**: Average standard of living for people over 65 (compared to the rest of the population, it is the highest in the OECD 🥇)
+      - **25 years**: the average number of years spent in retirement (the highest in the OECD)
       - **75%**: the replacement rate as a percentage of net salary after full annuities
 
     Pensions are the highest of social security contributions. It can be considered a deferred salary, since your contributions will provide you with income when you retire.
@@ -1291,7 +1291,7 @@ protection sociale . santé:
   titre.en: healthcare
   description courte.en: Covers most everyday health care and 100% of serious illnesses such as hospital stays.
   description.en: |
-    Health Insurance protects the health of everyone on a long-term basis - in their personal or professional life - by acting on behalf of everyone. 
+    Health Insurance protects the health of everyone on a long-term basis - in their personal or professional life - by acting on behalf of everyone.
 
     In concrete terms, it supports 60 million insured throughout their lives, by taking charge of their care regardless of their resources, situation or state of health. It thus guarantees universal access to rights and allows access to health care.
 
@@ -1311,16 +1311,16 @@ protection sociale . assurance chômage:
   titre.en: unemployment insurance
   description courte.en: Gives income to former employees while they're looking for a new job.
   description.en: |
-    Since 1958, the Unemployment Insurance has been protecting all private and some public sector employees when they lose their jobs. It provides them with an allowance and promotes their return to employment through assistance. 
+    Since 1958, the Unemployment Insurance has been protecting all private and some public sector employees when they lose their jobs. It provides them with an allowance and promotes their return to employment through assistance.
 
     Operating as an insurance, it compensates those who have contributed, based on their former salary. But it is also supportive, since it pools risks and compensates better for the loss of a low salary than a high income.
 
     Thanks to it, all those who involuntarily lose their jobs can receive income in the form of an allowance as long as they have made sufficient contributions.
 
     ## Unemployment insurance in France in a few figures
-      - **72%** of old net salary: average percentage of unemployment benefit    
-      - **2.7 million** unemployed people compensated each month    
-      - **1,020 €****: amount of the net allowance per month  
+      - **72%** of old net salary: average percentage of unemployment benefit
+      - **2.7 million** unemployed people compensated each month
+      - **1,020 €****: amount of the net allowance per month
       - **51%** of recipients combine allowance and salary
 
 protection sociale . famille:
@@ -1328,10 +1328,10 @@ protection sociale . famille:
   description courte.en: Offers a balanced professional and family life. Financing of nurseries and various childcare services
   description.en: |
     Created in 1945, the Family branch is one of the main actors of French family policy. Currently, it has two priority missions:
-      - Helping families in their daily lives, facilitating, in particular, the reconciliation of family and professional life;  
+      - Helping families in their daily lives, facilitating, in particular, the reconciliation of family and professional life;
       - Develop solidarity with the most vulnerable, including people with disabilities.
 
-    To fulfil these missions, it relies on two levers: 
+    To fulfil these missions, it relies on two levers:
       - The payment of financial benefits to families (family and social benefits, housing subsidies and minimum social benefits such as assistance for disabled adults and active solidarity income)
       - Support for families and the setting up or co-financing of various
       community services and facilities for them (such as nurseries)
@@ -1342,7 +1342,6 @@ protection sociale . famille:
       - **900 € / month**: amount of the allowance for disabled adults
       - **19%** share of expenditure allocated to early childhood
       - **75%** of mothers with a dependent child work (only 30% part-time)
-      
 
 protection sociale . accidents du travail et maladies professionnelles:
   titre.en: Work accidents / occupational diseases
@@ -1366,15 +1365,15 @@ protection sociale . transport:
   description.en: |
     This contribution is paid in full to the [mobility authority](https://fr.wikipedia.org/wiki/Autorit%C3%A9_mobility_organiser%C3%A9) in the area where the company is located. It can then be used to subsidize existing public transport or to develop new transport infrastructure (tramway, metro, bus, etc.).
 
-    ## The transport payment in a few figures 
-    - **45% discount** on the cost of public transport in the 12 largest conurbations in France. 
+    ## The transport payment in a few figures
+    - **45% discount** on the cost of public transport in the 12 largest conurbations in France.
     - **€263 / year / inhabitant** in purchasing power gains for Île-de-France residents
 
 protection sociale . autres:
   titre.en: other
   description courte.en: Other contributions to the social system.
   description.en: |
-    Cross-cutting contributions to the social system. 
+    Cross-cutting contributions to the social system.
 
     For example, there is the CRDS (contribution for the repayment of the social debt) which is a tax intended to reduce the debt of the Social Security, and thus ensure the sustainability of social protection for your children and grandchildren.
 

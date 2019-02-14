@@ -810,7 +810,7 @@
   nom: montant
   titre: Avantages en nature (montant)
   description: >
-    Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+    Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   question: Quel est le montant des avantages en nature ?
   période: flexible
   suggestions:
@@ -2573,12 +2573,12 @@
 
 - nom: impôt sur le revenu à payer
   espace: impôt
-  période: flexible
+  période: année
   formule:
     allègement:
       assiette: impôt sur le revenu
       décote:
-        plafond: plafond de décote
+        plafond: 1177
         taux: 75%
   exemples:
     - nom: Salaire d'un cadre
@@ -2586,10 +2586,13 @@
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
 
-- nom: plafond de décote
+- nom: impôt sur le revenu flexible
   espace: impôt
-  période: année
-  formule: 1177
+  titre: impôt sur le revenu
+  description: L'impôt sur le revenu, ramené à la période
+  période: flexible
+  formule: impôt sur le revenu à payer
+
 
 - nom: revenu net de cotisations
   période: flexible
@@ -2645,6 +2648,7 @@
 
 - espace: entreprise
   nom: chiffre d'affaires
+  titre: chiffre d'affaires H.T.
   question: Quel est votre chiffre d'affaires H.T. ?
   résumé: Le montant des ventes réalisées
   période: flexible
