@@ -3078,6 +3078,9 @@
             alors: 50%
           - sinon: 71%
 
+- espace: autoentrepreneur
+  nom: impôt
+
 - espace: autoentrepreneur . impôt
   nom: revenu abattu
   période: flexible
