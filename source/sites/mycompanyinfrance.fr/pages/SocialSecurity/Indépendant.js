@@ -1,11 +1,11 @@
+import { React } from 'Components'
 import AlphaWarning from 'Components/AlphaWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import TargetSelection from 'Components/TargetSelection'
-import { React } from 'Components'
-import { Helmet } from 'react-helmet'
 import emoji from 'react-easy-emoji'
+import { Helmet } from 'react-helmet'
 
 const Indépendant = () => (
 	<>
@@ -40,7 +40,7 @@ const Indépendant = () => (
 )
 
 let AvertissementForfaitIndépendants = () => (
-	<p>
+	<p className="ui__ notice">
 		{emoji('💶 ')}Notre estimation prend en compte les{' '}
 		<em>cotisations réelles</em> dues par le travailleur indépendant. Pendant la
 		première année de son activité, il ne paiera qu'un forfait réduit (une somme
@@ -50,7 +50,7 @@ let AvertissementForfaitIndépendants = () => (
 )
 
 export let AvertissementProtectionSocialeIndépendants = () => (
-	<p>
+	<p className="ui__ notice">
 		{emoji('☂️ ')}La sécurité sociale des indépendants ne couvre ni les
 		accidents du travail, ni la perte d'emploi (assurance-chômage), et offre une
 		retraite plus faible que celle des salariés. Pour être couvert, le

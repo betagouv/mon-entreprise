@@ -867,8 +867,8 @@
   période: flexible
   formule: SMIC temps plein * quotité de travail
 
-- espace: contrat salarié
-  nom: cotisations salariales
+- espace: contrat salarié . cotisations
+  nom: salariales
   format: euros
   période: flexible
   formule:
@@ -883,8 +883,8 @@
       - APEC (salarié)
       - complémentaire santé (salarié)
 
-- espace: contrat salarié
-  nom: cotisations patronales
+- espace: contrat salarié . cotisations
+  nom: patronales
   période: flexible
   format: euros
   formule:
@@ -923,7 +923,7 @@
   type: rémunération
   format: euros
   période: flexible
-  formule: rémunération . brut - cotisations salariales
+  formule: rémunération . brut - cotisations . salariales
 
 - espace: contrat salarié . rémunération
   nom: net imposable
@@ -1339,7 +1339,7 @@
   nom: réductions de cotisations
   période: flexible
   format: euros
-  formule: 
+  formule:
     somme:
       - réduction générale
       - exonération JEI
@@ -1347,12 +1347,12 @@
 
 - espace: contrat salarié
   nom: réduction ACRE
-  applicable si: 
-    toutes ces conditions: 
+  applicable si:
+    toutes ces conditions:
       - assimilé salarié
       - entreprise . année d'activité = 'première année'
   période: flexible
-  formule: 
+  formule:
     multiplication:
       assiette:
         somme:
@@ -1382,7 +1382,16 @@
   formule:
     somme:
       - brut
-      - cotisations patronales
+      - cotisations . patronales
+
+- espace: contrat salarié
+  nom: cotisations
+  période: flexible
+  descitption: Total des cotisation patronales et salariales
+  formule:
+    somme:
+      - patronales
+      - salariales
 
 - espace: contrat salarié
   nom: coût d'embauche
@@ -2604,14 +2613,14 @@
 - espace: entreprise
   nom: année d'activité
   question: Quelle est l'age de l'entreprise en années d'activité ?
-  description: | 
+  description: |
     Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
 
     Il doit pour cela contrôler son entreprise. C'est le cas pour une entreprise à un associé, et donc pour une auto-entreprise.
 
     Pour les auto-entreprises, cette réduction est même prolongée pendant un total de 3 ans, de façon dégressive.
-  formule: 
-    une possibilité: 
+  formule:
+    une possibilité:
       choix obligatoire: oui
       possibilités:
         - première année
@@ -2690,7 +2699,7 @@
   nom: réduction ACRE
   applicable si: entreprise . année d'activité = 'première année'
   période: flexible
-  formule: 
+  formule:
     multiplication:
       assiette: cotisations - cotisations . retraite complémentaire
       taux: taux ACRE
@@ -2707,7 +2716,7 @@
         0.75: 100%
         1: 0%
       retourne seulement le taux: oui
-            
+
 - espace: indépendant
   nom: revenu net de cotisations
   titre: Revenu net en tant qu'indépendant
@@ -3032,7 +3041,7 @@
   nom: taux de réduction de cotisation
   formule: 1 - réduction ACRE
   période: flexible
-  
+
 - espace: autoentrepreneur
   nom: cotisations
   période: flexible
@@ -3051,11 +3060,11 @@
   nom: réduction ACRE
   période: flexible
   non applicable si:
-    une de ces conditions: 
+    une de ces conditions:
       - impôt . revenu abattu > plafond sécurité sociale temps plein
       - entreprise . année d'activité = 'régime de croisière'
-  formule: 
-    variations: 
+  formule:
+    variations:
       - si: entreprise . année d'activité = 'première année'
         alors: 75%
       - si: entreprise . année d'activité = 'deuxième année'

@@ -12,14 +12,22 @@
 }
 #targetSelection #targets > li:last-child {
 	margin-bottom: -1rem;
-	border-bottom: none;
 }
 #targetSelection #targets > li:first-child {
+	border-top: none;
 	margin-top: -1rem;
 }
 
+#targetSelection #targets > li.not-editable * {
+	font-size: 1rem;
+	font-weight: normal;
+}
+#targetSelection #targets > li.not-editable {
+	border-top: none;
+}
+
 #targetSelection #targets > li {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
 	padding: 0.6rem 1rem;
 	margin-left: -1rem;
 	margin-right: -1rem;

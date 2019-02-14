@@ -1,5 +1,8 @@
 objectifs:
   - entreprise . chiffre d'affaires
+  - entreprise . charges non déductibles
+  - autoentrepreneur . cotisations après réductions
+  - impôt . impôt sur le revenu à payer
   - revenu disponible
 
 questions:

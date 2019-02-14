@@ -20,11 +20,7 @@ const AutoEntrepreneur = () => (
 		<p>
 			Les auto-entrepreneurs relèvent de la sécurité sociale des indépendants.
 		</p>
-		<p>
-			La sécurité sociale des indépendants ne couvre ni les accidents du
-			travail, ni la perte d'emploi (assurance-chômage). Pour être couvert, le
-			professionnel peut souscrire volontairement des assurances spécifiques.
-		</p>
+
 		<AlphaWarning />
 		<Simulation
 			targetsTriggerConversation={true}

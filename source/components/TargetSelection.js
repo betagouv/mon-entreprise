@@ -104,7 +104,7 @@ export default compose(
 				<div>
 					<ul id="targets">
 						{displayedTargets.map(target => (
-							<li key={target.name}>
+							<li key={target.name} className={!target.question && 'not-editable'}>
 								<div className="main">
 									<Header
 										{...{
@@ -115,6 +115,7 @@ export default compose(
 											blockingInputControls
 										}}
 									/>
+									{!target.question && <span style={{flex: 1, borderBottom: '1px dashed #ffffff91', marginLeft: '1rem'}}/>}
 									<TargetInputOrValue
 										{...{
 											target,
