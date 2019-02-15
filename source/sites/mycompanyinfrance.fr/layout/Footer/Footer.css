@@ -25,10 +25,7 @@
 }
 .footer__registerContainer {
 	display: flex;
-	margin: auto;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 	margin-bottom: 2rem;
 }
 .footer__registerField {
@@ -38,7 +35,6 @@
 	overflow: hidden;
 	border-radius: 0.3rem;
 	align-self: center;
-	/* margin: 0.3rem 0.6rem; */
 }
 .footer__registerField > input[type='submit'] {
 	border-top-left-radius: 0 !important;
@@ -49,11 +45,4 @@
 	padding: 0.3rem 0.6rem;
 	font-family: inherit;
 	border: none;
-}
-.footer-container hr {
-	border-color: var(--colour);
-	border-color: #2975d1;
-	border-width: 0.5px;
-	border-style: solid;
-	margin: 1rem 0;
 }

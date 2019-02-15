@@ -56,57 +56,56 @@ const Footer = ({ colours: { colour }, tracker, t }) => {
 			<PageFeedback blacklist={feedbackBlacklist} />
 			<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
 				<div className="ui__ container">
-					<div style={{ textAlign: 'center' }}>
-						{showNewsletterForm && (
-							<>
-								<h3>
-									<T k="newsletter.register.title">
-										Inscrivez-vous à notre newsletter
-									</T>
-								</h3>
-								<p>
-									<T k="newsletter.register.description">
-										Vous aurez accès à des conseils sur la création
-										d'entreprise, et vous pourrez accéder aux nouvelles
-										fonctionnalités en avant-première !
-									</T>
-								</p>
-								<form
-									className="footer__registerContainer"
-									action="https://gouv.us13.list-manage.com/subscribe/post?u=732a4d1b0d2e8a1a1fd3d01db&amp;id=f146678e48"
-									method="post"
-									onSubmit={onSubmit}
-									id="mc-embedded-subscribe-form"
-									name="mc-embedded-subscribe-form"
-									target="_blank">
-									<label htmlFor="mce-EMAIL" className="ui__ notice">
-										Email
-									</label>
-									<div className="footer__registerField">
-										<input type="email" name="EMAIL" id="mce-EMAIL" />
-										<input
-											className="ui__ plain button"
-											type="submit"
-											value={t("S'inscrire")}
-											name="subscribe"
-											id="mc-embedded-subscribe"
-										/>
-									</div>
-								</form>
-							</>
-						)}
-						<div id="footerIcons">
-							<a href="https://www.urssaf.fr">
-								<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
-							</a>
-							<a href="https://beta.gouv.fr">
-								<img
-									src={betaGouvSvg}
-									alt="un service de l’Etat français incubé par beta.gouv.fr"
-								/>
-							</a>
-						</div>
+					<div id="footerIcons">
+						<a href="https://www.urssaf.fr">
+							<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
+						</a>
+						<a href="https://beta.gouv.fr">
+							<img
+								src={betaGouvSvg}
+								alt="un service de l’Etat français incubé par beta.gouv.fr"
+							/>
+						</a>
 					</div>
+
+					{showNewsletterForm && (
+						<>
+							<p>
+								<T k="newsletter.register.description1">
+									Vous voulez des{' '}
+									<strong>
+										conseils officiels sur la création d’entreprise
+									</strong>{' '}
+									et accéder aux nouvelles fonctionnalités en avant-première ?
+								</T>
+							</p>
+							<p>
+								<T k="newsletter.register.description2">
+									Inscrivez-vous à notre <strong>newsletter mensuelle</strong>{' '}
+									en laissant votre email :
+								</T>
+							</p>
+							<form
+								className="footer__registerContainer"
+								action="https://gouv.us13.list-manage.com/subscribe/post?u=732a4d1b0d2e8a1a1fd3d01db&amp;id=f146678e48"
+								method="post"
+								onSubmit={onSubmit}
+								id="mc-embedded-subscribe-form"
+								name="mc-embedded-subscribe-form"
+								target="_blank">
+								<div className="footer__registerField">
+									<input type="email" name="EMAIL" id="mce-EMAIL" />
+									<input
+										className="ui__ plain button"
+										type="submit"
+										value={t("S'inscrire")}
+										name="subscribe"
+										id="mc-embedded-subscribe"
+									/>
+								</div>
+							</form>
+						</>
+					)}
 
 					{i18n.language === 'en' && (
 						<p className="ui__ notice">

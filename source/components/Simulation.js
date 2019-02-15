@@ -1,12 +1,17 @@
-import { resetSimulation } from 'Actions/actions';
-import { React, T } from 'Components';
-import Answers from 'Components/AnswerList';
-import Conversation from 'Components/conversation/Conversation';
-import withColours from 'Components/utils/withColours';
-import { compose } from 'ramda';
-import { connect } from 'react-redux';
-import { blockingInputControlsSelector, nextStepsSelector, noUserInputSelector, validInputEnteredSelector } from 'Selectors/analyseSelectors';
-import Animate from 'Ui/animate';
+import { resetSimulation } from 'Actions/actions'
+import { React, T } from 'Components'
+import Answers from 'Components/AnswerList'
+import Conversation from 'Components/conversation/Conversation'
+import withColours from 'Components/utils/withColours'
+import { compose } from 'ramda'
+import { connect } from 'react-redux'
+import {
+	blockingInputControlsSelector,
+	nextStepsSelector,
+	noUserInputSelector,
+	validInputEnteredSelector
+} from 'Selectors/analyseSelectors'
+import Animate from 'Ui/animate'
 
 export default compose(
 	withColours,

@@ -589,6 +589,6 @@ Accueil: Home
 
 newsletter:
   register:
-    title: Register to our newsletter
-    description: You will have access to advice on starting a business, and you will be able to access the new features in preview!
+    description1: Do you want to have <2>official advice on creating a company</2> and access the new features in preview?
+    description2: 'Register to our <1>monthly newsletter</1> by leaving your email:'
 S'inscrire: Register

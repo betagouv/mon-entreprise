@@ -67,7 +67,9 @@ export default compose(
 				<div id="targetSelection">
 					<QuickLinks />
 					<Controls controls={analysis.controls} />
-					<div style={{height: '10px'}}><Progress percent={progress}/></div>
+					<div style={{ height: '10px' }}>
+						<Progress percent={progress} />
+					</div>
 					<section
 						className="ui__ plain card"
 						style={{
@@ -104,7 +106,9 @@ export default compose(
 				<div>
 					<ul id="targets">
 						{displayedTargets.map(target => (
-							<li key={target.name} className={!target.question && 'not-editable'}>
+							<li
+								key={target.name}
+								className={!target.question ? 'not-editable' : undefined}>
 								<div className="main">
 									<Header
 										{...{
@@ -115,7 +119,15 @@ export default compose(
 											blockingInputControls
 										}}
 									/>
-									{!target.question && <span style={{flex: 1, borderBottom: '1px dashed #ffffff91', marginLeft: '1rem'}}/>}
+									{!target.question && (
+										<span
+											style={{
+												flex: 1,
+												borderBottom: '1px dashed #ffffff91',
+												marginLeft: '1rem'
+											}}
+										/>
+									)}
 									<TargetInputOrValue
 										{...{
 											target,
