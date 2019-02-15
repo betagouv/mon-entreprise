@@ -3252,15 +3252,3 @@
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
-
-- nom: ratio de prélèvements
-  description: |
-    Les prélèvements incluent les cotisations sociales, la CSG, l'impôt sur le revenu.
-
-    Attention, pour les auto-entrepreneur, nous incluons les charges dans ce ratio de prélèvements, car les charges ne sont pas déductibles. Cela permet de comparer le ratio de prélèvements entre les différents régimes.
-  formule: 1 - ratio de revenu
-  période: flexible
-
-- nom: ratio de revenu
-  formule: revenu net / entreprise . rémunération totale du dirigeant
-  période: flexible

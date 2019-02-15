@@ -1,6 +1,8 @@
 .scheme-card__container {
-	width: 24rem;
+	min-width: 20rem;
+	max-width: 26rem;
 	margin: 1rem;
+	flex: 1;
 }
 .scheme-card__container:not(.is-IE) {
 	display: flex;
@@ -34,7 +36,7 @@
 	text-align: center;
 	margin: -1rem -1rem 1rem;
 	align-self: stretch;
-	/* visibility: hidden; */
+	font-size: 0.8rem;
 	font-family: 'IBM Plex Sans', sans-serif;
 	padding: 0.5rem;
 }
@@ -52,23 +54,23 @@
 .scheme-card__content {
 	flex: 1;
 	align-self: stretch;
+	margin-top: 1rem;
 }
 .scheme-card__cta {
 	text-align: center;
 }
 .scheme-card__amount {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	margin-left: auto !important;
-	margin-right: auto !important;
+	align-self: stretch;
 	align-items: center;
-	width: fit-content;
-	margin: 1rem auto;
+	margin-top: 1rem;
 }
+
 .scheme-card__amount p {
-	margin-top: 0.6rem;
-	margin-bottom: 0rem;
+	margin: 0rem;
+}
+.scheme-card__amount-separator {
+	flex: 1;
 }
 @media (max-width: 800px) {
 	.scheme-card__title::before {
@@ -116,11 +118,6 @@
 		justify-content: flex-start;
 		font-size: 1rem;
 	}
-	.scheme-card__header + div {
-		/* flex: 1; */
-		text-align: center;
-		width: 100%;
-	}
 	.scheme-card__amount {
 		flex-direction: row;
 		display: flex;
@@ -137,9 +134,7 @@
 	.scheme-card__cta:not(.scheme-card__cta--visible) {
 		display: none;
 	}
-	.scheme-card__content {
-		margin-top: 1rem;
-	}
+
 	.scheme-card__content:not(.scheme-card__content--visible) {
 		display: none;
 	}

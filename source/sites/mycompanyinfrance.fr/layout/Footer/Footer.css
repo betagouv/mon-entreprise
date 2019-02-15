@@ -3,8 +3,7 @@
 }
 .footer {
 	background-color: rgba(41, 117, 209, 0.133);
-	padding-top: 2rem;
-	padding-bottom: 1rem;
+	padding: 1rem 0;
 }
 
 .footer img {
@@ -17,7 +16,7 @@
 
 #footerIcons {
 	display: flex;
-	margin: 1rem 0;
+	margin: 2rem 0;
 	justify-content: space-around;
 }
 #footerIcons a::after {
