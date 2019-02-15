@@ -85,9 +85,9 @@ const CreateMyCompany = ({
 							<T>Commencer</T>
 						</Link>
 						<Link
-							to={sitePaths.sécuritéSociale.index}
+							to={sitePaths.entreprise.statutJuridique.liste}
 							className="ui__ simple skip button">
-							<T>Plus tard</T> →
+							<T>Je connais mon statut</T> →
 						</Link>
 					</div>
 				</>

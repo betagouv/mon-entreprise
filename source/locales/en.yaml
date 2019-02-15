@@ -298,7 +298,7 @@ Votre forme juridique: Your legal status
 Créer une: Create a
 Devenir: Become
 Choisir la forme juridique: Choose your legal status
-Plus tard: Do it later
+Je connais mon statut: I know my status
 
 responsabilité:
   page:
@@ -309,7 +309,7 @@ responsabilité:
   entreprise-individuelle: |
     <0>Sole proprietorship:</0>
     An economic activity carried out by a single natural person in his or her own name. Less formalities, but more risks in the event of bankruptcy, because your personal assets can be put to use.
-    <2>You cannot welcome new partners into a sole proprietorship.</2>
+    <3>You cannot welcome new partners into a sole proprietorship.</3>
   société: |
     <0>Limited liability company:</0>
     You cannot be held personally liable for the company's debts or obligations. On the other hand, the creation process is a little more cumbersome, since it includes the drafting of statutes and the deposit of capital.
