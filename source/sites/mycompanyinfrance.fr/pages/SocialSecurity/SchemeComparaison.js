@@ -22,7 +22,7 @@ const SchemeComparaisonPage = () => (
 			<Simulation
 				showTargetsAnyway
 				targets={<ComparativeTargets />}
-				explication={<p />}
+				noFeedback
 			/>
 		</Animate.fromBottom>
 	</>

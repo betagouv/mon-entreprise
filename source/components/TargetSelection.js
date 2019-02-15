@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -75,14 +74,13 @@ export default compose(
 						style={{
 							color: colours.textColour,
 							background: `linear-gradient(
-							60deg,
-							${colours.darkColour} 0%,
-							${colours.colour} 100%
-						)`
+								60deg,
+								${colours.darkColour} 0%,
+								${colours.colour} 100%
+								)`
 						}}>
 						{this.renderOutputList()}
 					</section>
-					<PeriodSwitch />
 				</div>
 			)
 		}

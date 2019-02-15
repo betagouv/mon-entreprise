@@ -4,9 +4,10 @@ import { T } from 'Components'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
 import withColours from 'Components/utils/withColours'
+import withSitePaths from 'Components/utils/withSitePaths'
 import withTracker from 'Components/utils/withTracker'
 import urssafSvg from 'Images/urssaf.svg'
-import { compose } from 'ramda'
+import { compose, lensPath, view } from 'ramda'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
@@ -14,7 +15,6 @@ import { withTranslation } from 'react-i18next'
 import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
 import safeLocalStorage from '../../../../storage/safeLocalStorage'
-import { feedbackBlacklist } from '../../config'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
@@ -22,10 +22,18 @@ import Privacy from './Privacy'
 
 type OwnProps = {}
 
+const feedbackBlacklist = [
+	['sécuritéSociale', 'indépendant'],
+	['sécuritéSociale', 'auto-entrepreneur'],
+	['sécuritéSociale', 'assimilé-salarié'],
+	['sécuritéSociale', 'salarié']
+].map(lensPath)
+
 const LOCAL_STORAGE_KEY = 'app::newsletter::registered'
 const userAlreadyRegistered: boolean =
 	JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
-const Footer = ({ colours: { colour }, tracker, t }) => {
+
+const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 	const [showNewsletterForm, toggleNewsletterForm] = useState(
 		!userAlreadyRegistered
 	)
@@ -42,6 +50,7 @@ const Footer = ({ colours: { colour }, tracker, t }) => {
 					: '') + window.location.pathname
 			).replace(/\/$/, '')
 		] || []
+
 	return (
 		<div className="footer-container">
 			<Helmet>
@@ -54,7 +63,9 @@ const Footer = ({ colours: { colour }, tracker, t }) => {
 					/>
 				))}
 			</Helmet>
-			<PageFeedback blacklist={feedbackBlacklist} />
+			<PageFeedback
+				blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
+			/>
 			<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
 				<div className="ui__ container">
 					<div id="footerIcons">
@@ -160,8 +171,8 @@ const Footer = ({ colours: { colour }, tracker, t }) => {
 	)
 }
 export default (compose(
-	React.memo,
-	withTranslation(),
 	withTracker,
+	withTranslation(),
+	withSitePaths,
 	withColours
 )(Footer): React$ComponentType<OwnProps>)

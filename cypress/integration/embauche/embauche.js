@@ -13,7 +13,7 @@ describe('Landing basic test', function() {
 	})
 	it('should display the simulateur after loading', function() {
 		cy.visit('/')
-		cy.contains('Touché sur le compte bancaire')
+		cy.contains('Versé sur le compte bancaire')
 	})
 	it('should display cotisation repartition when entering net salary', function() {
 		cy.visit('/')
