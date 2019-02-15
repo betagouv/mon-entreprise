@@ -486,9 +486,9 @@ embauche:
 
 simulateur-salarié:
   page:
-    titre: Estimate employee hiring cost
-    description: Simulate an employee's contributions to the social security. Official complete calculation of all contributions. Discover the counterparties guaranteed by social security
-  titre: Estimate social contributions for an employee
+    titre: Official net and gross salary simulator
+    description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
+  titre: Salary simulator
   description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
 
 Guide du statut juridique: Legal status guide

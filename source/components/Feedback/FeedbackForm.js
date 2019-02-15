@@ -75,11 +75,11 @@ class FeedbackForm extends Component<Props> {
 					<input hidden name="url" value={window.location.href} />
 					<input hidden name="pageTitle" value={document.title} />
 					<br />
-					<p>
+					<div style={{ margin: '1rem 0' }}>
 						<button className="ui__ button small" type="submit">
 							<Trans>Envoyer</Trans>
 						</button>
-					</p>
+					</div>
 				</form>
 			</ScrollToElement>
 		)

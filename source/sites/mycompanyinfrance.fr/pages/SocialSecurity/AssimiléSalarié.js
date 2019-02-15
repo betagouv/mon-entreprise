@@ -11,14 +11,14 @@ const AssimiléSalarié = () => (
 	<>
 		<Helmet>
 			<title>
-				Dirigeant assimilé salarié : cotisations et protection sociale
+				Assimilé salarié : simulateur officiel de revenus et cotisations
 			</title>
 			<meta
 				name="description"
-				content="Simulez votre rémunération en tant que dirigeant assimilé salarié. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime général"
+				content="Estimez vos revenus en tant qu'assimilé salarié à partir de votre chiffre d'affaire (pour les gérants de SAS, SASU et SARL minoritaire). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'URSSAF"
 			/>
 		</Helmet>
-		<h1>Assimilé salarié : cotisation et droits</h1>
+		<h1>Simulateur de revenus pour assimilé salarié</h1>
 		<p>
 			Les gérants égalitaires ou minoritaires de SARL ou les dirigeants de SA et
 			SAS sont <strong>assimilés&nbsp;salariés</strong> et relèvent du régime

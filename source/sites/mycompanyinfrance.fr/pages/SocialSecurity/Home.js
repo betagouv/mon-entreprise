@@ -50,24 +50,27 @@ class SocialSecurity extends Component<Props, {}> {
 								<strong>bien-être général de la population</strong>.
 							</p>
 						</T>
-						{showFindYourCompanyLink && (
+						{showFindYourCompanyLink && (<>
+							<h2>Simulations personnalisées</h2>
 							<p>
 								<T k="sécu.entrepriseCrée">
 									Si vous possédez déjà une entreprise, nous pouvons{' '}
 									<strong>automatiquement personnaliser</strong> vos simulations
-									à votre situation. Il vous suffit juste de{' '}
-									<Link to={sitePaths.entreprise.trouver}>
-										renseigner le nom de votre entreprise.
-									</Link>
+									à votre situation.
 								</T>
 							</p>
+							<div style={{textAlign: 'center'}}>
+									<Link to={sitePaths.entreprise.trouver} className="ui__ button">
+										Renseigner mon entreprise
+									</Link>
+									</div>
+							</>
 						)}
 						{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
 							window.location.hostname
 						) ? (
 							<>
-								<br />
-								<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
+								<h2 >
 									Que souhaitez-vous estimer ?
 								</h2>
 								<Link
