@@ -11,6 +11,7 @@ import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Helmet from 'react-helmet'
 import { withTranslation } from 'react-i18next'
+import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
 import safeLocalStorage from '../../../../storage/safeLocalStorage'
 import { feedbackBlacklist } from '../../config'
@@ -116,6 +117,23 @@ const Footer = ({ colours: { colour }, tracker, t }) => {
 							.
 						</p>
 					)}
+					<div style={{ display: 'flex', justifyContent: 'center' }}>
+						<a href="https://www.facebook.com/monentreprisefr/">
+							<SocialIcon media="facebook" />
+						</a>
+						<a href="https://twitter.com/monentreprisefr">
+							<SocialIcon media="twitter" />
+						</a>
+						<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
+							<SocialIcon media="linkedin" />
+						</a>
+						<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
+							<SocialIcon media="email" />
+						</a>
+						<a href="https://github.com/betagouv/syso/">
+							<SocialIcon media="github" />
+						</a>
+					</div>
 					<p className="ui__ notice" style={{ textAlign: 'center' }}>
 						<LegalNotice />
 						{'  •  '}
