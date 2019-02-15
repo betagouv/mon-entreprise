@@ -63,7 +63,7 @@ export const constructLocalizedSitePath = (language: string) => {
 			statutJuridique: {
 				index: t('path.entreprise.statutJuridique.index', '/statut-juridique'),
 				liste: t('path.entreprise.statutJuridique.liste', '/liste'),
-				liability: t(
+				soleProprietorship: t(
 					'path.entreprise.statutJuridique.responsabilité',
 					'/responsabilité'
 				),

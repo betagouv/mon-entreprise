@@ -300,21 +300,21 @@ Devenir: Become
 Choisir la forme juridique: Choose your legal status
 Plus tard: Do it later
 
-Responsabilité de l'entreprise: Liability
 responsabilité:
-  titre: Choosing the company liability in France
+  page:
+    titre: Choose between Sole Proprietorship and Limited Liability Company in France
+  titre: Limited liability company or sole proprietorship
   description: Sole proprietorship or limited liability? Each option has legal implications, and leads to a different status for creating your company in France
-  intro: An entrepreneur can choose between several options for the legal setup of his company
-  1: "<0>Sole proprietorship</0>: An economic activity conducted by a single natural person, in his own name. It's less paperwork, but bigger trouble in case of bankruptcy, as your personal wealth can be put to contribution."
-  2: Unlimited liability
-  2bis: Unlimited joint and several liability
-  2Description: The financial liability of the shareholders is not limited to their contribution. In case of bankruptcy, their personal wealth can be put to contribution.
-  3: "<0>Limited liability</0>: A corporate structure whereby the
-    company members cannot be held personally liable for the                                                                                                        company's debts or liabilities. However, it's heavier to set up,
-    and you need to provide an initial capital."
-  bouton1: Sole proprietorship
-  bouton2: Unlimited liability
-  bouton3: Limited liability
+  intro: This choice determines your degree of responsibility and your ability to welcome new partners in the future
+  entreprise-individuelle: |
+    <0>Sole proprietorship:</0>
+    An economic activity carried out by a single natural person in his or her own name. Less formalities, but more risks in the event of bankruptcy, because your personal assets can be put to use.
+    <2>You cannot welcome new partners into a sole proprietorship.</2>
+  société: |
+    <0>Limited liability company:</0>
+    You cannot be held personally liable for the company's debts or obligations. On the other hand, the creation process is a little more cumbersome, since it includes the drafting of statutes and the deposit of capital.
+  bouton1: Limited liability company
+  bouton2: Sole proprietorship
 
 autoentrepreneur:
   page:

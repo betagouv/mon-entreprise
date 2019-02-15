@@ -76,7 +76,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 														<li>
 															<NavLink
 																to={
-																	sitePaths.entreprise.statutJuridique.liability
+																	sitePaths.entreprise.statutJuridique.soleProprietorship
 																}>
 																<T k="responsabilité.titre">Responsabilité</T>
 															</NavLink>

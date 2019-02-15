@@ -79,8 +79,10 @@ const CreateMyCompany = ({
 						</T>
 					</p>
 					<div className="ui__ answer-group">
-						<Link className="ui__ button plain" to={nextQuestionUrl}>
-							{!guideAlreadyStarted ? <T>Commencer</T> : <T>Reprendre</T>}
+						<Link
+							className="ui__ button plain"
+							to={sitePaths.entreprise.statutJuridique.multipleAssociates}>
+							<T>Commencer</T>
 						</Link>
 						<Link
 							to={sitePaths.sécuritéSociale.index}

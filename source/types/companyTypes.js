@@ -1,11 +1,9 @@
 /* @flow */
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 
-export type CompanyLiability = 'LIMITED_LIABILITY' | 'UNLIMITED_LIABILITY'
-
-export type ChooseCompanyLiabilityAction = {
-	type: 'CHOOSE_COMPANY_LEGAL_SETUP',
-	setup: ?CompanyLiability
+export type IsSoleProprietorshipAction = {
+	type: 'COMPANY_IS_SOLE_PROPRIETORSHIP',
+	isSoleProprietorship: ?boolean
 }
 
 export type DirectorStatus = 'SALARIED' | 'SELF_EMPLOYED'
@@ -57,12 +55,12 @@ export type ResetExistingCompanyDetailsAction = {
 
 export type State = {|
 	+companyLegalStatus: {
-		/* 
-			Note on the meanings of null / undefined value: 
+		/*
+			Note on the meanings of null / undefined value:
 			If the key exists and the value is null, the question have been asked, but skipped by the user.
-		 	If the key does not exists, the question still hasn't been asked. 
+		 	If the key does not exists, the question still hasn't been asked.
 		 */
-		+liability?: ?CompanyLiability,
+		+soleProprietorship?: ?boolean,
 		+directorStatus?: ?DirectorStatus,
 		+multipleAssociates?: ?boolean,
 		+autoEntrepreneur?: ?boolean,
@@ -73,7 +71,7 @@ export type State = {|
 |}
 export type LegalStatusRequirements = $PropertyType<State, 'companyLegalStatus'>
 export type Action =
-	| ChooseCompanyLiabilityAction
+	| IsSoleProprietorshipAction
 	| DefineDirectorStatusAction
 	| IsAutoentrepreneurAction
 	| CompanyHasMultipleAssociatesAction

@@ -7,13 +7,11 @@ import {
 	any,
 	countBy,
 	difference,
-	filter,
 	flatten,
 	isNil,
 	map,
 	mergeAll,
 	mergeWith,
-	pick,
 	sortBy
 } from 'ramda'
 
@@ -21,80 +19,73 @@ const LEGAL_STATUS_DETAILS: {
 	[status: string]: Array<LegalStatusRequirements> | LegalStatusRequirements
 } = {
 	'auto-entrepreneur': {
-		liability: 'UNLIMITED_LIABILITY',
+		soleProprietorship: true,
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
 		autoEntrepreneur: true
 	},
 	EIRL: {
-		liability: 'LIMITED_LIABILITY',
+		soleProprietorship: true,
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
 		autoEntrepreneur: false,
 		minorityDirector: false
 	},
 	'auto-entrepreneur-EIRL': {
-		liability: 'LIMITED_LIABILITY',
+		soleProprietorship: true,
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
 		minorityDirector: false,
 		autoEntrepreneur: true
 	},
 	EI: {
-		liability: 'UNLIMITED_LIABILITY',
+		soleProprietorship: true,
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
 		autoEntrepreneur: false
 	},
 	SASU: {
-		liability: 'LIMITED_LIABILITY',
+		soleProprietorship: false,
 		directorStatus: 'SALARIED',
 		minorityDirector: false,
 		multipleAssociates: false,
 		autoEntrepreneur: false
 	},
 	SAS: {
-		liability: 'LIMITED_LIABILITY',
+		soleProprietorship: false,
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
 		autoEntrepreneur: false
 	},
-	SARL: [
+	SARL: ([
 		{
-			liability: 'LIMITED_LIABILITY',
+			soleProprietorship: false,
 			directorStatus: 'SELF_EMPLOYED',
 			multipleAssociates: true,
 			minorityDirector: false,
 			autoEntrepreneur: false
 		},
 		{
-			liability: 'LIMITED_LIABILITY',
+			soleProprietorship: false,
 			directorStatus: 'SALARIED',
 			multipleAssociates: true,
 			minorityDirector: true,
 			autoEntrepreneur: false
 		}
-	],
+	]: Array<LegalStatusRequirements>),
 	EURL: {
-		liability: 'LIMITED_LIABILITY',
+		soleProprietorship: false,
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
 		autoEntrepreneur: false
 	},
 	SA: {
-		liability: 'LIMITED_LIABILITY',
+		soleProprietorship: false,
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
-		autoEntrepreneur: false
-	},
-	SNC: {
-		liability: 'UNLIMITED_LIABILITY',
-		directorStatus: 'SELF_EMPLOYED',
-		multipleAssociates: true,
-		minorityDirector: false,
 		autoEntrepreneur: false
 	}
 }
@@ -144,14 +135,14 @@ export const nextQuestionSelector = (state: {
 }): ?Question => {
 	const legalStatusRequirements = state.inFranceApp.companyLegalStatus
 	const questionAnswered = Object.keys(legalStatusRequirements)
-	const possibleStatusList = pick(
-		Object.keys(filter(Boolean, possibleStatus(legalStatusRequirements))),
-		LEGAL_STATUS_DETAILS
-	)
+	const possibleStatusList = flatten(
+		Object.values(LEGAL_STATUS_DETAILS)
+		// $FlowFixMe
+	).filter(isCompatibleStatusWith(legalStatusRequirements))
 
 	const unansweredQuestions = difference(QUESTION_LIST, questionAnswered)
 	const shannonEntropyByQuestion = unansweredQuestions.map(question => {
-		const answerPopulation = flatten(Object.values(possibleStatusList)).map(
+		const answerPopulation = Object.values(possibleStatusList).map(
 			// $FlowFixMe
 			status => status[question]
 		)
@@ -168,6 +159,7 @@ export const nextQuestionSelector = (state: {
 			.reduce(add, 0)
 		return [question, shannonEntropy]
 	})
+
 	const sortedPossibleNextQuestions = sortBy(
 		([, entropy]) => -entropy,
 		shannonEntropyByQuestion.filter(([, entropy]) => entropy !== 0)
