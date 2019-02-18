@@ -58,26 +58,38 @@
         assiette: 12000
         base: 5000
       valeur attendue: 1580
-# TODO implémenter les taux variables
-# - nom: taux variable
-#   format: pourcentage
-#
-# - nom: deuxième barème
-#   test: Barème à taux variable
-#   formule:
-#     barème:
-#       assiette: assiette
-#       multiplicateur: base
-#       tranches:
-#       - en-dessous de: 1
-#         taux: taux variable
-#       - au-dessus de: 1
-#         taux: taux variable / 2
-#
-#   exemples:
-#     - nom: exemple
-#       situation:
-#         assiette: 200
-#         base: 100
-#         taux variable: 1%
-#       valeur attendue: 1.5
+
+- nom: ma condition
+
+- nom: taux variable
+  formule:
+    variations:
+      - si: ma condition
+        alors: 29%
+      - sinon: 56%
+
+- nom: deuxième barème
+  test: Barème à taux variable
+  formule:
+    barème:
+      assiette: assiette
+      multiplicateur: base
+      tranches:
+      - en-dessous de: 1
+        taux: taux variable
+      - au-dessus de: 1
+        taux: 90%
+
+  exemples:
+   - nom: taux faible
+     situation:
+       assiette: 200
+       base: 100
+       ma condition: oui
+     valeur attendue: 119
+   - nom: taux fort
+     situation:
+       assiette: 200
+       base: 100
+       ma condition: non
+     valeur attendue: 146
