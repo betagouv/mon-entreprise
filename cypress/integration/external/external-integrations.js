@@ -6,7 +6,7 @@ describe('Pole emploi', function() {
 		cy.visit('https://entreprise.pole-emploi.fr/cout-salarie/')
 		cy.get('#simulateurEmbauche')
 			.iframe()
-			.contains('Versé sur le compte bancaire')
+			.contains('Versé sur son compte bancaire')
 	})
 })
 
@@ -17,6 +17,6 @@ describe('URSSAF', function() {
 		)
 		cy.get('#simulateurEmbauche')
 			.iframe()
-			.contains('Versé sur le compte bancaire')
+			.contains('Versé sur son compte bancaire')
 	})
 })
