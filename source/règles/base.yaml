@@ -2822,19 +2822,33 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           barème continu:
-            assiette: revenu professionnel
+            assiette: assiette
             multiplicateur: plafond sécurité sociale temps plein
             points:
               0: 1.5%
               1.1: 6.5%
       - sinon: artisans commerçants
 
+- espace: indépendant . cotisations . maladie
+  nom: assiette
+  titre: assiette maladie
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - 40% * plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+
 - espace: indépendant . cotisations
   nom: indemnités journalières maladie
   période: flexible
   formule:
     multiplication:
-      assiette: revenu professionnel
+      assiette: maladie . assiette
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
@@ -2848,7 +2862,7 @@
   période: flexible
   formule:
     barème continu:
-      assiette: revenu professionnel
+      assiette: assiette
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
@@ -2877,7 +2891,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           multiplication:
-            assiette: revenu professionnel
+            assiette: assiette
             composantes:
               - nom: tranche 1
                 plafond: 39732
@@ -2887,12 +2901,26 @@
                 taux: 1.87%
       - sinon:
           barème:
-            assiette: revenu professionnel
+            assiette: assiette
             tranches:
               - en-dessous de: 39732
                 taux: 17.75%
               - au-dessus de: 39732
                 taux: 0.6%
+
+- espace: indépendant . cotisations . retraite de base
+  nom: assiette
+  titre: assiette retraite de base
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - 11.5% * plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 - espace: indépendant . cotisations
   nom: retraite complémentaire
@@ -2948,12 +2976,25 @@
   période: flexible
   formule:
     multiplication:
-      assiette: revenu professionnel
+      assiette: assiette
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
+- espace: indépendant . cotisations . invalidité et décès
+  nom: assiette
+  titre: assiette invalidité et décès
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - 11.5% * plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 - espace: indépendant . cotisations et contributions
   nom: CSG et CRDS
@@ -2984,12 +3025,27 @@
   période: flexible
   formule:
     multiplication:
-      assiette: revenu professionnel
+      assiette: assiette
       taux: 0.29%
       plafond: plafond sécurité sociale temps plein
       # C'est le taux pour les artisans.
       # TODO Pour les commerçants, le taux est de 0.25%
       #
+- espace: indépendant . cotisations et contributions . formation professionnelle
+  nom: assiette
+  titre: assiette formation professionnelle
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+
+
 - espace: indépendant . cotisations
   nom: allocations familiales
   période: flexible
@@ -3252,3 +3308,9 @@
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+- espace: situation personnelle
+  nom: RSA
+  titre: allocataire RSA
+  question: Êtes-vous allocataire du RSA ?
+  par défaut: non

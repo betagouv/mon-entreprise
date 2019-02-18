@@ -9,6 +9,7 @@ questions:
   - entreprise . charges
   - entreprise . catégorie d'activité
   - entreprise . année d'activité
+  - situation personnelle . RSA
 
 questions à l'affiche:
   Charges: entreprise . charges
