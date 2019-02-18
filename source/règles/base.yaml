@@ -1432,6 +1432,34 @@
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 - espace: entreprise
+  nom: prélèvements obligatoires
+  période: flexible
+  formule: 
+    somme:
+      - CVAE
+      - CFE
+
+- espace: entreprise . prélèvements obligatoires
+  nom: CVAE
+  titre: Cotisation sur la valeur ajoutée des entreprises
+  période: flexible
+  formule: 0
+  note: Cette contribution concerne les entreprises ou travailleurs indépendants qui réalisent plus de  500 000 € de chiffre d'affaires. Elle n'est pour l'instant **pas intégrée dans nos calculs**.
+  références: 
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23546
+
+- espace: entreprise . prélèvements obligatoires
+  nom: CFE
+  titre: Cotisation foncière des entreprises
+  formule: 0
+  période: flexible
+  note: Cette cotisation n'est pas due pour la première année d'une entreprise. La CFE n'est **pas encore intégrée** dans nos calculs.
+  références: 
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547
+
+
+
+- espace: entreprise
   nom: effectif
   question: Quel est l'effectif de l'entreprise ?
   description: |
@@ -1602,7 +1630,7 @@
     le minimum de:
       - assiette
       - multiplicateur * écart au plafond de l'assiette
-  notes: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
+  note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
   exemples:
     # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
     - nom: "Maximale dans le cas d'un SMIC"
@@ -2928,7 +2956,7 @@
   nom: retraite complémentaire
   période: année
   format: euros
-  notes: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
+  note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
@@ -3073,7 +3101,9 @@
 - nom: auto entrepreneur
   icônes: 🚶
   par défaut: non
-  question: Activité en auto entrepreneur ?
+  question: L'activité est-elle exercée en auto-entreprise ?
+  description: | 
+    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
 - espace: auto entrepreneur
   nom: base des cotisations
@@ -3097,12 +3127,44 @@
 
 - espace: auto entrepreneur
   nom: revenu net de cotisations
-  titre: Revenu net d'une auto entrepreneur
-  formule: base des cotisations - cotisations
+  titre: Revenu net auto-entrepreneur
+  formule: base des cotisations - cotisations et contributions
   période: flexible
 
 - espace: auto entrepreneur
-  nom: cotisations
+  nom: cotisations et contributions
+  formule: 
+    somme: 
+      - cotisations sociales
+      - taxe pour frais de chambre
+      - contribution formation professionnelle
+      - entreprise . prélèvements obligatoires
+  références: 
+    Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
+  période: flexible
+
+- espace: auto entrepreneur
+  nom: taxe pour frais de chambre
+  formule: 0
+  période: flexible
+  note: Pas encore implementée.
+
+- espace: auto entrepreneur
+  nom: contribution formation professionnelle
+  titre: Contribution à la formation professionnelle
+  période: flexible
+  références: 
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
+  formule:
+    variations:
+      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+        alors: 0
+      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+        alors: 0
+      - sinon: 0
+
+- espace: auto entrepreneur
+  nom: cotisations sociales
   période: flexible
   formule:
     barème:
@@ -3114,9 +3176,11 @@
         - au dessus de: 1
           taux: taux
 
-- espace: auto entrepreneur . cotisations
+- espace: auto entrepreneur . cotisations sociales
   nom: taux
-  titre: taux de cotisations
+  titre: taux de cotisation
+  description: | 
+    Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
     variations:
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
@@ -3125,7 +3189,7 @@
         alors: 22%
       - sinon: 12.8%
 
-- espace: auto entrepreneur . cotisations
+- espace: auto entrepreneur . cotisations sociales
   nom: ACRE
   titre: Coefficient multiplicateur ACRE
   période: flexible
@@ -3138,13 +3202,15 @@
       - si: entreprise . année d'activité = 'troisième année'
         alors: 75%
       - sinon: 100%
+  références: 
+    Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
 
-- espace: auto entrepreneur . cotisations . ACRE
+- espace: auto entrepreneur . cotisations sociales . ACRE
   nom: plafond
   titre: Plafond de CA pour l'ACRE
   formule: plafond sécurité sociale temps plein - abattement
 
-- espace: auto entrepreneur . cotisations . ACRE
+- espace: auto entrepreneur . cotisations sociales . ACRE
   nom: abattement
   formule: impôt . abattement . taux * plafond sécurité sociale temps plein
 
