@@ -1,9 +1,8 @@
 titre: |
-  Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise.
+  Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise après paiement des cotisations et de l'impôt sur le revenu.
 
 objectifs:
-  - revenu disponible
-  - ratio de prélèvements
+  - revenu net
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité

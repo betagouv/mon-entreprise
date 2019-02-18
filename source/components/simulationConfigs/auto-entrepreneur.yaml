@@ -1,14 +1,19 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - revenu disponible
+  - entreprise . charges non déductibles
+  - autoentrepreneur . cotisations après réductions
+  - impôt . impôt sur le revenu flexible
+  - revenu net
 
 questions:
   - entreprise . catégorie d'activité
   - entreprise . charges
+  - entreprise . année d'activité
 
 questions à l'affiche:
   Charges: entreprise . charges
   Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
+  Année d'activité: entreprise . année d'activité
 
 situation:
   autoentrepreneur: oui

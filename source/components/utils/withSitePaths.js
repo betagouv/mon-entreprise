@@ -1,6 +1,6 @@
 /* @flow */
-
 import React, { Component, createContext } from 'react'
+import i18n from '../../i18n'
 
 const SitePathsContext: React$Context<SitePaths> = createContext({})
 
@@ -12,6 +12,13 @@ export default function withSitePaths<Props: { sitePaths: SitePaths }>(
 		$Diff<Props, { sitePaths: SitePaths }>
 	> {
 		displayName = `withSitePaths(${WrappedComponent.displayName || ''})`
+		constructor(props) {
+			super(props)
+			i18n.on('languageChanged', () => {
+				console.log('zop')
+				this.forceUpdate()
+			})
+		}
 		render() {
 			return (
 				<SitePathsContext.Consumer>

@@ -3,6 +3,6 @@ describe('Iframe integration test', function() {
 		cy.visit('/integration-test')
 		cy.get('#simulateurEmbauche')
 			.iframe()
-			.contains('Touché sur le compte bancaire')
+			.contains('Versé sur son compte bancaire')
 	})
 })

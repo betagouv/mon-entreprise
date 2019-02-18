@@ -1,8 +1,8 @@
 .ui__.card {
 	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 	padding: 1rem;
+	overflow: hidden;
 	border-radius: 0.3rem;
-	max-width: 100%;
 }
 .ui__.card.disabled .ui__.button.simple,
 .ui__.card.disabled a {

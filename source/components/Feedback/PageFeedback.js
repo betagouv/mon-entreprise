@@ -12,7 +12,6 @@ import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { Node } from 'react'
 
-
 type OwnProps = {
 	blacklist: Array<string>,
 	customMessage?: Node,
@@ -20,7 +19,7 @@ type OwnProps = {
 }
 type Props = OwnProps & {
 	location: Location,
-	tracker: Tracker,
+	tracker: Tracker
 }
 type State = {
 	showForm: boolean,
@@ -93,8 +92,10 @@ class PageFeedback extends Component<Props, State> {
 		if (this.feedbackAlreadyGiven) {
 			return null
 		}
+		const pathname =
+			this.props.location.pathname === '/' ? '' : this.props.location.pathname
 		return (
-			!this.props.blacklist.includes(this.props.location.pathname) && (
+			!this.props.blacklist.includes(pathname) && (
 				<div className="feedback-page ui__ container notice">
 					{!this.state.showForm && !this.state.showThanks && (
 						<>
@@ -156,5 +157,5 @@ const PageFeedbackWithRouter = ({ location, ...props }) => (
 export default (compose(
 	withRouter,
 	withTranslation(),
-	withTracker,
+	withTracker
 )(PageFeedbackWithRouter): React$ComponentType<OwnProps>)

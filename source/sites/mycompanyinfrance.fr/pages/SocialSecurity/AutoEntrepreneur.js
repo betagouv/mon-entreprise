@@ -1,43 +1,33 @@
-import AlphaWarning from 'Components/AlphaWarning'
+import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { AvertissementProtectionSocialeIndépendants } from './Indépendant'
 
 const AutoEntrepreneur = () => (
 	<>
 		<Helmet>
-			<title>Auto-entrepreneur : cotisations et protection sociale </title>
+			<title>
+				Auto-entrepreneur : simulateur officiel de revenus et cotisations
+			</title>
 			<meta
 				name="description"
-				content="Simulez votre rémunération en tant que dirigeant indépendant. Calcul complet de toutes les cotisations. Découvrez les droits ouverts par votre affiliation au régime des indépendants (TNS)"
+				content="Estimez vos revenus en tant qu'auto-entrepreneur à partir de votre chiffre d'affaire. Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'URSSAF"
 			/>
 		</Helmet>
-		<h1>Auto-entrepreneur : cotisations et droits</h1>
+		<h1>Simulateur de revenus pour auto-entrepreneur</h1>
 		<p>
 			Les auto-entrepreneurs relèvent de la sécurité sociale des indépendants.
 		</p>
-		<p>
-			La sécurité sociale des indépendants ne couvre ni les accidents du
-			travail, ni la perte d'emploi (assurance-chômage). Pour être couvert, le
-			professionnel peut souscrire volontairement des assurances spécifiques.
-		</p>
-		<AlphaWarning />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
-			explication={
-				<p>
-					La sécurité sociale des indépendants ne couvre ni les accidents du
-					travail, ni la perte d'emploi (assurance-chômage), et offre une
-					retraite plus faible que celle des salariés. Pour être couvert, le
-					professionnel peut souscrire volontairement des assurances
-					spécifiques.
-				</p>
-			}
+			explanation={<AvertissementProtectionSocialeIndépendants />}
 		/>
+		<Warning />
 	</>
 )
 export default withSimulationConfig(indépendantConfig)(AutoEntrepreneur)

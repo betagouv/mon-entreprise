@@ -1,5 +1,5 @@
 /* @flow */
-import { map } from 'ramda';
+import { map } from 'ramda'
 
 export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 
@@ -66,9 +66,6 @@ export function inIframe() {
 	}
 }
 
-export const normalizeBasePath = (basePath: string) =>
-	basePath + (basePath.endsWith('/') ? '' : '/')
-
 export function softCatch<ArgType: any, ReturnType: any>(
 	fn: ArgType => ReturnType
 ): ArgType => ReturnType | null {
@@ -82,10 +79,9 @@ export function softCatch<ArgType: any, ReturnType: any>(
 		}
 	}
 }
-export function mapOrApply<A, B>(fn: A=>B, x: Array<A> | A): Array<B> | B {
+export function mapOrApply<A, B>(fn: A => B, x: Array<A> | A): Array<B> | B {
 	return Array.isArray(x) ? x.map(fn) : fn(x)
 }
-
 
 export const constructSitePaths = (
 	root: string,

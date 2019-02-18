@@ -16,11 +16,11 @@
         1.1: 6.35%
       
   exemples: 
-    - nom: Premier intervale
+    - nom: Premier point
       situation: 
         assiette: 10
       valeur attendue: 0.026
-    - nom: Deuxième intervale
+    - nom: Deuxième point
       situation: 
         assiette: 120
       valeur attendue: 3.792
@@ -28,7 +28,7 @@
       situation: 
         assiette: 150
       valeur attendue: 5.423
-    - nom: Deuxième point 
+    - nom: Troisième point 
       situation: 
         assiette: 330
       valeur attendue: 20.955
@@ -38,3 +38,41 @@
       valeur attendue: 63.5
         
         
+- nom: base deux
+  format: nombre
+  formule: 300
+
+- nom: assiette deux
+  format: nombre
+
+- test: Retour de taux, pas d'assiette
+  formule:
+    barème continu:
+      assiette: assiette deux
+      multiplicateur: base deux
+      points:
+        0: 100%
+        0.75: 100%
+        1: 0%
+      retourne seulement le taux: oui
+  exemples: 
+    - nom: Premier point
+      situation: 
+        assiette deux: 200
+      valeur attendue: 1
+    - nom: Deuxième point
+      situation: 
+        assiette deux: 225
+      valeur attendue: 1
+    - nom: Troisième point
+      situation: 
+        assiette deux: 262.5
+      valeur attendue: 0.5
+    - nom: Quatrième point
+      situation: 
+        assiette deux: 300
+      valeur attendue: 0
+    - nom: Cinquième point
+      situation: 
+        assiette deux: 300
+      valeur attendue: 0

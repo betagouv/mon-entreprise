@@ -1,7 +1,7 @@
 .beta__container {
 	padding-left: 1rem;
 	border-top-left-radius: 0.3rem;
-
+	margin-top: 1rem;
 	border-left: 3px solid #333;
 }
 .beta__tag {

@@ -1,12 +1,21 @@
-import { resetSimulation } from 'Actions/actions';
-import { React, T } from 'Components';
-import Answers from 'Components/AnswerList';
-import Conversation from 'Components/conversation/Conversation';
-import withColours from 'Components/utils/withColours';
-import { compose } from 'ramda';
-import { connect } from 'react-redux';
-import { blockingInputControlsSelector, nextStepsSelector, noUserInputSelector, validInputEnteredSelector } from 'Selectors/analyseSelectors';
-import Animate from 'Ui/animate';
+/* @flow */
+
+import { resetSimulation } from 'Actions/actions'
+import { React, T } from 'Components'
+import Answers from 'Components/AnswerList'
+import Conversation from 'Components/conversation/Conversation'
+import PageFeedback from 'Components/Feedback/PageFeedback'
+import PeriodSwitch from 'Components/PeriodSwitch'
+import withColours from 'Components/utils/withColours'
+import { compose } from 'ramda'
+import { connect } from 'react-redux'
+import {
+	blockingInputControlsSelector,
+	nextStepsSelector,
+	noUserInputSelector,
+	validInputEnteredSelector
+} from 'Selectors/analyseSelectors'
+import Animate from 'Ui/animate'
 
 export default compose(
 	withColours,
@@ -36,6 +45,7 @@ export default compose(
 				noUserInput,
 				conversationStarted,
 				resetSimulation,
+				noFeedback,
 				blockingInputControls,
 				showTargetsAnyway,
 				targetsTriggerConversation
@@ -91,6 +101,20 @@ export default compose(
 					{showTargets && (
 						<Animate.fromBottom>{this.props.targets}</Animate.fromBottom>
 					)}
+
+					{!noUserInput && !noFeedback && (
+						<Animate.appear delay={2000}>
+							<PageFeedback
+								customMessage={
+									<T k="feedback.simulator">
+										Êtes-vous satisfait de ce simulateur ?
+									</T>
+								}
+								customEventName="rate simulator"
+							/>
+						</Animate.appear>
+					)}
+					<PeriodSwitch />
 					{!noUserInput && this.props.explanation}
 				</>
 			)

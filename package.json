@@ -76,12 +76,14 @@
 		"test-components": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage ---require test/helpers/browser.js \"source/components/**/*.test.js\" --watch",
 		"test-lib": "yarn test-common --grep 'library'",
 		"compile-lib": "yarn webpack --config source/webpack.lib.js",
-		"mon-entreprise:serve": "serve --config serve.mon-entreprise.json",
+		"compile-dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run compile",
+		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json",
 		"mon-entreprise:test": "cypress open",
-		"mycompanyinfrance:serve": "serve --config serve.infrance.json",
+		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json",
 		"mycompanyinfrance:test": "cypress open --env language=en --config baseUrl=http://localhost:8080/infrance",
-		"embauche:serve": "cp dist/embauche.html dist/index.html && serve -s dist",
-		"embauche:test": "cypress open --config baseUrl=http://localhost:8080/embauche,integrationFolder=cypress/integration/embauche"
+		"embauche:serve": "cp dist/embauche.html dist/index.html && PORT=5002 serve -s dist",
+		"embauche:test": "cypress open --config baseUrl=http://localhost:8080/embauche,integrationFolder=cypress/integration/embauche",
+		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve & yarn run embauche:serve"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.0",

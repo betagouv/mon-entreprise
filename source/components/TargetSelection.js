@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -67,20 +66,21 @@ export default compose(
 				<div id="targetSelection">
 					<QuickLinks />
 					<Controls controls={analysis.controls} />
-					<div style={{height: '10px'}}><Progress percent={progress}/></div>
+					<div style={{ height: '10px' }}>
+						<Progress percent={progress} />
+					</div>
 					<section
 						className="ui__ plain card"
 						style={{
 							color: colours.textColour,
 							background: `linear-gradient(
-							60deg,
-							${colours.darkColour} 0%,
-							${colours.colour} 100%
-						)`
+								60deg,
+								${colours.darkColour} 0%,
+								${colours.colour} 100%
+								)`
 						}}>
 						{this.renderOutputList()}
 					</section>
-					<PeriodSwitch />
 				</div>
 			)
 		}
@@ -104,7 +104,9 @@ export default compose(
 				<div>
 					<ul id="targets">
 						{displayedTargets.map(target => (
-							<li key={target.name}>
+							<li
+								key={target.name}
+								className={!target.question ? 'not-editable' : undefined}>
 								<div className="main">
 									<Header
 										{...{
@@ -115,6 +117,15 @@ export default compose(
 											blockingInputControls
 										}}
 									/>
+									{!target.question && (
+										<span
+											style={{
+												flex: 1,
+												borderBottom: '1px dashed #ffffff91',
+												marginLeft: '1rem'
+											}}
+										/>
+									)}
 									<TargetInputOrValue
 										{...{
 											target,

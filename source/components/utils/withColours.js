@@ -1,9 +1,8 @@
 /* @flow */
 
 import convert from 'color-convert'
+import SetCssColour from 'Components/utils/SetCssColour'
 import React, { Component, createContext } from 'react'
-import type { ComponentType } from 'react'
-
 export type ThemeColours = {
 	colour: string,
 	textColour: string,
@@ -92,11 +91,20 @@ const ThemeColoursContext: React$Context<ThemeColours> = createContext(
 )
 
 type ProviderProps = {
-	colour: string
+	colour: string,
+	children: React$Node
 }
-export const ThemeColoursProvider = ({ colour, ...props }: ProviderProps) => (
-	<ThemeColoursContext.Provider value={generateTheme(colour)} {...props} />
-)
+
+export function ThemeColoursProvider({ colour, children }: ProviderProps) {
+	const colours = generateTheme(colour)
+	return (
+		<ThemeColoursContext.Provider value={colours}>
+			<SetCssColour colours={colours} />
+			{children}
+		</ThemeColoursContext.Provider>
+	)
+}
+
 export default function withThemeColours<Props: { colours: ThemeColours }>(
 	WrappedComponent: React$ComponentType<Props>
 ): React$ComponentType<$Diff<Props, { colours: ThemeColours }>> {

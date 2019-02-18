@@ -17,8 +17,8 @@ function companyLegalStatus(
 	action: Action
 ): LegalStatusRequirements {
 	switch (action.type) {
-		case 'CHOOSE_COMPANY_LEGAL_SETUP':
-			return { ...state, liability: action.setup }
+		case 'COMPANY_IS_SOLE_PROPRIETORSHIP':
+			return { ...state, soleProprietorship: action.isSoleProprietorship }
 
 		case 'DEFINE_DIRECTOR_STATUS':
 			return { ...state, directorStatus: action.status }

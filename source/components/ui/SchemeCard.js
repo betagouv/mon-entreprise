@@ -8,7 +8,6 @@ import { isIE } from '../../utils'
 import AnimatedTargetValue from './AnimatedTargetValue'
 import './SchemeCard.css'
 import type { Node } from 'react'
-
 type Props = {
 	title: Node,
 	subtitle: Node,
@@ -20,7 +19,6 @@ type Props = {
 	features: Array<Node>,
 	amountDesc: Node,
 	onSchemeChoice: () => void,
-	amountNotice: Node,
 	onAmountClick: () => void,
 	disabled?: ?Node,
 	featured?: Node,
@@ -33,7 +31,6 @@ function SchemeCard({
 	amountDesc,
 	onSchemeChoice,
 	icon,
-	amountNotice,
 	disabled,
 	onAmountClick,
 	featured,
@@ -76,23 +73,24 @@ function SchemeCard({
 					<h4 className="scheme-card__subtitle">{subtitle}</h4>
 				</header>
 				{!isNil(amount) && (
-					<Animate.fromBottom>
-						<div onClick={onAmountClick}>
-							<div
-								className={
-									'ui__ card scheme-card__amount plain ' +
-									(Number.isNaN(amount) ? 'disabled' : '')
-								}>
-								{amountDesc}
-								<p className="ui__ lead">
+					<Animate.appear style={{ alignSelf: 'stretch' }}>
+						<div
+							className={
+								'ui__ card scheme-card__amount plain ' +
+								(Number.isNaN(amount) ? 'disabled' : '')
+							}
+							onClick={onAmountClick}>
+							{amountDesc}&nbsp;:
+							<span className="scheme-card__amount-separator" />
+							<p className="ui__ lead">
+								{disabled ? (
+									'CA dépassé'
+								) : (
 									<AnimatedTargetValue value={amount} />
-								</p>
-							</div>
-							<p className="ui__ notice" style={{ marginTop: '-0.6rem' }}>
-								{amountNotice}
+								)}
 							</p>
 						</div>
-					</Animate.fromBottom>
+					</Animate.appear>
 				)}
 				<ul
 					className={

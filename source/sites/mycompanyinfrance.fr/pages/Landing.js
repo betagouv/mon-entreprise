@@ -42,7 +42,7 @@ export default compose(
 				</svg>
 			</header>
 		</section>
-		<section className="ui__ container" style={{ flex: 1 }}>
+		<section className="ui__ container" style={{ flexGrow: 1 }}>
 			<div className="landing__header">
 				<img alt="logo marianne" src={marianneSvg} />
 				<img alt="logo urssaf" src={urssafSvg} />

@@ -130,7 +130,12 @@ export class appear extends React.Component<Props, State> {
 		this.setState({ show: true })
 	}
 	render() {
-		const { children, config = configPresets.default, delay = 0 } = this.props
+		const {
+			children,
+			config = configPresets.default,
+			delay = 0,
+			style
+		} = this.props
 		return (
 			<Spring
 				native={true}
@@ -140,7 +145,11 @@ export class appear extends React.Component<Props, State> {
 					opacity: this.state.show ? 1 : 0,
 					height: this.state.show ? 'auto' : '0px'
 				}}>
-				{style => <animated.div style={style}>{children}</animated.div>}
+				{animStyle => (
+					<animated.div style={{ ...style, ...animStyle }}>
+						{children}
+					</animated.div>
+				)}
 			</Spring>
 		)
 	}

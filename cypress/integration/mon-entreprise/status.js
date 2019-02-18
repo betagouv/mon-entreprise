@@ -29,7 +29,7 @@ describe('Status guide', function() {
 			.contains(fr ? 'Seul' : 'Alone')
 			.click()
 		cy.get('.ui__.answer-group')
-			.contains(fr ? 'Responsabilité limitée' : 'Limited liability')
+			.contains(fr ? 'Société' : 'Limited liability company')
 			.click()
 		cy.get('.ui__.answer-group')
 			.contains(fr ? 'Assimilé salarié' : 'Salaried')

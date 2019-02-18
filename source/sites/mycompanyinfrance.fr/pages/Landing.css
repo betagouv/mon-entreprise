@@ -68,6 +68,7 @@
 	padding: 1rem;
 	margin: 1rem 0;
 	border: 1px solid;
+	position: relative;
 	border-color: rgba(41, 117, 209);
 	opacity: 0.8 !important;
 	border-radius: 0.3rem;

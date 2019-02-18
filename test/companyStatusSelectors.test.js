@@ -6,7 +6,7 @@ const state = companyLegalStatus => ({
 	inFranceApp: {
 		companyLegalStatus,
 		existingCompanyDetails: null,
-		companyStatusChoice: null,
+		companyStatusChoice: null
 	}
 })
 describe('company status selectors', function() {
@@ -14,9 +14,9 @@ describe('company status selectors', function() {
 		it('should return null there is only one status possible', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
-					liability: 'UNLIMITED_LIABILITY',
+					soleProprietorship: true,
 					directorStatus: 'SELF_EMPLOYED',
-					multipleAssociates: true,
+					multipleAssociates: true
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -28,11 +28,11 @@ describe('company status selectors', function() {
 		it('should return null if all the questions have been answered', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
-					liability: null,
+					soleProprietorship: null,
 					directorStatus: null,
 					autoEntrepreneur: null,
 					multipleAssociates: null,
-					minorityDirector: null,
+					minorityDirector: null
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -51,26 +51,28 @@ describe('company status selectors', function() {
 			nextQuestion = nextQuestionSelector(
 				state({
 					directorStatus: 'SALARIED',
-					liability: 'LIMITED_LIABILITY'
+					soleProprietorship: false
 				})
 			)
-			expect(['directorStatus', 'liability']).not.to.contain(nextQuestion)
+			expect(['directorStatus', 'soleProprietorship']).not.to.contain(
+				nextQuestion
+			)
 
 			nextQuestion = nextQuestionSelector(
 				state({
 					multipleAssociates: true,
-					liability: 'LIMITED_LIABILITY'
+					soleProprietorship: false
 				})
 			)
-			expect(['multipleAssociates', 'liability']).not.to.contain(nextQuestion)
+			expect(['multipleAssociates', 'soleProprietorship']).not.to.contain(
+				nextQuestion
+			)
 		})
 		it('should not return a question which can lead to no matching status', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
-					liability: 'UNLIMITED_LIABILITY',
-					multipleAssociates: null,
-					autoEntrepreneur: null,
-					minorityDirector: null,
+					multipleAssociates: true,
+					minorityDirector: true
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -78,7 +80,7 @@ describe('company status selectors', function() {
 		it('should return a question if it can help to shrink down the possibilities', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
-					liability: 'LIMITED_LIABILITY',
+					soleProprietorship: false,
 					directorStatus: 'SALARIED'
 				})
 			)
@@ -87,18 +89,8 @@ describe('company status selectors', function() {
 
 		it('should first return the question which convey the most information (which eliminates the most statuses ) ', () => {
 			const nextQuestion = nextQuestionSelector(state({}))
-			expect(nextQuestion).to.be.equal('multipleAssociates')
+			expect(nextQuestion).to.be.equal('soleProprietorship')
 		})
-
-		it('should interpret missing question in status as not relevant', () => {
-			const nextQuestion = nextQuestionSelector(
-				state({
-					minorityDirector: true
-				})
-			)
-			expect(nextQuestion).not.to.be.equal(null)
-		})
-
 		it('should allow to skip question', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({

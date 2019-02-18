@@ -19,8 +19,7 @@ body,
 
 @media (min-width: 500px) {
 	.app-content {
-		height: 100vh;
-		/* height: auto; */
+		min-height: 100vh;
 		flex: 1;
 	}
 	.app-container {

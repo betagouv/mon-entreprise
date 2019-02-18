@@ -1,14 +1,20 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - revenu disponible
+  - indépendant . cotisations et contributions
+  - indépendant . revenu professionnel
+  - impôt . impôt sur le revenu flexible
+  - revenu net
 
 questions:
   - entreprise . charges
   - entreprise . catégorie d'activité
+  - entreprise . année d'activité
+  - situation personnelle . RSA
 
 questions à l'affiche:
   Charges: entreprise . charges
   Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
+  Année d'activité: entreprise . année d'activité
 
 situation:
   indépendant: oui

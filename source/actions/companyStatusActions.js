@@ -3,8 +3,7 @@
 import { dropWhile, last } from 'ramda'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 import type {
-	ChooseCompanyLiabilityAction,
-	CompanyLiability,
+	IsSoleProprietorshipAction,
 	CompanyHasMultipleAssociatesAction,
 	DirectorStatus,
 	IsAutoentrepreneurAction,
@@ -24,10 +23,10 @@ const thenGoToNextQuestion = actionCreator => (...args: any) =>
 		history.push(nextQuestionUrlSelector(getState(), { sitePaths }))
 	}: Thunk<any>)
 
-export const chooseCompanyLiability = thenGoToNextQuestion(
-	(setup: ?CompanyLiability): ChooseCompanyLiabilityAction => ({
-		type: 'CHOOSE_COMPANY_LEGAL_SETUP',
-		setup
+export const isSoleProprietorship = thenGoToNextQuestion(
+	(isSoleProprietorship: ?boolean): IsSoleProprietorshipAction => ({
+		type: 'COMPANY_IS_SOLE_PROPRIETORSHIP',
+		isSoleProprietorship
 	})
 )
 

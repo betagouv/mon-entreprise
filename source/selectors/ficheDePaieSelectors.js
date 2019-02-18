@@ -116,15 +116,15 @@ const groupByBranche = (règleLocaliséeSelector: string => Règle) => (
 		règleLocaliséeSelector(branche),
 		// $FlowFixMe
 		cotisationsMap[branche]
-])
+	])
 }
 const analysisToCotisations = (
 	analysis: Analysis,
 	règleLocaliséeSelector: string => Règle
 ): Cotisations => {
 	const variables = [
-		'contrat salarié . cotisations salariales',
-		'contrat salarié . cotisations patronales'
+		'contrat salarié . cotisations . salariales',
+		'contrat salarié . cotisations . patronales'
 	]
 		.map(name => analysis.cache[name])
 		.map(pathOr([], ['explanation', 'formule', 'explanation', 'explanation']))
@@ -163,10 +163,10 @@ function analysisToFicheDePaie(
 	}
 	const cotisations = analysisToCotisations(analysis, règleLocalisée)
 	const cotisationsSalariales = règleAvecMontant(
-		'contrat salarié . cotisations salariales'
+		'contrat salarié . cotisations . salariales'
 	)
 	const cotisationsPatronales = règleAvecMontant(
-		'contrat salarié . cotisations patronales'
+		'contrat salarié . cotisations . patronales'
 	)
 	const réductionsDeCotisations = règleAvecMontant(
 		'contrat salarié . réductions de cotisations'

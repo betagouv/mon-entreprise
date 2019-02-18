@@ -4,29 +4,18 @@ import {
 	defineDirectorStatus,
 	isAutoentrepreneur
 } from 'Actions/companyStatusActions'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
-import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { config } from 'react-spring'
 import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
-import {
-	règleAvecMontantSelector,
-	règleAvecValeurSelector
-} from 'Selectors/regleSelectors'
+import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
-import Montant from 'Ui/Montant'
 import { validInputEnteredSelector } from '../selectors/analyseSelectors'
 import './ComparativeTargets.css'
 import SchemeCard from './ui/SchemeCard'
-import type {
-	Règle,
-	RègleAvecMontant,
-	RègleValeur,
-	RègleAvecValeur
-} from 'Types/RegleTypes'
+
+import type { RègleAvecMontant } from 'Types/RegleTypes'
 
 const connectRègles = (situationBranchName: string) =>
 	connect(
@@ -36,15 +25,9 @@ const connectRègles = (situationBranchName: string) =>
 					validInputEnteredSelector(state) &&
 					règleAvecMontantSelector(state, {
 						situationBranchName
-					})('revenu disponible'),
-				prélèvements:
-					validInputEnteredSelector(state) &&
-					règleAvecValeurSelector(state, {
-						situationBranchName
-					})('ratio de prélèvements')
+					})('revenu net')
 			}: {
-				revenuDisponible: RègleAvecMontant,
-				prélèvements: RègleAvecValeur
+				revenuDisponible: RègleAvecMontant
 			})
 		},
 		{
@@ -70,14 +53,7 @@ const ComparativeTargets: React$ComponentType<{}> = connect(state => {
 	}
 })(({ plafondAutoEntrepreneurDépassé }: ComparativeTargetsProps) => (
 	<Animate.fromBottom config={config.gentle}>
-		<div
-			className="ui__ full-width"
-			style={{
-				display: 'flex',
-				flexWrap: 'wrap',
-				justifyContent: 'center',
-				alignItems: 'stretch'
-			}}>
+		<div className="comparative-targets ui__ full-width">
 			<AutoEntrepreneur
 				branchIndex={0}
 				plafondDépassé={
@@ -88,14 +64,12 @@ const ComparativeTargets: React$ComponentType<{}> = connect(state => {
 			<AssimiléSalarié branchIndex={2} />
 			<Indépendant branchIndex={1} />
 		</div>
-		<PeriodSwitch />
 	</Animate.fromBottom>
 ))
 
 const Indépendant = connectRègles('Indépendant')(
 	({
 		revenuDisponible,
-		prélèvements,
 		branchIndex,
 		setSituationBranch,
 		defineDirectorStatus,
@@ -106,7 +80,6 @@ const Indépendant = connectRègles('Indépendant')(
 			subtitle="La protection à la carte"
 			onAmountClick={() => setSituationBranch(branchIndex)}
 			amount={revenuDisponible.montant}
-			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			icon="👩‍🔧"
 			amountDesc={<RuleLink {...revenuDisponible} />}
 			features={[
@@ -129,7 +102,6 @@ const Indépendant = connectRègles('Indépendant')(
 const AssimiléSalarié = connectRègles('Assimilé salarié')(
 	({
 		revenuDisponible,
-		prélèvements,
 		branchIndex,
 		setSituationBranch,
 		defineDirectorStatus
@@ -139,7 +111,6 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 			onAmountClick={() => setSituationBranch(branchIndex)}
 			subtitle="Le régime tout compris"
 			amount={revenuDisponible.montant}
-			amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 			featured="Le choix de 58% des dirigeants de sociétés"
 			icon="☂"
 			amountDesc={<RuleLink {...revenuDisponible} />}
@@ -164,7 +135,6 @@ const AssimiléSalarié = connectRègles('Assimilé salarié')(
 const AutoEntrepreneur = connectRègles('Auto-entrepreneur')(
 	({
 		revenuDisponible,
-		prélèvements,
 		setSituationBranch,
 		isAutoentrepreneur,
 		branchIndex,
@@ -178,7 +148,6 @@ const AutoEntrepreneur = connectRègles('Auto-entrepreneur')(
 				disabled={plafondDépassé}
 				amountDesc={<RuleLink {...revenuDisponible} />}
 				icon="🚶‍♂️"
-				amountNotice={<PrélèvementNotice prélèvements={prélèvements} />}
 				amount={revenuDisponible.montant}
 				features={[
 					'Régime des indépendants',
@@ -197,26 +166,4 @@ const AutoEntrepreneur = connectRègles('Auto-entrepreneur')(
 	}
 )
 
-type PrélèvementNoticeProps = {
-	prélèvements: ?RègleAvecValeur,
-	sitePaths: Object
-}
-const PrélèvementNotice = withSitePaths(
-	({ prélèvements, sitePaths }: PrélèvementNoticeProps) =>
-		!!prélèvements && (
-			<>
-				soit{' '}
-				<Montant
-					style={{ fontFamily: 'inherit' }}
-					type="percent"
-					numFractionDigit={0}>
-					{prélèvements.valeur}
-				</Montant>{' '}
-				de{' '}
-				<Link to={sitePaths.documentation.index + '/' + prélèvements.lien}>
-					prélèvements
-				</Link>
-			</>
-		)
-)
 export default ComparativeTargets

@@ -1,9 +1,13 @@
-import React from 'react';
-import { Trans } from 'react-i18next';
-import { evaluateNode, makeJsx, rewriteNode } from './evaluation';
-import { Leaf, Node } from './mecanismViews/common';
-import { disambiguateRuleReference, findParentDependency, findRuleByDottedName } from './rules';
-import { getSituationValue } from './variables';
+import React from 'react'
+import { Trans } from 'react-i18next'
+import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
+import { Leaf, Node } from './mecanismViews/common'
+import {
+	disambiguateRuleReference,
+	findParentDependency,
+	findRuleByDottedName
+} from './rules'
+import { getSituationValue } from './variables'
 
 export let treatVariable = (rules, rule, filter) => parseResult => {
 	let evaluate = (cache, situation, parsedRules, node) => {
@@ -41,7 +45,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			)
 			return cache[cacheName]
 		}
-		const variableScore = variable.defaultValue ? 1 : 2;
+		const variableScore = variable.defaultValue ? 1 : 2
 
 		// SITUATION 1 : La variable est directement renseignée
 		if (situationValue != null) return cacheAndNode(situationValue, {})
@@ -135,10 +139,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 
 		// Exceptions
 		if (!rule.période && !inlinePeriodTransform) {
-			if (
-				ruleToTransform.période == 'flexible' &&
-				!cache.checkingParentDependencies.includes(rule.dottedName)
-			)
+			if (ruleToTransform.période == 'flexible')
 				throw new Error(
 					`Attention, une variable sans période, ${
 						rule.dottedName
@@ -153,14 +154,12 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		if (!ruleToTransform.période) return filteredNode
 		let environmentPeriod = situation('période') || 'mois'
 		let callingPeriod =
-		inlinePeriodTransform ||
-		(rule.période === 'flexible' ? environmentPeriod : rule.période)
+			inlinePeriodTransform ||
+			(rule.période === 'flexible' ? environmentPeriod : rule.période)
 		let calledPeriod =
-		ruleToTransform.période === 'flexible'
-		? environmentPeriod
-		: ruleToTransform.période
-
-
+			ruleToTransform.période === 'flexible'
+				? environmentPeriod
+				: ruleToTransform.période
 		let transformedNodeValue =
 				callingPeriod === 'mois' && calledPeriod === 'année'
 					? nodeValue / 12
@@ -179,6 +178,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			filteredNode.explanation,
 			filteredNode.missingVariables
 		)
+
 		return result
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(

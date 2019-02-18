@@ -759,7 +759,7 @@
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
-        - revenu disponible
+        - revenu net
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -810,7 +810,7 @@
   nom: montant
   titre: Avantages en nature (montant)
   description: >
-    Les avantages en nature sont soumis aux cotisations et à l'impot sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+    Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   question: Quel est le montant des avantages en nature ?
   période: flexible
   suggestions:
@@ -846,9 +846,8 @@
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
   période: mois
   formule: 3377
-  note: Prévision basée sur le rapport `Les comptes de la sécurité sociale, résultats 2017, prévisions 2018 et 2019`
   références:
-    estimation pour 2019: https://lentreprise.lexpress.fr/rh-management/remuneration-salaire/plafond-de-la-securite-sociale-pass-40-526-euros-en-2019_2037358.html
+    2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
     arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
 
 - espace: contrat salarié
@@ -868,8 +867,8 @@
   période: flexible
   formule: SMIC temps plein * quotité de travail
 
-- espace: contrat salarié
-  nom: cotisations salariales
+- espace: contrat salarié . cotisations
+  nom: salariales
   format: euros
   période: flexible
   formule:
@@ -884,8 +883,8 @@
       - APEC (salarié)
       - complémentaire santé (salarié)
 
-- espace: contrat salarié
-  nom: cotisations patronales
+- espace: contrat salarié . cotisations
+  nom: patronales
   période: flexible
   format: euros
   formule:
@@ -924,7 +923,7 @@
   type: rémunération
   format: euros
   période: flexible
-  formule: rémunération . brut - cotisations salariales
+  formule: rémunération . brut - cotisations . salariales
 
 - espace: contrat salarié . rémunération
   nom: net imposable
@@ -975,7 +974,7 @@
 - espace: contrat salarié . salaire
   nom: net après impôt
   titre: Salaire net après impôt
-  résumé: Touché sur le compte bancaire
+  résumé: Versé sur son compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   format: euros
@@ -985,7 +984,7 @@
 
     Notre calcul retient le salaire net après déduction de l'impôt **neutre** (aussi appelé taux non personnalisé).
 
-    C'est une bonne estimation du revenu disponible d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
+    C'est une bonne estimation du revenu net d'une personne en l'absence d'informations sur sa situation (c'est un cas par défaut : célibataire sans enfants ni patrimoine).
 
     Pour une simulation plus complète, rendez-vous sur [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
   références:
@@ -1340,7 +1339,40 @@
   nom: réductions de cotisations
   période: flexible
   format: euros
-  formule: réduction générale + exonération JEI
+  formule:
+    somme:
+      - réduction générale
+      - exonération JEI
+      - réduction ACRE
+
+- espace: contrat salarié
+  nom: réduction ACRE
+  applicable si:
+    toutes ces conditions:
+      - assimilé salarié
+      - entreprise . année d'activité = 'première année'
+  période: flexible
+  formule:
+    multiplication:
+      assiette:
+        somme:
+          - maladie
+          - allocations familiales
+          - vieillesse
+      taux: taux
+
+- espace: contrat salarié . réduction ACRE
+  nom: taux
+  période: flexible
+  formule:
+    barème continu:
+      assiette: assiette cotisations sociales
+      multiplicateur: plafond sécurité sociale temps plein
+      points:
+        0: 100%
+        0.75: 100%
+        1: 0%
+      retourne seulement le taux: oui
 
 - espace: contrat salarié . rémunération
   nom: total sans réduction
@@ -1350,7 +1382,16 @@
   formule:
     somme:
       - brut
-      - cotisations patronales
+      - cotisations . patronales
+
+- espace: contrat salarié
+  nom: cotisations
+  période: flexible
+  descitption: Total des cotisation patronales et salariales
+  formule:
+    somme:
+      - patronales
+      - salariales
 
 - espace: contrat salarié
   nom: coût d'embauche
@@ -2545,12 +2586,20 @@
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 7253.26
 
+- nom: impôt sur le revenu flexible
+  espace: impôt
+  titre: impôt sur le revenu
+  description: L'impôt sur le revenu, ramené à la période
+  période: flexible
+  formule: impôt sur le revenu à payer
+
+
 - nom: revenu net de cotisations
   période: flexible
   formule:
     somme:
       - contrat salarié . salaire . net
-      - indépendant . revenu net de cotisations
+      - indépendant . revenu professionnel
       - autoentrepreneur . revenu net de cotisations
 
 - nom: revenu net d'impôt
@@ -2558,10 +2607,10 @@
   période: flexible
   formule: revenu net de cotisations - impôt . impôt sur le revenu à payer
 
-- nom: revenu disponible
-  titre: Revenu disponible
+- nom: revenu net
+  titre: Revenu net
   format: euros
-  résumé: Après déductions des cotisations et de l'impôt
+  résumé: Après cotisations et impôt sur le revenu
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
@@ -2570,7 +2619,36 @@
   formule: revenu net d'impôt - entreprise . charges non déductibles
 
 - espace: entreprise
+  nom: année d'activité
+  question: Quelle est l'age de l'entreprise en années d'activité ?
+  description: |
+    Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
+
+    Il doit pour cela contrôler son entreprise. C'est le cas pour une entreprise à un associé, et donc pour une auto-entreprise.
+
+    Pour les auto-entreprises, cette réduction est même prolongée pendant un total de 3 ans, de façon dégressive.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - première année
+        - deuxième année
+        - troisième année
+        - régime de croisière
+  par défaut: régime de croisière
+
+- espace: entreprise . année d'activité
+  nom: première année
+- espace: entreprise . année d'activité
+  nom: deuxième année
+- espace: entreprise . année d'activité
+  nom: troisième année
+- espace: entreprise . année d'activité
+  nom: régime de croisière
+
+- espace: entreprise
   nom: chiffre d'affaires
+  titre: chiffre d'affaires H.T.
   question: Quel est votre chiffre d'affaires H.T. ?
   résumé: Le montant des ventes réalisées
   période: flexible
@@ -2581,7 +2659,7 @@
         alors:
           inversion numérique:
             avec:
-              - revenu disponible
+              - revenu net
       - sinon: rémunération totale du dirigeant + charges
 
 - espace: entreprise
@@ -2620,7 +2698,6 @@
   période: flexible
   par défaut: 0
   format: euros
-
 - espace: entreprise
   nom: charges non déductibles
   applicable si: autoentrepreneur
@@ -2628,25 +2705,49 @@
   période: flexible
 
 - espace: indépendant
-  nom: revenu net de cotisations
-  titre: Revenu net en tant qu'indépendant
+  nom: réduction ACRE
+  applicable si: entreprise . année d'activité = 'première année'
+  période: flexible
+  formule:
+    multiplication:
+      assiette: cotisations - cotisations . retraite complémentaire
+      taux: taux ACRE
+
+- espace: indépendant
+  nom: taux ACRE
+  période: flexible
+  formule:
+    barème continu:
+      assiette: revenu professionnel
+      multiplicateur: plafond sécurité sociale temps plein
+      points:
+        0: 100%
+        0.75: 100%
+        1: 0%
+      retourne seulement le taux: oui
+
+- espace: indépendant
+  nom: revenu professionnel
+  titre: Revenu professionnel
+  résumé: Revenu net de cotisations
+  question: Quel est votre revenu professionnel ?
   description: |
 
-    C'est le revenu professionel du travailleur indépendant.
+    C'est le revenu net de cotisations du travailleur indépendant.
 
-    Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
+  Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
   formule:
     inversion numérique:
       avec:
         - revenu brut
-        - revenu disponible
+        - revenu net
         - entreprise . chiffre d'affaires
 
 - espace: indépendant
   nom: revenu brut
-  formule: revenu net de cotisations + prélèvements
+  formule: revenu professionnel + cotisations et contributions
   période: flexible
 
 - nom: entreprise . catégorie d'activité
@@ -2686,6 +2787,11 @@
   question: Activité à la sécurité sociale des indépendants ?
 
 - espace: indépendant
+  nom: cotisations à payer
+  période: flexible
+  formule: cotisations - réduction ACRE
+
+- espace: indépendant
   nom: cotisations
   période: flexible
   références:
@@ -2700,11 +2806,11 @@
       - allocations familiales
 
 - espace: indépendant
-  nom: prélèvements
+  nom: cotisations et contributions
   période: flexible
   formule:
     somme:
-      - cotisations
+      - cotisations à payer
       - formation professionnelle
       - CSG et CRDS
 
@@ -2716,19 +2822,33 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           barème continu:
-            assiette: revenu net de cotisations
+            assiette: assiette
             multiplicateur: plafond sécurité sociale temps plein
             points:
               0: 1.5%
               1.1: 6.5%
       - sinon: artisans commerçants
 
+- espace: indépendant . cotisations . maladie
+  nom: assiette
+  titre: assiette maladie
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - 40% * plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+
 - espace: indépendant . cotisations
   nom: indemnités journalières maladie
   période: flexible
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: maladie . assiette
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
@@ -2742,7 +2862,7 @@
   période: flexible
   formule:
     barème continu:
-      assiette: revenu net de cotisations
+      assiette: assiette
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
@@ -2752,10 +2872,10 @@
 - espace: indépendant . cotisations . maladie . artisans commerçants
   nom: part revenus élevés
   période: flexible
-  applicable si: revenu net de cotisations > seuil
+  applicable si: revenu professionnel > seuil
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       taux: 0.15%
 
 - espace: indépendant . cotisations . maladie . artisans commerçants . part revenus élevés
@@ -2771,7 +2891,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           multiplication:
-            assiette: revenu net de cotisations
+            assiette: assiette
             composantes:
               - nom: tranche 1
                 plafond: 39732
@@ -2781,12 +2901,26 @@
                 taux: 1.87%
       - sinon:
           barème:
-            assiette: revenu net de cotisations
+            assiette: assiette
             tranches:
               - en-dessous de: 39732
                 taux: 17.75%
               - au-dessus de: 39732
                 taux: 0.6%
+
+- espace: indépendant . cotisations . retraite de base
+  nom: assiette
+  titre: assiette retraite de base
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - 11.5% * plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 - espace: indépendant . cotisations
   nom: retraite complémentaire
@@ -2798,7 +2932,7 @@
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
         alors:
           barème linéaire:
-            assiette: revenu net de cotisations
+            assiette: revenu professionnel
             tranches:
               - en-dessous de: 26580
                 montant: 1277
@@ -2824,7 +2958,7 @@
                 montant: 15597
       - sinon:
           barème:
-            assiette: revenu net de cotisations
+            assiette: revenu professionnel
             tranches:
               - en-dessous de: 37846
                 taux: 7%
@@ -2842,14 +2976,27 @@
   période: flexible
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: assiette
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
+- espace: indépendant . cotisations . invalidité et décès
+  nom: assiette
+  titre: assiette invalidité et décès
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - 11.5% * plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-- espace: indépendant . prélèvements
+- espace: indépendant . cotisations et contributions
   nom: CSG et CRDS
   période: flexible
   formule:
@@ -2864,32 +3011,47 @@
             impôt sur le revenu: déductible
           taux: 6.8%
 
-- espace: indépendant . prélèvements . CSG et CRDS
+- espace: indépendant . cotisations et contributions . CSG et CRDS
   nom: assiette
   note: Il faut vérifier que l'assiette de la CSG et CRDS est correcte. Pourquoi les cotisations sont-elles dans l'assiette ? La retraite complémentaire doit l'être aussi ?
   période: flexible
   formule:
     somme:
-      - revenu net de cotisations
+      - revenu professionnel
       - cotisations
 
-- espace: indépendant . prélèvements
+- espace: indépendant . cotisations et contributions
   nom: formation professionnelle
   période: flexible
   formule:
     multiplication:
-      assiette: revenu net de cotisations
+      assiette: assiette
       taux: 0.29%
       plafond: plafond sécurité sociale temps plein
       # C'est le taux pour les artisans.
       # TODO Pour les commerçants, le taux est de 0.25%
       #
+- espace: indépendant . cotisations et contributions . formation professionnelle
+  nom: assiette
+  titre: assiette formation professionnelle
+  formule:
+    variations:
+      - si: ≠ situation personnelle . RSA
+        alors:
+          le maximum de:
+            - plafond sécurité sociale temps plein
+            - revenu professionnel
+      - sinon: revenu professionnel
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+
+
 - espace: indépendant . cotisations
   nom: allocations familiales
   période: flexible
   formule:
     barème continu:
-      assiette: revenu net de cotisations
+      assiette: revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
@@ -2899,12 +3061,12 @@
 - espace: indépendant
   nom: revenu brut
   période: flexible
-  formule: revenu net de cotisations + prélèvements
+  formule: revenu professionnel + cotisations et contributions
 
 - espace: indépendant
   nom: revenu imposable
   période: flexible
-  formule: revenu net de cotisations + prélèvements . CSG et CRDS (non déductible)
+  formule: revenu professionnel + cotisations et contributions . CSG et CRDS (non déductible)
 
 - nom: autoentrepreneur
   icônes: 🚶
@@ -2934,7 +3096,17 @@
 - espace: autoentrepreneur
   nom: revenu net de cotisations
   titre: Revenu net d'une auto-entrepreneur
-  formule: base des cotisations - cotisations
+  formule: base des cotisations - cotisations après réductions
+  période: flexible
+
+- espace: autoentrepreneur
+  nom: cotisations après réductions
+  formule: cotisations * taux de réduction de cotisation
+  période: flexible
+
+- espace: autoentrepreneur
+  nom: taux de réduction de cotisation
+  formule: 1 - réduction ACRE
   période: flexible
 
 - espace: autoentrepreneur
@@ -2951,6 +3123,23 @@
             alors: 22%
           - sinon: 12.8%
 
+- espace: autoentrepreneur
+  nom: réduction ACRE
+  période: flexible
+  non applicable si:
+    une de ces conditions:
+      - impôt . revenu abattu > plafond sécurité sociale temps plein
+      - entreprise . année d'activité = 'régime de croisière'
+  formule:
+    variations:
+      - si: entreprise . année d'activité = 'première année'
+        alors: 75%
+      - si: entreprise . année d'activité = 'deuxième année'
+        alors: 50%
+      - si: entreprise . année d'activité = 'troisième année'
+        alors: 25%
+      - sinon: 0%
+
 - espace: autoentrepreneur . impôt
   nom: abattement
   période: flexible
@@ -2964,6 +3153,9 @@
           - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
             alors: 50%
           - sinon: 71%
+
+- espace: autoentrepreneur
+  nom: impôt
 
 - espace: autoentrepreneur . impôt
   nom: revenu abattu
@@ -3117,14 +3309,8 @@
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
 
-- nom: ratio de prélèvements
-  description: |
-    Les prélèvements incluent les cotisations sociales, la CSG, l'impôt sur le revenu.
-
-    Attention, pour les auto-entrepreneur, nous incluons les charges dans ce ratio de prélèvements, car les charges ne sont pas déductibles. Cela permet de comparer le ratio de prélèvements entre les différents régimes.
-  formule: 1 - ratio de revenu
-  période: flexible
-
-- nom: ratio de revenu
-  formule: revenu disponible / entreprise . rémunération totale du dirigeant
-  période: flexible
+- espace: situation personnelle
+  nom: RSA
+  titre: allocataire RSA
+  question: Êtes-vous allocataire du RSA ?
+  par défaut: non
