@@ -96,8 +96,8 @@ const HiringProcess = ({
 				explanations={
 					<p>
 						<T k="embauche.tâches.logiciel de paie.description">
-							Avec moins de 20 employés, les fiches de paie et les déclarations
-							peuvent être traitées en ligne par le{' '}
+							Les fiches de paie et les déclarations peuvent être traitées en
+							ligne gratuitement par le{' '}
 							<a href="http://www.letese.urssaf.fr" target="_blank">
 								Tese (Fr)
 							</a>
