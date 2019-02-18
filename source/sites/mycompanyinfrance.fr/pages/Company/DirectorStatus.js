@@ -50,8 +50,7 @@ const DefineDirectorStatus = ({
 				</li>
 				<li>
 					<strong>Indépendant :</strong> Le dirigeant de l'entreprise est
-					couvert par le régime de la Sécurité sociale des travailleurs
-					indépendants.
+					couvert par le régime de la Sécurité sociale des indépendants.
 				</li>
 			</ul>
 			{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(

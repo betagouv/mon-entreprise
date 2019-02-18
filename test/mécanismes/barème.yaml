@@ -10,31 +10,30 @@
       assiette: assiette
       multiplicateur: base
       tranches:
-      - en-dessous de: 1
-        taux: 4.65%
-      - de: 1
-        à: 3
-        taux: 3%
-      - au-dessus de: 3
-        taux: 1%
+        - en-dessous de: 1
+          taux: 4.65%
+        - de: 1
+          à: 3
+          taux: 3%
+        - au-dessus de: 3
+          taux: 1%
 
   exemples:
-    - nom: "petite assiette"
+    - nom: 'petite assiette'
       situation:
         assiette: 3000
         base: 5000
       valeur attendue: 139.5
-    - nom: "moyenne assiette"
+    - nom: 'moyenne assiette'
       situation:
         assiette: 6000
         base: 5000
       valeur attendue: 262.5
-    - nom: "grande assiette"
+    - nom: 'grande assiette'
       situation:
         assiette: 30000
         base: 5000
       valeur attendue: 682.5
-
 
 - test: Barème à composantes
   formule:
@@ -43,15 +42,15 @@
       multiplicateur: base
       composantes:
         - tranches:
-          - en-dessous de: 1
-            taux: 2%
-          - au-dessus de: 1
-            taux: 0%
+            - en-dessous de: 1
+              taux: 2%
+            - au-dessus de: 1
+              taux: 0%
         - tranches:
-          - en-dessous de: 2
-            taux: 9%
-          - au-dessus de: 2
-            taux: 29%
+            - en-dessous de: 2
+              taux: 9%
+            - au-dessus de: 2
+              taux: 29%
 
   exemples:
     - nom:
@@ -59,10 +58,6 @@
         assiette: 12000
         base: 5000
       valeur attendue: 1580
-
-
-
-
 # TODO implémenter les taux variables
 # - nom: taux variable
 #   format: pourcentage

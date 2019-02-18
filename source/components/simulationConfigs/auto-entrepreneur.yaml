@@ -1,7 +1,7 @@
 objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges non déductibles
-  - autoentrepreneur . cotisations après réductions
+  - auto entrepreneur . cotisations
   - impôt . impôt sur le revenu flexible
   - revenu net
 
@@ -16,7 +16,7 @@ questions à l'affiche:
   Année d'activité: entreprise . année d'activité
 
 situation:
-  autoentrepreneur: oui
+  auto entrepreneur: oui
   indépendant: non
   contrat salarié: non
   période: année
