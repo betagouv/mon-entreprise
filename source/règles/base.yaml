@@ -2544,7 +2544,7 @@
   formule:
     somme:
       - revenu abattu par défaut
-      - autoentrepreneur . impôt . revenu abattu
+      - auto entrepreneur . impôt . revenu abattu
 
 - espace: impôt
   nom: revenu abattu par défaut
@@ -2608,7 +2608,7 @@
     somme:
       - contrat salarié . salaire . net
       - indépendant . revenu professionnel
-      - autoentrepreneur . revenu net de cotisations
+      - auto entrepreneur . revenu net de cotisations
 
 - nom: revenu net d'impôt
   titre: Revenu net de cotisations et d'impôt
@@ -2663,7 +2663,7 @@
   format: euros
   formule:
     variations:
-      - si: autoentrepreneur
+      - si: auto entrepreneur
         alors:
           inversion numérique:
             avec:
@@ -2678,7 +2678,7 @@
     somme:
       - contrat salarié . rémunération . total
       - indépendant . revenu brut
-      - autoentrepreneur . base des cotisations
+      - auto entrepreneur . base des cotisations
 
 - espace: entreprise
   nom: charges
@@ -2686,7 +2686,7 @@
   question: Quelles sont les charges H.T. de l'entreprise (hors rémunération) ?
   description: |
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunérations. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la auto-entrepreneur, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunérations. Pour les sociétés et entreprises hors auto entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la auto entrepreneur, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
 
@@ -2708,7 +2708,7 @@
   format: euros
 - espace: entreprise
   nom: charges non déductibles
-  applicable si: autoentrepreneur
+  applicable si: auto entrepreneur
   formule: charges
   période: flexible
 
@@ -3078,12 +3078,12 @@
   période: flexible
   formule: revenu professionnel + cotisations et contributions . CSG et CRDS (non déductible)
 
-- nom: autoentrepreneur
+- nom: auto entrepreneur
   icônes: 🚶
   par défaut: non
-  question: Activité en auto-entrepreneur ?
+  question: Activité en auto entrepreneur ?
 
-- espace: autoentrepreneur
+- espace: auto entrepreneur
   nom: base des cotisations
   formule: entreprise . chiffre d'affaires
   période: flexible
@@ -3092,7 +3092,7 @@
       message: Seuil de chiffre d'affaires dépassé
       niveau: avertissement
 
-- espace: autoentrepreneur
+- espace: auto entrepreneur
   nom: plafond
   période: année
   formule:
@@ -3103,71 +3103,83 @@
         alors: 70000
       - sinon: 170000
 
-- espace: autoentrepreneur
+- espace: auto entrepreneur
   nom: revenu net de cotisations
-  titre: Revenu net d'une auto-entrepreneur
-  formule: base des cotisations - cotisations après réductions
+  titre: Revenu net d'une auto entrepreneur
+  formule: base des cotisations - cotisations
   période: flexible
 
-- espace: autoentrepreneur
-  nom: cotisations après réductions
-  formule: cotisations * taux de réduction de cotisation
-  période: flexible
-
-- espace: autoentrepreneur
-  nom: taux de réduction de cotisation
-  formule: 1 - réduction ACRE
-  période: flexible
-
-- espace: autoentrepreneur
+- espace: auto entrepreneur
   nom: cotisations
   période: flexible
   formule:
-    multiplication:
+    barème:
       assiette: base des cotisations
-      taux:
-        variations:
-          - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-            alors: 22%
-          - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
-            alors: 22%
-          - sinon: 12.8%
+      multiplicateur: ACRE . plafond
+      tranches:
+        - en-dessous de: 1
+          taux: ACRE * taux
+        - au dessus de: 1
+          taux: taux
 
-- espace: autoentrepreneur
-  nom: réduction ACRE
+- espace: auto entrepreneur . cotisations
+  nom: taux
+  titre: taux de cotisations
+  formule:
+    variations:
+      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+        alors: 22%
+      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+        alors: 22%
+      - sinon: 12.8%
+
+- espace: auto entrepreneur . cotisations
+  nom: ACRE
+  titre: Coefficient multiplicateur ACRE
   période: flexible
-  non applicable si:
-    une de ces conditions:
-      - impôt . revenu abattu > plafond sécurité sociale temps plein
-      - entreprise . année d'activité = 'régime de croisière'
   formule:
     variations:
       - si: entreprise . année d'activité = 'première année'
-        alors: 75%
+        alors: 25%
       - si: entreprise . année d'activité = 'deuxième année'
         alors: 50%
       - si: entreprise . année d'activité = 'troisième année'
-        alors: 25%
-      - sinon: 0%
+        alors: 75%
+      - sinon: 100%
 
-- espace: autoentrepreneur . impôt
+- espace: auto entrepreneur . cotisations . ACRE
+  nom: plafond
+  titre: Plafond de CA pour l'ACRE
+  formule: plafond sécurité sociale temps plein - abattement
+
+- espace: auto entrepreneur . cotisations . ACRE
+  nom: abattement
+  formule: impôt . abattement . taux * plafond sécurité sociale temps plein
+
+
+- espace: auto entrepreneur . impôt
   nom: abattement
   période: flexible
   formule:
     multiplication:
       assiette: base des cotisations
-      taux:
-        variations:
-          - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-            alors: 34%
-          - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
-            alors: 50%
-          - sinon: 71%
+      taux: taux
 
-- espace: autoentrepreneur
+- espace: auto entrepreneur . impôt . abattement
+  nom: taux
+  titre: taux abattement de l'impôt
+  formule:
+    variations:
+      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+        alors: 34%
+      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
+        alors: 50%
+      - sinon: 71%
+
+- espace: auto entrepreneur
   nom: impôt
 
-- espace: autoentrepreneur . impôt
+- espace: auto entrepreneur . impôt
   nom: revenu abattu
   période: flexible
   formule: base des cotisations - abattement
