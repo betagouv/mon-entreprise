@@ -1,4 +1,4 @@
-import AlphaWarning from 'Components/AlphaWarning'
+import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
@@ -22,12 +22,12 @@ const AutoEntrepreneur = () => (
 		<p>
 			Les auto-entrepreneurs relèvent de la sécurité sociale des indépendants.
 		</p>
-		<AlphaWarning />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
 			explanation={<AvertissementProtectionSocialeIndépendants />}
 		/>
+		<Warning />
 	</>
 )
 export default withSimulationConfig(indépendantConfig)(AutoEntrepreneur)

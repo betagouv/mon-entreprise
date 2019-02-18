@@ -23,6 +23,7 @@ import Privacy from './Privacy'
 type OwnProps = {}
 
 const feedbackBlacklist = [
+	['index'],
 	['sécuritéSociale', 'indépendant'],
 	['sécuritéSociale', 'auto-entrepreneur'],
 	['sécuritéSociale', 'assimilé-salarié'],

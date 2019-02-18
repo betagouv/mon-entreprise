@@ -1,4 +1,4 @@
-import AlphaWarning from 'Components/AlphaWarning'
+import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
@@ -25,7 +25,6 @@ const AssimiléSalarié = () => (
 			général. Les cotisations sociales sont proches de celles des salariés, à
 			quelques exceptions près (réductions employeur et chômage en moins).
 		</p>
-		<AlphaWarning />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
@@ -36,6 +35,7 @@ const AssimiléSalarié = () => (
 				</p>
 			}
 		/>
+		<Warning />
 	</>
 )
 export default withSimulationConfig(assimiléConfig)(AssimiléSalarié)

@@ -83,7 +83,11 @@ function SchemeCard({
 							{amountDesc}&nbsp;:
 							<span className="scheme-card__amount-separator" />
 							<p className="ui__ lead">
-								<AnimatedTargetValue value={amount} />
+								{disabled ? (
+									'CA dépassé'
+								) : (
+									<AnimatedTargetValue value={amount} />
+								)}
 							</p>
 						</div>
 					</Animate.appear>
