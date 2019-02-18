@@ -1,5 +1,6 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import Mecanisms from 'Components/Mecanisms'
+import Route404 from 'Components/Route404'
 import RulePage from 'Components/RulePage'
 import DisableScroll from 'Components/utils/DisableScroll'
 import TrackPageView from 'Components/utils/TrackPageView'
@@ -27,7 +28,6 @@ import Home from './pages/Home'
 import IframeFooter from './pages/IframeFooter'
 import Integration from './pages/Integration'
 import IntegrationTest from './pages/IntegrationTest'
-import Route404 from 'Components/Route404'
 import RulesList from './pages/RulesList'
 import sitePaths from './sitePaths'
 
@@ -75,7 +75,7 @@ class EmbaucheRoute extends Component {
 				{!inIframe() && <Header />}
 				{inIframe() && <DisableScroll />}
 				<RouterSwitch />
-				<PageFeedback blacklist={['/', '/simulation']} />
+				<PageFeedback blacklist={['']} />
 				{inIframe() && <IframeFooter />}
 			</Provider>
 		)

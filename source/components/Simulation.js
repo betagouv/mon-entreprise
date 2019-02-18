@@ -103,7 +103,7 @@ export default compose(
 					)}
 
 					{!noUserInput && !noFeedback && (
-						<Animate.appear delay={1000}>
+						<Animate.appear delay={2000}>
 							<PageFeedback
 								customMessage={
 									<T k="feedback.simulator">
