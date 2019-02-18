@@ -60,24 +60,6 @@ jobs:
           base_url: http://localhost:5002
           integration_folder: embauche
 
-  demo-end-to-end-test:
-    docker:
-      - image: cypress/base:8
-        environment:
-          TERM: xterm
-    steps:
-      - checkout
-      - run: npm install --save-dev cypress
-      - run: sleep 200
-      - cypress:
-          base_url: http://demo.mon-entreprise.fr
-      - cypress:
-          base_url: http://demo.mon-entreprise.fr?s=m
-          language: en
-      - cypress:
-          base_url: http://demo.mon-entreprise.fr?s=e
-          integration_folder: embauche
-
   production-end-to-end-test:
     docker:
       - image: cypress/base:8
@@ -110,10 +92,6 @@ workflows:
     jobs:
       - unit-test
       - end-to-end-test
-      - demo-end-to-end-test:
-          filters:
-            branches:
-              only: demo
       - production-end-to-end-test:
           filters:
             branches:

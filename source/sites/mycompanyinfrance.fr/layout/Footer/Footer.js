@@ -53,7 +53,6 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 					: '') + window.location.pathname
 			).replace(/\/$/, '')
 		] || []
-	console.log('test demo', {hrefLangLink, ENSITE: process.env.EN_SITE, FRSITE: process.env.FR_SITE})
 	return (
 		<div className="footer-container">
 			<Helmet>
