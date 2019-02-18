@@ -2845,6 +2845,8 @@
 
 - espace: indépendant . cotisations
   nom: indemnités journalières maladie
+  titre: Maladie 2
+  description: Cotisations pour les indémnité journalière des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, ils peuvent bénéficier d’indemnités journalières.
   période: flexible
   formule:
     multiplication:
