@@ -32,11 +32,13 @@ const feedbackBlacklist = [
 
 const LOCAL_STORAGE_KEY = 'app::newsletter::registered'
 const userAlreadyRegistered: boolean =
-	JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
+	JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) ||  false
 
 const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 	const [showNewsletterForm, toggleNewsletterForm] = useState(
-		!userAlreadyRegistered
+		!userAlreadyRegistered && !['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+			window.location.hostname
+		)
 	)
 	const onSubmit = () => {
 		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(true))
