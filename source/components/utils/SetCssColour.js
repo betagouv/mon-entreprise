@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import withColours from './withColours'
 
 class SetCSSColour extends Component {
 	updateCSSColour = () => {
@@ -19,4 +18,4 @@ class SetCSSColour extends Component {
 	}
 }
 
-export default withColours(SetCSSColour)
+export default SetCSSColour

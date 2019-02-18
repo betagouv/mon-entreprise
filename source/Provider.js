@@ -1,4 +1,3 @@
-import SetCSSColour from 'Components/utils/SetCssColour'
 import { ThemeColoursProvider } from 'Components/utils/withColours'
 import { SitePathProvider } from 'Components/utils/withSitePaths'
 import { TrackerProvider } from 'Components/utils/withTracker'
@@ -69,7 +68,6 @@ export default class Provider extends PureComponent {
 				<ThemeColoursProvider colour={getIframeOption('couleur')}>
 					<TrackerProvider value={this.props.tracker}>
 						<SitePathProvider value={this.props.sitePaths}>
-							<SetCSSColour />
 							<I18nextProvider i18n={i18next}>
 								<Router history={this.history}>
 									<>{this.props.children}</>

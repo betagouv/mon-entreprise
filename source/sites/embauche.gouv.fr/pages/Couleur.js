@@ -1,9 +1,12 @@
-import React, { Suspense } from 'react'
-import Home from './Home'
+/* @flow */
 
+import withColours, { ThemeColoursProvider } from 'Components/utils/withColours'
+import React, { Suspense, useState } from 'react'
+import Home from './Home'
 let LazyColorPicker = React.lazy(() => import('./ColorPicker'))
 
-const Couleur = () => {
+const Couleur = ({ colours: { colour: defaultColour } }) => {
+	const [colour, setColour] = useState(defaultColour)
 	return (
 		<div className="ui__ container">
 			<p className="indication">
@@ -11,19 +14,17 @@ const Couleur = () => {
 				couleurs principales.
 			</p>
 			<Suspense fallback={<div>Chargement...</div>}>
-				<LazyColorPicker
-					color={this.props.couleur}
-					onChangeComplete={this.changeColour}
-				/>
+				<LazyColorPicker colour={colour} onChange={setColour} />
 			</Suspense>
 			<p className="indication">
 				La couleur sélectionnée, à déclarer comme attribut
-				&quot;data-couleur&quot; du script sur votre page est :{' '}
-				<b>{this.props.couleur}</b>
+				&quot;data-couleur&quot; du script sur votre page est : <b>{colour}</b>
 			</p>
-			<Home />
+			<ThemeColoursProvider colour={colour}>
+				<Home />
+			</ThemeColoursProvider>
 		</div>
 	)
 }
 
-export default Couleur
+export default withColours(Couleur)
