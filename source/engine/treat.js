@@ -31,13 +31,19 @@ import {
 } from './treatVariable'
 import { treat } from './traverse'
 import knownMecanisms from './known-mecanisms.yaml'
+
+// This should be the new way to implement mecanisms
+// In a specific file
+// TODO import them automatically
+// TODO convert the legacy functions to new files
+import barème from 'Engine/mecanisms/barème.js'
+
 import {
 	mecanismOneOf,
 	mecanismAllOf,
 	mecanismNumericalSwitch,
 	mecanismSum,
 	mecanismProduct,
-	mecanismScale,
 	mecanismLinearScale,
 	mecanismContinuousScale,
 	mecanismMax,
@@ -251,7 +257,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'aiguillage numérique': mecanismNumericalSwitch,
 			somme: mecanismSum,
 			multiplication: mecanismProduct,
-			barème: mecanismScale,
+			barème,
 			'barème linéaire': mecanismLinearScale,
 			'barème continu': mecanismContinuousScale,
 			'le maximum de': mecanismMax,
