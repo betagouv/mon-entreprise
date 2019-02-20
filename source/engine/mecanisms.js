@@ -42,7 +42,6 @@ import {
 	evaluateNode,
 	rewriteNode,
 	evaluateArray,
-	evaluateArrayWithFilter,
 	evaluateObject,
 	parseObject,
 	collectNodeMissing,
@@ -64,55 +63,10 @@ import BarèmeContinu from './mecanismViews/BarèmeContinu'
 import InversionNumérique from './mecanismViews/InversionNumérique'
 import Variations from './mecanismViews/Variations'
 import Allègement from './mecanismViews/Allègement'
-import Composantes from './mecanismViews/Composantes'
-import { trancheValue } from './mecanisms/barème'
 import buildSelectionView from './mecanismViews/Selection'
 import uniroot from './uniroot'
-
-let decompose = (recurse, k, v) => {
-	let subProps = dissoc('composantes')(v),
-		explanation = v.composantes.map(c => ({
-			...recurse(
-				objOf(k, {
-					...subProps,
-					...dissoc('attributs')(c)
-				})
-			),
-			composante: c.nom ? { nom: c.nom } : c.attributs
-		}))
-
-	let filter = situationGate => c =>
-		!situationGate('sys.filter') ||
-		!c.composante ||
-		((!c.composante['dû par'] ||
-			c.composante['dû par'] == situationGate('sys.filter')) &&
-			(!c.composante['impôt sur le revenu'] ||
-				c.composante['impôt sur le revenu'] == situationGate('sys.filter')))
-
-	return {
-		explanation,
-		jsx: Composantes,
-		evaluate: evaluateArrayWithFilter(filter, add, 0),
-		category: 'mecanism',
-		name: 'composantes',
-		type: 'numeric'
-	}
-}
-
-let devariateExplanation = (recurse, mecanismKey, v) => {
-	let fixedProps = dissoc('variations')(v),
-		explanation = v.variations.map(({ si, alors, sinon }) => ({
-			consequence: recurse({
-				[mecanismKey]: {
-					...fixedProps,
-					...(sinon || alors)
-				}
-			}),
-			condition: sinon ? undefined : recurse(si)
-		}))
-
-	return explanation
-}
+import { decompose, devariateExplanation } from 'Engine/mecanisms/utils'
+import { desugarScale } from 'Engine/mecanisms/barème'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export let mecanismVariations = (recurse, k, v, devariate) => {
@@ -726,16 +680,6 @@ export let mecanismProduct = (recurse, k, v) => {
 	à: 1
 	```
 	*/
-let desugarScale = recurse => tranches =>
-	tranches
-		.map(t =>
-			has('en-dessous de')(t)
-				? { ...t, de: 0, à: t['en-dessous de'] }
-				: has('au-dessus de')(t)
-				? { ...t, de: t['au-dessus de'], à: Infinity }
-				: t
-		)
-		.map(evolve({ taux: recurse }))
 
 export let mecanismLinearScale = (recurse, k, v) => {
 	if (v.composantes) {
@@ -778,47 +722,6 @@ export let mecanismLinearScale = (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'barème linéaire',
 		barème: 'en taux',
-		type: 'numeric'
-	}
-}
-
-export let mecanismScale = (recurse, k, v) => {
-	// Sous entendu : barème en taux marginaux.
-	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
-	}
-	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
-	}
-
-	let tranches = desugarScale(recurse)(v['tranches']),
-		objectShape = {
-			assiette: false,
-			multiplicateur: defaultNode(1)
-		}
-
-	let effect = ({ assiette, multiplicateur: multiplicateur, tranches }) => {
-		let nulled = val(assiette) == null || val(multiplicateur) == null
-
-		return nulled
-			? null
-			: sum(tranches.map(trancheValue('marginal')(assiette, multiplicateur)))
-	}
-
-	let explanation = {
-			...parseObject(recurse, objectShape, v),
-			tranches
-		},
-		evaluate = evaluateObject(objectShape, effect)
-
-	return {
-		evaluate,
-		jsx: Barème('marginal'),
-		explanation,
-		category: 'mecanism',
-		name: 'barème',
-		barème: 'en taux marginaux',
 		type: 'numeric'
 	}
 }
