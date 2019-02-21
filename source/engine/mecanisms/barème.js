@@ -2,12 +2,7 @@ import { val } from 'Engine/traverse-common-functions'
 import { decompose } from 'Engine/mecanisms/utils'
 import { mecanismVariations } from 'Engine/mecanisms'
 import { has, evolve, sum } from 'ramda'
-import {
-	defaultNode,
-	evaluateNode,
-	mergeMissing,
-	rewriteNode
-} from 'Engine/evaluation'
+import { defaultNode, rewriteNode, E } from 'Engine/evaluation'
 
 import Barème from 'Engine/mecanismViews/Barème'
 
@@ -49,46 +44,36 @@ export default (recurse, k, v) => {
 		return mecanismVariations(recurse, k, v, true)
 	}
 
-	let tranches = desugarScale(recurse)(v['tranches'])
+	let { assiette, multiplicateur } = v,
+		tranches = desugarScale(recurse)(v['tranches'])
 
 	let explanation = {
-		assiette: recurse(v['assiette']),
-		multiplicateur:
-			v['multiplicateur'] != null
-				? recurse(v['multiplicateur'])
-				: defaultNode(1),
+		assiette: recurse(assiette),
+		multiplicateur: multiplicateur ? recurse(multiplicateur) : defaultNode(1),
 		tranches
 	}
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let mv = {}
+		let e = E(cache, situationGate, parsedRules)
 
-		let v = element => {
-				let evaluated = evaluateNode(cache, situationGate, parsedRules, element)
-				// automatically add missing variables when a variable is evaluated and thus needed in this mecanism's evaluation
-				mv = mergeMissing(mv, evaluated.missingVariables)
-
-				return evaluated.nodeValue
-			},
-			{ assiette, multiplicateur } = node.explanation,
+		let { assiette, multiplicateur } = node.explanation,
 			trancheValues = node.explanation.tranches.map(
 				({ de: min, à: max, taux }) =>
-					v(assiette) < min * v(multiplicateur)
+					e.val(assiette) < min * e.val(multiplicateur)
 						? 0
-						: (Math.min(v(assiette), max * v(multiplicateur)) -
-								min * v(multiplicateur)) *
-						  v(taux)
+						: (Math.min(e.val(assiette), max * e.val(multiplicateur)) -
+								min * e.val(multiplicateur)) *
+						  e.val(taux)
 			),
 			nodeValue = sum(trancheValues)
 
-		return rewriteNode(node, nodeValue, explanation, mv)
+		return rewriteNode(node, nodeValue, explanation, e.missingVariables())
 	}
 
 	return {
 		explanation,
 		evaluate,
-		jsx: () => null,
-		//	jsx: Barème('marginal'),
+		jsx: Barème('marginal'),
 		category: 'mecanism',
 		name: 'barème',
 		barème: 'marginal'
