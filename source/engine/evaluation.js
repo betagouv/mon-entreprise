@@ -119,3 +119,23 @@ export let evaluateObject = (objectShape, effect) => (
 	//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
+
+export let E = (cache, situationGate, parsedRules) => {
+	let missingVariables = {}
+
+	let val = element => {
+		let evaluated = evaluateNode(cache, situationGate, parsedRules, element)
+		// automatically add missing variables when a variable is evaluated and thus needed in this mecanism's evaluation
+		missingVariables = mergeMissing(
+			missingVariables,
+			evaluated.missingVariables
+		)
+
+		return evaluated.nodeValue
+	}
+
+	return {
+		val,
+		missingVariables: () => missingVariables
+	}
+}
