@@ -84,18 +84,21 @@
       valeur attendue: 1
 
 
-# TODO implémenter les taux variables
-# - nom: mon taux
-#   format: pourcentage
-# - test: Multiplication simple
-#   formule:
-#     multiplication:
-#       assiette: mon assiette
-#       taux: mon taux
+# This should work, but with the use of objectShape & co, the short circuits are not performed
+#- test: Multiplication complète
+#  formule:
+#    multiplication:
+#      assiette: mon assiette
+#      facteur: mon facteur
+#      plafond: mon plafond
+#      taux: 0.5%
 #
-#   exemples:
-#     - nom: exemple
-#       situation:
-#         mon assiette: 100
-#         mon taux: 3%
-#       valeur attendue: 3
+#  exemples:
+#    - nom: Assiette manquante
+#      situation:
+#        mon facteur: 0
+#        mon plafond: 100
+#      valeur attendue: 0
+#      variables manquantes: []
+
+

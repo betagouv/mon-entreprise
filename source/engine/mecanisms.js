@@ -48,7 +48,8 @@ import {
 	collectNodeMissing,
 	mergeAllMissing,
 	mergeMissing,
-	bonus
+	bonus,
+	defaultNode
 } from './evaluation'
 import {
 	findRuleByName,
@@ -67,12 +68,6 @@ import Composantes from './mecanismViews/Composantes'
 import { trancheValue } from './mecanisms/barème'
 import buildSelectionView from './mecanismViews/Selection'
 import uniroot from './uniroot'
-
-let constantNode = constant => ({
-	nodeValue: constant,
-	// eslint-disable-next-line
-	jsx: nodeValue => <span className="value">{nodeValue}</span>
-})
 
 let decompose = (recurse, k, v) => {
 	let subProps = dissoc('composantes')(v),
@@ -583,8 +578,8 @@ export let mecanismSum = (recurse, k, v) => {
 export let mecanismReduction = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
-		abattement: constantNode(0),
-		franchise: constantNode(0),
+		abattement: defaultNode(0),
+		franchise: defaultNode(0)
 	}
 
 	let effect = ({ assiette, abattement, franchise, décote }) => {
@@ -650,9 +645,9 @@ export let mecanismProduct = (recurse, k, v) => {
 
 	let objectShape = {
 		assiette: false,
-		taux: constantNode(1),
-		facteur: constantNode(1),
-		plafond: constantNode(Infinity)
+		taux: defaultNode(1),
+		facteur: defaultNode(1),
+		plafond: defaultNode(Infinity)
 	}
 	let effect = ({ assiette, taux, facteur, plafond }) => {
 		let mult = (base, rate, facteur, plafond) =>
@@ -684,7 +679,7 @@ export let mecanismProduct = (recurse, k, v) => {
 						</span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
-					{explanation.taux.explanation && (
+					{!explanation.taux.isDefault && (
 						<li key="taux">
 							<span className="key">
 								<Trans>taux</Trans>:{' '}
@@ -692,7 +687,7 @@ export let mecanismProduct = (recurse, k, v) => {
 							<span className="value">{makeJsx(explanation.taux)}</span>
 						</li>
 					)}
-					{explanation.facteur.explanation && (
+					{!explanation.facteur.isDefault && (
 						<li key="facteur">
 							<span className="key">
 								<Trans>facteur</Trans>:{' '}
@@ -700,7 +695,7 @@ export let mecanismProduct = (recurse, k, v) => {
 							<span className="value">{makeJsx(explanation.facteur)}</span>
 						</li>
 					)}
-					{explanation.plafond.explanation && (
+					{!explanation.plafond.isDefault && (
 						<li key="plafond">
 							<span className="key">
 								<Trans>plafond</Trans>:{' '}
@@ -800,7 +795,7 @@ export let mecanismScale = (recurse, k, v) => {
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
 			assiette: false,
-			multiplicateur: constantNode(1)
+			multiplicateur: defaultNode(1)
 		}
 
 	let effect = ({ assiette, multiplicateur: multiplicateur, tranches }) => {
@@ -831,7 +826,7 @@ export let mecanismScale = (recurse, k, v) => {
 export let mecanismContinuousScale = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
-		multiplicateur: constantNode(1)
+		multiplicateur: defaultNode(1)
 	}
 	let effect = ({ assiette, multiplicateur, points }) => {
 		if (anyNull([assiette, multiplicateur])) return null

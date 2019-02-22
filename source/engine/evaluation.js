@@ -79,6 +79,13 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 
+export let defaultNode = nodeValue => ({
+	nodeValue,
+	// eslint-disable-next-line
+	jsx: nodeValue => <span className="value">{nodeValue}</span>,
+	isDefault: true
+})
+
 export let parseObject = (recurse, objectShape, value) => {
 	let recurseOne = key => defaultValue => {
 		if (!value[key] && !defaultValue)
