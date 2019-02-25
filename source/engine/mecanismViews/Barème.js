@@ -8,13 +8,13 @@ import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 
-export let BarèmeAttributes = ({ explanation }) => (
+export let BarèmeAttributes = ({ explanation, lazyEval }) => (
 	<>
 		<li key="assiette">
 			<span className="key">
 				<Trans>assiette</Trans>:{' '}
 			</span>
-			<span className="value">{makeJsx(explanation.assiette)}</span>
+			<span className="value">{makeJsx(lazyEval(explanation.assiette))}</span>
 		</li>
 		{explanation['multiplicateur'] &&
 			explanation['multiplicateur'].nodeValue !== 1 && (
@@ -23,7 +23,7 @@ export let BarèmeAttributes = ({ explanation }) => (
 						<Trans>multiplicateur</Trans>:{' '}
 					</span>
 					<span className="value">
-						{makeJsx(explanation['multiplicateur'])}
+						{makeJsx(lazyEval(explanation['multiplicateur']))}
 					</span>
 				</li>
 			)}
@@ -34,7 +34,8 @@ let Component = withLanguage(function Barème({
 	language,
 	nodeValue,
 	explanation,
-	barèmeType
+	barèmeType,
+	lazyEval
 }) {
 	return (
 		<ShowValuesConsumer>
@@ -45,7 +46,7 @@ let Component = withLanguage(function Barème({
 					value={nodeValue}
 					child={
 						<ul className="properties">
-							<BarèmeAttributes explanation={explanation} />
+							<BarèmeAttributes explanation={explanation} lazyEval={lazyEval} />
 							<table className="tranches">
 								<thead>
 									<tr>
@@ -74,10 +75,13 @@ let Component = withLanguage(function Barème({
 												language,
 												tranche,
 												showValues,
-												trancheValue: trancheValue(barèmeType)(
-													explanation['assiette'],
-													explanation['multiplicateur']
-												)(tranche)
+												trancheValue:
+													barèmeType === 'marginal'
+														? tranche.value
+														: trancheValue(
+																explanation['assiette'],
+																explanation['multiplicateur']
+														  )(tranche)
 											}}
 										/>
 									))}
@@ -89,7 +93,8 @@ let Component = withLanguage(function Barème({
 										<Trans>Taux final</Trans> :{' '}
 									</b>
 									{formatNumber(
-										(nodeValue / explanation['assiette'].nodeValue) * 100,
+										(nodeValue / lazyEval(explanation['assiette']).nodeValue) *
+											100,
 										language
 									)}{' '}
 									%
@@ -102,11 +107,6 @@ let Component = withLanguage(function Barème({
 		</ShowValuesConsumer>
 	)
 })
-
-//eslint-disable-next-line
-export default barèmeType => (nodeValue, explanation) => (
-	<Component {...{ nodeValue, explanation, barèmeType }} />
-)
 
 let Tranche = ({
 	tranche: {
@@ -149,3 +149,8 @@ let Tranche = ({
 		</tr>
 	)
 }
+
+//eslint-disable-next-line
+export default barèmeType => (nodeValue, explanation, lazyEval) => (
+	<Component {...{ nodeValue, explanation, barèmeType, lazyEval }} />
+)

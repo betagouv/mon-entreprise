@@ -3173,7 +3173,7 @@
       tranches:
         - en-dessous de: 1
           taux: ACRE * taux
-        - au dessus de: 1
+        - au-dessus de: 1
           taux: taux
 
 - espace: auto entrepreneur . cotisations sociales
@@ -3191,8 +3191,9 @@
 
 - espace: auto entrepreneur . cotisations sociales
   nom: ACRE
-  titre: Coefficient multiplicateur ACRE
+  titre: Taux ACRE
   période: flexible
+  description: Ce taux réduit le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
   formule:
     variations:
       - si: entreprise . année d'activité = 'première année'
@@ -3207,7 +3208,7 @@
 
 - espace: auto entrepreneur . cotisations sociales . ACRE
   nom: plafond
-  titre: Plafond de CA pour l'ACRE
+  titre: Plafond ACRE
   formule: plafond sécurité sociale temps plein - abattement
 
 - espace: auto entrepreneur . cotisations sociales . ACRE
