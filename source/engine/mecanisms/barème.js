@@ -1,7 +1,7 @@
 import { val } from 'Engine/traverse-common-functions'
 import { decompose } from 'Engine/mecanisms/utils'
 import { mecanismVariations } from 'Engine/mecanisms'
-import { has, evolve, sum } from 'ramda'
+import { has, evolve, sum, pluck } from 'ramda'
 import { defaultNode, rewriteNode, E } from 'Engine/evaluation'
 
 import Barème from 'Engine/mecanismViews/Barème'
@@ -57,17 +57,25 @@ export default (recurse, k, v) => {
 		let e = E(cache, situationGate, parsedRules)
 
 		let { assiette, multiplicateur } = node.explanation,
-			trancheValues = node.explanation.tranches.map(
-				({ de: min, à: max, taux }) =>
+			tranches = node.explanation.tranches.map(tranche => {
+				let { de: min, à: max, taux } = tranche
+				let value =
 					e.val(assiette) < min * e.val(multiplicateur)
 						? 0
 						: (Math.min(e.val(assiette), max * e.val(multiplicateur)) -
 								min * e.val(multiplicateur)) *
 						  e.val(taux)
-			),
-			nodeValue = sum(trancheValues)
 
-		return rewriteNode(node, nodeValue, explanation, e.missingVariables())
+				return { ...tranche, value }
+			}),
+			nodeValue = sum(pluck('value', tranches))
+
+		return rewriteNode(
+			node,
+			nodeValue,
+			{ ...explanation, tranches },
+			e.missingVariables()
+		)
 	}
 
 	return {
