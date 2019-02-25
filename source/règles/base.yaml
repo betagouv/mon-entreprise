@@ -3209,11 +3209,8 @@
 - espace: auto entrepreneur . cotisations sociales . ACRE
   nom: plafond
   titre: Plafond ACRE
-  formule: plafond sécurité sociale temps plein - abattement
-
-- espace: auto entrepreneur . cotisations sociales . ACRE
-  nom: abattement
-  formule: impôt . abattement . taux * plafond sécurité sociale temps plein
+  formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
+  période: flexible
 
 
 - espace: auto entrepreneur . impôt
@@ -3224,9 +3221,15 @@
       assiette: base des cotisations
       taux: taux
 
+
+- espace: auto entrepreneur . impôt . abattement
+  nom: taux inversé
+  description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
+  formule: 1 - taux
+  
 - espace: auto entrepreneur . impôt . abattement
   nom: taux
-  titre: taux abattement de l'impôt
+  titre: taux d'abattement de l'impôt
   formule:
     variations:
       - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
