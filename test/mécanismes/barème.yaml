@@ -93,3 +93,15 @@
        base: 100
        ma condition: non
      valeur attendue: 146
+   - nom: assiette manquante
+     situation:
+       base: 100
+       ma condition: oui
+     variables manquantes: 
+       - assiette
+   - nom: condition manquante
+     situation:
+       base: 100
+       assiette: 400
+     variables manquantes: 
+       - ma condition
