@@ -17,21 +17,13 @@ export let desugarScale = recurse => tranches =>
 		)
 		.map(evolve({ taux: recurse }))
 
-export let trancheValue = barèmeType => (assiette, multiplicateur) =>
-	barèmeType === 'marginal'
-		? ({ de: min, à: max, taux }) =>
-				val(assiette) < min * val(multiplicateur)
-					? 0
-					: (Math.min(val(assiette), max * val(multiplicateur)) -
-							min * val(multiplicateur)) *
-					  val(taux)
-		: ({ de: min, à: max, taux, montant }) =>
-				Math.round(val(assiette)) >= min &&
-				(!max || Math.round(val(assiette)) <= max)
-					? taux != null
-						? val(assiette) * val(taux)
-						: montant
-					: 0
+// This function was also used for marginal barèmes, but now only for linear ones
+export let trancheValue = assiette => ({ de: min, à: max, taux, montant }) =>
+	Math.round(val(assiette)) >= min && (!max || Math.round(val(assiette)) <= max)
+		? taux != null
+			? val(assiette) * val(taux)
+			: montant
+		: 0
 
 export default (recurse, k, v) => {
 	// Barème en taux marginaux.
@@ -73,8 +65,12 @@ export default (recurse, k, v) => {
 		return rewriteNode(
 			node,
 			nodeValue,
-			{ ...explanation, tranches },
-			e.missingVariables()
+			{
+				...explanation,
+				tranches
+			},
+			e.missingVariables(),
+			e.valNode
 		)
 	}
 
