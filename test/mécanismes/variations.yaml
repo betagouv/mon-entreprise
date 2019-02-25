@@ -1,3 +1,18 @@
+- nom: ma condition
+
+- test: taux variable
+  formule:
+    variations:
+      - si: ma condition
+        alors: 29%
+      - sinon: 56%
+
+  exemples: 
+    - nom: variable manquante
+      situation: 
+      variables manquantes: 
+        - ma condition
+
 - nom: statut cadre
 
 
