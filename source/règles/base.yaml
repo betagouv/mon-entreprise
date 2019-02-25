@@ -3069,6 +3069,9 @@
       # C'est le taux pour les artisans.
       # TODO Pour les commerçants, le taux est de 0.25%
       #
+  note: Le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
+
+
 - espace: indépendant . cotisations et contributions . formation professionnelle
   nom: assiette
   titre: assiette formation professionnelle
