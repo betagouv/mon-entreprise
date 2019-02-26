@@ -2781,59 +2781,22 @@
 - espace: entreprise
   nom: catégorie d'activité
   question: Quelle est votre catégorie d'activité ?
-  par défaut: prestation de service . libérale
+  par défaut: libérale
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - vente de biens
-        - prestation de service
+        - libérale
+        - commerciale ou industrielle
+        - artisanale
   références: 
-    Vérifier la nature de son activité: https://www.afecreation.fr/pid14828/verifier-la-nature-de-son-activite.html
+    Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
 - espace: entreprise . catégorie d'activité
-  nom: vente de biens
-  titre: Achats, vente, fabrication de biens, logements, nourriture.
-  formule:
-    une possibilité:
-      - commerciale
-      - artisanale
-
-- espace: entreprise . catégorie d'activité . vente de biens
-  nom: commerciale
-  
-- espace: entreprise . catégorie d'activité . vente de biens
   nom: artisanale
   description: |
-    Fabrication artisanale de produits.
-
-  références: 
-    liste des activités artisanales: https://www.afecreation.fr/pid14829/liste-des-activites-artisanales.html
-
-- espace: entreprise . catégorie d'activité
-  nom: prestation de service
-  par défaut: libérale
-  formule:
-    une possibilité:
-      - libérale
-      - restauration ou hébergement
-      - commerciale 
-      - artisanale
-
-- espace: entreprise . catégorie d'activité . prestation de service
-  nom: commerciale 
-  description: | 
-    Prestation de service commerciale nécessitant du matériel ou du savoir-faire manuel. Vos bénéfices sont classés en BIC.
-
-    > Exemples : location de matériel, transport, agence immobilière, entreprise de spectacles
-
-- espace: entreprise . catégorie d'activité . prestation de service
-  nom: artisanale
-  description: | 
-    Prestation de service artisanale nécessitant du matériel ou du savoir-faire manuel. Vos bénéfices sont classés en BIC.
-
     - N'employant pas plus de 10 salariés
     - Activités répertoriées par un décret
 
@@ -2841,63 +2804,88 @@
   références: 
     liste des activités artisanales: https://www.afecreation.fr/pid14829/liste-des-activites-artisanales.html
 
-- espace: entreprise . catégorie d'activité . prestation de service
-  nom: libérale
+- espace: entreprise . catégorie d'activité
+  nom: service ou vente
+  question: Est-ce une activité de prestation de service, ou un achat-vente de biens ?
+  formule: 
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - prestation de service
+        - vente de biens
+
+- espace: entreprise . catégorie d'activité
+  nom: vente de biens
+  titre: Achats, vente, fabrication de biens, logements, nourriture.
+
+
+- espace: entreprise . catégorie d'activité
+  nom: prestation de service
   description: | 
+    Cela peut-être une prestation de service commerciale nécessitant du matériel ou du savoir-faire manuel. Vos bénéfices sont classés en BIC.
+
+    > Exemples : location de matériel, transport, agence immobilière, entreprise de spectacles
+    
+    Ou encore une prestation de service artisanale nécessitant du matériel ou du savoir-faire manuel. Vos bénéfices sont classés en BIC.
+    
     Profession de service libérale, que l'on peut considérer comme intellectuelle et unique à chaque vente. Vos bénéfices sont classés en BNC.
+
+
+- espace: entreprise . catégorie d'activité
+  nom: libérale reglementée
+  question: Est-ce une activité libérale reglementée ?
+  applicable si: catégorie d'activité = 'libérale'
+    # TODO description
+  description: |
+    Reglementée (architecte, avocat, infirmier, médecin...)
+    Non reglementée (développeur, historien, urbaniste...)
   références: 
     liste des activités libérales: https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
-  formule: 
-    une possibilité parmi: 
-      - non reglementée
-      - reglementée
 
-- espace: entreprise . catégorie d'activité . prestation de service . libérale
-  nom: non reglementée
-  titre: Non reglementée (développeur, historien, urbaniste...)
 
-- espace: entreprise . catégorie d'activité . prestation de service . libérale
-  nom: reglementée
-  titre: reglementée (architecte, avocat, infirmier, médecin...)
+- espace: entreprise . catégorie d'activité . libérale reglementée
+  nom: type d'activité libérale reglementée
   formule: 
-    une possibilité parmi: 
-      - Administrateur judiciaire  
-      - Agent général d'assurance
-      - Architecte *
-      - Architecte d'intérieur*
-      - Avocat
-      - Avocat au conseil d'Etat et à la Cour de Cassation 
-      - Avoué auprès des cours d'appel 
-      - Chiropracteur *
-      - Chirurgien-dentiste
-      - Commissaire aux comptes
-      - Commissaire-priseur
-      - Conseil en investissements financiers 
-      - Conseil en propriété industrielle  
-      - Diététicien*
-      - Ergothérapeute*
-      - Expert agricole, foncier et expert forestier
-      - Expert devant les tribunaux*
-      - Expert-comptable
-      - Géomètre-expert*
-      - Greffier auprès des tribunaux de commerce
-      - Huissier de justice
-      - Infirmier libéral 
-      - Directeur de laboratoire d'analyses médicales
-      - Mandataire judiciaire
-      - Mandataire judiciaire à la protecion des majeurs*
-      - Masseur-kinésithérapeute
-      - Médecin
-      - Notaire
-      - Orthophoniste
-      - Orthoptiste 
-      - Ostéopathe *
-      - Pédicure-podologue 
-      - Psychologue *
-      - Psychomotricien 
-      - Psychothérapeute*
-      - Sage-femme
-      - Vétérinaire
+    une possibilité: 
+      choix obligatoire: oui
+      possibilités: 
+        - Administrateur judiciaire  
+        - Agent général d'assurance
+        - Architecte
+        - Architecte d'intérieur
+        - Avocat
+        - Avocat au conseil d'Etat et à la Cour de Cassation 
+        - Avoué auprès des cours d'appel 
+        - Chiropracteur 
+        - Chirurgien-dentiste
+        - Commissaire aux comptes
+        - Commissaire-priseur
+        - Conseil en investissements financiers 
+        - Conseil en propriété industrielle  
+        - Diététicien
+        - Ergothérapeute
+        - Expert agricole, foncier et expert forestier
+        - Expert devant les tribunaux
+        - Expert-comptable
+        - Géomètre-expert
+        - Greffier auprès des tribunaux de commerce
+        - Huissier de justice
+        - Infirmier libéral 
+        - Directeur de laboratoire d'analyses médicales
+        - Mandataire judiciaire
+        - Mandataire judiciaire à la protecion des majeurs
+        - Masseur-kinésithérapeute
+        - Médecin
+        - Notaire
+        - Orthophoniste
+        - Orthoptiste 
+        - Ostéopathe
+        - Pédicure-podologue 
+        - Psychologue
+        - Psychomotricien 
+        - Psychothérapeute
+        - Sage-femme
+        - Vétérinaire
 
 
 
@@ -2907,38 +2895,31 @@
   # TODO consolider la formule : 
   # Nous avons deux listes possibles
   # A) Voilà la liste de l'URSSAF
+  question: La profession libérale reglementée est-elle rattachée à la CIPAV ?
   description: | 
-    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée 
-sont affiliés pour leur assurance retraite à la Cipav. Ces professions 
-libérales réglementées sont : architectes, architectes d’intérieur, économistes 
-de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, 
-psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, 
-diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, 
-experts automobiles, mandataires judiciaires à la protection des 
-majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, 
-accompagnateurs de moyenne montagne et moniteurs de ski. 
+    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski. 
 
-  formule: 
-    inclusion:
-      de: entreprise . catégorie d'activité . prestation de service . libérale . reglementée
-      dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
-        - Architecte
-        - Architecte d'intérieur
-        - Chiropracteur
-        - Diététicien
-        - Ergothérapeute
-        - Expert devant les tribunaux
-        - Géomètre-expert
-        - Mandataire judiciaire à la protecion des majeurs
-        - Ostéopathe 
-        - Psychologue 
-        - Psychothérapeute
+    formule: 
+      inclusion:
+        de: entreprise . catégorie d'activité . type d'activité libérale reglementée
+        dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
+          - Architecte
+          - Architecte d'intérieur
+          - Chiropracteur
+          - Diététicien
+          - Ergothérapeute
+          - Expert devant les tribunaux
+          - Géomètre-expert
+          - Mandataire judiciaire à la protecion des majeurs
+          - Ostéopathe 
+          - Psychologue 
+          - Psychothérapeute
 
 - espace: entreprise
   nom: auto entreprise impossible
   formule: 
     toutes ces condition: 
-      - entreprise . catégorie d'activité . prestation de service . libérale . reglementée
+      - entreprise . catégorie d'activité . libérale reglementée
       - ≠ rattachée à la CIPAV
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
