@@ -2886,11 +2886,11 @@
   description: |
     Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
 
-    Exemples de professions reglementées : architecte, avocat, infirmier, médecin...
+    > Exemples de professions reglementées : architecte, avocat, infirmier, médecin...
 
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
     
-    Exemples de professions non-reglementées : développeur, historien, urbaniste...
+    > Exemples de professions non-reglementées : développeur, historien, urbaniste...
 
   références: 
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales 
@@ -3045,6 +3045,7 @@
   titre: Maladie 2
   description: Cotisations pour les indémnité journalière des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, ils peuvent bénéficier d’indemnités journalières.
   période: flexible
+  non applicable si: entreprise . catégorie d'activité . libérale reglementée
   formule:
     multiplication:
       assiette: maladie . assiette
@@ -3091,20 +3092,22 @@
         alors:
           multiplication:
             assiette: assiette
+            multiplicateur: 
             composantes:
               - nom: tranche 1
-                plafond: 39732
+                plafond: plafond sécurité sociale temps plein
                 taux: 8.23%
               - nom: tranche 2
-                plafond: 198660
+                plafond: 5 * plafond sécurité sociale temps plein
                 taux: 1.87%
       - sinon:
           barème:
             assiette: assiette
+            multiplicateur: plafond sécurité sociale temps plein
             tranches:
-              - en-dessous de: 39732
+              - en-dessous de: 1
                 taux: 17.75%
-              - au-dessus de: 39732
+              - au-dessus de: 1
                 taux: 0.6%
 
 - espace: indépendant . cotisations . retraite de base
@@ -3134,37 +3137,37 @@
             assiette: revenu professionnel
             tranches:
               - en-dessous de: 26580
-                montant: 1277
+                montant: 1315
               - de: 26581
                 à: 49280
-                montant: 2553
+                montant: 2630
               - de: 49281
                 à: 57850
-                montant: 3830
+                montant: 3945
               - de: 57851
                 à: 66400
-                montant: 6384
+                montant: 6575
               - de: 66401
                 à: 83060
-                montant: 8937
+                montant: 9205
               - de: 83061
                 à: 103180
-                montant: 14044
+                montant: 14465
               - de: 103181
                 à: 123300
-                montant: 15320
+                montant: 15780
               - au-dessus de: 123300
-                montant: 15597
+                montant: 17095
       - sinon:
           barème:
             assiette: revenu professionnel
             tranches:
-              - en-dessous de: 37846
+              - en-dessous de: 37960
                 taux: 7%
-              - de: 37846
-                à: 158928
+              - de: 37960
+                à: 162096
                 taux: 8%
-              - au-dessus de: 158928
+              - au-dessus de: 162096
                 taux: 0%
 
 - espace: indépendant . cotisations
@@ -3206,6 +3209,8 @@
         - attributs:
             impôt sur le revenu: déductible
           taux: 6.8%
+  références: 
+    fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
 
 - espace: indépendant . cotisations et contributions . CSG et CRDS
   nom: assiette
