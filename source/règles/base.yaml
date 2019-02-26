@@ -2794,6 +2794,14 @@
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
+
+
+- espace: entreprise . catégorie d'activité
+  nom: libérale
+
+- espace: entreprise . catégorie d'activité
+  nom: commerciale ou industrielle
+
 - espace: entreprise . catégorie d'activité
   nom: artisanale
   description: |
@@ -2816,7 +2824,7 @@
 
 - espace: entreprise . catégorie d'activité
   nom: vente de biens
-  titre: Achats, vente, fabrication de biens, logements, nourriture.
+  description: Achats, vente, fabrication de biens, logements, nourriture.
 
 
 - espace: entreprise . catégorie d'activité
@@ -2966,7 +2974,7 @@
   nom: maladie
   formule:
     variations:
-      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+      - si: entreprise . catégorie d'activité . libérale reglementée
         alors:
           barème continu:
             assiette: assiette
@@ -2974,7 +2982,7 @@
             points:
               0: 1.5%
               1.1: 6.5%
-      - sinon: artisans commerçants
+      - sinon: artisans commerçants libéraux
 
 - espace: indépendant . cotisations . maladie
   nom: assiette
@@ -3002,11 +3010,11 @@
       plafond: 5 * plafond sécurité sociale temps plein
 
 - espace: indépendant . cotisations . maladie
-  nom: artisans commerçants
+  nom: artisans commerçants libéraux
   période: flexible
   formule: barème + part revenus élevés
 
-- espace: indépendant . cotisations . maladie . artisans commerçants
+- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: barème
   période: flexible
   formule:
@@ -3018,7 +3026,7 @@
         0.4: 3.16%
         1.1: 6.35%
 
-- espace: indépendant . cotisations . maladie . artisans commerçants
+- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: part revenus élevés
   période: flexible
   applicable si: revenu professionnel > seuil
@@ -3027,7 +3035,7 @@
       assiette: revenu professionnel
       taux: 0.15%
 
-- espace: indépendant . cotisations . maladie . artisans commerçants . part revenus élevés
+- espace: indépendant . cotisations . maladie . artisans commerçants libéraux . part revenus élevés
   nom: seuil
   période: flexible
   formule: 5 * plafond sécurité sociale temps plein
@@ -3037,7 +3045,7 @@
   période: année
   formule:
     variations:
-      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+      - si: entreprise . catégorie d'activité . libérale reglementée
         alors:
           multiplication:
             assiette: assiette
@@ -3078,7 +3086,7 @@
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
-      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+      - si: entreprise . catégorie d'activité . libérale reglementée
         alors:
           barème linéaire:
             assiette: revenu professionnel
@@ -3116,9 +3124,6 @@
                 taux: 8%
               - au-dessus de: 158928
                 taux: 0%
-        # TODO valable uniquement pour les artisans commerçants.
-        # 8 régimes différents pour les libéraux
-        # Implémenter au moins le régime CNAVPL, interprofessionnel
 
 - espace: indépendant . cotisations
   nom: invalidité et décès
@@ -3241,11 +3246,12 @@
   période: année
   formule:
     variations:
-      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-        alors: 70000
-      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
-        alors: 70000
-      - sinon: 170000
+      - si:
+          une de ces conditions: 
+            - entreprise . catégorie d'activité . vente de biens
+            - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+        alors: 170000
+      - sinon: 70000
 
 - espace: auto entrepreneur
   nom: revenu net de cotisations
@@ -3267,9 +3273,38 @@
 
 - espace: auto entrepreneur
   nom: taxe pour frais de chambre
-  formule: 0
   période: flexible
-  note: Pas encore implementée.
+  note: | 
+    Nous n'avons pas intégré les exceptions suivantes : 
+
+    - Artisans en double immatriculation CCI-CMA
+    - Les taux de l'Alsace et de la Moselle
+  références: 
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+  formule:
+    multiplication: 
+      assiette: base des cotisations
+      taux:
+        variations:
+          - si: 
+              toutes ces conditions: 
+                - entreprise . catégorie d'activité = 'artisanale'
+                - entreprise . catégorie d'activité . prestation de service
+            alors: 0.48%
+          - si: 
+              toutes ces conditions: 
+                - entreprise . catégorie d'activité = 'artisanale'
+                - entreprise . catégorie d'activité . vente de biens
+            alors: 0.22%
+          - si: 
+              une de ces conditions: 
+                - entreprise . catégorie d'activité . vente de biens
+                - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+            alors: 0.015%
+          - si: entreprise . catégorie d'activité . libérale reglementée
+            alors: 0.2%
+          - sinon: 0.44%
+
 
 - espace: auto entrepreneur
   nom: contribution formation professionnelle
@@ -3278,12 +3313,20 @@
   références: 
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
   formule:
-    variations:
-      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-        alors: 0
-      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
-        alors: 0
-      - sinon: 0
+    multiplication: 
+      assiette: base des cotisations
+      taux:
+        variations:
+          - si: entreprise . catégorie d'activité = 'artisanale'
+            alors: 0.3%
+          - si: entreprise . catégorie d'activité . libérale reglementée
+            alors: 0.2%
+          - si: 
+              une de ces conditions: 
+                - entreprise . catégorie d'activité = 'commerciale ou industrielle'
+                - entreprise . catégorie d'activité = 'libérale'
+            alors: 0.1%
+          - sinon: 0
 
 - espace: auto entrepreneur
   nom: cotisations sociales
@@ -3305,11 +3348,12 @@
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
     variations:
-      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
-        alors: 22%
-      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
-        alors: 22%
-      - sinon: 12.8%
+      - si:
+          une de ces conditions: 
+            - entreprise . catégorie d'activité . vente de biens
+            - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+        alors: 12.8%
+      - sinon: 22%
 
 - espace: auto entrepreneur . cotisations sociales
   nom: ACRE
@@ -3354,11 +3398,14 @@
   titre: taux d'abattement de l'impôt
   formule:
     variations:
-      - si: entreprise . catégorie d'activité = 'prestation de service . libérale'
+      - si: entreprise . catégorie d'activité = 'libérale'
         alors: 34%
-      - si: entreprise . catégorie d'activité = 'prestation de service . commerciale ou artisanale'
-        alors: 50%
-      - sinon: 71%
+      - si:
+          une de ces conditions: 
+            - entreprise . catégorie d'activité . vente de biens
+            - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+        alors: 71%
+      - sinon: 50% 
 
 - espace: auto entrepreneur
   nom: impôt
