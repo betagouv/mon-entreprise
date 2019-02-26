@@ -2807,19 +2807,38 @@
 
 - espace: entreprise . catégorie d'activité
   nom: libérale
+  description: | 
+    Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
+
+    Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
+      - de nature généralement civile,
+      - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
+  références: 
+    fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
+    liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 - espace: entreprise . catégorie d'activité
   nom: commerciale ou industrielle
+  description: | 
+    ### Activité commerciale
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
+    - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
+
+    ### Activité industrielle
+
+    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
 
 - espace: entreprise . catégorie d'activité
   nom: artisanale
   description: |
-    - N'employant pas plus de 10 salariés
-    - Activités répertoriées par un décret
+    C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
 
-    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client
+    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
+    
+    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
+    - Les activités artisanales sont répertoriées par un décret
   références: 
-    liste des activités artisanales: https://www.afecreation.fr/pid14829/liste-des-activites-artisanales.html
+    liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0<Paste>
 
 - espace: entreprise . catégorie d'activité
   nom: service ou vente
@@ -2865,11 +2884,16 @@
   par défaut: non
   applicable si: catégorie d'activité = 'libérale'
   description: |
-    # TODO
-    Reglementée (architecte, avocat, infirmier, médecin...)
-    Non reglementée (développeur, historien, urbaniste...)
+    Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
+
+    Exemples de professions reglementées : architecte, avocat, infirmier, médecin...
+
+    Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+    
+    Exemples de professions non-reglementées : développeur, historien, urbaniste...
+
   références: 
-    liste des activités libérales: https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
+    Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales 
 
 
 - espace: entreprise . catégorie d'activité . libérale reglementée
