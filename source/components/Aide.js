@@ -23,7 +23,7 @@ export default compose(
 )(
 	class Aide extends Component {
 		renderExplanationMarkdown(explanation, term) {
-			return marked(`### ${term} \n\n${explanation}`)
+			return marked(`# ${term} \n\n${explanation}`)
 		}
 		render() {
 			let { flatRules, explained, stopExplaining, colours } = this.props
