@@ -3190,12 +3190,17 @@
   formule:
     multiplication:
       assiette: assiette
-      taux: 0.29%
       plafond: plafond sécurité sociale temps plein
-      # C'est le taux pour les artisans.
-      # TODO Pour les commerçants, le taux est de 0.25%
-      #
+      taux: 
+        variations: 
+          - si: entreprise . catégorie d'activité = 'artisanale'
+            alors: 0.29%
+          - sinon: 0.25%
   note: Le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
+  références: 
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459 
+    fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
+    brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
 
 - espace: indépendant . cotisations et contributions . formation professionnelle
