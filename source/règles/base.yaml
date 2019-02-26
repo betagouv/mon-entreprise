@@ -1453,7 +1453,7 @@
   titre: Cotisation foncière des entreprises
   formule: 0
   période: flexible
-  note: Cette cotisation n'est pas due pour la première année d'une entreprise. La CFE n'est **pas encore intégrée** dans nos calculs.
+  note: Cette cotisation n'est pas due pour la première année d'une entreprise, ni pour un chiffre d'affaires inférieur à 5000€. La CFE n'est **pas encore intégrée** dans nos calculs.
   références: 
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547
 
