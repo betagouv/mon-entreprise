@@ -2,13 +2,18 @@
 	display: inline-block;
 	padding: 0.15rem 0.6rem;
 	height: 100%;
-	margin-left: 0.4rem;
-	opacity: 1;
+	margin-left: 0.2rem;
 	text-align: center;
 	cursor: pointer;
-	vertical-align: middle;
+	vertical-align: text-top;
 }
 
 .explicable .icon:hover {
-	opacity: 0.8;
+	filter: brightness(90%);
+}
+
+
+.variantLeaf .explicable .icon img {
+	width: 1.5em !important;
+	height: 1.5em !important;
 }
