@@ -2814,6 +2814,10 @@
 
 - espace: entreprise . catégorie d'activité
   nom: service ou vente
+  applicable si: 
+    une de ces conditions: 
+      - catégorie d'activité = 'artisanale'
+      - catégorie d'activité = 'commerciale ou industrielle'
   question: Est-ce une activité de prestation de service, ou un achat-vente de biens ?
   formule: 
     une possibilité:
@@ -2821,13 +2825,14 @@
       possibilités:
         - prestation de service
         - vente de biens
+  par défaut: prestation de service
 
-- espace: entreprise . catégorie d'activité
+- espace: entreprise . catégorie d'activité . service ou vente
   nom: vente de biens
   description: Achats, vente, fabrication de biens, logements, nourriture.
 
 
-- espace: entreprise . catégorie d'activité
+- espace: entreprise . catégorie d'activité . service ou vente
   nom: prestation de service
   description: | 
     Cela peut-être une prestation de service commerciale nécessitant du matériel ou du savoir-faire manuel. Vos bénéfices sont classés en BIC.
@@ -2838,13 +2843,20 @@
     
     Profession de service libérale, que l'on peut considérer comme intellectuelle et unique à chaque vente. Vos bénéfices sont classés en BNC.
 
+- espace: entreprise . catégorie d'activité
+  nom: restauration ou hébergement
+  applicable si: service ou vente = 'prestation de service'
+  description:  Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
+  question: Est-ce une activité de restauration ou d'hébergement ?
+  par défaut: non
 
 - espace: entreprise . catégorie d'activité
   nom: libérale reglementée
   question: Est-ce une activité libérale reglementée ?
+  par défaut: non
   applicable si: catégorie d'activité = 'libérale'
-    # TODO description
   description: |
+    # TODO
     Reglementée (architecte, avocat, infirmier, médecin...)
     Non reglementée (développeur, historien, urbaniste...)
   références: 
@@ -2926,16 +2938,13 @@
 - espace: entreprise
   nom: auto entreprise impossible
   formule: 
-    toutes ces condition: 
+    toutes ces conditions: 
       - entreprise . catégorie d'activité . libérale reglementée
       - ≠ rattachée à la CIPAV
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
 
 
-- espace: entreprise . catégorie d'activité . prestation de service
-  nom: restauration ou hébergement
-  description:  Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
 
 - nom: indépendant
   par défaut: non
@@ -3248,8 +3257,8 @@
     variations:
       - si:
           une de ces conditions: 
-            - entreprise . catégorie d'activité . vente de biens
-            - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000
       - sinon: 70000
 
@@ -3289,17 +3298,18 @@
           - si: 
               toutes ces conditions: 
                 - entreprise . catégorie d'activité = 'artisanale'
-                - entreprise . catégorie d'activité . prestation de service
+                - entreprise . catégorie d'activité . service ou vente = 'prestation de service'
             alors: 0.48%
           - si: 
               toutes ces conditions: 
                 - entreprise . catégorie d'activité = 'artisanale'
-                - entreprise . catégorie d'activité . vente de biens
+                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             alors: 0.22%
           - si: 
               une de ces conditions: 
-                - entreprise . catégorie d'activité . vente de biens
-                - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+
+                - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
           - si: entreprise . catégorie d'activité . libérale reglementée
             alors: 0.2%
@@ -3350,8 +3360,9 @@
     variations:
       - si:
           une de ces conditions: 
-            - entreprise . catégorie d'activité . vente de biens
-            - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+
+            - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 12.8%
       - sinon: 22%
 
@@ -3402,8 +3413,8 @@
         alors: 34%
       - si:
           une de ces conditions: 
-            - entreprise . catégorie d'activité . vente de biens
-            - entreprise . catégorie d'activité . prestation de service . restauration ou hébergement
+            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 71%
       - sinon: 50% 
 
