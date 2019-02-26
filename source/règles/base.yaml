@@ -2781,6 +2781,7 @@
 - espace: entreprise
   nom: catégorie d'activité
   question: Quelle est votre catégorie d'activité ?
+  description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
   par défaut: libérale
   formule:
     une possibilité:
