@@ -1981,9 +1981,9 @@
       - si: régime alsace moselle
         alors: en alsace moselle
       - sinon: en france
-  contrôles:
-    - si: complémentaire santé . forfait [mensuel] < 15
-      niveau: avertissement
+        #  contrôles:
+        #    - si: complémentaire santé . forfait [mensuel] < 15
+        #      niveau: avertissement
 
 - espace: contrat salarié . complémentaire santé . forfait
   nom: en alsace moselle
