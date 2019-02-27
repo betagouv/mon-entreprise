@@ -141,7 +141,7 @@
 		"prettier": "^1.16.4",
 		"ramda-fantasy": "^0.8.0",
 		"raw-loader": "^0.5.1",
-		"react-hot-loader": "^4.3.11",
+		"react-hot-loader": "^4.7.1",
 		"serve": "^10.0.2",
 		"serve-handler": "^5.0.5",
 		"sinon": "^4.5.0",
