@@ -23,7 +23,7 @@ const SchemeComparaisonPage = () => (
 			/>
 		</Helmet>
 		<Animate.fromBottom>
-			<h1>Comparaison des régimes de l'indépendant</h1>
+			<h1>Quel revenu pour l'indépendant ?</h1>
 			<Warning />
 			<Simulation
 				showTargetsAnyway

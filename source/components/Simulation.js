@@ -71,7 +71,7 @@ export default compose(
 						) : (
 							<span />
 						)}
-						{displayConversation && (
+						{displayConversation && !noUserInput && (
 							<button
 								className="ui__ small simple skip button left"
 								onClick={() => resetSimulation()}>
