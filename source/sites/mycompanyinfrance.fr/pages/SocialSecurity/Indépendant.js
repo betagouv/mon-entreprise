@@ -37,8 +37,8 @@ let AvertissementForfaitIndépendants = () => (
 	<p>
 		{emoji('💶')} Notre estimation prend en compte les{' '}
 		<em>cotisations réelles</em> dues par le travailleur indépendant. Pendant la
-		première année de son activité, il ne paiera qu'un forfait réduit (une somme
-		de l'ordre de 3000€ / an pour un artisan)... mais il sera régularisé l'année
+		première année de son activité, il paiera un forfait réduit (une somme de
+		l'ordre de 3000€ / an pour un artisan)... mais il sera régularisé l'année
 		suivante selon ce montant réel.
 	</p>
 )
