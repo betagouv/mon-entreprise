@@ -7,8 +7,9 @@ import './Barème.css'
 import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
+import { identity } from 'ramda'
 
-export let BarèmeAttributes = ({ explanation, lazyEval }) => (
+export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => (
 	<>
 		<li key="assiette">
 			<span className="key">
@@ -151,6 +152,6 @@ let Tranche = ({
 }
 
 //eslint-disable-next-line
-export default barèmeType => (nodeValue, explanation, lazyEval) => (
+export default barèmeType => (nodeValue, explanation, lazyEval = identity) => (
 	<Component {...{ nodeValue, explanation, barèmeType, lazyEval }} />
 )
