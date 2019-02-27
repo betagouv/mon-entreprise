@@ -1,17 +1,17 @@
 /* @flow */
-import { startConversation } from 'Actions/actions';
-import withLanguage from 'Components/utils/withLanguage';
-import { compose, toPairs } from 'ramda';
-import React from 'react';
-import { Trans } from 'react-i18next';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { animated, Spring } from 'react-spring';
-import { validInputEnteredSelector } from 'Selectors/analyseSelectors';
+import { startConversation } from 'Actions/actions'
+import withLanguage from 'Components/utils/withLanguage'
+import { compose, toPairs } from 'ramda'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { animated, Spring } from 'react-spring'
+import { validInputEnteredSelector } from 'Selectors/analyseSelectors'
 import type { Location } from 'react-router'
 
 type OwnProps = {
-	quickLinks: {[string]: string},
+	quickLinks: { [string]: string }
 }
 type Props = OwnProps & {
 	startConversation: (?string) => void,
@@ -50,7 +50,7 @@ const QuickLinks = ({
 					{toPairs(quickLinks).map(([label, dottedName]) => (
 						<button
 							key={label}
-							className="ui__ link-button"
+							className="ui__ small button"
 							onClick={() => startConversation(dottedName)}>
 							<Trans>{label}</Trans>
 						</button>
