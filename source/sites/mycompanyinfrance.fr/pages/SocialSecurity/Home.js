@@ -6,7 +6,7 @@ import withLanguage from 'Components/utils/withLanguage';
 import withSitePaths from 'Components/utils/withSitePaths';
 import { compose } from 'ramda';
 import emoji from 'react-easy-emoji';
-import Helmet from 'react-helmet';
+import {Helmet} from 'react-helmet';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
