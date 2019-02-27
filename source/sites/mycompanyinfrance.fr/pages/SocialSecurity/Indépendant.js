@@ -18,7 +18,8 @@ const Indépendant = () => (
 				content="Estimez vos revenus en tant qu'indépendant à partir de votre chiffre d'affaire (pour les EI et les gérants EURL et SARL majoritaires). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'URSSAF"
 			/>
 		</Helmet>
-		<h1>Simulateur de revenus pour indépendants</h1>
+		<h1>Simulateur indépendant 2019</h1>
+		<Warning />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
@@ -29,7 +30,6 @@ const Indépendant = () => (
 				</>
 			}
 		/>
-		<Warning />
 	</>
 )
 

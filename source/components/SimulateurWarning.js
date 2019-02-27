@@ -3,34 +3,33 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import './SimulateurWarning.css'
 
-export default function SimulateurWarning() {
+export default function SimulateurWarning({ simulateur }) {
 	return (
-		<>
+		<div id="SimulateurWarning">
 			<p>
-				{emoji('🚩')}{' '}
-				<T k="simulationWarning">
-					<ul>
-						<li>
-							Le chiffre d'affaires déduit des charges va à 100% dans la
-							rémunération du dirigeant.
-						</li>
-						<li>
-							Le calcul de l'impôt sur le revenu, est basé sur un célibataire
-							sans enfant sans autre revenu.{' '}
-						</li>
-						<li>
-							Ce simulateur donne une estimation purement indicative des
-							cotisations
-						</li>
-					</ul>
-				</T>
+				{emoji('🚩 ')}
+				<strong>Ce simulateur est en cours de développement</strong>
 			</p>
-			<div className="beta__container">
-				<small className="beta__tag">Version beta</small>
-				<p>
-					<strong>Ce simulateur est en cours de développement.</strong>
-				</p>
-			</div>
-		</>
+			<ul>
+				<li>Simulation pour une entreprise créée en 2019</li>
+				{simulateur !== 'auto-entreprise' && (
+					<li>
+						Le chiffre d'affaires déduit des charges va à 100% dans la
+						rémunération du dirigeant.
+					</li>
+				)}
+				<li>
+					L'impôt sur le revenu est calculé pour un célibataire sans enfant et
+					sans autre revenu.{' '}
+					{simulateur == 'auto-entreprise' && (
+						<span>L'impôt libératoire n'est pas encore intégré.</span>
+					)}
+				</li>
+				<li>
+					Les calculs sont indicatifs et ne se substituent pas aux décomptes
+					réels : URSSAF, impots.gouv.fr, etc.
+				</li>
+			</ul>
+		</div>
 	)
 }

@@ -19,23 +19,24 @@ const AssimiléSalarié = () => (
 			/>
 		</Helmet>
 		<h1>Simulateur de revenus pour assimilé salarié</h1>
-		<p>
-			Les gérants égalitaires ou minoritaires de SARL ou les dirigeants de SA et
-			SAS sont <strong>assimilés&nbsp;salariés</strong> et relèvent du régime
-			général. Les cotisations sociales sont proches de celles des salariés, à
-			quelques exceptions près (réductions employeur et chômage en moins).
-		</p>
+		<Warning />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
 			explanation={
-				<p>
-					{emoji('☂️ ')} Le dirigeant a la même protection sociale qu'un
-					salarié, mis à part le chômage.
-				</p>
+				<>
+					<p>
+						Les gérants égalitaires ou minoritaires de SARL ou les dirigeants de
+						SA et SAS sont <strong>assimilés&nbsp;salariés</strong> et relèvent
+						du régime général.
+					</p>
+					<p>
+						{emoji('☂️ ')} Le dirigeant a la même protection sociale qu'un
+						salarié, mis à part le chômage.
+					</p>
+				</>
 			}
 		/>
-		<Warning />
 	</>
 )
 export default withSimulationConfig(assimiléConfig)(AssimiléSalarié)
