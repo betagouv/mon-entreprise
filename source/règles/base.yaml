@@ -885,6 +885,7 @@
 
 - espace: contrat salarié . cotisations
   nom: patronales
+  titre: Cotisations patronales
   période: flexible
   format: euros
   formule:
@@ -2838,7 +2839,7 @@
     une de ces conditions: 
       - catégorie d'activité = 'artisanale'
       - catégorie d'activité = 'commerciale ou industrielle'
-  question: Est-ce une activité de prestation de service, ou un achat-vente de biens ?
+  question: Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?
   formule: 
     une possibilité:
       choix obligatoire: oui
@@ -2849,19 +2850,19 @@
 
 - espace: entreprise . catégorie d'activité . service ou vente
   nom: vente de biens
-  description: Achats, vente, fabrication de biens, logements, nourriture.
+  description: |
+    Il s’agit de toute opération comportant transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre activité relève des prestations de services.
+  références: 
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
 
 - espace: entreprise . catégorie d'activité . service ou vente
   nom: prestation de service
-  description: | 
-    Cela peut-être une prestation de service commerciale nécessitant du matériel ou du savoir-faire manuel. Vos bénéfices sont classés en BIC.
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de biens corporels (c'est-à-dire ayant une existence matérielle).
+  références: 
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis 
 
-    > Exemples : location de matériel, transport, agence immobilière, entreprise de spectacles
-    
-    Ou encore une prestation de service artisanale nécessitant du matériel ou du savoir-faire manuel. Vos bénéfices sont classés en BIC.
-    
-    Profession de service libérale, que l'on peut considérer comme intellectuelle et unique à chaque vente. Vos bénéfices sont classés en BNC.
 
 - espace: entreprise . catégorie d'activité
   nom: restauration ou hébergement
