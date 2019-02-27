@@ -13,7 +13,7 @@ import {
 import { compose, isEmpty, isNil } from 'ramda'
 import React, { Component, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
-import Helmet from 'react-helmet'
+import {Helmet} from 'react-helmet'
 import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
