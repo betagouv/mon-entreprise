@@ -16,9 +16,9 @@ questions:
   - entreprise . année d'activité
 
 questions à l'affiche:
-  Charges: entreprise . charges
-  Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
-  Année d'activité: entreprise . année d'activité
+  💻 Charges: entreprise . charges
+  👷 Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
+  📅 Année d'activité: entreprise . année d'activité
 
 situation:
   auto entrepreneur: oui
