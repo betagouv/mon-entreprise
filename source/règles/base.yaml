@@ -2591,8 +2591,8 @@
 
 - nom: impôt sur le revenu
   espace: impôt
-  description: |
-    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
+  description: | 
+    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches. 
 
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
   période: année
@@ -2613,14 +2613,11 @@
           taux: 41%
         - au-dessus de: 156244
           taux: 45%
-          exemples:
-  exemples:
+  exemples: 
     - nom: Haut salaire de ~ 10 000€ mensuels
-      situation:
+      situation: 
         contrat salarié . rémunération . net imposable: 10000
-      valeur attendue: 30366
-  références:
-    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+      valeur attendue: 10
 
 - nom: impôt sur le revenu après décote
   espace: impôt
@@ -2641,7 +2638,7 @@
 - nom: impôt sur le revenu à payer
   espace: impôt
   titre: impôt sur le revenu
-  description:
+  description: 
   période: flexible
   formule: impôt sur le revenu après décote
 
@@ -2751,7 +2748,7 @@
 
 - espace: entreprise
   nom: charges non déductibles
-  description: |
+  description: | 
     Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un ordinateur pour les besoins de sa société, le fera avec son revenu net. Il aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA avant pouvoir l'utiliser pour s'acheter ce bien.
   applicable si: auto entrepreneur
   formule: charges
@@ -3463,10 +3460,10 @@
 
 - espace: auto entrepreneur
   nom: cotisations sociales
-  description: |
+  description: | 
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
 
-    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
+    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité. 
 
     Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   période: flexible
@@ -3478,8 +3475,8 @@
         - en-dessous de: 1
           taux: ACRE * taux de cotisation
         - au-dessus de: 1
-          taux: taux de cotisation
-  références:
+          taux: taux
+  références: 
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
 - espace: auto entrepreneur . cotisations sociales
