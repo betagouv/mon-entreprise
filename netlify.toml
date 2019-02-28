@@ -3,3 +3,7 @@ from = "https://futur.eco/*"
 to = "/publicodes.html"
 status = 200
 
+[[redirects]]
+from = "http://futur.eco/*"
+to = "/publicodes.html"
+status = 200
