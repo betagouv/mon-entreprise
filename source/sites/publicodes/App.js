@@ -16,7 +16,7 @@ class App extends Component {
 			<Provider
 				basename="publicodes"
 				rulesConfig={{
-					repo: 'laem/publi.codes',
+					repo: 'laem/futureco-data',
 					filePath: 'co2.yaml'
 				}}
 				sitePaths={sitePaths()}
