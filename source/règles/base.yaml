@@ -3041,6 +3041,7 @@
 - espace: indépendant . cotisations . maladie
   nom: assiette
   titre: assiette maladie
+  période: flexible
   formule:
     variations:
       - si: ≠ situation personnelle . RSA
@@ -3124,6 +3125,7 @@
 
 - espace: indépendant . cotisations . retraite de base
   nom: assiette
+  période: flexible
   titre: assiette retraite de base
   formule:
     variations:
@@ -3195,6 +3197,7 @@
       # 3 classes, 76, 228, 380€
 - espace: indépendant . cotisations . invalidité et décès
   nom: assiette
+  période: flexible
   titre: assiette invalidité et décès
   formule:
     variations:
@@ -3254,6 +3257,7 @@
 
 - espace: indépendant . cotisations et contributions . formation professionnelle
   nom: assiette
+  période: flexible
   titre: assiette formation professionnelle
   formule:
     variations:
