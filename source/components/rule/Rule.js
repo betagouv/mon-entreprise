@@ -129,7 +129,7 @@ export default compose(
 										</div>
 									) : null}
 									{!valuesToShow && (
-										<div style={{ textAlign: 'center' }}>
+										<div style={{ textAlign: 'center', marginTop: '1em' }}>
 											<Link
 												className="ui__ plain button"
 												to={
@@ -137,7 +137,7 @@ export default compose(
 														? sitePaths.sécuritéSociale.index
 														: sitePaths.index
 												}>
-												<T>Simuler ma situation</T>
+												<T>Faire une simulation</T>
 											</Link>
 										</div>
 									)}
