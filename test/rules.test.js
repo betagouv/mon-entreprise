@@ -57,9 +57,8 @@ describe('rule checks', function() {
 		rulesNeedingDefault.map(r =>
 			//eslint-disable-next-line
 			console.log(
-				'cette règle, ',
-				r.dottedName,
-				'devrait avoir une valeur par défaut'
+				'La règle suivante doit avoir une valeur par défaut : ',
+				r.dottedName
 			)
 		)
 		expect(rulesNeedingDefault).to.be.empty
