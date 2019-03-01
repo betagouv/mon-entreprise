@@ -1,10 +1,14 @@
-import { resetSimulation, setSimulationConfig } from 'Actions/actions';
-import React from 'react';
-import { connect } from 'react-redux';
+import { resetSimulation, setSimulationConfig } from 'Actions/actions'
+import React from 'react'
+import { connect } from 'react-redux'
+import { noUserInputSelector } from 'Selectors/analyseSelectors'
 
 export default config => SimulationComponent =>
 	connect(
-		state => ({ config: state.simulation?.config }),
+		state => ({
+			config: state.simulation?.config,
+			noUserInput: noUserInputSelector(state)
+		}),
 		{
 			setSimulationConfig,
 			resetSimulation
@@ -22,7 +26,7 @@ export default config => SimulationComponent =>
 			}
 			render() {
 				if (!this.props.config) return null
-				return <SimulationComponent {...this.props}/>
+				return <SimulationComponent {...this.props} />
 			}
 		}
 	)
