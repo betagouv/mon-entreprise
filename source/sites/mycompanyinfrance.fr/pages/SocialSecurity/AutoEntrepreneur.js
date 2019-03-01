@@ -7,7 +7,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { AvertissementProtectionSocialeIndépendants } from './Indépendant'
 
-const AutoEntrepreneur = () => (
+const AutoEntrepreneur = ({ noUserInput }) => (
 	<>
 		<Helmet>
 			<title>
@@ -19,7 +19,7 @@ const AutoEntrepreneur = () => (
 			/>
 		</Helmet>
 		<h1>Simulateur auto-entrepreneur 2019</h1>
-		<Warning simulateur="auto-entreprise" />
+		<Warning autoFolded={!noUserInput} simulateur="auto-entreprise" />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
