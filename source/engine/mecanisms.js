@@ -731,6 +731,8 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 		assiette: false,
 		multiplicateur: defaultNode(1)
 	}
+
+	let returnRate = v['retourne seulement le taux'] === 'oui'
 	let effect = ({ assiette, multiplicateur, points }) => {
 		if (anyNull([assiette, multiplicateur])) return null
 		//We'll build a linear function given the two constraints that must be respected
@@ -752,8 +754,7 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 						nodeValue = a * val(assiette) + b,
 						taux = nodeValue / val(assiette)
 					return reduced({
-						nodeValue:
-							v['retourne seulement le taux'] === 'oui' ? taux : nodeValue,
+						nodeValue: returnRate ? taux : nodeValue,
 						additionalExplanation: {
 							seuil: val(assiette) / val(multiplicateur),
 							taux
@@ -767,7 +768,8 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 	}
 	let explanation = {
 			...parseObject(recurse, objectShape, v),
-			points: v.points
+			points: v.points,
+			returnRate
 		},
 		evaluate = evaluateObject(objectShape, effect)
 	return {
