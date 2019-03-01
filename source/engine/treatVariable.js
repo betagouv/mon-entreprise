@@ -139,11 +139,11 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 
 		// Exceptions
 		if (!rule.période && !inlinePeriodTransform) {
-			if (ruleToTransform.période == 'flexible')
+			if (ruleToTransform.période)
 				throw new Error(
 					`Attention, une variable sans période, ${
 						rule.dottedName
-					}, qui appelle une variable à période flexible, ${
+					}, qui appelle une variable à période, ${
 						ruleToTransform.dottedName
 					}, c'est suspect !
 				`
