@@ -2958,6 +2958,7 @@
   # Nous avons deux listes possibles
   # A) Voilà la liste de l'URSSAF
   question: La profession libérale reglementée est-elle rattachée à la CIPAV ?
+  par défaut: non
   description: | 
     Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski. 
 
