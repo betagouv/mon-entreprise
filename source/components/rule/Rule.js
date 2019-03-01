@@ -13,7 +13,7 @@ import {
 import { compose, isEmpty, isNil } from 'ramda'
 import React, { Component, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -102,7 +102,6 @@ export default compose(
 									}}
 								/>
 
-								{this.renderToggleSourceButton()}
 								<section id="rule-content">
 									{!isNil(displayedRule.nodeValue) && (
 										<div id="ruleValue">
@@ -165,6 +164,7 @@ export default compose(
 									)}
 									{this.renderReferences(flatRule)}
 								</section>
+								{this.renderToggleSourceButton()}
 							</Animate.fromBottom>
 						</div>
 					)}
@@ -177,8 +177,13 @@ export default compose(
 			return (
 				<button
 					id="toggleRuleSource"
+					className="ui__ link-button"
 					onClick={() => this.setState({ viewSource: !viewSource })}>
-					{emoji(viewSource ? '📖' : '✍️')}
+					{emoji(
+						viewSource
+							? '📖 Revenir à la documentation'
+							: '✍️ Voir le code source'
+					)}
 				</button>
 			)
 		}
