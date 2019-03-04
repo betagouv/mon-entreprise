@@ -58,13 +58,29 @@ describe('controls', function() {
 	})
 
 	it('Should allow imbricated conditions', function() {
-		let situationGate = dottedName => ({ brut: 2000000 }[dottedName]),
-			cache = analyseMany(parsedRules, ['net'])(situationGate).cache,
-			controls = chain(prop('contrôles'), values(cache))
-
+		let controls = analyseMany(parsedRules, ['net'])(
+			dottedName => ({ brut: 2000000 }[dottedName])
+		).controls
 		expect(
 			controls.find(
 				({ message }) => message === 'Vous êtes un contribuable hors-pair !'
+			)
+		).to.exist
+
+		let controls2 = analyseMany(parsedRules, ['net'])(
+			dottedName => ({ brut: 100001 }[dottedName])
+		).controls
+		expect(controls2.find(({ message }) => message === 'Oulah ! Oulah !')).to
+			.exist
+
+		let controls3 = analyseMany(parsedRules, ['net'])(
+			dottedName => ({ brut: 100 }[dottedName])
+		).controls
+		expect(
+			controls3.find(
+				({ message }) =>
+					message ===
+					'Malheureux, je crois que vous vous êtes trompé dans votre saisie.'
 			)
 		).to.exist
 	})
