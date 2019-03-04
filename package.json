@@ -79,6 +79,7 @@
 		"test-one": "yarn mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js",
 		"test-components": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage ---require test/helpers/browser.js \"source/components/**/*.test.js\" --watch",
 		"test-lib": "yarn test-common --grep 'library'",
+		"test-expressions": "yarn test-common --grep 'Expressions'",
 		"compile-lib": "yarn webpack --config source/webpack.lib.js",
 		"compile-dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run compile",
 		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json",

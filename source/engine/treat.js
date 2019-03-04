@@ -54,7 +54,7 @@ import {
 	treatVariableTransforms
 } from './treatVariable'
 
-let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
+export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 export let treatString = (rules, rule) => rawNode => {
 	/* On a affaire à un string, donc à une expression infixe.
