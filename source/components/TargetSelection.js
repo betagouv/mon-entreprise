@@ -58,14 +58,12 @@ export default compose(
 )(
 	class TargetSelection extends Component {
 		render() {
-			let { colours, analysis, progress } = this.props
+			let { colours, noUserInput, analysis, progress } = this.props
 
 			return (
 				<div id="targetSelection">
 					<QuickLinks />
-					<Controls
-						controls={chain(({ contrôles }) => contrôles, analysis.cache)}
-					/>
+					{!noUserInput && <Controls controls={analysis.controls} />}
 					<div style={{ height: '10px' }}>
 						<Progress percent={progress} />
 					</div>

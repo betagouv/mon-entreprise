@@ -30,6 +30,7 @@ import {
 } from './evaluation'
 import { anyNull, val, undefOrTrue } from './traverse-common-functions'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
+import { evaluateControls } from 'Engine/controls'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -86,7 +87,7 @@ export let treat = (rules, rule) => rawNode => {
 export let treatRuleRoot = (rules, rule) => {
 	/*
 		The treatRuleRoot function will traverse the tree of the `rule` and produce an AST, an object containing other objects containing other objects...
-		Some of the attributes of the rule are dynamic, they need to be parsed. It is the case of  `non applicable si`, `applicable si`, `formule`, `contrôles`.
+		Some of the attributes of the rule are dynamic, they need to be parsed. It is the case of  `non applicable si`, `applicable si`, `formule`.
 		These attributes' values themselves may have  mechanism properties (e. g. `barème`) or inline expressions (e. g. `maVariable + 3`).
 		These mechanisms or variables are in turn traversed by `treat()`. During this processing, 'evaluate' and'jsx' functions are attached to the objects of the AST. They will be evaluated during the evaluation phase, called "analyse".
 */
@@ -159,20 +160,6 @@ export let treatRuleRoot = (rules, rule) => {
 				formulaMissingVariables
 			)
 
-		let evaluateControls = node.contrôles && val(parentDependency) !== false
-		console.log(node.name, evaluateControls)
-		let contrôles =
-			evaluateControls &&
-			node.contrôles.map(control => ({
-				...control,
-				evaluated: evaluateNode(
-					cache,
-					situationGate,
-					parsedRules,
-					control.testExpression
-				)
-			}))
-
 		cache.parseLevel--
 		//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
 		//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
@@ -180,10 +167,10 @@ export let treatRuleRoot = (rules, rule) => {
 			...node,
 			...evaluatedAttributes,
 			...{ formule: evaluatedFormula },
-			contrôles,
 			nodeValue,
 			isApplicable,
-			missingVariables
+			missingVariables,
+			inactiveParent: parentDependency && val(parentDependency) == false
 		}
 	}
 
@@ -358,7 +345,9 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 				cache[t.dottedName] || // This check exists because it is not done in treatRuleRoot's eval, while it is in treatVariable. This should be merged : we should probably call treatVariable here : targetNames could be expressions (hence with filters) TODO
 				evaluateNode(cache, situationGate, parsedRules, t)
 		)
-	return { targets, cache }
+
+	let controls = evaluateControls(cache, situationGate, parsedRules)
+	return { targets, cache, controls }
 }
 
 export let analyse = (parsedRules, target) => {

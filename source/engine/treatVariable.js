@@ -25,11 +25,10 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 				variable['non applicable si'] != null,
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
-				variable['contrôles'] ||
-				(situationValue == null &&
-					(variableHasCond ||
-						variableHasFormula ||
-						findParentDependency(rules, variable)))
+				situationValue == null &&
+				(variableHasCond ||
+					variableHasFormula ||
+					findParentDependency(rules, variable))
 
 		//		if (dottedName.includes('jeune va')) debugger
 
