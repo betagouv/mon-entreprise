@@ -27,7 +27,7 @@ const connectRègles = (situationBranchName: string) =>
 						situationBranchName
 					})('revenu net')
 			}: {
-				revenuDisponible: RègleAvecMontant
+				revenuDisponible: boolean | RègleAvecMontant
 			})
 		},
 		{

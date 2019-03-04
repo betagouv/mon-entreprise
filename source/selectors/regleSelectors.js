@@ -7,7 +7,7 @@ import { createSelector } from 'reselect'
 import {
 	branchAnalyseSelector,
 	flatRulesSelector,
-	validatedSituationBranchesSelector
+	situationsWithDefaultsSelector
 } from './analyseSelectors'
 import type { FlatRules } from 'Types/State'
 import type {
@@ -57,7 +57,7 @@ export const règleValeurSelector: InputSelector<
 	(dottedName: string) => RègleValeur
 > = createSelector(
 	branchAnalyseSelector,
-	validatedSituationBranchesSelector,
+	situationsWithDefaultsSelector,
 	règleLocaliséeSelector,
 	(analysis: Analysis, situation, règleLocalisée: string => Règle) => (
 		dottedName: string
@@ -71,8 +71,6 @@ export const règleValeurSelector: InputSelector<
 			!Array.isArray(analysis) && // It's an array if we're in a comparative simulation.
 			(analysis.cache[dottedName] ||
 				analysis.targets.find(target => target.dottedName === dottedName))
-
-		if (rule == undefined) return null
 
 		let valeur =
 			rule && !isNil(rule.nodeValue)
