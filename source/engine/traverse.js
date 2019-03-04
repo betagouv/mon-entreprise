@@ -244,7 +244,10 @@ export let treatRuleRoot = (rules, rule) => {
 		},
 		contrôles: map(control => {
 			let testExpression = treat(rules, rule)(control.si)
-			if (!testExpression.explanation)
+			if (
+				!testExpression.explanation &&
+				!(testExpression.category === 'variable')
+			)
 				throw new Error(
 					'Ce contrôle ne semble pas être compris :' + control['si']
 				)

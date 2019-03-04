@@ -683,7 +683,7 @@
   question: Est-ce un contrat à durée déterminée (CDD) ?
   description: |
     Par défaut, faire travailler quelqu'un en France établit auutomatiquement un CDI à temps plein.
-    Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date d fin.
+    Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
 
   par défaut: non
   # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
@@ -698,7 +698,7 @@
   #     Code du travail - Article L1242-1
   #
   contrôles:
-    - si: CDD = 'oui'
+    - si: CDD
       niveau: information
       message: |
         Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
@@ -1968,9 +1968,10 @@
       - si: régime alsace moselle
         alors: en alsace moselle
       - sinon: en france
-        #  contrôles:
-        #    - si: complémentaire santé . forfait [mensuel] < 15
-        #      niveau: avertissement
+  contrôles:
+    - si: complémentaire santé . forfait [mensuel] < 15
+      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
+      niveau: avertissement
 
 - espace: contrat salarié . complémentaire santé . forfait
   nom: en alsace moselle
