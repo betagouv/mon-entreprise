@@ -7,7 +7,7 @@ import { createSelector } from 'reselect'
 import {
 	branchAnalyseSelector,
 	flatRulesSelector,
-	validatedSituationBranchesSelector
+	situationsWithDefaultsSelector
 } from './analyseSelectors'
 import type { FlatRules } from 'Types/State'
 import type {
@@ -57,7 +57,7 @@ export const règleValeurSelector: InputSelector<
 	(dottedName: string) => RègleValeur
 > = createSelector(
 	branchAnalyseSelector,
-	validatedSituationBranchesSelector,
+	situationsWithDefaultsSelector,
 	règleLocaliséeSelector,
 	(analysis: Analysis, situation, règleLocalisée: string => Règle) => (
 		dottedName: string
@@ -103,6 +103,7 @@ export const règleValeurSelector: InputSelector<
 			(!Number.isNaN(valeur) && Number.isNaN(Number.parseFloat(valeur))
 				? 'string'
 				: 'number')
+
 		return {
 			type,
 			valeur:

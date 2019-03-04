@@ -1,7 +1,6 @@
 /* @flow */
 import { createSelector, createStructuredSelector } from 'reselect'
 import {
-	blockingInputControlsSelector,
 	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
@@ -45,10 +44,7 @@ const NUMBER_MAX_QUESTION_SIMULATION = 18
 const START_SIMULATION_COEFFICIENT = 0.15
 const QUESTIONS_COEFFICIENT = 0.85
 export const estimationProgressSelector = (state: any) => {
-	const userInputProgress = +(
-		!noUserInputSelector(state) &&
-		!softCatch(blockingInputControlsSelector)(state)
-	)
+	const userInputProgress = !noUserInputSelector(state)
 	const questionsProgress =
 		(state.conversationStarted &&
 			NUMBER_MAX_QUESTION_SIMULATION - nextStepsSelector(state).length) /

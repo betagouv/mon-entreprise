@@ -127,6 +127,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		let nodeValue = filteredNode.nodeValue
 
 		// Temporal transformation
+		let supportedPeriods = ['mois', 'année', 'flexible']
 		if (nodeValue == null) return filteredNode
 		let ruleToTransform = findRuleByDottedName(
 			rules,
@@ -139,13 +140,15 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 
 		// Exceptions
 		if (!rule.période && !inlinePeriodTransform) {
-			if (ruleToTransform.période)
+			if (supportedPeriods.includes(ruleToTransform.période))
 				throw new Error(
 					`Attention, une variable sans période, ${
 						rule.dottedName
 					}, qui appelle une variable à période, ${
 						ruleToTransform.dottedName
 					}, c'est suspect !
+
+					Si la période de la variable appelée est neutralisée dans la formule de calcul, par exemple un montant mensuel divisé par 30 (comprendre 30 jours), utilisez "période: aucune" pour taire cette erreur et rassurer tout le monde.
 				`
 				)
 
@@ -160,6 +163,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 			ruleToTransform.période === 'flexible'
 				? environmentPeriod
 				: ruleToTransform.période
+
 		let transformedNodeValue =
 				callingPeriod === 'mois' && calledPeriod === 'année'
 					? nodeValue / 12

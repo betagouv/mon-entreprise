@@ -11,7 +11,7 @@ import { config } from 'react-spring'
 import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
-import { validInputEnteredSelector } from '../selectors/analyseSelectors'
+import { noUserInputSelector } from '../selectors/analyseSelectors'
 import './ComparativeTargets.css'
 import SchemeCard from './ui/SchemeCard'
 
@@ -22,12 +22,12 @@ const connectRègles = (situationBranchName: string) =>
 		state => {
 			return ({
 				revenuDisponible:
-					validInputEnteredSelector(state) &&
+					!noUserInputSelector(state) &&
 					règleAvecMontantSelector(state, {
 						situationBranchName
 					})('revenu net')
 			}: {
-				revenuDisponible: RègleAvecMontant
+				revenuDisponible: boolean | RègleAvecMontant
 			})
 		},
 		{
