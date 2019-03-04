@@ -212,6 +212,7 @@
 - espace: contrat salarié . CDD . compensation pour congés non pris
   nom: salaire journalier
   unité: jour ouvré
+  période: aucune
   formule: assiette mensuelle / 21
   note: On retient 21 comme nombre de jours ouvrés moyens par mois
 
