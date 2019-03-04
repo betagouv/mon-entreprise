@@ -731,8 +731,6 @@
     salaire médian: 2300
     SMIC: 1522
   contrôles:
-    - si: brut de base [mensuel] < 50
-      niveau: bloquant
     - si:
         toutes ces conditions:
           - brut de base [mensuel] < SMIC [mensuel]
@@ -968,9 +966,6 @@
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
   période: flexible
   formule: rémunération . net de cotisations - avantages en nature . montant
-  contrôles:
-    - si: net [mensuel] < 30
-      niveau: bloquant
 
 - espace: contrat salarié . salaire
   nom: net après impôt
@@ -992,9 +987,6 @@
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
   formule: net - impôt . neutre
-  contrôles:
-    - si: net après impôt [mensuel] < 20
-      niveau: bloquant
 
 - espace: impôt . neutre
   nom: barème Guadeloupe Réunion Martinique
@@ -1332,9 +1324,6 @@
     Des [aides différées](/documentation/aides-employeur) peuvent venir diminuer ce montant.
 
   formule: rémunération . total sans réduction - réductions de cotisations
-  contrôles:
-    - si: total [mensuel] < 100
-      niveau: bloquant
 
 - espace: contrat salarié
   nom: réductions de cotisations
@@ -1409,9 +1398,6 @@
   période: flexible
   type: salaire
   formule: rémunération . total - aides employeur
-  contrôles:
-    - si: coût d'embauche [mensuel] < 100
-      niveau: bloquant
 
 - espace: contrat salarié
   nom: aides employeur
