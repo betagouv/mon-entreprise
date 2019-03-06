@@ -1,4 +1,4 @@
-import formValueTypes from 'Components/conversation/formValueTypes'
+import valueFormats from 'Engine/valueFormats'
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
 import SelectGéo from 'Components/conversation/select/SelectGéo'
@@ -137,7 +137,7 @@ export let getInputComponent = rules => dottedName => {
 			<SelectAtmp
 				{...{
 					...commonProps,
-					valueType: formValueTypes[rule.format],
+					valueType: valueFormats[rule.format],
 					suggestions: rule.suggestions
 				}}
 			/>
@@ -149,7 +149,7 @@ export let getInputComponent = rules => dottedName => {
 		<Input
 			{...{
 				...commonProps,
-				valueType: formValueTypes[rule.format],
+				valueType: valueFormats[rule.format],
 				suggestions: rule.suggestions,
 				rulePeriod: rule.période
 			}}

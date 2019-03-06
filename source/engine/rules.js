@@ -1,5 +1,5 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import formValueTypes from 'Components/conversation/formValueTypes'
+import valueFormats from 'Engine/valueFormats'
 import {
 	assoc,
 	chain,
@@ -42,31 +42,27 @@ import possibleVariableTypes from './possibleVariableTypes.yaml'
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = rule => {
 	try {
-		let type = possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
-			name = rule['nom'],
-			title = capitalise0(rule['titre'] || name),
-			ns = rule['espace'],
-			dottedName = buildDottedName(rule),
-			subquestionMarkdown = rule['sous-question'],
-			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
-			defaultValue = rule['par défaut'],
-			examples = rule['exemples'],
-			icon = rule['icônes'],
-			summary = rule['résumé']
-
+		let formatKey = rule['format'] || 'booléen',
+			format = valueFormats[formatKey]
+		if (!format) {
+			console.log(`The '${format}' rule format is unknown`)
+			throw new Error(format)
+		}
 		return {
 			...rule,
-			type,
-			name,
-			title,
-			ns,
-			dottedName,
-			subquestion,
-			defaultValue,
+			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
+			name: rule['nom'],
+			title: capitalise0(rule['titre'] || rule['nom']),
+			ns: rule['espace'],
+			dottedName: buildDottedName(rule),
+			subquestion: rule['sous-question'] && marked(rule['sous-question']),
+			defaultValue: rule['par défaut'],
 			raw: rule,
-			examples,
-			icon,
-			summary
+			examples: rule['exemples'],
+			icons: rule['icônes'],
+			summary: rule['résumé'],
+			format,
+			humanValue: format.human
 		}
 	} catch (e) {
 		console.log(e)
@@ -209,7 +205,7 @@ export let formatInputs = (flatRules, pathValueMap) =>
 		if (name.startsWith('sys.')) return null
 
 		let rule = findRuleByDottedName(flatRules, path),
-			format = rule ? formValueTypes[rule.format] : null,
+			format = rule ? valueFormats[rule.format] : null,
 			pre = format && format.validator.pre ? format.validator.pre : identity
 
 		return pre(value)

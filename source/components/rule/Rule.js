@@ -56,14 +56,14 @@ export default compose(
 					valuesToShow,
 					sitePaths,
 					analysedExample,
-					analysedRule
+					analysedRule,
+					language
 				} = this.props,
 				flatRule = findRuleByDottedName(flatRules, dottedName)
 			let { type, name, title, description, question, ns, icon } = flatRule,
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-			let ruleFormat = displayedRule.format || displayedRule.explanation?.format
 			return (
 				<>
 					{this.state.viewSource ? (
@@ -103,29 +103,23 @@ export default compose(
 								<section id="rule-content">
 									{!isNil(displayedRule.nodeValue) && (
 										<div id="ruleValue">
-											{['euros', 'pourcentage'].includes(ruleFormat) ||
-											displayedRule.formule ? (
-												<Montant
-													type={
-														ruleFormat === 'euros'
-															? 'currency'
-															: ruleFormat === 'pourcentage'
-															? 'percent'
-															: 'decimal'
-													}>
-													{displayedRule.nodeValue}
-												</Montant>
-											) : typeof displayedRule.nodeValue !== 'object' ? (
-												displayedRule.nodeValue
-											) : null}
+											<span className="ui__ valeur">
+												{displayedRule.humanValue(
+													displayedRule.nodeValue,
+													language
+												)}
+											</span>
 										</div>
 									)}
-									{displayedRule.defaultValue != null &&
-									typeof displayedRule.defaultValue !== 'object' ? (
+									{displayedRule.defaultValue != null && (
 										<div id="ruleDefault">
-											Valeur par défaut : {displayedRule.defaultValue}
+											Valeur par défaut :{' '}
+											{displayedRule.humanValue(
+												displayedRule.defaultValue,
+												language
+											)}
 										</div>
-									) : null}
+									)}
 									{!valuesToShow && (
 										<div style={{ textAlign: 'center', marginTop: '1em' }}>
 											<Link

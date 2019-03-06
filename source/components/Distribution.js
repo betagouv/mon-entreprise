@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { config, Spring } from 'react-spring'
 import { compose } from 'redux'
 import répartitionSelector from 'Selectors/repartitionSelectors'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import Montant from 'Ui/Montant'
 import { isIE } from '../utils'
 import './Distribution.css'
@@ -16,6 +17,7 @@ import './PaySlip'
 import RuleLink from './RuleLink'
 import type { ThemeColours } from 'Components/utils/withColours'
 import type { Répartition } from 'Types/ResultViewTypes.js'
+import { findRuleByDottedName } from 'Engine/rules'
 
 type Props = ?Répartition & {
 	colours: ThemeColours
@@ -43,6 +45,7 @@ class Distribution extends Component<Props, State> {
 	render() {
 		const {
 			colours: { colour },
+			rules,
 			// $FlowFixMe
 			...distribution
 		} = this.props
@@ -59,46 +62,53 @@ class Distribution extends Component<Props, State> {
 		return (
 			<>
 				<div className="distribution-chart__container">
-					{répartition.map(([branche, { partPatronale, partSalariale }]) => {
-						const brancheInViewport =
-							this.state.branchesInViewport.indexOf(branche.id) !== -1
-						const montant = brancheInViewport
-							? partPatronale + partSalariale
-							: 0
-						return (
-							<Observer
-								key={branche.id}
-								threshold={[0.5]}
-								onChange={this.handleBrancheInViewport(branche.id)}>
-								<Spring
-									config={ANIMATION_SPRING}
-									to={{
-										flex: montant / cotisationMaximum,
-										opacity: montant ? 1 : 0
-									}}>
-									{styles => (
-										<div
-											className="distribution-chart__item"
-											style={{
-												opacity: styles.opacity
-											}}>
-											<BranchIcône icône={branche.icône} />
-											<div className="distribution-chart__item-content">
-												<p className="distribution-chart__counterparts">
-													<span className="distribution-chart__branche-name">
-														<RuleLink {...branche} />
-													</span>
-													<br />
-													<small>{branche.résumé}</small>
-												</p>
-												<ChartItemBar {...{ styles, colour, montant, total }} />
+					{répartition.map(
+						([brancheDottedName, { partPatronale, partSalariale }]) => {
+							const branche = findRuleByDottedName(rules, brancheDottedName),
+								brancheInViewport =
+									this.state.branchesInViewport.indexOf(brancheDottedName) !==
+									-1
+							const montant = brancheInViewport
+								? partPatronale + partSalariale
+								: 0
+
+							return (
+								<Observer
+									key={brancheDottedName}
+									threshold={[0.5]}
+									onChange={this.handleBrancheInViewport(brancheDottedName)}>
+									<Spring
+										config={ANIMATION_SPRING}
+										to={{
+											flex: montant / cotisationMaximum,
+											opacity: montant ? 1 : 0
+										}}>
+										{styles => (
+											<div
+												className="distribution-chart__item"
+												style={{
+													opacity: styles.opacity
+												}}>
+												<BranchIcône icône={branche.icons} />
+												<div className="distribution-chart__item-content">
+													<p className="distribution-chart__counterparts">
+														<span className="distribution-chart__branche-name">
+															<RuleLink {...branche} />
+														</span>
+														<br />
+														{branche.shortDescription}
+													</p>
+													<ChartItemBar
+														{...{ styles, colour, montant, total }}
+													/>
+												</div>
 											</div>
-										</div>
-									)}
-								</Spring>
-							</Observer>
-						)
-					})}
+										)}
+									</Spring>
+								</Observer>
+							)
+						}
+					)}
 				</div>
 				<div className="distribution-chart__total">
 					<span />
@@ -121,10 +131,10 @@ class Distribution extends Component<Props, State> {
 }
 export default compose(
 	withColours,
-	connect(
-		répartitionSelector,
-		{}
-	)
+	connect(state => ({
+		...répartitionSelector(state),
+		rules: flatRulesSelector(state)
+	}))
 )(Distribution)
 
 let ChartItemBar = ({ styles, colour, montant, total }) => (

@@ -15,6 +15,7 @@ import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
 	defaultTo,
+	propEq,
 	difference,
 	dissoc,
 	equals,
@@ -85,8 +86,8 @@ export let situationSelector = createDeepEqualSelector(
 )
 
 export let formattedSituationSelector = createSelector(
-	[flatRulesSelector, situationSelector],
-	(rules, situation) => formatInputs(rules, nestedSituationToPathMap(situation))
+	[situationSelector],
+	situation => nestedSituationToPathMap(situation)
 )
 
 export let noUserInputSelector = createSelector(
@@ -310,3 +311,20 @@ export let currentQuestionSelector = createSelector(
 	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
 	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )
+
+export let getRuleFromAnalysis = analysis => (dottedName: string) => {
+	if (!analysis) {
+		throw new Error(`[getRuleFromAnalysis] The analysis can't be nil !`)
+	}
+	let rule =
+		analysis.cache[dottedName] ||
+		analysis.targets.find(propEq('dottedName', dottedName))
+
+	if (!rule) {
+		throw new Error(
+			`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`
+		)
+	}
+
+	return rule
+}

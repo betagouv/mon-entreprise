@@ -9,28 +9,13 @@ import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
-import Montant from 'Ui/Montant'
 import { softCatch } from '../../utils'
 import './AnswerList.css'
-
-const formatAnswer = (answer, language) => {
-	if (answer.type === 'boolean')
-		return (
-			<span style={{ textTransform: 'capitalize' }}>
-				<Trans>{answer.valeur ? 'oui' : 'non'}</Trans>{' '}
-			</span>
-		)
-	if (answer.type === 'euros') return <Montant>{answer.valeur}</Montant>
-	if (answer.type === 'number') return
-	{
-		Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(
-			answer.valeur
-		)
-	}
-	if (answer.type === 'string') return <Trans>{answer.valeur}</Trans>
-	return answer.valeur
-}
+import {
+	analysisWithDefaultsSelector,
+	getRuleFromAnalysis
+} from 'Selectors/analyseSelectors'
+import { humanValue } from 'Engine/rules'
 
 const AnswerList = ({
 	answers,
@@ -72,7 +57,7 @@ const AnswerList = ({
 								<span
 									className="answerContent"
 									style={{ borderBottomColor: colours.textColourOnWhite }}>
-									{formatAnswer(answer, language)}
+									{humanValue(answer)(language)}
 								</span>
 							</button>{' '}
 						</td>
@@ -83,17 +68,18 @@ const AnswerList = ({
 	</Overlay>
 )
 
-const answerWithValueSelector = createSelector(
+const foldedStepsToRuleSelector = createSelector(
 	state => state.conversationSteps.foldedSteps,
-	règleAvecValeurSelector,
-	(answers, getRègle) => answers.map(softCatch(getRègle)).filter(Boolean)
+	analysisWithDefaultsSelector,
+	(answers, analysis) =>
+		answers.map(softCatch(getRuleFromAnalysis(analysis))).filter(Boolean)
 )
 
 export default compose(
 	withLanguage,
 	withColours,
 	connect(
-		state => ({ answers: answerWithValueSelector(state) }),
+		state => ({ answers: foldedStepsToRuleSelector(state) }),
 		{
 			resetSimulation,
 			goToQuestion

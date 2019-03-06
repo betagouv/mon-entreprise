@@ -26,19 +26,10 @@ const Montant = ({
 	numFractionDigit = 2,
 	children: value,
 	className = '',
-	type = 'currency',
 	style = {}
 }: Props) => (
 	<span className={'montant ' + className} style={style}>
-		{value === 0 || Number.isNaN(value)
-			? '—'
-			: // // $FlowFixMe
-			  NumberFormat(language, {
-					style: type,
-					currency: 'EUR',
-					maximumFractionDigits: numFractionDigit,
-					minimumFractionDigits: numFractionDigit
-			  }).format(value)}
+		{value === 0 || Number.isNaN(value) ? '—' : value}
 	</span>
 )
 

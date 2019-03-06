@@ -8,7 +8,7 @@ import { capitalise0 } from '../utils'
 import './RuleLink.css'
 import type { Règle } from 'Types/RegleTypes'
 import type { ThemeColours } from 'Components/utils/withColours'
-
+import { encodeRuleName } from 'Engine/rules'
 
 type Props = Règle & {
 	sitePaths: Object,
@@ -16,19 +16,20 @@ type Props = Règle & {
 	colours: ThemeColours
 }
 const RuleLink = ({
-	lien,
-	nom,
+	dottedName,
+	name,
 	colours: { colour },
 	style,
 	sitePaths
 }: Props) => {
-	const newPath = sitePaths.documentation.index + '/' + lien
+	const newPath =
+		sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
 	return (
 		<Link
 			to={newPath}
 			className="rule-link"
 			style={{ color: colour, ...style }}>
-			{capitalise0(nom)}
+			{capitalise0(name)}
 		</Link>
 	)
 }
