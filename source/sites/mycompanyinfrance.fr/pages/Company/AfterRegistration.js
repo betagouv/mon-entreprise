@@ -7,17 +7,22 @@ import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import siret from './siret.jpg'
 import type { TFunction } from 'react-i18next'
 
 type OwnProps = {}
 type Props = {
 	companyStatusChoice: string,
 	sitePaths: Object,
+	language: string,
 	t: TFunction
 } & OwnProps
 
-const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
+const AfterRegistration = ({
+	t,
+	companyStatusChoice,
+	sitePaths,
+	language
+}: Props) => (
 	<Animate.fromBottom>
 		<ScrollToTop />
 		<h1>
@@ -45,7 +50,9 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 			</T>
 			<br />
 			<img
-				src={siret}
+				src={
+					language === 'en' ? require('./siret-en.jpg') : require('./siret.png')
+				}
 				alt="SIRET and SIREN number"
 				style={{ maxWidth: '100%' }}
 			/>
