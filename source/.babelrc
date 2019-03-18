@@ -19,7 +19,6 @@
 		"@babel/plugin-proposal-object-rest-spread",
 		"@babel/plugin-syntax-dynamic-import",
 		"react-hot-loader/babel",
-		"@babel/plugin-transform-runtime",
 		["webpack-alias", { "config": "./source/webpack.dev.js" }],
 		[
 			"ramda",
