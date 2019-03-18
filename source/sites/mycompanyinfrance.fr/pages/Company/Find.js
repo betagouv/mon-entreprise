@@ -31,6 +31,52 @@ type Props = {
 	sitePaths: SitePaths
 }
 
+const isSIREN = (input: string) => input.match(/^ *([\d] *){9}$/)
+const isSIRET = (input: string) => input.match(/^ *([\d] *){14}$/)
+
+async function getOptions(input: string) {
+	let etablissements
+		try {
+	if (isSIREN(input)) {
+		input.replace(' ', '')
+		const response = await fetch(
+			`https://entreprise.data.gouv.fr/api/sirene/v1/siren/${input}`
+		)
+		if (!response.ok) {
+			return
+		}
+		const json = await response.json()
+		etablissements = [json.siege_social];
+	} else if (isSIRET(input)) {
+		input.replace(' ', '')
+		const response = await fetch(
+			`https://entreprise.data.gouv.fr/api/sirene/v1/siret/${input}`
+		)
+		if (!response.ok) {
+			return
+		}
+		const json = await response.json()
+		etablissements = [json.etablissement];
+	} else {
+		/* Full text search */
+		const response = await fetch(
+			`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`
+		)
+		if (!response.ok) {
+			return
+		}
+		const json = await response.json()
+		etablissements = json.etablissement;
+	}
+		return { options: etablissements }
+	} catch (error) {
+		console.log(
+			"Erreur dans la recherche d'entreprise à partir du SIREN / nom",
+			error
+		)
+	}
+}
+
 class Search extends React.Component<Props, State> {
 	state = {
 		input: null
@@ -38,22 +84,6 @@ class Search extends React.Component<Props, State> {
 	handleChange = input => {
 		this.setState({ input })
 	}
-	getOptions = (input: string) =>
-		fetch(`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`)
-			.then(response => {
-				if (response.ok) {
-					return response
-						.json()
-						.then(json => console.log(json) || { options: json.etablissement })
-				}
-			})
-			.catch(function(error) {
-				console.log(
-					'Erreur dans la recherche de communes à partir du code postal',
-					error
-				) // eslint-disable-line no-console
-			})
-
 	render() {
 		let { t, sitePaths } = this.props
 		return (
@@ -92,11 +122,11 @@ class Search extends React.Component<Props, State> {
 					optionRenderer={({ l1_normalisee, code_postal }) =>
 						l1_normalisee + ` (${code_postal})`
 					}
-					placeholder={t('Entrez le nom de votre société')}
+					placeholder={t("Entrez le nom, le SIREN ou le SIRET de l'entreprise")}
 					noResultsText={t("Nous n'avons rien trouvé")}
 					searchPromptText={null}
 					loadingPlaceholder={t('Recherche en cours...')}
-					loadOptions={this.getOptions}
+					loadOptions={getOptions}
 					// We don't filter the API answer, the fulltext is more powerful than blind fuzzy matching
 					filterOption={() => true}
 				/>
