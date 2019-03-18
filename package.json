@@ -19,6 +19,7 @@
 		"not ie < 11"
 	],
 	"dependencies": {
+		"@babel/runtime": "^7.3.4",
 		"@researchgate/react-intersection-observer": "^0.7.3",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
@@ -93,6 +94,7 @@
 		"@babel/plugin-proposal-object-rest-spread": "^7.0.0",
 		"@babel/plugin-proposal-optional-chaining": "^7.0.0",
 		"@babel/plugin-syntax-dynamic-import": "^7.0.0",
+		"@babel/plugin-transform-runtime": "^7.3.4",
 		"@babel/polyfill": "^7.0.0",
 		"@babel/preset-env": "^7.1.0",
 		"@babel/preset-flow": "^7.0.0-beta.51",

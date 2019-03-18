@@ -56,7 +56,6 @@ import {
 	mecanismVariations,
 	mecanismSynchronisation
 } from './mecanisms'
-
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 export let treatString = (rules, rule) => rawNode => {

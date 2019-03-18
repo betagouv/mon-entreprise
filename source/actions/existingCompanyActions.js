@@ -32,9 +32,13 @@ const getCommuneByCodePostal = function(codePostal: string) {
 		})
 }
 
-const getLegalStatus = (codeNatureJuridique: string): ?LegalStatus => {
+const getLegalStatus = ({
+	nature_juridique_entreprise: codeNatureJuridique,
+	nature_entrepreneur_individuel: codeEntrepreneurIndividuel
+	//TODO : utiliser pour préremplir la nature de l"activité (artisan/commercial)
+}): ?LegalStatus => {
 	// see https://www.insee.fr/fr/information/2028129
-	if (codeNatureJuridique.match(/^1000$/)) {
+	if (!!codeEntrepreneurIndividuel || codeNatureJuridique.match(/^1000$/)) {
 		return 'EI'
 	}
 	if (codeNatureJuridique.match(/^52..$/)) {
@@ -66,7 +70,7 @@ export const saveExistingCompanyDetails = (details: { [string]: string }) => (
 		10
 	)
 	effectif = isNaN(effectif) ? null : effectif
-	const legalStatus = getLegalStatus(details.nature_juridique_entreprise)
+	const legalStatus = getLegalStatus(details)
 	getCommuneByCodeInsee(details.departement + details.commune)
 		.catch(err => {
 			console.warn(err)
