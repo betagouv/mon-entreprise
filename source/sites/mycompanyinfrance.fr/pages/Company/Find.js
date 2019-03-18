@@ -3,7 +3,7 @@ import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
 import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -11,10 +11,10 @@ import { Link } from 'react-router-dom'
 import ReactSelect from 'react-select'
 // $FlowFixMe
 import 'react-select/dist/react-select.css'
-import type { SitePaths } from 'Components/utils/withSitePaths'
-import type { TFunction } from 'react-i18next'
 import './Find.css'
 import { CompanyDetails as Company } from './YourCompany'
+import type { SitePaths } from 'Components/utils/withSitePaths'
+import type { TFunction } from 'react-i18next'
 import type { RouterHistory } from 'react-router'
 
 const goToNextStep = (history: RouterHistory, sitePaths: Object) => {
@@ -28,7 +28,7 @@ type OwnProps = {}
 type Props = {
 	history: RouterHistory,
 	t: TFunction,
-	sitePaths: SitePaths,
+	sitePaths: SitePaths
 }
 
 class Search extends React.Component<Props, State> {
@@ -42,7 +42,9 @@ class Search extends React.Component<Props, State> {
 		fetch(`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`)
 			.then(response => {
 				if (response.ok) {
-					return response.json().then(json => ({ options: json.etablissement }))
+					return response
+						.json()
+						.then(json => console.log(json) || { options: json.etablissement })
 				}
 			})
 			.catch(function(error) {
@@ -95,6 +97,8 @@ class Search extends React.Component<Props, State> {
 					searchPromptText={null}
 					loadingPlaceholder={t('Recherche en cours...')}
 					loadOptions={this.getOptions}
+					// We don't filter the API answer, the fulltext is more powerful than blind fuzzy matching
+					filterOption={() => true}
 				/>
 				{!!this.state.input && (
 					<>
