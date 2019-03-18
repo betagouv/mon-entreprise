@@ -115,7 +115,9 @@ export class Checklist extends Component<ChecklistProps> {
 						// $FlowFixMe
 						onChange: checked => props.onItemCheck(child.props.name, checked),
 						// $FlowFixMe
-						defaultChecked: props.defaultChecked[child.props.name]
+						defaultChecked:
+							child.props.defaultChecked ||
+							props.defaultChecked[child.props.name]
 					})
 			)
 		props.onInitialization &&
