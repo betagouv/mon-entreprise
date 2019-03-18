@@ -20,6 +20,7 @@
 	],
 	"dependencies": {
 		"@researchgate/react-intersection-observer": "^0.7.3",
+		"babel-regenerator-runtime": "^6.5.0",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"focus-trap-react": "^3.1.2",
