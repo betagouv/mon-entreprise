@@ -1303,8 +1303,8 @@
       valeur attendue: 27
 
   références:
-    Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000033780155&dateTexte=20190101
     Explication de l'impôt neutre: https://www.economie.gouv.fr/prelevement-a-la-source/taux-prelevement#taux-non-personnalise
+    BOFIP: http://bofip.impots.gouv.fr/bofip/11255-PGP.html
 
 - espace: contrat salarié
   nom: coût du travail
