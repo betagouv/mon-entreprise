@@ -93,15 +93,15 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => (
 				</p>
 			</>
 		)}
-		<p style={{ display: 'flex', justifyContent: 'space-between' }}>
+		<p
+			className="ui__ answer-group"
+			style={{ justifyContent: 'space-between' }}>
 			<Link
 				to={sitePaths.entreprise.index}
 				className="ui__ simple skip button left">
 				← <T k="après.actions.retour">Démarche de création</T>
 			</Link>
-			<Link
-				to={sitePaths.sécuritéSociale.index}
-				className="ui__ simple skip button">
+			<Link to={sitePaths.sécuritéSociale.index} className="ui__ plain button">
 				<T k="après.actions.avance">Estimez vos cotisations </T>→
 			</Link>
 		</p>
