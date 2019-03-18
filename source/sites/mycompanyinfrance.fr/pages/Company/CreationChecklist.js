@@ -7,6 +7,7 @@ import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import Route404 from 'Components/Route404'
 import Scroll from 'Components/utils/Scroll'
+import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
@@ -21,11 +22,11 @@ import StatusDescription from './StatusDescription'
 
 import type { Match } from 'react-router'
 import type { TFunction } from 'react-i18next'
-
 type Props = {
 	statusChooserCompleted: boolean,
 	match: Match,
 	onChecklistInitialization: (string, Array<string>) => void,
+	language: string,
 	onStatusChange: () => void,
 	sitePaths: Object,
 	onItemCheck: (name: string, checked: boolean) => void,
@@ -37,6 +38,7 @@ const CreateCompany = ({
 	match,
 	statusChooserCompleted,
 	onChecklistInitialization,
+	language,
 	onItemCheck,
 	sitePaths,
 	companyCreationChecklist,
@@ -141,10 +143,10 @@ const CreateCompany = ({
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}>
 				<CheckItem
-					name="corporatePurpose"
+					name="legalStatus"
 					defaultChecked={true}
 					title={
-						<T k="entreprise.tâches.objetSocial.titre">
+						<T k="entreprise.tâches.formeJuridique.titre">
 							Choisir la forme juridique
 						</T>
 					}
@@ -473,28 +475,33 @@ const CreateCompany = ({
 					<T k="entreprise.tâches.ensuite">Après la création</T> →
 				</Link>
 			</p>
-			<h2>{emoji('📜')} Vous êtes plutôt papier ?</h2>
-			<p>
-				Accédez gratuitement au guide complet de la création entreprise en 2019,
-				édité par l'URSSAF. Au programme : des conseils sur comment préparer son
-				projet, comment se lancer dans la création ou encore la présentation
-				détaillée de votre protection sociale.
-			</p>
+			{language === 'fr' && (
+				<>
+					<h2>{emoji('📜')} Vous êtes plutôt papier ?</h2>
+					<p>
+						Accédez gratuitement au guide complet de la création entreprise en
+						2019, édité par l'URSSAF. Au programme : des conseils sur comment
+						préparer son projet, comment se lancer dans la création ou encore la
+						présentation détaillée de votre protection sociale.
+					</p>
 
-			<div style={{ textAlign: 'center' }}>
-				<a
-					className="ui__ button simple"
-					target="_blank"
-					href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/30487%20-%20SSI%20Guide%20Objectif%20Entreprise%20%c3%a9dition%20janvier%202019_BD.pdf">
-					{emoji('👉')} Téléchargez le guide PDF
-				</a>
-			</div>
+					<div style={{ textAlign: 'center' }}>
+						<a
+							className="ui__ button simple"
+							target="_blank"
+							href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/30487%20-%20SSI%20Guide%20Objectif%20Entreprise%20%c3%a9dition%20janvier%202019_BD.pdf">
+							{emoji('👉')} Téléchargez le guide PDF
+						</a>
+					</div>
+				</>
+			)}
 		</Animate.fromBottom>
 	)
 }
 export default compose(
 	withTranslation(),
 	withSitePaths,
+	withLanguage,
 	connect(
 		state => ({
 			companyCreationChecklist: state.inFranceApp.companyCreationChecklist,

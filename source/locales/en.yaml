@@ -199,6 +199,8 @@ entreprise:
       description: |
         <0><0>The corporate name</0> ("dénomination sociale") is the legal name of your company, written on all of your administrative papers. It can be different from the trade name (used for commercial purpose).</0>
         <1>It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc. You can check on the <2>INPI database</2>.</1>
+    formeJuridique:
+      titre: Choose the legal status
     objetSocial:
       titre: Write the corporate purpose of the company
       description: The <1>corporate purpose</1> of the company ("objet social") is the main activity run. A secondary activity can be registered.
