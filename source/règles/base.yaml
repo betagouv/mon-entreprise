@@ -2565,19 +2565,21 @@
     barème:
       assiette: revenu abattu
       tranches:
-        - en-dessous de: 9807
+        - en-dessous de: 9964
           taux: 0%
-        - de: 9807
-          à: 27086
+        - de: 9964
+          à: 27519
           taux: 14%
-        - de: 27086
-          à: 72617
+        - de: 27519
+          à: 73779
           taux: 30%
-        - de: 72617
-          à: 153783
+        - de: 73779
+          à: 156244
           taux: 41%
-        - au-dessus de: 153783
+        - au-dessus de: 156244
           taux: 45%
+  références: 
+    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
 
 - nom: impôt sur le revenu à payer
   espace: impôt
