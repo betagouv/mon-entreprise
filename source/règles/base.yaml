@@ -1295,12 +1295,12 @@
       situation:
         établissement . localisation . département: Guadeloupe
         contrat salarié . rémunération . net imposable: 1800
-      valeur attendue: 45
+      valeur attendue: 27
     - nom: Guyane
       situation:
         établissement . localisation . département: Guyane
         contrat salarié . rémunération . net imposable: 1800
-      valeur attendue: 27
+      valeur attendue: 9
 
   références:
     Explication de l'impôt neutre: https://www.economie.gouv.fr/prelevement-a-la-source/taux-prelevement#taux-non-personnalise
@@ -2594,7 +2594,7 @@
     - nom: Salaire d'un cadre
       situation:
         contrat salarié . rémunération . net imposable: 4000
-      valeur attendue: 7253.26
+      valeur attendue: 7162
 
 - nom: impôt sur le revenu flexible
   espace: impôt
