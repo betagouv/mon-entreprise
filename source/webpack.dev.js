@@ -1,11 +1,15 @@
-const { map, concat } = require('ramda')
+const { map } = require('ramda')
 const webpack = require('webpack')
 const common = require('./webpack.common.js')
+const { commonLoaders, styleLoader } = require('./webpack.commonLoaders')
 
 module.exports = {
 	...common,
+	module: {
+		rules: [...commonLoaders(), styleLoader('style-loader')]
+	},
 	mode: 'development',
-	entry: map(concat(['webpack-hot-middleware/client']), common.entry),
+	entry: map(entry => ['webpack-hot-middleware/client', entry], common.entry),
 	plugins: [
 		...common.plugins,
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),

@@ -1,18 +1,18 @@
 /* @flow */
 
-import { Component, React, T } from 'Components';
-import { ScrollToTop } from 'Components/utils/Scroll';
-import withLanguage from 'Components/utils/withLanguage';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { compose } from 'ramda';
-import emoji from 'react-easy-emoji';
-import {Helmet} from 'react-helmet';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { régimeSelector } from 'Selectors/companyStatusSelectors';
-import * as Animate from 'Ui/animate';
-import Video from './Video';
+import { Component, React, T } from 'Components'
+import { ScrollToTop } from 'Components/utils/Scroll'
+import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose } from 'ramda'
+import emoji from 'react-easy-emoji'
+import { Helmet } from 'react-helmet'
+import { withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { régimeSelector } from 'Selectors/companyStatusSelectors'
+import * as Animate from 'Ui/animate'
+import Video from './Video'
 
 import type { Match, Location } from 'react-router'
 import type { TFunction } from 'react-i18next'
@@ -50,29 +50,32 @@ class SocialSecurity extends Component<Props, {}> {
 								<strong>bien-être général de la population</strong>.
 							</p>
 						</T>
-						{showFindYourCompanyLink && (<>
-							<h2>Simulations personnalisées</h2>
-							<p>
-								<T k="sécu.entrepriseCrée">
-									Si vous possédez déjà une entreprise, nous pouvons{' '}
-									<strong>automatiquement personnaliser</strong> vos simulations
-									à votre situation.
-								</T>
-							</p>
-							<div style={{textAlign: 'center'}}>
-									<Link to={sitePaths.entreprise.trouver} className="ui__ button">
-										Renseigner mon entreprise
+						{showFindYourCompanyLink && (
+							<>
+								<h2>
+									<T>Simulations personnalisées</T>
+								</h2>
+								<p>
+									<T k="sécu.entrepriseCrée">
+										Si vous possédez déjà une entreprise, nous pouvons{' '}
+										<strong>automatiquement personnaliser</strong> vos
+										simulations à votre situation.
+									</T>
+								</p>
+								<div style={{ textAlign: 'center' }}>
+									<Link
+										to={sitePaths.entreprise.trouver}
+										className="ui__ button plain">
+										<T>Renseigner mon entreprise</T>
 									</Link>
-									</div>
+								</div>
 							</>
 						)}
 						{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
 							window.location.hostname
 						) ? (
 							<>
-								<h2 >
-									Que souhaitez-vous estimer ?
-								</h2>
+								<h2>Que souhaitez-vous estimer ?</h2>
 								<Link
 									className="landing__choice "
 									to={

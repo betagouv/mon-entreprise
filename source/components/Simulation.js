@@ -53,11 +53,16 @@ export default compose(
 					{this.state.displayAnswers && (
 						<Answers onClose={() => this.setState({ displayAnswers: false })} />
 					)}
-					<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'baseline'
+						}}>
 						{arePreviousAnswers ? (
 							<button
 								style={{ marginRight: '1em' }}
-								className="ui__ small button "
+								className="ui__ small  button "
 								onClick={() => this.setState({ displayAnswers: true })}>
 								<T>Voir mes réponses</T>
 							</button>

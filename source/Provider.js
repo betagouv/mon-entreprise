@@ -60,6 +60,19 @@ export default class Provider extends PureComponent {
 			storeEnhancer
 		)
 		this.props.onStoreCreated && this.props.onStoreCreated(this.store)
+
+		// Remove loader
+		var css = document.createElement('style')
+		css.type = 'text/css'
+		css.innerHTML = `
+#js {
+	opacity: 1 !important;
+	transform: translateY(0px) !important;
+}
+#lds-ellipsis {
+	display: none !important;
+}`
+		document.body.appendChild(css)
 	}
 	render() {
 		return (

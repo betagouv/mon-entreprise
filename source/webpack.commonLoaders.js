@@ -1,23 +1,45 @@
-module.exports = {
-	web: [
+module.exports.styleLoader = styleLoader => ({
+	test: /\.css$/,
+	use: [
+		{ loader: styleLoader },
 		{
-			test: /\.css$/,
-			use: [
-				{ loader: 'style-loader' },
-				{
-					loader: 'css-loader',
-					options: {
-						sourceMap: true,
-						importLoaders: 1
+			loader: 'css-loader',
+			options: {
+				sourceMap: true,
+				importLoaders: 1
+			}
+		},
+		{
+			loader: 'postcss-loader'
+		}
+	]
+})
+
+module.exports.commonLoaders = ({ legacy = false } = {}) => {
+	const babelLoader = {
+		loader: 'babel-loader',
+		options: {
+			presets: [
+				[
+					'@babel/preset-env',
+					{
+						targets: !legacy
+							? {
+									esmodules: true
+							  }
+							: {
+									esmodules: false,
+									browsers: ['ie 11']
+							  },
+						useBuiltIns: 'entry'
 					}
-				},
-				{
-					loader: 'postcss-loader'
-				}
+				]
 			]
 		}
-	],
-	universal: [
+	}
+
+	return [
+		{ test: /\.js$/, loader: babelLoader, exclude: /node_modules|dist/ },
 		{
 			test: /\.(jpe?g|png|svg)$/,
 			use: {
@@ -29,16 +51,12 @@ module.exports = {
 		},
 		{
 			test: /\.yaml$/,
-			loader: 'json-loader!yaml-loader'
+			use: ['json-loader', 'yaml-loader']
 		},
-		{
-			test: /\.js$/,
-			exclude: /node_modules|dist/,
-			loader: 'babel-loader'
-		},
+
 		{
 			test: /\.ne$/,
-			loader: 'babel-loader!nearley-loader'
+			use: [babelLoader, 'nearley-loader']
 		}
 	]
 }

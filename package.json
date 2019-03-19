@@ -19,8 +19,9 @@
 		"not ie < 11"
 	],
 	"dependencies": {
+		"@babel/polyfill": "^7.4.0",
+		"@babel/runtime": "^7.3.4",
 		"@researchgate/react-intersection-observer": "^0.7.3",
-		"babel-regenerator-runtime": "^6.5.0",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"focus-trap-react": "^3.1.2",
@@ -56,10 +57,11 @@
 		"redux-form": "^7.4.2",
 		"redux-thunk": "^2.3.0",
 		"reselect": "^4.0.0",
-		"screenfull": "^3.3.2"
+		"screenfull": "^3.3.2",
+		"whatwg-fetch": "^3.0.0"
 	},
 	"scripts": {
-		"compile": "webpack --config source/webpack.prod.js",
+		"compile": "yarn run webpack --config source/webpack.prod.js && yarn run webpack --config source/webpack.prod.legacyBrowser.js",
 		"stats": "webpack --config source/webpack.prod.js --profile --json > stats.json",
 		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
 		"eslint": "LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
@@ -94,8 +96,7 @@
 		"@babel/plugin-proposal-object-rest-spread": "^7.0.0",
 		"@babel/plugin-proposal-optional-chaining": "^7.0.0",
 		"@babel/plugin-syntax-dynamic-import": "^7.0.0",
-		"@babel/polyfill": "^7.0.0",
-		"@babel/preset-env": "^7.1.0",
+		"@babel/preset-env": "^7.3.4",
 		"@babel/preset-flow": "^7.0.0-beta.51",
 		"@babel/preset-react": "^7.0.0",
 		"akh": "^3.1.2",
@@ -103,7 +104,6 @@
 		"babel-eslint": "^11.0.0-beta.0",
 		"babel-loader": "^8.0.2",
 		"babel-plugin-ramda": "^1.6.3",
-		"babel-plugin-syntax-dynamic-import": "^6.18.0",
 		"babel-plugin-webpack-alias": "^2.1.2",
 		"chai": "^4.1.2",
 		"co-request": "^1.0.0",
@@ -155,7 +155,6 @@
 		"webpack-cli": "^3.1.2",
 		"webpack-dev-middleware": "^3.4.0",
 		"webpack-hot-middleware": "^2.24.2",
-		"webpack-pwa-manifest": "^3.6.2",
 		"workbox-webpack-plugin": "^3.6.1",
 		"yaml-loader": "^0.5.0"
 	},
