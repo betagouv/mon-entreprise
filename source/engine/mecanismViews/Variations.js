@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 import React, { useState } from 'react'
@@ -28,58 +29,79 @@ let Comp = withLanguage(function Variations({
 							<p>
 								<Trans>Cette règle présente</Trans>{' '}
 								{writtenNumbers[language][explanation.length]}{' '}
-								<InlineMecanism name="variations" />
+								<InlineMecanism name="variations" /> :
 							</p>
 							<ol>
-								{explanation.map(({ condition, consequence, satisfied }, i) =>
-									showValues && (!satisfied && !(expandedVariation === i)) ? (
-										<li style={{ opacity: '0.6' }}>
-											non applicable{' '}
-											<button
-												className="ui__ link-button"
-												onClick={() =>
-													toggleVariation(expandedVariation !== i ? i : null)
-												}>
-												détails {emoji(' ▶️')}
-											</button>
-										</li>
-									) : (
-										<li>
-											{expandedVariation === i && (
-												<button
-													className="ui__ link-button"
-													onClick={() => toggleVariation(null)}>
-													replier {emoji(' 🔽')}
-												</button>
-											)}
-											<div className="condition">
+								{explanation.map(({ condition, consequence, satisfied }, i) => (
+									<li
+										key={i}
+										style={{
+											transition: 'all 0.2s',
+											opacity:
+												expandedVariation === i || satisfied || !showValues
+													? 1
+													: 0.8
+										}}>
+										{!satisfied && showValues && (
+											<>
+												non applicable{' '}
+												{expandedVariation !== i ? (
+													<button
+														className="ui__ link-button"
+														onClick={() => toggleVariation(i)}>
+														détails {emoji('▶️')}
+													</button>
+												) : (
+													<button
+														className="ui__ link-button"
+														onClick={() => toggleVariation(null)}>
+														replier {emoji('🔽')}
+													</button>
+												)}
+											</>
+										)}
+										{(expandedVariation === i || satisfied || !showValues) && (
+											<div style={{ margin: '1rem 0' }}>
 												{condition && (
 													<div
 														style={{
 															display: 'flex',
 															flexWrap: 'wrap',
-															alignItems: 'baseline'
+															alignItems: 'baseline',
+															marginBottom: '0.4rem'
 														}}>
 														<Trans>Si :</Trans>&nbsp;{makeJsx(condition)}
 													</div>
 												)}
-												<div className="consequence">
-													<span className="consequenceType">
+												<div
+													style={{
+														display: 'flex',
+														width: 'fit-content',
+														flexWrap: 'wrap',
+														alignItems: 'flex-start'
+													}}>
+													<span
+														className={classnames('consequenceType', {
+															satisfied
+														})}>
 														{condition ? (
 															<Trans>Alors</Trans>
 														) : (
 															<Trans>Sinon</Trans>
 														)}{' '}
-														:
+														:&nbsp;
 													</span>
-													<span className="consequenceContent">
+													<span
+														className={classnames('consequenceContent', {
+															satisfied
+														})}>
 														{consequence && makeJsx(consequence)}
 													</span>
 												</div>
 											</div>
-										</li>
-									)
-								)}
+										)}
+									</li>
+								))}
 							</ol>
 						</>
 					}

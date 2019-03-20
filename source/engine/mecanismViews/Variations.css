@@ -11,6 +11,6 @@
 	padding: 0 0.2em;
 	margin: 0 0.3em;
 }
-.variations > ul > li.satisfied .consequenceType {
+.variations .satisfied {
 	background: yellow;
 }

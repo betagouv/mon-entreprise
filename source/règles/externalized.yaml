@@ -429,7 +429,7 @@ contrat salarié . CDD:
   titre.en: Fixed term (CDD)
   titre.fr: CDD
   question.en: Is it a fixed-term contract (CDD) ?
-contrat salarié . assiette cotisations sociales:
+contrat salarié . cotisations . assiette:
   titre.en: base for the social contributions
   titre.fr: Assiette des cotisations sociales
   description.en: >-

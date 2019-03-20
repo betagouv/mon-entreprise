@@ -17,7 +17,7 @@
 
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       variations:
         - si: entreprise . effectif >= 150
           message: |

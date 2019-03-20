@@ -69,7 +69,7 @@
 
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 1%
 
   références:
@@ -79,7 +79,7 @@
     - nom: Non applicable si CDI
       situation:
         CDD: non
-        assiette cotisations sociales: 1480
+        cotisations . assiette: 1480
       valeur attendue: 0
 
     - nom: SMIC
@@ -89,7 +89,7 @@
         motif: accroissement activité
         contrat jeune vacances: non
 
-        assiette cotisations sociales: 1480
+        cotisations . assiette: 1480
       valeur attendue: 14.8
 
     - nom: salaire médian
@@ -99,13 +99,13 @@
         motif: accroissement activité
         contrat jeune vacances: non
 
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
       valeur attendue: 23
 
     - nom: motif saisonnier -> non applicable
       situation:
         contrat salarié . CDD . motif: classique . saisonnier
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
       valeur attendue: null
 
 - espace: contrat salarié . CDD
@@ -297,7 +297,7 @@
 
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       taux: 0.5%
 
@@ -306,7 +306,7 @@
       situation:
         événement: non
         CDD: oui
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
         motif: classique . accroissement activité
         durée contrat: 1
       valeur attendue: 0
@@ -315,7 +315,7 @@
       situation:
         événement: non
         CDD: oui
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
         motif: classique . usage
         durée contrat: 1
         plafond sécurité sociale: 3269
@@ -323,7 +323,7 @@
 
     - nom: durée de contrat de 4 mois -> non applicable
       situation:
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
         durée contrat: 4
       valeur attendue: null
 
@@ -346,7 +346,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux:
         variations:
           - si: taux réduit
@@ -704,8 +704,8 @@
         Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
         [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
 
-- espace: contrat salarié
-  nom: assiette cotisations sociales
+- espace: contrat salarié . cotisations
+  nom: assiette
   titre: Assiette des cotisations sociales
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
@@ -1359,7 +1359,7 @@
   période: flexible
   formule:
     barème continu:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 100%
@@ -1609,7 +1609,7 @@
   non applicable si:
     une de ces conditions:
       - assimilé salarié
-      - assiette cotisations sociales > plafond de l'assiette
+      - cotisations . assiette > plafond de l'assiette
       - statut JEI
 
   période: flexible
@@ -1623,25 +1623,25 @@
     # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
-        assiette cotisations sociales: 1521.22
+        cotisations . assiette: 1521.22
       valeur attendue: 427.31
     - nom: 'Salaire proche du SMIC'
       situation:
-        assiette cotisations sociales: 1530
+        cotisations . assiette: 1530
       valeur attendue: 423.2
     - nom: 'Résiduelle pour un salaire médian'
       situation:
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
       valeur attendue: 62.71
     - nom: 'Nulle au-dessus du plafond'
       situation:
-        assiette cotisations sociales: 2434
+        cotisations . assiette: 2434
       valeur attendue: 0
 
 - espace: contrat salarié . réduction générale
   nom: écart au plafond de l'assiette
   période: flexible
-  formule: plafond de l'assiette - assiette cotisations sociales
+  formule: plafond de l'assiette - cotisations . assiette
 
 - espace: contrat salarié . réduction générale
   nom: multiplicateur
@@ -1676,7 +1676,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 0.84%
   note: En pratique, l'ATMP est toujours supérieure à 0.84%
   références:
@@ -1697,7 +1697,7 @@
   période: flexible
   formule:
     barème:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
@@ -1731,11 +1731,11 @@
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
-  applicable si: assiette cotisations sociales > plafond sécurité sociale
+  applicable si: cotisations . assiette > plafond sécurité sociale
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 8 * plafond sécurité sociale
       composantes:
         - attributs:
@@ -1759,7 +1759,7 @@
   période: flexible
   formule:
     barème:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
@@ -1800,7 +1800,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       taux: 0.15%
 
@@ -1812,12 +1812,12 @@
     branche: famille
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux:
         variations:
           - si:
               toutes ces conditions:
-                - assiette cotisations sociales < plafond de réduction
+                - cotisations . assiette < plafond de réduction
                 - ≠ statut JEI
                 - ≠ assimilé salarié
             alors: 3.45%
@@ -1848,7 +1848,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       composantes:
         - attributs:
@@ -1875,7 +1875,7 @@
 
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
 
       composantes:
@@ -1892,11 +1892,11 @@
   exemples:
     - nom: SMIC
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
       valeur attendue: 60.75
     - nom: Haut salaire
       situation:
-        assiette cotisations sociales: 20000
+        cotisations . assiette: 20000
       valeur attendue: 547.07
 
 - espace: contrat salarié
@@ -2031,7 +2031,7 @@
   non applicable si: assimilé salarié
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 0.016%
 
 - espace: contrat salarié
@@ -2052,7 +2052,7 @@
   période: flexible
   formule:
     barème:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
       tranches:
@@ -2084,13 +2084,13 @@
   exemples:
     - nom: 'CSG cadre'
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
         complémentaire santé . forfait: 40
         statut cadre: oui
       valeur attendue: 139.495
     - nom: 'CSG non cadre'
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
         complémentaire santé . forfait: 40
       valeur attendue: 137.425
 
@@ -2119,7 +2119,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       variations:
         - si: entreprise . effectif < 20
           alors:
@@ -2131,7 +2131,7 @@
   exemples:
     - nom: SMIC
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
         entreprise . effectif: 10
       valeur attendue: 1.5
 - espace: contrat salarié
@@ -2151,7 +2151,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       variations:
         - si: entreprise . effectif < 11
           alors:
@@ -2173,7 +2173,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       composantes:
         - attributs:
             composante: maladie, maternité, invalidité, décès
@@ -2182,7 +2182,7 @@
             variations:
               - si:
                   toutes ces conditions:
-                    - assiette cotisations sociales < plafond de réduction employeur
+                    - cotisations . assiette < plafond de réduction employeur
                     - ≠ statut JEI
                     - ≠ assimilé salarié
                 alors: 7%
@@ -2245,7 +2245,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 0.45%
 
   # TODO cas agricole, et autres statuts spécifiques
@@ -2264,7 +2264,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: plafond sécurité sociale
       taux: 1.5%
       # TODO attention : il semblerait que ce 1.5% englobe aussi la complémentaire santé ! La confusion serait entretenue par les organismes de prévoyance...
@@ -2297,7 +2297,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux:
         variations:
           - si: régime alsace moselle
@@ -2315,7 +2315,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
 
       # exception:
       #   si: régime géographique = Alsace-Moselle
@@ -2355,7 +2355,7 @@
   période: flexible
   formule:
     somme:
-      - assiette cotisations sociales
+      - cotisations . assiette
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
 
@@ -2455,7 +2455,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: établissement . taux du versement transport
 
   références:
@@ -2485,7 +2485,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       composantes:
         - attributs:
             dû par: salarié
@@ -2506,11 +2506,11 @@
   exemples:
     - nom: SMIC
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
       valeur attendue: 266.25
     - nom: Salaire élevé
       situation:
-        assiette cotisations sociales: 8000
+        cotisations . assiette: 8000
       valeur attendue: 705.75
 
 - espace: contrat salarié
@@ -3021,12 +3021,12 @@
   période: flexible
   formule:
     variations:
-      - si: ≠ situation personnelle . RSA
-        alors:
+      - si:  situation personnelle . RSA
+        alors: revenu professionnel
+      - sinon:
           le maximum de:
             - 40% * plafond sécurité sociale temps plein
             - revenu professionnel
-      - sinon: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
