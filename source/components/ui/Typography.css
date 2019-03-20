@@ -83,6 +83,9 @@ ul {
 	list-style: '› ';
 	padding-left: 0.7rem;
 }
+ol {
+	padding-left: 1.1rem;
+}
 li {
 	padding: 0.2em 0;
 }

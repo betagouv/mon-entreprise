@@ -868,6 +868,7 @@
 
 - espace: contrat salarié . cotisations
   nom: salariales
+  titre: cotisations salariales
   format: euros
   période: flexible
   formule:
@@ -884,7 +885,7 @@
 
 - espace: contrat salarié . cotisations
   nom: patronales
-  titre: Cotisations patronales
+  titre: cotisations patronales
   période: flexible
   format: euros
   formule:
@@ -1445,8 +1446,6 @@
   note: Cette cotisation n'est pas due pour la première année d'une entreprise, ni pour un chiffre d'affaires inférieur à 5000€. La CFE n'est **pas encore intégrée** dans nos calculs.
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547
-
-
 
 - espace: entreprise
   nom: effectif
@@ -2629,7 +2628,6 @@
   période: flexible
   formule: impôt sur le revenu après décote
 
-
 - nom: revenu net de cotisations
   période: flexible
   formule:
@@ -2781,7 +2779,8 @@
 
     C'est le revenu net de cotisations du travailleur indépendant.
 
-  Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
+  Attention, **notre calcul est fait au régime de croisière**:
+    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
   formule:
@@ -2790,7 +2789,6 @@
         - revenu brut
         - revenu net
         - entreprise . chiffre d'affaires
-
 
 - espace: entreprise
   nom: catégorie d'activité
@@ -2808,8 +2806,6 @@
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
-
-
 
 - espace: entreprise . catégorie d'activité
   nom: libérale
@@ -2868,7 +2864,6 @@
   références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
-
 - espace: entreprise . catégorie d'activité . service ou vente
   nom: prestation de service
   description: |
@@ -2876,11 +2871,10 @@
   références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
 
-
 - espace: entreprise . catégorie d'activité
   nom: restauration ou hébergement
   applicable si: service ou vente = 'prestation de service'
-  description:  Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
+  description: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
   question: Est-ce une activité de restauration ou d'hébergement ?
   par défaut: non
 
@@ -2900,7 +2894,6 @@
 
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
-
 
 - espace: entreprise . catégorie d'activité . libérale reglementée
   nom: type d'activité libérale reglementée
@@ -2946,8 +2939,6 @@
         - Sage-femme
         - Vétérinaire
 
-
-
 - espace: entreprise
   nom: rattachée à la CIPAV
   # TODO implémenter un nouveau mécanisme
@@ -2982,9 +2973,6 @@
       - entreprise . catégorie d'activité . libérale reglementée
       - ≠ rattachée à la CIPAV
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
-
-
-
 
 - nom: indépendant
   par défaut: non
@@ -3243,7 +3231,6 @@
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
-
 - espace: indépendant . cotisations et contributions . formation professionnelle
   nom: assiette
   période: flexible
@@ -3258,7 +3245,6 @@
       - sinon: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-
 
 - espace: indépendant . cotisations
   nom: allocations familiales
@@ -3362,7 +3348,6 @@
             alors: 0.2%
           - sinon: 0.44%
 
-
 - espace: auto entrepreneur
   nom: contribution formation professionnelle
   titre: Contribution à la formation professionnelle
@@ -3444,7 +3429,6 @@
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
 
-
 - espace: auto entrepreneur . impôt
   nom: abattement
   période: flexible
@@ -3452,7 +3436,6 @@
     multiplication:
       assiette: base des cotisations
       taux: taux
-
 
 - espace: auto entrepreneur . impôt . abattement
   nom: taux inversé

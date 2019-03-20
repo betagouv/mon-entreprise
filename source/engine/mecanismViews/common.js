@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
-import { sort, compose, contains, toPairs, pipe } from 'ramda'
+import { compose, contains, isNil, pipe, sort, toPairs } from 'ramda'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -45,23 +45,33 @@ export class Node extends Component {
 			<div
 				className={classNames(classes, 'node', { inline })}
 				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
-				{name && (
+				{name && !inline && (
 					<span className="nodeHead">
-						{!inline && (
-							<LinkButton
-								className="name"
-								style={
-									termDefinition ? { background: mecanismColours(name) } : {}
-								}
-								data-term-definition={termDefinition}>
-								<Trans>{name}</Trans>
-							</LinkButton>
-						)}
-						<NodeValuePointer data={value} />
+						<LinkButton
+							className="name"
+							style={
+								termDefinition ? { background: mecanismColours(name) } : {}
+							}
+							data-term-definition={termDefinition}>
+							<Trans>{name}</Trans>
+						</LinkButton>
 					</span>
 				)}
-				{child}
-				{!name && <NodeValuePointer data={value} />}
+				{child}{' '}
+				{name ? (
+					!isNil(value) && (
+						<div className="mecanism-result">
+							<NodeValuePointer data={value} />
+						</div>
+					)
+				) : (
+					<>
+						{value !== true && value !== false && !isNil(value) && (
+							<span className="operator"> = </span>
+						)}
+						<NodeValuePointer data={value} />
+					</>
+				)}
 			</div>
 		)
 	}

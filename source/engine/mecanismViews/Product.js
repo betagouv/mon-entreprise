@@ -57,7 +57,7 @@ export default function ProductView(nodeValue, explanation) {
 								justifyContent: 'center'
 							}}>
 							<div style={{ fontSize: '1.6rem', margin: '0 1rem' }}> × </div>
-							<div>{makeJsx(explanation.taux)}</div>
+							{makeJsx(explanation.taux)}
 						</div>
 					)}
 				</div>

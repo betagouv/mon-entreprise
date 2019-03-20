@@ -121,10 +121,6 @@
 	margin-left: 1em;
 }
 
-.mecanism .conditions > ul > li {
-	margin-bottom: 0.6em;
-}
-
 .leaf .situationValue {
 	text-align: center;
 }
@@ -157,20 +153,9 @@
 .mecanism.inversion li {
 	margin-top: 0.6em;
 }
-.mecanism.minimum > ul,
-.mecanism.maximum > ul {
-	list-style: disc;
-	margin-left: 1em;
-}
 
 .composantes .composanteName::first-letter {
 	text-transform: capitalize;
-}
-
-.mecanism ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
 }
 
 .mecanism {
@@ -179,9 +164,31 @@
 	border-radius: 3px;
 	padding: 1em;
 	padding-top: 1em;
-	padding-bottom: 2em;
-	flex: 1;
 	position: relative;
+	flex: 1;
+}
+#rule-rules.showValues .mecanism {
+	padding-bottom: 2em;
+}
+.mecanism-result {
+	position: absolute;
+	display: none;
+	bottom: 0;
+	right: 0;
+	border-top: 1px solid;
+	border-left: 1px solid;
+	border-top-left-radius: 0.3rem;
+	border-color: inherit;
+	padding: 0.1rem 0.6rem;
+}
+#rule-rules.showValues .mecanism-result {
+	display: initial;
+}
+.mecanism .mecanism {
+	flex: initial;
+}
+.mecanism + .mecanism {
+	margin-top: 1rem;
 }
 
 .mecanism .key::first-letter {
