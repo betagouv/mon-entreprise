@@ -51,7 +51,9 @@ export default compose(withTranslation())(
 									<h2>
 										<Trans>Calcul</Trans>
 									</h2>
-									{makeJsx(formula)}
+									<div style={{ display: 'flex', justifyContent: 'center' }}>
+										{makeJsx(formula)}
+									</div>
 								</section>
 							)}
 						</ShowValuesProvider>

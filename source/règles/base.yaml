@@ -69,7 +69,7 @@
 
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 1%
 
   références:
@@ -79,7 +79,7 @@
     - nom: Non applicable si CDI
       situation:
         CDD: non
-        assiette cotisations sociales: 1480
+        cotisations . assiette: 1480
       valeur attendue: 0
 
     - nom: SMIC
@@ -89,7 +89,7 @@
         motif: accroissement activité
         contrat jeune vacances: non
 
-        assiette cotisations sociales: 1480
+        cotisations . assiette: 1480
       valeur attendue: 14.8
 
     - nom: salaire médian
@@ -99,13 +99,13 @@
         motif: accroissement activité
         contrat jeune vacances: non
 
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
       valeur attendue: 23
 
     - nom: motif saisonnier -> non applicable
       situation:
         contrat salarié . CDD . motif: classique . saisonnier
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
       valeur attendue: null
 
 - espace: contrat salarié . CDD
@@ -297,7 +297,7 @@
 
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       taux: 0.5%
 
@@ -306,7 +306,7 @@
       situation:
         événement: non
         CDD: oui
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
         motif: classique . accroissement activité
         durée contrat: 1
       valeur attendue: 0
@@ -315,7 +315,7 @@
       situation:
         événement: non
         CDD: oui
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
         motif: classique . usage
         durée contrat: 1
         plafond sécurité sociale: 3269
@@ -323,7 +323,7 @@
 
     - nom: durée de contrat de 4 mois -> non applicable
       situation:
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
         durée contrat: 4
       valeur attendue: null
 
@@ -346,7 +346,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux:
         variations:
           - si: taux réduit
@@ -704,8 +704,8 @@
         Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
         [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
 
-- espace: contrat salarié
-  nom: assiette cotisations sociales
+- espace: contrat salarié . cotisations
+  nom: assiette
   titre: Assiette des cotisations sociales
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
@@ -868,6 +868,7 @@
 
 - espace: contrat salarié . cotisations
   nom: salariales
+  titre: cotisations salariales
   format: euros
   période: flexible
   formule:
@@ -884,7 +885,7 @@
 
 - espace: contrat salarié . cotisations
   nom: patronales
-  titre: Cotisations patronales
+  titre: cotisations patronales
   période: flexible
   format: euros
   formule:
@@ -1354,10 +1355,11 @@
 
 - espace: contrat salarié . réduction ACRE
   nom: taux
+  titre: taux ACRE
   période: flexible
   formule:
     barème continu:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 100%
@@ -1422,7 +1424,7 @@
 - espace: entreprise
   nom: prélèvements obligatoires
   période: flexible
-  formule: 
+  formule:
     somme:
       - CVAE
       - CFE
@@ -1433,7 +1435,7 @@
   période: flexible
   formule: 0
   note: Cette contribution concerne les entreprises ou travailleurs indépendants qui réalisent plus de  500 000 € de chiffre d'affaires. Elle n'est pour l'instant **pas intégrée dans nos calculs**.
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23546
 
 - espace: entreprise . prélèvements obligatoires
@@ -1442,10 +1444,8 @@
   formule: 0
   période: flexible
   note: Cette cotisation n'est pas due pour la première année d'une entreprise, ni pour un chiffre d'affaires inférieur à 5000€. La CFE n'est **pas encore intégrée** dans nos calculs.
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547
-
-
 
 - espace: entreprise
   nom: effectif
@@ -1609,7 +1609,7 @@
   non applicable si:
     une de ces conditions:
       - assimilé salarié
-      - assiette cotisations sociales > plafond de l'assiette
+      - cotisations . assiette > plafond de l'assiette
       - statut JEI
 
   période: flexible
@@ -1623,25 +1623,25 @@
     # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
-        assiette cotisations sociales: 1521.22
+        cotisations . assiette: 1521.22
       valeur attendue: 427.31
     - nom: 'Salaire proche du SMIC'
       situation:
-        assiette cotisations sociales: 1530
+        cotisations . assiette: 1530
       valeur attendue: 423.2
     - nom: 'Résiduelle pour un salaire médian'
       situation:
-        assiette cotisations sociales: 2300
+        cotisations . assiette: 2300
       valeur attendue: 62.71
     - nom: 'Nulle au-dessus du plafond'
       situation:
-        assiette cotisations sociales: 2434
+        cotisations . assiette: 2434
       valeur attendue: 0
 
 - espace: contrat salarié . réduction générale
   nom: écart au plafond de l'assiette
   période: flexible
-  formule: plafond de l'assiette - assiette cotisations sociales
+  formule: plafond de l'assiette - cotisations . assiette
 
 - espace: contrat salarié . réduction générale
   nom: multiplicateur
@@ -1676,7 +1676,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 0.84%
   note: En pratique, l'ATMP est toujours supérieure à 0.84%
   références:
@@ -1697,7 +1697,7 @@
   période: flexible
   formule:
     barème:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
@@ -1731,11 +1731,11 @@
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
-  applicable si: assiette cotisations sociales > plafond sécurité sociale
+  applicable si: cotisations . assiette > plafond sécurité sociale
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 8 * plafond sécurité sociale
       composantes:
         - attributs:
@@ -1759,7 +1759,7 @@
   période: flexible
   formule:
     barème:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
@@ -1800,7 +1800,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       taux: 0.15%
 
@@ -1812,12 +1812,12 @@
     branche: famille
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux:
         variations:
           - si:
               toutes ces conditions:
-                - assiette cotisations sociales < plafond de réduction
+                - cotisations . assiette < plafond de réduction
                 - ≠ statut JEI
                 - ≠ assimilé salarié
             alors: 3.45%
@@ -1848,7 +1848,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       composantes:
         - attributs:
@@ -1875,7 +1875,7 @@
 
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
 
       composantes:
@@ -1892,11 +1892,11 @@
   exemples:
     - nom: SMIC
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
       valeur attendue: 60.75
     - nom: Haut salaire
       situation:
-        assiette cotisations sociales: 20000
+        cotisations . assiette: 20000
       valeur attendue: 547.07
 
 - espace: contrat salarié
@@ -2031,7 +2031,7 @@
   non applicable si: assimilé salarié
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 0.016%
 
 - espace: contrat salarié
@@ -2052,7 +2052,7 @@
   période: flexible
   formule:
     barème:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
       tranches:
@@ -2084,13 +2084,13 @@
   exemples:
     - nom: 'CSG cadre'
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
         complémentaire santé . forfait: 40
         statut cadre: oui
       valeur attendue: 139.495
     - nom: 'CSG non cadre'
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
         complémentaire santé . forfait: 40
       valeur attendue: 137.425
 
@@ -2119,7 +2119,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       variations:
         - si: entreprise . effectif < 20
           alors:
@@ -2131,7 +2131,7 @@
   exemples:
     - nom: SMIC
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
         entreprise . effectif: 10
       valeur attendue: 1.5
 - espace: contrat salarié
@@ -2143,22 +2143,22 @@
     # TODO majoration pour les entreprises de travail temporaire
     #
   description: Cette contribution obligatoire est à verser à l'OPCA désigné par la branche conventionnelle de l'entreprise, ou à défaut à un OPCA interprofessionnel.
-  note: | 
+  note: |
     Une part supplémentaire peut-être obligatoire en fonction des accords collectifs d'une entreprise.
 
-    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire. 
+    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire.
 
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       variations:
         - si: entreprise . effectif < 11
           alors:
             taux: 0.55%
         - sinon:
             taux: 1%
-  références: 
+  références:
     fiche Ministère du travail: https://travail-emploi.gouv.fr/formation-professionnelle/entreprises-et-formation/article/participation-financiere-des-entreprises-au-developpement-de-la-formation
 
 - espace: contrat salarié
@@ -2173,7 +2173,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       composantes:
         - attributs:
             composante: maladie, maternité, invalidité, décès
@@ -2182,7 +2182,7 @@
             variations:
               - si:
                   toutes ces conditions:
-                    - assiette cotisations sociales < plafond de réduction employeur
+                    - cotisations . assiette < plafond de réduction employeur
                     - ≠ statut JEI
                     - ≠ assimilé salarié
                 alors: 7%
@@ -2245,7 +2245,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: 0.45%
 
   # TODO cas agricole, et autres statuts spécifiques
@@ -2264,7 +2264,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       plafond: plafond sécurité sociale
       taux: 1.5%
       # TODO attention : il semblerait que ce 1.5% englobe aussi la complémentaire santé ! La confusion serait entretenue par les organismes de prévoyance...
@@ -2297,7 +2297,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux:
         variations:
           - si: régime alsace moselle
@@ -2315,7 +2315,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
 
       # exception:
       #   si: régime géographique = Alsace-Moselle
@@ -2355,7 +2355,7 @@
   période: flexible
   formule:
     somme:
-      - assiette cotisations sociales
+      - cotisations . assiette
       - prévoyance obligatoire cadre
       - complémentaire santé (employeur)
 
@@ -2455,7 +2455,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       taux: établissement . taux du versement transport
 
   références:
@@ -2485,7 +2485,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette cotisations sociales
+      assiette: cotisations . assiette
       composantes:
         - attributs:
             dû par: salarié
@@ -2506,11 +2506,11 @@
   exemples:
     - nom: SMIC
       situation:
-        assiette cotisations sociales: 1500
+        cotisations . assiette: 1500
       valeur attendue: 266.25
     - nom: Salaire élevé
       situation:
-        assiette cotisations sociales: 8000
+        cotisations . assiette: 8000
       valeur attendue: 705.75
 
 - espace: contrat salarié
@@ -2577,8 +2577,8 @@
 
 - nom: impôt sur le revenu
   espace: impôt
-  description: | 
-    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches. 
+  description: |
+    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
 
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
   période: année
@@ -2599,9 +2599,9 @@
           taux: 41%
         - au-dessus de: 153783
           taux: 45%
-  exemples: 
+  exemples:
     - nom: Haut salaire de ~ 10 000€ mensuels
-      situation: 
+      situation:
         contrat salarié . rémunération . net imposable: 10000
       valeur attendue: 30585
 
@@ -2624,10 +2624,9 @@
 - nom: impôt sur le revenu à payer
   espace: impôt
   titre: impôt sur le revenu
-  description: 
+  description:
   période: flexible
   formule: impôt sur le revenu après décote
-
 
 - nom: revenu net de cotisations
   période: flexible
@@ -2735,7 +2734,7 @@
   format: euros
 - espace: entreprise
   nom: charges non déductibles
-  description: | 
+  description: |
     Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un ordinateur pour les besoins de sa société, le fera avec son revenu net. Il aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA avant pouvoir l'utiliser pour s'acheter ce bien.
   applicable si: auto entrepreneur
   formule: charges
@@ -2780,7 +2779,8 @@
 
     C'est le revenu net de cotisations du travailleur indépendant.
 
-  Attention, **notre calcul est fait au régime de croisière** : l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
+  Attention, **notre calcul est fait au régime de croisière**:
+    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
   formule:
@@ -2789,7 +2789,6 @@
         - revenu brut
         - revenu net
         - entreprise . chiffre d'affaires
-
 
 - espace: entreprise
   nom: catégorie d'activité
@@ -2803,28 +2802,26 @@
         - libérale
         - commerciale ou industrielle
         - artisanale
-  références: 
+  références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
-
-
 - espace: entreprise . catégorie d'activité
   nom: libérale
-  description: | 
+  description: |
     Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
 
     Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
       - de nature généralement civile,
       - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
-  références: 
+  références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 - espace: entreprise . catégorie d'activité
   nom: commerciale ou industrielle
-  description: | 
+  description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
     - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
@@ -2839,20 +2836,20 @@
     C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
 
     >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
-    
+
     - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
     - Les activités artisanales sont répertoriées par un décret
-  références: 
+  références:
     liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0<Paste>
 
 - espace: entreprise . catégorie d'activité
   nom: service ou vente
-  applicable si: 
-    une de ces conditions: 
+  applicable si:
+    une de ces conditions:
       - catégorie d'activité = 'artisanale'
       - catégorie d'activité = 'commerciale ou industrielle'
   question: Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?
-  formule: 
+  formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
@@ -2864,22 +2861,20 @@
   nom: vente de biens
   description: |
     Il s’agit de toute opération comportant transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre activité relève des prestations de services.
-  références: 
+  références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
-
 
 - espace: entreprise . catégorie d'activité . service ou vente
   nom: prestation de service
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de biens corporels (c'est-à-dire ayant une existence matérielle).
-  références: 
-    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis 
-
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
 
 - espace: entreprise . catégorie d'activité
   nom: restauration ou hébergement
   applicable si: service ou vente = 'prestation de service'
-  description:  Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
+  description: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
   question: Est-ce une activité de restauration ou d'hébergement ?
   par défaut: non
 
@@ -2894,32 +2889,31 @@
     > Exemples de professions reglementées : architecte, avocat, infirmier, médecin...
 
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
-    
+
     > Exemples de professions non-reglementées : développeur, historien, urbaniste...
 
-  références: 
-    Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales 
-
+  références:
+    Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 - espace: entreprise . catégorie d'activité . libérale reglementée
   nom: type d'activité libérale reglementée
-  formule: 
-    une possibilité: 
+  formule:
+    une possibilité:
       choix obligatoire: oui
-      possibilités: 
-        - Administrateur judiciaire  
+      possibilités:
+        - Administrateur judiciaire
         - Agent général d'assurance
         - Architecte
         - Architecte d'intérieur
         - Avocat
-        - Avocat au conseil d'Etat et à la Cour de Cassation 
-        - Avoué auprès des cours d'appel 
-        - Chiropracteur 
+        - Avocat au conseil d'Etat et à la Cour de Cassation
+        - Avoué auprès des cours d'appel
+        - Chiropracteur
         - Chirurgien-dentiste
         - Commissaire aux comptes
         - Commissaire-priseur
-        - Conseil en investissements financiers 
-        - Conseil en propriété industrielle  
+        - Conseil en investissements financiers
+        - Conseil en propriété industrielle
         - Diététicien
         - Ergothérapeute
         - Expert agricole, foncier et expert forestier
@@ -2928,7 +2922,7 @@
         - Géomètre-expert
         - Greffier auprès des tribunaux de commerce
         - Huissier de justice
-        - Infirmier libéral 
+        - Infirmier libéral
         - Directeur de laboratoire d'analyses médicales
         - Mandataire judiciaire
         - Mandataire judiciaire à la protecion des majeurs
@@ -2936,29 +2930,27 @@
         - Médecin
         - Notaire
         - Orthophoniste
-        - Orthoptiste 
+        - Orthoptiste
         - Ostéopathe
-        - Pédicure-podologue 
+        - Pédicure-podologue
         - Psychologue
-        - Psychomotricien 
+        - Psychomotricien
         - Psychothérapeute
         - Sage-femme
         - Vétérinaire
 
-
-
 - espace: entreprise
   nom: rattachée à la CIPAV
   # TODO implémenter un nouveau mécanisme
-  # TODO consolider la formule : 
+  # TODO consolider la formule :
   # Nous avons deux listes possibles
   # A) Voilà la liste de l'URSSAF
   question: La profession libérale reglementée est-elle rattachée à la CIPAV ?
   par défaut: non
-  description: | 
-    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski. 
+  description: |
+    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
 
-    formule: 
+    formule:
       inclusion:
         de: entreprise . catégorie d'activité . type d'activité libérale reglementée
         dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
@@ -2970,20 +2962,17 @@
           - Expert devant les tribunaux
           - Géomètre-expert
           - Mandataire judiciaire à la protecion des majeurs
-          - Ostéopathe 
-          - Psychologue 
+          - Ostéopathe
+          - Psychologue
           - Psychothérapeute
 
 - espace: entreprise
   nom: auto entreprise impossible
-  formule: 
-    toutes ces conditions: 
+  formule:
+    toutes ces conditions:
       - entreprise . catégorie d'activité . libérale reglementée
       - ≠ rattachée à la CIPAV
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
-
-
-
 
 - nom: indépendant
   par défaut: non
@@ -3032,12 +3021,12 @@
   période: flexible
   formule:
     variations:
-      - si: ≠ situation personnelle . RSA
-        alors:
+      - si:  situation personnelle . RSA
+        alors: revenu professionnel
+      - sinon:
           le maximum de:
             - 40% * plafond sécurité sociale temps plein
             - revenu professionnel
-      - sinon: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -3093,7 +3082,7 @@
         alors:
           multiplication:
             assiette: assiette
-            multiplicateur: 
+            multiplicateur:
             composantes:
               - nom: tranche 1
                 plafond: plafond sécurité sociale temps plein
@@ -3212,7 +3201,7 @@
         - attributs:
             impôt sur le revenu: déductible
           taux: 6.8%
-  références: 
+  références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
 
 - espace: indépendant . cotisations et contributions . CSG et CRDS
@@ -3231,17 +3220,16 @@
     multiplication:
       assiette: assiette
       plafond: plafond sécurité sociale temps plein
-      taux: 
-        variations: 
+      taux:
+        variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.29%
           - sinon: 0.25%
   note: Le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
-  références: 
-    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459 
+  références:
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
-
 
 - espace: indépendant . cotisations et contributions . formation professionnelle
   nom: assiette
@@ -3258,7 +3246,6 @@
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-
 - espace: indépendant . cotisations
   nom: allocations familiales
   période: flexible
@@ -3274,17 +3261,17 @@
 - espace: indépendant
   nom: revenu brut
   période: flexible
-  formule: 
-    somme: 
+  formule:
+    somme:
       - revenu professionnel
       - cotisations à payer
-      - cotisations et contributions . CSG et CRDS (déductible) 
+      - cotisations et contributions . CSG et CRDS (déductible)
 
 - nom: auto entrepreneur
   icônes: 🚶
   par défaut: non
   question: L'activité est-elle exercée en auto-entreprise ?
-  description: | 
+  description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
 - espace: auto entrepreneur
@@ -3302,7 +3289,7 @@
   formule:
     variations:
       - si:
-          une de ces conditions: 
+          une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000
@@ -3316,43 +3303,43 @@
 
 - espace: auto entrepreneur
   nom: cotisations et contributions
-  formule: 
-    somme: 
+  formule:
+    somme:
       - cotisations sociales
       - taxe pour frais de chambre
       - contribution formation professionnelle
       - entreprise . prélèvements obligatoires
-  références: 
+  références:
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
   période: flexible
 
 - espace: auto entrepreneur
   nom: taxe pour frais de chambre
   période: flexible
-  note: | 
-    Nous n'avons pas intégré les exceptions suivantes : 
+  note: |
+    Nous n'avons pas intégré les exceptions suivantes :
 
     - Artisans en double immatriculation CCI-CMA
     - Les taux de l'Alsace et de la Moselle
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
   formule:
-    multiplication: 
+    multiplication:
       assiette: base des cotisations
       taux:
         variations:
-          - si: 
-              toutes ces conditions: 
+          - si:
+              toutes ces conditions:
                 - entreprise . catégorie d'activité = 'artisanale'
                 - entreprise . catégorie d'activité . service ou vente = 'prestation de service'
             alors: 0.48%
-          - si: 
-              toutes ces conditions: 
+          - si:
+              toutes ces conditions:
                 - entreprise . catégorie d'activité = 'artisanale'
                 - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             alors: 0.22%
-          - si: 
-              une de ces conditions: 
+          - si:
+              une de ces conditions:
                 - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
 
                 - entreprise . catégorie d'activité . restauration ou hébergement
@@ -3361,15 +3348,14 @@
             alors: 0.2%
           - sinon: 0.44%
 
-
 - espace: auto entrepreneur
   nom: contribution formation professionnelle
   titre: Contribution à la formation professionnelle
   période: flexible
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
   formule:
-    multiplication: 
+    multiplication:
       assiette: base des cotisations
       taux:
         variations:
@@ -3377,8 +3363,8 @@
             alors: 0.3%
           - si: entreprise . catégorie d'activité . libérale reglementée
             alors: 0.2%
-          - si: 
-              une de ces conditions: 
+          - si:
+              une de ces conditions:
                 - entreprise . catégorie d'activité = 'commerciale ou industrielle'
                 - entreprise . catégorie d'activité = 'libérale'
             alors: 0.1%
@@ -3386,10 +3372,10 @@
 
 - espace: auto entrepreneur
   nom: cotisations sociales
-  description: | 
+  description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
 
-    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité. 
+    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
 
     Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   période: flexible
@@ -3402,18 +3388,18 @@
           taux: ACRE * taux
         - au-dessus de: 1
           taux: taux
-  références: 
+  références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
 - espace: auto entrepreneur . cotisations sociales
   nom: taux
   titre: taux de cotisation
-  description: | 
+  description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
     variations:
       - si:
-          une de ces conditions: 
+          une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
 
             - entreprise . catégorie d'activité . restauration ou hébergement
@@ -3434,7 +3420,7 @@
       - si: entreprise . année d'activité = 'troisième année'
         alors: 75%
       - sinon: 100%
-  références: 
+  références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
 
 - espace: auto entrepreneur . cotisations sociales . ACRE
@@ -3442,7 +3428,6 @@
   titre: Plafond ACRE
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
-
 
 - espace: auto entrepreneur . impôt
   nom: abattement
@@ -3452,12 +3437,11 @@
       assiette: base des cotisations
       taux: taux
 
-
 - espace: auto entrepreneur . impôt . abattement
   nom: taux inversé
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
   formule: 1 - taux
-  
+
 - espace: auto entrepreneur . impôt . abattement
   nom: taux
   titre: taux d'abattement de l'impôt
@@ -3466,11 +3450,11 @@
       - si: entreprise . catégorie d'activité = 'libérale'
         alors: 34%
       - si:
-          une de ces conditions: 
+          une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 71%
-      - sinon: 50% 
+      - sinon: 50%
 
 - espace: auto entrepreneur
   nom: impôt

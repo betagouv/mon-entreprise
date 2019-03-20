@@ -1,72 +1,23 @@
-import {
-	reduce,
-	path,
-	mergeWith,
-	objOf,
-	dissoc,
-	add,
-	find,
-	pluck,
-	map,
-	any,
-	equals,
-	is,
-	keys,
-	evolve,
-	curry,
-	filter,
-	pipe,
-	head,
-	isEmpty,
-	propEq,
-	prop,
-	has,
-	max,
-	min,
-	subtract,
-	sum,
-	isNil,
-	reject,
-	aperture,
-	sort,
-	toPairs,
-	reduced,
-	last
-} from 'ramda'
-import React from 'react'
-import { Trans } from 'react-i18next'
-import { anyNull, val } from './traverse-common-functions'
-import { Node, SimpleRuleLink } from './mecanismViews/common'
-import {
-	makeJsx,
-	evaluateNode,
-	rewriteNode,
-	evaluateArray,
-	evaluateObject,
-	parseObject,
-	collectNodeMissing,
-	mergeAllMissing,
-	mergeMissing,
-	bonus,
-	defaultNode
-} from './evaluation'
-import {
-	findRuleByName,
-	disambiguateRuleReference,
-	findRuleByDottedName
-} from './rules'
+import { desugarScale } from 'Engine/mecanisms/barème';
+import { decompose, devariateExplanation } from 'Engine/mecanisms/utils';
+import { add, any, aperture, curry, equals, evolve, filter, find, head, is, isEmpty, isNil, keys, last, map, max, mergeWith, min, path, pipe, pluck, prop, propEq, reduce, reduced, reject, sort, subtract, toPairs } from 'ramda';
+import React from 'react';
+import { Trans } from 'react-i18next';
+import 'react-virtualized/styles.css';
+import { bonus, collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, mergeMissing, parseObject, rewriteNode } from './evaluation';
+import Allègement from './mecanismViews/Allègement';
+import Barème from './mecanismViews/Barème';
+import BarèmeContinu from './mecanismViews/BarèmeContinu';
+import { Node, SimpleRuleLink } from './mecanismViews/common';
+import InversionNumérique from './mecanismViews/InversionNumérique';
+import Product from './mecanismViews/Product';
+import buildSelectionView from './mecanismViews/Selection';
+import Somme from './mecanismViews/Somme';
+import Variations from './mecanismViews/Variations';
+import { disambiguateRuleReference, findRuleByDottedName, findRuleByName } from './rules';
+import { anyNull, val } from './traverse-common-functions';
+import uniroot from './uniroot';
 
-import 'react-virtualized/styles.css'
-import Somme from './mecanismViews/Somme'
-import Barème from './mecanismViews/Barème'
-import BarèmeContinu from './mecanismViews/BarèmeContinu'
-import InversionNumérique from './mecanismViews/InversionNumérique'
-import Variations from './mecanismViews/Variations'
-import Allègement from './mecanismViews/Allègement'
-import buildSelectionView from './mecanismViews/Selection'
-import uniroot from './uniroot'
-import { decompose, devariateExplanation } from 'Engine/mecanisms/utils'
-import { desugarScale } from 'Engine/mecanisms/barème'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export let mecanismVariations = (recurse, k, v, devariate) => {
@@ -619,52 +570,9 @@ export let mecanismProduct = (recurse, k, v) => {
 	let explanation = parseObject(recurse, objectShape, v),
 		evaluate = evaluateObject(objectShape, effect)
 
-	let jsx = (nodeValue, explanation) => (
-		// The rate and factor and threshold are given defaut neutral values. If there is nothing to explain, don't display them at all
-		<Node
-			classes="mecanism multiplication"
-			name="multiplication"
-			value={nodeValue}
-			child={
-				<ul className="properties">
-					<li key="assiette">
-						<span className="key">
-							<Trans>assiette</Trans>:{' '}
-						</span>
-						<span className="value">{makeJsx(explanation.assiette)}</span>
-					</li>
-					{!explanation.taux.isDefault && (
-						<li key="taux">
-							<span className="key">
-								<Trans>taux</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.taux)}</span>
-						</li>
-					)}
-					{!explanation.facteur.isDefault && (
-						<li key="facteur">
-							<span className="key">
-								<Trans>facteur</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.facteur)}</span>
-						</li>
-					)}
-					{!explanation.plafond.isDefault && (
-						<li key="plafond">
-							<span className="key">
-								<Trans>plafond</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.plafond)}</span>
-						</li>
-					)}
-				</ul>
-			}
-		/>
-	)
-
 	return {
 		evaluate,
-		jsx,
+		jsx: Product,
 		explanation,
 		category: 'mecanism',
 		name: 'multiplication',

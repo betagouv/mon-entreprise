@@ -7,7 +7,7 @@
 # - Prime: primes salarié
 #   description: Indemnités, primes et avantages en argent
 
-- Variable: assiette cotisations sociales
+- Variable: cotisations . assiette
   description: L'assiette de la plupart des cotisations sociales pour le calcul des cotisations sociales sur le travail salarié.
   formule:
     somme: ? # juste pour le type numérique
