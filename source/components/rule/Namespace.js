@@ -1,23 +1,16 @@
 import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import { encodeRuleName, findRuleByDottedName, ruleParents } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
 
-let Namespace = ({ ns, flatRules, colour, sitePaths }) => {
+let Namespace = ({ dottedName, flatRules, colour, sitePaths }) => {
 	return (
 		<ul id="namespace">
-			{ns
-				.split(' . ')
-				.reduce(
-					(memo, next) => [
-						...memo,
-						[...(memo.length ? memo.reverse()[0] : []), next]
-					],
-					[]
-				)
+			{ruleParents(dottedName)
+				.reverse()
 				.map(fragments => {
 					let ruleName = fragments.join(' . '),
 						rule = findRuleByDottedName(flatRules, ruleName)
@@ -27,12 +20,19 @@ let Namespace = ({ ns, flatRules, colour, sitePaths }) => {
 						)
 					}
 					let ruleText = rule.title || capitalise0(rule.name),
-						style = { color: colour }
+						style = {
+							color: colour,
+							background: `rgba(255, 255, 255, ${0.1 +
+								(ruleParents(dottedName).length - fragments.length) / 10})`,
+							marginLeft: '.2em',
+							borderRadius: '1em',
+
+							padding: '0.3em 0.4em 0.1em'
+						}
 
 					return (
 						<li style={style} key={fragments.join()}>
 							<Link
-								style={style}
 								to={
 									sitePaths.documentation.index + '/' + encodeRuleName(ruleName)
 								}>

@@ -115,6 +115,7 @@ export let ruleParents = dottedName => {
 		.map(nbEl => take(nbEl)(fragments))
 		.reverse() //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 }
+
 /* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
  */
 export let disambiguateRuleReference = (

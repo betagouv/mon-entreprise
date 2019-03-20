@@ -90,6 +90,7 @@ export default compose(
 								<RuleHeader
 									{...{
 										ns,
+										dottedName,
 										type,
 										description,
 										question,

@@ -22,13 +22,16 @@ let RuleHeader = withColours(
 		title,
 		icon,
 		colours,
-		valuesToShow
+		valuesToShow,
+		dottedName
 	}) => (
 		<section id="ruleHeader">
 			<header className="ui__ plain card">
 				<div>
 					{ns && (
-						<Namespace {...{ ns, flatRules, colour: colours.textColour }} />
+						<Namespace
+							{...{ dottedName, flatRules, colour: colours.textColour }}
+						/>
 					)}
 					<h1 style={{ color: colours.textColour }}>
 						{title || capitalise0(name)}
