@@ -2785,12 +2785,7 @@
 
 - espace: indépendant
   nom: revenu net de cotisations
-  formule: revenu professionnel - cotisations et contributions . non déductibles
-  période: flexible
-
-- espace: indépendant . cotisations et contributions
-  nom: non déductibles
-  formule: CSG et CRDS (non déductible) + formation professionnelle
+  formule: revenu professionnel - cotisations et contributions . CSG et CRDS (non déductible)
   période: flexible
 
 - espace: indépendant
@@ -3286,7 +3281,8 @@
     somme:
       - revenu professionnel
       - cotisations à payer
-      - cotisations et contributions . CSG et CRDS (déductible)
+      - cotisations et contributions . CSG et CRDS (déductible) 
+      - cotisations et contributions . formation professionnelle
 
 - nom: auto entrepreneur
   icônes: 🚶
