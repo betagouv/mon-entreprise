@@ -24,10 +24,11 @@ let Namespace = ({ dottedName, flatRules, colour, sitePaths }) => {
 							color: colour,
 							background: `rgba(255, 255, 255, ${0.1 +
 								(ruleParents(dottedName).length - fragments.length) / 10})`,
-							marginLeft: '.2em',
-							borderRadius: '1em',
+							borderRadius: '.2em',
+							borderTopRightRadius: '1em',
+							borderBottomRightRadius: '1em',
 
-							padding: '0.3em 0.4em 0.1em'
+							padding: '0.3em 0.4em .1em'
 						}
 
 					return (
@@ -39,7 +40,6 @@ let Namespace = ({ dottedName, flatRules, colour, sitePaths }) => {
 								{rule.icon && <span>{emoji(rule.icon)} </span>}
 								{ruleText}
 							</Link>
-							{' › '}
 						</li>
 					)
 				})}
