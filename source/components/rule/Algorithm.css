@@ -4,11 +4,15 @@
 
 .situationValue {
 	display: none;
-	font-size: 110%;
+	text-decoration: underline white;
 	border-bottom-left-radius: 3px;
 	font-weight: 400;
 	color: black;
 	font-family: monospace;
+}
+.name {
+	display: flex;
+	align-items: baseline;
 }
 #rule-rules .name > .situationValue {
 	border-bottom: 2px solid white;
@@ -171,20 +175,13 @@
 
 .mecanism {
 	border: 1px solid;
+	max-width: 100%;
 	border-radius: 3px;
 	padding: 1em;
 	padding-top: 1em;
 	padding-bottom: 2em;
+	flex: 1;
 	position: relative;
-	margin-bottom: 2em;
-}
-
-.mecanism:not(.inline) > :not(.mecanism) {
-	padding-top: 1em;
-}
-.mecanism .mecanism {
-	margin: 1em;
-	margin-bottom: 1.5em;
 }
 
 .mecanism .key::first-letter {

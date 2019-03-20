@@ -1354,6 +1354,7 @@
 
 - espace: contrat salarié . réduction ACRE
   nom: taux
+  titre: taux ACRE
   période: flexible
   formule:
     barème continu:
@@ -1422,7 +1423,7 @@
 - espace: entreprise
   nom: prélèvements obligatoires
   période: flexible
-  formule: 
+  formule:
     somme:
       - CVAE
       - CFE
@@ -1433,7 +1434,7 @@
   période: flexible
   formule: 0
   note: Cette contribution concerne les entreprises ou travailleurs indépendants qui réalisent plus de  500 000 € de chiffre d'affaires. Elle n'est pour l'instant **pas intégrée dans nos calculs**.
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23546
 
 - espace: entreprise . prélèvements obligatoires
@@ -1442,7 +1443,7 @@
   formule: 0
   période: flexible
   note: Cette cotisation n'est pas due pour la première année d'une entreprise, ni pour un chiffre d'affaires inférieur à 5000€. La CFE n'est **pas encore intégrée** dans nos calculs.
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547
 
 
@@ -2143,10 +2144,10 @@
     # TODO majoration pour les entreprises de travail temporaire
     #
   description: Cette contribution obligatoire est à verser à l'OPCA désigné par la branche conventionnelle de l'entreprise, ou à défaut à un OPCA interprofessionnel.
-  note: | 
+  note: |
     Une part supplémentaire peut-être obligatoire en fonction des accords collectifs d'une entreprise.
 
-    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire. 
+    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire.
 
   période: flexible
   formule:
@@ -2158,7 +2159,7 @@
             taux: 0.55%
         - sinon:
             taux: 1%
-  références: 
+  références:
     fiche Ministère du travail: https://travail-emploi.gouv.fr/formation-professionnelle/entreprises-et-formation/article/participation-financiere-des-entreprises-au-developpement-de-la-formation
 
 - espace: contrat salarié
@@ -2577,8 +2578,8 @@
 
 - nom: impôt sur le revenu
   espace: impôt
-  description: | 
-    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches. 
+  description: |
+    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
 
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
   période: année
@@ -2599,9 +2600,9 @@
           taux: 41%
         - au-dessus de: 153783
           taux: 45%
-  exemples: 
+  exemples:
     - nom: Haut salaire de ~ 10 000€ mensuels
-      situation: 
+      situation:
         contrat salarié . rémunération . net imposable: 10000
       valeur attendue: 30585
 
@@ -2624,7 +2625,7 @@
 - nom: impôt sur le revenu à payer
   espace: impôt
   titre: impôt sur le revenu
-  description: 
+  description:
   période: flexible
   formule: impôt sur le revenu après décote
 
@@ -2735,7 +2736,7 @@
   format: euros
 - espace: entreprise
   nom: charges non déductibles
-  description: | 
+  description: |
     Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un ordinateur pour les besoins de sa société, le fera avec son revenu net. Il aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA avant pouvoir l'utiliser pour s'acheter ce bien.
   applicable si: auto entrepreneur
   formule: charges
@@ -2803,7 +2804,7 @@
         - libérale
         - commerciale ou industrielle
         - artisanale
-  références: 
+  références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
@@ -2812,19 +2813,19 @@
 
 - espace: entreprise . catégorie d'activité
   nom: libérale
-  description: | 
+  description: |
     Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
 
     Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
       - de nature généralement civile,
       - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
-  références: 
+  références:
     fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
     liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 - espace: entreprise . catégorie d'activité
   nom: commerciale ou industrielle
-  description: | 
+  description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
     - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
@@ -2839,20 +2840,20 @@
     C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
 
     >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
-    
+
     - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
     - Les activités artisanales sont répertoriées par un décret
-  références: 
+  références:
     liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0<Paste>
 
 - espace: entreprise . catégorie d'activité
   nom: service ou vente
-  applicable si: 
-    une de ces conditions: 
+  applicable si:
+    une de ces conditions:
       - catégorie d'activité = 'artisanale'
       - catégorie d'activité = 'commerciale ou industrielle'
   question: Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?
-  formule: 
+  formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
@@ -2864,7 +2865,7 @@
   nom: vente de biens
   description: |
     Il s’agit de toute opération comportant transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre activité relève des prestations de services.
-  références: 
+  références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
 
@@ -2872,8 +2873,8 @@
   nom: prestation de service
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de biens corporels (c'est-à-dire ayant une existence matérielle).
-  références: 
-    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis 
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
 
 
 - espace: entreprise . catégorie d'activité
@@ -2894,32 +2895,32 @@
     > Exemples de professions reglementées : architecte, avocat, infirmier, médecin...
 
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
-    
+
     > Exemples de professions non-reglementées : développeur, historien, urbaniste...
 
-  références: 
-    Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales 
+  références:
+    Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 
 - espace: entreprise . catégorie d'activité . libérale reglementée
   nom: type d'activité libérale reglementée
-  formule: 
-    une possibilité: 
+  formule:
+    une possibilité:
       choix obligatoire: oui
-      possibilités: 
-        - Administrateur judiciaire  
+      possibilités:
+        - Administrateur judiciaire
         - Agent général d'assurance
         - Architecte
         - Architecte d'intérieur
         - Avocat
-        - Avocat au conseil d'Etat et à la Cour de Cassation 
-        - Avoué auprès des cours d'appel 
-        - Chiropracteur 
+        - Avocat au conseil d'Etat et à la Cour de Cassation
+        - Avoué auprès des cours d'appel
+        - Chiropracteur
         - Chirurgien-dentiste
         - Commissaire aux comptes
         - Commissaire-priseur
-        - Conseil en investissements financiers 
-        - Conseil en propriété industrielle  
+        - Conseil en investissements financiers
+        - Conseil en propriété industrielle
         - Diététicien
         - Ergothérapeute
         - Expert agricole, foncier et expert forestier
@@ -2928,7 +2929,7 @@
         - Géomètre-expert
         - Greffier auprès des tribunaux de commerce
         - Huissier de justice
-        - Infirmier libéral 
+        - Infirmier libéral
         - Directeur de laboratoire d'analyses médicales
         - Mandataire judiciaire
         - Mandataire judiciaire à la protecion des majeurs
@@ -2936,11 +2937,11 @@
         - Médecin
         - Notaire
         - Orthophoniste
-        - Orthoptiste 
+        - Orthoptiste
         - Ostéopathe
-        - Pédicure-podologue 
+        - Pédicure-podologue
         - Psychologue
-        - Psychomotricien 
+        - Psychomotricien
         - Psychothérapeute
         - Sage-femme
         - Vétérinaire
@@ -2950,15 +2951,15 @@
 - espace: entreprise
   nom: rattachée à la CIPAV
   # TODO implémenter un nouveau mécanisme
-  # TODO consolider la formule : 
+  # TODO consolider la formule :
   # Nous avons deux listes possibles
   # A) Voilà la liste de l'URSSAF
   question: La profession libérale reglementée est-elle rattachée à la CIPAV ?
   par défaut: non
-  description: | 
-    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski. 
+  description: |
+    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
 
-    formule: 
+    formule:
       inclusion:
         de: entreprise . catégorie d'activité . type d'activité libérale reglementée
         dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
@@ -2970,14 +2971,14 @@
           - Expert devant les tribunaux
           - Géomètre-expert
           - Mandataire judiciaire à la protecion des majeurs
-          - Ostéopathe 
-          - Psychologue 
+          - Ostéopathe
+          - Psychologue
           - Psychothérapeute
 
 - espace: entreprise
   nom: auto entreprise impossible
-  formule: 
-    toutes ces conditions: 
+  formule:
+    toutes ces conditions:
       - entreprise . catégorie d'activité . libérale reglementée
       - ≠ rattachée à la CIPAV
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
@@ -3093,7 +3094,7 @@
         alors:
           multiplication:
             assiette: assiette
-            multiplicateur: 
+            multiplicateur:
             composantes:
               - nom: tranche 1
                 plafond: plafond sécurité sociale temps plein
@@ -3212,7 +3213,7 @@
         - attributs:
             impôt sur le revenu: déductible
           taux: 6.8%
-  références: 
+  références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
 
 - espace: indépendant . cotisations et contributions . CSG et CRDS
@@ -3231,14 +3232,14 @@
     multiplication:
       assiette: assiette
       plafond: plafond sécurité sociale temps plein
-      taux: 
-        variations: 
+      taux:
+        variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.29%
           - sinon: 0.25%
   note: Le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
-  références: 
-    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459 
+  références:
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
@@ -3274,17 +3275,17 @@
 - espace: indépendant
   nom: revenu brut
   période: flexible
-  formule: 
-    somme: 
+  formule:
+    somme:
       - revenu professionnel
       - cotisations à payer
-      - cotisations et contributions . CSG et CRDS (déductible) 
+      - cotisations et contributions . CSG et CRDS (déductible)
 
 - nom: auto entrepreneur
   icônes: 🚶
   par défaut: non
   question: L'activité est-elle exercée en auto-entreprise ?
-  description: | 
+  description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
 - espace: auto entrepreneur
@@ -3302,7 +3303,7 @@
   formule:
     variations:
       - si:
-          une de ces conditions: 
+          une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000
@@ -3316,43 +3317,43 @@
 
 - espace: auto entrepreneur
   nom: cotisations et contributions
-  formule: 
-    somme: 
+  formule:
+    somme:
       - cotisations sociales
       - taxe pour frais de chambre
       - contribution formation professionnelle
       - entreprise . prélèvements obligatoires
-  références: 
+  références:
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
   période: flexible
 
 - espace: auto entrepreneur
   nom: taxe pour frais de chambre
   période: flexible
-  note: | 
-    Nous n'avons pas intégré les exceptions suivantes : 
+  note: |
+    Nous n'avons pas intégré les exceptions suivantes :
 
     - Artisans en double immatriculation CCI-CMA
     - Les taux de l'Alsace et de la Moselle
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
   formule:
-    multiplication: 
+    multiplication:
       assiette: base des cotisations
       taux:
         variations:
-          - si: 
-              toutes ces conditions: 
+          - si:
+              toutes ces conditions:
                 - entreprise . catégorie d'activité = 'artisanale'
                 - entreprise . catégorie d'activité . service ou vente = 'prestation de service'
             alors: 0.48%
-          - si: 
-              toutes ces conditions: 
+          - si:
+              toutes ces conditions:
                 - entreprise . catégorie d'activité = 'artisanale'
                 - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             alors: 0.22%
-          - si: 
-              une de ces conditions: 
+          - si:
+              une de ces conditions:
                 - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
 
                 - entreprise . catégorie d'activité . restauration ou hébergement
@@ -3366,10 +3367,10 @@
   nom: contribution formation professionnelle
   titre: Contribution à la formation professionnelle
   période: flexible
-  références: 
+  références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
   formule:
-    multiplication: 
+    multiplication:
       assiette: base des cotisations
       taux:
         variations:
@@ -3377,8 +3378,8 @@
             alors: 0.3%
           - si: entreprise . catégorie d'activité . libérale reglementée
             alors: 0.2%
-          - si: 
-              une de ces conditions: 
+          - si:
+              une de ces conditions:
                 - entreprise . catégorie d'activité = 'commerciale ou industrielle'
                 - entreprise . catégorie d'activité = 'libérale'
             alors: 0.1%
@@ -3386,10 +3387,10 @@
 
 - espace: auto entrepreneur
   nom: cotisations sociales
-  description: | 
+  description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
 
-    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité. 
+    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
 
     Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   période: flexible
@@ -3402,18 +3403,18 @@
           taux: ACRE * taux
         - au-dessus de: 1
           taux: taux
-  références: 
+  références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
 - espace: auto entrepreneur . cotisations sociales
   nom: taux
   titre: taux de cotisation
-  description: | 
+  description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
     variations:
       - si:
-          une de ces conditions: 
+          une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
 
             - entreprise . catégorie d'activité . restauration ou hébergement
@@ -3434,7 +3435,7 @@
       - si: entreprise . année d'activité = 'troisième année'
         alors: 75%
       - sinon: 100%
-  références: 
+  références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
 
 - espace: auto entrepreneur . cotisations sociales . ACRE
@@ -3457,7 +3458,7 @@
   nom: taux inversé
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
   formule: 1 - taux
-  
+
 - espace: auto entrepreneur . impôt . abattement
   nom: taux
   titre: taux d'abattement de l'impôt
@@ -3466,11 +3467,11 @@
       - si: entreprise . catégorie d'activité = 'libérale'
         alors: 34%
       - si:
-          une de ces conditions: 
+          une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 71%
-      - sinon: 50% 
+      - sinon: 50%
 
 - espace: auto entrepreneur
   nom: impôt
