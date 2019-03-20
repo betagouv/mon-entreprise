@@ -1,8 +1,9 @@
 .mecanism.variations > ul {
 	margin-left: 1em;
+	margin-top: 1em;
 }
 .variations > ul > li {
-	margin-bottom: 1em;
+	margin-bottom: 0.3em;
 	list-style: circle;
 }
 
