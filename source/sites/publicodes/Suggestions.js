@@ -42,7 +42,7 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => (
 			background: var(--colour);
 			color: white;
 			:hover {
-				box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+				box-shadow: 0 1px 6px rgba(32, 33, 36, 0.5);
 			}
 			a {
 				color: white;
