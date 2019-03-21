@@ -3022,14 +3022,21 @@
   formule:
     variations:
       - si: entreprise . catégorie d'activité . libérale reglementée
-        alors:
-          barème continu:
-            assiette: assiette
-            multiplicateur: plafond sécurité sociale temps plein
-            points:
-              0: 1.5%
-              1.1: 6.5%
+        alors: libérale reglementée
+
       - sinon: artisans commerçants libéraux
+
+- espace: indépendant . cotisations . maladie
+  période: flexible
+  nom: libérale reglementée
+  titre: maladie libérale reglementée
+  formule: 
+    barème continu:
+      assiette: revenu professionnel
+      multiplicateur: plafond sécurité sociale temps plein
+      points:
+        0: 1.5%
+        1.1: 6.5%
 
 - espace: indépendant . cotisations . maladie
   nom: assiette
@@ -3061,10 +3068,10 @@
 - espace: indépendant . cotisations . maladie
   nom: artisans commerçants libéraux
   période: flexible
-  formule: barème + part revenus élevés
+  formule: barème principal + part revenus élevés
 
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
-  nom: barème
+  nom: barème principal
   période: flexible
   formule:
     barème continu:
