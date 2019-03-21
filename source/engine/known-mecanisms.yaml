@@ -46,7 +46,6 @@ aiguillage numérique:
 
     Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
 
-
 variations:
   type: numeric
   description: |
@@ -89,7 +88,6 @@ somme:
   description: |
     C'est tout simplement la somme de chaque terme de la liste.
 
-
 ##########################################
 # Ce qu'on appelle aujourd'hui des RuleProp
 # Et qui deviendront des mécanismes classiques normalement par la suite #TODO
@@ -99,7 +97,6 @@ formule:
     C'est la formule de calcul d'une variable. Elle renvoie une valeur numérique ou un 'non', exprimant le fait que la variable n'est pas applicable, ce qui vaut implicitement 0.
 
     Cette doit faire appel à fera appel à des mécanismes de calcul : par exemple `multiplication`, le plus commun pour les variables de type `Cotisation`.
-
 
 applicable si:
   description: |
@@ -130,7 +127,6 @@ barème:
 
     Les tranches sont souvent exprimées sous forme de facteurs d'une variable que l'on appelle `multiplicateur`, par exemple `1 x le plafond de la sécurité sociale`.
 
-
 barème linéaire:
   type: numeric
   description: |
@@ -149,6 +145,8 @@ barème continu:
 
     Dans ce type de barème, il y a souvent un multiplicateur de l'assiette, par exemple le plafond de la sécurité sociale : les seuils sont des petits nombres comme 1 ou 1.5, mais ils correspondent en réalité à `1 * 3311€` et `1.5 * 3311€`.
 
+    L'option `retourne seulement le taux: oui` permet d'obtenir un taux pour une assiette donnée, pour l'appliquer ensuite à une autre assiette.
+
 complément:
   type: numeric
   description: |
@@ -165,20 +163,19 @@ composantes:
 
     > L'exemple le plus courant de composantes, c'est la distinction part employeur, part salarié (ex. retraite AGIRC).
 
-allègement: 
+allègement:
   type: numeric
   description: |
     Permet de réduire le montant d'une variable. 
     Très utilisé dans le contexte des impôts. 
 
-synchronisation: 
+synchronisation:
   type: object
   description: |
     Pour éviter trop de saisies à l'utilisateur, certaines informations sont récupérées à partir de ce que l'on appelle des API. Ce sont des services auxquels ont fait appel pour obtenir des informations sur un sujet précis. Par exemple, l'État français fournit gratuitement l'API géo, qui permet à partir du nom d'une ville, d'obtenir son code postal, son département, la population etc.
     Ce mécanismes `synchronisation` permet de faire le lien entre les règles de notre système et les réponses de ces API.
 
-
-période: 
+période:
   description: |
     Une régle qui a une période `mois` ou `année`, c'est une règle qui ne peut être calculée que sur cette période. La période est `flexible` quand le calcul est valable quelle que soit la période choisie. D'autres règles ne changent pas de valeur en fonction de la période.
 

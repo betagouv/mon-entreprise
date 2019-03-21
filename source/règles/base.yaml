@@ -3030,7 +3030,7 @@
   période: flexible
   nom: libérale reglementée
   titre: maladie libérale reglementée
-  formule: 
+  formule:
     barème continu:
       assiette: revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
@@ -3074,8 +3074,17 @@
   nom: barème principal
   période: flexible
   formule:
-    barème continu:
+    multiplication:
       assiette: assiette
+      taux: taux du barème principal
+
+- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+  nom: taux du barème principal
+  période: flexible
+  formule:
+    barème continu:
+      retourne seulement le taux: oui
+      assiette: revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
@@ -3288,7 +3297,7 @@
     somme:
       - revenu professionnel
       - cotisations à payer
-      - cotisations et contributions . CSG et CRDS (déductible) 
+      - cotisations et contributions . CSG et CRDS (déductible)
       - cotisations et contributions . formation professionnelle
 
 - nom: auto entrepreneur
