@@ -83,6 +83,10 @@ export function mapOrApply<A, B>(fn: A => B, x: Array<A> | A): Array<B> | B {
 	return Array.isArray(x) ? x.map(fn) : fn(x)
 }
 
+export function coerceArray<A>(x: A | Array<A>): Array<A> {
+	return Array.isArray(x) ? x : [x]
+}
+
 export const constructSitePaths = (
 	root: string,
 	{ index, ...sitePaths }: { index: string }

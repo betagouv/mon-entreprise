@@ -1,32 +1,32 @@
 /* @flow */
-import { startConversation } from 'Actions/actions';
-import withLanguage from 'Components/utils/withLanguage';
-import { compose, toPairs } from 'ramda';
-import React from 'react';
-import { Trans } from 'react-i18next';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { animated, Spring } from 'react-spring';
-import { validInputEnteredSelector } from 'Selectors/analyseSelectors';
+import { startConversation } from 'Actions/actions'
+import withLanguage from 'Components/utils/withLanguage'
+import { compose, toPairs } from 'ramda'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { animated, Spring } from 'react-spring'
+import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import type { Location } from 'react-router'
 
 type OwnProps = {
-	quickLinks: {[string]: string},
+	quickLinks: { [string]: string }
 }
 type Props = OwnProps & {
 	startConversation: (?string) => void,
 	location: Location,
-	validInputEntered: boolean,
+	userInput: boolean,
 	conversationStarted: boolean
 }
 
 const QuickLinks = ({
 	startConversation,
-	validInputEntered,
+	userInput,
 	quickLinks,
 	conversationStarted
 }: Props) => {
-	const show = validInputEntered && !conversationStarted
+	const show = userInput && !conversationStarted
 	return (
 		<Spring
 			to={{
@@ -50,7 +50,7 @@ const QuickLinks = ({
 					{toPairs(quickLinks).map(([label, dottedName]) => (
 						<button
 							key={label}
-							className="ui__ link-button"
+							className="ui__ small button"
 							onClick={() => startConversation(dottedName)}>
 							<Trans>{label}</Trans>
 						</button>
@@ -67,7 +67,7 @@ export default (compose(
 	connect(
 		(state, props) => ({
 			key: props.language,
-			validInputEntered: validInputEnteredSelector(state),
+			userInput: !noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
 			quickLinks: state.simulation?.config["questions à l'affiche"]
 		}),

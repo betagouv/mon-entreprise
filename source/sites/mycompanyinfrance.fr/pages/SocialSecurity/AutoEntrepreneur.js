@@ -7,7 +7,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { AvertissementProtectionSocialeIndépendants } from './Indépendant'
 
-const AutoEntrepreneur = () => (
+const AutoEntrepreneur = ({ noUserInput }) => (
 	<>
 		<Helmet>
 			<title>
@@ -18,16 +18,13 @@ const AutoEntrepreneur = () => (
 				content="Estimez vos revenus en tant qu'auto-entrepreneur à partir de votre chiffre d'affaire. Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'URSSAF"
 			/>
 		</Helmet>
-		<h1>Simulateur de revenus pour auto-entrepreneur</h1>
-		<p>
-			Les auto-entrepreneurs relèvent de la sécurité sociale des indépendants.
-		</p>
+		<h1>Simulateur auto-entrepreneur 2019</h1>
+		<Warning autoFolded={!noUserInput} simulateur="auto-entreprise" />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
 			explanation={<AvertissementProtectionSocialeIndépendants />}
 		/>
-		<Warning />
 	</>
 )
 export default withSimulationConfig(indépendantConfig)(AutoEntrepreneur)

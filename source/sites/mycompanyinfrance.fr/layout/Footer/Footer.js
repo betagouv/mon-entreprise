@@ -10,7 +10,7 @@ import urssafSvg from 'Images/urssaf.svg'
 import { compose, lensPath, view } from 'ramda'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
@@ -32,13 +32,14 @@ const feedbackBlacklist = [
 
 const LOCAL_STORAGE_KEY = 'app::newsletter::registered'
 const userAlreadyRegistered: boolean =
-	JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) ||  false
+	JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
 
 const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 	const [showNewsletterForm, toggleNewsletterForm] = useState(
-		!userAlreadyRegistered && !['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-			window.location.hostname
-		)
+		!userAlreadyRegistered &&
+			!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+				window.location.hostname
+			)
 	)
 	const onSubmit = () => {
 		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(true))

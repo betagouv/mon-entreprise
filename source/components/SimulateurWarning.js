@@ -1,40 +1,49 @@
-import { T } from 'Components'
-import React from 'react'
+import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import './SimulateurWarning.css'
 
-export default function SimulateurWarning() {
+export default function SimulateurWarning({ simulateur, autoFolded }) {
+	let [userFolded, userFold] = useState(undefined)
+
+	let folded = userFolded === undefined ? autoFolded : userFolded,
+		toggle = () => userFold(!userFolded)
+
 	return (
-		<>
+		<div id="SimulateurWarning" style={{ marginBottom: '2em' }}>
 			<p>
-				{emoji('🚩')}{' '}
-				<T k="simulationWarning">
-					Ce simulateur donne une estimation sur des données{' '}
-					<strong>purement théoriques</strong> de chiffre d'affaires, de charges
-					et de base fiscale célibataire sans enfant hors tout autre revenu{' '}
-					<strong>
-						qui ne saurait engager la responsabilité des organismes sociaux
-						concernés au regard des déclarations et des calculs réels.
-					</strong>
-				</T>
+				{emoji('🚩 ')}
+				<strong>Outil en cours de développement </strong>
+				{folded && <a onClick={toggle}> (plus d'info)</a>}
 			</p>
-			<div className="beta__container">
-				<small className="beta__tag">Version beta</small>
-				<p>
-					<strong>Ce simulateur est en cours de développement.</strong> Les
-					calculs sont effectués sur la base des hypothèses suivantes :
-				</p>
-				<ul>
-					<li>
-						Tout le chiffre d'affaires part dans la rémunération du dirigeant et
-						les charges (pas de bénéfice).
-					</li>
-					<li>
-						L'impôt sur le revenu est calculé pour un célibataire sans enfants
-						et sans autre revenu.
-					</li>
-				</ul>
+			<div className="content">
+				{!folded && (
+					<ul style={{ marginLeft: '1em' }}>
+						<li>réservé aux entreprises créées en 2019</li>
+						{simulateur !== 'auto-entreprise' && (
+							<li>
+								Le chiffre d'affaires déduit des charges va à 100% dans la
+								rémunération du dirigeant.
+							</li>
+						)}
+						<li>
+							l'impôt sur le revenu est calculé pour un célibataire sans enfant
+							et sans autre revenu.{' '}
+							{simulateur == 'auto-entreprise' && (
+								<span>L'impôt libératoire n'est pas encore intégré.</span>
+							)}
+						</li>
+						<li>
+							les calculs sont indicatifs et ne se substituent pas aux décomptes
+							réels des URSSAF, impots.gouv.fr, etc.
+						</li>
+					</ul>
+				)}
+
+				{!folded && (
+					<div style={{ textAlign: 'right', paddingRight: '1em' }}>
+						<a onClick={toggle}>J'ai compris</a>
+					</div>
+				)}
 			</div>
-		</>
+		</div>
 	)
 }

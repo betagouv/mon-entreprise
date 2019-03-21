@@ -199,6 +199,8 @@ entreprise:
       description: |
         <0><0>The corporate name</0> ("dénomination sociale") is the legal name of your company, written on all of your administrative papers. It can be different from the trade name (used for commercial purpose).</0>
         <1>It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc. You can check on the <2>INPI database</2>.</1>
+    formeJuridique:
+      titre: Choose the legal status
     objetSocial:
       titre: Write the corporate purpose of the company
       description: The <1>corporate purpose</1> of the company ("objet social") is the main activity run. A secondary activity can be registered.
@@ -274,6 +276,7 @@ entreprise:
     avancement: Use these lists to track down your advancement in the business creation process. It is automatically saved in your browser.
     retour: Choose another status
     ensuite: After registration
+    titre: The to-do list for creating your business
 
 formeJuridique:
   page:
@@ -550,7 +553,7 @@ Un seul associé: Only one partner
 Responsabilité limitée: Limited liability
 Sans responsabilité limitée: Without limited liability
 Auto-entrepreneur: Auto-entrepreneur
-Pas en auto-entrepreneur: Not in auto-entrepreneur
+Pas en auto entrepreneur: Not in auto-entrepreneur
 
 Précédent: Previous
 Choisir plus tard: Choose later
@@ -565,7 +568,7 @@ Explorez notre documentation: Explore our documentation
 maj2019: The simulation is up-to-date in 2019.
 siteName: My company in France
 
-Simuler ma situation: Simulate my situation
+Faire une simulation: Launch a simulation
 Exemples: Examples
 Intégrer le simulateur: Integrate the simulator
 
@@ -593,5 +596,8 @@ newsletter:
     description2: 'Register to our <1>monthly newsletter</1> by leaving your email:'
 S'inscrire: Register
 simulationWarning: This is an estimate based on <2>purely theoretical data</2> on turnover, charges and the single tax base without children, excluding any other income, which <5>cannot be the responsibility of the social security bodies concerned with regard to the actual declarations and calculations.</5>
+
+Renseigner mon entreprise: Find my company
+Simulations personnalisées: Customized simulations
 
 indicationTempsPlein: in full-time gross salary equivalent

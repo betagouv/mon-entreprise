@@ -14,11 +14,11 @@ const requirementToText = (key, value) => {
 			return value ? <T>Plusieurs associés</T> : <T>Un seul associé</T>
 		case 'soleProprietorship':
 			return value ? (
-				<T k="responsabilité.bouton1">Société</T>
-			) : (
 				<T T k="responsabilité.bouton2">
 					Entreprise individuelle
 				</T>
+			) : (
+				<T k="responsabilité.bouton1">Société</T>
 			)
 		case 'directorStatus':
 			return value === 'SELF_EMPLOYED' ? (

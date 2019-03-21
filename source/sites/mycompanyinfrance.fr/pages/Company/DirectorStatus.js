@@ -3,7 +3,7 @@ import { defineDirectorStatus } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
-import Helmet from 'react-helmet'
+import {Helmet} from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -50,8 +50,7 @@ const DefineDirectorStatus = ({
 				</li>
 				<li>
 					<strong>Indépendant :</strong> Le dirigeant de l'entreprise est
-					couvert par le régime de la Sécurité sociale des travailleurs
-					indépendants.
+					couvert par le régime de la Sécurité sociale des indépendants.
 				</li>
 			</ul>
 			{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(

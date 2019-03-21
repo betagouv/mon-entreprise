@@ -16,7 +16,7 @@ import {
 
 export let makeJsx = node =>
 	typeof node.jsx == 'function'
-		? node.jsx(node.nodeValue, node.explanation)
+		? node.jsx(node.nodeValue, node.explanation, node.lazyEval)
 		: node.jsx
 
 export let collectNodeMissing = node => node.missingVariables || {}
@@ -31,11 +31,18 @@ export let mergeMissing = (left, right) =>
 export let evaluateNode = (cache, situationGate, parsedRules, node) =>
 	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
 
-export let rewriteNode = (node, nodeValue, explanation, missingVariables) => ({
+export let rewriteNode = (
+	node,
+	nodeValue,
+	explanation,
+	missingVariables,
+	lazyEval
+) => ({
 	...node,
 	nodeValue,
 	explanation,
-	missingVariables
+	missingVariables,
+	lazyEval
 })
 
 export let evaluateArray = (reducer, start) => (
@@ -118,4 +125,27 @@ export let evaluateObject = (objectShape, effect) => (
 		missingVariables = mergeAllMissing(values(explanation))
 	//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
+}
+
+export let E = (cache, situationGate, parsedRules) => {
+	let missingVariables = {}
+
+	let valNode = element =>
+		evaluateNode(cache, situationGate, parsedRules, element)
+	let val = element => {
+		let evaluated = valNode(element)
+		// automatically add missing variables when a variable is evaluated and thus needed in this mecanism's evaluation
+		missingVariables = mergeMissing(
+			missingVariables,
+			evaluated.missingVariables
+		)
+
+		return evaluated.nodeValue
+	}
+
+	return {
+		val,
+		valNode,
+		missingVariables: () => missingVariables
+	}
 }

@@ -3,9 +3,9 @@ const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
-const { universal, web } = require('./webpack.commonLoaders.js')
 
 module.exports = {
+
 	resolve: {
 		alias: {
 			Engine: path.resolve('source/engine/'),
@@ -20,18 +20,15 @@ module.exports = {
 		}
 	},
 	entry: {
-		embauche: ['./source/sites/embauche.gouv.fr/entry.js'],
-		'mon-entreprise': ['./source/sites/mycompanyinfrance.fr/entry.fr.js'],
-		infrance: ['./source/sites/mycompanyinfrance.fr/entry.en.js'],
+		embauche: './source/sites/embauche.gouv.fr/entry.js',
+		'mon-entreprise': './source/sites/mycompanyinfrance.fr/entry.fr.js',
+		infrance: './source/sites/mycompanyinfrance.fr/entry.en.js',
 
 		// To not introduce breaking into the iframe integration, we serve simulateur.js from a 'dist' subdirectory
-		'dist/simulateur': ['./source/sites/embauche.gouv.fr/iframe-script.js'],
+		'dist/simulateur': './source/sites/embauche.gouv.fr/iframe-script.js',
 	},
 	output: {
-		path: path.resolve('./dist/')
-	},
-	module: {
-		rules: [...web, ...universal]
+		path: path.resolve('./dist/'),
 	},
 	plugins: [
 		new EnvironmentPlugin({
@@ -40,6 +37,7 @@ module.exports = {
 		}),
 		new HTMLPlugin({
 			template: 'index.html',
+			inject: false,
 			chunks: ['infrance'],
 			title:
 				'My company in France: A step-by-step guide to start a business in France',
@@ -49,6 +47,7 @@ module.exports = {
 		}),
 		new HTMLPlugin({
 			template: 'index.html',
+			inject: false,
 			chunks: ['embauche'],
 			title: "Simulateur d'embauche 🤝",
 			description:
@@ -57,6 +56,7 @@ module.exports = {
 		}),
 		new HTMLPlugin({
 			template: 'index.html',
+			inject: false,
 			chunks: ['mon-entreprise'],
 			title:
 				"Mon-entreprise.fr : Le guide officiel du créateur d'entreprise",

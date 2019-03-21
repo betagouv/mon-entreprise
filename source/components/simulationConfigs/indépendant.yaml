@@ -1,13 +1,17 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - indépendant . cotisations et contributions
   - indépendant . revenu professionnel
-  - impôt . impôt sur le revenu flexible
+  - impôt . impôt sur le revenu à payer
   - revenu net
 
 questions:
   - entreprise . charges
   - entreprise . catégorie d'activité
+  - entreprise . catégorie d'activité . service ou vente
+  - entreprise . catégorie d'activité . restauration ou hébergement
+  - entreprise . catégorie d'activité . libérale reglementée
+  # pour l'instant pas utilisées 
+  # - entreprise . catégorie d'activité . libérale reglementée . type d'activité libérale reglementée
   - entreprise . année d'activité
   - situation personnelle . RSA
 
@@ -18,6 +22,6 @@ questions à l'affiche:
 
 situation:
   indépendant: oui
-  autoentrepreneur: non
+  auto entrepreneur: non
   contrat salarié: non
   période: année

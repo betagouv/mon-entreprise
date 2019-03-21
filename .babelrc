@@ -1,17 +1,5 @@
 {
-	"presets": [
-		[
-			"@babel/env",
-			{
-				"targets": {
-					"browsers": ["last 2 versions", "safari >= 7"]
-				},
-				"modules": false
-			}
-		],
-		"@babel/react",
-		"@babel/flow"
-	],
+	"presets": ["@babel/react", "@babel/flow"],
 	"plugins": [
 		"@babel/plugin-proposal-class-properties",
 		"@babel/plugin-proposal-do-expressions",
@@ -19,9 +7,12 @@
 		"@babel/plugin-proposal-object-rest-spread",
 		"@babel/plugin-syntax-dynamic-import",
 		"react-hot-loader/babel",
-		["webpack-alias", { "config": "./source/webpack.dev.js" }]
-		,  ["ramda", {
-      "useES": true
-    }]
+		["webpack-alias", { "config": "./source/webpack.dev.js" }],
+		[
+			"ramda",
+			{
+				"useES": true
+			}
+		]
 	]
 }

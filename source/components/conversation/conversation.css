@@ -150,7 +150,8 @@
 }
 
 .step.question .variant .variantLeaf {
-	display: inline-block;
+	display: inline-flex;
+    align-items: center;
 }
 .step.question .variantLeaf.aucun label {
 	font-weight: 800;

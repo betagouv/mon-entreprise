@@ -1,6 +1,6 @@
 const common = require('./webpack.common.js')
-const { universal } = require('./webpack.commonLoaders.js')
 const path = require('path')
+const { commonLoaders, styleLoader } = require('./webpack.commonLoaders')
 
 module.exports = {
 	resolve: common.resolve,
@@ -15,24 +15,6 @@ module.exports = {
 		globalObject: "(typeof window !== 'undefined' ? window : this)"
 	},
 	module: {
-		rules: [
-			...universal,
-			{
-				test: /\.css$/,
-				use: [
-					'isomorphic-style-loader',
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true,
-							importLoaders: 1
-						}
-					},
-					{
-						loader: 'postcss-loader'
-					}
-				]
-			}
-		]
+		rules: [...commonLoaders(), styleLoader('isomorphic-style-loader')]
 	}
 }

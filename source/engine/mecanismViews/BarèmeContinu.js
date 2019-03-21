@@ -46,9 +46,11 @@ let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 									{(100 * explanation.taux).toFixed(1)} %
 								</span>
 							)}
-							<p>
-								Ce barème <strong>ne retourne que le taux</strong>.
-							</p>
+							{explanation.returnRate && (
+								<p>
+									Ce barème <strong>ne retourne que le taux</strong>.
+								</p>
+							)}
 						</ul>
 					}
 				/>

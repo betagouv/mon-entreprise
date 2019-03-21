@@ -217,15 +217,6 @@ let analysisValidatedOnlySelector = makeAnalysisSelector(
 	validatedSituationBranchesSelector
 )
 
-export let blockingInputControlsSelector = state => {
-	let analysis = analysisWithDefaultsSelector(state)
-	return analysis && analysis.blockingInputControls
-}
-
-export let validInputEnteredSelector = createSelector(
-	[noUserInputSelector, blockingInputControlsSelector],
-	(noUserInput, blockingInputControls) => !noUserInput && !blockingInputControls
-)
 // TODO this should really not be fired twice in a user session...
 //
 // TODO the just input salary should be in the situation so that it is not a missing variable

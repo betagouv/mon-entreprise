@@ -13,7 +13,7 @@ questions à l'affiche:
   Année d'activité: entreprise . année d'activité
 
 situation:
-  autoentrepreneur: non
+  auto entrepreneur: non
   indépendant: non
   contrat salarié: oui
   contrat salarié . assimilé salarié: oui

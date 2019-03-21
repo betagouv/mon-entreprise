@@ -125,8 +125,10 @@ barème:
   type: numeric
   description: |
     C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation dans le calcul de l'impôt sur le revenu.
+
     L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un taux spécifique.
-    Les tranches sont très souvent exprimées sous forme de facteurs (par exemple [1, 2, 4]) d'une variable que l'on appelle multiplicateur, par exemple le plafond de la sécurité sociale.
+
+    Les tranches sont souvent exprimées sous forme de facteurs d'une variable que l'on appelle `multiplicateur`, par exemple `1 x le plafond de la sécurité sociale`.
 
 
 barème linéaire:

@@ -73,11 +73,3 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	margin: 0 0.3rem;
 	display: inline-block;
 }
-
-#js {
-	opacity: 1;
-	transform: translateY(0px);
-}
-#lds-ellipsis {
-	display: none;
-}

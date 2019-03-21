@@ -1,118 +1,23 @@
-import {
-	reduce,
-	path,
-	mergeWith,
-	objOf,
-	dissoc,
-	add,
-	find,
-	pluck,
-	map,
-	any,
-	equals,
-	is,
-	keys,
-	evolve,
-	curry,
-	filter,
-	pipe,
-	head,
-	isEmpty,
-	propEq,
-	prop,
-	has,
-	max,
-	min,
-	subtract,
-	sum,
-	isNil,
-	reject,
-	aperture,
-	sort,
-	toPairs,
-	reduced,
-	last
-} from 'ramda'
-import React from 'react'
-import { Trans } from 'react-i18next'
-import { anyNull, val } from './traverse-common-functions'
-import { Node, SimpleRuleLink } from './mecanismViews/common'
-import {
-	makeJsx,
-	evaluateNode,
-	rewriteNode,
-	evaluateArray,
-	evaluateArrayWithFilter,
-	evaluateObject,
-	parseObject,
-	collectNodeMissing,
-	mergeAllMissing,
-	mergeMissing,
-	bonus,
-	defaultNode
-} from './evaluation'
-import {
-	findRuleByName,
-	disambiguateRuleReference,
-	findRuleByDottedName
-} from './rules'
+import { desugarScale } from 'Engine/mecanisms/barème';
+import { decompose, devariateExplanation } from 'Engine/mecanisms/utils';
+import { add, any, aperture, curry, equals, evolve, filter, find, head, is, isEmpty, isNil, keys, last, map, max, mergeWith, min, path, pipe, pluck, prop, propEq, reduce, reduced, reject, sort, subtract, toPairs } from 'ramda';
+import React from 'react';
+import { Trans } from 'react-i18next';
+import 'react-virtualized/styles.css';
+import { bonus, collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, mergeMissing, parseObject, rewriteNode } from './evaluation';
+import Allègement from './mecanismViews/Allègement';
+import Barème from './mecanismViews/Barème';
+import BarèmeContinu from './mecanismViews/BarèmeContinu';
+import { Node, SimpleRuleLink } from './mecanismViews/common';
+import InversionNumérique from './mecanismViews/InversionNumérique';
+import Product from './mecanismViews/Product';
+import buildSelectionView from './mecanismViews/Selection';
+import Somme from './mecanismViews/Somme';
+import Variations from './mecanismViews/Variations';
+import { disambiguateRuleReference, findRuleByDottedName, findRuleByName } from './rules';
+import { anyNull, val } from './traverse-common-functions';
+import uniroot from './uniroot';
 
-import 'react-virtualized/styles.css'
-import Somme from './mecanismViews/Somme'
-import Barème from './mecanismViews/Barème'
-import BarèmeContinu from './mecanismViews/BarèmeContinu'
-import InversionNumérique from './mecanismViews/InversionNumérique'
-import Variations from './mecanismViews/Variations'
-import Allègement from './mecanismViews/Allègement'
-import Composantes from './mecanismViews/Composantes'
-import { trancheValue } from './mecanisms/barème'
-import buildSelectionView from './mecanismViews/Selection'
-import uniroot from './uniroot'
-
-let decompose = (recurse, k, v) => {
-	let subProps = dissoc('composantes')(v),
-		explanation = v.composantes.map(c => ({
-			...recurse(
-				objOf(k, {
-					...subProps,
-					...dissoc('attributs')(c)
-				})
-			),
-			composante: c.nom ? { nom: c.nom } : c.attributs
-		}))
-
-	let filter = situationGate => c =>
-		!situationGate('sys.filter') ||
-		!c.composante ||
-		((!c.composante['dû par'] ||
-			c.composante['dû par'] == situationGate('sys.filter')) &&
-			(!c.composante['impôt sur le revenu'] ||
-				c.composante['impôt sur le revenu'] == situationGate('sys.filter')))
-
-	return {
-		explanation,
-		jsx: Composantes,
-		evaluate: evaluateArrayWithFilter(filter, add, 0),
-		category: 'mecanism',
-		name: 'composantes',
-		type: 'numeric'
-	}
-}
-
-let devariateExplanation = (recurse, mecanismKey, v) => {
-	let fixedProps = dissoc('variations')(v),
-		explanation = v.variations.map(({ si, alors, sinon }) => ({
-			consequence: recurse({
-				[mecanismKey]: {
-					...fixedProps,
-					...(sinon || alors)
-				}
-			}),
-			condition: sinon ? undefined : recurse(si)
-		}))
-
-	return explanation
-}
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export let mecanismVariations = (recurse, k, v, devariate) => {
@@ -665,52 +570,9 @@ export let mecanismProduct = (recurse, k, v) => {
 	let explanation = parseObject(recurse, objectShape, v),
 		evaluate = evaluateObject(objectShape, effect)
 
-	let jsx = (nodeValue, explanation) => (
-		// The rate and factor and threshold are given defaut neutral values. If there is nothing to explain, don't display them at all
-		<Node
-			classes="mecanism multiplication"
-			name="multiplication"
-			value={nodeValue}
-			child={
-				<ul className="properties">
-					<li key="assiette">
-						<span className="key">
-							<Trans>assiette</Trans>:{' '}
-						</span>
-						<span className="value">{makeJsx(explanation.assiette)}</span>
-					</li>
-					{!explanation.taux.isDefault && (
-						<li key="taux">
-							<span className="key">
-								<Trans>taux</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.taux)}</span>
-						</li>
-					)}
-					{!explanation.facteur.isDefault && (
-						<li key="facteur">
-							<span className="key">
-								<Trans>facteur</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.facteur)}</span>
-						</li>
-					)}
-					{!explanation.plafond.isDefault && (
-						<li key="plafond">
-							<span className="key">
-								<Trans>plafond</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.plafond)}</span>
-						</li>
-					)}
-				</ul>
-			}
-		/>
-	)
-
 	return {
 		evaluate,
-		jsx,
+		jsx: Product,
 		explanation,
 		category: 'mecanism',
 		name: 'multiplication',
@@ -726,16 +588,6 @@ export let mecanismProduct = (recurse, k, v) => {
 	à: 1
 	```
 	*/
-let desugarScale = recurse => tranches =>
-	tranches
-		.map(t =>
-			has('en-dessous de')(t)
-				? { ...t, de: 0, à: t['en-dessous de'] }
-				: has('au-dessus de')(t)
-				? { ...t, de: t['au-dessus de'], à: Infinity }
-				: t
-		)
-		.map(evolve({ taux: recurse }))
 
 export let mecanismLinearScale = (recurse, k, v) => {
 	if (v.composantes) {
@@ -782,52 +634,13 @@ export let mecanismLinearScale = (recurse, k, v) => {
 	}
 }
 
-export let mecanismScale = (recurse, k, v) => {
-	// Sous entendu : barème en taux marginaux.
-	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
-	}
-	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
-	}
-
-	let tranches = desugarScale(recurse)(v['tranches']),
-		objectShape = {
-			assiette: false,
-			multiplicateur: defaultNode(1)
-		}
-
-	let effect = ({ assiette, multiplicateur: multiplicateur, tranches }) => {
-		let nulled = val(assiette) == null || val(multiplicateur) == null
-
-		return nulled
-			? null
-			: sum(tranches.map(trancheValue('marginal')(assiette, multiplicateur)))
-	}
-
-	let explanation = {
-			...parseObject(recurse, objectShape, v),
-			tranches
-		},
-		evaluate = evaluateObject(objectShape, effect)
-
-	return {
-		evaluate,
-		jsx: Barème('marginal'),
-		explanation,
-		category: 'mecanism',
-		name: 'barème',
-		barème: 'en taux marginaux',
-		type: 'numeric'
-	}
-}
-
 export let mecanismContinuousScale = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
 		multiplicateur: defaultNode(1)
 	}
+
+	let returnRate = v['retourne seulement le taux'] === 'oui'
 	let effect = ({ assiette, multiplicateur, points }) => {
 		if (anyNull([assiette, multiplicateur])) return null
 		//We'll build a linear function given the two constraints that must be respected
@@ -849,8 +662,7 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 						nodeValue = a * val(assiette) + b,
 						taux = nodeValue / val(assiette)
 					return reduced({
-						nodeValue:
-							v['retourne seulement le taux'] === 'oui' ? taux : nodeValue,
+						nodeValue: returnRate ? taux : nodeValue,
 						additionalExplanation: {
 							seuil: val(assiette) / val(multiplicateur),
 							taux
@@ -864,7 +676,8 @@ export let mecanismContinuousScale = (recurse, k, v) => {
 	}
 	let explanation = {
 			...parseObject(recurse, objectShape, v),
-			points: v.points
+			points: v.points,
+			returnRate
 		},
 		evaluate = evaluateObject(objectShape, effect)
 	return {

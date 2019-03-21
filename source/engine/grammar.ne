@@ -71,7 +71,7 @@ Constant -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({
 VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
 
 
-VariableWord -> [a-zA-Z\u00C0-\u017F] ['a-zA-Z\u00C0-\u017F]:*     {% d => d[0] + d[1].join('') %}
+VariableWord -> [a-zA-Z\u00C0-\u017F] [\-'a-zA-Z\u00C0-\u017F]:*     {% d => d[0] + d[1].join('') %}
 
 Dot -> [\.] {% d => null %}
 
@@ -84,6 +84,3 @@ percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({category: 'percenta
 
 Boolean -> "oui" {% d=> ({category: 'boolean', nodeValue: true}) %}
  | "non" {% d=> ({category: 'boolean', nodeValue: false}) %}
-
-
-

@@ -18,7 +18,8 @@ const Indépendant = () => (
 				content="Estimez vos revenus en tant qu'indépendant à partir de votre chiffre d'affaire (pour les EI et les gérants EURL et SARL majoritaires). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'URSSAF"
 			/>
 		</Helmet>
-		<h1>Simulateur de revenus pour indépendants</h1>
+		<h1>Simulateur indépendant 2019</h1>
+		<Warning />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}
@@ -29,7 +30,6 @@ const Indépendant = () => (
 				</>
 			}
 		/>
-		<Warning />
 	</>
 )
 
@@ -37,8 +37,8 @@ let AvertissementForfaitIndépendants = () => (
 	<p>
 		{emoji('💶')} Notre estimation prend en compte les{' '}
 		<em>cotisations réelles</em> dues par le travailleur indépendant. Pendant la
-		première année de son activité, il ne paiera qu'un forfait réduit (une somme
-		de l'ordre de 3000€ / an pour un artisan)... mais il sera régularisé l'année
+		première année de son activité, il paiera un forfait réduit (une somme de
+		l'ordre de 3000€ / an pour un artisan)... mais il sera régularisé l'année
 		suivante selon ce montant réel.
 	</p>
 )

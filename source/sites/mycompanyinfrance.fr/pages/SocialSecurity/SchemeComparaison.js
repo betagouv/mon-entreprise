@@ -23,15 +23,14 @@ const SchemeComparaisonPage = () => (
 			/>
 		</Helmet>
 		<Animate.fromBottom>
-			<h1>Comparaison des régimes de protection sociale</h1>
-			<header>{createMarkdownDiv(ComparaisonConfig.titre)}</header>
+			<h1>Quel revenu pour l'indépendant ?</h1>
+			<Warning />
 			<Simulation
 				showTargetsAnyway
 				targets={<ComparativeTargets />}
 				noFeedback
 			/>
 		</Animate.fromBottom>
-		<Warning />
 	</>
 )
 

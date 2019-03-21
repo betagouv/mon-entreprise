@@ -6,6 +6,11 @@ objectifs:
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . catégorie d'activité
+  - entreprise . catégorie d'activité . service ou vente
+  - entreprise . catégorie d'activité . restauration ou hébergement
+  - entreprise . catégorie d'activité . libérale reglementée
+  # pour l'instant pas utilisées 
+  # - entreprise . catégorie d'activité . libérale reglementée . type d'activité libérale reglementée
   - entreprise . charges
 bloquant:
   - entreprise . chiffre d'affaires
@@ -15,17 +20,17 @@ situation:
 branches:
   - nom: Auto-entrepreneur
     situation:
-      autoentrepreneur: oui
+      auto entrepreneur: oui
       indépendant: non
       contrat salarié: non
   - nom: Indépendant
     situation:
       indépendant: oui
-      autoentrepreneur: non
+      auto entrepreneur: non
       contrat salarié: non
   - nom: Assimilé salarié
     situation:
-      autoentrepreneur: non
+      auto entrepreneur: non
       indépendant: non
       contrat salarié: oui
       contrat salarié . assimilé salarié: oui
