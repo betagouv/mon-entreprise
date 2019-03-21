@@ -1,16 +1,14 @@
-.mecanism.variations > ul {
+.mecanism.variations > ol {
 	margin-left: 1em;
 	margin-top: 1em;
 }
-.variations > ul > li {
+.variations > ol > li {
 	margin-bottom: 0.3em;
-	list-style: circle;
+}
+.variations > ol > li span.consequenceType {
+	margin: 0 0.6em 0.6em 0;
 }
 
-.variations > ul > li .consequenceType {
-	padding: 0 0.2em;
-	margin: 0 0.3em;
-}
-.variations .satisfied {
+.variations > ol > li span.consequenceType.satisfied {
 	background: yellow;
 }
