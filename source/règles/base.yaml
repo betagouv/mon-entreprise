@@ -3040,7 +3040,7 @@
 
 - espace: indépendant . cotisations . maladie
   nom: assiette
-  titre: assiette maladie
+  titre: assiette minimale maladie
   période: flexible
   formule:
     variations:
@@ -3135,7 +3135,7 @@
 - espace: indépendant . cotisations . retraite de base
   nom: assiette
   période: flexible
-  titre: assiette retraite de base
+  titre: assiette minimale retraite de base
   formule:
     variations:
       - si: ≠ situation personnelle . RSA
@@ -3207,7 +3207,7 @@
 - espace: indépendant . cotisations . invalidité et décès
   nom: assiette
   période: flexible
-  titre: assiette invalidité et décès
+  titre: assiette minimale invalidité et décès
   formule:
     variations:
       - si: ≠ situation personnelle . RSA
@@ -3266,7 +3266,7 @@
 - espace: indépendant . cotisations et contributions . formation professionnelle
   nom: assiette
   période: flexible
-  titre: assiette formation professionnelle
+  titre: assiette minimale formation professionnelle
   formule:
     variations:
       - si: ≠ situation personnelle . RSA
