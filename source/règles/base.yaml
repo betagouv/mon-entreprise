@@ -1661,10 +1661,11 @@
   formule:
     multiplication:
       assiette: assiette cotisations sociales
-      taux: 0.84%
-  note: En pratique, l'ATMP est toujours supérieure à 0.84%
+      taux: 0.78%
+  note: En pratique, l'ATMP est toujours supérieure à 0.78%
   références:
     Code de la sécurité sociale - Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036467594
+    Code de la sécurité sociale - Mise à jour du taux: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B2573099C91B1ACDA218B214D650C071.tplgfr25s_3?idArticle=JORFARTI000037884643&cidTexte=JORFTEXT000037884638&dateTexte=29990101&categorieLien=id
 
 - espace: contrat salarié . réduction générale
   nom: plafond de l'assiette
@@ -2126,10 +2127,10 @@
     # TODO majoration pour les entreprises de travail temporaire
     #
   description: Cette contribution obligatoire est à verser à l'OPCA désigné par la branche conventionnelle de l'entreprise, ou à défaut à un OPCA interprofessionnel.
-  note: | 
+  note: |
     Une part supplémentaire peut-être obligatoire en fonction des accords collectifs d'une entreprise.
 
-    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire. 
+    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire.
 
   période: flexible
   formule:
@@ -2141,7 +2142,7 @@
             taux: 0.55%
         - sinon:
             taux: 1%
-  références: 
+  références:
     fiche Ministère du travail: https://travail-emploi.gouv.fr/formation-professionnelle/entreprises-et-formation/article/participation-financiere-des-entreprises-au-developpement-de-la-formation
 
 - espace: contrat salarié
@@ -2578,7 +2579,7 @@
           taux: 41%
         - au-dessus de: 156244
           taux: 45%
-  références: 
+  références:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
 
 - nom: impôt sur le revenu à payer
