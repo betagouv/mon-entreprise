@@ -3250,8 +3250,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette
-      plafond: plafond sécurité sociale temps plein
+      assiette: plafond sécurité sociale temps plein
       taux:
         variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
@@ -3263,20 +3262,6 @@
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
-- espace: indépendant . cotisations et contributions . formation professionnelle
-  nom: assiette
-  période: flexible
-  titre: assiette minimale formation professionnelle
-  formule:
-    variations:
-      - si: ≠ situation personnelle . RSA
-        alors:
-          le maximum de:
-            - plafond sécurité sociale temps plein
-            - revenu professionnel
-      - sinon: revenu professionnel
-  références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 - espace: indépendant . cotisations
   nom: allocations familiales
