@@ -2,6 +2,7 @@ import { React } from 'Components'
 import { Link } from 'react-router-dom'
 import Suggestions from './Suggestions'
 import emoji from 'react-easy-emoji'
+import { useState } from 'react'
 
 export default () => (
 	<div className="ui__ container">
@@ -17,42 +18,41 @@ export default () => (
 	</div>
 )
 
-class Search extends React.Component {
-	state = { input: '' }
-	render() {
-		return (
-			<div
+function Search() {
+	const [input, setInput] = useState('')
+
+	return (
+		<div
+			css={`
+				display: flex;
+				align-items: flex-end;
+			`}>
+			<input
 				css={`
-					display: flex;
-					align-items: flex-end;
+					display: inline-block;
+					width: 80%;
+					border: 1px solid #ddd;
+					font-size: 200%;
+					border-radius: 1rem;
+					padding: 0 0.6rem;
+				`}
+				type="text"
+				value={input}
+				onChange={event => {
+					console.log('Enregistrer la saisie dans un JSON en ligne') ||
+						setInput(event.target.value)
+				}}
+			/>
+			<span
+				css={`
+					margin-left: 1em;
+					img {
+						width: 1.6em !important;
+						height: 1.6em !important;
+					}
 				`}>
-				<input
-					css={`
-						display: inline-block;
-						width: 80%;
-						border: 1px solid #ddd;
-						font-size: 200%;
-						border-radius: 1rem;
-						padding: 0 0.6rem;
-					`}
-					type="text"
-					value={this.state.input}
-					onChange={event => {
-						console.log('Enregistrer la saisie dans un JSON en ligne') ||
-							this.setState({ input: event.target.value })
-					}}
-				/>
-				<span
-					css={`
-						margin-left: 1em;
-						img {
-							width: 1.6em !important;
-							height: 1.6em !important;
-						}
-					`}>
-					{emoji('🔍')}
-				</span>
-			</div>
-		)
-	}
+				{emoji('🔍')}
+			</span>
+		</div>
+	)
 }
