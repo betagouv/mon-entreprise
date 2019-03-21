@@ -4,6 +4,8 @@ import Suggestions from './Suggestions'
 import emoji from 'react-easy-emoji'
 import { useState } from 'react'
 
+let jsonBinUrl = 'https://api.jsonbin.io/b/5c93d3257726fe2562cd71bd'
+
 export default () => (
 	<div className="ui__ container">
 		<p style={{ marginTop: '5rem' }}>
@@ -39,8 +41,9 @@ function Search() {
 				type="text"
 				value={input}
 				onChange={event => {
-					console.log('Enregistrer la saisie dans un JSON en ligne') ||
-						setInput(event.target.value)
+					let value = event.target.value
+					value !== '' && collectUserQuestions(event.target.value)
+					setInput(event.target.value)
 				}}
 			/>
 			<span
@@ -55,4 +58,31 @@ function Search() {
 			</span>
 		</div>
 	)
+}
+
+let collectUserQuestions = debounced(1000, input => {
+	fetch(jsonBinUrl + '/latest', {
+		method: 'GET'
+	}).then(res =>
+		res.json().then(pastBin =>
+			fetch(jsonBinUrl, {
+				method: 'PUT',
+				body: JSON.stringify([...pastBin, input]),
+				headers: { 'Content-type': 'application/json' }
+			})
+		)
+	)
+})
+
+function debounced(delay, fn) {
+	let timerId
+	return function(...args) {
+		if (timerId) {
+			clearTimeout(timerId)
+		}
+		timerId = setTimeout(() => {
+			fn(...args)
+			timerId = null
+		}, delay)
+	}
 }
