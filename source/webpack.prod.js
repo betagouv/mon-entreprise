@@ -1,10 +1,12 @@
 const common = require('./webpack.common.js')
-const WorkboxPlugin = require('workbox-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
+
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const path = require('path')
 const cheerio = require('cheerio')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { commonLoaders, styleLoader } = require('./webpack.commonLoaders')
 
 const prerenderConfig = () => ({
 	staticDir: path.resolve('dist'),
@@ -32,27 +34,28 @@ const prerenderConfig = () => ({
 		`)
 		// Remove piwik script
 		$('script[src$="stats.data.gouv.fr/piwik.js"]').remove()
+
 		context.html = $.html()
 		return context
 	}
 })
-// Replace style-loader with MiniCssExtractPlugin.loader
-common.module.rules
-	.find(rule => rule.test.test('a.css'))
-	.use.find(loader => loader.loader === 'style-loader').loader =
-	MiniCssExtractPlugin.loader
 
 module.exports = {
 	...common,
+	module: {
+		rules: [...commonLoaders(), styleLoader(MiniCssExtractPlugin.loader)]
+	},
+	output: {
+		...common.output,
+		filename: ({ chunk }) => {
+			return chunk.name === 'dist/simulateur'
+				? '[name].js'
+				: '[name].[contenthash].bundle.js'
+		}
+	},
 	mode: 'production',
 	devtool: 'source-map',
 	plugins: [
-		new MiniCssExtractPlugin({
-			// Options similar to the same options in webpackOptions.output
-			// both options are optional
-			filename: '[name].[hash].css',
-			chunkFilename: '[id].[hash].css'
-		}),
 		...common.plugins,
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
@@ -61,7 +64,7 @@ module.exports = {
 			runtimeCaching: [
 				{
 					urlPattern: new RegExp(
-						'https://fonts.(?:googleapis|gstatic).com/(.*)|https://cdn.polyfill.io/v2/polyfill.min.js'
+						'https://fonts.(?:googleapis|gstatic).com/(.*)'
 					),
 					handler: 'cacheFirst',
 					options: {
@@ -84,6 +87,12 @@ module.exports = {
 				/^\/sitemap\.infrance\.fr\.txt$/,
 				/^\/sitemap\.infrance\.en\.txt$/
 			]
+		}),
+		new MiniCssExtractPlugin({
+			// Options similar to the same options in webpackOptions.output
+			// both options are optional
+			filename: '[name].[hash].css',
+			chunkFilename: '[id].[hash].css'
 		}),
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),

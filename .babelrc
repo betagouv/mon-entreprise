@@ -1,17 +1,5 @@
 {
-	"presets": [
-		[
-			"@babel/env",
-			{
-				"targets": {
-					"browsers": ["last 2 versions", "safari >= 7", "ie 11"]
-				},
-				"modules": false
-			}
-		],
-		"@babel/react",
-		"@babel/flow"
-	],
+	"presets": ["@babel/react", "@babel/flow"],
 	"plugins": [
 		"@babel/plugin-proposal-class-properties",
 		"@babel/plugin-proposal-do-expressions",

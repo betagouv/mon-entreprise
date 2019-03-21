@@ -1,3 +1,4 @@
+import Route404 from 'Components/Route404'
 import RulePage from 'Components/RulePage'
 import TrackPageView from 'Components/utils/TrackPageView'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -6,7 +7,7 @@ import { compose } from 'ramda'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
@@ -24,7 +25,6 @@ import Landing from './pages/Landing'
 import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
 import { constructLocalizedSitePath } from './sitePaths'
-import Route404 from 'Components/Route404'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(

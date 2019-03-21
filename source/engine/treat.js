@@ -1,61 +1,20 @@
-import React from 'react'
-import { Parser } from 'nearley'
-import Grammar from './grammar.ne'
-import {
-	contains,
-	propEq,
-	curry,
-	cond,
-	equals,
-	divide,
-	multiply,
-	map,
-	intersection,
-	keys,
-	propOr,
-	always,
-	head,
-	gte,
-	lte,
-	lt,
-	gt,
-	add,
-	subtract
-} from 'ramda'
-import { evaluateNode, rewriteNode, makeJsx, mergeMissing } from './evaluation'
-import { Node } from './mecanismViews/common'
-import {
-	treatVariable,
-	treatNegatedVariable,
-	treatVariableTransforms
-} from './treatVariable'
-import { treat } from './traverse'
-import knownMecanisms from './known-mecanisms.yaml'
-
 // This should be the new way to implement mecanisms
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
-import barème from 'Engine/mecanisms/barème.js'
+import barème from 'Engine/mecanisms/barème.js';
+import { Parser } from 'nearley';
+import { add, always, cond, contains, curry, divide, equals, gt, gte, head, intersection, keys, lt, lte, map, multiply, propEq, propOr, subtract } from 'ramda';
+import React from 'react';
+import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation';
+import Grammar from './grammar.ne';
+import knownMecanisms from './known-mecanisms.yaml';
+import { mecanismAllOf, mecanismComplement, mecanismContinuousScale, mecanismError, mecanismInversion, mecanismLinearScale, mecanismMax, mecanismMin, mecanismNumericalSwitch, mecanismOneOf, mecanismProduct, mecanismReduction, mecanismSelection, mecanismSum, mecanismSynchronisation, mecanismVariations } from './mecanisms';
+import { Node } from './mecanismViews/common';
+import { treat } from './traverse';
+import { treatNegatedVariable, treatVariable, treatVariableTransforms } from './treatVariable';
 
-import {
-	mecanismOneOf,
-	mecanismAllOf,
-	mecanismNumericalSwitch,
-	mecanismSum,
-	mecanismProduct,
-	mecanismLinearScale,
-	mecanismContinuousScale,
-	mecanismMax,
-	mecanismMin,
-	mecanismError,
-	mecanismComplement,
-	mecanismSelection,
-	mecanismInversion,
-	mecanismReduction,
-	mecanismVariations,
-	mecanismSynchronisation
-} from './mecanisms'
+
 let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 export let treatString = (rules, rule) => rawNode => {

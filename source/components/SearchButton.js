@@ -49,10 +49,9 @@ export default compose(
 				</Overlay>
 			) : (
 				<button
-					className="ui__ link-button"
+					className="ui__ simple small button"
 					onClick={() => this.setState({ visible: true })}>
-					{emoji('🔍')}
-					<Trans>Rechercher</Trans>
+					{emoji('🔍')} <Trans>Rechercher</Trans>
 				</button>
 			)
 		}
