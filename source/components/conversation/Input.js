@@ -9,6 +9,7 @@ import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
+import IndicationSalaireEquivalentTempsPlein from 'Components/conversation/IndicationSalaireEquivalentTempsPlein'
 
 export default compose(
 	FormDecorator('input'),
@@ -81,6 +82,11 @@ export default compose(
 						rulePeriod={this.props.rulePeriod}
 					/>
 					{inputError && <span className="step-input-error">{error}</span>}
+					{dottedName ===
+						'contrat salarié . temps partiel . heures par semaine' && (
+						<IndicationSalaireEquivalentTempsPlein />
+						// If the need for this kind of computed indication to help the user answer the question correctly is encountered for other kind of questions, it should be abstracted in the engine
+					)}
 				</span>
 			)
 		}

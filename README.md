@@ -8,9 +8,9 @@ The hiring simulator, available on both websites, embeds a [model](https://githu
 
 The engine with the French tax law is available as a NPM module and explained [on the wiki](https://github.com/betagouv/syso/wiki/Librairie-de-calcul).
 
-Developed by the french public startup incubator, [beta.gouv.fr](https://beta.gouv.fr/).
+Developed by the french public startup incubator, [beta.gouv.fr](https://beta.gouv.fr/), with the help of the social security contributions collector, [URSSAF](www.urssaf.fr).
 
-Most of the documentation (including issues and the wiki) is written in french, raise an [issue](https://github.com/betagouv/syso/issues/new) if you are interested and do not speak French.
+Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/betagouv/syso/issues/new) if you are interested and do not speak French.
 
 ## Run it
 
