@@ -38,7 +38,7 @@ module.exports = {
 		},
 		{
 			test: /\.ne$/,
-			loader: 'nearley-loader'
+			loader: 'babel-loader!nearley-loader'
 		}
 	]
 }
