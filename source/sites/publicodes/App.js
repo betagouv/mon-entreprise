@@ -9,6 +9,7 @@ import sitePaths from './sitePaths'
 import Landing from './Landing'
 import Simulateur from './Simulateur'
 import About from './About'
+import Earth from './EarthLoader'
 
 class App extends Component {
 	render() {
@@ -16,8 +17,11 @@ class App extends Component {
 			<Provider
 				basename="publicodes"
 				rulesConfig={{
-					repo: 'laem/futureco-data',
-					filePath: 'co2.yaml'
+					fetch: {
+						repo: 'laem/futureco-data',
+						filePath: 'co2.yaml'
+					},
+					loaderComponent: <Earth />
 				}}
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}>
