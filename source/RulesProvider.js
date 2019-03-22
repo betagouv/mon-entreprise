@@ -11,7 +11,7 @@ export default connect(
 			super(props)
 			fetch(
 				'https://publicodes.netlify.com/.netlify/functions/getRulesFile?' +
-					toPairs(props.rulesConfig)
+					toPairs(props.rulesConfig.fetch)
 						.map(([k, v]) => k + '=' + v)
 						.join('&'),
 				{ mode: 'cors' }
@@ -22,8 +22,13 @@ export default connect(
 				})
 		}
 		render() {
+			let customLoader = this.props.rulesConfig.loaderComponent
 			if (!this.props.rulesLoaded)
-				return <div>La loi est en cours de chargement ...</div>
+				return customLoader ? (
+					customLoader
+				) : (
+					<div>La loi est en cours de chargement ...</div>
+				)
 			return this.props.children
 		}
 	}
