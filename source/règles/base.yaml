@@ -3039,11 +3039,10 @@
         1.1: 6.5%
 
 - espace: indépendant . cotisations . maladie
-  nom: assiette
-  titre: assiette minimale maladie
+  nom: assiette minimale
   période: flexible
   formule:
-    variations:
+    variations: 
       - si: situation personnelle . RSA
         alors: revenu professionnel
       - sinon:
@@ -3061,7 +3060,7 @@
   non applicable si: entreprise . catégorie d'activité . libérale reglementée
   formule:
     multiplication:
-      assiette: maladie . assiette
+      assiette: maladie . assiette minimale
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
@@ -3075,11 +3074,43 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette
-      taux: taux du barème principal
+      assiette: assiette minimale
+      taux: 
+        variations: 
+          - si: situation personnelle . RSA
+            alors: taux RSA
+          - sinon: taux
 
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
-  nom: taux du barème principal
+  nom: taux RSA
+  période: flexible
+  formule: 
+    multiplication: 
+      assiette: taux RSA part variable + 1.35% 
+      plafond: 6.35%
+  note: |
+    Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
+
+    Cette formule n'est pas intuitive. Si vous en avez une meilleure représentation, n'hésitez pas à contribuer ! 
+
+- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+  nom: taux RSA part variable
+  période: flexible
+  formule: 
+    multiplication: 
+      assiette: 5%
+      taux: revenu professionnel / seuil supérieur de réduction
+
+- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+  nom: seuil supérieur de réduction
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: plafond sécurité sociale temps plein
+      taux: 110%
+
+- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+  nom: taux
   période: flexible
   formule:
     barème continu:
