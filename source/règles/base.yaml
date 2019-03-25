@@ -758,10 +758,24 @@
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
+        - équivalent temps plein
         - revenu net
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
+
+- espace: contrat salarié . salaire . brut de base
+  nom: équivalent temps plein
+  applicable si: temps partiel
+  titre: Salaire brut équivalent temps plein
+  résumé: Le salaire si l'embauche se faisait à temps plein
+  question: Quel est le salaire en équivalent temps plein ?
+  format: euros
+  formule: brut de base / quotité de travail
+  période: flexible
+  suggestions:
+    salaire médian: 2300
+    SMIC: 1522
 
 - espace: contrat salarié . salaire
   nom: brut
@@ -3028,7 +3042,7 @@
   période: flexible
   formule:
     variations:
-      - si:  situation personnelle . RSA
+      - si: situation personnelle . RSA
         alors: revenu professionnel
       - sinon:
           le maximum de:
