@@ -3,7 +3,7 @@
 	font-size: 150%;
 }
 
-#controlsBlock ul {
+#controlsBlock > ul {
 	list-style: none;
 	padding: 0;
 }
@@ -11,18 +11,22 @@
 	margin: 1em 0;
 	display: flex;
 	align-items: center;
-
-	border-radius: 0.3em;
-
+}
+#controlsBlock .controlText {
+	width: 100%;
+	padding: 1rem 2.6rem 1rem 1.6rem;
 	/*For the .hide element */
 	position: relative;
 }
-#controlsBlock .controlText {
-	display: flex;
-	padding: 0.4rem;
-}
 #controlsBlock .controlText p {
 	margin: 0;
+}
+
+.controlText .hide {
+	position: absolute;
+	top: 0rem;
+	right: -1.4rem;
+	font-size: 200%;
 }
 
 #controlExplanation {
@@ -42,20 +46,7 @@
 	display: inline-block;
 }
 #controlsBlock img {
-	margin: 0 0.6em 0 !important;
+	margin: 0 1em 0 !important;
 	width: 1.6em !important;
 	height: 1.6em !important;
-}
-
-#controlsBlock #solution {
-}
-
-#controlsBlock {
-}
-
-#controlsBlock .hide {
-	font-size: 200%;
-	padding: 0;
-	margin: 0;
-	right: 0em;
 }
