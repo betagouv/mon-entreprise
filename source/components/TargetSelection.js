@@ -5,7 +5,7 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { compose, propEq, chain } from 'ramda'
+import { compose, propEq } from 'ramda'
 import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -100,53 +100,68 @@ export default compose(
 			return (
 				<div>
 					<ul id="targets">
-						{displayedTargets.map(target => (
-							<li
-								key={target.name}
-								className={!target.question ? 'not-editable' : undefined}>
-								<div className="main">
-									<Header
-										{...{
-											match,
-											target,
-											conversationStarted,
-											isActiveInput: activeInput === target.dottedName
-										}}
-									/>
-									{!target.question && (
-										<span
-											style={{
-												flex: 1,
-												borderBottom: '1px dashed #ffffff91',
-												marginLeft: '1rem'
-											}}
-										/>
-									)}
-									<TargetInputOrValue
-										{...{
-											target,
-											targets,
-											activeInput,
-											setActiveInput,
-											setFormValue: this.props.setFormValue,
-											noUserInput
-										}}
-									/>
-								</div>
-								{activeInput === target.dottedName && !conversationStarted && (
-									<Animate.fromTop>
-										<InputSuggestions
-											suggestions={target.suggestions}
-											onFirstClick={value =>
-												this.props.setFormValue(target.dottedName, '' + value)
-											}
-											rulePeriod={target.période}
-											colouredBackground={true}
-										/>
-									</Animate.fromTop>
-								)}
-							</li>
-						))}
+						{displayedTargets
+							.filter(rule => {
+								const target = targets.find(
+									({ dottedName }) => rule.dottedName === dottedName
+								)
+								return (
+									target.isApplicable !== false &&
+									(target.question || !!target.nodeValue)
+								)
+							})
+							.map(target => (
+								<li
+									key={target.name}
+									className={!target.question ? 'not-editable' : undefined}>
+									<Animate.appear>
+										<div className="main">
+											<Header
+												{...{
+													match,
+													target,
+													conversationStarted,
+													isActiveInput: activeInput === target.dottedName
+												}}
+											/>
+											{!target.question && (
+												<span
+													style={{
+														flex: 1,
+														borderBottom: '1px dashed #ffffff91',
+														marginLeft: '1rem'
+													}}
+												/>
+											)}
+											<TargetInputOrValue
+												{...{
+													target,
+													targets,
+													activeInput,
+													setActiveInput,
+													setFormValue: this.props.setFormValue,
+													noUserInput
+												}}
+											/>
+										</div>
+										{activeInput === target.dottedName && !conversationStarted && (
+											<Animate.fromTop>
+												<InputSuggestions
+													suggestions={target.suggestions}
+													onFirstClick={value =>
+														this.props.setFormValue(
+															target.dottedName,
+															'' + value
+														)
+													}
+													rulePeriod={target.période}
+													colouredBackground={true}
+												/>
+											</Animate.fromTop>
+										)}
+									</Animate.appear>
+								</li>
+							))}
 					</ul>
 				</div>
 			)

@@ -8,6 +8,7 @@ import PageFeedback from 'Components/Feedback/PageFeedback'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
+import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import {
 	nextStepsSelector,
@@ -85,13 +86,17 @@ export default compose(
 							/>
 							{noNextSteps && (
 								<>
-									<h1>
-										<T k="simulation-end.title">Plus de questions !</T>
-									</h1>
-									<T k="simulation-end.text">
-										Vous avez atteint l'estimation la plus précise.
-									</T>
-									{this.props.customEndMessages}
+									<h2>
+										{emoji('🌟')}{' '}
+										<T k="simulation-end.title">Situation complétée à 100%</T>{' '}
+									</h2>
+									<p>
+										<T k="simulation-end.text">
+											Nous n'avons plus de questions à poser, vous avez atteint
+											l'estimation la plus précise.
+										</T>
+										{this.props.customEndMessages}
+									</p>
 								</>
 							)}
 						</>
