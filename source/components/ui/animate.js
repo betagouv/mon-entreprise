@@ -122,12 +122,18 @@ export const fadeIn = ({
 type State = {
 	show: boolean
 }
-export class appear extends React.Component<Props, State> {
+export class appear extends React.Component<
+	Props & { alreadyPresent: boolean },
+	State
+> {
+	static defaultProps = {
+		alreadyPresent: false
+	}
 	state = {
-		show: false
+		show: this.props.alreadyPresent
 	}
 	componentDidMount() {
-		this.setState({ show: true })
+		window.setTimeout(() => this.setState({ show: true }), 0)
 	}
 	render() {
 		const {
@@ -138,8 +144,8 @@ export class appear extends React.Component<Props, State> {
 		} = this.props
 		return (
 			<Spring
-				native={true}
 				delay={delay}
+				native
 				config={config}
 				to={{
 					opacity: this.state.show ? 1 : 0,
