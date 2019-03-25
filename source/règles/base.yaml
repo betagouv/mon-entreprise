@@ -2907,6 +2907,15 @@
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
     > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+  contrôles: 
+    - si: libérale règlementée
+      niveau: avertissement
+      message: | 
+        Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées : 
+
+        - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant. 
+        - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
+        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
