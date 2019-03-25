@@ -2895,24 +2895,24 @@
   par défaut: non
 
 - espace: entreprise . catégorie d'activité
-  nom: libérale reglementée
-  question: Est-ce une activité libérale reglementée ?
+  nom: libérale règlementée
+  question: Est-ce une activité libérale règlementée ?
   par défaut: non
   applicable si: catégorie d'activité = 'libérale'
   description: |
     Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
 
-    > Exemples de professions reglementées : architecte, avocat, infirmier, médecin...
+    > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
 
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
-    > Exemples de professions non-reglementées : développeur, historien, urbaniste...
+    > Exemples de professions non-règlementées : développeur, historien, urbaniste...
 
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-- espace: entreprise . catégorie d'activité . libérale reglementée
-  nom: type d'activité libérale reglementée
+- espace: entreprise . catégorie d'activité . libérale règlementée
+  nom: type d'activité libérale règlementée
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -2961,14 +2961,14 @@
   # TODO consolider la formule :
   # Nous avons deux listes possibles
   # A) Voilà la liste de l'URSSAF
-  question: La profession libérale reglementée est-elle rattachée à la CIPAV ?
+  question: La profession libérale règlementée est-elle rattachée à la CIPAV ?
   par défaut: non
   description: |
-    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
+    Les auto-entrepreneurs exerçant une activité de profession libérale règlementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales règlementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
 
     formule:
       inclusion:
-        de: entreprise . catégorie d'activité . type d'activité libérale reglementée
+        de: entreprise . catégorie d'activité . type d'activité libérale règlementée
         dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
           - Architecte
           - Architecte d'intérieur
@@ -2986,7 +2986,7 @@
   nom: auto entreprise impossible
   formule:
     toutes ces conditions:
-      - entreprise . catégorie d'activité . libérale reglementée
+      - entreprise . catégorie d'activité . libérale règlementée
       - ≠ rattachée à la CIPAV
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
@@ -3021,15 +3021,15 @@
   nom: maladie
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale reglementée
-        alors: libérale reglementée
+      - si: entreprise . catégorie d'activité . libérale règlementée
+        alors: libérale règlementée
 
       - sinon: artisans commerçants libéraux
 
 - espace: indépendant . cotisations . maladie
   période: flexible
-  nom: libérale reglementée
-  titre: maladie libérale reglementée
+  nom: libérale règlementée
+  titre: maladie libérale règlementée
   formule:
     barème continu:
       assiette: revenu professionnel
@@ -3057,7 +3057,7 @@
   titre: Maladie 2
   description: Cotisations pour les indémnité journalière des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, ils peuvent bénéficier d’indemnités journalières.
   période: flexible
-  non applicable si: entreprise . catégorie d'activité . libérale reglementée
+  non applicable si: entreprise . catégorie d'activité . libérale règlementée
   formule:
     multiplication:
       assiette: maladie . assiette minimale
@@ -3148,7 +3148,7 @@
   période: année
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale reglementée
+      - si: entreprise . catégorie d'activité . libérale règlementée
         alors:
           multiplication:
             assiette: assiette
@@ -3192,7 +3192,7 @@
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale reglementée
+      - si: entreprise . catégorie d'activité . libérale règlementée
         alors:
           barème linéaire:
             assiette: revenu professionnel
@@ -3399,7 +3399,7 @@
 
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
-          - si: entreprise . catégorie d'activité . libérale reglementée
+          - si: entreprise . catégorie d'activité . libérale règlementée
             alors: 0.2%
           - sinon: 0.44%
 
@@ -3416,7 +3416,7 @@
         variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.3%
-          - si: entreprise . catégorie d'activité . libérale reglementée
+          - si: entreprise . catégorie d'activité . libérale règlementée
             alors: 0.2%
           - si:
               une de ces conditions:
