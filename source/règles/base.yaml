@@ -3088,8 +3088,15 @@
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
-        0.4: 3.16%
+        0.4: 3.168%
         1.1: 6.35%
+  note: |
+    Cette cotisation est à la base très simple : la cotisation maladie est de 7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà. Cependant : 
+    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs. 
+    - des réductions de cotisation ont été introduites : une exonération simple en-dessous de 110% du plafond de la sécurité sociale, puis une exonération renforcée en-dessous de 40%. Le barème ci-dessus prend en compte ces réductions.
+
+  références:
+    décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: part revenus élevés
@@ -3261,7 +3268,6 @@
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
-
 
 - espace: indépendant . cotisations
   nom: allocations familiales
