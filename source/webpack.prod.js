@@ -54,11 +54,6 @@ module.exports = {
 		}
 	},
 	mode: 'production',
-	optimization: {
-		splitChunks: {
-			chunks: 'all'
-		}
-	},
 	devtool: 'source-map',
 	plugins: [
 		...common.plugins,

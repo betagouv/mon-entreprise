@@ -10,7 +10,7 @@ questions:
   - entreprise . catégorie d'activité . service ou vente
   - entreprise . catégorie d'activité . restauration ou hébergement
   - entreprise . catégorie d'activité . libérale reglementée
-  # pour l'instant pas utilisées 
+  # pour l'instant pas utilisées
   # - entreprise . catégorie d'activité . libérale reglementée . type d'activité libérale reglementée
   - entreprise . année d'activité
   - situation personnelle . RSA
