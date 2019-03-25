@@ -29,7 +29,15 @@ export default function ProductView(nodeValue, explanation) {
 									alignItems: 'baseline',
 									flexWrap: 'wrap'
 								}}>
-								<Trans>Plafonnée à :</Trans>&nbsp;{makeJsx(explanation.plafond)}
+								<span
+									style={{
+										...(explanation.plafondActif
+											? { background: 'yellow' }
+											: {})
+									}}>
+									<Trans>Plafonnée à :</Trans>&nbsp;
+									{makeJsx(explanation.plafond)}
+								</span>
 							</div>
 						)}
 					</div>
