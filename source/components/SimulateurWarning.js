@@ -12,9 +12,14 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 			<p>
 				{emoji('🚩 ')}
 				<strong>Outil en cours de développement </strong>
-				{folded && <a onClick={toggle}> (plus d'info)</a>}
+				{folded && (
+					<button className="ui__ button simple small" onClick={toggle}>
+						{' '}
+						(plus d'info)
+					</button>
+				)}
 			</p>
-			<div className="content">
+			<div className={`content ${folded ? '' : 'ui__ card'}`}>
 				{!folded && (
 					<ul style={{ marginLeft: '1em' }}>
 						<li>réservé aux entreprises créées en 2019</li>
@@ -40,7 +45,9 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 
 				{!folded && (
 					<div style={{ textAlign: 'right', paddingRight: '1em' }}>
-						<a onClick={toggle}>J'ai compris</a>
+						<button className="ui__ button simple small" onClick={toggle}>
+							J'ai compris
+						</button>
 					</div>
 				)}
 			</div>
