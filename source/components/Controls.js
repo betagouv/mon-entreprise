@@ -14,7 +14,6 @@ function Controls({
 	startConversation,
 	hideControl,
 	foldedSteps,
-	colours,
 	hiddenControls,
 	language
 }) {
@@ -26,33 +25,32 @@ function Controls({
 			<ul>
 				{controls.map(({ level, test, message, solution, evaluated }) =>
 					hiddenControls.includes(test) ? null : (
-						<li
-							key={test}
-							className="control"
-							style={{ background: colours.lighterColour }}>
+						<li key={test} className="control">
 							{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
-							<div className="controlText">
+							<div className="controlText ui__ card">
 								{message ? (
 									createMarkdownDiv(message)
 								) : (
 									<span id="controlExplanation">{makeJsx(evaluated)}</span>
 								)}
-								&nbsp;
+
 								{solution && !foldedSteps.includes(solution.cible) && (
-									<button
-										key={solution.cible}
-										className="ui__ link-button"
-										onClick={() => startConversation(solution.cible)}>
-										{solution.texte}
-									</button>
+									<div>
+										<button
+											key={solution.cible}
+											className="ui__ link-button"
+											onClick={() => startConversation(solution.cible)}>
+											{solution.texte}
+										</button>
+									</div>
 								)}
+								<button
+									className="hide"
+									aria-label="close"
+									onClick={() => hideControl(test)}>
+									×
+								</button>
 							</div>
-							<button
-								className="hide"
-								aria-label="close"
-								onClick={() => hideControl(test)}>
-								×
-							</button>
 						</li>
 					)
 				)}
