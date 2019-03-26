@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import emoji from 'react-easy-emoji'
+import React, { useState } from 'react';
+import emoji from 'react-easy-emoji';
 
 export default function SimulateurWarning({ simulateur, autoFolded }) {
 	let [userFolded, userFold] = useState(undefined)
@@ -20,8 +20,8 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 						<li>réservé aux entreprises créées en 2019</li>
 						{simulateur !== 'auto-entreprise' && (
 							<li>
-								Le chiffre d'affaires déduit des charges va à 100% dans la
-								rémunération du dirigeant.
+								le chiffre d'affaires déduit des charges va à 100% dans la
+								rémunération du dirigeant
 							</li>
 						)}
 						<li>
@@ -33,7 +33,7 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 						</li>
 						<li>
 							les calculs sont indicatifs et ne se substituent pas aux décomptes
-							réels des URSSAF, impots.gouv.fr, etc.
+							réels des URSSAF, impots.gouv.fr, etc
 						</li>
 					</ul>
 				)}

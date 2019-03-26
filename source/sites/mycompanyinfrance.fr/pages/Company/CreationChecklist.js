@@ -416,7 +416,7 @@ const CreateCompany = ({
 				/>
 			</Checklist>
 			<h2>
-				{emoji('😌')}{' '}
+				{emoji('💭')}{' '}
 				<T k="entreprise.tâches.titre2">
 					Recommandé avant le début de l'activité
 				</T>
