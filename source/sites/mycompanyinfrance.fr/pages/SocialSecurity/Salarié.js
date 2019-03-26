@@ -1,14 +1,14 @@
-import { React, T } from 'Components'
-import SalaryExplanation from 'Components/SalaryExplanation'
-import Simulation from 'Components/Simulation'
-import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import TargetSelection from 'Components/TargetSelection'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { React, T } from 'Components';
+import SalaryExplanation from 'Components/SalaryExplanation';
+import Simulation from 'Components/Simulation';
+import salariéConfig from 'Components/simulationConfigs/salarié.yaml';
+import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig';
+import TargetSelection from 'Components/TargetSelection';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import { Helmet } from 'react-helmet';
+import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 	<Simulation
@@ -19,11 +19,11 @@ export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 					Vous pouvez maintenant concrétiser votre projet d'embauche.
 				</T>
 				{sitePaths.démarcheEmbauche && (
-					<div style={{ textAlign: 'center' }}>
-						<Link className="ui__ button" to={sitePaths.démarcheEmbauche.index}>
+					<p style={{ textAlign: 'center' }}>
+						<Link className="ui__ plain button" to={sitePaths.démarcheEmbauche.index}>
 							<T k="simulation-end.cta">Connaître les démarches</T>
 						</Link>
-					</div>
+					</p>
 				)}
 			</>
 		}

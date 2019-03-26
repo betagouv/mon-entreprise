@@ -1,24 +1,21 @@
 /* @flow */
-import {
-	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist
-} from 'Actions/companyCreationChecklistActions'
-import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { React, T } from 'Components'
-import Route404 from 'Components/Route404'
-import Scroll from 'Components/utils/Scroll'
-import withLanguage from 'Components/utils/withLanguage'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import emoji from 'react-easy-emoji'
-import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import * as Animate from 'Ui/animate'
-import { CheckItem, Checklist } from 'Ui/Checklist'
-import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
-import StatusDescription from './StatusDescription'
+import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions';
+import { goToCompanyStatusChoice } from 'Actions/companyStatusActions';
+import { React, T } from 'Components';
+import Route404 from 'Components/Route404';
+import Scroll from 'Components/utils/Scroll';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import emoji from 'react-easy-emoji';
+import { Helmet } from 'react-helmet';
+import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import * as Animate from 'Ui/animate';
+import { CheckItem, Checklist } from 'Ui/Checklist';
+import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths';
+import StatusDescription from './StatusDescription';
 
 import type { Match } from 'react-router'
 import type { TFunction } from 'react-i18next'
