@@ -124,7 +124,9 @@ class PageFeedback extends Component<Props, State> {
 								style={{ textAlign: 'right' }}
 								className="ui__ link-button"
 								onClick={this.handleErrorReporting}>
-								<Trans i18nKey="feedback.reportError">Faire un retour</Trans>
+								<Trans i18nKey="feedback.reportError">
+									Faire une suggestion
+								</Trans>
 							</button>{' '}
 						</>
 					)}
