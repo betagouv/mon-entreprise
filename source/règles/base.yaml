@@ -2671,7 +2671,7 @@
 
 - espace: entreprise
   nom: année d'activité
-  question: Quelle est l'age de l'entreprise en années d'activité ?
+  question: Quelle est l'âge de l'entreprise en années d'activité ?
   description: |
     Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
 
@@ -3494,7 +3494,7 @@
   espace: protection sociale
   icônes: 👵
   type: branche
-  description courte: Garantit en moyenne 60 à 70 % de votre dernier revenu d'activité après 65 ans.
+  description courte: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   description: |
     Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
 
