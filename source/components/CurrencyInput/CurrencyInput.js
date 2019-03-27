@@ -31,6 +31,7 @@ class CurrencyInput extends Component {
 		return this.input.selectionStart
 	}
 	componentDidMount() {
+		// this.input.select()
 		this.adaptInputSize()
 	}
 	adaptInputSize = () => {
@@ -44,6 +45,7 @@ class CurrencyInput extends Component {
 	componentDidUpdate = (_, __, cursorPosition) => {
 		this.input.selectionStart = cursorPosition
 		this.input.selectionEnd = cursorPosition
+
 		this.adaptInputSize()
 	}
 	focusInput = () => {

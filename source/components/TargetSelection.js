@@ -1,24 +1,29 @@
-import classNames from 'classnames';
-import Controls from 'Components/Controls';
-import InputSuggestions from 'Components/conversation/InputSuggestions';
-import withColours from 'Components/utils/withColours';
-import withLanguage from 'Components/utils/withLanguage';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { encodeRuleName } from 'Engine/rules';
-import { compose, propEq } from 'ramda';
-import React, { Component, PureComponent } from 'react';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
-import { change, Field, formValueSelector, reduxForm } from 'redux-form';
-import { analysisWithDefaultsSelector, flatRulesSelector, nextStepsSelector, noUserInputSelector } from 'Selectors/analyseSelectors';
-import Animate from 'Ui/animate';
-import AnimatedTargetValue from 'Ui/AnimatedTargetValue';
-import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader';
-import CurrencyInput from './CurrencyInput/CurrencyInput';
-import QuickLinks from './QuickLinks';
-import './TargetSelection.css';
+import classNames from 'classnames'
+import Controls from 'Components/Controls'
+import InputSuggestions from 'Components/conversation/InputSuggestions'
+import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { encodeRuleName } from 'Engine/rules'
+import { compose, isEmpty, isNil, propEq } from 'ramda'
+import React, { Component, PureComponent } from 'react'
+import { withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
+import { change, Field, formValueSelector, reduxForm } from 'redux-form'
+import {
+	analysisWithDefaultsSelector,
+	flatRulesSelector,
+	nextStepsSelector,
+	noUserInputSelector
+} from 'Selectors/analyseSelectors'
+import Animate from 'Ui/animate'
+import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
+import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader'
+import CurrencyInput from './CurrencyInput/CurrencyInput'
+import QuickLinks from './QuickLinks'
+import './TargetSelection.css'
 
 const MAX_NUMBER_QUESTION = 18
 export default compose(
@@ -52,7 +57,30 @@ export default compose(
 	)
 )(
 	class TargetSelection extends PureComponent {
+		componentDidMount() {
+			const props = this.props
+			const targets = props.analysis ? props.analysis.targets : []
+			// Initialize defaultValue for target that can't be computed
 
+			targets
+				.filter(
+					target =>
+						(!target.formule || isEmpty(target.formule)) &&
+						(!isNil(target.defaultValue) ||
+							!isNil(target.explanation?.defaultValue)) &&
+						!props.getTargetValue(target.dottedName)
+				)
+
+				.forEach(target => {
+					props.setFormValue(
+						target.dottedName,
+						!isNil(target.defaultValue)
+							? target.defaultValue
+							: target.explanation?.defaultValue
+					)
+				})
+			props.setActiveInput(null)
+		}
 		render() {
 			let { colours, noUserInput, analysis, progress } = this.props
 
@@ -85,7 +113,7 @@ export default compose(
 					activeInput,
 					setActiveInput,
 					analysis,
-					noUserInput,
+
 					match
 				} = this.props,
 				targets = analysis ? analysis.targets : []
@@ -131,8 +159,7 @@ export default compose(
 														targets,
 														activeInput,
 														setActiveInput,
-														setFormValue: this.props.setFormValue,
-														noUserInput
+														setFormValue: this.props.setFormValue
 													}}
 												/>
 											</div>
@@ -186,7 +213,6 @@ let CurrencyField = withColours(props => {
 				borderColor: props.colours.textColour
 			}}
 			className="targetInput"
-			autoFocus
 			{...props.input}
 			{...props}
 		/>
@@ -196,9 +222,12 @@ let CurrencyField = withColours(props => {
 let TargetInputOrValue = withLanguage(
 	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
 		<span className="targetInputOrValue">
-			{activeInput === target.dottedName ? (
+			{activeInput === target.dottedName ||
+			!target.formule ||
+			isEmpty(target.formule) ? (
 				<Field
 					name={target.dottedName}
+					{...(target.formule ? { autoFocus: true } : {})}
 					component={CurrencyField}
 					language={language}
 				/>
@@ -225,7 +254,7 @@ const TargetValue = connect(
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target, noUserInput } = this.props
+			let { targets, target } = this.props
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -235,7 +264,7 @@ const TargetValue = connect(
 				<div
 					className={classNames({
 						editable: target.question,
-						attractClick: target.question && noUserInput
+						attractClick: target.question && isNil(target.nodeValue)
 					})}
 					tabIndex="0"
 					onClick={this.showField(value)}
@@ -249,7 +278,7 @@ const TargetValue = connect(
 			return () => {
 				if (!target.question) return
 				if (value != null)
-					setFormValue(target.dottedName, Math.floor(value) + '')
+					setFormValue(target.dottedName, Math.round(value) + '')
 
 				if (activeInput) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)
@@ -257,3 +286,65 @@ const TargetValue = connect(
 		}
 	}
 )
+
+// let TargetInput = withLanguage(
+// 	({
+// 		target,
+// 		targets,
+// 		activeInput,
+// 		setActiveInput,
+// 		language,
+// 		setFormValue
+// 	}) => (
+// 		<span className="targetInputContainer">
+// 			{!target.question ? (
+// 				<Montant numFractionDigit={0}>{target.nodeValue}</Montant>
+// 			) : activeInput === target.dottedName || !target.formule ? (
+// 				<Field
+// 					name={target.dottedName}
+// 					onFocus={() => {
+// 						if (target.dottedName !== activeInput) {
+// 							setActiveInput(target.dottedName)
+// 						}
+// 					}}
+// 					component={CurrencyField}
+// 					defaultValue={0}
+// 					autoFocus={target.formule}
+// 					className={classnames('targetInput', {
+// 						active: target.dottedName === activeInput
+// 					})}
+// 					language={language}
+// 				/>
+// 			) : (
+// 				<span style={{ position: 'relative' }}>
+// 					<CurrencyInput
+// 						onFocus={() => {
+// 							if (!target.question) return
+// 							if (target.nodeValue)
+// 								setFormValue(
+// 									target.dottedName,
+// 									Math.round(target.nodeValue) + ''
+// 								)
+// 							const previousActiveTarget = targets.find(
+// 								t => t.dottedName === activeInput
+// 							)
+// 							if (
+// 								previousActiveTarget?.formule ||
+// 								previousActiveTarget?.explanation?.formule
+// 							) {
+// 								setFormValue(activeInput, '')
+// 							}
+// 							setActiveInput(target.dottedName)
+// 						}}
+// 						className={classnames('targetInput', {
+// 							active: target.dottedName === activeInput
+// 						})}
+// 						language={language}
+// 						value={Math.round(target.nodeValue) || ''}
+// 					/>
+// 					<EvaporatingDifference value={target.nodeValue} />
+// 				</span>
+// 			)}
+// 		</span>
+// 	)
+// )

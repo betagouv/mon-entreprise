@@ -1,6 +1,6 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - entreprise . charges non déductibles
+  - entreprise . charges
   - auto entrepreneur . cotisations sociales
   - impôt . impôt sur le revenu à payer
   - revenu net
@@ -10,13 +10,12 @@ questions:
   - entreprise . catégorie d'activité . service ou vente
   - entreprise . catégorie d'activité . restauration ou hébergement
   - entreprise . catégorie d'activité . libérale règlementée
-  # pour l'instant pas utilisées 
+  # pour l'instant pas utilisées
   # - entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
-  - entreprise . charges
+
   - entreprise . année d'activité
 
 questions à l'affiche:
-  Charges: entreprise . charges
   Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
   Année d'activité: entreprise . année d'activité
 
