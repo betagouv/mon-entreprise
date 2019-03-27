@@ -2907,10 +2907,10 @@
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
     > Exemples de professions non-règlementées : développeur, historien, urbaniste...
-  contrôles: 
+  contrôles:
     - si: libérale règlementée
       niveau: avertissement
-      message: | 
+      message: |
         Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées : 
 
         - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant. 
@@ -3051,7 +3051,7 @@
   nom: assiette minimale
   période: flexible
   formule:
-    variations: 
+    variations:
       - si: situation personnelle . RSA
         alors: revenu professionnel
       - sinon:
@@ -3084,8 +3084,8 @@
   formule:
     multiplication:
       assiette: assiette minimale
-      taux: 
-        variations: 
+      taux:
+        variations:
           - si: situation personnelle . RSA
             alors: taux RSA
           - sinon: taux
@@ -3093,9 +3093,9 @@
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: taux RSA
   période: flexible
-  formule: 
-    multiplication: 
-      assiette: taux RSA part variable + 1.35% 
+  formule:
+    multiplication:
+      assiette: taux RSA part variable + 1.35%
       plafond: 6.35%
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
@@ -3105,15 +3105,15 @@
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: taux RSA part variable
   période: flexible
-  formule: 
-    multiplication: 
+  formule:
+    multiplication:
       assiette: 5%
       taux: revenu professionnel / seuil supérieur de réduction
 
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: seuil supérieur de réduction
   période: flexible
-  formule: 
+  formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
@@ -3141,16 +3141,15 @@
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: part revenus élevés
   période: flexible
-  applicable si: revenu professionnel > seuil
   formule:
-    multiplication:
+    barème:
       assiette: revenu professionnel
-      taux: 0.15%
-
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux . part revenus élevés
-  nom: seuil
-  période: flexible
-  formule: 5 * plafond sécurité sociale temps plein
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 5
+          taux: 0
+        - au-dessus de: 5
+          taux: 0.15%
 
 - espace: indépendant . cotisations
   nom: retraite de base
