@@ -3027,6 +3027,16 @@
       - cotisations à payer
       - CSG et CRDS (déductible)
       - formation professionnelle
+
+- espace: indépendant
+  nom: rattachement libéral règlementé
+  formule:
+    une de ces conditions: 
+      - entreprise . catégorie d'activité . libérale règlementée
+      - toutes ces conditions: 
+          - entreprise . année d'activité != 'première année'
+          - entreprise . catégorie d'activité . libérale
+
   période: flexible
   format: euros
 
@@ -3035,7 +3045,7 @@
   période: flexible
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale règlementée
+      - si: rattachement libéral règlementé
         alors: libérale règlementée
 
       - sinon: artisans commerçants libéraux
@@ -3073,7 +3083,7 @@
   titre: Maladie 2
   description: Cotisations pour les indémnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
-  non applicable si: entreprise . catégorie d'activité . libérale règlementée
+  non applicable si: rattachement libéral règlementée
   formule:
     multiplication:
       assiette: maladie . assiette
@@ -3161,7 +3171,7 @@
   période: année
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale règlementée
+      - si: rattachement libéral règlementé
         alors:
           multiplication:
             assiette: assiette
@@ -3205,7 +3215,7 @@
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale règlementée
+      - si: rattachement libéral règlementé
         alors:
           barème linéaire:
             assiette: revenu professionnel
