@@ -15,7 +15,7 @@ const AssimiléSalarié = () => (
 			</title>
 			<meta
 				name="description"
-				content="Estimez vos revenus en tant qu'assimilé salarié à partir de votre chiffre d'affaire (pour les gérants de SAS, SASU et SARL minoritaire). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'URSSAF"
+				content="Estimez vos revenus en tant qu'assimilé salarié à partir de votre chiffre d'affaire (pour les gérants de SAS, SASU et SARL minoritaire). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'Urssaf"
 			/>
 		</Helmet>
 		<h1>Simulateur de revenus pour assimilé salarié</h1>
