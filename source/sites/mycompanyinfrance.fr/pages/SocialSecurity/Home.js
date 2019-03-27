@@ -74,24 +74,33 @@ class SocialSecurity extends Component<Props, {}> {
 						{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
 							window.location.hostname
 						) ? (
-							<>
-								<h2>Que souhaitez-vous estimer ?</h2>
+							régime === 'auto-entrepreneur' ? (
 								<Link
 									className="landing__choice "
-									to={
-										régime
-											? sitePaths.sécuritéSociale[régime]
-											: sitePaths.sécuritéSociale.comparaison
-									}>
-									{emoji('👔')} La rémunération du dirigeant
+									to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
+									{emoji('💶')} Estimer ma rémunération en tant
+									qu'auto-entrepreneur
 								</Link>
-								<Link
-									className="landing__choice "
-									to={sitePaths.sécuritéSociale.salarié}>
-									{emoji('👥')} Le salaire d'un employé
-								</Link>
-								<br />
-							</>
+							) : (
+								<>
+									<h2>Que souhaitez-vous estimer ?</h2>
+									<Link
+										className="landing__choice "
+										to={
+											régime
+												? sitePaths.sécuritéSociale[régime]
+												: sitePaths.sécuritéSociale.comparaison
+										}>
+										{emoji('👔')} Votre rémunération en tant que dirigeant
+									</Link>
+									<Link
+										className="landing__choice "
+										to={sitePaths.sécuritéSociale.salarié}>
+										{emoji('👥')} Le salaire d'un employé
+									</Link>
+									<br />
+								</>
+							)
 						) : (
 							<Link
 								className="landing__choice "
