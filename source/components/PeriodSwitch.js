@@ -54,38 +54,36 @@ export default compose(
 	})
 	return (
 		<div id="PeriodSwitch">
-			<label>
-				<Field
-					name="période"
-					component="input"
-					type="radio"
-					value="mois"
-					onChange={() =>
-						updateSituation('mois', batchPeriodChange, situation, rules)
-					}
-				/>
-				<span />
-				<span className="radioText">
-					<Trans>Mois</Trans>
-				</span>
-			</label>
-			<span style={{ fontSize: '1.5em' }}>{emoji('⏳')}</span>
-			<label>
-				<Field
-					name="période"
-					component="input"
-					type="radio"
-					value="année"
-					onChange={() =>
-						updateSituation('année', batchPeriodChange, situation, rules)
-					}
-				/>
-				<span />
-
-				<span className="radioText">
-					<Trans>Année</Trans>
-				</span>
-			</label>
+			<span className="base ui__ card">
+				<label>
+					<Field
+						name="période"
+						component="input"
+						type="radio"
+						value="mois"
+						onChange={() =>
+							updateSituation('mois', batchPeriodChange, situation, rules)
+						}
+					/>
+					<span className="radioText">
+						<Trans>mois</Trans>
+					</span>
+				</label>
+				<label>
+					<Field
+						name="période"
+						component="input"
+						type="radio"
+						value="année"
+						onChange={() =>
+							updateSituation('année', batchPeriodChange, situation, rules)
+						}
+					/>
+					<span className="radioText">
+						<Trans>année</Trans>
+					</span>
+				</label>
+			</span>
 		</div>
 	)
 })

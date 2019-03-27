@@ -4,9 +4,13 @@
 	align-items: center;
 	justify-content: center;
 }
+#PeriodSwitch .base {
+	background: var(--colour);
+	border-radius: 0.3em;
+	padding: 0.4em;
+}
 
 #PeriodSwitch label {
-	margin: 0 0.4em;
 	color: var(--colour);
 }
 
@@ -15,29 +19,20 @@
 	left: -100%;
 }
 
-input[type='radio'] + span {
-	display: inline-block;
-	width: 1em;
-	height: 1em;
-	margin: 0 0.3em;
-	vertical-align: middle;
-	border-radius: 20px;
+#PeriodSwitch .radioText {
 	cursor: pointer;
-	box-shadow: 0 0 0px 1px #297da1;
-	box-shadow: 0 0 0px 1px var(--colour);
-}
-input[type='radio'] ~ span {
-	cursor: pointer;
+	border-radius: 0.3em;
+	padding: 0 0.6em;
+	color: white;
 }
 
-input[type='radio']:checked + span {
-	background: #297da1;
-	background: var(--colour);
+#PeriodSwitch .radioText:hover {
+	text-decoration: underline;
+}
+
+#PeriodSwitch input[type='radio']:checked + .radioText {
+	background: white;
 	border: 4px solid white;
-}
-input[type='radio']:focus ~ .radioText {
-	border: 1px dotted gray;
-}
-input[type='radio']:checked ~ .radioText {
-	font-weight: 500;
+	color: var(--colour);
+	text-decoration: none;
 }
