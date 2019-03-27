@@ -1,15 +1,14 @@
 objectifs:
   - entreprise . chiffre d'affaires
+  - entreprise . charges
   - contrat salarié . cotisations
   - impôt . neutre
   - contrat salarié . salaire . net après impôt
 
 questions:
-  - entreprise . charges
   - entreprise . année d'activité
 
 questions à l'affiche:
-  Charges: entreprise . charges
   Année d'activité: entreprise . année d'activité
 
 situation:
