@@ -3469,15 +3469,14 @@
       multiplicateur: ACRE . plafond
       tranches:
         - en-dessous de: 1
-          taux: ACRE * taux
+          taux: ACRE * taux de cotisation
         - au-dessus de: 1
-          taux: taux
+          taux: taux de cotisation
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
 - espace: auto entrepreneur . cotisations sociales
-  nom: taux
-  titre: taux de cotisation
+  nom: taux de cotisation
   description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
@@ -3485,14 +3484,24 @@
       - si:
           une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
-
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 12.8%
       - sinon: 22%
 
+- espace: entreprise
+  nom: ACCRE obtenu
+  question: Avez-vous obtenu l'ACCRE lors de votre création d'entreprise ?
+  description: |
+    Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appellait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande. 
+  par défaut: non
+
 - espace: auto entrepreneur . cotisations sociales
   nom: ACRE
   titre: Taux ACRE
+  applicable si: 
+    une de ces conditions: 
+      - entreprise . année d'activité = 'première année'
+      - entreprise . ACCRE obtenu 
   période: flexible
   description: Ce taux réduit le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
   formule:
