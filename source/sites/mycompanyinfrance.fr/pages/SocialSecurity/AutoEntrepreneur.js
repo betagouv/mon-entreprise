@@ -15,7 +15,7 @@ const AutoEntrepreneur = ({ noUserInput }) => (
 			</title>
 			<meta
 				name="description"
-				content="Estimez vos revenus en tant qu'auto-entrepreneur à partir de votre chiffre d'affaire. Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'URSSAF"
+				content="Estimez vos revenus en tant qu'auto-entrepreneur à partir de votre chiffre d'affaire. Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'Urssaf"
 			/>
 		</Helmet>
 		<h1>Simulateur auto-entrepreneur 2019</h1>

@@ -73,7 +73,7 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 				<div className="ui__ container">
 					<div id="footerIcons">
 						<a href="https://www.urssaf.fr">
-							<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
+							<img src={urssafSvg} alt="un service fourni par l'Urssaf" />
 						</a>
 						<a href="https://beta.gouv.fr">
 							<img
@@ -125,7 +125,7 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 					{i18n.language === 'en' && (
 						<p className="ui__ notice">
 							This website is provided by the{' '}
-							<a href="https://www.urssaf.fr">URSSAF</a>, the French social
+							<a href="https://www.urssaf.fr">Urssaf</a>, the French social
 							security contributions collector, and the government’s public
 							startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>
 							.
