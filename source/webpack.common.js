@@ -158,11 +158,11 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		inject: false,
 
 		template: 'index.html',
-		title: 'publicodes ✍️',
-		description:
-			'Une base de connaissance ? Du code ? Les deux à la fois. Lancement imminent !',
-		filename: 'publicodes.html',
 		logo: 'https://futur.eco/images/logo.png',
 		chunks: ['publicodes']
+
+			title: 'Futureco ✍️',
+			description: "L'impact sur le climat de vos gestes quotidiens",
+			filename: 'publicodes.html'
 	})
 ]
