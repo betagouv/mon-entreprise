@@ -66,9 +66,8 @@ module.exports = {
 		new HTMLPlugin({
 			template: 'index.html',
 			chunks: ['publicodes'],
-			title: 'publicodes ✍️',
-			description:
-				'Une base de connaissance ? Du code ? Les deux à la fois. Lancement imminent !',
+			title: 'Futureco ✍️',
+			description: "L'impact sur le climat de vos gestes quotidiens",
 			filename: 'publicodes.html'
 		}),
 

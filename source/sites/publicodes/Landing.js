@@ -8,12 +8,21 @@ let jsonBinUrl = 'https://api.jsonbin.io/b/5c93d3257726fe2562cd71bd'
 
 export default () => (
 	<div className="ui__ container">
-		<p style={{ marginTop: '5rem' }}>
-			Le <strong>dérèglement climatique</strong> n'est plus une menace lointaine
-			et incertaine, c'est une <strong>actualité</strong>. Comment éviter la
-			catastrophe ? Chaque aspect de notre vie moderne a un impact. Il suffit de
-			le savoir ! <Link to="/à-propos">En savoir plus</Link>.{' '}
-		</p>
+		<section
+			id="intro"
+			css={`
+				margin-top: 1em;
+				display: flex;
+				align-items: center;
+			`}>
+			<img css="width: 6em; margin-right: 1em;" src={require('./logo.png')} />
+			<p>
+				Le <strong>dérèglement climatique</strong> n'est plus une menace
+				lointaine et incertaine, c'est une <strong>actualité</strong>. Comment
+				éviter la catastrophe ? Chaque aspect de notre vie moderne a un impact.
+				Il suffit de le connaître ! <Link to="/à-propos">En savoir plus</Link>.{' '}
+			</p>
+		</section>
 		<h1>Quel est l'impact de ...</h1>
 		<Search />
 		<Suggestions />
