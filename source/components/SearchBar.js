@@ -9,6 +9,7 @@ import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import { capitalise0 } from '../utils'
+import searchWeights from './searchWeights'
 
 class SearchBar extends React.Component {
 	componentDidMount() {
@@ -17,24 +18,7 @@ class SearchBar extends React.Component {
 	UNSAFE_componentWillMount() {
 		let { rules } = this.props
 		var options = {
-			keys: [
-				{
-					name: 'name',
-					weight: 0.3
-				},
-				{
-					name: 'title',
-					weight: 0.3
-				},
-				{
-					name: 'espace',
-					weight: 0.2
-				},
-				{
-					name: 'description',
-					weight: 0.2
-				}
-			]
+			keys: searchWeights
 		}
 		this.fuse = new Fuse(
 			rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
