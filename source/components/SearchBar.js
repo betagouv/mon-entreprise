@@ -9,6 +9,7 @@ import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import { capitalise0 } from '../utils'
+import searchWeights from './searchWeights'
 
 function SearchBar({
 	rules,
@@ -23,12 +24,7 @@ function SearchBar({
 	const { i18n } = useTranslation()
 
 	const options = {
-		keys: [
-			{ name: 'name', weight: 0.3 },
-			{ name: 'title', weight: 0.3 },
-			{ name: 'espace', weight: 0.2 },
-			{ name: 'description', weight: 0.2 }
-		]
+		keys: searchWeights
 	}
 	if (!fuse.current) {
 		// This operation is expensive, we don't want to do it everytime we re-render, so we cache its result in a reference
