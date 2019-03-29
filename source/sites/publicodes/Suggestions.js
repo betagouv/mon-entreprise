@@ -1,17 +1,15 @@
 import { React, emoji } from 'Components'
 import { connect } from 'react-redux'
-import simulateurs from './simulateurs.yaml'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import { findRuleByDottedName } from 'Engine/rules'
 import { Link } from 'react-router-dom'
 
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
-	({ rules }) => (
+	({ input, rules }) => (
 		<section style={{ marginTop: '3rem' }}>
-			<h2>Suggestions :</h2>
+			<h2 css="font-size: 100%;">Suggestions :</h2>
 			<ul css="display: flex; flex-wrap: wrap ">
-				{simulateurs
-					.map(dottedName => findRuleByDottedName(rules, dottedName))
+				{rules
+					.filter(rule => rule.exposé === 'oui')
 					.map(r => (
 						<Suggestion key={r.dottedName} {...r} />
 					))}
