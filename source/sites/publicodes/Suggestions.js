@@ -1,21 +1,55 @@
 import { React, emoji } from 'Components'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { Link } from 'react-router-dom'
+import Fuse from 'fuse.js'
+import searchWeights from 'Components/searchWeights'
+import { pick } from 'ramda'
+import { findRuleByDottedName } from 'Engine/rules'
+
+let buildFuse = rules =>
+	new Fuse(
+		rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
+		{
+			keys: searchWeights,
+			threshold: 0.3
+		}
+	)
 
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
-	({ input, rules }) => (
-		<section style={{ marginTop: '3rem' }}>
-			<h2 css="font-size: 100%;">Suggestions :</h2>
-			<ul css="display: flex; flex-wrap: wrap ">
-				{rules
-					.filter(rule => rule.exposé === 'oui')
-					.map(r => (
-						<Suggestion key={r.dottedName} {...r} />
-					))}
-			</ul>
-		</section>
-	)
+	({ input, rules }) => {
+		let exposedRules = rules.filter(rule => rule.exposé === 'oui')
+
+		let [fuse, setFuse] = useState(null)
+		useEffect(() => setFuse(buildFuse(exposedRules)), [])
+
+		let filteredRules = fuse && input ? fuse.search(input) : exposedRules
+
+		return (
+			<section style={{ marginTop: '3rem' }}>
+				<h2 css="font-size: 100%;">
+					{(input ? 'Résultats' : 'Suggestions') + ' :'}
+				</h2>
+				{filteredRules && (
+					<ul css="display: flex; flex-wrap: wrap ">
+						{filteredRules.map(({ dottedName }) => (
+							<Suggestion
+								key={dottedName}
+								{...findRuleByDottedName(rules, dottedName)}
+							/>
+						))}
+					</ul>
+				)}
+				{input && (
+					<p>
+						Rien trouvé ? Pas de problème : tout le monde pourra bientôt ajouter
+						des sujets {emoji('🤩')}
+					</p>
+				)}
+			</section>
+		)
+	}
 )
 
 let Suggestion = ({ dottedName, formule, title, icônes }) => (
