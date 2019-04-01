@@ -41,12 +41,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 						))}
 					</ul>
 				)}
-				{input && (
-					<p>
-						Rien trouvé ? Pas de problème : tout le monde pourra bientôt ajouter
-						des sujets {emoji('🤩')}
-					</p>
-				)}
+				{input && <p>Rien trouvé {emoji('😶')}. </p>}
 			</section>
 		)
 	}
