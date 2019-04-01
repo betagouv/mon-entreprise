@@ -51,12 +51,12 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => (
 	<li
 		key={dottedName}
 		css={`
-			font-size: 120%;
+			font-size: 100%;
 			list-style-type: none;
 			border-radius: 1.5rem;
-			padding: 1rem;
-			margin: 1rem;
-			width: 12rem;
+			padding: 0.6rem;
+			margin: 0.6rem;
+			width: 10rem;
 			min-height: 7em;
 			position: relative;
 			display: flex;
