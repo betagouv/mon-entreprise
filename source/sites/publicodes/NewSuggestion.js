@@ -47,7 +47,7 @@ export default ({ input }) => {
 					align-items: center;
 					justify-content: center;
 				`}>
-				Faire une suggestion
+				Contribuer
 				<button
 					css={`
 						border-radius: 10em;
@@ -83,8 +83,8 @@ export default ({ input }) => {
 						Donnez-nous une base de travail :
 						<ul>
 							<li>
-								une source <strong>chiffrée</strong> (par exemple un lien vers
-								un article de presse)
+								une source <strong>chiffrée</strong> (par exemple le lien d'un
+								article de presse)
 							</li>
 							<li>ou une ébauche de calcul faite par vos soins</li>
 						</ul>
