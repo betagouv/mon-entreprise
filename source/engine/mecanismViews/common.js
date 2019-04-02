@@ -21,7 +21,7 @@ let treatValue = (data, language) =>
 
 export let formatNumber = (data, language) =>
 	!isNaN(data)
-		? Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(data)
+		? Intl.NumberFormat(language, { maximumFractionDigits: 4 }).format(data)
 		: data
 
 export let NodeValue = withLanguage(({ data, language }) => (
