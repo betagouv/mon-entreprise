@@ -2661,7 +2661,7 @@
 - nom: revenu net
   titre: Revenu net
   format: euros
-  résumé: Après cotisations et impôt sur le revenu
+  résumé: Après le paiement de l'impôt sur le revenu
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
@@ -2720,7 +2720,7 @@
   formule:
     somme:
       - contrat salarié . rémunération . total
-      - indépendant . revenu brut
+      - indépendant . revenu total du dirigeant
       - auto entrepreneur . base des cotisations
 
 - espace: entreprise
@@ -2757,7 +2757,7 @@
   formule: charges
   période: flexible
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions
   nom: réduction ACRE
   applicable si: entreprise . année d'activité = 'première année'
   période: flexible
@@ -2766,7 +2766,7 @@
       assiette: cotisations - cotisations . retraite complémentaire
       taux: taux ACRE
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions . réduction ACRE
   nom: taux ACRE
   période: flexible
   formule:
@@ -2786,6 +2786,7 @@
 
 - espace: indépendant
   nom: revenu professionnel
+  résumé: Après le paiement des cotisations et des charges
   question: Quel est votre revenu professionnel ?
   description: |
 
@@ -2798,7 +2799,7 @@
   formule:
     inversion numérique:
       avec:
-        - revenu brut
+        - revenu total du dirigeant
         - revenu net
         - entreprise . chiffre d'affaires
 
@@ -2907,9 +2908,9 @@
     - si: libérale règlementée
       niveau: avertissement
       message: |
-        Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées : 
+        Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées :
 
-        - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant. 
+        - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant.
         - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
         - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 
@@ -2999,12 +3000,12 @@
   par défaut: non
   question: Activité à la sécurité sociale des indépendants ?
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions
   nom: cotisations à payer
   période: flexible
   formule: cotisations - réduction ACRE
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions
   nom: cotisations
   période: flexible
   références:
@@ -3020,10 +3021,17 @@
 
 - espace: indépendant
   nom: cotisations et contributions
-
-- espace: indépendant . cotisations
+  formule:
+    somme:
+      - cotisations à payer
+      - CSG et CRDS (déductible)
+      - formation professionnelle
   période: flexible
+  format: euros
+
+- espace: indépendant . cotisations et contributions . cotisations
   nom: maladie
+  période: flexible
   formule:
     variations:
       - si: entreprise . catégorie d'activité . libérale règlementée
@@ -3031,7 +3039,7 @@
 
       - sinon: artisans commerçants libéraux
 
-- espace: indépendant . cotisations . maladie
+- espace: indépendant . cotisations et contributions . cotisations . maladie
   période: flexible
   nom: libérale règlementée
   titre: maladie libérale règlementée
@@ -3043,9 +3051,11 @@
         0: 1.5%
         1.1: 6.5%
 
-- espace: indépendant . cotisations . maladie
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie
   nom: assiette
   titre: assiette maladie
+
   période: flexible
   formule:
     variations:
@@ -3058,7 +3068,7 @@
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: indemnités journalières maladie
   titre: Maladie 2
   description: Cotisations pour les indémnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
@@ -3070,7 +3080,7 @@
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-- espace: indépendant . cotisations . maladie
+- espace: indépendant . cotisations et contributions . cotisations . maladie
   nom: artisans commerçants libéraux
   période: flexible
   formule:
@@ -3085,13 +3095,13 @@
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
   note: |
-    On retrouve dans le décret ci-dessous la phrase suivante : 
+    On retrouve dans le décret ci-dessous la phrase suivante :
 
     > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nou avons retenue.
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
   nom: taux variable
   période: flexible
   formule:
@@ -3100,7 +3110,7 @@
         alors: taux RSA
       - sinon: taux
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
   nom: taux RSA
   période: flexible
   formule:
@@ -3110,7 +3120,8 @@
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
   nom: taux RSA part variable
   période: flexible
   formule:
@@ -3118,7 +3129,7 @@
       assiette: 5%
       taux: revenu professionnel / seuil supérieur de réduction
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
   nom: seuil supérieur de réduction
   période: flexible
   formule:
@@ -3126,7 +3137,7 @@
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
   nom: taux
   période: flexible
   formule:
@@ -3139,15 +3150,15 @@
         0.4: 3.168%
         1.1: 6.35%
   note: |
-    Cette cotisation est à la base très simple : la cotisation maladie est de 7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà. Cependant : 
-    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs. 
+    Cette cotisation est à la base très simple : la cotisation maladie est de 7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà. Cependant :
+    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs.
     - des réductions de cotisation ont été introduites : une exonération simple en-dessous de 110% du plafond de la sécurité sociale, puis une exonération renforcée en-dessous de 40%. Le barème ci-dessus prend en compte ces réductions.
 
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: retraite de base
   période: année
   formule:
@@ -3174,7 +3185,7 @@
               - au-dessus de: 1
                 taux: 0.6%
 
-- espace: indépendant . cotisations . retraite de base
+- espace: indépendant . cotisations et contributions . cotisations . retraite de base
   nom: assiette
   période: flexible
   titre: assiette retraite de base
@@ -3189,7 +3200,7 @@
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: retraite complémentaire
   période: année
   format: euros
@@ -3235,7 +3246,7 @@
               - au-dessus de: 162096
                 taux: 0%
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: invalidité et décès
   période: flexible
   formule:
@@ -3246,7 +3257,7 @@
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
-- espace: indépendant . cotisations . invalidité et décès
+- espace: indépendant . cotisations et contributions . cotisations . invalidité et décès
   nom: assiette
   période: flexible
   titre: assiette invalidité et décès
@@ -3304,7 +3315,7 @@
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: allocations familiales
   période: flexible
   formule:
@@ -3317,14 +3328,20 @@
         1.4: 3.1%
 
 - espace: indépendant
-  nom: revenu brut
+  nom: revenu total du dirigeant
   période: flexible
   formule:
     somme:
       - revenu professionnel
-      - cotisations à payer
-      - cotisations et contributions . CSG et CRDS (déductible)
-      - cotisations et contributions . formation professionnelle
+      - cotisations et contributions
+
+- espace: indépendant
+  nom: impôt et contributions non déductibles
+  période: flexible
+  formule:
+    somme:
+      - impôt . impôt sur le revenu à payer
+      - cotisations et contributions . CSG et CRDS (non déductible)
 
 - nom: auto entrepreneur
   icônes: 🚶
