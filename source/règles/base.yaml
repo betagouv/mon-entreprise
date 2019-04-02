@@ -3048,7 +3048,8 @@
         1.1: 6.5%
 
 - espace: indépendant . cotisations . maladie
-  nom: assiette minimale
+  nom: assiette
+  titre: assiette maladie
   période: flexible
   formule:
     variations:
@@ -3069,7 +3070,7 @@
   non applicable si: entreprise . catégorie d'activité . libérale règlementée
   formule:
     multiplication:
-      assiette: maladie . assiette minimale
+      assiette: maladie . assiette
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
@@ -3083,7 +3084,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette minimale
+      assiette: assiette
       taux:
         variations:
           - si: situation personnelle . RSA
@@ -3189,7 +3190,7 @@
 - espace: indépendant . cotisations . retraite de base
   nom: assiette
   période: flexible
-  titre: assiette minimale retraite de base
+  titre: assiette retraite de base
   formule:
     variations:
       - si: ≠ situation personnelle . RSA
@@ -3261,7 +3262,7 @@
 - espace: indépendant . cotisations . invalidité et décès
   nom: assiette
   période: flexible
-  titre: assiette minimale invalidité et décès
+  titre: assiette invalidité et décès
   formule:
     variations:
       - si: ≠ situation personnelle . RSA
