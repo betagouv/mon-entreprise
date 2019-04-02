@@ -5,7 +5,6 @@ import { React, T } from 'Components'
 import Answers from 'Components/AnswerList'
 import Conversation from 'Components/conversation/Conversation'
 import PageFeedback from 'Components/Feedback/PageFeedback'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
@@ -101,10 +100,11 @@ export default compose(
 							)}
 						</>
 					)}
+
 					{showTargets && (
 						<Animate.fromBottom>{this.props.targets}</Animate.fromBottom>
 					)}
-
+					{!noUserInput && this.props.explanation}
 					{!noUserInput && !noFeedback && (
 						<Animate.appear delay={2000}>
 							<PageFeedback
@@ -117,8 +117,6 @@ export default compose(
 							/>
 						</Animate.appear>
 					)}
-					<PeriodSwitch />
-					{!noUserInput && this.props.explanation}
 				</>
 			)
 		}
