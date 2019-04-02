@@ -3114,8 +3114,6 @@
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-    Cette formule n'est pas intuitive. Si vous en avez une meilleure représentation, n'hésitez pas à contribuer ! 
-
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: taux RSA part variable
   période: flexible
