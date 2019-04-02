@@ -29,7 +29,8 @@ const Montant = ({
 	<span className={'montant ' + className} style={style}>
 		{value === 0 || Number.isNaN(value)
 			? '—'
-			: NumberFormat(language, {
+			: // // $FlowFixMe
+			  NumberFormat(language, {
 					style: type,
 					currency: 'EUR',
 					maximumFractionDigits: numFractionDigit,
