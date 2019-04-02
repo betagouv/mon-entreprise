@@ -266,7 +266,7 @@ const TargetValue = connect(
 						editable: target.question,
 						attractClick: target.question && isNil(target.nodeValue)
 					})}
-					tabIndex="0"
+					{...(target.question ? { tabIndex: 0 } : {})}
 					onClick={this.showField(value)}
 					onFocus={this.showField(value)}>
 					<AnimatedTargetValue value={value} />
@@ -277,7 +277,7 @@ const TargetValue = connect(
 			let { target, setFormValue, activeInput, setActiveInput } = this.props
 			return () => {
 				if (!target.question) return
-				if (value != null)
+				if (value != null && !Number.isNaN(value))
 					setFormValue(target.dottedName, Math.round(value) + '')
 
 				if (activeInput) setFormValue(activeInput, '')
@@ -286,65 +286,3 @@ const TargetValue = connect(
 		}
 	}
 )
-
-// let TargetInput = withLanguage(
-// 	({
-// 		target,
-// 		targets,
-// 		activeInput,
-// 		setActiveInput,
-// 		language,
-// 		setFormValue
-// 	}) => (
-// 		<span className="targetInputContainer">
-// 			{!target.question ? (
-// 				<Montant numFractionDigit={0}>{target.nodeValue}</Montant>
-// 			) : activeInput === target.dottedName || !target.formule ? (
-// 				<Field
-// 					name={target.dottedName}
-// 					onFocus={() => {
-// 						if (target.dottedName !== activeInput) {
-// 							setActiveInput(target.dottedName)
-// 						}
-// 					}}
-// 					component={CurrencyField}
-// 					defaultValue={0}
-// 					autoFocus={target.formule}
-// 					className={classnames('targetInput', {
-// 						active: target.dottedName === activeInput
-// 					})}
-// 					language={language}
-// 				/>
-// 			) : (
-// 				<span style={{ position: 'relative' }}>
-// 					<CurrencyInput
-// 						onFocus={() => {
-// 							if (!target.question) return
-// 							if (target.nodeValue)
-// 								setFormValue(
-// 									target.dottedName,
-// 									Math.round(target.nodeValue) + ''
-// 								)
-// 							const previousActiveTarget = targets.find(
-// 								t => t.dottedName === activeInput
-// 							)
-// 							if (
-// 								previousActiveTarget?.formule ||
-// 								previousActiveTarget?.explanation?.formule
-// 							) {
-// 								setFormValue(activeInput, '')
-// 							}
-// 							setActiveInput(target.dottedName)
-// 						}}
-// 						className={classnames('targetInput', {
-// 							active: target.dottedName === activeInput
-// 						})}
-// 						language={language}
-// 						value={Math.round(target.nodeValue) || ''}
-// 					/>
-// 					<EvaporatingDifference value={target.nodeValue} />
-// 				</span>
-// 			)}
-// 		</span>
-// 	)
-// )
