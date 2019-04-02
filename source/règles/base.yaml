@@ -2661,7 +2661,7 @@
 - nom: revenu net
   titre: Revenu net
   format: euros
-  résumé: Après le paiement de l'impôt sur le revenu
+  résumé: Après impôt sur le revenu
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
@@ -2786,7 +2786,7 @@
 
 - espace: indépendant
   nom: revenu professionnel
-  résumé: Après le paiement des cotisations et des charges
+  résumé: Après cotisations et des charges
   question: Quel est votre revenu professionnel ?
   description: |
 
