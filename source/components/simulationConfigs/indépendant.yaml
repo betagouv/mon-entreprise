@@ -1,9 +1,9 @@
 objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
-  - indépendant . cotisations à payer
+  - indépendant . cotisations et contributions
   - indépendant . revenu professionnel
-  - impôt . impôt sur le revenu à payer
+  - indépendant . impôt et contributions non déductibles
   - revenu net
 
 questions:

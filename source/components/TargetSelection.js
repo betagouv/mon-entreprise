@@ -9,7 +9,6 @@ import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { Component, PureComponent } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
@@ -33,7 +32,6 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
-	withRouter,
 	connect(
 		state => ({
 			getTargetValue: dottedName =>
@@ -61,7 +59,6 @@ export default compose(
 			const props = this.props
 			const targets = props.analysis ? props.analysis.targets : []
 			// Initialize defaultValue for target that can't be computed
-
 			targets
 				.filter(
 					target =>
@@ -112,9 +109,8 @@ export default compose(
 					conversationStarted,
 					activeInput,
 					setActiveInput,
-					analysis,
-
-					match
+					setFormValue,
+					analysis
 				} = this.props,
 				targets = analysis ? analysis.targets : []
 
@@ -130,58 +126,17 @@ export default compose(
 								)
 							})
 							.map(target => (
-								<li
-									key={target.name}
-									className={!target.question ? 'not-editable' : undefined}>
-									<Animate.appear alreadyPresent={!target.nodeValue}>
-										<div>
-											<div className="main">
-												<Header
-													{...{
-														match,
-														target,
-														conversationStarted,
-														isActiveInput: activeInput === target.dottedName
-													}}
-												/>
-												{!target.question && (
-													<span
-														style={{
-															flex: 1,
-															borderBottom: '1px dashed #ffffff91',
-															marginLeft: '1rem'
-														}}
-													/>
-												)}
-												<TargetInputOrValue
-													{...{
-														target,
-														targets,
-														activeInput,
-														setActiveInput,
-														setFormValue: this.props.setFormValue
-													}}
-												/>
-											</div>
-											{activeInput === target.dottedName &&
-												!conversationStarted && (
-													<Animate.fromTop>
-														<InputSuggestions
-															suggestions={target.suggestions}
-															onFirstClick={value =>
-																this.props.setFormValue(
-																	target.dottedName,
-																	'' + value
-																)
-															}
-															rulePeriod={target.période}
-															colouredBackground={true}
-														/>
-													</Animate.fromTop>
-												)}
-										</div>
-									</Animate.appear>
-								</li>
+								<Target
+									key={target.dottedName}
+									{...{
+										conversationStarted,
+										target,
+										setFormValue,
+										activeInput,
+										setActiveInput,
+										targets
+									}}
+								/>
 							))}
 					</ul>
 				</div>
@@ -189,6 +144,67 @@ export default compose(
 		}
 	}
 )
+
+const Target = ({
+	target,
+	activeInput,
+	conversationStarted,
+	targets,
+	setActiveInput,
+	setFormValue
+}) => {
+	const isSmallTarget =
+		!target.question || !target.formule || isEmpty(target.formule)
+	return (
+		<li
+			key={target.name}
+			className={isSmallTarget ? 'small-target' : undefined}>
+			<Animate.appear alreadyPresent={!target.nodeValue}>
+				<div>
+					<div className="main">
+						<Header
+							{...{
+								target,
+								conversationStarted,
+								isActiveInput: activeInput === target.dottedName
+							}}
+						/>
+						{isSmallTarget && (
+							<span
+								style={{
+									flex: 1,
+									borderBottom: '1px dashed #ffffff91',
+									marginLeft: '1rem'
+								}}
+							/>
+						)}
+						<TargetInputOrValue
+							{...{
+								target,
+								targets,
+								activeInput,
+								setActiveInput,
+								setFormValue
+							}}
+						/>
+					</div>
+					{activeInput === target.dottedName && !conversationStarted && (
+						<Animate.fromTop>
+							<InputSuggestions
+								suggestions={target.suggestions}
+								onFirstClick={value =>
+									this.props.setFormValue(target.dottedName, '' + value)
+								}
+								rulePeriod={target.période}
+								colouredBackground={true}
+							/>
+						</Animate.fromTop>
+					)}
+				</div>
+			</Animate.appear>
+		</li>
+	)
+}
 
 let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
 	const ruleLink =
