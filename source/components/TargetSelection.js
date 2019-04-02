@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -84,7 +85,9 @@ export default compose(
 			return (
 				<div id="targetSelection">
 					<QuickLinks />
+
 					{!noUserInput && <Controls controls={analysis.controls} />}
+					<PeriodSwitch />
 					<div style={{ height: '10px' }}>
 						<Progress percent={progress} />
 					</div>
