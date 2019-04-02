@@ -1,5 +1,6 @@
 /* @flow */
 import withLanguage from 'Components/utils/withLanguage'
+import { memoizeWith } from 'ramda'
 import React from 'react'
 import './Montant.css'
 
@@ -15,6 +16,8 @@ type ConnectedProps = {
 	language: string
 }
 
+const NumberFormat = memoizeWith(JSON.stringify, Intl.NumberFormat)
+
 const Montant = ({
 	language,
 	numFractionDigit = 2,
@@ -26,7 +29,7 @@ const Montant = ({
 	<span className={'montant ' + className} style={style}>
 		{value === 0 || Number.isNaN(value)
 			? '—'
-			: Intl.NumberFormat(language, {
+			: NumberFormat(language, {
 					style: type,
 					currency: 'EUR',
 					maximumFractionDigits: numFractionDigit,

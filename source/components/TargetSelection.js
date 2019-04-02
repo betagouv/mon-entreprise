@@ -1,29 +1,24 @@
-import classNames from 'classnames'
-import Controls from 'Components/Controls'
-import InputSuggestions from 'Components/conversation/InputSuggestions'
-import withColours from 'Components/utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName } from 'Engine/rules'
-import { compose, propEq } from 'ramda'
-import React, { Component } from 'react'
-import { withTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
-import { change, Field, formValueSelector, reduxForm } from 'redux-form'
-import {
-	analysisWithDefaultsSelector,
-	flatRulesSelector,
-	nextStepsSelector,
-	noUserInputSelector
-} from 'Selectors/analyseSelectors'
-import Animate from 'Ui/animate'
-import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
-import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader'
-import CurrencyInput from './CurrencyInput/CurrencyInput'
-import QuickLinks from './QuickLinks'
-import './TargetSelection.css'
+import classNames from 'classnames';
+import Controls from 'Components/Controls';
+import InputSuggestions from 'Components/conversation/InputSuggestions';
+import withColours from 'Components/utils/withColours';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { encodeRuleName } from 'Engine/rules';
+import { compose, propEq } from 'ramda';
+import React, { Component, PureComponent } from 'react';
+import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
+import { change, Field, formValueSelector, reduxForm } from 'redux-form';
+import { analysisWithDefaultsSelector, flatRulesSelector, nextStepsSelector, noUserInputSelector } from 'Selectors/analyseSelectors';
+import Animate from 'Ui/animate';
+import AnimatedTargetValue from 'Ui/AnimatedTargetValue';
+import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader';
+import CurrencyInput from './CurrencyInput/CurrencyInput';
+import QuickLinks from './QuickLinks';
+import './TargetSelection.css';
 
 const MAX_NUMBER_QUESTION = 18
 export default compose(
@@ -56,7 +51,8 @@ export default compose(
 		})
 	)
 )(
-	class TargetSelection extends Component {
+	class TargetSelection extends PureComponent {
+
 		render() {
 			let { colours, noUserInput, analysis, progress } = this.props
 
