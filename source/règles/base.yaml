@@ -3077,19 +3077,32 @@
 - espace: indépendant . cotisations . maladie
   nom: artisans commerçants libéraux
   période: flexible
-  formule: barème principal + part revenus élevés
+  formule:
+    barème:
+      assiette: assiette
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 5
+          taux: taux variable
+        - au-dessus de: 5
+          taux: 6.5%
+  références:
+    décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
+  note: |
+    On retrouve dans le décret ci-dessous la phrase suivante : 
+
+    > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
+
+    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nou avons retenue.
 
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
-  nom: barème principal
+  nom: taux variable
   période: flexible
   formule:
-    multiplication:
-      assiette: assiette
-      taux:
-        variations:
-          - si: situation personnelle . RSA
-            alors: taux RSA
-          - sinon: taux
+    variations:
+      - si: situation personnelle . RSA
+        alors: taux RSA
+      - sinon: taux
 
 - espace: indépendant . cotisations . maladie . artisans commerçants libéraux
   nom: taux RSA
@@ -3139,26 +3152,6 @@
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
-  nom: part revenus élevés
-  période: flexible
-  formule:
-    barème:
-      assiette: revenu professionnel
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - en-dessous de: 5
-          taux: 0
-        - au-dessus de: 5
-          taux: 0.15%
-  références:
-    décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
-  note: |
-    On retrouve dans le décret ci-dessous la phrase suivante : 
-
-    > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
-
-    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nou avons retenue.
 
 - espace: indépendant . cotisations
   nom: retraite de base
