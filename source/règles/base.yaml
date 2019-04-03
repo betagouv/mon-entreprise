@@ -3087,7 +3087,7 @@
   titre: Maladie 2
   description: Cotisations pour les indémnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
-  non applicable si: rattachement libéral règlementée
+  non applicable si: rattachement libéral règlementé
   formule:
     multiplication:
       assiette: maladie . assiette
