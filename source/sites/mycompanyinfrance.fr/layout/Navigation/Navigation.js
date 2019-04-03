@@ -4,8 +4,8 @@ import withSitePaths from 'Components/utils/withSitePaths';
 import { compose } from 'ramda';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { NavLink, } from 'react-router-dom';
-import {  withRouter } from "react-router";
+import { withRouter } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import companySvg from '../../images/company.svg';
 import estimateSvg from '../../images/estimate.svg';
 import hiringSvg from '../../images/hiring.svg';
@@ -14,7 +14,7 @@ import NavOpener from './NavOpener';
 import SideBar from './SideBar';
 import type { TFunction } from 'react-i18next'
 
-type OwnProps = {};
+type OwnProps = {}
 type Props = OwnProps & {
 	companyProgress: number,
 	estimationProgress: number,
@@ -29,9 +29,11 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 			<nav className="navigation">
 				<ul>
 					<li>
-						<NavLink to='/' exact className="navigationItem"><T>Accueil</T></NavLink>
+						<NavLink to="/" exact className="navigationItem">
+							<T>Accueil</T>
+						</NavLink>
 					</li>
-						<li>
+					<li>
 						<NavOpener
 							to={sitePaths.entreprise.index}
 							exact={false}
@@ -76,7 +78,8 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 														<li>
 															<NavLink
 																to={
-																	sitePaths.entreprise.statutJuridique.soleProprietorship
+																	sitePaths.entreprise.statutJuridique
+																		.soleProprietorship
 																}>
 																<T k="responsabilité.titre">Responsabilité</T>
 															</NavLink>
@@ -203,41 +206,49 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 								</>
 							}>
 							<ul>
-							{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(window.location.hostname) &&
-								<li>
-									<NavOpener title={<T>Statut du dirigeant</T>}>
-										<ul>
-											<li>
-												<NavLink
-													exact
-													to={sitePaths.sécuritéSociale['assimilé-salarié']}>
-													<T>Assimilé salarié</T>
-												</NavLink>
-											</li>
-											<li>
-												<NavLink
-													exact
-													to={sitePaths.sécuritéSociale.indépendant}>
-													<T>Indépendant</T>
-												</NavLink>
-											</li>
-											<li>
-												<NavLink
-													exact
-													to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
-													<T>Auto-entrepreneur</T>
-												</NavLink>
-											</li>
-											<li>
-												<NavLink
-													exact
-													to={sitePaths.sécuritéSociale.comparaison}>
-													<T>Comparaison des régimes</T>
-												</NavLink>
-											</li>
-										</ul>
-									</NavOpener>
-								</li>}
+								{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+									window.location.hostname
+								) && (
+									<li>
+										<NavOpener
+											to={sitePaths.sécuritéSociale.selection}
+											title={<T>Rémunération du dirigeant</T>}>
+											<ul>
+												<li>
+													<NavLink
+														exact
+														to={sitePaths.sécuritéSociale['assimilé-salarié']}>
+														<T>Assimilé salarié</T>
+													</NavLink>
+												</li>
+												<li>
+													<NavLink
+														exact
+														to={sitePaths.sécuritéSociale.indépendant}>
+														<T>Indépendant</T>
+													</NavLink>
+												</li>
+												<li>
+													<NavLink
+														exact
+														to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
+														<T>Auto-entrepreneur</T>
+													</NavLink>
+												</li>
+												{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
+			window.location.hostname
+		) &&
+												<li>
+													<NavLink
+														exact
+														to={sitePaths.sécuritéSociale.comparaison}>
+														<T>Comparaison des régimes</T>
+													</NavLink>
+												</li>}
+											</ul>
+										</NavOpener>
+									</li>
+								)}
 								<li>
 									<NavLink exact to={sitePaths.sécuritéSociale.salarié}>
 										<T>Simulateur de coût d'embauche</T>

@@ -85,46 +85,34 @@ class SocialSecurity extends Component<Props, {}> {
 								</div>
 							</>
 						)}
-						{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-							window.location.hostname
-						) ? (
-							régime === 'auto-entrepreneur' ? (
-								<Link
-									className="ui__ button-choice "
-									to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
-									{emoji('💶')} Estimer ma rémunération en tant
-									qu'auto-entrepreneur
-								</Link>
-							) : (
-								<>
-									<h2>Que souhaitez-vous estimer ?</h2>
-									<Link
-										className="ui__ button-choice "
-										to={
-											régime
-												? sitePaths.sécuritéSociale[régime]
-												: sitePaths.sécuritéSociale.selection
-										}>
-										{emoji('👔')} Votre rémunération en tant que dirigeant
-										{régime && legalStatus && ` d'une ${legalStatus}`}
-									</Link>
-									<Link
-										className="ui__ button-choice "
-										to={sitePaths.sécuritéSociale.salarié}>
-										{emoji('👥')} Le salaire d'un employé
-									</Link>
-									<br />
-								</>
-							)
-						) : (
+						{régime === 'auto-entrepreneur' ? (
 							<Link
 								className="ui__ button-choice "
-								to={sitePaths.sécuritéSociale.salarié}>
-								{emoji('👥')}{' '}
-								<T>Estimer les cotisations sociales pour une embauche</T>
+								to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
+								{emoji('💶')} Estimer ma rémunération en tant
+								qu'auto-entrepreneur
 							</Link>
+						) : (
+							<>
+								<h2>Que souhaitez-vous estimer ?</h2>
+								<Link
+									className="ui__ button-choice "
+									to={
+										régime
+											? sitePaths.sécuritéSociale[régime]
+											: sitePaths.sécuritéSociale.selection
+									}>
+									{emoji('👔')} Votre rémunération en tant que dirigeant
+									{régime && legalStatus && ` d'une ${legalStatus}`}
+								</Link>
+								<Link
+									className="ui__ button-choice "
+									to={sitePaths.sécuritéSociale.salarié}>
+									{emoji('👥')} Le salaire d'un employé
+								</Link>
+								<br />
+							</>
 						)}
-
 						<Video />
 					</Animate.fromBottom>
 				)}
