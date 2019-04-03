@@ -3,5 +3,6 @@
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
-	padding: 0.6rem !important;
+	padding-top: 0.6rem;
+	padding-bottom: 0.6rem;
 }

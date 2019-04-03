@@ -6,6 +6,7 @@ import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
+import animate from 'Ui/animate'
 import './Controls.css'
 import withColours from './utils/withColours'
 
@@ -22,35 +23,37 @@ function Controls({
 	if (language === 'en') return null
 	return (
 		<div id="controlsBlock">
-			<ul>
+			<ul style={{ margin: 0, padding: 0 }}>
 				{controls.map(({ level, test, message, solution, evaluated }) =>
 					hiddenControls.includes(test) ? null : (
-						<li key={test} className="control">
-							{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
-							<div className="controlText ui__ card">
-								{message ? (
-									createMarkdownDiv(message)
-								) : (
-									<span id="controlExplanation">{makeJsx(evaluated)}</span>
-								)}
+						<li key={test}>
+							<animate.appear className="control">
+								{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
+								<div className="controlText ui__ card">
+									{message ? (
+										createMarkdownDiv(message)
+									) : (
+										<span id="controlExplanation">{makeJsx(evaluated)}</span>
+									)}
 
-								{solution && !foldedSteps.includes(solution.cible) && (
-									<div>
-										<button
-											key={solution.cible}
-											className="ui__ link-button"
-											onClick={() => startConversation(solution.cible)}>
-											{solution.texte}
-										</button>
-									</div>
-								)}
-								<button
-									className="hide"
-									aria-label="close"
-									onClick={() => hideControl(test)}>
-									×
-								</button>
-							</div>
+									{solution && !foldedSteps.includes(solution.cible) && (
+										<div>
+											<button
+												key={solution.cible}
+												className="ui__ link-button"
+												onClick={() => startConversation(solution.cible)}>
+												{solution.texte}
+											</button>
+										</div>
+									)}
+									<button
+										className="hide"
+										aria-label="close"
+										onClick={() => hideControl(test)}>
+										×
+									</button>
+								</div>
+							</animate.appear>
 						</li>
 					)
 				)}

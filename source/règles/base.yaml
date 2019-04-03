@@ -2786,8 +2786,9 @@
 
 - espace: indépendant
   nom: revenu professionnel
-  résumé: Après cotisations et des charges
+  résumé: Après cotisations et charges
   question: Quel est votre revenu professionnel ?
+  période: flexible
   description: |
 
     C'est le revenu net de cotisations du travailleur indépendant.
@@ -3051,7 +3052,6 @@
         0: 1.5%
         1.1: 6.5%
 
-
 - espace: indépendant . cotisations et contributions . cotisations . maladie
   nom: assiette
   titre: assiette maladie
@@ -3120,7 +3120,6 @@
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-
 - espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
   nom: taux RSA part variable
   période: flexible
@@ -3156,7 +3155,6 @@
 
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
-
 
 - espace: indépendant . cotisations et contributions . cotisations
   nom: retraite de base

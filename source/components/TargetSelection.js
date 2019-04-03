@@ -84,8 +84,6 @@ export default compose(
 
 			return (
 				<div id="targetSelection">
-					<QuickLinks />
-
 					{!noUserInput && <Controls controls={analysis.controls} />}
 					<PeriodSwitch />
 					<div style={{ height: '10px' }}>
@@ -103,6 +101,7 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
+					<QuickLinks />
 				</div>
 			)
 		}
@@ -162,7 +161,7 @@ const Target = ({
 		<li
 			key={target.name}
 			className={isSmallTarget ? 'small-target' : undefined}>
-			<Animate.appear alreadyPresent={!target.nodeValue}>
+			<Animate.appear alreadyPresent={!target.nodeValue || !isSmallTarget}>
 				<div>
 					<div className="main">
 						<Header
@@ -196,7 +195,7 @@ const Target = ({
 							<InputSuggestions
 								suggestions={target.suggestions}
 								onFirstClick={value =>
-									this.props.setFormValue(target.dottedName, '' + value)
+									setFormValue(target.dottedName, '' + value)
 								}
 								rulePeriod={target.période}
 								colouredBackground={true}

@@ -27,6 +27,8 @@
 }
 #targetSelection #targets > li.small-target .targetInput {
 	border-width: 1px;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 #targetSelection #targets > li {
@@ -97,7 +99,7 @@
 	min-width: 2.5em;
 	display: inline-block;
 }
-#targetSelection .targetInputOrValue > :not(.targetInput, .attractClick) {
+#targetSelection .targetInputOrValue > :not(.targetInput):not(.attractClick) {
 	margin: 0.2rem 0.6rem;
 }
 
@@ -133,10 +135,6 @@
 	color: #c0392b;
 	background: yellow;
 	font-weight: 500;
-}
-
-#targetSelection .inputSuggestions {
-	margin: 0.6em 0;
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

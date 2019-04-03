@@ -64,7 +64,7 @@ export default compose(
 		renderRule(dottedName) {
 			let { brancheName } = this.props
 			return (
-				<div id="RulePage" className="ui__ container">
+				<div id="RulePage">
 					<ScrollToTop key={brancheName + dottedName} />
 					<div className="rule-page__header">
 						{this.props.valuesToShow ? <BackToSimulation /> : <span />}

@@ -106,7 +106,7 @@ export default compose(
 					)}
 					{!noUserInput && this.props.explanation}
 					{!noUserInput && !noFeedback && (
-						<Animate.appear delay={2000}>
+						<div style={{ margin: '-0.6rem' }}>
 							<PageFeedback
 								customMessage={
 									<T k="feedback.simulator">
@@ -115,7 +115,7 @@ export default compose(
 								}
 								customEventName="rate simulator"
 							/>
-						</Animate.appear>
+						</div>
 					)}
 				</>
 			)
