@@ -1,7 +1,6 @@
 import { findRuleByDottedName, nestedSituationToPathMap } from 'Engine/rules'
 import { compose, filter, map, toPairs } from 'ramda'
 import React, { useEffect } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { batchActions } from 'redux-batched-actions'
@@ -54,7 +53,7 @@ export default compose(
 	})
 	return (
 		<div id="PeriodSwitch">
-			<span className="base ui__ card">
+			<div className="base ui__ small toggle">
 				<label>
 					<Field
 						name="période"
@@ -65,7 +64,7 @@ export default compose(
 							updateSituation('mois', batchPeriodChange, situation, rules)
 						}
 					/>
-					<span className="radioText">
+					<span>
 						<Trans>mois</Trans>
 					</span>
 				</label>
@@ -79,11 +78,11 @@ export default compose(
 							updateSituation('année', batchPeriodChange, situation, rules)
 						}
 					/>
-					<span className="radioText">
+					<span>
 						<Trans>année</Trans>
 					</span>
 				</label>
-			</span>
+			</div>
 		</div>
 	)
 })

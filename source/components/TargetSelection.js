@@ -1,24 +1,29 @@
-import classNames from 'classnames';
-import Controls from 'Components/Controls';
-import InputSuggestions from 'Components/conversation/InputSuggestions';
-import withColours from 'Components/utils/withColours';
-import withLanguage from 'Components/utils/withLanguage';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { encodeRuleName } from 'Engine/rules';
-import { compose, propEq } from 'ramda';
-import React, { Component, PureComponent } from 'react';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
-import { change, Field, formValueSelector, reduxForm } from 'redux-form';
-import { analysisWithDefaultsSelector, flatRulesSelector, nextStepsSelector, noUserInputSelector } from 'Selectors/analyseSelectors';
-import Animate from 'Ui/animate';
-import AnimatedTargetValue from 'Ui/AnimatedTargetValue';
-import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader';
-import CurrencyInput from './CurrencyInput/CurrencyInput';
-import QuickLinks from './QuickLinks';
-import './TargetSelection.css';
+import classNames from 'classnames'
+import Controls from 'Components/Controls'
+import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PeriodSwitch from 'Components/PeriodSwitch'
+import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { encodeRuleName } from 'Engine/rules'
+import { compose, isEmpty, isNil, propEq } from 'ramda'
+import React, { Component, PureComponent } from 'react'
+import { withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { change, Field, formValueSelector, reduxForm } from 'redux-form'
+import {
+	analysisWithDefaultsSelector,
+	flatRulesSelector,
+	nextStepsSelector,
+	noUserInputSelector
+} from 'Selectors/analyseSelectors'
+import Animate from 'Ui/animate'
+import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
+import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader'
+import CurrencyInput from './CurrencyInput/CurrencyInput'
+import QuickLinks from './QuickLinks'
+import './TargetSelection.css'
 
 const MAX_NUMBER_QUESTION = 18
 export default compose(
@@ -28,7 +33,6 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
-	withRouter,
 	connect(
 		state => ({
 			getTargetValue: dottedName =>
@@ -52,14 +56,38 @@ export default compose(
 	)
 )(
 	class TargetSelection extends PureComponent {
+		componentDidMount() {
+			const props = this.props
+			const targets = props.analysis ? props.analysis.targets : []
+			// Initialize defaultValue for target that can't be computed
+			targets
+				.filter(
+					target =>
+						(!target.formule || isEmpty(target.formule)) &&
+						(!isNil(target.defaultValue) ||
+							!isNil(target.explanation?.defaultValue)) &&
+						!props.getTargetValue(target.dottedName)
+				)
 
+				.forEach(target => {
+					props.setFormValue(
+						target.dottedName,
+						!isNil(target.defaultValue)
+							? target.defaultValue
+							: target.explanation?.defaultValue
+					)
+				})
+			props.setActiveInput(null)
+		}
 		render() {
 			let { colours, noUserInput, analysis, progress } = this.props
 
 			return (
 				<div id="targetSelection">
 					<QuickLinks />
+
 					{!noUserInput && <Controls controls={analysis.controls} />}
+					<PeriodSwitch />
 					<div style={{ height: '10px' }}>
 						<Progress percent={progress} />
 					</div>
@@ -84,9 +112,8 @@ export default compose(
 					conversationStarted,
 					activeInput,
 					setActiveInput,
-					analysis,
-					noUserInput,
-					match
+					setFormValue,
+					analysis
 				} = this.props,
 				targets = analysis ? analysis.targets : []
 
@@ -102,59 +129,17 @@ export default compose(
 								)
 							})
 							.map(target => (
-								<li
-									key={target.name}
-									className={!target.question ? 'not-editable' : undefined}>
-									<Animate.appear alreadyPresent={!target.nodeValue}>
-										<div>
-											<div className="main">
-												<Header
-													{...{
-														match,
-														target,
-														conversationStarted,
-														isActiveInput: activeInput === target.dottedName
-													}}
-												/>
-												{!target.question && (
-													<span
-														style={{
-															flex: 1,
-															borderBottom: '1px dashed #ffffff91',
-															marginLeft: '1rem'
-														}}
-													/>
-												)}
-												<TargetInputOrValue
-													{...{
-														target,
-														targets,
-														activeInput,
-														setActiveInput,
-														setFormValue: this.props.setFormValue,
-														noUserInput
-													}}
-												/>
-											</div>
-											{activeInput === target.dottedName &&
-												!conversationStarted && (
-													<Animate.fromTop>
-														<InputSuggestions
-															suggestions={target.suggestions}
-															onFirstClick={value =>
-																this.props.setFormValue(
-																	target.dottedName,
-																	'' + value
-																)
-															}
-															rulePeriod={target.période}
-															colouredBackground={true}
-														/>
-													</Animate.fromTop>
-												)}
-										</div>
-									</Animate.appear>
-								</li>
+								<Target
+									key={target.dottedName}
+									{...{
+										conversationStarted,
+										target,
+										setFormValue,
+										activeInput,
+										setActiveInput,
+										targets
+									}}
+								/>
 							))}
 					</ul>
 				</div>
@@ -162,6 +147,67 @@ export default compose(
 		}
 	}
 )
+
+const Target = ({
+	target,
+	activeInput,
+	conversationStarted,
+	targets,
+	setActiveInput,
+	setFormValue
+}) => {
+	const isSmallTarget =
+		!target.question || !target.formule || isEmpty(target.formule)
+	return (
+		<li
+			key={target.name}
+			className={isSmallTarget ? 'small-target' : undefined}>
+			<Animate.appear alreadyPresent={!target.nodeValue}>
+				<div>
+					<div className="main">
+						<Header
+							{...{
+								target,
+								conversationStarted,
+								isActiveInput: activeInput === target.dottedName
+							}}
+						/>
+						{isSmallTarget && (
+							<span
+								style={{
+									flex: 1,
+									borderBottom: '1px dashed #ffffff91',
+									marginLeft: '1rem'
+								}}
+							/>
+						)}
+						<TargetInputOrValue
+							{...{
+								target,
+								targets,
+								activeInput,
+								setActiveInput,
+								setFormValue
+							}}
+						/>
+					</div>
+					{activeInput === target.dottedName && !conversationStarted && (
+						<Animate.fromTop>
+							<InputSuggestions
+								suggestions={target.suggestions}
+								onFirstClick={value =>
+									this.props.setFormValue(target.dottedName, '' + value)
+								}
+								rulePeriod={target.période}
+								colouredBackground={true}
+							/>
+						</Animate.fromTop>
+					)}
+				</div>
+			</Animate.appear>
+		</li>
+	)
+}
 
 let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
 	const ruleLink =
@@ -186,7 +232,6 @@ let CurrencyField = withColours(props => {
 				borderColor: props.colours.textColour
 			}}
 			className="targetInput"
-			autoFocus
 			{...props.input}
 			{...props}
 		/>
@@ -196,9 +241,12 @@ let CurrencyField = withColours(props => {
 let TargetInputOrValue = withLanguage(
 	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
 		<span className="targetInputOrValue">
-			{activeInput === target.dottedName ? (
+			{activeInput === target.dottedName ||
+			!target.formule ||
+			isEmpty(target.formule) ? (
 				<Field
 					name={target.dottedName}
+					{...(target.formule ? { autoFocus: true } : {})}
 					component={CurrencyField}
 					language={language}
 				/>
@@ -225,7 +273,7 @@ const TargetValue = connect(
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target, noUserInput } = this.props
+			let { targets, target } = this.props
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -235,9 +283,9 @@ const TargetValue = connect(
 				<div
 					className={classNames({
 						editable: target.question,
-						attractClick: target.question && noUserInput
+						attractClick: target.question && isNil(target.nodeValue)
 					})}
-					tabIndex="0"
+					{...(target.question ? { tabIndex: 0 } : {})}
 					onClick={this.showField(value)}
 					onFocus={this.showField(value)}>
 					<AnimatedTargetValue value={value} />
@@ -248,8 +296,8 @@ const TargetValue = connect(
 			let { target, setFormValue, activeInput, setActiveInput } = this.props
 			return () => {
 				if (!target.question) return
-				if (value != null)
-					setFormValue(target.dottedName, Math.floor(value) + '')
+				if (value != null && !Number.isNaN(value))
+					setFormValue(target.dottedName, Math.round(value) + '')
 
 				if (activeInput) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)

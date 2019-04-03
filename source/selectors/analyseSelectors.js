@@ -68,9 +68,10 @@ export let noUserInputSelector = createSelector(
 	[
 		formattedSituationSelector,
 		targetNamesSelector,
+		parsedRulesSelector,
 		state => state.simulation?.config?.bloquant
 	],
-	(situation, targetNames, bloquant) => {
+	(situation, targetNames, parsedRules, bloquant) => {
 		if (!situation) {
 			return true
 		}
@@ -79,7 +80,11 @@ export let noUserInputSelector = createSelector(
 			bloquant && bloquant.every(rule => situations.includes(rule))
 		const targetIsAnswered =
 			targetNames &&
-			targetNames.some(target => Object.keys(situation).includes(target))
+			targetNames.some(
+				targetName =>
+					findRuleByDottedName(parsedRules, targetName)?.formule &&
+					targetName in situation
+			)
 		return !(allBlockingAreAnswered || targetIsAnswered)
 	}
 )
