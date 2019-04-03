@@ -4,6 +4,16 @@ import 'react-select/dist/react-select.css'
 import { FormDecorator } from '../FormDecorator'
 import './Select.css'
 
+const tauxVersementTransport = codeCommune => {
+	return fetch(
+		'https://versement-transport.netlify.com/.netlify/functions/taux-par-code-commune?codeCommune=' +
+			codeCommune,
+		{
+			method: 'GET'
+		}
+	).then(response => response.json())
+}
+
 let getOptions = input =>
 	input.length < 3
 		? Promise.resolve({ options: [] })
@@ -32,11 +42,13 @@ export default FormDecorator('select')(
 					submit
 				} = this.props,
 				submitOnChange = option => {
-					// serialize to not mix our data schema and the API response's
-					onChange(
-						JSON.stringify({ ...option, 'taux du versement transport': 999 })
-					)
-					submit()
+					tauxVersementTransport(option.code).then(({ taux }) => {
+						// serialize to not mix our data schema and the API response's
+						onChange(
+							JSON.stringify({ ...option, 'taux du versement transport': taux })
+						)
+						submit()
+					})
 				}
 
 			return (
