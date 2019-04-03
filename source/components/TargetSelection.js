@@ -85,7 +85,7 @@ export default compose(
 			return (
 				<div id="targetSelection">
 					{!noUserInput && <Controls controls={analysis.controls} />}
-					<PeriodSwitch />
+					<QuickLinks />
 					<div style={{ height: '10px' }}>
 						<Progress percent={progress} />
 					</div>
@@ -101,7 +101,7 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
-					<QuickLinks />
+					<PeriodSwitch />
 				</div>
 			)
 		}
