@@ -1,17 +1,17 @@
 /* @flow */
-import { React, T } from 'Components';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { compose } from 'ramda';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { NavLink } from 'react-router-dom';
-import companySvg from '../../images/company.svg';
-import estimateSvg from '../../images/estimate.svg';
-import hiringSvg from '../../images/hiring.svg';
-import './Navigation.css';
-import NavOpener from './NavOpener';
-import SideBar from './SideBar';
+import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose } from 'ramda'
+import { withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { NavLink } from 'react-router-dom'
+import companySvg from '../../images/company.svg'
+import estimateSvg from '../../images/estimate.svg'
+import hiringSvg from '../../images/hiring.svg'
+import './Navigation.css'
+import NavOpener from './NavOpener'
+import SideBar from './SideBar'
 import type { TFunction } from 'react-i18next'
 
 type OwnProps = {}
@@ -168,11 +168,6 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 																SASU
 															</NavLink>
 														</li>
-														<li>
-															<NavLink to={sitePaths.entreprise.créer('SNC')}>
-																SNC
-															</NavLink>
-														</li>
 													</ul>
 												</NavOpener>
 											</li>
@@ -235,16 +230,18 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 														<T>Auto-entrepreneur</T>
 													</NavLink>
 												</li>
-												{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-			window.location.hostname
-		) &&
-												<li>
-													<NavLink
-														exact
-														to={sitePaths.sécuritéSociale.comparaison}>
-														<T>Comparaison des régimes</T>
-													</NavLink>
-												</li>}
+												{![
+													'mycompanyinfrance.fr',
+													'mon-entreprise.fr'
+												].includes(window.location.hostname) && (
+													<li>
+														<NavLink
+															exact
+															to={sitePaths.sécuritéSociale.comparaison}>
+															<T>Comparaison des régimes</T>
+														</NavLink>
+													</li>
+												)}
 											</ul>
 										</NavOpener>
 									</li>
