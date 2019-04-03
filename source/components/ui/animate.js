@@ -14,6 +14,7 @@ type Props = {
 	children: Node,
 	config?: SpringConfig,
 	style?: Object,
+	className?: string,
 	delay?: number
 }
 
@@ -152,7 +153,9 @@ export class appear extends React.Component<
 					height: this.state.show ? 'auto' : '0px'
 				}}>
 				{animStyle => (
-					<animated.div style={{ ...style, ...animStyle }}>
+					<animated.div
+						style={{ ...style, ...animStyle }}
+						className={this.props.className}>
 						{children}
 					</animated.div>
 				)}

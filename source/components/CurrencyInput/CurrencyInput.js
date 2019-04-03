@@ -31,7 +31,6 @@ class CurrencyInput extends Component {
 		return this.input.selectionStart
 	}
 	componentDidMount() {
-		// this.input.select()
 		this.adaptInputSize()
 	}
 	adaptInputSize = () => {

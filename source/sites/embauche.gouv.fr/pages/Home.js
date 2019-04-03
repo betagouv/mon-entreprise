@@ -11,8 +11,8 @@ import './Home.css';
 
 const Home = () => (
 	<div id="home" className="ui__ container">
-		<PreviousSimulationBanner />
 		<SalarySimulation />
+		<PreviousSimulationBanner />
 		<div id="logos">
 			<a
 				id="marianne"

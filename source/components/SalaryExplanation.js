@@ -27,7 +27,7 @@ export default compose(
 	class SalaryExplanation extends Component {
 		render() {
 			return (
-				<Animate.fromBottom delay={1000}>
+				<Animate.fromBottom delay={2000}>
 					{!this.props.conversationStarted ? (
 						<SalaryFirstExplanation {...this.props} />
 					) : (
