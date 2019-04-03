@@ -6,6 +6,7 @@ import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
+import SalaryExplanation from '../../../../components/SalaryExplanation'
 
 const AssimiléSalarié = () => (
 	<>
@@ -34,6 +35,7 @@ const AssimiléSalarié = () => (
 						{emoji('☂️ ')} Le dirigeant a la même protection sociale qu'un
 						salarié, mis à part le chômage.
 					</p>
+					<SalaryExplanation />
 				</>
 			}
 		/>

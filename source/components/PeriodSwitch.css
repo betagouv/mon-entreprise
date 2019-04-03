@@ -1,6 +1,7 @@
 #PeriodSwitch {
 	display: flex;
 	align-items: center;
+	margin: 0.6rem 0;
 	justify-content: flex-end;
 }
 #PeriodSwitch > * {
