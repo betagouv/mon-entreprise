@@ -31,7 +31,6 @@ import {
 import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
-import taux_versement_transport from 'Règles/taux-versement-transport.json'
 import { capitalise0 } from '../utils'
 import marked from './marked'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
@@ -41,13 +40,12 @@ import possibleVariableTypes from './possibleVariableTypes.yaml'
  Méthodes agissant sur une règle */
 
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
-export let enrichRule = (rule, sharedData = {}) => {
+export let enrichRule = rule => {
 	try {
 		let type = possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
 			name = rule['nom'],
 			title = capitalise0(rule['titre'] || name),
 			ns = rule['espace'],
-			data = rule['données'] ? sharedData[rule['données']] : null,
 			dottedName = buildDottedName(rule),
 			subquestionMarkdown = rule['sous-question'],
 			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
@@ -62,7 +60,6 @@ export let enrichRule = (rule, sharedData = {}) => {
 			name,
 			title,
 			ns,
-			data,
 			dottedName,
 			subquestion,
 			defaultValue,
@@ -275,11 +272,9 @@ export let translateAll = (translations, flatRules) => {
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
 export let rules = translateAll(translations, rawRules).map(rule =>
-	enrichRule(rule, { taux_versement_transport })
+	enrichRule(rule)
 )
-export let rulesFr = rawRules.map(rule =>
-	enrichRule(rule, { taux_versement_transport })
-)
+export let rulesFr = rawRules.map(rule => enrichRule(rule))
 
 export let findParentDependency = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no

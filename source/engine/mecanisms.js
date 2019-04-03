@@ -53,7 +53,6 @@ import BarèmeContinu from './mecanismViews/BarèmeContinu'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
 import InversionNumérique from './mecanismViews/InversionNumérique'
 import Product from './mecanismViews/Product'
-import buildSelectionView from './mecanismViews/Selection'
 import Somme from './mecanismViews/Somme'
 import Variations from './mecanismViews/Variations'
 import {
@@ -847,55 +846,6 @@ export let mecanismComplement = (recurse, k, v) => {
 					</ul>
 				}
 			/>
-		)
-	}
-}
-
-export let mecanismSelection = (recurse, k, v) => {
-	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
-	}
-
-	let dataSourceName = v['données']
-	let dataSearchField = v['dans']
-	let dataTargetName = v['renvoie']
-	let explanation = recurse(v['cherche'])
-
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let explanation = evaluateNode(
-				cache,
-				situationGate,
-				parsedRules,
-				node.explanation
-			),
-			dataSource = findRuleByName(parsedRules, dataSourceName),
-			data = dataSource ? dataSource['data'] : null,
-			dataKey = explanation.nodeValue,
-			found =
-				data && dataKey && dataSearchField
-					? find(item => item[dataSearchField] == dataKey, data)
-					: null,
-			// return 0 if we found a match for the lookup but not for the specific field,
-			// so that component sums don't sum to null
-			nodeValue =
-				(found &&
-					found[dataTargetName] &&
-					Number.parseFloat(found[dataTargetName]) / 100) ||
-				0,
-			missingVariables = explanation.missingVariables
-
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
-	}
-
-	let SelectionView = buildSelectionView(dataTargetName)
-
-	return {
-		evaluate,
-		explanation,
-		// eslint-disable-next-line
-		jsx: (nodeValue, explanation) => (
-			<SelectionView nodeValue={nodeValue} explanation={explanation} />
 		)
 	}
 }
