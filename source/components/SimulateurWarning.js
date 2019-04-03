@@ -1,7 +1,13 @@
+import { T } from 'Components'
+import withLanguage from 'Components/utils/withLanguage'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 
-export default function SimulateurWarning({ simulateur, autoFolded }) {
+export default withLanguage(function SimulateurWarning({
+	simulateur,
+	autoFolded,
+	language
+}) {
 	let [userFolded, userFold] = useState(undefined)
 
 	let folded = userFolded === undefined ? autoFolded : userFolded,
@@ -11,11 +17,12 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 		<div id="SimulateurWarning" style={{ marginBottom: '2em' }}>
 			<p>
 				{emoji('🚩 ')}
-				<strong>Outil en cours de développement </strong>
+				<strong>
+					<T k="simulateurs.warning.titre">Outil en cours de développement </T>
+				</strong>{' '}
 				{folded && (
 					<button className="ui__ button simple small" onClick={toggle}>
-						{' '}
-						(plus d'info)
+						<T k="simulateurs.warning.plus">(plus d'info)</T>
 					</button>
 				)}
 			</p>
@@ -24,20 +31,26 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 					<ul style={{ marginLeft: '1em' }}>
 						{simulateur !== 'auto-entreprise' && (
 							<li>
-								le chiffre d'affaires déduit des charges va à 100% dans la
-								rémunération du dirigeant
+								<T k="simulateurs.warning.line1">
+									le chiffre d'affaires déduit des charges va à 100% dans la
+									rémunération du dirigeant
+								</T>
 							</li>
 						)}
 						<li>
-							l'impôt sur le revenu est calculé pour un célibataire sans enfant
-							et sans autre revenu.{' '}
-							{simulateur == 'auto-entreprise' && (
+							<T k="simulateurs.warning.line2">
+								l'impôt sur le revenu est calculé pour un célibataire sans
+								enfant et sans autre revenu.
+							</T>{' '}
+							{simulateur == 'auto-entreprise' && language === 'fr' && (
 								<span>L'impôt libératoire n'est pas encore intégré.</span>
 							)}
 						</li>
 						<li>
-							les calculs sont indicatifs et ne se substituent pas aux décomptes
-							réels des Urssaf, impots.gouv.fr, etc
+							<T k="simulateurs.warning.line3">
+								les calculs sont indicatifs et ne se substituent pas aux
+								décomptes réels des Urssaf, impots.gouv.fr, etc
+							</T>
 						</li>
 					</ul>
 				)}
@@ -45,11 +58,11 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 				{!folded && (
 					<div style={{ textAlign: 'right', paddingRight: '1em' }}>
 						<button className="ui__ button simple small" onClick={toggle}>
-							J'ai compris
+							<T>J'ai compris</T>
 						</button>
 					</div>
 				)}
 			</div>
 		</div>
 	)
-}
+})

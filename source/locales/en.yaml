@@ -387,7 +387,7 @@ après:
   intro: Once your <2>{{companyStatusChoice}}</2> has been successfully registered, you'll have access to the following
   siret:
     titre: The SIRET number
-    description: The SIREN number <1>identifies your company</1> while the SIRET number identifies each place of business operated by the same company. The SIRET is composed by the SIREN followed by the establishment number.
+    description: The SIREN number <1>identifies your company</1> while the SIRET number identifies each place of business operated by the same company. The SIRET is composed by the SIREN followed by the establishment number (NIC).
   ape:
     titre: The APE code
     description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). <3>It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.</3>
@@ -412,6 +412,12 @@ sécu:
     </1>
   video: Social security explained visually
   entrepriseCrée: If you already own a company, we can <2>automatically customize</2> your simulations to your situation. All you have to do is <5>enter the name of your company</5>.
+  choix:
+    titre: What do you want to estimate?
+    auto-entrepreneur: Estimate my remuneration as an auto-entrepreneur
+    dirigeant1: Your remuneration as a {{legalStatus}} director
+    dirigeant2: The director's remuneration
+    employée: An employee's salary
 
 Votre entreprise: Your company
 Ce n'est pas mon entreprise: This is not my company
@@ -602,3 +608,13 @@ Simulations personnalisées: Customized simulations
 
 indicationTempsPlein: in full-time gross salary equivalent
 auto-entreprise: auto-enterprise
+
+simulateurs:
+  warning:
+    titre: Tool under development
+    plus: (more info)
+    line1: the turnover deducted from expenses goes to 100% in the director's remuneration
+    line2: income tax is calculated for a single person without children and without other income.
+    line3: the figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
+
+J'ai compris: understood

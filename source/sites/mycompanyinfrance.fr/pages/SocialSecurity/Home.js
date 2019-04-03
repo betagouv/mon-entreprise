@@ -89,12 +89,16 @@ class SocialSecurity extends Component<Props, {}> {
 							<Link
 								className="ui__ button-choice "
 								to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
-								{emoji('💶')} Estimer ma rémunération en tant
-								qu'auto-entrepreneur
+								{emoji('🚶')}{' '}
+								<T k="sécu.choix.auto-entrepreneur">
+									Estimer ma rémunération en tant qu'auto-entrepreneur
+								</T>
 							</Link>
 						) : (
 							<>
-								<h2>Que souhaitez-vous estimer ?</h2>
+								<h2>
+									<T k="sécu.choix.titre">Que souhaitez-vous estimer ?</T>
+								</h2>
 								<Link
 									className="ui__ button-choice "
 									to={
@@ -102,13 +106,25 @@ class SocialSecurity extends Component<Props, {}> {
 											? sitePaths.sécuritéSociale[régime]
 											: sitePaths.sécuritéSociale.selection
 									}>
-									{emoji('👔')} Votre rémunération en tant que dirigeant
-									{régime && legalStatus && ` d'une ${legalStatus}`}
+									{emoji('💰')}{' '}
+									{legalStatus
+										? t(
+												[
+													'sécu.choix.dirigeant1',
+													`Votre rémunération en tant que dirigeant de {{legalStatus}}`
+												],
+												{ legalStatus: t(legalStatus) }
+										  )
+										: t(
+												'sécu.choix.dirigeant2',
+												`La rémunération du dirigeant`
+										  )}
 								</Link>
 								<Link
 									className="ui__ button-choice "
 									to={sitePaths.sécuritéSociale.salarié}>
-									{emoji('👥')} Le salaire d'un employé
+									{emoji('👥')}{' '}
+									<T k="sécu.choix.employé">Le salaire d'un employé</T>
 								</Link>
 								<br />
 							</>
