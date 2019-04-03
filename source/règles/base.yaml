@@ -3030,6 +3030,10 @@
 
 - espace: indépendant
   nom: rattachement libéral règlementé
+  description: | 
+    Les entreprises libérales non règlementées créées avant 2019 étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2019 ce n'est plus le cas, elles sont rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
+  références: 
+    article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
   formule:
     une de ces conditions: 
       - entreprise . catégorie d'activité . libérale règlementée
