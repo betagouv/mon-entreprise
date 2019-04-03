@@ -106,7 +106,7 @@ const CreateCompany = ({
 			{statusChooserCompleted ? (
 				<button
 					onClick={onStatusChange}
-					className="ui__ simple skip button left">
+					className="ui__ simple small skip button left">
 					← <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
 			) : (

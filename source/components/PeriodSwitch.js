@@ -59,20 +59,6 @@ export default compose(
 						name="période"
 						component="input"
 						type="radio"
-						value="mois"
-						onChange={() =>
-							updateSituation('mois', batchPeriodChange, situation, rules)
-						}
-					/>
-					<span>
-						<Trans>mois</Trans>
-					</span>
-				</label>
-				<label>
-					<Field
-						name="période"
-						component="input"
-						type="radio"
 						value="année"
 						onChange={() =>
 							updateSituation('année', batchPeriodChange, situation, rules)
@@ -80,6 +66,20 @@ export default compose(
 					/>
 					<span>
 						<Trans>année</Trans>
+					</span>
+				</label>
+				<label>
+					<Field
+						name="période"
+						component="input"
+						type="radio"
+						value="mois"
+						onChange={() =>
+							updateSituation('mois', batchPeriodChange, situation, rules)
+						}
+					/>
+					<span>
+						<Trans>mois</Trans>
 					</span>
 				</label>
 			</div>

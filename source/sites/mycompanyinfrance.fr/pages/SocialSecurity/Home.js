@@ -22,13 +22,21 @@ type Props = {
 	location: Location,
 	t: TFunction,
 	showFindYourCompanyLink: boolean,
+	legalStatus: string,
 	régime: 'indépendant' | 'assimilé-salarié' | 'auto-entrepreneur' | null,
 	sitePaths: Object,
 	language: string
 }
 class SocialSecurity extends Component<Props, {}> {
 	render() {
-		const { t, match, régime, sitePaths, showFindYourCompanyLink } = this.props
+		const {
+			t,
+			match,
+			régime,
+			sitePaths,
+			showFindYourCompanyLink,
+			legalStatus
+		} = this.props
 		return (
 			<>
 				<Helmet>
@@ -42,12 +50,18 @@ class SocialSecurity extends Component<Props, {}> {
 				{match.isExact && (
 					<Animate.fromBottom>
 						<T k="sécu.content">
-							<h1>Protection sociale : coûts et avantages</h1>
+							<h1>Protection sociale </h1>
 							<p>
-								La France a choisi d'offrir à ses citoyens une protection
+								En France, tous les travailleurs bénéficient d'une protection
 								sociale de qualité. Ce système obligatoire repose sur la
 								solidarité et vise à assurer le{' '}
 								<strong>bien-être général de la population</strong>.
+							</p>
+							<p>
+								En contrepartie du paiement de{' '}
+								<strong>contributions sociales</strong>, le cotisant est couvert
+								sur la maladie, les accidents du travail, chômage ou encore la
+								retraite.
 							</p>
 						</T>
 						{showFindYourCompanyLink && (
@@ -76,7 +90,7 @@ class SocialSecurity extends Component<Props, {}> {
 						) ? (
 							régime === 'auto-entrepreneur' ? (
 								<Link
-									className="landing__choice "
+									className="ui__ button-choice "
 									to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
 									{emoji('💶')} Estimer ma rémunération en tant
 									qu'auto-entrepreneur
@@ -85,16 +99,17 @@ class SocialSecurity extends Component<Props, {}> {
 								<>
 									<h2>Que souhaitez-vous estimer ?</h2>
 									<Link
-										className="landing__choice "
+										className="ui__ button-choice "
 										to={
 											régime
 												? sitePaths.sécuritéSociale[régime]
-												: sitePaths.sécuritéSociale.comparaison
+												: sitePaths.sécuritéSociale.selection
 										}>
 										{emoji('👔')} Votre rémunération en tant que dirigeant
+										{régime && legalStatus && ` d'une ${legalStatus}`}
 									</Link>
 									<Link
-										className="landing__choice "
+										className="ui__ button-choice "
 										to={sitePaths.sécuritéSociale.salarié}>
 										{emoji('👥')} Le salaire d'un employé
 									</Link>
@@ -103,7 +118,7 @@ class SocialSecurity extends Component<Props, {}> {
 							)
 						) : (
 							<Link
-								className="landing__choice "
+								className="ui__ button-choice "
 								to={sitePaths.sécuritéSociale.salarié}>
 								{emoji('👥')}{' '}
 								<T>Estimer les cotisations sociales pour une embauche</T>
@@ -124,6 +139,7 @@ export default compose(
 	withSitePaths,
 	connect(state => ({
 		régime: régimeSelector(state),
+		legalStatus: state.inFranceApp.companyStatusChoice,
 		showFindYourCompanyLink:
 			!state.inFranceApp.existingCompanyDetails &&
 			!Object.keys(state.inFranceApp.companyLegalStatus).length &&

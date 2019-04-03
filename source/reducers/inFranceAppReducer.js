@@ -30,6 +30,10 @@ function companyLegalStatus(
 			return { ...state, minorityDirector: action.minorityDirector }
 		case 'RESET_COMPANY_STATUS_CHOICE':
 			return action.answersToReset ? omit(action.answersToReset, state) : {}
+		case 'SAVE_EXISTING_COMPANY_DETAILS':
+			return action.details.apiDetails.nature_entrepreneur_individuel
+				? { ...state, soleProprietorship: true }
+				: state
 	}
 	return state
 }
@@ -86,7 +90,7 @@ function companyStatusChoice(state: ?string = null, action: Action) {
 		return null
 	}
 	if (action.type === 'SAVE_EXISTING_COMPANY_DETAILS') {
-		return action.details.legalStatus
+		return action.details.legalStatus || null
 	}
 	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
 		return state

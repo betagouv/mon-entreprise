@@ -1,25 +1,21 @@
 /* @flow */
-import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
-import { React, T } from 'Components'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
-import ReactSelect from 'react-select'
+import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions';
+import { React, T } from 'Components';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import { Helmet } from 'react-helmet';
+import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
+import ReactSelect from 'react-select';
 // $FlowFixMe
-import 'react-select/dist/react-select.css'
-import './Find.css'
-import { CompanyDetails as Company } from './YourCompany'
+import 'react-select/dist/react-select.css';
+import './Find.css';
+import { CompanyDetails as Company } from './YourCompany';
 import type { SitePaths } from 'Components/utils/withSitePaths'
 import type { TFunction } from 'react-i18next'
 import type { RouterHistory } from 'react-router'
-
-const goToNextStep = (history: RouterHistory, sitePaths: Object) => {
-	history.push(sitePaths.sécuritéSociale.index)
-}
 
 type State = {
 	input: ?{ [string]: string }
@@ -133,14 +129,27 @@ class Search extends React.Component<Props, State> {
 				{!!this.state.input && (
 					<>
 						<Company {...this.state.input} />
+						{this.state.input.nature_entrepreneur_individuel  ?
+							<div className="ui__ plain card">
+							<h2>Etes vous auto-entrepreneur ? </h2>
+							<div className="ui__ answer-group">
+							<button className="ui__ inverted-button" onClick={
+							()=>	this.props.onCompanyDetailsConfirmation(this.state.input, true)
+							}>Oui</button>
+							<button  className="ui__ inverted-button" onClick={
+							()=>	this.props.onCompanyDetailsConfirmation(this.state.input, false)
+							}>Non</button>
+							</div>
+							</div>
+
+						:
 						<button
 							onClick={() => {
 								this.props.onCompanyDetailsConfirmation(this.state.input)
-								goToNextStep(this.props.history, sitePaths)
 							}}
 							className="ui__ button">
 							<T k="trouver.ok">Confirmer et simuler vos cotisations</T>
-						</button>
+						</button>}
 					</>
 				)}
 			</div>
