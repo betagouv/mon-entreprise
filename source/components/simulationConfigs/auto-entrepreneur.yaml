@@ -10,9 +10,7 @@ questions:
   - entreprise . catégorie d'activité . service ou vente
   - entreprise . catégorie d'activité . restauration ou hébergement
   - entreprise . catégorie d'activité . libérale règlementée
-  # pour l'instant pas utilisées
-  # - entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
-
+  - entreprise . ACCRE obtenu
   - entreprise . année d'activité
 
 questions à l'affiche:
