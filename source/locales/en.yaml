@@ -517,6 +517,7 @@ path:
     index: '/social-security'
     assimilé-salarié: '/assimilated-salaried'
     salarié: '/salaried'
+    selection: '/scheme-selection'
   démarcheEmbauche:
     index: '/hiring-process'
 

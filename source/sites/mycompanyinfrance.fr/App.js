@@ -94,7 +94,9 @@ const App = compose(
 		<Navigation location={location} />
 		<div className="app-content">
 			<ProgressHeader />
-			<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
+			<div
+				className="ui__ container"
+				style={{ flexGrow: 1, flexShrink: 0, marginTop: '1rem' }}>
 				<Switch>
 					<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
 					<Route

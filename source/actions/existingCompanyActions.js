@@ -32,17 +32,19 @@ const getCommuneByCodePostal = function(codePostal: string) {
 		})
 }
 
-const getLegalStatus = ({
-	nature_juridique_entreprise: codeNatureJuridique,
-	nature_entrepreneur_individuel: codeEntrepreneurIndividuel
-	//TODO : utiliser pour préremplir la nature de l"activité (artisan/commercial)
-}): ?LegalStatus => {
-	// see https://www.insee.fr/fr/information/2028129
-	if (!!codeEntrepreneurIndividuel || codeNatureJuridique.match(/^1000$/)) {
-		return 'EI'
-	}
-	if (codeNatureJuridique.match(/^52..$/)) {
-		return 'SNC'
+const getLegalStatus = (
+	{ nature_juridique_entreprise: codeNatureJuridique },
+	isAutoEntrepreneur
+): ?LegalStatus => {
+	/*
+	Nous utilisons le code entreprise pour connaitre le statut juridique
+	(voir https://www.insee.fr/fr/information/2028129)
+
+	En revanche, impossible de différencier EI et auto-entreprise
+	https://www.sirene.fr/sirene/public/question.action?idQuestion=2933
+	*/
+	if (!codeNatureJuridique) {
+		return isAutoEntrepreneur ? 'auto-entrepreneur' : 'EI'
 	}
 	if (codeNatureJuridique === '5498') {
 		return 'EURL'
@@ -62,15 +64,31 @@ const getLegalStatus = ({
 	return null
 }
 
-export const saveExistingCompanyDetails = (details: { [string]: string }) => (
-	dispatch: SaveExistingCompanyDetailsAction => void
+export const saveExistingCompanyDetails = (
+	details: { [string]: string },
+	isAutoEntrepreneur?: boolean
+) => (
+	dispatch: SaveExistingCompanyDetailsAction => void,
+	_: any,
+	{ history, sitePaths }: any
 ) => {
 	let effectif = Number.parseInt(
 		details.tranche_effectif_salarie_entreprise_centaine_pret,
 		10
 	)
 	effectif = isNaN(effectif) ? null : effectif
-	const legalStatus = getLegalStatus(details)
+	const legalStatus = getLegalStatus(details, isAutoEntrepreneur)
+
+	dispatch({
+		type: 'SAVE_EXISTING_COMPANY_DETAILS',
+		details: {
+			siret: details.siret,
+			...(!isNil(effectif) ? { effectif } : null),
+			...(legalStatus ? { legalStatus } : null),
+			apiDetails: details
+		}
+	})
+	history.push(sitePaths.sécuritéSociale.index)
 	getCommuneByCodeInsee(details.departement + details.commune)
 		.catch(err => {
 			console.warn(err)
@@ -87,7 +105,7 @@ export const saveExistingCompanyDetails = (details: { [string]: string }) => (
 					siret: details.siret,
 					...(!isNil(effectif) ? { effectif } : null),
 					...(commune ? { localisation: commune } : null),
-					...(legalStatus ? { legalStatus } : {}),
+					...(legalStatus ? { legalStatus } : null),
 					apiDetails: details
 				}
 			})
