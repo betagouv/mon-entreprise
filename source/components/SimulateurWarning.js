@@ -22,7 +22,6 @@ export default function SimulateurWarning({ simulateur, autoFolded }) {
 			<div className={`content ${folded ? '' : 'ui__ card'}`}>
 				{!folded && (
 					<ul style={{ marginLeft: '1em' }}>
-						<li>réservé aux entreprises créées en 2019</li>
 						{simulateur !== 'auto-entreprise' && (
 							<li>
 								le chiffre d'affaires déduit des charges va à 100% dans la
