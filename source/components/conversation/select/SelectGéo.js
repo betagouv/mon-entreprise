@@ -33,7 +33,9 @@ export default FormDecorator('select')(
 				} = this.props,
 				submitOnChange = option => {
 					// serialize to not mix our data schema and the API response's
-					onChange(JSON.stringify(option))
+					onChange(
+						JSON.stringify({ ...option, 'taux du versement transport': 999 })
+					)
 					submit()
 				}
 
