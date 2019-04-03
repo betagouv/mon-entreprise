@@ -3,7 +3,7 @@ import { defineDirectorStatus } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -54,15 +54,16 @@ const DefineDirectorStatus = ({
 				</li>
 			</ul>
 			{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-							window.location.hostname
-						) && <p>
-				<Link
-					className="ui__ button plain"
-					to={sitePaths.sécuritéSociale.comparaison}>
-					<T k="simulation-end.cta">Comparer ces régimes</T>
-				</Link>
-			</p>
-			}
+				window.location.hostname
+			) && (
+				<p>
+					<Link
+						className="ui__ button plain"
+						to={sitePaths.sécuritéSociale.comparaison}>
+						<T k="simulation-end.cta">Comparer ces régimes</T>
+					</Link>
+				</p>
+			)}
 		</T>
 		<div className="ui__ answer-group">
 			<button

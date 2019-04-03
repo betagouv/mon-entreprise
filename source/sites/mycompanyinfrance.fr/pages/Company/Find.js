@@ -114,6 +114,7 @@ class Search extends React.Component<Props, State> {
 					valueKey="id"
 					labelKey="l1_normalisee"
 					value={this.state.input}
+					autoFocus
 					onChange={this.handleChange}
 					optionRenderer={({ l1_normalisee, code_postal }) =>
 						l1_normalisee + ` (${code_postal})`
