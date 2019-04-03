@@ -2475,19 +2475,6 @@
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
 
-- espace: établissement
-  nom: taux du versement transport
-  données: taux_versement_transport
-  formule:
-    sélection:
-      données: taux du versement transport
-      cherche: localisation . code commune
-      dans: codeCommune
-      composantes:
-        - nom: aot
-          renvoie: aot
-        - nom: smt
-          renvoie: smt
 - espace: contrat salarié
   nom: vieillesse
   cotisation:

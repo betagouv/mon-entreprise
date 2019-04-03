@@ -442,68 +442,6 @@ describe('analyse with mecanisms', function() {
 			analyse(rules, 'startHere')(stateSelector).targets[0]
 		).to.have.property('nodeValue', 100 + 1200 + 80)
 	})
-
-	it('should handle selection', function() {
-		let stateSelector = name => ({ 'top . code postal': '2' }[name])
-		let data = {
-			taux_versement_transport: [
-				{ codePostal: 1, aot: '2.5' },
-				{ codePostal: 2, smt: '1.5' }
-			]
-		}
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					espace: 'top',
-					nom: 'startHere',
-					formule: {
-						sélection: {
-							données: 'startHere',
-							cherche: 'code postal',
-							dans: 'codePostal',
-							renvoie: 'smt'
-						}
-					},
-					données: 'taux_versement_transport'
-				},
-				{ espace: 'top', nom: 'code postal', format: 'nombre' }
-			],
-			rules = parseAll(rawRules.map(rule => enrichRule(rule, data)))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 0.015)
-	})
-
-	it('should handle failed selections', function() {
-		let stateSelector = name => ({ 'top . code postal': '3' }[name])
-		let data = {
-			taux_versement_transport: [
-				{ codePostal: 1, aot: { taux: { '2019': '1.0' } } },
-				{ codePostal: 2, smt: { taux: { '2019': '2.0' } } }
-			]
-		}
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					espace: 'top',
-					nom: 'startHere',
-					formule: {
-						sélection: {
-							données: 'startHere',
-							cherche: 'code postal',
-							dans: 'codePostal',
-							renvoie: 'smt'
-						}
-					},
-					données: 'taux_versement_transport'
-				},
-				{ espace: 'top', nom: 'code postal', format: 'nombre' }
-			],
-			rules = parseAll(rawRules.map(rule => enrichRule(rule, data)))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 0)
-	})
 })
 
 describe('Implicit parent applicability', function() {
