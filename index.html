@@ -232,9 +232,15 @@
 		<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
 		<% } %>
 
+		<!-- Polyfill and source for old browser -->
 		<!-- Add polyfill.io for a very narrow web feature
 			IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
+			Intl : SAFARI 9 & 10.0  https://caniuse.com/#search=Intl
 		-->
-		<script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl%2CIntersectionObserver"></script>
+		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+			<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
+		<% } %>
+
 	</body>
 </html>
