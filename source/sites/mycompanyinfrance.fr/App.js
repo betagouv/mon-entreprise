@@ -8,7 +8,7 @@ import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -68,59 +68,59 @@ class InFranceRoute extends Component {
 				initialStore={retrievePersistedState() || {}}>
 				<TrackPageView />
 				<div id="content">
-					<RouterSwitch />
+					<RouterSwitch useSuspense={false} />
 				</div>
 			</Provider>
 		)
 	}
 }
 
-let RouterSwitch = compose(withTranslation())(() => {
+let RouterSwitch = () => {
 	return (
 		<Switch>
 			<Route exact path="/" component={Landing} />
 			<Route component={App} />
 		</Switch>
 	)
-})
+}
 
-const App = compose(
-	withSitePaths,
-	withTranslation()
-)(({ sitePaths, t }) => (
-	<div className="app-container">
-		<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />
-		{/* Passing location down to prevent update blocking */}
-		<Navigation location={location} />
-		<div className="app-content">
-			<ProgressHeader />
-			<div
-				className="ui__ container"
-				style={{ flexGrow: 1, flexShrink: 0, marginTop: '1rem' }}>
-				<Switch>
-					<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
-					<Route
-						path={sitePaths.sécuritéSociale.index}
-						component={SocialSecurity}
-					/>
-					<Route
-						path={sitePaths.démarcheEmbauche.index}
-						component={HiringProcess}
-					/>
-					<Route
-						path={sitePaths.documentation.index + '/:name+'}
-						component={RulePage}
-					/>
-					{process.env.NODE_ENV !== 'production' && (
-						<Route exact path="/sitemap" component={Sitemap} />
-					)}
-					<Route component={Route404} />
-				</Switch>
+const App = compose(withSitePaths)(({ sitePaths }) => {
+	const { t } = useTranslation()
+	return (
+		<div className="app-container">
+			<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />
+			{/* Passing location down to prevent update blocking */}
+			<Navigation location={location} />
+			<div className="app-content">
+				<ProgressHeader />
+				<div
+					className="ui__ container"
+					style={{ flexGrow: 1, flexShrink: 0, marginTop: '1rem' }}>
+					<Switch>
+						<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
+						<Route
+							path={sitePaths.sécuritéSociale.index}
+							component={SocialSecurity}
+						/>
+						<Route
+							path={sitePaths.démarcheEmbauche.index}
+							component={HiringProcess}
+						/>
+						<Route
+							path={sitePaths.documentation.index + '/:name+'}
+							component={RulePage}
+						/>
+						{process.env.NODE_ENV !== 'production' && (
+							<Route exact path="/sitemap" component={Sitemap} />
+						)}
+						<Route component={Route404} />
+					</Switch>
+				</div>
+				<Footer />
 			</div>
-			<Footer />
 		</div>
-	</div>
-))
+	)
+})
 
 let ExportedApp = InFranceRoute
 

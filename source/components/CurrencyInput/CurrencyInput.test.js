@@ -1,8 +1,8 @@
-import CurrencyInput from './CurrencyInput'
-import React from 'react'
-import { shallow } from 'enzyme'
 import { expect } from 'chai'
-import { spy, match } from 'sinon'
+import { shallow } from 'enzyme'
+import React from 'react'
+import { match, spy } from 'sinon'
+import CurrencyInput from './CurrencyInput'
 
 let getInput = component => shallow(component).find('input')
 describe('CurrencyInput', () => {

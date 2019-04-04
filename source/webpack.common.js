@@ -29,6 +29,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve('./dist/'),
+		globalObject: 'self',
 	},
 	plugins: [
 		new EnvironmentPlugin({

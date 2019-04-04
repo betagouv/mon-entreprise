@@ -15,7 +15,6 @@ export default function withSitePaths<Props: { sitePaths: SitePaths }>(
 		constructor(props) {
 			super(props)
 			i18n.on('languageChanged', () => {
-				console.log('zop')
 				this.forceUpdate()
 			})
 		}

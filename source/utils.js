@@ -3,7 +3,8 @@ import { map } from 'ramda'
 
 export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 
-export let getUrl = () => window.location.href.toString()
+export let getUrl = () =>
+	typeof window !== 'undefined' ? window.location.href.toString() : ''
 
 export let parseDataAttributes = (value: any) =>
 	value === 'undefined'

@@ -86,7 +86,7 @@ class CurrencyInput extends Component {
 					inputMode="numeric"
 					onChange={this.handleChange}
 					ref={ref => (this.input = ref)}
-					value={this.state.value}
+					// value={this.state.value}
 				/>
 				{!isCurrencyPrefixed(this.props.language) && <>&nbsp;€</>}
 			</div>

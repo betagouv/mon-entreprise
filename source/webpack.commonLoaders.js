@@ -39,6 +39,10 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 	}
 
 	return [
+		{
+			test: /\.worker\.js$/,
+			use: { loader: 'workerize-loader' }
+		},
 		{ test: /\.js$/, loader: babelLoader, exclude: /node_modules|dist/ },
 		{
 			test: /\.(jpe?g|png|svg)$/,

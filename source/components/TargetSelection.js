@@ -1,31 +1,35 @@
-import classNames from 'classnames'
-import Controls from 'Components/Controls'
-import InputSuggestions from 'Components/conversation/InputSuggestions'
-import PeriodSwitch from 'Components/PeriodSwitch'
-import withColours from 'Components/utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName } from 'Engine/rules'
-import { compose, isEmpty, isNil, propEq } from 'ramda'
-import React, { Component, PureComponent } from 'react'
-import { withTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { change, Field, formValueSelector, reduxForm } from 'redux-form'
-import {
+import classNames from 'classnames';
+import Controls from 'Components/Controls';
+import InputSuggestions from 'Components/conversation/InputSuggestions';
+import PeriodSwitch from 'Components/PeriodSwitch';
+import asyncConnect from 'Components/utils/asyncConnect';
+import withColours from 'Components/utils/withColours';
+import withLanguage from 'Components/utils/withLanguage';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { encodeRuleName } from 'Engine/rules';
+import { compose, isEmpty, isNil, propEq } from 'ramda';
+import React, { Component, PureComponent } from 'react';
+import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { change, Field, formValueSelector, reduxForm } from 'redux-form';
+import Animate from 'Ui/animate';
+import AnimatedTargetValue from 'Ui/AnimatedTargetValue';
+import worker from 'workerize-loader!Selectors/analyseSelectors';
+import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader';
+import CurrencyInput from './CurrencyInput/CurrencyInput';
+import QuickLinks from './QuickLinks';
+import './TargetSelection.css';
+
+const {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
 	nextStepsSelector,
 	noUserInputSelector
-} from 'Selectors/analyseSelectors'
-import Animate from 'Ui/animate'
-import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
-import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader'
-import CurrencyInput from './CurrencyInput/CurrencyInput'
-import QuickLinks from './QuickLinks'
-import './TargetSelection.css'
+} = worker()
 
 const MAX_NUMBER_QUESTION = 18
+
 export default compose(
 	withTranslation(),
 	withColours,
@@ -33,16 +37,18 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
+	asyncConnect(async state => ({
+		flatRules: await flatRulesSelector(state),
+		noUserInput: await noUserInputSelector(state),
+		analysis: await analysisWithDefaultsSelector(state),
+		progress:
+			(100 * (MAX_NUMBER_QUESTION - (await nextStepsSelector(state)))) /
+			MAX_NUMBER_QUESTION
+	})),
 	connect(
 		state => ({
 			getTargetValue: dottedName =>
 				formValueSelector('conversation')(state, dottedName),
-			analysis: analysisWithDefaultsSelector(state),
-			flatRules: flatRulesSelector(state),
-			progress:
-				(100 * (MAX_NUMBER_QUESTION - nextStepsSelector(state))) /
-				MAX_NUMBER_QUESTION,
-			noUserInput: noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
 			objectifs: state.simulation?.config.objectifs || []
@@ -84,7 +90,9 @@ export default compose(
 
 			return (
 				<div id="targetSelection">
-					{!noUserInput && <Controls controls={analysis.controls} />}
+					{!noUserInput && analysis?.controls && (
+						<Controls controls={analysis.controls} />
+					)}
 					<PeriodSwitch />
 					<div style={{ height: '10px' }}>
 						<Progress percent={progress} />

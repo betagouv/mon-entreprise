@@ -7,7 +7,8 @@ module.exports = {
 	...prod,
 	entry: map(entry => ['whatwg-fetch', entry], prod.entry),
 	output: {
-		filename: '[name].legacy.bundle.js'
+		filename: '[name].legacy.bundle.js',
+		globalObject: 'this'
 	},
 	module: {
 		rules: [...commonLoaders({ legacy: true }), styleLoader('style-loader')]

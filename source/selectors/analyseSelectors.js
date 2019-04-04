@@ -190,12 +190,16 @@ let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],
 		(parsedRules, targetNames, situations) =>
-			mapOrApply(
-				situation =>
-					analyseMany(parsedRules, targetNames)(dottedName => {
-						return situation[dottedName]
-					}),
-				situations
+			JSON.parse(
+				JSON.stringify(
+					mapOrApply(
+						situation =>
+							analyseMany(parsedRules, targetNames)(dottedName => {
+								return situation[dottedName]
+							}),
+						situations
+					)
+				)
 			)
 	)
 
