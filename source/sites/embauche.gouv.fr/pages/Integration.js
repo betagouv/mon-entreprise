@@ -41,7 +41,7 @@ export default class MyComponent extends Component {
 
 					<div id="integrationList">
 						<article>
-							<a href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2018.html?ut=estimateurs">
+							<a href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs">
 								<img src={urssafLogo} alt="urssaf.fr" />
 								<h2>URSSAF</h2>
 							</a>
