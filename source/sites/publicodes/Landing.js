@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Suggestions from './Suggestions'
 import { useState } from 'react'
 import Search from './Search'
-import NewSuggestion from './NewSuggestion'
+import ContributionButton from './ContributionButton'
 
 export default () => {
 	const [input, setInput] = useState('')
@@ -28,7 +28,7 @@ export default () => {
 			<h1>Quel est l'impact de ...</h1>
 			<Search {...{ input, setInput }} />
 			<Suggestions {...{ input }} />
-			<NewSuggestion {...{ input }} />
+			<ContributionButton {...{ input }} />
 		</div>
 	)
 }

@@ -10,6 +10,7 @@ import Landing from './Landing'
 import Simulateur from './Simulateur'
 import About from './About'
 import Earth from './EarthLoader'
+import Contribution from './Contribution'
 
 class App extends Component {
 	render() {
@@ -30,6 +31,7 @@ class App extends Component {
 					<Route path="/documentation/:name+" component={RulePage} />
 					<Route path="/documentation" component={RulesList} />
 					<Route path="/simulateur/:name" component={Simulateur} />
+					<Route path="/contribuer/:input?" component={Contribution} />
 					<Route path="/à-propos" component={About} />
 					<Route component={Route404} />
 				</Switch>
