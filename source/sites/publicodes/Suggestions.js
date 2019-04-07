@@ -28,11 +28,15 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 
 		return (
 			<section style={{ marginTop: '3rem' }}>
-				<h2 css="font-size: 100%;">
-					{(input ? 'Résultats' : 'Suggestions') + ' :'}
-				</h2>
+				{filteredRules.length ? (
+					<h2 css="font-size: 100%;">
+						{(input ? 'Résultats' : 'Suggestions') + ' :'}
+					</h2>
+				) : (
+					<p>Rien trouvé {emoji('😶')}. </p>
+				)}
 				{filteredRules && (
-					<ul css="display: flex; flex-wrap: wrap ">
+					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly">
 						{filteredRules.map(({ dottedName }) => (
 							<Suggestion
 								key={dottedName}
@@ -41,7 +45,6 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 						))}
 					</ul>
 				)}
-				{input && <p>Rien trouvé {emoji('😶')}. </p>}
 			</section>
 		)
 	}

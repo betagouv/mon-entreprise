@@ -7,65 +7,42 @@ label {
 	display: block;
 	margin-bottom: 1em;
 }
-label input, label textArea {
+label input, label textarea {
 	display: block;
 	border-radius: .3em;
 	padding: .3em ;
 	border: 1px solid var(--colour);
 	box-shadow: none;
 	margin-top: .6em;
-	width: 20em;
-	font-size: 100%
+	font-size: 100%;
+	width: 80%
 
 }
-label textArea {
-	height: 6em
+label textarea {
+	height: 6em;
 }`
 
 let createIssue = (title, body, setURL) =>
 	fetch(
 		'https://publicodes.netlify.com/.netlify/functions/createIssue?' +
 			toPairs({ repo: 'laem/futureco-data', title, body })
-				.map(([k, v]) => k + '=' + v)
+				.map(([k, v]) => k + '=' + encodeURIComponent(v))
 				.join('&'),
 		{ mode: 'cors' }
 	)
 		.then(response => response.json())
 		.then(json => setURL(json.url))
 
-export default ({ input }) => {
+export default ({ match }) => {
+	let input = match.params.input
 	let [sujet, setSujet] = useState(input)
 
 	let [source, setSource] = useState('')
 	let [URL, setURL] = useState(null)
 
 	return (
-		<>
-			<div
-				css={`
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				`}>
-				Contribuer
-				<button
-					css={`
-						border-radius: 10em;
-						box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-							0px 6px 10px 0px rgba(0, 0, 0, 0.14),
-							0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-						height: 2.5em;
-						width: 2.5em;
-						padding: 0em;
-						background: var(--colour);
-						color: white;
-						font-weight: 400;
-						font-size: 180%;
-						margin: 0.3em;
-					`}>
-					{emoji('✍️')}
-				</button>
-			</div>
+		<div className="ui__ container">
+			<h1>Contribuer</h1>
 			{!URL ? (
 				<form css={formStyle}>
 					<label>
@@ -88,11 +65,10 @@ export default ({ input }) => {
 							</li>
 							<li>ou une ébauche de calcul faite par vos soins</li>
 						</ul>
-						<textArea
+						<textarea
 							value={source}
 							onChange={e => setSource(e.target.value)}
 							name="source"
-							placeholder="Vos notes"
 							required
 						/>
 					</label>
@@ -112,6 +88,6 @@ export default ({ input }) => {
 					cliquant sur <a href={URL}>ce lien</a>.
 				</p>
 			)}
-		</>
+		</div>
 	)
 }
