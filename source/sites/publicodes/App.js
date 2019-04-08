@@ -26,15 +26,17 @@ class App extends Component {
 				}}
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}>
-				<Switch>
-					<Route exact path="/" component={Landing} />
-					<Route path="/documentation/:name+" component={RulePage} />
-					<Route path="/documentation" component={RulesList} />
-					<Route path="/simulateur/:name" component={Simulateur} />
-					<Route path="/contribuer/:input?" component={Contribution} />
-					<Route path="/à-propos" component={About} />
-					<Route component={Route404} />
-				</Switch>
+				<div className="ui__ container">
+					<Switch>
+						<Route exact path="/" component={Landing} />
+						<Route path="/documentation/:name+" component={RulePage} />
+						<Route path="/documentation" component={RulesList} />
+						<Route path="/simulateur/:name" component={Simulateur} />
+						<Route path="/contribuer/:input?" component={Contribution} />
+						<Route path="/à-propos" component={About} />
+						<Route component={Route404} />
+					</Switch>
+				</div>
 			</Provider>
 		)
 	}

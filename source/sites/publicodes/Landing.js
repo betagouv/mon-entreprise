@@ -8,7 +8,7 @@ import ContributionButton from './ContributionButton'
 export default () => {
 	const [input, setInput] = useState('')
 	return (
-		<div className="ui__ container">
+		<div>
 			<section
 				id="intro"
 				css={`
