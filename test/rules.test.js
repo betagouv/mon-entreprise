@@ -15,16 +15,6 @@ describe('enrichRule', function() {
 		expect(enrichRule(rule)).to.have.property('type', 'cotisation')
 	})
 
-	it('should load external data into the rule', function() {
-		let data = { taux_versement_transport: { one: 'two' } }
-		let rule = {
-			nom: 'retraite',
-			cotisation: {},
-			données: 'taux_versement_transport'
-		}
-		expect(enrichRule(rule, data)).to.have.deep.property('data', { one: 'two' })
-	})
-
 	it('should extract the dotted name of the rule', function() {
 		let rule = { espace: 'contrat salarié', nom: 'CDD' }
 		expect(enrichRule(rule)).to.have.property('name', 'CDD')
