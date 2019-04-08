@@ -27,6 +27,7 @@ import HiringProcess from './pages/HiringProcess'
 import Landing from './pages/Landing'
 import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
+import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import { constructLocalizedSitePath } from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
@@ -106,6 +107,10 @@ const App = compose(
 					<Route
 						path={sitePaths.démarcheEmbauche.index}
 						component={HiringProcess}
+					/>
+					<Route
+						path={sitePaths.économieCollaborative.index}
+						component={ÉconomieCollaborative}
 					/>
 					<Route
 						path={sitePaths.documentation.index + '/:name+'}
