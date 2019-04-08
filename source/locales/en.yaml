@@ -520,6 +520,8 @@ path:
     selection: '/scheme-selection'
   démarcheEmbauche:
     index: '/hiring-process'
+  économieCollaborative:
+    index: '/sharing-economy'
 
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 auto-entrepreneur-EIRL: auto-entrepreneur-EIRL

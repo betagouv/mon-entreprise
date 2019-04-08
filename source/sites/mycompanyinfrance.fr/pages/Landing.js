@@ -63,7 +63,9 @@ export default compose(
 				to={sitePaths.démarcheEmbauche.index}>
 				{emoji('🤝')} <T>Connaître les démarches d'embauche</T>
 			</Link>
-			<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>
+			<Link
+				className="ui__ button-choice ui__ button-choice--soon"
+				to={sitePaths.économieCollaborative.index}>
 				<span className="ui__ button-choice-label">
 					<T>prochainement</T>
 				</span>
