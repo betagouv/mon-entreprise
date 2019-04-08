@@ -42,13 +42,29 @@ export default FormDecorator('select')(
 					submit
 				} = this.props,
 				submitOnChange = option => {
-					tauxVersementTransport(option.code).then(({ taux }) => {
-						// serialize to not mix our data schema and the API response's
-						onChange(
-							JSON.stringify({ ...option, 'taux du versement transport': taux })
-						)
-						submit()
-					})
+					tauxVersementTransport(option.code)
+						.then(({ taux }) => {
+							// serialize to not mix our data schema and the API response's
+							onChange(
+								JSON.stringify({
+									...option,
+									...(taux != undefined
+										? {
+												'taux du versement transport': taux
+										  }
+										: {})
+								})
+							)
+							submit()
+						})
+						.catch(error => {
+							//eslint-disable-next-line no-console
+							console.log(
+								'Erreur dans la récupération du taux de versement transport à partir du code commune',
+								error
+							) || onChange(JSON.stringify({ option }))
+							submit() // eslint-disable-line no-console
+						})
 				}
 
 			return (

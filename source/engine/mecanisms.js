@@ -55,11 +55,7 @@ import InversionNumérique from './mecanismViews/InversionNumérique'
 import Product from './mecanismViews/Product'
 import Somme from './mecanismViews/Somme'
 import Variations from './mecanismViews/Variations'
-import {
-	disambiguateRuleReference,
-	findRuleByDottedName,
-	findRuleByName
-} from './rules'
+import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 import { anyNull, val } from './traverse-common-functions'
 import uniroot from './uniroot'
 
@@ -859,14 +855,21 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 			node.explanation.API
 		)
 
+		let valuePath = v.chemin.split(' . ')
+
 		let nodeValue =
-			val(APIExplanation) == null
-				? null
-				: path(v.chemin.split(' . '))(val(APIExplanation))
+			val(APIExplanation) == null ? null : path(valuePath, val(APIExplanation))
+
+		// If the API gave a non null value, then some of its props may be null (the API can be composed of multiple API, some failing). Then this prop will be set to the default value defined in the API's rule
+		let safeNodeValue =
+			nodeValue == null && val(APIExplanation) != null
+				? path(valuePath, APIExplanation.explanation.defaultValue)
+				: nodeValue
+
 		let missingVariables =
 			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return rewriteNode(node, safeNodeValue, explanation, missingVariables)
 	}
 
 	return {
