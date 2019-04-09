@@ -827,6 +827,23 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.4.tgz#8808bd5a82bbf6f5d412eff1c228d178e7c24bb3"
   integrity sha512-02tIL+QIi/RW4E5xILdoAMjeJ9kYq5t5S2vciUdFPXv/ikFTb0zK8q9vXkg4+WAJuYXGiVT1H28AkD2C+IkXVw==
 
+"@vitalets/google-translate-api@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@vitalets/google-translate-api/-/google-translate-api-2.8.0.tgz#c814ba5c859a73d30794d0268c2bb910c775e8b2"
+  integrity sha512-xFdk+X5OzXLliMa4fXM4+wOsSdjnGSRjoSSHzwILBpsEdItmPJN4Fyh15n7tgsPWauNQcvYwD0LFvavtH3PSfA==
+  dependencies:
+    "@vitalets/google-translate-token" "^1.1.0"
+    configstore "^2.0.0"
+    got "^6.3.0"
+
+"@vitalets/google-translate-token@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@vitalets/google-translate-token/-/google-translate-token-1.1.0.tgz#d835a9afe80862772b503af25399f0bde462bc23"
+  integrity sha512-XeVCydecA7dQ46/1Q+RHcJXvUCRnWBnPys7wpSDFlpfBazcoQ9zwdbT8FU/UMF1ZLY89fueqc2W9U0zmmFfaIQ==
+  dependencies:
+    configstore "^2.0.0"
+    got "^6.3.0"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
