@@ -78,7 +78,12 @@ export default compose(
 
 			return (
 				<div id="targetSelection">
-					{!noUserInput && <Controls controls={analysis.controls} />}
+					{!noUserInput && (
+						<Controls
+							inversionFail={analysis.cache.inversionFail}
+							controls={analysis.controls}
+						/>
+					)}
 					<PeriodSwitch />
 					<section
 						className="ui__ plain card"

@@ -431,6 +431,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 			parsedRules,
 			fixedObjectiveRule
 		)
+
 		return v
 	}
 
@@ -449,7 +450,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 				let y = fx(x)
 				return y.nodeValue - objectiveValue
 			},
-			1,
+			0.1,
 			1000000000,
 			tolerance,
 			10
