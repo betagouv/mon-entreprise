@@ -350,6 +350,8 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 		)
 
 	let controls = evaluateControls(cache, situationGate, parsedRules)
+
+	console.log(cache.inversionFail)
 	return { targets, cache, controls }
 }
 
