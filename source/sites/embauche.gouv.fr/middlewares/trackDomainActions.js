@@ -25,6 +25,7 @@ export default (tracker: Tracker) => {
 				action.step,
 				formattedSituationSelector(newState)[action.step]
 			])
+			console.log('aïe')
 			if (!currentQuestionSelector(newState)) {
 				tracker.push([
 					'trackEvent',

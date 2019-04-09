@@ -190,24 +190,10 @@ export let findRuleByNamespace = (allRules, ns) =>
 
 export let queryRule = rule => query => path(query.split(' . '))(rule)
 
-var findObjectByLabel = function(obj, label) {
-	if (obj.label === label) {
-		return obj
-	}
-	for (var i in obj) {
-		if (obj.hasOwnProperty(i)) {
-			var foundLabel = findObjectByLabel(obj[i], label)
-			if (foundLabel) {
-				return foundLabel
-			}
-		}
-	}
-	return null
-}
-
 // Redux-form stores the form values as a nested object
 // This helper makes a dottedName => value Map
 export let nestedSituationToPathMap = situation => {
+	if (situation == undefined) return {}
 	let rec = (o, currentPath) =>
 		typeof o === 'object'
 			? chain(([k, v]) => rec(v, [...currentPath, trim(k)]), toPairs(o))
