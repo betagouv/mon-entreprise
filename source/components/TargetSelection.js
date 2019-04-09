@@ -74,13 +74,14 @@ export default compose(
 			props.setActiveInput(null)
 		}
 		render() {
-			let { colours, noUserInput, analysis } = this.props
+			let { colours, noUserInput, analysis } = this.props,
+				inversionFail = analysis.cache.inversionFail
 
 			return (
 				<div id="targetSelection">
 					{!noUserInput && (
 						<Controls
-							inversionFail={analysis.cache.inversionFail}
+							inversionFail={inversionFail}
 							controls={analysis.controls}
 						/>
 					)}
@@ -111,7 +112,8 @@ export default compose(
 					setFormValue,
 					analysis
 				} = this.props,
-				targets = analysis ? analysis.targets : []
+				targets = analysis ? analysis.targets : [],
+				inversionFail = analysis.cache.inversionFail
 
 			return (
 				<div>
@@ -133,7 +135,8 @@ export default compose(
 										setFormValue,
 										activeInput,
 										setActiveInput,
-										targets
+										targets,
+										inversionFail
 									}}
 								/>
 							))}
@@ -150,7 +153,9 @@ const Target = ({
 	conversationStarted,
 	targets,
 	setActiveInput,
-	setFormValue
+	setFormValue,
+
+	inversionFail
 }) => {
 	const isSmallTarget =
 		!target.question || !target.formule || isEmpty(target.formule)
@@ -183,7 +188,8 @@ const Target = ({
 								targets,
 								activeInput,
 								setActiveInput,
-								setFormValue
+								setFormValue,
+								inversionFail
 							}}
 						/>
 					</div>
@@ -238,7 +244,15 @@ let CurrencyField = withColours(props => {
 })
 
 let TargetInputOrValue = withLanguage(
-	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
+	({
+		target,
+		targets,
+		activeInput,
+		setActiveInput,
+		language,
+		noUserInput,
+		inversionFail
+	}) => (
 		<span className="targetInputOrValue">
 			{activeInput === target.dottedName ||
 			!target.formule ||
@@ -256,7 +270,8 @@ let TargetInputOrValue = withLanguage(
 						target,
 						activeInput,
 						setActiveInput,
-						noUserInput
+						noUserInput,
+						inversionFail
 					}}
 				/>
 			)}
@@ -272,7 +287,7 @@ const TargetValue = connect(
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target } = this.props
+			let { targets, target, inversionFail } = this.props
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -284,6 +299,7 @@ const TargetValue = connect(
 						editable: target.question,
 						attractClick: target.question && isNil(target.nodeValue)
 					})}
+					style={inversionFail ? { filter: 'blur(3px)' } : {}}
 					{...(target.question ? { tabIndex: 0 } : {})}
 					onClick={this.showField(value)}
 					onFocus={this.showField(value)}>
