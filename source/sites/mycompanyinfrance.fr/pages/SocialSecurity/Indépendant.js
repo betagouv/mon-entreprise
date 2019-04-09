@@ -45,10 +45,11 @@ let AvertissementForfaitIndépendants = () => (
 
 export let AvertissementProtectionSocialeIndépendants = () => (
 	<p>
-		{emoji('☂️')} La sécurité sociale des indépendants ne couvre ni les
-		accidents du travail, ni la perte d'emploi (assurance-chômage), et offre une
-		retraite plus faible que celle des salariés. Pour être couvert, le
-		professionnel peut souscrire volontairement des assurances spécifiques.
+		{emoji('☂️')}
+		Les assurances chômage et accidents du travail ne sont pas prises en charge
+		au sein de la Sécurité sociale des indépendants. La retraite basée sur le
+		revenu professionnel est généralement plus faible. Pour être couvert le
+		professionnel peut souscrire des assurances complémentaires.
 	</p>
 )
 
