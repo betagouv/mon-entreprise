@@ -25,7 +25,7 @@ import {
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
-import { mapOrApply, softCatch } from '../utils'
+import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
@@ -222,15 +222,6 @@ let analysisValidatedOnlySelector = makeAnalysisSelector(
 	validatedSituationBranchesSelector
 )
 
-// TODO this should really not be fired twice in a user session...
-//
-// TODO the just input salary should be in the situation so that it is not a missing variable
-let initialAnalysisSelector = createSelector(
-	[parsedRulesSelector, targetNamesSelector],
-	(parsedRules, targetNames) =>
-		analyseMany(parsedRules, targetNames)(() => null)
-)
-
 let currentMissingVariablesByTargetSelector = createSelector(
 	[analysisValidatedOnlySelector],
 	analyses => {
@@ -243,14 +234,6 @@ let currentMissingVariablesByTargetSelector = createSelector(
 		}
 		return variables
 	}
-)
-
-export let missingVariablesByTargetSelector = createSelector(
-	[initialAnalysisSelector, currentMissingVariablesByTargetSelector],
-	softCatch((initialAnalysis, currentMissingVariablesByTarget) => ({
-		initial: collectMissingVariablesByTarget(initialAnalysis.targets),
-		current: currentMissingVariablesByTarget
-	}))
 )
 
 export let nextStepsSelector = createSelector(

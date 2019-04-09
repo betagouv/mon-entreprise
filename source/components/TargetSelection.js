@@ -15,17 +15,14 @@ import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
-	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
-import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import QuickLinks from './QuickLinks'
 import './TargetSelection.css'
 
-const MAX_NUMBER_QUESTION = 18
 export default compose(
 	withTranslation(),
 	withColours,
@@ -39,9 +36,6 @@ export default compose(
 				formValueSelector('conversation')(state, dottedName),
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
-			progress:
-				(100 * (MAX_NUMBER_QUESTION - nextStepsSelector(state))) /
-				MAX_NUMBER_QUESTION,
 			noUserInput: noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
@@ -80,18 +74,16 @@ export default compose(
 			props.setActiveInput(null)
 		}
 		render() {
-			let { colours, noUserInput, analysis, progress } = this.props
+			let { colours, noUserInput, analysis } = this.props
 
 			return (
 				<div id="targetSelection">
 					{!noUserInput && <Controls controls={analysis.controls} />}
 					<PeriodSwitch />
-					<div style={{ height: '10px' }}>
-						<Progress percent={progress} />
-					</div>
 					<section
 						className="ui__ plain card"
 						style={{
+							marginTop: '.6em',
 							color: colours.textColour,
 							background: `linear-gradient(
 								60deg,
