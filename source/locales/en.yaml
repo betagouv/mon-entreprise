@@ -41,7 +41,6 @@ clickForMore: You can click the results below for detailed explanations.
 Quel est le salaire mensuel ?: What is the monthly salary?
 back: Back to your simulation
 ambiguous: More than one rule with this name found. Which one are you looking for ?
-reportError: Report an error
 Références: Relevant legal information (fr)
 Règles du groupe: Rules of the group
 Pas de sources officielles: No official information
@@ -130,7 +129,7 @@ simulation-end:
     cta: Know the procedures
 feedback:
   simulator: Do you like this simulator ?
-  reportError: Report an error
+  reportError: Make a suggestion
   question: Was this information useful to you?
   bad:
     form:
@@ -417,7 +416,7 @@ sécu:
     auto-entrepreneur: Estimate my remuneration as an auto-entrepreneur
     dirigeant1: Your remuneration as a {{legalStatus}} director
     dirigeant2: The director's remuneration
-    employée: An employee's salary
+    employé: An employee's salary
 
 Votre entreprise: Your company
 Ce n'est pas mon entreprise: This is not my company
@@ -492,13 +491,6 @@ embauche:
       <2>Deliver the standardised payslip to your employee</2>
     </1>
     <2>Get an example payslip</2>
-
-simulateur-salarié:
-  page:
-    titre: Official net and gross salary simulator
-    description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
-  titre: Salary simulator
-  description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
 
 Guide du statut juridique: Legal status guide
 Démarches de création: Creation process checklist
@@ -608,7 +600,9 @@ Simulations personnalisées: Customized simulations
 
 indicationTempsPlein: in full-time gross salary equivalent
 auto-entreprise: auto-enterprise
-
+SAS, SASU ou SARL minoritaires: SAS, SASU or SARL minority shareholders
+EI, EURL, SARL ou SARL majoritaires: EI, EURL, SARL or SARL majority shareholders
+Comparer les trois régimes: Compare the three schemes
 simulateurs:
   warning:
     titre: Tool under development
@@ -616,5 +610,17 @@ simulateurs:
     line1: the turnover deducted from expenses goes to 100% in the director's remuneration
     line2: income tax is calculated for a single person without children and without other income.
     line3: the figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
+  salarié:
+    page:
+      titre: Official net and gross salary simulator
+      description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
+    titre: Salary simulator
+    description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
+  assimilé-salarié:
+    page:
+      titre: Official salary simulator for SASU and SAS directors
+      description: Estimate your income as a SASU or SAS director based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator
+    titre: Income simulator for SAS and SASU directors
+    explications: The equal or minority directors of SARL or the directors of SA and SAS are considered as "assimilé salarié" and are subject to the general regime. Consequently, the director has the same social protection as an employee, apart from unemployment coverage.
 
 J'ai compris: understood

@@ -1,3 +1,4 @@
+import { T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -14,9 +15,11 @@ const SchemeChoice = withSitePaths(({ sitePaths }) => (
 				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
 				{emoji('☂')}
 				<br />
-				Assimilé salarié
+				<T>Assimilé salarié</T>
 				<br />
-				<small> SAS, SASU ou SAS minoritaires</small>
+				<small>
+					<T>SAS, SASU ou SARL minoritaires</T>
+				</small>
 			</Link>
 			<Link
 				to={sitePaths.sécuritéSociale.indépendant}
@@ -24,9 +27,11 @@ const SchemeChoice = withSitePaths(({ sitePaths }) => (
 				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
 				{emoji('👩‍🔧')}
 				<br />
-				Indépendant
+				<T>Indépendant</T>
 				<br />
-				<small> EI, SARL, EURL, ou SAS majoritaires</small>
+				<small>
+					<T>EI, EURL, SARL ou SARL majoritaires</T>
+				</small>
 			</Link>
 			<Link
 				to={sitePaths.sécuritéSociale['auto-entrepreneur']}
@@ -46,7 +51,7 @@ const SchemeChoice = withSitePaths(({ sitePaths }) => (
 					to={sitePaths.sécuritéSociale.comparaison}
 					style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
 					{emoji('🚶‍♂️')}
-					Comparer les trois régimes
+					<T>Comparer les trois régimes</T>
 				</Link>
 			</p>
 		)}
