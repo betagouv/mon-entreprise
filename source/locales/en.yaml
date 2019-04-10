@@ -514,6 +514,8 @@ path:
   sécuritéSociale:
     index: '/social-security'
     assimilé-salarié: '/assimilated-salaried'
+    indépendant: '/self-employed'
+    auto-entrepreneur: '/auto-entrepreneur'
     salarié: '/salaried'
     selection: '/scheme-selection'
   démarcheEmbauche:
@@ -620,7 +622,23 @@ simulateurs:
     page:
       titre: Official salary simulator for SASU and SAS directors
       description: Estimate your income as a SASU or SAS director based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator
-    titre: Income simulator for SAS and SASU directors
+    titre: SAS and SASU directors income simulator
     explications: The equal or minority directors of SARL or the directors of SA and SAS are considered as "assimilé salarié" and are subject to the general regime. Consequently, the director has the same social protection as an employee, apart from unemployment coverage.
-
+  indépendant:
+    page:
+      titre: Official income simulator for self-employed person
+      description: Estimate your income as a self-employed person based on your turnover (for EI, EURL and SARL majority directors). All contributions and income tax are taken into account. Official URSSAF simulator
+    titre: Self-employed income simulator
+    explication1: Our estimate takes into account the <1>actual contributions</1> due by the self-employed person. During the first year of his activity, he will pay a reduced flat rate (a sum of around 1300€ / year for a craftsman benefiting from ACRE)... but it will be regularized the following year according to this real amount.
+    explication2: Unemployment and occupational accident insurance are not covered by the Social Security for the self-employed. Retirement based on professional income is generally lower. To be covered, the professional may take out additional insurance.
+  auto-entrepreneur:
+    page:
+      titre: Official income simulator for auto-entrepreneur
+      description: Estimate your income as an auto-entrepreneur based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator.
+    titre: 'Auto-entrepreneur income simulator'
 J'ai compris: understood
+
+Années d'activité: Years of activity
+Commerçant, artisan, ou libéral ?: Trader, craftsman, or liberal?
+Revenir à la documentation: Go back to documentation
+Voir le code source: See the source code

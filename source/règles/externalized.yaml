@@ -1681,7 +1681,7 @@ entreprise . catégorie d'activité . libérale:
   titre.fr: libérale
 entreprise . catégorie d'activité . commerciale ou industrielle:
   description.en: >
-    ### Business activity
+    ### Commercial activity
 
     - Purchases of goods for resale in the same condition as received (wholesale or retail trade)
     detail)
@@ -1714,7 +1714,7 @@ entreprise . catégorie d'activité . commerciale ou industrielle:
     Activité de production ou de transformation grâce à l'utilisation d'outils
     industriels, extraction, industries minières, manutention, magasinage et
     stockage
-  titre.en: 'business or industrial'
+  titre.en: 'commercial or industrial'
   titre.fr: commerciale ou industrielle
 entreprise . catégorie d'activité . artisanale:
   description.en: >
@@ -1910,7 +1910,7 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
     nécessite un arrêt de travail, une part de leur ancien revenu leur sera
     versé.
 ? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
-: titre.en: 'craftsmen, traders, businessmen'
+: titre.en: 'craftsmen, traders, liberal'
   titre.fr: artisans commerçants libéraux
 ? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
 : titre.en: 'variable rate'
