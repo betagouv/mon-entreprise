@@ -14,14 +14,10 @@ let isCurrencyPrefixed = language =>
 
 class CurrencyInput extends Component {
 	state = {
-		value: null
+		value: this.props.defaultValue
 	}
 	onChange = debounce(this.props.debounce, this.props.onChange)
-	static getDerivedStateFromProps(props, state) {
-		return {
-			value: state.value === null ? props.value : state.value
-		}
-	}
+
 	getSnapshotBeforeUpdate = () => {
 		return this.input.selectionStart
 	}
@@ -63,7 +59,7 @@ class CurrencyInput extends Component {
 
 	render() {
 		let forwardedProps = dissoc(
-			['onChange', 'value', 'language', 'className'],
+			['onChange', 'defaultValue', 'language', 'className', 'defaultValue'],
 			this.props
 		)
 

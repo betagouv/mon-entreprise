@@ -224,6 +224,8 @@ let CurrencyField = withColours(props => {
 			}}
 			debounce={600}
 			className="targetInput"
+			key={props.input.value}
+			defaultValue={props.input.value}
 			{...props.input}
 			{...props}
 		/>
