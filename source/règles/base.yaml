@@ -3479,7 +3479,7 @@
       multiplicateur: ACRE . plafond
       tranches:
         - en-dessous de: 1
-          taux: ACRE * taux de cotisation
+          taux: taux ACRE * taux de cotisation
         - au-dessus de: 1
           taux: taux de cotisation
   références:
@@ -3506,23 +3506,27 @@
   par défaut: non
 
 - espace: auto entrepreneur . cotisations sociales
-  nom: ACRE
-  titre: Taux ACRE
+  nom: taux ACRE
+  période: flexible
+  formule: 100% - réduction ACRE
+
+- espace: auto entrepreneur . cotisations sociales
+  nom: réduction ACRE
   applicable si:
     une de ces conditions:
       - entreprise . année d'activité = 'première année'
       - entreprise . ACCRE obtenu
   période: flexible
-  description: Ce taux réduit le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
+  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
   formule:
     variations:
       - si: entreprise . année d'activité = 'première année'
-        alors: 25%
+        alors: 75%
       - si: entreprise . année d'activité = 'deuxième année'
         alors: 50%
       - si: entreprise . année d'activité = 'troisième année'
-        alors: 75%
-      - sinon: 100%
+        alors: 25%
+      - sinon: 0%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
 
