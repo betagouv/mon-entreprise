@@ -25,8 +25,8 @@ function Controls({
 			? [
 					{
 						message: t([
-							'Le montant saisi est trop faible ou aboutit à une situation impossible, essayez en un autre',
-							'simulateurs.inversionFail'
+							'simulateurs.inversionFail',
+							'Le montant saisi est trop faible ou aboutit à une situation impossible, essayez en un autre'
 						]),
 						level: 'avertissement'
 					}

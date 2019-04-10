@@ -85,8 +85,22 @@ const RouterSwitch = withTranslation()(() => (
 	<Switch>
 		<Route exact path="/" component={Home} />
 		<Route path="/contact" component={Contact} />
-		<Route path={paths.documentation.index + '/:name+'} component={RulePage} />
-		<Route path={paths.documentation.index} component={RulesList} />
+		<Route
+			path={paths.documentation.index + '/:name+'}
+			component={props => (
+				<div className="ui__ container">
+					<RulePage {...props} />
+				</div>
+			)}
+		/>
+		<Route
+			path={paths.documentation.index}
+			component={props => (
+				<div className="ui__ container">
+					<RulesList {...props} />
+				</div>
+			)}
+		/>
 		<Redirect from="/simu/*" to="/" />
 		<Route path="/exemples" component={ExampleSituations} />
 		<Route path="/mecanismes" component={Mecanisms} />

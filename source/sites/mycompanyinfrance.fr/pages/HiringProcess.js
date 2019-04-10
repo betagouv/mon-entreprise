@@ -6,7 +6,7 @@ import {
 import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'

@@ -21,7 +21,7 @@
 
 .ui__.toggle input[type='radio'] {
 	position: fixed;
-	left: -100%;
+	left: -100vw;
 }
 
 .ui__.toggle input[type='radio'] ~ *::before {
