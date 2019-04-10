@@ -1,10 +1,10 @@
 import { hideControl, startConversation } from 'Actions/actions'
-import withLanguage from 'Components/utils/withLanguage'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import animate from 'Ui/animate'
 import './Controls.css'
@@ -16,7 +16,7 @@ function Controls({
 	hideControl,
 	foldedSteps,
 	hiddenControls,
-	language,
+	t,
 	inversionFail
 }) {
 	let messages = [
@@ -24,16 +24,17 @@ function Controls({
 		...(inversionFail
 			? [
 					{
-						message:
-							'Malheuresement, le montant saisi est trop faible ou impossible. Essayez autre chose !',
+						message: t([
+							'Le montant saisi est trop faible ou abouti à une situation impossible, essayez en un autre',
+							'simulateurs.inversionFail'
+						]),
 						level: 'avertissement'
 					}
 			  ]
 			: [])
 	]
 	if (!messages?.length) return null
-	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
-	if (language === 'en') return null
+
 	return (
 		<div id="controlsBlock">
 			<ul style={{ margin: 0, padding: 0 }}>
@@ -87,5 +88,5 @@ export default compose(
 		})
 	),
 	withColours,
-	withLanguage
+	withTranslation()
 )(Controls)

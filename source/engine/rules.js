@@ -1,39 +1,12 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import formValueTypes from 'Components/conversation/formValueTypes'
-import {
-	assoc,
-	chain,
-	dropLast,
-	fromPairs,
-	has,
-	identity,
-	is,
-	join,
-	last,
-	map,
-	mapObjIndexed,
-	path,
-	pipe,
-	propEq,
-	props,
-	range,
-	trim,
-	isNil,
-	find,
-	reduce,
-	reduced,
-	reject,
-	split,
-	take,
-	toPairs,
-	when
-} from 'ramda'
-import rawRules from 'Règles/base.yaml'
-import translations from 'Règles/externalized.yaml'
+import formValueTypes from 'Components/conversation/formValueTypes';
+import { assoc, chain, dropLast, find, fromPairs, has, identity, is, isNil, join, last, map, mapObjIndexed, path, pipe, propEq, props, range, reduce, reduced, reject, split, take, toPairs, trim, when } from 'ramda';
+import rawRules from 'Règles/base.yaml';
+import translations from 'Règles/externalized.yaml';
 // TODO - should be in UI, not engine
-import { capitalise0 } from '../utils'
-import marked from './marked'
-import possibleVariableTypes from './possibleVariableTypes.yaml'
+import { capitalise0 } from '../utils';
+import marked from './marked';
+import possibleVariableTypes from './possibleVariableTypes.yaml';
 
 // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
@@ -250,7 +223,8 @@ export let translateAll = (translations, flatRules) => {
 		'description courte',
 		'sous-question',
 		'résumé',
-		'suggestions'
+		'suggestions',
+		'contrôles',
 	]
 
 	return map(translateRule('en', translations, targets), flatRules)

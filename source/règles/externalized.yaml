@@ -1,5 +1,5 @@
 période:
-  titre.en: 'period'
+  titre.en: period
   titre.fr: période
 contrat salarié . indemnité kilométrique vélo:
   description.en: >-
@@ -20,8 +20,7 @@ contrat salarié . indemnité kilométrique vélo:
   titre.en: kilometric bicycle allowance
   titre.fr: indemnité kilométrique vélo
 contrat salarié . indemnité kilométrique vélo . distance annuelle:
-  description.en: >-
-    A low estimate of the distance an employee bikes to work.
+  description.en: A low estimate of the distance an employee bikes to work.
   description.fr: >-
     Une estimation basse de la distance parcourue à vélo par un salarié pour se
     rendre à son travail.
@@ -96,22 +95,22 @@ contrat salarié . CDD . compensation pour congés non pris:
   titre.en: untaken vacation compensation
   titre.fr: compensation pour congés non pris
 ? contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris
-: titre.en: 'proportion of untaken leave'
+: titre.en: proportion of untaken leave
   titre.fr: proportion congés non pris
 contrat salarié . CDD . congés dus en jours ouvrés:
-  titre.en: 'leave due in working days'
+  titre.en: leave due in working days
   titre.fr: congés dus en jours ouvrés
 contrat salarié . congés dus par mois:
-  titre.en: 'leave due by month'
+  titre.en: leave due by month
   titre.fr: congés dus par mois
 ? contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire
-: titre.en: 'salary retention bonus'
+: titre.en: salary retention bonus
   titre.fr: prime maintient de salaire
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
-  titre.en: 'monthly basis'
+  titre.en: monthly basis
   titre.fr: assiette mensuelle
 contrat salarié . CDD . compensation pour congés non pris . salaire journalier:
-  titre.en: 'daily salary'
+  titre.en: daily salary
   titre.fr: salaire journalier
 contrat salarié . CDD . prime de fin de contrat:
   description.en: >-
@@ -178,6 +177,7 @@ contrat salarié . ATMP . taux collectif ATMP:
 
     concerne en ligne sur
     [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
+  suggestions.en: 'atmp-2017'
   suggestions.fr: atmp-2017
 contrat salarié . CDD . événement:
   titre.en: Contract related event
@@ -395,10 +395,23 @@ contrat salarié . CDD . congés non pris:
     contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4,
     donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la
     fin du contrat.
-
   suggestions.fr:
     '3': 3
     '10': 10
+  contrôles.en:
+    - si: congés non pris > congés dus en jours ouvrés
+      message: Attention, an employee acquires 2.08 working days off per month.
+      niveau: avertissement
+      solution:
+        cible: contrat salarié . CDD . durée contrat
+        texte: Define the duration of the contract
+  contrôles.fr:
+    - si: congés non pris > congés dus en jours ouvrés
+      message: 'Attention, un salarié acquiert 2.08 jours de congés ouvrés par mois.'
+      niveau: avertissement
+      solution:
+        cible: contrat salarié . CDD . durée contrat
+        texte: Définir la durée de contrat
   titre.en: Untaken paid leave
   titre.fr: congés non pris
 contrat salarié . CDD . contrat jeune vacances:
@@ -438,7 +451,7 @@ contrat salarié . CDD . surcoût:
     Certaines sont versées en fin de contrat, d'autres avec chaque salaire
     mensuel; elles sont ici ramenées à leur coût mensuel.
 contrat salarié:
-  question.en: 'Employed activity ?'
+  question.en: Employed activity ?
   question.fr: Activité salariée ?
   description.en: >
     The contract that binds a company (via its establishment) to an individual,
@@ -467,16 +480,20 @@ contrat salarié:
   titre.fr: contrat salarié
 contrat salarié . assimilé salarié:
   description.en: >
-    Some company managers (this is particularly the case for SASUs) are considered by the social security system as equivalent to employees. They are then in the general social security system, with some constraints however. For example, they do not contribute to unemployment insurance, and therefore are not entitled to it.
+    Some company managers (this is particularly the case for SASUs) are
+    considered by the social security system as equivalent to employees. They
+    are then in the general social security system, with some constraints
+    however. For example, they do not contribute to unemployment insurance, and
+    therefore are not entitled to it.
   description.fr: >
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont
     considérés par la sécurité sociale comme assimilés aux salariés. Ils sont
     alors au régime général de la sécurité sociale, avec quelques contraintes
     cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas
     droit.
-  question.en: 'Is the employee considered as "assimilated employee"?'
+  question.en: Is the employee considered as "assimilated employee"?
   question.fr: Le salarié est-il considéré comme "assimilé salarié" ?
-  titre.en: 'Assimilated salaried'
+  titre.en: Assimilated salaried
   titre.fr: assimilé salarié
 contrat salarié . CDD:
   question.en: Is it a fixed-term contract (CDD) ?
@@ -489,6 +506,21 @@ contrat salarié . CDD:
     Certaines situations exceptionnelles permettent aux employeurs de prévoir
     une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date
     de fin.
+  contrôles.en:
+    - si: CDD
+      niveau: information
+      message: >
+        Remember that a fixed-term contract must always correspond to a temporary need of the company.
+
+  contrôles.fr:
+    - si: CDD
+      niveau: information
+      message: >
+        Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
+        temporaire de l'entreprise.
+
+        [Code du travail - Article
+        L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
   titre.en: Fixed term (CDD)
   titre.fr: CDD
 contrat salarié . cotisations . assiette:
@@ -535,12 +567,49 @@ contrat salarié . salaire . brut de base:
   suggestions.fr:
     salaire médian: 2300
     SMIC: 1522
+  contrôles.en:
+    - si:
+        toutes ces conditions:
+          - 'brut de base [mensuel] < SMIC [mensuel]'
+          - ≠ assimilé salarié
+      niveau: avertissement
+      message: |
+        The wage entered is lower than the minimum wage.
+      solution:
+        cible: contrat salarié . temps partiel
+        texte: Is it a part-time contract?
+    - si:
+        toutes ces conditions:
+          - 'brut de base [mensuel] > 10000'
+          - période = 'mois'
+      niveau: information
+      message: >
+        The monthly wage seized is high. Are you sure the calculation period isn't set to month instead of year?
+  contrôles.fr:
+    - si:
+        toutes ces conditions:
+          - 'brut de base [mensuel] < SMIC [mensuel]'
+          - ≠ assimilé salarié
+      niveau: avertissement
+      message: |
+        Le salaire saisi est inférieur au SMIC.
+      solution:
+        cible: contrat salarié . temps partiel
+        texte: Est-ce un temps partiel ?
+    - si:
+        toutes ces conditions:
+          - 'brut de base [mensuel] > 10000'
+          - période = 'mois'
+      niveau: information
+      message: >
+        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
+        période de calcul ?
 contrat salarié . salaire . brut de base . équivalent temps plein:
-  titre.en: 'Full-time equivalent gross salary'
+  titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
   résumé.en: Salary if hired on a full-time basis
   résumé.fr: Le salaire si l'embauche se faisait à temps plein
-  question.en: 'What is the full-time equivalent salary?'
+  question.en: What is the full-time equivalent salary?
   question.fr: Quel est le salaire en équivalent temps plein ?
   suggestions.en:
     median wage: 2300
@@ -616,7 +685,8 @@ contrat salarié . statut cadre . choix statut cadre:
   question.en: Does the employee have the "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   description.en: >-
-    Concept poorly defined but recognised by collective agreements and determining membership of a specific basic pension fund.
+    Concept poorly defined but recognised by collective agreements and
+    determining membership of a specific basic pension fund.
   description.fr: >-
     Notion mal définie mais reconnue par les conventions collectives et
     déterminant l'appartenance à une caise de retraite de base spécifique
@@ -624,20 +694,21 @@ contrat salarié . statut cadre . choix statut cadre:
   titre.fr: choix statut cadre
 plafond sécurité sociale temps plein:
   description.en: >-
-    The social security ceiling is the maximum amount of remuneration to be taken into account when calculating certain contributions.
+    The social security ceiling is the maximum amount of remuneration to be
+    taken into account when calculating certain contributions.
   description.fr: >-
     Le plafond de Sécurité sociale est le montant maximum des rémunérations à
     prendre en compte pour le calcul de certaines cotisations.
-  titre.en: 'full-time social security ceiling'
+  titre.en: full-time social security ceiling
   titre.fr: plafond sécurité sociale temps plein
 contrat salarié . plafond sécurité sociale:
   titre.en: social security ceiling
   titre.fr: plafond sécurité sociale
 contrat salarié . SMIC temps plein:
-  titre.en: 'full-time mimimum wage (SMIC)'
+  titre.en: full-time mimimum wage (SMIC)
   titre.fr: SMIC temps plein
 contrat salarié . SMIC:
-  titre.en: 'minimum wage (SMIC)'
+  titre.en: minimum wage (SMIC)
   titre.fr: SMIC
 contrat salarié . cotisations . salariales:
   titre.en: Employee contributions
@@ -729,13 +800,13 @@ contrat salarié . salaire . net après impôt:
     Pour une simulation plus complète, rendez-vous sur
     [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
 impôt . neutre . barème Guadeloupe Réunion Martinique:
-  titre.en: 'Guadeloupe/Reunion Island/Martinique scale'
-  titre.fr: barème Guadeloupe/Réunion/Martinique
+  titre.en: Guadeloupe/Reunion Island/Martinique scale
+  titre.fr: barème Guadeloupe Réunion Martinique
 impôt . neutre . barème Guyane Mayotte:
-  titre.en: 'Guyana/Mayotte scale'
-  titre.fr: barème Guyane/Mayotte
+  titre.en: Guyana/Mayotte scale
+  titre.fr: barème Guyane Mayotte
 impôt . neutre . barème métropolitain:
-  titre.en: 'metropolitan scale'
+  titre.en: metropolitan scale
   titre.fr: barème métropolitain
 impôt . neutre:
   titre.en: neutral income tax
@@ -784,10 +855,10 @@ contrat salarié . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
 contrat salarié . réduction ACRE:
-  titre.en: 'ACRE reduction'
+  titre.en: ACRE reduction
   titre.fr: réduction ACRE
 contrat salarié . réduction ACRE . taux:
-  titre.en: 'ACRE rate'
+  titre.en: ACRE rate
   titre.fr: taux ACRE
 contrat salarié . rémunération . total sans réduction:
   titre.en: total salary without reduction
@@ -972,6 +1043,24 @@ contrat salarié . temps partiel . heures par semaine:
   question.fr: >-
     Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
     partiel ?
+  contrôles.en:
+    - si: heures par semaine < 24
+      niveau: avertissement
+      message: >-
+        The minimum number of hours per week is 24 and it is possible to go lower in some cases only. [More info](https://www.service-public.fr/particuliers/vosdroits/F32428).
+    - si: heures par semaine > 35
+      niveau: avertissement
+      message: The simulator does not yet manage overtime.
+  contrôles.fr:
+    - si: heures par semaine < 24
+      niveau: avertissement
+      message: >-
+        Le nombre minimum d'heures par semaine est 24. Il est possible de
+        descendre plus bas dans certains cas seulement. [Plus
+        d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+    - si: heures par semaine > 35
+      niveau: avertissement
+      message: Le simulateur ne gère pas encore les heures supplémentaires.
   titre.en: hours per week
   titre.fr: heures par semaine
 contrat salarié . quotité de travail:
@@ -1125,6 +1214,14 @@ contrat salarié . complémentaire santé . part employeur:
   suggestions.fr:
     50%: 50
     100%: 100
+  contrôles.en:
+    - si: part employeur < 50
+      niveau: avertissement
+      message: The employer's share of complementary health insurance must be at least 50%.
+  contrôles.fr:
+    - si: part employeur < 50
+      niveau: avertissement
+      message: La part employeur de la complémentaire santé doit être de 50% au minimum
   titre.en: employer share
   titre.fr: part employeur
 contrat salarié . complémentaire santé . part salarié:
@@ -1150,6 +1247,17 @@ contrat salarié . complémentaire santé . forfait:
 
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
     libre, tant qu'elle couvre un panier légal de soins.
+  contrôles.en:
+    - si: 'complémentaire santé . forfait [mensuel] < 15'
+      message: >-
+        Make sure that such an inexpensive health supplement covers the minimum care basket defined in the law.
+      niveau: avertissement
+  contrôles.fr:
+    - si: 'complémentaire santé . forfait [mensuel] < 15'
+      message: >-
+        Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier
+        de soin minimal défini dans la loi.
+      niveau: avertissement
 contrat salarié . complémentaire santé . forfait . en alsace moselle:
   titre.en: Complementary health insurance plan (Alsace-Moselle)
   titre.fr: forfait complémentaire santé en Alsace-Moselle
@@ -1804,6 +1912,27 @@ entreprise . catégorie d'activité . libérale règlementée:
 
     > Exemples de professions non-règlementées : développeur, historien,
     urbaniste...
+
+  contrôles.fr:
+    - si: libérale règlementée
+      niveau: avertissement
+      message: >
+        Attention, le simulateur n'est pas encore complet pour les professions
+        libérales règlementées :
+
+
+        - pour la retraite complémentaire, seul le barème interprofessionnel,
+        celui de la CIPAV, a été intégré pour l'instant.
+
+        - assurez-vous que le statut auto-entrepreneur est bien compatible avec
+        votre profession règlementée
+
+        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités
+        de calcul des
+        cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html)
+        et la
+        [CURPS](https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html)
+        ne sont pas encore intégrées.
   titre.en: regulated liberal
   titre.fr: libérale règlementée
 ? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
@@ -1972,13 +2101,28 @@ auto entrepreneur:
   titre.en: auto entrepreneur
   titre.fr: auto entrepreneur
 auto entrepreneur . base des cotisations:
+  contrôles.en:
+    - si: base des cotisations > plafond
+      message: >-
+        Turnover threshold exceeded. [More information](/documentation/auto-entrepreneur/plafond)
+      niveau: avertissement
+  contrôles.fr:
+    - si: base des cotisations > plafond
+      message: >-
+        Seuil de chiffre d'affaires dépassé. [En savoir
+        plus](/documentation/auto-entrepreneur/plafond)
+      niveau: avertissement
   titre.en: contribution basis
   titre.fr: base des cotisations
 auto entrepreneur . plafond:
   description.en: >
-    The status of microentrepreneur applies as long as the annual turnover (actually collected during the calendar year) does not exceed a certain threshold, which depends on its category of activity.
+    The status of microentrepreneur applies as long as the annual turnover
+    (actually collected during the calendar year) does not exceed a certain
+    threshold, which depends on its category of activity.
 
-    In the event of a consecutive overrun over two years, the auto-entrepreneur automatically switches to the [sole proprietorship regime](/social-security/self-employed).
+    In the event of a consecutive overrun over two years, the auto-entrepreneur
+    automatically switches to the [sole proprietorship
+    regime](/social-security/self-employed).
   description.fr: >
     Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires
     annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas un

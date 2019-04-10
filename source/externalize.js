@@ -19,7 +19,8 @@ let attributesToExternalize = [
 	'question',
 	'sous-question',
 	'résumé',
-	'suggestions'
+	'suggestions',
+	'contrôles'
 ]
 
 let buildDottedName = rule =>

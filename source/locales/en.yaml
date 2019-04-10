@@ -606,6 +606,7 @@ SAS, SASU ou SARL minoritaires: SAS, SASU or SARL minority shareholders
 EI, EURL, SARL ou SARL majoritaires: EI, EURL, SARL or SARL majority shareholders
 Comparer les trois régimes: Compare the three schemes
 simulateurs:
+  inversionFail: The amount entered is too small or results in an impossible situation, try another one
   warning:
     titre: Tool under development
     plus: (more info)
