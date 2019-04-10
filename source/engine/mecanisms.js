@@ -425,12 +425,14 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	let inversionCache = {}
 	let fx = x => {
 		inversionCache = { parseLevel: oldCache.parseLevel + 1, op: '<' }
-		return evaluateNode(
+		let v = evaluateNode(
 			inversionCache, // with an empty cache
 			n => (dottedName === n ? x : situationGate(n)),
 			parsedRules,
 			fixedObjectiveRule
 		)
+
+		return v
 	}
 
 	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
@@ -448,7 +450,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 				let y = fx(x)
 				return y.nodeValue - objectiveValue
 			},
-			1,
+			0.1,
 			1000000000,
 			tolerance,
 			10
@@ -476,6 +478,12 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
+
+		if (nodeValue === undefined)
+			cache.inversionFail = {
+				given: inversion.inversedWith.rule.dottedName,
+				estimated: dottedName
+			}
 		let evaluatedNode = rewriteNode(
 			node,
 			nodeValue,

@@ -16,15 +16,28 @@ function Controls({
 	hideControl,
 	foldedSteps,
 	hiddenControls,
-	language
+	language,
+	inversionFail
 }) {
-	if (!controls?.length) return null
+	let messages = [
+		...controls,
+		...(inversionFail
+			? [
+					{
+						message:
+							'Malheuresement, le montant saisi est trop faible ou impossible. Essayez autre chose !',
+						level: 'avertissement'
+					}
+			  ]
+			: [])
+	]
+	if (!messages?.length) return null
 	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
 	if (language === 'en') return null
 	return (
 		<div id="controlsBlock">
 			<ul style={{ margin: 0, padding: 0 }}>
-				{controls.map(({ level, test, message, solution, evaluated }) =>
+				{messages.map(({ level, test, message, solution, evaluated }) =>
 					hiddenControls.includes(test) ? null : (
 						<li key={test}>
 							<animate.appear className="control">
