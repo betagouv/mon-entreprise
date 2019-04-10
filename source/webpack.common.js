@@ -34,7 +34,7 @@ module.exports = {
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}',
-			DEMO: true,
+			MASTER: false,
 		}),
 		new HTMLPlugin({
 			template: 'index.html',

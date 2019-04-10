@@ -227,7 +227,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 													<T>Auto-entrepreneur</T>
 												</NavLink>
 											</li>
-											{process.env.DEMO && (
+											{process.env.MASTER && (
 												<li>
 													<NavLink
 														exact

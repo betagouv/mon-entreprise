@@ -48,11 +48,11 @@ const SchemeChoice = withSitePaths(({ sitePaths }) => (
 			<Link
 				className={
 					'ui__ button-choice' +
-					(!process.env.DEMO ? ' button-choice--soon' : '')
+					(process.env.MASTER ? ' button-choice--soon' : '')
 				}
 				to={sitePaths.sécuritéSociale.comparaison}
 				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
-				{!process.env.DEMO && (
+				{process.env.MASTER && (
 					<span className="ui__ button-choice-label">
 						<T>prochainement</T>
 					</span>

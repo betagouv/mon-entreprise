@@ -36,7 +36,7 @@ const userAlreadyRegistered: boolean =
 
 const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 	const [showNewsletterForm, toggleNewsletterForm] = useState(
-		!userAlreadyRegistered && process.env.DEMO
+		!userAlreadyRegistered
 	)
 	const onSubmit = () => {
 		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(true))

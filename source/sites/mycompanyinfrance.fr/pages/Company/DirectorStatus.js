@@ -53,7 +53,7 @@ const DefineDirectorStatus = ({
 					couvert par le régime de la Sécurité sociale des indépendants.
 				</li>
 			</ul>
-			{process.env.DEMO && (
+			{!process.env.MASTER && (
 				<p>
 					<Link
 						className="ui__ button plain"
