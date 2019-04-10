@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { dissoc } from 'ramda'
 import React, { Component } from 'react'
-import { isIE } from '../../utils'
+import { debounce, isIE } from '../../utils'
 import './CurrencyInput.css'
 
 let isCurrencyPrefixed = language =>
@@ -14,18 +14,13 @@ let isCurrencyPrefixed = language =>
 
 class CurrencyInput extends Component {
 	state = {
-		value: ''
+		value: null
 	}
-	static getDerivedStateFromProps(nextProps) {
+	onChange = debounce(this.props.debounce, this.props.onChange)
+	static getDerivedStateFromProps(props, state) {
 		return {
-			value: nextProps.value
+			value: state.value === null ? props.value : state.value
 		}
-	}
-	shouldComponentUpdate(nextProps, nextState) {
-		return (
-			this.state.value !== nextState.value ||
-			this.props.language !== nextProps.language
-		)
 	}
 	getSnapshotBeforeUpdate = () => {
 		return this.input.selectionStart
@@ -44,7 +39,6 @@ class CurrencyInput extends Component {
 	componentDidUpdate = (_, __, cursorPosition) => {
 		this.input.selectionStart = cursorPosition
 		this.input.selectionEnd = cursorPosition
-
 		this.adaptInputSize()
 	}
 	focusInput = () => {
@@ -61,10 +55,10 @@ class CurrencyInput extends Component {
 		if (value.endsWith('.')) {
 			return
 		}
-		if (this.props.onChange && value !== this.props.value) {
-			event.target.value = value
-			this.props.onChange(event)
-		}
+
+		event.target.value = value
+		event.persist()
+		this.onChange(event)
 	}
 
 	render() {
@@ -72,6 +66,7 @@ class CurrencyInput extends Component {
 			['onChange', 'value', 'language', 'className'],
 			this.props
 		)
+
 		return (
 			<div
 				onClick={this.focusInput}

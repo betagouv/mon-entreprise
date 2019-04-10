@@ -222,6 +222,7 @@ let CurrencyField = withColours(props => {
 				color: props.colours.textColour,
 				borderColor: props.colours.textColour
 			}}
+			debounce={600}
 			className="targetInput"
 			{...props.input}
 			{...props}
