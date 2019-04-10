@@ -163,7 +163,7 @@ const Target = ({
 		<li
 			key={target.name}
 			className={isSmallTarget ? 'small-target' : undefined}>
-			<Animate.appear alreadyPresent={!target.nodeValue || !isSmallTarget}>
+			<Animate.appear alreadyPresent={!target.nodeValue}>
 				<div>
 					<div className="main">
 						<Header
