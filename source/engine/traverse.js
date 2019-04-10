@@ -1,36 +1,13 @@
-import { treatString, treatNumber, treatObject, treatOther } from './treat'
+import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext';
+import { evaluateControls } from 'Engine/controls';
+import { chain, cond, evolve, is, keys, map, mergeAll, path, pick, pipe, T } from 'ramda';
+import React from 'react';
+import { bonus, evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation';
+import { Node } from './mecanismViews/common';
+import { disambiguateRuleReference, findParentDependency, findRule, findRuleByDottedName } from './rules';
+import { anyNull, undefOrTrue, val } from './traverse-common-functions';
+import { treatNumber, treatObject, treatOther, treatString } from './treat';
 
-import React from 'react'
-import {
-	findRuleByDottedName,
-	disambiguateRuleReference,
-	findRule,
-	findParentDependency
-} from './rules'
-import {
-	chain,
-	cond,
-	evolve,
-	path,
-	map,
-	mergeAll,
-	keys,
-	is,
-	T,
-	pipe,
-	pick
-} from 'ramda'
-import { Node } from './mecanismViews/common'
-import {
-	evaluateNode,
-	rewriteNode,
-	makeJsx,
-	mergeMissing,
-	bonus
-} from './evaluation'
-import { anyNull, val, undefOrTrue } from './traverse-common-functions'
-import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import { evaluateControls } from 'Engine/controls'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -351,7 +328,6 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 
 	let controls = evaluateControls(cache, situationGate, parsedRules)
 
-	console.log(cache.inversionFail)
 	return { targets, cache, controls }
 }
 

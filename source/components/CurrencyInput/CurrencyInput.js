@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { dissoc } from 'ramda'
+import { omit } from 'ramda'
 import React, { Component } from 'react'
 import { debounce, isIE } from '../../utils'
 import './CurrencyInput.css'
@@ -70,7 +70,7 @@ class CurrencyInput extends Component {
 	}
 
 	render() {
-		let forwardedProps = dissoc(
+		let forwardedProps = omit(
 			['onChange', 'defaultValue', 'language', 'className', 'value'],
 			this.props
 		)
