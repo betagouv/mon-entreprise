@@ -53,9 +53,7 @@ const DefineDirectorStatus = ({
 					couvert par le régime de la Sécurité sociale des indépendants.
 				</li>
 			</ul>
-			{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-				window.location.hostname
-			) && (
+			{process.env.DEMO && (
 				<p>
 					<Link
 						className="ui__ button plain"

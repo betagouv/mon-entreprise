@@ -201,51 +201,44 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 								</>
 							}>
 							<ul>
-								{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-									window.location.hostname
-								) && (
-									<li>
-										<NavOpener
-											to={sitePaths.sécuritéSociale.selection}
-											title={<T>Rémunération du dirigeant</T>}>
-											<ul>
+								<li>
+									<NavOpener
+										to={sitePaths.sécuritéSociale.selection}
+										title={<T>Rémunération du dirigeant</T>}>
+										<ul>
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale['assimilé-salarié']}>
+													<T>Assimilé salarié</T>
+												</NavLink>
+											</li>
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale.indépendant}>
+													<T>Indépendant</T>
+												</NavLink>
+											</li>
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
+													<T>Auto-entrepreneur</T>
+												</NavLink>
+											</li>
+											{process.env.DEMO && (
 												<li>
 													<NavLink
 														exact
-														to={sitePaths.sécuritéSociale['assimilé-salarié']}>
-														<T>Assimilé salarié</T>
+														to={sitePaths.sécuritéSociale.comparaison}>
+														<T>Comparaison des régimes</T>
 													</NavLink>
 												</li>
-												<li>
-													<NavLink
-														exact
-														to={sitePaths.sécuritéSociale.indépendant}>
-														<T>Indépendant</T>
-													</NavLink>
-												</li>
-												<li>
-													<NavLink
-														exact
-														to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
-														<T>Auto-entrepreneur</T>
-													</NavLink>
-												</li>
-												{![
-													'mycompanyinfrance.fr',
-													'mon-entreprise.fr'
-												].includes(window.location.hostname) && (
-													<li>
-														<NavLink
-															exact
-															to={sitePaths.sécuritéSociale.comparaison}>
-															<T>Comparaison des régimes</T>
-														</NavLink>
-													</li>
-												)}
-											</ul>
-										</NavOpener>
-									</li>
-								)}
+											)}
+										</ul>
+									</NavOpener>
+								</li>
 								<li>
 									<NavLink exact to={sitePaths.sécuritéSociale.salarié}>
 										<T>Simulateur de coût d'embauche</T>

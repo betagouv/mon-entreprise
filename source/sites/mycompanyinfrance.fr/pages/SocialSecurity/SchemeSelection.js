@@ -42,19 +42,23 @@ const SchemeChoice = withSitePaths(({ sitePaths }) => (
 				Auto-entrepreneur <br />
 			</Link>
 		</p>
-		{!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-			window.location.hostname
-		) && (
-			<p>
-				<Link
-					className="ui__ button-choice"
-					to={sitePaths.sécuritéSociale.comparaison}
-					style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
-					{emoji('🚶‍♂️')}
-					<T>Comparer les trois régimes</T>
-				</Link>
-			</p>
-		)}
+		<p>
+			<Link
+				className={
+					'ui__ button-choice' +
+					(!process.env.DEMO ? ' button-choice--soon' : '')
+				}
+				to={sitePaths.sécuritéSociale.comparaison}
+				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
+				{!process.env.DEMO && (
+					<span className="ui__ button-choice-label">
+						<T>prochainement</T>
+					</span>
+				)}
+				{emoji('🚶‍♂️')}
+				<T>Comparer les trois régimes</T>
+			</Link>
+		</p>
 	</animate.fromBottom>
 ))
 

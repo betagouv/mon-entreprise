@@ -33,7 +33,8 @@ module.exports = {
 	plugins: [
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
-			FR_SITE: '/mon-entreprise${path}'
+			FR_SITE: '/mon-entreprise${path}',
+			DEMO: true,
 		}),
 		new HTMLPlugin({
 			template: 'index.html',
