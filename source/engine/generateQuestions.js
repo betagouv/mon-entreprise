@@ -71,13 +71,13 @@ export let getNextSteps = missingVariablesByTarget => {
 export let collectMissingVariables = targets =>
 	getNextSteps(collectMissingVariablesByTarget(targets))
 
-let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
+let getVariant = rule => queryRule(rule)('formule . une possibilité')
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = findRuleByDottedName(allRules, path)
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
-		let variant = isVariant(node),
+		let variant = getVariant(node),
 			variants = variant && unless(is(Array), prop('possibilités'))(variant),
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
@@ -106,7 +106,7 @@ export let getInputComponent = rules => dottedName => {
 		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
 	}
 
-	if (isVariant(rule))
+	if (getVariant(rule))
 		return (
 			<Question
 				{...{

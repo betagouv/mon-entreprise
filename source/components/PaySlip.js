@@ -82,7 +82,6 @@ export default compose(
 					<h5 className="payslip__cotisationTitle">
 						<Trans>Réductions</Trans>
 					</h5>
-					<Line rule={getRule('')} />
 					<Line
 						sign="-"
 						rule={getRule('contrat salarié . réductions de cotisations')}

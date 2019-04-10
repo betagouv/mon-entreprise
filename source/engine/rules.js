@@ -35,11 +35,9 @@ import { capitalise0 } from '../utils'
 import marked from './marked'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 
-// console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
- Méthodes agissant sur une règle */
+Functions working on one rule */
 
-// Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = rule => {
 	try {
 		let formatKey = rule['format'] || 'booléen',
@@ -57,7 +55,6 @@ export let enrichRule = rule => {
 			dottedName: buildDottedName(rule),
 			subquestion: rule['sous-question'] && marked(rule['sous-question']),
 			defaultValue: rule['par défaut'],
-			raw: rule,
 			examples: rule['exemples'],
 			icons: rule['icônes'],
 			summary: rule['résumé'],
