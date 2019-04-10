@@ -2667,7 +2667,7 @@
 
 - espace: entreprise
   nom: année d'activité
-  question: Quelle est l'âge de l'entreprise en années d'activité ?
+  question: Quel est l'âge de l'entreprise en années d'activité ?
   description: |
     Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
 

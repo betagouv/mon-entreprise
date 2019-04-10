@@ -13,7 +13,6 @@ import {
 	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import Animate from 'Ui/animate'
 
 export default compose(
 	withColours,
@@ -101,9 +100,7 @@ export default compose(
 						</>
 					)}
 
-					{showTargets && (
-						<Animate.fromBottom>{this.props.targets}</Animate.fromBottom>
-					)}
+					{showTargets && this.props.targets}
 					{!noUserInput && this.props.explanation}
 					{!noUserInput && !noFeedback && (
 						<div style={{ margin: '-0.6rem' }}>

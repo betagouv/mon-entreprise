@@ -1577,7 +1577,7 @@ revenu net:
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
 entreprise . année d'activité:
   question.en: How old is the company in years of activity?
-  question.fr: Quelle est l'âge de l'entreprise en années d'activité ?
+  question.fr: Quel est l'âge de l'entreprise en années d'activité ?
   description.en: >
     During the first year of activity, the entrepreneur can benefit from
     reductions in social security contributions on his remuneration, it is ACRE.

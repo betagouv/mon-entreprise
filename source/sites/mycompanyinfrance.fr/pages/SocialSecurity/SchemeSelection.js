@@ -7,7 +7,9 @@ import animate from 'Ui/animate'
 
 const SchemeChoice = withSitePaths(({ sitePaths }) => (
 	<animate.fromBottom>
-		<h1>Quel régime souhaitez-vous explorer ? </h1>
+		<h1>
+			<T>Quel régime souhaitez-vous explorer ?</T>
+		</h1>
 		<p style={{ display: 'flex', flexWrap: 'wrap' }}>
 			<Link
 				to={sitePaths.sécuritéSociale['assimilé-salarié']}
