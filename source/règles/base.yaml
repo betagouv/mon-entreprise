@@ -3366,11 +3366,19 @@
   période: flexible
   contrôles:
     - si: base des cotisations > plafond
-      message: Seuil de chiffre d'affaires dépassé
+      message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/auto-entrepreneur/plafond)
       niveau: avertissement
 
 - espace: auto entrepreneur
   nom: plafond
+  description: |
+    Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas un certain seuil, qui dépend de sa catégorie d'activité.
+
+    En cas de dépassement consécutif sur deux ans, l'auto-entrepreneur bascule automatiquement dans le régime de [l'entreprise individuelle](/sécurité-sociale/indépendant).
+
+  références:
+    Fiche sevice-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
+
   période: année
   formule:
     variations:
