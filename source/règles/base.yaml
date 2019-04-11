@@ -2667,7 +2667,7 @@
 
 - espace: entreprise
   nom: année d'activité
-  question: Quel est l'âge de l'entreprise en années d'activité ?
+  question: Quel est l'âge de l'entreprise en année d'activité ?
   description: |
     Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
 
@@ -3517,7 +3517,7 @@
       - entreprise . année d'activité = 'première année'
       - entreprise . ACCRE obtenu
   période: flexible
-  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
+  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
     variations:
       - si: entreprise . année d'activité = 'première année'

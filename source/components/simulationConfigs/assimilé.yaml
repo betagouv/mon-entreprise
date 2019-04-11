@@ -9,7 +9,7 @@ questions:
   - entreprise . année d'activité
 
 questions à l'affiche:
-  Année d'activité: entreprise . année d'activité
+  année d'activité: entreprise . année d'activité
 
 situation:
   auto entrepreneur: non

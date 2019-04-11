@@ -18,7 +18,7 @@ questions:
 
 questions à l'affiche:
   Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
-  Années d'activité: entreprise . année d'activité
+  Année d'activité: entreprise . année d'activité
 
 situation:
   indépendant: oui

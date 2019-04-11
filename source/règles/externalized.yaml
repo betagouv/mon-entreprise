@@ -1577,7 +1577,7 @@ revenu net:
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
 entreprise . année d'activité:
   question.en: How old is the company in years of activity?
-  question.fr: Quel est l'âge de l'entreprise en années d'activité ?
+  question.fr: Quel est l'âge de l'entreprise en année d'activité ?
   description.en: >
     During the first year of activity, the entrepreneur can benefit from
     reductions in social security contributions on his remuneration, it is ACRE.
@@ -2205,7 +2205,7 @@ auto entrepreneur . cotisations sociales . ACRE:
     auto-entrepreneur to help him in his first years of activity.
   description.fr: >-
     Ce taux réduit le montant des cotisations sociales de l'auto-entrepreneur
-    pour l'aider dans ses premières années d'activité.
+    pour l'aider dans ses premières année d'activité.
 auto entrepreneur . cotisations sociales . ACRE . plafond:
   titre.en: ACRE upper limit
   titre.fr: Plafond ACRE
