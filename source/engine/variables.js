@@ -1,5 +1,5 @@
-import { isEmpty, dropLast, last } from 'ramda'
-import { splitName, joinName } from './rules'
+import { dropLast, isEmpty, last } from 'ramda'
+import { joinName, splitName } from './rules'
 
 let evaluateBottomUp = situationGate => startingFragments => {
 	let rec = (parentFragments, childFragments = []) =>

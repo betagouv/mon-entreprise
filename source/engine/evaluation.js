@@ -1,17 +1,17 @@
 import {
 	add,
-	map,
-	pluck,
 	any,
 	equals,
-	reduce,
-	mergeWith,
-	fromPairs,
-	keys,
-	values,
 	evolve,
 	filter,
-	is
+	fromPairs,
+	is,
+	keys,
+	map,
+	mergeWith,
+	pluck,
+	reduce,
+	values
 } from 'ramda'
 
 export let makeJsx = node =>
