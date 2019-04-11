@@ -1,0 +1,66 @@
+.ui__.toggle {
+	border: 1px solid var(--colour);
+	border-radius: 0.3rem;
+
+	display: flex;
+}
+.ui__.toggle label {
+	padding: 0.6rem 1.2rem;
+	color: var(--colour);
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.ui__.toggle.small label {
+	font-size: 80%;
+	overflow: hidden;
+	padding: 0.4rem 0.8rem;
+}
+.ui__.toggle label:not(:last-child) {
+	border-right: 1px solid var(--colour);
+}
+
+.ui__.toggle input[type='radio'] {
+	position: fixed;
+	left: -100vw;
+}
+
+.ui__.toggle input[type='radio'] ~ *::before {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	content: '';
+	margin: 0 0.3em;
+	vertical-align: middle;
+	border-radius: 20px;
+	cursor: pointer;
+	box-shadow: 0 0 0px 1.5px rgb(41, 117, 209);
+	transition: all 0.1s;
+	border: 0.5em solid white;
+}
+.ui__.toggle input[type='radio'] ~ * {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	transition: all 0.2s;
+}
+.ui__.toggle input[type='radio']:checked ~ *::before {
+	border: 2px solid white;
+	background: var(--colour);
+}
+.ui__.toggle input[type='radio']:focus ~ .radioText {
+	border: 1px dotted gray;
+}
+.ui__.toggle input[type='radio']:checked ~ .radioText {
+	font-weight: 500;
+}
+
+.ui__.toggle input[type='radio']:checked ~ * {
+	background: var(--lightColour);
+	box-shadow: 0 0 0 3rem var(--lightColour);
+	color: white;
+}
+
+.ui__.toggle label:hover input[type='radio']:not(:checked) ~ * {
+	background: var(--lighterColour);
+	box-shadow: 0 0 0 1rem var(--lighterColour);
+}

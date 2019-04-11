@@ -1,7 +1,7 @@
 import classnames from 'classnames'
-import { dissoc } from 'ramda'
+import { omit } from 'ramda'
 import React, { Component } from 'react'
-import { isIE } from '../../utils'
+import { debounce, isIE } from '../../utils'
 import './CurrencyInput.css'
 
 let isCurrencyPrefixed = language =>
@@ -14,21 +14,18 @@ let isCurrencyPrefixed = language =>
 
 class CurrencyInput extends Component {
 	state = {
-		value: ''
+		value: this.props.defaultValue
 	}
-	static getDerivedStateFromProps(nextProps) {
-		return {
-			value: nextProps.value
-		}
-	}
-	shouldComponentUpdate(nextProps, nextState) {
-		return (
-			this.state.value !== nextState.value ||
-			this.props.language !== nextProps.language
-		)
-	}
+	onChange = this.props.debounce
+		? debounce(this.props.debounce, this.props.onChange)
+		: this.props.onChange
+	input = React.createRef()
+
 	getSnapshotBeforeUpdate = () => {
-		return this.input.selectionStart
+		if (!this.input.current) {
+			return
+		}
+		return this.input.current.selectionStart
 	}
 	componentDidMount() {
 		this.adaptInputSize()
@@ -37,17 +34,21 @@ class CurrencyInput extends Component {
 		// Because ch mesurement in IE is not consistent with other browsers, we have to apply a multiplier
 		// https://stackoverflow.com/questions/17825638/css3-ch-unit-inconsistent-between-ie9-and-other-browsers
 		const widthMultiplier = isIE() ? 1.4 : 1
-		if (this.input && isCurrencyPrefixed(this.props.language))
-			this.input.style.width =
-				widthMultiplier * (this.input.value.length + 0.2) + 'ch'
+
+		if (this.input.current && isCurrencyPrefixed(this.props.language))
+			this.input.current.style.width =
+				widthMultiplier * (this.input.current.value.length + 0.2) + 'ch'
 	}
 	componentDidUpdate = (_, __, cursorPosition) => {
-		this.input.selectionStart = cursorPosition
-		this.input.selectionEnd = cursorPosition
+		if (!this.input.current) {
+			return
+		}
+		this.input.current.selectionStart = cursorPosition
+		this.input.current.selectionEnd = cursorPosition
 		this.adaptInputSize()
 	}
 	focusInput = () => {
-		this.input.focus()
+		this.input.current.focus()
 	}
 	handleChange = event => {
 		let value = event.target.value
@@ -60,17 +61,20 @@ class CurrencyInput extends Component {
 		if (value.endsWith('.')) {
 			return
 		}
-		if (this.props.onChange && value !== this.props.value) {
-			event.target.value = value
-			this.props.onChange(event)
+		event.target.value = value
+
+		if (event.persist) {
+			event.persist()
 		}
+		this.onChange(event)
 	}
 
 	render() {
-		let forwardedProps = dissoc(
-			['onChange', 'value', 'language', 'className'],
+		let forwardedProps = omit(
+			['onChange', 'defaultValue', 'language', 'className', 'value'],
 			this.props
 		)
+
 		return (
 			<div
 				onClick={this.focusInput}
@@ -84,7 +88,7 @@ class CurrencyInput extends Component {
 					className="currencyInput__input"
 					inputMode="numeric"
 					onChange={this.handleChange}
-					ref={ref => (this.input = ref)}
+					ref={this.input}
 					value={this.state.value}
 				/>
 				{!isCurrencyPrefixed(this.props.language) && <>&nbsp;€</>}

@@ -2,7 +2,7 @@
 import { isAutoentrepreneur } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { compose } from 'ramda'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
@@ -37,19 +37,16 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 		<T k="autoentrepreneur.description">
 			<p>
 				Un auto-entrepreneur bénéficie d'un régime simplifié de déclaration et
-				de paiement, pour lequel l'impôt et les cotisations sociales sont basés
-				sur le chiffre d'affaires réalisé chaque mois. Disponible pour les
-				entreprises dont le chiffre d'affaires annuel ne dépasse pas 70 000 €
-				pour les prestataires de services ou 170 000 € lorsque l'activité
+				de paiement, pour lequel l'impôt et les cotisations sociales sont
+				calculés sur le chiffre d'affaires encaissé chaque mois. Disponible pour
+				les entreprises dont le chiffre d'affaires annuel ne dépasse pas 70 000
+				€ pour les prestataires de services ou 170 000 € lorsque l'activité
 				principale est la vente de biens, la restauration ou la fourniture de
 				logements.
 			</p>
 			<p>C'est un choix intéressant si :</p>
 			<ul>
-				<li>
-					Vous n'avez pas besoin de beaucoup de capital et de dépenses
-					importantes pour mener votre activité
-				</li>
+				<li>Vous n'avez de dépenses importantes pour mener votre activité</li>
 				<li>
 					Vous voulez tester la viabilité de votre modèle (activité ou projet)
 				</li>

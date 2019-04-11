@@ -106,7 +106,7 @@ const CreateCompany = ({
 			{statusChooserCompleted ? (
 				<button
 					onClick={onStatusChange}
-					className="ui__ simple skip button left">
+					className="ui__ simple small skip button left">
 					← <T k="entreprise.tâches.retour">Choisir un autre statut</T>
 				</button>
 			) : (
@@ -416,7 +416,7 @@ const CreateCompany = ({
 				/>
 			</Checklist>
 			<h2>
-				{emoji('😌')}{' '}
+				{emoji('💭')}{' '}
 				<T k="entreprise.tâches.titre2">
 					Recommandé avant le début de l'activité
 				</T>
@@ -480,7 +480,7 @@ const CreateCompany = ({
 					<h2>{emoji('📜')} Vous êtes plutôt papier ?</h2>
 					<p>
 						Accédez gratuitement au guide complet de la création entreprise en
-						2019, édité par l'URSSAF. Au programme : des conseils sur comment
+						2019, édité par l'Urssaf. Au programme : des conseils sur comment
 						préparer son projet, comment se lancer dans la création ou encore la
 						présentation détaillée de votre protection sociale.
 					</p>

@@ -758,10 +758,24 @@
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
+        - équivalent temps plein
         - revenu net
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
+
+- espace: contrat salarié . salaire . brut de base
+  nom: équivalent temps plein
+  applicable si: temps partiel
+  titre: Salaire brut équivalent temps plein
+  résumé: Le salaire si l'embauche se faisait à temps plein
+  question: Quel est le salaire en équivalent temps plein ?
+  format: euros
+  formule: brut de base / quotité de travail
+  période: flexible
+  suggestions:
+    salaire médian: 2300
+    SMIC: 1522
 
 - espace: contrat salarié . salaire
   nom: brut
@@ -1500,6 +1514,7 @@
     nom: Non renseignée
     departement:
       nom: Non renseigné
+    taux du versement transport: 0.018
 
 - espace: établissement . localisation
   nom: code commune
@@ -1519,6 +1534,14 @@
     synchronisation:
       API: localisation
       chemin: nom
+
+- espace: établissement
+  nom: taux du versement transport
+  format: nombre
+  formule:
+    synchronisation:
+      API: localisation
+      chemin: taux du versement transport
 
 - espace: établissement . localisation
   nom: département
@@ -2461,19 +2484,6 @@
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
 
-- espace: établissement
-  nom: taux du versement transport
-  données: taux_versement_transport
-  formule:
-    sélection:
-      données: taux du versement transport
-      cherche: localisation . code commune
-      dans: codeCommune
-      composantes:
-        - nom: aot
-          renvoie: aot
-        - nom: smt
-          renvoie: smt
 - espace: contrat salarié
   nom: vieillesse
   cotisation:
@@ -2647,7 +2657,7 @@
 - nom: revenu net
   titre: Revenu net
   format: euros
-  résumé: Après cotisations et impôt sur le revenu
+  résumé: Après impôt sur le revenu
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
@@ -2657,7 +2667,7 @@
 
 - espace: entreprise
   nom: année d'activité
-  question: Quelle est l'age de l'entreprise en années d'activité ?
+  question: Quel est l'âge de l'entreprise en année d'activité ?
   description: |
     Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
 
@@ -2706,16 +2716,16 @@
   formule:
     somme:
       - contrat salarié . rémunération . total
-      - indépendant . revenu brut
+      - indépendant . revenu total du dirigeant
       - auto entrepreneur . base des cotisations
 
 - espace: entreprise
   nom: charges
-  résumé: Toutes les dépenses nécessaire à l'activité de l'entreprise
-  question: Quelles sont les charges H.T. de l'entreprise (hors rémunération) ?
+  résumé: Toutes les dépenses nécessaires à l'entreprise
+  question: Quelles sont les charges H.T. de l'entreprise (hors rémunération dirigeant) ?
   description: |
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunérations. Pour les sociétés et entreprises hors auto entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la auto entrepreneur, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour la auto entrepreneur, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
 
@@ -2731,10 +2741,6 @@
 
   références:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
-  suggestions:
-    25k€: 25000
-    50k€: 50000
-    100k€: 100000
   période: flexible
   par défaut: 0
   format: euros
@@ -2747,7 +2753,7 @@
   formule: charges
   période: flexible
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions
   nom: réduction ACRE
   applicable si: entreprise . année d'activité = 'première année'
   période: flexible
@@ -2756,7 +2762,7 @@
       assiette: cotisations - cotisations . retraite complémentaire
       taux: taux ACRE
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions . réduction ACRE
   nom: taux ACRE
   période: flexible
   formule:
@@ -2771,17 +2777,14 @@
 
 - espace: indépendant
   nom: revenu net de cotisations
-  formule: revenu professionnel - cotisations et contributions . non déductibles
-  période: flexible
-
-- espace: indépendant . cotisations et contributions
-  nom: non déductibles
-  formule: CSG et CRDS (non déductible) + formation professionnelle
+  formule: revenu professionnel - cotisations et contributions . CSG et CRDS (non déductible)
   période: flexible
 
 - espace: indépendant
   nom: revenu professionnel
+  résumé: Après cotisations et charges
   question: Quel est votre revenu professionnel ?
+  période: flexible
   description: |
 
     C'est le revenu net de cotisations du travailleur indépendant.
@@ -2793,7 +2796,7 @@
   formule:
     inversion numérique:
       avec:
-        - revenu brut
+        - revenu total du dirigeant
         - revenu net
         - entreprise . chiffre d'affaires
 
@@ -2886,24 +2889,33 @@
   par défaut: non
 
 - espace: entreprise . catégorie d'activité
-  nom: libérale reglementée
-  question: Est-ce une activité libérale reglementée ?
+  nom: libérale règlementée
+  question: Est-ce une activité libérale règlementée ?
   par défaut: non
   applicable si: catégorie d'activité = 'libérale'
   description: |
     Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
 
-    > Exemples de professions reglementées : architecte, avocat, infirmier, médecin...
+    > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
 
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
-    > Exemples de professions non-reglementées : développeur, historien, urbaniste...
+    > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+  contrôles:
+    - si: libérale règlementée
+      niveau: avertissement
+      message: |
+        Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées :
+
+        - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant.
+        - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
+        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-- espace: entreprise . catégorie d'activité . libérale reglementée
-  nom: type d'activité libérale reglementée
+- espace: entreprise . catégorie d'activité . libérale règlementée
+  nom: type d'activité libérale règlementée
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -2952,14 +2964,14 @@
   # TODO consolider la formule :
   # Nous avons deux listes possibles
   # A) Voilà la liste de l'URSSAF
-  question: La profession libérale reglementée est-elle rattachée à la CIPAV ?
+  question: La profession libérale règlementée est-elle rattachée à la CIPAV ?
   par défaut: non
   description: |
-    Les auto-entrepreneurs exerçant une activité de profession libérale réglementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales réglementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
+    Les auto-entrepreneurs exerçant une activité de profession libérale règlementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales règlementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
 
     formule:
       inclusion:
-        de: entreprise . catégorie d'activité . type d'activité libérale reglementée
+        de: entreprise . catégorie d'activité . type d'activité libérale règlementée
         dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
           - Architecte
           - Architecte d'intérieur
@@ -2977,7 +2989,7 @@
   nom: auto entreprise impossible
   formule:
     toutes ces conditions:
-      - entreprise . catégorie d'activité . libérale reglementée
+      - entreprise . catégorie d'activité . libérale règlementée
       - ≠ rattachée à la CIPAV
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
@@ -2985,12 +2997,12 @@
   par défaut: non
   question: Activité à la sécurité sociale des indépendants ?
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions
   nom: cotisations à payer
   période: flexible
   formule: cotisations - réduction ACRE
 
-- espace: indépendant
+- espace: indépendant . cotisations et contributions
   nom: cotisations
   période: flexible
   références:
@@ -3006,29 +3018,60 @@
 
 - espace: indépendant
   nom: cotisations et contributions
-
-- espace: indépendant . cotisations
+  formule:
+    somme:
+      - cotisations à payer
+      - CSG et CRDS (déductible)
+      - formation professionnelle
+  format: euros
   période: flexible
+
+- espace: indépendant
+  nom: rattachement libéral règlementé
+  description: |
+    Les entreprises libérales non règlementées créées avant 2019 étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2019 ce n'est plus le cas, elles sont rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
+  références:
+    article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
+  formule:
+    une de ces conditions:
+      - entreprise . catégorie d'activité . libérale règlementée
+      - toutes ces conditions:
+          - entreprise . année d'activité != 'première année'
+          - entreprise . catégorie d'activité = 'libérale'
+
+  période: flexible
+  format: euros
+
+- espace: indépendant . cotisations et contributions . cotisations
   nom: maladie
+  période: flexible
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale reglementée
-        alors:
-          barème continu:
-            assiette: assiette
-            multiplicateur: plafond sécurité sociale temps plein
-            points:
-              0: 1.5%
-              1.1: 6.5%
+      - si: rattachement libéral règlementé
+        alors: libérale règlementée
+
       - sinon: artisans commerçants libéraux
 
-- espace: indépendant . cotisations . maladie
+- espace: indépendant . cotisations et contributions . cotisations . maladie
+  période: flexible
+  nom: libérale règlementée
+  titre: maladie libérale règlementée
+  formule:
+    barème continu:
+      assiette: revenu professionnel
+      multiplicateur: plafond sécurité sociale temps plein
+      points:
+        0: 1.5%
+        1.1: 6.5%
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie
   nom: assiette
   titre: assiette maladie
+
   période: flexible
   formule:
     variations:
-      - si:  situation personnelle . RSA
+      - si: situation personnelle . RSA
         alors: revenu professionnel
       - sinon:
           le maximum de:
@@ -3037,55 +3080,100 @@
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: indemnités journalières maladie
   titre: Maladie 2
-  description: Cotisations pour les indémnité journalière des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, ils peuvent bénéficier d’indemnités journalières.
+  description: Cotisations pour les indémnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
-  non applicable si: entreprise . catégorie d'activité . libérale reglementée
+  non applicable si: rattachement libéral règlementé
   formule:
     multiplication:
       assiette: maladie . assiette
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-- espace: indépendant . cotisations . maladie
+- espace: indépendant . cotisations et contributions . cotisations . maladie
   nom: artisans commerçants libéraux
   période: flexible
-  formule: barème + part revenus élevés
+  formule:
+    barème:
+      assiette: assiette
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 5
+          taux: taux variable
+        - au-dessus de: 5
+          taux: 6.5%
+  références:
+    décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
+  note: |
+    On retrouve dans le décret ci-dessous la phrase suivante :
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
-  nom: barème
+    > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
+
+    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nou avons retenue.
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+  nom: taux variable
+  période: flexible
+  formule:
+    variations:
+      - si: situation personnelle . RSA
+        alors: taux RSA
+      - sinon: taux
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+  nom: taux RSA
+  période: flexible
+  formule:
+    multiplication:
+      assiette: taux RSA part variable + 1.35%
+      plafond: 6.35%
+  note: |
+    Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+  nom: taux RSA part variable
+  période: flexible
+  formule:
+    multiplication:
+      assiette: 5%
+      taux: revenu professionnel / seuil supérieur de réduction
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+  nom: seuil supérieur de réduction
+  période: flexible
+  formule:
+    multiplication:
+      assiette: plafond sécurité sociale temps plein
+      taux: 110%
+
+- espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+  nom: taux
   période: flexible
   formule:
     barème continu:
-      assiette: assiette
+      retourne seulement le taux: oui
+      assiette: revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 0%
-        0.4: 3.16%
+        0.4: 3.168%
         1.1: 6.35%
+  note: |
+    Cette cotisation est à la base très simple : la cotisation maladie est de 7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà. Cependant :
+    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs.
+    - des réductions de cotisation ont été introduites : une exonération simple en-dessous de 110% du plafond de la sécurité sociale, puis une exonération renforcée en-dessous de 40%. Le barème ci-dessus prend en compte ces réductions.
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux
-  nom: part revenus élevés
-  période: flexible
-  applicable si: revenu professionnel > seuil
-  formule:
-    multiplication:
-      assiette: revenu professionnel
-      taux: 0.15%
+  références:
+    décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
-- espace: indépendant . cotisations . maladie . artisans commerçants libéraux . part revenus élevés
-  nom: seuil
-  période: flexible
-  formule: 5 * plafond sécurité sociale temps plein
-
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: retraite de base
   période: année
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale reglementée
+      - si: rattachement libéral règlementé
         alors:
           multiplication:
             assiette: assiette
@@ -3107,7 +3195,7 @@
               - au-dessus de: 1
                 taux: 0.6%
 
-- espace: indépendant . cotisations . retraite de base
+- espace: indépendant . cotisations et contributions . cotisations . retraite de base
   nom: assiette
   période: flexible
   titre: assiette retraite de base
@@ -3122,14 +3210,14 @@
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: retraite complémentaire
   période: année
   format: euros
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
-      - si: entreprise . catégorie d'activité . libérale reglementée
+      - si: rattachement libéral règlementé
         alors:
           barème linéaire:
             assiette: revenu professionnel
@@ -3168,7 +3256,7 @@
               - au-dessus de: 162096
                 taux: 0%
 
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: invalidité et décès
   période: flexible
   formule:
@@ -3179,7 +3267,7 @@
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
-- espace: indépendant . cotisations . invalidité et décès
+- espace: indépendant . cotisations et contributions . cotisations . invalidité et décès
   nom: assiette
   période: flexible
   titre: assiette invalidité et décès
@@ -3225,35 +3313,19 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette
-      plafond: plafond sécurité sociale temps plein
+      assiette: plafond sécurité sociale temps plein
       taux:
         variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.29%
           - sinon: 0.25%
-  note: Le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
+  note: Pour les commerçants et professions libérales, le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
-- espace: indépendant . cotisations et contributions . formation professionnelle
-  nom: assiette
-  période: flexible
-  titre: assiette formation professionnelle
-  formule:
-    variations:
-      - si: ≠ situation personnelle . RSA
-        alors:
-          le maximum de:
-            - plafond sécurité sociale temps plein
-            - revenu professionnel
-      - sinon: revenu professionnel
-  références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-
-- espace: indépendant . cotisations
+- espace: indépendant . cotisations et contributions . cotisations
   nom: allocations familiales
   période: flexible
   formule:
@@ -3266,13 +3338,20 @@
         1.4: 3.1%
 
 - espace: indépendant
-  nom: revenu brut
+  nom: revenu total du dirigeant
   période: flexible
   formule:
     somme:
       - revenu professionnel
-      - cotisations à payer
-      - cotisations et contributions . CSG et CRDS (déductible)
+      - cotisations et contributions
+
+- espace: indépendant
+  nom: impôt et contributions non déductibles
+  période: flexible
+  formule:
+    somme:
+      - impôt . impôt sur le revenu à payer
+      - cotisations et contributions . CSG et CRDS (non déductible)
 
 - nom: auto entrepreneur
   icônes: 🚶
@@ -3287,11 +3366,19 @@
   période: flexible
   contrôles:
     - si: base des cotisations > plafond
-      message: Seuil de chiffre d'affaires dépassé
+      message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/auto-entrepreneur/plafond)
       niveau: avertissement
 
 - espace: auto entrepreneur
   nom: plafond
+  description: |
+    Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas un certain seuil, qui dépend de sa catégorie d'activité.
+
+    En cas de dépassement consécutif sur deux ans, l'auto-entrepreneur bascule automatiquement dans le régime de [l'entreprise individuelle](/sécurité-sociale/indépendant).
+
+  références:
+    Fiche sevice-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
+
   période: année
   formule:
     variations:
@@ -3351,7 +3438,7 @@
 
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
-          - si: entreprise . catégorie d'activité . libérale reglementée
+          - si: entreprise . catégorie d'activité . libérale règlementée
             alors: 0.2%
           - sinon: 0.44%
 
@@ -3368,7 +3455,7 @@
         variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.3%
-          - si: entreprise . catégorie d'activité . libérale reglementée
+          - si: entreprise . catégorie d'activité . libérale règlementée
             alors: 0.2%
           - si:
               une de ces conditions:
@@ -3392,15 +3479,14 @@
       multiplicateur: ACRE . plafond
       tranches:
         - en-dessous de: 1
-          taux: ACRE * taux
+          taux: taux ACRE * taux de cotisation
         - au-dessus de: 1
-          taux: taux
+          taux: taux de cotisation
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
 - espace: auto entrepreneur . cotisations sociales
-  nom: taux
-  titre: taux de cotisation
+  nom: taux de cotisation
   description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
@@ -3408,25 +3494,39 @@
       - si:
           une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
-
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 12.8%
       - sinon: 22%
 
+- espace: entreprise
+  nom: ACCRE obtenu
+  question: Avez-vous obtenu l'ACCRE lors de votre création d'entreprise ?
+  description: |
+    Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appellait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
+  par défaut: non
+
 - espace: auto entrepreneur . cotisations sociales
-  nom: ACRE
-  titre: Taux ACRE
+  nom: taux ACRE
   période: flexible
-  description: Ce taux réduit le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
+  formule: 100% - réduction ACRE
+
+- espace: auto entrepreneur . cotisations sociales
+  nom: réduction ACRE
+  applicable si:
+    une de ces conditions:
+      - entreprise . année d'activité = 'première année'
+      - entreprise . ACCRE obtenu
+  période: flexible
+  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
     variations:
       - si: entreprise . année d'activité = 'première année'
-        alors: 25%
+        alors: 75%
       - si: entreprise . année d'activité = 'deuxième année'
         alors: 50%
       - si: entreprise . année d'activité = 'troisième année'
-        alors: 75%
-      - sinon: 100%
+        alors: 25%
+      - sinon: 0%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
 
@@ -3480,7 +3580,7 @@
   espace: protection sociale
   icônes: 👵
   type: branche
-  description courte: Garantit en moyenne 60 à 70 % de votre dernier revenu d'activité après 65 ans.
+  description courte: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   description: |
     Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
 
@@ -3492,6 +3592,8 @@
       - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
 
     La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
+
+    Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
 
   références:
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
@@ -3617,6 +3719,8 @@
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+- nom: situation personnelle
 
 - espace: situation personnelle
   nom: RSA

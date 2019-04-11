@@ -41,7 +41,6 @@ clickForMore: You can click the results below for detailed explanations.
 Quel est le salaire mensuel ?: What is the monthly salary?
 back: Back to your simulation
 ambiguous: More than one rule with this name found. Which one are you looking for ?
-reportError: Report an error
 Références: Relevant legal information (fr)
 Règles du groupe: Rules of the group
 Pas de sources officielles: No official information
@@ -130,7 +129,7 @@ simulation-end:
     cta: Know the procedures
 feedback:
   simulator: Do you like this simulator ?
-  reportError: Report an error
+  reportError: Make a suggestion
   question: Was this information useful to you?
   bad:
     form:
@@ -387,7 +386,7 @@ après:
   intro: Once your <2>{{companyStatusChoice}}</2> has been successfully registered, you'll have access to the following
   siret:
     titre: The SIRET number
-    description: The SIREN number <1>identifies your company</1> while the SIRET number identifies each place of business operated by the same company. The SIRET is composed by the SIREN followed by the establishment number.
+    description: The SIREN number <1>identifies your company</1> while the SIRET number identifies each place of business operated by the same company. The SIRET is composed by the SIREN followed by the establishment number (NIC).
   ape:
     titre: The APE code
     description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). <3>It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.</3>
@@ -412,6 +411,12 @@ sécu:
     </1>
   video: Social security explained visually
   entrepriseCrée: If you already own a company, we can <2>automatically customize</2> your simulations to your situation. All you have to do is <5>enter the name of your company</5>.
+  choix:
+    titre: What do you want to estimate?
+    auto-entrepreneur: Estimate my remuneration as an auto-entrepreneur
+    dirigeant1: Your remuneration as a {{legalStatus}} director
+    dirigeant2: The director's remuneration
+    employé: An employee's salary
 
 Votre entreprise: Your company
 Ce n'est pas mon entreprise: This is not my company
@@ -487,13 +492,6 @@ embauche:
     </1>
     <2>Get an example payslip</2>
 
-simulateur-salarié:
-  page:
-    titre: Official net and gross salary simulator
-    description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
-  titre: Salary simulator
-  description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
-
 Guide du statut juridique: Legal status guide
 Démarches de création: Creation process checklist
 
@@ -516,7 +514,10 @@ path:
   sécuritéSociale:
     index: '/social-security'
     assimilé-salarié: '/assimilated-salaried'
+    indépendant: '/self-employed'
+    auto-entrepreneur: '/auto-entrepreneur'
     salarié: '/salaried'
+    selection: '/scheme-selection'
   démarcheEmbauche:
     index: '/hiring-process'
 
@@ -600,3 +601,47 @@ Renseigner mon entreprise: Find my company
 Simulations personnalisées: Customized simulations
 
 indicationTempsPlein: in full-time gross salary equivalent
+auto-entreprise: auto-enterprise
+SAS, SASU ou SARL minoritaires: SAS, SASU or SARL minority shareholders
+EI, EURL, SARL ou SARL majoritaires: EI, EURL, SARL or SARL majority shareholders
+Comparer les trois régimes: Compare the three schemes
+simulateurs:
+  inversionFail: The amount entered is too small or results in an impossible situation, try another one
+  warning:
+    titre: Tool under development
+    plus: (more info)
+    line1: the turnover deducted from expenses goes to 100% in the director's remuneration
+    line2: income tax is calculated for a single person without children and without other income.
+    line3: the figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
+  salarié:
+    page:
+      titre: Official net and gross salary simulator
+      description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
+    titre: Salary simulator
+    description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
+  assimilé-salarié:
+    page:
+      titre: Official salary simulator for SASU and SAS directors
+      description: Estimate your income as a SASU or SAS director based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator
+    titre: SAS and SASU directors income simulator
+    explications: The equal or minority directors of SARL or the directors of SA and SAS are considered as "assimilé salarié" and are subject to the general regime. Consequently, the director has the same social protection as an employee, apart from unemployment coverage.
+  indépendant:
+    page:
+      titre: Official income simulator for self-employed person
+      description: Estimate your income as a self-employed person based on your turnover (for EI, EURL and SARL majority directors). All contributions and income tax are taken into account. Official URSSAF simulator
+    titre: Self-employed income simulator
+    explication1: Our estimate takes into account the <1>actual contributions</1> due by the self-employed person. During the first year of his activity, he will pay a reduced flat rate (a sum of around 1300€ / year for a craftsman benefiting from ACRE)... but it will be regularized the following year according to this real amount.
+    explication2: Unemployment and occupational accident insurance are not covered by the Social Security for the self-employed. Retirement based on professional income is generally lower. To be covered, the professional may take out additional insurance.
+  auto-entrepreneur:
+    page:
+      titre: Official income simulator for auto-entrepreneur
+      description: Estimate your income as an auto-entrepreneur based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator.
+    titre: 'Auto-entrepreneur income simulator'
+J'ai compris: understood
+
+Année d'activité: Years of activity
+Commerçant, artisan, ou libéral ?: Trader, craftsman, or liberal?
+Revenir à la documentation: Go back to documentation
+Voir le code source: See the source code
+
+Quel régime souhaitez-vous explorer ?: Which social scheme would you like to explore?

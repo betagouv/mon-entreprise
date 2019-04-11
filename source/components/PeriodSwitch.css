@@ -1,38 +1,5 @@
 #PeriodSwitch {
-	margin: 1em;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-}
-#PeriodSwitch .base {
-	background: var(--colour);
-	border-radius: 0.3em;
-	padding: 0.4em;
-}
-
-#PeriodSwitch label {
-	color: var(--colour);
-}
-
-#PeriodSwitch input[type='radio'] {
-	position: fixed;
-	left: -100%;
-}
-
-#PeriodSwitch .radioText {
-	cursor: pointer;
-	border-radius: 0.3em;
-	padding: 0 0.6em;
-	color: white;
-}
-
-#PeriodSwitch .radioText:hover {
-	text-decoration: underline;
-}
-
-#PeriodSwitch input[type='radio']:checked + .radioText {
-	background: white;
-	border: 4px solid white;
-	color: var(--colour);
-	text-decoration: none;
+	justify-content: flex-end;
 }

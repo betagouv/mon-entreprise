@@ -2,7 +2,7 @@
 import { isSoleProprietorship } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { compose } from 'ramda'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
@@ -62,7 +62,7 @@ const SoleProprietorship = ({ isSoleProprietorship, t }: Props) => (
 			<li>
 				<T k="responsabilité.société">
 					<strong>Société : </strong>
-					Vous ne pouvez être tenus personnellement responsables des dettes ou
+					Vous ne pouvez être tenu personnellement responsables des dettes ou
 					obligations de la société. En revanche, les démarches de création sont
 					un peu plus lourdes, puisqu'elles incluent notamment la rédaction de
 					statuts et le dépôt d'un capital.

@@ -8,7 +8,7 @@ import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
-import selectors from 'Selectors/progressSelectors'
+import { régimeSelector } from 'Selectors/companyStatusSelectors'
 import companySvg from '../../images/company.svg'
 import estimateSvg from '../../images/estimate.svg'
 import hiringSvg from '../../images/hiring.svg'
@@ -28,19 +28,11 @@ export const Progress = ({ percent }: { percent: number }) => (
 )
 type OwnProps = {}
 type Props = OwnProps & {
-	companyProgress: number,
-	estimationProgress: number,
-	hiringProgress: number,
+	showHiring: boolean,
 	tracker: Tracker,
 	sitePaths: Object
 }
-const StepsHeader = ({
-	companyProgress,
-	estimationProgress,
-	hiringProgress,
-	tracker,
-	sitePaths
-}: Props) => (
+const StepsHeader = ({ showHiring, tracker, sitePaths }: Props) => (
 	<header className="steps-header">
 		<nav className="ui__ container">
 			<NavLink
@@ -53,7 +45,6 @@ const StepsHeader = ({
 				<div>
 					<T>Votre entreprise</T>
 				</div>
-				<Progress percent={companyProgress} />
 			</NavLink>
 			<NavLink
 				to={sitePaths.sécuritéSociale.index}
@@ -65,33 +56,31 @@ const StepsHeader = ({
 				<div>
 					<T>Protection sociale</T>
 				</div>
-
-				<Progress percent={estimationProgress} />
 			</NavLink>
-			<NavLink
-				to={sitePaths.démarcheEmbauche.index}
-				activeClassName="active"
-				onClick={() =>
-					tracker.push(['trackEvent', 'Header', 'click', 'Hiring process'])
-				}>
-				<img src={hiringSvg} />
-				<div>
-					<T>Embauche</T>
-				</div>
-
-				<Progress percent={hiringProgress} />
-			</NavLink>
+			{showHiring && (
+				<NavLink
+					to={sitePaths.démarcheEmbauche.index}
+					activeClassName="active"
+					onClick={() =>
+						tracker.push(['trackEvent', 'Header', 'click', 'Hiring process'])
+					}>
+					<img src={hiringSvg} />
+					<div>
+						<T>Embauche</T>
+					</div>
+				</NavLink>
+			)}
 		</nav>
 	</header>
 )
 
 export default (compose(
 	withTracker,
+	withRouter,
 	connect(
-		selectors,
+		state => ({ showHiring: régimeSelector(state) !== 'auto-entrepreneur' }),
 		{}
 	),
-	withRouter,
 	withTranslation(),
 	withSitePaths
 )(StepsHeader): React$ComponentType<OwnProps>)

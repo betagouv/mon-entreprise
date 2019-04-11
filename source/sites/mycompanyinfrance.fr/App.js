@@ -12,7 +12,10 @@ import { withTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
-import { persistEverything } from '../../storage/persistEverything'
+import {
+	persistEverything,
+	retrievePersistedState
+} from '../../storage/persistEverything'
 import ReactPiwik from '../../Tracker'
 import './App.css'
 import Footer from './layout/Footer/Footer'
@@ -62,7 +65,7 @@ class InFranceRoute extends Component {
 				sitePaths={paths}
 				reduxMiddlewares={middlewares}
 				onStoreCreated={persistEverything()}
-				initialStore={{}}>
+				initialStore={retrievePersistedState() || {}}>
 				<TrackPageView />
 				<div id="content">
 					<RouterSwitch />
@@ -91,7 +94,9 @@ const App = compose(
 		<Navigation location={location} />
 		<div className="app-content">
 			<ProgressHeader />
-			<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
+			<div
+				className="ui__ container"
+				style={{ flexGrow: 1, flexShrink: 0, marginTop: '1rem' }}>
 				<Switch>
 					<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
 					<Route

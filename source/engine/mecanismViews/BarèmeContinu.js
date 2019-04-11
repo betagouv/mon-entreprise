@@ -43,7 +43,7 @@ let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 									<b>
 										<Trans>Votre taux </Trans> :{' '}
 									</b>
-									{(100 * explanation.taux).toFixed(1)} %
+									{(100 * explanation.taux).toFixed(2)} %
 								</span>
 							)}
 							{explanation.returnRate && (

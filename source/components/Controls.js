@@ -1,11 +1,12 @@
 import { hideControl, startConversation } from 'Actions/actions'
-import withLanguage from 'Components/utils/withLanguage'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
+import animate from 'Ui/animate'
 import './Controls.css'
 import withColours from './utils/withColours'
 
@@ -14,45 +15,59 @@ function Controls({
 	startConversation,
 	hideControl,
 	foldedSteps,
-	colours,
 	hiddenControls,
-	language
+	t,
+	inversionFail
 }) {
-	if (!controls?.length) return null
-	/* TODO controls are not translated yet, since our translation system doesn't handle nested yaml properties of base.yaml */
-	if (language === 'en') return null
+	let messages = [
+		...controls,
+		...(inversionFail
+			? [
+					{
+						message: t([
+							'simulateurs.inversionFail',
+							'Le montant saisi est trop faible ou aboutit à une situation impossible, essayez en un autre'
+						]),
+						level: 'avertissement'
+					}
+			  ]
+			: [])
+	]
+	if (!messages?.length) return null
+
 	return (
 		<div id="controlsBlock">
-			<ul>
-				{controls.map(({ level, test, message, solution, evaluated }) =>
+			<ul style={{ margin: 0, padding: 0 }}>
+				{messages.map(({ level, test, message, solution, evaluated }) =>
 					hiddenControls.includes(test) ? null : (
-						<li
-							key={test}
-							className="control"
-							style={{ background: colours.lighterColour }}>
-							{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
-							<div className="controlText">
-								{message ? (
-									createMarkdownDiv(message)
-								) : (
-									<span id="controlExplanation">{makeJsx(evaluated)}</span>
-								)}
-								&nbsp;
-								{solution && !foldedSteps.includes(solution.cible) && (
+						<li key={test}>
+							<animate.appear className="control">
+								{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
+								<div className="controlText ui__ card">
+									{message ? (
+										createMarkdownDiv(message)
+									) : (
+										<span id="controlExplanation">{makeJsx(evaluated)}</span>
+									)}
+
+									{solution && !foldedSteps.includes(solution.cible) && (
+										<div>
+											<button
+												key={solution.cible}
+												className="ui__ link-button"
+												onClick={() => startConversation(solution.cible)}>
+												{solution.texte}
+											</button>
+										</div>
+									)}
 									<button
-										key={solution.cible}
-										className="ui__ link-button"
-										onClick={() => startConversation(solution.cible)}>
-										{solution.texte}
+										className="hide"
+										aria-label="close"
+										onClick={() => hideControl(test)}>
+										×
 									</button>
-								)}
-							</div>
-							<button
-								className="hide"
-								aria-label="close"
-								onClick={() => hideControl(test)}>
-								×
-							</button>
+								</div>
+							</animate.appear>
 						</li>
 					)
 				)}
@@ -73,5 +88,5 @@ export default compose(
 		})
 	),
 	withColours,
-	withLanguage
+	withTranslation()
 )(Controls)

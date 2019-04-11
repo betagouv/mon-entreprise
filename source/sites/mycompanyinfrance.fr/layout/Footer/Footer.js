@@ -3,18 +3,18 @@
 import { T } from 'Components'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
+import usePersistingState from 'Components/utils/usePersistingState'
 import withColours from 'Components/utils/withColours'
 import withSitePaths from 'Components/utils/withSitePaths'
 import withTracker from 'Components/utils/withTracker'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose, lensPath, view } from 'ramda'
-import React, { useState } from 'react'
+import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
-import safeLocalStorage from '../../../../storage/safeLocalStorage'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import betaGouvSvg from './logo-betagouv.svg'
@@ -30,21 +30,14 @@ const feedbackBlacklist = [
 	['sécuritéSociale', 'salarié']
 ].map(lensPath)
 
-const LOCAL_STORAGE_KEY = 'app::newsletter::registered'
-const userAlreadyRegistered: boolean =
-	JSON.parse(safeLocalStorage.getItem(LOCAL_STORAGE_KEY)) || false
-
 const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
-	const [showNewsletterForm, toggleNewsletterForm] = useState(
-		!userAlreadyRegistered &&
-			!['mycompanyinfrance.fr', 'mon-entreprise.fr'].includes(
-				window.location.hostname
-			)
+	const [registered, setUserRegistered] = usePersistingState(
+		'app::newsletter::registered',
+		false
 	)
 	const onSubmit = () => {
-		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(true))
 		tracker.push(['trackEvent', 'Newsletter', 'registered'])
-		setTimeout(() => toggleNewsletterForm(false), 0)
+		setTimeout(() => setUserRegistered(true), 0)
 	}
 	const hrefLink =
 		hrefLangLink[i18n.language][
@@ -73,7 +66,7 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 				<div className="ui__ container">
 					<div id="footerIcons">
 						<a href="https://www.urssaf.fr">
-							<img src={urssafSvg} alt="un service fourni par l'URSSAF" />
+							<img src={urssafSvg} alt="un service fourni par l'Urssaf" />
 						</a>
 						<a href="https://beta.gouv.fr">
 							<img
@@ -83,7 +76,7 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 						</a>
 					</div>
 
-					{showNewsletterForm && (
+					{!registered && (
 						<>
 							<p>
 								<T k="newsletter.register.description1">
@@ -125,7 +118,7 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 					{i18n.language === 'en' && (
 						<p className="ui__ notice">
 							This website is provided by the{' '}
-							<a href="https://www.urssaf.fr">URSSAF</a>, the French social
+							<a href="https://www.urssaf.fr">Urssaf</a>, the French social
 							security contributions collector, and the government’s public
 							startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>
 							.

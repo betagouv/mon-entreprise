@@ -1,31 +1,28 @@
 import classNames from 'classnames'
 import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { compose, propEq, chain } from 'ramda'
-import React, { Component } from 'react'
+import { encodeRuleName } from 'Engine/rules'
+import { compose, isEmpty, isNil, propEq } from 'ramda'
+import React, { Component, PureComponent } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
-	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
-import { Progress } from '../sites/mycompanyinfrance.fr/layout/ProgressHeader/ProgressHeader'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import QuickLinks from './QuickLinks'
 import './TargetSelection.css'
 
-const MAX_NUMBER_QUESTION = 18
 export default compose(
 	withTranslation(),
 	withColours,
@@ -33,16 +30,12 @@ export default compose(
 		form: 'conversation',
 		destroyOnUnmount: false
 	}),
-	withRouter,
 	connect(
 		state => ({
 			getTargetValue: dottedName =>
 				formValueSelector('conversation')(state, dottedName),
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
-			progress:
-				(100 * (MAX_NUMBER_QUESTION - nextStepsSelector(state))) /
-				MAX_NUMBER_QUESTION,
 			noUserInput: noUserInputSelector(state),
 			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
@@ -56,20 +49,53 @@ export default compose(
 		})
 	)
 )(
-	class TargetSelection extends Component {
+	class TargetSelection extends PureComponent {
+		state = {
+			initialRender: true
+		}
+		componentDidMount() {
+			const props = this.props
+			const targets = props.analysis ? props.analysis.targets : []
+			// Initialize defaultValue for target that can't be computed
+			targets
+				.filter(
+					target =>
+						(!target.formule || isEmpty(target.formule)) &&
+						(!isNil(target.defaultValue) ||
+							!isNil(target.explanation?.defaultValue)) &&
+						!props.getTargetValue(target.dottedName)
+				)
+
+				.forEach(target => {
+					props.setFormValue(
+						target.dottedName,
+						!isNil(target.defaultValue)
+							? target.defaultValue
+							: target.explanation?.defaultValue
+					)
+				})
+
+			if (this.state.initialRender) {
+				this.setState({ initialRender: false })
+			}
+		}
 		render() {
-			let { colours, noUserInput, analysis, progress } = this.props
+			let { colours, noUserInput, analysis } = this.props,
+				inversionFail = analysis.cache.inversionFail
 
 			return (
 				<div id="targetSelection">
-					<QuickLinks />
-					{!noUserInput && <Controls controls={analysis.controls} />}
-					<div style={{ height: '10px' }}>
-						<Progress percent={progress} />
-					</div>
+					{!noUserInput && (
+						<Controls
+							inversionFail={inversionFail}
+							controls={analysis.controls}
+						/>
+					)}
+					<PeriodSwitch />
 					<section
 						className="ui__ plain card"
 						style={{
+							marginTop: '.6em',
 							color: colours.textColour,
 							background: `linear-gradient(
 								60deg,
@@ -79,80 +105,119 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
+					<QuickLinks />
 				</div>
 			)
 		}
 
 		renderOutputList() {
-			let displayedTargets = this.props.objectifs.map(target =>
-					findRuleByDottedName(this.props.flatRules, target)
-				),
-				{
+			let {
 					conversationStarted,
 					activeInput,
 					setActiveInput,
-					analysis,
-					noUserInput,
-					match
+					setFormValue,
+					analysis
 				} = this.props,
-				targets = analysis ? analysis.targets : []
+				targets = analysis ? analysis.targets : [],
+				inversionFail = analysis.cache.inversionFail
 
 			return (
 				<div>
 					<ul id="targets">
-						{displayedTargets.map(target => (
-							<li
-								key={target.name}
-								className={!target.question ? 'not-editable' : undefined}>
-								<div className="main">
-									<Header
-										{...{
-											match,
-											target,
-											conversationStarted,
-											isActiveInput: activeInput === target.dottedName
-										}}
-									/>
-									{!target.question && (
-										<span
-											style={{
-												flex: 1,
-												borderBottom: '1px dashed #ffffff91',
-												marginLeft: '1rem'
-											}}
-										/>
-									)}
-									<TargetInputOrValue
-										{...{
-											target,
-											targets,
-											activeInput,
-											setActiveInput,
-											setFormValue: this.props.setFormValue,
-											noUserInput
-										}}
-									/>
-								</div>
-								{activeInput === target.dottedName && !conversationStarted && (
-									<Animate.fromTop>
-										<InputSuggestions
-											suggestions={target.suggestions}
-											onFirstClick={value =>
-												this.props.setFormValue(target.dottedName, '' + value)
-											}
-											rulePeriod={target.période}
-											colouredBackground={true}
-										/>
-									</Animate.fromTop>
-								)}
-							</li>
-						))}
+						{targets
+							.map(target => target.explanation || target)
+							.filter(target => {
+								return (
+									target.isApplicable !== false &&
+									(target.question || target.nodeValue)
+								)
+							})
+							.map(target => (
+								<Target
+									key={target.dottedName}
+									initialRender={this.state.initialRender}
+									{...{
+										conversationStarted,
+										target,
+										setFormValue,
+										activeInput,
+										setActiveInput,
+										targets,
+										inversionFail
+									}}
+								/>
+							))}
 					</ul>
 				</div>
 			)
 		}
 	}
 )
+
+const Target = ({
+	target,
+	activeInput,
+	conversationStarted,
+	targets,
+	setActiveInput,
+	setFormValue,
+	initialRender,
+	inversionFail
+}) => {
+	const isSmallTarget =
+		!target.question || !target.formule || isEmpty(target.formule)
+
+	return (
+		<li
+			key={target.name}
+			className={isSmallTarget ? 'small-target' : undefined}>
+			<Animate.appear unless={initialRender}>
+				<div>
+					<div className="main">
+						<Header
+							{...{
+								target,
+								conversationStarted,
+								isActiveInput: activeInput === target.dottedName
+							}}
+						/>
+						{isSmallTarget && (
+							<span
+								style={{
+									flex: 1,
+									borderBottom: '1px dashed #ffffff91',
+									marginLeft: '1rem'
+								}}
+							/>
+						)}
+						<TargetInputOrValue
+							{...{
+								target,
+								targets,
+								activeInput,
+								setActiveInput,
+								setFormValue,
+								inversionFail
+							}}
+						/>
+					</div>
+					{activeInput === target.dottedName && !conversationStarted && (
+						<Animate.fromTop>
+							<InputSuggestions
+								suggestions={target.suggestions}
+								onFirstClick={value =>
+									setFormValue(target.dottedName, '' + value)
+								}
+								rulePeriod={target.période}
+								colouredBackground={true}
+							/>
+						</Animate.fromTop>
+					)}
+				</div>
+			</Animate.appear>
+		</li>
+	)
+}
 
 let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
 	const ruleLink =
@@ -176,8 +241,10 @@ let CurrencyField = withColours(props => {
 				color: props.colours.textColour,
 				borderColor: props.colours.textColour
 			}}
+			debounce={600}
 			className="targetInput"
-			autoFocus
+			key={props.input.value}
+			defaultValue={props.input.value}
 			{...props.input}
 			{...props}
 		/>
@@ -185,11 +252,22 @@ let CurrencyField = withColours(props => {
 })
 
 let TargetInputOrValue = withLanguage(
-	({ target, targets, activeInput, setActiveInput, language, noUserInput }) => (
+	({
+		target,
+		targets,
+		activeInput,
+		setActiveInput,
+		language,
+		noUserInput,
+		inversionFail
+	}) => (
 		<span className="targetInputOrValue">
-			{activeInput === target.dottedName ? (
+			{activeInput === target.dottedName ||
+			!target.formule ||
+			isEmpty(target.formule) ? (
 				<Field
 					name={target.dottedName}
+					{...(target.formule ? { autoFocus: true } : {})}
 					component={CurrencyField}
 					language={language}
 				/>
@@ -200,7 +278,8 @@ let TargetInputOrValue = withLanguage(
 						target,
 						activeInput,
 						setActiveInput,
-						noUserInput
+						noUserInput,
+						inversionFail
 					}}
 				/>
 			)}
@@ -216,7 +295,7 @@ const TargetValue = connect(
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target, noUserInput } = this.props
+			let { targets, target, inversionFail } = this.props
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -226,9 +305,10 @@ const TargetValue = connect(
 				<div
 					className={classNames({
 						editable: target.question,
-						attractClick: target.question && noUserInput
+						attractClick: target.question && isNil(target.nodeValue)
 					})}
-					tabIndex="0"
+					style={inversionFail ? { filter: 'blur(3px)' } : {}}
+					{...(target.question ? { tabIndex: 0 } : {})}
 					onClick={this.showField(value)}
 					onFocus={this.showField(value)}>
 					<AnimatedTargetValue value={value} />
@@ -239,8 +319,8 @@ const TargetValue = connect(
 			let { target, setFormValue, activeInput, setActiveInput } = this.props
 			return () => {
 				if (!target.question) return
-				if (value != null)
-					setFormValue(target.dottedName, Math.floor(value) + '')
+				if (value != null && !Number.isNaN(value))
+					setFormValue(target.dottedName, Math.round(value) + '')
 
 				if (activeInput) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)

@@ -8,9 +8,6 @@ const salaryInput = inputTitle => {
 }
 
 describe('Landing basic test', function() {
-	it('should not crash', function() {
-		cy.visit('/')
-	})
 	it('should display the simulateur after loading', function() {
 		cy.visit('/')
 		cy.contains('Versé sur son compte bancaire')
@@ -34,6 +31,7 @@ describe('Simulation saving test', function() {
 	it('should save the current simulation', function() {
 		cy.visit('/')
 		salaryInput('Salaire net').type('5471')
+		cy.wait(1000)
 		cy.contains('CDD').click()
 		cy.contains('passer').click()
 		cy.contains('passer').click()

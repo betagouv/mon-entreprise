@@ -1,23 +1,63 @@
-import { desugarScale } from 'Engine/mecanisms/barème';
-import { decompose, devariateExplanation } from 'Engine/mecanisms/utils';
-import { add, any, aperture, curry, equals, evolve, filter, find, head, is, isEmpty, isNil, keys, last, map, max, mergeWith, min, path, pipe, pluck, prop, propEq, reduce, reduced, reject, sort, subtract, toPairs } from 'ramda';
-import React from 'react';
-import { Trans } from 'react-i18next';
-import 'react-virtualized/styles.css';
-import { bonus, collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, mergeMissing, parseObject, rewriteNode } from './evaluation';
-import Allègement from './mecanismViews/Allègement';
-import Barème from './mecanismViews/Barème';
-import BarèmeContinu from './mecanismViews/BarèmeContinu';
-import { Node, SimpleRuleLink } from './mecanismViews/common';
-import InversionNumérique from './mecanismViews/InversionNumérique';
-import Product from './mecanismViews/Product';
-import buildSelectionView from './mecanismViews/Selection';
-import Somme from './mecanismViews/Somme';
-import Variations from './mecanismViews/Variations';
-import { disambiguateRuleReference, findRuleByDottedName, findRuleByName } from './rules';
-import { anyNull, val } from './traverse-common-functions';
-import uniroot from './uniroot';
-
+import { desugarScale } from 'Engine/mecanisms/barème'
+import { decompose, devariateExplanation } from 'Engine/mecanisms/utils'
+import {
+	add,
+	any,
+	aperture,
+	curry,
+	equals,
+	evolve,
+	filter,
+	find,
+	head,
+	is,
+	isEmpty,
+	isNil,
+	keys,
+	last,
+	map,
+	max,
+	mergeWith,
+	min,
+	path,
+	pipe,
+	pluck,
+	prop,
+	propEq,
+	reduce,
+	reduced,
+	reject,
+	sort,
+	subtract,
+	toPairs
+} from 'ramda'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import 'react-virtualized/styles.css'
+import {
+	bonus,
+	collectNodeMissing,
+	defaultNode,
+	evaluateArray,
+	evaluateNode,
+	evaluateObject,
+	makeJsx,
+	mergeAllMissing,
+	mergeMissing,
+	parseObject,
+	rewriteNode
+} from './evaluation'
+import Allègement from './mecanismViews/Allègement'
+import Barème from './mecanismViews/Barème'
+import BarèmeContinu from './mecanismViews/BarèmeContinu'
+import { Node, SimpleRuleLink } from './mecanismViews/common'
+import InversionNumérique from './mecanismViews/InversionNumérique'
+import Product from './mecanismViews/Product'
+import Somme from './mecanismViews/Somme'
+import Variations from './mecanismViews/Variations'
+import { disambiguateRuleReference, findRuleByDottedName } from './rules'
+import { anyNull, val } from './traverse-common-functions'
+import uniroot from './uniroot'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export let mecanismVariations = (recurse, k, v, devariate) => {
@@ -385,12 +425,14 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	let inversionCache = {}
 	let fx = x => {
 		inversionCache = { parseLevel: oldCache.parseLevel + 1, op: '<' }
-		return evaluateNode(
+		let v = evaluateNode(
 			inversionCache, // with an empty cache
 			n => (dottedName === n ? x : situationGate(n)),
 			parsedRules,
 			fixedObjectiveRule
 		)
+
+		return v
 	}
 
 	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
@@ -408,7 +450,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 				let y = fx(x)
 				return y.nodeValue - objectiveValue
 			},
-			1,
+			0.1,
 			1000000000,
 			tolerance,
 			10
@@ -436,6 +478,12 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
+
+		if (nodeValue === undefined)
+			cache.inversionFail = {
+				given: inversion.inversedWith.rule.dottedName,
+				estimated: dottedName
+			}
 		let evaluatedNode = rewriteNode(
 			node,
 			nodeValue,
@@ -557,14 +605,18 @@ export let mecanismProduct = (recurse, k, v) => {
 	let effect = ({ assiette, taux, facteur, plafond }) => {
 		let mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond) * rate * facteur
-		return val(taux) === 0 ||
-			val(taux) === false ||
-			val(assiette) === 0 ||
-			val(facteur) === 0
-			? 0
-			: anyNull([taux, assiette, facteur, plafond])
-			? null
-			: mult(val(assiette), val(taux), val(facteur), val(plafond))
+		return {
+			nodeValue:
+				val(taux) === 0 ||
+				val(taux) === false ||
+				val(assiette) === 0 ||
+				val(facteur) === 0
+					? 0
+					: anyNull([taux, assiette, facteur, plafond])
+					? null
+					: mult(val(assiette), val(taux), val(facteur), val(plafond)),
+			additionalExplanation: { plafondActif: val(assiette) > val(plafond) }
+		}
 	}
 
 	let explanation = parseObject(recurse, objectShape, v),
@@ -802,55 +854,6 @@ export let mecanismComplement = (recurse, k, v) => {
 	}
 }
 
-export let mecanismSelection = (recurse, k, v) => {
-	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
-	}
-
-	let dataSourceName = v['données']
-	let dataSearchField = v['dans']
-	let dataTargetName = v['renvoie']
-	let explanation = recurse(v['cherche'])
-
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let explanation = evaluateNode(
-				cache,
-				situationGate,
-				parsedRules,
-				node.explanation
-			),
-			dataSource = findRuleByName(parsedRules, dataSourceName),
-			data = dataSource ? dataSource['data'] : null,
-			dataKey = explanation.nodeValue,
-			found =
-				data && dataKey && dataSearchField
-					? find(item => item[dataSearchField] == dataKey, data)
-					: null,
-			// return 0 if we found a match for the lookup but not for the specific field,
-			// so that component sums don't sum to null
-			nodeValue =
-				(found &&
-					found[dataTargetName] &&
-					Number.parseFloat(found[dataTargetName]) / 100) ||
-				0,
-			missingVariables = explanation.missingVariables
-
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
-	}
-
-	let SelectionView = buildSelectionView(dataTargetName)
-
-	return {
-		evaluate,
-		explanation,
-		// eslint-disable-next-line
-		jsx: (nodeValue, explanation) => (
-			<SelectionView nodeValue={nodeValue} explanation={explanation} />
-		)
-	}
-}
-
 export let mecanismSynchronisation = (recurse, k, v) => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let APIExplanation = evaluateNode(
@@ -860,14 +863,21 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 			node.explanation.API
 		)
 
+		let valuePath = v.chemin.split(' . ')
+
 		let nodeValue =
-			val(APIExplanation) == null
-				? null
-				: path(v.chemin.split(' . '))(val(APIExplanation))
+			val(APIExplanation) == null ? null : path(valuePath, val(APIExplanation))
+
+		// If the API gave a non null value, then some of its props may be null (the API can be composed of multiple API, some failing). Then this prop will be set to the default value defined in the API's rule
+		let safeNodeValue =
+			nodeValue == null && val(APIExplanation) != null
+				? path(valuePath, APIExplanation.explanation.defaultValue)
+				: nodeValue
+
 		let missingVariables =
 			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return rewriteNode(node, safeNodeValue, explanation, missingVariables)
 	}
 
 	return {

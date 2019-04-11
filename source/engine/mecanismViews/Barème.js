@@ -88,19 +88,23 @@ let Component = withLanguage(function Barème({
 									))}
 								</tbody>
 							</table>
-							{showValues && barèmeType === 'marginal' && (
-								<>
-									<b>
-										<Trans>Taux final</Trans> :{' '}
-									</b>
-									{formatNumber(
-										(nodeValue / lazyEval(explanation['assiette']).nodeValue) *
-											100,
-										language
-									)}{' '}
-									%
-								</>
-							)}
+							{/* nous avons remarqué que la notion de taux final pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
+							{showValues &&
+								barèmeType === 'marginal' &&
+								explanation.tranches.length > 2 && (
+									<>
+										<b>
+											<Trans>Taux final</Trans> :{' '}
+										</b>
+										{formatNumber(
+											(nodeValue /
+												lazyEval(explanation['assiette']).nodeValue) *
+												100,
+											language
+										)}{' '}
+										%
+									</>
+								)}
 						</ul>
 					}
 				/>

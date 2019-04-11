@@ -5,15 +5,14 @@ import { React, T } from 'Components'
 import Answers from 'Components/AnswerList'
 import Conversation from 'Components/conversation/Conversation'
 import PageFeedback from 'Components/Feedback/PageFeedback'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
+import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import {
 	nextStepsSelector,
 	noUserInputSelector
 } from 'Selectors/analyseSelectors'
-import Animate from 'Ui/animate'
 
 export default compose(
 	withColours,
@@ -85,23 +84,26 @@ export default compose(
 							/>
 							{noNextSteps && (
 								<>
-									<h1>
-										<T k="simulation-end.title">Plus de questions !</T>
-									</h1>
-									<T k="simulation-end.text">
-										Vous avez atteint l'estimation la plus précise.
-									</T>
-									{this.props.customEndMessages}
+									<h2>
+										{emoji('🌟')}{' '}
+										<T k="simulation-end.title">Situation complétée à 100%</T>{' '}
+									</h2>
+									<p>
+										<T k="simulation-end.text">
+											Nous n'avons plus de questions à poser, vous avez atteint
+											l'estimation la plus précise.
+										</T>
+										{this.props.customEndMessages}
+									</p>
 								</>
 							)}
 						</>
 					)}
-					{showTargets && (
-						<Animate.fromBottom>{this.props.targets}</Animate.fromBottom>
-					)}
 
+					{showTargets && this.props.targets}
+					{!noUserInput && this.props.explanation}
 					{!noUserInput && !noFeedback && (
-						<Animate.appear delay={2000}>
+						<div style={{ margin: '-0.6rem' }}>
 							<PageFeedback
 								customMessage={
 									<T k="feedback.simulator">
@@ -110,10 +112,8 @@ export default compose(
 								}
 								customEventName="rate simulator"
 							/>
-						</Animate.appear>
+						</div>
 					)}
-					<PeriodSwitch />
-					{!noUserInput && this.props.explanation}
 				</>
 			)
 		}

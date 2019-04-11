@@ -14,6 +14,7 @@ type Props = {
 	children: Node,
 	config?: SpringConfig,
 	style?: Object,
+	className?: string,
 	delay?: number
 }
 
@@ -122,12 +123,18 @@ export const fadeIn = ({
 type State = {
 	show: boolean
 }
-export class appear extends React.Component<Props, State> {
+export class appear extends React.Component<
+	Props & { unless: boolean },
+	State
+> {
+	static defaultProps = {
+		unless: false
+	}
 	state = {
-		show: false
+		show: this.props.unless
 	}
 	componentDidMount() {
-		this.setState({ show: true })
+		window.setTimeout(() => this.setState({ show: true }), 0)
 	}
 	render() {
 		const {
@@ -138,15 +145,17 @@ export class appear extends React.Component<Props, State> {
 		} = this.props
 		return (
 			<Spring
-				native={true}
 				delay={delay}
+				native
 				config={config}
 				to={{
 					opacity: this.state.show ? 1 : 0,
 					height: this.state.show ? 'auto' : '0px'
 				}}>
 				{animStyle => (
-					<animated.div style={{ ...style, ...animStyle }}>
+					<animated.div
+						style={{ ...style, ...animStyle }}
+						className={this.props.className}>
 						{children}
 					</animated.div>
 				)}

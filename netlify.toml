@@ -138,6 +138,7 @@ status = 200
 [context.production.environment]
   EN_SITE = "https://mycompanyinfrance.fr${path}"
   FR_SITE = "https://mon-entreprise.fr${path}"
+  MASTER = 'true'
 
 [context."demo"]
   EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"

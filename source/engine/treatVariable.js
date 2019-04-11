@@ -107,7 +107,10 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 // - filters on the variable to select one part of the variable's 'composantes'
 
 // TODO - the implementations of filters is really bad. It injects a hack in the situation to make the composante mecanism compute only one of its branch. It is then stored in the cache under a new key, dottedName.filter. This mecanism should just query the variable tree to get the active composante's value...
+//
+window.count = 0
 export let treatVariableTransforms = (rules, rule) => parseResult => {
+	window.count += 1
 	let evaluateTransforms = originalEval => (
 		cache,
 		situation,

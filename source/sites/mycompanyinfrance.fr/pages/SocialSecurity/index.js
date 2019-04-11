@@ -8,6 +8,7 @@ import Home from './Home'
 import Indépendant from './Indépendant'
 import Salarié from './Salarié'
 import SchemeComparaison from './SchemeComparaison'
+import SchemeSelection from './SchemeSelection'
 
 const SocialSecurityRoutes = ({ sitePaths }) => (
 	<>
@@ -26,6 +27,10 @@ const SocialSecurityRoutes = ({ sitePaths }) => (
 			<Route
 				path={sitePaths.sécuritéSociale.indépendant}
 				component={Indépendant}
+			/>
+			<Route
+				path={sitePaths.sécuritéSociale.selection}
+				component={SchemeSelection}
 			/>
 			<Route
 				path={sitePaths.sécuritéSociale['auto-entrepreneur']}

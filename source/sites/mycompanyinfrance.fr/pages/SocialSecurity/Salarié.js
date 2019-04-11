@@ -19,11 +19,13 @@ export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 					Vous pouvez maintenant concrétiser votre projet d'embauche.
 				</T>
 				{sitePaths.démarcheEmbauche && (
-					<div style={{ textAlign: 'center' }}>
-						<Link className="ui__ button" to={sitePaths.démarcheEmbauche.index}>
+					<p style={{ textAlign: 'center' }}>
+						<Link
+							className="ui__ plain button"
+							to={sitePaths.démarcheEmbauche.index}>
 							<T k="simulation-end.cta">Connaître les démarches</T>
 						</Link>
-					</div>
+					</p>
 				)}
 			</>
 		}
@@ -37,24 +39,24 @@ const Salarié = ({ t }) => (
 		<Helmet>
 			<title>
 				{t([
-					'simulateur-salarié.page.titre',
+					'simulateurs.salarié.page.titre',
 					'Calcul de salaire net et brut : simulateur officiel'
 				])}
 			</title>
 			<meta
 				name="description"
 				content={t([
-					'simulateur-salarié.page.description',
+					'simulateurs.salarié.page.description',
 					'Estimez les cotisations pour un salarié à partir du salaire brut, net ou "superbrut". Prise en comptes de toutes les cotisations du régime général et de l\'impôt sur le revenu. Découvrez les contreparties garanties par sécurité sociale'
 				])}
 			/>
 		</Helmet>
 		<h1>
-			<T k="simulateur-salarié.titre">Simulateur de salaire</T>
+			<T k="simulateurs.salarié.titre">Simulateur de salaire</T>
 		</h1>
 		<SalarySimulation />
 		<p>
-			<T k="simulateur-salarié.description">
+			<T k="simulateurs.salarié.description">
 				Dès que l'embauche d'un salarié est déclarée et qu'il est payé, il est
 				couvert par le régime général de la Sécurité sociale (santé, maternité,
 				invalidité, vieillesse, maladie professionnelle et accidents) et

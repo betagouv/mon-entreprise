@@ -190,6 +190,65 @@
 	border-radius: 0.3rem;
 }
 
+.ui__.button-choice {
+	display: block;
+	padding: 1rem;
+	margin: 1rem 0;
+	border: 1px solid;
+	position: relative;
+	border-color: rgba(41, 117, 209);
+	opacity: 0.8 !important;
+	border-radius: 0.3rem;
+	text-decoration: none;
+	font-size: 1.2rem;
+	transition: opacity, box-shadow 0.2s;
+}
+.ui__.button-choice--soon {
+	border-color: lightgray;
+	color: gray;
+	position: relative;
+	opacity: 0.8;
+	pointer-events: none;
+	cursor: default;
+}
+.ui__.button-choice--soon img {
+	filter: saturate(0%);
+}
+.ui__.button-choice-label {
+	position: absolute;
+	top: 0;
+	font-size: 66%;
+	right: 0;
+	padding: 0.2rem 0.4rem;
+	color: white;
+	background: gray;
+	opacity: 0.8;
+	border-bottom-left-radius: 0.3rem;
+	border-top-right-radius: 0.3rem;
+}
+.ui__.button-choice img {
+	margin-right: 0.5rem !important;
+	transition: transform 0.2s;
+}
+
+.ui__.button-choice:hover,
+.ui__.button-choice:focus {
+	opacity: 1 !important;
+	box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
+		0 1px 2px rgba(41, 117, 209, 0.24);
+}
+.ui__.button-choice:hover img,
+.ui__.button-choice:focus img {
+	transform: scale(1.5);
+}
+@media (min-width: 600px) {
+	.ui__.button-choice:hover::after,
+	.ui__.button-choice:focus::after {
+		content: '›';
+		position: absolute;
+		right: 40px;
+	}
+}
 
 @keyframes push-button-down {
 	from {

@@ -154,7 +154,7 @@ const AutoEntrepreneur = connectRègles('Auto-entrepreneur')(
 					'Pas de déduction des charges',
 					'Pas de déduction fiscale pour la mutuelle (Madelin)',
 					"Chiffre d'affaires plafonné",
-					"Durée de l'ACCRE plus élevée",
+					"Durée de l'ACRE plus élevée",
 					'Comptabilité réduite au minimum'
 				]}
 				onSchemeChoice={() => {

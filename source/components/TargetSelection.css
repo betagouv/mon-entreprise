@@ -18,12 +18,17 @@
 	margin-top: -1rem;
 }
 
-#targetSelection #targets > li.not-editable * {
+#targetSelection #targets > li.small-target * {
 	font-size: 1rem;
 	font-weight: normal;
 }
-#targetSelection #targets > li.not-editable {
+#targetSelection #targets > li.small-target {
 	border-top: none;
+}
+#targetSelection #targets > li.small-target .targetInput {
+	border-width: 1px;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 #targetSelection #targets > li {
@@ -40,6 +45,7 @@
 
 #targetSelection #targets > li p {
 	margin: 0.2em 0 0;
+	font-style: italic;
 	opacity: 0.8;
 	line-height: 1.2rem;
 }
@@ -48,23 +54,8 @@
 	display: flex;
 	align-items: center;
 }
-
-#targetSelection .progressCircle {
-	margin-right: 0.6em;
-}
-#targetSelection .progressCircle svg {
-	width: 2em;
-}
-/* IE */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-	#targetSelection .progressCircle svg {
-		max-height: 2.5rem;
-	}
-}
-
-#targetSelection .progressCircle i {
-	color: #5de662;
-	font-size: 220%;
+#targetSelection #targets > li.small-target .header p {
+	display: none;
 }
 
 #targetSelection .optionTitle {
@@ -97,24 +88,19 @@
 }
 
 #targetSelection .targetInputOrValue {
-	font-size: 135%;
-	margin-left: 0.6em;
+	font-size: 125%;
+	margin-left: 0.6rem;
 	text-align: right;
 }
 
-#targetSelection #aidesGlimpse {
-	font-size: 75%;
-	margin-top: 0.3em;
-}
-#targetSelection #aidesGlimpse a {
-	font-weight: 300;
-}
 #targetSelection .editable:not(.attractClick) {
 	border: 2px solid rgba(0, 0, 0, 0);
 	border-bottom: 1px dashed #ffffff91;
 	min-width: 2.5em;
-	margin: 0.2rem 0.6rem;
 	display: inline-block;
+}
+#targetSelection .targetInputOrValue > :not(.targetInput):not(.attractClick) {
+	margin: 0.2rem 0.6rem;
 }
 
 #targetSelection .attractClick.editable::before {
@@ -149,10 +135,6 @@
 	color: #c0392b;
 	background: yellow;
 	font-weight: 500;
-}
-
-#targetSelection .inputSuggestions {
-	margin: 0.6em 0;
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

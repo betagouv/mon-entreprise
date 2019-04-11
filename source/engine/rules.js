@@ -1,53 +1,24 @@
 // Séparation artificielle, temporaire, entre ces deux types de règles
-import formValueTypes from 'Components/conversation/formValueTypes'
-import {
-	assoc,
-	chain,
-	dropLast,
-	fromPairs,
-	has,
-	identity,
-	is,
-	join,
-	last,
-	map,
-	mapObjIndexed,
-	path,
-	pipe,
-	propEq,
-	props,
-	range,
-	trim,
-	isNil,
-	find,
-	reduce,
-	reduced,
-	reject,
-	split,
-	take,
-	toPairs,
-	when
-} from 'ramda'
-import rawRules from 'Règles/base.yaml'
-import translations from 'Règles/externalized.yaml'
+import formValueTypes from 'Components/conversation/formValueTypes';
+import { assoc, chain, dropLast, find, fromPairs, has, identity, is, isNil, join, last, map, mapObjIndexed, path, pipe, propEq, props, range, reduce, reduced, reject, split, take, toPairs, trim, when } from 'ramda';
+import rawRules from 'Règles/base.yaml';
+import translations from 'Règles/externalized.yaml';
 // TODO - should be in UI, not engine
-import taux_versement_transport from 'Règles/taux-versement-transport.json'
-import { capitalise0 } from '../utils'
-import marked from './marked'
-import possibleVariableTypes from './possibleVariableTypes.yaml'
+import { capitalise0 } from '../utils';
+import marked from './marked';
+import possibleVariableTypes from './possibleVariableTypes.yaml';
 
 // console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
  Méthodes agissant sur une règle */
 
 // Enrichissement de la règle avec des informations évidentes pour un lecteur humain
-export let enrichRule = (rule, sharedData = {}) => {
+export let enrichRule = rule => {
 	try {
 		let type = possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
 			name = rule['nom'],
 			title = capitalise0(rule['titre'] || name),
 			ns = rule['espace'],
-			data = rule['données'] ? sharedData[rule['données']] : null,
 			dottedName = buildDottedName(rule),
 			subquestionMarkdown = rule['sous-question'],
 			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
@@ -62,7 +33,6 @@ export let enrichRule = (rule, sharedData = {}) => {
 			name,
 			title,
 			ns,
-			data,
 			dottedName,
 			subquestion,
 			defaultValue,
@@ -193,24 +163,10 @@ export let findRuleByNamespace = (allRules, ns) =>
 
 export let queryRule = rule => query => path(query.split(' . '))(rule)
 
-var findObjectByLabel = function(obj, label) {
-	if (obj.label === label) {
-		return obj
-	}
-	for (var i in obj) {
-		if (obj.hasOwnProperty(i)) {
-			var foundLabel = findObjectByLabel(obj[i], label)
-			if (foundLabel) {
-				return foundLabel
-			}
-		}
-	}
-	return null
-}
-
 // Redux-form stores the form values as a nested object
 // This helper makes a dottedName => value Map
 export let nestedSituationToPathMap = situation => {
+	if (situation == undefined) return {}
 	let rec = (o, currentPath) =>
 		typeof o === 'object'
 			? chain(([k, v]) => rec(v, [...currentPath, trim(k)]), toPairs(o))
@@ -267,7 +223,8 @@ export let translateAll = (translations, flatRules) => {
 		'description courte',
 		'sous-question',
 		'résumé',
-		'suggestions'
+		'suggestions',
+		'contrôles',
 	]
 
 	return map(translateRule('en', translations, targets), flatRules)
@@ -275,11 +232,9 @@ export let translateAll = (translations, flatRules) => {
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
 export let rules = translateAll(translations, rawRules).map(rule =>
-	enrichRule(rule, { taux_versement_transport })
+	enrichRule(rule)
 )
-export let rulesFr = rawRules.map(rule =>
-	enrichRule(rule, { taux_versement_transport })
-)
+export let rulesFr = rawRules.map(rule => enrichRule(rule))
 
 export let findParentDependency = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no

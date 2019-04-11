@@ -1,14 +1,15 @@
-import CurrencyInput from './CurrencyInput'
-import React from 'react'
-import { shallow } from 'enzyme'
 import { expect } from 'chai'
-import { spy, match } from 'sinon'
+import { shallow } from 'enzyme'
+import React from 'react'
+import { match, spy, useFakeTimers } from 'sinon'
+import CurrencyInput from './CurrencyInput'
 
 let getInput = component => shallow(component).find('input')
 describe('CurrencyInput', () => {
 	it('should render an input', () => {
 		expect(getInput(<CurrencyInput />)).to.have.length(1)
 	})
+
 	it('should accept both . and , as decimal separator', () => {
 		let onChange = spy()
 		const input = getInput(<CurrencyInput value={0} onChange={onChange} />)
@@ -21,6 +22,7 @@ describe('CurrencyInput', () => {
 			match.hasNested('target.value', '12.1')
 		)
 	})
+
 	it('should not accept negative number', () => {
 		let onChange = spy()
 		const input = getInput(<CurrencyInput value={0} onChange={onChange} />)
@@ -64,5 +66,24 @@ describe('CurrencyInput', () => {
 				.first()
 				.text()
 		).to.includes('€')
+	})
+
+	it('should debounce onChange call', () => {
+		const clock = useFakeTimers()
+		let onChange = spy()
+		const input = getInput(
+			<CurrencyInput value={0} onChange={onChange} debounce={1000} />
+		)
+		input.simulate('change', { target: { value: '1' } })
+		expect(onChange).not.to.have.been.called
+		clock.tick(500)
+		input.simulate('change', { target: { value: '12' } })
+		clock.tick(600)
+		expect(onChange).not.to.have.been.called
+		clock.tick(400)
+		expect(onChange).to.have.been.calledWith(
+			match.hasNested('target.value', '12')
+		)
+		clock.restore()
 	})
 })

@@ -50,23 +50,27 @@ export default compose(
 			<h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
 				<T>Que souhaitez-vous faire ?</T>
 			</h2>
-			<Link className="landing__choice " to={sitePaths.entreprise.index}>
+			<Link className="ui__ button-choice " to={sitePaths.entreprise.index}>
 				{emoji('💡')} <T>Créer une entreprise</T>
 			</Link>
-			<Link className="landing__choice " to={sitePaths.sécuritéSociale.index}>
+			<Link
+				className="ui__ button-choice "
+				to={sitePaths.sécuritéSociale.index}>
 				{emoji('💶')} <T>Estimer les cotisations et les taxes</T>
 			</Link>
-			<Link className="landing__choice" to={sitePaths.démarcheEmbauche.index}>
+			<Link
+				className="ui__ button-choice"
+				to={sitePaths.démarcheEmbauche.index}>
 				{emoji('🤝')} <T>Connaître les démarches d'embauche</T>
 			</Link>
-			<Link className="landing__choice landing__choice--soon" to={'/'}>
-				<span className="landing__choice-label">
+			<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>
+				<span className="ui__ button-choice-label">
 					<T>prochainement</T>
 				</span>
 				{emoji('🏡')} <T>Déclarer mon activité d'économie collaborative</T>
 			</Link>
 			{/*
-				<Link className="landing__choice landing__choice--soon" to={'/'}>
+				<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>
 					{emoji('🌍')} Démarrer une activité en France en tant qu'entrepreneur
 					étranger
 				</Link> */}

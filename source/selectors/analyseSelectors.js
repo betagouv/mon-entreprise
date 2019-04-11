@@ -25,7 +25,7 @@ import {
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
-import { mapOrApply, softCatch } from '../utils'
+import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
@@ -68,9 +68,10 @@ export let noUserInputSelector = createSelector(
 	[
 		formattedSituationSelector,
 		targetNamesSelector,
+		parsedRulesSelector,
 		state => state.simulation?.config?.bloquant
 	],
-	(situation, targetNames, bloquant) => {
+	(situation, targetNames, parsedRules, bloquant) => {
 		if (!situation) {
 			return true
 		}
@@ -79,7 +80,11 @@ export let noUserInputSelector = createSelector(
 			bloquant && bloquant.every(rule => situations.includes(rule))
 		const targetIsAnswered =
 			targetNames &&
-			targetNames.some(target => Object.keys(situation).includes(target))
+			targetNames.some(
+				targetName =>
+					findRuleByDottedName(parsedRules, targetName)?.formule &&
+					targetName in situation
+			)
 		return !(allBlockingAreAnswered || targetIsAnswered)
 	}
 )
@@ -184,14 +189,15 @@ export let exampleAnalysisSelector = createSelector(
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],
-		(parsedRules, targetNames, situations) =>
-			mapOrApply(
+		(parsedRules, targetNames, situations) => {
+			return mapOrApply(
 				situation =>
 					analyseMany(parsedRules, targetNames)(dottedName => {
 						return situation[dottedName]
 					}),
 				situations
 			)
+		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
@@ -217,15 +223,6 @@ let analysisValidatedOnlySelector = makeAnalysisSelector(
 	validatedSituationBranchesSelector
 )
 
-// TODO this should really not be fired twice in a user session...
-//
-// TODO the just input salary should be in the situation so that it is not a missing variable
-let initialAnalysisSelector = createSelector(
-	[parsedRulesSelector, targetNamesSelector],
-	(parsedRules, targetNames) =>
-		analyseMany(parsedRules, targetNames)(() => null)
-)
-
 let currentMissingVariablesByTargetSelector = createSelector(
 	[analysisValidatedOnlySelector],
 	analyses => {
@@ -238,14 +235,6 @@ let currentMissingVariablesByTargetSelector = createSelector(
 		}
 		return variables
 	}
-)
-
-export let missingVariablesByTargetSelector = createSelector(
-	[initialAnalysisSelector, currentMissingVariablesByTargetSelector],
-	softCatch((initialAnalysis, currentMissingVariablesByTarget) => ({
-		initial: collectMissingVariablesByTarget(initialAnalysis.targets),
-		current: currentMissingVariablesByTarget
-	}))
 )
 
 export let nextStepsSelector = createSelector(

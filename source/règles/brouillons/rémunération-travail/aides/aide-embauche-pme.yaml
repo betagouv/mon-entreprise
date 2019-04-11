@@ -19,7 +19,7 @@
       - entreprise de droit privé # nécessaire ?
 
   non-cumul:
-    # Cette prime est cumulable avec certains dispositifs existants : réduction générale des cotisations patronales sur les bas salaires, CICE, Accre
+    # Cette prime est cumulable avec certains dispositifs existants : réduction générale des cotisations patronales sur les bas salaires, CICE, Acre
     # L'aide n'est pas cumulable avec une autre aide de l'État à l'insertion, à l'accès ou au retour à l'emploi versée au titre du même salarié : contrat de génération, contrat d'apprentissage (sauf si l'embauche a lieu à l'issue de l'apprentissage), aide à l'embauche d'un premier salarié...
     - Aide:
         par: État

@@ -72,8 +72,9 @@ const StatusDescription = ({ status }: Props) =>
 	) : status === 'auto-entrepreneur-EIRL' ? (
 		<T k="formeJuridique.micro-EIRL">
 			Un auto-entrepreneur option EIRL exerce son activité en entreprise
-			individuelle à responsabilité limité, avec à un régime forfaitaire pour le
-			calcul des impôts et le paiement des cotisations de sécurité sociale.
+			individuelle en choisissant l'option "Entrepreneur individuel à
+			responsabilité limitée", avec à un régime forfaitaire pour le calcul des
+			impôts et le paiement des cotisations de sécurité sociale.
 		</T>
 	) : /* Otherwise */ null
 
