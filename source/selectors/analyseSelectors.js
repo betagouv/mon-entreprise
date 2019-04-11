@@ -189,15 +189,14 @@ export let exampleAnalysisSelector = createSelector(
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],
-		(parsedRules, targetNames, situations) => {
-			return mapOrApply(
+		(parsedRules, targetNames, situations) =>
+			mapOrApply(
 				situation =>
 					analyseMany(parsedRules, targetNames)(dottedName => {
 						return situation[dottedName]
 					}),
 				situations
 			)
-		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
