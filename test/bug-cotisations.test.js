@@ -2,12 +2,66 @@ import { expect } from 'chai'
 import { enrichRule } from 'Engine/rules'
 import { rules as realRules } from '../source/engine/rules'
 import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
+import dedent from 'dedent-js'
+import { safeLoad } from 'js-yaml'
 
 describe('bug-analyse-many', function() {
-	it.only('should compute the same contributions if asked with analyseMany or analyse', function() {
+	it('complex inversion with composantes', () => {
+		let rawRules = dedent`
+      - nom: net
+        formule: brut - cotisations
+      - nom: cotisations
+        formule: 
+          somme: 
+            - cotisation a (salarié)
+            - cotisation b
+
+      - nom: cotisation a
+        formule:
+          multiplication:
+            assiette: brut
+            composantes:
+              - attributs:
+                  dû par: employeur
+                taux: 10%
+              - attributs:
+                  dû par: salarié
+                taux: 10%
+	  
+      - nom: cotisation b
+        formule:
+          multiplication:
+            assiette: brut
+            composantes:
+              - attributs:
+                  impôt sur le revenu: x
+                taux: 10%
+              - attributs:
+                  impôt sur le revenu: y
+                taux: 10%
+
+
+      - nom: brut
+        format: euro
+        formule:
+          inversion numérique:
+            avec:
+              - net
+    `,
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
+			stateSelector = name => ({ net: 700 }[name])
+		const targets = ['brut', 'cotisations']
+		const many = analyseMany(rules, targets)(stateSelector).targets
+
+		const one = analyse(rules, 'cotisations')(stateSelector).targets[0]
+
+		//console.log(many[0].nodeValue, many[1].nodeValue, one.nodeValue)
+		expect(many[1].nodeValue).to.be.closeTo(one.nodeValue, 0.1)
+	})
+	it('should compute the same contributions if asked with analyseMany or analyse', function() {
 		const situationSelector = dottedName =>
 			({
-				'contrat salarié . salaire . net après impôt': 10000,
+				'contrat salarié . rémunération . net de cotisations': 3500,
 				'auto entrepreneur': 'non',
 				'contrat salarié': 'oui',
 				'contrat salarié . assimilé salarié': 'oui',
@@ -25,14 +79,17 @@ describe('bug-analyse-many', function() {
 			}[dottedName])
 		const rules = parseAll(realRules.map(enrichRule))
 		const targets = [
-			"entreprise . chiffre d'affaires",
-			'contrat salarié . cotisations'
+			'contrat salarié . salaire . brut de base',
+			'contrat salarié . cotisations . salariales'
 		]
 		const analyseManyValue = analyseMany(rules, targets)(situationSelector)
 			.targets[1]
-		const analyseValue = analyse(rules, 'contrat salarié . cotisations')(
-			situationSelector
-		).targets[0]
+		const analyseValue = analyse(
+			rules,
+			'contrat salarié . cotisations . salariales'
+		)(situationSelector).targets[0]
+
+		console.log(analyseManyValue.nodeValue, analyseValue.nodeValue)
 		expect(analyseManyValue.nodeValue).to.equal(analyseValue.nodeValue)
 	})
 })
