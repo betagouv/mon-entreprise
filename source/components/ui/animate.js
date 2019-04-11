@@ -124,14 +124,14 @@ type State = {
 	show: boolean
 }
 export class appear extends React.Component<
-	Props & { alreadyPresent: boolean },
+	Props & { unless: boolean },
 	State
 > {
 	static defaultProps = {
-		alreadyPresent: false
+		unless: false
 	}
 	state = {
-		show: this.props.alreadyPresent
+		show: this.props.unless
 	}
 	componentDidMount() {
 		window.setTimeout(() => this.setState({ show: true }), 0)

@@ -50,6 +50,9 @@ export default compose(
 	)
 )(
 	class TargetSelection extends PureComponent {
+		state = {
+			initialRender: true
+		}
 		componentDidMount() {
 			const props = this.props
 			const targets = props.analysis ? props.analysis.targets : []
@@ -71,7 +74,10 @@ export default compose(
 							: target.explanation?.defaultValue
 					)
 				})
-			props.setActiveInput(null)
+
+			if (this.state.initialRender) {
+				this.setState({ initialRender: false })
+			}
 		}
 		render() {
 			let { colours, noUserInput, analysis } = this.props,
@@ -129,6 +135,7 @@ export default compose(
 							.map(target => (
 								<Target
 									key={target.dottedName}
+									initialRender={this.state.initialRender}
 									{...{
 										conversationStarted,
 										target,
@@ -154,16 +161,17 @@ const Target = ({
 	targets,
 	setActiveInput,
 	setFormValue,
-
+	initialRender,
 	inversionFail
 }) => {
 	const isSmallTarget =
 		!target.question || !target.formule || isEmpty(target.formule)
+
 	return (
 		<li
 			key={target.name}
 			className={isSmallTarget ? 'small-target' : undefined}>
-			<Animate.appear alreadyPresent={!target.nodeValue}>
+			<Animate.appear unless={initialRender}>
 				<div>
 					<div className="main">
 						<Header
