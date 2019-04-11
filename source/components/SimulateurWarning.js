@@ -1,18 +1,17 @@
 import { T } from 'Components'
+import usePersistingState from 'Components/utils/usePersistingState'
 import withLanguage from 'Components/utils/withLanguage'
-import React, { useState } from 'react'
+import React from 'react'
 import emoji from 'react-easy-emoji'
 
 export default withLanguage(function SimulateurWarning({
 	simulateur,
-	autoFolded,
 	language
 }) {
-	let [userFolded, userFold] = useState(undefined)
-
-	let folded = userFolded === undefined ? autoFolded : userFolded,
-		toggle = () => userFold(!userFolded)
-
+	let [folded, fold] = usePersistingState(
+		'app::simulateurs:warning-folded',
+		false
+	)
 	return (
 		<div id="SimulateurWarning" style={{ marginBottom: '2em' }}>
 			<p>
@@ -21,7 +20,9 @@ export default withLanguage(function SimulateurWarning({
 					<T k="simulateurs.warning.titre">Outil en cours de développement </T>
 				</strong>{' '}
 				{folded && (
-					<button className="ui__ button simple small" onClick={toggle}>
+					<button
+						className="ui__ button simple small"
+						onClick={() => fold(false)}>
 						<T k="simulateurs.warning.plus">(plus d'info)</T>
 					</button>
 				)}
@@ -57,7 +58,9 @@ export default withLanguage(function SimulateurWarning({
 
 				{!folded && (
 					<div style={{ textAlign: 'right', paddingRight: '1em' }}>
-						<button className="ui__ button simple small" onClick={toggle}>
+						<button
+							className="ui__ button simple small"
+							onClick={() => fold(true)}>
 							<T>J'ai compris</T>
 						</button>
 					</div>

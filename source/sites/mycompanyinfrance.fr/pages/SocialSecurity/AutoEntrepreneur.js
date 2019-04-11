@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { AvertissementProtectionSocialeIndépendants } from './Indépendant'
 
-const AutoEntrepreneur = ({ noUserInput, t }) => (
+const AutoEntrepreneur = ({ t }) => (
 	<>
 		<Helmet>
 			<title>
@@ -32,7 +32,7 @@ const AutoEntrepreneur = ({ noUserInput, t }) => (
 				Simulateur de revenus auto-entrepreneur
 			</T>
 		</h1>
-		<Warning autoFolded={!noUserInput} simulateur="auto-entreprise" />
+		<Warning simulateur="auto-entreprise" />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={<TargetSelection />}

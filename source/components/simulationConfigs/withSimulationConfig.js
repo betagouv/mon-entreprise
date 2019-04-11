@@ -1,18 +1,23 @@
 import { resetSimulation, setSimulationConfig } from 'Actions/actions'
+import { compose } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { noUserInputSelector } from 'Selectors/analyseSelectors'
 
 export default config => SimulationComponent =>
-	connect(
-		state => ({
-			config: state.simulation?.config,
-			noUserInput: noUserInputSelector(state)
-		}),
-		{
-			setSimulationConfig,
-			resetSimulation
-		}
+	compose(
+		connect(
+			state => ({
+				config: state.simulation?.config,
+				noUserInput: noUserInputSelector(state)
+			}),
+			{
+				setSimulationConfig,
+				resetSimulation
+			}
+		),
+		withRouter
 	)(
 		class DecoratedSimulation extends React.Component {
 			constructor(props) {
