@@ -1,28 +1,35 @@
-import { T } from 'Components';
-import withColours from 'Components/utils/withColours';
-import withLanguage from 'Components/utils/withLanguage';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { getInputComponent } from 'Engine/generateQuestions';
-import knownMecanisms from 'Engine/known-mecanisms.yaml';
-import { createMarkdownDiv } from 'Engine/marked';
-import { encodeRuleName, findRuleByDottedName, findRuleByNamespace } from 'Engine/rules';
-import { compose, isEmpty, isNil } from 'ramda';
-import React, { Component, Suspense } from 'react';
-import emoji from 'react-easy-emoji';
-import { Helmet } from 'react-helmet';
-import { Trans, withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { reduxForm } from 'redux-form';
-import { exampleAnalysisSelector, flatRulesSelector, noUserInputSelector, ruleAnalysisSelector } from 'Selectors/analyseSelectors';
-import Animate from 'Ui/animate';
-import Montant from 'Ui/Montant';
-import { AttachDictionary } from '../AttachDictionary';
-import Algorithm from './Algorithm';
-import Examples from './Examples';
-import RuleHeader from './Header';
-import References from './References';
-import './Rule.css';
+import { T } from 'Components'
+import withColours from 'Components/utils/withColours'
+import withLanguage from 'Components/utils/withLanguage'
+import withSitePaths from 'Components/utils/withSitePaths'
+import knownMecanisms from 'Engine/known-mecanisms.yaml'
+import { createMarkdownDiv } from 'Engine/marked'
+import {
+	encodeRuleName,
+	findRuleByDottedName,
+	findRuleByNamespace
+} from 'Engine/rules'
+import { compose, isEmpty, isNil } from 'ramda'
+import React, { Component, Suspense } from 'react'
+import emoji from 'react-easy-emoji'
+import { Helmet } from 'react-helmet'
+import { Trans, withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import {
+	exampleAnalysisSelector,
+	flatRulesSelector,
+	noUserInputSelector,
+	ruleAnalysisSelector
+} from 'Selectors/analyseSelectors'
+import Animate from 'Ui/animate'
+import Montant from 'Ui/Montant'
+import { AttachDictionary } from '../AttachDictionary'
+import Algorithm from './Algorithm'
+import Examples from './Examples'
+import RuleHeader from './Header'
+import References from './References'
+import './Rule.css'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -132,9 +139,6 @@ export default compose(
 											</Link>
 										</div>
 									)}
-									{//flatRule.question &&
-									// Fonctionnalité intéressante, à implémenter correctement
-									false && <UserInput {...{ flatRules, dottedName }} />}
 									<Algorithm
 										rule={displayedRule}
 										showValues={valuesToShow || currentExample}
@@ -221,15 +225,3 @@ let NamespaceRulesList = compose(
 		</section>
 	)
 })
-
-const UserInput = reduxForm({
-	form: 'conversation',
-	destroyOnUnmount: false
-})(
-	class UserInput extends Component {
-		render() {
-			let { flatRules, dottedName } = this.props
-			return getInputComponent(flatRules)(dottedName)
-		}
-	}
-)

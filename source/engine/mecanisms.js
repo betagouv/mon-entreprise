@@ -427,7 +427,12 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		inversionCache = { parseLevel: oldCache.parseLevel + 1, op: '<' }
 		let v = evaluateNode(
 			inversionCache, // with an empty cache
-			n => (dottedName === n ? x : situationGate(n)),
+			n =>
+				dottedName === n
+					? x
+					: n === 'sys.filter'
+					? undefined
+					: situationGate(n),
 			parsedRules,
 			fixedObjectiveRule
 		)
