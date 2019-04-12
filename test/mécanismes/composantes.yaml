@@ -1,3 +1,5 @@
+# l'imbrication des composantes dans les barèmes est testée dans le fichier barème.yaml
+
 - test: Composantes
   formule:
     multiplication:
@@ -7,7 +9,46 @@
         - taux: 2%
 
   exemples:
-    - nom:
-      situation:
+    - situation:
       valeur attendue: 10
 
+- nom: assiette CSG
+  format: euros
+
+- test: composantes nommées
+  formule:
+    multiplication:
+      assiette: assiette CSG
+      composantes:
+        - attributs:
+            impôt sur le revenu: non déductible
+          taux: 2.4%
+
+        - attributs:
+            impôt sur le revenu: déductible
+          taux: 6.8%
+  exemples:
+    - situation:
+        assiette CSG: 1000
+      valeur attendue: 92
+
+- test: sélection des composantes
+  formule: composantes nommées
+  exemples:
+    - situation:
+        assiette CSG: 1000
+      valeur attendue: 92
+
+- test: sélection de la première composantes
+  formule: composantes nommées (non déductible)
+  exemples:
+    - situation:
+        assiette CSG: 2000
+      valeur attendue: 48
+
+- test: sélection de la deuxième composante
+  formule: composantes nommées (déductible)
+  exemples:
+    - situation:
+        assiette CSG: 2000
+      valeur attendue: 136
