@@ -20,7 +20,6 @@ import ReactPiwik from '../../Tracker'
 import './App.css'
 import Footer from './layout/Footer/Footer'
 import Navigation from './layout/Navigation/Navigation'
-import ProgressHeader from './layout/ProgressHeader/ProgressHeader'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
 import HiringProcess from './pages/HiringProcess'
@@ -94,7 +93,6 @@ const App = compose(
 		{/* Passing location down to prevent update blocking */}
 		<Navigation location={location} />
 		<div className="app-content">
-			<ProgressHeader />
 			<div
 				className="ui__ container"
 				style={{ flexGrow: 1, flexShrink: 0, marginTop: '1rem' }}>

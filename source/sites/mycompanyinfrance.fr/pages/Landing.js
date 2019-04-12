@@ -64,12 +64,12 @@ export default compose(
 				{emoji('🤝')} <T>Connaître les démarches d'embauche</T>
 			</Link>
 			<Link
-				className="ui__ button-choice ui__ button-choice--soon"
+				className="ui__ button-choice "
 				to={sitePaths.économieCollaborative.index}>
-				<span className="ui__ button-choice-label">
-					<T>prochainement</T>
-				</span>
-				{emoji('🏡')} <T>Déclarer mon activité d'économie collaborative</T>
+				{emoji('🏡')}{' '}
+				<T>
+					Déclarer mes revenus de plateforme en ligne (airbnb, leboncoin, etc.)
+				</T>
 			</Link>
 			{/*
 				<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>

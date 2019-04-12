@@ -1,5 +1,5 @@
-.ui__.inverted-button:not(:disabled):active,
-.ui__.button:not(:disabled):active {
+.ui__.inverted-button:not(:disabled):not(.disabled):active,
+.ui__.button:not(:disabled):not(.disabled):active {
 	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
@@ -23,7 +23,9 @@
 }
 
 .ui__.button:disabled,
-.ui__.inverted-button:disabled {
+.ui__.button.disabled,
+.ui__.inverted-button:disabled,
+.ui__.inverted-button.disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }
@@ -64,7 +66,7 @@
 	);
 	color: white;
 }
-.ui__.button:not(:disabled):not(.simple):hover,
+.ui__.button:not(:disabled):not(.disabled):not(.simple):hover,
 .ui__.button.selected {
 	background-position-x: 0%;
 	border-color: white;
@@ -93,8 +95,8 @@
 	color: white;
 	border-color: white;
 }
-.ui__.inverted-button:not(:disabled):hover,
-.ui__.inverted-button:not(:disabled).selected {
+.ui__.inverted-button:not(:disabled):not(.disabled):hover,
+.ui__.inverted-button:not(:disabled):not(.disabled).selected {
 	background-color: rgba(255, 255, 255, 1);
 	color: rgb(41, 117, 209);
 	color: var(--colour);
@@ -142,12 +144,12 @@
 	padding: 0.15em 0em;
 }
 
-.ui__.link-button:not(:disabled):hover,
-.ui__.text-button:not(:disabled):hover,
-.ui__.dashed-button:not(:disabled):hover,
-.ui__.link-button:not(:disabled).selected,
-.ui__.text-button:not(:disabled).selected,
-.ui__.dashed-button:not(:disabled).selected {
+.ui__.link-button:not(:disabled):not(.disabled):hover,
+.ui__.text-button:not(:disabled):not(.disabled):hover,
+.ui__.dashed-button:not(:disabled):not(.disabled):hover,
+.ui__.link-button:not(:disabled):not(.disabled).selected,
+.ui__.text-button:not(:disabled):not(.disabled).selected,
+.ui__.dashed-button:not(:disabled):not(.disabled).selected {
 	opacity: 0.8;
 }
 
@@ -162,11 +164,11 @@
 	will-change: transform;
 }
 
-.ui__.skip.button:not(:disabled):hover {
+.ui__.skip.button:not(:disabled):not(.disabled):hover {
 	opacity: 0.8;
 	transform: translateX(3px);
 }
-.ui__.skip.button.left:not(:disabled):hover {
+.ui__.skip.button.left:not(:disabled):not(.disabled):hover {
 	transform: translateX(-3px);
 }
 
