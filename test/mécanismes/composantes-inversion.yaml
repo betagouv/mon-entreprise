@@ -1,0 +1,45 @@
+# Composantes + inversion
+- nom: net
+  formule: brut - cotisations
+
+- test: cotisations
+  formule:
+    somme:
+      - cotisation a (salarié)
+      - cotisation b
+  exemples:
+    - nom: test des composantes lors d'une inversion
+      situation:
+        net: 700
+      valeur attendue: ~300
+
+- nom: cotisation a
+  formule:
+    multiplication:
+      assiette: brut
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 10%
+        - attributs:
+            dû par: salarié
+          taux: 10%
+
+- nom: cotisation b
+  formule:
+    multiplication:
+      assiette: brut
+      composantes:
+        - attributs:
+            impôt sur le revenu: x
+          taux: 10%
+        - attributs:
+            impôt sur le revenu: y
+          taux: 10%
+
+- nom: brut
+  format: euro
+  formule:
+    inversion numérique:
+      avec:
+        - net

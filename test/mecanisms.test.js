@@ -31,11 +31,10 @@ describe('Mécanismes', () =>
 								it(testTexte == null ? '' : testTexte + '', () => {
 									let rules = parseAll(
 											suite
-												.map(
-													item =>
-														item.test != null
-															? R.assoc('nom', item.test, item)
-															: item
+												.map(item =>
+													item.test != null
+														? R.assoc('nom', item.test, item)
+														: item
 												)
 												.map(enrichRule)
 										),
@@ -44,6 +43,13 @@ describe('Mécanismes', () =>
 										analysis = analyse(rules, test)(stateSelector),
 										missing = collectMissingVariables(analysis.targets),
 										target = analysis.targets[0]
+
+									if (typeof valeur === 'string' && valeur[0] === '~') {
+										return expect(target.nodeValue).to.be.closeTo(
+											Number(valeur.substring(1)),
+											1
+										)
+									}
 
 									if (isNumeric(valeur)) {
 										expect(target.nodeValue).to.be.closeTo(valeur, 0.001)

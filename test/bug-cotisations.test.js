@@ -5,6 +5,8 @@ import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
 import dedent from 'dedent-js'
 import { safeLoad } from 'js-yaml'
 
+/* These tests were introduced when we discovered that some values were different in the simulation results and in the documentation pages. It was due do side effects introduced by the filter mechanism */
+
 describe('bug-analyse-many', function() {
 	it('complex inversion with composantes', () => {
 		let rawRules = dedent`
@@ -89,7 +91,7 @@ describe('bug-analyse-many', function() {
 			'contrat salarié . cotisations . salariales'
 		)(situationSelector).targets[0]
 
-		console.log(analyseManyValue.nodeValue, analyseValue.nodeValue)
+		//console.log(analyseManyValue.nodeValue, analyseValue.nodeValue)
 		expect(analyseManyValue.nodeValue).to.equal(analyseValue.nodeValue)
 	})
 })
