@@ -1,6 +1,6 @@
 import Composantes from 'Engine/mecanismViews/Composantes'
 import { add, dissoc, objOf } from 'ramda'
-import { evaluateArrayWithFilter } from 'Engine/evaluation'
+import { evaluateArray } from 'Engine/evaluation'
 
 export let decompose = (recurse, k, v) => {
 	let subProps = dissoc('composantes')(v),
@@ -14,18 +14,10 @@ export let decompose = (recurse, k, v) => {
 			composante: c.nom ? { nom: c.nom } : c.attributs
 		}))
 
-	let filter = situationGate => c =>
-		!situationGate('sys.filter') ||
-		!c.composante ||
-		((!c.composante['dû par'] ||
-			c.composante['dû par'] == situationGate('sys.filter')) &&
-			(!c.composante['impôt sur le revenu'] ||
-				c.composante['impôt sur le revenu'] == situationGate('sys.filter')))
-
 	return {
 		explanation,
 		jsx: Composantes,
-		evaluate: evaluateArrayWithFilter(filter, add, 0),
+		evaluate: evaluateArray(add, 0, true),
 		category: 'mecanism',
 		name: 'composantes',
 		type: 'numeric'

@@ -45,15 +45,29 @@ export let rewriteNode = (
 	lazyEval
 })
 
-export let evaluateArray = (reducer, start) => (
+export let evaluateArray = (reducer, start, filterComposantes) => (
 	cache,
 	situationGate,
 	parsedRules,
 	node
 ) => {
+	/* Handle filtering of composantes */
+	let activeFilter = situationGate('sys.filter'),
+		filteredExplanation =
+			filterComposantes &&
+			activeFilter &&
+			// this could be dangerous, but works for the moment : check if the activeFilter exists as a branch of these composantes, else don't filter anything
+			node.explanation.find(c =>
+				Object.values(c.composante).includes(activeFilter)
+			)
+				? node.explanation.filter(c =>
+						Object.values(c.composante).includes(activeFilter)
+				  )
+				: node.explanation
+
 	let evaluateOne = child =>
 			evaluateNode(cache, situationGate, parsedRules, child),
-		explanation = map(evaluateOne, node.explanation),
+		explanation = map(evaluateOne, filteredExplanation),
 		values = pluck('nodeValue', explanation),
 		nodeValue = any(equals(null), values)
 			? null
@@ -61,28 +75,6 @@ export let evaluateArray = (reducer, start) => (
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
 	//	console.log("".padStart(cache.parseLevel), missingVariables)
-	return rewriteNode(node, nodeValue, explanation, missingVariables)
-}
-
-export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
-	cache,
-	situationGate,
-	parsedRules,
-	node
-) => {
-	let evaluateOne = child =>
-			evaluateNode(cache, situationGate, parsedRules, child),
-		explanation = map(
-			evaluateOne,
-			filter(evaluationFilter(situationGate), node.explanation)
-		),
-		values = pluck('nodeValue', explanation),
-		nodeValue = any(equals(null), values)
-			? null
-			: reduce(reducer, start, values),
-		missingVariables =
-			node.nodeValue == null ? mergeAllMissing(explanation) : {}
-
 	return rewriteNode(node, nodeValue, explanation, missingVariables)
 }
 

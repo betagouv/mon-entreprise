@@ -150,13 +150,15 @@ complément:
 composantes:
   type: numeric
   description: |
-    Beaucoup de cotisations sont composées de deux parties qui partage la méthode de calcul mais diffèrent par des paramètres différents.
+    Beaucoup de cotisations sont composées de deux parties qui se partagent la méthode de calcul mais diffèrent par des paramètres différents.
 
-    Pour ne pas définir deux variables presque redondantes, on utilise le mécanisme de composante. Il se comportera comme une somme dans les calculs, mais son affichage sur les pages /règle sera adapté.
+    Pour ne pas définir deux variables presque redondantes, on utilise le mécanisme de composante. Il se comportera comme une somme dans les calculs, mais une composante de la somme peut être récupérée indépendamment des autres.
 
     Il est même possible, pour les mécanismes `barème` et `multiplication` de garder en commun un paramètre comme l'assiette, puis de déclarer des composantes pour le taux.
 
-    > L'exemple le plus courant de composantes, c'est la distinction part employeur, part salarié (ex. retraite AGIRC).
+    > L'exemple le plus courant de composantes, c'est la distinction part employeur, part salarié dans une cotisation.
+    > Cette dernière a alors une branche labellisée `dû par: employeur` et l'autre labellisée `dû par: salarié`.
+    > Puis, une variable, par exemple `cotisations salariales`, peut appeler non pas `cotisation` mais `cotisation (salarié). Notez que l'on a pas besoin de spécifier `dû par: salarié` mais simplement `salarié`. 
 
 allègement:
   type: numeric
