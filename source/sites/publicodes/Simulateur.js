@@ -2,7 +2,7 @@ import Simulation from 'Components/Simulation'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { React, emoji } from 'Components'
 import { Helmet } from 'react-helmet'
-import Target from './SimpleTarget'
+import ImpactCard from './ImpactCard'
 import { findRuleByDottedName } from 'Engine/rules'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
@@ -26,7 +26,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 					<Simulation
 						showTargetsAnyway
 						targetsTriggerConversation={false}
-						targets={<Target />}
+						targets={<ImpactCard />}
 						explanation={<p>PTITE EXPLICATION DU RESULTAT</p>}
 					/>
 				</div>
