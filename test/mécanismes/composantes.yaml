@@ -1,5 +1,3 @@
-# l'imbrication des composantes dans les barèmes est testée dans le fichier barème.yaml
-
 - test: Composantes
   formule:
     multiplication:
@@ -52,3 +50,32 @@
     - situation:
         assiette CSG: 2000
       valeur attendue: 136
+
+- test: autres composantes nommées
+  formule:
+    multiplication:
+      assiette: 100
+      composantes:
+        - attributs:
+            yaya: yoyo
+          taux: 3%
+
+        - attributs:
+            yaya: yiyi
+          taux: 7%
+
+  exemples:
+    - situation:
+      valeur attendue: 10
+
+- test: sélection de yoyo
+  formule: autres composantes nommées (yoyo)
+  exemples:
+    - situation:
+      valeur attendue: 3
+
+- test: sélection de yiyi
+  formule: autres composantes nommées (yiyi)
+  exemples:
+    - situation:
+      valeur attendue: 7
