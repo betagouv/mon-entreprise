@@ -4,6 +4,7 @@ import { ScrollToElement } from 'Components/utils/Scroll'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import Animate from 'Ui/animate'
+import Checkbox from '../Checkbox'
 import './index.css'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { ChildrenArray, Node, Element } from 'react'
@@ -51,24 +52,13 @@ class CheckItemComponent extends Component<CheckItemProps, CheckItemState> {
 			<ScrollToElement onlyIfNotVisible when={this.state.displayExplanations}>
 				<div className="ui__ checkItemLabel">
 					{/* TODO ACCESSIBILITY: impossible to tick the checkbox with keyboard ?  */}
-					<input
-						type="checkbox"
-						className="ui__ checkbox-input"
-						style={{ display: 'none' }}
+					<Checkbox
 						name={this.props.name}
 						id={this.props.name}
-						defaultChecked={this.props.defaultChecked}
 						onChange={this.handleChecked}
+						defaultChecked={this.props.defaultChecked}
 					/>
-					<label
-						htmlFor={this.props.name}
-						className="ui__ checkbox"
-						tabIndex="0">
-						<svg width="18px" height="18px" viewBox="0 0 18 18">
-							<path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z" />
-							<polyline points="1 9 7 14 15 4" />
-						</svg>
-					</label>
+
 					<button
 						className={classnames('ui__ checklist-button', {
 							opened: this.state.displayExplanations
