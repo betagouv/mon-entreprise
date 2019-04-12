@@ -10,8 +10,7 @@ export default connect(
 		constructor(props) {
 			super(props)
 
-			let devMode = process.env.NODE_ENV === 'development'
-			if (devMode) {
+			if (process.env.NODE_ENV === 'development') {
 				import('../../futureco-data/co2.yaml').then(src =>
 					this.props.setRules(src.default)
 				)
