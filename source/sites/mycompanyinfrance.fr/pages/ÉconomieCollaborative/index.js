@@ -5,6 +5,7 @@ import ActivitésSelection from './ActivitésSelection'
 import CoConsommation from './CoConsommation'
 import Home from './Home'
 import LocationMeublée from './LocationMeublée'
+import VotreSituation from './VotreSituation'
 export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 	return (
 		<>
@@ -27,6 +28,11 @@ export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 				exact
 				path={sitePaths.économieCollaborative.activités.coConsommation}
 				component={CoConsommation}
+			/>
+			<Route
+				exact
+				path={sitePaths.économieCollaborative.votreSituation}
+				component={VotreSituation}
 			/>
 		</>
 	)

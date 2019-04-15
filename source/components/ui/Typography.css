@@ -36,15 +36,17 @@ h1 {
 h2 {
 	margin-bottom: 1rem;
 	margin-top: 1.5rem;
-	font-size: 1.5rem;
+	font-size: 1.6rem;
 }
 h3 {
-	font-size: 1.5rem;
+	font-size: 1.3rem;
+	margin-top: 1rem;
+	margin-bottom: 0.7rem;
 }
 h4 {
 	margin-top: 1rem;
-	margin-bottom: 1rem;
-	font-size: 1.3rem;
+	margin-bottom: 0.7rem;
+	font-size: 1.1rem;
 }
 h5 {
 	font-size: 1.1rem;
