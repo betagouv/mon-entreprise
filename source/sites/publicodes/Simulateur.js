@@ -6,6 +6,7 @@ import ImpactCard from './ImpactCard'
 import { findRuleByDottedName } from 'Engine/rules'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import PeriodSwitch from 'Components/PeriodSwitch'
 
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
 	props => {
@@ -26,7 +27,12 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 					<Simulation
 						showTargetsAnyway
 						targetsTriggerConversation={false}
-						targets={<ImpactCard />}
+						targets={
+							<>
+								<ImpactCard />
+								{rule.period === 'flexible' && <PeriodBlock />}
+							</>
+						}
 						explanation={<p>PTITE EXPLICATION DU RESULTAT</p>}
 					/>
 				</div>
@@ -34,4 +40,10 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 
 		return <Simulateur />
 	}
+)
+
+let PeriodBlock = () => (
+	<div css="display: flex; justify-content: center">
+		<PeriodSwitch />
+	</div>
 )
