@@ -5,7 +5,7 @@ import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import { Link } from 'react-router-dom'
 import Fuse from 'fuse.js'
 import searchWeights from 'Components/searchWeights'
-import { pick, sortBy, has } from 'ramda'
+import { pick, pipe, concat, partition, has, apply } from 'ramda'
 import { findRuleByDottedName } from 'Engine/rules'
 
 let buildFuse = rules =>
@@ -24,10 +24,10 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 		let [fuse, setFuse] = useState(null)
 		useEffect(() => setFuse(buildFuse(exposedRules)), [])
 
-		let sort = sortBy(has('formule'))
-		let filteredRules = sort(
-			fuse && input ? fuse.search(input) : exposedRules
-		).reverse()
+		let filteredRules = pipe(
+			partition(has('formule')),
+			apply(concat)
+		)(fuse && input ? fuse.search(input) : exposedRules)
 
 		return (
 			<section style={{ marginTop: '3rem' }}>
