@@ -69,7 +69,7 @@ export default withSitePaths(function ActivitésSelection({ sitePaths }) {
 			</ul>
 			<p css="text-align: right">
 				<Link
-					to={sitePaths.économieCollaborative.activités.locationMeublée}
+					to={sitePaths.économieCollaborative.activités.coConsommation}
 					className={classnames('ui__ plain button', {
 						disabled: !itemsSelected.length
 					})}>

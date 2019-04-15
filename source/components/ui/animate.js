@@ -30,8 +30,8 @@ export const fromBottom = ({
 		native={true}
 		delay={delay}
 		config={config}
-		from={{ opacity: 0, y: 50 }}
-		leave={{ opacity: 0, y: -50 }}
+		from={{ opacity: 0, y: 20 }}
+		leave={{ opacity: 0, y: -20 }}
 		to={{ opacity: 1, y: 0 }}>
 		{/* eslint-disable-next-line react/display-name */}
 		{React.Children.map(children, (item, i) => ({ y, ...style }) => (
@@ -58,8 +58,8 @@ export const fromTop = ({
 		native={true}
 		delay={delay}
 		config={config}
-		leave={{ opacity: 0, y: 50 }}
-		from={{ opacity: 0, y: -50 }}
+		leave={{ opacity: 0, y: 20 }}
+		from={{ opacity: 0, y: -20 }}
 		to={{ opacity: 1, y: 0 }}>
 		{/* eslint-disable-next-line react/display-name */}
 		{React.Children.map(children, (item, i) => ({ y, ...style }) => (

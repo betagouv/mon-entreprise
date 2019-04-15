@@ -109,16 +109,20 @@ export const constructLocalizedSitePath = (language: string) => {
 		économieCollaborative: {
 			index: t('path.économieCollaborative.index', '/économie-collaborative'),
 			activités: {
-				index: t('path.économieCollaborative.activitésSelection', '/activités'),
+				index: t('path.économieCollaborative.activités', '/activités'),
 				locationMeublée: t(
-					'path.économieCollaborative.locationMeublée',
+					'path.économieCollaborative.activités.locationMeublée',
 					'/location-meublée'
 				),
 				coConsommation: t(
-					'path.économieCollaborative.coConsommation',
+					'path.économieCollaborative.activités.coConsommation',
 					'/co-consommation'
 				)
-			}
+			},
+			votreSituation: t(
+				'path.économieCollaborative.votreSituation',
+				'/votre-situation'
+			)
 		},
 		documentation: {
 			index: t('path.documentation.index', '/documentation')
