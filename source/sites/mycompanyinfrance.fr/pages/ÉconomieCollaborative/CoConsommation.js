@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -10,6 +11,7 @@ export default withSitePaths(function CoConsommation({ sitePaths }) {
 	const [checklist, setChecklist] = useState([false, false])
 	return (
 		<Animate.fromBottom>
+			<ScrollToTop />
 			<h1>Co-consommation</h1>
 			<img
 				css="max-width: 100%; height: 200px; margin: 2rem auto;display:block;"

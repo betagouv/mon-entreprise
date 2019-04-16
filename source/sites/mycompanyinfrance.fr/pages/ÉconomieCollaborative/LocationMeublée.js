@@ -1,3 +1,4 @@
+import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -10,6 +11,7 @@ export default withSitePaths(function LocationMeublée({ sitePaths }) {
 	const [isRésidencePrincipale, setRésidencePrincipale] = useState(false)
 	return (
 		<Animate.fromBottom>
+			<ScrollToTop />
 			<h1>{emoji('🏡')} Location meublée</h1>
 			<p>
 				Vous avez loué un logement meublé pour de courtes durées à une clientèle

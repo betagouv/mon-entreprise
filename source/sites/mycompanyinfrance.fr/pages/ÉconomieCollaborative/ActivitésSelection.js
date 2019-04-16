@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { without } from 'ramda'
 import React, { useState } from 'react'
@@ -6,11 +7,13 @@ import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import activités from './activités.yaml'
+
 export default withSitePaths(function ActivitésSelection({ sitePaths }) {
 	let [itemsSelected, selectItem] = useState([])
 
 	return (
 		<Animate.fromBottom>
+			<ScrollToTop />
 			<h1>Quels types de revenus avez-vous ?</h1>
 			<p>
 				Les seuils de déclaration ne sont pas les mêmes en fonction du type
