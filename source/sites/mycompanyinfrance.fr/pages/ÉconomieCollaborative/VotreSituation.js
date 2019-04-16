@@ -1,3 +1,4 @@
+import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -8,6 +9,7 @@ import checklistSvg from './images/checklist.svg'
 export default withSitePaths(function CoConsommation({ sitePaths }) {
 	return (
 		<Animate.fromBottom>
+			<ScrollToTop />
 			<h1>
 				Que dois-je déclarer ? <br />
 				<small css="font-size: 70% !important" className="ui__ notice">
