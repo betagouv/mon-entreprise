@@ -1,5 +1,6 @@
 /* @flow */
 
+import classNames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, withTranslation } from 'react-i18next'
@@ -11,7 +12,6 @@ import Form from './FeedbackForm'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { Node } from 'react'
-import classNames from 'classnames'
 
 type OwnProps = {
 	blacklist: Array<string>,

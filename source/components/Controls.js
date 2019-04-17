@@ -40,35 +40,37 @@ function Controls({
 			<ul style={{ margin: 0, padding: 0 }}>
 				{messages.map(({ level, test, message, solution, evaluated }) =>
 					hiddenControls.includes(test) ? null : (
-						<li key={test}>
-							<animate.appear className="control">
-								{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
-								<div className="controlText ui__ card">
-									{message ? (
-										createMarkdownDiv(message)
-									) : (
-										<span id="controlExplanation">{makeJsx(evaluated)}</span>
-									)}
+						<animate.fromTop>
+							<li key={test}>
+								<div className="control">
+									{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
+									<div className="controlText ui__ card">
+										{message ? (
+											createMarkdownDiv(message)
+										) : (
+											<span id="controlExplanation">{makeJsx(evaluated)}</span>
+										)}
 
-									{solution && !foldedSteps.includes(solution.cible) && (
-										<div>
-											<button
-												key={solution.cible}
-												className="ui__ link-button"
-												onClick={() => startConversation(solution.cible)}>
-												{solution.texte}
-											</button>
-										</div>
-									)}
-									<button
-										className="hide"
-										aria-label="close"
-										onClick={() => hideControl(test)}>
-										×
-									</button>
+										{solution && !foldedSteps.includes(solution.cible) && (
+											<div>
+												<button
+													key={solution.cible}
+													className="ui__ link-button"
+													onClick={() => startConversation(solution.cible)}>
+													{solution.texte}
+												</button>
+											</div>
+										)}
+										<button
+											className="hide"
+											aria-label="close"
+											onClick={() => hideControl(test)}>
+											×
+										</button>
+									</div>
 								</div>
-							</animate.appear>
-						</li>
+							</li>
+						</animate.fromTop>
 					)
 				)}
 			</ul>

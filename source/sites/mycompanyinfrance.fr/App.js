@@ -16,11 +16,15 @@ import {
 	persistEverything,
 	retrievePersistedState
 } from '../../storage/persistEverything'
+import {
+	persistSimulation,
+	retrievePersistedSimulation
+} from '../../storage/persistSimulation'
 import ReactPiwik from '../../Tracker'
 import './App.css'
 import Footer from './layout/Footer/Footer'
+import Header from './layout/Header/Header'
 import Navigation from './layout/Navigation/Navigation'
-import ProgressHeader from './layout/ProgressHeader/ProgressHeader'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
 import HiringProcess from './pages/HiringProcess'
@@ -64,8 +68,14 @@ class InFranceRoute extends Component {
 				tracker={tracker}
 				sitePaths={paths}
 				reduxMiddlewares={middlewares}
-				onStoreCreated={persistEverything()}
-				initialStore={retrievePersistedState() || {}}>
+				onStoreCreated={store => {
+					persistEverything()(store)
+					persistSimulation(store)
+				}}
+				initialStore={{
+					...retrievePersistedState(),
+					previousSimulation: retrievePersistedSimulation()
+				}}>
 				<TrackPageView />
 				<div id="content">
 					<RouterSwitch />
@@ -93,10 +103,8 @@ const App = compose(
 		{/* Passing location down to prevent update blocking */}
 		<Navigation location={location} />
 		<div className="app-content">
-			<ProgressHeader />
-			<div
-				className="ui__ container"
-				style={{ flexGrow: 1, flexShrink: 0, marginTop: '1rem' }}>
+			<Header />
+			<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
 				<Switch>
 					<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
 					<Route

@@ -12,10 +12,6 @@ import { withTranslation } from 'react-i18next'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
-import {
-	persistSimulation,
-	retrievePersistedSimulation
-} from '../../storage/persistSimulation'
 import ReactPiwik from '../../Tracker'
 import { getIframeOption, inIframe } from '../../utils'
 import trackDomainActions from './middlewares/trackDomainActions'

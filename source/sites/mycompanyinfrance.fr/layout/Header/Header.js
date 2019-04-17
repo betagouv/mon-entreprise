@@ -12,20 +12,10 @@ import { régimeSelector } from 'Selectors/companyStatusSelectors'
 import companySvg from '../../images/company.svg'
 import estimateSvg from '../../images/estimate.svg'
 import hiringSvg from '../../images/hiring.svg'
-import './ProgressHeader.css'
+import './Header.css'
 
 import type { Tracker } from 'Components/utils/withTracker'
 
-export const Progress = ({ percent }: { percent: number }) => (
-	<div className="progress">
-		<div
-			className="bar"
-			style={{
-				width: `${percent}%`
-			}}
-		/>
-	</div>
-)
 type OwnProps = {}
 type Props = OwnProps & {
 	showHiring: boolean,

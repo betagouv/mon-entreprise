@@ -1,14 +1,19 @@
-import { React, T } from 'Components'
-import Simulation from 'Components/Simulation'
-import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import TargetSelection from 'Components/TargetSelection'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { React, T } from 'Components';
+import SalaryExplanation from 'Components/SalaryExplanation';
+import Simulation from 'Components/Simulation';
+import salariéConfig from 'Components/simulationConfigs/salarié.yaml';
+import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig';
+import TargetSelection from 'Components/TargetSelection';
+import withSitePaths from 'Components/utils/withSitePaths';
+import { compose } from 'ramda';
+import { Helmet } from 'react-helmet';
+import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
+>>>>>>> Uniformisation des styles et ajout de la précédente sauvegarde sur mon-entreprise
 
 export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 	<Simulation
@@ -50,10 +55,12 @@ const Salarié = ({ t }) => (
 				])}
 			/>
 		</Helmet>
-		<h1>
-			<T k="simulateurs.salarié.titre">Simulateur de salaire</T>
-		</h1>
-		<SalarySimulation />
+
+		<div style={{ paddingTop: '4rem' }}>
+			<SalarySimulation />
+		</div>
+		<PreviousSimulationBanner />
+
 	</>
 )
 export default compose(
