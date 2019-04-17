@@ -61,19 +61,26 @@ status = 200
 
 
 # Embauche PRODUCTION settings
-[[redirects]]
-from = "https://embauche.beta.gouv.fr/stats"
-to = "https://rough-college.glitch.me/"
-status = 200
 
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/"
+to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
+status = 301
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/documentation/*"
+to = "https://mon-entreprise.fr/documentation/:splat"
+status = 301
+
+[[redirects]]
+from = "https://embauche.beta.gouv.fr/"
+to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
+status = 301
+
+# Old iframe adresse
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/modules/v2/*"
 to = "/:splat"
-
-[[redirects]]
-from = "https://embauche.beta.gouv.fr/robots.txt"
-to = "/robots.embauche.txt"
-status = 200
 
 # When in iframe, we don't prerender the page
 [[redirects]]
@@ -82,29 +89,6 @@ query = {iframe=":iframe", s=":e", couleur=":couleur", integratorUrl=":integrato
 to = "/embauche.html?iframe=:iframe&s=:e&couleur=:couleur&integratorUrl=:integratorUrl&lang=:lang"
 status = 200
 
-# Otherwise, we redirect to a prerendered version for the home
-[[redirects]]
-from = "https://embauche.beta.gouv.fr/"
-to = "/prerender/embauche/index.html"
-status = 200
-
-[[redirects]]
-from = "https://embauche.beta.gouv.fr/*"
-to = "/embauche.html"
-status = 200
-
-# Redirect for embauche in staging and development settings
-[[redirects]]
-from = "/"
-query = {s = "e"}
-to = "/prerender/embauche/index.html"
-status = 200
-
-[[redirects]]
-from = "/*"
-query = {s = "e"}
-to = "/embauche.html"
-status = 200
 
 # Redirect to mycompanyinfrance in staging and development settings
 [[redirects]]

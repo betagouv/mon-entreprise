@@ -130,6 +130,7 @@ export default compose(
 										<div style={{ textAlign: 'center', marginTop: '1em' }}>
 											<Link
 												className="ui__ plain button"
+												target="_parent"
 												to={
 													sitePaths.sécuritéSociale
 														? sitePaths.sécuritéSociale.index

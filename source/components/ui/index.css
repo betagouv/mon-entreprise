@@ -65,6 +65,7 @@ button {
 .ui__.notice {
 	font-size: 85%;
 	color: rgba(0, 0, 0, 0.6);
+	color: var(--lighterInverseTextColour);
 }
 ul.ui__.no-bullet {
 	list-style: none;

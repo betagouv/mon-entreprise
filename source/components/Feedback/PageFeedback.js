@@ -99,6 +99,7 @@ class PageFeedback extends Component<Props, State> {
 			this.props.location.pathname === '/' ? '' : this.props.location.pathname
 		return (
 			!this.props.blacklist.includes(pathname) && (
+<<<<<<< HEAD
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<div
 						className={classNames('feedback-page', 'ui__', 'notice', {
@@ -157,6 +158,59 @@ class PageFeedback extends Component<Props, State> {
 						)}
 					</div>
 				</div>
+=======
+				<p className="feedback-page ui__ container notice">
+					{!this.state.showForm && !this.state.showThanks && (
+						<>
+							<span>
+								{this.props.customMessage || (
+									<Trans i18nKey="feedback.question">
+										Cette page vous est utile ?
+									</Trans>
+								)}{' '}
+								<span style={{ display: 'inline-block' }}>
+									<button
+										style={{ marginLeft: '0.4rem' }}
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: true })}>
+										<Trans>Oui</Trans>
+									</button>{' '}
+									<button
+										style={{ marginLeft: '0.4rem' }}
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: false })}>
+										<Trans>Non</Trans>
+									</button>
+								</span>
+							</span>
+							<button
+								style={{ textAlign: 'right' }}
+								className="ui__ link-button"
+								onClick={this.handleErrorReporting}>
+								<Trans i18nKey="feedback.reportError">
+									Faire une suggestion
+								</Trans>
+							</button>{' '}
+						</>
+					)}
+					{this.state.showThanks && (
+						<span>
+							<Trans i18nKey="feedback.thanks">
+								Merci pour votre retour ! Vous pouvez nous contacter directement
+								à{' '}
+								<a href="mailto:contact@embauche.beta.gouv.fr">
+									contact@embauche.beta.gouv.fr
+								</a>
+							</Trans>
+						</span>
+					)}
+					{this.state.showForm && (
+						<Form
+							onEnd={() => this.setState({ showThanks: true, showForm: false })}
+						/>
+					)}
+				</p>
+>>>>>>> Suppression du site embauche.beta.gouv.fr
 			)
 		)
 	}

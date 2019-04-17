@@ -97,20 +97,22 @@ module.exports = {
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),
 			outputDir: path.resolve('dist', 'prerender', 'infrance'),
-			routes: ['/'],
+			routes: [
+				'/',
+				'/social-security/salaried',
+				'/iframes/simulateur-embauche'
+			],
 			indexPath: path.resolve('dist', 'infrance.html')
 		}),
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),
 			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
-			routes: ['/'],
+			routes: [
+				'/',
+				'/sécurité-sociale/salarié',
+				'/iframes/simulateur-embauche'
+			],
 			indexPath: path.resolve('dist', 'mon-entreprise.html')
-		}),
-		new PrerenderSPAPlugin({
-			...prerenderConfig(),
-			outputDir: path.resolve('dist', 'prerender', 'embauche'),
-			routes: ['/'],
-			indexPath: path.resolve('dist', 'embauche.html')
 		})
 	]
 }

@@ -1,6 +1,7 @@
 /* @flow */
 
 import React from 'react'
+import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import './Banner.css'
 import type { Node } from 'react'
@@ -8,12 +9,14 @@ import type { State } from 'Types/State'
 
 type PropTypes = {
 	hidden: boolean,
-	children: Node
+	children: Node,
+	icon?: String
 }
 
-let Banner = ({ hidden = false, children }: PropTypes) =>
+let Banner = ({ hidden = false, children, icon }: PropTypes) =>
 	!hidden ? (
-		<div className="banner">
+		<div className="ui__ banner">
+			{icon && emoji(icon)}
 			<p>{children}</p>
 		</div>
 	) : null
