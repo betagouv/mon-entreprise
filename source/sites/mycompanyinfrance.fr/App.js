@@ -28,6 +28,7 @@ import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import { constructLocalizedSitePath } from './sitePaths'
+import PayLib from './pages/PayLib/Home'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -110,6 +111,7 @@ const App = compose(
 						path={sitePaths.économieCollaborative.index}
 						component={ÉconomieCollaborative}
 					/>
+					<Route path="/moteur-de-paie" component={PayLib} />
 					<Route
 						path={sitePaths.documentation.index + '/:name+'}
 						component={RulePage}
