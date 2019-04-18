@@ -1,12 +1,22 @@
 import Banner from 'Components/Banner'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose } from 'ramda'
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import SalariéSimulation from '../SocialSecurity/Salarié'
-export default connect(state => ({
-	showMonEntrepriseLink: !state.conversationStarted
-}))(function IframeSimulateurEmbauche({ showMonEntrepriseLink }) {
+
+export default compose(
+	withSitePaths,
+	connect(state => ({
+		showMonEntrepriseLink: !state.conversationStarted
+	}))
+)(function IframeSimulateurEmbauche({ showMonEntrepriseLink, sitePaths }) {
 	return (
 		<>
+			<Helmet>
+				<link rel="canonical" href={sitePaths.sécuritéSociale.salarié} />
+			</Helmet>
 			{showMonEntrepriseLink && (
 				<Banner icon="✨">
 					Dirigeants de société, travailleurs indépendants, ou

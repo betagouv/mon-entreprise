@@ -2,13 +2,14 @@
 
 import withColours, { ThemeColoursProvider } from 'Components/utils/withColours'
 import React, { Suspense, useState } from 'react'
-import Home from './Home'
+import Home from '../Iframes/SimulateurEmbauche'
 let LazyColorPicker = React.lazy(() => import('./ColorPicker'))
 
 const Couleur = ({ colours: { colour: defaultColour } }) => {
 	const [colour, setColour] = useState(defaultColour)
 	return (
-		<div className="ui__ container">
+		<>
+			<h1>Changez la couleur de l'integration </h1>
 			<p className="indication">
 				Visualisez sur cette page l’apparence du module pour différentes
 				couleurs principales.
@@ -20,10 +21,12 @@ const Couleur = ({ colours: { colour: defaultColour } }) => {
 				La couleur sélectionnée, à déclarer comme attribut
 				&quot;data-couleur&quot; du script sur votre page est : <b>{colour}</b>
 			</p>
-			<ThemeColoursProvider colour={colour}>
-				<Home />
-			</ThemeColoursProvider>
-		</div>
+			<div className="ui__ card">
+				<ThemeColoursProvider colour={colour}>
+					<Home />
+				</ThemeColoursProvider>
+			</div>
+		</>
 	)
 }
 

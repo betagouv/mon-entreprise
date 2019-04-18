@@ -541,7 +541,7 @@ contrat salarié . salaire:
 contrat salarié . salaire . brut de base:
   titre.en: Gross salary
   titre.fr: Salaire brut de base
-  résumé.en: Written in the employment contract.
+  résumé.en: Written in the employment contract
   résumé.fr: Inscrit dans le contrat de travail
   question.en: What is the monthly gross salary?
   question.fr: Quel est le salaire de base ?
@@ -749,7 +749,7 @@ contrat salarié . salaire . net:
   titre.fr: Salaire net
   question.en: What is the net salary?
   question.fr: Quel est le salaire net ?
-  résumé.en: Received by the employee.
+  résumé.en: Received by the employee
   résumé.fr: Salaire net avant impôt
   description.en: >
     The gross salary minus the social contributions.
@@ -829,7 +829,7 @@ contrat salarié . rémunération . total:
   titre.fr: Total chargé
   question.en: 'What is the monthly remuneration, contributions included ?'
   question.fr: Quel est la rémunération chargée ?
-  résumé.en: Spent by the employer.
+  résumé.en: Spent by the employer
   résumé.fr: Dépensé par l'employeur
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the total

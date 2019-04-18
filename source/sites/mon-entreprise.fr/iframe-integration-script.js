@@ -1,10 +1,14 @@
 import { iframeResizer } from 'iframe-resizer';
 let script = document.getElementById('script-simulateur-embauche'),
 	couleur = script.dataset.couleur,
-	baseUrl =
-		script.dataset.iframeUrl || script.getAttribute('src').split('dist')[0] + 'iframes/simulateur-embauche',
-	integratorUrl = encodeURIComponent(window.location.href.toString()),
 	lang = script.dataset.lang,
+	baseUrl =
+		script.dataset.iframeUrl ||
+		(lang === 'en' ? process.env.EN_SITE : process.env.FR_SITE).replace(
+			'${path}',
+			'/iframes/simulateur-embauche'
+		),
+	integratorUrl = encodeURIComponent(window.location.href.toString()),
 	src =
 		baseUrl +
 		`?s=e&couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`

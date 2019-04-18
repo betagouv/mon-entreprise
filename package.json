@@ -81,13 +81,11 @@
 		"test-lib": "yarn test-common --grep 'library'",
 		"compile-lib": "yarn webpack --config source/webpack.lib.js",
 		"compile-dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run compile",
-		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json",
+		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
 		"mon-entreprise:test": "cypress open",
-		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json",
+		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
 		"mycompanyinfrance:test": "cypress open --env language=en --config baseUrl=http://localhost:8080/infrance",
-		"embauche:serve": "cp dist/embauche.html dist/index.html && PORT=5002 serve -s dist",
-		"embauche:test": "cypress open --config baseUrl=http://localhost:8080/embauche,integrationFolder=cypress/integration/embauche",
-		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve & yarn run embauche:serve"
+		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.0",
@@ -143,7 +141,7 @@
 		"ramda-fantasy": "^0.8.0",
 		"raw-loader": "^0.5.1",
 		"react-hot-loader": "^4.7.1",
-		"serve": "^10.0.2",
+		"serve": "^11.0.0",
 		"serve-handler": "^5.0.5",
 		"sinon": "^4.5.0",
 		"sinon-chai": "^3.0.0",

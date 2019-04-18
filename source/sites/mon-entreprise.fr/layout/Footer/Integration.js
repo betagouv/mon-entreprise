@@ -39,7 +39,11 @@ export default function Integration() {
 								<strong>choisir la couleur principale du module</strong> pour le
 								fondre dans le thème visuel de votre page : changez simplement
 								la valeur de <i>data-couleur</i> ci-dessus. Pour la choisir,
-								utilisez notre <Link to="/dev/couleur">outil interactif</Link>.
+								utilisez notre{' '}
+								<Link onClick={() => setOpened(false)} to="/dev/couleur">
+									outil interactif
+								</Link>
+								.
 							</p>
 							<p>
 								L'attribut <i>data-lang="en"</i> vous permet quand à lui de

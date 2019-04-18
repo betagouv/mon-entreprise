@@ -28,6 +28,7 @@ import Header from './layout/Header/Header'
 import Navigation from './layout/Navigation/Navigation'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
+import Couleur from './pages/Dev/Couleur'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Sitemap from './pages/Dev/Sitemap'
 import Documentation from './pages/Documentation'
@@ -131,6 +132,7 @@ const App = compose(
 						path="/dev/integration-test"
 						component={IntegrationTest}
 					/>
+					<Route exact path="/dev/couleur" component={Couleur} />
 
 					<Route component={Route404} />
 				</Switch>

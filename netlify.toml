@@ -17,14 +17,20 @@ from = "https://mycompanyinfrance.fr/sitemap.txt"
 to = "/sitemap.infrance.en.txt"
 status = 200
 
+## Redirection pour les pages prérendues
 [[redirects]]
 from = "https://mycompanyinfrance.fr"
 to = "/prerender/infrance/index.html"
 status = 200
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr/social-security"
-to = "/prerender/infrance/social-security/index.html"
+from = "https://mycompanyinfrance.fr/social-security/salaried"
+to = "/prerender/infrance/social-security/salaried/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mycompanyinfrance.fr/iframes/simulateur-embauche"
+to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
 status = 200
 
 [[redirects]]
@@ -49,9 +55,21 @@ from = "https://mon-entreprise.fr/sitemap.txt"
 to = "/sitemap.infrance.fr.txt"
 status = 200
 
+
+## Redirection pour les pages prérendues
 [[redirects]]
 from = "https://mon-entreprise.fr"
 to = "/prerender/mon-entreprise/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.fr/social-security/salaried"
+to = "/prerender/mon-entreprise/sécurité-sociale/salarié/index.html"
+status = 200
+
+[[redirects]]
+from = "https://mon-entreprise.fr/iframes/simulateur-embauche"
+to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
 status = 200
 
 [[redirects]]
@@ -60,7 +78,7 @@ to = "/mon-entreprise.html"
 status = 200
 
 
-# Embauche PRODUCTION settings
+# Embauche redirection settings
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/"
@@ -72,22 +90,17 @@ from = "https://embauche.beta.gouv.fr/documentation/*"
 to = "https://mon-entreprise.fr/documentation/:splat"
 status = 301
 
+## Old iframe adresse
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/"
-to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
+from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
+to = "https://mon-entreprise.fr/simulateur-iframe-integration-script.js"
 status = 301
 
-# Old iframe adresse
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/modules/v2/*"
-to = "/:splat"
+from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
+to = "https://mon-entreprise.fr/simulateur-iframe-integration-script.js"
+status = 301
 
-# When in iframe, we don't prerender the page
-[[redirects]]
-from = "https://embauche.beta.gouv.fr/"
-query = {iframe=":iframe", s=":e", couleur=":couleur", integratorUrl=":integratorUrl", lang=":lang"}
-to = "/embauche.html?iframe=:iframe&s=:e&couleur=:couleur&integratorUrl=:integratorUrl&lang=:lang"
-status = 200
 
 
 # Redirect to mycompanyinfrance in staging and development settings
@@ -109,6 +122,17 @@ status = 200
 from = "/"
 to = "/prerender/mon-entreprise/index.html"
 status = 200
+
+[[redirects]]
+from = "/sécurité-sociale/salarié"
+to = "/prerender/mon-entreprise/sécurité-sociale/salarié/index.html"
+status = 200
+
+[[redirects]]
+from = "/iframes/simulateur-embauche"
+to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
+status = 200
+
 [[redirects]]
 from = "/*"
 to = "/mon-entreprise.html"

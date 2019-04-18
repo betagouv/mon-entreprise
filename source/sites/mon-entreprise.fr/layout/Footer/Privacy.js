@@ -50,7 +50,9 @@ export default withLanguage(
 									height: '200px',
 									width: '100%'
 								}}
-								src={`https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=${language}`}
+								src={`https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=${
+									this.props.language
+								}`}
 							/>
 						</Overlay>
 					)}
