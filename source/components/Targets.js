@@ -5,20 +5,19 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import sitePaths from '../../sites/mycompanyinfrance.fr/sitePaths';
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import './Targets.css'
 export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
 	withColours,
-	withSitePaths,
+	withSitePaths
 )(
 	class Targets extends React.Component {
 		render() {
+			let { sitePaths } = this.props
 			let {
 				title,
 				nodeValue,
-				sitePaths,
 				unité: unit,
 				dottedName
 			} = this.props.analysis.targets[0]

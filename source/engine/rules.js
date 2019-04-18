@@ -28,7 +28,7 @@ import {
 	trim,
 	when
 } from 'ramda'
-import rawRules from 'Règles/base.yaml'
+import rawRules from 'Règles/impôt-sur-le-revenu.yaml'
 import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0 } from '../utils'

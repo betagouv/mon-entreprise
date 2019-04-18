@@ -1,0 +1,10 @@
+- nom: impôt
+  formule: vingt mille * pq
+
+- nom: vingt mille
+  formule: 20000
+
+- nom: pq
+  question: Quel est le chiffre ?
+  par défaut: 56
+  format: nombre
