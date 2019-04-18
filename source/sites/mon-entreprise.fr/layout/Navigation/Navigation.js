@@ -256,6 +256,11 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 							/>
 						</NavLink>
 					</li>
+					<li>
+						<NavLink to={sitePaths.documentation.index}>
+							<T>Documentation</T>
+						</NavLink>
+					</li>
 				</ul>
 			</nav>
 		</div>

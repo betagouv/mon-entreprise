@@ -17,7 +17,8 @@ import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
-import betaGouvSvg from './logo-betagouv.svg'
+import betaGouvSvg from './images/logo-betagouv.svg'
+import Integration from './Integration'
 import Privacy from './Privacy'
 
 type OwnProps = {}
@@ -146,6 +147,11 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 						<LegalNotice />
 						{'  •  '}
 						<Privacy />
+						{i18n.language === 'fr' && (
+							<>
+								{'  •  '} <Integration />
+							</>
+						)}
 						{!!hrefLink.length && '  •  '}
 						{hrefLink.map(({ hrefLang, href }) => (
 							<a

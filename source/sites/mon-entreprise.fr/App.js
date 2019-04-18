@@ -1,5 +1,4 @@
 import Route404 from 'Components/Route404'
-import RulePage from 'Components/RulePage'
 import TrackPageView from 'Components/utils/TrackPageView'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { defaultTracker } from 'Components/utils/withTracker'
@@ -31,6 +30,7 @@ import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Sitemap from './pages/Dev/Sitemap'
+import Documentation from './pages/Documentation'
 import HiringProcess from './pages/HiringProcess'
 import Iframes from './pages/Iframes'
 import Landing from './pages/Landing'
@@ -122,8 +122,8 @@ const App = compose(
 						component={HiringProcess}
 					/>
 					<Route
-						path={sitePaths.documentation.index + '/:name+'}
-						component={RulePage}
+						path={sitePaths.documentation.index}
+						component={Documentation}
 					/>
 					<Route exact path="/dev/sitemap" component={Sitemap} />
 					<Route

@@ -22,7 +22,7 @@
 }
 
 .navigation {
-	padding: 1rem 2rem 3rem 1rem;
+	padding: 1rem 2rem 3rem 0.6rem;
 	flex: 1;
 	min-width: 20rem;
 }
@@ -30,7 +30,7 @@
 .navigation ul {
 	list-style: none;
 	margin: 0;
-	padding-left: 0.7rem;
+	padding-left: 1.2rem;
 }
 .navigation li {
 	padding: 0;
@@ -75,7 +75,6 @@
 	text-decoration: none;
 	width: 100%;
 	padding: 0.2rem 0;
-	line-height: 1.7rem;
 }
 .navigation > ul > li ul > li > :first-child:not(.active):not(:hover) {
 	opacity: 0.6;
@@ -89,7 +88,7 @@
 .navigation > ul > li > :first-child,
 .navigation > ul > li > :first-child * {
 	text-decoration: none !important;
-	line-height: 3rem;
+	line-height: 2rem;
 	font-family: 'IBM Plex Sans', sans-serif;
 	font-weight: 300;
 	font-size: 1.5rem;

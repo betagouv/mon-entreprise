@@ -30,12 +30,14 @@
 	height: 3rem;
 }
 .steps-header a {
-	transition: transform 0.2s, border-bottom 0.2s;
-	will-change: transform;
 	border-bottom: 2px solid;
+	transition: border-bottom 0.2s;
 }
-
-.steps-header a:hover {
+.steps-header a > * {
+	transition: transform 0.2s;
+	will-change: transform;
+}
+.steps-header a:hover > * {
 	/* padding-bottom: 3px; */
 	transform: translateY(-3px);
 }
