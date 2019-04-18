@@ -5,20 +5,18 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import sitePaths from '../../sites/mon-entreprise.fr/sitePaths';
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import './Targets.css'
+
 export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
 	withColours,
-	withSitePaths,
+	withSitePaths
 )(
 	class Targets extends React.Component {
 		render() {
 			let {
-				title,
 				nodeValue,
-				sitePaths,
 				unité: unit,
 				dottedName
 			} = this.props.analysis.targets[0]
@@ -28,8 +26,6 @@ export default compose(
 					<span
 						className="content"
 						style={{ color: this.props.colours.textColour }}>
-						{/*<span className="title">{title}</span>
-					{' : '} */}
 						<span className="figure">
 							<span className="value">{nodeValue?.toFixed(1)}</span>{' '}
 							<span className="unit">{unit}</span>
@@ -37,7 +33,7 @@ export default compose(
 						<Link
 							title="Quel est calcul ?"
 							style={{ color: this.props.colours.colour }}
-							to={sitePaths.documentation.index + '/' + dottedName}
+							to={this.props.sitePaths.documentation.index + '/' + dottedName}
 							className="explanation">
 							{emoji('📖')}
 						</Link>

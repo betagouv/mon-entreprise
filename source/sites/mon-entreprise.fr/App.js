@@ -125,16 +125,13 @@ const App = compose(
 						path={sitePaths.documentation.index + '/:name+'}
 						component={RulePage}
 					/>
-					{process.env.NODE_ENV !== 'production' && (
-						<>
-							<Route exact path="/dev/sitemap" component={Sitemap} />
-							<Route
-								exact
-								path="/dev/integration-test"
-								component={IntegrationTest}
-							/>
-						</>
-					)}
+					<Route exact path="/dev/sitemap" component={Sitemap} />
+					<Route
+						exact
+						path="/dev/integration-test"
+						component={IntegrationTest}
+					/>
+
 					<Route component={Route404} />
 				</Switch>
 			</div>

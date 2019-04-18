@@ -21,7 +21,7 @@ commands:
         default: fr
       integration_folder:
         type: enum
-        enum: [mon-entreprise, external, embauche]
+        enum: [mon-entreprise, external]
         default: mon-entreprise
       base_url:
         type: string
@@ -56,9 +56,6 @@ jobs:
       - cypress:
           base_url: http://localhost:5001
           language: en
-      - cypress:
-          base_url: http://localhost:5002
-          integration_folder: embauche
 
   production-end-to-end-test:
     docker:
@@ -75,9 +72,6 @@ jobs:
       - cypress:
           base_url: https://mycompanyinfrance.fr
           language: en
-      - cypress:
-          base_url: https://embauche.beta.gouv.fr
-          integration_folder: embauche
       - cypress:
           integration_folder: external
       - run:
