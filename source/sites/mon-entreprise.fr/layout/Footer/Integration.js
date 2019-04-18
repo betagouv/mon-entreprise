@@ -28,7 +28,7 @@ export default function Integration() {
 								</em>
 								="script-simulateur-embauche" <em>data-couleur</em>="
 								<span id="scriptColor">#2975D1</span>" <em>src</em>
-								="https://embauche.beta.gouv.fr/dist/simulateur.js">
+								="https://mon-entreprise.fr/simulateur-iframe-integration.js">
 								<span>{'<'}</span>
 								<span>/</span>
 								<em>script</em>

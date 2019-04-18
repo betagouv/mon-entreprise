@@ -48,7 +48,7 @@ module.exports = {
 	output: {
 		...common.output,
 		filename: ({ chunk }) => {
-			return chunk.name === 'dist/simulateur'
+			return chunk.name === 'simulateur-iframe-integration'
 				? '[name].js'
 				: '[name].[contenthash].bundle.js'
 		}

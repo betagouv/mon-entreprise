@@ -6,23 +6,10 @@
 	color: var(--lighterInverseTextColour);
 	width: 45rem;
 	justify-content: center;
-	animation: fade-in 1s;
 }
 
 .ui__.banner img {
 	margin-right: 1rem !important;
 	font-size: 2rem;
 	margin-bottom: 0.6rem !important;
-}
-
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-	50% {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
 }

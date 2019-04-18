@@ -14,7 +14,7 @@ const rewrite = basename => ({
 
 app.use(
 	history({
-		rewrites: ['embauche', 'infrance', 'mon-entreprise'].map(rewrite)
+		rewrites: ['infrance', 'mon-entreprise'].map(rewrite)
 	})
 )
 

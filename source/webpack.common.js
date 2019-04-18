@@ -21,7 +21,7 @@ module.exports = {
 	entry: {
 		'mon-entreprise': './source/sites/mon-entreprise.fr/entry.fr.js',
 		infrance: './source/sites/mon-entreprise.fr/entry.en.js',
-		'simulateur-iframe-integration-script':
+		'simulateur-iframe-integration':
 			'./source/sites/mon-entreprise.fr/iframe-integration-script.js'
 	},
 	output: {

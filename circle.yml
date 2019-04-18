@@ -27,7 +27,7 @@ commands:
         type: string
         default: https://mon-entreprise.fr
     steps:
-      - run: CYPRESS_baseUrl=<< parameters.base_url >> yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.integration_folder >>
+      - run: CYPRESS_baseUrl=<< parameters.base_url >> yarn run cypress run --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.integration_folder >>
 
 jobs:
   unit-test:
