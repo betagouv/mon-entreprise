@@ -27,6 +27,7 @@ import Landing from './pages/Landing'
 import Sitemap from './pages/Sitemap'
 import SocialSecurity from './pages/SocialSecurity'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
+import ImpôtSurLeRevenu from './pages/ImpôtSurLeRevenu/Home'
 import { constructLocalizedSitePath } from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
@@ -110,6 +111,7 @@ const App = compose(
 						path={sitePaths.économieCollaborative.index}
 						component={ÉconomieCollaborative}
 					/>
+					<Route path={'/impôt-sur-le-revenu'} component={ImpôtSurLeRevenu} />
 					<Route
 						path={sitePaths.documentation.index + '/:name+'}
 						component={RulePage}
