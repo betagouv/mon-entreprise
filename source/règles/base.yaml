@@ -723,7 +723,7 @@
   type: salaire
   question: Quel est le salaire de base ?
   description: |
-    C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux partis.
+    C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
   période: flexible
@@ -799,8 +799,8 @@
 - espace: contrat salarié
   nom: avantages sociaux
   description: >
-    Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifique à l'entreprise, et fourni par des structure privées (mutuelle, assurance...).
-    Ils sont soumis à l'impots sur le revenus.
+    Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifiques à l'entreprise, et fournis par des structures privées (mutuelle, assurance...).
+    Ils sont soumis à l'impôt sur le revenu.
   format: euros
   période: flexible
   formule:
@@ -2748,7 +2748,7 @@
 - espace: entreprise
   nom: charges non déductibles
   description: |
-    Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un ordinateur pour les besoins de sa société, le fera avec son revenu net. Il aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA avant pouvoir l'utiliser pour s'acheter ce bien.
+    Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un ordinateur pour les besoins de sa société, le fera avec son revenu net. Il aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA avant de pouvoir l'utiliser pour s'acheter ce bien.
   applicable si: auto entrepreneur
   formule: charges
   période: flexible
@@ -3573,7 +3573,7 @@
 - nom: protection sociale
   description: >
     La protection sociale est composée de 5 branches principales : maladie, famille, accidents
-    du travail et maladie professionnelles, retraite et chômage. A cela s'ajoutent
+    du travail et maladies professionnelles, retraite et chômage. A cela s'ajoutent
     aussi les cotisations pour la formation professionnelle et le transport.
 
 - nom: retraite
