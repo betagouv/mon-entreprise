@@ -55,14 +55,6 @@ const Salarié = ({ t }) => (
 			<T k="simulateurs.salarié.titre">Simulateur de salaire</T>
 		</h1>
 		<SalarySimulation />
-		<p>
-			<T k="simulateurs.salarié.description">
-				Dès que l'embauche d'un salarié est déclarée et qu'il est payé, il est
-				couvert par le régime général de la Sécurité sociale (santé, maternité,
-				invalidité, vieillesse, maladie professionnelle et accidents) et
-				chômage.
-			</T>
-		</p>
 	</>
 )
 export default compose(

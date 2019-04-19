@@ -101,8 +101,7 @@ export default compose(
 					)}
 
 					{showTargets && this.props.targets}
-					{!noUserInput && this.props.explanation}
-					{!noUserInput && !noFeedback && (
+					{!noFeedback && (
 						<div style={{ margin: '-0.6rem' }}>
 							<PageFeedback
 								customMessage={
@@ -114,6 +113,7 @@ export default compose(
 							/>
 						</div>
 					)}
+					{!noUserInput && this.props.explanation}
 				</>
 			)
 		}
