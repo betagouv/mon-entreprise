@@ -14,14 +14,14 @@ import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
-	flatRulesSelector,
-	noUserInputSelector
+	flatRulesSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import QuickLinks from './QuickLinks'
 import './TargetSelection.css'
+import { firstStepCompletedSelector } from './targetSelectionSelectors'
 
 export default compose(
 	withTranslation(),
@@ -36,7 +36,7 @@ export default compose(
 				formValueSelector('conversation')(state, dottedName),
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
-			noUserInput: noUserInputSelector(state),
+			firstStepCompleted: firstStepCompletedSelector(state),
 			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
 			objectifs: state.simulation?.config.objectifs || []
@@ -80,12 +80,18 @@ export default compose(
 			}
 		}
 		render() {
-			let { colours, noUserInput, analysis } = this.props,
+			let {
+					colours,
+					firstStepCompleted,
+					conversationStarted,
+					analysis,
+					explanation
+				} = this.props,
 				inversionFail = analysis.cache.inversionFail
 
 			return (
 				<div id="targetSelection">
-					{!noUserInput && (
+					{firstStepCompleted && (
 						<Controls
 							inversionFail={inversionFail}
 							controls={analysis.controls}
@@ -105,7 +111,8 @@ export default compose(
 						}}>
 						{this.renderOutputList()}
 					</section>
-					<QuickLinks />
+					<QuickLinks show={firstStepCompleted && !conversationStarted} />
+					{firstStepCompleted && explanation}
 				</div>
 			)
 		}
@@ -258,7 +265,7 @@ let TargetInputOrValue = withLanguage(
 		activeInput,
 		setActiveInput,
 		language,
-		noUserInput,
+		firstStepCompleted,
 		inversionFail
 	}) => (
 		<span className="targetInputOrValue">
@@ -278,7 +285,7 @@ let TargetInputOrValue = withLanguage(
 						target,
 						activeInput,
 						setActiveInput,
-						noUserInput,
+						firstStepCompleted,
 						inversionFail
 					}}
 				/>

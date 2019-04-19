@@ -1,5 +1,4 @@
 import { React, T } from 'Components'
-import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
@@ -9,6 +8,7 @@ import { compose } from 'ramda'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import SalaryExplanation from 'Components/SalaryExplanation'
 
 export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 	<Simulation
@@ -29,8 +29,7 @@ export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 				)}
 			</>
 		}
-		targets={<TargetSelection />}
-		explanation={<SalaryExplanation />}
+		targets={<TargetSelection explanation={<SalaryExplanation />} />}
 	/>
 ))
 

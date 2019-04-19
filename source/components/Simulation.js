@@ -45,8 +45,7 @@ export default compose(
 			let arePreviousAnswers = previousAnswers.length > 0,
 				displayConversation =
 					!targetsTriggerConversation || conversationStarted,
-				showTargets =
-					targetsTriggerConversation || !noUserInput || showTargetsAnyway
+				showTargets = targetsTriggerConversation || showTargetsAnyway
 			return (
 				<>
 					{this.state.displayAnswers && (
@@ -102,7 +101,7 @@ export default compose(
 
 					{showTargets && this.props.targets}
 					{!noFeedback && (
-						<div style={{ margin: '-0.6rem' }}>
+						<div>
 							<PageFeedback
 								customMessage={
 									<T k="feedback.simulator">
@@ -113,7 +112,6 @@ export default compose(
 							/>
 						</div>
 					)}
-					{!noUserInput && this.props.explanation}
 				</>
 			)
 		}

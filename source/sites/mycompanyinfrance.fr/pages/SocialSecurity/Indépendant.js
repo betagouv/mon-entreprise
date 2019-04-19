@@ -35,12 +35,15 @@ const Indépendant = ({ t }) => (
 		<Warning />
 		<Simulation
 			targetsTriggerConversation={true}
-			targets={<TargetSelection />}
-			explanation={
-				<>
-					<AvertissementForfaitIndépendants />
-					<AvertissementProtectionSocialeIndépendants />
-				</>
+			targets={
+				<TargetSelection
+					explanation={
+						<>
+							<AvertissementForfaitIndépendants />
+							<AvertissementProtectionSocialeIndépendants />
+						</>
+					}
+				/>
 			}
 		/>
 	</>

@@ -21,7 +21,9 @@ import {
 	intersection,
 	isNil,
 	mergeDeepWith,
-	pick
+	pick,
+	isEmpty,
+	dissoc
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -65,28 +67,8 @@ export let formattedSituationSelector = createSelector(
 )
 
 export let noUserInputSelector = createSelector(
-	[
-		formattedSituationSelector,
-		targetNamesSelector,
-		parsedRulesSelector,
-		state => state.simulation?.config?.bloquant
-	],
-	(situation, targetNames, parsedRules, bloquant) => {
-		if (!situation) {
-			return true
-		}
-		const situations = Object.keys(situation)
-		const allBlockingAreAnswered =
-			bloquant && bloquant.every(rule => situations.includes(rule))
-		const targetIsAnswered =
-			targetNames &&
-			targetNames.some(
-				targetName =>
-					findRuleByDottedName(parsedRules, targetName)?.formule &&
-					targetName in situation
-			)
-		return !(allBlockingAreAnswered || targetIsAnswered)
-	}
+	[formattedSituationSelector],
+	situation => !situation || isEmpty(dissoc('période', situation))
 )
 
 let validatedStepsSelector = createSelector(
