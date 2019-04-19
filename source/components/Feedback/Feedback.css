@@ -1,14 +1,11 @@
 .feedback-page {
-	align-items: flex-start;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	padding-top: 0.6rem;
 	padding-bottom: 0.6rem;
 	background: var(--lighterColour);
 	border-radius: 0.9rem;
-	max-width: 36em;
-	padding: 0.6em;
-	margin: 1em 0 1em auto;
+	padding: 0.6em 1em;
 }
 .feedback-page.stickToFooter {
 	margin-bottom: 0;
@@ -17,4 +14,10 @@
 }
 .feedback-page button.link-button {
 	margin: 0 0.6em;
+}
+
+@media (min-width: 1200px) {
+	.feedback-page .feedbackButtons {
+		display: inline;
+	}
 }

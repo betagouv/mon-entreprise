@@ -16,7 +16,8 @@ import classNames from 'classnames'
 type OwnProps = {
 	blacklist: Array<string>,
 	customMessage?: Node,
-	customEventName?: string
+	customEventName?: string,
+	stickToFooter: boolean
 }
 type Props = OwnProps & {
 	location: Location,
@@ -98,61 +99,63 @@ class PageFeedback extends Component<Props, State> {
 			this.props.location.pathname === '/' ? '' : this.props.location.pathname
 		return (
 			!this.props.blacklist.includes(pathname) && (
-				<div
-					className={classNames('feedback-page', 'ui__', 'notice', {
-						stickToFooter
-					})}>
-					{!this.state.showForm && !this.state.showThanks && (
-						<>
-							<div>
-								{this.props.customMessage || (
-									<Trans i18nKey="feedback.question">
-										Cette page vous est utile ?
-									</Trans>
-								)}{' '}
-								<div style={{ display: 'inline-block' }}>
-									<button
-										className="ui__ link-button"
-										onClick={() => this.handleFeedback({ useful: true })}>
-										<Trans>Oui</Trans>
-									</button>{' '}
-									<button
-										className="ui__ link-button"
-										onClick={() => this.handleFeedback({ useful: false })}>
-										<Trans>Non</Trans>
-									</button>
-									<button
-										className="ui__ link-button"
-										onClick={this.handleErrorReporting}>
-										<Trans i18nKey="feedback.reportError">
-											Faire une suggestion
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<div
+						className={classNames('feedback-page', 'ui__', 'notice', {
+							stickToFooter
+						})}>
+						{!this.state.showForm && !this.state.showThanks && (
+							<>
+								<div>
+									{this.props.customMessage || (
+										<Trans i18nKey="feedback.question">
+											Cette page vous est utile ?
 										</Trans>
-									</button>
+									)}{' '}
+									<div className="feedbackButtons">
+										<button
+											className="ui__ link-button"
+											onClick={() => this.handleFeedback({ useful: true })}>
+											<Trans>Oui</Trans>
+										</button>{' '}
+										<button
+											className="ui__ link-button"
+											onClick={() => this.handleFeedback({ useful: false })}>
+											<Trans>Non</Trans>
+										</button>
+										<button
+											className="ui__ link-button"
+											onClick={this.handleErrorReporting}>
+											<Trans i18nKey="feedback.reportError">
+												Faire une suggestion
+											</Trans>
+										</button>
+									</div>
 								</div>
+							</>
+						)}
+						{this.state.showThanks && (
+							<div>
+								<Trans i18nKey="feedback.thanks">
+									Merci pour votre retour ! Vous pouvez nous contacter
+									directement à{' '}
+									<a href="mailto:contact@embauche.beta.gouv.fr">
+										contact@embauche.beta.gouv.fr
+									</a>
+								</Trans>
 							</div>
-						</>
-					)}
-					{this.state.showThanks && (
-						<div>
-							<Trans i18nKey="feedback.thanks">
-								Merci pour votre retour ! Vous pouvez nous contacter directement
-								à{' '}
-								<a href="mailto:contact@embauche.beta.gouv.fr">
-									contact@embauche.beta.gouv.fr
-								</a>
-							</Trans>
-						</div>
-					)}
-					{this.state.showForm && (
-						<Form
-							onEnd={() =>
-								this.setState({ showThanks: false, showForm: false })
-							}
-							onCancel={() =>
-								this.setState({ showThanks: false, showForm: false })
-							}
-						/>
-					)}
+						)}
+						{this.state.showForm && (
+							<Form
+								onEnd={() =>
+									this.setState({ showThanks: false, showForm: false })
+								}
+								onCancel={() =>
+									this.setState({ showThanks: false, showForm: false })
+								}
+							/>
+						)}
+					</div>
 				</div>
 			)
 		)
