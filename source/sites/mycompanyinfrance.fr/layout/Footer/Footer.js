@@ -60,6 +60,7 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 				))}
 			</Helmet>
 			<PageFeedback
+				stickToFooter={true}
 				blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
 			/>
 			<footer className="footer" style={{ backgroundColor: `${colour}22` }}>

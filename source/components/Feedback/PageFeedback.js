@@ -11,6 +11,7 @@ import Form from './FeedbackForm'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { Node } from 'react'
+import classNames from 'classnames'
 
 type OwnProps = {
 	blacklist: Array<string>,
@@ -89,6 +90,7 @@ class PageFeedback extends Component<Props, State> {
 		this.setState({ showForm: true })
 	}
 	render() {
+		let { stickToFooter = false } = this.props
 		if (this.feedbackAlreadyGiven) {
 			return null
 		}
@@ -96,7 +98,10 @@ class PageFeedback extends Component<Props, State> {
 			this.props.location.pathname === '/' ? '' : this.props.location.pathname
 		return (
 			!this.props.blacklist.includes(pathname) && (
-				<div className="feedback-page ui__ container notice">
+				<div
+					className={classNames('feedback-page', 'ui__', 'notice', {
+						stickToFooter
+					})}>
 					{!this.state.showForm && !this.state.showThanks && (
 						<>
 							<div>
@@ -107,27 +112,24 @@ class PageFeedback extends Component<Props, State> {
 								)}{' '}
 								<div style={{ display: 'inline-block' }}>
 									<button
-										style={{ marginLeft: '0.4rem' }}
 										className="ui__ link-button"
 										onClick={() => this.handleFeedback({ useful: true })}>
 										<Trans>Oui</Trans>
 									</button>{' '}
 									<button
-										style={{ marginLeft: '0.4rem' }}
 										className="ui__ link-button"
 										onClick={() => this.handleFeedback({ useful: false })}>
 										<Trans>Non</Trans>
 									</button>
+									<button
+										className="ui__ link-button"
+										onClick={this.handleErrorReporting}>
+										<Trans i18nKey="feedback.reportError">
+											Faire une suggestion
+										</Trans>
+									</button>
 								</div>
 							</div>
-							<button
-								style={{ textAlign: 'right' }}
-								className="ui__ link-button"
-								onClick={this.handleErrorReporting}>
-								<Trans i18nKey="feedback.reportError">
-									Faire une suggestion
-								</Trans>
-							</button>{' '}
 						</>
 					)}
 					{this.state.showThanks && (
