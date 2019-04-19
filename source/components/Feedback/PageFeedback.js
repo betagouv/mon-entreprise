@@ -145,7 +145,12 @@ class PageFeedback extends Component<Props, State> {
 					)}
 					{this.state.showForm && (
 						<Form
-							onEnd={() => this.setState({ showThanks: true, showForm: false })}
+							onEnd={() =>
+								this.setState({ showThanks: false, showForm: false })
+							}
+							onCancel={() =>
+								this.setState({ showThanks: false, showForm: false })
+							}
 						/>
 					)}
 				</div>
