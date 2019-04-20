@@ -39,7 +39,7 @@ export default compose(
 			<span
 				className="icon"
 				onClick={e => {
-					tracker.push(['trackEvent', 'help', dottedName])
+					tracker?.push(['trackEvent', 'help', dottedName])
 					explain(dottedName)
 					e.preventDefault()
 					e.stopPropagation()
