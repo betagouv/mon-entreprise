@@ -183,3 +183,12 @@ période:
     Par exemple, dans une simulation mensuelle, si `indemnité kilométrique vélo` (de période flexible) appelle la règle `distance annuelle`, qui est définie sur l'année, alors la valeur de cette dernière sera divisée par 12 avant d'être passée à cette première. L'inverse est également vrai, en multipliant par 12.
 
     Par défaut, la période de la simulation est mensuelle.
+correspondance:
+  description: |
+    C'est simplement un tableau de correspondance qui donne un nombre en fonction de la valeur d'une variable.
+
+    | La variable (ici la ville)       |     La valeur correspondante (ici la population) |
+    | :------------ | :-------------: | 
+    | Brest       |     200 000 |
+    | Marseille     |   1 000 000    |
+    | Paris        |   2 000 000     |

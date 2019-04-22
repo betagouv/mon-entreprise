@@ -1,0 +1,50 @@
+- test: correspondance
+  formule:
+    correspondance:
+      variable: banque
+      tableau:
+        la Nef: 200
+        Crédit Coopératif: 425
+        La Banque Postale: 480
+        BPCE: 540
+        Crédit Mutuel: 620
+        Société Générale: 890
+        BNP Paribas: 905
+        Crédit Agricol: 1070
+  exemples:
+    - situation:
+        banque: Crédit Mutuel
+      valeur attendue: 620
+    - situation:
+      valeur attendue: null
+      variables manquantes:
+        - banque
+- nom: banque
+  formule:
+    une possibilité:
+      - la Nef
+      - Société Générale
+      - BPCE
+      - Crédit Mutuel
+      - BNP Paribas
+      - Crédit Agricole
+      - Crédit cooperatif
+      - La Banque Postale
+
+- espace: banque
+  nom: la Nef
+
+- espace: banque
+  nom: Société Générale
+- espace: banque
+  nom: BPCE
+- espace: banque
+  nom: Crédit Mutuel
+- espace: banque
+  nom: BNP Paribas
+- espace: banque
+  nom: Crédit Agricole
+- espace: banque
+  nom: Crédit cooperatif
+- espace: banque
+  nom: La Banque Postale
