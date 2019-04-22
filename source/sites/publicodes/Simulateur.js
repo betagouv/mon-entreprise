@@ -7,6 +7,7 @@ import { findRuleByDottedName } from 'Engine/rules'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import ShareButton from 'Components/ShareButton'
 
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
 	props => {
@@ -34,7 +35,11 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 								{rule.period === 'flexible' && <PeriodBlock />}
 							</>
 						}
-						explanation={<p>PTITE EXPLICATION DU RESULTAT</p>}
+					/>
+					<ShareButton
+						text="Mesure ton impact sur Futur.eco !"
+						url={'https://' + window.location.hostname + props.match.url}
+						title={rule.title}
 					/>
 				</div>
 			))
