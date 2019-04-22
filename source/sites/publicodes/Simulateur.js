@@ -3,7 +3,7 @@ import withSimulationConfig from 'Components/simulationConfigs/withSimulationCon
 import { React, emoji } from 'Components'
 import { Helmet } from 'react-helmet'
 import ImpactCard from './ImpactCard'
-import { findRuleByDottedName } from 'Engine/rules'
+import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import PeriodSwitch from 'Components/PeriodSwitch'
@@ -12,9 +12,10 @@ import ShareButton from 'Components/ShareButton'
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
 	props => {
 		let objectif = props.match.params.name,
-			rule = findRuleByDottedName(props.rules, objectif),
+			decoded = decodeRuleName(objectif),
+			rule = findRuleByDottedName(props.rules, decoded),
 			Simulateur = withSimulationConfig({
-				objectifs: [objectif]
+				objectifs: [decoded]
 			})(() => (
 				<div className="ui__ container">
 					<Helmet>

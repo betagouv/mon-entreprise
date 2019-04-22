@@ -31,7 +31,7 @@ class App extends Component {
 						<Route exact path="/" component={Landing} />
 						<Route path="/documentation/:name+" component={RulePage} />
 						<Route path="/documentation" component={RulesList} />
-						<Route path="/simulateur/:name" component={Simulateur} />
+						<Route path="/simulateur/:name+" component={Simulateur} />
 						<Route path="/contribuer/:input?" component={Contribution} />
 						<Route path="/à-propos" component={About} />
 						<Route component={Route404} />

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Fuse from 'fuse.js'
 import searchWeights from 'Components/searchWeights'
 import { pick, pipe, concat, partition, has, apply } from 'ramda'
-import { findRuleByDottedName } from 'Engine/rules'
+import { findRuleByDottedName, encodeRuleName } from 'Engine/rules'
 
 let buildFuse = rules =>
 	new Fuse(
@@ -90,7 +90,7 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 			</div>
 			<Link
 				css="width: 100%"
-				to={hasFormule ? '/simulateur/' + dottedName : '#'}>
+				to={hasFormule ? '/simulateur/' + encodeRuleName(dottedName) : '#'}>
 				{title}
 			</Link>
 			{!hasFormule && (
