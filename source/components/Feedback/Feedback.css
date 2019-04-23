@@ -1,8 +1,23 @@
 .feedback-page {
-	align-items: flex-start;
 	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
+	justify-content: flex-end;
 	padding-top: 0.6rem;
 	padding-bottom: 0.6rem;
+	background: var(--lighterColour);
+	border-radius: 0.9rem;
+	padding: 0.6em 1em;
+}
+.feedback-page.stickToFooter {
+	margin-bottom: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.feedback-page button.link-button {
+	margin: 0 0.6em;
+}
+
+@media (min-width: 1200px) {
+	.feedback-page .feedbackButtons {
+		display: inline;
+	}
 }

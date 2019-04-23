@@ -1,7 +1,7 @@
 import { startConversation } from 'Actions/actions'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import React, { Component } from 'react'
+import { React, T } from 'Components'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
@@ -24,10 +24,18 @@ export default compose(
 		}
 	)
 )(
-	class SalaryExplanation extends Component {
+	class SalaryExplanation extends React.Component {
 		render() {
 			return (
 				<Animate.fromBottom delay={2000}>
+					<p>
+						<T k="simulateurs.salarié.description">
+							Dès que le salarié est déclaré et payé, il est couvert par le
+							régime général de la Sécurité sociale (santé, maternité,
+							invalidité, vieillesse, maladie professionnelle et accidents) et
+							chômage.
+						</T>
+					</p>
 					{!this.props.conversationStarted ? (
 						<SalaryFirstExplanation {...this.props} />
 					) : (

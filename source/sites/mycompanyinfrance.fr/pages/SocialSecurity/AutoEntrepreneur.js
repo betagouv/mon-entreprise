@@ -35,8 +35,11 @@ const AutoEntrepreneur = ({ t }) => (
 		<Warning simulateur="auto-entreprise" />
 		<Simulation
 			targetsTriggerConversation={true}
-			targets={<TargetSelection />}
-			explanation={<AvertissementProtectionSocialeIndépendants />}
+			targets={
+				<TargetSelection
+					explanation={<AvertissementProtectionSocialeIndépendants />}
+				/>
+			}
 		/>
 	</>
 )

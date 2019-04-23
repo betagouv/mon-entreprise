@@ -7,7 +7,6 @@ import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { animated, Spring } from 'react-spring'
-import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import type { Location } from 'react-router'
 
 type OwnProps = {
@@ -16,17 +15,10 @@ type OwnProps = {
 type Props = OwnProps & {
 	startConversation: (?string) => void,
 	location: Location,
-	userInput: boolean,
-	conversationStarted: boolean
+	show: boolean
 }
 
-const QuickLinks = ({
-	startConversation,
-	userInput,
-	quickLinks,
-	conversationStarted
-}: Props) => {
-	const show = userInput && !conversationStarted
+const QuickLinks = ({ startConversation, show, quickLinks }: Props) => {
 	return (
 		<Spring
 			to={{
@@ -45,7 +37,7 @@ const QuickLinks = ({
 						flexWrap: 'wrap-reverse',
 						fontSize: '110%',
 						justifyContent: 'space-evenly',
-						marginBottom: '0.6rem'
+						marginBottom: '1rem'
 					}}>
 					{toPairs(quickLinks).map(([label, dottedName]) => (
 						<button
@@ -67,8 +59,6 @@ export default (compose(
 	connect(
 		(state, props) => ({
 			key: props.language,
-			userInput: !noUserInputSelector(state),
-			conversationStarted: state.conversationStarted,
 			quickLinks: state.simulation?.config["questions à l'affiche"]
 		}),
 		{
