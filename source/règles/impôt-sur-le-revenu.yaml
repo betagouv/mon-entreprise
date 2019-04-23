@@ -1,8 +1,8 @@
 - nom: impôt
 
 - nom: revenu imposable
-  question: Quel est votre revenu imposable ?
-  format: nombre
+  question: Quels sont vos revenus d'activité + chômage + pensions ?
+  format: euros
 
 - nom: revenu abattu
   formule: revenu imposable * 90%
@@ -12,7 +12,7 @@
   description: |
     Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
 
-    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
+    Attention à l'erreur classique : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
   période: année
   formule:
     barème:
