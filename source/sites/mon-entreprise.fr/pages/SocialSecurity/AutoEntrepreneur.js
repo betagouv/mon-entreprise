@@ -1,4 +1,5 @@
 import { T } from 'Components'
+import PageFeedback from 'Components/Feedback/PageFeedback'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
@@ -37,7 +38,19 @@ const AutoEntrepreneur = ({ t }) => (
 			targetsTriggerConversation={true}
 			targets={
 				<TargetSelection
-					explanation={<AvertissementProtectionSocialeIndépendants />}
+					explanation={
+						<>
+							<AvertissementProtectionSocialeIndépendants />
+							<PageFeedback
+								customMessage={
+									<T k="feedback.simulator">
+										Êtes-vous satisfait de ce simulateur ?
+									</T>
+								}
+								customEventName="rate simulator"
+							/>
+						</>
+					}
 				/>
 			}
 		/>

@@ -1,28 +1,17 @@
-import { startConversation } from 'Actions/actions'
 import { React, T } from 'Components'
+import PageFeedback from 'Components/Feedback/PageFeedback'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
 import { connect } from 'react-redux'
-import { formValueSelector } from 'redux-form'
-import ficheDePaieSelectors from 'Selectors/ficheDePaieSelectors'
 import * as Animate from 'Ui/animate'
 import SalaryCompactExplanation from './SalaryCompactExplanation'
-import './SalaryCompactExplanation.css'
 import SalaryFirstExplanation from './SalaryFirstExplanation'
 
 export default compose(
 	withTracker,
-	connect(
-		state => ({
-			conversationStarted: state.conversationStarted,
-			displayResults: !!ficheDePaieSelectors(state),
-			arePreviousAnswers: state.conversationSteps.foldedSteps.length > 0,
-			period: formValueSelector('conversation')(state, 'période')
-		}),
-		{
-			startConversation
-		}
-	)
+	connect(state => ({
+		conversationStarted: state.conversationStarted
+	}))
 )(
 	class SalaryExplanation extends React.Component {
 		render() {
@@ -30,18 +19,29 @@ export default compose(
 				<Animate.fromTop delay={this.props.conversationStarted ? 0 : 1000}>
 					{!this.props.conversationStarted ? (
 						<>
-							<p className="ui__ notice">
-								<T k="simulateurs.salarié.description">
-									Dès que l'embauche d'un salarié est déclarée et qu'il est
-									payé, il est couvert par le régime général de la Sécurité
-									sociale (santé, maternité, invalidité, vieillesse, maladie
-									professionnelle et accidents) et chômage.
-								</T>
-							</p>
+							{this.props.protectionText}
+							<PageFeedback
+								customMessage={
+									<T k="feedback.simulator">
+										Êtes-vous satisfait de ce simulateur ?
+									</T>
+								}
+								customEventName="rate simulator"
+							/>
 							<SalaryFirstExplanation {...this.props} />
 						</>
 					) : (
-						<SalaryCompactExplanation {...this.props} />
+						<>
+							<SalaryCompactExplanation {...this.props} />
+							<PageFeedback
+								customMessage={
+									<T k="feedback.simulator">
+										Êtes-vous satisfait de ce simulateur ?
+									</T>
+								}
+								customEventName="rate simulator"
+							/>
+						</>
 					)}
 					<div style={{ textAlign: 'center' }} />
 				</Animate.fromTop>

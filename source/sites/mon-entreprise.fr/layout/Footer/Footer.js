@@ -4,7 +4,6 @@ import { T } from 'Components'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
 import usePersistingState from 'Components/utils/usePersistingState'
-import withColours from 'Components/utils/withColours'
 import withSitePaths from 'Components/utils/withSitePaths'
 import withTracker from 'Components/utils/withTracker'
 import urssafSvg from 'Images/urssaf.svg'
@@ -31,7 +30,7 @@ const feedbackBlacklist = [
 	['sécuritéSociale', 'salarié']
 ].map(lensPath)
 
-const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
+const Footer = ({ tracker, t, sitePaths }) => {
 	const [registered, setUserRegistered] = usePersistingState(
 		'app::newsletter::registered',
 		false
@@ -64,7 +63,7 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 				stickToFooter={true}
 				blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
 			/>
-			<footer className="footer" style={{ backgroundColor: `${colour}22` }}>
+			<footer className="footer">
 				<div className="ui__ container">
 					<div id="footerIcons">
 						<a href="https://www.urssaf.fr">
@@ -176,6 +175,5 @@ const Footer = ({ colours: { colour }, tracker, t, sitePaths }) => {
 export default (compose(
 	withTracker,
 	withTranslation(),
-	withSitePaths,
-	withColours
+	withSitePaths
 )(Footer): React$ComponentType<OwnProps>)

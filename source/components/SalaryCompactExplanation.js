@@ -1,15 +1,15 @@
 /* @flow */
 
-import Distribution from 'Components/Distribution';
-import PaySlip from 'Components/PaySlip';
-import SearchButton from 'Components/SearchButton';
-import React, { Component } from 'react';
-import { Trans } from 'react-i18next';
-import './SalaryCompactExplanation.css';
+import Distribution from 'Components/Distribution'
+import PaySlip from 'Components/PaySlip'
+import SearchButton from 'Components/SearchButton'
+import React, { Component } from 'react'
+import { Trans } from 'react-i18next'
+import './SalaryCompactExplanation.css'
 
 import type { Tracker } from 'Components/utils/withTracker'
 
-type ResultView = 'distribution' | 'payslip';
+type ResultView = 'distribution' | 'payslip'
 type State = {
 	resultView: ResultView
 }
@@ -34,33 +34,27 @@ export default class SalaryCompactExplanation extends Component<Props, State> {
 	}
 	render() {
 		return (
-			this.props.displayResults && (
-				<>
-					<div className="result-view__header">
-						<div className="result-view__tabs">
-							{['payslip', 'distribution'].map(resultView => (
-								<button
-									key={resultView}
-									className={
-										'ui__ link-button ' +
-										(this.state.resultView === resultView ? 'selected' : '')
-									}
-									onClick={this.handleClickOnTab(resultView)}>
-									<Trans>{resultViewTitle[resultView]}</Trans>
-								</button>
-							))}
-						</div>
-						<SearchButton />
+			<>
+				<div className="result-view__header">
+					<div className="result-view__tabs">
+						{['payslip', 'distribution'].map(resultView => (
+							<button
+								key={resultView}
+								className={
+									'ui__ link-button ' +
+									(this.state.resultView === resultView ? 'selected' : '')
+								}
+								onClick={this.handleClickOnTab(resultView)}>
+								<Trans>{resultViewTitle[resultView]}</Trans>
+							</button>
+						))}
 					</div>
-					<div className="ui__ card result-view__body">
-						{this.state.resultView === 'payslip' ? (
-							<PaySlip />
-						) : (
-							<Distribution />
-						)}
-					</div>
-				</>
-			)
+					<SearchButton />
+				</div>
+				<div className="ui__ card result-view__body">
+					{this.state.resultView === 'payslip' ? <PaySlip /> : <Distribution />}
+				</div>
+			</>
 		)
 	}
 }

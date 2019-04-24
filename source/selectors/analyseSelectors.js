@@ -16,14 +16,14 @@ import {
 	add,
 	contains,
 	difference,
+	dissoc,
 	equals,
 	head,
 	intersection,
+	isEmpty,
 	isNil,
 	mergeDeepWith,
-	pick,
-	isEmpty,
-	dissoc
+	pick
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'

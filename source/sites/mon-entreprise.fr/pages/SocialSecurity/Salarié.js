@@ -7,6 +7,7 @@ import withSimulationConfig from 'Components/simulationConfigs/withSimulationCon
 import TargetSelection from 'Components/TargetSelection'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
+import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -20,17 +21,35 @@ export let SalarySimulation = withSitePaths(({ sitePaths }) => (
 					Vous pouvez maintenant concrétiser votre projet d'embauche.
 				</T>
 				{sitePaths.démarcheEmbauche && (
-					<p style={{ textAlign: 'center' }}>
+					<div style={{ textAlign: 'center', margin: '1rem' }}>
 						<Link
 							className="ui__ plain button"
 							to={sitePaths.démarcheEmbauche.index}>
 							<T k="simulation-end.cta">Connaître les démarches</T>
 						</Link>
-					</p>
+					</div>
 				)}
 			</>
 		}
-		targets={<TargetSelection explanation={<SalaryExplanation />} />}
+		targets={
+			<TargetSelection
+				explanation={
+					<SalaryExplanation
+						protectionText={
+							<p className="ui__ notice">
+								{emoji('☂️')}{' '}
+								<T k="simulateurs.salarié.description">
+									Dès que l'embauche d'un salarié est déclarée et qu'il est
+									payé, il est couvert par le régime général de la Sécurité
+									sociale (santé, maternité, invalidité, vieillesse, maladie
+									professionnelle et accidents) et chômage.
+								</T>
+							</p>
+						}
+					/>
+				}
+			/>
+		}
 	/>
 ))
 

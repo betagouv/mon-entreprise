@@ -1,4 +1,5 @@
 import { React, T } from 'Components'
+import PageFeedback from 'Components/Feedback/PageFeedback'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
@@ -41,6 +42,14 @@ const Indépendant = ({ t }) => (
 						<>
 							<AvertissementForfaitIndépendants />
 							<AvertissementProtectionSocialeIndépendants />
+							<PageFeedback
+								customMessage={
+									<T k="feedback.simulator">
+										Êtes-vous satisfait de ce simulateur ?
+									</T>
+								}
+								customEventName="rate simulator"
+							/>
 						</>
 					}
 				/>
@@ -50,7 +59,7 @@ const Indépendant = ({ t }) => (
 )
 
 let AvertissementForfaitIndépendants = () => (
-	<p>
+	<p className="ui__ notice">
 		{emoji('💶')}{' '}
 		<T k="simulateurs.indépendant.explication1">
 			Notre estimation prend en compte les <em>cotisations réelles</em> dues par
@@ -63,7 +72,7 @@ let AvertissementForfaitIndépendants = () => (
 )
 
 export let AvertissementProtectionSocialeIndépendants = () => (
-	<p>
+	<p className="ui__ notice">
 		{emoji('☂️')}{' '}
 		<T k="simulateurs.indépendant.explication1">
 			Les assurances chômage et accidents du travail ne sont pas prises en

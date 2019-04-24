@@ -5,7 +5,8 @@
 	padding-bottom: 0.6rem;
 	background: var(--lighterColour);
 	border-radius: 0.9rem;
-	padding: 0.6em 1em;
+	padding: 0.6rem 1rem;
+	margin-bottom: 1rem;
 }
 .feedback-page.stickToFooter {
 	margin-bottom: 0;
@@ -13,7 +14,7 @@
 	border-bottom-right-radius: 0;
 }
 .feedback-page button.link-button {
-	margin: 0 0.6em;
+	margin: 0 0.6rem;
 }
 
 @media (min-width: 1200px) {

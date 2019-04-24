@@ -24,11 +24,7 @@ const SchemeComparaisonPage = () => (
 		<Animate.fromBottom>
 			<h1>Quel revenu pour l'indépendant ?</h1>
 			<Warning />
-			<Simulation
-				showTargetsAnyway
-				targets={<ComparativeTargets />}
-				noFeedback
-			/>
+			<Simulation showTargetsAnyway targets={<ComparativeTargets />} />
 		</Animate.fromBottom>
 	</>
 )

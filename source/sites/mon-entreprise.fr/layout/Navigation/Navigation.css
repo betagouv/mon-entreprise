@@ -19,6 +19,7 @@
 	flex-shrink: 0;
 	min-height: 100%;
 	background-color: rgb(227, 237, 249);
+	background-color: var(--lighterColour);
 }
 
 .navigation {

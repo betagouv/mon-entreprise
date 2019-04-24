@@ -1,4 +1,5 @@
 import { T } from 'Components'
+import SalaryExplanation from 'Components/SalaryExplanation'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
@@ -9,7 +10,6 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
-import SalaryExplanation from '../../../../components/SalaryExplanation'
 
 const AssimiléSalarié = ({ t }) => (
 	<>
@@ -39,18 +39,19 @@ const AssimiléSalarié = ({ t }) => (
 			targets={
 				<TargetSelection
 					explanation={
-						<>
-							<p>
-								{emoji('☂️ ')}{' '}
-								<T k="simulateurs.assimilé-salarié.explications">
-									Les gérants égalitaires ou minoritaires de SARL ou les
-									dirigeants de SA et SAS sont assimilés salariés et relèvent du
-									régime général. Par conséquent, le dirigeant a la même
-									protection sociale qu'un salarié, mis à part le chômage.
-								</T>
-							</p>
-							<SalaryExplanation />
-						</>
+						<SalaryExplanation
+							protectionText={
+								<p className="ui__ notice">
+									{emoji('☂️ ')}{' '}
+									<T k="simulateurs.assimilé-salarié.explications">
+										Les gérants égalitaires ou minoritaires de SARL ou les
+										dirigeants de SA et SAS sont assimilés salariés et relèvent
+										du régime général. Par conséquent, le dirigeant a la même
+										protection sociale qu'un salarié, mis à part le chômage.
+									</T>
+								</p>
+							}
+						/>
 					}
 				/>
 			}
