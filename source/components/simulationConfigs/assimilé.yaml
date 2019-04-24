@@ -5,12 +5,14 @@ objectifs:
   - impôt . neutre
   - contrat salarié . salaire . net après impôt
 
-questions:
-  - entreprise . année d'activité
-
 questions à l'affiche:
-  année d'activité: entreprise . année d'activité
-
+  Année d'activité: entreprise . année d'activité
+  Mutuelle: contrat salarié . complémentaire santé . part employeur
+  Localisation: établissement . localisation
+questions:
+  blacklist:
+    - entreprise . charges
+    - contrat salarié . avantages en nature . montant
 situation:
   auto entrepreneur: non
   indépendant: non
