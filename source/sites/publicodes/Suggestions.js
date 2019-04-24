@@ -32,9 +32,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 		return (
 			<section style={{ marginTop: '3rem' }}>
 				{filteredRules.length ? (
-					<h2 css="font-size: 100%;">
-						{(input ? 'Résultats' : 'Suggestions') + ' :'}
-					</h2>
+					input && <h2 css="font-size: 100%;">Résultats :</h2>
 				) : (
 					<p>Rien trouvé {emoji('😶')}. </p>
 				)}
