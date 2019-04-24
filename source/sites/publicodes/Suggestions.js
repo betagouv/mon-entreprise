@@ -60,7 +60,7 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 			css={`
 				font-size: 100%;
 				list-style-type: none;
-				border-radius: 1.5rem;
+				border-radius: 1rem;
 				padding: 0.6rem;
 				margin: 0.6rem;
 				width: 10rem;
@@ -75,12 +75,16 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 
 				background: var(--colour);
 				color: white;
+				box-shadow: 0 2px 6px rgba(32, 33, 36, 0.5);
 				:hover {
-					box-shadow: 0 1px 6px rgba(32, 33, 36, 0.5);
+					box-shadow: 0 4px 10px rgba(32, 33, 36, 0.5);
 				}
 				a {
 					color: white;
 					text-decoration: none;
+				}
+				:hover a {
+					text-decoration: underline;
 				}
 			`}>
 			<div css="width: 100%; img { width: 1.8rem !important; height: 1.8rem !important}}">
