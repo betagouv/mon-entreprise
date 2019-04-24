@@ -63,7 +63,7 @@ to = "/prerender/mon-entreprise/index.html"
 status = 200
 
 [[redirects]]
-from = "https://mon-entreprise.fr/social-security/salaried"
+from = "https://mon-entreprise.fr/sécurité-sociale/salaried"
 to = "/prerender/mon-entreprise/sécurité-sociale/salarié/index.html"
 status = 200
 
