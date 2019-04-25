@@ -1,0 +1,166 @@
+- nom: salaire de base
+- nom: contrat . salaire de base
+
+- test: multiplication
+  formule: salaire de base * 3
+  exemples:
+    - situation:
+        salaire de base: 1000
+      valeur attendue: 3000
+
+- test: multiplication et variable avec espace
+  formule: contrat . salaire de base * 3
+  exemples:
+    - situation:
+        contrat . salaire de base: 1000
+      valeur attendue: 3000
+
+- nom: taux
+
+- test: soustraction
+  formule: 1 - taux
+  exemples:
+    - situation:
+        taux: 0.89
+      valeur attendue: 0.11
+
+- test: addition
+  formule: salaire de base + 2000
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: 5000
+
+- nom: revenus fonciers
+
+- test: addition bis
+  formule: salaire de base + revenus fonciers
+  exemples:
+    - situation:
+        salaire de base: 3000
+        revenus fonciers: 2000
+      valeur attendue: 5000
+
+- test: division
+  formule: salaire de base / 3
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: 1000
+
+- test: comparaison stricte
+  formule: salaire de base < 3001
+  exemples:
+    - nom: inférieur
+      situation:
+        salaire de base: 3000
+      valeur attendue: true
+    - nom: égal
+      situation:
+        salaire de base: 3001
+      valeur attendue: false
+    - nom: supérieur
+      situation:
+        salaire de base: 3002
+      valeur attendue: false
+
+- test: comparaison non stricte
+  formule: salaire de base <= 3000
+  exemples:
+    - nom: inférieur
+      situation:
+        salaire de base: 2999.999
+      valeur attendue: true
+    - nom: égal
+      situation:
+        salaire de base: 3000
+      valeur attendue: true
+    - nom: supérieur
+      situation:
+        salaire de base: 3000.1
+      valeur attendue: false
+
+- nom: plafond sécurité sociale
+
+- nom: CDD
+
+- espace: CDD
+  nom: poursuivi en CDI
+
+- test: booléen
+  formule: CDD . poursuivi en CDI
+  exemples:
+    - situation:
+        CDD . poursuivi en CDI: oui
+      valeur attendue: true
+    - situation:
+        CDD . poursuivi en CDI: non
+      valeur attendue: false
+
+- test: négation
+  formule: ≠ CDD . poursuivi en CDI
+  exemples:
+    - situation:
+        CDD . poursuivi en CDI: oui
+      valeur attendue: false
+    - situation:
+        CDD . poursuivi en CDI: non
+      valeur attendue: true
+
+- test: pourcentage
+  formule: 38.1%
+  exemples:
+    - valeur attendue: 0.381
+      #- test: variable modifiée temporellement
+
+- test: multiplication et pourcentage
+  formule: 38.1% * salaire de base
+  exemples:
+    - situation:
+        salaire de base: 1000
+      valeur attendue: 381
+
+- nom: catégorie d'activité
+  formule:
+    une possibilité:
+      - commerciale
+      - artisanale
+
+- espace: catégorie d'activité
+  nom: artisanale
+- espace: catégorie d'activité
+  nom: commerciale
+
+- test: test de possibilités
+  formule: catégorie d'activité = 'artisanale'
+  exemples:
+    - situation:
+        catégorie d'activité: artisanale
+      valeur attendue: true
+    - situation:
+        catégorie d'activité: commerciale
+      valeur attendue: false
+
+- nom: revenu
+  période: mois
+  format: €
+
+- test: variable modifiée temporellement
+  formule: revenu [annuel]
+  exemples:
+    - situation:
+        revenu: 1000
+      valeur attendue: 12000
+##############
+# Hors limite aujourd'hui
+
+#- test: opérations multiples
+#  formule: 4 * plafond sécurité sociale * 12
+#
+#- test: comparaison et opération
+#  formule: salaire de base < 4 * plafond sécurité sociale
+#  exemples:
+#    - situation:
+#        salaire de base: 1000
+#        plafond sécurité sociale: 3500
+#      valeur attendue: true
