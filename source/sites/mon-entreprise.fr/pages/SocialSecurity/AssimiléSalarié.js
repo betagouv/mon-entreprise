@@ -30,7 +30,7 @@ const AssimiléSalarié = ({ t }) => (
 		</Helmet>
 		<h1>
 			<T k="simulateurs.assimilé-salarié.titre">
-				Simulateur de revenus pour assimilé salarié
+				Simulateur de revenus assimilé salarié
 			</T>
 		</h1>
 		<Warning simulateur="assimilé-salarié" />

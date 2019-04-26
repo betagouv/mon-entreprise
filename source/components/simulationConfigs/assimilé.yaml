@@ -1,13 +1,15 @@
 objectifs:
-  - entreprise . chiffre d'affaires
-  - entreprise . charges
-  - entreprise . bénéfice
-  - entreprise . part du dirigeant
-  - entreprise . rémunération totale du dirigeant
-  - contrat salarié . cotisations
-  - contrat salarié . réduction ACRE
-  - impôt . neutre
-  - contrat salarié . salaire . net après impôt
+  🏢 Votre entreprise:
+    - entreprise . chiffre d'affaires
+    - entreprise . charges
+    - entreprise . rémunération du dirigeant
+    - entreprise . bénéfice
+    - entreprise . résultat net
+  👩‍💼 Votre revenu:
+    - entreprise . rémunération totale du dirigeant
+    - contrat salarié . cotisations
+    - impôt . neutre
+    - contrat salarié . salaire . net après impôt
 
 questions à l'affiche:
   Année d'activité: entreprise . année d'activité

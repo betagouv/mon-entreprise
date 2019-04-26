@@ -22,8 +22,12 @@ import {
 	intersection,
 	isEmpty,
 	isNil,
+	map,
 	mergeDeepWith,
-	pick
+	pick,
+	pipe,
+	toPairs,
+	unnest
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -54,7 +58,18 @@ export let ruleDefaultsSelector = createSelector(
 	rules => collectDefaults(rules)
 )
 
-export let targetNamesSelector = state => state.simulation?.config.objectifs
+export let targetNamesSelector = state => {
+	let objectifs = state.simulation?.config.objectifs
+	if (!objectifs) return null
+	if (Array.isArray(objectifs)) return objectifs
+	// the objectives are organized in groups
+	else
+		return pipe(
+			toPairs,
+			map(([, groupObjectives]) => groupObjectives),
+			unnest
+		)(objectifs)
+}
 
 export let situationSelector = createDeepEqualSelector(
 	getFormValues('conversation'),

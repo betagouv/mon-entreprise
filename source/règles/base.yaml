@@ -2728,11 +2728,11 @@
   période: flexible
   formule:
     somme:
-      - rémunération totale du dirigeant / part du dirigeant
+      - rémunération totale du dirigeant / rémunération du dirigeant
       - charges
 
 - espace: entreprise
-  nom: part du dirigeant
+  nom: rémunération du dirigeant
   description: |
     C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue !
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?

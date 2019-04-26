@@ -7,8 +7,9 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
-import { compose, isEmpty, isNil, propEq } from 'ramda'
+import { compose, isEmpty, isNil, propEq, toPairs } from 'ramda'
 import React, { Component, PureComponent } from 'react'
+import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -86,9 +87,14 @@ export default compose(
 					firstStepCompleted,
 					conversationStarted,
 					analysis,
-					explanation
+					explanation,
+					activeInput,
+					setActiveInput,
+					setFormValue,
+					objectifs
 				} = this.props,
-				inversionFail = analysis.cache.inversionFail
+				inversionFail = analysis.cache.inversionFail,
+				targets = analysis?.targets || []
 
 			return (
 				<div id="targetSelection">
@@ -99,62 +105,84 @@ export default compose(
 						/>
 					)}
 					<PeriodSwitch />
-					<section
-						className="ui__ plain card"
-						style={{
-							marginTop: '.6em',
-							color: colours.textColour
-						}}>
-						{this.renderOutputList()}
-					</section>
+
+					{(Array.isArray(objectifs)
+						? [[null, objectifs]]
+						: toPairs(objectifs)
+					).map(([groupName, groupTargets]) => (
+						<>
+							{groupName && <h2>{emoji(groupName)}</h2>}
+							<section
+								className="ui__ plain card"
+								style={{
+									marginTop: '.6em',
+									color: colours.textColour,
+									background: `linear-gradient(
+								60deg,
+								${colours.darkColour} 0%,
+								${colours.colour} 100%
+								)`
+								}}>
+								<Targets
+									{...{
+										conversationStarted,
+										activeInput,
+										setActiveInput,
+										setFormValue,
+										inversionFail,
+										targets: targets.filter(({ dottedName }) =>
+											groupTargets.includes(dottedName)
+										),
+										initialRender: this.state.initialRender
+									}}
+								/>
+							</section>
+						</>
+					))}
 					<QuickLinks show={firstStepCompleted && !conversationStarted} />
 					{firstStepCompleted && explanation}
 				</div>
 			)
 		}
-
-		renderOutputList() {
-			let {
-					conversationStarted,
-					activeInput,
-					setActiveInput,
-					setFormValue,
-					analysis
-				} = this.props,
-				targets = analysis ? analysis.targets : [],
-				inversionFail = analysis.cache.inversionFail
-
-			return (
-				<div>
-					<ul id="targets">
-						{targets
-							.map(target => target.explanation || target)
-							.filter(target => {
-								return (
-									target.isApplicable !== false &&
-									(target.question || target.nodeValue)
-								)
-							})
-							.map(target => (
-								<Target
-									key={target.dottedName}
-									initialRender={this.state.initialRender}
-									{...{
-										conversationStarted,
-										target,
-										setFormValue,
-										activeInput,
-										setActiveInput,
-										targets,
-										inversionFail
-									}}
-								/>
-							))}
-					</ul>
-				</div>
-			)
-		}
 	}
+)
+
+let Targets = ({
+	conversationStarted,
+	activeInput,
+	setActiveInput,
+	setFormValue,
+	inversionFail,
+	targets,
+	initialRender
+}) => (
+	<div>
+		<ul className="targets">
+			{targets
+				.map(target => target.explanation || target)
+				.filter(target => {
+					return (
+						target.isApplicable !== false &&
+						(target.question || target.nodeValue)
+					)
+				})
+				.map(target => (
+					<Target
+						key={target.dottedName}
+						initialRender={initialRender}
+						{...{
+							conversationStarted,
+							target,
+							setFormValue,
+							activeInput,
+							setActiveInput,
+							targets,
+							inversionFail
+						}}
+					/>
+				))}
+		</ul>
+	</div>
 )
 
 const Target = ({
