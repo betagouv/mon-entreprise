@@ -1,0 +1,26 @@
+- nom: millénaire
+  formule: 1000 * année
+- nom: centenaire
+  formule: 100 * année
+- nom: décade
+  formule: 10 * année
+- nom: année
+  formule: 1
+- nom: semestre
+  formule: 6 * mois
+- nom: trimestre
+  formule: 3 * mois
+- nom: mois
+  formule: année /12
+- nom: jour
+  formule: mois / 30.43666
+- nom: matinée
+  formule: jour / 4
+- nom: heure
+  formule: jour / 24
+- nom: demi-heure
+  formule: heure / 2
+- nom: minute
+  formule: heure / 60
+- nom: seconde
+  formule: minute / 60
