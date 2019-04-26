@@ -33,7 +33,7 @@ const AssimiléSalarié = ({ t }) => (
 				Simulateur de revenus pour assimilé salarié
 			</T>
 		</h1>
-		<Warning />
+		<Warning simulateur="assimilé-salarié" />
 		<Simulation
 			targetsTriggerConversation={true}
 			targets={

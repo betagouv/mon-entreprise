@@ -30,14 +30,15 @@ export default withLanguage(function SimulateurWarning({
 			<div className={`content ${folded ? '' : 'ui__ card'}`}>
 				{!folded && (
 					<ul style={{ marginLeft: '1em' }}>
-						{simulateur !== 'auto-entreprise' && (
-							<li>
-								<T k="simulateurs.warning.line1">
-									le chiffre d'affaires déduit des charges va à 100% dans la
-									rémunération du dirigeant
-								</T>
-							</li>
-						)}
+						{simulateur !== 'auto-entreprise' &&
+							simulateur !== 'assimilé-salarié' && (
+								<li>
+									<T k="simulateurs.warning.line1">
+										le chiffre d'affaires déduit des charges va à 100% dans la
+										rémunération du dirigeant
+									</T>
+								</li>
+							)}
 						<li>
 							<T k="simulateurs.warning.line2">
 								l'impôt sur le revenu est calculé pour un célibataire sans
