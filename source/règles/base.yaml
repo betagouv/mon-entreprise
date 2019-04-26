@@ -2723,6 +2723,33 @@
     10 000 €: 10000
 
 - espace: entreprise
+
+  nom: chiffre d'affaires de société
+  période: flexible
+  formule:
+    somme:
+      - rémunération totale du dirigeant / part du dirigeant
+      - charges
+
+- espace: entreprise
+  nom: part du dirigeant
+  description: |
+    C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue !
+  question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
+  format: pourcentage
+  par défaut: 0.8
+
+- espace: entreprise
+  nom: bénéfice
+  période: flexible
+  formule: chiffre d'affaires - charges dont rémunération dirigeant
+
+- espace: entreprise
+  nom: charges dont rémunération dirigeant
+  période: flexible
+  formule: charges + rémunération totale du dirigeant
+
+- espace: entreprise
   nom: rémunération totale du dirigeant
   description: C'est la rémunération "super-brute" du dirigeant, qui inclut toutes les cotisations sociales à payer. C'est aussi la valeur monétaire du travail du dirigeant.
   période: flexible

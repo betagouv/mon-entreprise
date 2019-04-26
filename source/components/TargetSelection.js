@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
@@ -251,6 +252,9 @@ let CurrencyField = withColours(props => {
 		/>
 	)
 })
+let DebouncedPercentageField = props => (
+	<PercentageField debounce={600} {...props} />
+)
 
 let TargetInputOrValue = withLanguage(
 	({
@@ -268,8 +272,12 @@ let TargetInputOrValue = withLanguage(
 				{inputIsActive || !target.formule || isEmpty(target.formule) ? (
 					<Field
 						name={target.dottedName}
-						component={CurrencyField}
 						onBlur={event => event.preventDefault()}
+						component={
+							{ euros: CurrencyField, pourcentage: DebouncedPercentageField }[
+								target.format
+							]
+						}
 						{...(inputIsActive ? { autoFocus: true } : {})}
 						language={language}
 					/>

@@ -1,6 +1,9 @@
 objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
+  - entreprise . bénéfice
+  - entreprise . part du dirigeant
+  - entreprise . rémunération totale du dirigeant
   - contrat salarié . cotisations
   - contrat salarié . réduction ACRE
   - impôt . neutre
