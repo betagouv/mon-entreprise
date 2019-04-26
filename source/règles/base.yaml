@@ -667,7 +667,7 @@
 
     Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans les cas suivants:
     - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
-    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Ind��terminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
 - espace: contrat salarié
   nom: assimilé salarié
@@ -2585,7 +2585,7 @@
 - espace: impôt
   nom: revenu abattu par défaut
   période: flexible
-  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+  description: Dans le cas général, l'impôt est calculé apr��s l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   formule:
     allègement:
       assiette:
@@ -2743,6 +2743,29 @@
   nom: bénéfice
   période: flexible
   formule: chiffre d'affaires - charges dont rémunération dirigeant
+
+- espace: entreprise
+  nom: résultat net
+  résumé: Ce qu'il reste après impôt sur les sociétés
+  période: flexible
+  formule: bénéfice - impôt sur les sociétés
+
+- espace: entreprise
+  nom: impôt sur les sociétés
+  période: année
+  formule:
+    barème:
+      assiette: bénéfice
+      tranches:
+        - en-dessous de: 38120
+          taux: 15%
+        - de: 38120
+          à: 500000
+          taux: 28%
+        - au-dessus de: 500000
+          taux: 33.3%
+  références:
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
 - espace: entreprise
   nom: charges dont rémunération dirigeant
