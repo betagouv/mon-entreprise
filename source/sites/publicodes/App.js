@@ -11,6 +11,7 @@ import Simulateur from './Simulateur'
 import About from './About'
 import Earth from './EarthLoader'
 import Contribution from './Contribution'
+import TopBar from './TopBar'
 
 class App extends Component {
 	render() {
@@ -27,6 +28,7 @@ class App extends Component {
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}>
 				<div className="ui__ container">
+					<TopBar />
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/documentation/:name+" component={RulePage} />
