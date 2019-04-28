@@ -1,4 +1,4 @@
-import { React } from 'Components'
+import { React, emoji } from 'Components'
 import { Link } from 'react-router-dom'
 
 export default () => (
@@ -26,18 +26,12 @@ export default () => (
 			Chaque aspect de notre vie moderne a un impact, découvrez-le !{' '}
 			<Link to="/à-propos">En savoir plus</Link>.{' '}
 		</p>
-		<button
+		<Link
+			to="/scénarios"
 			css={`
-				border-radius: 6em;
-				background: var(--colour);
-				color: var(--textColour);
 				font-size: 200%;
-				width: 2em;
-				height: 2em;
-				padding: 0 0.6em;
-				margin-left: 0.6em;
 			`}>
-			2°
-		</button>
+			{emoji('⚙️')}
+		</Link>
 	</section>
 )

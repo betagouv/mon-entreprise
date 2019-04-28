@@ -12,6 +12,7 @@ import About from './About'
 import Earth from './EarthLoader'
 import Contribution from './Contribution'
 import TopBar from './TopBar'
+import Scenarios from './Scenarios'
 
 class App extends Component {
 	render() {
@@ -35,6 +36,7 @@ class App extends Component {
 						<Route path="/documentation" component={RulesList} />
 						<Route path="/simulateur/:name+" component={Simulateur} />
 						<Route path="/contribuer/:input?" component={Contribution} />
+						<Route path="/scénarios" component={Scenarios} />
 						<Route path="/à-propos" component={About} />
 						<Route component={Route404} />
 					</Switch>

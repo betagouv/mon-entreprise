@@ -79,9 +79,27 @@ export default compose(
 									? 's'
 									: '')}
 						</div>
-						<div>de crédit carbone personnel</div>
+						de&nbsp;
+						<Link css="color: inherit" to="/scénarios">
+							crédit carbone personnel
+						</Link>
 					</>
 				)}
+			</div>
+			<div
+				css={`
+					font-size: 85%;
+					color: #444;
+					font-style: italic;
+				`}>
+				<div>
+					Soit {value} {unit} &nbsp;
+					<Link
+						to={this.props.sitePaths.documentation.index + '/' + dottedName}>
+						calcul
+					</Link>
+				</div>
+				<div>de crédit carbone personnel</div>
 			</div>
 			<div
 				css={`
