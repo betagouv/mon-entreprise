@@ -1,5 +1,6 @@
 .steps-header {
 	margin: 0.6rem 0 1rem;
+	margin-left: 2.5rem; /* Let some space for the menu button */
 }
 .steps-header nav {
 	max-width: 100%;
@@ -46,4 +47,17 @@
 }
 .steps-header a:not(.active) {
 	border-color: transparent;
+}
+
+@media (max-width: 850px) {
+	.steps-header a > img {
+		display: none;
+	}
+	.steps-header a > div {
+		max-width: 4.5em;
+	}
+
+	.steps-header a {
+		padding: 0 0.8rem;
+	}
 }
