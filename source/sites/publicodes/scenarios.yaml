@@ -1,24 +1,24 @@
-- nom: A
+A:
   titre: On change rien
   icône: 😢
   description: |
     On fonce tête baissée vers la catastrophe : famines, guerres mondiales, génocides, pandémies. Les effets d'emballement, déjà identifiés mais imprévisibles (fonte de l'arctique et du permafrost, incendies monstres, acidification des océans, exctinction des espèces), laissent très peu d'espoir.
   crédit carbone par personne: 10
   réchauffement: plus de 3°
-- nom: B
+B:
   icône: 😟
   titre: On s'y met
   crédit carbone par personne: 2
   description: On a une chance de rester sous les 2 degrés. Les conséquences seront terribles, mais notre planète restera vivable. Nous ne sommes pas à l'abri des effets d'emballement qui pourraient faire tout basculer vers le scénario A.
   réchauffement: 2°
   futur:
-- nom: B bis
+B bis:
   icône: 🤷
   crédit carbone par personne: 5
   titre: On s'y met, enfin...
   description: Variante du scénario B. Partant de trop loin, incapable d'un tel effort, on se permet en France ou en Europe un impact par personne bien supérieur au reste du monde, et on est prêt à le défendre. Bien entendu, les Etats-Unis, la Russie et l'Arabie-Saoudite, forts de leurs réserves de pétrole qu'ils n'exportent plus, se permettent un impact encore deux fois plus élevé.
   réchauffement: 2°
-- nom: C
+C:
   icône: 😌
   titre: Effort de guerre
   crédit carbone par personne: 0.5

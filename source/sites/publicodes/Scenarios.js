@@ -1,9 +1,11 @@
 import { React, emoji } from 'Components'
-import { useState } from 'react'
+import { useContext } from 'react'
 import scenarios from './scenarios.yaml'
+import { StoreContext } from './StoreContext'
 
 export default () => {
-	let [selected, select] = useState(null)
+	let { state, dispatch } = useContext(StoreContext)
+
 	return (
 		<section id="scenarios">
 			<h1>Quel futur souhaitez vous ?</h1>
@@ -17,7 +19,7 @@ export default () => {
 					position: absolute;
 					left: 10vw;
 				`}>
-				{scenarios.map(s => (
+				{Object.entries(scenarios).map(([nom, s]) => (
 					<li
 						className="ui__ card"
 						css={`
@@ -46,11 +48,13 @@ export default () => {
 							<input
 								type="radio"
 								name="scenario"
-								value={s.nom}
-								checked={selected === s.nom}
-								onChange={() => select(s.nom)}
+								value={nom}
+								checked={state.scenario === nom}
+								onChange={() =>
+									dispatch({ type: 'SET_SCENARIO', scenario: nom })
+								}
 							/>
-							Scénario {s.nom}
+							Scénario {nom}
 							<h2>{s.titre}</h2>
 							<div>
 								{emoji('🇫🇷')} Crédit carbone par tête :{' '}

@@ -1,19 +1,14 @@
 import withColours from 'Components/utils/withColours'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { mapObjIndexed, compose, toPairs } from 'ramda'
-import React from 'react'
+import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import * as chrono from './chrono'
-
-let individualEmissionsLimitPerYear = 1000 // 1 ton, to be parametrable
-
-let limitPerPeriod = mapObjIndexed(v => v * individualEmissionsLimitPerYear, {
-	...chrono,
-	négligeable: 0
-})
+import { StoreContext } from './StoreContext'
+import scenarios from './scenarios.yaml'
 
 let humanWeightValue = v => {
 	let unitSuffix = "d'équivalent CO₂"
@@ -33,15 +28,22 @@ export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
 	withColours,
 	withSitePaths
-)(function Targets({ analysis, colours, sitePaths }) {
-	let { nodeValue, dottedName } = analysis.targets[0]
+)(({ analysis: { targets }, sitePaths }) => {
+	let { state } = useContext(StoreContext)
+	let { nodeValue, dottedName } = targets[0]
 
 	let [value, unit] = humanWeightValue(nodeValue)
+	let limitPerPeriod = mapObjIndexed(
+		v => v * scenarios[state.scenario]['crédit carbone par personne'],
+		{
+			...chrono,
+			négligeable: 0
+		}
+	)
 
 	let found = toPairs(limitPerPeriod).find(
 		([, limit]) => limit <= Math.abs(nodeValue)
 	)
-	if (!found) console.log(limitPerPeriod, nodeValue)
 
 	let [closestPeriod, closestPeriodValue] = found,
 		factor = Math.round(nodeValue / closestPeriodValue),
@@ -62,7 +64,7 @@ export default compose(
 					width: 18em;
 					margin: 0 auto;
 					margin-bottom: 0.6em;
-					color: ${this.props.colours.textColour};
+					color: var(--textColour);
 				`}>
 				{closestPeriodLabel === 'négligeable' ? (
 					<span>Impact négligeable {emoji('😎')}</span>
@@ -94,23 +96,7 @@ export default compose(
 				`}>
 				<div>
 					Soit {value} {unit} &nbsp;
-					<Link
-						to={this.props.sitePaths.documentation.index + '/' + dottedName}>
-						calcul
-					</Link>
-				</div>
-				<div>de crédit carbone personnel</div>
-			</div>
-			<div
-				css={`
-					font-size: 85%;
-					color: #444;
-					font-style: italic;
-				`}>
-				<div>
-					Soit {value} {unit} &nbsp;
-					<Link
-						to={this.props.sitePaths.documentation.index + '/' + dottedName}>
+					<Link to={sitePaths.documentation.index + '/' + dottedName}>
 						calcul
 					</Link>
 				</div>

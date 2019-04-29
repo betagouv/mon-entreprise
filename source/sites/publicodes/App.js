@@ -13,6 +13,7 @@ import Earth from './EarthLoader'
 import Contribution from './Contribution'
 import TopBar from './TopBar'
 import Scenarios from './Scenarios'
+import { StoreProvider } from './StoreContext'
 
 class App extends Component {
 	render() {
@@ -28,19 +29,21 @@ class App extends Component {
 				}}
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}>
-				<div className="ui__ container">
-					<TopBar />
-					<Switch>
-						<Route exact path="/" component={Landing} />
-						<Route path="/documentation/:name+" component={RulePage} />
-						<Route path="/documentation" component={RulesList} />
-						<Route path="/simulateur/:name+" component={Simulateur} />
-						<Route path="/contribuer/:input?" component={Contribution} />
-						<Route path="/scénarios" component={Scenarios} />
-						<Route path="/à-propos" component={About} />
-						<Route component={Route404} />
-					</Switch>
-				</div>
+				<StoreProvider>
+					<div className="ui__ container">
+						<TopBar />
+						<Switch>
+							<Route exact path="/" component={Landing} />
+							<Route path="/documentation/:name+" component={RulePage} />
+							<Route path="/documentation" component={RulesList} />
+							<Route path="/simulateur/:name+" component={Simulateur} />
+							<Route path="/contribuer/:input?" component={Contribution} />
+							<Route path="/scénarios" component={Scenarios} />
+							<Route path="/à-propos" component={About} />
+							<Route component={Route404} />
+						</Switch>
+					</div>
+				</StoreProvider>
 			</Provider>
 		)
 	}
