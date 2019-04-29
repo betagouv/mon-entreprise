@@ -34,7 +34,7 @@ export default compose(
 
 	let [value, unit] = humanWeightValue(nodeValue)
 	let limitPerPeriod = mapObjIndexed(
-		v => v * scenarios[state.scenario]['crédit carbone par personne'],
+		v => v * scenarios[state.scenario]['crédit carbone par personne'] * 1000,
 		{
 			...chrono,
 			négligeable: 0
