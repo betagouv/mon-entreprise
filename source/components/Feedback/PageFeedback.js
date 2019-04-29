@@ -105,7 +105,7 @@ class PageFeedback extends Component<Props, State> {
 							stickToFooter
 						})}>
 						{!this.state.showForm && !this.state.showThanks && (
-							<>
+							<div>
 								{this.props.customMessage || (
 									<Trans i18nKey="feedback.question">
 										Cette page vous est utile ?
@@ -130,7 +130,7 @@ class PageFeedback extends Component<Props, State> {
 										</Trans>
 									</button>
 								</div>
-							</>
+							</div>
 						)}
 						{this.state.showThanks && (
 							<div>
