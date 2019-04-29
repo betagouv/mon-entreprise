@@ -107,6 +107,7 @@ export const constructLocalizedSitePath = (language: string) => {
 			index: t('path.démarcheEmbauche.index', '/démarches-embauche')
 		},
 		documentation: {
+			exemples: t('path.documentation.exemples', '/exemples'),
 			index: t('path.documentation.index', '/documentation')
 		}
 	})

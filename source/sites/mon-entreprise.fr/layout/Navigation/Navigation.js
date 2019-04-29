@@ -241,7 +241,12 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 								</li>
 								<li>
 									<NavLink exact to={sitePaths.sécuritéSociale.salarié}>
-										<T>Simulateur de coût d'embauche</T>
+										<T>Simulateur de salaire</T>
+									</NavLink>
+								</li>
+								<li>
+									<NavLink exact to={sitePaths.documentation.exemples}>
+										<T>Exemples de simulation de salaire</T>
 									</NavLink>
 								</li>
 							</ul>

@@ -2,7 +2,7 @@
 import withColours from 'Components/utils/withColours'
 import { analyseMany } from 'Engine/traverse'
 import { compose } from 'ramda'
-import React, { Component } from 'react'
+import { React, T } from 'Components'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import examples from 'Règles/cas-types.yaml'
@@ -12,13 +12,13 @@ import {
 } from 'Selectors/analyseSelectors'
 import './ExampleSituations.css'
 
-export default class ExampleSituations extends Component {
+export default class ExampleSituations extends React.Component {
 	render() {
 		return (
 			<div className="ui__ container" id="exampleSituations">
 				<h1>
 					{emoji('💡 ')}
-					Quelques exemples
+					<T>Quelques exemples de salaires</T>
 				</h1>
 				<ul>
 					{examples.map(ex => (
@@ -37,7 +37,7 @@ const Example = compose(
 	})),
 	withColours
 )(
-	class Example extends Component {
+	class Example extends React.Component {
 		render() {
 			let {
 					ex: { nom, situation },
