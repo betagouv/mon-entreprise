@@ -32,7 +32,7 @@ describe('Status guide', function() {
 			.contains(fr ? 'Société' : 'Limited liability company')
 			.click()
 		cy.get('.ui__.answer-group')
-			.contains(fr ? 'Assimilé salarié' : 'Salaried')
+			.contains(fr ? 'Assimilé salarié' : 'Assimilated salaried')
 			.click()
 		cy.contains(fr ? 'Créer une SASU' : 'Create a SASU').click()
 	})
