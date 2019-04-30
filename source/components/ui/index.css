@@ -47,16 +47,16 @@ button {
 
 .ui__.container {
 	width: 100%;
-	max-width: 800px;
+	max-width: 850px;
 	margin-right: auto;
 	margin-left: auto;
 	padding-right: 0.6rem;
 	padding-left: 0.6rem;
 }
 .ui__.container .ui__.full-width {
-	margin: 0 calc((800px - 100vw) / 2);
+	margin: 0 calc((850px - 100vw) / 2);
 }
-@media (max-width: 800px) {
+@media (max-width: 850px) {
 	.ui__.container .ui__.full-width {
 		margin: 0;
 	}
@@ -65,6 +65,7 @@ button {
 .ui__.notice {
 	font-size: 85%;
 	color: rgba(0, 0, 0, 0.6);
+	color: var(--lighterInverseTextColour);
 }
 ul.ui__.no-bullet {
 	list-style: none;

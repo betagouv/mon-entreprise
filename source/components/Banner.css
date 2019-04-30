@@ -1,30 +1,15 @@
-.banner {
+.ui__.banner {
 	display: flex;
 	align-items: center;
-	margin: 0 auto;
+	margin: 1rem auto;
 	max-width: 100%;
-	margin-top: 1em;
-	width: 40em;
+	color: var(--lighterInverseTextColour);
+	width: 45rem;
 	justify-content: center;
-	animation: fade-in 1s;
-}
-.banner p {
-	text-align: center;
-	color: #4b4b66;
 }
 
-.banner i {
-	margin-right: 1em;
-}
-
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-	50% {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+.ui__.banner img {
+	margin-right: 1rem !important;
+	font-size: 2rem;
+	margin-bottom: 0.6rem !important;
 }

@@ -65,7 +65,9 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 		textColour = findContrastedTextColour(colour, true), // the 'simple' version feels better...
 		inverseTextColour = textColour === '#ffffff' ? '#000' : '#fff',
 		lightenTextColour = textColour =>
-			textColour === '#ffffff' ? 'rgba(255, 255, 255, .85)' : '#333',
+			textColour === '#ffffff'
+				? 'rgba(255, 255, 255, .6)'
+				: 'rgba(0, 0, 0, .6)',
 		lighterTextColour = lightenTextColour(textColour),
 		lighterInverseTextColour = lightenTextColour(inverseTextColour),
 		textColourOnWhite = textColour === '#ffffff' ? colour : '#333'

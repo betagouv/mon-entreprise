@@ -1,5 +1,6 @@
 /* @flow */
 
+import classNames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, withTranslation } from 'react-i18next'
@@ -11,7 +12,6 @@ import Form from './FeedbackForm'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
 import type { Node } from 'react'
-import classNames from 'classnames'
 
 type OwnProps = {
 	blacklist: Array<string>,
@@ -25,6 +25,7 @@ type Props = OwnProps & {
 }
 type State = {
 	showForm: boolean,
+	feedbackAlreadyGiven: boolean,
 	showThanks: boolean
 }
 
@@ -54,12 +55,12 @@ class PageFeedback extends Component<Props, State> {
 		super(props)
 		this.state = {
 			showForm: false,
-			showThanks: false
+			showThanks: false,
+			feedbackAlreadyGiven: feedbackAlreadyGiven([
+				this.props.customEventName || 'rate page usefulness',
+				this.props.location.pathname
+			])
 		}
-		this.feedbackAlreadyGiven = feedbackAlreadyGiven([
-			this.props.customEventName || 'rate page usefulness',
-			this.props.location.pathname
-		])
 	}
 
 	handleFeedback = ({ useful }) => {
@@ -78,6 +79,7 @@ class PageFeedback extends Component<Props, State> {
 		saveFeedbackOccurrenceInLocalStorage(feedback)
 		this.setState({
 			showThanks: useful,
+			feedbackAlreadyGiven: true,
 			showForm: !useful
 		})
 	}
@@ -92,7 +94,11 @@ class PageFeedback extends Component<Props, State> {
 	}
 	render() {
 		let { stickToFooter = false } = this.props
-		if (this.feedbackAlreadyGiven) {
+		if (
+			this.state.feedbackAlreadyGiven &&
+			!this.state.showForm &&
+			!this.state.showThanks
+		) {
 			return null
 		}
 		const pathname =
@@ -106,31 +112,31 @@ class PageFeedback extends Component<Props, State> {
 						})}>
 						{!this.state.showForm && !this.state.showThanks && (
 							<>
-								<div>
+								<div style={{ flexShrink: 0 }}>
 									{this.props.customMessage || (
 										<Trans i18nKey="feedback.question">
 											Cette page vous est utile ?
 										</Trans>
 									)}{' '}
-									<div className="feedbackButtons">
-										<button
-											className="ui__ link-button"
-											onClick={() => this.handleFeedback({ useful: true })}>
-											<Trans>Oui</Trans>
-										</button>{' '}
-										<button
-											className="ui__ link-button"
-											onClick={() => this.handleFeedback({ useful: false })}>
-											<Trans>Non</Trans>
-										</button>
-										<button
-											className="ui__ link-button"
-											onClick={this.handleErrorReporting}>
-											<Trans i18nKey="feedback.reportError">
-												Faire une suggestion
-											</Trans>
-										</button>
-									</div>
+								</div>
+								<div className="feedbackButtons">
+									<button
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: true })}>
+										<Trans>Oui</Trans>
+									</button>{' '}
+									<button
+										className="ui__ link-button"
+										onClick={() => this.handleFeedback({ useful: false })}>
+										<Trans>Non</Trans>
+									</button>
+									<button
+										className="ui__ link-button"
+										onClick={this.handleErrorReporting}>
+										<Trans i18nKey="feedback.reportError">
+											Faire une suggestion
+										</Trans>
+									</button>
 								</div>
 							</>
 						)}
@@ -139,8 +145,8 @@ class PageFeedback extends Component<Props, State> {
 								<Trans i18nKey="feedback.thanks">
 									Merci pour votre retour ! Vous pouvez nous contacter
 									directement à{' '}
-									<a href="mailto:contact@embauche.beta.gouv.fr">
-										contact@embauche.beta.gouv.fr
+									<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
+										contact@mon-entreprise.beta.gouv.fr
 									</a>
 								</Trans>
 							</div>
@@ -148,7 +154,7 @@ class PageFeedback extends Component<Props, State> {
 						{this.state.showForm && (
 							<Form
 								onEnd={() =>
-									this.setState({ showThanks: false, showForm: false })
+									this.setState({ showThanks: true, showForm: false })
 								}
 								onCancel={() =>
 									this.setState({ showThanks: false, showForm: false })

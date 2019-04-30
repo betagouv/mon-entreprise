@@ -52,8 +52,8 @@ export const LegalNoticeContent = withTranslation()(() => (
 		</h2>
 		<p>
 			<Trans i18nKey="legalNotice.contact.content">
-				<a href="mailto:contact@embauche.beta.gouv.fr">
-					contact@embauche.beta.gouv.fr
+				<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
+					contact@mon-entreprise.beta.gouv.fr
 				</a>
 			</Trans>
 		</p>

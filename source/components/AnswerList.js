@@ -49,12 +49,12 @@ const AnswerList = ({
 		<p style={{ textAlign: 'center' }}>
 			{emoji('🗑')}{' '}
 			<button
-				className="ui__ link-button"
+				className="ui__ simple small button"
 				onClick={() => {
 					resetSimulation()
 					onClose()
 				}}>
-				<Trans>Effacer</Trans>
+				<Trans>Tout effacer</Trans>
 			</button>
 		</p>
 		<table>

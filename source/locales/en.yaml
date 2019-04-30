@@ -135,7 +135,7 @@ feedback:
     form:
       headline: Your feedback is valuable to us in order to continuously improve this site. What should we work on to better meet your expectations?
       email: Your email (if you would like an answer from us)
-  thanks: Thank for your feedback! You can contact us directly at <1> </1><2>contact@embauche.beta.gouv.fr</2>
+  thanks: Thank for your feedback! You can contact us directly at <1> </1><2>contact@mon-entreprise.beta.gouv.fr</2>
 Janvier 2019: January 2019
 d'aides: of aid
 Oui: Yes
@@ -166,7 +166,7 @@ legalNotice:
     title: Contact
     content: >
       <0>
-        contact@embauche.beta.gouv.fr
+        contact@mon-entreprise.beta.gouv.fr
       </0>
 
 Cette règle est la somme de: This rule is the sum of
@@ -282,7 +282,7 @@ formeJuridique:
     titre: Which legal status should you choose for your company in France?
     description: >
       The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide quickly helps you to find the right status for your company project in France.
-  titre: Choose the legal status
+  titre: Create a company
   incertain: Not sure about this status? Take our guide to help you choose
   intro: 'The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs.'
   EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
@@ -295,6 +295,7 @@ formeJuridique:
   SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
   micro: The auto-entrepreneur is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
   micro-EIRL: The EIRL auto-entrepreneur is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  entreprise-déjà-crée: I have already declared my company
 
 Votre forme juridique: Your legal status
 Créer une: Create a
@@ -423,6 +424,10 @@ Ce n'est pas mon entreprise: This is not my company
 Simuler une embauche: Simulate a hire
 
 Protection sociale: Social security
+Rémunération du dirigeant: Director's remuneration
+Simulateur de salaire: Employee salary simulation
+Exemples de simulation de salaire: Examples of salary simulations
+Quelques exemples de salaires: Some salary exemples
 Embauche: Hiring process
 Entreprise Individuelle: Individual Business
 listeformejuridique:
@@ -433,7 +438,7 @@ statut du dirigeant:
     description: This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France
   titre: Defining the director's status
   description: <0>This choice is important because it determines the director's Social Security scheme and coverage.</0><1><0><0>Salaried employee:</0> The company director joins and is covered by France’s general Social Security scheme. Social Security contributions are calculated on the basis of the executive's actual pay and are paid monthly. Although more expensive, this scheme offers full social protection (except unemployment).</0><1><0>Self-employed:</0> The company director joins and is covered by France’s self-employed scheme called « Sécurité sociale des indépendants ». Contributions due are generally calculated based on professional income as reported to the tax authorities. Although less expensive, this scheme provides basic social protection (additional options and private insurance are recommended).</1></1>
-Assimilé salarié: Salaried
+Assimilé salarié: Assimilated salaried
 Indépendant: Self-employed
 gérant minoritaire:
   page:
@@ -520,6 +525,8 @@ path:
     selection: '/scheme-selection'
   démarcheEmbauche:
     index: '/hiring-process'
+  documentation:
+    exemples: '/examples'
 
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 auto-entrepreneur-EIRL: auto-entrepreneur-EIRL

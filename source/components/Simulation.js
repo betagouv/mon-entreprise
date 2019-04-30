@@ -4,7 +4,6 @@ import { resetSimulation } from 'Actions/actions'
 import { React, T } from 'Components'
 import Answers from 'Components/AnswerList'
 import Conversation from 'Components/conversation/Conversation'
-import PageFeedback from 'Components/Feedback/PageFeedback'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
@@ -38,7 +37,6 @@ export default compose(
 				noUserInput,
 				conversationStarted,
 				resetSimulation,
-				noFeedback,
 				showTargetsAnyway,
 				targetsTriggerConversation
 			} = this.props
@@ -54,7 +52,7 @@ export default compose(
 					<div
 						style={{
 							display: 'flex',
-							justifyContent: 'center',
+							justifyContent: 'flex-start',
 							alignItems: 'baseline'
 						}}>
 						{arePreviousAnswers ? (
@@ -98,20 +96,7 @@ export default compose(
 							)}
 						</>
 					)}
-
 					{showTargets && this.props.targets}
-					{!noFeedback && (
-						<div>
-							<PageFeedback
-								customMessage={
-									<T k="feedback.simulator">
-										Êtes-vous satisfait de ce simulateur ?
-									</T>
-								}
-								customEventName="rate simulator"
-							/>
-						</div>
-					)}
 				</>
 			)
 		}

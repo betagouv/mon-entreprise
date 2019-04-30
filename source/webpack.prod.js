@@ -48,7 +48,7 @@ module.exports = {
 	output: {
 		...common.output,
 		filename: ({ chunk }) => {
-			return chunk.name === 'dist/simulateur'
+			return chunk.name === 'simulateur-iframe-integration'
 				? '[name].js'
 				: '[name].[contenthash].bundle.js'
 		}
@@ -97,20 +97,22 @@ module.exports = {
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),
 			outputDir: path.resolve('dist', 'prerender', 'infrance'),
-			routes: ['/'],
+			routes: [
+				'/',
+				'/social-security/salaried',
+				'/iframes/simulateur-embauche'
+			],
 			indexPath: path.resolve('dist', 'infrance.html')
 		}),
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),
 			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
-			routes: ['/'],
+			routes: [
+				'/',
+				'/sécurité-sociale/salarié',
+				'/iframes/simulateur-embauche'
+			],
 			indexPath: path.resolve('dist', 'mon-entreprise.html')
-		}),
-		new PrerenderSPAPlugin({
-			...prerenderConfig(),
-			outputDir: path.resolve('dist', 'prerender', 'embauche'),
-			routes: ['/'],
-			indexPath: path.resolve('dist', 'embauche.html')
 		})
 	]
 }
