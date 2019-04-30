@@ -148,7 +148,7 @@ class Search extends React.Component<Props, State> {
 							onClick={() => {
 								this.props.onCompanyDetailsConfirmation(this.state.input)
 							}}
-							className="ui__ button">
+							className="ui__ plain button">
 							<T k="trouver.ok">Confirmer et simuler vos cotisations</T>
 						</button>}
 					</>
