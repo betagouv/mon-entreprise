@@ -282,7 +282,7 @@ formeJuridique:
     titre: Which legal status should you choose for your company in France?
     description: >
       The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide quickly helps you to find the right status for your company project in France.
-  titre: Choose the legal status
+  titre: Create a company
   incertain: Not sure about this status? Take our guide to help you choose
   intro: 'The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs.'
   EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
@@ -295,6 +295,7 @@ formeJuridique:
   SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
   micro: The auto-entrepreneur is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
   micro-EIRL: The EIRL auto-entrepreneur is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
+  entreprise-déjà-crée: I have already declared my company
 
 Votre forme juridique: Your legal status
 Créer une: Create a

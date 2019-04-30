@@ -4,7 +4,7 @@ import { T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
 import React, { useEffect } from 'react'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
@@ -51,8 +51,9 @@ const CreateMyCompany = ({
 			)}
 
 			<h1 className="question__title">
-				<T k="formeJuridique.titre">Choisir le statut juridique</T>
+				<T k="formeJuridique.titre">Créer une entreprise</T>
 			</h1>
+
 			{match.isExact && (
 				<>
 					<Helmet>
@@ -70,6 +71,13 @@ const CreateMyCompany = ({
 							)}
 						/>
 					</Helmet>
+					<p>
+						<Link to={sitePaths.entreprise.trouver}>
+							<T k="formeJuridique.entreprise-déjà-crée">
+								J'ai déjà déclaré mon entreprise
+							</T>
+						</Link>
+					</p>
 					<p>
 						<T k="formeJuridique.intro">
 							Le droit des sociétés définit plus de 20 statuts juridiques

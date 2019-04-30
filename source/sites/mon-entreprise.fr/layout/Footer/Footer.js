@@ -24,6 +24,7 @@ type OwnProps = {}
 
 const feedbackBlacklist = [
 	['index'],
+	['entreprise', 'statutJuridique', 'index'],
 	['sécuritéSociale', 'indépendant'],
 	['sécuritéSociale', 'auto-entrepreneur'],
 	['sécuritéSociale', 'assimilé-salarié'],
