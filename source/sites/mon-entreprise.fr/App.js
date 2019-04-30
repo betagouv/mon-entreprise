@@ -40,7 +40,7 @@ import { constructLocalizedSitePath } from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
-		'https://87763bb809954756b442bc93b5051ed6@sentry.data.gouv.fr/22'
+		'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
 	).install()
 }
 
@@ -48,7 +48,7 @@ let tracker = defaultTracker
 if (process.env.NODE_ENV === 'production') {
 	tracker = new ReactPiwik({
 		url: 'stats.data.gouv.fr',
-		siteId: 66,
+		siteId: 39,
 		trackErrors: true
 	})
 }
