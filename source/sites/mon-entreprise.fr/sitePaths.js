@@ -100,7 +100,7 @@ export const constructLocalizedSitePath = (language: string) => {
 				'path.sécuritéSociale.comparaison',
 				'/comparaison-assimilé-salarié-indépendant-et-auto-entrepreneur'
 			),
-			selection: t('path.sécuritéSociale.selection', '/selection-du-régime'),
+			selection: t('path.sécuritéSociale.selection', '/sélection-du-régime'),
 			salarié: t('path.sécuritéSociale.salarié', '/salarié')
 		},
 		démarcheEmbauche: {

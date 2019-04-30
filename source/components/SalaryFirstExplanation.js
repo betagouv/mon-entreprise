@@ -27,6 +27,7 @@ export default (connect(
 )(
 	class SalaryFirstExplanation extends Component<Props> {
 		render() {
+			console.log('yo', this.props.period)
 			return (
 				<>
 					<h2>
