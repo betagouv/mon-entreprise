@@ -57,20 +57,20 @@ const Salarié = ({ t }) => (
 	<>
 		<Helmet>
 			<title>
-				{t([
+				{t(
 					'simulateurs.salarié.page.titre',
-					'Calcul de salaire net et brut : simulateur officiel'
-				])}
+					`Calcul du salaire net et brut : simulateur officiel`
+				)}
 			</title>
 			<meta
 				name="description"
-				content={t([
+				content={t(
 					'simulateurs.salarié.page.description',
 					'Estimez les cotisations pour un salarié à partir du salaire brut, net ou "superbrut". Prise en comptes de toutes les cotisations du régime général et de l\'impôt sur le revenu. Découvrez les contreparties garanties par sécurité sociale'
-				])}
+				)}
 			/>
 		</Helmet>
-
+		<h1>Simulateur de revenu pour salarié</h1>
 		<div style={{ paddingTop: '2rem' }}>
 			<SalarySimulation />
 		</div>
