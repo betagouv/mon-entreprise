@@ -93,12 +93,12 @@ status = 301
 ## Old iframe adresse
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
-to = "https://mon-entreprise.fr/simulateur-iframe-integration-script.js"
+to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
 status = 301
 
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
-to = "https://mon-entreprise.fr/simulateur-iframe-integration-script.js"
+to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
 status = 301
 
 
