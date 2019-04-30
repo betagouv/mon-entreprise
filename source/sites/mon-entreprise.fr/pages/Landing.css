@@ -8,8 +8,11 @@
 	color: inherit;
 }
 
+.landing__banner .lead {
+	margin: 0.6em;
+	color: #1e266d;
+}
 .landing__banner header {
-	min-height: 15rem;
 	text-align: center;
 	position: relative;
 	overflow: hidden;
@@ -17,29 +20,10 @@
 	flex-direction: column;
 	align-items: center;
 
-	background: linear-gradient(
-		80deg,
-		rgba(39, 69, 195, 0.87) 0%,
-		rgba(41, 117, 209, 1) 50%,
-		rgba(39, 69, 195, 0.87) 100%,
-		rgba(41, 117, 209, 1) 150%
-	);
-	background-size: 200%;
-	color: white;
-	animation: move-background 30s linear infinite;
 	padding: 1rem;
-	padding-bottom: 5rem;
-}
-@keyframes move-background {
-	from {
-		background-position-x: 0;
-	}
-	to {
-		background-position-x: 200%;
-	}
 }
 .landing__header {
-	height: 3.5rem;
+	height: 2.8rem;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -61,4 +45,10 @@
 	right: 0;
 	width: 100%;
 	height: 3rem;
+}
+
+.ui__ .button-choice {
+	background: #1e266d;
+	color: white;
+	border-left: 0.6em solid #1091fc;
 }
