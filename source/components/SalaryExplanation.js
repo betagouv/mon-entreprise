@@ -16,7 +16,7 @@ export default compose(
 	class SalaryExplanation extends React.Component {
 		render() {
 			return (
-				<Animate.fromTop delay={this.props.conversationStarted ? 0 : 1000}>
+				<Animate.fromTop delay={this.props.conversationStarted ? 0 : 0}>
 					{!this.props.conversationStarted ? (
 						<>
 							{this.props.protectionText}

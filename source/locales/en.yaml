@@ -135,7 +135,7 @@ feedback:
     form:
       headline: Your feedback is valuable to us in order to continuously improve this site. What should we work on to better meet your expectations?
       email: Your email (if you would like an answer from us)
-  thanks: Thank for your feedback! You can contact us directly at <1> </1><2>contact@embauche.beta.gouv.fr</2>
+  thanks: Thank for your feedback! You can contact us directly at <1> </1><2>contact@mon-entreprise.beta.gouv.fr</2>
 Janvier 2019: January 2019
 d'aides: of aid
 Oui: Yes
@@ -166,7 +166,7 @@ legalNotice:
     title: Contact
     content: >
       <0>
-        contact@embauche.beta.gouv.fr
+        contact@mon-entreprise.beta.gouv.fr
       </0>
 
 Cette règle est la somme de: This rule is the sum of

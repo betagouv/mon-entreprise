@@ -25,7 +25,7 @@ const QuickLinks = ({ startConversation, show, quickLinks }: Props) => {
 				height: show ? 'auto' : 0,
 				opacity: show ? 1 : 0
 			}}
-			config={{ delay: show ? 1000 : 0 }}
+			config={{ delay: show ? 0 : 0 }}
 			native>
 			{styles => (
 				<animated.div

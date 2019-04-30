@@ -1,6 +1,7 @@
 .feedback-page {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
+	flex-wrap: wrap;
 	padding-top: 0.6rem;
 	padding-bottom: 0.6rem;
 	background: var(--lighterColour);
