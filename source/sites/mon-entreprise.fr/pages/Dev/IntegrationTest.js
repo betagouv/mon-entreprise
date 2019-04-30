@@ -6,9 +6,8 @@ export default withRouter(
 		componentDidMount() {
 			const script = document.createElement('script')
 			script.id = 'script-simulateur-embauche'
-			script.src =
-				window.location.origin + '/simulateur-iframe-integration.js'
-			script.dataset.couleur = '#2975D1'
+			script.src = window.location.origin + '/simulateur-iframe-integration.js'
+			script.dataset.couleur = '#005aa1'
 			this.DOMNode.appendChild(script)
 		}
 		render() {
