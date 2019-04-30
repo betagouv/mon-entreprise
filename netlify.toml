@@ -148,6 +148,11 @@ status = 200
   FR_SITE = "https://mon-entreprise.fr${path}"
   MASTER = 'true'
 
-[context."demo"]
+[context."demo".environment]
   EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"
   FR_SITE = "https://demo.mon-entreprise.fr${path}"
+
+# TEMP Just for testing the iframe when migrating from embauche to mon-entreprise
+[context."migration-embauche".environment]
+  EN_SITE = "https://deploy-preview-520--syso.netlify.com${path}?s=m"
+  FR_SITE = "https://deploy-preview-520--syso.netlify.com${path}"

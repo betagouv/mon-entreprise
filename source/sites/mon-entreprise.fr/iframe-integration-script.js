@@ -10,8 +10,8 @@ let script = document.getElementById('script-simulateur-embauche'),
 		),
 	integratorUrl = encodeURIComponent(window.location.href.toString()),
 	src =
-		baseUrl +
-		`?s=e&couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
+	baseUrl + (baseUrl.indexOf('?') !== -1 ? '&' : '?') +
+		`couleur=${couleur}&iframe&integratorUrl=${integratorUrl}&lang=${lang}`
 
 const iframe = document.createElement('iframe')
 const iframeAttributes = {
