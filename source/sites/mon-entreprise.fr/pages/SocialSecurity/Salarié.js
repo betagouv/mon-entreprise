@@ -70,7 +70,7 @@ const Salarié = ({ t }) => (
 				)}
 			/>
 		</Helmet>
-		<h1>Simulateur de revenu pour salarié</h1>
+
 		<div style={{ paddingTop: '2rem' }}>
 			<SalarySimulation />
 		</div>
