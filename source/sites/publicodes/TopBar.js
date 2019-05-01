@@ -10,7 +10,9 @@ export default withRouter(({ location }) => {
 			state: { scenario: scenarioName }
 		} = useContext(StoreContext),
 		scenario = scenarios[scenarioName],
-		displayIntro = location.pathname === '/'
+		displayIntro = ['/', '/contribuer/', '/à-propos'].includes(
+			location.pathname
+		)
 
 	return (
 		<section
