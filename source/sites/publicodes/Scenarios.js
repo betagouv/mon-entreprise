@@ -10,19 +10,19 @@ export default () => {
 		<section id="scenarios">
 			<h1>Quel futur souhaitez vous ?</h1>
 			<p>
-				Pour mieux comprendre ce que signifie l'impact carbone d'un geste de la
-				vie quotidienne, nous l'avons converti en temps.{' '}
+				Pour mieux comprendre l'impact de notre quotidien sur le climat, nous
+				l'avons converti en temps.
 			</p>
 			<p>
-				Si un vol émet 500kg d'équivalent CO₂ (c'est ainsi que l'on mesure la
-				contribution au réchauffement climatique), et qu'on estime que la limite
-				acceptable par personne est de 6 tonnes, alors ce vol consomme 5/6èmes
-				de notre crédit à l'année, soit exactement un mois : en 2 heures, la
-				durée du vol, nous avons grillé 1 mois de notre crédit annuel !
+				Si un vol émet 500 kg d'équivalent CO₂ (c'est ainsi que l'on mesure la
+				contribution au réchauffement climatique), et qu'on définit la limite
+				acceptable par personne à 6 tonnes, alors ce vol consomme un douzième de
+				notre crédit à l'année, soit exactement un mois : sur 2 petites heures
+				de vol, j'ai grillé 1 mois de crédit annuel !
 			</p>
 			<p>
-				Reste alors l'énorme enjeu de définir cette limite par personne.{' '}
-				{emoji('👇🏻')}
+				Mais quelle doit être cette limite par personne ? Voici quatre
+				scénarios, à vous de choisir ! &nbsp;{emoji('👇')}
 			</p>
 			<ul
 				css={`
@@ -45,8 +45,9 @@ export default () => {
 								margin-top: 0;
 							}
 							p {
-								display: inline;
 								font-style: italic;
+								text-align: justify;
+								font-size: 90%;
 							}
 							label {
 								cursor: pointer;
@@ -60,6 +61,7 @@ export default () => {
 						`}>
 						<label>
 							<input
+								css="width: 100%"
 								type="radio"
 								name="scenario"
 								value={nom}
@@ -68,17 +70,18 @@ export default () => {
 									dispatch({ type: 'SET_SCENARIO', scenario: nom })
 								}
 							/>
-							Scénario {nom}
-							<h2>{s.titre}</h2>
+							<h2>
+								<span>{emoji(s.icône)}</span>&nbsp;
+								{s.titre}
+							</h2>
 							<div>
-								{emoji('🇫🇷')} Crédit carbone par tête :{' '}
+								{emoji('🇫🇷')}&nbsp; Limite par tête :{' '}
 								{s['crédit carbone par personne']}&nbsp;t
 							</div>
 							<div>
-								{emoji('🌡️ ')}Réchauffement : {s.réchauffement}
+								{emoji('🌡️ ')} {s.réchauffement}
 							</div>
 							<div css="margin-top: 1em">
-								<span>{emoji(s.icône)}</span>&nbsp;
 								<p>{s.description}</p>
 							</div>
 						</label>
