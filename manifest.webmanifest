@@ -1,20 +1,15 @@
 {
-	"name": "Mon entreprise",
-	"short_name": "Mon entreprise",
-	"description": "L'assistant officiel du créateur d'entreprise",
+	"name": "Futureco",
+	"short_name": "Futureco",
+	"description": "Découvrir l'impact de nos gestes quotidiens sur le climat",
 	"display": "standalone",
 	"lang": "fr",
 	"orientation": "portrait-primary",
-	"theme_color": "#2975d1",
+	"theme_color": "#3742fa",
 	"icons": [
 		{
-			"src": "/favicon/android-chrome-192x192.png",
-			"sizes": "192x192",
-			"type": "image/png"
-		},
-		{
-			"src": "/favicon/android-chrome-512x512.png",
-			"sizes": "512x512",
+			"src": "/source/sites/publicodes/logo.png",
+			"sizes": "48x48",
 			"type": "image/png"
 		}
 	]
