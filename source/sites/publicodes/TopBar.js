@@ -20,10 +20,10 @@ export default () => (
 			`}
 			src={require('./logo.png')}
 		/>
-		<p>
+		<p css="max-width: 28rem">
 			La <strong>catastrophe climatique</strong> n'est plus une menace lointaine
 			et incertaine, c'est une <strong>actualité</strong>. Comment l'éviter ?
-			Chaque aspect de notre vie moderne a un impact, découvrez-le !{' '}
+			Chacun de nos gestes a un impact, découvrez-le !{' '}
 			<Link to="/à-propos">En savoir plus</Link>.{' '}
 		</p>
 		<Link
