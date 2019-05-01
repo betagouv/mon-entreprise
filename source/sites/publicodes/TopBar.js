@@ -15,11 +15,25 @@ export default withRouter(({ location }) => {
 	return (
 		<section
 			css={`
-				margin-top: 0.6em;
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				padding-top: 2.6em;
 			`}>
+			<div
+				css={`
+					position: fixed;
+					width: 100%;
+					left: 0;
+					top: 0;
+					background: yellow;
+					text-align: center;
+					font-size: 90%;
+					padding: 0.2em 0;
+				`}>
+				{emoji('')} Version beta : n'hésitez pas à tester ce site, mais sachez
+				que les données ne sont pas encore validées
+			</div>
 			<img
 				css={`
 					width: ${displayIntro ? '6rem' : '5em'};
