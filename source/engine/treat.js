@@ -211,6 +211,7 @@ export let treatString = (rules, rule) => rawNode => {
 		return {
 			evaluate,
 			jsx,
+
 			operator,
 			text: rawNode,
 			category: parseResult.category,

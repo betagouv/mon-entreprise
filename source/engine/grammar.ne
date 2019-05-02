@@ -2,14 +2,21 @@
 
 
 main ->
-		  CalcExpression {% id %}
-		| Boolean {% id %}
-		| Variable {% id %}
-		| NegatedVariable {% id %}
+		  AS {% id %}
+		| Comparison {% id %}
+		| NonNumericTerminal {% id %}
+
+NumericTerminal ->
+		Variable {% id %}
 		| TemporalVariable {% id %}
 		| FilteredVariable {% id %}
 		| percentage {% id %}
-		| Comparison {% id %}
+		| number {% id %}
+
+# Parentheses
+P -> "(" _ AS _ ")" {% function(d) {return {category:'parentheses', explanation: d[2]}} %}
+    | NumericTerminal           {% id %}
+
 
 Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	category: 'comparison',
@@ -18,7 +25,13 @@ Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
 	explanation: [d[0], d[4]]
 }) %}
 
-Comparable -> (number | percentage | CalcExpression | Variable | TemporalVariable | Constant) {% d => d[0][0] %}
+Comparable -> (  AS | NonNumericTerminal) {% d => d[0][0] %}
+
+NonNumericTerminal ->  
+	Boolean  {% id %} 
+	| String  {% id %}
+	| NegatedVariable  {% id %}
+
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
@@ -36,25 +49,37 @@ Temporalities -> "annuel" | "mensuel" {% id %}
 #-----
 
 
-CalcExpression -> Term _ ArithmeticOperator _ Term {% d => ({
+# Addition and subtraction
+AS -> AS _ ASOperator _ MD  {% d => ({
 	category: 'calcExpression',
 	operator: d[2],
 	explanation: [d[0], d[4]],
 	type: 'numeric'
 }) %}
 
+    | MD            {% id %}
+
+	 
+ASOperator	-> "+" {% id %}
+	| "-" {% id %}
+
+MDOperator	-> "*" {% id %}
+	| "/" {% id %}
+
+# Multiplication and division
+MD -> MD _ MDOperator _ P  {% d => ({
+	category: 'calcExpression',
+	operator: d[2],
+	explanation: [d[0], d[4]],
+	type: 'numeric'
+}) %}
+   
+    | P             {% id %}
+
 Term -> Variable {% id %}
 		| FilteredVariable {% id %}
 		| number {% id %}
 		| percentage {% id %}
-
-ArithmeticOperator -> "+" {% id %}
-	| "-" {% id %}
-	| "*" {% id %}
-	| "/" {% id %}
-
-
-
 
 Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d => ({
 	category: 'variable',
@@ -62,7 +87,7 @@ Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d 
 	type: 'numeric | boolean'
 }) %}
 
-Constant -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({
+String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({
 	category: 'value',
 	type: 'string',
 	nodeValue: d[1].join('')
@@ -84,3 +109,4 @@ percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({category: 'percenta
 
 Boolean -> "oui" {% d=> ({category: 'boolean', nodeValue: true}) %}
  | "non" {% d=> ({category: 'boolean', nodeValue: false}) %}
+
