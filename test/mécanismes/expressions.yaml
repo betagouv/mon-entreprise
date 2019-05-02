@@ -1,3 +1,18 @@
+- test: entier
+  formule: 5
+  exemples:
+    - valeur attendue: 5
+
+- test: nombre décimal
+  formule: 5.4
+  exemples:
+    - valeur attendue: 5.4
+
+- test: addition de nombres
+  formule: 28 + 1.1
+  exemples:
+    - valeur attendue: 29.1
+
 - nom: salaire de base
 - nom: contrat . salaire de base
 
