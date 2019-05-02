@@ -6186,7 +6186,7 @@ nearley-loader@^2.0.0:
   resolved "https://registry.yarnpkg.com/nearley-loader/-/nearley-loader-2.0.0.tgz#8d75fd2ab3ca9f6153ae099b2bf18f8d5605d203"
   integrity sha512-kkUlMrkLWMoQPlOVmv7a8aHFEiTOShPb1H+CkvJrDMYpMCqnQUpfJgViGFlh0wufMQlGcawPzebcng6KnDJEdg==
 
-nearley@^2.13.0, nearley@^2.7.10:
+nearley@^2.16.0, nearley@^2.7.10:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/nearley/-/nearley-2.16.0.tgz#77c297d041941d268290ec84b739d0ee297e83a7"
   integrity sha512-Tr9XD3Vt/EujXbZBv6UAHYoLUSMQAxSsTnm9K3koXzjzNWY195NqALeyrzLZBKzAkL3gl92BcSogqrHjD8QuUg==

@@ -1,4 +1,11 @@
-# Pour éditer ou comprendre ce fichier, utilisez l'éditeur web Nearley : https://omrelli.ug/nearley-playground/
+@preprocessor esmodule
+
+@{% 
+import maSuperFonction from './maSuperFonction'
+import treatVariableTransforms from './treatVariable'
+%}
+
+# To understand or edit this file, use the awesome nearley playground (but save your work, it can crash sometimes) : https://omrelli.ug/nearley-playground/
 
 
 main ->
@@ -18,12 +25,7 @@ P -> "(" _ AS _ ")" {% function(d) {return {category:'parentheses', explanation:
     | NumericTerminal           {% id %}
 
 
-Comparison -> Comparable _ ComparisonOperator _ Comparable {% d => ({
-	category: 'comparison',
-	type: 'boolean',
-	operator: d[2][0],
-	explanation: [d[0], d[4]]
-}) %}
+Comparison -> Comparable _ ComparisonOperator _ Comparable {% yo => maSuperFonction(yo) %}
 
 Comparable -> (  AS | NonNumericTerminal) {% d => d[0][0] %}
 
@@ -81,10 +83,9 @@ Term -> Variable {% id %}
 		| number {% id %}
 		| percentage {% id %}
 
-Variable -> VariableFragment (_ Dot _ VariableFragment {% d => d[3] %}):*  {% d => ({
-	category: 'variable',
-	fragments: [d[0], ...d[1]],
-	type: 'numeric | boolean'
+Variable -> VariableFragment (_ Dot _ VariableFragment {% [,,,fragment] => fragment %}):* 
+{% ([firstFragment, nextFragments]) =>  treatVariableTransforms({
+	fragments: [firstFragment, ...nextFragments],
 }) %}
 
 String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({
@@ -105,7 +106,7 @@ _ -> [\s]     {% d => null %}
 
 number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}) %}
 
-percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({category: 'percentage', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))/100}) %}
+percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => percentage(d)%}
 
 Boolean -> "oui" {% d=> ({category: 'boolean', nodeValue: true}) %}
  | "non" {% d=> ({category: 'boolean', nodeValue: false}) %}

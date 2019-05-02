@@ -78,46 +78,12 @@ export let treatString = (rules, rule) => rawNode => {
 		)
 	}
 
-	if (
-		!contains(parseResult.category)([
-			'variable',
-			'calcExpression',
-			'filteredVariable',
-			'comparison',
-			'negatedVariable',
-			'percentage',
-			'boolean'
-		])
-	)
-		throw new Error(
-			"Attention ! Erreur de traitement de l'expression : " + rawNode
-		)
-
 	if (parseResult.category == 'variable')
 		return treatVariableTransforms(rules, rule)(parseResult)
 	if (parseResult.category == 'negatedVariable')
 		return treatNegatedVariable(
 			treatVariable(rules, rule)(parseResult.variable)
 		)
-
-	if (parseResult.category == 'boolean') {
-		return {
-			nodeValue: parseResult.nodeValue,
-			// eslint-disable-next-line
-			jsx: () => <span className="boolean">{rawNode}</span>
-		}
-	}
-
-	// We don't need to handle category == 'value' because YAML then returns it as
-	// numerical value, not a String: it goes to treatNumber
-	if (parseResult.category == 'percentage')
-		return {
-			nodeValue: parseResult.nodeValue,
-			category: 'percentage',
-			// eslint-disable-next-line
-			jsx: () => <span className="value">{rawNode.split('%')[0]} %</span>
-			//on ajoute l'espace nécessaire en français avant le pourcentage
-		}
 
 	if (
 		parseResult.category == 'calcExpression' ||
@@ -234,6 +200,7 @@ export let treatOther = rawNode => {
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	)
 }
+
 export let treatObject = (rules, rule, treatOptions) => rawNode => {
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 

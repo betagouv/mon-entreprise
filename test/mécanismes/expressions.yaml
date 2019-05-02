@@ -13,6 +13,11 @@
   exemples:
     - valeur attendue: 29.1
 
+- test: addition de plusieurs nombres
+  formule: 27 + 1.1 + 0.9
+  exemples:
+    - valeur attendue: 29
+
 - nom: salaire de base
 - nom: contrat . salaire de base
 
