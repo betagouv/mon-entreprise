@@ -1,19 +1,7 @@
-/* .comparative-targets {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-@media (max-width: 800px) {
-	.comparative-targets {
-		flex-direction: column;
-		align-items: center;
-	}
-} */
-
 .comparaison-grid {
 	display: grid;
 	justify-items: stretch;
-	grid-template-columns: [row-legend] 15rem [assimilé-salarié] 1fr [indépendant] 1fr [auto-entrepreneur] 1fr [end];
+	grid-template-columns: [row-legend] 16rem [assimilé-salarié] 1fr [indépendant] 1fr [auto-entrepreneur] 1fr [end];
 }
 
 .comparaison-grid > * {
@@ -23,7 +11,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-align: right;
+	text-align: center;
+	flex-wrap: wrap;
 }
 .comparaison-grid > h2 {
 	margin: 0;
@@ -33,6 +22,7 @@
 .comparaison-grid > .legend {
 	justify-content: flex-end;
 	grid-column: row-legend;
+	text-align: right;
 }
 
 .comparaison-grid > .AS-et-indep {
@@ -48,9 +38,8 @@
 	grid-column: auto-entrepreneur;
 }
 .comparaison-grid > .all {
-	grid-column: assimilé-salarié / end;
-	border-left: 1px solid #dfdfdf;
-	margin-left: -1px;
+	grid-column: row-legend / end;
+	background-color: var(--lightestColour);
 }
 
 .comparaison-grid > .indep-et-auto {
@@ -66,13 +55,11 @@
 }
 
 .comparaison-grid > .green {
-	font-size: 120%;
 	font-weight: bold;
 	color: limegreen;
 }
 
 .comparaison-grid > .red {
-	font-size: 120%;
 	font-weight: bold;
 	color: red;
 }
