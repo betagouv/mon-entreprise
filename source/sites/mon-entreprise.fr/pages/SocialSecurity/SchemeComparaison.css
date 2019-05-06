@@ -14,6 +14,7 @@
 	text-align: center;
 	flex-wrap: wrap;
 }
+
 .comparaison-grid > h2 {
 	margin: 0;
 	flex-direction: column;
@@ -38,13 +39,16 @@
 	grid-column: auto-entrepreneur;
 }
 .comparaison-grid > .all {
+	text-align: left;
 	grid-column: row-legend / end;
 	background-color: var(--lightestColour);
 }
 
 .comparaison-grid > .indep-et-auto {
 	grid-column: indépendant / end;
-	text-align: center;
+}
+.comparaison-grid > .AS-indep-et-auto {
+	grid-column: assimilé-salarié / end;
 }
 
 .comparaison-grid.hide-auto-entrepreneur {
@@ -63,6 +67,10 @@
 	font-weight: bold;
 	color: red;
 }
+.comparaison-grid > .big {
+	font-size: 110%;
+}
+
 .comparaison-grid > .ui__.button {
 	place-self: center;
 	margin: 1rem 0;
