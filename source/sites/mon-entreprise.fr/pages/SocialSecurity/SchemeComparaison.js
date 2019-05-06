@@ -5,11 +5,10 @@ import Simulation from 'Components/Simulation'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { compose, map, tryCatch } from 'ramda'
-import React from 'react'
+import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
-import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
@@ -37,9 +36,9 @@ const SchemeComparaisonPage = ({
 	indépendant,
 	autoEntrepreneur,
 	conversationStarted,
-	noUserInput,
 	startConversation
 }: Props) => {
+	const [showMore, setShowMore] = useState(false)
 	return (
 		<>
 			<Helmet>
@@ -59,39 +58,48 @@ const SchemeComparaisonPage = ({
 			<div className="ui__ full-width">
 				<div className="comparaison-grid">
 					<h2 className="AS">
-						{emoji('☂')} Assimilé salarié
+						{emoji('☂')}{' '}
+						<span style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+							Assimilé salarié
+						</span>
 						<small>Le régime tout compris</small>
 					</h2>
 					<h2 className="indep">
-						{emoji('👩‍🔧')} Indépendant
+						{emoji('👩‍🔧')}{' '}
+						<span style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+							Indépendant
+						</span>
 						<small>La protection à la carte</small>
 					</h2>
 					<h2 className="auto">
-						{emoji('🚶‍♂️')} Auto-entrepreneur
+						{emoji('🚶‍♂️')}{' '}
+						<span style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+							Auto-entrepreneur
+						</span>
 						<small>Pour les petites activités</small>
 					</h2>
 
-					<div className="legend">Sécurité sociale</div>
+					<h3 className="legend">Sécurité sociale</h3>
 					<div className="AS">Régime général</div>
 					<div className="indep-et-auto">
 						Sécurité sociale des indépendants (SSI)
 					</div>
 
-					<div className="legend">Accidents du travail couverts</div>
+					<h3 className="legend">Accidents du travail couverts</h3>
 					<div className="AS">Oui</div>
 					<div className="indep-et-auto">Non</div>
 
-					<div className="legend">Assurance maladie</div>
+					<h3 className="legend">Assurance maladie</h3>
 					<div className="green AS">++</div>
 					<div className="green indep-et-auto">+</div>
 
-					<div className="legend">Indémnités journalières</div>
+					<h3 className="legend">Indémnités journalières</h3>
 					<div className="green AS">++</div>
 					<div className="indep-et-auto green">+</div>
 
 					{!conversationStarted && (
 						<>
-							<div className="legend">Retraite</div>
+							<h3 className="legend">Retraite</h3>
 							<div className="green AS">++</div>
 							<div className="green indep">+</div>
 							<div className="red auto">−</div>
@@ -100,7 +108,7 @@ const SchemeComparaisonPage = ({
 
 					{conversationStarted && (
 						<>
-							<div className="legend">Période</div>
+							<h3 className="legend">Période</h3>
 							<div className="AS-indep-et-auto">
 								<PeriodSwitch />
 							</div>
@@ -125,7 +133,7 @@ const SchemeComparaisonPage = ({
 
 					{conversationStarted && (
 						<>
-							<div className="legend">Revenu net</div>
+							<h3 className="legend">Revenu net</h3>
 							<div className="AS big">
 								{assimiléSalarié && (
 									<Animate.appear className="ui__ plain card">
@@ -154,7 +162,7 @@ const SchemeComparaisonPage = ({
 								)}
 							</div>
 
-							<div className="legend">Retraite</div>
+							<h3 className="legend">Retraite</h3>
 							<div className="AS big">
 								{assimiléSalarié && (
 									<a>
@@ -182,39 +190,55 @@ const SchemeComparaisonPage = ({
 							</div>
 						</>
 					)}
-					<div className="legend">ACCRE</div>
-					<div className="AS-et-indep">Une année, plafonné</div>
-					<div className="auto">3 années, progressif, non plafonné</div>
 
-					<div className="legend">Déduction des charges</div>
-					<div className="AS-et-indep">Régime réel </div>
-					<div className="auto">Abattement forfaitaire </div>
+					{showMore ? (
+						<>
+							<h3 className="legend">ACCRE</h3>
+							<div className="AS-et-indep">Une année, plafonné</div>
+							<div className="auto">3 années, progressif, non plafonné</div>
 
-					<div className="legend">Comptabilité</div>
-					<div className="AS">Expert</div>
-					<div className="indep">Compliquée</div>
-					<div className="auto">Simplifiée</div>
+							<h3 className="legend">Déduction des charges</h3>
+							<div className="AS-et-indep">Régime réel </div>
+							<div className="auto">Abattement forfaitaire </div>
 
-					<div className="legend">Paiment des cotisations</div>
-					<div className="AS">Mensuel (à la source)</div>
-					<div className="indep">Annuel avec deux ans de décalage</div>
-					<div className="auto">Mensuel ou trimestriel</div>
+							<h3 className="legend">Comptabilité</h3>
+							<div className="AS">Expert</div>
+							<div className="indep">Compliquée</div>
+							<div className="auto">Simplifiée</div>
 
-					<div className="legend">
-						Complémentaires retraite et santé déductibles
-					</div>
-					<div className="AS">Oui (jusqu'à 50%)</div>
-					<div className="indep">Oui (Loi Madelin)</div>
-					<div className="auto">Non</div>
+							<h3 className="legend">Paiment des cotisations</h3>
+							<div className="AS">Mensuel (à la source)</div>
+							<div className="indep">Annuel avec deux ans de décalage</div>
+							<div className="auto">Mensuel ou trimestriel</div>
 
-					<div className="legend">Statuts juridiques</div>
+							<h3 className="legend">
+								Complémentaires retraite et santé déductibles
+							</h3>
+							<div className="AS">Oui (jusqu'à 50%)</div>
+							<div className="indep">Oui (Loi Madelin)</div>
+							<div className="auto">Non</div>
+						</>
+					) : (
+						<>
+							<h3 className="legend">Information détaillés</h3>
+							<div className="AS-indep-et-auto">
+								<button
+									onClick={() => setShowMore(true)}
+									className="ui__ simple button">
+									Voir plus
+								</button>
+							</div>
+						</>
+					)}
+
+					<h3 className="legend">Statuts juridiques</h3>
 					<div className="AS">SAS, SASU, SARL minoritaire</div>
 					<div className="indep">EI, EURL, SARL majoritaire</div>
 					<div className="auto">Micro-entreprise</div>
-
-					<button className="AS ui__ button">Choisir ce régime</button>
-					<button className="indep ui__ button">Choisir ce régime</button>
-					<button className="auto ui__ button">Choisir ce régime</button>
+					{/* <h3className="legend" /> */}
+					<button className="AS ui__ plain button">Choisir</button>
+					<button className="indep ui__ button">Choisir</button>
+					<button className="auto ui__ button">Choisir</button>
 				</div>
 			</div>
 		</>
@@ -225,7 +249,6 @@ export default (compose(
 	connect(
 		state => ({
 			conversationStarted: state.conversationStarted,
-			noUserInput: noUserInputSelector(state),
 			...map(
 				situationBranchName =>
 					tryCatch(
