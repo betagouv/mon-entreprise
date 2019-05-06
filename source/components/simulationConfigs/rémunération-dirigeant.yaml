@@ -15,7 +15,7 @@ questions:
 bloquant:
   - entreprise . chiffre d'affaires
 situation:
-  période: année
+  période: mois
 
 branches:
   - nom: Auto-entrepreneur

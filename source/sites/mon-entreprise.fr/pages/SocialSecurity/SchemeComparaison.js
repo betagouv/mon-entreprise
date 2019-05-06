@@ -13,6 +13,7 @@ import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import './SchemeComparaison.css'
+
 import type { RègleAvecMontant } from 'Types/RegleTypes'
 
 type OwnProps = {}
@@ -97,6 +98,10 @@ const SchemeComparaisonPage = ({
 					<div className="green AS">++</div>
 					<div className="indep-et-auto green">+</div>
 
+					<h3 className="legend">Plafond de chiffre d'affaire</h3>
+					<div className="AS-et-indep">Non</div>
+					<div className="auto">Oui</div>
+
 					{!conversationStarted && (
 						<>
 							<h3 className="legend">Retraite</h3>
@@ -117,7 +122,7 @@ const SchemeComparaisonPage = ({
 					<div className="all">
 						{!conversationStarted ? (
 							<>
-								<h3>Comparez vos revenus et votre retraite en 1 minute</h3>
+								<h2>Comparez vos revenus et votre retraite en 1 minute</h2>
 								<button
 									className="ui__ cta plain button"
 									onClick={() => startConversation()}>
@@ -162,7 +167,7 @@ const SchemeComparaisonPage = ({
 								)}
 							</div>
 
-							<h3 className="legend">Retraite</h3>
+							<h3 className="legend">Retraite (estimation)</h3>
 							<div className="AS big">
 								{assimiléSalarié && (
 									<a>
@@ -217,15 +222,25 @@ const SchemeComparaisonPage = ({
 							<div className="AS">Oui (jusqu'à 50%)</div>
 							<div className="indep">Oui (Loi Madelin)</div>
 							<div className="auto">Non</div>
+
+							<h3 className="legend">Cotisations minimales</h3>
+							<div className="AS">Non</div>
+							<div className="indep">Oui</div>
+							<div className="auto">Non</div>
+
+							<h3 className="legend">Seuil d'activation des droits</h3>
+							<div className="AS">Oui</div>
+							<div className="indep">Non</div>
+							<div className="auto">Oui</div>
 						</>
 					) : (
 						<>
-							<h3 className="legend">Information détaillés</h3>
+							<h3 className="legend">Comparaison détaillée</h3>
 							<div className="AS-indep-et-auto">
 								<button
 									onClick={() => setShowMore(true)}
 									className="ui__ simple button">
-									Voir plus
+									Afficher la comparaison détaillée
 								</button>
 							</div>
 						</>
@@ -235,8 +250,7 @@ const SchemeComparaisonPage = ({
 					<div className="AS">SAS, SASU, SARL minoritaire</div>
 					<div className="indep">EI, EURL, SARL majoritaire</div>
 					<div className="auto">Micro-entreprise</div>
-					{/* <h3className="legend" /> */}
-					<button className="AS ui__ plain button">Choisir</button>
+					<button className="AS ui__ button">Choisir</button>
 					<button className="indep ui__ button">Choisir</button>
 					<button className="auto ui__ button">Choisir</button>
 				</div>
