@@ -1,0 +1,49 @@
+.landing-header {
+	height: 4.5rem;
+	display: flex;
+}
+
+.landing-header__institutional-logo,
+.landing-header__brand-logo {
+	height: 100%;
+}
+.landing-header__brand-logo img {
+	padding: 0.3rem 0;
+	height: 100%;
+}
+.landing-header__institutional-logo img {
+	padding: 1rem;
+	height: 100%;
+}
+.landing-title {
+	display: flex;
+	align-items: center;
+}
+
+.landing-title h1 {
+	margin-right: -1rem;
+}
+.landing-title__img {
+	align-self: end;
+	margin-right: -8rem;
+	margin-top: 2rem;
+	margin-left: 1rem;
+	margin-bottom: -2rem;
+}
+
+@media (max-width: 800px) {
+	.landing-title__img {
+		margin-top: 0;
+	}
+}
+@media (max-width: 500px) {
+	.landing-title__img {
+		display: none;
+	}
+	.landing-header__brand-logo {
+		margin-left: 1rem;
+	}
+	.landing-header__institutional-logo {
+		padding: 0.5rem 0;
+	}
+}

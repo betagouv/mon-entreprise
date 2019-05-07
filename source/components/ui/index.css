@@ -45,6 +45,13 @@ button {
 	}
 }
 
+.ui__.choice-group {
+	background-color: var(--lightestColour);
+	padding: 1rem 0;
+}
+section.ui__:not(:first-of-type) {
+	margin-top: 2rem;
+}
 .ui__.container {
 	width: 100%;
 	max-width: 850px;
@@ -58,7 +65,7 @@ button {
 }
 @media (max-width: 850px) {
 	.ui__.container .ui__.full-width {
-		margin: 0;
+		margin: 0 -0.6rem;
 	}
 }
 

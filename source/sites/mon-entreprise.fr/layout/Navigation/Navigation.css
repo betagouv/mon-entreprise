@@ -90,9 +90,10 @@
 .navigation > ul > li > :first-child * {
 	text-decoration: none !important;
 	line-height: 2rem;
-	font-family: 'IBM Plex Sans', sans-serif;
-	font-weight: 300;
-	font-size: 1.5rem;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: var(--darkColour);
+	font-size: 1.3rem;
 }
 .navigation > ul > li > :first-child .navigation__caret {
 	visibility: hidden;
