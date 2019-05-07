@@ -59,8 +59,8 @@
 }
 
 .step-question h1 {
-	font-size: 1.7rem;
-	color: rgba(0, 0, 0, 0.8);
+	font-size: 1.3rem;
+	line-height: 2.2rem;
 }
 
 .unfoldedHeader {

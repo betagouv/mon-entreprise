@@ -57,7 +57,7 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 	let // Use the default theme colour if the host page hasn't made a choice
 		colour = themeColour || '#2975D1',
 		lightColour = lightenColour(colour, 10),
-		darkColour = lightenColour(colour, -10),
+		darkColour = lightenColour(colour, -20),
 		lighterColour = lightenColour(colour, 45),
 		lightestColour = lightenColour(colour, 100),
 		darkestColour = lightenColour(colour, -100),

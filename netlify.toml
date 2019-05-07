@@ -60,6 +60,11 @@ to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
 status = 301
 
 [[redirects]]
+from = "https://embauche.beta.gouv.fr/simulation"
+to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
+status = 301
+
+[[redirects]]
 from = "https://embauche.beta.gouv.fr/documentation/*"
 to = "https://mon-entreprise.fr/documentation/:splat"
 status = 301

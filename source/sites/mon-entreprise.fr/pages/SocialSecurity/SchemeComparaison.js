@@ -6,6 +6,7 @@ import {
 } from 'Actions/companyStatusActions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import Simulation from 'Components/Simulation'
+// $FlowFixMe
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { compose, map, tryCatch } from 'ramda'
@@ -63,8 +64,9 @@ const SchemeComparaisonPage = ({
 				/>
 			</Helmet>
 			<h1>
-				Indépendant, assimilé salarié ou auto-entrepreneur : quel régime choisir
-				?
+				Indépendant, assimilé salarié ou{' '}
+				<span style={{ whiteSpace: 'nowrap' }}>auto-entrepreneur</span> : quel
+				régime choisir ?
 			</h1>
 			<p>
 				Lorsque vous créez votre société, le choix du statut juridique va
@@ -161,8 +163,8 @@ const SchemeComparaisonPage = ({
 
 					{conversationStarted && (
 						<>
-							<h3 className="legend">Revenu net</h3>
-							<div className="AS ">
+							<h3 className="legend">Revenu net après impôts</h3>
+							<div className="AS">
 								{assimiléSalarié && (
 									<Animate.appear className="ui__ plain card">
 										<AnimatedTargetValue
@@ -171,7 +173,7 @@ const SchemeComparaisonPage = ({
 									</Animate.appear>
 								)}
 							</div>
-							<div className="indep ">
+							<div className="indep">
 								{indépendant && (
 									<Animate.appear className="ui__ plain card">
 										<AnimatedTargetValue
@@ -180,7 +182,7 @@ const SchemeComparaisonPage = ({
 									</Animate.appear>
 								)}
 							</div>
-							<div className="auto ">
+							<div className="auto">
 								{autoEntrepreneur && (
 									<Animate.appear className="ui__ plain card">
 										<AnimatedTargetValue
@@ -199,8 +201,10 @@ const SchemeComparaisonPage = ({
 								)}
 							</div>
 							<div className="indep">
-								{indépendant && (
+								{indépendant && indépendant.retraite.montant !== 0 ? (
 									<AnimatedTargetValue value={indépendant.retraite.montant} />
+								) : (
+									<span className="ui__ notice">Pas implémenté</span>
 								)}
 							</div>
 							<div className="auto">
@@ -251,7 +255,7 @@ const SchemeComparaisonPage = ({
 							<div className="AS-indep-et-auto">
 								<button
 									onClick={() => setShowMore(true)}
-									className="ui__ simple button">
+									className="ui__ simple small button">
 									Afficher la comparaison détaillée
 								</button>
 							</div>
@@ -261,30 +265,36 @@ const SchemeComparaisonPage = ({
 					<div className="AS">Expert</div>
 					<div className="indep">Compliquée</div>
 					<div className="auto">Simplifiée</div>
-					<button
-						className="AS ui__ button"
-						onClick={() => {
-							defineDirectorStatus('SALARIED')
-							isAutoentrepreneur(false)
-						}}>
-						Choisir
-					</button>
-					<button
-						className="indep ui__ button"
-						onClick={() => {
-							defineDirectorStatus('SELF_EMPLOYED')
-							isAutoentrepreneur(false)
-						}}>
-						Choisir
-					</button>
-					<button
-						className="auto ui__ button"
-						onClick={() => {
-							defineDirectorStatus('SELF_EMPLOYED')
-							isAutoentrepreneur(true)
-						}}>
-						Choisir
-					</button>
+					<div className="AS no-border">
+						<button
+							className="ui__ button"
+							onClick={() => {
+								defineDirectorStatus('SALARIED')
+								isAutoentrepreneur(false)
+							}}>
+							Choisir
+						</button>
+					</div>
+					<div className="indep no-border">
+						<button
+							className="ui__ button"
+							onClick={() => {
+								defineDirectorStatus('SELF_EMPLOYED')
+								isAutoentrepreneur(false)
+							}}>
+							Choisir
+						</button>
+					</div>
+					<div className="auto no-border">
+						<button
+							className="ui__ button"
+							onClick={() => {
+								defineDirectorStatus('SELF_EMPLOYED')
+								isAutoentrepreneur(true)
+							}}>
+							Choisir
+						</button>
+					</div>
 				</div>
 			</div>
 		</>

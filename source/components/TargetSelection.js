@@ -102,12 +102,7 @@ export default compose(
 						className="ui__ plain card"
 						style={{
 							marginTop: '.6em',
-							color: colours.textColour,
-							background: `linear-gradient(
-								60deg,
-								${colours.darkColour} 0%,
-								${colours.colour} 100%
-								)`
+							color: colours.textColour
 						}}>
 						{this.renderOutputList()}
 					</section>

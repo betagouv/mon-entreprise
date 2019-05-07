@@ -2,7 +2,7 @@ describe('Landing test', function() {
 	const fr = Cypress.env('language') === 'fr'
 	it('should not crash', function() {
 		cy.visit('/')
-		cy.contains(fr ? 'Mon-entreprise.fr' : 'My company in France')
+		cy.get('img[alt="logo mon-entreprise.fr"]').should('be.visible')
 	})
 	it('should display urssaf and marianne logo', function() {
 		cy.visit('/')

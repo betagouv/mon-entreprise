@@ -3051,6 +3051,7 @@
       - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
           - entreprise . année d'activité != 'première année'
+          - entreprise . année d'activité != 'deuxième année'
           - entreprise . catégorie d'activité = 'libérale'
 
   période: flexible

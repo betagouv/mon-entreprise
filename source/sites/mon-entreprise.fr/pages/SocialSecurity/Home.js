@@ -85,51 +85,59 @@ class SocialSecurity extends Component<Props, {}> {
 								</div>
 							</>
 						)}
-						{régime === 'auto-entrepreneur' ? (
-							<Link
-								className="ui__ button-choice "
-								to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
-								{emoji('🚶')}{' '}
-								<T k="sécu.choix.auto-entrepreneur">
-									Estimer ma rémunération en tant qu'auto-entrepreneur
-								</T>
-							</Link>
-						) : (
-							<>
-								<h2>
-									<T k="sécu.choix.titre">Que souhaitez-vous estimer ?</T>
-								</h2>
-								<Link
-									className="ui__ button-choice "
-									to={
-										régime
-											? sitePaths.sécuritéSociale[régime]
-											: sitePaths.sécuritéSociale.selection
-									}>
-									{emoji('💰')}{' '}
-									{legalStatus
-										? t(
-												[
-													'sécu.choix.dirigeant1',
-													`Votre rémunération en tant que dirigeant de {{legalStatus}}`
-												],
-												{ legalStatus: t(legalStatus) }
-										  )
-										: t(
-												'sécu.choix.dirigeant2',
-												`La rémunération du dirigeant`
-										  )}
-								</Link>
-								<Link
-									className="ui__ button-choice "
-									to={sitePaths.sécuritéSociale.salarié}>
-									{emoji('👥')}{' '}
-									<T k="sécu.choix.employé">Le salaire d'un employé</T>
-								</Link>
-								<br />
-							</>
-						)}
-						<Video />
+
+						<section
+							style={{ marginTop: '2rem' }}
+							className="ui__ full-width choice-group">
+							<div className="ui__ container">
+								{régime === 'auto-entrepreneur' ? (
+									<Link
+										className="ui__ button-choice "
+										to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
+										{emoji('🚶')}{' '}
+										<T k="sécu.choix.auto-entrepreneur">
+											Estimer ma rémunération en tant qu'auto-entrepreneur
+										</T>
+									</Link>
+								) : (
+									<>
+										<h2>
+											<T k="sécu.choix.titre">Que souhaitez-vous estimer ?</T>
+										</h2>
+										<Link
+											className="ui__ button-choice "
+											to={
+												régime
+													? sitePaths.sécuritéSociale[régime]
+													: sitePaths.sécuritéSociale.selection
+											}>
+											{emoji('💰')}{' '}
+											{legalStatus
+												? t(
+														[
+															'sécu.choix.dirigeant1',
+															`Votre rémunération en tant que dirigeant de {{legalStatus}}`
+														],
+														{ legalStatus: t(legalStatus) }
+												  )
+												: t(
+														'sécu.choix.dirigeant2',
+														`La rémunération du dirigeant`
+												  )}
+										</Link>
+										<Link
+											className="ui__ button-choice "
+											to={sitePaths.sécuritéSociale.salarié}>
+											{emoji('👥')}{' '}
+											<T k="sécu.choix.employé">Le salaire d'un employé</T>
+										</Link>
+									</>
+								)}
+							</div>
+						</section>
+						<section style={{ marginTop: '2rem' }}>
+							<Video />
+						</section>
 					</Animate.fromBottom>
 				)}
 			</>
