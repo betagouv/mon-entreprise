@@ -13,7 +13,6 @@ import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
@@ -163,7 +162,7 @@ const SchemeComparaisonPage = ({
 					{conversationStarted && (
 						<>
 							<h3 className="legend">Revenu net</h3>
-							<div className="AS big">
+							<div className="AS ">
 								{assimiléSalarié && (
 									<Animate.appear className="ui__ plain card">
 										<AnimatedTargetValue
@@ -172,7 +171,7 @@ const SchemeComparaisonPage = ({
 									</Animate.appear>
 								)}
 							</div>
-							<div className="indep big">
+							<div className="indep ">
 								{indépendant && (
 									<Animate.appear className="ui__ plain card">
 										<AnimatedTargetValue
@@ -181,43 +180,35 @@ const SchemeComparaisonPage = ({
 									</Animate.appear>
 								)}
 							</div>
-							<div className="auto big">
+							<div className="auto ">
 								{autoEntrepreneur && (
 									<Animate.appear className="ui__ plain card">
-										<Link to={autoEntrepreneur.revenuNet.lien}>
-											<AnimatedTargetValue
-												value={autoEntrepreneur.revenuNet.montant}
-											/>
-										</Link>
+										<AnimatedTargetValue
+											value={autoEntrepreneur.revenuNet.montant}
+										/>
 									</Animate.appear>
 								)}
 							</div>
 
 							<h3 className="legend">Retraite (estimation)</h3>
-							<div className="AS big">
+							<div className="AS">
 								{assimiléSalarié && (
-									<a>
-										<AnimatedTargetValue
-											value={assimiléSalarié.retraite.montant}
-										/>
-									</a>
+									<AnimatedTargetValue
+										value={assimiléSalarié.retraite.montant}
+									/>
 								)}
 							</div>
-							<div className="indep big">
+							<div className="indep">
 								{indépendant && (
-									<a>
-										<AnimatedTargetValue value={indépendant.retraite.montant} />
-									</a>
+									<AnimatedTargetValue value={indépendant.retraite.montant} />
 								)}
 							</div>
-							<div className="auto big">
-								<a>
-									{autoEntrepreneur && (
-										<AnimatedTargetValue
-											value={autoEntrepreneur.retraite.montant}
-										/>
-									)}
-								</a>
+							<div className="auto">
+								{autoEntrepreneur && (
+									<AnimatedTargetValue
+										value={autoEntrepreneur.retraite.montant}
+									/>
+								)}
 							</div>
 						</>
 					)}
