@@ -75,9 +75,6 @@
 	font-weight: bold;
 	color: red;
 }
-.comparaison-grid > .big {
-	font-size: 110%;
-}
 
 .comparaison-grid > .ui__.button {
 	place-self: center;
