@@ -30,6 +30,11 @@
 	margin-left: 1rem;
 	margin-bottom: -2rem;
 }
+@media (min-width: 500px) {
+	.landing-title__logo {
+		display: none;
+	}
+}
 
 @media (max-width: 800px) {
 	.landing-title__img {
@@ -37,13 +42,21 @@
 	}
 }
 @media (max-width: 500px) {
+	.landing-header {
+		height: 3.5rem;
+	}
+
+	.landing-title {
+		flex-direction: column;
+		text-align: center;
+	}
+	.landing-header__brand-logo {
+		display: none;
+	}
 	.landing-title__img {
 		display: none;
 	}
 	.landing-header__brand-logo {
 		margin-left: 1rem;
-	}
-	.landing-header__institutional-logo {
-		padding: 0.5rem 0;
 	}
 }

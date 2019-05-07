@@ -42,6 +42,11 @@ export default compose(
 			</a>
 		</div>
 		<section className="ui__ container landing-title">
+			<img
+				alt="logo mon-entreprise.fr"
+				className="landing-title__logo"
+				src={logoSvg}
+			/>
 			<header>
 				<h1>
 					<T k="subtitle">Le guide officiel du créateur d'entreprise</T>
