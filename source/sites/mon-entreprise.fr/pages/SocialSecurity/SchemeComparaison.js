@@ -1,23 +1,20 @@
 /* @flow */
-import { startConversation } from 'Actions/actions'
-import {
-	defineDirectorStatus,
-	isAutoentrepreneur
-} from 'Actions/companyStatusActions'
-import PeriodSwitch from 'Components/PeriodSwitch'
-import Simulation from 'Components/Simulation'
+import { startConversation } from 'Actions/actions';
+import { defineDirectorStatus, isAutoentrepreneur } from 'Actions/companyStatusActions';
+import PeriodSwitch from 'Components/PeriodSwitch';
+import Simulation from 'Components/Simulation';
 // $FlowFixMe
-import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import { compose, map, tryCatch } from 'ramda'
-import React, { useState } from 'react'
-import emoji from 'react-easy-emoji'
-import { Helmet } from 'react-helmet'
-import { connect } from 'react-redux'
-import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
-import Animate from 'Ui/animate'
-import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
-import './SchemeComparaison.css'
+import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml';
+import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig';
+import { compose, map, tryCatch } from 'ramda';
+import React, { useState } from 'react';
+import emoji from 'react-easy-emoji';
+import { Helmet } from 'react-helmet';
+import { connect } from 'react-redux';
+import { règleAvecMontantSelector } from 'Selectors/regleSelectors';
+import Animate from 'Ui/animate';
+import AnimatedTargetValue from 'Ui/AnimatedTargetValue';
+import './SchemeComparaison.css';
 
 import type { RègleAvecMontant } from 'Types/RegleTypes'
 
@@ -73,7 +70,7 @@ const SchemeComparaisonPage = ({
 				determiner à quel régime social le dirigeant est affilié. Il en existe
 				trois différents, avec chacun ses avantages et inconvénients. Grâce à ce
 				comparatif, vous pourrez sélectionner celui qui vous correspond le
-				mieux, en toute connaissance de cause.
+				mieux.
 			</p>
 			<br />
 			<div className="ui__ full-width">

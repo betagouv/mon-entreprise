@@ -45,8 +45,7 @@ const SchemeChoice = withSitePaths(({ sitePaths }) => (
 			Le régime social du dirigeant a une très grande influence sur votre
 			protection sociale et sur le revenu que vous aller toucher. Pour vous
 			aider à y voir plus clair, nous avons conçu un petit comparatif, afin que
-			vous puissiez choisir le régime qui vous convient le mieux en toute
-			connaissance de cause.
+			vous puissiez choisir le régime qui vous convient le mieux.
 		</p>
 		<p style={{ textAlign: 'center', marginTop: '1rem' }}>
 			<Link
