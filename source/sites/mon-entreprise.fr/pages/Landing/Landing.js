@@ -72,10 +72,11 @@ export default compose(
 					{emoji('🤝')} <T>Connaître les démarches d'embauche</T>
 				</Link>
 				<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>
-					<span className="ui__ button-choice-label">
-						<T>prochainement</T>
-					</span>
 					{emoji('🏡')} <T>Déclarer mon activité d'économie collaborative</T>
+					<div style={{ flex: 1 }} />
+					<span className="ui__ button-choice-label">
+						<T>Prochainement</T>
+					</span>
 				</Link>
 				{/*
 				<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>

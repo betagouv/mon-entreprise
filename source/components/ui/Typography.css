@@ -25,7 +25,7 @@ html {
 body {
 	font-weight: 400;
 	color: #040e19;
-	color: var(--darkestColour);
+	color: var(--darkColour);
 	font-family: 'Roboto', sans-serif;
 }
 

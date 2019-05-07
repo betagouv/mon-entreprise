@@ -9,11 +9,6 @@
 	padding: 0.6rem 1rem;
 	margin: 1rem 0;
 }
-.feedback-page.stickToFooter {
-	margin-bottom: 0;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-}
 .feedback-page button.link-button {
 	margin: 0 0.6rem;
 }

@@ -10,55 +10,57 @@ const SchemeChoice = withSitePaths(({ sitePaths }) => (
 		<h1>
 			<T>Quel régime souhaitez-vous explorer ?</T>
 		</h1>
-		<p style={{ display: 'flex', flexWrap: 'wrap' }}>
+		<p>
 			<Link
 				to={sitePaths.sécuritéSociale['assimilé-salarié']}
-				className="ui__ button-choice"
-				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
+				className="ui__ button-choice">
 				{emoji('☂')}
-				<br />
-				<T>Assimilé salarié</T>
-				<br />
-				<small>
-					<T>SAS, SASU ou SARL minoritaires</T>
-				</small>
+				<span>
+					<T>Assimilé salarié</T>{' '}
+					<small>
+						(<T>SAS, SASU ou SARL minoritaires</T>)
+					</small>
+				</span>
 			</Link>
 			<Link
 				to={sitePaths.sécuritéSociale.indépendant}
-				className="ui__ button-choice"
-				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
+				className="ui__ button-choice">
 				{emoji('👩‍🔧')}
-				<br />
-				<T>Indépendant</T>
-				<br />
-				<small>
-					<T>EI, EURL, SARL ou SARL majoritaires</T>
-				</small>
+				<span>
+					<T>Indépendant</T>{' '}
+					<small>
+						(<T>EI, EURL, SARL ou SARL majoritaires</T>)
+					</small>
+				</span>
 			</Link>
 			<Link
 				to={sitePaths.sécuritéSociale['auto-entrepreneur']}
-				className="ui__ button-choice"
-				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
+				className="ui__ button-choice">
 				{emoji('🚶‍♂️')}
-				<br />
-				Auto-entrepreneur <br />
+				Auto-entrepreneur
 			</Link>
 		</p>
+		<h2>Vous ne savez pas lequel choisir ?</h2>
 		<p>
+			Le régime social du dirigeant a une très grande influence sur votre
+			protection sociale et sur le revenu que vous aller toucher. Pour vous
+			aider à y voir plus clair, nous avons conçu un petit comparatif, afin que
+			vous puissiez choisir le régime qui vous convient le mieux en toute
+			connaissance de cause.
+		</p>
+		<p style={{ textAlign: 'center', marginTop: '1rem' }}>
 			<Link
 				className={
-					'ui__ button-choice' +
+					'ui__  plain button ' +
 					(process.env.MASTER ? ' button-choice--soon' : '')
 				}
-				to={sitePaths.sécuritéSociale.comparaison}
-				style={{ textAlign: 'center', flex: 1, margin: '0.5rem' }}>
+				to={sitePaths.sécuritéSociale.comparaison}>
+				<T>Comparer les régimes </T>
 				{process.env.MASTER && (
 					<span className="ui__ button-choice-label">
 						<T>prochainement</T>
 					</span>
 				)}
-				{emoji('🚶‍♂️')}
-				<T>Comparer les trois régimes</T>
 			</Link>
 		</p>
 	</animate.fromBottom>
