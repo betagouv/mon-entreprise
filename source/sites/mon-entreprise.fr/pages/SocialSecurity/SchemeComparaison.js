@@ -1,5 +1,9 @@
 /* @flow */
 import { startConversation } from 'Actions/actions'
+import {
+	defineDirectorStatus,
+	isAutoentrepreneur
+} from 'Actions/companyStatusActions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import Simulation from 'Components/Simulation'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
@@ -9,6 +13,7 @@ import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
@@ -24,7 +29,8 @@ type Props = OwnProps & {
 	autoEntrepreneur: ?SimulationResult,
 	conversationStarted: boolean,
 	noUserInput: boolean,
-	startConversation: () => void
+	startConversation: () => void,
+	setSituationBranch: () => void
 }
 
 type SimulationResult = {
@@ -37,6 +43,7 @@ const SchemeComparaisonPage = ({
 	indépendant,
 	autoEntrepreneur,
 	conversationStarted,
+	setSituationBranch,
 	startConversation
 }: Props) => {
 	const [showMore, setShowMore] = useState(false)
@@ -55,7 +62,11 @@ const SchemeComparaisonPage = ({
 				/>
 			</Helmet>
 			<h1>Quel régime choisir pour l'indépendant ?</h1>
-
+			<p>
+				Lorsque vous créez votre société, vous devez choisir le régime social du
+				dirigeant. Il en existe trois différents, avec chacun ses avantages et
+				inconvénients.
+			</p>
 			<div className="ui__ full-width">
 				<div className="comparaison-grid">
 					<h2 className="AS">
@@ -160,9 +171,11 @@ const SchemeComparaisonPage = ({
 							<div className="auto big">
 								{autoEntrepreneur && (
 									<Animate.appear className="ui__ plain card">
-										<AnimatedTargetValue
-											value={autoEntrepreneur.revenuNet.montant}
-										/>
+										<Link to={autoEntrepreneur.revenuNet.lien}>
+											<AnimatedTargetValue
+												value={autoEntrepreneur.revenuNet.montant}
+											/>
+										</Link>
 									</Animate.appear>
 								)}
 							</div>
@@ -206,11 +219,6 @@ const SchemeComparaisonPage = ({
 							<div className="AS-et-indep">Régime réel </div>
 							<div className="auto">Abattement forfaitaire </div>
 
-							<h3 className="legend">Comptabilité</h3>
-							<div className="AS">Expert</div>
-							<div className="indep">Compliquée</div>
-							<div className="auto">Simplifiée</div>
-
 							<h3 className="legend">Paiment des cotisations</h3>
 							<div className="AS">Mensuel (à la source)</div>
 							<div className="indep">Annuel avec deux ans de décalage</div>
@@ -245,14 +253,39 @@ const SchemeComparaisonPage = ({
 							</div>
 						</>
 					)}
+					<h3 className="legend">Comptabilité</h3>
+					<div className="AS">Expert</div>
+					<div className="indep">Compliquée</div>
+					<div className="auto">Simplifiée</div>
 
-					<h3 className="legend">Statuts juridiques</h3>
+					<h3 className="legend">Statuts juridiques possibles</h3>
 					<div className="AS">SAS, SASU, SARL minoritaire</div>
 					<div className="indep">EI, EURL, SARL majoritaire</div>
 					<div className="auto">Micro-entreprise</div>
-					<button className="AS ui__ button">Choisir</button>
-					<button className="indep ui__ button">Choisir</button>
-					<button className="auto ui__ button">Choisir</button>
+					<button
+						className="AS ui__ button"
+						onClick={() => {
+							defineDirectorStatus('SALARIED')
+							isAutoentrepreneur(false)
+						}}>
+						Choisir
+					</button>
+					<button
+						className="indep ui__ button"
+						onClick={() => {
+							defineDirectorStatus('SELF_EMPLOYED')
+							isAutoentrepreneur(false)
+						}}>
+						Choisir
+					</button>
+					<button
+						className="auto ui__ button"
+						onClick={() => {
+							defineDirectorStatus('SELF_EMPLOYED')
+							isAutoentrepreneur(true)
+						}}>
+						Choisir
+					</button>
 				</div>
 			</div>
 		</>
@@ -283,7 +316,7 @@ export default (compose(
 				}
 			)
 		}),
-		{ startConversation }
+		{ startConversation, defineDirectorStatus, isAutoentrepreneur }
 	),
 	withSimulationConfig(ComparaisonConfig)
 )(SchemeComparaisonPage): React$Component<OwnProps>)
