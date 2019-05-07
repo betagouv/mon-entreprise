@@ -30,7 +30,9 @@ type Props = OwnProps & {
 	conversationStarted: boolean,
 	noUserInput: boolean,
 	startConversation: () => void,
-	setSituationBranch: () => void
+	setSituationBranch: () => void,
+	defineDirectorStatus: string => void,
+	isAutoentrepreneur: boolean => void
 }
 
 type SimulationResult = {
@@ -43,7 +45,9 @@ const SchemeComparaisonPage = ({
 	indépendant,
 	autoEntrepreneur,
 	conversationStarted,
-	setSituationBranch,
+	defineDirectorStatus,
+	isAutoentrepreneur,
+	// setSituationBranch,
 	startConversation
 }: Props) => {
 	const [showMore, setShowMore] = useState(false)
@@ -51,22 +55,26 @@ const SchemeComparaisonPage = ({
 		<>
 			<Helmet>
 				<title>
-					Assimilé salarié, indépendant, auto-entrepreneur : comparaison des
-					régimes
+					Indépendant, assimilé salarié ou auto-entrepreneur : découvrez le
+					régime qui vous correspond le mieux
 				</title>
 				<meta
 					name="description"
-					content="A partir d'un chiffre d'affaire donné, comparez le revenus net obtenu
-				après paiement des cotisations sociale et impôts pour les différents
-				régimes."
+					content="Quel est le meilleur régime pour votre situation ? Simulez vos revenus et votre retraite en une minute pour chacune des possibilités."
 				/>
 			</Helmet>
-			<h1>Quel régime choisir pour l'indépendant ?</h1>
+			<h1>
+				Indépendant, assimilé salarié ou auto-entrepreneur : quel régime choisir
+				?
+			</h1>
 			<p>
-				Lorsque vous créez votre société, vous devez choisir le régime social du
-				dirigeant. Il en existe trois différents, avec chacun ses avantages et
-				inconvénients.
+				Lorsque vous créez votre société, le choix du statut juridique va
+				determiner à quel régime social le dirigeant est affilié. Il en existe
+				trois différents, avec chacun ses avantages et inconvénients. Grâce à ce
+				comparatif, vous pourrez sélectionner celui qui vous correspond le
+				mieux, en toute connaissance de cause.
 			</p>
+			<br />
 			<div className="ui__ full-width">
 				<div className="comparaison-grid">
 					<h2 className="AS">
@@ -90,6 +98,11 @@ const SchemeComparaisonPage = ({
 						</span>
 						<small>Pour les petites activités</small>
 					</h2>
+
+					<h3 className="legend">Statuts juridiques possibles</h3>
+					<div className="AS">SAS, SASU, SARL minoritaire</div>
+					<div className="indep">EI, EURL, SARL majoritaire</div>
+					<div className="auto">Micro-entreprise</div>
 
 					<h3 className="legend">Sécurité sociale</h3>
 					<div className="AS">Régime général</div>
@@ -257,11 +270,6 @@ const SchemeComparaisonPage = ({
 					<div className="AS">Expert</div>
 					<div className="indep">Compliquée</div>
 					<div className="auto">Simplifiée</div>
-
-					<h3 className="legend">Statuts juridiques possibles</h3>
-					<div className="AS">SAS, SASU, SARL minoritaire</div>
-					<div className="indep">EI, EURL, SARL majoritaire</div>
-					<div className="auto">Micro-entreprise</div>
 					<button
 						className="AS ui__ button"
 						onClick={() => {
