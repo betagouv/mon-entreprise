@@ -1,7 +1,8 @@
 .comparaison-grid {
 	display: grid;
 	justify-items: stretch;
-	grid-template-columns: [row-legend] 16rem [assimilé-salarié] auto [indépendant] auto [auto-entrepreneur] auto [end];
+	justify-content: center;
+	grid-template-columns: [row-legend] 15rem [assimilé-salarié] auto [indépendant] auto [auto-entrepreneur] auto [end];
 }
 .comparaison-grid > * {
 	border-bottom: 1px solid #dfdfdf;
@@ -31,13 +32,16 @@
 }
 .comparaison-grid > .AS {
 	grid-column: assimilé-salarié;
+	max-width: 16rem;
 }
 .comparaison-grid > .indep {
 	grid-column: indépendant;
+	max-width: 16rem;
 }
 .comparaison-grid > .auto:not(.button) {
 	grid-column: auto-entrepreneur;
 	border-right: none;
+	max-width: 16rem;
 }
 .comparaison-grid > .all {
 	border-right: none;
