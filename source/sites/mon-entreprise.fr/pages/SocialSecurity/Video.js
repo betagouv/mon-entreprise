@@ -24,7 +24,6 @@ export default withLanguage(
 					<iframe
 						style={{
 							position: 'absolute',
-							top: '1em',
 							left: 0,
 							width: '100%',
 							height: '100%'

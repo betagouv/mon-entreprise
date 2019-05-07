@@ -198,7 +198,8 @@
 	margin-bottom: 2rem;
 }
 .ui__.button-choice {
-	display: block;
+	display: flex;
+	align-items: center;
 	padding: 1rem;
 	background: white;
 	color: var(--darkColour);
@@ -220,19 +221,21 @@
 	pointer-events: none;
 	cursor: default;
 }
+
 .ui__.button-choice--soon img {
 	filter: saturate(0%);
 }
 .ui__.button-choice-label {
-	font-size: 66%;
-	padding: 0.4rem 0.8rem;
+	font-size: 80%;
+	padding: 0 0.8rem;
 	color: white;
 	background: gray;
+	font-weight: 500;
 	opacity: 0.8;
 	border-radius: 0.3rem;
 }
 .ui__.button-choice img {
-	margin-right: 1rem !important;
+	margin-right: 2rem !important;
 	margin-left: 0.5rem !important;
 	transform: scale(1.5);
 	transition: transform 0.2s;

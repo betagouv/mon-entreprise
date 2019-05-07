@@ -1,12 +1,6 @@
-.footer-container {
-	margin-top: 3rem;
-}
 .footer {
-	background-color: rgba(41, 117, 209, 0.133);
-	background-color: var(--lightestColour);
-	padding: 1rem 0;
+	margin-top: 5rem;
 }
-
 .footer img {
 	height: 2.5rem;
 }
@@ -14,7 +8,6 @@
 .footer a {
 	text-decoration: none;
 }
-
 #footerIcons {
 	display: flex;
 	margin: 2rem 0;
@@ -23,10 +16,30 @@
 #footerIcons a::after {
 	display: none;
 }
+.footer__newsletterContainer {
+	display: flex;
+
+	justify-content: center;
+}
+@media (max-width: 800px) {
+	.footer__newsletterContainer {
+		flex-wrap: wrap;
+	}
+	.footer__registerContainer {
+		margin-left: 0rem;
+		margin-top: 1rem;
+	}
+}
+
 .footer__registerContainer {
 	display: flex;
-	flex-direction: column;
-	margin-bottom: 2rem;
+	margin-left: 1rem;
+}
+.footer__registerContainer label {
+	text-transform: uppercase;
+	font-size: 85%;
+	color: var(--darkColour);
+	font-weight: 500;
 }
 .footer__registerField {
 	display: flex;
@@ -36,6 +49,11 @@
 	overflow: hidden;
 	border-radius: 0.3rem;
 	align-self: center;
+}
+.footer__separator {
+	margin: 2rem 0;
+	border-top: 1px solid var(--lighterColour);
+	border-bottom: none;
 }
 .footer__registerField > input[type='submit'] {
 	border-top-left-radius: 0 !important;

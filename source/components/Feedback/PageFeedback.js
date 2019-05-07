@@ -1,6 +1,5 @@
 /* @flow */
 
-import classNames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans, withTranslation } from 'react-i18next'
@@ -16,8 +15,7 @@ import type { Node } from 'react'
 type OwnProps = {
 	blacklist: Array<string>,
 	customMessage?: Node,
-	customEventName?: string,
-	stickToFooter: boolean
+	customEventName?: string
 }
 type Props = OwnProps & {
 	location: Location,
@@ -93,7 +91,6 @@ class PageFeedback extends Component<Props, State> {
 		this.setState({ showForm: true })
 	}
 	render() {
-		let { stickToFooter = false } = this.props
 		if (
 			this.state.feedbackAlreadyGiven &&
 			!this.state.showForm &&
@@ -105,11 +102,10 @@ class PageFeedback extends Component<Props, State> {
 			this.props.location.pathname === '/' ? '' : this.props.location.pathname
 		return (
 			!this.props.blacklist.includes(pathname) && (
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<div
-						className={classNames('feedback-page', 'ui__', 'notice', {
-							stickToFooter
-						})}>
+				<div
+					className="ui__ container"
+					style={{ display: 'flex', justifyContent: 'center' }}>
+					<div className="feedback-page ui__ notice ">
 						{!this.state.showForm && !this.state.showThanks && (
 							<>
 								<div style={{ flexShrink: 0 }}>
