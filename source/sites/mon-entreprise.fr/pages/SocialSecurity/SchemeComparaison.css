@@ -2,7 +2,7 @@
 	display: grid;
 	justify-items: stretch;
 	justify-content: center;
-	grid-template-columns: [row-legend] 15rem [assimilé-salarié] auto [indépendant] auto [auto-entrepreneur] auto [end];
+	grid-template-columns: [row-legend] 16rem [assimilé-salarié] auto [indépendant] auto [auto-entrepreneur] auto [end];
 }
 .comparaison-grid > * {
 	border-bottom: 1px solid #dfdfdf;
