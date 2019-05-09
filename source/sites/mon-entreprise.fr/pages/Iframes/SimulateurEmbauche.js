@@ -4,7 +4,7 @@ import { compose } from 'ramda'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
-import SalariéSimulation from '../SocialSecurity/Salarié'
+import { SalarySimulation } from '../SocialSecurity/Salarié'
 
 export default compose(
 	withSitePaths,
@@ -29,7 +29,7 @@ export default compose(
 					</strong>
 				</Banner>
 			)}
-			<SalariéSimulation />
+			<SalarySimulation />
 		</>
 	)
 })

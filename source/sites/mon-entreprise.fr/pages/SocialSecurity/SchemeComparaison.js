@@ -1,31 +1,42 @@
+import { T } from 'Components'
 import SchemeComparaison from 'Components/SchemeComparaison'
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { withTranslation } from 'react-i18next'
 
-export default function SchemeComparaisonPage() {
+export default withTranslation()(function SchemeComparaisonPage({ t }) {
 	return (
 		<>
 			<Helmet>
 				<title>
-					Indépendant, assimilé salarié ou auto-entrepreneur : découvrez le
-					régime qui vous correspond le mieux
+					{t(
+						'comparaisonRégimes.page.titre',
+						'Indépendant, assimilé salarié ou auto-entrepreneur : découvrez le régime qui vous correspond le mieux'
+					)}
 				</title>
 				<meta
 					name="description"
-					content="Quel est le meilleur régime pour votre situation ? Simulez vos revenus et votre retraite en une minute pour chacune des possibilités."
+					content={t(
+						'comparaisonRégimes.page.description',
+						'Quel est le meilleur régime pour votre situation ? Découvrez leur différences et simulez vos revenus et votre retraite en une minute pour chacune des possibilités.'
+					)}
 				/>
 			</Helmet>
 			<h1>
-				Indépendant, assimilé salarié ou{' '}
-				<span style={{ whiteSpace: 'nowrap' }}>auto-entrepreneur</span> : quel
-				régime choisir ?
+				<T k="comparaisonRégimes.titre">
+					Indépendant, assimilé salarié ou{' '}
+					<span style={{ whiteSpace: 'nowrap' }}>auto-entrepreneur</span> : quel
+					régime choisir ?
+				</T>
 			</h1>
 			<p>
-				Lorsque vous créez votre société, le choix du statut juridique va
-				determiner à quel régime social le dirigeant est affilié. Il en existe
-				trois différents, avec chacun ses avantages et inconvénients. Grâce à ce
-				comparatif, vous pourrez sélectionner celui qui vous correspond le
-				mieux.
+				<T k="comparaisonRégimes.description">
+					Lorsque vous créez votre société, le choix du statut juridique va
+					determiner à quel régime social le dirigeant est affilié. Il en existe
+					trois différents, avec chacun ses avantages et inconvénients. Grâce à
+					ce comparatif, vous pourrez sélectionner celui qui vous correspond le
+					mieux.
+				</T>
 			</p>
 			<br />
 			<div className="ui__ full-width">
@@ -33,4 +44,4 @@ export default function SchemeComparaisonPage() {
 			</div>
 		</>
 	)
-}
+})

@@ -14,17 +14,17 @@ const Indépendant = ({ t }) => (
 	<>
 		<Helmet>
 			<title>
-				{t([
+				{t(
 					'simulateurs.indépendant.page.titre',
 					'Indépendant : simulateur officiel de revenus et de cotisations'
-				])}
+				)}
 			</title>
 			<meta
 				name="description"
-				content={t([
+				content={t(
 					'simulateurs.indépendant.page.description',
 					"Estimez vos revenus en tant qu'indépendant à partir de votre chiffre d'affaire (pour les EI et les gérants EURL et SARL majoritaires). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'Urssaf"
-				])}
+				)}
 			/>
 		</Helmet>
 		<h1>
