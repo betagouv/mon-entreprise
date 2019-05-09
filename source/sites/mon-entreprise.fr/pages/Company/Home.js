@@ -1,7 +1,7 @@
 /* @flow */
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { T } from 'Components'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import { ScrollToElement } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
 import React, { useEffect } from 'react'
@@ -54,7 +54,6 @@ const CreateMyCompany = ({
 			<h1 className="question__title">
 				<T k="formeJuridique.titre">Créer une entreprise</T>
 			</h1>
-
 			{match.isExact && (
 				<>
 					<Helmet>
@@ -72,7 +71,7 @@ const CreateMyCompany = ({
 							)}
 						/>
 					</Helmet>
-					<ScrollToTop />
+
 					<p>
 						<Link to={sitePaths.entreprise.trouver}>
 							<T k="formeJuridique.entreprise-déjà-crée">
@@ -103,6 +102,7 @@ const CreateMyCompany = ({
 				</>
 			)}
 			<PreviousAnswers />
+			<ScrollToElement />
 		</>
 	)
 }
