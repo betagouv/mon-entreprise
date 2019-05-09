@@ -25,7 +25,7 @@ const PreviousSimulationBanner = ({
 	newSimulationStarted,
 	loadPreviousSimulation
 }: ConnectedPropTypes) => (
-	<Banner hidden={!previousSimulation || newSimulationStarted}>
+	<Banner hidden={!previousSimulation || newSimulationStarted} icon="💾">
 		<Trans i18nKey="previousSimulationBanner.info">
 			Votre précédente simulation a été sauvegardée.
 		</Trans>{' '}
