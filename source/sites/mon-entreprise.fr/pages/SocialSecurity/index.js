@@ -1,4 +1,3 @@
-import Banner from 'Components/Banner'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
@@ -16,21 +15,7 @@ const SocialSecurityRoutes = ({ sitePaths }) => (
 		<ScrollToTop />
 		<Switch>
 			<Route exact path={sitePaths.sécuritéSociale.index} component={Home} />
-			<Route
-				path={sitePaths.sécuritéSociale.salarié}
-				component={() => (
-					<>
-						<Banner icon="✨">
-							Le simulateur d'embauche évolue et devient{' '}
-							<strong>mon-entreprise.fr !</strong>{' '}
-							<a href="https://pad.etalab.studio/s/By2X4Z2rV#">
-								Lire nos explications
-							</a>
-						</Banner>
-						<Salarié />
-					</>
-				)}
-			/>
+			<Route path={sitePaths.sécuritéSociale.salarié} component={Salarié} />
 			<Route
 				path={sitePaths.sécuritéSociale.comparaison}
 				component={SchemeComparaison}

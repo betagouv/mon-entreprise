@@ -10,7 +10,7 @@ import type { State } from 'Types/State'
 type PropTypes = {
 	hidden: boolean,
 	children: Node,
-	icon?: String
+	icon?: string
 }
 
 let Banner = ({ hidden = false, children, icon }: PropTypes) =>

@@ -1,4 +1,5 @@
 import { React, T } from 'Components'
+import Banner from 'Components/Banner'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
@@ -70,10 +71,16 @@ const Salarié = ({ t }) => (
 				)}
 			/>
 		</Helmet>
+		<h1>Simulateur de revenus pour salarié</h1>
+		<div style={{ margin: '2rem' }} />
+		<Banner icon="✨">
+			Le simulateur d'embauche évolue et devient{' '}
+			<strong>mon-entreprise.fr !</strong>{' '}
+			<a href="https://pad.etalab.studio/s/By2X4Z2rV#">Lire nos explications</a>
+		</Banner>
 
-		<div style={{ paddingTop: '2rem' }}>
-			<SalarySimulation />
-		</div>
+		<SalarySimulation />
+
 		<PreviousSimulationBanner />
 	</>
 )
