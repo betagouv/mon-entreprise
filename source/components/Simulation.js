@@ -49,37 +49,38 @@ export default compose(
 					{this.state.displayAnswers && (
 						<Answers onClose={() => this.setState({ displayAnswers: false })} />
 					)}
-					<div
-						style={{
-							display: 'flex',
-							justifyContent: 'flex-start',
-							alignItems: 'baseline'
-						}}>
-						{arePreviousAnswers ? (
-							<button
-								style={{ marginRight: '1em' }}
-								className="ui__ small  button "
-								onClick={() => this.setState({ displayAnswers: true })}>
-								<T>Voir mes réponses</T>
-							</button>
-						) : (
-							<span />
-						)}
-						{displayConversation && !noUserInput && (
-							<button
-								className="ui__ small simple skip button left"
-								onClick={() => resetSimulation()}>
-								⟲ <T>Recommencer</T>
-							</button>
-						)}
-					</div>
+					<>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'flex-start',
+								alignItems: 'baseline'
+							}}>
+							{arePreviousAnswers ? (
+								<button
+									style={{ marginRight: '1em' }}
+									className="ui__ small  button "
+									onClick={() => this.setState({ displayAnswers: true })}>
+									<T>Voir mes réponses</T>
+								</button>
+							) : (
+								<span />
+							)}
+							{displayConversation && !noUserInput && (
+								<button
+									className="ui__ small simple skip button left"
+									onClick={() => resetSimulation()}>
+									⟲ <T>Recommencer</T>
+								</button>
+							)}
+						</div>
 
-					{displayConversation && (
-						<>
-							<Conversation
-								textColourOnWhite={this.props.colours.textColourOnWhite}
-							/>
-							{noNextSteps && (
+						{displayConversation &&
+							(!noNextSteps ? (
+								<Conversation
+									textColourOnWhite={this.props.colours.textColourOnWhite}
+								/>
+							) : (
 								<>
 									<h2>
 										{emoji('🌟')}{' '}
@@ -93,9 +94,8 @@ export default compose(
 										{this.props.customEndMessages}
 									</p>
 								</>
-							)}
-						</>
-					)}
+							))}
+					</>
 					{showTargets && this.props.targets}
 				</>
 			)

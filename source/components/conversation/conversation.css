@@ -414,7 +414,8 @@ for the appearing element to appear without stacking up below the first one */
 
 .conversationContainer {
 	flex: 1;
-	margin-bottom: 2em;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .step label.userAnswerButton {

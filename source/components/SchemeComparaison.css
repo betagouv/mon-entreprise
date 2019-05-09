@@ -5,9 +5,9 @@
 	grid-template-columns: [row-legend] auto [assimilé-salarié] auto [indépendant] auto [auto-entrepreneur] auto [end];
 }
 .comparaison-grid > * {
-	border-bottom: 1px solid #dfdfdf;
+	border-bottom: 1px solid var(--lighterColour);
 	padding: 0.6rem 1.2rem;
-	border-right: 1px solid #dfdfdf;
+	border-right: 1px solid var(--lighterColour);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -37,17 +37,15 @@
 }
 .comparaison-grid > .AS {
 	grid-column: assimilé-salarié;
-	max-width: 16rem;
 	min-width: 11rem;
 }
 .comparaison-grid > .indep {
 	grid-column: indépendant;
-	max-width: 16rem;
 }
 .comparaison-grid > .auto {
 	grid-column: auto-entrepreneur;
 	border-right: none;
-	max-width: 16rem;
+
 	min-width: 14rem;
 }
 .comparaison-grid > .all {
@@ -66,10 +64,20 @@
 	border-right: none;
 }
 
-.comparaison-grid.hide-auto-entrepreneur {
-	grid-template-columns: [row-legend] 15rem [assimilé-salarié] 1fr [indépendant] 1fr [auto-entrepreneur] 0 [end];
+.comparaison-grid.hideAutoEntrepreneur {
+	grid-template-columns: [row-legend] auto [assimilé-salarié] 1fr [indépendant] 1fr [auto-entrepreneur] 0 [end];
 }
-.comparaison-grid.hide-auto-entrepreneur > .auto {
+.comparaison-grid.hideAutoEntrepreneur > .auto {
+	display: none;
+}
+.comparaison-grid.hideAutoEntrepreneur > .indep-et-auto {
+	border-right: 1px solid var(--lighterColour);
+}
+
+.comparaison-grid.hideAssimiléSalarié {
+	grid-template-columns: [row-legend] auto [assimilé-salarié] 0 [indépendant] auto [auto-entrepreneur] auto [end];
+}
+.comparaison-grid.hideAssimiléSalarié > .AS {
 	display: none;
 }
 

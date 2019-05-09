@@ -1,6 +1,7 @@
 /* @flow */
 import { isAutoentrepreneur } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
+import SchemeComparaison from 'Components/SchemeComparaison'
 import { compose } from 'ramda'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
@@ -67,28 +68,15 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 				</a>
 				).
 			</p>
+
 			<p>
 				Pour tous les autres cas, il est conseillé de choisir le statut de{' '}
 				<strong>l'Entreprise Individuelle</strong> avec le régime fiscal du réel
 				simplifié.
 			</p>
+			<SchemeComparaison hideAssimiléSalarié />
 		</T>
-		<div className="ui__ answer-group">
-			<button
-				onClick={() => {
-					isAutoentrepreneur(true)
-				}}
-				className="ui__ button">
-				<T>Auto-entrepreneur</T>
-			</button>
-			<button
-				onClick={() => {
-					isAutoentrepreneur(false)
-				}}
-				className="ui__ button">
-				<T>Entreprise Individuelle</T>
-			</button>
-		</div>
+
 		<CompanyStatusNavigation onSkip={() => isAutoentrepreneur(null)} />
 	</>
 )

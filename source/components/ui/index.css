@@ -61,7 +61,9 @@ section.ui__:not(:first-of-type) {
 	padding-left: 0.6rem;
 }
 .ui__.container .ui__.full-width {
-	margin: 0 calc((850px - 100vw) / 2);
+	--margin: calc((850px - 100vw) / 2);
+	margin-right: var(--margin);
+	margin-left: var(--margin);
 }
 @media (max-width: 850px) {
 	.ui__.container .ui__.full-width {
@@ -73,6 +75,9 @@ section.ui__:not(:first-of-type) {
 	font-size: 85%;
 	color: rgba(0, 0, 0, 0.6);
 	color: var(--lighterInverseTextColour);
+}
+.ui__ .colored-bg {
+	background: var(--lightestColour);
 }
 ul.ui__.no-bullet {
 	list-style: none;

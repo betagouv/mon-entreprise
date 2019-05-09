@@ -1,12 +1,11 @@
 /* @flow */
 import { defineDirectorStatus } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
-import withSitePaths from 'Components/utils/withSitePaths'
+import SchemeComparaison from 'Components/SchemeComparaison'
 import { compose } from 'ramda'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { DirectorStatus } from 'Types/companyTypes'
 import type { TFunction } from 'react-i18next'
@@ -16,11 +15,7 @@ type Props = {
 	t: TFunction,
 	sitePaths: Object
 }
-const DefineDirectorStatus = ({
-	defineDirectorStatus,
-	t,
-	sitePaths
-}: Props) => (
+const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 	<>
 		<Helmet>
 			<title>
@@ -43,42 +38,9 @@ const DefineDirectorStatus = ({
 				la couverture sociale du dirigeant. Le montant et les modalités de
 				paiement des cotisations sociales sont également impactés.
 			</p>
-			<ul>
-				<li>
-					<strong>Assimilé salarié :</strong> Le dirigeant de l'entreprise est
-					couvert par le régime général de la Sécurité sociale française.
-				</li>
-				<li>
-					<strong>Indépendant :</strong> Le dirigeant de l'entreprise est
-					couvert par le régime de la Sécurité sociale des indépendants.
-				</li>
-			</ul>
-			{!process.env.MASTER && (
-				<p>
-					<Link
-						className="ui__ button plain"
-						to={sitePaths.sécuritéSociale.comparaison}>
-						<T k="simulation-end.cta">Comparer ces régimes</T>
-					</Link>
-				</p>
-			)}
+			<SchemeComparaison hideAutoEntrepreneur />
 		</T>
-		<div className="ui__ answer-group">
-			<button
-				className="ui__ button"
-				onClick={() => {
-					defineDirectorStatus('SALARIED')
-				}}>
-				<T>Assimilé salarié</T>
-			</button>
-			<button
-				className="ui__ button"
-				onClick={() => {
-					defineDirectorStatus('SELF_EMPLOYED')
-				}}>
-				<T>Indépendant</T>
-			</button>
-		</div>
+
 		<CompanyStatusNavigation onSkip={() => defineDirectorStatus(null)} />
 	</>
 )
@@ -88,6 +50,5 @@ export default compose(
 	connect(
 		null,
 		{ defineDirectorStatus }
-	),
-	withSitePaths
+	)
 )(DefineDirectorStatus)

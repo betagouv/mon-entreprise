@@ -14,7 +14,11 @@
 	color: white;
 	color: var(--textColour);
 	background: linear-gradient(60deg, #215da6 0%, #297da1 100%);
-	background: linear-gradient(60deg, var(--colour) 0%, var(--lightColour) 100%);
+	background: linear-gradient(
+		60deg,
+		var(--darkColour) -100%,
+		var(--colour) 100%
+	);
 }
 .ui__.card.disabled img {
 	filter: saturate(0);
