@@ -66,10 +66,12 @@ const Footer = ({ tracker, t, sitePaths }) => {
 					{!registered && (
 						<>
 							{' '}
-							<h2>Restez informés</h2>
+							<h2>
+								<T k="newsletter.register.titre">Restez informés</T>
+							</h2>
 							<div className="footer__newsletterContainer">
 								<p>
-									<T k="newsletter.register.description2">
+									<T k="newsletter.register.description">
 										Inscrivez-vous à notre newsletter mensuelle pour recevoir
 										des{' '}
 										<strong>
@@ -88,7 +90,9 @@ const Footer = ({ tracker, t, sitePaths }) => {
 									name="mc-embedded-subscribe-form"
 									target="_blank">
 									<div>
-										<label htmlFor="mce-EMAIL">Votre adresse e-mail</label>
+										<label htmlFor="mce-EMAIL">
+											<T>Votre adresse e-mail</T>
+										</label>
 										<div className="footer__registerField">
 											<input type="email" name="EMAIL" id="mce-EMAIL" />
 											<input
@@ -104,6 +108,7 @@ const Footer = ({ tracker, t, sitePaths }) => {
 							</div>
 						</>
 					)}
+
 					<hr className="footer__separator" />
 
 					{i18n.language === 'en' && (
@@ -115,6 +120,7 @@ const Footer = ({ tracker, t, sitePaths }) => {
 							.
 						</p>
 					)}
+
 					<div style={{ display: 'flex', justifyContent: 'center' }}>
 						<a href="https://www.facebook.com/monentreprisefr/">
 							<SocialIcon media="facebook" />

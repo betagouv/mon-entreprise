@@ -58,6 +58,7 @@ Envoyez-nous un commentaire !: Send us a comment !
 Qu'est-ce qui n'a pas été ?: What went wrong ?
 satisfaction-email-ou: To start a conversation with us, fill your email address or
 satisfaction-mailto: click here to directly write an email
+Votre adresse e-mail: Your email address
 envoyer: send
 Rechercher: Search
 Règle non applicable: Not applicable
@@ -349,7 +350,7 @@ autoentrepreneur:
     </3>
     <4>
       For all the other cases, it is advised to choose the standard status, which
-      is <1>Individual Business.</1>
+      is <2>Individual Business.</2>
     </4>
 associés:
   page:
@@ -600,8 +601,9 @@ Accueil: Home
 
 newsletter:
   register:
-    description1: Do you want to have <2>official advice on creating a company</2> and access the new features in preview?
-    description2: 'Register to our <1>monthly newsletter</1> by leaving your email:'
+    titre: Stay informed
+    description: |
+      Subscribe to our monthly newsletter to receive <2>official advice on starting a business</2> and access new features in advance.
 S'inscrire: Register
 simulationWarning: This is an estimate based on <2>purely theoretical data</2> on turnover, charges and the single tax base without children, excluding any other income, which <5>cannot be the responsibility of the social security bodies concerned with regard to the actual declarations and calculations.</5>
 
@@ -646,6 +648,15 @@ simulateurs:
       description: Estimate your income as an auto-entrepreneur based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator.
     titre: 'Auto-entrepreneur income simulator'
 
+selectionRégime:
+  page:
+    titre:
+      Social scheme selection
+  titre: Which social scheme would you like to explore?
+  comparer:
+    titre: Not sure which one to choose?
+    description: The executive's social scheme has a very strong influence on your social protection and the income you will receive. To help you see more clearly, we have designed a small comparison, so that you can choose the plan that suits you best.
+    cta: Compare social schemes
 comparaisonRégimes:
   page:
     titre: |
@@ -694,8 +705,8 @@ comparaisonRégimes:
   comptabilité: |
     <0> Accounting</0>
     <1> Expert</1>
-    <2> Complicated</2>
-    <3> Simplified</3>
+    <2> Complex</2>
+    <3> Simple</3>
   ACCRE: |
     <0> ACCRE</0>
     <1> One year, capped</1>
@@ -730,6 +741,7 @@ comparaisonRégimes:
     AS: Choose $t(Assimilé salarié)
     indep: Choose $t(Indépendant)
     auto: Choose $t(Auto-entrepreneur)
+    EI: Choose $t(Entreprise Individuelle)
 
 
 J'ai compris: understood
@@ -738,6 +750,3 @@ Année d'activité: Years of activity
 Commerçant, artisan, ou libéral ?: Trader, craftsman, or liberal?
 Revenir à la documentation: Go back to documentation
 Voir le code source: See the source code
-
-Quel régime souhaitez-vous explorer ?: Which social scheme would you like to explore?
-

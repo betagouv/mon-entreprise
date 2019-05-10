@@ -80,7 +80,11 @@ const SchemeComparaison = ({
 			<h2 className="indep">
 				{emoji('👩‍🔧')}{' '}
 				<span style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
-					<T>Indépendant</T>
+					{hideAssimiléSalarié ? (
+						<T>Entreprise Individuelle</T>
+					) : (
+						<T>Indépendant</T>
+					)}
 				</span>
 				<small>
 					<T k="comparaisonRégimes.indep.tagline">La protection à la carte</T>
@@ -119,7 +123,7 @@ const SchemeComparaison = ({
 						</div>
 					</T>
 					<T k="comparaisonRégimes.AT">
-						<h3 className="legend">Accidents du travail couverts</h3>
+						<h3 className="legend">Couverture accidents du travail</h3>
 					</T>
 					<div className="AS">
 						<T>
@@ -141,28 +145,15 @@ const SchemeComparaison = ({
 					<div className="indep-et-auto green">+</div>
 				</>
 			)}
-			{!hideAutoEntrepreneur && (
-				<T k="comparaisonRégimes.plafondCA">
-					<h3 className="legend">Plafond de chiffre d'affaire</h3>
-					<div className="AS-et-indep">
-						<T>Non</T>
-					</div>
-					<ul
-						className="auto"
-						style={{ textAlign: 'left', justifyContent: 'start', margin: 0 }}>
-						<li>70 000 € en services</li>
-						<li>170 000 € en vente de biens, restauration ou hébergement</li>
-					</ul>
-				</T>
-			)}
+
 			{!conversationStarted && (
 				<>
 					<T k="comparaisonRégimes.retraite">
 						<h3 className="legend">Retraite</h3>
 					</T>
-					<div className="green AS">++</div>
-					<div className="green indep">+</div>
-					<div className="red auto">−</div>
+					<div className="green AS">+++</div>
+					<div className="green indep">++</div>
+					<div className="green auto">+</div>
 				</>
 			)}
 
@@ -179,7 +170,9 @@ const SchemeComparaison = ({
 			<div className="all">
 				{!conversationStarted ? (
 					<T k="comparaisonRégimes.simulationText">
-						<h2>Comparez vos revenus et votre retraite en 1 minute</h2>
+						<h2 style={{ margin: '1rem' }}>
+							Comparez vos revenus et votre retraite en 1 minute
+						</h2>
 						<button
 							className="ui__ cta plain button"
 							onClick={() => startConversation()}>
@@ -187,7 +180,7 @@ const SchemeComparaison = ({
 						</button>
 					</T>
 				) : (
-					<div className="ui__ container" style={{ marginTop: '2rem' }}>
+					<div className="ui__ container">
 						<Simulation />
 					</div>
 				)}
@@ -325,11 +318,25 @@ const SchemeComparaison = ({
 					</div>
 				</T>
 			)}
+			{!hideAutoEntrepreneur && (
+				<T k="comparaisonRégimes.plafondCA">
+					<h3 className="legend">Plafond de chiffre d'affaires</h3>
+					<div className="AS-et-indep">
+						<T>Non</T>
+					</div>
+					<ul
+						className="auto"
+						style={{ textAlign: 'left', justifyContent: 'start', margin: 0 }}>
+						<li>70 000 € en services</li>
+						<li>170 000 € en vente de biens, restauration ou hébergement</li>
+					</ul>
+				</T>
+			)}
 			<T k="comparaisonRégimes.comptabilité">
 				<h3 className="legend">Comptabilité</h3>
-				<div className="AS">Expert</div>
-				<div className="indep">Compliquée</div>
-				<div className="auto">Simplifiée</div>
+				<div className="AS">Experte</div>
+				<div className="indep">Complexe</div>
+				<div className="auto">Simple</div>
 			</T>
 			<div className="AS no-border">
 				<button
@@ -348,7 +355,13 @@ const SchemeComparaison = ({
 						!hideAssimiléSalarié && defineDirectorStatus('SELF_EMPLOYED')
 						!hideAutoEntrepreneur && isAutoentrepreneur(false)
 					}}>
-					<T k="comparaisonRégimes.choix.indep">Choisir indépendant</T>
+					{hideAssimiléSalarié ? (
+						<T k="comparaisonRégimes.choix.EI">
+							Choisir entreprise individuelle
+						</T>
+					) : (
+						<T k="comparaisonRégimes.choix.indep">Choisir indépendant</T>
+					)}
 				</button>
 			</div>
 			<div className="auto no-border">
@@ -375,8 +388,9 @@ export default (compose(
 			return {
 				plafondAutoEntrepreneurDépassé:
 					analyse.controls &&
-					analyse.controls.find(({ test }) =>
-						test.includes('base des cotisations > plafond')
+					analyse.controls.find(
+						({ test }) =>
+							test.includes && test.includes('base des cotisations > plafond')
 					),
 				conversationStarted: state.conversationStarted,
 

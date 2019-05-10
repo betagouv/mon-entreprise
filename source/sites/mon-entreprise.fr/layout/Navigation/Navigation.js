@@ -227,15 +227,13 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 													<T>Auto-entrepreneur</T>
 												</NavLink>
 											</li>
-											{process.env.MASTER && (
-												<li>
-													<NavLink
-														exact
-														to={sitePaths.sécuritéSociale.comparaison}>
-														<T>Comparaison des régimes</T>
-													</NavLink>
-												</li>
-											)}
+											<li>
+												<NavLink
+													exact
+													to={sitePaths.sécuritéSociale.comparaison}>
+													<T>Comparer les régimes</T>
+												</NavLink>
+											</li>
 										</ul>
 									</NavOpener>
 								</li>
