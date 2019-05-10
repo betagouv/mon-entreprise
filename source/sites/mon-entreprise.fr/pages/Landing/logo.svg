@@ -33,15 +33,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="1024"
+     inkscape:window-width="2506"
+     inkscape:window-height="1384"
      id="namedview1734"
      showgrid="false"
      inkscape:zoom="0.7671875"
-     inkscape:cx="320"
+     inkscape:cx="72.99389"
      inkscape:cy="106"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-x="54"
+     inkscape:window-y="30"
      inkscape:window-maximized="1"
      inkscape:current-layer="Calque_1" />
   <defs
@@ -51,28 +51,6 @@
   </defs>
   <title
      id="title1675">mon-entreprise_color_light_01</title>
-  <path
-     class="cls-1"
-     d="M576.7,133.86a.39.39,0,0,1-.53.15,9.61,9.61,0,0,0-2-.79,9.74,9.74,0,0,0-2.37-.3,9.47,9.47,0,0,0-9.44,8.66.94.94,0,0,1-.94.83H553.8a1,1,0,0,1-1-1A19,19,0,0,1,581,125.81a.37.37,0,0,1,.18.22.68.68,0,0,1-.08.29Z"
-     id="path1677" />
-  <rect
-     class="cls-2"
-     x="548.07"
-     y="161.37"
-     width="18.96"
-     height="9.48"
-     rx="0.95"
-     ry="0.95"
-     transform="translate(391.44 723.66) rotate(-90)"
-     id="rect1679" />
-  <path
-     class="cls-3"
-     d="M568.45,154.26H551.39a1,1,0,0,1-.95-.95v-7.59a.94.94,0,0,1,.95-.94h17.06a.94.94,0,0,1,.95.94v7.59A1,1,0,0,1,568.45,154.26Z"
-     id="path1681" />
-  <path
-     class="cls-4"
-     d="M554,154.26h-2.62a1,1,0,0,1-.95-.95v-7.59a.94.94,0,0,1,.95-.94H567"
-     id="path1683" />
   <g
      aria-label="mon entreprise"
      transform="translate(155.97 118.01)"
@@ -171,19 +149,6 @@
      class="cls-14"
      d="M75.9,131.58H47.07a1.12,1.12,0,0,0-1.13,1.13v20.83"
      id="path1715" />
-  <rect
-     class="cls-10"
-     x="320.67"
-     y="97.9"
-     width="17.38"
-     height="8.69"
-     rx="0.87"
-     ry="0.87"
-     id="rect1717" />
-  <path
-     class="cls-13"
-     d="M337.19,106.59H322.45l11.6-8.69h3.14a.85.85,0,0,1,.86.86v7A.86.86,0,0,1,337.19,106.59Z"
-     id="path1719" />
   <circle
      class="cls-4"
      cx="111.13"
@@ -194,27 +159,4 @@
      class="cls-3"
      d="M103.44,124.41a19.76,19.76,0,0,0,27.45-18.21c0-.41,0-.83,0-1.24"
      id="path1723" />
-  <path
-     class="cls-1"
-     d="M583.59,166v8.93a.94.94,0,0,1-1,.85h-7.45a.94.94,0,0,1-1-.85V153.8a.94.94,0,0,1,1-.85h7.45a.94.94,0,0,1,1,.85v2.89"
-     id="path1725" />
-  <rect
-     class="cls-4"
-     x="585.32"
-     y="152.88"
-     width="8.74"
-     height="9.48"
-     rx="1"
-     ry="1"
-     id="rect1727" />
-  <circle
-     class="cls-15"
-     cx="535.62"
-     cy="168.63"
-     r="6.64"
-     id="circle1729" />
-  <path
-     class="cls-16"
-     d="M533,174.75a6.76,6.76,0,0,0,2.59.52,6.64,6.64,0,0,0,6.64-6.64c0-.14,0-.28,0-.42"
-     id="path1731" />
 </svg>
