@@ -3040,29 +3040,37 @@
   format: euros
   période: flexible
 
-- espace: indépendant
+
+- espace: entreprise
   nom: rattachement libéral règlementé
   description: |
-    Les entreprises libérales non règlementées créées avant 2019 étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2019 ce n'est plus le cas, elles sont rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
+    Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneur (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
   formule:
     une de ces conditions:
-      - entreprise . catégorie d'activité . libérale règlementée
+      - toutes ces conditions:
+          - ≠ contrat salarié
+          - entreprise . catégorie d'activité . libérale règlementée
+      - toutes ces conditions:
+          - entreprise . année d'activité != 'première année'
+          - entreprise . catégorie d'activité = 'libérale'
+          - indépendant
       - toutes ces conditions:
           - entreprise . année d'activité != 'première année'
           - entreprise . année d'activité != 'deuxième année'
           - entreprise . catégorie d'activité = 'libérale'
+          - auto entrepreneur
 
-  période: flexible
-  format: euros
+  période: aucune
+
 
 - espace: indépendant . cotisations et contributions . cotisations
   nom: maladie
   période: flexible
   formule:
     variations:
-      - si: rattachement libéral règlementé
+      - si: entreprise . rattachement libéral règlementé
         alors: libérale règlementée
 
       - sinon: artisans commerçants libéraux
@@ -3100,7 +3108,7 @@
   titre: Maladie 2
   description: Cotisations pour les indémnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
-  non applicable si: rattachement libéral règlementé
+  non applicable si: entreprise . rattachement libéral règlementé
   formule:
     multiplication:
       assiette: maladie . assiette
@@ -3188,7 +3196,7 @@
   période: année
   formule:
     variations:
-      - si: rattachement libéral règlementé
+      - si: entreprise . rattachement libéral règlementé
         alors:
           multiplication:
             assiette: assiette
@@ -3232,7 +3240,7 @@
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
-      - si: rattachement libéral règlementé
+      - si: entreprise . rattachement libéral règlementé
         alors:
           barème linéaire:
             assiette: revenu professionnel
@@ -3614,7 +3622,7 @@
     CNAV: https://www.lassuranceretraite.fr
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
     INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
-  non applicable si: indépendant . rattachement libéral règlementé
+  non applicable si: entreprise . rattachement libéral règlementé
 
 
   format: euros
@@ -3644,19 +3652,67 @@
   format: euros
   période: flexible
   formule:
-    le maximum de:
-      - minimum contributif
-      - multiplication:
-          plafond: plafond sécurité sociale temps plein
-          taux: 50%
-          assiette: revenu annuel moyen
+    multiplication:
+      plafond: plafond sécurité sociale temps plein
+      taux: taux de la pension
+      assiette: revenu moyen
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F21552
 
-- espace: protection sociale . retraite
-  nom: revenu annuel moyen
+- nom: taux de la pension
+  espace: protection sociale . retraite . base
+  description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestre cotisé.
+  période: aucune
+  formule:
+    variations:
+      - si:
+          une de ces conditions:
+            - toutes ces conditions:
+              - auto entrepreneur
+              - entreprise . chiffre d'affaires < seuil de CA pour ouverture des droits
+            - toutes ces conditions:
+              - contrat salarié
+              - revenu moyen < revenu minimum pour ouverture des droits
+        alors: 0%
+      - sinon: 50%
+  note: On ne prends pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
+
+- nom: seuil de CA pour ouverture des droits
+  espace: protection sociale . retraite . base
+  période: annuel
   format: euros
-  période: flexible
+  description: Le CA minimum pour l'ouverture des droits à la retraite. En deça de ce montant, vous n'aurez accès qu'à l'allocation de solidarité.
+  formule:
+    variations:
+      - si: entreprise . catégorie d'activité = 'libérale'
+        alors: 2880
+      - si:
+          une de ces conditions:
+            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . restauration ou hébergement
+        alors: 4137
+      - sinon: 2412
+  références:
+    auto-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
+    allocation de solidarité: https://www.service-public.fr/particuliers/vosdroits/F16871
+
+- nom: revenu minimum pour ouverture des droits
+  espace: protection sociale . retraite . base
+  période: annuel
+  format: euros
+  description: Le revenu minimum pour l'ouverture des droits à la retraite. En deça de ce montant, vous n'aurez accès qu'au minimum contributif ou à l'allocation de solidarité.
+  formule: contrat salarié . SMIC horaire * 150
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F1761
+    allocation de solidarité: https://www.service-public.fr/particuliers/vosdroits/F16871
+    minimum contributif: https://www.service-public.fr/particuliers/vosdroits/F15522
+
+- espace: protection sociale . retraite
+  nom: revenu moyen
+  format: euros
+  période: année
   formule:
     le maximum de :
       - indépendant . revenu net de cotisations
@@ -3718,9 +3774,6 @@
   format: euros
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
-
-
-
 
 
 
