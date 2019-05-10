@@ -1,5 +1,5 @@
 /* @flow */
-import { startConversation } from 'Actions/actions'
+import { setSituationBranch, startConversation } from 'Actions/actions'
 import {
 	defineDirectorStatus,
 	isAutoentrepreneur
@@ -11,10 +11,12 @@ import Simulation from 'Components/Simulation'
 // $FlowFixMe
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, map, tryCatch } from 'ramda'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
@@ -35,8 +37,9 @@ type Props = OwnProps & {
 	conversationStarted: boolean,
 	noUserInput: boolean,
 	startConversation: () => void,
-	setSituationBranch: () => void,
+	setSituationBranch: number => void,
 	defineDirectorStatus: string => void,
+	sitePaths: any,
 	isAutoentrepreneur: boolean => void,
 	plafondAutoEntrepreneurDépassé: boolean
 }
@@ -51,6 +54,7 @@ const SchemeComparaison = ({
 	hideAutoEntrepreneur = false,
 	hideAssimiléSalarié = false,
 	/* Injected Props */
+	sitePaths,
 	assimiléSalarié,
 	indépendant,
 	plafondAutoEntrepreneurDépassé,
@@ -58,7 +62,7 @@ const SchemeComparaison = ({
 	conversationStarted,
 	defineDirectorStatus,
 	isAutoentrepreneur,
-	// setSituationBranch,
+	setSituationBranch,
 	startConversation
 }: Props) => {
 	const [showMore, setShowMore] = useState(false)
@@ -194,8 +198,9 @@ const SchemeComparaison = ({
 					<div className="AS">
 						{assimiléSalarié && (
 							<Animate.appear className="ui__ plain card">
-								<AnimatedTargetValue
-									value={assimiléSalarié.revenuNet.montant}
+								<RuleValueLink
+									onClick={() => setSituationBranch(0)}
+									{...assimiléSalarié.revenuNet}
 								/>
 							</Animate.appear>
 						)}
@@ -203,7 +208,10 @@ const SchemeComparaison = ({
 					<div className="indep">
 						{indépendant && (
 							<Animate.appear className="ui__ plain card">
-								<AnimatedTargetValue value={indépendant.revenuNet.montant} />
+								<RuleValueLink
+									onClick={() => setSituationBranch(1)}
+									{...indépendant.revenuNet}
+								/>
 							</Animate.appear>
 						)}
 					</div>
@@ -217,31 +225,45 @@ const SchemeComparaison = ({
 								{plafondAutoEntrepreneurDépassé ? (
 									'Plafond de CA dépassé'
 								) : (
-									<AnimatedTargetValue
-										value={autoEntrepreneur.revenuNet.montant}
+									<RuleValueLink
+										onClick={() => setSituationBranch(2)}
+										{...autoEntrepreneur.revenuNet}
 									/>
 								)}
 							</Animate.appear>
 						)}
 					</div>
 					<T k="comparaisonRégimes.retraite">
-						<h3 className="legend">Retraite (estimation)</h3>
+						<h3 className="legend">Retraite brute (estimation)</h3>
 					</T>
 					<div className="AS">
-						{assimiléSalarié && (
-							<AnimatedTargetValue value={assimiléSalarié.retraite.montant} />
+						{assimiléSalarié && assimiléSalarié.retraite.montant !== 0 ? (
+							<RuleValueLink
+								onClick={() => setSituationBranch(1)}
+								{...assimiléSalarié.retraite}
+							/>
+						) : (
+							<span className="ui__ notice">Pas implémenté</span>
 						)}
 					</div>
 					<div className="indep">
 						{indépendant && indépendant.retraite.montant !== 0 ? (
-							<AnimatedTargetValue value={indépendant.retraite.montant} />
+							<RuleValueLink
+								onClick={() => setSituationBranch(1)}
+								{...indépendant.retraite}
+							/>
 						) : (
 							<span className="ui__ notice">Pas implémenté</span>
 						)}
 					</div>
 					<div className="auto">
-						{autoEntrepreneur && (
-							<AnimatedTargetValue value={autoEntrepreneur.retraite.montant} />
+						{autoEntrepreneur && autoEntrepreneur.retraite.montant !== 0 ? (
+							<RuleValueLink
+								onClick={() => setSituationBranch(1)}
+								{...autoEntrepreneur.retraite}
+							/>
+						) : (
+							<span className="ui__ notice">Pas implémenté</span>
 						)}
 					</div>
 				</>
@@ -378,7 +400,22 @@ const SchemeComparaison = ({
 	)
 }
 
+const RuleValueLink = withSitePaths(
+	({
+		lien,
+		montant,
+		sitePaths,
+		onClick
+	}: RègleAvecMontant & { sitePaths: any, onClick: () => void }) => (
+		<Link onClick={onClick} to={sitePaths.documentation.index + '/' + lien}>
+			<AnimatedTargetValue value={montant} />
+		</Link>
+	)
+)
+
 export default (compose(
+	withSimulationConfig(ComparaisonConfig),
+
 	connect(
 		state => {
 			const analyse = branchAnalyseSelector(state, {
@@ -408,14 +445,18 @@ export default (compose(
 							() => null
 						)(),
 					{
-						assimiléSalarié: 'Assimilé salarié',
+						autoEntrepreneur: 'Auto-entrepreneur',
 						indépendant: 'Indépendant',
-						autoEntrepreneur: 'Auto-entrepreneur'
+						assimiléSalarié: 'Assimilé salarié'
 					}
 				)
 			}
 		},
-		{ startConversation, defineDirectorStatus, isAutoentrepreneur }
-	),
-	withSimulationConfig(ComparaisonConfig)
+		{
+			startConversation,
+			defineDirectorStatus,
+			isAutoentrepreneur,
+			setSituationBranch
+		}
+	)
 )(SchemeComparaison): React$Component<OwnProps>)

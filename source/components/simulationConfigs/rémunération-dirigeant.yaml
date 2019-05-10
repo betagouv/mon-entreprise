@@ -15,19 +15,9 @@ questions:
 bloquant:
   - entreprise . chiffre d'affaires
 situation:
-  période: mois
+  période: année
 
 branches:
-  - nom: Auto-entrepreneur
-    situation:
-      auto entrepreneur: oui
-      indépendant: non
-      contrat salarié: non
-  - nom: Indépendant
-    situation:
-      indépendant: oui
-      auto entrepreneur: non
-      contrat salarié: non
   - nom: Assimilé salarié
     situation:
       auto entrepreneur: non
@@ -35,3 +25,13 @@ branches:
       contrat salarié: oui
       contrat salarié . assimilé salarié: oui
       contrat salarié . ATMP . taux réduit: oui
+  - nom: Indépendant
+    situation:
+      indépendant: oui
+      auto entrepreneur: non
+      contrat salarié: non
+  - nom: Auto-entrepreneur
+    situation:
+      auto entrepreneur: oui
+      indépendant: non
+      contrat salarié: non
