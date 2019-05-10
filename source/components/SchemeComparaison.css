@@ -94,6 +94,10 @@
 .comparaison-grid > .no-border {
 	border: none;
 }
+.comparaison-grid .button {
+	align-self: stretch;
+}
+
 @media (max-width: 800px) {
 	.comparaison-grid {
 		grid-template-columns: [row-legend] 10rem [assimilé-salarié] auto [indépendant] auto [auto-entrepreneur] auto [end];
@@ -149,9 +153,6 @@
 	.comparaison-grid > :not(.all):not(.button) {
 		padding-left: 0;
 	}
-	.comparaison-grid > .button {
-		width: 100%;
-	}
 	.comparaison-grid > .all {
 		margin: 0 -0.6rem;
 		margin-top: 2rem;
@@ -163,8 +164,5 @@
 		font-weight: normal;
 
 		font-size: 1rem;
-	}
-	.comparaison-grid > .all h2 {
-		margin: 0;
 	}
 }

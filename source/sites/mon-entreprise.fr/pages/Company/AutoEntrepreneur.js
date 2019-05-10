@@ -74,8 +74,8 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 				<strong>l'Entreprise Individuelle</strong> avec le régime fiscal du réel
 				simplifié.
 			</p>
-			<SchemeComparaison hideAssimiléSalarié />
 		</T>
+		<SchemeComparaison hideAssimiléSalarié />
 
 		<CompanyStatusNavigation onSkip={() => isAutoentrepreneur(null)} />
 	</>
