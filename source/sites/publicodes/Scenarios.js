@@ -47,7 +47,6 @@ export default () => {
 							}
 							p {
 								font-style: italic;
-								text-align: justify;
 								font-size: 90%;
 							}
 							label {
