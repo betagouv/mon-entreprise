@@ -125,7 +125,7 @@ export const règleAvecMontantSelector: InputSelector<
 		const valeur = règleValeur(dottedName)
 		if (!valeur || valeur.type !== 'euros') {
 			throw new Error(
-				`[règleAvecMontantSelector] Le type de valeur de "${dottedName}" n'est pas celui d'un montant`
+				`[règleAvecMontantSelector] Le type de valeur de "${dottedName}" n'est pas celui d'un montant. \n Pour faire disparaitre cette erreur, ajouter la propriété 'format: euros' à cette règle `
 			)
 		}
 		return {

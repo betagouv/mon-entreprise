@@ -2799,6 +2799,7 @@
   résumé: Après cotisations et charges
   question: Quel est votre revenu professionnel ?
   période: flexible
+  format: euros
   description: |
 
     C'est le revenu net de cotisations du travailleur indépendant.
@@ -2879,7 +2880,7 @@
       possibilités:
         - prestation de service
         - vente de biens
-  par défaut: prestation de service
+  par défaut: vente de biens
 
 - espace: entreprise . catégorie d'activité . service ou vente
   nom: vente de biens
@@ -3417,6 +3418,7 @@
   titre: Revenu net auto-entrepreneur
   formule: base des cotisations - cotisations et contributions
   période: flexible
+  format: euros
 
 - espace: auto entrepreneur
   nom: cotisations et contributions
