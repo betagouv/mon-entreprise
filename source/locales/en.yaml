@@ -350,7 +350,7 @@ autoentrepreneur:
     </3>
     <4>
       For all the other cases, it is advised to choose the standard status, which
-      is <2>Individual Business.</2>
+      is <2>Individual Business</2> (entreprise individuelle).
     </4>
 associés:
   page:
@@ -430,7 +430,7 @@ Simulateur de salaire: Employee salary simulation
 Exemples de simulation de salaire: Examples of salary simulations
 Quelques exemples de salaires: Some salary exemples
 Embauche: Hiring process
-Entreprise Individuelle: Individual Business
+
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
@@ -439,8 +439,7 @@ statut du dirigeant:
     description: This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France
   titre: Defining the director's status
   description: <0>This choice is important because it determines the director's Social Security scheme and coverage.</0><1><0><0>Salaried employee:</0> The company director joins and is covered by France’s general Social Security scheme. Social Security contributions are calculated on the basis of the executive's actual pay and are paid monthly. Although more expensive, this scheme offers full social protection (except unemployment).</0><1><0>Self-employed:</0> The company director joins and is covered by France’s self-employed scheme called « Sécurité sociale des indépendants ». Contributions due are generally calculated based on professional income as reported to the tax authorities. Although less expensive, this scheme provides basic social protection (additional options and private insurance are recommended).</1></1>
-Assimilé salarié: Assimilated salaried
-Indépendant: Self-employed
+
 gérant minoritaire:
   page:
     description: Some special rules apply depending on the amount of shares owned by the director and this can lead to a different status when creating your company in France
@@ -562,7 +561,6 @@ Plusieurs associés: Several partners
 Un seul associé: Only one partner
 Responsabilité limitée: Limited liability
 Sans responsabilité limitée: Without limited liability
-Auto-entrepreneur: Auto-entrepreneur
 Pas en auto entrepreneur: Not in auto-entrepreneur
 
 Précédent: Previous
@@ -691,10 +689,11 @@ comparaisonRégimes:
   plafondCA: |
     <0> Turnover ceiling</0>
     <1>No</1>
-    <2>
+    <2><0>
       <0>€70,000  in services</0>
       <1>€170,000 for sale of properties, food or accommodation</1>
-    </2>
+
+    </0></2>
   période: |
     <0>Period</0>
   retraite: |
@@ -738,10 +737,10 @@ comparaisonRégimes:
   seuil: |
     <0> Rights activation threshold</0>
   choix:
-    AS: Choose $t(Assimilé salarié)
-    indep: Choose $t(Indépendant)
-    auto: Choose $t(Auto-entrepreneur)
-    EI: Choose $t(Entreprise Individuelle)
+    AS: Choose Assimilé salarié
+    indep: Choose Indépendant
+    auto: Choose Auto-entrepreneur
+    EI: Choose Entreprise Individuelle
 
 
 J'ai compris: understood

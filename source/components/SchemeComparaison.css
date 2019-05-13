@@ -111,14 +111,13 @@
 		display: block;
 		padding: 0 0.6rem;
 	}
-	.comparaison-grid > h2 {
-		display: none;
-	}
+
 	.comparaison-grid > *::before {
 		flex: 1;
 		text-align: left;
 		flex-shrink: 0;
 		white-space: nowrap;
+		user-select: text;
 		font-weight: normal;
 	}
 	.comparaison-grid > :not(.button)::before {
@@ -126,19 +125,37 @@
 		color: var(--lighterInverseTextColour);
 	}
 	.comparaison-grid > .AS::before {
-		content: 'Assimilé-salarié : ';
+		content: 'Assimilé-salarié ';
 	}
-	.comparaison-grid > .indep::before {
-		content: 'Indépendant : ';
+	.comparaison-grid > .indep::before,
+	.comparaison-grid.hideAutoEntrepreneur > .indep-et-auto::before {
+		content: 'Indépendant ';
 	}
+
+	.comparaison-grid.hideAssimiléSalarié > .AS-et-indep::before,
+	.comparaison-grid.hideAssimiléSalarié > .indep::before {
+		content: 'Entreprise individuelle ';
+	}
+
 	.comparaison-grid > .auto::before {
-		content: 'Auto-entrepreneur : ';
+		content: 'Auto-entrepreneur ';
 	}
 	.comparaison-grid > .indep-et-auto::before {
-		content: 'Indépendant et auto-entrepreneur : ';
+		content: 'Indépendant / auto-entrepreneur ';
 	}
 	.comparaison-grid > .AS-et-indep::before {
-		content: 'Assimilé salarié et indépendant : ';
+		content: 'Assimilé salarié / indépendant ';
+	}
+	.comparaison-grid > h2::before {
+		display: none;
+	}
+	.comparaison-grid > h2.AS::after,
+	.comparaison-grid:not(.hideAutoEntrepreneur) > h2.indep::after {
+		display: block;
+		font-size: 1rem;
+		margin-top: 1rem;
+		content: 'vs';
+		color: var(--lightColour);
 	}
 	.comparaison-grid > .legend {
 		text-align: left;
@@ -156,6 +173,12 @@
 	.comparaison-grid > .all {
 		margin: 0 -0.6rem;
 		margin-top: 2rem;
+	}
+	.comparaison-grid > .no-border > .button {
+		flex: 1;
+	}
+	.comparaison-grid > .no-border::before {
+		display: none;
 	}
 }
 @media (min-width: 600px) {
