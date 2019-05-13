@@ -17,17 +17,14 @@ type Props = OwnProps & {
 }
 
 export default (connect(
-	state => (
-		{
-			conversationStarted: state.conversationStarted,
-			period: formValueSelector('conversation')(state, 'période')
-		},
-		{ startConversation }
-	)
+	state => ({
+		conversationStarted: state.conversationStarted,
+		period: formValueSelector('conversation')(state, 'période')
+	}),
+	{ startConversation }
 )(
 	class SalaryFirstExplanation extends Component<Props> {
 		render() {
-			console.log('yo', this.props.period)
 			return (
 				<>
 					<h2>
