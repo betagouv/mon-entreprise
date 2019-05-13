@@ -43,6 +43,7 @@ export default () => {
 
 							h2 {
 								margin-top: 0;
+								font-size: 140%;
 							}
 							p {
 								font-style: italic;
@@ -75,11 +76,13 @@ export default () => {
 								{s.titre}
 							</h2>
 							<div>
-								{emoji('🇫🇷')}&nbsp; Limite par tête :{' '}
-								{s['crédit carbone par personne']}&nbsp;t
+								<strong>
+									{emoji('🌡️ ')} {s.réchauffement}
+								</strong>
 							</div>
 							<div>
-								{emoji('🌡️ ')} {s.réchauffement}
+								{emoji('💰 ')}
+								{s['crédit carbone par personne']}&nbsp;t de CO₂ / tête / an
 							</div>
 							<div css="margin-top: 1em">
 								<p>{s.description}</p>
