@@ -388,12 +388,14 @@ const SchemeComparaison = ({
 					<div className="AS-et-indep">
 						<T>Non</T>
 					</div>
-					<ul
+					<div
 						className="auto"
 						style={{ textAlign: 'left', justifyContent: 'start', margin: 0 }}>
-						<li>70 000 € en services</li>
-						<li>170 000 € en vente de biens, restauration ou hébergement</li>
-					</ul>
+						<ul>
+							<li>70 000 € en services</li>
+							<li>170 000 € en vente de biens, restauration ou hébergement</li>
+						</ul>
+					</div>
 				</T>
 			)}
 			<T k="comparaisonRégimes.comptabilité">
