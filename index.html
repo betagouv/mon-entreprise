@@ -236,7 +236,7 @@
 			IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
 			Intl : SAFARI 9 & 10.0  https://caniuse.com/#search=Intl
 		-->
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl%2CIntersectionObserver"></script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl.~locale.en%2CIntl.~locale.fr%2CIntersectionObserver"></script>
 		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
 			<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
 		<% } %>
