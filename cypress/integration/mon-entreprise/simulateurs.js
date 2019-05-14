@@ -26,7 +26,7 @@ describe('Landing test', function() {
 				? 'Quel régime souhaitez-vous explorer ?'
 				: 'Which social scheme would you like to explore?'
 		)
-		cy.contains(fr ? 'Indépendant' : 'Self-employed').click({ force: true })
+		cy.contains('Indépendant').click({ force: true })
 		cy.contains(
 			fr
 				? 'Simulateur de revenus pour indépendants'

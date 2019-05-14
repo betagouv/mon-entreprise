@@ -84,9 +84,9 @@
 		"compile-lib": "yarn webpack --config source/webpack.lib.js",
 		"compile-dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run compile",
 		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
-		"mon-entreprise:test": "cypress open",
+		"mon-entreprise:test": "cypress open --browser chromium",
 		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
-		"mycompanyinfrance:test": "cypress open --env language=en --config baseUrl=http://localhost:8080/infrance",
+		"mycompanyinfrance:test": "cypress open --browser chromium --env language=en --config baseUrl=http://localhost:8080/infrance",
 		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve"
 	},
 	"devDependencies": {
