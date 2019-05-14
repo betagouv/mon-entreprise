@@ -66,7 +66,7 @@ export function inIframe() {
 	}
 }
 
-export function softCatch<ArgType: any, ReturnType: any>(
+export function softCatch<ArgType: mixed, ReturnType: mixed>(
 	fn: ArgType => ReturnType
 ): ArgType => ReturnType | null {
 	return function(...args) {
@@ -101,4 +101,14 @@ export const constructSitePaths = (
 				: constructSitePaths(root + index, value),
 		sitePaths
 	)
+})
+
+export const getFromSessionStorage = softCatch<string, any>(where => {
+	typeof sessionStorage !== 'undefined' ? sessionStorage[where] : null
+})
+
+export const setToSessionStorage = softCatch<string, void>((where, what) => {
+	if (typeof sessionStorage !== 'undefined') {
+		sessionStorage[where] = what
+	}
 })

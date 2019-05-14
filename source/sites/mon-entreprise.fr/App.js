@@ -21,7 +21,7 @@ import {
 	retrievePersistedSimulation
 } from '../../storage/persistSimulation'
 import ReactPiwik from '../../Tracker'
-import { inIframe } from '../../utils'
+import { inIframe, setToSessionStorage } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
 import Header from './layout/Header/Header'
@@ -60,9 +60,7 @@ const middlewares = [
 
 class InFranceRoute extends Component {
 	componentDidMount() {
-		if (typeof sessionStorage !== 'undefined') {
-			sessionStorage['lang'] = this.props.language
-		}
+		setToSessionStorage('lang', this.props.language)
 	}
 	render() {
 		const paths = constructLocalizedSitePath(this.props.language)
