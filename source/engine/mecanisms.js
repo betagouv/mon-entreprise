@@ -904,3 +904,11 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 export let mecanismError = (recurse, k, v) => {
 	throw new Error("Le mécanisme '" + k + "' est inconnu !" + v)
 }
+export let mecanismOnePossibility = (recurse, k, v) => ({
+	...v,
+	'une possibilité': 'oui',
+	evaluate: (cache, situationGate, parsedRules, node) => ({
+		...node,
+		missingVariables: { [node.dottedName]: 1 }
+	})
+})

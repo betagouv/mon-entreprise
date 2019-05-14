@@ -28,7 +28,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 				situationValue == null &&
 				(variableHasCond ||
 					variableHasFormula ||
-					findParentDependency(rules, variable))
+					findParentDependency(parsedRules, variable))
 
 		//		if (dottedName.includes('jeune va')) debugger
 
@@ -131,7 +131,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		let supportedPeriods = ['mois', 'année', 'flexible']
 		if (nodeValue == null) return filteredNode
 		let ruleToTransform = findRuleByDottedName(
-			rules,
+			parsedRules,
 			filteredNode.explanation.dottedName
 		)
 

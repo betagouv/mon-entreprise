@@ -44,7 +44,8 @@ import {
 	mecanismReduction,
 	mecanismSum,
 	mecanismSynchronisation,
-	mecanismVariations
+	mecanismVariations,
+	mecanismOnePossibility
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
 import { treat } from './traverse'
@@ -228,11 +229,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,
-			'une possibilité': always({
-				...v,
-				'une possibilité': 'oui',
-				missingVariables: { [rule.dottedName]: 1 }
-			}),
+			'une possibilité': mecanismOnePossibility,
 			'inversion numérique': mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
 			variations: mecanismVariations,
