@@ -1,9 +1,3 @@
-@preprocessor esmodule
-
-@{% 
-import maSuperFonction from './maSuperFonction'
-import treatVariableTransforms from './treatVariable'
-%}
 
 # To understand or edit this file, use the awesome nearley playground (but save your work, it can crash sometimes) : https://omrelli.ug/nearley-playground/
 
@@ -21,13 +15,17 @@ NumericTerminal ->
 		| number {% id %}
 
 # Parentheses
-P -> "(" _ AS _ ")" {% function(d) {return {category:'parentheses', explanation: d[2]}} %}
+P -> "(" _ AS _ ")" {% ([,,e]) => e %}
     | NumericTerminal           {% id %}
 
+ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
-Comparison -> Comparable _ ComparisonOperator _ Comparable {% yo => maSuperFonction(yo) %}
+Comparison -> Comparable _ ComparisonOperator _ Comparable {% ([A, , operator, , B]) => ({
+		[operator]: 
+		[A, B]
+}) %}
 
-Comparable -> (  AS | NonNumericTerminal) {% d => d[0][0] %}
+Comparable -> (  AS | NonNumericTerminal) {% ([[e]]) => e %}
 
 NonNumericTerminal ->  
 	Boolean  {% id %} 
@@ -35,28 +33,24 @@ NonNumericTerminal ->
 	| NegatedVariable  {% id %}
 
 
-ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
+NegatedVariable -> "≠" _ Variable {% ([,,variable]) => ({'≠': variable }) %}
 
-NegatedVariable -> "≠" _ Variable {% d => ({category: 'negatedVariable', variable: d[2] }) %}
+FilteredVariable -> Variable _ Filter {% ([variable,,filtre]) => ({filtre: {filtre, variable}}) %}
 
-FilteredVariable -> Variable _ Filter {% d => ({category: 'variable', filter: d[2], variable: d[0] }) %}
+Filter -> "(" VariableFragment ")" {% ([,filtre]) =>filtre %}
 
-Filter -> "(" VariableFragment ")" {% d =>d[1] %}
+TemporalVariable -> Variable _ TemporalTransform {% ([variable,,chemin]) => ({'conversion temporelle': {variable, chemin}}) %}
 
-TemporalVariable -> Variable _ TemporalTransform {% d => ({...d[0], temporalTransform: d[2] }) %}
+TemporalTransform -> "[" Temporality "]" {% d =>d[1] %}
 
-TemporalTransform -> "[" Temporalities "]" {% d =>d[1] %}
-
-Temporalities -> "annuel" | "mensuel" {% id %}
+Temporality -> "annuel" | "mensuel" {% id %}
 #-----
 
 
 # Addition and subtraction
-AS -> AS _ ASOperator _ MD  {% d => ({
-	category: 'calcExpression',
-	operator: d[2],
-	explanation: [d[0], d[4]],
-	type: 'numeric'
+AS -> AS _ ASOperator _ MD  {% ([A, , operator, , B]) => ({
+		[operator]: 
+		[A, B]
 }) %}
 
     | MD            {% id %}
@@ -69,11 +63,10 @@ MDOperator	-> "*" {% id %}
 	| "/" {% id %}
 
 # Multiplication and division
-MD -> MD _ MDOperator _ P  {% d => ({
-	category: 'calcExpression',
-	operator: d[2],
-	explanation: [d[0], d[4]],
-	type: 'numeric'
+MD -> MD _ MDOperator _ P  {% 
+([A, , operator, , B]) => ({
+		[operator]: 
+		[A, B]
 }) %}
    
     | P             {% id %}
@@ -83,16 +76,18 @@ Term -> Variable {% id %}
 		| number {% id %}
 		| percentage {% id %}
 
-Variable -> VariableFragment (_ Dot _ VariableFragment {% [,,,fragment] => fragment %}):* 
-{% ([firstFragment, nextFragments]) =>  treatVariableTransforms({
+Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):* 
+{% ([firstFragment, nextFragments]) =>  
+({variable: {
+	category: 'variable',
 	fragments: [firstFragment, ...nextFragments],
-}) %}
+}}) %}
 
-String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({
-	category: 'value',
+String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({constante: {
+	
 	type: 'string',
 	nodeValue: d[1].join('')
-}) %}
+}}) %}
 
 VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
 
@@ -104,10 +99,11 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({category: 'value', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}) %}
+number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({constante:{ nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}}) %}
 
-percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => percentage(d)%}
+percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({ 'percentage':{ nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))/100}}) %}
 
-Boolean -> "oui" {% d=> ({category: 'boolean', nodeValue: true}) %}
- | "non" {% d=> ({category: 'boolean', nodeValue: false}) %}
+
+Boolean -> ("oui"
+ | "non" ) {% ([val])=> ({constante:{type: 'boolean', nodeValue: {'oui': true, 'non': false}[val]}}) %}
 

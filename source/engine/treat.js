@@ -58,11 +58,9 @@ import {
 export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 export let treatString = (rules, rule) => rawNode => {
-	/* On a affaire à un string, donc à une expression infixe.
-			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
-			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel), CalcExpression ou Comparison.
-			Cet objet est alors rebalancé à 'treat'.
-			*/
+	/* Strings correspond to infix expressions.
+	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
+	 * This function makes them prefixed operations. */
 
 	let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
@@ -79,113 +77,7 @@ export let treatString = (rules, rule) => rawNode => {
 		)
 	}
 
-	if (parseResult.category == 'variable')
-		return treatVariableTransforms(rules, rule)(parseResult)
-	if (parseResult.category == 'negatedVariable')
-		return treatNegatedVariable(
-			treatVariable(rules, rule)(parseResult.variable)
-		)
-
-	if (
-		parseResult.category == 'calcExpression' ||
-		parseResult.category == 'comparison'
-	) {
-		let evaluate = (cache, situation, parsedRules, node) => {
-			let operatorFunction = {
-					'*': multiply,
-					'/': divide,
-					'+': add,
-					'-': subtract,
-					'<': lt,
-					'<=': lte,
-					'>': gt,
-					'>=': gte,
-					'=': equals,
-					'!=': (a, b) => !equals(a, b)
-				}[node.operator],
-				explanation = map(
-					curry(evaluateNode)(cache, situation, parsedRules),
-					node.explanation
-				),
-				value1 = explanation[0].nodeValue,
-				value2 = explanation[1].nodeValue,
-				nodeValue =
-					value1 == null || value2 == null
-						? null
-						: operatorFunction(value1, value2),
-				missingVariables = mergeMissing(
-					explanation[0].missingVariables,
-					explanation[1].missingVariables
-				)
-
-			return rewriteNode(node, nodeValue, explanation, missingVariables)
-		}
-
-		let explanation = parseResult.explanation.map(
-				cond([
-					[
-						propEq('category', 'variable'),
-						treatVariableTransforms(rules, rule)
-					],
-					[
-						propEq('category', 'value'),
-						node => ({
-							nodeValue: node.nodeValue,
-							// eslint-disable-next-line
-							jsx: nodeValue => <span className="value">{nodeValue}</span>
-						})
-					],
-					[
-						propEq('category', 'percentage'),
-						node => ({
-							nodeValue: node.nodeValue,
-							// eslint-disable-next-line
-							jsx: nodeValue => (
-								<span className="value">{nodeValue * 100}%</span>
-							)
-							//the best would be to display the original text before parsing, but nearley does'nt let us access it
-						})
-					]
-				])
-			),
-			operator = parseResult.operator
-		let operatorToUnicode = operator =>
-			({
-				'>=': '≥',
-				'<=': '≤',
-				'!=': '≠',
-				'*': '∗',
-				'/': '∕',
-				'-': '−'
-			}[operator] || operator)
-		let jsx = (nodeValue, explanation) => (
-			<Node
-				classes={'inlineExpression ' + parseResult.category}
-				value={nodeValue}
-				child={
-					<span className="nodeContent">
-						<span className="fa fa" />
-						{makeJsx(explanation[0])}
-						<span className="operator">
-							{operatorToUnicode(parseResult.operator)}
-						</span>
-						{makeJsx(explanation[1])}
-					</span>
-				}
-			/>
-		)
-
-		return {
-			evaluate,
-			jsx,
-
-			operator,
-			text: rawNode,
-			category: parseResult.category,
-			type: parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
-			explanation
-		}
-	}
+	return treatObject(rules, rule)(parseResult)
 }
 
 export let treatNumber = rawNode => ({
