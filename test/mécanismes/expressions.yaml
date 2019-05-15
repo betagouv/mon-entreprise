@@ -117,7 +117,7 @@
 - espace: CDD
   nom: poursuivi en CDI
 
-- test: booléen
+- test: variable booléene
   formule: CDD . poursuivi en CDI
   exemples:
     - situation:
@@ -126,6 +126,11 @@
     - situation:
         CDD . poursuivi en CDI: non
       valeur attendue: false
+
+- test: booléen
+  formule: oui
+  exemples:
+    - valeur attendue: true
 
 - test: négation
   formule: ≠ CDD . poursuivi en CDI
@@ -177,6 +182,7 @@
 
 - test: variable modifiée temporellement
   formule: revenu [annuel]
+  période: aucune
   exemples:
     - situation:
         revenu: 1000

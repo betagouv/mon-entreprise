@@ -34,9 +34,9 @@ NonNumericTerminal ->
 
 NegatedVariable -> "≠" _ Variable {% ([,,{variable}]) => ({'≠': {explanation: variable} }) %}
 
-FilteredVariable -> Variable _ Filter {% ([{variable},,filter]) => ({filter: {filter, explanation: variable}}) %}
+FilteredVariable -> Variable _ Filter {% ([{variable},,filter],l,reject) => ['mensuel', 'annuel'].includes(filter) ? reject : ({filter: {filter, explanation: variable}}) %}
 
-Filter -> "[" VariableFragment "]" {% ([,filter]) =>filter %}
+Filter -> "[" VariableFragment "]" {% ([,filter]) => filter %}
 
 TemporalVariable -> Variable _ TemporalTransform {% ([{variable},,temporalTransform]) => ({'temporalTransform': {explanation: variable, temporalTransform} }) %}
 
@@ -84,10 +84,13 @@ Term -> Variable {% id %}
 		| percentage {% id %}
 
 Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):* 
-{% ([firstFragment, nextFragments]) =>  
-({variable: {
-	fragments: [firstFragment, ...nextFragments],
-}}) %}
+{% ([firstFragment, nextFragments], l, reject) =>  {
+let fragments = [firstFragment, ...nextFragments] 
+if (fragments.length === 1 && ['oui', 'non'].includes(fragments[0])) 
+		return reject
+return ({variable: {
+	fragments
+}}) }%}
 
 String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({constant: {
 	
