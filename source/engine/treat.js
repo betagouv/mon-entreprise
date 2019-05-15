@@ -115,7 +115,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'!=': [(a, b) => !equals(a, b), '≠']
 		},
 		operationDispatch = map(
-			([f, unicode]) => mecanismOperation(f, unicode),
+			([f, unicode]) => mecanismOperation(f, unicode || k),
 			knownOperations
 		)
 
@@ -131,7 +131,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,
-			'une possibilité': mecanismOnePossibility,
+			'une possibilité': mecanismOnePossibility(rule.dottedName),
 			'inversion numérique': mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
 			variations: mecanismVariations,
@@ -141,7 +141,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 				treatNegatedVariable(treatVariable(rules, rule)(v.explanation)),
 			filter: () =>
 				treatVariableTransforms(rules, rule)({
-					filter: v.filtre,
+					filter: v.filter,
 					variable: v.explanation
 				}),
 			variable: () => treatVariableTransforms(rules, rule)({ variable: v }),

@@ -111,12 +111,12 @@ _ -> [\s]     {% d => null %}
 
 number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({constant:{
 
-	rawNode: d.join(''),
+	rawNode: d,
 nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}}) %}
 
 percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({ 'constant':{
 
-	rawNode: d.join(''),
+	rawNode: d,
 type: 'percentage', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))/100}}) %}
 
 
