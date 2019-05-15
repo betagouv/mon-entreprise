@@ -9,7 +9,7 @@ import {
 } from './rules'
 import { getSituationValue } from './variables'
 
-export let treatVariable = (rules, rule, filter) => parseResult => {
+export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -77,8 +77,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 		}
 	}
 
-	let { fragments } = parseResult,
-		variablePartialName = fragments.join(' . '),
+	let variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
 	return {
@@ -187,7 +186,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		return result
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(
-		parseResult.variable || parseResult
+		parseResult.variable
 	)
 
 	return {

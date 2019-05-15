@@ -14,15 +14,18 @@ NumericTerminal ->
 		| percentage {% id %}
 		| number {% id %}
 
-# Parentheses
-P -> "(" _ AS _ ")" {% ([,,e]) => e %}
+Parentheses -> "(" _ AS _ ")" {% ([,,e]) => e %}
     | NumericTerminal           {% id %}
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
 Comparison -> Comparable _ ComparisonOperator _ Comparable {% ([A, , operator, , B]) => ({
 		[operator]: 
+		{
+		type: 'comparison',
+		explanation: 
 		[A, B]
+		}
 }) %}
 
 Comparable -> (  AS | NonNumericTerminal) {% ([[e]]) => e %}
@@ -33,13 +36,13 @@ NonNumericTerminal ->
 	| NegatedVariable  {% id %}
 
 
-NegatedVariable -> "≠" _ Variable {% ([,,variable]) => ({'≠': variable }) %}
+NegatedVariable -> "≠" _ Variable {% ([,,{variable}]) => ({'≠': {explanation: variable} }) %}
 
-FilteredVariable -> Variable _ Filter {% ([variable,,filtre]) => ({filtre: {filtre, variable}}) %}
+FilteredVariable -> Variable _ Filter {% ([{variable},,filter]) => ({filter: {filter, explanation: variable}}) %}
 
-Filter -> "(" VariableFragment ")" {% ([,filtre]) =>filtre %}
+Filter -> "(" VariableFragment ")" {% ([,filter]) =>filter %}
 
-TemporalVariable -> Variable _ TemporalTransform {% ([variable,,chemin]) => ({'conversion temporelle': {variable, chemin}}) %}
+TemporalVariable -> Variable _ TemporalTransform {% ([{variable},,temporalTransform]) => ({'temporalTransform': {explanation: variable, temporalTransform} }) %}
 
 TemporalTransform -> "[" Temporality "]" {% d =>d[1] %}
 
@@ -50,7 +53,11 @@ Temporality -> "annuel" | "mensuel" {% id %}
 # Addition and subtraction
 AS -> AS _ ASOperator _ MD  {% ([A, , operator, , B]) => ({
 		[operator]: 
+		{
+		type: 'calculation',
+		explanation: 
 		[A, B]
+		}
 }) %}
 
     | MD            {% id %}
@@ -63,13 +70,17 @@ MDOperator	-> "*" {% id %}
 	| "/" {% id %}
 
 # Multiplication and division
-MD -> MD _ MDOperator _ P  {% 
+MD -> MD _ MDOperator _ Parentheses  {% 
 ([A, , operator, , B]) => ({
 		[operator]: 
+		{
+		type: 'calculation',
+		explanation: 
 		[A, B]
+		}
 }) %}
    
-    | P             {% id %}
+    | Parentheses             {% id %}
 
 Term -> Variable {% id %}
 		| FilteredVariable {% id %}
@@ -79,14 +90,14 @@ Term -> Variable {% id %}
 Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):* 
 {% ([firstFragment, nextFragments]) =>  
 ({variable: {
-	category: 'variable',
 	fragments: [firstFragment, ...nextFragments],
 }}) %}
 
-String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({constante: {
+String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({constant: {
 	
 	type: 'string',
-	nodeValue: d[1].join('')
+	nodeValue: d[1].join(''),
+	rawNode: d[1].join('')
 }}) %}
 
 VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
@@ -99,11 +110,20 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({constante:{ nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}}) %}
+number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({constant:{
 
-percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({ 'percentage':{ nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))/100}}) %}
+	rawNode: d.join(''),
+nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}}) %}
+
+percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({ 'constant':{
+
+	rawNode: d.join(''),
+type: 'percentage', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))/100}}) %}
 
 
 Boolean -> ("oui"
- | "non" ) {% ([val])=> ({constante:{type: 'boolean', nodeValue: {'oui': true, 'non': false}[val]}}) %}
+ | "non" ) {% ([val])=> ({constant:{
+ 
+	rawNode: val,
+ type: 'boolean', nodeValue: {'oui': true, 'non': false}[val]}}) %}
 

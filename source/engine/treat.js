@@ -17,6 +17,7 @@ import {
 	head,
 	intersection,
 	keys,
+	without,
 	lt,
 	lte,
 	map,
@@ -64,19 +65,6 @@ export let treatString = (rules, rule) => rawNode => {
 
 	let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
 
-	if (
-		additionnalResults &&
-		additionnalResults.length > 0 &&
-		parseResult.category !== 'boolean'
-	) {
-		// booleans, 'oui' and 'non', have an exceptional resolving precedence
-		throw new Error(
-			"Attention ! L'expression <" +
-				rawNode +
-				'> ne peut être traitée de façon univoque'
-		)
-	}
-
 	return treatObject(rules, rule)(parseResult)
 }
 
@@ -95,19 +83,41 @@ export let treatOther = rawNode => {
 }
 
 export let treatObject = (rules, rule, treatOptions) => rawNode => {
+	/* TODO instead of describing mecanisms in knownMecanisms.yaml, externalize the mecanisms themselves in an individual file and describe it
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 	if (mecanisms.length != 1) {
-		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet
-			Objet YAML : ${JSON.stringify(rawNode)}
-			Mécanismes implémentés correspondants : ${JSON.stringify(mecanisms)}
-			Cette liste doit avoir un et un seul élément.
-			Vérifier que le mécanisme est dans l'objet 'dispatch' et dans les'knownMecanisms.yaml'
-		`)
-	}
+	} 
+	*/
 
-	let k = head(mecanisms),
+	let attributes = keys(rawNode),
+		descriptiveAttributes = ['description', 'note', 'référence'],
+		relevantAttributes = without(descriptiveAttributes, attributes)
+	if (relevantAttributes.length !== 1)
+		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet (au-delà des attributs descriptifs tels que "description", "commentaire", etc.)
+			Objet YAML : ${JSON.stringify(rawNode)}
+			Cette liste doit avoir un et un seul élément.
+			Si vous venez tout juste d'ajouter un nouveau mécanisme, vérifier qu'il est bien intégré dans le dispatch de treat.js
+		`)
+	let k = relevantAttributes[0],
 		v = rawNode[k]
+
+	let knownOperations = {
+			'*': [multiply, '∗'],
+			'/': [divide, '∕'],
+			'+': [add],
+			'-': [subtract, '−'],
+			'<': [lt],
+			'<=': [lte, '≤'],
+			'>': [gt],
+			'>=': [gte, '≥'],
+			'=': [equals],
+			'!=': [(a, b) => !equals(a, b), '≠']
+		},
+		operationDispatch = map(
+			([f, unicode]) => mecanismOperation(f, unicode),
+			knownOperations
+		)
 
 	let dispatch = {
 			'une de ces conditions': mecanismOneOf,
@@ -125,9 +135,75 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'inversion numérique': mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
 			variations: mecanismVariations,
-			synchronisation: mecanismSynchronisation
+			synchronisation: mecanismSynchronisation,
+			...operationDispatch,
+			'≠': () =>
+				treatNegatedVariable(treatVariable(rules, rule)(v.explanation)),
+			filter: () =>
+				treatVariableTransforms(rules, rule)({
+					filter: v.filtre,
+					variable: v.explanation
+				}),
+			variable: () => treatVariableTransforms(rules, rule)({ variable: v }),
+			temporalTransform: () =>
+				treatVariableTransforms(rules, rule)({
+					variable: v.explanation,
+					temporalTransform: v.temporalTransform
+				}),
+			constant: () => ({
+				type: v.type,
+				nodeValue: v.nodeValue,
+				// eslint-disable-next-line
+				jsx: () => <span className={v.type}>{v.rawNode}</span>
+			})
 		},
 		action = propOr(mecanismError, k, dispatch)
 
 	return action(treat(rules, rule, treatOptions), k, v)
+}
+
+let mecanismOperation = (operatorFunction, unicode) => (recurse, k, v) => {
+	let evaluate = (cache, situation, parsedRules, node) => {
+		let explanation = map(
+				curry(evaluateNode)(cache, situation, parsedRules),
+				node.explanation
+			),
+			value1 = explanation[0].nodeValue,
+			value2 = explanation[1].nodeValue,
+			nodeValue =
+				value1 == null || value2 == null
+					? null
+					: operatorFunction(value1, value2),
+			missingVariables = mergeMissing(
+				explanation[0].missingVariables,
+				explanation[1].missingVariables
+			)
+
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
+	}
+
+	let explanation = v.explanation.map(recurse)
+
+	let jsx = (nodeValue, explanation) => (
+		<Node
+			classes={'inlineExpression ' + v.category}
+			value={nodeValue}
+			child={
+				<span className="nodeContent">
+					<span className="fa fa" />
+					{makeJsx(explanation[0])}
+					<span className="operator">{unicode}</span>
+					{makeJsx(explanation[1])}
+				</span>
+			}
+		/>
+	)
+
+	return {
+		evaluate,
+		jsx,
+		operator: unicode,
+		// is this useful ?		text: rawNode,
+		explanation
+	}
 }
