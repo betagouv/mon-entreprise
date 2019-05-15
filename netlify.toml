@@ -1,7 +1,6 @@
 
 
 # InFrance PRODUCTION settings
-
 [[redirects]]
 from = "https://www.mycompanyinfrance.fr/*"
 to = "https://mycompanyinfrance.fr/:splat"
@@ -17,7 +16,6 @@ from = "https://mycompanyinfrance.fr/sitemap.txt"
 to = "/sitemap.infrance.en.txt"
 status = 200
 
-## Redirection pour les pages prérendues
 [[redirects]]
 from = "https://mycompanyinfrance.fr"
 to = "/prerender/infrance/index.html"
@@ -39,7 +37,6 @@ to = "/infrance.html"
 status = 200
 
 # Mon-entreprise.fr PRODUCTION settings
-
 [[redirects]]
 from = "https://mon-entreprise.fr/stats"
 to = "https://branched-trunk.glitch.me/"
@@ -56,30 +53,7 @@ to = "/sitemap.infrance.fr.txt"
 status = 200
 
 
-## Redirection pour les pages prérendues
-[[redirects]]
-from = "https://mon-entreprise.fr"
-to = "/prerender/mon-entreprise/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.fr/sécurité-sociale/salarié"
-to = "/prerender/mon-entreprise/sécurité-sociale/salarié/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.fr/iframes/simulateur-embauche"
-to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
-status = 200
-
-[[redirects]]
-from = "https://mon-entreprise.fr/*"
-to = "/mon-entreprise.html"
-status = 200
-
-
 # Embauche redirection settings
-
 [[redirects]]
 from = "https://embauche.beta.gouv.fr/"
 to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
@@ -101,15 +75,12 @@ from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
 to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
 status = 301
 
-
-
-# Redirect to mycompanyinfrance in staging and development settings
+# Redirection pour les pages en anglais
 [[redirects]]
 from = "/"
 query = {s = "m"}
 to = "/prerender/infrance/index.html"
 status = 200
-
 
 [[redirects]]
 from = "/*"
@@ -117,15 +88,15 @@ query = {s = "m"}
 to = "/infrance.html"
 status = 200
 
-# Redirect to mon-entreprise in staging and development settings
+# Redirection pour les pages en français
 [[redirects]]
 from = "/"
 to = "/prerender/mon-entreprise/index.html"
 status = 200
 
 [[redirects]]
-from = "/sécurité-sociale/salarié"
-to = "/prerender/mon-entreprise/sécurité-sociale/salarié/index.html"
+from = "/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+to = "/prerender/mon-entreprise/s%C3%A9curit%C3%A9-sociale/salari%C3%A9/index.html"
 status = 200
 
 [[redirects]]
@@ -137,7 +108,6 @@ status = 200
 from = "/*"
 to = "/mon-entreprise.html"
 status = 200
-
 
 [context.deploy-preview.environment]
   EN_SITE = "${path}?s=m"
