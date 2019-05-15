@@ -47,25 +47,24 @@
 			<%= htmlWebpackPlugin.options.title %>
 		</title>
 
-		<!--[if IE]>
-		<style>
-			#outdated-browser {
-				display: block !important
-			}
-			#lds-ellipsis {
-				display: none !important;
-			}
-		</style>
-		<!--<![endif]-->
+
 		<% for (var css in htmlWebpackPlugin.files.css) { %>
 		<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
 		<% } %>
 		<style>
-			html[data-useragent*='MSIE 10.0'] #outdated-browser {
+
+			html[data-useragent*='MSIE'] #outdated-browser,
+			html[data-useragent*='Trident'] #outdated-browser {
 				display: block !important;
 			}
 
-			html[data-useragent*='MSIE 10.0'] #lds-ellipsis {
+			html[data-useragent*='MSIE'] #lds-ellipsis,
+			html[data-useragent*='Trident'] #lds-ellipsis {
+				display: none !important;
+			}
+
+			html[data-useragent*='MSIE'] #js,
+			html[data-useragent*='Trident'] #js {
 				display: none !important;
 			}
 
@@ -161,6 +160,7 @@
 	</head>
 
 	<body>
+
 		<div id="lds-ellipsis">
 			<div></div>
 			<div></div>
@@ -168,37 +168,45 @@
 			<div></div>
 		</div>
 
+		<!-- USER AGENT DATA ATTRIBUTE  -->
+		<script>
+			var b = document.documentElement;
+			b.setAttribute("data-useragent",  navigator.userAgent);
+		</script>
+
 		<!-- APP  -->
 		<div id="js"></div>
-
-		<!-- A little help for the Netlify bots if you're not using a SSG -->
-		<form name="feedback" netlify netlify-honeypot="bot-field" hidden>
-			<textarea name="message"></textarea>
-			<input type="email" name="email" />
-			<input hidden name="pageTitle" />
-			<input name="url" />
-		</form>
 
 		<!-- OUTDATED BROWSER WARNING -->
 		<div
 			id="outdated-browser"
-			style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; display: none;"
+			style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; display: none; background-color: white"
 		>
-			<h2
-				style="margin: 100px auto; max-width: 800px; text-align: center; font-size: 40px; font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;"
-			>
-				<img
-					src="images/marianne.svg"
-					alt="Un service de l'État français"
-					style="width: 200px"
-				/>
-				<br /><br />
-				Votre navigateur n'est pas supporté. Vous pouvez le mettre à jour ou en
-				installer un nouveau depuis
+			<div style="margin: 100px auto; max-width: 800px; text-align: center;  font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;">
+
+
+					<img
+						src="images/marianne.svg"
+						alt="Un service de l'État français"
+						style="width: 200px; margin-bottom: 2rem;"
+					/>
+			<h1>
+				Votre navigateur n'est plus supporté
+				</h1>
+				<h2> Nous vous invitons à réessayer avec un autre, ou depuis votre mobile</h2>
+				<br/>
+				<br/>
+				<h3>Si besoin, vous pouvez en installer un nouveau depuis
 				<a style="color: #2975d1" href="http://outdatedbrowser.com/fr"
 					>cette page</a
-				>
-			</h2>
+				></h3>
+				<h3>
+				<a href="javascript:void(0);"  onclick="
+					var b = document.documentElement;
+					b.setAttribute('data-useragent',  'force-navigation-anyway');
+				">Continuer quand même vers le site</a>
+				</h3>
+</div>
 		</div>
 
 		<script>
