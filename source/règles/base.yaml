@@ -806,7 +806,7 @@
   formule:
     somme:
       - prévoyance obligatoire cadre
-      - complémentaire santé (employeur)
+      - complémentaire santé [employeur]
 
 - espace: contrat salarié
   nom: avantages en nature
@@ -888,15 +888,15 @@
   période: flexible
   formule:
     somme:
-      - vieillesse (salarié)
-      - maladie (salarié)
-      - retraite complémentaire (salarié)
-      - contribution d'équilibre général (salarié)
-      - contribution d'équilibre technique (salarié)
+      - vieillesse [salarié]
+      - maladie [salarié]
+      - retraite complémentaire [salarié]
+      - contribution d'équilibre général [salarié]
+      - contribution d'équilibre technique [salarié]
       - CSG
       - CRDS
-      - APEC (salarié)
-      - complémentaire santé (salarié)
+      - APEC [salarié]
+      - complémentaire santé [salarié]
 
 - espace: contrat salarié . cotisations
   nom: patronales
@@ -905,18 +905,18 @@
   format: euros
   formule:
     somme:
-      - maladie (employeur)
+      - maladie [employeur]
       - ATMP
       - prévoyance obligatoire cadre
-      - complémentaire santé (employeur)
+      - complémentaire santé [employeur]
       - médecine du travail
-      - vieillesse (employeur)
-      - retraite complémentaire (employeur)
-      - contribution d'équilibre général (employeur)
-      - contribution d'équilibre technique (employeur)
+      - vieillesse [employeur]
+      - retraite complémentaire [employeur]
+      - contribution d'équilibre général [employeur]
+      - contribution d'équilibre technique [employeur]
       - allocations familiales
-      - chômage (employeur)
-      - APEC (employeur)
+      - chômage [employeur]
+      - APEC [employeur]
       - AGS
       - FNAL
       - participation effort de construction
@@ -958,7 +958,7 @@
     somme:
       - rémunération . net de cotisations
       - avantages sociaux
-      - CSG (non déductible)
+      - CSG [non déductible]
       - CRDS
 
 - espace: contrat salarié . rémunération . net imposable
@@ -1614,8 +1614,8 @@
       - 1634.39
       - somme:
           - allocations familiales
-          - maladie (employeur)
-          - vieillesse (employeur)
+          - maladie [employeur]
+          - vieillesse [employeur]
 
 - espace: contrat salarié
   nom: réduction générale
@@ -1687,12 +1687,12 @@
   formule:
     somme:
       - allocations familiales
-      - FNAL (employeur)
-      - maladie (employeur)
-      - vieillesse (employeur)
+      - FNAL [employeur]
+      - maladie [employeur]
+      - vieillesse [employeur]
       - part de la cotisation ATMP
-      - retraite complémentaire (employeur)
-      - contribution d'équilibre général (employeur)
+      - retraite complémentaire [employeur]
+      - contribution d'équilibre général [employeur]
   références:
     changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
 
@@ -2070,7 +2070,7 @@
     somme:
       - assiette CSG abattue
       - prévoyance obligatoire cadre
-      - complémentaire santé (employeur)
+      - complémentaire santé [employeur]
 
 - espace: contrat salarié
   nom: assiette CSG abattue
@@ -2382,7 +2382,7 @@
     somme:
       - cotisations . assiette
       - prévoyance obligatoire cadre
-      - complémentaire santé (employeur)
+      - complémentaire santé [employeur]
 
   références:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
@@ -2555,7 +2555,7 @@
   période: flexible
   formule:
     somme:
-      - complémentaire santé (employeur)
+      - complémentaire santé [employeur]
       - prévoyance obligatoire cadre
 
 # Ci-dessous une implémentation basique de l'impôt sur le revenu annuel dans le but d'illustrer un post de blog
@@ -2805,7 +2805,7 @@
 
 - espace: indépendant
   nom: revenu net de cotisations
-  formule: revenu professionnel - cotisations et contributions . CSG et CRDS (non déductible)
+  formule: revenu professionnel - cotisations et contributions . CSG et CRDS [non déductible]
   période: flexible
 
 - espace: indépendant
@@ -3049,7 +3049,7 @@
   formule:
     somme:
       - cotisations à payer
-      - CSG et CRDS (déductible)
+      - CSG et CRDS [déductible]
       - formation professionnelle
   format: euros
   période: flexible
@@ -3379,14 +3379,14 @@
   formule:
     somme:
       - impôt . impôt sur le revenu à payer
-      - cotisations et contributions . CSG et CRDS (non déductible)
+      - cotisations et contributions . CSG et CRDS [non déductible]
 
 - nom: auto entrepreneur
   icônes: 🚶
   par défaut: non
   question: L'activité est-elle exercée en auto-entreprise ?
   description: |
-    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
+    L'auto-entreprise est une entreprise individuelle simplifi��e. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
 - espace: auto entrepreneur
   nom: base des cotisations

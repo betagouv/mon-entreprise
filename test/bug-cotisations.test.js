@@ -13,7 +13,7 @@ describe('bug-analyse-many', function() {
       - nom: cotisations
         formule: 
           somme: 
-            - cotisation a (salarié)
+            - cotisation a [salarié]
             - cotisation b
 
       - nom: cotisation a
