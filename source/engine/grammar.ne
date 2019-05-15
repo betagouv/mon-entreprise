@@ -1,7 +1,3 @@
-
-# To understand or edit this file, use the awesome nearley playground (but save your work, it can crash sometimes) : https://omrelli.ug/nearley-playground/
-
-
 main ->
 		  AS {% id %}
 		| Comparison {% id %}
@@ -14,7 +10,7 @@ NumericTerminal ->
 		| percentage {% id %}
 		| number {% id %}
 
-Parentheses -> "(" _ AS _ ")" {% ([,,e]) => e %}
+Parentheses -> "(" AS ")" {% ([,e]) => e %}
     | NumericTerminal           {% id %}
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
@@ -40,7 +36,7 @@ NegatedVariable -> "≠" _ Variable {% ([,,{variable}]) => ({'≠': {explanation
 
 FilteredVariable -> Variable _ Filter {% ([{variable},,filter]) => ({filter: {filter, explanation: variable}}) %}
 
-Filter -> "(" VariableFragment ")" {% ([,filter]) =>filter %}
+Filter -> "[" VariableFragment "]" {% ([,filter]) =>filter %}
 
 TemporalVariable -> Variable _ TemporalTransform {% ([{variable},,temporalTransform]) => ({'temporalTransform': {explanation: variable, temporalTransform} }) %}
 
