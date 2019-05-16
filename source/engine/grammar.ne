@@ -1,3 +1,9 @@
+@preprocessor esmodule
+
+@{% 
+import {string, filteredVariable, variable, temporalVariable,  operation, boolean, number, percentage } from './grammarFunctions'
+%}
+
 main ->
 		  AS {% id %}
 		| Comparison {% id %}
@@ -15,14 +21,7 @@ Parentheses -> "(" AS ")" {% ([,e]) => e %}
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
-Comparison -> Comparable _ ComparisonOperator _ Comparable {% ([A, , operator, , B]) => ({
-		[operator]: 
-		{
-		type: 'comparison',
-		explanation: 
-		[A, B]
-		}
-}) %}
+Comparison -> Comparable _ ComparisonOperator _ Comparable {% operation('comparison')%}
 
 Comparable -> (  AS | NonNumericTerminal) {% ([[e]]) => e %}
 
@@ -34,11 +33,11 @@ NonNumericTerminal ->
 
 NegatedVariable -> "≠" _ Variable {% ([,,{variable}]) => ({'≠': {explanation: variable} }) %}
 
-FilteredVariable -> Variable _ Filter {% ([{variable},,filter],l,reject) => ['mensuel', 'annuel'].includes(filter) ? reject : ({filter: {filter, explanation: variable}}) %}
+FilteredVariable -> Variable _ Filter {% filteredVariable %}
 
 Filter -> "[" VariableFragment "]" {% ([,filter]) => filter %}
 
-TemporalVariable -> Variable _ TemporalTransform {% ([{variable},,temporalTransform]) => ({'temporalTransform': {explanation: variable, temporalTransform} }) %}
+TemporalVariable -> Variable _ TemporalTransform {% temporalVariable %}
 
 TemporalTransform -> "[" Temporality "]" {% d =>d[1] %}
 
@@ -47,15 +46,7 @@ Temporality -> "annuel" | "mensuel" {% id %}
 
 
 # Addition and subtraction
-AS -> AS _ ASOperator _ MD  {% ([A, , operator, , B]) => ({
-		[operator]: 
-		{
-		type: 'calculation',
-		explanation: 
-		[A, B]
-		}
-}) %}
-
+AS -> AS _ ASOperator _ MD  {%  operation('calculation') %}
     | MD            {% id %}
 
 	 
@@ -66,16 +57,7 @@ MDOperator	-> "*" {% id %}
 	| "/" {% id %}
 
 # Multiplication and division
-MD -> MD _ MDOperator _ Parentheses  {% 
-([A, , operator, , B]) => ({
-		[operator]: 
-		{
-		type: 'calculation',
-		explanation: 
-		[A, B]
-		}
-}) %}
-   
+MD -> MD _ MDOperator _ Parentheses  {% operation('calculation') %}
     | Parentheses             {% id %}
 
 Term -> Variable {% id %}
@@ -84,20 +66,9 @@ Term -> Variable {% id %}
 		| percentage {% id %}
 
 Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):* 
-{% ([firstFragment, nextFragments], l, reject) =>  {
-let fragments = [firstFragment, ...nextFragments] 
-if (fragments.length === 1 && ['oui', 'non'].includes(fragments[0])) 
-		return reject
-return ({variable: {
-	fragments
-}}) }%}
+{% variable %}
 
-String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% d => ({constant: {
-	
-	type: 'string',
-	nodeValue: d[1].join(''),
-	rawNode: d[1].join('')
-}}) %}
+String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% string %}
 
 VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
 
@@ -109,20 +80,11 @@ Dot -> [\.] {% d => null %}
 _ -> [\s]     {% d => null %}
 
 
-number -> [0-9]:+ ([\.] [0-9]:+):?        {% d => ({constant:{
+number -> [0-9]:+ ([\.] [0-9]:+):?        {% number %}
 
-	rawNode: d,
-nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))}}) %}
+percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% percentage %}
 
-percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% d => ({ 'constant':{
-
-	rawNode: d,
-type: 'percentage', nodeValue: parseFloat(d[0].join("")+(d[1]?(d[1][0]+d[1][1].join("")):""))/100}}) %}
-
-
-Boolean -> ("oui"
- | "non" ) {% ([val])=> ({constant:{
- 
-	rawNode: val,
- type: 'boolean', nodeValue: {'oui': true, 'non': false}[val]}}) %}
+Boolean -> (
+	"oui"
+ | 	"non" ) {% boolean %}
 
