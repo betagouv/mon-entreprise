@@ -1,5 +1,3 @@
-/* @flow */
-
 import { resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
@@ -96,7 +94,7 @@ export default compose(
 	withColours,
 	connect(
 		state => ({ answers: answerWithValueSelector(state) }),
-		(dispatch: Function) => ({
+		dispatch => ({
 			resetSimulation: () => {
 				dispatch(resetSimulation())
 			},
