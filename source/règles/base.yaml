@@ -3041,7 +3041,6 @@
   format: euros
   période: flexible
 
-
 - espace: entreprise
   nom: rattachement libéral règlementé
   description: |
@@ -3064,7 +3063,6 @@
           - auto entrepreneur
 
   période: aucune
-
 
 - espace: indépendant . cotisations et contributions . cotisations
   nom: maladie
@@ -3626,7 +3624,6 @@
     INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
   non applicable si: entreprise . rattachement libéral règlementé
 
-
   format: euros
   période: flexible
   formule:
@@ -3638,15 +3635,15 @@
   note: |
     Il s'agit d'une estimation a but purement indicatif, afin de comparer la retraite des différents régimes.
     On se limite notamment aux hypothèses suivantes :
-      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestre recquis (172)
+      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestre requis (172)
       - On considère que le travailleur a eu le même revenu tout au long de sa carrière
       - On considère que le travailleur est resté dans le même régime tout au long de sa carrière
       - On ne prends pas en compte les minorations / majorations
       - On ne prends pas en compte les seuils de rémunération minimum pour la validation des trimestres
-      - On ne prends pas en compte les caisse de retraite particulière (CIPAV)
-      - On ne prends pas en compte les seuils CA minimum pour la validation des trimestres pour les auto entrepreneur
+      - On ne prends pas en compte les caisses de retraite particulière (CIPAV)
+      - On ne prends pas en compte les seuils de chiffre d'affaire minimum pour la validation des trimestres pour les auto-entrepreneurs
 
-    Ces limites seront amenés à évoluer au fur et à mesure du développement du simulateur
+    Ces limites seront amenées à évoluer au fur et à mesure du développement du simulateur
 
 - nom: base
   espace: protection sociale . retraite
@@ -3670,11 +3667,11 @@
       - si:
           une de ces conditions:
             - toutes ces conditions:
-              - auto entrepreneur
-              - entreprise . chiffre d'affaires < seuil de CA pour ouverture des droits
+                - auto entrepreneur
+                - entreprise . chiffre d'affaires < seuil de CA pour ouverture des droits
             - toutes ces conditions:
-              - contrat salarié
-              - revenu moyen < revenu minimum pour ouverture des droits
+                - contrat salarié
+                - revenu moyen < revenu minimum pour ouverture des droits
         alors: 0%
       - sinon: 50%
   note: On ne prends pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
@@ -3716,7 +3713,7 @@
   format: euros
   période: année
   formule:
-    le maximum de :
+    le maximum de:
       - indépendant . revenu net de cotisations
       - auto entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut
@@ -3732,8 +3729,7 @@
   formule: 695.59
   format: euros
   période: mois
-  notes:
-    On ne prends pas encore en compte la condition d'applicabilité de retraite de base + complémentaires < 1 177,44 € / mois
+  notes: On ne prends pas encore en compte la condition d'applicabilité de retraite de base + complémentaires < 1 177,44 € / mois
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15522
 
@@ -3744,7 +3740,6 @@
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
-
 - espace: protection sociale . retraite . complémentaire salarié
   nom: valeur du point
   formule: 1.2588
@@ -3754,7 +3749,6 @@
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
 
-
 - espace: protection sociale . retraite . complémentaire salarié
   nom: points acquis
   formule: points acquis par mois * mois cotisés
@@ -3765,9 +3759,7 @@
 - espace: protection sociale . retraite . complémentaire salarié
   nom: points acquis par mois
   période: mois
-  formule:
-    contrat salarié . retraite complémentaire / prix d'achat du point
-
+  formule: contrat salarié . retraite complémentaire / prix d'achat du point
 
 - espace: protection sociale . retraite . complémentaire salarié
   nom: prix d'achat du point
@@ -3777,15 +3769,12 @@
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
-
-
 - espace: protection sociale . retraite
   nom: complémentaire indépendant
   formule: points acquis * valeur du point
   période: année
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
-
 
 - espace: protection sociale . retraite . complémentaire indépendant
   nom: valeur du point
@@ -3795,7 +3784,6 @@
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
-
 - espace: protection sociale . retraite . complémentaire indépendant
   nom: points acquis
   formule: points acquis par mois * mois cotisés
@@ -3804,8 +3792,7 @@
 - espace: protection sociale . retraite . complémentaire indépendant
   nom: points acquis par mois
   période: mois
-  formule:
-    indépendant . cotisations et contributions . cotisations . retraite complémentaire / prix d'achat du point
+  formule: indépendant . cotisations et contributions . cotisations . retraite complémentaire / prix d'achat du point
 
 - espace: protection sociale . retraite . complémentaire indépendant
   nom: prix d'achat du point
@@ -3813,11 +3800,7 @@
   période: mois
   format: euros
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
-  références:
-    https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
-
-
-
+  références: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
 
 - nom: santé
   espace: protection sociale
