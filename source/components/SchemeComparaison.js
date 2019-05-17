@@ -275,7 +275,7 @@ const SchemeComparaison = ({
 					<div className="AS">
 						{assimiléSalarié && assimiléSalarié.retraite.montant !== 0 ? (
 							<RuleValueLink
-								onClick={() => setSituationBranch(1)}
+								onClick={() => setSituationBranch(0)}
 								{...assimiléSalarié.retraite}
 								garder
 								une
@@ -301,7 +301,7 @@ const SchemeComparaison = ({
 								'—'
 							) : autoEntrepreneur.retraite.montant !== 0 ? (
 								<RuleValueLink
-									onClick={() => setSituationBranch(1)}
+									onClick={() => setSituationBranch(2)}
 									{...autoEntrepreneur.retraite}
 								/>
 							) : (
