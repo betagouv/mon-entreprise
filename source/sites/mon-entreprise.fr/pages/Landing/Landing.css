@@ -50,7 +50,10 @@
 		flex-direction: column;
 		text-align: center;
 	}
-	.landing-header__brand-logo {
+	.landing-title h1 {
+		line-height: 1.2em;
+	}
+	.landing-title__logo {
 		display: none;
 	}
 	.landing-title__img {
