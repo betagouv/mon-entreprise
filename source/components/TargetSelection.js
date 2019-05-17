@@ -267,31 +267,32 @@ let TargetInputOrValue = withLanguage(
 		language,
 		firstStepCompleted,
 		inversionFail
-	}) => (
-		<span className="targetInputOrValue">
-			{activeInput === target.dottedName ||
-			!target.formule ||
-			isEmpty(target.formule) ? (
-				<Field
-					name={target.dottedName}
-					{...(target.formule ? { autoFocus: true } : {})}
-					component={CurrencyField}
-					language={language}
-				/>
-			) : (
-				<TargetValue
-					{...{
-						targets,
-						target,
-						activeInput,
-						setActiveInput,
-						firstStepCompleted,
-						inversionFail
-					}}
-				/>
-			)}
-		</span>
-	)
+	}) => {
+		let inputIsActive = activeInput === target.dottedName
+		return (
+			<span className="targetInputOrValue">
+				{inputIsActive || !target.formule || isEmpty(target.formule) ? (
+					<Field
+						name={target.dottedName}
+						component={CurrencyField}
+						{...(inputIsActive ? { autoFocus: true } : {})}
+						language={language}
+					/>
+				) : (
+					<TargetValue
+						{...{
+							targets,
+							target,
+							activeInput,
+							setActiveInput,
+							firstStepCompleted,
+							inversionFail
+						}}
+					/>
+				)}
+			</span>
+		)
+	}
 )
 
 const TargetValue = connect(
