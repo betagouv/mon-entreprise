@@ -61,10 +61,9 @@ const SchemeChoice = compose(
 				<p>
 					<T k="selectionRégime.comparer.description">
 						Le régime social du dirigeant a une très grande influence sur votre
-						protection sociale et sur le revenu que vous aller toucher. Pour
-						vous aider à y voir plus clair, nous avons conçu un petit
-						comparatif, afin que vous puissiez choisir le régime qui vous
-						convient le mieux.
+						protection sociale et sur le revenu que vous allez toucher. Nous
+						avons conçu un petit comparatif pour vous aider à y voir plus clair
+						et choisir le régime qui vous convient le mieux.
 					</T>
 				</p>
 				<p style={{ textAlign: 'center', marginTop: '1rem' }}>

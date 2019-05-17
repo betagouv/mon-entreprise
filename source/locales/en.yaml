@@ -648,12 +648,11 @@ simulateurs:
 
 selectionRégime:
   page:
-    titre:
-      Social scheme selection
+    titre: Social scheme selection
   titre: Which social scheme would you like to explore?
   comparer:
     titre: Not sure which one to choose?
-    description: The executive's social scheme has a very strong influence on your social protection and the income you will receive. To help you see more clearly, we have designed a small comparison, so that you can choose the plan that suits you best.
+    description: The executive's social scheme has a very strong influence on the level of social protection and the perceived income. To help you see more clearly and choose the plan that suits you best, we have designed a quick comparator.
     cta: Compare social schemes
 comparaisonRégimes:
   page:
@@ -662,7 +661,7 @@ comparaisonRégimes:
     description: |
       What is the best scheme for your situation? Discover their differences and simulate your income and retirement in one minute for each of the options.
   titre: |
-     Self-employed, assimilated employee or <2>auto-entrepreneur</2>: which scheme to choose?
+    Self-employed, assimilated employee or <2>auto-entrepreneur</2>: which scheme to choose?
   description: |
     When you create your company, the choice of legal status will determine to which social scheme the executive is affiliated. There are three different ones, each with its advantages and disadvantages. Thanks to this comparison, you will be able to select the one that best suits you.
   AS:
@@ -680,8 +679,7 @@ comparaisonRégimes:
     <0> Social security</0>
     <1> General scheme</1>
     <2> Self-employed scheme ("Sécurité sociale des indépendants")</2>
-  AT:
-    <0> Work-related accidents covered</0>
+  AT: <0> Work-related accidents covered</0>
   assuranceMaladie: |
     <0> Health insurance</0>
   indemnités: |
@@ -728,10 +726,8 @@ comparaisonRégimes:
     <0> Deductible supplementary pension and health insurance</0>
     <1> Yes (until 50%)</1>
     <2> Yes ("Madelin" Law)</2>
-  revenu:
-    <0>Net income after taxes</0>
-  retraiteEstimation:
-    <0>Retirement pay (estimation)</0>
+  revenu: <0>Net income after taxes</0>
+  retraiteEstimation: <0>Retirement pay (estimation)</0>
   cotisationMinimale: |
     <0> Minimum contributions</0>
   seuil: |
@@ -741,7 +737,6 @@ comparaisonRégimes:
     indep: Choose Indépendant
     auto: Choose Auto-entrepreneur
     EI: Choose Entreprise Individuelle
-
 
 J'ai compris: understood
 
