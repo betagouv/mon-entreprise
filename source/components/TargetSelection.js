@@ -28,7 +28,7 @@ export default compose(
 	withColours,
 	reduxForm({
 		form: 'conversation',
-		destroyOnUnmount: false
+		destroyOnUnmount: true
 	}),
 	connect(
 		state => ({
@@ -212,9 +212,9 @@ const Target = ({
 						<Animate.fromTop>
 							<InputSuggestions
 								suggestions={target.suggestions}
-								onFirstClick={value =>
+								onFirstClick={value => {
 									setFormValue(target.dottedName, '' + value)
-								}
+								}}
 								rulePeriod={target.période}
 								colouredBackground={true}
 							/>
@@ -250,7 +250,7 @@ let CurrencyField = withColours(props => {
 			}}
 			debounce={600}
 			className="targetInput"
-			defaultValue={props.input.value}
+			storeValue={props.input.value}
 			{...props.input}
 			{...props}
 		/>

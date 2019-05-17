@@ -14,7 +14,7 @@ let isCurrencyPrefixed = language =>
 
 class CurrencyInput extends Component {
 	state = {
-		value: this.props.defaultValue
+		value: this.props.storeValue
 	}
 	onChange = this.props.debounce
 		? debounce(this.props.debounce, this.props.onChange)
@@ -38,6 +38,14 @@ class CurrencyInput extends Component {
 			event.persist()
 		}
 		this.onChange(event)
+	}
+	componentDidUpdate(prevProps) {
+		if (
+			prevProps.storeValue !== this.props.storeValue &&
+			this.props.storeValue !== this.state.value
+		) {
+			this.setState({ value: this.props.storeValue })
+		}
 	}
 
 	render() {
