@@ -7,7 +7,7 @@ import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
-import React, { Component, PureComponent, useState } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -173,7 +173,6 @@ const Target = ({
 }) => {
 	const isSmallTarget =
 		!target.question || !target.formule || isEmpty(target.formule)
-	const [suggestionValue, setSuggestionValue] = useState(null)
 
 	return (
 		<li
@@ -199,7 +198,6 @@ const Target = ({
 							/>
 						)}
 						<TargetInputOrValue
-							key={suggestionValue}
 							{...{
 								target,
 								targets,
@@ -216,7 +214,6 @@ const Target = ({
 								suggestions={target.suggestions}
 								onFirstClick={value => {
 									setFormValue(target.dottedName, '' + value)
-									setSuggestionValue(value)
 								}}
 								rulePeriod={target.période}
 								colouredBackground={true}
@@ -253,7 +250,7 @@ let CurrencyField = withColours(props => {
 			}}
 			debounce={600}
 			className="targetInput"
-			defaultValue={props.input.value}
+			storeValue={props.input.value}
 			{...props.input}
 			{...props}
 		/>
