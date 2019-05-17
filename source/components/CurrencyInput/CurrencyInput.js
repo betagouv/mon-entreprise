@@ -47,9 +47,6 @@ class CurrencyInput extends Component {
 		this.input.current.selectionEnd = cursorPosition
 		this.adaptInputSize()
 	}
-	focusInput = () => {
-		this.input.current.focus()
-	}
 	handleChange = event => {
 		let value = event.target.value
 		value = value
@@ -77,7 +74,6 @@ class CurrencyInput extends Component {
 
 		return (
 			<div
-				onClick={this.focusInput}
 				className={classnames(
 					this.props.className,
 					'currencyInput__container'
