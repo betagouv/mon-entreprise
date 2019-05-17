@@ -270,7 +270,7 @@ const SchemeComparaison = ({
 						)}
 					</div>
 					<T k="comparaisonRégimes.retraite">
-						<h3 className="legend">Retraite (estimation)</h3>
+						<h3 className="legend">Votre pension de retraite (estimation)</h3>
 					</T>
 					<div className="AS">
 						{assimiléSalarié && assimiléSalarié.retraite.montant !== 0 ? (
