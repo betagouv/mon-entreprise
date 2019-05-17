@@ -28,7 +28,7 @@ export default compose(
 	withColours,
 	reduxForm({
 		form: 'conversation',
-		destroyOnUnmount: false
+		destroyOnUnmount: true
 	}),
 	connect(
 		state => ({
