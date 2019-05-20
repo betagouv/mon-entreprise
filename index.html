@@ -47,23 +47,29 @@
 			<%= htmlWebpackPlugin.options.title %>
 		</title>
 
-
 		<% for (var css in htmlWebpackPlugin.files.css) { %>
 		<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
 		<% } %>
 		<style>
-
 			html[data-useragent*='MSIE'] #outdated-browser,
+			html[data-useragent*='Safari'][data-useragent*='Version/8']
+				#outdated-browser,
+			html[data-useragent*='Safari'][data-useragent*='Version/7']
+				#outdated-browser,
 			html[data-useragent*='Trident'] #outdated-browser {
 				display: block !important;
 			}
 
 			html[data-useragent*='MSIE'] #lds-ellipsis,
+			html[data-useragent*='Safari'][data-useragent*='Version/8'] #lds-ellipsis,
+			html[data-useragent*='Safari'][data-useragent*='Version/7'] #lds-ellipsis,
 			html[data-useragent*='Trident'] #lds-ellipsis {
 				display: none !important;
 			}
 
 			html[data-useragent*='MSIE'] #js,
+			html[data-useragent*='Safari'][data-useragent*='Version/8'] #js,
+			html[data-useragent*='Safari'][data-useragent*='Version/7'] #js,
 			html[data-useragent*='Trident'] #js {
 				display: none !important;
 			}
@@ -160,7 +166,6 @@
 	</head>
 
 	<body>
-
 		<div id="lds-ellipsis">
 			<div></div>
 			<div></div>
@@ -170,8 +175,8 @@
 
 		<!-- USER AGENT DATA ATTRIBUTE  -->
 		<script>
-			var b = document.documentElement;
-			b.setAttribute("data-useragent",  navigator.userAgent);
+			var b = document.documentElement
+			b.setAttribute('data-useragent', navigator.userAgent)
 		</script>
 
 		<!-- APP  -->
@@ -182,54 +187,66 @@
 			id="outdated-browser"
 			style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; display: none; background-color: white"
 		>
-			<div style="margin: 100px auto; max-width: 800px; text-align: center;  font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;">
-
-
-					<img
-						src="images/marianne.svg"
-						alt="Un service de l'État français"
-						style="width: 200px; margin-bottom: 2rem;"
-					/>
-			<h1>
-				Votre navigateur n'est plus supporté
+			<div
+				style="margin: 100px auto; max-width: 800px; text-align: center;  font-family: 'IBM Plex Sans', sans-serif; font-weight: 300;"
+			>
+				<img
+					src="images/marianne.svg"
+					alt="Un service de l'État français"
+					style="width: 200px; margin-bottom: 2rem;"
+				/>
+				<h1>
+					Votre navigateur n'est plus supporté.
 				</h1>
-				<h2> Nous vous invitons à réessayer avec un autre, ou depuis votre mobile</h2>
-				<br/>
-				<br/>
-				<h3>Si besoin, vous pouvez en installer un nouveau depuis
-				<a style="color: #2975d1" href="http://outdatedbrowser.com/fr"
-					>cette page</a
-				></h3>
+				<h2>
+					Nous vous invitons à réessayer avec un autre, ou depuis un mobile récent.
+				</h2>
+				<br />
+				<br />
 				<h3>
-				<a href="javascript:void(0);"  onclick="
+					Si besoin, vous pouvez en installer un nouveau depuis
+					<a style="color: #2975d1" href="http://outdatedbrowser.com/fr"
+						>cette page</a
+					>
+				</h3>
+				<h3>
+					<a
+						href="javascript:void(0);"
+						onclick="
 					var b = document.documentElement;
 					b.setAttribute('data-useragent',  'force-navigation-anyway');
-				">Continuer quand même vers le site</a>
+				"
+						>Continuer quand même vers le site</a
+					>
 				</h3>
-</div>
+			</div>
 		</div>
 
 		<script>
 			// Add support for nomodule attribute to SAFARI 10.1
-			(function() {
-				var d = document;
-				var c = d.createElement('script');
+			;(function() {
+				var d = document
+				var c = d.createElement('script')
 				if (!('noModule' in c) && 'onbeforeload' in c) {
-					var s = false;
-					d.addEventListener('beforeload', function(e) {
-						if (e.target === c) {
-							s = true;
-						} else if (!e.target.hasAttribute('nomodule') || !s) {
-							return;
-						}
-						e.preventDefault();
-					}, true);
-					c.type = 'module';
-					c.src = '.';
-					d.head.appendChild(c);
-					c.remove();
+					var s = false
+					d.addEventListener(
+						'beforeload',
+						function(e) {
+							if (e.target === c) {
+								s = true
+							} else if (!e.target.hasAttribute('nomodule') || !s) {
+								return
+							}
+							e.preventDefault()
+						},
+						true
+					)
+					c.type = 'module'
+					c.src = '.'
+					d.head.appendChild(c)
+					c.remove()
 				}
-			}());
+			})()
 		</script>
 
 		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
@@ -246,8 +263,7 @@
 		-->
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl.~locale.en%2CIntl.~locale.fr%2CIntersectionObserver"></script>
 		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-			<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
+		<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
 		<% } %>
-
 	</body>
 </html>
