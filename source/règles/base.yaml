@@ -2737,7 +2737,7 @@
     C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue !
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
   format: pourcentage
-  par défaut: 0.8
+  par défaut: 1
 
 - espace: entreprise
   nom: bénéfice
@@ -2782,6 +2782,7 @@
       - contrat salarié . rémunération . total
       - indépendant . revenu total du dirigeant
       - auto entrepreneur . base des cotisations
+
 
 - espace: entreprise
   nom: charges
@@ -3413,6 +3414,9 @@
 
 - espace: indépendant
   nom: revenu total du dirigeant
+  question: Quel est le revenu total du dirigeant ?
+  résumé: Dépensé par l'entreprise
+  format: euros
   période: flexible
   formule:
     somme:
@@ -3604,6 +3608,7 @@
   description: |
     Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appellait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
   par défaut: non
+
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE

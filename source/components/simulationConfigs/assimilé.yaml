@@ -11,10 +11,6 @@ objectifs:
     - impôt . neutre
     - contrat salarié . salaire . net après impôt
 
-questions à l'affiche:
-  Année d'activité: entreprise . année d'activité
-  Mutuelle: contrat salarié . complémentaire santé . part employeur
-  Localisation: établissement . localisation
 questions:
   blacklist:
     - entreprise . charges

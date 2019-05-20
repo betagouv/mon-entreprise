@@ -36,25 +36,22 @@ const AssimiléSalarié = ({ t }) => (
 		<Warning simulateur="assimilé-salarié" />
 		<Simulation
 			targetsTriggerConversation={true}
-			targets={
-				<TargetSelection
-					explanation={
-						<SalaryExplanation
-							protectionText={
-								<p className="ui__ notice">
-									{emoji('☂️ ')}{' '}
-									<T k="simulateurs.assimilé-salarié.explications">
-										Les gérants égalitaires ou minoritaires de SARL ou les
-										dirigeants de SA et SAS sont assimilés salariés et relèvent
-										du régime général. Par conséquent, le dirigeant a la même
-										protection sociale qu'un salarié, mis à part le chômage.
-									</T>
-								</p>
-							}
-						/>
+			explanation={
+				<SalaryExplanation
+					protectionText={
+						<p className="ui__ notice">
+							{emoji('☂️ ')}{' '}
+							<T k="simulateurs.assimilé-salarié.explications">
+								Les gérants égalitaires ou minoritaires de SARL ou les
+								dirigeants de SA et SAS sont assimilés salariés et relèvent du
+								régime général. Par conséquent, le dirigeant a la même
+								protection sociale qu'un salarié, mis à part le chômage.
+							</T>
+						</p>
 					}
 				/>
 			}
+			targets={<TargetSelection />}
 		/>
 	</>
 )

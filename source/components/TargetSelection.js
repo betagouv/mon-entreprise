@@ -111,7 +111,9 @@ export default compose(
 					).map(([groupName, groupTargets], index) => (
 						<>
 							<div style={{ display: 'flex', alignItems: 'end' }}>
-								{groupName && <h2 style={{ flex: 1 }}>{emoji(groupName)}</h2>}
+								<div style={{ flex: 1 }}>
+									{groupName && <h2>{emoji(groupName)}</h2>}
+								</div>
 								{index === 0 && <PeriodSwitch />}
 							</div>
 							<section
