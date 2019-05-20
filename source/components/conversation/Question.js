@@ -1,4 +1,3 @@
-import HoverDecorator from 'Components/utils/HoverDecorator'
 import withColours from 'Components/utils/withColours'
 import { compose, is } from 'ramda'
 import React, { Component } from 'react'
@@ -7,7 +6,7 @@ import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
 import SendButton from './SendButton'
-import { answer, answered } from './userAnswerButtonStyle'
+import classnames from 'classnames'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
@@ -144,7 +143,6 @@ let RadioLabel = props => (
 )
 
 const RadioLabelContent = compose(
-	HoverDecorator,
 	withTranslation(),
 	withColours
 )(
@@ -154,14 +152,14 @@ const RadioLabelContent = compose(
 		}
 		render() {
 			let { value, label, input, hover, colours } = this.props,
-				// value = when(is(Object), prop('value'))(choice),
-				labelStyle = Object.assign(
-					value === input.value || hover ? answered(colours) : answer(colours),
-					value === '_' ? { fontWeight: 'bold' } : null
-				)
+				labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
+				selected = value === input.value
 
 			return (
-				<label key={value} style={labelStyle} className="radio">
+				<label
+					key={value}
+					style={labelStyle}
+					className={classnames('radio', 'userAnswerButton', { selected })}>
 					<Trans i18nKey={`radio_${label}`}>{label}</Trans>
 					<input
 						type="radio"
