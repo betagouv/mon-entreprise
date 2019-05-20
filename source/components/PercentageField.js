@@ -2,30 +2,32 @@ import React from 'react'
 import { debounce } from '../utils'
 import './PercentageField.css'
 
-export default class extends React.Component {
-	onChange = this.props.debounce
+export default class PercentageField extends React.Component {
+	debouncedOnChange = this.props.debounce
 		? debounce(this.props.debounce, this.props.input.onChange)
 		: this.props.input.onChange
-
+	state = {
+		value: this.props.input?.value
+	}
+	onChange(value) {
+		this.setState({ value })
+		this.debouncedOnChange(value)
+	}
 	render() {
-		let {
-			input: { value }
-		} = this.props
-
 		return (
 			<div>
 				<input
 					className="range"
 					onChange={e => this.onChange(e.target.value)}
-					value={value}
 					type="range"
+					value={this.state.value}
 					name="volume"
 					min="0"
-					step="0.1"
+					step="0.05"
 					max="1"
 				/>
 				<span style={{ display: 'inline-block', width: '3em' }}>
-					{value * 100} %
+					{Math.round(this.state.value * 100)} %
 				</span>
 			</div>
 		)

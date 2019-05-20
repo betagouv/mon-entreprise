@@ -17,7 +17,7 @@ type OwnProps = {|
 
 type Props = OwnProps & {
 	tracker: Tracker,
-	location: Location,
+	location: Location
 }
 type State = {
 	opened: boolean,
@@ -97,5 +97,5 @@ class SideBar extends React.Component<Props, State> {
 
 export default (compose(
 	withTracker,
-	withRouter,
+	withRouter
 )(SideBar): React$ComponentType<OwnProps>)

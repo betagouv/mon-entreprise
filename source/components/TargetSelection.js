@@ -104,14 +104,16 @@ export default compose(
 							controls={analysis.controls}
 						/>
 					)}
-					<PeriodSwitch />
 
 					{(Array.isArray(objectifs)
 						? [[null, objectifs]]
 						: toPairs(objectifs)
-					).map(([groupName, groupTargets]) => (
+					).map(([groupName, groupTargets], index) => (
 						<>
-							{groupName && <h2>{emoji(groupName)}</h2>}
+							<div style={{ display: 'flex', alignItems: 'end' }}>
+								{groupName && <h2 style={{ flex: 1 }}>{emoji(groupName)}</h2>}
+								{index === 0 && <PeriodSwitch />}
+							</div>
 							<section
 								className="ui__ plain card"
 								style={{

@@ -19,6 +19,7 @@ questions:
   blacklist:
     - entreprise . charges
     - contrat salarié . avantages en nature . montant
+    - entreprise . rémunération du dirigeant
 situation:
   auto entrepreneur: non
   indépendant: non
