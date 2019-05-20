@@ -1,12 +1,8 @@
-import HoverDecorator from 'Components/utils/HoverDecorator'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { Trans, withTranslation } from 'react-i18next'
 
-export default compose(
-	HoverDecorator,
-	withTranslation()
-)(
+export default compose(withTranslation())(
 	class SendButton extends Component {
 		getAction() {
 			let { disabled, submit } = this.props
@@ -26,9 +22,25 @@ export default compose(
 			this.getAction()('enter')
 		}
 		render() {
-			let { disabled, hover } = this.props
+			let { disabled } = this.props
 			return (
-				<span className="sendWrapper">
+				<span
+					css={`
+						.keyIcon {
+							opacity: 0;
+						}
+						${!disabled &&
+							`
+							@media (hover) {
+							
+							:hover .keyIcon {
+							opacity: 1
+							}
+							
+							
+							}`}
+					`}
+					className="sendWrapper">
 					<button
 						className="ui__ button plain"
 						disabled={disabled}
@@ -37,9 +49,7 @@ export default compose(
 							<Trans>valider</Trans> ✓
 						</span>
 					</button>
-					<span
-						className="keyIcon"
-						style={{ opacity: hover && !disabled ? 1 : 0 }}>
+					<span className="keyIcon">
 						<Trans>Entrée</Trans>↵
 					</span>
 				</span>
