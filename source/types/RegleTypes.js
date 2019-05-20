@@ -10,11 +10,13 @@ export type Règle = {
 }
 
 export type RègleAvecMontant = Règle & {
-	montant: number
+	montant: number,
+	applicable?: boolean
 }
 
 export type RègleValeur = {
 	valeur: boolean | number | string,
+	applicable?: boolean,
 	type: 'boolean' | 'number' | 'string'
 }
 

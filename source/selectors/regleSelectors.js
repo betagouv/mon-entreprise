@@ -106,6 +106,9 @@ export const règleValeurSelector: InputSelector<
 
 		return {
 			type,
+			...(rule && 'isApplicable' in rule
+				? { applicable: rule.isApplicable }
+				: {}),
 			valeur:
 				type === 'string'
 					? règleLocalisée(`${dottedName} . ${valeur}`).nom
@@ -130,6 +133,7 @@ export const règleAvecMontantSelector: InputSelector<
 		}
 		return {
 			...règleLocalisée(dottedName),
+			...('applicable' in valeur ? { applicable: valeur.applicable } : {}),
 			montant: valeur.valeur
 		}
 	}

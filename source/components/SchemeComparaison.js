@@ -273,7 +273,8 @@ const SchemeComparaison = ({
 						<h3 className="legend">Votre pension de retraite (estimation)</h3>
 					</T>
 					<div className="AS">
-						{assimiléSalarié && assimiléSalarié.retraite.montant !== 0 ? (
+						{assimiléSalarié &&
+						assimiléSalarié.retraite.applicable !== false ? (
 							<RuleValueLink
 								onClick={() => setSituationBranch(0)}
 								{...assimiléSalarié.retraite}
@@ -286,7 +287,7 @@ const SchemeComparaison = ({
 						)}
 					</div>
 					<div className="indep">
-						{indépendant && indépendant.retraite.montant !== 0 ? (
+						{indépendant && indépendant.retraite.applicable !== false ? (
 							<RuleValueLink
 								onClick={() => setSituationBranch(1)}
 								{...indépendant.retraite}
@@ -299,7 +300,7 @@ const SchemeComparaison = ({
 						{autoEntrepreneur &&
 							(autoEntrepreneur.plafondDépassé ? (
 								'—'
-							) : autoEntrepreneur.retraite.montant !== 0 ? (
+							) : autoEntrepreneur.retraite.applicable !== false ? (
 								<RuleValueLink
 									onClick={() => setSituationBranch(2)}
 									{...autoEntrepreneur.retraite}
