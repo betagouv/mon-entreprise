@@ -54,59 +54,58 @@ export default compose(
 	return (
 		<>
 			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}
-			<>
-				<div
-					style={{
-						display: 'flex',
-						justifyContent: 'flex-start',
-						alignItems: 'baseline'
-					}}>
-					{arePreviousAnswers ? (
-						<button
-							style={{ marginRight: '1em' }}
-							className="ui__ small  button "
-							onClick={() => setShowAnswerModal(true)}>
-							<T>Voir mes réponses</T>
-						</button>
-					) : (
-						<span />
-					)}
-					<button
-						className="ui__ small simple skip button left"
-						onClick={() => resetSimulation()}>
-						⟲ <T>Recommencer</T>
-					</button>
-				</div>
-				{firstStepCompleted && <Controls />}
-				{!noNextSteps ? (
-					<Scroll.toElement onlyIfNotVisible>
-						<div className="conversationContainer">
-							<Aide />
-							<div id="currentQuestion">
-								{currentQuestion && (
-									<Animate.fadeIn>
-										{getInputComponent(flatRules)(currentQuestion)}
-									</Animate.fadeIn>
-								)}
-							</div>
+			{firstStepCompleted && <Controls />}
+			{!noNextSteps ? (
+				<Scroll.toElement onlyIfNotVisible>
+					<div className="conversationContainer">
+						<Aide />
+						<div id="currentQuestion">
+							{currentQuestion && (
+								<Animate.fadeIn>
+									{getInputComponent(flatRules)(currentQuestion)}
+								</Animate.fadeIn>
+							)}
 						</div>
-					</Scroll.toElement>
+					</div>
+				</Scroll.toElement>
+			) : (
+				<>
+					<h2>
+						{emoji('🌟')}{' '}
+						<T k="simulation-end.title">Situation complétée à 100%</T>{' '}
+					</h2>
+					<p>
+						<T k="simulation-end.text">
+							Nous n'avons plus de questions à poser, vous avez atteint
+							l'estimation la plus précise.
+						</T>
+						{customEndMessages}
+					</p>
+				</>
+			)}
+			<h2>{emoji('📝 ')}Votre situation</h2>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'flex-start',
+					alignItems: 'baseline'
+				}}>
+				{arePreviousAnswers ? (
+					<button
+						style={{ marginRight: '1em' }}
+						className="ui__ small  button "
+						onClick={() => setShowAnswerModal(true)}>
+						<T>Voir mes réponses</T>
+					</button>
 				) : (
-					<>
-						<h2>
-							{emoji('🌟')}{' '}
-							<T k="simulation-end.title">Situation complétée à 100%</T>{' '}
-						</h2>
-						<p>
-							<T k="simulation-end.text">
-								Nous n'avons plus de questions à poser, vous avez atteint
-								l'estimation la plus précise.
-							</T>
-							{customEndMessages}
-						</p>
-					</>
+					<span />
 				)}
-			</>
+				<button
+					className="ui__ small simple skip button left"
+					onClick={() => resetSimulation()}>
+					⟲ <T>Recommencer</T>
+				</button>
+			</div>
 		</>
 	)
 })

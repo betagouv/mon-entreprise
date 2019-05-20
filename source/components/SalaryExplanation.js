@@ -19,7 +19,6 @@ export default compose(
 				<Animate.fromTop>
 					{!this.props.showCompactView ? (
 						<>
-							{this.props.protectionText}
 							<PageFeedback
 								customMessage={
 									<T k="feedback.simulator">
@@ -29,6 +28,7 @@ export default compose(
 								customEventName="rate simulator"
 							/>
 							<SalaryFirstExplanation {...this.props} />
+							{this.props.protectionText}
 						</>
 					) : (
 						<>

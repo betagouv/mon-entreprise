@@ -231,12 +231,7 @@ const Target = ({
 	)
 }
 
-let Header = compose(
-	connect(state => ({
-		showRésumé: !state.conversationSteps.foldedSteps.length
-	})),
-	withSitePaths
-)(({ target, sitePaths, showRésumé }) => {
+let Header = withSitePaths(({ target, sitePaths }) => {
 	const ruleLink =
 		sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
 	return (
@@ -245,7 +240,7 @@ let Header = compose(
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
-				{showRésumé && <p>{target['résumé']}</p>}
+				<p>{target['résumé']}</p>
 			</span>
 		</span>
 	)
