@@ -4,6 +4,7 @@ import { findRuleByDottedName } from 'Engine/rules'
 import { encodeRuleName } from 'Engine/rules.js'
 import { isNil } from 'ramda'
 import { createSelector } from 'reselect'
+import { coerceArray } from '../utils'
 import {
 	branchAnalyseSelector,
 	flatRulesSelector,
@@ -67,10 +68,13 @@ export const règleValeurSelector: InputSelector<
 				`[règleValeurSelector] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
 			)
 		}
-		const rule =
-			!Array.isArray(analysis) && // It's an array if we're in a comparative simulation.
-			(analysis.cache[dottedName] ||
-				analysis.targets.find(target => target.dottedName === dottedName))
+		const rule = coerceArray(analysis)
+			.map(
+				analysis =>
+					analysis.cache[dottedName] ||
+					analysis.targets.find(target => target.dottedName === dottedName)
+			)
+			.filter(Boolean)[0]
 
 		let valeur =
 			rule && !isNil(rule.nodeValue)
@@ -78,7 +82,6 @@ export const règleValeurSelector: InputSelector<
 				: Array.isArray(situation)
 				? situation[0][dottedName]
 				: situation[dottedName]
-
 		if (isNil(valeur)) {
 			console.warn(
 				`[règleValeurSelector] Impossible de trouver la valeur associée à la règle "${dottedName}". Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName. Vérifiez aussi qu'il ne manque pas une valeur par défaut à une règle nécessaire au calcul.`

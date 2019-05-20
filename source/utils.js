@@ -48,16 +48,6 @@ export function isIE() {
 	)
 }
 
-export const mapDispatchWithRouter = (actionCreators: Object) => (
-	dispatch: (...any) => void,
-	ownProps: Object
-) =>
-	map(
-		actionCreator => (...args) =>
-			dispatch(actionCreator(...args, ownProps.router)),
-		actionCreators
-	)
-
 export function inIframe() {
 	try {
 		return window.self !== window.top
