@@ -3,11 +3,11 @@ objectifs:
     - entreprise . chiffre d'affaires
     - entreprise . charges
     - entreprise . rémunération du dirigeant
-    - entreprise . bénéfice
     - entreprise . résultat net
   👩‍💼 Votre revenu:
-    - entreprise . rémunération totale du dirigeant
+    - contrat salarié . rémunération . total
     - contrat salarié . cotisations
+    - contrat salarié . salaire . net
     - impôt . neutre
     - contrat salarié . salaire . net après impôt
 

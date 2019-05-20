@@ -829,8 +829,8 @@ contrat salarié . rémunération . total:
   titre.fr: Total chargé
   question.en: 'What is the monthly remuneration, contributions included ?'
   question.fr: Quel est la rémunération chargée ?
-  résumé.en: Spent by the employer
-  résumé.fr: Dépensé par l'employeur
+  résumé.en: Spent by the company
+  résumé.fr: Dépensé par l'entreprise
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the total
     that the employer must in principle plan to pay to employ an employee, but
