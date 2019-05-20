@@ -1,15 +1,66 @@
 - titre: Location meublée
-  icônes: 🏠 🛋 ️
+  icônes: 🏠 🛋
   exemples: Airbnb, Abritel, chambre d'hôte...
+  possibilités:
+    - titre: location de logement meublé
+      explication: |
+        Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile (hors location de chambres d’hôtes et de meublé de tourisme)
+
+        > Exemples de plateforme : AirBnb, Abritel...
+
+
+      seuil pro: 23000
+      exonération:
+        # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
+        titre: Il s'agit d'une pièce dans ma résidence principale
+        explication: | 
+          Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
+          > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
+
+    - titre: location de logement meublé de tourisme classé
+      seuil pro: 23000
+    - titre: location de chambre d'hôtes
+      seuil pro: 5268
+      seuil déclaration: 760
+
 - titre: Location de biens
   icônes: 🔑 🚗 🔧 🌱
+  explication: Vous mettez en location certains de vos biens, tels que voiture, matériel de jardinage, outils de bricolage, accessoires de luxe, vêtements...
+  seuil pro: 8105
   exemples: Drivy, outils de jardinage, bricolage...
 - titre: Services
   icônes: 🚴 🚕 👩‍💻 🍼
   exemples: Deliveroo, Uber, sites internet, nounous...
+  seuil pro: 0
+  explication: |
+    Lorsque vous proposez contre rémunération, via une plateforme d’économie collaborative, un service pour une entreprise ou un particulier (exemple : création de site internet, travaux de rédaction ou de relecture…) ou réalisez des prestations de conseil (coaching…),  cette activité présente nécessairement un caractère professionnel.
+
+    > Lorsqu’il s’agit de services à la personne, de tâches familiales… ces activités relèvent soit du Cesu (chèque emploi service universel, pour les particuliers employeurs) soit de Pajemploi (prestations de garde d’enfants).
+
 - titre: Vente de biens
   icônes: 📦 🧶
   exemples: Leboncoin, eBay, Etsy...
+  seuil pro: 0
+  exonération:
+    titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
+    explication: | 
+      A l'inverse, s’il s’agit de biens que vous avez achetés ou que vous avez fabriqués en vue de les revendre (exemple : vous réalisez des bijoux, des objets de décoration…), il s’agit alors d’une activité à caractère professionnel, qui doit être déclarée. Vous devez enregistrer cette activité.
+
 - titre: Co-consommation
   icônes: 👥 🚗
   exemples: Blablacar, ...
+  seuil pro: 0
+  exonérations: 
+    toutes ces conditions: 
+      - titre: Vous profitez du service proposé
+        explication: |
+          Les revenus que vous réalisez au titre du partage des frais sont perçus dans le cadre d’une « co-consommation », ce qui signifie que vous bénéficiez également de la prestation de service proposée au même titre que les personnes avec lesquelles les frais sont partagés ;
+      - titre: Les revenus ne font que couvrir vos frais
+        explication: |
+          Les revenus perçus n’excèdent pas le montant des coûts directs engagés à l’occasion de la prestation. Ils ne doivent couvrir que les frais supportés à l’occasion du service rendu (hors frais liés à l’acquisition, l’entretien ou l’utilisation personnelle du bien partagé).
+      - titre: Si co-voiturage, attention au barème kilométrique
+        explication: |
+          Lorsqu’il s’agit de co-voiturage, il existe une troisième condition : le tarif complet ne doit pas excéder le barème kilométrique en vigueur et doit être divisé par le nombre de personnes transportées, le propriétaire de la voiture inclus.<Paste>
+
+
+
