@@ -6,34 +6,38 @@ import CoConsommation from './CoConsommation'
 import Home from './Home'
 import LocationMeublée from './LocationMeublée'
 import VotreSituation from './VotreSituation'
+import { StoreProvider } from './StoreContext'
+
 export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 	return (
-		<>
-			<Route
-				exact
-				path={sitePaths.économieCollaborative.index}
-				component={Home}
-			/>
-			<Route
-				exact
-				path={sitePaths.économieCollaborative.activités.index}
-				component={ActivitésSelection}
-			/>
-			<Route
-				exact
-				path={sitePaths.économieCollaborative.activités.locationMeublée}
-				component={LocationMeublée}
-			/>
-			<Route
-				exact
-				path={sitePaths.économieCollaborative.activités.coConsommation}
-				component={CoConsommation}
-			/>
-			<Route
-				exact
-				path={sitePaths.économieCollaborative.votreSituation}
-				component={VotreSituation}
-			/>
-		</>
+		<StoreProvider>
+			<>
+				<Route
+					exact
+					path={sitePaths.économieCollaborative.index}
+					component={Home}
+				/>
+				<Route
+					exact
+					path={sitePaths.économieCollaborative.activités.index}
+					component={ActivitésSelection}
+				/>
+				<Route
+					exact
+					path={sitePaths.économieCollaborative.activités.locationMeublée}
+					component={LocationMeublée}
+				/>
+				<Route
+					exact
+					path={sitePaths.économieCollaborative.activités.coConsommation}
+					component={CoConsommation}
+				/>
+				<Route
+					exact
+					path={sitePaths.économieCollaborative.votreSituation}
+					component={VotreSituation}
+				/>
+			</>
+		</StoreProvider>
 	)
 })

@@ -2,14 +2,16 @@ import classnames from 'classnames'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { without } from 'ramda'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import activités from './activités.yaml'
+import { StoreContext } from './StoreContext'
 
 export default withSitePaths(function ActivitésSelection({ sitePaths }) {
-	let [itemsSelected, selectItem] = useState([])
+	let { state, dispatch } = useContext(StoreContext)
+	let { selectedActivities } = state
 
 	return (
 		<Animate.fromBottom>
@@ -51,18 +53,12 @@ export default withSitePaths(function ActivitésSelection({ sitePaths }) {
 					li:hover, li.selected {background: var(--colour); color: white}
 				`}>
 				{activités.map(({ titre, exemples, icônes }) => {
-					let selected = itemsSelected.includes(titre)
+					let selected = selectedActivities.includes(titre)
 					return (
 						<li
 							className={classnames('ui__ card ', { selected })}
 							key={titre}
-							onClick={() =>
-								selectItem(
-									selected
-										? without([titre], itemsSelected)
-										: [...itemsSelected, titre]
-								)
-							}>
+							onClick={() => dispatch({ type: 'SELECT_ACTIVITY', titre })}>
 							<div className="title">{titre}</div>
 							{emoji(icônes)}
 							<p>{exemples}</p>
@@ -74,7 +70,7 @@ export default withSitePaths(function ActivitésSelection({ sitePaths }) {
 				<Link
 					to={sitePaths.économieCollaborative.activités.coConsommation}
 					className={classnames('ui__ plain button', {
-						disabled: !itemsSelected.length
+						disabled: !selectedActivities.length
 					})}>
 					Continuer
 				</Link>
