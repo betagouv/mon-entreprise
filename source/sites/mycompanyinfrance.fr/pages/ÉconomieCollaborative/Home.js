@@ -16,14 +16,13 @@ export default withSitePaths(function Home({ sitePaths }) {
 			/>
 			<p>
 				Vous avez des revenus issus des <strong>plateformes en ligne</strong>{' '}
-				(Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.), la loi vous oblige
-				à les déclarer. Mais il peut être parfois difficile de s'y retrouver
-				dans toute la documentation légale {emoji('🤔')}
+				(Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.) ? La loi vous
+				oblige à les déclarer. Mais il peut être parfois difficile de s'y
+				retrouver dans toute la documentation légale {emoji('🤔')}
 			</p>
 			<p>
-				C'est pourquoi nous avons conçu ce guide. En quelques clics, vous saurez
-				tout ce qu'il faut faire dans votre situation pour être en règle : ce
-				que vous devez déclarer, où, et comment le faire.
+				Suivez ce guide et vous saurez en quelques clics ce qu'il faut faire
+				pour être en règle.
 			</p>
 			<div css="text-align: center">
 				<Link
@@ -33,10 +32,10 @@ export default withSitePaths(function Home({ sitePaths }) {
 				</Link>
 			</div>
 			<p className="ui__ notice">
-				PS : cet outils est à but purement informatif, et non coercitif. Nous ne
-				stockons absolument aucune donnée utilisateur, tout ce que vous
-				saisissez reste sur votre navigateur. Vous pouvez donc répondre aux
-				questions suivantes l'esprit léger, en toute transparence {emoji('😌')}
+				PS : cet outil est là pour vous informer, pas pour repérer les fraudes :
+				tout ce que vous saisissez reste dans votre navigateur. Vous pouvez donc
+				répondre aux questions l'esprit léger, en toute transparence{' '}
+				{emoji('😌')}
 			</p>
 		</Animate.fromBottom>
 	)

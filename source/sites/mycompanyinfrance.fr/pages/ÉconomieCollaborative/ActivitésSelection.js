@@ -14,7 +14,7 @@ export default withSitePaths(function ActivitésSelection({ sitePaths }) {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
-			<h1>Quels types de revenus avez-vous ?</h1>
+			<h1>Quels sont vos revenus ?</h1>
 			<p>
 				Les seuils de déclaration ne sont pas les mêmes en fonction du type
 				d'activité que vous exercez. Sélectionnez toutes les plateformes depuis
