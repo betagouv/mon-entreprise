@@ -1,13 +1,22 @@
 /* @flow */
 
-import { compose, defaultTo, isNil, lensPath, over, set, uniq, without } from 'ramda';
-import reduceReducers from 'reduce-reducers';
-import { combineReducers } from 'redux';
+import {
+	compose,
+	defaultTo,
+	isNil,
+	lensPath,
+	over,
+	set,
+	uniq,
+	without
+} from 'ramda'
+import reduceReducers from 'reduce-reducers'
+import { combineReducers } from 'redux'
 // $FlowFixMe
-import { reducer as formReducer } from 'redux-form';
-import i18n from '../i18n';
-import inFranceAppReducer from './inFranceAppReducer';
-import storageReducer from './storageReducer';
+import { reducer as formReducer } from 'redux-form'
+import i18n from '../i18n'
+import inFranceAppReducer from './inFranceAppReducer'
+import storageReducer from './storageReducer'
 import type { Action } from 'Types/ActionsTypes'
 
 function explainedVariable(state = null, { type, variableName = null }) {
@@ -37,16 +46,6 @@ function situationBranch(state = null, { type, id }) {
 	}
 }
 
-function conversationStarted(state = false, action: Action) {
-	switch (action.type) {
-		case 'START_CONVERSATION':
-			return true
-		case 'RESET_SIMULATION':
-			return false
-		default:
-			return state
-	}
-}
 function activeTargetInput(state = null, { type, name }) {
 	switch (type) {
 		case 'SET_ACTIVE_TARGET_INPUT':
@@ -171,7 +170,6 @@ export default reduceReducers(
 		currentExample,
 		situationBranch,
 		hiddenControls,
-		conversationStarted,
 		activeTargetInput,
 		inFranceApp: inFranceAppReducer
 	})

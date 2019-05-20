@@ -1,6 +1,5 @@
 /* @flow */
 
-import { startConversation } from 'Actions/actions'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import React, { Component } from 'react'
@@ -11,18 +10,12 @@ import { formValueSelector } from 'redux-form'
 
 type OwnProps = {}
 type Props = OwnProps & {
-	conversationStarted: boolean,
-	startConversation: () => void,
 	period: 'mois' | 'année'
 }
 
-export default (connect(
-	state => ({
-		conversationStarted: state.conversationStarted,
-		period: formValueSelector('conversation')(state, 'période')
-	}),
-	{ startConversation }
-)(
+export default (connect(state => ({
+	period: formValueSelector('conversation')(state, 'période')
+}))(
 	class SalaryFirstExplanation extends Component<Props> {
 		render() {
 			return (
@@ -32,29 +25,6 @@ export default (connect(
 					</h2>
 					<Distribution />
 
-					{!this.props.conversationStarted && (
-						<>
-							<h2>
-								<Trans>Simulation personnalisée</Trans>
-							</h2>
-							<p>
-								<Trans i18nKey="custom-simulation">
-									Il s'agit pour l'instant d'une
-									<strong> première estimation</strong> sur la base d'un contrat
-									générique. La législation française prévoit une multitude de
-									cas particuliers et de règles spécifiques qui modifient
-									considérablement les montants de l'embauche.
-								</Trans>
-							</p>
-							<p style={{ textAlign: 'center' }}>
-								<button
-									className="ui__ button"
-									onClick={() => this.props.startConversation()}>
-									<Trans>Faire une simulation personnalisée</Trans>
-								</button>
-							</p>
-						</>
-					)}
 					<h2>
 						<Trans>
 							{this.props.period === 'mois'

@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import Controls from 'Components/Controls'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
@@ -21,9 +20,7 @@ import {
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import QuickLinks from './QuickLinks'
 import './TargetSelection.css'
-import { firstStepCompletedSelector } from './targetSelectionSelectors'
 
 export default compose(
 	withTranslation(),
@@ -38,8 +35,6 @@ export default compose(
 				formValueSelector('conversation')(state, dottedName),
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
-			firstStepCompleted: firstStepCompletedSelector(state),
-			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
 			objectifs: state.simulation?.config.objectifs || []
 		}),
@@ -84,35 +79,26 @@ export default compose(
 		render() {
 			let {
 					colours,
-					firstStepCompleted,
-					conversationStarted,
 					analysis,
-					explanation,
 					activeInput,
 					setActiveInput,
 					setFormValue,
 					objectifs
 				} = this.props,
-				inversionFail = analysis.cache.inversionFail,
 				targets = analysis?.targets || []
 
 			return (
 				<div id="targetSelection">
-					{firstStepCompleted && (
-						<Controls
-							inversionFail={inversionFail}
-							controls={analysis.controls}
-						/>
-					)}
-
 					{(Array.isArray(objectifs)
 						? [[null, objectifs]]
 						: toPairs(objectifs)
 					).map(([groupName, groupTargets], index) => (
-						<>
+						<React.Fragment key={groupName}>
 							<div style={{ display: 'flex', alignItems: 'end' }}>
 								<div style={{ flex: 1 }}>
-									{groupName && <h2>{emoji(groupName)}</h2>}
+									{groupName && (
+										<h2 style={{ marginBottom: 0 }}>{emoji(groupName)}</h2>
+									)}
 								</div>
 								{index === 0 && <PeriodSwitch />}
 							</div>
@@ -129,11 +115,9 @@ export default compose(
 								}}>
 								<Targets
 									{...{
-										conversationStarted,
 										activeInput,
 										setActiveInput,
 										setFormValue,
-										inversionFail,
 										targets: targets.filter(({ dottedName }) =>
 											groupTargets.includes(dottedName)
 										),
@@ -141,10 +125,8 @@ export default compose(
 									}}
 								/>
 							</section>
-						</>
+						</React.Fragment>
 					))}
-					<QuickLinks show={firstStepCompleted && !conversationStarted} />
-					{firstStepCompleted && explanation}
 				</div>
 			)
 		}
@@ -152,11 +134,9 @@ export default compose(
 )
 
 let Targets = ({
-	conversationStarted,
 	activeInput,
 	setActiveInput,
 	setFormValue,
-	inversionFail,
 	targets,
 	initialRender
 }) => (
@@ -175,13 +155,11 @@ let Targets = ({
 						key={target.dottedName}
 						initialRender={initialRender}
 						{...{
-							conversationStarted,
 							target,
 							setFormValue,
 							activeInput,
 							setActiveInput,
-							targets,
-							inversionFail
+							targets
 						}}
 					/>
 				))}
@@ -192,7 +170,7 @@ let Targets = ({
 const Target = ({
 	target,
 	activeInput,
-	conversationStarted,
+
 	targets,
 	setActiveInput,
 	setFormValue,
@@ -212,7 +190,7 @@ const Target = ({
 						<Header
 							{...{
 								target,
-								conversationStarted,
+
 								isActiveInput: activeInput === target.dottedName
 							}}
 						/>
@@ -231,12 +209,11 @@ const Target = ({
 								targets,
 								activeInput,
 								setActiveInput,
-								setFormValue,
-								inversionFail
+								setFormValue
 							}}
 						/>
 					</div>
-					{activeInput === target.dottedName && !conversationStarted && (
+					{activeInput === target.dottedName && (
 						<Animate.fromTop>
 							<InputSuggestions
 								suggestions={target.suggestions}
@@ -254,7 +231,12 @@ const Target = ({
 	)
 }
 
-let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
+let Header = compose(
+	connect(state => ({
+		showRésumé: !state.conversationSteps.foldedSteps.length
+	})),
+	withSitePaths
+)(({ target, sitePaths, showRésumé }) => {
 	const ruleLink =
 		sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
 	return (
@@ -263,7 +245,7 @@ let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
-				{!conversationStarted && <p>{target['résumé']}</p>}
+				{showRésumé && <p>{target['résumé']}</p>}
 			</span>
 		</span>
 	)
@@ -295,8 +277,7 @@ let TargetInputOrValue = withLanguage(
 		activeInput,
 		setActiveInput,
 		language,
-		firstStepCompleted,
-		inversionFail
+		firstStepCompleted
 	}) => {
 		let inputIsActive = activeInput === target.dottedName
 		return (
@@ -320,8 +301,7 @@ let TargetInputOrValue = withLanguage(
 							target,
 							activeInput,
 							setActiveInput,
-							firstStepCompleted,
-							inversionFail
+							firstStepCompleted
 						}}
 					/>
 				)}
@@ -331,14 +311,16 @@ let TargetInputOrValue = withLanguage(
 )
 
 const TargetValue = connect(
-	null,
+	state => ({
+		blurValue: analysisWithDefaultsSelector(state)?.cache.inversionFail
+	}),
 	dispatch => ({
 		setFormValue: (field, name) => dispatch(change('conversation', field, name))
 	})
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target, inversionFail } = this.props
+			let { targets, target, blurValue } = this.props
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -350,7 +332,7 @@ const TargetValue = connect(
 						editable: target.question,
 						attractClick: target.question && isNil(target.nodeValue)
 					})}
-					style={inversionFail ? { filter: 'blur(3px)' } : {}}
+					style={blurValue ? { filter: 'blur(3px)' } : {}}
 					{...(target.question ? { tabIndex: 0 } : {})}
 					onClick={this.showField(value)}
 					onFocus={this.showField(value)}>

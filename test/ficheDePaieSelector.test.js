@@ -1,9 +1,11 @@
 /* @flow */
 
-import { expect } from 'chai';
-import FicheDePaieSelectors, { COTISATION_BRANCHE_ORDER } from 'Selectors/ficheDePaieSelectors';
+import { expect } from 'chai'
 // $FlowFixMe
-import salariéConfig from 'Components/simulationConfigs/salarié.yaml';
+import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
+import FicheDePaieSelectors, {
+	COTISATION_BRANCHE_ORDER
+} from 'Selectors/ficheDePaieSelectors'
 
 let state = {
 	form: {
@@ -15,9 +17,8 @@ let state = {
 		}
 	},
 	simulation: {
-		config: salariéConfig,
+		config: salariéConfig
 	},
-	conversationStarted: true,
 	conversationSteps: {
 		foldedSteps: []
 	}

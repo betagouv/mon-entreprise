@@ -10,14 +10,14 @@ import SalaryFirstExplanation from './SalaryFirstExplanation'
 export default compose(
 	withTracker,
 	connect(state => ({
-		conversationStarted: state.conversationStarted
+		showCompactView: !!state.conversationSteps.foldedSteps.length
 	}))
 )(
 	class SalaryExplanation extends React.Component {
 		render() {
 			return (
 				<Animate.fromTop>
-					{!this.props.conversationStarted ? (
+					{!this.props.showCompactView ? (
 						<>
 							{this.props.protectionText}
 							<PageFeedback

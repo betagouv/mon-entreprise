@@ -4,7 +4,6 @@ import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import TargetSelection from 'Components/TargetSelection'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -35,7 +34,6 @@ const AssimiléSalarié = ({ t }) => (
 		</h1>
 		<Warning simulateur="assimilé-salarié" />
 		<Simulation
-			targetsTriggerConversation={true}
 			explanation={
 				<SalaryExplanation
 					protectionText={
@@ -51,7 +49,6 @@ const AssimiléSalarié = ({ t }) => (
 					}
 				/>
 			}
-			targets={<TargetSelection />}
 		/>
 	</>
 )

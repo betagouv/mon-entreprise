@@ -24,6 +24,5 @@ export const createStateFromSavedSimulation: (
 		conversationSteps: {
 			foldedSteps: simulation.foldedSteps
 		},
-		conversationStarted: true,
 		previousSimulation: null
 	}

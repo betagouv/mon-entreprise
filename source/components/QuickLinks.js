@@ -1,5 +1,5 @@
 /* @flow */
-import { startConversation } from 'Actions/actions'
+import { setCurrentQuestion } from 'Actions/actions'
 import withLanguage from 'Components/utils/withLanguage'
 import { compose, toPairs } from 'ramda'
 import React from 'react'
@@ -13,12 +13,12 @@ type OwnProps = {
 	quickLinks: { [string]: string }
 }
 type Props = OwnProps & {
-	startConversation: (?string) => void,
+	setCurrentQuestion: string => void,
 	location: Location,
 	show: boolean
 }
 
-const QuickLinks = ({ startConversation, show, quickLinks }: Props) => {
+const QuickLinks = ({ setCurrentQuestion, show, quickLinks }: Props) => {
 	return (
 		<Spring
 			to={{
@@ -42,7 +42,7 @@ const QuickLinks = ({ startConversation, show, quickLinks }: Props) => {
 						<button
 							key={label}
 							className="ui__ small button"
-							onClick={() => startConversation(dottedName)}>
+							onClick={() => setCurrentQuestion(dottedName)}>
 							<Trans>{label}</Trans>
 						</button>
 					))}
@@ -61,7 +61,7 @@ export default (compose(
 			quickLinks: state.simulation?.config["questions à l'affiche"]
 		}),
 		{
-			startConversation
+			setCurrentQuestion
 		}
 	)
 )(QuickLinks): React$ComponentType<OwnProps>)

@@ -1,13 +1,13 @@
 /* @flow */
-import { setSituationBranch, startConversation } from 'Actions/actions'
+import { setSituationBranch } from 'Actions/actions'
 import {
 	defineDirectorStatus,
 	isAutoentrepreneur
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import { T } from 'Components'
+import Conversation from 'Components/conversation/Conversation'
 import PeriodSwitch from 'Components/PeriodSwitch'
-import Simulation from 'Components/Simulation'
 // $FlowFixMe
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
@@ -39,8 +39,7 @@ type Props = OwnProps & {
 	assimiléSalarié?: SimulationResult,
 	indépendant?: SimulationResult,
 	autoEntrepreneur?: SimulationResult,
-	conversationStarted: boolean,
-	startConversation: () => void,
+
 	setSituationBranch: number => void,
 	defineDirectorStatus: string => void,
 	sitePaths: any,
@@ -66,13 +65,14 @@ const SchemeComparaison = ({
 	assimiléSalarié,
 	indépendant,
 	autoEntrepreneur,
-	conversationStarted,
+
 	defineDirectorStatus,
 	isAutoentrepreneur,
-	setSituationBranch,
-	startConversation
+	setSituationBranch
 }: Props) => {
 	const [showMore, setShowMore] = useState(false)
+	const [conversationStarted, setConversationStarted] = useState(false)
+	const startConversation = () => setConversationStarted.bind(false)
 	return (
 		<div
 			className={classnames('comparaison-grid', {
@@ -204,13 +204,13 @@ const SchemeComparaison = ({
 						</h2>
 						<button
 							className="ui__ cta plain button"
-							onClick={() => startConversation()}>
+							onClick={startConversation}>
 							Commencer
 						</button>
 					</T>
 				) : (
 					<div className="ui__ container">
-						<Simulation />
+						<Conversation />
 					</div>
 				)}
 			</div>
@@ -614,7 +614,6 @@ export default (compose(
 	connect(
 		tryCatch(
 			state => ({
-				conversationStarted: state.conversationStarted,
 				autoEntrepreneur: {
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
@@ -679,12 +678,10 @@ export default (compose(
 					})('contrat salarié . salaire . net')
 				}
 			}),
-			(e, state) =>
-				console.log(e) || { conversationStarted: state.conversationStarted }
+			(e, state) => console.log(e) || {}
 		),
 
 		{
-			startConversation,
 			defineDirectorStatus,
 			isAutoentrepreneur,
 			setSituationBranch

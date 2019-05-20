@@ -1,10 +1,8 @@
 import { T } from 'Components'
-import PageFeedback from 'Components/Feedback/PageFeedback'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import TargetSelection from 'Components/TargetSelection'
 import { compose } from 'ramda'
 import React from 'react'
 import { Helmet } from 'react-helmet'
@@ -34,26 +32,7 @@ const AutoEntrepreneur = ({ t }) => (
 			</T>
 		</h1>
 		<Warning simulateur="auto-entreprise" />
-		<Simulation
-			targetsTriggerConversation={true}
-			targets={
-				<TargetSelection
-					explanation={
-						<>
-							<AvertissementProtectionSocialeIndépendants />
-							<PageFeedback
-								customMessage={
-									<T k="feedback.simulator">
-										Êtes-vous satisfait de ce simulateur ?
-									</T>
-								}
-								customEventName="rate simulator"
-							/>
-						</>
-					}
-				/>
-			}
-		/>
+		<Simulation explanation={<AvertissementProtectionSocialeIndépendants />} />
 	</>
 )
 export default compose(

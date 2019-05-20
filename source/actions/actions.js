@@ -2,8 +2,8 @@
 import type {
 	ResetSimulationAction,
 	LoadPreviousSimulationAction,
+	StepAction,
 	DeletePreviousSimulationAction,
-	StartConversationAction,
 	SetSimulationConfigAction,
 	SetSituationBranchAction
 } from 'Types/ActionsTypes'
@@ -20,6 +20,11 @@ export const resetSimulation = () => (dispatch: any => void): void => {
 	)
 	dispatch(reset('conversation'))
 }
+export const setCurrentQuestion = (question: string): StepAction => ({
+	type: 'STEP_ACTION',
+	name: 'unfold',
+	step: question
+})
 
 export const setSituationBranch = (id: number): SetSituationBranchAction => ({
 	type: 'SET_SITUATION_BRANCH',
@@ -44,15 +49,6 @@ export const deletePreviousSimulation = () => (
 		type: 'DELETE_PREVIOUS_SIMULATION'
 	})
 	deletePersistedSimulation()
-}
-
-export const startConversation = (priorityNamespace: ?string) => (
-	dispatch: StartConversationAction => void
-) => {
-	dispatch({
-		type: 'START_CONVERSATION',
-		...(priorityNamespace ? { priorityNamespace } : {})
-	})
 }
 
 // $FlowFixMe

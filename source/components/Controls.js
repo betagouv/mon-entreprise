@@ -1,4 +1,4 @@
-import { hideControl, startConversation } from 'Actions/actions'
+import { hideControl, setCurrentQuestion } from 'Actions/actions'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
 import { compose } from 'ramda'
@@ -6,13 +6,14 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import animate from 'Ui/animate'
 import './Controls.css'
 import withColours from './utils/withColours'
 
 function Controls({
 	controls,
-	startConversation,
+	setCurrentQuestion,
 	hideControl,
 	foldedSteps,
 	hiddenControls,
@@ -56,7 +57,7 @@ function Controls({
 												<button
 													key={solution.cible}
 													className="ui__ link-button"
-													onClick={() => startConversation(solution.cible)}>
+													onClick={() => setCurrentQuestion(solution.cible)}>
 													{solution.texte}
 												</button>
 											</div>
@@ -81,13 +82,15 @@ export default compose(
 	connect(
 		(state, props) => ({
 			foldedSteps: state.conversationSteps.foldedSteps,
+			controls: analysisWithDefaultsSelector(state).controls,
+			inversionFail: analysisWithDefaultsSelector(state).cache.inversionFail,
 			key: props.language,
 			hiddenControls: state.hiddenControls
 		}),
-		dispatch => ({
-			startConversation: cible => dispatch(startConversation(cible)),
-			hideControl: id => dispatch(hideControl(id))
-		})
+		{
+			setCurrentQuestion,
+			hideControl
+		}
 	),
 	withColours,
 	withTranslation()

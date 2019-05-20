@@ -14,7 +14,6 @@ type State = {
 	resultView: ResultView
 }
 type Props = {
-	conversationStarted: boolean,
 	tracker: Tracker,
 	displayResults: boolean
 }
@@ -26,7 +25,7 @@ const resultViewTitle = {
 
 export default class SalaryCompactExplanation extends Component<Props, State> {
 	state = {
-		resultView: this.props.conversationStarted ? 'payslip' : 'distribution'
+		resultView: 'payslip'
 	}
 	handleClickOnTab = (resultView: ResultView) => () => {
 		this.setState({ resultView })

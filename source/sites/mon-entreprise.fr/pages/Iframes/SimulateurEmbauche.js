@@ -1,6 +1,4 @@
 import Banner from 'Components/Banner'
-import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import React from 'react'
@@ -11,9 +9,8 @@ import { SalarySimulation } from '../SocialSecurity/Salarié'
 export default compose(
 	withSitePaths,
 	connect(state => ({
-		showMonEntrepriseLink: !state.conversationStarted
-	})),
-	withSimulationConfig(salariéConfig)
+		showMonEntrepriseLink: !state.conversationSteps.foldedSteps.length
+	}))
 )(function IframeSimulateurEmbauche({ showMonEntrepriseLink, sitePaths }) {
 	return (
 		<>
