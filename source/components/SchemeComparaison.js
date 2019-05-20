@@ -13,7 +13,7 @@ import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirig
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, tryCatch } from 'ramda'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -71,8 +71,10 @@ const SchemeComparaison = ({
 	setSituationBranch
 }: Props) => {
 	const [showMore, setShowMore] = useState(false)
-	const [conversationStarted, setConversationStarted] = useState(false)
-	const startConversation = () => setConversationStarted.bind(false)
+	const [conversationStarted, setConversationStarted] = useState(!!assimiléSalarié)
+	const startConversation = useCallback(() => setConversationStarted(true), [
+		setConversationStarted
+	])
 	return (
 		<div
 			className={classnames('comparaison-grid', {

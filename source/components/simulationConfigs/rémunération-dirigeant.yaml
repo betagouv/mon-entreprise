@@ -14,8 +14,7 @@ questions:
   - entreprise . catégorie d'activité . service ou vente
   - entreprise . catégorie d'activité . restauration ou hébergement
   - entreprise . catégorie d'activité . libérale règlementée
-bloquant:
-  - entreprise . chiffre d'affaires
+
 situation:
   période: année
   entreprise . année d'activité: non

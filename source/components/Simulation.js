@@ -16,6 +16,7 @@ export default connect(state => ({
 			<TargetSelection />
 			{firstStepCompleted && (
 				<>
+					<h2>Votre simulation</h2>
 					<Conversation customEndMessages={customEndMessages} />
 					{explanations}
 				</>

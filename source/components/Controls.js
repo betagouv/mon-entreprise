@@ -20,6 +20,9 @@ function Controls({
 	t,
 	inversionFail
 }) {
+	if (!controls) {
+		return null
+	}
 	let messages = [
 		...controls,
 		...(inversionFail
@@ -82,8 +85,8 @@ export default compose(
 	connect(
 		(state, props) => ({
 			foldedSteps: state.conversationSteps.foldedSteps,
-			controls: analysisWithDefaultsSelector(state).controls,
-			inversionFail: analysisWithDefaultsSelector(state).cache.inversionFail,
+			controls: analysisWithDefaultsSelector(state)?.controls,
+			inversionFail: analysisWithDefaultsSelector(state)?.cache?.inversionFail,
 			key: props.language,
 			hiddenControls: state.hiddenControls
 		}),

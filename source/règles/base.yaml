@@ -3461,9 +3461,11 @@
   formule:
     variations:
       - si:
-          une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
-            - entreprise . catégorie d'activité . restauration ou hébergement
+          toutes ces conditions:
+            - entreprise . catégorie d'activité != 'libérale'
+            - une de ces conditions:
+              - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+              - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000
       - sinon: 70000
 
@@ -3558,7 +3560,7 @@
       multiplicateur: plafond ACRE
       tranches:
         - en-dessous de: 1
-          taux: taux ACRE * taux de cotisation
+          taux: ACRE * taux de cotisation
         - au-dessus de: 1
           taux: taux de cotisation
   références:
@@ -3610,13 +3612,24 @@
   par défaut: non
 
 
+<<<<<<< HEAD
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE
   période: flexible
   formule: 100% - réduction ACRE
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations
+=======
+- espace: auto entrepreneur . cotisations sociales
+  nom: ACRE
+  titre: taux ACRE
+  période: flexible
+  formule: 100% - réduction ACRE
+
+- espace: auto entrepreneur . cotisations sociales . ACRE
+>>>>>>> dbe7621a... :bug: Corrige quelques bugs sur les simulations
   nom: réduction ACRE
+  titre: réduction ACRE
   applicable si:
     une de ces conditions:
       - entreprise . année d'activité = 'première année'
