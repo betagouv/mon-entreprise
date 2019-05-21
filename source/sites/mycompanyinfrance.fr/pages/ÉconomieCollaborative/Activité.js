@@ -1,14 +1,15 @@
+import { all } from 'ramda'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React, { useState, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import { CheckItem } from 'Ui/Checklist'
 import activités from './activités.yaml'
 import { createMarkdownDiv } from 'Engine/marked'
 import { StoreContext } from './StoreContext'
 import { NextButton } from './ActivitésSelection'
+import Exonérations from './Exonérations'
 
 export default withSitePaths(function LocationMeublée({
 	sitePaths,
@@ -22,17 +23,6 @@ export default withSitePaths(function LocationMeublée({
 		} = useContext(StoreContext),
 		data = activités.find(({ titre }) => titre === title),
 		answers = activityAnswers[title] || {}
-
-	if (title === 'Co-consommation')
-		return (
-			<NextButton
-				{...{
-					activityAnswers,
-					selectedActivities,
-					disabled: false
-				}}
-			/>
-		)
 
 	return (
 		<section
@@ -50,21 +40,11 @@ export default withSitePaths(function LocationMeublée({
 					{emoji(data.icônes)} {data.titre}
 				</h1>
 				{createMarkdownDiv(data.explication)}
-				{data.exonération && (
-					<CheckItem
-						name={data.exonération.titre}
-						title={data.exonération.titre}
-						explanations={createMarkdownDiv(data.exonération.explanation)}
-						onChange={checked =>
-							dispatch({
-								type: 'UPDATE_ACTIVITY',
-								title,
-								data: { ...answers, exoneration: checked }
-							})
-						}
-					/>
-				)}
-				{answers.exoneration ? (
+				<Exonérations
+					{...{ exonérations: data.exonérations, dispatch, title }}
+				/>
+				{answers.exonerations &&
+				all(item => item === true, answers.exonerations) ? (
 					<p>
 						{emoji('😌 ')}
 						En ce qui concerne les revenus de cette activité, vous n'avez pas

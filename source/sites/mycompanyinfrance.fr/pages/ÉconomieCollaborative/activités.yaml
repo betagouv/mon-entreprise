@@ -7,14 +7,14 @@
     > Exemples de plateformes : AirBnb, Abritel...
 
   seuil pro: 23000
-  exonération:
+  exonérations:
     # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
     titre: Il s'agit d'une pièce dans ma résidence principale
     explication: | 
       Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
       > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
 
-      # TODO implémenter ces autres possibilités de la location meublée
+  # TODO implémenter ces autres possibilités de la location meublée
   autres possibilités:
     - titre: location de logement meublé de tourisme classé
       seuil pro: 23000
@@ -40,19 +40,18 @@
   icônes: 📦 🧶
   exemples: Leboncoin, eBay, Etsy...
   seuil pro: 0
-  exonération:
+  exonérations:
     titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
     explication: | 
       A l'inverse, s’il s’agit de biens que vous avez achetés ou que vous avez fabriqués en vue de les revendre (exemple : vous réalisez des bijoux, des objets de décoration…), il s’agit alors d’une activité à caractère professionnel, qui doit être déclarée. Vous devez enregistrer cette activité.
 
 - titre: Co-consommation
   icônes: 👥 🚗
-  exemples: Blablacar, ...
   seuil pro: 0
   explication: |
     La co-consommation, c'est par exemple partager votre voiture (co-voiturage), des repas, ou encore des sorties.
 
-    > Exemples de plateforme : Blablacar
+    > Exemple de plateforme : Blablacar
 
   exonérations: 
     toutes ces conditions: 

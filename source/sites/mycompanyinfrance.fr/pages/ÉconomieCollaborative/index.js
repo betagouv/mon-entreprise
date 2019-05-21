@@ -34,11 +34,6 @@ export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 				/>
 				<Route
 					exact
-					path={sitePaths.économieCollaborative.activités.coConsommation}
-					component={CoConsommation}
-				/>
-				<Route
-					exact
 					path={sitePaths.économieCollaborative.votreSituation}
 					component={VotreSituation}
 				/>
