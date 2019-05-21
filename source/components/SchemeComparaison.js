@@ -107,72 +107,66 @@ const SchemeComparaison = ({
 				</small>
 			</h2>
 
-			<>
-				<h3 className="legend">
-					<T k="comparaisonRégimes.status.legend">
-						Statuts juridiques possibles
+			<h3 className="legend">
+				<T k="comparaisonRégimes.status.legend">Statuts juridiques possibles</T>
+			</h3>
+			<div className="AS">
+				<div>
+					<T k="comparaisonRégimes.status.AS">
+						SAS, SASU ou SARL avec gérant minoritaire
 					</T>
-				</h3>
-				<div className="AS">
-					<div>
-						<T k="comparaisonRégimes.status.AS">
-							SAS, SASU ou SARL avec gérant minoritaire
+				</div>
+			</div>
+			<div className="indep">
+				<div>
+					{hideAssimiléSalarié ? (
+						<T k="comparaisonRégimes.status.indep.2">EI ou EIRL</T>
+					) : (
+						<T k="comparaisonRégimes.status.indep.1">
+							EI, EIRL, EURL ou SARL avec gérant majoritaire
 						</T>
-					</div>
+					)}
 				</div>
-				<div className="indep">
-					<div>
-						{hideAssimiléSalarié ? (
-							<T k="comparaisonRégimes.status.indep.2">EI ou EIRL</T>
-						) : (
-							<T k="comparaisonRégimes.status.indep.1">
-								EI, EIRL, EURL ou SARL avec gérant majoritaire
-							</T>
-						)}
-					</div>
-				</div>
-				<div className="auto">
-					<T k="comparaisonRégimes.status.auto">Auto-entreprise</T>
-				</div>
-			</>
+			</div>
+			<div className="auto">
+				<T k="comparaisonRégimes.status.auto">Auto-entreprise</T>
+			</div>
 
-			<>
-				<T k="comparaisonRégimes.sécuritéSociale">
-					<h3 className="legend">Sécurité sociale</h3>
-					<div className="AS">
-						Régime général <small />
-					</div>
-					<div className="indep-et-auto">
-						Sécurité sociale des indépendants <small />
-					</div>
-				</T>
-				<T k="comparaisonRégimes.AT">
-					<h3 className="legend">Couverture accidents du travail</h3>
-				</T>
+			<T k="comparaisonRégimes.sécuritéSociale">
+				<h3 className="legend">Sécurité sociale</h3>
 				<div className="AS">
-					<T>
-						<T>Oui</T>
-					</T>
+					Régime général <small />
 				</div>
 				<div className="indep-et-auto">
-					<T>Non</T>
+					Sécurité sociale des indépendants <small />
 				</div>
-				<T k="comparaisonRégimes.assuranceMaladie">
-					<h3 className="legend">
-						Assurance maladie{' '}
-						<small>(médicaments, soins, hospitalisations)</small>
-					</h3>
-					<div className="AS-indep-et-auto">Identique pour tous</div>
+			</T>
+			<T k="comparaisonRégimes.AT">
+				<h3 className="legend">Couverture accidents du travail</h3>
+			</T>
+			<div className="AS">
+				<T>
+					<T>Oui</T>
 				</T>
-				<T k="comparaisonRégimes.mutuelle">
-					<h3 className="legend">
-						Mutuelle santé
-						<small />
-					</h3>
-					<div className="AS">Obligatoire</div>
-					<div className="indep-et-auto">Fortement conseillée</div>
-				</T>
-			</>
+			</div>
+			<div className="indep-et-auto">
+				<T>Non</T>
+			</div>
+			<T k="comparaisonRégimes.assuranceMaladie">
+				<h3 className="legend">
+					Assurance maladie{' '}
+					<small>(médicaments, soins, hospitalisations)</small>
+				</h3>
+				<div className="AS-indep-et-auto">Identique pour tous</div>
+			</T>
+			<T k="comparaisonRégimes.mutuelle">
+				<h3 className="legend">
+					Mutuelle santé
+					<small />
+				</h3>
+				<div className="AS">Obligatoire</div>
+				<div className="indep-et-auto">Fortement conseillée</div>
+			</T>
 
 			<T k="comparaisonRégimes.indemnités">
 				<h3 className="legend">Indemnités journalières</h3>

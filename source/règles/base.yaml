@@ -3560,7 +3560,7 @@
       multiplicateur: plafond ACRE
       tranches:
         - en-dessous de: 1
-          taux: ACRE * taux de cotisation
+          taux: taux ACRE * taux de cotisation
         - au-dessus de: 1
           taux: taux de cotisation
   références:
@@ -3612,22 +3612,12 @@
   par défaut: non
 
 
-<<<<<<< HEAD
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE
   période: flexible
   formule: 100% - réduction ACRE
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations
-=======
-- espace: auto entrepreneur . cotisations sociales
-  nom: ACRE
-  titre: taux ACRE
-  période: flexible
-  formule: 100% - réduction ACRE
-
-- espace: auto entrepreneur . cotisations sociales . ACRE
->>>>>>> dbe7621a... :bug: Corrige quelques bugs sur les simulations
   nom: réduction ACRE
   titre: réduction ACRE
   applicable si:
