@@ -7,6 +7,7 @@ import Home from './Home'
 import LocationMeublée from './LocationMeublée'
 import VotreSituation from './VotreSituation'
 import { StoreProvider } from './StoreContext'
+import Activité from './Activité'
 
 export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 	return (
@@ -21,6 +22,10 @@ export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 					exact
 					path={sitePaths.économieCollaborative.activités.index}
 					component={ActivitésSelection}
+				/>
+				<Route
+					path={sitePaths.économieCollaborative.activités.index + '/:title'}
+					component={Activité}
 				/>
 				<Route
 					exact

@@ -9,7 +9,7 @@ import Animate from 'Ui/animate'
 import activités from './activités.yaml'
 import { StoreContext } from './StoreContext'
 
-export default withSitePaths(function ActivitésSelection({ sitePaths }) {
+export default (function ActivitésSelection() {
 	let { state, dispatch } = useContext(StoreContext)
 	let { selectedActivities } = state
 
@@ -67,14 +67,33 @@ export default withSitePaths(function ActivitésSelection({ sitePaths }) {
 				})}
 			</ul>
 			<p css="text-align: right">
-				<Link
-					to={sitePaths.économieCollaborative.activités.coConsommation}
-					className={classnames('ui__ plain button', {
+				<NextButton
+					{...{
+						activityAnswers: state.activityAnswers,
+						selectedActivities,
 						disabled: !selectedActivities.length
-					})}>
-					Continuer
-				</Link>
+					}}
+				/>
 			</p>
 		</Animate.fromBottom>
 	)
 })
+
+export let NextButton = withSitePaths(
+	({ sitePaths, activityAnswers, selectedActivities, disabled }) => {
+		let nextActivity = selectedActivities.find(a => !activityAnswers[a]),
+			to = nextActivity
+				? sitePaths.économieCollaborative.activités.index + '/' + nextActivity
+				: sitePaths.économieCollaborative.votreSituation
+
+		return (
+			<Link
+				to={to}
+				className={classnames('ui__ plain button', {
+					disabled
+				})}>
+				Continuer
+			</Link>
+		)
+	}
+)
