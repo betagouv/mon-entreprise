@@ -26,14 +26,7 @@ export default withSitePaths(function LocationMeublée({
 
 	return (
 		<section
-			css={`
-				blockquote {
-					border-left: 10px solid var(--lighterColour);
-					padding: 0 1em;
-					margin-left: 0em;
-					color: #333;
-				}
-			`}>
+		>
 			<Animate.fromBottom>
 				<ScrollToTop />
 				<h1>
@@ -46,6 +39,7 @@ export default withSitePaths(function LocationMeublée({
 						Exemples de plateformes : {data.plateformes.join(', ')}
 					</p>
 				)}
+				<h2>Votre situation</h2>
 				<Exonérations
 					{...{ exonérations: data.exonérations, dispatch, title }}
 				/>
@@ -58,17 +52,20 @@ export default withSitePaths(function LocationMeublée({
 						professionnelle.
 					</p>
 				) : data['seuil pro'] === 0 ? (
-					<>
-						<p>
-							Les revenus de cette activité sont considérés comme des revenus
-							profesionnels, et ce dès le 1er euro gagné.{' '}
-						</p>
-						<p>Vous devez dans tous les cas créer une entreprise.</p>
-					</>
+					<p>
+						Les revenus de cette activité sont considérés comme des{' '}
+						<strong>revenus professionnels dès le 1er euro gagné</strong>.
+					</p>
 				) : (
 					<>
-						<h2>Vos revenus annuels provenant de cette activité sont :</h2>
-						<form>
+						<p>Vos revenus annuels pour cette activité sont :</p>
+						<form
+							css={`
+								label {
+									display: block;
+									margin: 0.6rem 0;
+								}
+							`}>
 							<label>
 								<input
 									type="radio"
@@ -82,8 +79,8 @@ export default withSitePaths(function LocationMeublée({
 											data: { ...answers, pro: false }
 										})
 									}
-								/>
-								Inférieurs à {data['seuil pro']} €
+								/>{' '}
+								inférieurs à {data['seuil pro']} €
 							</label>
 							<label>
 								<input
@@ -98,8 +95,8 @@ export default withSitePaths(function LocationMeublée({
 											data: { ...answers, pro: true }
 										})
 									}
-								/>
-								Supérieurs à {data['seuil pro']} €
+								/>{' '}
+								supérieurs à {data['seuil pro']} €
 							</label>
 						</form>
 					</>

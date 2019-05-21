@@ -36,7 +36,7 @@ export default withSitePaths(function CoConsommation({ sitePaths }) {
 					d'impôts.
 				</li>
 			</ul>
-			<h2>Créer une activité profesionnelle</h2>
+			<h2>Créer une activité professionnelle</h2>
 			<ul>
 				<li>
 					<strong>Vente de services</strong> : Dès le 1er euro, vous devez faire

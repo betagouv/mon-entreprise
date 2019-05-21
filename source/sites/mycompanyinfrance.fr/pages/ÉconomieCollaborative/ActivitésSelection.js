@@ -88,6 +88,9 @@ export let NextButton = withSitePaths(
 
 		return (
 			<Link
+				css={`
+					margin-top: 1rem;
+				`}
 				to={to}
 				className={classnames('ui__ plain button', {
 					disabled

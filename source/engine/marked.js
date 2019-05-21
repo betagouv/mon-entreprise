@@ -9,7 +9,19 @@ marked.setOptions({
 })
 
 export let createMarkdownDiv = markdown => (
-	<div dangerouslySetInnerHTML={{ __html: marked(markdown || '') }} />
+	<div
+		className="markdown"
+		css={`
+			blockquote {
+				background: var(--lighterColour);
+				border-radius: 0.6em;
+				padding: 1.2em 1em 0.4em;
+				margin: 0.6em;
+				color: #333;
+			}
+		`}
+		dangerouslySetInnerHTML={{ __html: marked(markdown || '') }}
+	/>
 )
 
 export default marked

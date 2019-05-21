@@ -8,7 +8,10 @@ export default ({ exonérations, dispatch, answers, title }) => {
 	let items = Array.isArray(multiple) ? multiple : [exonérations]
 
 	return (
-		<>
+		<div
+			css={`
+				margin: 1em 0;
+			`}>
 			{items.length > 1 && <p>Respectez-vous ces conditions ? </p>}
 
 			{items.map(({ titre, explication }, index) => (
@@ -32,6 +35,6 @@ export default ({ exonérations, dispatch, answers, title }) => {
 					}
 				/>
 			))}
-		</>
+		</div>
 	)
 }
