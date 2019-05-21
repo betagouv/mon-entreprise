@@ -16,6 +16,12 @@ questions:
     - entreprise . charges
     - contrat salarié . avantages en nature . montant
     - entreprise . rémunération du dirigeant
+
+questions à l'affiche:
+  Année d'activité: entreprise . année d'activité
+  Mutuelle: contrat salarié . complémentaire santé . part employeur
+  Localisation: établissement . localisation
+
 situation:
   auto entrepreneur: non
   indépendant: non

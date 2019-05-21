@@ -68,7 +68,7 @@ class Distribution extends Component<Props, State> {
 						return (
 							<Observer
 								key={branche.id}
-								threshold={[0.33]}
+								threshold={[0.5]}
 								onChange={this.handleBrancheInViewport(branche.id)}>
 								<Spring
 									config={ANIMATION_SPRING}

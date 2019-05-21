@@ -2,7 +2,6 @@ import { resetSimulation } from 'Actions/actions'
 import { T } from 'Components'
 import Aide from 'Components/Aide'
 import Answers from 'Components/AnswerList'
-import Controls from 'Components/Controls'
 import Scroll from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import { getInputComponent } from 'Engine/generateQuestions'
@@ -14,11 +13,12 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import {
 	currentQuestionSelector,
-	firstStepCompletedSelector,
 	flatRulesSelector,
 	nextStepsSelector
 } from 'Selectors/analyseSelectors'
+import { simulationProgressSelector } from 'Selectors/progressSelectors'
 import * as Animate from 'Ui/animate'
+import Progress from 'Ui/Progress'
 import './conversation.css'
 
 export default compose(
@@ -33,9 +33,9 @@ export default compose(
 		state => ({
 			flatRules: flatRulesSelector(state),
 			currentQuestion: currentQuestionSelector(state),
-			firstStepCompleted: firstStepCompletedSelector(state),
 			previousAnswers: state.conversationSteps.foldedSteps,
-			noNextSteps: nextStepsSelector(state).length == 0
+			noNextSteps: nextStepsSelector(state).length == 0,
+			progress: simulationProgressSelector(state)
 		}),
 		{ resetSimulation }
 	)
@@ -44,8 +44,8 @@ export default compose(
 	previousAnswers,
 	currentQuestion,
 	customEndMessages,
-	firstStepCompleted,
 	flatRules,
+	progress,
 	resetSimulation
 }) {
 	const arePreviousAnswers = previousAnswers.length > 0
@@ -53,58 +53,83 @@ export default compose(
 
 	return (
 		<>
-			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}
-			{firstStepCompleted && <Controls />}
-			{!noNextSteps ? (
-				<Scroll.toElement onlyIfNotVisible>
-					<div className="conversationContainer">
-						<Aide />
-						<div id="currentQuestion">
-							{currentQuestion && (
-								<Animate.fadeIn>
-									{getInputComponent(flatRules)(currentQuestion)}
-								</Animate.fadeIn>
-							)}
-						</div>
-					</div>
-				</Scroll.toElement>
-			) : (
-				<>
-					<h2>
-						{emoji('🌟')}{' '}
-						<T k="simulation-end.title">Situation complétée à 100%</T>{' '}
-					</h2>
-					<p>
-						<T k="simulation-end.text">
-							Nous n'avons plus de questions à poser, vous avez atteint
-							l'estimation la plus précise.
-						</T>
-						{customEndMessages}
+			<Animate.fromTop>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-start',
+						alignItems: 'baseline'
+					}}>
+					<p
+						style={{
+							flex: 1,
+							maxWidth: '50%'
+						}}>
+						Précision du résultat :
+						<Progress progress={progress} />
 					</p>
-				</>
-			)}
-			<h2>{emoji('📝 ')}Votre situation</h2>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'flex-start',
-					alignItems: 'baseline'
-				}}>
-				{arePreviousAnswers ? (
+					<div style={{ flex: 1 }} />
+
+					{arePreviousAnswers ? (
+						<button
+							style={{ marginRight: '1em', alignSelf: 'baseline' }}
+							className="ui__ small  button "
+							onClick={() => setShowAnswerModal(true)}>
+							<T>Voir mes réponses</T>
+						</button>
+					) : (
+						<span />
+					)}
 					<button
-						style={{ marginRight: '1em' }}
-						className="ui__ small  button "
-						onClick={() => setShowAnswerModal(true)}>
-						<T>Voir mes réponses</T>
+						className="ui__ small simple skip button left"
+						style={{ alignSelf: 'baseline' }}
+						onClick={() => resetSimulation()}>
+						⟲ <T>Recommencer</T>
 					</button>
-				) : (
-					<span />
-				)}
-				<button
-					className="ui__ small simple skip button left"
-					onClick={() => resetSimulation()}>
-					⟲ <T>Recommencer</T>
-				</button>
+				</div>
+			</Animate.fromTop>
+
+			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}
+
+			<div className="ui__ full-width choice-group">
+				<div className="ui__ container">
+					{!noNextSteps ? (
+						<Scroll.toElement onlyIfNotVisible>
+							<Aide />
+							<div id="currentQuestion">
+								{currentQuestion && (
+									<React.Fragment key={currentQuestion}>
+										<Animate.fromTop>
+											{getInputComponent(flatRules)(currentQuestion)}
+										</Animate.fromTop>
+									</React.Fragment>
+								)}
+							</div>
+							{/* {!arePreviousAnswers && (
+								<div style={{ display: 'flex', alignItems: 'center' }}>
+									<span style={{ marginRight: '1rem' }}>
+										Aller aux questions :{' '}
+									</span>
+									<QuickLinks show />
+								</div>
+							)} */}
+						</Scroll.toElement>
+					) : (
+						<>
+							<h3>
+								{emoji('🌟')}{' '}
+								<T k="simulation-end.title">Simulation complétée à 100%</T>{' '}
+							</h3>
+							<p>
+								<T k="simulation-end.text">
+									Nous n'avons plus de questions à poser, vous avez atteint
+									l'estimation la plus précise.
+								</T>
+								{customEndMessages}
+							</p>
+						</>
+					)}
+				</div>
 			</div>
 		</>
 	)

@@ -1,0 +1,12 @@
+.progress__container {
+	border-radius: 0.2rem;
+	height: 0.4rem;
+	background-color: var(--lighterColour);
+	overflow: hidden;
+}
+.progress__bar {
+	height: 100%;
+	transition: width 0.2s;
+	min-width: 6px;
+	background-color: var(--colour);
+}
