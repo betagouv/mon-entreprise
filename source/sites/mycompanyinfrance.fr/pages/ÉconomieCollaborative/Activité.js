@@ -40,6 +40,12 @@ export default withSitePaths(function LocationMeublée({
 					{emoji(data.icônes)} {data.titre}
 				</h1>
 				{createMarkdownDiv(data.explication)}
+				{data.plateformes && (
+					<p>
+						{emoji('📱 ')}
+						Exemples de plateformes : {data.plateformes.join(', ')}
+					</p>
+				)}
 				<Exonérations
 					{...{ exonérations: data.exonérations, dispatch, title }}
 				/>

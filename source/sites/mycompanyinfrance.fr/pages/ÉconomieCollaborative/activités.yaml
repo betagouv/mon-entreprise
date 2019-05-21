@@ -1,10 +1,12 @@
 - titre: Location meublée
   icônes: 🏠 🛋
-  exemples: Airbnb, Abritel, chambre d'hôte...
   explication: |
     Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile (hors location de chambres d’hôtes et de meublé de tourisme)
 
-    > Exemples de plateformes : AirBnb, Abritel...
+  plateformes: 
+    - Airbnb
+    - Abritel
+    - Chambre d'hôte
 
   seuil pro: 23000
   exonérations:
@@ -26,10 +28,16 @@
   icônes: 🔑 🚗 🔧 🌱
   explication: Vous mettez en location certains de vos biens, tels que voiture, matériel de jardinage, outils de bricolage, accessoires de luxe, vêtements...
   seuil pro: 8105
-  exemples: Drivy, outils de jardinage, bricolage...
+  plateformes: 
+    - Drivy
+    - outils de jardinage, bricolage...
 - titre: Services
   icônes: 🚴 🚕 👩‍💻 🍼
-  exemples: Deliveroo, Uber, sites internet, nounous...
+  plateformes: 
+    - Deliveroo
+    - Uber
+    - création de sites internet
+    - nounous...
   seuil pro: 0
   explication: |
     Lorsque vous proposez contre rémunération, via une plateforme d’économie collaborative, un service pour une entreprise ou un particulier (exemple : création de site internet, travaux de rédaction ou de relecture…) ou réalisez des prestations de conseil (coaching…),  cette activité présente nécessairement un caractère professionnel.
@@ -38,7 +46,10 @@
 
 - titre: Vente de biens
   icônes: 📦 🧶
-  exemples: Leboncoin, eBay, Etsy...
+  plateformes: 
+    - Leboncoin
+    - eBay
+    - Etsy...
   seuil pro: 0
   exonérations:
     titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
@@ -51,7 +62,8 @@
   explication: |
     La co-consommation, c'est par exemple partager votre voiture (co-voiturage), des repas, ou encore des sorties.
 
-    > Exemple de plateforme : Blablacar
+  plateformes: 
+    - Blablacar
 
   exonérations: 
     toutes ces conditions: 

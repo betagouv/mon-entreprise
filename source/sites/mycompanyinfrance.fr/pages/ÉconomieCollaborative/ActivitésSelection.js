@@ -52,7 +52,7 @@ export default (function ActivitésSelection() {
 					}
 					li:hover, li.selected {background: var(--colour); color: white}
 				`}>
-				{activités.map(({ titre, exemples, icônes }) => {
+				{activités.map(({ titre, plateformes, icônes }) => {
 					let selected = selectedActivities.includes(titre)
 					return (
 						<li
@@ -61,7 +61,7 @@ export default (function ActivitésSelection() {
 							onClick={() => dispatch({ type: 'SELECT_ACTIVITY', titre })}>
 							<div className="title">{titre}</div>
 							{emoji(icônes)}
-							<p>{exemples}</p>
+							<p>{plateformes.join(', ')}</p>
 						</li>
 					)
 				})}
