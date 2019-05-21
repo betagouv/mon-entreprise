@@ -2586,6 +2586,7 @@
           - contrat salarié . rémunération . net imposable
           - indépendant . revenu professionnel
       abattement: 10%
+      plafond: 12502
 
 - nom: impôt sur le revenu
   espace: impôt
