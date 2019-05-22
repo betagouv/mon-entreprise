@@ -10,18 +10,22 @@ import * as chrono from './chrono'
 import { StoreContext } from './StoreContext'
 import scenarios from './scenarios.yaml'
 
-let humanWeightValue = v => {
-	let unitSuffix = "d'équivalent CO₂"
-	let [raw, unit] =
-		v === 0
-			? [v, '']
-			: v < 1
-			? [v * 1000, 'g']
-			: v < 1000
-			? [v, 'kilos']
-			: [v / 1000, 'tonnes']
+let humanWeightValue = possiblyNegativeValue => {
+	let unitSuffix = "d'équivalent CO₂",
+		v = Math.abs(possiblyNegativeValue),
+		[raw, unit] =
+			v === 0
+				? [v, '']
+				: v < 1
+				? [v * 1000, 'g']
+				: v < 1000
+				? [v, 'kilos']
+				: [v / 1000, 'tonnes']
 
-	return [raw.toFixed(1), unit + ' ' + unitSuffix]
+	return [
+		raw.toFixed(1) * (possiblyNegativeValue < 0 ? -1 : 1),
+		unit + ' ' + unitSuffix
+	]
 }
 
 export default compose(
@@ -77,7 +81,8 @@ export default compose(
 							{factor +
 								' ' +
 								closestPeriodLabel +
-								(closestPeriod[closestPeriod.length - 1] !== 's' && factor > 1
+								(closestPeriod[closestPeriod.length - 1] !== 's' &&
+								Math.abs(factor) > 1
 									? 's'
 									: '')}
 						</div>
