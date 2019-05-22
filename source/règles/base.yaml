@@ -3635,13 +3635,12 @@
   note: |
     Il s'agit d'une estimation a but purement indicatif, afin de comparer la retraite des différents régimes.
     On se limite notamment aux hypothèses suivantes :
-      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestre requis (172)
+      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestre requis (172), ou en partant à l'âge taux plein (67 ans)
       - On considère que le travailleur a eu le même revenu tout au long de sa carrière
       - On considère que le travailleur est resté dans le même régime tout au long de sa carrière
-      - On ne prends pas en compte les minorations / majorations
-      - On ne prends pas en compte les seuils de rémunération minimum pour la validation des trimestres
-      - On ne prends pas en compte les caisses de retraite particulière (CIPAV)
-      - On ne prends pas en compte les seuils de chiffre d'affaire minimum pour la validation des trimestres pour les auto-entrepreneurs
+      - On ne prend pas en compte les minorations / majorations
+      - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
+      - On ne calcule pas le nombre de trimestres validés par année
 
     Ces limites seront amenées à évoluer au fur et à mesure du développement du simulateur
 
