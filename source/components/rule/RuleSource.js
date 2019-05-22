@@ -12,7 +12,14 @@ export default connect(state => ({ rules: state.rules }))(
 		)
 
 		return (
-			<div id="RuleSource" className="ui__ container">
+			<div
+				id="RuleSource"
+				className="ui__ container"
+				css={`
+					pre {
+						border-radius: 0.6rem;
+					}
+				`}>
 				<h2>
 					{emoji('⚙️ ')}
 					Code source <br />
