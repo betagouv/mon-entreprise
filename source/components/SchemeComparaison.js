@@ -352,7 +352,7 @@ const SchemeComparaison = ({
 						</>
 					)}
 					<T k="comparaisonRégimes.cotisations">
-						<h3 className="legend">Paiment des cotisations</h3>
+						<h3 className="legend">Paiement des cotisations</h3>
 						<div className="AS">Mensuel</div>
 						<div className="indep">
 							Provision mensuelle{' '}
