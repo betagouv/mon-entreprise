@@ -35,7 +35,7 @@ export const règleLocaliséeSelector: InputSelector<
 		const localizedRule = findRuleByDottedName(localizedFlatRules, dottedName)
 		if (!localizedRule) {
 			throw new Error(
-				`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
+				`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName, et que la règles est bien calculée (dans les objectifs de la simulation)`
 			)
 		}
 		return {
