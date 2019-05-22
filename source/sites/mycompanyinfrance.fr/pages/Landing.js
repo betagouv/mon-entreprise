@@ -66,9 +66,9 @@ export default compose(
 			<Link
 				className="ui__ button-choice "
 				to={sitePaths.économieCollaborative.index}>
-				{emoji('🏡')}{' '}
+				{emoji('📱 ')}{' '}
 				<T>
-					Déclarer mes revenus de plateforme en ligne (airbnb, leboncoin, etc.)
+					Déclarer mes revenus de plateforme en ligne (Airbnb, Leboncoin, etc.)
 				</T>
 			</Link>
 			{/*
