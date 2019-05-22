@@ -38,7 +38,9 @@ const DefineDirectorStatus = ({ defineDirectorStatus, t }: Props) => (
 				la couverture sociale du dirigeant. Le montant et les modalités de
 				paiement des cotisations sociales sont également impactés.
 			</p>
-			<SchemeComparaison hideAutoEntrepreneur />
+			<div className="ui__ full-width">
+				<SchemeComparaison hideAutoEntrepreneur />
+			</div>
 		</T>
 
 		<CompanyStatusNavigation onSkip={() => defineDirectorStatus(null)} />

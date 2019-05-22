@@ -6,6 +6,17 @@
 		[row-legend] auto [assimilé-salarié] minmax(20%, 20rem)
 		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
 }
+.comparaison-grid.hideAutoEntrepreneur {
+	grid-template-columns:
+		[row-legend] auto [assimilé-salarié] minmax(20%, 20rem)
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] 0 [end];
+}
+
+.comparaison-grid.hideAssimiléSalarié {
+	grid-template-columns:
+		[row-legend] auto [assimilé-salarié] 0
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
+}
 .comparaison-grid > * {
 	border-bottom: 1px solid var(--lighterColour);
 	padding: 0.6rem 1.2rem;
@@ -31,7 +42,7 @@
 	width: 1.6rem !important;
 }
 .comparaison-grid > .legend {
-	max-width: 20rem;
+	max-width: 15rem;
 	align-items: flex-end;
 	grid-column: row-legend;
 	text-align: right;
@@ -68,9 +79,6 @@
 	border-right: none;
 }
 
-.comparaison-grid.hideAutoEntrepreneur {
-	grid-template-columns: [row-legend] auto [assimilé-salarié] 1fr [indépendant] 1fr [auto-entrepreneur] 0 [end];
-}
 .comparaison-grid.hideAutoEntrepreneur > .auto {
 	display: none;
 }
@@ -78,9 +86,6 @@
 	border-right: 1px solid var(--lighterColour);
 }
 
-.comparaison-grid.hideAssimiléSalarié {
-	grid-template-columns: [row-legend] auto [assimilé-salarié] 0 [indépendant] auto [auto-entrepreneur] auto [end];
-}
 .comparaison-grid.hideAssimiléSalarié > .AS {
 	display: none;
 }
@@ -103,9 +108,6 @@
 }
 
 @media (max-width: 800px) {
-	.comparaison-grid {
-		grid-template-columns: [row-legend] 10rem [assimilé-salarié] auto [indépendant] auto [auto-entrepreneur] auto [end];
-	}
 	.comparaison-grid > * {
 		padding: 0.6rem;
 	}
