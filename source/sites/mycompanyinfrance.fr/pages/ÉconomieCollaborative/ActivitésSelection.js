@@ -51,7 +51,19 @@ export default (function ActivitésSelection() {
 							line-height: 1em;
 						}
 					}
-					li:hover, li.selected {background: var(--colour); color: white}
+						@media (hover) {
+						
+							li:hover {background: var(--colour); color: white}
+						}
+					 li.selected {background: var(--colour); color: white}
+
+					@media  (max-width: 800px){
+					li {
+					width: 95%;
+					margin: .6rem 0;
+
+					}
+					}
 				`}>
 				{activités.map(({ titre, plateformes, icônes }) => {
 					let selected = selectedActivities.includes(titre)

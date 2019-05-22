@@ -6,7 +6,8 @@
   plateformes: 
     - Airbnb
     - Abritel
-    - Chambre d'hôte
+    - chambre d'hôte
+    - tourisme classé
 
   seuil pro: 23000
   exonérations:
