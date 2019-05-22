@@ -2880,7 +2880,7 @@
       possibilités:
         - prestation de service
         - vente de biens
-  par défaut: vente de biens
+  par défaut: prestation de service
 
 - espace: entreprise . catégorie d'activité . service ou vente
   nom: vente de biens
@@ -3424,7 +3424,7 @@
   nom: cotisations et contributions
   formule:
     somme:
-      - cotisations sociales
+      - cotisations
       - taxe pour frais de chambre
       - contribution formation professionnelle
       - entreprise . prélèvements obligatoires
@@ -3432,7 +3432,8 @@
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
   période: flexible
 
-- espace: auto entrepreneur
+
+- espace: auto entrepreneur . cotisations et contributions
   nom: taxe pour frais de chambre
   période: flexible
   note: |
@@ -3466,7 +3467,7 @@
             alors: 0.2%
           - sinon: 0.44%
 
-- espace: auto entrepreneur
+- espace: auto entrepreneur . cotisations et contributions
   nom: contribution formation professionnelle
   titre: Contribution à la formation professionnelle
   période: flexible
@@ -3488,8 +3489,8 @@
             alors: 0.1%
           - sinon: 0
 
-- espace: auto entrepreneur
-  nom: cotisations sociales
+- espace: auto entrepreneur . cotisations et contributions
+  nom: cotisations
   description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
 
@@ -3500,7 +3501,7 @@
   formule:
     barème:
       assiette: base des cotisations
-      multiplicateur: ACRE . plafond
+      multiplicateur: plafond ACRE
       tranches:
         - en-dessous de: 1
           taux: taux ACRE * taux de cotisation
@@ -3509,7 +3510,32 @@
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
-- espace: auto entrepreneur . cotisations sociales
+- espace: auto entrepreneur . cotisations et contributions . cotisations
+  nom: retraite complémentaire
+  description: Le montant total qui est alloué à la retraite complémentaire, utile pour caluler la retraite des auto entrepreneurs
+  format: euros
+  période: flexible
+  formule:
+    multiplication:
+      assiette: base des cotisations
+      taux:
+        variations:
+          - si:
+              une de ces conditions:
+                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . restauration ou hébergement
+            alors: 2.04%
+          - si:
+              une de ces conditions:
+                - entreprise . catégorie d'activité = 'commerciale ou industrielle'
+                - entreprise . catégorie d'activité = 'artisanale'
+            alors: 3.50%
+            # TODO : vérifier que les PL non réglementé sont aussi à 0, ça voudrait dire qu'elles auraient 0 retraite complémentaire
+          - sinon: 0%
+
+
+
+- espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux de cotisation
   description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
@@ -3529,12 +3555,12 @@
     Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appellait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
   par défaut: non
 
-- espace: auto entrepreneur . cotisations sociales
+- espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE
   période: flexible
   formule: 100% - réduction ACRE
 
-- espace: auto entrepreneur . cotisations sociales
+- espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: réduction ACRE
   applicable si:
     une de ces conditions:
@@ -3554,9 +3580,9 @@
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
 
-- espace: auto entrepreneur . cotisations sociales . ACRE
-  nom: plafond
-  titre: Plafond ACRE
+- espace: auto entrepreneur . cotisations et contributions . cotisations
+  nom: plafond ACRE
+
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
 
@@ -3631,7 +3657,7 @@
     somme:
       - base
       - complémentaire salarié
-      - complémentaire indépendant
+      - complémentaire sécurité des indépendants
 
   note: |
     Il s'agit d'une estimation a but purement indicatif, afin de comparer la retraite des différents régimes.
@@ -3763,13 +3789,13 @@
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 - espace: protection sociale . retraite
-  nom: complémentaire indépendant
+  nom: complémentaire sécurité des indépendants
   formule: points acquis * valeur du point
   période: année
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
-- espace: protection sociale . retraite . complémentaire indépendant
+- espace: protection sociale . retraite . complémentaire sécurité des indépendants
   nom: valeur du point
   formule: 1.187
   période: année
@@ -3777,17 +3803,23 @@
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
-- espace: protection sociale . retraite . complémentaire indépendant
+- espace: protection sociale . retraite . complémentaire sécurité des indépendants
   nom: points acquis
   formule: points acquis par mois * mois cotisés
   période: aucune
 
-- espace: protection sociale . retraite . complémentaire indépendant
+- espace: protection sociale . retraite . complémentaire sécurité des indépendants
   nom: points acquis par mois
   période: mois
-  formule: indépendant . cotisations et contributions . cotisations . retraite complémentaire / prix d'achat du point
+  formule:
+    multiplication:
+      assiette:
+        somme:
+        - indépendant . cotisations et contributions . cotisations . retraite complémentaire
+        - auto entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+      facteur: 1 / prix d'achat du point
 
-- espace: protection sociale . retraite . complémentaire indépendant
+- espace: protection sociale . retraite . complémentaire sécurité des indépendants
   nom: prix d'achat du point
   formule: 17.456
   période: mois
