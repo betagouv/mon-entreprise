@@ -39,22 +39,8 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 			<p>
 				Un auto-entrepreneur bénéficie d'un régime simplifié de déclaration et
 				de paiement, pour lequel l'impôt et les cotisations sociales sont
-				calculés sur le chiffre d'affaires encaissé chaque mois. Disponible pour
-				les entreprises dont le chiffre d'affaires annuel ne dépasse pas 70 000
-				€ pour les prestataires de services ou 170 000 € lorsque l'activité
-				principale est la vente de biens, la restauration ou la fourniture de
-				logements.
+				calculés sur le chiffre d'affaires encaissé chaque mois.
 			</p>
-			<p>C'est un choix intéressant si :</p>
-			<ul>
-				<li>Vous n'avez de dépenses importantes pour mener votre activité</li>
-				<li>
-					Vous voulez tester la viabilité de votre modèle (activité ou projet)
-				</li>
-				<li>
-					Vous souhaitez un minimum de formalités (ou démarches) pour commencer
-				</li>
-			</ul>
 			<p>
 				<strong>Note</strong> : Certaines activités sont exclues de ce statut (
 				<a href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
@@ -68,14 +54,10 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 				</a>
 				).
 			</p>
-
-			<p>
-				Pour tous les autres cas, il est conseillé de choisir le statut de{' '}
-				<strong>l'Entreprise Individuelle</strong> avec le régime fiscal du réel
-				simplifié.
-			</p>
 		</T>
-		<SchemeComparaison hideAssimiléSalarié />
+		<div className="ui__ full-width">
+			<SchemeComparaison hideAssimiléSalarié />
+		</div>
 
 		<CompanyStatusNavigation onSkip={() => isAutoentrepreneur(null)} />
 	</>
