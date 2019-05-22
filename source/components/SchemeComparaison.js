@@ -90,7 +90,9 @@ const SchemeComparaison = ({
 					)}
 				</span>
 				<small>
-					<T k="comparaisonRégimes.indep.tagline">La protection à la carte</T>
+					<T k="comparaisonRégimes.indep.tagline">
+						La protection sociale à la carte
+					</T>
 				</small>
 			</h2>
 			<h2 className="auto">
@@ -99,7 +101,7 @@ const SchemeComparaison = ({
 					<T>Auto-entrepreneur</T>
 				</span>
 				<small>
-					<T k="comparaisonRégimes.auto.tagline">Pour les petites activités</T>
+					<T k="comparaisonRégimes.auto.tagline">Pour créer sans risques</T>
 				</small>
 			</h2>
 
@@ -113,7 +115,7 @@ const SchemeComparaison = ({
 				<T k="comparaisonRégimes.status.indep">EI, EURL, SARL majoritaire</T>
 			</div>
 			<div className="auto">
-				<T k="comparaisonRégimes.status.auto">Micro-entreprise</T>
+				<T k="comparaisonRégimes.status.auto">Auto-entreprise</T>
 			</div>
 
 			{!hideAssimiléSalarié && (
@@ -122,7 +124,7 @@ const SchemeComparaison = ({
 						<h3 className="legend">Sécurité sociale</h3>
 						<div className="AS">Régime général</div>
 						<div className="indep-et-auto">
-							Sécurité sociale des indépendants (SSI)
+							Sécurité sociale des indépendants
 						</div>
 					</T>
 					<T k="comparaisonRégimes.AT">
@@ -137,35 +139,39 @@ const SchemeComparaison = ({
 						<T>Non</T>
 					</div>
 					<T k="comparaisonRégimes.assuranceMaladie">
-						<h3 className="legend">Assurance maladie</h3>
+						<h3 className="legend">
+							Assurance maladie{' '}
+							<small>(médicaments, soins, hospitalisations)</small>
+						</h3>
 					</T>
-					<div className="green AS">++</div>
-					<div className="green indep-et-auto">+</div>
-					<T k="comparaisonRégimes.indemnités">
-						<h3 className="legend">Indemnités journalières</h3>
+					<div className="AS-indep-et-auto">Identique pour tous</div>
+					<T k="comparaisonRégimes.assuranceMaladie">
+						<h3 className="legend">Mutuelle santé</h3>
 					</T>
-					<div className="green AS">++</div>
-					<div className="indep-et-auto green">+</div>
+					<div className="AS">Obligatoire</div>
+					<div className="indep-et-auto">Fortement conseillée</div>
 				</>
 			)}
 
-			{!conversationStarted && (
-				<>
-					<T k="comparaisonRégimes.retraite">
-						<h3 className="legend">Retraite</h3>
-					</T>
-					<div className="green AS">+++</div>
-					<div className="green indep">++</div>
-					<div className="green auto">+</div>
-				</>
-			)}
+			<T k="comparaisonRégimes.indemnités">
+				<h3 className="legend">Indemnités journalières</h3>
+			</T>
+			<div className="green AS">+++</div>
+			<div className="green indep">++</div>
+			<div className="green auto">+</div>
+			<T k="comparaisonRégimes.retraite">
+				<h3 className="legend">Retraite</h3>
+			</T>
+			<div className="green AS">+++</div>
+			<div className="green indep">++</div>
+			<div className="green auto">+</div>
 
 			{conversationStarted && (
 				<>
 					<T k="comparaisonRégimes.période">
 						<h3 className="legend">Période</h3>
 					</T>
-					<div className="AS-indep-et-auto">
+					<div className="AS-indep-et-auto" style={{ alignSelf: 'start' }}>
 						<PeriodSwitch />
 					</div>
 				</>
@@ -233,7 +239,9 @@ const SchemeComparaison = ({
 						)}
 					</div>
 					<T k="comparaisonRégimes.revenuNet">
-						<h3 className="legend">Revenu net de cotisations (avant impôts)</h3>
+						<h3 className="legend">
+							Revenu net de cotisations <small>(avant impôts)</small>
+						</h3>
 					</T>
 					<div className="AS">
 						{assimiléSalarié && (
@@ -270,7 +278,9 @@ const SchemeComparaison = ({
 						)}
 					</div>
 					<T k="comparaisonRégimes.retraite">
-						<h3 className="legend">Votre pension de retraite (estimation)</h3>
+						<h3 className="legend">
+							Votre pension de retraite <small>(estimation)</small>
+						</h3>
 					</T>
 					<div className="AS">
 						{assimiléSalarié &&
@@ -316,38 +326,58 @@ const SchemeComparaison = ({
 				<>
 					{!hideAutoEntrepreneur && (
 						<>
-							<T k="comparaisonRégimes.ACCRE">
-								<h3 className="legend">ACCRE</h3>
-								<div className="AS-et-indep">Une année, plafonné</div>
+							<T k="comparaisonRégimes.ACRE">
+								<h3 className="legend">ACRE</h3>
+								<div className="AS-et-indep">
+									1 an <small>(exonération partielle de cotisations)</small>
+								</div>
 								<div className="auto">
-									3 années, progressif, <T>non</T> plafonné
+									3 ans{' '}
+									<small>(application de taux réduits de cotisations)</small>
 								</div>
 							</T>
 							<T k="comparaisonRégimes.déduction">
 								<h3 className="legend">Déduction des charges</h3>
-								<div className="AS-et-indep">Régime réel </div>
-								<div className="auto">Abattement forfaitaire </div>
+								<div className="AS-et-indep">
+									Oui <small>(régime fiscal du réel)</small>
+								</div>
+								<div className="auto">
+									Non{' '}
+									<small>
+										(mais abattement forfaitaire pour le calcul de l'impôt sur
+										le revenu)
+									</small>
+								</div>
 							</T>
 						</>
 					)}
 					<T k="comparaisonRégimes.cotisations">
 						<h3 className="legend">Paiment des cotisations</h3>
-						<div className="AS">Mensuel (à la source)</div>
-						<div className="indep">Annuel avec deux ans de décalage</div>
+						<div className="AS">Mensuel</div>
+						<div className="indep">
+							Provision mensuelle{' '}
+							<small>
+								(avec régularisation après coup en fonction du revenu réel)
+							</small>
+						</div>
 						<div className="auto">Mensuel ou trimestriel</div>
 					</T>
 					<T k="comparaisonRégimes.complémentaireDeductible">
 						<h3 className="legend">
-							Complémentaires retraite et santé déductibles
+							Contrats prévoyance et retraite facultatives déductibles
 						</h3>
-						<div className="AS">Oui (jusqu'à 50%)</div>
-						<div className="indep">Oui (Loi Madelin)</div>
+						<div className="AS">
+							Oui <small>(sous certaines conditions)</small>
+						</div>
+						<div className="indep">
+							Oui <small>(Loi Madelin)</small>
+						</div>
 					</T>
 					<div className="auto">
 						<T>Non</T>
 					</div>
 					<T k="comparaisonRégimes.cotisationMinimale">
-						<h3 className="legend">Cotisations minimales</h3>
+						<h3 className="legend">Paiement de cotisations minimales</h3>
 					</T>
 					<div className="AS">
 						<T>Non</T>
@@ -359,13 +389,17 @@ const SchemeComparaison = ({
 						<T>Non</T>
 					</div>
 					<T k="comparaisonRégimes.seuil">
-						<h3 className="legend">Seuil d'activation des droits</h3>
+						<h3 className="legend">
+							Revenu minimum pour l'ouverture des droits aux prestations
+						</h3>
 					</T>
 					<div className="AS">
 						<T>Oui</T>
 					</div>
 					<div className="indep">
-						<T>Non</T>
+						<T>
+							Non <small>(cotisations minimales obligatoires)</small>
+						</T>
 					</div>
 					<div className="auto">
 						<T>Oui</T>
@@ -389,22 +423,26 @@ const SchemeComparaison = ({
 					<div className="AS-et-indep">
 						<T>Non</T>
 					</div>
-					<div
-						className="auto"
-						style={{ textAlign: 'left', justifyContent: 'start', margin: 0 }}>
-						<ul>
-							<li>70 000 € en services</li>
-							<li>170 000 € en vente de biens, restauration ou hébergement</li>
-						</ul>
+					<div className="auto">
+						<T>Oui</T>
+						<small>
+							(70 000 € en services / 170 000 € en vente de biens, restauration
+							ou hébergement)
+						</small>
 					</div>
 				</T>
 			)}
-			<T k="comparaisonRégimes.comptabilité">
-				<h3 className="legend">Comptabilité</h3>
-				<div className="AS">Experte</div>
-				<div className="indep">Complexe</div>
-				<div className="auto">Simple</div>
-			</T>
+			<h3 className="legend">Gestion comptable, sociale, juridique...</h3>
+			<div className="AS-et-indep">
+				<T>Accompagnement fortement conseillé</T>{' '}
+				<small>(expert comptable, comptable, centre de gestion agrée...)</small>
+			</div>
+
+			<div className="auto">
+				<T>
+					Simplifiée <small>(peut être gérée par l'auto-entrepreneur)</small>
+				</T>
+			</div>
 			<div className="AS no-border">
 				<button
 					className="ui__  button"
