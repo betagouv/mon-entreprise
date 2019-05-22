@@ -7,7 +7,6 @@ objectifs:
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . charges
-  - entreprise . année d'activité
   - entreprise . catégorie d'activité
   - entreprise . catégorie d'activité . service ou vente
   - entreprise . catégorie d'activité . restauration ou hébergement
@@ -16,6 +15,7 @@ bloquant:
   - entreprise . chiffre d'affaires
 situation:
   période: année
+  entreprise . année d'activité: non
 
 branches:
   - nom: Assimilé salarié
