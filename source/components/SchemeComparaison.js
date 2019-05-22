@@ -357,15 +357,18 @@ const SchemeComparaison = ({
 						)}
 					</div>
 					<div className="auto">
-						{autoEntrepreneur && (
-							<div>
-								<RuleValueLink
-									onClick={() => setSituationBranch(2)}
-									{...autoEntrepreneur.indemnitésJournalières}
-								/>{' '}
-								/ jour
-							</div>
-						)}
+						{autoEntrepreneur &&
+							(autoEntrepreneur.plafondDépassé ? (
+								'—'
+							) : (
+								<div>
+									<RuleValueLink
+										onClick={() => setSituationBranch(2)}
+										{...autoEntrepreneur.indemnitésJournalières}
+									/>{' '}
+									/ jour
+								</div>
+							))}
 					</div>
 				</>
 			)}
