@@ -11,7 +11,7 @@
   seuil pro: 23000
   exonérations:
     # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
-    titre: Il s'agit d'une pièce dans ma résidence principale
+  - titre: Il s'agit d'une pièce dans ma résidence principale
     explication: | 
       Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
       > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
@@ -52,7 +52,7 @@
     - Etsy...
   seuil pro: 0
   exonérations:
-    titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
+  - titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
     explication: | 
       Si à l'inverse, il s’agit de biens que vous avez achetés ou que vous avez fabriqués en vue de les revendre (exemple : vous réalisez des bijoux, des objets de décoration…), votre activité est alors à caractère professionnel et elle doit être déclarée.
 
@@ -66,16 +66,15 @@
     - Blablacar
 
   exonérations: 
-    toutes ces conditions: 
-      - titre: Vous profitez du service proposé
-        explication: |
-          Les revenus que vous réalisez au titre du partage des frais sont perçus dans le cadre d’une « co-consommation », ce qui signifie que vous bénéficiez également de la prestation de service proposée au même titre que les personnes avec lesquelles les frais sont partagés ;
-      - titre: Les revenus ne font que couvrir vos frais
-        explication: |
-          Les revenus perçus n’excèdent pas le montant des coûts directs engagés à l’occasion de la prestation. Ils ne doivent couvrir que les frais supportés à l’occasion du service rendu (hors frais liés à l’acquisition, l’entretien ou l’utilisation personnelle du bien partagé).
-      - titre: Si co-voiturage, attention au barème kilométrique
-        explication: |
-          Lorsqu’il s’agit de co-voiturage, il existe une troisième condition : le tarif complet ne doit pas excéder le barème kilométrique en vigueur et doit être divisé par le nombre de personnes transportées, le propriétaire de la voiture inclus.<Paste>
+    - titre: Vous profitez du service proposé
+      explication: |
+        Les revenus que vous réalisez au titre du partage des frais sont perçus dans le cadre d’une « co-consommation », ce qui signifie que vous bénéficiez également de la prestation de service proposée au même titre que les personnes avec lesquelles les frais sont partagés ;
+    - titre: Les revenus ne font que couvrir vos frais
+      explication: |
+        Les revenus perçus n’excèdent pas le montant des coûts directs engagés à l’occasion de la prestation. Ils ne doivent couvrir que les frais supportés à l’occasion du service rendu (hors frais liés à l’acquisition, l’entretien ou l’utilisation personnelle du bien partagé).
+    - titre: Si co-voiturage, attention au barème kilométrique
+      explication: |
+        Lorsqu’il s’agit de co-voiturage, il existe une troisième condition : le tarif complet ne doit pas excéder le barème kilométrique en vigueur et doit être divisé par le nombre de personnes transportées, le propriétaire de la voiture inclus.<Paste>
 
 
 

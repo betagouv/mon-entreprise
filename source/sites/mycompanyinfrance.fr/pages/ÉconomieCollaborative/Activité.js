@@ -11,6 +11,8 @@ import { StoreContext } from './StoreContext'
 import { NextButton } from './ActivitésSelection'
 import Exonérations from './Exonérations'
 
+let allTrue = list => list && all(item => item === true)(list)
+
 export default withSitePaths(function LocationMeublée({
 	sitePaths,
 	match: {
@@ -25,8 +27,7 @@ export default withSitePaths(function LocationMeublée({
 		answers = activityAnswers[title] || {}
 
 	return (
-		<section
-		>
+		<section>
 			<Animate.fromBottom>
 				<ScrollToTop />
 				<h1>
@@ -41,10 +42,9 @@ export default withSitePaths(function LocationMeublée({
 				)}
 				<h2>Votre situation</h2>
 				<Exonérations
-					{...{ exonérations: data.exonérations, dispatch, title }}
+					{...{ exonérations: data.exonérations, answers, dispatch, title }}
 				/>
-				{answers.exonerations &&
-				all(item => item === true, answers.exonerations) ? (
+				{answers.exonérations && allTrue(answers.exonérations) ? (
 					<p>
 						{emoji('😌 ')}
 						En ce qui concerne les revenus de cette activité, vous n'avez pas
@@ -101,19 +101,31 @@ export default withSitePaths(function LocationMeublée({
 						</form>
 					</>
 				)}
+				{JSON.stringify(data)}
+				{JSON.stringify(answers)}
 				<NextButton
 					{...{
 						activityAnswers,
 						selectedActivities,
-						disabled: false
-						/* Bien spécifier les cas d'activation du bouton
-							answers.pro == undefined &&
-							!answers.exoneration &&
-							!data['seuil pro'] === 0
-							*/
+						disabled: incompleteActivity(data, answers),
+							currentActivité: title,
+							action :
+					()=>
+						dispatch({
+							type: 'UPDATE_ACTIVITY',
+							title,
+							data: { ...answers, completed: true }
+						})
+					
 					}}
 				/>
 			</Animate.fromBottom>
 		</section>
 	)
 })
+
+export let incompleteActivity = (data, answers) =>
+	(data['seuil pro'] > 0 &&
+		!allTrue(answers.exonérations) &&
+		answers.pro == null) ||
+	(data['exonérations'] && answers.exonérations == null)

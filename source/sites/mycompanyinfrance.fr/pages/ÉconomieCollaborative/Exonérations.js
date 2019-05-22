@@ -1,38 +1,35 @@
 import React from 'react'
 import { createMarkdownDiv } from 'Engine/marked'
 import { CheckItem } from 'Ui/Checklist'
+import { update } from 'ramda'
 
 export default ({ exonérations, dispatch, answers, title }) => {
 	if (!exonérations) return null
-	let multiple = exonérations['toutes ces conditions']
-	let items = Array.isArray(multiple) ? multiple : [exonérations]
 
 	return (
 		<div
 			css={`
 				margin: 1em 0;
 			`}>
-			{items.length > 1 && <p>Respectez-vous ces conditions ? </p>}
+			{exonérations.length > 1 && <p>Respectez-vous ces conditions ? </p>}
 
-			{items.map(({ titre, explication }, index) => (
+			{exonérations.map(({ titre, explication }, index) => (
 				<CheckItem
 					name={titre}
 					title={titre}
 					explanations={createMarkdownDiv(explication)}
-					onChange={checked =>
-						dispatch({
+					onChange={checked => {
+						let action = {
 							type: 'UPDATE_ACTIVITY',
 							title,
 							data: {
 								...answers,
-								exonerations: [
-									answers.exonerations.map((v, answerIndex) =>
-										answerIndex === index ? checked : v
-									)
-								]
+								exonérations: update(index, checked, answers.exonérations)
 							}
-						})
-					}
+						}
+						console.log(action)
+						dispatch(action)
+					}}
 				/>
 			))}
 		</div>

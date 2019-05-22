@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import activités from './activités.yaml'
 import { StoreContext } from './StoreContext'
+import { incompleteActivity } from './Activité'
 
 export default (function ActivitésSelection() {
 	let { state, dispatch } = useContext(StoreContext)
@@ -80,8 +81,17 @@ export default (function ActivitésSelection() {
 })
 
 export let NextButton = withSitePaths(
-	({ sitePaths, activityAnswers, selectedActivities, disabled }) => {
-		let nextActivity = selectedActivities.find(a => !activityAnswers[a]),
+	({
+		sitePaths,
+		activityAnswers,
+		selectedActivities,
+		disabled,
+		currentActivité,
+		action
+	}) => {
+		let nextActivity = without([currentActivité], selectedActivities).find(
+				a => !activityAnswers[a].completed
+			),
 			to = nextActivity
 				? sitePaths.économieCollaborative.activités.index + '/' + nextActivity
 				: sitePaths.économieCollaborative.votreSituation
@@ -92,6 +102,7 @@ export let NextButton = withSitePaths(
 					margin-top: 1rem;
 				`}
 				to={to}
+				onClick={action}
 				className={classnames('ui__ plain button', {
 					disabled
 				})}>

@@ -1,8 +1,18 @@
-import { without } from 'ramda'
+import { without, map, pipe, mergeAll } from 'ramda'
+import data from './activités.yaml'
+
 let initialState = {
 	selectedActivities: [],
-	activityAnswers: {}
+	activityAnswers: pipe(
+		map(a => ({
+			[a.titre]: a.exonérations
+				? { exonérations: a.exonérations.map(() => null) }
+				: {}
+		})),
+		mergeAll
+	)(data)
 }
+console.log(initialState)
 
 let reducer = (state = initialState, action) => {
 	switch (action.type) {
