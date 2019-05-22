@@ -2675,6 +2675,7 @@
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
   formule: revenu net d'impôt - entreprise . charges non déductibles
 
+
 - espace: entreprise
   nom: année d'activité
   question: Quel est l'âge de l'entreprise en année d'activité ?
@@ -2686,13 +2687,12 @@
     Pour les auto-entreprises, cette réduction est même prolongée pendant un total de 3 ans, de façon dégressive.
   formule:
     une possibilité:
-      choix obligatoire: oui
       possibilités:
         - première année
         - deuxième année
         - troisième année
         - régime de croisière
-  par défaut: régime de croisière
+  par défaut: non
 
 - espace: entreprise . année d'activité
   nom: première année
@@ -3053,10 +3053,12 @@
           - ≠ contrat salarié
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
+          - entreprise . année d'activité
           - entreprise . année d'activité != 'première année'
           - entreprise . catégorie d'activité = 'libérale'
           - indépendant
       - toutes ces conditions:
+          - entreprise . année d'activité
           - entreprise . année d'activité != 'première année'
           - entreprise . année d'activité != 'deuxième année'
           - entreprise . catégorie d'activité = 'libérale'
