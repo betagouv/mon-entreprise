@@ -92,12 +92,11 @@ export default compose(
 				css={`
 					font-size: 85%;
 					color: #444;
-					font-style: italic;
 				`}>
 				<div>
 					Soit {value} {unit} &nbsp;
 					<Link to={sitePaths.documentation.index + '/' + dottedName}>
-						calcul
+						explication
 					</Link>
 				</div>
 			</div>
