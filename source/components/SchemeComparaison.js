@@ -45,6 +45,8 @@ type Props = OwnProps & {
 
 type SimulationResult = {
 	retraite: RègleAvecMontant,
+	indemnitésJournalières: RègleAvecMontant,
+	indemnitésJournalièresATMP?: RègleAvecMontant,
 	revenuNetAvantImpôts: RègleAvecMontant,
 	revenuNetAprèsImpôts: RègleAvecMontant,
 	plafondDépassé?: boolean
@@ -156,7 +158,7 @@ const SchemeComparaison = ({
 			<T k="comparaisonRégimes.indemnités">
 				<h3 className="legend">Indemnités journalières</h3>
 			</T>
-			<div className="green AS">+++</div>
+			<div className="green AS">++</div>
 			<div className="green indep">++</div>
 			<div className="green auto">+</div>
 			<T k="comparaisonRégimes.retraite">
@@ -180,7 +182,8 @@ const SchemeComparaison = ({
 				{!conversationStarted ? (
 					<T k="comparaisonRégimes.simulationText">
 						<h2 style={{ margin: '1rem' }}>
-							Comparez vos revenus et votre retraite en 1 minute
+							Comparez vos revenus, votre retraite et vos indemnités maladies en
+							1 minute
 						</h2>
 						<button
 							className="ui__ cta plain button"
@@ -288,9 +291,6 @@ const SchemeComparaison = ({
 							<RuleValueLink
 								onClick={() => setSituationBranch(0)}
 								{...assimiléSalarié.retraite}
-								garder
-								une
-								trace
 							/>
 						) : (
 							<span className="ui__ notice">Pas implémenté</span>
@@ -318,6 +318,54 @@ const SchemeComparaison = ({
 							) : (
 								<span className="ui__ notice">Pas implémenté</span>
 							))}
+					</div>
+					<T k="comparaisonRégimes.indemnités">
+						<h3 className="legend">
+							Indemnités journalières <small>(en cas d'arrêt maladie)</small>
+						</h3>
+					</T>
+					<div className="AS">
+						{assimiléSalarié && (
+							<>
+								<div>
+									<RuleValueLink
+										onClick={() => setSituationBranch(0)}
+										{...assimiléSalarié.indemnitésJournalières}
+									/>{' '}
+									/ jour
+								</div>
+								<small>
+									(
+									<RuleValueLink
+										onClick={() => setSituationBranch(0)}
+										{...assimiléSalarié.indemnitésJournalièresATMP}
+									/>{' '}
+									pour les accidents de trajet/travail et maladie pro)
+								</small>
+							</>
+						)}
+					</div>
+					<div className="indep">
+						{indépendant && (
+							<div>
+								<RuleValueLink
+									onClick={() => setSituationBranch(1)}
+									{...indépendant.indemnitésJournalières}
+								/>{' '}
+								/ jour
+							</div>
+						)}
+					</div>
+					<div className="auto">
+						{autoEntrepreneur && (
+							<div>
+								<RuleValueLink
+									onClick={() => setSituationBranch(2)}
+									{...autoEntrepreneur.indemnitésJournalières}
+								/>{' '}
+								/ jour
+							</div>
+						)}
 					</div>
 				</>
 			)}
@@ -506,6 +554,9 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('protection sociale . retraite'),
+					indemnitésJournalières: règleAvecMontantSelector(state, {
+						situationBranchName: 'Auto-entrepreneur'
+					})('protection sociale . santé . indemnités journalières'),
 					revenuNetAprèsImpôts: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('revenu net'),
@@ -524,6 +575,9 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
 					})('protection sociale . retraite'),
+					indemnitésJournalières: règleAvecMontantSelector(state, {
+						situationBranchName: 'Indépendant'
+					})('protection sociale . santé . indemnités journalières'),
 					revenuNetAprèsImpôts: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
 					})('revenu net'),
@@ -535,6 +589,14 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
 					})('protection sociale . retraite'),
+					indemnitésJournalières: règleAvecMontantSelector(state, {
+						situationBranchName: 'Assimilé salarié'
+					})('protection sociale . santé . indemnités journalières'),
+					indemnitésJournalièresATMP: règleAvecMontantSelector(state, {
+						situationBranchName: 'Assimilé salarié'
+					})(
+						'protection sociale . accidents du travail et maladies professionnelles'
+					),
 					revenuNetAprèsImpôts: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
 					})('revenu net'),

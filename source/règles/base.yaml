@@ -3107,7 +3107,7 @@
 - espace: indépendant . cotisations et contributions . cotisations
   nom: indemnités journalières maladie
   titre: Maladie 2
-  description: Cotisations pour les indémnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
+  description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
   non applicable si: entreprise . rattachement libéral règlementé
   formule:
@@ -3460,7 +3460,6 @@
           - si:
               une de ces conditions:
                 - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
-
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
           - si: entreprise . catégorie d'activité . libérale règlementée
@@ -3662,7 +3661,7 @@
 - nom: taux de la pension
   espace: protection sociale . retraite . base
   description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestre cotisé.
-  période: aucune
+  période: flexible
   formule:
     variations:
       - si:
@@ -3681,7 +3680,7 @@
 
 - nom: seuil de CA pour ouverture des droits
   espace: protection sociale . retraite . base
-  période: annuel
+  période: année
   format: euros
   description: Le CA minimum pour l'ouverture des droits à la retraite. En deça de ce montant, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
@@ -3700,17 +3699,19 @@
 
 - nom: revenu minimum pour ouverture des droits
   espace: protection sociale . retraite . base
-  période: annuel
   format: euros
   description: Le revenu minimum pour l'ouverture des droits à la retraite. En deça de ce montant, vous n'aurez accès qu'au minimum contributif ou à l'allocation de solidarité.
   formule: contrat salarié . SMIC horaire * 150
+  période: année
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F1761
     allocation de solidarité: https://www.service-public.fr/particuliers/vosdroits/F16871
     minimum contributif: https://www.service-public.fr/particuliers/vosdroits/F15522
 
-- espace: protection sociale . retraite
+- espace: protection sociale
   nom: revenu moyen
+  description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
+  notes: Normalement, on prends le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
   format: euros
   période: année
   formule:
@@ -3722,17 +3723,8 @@
 - espace: protection sociale . retraite
   nom: mois cotisés
   formule: 172 * 3
-  notes: On prends l'hypotèse d'une retraite à taux plein pour un travailleur né après
+  notes: On prends l'hypotèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
   format: euros
-
-- espace: protection sociale . retraite . base
-  nom: minimum contributif
-  formule: 695.59
-  format: euros
-  période: mois
-  notes: On ne prends pas encore en compte la condition d'applicabilité de retraite de base + complémentaires < 1 177,44 € / mois
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15522
 
 - espace: protection sociale . retraite
   nom: complémentaire salarié
@@ -3825,6 +3817,72 @@
     ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
 
+- espace: protection sociale . santé
+  nom: indemnités journalières
+  description: |
+    Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser
+    votre revenu pendant un arrêt de travail. Elles sont calculées à partir de votre revenu
+    brut et versées tous les 14 jours en moyenne.
+  # TODO : période : jour
+  période: aucune
+  format: euros
+  formule:
+    somme:
+      - indemnités journalières . auto entrepreneur
+      - indemnités journalières . indépendant
+      - indemnités journalières . salarié
+
+- espace: protection sociale . santé . indemnités journalières
+  nom: auto entrepreneur
+  applicable si: auto entrepreneur
+  période: aucune
+  format: euros
+  formule:
+    variations:
+      - si: revenu moyen [annuel] < 3919.20
+        alors: 0
+      - sinon:
+          le minimum de :
+            - multiplication:
+                assiette: revenu moyen [annuel]
+                facteur: 1 / 730
+            - 55.51
+  reférences:
+    - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
+
+- espace: protection sociale . santé . indemnités journalières
+  nom: indépendant
+  applicable si: indépendant
+  période: aucune
+  format: euros
+  formule:
+    le maximum de :
+      - 21
+      - le minimum de :
+        - multiplication:
+            assiette: revenu moyen [annuel]
+            facteur: 1 / 730
+        - 55.51
+  reférences:
+    - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
+
+- espace: protection sociale . santé . indemnités journalières
+  nom: salarié
+  période: aucune
+  format: euros
+  notes:
+    Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestrielle, puis on le divise par 91.25, conformément à la fiche service-public.fr
+  applicable si: contrat salarié
+  formule:
+    multiplication:
+      assiette: revenu moyen [mensuel]
+      taux: 50%
+      facteur: 3 / 91.25
+      plafond: 1.8 * contrat salarié . SMIC temps plein
+  reférences:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F3053
+
+
 - nom: assurance chômage
   espace: protection sociale
   icônes: 💸
@@ -3887,6 +3945,20 @@
     Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
 
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
+
+  période: mois
+  format: euros
+  applicable si: contrat salarié
+  formule:
+    le minimum de:
+      - multiplication:
+          assiette: revenu moyen [mensuel]
+          taux: 60%
+          facteur: 1 / 30.42
+      - 202.78
+      # TODO
+      # - 0.834% * plafond sécurité sociale temps plein [annuel]
+
 
   références:
     ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp
