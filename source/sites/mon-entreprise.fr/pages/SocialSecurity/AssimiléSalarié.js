@@ -15,17 +15,17 @@ const AssimiléSalarié = ({ t }) => (
 	<>
 		<Helmet>
 			<title>
-				{t([
+				{t(
 					'simulateurs.assimilé-salarié.page.titre',
 					'Assimilé salarié : simulateur officiel de revenus et cotisations'
-				])}
+				)}
 			</title>
 			<meta
 				name="description"
-				content={t([
+				content={t(
 					'simulateurs.assimilé-salarié.page.description',
 					"Estimez vos revenus en tant qu'assimilé salarié à partir de votre chiffre d'affaire (pour les gérants de SAS, SASU et SARL minoritaire). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'Urssaf"
-				])}
+				)}
 			/>
 		</Helmet>
 		<h1>
