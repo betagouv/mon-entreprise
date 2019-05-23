@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import checklistSvg from './images/checklist.svg'
 import { StoreContext } from './StoreContext'
-import { allTrue } from './Activité'
+import { BackToSelection, allTrue } from './Activité'
 import { getActivité } from './reducers'
 
 let nothingToDo = activityAnswers => a => {
@@ -65,6 +65,7 @@ export default withSitePaths(function CoConsommation({ sitePaths }) {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
+			<BackToSelection />
 			<h1>
 				Que dois-je déclarer ? <br />
 				<small css="font-size: 70% !important" className="ui__ notice">

@@ -14,6 +14,11 @@ import { MultiItemSelection } from './ActivitésSelection'
 
 export let allTrue = list => list && all(item => item === true)(list)
 
+export let BackToSelection = withSitePaths(({ sitePaths }) => (
+	<Link to={sitePaths.économieCollaborative.activités.index}>
+		Revenir à la sélection des activités
+	</Link>
+))
 export default withSitePaths(function LocationMeublée({
 	sitePaths,
 	match: {
@@ -56,6 +61,7 @@ export default withSitePaths(function LocationMeublée({
 
 	return (
 		<section>
+			<BackToSelection />
 			<Animate.fromBottom>
 				<ScrollToTop />
 				<h1>
