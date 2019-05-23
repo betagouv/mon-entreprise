@@ -23,8 +23,7 @@ module.exports.default = {
 	},
 	output: {
 		path: path.resolve('./dist/')
-	},
-	]
+	}
 }
 
 module.exports.styleLoader = styleLoader => ({
@@ -97,10 +96,10 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 
 		template: 'index.html',
 		logo: 'https://futur.eco/images/logo.png',
-		chunks: ['publicodes']
+		chunks: ['publicodes'],
 
-			title: 'Futureco ✍️',
-			description: "L'impact sur le climat de vos gestes quotidiens",
-			filename: 'publicodes.html'
+		title: 'Futureco 🔥',
+		description: "L'impact sur le climat de vos gestes quotidiens",
+		filename: 'publicodes.html'
 	})
 ]
