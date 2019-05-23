@@ -20,8 +20,30 @@ export default withRouter(({ location }) => {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding-top: 2.6em;
+				padding-top: ${displayIntro ? 3 : 1}rem;
 			`}>
+			<Link to="/">
+				<img
+					css={`
+						width: ${displayIntro ? '6rem' : '5em'};
+						@media (min-width: 800px) {
+							width: ${displayIntro ? '8em' : '5em'};
+						}
+						margin-right: 1em;
+					`}
+					src={require('./logo.png')}
+				/>
+				Futureco
+			</Link>
+			{displayIntro && (
+				<p id="intro" css="max-width: 28rem">
+					La <strong>catastrophe climatique</strong> n'est plus une menace
+					lointaine et incertaine, c'est une <strong>actualité</strong>. Comment
+					l'éviter ? Chacun de nos gestes a un impact, découvrez-le !{' '}
+					<Link to="/à-propos">En savoir plus</Link>.{' '}
+				</p>
+			)}
+			{displayIntro && 
 			<div
 				css={`
 					position: fixed;
@@ -36,26 +58,7 @@ export default withRouter(({ location }) => {
 				{emoji('')} Version beta : n'hésitez pas à tester ce site, mais sachez
 				que les données ne sont pas encore validées
 			</div>
-			<Link to="/">
-				<img
-					css={`
-						width: ${displayIntro ? '6rem' : '5em'};
-						@media (min-width: 800px) {
-							width: ${displayIntro ? '8em' : '5em'};
-						}
-						margin-right: 1em;
-					`}
-					src={require('./logo.png')}
-				/>
-			</Link>
-			{displayIntro && (
-				<p id="intro" css="max-width: 28rem">
-					La <strong>catastrophe climatique</strong> n'est plus une menace
-					lointaine et incertaine, c'est une <strong>actualité</strong>. Comment
-					l'éviter ? Chacun de nos gestes a un impact, découvrez-le !{' '}
-					<Link to="/à-propos">En savoir plus</Link>.{' '}
-				</p>
-			)}
+			}
 			{!displayIntro && (
 				<div
 					className="ui__ card"
