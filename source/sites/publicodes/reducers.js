@@ -1,5 +1,5 @@
 let initialState = {
-	scenario: 'B'
+	scenario: 'A'
 }
 
 let reducer = (state = initialState, action) => {

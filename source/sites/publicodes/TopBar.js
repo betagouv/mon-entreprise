@@ -35,10 +35,10 @@ export default withRouter(({ location }) => {
 				/>
 			</Link>
 			{displayIntro && (
-				<p id="intro" css="max-width: 28rem">
+				<p id="intro" css="max-width: 28rem; line-height: 1.4rem">
 					La <strong>catastrophe climatique</strong> n'est plus une menace
-					lointaine et incertaine, c'est une <strong>actualité</strong>. Comment
-					l'éviter ? Chacun de nos gestes a un impact, découvrez-le !{' '}
+					lointaine, c'est une <strong>actualité</strong>. Que faire ? Chacun de
+					nos gestes a un impact, découvrez-le !{' '}
 					<Link to="/à-propos">En savoir plus</Link>.{' '}
 				</p>
 			)}
@@ -62,27 +62,19 @@ export default withRouter(({ location }) => {
 				<div
 					className="ui__ card"
 					css={`
-						.key {
-							font-size: 80%;
-						}
+						text-align: center;
+						padding: 0.6rem 1rem !important;
 					`}>
-					<div>
-						<span className="key">Scénario choisi : </span>
-						<Link to="/scénarios" css={``}>
-							« {scenario.titre} »
-						</Link>
-					</div>
+					Votre choix de futur
 					<div
 						css={`
 							img {
-								font-size: 140%;
+								font-size: 200%;
 							}
-							display: flex;
-							align-items: center;
 						`}>
-						<span className="key">Futur : &nbsp;</span>
-						<Link to="/scénarios">{emoji(scenario.icône)}</Link>
+						{emoji(scenario.icône)}
 					</div>
+					<Link to="/scénarios">changer</Link>
 				</div>
 			)}
 		</section>
