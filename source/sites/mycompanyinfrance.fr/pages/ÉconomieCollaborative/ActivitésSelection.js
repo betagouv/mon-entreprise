@@ -19,11 +19,14 @@ export default (function ActivitésSelection() {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
-			<h1>Quels sont vos revenus ?</h1>
+			<h1>Vos revenus</h1>
 			<p>
-				Les seuils de déclaration ne sont pas les mêmes en fonction du type
-				d'activité que vous exercez. Sélectionnez toutes les plateformes depuis
-				lesquelles vous avez reçu de l'argent durant l'année.
+				Sélectionnez toutes les plateformes depuis lesquelles vous avez reçu de
+				l'argent durant l'année.
+			</p>
+			<p>
+				En fonction du type d'activité et du revenu, vous devrez remplir votre
+				déclaration d'impôt ou créer une entreprise.
 			</p>
 			<MultiItemSelection
 				{...{
@@ -121,8 +124,7 @@ let multiCardSelectionStyle = `
 							font-weight: 500;
 						}
 						img {
-							width: 2em !important;
-							height: 2em !important;
+						font-size: 150%;
 							margin: 0.6em 0 !important;
 						}
 						p {

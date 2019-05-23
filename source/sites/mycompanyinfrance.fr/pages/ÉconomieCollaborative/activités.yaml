@@ -26,12 +26,12 @@
       explication: Le bien doit avoir préalablement fait l’objet d’une déclaration auprès de la commune où il est situé. A l’issue de cette procédure, un numéro de déclaration (13 caractères) est délivré. Tout changement fait l'objet d'une nouvelle déclaration.
       icônes: 🏠 🛋⭐
       plateformes: 
-        - A PRECISER
+        - PLATEFORMES A PRECISER
       seuil pro: 23000
     - titre: Location de chambre d'hôtes
       explication: Vous êtes loueur de chambres d’hôtes et remplissez les conditions prévues par le code du tourisme
       plateformes: 
-        - A PRECISER
+        - PLATEFORMES A PRECISER
       icônes: 🏠 🛋🧑
       seuil pro: 5268
       seuil déclaration: 760

@@ -29,7 +29,8 @@ export default withSitePaths(function LocationMeublée({
 	if (data.activités) {
 		return (
 			<>
-				<p>Sélectionnez un ou plusieurs types de location meublée</p>
+				<h1>{data.titre}</h1>
+				<p>Sélectionnez une ou plusieurs activités.</p>
 				<MultiItemSelection
 					{...{
 						items: data.activités,
