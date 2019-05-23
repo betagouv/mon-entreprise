@@ -129,12 +129,17 @@ export default compose(
 									{!valuesToShow && (
 										<div style={{ textAlign: 'center', marginTop: '1em' }}>
 											<Link
-												className="ui__ plain button"
+												className="ui__ cta plain button"
 												target="_parent"
 												to={
-													sitePaths.sécuritéSociale
-														? sitePaths.sécuritéSociale.index
-														: sitePaths.index
+													dottedName.includes('contrat salarié')
+														? sitePaths.sécuritéSociale.salarié
+														: dottedName.includes('auto entrepreneur')
+														? sitePaths.sécuritéSociale['auto-entrepreneur']
+														: dottedName.includes('indépendant')
+														? sitePaths.sécuritéSociale.indépendant
+														: // otherwise
+														  sitePaths.sécuritéSociale.index
 												}>
 												<T>Faire une simulation</T>
 											</Link>
