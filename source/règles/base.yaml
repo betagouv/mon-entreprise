@@ -3670,6 +3670,27 @@
       - On ne calcule pas le nombre de trimestres validés par année
 
     Ces limites seront amenées à évoluer au fur et à mesure du développement du simulateur
+- nom: cotisations
+  espace: protection sociale . retraite
+  description: Total des cotisations payées qui vont à la retraite
+  format: euros
+  période: flexible
+  formule:
+    somme:
+      - contrat salarié . contribution d'équilibre technique
+      - contrat salarié . contribution d'équilibre général
+      - contrat salarié . retraite complémentaire
+      - contrat salarié . vieillesse
+      - indépendant . cotisations et contributions . cotisations . retraite de base
+      - indépendant . cotisations et contributions . cotisations . retraite complémentaire
+      - auto entrepreneur . base des cotisations * 8.88%
+
+- nom: ratio
+  espace: protection sociale . retraite
+  description: Ratio cotisations payées / pension versée
+  période: aucune
+  format: pourcentage
+  formule: retraite / cotisations
 
 - nom: base
   espace: protection sociale . retraite

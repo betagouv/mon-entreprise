@@ -18,9 +18,13 @@ import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
-import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
+import {
+	règleAvecMontantSelector,
+	règleAvecValeurSelector
+} from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
+import Montant from 'Ui/Montant'
 import './SchemeComparaison.css'
 
 import type { RègleAvecMontant } from 'Types/RegleTypes'
@@ -292,20 +296,54 @@ const SchemeComparaison = ({
 					<div className="AS">
 						{assimiléSalarié &&
 						assimiléSalarié.retraite.applicable !== false ? (
-							<RuleValueLink
-								onClick={() => setSituationBranch(0)}
-								{...assimiléSalarié.retraite}
-							/>
+							<>
+								{' '}
+								<RuleValueLink
+									onClick={() => setSituationBranch(0)}
+									{...assimiléSalarié.retraite}
+								/>{' '}
+								<small>
+									<strong>Cotisations :</strong>{' '}
+									<RuleValueLink
+										onClick={() => setSituationBranch(0)}
+										{...assimiléSalarié.cotisationsRetraite}
+									/>{' '}
+								</small>
+								<small>
+									<strong>Ratio cotisations / pension :</strong>{' '}
+									<RuleValueLink
+										onClick={() => setSituationBranch(0)}
+										{...assimiléSalarié.ratio}
+									/>{' '}
+								</small>
+							</>
 						) : (
 							<span className="ui__ notice">Pas implémenté</span>
 						)}
 					</div>
 					<div className="indep">
 						{indépendant && indépendant.retraite.applicable !== false ? (
-							<RuleValueLink
-								onClick={() => setSituationBranch(1)}
-								{...indépendant.retraite}
-							/>
+							<>
+								{' '}
+								<RuleValueLink
+									onClick={() => setSituationBranch(1)}
+									{...indépendant.retraite}
+								/>{' '}
+								<small>
+									<strong>Cotisations :</strong>{' '}
+									<RuleValueLink
+										onClick={() => setSituationBranch(1)}
+										{...indépendant.cotisationsRetraite}
+									/>{' '}
+								</small>
+								<small>
+									<strong>Ratio cotisations / pension :</strong>{' '}
+									<RuleValueLink
+										onClick={() => setSituationBranch(1)}
+										{...indépendant.ratio}
+									/>{' '}
+								</small>
+							</>
 						) : (
 							<span className="ui__ notice">Pas implémenté</span>
 						)}
@@ -315,10 +353,27 @@ const SchemeComparaison = ({
 							(autoEntrepreneur.plafondDépassé ? (
 								'—'
 							) : autoEntrepreneur.retraite.applicable !== false ? (
-								<RuleValueLink
-									onClick={() => setSituationBranch(2)}
-									{...autoEntrepreneur.retraite}
-								/>
+								<>
+									{' '}
+									<RuleValueLink
+										onClick={() => setSituationBranch(2)}
+										{...autoEntrepreneur.retraite}
+									/>{' '}
+									<small>
+										<strong>Cotisations :</strong>{' '}
+										<RuleValueLink
+											onClick={() => setSituationBranch(2)}
+											{...autoEntrepreneur.cotisationsRetraite}
+										/>{' '}
+									</small>
+									<small>
+										<strong>Ratio cotisations / pension :</strong>{' '}
+										<RuleValueLink
+											onClick={() => setSituationBranch(2)}
+											{...autoEntrepreneur.ratio}
+										/>{' '}
+									</small>
+								</>
 							) : (
 								<span className="ui__ notice">Pas implémenté</span>
 							))}
@@ -542,11 +597,13 @@ const RuleValueLink = withSitePaths(
 	({
 		lien,
 		montant,
+		valeur,
 		sitePaths,
 		onClick
 	}: RègleAvecMontant & { sitePaths: any, onClick: () => void }) => (
 		<Link onClick={onClick} to={sitePaths.documentation.index + '/' + lien}>
-			<AnimatedTargetValue value={montant} />
+			{montant && <AnimatedTargetValue value={montant} />}
+			{valeur && <Montant type="decimal">{valeur}</Montant>}
 		</Link>
 	)
 )
@@ -561,6 +618,12 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('protection sociale . retraite'),
+					cotisationsRetraite: règleAvecMontantSelector(state, {
+						situationBranchName: 'Auto-entrepreneur'
+					})('protection sociale . retraite . cotisations'),
+					ratio: règleAvecValeurSelector(state, {
+						situationBranchName: 'Auto-entrepreneur'
+					})('protection sociale . retraite . ratio'),
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('protection sociale . santé . indemnités journalières'),
@@ -582,6 +645,12 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
 					})('protection sociale . retraite'),
+					cotisationsRetraite: règleAvecMontantSelector(state, {
+						situationBranchName: 'Indépendant'
+					})('protection sociale . retraite . cotisations'),
+					ratio: règleAvecValeurSelector(state, {
+						situationBranchName: 'Indépendant'
+					})('protection sociale . retraite . ratio'),
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
 					})('protection sociale . santé . indemnités journalières'),
@@ -596,6 +665,12 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
 					})('protection sociale . retraite'),
+					cotisationsRetraite: règleAvecMontantSelector(state, {
+						situationBranchName: 'Assimilé salarié'
+					})('protection sociale . retraite . cotisations'),
+					ratio: règleAvecValeurSelector(state, {
+						situationBranchName: 'Assimilé salarié'
+					})('protection sociale . retraite . ratio'),
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
 					})('protection sociale . santé . indemnités journalières'),
