@@ -135,7 +135,9 @@ export default withSitePaths(function LocationMeublée({
 									type="radio"
 									name="seuil-pro"
 									value="pro"
-									checked={answers.pro === true}
+									checked={
+										answers.pro === true && !answers.régimeGénéralDépassé
+									}
 									onChange={() =>
 										dispatch({
 											type: 'UPDATE_ACTIVITY',
@@ -146,6 +148,28 @@ export default withSitePaths(function LocationMeublée({
 								/>{' '}
 								supérieurs à {data['seuil pro']} €
 							</label>
+							{data['seuil régime général'] && (
+								<label>
+									<input
+										type="radio"
+										name="seuil-régime-général"
+										value="régime-général"
+										checked={answers.régimeGénéralDépassé === true}
+										onChange={() =>
+											dispatch({
+												type: 'UPDATE_ACTIVITY',
+												title,
+												data: {
+													...answers,
+													pro: true,
+													régimeGénéralDépassé: true
+												}
+											})
+										}
+									/>{' '}
+									supérieurs à {data['seuil régime général']} €
+								</label>
+							)}
 						</form>
 					</>
 				)}

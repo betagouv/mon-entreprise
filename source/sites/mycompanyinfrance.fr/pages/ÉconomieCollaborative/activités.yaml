@@ -14,6 +14,7 @@
         - Airbnb
         - Abritel
       seuil pro: 23000
+      seuil régime général: 82800
       exonérations:
         # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
       - titre: Il s'agit d'une pièce dans ma résidence principale
@@ -27,6 +28,7 @@
       plateformes: 
         - PLATEFORMES A PRECISER
       seuil pro: 23000
+      seuil régime général: 82800
     - titre: Location de chambre d'hôtes
       explication: Vous êtes loueur de chambres d’hôtes et remplissez les conditions prévues par le code du tourisme
       plateformes: 
@@ -39,6 +41,7 @@
   icônes: 🔑 🚗 🔧 🌱
   explication: Vous mettez en location certains de vos biens, tels que voiture, matériel de jardinage, outils de bricolage, accessoires de luxe, vêtements...
   seuil pro: 8105
+  seuil régime général: 82800
   plateformes: 
     - Drivy
     - outils de jardinage, bricolage...

@@ -32,6 +32,17 @@ let entrepriseNeeded = activityAnswers => a => {
 	)
 }
 
+let régimeGénéralDisponible = activityAnswers => a => {
+	let answers = activityAnswers[a],
+		data = getActivité(a)
+
+	return (
+		data['seuil régime général'] &&
+		entrepriseNeeded(activityAnswers)(a) &&
+		!answers.régimeGénéralDépassé
+	)
+}
+
 let makeListItem = a => {
 	let { titre } = getActivité(a)
 	return <li key={titre}>{titre}</li>
@@ -46,7 +57,10 @@ export default withSitePaths(function CoConsommation({ sitePaths }) {
 
 	let A = selected.filter(nothingToDo(activityAnswers)).map(makeListItem),
 		B = selected.filter(declarationNeeded(activityAnswers)).map(makeListItem),
-		C = selected.filter(entrepriseNeeded(activityAnswers)).map(makeListItem)
+		C = selected.filter(entrepriseNeeded(activityAnswers)).map(makeListItem),
+		D = selected
+			.filter(régimeGénéralDisponible(activityAnswers))
+			.map(makeListItem)
 
 	return (
 		<Animate.fromBottom>
@@ -102,7 +116,17 @@ export default withSitePaths(function CoConsommation({ sitePaths }) {
 								Créer une entreprise
 							</Link>
 						</div>
-						TODO Régime Général
+					</>
+				)}
+				{D.length > 0 && (
+					<>
+						<h2>{emoji('👋')} Régime général disponible</h2>
+						<p>
+							Pour ces activités, pour{' '}
+							<strong>éviter de créer une entreprise</strong>, vous pouvez
+							simplement déclarer l'activité au régime général :
+						</p>
+						<ul>{D}</ul>
 					</>
 				)}
 			</section>
