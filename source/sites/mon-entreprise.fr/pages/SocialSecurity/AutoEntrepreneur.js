@@ -15,17 +15,17 @@ const AutoEntrepreneur = ({ t }) => (
 	<>
 		<Helmet>
 			<title>
-				{t([
+				{t(
 					'simulateurs.auto-entrepreneur.page.titre',
 					'Auto-entrepreneur : simulateur officiel de revenus et de cotisations'
-				])}
+				)}
 			</title>
 			<meta
 				name="description"
-				content={t([
+				content={t(
 					'simulateurs.auto-entrepreneur.page.description',
 					"Estimez vos revenus en tant qu'auto-entrepreneur à partir de votre chiffre d'affaire. Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'Urssaf"
-				])}
+				)}
 			/>
 		</Helmet>
 		<h1>

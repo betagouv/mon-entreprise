@@ -107,7 +107,9 @@ const SchemeComparaison = ({
 				</h3>
 				<div className="AS">
 					<T k="comparaisonRégimes.status.AS">
-						SAS, SASU, SARL <small>(gérant minoritaire)</small>
+						<div>
+							SAS, SASU, SARL <small>(gérant minoritaire)</small>
+						</div>
 					</T>
 				</div>
 				<div className="indep">
@@ -115,7 +117,9 @@ const SchemeComparaison = ({
 						<T k="comparaisonRégimes.status.indep.2">EI, EIRL</T>
 					) : (
 						<T k="comparaisonRégimes.status.indep.1">
-							EI, EIRL, EURL, SARL <small>(gérant majoritaire)</small>
+							<div>
+								EI, EIRL, EURL, SARL <small>(gérant majoritaire)</small>
+							</div>
 						</T>
 					)}
 				</div>
