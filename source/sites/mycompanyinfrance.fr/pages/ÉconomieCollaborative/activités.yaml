@@ -1,27 +1,38 @@
-- titre: Location meublée
+- titre: Locations meublées
   icônes: 🏠 🛋
-  explication: |
-    Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile (hors location de chambres d’hôtes et de meublé de tourisme)
-
+  explication: Vous avez loué un logement meublé pour de courtes durées
   plateformes: 
     - Airbnb
     - Abritel
     - chambre d'hôte
     - tourisme classé
-
-  seuil pro: 23000
-  exonérations:
-    # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
-  - titre: Il s'agit d'une pièce dans ma résidence principale
-    explication: | 
-      Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
-      > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
+  activités: 
+    - titre: Location meublée
+      icônes: 🏠 🛋
+      explication: Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile. Ce n'est pas une chambre d’hôte ni un meublé de tourisme
+      plateformes: 
+        - Airbnb
+        - Abritel
+      seuil pro: 23000
+      exonérations:
+        # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
+      - titre: Il s'agit d'une pièce dans ma résidence principale
+        explication: | 
+          Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
+          > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
 
   # TODO implémenter ces autres possibilités de la location meublée
-  autres possibilités:
-    - titre: location de logement meublé de tourisme classé
+    - titre: Location meublé de tourisme classé
+      explication: Le bien doit avoir préalablement fait l’objet d’une déclaration auprès de la commune où il est situé. A l’issue de cette procédure, un numéro de déclaration (13 caractères) est délivré. Tout changement fait l'objet d'une nouvelle déclaration.
+      icônes: 🏠 🛋⭐
+      plateformes: 
+        - A PRECISER
       seuil pro: 23000
-    - titre: location de chambre d'hôtes
+    - titre: Location de chambre d'hôtes
+      explication: Vous êtes loueur de chambres d’hôtes et remplissez les conditions prévues par le code du tourisme
+      plateformes: 
+        - A PRECISER
+      icônes: 🏠 🛋🧑
       seuil pro: 5268
       seuil déclaration: 760
 

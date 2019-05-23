@@ -1,5 +1,9 @@
-import { without, map, pipe, mergeAll } from 'ramda'
-import data from './activités.yaml'
+import { without, map, pipe, mergeAll, unnest } from 'ramda'
+import activités from './activités.yaml'
+export let flatActivités = pipe(
+	map(a => (a.activités ? [a, ...a.activités] : [a])),
+	unnest
+)(activités)
 
 let initialState = {
 	selectedActivities: [],
@@ -10,9 +14,8 @@ let initialState = {
 				: {}
 		})),
 		mergeAll
-	)(data)
+	)(flatActivités)
 }
-console.log(initialState)
 
 let reducer = (state = initialState, action) => {
 	switch (action.type) {

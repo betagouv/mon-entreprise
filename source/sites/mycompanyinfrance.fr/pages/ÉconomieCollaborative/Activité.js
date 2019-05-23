@@ -5,11 +5,12 @@ import React, { useState, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import activités from './activités.yaml'
+import { flatActivités } from './reducers'
 import { createMarkdownDiv } from 'Engine/marked'
 import { StoreContext } from './StoreContext'
 import { NextButton } from './ActivitésSelection'
 import Exonérations from './Exonérations'
+import { MultiItemSelection } from './ActivitésSelection'
 
 let allTrue = list => list && all(item => item === true)(list)
 
@@ -23,8 +24,34 @@ export default withSitePaths(function LocationMeublée({
 			state: { selectedActivities, activityAnswers },
 			dispatch
 		} = useContext(StoreContext),
-		data = activités.find(({ titre }) => titre === title),
-		answers = activityAnswers[title] || {}
+		data = flatActivités.find(({ titre }) => titre === title)
+
+	if (data.activités) {
+		return (
+			<>
+				<p>Sélectionnez un ou plusieurs types de location meublée</p>
+				<MultiItemSelection
+					{...{
+						items: data.activités,
+						selectedActivities,
+						activityAnswers,
+						dispatch,
+						buttonAttributes: {
+							currentActivité: title,
+							action: () =>
+								dispatch({
+									type: 'UPDATE_ACTIVITY',
+									title,
+									data: { completed: true }
+								})
+						}
+					}}
+				/>
+			</>
+		)
+	}
+
+	let answers = activityAnswers[title] || {}
 
 	return (
 		<section>
@@ -101,22 +128,18 @@ export default withSitePaths(function LocationMeublée({
 						</form>
 					</>
 				)}
-				{JSON.stringify(data)}
-				{JSON.stringify(answers)}
 				<NextButton
 					{...{
 						activityAnswers,
 						selectedActivities,
 						disabled: incompleteActivity(data, answers),
-							currentActivité: title,
-							action :
-					()=>
-						dispatch({
-							type: 'UPDATE_ACTIVITY',
-							title,
-							data: { ...answers, completed: true }
-						})
-					
+						currentActivité: title,
+						action: () =>
+							dispatch({
+								type: 'UPDATE_ACTIVITY',
+								title,
+								data: { ...answers, completed: true }
+							})
 					}}
 				/>
 			</Animate.fromBottom>

@@ -11,8 +11,10 @@ import { StoreContext } from './StoreContext'
 import { incompleteActivity } from './Activité'
 
 export default (function ActivitésSelection() {
-	let { state, dispatch } = useContext(StoreContext)
-	let { selectedActivities } = state
+	let {
+		state: { selectedActivities, activityAnswers },
+		dispatch
+	} = useContext(StoreContext)
 
 	return (
 		<Animate.fromBottom>
@@ -23,8 +25,87 @@ export default (function ActivitésSelection() {
 				d'activité que vous exercez. Sélectionnez toutes les plateformes depuis
 				lesquelles vous avez reçu de l'argent durant l'année.
 			</p>
-			<ul
+			<MultiItemSelection
+				{...{
+					items: activités,
+					selectedActivities,
+					activityAnswers,
+					dispatch
+				}}
+			/>
+		</Animate.fromBottom>
+	)
+})
+
+export let MultiItemSelection = ({
+	items,
+	selectedActivities,
+	activityAnswers,
+	dispatch,
+	buttonAttributes
+}) => (
+	<>
+		<ul css={multiCardSelectionStyle}>
+			{items.map(({ titre, plateformes, icônes }) => {
+				let selected = selectedActivities.includes(titre)
+				return (
+					<li
+						className={classnames('ui__ card ', { selected })}
+						key={titre}
+						onClick={() => dispatch({ type: 'SELECT_ACTIVITY', titre })}>
+						<div className="title">{titre}</div>
+						{emoji(icônes)}
+						<p>{plateformes.join(', ')}</p>
+					</li>
+				)
+			})}
+		</ul>
+		<p css="text-align: right">
+			<NextButton
+				{...{
+					activityAnswers,
+					selectedActivities,
+					disabled: !selectedActivities.length,
+					...buttonAttributes
+				}}
+			/>
+		</p>
+	</>
+)
+
+export let NextButton = withSitePaths(
+	({
+		sitePaths,
+		activityAnswers,
+		selectedActivities,
+		disabled,
+		currentActivité,
+		action
+	}) => {
+		let nextActivity = without([currentActivité], selectedActivities).find(
+				a => !activityAnswers[a].completed
+			),
+			to = nextActivity
+				? sitePaths.économieCollaborative.activités.index + '/' + nextActivity
+				: sitePaths.économieCollaborative.votreSituation
+
+		return (
+			<Link
 				css={`
+					margin-top: 1rem;
+				`}
+				to={to}
+				onClick={action}
+				className={classnames('ui__ plain button', {
+					disabled
+				})}>
+				Continuer
+			</Link>
+		)
+	}
+)
+
+let multiCardSelectionStyle = `
 					display: flex;
 					justify-content: space-evenly;
 					flex-wrap: wrap;
@@ -64,62 +145,4 @@ export default (function ActivitésSelection() {
 
 					}
 					}
-				`}>
-				{activités.map(({ titre, plateformes, icônes }) => {
-					let selected = selectedActivities.includes(titre)
-					return (
-						<li
-							className={classnames('ui__ card ', { selected })}
-							key={titre}
-							onClick={() => dispatch({ type: 'SELECT_ACTIVITY', titre })}>
-							<div className="title">{titre}</div>
-							{emoji(icônes)}
-							<p>{plateformes.join(', ')}</p>
-						</li>
-					)
-				})}
-			</ul>
-			<p css="text-align: right">
-				<NextButton
-					{...{
-						activityAnswers: state.activityAnswers,
-						selectedActivities,
-						disabled: !selectedActivities.length
-					}}
-				/>
-			</p>
-		</Animate.fromBottom>
-	)
-})
-
-export let NextButton = withSitePaths(
-	({
-		sitePaths,
-		activityAnswers,
-		selectedActivities,
-		disabled,
-		currentActivité,
-		action
-	}) => {
-		let nextActivity = without([currentActivité], selectedActivities).find(
-				a => !activityAnswers[a].completed
-			),
-			to = nextActivity
-				? sitePaths.économieCollaborative.activités.index + '/' + nextActivity
-				: sitePaths.économieCollaborative.votreSituation
-
-		return (
-			<Link
-				css={`
-					margin-top: 1rem;
-				`}
-				to={to}
-				onClick={action}
-				className={classnames('ui__ plain button', {
-					disabled
-				})}>
-				Continuer
-			</Link>
-		)
-	}
-)
+				`
