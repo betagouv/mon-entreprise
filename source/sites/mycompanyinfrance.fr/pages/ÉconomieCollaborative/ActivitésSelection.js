@@ -40,40 +40,55 @@ export default (function ActivitésSelection() {
 	)
 })
 
-export let MultiItemSelection = ({
-	items,
-	selectedActivities,
-	activityAnswers,
-	dispatch,
-	buttonAttributes
-}) => (
-	<>
-		<ul css={multiCardSelectionStyle}>
-			{items.map(({ titre, plateformes, icônes }) => {
-				let selected = selectedActivities.includes(titre)
-				return (
-					<li
-						className={classnames('ui__ card ', { selected })}
-						key={titre}
-						onClick={() => dispatch({ type: 'SELECT_ACTIVITY', titre })}>
-						<div className="title">{titre}</div>
-						{emoji(icônes)}
-						<p>{plateformes.join(', ')}</p>
-					</li>
-				)
-			})}
-		</ul>
-		<p css="text-align: right">
-			<NextButton
-				{...{
-					activityAnswers,
-					selectedActivities,
-					disabled: !selectedActivities.length,
-					...buttonAttributes
-				}}
-			/>
-		</p>
-	</>
+export let MultiItemSelection = withSitePaths(
+	({
+		items,
+		selectedActivities,
+		activityAnswers,
+		dispatch,
+		buttonAttributes,
+		sitePaths
+	}) => (
+		<>
+			<ul css={multiCardSelectionStyle}>
+				{items.map(({ titre, plateformes, icônes }) => {
+					let selected = selectedActivities.includes(titre)
+					return (
+						<li>
+							<div
+								className={classnames('ui__ card ', { selected })}
+								key={titre}
+								onClick={() => dispatch({ type: 'SELECT_ACTIVITY', titre })}>
+								<div className="title">{titre}</div>
+								{emoji(icônes)}
+								<p>{plateformes.join(', ')}</p>
+							</div>
+							{activityAnswers[titre]?.completed && (
+								<Link
+									to={
+										sitePaths.économieCollaborative.activités.index +
+										'/' +
+										titre
+									}>
+									modifier mes réponses
+								</Link>
+							)}
+						</li>
+					)
+				})}
+			</ul>
+			<p css="text-align: right">
+				<NextButton
+					{...{
+						activityAnswers,
+						selectedActivities,
+						disabled: !selectedActivities.length,
+						...buttonAttributes
+					}}
+				/>
+			</p>
+		</>
+	)
 )
 
 export let NextButton = withSitePaths(
@@ -116,6 +131,7 @@ let multiCardSelectionStyle = `
 						width: 100%;
 					}
 					li {
+					list-style-type: none;
 						margin: 1rem 0;
 						cursor: pointer;
 						text-align: center
@@ -136,9 +152,9 @@ let multiCardSelectionStyle = `
 					}
 						@media (hover) {
 						
-							li:hover {background: var(--colour); color: white}
+							li:hover > div {background: var(--colour); color: white}
 						}
-					 li.selected {background: var(--colour); color: white}
+					 li > div.selected {background: var(--colour); color: white}
 
 					@media  (max-width: 800px){
 					li {

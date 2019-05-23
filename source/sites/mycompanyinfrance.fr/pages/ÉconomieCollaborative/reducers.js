@@ -5,6 +5,7 @@ export let flatActivités = pipe(
 	unnest
 )(activités)
 
+export let getActivité = a => flatActivités.find(item => item.titre === a)
 let initialState = {
 	selectedActivities: [],
 	activityAnswers: pipe(

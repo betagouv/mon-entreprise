@@ -6,12 +6,48 @@ import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import checklistSvg from './images/checklist.svg'
 import { StoreContext } from './StoreContext'
+import { allTrue } from './Activité'
+import { getActivité } from './reducers'
+
+let nothingToDo = activityAnswers => a => {
+	let answers = activityAnswers[a]
+
+	return (
+		answers.déclaration === false ||
+		(answers.exonérations && allTrue(answers.exonérations))
+	)
+}
+let declarationNeeded = activityAnswers => a => {
+	return (
+		!nothingToDo(activityAnswers)(a) && !entrepriseNeeded(activityAnswers)(a)
+	)
+}
+
+let entrepriseNeeded = activityAnswers => a => {
+	let answers = activityAnswers[a],
+		data = getActivité(a)
+
+	return (
+		!nothingToDo(activityAnswers)(a) && (data['seuil pro'] === 0 || answers.pro)
+	)
+}
+
+let makeListItem = a => {
+	let { titre } = getActivité(a)
+	return <li key={titre}>{titre}</li>
+}
 
 export default withSitePaths(function CoConsommation({ sitePaths }) {
 	let {
-		state: { selectedActivities, activityAnswers },
-		dispatch
-	} = useContext(StoreContext)
+			state: { selectedActivities, activityAnswers },
+			dispatch
+		} = useContext(StoreContext),
+		selected = selectedActivities.filter(a => !getActivité(a).activités)
+
+	let A = selected.filter(nothingToDo(activityAnswers)).map(makeListItem),
+		B = selected.filter(declarationNeeded(activityAnswers)).map(makeListItem),
+		C = selected.filter(entrepriseNeeded(activityAnswers)).map(makeListItem)
+
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
@@ -25,34 +61,51 @@ export default withSitePaths(function CoConsommation({ sitePaths }) {
 				css="max-width: 100%; height: 200px; margin: 2rem auto;display:block;"
 				src={checklistSvg}
 			/>
-			<h2>Tout est bon ! </h2>
-			<p>Vous n'avez rien à déclarer {emoji('🌞')}</p>
-			<h2>Déclarer simplement aux impôts</h2>
-			<ul>
-				<li>
-					{' '}
-					<strong>Location meublée</strong>: Vos revenus annuels sont inférieurs
-					à 23 000€, il vous suffit donc de le déclarer sur votre feuille
-					d'impôts.
-				</li>
-			</ul>
-			<h2>Créer une activité professionnelle</h2>
-			<ul>
-				<li>
-					<strong>Vente de services</strong> : Dès le 1er euro, vous devez faire
-					de cette source de revenus une activité professionnelle. Vous devez
-					donc payer des cotisations sociales, et vous donnera droit à une
-					protection sociale.
-				</li>
-			</ul>
-			<div className="ui__ answer-group">
-				<Link to={sitePaths.entreprise.trouver} className="ui__ simple button">
-					J'ai déjà une entreprise
-				</Link>
-				<Link to={sitePaths.entreprise.index} className="ui__ plain button">
-					Créer une entreprise
-				</Link>
-			</div>
+			<section css="ul {margin-left: 2em}">
+				{selectedActivities.length === 0 && (
+					<Link to={sitePaths.économieCollaborative.activités.index}>
+						Renseigner ma situation
+					</Link>
+				)}
+				{A.length > 0 && (
+					<>
+						<h2>{emoji('🌞 ')} Rien à déclarer !</h2>
+						<p>Pour ces activités, vous n'avez rien à faire :</p>
+						<ul>{A}</ul>
+					</>
+				)}
+				{B.length > 0 && (
+					<>
+						<h2>{emoji('📝')} Déclarer simplement aux impôts</h2>
+						<p>
+							Pour ces activités, vous devez simplement déclarer vos revenus sur
+							votre feuille d'imposition :
+						</p>
+						<ul>{B}</ul>
+					</>
+				)}
+
+				{C.length > 0 && (
+					<>
+						<h2>{emoji('💼')} Créer une activité professionnelle</h2>
+						<p>Pour ces activités, vous devez créer une entreprise :</p>
+						<ul>{C}</ul>
+						<div className="ui__ answer-group">
+							<Link
+								to={sitePaths.entreprise.trouver}
+								className="ui__ simple button">
+								J'ai déjà une entreprise
+							</Link>
+							<Link
+								to={sitePaths.entreprise.index}
+								className="ui__ plain button">
+								Créer une entreprise
+							</Link>
+						</div>
+						TODO Régime Général
+					</>
+				)}
+			</section>
 		</Animate.fromBottom>
 	)
 })

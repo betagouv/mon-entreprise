@@ -12,7 +12,7 @@ import { NextButton } from './ActivitésSelection'
 import Exonérations from './Exonérations'
 import { MultiItemSelection } from './ActivitésSelection'
 
-let allTrue = list => list && all(item => item === true)(list)
+export let allTrue = list => list && all(item => item === true)(list)
 
 export default withSitePaths(function LocationMeublée({
 	sitePaths,
@@ -94,12 +94,32 @@ export default withSitePaths(function LocationMeublée({
 									margin: 0.6rem 0;
 								}
 							`}>
+							{data['seuil déclaration'] && (
+								<label>
+									<input
+										type="radio"
+										name="seuil-déclaration"
+										value="déclaration"
+										checked={answers.déclaration === false}
+										onChange={() =>
+											dispatch({
+												type: 'UPDATE_ACTIVITY',
+												title,
+												data: { ...answers, pro: false, déclaration: false }
+											})
+										}
+									/>{' '}
+									inférieurs à {data['seuil déclaration']} €
+								</label>
+							)}
 							<label>
 								<input
 									type="radio"
 									name="seuil-pro"
 									value="non-pro"
-									checked={answers.pro === false}
+									checked={
+										answers.pro === false && answers.déclaration !== false
+									}
 									onChange={() =>
 										dispatch({
 											type: 'UPDATE_ACTIVITY',

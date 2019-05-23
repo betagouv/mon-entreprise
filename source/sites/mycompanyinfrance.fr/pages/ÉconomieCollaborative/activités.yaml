@@ -21,8 +21,7 @@
           Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
           > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
 
-  # TODO implémenter ces autres possibilités de la location meublée
-    - titre: Location meublé de tourisme classé
+    - titre: Location meublée de tourisme classé
       explication: Le bien doit avoir préalablement fait l’objet d’une déclaration auprès de la commune où il est situé. A l’issue de cette procédure, un numéro de déclaration (13 caractères) est délivré. Tout changement fait l'objet d'une nouvelle déclaration.
       icônes: 🏠 🛋⭐
       plateformes: 

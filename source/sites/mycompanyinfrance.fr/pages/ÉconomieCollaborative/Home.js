@@ -16,9 +16,12 @@ export default withSitePaths(function Home({ sitePaths }) {
 			/>
 			<p>
 				Vous avez des revenus issus des <strong>plateformes en ligne</strong>{' '}
-				(Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.) ? La loi vous
-				oblige souvent à les déclarer. Mais il peut être difficile de s'y
-				retrouver dans toute la documentation légale {emoji('🤔')}
+				(Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.) ?{' '}
+			</p>
+
+			<p>
+				La loi vous oblige souvent à les déclarer. Mais il peut être difficile
+				de s'y retrouver dans toute la documentation légale {emoji('🤔')}
 			</p>
 			<p>
 				Suivez ce guide et vous saurez en quelques clics ce qu'il faut faire

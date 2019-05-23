@@ -27,7 +27,6 @@ export default ({ exonérations, dispatch, answers, title }) => {
 								exonérations: update(index, checked, answers.exonérations)
 							}
 						}
-						console.log(action)
 						dispatch(action)
 					}}
 				/>
