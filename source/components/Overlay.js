@@ -7,21 +7,14 @@ export default class Overlay extends Component {
 	render() {
 		const { onClose, children, ...otherProps } = this.props
 		return (
-			<div id="overlayWrapper" onClick={onClose}>
+			<div id="overlayWrapper">
 				<animate.fromBottom>
 					<FocusTrap
 						focusTrapOptions={{
 							onDeactivate: onClose,
 							clickOutsideDeactivates: true
 						}}>
-						<div
-							aria-modal="true"
-							id="overlayContent"
-							{...otherProps}
-							onClick={e => {
-								e.preventDefault()
-								e.stopPropagation()
-							}}>
+						<div aria-modal="true" id="overlayContent" {...otherProps}>
 							{children}
 							<LinkButton
 								aria-label="close"
