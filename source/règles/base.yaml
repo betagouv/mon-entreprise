@@ -3825,7 +3825,8 @@
   période: mois
   format: euros
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
-  références: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
 
 - nom: santé
   espace: protection sociale
