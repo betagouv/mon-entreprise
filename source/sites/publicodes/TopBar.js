@@ -19,7 +19,7 @@ export default withRouter(({ location }) => {
 			css={`
 				display: flex;
 				align-items: center;
-				justify-content: center;
+				justify-content: space-between;
 				padding-top: ${displayIntro ? 3 : 1}rem;
 			`}>
 			<Link to="/">
@@ -33,7 +33,6 @@ export default withRouter(({ location }) => {
 					`}
 					src={require('./logo.png')}
 				/>
-				Futureco
 			</Link>
 			{displayIntro && (
 				<p id="intro" css="max-width: 28rem">
@@ -43,22 +42,22 @@ export default withRouter(({ location }) => {
 					<Link to="/à-propos">En savoir plus</Link>.{' '}
 				</p>
 			)}
-			{displayIntro && 
-			<div
-				css={`
-					position: fixed;
-					width: 100%;
-					left: 0;
-					top: 0;
-					background: yellow;
-					text-align: center;
-					font-size: 90%;
-					padding: 0.2em 0;
-				`}>
-				{emoji('')} Version beta : n'hésitez pas à tester ce site, mais sachez
-				que les données ne sont pas encore validées
-			</div>
-			}
+			{displayIntro && (
+				<div
+					css={`
+						position: fixed;
+						width: 100%;
+						left: 0;
+						top: 0;
+						background: yellow;
+						text-align: center;
+						font-size: 90%;
+						padding: 0.2em 0;
+					`}>
+					{emoji('')} Version beta : n'hésitez pas à tester ce site, mais sachez
+					que les données ne sont pas encore validées
+				</div>
+			)}
 			{!displayIntro && (
 				<div
 					className="ui__ card"
