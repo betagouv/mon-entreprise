@@ -669,69 +669,80 @@ comparaisonRégimes:
   indep:
     tagline: A la carte protection
   auto:
-    tagline: For small activities
+    tagline: Start without risk
   status:
     legend: Possible legal status
     AS: SAS, SASU, minority SARL
-    indep: EI, EURL, majority SARL
-    auto: Micro-enterprise
+    indep:
+      1: EI, EIRL, EURL, SARL
+      2: EI, EIRL
+    auto: Auto-entreprise
   sécuritéSociale: |
     <0> Social security</0>
-    <1> General scheme</1>
-    <2> Self-employed scheme ("Sécurité sociale des indépendants")</2>
+    <1> General scheme <1>(Régime général)</1></1>
+    <2> Self-employed scheme <1>(Sécurité sociale des indépendants)</1></2>
   AT: <0> Work-related accidents covered</0>
   assuranceMaladie: |
-    <0> Health insurance</0>
+    <0> Public health insurance <1>(medicines, care, hospitalizations)</1></0>
+    <1> Same for all </1>
+  mutuelle:  |
+    <0> Additional health insurance <1>(mutuelle santé)</1></0>
+    <1> Compulsory </1>
+    <2> Highly recommended </2>
   indemnités: |
-    <0> Daily allowances</0>
+    <0> Sickness allowances</0>
   plafondCA: |
     <0> Turnover ceiling</0>
     <1>No</1>
-    <2><0>
-      <0>€70,000  in services</0>
-      <1>€170,000 for sale of properties, food or accommodation</1>
-
-    </0></2>
+    <2>
+      Yes<1>(€70,000  in services, €170,000 for sale of properties, food or accommodation)</1>
+    </2>
   période: |
     <0>Period</0>
   retraite: |
     <0>Retirement pay</0>
+
   comparaisonDétaillée: |
     <0> Detailed comparaison</0>
     <1><0> View the detailed comparison</0></1>
   comptabilité: |
-    <0> Accounting</0>
-    <1> Expert</1>
-    <2> Complex</2>
-    <3> Simple</3>
-  ACCRE: |
-    <0> ACCRE</0>
-    <1> One year, capped</1>
-    <2> 3 years, progressive, uncapped </2>
+    <0> Accounting, social, legal management....</0>
+    <1> Support strongly recommended <1>(chartered accountant, accountant, chartered management centre...)</1></1>
+    <2> Simplified <1>(can be managed by the auto-entrepreneur)</1></1>
+
+  ACRE: |
+    <0>ACRE</0>
+    <1>1 year<1>(partial contribution exemption)</1></1>
+    <2>3 years<1>(application of reduced contribution rates)</1></2>
   déduction: |
     <0> Deduction of expenses</0>
-    <1>Actual</1>
-    <2> Lump-sum deduction</2>
+    <1>Yes <1>(tax regime of the actual)</1></1>
+    <2>No <1>(but lump-sum deduction for calculating income tax)</1></2>
   simulationText: |
     <0>
-      Compare your income and retirement in 1 minute
+      Compare your income, retirement pay and sickness allowance in 1 minute
     </0>
     <1>Start</1>
   cotisations: |
     <0> Payment of social contributions</0>
     <1> Monthly</1>
-    <2> Annual with a two-year time lag</2>
+    <2> Monthly advance <1>(with posterior regularization based on real income)</1></2>
     <3> Montly or quaterly</3>
   complémentaireDeductible: |
-    <0> Deductible supplementary pension and health insurance</0>
-    <1> Yes (until 50%)</1>
-    <2> Yes ("Madelin" Law)</2>
-  revenu: <0>Net income after taxes</0>
-  retraiteEstimation: <0>Retirement pay (estimation)</0>
+    <0> Optional health and pension policies deductible</0>
+    <1> Yes <1>(under certain conditions)</1></1>
+    <2> Yes <1>("Madelin" Law)</1></2>
+  revenuNetApresImpots: |
+    <0>Net income after taxes</0>
+  revenuNetAvantImpots: |
+    <0>Net contribution income<1>(before income tax)</1></0>
+  retraiteEstimation: |
+    <0>Your retirement pay <1>(estimation)</1></0>
+
   cotisationMinimale: |
     <0> Minimum contributions</0>
   seuil: |
-    <0> Rights activation threshold</0>
+    <0> Minimum income for eligibility for benefits</0>
   choix:
     AS: Choose Assimilé salarié
     indep: Choose Indépendant
@@ -744,3 +755,7 @@ Année d'activité: Years of activity
 Commerçant, artisan, ou libéral ?: Trader, craftsman, or liberal?
 Revenir à la documentation: Go back to documentation
 Voir le code source: See the source code
+
+pour les accidents de trajet/travail et maladie pro: for commuting accidents, work accidents and professional illness
+jour: day
+Pas implémenté: Not implemented
