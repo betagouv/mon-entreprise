@@ -18,13 +18,17 @@ import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
-import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
+import {
+	règleAvecMontantSelector,
+	règleAvecValeurSelector
+} from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import InfoBulle from 'Ui/InfoBulle'
+import Montant from 'Ui/Montant'
 import './SchemeComparaison.css'
 
-import type { RègleAvecMontant } from 'Types/RegleTypes'
+import type { RègleAvecMontant, RègleAvecValeur } from 'Types/RegleTypes'
 
 type OwnProps = {
 	hideAutoEntrepreneur?: boolean,
@@ -46,6 +50,7 @@ type Props = OwnProps & {
 
 type SimulationResult = {
 	retraite: RègleAvecMontant,
+	trimestreValidés: RègleAvecValeur,
 	indemnitésJournalières: RègleAvecMontant,
 	indemnitésJournalièresATMP?: RègleAvecMontant,
 	revenuNetAvantImpôts: RègleAvecMontant,
@@ -304,10 +309,23 @@ const SchemeComparaison = ({
 					<div className="AS">
 						{assimiléSalarié &&
 						assimiléSalarié.retraite.applicable !== false ? (
-							<RuleValueLink
-								onClick={() => setSituationBranch(0)}
-								{...assimiléSalarié.retraite}
-							/>
+							<div>
+								<RuleValueLink
+									onClick={() => setSituationBranch(0)}
+									{...assimiléSalarié.retraite}
+								/>
+								<div>
+									<small>
+										<strong>
+											<RuleValueLink
+												onClick={() => setSituationBranch(0)}
+												{...assimiléSalarié.trimestreValidés}
+											/>{' '}
+											trimestres validés
+										</strong>
+									</small>
+								</div>
+							</div>
 						) : (
 							<span className="ui__ notice">
 								<T>Pas implémenté</T>
@@ -316,10 +334,23 @@ const SchemeComparaison = ({
 					</div>
 					<div className="indep">
 						{indépendant && indépendant.retraite.applicable !== false ? (
-							<RuleValueLink
-								onClick={() => setSituationBranch(1)}
-								{...indépendant.retraite}
-							/>
+							<div>
+								<RuleValueLink
+									onClick={() => setSituationBranch(1)}
+									{...indépendant.retraite}
+								/>
+								<div>
+									<small>
+										<strong>
+											<RuleValueLink
+												onClick={() => setSituationBranch(1)}
+												{...indépendant.trimestreValidés}
+											/>{' '}
+											trimestres validés
+										</strong>
+									</small>
+								</div>
+							</div>
 						) : (
 							<span className="ui__ notice">
 								<T>Pas implémenté</T>
@@ -331,10 +362,23 @@ const SchemeComparaison = ({
 							(autoEntrepreneur.plafondDépassé ? (
 								'—'
 							) : autoEntrepreneur.retraite.applicable !== false ? (
-								<RuleValueLink
-									onClick={() => setSituationBranch(2)}
-									{...autoEntrepreneur.retraite}
-								/>
+								<div>
+									<RuleValueLink
+										onClick={() => setSituationBranch(2)}
+										{...autoEntrepreneur.retraite}
+									/>
+									<div>
+										<small>
+											<strong>
+												<RuleValueLink
+													onClick={() => setSituationBranch(2)}
+													{...autoEntrepreneur.trimestreValidés}
+												/>{' '}
+												trimestres validés
+											</strong>
+										</small>
+									</div>
+								</div>
 							) : (
 								<span className="ui__ notice">
 									<T>Pas implémenté</T>
@@ -556,14 +600,14 @@ const SchemeComparaison = ({
 }
 
 const RuleValueLink = withSitePaths(
-	({
-		lien,
-		montant,
-		sitePaths,
-		onClick
-	}: RègleAvecMontant & { sitePaths: any, onClick: () => void }) => (
+	({ lien, montant, valeur, sitePaths, onClick }) => (
 		<Link onClick={onClick} to={sitePaths.documentation.index + '/' + lien}>
-			<AnimatedTargetValue value={montant} />
+			{montant != undefined && <AnimatedTargetValue value={montant} />}
+			{valeur != undefined && (
+				<Montant numFractionDigit={0} type="decimal">
+					{valeur}
+				</Montant>
+			)}
 		</Link>
 	)
 )
@@ -578,6 +622,9 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('protection sociale . retraite'),
+					trimestreValidés: règleAvecValeurSelector(state, {
+						situationBranchName: 'Auto-entrepreneur'
+					})('protection sociale . retraite . trimestres validés par an'),
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('protection sociale . santé . indemnités journalières'),
@@ -599,6 +646,9 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
 					})('protection sociale . retraite'),
+					trimestreValidés: règleAvecValeurSelector(state, {
+						situationBranchName: 'Indépendant'
+					})('protection sociale . retraite . trimestres validés par an'),
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
 					})('protection sociale . santé . indemnités journalières'),
@@ -613,6 +663,9 @@ export default (compose(
 					retraite: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
 					})('protection sociale . retraite'),
+					trimestreValidés: règleAvecValeurSelector(state, {
+						situationBranchName: 'Assimilé salarié'
+					})('protection sociale . retraite . trimestres validés par an'),
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
 					})('protection sociale . santé . indemnités journalières'),

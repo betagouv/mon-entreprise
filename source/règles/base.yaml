@@ -876,8 +876,7 @@
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
 
-- espace: contrat salarié
-  nom: SMIC horaire
+- nom: SMIC horaire
   formule: 10.03
   format: euros
   références:
@@ -3690,49 +3689,143 @@
   période: flexible
   formule:
     variations:
-      - si:
-          une de ces conditions:
-            - toutes ces conditions:
-                - auto entrepreneur
-                - entreprise . chiffre d'affaires < seuil de CA pour ouverture des droits
-            - toutes ces conditions:
-                - contrat salarié
-                - revenu moyen < revenu minimum pour ouverture des droits
+      - si: trimestres validés par an = 0
         alors: 0%
       - sinon: 50%
   note: On ne prends pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
 
-- nom: seuil de CA pour ouverture des droits
-  espace: protection sociale . retraite . base
-  période: année
-  format: euros
-  description: Le CA minimum pour l'ouverture des droits à la retraite. En deça de ce montant, vous n'aurez accès qu'à l'allocation de solidarité.
+- espace: protection sociale . retraite
+  nom: trimestres validés par an
+  période: aucune
+  format: nombre
+  formule:
+    le minimum de:
+      - somme:
+        - trimestres salarié
+        - trimestres indépendant
+        - trimestres auto entrepreneur
+      - 4
+
+
+- nom: trimestres salarié
+  période: aucune
+  applicable si: contrat salarié
+  format: nombre
+  espace: protection sociale . retraite . trimestres validés par an
+  formule: barème trimestres générique
+
+- nom: trimestres indépendant
+  période: aucune
+  applicable si: indépendant
+  format: nombre
+  espace: protection sociale . retraite . trimestres validés par an
+  formule:
+    variations:
+      - si: situation personnelle . RSA
+        alors: barème trimestres générique
+      - sinon:
+          le maximum de:
+            - 3
+            - barème trimestres générique
+
+- nom: barème trimestres générique
+  espace: protection sociale . retraite . trimestres validés par an
+  format: nombre
+  période: aucune
+  formule:
+    variations:
+      - si: oui
+        alors:
+          barème linéaire:
+            assiette: revenu moyen [annuel]
+            multiplicateur: SMIC horaire
+            tranches:
+            - en-dessous de: 150
+              montant: 0
+            - de: 150
+              à: 300
+              montant: 1
+            - de: 300
+              à: 450
+              montant: 2
+            - de: 450
+              à: 600
+              montant: 3
+            - au-dessus de: 600
+              montant: 4
+  références:
+    cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
+
+
+- nom: trimestres auto entrepreneur
+  applicable si: auto entrepreneur
+  espace: protection sociale . retraite . trimestres validés par an
+  format: nombre
+  période: aucune
+  description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
     variations:
       - si: entreprise . catégorie d'activité = 'libérale'
-        alors: 2880
+        alors:
+          barème linéaire:
+            assiette: entreprise . chiffre d'affaires [annuel]
+            tranches:
+            - en-dessous de: 2880
+              montant: 0
+            - de: 2880
+              à: 5062
+              montant: 1
+            - de: 5062
+              à: 7266
+              montant: 2
+            - de: 7266
+              à: 9675
+              montant: 3
+            - au-dessus de: 9675
+              montant: 4
       - si:
           une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             - entreprise . catégorie d'activité . restauration ou hébergement
-        alors: 4137
-      - sinon: 2412
+        alors:
+         barème linéaire:
+            assiette: entreprise . chiffre d'affaires [annuel]
+            tranches:
+            - en-dessous de: 4137
+              montant: 0
+            - de: 4137
+              à: 7286
+              montant: 1
+            - de: 7286
+              à: 10426
+              montant: 2
+            - de: 10426
+              à: 20740
+              montant: 3
+            - au-dessus de: 20740
+              montant: 4
+      - sinon:
+          barème linéaire:
+            assiette: entreprise . chiffre d'affaires [annuel]
+            tranches:
+            - en-dessous de: 2412
+              montant: 0
+            - de: 2412
+              à: 4239
+              montant: 1
+            - de: 4239
+              à: 6071
+              montant: 2
+            - de: 6071
+              à: 12030
+              montant: 3
+            - au-dessus de: 12030
+              montant: 4
   références:
-    auto-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
-    allocation de solidarité: https://www.service-public.fr/particuliers/vosdroits/F16871
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
 
-- nom: revenu minimum pour ouverture des droits
-  espace: protection sociale . retraite . base
-  format: euros
-  description: Le revenu minimum pour l'ouverture des droits à la retraite. En deça de ce montant, vous n'aurez accès qu'au minimum contributif ou à l'allocation de solidarité.
-  formule: contrat salarié . SMIC horaire * 150
-  période: année
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F1761
-    allocation de solidarité: https://www.service-public.fr/particuliers/vosdroits/F16871
-    minimum contributif: https://www.service-public.fr/particuliers/vosdroits/F15522
 
 - espace: protection sociale
   nom: revenu moyen
