@@ -1,16 +1,22 @@
 import classnames from 'classnames'
 import { omit } from 'ramda'
 import React, { Component } from 'react'
+import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
 import './CurrencyInput.css'
 
-let isCurrencyPrefixed = language =>
-	!!Intl.NumberFormat(language, {
+let currencyFormat = language => ({
+	isCurrencyPrefixed: !!Intl.NumberFormat(language, {
 		style: 'currency',
 		currency: 'EUR'
 	})
 		.format(12)
-		.match(/€.*12/)
+		.match(/€.*12/),
+
+	thousandSeparator: Intl.NumberFormat(language)
+		.format(1000)
+		.charAt(1)
+})
 
 class CurrencyInput extends Component {
 	state = {
@@ -19,26 +25,7 @@ class CurrencyInput extends Component {
 	onChange = this.props.debounce
 		? debounce(this.props.debounce, this.props.onChange)
 		: this.props.onChange
-	input = React.createRef()
 
-	handleChange = event => {
-		let value = event.target.value
-		value = value
-			.replace(/,/g, '.')
-			.replace(/[^\d.]/g, '')
-			.replace(/\.(.*)\.(.*)/g, '$1.$2')
-		this.setState({ value })
-
-		if (value.endsWith('.')) {
-			return
-		}
-		event.target.value = value
-
-		if (event.persist) {
-			event.persist()
-		}
-		this.onChange(event)
-	}
 	componentDidUpdate(prevProps) {
 		if (
 			prevProps.storeValue !== this.props.storeValue &&
@@ -50,8 +37,12 @@ class CurrencyInput extends Component {
 
 	render() {
 		let forwardedProps = omit(
-			['onChange', 'defaultValue', 'language', 'className', 'value'],
+			['onChange', 'defaultValue', 'language', 'className', 'value', 'normalizedValueRef'],
 			this.props
+		)
+
+		const { isCurrencyPrefixed, thousandSeparator } = currencyFormat(
+			this.props.language
 		)
 
 		return (
@@ -60,16 +51,20 @@ class CurrencyInput extends Component {
 					this.props.className,
 					'currencyInput__container'
 				)}>
-				{isCurrencyPrefixed(this.props.language) && '€'}
-				<input
+				{isCurrencyPrefixed && '€'}
+				<NumberFormat
 					{...forwardedProps}
+					thousandSeparator={thousandSeparator}
 					className="currencyInput__input"
 					inputMode="numeric"
-					onChange={this.handleChange}
-					ref={this.input}
+					onValueChange={({ value }) => {
+						this.setState({ value })
+						this.props.normalizedValueRef.current = value
+					}}
+					onChange={this.onChange}
 					value={this.state.value}
 				/>
-				{!isCurrencyPrefixed(this.props.language) && <>&nbsp;€</>}
+				{!isCurrencyPrefixed && <>&nbsp;€</>}
 			</div>
 		)
 	}

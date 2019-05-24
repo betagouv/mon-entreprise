@@ -7,7 +7,7 @@ import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
-import React, { Component, PureComponent } from 'react'
+import React, { Component, PureComponent, useRef } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -267,6 +267,7 @@ let TargetInputOrValue = withLanguage(
 		firstStepCompleted,
 		inversionFail
 	}) => {
+		let normalizedValueRef = useRef(null)
 		let inputIsActive = activeInput === target.dottedName
 		return (
 			<span className="targetInputOrValue">
@@ -274,8 +275,10 @@ let TargetInputOrValue = withLanguage(
 					<Field
 						name={target.dottedName}
 						component={CurrencyField}
+						normalizedValueRef={normalizedValueRef}
 						{...(inputIsActive ? { autoFocus: true } : {})}
 						language={language}
+						normalize={(value) => normalizedValueRef.current || value}
 					/>
 				) : (
 					<TargetValue
