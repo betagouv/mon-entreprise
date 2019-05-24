@@ -15,35 +15,52 @@ let currencyFormat = language => ({
 
 	thousandSeparator: Intl.NumberFormat(language)
 		.format(1000)
+		.charAt(1),
+
+	decimalSeparator: Intl.NumberFormat(language)
+		.format(0.1)
 		.charAt(1)
 })
 
 class CurrencyInput extends Component {
 	state = {
-		value: this.props.storeValue
+		value: this.props.value || '',
+		valueHasChanged: false,
 	}
+
 	onChange = this.props.debounce
 		? debounce(this.props.debounce, this.props.onChange)
 		: this.props.onChange
 
-	componentDidUpdate(prevProps) {
-		if (
-			prevProps.storeValue !== this.props.storeValue &&
-			this.props.storeValue !== this.state.value
-		) {
-			this.setState({ value: this.props.storeValue })
+	handleNextChange = false
+	value = undefined
+	handleChange = event => {
+		// Only trigger the `onChange` event if the value has changed -- and not
+		// only its formating, we don't want to call it when a dot is added in `12.`
+		// for instance
+		if (!this.handleNextChange) {
+			return
 		}
+		this.handleNextChange = false
+		event.persist()
+		event.target = {
+			...event.target,
+			value: this.value
+		}
+		this.onChange(event)
 	}
 
 	render() {
 		let forwardedProps = omit(
-			['onChange', 'defaultValue', 'language', 'className', 'value', 'normalizedValueRef'],
+			['onChange', 'defaultValue', 'language', 'className', 'value'],
 			this.props
 		)
 
-		const { isCurrencyPrefixed, thousandSeparator } = currencyFormat(
-			this.props.language
-		)
+		const {
+			isCurrencyPrefixed,
+			thousandSeparator,
+			decimalSeparator
+		} = currencyFormat(this.props.language)
 
 		return (
 			<div
@@ -55,14 +72,18 @@ class CurrencyInput extends Component {
 				<NumberFormat
 					{...forwardedProps}
 					thousandSeparator={thousandSeparator}
+					decimalSeparator={decimalSeparator}
+					allowNegative={!this.state.valueHasChanged}
 					className="currencyInput__input"
 					inputMode="numeric"
 					onValueChange={({ value }) => {
-						this.setState({ value })
-						this.props.normalizedValueRef.current = value
+						this.setState({valueHasChanged: true, value})
+						this.value = value.toString().replace(/^\-/,'')
+						this.handleNextChange = true
 					}}
-					onChange={this.onChange}
-					value={this.state.value}
+					onChange={this.handleChange}
+					value={this.state.value.toString()
+						.replace('.', decimalSeparator)}
 				/>
 				{!isCurrencyPrefixed && <>&nbsp;€</>}
 			</div>

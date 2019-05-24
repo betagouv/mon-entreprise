@@ -250,7 +250,7 @@ let CurrencyField = withColours(props => {
 			}}
 			debounce={600}
 			className="targetInput"
-			storeValue={props.input.value}
+			value={props.input.value}
 			{...props.input}
 			{...props}
 		/>
@@ -267,7 +267,6 @@ let TargetInputOrValue = withLanguage(
 		firstStepCompleted,
 		inversionFail
 	}) => {
-		let normalizedValueRef = useRef(null)
 		let inputIsActive = activeInput === target.dottedName
 		return (
 			<span className="targetInputOrValue">
@@ -275,10 +274,9 @@ let TargetInputOrValue = withLanguage(
 					<Field
 						name={target.dottedName}
 						component={CurrencyField}
-						normalizedValueRef={normalizedValueRef}
+						onBlur={event => event.preventDefault()}
 						{...(inputIsActive ? { autoFocus: true } : {})}
 						language={language}
-						normalize={(value) => normalizedValueRef.current || value}
 					/>
 				) : (
 					<TargetValue
