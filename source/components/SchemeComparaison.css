@@ -172,6 +172,7 @@
 	}
 	.comparaison-grid > .legend {
 		justify-content: start;
+		align-items: baseline;
 		text-align: left;
 	}
 	.comparaison-grid > * {

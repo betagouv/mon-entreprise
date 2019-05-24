@@ -1,0 +1,41 @@
+.info-bulle__interrogation-mark {
+	position: relative;
+	color: var(--colour);
+	border: 1px solid var(--colour);
+	display: inline-block;
+	border-radius: 50%;
+
+	font-weight: bold;
+	font-size: 75%;
+	user-select: none;
+	width: 1.5em;
+	height: 1.5em;
+	text-align: center;
+}
+.info-bulle__interrogation-mark:focus {
+	outline: 1px dotted var(--darkColour);
+}
+.info-bulle__text {
+	position: absolute;
+	z-index: 1;
+	border: 1px solid var(--colour);
+	padding: 0.3rem;
+	font-weight: normal;
+	display: block;
+	border-radius: 3px;
+	font-family: 'Roboto';
+	font-size: 0.8rem;
+	background-color: white;
+	transition: opacity 0.2s, transform 0.2s;
+	opacity: 0;
+	transform: translateY(-5px);
+}
+
+.info-bulle__interrogation-mark:hover + .info-bulle__text,
+.info-bulle__interrogation-mark:focus + .info-bulle__text {
+	transform: translateY(1px);
+	opacity: 1;
+}
+.info-bulle__interrogation-mark:focus {
+	position: relative;
+}

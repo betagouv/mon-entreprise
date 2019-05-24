@@ -21,6 +21,7 @@ import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import { règleAvecMontantSelector } from 'Selectors/regleSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
+import InfoBulle from 'Ui/InfoBulle'
 import './SchemeComparaison.css'
 
 import type { RègleAvecMontant } from 'Types/RegleTypes'
@@ -293,7 +294,11 @@ const SchemeComparaison = ({
 					</div>
 					<T k="comparaisonRégimes.retraiteEstimation">
 						<h3 className="legend">
-							Votre pension de retraite <small>(estimation)</small>
+							<span>
+								Pension de retraite{' '}
+								<InfoBulle text="calculée pour 172 trimestres cotisés dans ce régime sans variations de revenus" />
+							</span>
+							<small>(avant impôts)</small>
 						</h3>
 					</T>
 					<div className="AS">
