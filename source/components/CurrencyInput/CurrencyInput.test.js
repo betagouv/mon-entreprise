@@ -64,7 +64,7 @@ describe('CurrencyInput', () => {
 
 	it('should not call onChange while the decimal part is being written', () => {
 		let onChange = spy()
-		const input = getInput(<CurrencyInput onChange={onChange} />)
+		const input = getInput(<CurrencyInput value="111" onChange={onChange} />)
 		input.simulate('change', { target: { value: '111,', focus: () => {} } })
 		expect(onChange).not.to.have.been.called
 	})
@@ -105,25 +105,23 @@ describe('CurrencyInput', () => {
 		clock.restore()
 	})
 
-	it('should initialize with value of the storeValue prop', () => {
-		const input = getInput(<CurrencyInput storeValue={1} />)
-		expect(input.prop('value')).to.eq(1)
+	it('should initialize with value of the value prop', () => {
+		const wrapper = shallow(<CurrencyInput value={1} />)
+		expect(wrapper.state('value')).to.eq(1)
 	})
 
-	it('should update its value if the storeValue prop changes', () => {
-		const wrapper = shallow(<CurrencyInput storeValue={1} />)
-		wrapper.setProps({ storeValue: 2 })
+	it('should update its value if the value prop changes', () => {
+		const wrapper = shallow(<CurrencyInput value={1} />)
+		wrapper.setProps({ value: 2 })
 		expect(wrapper.state('value')).to.equal(2)
 	})
-	it('should not update state if the storeValue is the same as the current input value', () => {
-		const wrapper = shallow(
-			<CurrencyInput storeValue={1000} onChange={() => {}} />
-		)
+
+	it('should not call onChange the value is the same as the current input value', () => {
+		let onChange = spy()
+		const wrapper = mount(<CurrencyInput value={1000} onChange={() => {}} />)
 		const input = wrapper.find('input')
-		input.simulate('change', { target: { value: '2000' } })
-		const state1 = wrapper.state()
-		wrapper.setProps({ storeValue: '2000' })
-		const state2 = wrapper.state()
-		expect(state1).to.equal(state2)
+		input.simulate('change', { target: { value: '2000', focus: () => {} } })
+		wrapper.setProps({ value: '2000' })
+		expect(onChange).not.to.have.been.called
 	})
 })

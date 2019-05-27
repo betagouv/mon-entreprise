@@ -24,8 +24,8 @@ let currencyFormat = language => ({
 
 class CurrencyInput extends Component {
 	state = {
-		value: this.props.value || '',
-		valueHasChanged: false,
+		value: this.props.value,
+		initialValue: this.props.value
 	}
 
 	onChange = this.props.debounce
@@ -50,6 +50,14 @@ class CurrencyInput extends Component {
 		this.onChange(event)
 	}
 
+	// See https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#alternative-1-reset-uncontrolled-component-with-an-id-prop
+	static getDerivedStateFromProps({ value }, { initialValue }) {
+		if (value !== initialValue) {
+			return { value, initialValue: value }
+		}
+		return null
+	}
+
 	render() {
 		let forwardedProps = omit(
 			['onChange', 'defaultValue', 'language', 'className', 'value'],
@@ -62,6 +70,9 @@ class CurrencyInput extends Component {
 			decimalSeparator
 		} = currencyFormat(this.props.language)
 
+		// We display negative numbers iff this was the provided value (but we allow the user to enter them)
+		const valueHasChanged = this.state.value !== this.state.initialValue
+
 		return (
 			<div
 				className={classnames(
@@ -73,16 +84,17 @@ class CurrencyInput extends Component {
 					{...forwardedProps}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
-					allowNegative={!this.state.valueHasChanged}
+					allowNegative={!valueHasChanged}
 					className="currencyInput__input"
 					inputMode="numeric"
 					onValueChange={({ value }) => {
-						this.setState({valueHasChanged: true, value})
-						this.value = value.toString().replace(/^\-/,'')
+						this.setState({ value })
+						this.value = value.toString().replace(/^\-/, '')
 						this.handleNextChange = true
 					}}
 					onChange={this.handleChange}
-					value={this.state.value.toString()
+					value={(this.state.value || '')
+						.toString()
 						.replace('.', decimalSeparator)}
 				/>
 				{!isCurrencyPrefixed && <>&nbsp;€</>}
