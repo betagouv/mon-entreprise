@@ -31,7 +31,7 @@ if (fr) {
 
 	describe('Simulation saving test', function() {
 		it('should save the current simulation', function() {
-			salaryInput('Salaire net').type('5471')
+			salaryInput('Salaire net').type('471')
 			cy.wait(1000)
 			cy.contains('CDD').click()
 			cy.contains('passer').click()
@@ -40,7 +40,7 @@ if (fr) {
 			cy.wait(1100)
 			cy.visit('/sécurité-sociale/salarié')
 			cy.contains('Retrouver ma simulation').click()
-			salaryInput('Salaire net').should('have.value', '5471')
+			salaryInput('Salaire net').should('have.value', '471')
 		})
 	})
 }
