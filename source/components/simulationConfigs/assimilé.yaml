@@ -2,6 +2,7 @@ objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
   - contrat salarié . cotisations
+  - contrat salarié . réduction ACRE
   - impôt . neutre
   - contrat salarié . salaire . net après impôt
 
