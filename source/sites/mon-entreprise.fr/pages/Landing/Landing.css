@@ -16,19 +16,18 @@
 	height: 100%;
 }
 .landing-title {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 	display: flex;
 	align-items: center;
 }
 
-.landing-title h1 {
-	margin-right: -1rem;
-}
 .landing-title__img {
 	align-self: end;
-	margin-right: -8rem;
+	max-height: 25rem;
 	margin-top: 2rem;
 	margin-left: 1rem;
-	margin-bottom: -2rem;
+	margin-bottom: -3rem;
 }
 @media (min-width: 500px) {
 	.landing-title__logo {
@@ -39,13 +38,21 @@
 @media (max-width: 800px) {
 	.landing-title__img {
 		margin-top: 0;
+		margin-right: -10rem;
+		max-height: 35rem;
 	}
 }
 @media (max-width: 500px) {
 	.landing-header {
 		height: 3.5rem;
+		justify-content: space-around;
 	}
-
+	.landing-header *:nth-child(3) {
+		order: -1;
+	}
+	.landing-header *:nth-child(2) {
+		display: none;
+	}
 	.landing-title {
 		flex-direction: column;
 		text-align: center;
