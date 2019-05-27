@@ -1,11 +1,11 @@
 .landing-header {
-	height: 4.5rem;
 	display: flex;
+	align-items: center;
 }
 
 .landing-header__institutional-logo,
 .landing-header__brand-logo {
-	height: 100%;
+	height: 4rem;
 }
 .landing-header__brand-logo img {
 	padding: 0.3rem 0;
@@ -43,8 +43,13 @@
 	}
 }
 @media (max-width: 500px) {
-	.landing-header {
+	.landing-header__brand-logo {
+		height: 4rem;
+	}
+	.landing-header__institutional-logo {
 		height: 3.5rem;
+	}
+	.landing-header {
 		justify-content: space-around;
 	}
 	.landing-header *:nth-child(3) {
@@ -56,9 +61,6 @@
 	.landing-title {
 		flex-direction: column;
 		text-align: center;
-	}
-	.landing-title h1 {
-		line-height: 1.2em;
 	}
 	.landing-title__logo {
 		display: none;
