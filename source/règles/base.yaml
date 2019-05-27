@@ -1267,7 +1267,7 @@
 
 - espace: impôt
   nom: neutre
-  titre: Impôt neutre sur le revenu
+  titre: Impôt sur le revenu au taux neutre
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
