@@ -117,3 +117,7 @@ b {
 textarea {
 	font-family: inherit;
 }
+
+small {
+	opacity: 0.6;
+}

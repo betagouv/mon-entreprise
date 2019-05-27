@@ -34,9 +34,7 @@
 	border: none;
 	align-self: stretch;
 }
-.comparaison-grid small {
-	opacity: 0.6;
-}
+
 .comparaison-grid > h2 img {
 	height: 1.6rem !important;
 	width: 1.6rem !important;

@@ -331,27 +331,14 @@ autoentrepreneur:
   description: >
     <0>
       The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions
-      are based on the turnover achieved each month. Available for companies whose annual
-      turnover does not exceed €70,000 for services providers or €170,000 when the main activity
-      is the sale of goods, catering or the provision of housing.
+      are based on the turnover achieved each month.
     </0>
     <1>
-      This is an interesting choice if:
-    </1>
-    <2>
-      <0>You do not need a lot of capital and important expenses to run your activity</0>
-      <1>You want to test the viability of your business</1>
-      <2>You want the minimum amount of paperwork to get started</2>
-    </2>
-    <3>
       <0>Note:</0>
       Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities
       are regulated with a qualification or a professional experience (<4>see the list [fr])</4>).
-    </3>
-    <4>
-      For all the other cases, it is advised to choose the standard status, which
-      is <2>Individual Business</2> (entreprise individuelle).
-    </4>
+    </1>
+
 associés:
   page:
     titre: Number of partners to start a business in France
@@ -580,9 +567,11 @@ Exemples: Examples
 Intégrer le simulateur: Integrate the simulator
 
 # Landing infrance
-Que souhaitez-vous faire ?: What do you want to do?
+Que désirez-vous faire ?: What do you want to do?
 Créer votre entreprise: Create your company
-subtitle: The official guide for entrepreneurs
+landing:
+  title: The official guide for entrepreneurs
+  subtitle: All the resources you need to manage your business, from legal status to hiring.
 Connaître les démarches d'embauche: Know the hiring procedures
 Estimer les cotisations et les taxes: Estimate contributions and taxes
 Créer une entreprise: Create a company in France
@@ -610,8 +599,7 @@ Simulations personnalisées: Customized simulations
 
 indicationTempsPlein: in full-time gross salary equivalent
 auto-entreprise: auto-enterprise
-SAS, SASU ou SARL minoritaires: SAS, SASU or SARL minority shareholders
-EI, EURL, SARL ou SARL majoritaires: EI, EURL, SARL or SARL majority shareholders
+
 Comparer les trois régimes: Compare the three schemes
 simulateurs:
   inversionFail: The amount entered is too small or results in an impossible situation, try another one
@@ -672,10 +660,10 @@ comparaisonRégimes:
     tagline: Start without risk
   status:
     legend: Possible legal status
-    AS: SAS, SASU, minority SARL
+    AS: SAS, SASU or SARL with minority director
     indep:
-      1: EI, EIRL, EURL, SARL
-      2: EI, EIRL
+      1: EI, EIRL, EURL or SARL with majority director
+      2: EI or EIRL
     auto: Auto-entreprise
   sécuritéSociale: |
     <0> Social security</0>
@@ -737,12 +725,18 @@ comparaisonRégimes:
   revenuNetAvantImpots: |
     <0>Net contribution income<1>(before income tax)</1></0>
   retraiteEstimation: |
-    <0>Your retirement pay <1>(estimation)</1></0>
+    <0>Retirement pay
+      <2>estimated for 172 quarters contributed to this social scheme with no change in income</2></0>
+    <1>(before taxes)</1>
 
   cotisationMinimale: |
     <0> Minimum contributions</0>
+
   seuil: |
     <0> Minimum income for eligibility for benefits</0>
+    <1>Yes</1>
+    <2> No <1>(mandatory minimum contributions)</1></2>
+    <3>Yes</3>
   choix:
     AS: Choose Assimilé salarié
     indep: Choose Indépendant
@@ -750,6 +744,7 @@ comparaisonRégimes:
     EI: Choose Entreprise Individuelle
 
 J'ai compris: understood
+trimestres validés: validated quarters
 
 Année d'activité: Years of activity
 Commerçant, artisan, ou libéral ?: Trader, craftsman, or liberal?

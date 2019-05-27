@@ -114,17 +114,17 @@ const SchemeComparaison = ({
 				<div className="AS">
 					<div>
 						<T k="comparaisonRégimes.status.AS">
-							SAS, SASU, SARL <small>(gérant minoritaire)</small>
+							SAS, SASU ou SARL avec gérant minoritaire
 						</T>
 					</div>
 				</div>
 				<div className="indep">
 					<div>
 						{hideAssimiléSalarié ? (
-							<T k="comparaisonRégimes.status.indep.2">EI, EIRL</T>
+							<T k="comparaisonRégimes.status.indep.2">EI ou EIRL</T>
 						) : (
 							<T k="comparaisonRégimes.status.indep.1">
-								EI, EIRL, EURL, SARL <small>(gérant majoritaire)</small>
+								EI, EIRL, EURL ou SARL avec gérant majoritaire
 							</T>
 						)}
 					</div>
@@ -297,15 +297,18 @@ const SchemeComparaison = ({
 							</Animate.appear>
 						)}
 					</div>
-					<T k="comparaisonRégimes.retraiteEstimation">
-						<h3 className="legend">
+					<h3 className="legend">
+						<T k="comparaisonRégimes.retraiteEstimation">
 							<span>
 								Pension de retraite{' '}
-								<InfoBulle text="calculée pour 172 trimestres cotisés dans ce régime sans variations de revenus" />
+								<InfoBulle>
+									calculée pour 172 trimestres cotisés dans ce régime sans
+									variations de revenus
+								</InfoBulle>
 							</span>
 							<small>(avant impôts)</small>
-						</h3>
-					</T>
+						</T>
+					</h3>
 					<div className="AS">
 						{assimiléSalarié &&
 						assimiléSalarié.retraite.applicable !== false ? (
@@ -321,7 +324,7 @@ const SchemeComparaison = ({
 												onClick={() => setSituationBranch(0)}
 												{...assimiléSalarié.trimestreValidés}
 											/>{' '}
-											trimestres validés
+											<T>trimestres validés</T>
 										</strong>
 									</small>
 								</div>
@@ -346,7 +349,7 @@ const SchemeComparaison = ({
 												onClick={() => setSituationBranch(1)}
 												{...indépendant.trimestreValidés}
 											/>{' '}
-											trimestres validés
+											<T>trimestres validés</T>
 										</strong>
 									</small>
 								</div>
@@ -374,7 +377,7 @@ const SchemeComparaison = ({
 													onClick={() => setSituationBranch(2)}
 													{...autoEntrepreneur.trimestreValidés}
 												/>{' '}
-												trimestres validés
+												<T>trimestres validés</T>
 											</strong>
 										</small>
 									</div>
@@ -506,18 +509,12 @@ const SchemeComparaison = ({
 						<h3 className="legend">
 							Revenu minimum pour l'ouverture des droits aux prestations
 						</h3>
-					</T>
-					<div className="AS">
-						<T>Oui</T>
-					</div>
-					<div className="indep">
-						<T>
+						<div className="AS">Oui</div>
+						<div className="indep">
 							Non <small>(cotisations minimales obligatoires)</small>
-						</T>
-					</div>
-					<div className="auto">
-						<T>Oui</T>
-					</div>
+						</div>
+						<div className="auto">Oui</div>
+					</T>
 				</>
 			) : (
 				<T k="comparaisonRégimes.comparaisonDétaillée">

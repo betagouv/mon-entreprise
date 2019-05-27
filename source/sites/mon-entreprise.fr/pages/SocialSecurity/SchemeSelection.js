@@ -31,7 +31,11 @@ const SchemeChoice = compose(
 						<span>
 							<T>Assimilé salarié</T>{' '}
 							<small>
-								(<T>SAS, SASU ou SARL minoritaires</T>)
+								(
+								<T k="comparaisonRégimes.status.AS">
+									SAS, SASU ou SARL avec gérant minoritaire
+								</T>
+								)
 							</small>
 						</span>
 					</Link>
@@ -42,7 +46,11 @@ const SchemeChoice = compose(
 						<span>
 							<T>Indépendant</T>{' '}
 							<small>
-								(<T>EI, EURL, SARL ou SARL majoritaires</T>)
+								(
+								<T k="comparaisonRégimes.status.indep.1">
+									EI, EIRL, EURL ou SARL avec gérant majoritaire
+								</T>
+								)
 							</small>
 						</span>
 					</Link>
