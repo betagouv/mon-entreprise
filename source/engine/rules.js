@@ -104,8 +104,8 @@ export let ruleParents = dottedName => {
 		.map(nbEl => take(nbEl)(fragments))
 		.reverse() //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 }
-/* Les variables peuvent être exprimées dans la formule d'une règle relativement à son propre espace de nom, pour une plus grande lisibilité. Cette fonction résoud cette ambiguité.
- */
+/* In a formula, variables can be cited without referring to them absolutely : namespaces can be omitted to enhance the readability. This function resolves this ambiguity.
+ * */
 export let disambiguateRuleReference = (
 	allRules,
 	{ dottedName, name },
@@ -113,7 +113,7 @@ export let disambiguateRuleReference = (
 ) => {
 	let pathPossibilities = [
 			[], // the top level namespace
-			...ruleParents(dottedName), // the parents namespace
+			...ruleParents(dottedName), // the parent namespaces
 			splitName(dottedName) // the rule's own namespace
 		],
 		found = reduce(

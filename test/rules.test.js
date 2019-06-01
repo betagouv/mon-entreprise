@@ -137,28 +137,52 @@ describe('misc', function() {
 	})
 	it("should disambiguate a reference to another rule in a rule, given the latter's namespace", function() {
 		let rawRules = [
+			{ nom: 'A', formule: 'B * C' },
+			{ espace: 'A', nom: 'B' },
+			{ espace: 'A', nom: 'C' },
+
 			{ nom: 'CDD', question: 'CDD ?' },
-			{ nom: 'taxe', formule: 'montant annuel / 12', espace: 'CDD' },
+			{ espace: 'CDD', nom: 'taxe', formule: 'montant annuel / 12' },
 			{
+				espace: 'CDD . taxe',
 				nom: 'montant annuel',
-				formule: '20 - exonération annuelle',
-				espace: 'CDD . taxe'
+				formule: '20 - exonération annuelle'
 			},
 			{
+				espace: 'CDD . taxe . montant annuel',
 				nom: 'exonération annuelle',
-				formule: 20,
-				espace: 'CDD . taxe . montant annuel'
-			}
+				formule: 20
+			},
+			{ nom: 'transport' },
+			{ espace: 'transport', nom: 'impact' },
+			{ espace: 'transport', nom: 'trotinette', formule: 'impact * 10' },
+			{ espace: 'transport . trotinette', nom: 'impact' }
 		]
 
-		let enrichedRules = rawRules.map(enrichRule),
-			resolved = disambiguateRuleReference(
+		let enrichedRules = rawRules.map(enrichRule)
+
+		expect(
+			disambiguateRuleReference(enrichedRules, enrichedRules[1], 'B')
+		).to.eql('A . B')
+
+		expect(
+			disambiguateRuleReference(
 				enrichedRules,
-				enrichedRules[2],
+				enrichedRules[5],
 				'exonération annuelle'
 			)
-		expect(resolved).to.eql(
-			'CDD . taxe . montant annuel . exonération annuelle'
-		)
+		).to.eql('CDD . taxe . montant annuel . exonération annuelle')
+
+		expect(
+			disambiguateRuleReference(
+				enrichedRules,
+				enrichedRules[4],
+				'montant annuel'
+			)
+		).to.eql('CDD . taxe . montant annuel')
+
+		expect(
+			disambiguateRuleReference(enrichedRules, enrichedRules[9], 'impact')
+		).to.eql('transport . trotinette . impact')
 	})
 })
