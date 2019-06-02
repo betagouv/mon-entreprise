@@ -24,9 +24,10 @@ describe('conversation', function() {
 			],
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
-				simulation: { config: { objectifs: ['startHere'] } }
+				simulation: { config: { objectifs: ['startHere'] } },
+				rules
 			}),
-			currentQuestion = currentQuestionSelector(state, { rules })
+			currentQuestion = currentQuestionSelector(state)
 
 		expect(currentQuestion).to.equal('top . aa')
 	})
@@ -48,7 +49,8 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
-			simulation: { config: { objectifs: ['startHere'] } }
+			simulation: { config: { objectifs: ['startHere'] } },
+			rules
 		})
 		let step2 = reducers(
 			assocPath(
@@ -86,7 +88,7 @@ describe('conversation', function() {
 			step: 'top . bb'
 		})
 
-		expect(currentQuestionSelector(lastStep, { rules })).to.equal('top . bb')
+		expect(currentQuestionSelector(lastStep)).to.equal('top . bb')
 		expect(lastStep.conversationSteps).to.have.property('foldedSteps')
 		expect(lastStep.conversationSteps.foldedSteps).to.have.lengthOf(0)
 	})
@@ -129,7 +131,8 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
-			simulation: { config: { objectifs: ['net'] } }
+			simulation: { config: { objectifs: ['net'] } },
+			rules
 		})
 		expect(currentQuestionSelector(step1, { rules })).to.equal('brut')
 
@@ -151,9 +154,10 @@ describe('conversation', function() {
 describe('real conversation', function() {
 	it('should not have more than X questions', function() {
 		let state = merge(baseState, {
-				simulation: { config: salariéConfig }
+				simulation: { config: salariéConfig },
+				rules
 			}),
-			nextSteps = nextStepsSelector(state, { rules })
+			nextSteps = nextStepsSelector(state)
 
 		expect(nextSteps.length).to.be.below(30) // If this breaks, that's good news
 		expect(nextSteps.length).to.be.above(10)

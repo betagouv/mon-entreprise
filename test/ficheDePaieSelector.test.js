@@ -9,6 +9,10 @@ import {
 	analysisToCotisationsSelector,
 	COTISATION_BRANCHE_ORDER
 } from 'Selectors/ficheDePaieSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { getRuleFromAnalysis } from 'Engine/rules'
+import rawRules from 'Règles/base.yaml'
+// $FlowFixMe
 
 let state = {
 	form: {
@@ -24,7 +28,8 @@ let state = {
 	},
 	conversationSteps: {
 		foldedSteps: []
-	}
+	},
+	rules: rawRules
 }
 
 let cotisations = null,

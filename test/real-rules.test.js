@@ -1,5 +1,6 @@
 import { AssertionError } from 'chai'
 import { rules } from '../source/engine/rules'
+import rawRules from 'Règles/base.yaml'
 import { parseAll } from '../source/engine/traverse'
 import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
 import { merge } from 'ramda'
@@ -10,6 +11,7 @@ let runExamples = (examples, rule) =>
 	examples.map(ex => {
 		let runExample = exampleAnalysisSelector(
 				{
+					rules: rawRules,
 					currentExample: {
 						situation: ex.situation,
 						dottedName: rule.dottedName
