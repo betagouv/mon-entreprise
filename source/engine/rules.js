@@ -112,9 +112,9 @@ export let disambiguateRuleReference = (
 	partialName
 ) => {
 	let pathPossibilities = [
-			[], // the top level namespace
+			splitName(dottedName), // the rule's own namespace
 			...ruleParents(dottedName), // the parent namespaces
-			splitName(dottedName) // the rule's own namespace
+			[] // the top level namespace
 		],
 		found = reduce(
 			(res, path) => {
