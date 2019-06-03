@@ -250,7 +250,7 @@ let CurrencyField = withColours(props => {
 			}}
 			debounce={600}
 			className="targetInput"
-			storeValue={props.input.value}
+			value={props.input.value}
 			{...props.input}
 			{...props}
 		/>
@@ -274,6 +274,7 @@ let TargetInputOrValue = withLanguage(
 					<Field
 						name={target.dottedName}
 						component={CurrencyField}
+						onBlur={event => event.preventDefault()}
 						{...(inputIsActive ? { autoFocus: true } : {})}
 						language={language}
 					/>

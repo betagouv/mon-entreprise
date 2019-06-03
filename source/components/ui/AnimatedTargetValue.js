@@ -35,6 +35,11 @@ export default withLanguage(
 				this.timeoutId = null
 			}, 250)
 		}
+		componentWillUnmount() {
+			if (this.timeoutId) {
+				clearTimeout(this.timeoutId)
+			}
+		}
 		format = value => {
 			return value == null
 				? ''
