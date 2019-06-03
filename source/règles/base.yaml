@@ -2587,6 +2587,7 @@
           - indépendant . revenu professionnel
       abattement: 10%
       plafond: 12502
+  note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
   références: 
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 
