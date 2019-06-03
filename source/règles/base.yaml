@@ -2587,6 +2587,8 @@
           - indépendant . revenu professionnel
       abattement: 10%
       plafond: 12502
+  références: 
+    Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 
 - nom: impôt sur le revenu
   espace: impôt
