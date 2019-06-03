@@ -109,7 +109,8 @@
 
 #targetSelection .attractClick,
 #targetSelection .targetInput {
-	width: 5.5em !important;
+	width: 5.5em;
+	max-width: 7.5em;
 	display: inline-block;
 	text-align: right;
 	background: rgba(255, 255, 255, 0.2);

@@ -73,12 +73,15 @@ class CurrencyInput extends Component {
 		// We display negative numbers iff this was the provided value (but we allow the user to enter them)
 		const valueHasChanged = this.state.value !== this.state.initialValue
 
+		// Autogrow the input
+		const valueLength = (this.state.value || '').toString().length
+
 		return (
 			<div
-				className={classnames(
-					this.props.className,
-					'currencyInput__container'
-				)}>
+				className={classnames(this.props.className, 'currencyInput__container')}
+				{...(valueLength > 5
+					? { style: { width: `${5 + (valueLength - 5) * 0.75}em` } }
+					: {})}>
 				{isCurrencyPrefixed && '€'}
 				<NumberFormat
 					{...forwardedProps}
