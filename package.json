@@ -21,6 +21,7 @@
 	"dependencies": {
 		"@babel/polyfill": "^7.4.0",
 		"@babel/runtime": "^7.3.4",
+		"@microlink/react": "^4.0.1",
 		"@researchgate/react-intersection-observer": "^0.7.3",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
