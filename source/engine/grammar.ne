@@ -1,3 +1,7 @@
+# This grammar is inspired by the "fancier grammar" tab of the nearley playground : https://omrelli.ug/nearley-playground
+
+# Look for the PEMDAS system : Parentheses, Exponents (omitted here), Multiplication, and you should guess the rest :) 
+
 @preprocessor esmodule
 
 @{% 
@@ -5,7 +9,7 @@ import {string, filteredVariable, variable, temporalVariable,  operation, boolea
 %}
 
 main ->
-		  AS {% id %}
+		  AdditionSubstraction {% id %}
 		| Comparison {% id %}
 		| NonNumericTerminal {% id %}
 
@@ -16,14 +20,14 @@ NumericTerminal ->
 		| percentage {% id %}
 		| number {% id %}
 
-Parentheses -> "(" AS ")" {% ([,e]) => e %}
+Parentheses -> "(" AdditionSubstraction ")" {% ([,e]) => e %}
     | NumericTerminal           {% id %}
 
 ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
 
 Comparison -> Comparable _ ComparisonOperator _ Comparable {% operation('comparison')%}
 
-Comparable -> (  AS | NonNumericTerminal) {% ([[e]]) => e %}
+Comparable -> (  AdditionSubstraction | NonNumericTerminal) {% ([[e]]) => e %}
 
 NonNumericTerminal ->  
 	Boolean  {% id %} 
@@ -46,18 +50,18 @@ Temporality -> "annuel" | "mensuel" {% id %}
 
 
 # Addition and subtraction
-AS -> AS _ ASOperator _ MD  {%  operation('calculation') %}
-    | MD            {% id %}
+AdditionSubstraction -> AdditionSubstraction _ AdditionSubstractionOperator _ MultiplicationDivision  {%  operation('calculation') %}
+    | MultiplicationDivision            {% id %}
 
 	 
-ASOperator	-> "+" {% id %}
+AdditionSubstractionOperator	-> "+" {% id %}
 	| "-" {% id %}
 
-MDOperator	-> "*" {% id %}
+MultiplicationDivisionOperator	-> "*" {% id %}
 	| "/" {% id %}
 
 # Multiplication and division
-MD -> MD _ MDOperator _ Parentheses  {% operation('calculation') %}
+MultiplicationDivision -> MultiplicationDivision _ MultiplicationDivisionOperator _ Parentheses  {% operation('calculation') %}
     | Parentheses             {% id %}
 
 Term -> Variable {% id %}
