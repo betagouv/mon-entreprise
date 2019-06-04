@@ -53,7 +53,7 @@ export default compose(
 				</h1>
 				<p className="ui__ lead">
 					<T k="landing.subtitle">
-						Toutes les ressources nécessaire pour gérer votre activité, du
+						Toutes les ressources nécessaires pour gérer votre activité, du
 						statut juridique à l'embauche.
 					</T>
 				</p>
@@ -66,17 +66,22 @@ export default compose(
 					<T>Que désirez-vous faire ?</T>
 				</h2>
 				<Link className="ui__ button-choice " to={sitePaths.entreprise.index}>
-					{emoji('💡')} <T>Créer une entreprise</T>
+					{emoji('💡')} <T k="landing.choix1">Créer une entreprise</T>
 				</Link>
 				<Link
 					className="ui__ button-choice "
 					to={sitePaths.sécuritéSociale.index}>
-					{emoji('💶')} <T>Estimer les cotisations et les taxes</T>
+					{emoji('💶')}{' '}
+					<T k="landing.choix2">
+						Estimer les cotisations et les taxes
+						<small>(pour le dirigeant ou l'embauche)</small>
+					</T>
 				</Link>
 				<Link
 					className="ui__ button-choice"
 					to={sitePaths.démarcheEmbauche.index}>
-					{emoji('🤝')} <T>Connaître les démarches d'embauche</T>
+					{emoji('🤝')}{' '}
+					<T k="landing.choix3">Connaître les démarches d'embauche</T>
 				</Link>
 				<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>
 					{emoji('🏡')} <T>Déclarer mon activité d'économie collaborative</T>

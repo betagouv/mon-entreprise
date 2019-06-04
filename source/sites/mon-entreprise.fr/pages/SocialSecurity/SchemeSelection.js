@@ -29,7 +29,7 @@ const SchemeChoice = compose(
 						className="ui__ button-choice">
 						{emoji('☂')}
 						<span>
-							<T>Assimilé salarié</T>{' '}
+							<T>Assimilé salarié</T>
 							<small>
 								(
 								<T k="comparaisonRégimes.status.AS">
@@ -44,7 +44,7 @@ const SchemeChoice = compose(
 						className="ui__ button-choice">
 						{emoji('👩‍🔧')}
 						<span>
-							<T>Indépendant</T>{' '}
+							<T>Indépendant</T>
 							<small>
 								(
 								<T k="comparaisonRégimes.status.indep.1">

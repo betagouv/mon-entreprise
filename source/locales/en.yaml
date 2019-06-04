@@ -572,9 +572,9 @@ Créer votre entreprise: Create your company
 landing:
   title: The official guide for entrepreneurs
   subtitle: All the resources you need to manage your business, from legal status to hiring.
-Connaître les démarches d'embauche: Know the hiring procedures
-Estimer les cotisations et les taxes: Estimate contributions and taxes
-Créer une entreprise: Create a company in France
+  choix3: Know the hiring procedures
+  choix2: Estimate contributions and taxes <2>(for the manager and hiring)</2>
+  choix1: Create a company in France
 Déclarer mon activité d'économie collaborative: Declare my activity in the sharing economy
 Prochainement: Soon
 
@@ -673,7 +673,7 @@ comparaisonRégimes:
   assuranceMaladie: |
     <0> Public health insurance <1>(medicines, care, hospitalizations)</1></0>
     <1> Same for all </1>
-  mutuelle:  |
+  mutuelle: |
     <0> Additional health insurance <1>(mutuelle santé)</1></0>
     <1> Compulsory </1>
     <2> Highly recommended </2>
