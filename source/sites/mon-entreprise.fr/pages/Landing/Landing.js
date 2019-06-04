@@ -73,7 +73,7 @@ export default compose(
 					to={sitePaths.sécuritéSociale.index}>
 					{emoji('💶')}{' '}
 					<T k="landing.choix2">
-						Estimer les cotisations et les taxes
+						Simuler les cotisations et les taxes
 						<small>(pour le dirigeant ou l'embauche)</small>
 					</T>
 				</Link>
