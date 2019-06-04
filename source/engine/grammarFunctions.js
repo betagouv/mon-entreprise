@@ -1,9 +1,9 @@
 /* Those are postprocessor functions for the Nearley grammar.ne. 
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
 
-export let operation = type => ([A, , operator, , B]) => ({
+export let operation = operationType => ([A, , operator, , B]) => ({
 	[operator]: {
-		type: type,
+		operationType,
 		explanation: [A, B]
 	}
 })

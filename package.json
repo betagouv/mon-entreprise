@@ -68,7 +68,7 @@
 		"eslint": "LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"externalize": "node source/externalize.js",
 		"heroku-postbuild": "yarn install --production=false && yarn compile",
-		"pretest": "LIST=`git diff --name-only --diff-filter=AMR HEAD^..HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi && flow check",
+		"pretest": "LIST=`git diff --name-only --diff-filter=AMR HEAD^..HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"start": "node source/server.js",
 		"test-inversions": "yarn test-watch --grep 'inversions'",
 		"test-meca": "yarn test-watch --grep 'Mécanismes'",

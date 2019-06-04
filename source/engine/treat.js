@@ -6,30 +6,23 @@ import barème from 'Engine/mecanisms/barème.js'
 import { Parser } from 'nearley'
 import {
 	add,
-	always,
-	cond,
-	contains,
 	curry,
 	divide,
 	equals,
 	gt,
 	gte,
-	head,
-	intersection,
 	keys,
 	without,
 	lt,
 	lte,
 	map,
 	multiply,
-	propEq,
 	propOr,
 	subtract
 } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation'
 import Grammar from './grammar.ne'
-import knownMecanisms from './known-mecanisms.yaml'
 import {
 	mecanismAllOf,
 	mecanismComplement,
@@ -63,7 +56,7 @@ export let treatString = (rules, rule) => rawNode => {
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
 
-	let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
+	let [parseResult] = nearley().feed(rawNode).results
 
 	return treatObject(rules, rule)(parseResult)
 }
@@ -115,7 +108,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'!=': [(a, b) => !equals(a, b), '≠']
 		},
 		operationDispatch = map(
-			([f, unicode]) => mecanismOperation(f, unicode || k),
+			([f, symbol]) => mecanismOperation(f, symbol || k),
 			knownOperations
 		)
 
@@ -162,7 +155,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 	return action(treat(rules, rule, treatOptions), k, v)
 }
 
-let mecanismOperation = (operatorFunction, unicode) => (recurse, k, v) => {
+let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let explanation = map(
 				curry(evaluateNode)(cache, situation, parsedRules),
@@ -186,13 +179,13 @@ let mecanismOperation = (operatorFunction, unicode) => (recurse, k, v) => {
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
-			classes={'inlineExpression ' + v.category}
+			classes={'inlineExpression ' + k}
 			value={nodeValue}
 			child={
 				<span className="nodeContent">
 					<span className="fa fa" />
 					{makeJsx(explanation[0])}
-					<span className="operator">{unicode}</span>
+					<span className="operator">{symbol}</span>
 					{makeJsx(explanation[1])}
 				</span>
 			}
@@ -202,7 +195,7 @@ let mecanismOperation = (operatorFunction, unicode) => (recurse, k, v) => {
 	return {
 		evaluate,
 		jsx,
-		operator: unicode,
+		operator: symbol,
 		// is this useful ?		text: rawNode,
 		explanation
 	}
