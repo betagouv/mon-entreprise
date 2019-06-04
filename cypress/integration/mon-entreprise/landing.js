@@ -14,8 +14,8 @@ describe('Landing test', function() {
 		cy.contains(fr ? 'Créer une entreprise' : 'Create a company in France')
 		cy.contains(
 			fr
-				? 'Estimer les cotisations et les taxes'
-				: 'Estimate contributions and taxes'
+				? 'Simuler les cotisations et les taxes'
+				: 'Simulate contributions and taxes'
 		)
 	})
 })
