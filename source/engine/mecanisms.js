@@ -537,10 +537,11 @@ export let mecanismReduction = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
 		abattement: defaultNode(0),
+		plafond: defaultNode(Infinity),
 		franchise: defaultNode(0)
 	}
 
-	let effect = ({ assiette, abattement, franchise, décote }) => {
+	let effect = ({ assiette, abattement, plafond, franchise, décote }) => {
 		let v_assiette = val(assiette)
 
 		if (v_assiette == null) return null
@@ -550,12 +551,12 @@ export let mecanismReduction = (recurse, k, v) => {
 				? 0
 				: décote
 				? do {
-						let plafond = val(décote.plafond),
+						let plafondDécote = val(décote.plafond),
 							taux = val(décote.taux)
 
-						v_assiette > plafond
+						v_assiette > plafondDécote
 							? v_assiette
-							: max(0, (1 + taux) * v_assiette - taux * plafond)
+							: max(0, (1 + taux) * v_assiette - taux * plafondDécote)
 				  }
 				: v_assiette
 
@@ -567,9 +568,9 @@ export let mecanismReduction = (recurse, k, v) => {
 				: abattement.category === 'percentage'
 				? max(
 						0,
-						montantFranchiséDécoté - val(abattement) * montantFranchiséDécoté
+						montantFranchiséDécoté - min(val(plafond), val(abattement) * montantFranchiséDécoté)
 				  )
-				: max(0, montantFranchiséDécoté - val(abattement))
+				: max(0, montantFranchiséDécoté - min(val(plafond), val(abattement)))
 			: montantFranchiséDécoté
 	}
 
