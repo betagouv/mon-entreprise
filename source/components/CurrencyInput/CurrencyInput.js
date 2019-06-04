@@ -38,7 +38,7 @@ class CurrencyInput extends Component {
 		// Only trigger the `onChange` event if the value has changed -- and not
 		// only its formating, we don't want to call it when a dot is added in `12.`
 		// for instance
-		if (!this.handleNextChange) {
+		if (!this.handleNextChange || !this.onChange) {
 			return
 		}
 		this.handleNextChange = false

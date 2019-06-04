@@ -118,10 +118,23 @@ describe('CurrencyInput', () => {
 
 	it('should not call onChange the value is the same as the current input value', () => {
 		let onChange = spy()
-		const wrapper = mount(<CurrencyInput value={1000} onChange={() => {}} />)
+		const wrapper = mount(<CurrencyInput value={2000} onChange={onChange} />)
 		const input = wrapper.find('input')
 		input.simulate('change', { target: { value: '2000', focus: () => {} } })
 		wrapper.setProps({ value: '2000' })
 		expect(onChange).not.to.have.been.called
+	})
+
+	it('should adapt its size to its content', () => {
+		const wrapper = mount(<CurrencyInput value={1000} />)
+		// It would be better to use `input.offsetWidth` but it's not supported by
+		// Enzyme/JSDOM
+		const getInlineWidth = () =>
+			getComputedStyle(
+				wrapper.find('.currencyInput__container').getDOMNode()
+			).getPropertyValue('width')
+		expect(getInlineWidth()).to.equal('')
+		wrapper.setProps({ value: '1000000' })
+		expect(Number(getInlineWidth().replace(/em$/, ''))).to.be.greaterThan(5)
 	})
 })
