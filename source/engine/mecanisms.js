@@ -565,7 +565,7 @@ export let mecanismReduction = (recurse, k, v) => {
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
-				: abattement.category === 'percentage'
+				: abattement.type === 'percentage'
 				? max(
 						0,
 						montantFranchiséDécoté - min(val(plafond), val(abattement) * montantFranchiséDécoté)
@@ -904,3 +904,11 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 export let mecanismError = (recurse, k, v) => {
 	throw new Error("Le mécanisme '" + k + "' est inconnu !" + v)
 }
+export let mecanismOnePossibility = dottedName => (recurse, k, v) => ({
+	...v,
+	'une possibilité': 'oui',
+	evaluate: (cache, situationGate, parsedRules, node) => ({
+		...node,
+		missingVariables: { [dottedName]: 1 }
+	})
+})
