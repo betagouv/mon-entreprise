@@ -193,6 +193,7 @@ let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 	)
 
 	return {
+		...v,
 		evaluate,
 		jsx,
 		operator: symbol,

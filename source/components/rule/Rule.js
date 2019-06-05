@@ -23,13 +23,13 @@ import {
 	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
-import Montant from 'Ui/Montant'
 import { AttachDictionary } from '../AttachDictionary'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import { serializeUnit } from 'Engine/units'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -64,6 +64,7 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
+			debugger
 			return (
 				<>
 					{this.state.viewSource ? (
@@ -107,6 +108,9 @@ export default compose(
 												{displayedRule.humanValue(
 													displayedRule.nodeValue,
 													language
+												)}
+												{displayedRule.unit && (
+													<span>{serializeUnit(displayedRule.unit)}</span>
 												)}
 											</span>
 										</div>

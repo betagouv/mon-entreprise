@@ -34,6 +34,7 @@ import translations from 'Règles/externalized.yaml'
 import { capitalise0 } from '../utils'
 import marked from './marked'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
+import { parseUnit } from 'Engine/units'
 
 /***********************************
 Functions working on one rule */
@@ -59,7 +60,8 @@ export let enrichRule = rule => {
 			icons: rule['icônes'],
 			summary: rule['résumé'],
 			format,
-			humanValue: format.human
+			humanValue: format.human,
+			...(rule.unité ? { unit: parseUnit(rule.unité) } : {})
 		}
 	} catch (e) {
 		console.log(e)

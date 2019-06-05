@@ -1,10 +1,13 @@
 /* Those are postprocessor functions for the Nearley grammar.ne. 
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
 
+import { inferUnit } from 'Engine/units'
+
 export let operation = operationType => ([A, , operator, , B]) => ({
 	[operator]: {
 		operationType,
-		explanation: [A, B]
+		explanation: [A, B],
+		unit: inferUnit(operator, A.unit, B.unit)
 	}
 })
 
