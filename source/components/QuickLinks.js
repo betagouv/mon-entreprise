@@ -1,12 +1,12 @@
 /* @flow */
 import { goToQuestion } from 'Actions/actions'
 import withLanguage from 'Components/utils/withLanguage'
-import { compose, toPairs } from 'ramda'
+import { compose, contains, reject, toPairs } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { animated, Spring } from 'react-spring'
+
 import type { Location } from 'react-router'
 
 type OwnProps = {
@@ -15,40 +15,35 @@ type OwnProps = {
 type Props = OwnProps & {
 	goToQuestion: string => void,
 	location: Location,
+	quickLinksToHide: Array<string>,
 	show: boolean
 }
 
-const QuickLinks = ({ goToQuestion, show, quickLinks }: Props) => {
+const QuickLinks = ({ goToQuestion, quickLinks, quickLinksToHide }: Props) => {
+	if (!quickLinks) {
+		return null
+	}
+	const links = compose(
+		toPairs,
+		reject(dottedName => contains(dottedName, quickLinksToHide))
+	)(quickLinks)
 	return (
-		<Spring
-			to={{
-				height: show ? 'auto' : 0,
-				opacity: show ? 1 : 0
-			}}
-			native>
-			{styles => (
-				<animated.div
-					className="ui__ answer-group"
-					style={{
-						...styles,
-						display: 'flex',
-						overflow: 'hidden',
-						flexWrap: 'wrap-reverse',
-						fontSize: '110%',
-						justifyContent: 'space-evenly',
-						marginBottom: '1rem'
-					}}>
-					{toPairs(quickLinks).map(([label, dottedName]) => (
-						<button
-							key={label}
-							className="ui__ small button"
-							onClick={() => goToQuestion(dottedName)}>
-							<Trans>{label}</Trans>
-						</button>
-					))}
-				</animated.div>
-			)}
-		</Spring>
+		<p>
+			<small>Répondre à une question précise : </small>
+			<br />
+			{links.map(([label, dottedName]) => (
+				<>
+					<button
+						key={dottedName}
+						className="ui__ link-button"
+						onClick={() => goToQuestion(dottedName)}>
+						<Trans>{label}</Trans>
+					</button>{' '}
+					/{' '}
+				</>
+			))}{' '}
+			{/* <button className="ui__ link-button">Voir la liste</button> */}
+		</p>
 	)
 }
 
@@ -58,7 +53,11 @@ export default (compose(
 	connect(
 		(state, props) => ({
 			key: props.language,
-			quickLinks: state.simulation?.config["questions à l'affiche"]
+			quickLinks: state.simulation?.config["questions à l'affiche"],
+			quickLinksToHide: [
+				...state.conversationSteps.foldedSteps,
+				state.conversationSteps.unfoldedStep
+			]
 		}),
 		{
 			goToQuestion

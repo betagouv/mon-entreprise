@@ -6,10 +6,12 @@ objectifs:
   - contrat salarié . salaire . net après impôt
 
 questions à l'affiche:
-  Cadre: contrat salarié . statut cadre
-  Temps partiel: contrat salarié . temps partiel
-  Localisation: établissement . localisation
+  Cadre: contrat salarié . statut cadre . choix statut cadre
   CDD: contrat salarié . CDD
+  Temps partiel: contrat salarié . temps partiel
+  Commune: établissement . localisation
+  JEI: contrat salarié . statut JEI
+  Association: entreprise . association non lucrative
 
 situation:
   contrat salarié: oui

@@ -83,6 +83,9 @@
 .ui__.button.simple.selected {
 	opacity: 0.8;
 }
+.ui__.button.simple:not(:last-of-type) {
+	margin-right: 0.6em;
+}
 .ui__.button.cta,
 .ui__.inverted-button.cta {
 	margin: 2rem;
@@ -108,7 +111,7 @@
 .ui__.dashed-button,
 .ui__.text-button {
 	border: none;
-	display: inline-block;
+	display: inline;
 	font-size: inherit;
 	font-weight: inherit;
 	font-family: inherit;

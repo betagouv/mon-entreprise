@@ -15,8 +15,9 @@ questions:
     - entreprise . rémunération du dirigeant
 
 questions à l'affiche:
-  Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
-  Année d'activité: entreprise . année d'activité
+  Type d'activité: entreprise . catégorie d'activité
+  ACRE: entreprise . année d'activité
+  Charges: entreprise . charges
 
 situation:
   indépendant: oui

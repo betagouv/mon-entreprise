@@ -16,9 +16,9 @@ questions:
     - entreprise . rémunération du dirigeant
 
 questions à l'affiche:
-  Année d'activité: entreprise . année d'activité
-  Mutuelle: contrat salarié . complémentaire santé . part employeur
-  Localisation: établissement . localisation
+  ACRE: entreprise . année d'activité
+  Commune: établissement . localisation
+  Charges: entreprise . charges
 
 situation:
   auto entrepreneur: non

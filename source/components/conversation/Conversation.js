@@ -2,6 +2,7 @@ import { goToQuestion, resetSimulation, skipQuestion } from 'Actions/actions'
 import { T } from 'Components'
 import Aide from 'Components/Aide'
 import Answers from 'Components/AnswerList'
+import QuickLinks from 'Components/QuickLinks'
 import Scroll from 'Components/utils/Scroll'
 import withColours from 'Components/utils/withColours'
 import { getInputComponent } from 'Engine/generateQuestions'
@@ -54,42 +55,40 @@ export default compose(
 	const [showAnswerModal, setShowAnswerModal] = useState(false)
 
 	return (
-		<>
-			<Animate.fromTop>
-				<div
+		<Animate.fromTop>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'flex-start',
+					alignItems: 'baseline'
+				}}>
+				<p
 					style={{
-						display: 'flex',
-						justifyContent: 'flex-start',
-						alignItems: 'baseline'
+						flex: 1,
+						maxWidth: '50%'
 					}}>
-					<p
-						style={{
-							flex: 1,
-							maxWidth: '50%'
-						}}>
-						Précision du résultat :
-						<Progress progress={progress} />
-					</p>
-					<div style={{ flex: 1 }} />
+					<small>Précision du résultat :</small>
+					<Progress progress={progress} />
+				</p>
+				<div style={{ flex: 1 }} />
 
-					{arePreviousAnswers ? (
-						<button
-							style={{ marginRight: '1em', alignSelf: 'baseline' }}
-							className="ui__ small  button "
-							onClick={() => setShowAnswerModal(true)}>
-							<T>Voir mes réponses</T>
-						</button>
-					) : (
-						<span />
-					)}
+				{arePreviousAnswers ? (
 					<button
-						className="ui__ small simple skip button left"
-						style={{ alignSelf: 'baseline' }}
-						onClick={() => resetSimulation()}>
-						⟲ <T>Recommencer</T>
+						style={{ marginRight: '1em', alignSelf: 'baseline' }}
+						className="ui__ small  button "
+						onClick={() => setShowAnswerModal(true)}>
+						<T>Voir mes réponses</T>
 					</button>
-				</div>
-			</Animate.fromTop>
+				) : (
+					<span />
+				)}
+				<button
+					className="ui__ small simple skip button left"
+					style={{ alignSelf: 'baseline' }}
+					onClick={() => resetSimulation()}>
+					⟲ <T>Recommencer</T>
+				</button>
+			</div>
 
 			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}
 
@@ -125,14 +124,7 @@ export default compose(
 									</React.Fragment>
 								)}
 							</div>
-							{/* {!arePreviousAnswers && (
-								<div style={{ display: 'flex', alignItems: 'center' }}>
-									<span style={{ marginRight: '1rem' }}>
-										Aller aux questions :{' '}
-									</span>
-									<QuickLinks show />
-								</div>
-							)} */}
+							<QuickLinks />
 						</Scroll.toElement>
 					) : (
 						<>
@@ -151,6 +143,6 @@ export default compose(
 					)}
 				</div>
 			</div>
-		</>
+		</Animate.fromTop>
 	)
 })

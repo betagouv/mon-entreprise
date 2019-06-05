@@ -41,7 +41,7 @@ describe('Landing test', function() {
 			force: true
 		})
 		cy.contains(fr ? 'Cotisations et contributions' : 'All contributions')
-		cy.contains(fr ? "Année d'activité" : 'Years of activity').click()
+		cy.contains(fr ? 'ACRE' : 'ACRE').click()
 		cy.contains(
 			fr ? "Quel est l'âge de l'entreprise" : 'How old is the company'
 		)

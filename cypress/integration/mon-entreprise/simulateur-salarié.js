@@ -33,9 +33,9 @@ if (fr) {
 		it('should save the current simulation', function() {
 			salaryInput('Salaire net').type('471')
 			cy.wait(1000)
-			cy.contains('passer').click()
-			cy.contains('passer').click()
-			cy.contains('passer').click()
+			cy.contains('Passer').click()
+			cy.contains('Passer').click()
+			cy.contains('Passer').click()
 			// Wanted to use cypress.clock(), but can't because of piwik changing Date prototype (!)
 			cy.wait(1100)
 			cy.visit('/sécurité-sociale/salarié')
