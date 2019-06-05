@@ -4,6 +4,8 @@ objectifs:
     objectifs:
       - entreprise . chiffre d'affaires
       - entreprise . charges
+      - entreprise . rémunération du dirigeant
+      - entreprise . résultat net
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
