@@ -18,7 +18,7 @@
     le minimum de:
       - multiplication:
           assiette: distance annuelle
-          taux: 0.25
+          taux: indemnité kilométrique
       - 200
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
@@ -30,11 +30,24 @@
       valeur attendue: 200
 
 - espace: contrat salarié . indemnité kilométrique vélo
+  nom: indemnité kilométrique
+  unité: €/km
+  formule: 0.25
+
+- espace: contrat salarié . indemnité kilométrique vélo
   nom: distance annuelle
-  description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
   période: année
-  formule: 4 * 218
-  note: 4 km par jour sur 218 jours.
+  formule: distance journalière * jours travaillés
+
+- espace: contrat salarié . indemnité kilométrique vélo
+  nom: distance journalière
+  description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
+  formule: 4
+  unité: km
+- espace: contrat salarié . indemnité kilométrique vélo
+  nom: jours travaillés
+  formule: 218
+  unité: jours
 
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: active
