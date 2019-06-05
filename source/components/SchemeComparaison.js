@@ -674,7 +674,7 @@ export default (compose(
 					})('contrat salarié . salaire . net')
 				}
 			}),
-			(e, state) => console.log(e) || {}
+			e => console.log(e) || {}
 		),
 
 		{

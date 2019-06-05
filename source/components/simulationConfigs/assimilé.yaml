@@ -2,8 +2,6 @@ objectifs:
   🏢 Votre entreprise:
     - entreprise . chiffre d'affaires
     - entreprise . charges
-    - entreprise . rémunération du dirigeant
-    - entreprise . résultat net
   👩‍💼 Votre revenu:
     - contrat salarié . rémunération . total
     - contrat salarié . cotisations
