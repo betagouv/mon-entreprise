@@ -1,4 +1,4 @@
-import { resetSimulation } from 'Actions/actions'
+import { goToQuestion, resetSimulation, skipQuestion } from 'Actions/actions'
 import { T } from 'Components'
 import Aide from 'Components/Aide'
 import Answers from 'Components/AnswerList'
@@ -34,19 +34,21 @@ export default compose(
 			flatRules: flatRulesSelector(state),
 			currentQuestion: currentQuestionSelector(state),
 			previousAnswers: state.conversationSteps.foldedSteps,
-			noNextSteps: nextStepsSelector(state).length == 0,
+			nextSteps: nextStepsSelector(state),
 			progress: simulationProgressSelector(state)
 		}),
-		{ resetSimulation }
+		{ resetSimulation, skipQuestion, goToQuestion }
 	)
 )(function Conversation({
-	noNextSteps,
+	nextSteps,
 	previousAnswers,
 	currentQuestion,
 	customEndMessages,
 	flatRules,
 	progress,
-	resetSimulation
+	resetSimulation,
+	skipQuestion,
+	goToQuestion
 }) {
 	const arePreviousAnswers = previousAnswers.length > 0
 	const [showAnswerModal, setShowAnswerModal] = useState(false)
@@ -93,15 +95,33 @@ export default compose(
 
 			<div className="ui__ full-width choice-group">
 				<div className="ui__ container">
-					{!noNextSteps ? (
+					{nextSteps.length ? (
 						<Scroll.toElement onlyIfNotVisible>
 							<Aide />
 							<div id="currentQuestion">
 								{currentQuestion && (
 									<React.Fragment key={currentQuestion}>
-										<Animate.fromTop>
+										<Animate.fadeIn>
 											{getInputComponent(flatRules)(currentQuestion)}
-										</Animate.fromTop>
+										</Animate.fadeIn>
+										<div className="ui__ answer-group">
+											{previousAnswers.length > 0 && (
+												<button
+													onClick={() =>
+														goToQuestion(previousAnswers.slice(-1)[0])
+													}
+													className="ui__ simple small skip button left">
+													← Précédent
+												</button>
+											)}
+											{nextSteps.length > 0 && (
+												<button
+													onClick={() => skipQuestion(nextSteps[0])}
+													className="ui__ simple small skip button right">
+													Passer →
+												</button>
+											)}
+										</div>
 									</React.Fragment>
 								)}
 							</div>

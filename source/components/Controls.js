@@ -1,4 +1,4 @@
-import { hideControl, setCurrentQuestion } from 'Actions/actions'
+import { goToQuestion, hideControl } from 'Actions/actions'
 import { makeJsx } from 'Engine/evaluation'
 import { createMarkdownDiv } from 'Engine/marked'
 import { compose } from 'ramda'
@@ -13,7 +13,7 @@ import withColours from './utils/withColours'
 
 function Controls({
 	controls,
-	setCurrentQuestion,
+	goToQuestion,
 	hideControl,
 	foldedSteps,
 	hiddenControls,
@@ -60,7 +60,7 @@ function Controls({
 												<button
 													key={solution.cible}
 													className="ui__ link-button"
-													onClick={() => setCurrentQuestion(solution.cible)}>
+													onClick={() => goToQuestion(solution.cible)}>
 													{solution.texte}
 												</button>
 											</div>
@@ -91,7 +91,7 @@ export default compose(
 			hiddenControls: state.hiddenControls
 		}),
 		{
-			setCurrentQuestion,
+			goToQuestion,
 			hideControl
 		}
 	),

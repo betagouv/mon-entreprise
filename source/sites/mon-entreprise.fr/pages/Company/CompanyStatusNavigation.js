@@ -4,7 +4,6 @@ import { goBackToPreviousQuestion } from 'Actions/companyStatusActions'
 import { T } from 'Components'
 import React from 'react'
 import { connect } from 'react-redux'
-import { SkipButton } from 'Ui/Button'
 type ownProps = {
 	onSkip?: () => void
 }
@@ -18,10 +17,14 @@ export default (connect(
 )(({ goBackToPreviousQuestion, onSkip }: Props) => (
 	<div className="ui__ answer-group">
 		<button
-			className="ui__ simple skip button left"
+			className="ui__ small simple skip button left"
 			onClick={goBackToPreviousQuestion}>
 			← <T>Précédent</T>
 		</button>
-		{onSkip && <SkipButton onClick={onSkip} />}
+		{onSkip && (
+			<button onClick={onSkip} className={'ui__ simple skip button small'}>
+				<T>Passer</T> →
+			</button>
+		)}
 	</div>
 )): React$ComponentType<ownProps>)

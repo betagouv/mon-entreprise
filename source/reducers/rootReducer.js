@@ -98,13 +98,8 @@ function conversationSteps(
 			priorityNamespace: state.priorityNamespace
 		}
 	if (name === 'unfold') {
-		// if a step had already been unfolded, bring it back !
 		return {
-			foldedSteps: [
-				...without([step], state.foldedSteps),
-				...(state.unfoldedStep ? [state.unfoldedStep] : [])
-			],
-
+			foldedSteps: without([step], state.foldedSteps),
 			unfoldedStep: step,
 			priorityNamespace: state.priorityNamespace
 		}

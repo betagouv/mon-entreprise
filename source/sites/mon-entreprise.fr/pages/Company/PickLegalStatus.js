@@ -4,7 +4,7 @@ import { React, T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, filter } from 'ramda'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -37,7 +37,12 @@ const StatusButton = withSitePaths(
 		}) => (
 			<div className="ui__ answer-group">
 				<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
-		{status.includes('auto-entrepreneur') ? <T>Devenir</T> :<T>Créer une</T>} {t(status)}
+					{status.includes('auto-entrepreneur') ? (
+						<T>Devenir</T>
+					) : (
+						<T>Créer une</T>
+					)}{' '}
+					{t(status)}
 				</Link>
 			</div>
 		)
@@ -128,12 +133,12 @@ const SetMainStatus = ({
 			<div className="ui__ answer-group">
 				<button
 					onClick={goBackToPreviousQuestion}
-					className="ui__ simple skip button left">
+					className="ui__ simple small skip button left">
 					← <T>Précédent</T>
 				</button>
 				<Link
 					to={sitePaths.sécuritéSociale.index}
-					className="ui__ simple skip button">
+					className="ui__ simple small skip button">
 					<T>Choisir plus tard</T> →
 				</Link>
 			</div>

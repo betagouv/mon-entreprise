@@ -1,4 +1,4 @@
-import { resetSimulation, setCurrentQuestion } from 'Actions/actions'
+import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
 import withColours from 'Components/utils/withColours'
@@ -37,7 +37,7 @@ const AnswerList = ({
 	onClose,
 	language,
 	colours,
-	setCurrentQuestion,
+	goToQuestion,
 	resetSimulation
 }) => (
 	<Overlay onClose={onClose} className="answer-list">
@@ -66,7 +66,7 @@ const AnswerList = ({
 							<button
 								className="answer"
 								onClick={() => {
-									setCurrentQuestion(answer.id)
+									goToQuestion(answer.id)
 									onClose()
 								}}>
 								<span
@@ -96,7 +96,7 @@ export default compose(
 		state => ({ answers: answerWithValueSelector(state) }),
 		{
 			resetSimulation,
-			setCurrentQuestion
+			goToQuestion
 		}
 	)
 )(AnswerList)

@@ -261,11 +261,12 @@ let currentMissingVariablesByTargetSelector = createSelector(
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulation?.config.questions
+		state => state.simulation?.config.questions,
+		state => state.conversationSteps.foldedSteps
 	],
-	(mv, questions) => {
+	(mv, questions, foldedSteps) => {
 		let nextSteps = getNextSteps(mv)
-
+		questions = difference(nextSteps, foldedSteps)
 		if (questions && questions.blacklist) {
 			return difference(nextSteps, questions.blacklist)
 		}
