@@ -33,22 +33,30 @@ export default compose(
 	)
 )(function Conversation({
 	nextSteps,
-
 	previousAnswers,
 	currentQuestion,
 	customEndMessages,
 	flatRules,
-	progress,
 	resetSimulation,
 	skipQuestion,
 	goToQuestion
 }) {
+	const goToNext = () => skipQuestion(nextSteps[0])
+	const goToPrevious = () => goToQuestion(previousAnswers.slice(-1)[0])
+	const handleKeyDown = ({ key }) => {
+		if (['Escape'].includes(key)) {
+			goToNext()
+		}
+	}
 	return (
 		<Scroll.toElement onlyIfNotVisible>
 			{nextSteps.length ? (
 				<>
 					<Aide />
-					<div id="currentQuestion">
+					<div
+						tabIndex="0"
+						style={{ outline: 'none' }}
+						onKeyDown={handleKeyDown}>
 						{currentQuestion && (
 							<React.Fragment key={currentQuestion}>
 								<Animate.fadeIn>
@@ -58,16 +66,14 @@ export default compose(
 									{previousAnswers.length > 0 && (
 										<>
 											<button
-												onClick={() =>
-													goToQuestion(previousAnswers.slice(-1)[0])
-												}
+												onClick={goToPrevious}
 												className="ui__ simple small skip button left">
 												← Précédent
 											</button>
 										</>
 									)}
 									<button
-										onClick={() => skipQuestion(nextSteps[0])}
+										onClick={goToNext}
 										className="ui__ simple small skip button right">
 										Passer →
 									</button>
