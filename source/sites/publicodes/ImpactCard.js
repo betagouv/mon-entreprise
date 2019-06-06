@@ -99,7 +99,8 @@ export default compose(
 					color: #444;
 				`}>
 				<div>
-					Soit {value} {unit} &nbsp;
+					Soit <strong>{value}</strong> {unit}
+					&nbsp;
 					<Link to={sitePaths.documentation.index + '/' + dottedName}>
 						explication
 					</Link>
