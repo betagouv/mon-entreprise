@@ -35,8 +35,6 @@ export default () => {
 					display: flex;
 					flex-wrap: wrap;
 					width: 80vw;
-					position: absolute;
-					left: 10vw;
 					justify-content: center;
 				`}>
 				{Object.entries(scenarios).map(([nom, s]) => (
@@ -97,6 +95,13 @@ export default () => {
 					</li>
 				))}
 			</ul>
+			<p>
+				<em>
+					Les conséquences de ces scénarios sont bien évidemment très
+					compliquées à prévoir : ces descriptions sont indicatives et
+					mériteraient d'être davantage sourcées.
+				</em>
+			</p>
 		</section>
 	)
 }
