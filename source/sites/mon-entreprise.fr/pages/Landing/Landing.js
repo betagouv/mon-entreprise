@@ -10,9 +10,9 @@ import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Footer from '../../layout/Footer/Footer'
+import logoSvg from './../../images/logo.svg'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
-import logoSvg from './logo.svg'
 import type { SitePaths } from 'Components/utils/withSitePaths'
 
 type Props = {
