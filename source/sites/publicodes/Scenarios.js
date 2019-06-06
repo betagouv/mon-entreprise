@@ -2,6 +2,7 @@ import { React, emoji } from 'Components'
 import { useContext } from 'react'
 import scenarios from './scenarios.yaml'
 import { StoreContext } from './StoreContext'
+import { Link } from 'react-router-dom'
 
 export default () => {
 	let { state, dispatch } = useContext(StoreContext)
@@ -10,19 +11,23 @@ export default () => {
 		<section id="scenarios">
 			<h1>Quel futur souhaitez vous ?</h1>
 			<p>
-				Pour mieux comprendre l'impact de notre quotidien sur le climat, nous
-				l'avons converti en temps.
+				Le jeu est simple : plus on émet de gaz à effet de serre, plus on se
+				dirige vers une catastrophe climatique. Ces émissions se mesurent en{' '}
+				<Link to="/à-propos">kilos équivalent CO₂</Link>. Pour mieux comprendre
+				l'impact de notre quotidien sur le climat,{' '}
+				<strong>nous l'avons converti en temps</strong>.
 			</p>
 			<p>
-				Si un vol émet 500 kg d'équivalent CO₂ (c'est ainsi que l'on mesure la
-				contribution au réchauffement climatique), et qu'on définit la limite
-				acceptable par personne à 6 tonnes, alors ce vol consomme un douzième de
-				notre crédit à l'année, soit exactement un mois : sur 2 petites heures
-				de vol, j'ai grillé 1 mois de crédit annuel !
+				<em>
+					Si un voyage en avion en émet 500 kg et que la limite acceptable par
+					personne et par an est de 6 tonnes, alors ce vol consomme un douzième
+					de notre crédit à l'année : sur 2 petites heures de vol, j'ai grillé 1
+					mois de mon crédit annuel !
+				</em>
 			</p>
 			<p>
-				Mais quelle doit être cette limite par personne ? Voici quatre
-				scénarios, à vous de choisir ! &nbsp;{emoji('👇')}
+				Mais quelle doit être cette limite par personne ? Voici trois scénarios,
+				à vous de choisir ! &nbsp;{emoji('👇')}
 			</p>
 			<ul
 				css={`
@@ -32,6 +37,7 @@ export default () => {
 					width: 80vw;
 					position: absolute;
 					left: 10vw;
+					justify-content: center;
 				`}>
 				{Object.entries(scenarios).map(([nom, s]) => (
 					<li
@@ -40,6 +46,7 @@ export default () => {
 							width: 16vw;
 							min-width: 16em;
 							margin: 1em;
+							border: 2px solid var(--colour);
 
 							h2 {
 								margin-top: 0;
@@ -74,7 +81,7 @@ export default () => {
 								<span>{emoji(s.icône)}</span>&nbsp;
 								{s.titre}
 							</h2>
-							<div>
+							<div title="Réchauffement à la fin du siècle">
 								<strong>
 									{emoji('🌡️ ')} {s.réchauffement}
 								</strong>

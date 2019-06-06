@@ -64,12 +64,17 @@ export default withRouter(({ location }) => {
 					css={`
 						text-align: center;
 						padding: 0.6rem 1rem !important;
+						background: var(--colour);
+						color: white;
+						a {
+							color: inherit;
+						}
 					`}>
-					Votre choix de futur
+					Votre futur :
 					<div
 						css={`
 							img {
-								font-size: 200%;
+								font-size: 250%;
 							}
 						`}>
 						{emoji(scenario.icône)}
