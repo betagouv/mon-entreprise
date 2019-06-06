@@ -74,7 +74,7 @@ section.ui__:not(:first-of-type) {
 .ui__.notice {
 	font-size: 85%;
 	color: rgba(0, 0, 0, 0.6);
-	color: var(--lighterInverseTextColour);
+	color: var(--darkColour);
 }
 .ui__ .colored-bg {
 	background: var(--lightestColour);

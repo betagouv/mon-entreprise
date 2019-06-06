@@ -1,7 +1,9 @@
+import { T } from 'Components'
 import Controls from 'Components/Controls'
 import Conversation from 'Components/conversation/Conversation'
 import ResultReliability from 'Components/conversation/ResultReliability'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
+import PageFeedback from 'Components/Feedback/PageFeedback'
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
 import { connect } from 'react-redux'
@@ -45,6 +47,15 @@ export default connect(state => ({
 						{progress < 1 && (
 							<Progress progress={progress} className="ui__ full-width" />
 						)}
+						<br />
+						<PageFeedback
+							customMessage={
+								<T k="feedback.simulator">
+									Êtes-vous satisfait de ce simulateur ?
+								</T>
+							}
+							customEventName="rate simulator"
+						/>{' '}
 						{explanations}
 					</Animate.fromTop>
 				</>

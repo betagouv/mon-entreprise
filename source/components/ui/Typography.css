@@ -118,6 +118,9 @@ textarea {
 	font-family: inherit;
 }
 
-small {
-	opacity: 0.6;
+small,
+.ui__.notice {
+	color: rgba(0, 0, 0, 0.6);
+	color: var(--darkColour);
+	opacity: 0.8;
 }
