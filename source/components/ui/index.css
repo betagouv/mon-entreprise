@@ -61,7 +61,7 @@ section.ui__:not(:first-of-type) {
 	padding-left: 0.6rem;
 }
 .ui__.container .ui__.full-width {
-	--margin: calc((850px - 100vw) / 2);
+	--margin: calc((850px - 100vw - 0.6rem) / 2);
 	margin-right: var(--margin);
 	margin-left: var(--margin);
 }

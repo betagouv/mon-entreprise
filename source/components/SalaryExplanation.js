@@ -1,51 +1,78 @@
-import { React, T } from 'Components'
-import PageFeedback from 'Components/Feedback/PageFeedback'
+import Distribution from 'Components/Distribution'
+import PaySlip from 'Components/PaySlip'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
+import React from 'react'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
+import { formValueSelector } from 'redux-form'
 import * as Animate from 'Ui/animate'
-import SalaryCompactExplanation from './SalaryCompactExplanation'
-import SalaryFirstExplanation from './SalaryFirstExplanation'
 
 export default compose(
 	withTracker,
 	connect(state => ({
-		showCompactView: !!state.conversationSteps.foldedSteps.length
+		showDistributionFirst: !state.conversationSteps.foldedSteps.length
 	}))
-)(
-	class SalaryExplanation extends React.Component {
-		render() {
-			return (
-				<Animate.fromTop>
-					{!this.props.showCompactView ? (
-						<>
-							{/* <PageFeedback
-								customMessage={
-									<T k="feedback.simulator">
-										Êtes-vous satisfait de ce simulateur ?
-									</T>
-								}
-								customEventName="rate simulator"
-							/> */}
-							<SalaryFirstExplanation {...this.props} />
-							{this.props.protectionText}
-						</>
-					) : (
-						<>
-							<SalaryCompactExplanation {...this.props} />
-							<PageFeedback
-								customMessage={
-									<T k="feedback.simulator">
-										Êtes-vous satisfait de ce simulateur ?
-									</T>
-								}
-								customEventName="rate simulator"
-							/>
-						</>
-					)}
-					<div style={{ textAlign: 'center' }} />
-				</Animate.fromTop>
-			)
-		}
-	}
+)(function SalaryExplanation({ showDistributionFirst }) {
+	return (
+		<Animate.fromTop key={showDistributionFirst}>
+			{showDistributionFirst ? (
+				<>
+					<DistributionSection />
+					<PaySlipSection />
+				</>
+			) : (
+				<>
+					<PaySlipSection />
+					<DistributionSection />
+				</>
+			)}
+			<p className="ui__ notice">
+				<Trans i18nKey="payslip.notice">
+					Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
+					être opposable. Pour plus d&apos;informations, rendez vous sur&nbsp;
+					<a
+						alt="service-public.fr"
+						href="https://www.service-public.fr/particuliers/vosdroits/F559">
+						service-public.fr
+					</a>
+					.
+				</Trans>
+			</p>
+			<p className="ui__ notice">
+				<Trans i18nKey="payslip.disclaimer">
+					Il ne prend pour l'instant pas en compte les accords et conventions
+					collectives, ni la myriade d'aides aux entreprises. Trouvez votre
+					convention collective{' '}
+					<a href="https://socialgouv.github.io/conventions-collectives">ici</a>
+					, et explorez les aides sur&nbsp;
+					<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
+				</Trans>
+			</p>
+		</Animate.fromTop>
+	)
+})
+
+const PaySlipSection = connect(state => ({
+	period: formValueSelector('conversation')(state, 'période')
+}))(({ period }) => (
+	<section>
+		<h2>
+			<Trans>
+				{period === 'mois'
+					? 'Fiche de paie mensuelle'
+					: 'Détail annuel des cotisations'}
+			</Trans>
+		</h2>
+		<PaySlip />
+	</section>
+))
+
+const DistributionSection = () => (
+	<section>
+		<h2>
+			<Trans>À quoi servent mes cotisations ?</Trans>
+		</h2>
+		<Distribution />
+	</section>
 )

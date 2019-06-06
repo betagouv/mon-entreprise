@@ -1,6 +1,5 @@
 .progress__container {
-	border-radius: 0.2rem;
-	height: 0.4rem;
+	height: 0.2rem;
 	background-color: var(--lighterColour);
 	overflow: hidden;
 }

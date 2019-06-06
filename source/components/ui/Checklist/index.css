@@ -95,7 +95,7 @@ ul.ui__.checklist {
 }
 
 .ui__.checklist-explanation {
-	padding-left: calc(0.6rem + 8px);
-	border-left: 2px dashed var(--colour);
+	padding-left: calc(0.6rem + 10px);
+	border-left: 1px solid var(--lighterColour);
 	margin: 0 0 -1rem 8px;
 }

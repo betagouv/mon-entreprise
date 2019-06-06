@@ -37,10 +37,9 @@ export const fromBottom = ({
 		{React.Children.map(children, (item, i) => ({ y, ...style }) => (
 			<animated.div
 				key={i}
-				className={item && item.props.className}
 				style={{
 					transform: y.interpolate(y => `translate3d(0, ${y}px,0)`),
-					...(item && item.props.style),
+
 					...style,
 					...inheritedStyle
 				}}>
@@ -68,7 +67,9 @@ export const fromTop = ({
 			<animated.div
 				key={i}
 				style={{
-					transform: y.interpolate(y => `translate3d(0, ${y}px,0)`),
+					transform: y.interpolate(y =>
+						y ? `translate3d(0, ${y}px,0)` : 'none'
+					),
 					...style,
 					...inheritedStyle
 				}}>

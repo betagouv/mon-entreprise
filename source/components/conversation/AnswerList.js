@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
 import Montant from 'Ui/Montant'
-import { softCatch } from '../utils'
+import { softCatch } from '../../utils'
 import './AnswerList.css'
 
 const formatAnswer = (answer, language) => {

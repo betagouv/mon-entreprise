@@ -7,6 +7,7 @@ import {
 import classnames from 'classnames'
 import { T } from 'Components'
 import Conversation from 'Components/conversation/Conversation'
+import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PeriodSwitch from 'Components/PeriodSwitch'
 // $FlowFixMe
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
@@ -206,6 +207,7 @@ const SchemeComparaison = ({
 					</T>
 				) : (
 					<div className="ui__ container">
+						<SeeAnswersButton />
 						<Conversation />
 					</div>
 				)}

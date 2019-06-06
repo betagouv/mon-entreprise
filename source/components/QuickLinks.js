@@ -28,9 +28,8 @@ const QuickLinks = ({ goToQuestion, quickLinks, quickLinksToHide }: Props) => {
 		reject(dottedName => contains(dottedName, quickLinksToHide))
 	)(quickLinks)
 	return (
-		<p>
-			<small>Répondre à une question précise : </small>
-			<br />
+		<span>
+			<small>Autres questions : </small>
 			{links.map(([label, dottedName]) => (
 				<>
 					<button
@@ -43,7 +42,7 @@ const QuickLinks = ({ goToQuestion, quickLinks, quickLinksToHide }: Props) => {
 				</>
 			))}{' '}
 			{/* <button className="ui__ link-button">Voir la liste</button> */}
-		</p>
+		</span>
 	)
 }
 

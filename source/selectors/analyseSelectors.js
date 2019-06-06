@@ -265,8 +265,7 @@ export let nextStepsSelector = createSelector(
 		state => state.conversationSteps.foldedSteps
 	],
 	(mv, questions, foldedSteps) => {
-		let nextSteps = getNextSteps(mv)
-		questions = difference(nextSteps, foldedSteps)
+		let nextSteps = difference(getNextSteps(mv), foldedSteps)
 		if (questions && questions.blacklist) {
 			return difference(nextSteps, questions.blacklist)
 		}

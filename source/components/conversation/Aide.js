@@ -6,8 +6,8 @@ import { compose } from 'ramda'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import References from '../rule/References'
 import './Aide.css'
-import References from './rule/References'
 
 export default compose(
 	connect(

@@ -739,9 +739,7 @@
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
-      solution:
-        cible: contrat salarié . temps partiel
-        texte: Est-ce un temps partiel ?
+
     - si:
         toutes ces conditions:
           - brut de base [mensuel] > 10000
