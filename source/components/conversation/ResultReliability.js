@@ -5,7 +5,7 @@ export default function ResultReliability({ progress }) {
 	return (
 		<span>
 			<small>
-				Fiabilité du résultat :{' '}
+				Précision du résultat :{' '}
 				<strong>
 					{progress === 0
 						? 'Mauvaise'
