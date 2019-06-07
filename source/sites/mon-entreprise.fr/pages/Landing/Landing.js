@@ -49,12 +49,12 @@ export default compose(
 			/>
 			<header>
 				<h1>
-					<T k="landing.title">Le guide officiel du créateur d'entreprise</T>
+					<T k="landing.title">L'assistant officiel du créateur d'entreprise</T>
 				</h1>
 				<p className="ui__ lead">
 					<T k="landing.subtitle">
-						Toutes les ressources nécessaires pour gérer votre activité, du
-						statut juridique à l'embauche.
+						Les ressources nécessaires pour développer votre activité, du statut
+						juridique à l'embauche.
 					</T>
 				</p>
 			</header>
