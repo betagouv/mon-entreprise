@@ -74,7 +74,7 @@ export default compose(
 					{emoji('💶')}{' '}
 					<T k="landing.choix2">
 						Simuler les cotisations et les taxes
-						<small>(dirigeant et salarié)</small>
+						<small>(chef d'entreprise ou salarié)</small>
 					</T>
 				</Link>
 				<Link

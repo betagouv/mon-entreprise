@@ -192,26 +192,6 @@ const SchemeComparaison = ({
 					</div>
 				</>
 			)}
-			<div className="all">
-				{!conversationStarted ? (
-					<T k="comparaisonRégimes.simulationText">
-						<h2 style={{ margin: '1rem' }}>
-							Comparez vos revenus, votre retraite et vos indemnités maladies en
-							1 minute
-						</h2>
-						<button
-							className="ui__ cta plain button"
-							onClick={startConversation}>
-							Commencer
-						</button>
-					</T>
-				) : (
-					<div className="ui__ container">
-						<SeeAnswersButton />
-						<Conversation />
-					</div>
-				)}
-			</div>
 
 			{conversationStarted && (
 				<>
@@ -513,47 +493,67 @@ const SchemeComparaison = ({
 						</div>
 						<div className="auto">Oui</div>
 					</T>
+					{!hideAutoEntrepreneur && (
+						<T k="comparaisonRégimes.plafondCA">
+							<h3 className="legend">Plafond de chiffre d'affaires</h3>
+							<div className="AS-et-indep">
+								<T>Non</T>
+							</div>
+							<div className="auto">
+								<T>Oui</T>
+								<small>
+									(70 000 € en services / 170 000 € en vente de biens,
+									restauration ou hébergement)
+								</small>
+							</div>
+						</T>
+					)}
+					<T k="comparaisonRégimes.comptabilité">
+						<h3 className="legend">Gestion comptable, sociale, juridique...</h3>
+						<div className="AS-et-indep">
+							Accompagnement fortement conseillé
+							<small>
+								(expert comptable, comptable, centre de gestion agrée...)
+							</small>
+						</div>
+
+						<div className="auto">
+							Simplifiée{' '}
+							<small>(peut être gérée par l'auto-entrepreneur)</small>
+						</div>
+					</T>
 				</>
 			) : (
 				<T k="comparaisonRégimes.comparaisonDétaillée">
-					<h3 className="legend">Comparaison détaillée</h3>
 					<div className="AS-indep-et-auto">
 						<button
 							onClick={() => setShowMore(true)}
 							className="ui__ simple small button">
-							Afficher la comparaison détaillée
+							Afficher plus d'informations
 						</button>
 					</div>
 				</T>
 			)}
-			{!hideAutoEntrepreneur && (
-				<T k="comparaisonRégimes.plafondCA">
-					<h3 className="legend">Plafond de chiffre d'affaires</h3>
-					<div className="AS-et-indep">
-						<T>Non</T>
+			<div className="all">
+				{!conversationStarted ? (
+					<T k="comparaisonRégimes.simulationText">
+						<img
+							css="height: 8em"
+							src={require('../sites/mon-entreprise.fr/images/retraite.svg')}
+						/>
+						<button
+							className="ui__ cta plain button"
+							onClick={startConversation}>
+							Simuler retraite et indemnités maladie
+						</button>
+					</T>
+				) : (
+					<div className="ui__ container">
+						<SeeAnswersButton />
+						<Conversation />
 					</div>
-					<div className="auto">
-						<T>Oui</T>
-						<small>
-							(70 000 € en services / 170 000 € en vente de biens, restauration
-							ou hébergement)
-						</small>
-					</div>
-				</T>
-			)}
-			<T k="comparaisonRégimes.comptabilité">
-				<h3 className="legend">Gestion comptable, sociale, juridique...</h3>
-				<div className="AS-et-indep">
-					Accompagnement fortement conseillé
-					<small>
-						(expert comptable, comptable, centre de gestion agrée...)
-					</small>
-				</div>
-
-				<div className="auto">
-					Simplifiée <small>(peut être gérée par l'auto-entrepreneur)</small>
-				</div>
-			</T>
+				)}
+			</div>
 			<div className="AS no-border">
 				<button
 					className="ui__  button"

@@ -33,13 +33,16 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 			/>
 		</Helmet>
 		<h2>
-			<T k="autoentrepreneur.titre">Auto-entrepreneur</T>
+			<T k="autoentrepreneur.titre">
+				Entreprise individuelle ou auto-entrepreneur
+			</T>
 		</h2>
 		<T k="autoentrepreneur.description">
 			<p>
-				Un auto-entrepreneur bénéficie d'un régime simplifié de déclaration et
-				de paiement, pour lequel l'impôt et les cotisations sociales sont
-				calculés sur le chiffre d'affaires encaissé chaque mois.
+				À la différence de l'entreprise individuelle, l'auto-entrepreneur
+				bénéficie d'un régime simplifié de déclaration et de paiement : les
+				cotisations sociales et l'impôt sur le revenu sont calculés sur le
+				chiffre d'affaires encaissé.
 			</p>
 			<p>
 				<strong>Note</strong> : Certaines activités sont exclues de ce statut (

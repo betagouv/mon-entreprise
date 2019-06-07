@@ -87,7 +87,7 @@ export default compose(
 				<div style={{ textAlign: 'center' }}>
 					<h3>
 						{emoji('🌟')}{' '}
-						<T k="simulation-end.title">Vous avez completé cette simulation</T>{' '}
+						<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
 					</h3>
 					<p>
 						{customEndMessages ? (
