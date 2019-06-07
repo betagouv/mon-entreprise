@@ -96,11 +96,21 @@ export default () => {
 				))}
 			</ul>
 			<p>
-				<em>
-					Les conséquences de ces scénarios sont bien évidemment très
-					compliquées à prévoir : ces descriptions sont indicatives et
-					mériteraient d'être davantage sourcées.
-				</em>
+				Les conséquences de ces scénarios sont bien évidemment très compliquées
+				à prévoir : ces descriptions sont indicatives et mériteraient d'être
+				davantage sourcées.{' '}
+			</p>
+			<p>
+				Si vous êtes à l'aise en anglais, l'article{' '}
+				<a href="http://nymag.com/intelligencer/2017/07/climate-change-earth-too-hot-for-humans.html">
+					The Uninhabitable Earth
+				</a>{' '}
+				et le livre associé décrivent de façon très convainquante le pire des
+				scénarios, et{' '}
+				<a href="https://climatefeedback.org/evaluation/scientists-explain-what-new-york-magazine-article-on-the-uninhabitable-earth-gets-wrong-david-wallace-wells/">
+					cet autre article
+				</a>{' '}
+				les remet en perspective de façon plus rigoureuse et factuelle.
 			</p>
 		</section>
 	)
