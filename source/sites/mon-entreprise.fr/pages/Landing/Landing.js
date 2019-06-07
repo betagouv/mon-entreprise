@@ -66,7 +66,7 @@ export default compose(
 					<T>Que désirez-vous faire ?</T>
 				</h2>
 				<Link className="ui__ button-choice " to={sitePaths.entreprise.index}>
-					{emoji('💡')} <T k="landing.choix1">Créer une entreprise</T>
+					{emoji('💡')} <T k="landing.choix1">Créer mon entreprise</T>
 				</Link>
 				<Link
 					className="ui__ button-choice "
@@ -74,7 +74,7 @@ export default compose(
 					{emoji('💶')}{' '}
 					<T k="landing.choix2">
 						Simuler les cotisations et les taxes
-						<small>(pour le dirigeant ou l'embauche)</small>
+						<small>(dirigeant et salarié)</small>
 					</T>
 				</Link>
 				<Link
