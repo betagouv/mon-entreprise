@@ -30,13 +30,13 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => {
 			</h1>
 			<p>
 				<T k="après.intro">
-					Une fois que votre{' '}
+					Une fois votre{' '}
 					{{
 						companyStatusChoice: isAutoentrepreneur
 							? t('auto-entreprise')
 							: companyStatusChoice || t(['après.entreprise', 'entreprise'])
 					}}{' '}
-					aura été créée, vous recevrez les informations suivantes :
+					créée, vous recevez les informations suivantes :
 				</T>
 			</p>
 			<h2>
@@ -63,7 +63,11 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => {
 				<T k="après.ape.description">
 					Le code APE correspond au <strong>secteur d'activité</strong> de votre
 					entreprise. Il classifie la branche principale de votre entreprise
-					dans la nomenclature nationale d'activités françaises (code « NAF »).{' '}
+					dans la nomenclature nationale d'activités françaises « NAF » (
+					<a href="https://www.insee.fr/fr/metadonnees/nafr2/section/A?champRecherche=false">
+						voir la liste
+					</a>
+					).{' '}
 					<span
 						style={
 							companyStatusChoice &&
@@ -72,9 +76,16 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => {
 								: {}
 						}>
 						Il détermine aussi la convention collective applicable à
-						l'entreprise, et en partie le taux de la cotisation accident du
+						l'entreprise, et en partie le taux de la cotisation accidents du
 						travail et maladies professionnelles à payer.
 					</span>
+					<p>
+						En cas de code APE erroné, vous pouvez{' '}
+						<a href="https://www.insee.fr/fr/information/2015441">
+							demander une modification
+						</a>{' '}
+						à l'INSEE.
+					</p>
 				</T>
 			</p>
 			{companyStatusChoice &&
@@ -88,7 +99,10 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => {
 								C'est le document officiel qui atteste de{' '}
 								<strong>l'existence légale d'une entreprise commerciale</strong>
 								. Le plus souvent, pour être valable par les procédures
-								administratives, il doit dater de moins de 3 mois.
+								administratives, il doit dater de moins de 3 mois.{' '}
+								<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000">
+									Plus d'infos.
+								</a>
 							</T>
 						</p>
 						<p>

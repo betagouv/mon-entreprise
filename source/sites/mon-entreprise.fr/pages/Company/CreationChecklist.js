@@ -170,7 +170,7 @@ const CreateCompany = ({
 									c'est-à-dire qu'il ne porte pas atteinte à un nom déjà protégé
 									par une marque, une raison sociale, un nom commercial, un nom
 									de domaine Internet, etc. Vous pouvez vérifier dans la base de
-									données <a href="http://bases-marques.inpi.fr/">INPI</a>.
+									données <a href="https://bases-marques.inpi.fr/">INPI</a>.
 								</p>
 							</T>
 						}
@@ -427,9 +427,7 @@ const CreateCompany = ({
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={
-							<T k="entreprise.tâches.comptable.titre">
-								Choisir un comptable certifié
-							</T>
+							<T k="entreprise.tâches.comptable.titre">Choisir un comptable</T>
 						}
 						explanations={
 							<p>

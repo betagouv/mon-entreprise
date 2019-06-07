@@ -67,7 +67,7 @@ const Footer = ({ tracker, t, sitePaths }) => {
 						<>
 							{' '}
 							<h2>
-								<T k="newsletter.register.titre">Restez informés</T>
+								<T k="newsletter.register.titre">Restez informé</T>
 							</h2>
 							<div className="footer__newsletterContainer">
 								<p>

@@ -5,27 +5,29 @@ export default function ResultReliability({ progress }) {
 	return (
 		<span>
 			<small>
-				Précision du résultat :{' '}
-				<strong>
-					{progress === 0
-						? 'Mauvaise'
-						: progress < 0.2
-						? 'Faible'
-						: progress < 0.5
-						? 'Moyenne'
-						: progress < 0.7
-						? 'Bonne'
-						: progress < 0.8
-						? 'Très bonne'
-						: progress < 1
-						? 'Excellente'
-						: 'Optimale'}
-				</strong>
-			</small>{' '}
-			<InfoBulle>
-				Le résultat peut varier énormément en fonction de votre situation.
-				Répondez aux questions pour en améliorer la précision.
-			</InfoBulle>{' '}
+				{progress === 0 && (
+					<span>
+						Affinez la simulation en répondant aux questions suivantes :
+					</span>
+				)}
+			</small>
+			{progress > 0 && (
+				<>
+					<small>
+						{progress < 0.2
+							? 'Précision faible'
+							: progress < 0.5
+							? 'Précision moyenne'
+							: progress > 0.5
+							? 'Bonne précision'
+							: ''}
+					</small>{' '}
+					<InfoBulle>
+						Le résultat peut varier énormément en fonction de votre situation.
+						Répondez aux questions pour en améliorer la précision.
+					</InfoBulle>{' '}
+				</>
+			)}
 		</span>
 	)
 }

@@ -544,7 +544,7 @@ const SchemeComparaison = ({
 						<button
 							className="ui__ cta plain button"
 							onClick={startConversation}>
-							Simuler retraite et indemnités maladie
+							Comparer mon revenu
 						</button>
 					</T>
 				) : (

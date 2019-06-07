@@ -992,7 +992,7 @@
 - espace: contrat salarié . salaire
   nom: net après impôt
   titre: Salaire net après impôt
-  résumé: Versé sur son compte bancaire
+  résumé: Versé le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   format: euros
@@ -3992,7 +3992,7 @@
 
     ## L'assurance maladie en France en quelques chiffres
       - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
-      - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), entièrement prise en charge par la sécurité sociale
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
       - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)
       - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
 
@@ -4085,14 +4085,15 @@
       - **51 %** des allocataires cumulent allocation et salaire
 
   références:
+    Pôle-emploi: https://www.pole-emploi.fr/accueil
     Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
-    ameli.fr: https://www.ameli.fr/simulateur/public/index.php/index/calcul
 
 - nom: famille
   espace: protection sociale
   icônes: 👶
   type: branche
-  description courte: Offre une vie professionnelle et familiale équilibrée. Finance des crèches et divers services de garde d'enfants.
+  description courte: |
+    Assure des prestations en soutien aux familles : garde d'enfants, aide au logement...
   description: |
     Créée en 1945, la branche Famille est l’un des principaux acteurs de la politique familiale française. Actuellement, elle a deux missions prioritaires :
       - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la conciliation entre vie familiale et vie professionnelle
@@ -4105,8 +4106,8 @@
 
     ## Les allocations familiales en France en quelques chiffres
       - **19 %** part des dépenses allouées à la petite enfance
-      - **900 € / mois**: montant de l'allocation aux adultes handicapés
-      - **75 %** des mères avec un enfant à charge travaillent (dont seulement 30% en temps partiel)
+      - **860 € / mois** : montant de l'allocation aux adultes handicapés
+      - **75 %** des mères avec un enfant à charge travaillent (dont 70% à temps plein)
 
   références:
     CAF: https://www.caf.fr/sites/default/files/plaquette branche famille francais.pdf
@@ -4151,11 +4152,11 @@
 - nom: formation
   espace: protection sociale
   icônes: 👩‍🎓
-  description courte: Donne aux employés l'accès à la formation professionnelle.
+  description courte: Donne aux employés la possibilité de suivre des formations professionnelles.
   description: |
     La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
 
-    Pour avoir un compte rendu personnalisé de vos droits à la formation, rendez vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr)
+    Pour avoir un compte-rendu personnalisé de vos droits à la formation, rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
 
 - nom: autres
   espace: protection sociale

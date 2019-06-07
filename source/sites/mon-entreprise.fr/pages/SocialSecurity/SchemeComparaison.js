@@ -32,10 +32,9 @@ export default withTranslation()(function SchemeComparaisonPage({ t }) {
 			<p>
 				<T k="comparaisonRégimes.description">
 					Lorsque vous créez votre société, le choix du statut juridique va
-					determiner à quel régime social le dirigeant est affilié. Il en existe
-					trois différents, avec chacun ses avantages et inconvénients. Grâce à
-					ce comparatif, vous pourrez sélectionner celui qui vous correspond le
-					mieux.
+					déterminer à quel régime social le dirigeant est affilié. Il en existe
+					trois différents, avec chacun ses avantages et inconvénients. Avec ce
+					comparatif, trouvez celui qui vous correspond le mieux.
 				</T>
 			</p>
 			<br />
