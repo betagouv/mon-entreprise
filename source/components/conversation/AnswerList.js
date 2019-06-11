@@ -15,7 +15,6 @@ import {
 	analysisWithDefaultsSelector,
 	getRuleFromAnalysis
 } from 'Selectors/analyseSelectors'
-import { humanValue } from 'Engine/rules'
 
 const AnswerList = ({
 	answers,
@@ -57,7 +56,7 @@ const AnswerList = ({
 								<span
 									className="answerContent"
 									style={{ borderBottomColor: colours.textColourOnWhite }}>
-									{humanValue(answer)(language)}
+									{answer}
 								</span>
 							</button>{' '}
 						</td>

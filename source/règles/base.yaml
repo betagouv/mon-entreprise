@@ -43,11 +43,11 @@
   nom: distance journalière
   description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
   formule: 4
-  unité: km
+  unité: km/jour
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: jours travaillés
   formule: 218
-  unité: jours
+  unité: jour
 
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: active

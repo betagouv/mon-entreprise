@@ -40,7 +40,10 @@ export default compose(withTranslation())(
 				displayFormula =
 					formula &&
 					!!Object.keys(formula).length &&
-					!path(['formule', 'explanation', 'une possibilité'], rule)
+					!path(['formule', 'explanation', 'une possibilité'], rule) &&
+					formula.explanation?.category !== 'number'
+
+			console.log(formula)
 			return (
 				<div id="algorithm">
 					<section id="rule-rules" className={classNames({ showValues })}>

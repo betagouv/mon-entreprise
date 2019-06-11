@@ -29,7 +29,7 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import { serializeUnit } from 'Engine/units'
+import Value from 'Components/Value'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -64,7 +64,6 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-			debugger
 			return (
 				<>
 					{this.state.viewSource ? (
@@ -102,26 +101,12 @@ export default compose(
 								/>
 
 								<section id="rule-content">
-									{!isNil(displayedRule.nodeValue) && (
-										<div id="ruleValue">
-											<span className="ui__ valeur">
-												{displayedRule.humanValue(
-													displayedRule.nodeValue,
-													language
-												)}
-												{displayedRule.unit && (
-													<span>{serializeUnit(displayedRule.unit)}</span>
-												)}
-											</span>
-										</div>
-									)}
+									<div id="ruleValue">
+										<Value {...displayedRule} />
+									</div>
 									{displayedRule.defaultValue != null && (
 										<div id="ruleDefault">
-											Valeur par défaut :{' '}
-											{displayedRule.humanValue(
-												displayedRule.defaultValue,
-												language
-											)}
+											Valeur par défaut : {displayedRule.defaultValue}
 										</div>
 									)}
 									{!valuesToShow && (

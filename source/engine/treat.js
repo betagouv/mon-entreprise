@@ -18,7 +18,8 @@ import {
 	map,
 	multiply,
 	propOr,
-	subtract
+	subtract,
+	fromPairs
 } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation'
@@ -48,6 +49,8 @@ import {
 	treatVariable,
 	treatVariableTransforms
 } from './treatVariable'
+
+import { inferUnit } from 'Engine/units'
 
 export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
@@ -107,9 +110,11 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'=': [equals],
 			'!=': [(a, b) => !equals(a, b), '≠']
 		},
-		operationDispatch = map(
-			([f, symbol]) => mecanismOperation(f, symbol || k),
-			knownOperations
+		operationDispatch = fromPairs(
+			Object.entries(knownOperations).map(([k, [f, symbol]]) => [
+				k,
+				mecanismOperation(k, f, symbol)
+			])
 		)
 
 	let dispatch = {
@@ -155,7 +160,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 	return action(treat(rules, rule, treatOptions), k, v)
 }
 
-let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
+let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let explanation = map(
 				curry(evaluateNode)(cache, situation, parsedRules),
@@ -177,6 +182,8 @@ let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 
 	let explanation = v.explanation.map(recurse)
 
+	let unit = inferUnit(k, explanation[0].unit, explanation[1].unit)
+
 	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes={'inlineExpression ' + k}
@@ -185,7 +192,8 @@ let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 				<span className="nodeContent">
 					<span className="fa fa" />
 					{makeJsx(explanation[0])}
-					<span className="operator">{symbol}</span>
+					<span className="operator">{symbol || k}</span>
+
 					{makeJsx(explanation[1])}
 				</span>
 			}
@@ -196,8 +204,9 @@ let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 		...v,
 		evaluate,
 		jsx,
-		operator: symbol,
+		operator: symbol || k,
 		// is this useful ?		text: rawNode,
-		explanation
+		explanation,
+		unit
 	}
 }

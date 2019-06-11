@@ -1,5 +1,3 @@
-// Séparation artificielle, temporaire, entre ces deux types de règles
-import valueFormats from 'Engine/valueFormats'
 import {
 	assoc,
 	chain,
@@ -26,7 +24,8 @@ import {
 	take,
 	toPairs,
 	trim,
-	when
+	when,
+	groupBy
 } from 'ramda'
 import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
@@ -41,12 +40,7 @@ Functions working on one rule */
 
 export let enrichRule = rule => {
 	try {
-		let formatKey = rule['format'] || 'booléen',
-			format = valueFormats[formatKey]
-		if (!format) {
-			console.log(`The '${format}' rule format is unknown`)
-			throw new Error(format)
-		}
+		let unit = rule.unité && parseUnit(rule.unité)
 		return {
 			...rule,
 			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
@@ -59,9 +53,7 @@ export let enrichRule = rule => {
 			examples: rule['exemples'],
 			icons: rule['icônes'],
 			summary: rule['résumé'],
-			format,
-			humanValue: format.human,
-			...(rule.unité ? { unit: parseUnit(rule.unité) } : {})
+			unit
 		}
 	} catch (e) {
 		console.log(e)
@@ -197,19 +189,6 @@ export let nestedSituationToPathMap = situation => {
 	return fromPairs(rec(situation, []))
 }
 
-export let formatInputs = (flatRules, pathValueMap) =>
-	mapObjIndexed((value, path) => {
-		// Our situationGate retrieves data from the "conversation" form
-		// The search below is to apply input conversions such as replacing "," with "."
-		if (name.startsWith('sys.')) return null
-
-		let rule = findRuleByDottedName(flatRules, path),
-			format = rule ? valueFormats[rule.format] : null,
-			pre = format && format.validator.pre ? format.validator.pre : identity
-
-		return pre(value)
-	}, pathValueMap)
-
 /* Traduction */
 
 export let translateAll = (translations, flatRules) => {
@@ -255,6 +234,7 @@ export let translateAll = (translations, flatRules) => {
 export let rules = translateAll(translations, rawRules).map(rule =>
 	enrichRule(rule)
 )
+
 export let rulesFr = rawRules.map(rule => enrichRule(rule))
 
 export let findParentDependency = (rules, rule) => {

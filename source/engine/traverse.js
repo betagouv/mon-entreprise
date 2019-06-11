@@ -267,7 +267,7 @@ export let treatRuleRoot = (rules, rule) => {
 		...parsedRoot,
 		evaluate,
 		parsed: true,
-		unit: root.formule?.explanation?.unit
+		unit: root.unit || parsedRoot.formule?.explanation?.unit
 	}
 }
 
@@ -327,7 +327,8 @@ export let getTargets = (target, rules) => {
 
 export let parseAll = flatRules => {
 	let treatOne = rule => treatRuleRoot(flatRules, rule)
-	return map(treatOne, flatRules)
+	let parsed = map(treatOne, flatRules)
+	return parsed
 }
 
 export let analyseMany = (parsedRules, targetNames) => situationGate => {

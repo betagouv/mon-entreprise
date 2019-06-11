@@ -1,18 +1,7 @@
 import { number, int } from './validators'
-import { memoizeWith } from 'ramda'
-
-const NumberFormat = memoizeWith(JSON.stringify, Intl.NumberFormat)
-
-let numberFormatter = style => (value, language) =>
-	NumberFormat(language, {
-		style,
-		currency: 'EUR',
-		maximumFractionDigits: 2,
-		minimumFractionDigits: 2
-	}).format(value)
 
 let pourcentage = {
-	human: numberFormatter('decimal'),
+	human: () => null,
 	validator: number
 }
 
@@ -27,12 +16,12 @@ let jours = {
 }
 
 let nombre = {
-	human: numberFormatter('decimal'),
+	human: () => null,
 	validator: int
 }
 
 let euros = {
-	human: numberFormatter('currency'),
+	human: () => null,
 	validator: number
 }
 

@@ -10,6 +10,10 @@ import {
 import { getSituationValue } from './variables'
 
 export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
+	let variablePartialName = fragments.join(' . '),
+		dottedName = disambiguateRuleReference(rules, rule, variablePartialName),
+		variable = findRuleByDottedName(rules, dottedName)
+
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -18,8 +22,7 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 			cached = cache[cacheName]
 
 		if (cached) return cached
-		let variable = findRuleByDottedName(parsedRules, dottedName),
-			variableHasFormula = variable.formule != null,
+		let variableHasFormula = variable.formule != null,
 			variableHasCond =
 				variable['applicable si'] != null ||
 				variable['non applicable si'] != null ||
@@ -72,9 +75,6 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 		}
 	}
 
-	let variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
-
 	return {
 		evaluate,
 		//eslint-disable-next-line react/display-name
@@ -91,7 +91,8 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 		name: variablePartialName,
 		category: 'variable',
 		fragments,
-		dottedName
+		dottedName,
+		unit: variable.unit
 	}
 }
 

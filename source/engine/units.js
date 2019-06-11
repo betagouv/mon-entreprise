@@ -1,14 +1,15 @@
 import { remove, isEmpty } from 'ramda'
 
 export let parseUnit = string => {
-	let [a, b = ''] = string.split('/')
-	return {
-		numerators: a !== '' ? [a] : [],
-		denominators: b !== '' ? [b] : []
-	}
+	let [a, b = ''] = string.split('/'),
+		result = {
+			numerators: a !== '' ? [a] : [],
+			denominators: b !== '' ? [b] : []
+		}
+	return result
 }
 
-export let serializeUnit = ({ numerators, denominators }) => {
+export let serialiseUnit = ({ numerators, denominators }) => {
 	let n = !isEmpty(numerators)
 	let d = !isEmpty(denominators)
 	return n && !d
