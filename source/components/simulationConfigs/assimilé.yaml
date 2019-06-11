@@ -11,7 +11,6 @@ objectifs:
 
 questions:
   blacklist:
-    - entreprise . charges
     - contrat salarié . avantages en nature . montant
     - entreprise . rémunération du dirigeant
 
@@ -28,4 +27,5 @@ situation:
   contrat salarié . CDD: non
   contrat salarié . temps partiel: non
   contrat salarié . ATMP . taux réduit: oui
+  entreprise . association non lucrative: non
   période: année

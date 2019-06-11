@@ -63,8 +63,9 @@
 }
 .comparaison-grid > .all {
 	border-right: none;
-	text-align: left;
 	grid-column: row-legend / end;
+}
+.comparaison-grid > .all.colored {
 	background-color: var(--lightestColour);
 }
 

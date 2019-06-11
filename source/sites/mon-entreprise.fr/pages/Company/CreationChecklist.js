@@ -270,10 +270,9 @@ const CreateCompany = ({
 							<ul>
 								<T k="entreprise.tâches.banque.description.liste">
 									<li>
-										Différencier vos opérations privées et professionnelles et
-										simplifier votre gestion de trésorerie
+										Différencier vos opérations privées et professionnelles
 									</li>
-									<li>Faciliter toute opération de contrôle fiscal.</li>
+									<li>Faciliter les déclarations fiscales</li>
 								</T>
 							</ul>
 						</>
@@ -390,7 +389,7 @@ const CreateCompany = ({
 					name="registerCompanyOnline"
 					title={
 						<T k="entreprise.tâches.formulaire.titre">
-							Créer l'entreprise en ligne
+							Créer mon entreprise en ligne
 						</T>
 					}
 					explanations={

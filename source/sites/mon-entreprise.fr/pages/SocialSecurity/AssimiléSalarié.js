@@ -34,7 +34,7 @@ const AssimiléSalarié = ({ t }) => (
 		</h1>
 		<Warning simulateur="assimilé-salarié" />
 		<Simulation
-			explanation={
+			explanations={
 				<SalaryExplanation
 					protectionText={
 						<p className="ui__ notice">

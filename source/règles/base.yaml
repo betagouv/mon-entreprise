@@ -2715,10 +2715,6 @@
             avec:
               - revenu net
       - sinon: rémunération totale du dirigeant + charges
-  suggestions:
-    1 000 €: 1000
-    5 000 €: 5000
-    10 000 €: 10000
 
 - espace: entreprise
 
@@ -3568,6 +3564,8 @@
   nom: retraite complémentaire
   description: Le montant total qui est alloué à la retraite complémentaire, utile pour caluler la retraite des auto entrepreneurs
   format: euros
+  # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
+  non applicable si: entreprise . catégorie d'activité = 'libérale'
   période: flexible
   formule:
     multiplication:
@@ -3584,8 +3582,6 @@
                 - entreprise . catégorie d'activité = 'commerciale ou industrielle'
                 - entreprise . catégorie d'activité = 'artisanale'
             alors: 3.50%
-            # TODO : vérifier que les PL non réglementé sont aussi à 0, ça voudrait dire qu'elles auraient 0 retraite complémentaire
-          - sinon: 0%
 
 
 

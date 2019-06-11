@@ -69,7 +69,7 @@ const SchemeChoice = compose(
 				<p style={{ textAlign: 'center', marginTop: '1rem' }}>
 					<Link
 						className={
-							'ui__  plain button ' +
+							'ui__  plain cta button ' +
 							(process.env.MASTER ? ' button-choice--soon' : '')
 						}
 						to={sitePaths.sécuritéSociale.comparaison}>
