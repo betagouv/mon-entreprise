@@ -9,7 +9,7 @@ export default withSitePaths(function Home({ sitePaths }) {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
-			<h1>Déclarer les revenus des plateformes en ligne</h1>
+			<h1>Déclarer mes revenus des plateformes en ligne</h1>
 			<img
 				css="max-width: 100%; height: 200px; margin: 2rem auto;display:block;"
 				src={illustration}
@@ -20,12 +20,11 @@ export default withSitePaths(function Home({ sitePaths }) {
 			</p>
 
 			<p>
-				La loi vous oblige souvent à les déclarer. Mais il peut être difficile
-				de s'y retrouver dans toute la documentation légale {emoji('🤔')}
+				Vous devez les déclarer dans la plupart des cas. Cependant, il peut être
+				difficile de s'y retrouver {emoji('🤔')}
 			</p>
 			<p>
-				Suivez ce guide et vous saurez en quelques clics ce qu'il faut faire
-				pour être en règle.
+				Suivez ce guide et vous saurez en quelques clics comment être en règle.
 			</p>
 			<div css="text-align: center">
 				<Link
@@ -35,10 +34,8 @@ export default withSitePaths(function Home({ sitePaths }) {
 				</Link>
 			</div>
 			<p className="ui__ notice">
-				PS : cet outil est là pour vous informer, pas pour repérer les fraudes :
-				tout ce que vous saisissez reste dans votre navigateur. Vous pouvez donc
-				répondre aux questions l'esprit léger, en toute transparence{' '}
-				{emoji('😌')}
+				PS : cet outil est là uniquement pour vous informer, aucune donnée ne
+				sera transmise aux administrations {emoji('😌')}
 			</p>
 		</Animate.fromBottom>
 	)

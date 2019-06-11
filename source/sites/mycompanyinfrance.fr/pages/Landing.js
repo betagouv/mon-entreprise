@@ -63,14 +63,14 @@ export default compose(
 				to={sitePaths.démarcheEmbauche.index}>
 				{emoji('🤝')} <T>Connaître les démarches d'embauche</T>
 			</Link>
-			<Link
-				className="ui__ button-choice "
-				to={sitePaths.économieCollaborative.index}>
-				{emoji('📱 ')}{' '}
-				<T>
-					Déclarer mes revenus de plateforme en ligne (Airbnb, Leboncoin, etc.)
-				</T>
-			</Link>
+			<p>
+				Le saviez-vous ? Location meublée, covoiturage, etc : les revenus des
+				plateformes collaboratives doivent souvent être déclarées :
+				<Link to={sitePaths.économieCollaborative.index}>
+					{emoji('📱 ')} Suivez le guide
+					<T />
+				</Link>
+			</p>
 			{/*
 				<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>
 					{emoji('🌍')} Démarrer une activité en France en tant qu'entrepreneur

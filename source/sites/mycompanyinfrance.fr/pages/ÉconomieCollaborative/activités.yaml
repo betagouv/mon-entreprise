@@ -1,4 +1,4 @@
-- titre: Locations meublées
+- titre: Location meublée
   icônes: 🏠 🛋
   explication: Vous avez loué un logement meublé pour de courtes durées
   plateformes: 
@@ -13,6 +13,7 @@
       plateformes: 
         - Airbnb
         - Abritel
+        - Booking
       seuil pro: 23000
       seuil régime général: 82800
       exonérations:
@@ -24,16 +25,18 @@
 
     - titre: Location meublée de tourisme classé
       explication: Le bien doit avoir préalablement fait l’objet d’une déclaration auprès de la commune où il est situé. A l’issue de cette procédure, un numéro de déclaration (13 caractères) est délivré. Tout changement fait l'objet d'une nouvelle déclaration.
-      icônes: 🏠 🛋⭐
+      icônes: 🏠 ⭐
       plateformes: 
-        - PLATEFORMES A PRECISER
+        - Airbnb
+        - Abritel
+        - Booking
       seuil pro: 23000
       seuil régime général: 82800
     - titre: Location de chambre d'hôtes
       explication: Vous êtes loueur de chambres d’hôtes et remplissez les conditions prévues par le code du tourisme
       plateformes: 
-        - PLATEFORMES A PRECISER
-      icônes: 🏠 🛋🧑
+        - Gîtes de France
+      icônes: 🏠 🧑
       seuil pro: 5268
       seuil déclaration: 760
 

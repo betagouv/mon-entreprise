@@ -25,7 +25,7 @@ export default (function ActivitésSelection() {
 				l'argent durant l'année.
 			</p>
 			<p>
-				En fonction du type d'activité et du revenu, vous devrez remplir votre
+				En fonction du type d'activité et du revenu, vous devrez compléter votre
 				déclaration d'impôt ou créer une entreprise.
 			</p>
 			<MultiItemSelection
