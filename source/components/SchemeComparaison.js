@@ -217,7 +217,7 @@ const SchemeComparaison = ({
 							<h3 className="legend">Paiement des cotisations</h3>
 							<div className="AS">Mensuel</div>
 							<div className="indep">
-								Provision mensuelle
+								Provision mensuelle ou trimestrielle
 								<small>
 									(avec régularisation après coup en fonction du revenu réel)
 								</small>
