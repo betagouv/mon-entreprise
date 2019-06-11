@@ -27,7 +27,11 @@ export default ({ nodeValue, unit }) => {
 	let valueType = typeof nodeValue,
 		unitText = unit && serialiseUnit(unit)
 	return nodeValue == undefined ? null : (
-		<div css="border: 2px dashed chartreuse">
+		<div
+			css={`
+				border: 2px dashed chartreuse
+				font-family: 'Courier New', Courier, monospace;
+					`}>
 			{(formats[valueType !== 'number' ? valueType : unitText] ||
 				numberFormatter('decimal'))(nodeValue)}
 			&nbsp;

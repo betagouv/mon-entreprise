@@ -247,7 +247,7 @@ export let findParentDependency = (rules, rule) => {
 		reject(isNil),
 		find(
 			//Find the first "calculable" parent
-			({ question, format, formule }) => question && !format && !formule //implicitly, the format is boolean
+			({ question, unit, formule }) => question && !unit && !formule //implicitly, the format is boolean
 		)
 	)(parentDependencies)
 }

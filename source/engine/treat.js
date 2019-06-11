@@ -176,13 +176,17 @@ let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 				explanation[0].missingVariables,
 				explanation[1].missingVariables
 			)
+		let unit = inferUnit(k, explanation[0].unit, explanation[1].unit)
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return rewriteNode(
+			{ ...node, unit },
+			nodeValue,
+			explanation,
+			missingVariables
+		)
 	}
 
 	let explanation = v.explanation.map(recurse)
-
-	let unit = inferUnit(k, explanation[0].unit, explanation[1].unit)
 
 	let jsx = (nodeValue, explanation) => (
 		<Node
@@ -206,7 +210,6 @@ let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 		jsx,
 		operator: symbol || k,
 		// is this useful ?		text: rawNode,
-		explanation,
-		unit
+		explanation
 	}
 }

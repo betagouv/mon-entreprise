@@ -12,7 +12,8 @@ import { getSituationValue } from './variables'
 export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 	let variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName),
-		variable = findRuleByDottedName(rules, dottedName)
+		variable = findRuleByDottedName(rules, dottedName),
+		unit = variable.unit
 
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
@@ -22,7 +23,8 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 			cached = cache[cacheName]
 
 		if (cached) return cached
-		let variableHasFormula = variable.formule != null,
+		let variable = findRuleByDottedName(parsedRules, dottedName),
+			variableHasFormula = variable.formule != null,
 			variableHasCond =
 				variable['applicable si'] != null ||
 				variable['non applicable si'] != null ||
@@ -31,15 +33,13 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 			needsEvaluation =
 				situationValue == null && (variableHasCond || variableHasFormula)
 
-		//		if (dottedName.includes('jeune va')) debugger
-
 		let explanation = needsEvaluation
 			? evaluateNode(cache, situation, parsedRules, variable)
 			: variable
 
 		let cacheAndNode = (nodeValue, missingVariables) => {
 			cache[cacheName] = rewriteNode(
-				node,
+				{ ...node, unit: explanation.unit },
 				nodeValue,
 				explanation,
 				missingVariables
@@ -92,7 +92,7 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 		category: 'variable',
 		fragments,
 		dottedName,
-		unit: variable.unit
+		unit
 	}
 }
 
@@ -101,8 +101,6 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 // See the période.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
-// TODO - the implementations of filters is really bad. It injects a hack in the situation to make the composante mecanism compute only one of its branch. It is then stored in the cache under a new key, dottedName.filter. This mecanism should just query the variable tree to get the active composante's value...
-//
 export let treatVariableTransforms = (rules, rule) => parseResult => {
 	let evaluateTransforms = originalEval => (
 		cache,

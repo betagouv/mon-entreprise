@@ -166,6 +166,7 @@ export let treatRuleRoot = (rules, rule) => {
 			...node,
 			...evaluatedAttributes,
 			...{ formule: evaluatedFormula },
+			unit: evaluatedFormula?.explanation?.unit,
 			nodeValue,
 			isApplicable,
 			missingVariables,
@@ -266,8 +267,7 @@ export let treatRuleRoot = (rules, rule) => {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
-		parsed: true,
-		unit: root.unit || parsedRoot.formule?.explanation?.unit
+		parsed: true
 	}
 }
 

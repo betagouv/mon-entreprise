@@ -30,8 +30,8 @@ export let getSituationValue = (situationGate, variableName, rule) => {
 
 	if (rule.API) return typeof value == 'string' ? JSON.parse(value) : value
 
-	if (rule.format != null) return value
-	//boolean variables don't have a format prop, it's the default
+	if (rule.unit != null) return value
+	// a leaf variable with an unit attribute is not boolean
 	if (formatBooleanValue[value] !== undefined) return formatBooleanValue[value]
 	if (rule.formule && rule.formule['une possibilité'])
 		return evaluateBottomUp(situationGate)(splitName(variableName))

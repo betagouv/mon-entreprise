@@ -526,7 +526,8 @@ export let mecanismReduction = (recurse, k, v) => {
 				: abattement.type === 'percentage'
 				? max(
 						0,
-						montantFranchiséDécoté - min(val(plafond), val(abattement) * montantFranchiséDécoté)
+						montantFranchiséDécoté -
+							min(val(plafond), val(abattement) * montantFranchiséDécoté)
 				  )
 				: max(0, montantFranchiséDécoté - min(val(plafond), val(abattement)))
 			: montantFranchiséDécoté
@@ -592,7 +593,8 @@ export let mecanismProduct = (recurse, k, v) => {
 		explanation,
 		category: 'mecanism',
 		name: 'multiplication',
-		type: 'numeric'
+		type: 'numeric',
+		unit: explanation.assiette.unit
 	}
 }
 
@@ -769,7 +771,8 @@ export let mecanismMin = (recurse, k, v) => {
 		explanation,
 		type: 'numeric',
 		category: 'mecanism',
-		name: 'le minimum de'
+		name: 'le minimum de',
+		unit: explanation[0].unit
 	}
 }
 
