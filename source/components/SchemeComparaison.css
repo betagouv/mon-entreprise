@@ -186,6 +186,8 @@
 	}
 	.comparaison-grid > .all {
 		margin: 0 -0.6rem;
+		text-align: center;
+		justify-content: center;
 		margin-top: 2rem;
 	}
 	.comparaison-grid > .no-border > .button {

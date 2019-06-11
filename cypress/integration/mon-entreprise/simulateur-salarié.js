@@ -14,7 +14,7 @@ if (fr) {
 	})
 	describe('Basic test', function() {
 		it('should display the simulateur after loading', function() {
-			cy.contains('Versé sur son compte bancaire')
+			cy.contains('Salaire net')
 		})
 		it('should display cotisation repartition when entering net salary', function() {
 			salaryInput('Salaire net').type('2000')

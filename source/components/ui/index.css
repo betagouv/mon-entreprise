@@ -26,8 +26,9 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	flex-wrap: wrap;
-	margin: 1rem 0;
+}
+.ui__.answer-group > * {
+	margin: 0.6rem 0 0 1rem !important;
 }
 @media (min-width: 500px) {
 	.ui__.answer-group > :not(:last-child) {

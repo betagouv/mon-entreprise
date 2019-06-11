@@ -13,6 +13,7 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import withSitePaths from 'Components/utils/withSitePaths'
+import revenusSVG from 'Images/revenus.svg'
 import { compose, tryCatch } from 'ramda'
 import React, { useCallback, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -37,10 +38,9 @@ type OwnProps = {
 }
 
 type Props = OwnProps & {
-	assimiléSalarié?: SimulationResult,
-	indépendant?: SimulationResult,
-	autoEntrepreneur?: SimulationResult,
-
+	assimiléSalarié: SimulationResult,
+	indépendant: SimulationResult,
+	autoEntrepreneur: SimulationResult,
 	setSituationBranch: number => void,
 	defineDirectorStatus: string => void,
 	sitePaths: any,
@@ -315,21 +315,19 @@ const SchemeComparaison = ({
 				)}
 				<div className="all colored">
 					{!conversationStarted ? (
-						<T k="comparaisonRégimes.simulationText">
-							<img
-								css="height: 8em"
-								src={require('../sites/mon-entreprise.fr/images/retraite.svg')}
-							/>
-							<h3>
-								Comparez vos revenus, pension de retraite et indemnité maladie
-								en 1 minute
-							</h3>
-							<button
-								className="ui__ cta plain button"
-								onClick={startConversation}>
-								Lancer la simulation
-							</button>
-						</T>
+						<>
+							<T k="comparaisonRégimes.simulationText">
+								<h3>
+									Comparer mes revenus, pension de retraite et indemnité maladie
+								</h3>
+								<img src={revenusSVG} css="height: 8rem" />
+								<button
+									className="ui__ cta plain button"
+									onClick={startConversation}>
+									Lancer la simulation
+								</button>
+							</T>
+						</>
 					) : (
 						<div className="ui__ container">
 							<SeeAnswersButton />
@@ -338,48 +336,42 @@ const SchemeComparaison = ({
 					)}
 				</div>
 
-				{conversationStarted && (
+				{conversationStarted && !!assimiléSalarié.revenuNetAprèsImpôts.montant && (
 					<>
 						<T k="comparaisonRégimes.revenuNetApresImpots">
 							<h3 className="legend">Revenu net après impôts</h3>
 						</T>
 						<div className="AS">
-							{assimiléSalarié && (
-								<Animate.appear className="ui__ plain card">
-									<RuleValueLink
-										onClick={() => setSituationBranch(0)}
-										{...assimiléSalarié.revenuNetAprèsImpôts}
-									/>
-								</Animate.appear>
-							)}
+							<Animate.appear className="ui__ plain card">
+								<RuleValueLink
+									onClick={() => setSituationBranch(0)}
+									{...assimiléSalarié.revenuNetAprèsImpôts}
+								/>
+							</Animate.appear>
 						</div>
 						<div className="indep">
-							{indépendant && (
-								<Animate.appear className="ui__ plain card">
-									<RuleValueLink
-										onClick={() => setSituationBranch(1)}
-										{...indépendant.revenuNetAprèsImpôts}
-									/>
-								</Animate.appear>
-							)}
+							<Animate.appear className="ui__ plain card">
+								<RuleValueLink
+									onClick={() => setSituationBranch(1)}
+									{...indépendant.revenuNetAprèsImpôts}
+								/>
+							</Animate.appear>
 						</div>
 						<div className="auto">
-							{autoEntrepreneur && (
-								<Animate.appear
-									className={classnames(
-										'ui__ plain card',
-										autoEntrepreneur.plafondDépassé && 'disabled'
-									)}>
-									{autoEntrepreneur.plafondDépassé ? (
-										'Plafond de CA dépassé'
-									) : (
-										<RuleValueLink
-											onClick={() => setSituationBranch(2)}
-											{...autoEntrepreneur.revenuNetAprèsImpôts}
-										/>
-									)}
-								</Animate.appear>
-							)}
+							<Animate.appear
+								className={classnames(
+									'ui__ plain card',
+									autoEntrepreneur.plafondDépassé && 'disabled'
+								)}>
+								{autoEntrepreneur.plafondDépassé ? (
+									'Plafond de CA dépassé'
+								) : (
+									<RuleValueLink
+										onClick={() => setSituationBranch(2)}
+										{...autoEntrepreneur.revenuNetAprèsImpôts}
+									/>
+								)}
+							</Animate.appear>
 						</div>
 						<T k="comparaisonRégimes.revenuNetAvantImpots">
 							<h3 className="legend">
@@ -387,96 +379,61 @@ const SchemeComparaison = ({
 							</h3>
 						</T>
 						<div className="AS">
-							{assimiléSalarié && (
-								<Animate.appear>
-									<RuleValueLink
-										onClick={() => setSituationBranch(0)}
-										{...assimiléSalarié.revenuNetAvantImpôts}
-									/>
-								</Animate.appear>
-							)}
+							<RuleValueLink
+								onClick={() => setSituationBranch(0)}
+								{...assimiléSalarié.revenuNetAvantImpôts}
+							/>
 						</div>
 						<div className="indep">
-							{indépendant && (
-								<Animate.appear>
-									<RuleValueLink
-										onClick={() => setSituationBranch(1)}
-										{...indépendant.revenuNetAvantImpôts}
-									/>
-								</Animate.appear>
-							)}
+							<RuleValueLink
+								onClick={() => setSituationBranch(1)}
+								{...indépendant.revenuNetAvantImpôts}
+							/>
 						</div>
 						<div className="auto">
-							{autoEntrepreneur && (
-								<Animate.appear>
-									{autoEntrepreneur.plafondDépassé ? (
-										'—'
-									) : (
-										<RuleValueLink
-											onClick={() => setSituationBranch(2)}
-											{...autoEntrepreneur.revenuNetAvantImpôts}
-										/>
-									)}
-								</Animate.appear>
+							{autoEntrepreneur.plafondDépassé ? (
+								'—'
+							) : (
+								<RuleValueLink
+									onClick={() => setSituationBranch(2)}
+									{...autoEntrepreneur.revenuNetAvantImpôts}
+								/>
 							)}
 						</div>
 						<h3 className="legend">
-							<T k="comparaisonRégimes.retraiteEstimation">
-								<span>
-									Pension de retraite{' '}
-									<InfoBulle>
-										calculée pour 172 trimestres cotisés dans ce régime sans
-										variations de revenus
-									</InfoBulle>
-								</span>
+							<T k="comparaisonRégimes.retraiteEstimation.legend">
+								<span>Pension de retraite</span>
 								<small>(avant impôts)</small>
 							</T>
 						</h3>
 						<div className="AS">
-							{assimiléSalarié &&
-							assimiléSalarié.retraite.applicable !== false ? (
-								<div>
-									<RuleValueLink
-										onClick={() => setSituationBranch(0)}
-										{...assimiléSalarié.retraite}
-									/>
-									<div>
-										<small>
-											<strong>
-												<RuleValueLink
-													onClick={() => setSituationBranch(0)}
-													{...assimiléSalarié.trimestreValidés}
-												/>{' '}
-												<T>trimestres validés</T>
-											</strong>
-										</small>
-									</div>
-								</div>
-							) : (
-								<span className="ui__ notice">
-									<T>Pas implémenté</T>
-								</span>
-							)}
+							<span>
+								<RuleValueLink
+									onClick={() => setSituationBranch(0)}
+									{...assimiléSalarié.retraite}
+								/>{' '}
+								<InfoBulle>
+									<T k="comparaisonRégimes.retraiteEstimation.infobulles.AS">
+										Pension calculée pour 172 trimestres cotisés au régime
+										général sans variations de revenus.
+									</T>
+								</InfoBulle>
+							</span>
 						</div>
 						<div className="indep">
-							{indépendant && indépendant.retraite.applicable !== false ? (
-								<div>
+							{indépendant.retraite.applicable !== false ? (
+								<span>
 									<RuleValueLink
 										onClick={() => setSituationBranch(1)}
 										{...indépendant.retraite}
-									/>
-									<div>
-										<small>
-											<strong>
-												<RuleValueLink
-													onClick={() => setSituationBranch(1)}
-													{...indépendant.trimestreValidés}
-												/>{' '}
-												<T>trimestres validés</T>
-											</strong>
-										</small>
-									</div>
-								</div>
+									/>{' '}
+									<InfoBulle>
+										<T k="comparaisonRégimes.retraiteEstimation.infobulles.indep">
+											Pension calculée pour 172 trimestres cotisés au régime des
+											indépendants sans variations de revenus.
+										</T>
+									</InfoBulle>
+								</span>
 							) : (
 								<span className="ui__ notice">
 									<T>Pas implémenté</T>
@@ -484,32 +441,56 @@ const SchemeComparaison = ({
 							)}
 						</div>
 						<div className="auto">
-							{autoEntrepreneur &&
-								(autoEntrepreneur.plafondDépassé ? (
-									'—'
-								) : autoEntrepreneur.retraite.applicable !== false ? (
-									<div>
-										<RuleValueLink
-											onClick={() => setSituationBranch(2)}
-											{...autoEntrepreneur.retraite}
-										/>
-										<div>
-											<small>
-												<strong>
-													<RuleValueLink
-														onClick={() => setSituationBranch(2)}
-														{...autoEntrepreneur.trimestreValidés}
-													/>{' '}
-													<T>trimestres validés</T>
-												</strong>
-											</small>
-										</div>
-									</div>
-								) : (
-									<span className="ui__ notice">
-										<T>Pas implémenté</T>
-									</span>
-								))}
+							{autoEntrepreneur.plafondDépassé ? (
+								'—'
+							) : autoEntrepreneur.retraite.applicable !== false ? (
+								<span>
+									<RuleValueLink
+										onClick={() => setSituationBranch(2)}
+										{...autoEntrepreneur.retraite}
+									/>{' '}
+									<InfoBulle>
+										<T k="comparaisonRégimes.retraiteEstimation.infobulles.auto">
+											Pension calculée pour 172 trimestres cotisés en
+											auto-entrepreneur sans variations de revenus.
+										</T>
+									</InfoBulle>
+								</span>
+							) : (
+								<span className="ui__ notice">
+									<T>Pas implémenté</T>
+								</span>
+							)}
+						</div>
+						<T k="comparaisonRégimes.trimestreValidés">
+							<h3 className="legend">
+								Nombre de trimestres validés <small>(pour la retraite)</small>
+							</h3>
+						</T>
+						<div className="AS">
+							<RuleValueLink
+								onClick={() => setSituationBranch(0)}
+								appendText={<T>trimestres</T>}
+								{...assimiléSalarié.trimestreValidés}
+							/>
+						</div>
+						<div className="indep">
+							<RuleValueLink
+								onClick={() => setSituationBranch(1)}
+								appendText={<T>trimestres</T>}
+								{...indépendant.trimestreValidés}
+							/>
+						</div>
+						<div className="auto">
+							{autoEntrepreneur.plafondDépassé ? (
+								'—'
+							) : (
+								<RuleValueLink
+									onClick={() => setSituationBranch(2)}
+									appendText={<T>trimestres</T>}
+									{...autoEntrepreneur.trimestreValidés}
+								/>
+							)}
 						</div>
 						<T k="comparaisonRégimes.indemnités">
 							<h3 className="legend">
@@ -517,57 +498,66 @@ const SchemeComparaison = ({
 							</h3>
 						</T>
 						<div className="AS">
-							{assimiléSalarié && (
-								<>
-									<div>
-										<RuleValueLink
-											onClick={() => setSituationBranch(0)}
-											{...assimiléSalarié.indemnitésJournalières}
-										/>{' '}
-										/ <T>jour</T>
-									</div>
-									<small>
-										(
-										<RuleValueLink
-											onClick={() => setSituationBranch(0)}
-											{...assimiléSalarié.indemnitésJournalièresATMP}
-										/>{' '}
-										<T>pour les accidents de trajet/travail et maladie pro</T>)
-									</small>
-								</>
-							)}
+							<span>
+								<RuleValueLink
+									onClick={() => setSituationBranch(0)}
+									appendText={
+										<>
+											/ <T>jour</T>
+										</>
+									}
+									{...assimiléSalarié.indemnitésJournalières}
+								/>
+							</span>
+							<small>
+								(
+								<RuleValueLink
+									onClick={() => setSituationBranch(0)}
+									{...assimiléSalarié.indemnitésJournalièresATMP}
+								/>{' '}
+								<T>pour les accidents de trajet/travail et maladie pro</T>)
+							</small>
 						</div>
 						<div className="indep">
-							{indépendant && (
-								<div>
-									<RuleValueLink
-										onClick={() => setSituationBranch(1)}
-										{...indépendant.indemnitésJournalières}
-									/>{' '}
-									/ <T>jour</T>
-								</div>
-							)}
+							<span>
+								<RuleValueLink
+									onClick={() => setSituationBranch(1)}
+									appendText={
+										<>
+											/ <T>jour</T>
+										</>
+									}
+									{...indépendant.indemnitésJournalières}
+								/>
+							</span>
 						</div>
 						<div className="auto">
-							{autoEntrepreneur &&
-								(autoEntrepreneur.plafondDépassé ? (
-									'—'
-								) : (
-									<div>
-										<RuleValueLink
-											onClick={() => setSituationBranch(2)}
-											{...autoEntrepreneur.indemnitésJournalières}
-										/>{' '}
-										/ <T>jour</T>
-									</div>
-								))}
+							{autoEntrepreneur.plafondDépassé ? (
+								'—'
+							) : (
+								<span>
+									<RuleValueLink
+										onClick={() => setSituationBranch(2)}
+										appendText={
+											<>
+												/ <T>jour</T>
+											</>
+										}
+										{...autoEntrepreneur.indemnitésJournalières}
+									/>
+								</span>
+							)}
 						</div>
 					</>
 				)}
 			</div>
 			<div className="ui__ container">
-				<h2>Créer mon entreprise en tant que :</h2>
-
+				<br />
+				<h3>
+					<T k="comparaisonRégimes.titreSelection">
+						Créer mon entreprise en tant que :
+					</T>
+				</h3>
 				<div className="ui__ answer-group">
 					{!hideAssimiléSalarié && (
 						<button
@@ -608,7 +598,7 @@ const SchemeComparaison = ({
 }
 
 const RuleValueLink = withSitePaths(
-	({ lien, montant, valeur, sitePaths, onClick }) => (
+	({ lien, montant, valeur, sitePaths, onClick, appendText }) => (
 		<Link onClick={onClick} to={sitePaths.documentation.index + '/' + lien}>
 			{montant != undefined && <AnimatedTargetValue value={montant} />}
 			{valeur != undefined && (
@@ -616,6 +606,7 @@ const RuleValueLink = withSitePaths(
 					{valeur}
 				</Montant>
 			)}
+			{appendText && <> {appendText}</>}
 		</Link>
 	)
 )

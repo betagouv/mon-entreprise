@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
@@ -6,7 +7,7 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
-import { compose, isEmpty, isNil, propEq, toPairs } from 'ramda'
+import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { Component, PureComponent } from 'react'
 import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
@@ -89,44 +90,45 @@ export default compose(
 
 			return (
 				<div id="targetSelection">
-					{(Array.isArray(objectifs)
-						? [[null, objectifs]]
-						: toPairs(objectifs)
-					).map(([groupName, groupTargets], index) => (
-						<React.Fragment key={groupName}>
-							<div style={{ display: 'flex', alignItems: 'end' }}>
-								<div style={{ flex: 1 }}>
-									{groupName && (
-										<h2 style={{ marginBottom: 0 }}>{emoji(groupName)}</h2>
-									)}
+					{(typeof objectifs[0] === 'string' ? [{ objectifs }] : objectifs).map(
+						({ icône, objectifs: groupTargets, nom }, index) => (
+							<React.Fragment key={nom}>
+								<div style={{ display: 'flex', alignItems: 'end' }}>
+									<div style={{ flex: 1 }}>
+										{nom && (
+											<h2 style={{ marginBottom: 0 }}>
+												{emoji(icône)} <T>{nom}</T>
+											</h2>
+										)}
+									</div>
+									{index === 0 && <PeriodSwitch />}
 								</div>
-								{index === 0 && <PeriodSwitch />}
-							</div>
-							<section
-								className="ui__ plain card"
-								style={{
-									marginTop: '.6em',
-									color: colours.textColour,
-									background: `linear-gradient(
+								<section
+									className="ui__ plain card"
+									style={{
+										marginTop: '.6em',
+										color: colours.textColour,
+										background: `linear-gradient(
 								60deg,
 								${colours.darkColour} 0%,
 								${colours.colour} 100%
 								)`
-								}}>
-								<Targets
-									{...{
-										activeInput,
-										setActiveInput,
-										setFormValue,
-										targets: targets.filter(({ dottedName }) =>
-											groupTargets.includes(dottedName)
-										),
-										initialRender: this.state.initialRender
-									}}
-								/>
-							</section>
-						</React.Fragment>
-					))}
+									}}>
+									<Targets
+										{...{
+											activeInput,
+											setActiveInput,
+											setFormValue,
+											targets: targets.filter(({ dottedName }) =>
+												groupTargets.includes(dottedName)
+											),
+											initialRender: this.state.initialRender
+										}}
+									/>
+								</section>
+							</React.Fragment>
+						)
+					)}
 				</div>
 			)
 		}
@@ -174,8 +176,7 @@ const Target = ({
 	targets,
 	setActiveInput,
 	setFormValue,
-	initialRender,
-	inversionFail
+	initialRender
 }) => {
 	const isSmallTarget =
 		!target.question || !target.formule || isEmpty(target.formule)

@@ -18,9 +18,7 @@ describe('Landing test', function() {
 	})
 	it('should display selection page', function() {
 		cy.visit(fr ? '/sécurité-sociale' : '/social-security')
-		cy.contains(
-			fr ? 'La rémunération du dirigeant' : "The director's remuneration"
-		).click()
+		cy.contains(fr ? 'Mon revenu' : 'My income').click()
 		cy.contains(
 			fr
 				? 'Quel régime souhaitez-vous explorer ?'

@@ -204,6 +204,8 @@
 .ui__.button-choice {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+
 	padding: 1rem;
 	background: white;
 	color: var(--darkColour);
@@ -219,7 +221,9 @@
 }
 .ui__.button-choice small {
 	margin-left: 0.2rem;
+	flex-grow: 1;
 }
+
 .ui__.button-choice--soon {
 	border-color: lightgray;
 	color: gray;
@@ -227,6 +231,7 @@
 	opacity: 0.8;
 	pointer-events: none;
 	cursor: default;
+	justify-content: end;
 }
 
 .ui__.button-choice--soon img {
@@ -256,10 +261,6 @@
 	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
 		0px 4px 5px 0px rgba(41, 117, 209, 0.14),
 		0px 1px 10px 0px rgba(41, 117, 209, 0.12);
-}
-.ui__.button-choice:hover img,
-.ui__.button-choice:focus img {
-	transform: scale(1.5);
 }
 @media (min-width: 600px) {
 	.ui__.button-choice:not(.button-choice--soon)::after {

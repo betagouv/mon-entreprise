@@ -403,11 +403,13 @@ sécu:
   choix:
     titre: What do you want to estimate?
     auto-entrepreneur: Estimate my remuneration as an auto-entrepreneur
-    dirigeant1: Your remuneration as a {{legalStatus}} director
-    dirigeant2: The director's remuneration
+    dirigeant1: My income as a {{legalStatus}} director
+    dirigeant2: My income as a company director
     employé: An employee's salary
 
 Votre entreprise: Your company
+Mon entreprise: My company
+Mon revenu: My income
 Ce n'est pas mon entreprise: This is not my company
 Simuler une embauche: Simulate a hire
 
@@ -570,11 +572,11 @@ Intégrer le simulateur: Integrate the simulator
 Que désirez-vous faire ?: What do you want to do?
 Créer votre entreprise: Create your company
 landing:
-  title: The official guide for entrepreneurs
-  subtitle: All the resources you need to manage your business, from legal status to hiring.
+  title: The official assistant for entrepreneurs
+  subtitle: All the resources you need to develop your business, from legal status to hiring.
   choix3: Know the hiring procedures
-  choix2: Simulate contributions and taxes <2>(for the manager and hiring)</2>
-  choix1: Create a company in France
+  choix2: Simulate contributions and taxes <2>(company director or employee)</2>
+  choix1: Create my company in France
 Déclarer mon activité d'économie collaborative: Declare my activity in the sharing economy
 Prochainement: Soon
 
@@ -691,8 +693,8 @@ comparaisonRégimes:
     <0>Retirement pay</0>
 
   comparaisonDétaillée: |
-    <0> Detailed comparaison</0>
-    <1><0> View the detailed comparison</0></1>
+    <0><0> View more information </0></0>
+
   comptabilité: |
     <0> Accounting, social, legal management....</0>
     <1> Support strongly recommended <1>(chartered accountant, accountant, chartered management centre...)</1></1>
@@ -708,13 +710,14 @@ comparaisonRégimes:
     <2>No <1>(but lump-sum deduction for calculating income tax)</1></2>
   simulationText: |
     <0>
-      Compare your income, retirement pay and sickness allowance in 1 minute
+      Compare my income, retirement pay and sickness allowance
     </0>
-    <1>Start</1>
+    <1/>
+    <2>Start simulation</2>
   cotisations: |
     <0> Payment of social contributions</0>
     <1> Monthly</1>
-    <2> Monthly advance <1>(with posterior regularization based on real income)</1></2>
+    <2> Monthly or quaterly advance <1>(with posterior regularization based on real income)</1></2>
     <3> Montly or quaterly</3>
   complémentaireDeductible: |
     <0> Optional health and pension policies deductible</0>
@@ -724,11 +727,15 @@ comparaisonRégimes:
     <0>Net income after taxes</0>
   revenuNetAvantImpots: |
     <0>Net contribution income<1>(before income tax)</1></0>
-  retraiteEstimation: |
-    <0>Retirement pay
-      <2>estimated for 172 quarters contributed to this social scheme with no change in income</2></0>
-    <1>(before taxes)</1>
-
+  retraiteEstimation:
+    legend: |
+      <0>Retirement pay
+        <2>estimated for 172 quarters contributed to this social scheme with no change in income</2></0>
+      <1>(before taxes)</1>
+    infobulle:
+      AS: Pension calculated for 172 quarters contributed to the general scheme with no change in income.
+      indep: Pension calculated for 172 quarters contributed to the self-employed scheme with no change in income.
+      auto: Pension calculated for 172 quarters contributed as auto-entrepreneur with no change in income.
   cotisationMinimale: |
     <0> Minimum contributions</0>
 
@@ -737,11 +744,8 @@ comparaisonRégimes:
     <1>Yes</1>
     <2> No <1>(mandatory minimum contributions)</1></2>
     <3>Yes</3>
-  choix:
-    AS: Choose Assimilé salarié
-    indep: Choose Indépendant
-    auto: Choose Auto-entrepreneur
-    EI: Choose Entreprise Individuelle
+  titreSelection: |
+    Create my company as:
 
 J'ai compris: understood
 trimestres validés: validated quarters

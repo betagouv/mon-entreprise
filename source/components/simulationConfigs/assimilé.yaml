@@ -1,13 +1,17 @@
 objectifs:
-  🏢 Votre entreprise:
-    - entreprise . chiffre d'affaires
-    - entreprise . charges
-  👩‍💼 Votre revenu:
-    - contrat salarié . rémunération . total
-    - contrat salarié . cotisations
-    - contrat salarié . salaire . net
-    - impôt . neutre
-    - contrat salarié . salaire . net après impôt
+  - icône: 🏢
+    nom: Mon entreprise
+    objectifs:
+      - entreprise . chiffre d'affaires
+      - entreprise . charges
+  - icône: 👩‍💼
+    nom: Mon revenu
+    objectifs:
+      - contrat salarié . rémunération . total
+      - contrat salarié . cotisations
+      - contrat salarié . salaire . net
+      - impôt . neutre
+      - contrat salarié . salaire . net après impôt
 
 questions:
   blacklist:

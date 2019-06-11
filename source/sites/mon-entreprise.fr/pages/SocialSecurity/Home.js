@@ -116,13 +116,13 @@ class SocialSecurity extends Component<Props, {}> {
 												? t(
 														[
 															'sécu.choix.dirigeant1',
-															`Votre rémunération en tant que dirigeant de {{legalStatus}}`
+															`Mon revenu en tant que dirigeant de {{legalStatus}}`
 														],
 														{ legalStatus: t(legalStatus) }
 												  )
 												: t(
 														'sécu.choix.dirigeant2',
-														`La rémunération du dirigeant`
+														`Mon revenu en tant que chef d'entreprise`
 												  )}
 										</Link>
 										<Link

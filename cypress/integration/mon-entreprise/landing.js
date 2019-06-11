@@ -11,7 +11,7 @@ describe('Landing test', function() {
 	})
 	it('should display actionnable items', function() {
 		cy.visit('/')
-		cy.contains(fr ? 'Créer une entreprise' : 'Create a company in France')
+		cy.contains(fr ? 'Créer mon entreprise' : 'Create my company in France')
 		cy.contains(
 			fr
 				? 'Simuler les cotisations et les taxes'

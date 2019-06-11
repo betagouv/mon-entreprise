@@ -16,10 +16,12 @@
 	outline: 1px dotted var(--darkColour);
 }
 .info-bulle__text {
+	text-align: left;
 	position: absolute;
-	z-index: 1;
+	z-index: -1;
 	border: 1px solid var(--colour);
 	padding: 0.3rem;
+	min-width: 10rem;
 	font-weight: normal;
 	display: block;
 	border-radius: 3px;
@@ -34,6 +36,7 @@
 .info-bulle__interrogation-mark:hover + .info-bulle__text,
 .info-bulle__interrogation-mark:focus + .info-bulle__text {
 	transform: translateY(1px);
+	z-index: 1;
 	opacity: 1;
 }
 .info-bulle__interrogation-mark:focus {

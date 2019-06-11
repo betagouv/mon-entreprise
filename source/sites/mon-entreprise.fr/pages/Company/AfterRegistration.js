@@ -114,9 +114,7 @@ const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => {
 						</p>
 					</>
 				)}
-			<p
-				className="ui__ answer-group"
-				style={{ justifyContent: 'space-between' }}>
+			<p className="ui__ answer-group">
 				<Link
 					to={sitePaths.entreprise.index}
 					className="ui__ simple skip button left">

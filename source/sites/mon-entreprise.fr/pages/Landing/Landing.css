@@ -35,14 +35,13 @@
 	}
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
 	.landing-title__img {
-		margin-top: 0;
-		margin-right: -10rem;
-		max-height: 35rem;
+		margin-top: 2rem;
+		margin-right: -5rem;
+		margin-left: -1rem;
+		max-height: 25rem;
 	}
-}
-@media (max-width: 500px) {
 	.landing-header__brand-logo {
 		height: 4rem;
 	}
@@ -58,6 +57,11 @@
 	.landing-header *:nth-child(2) {
 		display: none;
 	}
+	.landing-header__brand-logo {
+		margin-left: 1rem;
+	}
+}
+@media (max-width: 500px) {
 	.landing-title {
 		flex-direction: column;
 		text-align: center;
@@ -67,8 +71,5 @@
 	}
 	.landing-title__img {
 		display: none;
-	}
-	.landing-header__brand-logo {
-		margin-left: 1rem;
 	}
 }

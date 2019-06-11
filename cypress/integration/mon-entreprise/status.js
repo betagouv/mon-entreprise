@@ -3,7 +3,7 @@ describe('Status guide', function() {
 	beforeEach(() => {
 		cy.visit('/')
 		cy.contains(
-			fr ? 'Créer une entreprise' : 'Create a company in France'
+			fr ? 'Créer mon entreprise' : 'Create my company in France'
 		).click()
 		cy.get('a.ui__.button.plain').click()
 	})
@@ -31,8 +31,8 @@ describe('Status guide', function() {
 		cy.get('.ui__.answer-group')
 			.contains(fr ? 'Société' : 'Limited liability company')
 			.click()
-		cy.get('.AS .button')
-			.contains(fr ? 'Choisir' : 'Choose')
+		cy.get('.answer-group button')
+			.contains('Assimilé')
 			.click()
 		cy.contains(fr ? 'Créer une SASU' : 'Create a SASU').click()
 	})

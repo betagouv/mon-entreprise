@@ -773,7 +773,7 @@ contrat salarié . salaire . net après impôt:
   titre.en: Net salary after income tax
   titre.fr: Salaire net après impôt
   résumé.en: Transfered on the bank account
-  résumé.fr: Versé sur son compte bancaire
+  résumé.fr: Versé sur le compte bancaire
   question.en: What is the net income of the employee after income tax?
   question.fr: Quel est le revenu net du salarié après impôt ?
   description.en: >-
