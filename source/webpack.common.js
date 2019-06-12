@@ -71,6 +71,10 @@ module.exports = {
 			{
 				from: './source/sites/mon-entreprise.fr/images',
 				to: 'static-images'
+			},
+			{
+				from: './source/sites/mon-entreprise.fr/favicon',
+				to: 'favicon'
 			}
 		])
 	]
