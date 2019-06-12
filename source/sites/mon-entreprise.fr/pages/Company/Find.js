@@ -1,18 +1,18 @@
 /* @flow */
-import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions';
-import { React, T } from 'Components';
-import withSitePaths from 'Components/utils/withSitePaths';
-import { compose } from 'ramda';
-import { Helmet } from 'react-helmet';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
-import ReactSelect from 'react-select';
+import { saveExistingCompanyDetails } from 'Actions/existingCompanyActions'
+import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { compose } from 'ramda'
+import { Helmet } from 'react-helmet'
+import { withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
+import ReactSelect from 'react-select'
 // $FlowFixMe
-import 'react-select/dist/react-select.css';
-import './Find.css';
-import { CompanyDetails as Company } from './YourCompany';
+import 'react-select/dist/react-select.css'
+import './Find.css'
+import { CompanyDetails as Company } from './YourCompany'
 import type { SitePaths } from 'Components/utils/withSitePaths'
 import type { TFunction } from 'react-i18next'
 import type { RouterHistory } from 'react-router'
@@ -32,38 +32,38 @@ const isSIRET = (input: string) => input.match(/^ *([\d] *){14}$/)
 
 async function getOptions(input: string) {
 	let etablissements
-		try {
-	if (isSIREN(input)) {
-		input.replace(' ', '')
-		const response = await fetch(
-			`https://entreprise.data.gouv.fr/api/sirene/v1/siren/${input}`
-		)
-		if (!response.ok) {
-			return
+	try {
+		if (isSIREN(input)) {
+			input.replace(' ', '')
+			const response = await fetch(
+				`https://entreprise.data.gouv.fr/api/sirene/v1/siren/${input}`
+			)
+			if (!response.ok) {
+				return
+			}
+			const json = await response.json()
+			etablissements = [json.siege_social]
+		} else if (isSIRET(input)) {
+			input.replace(' ', '')
+			const response = await fetch(
+				`https://entreprise.data.gouv.fr/api/sirene/v1/siret/${input}`
+			)
+			if (!response.ok) {
+				return
+			}
+			const json = await response.json()
+			etablissements = [json.etablissement]
+		} else {
+			/* Full text search */
+			const response = await fetch(
+				`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`
+			)
+			if (!response.ok) {
+				return
+			}
+			const json = await response.json()
+			etablissements = json.etablissement
 		}
-		const json = await response.json()
-		etablissements = [json.siege_social];
-	} else if (isSIRET(input)) {
-		input.replace(' ', '')
-		const response = await fetch(
-			`https://entreprise.data.gouv.fr/api/sirene/v1/siret/${input}`
-		)
-		if (!response.ok) {
-			return
-		}
-		const json = await response.json()
-		etablissements = [json.etablissement];
-	} else {
-		/* Full text search */
-		const response = await fetch(
-			`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`
-		)
-		if (!response.ok) {
-			return
-		}
-		const json = await response.json()
-		etablissements = json.etablissement;
-	}
 		return { options: etablissements }
 	} catch (error) {
 		console.log(
@@ -85,7 +85,7 @@ class Search extends React.Component<Props, State> {
 		return (
 			<div id="findYourCompany">
 				<Helmet>
-					<title>{t('trouver.titre', 'Retrouver votre entreprise')}</title>
+					<title>{t('trouver.titre', 'Retrouver mon entreprise')}</title>
 					<meta
 						name="description"
 						content={t(
@@ -95,7 +95,7 @@ class Search extends React.Component<Props, State> {
 					/>
 				</Helmet>
 				<h1 className="question__title">
-					<T k="trouver.titre">Retrouver votre entreprise</T>
+					<T k="trouver.titre">Retrouver mon entreprise</T>
 				</h1>
 				<p>
 					<Link to={sitePaths.entreprise.index}>
@@ -130,27 +130,41 @@ class Search extends React.Component<Props, State> {
 				{!!this.state.input && (
 					<>
 						<Company {...this.state.input} />
-						{this.state.input.nature_entrepreneur_individuel  ?
+						{this.state.input.nature_entrepreneur_individuel ? (
 							<div className="ui__ plain card">
-							<h2>Etes vous auto-entrepreneur ? </h2>
-							<div className="ui__ answer-group">
-							<button className="ui__ inverted-button" onClick={
-							()=>	this.props.onCompanyDetailsConfirmation(this.state.input, true)
-							}>Oui</button>
-							<button  className="ui__ inverted-button" onClick={
-							()=>	this.props.onCompanyDetailsConfirmation(this.state.input, false)
-							}>Non</button>
+								<h2>Etes vous auto-entrepreneur ? </h2>
+								<div className="ui__ answer-group">
+									<button
+										className="ui__ inverted-button"
+										onClick={() =>
+											this.props.onCompanyDetailsConfirmation(
+												this.state.input,
+												true
+											)
+										}>
+										Oui
+									</button>
+									<button
+										className="ui__ inverted-button"
+										onClick={() =>
+											this.props.onCompanyDetailsConfirmation(
+												this.state.input,
+												false
+											)
+										}>
+										Non
+									</button>
+								</div>
 							</div>
-							</div>
-
-						:
-						<button
-							onClick={() => {
-								this.props.onCompanyDetailsConfirmation(this.state.input)
-							}}
-							className="ui__ plain button">
-							<T k="trouver.ok">Confirmer et simuler vos cotisations</T>
-						</button>}
+						) : (
+							<button
+								onClick={() => {
+									this.props.onCompanyDetailsConfirmation(this.state.input)
+								}}
+								className="ui__ plain button">
+								<T k="trouver.ok">Confirmer et simuler vos cotisations</T>
+							</button>
+						)}
 					</>
 				)}
 			</div>

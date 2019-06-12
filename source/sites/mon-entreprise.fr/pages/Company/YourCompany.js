@@ -65,7 +65,7 @@ const YourCompany = ({ companyDetails, resetCompanyDetails, sitePaths }) => (
 	<>
 		{!companyDetails && <Redirect to={sitePaths.entreprise.index} />}
 		<h1>
-			<T>Votre entreprise</T>
+			<T>Mon entreprise</T>
 		</h1>
 		<CompanyDetails {...companyDetails.apiDetails} />
 		<p>
@@ -75,7 +75,7 @@ const YourCompany = ({ companyDetails, resetCompanyDetails, sitePaths }) => (
 		</p>
 		<p>
 			<Link to={sitePaths.sécuritéSociale.index} className="ui__ button">
-				<T>Simuler vos cotisations</T>
+				<T>Simuler mes cotisations</T>
 			</Link>
 		</p>
 	</>

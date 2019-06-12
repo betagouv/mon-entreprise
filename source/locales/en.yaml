@@ -102,7 +102,7 @@ Part salariale: Employee share
 Total des retenues: Total withheld
 Fiche de paie mensuelle: Monthly payslip
 Fiche de paie: Payslip
-Détail annuel des cotisations: Annual detail of your contributions
+Détail annuel des cotisations: Annual detail of my contributions
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
 payslip:
@@ -251,7 +251,7 @@ entreprise:
         </3>
 
     formulaire:
-      titre: Register your company online
+      titre: Register my company online
       description: <0>You can start your online registration process anytime, save it and come back to it as you wish.</0><1><0>Start registration process</0></1>
     titre2: Recommended before starting your activity
     comptable:
@@ -411,8 +411,6 @@ sécu:
     dirigeant1: My income as a {{legalStatus}} director
     dirigeant2: My income as a company director
     employé: An employee's salary
-
-Votre entreprise: Your company
 Mon entreprise: My company
 Mon revenu: My income
 Ce n'est pas mon entreprise: This is not my company
@@ -575,7 +573,7 @@ Intégrer le simulateur: Integrate the simulator
 
 # Landing infrance
 Que désirez-vous faire ?: What do you want to do?
-Créer votre entreprise: Create your company
+Créer mon entreprise: Create my company
 landing:
   title: The official assistant for entrepreneurs
   subtitle: All the resources you need to develop your business, from legal status to hiring.

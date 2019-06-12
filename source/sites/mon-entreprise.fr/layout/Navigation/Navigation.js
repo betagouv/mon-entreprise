@@ -39,7 +39,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 							exact={false}
 							title={
 								<>
-									<T>Votre entreprise</T>
+									<T>Mon entreprise</T>
 									<img
 										style={{ height: '2.5rem', marginBottom: '-0.8rem' }}
 										src={companySvg}
@@ -48,7 +48,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 							}>
 							<ul>
 								<li>
-									<NavOpener title={t('Créer votre entreprise')}>
+									<NavOpener title={t('Créer mon entreprise')}>
 										<ul>
 											<li>
 												<NavOpener
@@ -181,7 +181,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 								</li>
 								<li>
 									<NavLink to={sitePaths.entreprise.trouver}>
-										<T k="trouver.titre">Retrouver votre entreprise</T>
+										<T k="trouver.titre">Retrouver mon entreprise</T>
 									</NavLink>
 								</li>
 							</ul>
