@@ -1,10 +1,7 @@
 describe('Status guide', function() {
 	const fr = Cypress.env('language') === 'fr'
 	beforeEach(() => {
-		cy.visit('/')
-		cy.contains(
-			fr ? 'Créer mon entreprise' : 'Create my company in France'
-		).click()
+		cy.visit(fr ? '/entreprise' : '/company')
 		cy.get('a.ui__.button.plain').click()
 	})
 
