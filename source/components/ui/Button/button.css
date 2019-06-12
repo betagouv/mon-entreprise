@@ -203,7 +203,7 @@
 }
 .ui__.button-choice {
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 	flex-wrap: wrap;
 
 	padding: 1rem;
@@ -231,7 +231,7 @@
 	opacity: 0.8;
 	pointer-events: none;
 	cursor: default;
-	justify-content: end;
+	justify-content: flex-end;
 }
 
 .ui__.button-choice--soon img {
@@ -251,8 +251,7 @@
 .ui__.button-choice img {
 	margin-right: 2rem !important;
 	margin-left: 0.5rem !important;
-	transform: scale(1.5);
-	transition: transform 0.2s;
+	transform: scale(1.5) translateY(0.1em);
 }
 
 .ui__.button-choice:hover,

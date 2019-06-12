@@ -23,9 +23,9 @@
 }
 
 .landing-title__img {
-	align-self: end;
-	max-height: 25rem;
+	align-self: flex-end;
 	margin-top: 2rem;
+	width: 30rem;
 	margin-left: 1rem;
 	margin-bottom: -3rem;
 }

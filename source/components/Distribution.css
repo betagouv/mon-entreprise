@@ -111,7 +111,7 @@
 	grid-template-columns: 1fr auto auto;
 	grid-column-gap: 1em;
 	grid-row-gap: 0.4em;
-	align-items: end;
+	align-items: flex-end;
 	text-align: right;
 	margin-bottom: 1em;
 }
