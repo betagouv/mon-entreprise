@@ -593,8 +593,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		explanation,
 		category: 'mecanism',
 		name: 'multiplication',
-		type: 'numeric',
-		unit: explanation.assiette.unit
+		type: 'numeric'
 	}
 }
 
@@ -771,8 +770,7 @@ export let mecanismMin = (recurse, k, v) => {
 		explanation,
 		type: 'numeric',
 		category: 'mecanism',
-		name: 'le minimum de',
-		unit: explanation[0].unit
+		name: 'le minimum de'
 	}
 }
 

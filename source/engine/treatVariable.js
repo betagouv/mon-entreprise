@@ -11,9 +11,7 @@ import { getSituationValue } from './variables'
 
 export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 	let variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rules, rule, variablePartialName),
-		variable = findRuleByDottedName(rules, dottedName),
-		unit = variable.unit
+		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
@@ -39,7 +37,7 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 
 		let cacheAndNode = (nodeValue, missingVariables) => {
 			cache[cacheName] = rewriteNode(
-				{ ...node, unit: explanation.unit },
+				node,
 				nodeValue,
 				explanation,
 				missingVariables
@@ -91,8 +89,7 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 		name: variablePartialName,
 		category: 'variable',
 		fragments,
-		dottedName,
-		unit
+		dottedName
 	}
 }
 

@@ -326,8 +326,25 @@ export let getTargets = (target, rules) => {
 }
 
 export let parseAll = flatRules => {
+	/* First we parse each rule one by one. When a mechanism is encountered, it is recursively parsed. When a reference to a variable is encountered, a 'variable' node is created, we don't parse variables recursively. */
 	let treatOne = rule => treatRuleRoot(flatRules, rule)
 	let parsed = map(treatOne, flatRules)
+	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example : 
+		A = B * C
+		B = D / E
+
+		C unité km
+		D unité €
+		E unité km
+	 *
+	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
+	 *
+	 * */
+
+		
+
+
+
 	return parsed
 }
 

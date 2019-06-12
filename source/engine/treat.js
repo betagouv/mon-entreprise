@@ -50,8 +50,6 @@ import {
 	treatVariableTransforms
 } from './treatVariable'
 
-import { inferUnit } from 'Engine/units'
-
 export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 export let treatString = (rules, rule) => rawNode => {
@@ -176,14 +174,8 @@ let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 				explanation[0].missingVariables,
 				explanation[1].missingVariables
 			)
-		let unit = inferUnit(k, explanation[0].unit, explanation[1].unit)
 
-		return rewriteNode(
-			{ ...node, unit },
-			nodeValue,
-			explanation,
-			missingVariables
-		)
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 
 	let explanation = v.explanation.map(recurse)
