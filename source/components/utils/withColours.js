@@ -68,7 +68,7 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 			textColour === '#ffffff'
 				? 'rgba(255, 255, 255, .6)'
 				: 'rgba(0, 0, 0, .6)',
-		lighterTextColour = lightenTextColour(textColour),
+		lighterTextColour = darkColour + '99',
 		lighterInverseTextColour = lightenTextColour(inverseTextColour),
 		textColourOnWhite = textColour === '#ffffff' ? colour : '#333'
 
