@@ -142,6 +142,8 @@ const Footer = ({ tracker, t, sitePaths }) => {
 						<LegalNotice />
 						{'  •  '}
 						<Privacy />
+						{'  •  '}
+						<a href="https://mon-entreprise.fr/stats">Stats</a>
 						{i18n.language === 'fr' && (
 							<>
 								{'  •  '} <Integration />

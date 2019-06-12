@@ -42,7 +42,7 @@ export default compose(
 				<Banner icon="✨">
 					Le simulateur d'embauche évolue et devient{' '}
 					<strong>mon-entreprise.fr !</strong>{' '}
-					<a href="https://pad.etalab.studio/s/By2X4Z2rV#">
+					<a href="https://blog.beta.gouv.fr/dinsic/2019/06/11/embauche-beta-gouv-fr-devient-mon-entreprise-fr/">
 						Lire nos explications
 					</a>
 				</Banner>

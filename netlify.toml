@@ -39,7 +39,7 @@ status = 200
 # Mon-entreprise.fr PRODUCTION settings
 [[redirects]]
 from = "https://mon-entreprise.fr/stats"
-to = "https://branched-trunk.glitch.me/"
+to = "https://mon-entreprise.glitch.me/"
 status = 200
 
 [[redirects]]
