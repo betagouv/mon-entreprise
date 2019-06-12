@@ -43,9 +43,7 @@ export const règleLocaliséeSelector: InputSelector<
 			lien: encodeRuleName(dottedName),
 
 			id: dottedName,
-			...(localizedRule.shortDescription
-				? { descriptionCourte: localizedRule.shortDescription }
-				: {}),
+			...(localizedRule.summary ? { résumé: localizedRule.summary } : {}),
 			...(localizedRule.icon ? { icône: localizedRule.icon } : {}),
 			...(localizedRule.format ? { type: localizedRule.format } : {})
 		}

@@ -7,7 +7,7 @@ const salaryInput = inputTitle => {
 	return inputContainer.find('input')
 }
 
-describe('Landing test', function() {
+describe('Simulateurs test', function() {
 	const fr = Cypress.env('language') === 'fr'
 
 	it('should not crash', function() {
@@ -39,9 +39,11 @@ describe('Landing test', function() {
 			force: true
 		})
 		cy.contains(fr ? 'Cotisations et contributions' : 'All contributions')
-		cy.contains(fr ? 'ACRE' : 'ACRE').click()
+		cy.contains(fr ? "Type d'activité" : 'Activity type').click()
 		cy.contains(
-			fr ? "Quel est l'âge de l'entreprise" : 'How old is the company'
+			fr
+				? "Quelle est votre catégorie d'activité"
+				: 'What is your category of activity'
 		)
 	})
 })

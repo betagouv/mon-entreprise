@@ -6,7 +6,7 @@ export type Règle = {
 	id: string,
 	lien: string,
 	icône?: string,
-	descriptionCourte?: string
+	résumé?: string
 }
 
 export type RègleAvecMontant = Règle & {

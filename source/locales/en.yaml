@@ -115,11 +115,16 @@ Faire une simulation personnalisée: Do a customized simulation
 custom-simulation: This is currently a <1>rough estimate</1> based on a generic contract. French legislation provides for a multitude of special cases and specific rules which considerably modify the costs of recruitment.
 Effacer: Reset
 Continuer: Continue
-CDI: Permanent
-CDD: Fixed-term
-Cadre: '"Cadre" status'
-Temps partiel: Part time
-Autres: Other situations
+quicklinks:
+  CDI: Permanent
+  Commune: Town
+  JEI: Innovating company (JEI)
+  CDD: Fixed-term
+  Cadre: '"Cadre" status'
+  Temps partiel: Part time
+  Type d'activité: Activity type
+  Charges: Expenses
+  Autres questions: Other questions
 Mes réponses: My answers
 Voir mes réponses: See my answers
 simulation-end:
@@ -611,12 +616,16 @@ simulateurs:
     line1: the turnover deducted from expenses goes to 100% in the director's remuneration
     line2: income tax is calculated for a single person without children and without other income.
     line3: the figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
+  précision:
+    défaut: 'Refine the simulation by answering the following questions:'
+    faible: Low accuracy
+    moyenne: Medium accuracy
+    bonne: Good accuracy
   salarié:
     page:
-      titre: Official net and gross salary simulator
+      titre: 'Calculation of net and gross salary: official simulator'
       description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
-    titre: Salary simulator
-    description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
+    titre: Income simulator for employees
   assimilé-salarié:
     page:
       titre: Official salary simulator for SASU and SAS directors
@@ -729,8 +738,7 @@ comparaisonRégimes:
     <0>Net contribution income<1>(before income tax)</1></0>
   retraiteEstimation:
     legend: |
-      <0>Retirement pay
-        <2>estimated for 172 quarters contributed to this social scheme with no change in income</2></0>
+      <0>Retirement pay</0>
       <1>(before taxes)</1>
     infobulle:
       AS: Pension calculated for 172 quarters contributed to the general scheme with no change in income.

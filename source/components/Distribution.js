@@ -89,7 +89,7 @@ class Distribution extends Component<Props, State> {
 														<RuleLink {...branche} />
 													</span>
 													<br />
-													<small>{branche.descriptionCourte}</small>
+													<small>{branche.résumé}</small>
 												</p>
 												<ChartItemBar {...{ styles, colour, montant, total }} />
 											</div>

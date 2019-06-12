@@ -241,7 +241,7 @@ let Header = withSitePaths(({ target, sitePaths }) => {
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
-				<p>{target['résumé']}</p>
+				<p>{target.summary}</p>
 			</span>
 		</span>
 	)

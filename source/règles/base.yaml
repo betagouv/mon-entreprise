@@ -2728,7 +2728,7 @@
 - espace: entreprise
   nom: rémunération du dirigeant
   description: |
-    C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue !
+    C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
   format: pourcentage
   par défaut: 1
@@ -3562,7 +3562,7 @@
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: retraite complémentaire
-  description: Le montant total qui est alloué à la retraite complémentaire, utile pour caluler la retraite des auto entrepreneurs
+  description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
   format: euros
   # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
   non applicable si: entreprise . catégorie d'activité = 'libérale'
@@ -3682,7 +3682,7 @@
   espace: protection sociale
   icônes: 👵
   type: branche
-  description courte: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
+  résumé: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   description: |
     Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
 
@@ -3714,7 +3714,7 @@
   note: |
     Il s'agit d'une estimation a but purement indicatif, afin de comparer la retraite des différents régimes.
     On se limite notamment aux hypothèses suivantes :
-      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestre requis (172), ou en partant à l'âge taux plein (67 ans)
+      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestres requis (172), ou en partant à l'âge taux plein (67 ans)
       - On considère que le travailleur a eu le même revenu tout au long de sa carrière
       - On considère que le travailleur est resté dans le même régime tout au long de sa carrière
       - On ne prend pas en compte les minorations / majorations
@@ -3738,7 +3738,7 @@
 
 - nom: taux de la pension
   espace: protection sociale . retraite . base
-  description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestre cotisé.
+  description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestres cotisés.
   période: flexible
   formule:
     variations:
@@ -3978,7 +3978,7 @@
   espace: protection sociale
   icônes: 🏥
   type: branche
-  description courte: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.
+  résumé: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.
   description: |
     L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
 
@@ -3998,7 +3998,7 @@
 
 - espace: protection sociale . santé
   nom: indemnités journalières
-  description: |
+  description: >-
     Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser
     votre revenu pendant un arrêt de travail. Elles sont calculées à partir de votre revenu
     brut et versées tous les 14 jours en moyenne.
@@ -4066,7 +4066,7 @@
   espace: protection sociale
   icônes: 💸
   type: assurance
-  description courte: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
+  résumé: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
   description: >
     Depuis 1958, l’Assurance chômage protège tous les salariés du privé et certains du secteur public lorsqu’ils perdent leur emploi. Elle leur verse une allocation et favorise leur retour à l’emploi grâce à des aides.
 
@@ -4088,7 +4088,7 @@
   espace: protection sociale
   icônes: 👶
   type: branche
-  description courte: |
+  résumé: |
     Assure des prestations en soutien aux familles : garde d'enfants, aide au logement...
   description: |
     Créée en 1945, la branche Famille est l’un des principaux acteurs de la politique familiale française. Actuellement, elle a deux missions prioritaires :
@@ -4112,7 +4112,7 @@
 - nom: accidents du travail et maladies professionnelles
   espace: protection sociale
   icônes: ☣️
-  description courte: Offre une couverture complète des maladies ou accidents du travail.
+  résumé: Offre une couverture complète des maladies ou accidents du travail.
   description: |
     L’assurance AT/MP (accident du travail et maladie professionnelle) est la plus ancienne branche de la Sécurité sociale : elle relève de principes qui remontent à l’année 1898 et qui ont été repris dans la loi du 31 décembre 1946.
 
@@ -4148,7 +4148,7 @@
 - nom: formation
   espace: protection sociale
   icônes: 👩‍🎓
-  description courte: Donne aux employés la possibilité de suivre des formations professionnelles.
+  résumé: Donne aux employés la possibilité de suivre des formations professionnelles.
   description: |
     La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
 
@@ -4157,7 +4157,7 @@
 - nom: autres
   espace: protection sociale
   icônes: 🔧
-  description courte: Autres contributions au système social.
+  résumé: Autres contributions au système social.
   description: |
     Toutes les contributions transverses au système social.
 
@@ -4166,7 +4166,7 @@
 - nom: transport
   espace: protection sociale
   icônes: 🚌
-  description courte: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
+  résumé: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
   description: |
     Cette contribution est reversée intégralement à l'[autorité organisatrice de la mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9) de la zone ou est implantée l'entreprise. Celle-ci peut ensuite l'utiliser pour subventionner les transports en commun existants ou pour développer de nouvelles infrastructures de transport (tramway, métro, bus...).
 

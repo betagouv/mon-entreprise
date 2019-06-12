@@ -5,6 +5,7 @@ import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
@@ -12,7 +13,10 @@ import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-export default withTranslation()(function Salarié({ t }) {
+export default compose(
+	withTranslation(),
+	withLanguage
+)(function Salarié({ t, language }) {
 	return (
 		<>
 			<Helmet>
@@ -30,15 +34,19 @@ export default withTranslation()(function Salarié({ t }) {
 					)}
 				/>
 			</Helmet>
-			<h1>Simulateur de revenus pour salarié</h1>
+			<h1>
+				<T k="simulateurs.salarié.titre">Simulateur de revenus pour salarié</T>
+			</h1>
 			<div style={{ margin: '2rem' }} />
-			<Banner icon="✨">
-				Le simulateur d'embauche évolue et devient{' '}
-				<strong>mon-entreprise.fr !</strong>{' '}
-				<a href="https://pad.etalab.studio/s/By2X4Z2rV#">
-					Lire nos explications
-				</a>
-			</Banner>
+			{language === 'fr' && (
+				<Banner icon="✨">
+					Le simulateur d'embauche évolue et devient{' '}
+					<strong>mon-entreprise.fr !</strong>{' '}
+					<a href="https://pad.etalab.studio/s/By2X4Z2rV#">
+						Lire nos explications
+					</a>
+				</Banner>
+			)}
 			<SalarySimulation />
 		</>
 	)

@@ -52,7 +52,7 @@ export let enrichRule = rule => {
 			defaultValue = rule['par défaut'],
 			examples = rule['exemples'],
 			icon = rule['icônes'],
-			shortDescription = rule['description courte']
+			summary = rule['résumé']
 
 		return {
 			...rule,
@@ -66,7 +66,7 @@ export let enrichRule = rule => {
 			raw: rule,
 			examples,
 			icon,
-			shortDescription
+			summary
 		}
 	} catch (e) {
 		console.log(e)
@@ -247,7 +247,6 @@ export let translateAll = (translations, flatRules) => {
 		'titre',
 		'description',
 		'question',
-		'description courte',
 		'sous-question',
 		'résumé',
 		'suggestions',
