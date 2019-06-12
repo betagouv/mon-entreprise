@@ -33,7 +33,7 @@ const StepsHeader = ({ showHiring, tracker, sitePaths }: Props) => (
 				}>
 				<img src={companySvg} />
 				<div>
-					<T>Votre entreprise</T>
+					<T>Mon entreprise</T>
 				</div>
 			</NavLink>
 			<NavLink

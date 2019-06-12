@@ -34,7 +34,7 @@ import Sitemap from './pages/Dev/Sitemap'
 import Documentation from './pages/Documentation'
 import HiringProcess from './pages/HiringProcess'
 import Iframes from './pages/Iframes'
-import Landing from './pages/Landing'
+import Landing from './pages/Landing/Landing.js'
 import SocialSecurity from './pages/SocialSecurity'
 import { constructLocalizedSitePath } from './sitePaths'
 
@@ -90,11 +90,14 @@ class InFranceRoute extends Component {
 
 let RouterSwitch = compose(withTranslation())(() => {
 	return (
-		<Switch>
-			<Route exact path="/" component={Landing} />
-			<Route path="/iframes" component={Iframes} />
-			<Route component={App} />
-		</Switch>
+		<>
+			{!inIframe() && <Navigation location={location} />}
+			<Switch>
+				<Route exact path="/" component={Landing} />
+				<Route path="/iframes" component={Iframes} />
+				<Route component={App} />
+			</Switch>
+		</>
 	)
 })
 
@@ -105,7 +108,6 @@ const App = compose(
 	<div className="app-container">
 		<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />
 		{/* Passing location down to prevent update blocking */}
-		{!inIframe() && <Navigation location={location} />}
 
 		<div className="app-content">
 			{!inIframe() && <Header />}

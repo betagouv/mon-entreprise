@@ -12,6 +12,6 @@ describe('indeps', function() {
 			période: 'année'
 		})
 
-		expect(values[0]).to.be.closeTo(41513, 1)
+		expect(values[0]).to.be.closeTo(39764, 1)
 	})
 })

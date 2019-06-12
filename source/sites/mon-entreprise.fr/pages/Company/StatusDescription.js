@@ -66,8 +66,8 @@ const StatusDescription = ({ status }: Props) =>
 	) : status === 'auto-entrepreneur' ? (
 		<T k="formeJuridique.micro">
 			Un auto-entrepreneur exerce son activité en entreprise individuelle, avec
-			un régime forfaitaire pour le calcul des impôts et le paiement des
-			cotisations de sécurité sociale.
+			un régime forfaitaire pour ses cotisations sociales et un calcul
+			spécifique de l'impôt.
 		</T>
 	) : status === 'auto-entrepreneur-EIRL' ? (
 		<T k="formeJuridique.micro-EIRL">

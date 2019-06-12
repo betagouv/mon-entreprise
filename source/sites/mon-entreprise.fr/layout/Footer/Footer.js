@@ -6,7 +6,6 @@ import LegalNotice from 'Components/LegalNotice'
 import usePersistingState from 'Components/utils/usePersistingState'
 import withSitePaths from 'Components/utils/withSitePaths'
 import withTracker from 'Components/utils/withTracker'
-import urssafSvg from 'Images/urssaf.svg'
 import { compose, lensPath, view } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -16,7 +15,6 @@ import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
-import betaGouvSvg from './images/logo-betagouv.svg'
 import Integration from './Integration'
 import Privacy from './Privacy'
 
@@ -60,62 +58,58 @@ const Footer = ({ tracker, t, sitePaths }) => {
 					/>
 				))}
 			</Helmet>
-			<PageFeedback
-				stickToFooter={true}
-				blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
-			/>
 			<footer className="footer">
+				<PageFeedback
+					blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
+				/>
 				<div className="ui__ container">
-					<div id="footerIcons">
-						<a href="https://www.urssaf.fr">
-							<img src={urssafSvg} alt="un service fourni par l'Urssaf" />
-						</a>
-						<a href="https://beta.gouv.fr">
-							<img
-								src={betaGouvSvg}
-								alt="un service de l’Etat français incubé par beta.gouv.fr"
-							/>
-						</a>
-					</div>
-
 					{!registered && (
 						<>
-							<p>
-								<T k="newsletter.register.description1">
-									Vous voulez des{' '}
-									<strong>
-										conseils officiels sur la création d’entreprise
-									</strong>{' '}
-									et accéder aux nouvelles fonctionnalités en avant-première ?
-								</T>
-							</p>
-							<p>
-								<T k="newsletter.register.description2">
-									Inscrivez-vous à notre <strong>newsletter mensuelle</strong>{' '}
-									en laissant votre email :
-								</T>
-							</p>
-							<form
-								className="footer__registerContainer"
-								action="https://gouv.us13.list-manage.com/subscribe/post?u=732a4d1b0d2e8a1a1fd3d01db&amp;id=f146678e48"
-								method="post"
-								onSubmit={onSubmit}
-								id="mc-embedded-subscribe-form"
-								name="mc-embedded-subscribe-form"
-								target="_blank">
-								<div className="footer__registerField">
-									<input type="email" name="EMAIL" id="mce-EMAIL" />
-									<input
-										className="ui__ plain button"
-										type="submit"
-										value={t("S'inscrire")}
-										name="subscribe"
-										id="mc-embedded-subscribe"
-									/>
-								</div>
-							</form>
+							{' '}
+							<h2>
+								<T k="newsletter.register.titre">Restez informé</T>
+							</h2>
+							<div className="footer__newsletterContainer">
+								<p>
+									<T k="newsletter.register.description">
+										Inscrivez-vous à notre newsletter mensuelle pour recevoir
+										des{' '}
+										<strong>
+											conseils officiels sur la création d’entreprise
+										</strong>{' '}
+										et accéder aux nouvelles fonctionnalités en avant-première.
+									</T>
+								</p>
+
+								<form
+									className="footer__registerContainer"
+									action="https://gouv.us13.list-manage.com/subscribe/post?u=732a4d1b0d2e8a1a1fd3d01db&amp;id=f146678e48"
+									method="post"
+									onSubmit={onSubmit}
+									id="mc-embedded-subscribe-form"
+									name="mc-embedded-subscribe-form"
+									target="_blank">
+									<div>
+										<label htmlFor="mce-EMAIL">
+											<T>Votre adresse e-mail</T>
+										</label>
+										<div className="footer__registerField">
+											<input type="email" name="EMAIL" id="mce-EMAIL" />
+											<input
+												className="ui__ plain small button"
+												type="submit"
+												value={t("S'inscrire")}
+												name="subscribe"
+												id="mc-embedded-subscribe"
+											/>
+										</div>
+									</div>
+								</form>
+							</div>
 						</>
 					)}
+
+					<hr className="footer__separator" />
 
 					{i18n.language === 'en' && (
 						<p className="ui__ notice">
@@ -126,6 +120,7 @@ const Footer = ({ tracker, t, sitePaths }) => {
 							.
 						</p>
 					)}
+
 					<div style={{ display: 'flex', justifyContent: 'center' }}>
 						<a href="https://www.facebook.com/monentreprisefr/">
 							<SocialIcon media="facebook" />

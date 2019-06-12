@@ -170,7 +170,7 @@ const CreateCompany = ({
 									c'est-à-dire qu'il ne porte pas atteinte à un nom déjà protégé
 									par une marque, une raison sociale, un nom commercial, un nom
 									de domaine Internet, etc. Vous pouvez vérifier dans la base de
-									données <a href="http://bases-marques.inpi.fr/">INPI</a>.
+									données <a href="https://bases-marques.inpi.fr/">INPI</a>.
 								</p>
 							</T>
 						}
@@ -270,10 +270,9 @@ const CreateCompany = ({
 							<ul>
 								<T k="entreprise.tâches.banque.description.liste">
 									<li>
-										Différencier vos opérations privées et professionnelles et
-										simplifier votre gestion de trésorerie
+										Différencier vos opérations privées et professionnelles
 									</li>
-									<li>Faciliter toute opération de contrôle fiscal.</li>
+									<li>Faciliter les déclarations fiscales</li>
 								</T>
 							</ul>
 						</>
@@ -390,7 +389,7 @@ const CreateCompany = ({
 					name="registerCompanyOnline"
 					title={
 						<T k="entreprise.tâches.formulaire.titre">
-							Créer l'entreprise en ligne
+							Créer mon entreprise en ligne
 						</T>
 					}
 					explanations={
@@ -427,9 +426,7 @@ const CreateCompany = ({
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={
-							<T k="entreprise.tâches.comptable.titre">
-								Choisir un comptable certifié
-							</T>
+							<T k="entreprise.tâches.comptable.titre">Choisir un comptable</T>
 						}
 						explanations={
 							<p>

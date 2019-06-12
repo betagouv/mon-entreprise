@@ -59,8 +59,8 @@
 }
 
 .step-question h1 {
-	font-size: 1.7rem;
-	color: rgba(0, 0, 0, 0.8);
+	font-size: 1.3rem;
+	line-height: 2.2rem;
 }
 
 .unfoldedHeader {
@@ -164,7 +164,7 @@
 .step label.radio {
 	text-align: center;
 	margin-left: 1em;
-	margin-top: 1em;
+	/* margin-top: 1em; */
 	cursor: pointer;
 	background: none;
 	border-radius: 1em;
@@ -216,6 +216,7 @@
 
 .step input.suffixed {
 	padding: 0.1em 1em 0;
+	margin: 0.6rem 0;
 	border-radius: 0.2em;
 	font-size: 120%;
 }
@@ -298,6 +299,7 @@
 
 .answer {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: flex-end;
 	align-items: center;
 }
@@ -414,7 +416,8 @@ for the appearing element to appear without stacking up below the first one */
 
 .conversationContainer {
 	flex: 1;
-	margin-bottom: 2em;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .step label.userAnswerButton {

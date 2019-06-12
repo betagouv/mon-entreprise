@@ -1,10 +1,7 @@
 describe('Status guide', function() {
 	const fr = Cypress.env('language') === 'fr'
 	beforeEach(() => {
-		cy.visit('/')
-		cy.contains(
-			fr ? 'Créer une entreprise' : 'Create a company in France'
-		).click()
+		cy.visit(fr ? '/entreprise' : '/company')
 		cy.get('a.ui__.button.plain').click()
 	})
 
@@ -31,8 +28,8 @@ describe('Status guide', function() {
 		cy.get('.ui__.answer-group')
 			.contains(fr ? 'Société' : 'Limited liability company')
 			.click()
-		cy.get('.ui__.answer-group')
-			.contains(fr ? 'Assimilé salarié' : 'Assimilated salaried')
+		cy.get('.answer-group button')
+			.contains('Assimilé')
 			.click()
 		cy.contains(fr ? 'Créer une SASU' : 'Create a SASU').click()
 	})

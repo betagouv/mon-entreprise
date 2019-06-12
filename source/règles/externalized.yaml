@@ -177,7 +177,7 @@ contrat salarié . ATMP . taux collectif ATMP:
 
     concerne en ligne sur
     [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
-  suggestions.en: 'atmp-2017'
+  suggestions.en: atmp-2017
   suggestions.fr: atmp-2017
 contrat salarié . CDD . événement:
   titre.en: Contract related event
@@ -400,7 +400,7 @@ contrat salarié . CDD . congés non pris:
     '10': 10
   contrôles.en:
     - si: congés non pris > congés dus en jours ouvrés
-      message: Attention, an employee acquires 2.08 working days off per month.
+      message: 'Attention, an employee acquires 2.08 working days off per month.'
       niveau: avertissement
       solution:
         cible: contrat salarié . CDD . durée contrat
@@ -510,8 +510,8 @@ contrat salarié . CDD:
     - si: CDD
       niveau: information
       message: >
-        Remember that a fixed-term contract must always correspond to a temporary need of the company.
-
+        Remember that a fixed-term contract must always correspond to a
+        temporary need of the company.
   contrôles.fr:
     - si: CDD
       niveau: information
@@ -556,7 +556,7 @@ contrat salarié . salaire . brut de base:
   description.fr: >
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne
     change jamais entre les mois et ne peut pas être modifié sans signature des
-    deux partis.
+    deux parties.
 
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et
@@ -584,7 +584,8 @@ contrat salarié . salaire . brut de base:
           - période = 'mois'
       niveau: information
       message: >
-        The monthly wage seized is high. Are you sure the calculation period isn't set to month instead of year?
+        The monthly wage seized is high. Are you sure the calculation period
+        isn't set to month instead of year?
   contrôles.fr:
     - si:
         toutes ces conditions:
@@ -593,9 +594,6 @@ contrat salarié . salaire . brut de base:
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
-      solution:
-        cible: contrat salarié . temps partiel
-        texte: Est-ce un temps partiel ?
     - si:
         toutes ces conditions:
           - 'brut de base [mensuel] > 10000'
@@ -604,6 +602,7 @@ contrat salarié . salaire . brut de base:
       message: >
         Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
         période de calcul ?
+
 contrat salarié . salaire . brut de base . équivalent temps plein:
   titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
@@ -635,9 +634,9 @@ contrat salarié . avantages sociaux:
     company, and provided by private structures. They are subject to income
     taxes.
   description.fr: >
-    Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifique à
-    l'entreprise, et fourni par des structure privées (mutuelle, assurance...).
-    Ils sont soumis à l'impots sur le revenus.
+    Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifiques à
+    l'entreprise, et fournis par des structures privées (mutuelle,
+    assurance...). Ils sont soumis à l'impôt sur le revenu.
   titre.en: employee benefits
   titre.fr: avantages sociaux
 contrat salarié . avantages en nature:
@@ -670,9 +669,11 @@ contrat salarié . avantages en nature . montant:
   question.en: What is the monthly amount of benefits in kind?
   question.fr: Quel est le montant des avantages en nature ?
   suggestions.en:
+    aucun: none
     nourriture: food
     véhicule: car
   suggestions.fr:
+    aucun: 0
     nourriture: 80
     véhicule: 260
 contrat salarié . indemnités salarié:
@@ -707,6 +708,9 @@ contrat salarié . plafond sécurité sociale:
 contrat salarié . SMIC temps plein:
   titre.en: full-time mimimum wage (SMIC)
   titre.fr: SMIC temps plein
+SMIC horaire:
+  titre.en: 'hourly minimum wage (SMIC)'
+  titre.fr: SMIC horaire
 contrat salarié . SMIC:
   titre.en: minimum wage (SMIC)
   titre.fr: SMIC
@@ -773,7 +777,7 @@ contrat salarié . salaire . net après impôt:
   titre.en: Net salary after income tax
   titre.fr: Salaire net après impôt
   résumé.en: Transfered on the bank account
-  résumé.fr: Versé sur son compte bancaire
+  résumé.fr: Versé sur le compte bancaire
   question.en: What is the net income of the employee after income tax?
   question.fr: Quel est le revenu net du salarié après impôt ?
   description.en: >-
@@ -810,7 +814,7 @@ impôt . neutre . barème métropolitain:
   titre.fr: barème métropolitain
 impôt . neutre:
   titre.en: neutral income tax
-  titre.fr: Impôt neutre sur le revenu
+  titre.fr: Impôt sur le revenu au taux neutre
   description.en: >-
     This is the scale to be applied to the monthly taxable salary to obtain the
     tax to be paid monthly for employees who do not want to reveal their taxe
@@ -829,8 +833,8 @@ contrat salarié . rémunération . total:
   titre.fr: Total chargé
   question.en: 'What is the monthly remuneration, contributions included ?'
   question.fr: Quel est la rémunération chargée ?
-  résumé.en: Spent by the employer
-  résumé.fr: Dépensé par l'employeur
+  résumé.en: Spent by the company
+  résumé.fr: Dépensé par l'entreprise
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the total
     that the employer must in principle plan to pay to employ an employee, but
@@ -1047,7 +1051,9 @@ contrat salarié . temps partiel . heures par semaine:
     - si: heures par semaine < 24
       niveau: avertissement
       message: >-
-        The minimum number of hours per week is 24 and it is possible to go lower in some cases only. [More info](https://www.service-public.fr/particuliers/vosdroits/F32428).
+        The minimum number of hours per week is 24 and it is possible to go
+        lower in some cases only. [More
+        info](https://www.service-public.fr/particuliers/vosdroits/F32428).
     - si: heures par semaine > 35
       niveau: avertissement
       message: The simulator does not yet manage overtime.
@@ -1217,7 +1223,9 @@ contrat salarié . complémentaire santé . part employeur:
   contrôles.en:
     - si: part employeur < 50
       niveau: avertissement
-      message: The employer's share of complementary health insurance must be at least 50%.
+      message: >-
+        The employer's share of complementary health insurance must be at least
+        50%.
   contrôles.fr:
     - si: part employeur < 50
       niveau: avertissement
@@ -1250,7 +1258,8 @@ contrat salarié . complémentaire santé . forfait:
   contrôles.en:
     - si: 'complémentaire santé . forfait [mensuel] < 15'
       message: >-
-        Make sure that such an inexpensive health supplement covers the minimum care basket defined in the law.
+        Make sure that such an inexpensive health supplement covers the minimum
+        care basket defined in the law.
       niveau: avertissement
   contrôles.fr:
     - si: 'complémentaire santé . forfait [mensuel] < 15'
@@ -1520,9 +1529,9 @@ impôt . revenu abattu par défaut:
     lump-sum allowance. However, anyone can opt for the declaration of its *real
     costs*, which will replace this default package.
   description.fr: >-
-    Dans le cas général, l'impôt est calculé après l'application d'un abattement
-    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
-    *frais réels*, qui viendront remplacer ce forfait par défaut.
+    Dans le cas général, l'impôt est calculé après l'application d'un
+    abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration
+    de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: default reduced income
   titre.fr: revenu abattu par défaut
 impôt . impôt sur le revenu:
@@ -1620,6 +1629,37 @@ entreprise . chiffre d'affaires:
   question.fr: Quel est votre chiffre d'affaires envisagé (H.T.) ?
   résumé.en: The amount of sales made
   résumé.fr: Le montant des ventes réalisées
+entreprise . chiffre d'affaires de société:
+  titre.en: 'company turnover'
+  titre.fr: chiffre d'affaires de société
+entreprise . rémunération du dirigeant:
+  description.en: >
+    This is the portion of revenue after expenses that is allocated to the executive's compensation. The higher this share, the higher the executive's compensation increases, and the lower the company's profit.
+  description.fr: >
+    C'est la part du chiffre d'affaires après charges qui est allouée à la
+    rémunération du dirigeant. Plus cette part est élevée, plus la rémunération
+    du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
+  question.en: >-
+    How much of the after-charge revenue is allocated to the executive's compensation?
+  question.fr: >-
+    Quelle part du chiffre d'affaires après charge est allouée à la rémunération
+    du dirigeant ?
+  titre.en: 'executive compensation'
+  titre.fr: rémunération du dirigeant
+entreprise . bénéfice:
+  titre.en: 'profit'
+  titre.fr: bénéfice
+entreprise . résultat net:
+  résumé.en: 'What remains after corporate income tax'
+  résumé.fr: Ce qu'il reste après impôt sur les sociétés
+  titre.en: net result
+  titre.fr: résultat net
+entreprise . impôt sur les sociétés:
+  titre.en: corporate income tax
+  titre.fr: impôt sur les sociétés
+entreprise . charges dont rémunération dirigeant:
+  titre.en: expenses of which executive compensation
+  titre.fr: charges dont rémunération dirigeant
 entreprise . rémunération totale du dirigeant:
   description.en: >-
     This is the "super gross" remuneration of the manager, which includes all
@@ -1674,7 +1714,7 @@ entreprise . charges:
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci,
     hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto
     entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise
-    ne paiera pas de cotisations ou impôt dessus. Pour la auto entrepreneur,
+    ne paiera pas de cotisations ou impôt dessus. Pour l'auto entrepreneur,
     elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire
     personnel net de cotisation et de revenu.
 
@@ -1716,7 +1756,7 @@ entreprise . charges non déductibles:
     sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un
     ordinateur pour les besoins de sa société, le fera avec son revenu net. Il
     aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA
-    avant pouvoir l'utiliser pour s'acheter ce bien.
+    avant de pouvoir l'utiliser pour s'acheter ce bien.
   titre.en: non-deductible expenses
   titre.fr: charges non déductibles
 indépendant . cotisations et contributions . réduction ACRE:
@@ -1912,7 +1952,6 @@ entreprise . catégorie d'activité . libérale règlementée:
 
     > Exemples de professions non-règlementées : développeur, historien,
     urbaniste...
-
   contrôles.fr:
     - si: libérale règlementée
       niveau: avertissement
@@ -1998,19 +2037,20 @@ indépendant . cotisations et contributions . cotisations:
 indépendant . cotisations et contributions:
   titre.en: all contributions
   titre.fr: cotisations et contributions
-indépendant . rattachement libéral règlementé:
+entreprise . rattachement libéral règlementé:
   description.en: >
-    The unregulated liberal companies created before 2019 were related to the
-    regulations for the calculation of social security contributions. Since
-    then, since 2019 this is no longer the case, they are attached to the
-    craftsmen-merchants, so they depend on the social security of the
-    self-employed.
-  description.fr: >
-    Les entreprises libérales non règlementées créées avant 2019 étaient
-    rattachées aux règlementées pour le calcul des cotisations sociales. Depuis
-    2019 ce n'est plus le cas, elles sont rattachées aux artisans-commerçants,
+    !!Les entreprises libérales non règlementées créées étaient rattachées aux
+    règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
+    plus le cas pour les auto-entrepreneur (2019 pour les entreprise
+    individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
     donc dépendent de la sécurité sociale des indépendants.
-  titre.en: attached to regulated liberal
+  description.fr: >
+    Les entreprises libérales non règlementées créées étaient rattachées aux
+    règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
+    plus le cas pour les auto-entrepreneur (2019 pour les entreprise
+    individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
+    donc dépendent de la sécurité sociale des indépendants.
+  titre.en: '!!rattachement libéral règlementé'
   titre.fr: rattachement libéral règlementé
 indépendant . cotisations et contributions . cotisations . maladie:
   titre.en: health insurance
@@ -2029,7 +2069,7 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
     health of craftsmen, traders, industrialists and collaborating spouses
     requires a work stoppage, a portion of their former income will be paid.
   description.fr: >-
-    Cotisations pour les indémnités journalières des indépendants. Si l'état de
+    Cotisations pour les indemnités journalières des indépendants. Si l'état de
     santé des artisans, commerçants, industriels et conjoints collaborateurs
     nécessite un arrêt de travail, une part de leur ancien revenu leur sera
     versé.
@@ -2079,6 +2119,10 @@ indépendant . cotisations et contributions . formation professionnelle:
 : titre.en: family allowances
   titre.fr: allocations familiales
 indépendant . revenu total du dirigeant:
+  question.en: 'What is the total income of the executive?'
+  question.fr: Quel est le revenu total du dirigeant ?
+  résumé.en: 'Spent by the company'
+  résumé.fr: Dépensé par l'entreprise
   titre.en: total income of the executive
   titre.fr: revenu total du dirigeant
 indépendant . impôt et contributions non déductibles:
@@ -2104,7 +2148,8 @@ auto entrepreneur . base des cotisations:
   contrôles.en:
     - si: base des cotisations > plafond
       message: >-
-        Turnover threshold exceeded. [More information](/documentation/auto-entrepreneur/plafond)
+        Turnover threshold exceeded. [More
+        information](/documentation/auto-entrepreneur/plafond)
       niveau: avertissement
   contrôles.fr:
     - si: base des cotisations > plafond
@@ -2140,13 +2185,13 @@ auto entrepreneur . revenu net de cotisations:
 auto entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
-auto entrepreneur . taxe pour frais de chambre:
-  titre.en: tax for chamber expenses
+auto entrepreneur . cotisations et contributions . taxe pour frais de chambre:
+  titre.en: tax for chamber fees
   titre.fr: taxe pour frais de chambre
-auto entrepreneur . contribution formation professionnelle:
-  titre.en: Contribution for professional training
+? auto entrepreneur . cotisations et contributions . contribution formation professionnelle
+: titre.en: Contribution to vocational training
   titre.fr: Contribution à la formation professionnelle
-auto entrepreneur . cotisations sociales:
+auto entrepreneur . cotisations et contributions . cotisations:
   description.en: >
     Social security contributions give the self-employed entrepreneur access to
     a minimum social protection: a pension, health care, social security, social
@@ -2173,10 +2218,18 @@ auto entrepreneur . cotisations sociales:
 
     Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de
     l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
-  titre.en: social contributions
-  titre.fr: cotisations sociales
-auto entrepreneur . cotisations sociales . taux de cotisation:
-  description.en: >
+  titre.en: contributions
+  titre.fr: cotisations
+? auto entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+: description.en: >-
+    The total amount that is allocated to the supplementary pension, useful to estimate the total amount of the retirement pension for auto-entrepreneurs
+  description.fr: >-
+    Le montant total qui est alloué à la retraite complémentaire, utile pour
+    caluler la retraite des auto entrepreneurs
+  titre.en: supplementary pension
+  titre.fr: retraite complémentaire
+? auto entrepreneur . cotisations et contributions . cotisations . taux de cotisation
+: description.en: >
     The social contributions of the self-employed are simplified: there is no
     than a single line whose rate depends on the category of activity.
   description.fr: >
@@ -2197,18 +2250,21 @@ entreprise . ACCRE obtenu:
     indemnisé par pôle-emploi et faire la demande.
   titre.en: ACCRE obtained
   titre.fr: ACCRE obtenu
-auto entrepreneur . cotisations sociales . ACRE:
-  titre.en: ACRE rate
-  titre.fr: Taux ACRE
+auto entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+  titre.en: '!!taux ACRE'
+  titre.fr: taux ACRE
+auto entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
+  titre.en: '!!réduction ACRE'
+  titre.fr: réduction ACRE
   description.en: >-
-    This rate reduces the amount of social security contributions for the
-    auto-entrepreneur to help him in his first years of activity.
+    !!Ce taux peut dans certains cas réduire le montant des cotisations sociales
+    de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   description.fr: >-
-    Ce taux réduit le montant des cotisations sociales de l'auto-entrepreneur
-    pour l'aider dans ses premières année d'activité.
-auto entrepreneur . cotisations sociales . ACRE . plafond:
+    Ce taux peut dans certains cas réduire le montant des cotisations sociales
+    de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
+auto entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   titre.en: ACRE upper limit
-  titre.fr: Plafond ACRE
+  titre.fr: plafond ACRE
 auto entrepreneur . impôt . abattement:
   titre.en: allowance
   titre.fr: abattement
@@ -2239,22 +2295,127 @@ protection sociale:
     training and transport.
   description.fr: >
     La protection sociale est composée de 5 branches principales : maladie,
-    famille, accidents du travail et maladie professionnelles, retraite et
+    famille, accidents du travail et maladies professionnelles, retraite et
     chômage. A cela s'ajoutent aussi les cotisations pour la formation
     professionnelle et le transport.
   titre.en: social welfare
   titre.fr: protection sociale
 protection sociale . retraite:
+  résumé.en: Guarantees on average 60 to 70% of the last income from employment after age 65.
+  résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   description.en: "All employees in France contribute throughout their working lives to benefit from a pension plan as soon as they are old enough to stop working their activity.\n\nThe pension system is currently based on the principle of the \"distribution\". This means that asset contributions finance retirement pensions.\n\n## Retirement in France in a few figures\n  - **2094 € / month**: Average standard of living for people over 65 (compared to the rest of the population, it is the highest in the OECD \U0001F947)\n  - **25 years**: the average number of years spent in retirement (the highest in the OECD)\n  - **75%**: the replacement rate as a percentage of net salary after full annuities\n\nPensions are the highest of social security contributions. It can be considered a deferred salary, since your contributions will provide you with income when you retire.\n"
   description.fr: "Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.\n\nLe système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.\n\n## La retraite en France en quelques chiffres\n  - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE \U0001F947)\n  - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE \U0001F947)\n  - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein\n\nLa retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.\n\nSimulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).\n"
   titre.en: pensions
   titre.fr: retraite
+protection sociale . retraite . base:
+  titre.en: basic retirement pension
+  titre.fr: pension de retraite de base
+protection sociale . retraite . base . taux de la pension:
+  description.en: >-
+    The rate applied, with a discount or surcharge depending on the number of quarters contributed.
+  description.fr: >-
+    Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestre
+    cotisé.
+  titre.en: rate of the pension
+  titre.fr: taux de la pension
+protection sociale . retraite . trimestres validés par an:
+  titre.en: quarters validated per year
+  titre.fr: trimestres validés par an
+protection sociale . retraite . trimestres validés par an . trimestres salarié:
+  titre.en: employee quarters
+  titre.fr: trimestres salarié
+? protection sociale . retraite . trimestres validés par an . trimestres indépendant
+: titre.en: self-employed quarters
+  titre.fr: trimestres indépendant
+? protection sociale . retraite . trimestres validés par an . barème trimestres générique
+: titre.en: generic quarters scale
+  titre.fr: barème trimestres générique
+? protection sociale . retraite . trimestres validés par an . trimestres auto entrepreneur
+: description.en: >-
+    Minimum turnover thresholds for the validation of quarters for retirement as a self-employed entrepreneur. Below the minimum amount, you will only have access to the solidarity allowance.
+  description.fr: >-
+    Les seuils de chiffre d'affaires minimum pour la validation des trimestres
+    pour la retraite en auto entrepreneur. En-dessous du montant minimum, vous
+    n'aurez accès qu'à l'allocation de solidarité.
+  titre.en: auto-entrepreneur quarters
+  titre.fr: trimestres auto entrepreneur
+protection sociale . revenu moyen:
+  description.en: >-
+    The income used to calculate the amount of retirement pensions and daily social security allowances during a work stoppage.
+  description.fr: >-
+    Le revenu utilisé pour le calcul du montant des pensions de retraite et des
+    indemnités journalières de sécurité sociale lors d'un arrêt de travail.
+  titre.en: 'average income'
+  titre.fr: revenu moyen
+protection sociale . retraite . mois cotisés:
+  titre.en: 'contributed months'
+  titre.fr: mois cotisés
+protection sociale . retraite . complémentaire salarié:
+  titre.en: 'supplementary pension for employees'
+  titre.fr: complémentaire salarié
+protection sociale . retraite . complémentaire salarié . valeur du point:
+  titre.en: 'value of the point'
+  titre.fr: valeur du point
+protection sociale . retraite . complémentaire salarié . points acquis:
+  titre.en: 'acquired points'
+  titre.fr: points acquis
+protection sociale . retraite . complémentaire salarié . points acquis par mois:
+  titre.en: 'acquired points per month'
+  titre.fr: points acquis par mois
+protection sociale . retraite . complémentaire salarié . prix d'achat du point:
+  titre.en: 'buying cost of the point'
+  titre.fr: prix d'achat du point
+protection sociale . retraite . complémentaire sécurité des indépendants:
+  titre.en: 'supplementary pension for self-employed'
+  titre.fr: complémentaire sécurité des indépendants
+? protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point
+: titre.en: 'value of the point'
+  titre.fr: valeur du point
+? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis
+: titre.en: 'acquired points'
+  titre.fr: points acquis
+? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois
+: titre.en: acquired points per month
+  titre.fr: points acquis par mois
+? protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point
+: titre.en: buying cost of the point
+  titre.fr: prix d'achat du point
 protection sociale . santé:
+  résumé.en: >-
+    !!Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
+    maladies graves comme les séjours à l'hôpital.
+  résumé.fr: >-
+    Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
+    maladies graves comme les séjours à l'hôpital.
   description.en: "Health Insurance protects the health of everyone on a long-term basis - in their personal or professional life - by acting on behalf of everyone.\n\nIn concrete terms, it supports 60 million insured throughout their lives, by taking charge of their care regardless of their resources, situation or state of health. It thus guarantees universal access to rights and allows access to health care.\n\nThanks to it, you are covered on most health care services. In the event of a serious or long-term illness, 100% of the care is reimbursed.\n\n## Health insurance in France in a few figures\n  - **92%** of health expenses reimbursed by health and supplementary insurance (one of the highest in the world)\n  - **€30,000 / year / patient** : health expenditure of a person with [cystic fibrosis](https://en.wikipedia.org/wiki/Cystic_fibrosis), **fully covered by social security**\n  - **11.7%** of GDP spent on health expenditure, the 5th of the OECD\n  - **82.4 years** of average life expectancy in France (in the top 10 worldwide \U0001F3C5)\n  - **€1,468 / month** : allowance paid by the social security system for maternity leave (average salary)\n"
-  description.fr: "L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.\n\nConcrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.\n\nGrâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.\n\n## L'assurance maladie en France en quelques chiffres\n  - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire\n  - **30 000 € / an / patient** : dépense de santé d'une personne atteinte de [mucoviscidose](https://fr.wikipedia.org/wiki/Mucoviscidose), entièrement prise en charge par la sécurité sociale\n  - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)\n  - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial \U0001F3C5)\n"
+  description.fr: "L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.\n\nConcrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.\n\nGrâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.\n\n## L'assurance maladie en France en quelques chiffres\n  - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire\n  - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose\n  - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)\n  - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial \U0001F3C5)\n"
   titre.en: healthcare
   titre.fr: santé
+protection sociale . santé . indemnités journalières:
+  description.en: >-
+    Daily allowances are paid to you by the Health Insurance to compensate for your income during a work stoppage. They are calculated on the basis of your gross income and paid every 14 days on average.
+  description.fr: >
+    Les indemnités journalières vous sont versées par l'Assurance Maladie pour
+    compenser
+
+    votre revenu pendant un arrêt de travail. Elles sont calculées à partir de
+    votre revenu
+
+    brut et versées tous les 14 jours en moyenne.
+  titre.en: 'Daily allowances'
+  titre.fr: indemnités journalières
+protection sociale . santé . indemnités journalières . auto entrepreneur:
+  titre.en: 'auto entrepreneur'
+  titre.fr: auto entrepreneur
+protection sociale . santé . indemnités journalières . indépendant:
+  titre.en: 'self employed'
+  titre.fr: indépendant
+protection sociale . santé . indemnités journalières . salarié:
+  titre.en: 'employee'
+  titre.fr: salarié
 protection sociale . assurance chômage:
+  résumé.en: 'Provides income for workers looking for a new job.'
+  résumé.fr: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
   description.en: >
     Since 1958, the Unemployment Insurance has been protecting all private and
     some public sector employees when they lose their jobs. It provides them
@@ -2299,6 +2460,11 @@ protection sociale . assurance chômage:
   titre.en: unemployment insurance
   titre.fr: assurance chômage
 protection sociale . famille:
+  résumé.en: >
+    Provides services in support of families: childcare, housing assistance, etc.
+  résumé.fr: >
+    Assure des prestations en soutien aux familles : garde d'enfants, aide au
+    logement...
   description.en: >
     Created in 1945, the Family branch is one of the main actors of French
     family policy. Currently, it has two priority missions:
@@ -2332,16 +2498,21 @@ protection sociale . famille:
 
     ## Les allocations familiales en France en quelques chiffres
       - **19 %** part des dépenses allouées à la petite enfance
-      - **900 € / mois**: montant de l'allocation aux adultes handicapés
-      - **75 %** des mères avec un enfant à charge travaillent (dont seulement 30% en temps partiel)
+      - **860 € / mois** : montant de l'allocation aux adultes handicapés
+      - **75 %** des mères avec un enfant à charge travaillent (dont 70% à temps plein)
   titre.en: family
   titre.fr: famille
 protection sociale . accidents du travail et maladies professionnelles:
+  résumé.en: Provides comprehensive coverage for occupational diseases or accidents.
+  résumé.fr: Offre une couverture complète des maladies ou accidents du travail.
   description.en: "Occupational injury and disease insurance (AT/MP) is the oldest branch of social security: it is based on principles dating back to 1898 and which were incorporated into the law of 31 December 1946.\n\n[\U0001F39E️ See video [fr]](https://www.youtube.com/watch?v=NaGI_deZJD8)\n\nThe AT/MP contribution covers the risks of accidents at work, commuting accidents and occupational diseases for employees covered by the general scheme.\n\nThis contribution is mandatory and is the sole responsibility of the employer.\n\nTo find out about occupational risks and set up preventive actions, the [AT/MP account [fr]](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) is a service open to all companies in the general social security system\n\nIn the case of accidents at work, medical and surgical care is reimbursed at 100% on the basis of social security reimbursement (BRSS) within the limits of the Social Security rates.\n"
   description.fr: "L’assurance AT/MP (accident du travail et maladie professionnelle) est la plus ancienne branche de la Sécurité sociale : elle relève de principes qui remontent à l’année 1898 et qui ont été repris dans la loi du 31 décembre 1946.\n\n[\U0001F39E️ Voir la vidéo](https://www.youtube.com/watch?v=NaGI_deZJD8 )\n\nLa cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.\n\nCette cotisation est obligatoire et à la charge exclusive de l’employeur.\n\nPour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.\n\nEn cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.\n"
   titre.en: Work accidents / occupational diseases
   titre.fr: accidents du travail et maladies professionnelles
 protection sociale . formation:
+  résumé.en: >-
+    Gives employees the opportunity to take vocationnal training.
+  résumé.fr: Donne aux employés la possibilité de suivre des formations professionnelles.
   description.en: >
     Vocational training enables each person, regardless of their status, to
     acquire and update their knowledge and skills, to increase their level of
@@ -2355,12 +2526,14 @@ protection sociale . formation:
     professionnelle.
 
 
-    Pour avoir un compte rendu personnalisé de vos droits à la formation, rendez
-    vous sur
-    [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr)
+    Pour avoir un compte-rendu personnalisé de vos droits à la formation,
+    rendez-vous sur
+    [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
   titre.en: training
   titre.fr: formation
 protection sociale . autres:
+  résumé.en: Other contributions to the social system.
+  résumé.fr: Autres contributions au système social.
   description.en: >
     Cross-cutting contributions to the social system.
 
@@ -2380,6 +2553,9 @@ protection sociale . autres:
   titre.en: other
   titre.fr: autres
 protection sociale . transport:
+  résumé.en: >-
+    Keeps the price of a public transit ticket low
+  résumé.fr: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
   description.en: >
     This contribution is paid in full to the [mobility
     authority](https://fr.wikipedia.org/wiki/Autorit%C3%A9_mobility_organiser%C3%A9)

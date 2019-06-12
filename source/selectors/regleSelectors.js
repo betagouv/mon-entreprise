@@ -4,6 +4,7 @@ import { findRuleByDottedName } from 'Engine/rules'
 import { encodeRuleName } from 'Engine/rules.js'
 import { isNil } from 'ramda'
 import { createSelector } from 'reselect'
+import { coerceArray } from '../utils'
 import {
 	branchAnalyseSelector,
 	flatRulesSelector,
@@ -34,7 +35,7 @@ export const règleLocaliséeSelector: InputSelector<
 		const localizedRule = findRuleByDottedName(localizedFlatRules, dottedName)
 		if (!localizedRule) {
 			throw new Error(
-				`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName`
+				`[LocalizedRègleSelector] Impossible de trouver la règle "${dottedName}" dans les flatRules. Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName, et que la règles est bien calculée (dans les objectifs de la simulation)`
 			)
 		}
 		return {
@@ -42,9 +43,7 @@ export const règleLocaliséeSelector: InputSelector<
 			lien: encodeRuleName(dottedName),
 
 			id: dottedName,
-			...(localizedRule.shortDescription
-				? { descriptionCourte: localizedRule.shortDescription }
-				: {}),
+			...(localizedRule.summary ? { résumé: localizedRule.summary } : {}),
 			...(localizedRule.icon ? { icône: localizedRule.icon } : {}),
 			...(localizedRule.format ? { type: localizedRule.format } : {})
 		}
@@ -67,10 +66,13 @@ export const règleValeurSelector: InputSelector<
 				`[règleValeurSelector] L'analyse fournie ne doit pas être 'undefined' ou 'null'`
 			)
 		}
-		const rule =
-			!Array.isArray(analysis) && // It's an array if we're in a comparative simulation.
-			(analysis.cache[dottedName] ||
-				analysis.targets.find(target => target.dottedName === dottedName))
+		const rule = coerceArray(analysis)
+			.map(
+				analysis =>
+					analysis.cache[dottedName] ||
+					analysis.targets.find(target => target.dottedName === dottedName)
+			)
+			.filter(Boolean)[0]
 
 		let valeur =
 			rule && !isNil(rule.nodeValue)
@@ -78,7 +80,6 @@ export const règleValeurSelector: InputSelector<
 				: Array.isArray(situation)
 				? situation[0][dottedName]
 				: situation[dottedName]
-
 		if (isNil(valeur)) {
 			console.warn(
 				`[règleValeurSelector] Impossible de trouver la valeur associée à la règle "${dottedName}". Pensez à vérifier l'orthographe et que l'écriture est bien sous forme dottedName. Vérifiez aussi qu'il ne manque pas une valeur par défaut à une règle nécessaire au calcul.`
@@ -106,6 +107,9 @@ export const règleValeurSelector: InputSelector<
 
 		return {
 			type,
+			...(rule && 'isApplicable' in rule
+				? { applicable: rule.isApplicable }
+				: {}),
 			valeur:
 				type === 'string'
 					? règleLocalisée(`${dottedName} . ${valeur}`).nom
@@ -125,11 +129,12 @@ export const règleAvecMontantSelector: InputSelector<
 		const valeur = règleValeur(dottedName)
 		if (!valeur || valeur.type !== 'euros') {
 			throw new Error(
-				`[règleAvecMontantSelector] Le type de valeur de "${dottedName}" n'est pas celui d'un montant`
+				`[règleAvecMontantSelector] Le type de valeur de "${dottedName}" n'est pas celui d'un montant. \n Pour faire disparaitre cette erreur, ajouter la propriété 'format: euros' à cette règle `
 			)
 		}
 		return {
 			...règleLocalisée(dottedName),
+			...('applicable' in valeur ? { applicable: valeur.applicable } : {}),
 			montant: valeur.valeur
 		}
 	}

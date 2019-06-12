@@ -1,15 +1,14 @@
 .ui__.banner {
 	display: flex;
 	align-items: center;
-	margin: 1rem auto;
+	margin: 1rem 0;
 	max-width: 100%;
 	color: var(--lighterInverseTextColour);
 	width: 45rem;
-	justify-content: center;
 }
 
 .ui__.banner img {
-	margin-right: 1rem !important;
-	font-size: 2rem;
+	margin-right: 0.6rem !important;
+	font-size: 1.4rem;
 	margin-bottom: 0.6rem !important;
 }

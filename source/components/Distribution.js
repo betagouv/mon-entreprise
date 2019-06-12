@@ -68,7 +68,7 @@ class Distribution extends Component<Props, State> {
 						return (
 							<Observer
 								key={branche.id}
-								threshold={[0.33]}
+								threshold={[0.5]}
 								onChange={this.handleBrancheInViewport(branche.id)}>
 								<Spring
 									config={ANIMATION_SPRING}
@@ -88,8 +88,8 @@ class Distribution extends Component<Props, State> {
 													<span className="distribution-chart__branche-name">
 														<RuleLink {...branche} />
 													</span>
-													{' : '}
-													{branche.descriptionCourte}
+													<br />
+													<small>{branche.résumé}</small>
 												</p>
 												<ChartItemBar {...{ styles, colour, montant, total }} />
 											</div>

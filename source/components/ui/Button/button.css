@@ -5,7 +5,7 @@
 
 .ui__.button,
 .ui__.inverted-button {
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
 	text-decoration: none;
@@ -17,6 +17,7 @@
 	transition: all 0.15s;
 	text-align: center;
 	text-transform: uppercase;
+
 	font-family: 'Roboto', sans-serif;
 	font-weight: normal;
 	cursor: pointer;
@@ -42,8 +43,8 @@
 	);
 	background-image: linear-gradient(
 		50deg,
-		rgba(39, 69, 195, 0.87) 5%,
-		var(--colour) 50%,
+		var(--colour) 5%,
+		var(--lightColour) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
 	background-size: 280%;
@@ -53,15 +54,16 @@
 	background-image: linear-gradient(
 		50deg,
 		rgba(39, 69, 195, 0.87) 5%,
-		rgb(41, 117, 209) 50%,
+		var(--colour) 50%,
 		rgba(41, 117, 209, 0.9) 55%
 	);
 	background-image: linear-gradient(
 		50deg,
-		rgba(39, 69, 195, 0.87) 5%,
+		var(--darkColour) -50%,
 		var(--colour) 50%,
-		rgba(41, 117, 209, 0.9) 55%
+		var(--lightColour) 55%
 	);
+
 	color: white;
 }
 .ui__.button:not(:disabled):not(.simple):hover,
@@ -74,6 +76,7 @@
 .ui__.button.simple,
 .ui__.button.simple.small {
 	border: none;
+	background: transparent;
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -81,9 +84,12 @@
 .ui__.button.simple.selected {
 	opacity: 0.8;
 }
+.ui__.button.simple:not(:last-of-type) {
+	margin-right: 0.6em;
+}
 .ui__.button.cta,
 .ui__.inverted-button.cta {
-	margin: 3rem auto;
+	margin: 1rem;
 	display: inline-block;
 	align-self: center;
 	font-size: 120%;
@@ -106,7 +112,7 @@
 .ui__.dashed-button,
 .ui__.text-button {
 	border: none;
-	display: inline-block;
+	display: inline;
 	font-size: inherit;
 	font-weight: inherit;
 	font-family: inherit;
@@ -183,26 +189,41 @@
 
 .ui__.small.button,
 .ui__.small.inverted-button {
-	font-size: 80%;
+	font-size: 90%;
 	line-height: 1rem;
 	transition: all 0.08s;
 	padding: 0.4rem 0.8rem;
 	border-radius: 0.3rem;
 }
-
+.ui__.button-choice:first-of-type {
+	margin-top: 2rem;
+}
+.ui__.button-choice:last-of-type {
+	margin-bottom: 2rem;
+}
 .ui__.button-choice {
-	display: block;
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+
 	padding: 1rem;
+	background: white;
+	color: var(--darkColour);
+	line-height: 2rem;
 	margin: 1rem 0;
-	border: 1px solid;
 	position: relative;
-	border-color: rgba(41, 117, 209);
-	opacity: 0.8 !important;
 	border-radius: 0.3rem;
 	text-decoration: none;
 	font-size: 1.2rem;
-	transition: opacity, box-shadow 0.2s;
+	box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
+		0 1px 2px rgba(41, 117, 209, 0.24);
+	transition: box-shadow 0.2s;
 }
+.ui__.button-choice small {
+	margin-left: 0.2rem;
+	flex-grow: 1;
+}
+
 .ui__.button-choice--soon {
 	border-color: lightgray;
 	color: gray;
@@ -210,43 +231,43 @@
 	opacity: 0.8;
 	pointer-events: none;
 	cursor: default;
+	justify-content: flex-end;
 }
+
 .ui__.button-choice--soon img {
 	filter: saturate(0%);
 }
 .ui__.button-choice-label {
-	position: absolute;
-	top: 0;
-	font-size: 66%;
-	right: 0;
-	padding: 0.2rem 0.4rem;
+	font-size: 80%;
+	padding: 0 0.8rem;
 	color: white;
 	background: gray;
+	margin-left: 0.8rem;
+
+	font-weight: 500;
 	opacity: 0.8;
-	border-bottom-left-radius: 0.3rem;
-	border-top-right-radius: 0.3rem;
+	border-radius: 0.3rem;
 }
 .ui__.button-choice img {
-	margin-right: 0.5rem !important;
-	transition: transform 0.2s;
+	margin-right: 2rem !important;
+	margin-left: 0.5rem !important;
+	transform: scale(1.5) translateY(0.1em);
 }
 
 .ui__.button-choice:hover,
 .ui__.button-choice:focus {
 	opacity: 1 !important;
-	box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
-		0 1px 2px rgba(41, 117, 209, 0.24);
-}
-.ui__.button-choice:hover img,
-.ui__.button-choice:focus img {
-	transform: scale(1.5);
+	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
+		0px 4px 5px 0px rgba(41, 117, 209, 0.14),
+		0px 1px 10px 0px rgba(41, 117, 209, 0.12);
 }
 @media (min-width: 600px) {
-	.ui__.button-choice:hover::after,
-	.ui__.button-choice:focus::after {
+	.ui__.button-choice:not(.button-choice--soon)::after {
 		content: '›';
 		position: absolute;
-		right: 40px;
+		right: 20px;
+
+		font-size: 2rem;
 	}
 }
 

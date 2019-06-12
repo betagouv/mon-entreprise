@@ -1,24 +1,27 @@
 objectifs:
-  - entreprise . chiffre d'affaires
-  - entreprise . charges
-  - indépendant . cotisations et contributions
-  - indépendant . revenu professionnel
-  - indépendant . impôt et contributions non déductibles
-  - revenu net
+  - icône: 🏢
+    nom: Mon entreprise
+    objectifs:
+      - entreprise . chiffre d'affaires
+      - entreprise . charges
+  - icône: 👩‍💼
+    nom: Mon revenu
+    objectifs:
+      - indépendant . revenu total du dirigeant
+      - indépendant . cotisations et contributions
+      - indépendant . revenu professionnel
+      - indépendant . impôt et contributions non déductibles
+      - revenu net
 
 questions:
-  - entreprise . catégorie d'activité
-  - entreprise . catégorie d'activité . service ou vente
-  - entreprise . catégorie d'activité . restauration ou hébergement
-  - entreprise . catégorie d'activité . libérale règlementée
-  # pour l'instant pas utilisées
-  # - entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
-  - entreprise . année d'activité
-  - situation personnelle . RSA
+  blacklist:
+    - entreprise . charges
+    - entreprise . rémunération du dirigeant
 
 questions à l'affiche:
-  Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
-  Année d'activité: entreprise . année d'activité
+  Type d'activité: entreprise . catégorie d'activité
+  ACRE: entreprise . année d'activité
+  Charges: entreprise . charges
 
 situation:
   indépendant: oui

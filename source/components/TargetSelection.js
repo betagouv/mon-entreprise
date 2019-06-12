@@ -1,6 +1,7 @@
 import classNames from 'classnames'
-import Controls from 'Components/Controls'
+import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
+import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
@@ -8,6 +9,7 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { Component, PureComponent } from 'react'
+import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -19,9 +21,7 @@ import {
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
-import QuickLinks from './QuickLinks'
 import './TargetSelection.css'
-import { firstStepCompletedSelector } from './targetSelectionSelectors'
 
 export default compose(
 	withTranslation(),
@@ -36,8 +36,6 @@ export default compose(
 				formValueSelector('conversation')(state, dottedName),
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
-			firstStepCompleted: firstStepCompletedSelector(state),
-			conversationStarted: state.conversationStarted,
 			activeInput: state.activeTargetInput,
 			objectifs: state.simulation?.config.objectifs || []
 		}),
@@ -82,94 +80,103 @@ export default compose(
 		render() {
 			let {
 					colours,
-					firstStepCompleted,
-					conversationStarted,
 					analysis,
-					explanation
+					activeInput,
+					setActiveInput,
+					setFormValue,
+					objectifs
 				} = this.props,
-				inversionFail = analysis.cache.inversionFail
+				targets = analysis?.targets || []
 
 			return (
 				<div id="targetSelection">
-					{firstStepCompleted && (
-						<Controls
-							inversionFail={inversionFail}
-							controls={analysis.controls}
-						/>
-					)}
-					<PeriodSwitch />
-					<section
-						className="ui__ plain card"
-						style={{
-							marginTop: '.6em',
-							color: colours.textColour,
-							background: `linear-gradient(
+					{(typeof objectifs[0] === 'string' ? [{ objectifs }] : objectifs).map(
+						({ icône, objectifs: groupTargets, nom }, index) => (
+							<React.Fragment key={nom}>
+								<div style={{ display: 'flex', alignItems: 'end' }}>
+									<div style={{ flex: 1 }}>
+										{nom && (
+											<h2 style={{ marginBottom: 0 }}>
+												{emoji(icône)} <T>{nom}</T>
+											</h2>
+										)}
+									</div>
+									{index === 0 && <PeriodSwitch />}
+								</div>
+								<section
+									className="ui__ plain card"
+									style={{
+										marginTop: '.6em',
+										color: colours.textColour,
+										background: `linear-gradient(
 								60deg,
 								${colours.darkColour} 0%,
 								${colours.colour} 100%
 								)`
-						}}>
-						{this.renderOutputList()}
-					</section>
-					<QuickLinks show={firstStepCompleted && !conversationStarted} />
-					{firstStepCompleted && explanation}
-				</div>
-			)
-		}
-
-		renderOutputList() {
-			let {
-					conversationStarted,
-					activeInput,
-					setActiveInput,
-					setFormValue,
-					analysis
-				} = this.props,
-				targets = analysis ? analysis.targets : [],
-				inversionFail = analysis.cache.inversionFail
-
-			return (
-				<div>
-					<ul id="targets">
-						{targets
-							.map(target => target.explanation || target)
-							.filter(target => {
-								return (
-									target.isApplicable !== false &&
-									(target.question || target.nodeValue)
-								)
-							})
-							.map(target => (
-								<Target
-									key={target.dottedName}
-									initialRender={this.state.initialRender}
-									{...{
-										conversationStarted,
-										target,
-										setFormValue,
-										activeInput,
-										setActiveInput,
-										targets,
-										inversionFail
-									}}
-								/>
-							))}
-					</ul>
+									}}>
+									<Targets
+										{...{
+											activeInput,
+											setActiveInput,
+											setFormValue,
+											targets: targets.filter(({ dottedName }) =>
+												groupTargets.includes(dottedName)
+											),
+											initialRender: this.state.initialRender
+										}}
+									/>
+								</section>
+							</React.Fragment>
+						)
+					)}
 				</div>
 			)
 		}
 	}
 )
 
+let Targets = ({
+	activeInput,
+	setActiveInput,
+	setFormValue,
+	targets,
+	initialRender
+}) => (
+	<div>
+		<ul className="targets">
+			{targets
+				.map(target => target.explanation || target)
+				.filter(target => {
+					return (
+						target.isApplicable !== false &&
+						(target.question || target.nodeValue)
+					)
+				})
+				.map(target => (
+					<Target
+						key={target.dottedName}
+						initialRender={initialRender}
+						{...{
+							target,
+							setFormValue,
+							activeInput,
+							setActiveInput,
+							targets
+						}}
+					/>
+				))}
+		</ul>
+	</div>
+)
+
 const Target = ({
 	target,
 	activeInput,
-	conversationStarted,
+
 	targets,
 	setActiveInput,
 	setFormValue,
-	initialRender,
-	inversionFail
+	initialRender
 }) => {
 	const isSmallTarget =
 		!target.question || !target.formule || isEmpty(target.formule)
@@ -184,7 +191,7 @@ const Target = ({
 						<Header
 							{...{
 								target,
-								conversationStarted,
+
 								isActiveInput: activeInput === target.dottedName
 							}}
 						/>
@@ -203,12 +210,11 @@ const Target = ({
 								targets,
 								activeInput,
 								setActiveInput,
-								setFormValue,
-								inversionFail
+								setFormValue
 							}}
 						/>
 					</div>
-					{activeInput === target.dottedName && !conversationStarted && (
+					{activeInput === target.dottedName && (
 						<Animate.fromTop>
 							<InputSuggestions
 								suggestions={target.suggestions}
@@ -226,7 +232,7 @@ const Target = ({
 	)
 }
 
-let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
+let Header = withSitePaths(({ target, sitePaths }) => {
 	const ruleLink =
 		sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
 	return (
@@ -235,7 +241,7 @@ let Header = withSitePaths(({ target, conversationStarted, sitePaths }) => {
 				<span className="optionTitle">
 					<Link to={ruleLink}>{target.title || target.name}</Link>
 				</span>
-				{!conversationStarted && <p>{target['résumé']}</p>}
+				<p>{target.summary}</p>
 			</span>
 		</span>
 	)
@@ -256,6 +262,9 @@ let CurrencyField = withColours(props => {
 		/>
 	)
 })
+let DebouncedPercentageField = props => (
+	<PercentageField debounce={600} {...props} />
+)
 
 let TargetInputOrValue = withLanguage(
 	({
@@ -264,8 +273,7 @@ let TargetInputOrValue = withLanguage(
 		activeInput,
 		setActiveInput,
 		language,
-		firstStepCompleted,
-		inversionFail
+		firstStepCompleted
 	}) => {
 		let inputIsActive = activeInput === target.dottedName
 		return (
@@ -273,8 +281,12 @@ let TargetInputOrValue = withLanguage(
 				{inputIsActive || !target.formule || isEmpty(target.formule) ? (
 					<Field
 						name={target.dottedName}
-						component={CurrencyField}
 						onBlur={event => event.preventDefault()}
+						component={
+							{ euros: CurrencyField, pourcentage: DebouncedPercentageField }[
+								target.format
+							]
+						}
 						{...(inputIsActive ? { autoFocus: true } : {})}
 						language={language}
 					/>
@@ -285,8 +297,7 @@ let TargetInputOrValue = withLanguage(
 							target,
 							activeInput,
 							setActiveInput,
-							firstStepCompleted,
-							inversionFail
+							firstStepCompleted
 						}}
 					/>
 				)}
@@ -296,14 +307,16 @@ let TargetInputOrValue = withLanguage(
 )
 
 const TargetValue = connect(
-	null,
+	state => ({
+		blurValue: analysisWithDefaultsSelector(state)?.cache.inversionFail
+	}),
 	dispatch => ({
 		setFormValue: (field, name) => dispatch(change('conversation', field, name))
 	})
 )(
 	class TargetValue extends Component {
 		render() {
-			let { targets, target, inversionFail } = this.props
+			let { targets, target, blurValue } = this.props
 
 			let targetWithValue =
 					targets && targets.find(propEq('dottedName', target.dottedName)),
@@ -315,7 +328,7 @@ const TargetValue = connect(
 						editable: target.question,
 						attractClick: target.question && isNil(target.nodeValue)
 					})}
-					style={inversionFail ? { filter: 'blur(3px)' } : {}}
+					style={blurValue ? { filter: 'blur(3px)' } : {}}
 					{...(target.question ? { tabIndex: 0 } : {})}
 					onClick={this.showField(value)}
 					onFocus={this.showField(value)}>

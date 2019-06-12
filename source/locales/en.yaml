@@ -58,6 +58,7 @@ Envoyez-nous un commentaire !: Send us a comment !
 Qu'est-ce qui n'a pas été ?: What went wrong ?
 satisfaction-email-ou: To start a conversation with us, fill your email address or
 satisfaction-mailto: click here to directly write an email
+Votre adresse e-mail: Your email address
 envoyer: send
 Rechercher: Search
 Règle non applicable: Not applicable
@@ -101,7 +102,7 @@ Part salariale: Employee share
 Total des retenues: Total withheld
 Fiche de paie mensuelle: Monthly payslip
 Fiche de paie: Payslip
-Détail annuel des cotisations: Annual detail of your contributions
+Détail annuel des cotisations: Annual detail of my contributions
 Voir la répartition des cotisations: View contribution breakdown
 Cotisations: Contributions
 payslip:
@@ -114,11 +115,16 @@ Faire une simulation personnalisée: Do a customized simulation
 custom-simulation: This is currently a <1>rough estimate</1> based on a generic contract. French legislation provides for a multitude of special cases and specific rules which considerably modify the costs of recruitment.
 Effacer: Reset
 Continuer: Continue
-CDI: Permanent
-CDD: Fixed-term
-Cadre: '"Cadre" status'
-Temps partiel: Part time
-Autres: Other situations
+quicklinks:
+  CDI: Permanent
+  Commune: Town
+  JEI: Innovating company (JEI)
+  CDD: Fixed-term
+  Cadre: '"Cadre" status'
+  Temps partiel: Part time
+  Type d'activité: Activity type
+  Charges: Expenses
+  Autres questions: Other questions
 Mes réponses: My answers
 Voir mes réponses: See my answers
 simulation-end:
@@ -245,7 +251,7 @@ entreprise:
         </3>
 
     formulaire:
-      titre: Register your company online
+      titre: Register my company online
       description: <0>You can start your online registration process anytime, save it and come back to it as you wish.</0><1><0>Start registration process</0></1>
     titre2: Recommended before starting your activity
     comptable:
@@ -330,27 +336,14 @@ autoentrepreneur:
   description: >
     <0>
       The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions
-      are based on the turnover achieved each month. Available for companies whose annual
-      turnover does not exceed €70,000 for services providers or €170,000 when the main activity
-      is the sale of goods, catering or the provision of housing.
+      are based on the turnover achieved each month.
     </0>
     <1>
-      This is an interesting choice if:
-    </1>
-    <2>
-      <0>You do not need a lot of capital and important expenses to run your activity</0>
-      <1>You want to test the viability of your business</1>
-      <2>You want the minimum amount of paperwork to get started</2>
-    </2>
-    <3>
       <0>Note:</0>
       Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities
       are regulated with a qualification or a professional experience (<4>see the list [fr])</4>).
-    </3>
-    <4>
-      For all the other cases, it is advised to choose the standard status, which
-      is <1>Individual Business.</1>
-    </4>
+    </1>
+
 associés:
   page:
     titre: Number of partners to start a business in France
@@ -415,11 +408,11 @@ sécu:
   choix:
     titre: What do you want to estimate?
     auto-entrepreneur: Estimate my remuneration as an auto-entrepreneur
-    dirigeant1: Your remuneration as a {{legalStatus}} director
-    dirigeant2: The director's remuneration
+    dirigeant1: My income as a {{legalStatus}} director
+    dirigeant2: My income as a company director
     employé: An employee's salary
-
-Votre entreprise: Your company
+Mon entreprise: My company
+Mon revenu: My income
 Ce n'est pas mon entreprise: This is not my company
 Simuler une embauche: Simulate a hire
 
@@ -429,7 +422,7 @@ Simulateur de salaire: Employee salary simulation
 Exemples de simulation de salaire: Examples of salary simulations
 Quelques exemples de salaires: Some salary exemples
 Embauche: Hiring process
-Entreprise Individuelle: Individual Business
+
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
@@ -438,8 +431,7 @@ statut du dirigeant:
     description: This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France
   titre: Defining the director's status
   description: <0>This choice is important because it determines the director's Social Security scheme and coverage.</0><1><0><0>Salaried employee:</0> The company director joins and is covered by France’s general Social Security scheme. Social Security contributions are calculated on the basis of the executive's actual pay and are paid monthly. Although more expensive, this scheme offers full social protection (except unemployment).</0><1><0>Self-employed:</0> The company director joins and is covered by France’s self-employed scheme called « Sécurité sociale des indépendants ». Contributions due are generally calculated based on professional income as reported to the tax authorities. Although less expensive, this scheme provides basic social protection (additional options and private insurance are recommended).</1></1>
-Assimilé salarié: Assimilated salaried
-Indépendant: Self-employed
+
 gérant minoritaire:
   page:
     description: Some special rules apply depending on the amount of shares owned by the director and this can lead to a different status when creating your company in France
@@ -522,7 +514,8 @@ path:
     indépendant: '/self-employed'
     auto-entrepreneur: '/auto-entrepreneur'
     salarié: '/salaried'
-    selection: '/scheme-selection'
+    selection: '/social-scheme-selection'
+    comparaison: '/social-scheme-comparaison'
   démarcheEmbauche:
     index: '/hiring-process'
   documentation:
@@ -560,7 +553,6 @@ Plusieurs associés: Several partners
 Un seul associé: Only one partner
 Responsabilité limitée: Limited liability
 Sans responsabilité limitée: Without limited liability
-Auto-entrepreneur: Auto-entrepreneur
 Pas en auto entrepreneur: Not in auto-entrepreneur
 
 Précédent: Previous
@@ -580,14 +572,16 @@ Exemples: Examples
 Intégrer le simulateur: Integrate the simulator
 
 # Landing infrance
-Que souhaitez-vous faire ?: What do you want to do?
-Créer votre entreprise: Create your company
-subtitle: The official guide for entrepreneurs
-Connaître les démarches d'embauche: Know the hiring procedures
-Estimer les cotisations et les taxes: Estimate contributions and taxes
-Créer une entreprise: Create a company in France
+Que désirez-vous faire ?: What do you want to do?
+Créer mon entreprise: Create my company
+landing:
+  title: The official assistant for entrepreneurs
+  subtitle: All the resources you need to develop your business, from legal status to hiring.
+  choix3: Know the hiring procedures
+  choix2: Simulate contributions and taxes <2>(company director or employee)</2>
+  choix1: Create my company in France
 Déclarer mon activité d'économie collaborative: Declare my activity in the sharing economy
-prochainement: soon
+Prochainement: Soon
 
 Estimer les cotisations sociales pour une embauche: Estimate the social security contributions for a hiring
 À quoi servent mes cotisations ?: How are my contributions distributed?
@@ -599,8 +593,9 @@ Accueil: Home
 
 newsletter:
   register:
-    description1: Do you want to have <2>official advice on creating a company</2> and access the new features in preview?
-    description2: 'Register to our <1>monthly newsletter</1> by leaving your email:'
+    titre: Stay informed
+    description: |
+      Subscribe to our monthly newsletter to receive <2>official advice on starting a business</2> and access new features in advance.
 S'inscrire: Register
 simulationWarning: This is an estimate based on <2>purely theoretical data</2> on turnover, charges and the single tax base without children, excluding any other income, which <5>cannot be the responsibility of the social security bodies concerned with regard to the actual declarations and calculations.</5>
 
@@ -609,8 +604,7 @@ Simulations personnalisées: Customized simulations
 
 indicationTempsPlein: in full-time gross salary equivalent
 auto-entreprise: auto-enterprise
-SAS, SASU ou SARL minoritaires: SAS, SASU or SARL minority shareholders
-EI, EURL, SARL ou SARL majoritaires: EI, EURL, SARL or SARL majority shareholders
+
 Comparer les trois régimes: Compare the three schemes
 simulateurs:
   inversionFail: The amount entered is too small or results in an impossible situation, try another one
@@ -620,12 +614,16 @@ simulateurs:
     line1: the turnover deducted from expenses goes to 100% in the director's remuneration
     line2: income tax is calculated for a single person without children and without other income.
     line3: the figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
+  précision:
+    défaut: 'Refine the simulation by answering the following questions:'
+    faible: Low accuracy
+    moyenne: Medium accuracy
+    bonne: Good accuracy
   salarié:
     page:
-      titre: Official net and gross salary simulator
+      titre: 'Calculation of net and gross salary: official simulator'
       description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
-    titre: Salary simulator
-    description: As soon as an employee's employment is declared and paid, he or she is covered by the general social security system (health, maternity, invalidity, old age, occupational disease and accidents) and unemployment.
+    titre: Income simulator for employees
   assimilé-salarié:
     page:
       titre: Official salary simulator for SASU and SAS directors
@@ -644,11 +642,125 @@ simulateurs:
       titre: Official income simulator for auto-entrepreneur
       description: Estimate your income as an auto-entrepreneur based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator.
     titre: 'Auto-entrepreneur income simulator'
+
+selectionRégime:
+  page:
+    titre: Social scheme selection
+  titre: Which social scheme would you like to explore?
+  comparer:
+    titre: Not sure which one to choose?
+    description: The executive's social scheme has a very strong influence on the level of social protection and the perceived income. To help you see more clearly and choose the plan that suits you best, we have designed a quick comparator.
+    cta: Compare social schemes
+comparaisonRégimes:
+  page:
+    titre: |
+      Self-employed, assimilated employee or auto-entrepreneur: discover the social scheme that best suits you
+    description: |
+      What is the best scheme for your situation? Discover their differences and simulate your income and retirement in one minute for each of the options.
+  titre: |
+    Self-employed, assimilated employee or <2>auto-entrepreneur</2>: which scheme to choose?
+  description: |
+    When you create your company, the choice of legal status will determine to which social scheme the executive is affiliated. There are three different ones, each with its advantages and disadvantages. Thanks to this comparison, you will be able to select the one that best suits you.
+  AS:
+    tagline: The all-inclusive plan
+  indep:
+    tagline: A la carte protection
+  auto:
+    tagline: Start without risk
+  status:
+    legend: Possible legal status
+    AS: SAS, SASU or SARL with minority director
+    indep:
+      1: EI, EIRL, EURL or SARL with majority director
+      2: EI or EIRL
+    auto: Auto-entreprise
+  sécuritéSociale: |
+    <0> Social security</0>
+    <1> General scheme <1>(Régime général)</1></1>
+    <2> Self-employed scheme <1>(Sécurité sociale des indépendants)</1></2>
+  AT: <0> Work-related accidents covered</0>
+  assuranceMaladie: |
+    <0> Public health insurance <1>(medicines, care, hospitalizations)</1></0>
+    <1> Same for all </1>
+  mutuelle: |
+    <0> Additional health insurance <1>(mutuelle santé)</1></0>
+    <1> Compulsory </1>
+    <2> Highly recommended </2>
+  indemnités: |
+    <0> Sickness allowances</0>
+  plafondCA: |
+    <0> Turnover ceiling</0>
+    <1>No</1>
+    <2>
+      Yes<1>(€70,000  in services, €170,000 for sale of properties, food or accommodation)</1>
+    </2>
+  période: |
+    <0>Period</0>
+  retraite: |
+    <0>Retirement pay</0>
+
+  comparaisonDétaillée: |
+    <0><0> View more information </0></0>
+
+  comptabilité: |
+    <0> Accounting, social, legal management....</0>
+    <1> Support strongly recommended <1>(chartered accountant, accountant, chartered management centre...)</1></1>
+    <2> Simplified <1>(can be managed by the auto-entrepreneur)</1></1>
+
+  ACRE: |
+    <0>ACRE</0>
+    <1>1 year<1>(partial contribution exemption)</1></1>
+    <2>3 years<1>(application of reduced contribution rates)</1></2>
+  déduction: |
+    <0> Deduction of expenses</0>
+    <1>Yes <1>(tax regime of the actual)</1></1>
+    <2>No <1>(but lump-sum deduction for calculating income tax)</1></2>
+  simulationText: |
+    <0>
+      Compare my income, retirement pay and sickness allowance
+    </0>
+    <1/>
+    <2>Start simulation</2>
+  cotisations: |
+    <0> Payment of social contributions</0>
+    <1> Monthly</1>
+    <2> Monthly or quaterly advance <1>(with posterior regularization based on real income)</1></2>
+    <3> Montly or quaterly</3>
+  complémentaireDeductible: |
+    <0> Optional health and pension policies deductible</0>
+    <1> Yes <1>(under certain conditions)</1></1>
+    <2> Yes <1>("Madelin" Law)</1></2>
+  revenuNetApresImpots: |
+    <0>Net income after taxes</0>
+  revenuNetAvantImpots: |
+    <0>Net contribution income<1>(before income tax)</1></0>
+  retraiteEstimation:
+    legend: |
+      <0>Retirement pay</0>
+      <1>(before taxes)</1>
+    infobulle:
+      AS: Pension calculated for 172 quarters contributed to the general scheme with no change in income.
+      indep: Pension calculated for 172 quarters contributed to the self-employed scheme with no change in income.
+      auto: Pension calculated for 172 quarters contributed as auto-entrepreneur with no change in income.
+  cotisationMinimale: |
+    <0> Minimum contributions</0>
+
+  seuil: |
+    <0> Minimum income for eligibility for benefits</0>
+    <1>Yes</1>
+    <2> No <1>(mandatory minimum contributions)</1></2>
+    <3>Yes</3>
+  titreSelection: |
+    Create my company as:
+
 J'ai compris: understood
+trimestres validés: validated quarters
 
 Année d'activité: Years of activity
 Commerçant, artisan, ou libéral ?: Trader, craftsman, or liberal?
 Revenir à la documentation: Go back to documentation
 Voir le code source: See the source code
 
-Quel régime souhaitez-vous explorer ?: Which social scheme would you like to explore?
+pour les accidents de trajet/travail et maladie pro: for commuting accidents, work accidents and professional illness
+jour: day
+Pas implémenté: Not implemented

@@ -54,7 +54,21 @@ export let ruleDefaultsSelector = createSelector(
 	rules => collectDefaults(rules)
 )
 
-export let targetNamesSelector = state => state.simulation?.config.objectifs
+export let targetNamesSelector = state => {
+	let objectifs = state.simulation?.config.objectifs
+	if (!objectifs || !Array.isArray(objectifs)) {
+		return null
+	}
+	const targetNames = [].concat(
+		...objectifs.map(objectifOrGroup =>
+			typeof objectifOrGroup === 'string'
+				? [objectifOrGroup]
+				: objectifOrGroup.objectifs
+		)
+	)
+
+	return targetNames
+}
 
 export let situationSelector = createDeepEqualSelector(
 	getFormValues('conversation'),
@@ -69,6 +83,31 @@ export let formattedSituationSelector = createSelector(
 export let noUserInputSelector = createSelector(
 	[formattedSituationSelector],
 	situation => !situation || isEmpty(dissoc('période', situation))
+)
+
+export let firstStepCompletedSelector = createSelector(
+	[
+		formattedSituationSelector,
+		targetNamesSelector,
+		parsedRulesSelector,
+		state => state.simulation?.config?.bloquant
+	],
+	(situation, targetNames, parsedRules, bloquant) => {
+		if (!situation) {
+			return true
+		}
+		const situations = Object.keys(situation)
+		const allBlockingAreAnswered =
+			bloquant && bloquant.every(rule => situations.includes(rule))
+		const targetIsAnswered =
+			targetNames &&
+			targetNames.some(
+				targetName =>
+					findRuleByDottedName(parsedRules, targetName)?.formule &&
+					targetName in situation
+			)
+		return allBlockingAreAnswered || targetIsAnswered
+	}
 )
 
 let validatedStepsSelector = createSelector(
@@ -221,11 +260,11 @@ let currentMissingVariablesByTargetSelector = createSelector(
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulation?.config.questions
+		state => state.simulation?.config.questions,
+		state => state.conversationSteps.foldedSteps
 	],
-	(mv, questions) => {
-		let nextSteps = getNextSteps(mv)
-
+	(mv, questions, foldedSteps) => {
+		let nextSteps = difference(getNextSteps(mv), foldedSteps)
 		if (questions && questions.blacklist) {
 			return difference(nextSteps, questions.blacklist)
 		}

@@ -3,30 +3,23 @@ titre: |
 
 objectifs:
   - revenu net
+  - protection sociale . retraite
+  - protection sociale . retraite . trimestres validés par an
+  - protection sociale . santé . indemnités journalières
+  - protection sociale . accidents du travail et maladies professionnelles
 questions:
   - entreprise . chiffre d'affaires
   - entreprise . charges
   - entreprise . catégorie d'activité
   - entreprise . catégorie d'activité . service ou vente
   - entreprise . catégorie d'activité . restauration ou hébergement
-
   - entreprise . catégorie d'activité . libérale règlementée
-bloquant:
-  - entreprise . chiffre d'affaires
+
 situation:
   période: année
+  entreprise . année d'activité: non
 
 branches:
-  - nom: Auto-entrepreneur
-    situation:
-      auto entrepreneur: oui
-      indépendant: non
-      contrat salarié: non
-  - nom: Indépendant
-    situation:
-      indépendant: oui
-      auto entrepreneur: non
-      contrat salarié: non
   - nom: Assimilé salarié
     situation:
       auto entrepreneur: non
@@ -34,3 +27,13 @@ branches:
       contrat salarié: oui
       contrat salarié . assimilé salarié: oui
       contrat salarié . ATMP . taux réduit: oui
+  - nom: Indépendant
+    situation:
+      indépendant: oui
+      auto entrepreneur: non
+      contrat salarié: non
+  - nom: Auto-entrepreneur
+    situation:
+      auto entrepreneur: oui
+      indépendant: non
+      contrat salarié: non

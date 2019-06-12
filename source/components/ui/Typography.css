@@ -25,30 +25,34 @@ html {
 body {
 	font-weight: 400;
 	color: #040e19;
+	color: var(--darkColour);
 	font-family: 'Roboto', sans-serif;
 }
 
 h1 {
+	margin-top: 2rem;
 	margin-bottom: 1rem;
-	margin-top: 1.5rem;
-	font-size: 2.3rem;
+	font-size: 1.9rem;
+	line-height: 3rem;
 }
 h2 {
-	margin-bottom: 1rem;
-	margin-top: 1.5rem;
-	font-size: 1.5rem;
-}
-h3 {
-	font-size: 1.5rem;
-}
-h4 {
-	margin-top: 1rem;
+	margin-top: 2rem;
 	margin-bottom: 1rem;
 	font-size: 1.3rem;
 }
+h3 {
+	margin-top: 1rem;
+	margin-bottom: 0.6rem;
+	font-size: 1.1rem;
+}
+h4 {
+	margin-top: 1rem;
+	margin-bottom: 0.6rem;
+	font-size: 1.1rem;
+}
 h5 {
 	font-size: 1.1rem;
-	font-style: italic;
+	font-weight: normal;
 }
 h6 {
 	font-size: 1rem;
@@ -61,9 +65,9 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'IBM Plex Sans', sans-serif;
-	font-weight: 300;
-	line-height: initial;
+	color: var(--darkColour);
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
 }
 
 button {
@@ -76,8 +80,9 @@ ul {
 	margin: 0 0 0.6rem;
 }
 p.ui__.lead {
-	font-size: 150%;
-	font-weight: 300;
+	font-size: 120%;
+	line-height: 2rem;
+	color: var(--darkColour);
 }
 ul {
 	list-style: '› ';
@@ -111,4 +116,11 @@ b {
 
 textarea {
 	font-family: inherit;
+}
+
+small,
+.ui__.notice {
+	color: rgba(0, 0, 0, 0.6);
+	color: var(--lighterTextColour);
+	font-size: 85%;
 }

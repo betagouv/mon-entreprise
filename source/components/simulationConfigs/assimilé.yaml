@@ -1,19 +1,28 @@
 objectifs:
-  - entreprise . chiffre d'affaires
-  - entreprise . charges
-  - contrat salarié . cotisations
-  - contrat salarié . réduction ACRE
-  - impôt . neutre
-  - contrat salarié . salaire . net après impôt
+  - icône: 🏢
+    nom: Mon entreprise
+    objectifs:
+      - entreprise . chiffre d'affaires
+      - entreprise . charges
+  - icône: 👩‍💼
+    nom: Mon revenu
+    objectifs:
+      - contrat salarié . rémunération . total
+      - contrat salarié . cotisations
+      - contrat salarié . salaire . net
+      - impôt . neutre
+      - contrat salarié . salaire . net après impôt
 
-questions à l'affiche:
-  Année d'activité: entreprise . année d'activité
-  Mutuelle: contrat salarié . complémentaire santé . part employeur
-  Localisation: établissement . localisation
 questions:
   blacklist:
-    - entreprise . charges
     - contrat salarié . avantages en nature . montant
+    - entreprise . rémunération du dirigeant
+
+questions à l'affiche:
+  ACRE: entreprise . année d'activité
+  Commune: établissement . localisation
+  Charges: entreprise . charges
+
 situation:
   auto entrepreneur: non
   indépendant: non
@@ -22,4 +31,5 @@ situation:
   contrat salarié . CDD: non
   contrat salarié . temps partiel: non
   contrat salarié . ATMP . taux réduit: oui
+  entreprise . association non lucrative: non
   période: année

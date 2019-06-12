@@ -1,21 +1,14 @@
 objectifs:
   - entreprise . chiffre d'affaires
   - entreprise . charges
-  - auto entrepreneur . cotisations sociales
+  - auto entrepreneur . cotisations et contributions
   - impôt . impôt sur le revenu à payer
   - revenu net
 
-questions:
-  - entreprise . catégorie d'activité
-  - entreprise . catégorie d'activité . service ou vente
-  - entreprise . catégorie d'activité . restauration ou hébergement
-  - entreprise . catégorie d'activité . libérale règlementée
-  - entreprise . ACCRE obtenu
-  - entreprise . année d'activité
-
 questions à l'affiche:
-  Commerçant, artisan, ou libéral ?: entreprise . catégorie d'activité
-  Année d'activité: entreprise . année d'activité
+  Type d'activité: entreprise . catégorie d'activité
+  ACRE: entreprise . année d'activité
+  Charges: entreprise . charges
 
 situation:
   auto entrepreneur: oui

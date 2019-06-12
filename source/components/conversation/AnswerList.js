@@ -1,4 +1,4 @@
-import { resetSimulation } from 'Actions/actions'
+import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
 import withColours from 'Components/utils/withColours'
@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
 import Montant from 'Ui/Montant'
-import { softCatch } from '../utils'
+import { softCatch } from '../../utils'
 import './AnswerList.css'
 
 const formatAnswer = (answer, language) => {
@@ -37,7 +37,7 @@ const AnswerList = ({
 	onClose,
 	language,
 	colours,
-	changeAnswer,
+	goToQuestion,
 	resetSimulation
 }) => (
 	<Overlay onClose={onClose} className="answer-list">
@@ -66,7 +66,7 @@ const AnswerList = ({
 							<button
 								className="answer"
 								onClick={() => {
-									changeAnswer(answer.id)
+									goToQuestion(answer.id)
 									onClose()
 								}}>
 								<span
@@ -94,16 +94,9 @@ export default compose(
 	withColours,
 	connect(
 		state => ({ answers: answerWithValueSelector(state) }),
-		dispatch => ({
-			resetSimulation: () => {
-				dispatch(resetSimulation())
-			},
-			changeAnswer: question =>
-				dispatch({
-					type: 'STEP_ACTION',
-					name: 'unfold',
-					step: question
-				})
-		})
+		{
+			resetSimulation,
+			goToQuestion
+		}
 	)
 )(AnswerList)

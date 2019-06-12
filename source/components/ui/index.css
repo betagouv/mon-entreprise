@@ -26,8 +26,9 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	flex-wrap: wrap;
-	margin: 1rem 0;
+}
+.ui__.answer-group > * {
+	margin: 0.6rem 0 0 1rem !important;
 }
 @media (min-width: 500px) {
 	.ui__.answer-group > :not(:last-child) {
@@ -45,6 +46,13 @@ button {
 	}
 }
 
+.ui__.choice-group {
+	background-color: var(--lightestColour);
+	padding: 1rem 0;
+}
+section.ui__:not(:first-of-type) {
+	margin-top: 2rem;
+}
 .ui__.container {
 	width: 100%;
 	max-width: 850px;
@@ -54,18 +62,18 @@ button {
 	padding-left: 0.6rem;
 }
 .ui__.container .ui__.full-width {
-	margin: 0 calc((850px - 100vw) / 2);
+	--margin: calc((850px - 100vw - 0.6rem) / 2);
+	margin-right: var(--margin);
+	margin-left: var(--margin);
 }
 @media (max-width: 850px) {
 	.ui__.container .ui__.full-width {
-		margin: 0;
+		margin: 0 -0.6rem;
 	}
 }
 
-.ui__.notice {
-	font-size: 85%;
-	color: rgba(0, 0, 0, 0.6);
-	color: var(--lighterInverseTextColour);
+.ui__ .colored-bg {
+	background: var(--lightestColour);
 }
 ul.ui__.no-bullet {
 	list-style: none;

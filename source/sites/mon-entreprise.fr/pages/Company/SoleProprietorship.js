@@ -36,7 +36,7 @@ const SoleProprietorship = ({ isSoleProprietorship, t }: Props) => (
 			/>
 		</Helmet>
 		<h2>
-			<T k="responsabilité.titre">Société ou entreprise individuelle ?</T>
+			<T k="responsabilité.titre">Entreprise individuelle ou société ?</T>
 		</h2>
 		<p>
 			<T k="responsabilité.intro">
@@ -62,7 +62,7 @@ const SoleProprietorship = ({ isSoleProprietorship, t }: Props) => (
 			<li>
 				<T k="responsabilité.société">
 					<strong>Société : </strong>
-					Vous ne pouvez être tenu personnellement responsables des dettes ou
+					Vous ne pouvez pas être tenu personnellement responsable des dettes ou
 					obligations de la société. En revanche, les démarches de création sont
 					un peu plus lourdes, puisqu'elles incluent notamment la rédaction de
 					statuts et le dépôt d'un capital.
@@ -72,17 +72,17 @@ const SoleProprietorship = ({ isSoleProprietorship, t }: Props) => (
 		<div className="ui__ answer-group">
 			<button
 				onClick={() => {
-					isSoleProprietorship(false)
-				}}
-				className="ui__ button">
-				<T k="responsabilité.bouton1">Société</T>
-			</button>
-			<button
-				onClick={() => {
 					isSoleProprietorship(true)
 				}}
 				className="ui__ button">
 				<T k="responsabilité.bouton2">Entreprise individuelle</T>
+			</button>
+			<button
+				onClick={() => {
+					isSoleProprietorship(false)
+				}}
+				className="ui__ button">
+				<T k="responsabilité.bouton1">Société</T>
 			</button>
 		</div>
 		<CompanyStatusNavigation onSkip={() => isSoleProprietorship(null)} />

@@ -1,0 +1,75 @@
+.landing-header {
+	display: flex;
+	align-items: center;
+}
+
+.landing-header__institutional-logo,
+.landing-header__brand-logo {
+	height: 4rem;
+}
+.landing-header__brand-logo img {
+	padding: 0.5rem 0;
+	height: 100%;
+}
+.landing-header__institutional-logo img {
+	padding: 1rem;
+	height: 100%;
+}
+.landing-title {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+}
+
+.landing-title__img {
+	align-self: flex-end;
+	margin-top: 2rem;
+	width: 30rem;
+	margin-left: 1rem;
+	margin-bottom: -3rem;
+}
+@media (min-width: 500px) {
+	.landing-title__logo {
+		display: none;
+	}
+}
+
+@media (max-width: 900px) {
+	.landing-title__img {
+		margin-top: 2rem;
+		margin-right: -5rem;
+		margin-left: -1rem;
+		max-height: 25rem;
+	}
+	.landing-header__brand-logo {
+		height: 4rem;
+	}
+	.landing-header__institutional-logo {
+		height: 3.5rem;
+	}
+	.landing-header {
+		justify-content: space-around;
+	}
+	.landing-header *:nth-child(3) {
+		order: -1;
+	}
+	.landing-header *:nth-child(2) {
+		display: none;
+	}
+	.landing-header__brand-logo {
+		margin-left: 1rem;
+	}
+}
+@media (max-width: 500px) {
+	.landing-title {
+		flex-direction: column;
+		text-align: center;
+	}
+	.landing-title__logo {
+		display: none;
+	}
+	.landing-title__img {
+		display: none;
+	}
+}

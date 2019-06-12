@@ -68,7 +68,7 @@ const HiringProcess = ({
 				name="dpae"
 				title={
 					<T k="embauche.tâches.dpae.titre">
-						Déclarez votre embauche à l'administration sociale
+						Déclarer l'embauche à l'administration sociale
 					</T>
 				}
 				explanations={
@@ -76,9 +76,7 @@ const HiringProcess = ({
 						<T k="embauche.tâches.dpae.description">
 							Ceci peut être fait par le biais du formulaire appelé DPAE, doit
 							être complété dans les 8 jours avant toute embauche, et peut{' '}
-							<a
-								href="https://www.due.urssaf.fr/declarant/index.jsf"
-								target="_blank">
+							<a href="https://www.due.urssaf.fr" target="_blank">
 								être effectué en ligne
 							</a>
 							.
@@ -99,7 +97,7 @@ const HiringProcess = ({
 							Les fiches de paie et les déclarations peuvent être traitées en
 							ligne gratuitement par le{' '}
 							<a href="http://www.letese.urssaf.fr" target="_blank">
-								Tese (Fr)
+								Tese
 							</a>
 							. Vous pouvez aussi utiliser un{' '}
 							<a
@@ -144,7 +142,7 @@ const HiringProcess = ({
 							className="ui__ button"
 							target="_blank">
 							<T k="embauche.tâches.pension.description">
-								Trouvez votre institut de prévoyance
+								Trouver mon institution de prévoyance
 							</T>
 						</a>
 						{/* // The AGIRC-ARRCO complementary pension is mandatory. Those are only federations,{' '} */}
@@ -180,7 +178,10 @@ const HiringProcess = ({
 					<p>
 						<T k="embauche.tâches.medecine.description">
 							N'oubliez pas de planifier un rendez-vous initial pour chaque
-							nouvelle embauche.
+							nouvelle embauche.{' '}
+							<a href="https://www.service-public.fr/particuliers/vosdroits/F2211">
+								Plus d'infos.
+							</a>
 						</T>
 					</p>
 				}
@@ -190,12 +191,8 @@ const HiringProcess = ({
 			<h2>Tous les mois</h2>
 			<ul>
 				<li>
-					Calculer les cotisations sociales individuelles (à l'aide du logiciel
-					de paie choisi)
-				</li>
-				<li>
-					Déclarer les contributions par le biais de la DSN, le nouveau système
-					de déclaration en ligne
+					Utiliser un logiciel de paie pour calculer les cotisations sociales et
+					les transmettre via la déclaration sociale nominative (DSN)
 				</li>
 				<li>Remettre la fiche de paie à votre employé</li>
 			</ul>

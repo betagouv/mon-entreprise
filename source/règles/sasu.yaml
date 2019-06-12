@@ -1,3 +1,5 @@
+# Ce petit ensemble de règles a été historiquement utilisé pour tester l'externalisation du moteur, et est en train d'être réintégré progressivement dans la base centrale
+
 - nom: chiffre affaires
   période: flexible
   format: euros

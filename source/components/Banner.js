@@ -3,6 +3,7 @@
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
+import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import './Banner.css'
 import type { Node } from 'react'
@@ -10,7 +11,7 @@ import type { State } from 'Types/State'
 type PropTypes = {
 	hidden: boolean,
 	children: Node,
-	icon?: String
+	icon?: string
 }
 
 let Banner = ({ hidden = false, children, icon }: PropTypes) =>
@@ -25,7 +26,7 @@ let Banner = ({ hidden = false, children, icon }: PropTypes) =>
 
 export default (connect(
 	(state: State, { hidden }: PropTypes) => ({
-		hidden: hidden || state.conversationStarted
+		hidden: hidden || firstStepCompletedSelector(state)
 	}),
 	{}
 )(Banner): React$ComponentType<PropTypes>)

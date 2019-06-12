@@ -5,9 +5,8 @@
 	padding: 0;
 	width: 100%;
 	border: none;
-	font-weight: normal;
 	align-items: center;
-	font-size: 90%;
+
 	position: relative;
 }
 .distribution-chart__bar-container {
@@ -26,9 +25,8 @@
 }
 
 .distribution-chart__counterparts {
-	width: 25em;
+	width: 28em;
 	line-height: 1.2em;
-	font-weight: 300;
 }
 
 .distribution-chart__item:hover .distribution-chart__bar {
@@ -97,9 +95,6 @@
 	flex-shrink: 0;
 }
 
-.distribution-chart__branche-name {
-	font-weight: 500;
-}
 .distribution-chart__icon {
 	font-size: 200%;
 	height: 1.2em;
@@ -116,7 +111,7 @@
 	grid-template-columns: 1fr auto auto;
 	grid-column-gap: 1em;
 	grid-row-gap: 0.4em;
-	align-items: end;
+	align-items: flex-end;
 	text-align: right;
 	margin-bottom: 1em;
 }
