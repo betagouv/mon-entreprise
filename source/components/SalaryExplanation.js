@@ -27,6 +27,7 @@ export default compose(
 					<DistributionSection />
 				</>
 			)}
+			<br />
 			<p className="ui__ notice">
 				<Trans i18nKey="payslip.notice">
 					Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
