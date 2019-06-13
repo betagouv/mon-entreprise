@@ -7,11 +7,12 @@ objectifs:
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
-      - indépendant . revenu total du dirigeant
-      - indépendant . cotisations et contributions
+      - entreprise . rémunération totale du dirigeant
+      - indépendant . cotisations et contributions . cotisations à payer
       - indépendant . revenu professionnel
-      - indépendant . impôt et contributions non déductibles
-      - revenu net
+      - indépendant . revenu net de cotisations
+      - impôt
+      - revenu net après impôt
 
 questions:
   à l'affiche:

@@ -1,9 +1,10 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - entreprise . charges
   - auto entrepreneur . cotisations et contributions
-  - impôt . impôt sur le revenu à payer
-  - revenu net
+  - entreprise . charges
+  - auto entrepreneur . revenu net de cotisations
+  - impôt
+  - revenu net après impôt
 
 questions:
   à l'affiche:

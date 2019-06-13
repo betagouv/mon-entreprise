@@ -58,6 +58,6 @@
   période: flexible
   formule: chiffre affaires * répartition salaire sur dividendes
 
-- nom: revenu net
+- nom: revenu net après impôt
   période: flexible
   formule: contrat salarié . salaire . net après impôt + dividendes . net

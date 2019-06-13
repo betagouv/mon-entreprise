@@ -758,7 +758,7 @@
         - salaire . net
         - salaire . net après impôt
         - équivalent temps plein
-        - revenu net
+        - revenu net de cotisations
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -2754,6 +2754,9 @@
 - nom: impôt
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
+  titre: impôt sur le revenu
+  période: flexible
+  formule: impôt sur le revenu après décote
 
 - espace: impôt
   nom: revenu abattu
@@ -2858,28 +2861,26 @@
   formule: impôt sur le revenu après décote + CEHR
 
 - nom: revenu net de cotisations
+  résumé: Avant impôt
   période: flexible
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   formule:
     somme:
       - contrat salarié . salaire . net
       - indépendant . revenu net de cotisations
       - auto entrepreneur . revenu net de cotisations
 
-- nom: revenu net d'impôt
-  titre: Revenu net de cotisations et d'impôt
-  période: flexible
-  formule: revenu net de cotisations - impôt . impôt sur le revenu à payer
-
-- nom: revenu net
-  titre: Revenu net
+- nom: revenu net après impôt
   format: euros
-  résumé: Après impôt sur le revenu
+  résumé: Touché sur le compte bancaire
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
-    Il s'agit du revenu net de cotisations et d'impôts.
+    Il s'agit du revenu net de charges, cotisations et d'impôts.
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
-  formule: revenu net d'impôt - entreprise . charges non déductibles
+  formule: revenu net de cotisations - impôt
 
 - espace: entreprise
   nom: année d'activité
@@ -2916,17 +2917,8 @@
   résumé: Le montant des ventes réalisées
   période: flexible
   format: euros
-  formule:
-    variations:
-      - si: auto entrepreneur
-        alors:
-          inversion numérique:
-            avec:
-              - revenu net
-      - sinon: rémunération totale du dirigeant + charges
-
+  formule: rémunération totale du dirigeant + charges
 - espace: entreprise
-
   nom: chiffre d'affaires de société
   période: flexible
   formule:
@@ -2977,14 +2969,24 @@
 
 - espace: entreprise
   nom: rémunération totale du dirigeant
+  question: Quel est le revenu total du dirigeant ?
+  résumé: Dépensé par l'entreprise
   format: euros
   description: C'est la rémunération "super-brute" du dirigeant, qui inclut toutes les cotisations sociales à payer. C'est aussi la valeur monétaire du travail du dirigeant.
   période: flexible
   formule:
-    somme:
-      - contrat salarié . rémunération . total
-      - indépendant . revenu total du dirigeant
-      - auto entrepreneur . base des cotisations
+    variations:
+      - si: indépendant
+        alors: revenu net de cotisations + indépendant . cotisations et contributions
+      - si: auto entrepreneur
+        alors:
+          inversion numérique:
+            avec:
+              - revenu net de cotisations
+              - entreprise . chiffre d'affaires
+              - revenu net après impôt
+      - si: contrat salarié . assimilé salarié
+        alors: contrat salarié . rémunération . total
 
 - espace: entreprise
   nom: charges
@@ -3012,14 +3014,6 @@
   par défaut: 0
   format: euros
 
-- espace: entreprise
-  nom: charges non déductibles
-  description: |
-    Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un ordinateur pour les besoins de sa société, le fera avec son revenu net. Il aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA avant de pouvoir l'utiliser pour s'acheter ce bien.
-  applicable si: auto entrepreneur
-  formule: charges
-  période: flexible
-
 - espace: indépendant . cotisations et contributions
   nom: réduction ACRE
   applicable si: entreprise . année d'activité = 'première année'
@@ -3046,27 +3040,31 @@
   nom: revenu net de cotisations
   formule: revenu professionnel - cotisations et contributions . CSG et CRDS [non déductible]
   période: flexible
+  résumé: Avant impôt
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  format: euros
 
 - espace: indépendant
   nom: revenu professionnel
-  résumé: Après cotisations et charges
-  question: Quel est votre revenu professionnel ?
-  période: flexible
-  format: euros
+  titre: revenu professionnel (net imposable)
   description: |
+    C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations et de l'impôt pour les indépendants.
 
-    C'est le revenu net de cotisations du travailleur indépendant.
-
-  Attention, **notre calcul est fait au régime de croisière**:
+    Attention, **notre calcul est fait au régime de croisière**:
     l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
+
+  période: flexible
+  format: euros
   formule:
     inversion numérique:
       avec:
-        - revenu total du dirigeant
-        - revenu net
         - entreprise . chiffre d'affaires
+        - entreprise . rémunération totale du dirigeant
+        - indépendant . revenu net de cotisations
+        - revenu net après impôt
 
 - espace: entreprise
   nom: catégorie d'activité
@@ -3289,7 +3287,7 @@
   formule:
     somme:
       - cotisations à payer
-      - CSG et CRDS [déductible]
+      - CSG et CRDS
       - formation professionnelle
   format: euros
   période: flexible
@@ -3614,25 +3612,6 @@
         1.1: 0%
         1.4: 3.1%
 
-- espace: indépendant
-  nom: revenu total du dirigeant
-  question: Quel est le revenu total du dirigeant ?
-  résumé: Dépensé par l'entreprise
-  format: euros
-  période: flexible
-  formule:
-    somme:
-      - revenu professionnel
-      - cotisations et contributions
-
-- espace: indépendant
-  nom: impôt et contributions non déductibles
-  période: flexible
-  formule:
-    somme:
-      - impôt . impôt sur le revenu à payer
-      - cotisations et contributions . CSG et CRDS [non déductible]
-
 - nom: auto entrepreneur
   icônes: 🚶
   par défaut: non
@@ -3673,8 +3652,9 @@
 
 - espace: auto entrepreneur
   nom: revenu net de cotisations
-  titre: Revenu net auto-entrepreneur
-  formule: base des cotisations - cotisations et contributions
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  formule: entreprise . rémunération totale du dirigeant - cotisations et contributions
   période: flexible
   format: euros
 
@@ -3874,6 +3854,7 @@
 
 - espace: auto entrepreneur . impôt
   nom: revenu abattu
+  titre: revenu abattu auto-entrepreneur
   période: flexible
   formule: base des cotisations - abattement
 - nom: protection sociale
@@ -4089,7 +4070,7 @@
   période: année
   formule:
     le maximum de:
-      - indépendant . revenu net de cotisations
+      - indépendant . revenu professionnel
       - auto entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut
 
