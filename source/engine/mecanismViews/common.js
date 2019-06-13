@@ -12,7 +12,7 @@ import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
 import mecanismColours from './colours'
 
-let treatValue = (data, language) =>
+let parseValue = (data, language) =>
 	data == null
 		? '?'
 		: typeof data == 'boolean'
@@ -25,12 +25,12 @@ export let formatNumber = (data, language) =>
 		: data
 
 export let NodeValue = withLanguage(({ data, language }) => (
-	<span>{treatValue(data, language)}</span>
+	<span>{parseValue(data, language)}</span>
 ))
 
 export let NodeValuePointer = ({ data }) =>
 	data !== undefined && data !== null ? (
-		<span className={'situationValue ' + treatValue(data)}>
+		<span className={'situationValue ' + parseValue(data)}>
 			<NodeValue data={data} />
 		</span>
 	) : null

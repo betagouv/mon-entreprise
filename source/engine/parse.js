@@ -19,7 +19,10 @@ import {
 	multiply,
 	propOr,
 	subtract,
-	fromPairs
+	fromPairs,
+	is,
+	cond
+		, T
 } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation'
@@ -43,26 +46,41 @@ import {
 	mecanismOnePossibility
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
-import { treat } from './traverse'
 import {
-	treatNegatedVariable,
-	treatVariable,
-	treatVariableTransforms
-} from './treatVariable'
+	parseNegatedVariable,
+	parseVariable,
+	parseVariableTransforms
+} from './parseVariable'
+
+export let parse = (rules, rule) => rawNode => {
+	let onNodeType = cond([
+		[is(String), parseString(rules, rule)],
+		[is(Number), parseNumber],
+		[is(Object), parseObject(rules, rule)],
+		[T, parseOther]
+	])
+
+	let defaultEvaluate = (cache, situationGate, parsedRules, node) => node
+	let parsedNode = onNodeType(rawNode)
+
+	return parsedNode.evaluate
+		? parsedNode
+		: { ...parsedNode, evaluate: defaultEvaluate }
+}
 
 export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
-export let treatString = (rules, rule) => rawNode => {
+export let parseString = (rules, rule) => rawNode => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
 
 	let [parseResult] = nearley().feed(rawNode).results
 
-	return treatObject(rules, rule)(parseResult)
+	return parseObject(rules, rule)(parseResult)
 }
 
-export let treatNumber = rawNode => ({
+export let parseNumber = rawNode => ({
 	text: '' + rawNode,
 	category: 'number',
 	nodeValue: rawNode,
@@ -70,13 +88,13 @@ export let treatNumber = rawNode => ({
 	jsx: <span className="number">{rawNode}</span>
 })
 
-export let treatOther = rawNode => {
+export let parseOther = rawNode => {
 	throw new Error(
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	)
 }
 
-export let treatObject = (rules, rule, treatOptions) => rawNode => {
+export let parseObject = (rules, rule, parseOptions) => rawNode => {
 	/* TODO instead of describing mecanisms in knownMecanisms.yaml, externalize the mecanisms themselves in an individual file and describe it
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
@@ -91,7 +109,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet (au-delà des attributs descriptifs tels que "description", "commentaire", etc.)
 			Objet YAML : ${JSON.stringify(rawNode)}
 			Cette liste doit avoir un et un seul élément.
-			Si vous venez tout juste d'ajouter un nouveau mécanisme, vérifier qu'il est bien intégré dans le dispatch de treat.js
+			Si vous venez tout juste d'ajouter un nouveau mécanisme, vérifier qu'il est bien intégré dans le dispatch de parse.js
 		`)
 	let k = relevantAttributes[0],
 		v = rawNode[k]
@@ -134,15 +152,15 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			synchronisation: mecanismSynchronisation,
 			...operationDispatch,
 			'≠': () =>
-				treatNegatedVariable(treatVariable(rules, rule)(v.explanation)),
+				parseNegatedVariable(parseVariable(rules, rule)(v.explanation)),
 			filter: () =>
-				treatVariableTransforms(rules, rule)({
+				parseVariableTransforms(rules, rule)({
 					filter: v.filter,
 					variable: v.explanation
 				}),
-			variable: () => treatVariableTransforms(rules, rule)({ variable: v }),
+			variable: () => parseVariableTransforms(rules, rule)({ variable: v }),
 			temporalTransform: () =>
-				treatVariableTransforms(rules, rule)({
+				parseVariableTransforms(rules, rule)({
 					variable: v.explanation,
 					temporalTransform: v.temporalTransform
 				}),
@@ -155,7 +173,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 		},
 		action = propOr(mecanismError, k, dispatch)
 
-	return action(treat(rules, rule, treatOptions), k, v)
+	return action(parse(rules, rule, parseOptions), k, v)
 }
 
 let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {

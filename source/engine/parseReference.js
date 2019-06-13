@@ -9,7 +9,7 @@ import {
 } from './rules'
 import { getSituationValue } from './variables'
 
-export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
+export let parseReference = (rules, rule, filter) => ({ fragments }) => {
 	let variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
@@ -98,7 +98,7 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 // See the période.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
-export let treatVariableTransforms = (rules, rule) => parseResult => {
+export let parseReferenceTransforms = (rules, rule) => parseResult => {
 	let evaluateTransforms = originalEval => (
 		cache,
 		situation,
@@ -176,7 +176,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 
 		return result
 	}
-	let node = treatVariable(rules, rule, parseResult.filter)(
+	let node = parseReference(rules, rule, parseResult.filter)(
 		parseResult.variable
 	)
 
@@ -196,7 +196,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 	}
 }
 
-export let treatNegatedVariable = variable => {
+export let parseNegatedReference = variable => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let explanation = evaluateNode(
 				cache,

@@ -1,26 +1,8 @@
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import { evaluateControls } from 'Engine/controls'
-import {
-	chain,
-	cond,
-	evolve,
-	is,
-	keys,
-	map,
-	mergeAll,
-	path,
-	pick,
-	pipe,
-	T
-} from 'ramda'
+import { chain, cond, evolve, is, map, path, T } from 'ramda'
 import React from 'react'
-import {
-	bonus,
-	evaluateNode,
-	makeJsx,
-	mergeMissing,
-	rewriteNode
-} from './evaluation'
+import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
 import { Node } from './mecanismViews/common'
 import {
 	disambiguateRuleReference,
@@ -29,7 +11,7 @@ import {
 	findRuleByDottedName
 } from './rules'
 import { anyNull, undefOrTrue, val } from './traverse-common-functions'
-import { treatNumber, treatObject, treatOther, treatString } from './treat'
+import parseRule from 'Engine/parseRule'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -67,249 +49,23 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 */
 
-export let treat = (rules, rule) => rawNode => {
-	let onNodeType = cond([
-		[is(String), treatString(rules, rule)],
-		[is(Number), treatNumber],
-		[is(Object), treatObject(rules, rule)],
-		[T, treatOther]
-	])
+export let parseAll = flatRules => {
+	/* First we parse each rule one by one. When a mechanism is encountered, it is recursively parsed. When a reference to a variable is encountered, a 'variable' node is created, we don't parse variables recursively. */
+	let parseOne = rule => parseRule(flatRules, rule)
+	let parsed = map(parseOne, flatRules)
+	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example : 
+		A = B * C
+		B = D / E
 
-	let defaultEvaluate = (cache, situationGate, parsedRules, node) => node
-	let parsedNode = onNodeType(rawNode)
+		C unité km
+		D unité €
+		E unité km
+	 *
+	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
+	 *
+	 * */
 
-	return parsedNode.evaluate
-		? parsedNode
-		: { ...parsedNode, evaluate: defaultEvaluate }
-}
-
-export let treatRuleRoot = (rules, rule) => {
-	/*
-		The treatRuleRoot function will traverse the tree of the `rule` and produce an AST, an object containing other objects containing other objects...
-		Some of the attributes of the rule are dynamic, they need to be parsed. It is the case of  `non applicable si`, `applicable si`, `formule`.
-		These attributes' values themselves may have  mechanism properties (e. g. `barème`) or inline expressions (e. g. `maVariable + 3`).
-		These mechanisms or variables are in turn traversed by `treat()`. During this processing, 'evaluate' and'jsx' functions are attached to the objects of the AST. They will be evaluated during the evaluation phase, called "analyse".
-*/
-
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		//		console.log((cache.op || ">").padStart(cache.parseLevel),rule.dottedName)
-		cache.parseLevel++
-
-		let evaluatedAttributes = pipe(
-				pick(['parentDependency', 'non applicable si', 'applicable si']),
-				map(value => evaluateNode(cache, situationGate, parsedRules, value))
-			)(node),
-			{
-				parentDependency,
-				'non applicable si': notApplicable,
-				'applicable si': applicable
-			} = evaluatedAttributes,
-			isApplicable =
-				val(parentDependency) === false
-					? false
-					: val(notApplicable) === true
-					? false
-					: val(applicable) === false
-					? false
-					: anyNull([notApplicable, applicable, parentDependency])
-					? null
-					: !val(notApplicable) && undefOrTrue(val(applicable)),
-			evaluateFormula = () =>
-				node.formule
-					? evaluateNode(cache, situationGate, parsedRules, node.formule)
-					: {},
-			// evaluate the formula lazily, only if the applicability is known and true
-			evaluatedFormula =
-				isApplicable === true
-					? evaluateFormula()
-					: isApplicable === false
-					? {
-							...node.formule,
-							missingVariables: {},
-							nodeValue: 0
-					  }
-					: {
-							...node.formule,
-							missingVariables: {},
-							nodeValue: null
-					  },
-			{
-				missingVariables: formulaMissingVariables,
-				nodeValue
-			} = evaluatedFormula
-
-		// if isApplicable === true
-		// evaluateControls
-		// attache them to the node for further usage
-		// do not output missingVariables for now
-
-		let condMissing =
-				isApplicable === false
-					? {}
-					: mergeAll([
-							parentDependency?.missingVariables || {},
-							notApplicable?.missingVariables || {},
-							applicable?.missingVariables || {}
-					  ]),
-			// On veut abaisser le score des conséquences par rapport aux conditions,
-			// mais seulement dans le cas où une condition est effectivement présente
-			hasCondition = keys(condMissing).length > 0,
-			missingVariables = mergeMissing(
-				bonus(condMissing, hasCondition),
-				formulaMissingVariables
-			)
-
-		cache.parseLevel--
-		//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
-		//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
-		return {
-			...node,
-			...evaluatedAttributes,
-			...{ formule: evaluatedFormula },
-			unit: evaluatedFormula?.explanation?.unit,
-			nodeValue,
-			isApplicable,
-			missingVariables,
-			inactiveParent: parentDependency && val(parentDependency) == false
-		}
-	}
-
-	let parentDependency = findParentDependency(rules, rule)
-
-	let root = { ...rule, ...(parentDependency ? { parentDependency } : {}) }
-
-	let parsedRoot = evolve({
-		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
-		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
-
-		// condition d'applicabilité de la règle
-		parentDependency: parent => {
-			let node = treat(rules, rule)(parent.dottedName)
-
-			let jsx = (nodeValue, explanation) => (
-				<ShowValuesConsumer>
-					{showValues =>
-						!showValues ? (
-							<div>Active seulement si {makeJsx(explanation)}</div>
-						) : nodeValue === true ? (
-							<div>Active car {makeJsx(explanation)}</div>
-						) : nodeValue === false ? (
-							<div>Non active car {makeJsx(explanation)}</div>
-						) : null
-					}
-				</ShowValuesConsumer>
-			)
-
-			return {
-				evaluate: (cache, situation, parsedRules) =>
-					node.evaluate(cache, situation, parsedRules, node),
-				jsx,
-				category: 'ruleProp',
-				rulePropType: 'cond',
-				name: 'parentDependency',
-				type: 'numeric',
-				explanation: node
-			}
-		},
-		'non applicable si': evolveCond('non applicable si', rule, rules),
-		'applicable si': evolveCond('applicable si', rule, rules),
-		// formule de calcul
-		formule: value => {
-			let evaluate = (cache, situationGate, parsedRules, node) => {
-				let explanation = evaluateNode(
-						cache,
-						situationGate,
-						parsedRules,
-						node.explanation
-					),
-					nodeValue = explanation.nodeValue,
-					missingVariables = explanation.missingVariables
-
-				return rewriteNode(node, nodeValue, explanation, missingVariables)
-			}
-
-			let child = treat(rules, rule)(value)
-
-			let jsx = (nodeValue, explanation) => makeJsx(explanation)
-
-			return {
-				evaluate,
-				jsx,
-				category: 'ruleProp',
-				rulePropType: 'formula',
-				name: 'formule',
-				type: 'numeric',
-				explanation: child
-			}
-		},
-		contrôles: map(control => {
-			let testExpression = treat(rules, rule)(control.si)
-			if (
-				!testExpression.explanation &&
-				!(testExpression.category === 'variable')
-			)
-				throw new Error(
-					'Ce contrôle ne semble pas être compris :' + control['si']
-				)
-
-			return {
-				dottedName: rule.dottedName,
-				level: control['niveau'],
-				test: control['si'],
-				message: control['message'],
-				testExpression,
-				solution: control['solution']
-			}
-		})
-	})(root)
-
-	return {
-		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
-		...parsedRoot,
-		evaluate,
-		parsed: true
-	}
-}
-
-let evolveCond = (name, rule, rules) => value => {
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let explanation = evaluateNode(
-				cache,
-				situationGate,
-				parsedRules,
-				node.explanation
-			),
-			nodeValue = explanation.nodeValue,
-			missingVariables = explanation.missingVariables
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
-	}
-
-	let child = treat(rules, rule)(value)
-
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="ruleProp mecanism cond"
-			name={name}
-			value={nodeValue}
-			child={
-				explanation.category === 'variable' ? (
-					<div className="node">{makeJsx(explanation)}</div>
-				) : (
-					makeJsx(explanation)
-				)
-			}
-		/>
-	)
-
-	return {
-		evaluate,
-		jsx,
-		category: 'ruleProp',
-		rulePropType: 'cond',
-		name,
-		type: 'boolean',
-		explanation: child
-	}
+	return parsed
 }
 
 export let getTargets = (target, rules) => {
@@ -323,29 +79,6 @@ export let getTargets = (target, rules) => {
 		  [target]
 
 	return targets
-}
-
-export let parseAll = flatRules => {
-	/* First we parse each rule one by one. When a mechanism is encountered, it is recursively parsed. When a reference to a variable is encountered, a 'variable' node is created, we don't parse variables recursively. */
-	let treatOne = rule => treatRuleRoot(flatRules, rule)
-	let parsed = map(treatOne, flatRules)
-	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example : 
-		A = B * C
-		B = D / E
-
-		C unité km
-		D unité €
-		E unité km
-	 *
-	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
-	 *
-	 * */
-
-		
-
-
-
-	return parsed
 }
 
 export let analyseMany = (parsedRules, targetNames) => situationGate => {
@@ -363,7 +96,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 		}),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(
 			t =>
-				cache[t.dottedName] || // This check exists because it is not done in treatRuleRoot's eval, while it is in treatVariable. This should be merged : we should probably call treatVariable here : targetNames could be expressions (hence with filters) TODO
+				cache[t.dottedName] || // This check exists because it is not done in parseRuleRoot's eval, while it is in parseVariable. This should be merged : we should probably call parseVariable here : targetNames could be expressions (hence with filters) TODO
 				evaluateNode(cache, situationGate, parsedRules, t)
 		)
 
