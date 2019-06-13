@@ -72,7 +72,9 @@ const SchemeComparaison = ({
 	setSituationBranch
 }: Props) => {
 	const [showMore, setShowMore] = useState(false)
-	const [conversationStarted, setConversationStarted] = useState(false)
+	const [conversationStarted, setConversationStarted] = useState(
+		!!assimiléSalarié.revenuNetAprèsImpôts.montant
+	)
 	const startConversation = useCallback(() => setConversationStarted(true), [
 		setConversationStarted
 	])
