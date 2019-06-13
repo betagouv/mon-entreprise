@@ -1,9 +1,4 @@
 objectifs:
-  - icône: 🏢
-    nom: Mon entreprise
-    objectifs:
-      - entreprise . chiffre d'affaires
-      - entreprise . charges
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
@@ -12,6 +7,11 @@ objectifs:
       - contrat salarié . salaire . net
       - impôt . neutre
       - contrat salarié . salaire . net après impôt
+  # - icône: 🏢
+  #   nom: Mon entreprise
+  #   objectifs:
+  #     - entreprise . charges
+  #     - entreprise . chiffre d'affaires
 
 questions:
   à l'affiche:

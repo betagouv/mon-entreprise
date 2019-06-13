@@ -1766,15 +1766,10 @@ impôt . impôt sur le revenu à payer:
 revenu net de cotisations:
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
-revenu net d'impôt:
-  titre.en: Net income after contributions and taxes
-  titre.fr: Revenu net de cotisations et d'impôt
-revenu net:
-  titre.en: Net income
-  titre.fr: Revenu net
-  résumé.en: After income tax
-  résumé.fr: Après impôt sur le revenu
-  question.en: How much income do you plan to receive ?
+revenu net après impôt:
+  résumé.en: Paid into the bank account
+  résumé.fr: Versé sur le compte bancaire
+  question.en: What income do you want to receive?
   question.fr: Quel revenu voulez-vous toucher ?
   description.en: |
     This is the income net of contributions and taxes.
@@ -1821,9 +1816,9 @@ entreprise . année d'activité . régime de croisière:
   titre.en: fourth year or more
   titre.fr: régime de croisière
 entreprise . chiffre d'affaires:
-  titre.en: Turnover (excluding VAT)
+  titre.en: Turnover
   titre.fr: chiffre d'affaires H.T.
-  question.en: What is your expected turnover (excluding tax)?
+  question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé (H.T.) ?
   résumé.en: The amount of sales made
   résumé.fr: Le montant des ventes réalisées
@@ -2462,7 +2457,7 @@ auto entrepreneur . cotisations et contributions . cotisations . réduction ACRE
     "ACRE" reduction
   titre.fr: réduction ACRE
   description.en: >-
-      In some cases, this rate may reduce the amount of social security contributions paid by the auto-entrepreneur to help him/her in his/her first year of activity.
+    In some cases, this rate may reduce the amount of social security contributions paid by the auto-entrepreneur to help him/her in his/her first year of activity.
   description.fr: >-
     Ce taux peut dans certains cas réduire le montant des cotisations sociales
     de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.

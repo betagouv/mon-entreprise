@@ -730,9 +730,9 @@ comparaisonRégimes:
     <0> Optional health and pension policies deductible</0>
     <1> Yes <1>(under certain conditions)</1></1>
     <2> Yes <1>("Madelin" Law)</1></2>
-  revenuNetApresImpots: |
+  revenuNetApresImpot: |
     <0>Net income after taxes</0>
-  revenuNetAvantImpots: |
+  revenuNetAvantImpot: |
     <0>Net contribution income<1>(before income tax)</1></0>
   retraiteEstimation:
     legend: |
