@@ -21,8 +21,8 @@ import {
 	subtract,
 	fromPairs,
 	is,
-	cond
-		, T
+	cond,
+	T
 } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation'
@@ -47,16 +47,16 @@ import {
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
 import {
-	parseNegatedVariable,
-	parseVariable,
-	parseVariableTransforms
-} from './parseVariable'
+	parseNegatedReference,
+	parseReference,
+	parseReferenceTransforms
+} from './parseReference'
 
-export let parse = (rules, rule) => rawNode => {
+export let parse = (rules, rule, parsedRules) => rawNode => {
 	let onNodeType = cond([
-		[is(String), parseString(rules, rule)],
+		[is(String), parseString(rules, rule, parsedRules)],
 		[is(Number), parseNumber],
-		[is(Object), parseObject(rules, rule)],
+		[is(Object), parseObject(rules, rule, parsedRules)],
 		[T, parseOther]
 	])
 
@@ -70,14 +70,14 @@ export let parse = (rules, rule) => rawNode => {
 
 export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
-export let parseString = (rules, rule) => rawNode => {
+export let parseString = (rules, rule, parsedRules) => rawNode => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
 
 	let [parseResult] = nearley().feed(rawNode).results
 
-	return parseObject(rules, rule)(parseResult)
+	return parseObject(rules, rule, parsedRules)(parseResult)
 }
 
 export let parseNumber = rawNode => ({
@@ -94,7 +94,7 @@ export let parseOther = rawNode => {
 	)
 }
 
-export let parseObject = (rules, rule, parseOptions) => rawNode => {
+export let parseObject = (rules, rule, parsedRules) => rawNode => {
 	/* TODO instead of describing mecanisms in knownMecanisms.yaml, externalize the mecanisms themselves in an individual file and describe it
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
@@ -152,15 +152,18 @@ export let parseObject = (rules, rule, parseOptions) => rawNode => {
 			synchronisation: mecanismSynchronisation,
 			...operationDispatch,
 			'≠': () =>
-				parseNegatedVariable(parseVariable(rules, rule)(v.explanation)),
+				parseNegatedReference(
+					parseReference(rules, rule, parsedRules)(v.explanation)
+				),
 			filter: () =>
-				parseVariableTransforms(rules, rule)({
+				parseReferenceTransforms(rules, rule, parsedRules)({
 					filter: v.filter,
 					variable: v.explanation
 				}),
-			variable: () => parseVariableTransforms(rules, rule)({ variable: v }),
+			variable: () =>
+				parseReferenceTransforms(rules, rule, parsedRules)({ variable: v }),
 			temporalTransform: () =>
-				parseVariableTransforms(rules, rule)({
+				parseReferenceTransforms(rules, rule, parsedRules)({
 					variable: v.explanation,
 					temporalTransform: v.temporalTransform
 				}),
@@ -173,7 +176,7 @@ export let parseObject = (rules, rule, parseOptions) => rawNode => {
 		},
 		action = propOr(mecanismError, k, dispatch)
 
-	return action(parse(rules, rule, parseOptions), k, v)
+	return action(parse(rules, rule, parsedRules), k, v)
 }
 
 let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {

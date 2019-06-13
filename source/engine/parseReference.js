@@ -8,11 +8,18 @@ import {
 	findRuleByDottedName
 } from './rules'
 import { getSituationValue } from './variables'
+import parseRule from 'Engine/parseRule'
 
-export let parseReference = (rules, rule, filter) => ({ fragments }) => {
-	let variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
+export let parseReference = (rules, rule, parsedRules, filter) => ({
+	fragments
+}) => {
+	let partialReference = fragments.join(' . '),
+		dottedName = disambiguateRuleReference(rules, rule, partialReference)
 
+	let variable =
+		parsedRules[dottedName] ||
+		(console.log('uncached : from `', rule.dottedName, '` to `', dottedName) ||
+			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -21,8 +28,7 @@ export let parseReference = (rules, rule, filter) => ({ fragments }) => {
 			cached = cache[cacheName]
 
 		if (cached) return cached
-		let variable = findRuleByDottedName(parsedRules, dottedName),
-			variableHasFormula = variable.formule != null,
+		let variableHasFormula = variable.formule != null,
 			variableHasCond =
 				variable['applicable si'] != null ||
 				variable['non applicable si'] != null ||
@@ -86,7 +92,7 @@ export let parseReference = (rules, rule, filter) => ({ fragments }) => {
 			/>
 		),
 
-		name: variablePartialName,
+		name: partialReference,
 		category: 'variable',
 		fragments,
 		dottedName
@@ -98,7 +104,11 @@ export let parseReference = (rules, rule, filter) => ({ fragments }) => {
 // See the période.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
-export let parseReferenceTransforms = (rules, rule) => parseResult => {
+export let parseReferenceTransforms = (
+	rules,
+	rule,
+	parsedRules
+) => parseResult => {
 	let evaluateTransforms = originalEval => (
 		cache,
 		situation,
@@ -176,7 +186,7 @@ export let parseReferenceTransforms = (rules, rule) => parseResult => {
 
 		return result
 	}
-	let node = parseReference(rules, rule, parseResult.filter)(
+	let node = parseReference(rules, rule, parsedRules, parseResult.filter)(
 		parseResult.variable
 	)
 

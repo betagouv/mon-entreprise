@@ -25,7 +25,8 @@ import {
 	toPairs,
 	trim,
 	when,
-	groupBy
+	groupBy,
+	dissoc
 } from 'ramda'
 import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
@@ -42,7 +43,7 @@ export let enrichRule = rule => {
 	try {
 		let unit = rule.unité && parseUnit(rule.unité)
 		return {
-			...rule,
+			...dissoc('contrôles', rule),
 			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
 			name: rule['nom'],
 			title: capitalise0(rule['titre'] || rule['nom']),
@@ -143,26 +144,19 @@ export let collectDefaults = pipe(
  Méthodes de recherche d'une règle */
 
 export let findRuleByName = (allRules, query) =>
-	allRules.find(({ name }) => name === query)
+	(Array.isArray(allRules) ? allRules : Object.values(allRules)).find(
+		({ name }) => name === query
+	)
 
 export let findRulesByName = (allRules, query) =>
-	allRules.filter(({ name }) => name === query)
+	(Array.isArray(allRules) ? allRules : Object.values(allRules)).filter(
+		({ name }) => name === query
+	)
 
-export let searchRules = searchInput =>
-	rules
-		.filter(
-			rule =>
-				rule &&
-				hasKnownRuleType(rule) &&
-				JSON.stringify(rule)
-					.toLowerCase()
-					.indexOf(searchInput) > -1
-		)
-		.map(enrichRule)
-
-export let findRuleByDottedName = (allRules, dottedName) => {
-	return allRules.find(rule => rule.dottedName == dottedName)
-}
+export let findRuleByDottedName = (allRules, dottedName) =>
+	Array.isArray(allRules)
+		? allRules.find(rule => rule.dottedName == dottedName)
+		: allRules[dottedName]
 
 export let findRule = (rules, nameOrDottedName) =>
 	nameOrDottedName.includes(' . ')

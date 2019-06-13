@@ -324,30 +324,19 @@ export let findInversion = (situationGate, parsedRules, v, dottedName) => {
 	let candidates = inversions
 			.map(i =>
 				disambiguateRuleReference(
-					parsedRules,
-					parsedRules.find(propEq('dottedName', dottedName)),
+					Object.values(parsedRules),
+					parsedRules[dottedName],
 					i
 				)
 			)
 			.map(name => {
 				let userInput = situationGate(name) != undefined
 				let rule = findRuleByDottedName(parsedRules, name)
-				/* When the fixedObjectiveValue is null, the inversion can't be done : the user needs to set the target's value
-				 * But the objectiveRule can also have an 'alternative' property,
-				 * which must point to a rule whose value either is set by the user,
-				 * or is calculated according to a formula that does not depend on the rule being inversed.
-				 * This alternative's value will be used as a target.
-				 * */
-				let alternativeRule =
-					!userInput &&
-					rule.alternative &&
-					findRuleByDottedName(parsedRules, rule.alternative)
-				if (!userInput && !alternativeRule) return null
+				if (!userInput) return null
 				return {
 					fixedObjectiveRule: rule,
 					userInput,
-					fixedObjectiveValue: situationGate(name),
-					alternativeRule
+					fixedObjectiveValue: situationGate(name)
 				}
 			}),
 		candidateWithUserInput = candidates.find(c => c && c.userInput)
@@ -365,20 +354,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 			missingVariables: { [dottedName]: 1 },
 			nodeValue: null
 		}
-	let { fixedObjectiveValue, fixedObjectiveRule, alternativeRule } = inversion
-
-	let evaluatedAlternative =
-		alternativeRule &&
-		evaluateNode(oldCache, situationGate, parsedRules, alternativeRule)
-	if (evaluatedAlternative && evaluatedAlternative.nodeValue == null)
-		return {
-			missingVariables: evaluatedAlternative.missingVariables,
-			nodeValue: null
-		}
-
-	let objectiveValue = evaluatedAlternative
-		? evaluatedAlternative.nodeValue
-		: fixedObjectiveValue
+	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 
 	let inversionCache = {}
 	let fx = x => {
@@ -411,7 +387,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		nodeValue = uniroot(
 			x => {
 				let y = fx(x)
-				return y.nodeValue - objectiveValue
+				return y.nodeValue - fixedObjectiveValue
 			},
 			0.1,
 			1000000000,
@@ -451,7 +427,6 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 			node,
 			nodeValue,
 			{
-				...evolve({ avec: map(recurse) }, v),
 				inversedWith: inversion?.inversedWith
 			},
 			missingVariables
@@ -465,7 +440,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	return {
 		...v,
 		evaluate,
-		explanation: evolve({ avec: map(recurse) }, v),
+		explanation: v,
 		jsx: InversionNumérique,
 		category: 'mecanism',
 		name: 'inversion numérique',

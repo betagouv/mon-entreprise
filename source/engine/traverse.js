@@ -1,16 +1,11 @@
-import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import { evaluateControls } from 'Engine/controls'
-import { chain, cond, evolve, is, map, path, T } from 'ramda'
-import React from 'react'
-import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
-import { Node } from './mecanismViews/common'
+import { chain, map, path } from 'ramda'
+import { evaluateNode } from './evaluation'
 import {
 	disambiguateRuleReference,
-	findParentDependency,
 	findRule,
 	findRuleByDottedName
 } from './rules'
-import { anyNull, undefOrTrue, val } from './traverse-common-functions'
 import parseRule from 'Engine/parseRule'
 
 /*
@@ -51,8 +46,10 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 
 export let parseAll = flatRules => {
 	/* First we parse each rule one by one. When a mechanism is encountered, it is recursively parsed. When a reference to a variable is encountered, a 'variable' node is created, we don't parse variables recursively. */
-	let parseOne = rule => parseRule(flatRules, rule)
-	let parsed = map(parseOne, flatRules)
+
+	let parsedRules = {}
+	let parseOne = rule => parseRule(flatRules, rule, parsedRules)
+	map(parseOne, flatRules)
 	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example : 
 		A = B * C
 		B = D / E
@@ -65,7 +62,7 @@ export let parseAll = flatRules => {
 	 *
 	 * */
 
-	return parsed
+	return parsedRules
 }
 
 export let getTargets = (target, rules) => {
@@ -85,6 +82,7 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = { parseLevel: 0 }
+	console.log('orang', parsedRules)
 
 	let parsedTargets = targetNames.map(t => {
 			let parsedTarget = findRule(parsedRules, t)

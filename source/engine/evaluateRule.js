@@ -1,11 +1,4 @@
-import {
-
-	keys,
-	map,
-	pick,
-	pipe,
-
-} from 'ramda'
+import { mergeAll, keys, map, pick, pipe } from 'ramda'
 import { bonus, mergeMissing, evaluateNode } from 'Engine/evaluation'
 import { anyNull, undefOrTrue, val } from './traverse-common-functions'
 
