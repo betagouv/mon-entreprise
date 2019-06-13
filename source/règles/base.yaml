@@ -2593,7 +2593,7 @@
       abattement: 10%
       plafond: 12502
   note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
-  références: 
+  références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 
 - nom: impôt sur le revenu
@@ -2649,10 +2649,10 @@
   nom: CEHR
   période: année
   note: Attention, ce barème concerne les foyers célibataires. Pour les couples, le barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils sont individuellement deux fois moins riches.
-  formule: 
-    barème: 
+  formule:
+    barème:
       assiette: revenu abattu
-      tranches: 
+      tranches:
         - en-dessous de: 250000
           taux: 0%
         - de: 250000
@@ -2660,7 +2660,7 @@
           taux: 3%
         - au-dessus de: 500000
           taux: 4%
-  références: 
+  références:
     contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
 
@@ -2710,6 +2710,7 @@
     Pour les auto-entreprises, cette réduction est même prolongée pendant un total de 3 ans, de façon dégressive.
   formule:
     une possibilité:
+      choix obligatoire: oui
       possibilités:
         - première année
         - deuxième année
