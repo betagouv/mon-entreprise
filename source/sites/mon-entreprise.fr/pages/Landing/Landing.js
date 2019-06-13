@@ -1,14 +1,15 @@
 /* @flow */
 
 import { T } from 'Components'
+import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
+import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Footer from '../../layout/Footer/Footer'
 import illustrationSvg from './illustration.svg'
@@ -20,12 +21,15 @@ type Props = {
 }
 export default compose(
 	withSitePaths,
-	withTranslation()
-)(({ sitePaths }: Props) => (
+	withLanguage
+)(({ sitePaths, language }: Props) => (
 	<div className="app-content">
 		<div className="ui__ container landing-header">
 			<Link className="landing-header__brand-logo" to={sitePaths.index}>
-				<img alt="logo mon-entreprise.fr" src={logoSvg} />
+				<img
+					alt="logo mon-entreprise.fr"
+					src={language === 'fr' ? logoSvg : logoEnSvg}
+				/>
 			</Link>
 			<div style={{ flex: 1 }} />
 			<a
