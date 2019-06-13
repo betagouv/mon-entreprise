@@ -53,8 +53,8 @@ type SimulationResult = {
 	trimestreValidés: RègleAvecValeur,
 	indemnitésJournalières: RègleAvecMontant,
 	indemnitésJournalièresATMP?: RègleAvecMontant,
-	revenuNetAvantImpôts: RègleAvecMontant,
-	revenuNetAprèsImpôts: RègleAvecMontant,
+	revenuNetDeCotisations: RègleAvecMontant,
+	revenuNetAprèsImpôt: RègleAvecMontant,
 	plafondDépassé?: boolean
 }
 
@@ -73,7 +73,7 @@ const SchemeComparaison = ({
 }: Props) => {
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(
-		!!assimiléSalarié.revenuNetAprèsImpôts.montant
+		!!assimiléSalarié.revenuNetAprèsImpôt.montant
 	)
 	const startConversation = useCallback(() => setConversationStarted(true), [
 		setConversationStarted
@@ -337,17 +337,16 @@ const SchemeComparaison = ({
 						</div>
 					)}
 				</div>
-
-				{conversationStarted && !!assimiléSalarié.revenuNetAprèsImpôts.montant && (
+				{conversationStarted && !!assimiléSalarié.revenuNetAprèsImpôt.montant && (
 					<>
-						<T k="comparaisonRégimes.revenuNetApresImpots">
-							<h3 className="legend">Revenu net après impôts</h3>
+						<T k="comparaisonRégimes.revenuNetApresImpot">
+							<h3 className="legend">Revenu net après impôt</h3>
 						</T>
 						<div className="AS">
 							<Animate.appear className="ui__ plain card">
 								<RuleValueLink
 									onClick={() => setSituationBranch(0)}
-									{...assimiléSalarié.revenuNetAprèsImpôts}
+									{...assimiléSalarié.revenuNetAprèsImpôt}
 								/>
 							</Animate.appear>
 						</div>
@@ -355,7 +354,7 @@ const SchemeComparaison = ({
 							<Animate.appear className="ui__ plain card">
 								<RuleValueLink
 									onClick={() => setSituationBranch(1)}
-									{...indépendant.revenuNetAprèsImpôts}
+									{...indépendant.revenuNetAprèsImpôt}
 								/>
 							</Animate.appear>
 						</div>
@@ -370,12 +369,12 @@ const SchemeComparaison = ({
 								) : (
 									<RuleValueLink
 										onClick={() => setSituationBranch(2)}
-										{...autoEntrepreneur.revenuNetAprèsImpôts}
+										{...autoEntrepreneur.revenuNetAprèsImpôt}
 									/>
 								)}
 							</Animate.appear>
 						</div>
-						<T k="comparaisonRégimes.revenuNetAvantImpots">
+						<T k="comparaisonRégimes.revenuNetAvantImpot">
 							<h3 className="legend">
 								Revenu net de cotisations <small>(avant impôts)</small>
 							</h3>
@@ -383,13 +382,13 @@ const SchemeComparaison = ({
 						<div className="AS">
 							<RuleValueLink
 								onClick={() => setSituationBranch(0)}
-								{...assimiléSalarié.revenuNetAvantImpôts}
+								{...assimiléSalarié.revenuNetDeCotisations}
 							/>
 						</div>
 						<div className="indep">
 							<RuleValueLink
 								onClick={() => setSituationBranch(1)}
-								{...indépendant.revenuNetAvantImpôts}
+								{...indépendant.revenuNetDeCotisations}
 							/>
 						</div>
 						<div className="auto">
@@ -398,7 +397,7 @@ const SchemeComparaison = ({
 							) : (
 								<RuleValueLink
 									onClick={() => setSituationBranch(2)}
-									{...autoEntrepreneur.revenuNetAvantImpôts}
+									{...autoEntrepreneur.revenuNetDeCotisations}
 								/>
 							)}
 						</div>
@@ -628,10 +627,10 @@ export default (compose(
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('protection sociale . santé . indemnités journalières'),
-					revenuNetAprèsImpôts: règleAvecMontantSelector(state, {
+					revenuNetAprèsImpôt: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
-					})('revenu net'),
-					revenuNetAvantImpôts: règleAvecMontantSelector(state, {
+					})('revenu net après impôt'),
+					revenuNetDeCotisations: règleAvecMontantSelector(state, {
 						situationBranchName: 'Auto-entrepreneur'
 					})('auto entrepreneur . revenu net de cotisations'),
 					// $FlowFixMe
@@ -652,12 +651,12 @@ export default (compose(
 					indemnitésJournalières: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
 					})('protection sociale . santé . indemnités journalières'),
-					revenuNetAprèsImpôts: règleAvecMontantSelector(state, {
+					revenuNetAprèsImpôt: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
-					})('revenu net'),
-					revenuNetAvantImpôts: règleAvecMontantSelector(state, {
+					})('revenu net après impôt'),
+					revenuNetDeCotisations: règleAvecMontantSelector(state, {
 						situationBranchName: 'Indépendant'
-					})('indépendant . revenu professionnel')
+					})('indépendant . revenu net de cotisations')
 				},
 				assimiléSalarié: {
 					retraite: règleAvecMontantSelector(state, {
@@ -674,10 +673,10 @@ export default (compose(
 					})(
 						'protection sociale . accidents du travail et maladies professionnelles'
 					),
-					revenuNetAprèsImpôts: règleAvecMontantSelector(state, {
+					revenuNetAprèsImpôt: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
-					})('revenu net'),
-					revenuNetAvantImpôts: règleAvecMontantSelector(state, {
+					})('revenu net après impôt'),
+					revenuNetDeCotisations: règleAvecMontantSelector(state, {
 						situationBranchName: 'Assimilé salarié'
 					})('contrat salarié . salaire . net')
 				}

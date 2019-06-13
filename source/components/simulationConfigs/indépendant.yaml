@@ -1,17 +1,18 @@
 objectifs:
-  - icône: 🏢
-    nom: Mon entreprise
-    objectifs:
-      - entreprise . chiffre d'affaires
-      - entreprise . charges
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
-      - indépendant . revenu total du dirigeant
+      - entreprise . rémunération totale du dirigeant
       - indépendant . cotisations et contributions
+      - indépendant . revenu net de cotisations
       - indépendant . revenu professionnel
-      - indépendant . impôt et contributions non déductibles
-      - revenu net
+      - impôt
+      - revenu net après impôt
+  # - icône: 🏢
+  #   nom: Mon entreprise
+  #   objectifs:
+  #     - entreprise . charges
+  #     - entreprise . chiffre d'affaires
 
 questions:
   à l'affiche:
