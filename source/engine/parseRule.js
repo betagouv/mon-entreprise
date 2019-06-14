@@ -9,6 +9,8 @@ import { parse } from 'Engine/parse'
 
 export default (rules, rule, parsedRules) => {
 	if (parsedRules[rule.dottedName]) return parsedRules[rule.dottedName]
+
+	parsedRules[rule.dottedName] = 'being parsed'
 	/*
 		The parseRule function will traverse the tree of the `rule` and produce an AST, an object containing other objects containing other objects...
 		Some of the attributes of the rule are dynamic, they need to be parsed. It is the case of  `non applicable si`, `applicable si`, `formule`.

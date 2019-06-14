@@ -16,7 +16,7 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 	let partialReference = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, partialReference)
 
-	let variable =
+	let parsedRule =
 		parsedRules[dottedName] ||
 		(console.log('uncached : from `', rule.dottedName, '` to `', dottedName) ||
 			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
@@ -28,7 +28,10 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 			cached = cache[cacheName]
 
 		if (cached) return cached
-		let variableHasFormula = variable.formule != null,
+
+		let variable =
+				typeof parsedRule === 'object' ? parsedRule : parsedRules[dottedName],
+			variableHasFormula = variable.formule != null,
 			variableHasCond =
 				variable['applicable si'] != null ||
 				variable['non applicable si'] != null ||
