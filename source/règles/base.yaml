@@ -1682,8 +1682,8 @@
   formule:
     variations:
       - si: entreprise . effectif < 20
-        alors: 0.2809
-      - sinon: 0.2849
+        alors: 0.3214
+      - sinon: 0.3254
 
 - espace: contrat salarié . réduction générale
   nom: assiette
@@ -1698,6 +1698,7 @@
       - part de la cotisation ATMP
       - retraite complémentaire [employeur]
       - contribution d'équilibre général [employeur]
+      - chômage [employeur]
   références:
     changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
 
