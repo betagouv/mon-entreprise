@@ -2147,15 +2147,15 @@
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
         cotisations . assiette: 1521.22
-      valeur attendue: 427.31
+      valeur attendue: 488.91
     - nom: 'Salaire proche du SMIC'
       situation:
         cotisations . assiette: 1530
-      valeur attendue: 423.2
+      valeur attendue: 484.21
     - nom: 'Résiduelle pour un salaire médian'
       situation:
         cotisations . assiette: 2300
-      valeur attendue: 62.71
+      valeur attendue: 71.75
     - nom: 'Nulle au-dessus du plafond'
       situation:
         cotisations . assiette: 2434
@@ -2175,8 +2175,8 @@
   formule:
     variations:
       - si: entreprise . effectif < 20
-        alors: 0.2809
-      - sinon: 0.2849
+        alors: 0.3214
+      - sinon: 0.3254
 
 - espace: contrat salarié . réduction générale
   nom: assiette
@@ -2191,6 +2191,7 @@
       - part de la cotisation ATMP
       - retraite complémentaire [employeur]
       - contribution d'équilibre général [employeur]
+      - chômage [employeur]
   références:
     changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
 
