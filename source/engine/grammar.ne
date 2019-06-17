@@ -64,11 +64,6 @@ MultiplicationDivisionOperator	-> "*" {% id %}
 MultiplicationDivision -> MultiplicationDivision _ MultiplicationDivisionOperator _ Parentheses  {% operation('calculation') %}
     | Parentheses             {% id %}
 
-Term -> Variable {% id %}
-		| FilteredVariable {% id %}
-		| number {% id %}
-		| percentage {% id %}
-
 Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):* 
 {% variable %}
 
