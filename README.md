@@ -16,7 +16,7 @@ Most of the documentation (including issues and the wiki) is written in french, 
 
 ```
 # Clone this repo on your computer
-git clone git@github.com:betagouv/syso.git && cd syso
+git clone --depth 100 git@github.com:betagouv/syso.git && cd syso
 
 # Install the Javscript dependencies through Yarn
 yarn install
