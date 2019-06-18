@@ -33,14 +33,17 @@ export default () => {
 				css={`
 					list-style-type: none;
 					display: flex;
-					flex-wrap: wrap;
-					width: 80vw;
-					justify-content: center;
+					flex-wrap: nowrap;
+					overflow-x: auto;
+					-webkit-overflow-scrolling: touch; /* [4] */
+					-ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */
+					width: 100%;
 				`}>
 				{Object.entries(scenarios).map(([nom, s]) => (
 					<li
 						className="ui__ card"
 						css={`
+							flex: 0 0 auto;
 							width: 16vw;
 							min-width: 16em;
 							margin: 1em;
@@ -95,6 +98,10 @@ export default () => {
 					</li>
 				))}
 			</ul>
+			<img
+				css="height: 3em; display: block; margin: 1em auto"
+				src={require('./images/horizontal-scroll.png')}
+			/>
 			<p>
 				Les conséquences de ces scénarios sont bien évidemment très compliquées
 				à prévoir : ces descriptions sont indicatives et mériteraient d'être
