@@ -1,3 +1,4 @@
+// Reference to a variable
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
@@ -18,8 +19,8 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 
 	let parsedRule =
 		parsedRules[dottedName] ||
-		(console.log('uncached : from `', rule.dottedName, '` to `', dottedName) ||
-			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
+		parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules)
+
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -98,7 +99,8 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 		name: partialReference,
 		category: 'variable',
 		fragments,
-		dottedName
+		dottedName,
+		unit: parsedRule.unit
 	}
 }
 

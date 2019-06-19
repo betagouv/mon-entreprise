@@ -4,6 +4,17 @@
     - mois
     - année
 
+- nom: contrat salarié
+  icônes: 📄
+  question: Activité salariée ?
+  par défaut: oui
+  description: |
+    Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
+
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans les cas suivants:
+    - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
+    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: yoyo
   formule: distance annuelle * indemnité kilométrique
@@ -22,7 +33,7 @@
   formule:
     le minimum de: 
       - distance annuelle * indemnité kilométrique
-      - 200
+      - plafond d'exonération
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
     fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
@@ -31,6 +42,12 @@
       situation:
         active: oui
       valeur attendue: 200
+
+
+- espace: contrat salarié . indemnité kilométrique vélo
+  nom: plafond d'exonération
+  unité: €
+  formule: 200
 
 - espace: contrat salarié . indemnité kilométrique vélo
   nom: indemnité kilométrique
@@ -674,17 +691,6 @@
         prime de fin de contrat: 60.4
         compensation pour congés non pris: 39.6
       valeur attendue: 290
-
-- nom: contrat salarié
-  icônes: 📄
-  question: Activité salariée ?
-  par défaut: oui
-  description: |
-    Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
-
-    Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans les cas suivants:
-    - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
-    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
 - espace: contrat salarié
   nom: assimilé salarié

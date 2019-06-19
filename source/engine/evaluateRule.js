@@ -74,7 +74,6 @@ export default (cache, situationGate, parsedRules, node) => {
 		...node,
 		...evaluatedAttributes,
 		...{ formule: evaluatedFormula },
-		unit: evaluatedFormula?.explanation?.unit,
 		nodeValue,
 		isApplicable,
 		missingVariables,

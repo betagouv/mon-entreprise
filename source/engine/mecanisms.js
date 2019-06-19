@@ -745,7 +745,8 @@ export let mecanismMin = (recurse, k, v) => {
 		explanation,
 		type: 'numeric',
 		category: 'mecanism',
-		name: 'le minimum de'
+		name: 'le minimum de',
+		unit: explanation[0].unit
 	}
 }
 

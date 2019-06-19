@@ -51,6 +51,7 @@ import {
 	parseReference,
 	parseReferenceTransforms
 } from './parseReference'
+import { inferUnit } from 'Engine/units'
 
 export let parse = (rules, rule, parsedRules) => rawNode => {
 	let onNodeType = cond([
@@ -201,6 +202,12 @@ let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 
 	let explanation = v.explanation.map(recurse)
 
+	let unit = inferUnit(
+		k,
+		explanation[0].unit || undefined,
+		explanation[1].unit || undefined
+	)
+
 	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes={'inlineExpression ' + k}
@@ -223,6 +230,7 @@ let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 		jsx,
 		operator: symbol || k,
 		// is this useful ?		text: rawNode,
-		explanation
+		explanation,
+		unit
 	}
 }

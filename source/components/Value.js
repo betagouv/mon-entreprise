@@ -35,7 +35,7 @@ export default ({ nodeValue, unit }) => {
 			{(formats[valueType !== 'number' ? valueType : unitText] ||
 				numberFormatter('decimal'))(nodeValue)}
 			&nbsp;
-			{unit && unitText}
+			{unit && unitText !== '€' && unitText}
 		</div>
 	)
 }

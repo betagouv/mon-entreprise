@@ -8,6 +8,8 @@ import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
 import { parse } from 'Engine/parse'
 
 export default (rules, rule, parsedRules) => {
+	if (rule.dottedName.includes('distance journalière'))
+		console.log('trr', rule, parsedRules)
 	if (parsedRules[rule.dottedName]) return parsedRules[rule.dottedName]
 
 	parsedRules[rule.dottedName] = 'being parsed'
@@ -116,7 +118,8 @@ export default (rules, rule, parsedRules) => {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
-		parsed: true
+		parsed: true,
+		unit: rule.unit || parsedRoot.formule?.explanation?.unit
 	}
 	return parsedRules[rule.dottedName]
 }

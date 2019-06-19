@@ -82,7 +82,6 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	let cache = { parseLevel: 0 }
-	console.log('orang', parsedRules)
 
 	let parsedTargets = targetNames.map(t => {
 			let parsedTarget = findRule(parsedRules, t)
