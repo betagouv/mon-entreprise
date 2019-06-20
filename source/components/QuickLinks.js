@@ -24,7 +24,6 @@ const QuickLinks = ({ goToQuestion, quickLinks, quickLinksToHide }: Props) => {
 	if (!quickLinks) {
 		return null
 	}
-	console.log(quickLinksToHide)
 	const links = compose(
 		toPairs,
 		reject(dottedName => contains(dottedName, quickLinksToHide))

@@ -23,6 +23,8 @@ function explainedVariable(state = null, { type, variableName = null }) {
 	switch (type) {
 		case 'EXPLAIN_VARIABLE':
 			return variableName
+		case 'STEP_ACTION':
+			return null
 		default:
 			return state
 	}
