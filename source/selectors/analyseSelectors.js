@@ -14,7 +14,7 @@ import {
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
-	contains,
+	defaultTo,
 	difference,
 	dissoc,
 	equals,
@@ -22,8 +22,15 @@ import {
 	intersection,
 	isEmpty,
 	isNil,
+	last,
+	length,
+	map,
 	mergeDeepWith,
-	pick
+	pick,
+	pipe,
+	split,
+	takeWhile,
+	zipWith
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -274,14 +281,29 @@ export let nextStepsSelector = createSelector(
 		return nextSteps
 	}
 )
+
+const similarity = (rule1, rule2) =>
+	pipe(
+		map(defaultTo('')),
+		map(split(' . ')),
+		rules => zipWith(equals, ...rules),
+		takeWhile(Boolean),
+		length
+	)([rule1, rule2])
 export let currentQuestionSelector = createSelector(
-	[
-		nextStepsSelector,
-		state => state.conversationSteps.unfoldedStep,
-		state => state.conversationSteps.priorityNamespace
-	],
-	(nextSteps, unfoldedStep, priorityNamespace) =>
-		unfoldedStep ||
-		(priorityNamespace && nextSteps.find(contains(priorityNamespace))) ||
-		head(nextSteps)
+	[nextStepsSelector, state => state.conversationSteps],
+	(nextSteps, { unfoldedStep, foldedSteps }) => {
+		const previousStep = last(foldedSteps)
+		const nextStep =
+			unfoldedStep ||
+			nextSteps.reduce(
+				(selectedNextStep, candidateStep) =>
+					similarity(previousStep, candidateStep) >
+					similarity(previousStep, selectedNextStep)
+						? candidateStep
+						: selectedNextStep,
+				head(nextSteps)
+			)
+		return nextStep
+	}
 )
