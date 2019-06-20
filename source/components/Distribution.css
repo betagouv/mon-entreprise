@@ -29,21 +29,6 @@
 	line-height: 1.2em;
 }
 
-.distribution-chart__item:hover .distribution-chart__bar {
-	opacity: 0.9;
-}
-.distribution-chart__amount {
-	font-weight: bold;
-	margin-left: 1em;
-}
-.distribution-chart__percent {
-	margin-left: 1em;
-	opacity: 0;
-	transition: 0.3s opacity;
-}
-.distribution-chart__item:hover .distribution-chart__percent {
-	opacity: 1;
-}
 @media screen and (max-width: 600px) {
 	.distribution-chart__item {
 		flex-direction: column;

@@ -22,6 +22,7 @@ const RuleLink = ({
 	style,
 	sitePaths
 }: Props) => {
+	if (!dottedName) return null
 	const newPath =
 		sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
 	return (

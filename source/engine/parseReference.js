@@ -93,6 +93,7 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 				name={fragments.join(' . ')}
 				dottedName={dottedName}
 				value={nodeValue}
+				unit={parsedRule.unit}
 			/>
 		),
 

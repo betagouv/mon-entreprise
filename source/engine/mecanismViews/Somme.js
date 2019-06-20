@@ -2,7 +2,7 @@ import { path } from 'ramda'
 import React, { Component } from 'react'
 import { makeJsx } from '../evaluation'
 import './Somme.css'
-import { Node, NodeValue } from './common'
+import { Node, NodeValuePointer } from './common'
 
 const SommeNode = ({ explanation, nodeValue }) => (
 	<Node
@@ -16,7 +16,11 @@ export default SommeNode
 
 let Table = ({ explanation }) => (
 	<div className="mecanism-somme__table">
-		<div>{explanation.map((v, i) => <Row key={i} {...{ v, i }} />)}</div>
+		<div>
+			{explanation.map((v, i) => (
+				<Row key={i} {...{ v, i }} />
+			))}
+		</div>
 	</div>
 )
 
@@ -46,7 +50,7 @@ class Row extends Component {
 					)}
 				</div>
 				<div className="situationValue value">
-					<NodeValue data={v.nodeValue} />
+					<NodeValuePointer data={v.nodeValue} />
 				</div>
 			</div>,
 			...(isSomme && !this.state.folded

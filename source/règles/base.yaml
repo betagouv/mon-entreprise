@@ -15,11 +15,6 @@
     - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
     - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
-- espace: contrat salarié . indemnité kilométrique vélo
-  nom: yoyo
-  formule: distance annuelle * indemnité kilométrique
-  période: flexible
-
 - espace: contrat salarié
   nom: indemnité kilométrique vélo
   icônes: 🚴
@@ -83,7 +78,7 @@
     Cette indemnité est cumulable avec le remboursement des frais de transport en commun s'il s'agit d'un trajet à vélo de rabattement vers une station de transport.
 
     Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
-  par défaut: oui
+  par défaut: non
 
 - espace: contrat salarié . CDD
   nom: CIF
@@ -1532,6 +1527,13 @@
       - réduction générale
       - exonération JEI
       - réduction ACRE
+
+
+- espace: contrat salarié . cotisations
+  nom: patronales à payer
+  période: flexible
+  format: euros
+  formule: patronales - réductions de cotisations
 
 - espace: contrat salarié
   nom: réduction ACRE

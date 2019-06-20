@@ -1,6 +1,6 @@
 import { React, T } from 'Components'
 import RuleLink from './RuleLink'
-import Montant from 'Ui/Montant'
+import Value from 'Components/Value'
 
 export let SalaireBrutSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
@@ -19,31 +19,31 @@ export let SalaireBrutSection = ({ getRule }) => {
 				indemnitésSalarié.nodeValue !== 0) && (
 				<>
 					<RuleLink {...salaireDeBase} />
-					<Montant>{salaireDeBase}</Montant>
+					<Value {...salaireDeBase} />
 				</>
 			)}
 			{avantagesEnNature.nodeValue !== 0 && (
 				<>
 					<RuleLink {...avantagesEnNature} />
-					<Montant>{avantagesEnNature}</Montant>
+					<Value {...avantagesEnNature} />
 				</>
 			)}
 			{indemnitésSalarié.nodeValue !== 0 && (
 				<>
 					<RuleLink {...indemnitésSalarié} />
-					<Montant>{indemnitésSalarié}</Montant>
+					<Value {...indemnitésSalarié} />
 				</>
 			)}
 			<RuleLink className="payslip__brut" {...salaireBrut} />
-			<Montant className="payslip__brut">{salaireBrut}</Montant>
+			<Value className="payslip__brut" {...salaireBrut} />
 		</div>
 	)
 }
 
-export let Line = ({ rule }) => (
+export let Line = ({ rule, negative }) => (
 	<>
 		<RuleLink {...rule} />
-		<Montant>{rule}</Montant>
+		<Value {...rule} negative={negative} />
 	</>
 )
 
@@ -58,17 +58,17 @@ export let SalaireNetSection = ({ getRule }) => {
 			</h4>
 			<Line rule={getRule('contrat salarié . rémunération . net imposable')} />
 			<Line
-				rule={getRule('contrat salarie . rémunération . net de cotisations')}
+				rule={getRule('contrat salarié . rémunération . net de cotisations')}
 			/>
 			{avantagesEnNature.nodeValue !== 0 ? (
 				<>
 					{/* Avantages en nature */}
-					<Line sign="-" rule={avantagesEnNature} />
+					<Line negative rule={avantagesEnNature} />
 					{/* Salaire net */}
-					<Line sign="-" rule={getRule('contrat salarié . salaire . net')} />
+					<Line negative rule={getRule('contrat salarié . salaire . net')} />
 				</>
 			) : null}
-			<Line sign="-" rule={getRule('impôt . neutre')} />
+			<Line negative rule={getRule('impôt . neutre')} />
 			<Line rule={getRule('contrat salarié . salaire . net après impôt')} />
 		</div>
 	)

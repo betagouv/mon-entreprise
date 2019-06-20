@@ -6,7 +6,6 @@ import {
 	collectDefaults,
 	disambiguateExampleSituation,
 	findRuleByDottedName,
-	formatInputs,
 	nestedSituationToPathMap,
 	rules as baseRulesEn,
 	rulesFr as baseRulesFr
@@ -77,7 +76,10 @@ export let targetNamesSelector = state => {
 		)
 	)
 
-	return targetNames
+	const secondaryTargetNames =
+		state.simulation?.config['objectifs secondaires'] || []
+
+	return [targetNames, secondaryTargetNames]
 }
 
 export let situationSelector = createDeepEqualSelector(
@@ -312,9 +314,9 @@ export let currentQuestionSelector = createSelector(
 	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )
 
-export let getRuleFromAnalysis = analysis => (dottedName: string) => {
+export let getRuleFromAnalysis = analysis => dottedName => {
 	if (!analysis) {
-		throw new Error(`[getRuleFromAnalysis] The analysis can't be nil !`)
+		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}
 	let rule =
 		analysis.cache[dottedName] ||

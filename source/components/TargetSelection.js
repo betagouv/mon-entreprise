@@ -51,9 +51,14 @@ export default compose(
 		state = {
 			initialRender: true
 		}
+		getTargets() {
+			let { objectifs, analysis } = this.props
+			if (!analysis) return []
+			return objectifs.map(o => analysis.targets.find(t => t.dottedName === o))
+		}
 		componentDidMount() {
 			const props = this.props
-			const targets = props.analysis ? props.analysis.targets : []
+			let targets = this.getTargets()
 			// Initialize defaultValue for target that can't be computed
 			targets
 				.filter(
@@ -80,13 +85,12 @@ export default compose(
 		render() {
 			let {
 					colours,
-					analysis,
 					activeInput,
 					setActiveInput,
 					setFormValue,
 					objectifs
 				} = this.props,
-				targets = analysis?.targets || []
+				targets = this.getTargets()
 
 			return (
 				<div id="targetSelection">

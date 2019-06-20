@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, contains, isNil, pipe, sort, toPairs } from 'ramda'
 import React, { Component } from 'react'
@@ -11,29 +10,23 @@ import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
 import mecanismColours from './colours'
+import classnames from 'classnames'
+import Value from 'Components/Value'
 
-let parseValue = (data, language) =>
-	data == null
-		? '?'
-		: typeof data == 'boolean'
-		? { true: '✅', false: '✘' }[data]
-		: formatNumber(data, language)
-
+//TODO remove this one, it should reside in 'Value.js'
 export let formatNumber = (data, language) =>
 	!isNaN(data)
 		? Intl.NumberFormat(language, { maximumFractionDigits: 4 }).format(data)
 		: data
 
-export let NodeValue = withLanguage(({ data, language }) => (
-	<span>{parseValue(data, language)}</span>
-))
-
-export let NodeValuePointer = ({ data }) =>
-	data !== undefined && data !== null ? (
-		<span className={'situationValue ' + parseValue(data)}>
-			<NodeValue data={data} />
-		</span>
-	) : null
+export let NodeValuePointer = ({ data, unit }) => (
+	<span
+		className={classnames('situationValue', {
+			boolean: typeof data == 'boolean'
+		})}>
+		<Value nodeValue={data} unit={unit} />
+	</span>
+)
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export class Node extends Component {
@@ -104,7 +97,8 @@ export const Leaf = compose(
 					value,
 					flatRules,
 					filter,
-					sitePaths
+					sitePaths,
+					unit
 				} = this.props,
 				rule = findRuleByDottedName(flatRules, dottedName)
 
@@ -120,7 +114,7 @@ export const Leaf = compose(
 								}>
 								<span className="name">
 									{rule.title || capitalise0(name)} {filter}
-									<NodeValuePointer data={value} />
+									<NodeValuePointer data={value} unit={unit} />
 								</span>
 							</Link>
 						</span>

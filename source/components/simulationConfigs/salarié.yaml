@@ -5,6 +5,10 @@ objectifs:
   - contrat salarié . salaire . net
   - contrat salarié . salaire . net après impôt
 
+objectifs secondaires: 
+  - contrat salarié . temps partiel . heures par semaine
+  - contrat salarié . cotisations . patronales à payer
+
 questions:
   à l'affiche:
     Cadre: contrat salarié . statut cadre . choix statut cadre

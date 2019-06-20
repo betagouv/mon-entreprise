@@ -10,7 +10,7 @@ import { config, Spring } from 'react-spring'
 import { compose } from 'redux'
 import répartitionSelector from 'Selectors/repartitionSelectors'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import Montant from 'Ui/Montant'
+import Value from 'Components/Value'
 import { isIE } from '../utils'
 import './Distribution.css'
 import './PaySlip'
@@ -113,17 +113,17 @@ class Distribution extends Component<Props, State> {
 				<div className="distribution-chart__total">
 					<span />
 					<RuleLink {...salaireNet} />
-					<Montant numFractionDigit={0}>{salaireNet.montant}</Montant>
+					<Value {...salaireNet} numFractionDigits={0} />
 					<span>+</span>
 					<Trans>Cotisations</Trans>
-					<Montant numFractionDigit={0}>
+					<Value numFractionDigits={0} unit="€">
 						{total.partPatronale + total.partSalariale}
-					</Montant>
+					</Value>
 					<span />
 					<div className="distribution-chart__total-border" />
 					<span>=</span>
 					<RuleLink {...salaireChargé} />
-					<Montant numFractionDigit={0}>{salaireChargé.montant}</Montant>
+					<Value {...salaireChargé} numFractionDigits={0} />
 				</div>
 			</>
 		)
@@ -149,18 +149,16 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 			}}
 		/>
 		<div>
-			<Montant
-				className="distribution-chart__amount"
-				numFractionDigit={0}
+			<Value
+				css={`
+					font-weight: bold;
+					margin-left: 1em;
+				`}
+				numFractionDigits={0}
+				unit="€"
 				style={{ color: colour }}>
 				{montant}
-			</Montant>
-			<Montant
-				numFractionDigit={0}
-				type="percent"
-				className="distribution-chart__percent">
-				{montant / (total.partPatronale + total.partSalariale)}
-			</Montant>
+			</Value>
 		</div>
 	</div>
 )

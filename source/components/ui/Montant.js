@@ -16,10 +16,6 @@ type ConnectedProps = {
 	language: string
 }
 
-const NumberFormat = memoizeWith(
-	(...args) => JSON.stringify(args),
-	Intl.NumberFormat
-)
 
 const Montant = ({
 	language,

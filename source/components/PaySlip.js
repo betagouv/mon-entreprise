@@ -11,7 +11,7 @@ import {
 	getRuleFromAnalysis,
 	analysisWithDefaultsSelector
 } from 'Selectors/analyseSelectors'
-import Montant from 'Ui/Montant'
+import Value from 'Components/Value'
 import './PaySlip.css'
 import RuleLink from './RuleLink'
 import { Line, SalaireNetSection, SalaireBrutSection } from './PaySlipSections'
@@ -59,22 +59,22 @@ export default compose(
 						<Trans>Part salariale</Trans>
 					</h4>
 					{cotisations.map(([branche, cotisationList]) => (
-						<Fragment key={branche.id}>
+						<Fragment key={branche}>
 							<h5 className="payslip__cotisationTitle">
 								<RuleLink {...branche} />
 							</h5>
 							{cotisationList.map(cotisation => (
-								<Fragment key={cotisation.lien}>
+								<Fragment key={cotisation.dottedName}>
 									<RuleLink
 										style={{ backgroundColor: lightestColour }}
 										{...cotisation}
 									/>
-									<Montant style={{ backgroundColor: lightestColour }}>
+									<Value style={{ backgroundColor: lightestColour }}>
 										{cotisation.montant.partPatronale}
-									</Montant>
-									<Montant style={{ backgroundColor: lightestColour }}>
+									</Value>
+									<Value style={{ backgroundColor: lightestColour }}>
 										{cotisation.montant.partSalariale}
-									</Montant>
+									</Value>
 								</Fragment>
 							))}
 						</Fragment>
@@ -83,23 +83,25 @@ export default compose(
 						<Trans>Réductions</Trans>
 					</h5>
 					<Line
-						sign="-"
+						negative
 						rule={getRule('contrat salarié . réductions de cotisations')}
 					/>
-					<Montant>{0}</Montant>
+					<Value>{0}</Value>
 					{/* Total cotisation */}
 					<div className="payslip__total">
 						<Trans>Total des retenues</Trans>
 					</div>
-					<Montant className="payslip__total">
-						{getRule('contrat salarié . cotisations patronales à payer')}
-					</Montant>
-					<Montant className="payslip__total">
-						{getRule('contrat salarié . cotisations salariales')}
-					</Montant>
+					<Value
+						{...getRule('contrat salarié . cotisations . patronales à payer')}
+						className="payslip__total"
+					/>
+					<Value
+						{...getRule('contrat salarié . cotisations . salariales')}
+						className="payslip__total"
+					/>
 					{/* Salaire chargé */}
 					<Line rule={getRule('contrat salarié . rémunération . total')} />
-					<Montant>{0}</Montant>
+					<Value>{0}</Value>
 				</div>
 				{/* Section salaire net */}
 				<SalaireNetSection getRule={getRule} />

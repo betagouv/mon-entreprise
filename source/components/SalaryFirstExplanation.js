@@ -65,9 +65,7 @@ export default (connect(
 								: 'Détail annuel des cotisations'}
 						</Trans>
 					</h2>
-					{/* 
 					<PaySlip />
-					*/}
 				</>
 			)
 		}

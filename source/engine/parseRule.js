@@ -8,8 +8,8 @@ import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
 import { parse } from 'Engine/parse'
 
 export default (rules, rule, parsedRules) => {
-	if (rule.dottedName.includes('distance journalière'))
-		console.log('trr', rule, parsedRules)
+	//	if (rule.dottedName.includes('distance journalière'))
+	//		console.log('trr', rule, parsedRules)
 	if (parsedRules[rule.dottedName]) return parsedRules[rule.dottedName]
 
 	parsedRules[rule.dottedName] = 'being parsed'
