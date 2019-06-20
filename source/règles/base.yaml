@@ -792,7 +792,10 @@
   titre: Rémunération brute
   format: euros
   période: flexible
-  formule: salaire . brut + avantages en nature . montant
+  formule:
+    somme:
+      - salaire . brut
+      - avantages en nature . montant
 
 - espace: contrat salarié
   nom: avantages sociaux
@@ -822,14 +825,19 @@
   titre: Avantages en nature (montant)
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+
+    Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de : [10% x (850€ + (30€ x 12 mois)) ] / 12 mois, soit 10,08€
   question: Quel est le montant des avantages en nature ?
   période: flexible
   suggestions:
-    aucun: 0
-    nourriture: 80
-    véhicule: 260
+    📱 téléphone: 10
+    💻 ordinateur: 12.5
+    🍝 repas: 80
+    🚗 véhicule: 260
+
   format: euros
   par défaut: 0
+
 
 - espace: contrat salarié
   nom: indemnités salarié
@@ -2449,7 +2457,7 @@
 
 - espace: contrat salarié
   nom: régime des impatriés
-  question: Le salarié bénéficie-t'il du régime des impatriés ?
+  question: Le salarié bénéficie-t-il du régime des impatriés ?
   par défaut: non
   description: |
     Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
