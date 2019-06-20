@@ -668,14 +668,7 @@ contrat salarié . avantages en nature . montant:
     atteint.
   question.en: What is the monthly amount of benefits in kind?
   question.fr: Quel est le montant des avantages en nature ?
-  suggestions.en:
-    aucun: none
-    nourriture: food
-    véhicule: car
-  suggestions.fr:
-    aucun: 0
-    nourriture: 80
-    véhicule: 260
+
 contrat salarié . indemnités salarié:
   titre.en: Employee benefits
   titre.fr: indemnités salarié
