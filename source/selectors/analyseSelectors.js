@@ -26,8 +26,10 @@ import {
 	length,
 	map,
 	mergeDeepWith,
+	negate,
 	pick,
 	pipe,
+	sortBy,
 	split,
 	takeWhile,
 	zipWith
@@ -264,46 +266,46 @@ let currentMissingVariablesByTargetSelector = createSelector(
 	}
 )
 
-export let nextStepsSelector = createSelector(
-	[
-		currentMissingVariablesByTargetSelector,
-		state => state.simulation?.config.questions,
-		state => state.conversationSteps.foldedSteps
-	],
-	(mv, questions, foldedSteps) => {
-		let nextSteps = difference(getNextSteps(mv), foldedSteps)
-		if (questions && questions.blacklist) {
-			return difference(nextSteps, questions.blacklist)
-		}
-		if (questions) {
-			return intersection(nextSteps, questions)
-		}
-		return nextSteps
-	}
-)
-
-const similarity = (rule1, rule2) =>
+const similarity = rule1 => rule2 =>
 	pipe(
 		map(defaultTo('')),
 		map(split(' . ')),
 		rules => zipWith(equals, ...rules),
 		takeWhile(Boolean),
-		length
+		length,
+		negate
 	)([rule1, rule2])
-export let currentQuestionSelector = createSelector(
-	[nextStepsSelector, state => state.conversationSteps],
-	(nextSteps, { unfoldedStep, foldedSteps }) => {
-		const previousStep = last(foldedSteps)
-		const nextStep =
-			unfoldedStep ||
-			nextSteps.reduce(
-				(selectedNextStep, candidateStep) =>
-					similarity(previousStep, candidateStep) >
-					similarity(previousStep, selectedNextStep)
-						? candidateStep
-						: selectedNextStep,
-				head(nextSteps)
+
+export let nextStepsSelector = createSelector(
+	[
+		currentMissingVariablesByTargetSelector,
+		state => state.simulation?.config.questions,
+		state => state.conversationSteps.foldedSteps,
+		state => state.simulation?.config['questions non prioritaires']
+	],
+	(mv, questions, foldedSteps, lessImportantQuestions = []) => {
+		let nextSteps = difference(getNextSteps(mv), foldedSteps)
+		if (questions) {
+			nextSteps = intersection(nextSteps, [
+				...questions,
+				...lessImportantQuestions
+			])
+		}
+		nextSteps = sortBy(similarity(last(foldedSteps)), nextSteps)
+		if (lessImportantQuestions.length) {
+			nextSteps = sortBy(
+				question => lessImportantQuestions.indexOf(question),
+				nextSteps
 			)
-		return nextStep
+		}
+		if (questions && questions.blacklist) {
+			nextSteps = difference(nextSteps, questions.blacklist)
+		}
+		return nextSteps
 	}
+)
+
+export let currentQuestionSelector = createSelector(
+	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
+	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )

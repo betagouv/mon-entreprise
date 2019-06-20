@@ -12,6 +12,16 @@ questions à l'affiche:
   Commune: établissement . localisation
   JEI: contrat salarié . statut JEI
   Association: entreprise . association non lucrative
+  Avantages: contrat salarié . avantages en nature
+
+questions non prioritaires:
+  - contrat salarié . indemnité kilométrique vélo . active
+  - contrat salarié . avantages en nature
+  - entreprise . établissement bancaire
+  - entreprise . association non lucrative
+  - contrat salarié . statut JEI
+  - contrat salarié . complémentaire santé . part employeur
+  - contrat salarié . régime des impatriés
 
 situation:
   contrat salarié: oui

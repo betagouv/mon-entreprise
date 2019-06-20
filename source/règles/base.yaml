@@ -13,7 +13,7 @@
     Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
   format: euros
   période: année
-  applicable si: indemnité vélo active
+  applicable si: active
   formule:
     le minimum de:
       - multiplication:
@@ -26,7 +26,7 @@
   exemples:
     - nom: active
       situation:
-        indemnité vélo active: oui
+        active: oui
       valeur attendue: 200
 
 - espace: contrat salarié . indemnité kilométrique vélo
@@ -37,7 +37,8 @@
   note: 4 km par jour sur 218 jours.
 
 - espace: contrat salarié . indemnité kilométrique vélo
-  nom: indemnité vélo active
+  nom: active
+  titre: indemnité vélo active
   question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
   description: |
     Cette indemnité n'est pour l'instant pas obligatoire.
@@ -356,7 +357,7 @@
 - espace: contrat salarié . ATMP
   nom: taux réduit
   titre: taux réduit pour activité sans risque
-  question: L'activité de l'établissement ou du salarié est-elle sans risque ?
+  question: L'activité de l'établissement ou du salarié est-elle sans aucun risque ?
   description: |
     Ce taux correspond :
     - aux petites entreprises dont l'activité n'est pas risquée, par exemple du conseil en informatique
