@@ -972,6 +972,18 @@
   formule:
     somme:
       - indemnité kilométrique vélo
+      - prime d'impatriation
+
+- espace: contrat salarié
+  nom: prime d'impatriation
+  applicable si: régime des impatriés
+  période: flexible
+  format: euros
+  formule:
+    multiplication:
+      assiette: salaire . brut de base
+      taux: 30%
+
 
 - espace: contrat salarié . salaire
   nom: net
@@ -1502,6 +1514,12 @@
   question: S'agit-il d'une association à but non lucratif ?
   par défaut: non
 
+- espace: entreprise
+  nom: établissement bancaire
+  description: L'entreprise est un établissements bancaires, financiers, d'assurances. Elle est non assujettie à la TVA.
+  question: S'agit-il d'un établissement bancaire, financier, d'assurance ?
+  par défaut: non
+
 - nom: établissement
   description: |
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
@@ -1780,6 +1798,7 @@
 
 - espace: contrat salarié
   nom: retraite complémentaire
+  non applicable si: régime des impatriés
   cotisation:
     branche: retraite
     type de retraite: complémentaire
@@ -1817,6 +1836,8 @@
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    régime des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
+
 
 - espace: contrat salarié
   nom: AGS
@@ -2381,22 +2402,32 @@
       - entreprise . ratio alternants < 1%
 
 - espace: contrat salarié . taxe sur les salaires
-  nom: assiette
+  nom: assiette de base
   période: flexible
   formule:
     somme:
       - cotisations . assiette
       - prévoyance obligatoire cadre
       - complémentaire santé [employeur]
-
   références:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
+
+- espace: contrat salarié . taxe sur les salaires
+  nom: assiette
+  période: flexible
+  formule:
+    allègement:
+      assiette: assiette de base
+      abattement: prime d'impatriation
+  références:
+    bofig: http://bofip.impots.gouv.fr/bofip/6691-PGP.html
+    impots.gouv.fr: https://www.impots.gouv.fr/portail/international-particulier/le-regime-des-impatries
+
 
 - espace: contrat salarié . taxe sur les salaires
   nom: barème
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
-
   période: année
   formule:
     barème:
@@ -2416,12 +2447,25 @@
         assiette: 2300
       valeur attendue: 2627.97
 
+- espace: contrat salarié
+  nom: régime des impatriés
+  question: Le salarié bénéficie-t'il du régime des impatriés ?
+  par défaut: non
+  description: |
+    Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
+
+    Vous devez en outre ne pas avoir été fiscalement domicilié en France les cinq années civiles précédant celle de la prise de fonctions et fixer en France votre domicile fiscal dès votre prise de fonctions.
+  références:
+    impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
+    bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
+
 - espace: entreprise . taxe sur les salaires
   nom: barème
   période: flexible
   formule: contrat salarié . taxe sur les salaires . barème * effectif
 
 - espace: entreprise . taxe sur les salaires
+  applicable si: entreprise . association non lucrative
   nom: abattement associations
   période: année
   formule: 20507
@@ -2438,17 +2482,16 @@
         taux: 75%
       abattement: abattement associations
 
-  note: |
-    Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
-    Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
 
 - espace: contrat salarié
   nom: taxe sur les salaires
   taxe:
     dû par: employeur
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
-  applicable si: entreprise . association non lucrative
-
+  applicable si:
+    une de ces conditions:
+      - entreprise . association non lucrative
+      - entreprise . établissement bancaire
   période: flexible
   formule: entreprise . taxe sur les salaires / entreprise . effectif
 
@@ -2498,6 +2541,7 @@
     collecteur: URSSAF
     destinataire: CNAV
     # CTP: 100
+  non applicable si: régime des impatriés
   description: Cotisation au régime de retraite de base des salariés.
   période: flexible
   formule:
@@ -2529,6 +2573,9 @@
       situation:
         cotisations . assiette: 8000
       valeur attendue: 705.75
+  références:
+    régime des impatriés (loi PACTE): https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
+
 
 - espace: contrat salarié
   nom: forfait social
