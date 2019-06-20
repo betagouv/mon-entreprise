@@ -30,7 +30,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 		)(fuse && input ? fuse.search(input) : exposedRules)
 
 		return (
-			<section style={{ marginTop: '3rem' }}>
+			<section style={{ marginTop: '2rem' }}>
 				{filteredRules.length ? (
 					input && <h2 css="font-size: 100%;">Résultats :</h2>
 				) : (
@@ -78,7 +78,13 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 					${hasFormule ? '' : 'filter: grayscale(70%); opacity: 0.6;'}
 
 					background: var(--colour);
-					color: white;
+
+					color: var(--textColour);
+					background: linear-gradient(
+						180deg,
+						var(--lightColour) 0%,
+						var(--darkColour) 100%
+					);
 					box-shadow: 0 2px 6px rgba(32, 33, 36, 0.5);
 					:hover {
 						box-shadow: 0 4px 10px rgba(32, 33, 36, 0.5);
