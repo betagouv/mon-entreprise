@@ -280,26 +280,27 @@ export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
 		state => state.simulation?.config.questions,
-		state => state.conversationSteps.foldedSteps,
-		state => state.simulation?.config['questions non prioritaires']
+		state => state.conversationSteps.foldedSteps
 	],
-	(mv, questions, foldedSteps, lessImportantQuestions = []) => {
+	(
+		mv,
+		{
+			'non prioritaires': notPriority = [],
+			uniquement: only,
+			'liste noire': blacklist = []
+		} = {},
+		foldedSteps = []
+	) => {
 		let nextSteps = difference(getNextSteps(mv), foldedSteps)
-		if (questions) {
-			nextSteps = intersection(nextSteps, [
-				...questions,
-				...lessImportantQuestions
-			])
+
+		if (only) nextSteps = intersection(nextSteps, [...only, ...notPriority])
+		if (blacklist) {
+			nextSteps = difference(nextSteps, blacklist)
 		}
+
 		nextSteps = sortBy(similarity(last(foldedSteps)), nextSteps)
-		if (lessImportantQuestions.length) {
-			nextSteps = sortBy(
-				question => lessImportantQuestions.indexOf(question),
-				nextSteps
-			)
-		}
-		if (questions && questions.blacklist) {
-			nextSteps = difference(nextSteps, questions.blacklist)
+		if (notPriority) {
+			nextSteps = sortBy(question => notPriority.indexOf(question), nextSteps)
 		}
 		return nextSteps
 	}
