@@ -14,14 +14,13 @@ objectifs:
       - revenu net
 
 questions:
-  blacklist:
+  à l'affiche:
+    Type d'activité: entreprise . catégorie d'activité
+    ACRE: entreprise . année d'activité
+    Charges: entreprise . charges
+  liste noire:
     - entreprise . charges
     - entreprise . rémunération du dirigeant
-
-questions à l'affiche:
-  Type d'activité: entreprise . catégorie d'activité
-  ACRE: entreprise . année d'activité
-  Charges: entreprise . charges
 
 situation:
   indépendant: oui

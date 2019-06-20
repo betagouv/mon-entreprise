@@ -5,23 +5,23 @@ objectifs:
   - contrat salarié . salaire . net
   - contrat salarié . salaire . net après impôt
 
-questions à l'affiche:
-  Cadre: contrat salarié . statut cadre . choix statut cadre
-  CDD: contrat salarié . CDD
-  Temps partiel: contrat salarié . temps partiel
-  Commune: établissement . localisation
-  JEI: contrat salarié . statut JEI
-  Association: entreprise . association non lucrative
-  Avantages: contrat salarié . avantages en nature
-
-questions non prioritaires:
-  - contrat salarié . indemnité kilométrique vélo . active
-  - contrat salarié . avantages en nature
-  - entreprise . établissement bancaire
-  - entreprise . association non lucrative
-  - contrat salarié . statut JEI
-  - contrat salarié . complémentaire santé . part employeur
-  - contrat salarié . régime des impatriés
+questions:
+  à l'affiche:
+    Cadre: contrat salarié . statut cadre . choix statut cadre
+    CDD: contrat salarié . CDD
+    Temps partiel: contrat salarié . temps partiel
+    Commune: établissement . localisation
+    JEI: contrat salarié . statut JEI
+    Association: entreprise . association non lucrative
+    Avantages: contrat salarié . avantages en nature
+  non prioritaires:
+    - contrat salarié . indemnité kilométrique vélo . active
+    - contrat salarié . avantages en nature
+    - entreprise . établissement bancaire
+    - entreprise . association non lucrative
+    - contrat salarié . statut JEI
+    - contrat salarié . complémentaire santé . part employeur
+    - contrat salarié . régime des impatriés
 
 situation:
   contrat salarié: oui

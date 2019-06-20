@@ -5,10 +5,11 @@ objectifs:
   - impôt . impôt sur le revenu à payer
   - revenu net
 
-questions à l'affiche:
-  Type d'activité: entreprise . catégorie d'activité
-  ACRE: entreprise . année d'activité
-  Charges: entreprise . charges
+questions:
+  à l'affiche:
+    Type d'activité: entreprise . catégorie d'activité
+    ACRE: entreprise . année d'activité
+    Charges: entreprise . charges
 
 situation:
   auto entrepreneur: oui

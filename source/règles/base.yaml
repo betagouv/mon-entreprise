@@ -1525,7 +1525,7 @@
 
 - espace: entreprise
   nom: établissement bancaire
-  description: L'entreprise est un établissements bancaires, financiers, d'assurances. Elle est non assujettie à la TVA.
+  description: L'entreprise est un établissement bancaire, financier ou d'assurance. Elle est non assujettie à la TVA.
   question: S'agit-il d'un établissement bancaire, financier, d'assurance ?
   par défaut: non
 
