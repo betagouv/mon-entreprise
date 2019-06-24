@@ -4634,3 +4634,79 @@ situation personnelle . RSA:
   titre: allocataire RSA
   question: Êtes-vous allocataire du RSA ?
   par défaut: non
+
+contrat salarié . lodeom: 
+  description: |
+    Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d'outre-mer. 
+    Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction. 
+    Pour un autre salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
+
+contrat salarié . lodeom . zone un:
+  titre: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
+  formule: 
+    une de ces conditions:
+      - établissement . localisation . département = 'Guadeloupe'
+      - établissement . localisation . département = 'La Réunion'
+      - établissement . localisation . département = 'Martinique'
+      - établissement . localisation . département = 'Guyane'
+
+contrat salarié . lodeom . réduction zone un: 
+  aide:
+    type: réduction de cotisations
+    thème: aide bas salaires
+    démarches: non
+
+  applicable si: zone un
+
+  non applicable si:
+    une de ces conditions:
+      - assimilé salarié
+      - cotisations . assiette > plafond de l'assiette
+      - statut JEI
+
+  période: flexible
+
+  formule:
+    le minimum de:
+      - contrat salarié . réduction générale . assiette
+      - multiplicateur * contrat salarié . réduction générale . écart au plafond de l'assiette
+  note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
+  exemples:
+    # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
+    - nom: "Maximale dans le cas d'un SMIC"
+      situation:
+        cotisations . assiette: 1521.22
+      valeur attendue: 427.31
+    - nom: 'Salaire proche du SMIC'
+      situation:
+        cotisations . assiette: 1530
+      valeur attendue: 423.2
+    - nom: 'Résiduelle pour un salaire médian'
+      situation:
+        cotisations . assiette: 2300
+      valeur attendue: 62.71
+    - nom: 'Nulle au-dessus du plafond'
+      situation:
+        cotisations . assiette: 2434
+      valeur attendue: 0
+
+contrat salarié . lodeom . plafond de l'assiette:
+  période: flexible
+  formule: 1.6 * SMIC
+
+contrat salarié . lodeom . paramètre T:
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - zone un 
+            - entreprise . effectif < 20
+        alors: 0.3214
+      - si:
+          toutes ces conditions:
+            - zone un
+            - entreprise . effectif >= 20
+        alors: 0.3254
+      
+contrat salarié . lodeom . multiplicateur:
+  formule: contrat salarié . lodeom . paramètre T / 0.9
