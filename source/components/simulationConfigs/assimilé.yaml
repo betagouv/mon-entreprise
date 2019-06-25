@@ -4,8 +4,10 @@ objectifs:
     objectifs:
       - entreprise . chiffre d'affaires
       - entreprise . charges
-      - entreprise . rémunération du dirigeant
+      - entreprise . bénéfice
       - entreprise . résultat net
+  - objectifs:
+      - entreprise . répartition entre rémunération et bénéfice
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:

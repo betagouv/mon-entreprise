@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
-import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import RepartitionField from 'Components/RepartitionField'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -262,8 +262,8 @@ let CurrencyField = withColours(props => {
 		/>
 	)
 })
-let DebouncedPercentageField = props => (
-	<PercentageField debounce={600} {...props} />
+let DebouncedRepartitionField = props => (
+	<RepartitionField debounce={600} {...props} />
 )
 
 let TargetInputOrValue = withLanguage(
@@ -283,7 +283,7 @@ let TargetInputOrValue = withLanguage(
 						name={target.dottedName}
 						onBlur={event => event.preventDefault()}
 						component={
-							{ euros: CurrencyField, pourcentage: DebouncedPercentageField }[
+							{ euros: CurrencyField, pourcentage: DebouncedRepartitionField }[
 								target.format
 							]
 						}
