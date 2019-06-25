@@ -910,8 +910,8 @@
   par défaut: 20
   suggestions:
     aucun: 0
-    téléphone classique: 20
-    téléphone international: 40
+    standard: 20
+    international: 40
 
 
 - espace: contrat salarié . avantages en nature
