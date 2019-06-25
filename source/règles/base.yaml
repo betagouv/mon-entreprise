@@ -847,7 +847,6 @@
     L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
   par défaut: oui
 
-
 - espace: contrat salarié . avantages en nature
   nom: autres
   question: >
@@ -863,8 +862,6 @@
   suggestions:
     🚗 véhicule: 260
   format: euros
-
-
 
 - espace: contrat salarié . avantages en nature . ntic
   nom: montant
@@ -897,10 +894,10 @@
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
   suggestions:
-    📱 : 400
-    📱✨ (haut de gamme) : 850
-    💻  : 1200
-    💻 + 📱✨ : 2050
+    📱: 400
+    📱✨ (haut de gamme): 850
+    💻: 1200
+    💻 + 📱✨: 2050
 
 - espace: contrat salarié . avantages en nature . ntic
   nom: abonnements
@@ -912,7 +909,6 @@
     aucun: 0
     standard: 20
     international: 40
-
 
 - espace: contrat salarié . avantages en nature
   nom: nourriture
@@ -944,7 +940,6 @@
       - sinon: 4.85
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
-
 
 - espace: contrat salarié . avantages en nature . nourriture
   nom: repas par mois
@@ -2879,7 +2874,7 @@
   question: Quel revenu voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de charges, cotisations et d'impôts.
-    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
+    Autrement dit, c'est ce que qui est perçu à la fin sur le compte en banque.
   formule: revenu net de cotisations - impôt
 
 - espace: entreprise

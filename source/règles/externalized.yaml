@@ -30,7 +30,8 @@ contrat salarié . indemnité kilométrique vélo . active:
   titre.en: active bicycle allowance
   titre.fr: indemnité vélo active
   question.en: >-
-    Does the employee take advantage of the bicycle mileage allowance to commute to work?
+    Does the employee take advantage of the bicycle mileage allowance to commute
+    to work?
   question.fr: >-
     Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au
     travail ?
@@ -41,19 +42,17 @@ contrat salarié . indemnité kilométrique vélo . active:
     The employer has the choice to implement it in his company.
 
 
-    To benefit from the €200 compensation deducted in this calculation, the employee
-    must cycle 4km (round trip) to work each day
-    worked.
+    To benefit from the €200 compensation deducted in this calculation, the
+    employee must cycle 4km (round trip) to work each day worked.
 
 
-    This allowance can be combined with the reimbursement of transport costs
-    if it is a bike trip to a transport station.
+    This allowance can be combined with the reimbursement of transport costs if
+    it is a bike trip to a transport station.
 
 
     This allowance is exempt from social security contributions and tax on the
     income. To pay a salary bonus equivalent to his employee without this
-    device, **the employer should pay nearly 500€ for a salary
-    median**.
+    device, **the employer should pay nearly 500€ for a salary median**.
   description.fr: >
     Cette indemnité n'est pour l'instant pas obligatoire.
 
@@ -677,18 +676,17 @@ contrat salarié . avantages en nature . montant:
     atteint.
 contrat salarié . avantages en nature . ntic:
   description.en: >
-    The private use of the NICT tools made available as part of
-    the permanent professional activity constitutes an advantage in kind.
+    The private use of the NICT tools made available as part of the permanent
+    professional activity constitutes an advantage in kind.
 
     This benefit is included in the basis for calculating Security contributions
     and unemployment insurance.
 
-    The reality of private use can result either from a written document (contract
-    work, company agreement, internal regulations, correspondence from the
-    management of the company allowing the employee to make private use of the
-    tools), or the existence of detailed invoices to establish a
-    for private use.
-
+    The reality of private use can result either from a written document
+    (contract work, company agreement, internal regulations, correspondence from
+    the management of the company allowing the employee to make private use of
+    the tools), or the existence of detailed invoices to establish a for private
+    use.
   description.fr: >
     L’usage privé des outils NTIC mis à disposition dans le cadre de l’activité
     professionnelle à titre permanent est constitutif d’un avantage en nature.
@@ -702,18 +700,19 @@ contrat salarié . avantages en nature . ntic:
     outils), soit de l’existence de factures détaillées permettant d’établir une
     utilisation privée.
   question.en: >
-    Does the employer provide free tools from NICTs (computer, telephone, tablet, etc.)?
+    Does the employer provide free tools from NICTs (computer, telephone,
+    tablet, etc.)?
   question.fr: >
     L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur,
     téléphone, tablette, etc.) ?
   titre.en: nict
   titre.fr: ntic
 contrat salarié . avantages en nature . autres:
-  question.en: >
+  question.en: |
     Are there any other advantages in kind (housing, vehicle, discount...)?
   question.fr: |
     Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
-  titre.en: 'others'
+  titre.en: others
   titre.fr: autres
 contrat salarié . avantages en nature . autres . montant:
   question.en: |
@@ -727,23 +726,21 @@ contrat salarié . avantages en nature . autres . montant:
   titre.en: amount
   titre.fr: montant
 contrat salarié . avantages en nature . ntic . montant:
-  titre.en: 'NICTs tools'
+  titre.en: NICTs tools
   titre.fr: outils NTIC
   description.en: >
-    For benefits in kind such as NICTs (computers, smartphones,
-    tablets...), there is an annual flat-rate assessment corresponding to
-    10% of the purchase price. For example, for a phone bought at 850€ TTC with
-    a subscription of 30€ / month, the benefit in kind to be transferred to the newsletter
-    of pay will be:
+    For benefits in kind such as NICTs (computers, smartphones, tablets...),
+    there is an annual flat-rate assessment corresponding to 10% of the purchase
+    price. For example, for a phone bought at 850€ TTC with a subscription of
+    30€ / month, the benefit in kind to be transferred to the newsletter of pay
+    will be:
 
 
     ```
 
     10% x (850€ + (30€ x 12 months)) ] / 12 months
 
-    ```
-    or 10,08€
-
+    ``` or 10,08€
   description.fr: >
     Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
     tablettes...), il y a une évaluation forfaitaire annuelle correspondant à
@@ -773,17 +770,17 @@ contrat salarié . avantages en nature . ntic . coût appareils:
     "\U0001F4F1✨ (haut de gamme)": 850
     "\U0001F4BB": 1200
     "\U0001F4BB + \U0001F4F1✨": 2050
-  titre.en: 'devices cost'
+  titre.en: devices cost
   titre.fr: coût appareils
 contrat salarié . avantages en nature . ntic . abonnements:
   question.en: What is the cost of the subscription price charged by the employer?
   question.fr: Quel est le coût de l'abonnement prix en charge par l'employeur ?
-  suggestions.fr:
-    aucun: 0
-    standard: 20
-    international: 40
   suggestions.en:
     none: 0
+    standard: 20
+    international: 40
+  suggestions.fr:
+    aucun: 0
     standard: 20
     international: 40
   titre.en: subscription
@@ -794,14 +791,15 @@ contrat salarié . avantages en nature . nourriture:
   question.fr: |
     L'employeur fournit-il gratuitement les repas ?
   description.en: >
-    Lunch vouchers("tickets restaurants") are not considered as a benefit in kind but as a reimbursement of expenses.
+    Lunch vouchers("tickets restaurants") are not considered as a benefit in
+    kind but as a reimbursement of expenses.
   description.fr: >
     Les tickets restaurants ne sont pas considéré comme un avantage en nature
     mais comme un remboursement de frais.
-  titre.en: 'food'
+  titre.en: food
   titre.fr: nourriture
 contrat salarié . avantages en nature . nourriture . montant:
-  titre.en: 'food'
+  titre.en: food
   titre.fr: nourriture
 ? contrat salarié . avantages en nature . nourriture . montant forfaitaire d'un repas
 : titre.en: fixed amount of a meal
@@ -820,12 +818,11 @@ contrat salarié . avantages en nature . nourriture . repas par mois:
   titre.en: meal per month
   titre.fr: repas par mois
 contrat salarié . avantages en nature . nourriture . dans la restauration:
-  question.en: >-
-    Is it for an employee working in a hotel, café, restaurant and similar?
+  question.en: 'Is it for an employee working in a hotel, café, restaurant and similar?'
   question.fr: >-
     Est-ce pour un salarié travaillant dans un hôtel, café, restaurant et
     assimilés ?
-  titre.en:  in the catering business
+  titre.en: in the catering business
   titre.fr: dans la restauration
 contrat salarié . indemnités salarié:
   titre.en: Employee benefits
@@ -1136,11 +1133,12 @@ entreprise . association non lucrative:
   titre.fr: association non lucrative
 entreprise . établissement bancaire:
   description.en: >-
-    The company is a banking, financial or insurance institution. It is not subject to VAT.
+    The company is a banking, financial or insurance institution. It is not
+    subject to VAT.
   description.fr: >-
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
-  question.en: Is it a banking, financial or insurance institution?
+  question.en: 'Is it a banking, financial or insurance institution?'
   question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
   titre.en: banking institution
   titre.fr: établissement bancaire
@@ -1622,18 +1620,18 @@ contrat salarié . régime des impatriés:
   question.en: Does the employee benefit from the impatriate scheme?
   question.fr: Le salarié bénéficie-t-il du régime des impatriés ?
   description.en: >
-    If you are an employee or a director with the 'assimilé-salarié' social and fiscal scheme,
-    and if you have been called upon by a foreign company to take up employment in a
-    company established in France with a link to the first or if you have
-    been directly recruited abroad by a company established in France,
-    you can benefit from the impatriate scheme.
+    If you are an employee or a director with the 'assimilé-salarié' social and
+    fiscal scheme, and if you have been called upon by a foreign company to take
+    up employment in a company established in France with a link to the first or
+    if you have been directly recruited abroad by a company established in
+    France, you can benefit from the impatriate scheme.
 
 
     In addition, you must not have been domiciled in France for tax purposes on
-    five calendar years preceding that in which he takes up his duties and set in
-    France your tax domicile as soon as you take up your duties.
+    five calendar years preceding that in which he takes up his duties and set
+    in France your tax domicile as soon as you take up your duties.
   description.fr: >
-    Si vous êtes salarié ou dirigeant assimilé-salarié, et si vous avez été
+    Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été
     appelé par une entreprise étrangère à occuper un emploi dans une entreprise
     établie en France ayant un lien avec la première ou si vous avez été
     directement recruté à l’étranger par une entreprise établie en France, vous
@@ -1697,7 +1695,7 @@ impôt:
     Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le
     revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
   titre.en: income tax
-  titre.fr: impôt
+  titre.fr: impôt sur le revenu
 impôt . revenu abattu:
   description.en: >
     The tax is calculated on a reduced income: it is reduced (for example by
@@ -1764,24 +1762,31 @@ impôt . impôt sur le revenu à payer:
   titre.en: income tax
   titre.fr: impôt sur le revenu
 revenu net de cotisations:
+  résumé.en: 'Before taxes'
+  résumé.fr: Avant impôt
+  question.en: What pretax income do you want to receive?
+  question.fr: Quel revenu avant impôt voulez-vous toucher ?
+  description.en: >
+    This is the income net of contributions and expenses, before the payment of
+    income tax.
+  description.fr: >
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de
+    l'impôt sur le revenu.
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
-revenu net d'impôt:
-  titre.en: Net income after contributions and taxes
-  titre.fr: Revenu net de cotisations et d'impôt
-revenu net:
-  titre.en: Net income
-  titre.fr: Revenu net
-  résumé.en: After income tax
-  résumé.fr: Après impôt sur le revenu
-  question.en: How much income do you plan to receive ?
+revenu net après impôt:
+  résumé.en: Touched on the bank account
+  résumé.fr: Touché sur le compte bancaire
+  question.en: What income do you want to receive?
   question.fr: Quel revenu voulez-vous toucher ?
   description.en: |
-    This is the income net of contributions and taxes.
-    In other words, that's what you get in the end from your bank account.
+    This is income net of expenses, contributions and taxes.
+    In other words, this is what is ultimately collected on the bank account.
   description.fr: |
-    Il s'agit du revenu net de cotisations et d'impôts.
+    Il s'agit du revenu net de charges, cotisations et d'impôts.
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
+  titre.en: net after-tax income
+  titre.fr: revenu net après impôt
 entreprise . année d'activité:
   question.en: How old is the company in years of activity?
   question.fr: Quel est l'âge de l'entreprise en année d'activité ?
@@ -1862,6 +1867,10 @@ entreprise . charges dont rémunération dirigeant:
   titre.en: expenses of which executive compensation
   titre.fr: charges dont rémunération dirigeant
 entreprise . rémunération totale du dirigeant:
+  question.en: What is the total income of the manager?
+  question.fr: Quel est le revenu total du dirigeant ?
+  résumé.en: Spent by the company
+  résumé.fr: Dépensé par l'entreprise
   description.en: >-
     This is the "super gross" remuneration of the manager, which includes all
     the social security contributions to be paid. It is also the monetary value
@@ -1945,21 +1954,6 @@ entreprise . charges:
     charge sans immobilisation.
   titre.en: expenses
   titre.fr: charges
-entreprise . charges non déductibles:
-  description.en: >
-    For the auto-enterprise,[the charges](/documentation/entreprise/charges) are
-    not deductible. For example, an auto-entrepreneur who buys a computer for
-    the needs of his company, will do so with his net income. He will therefore
-    have paid social security contributions and income tax on its turnover
-    before you can use it to buy this property.
-  description.fr: >
-    Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne
-    sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un
-    ordinateur pour les besoins de sa société, le fera avec son revenu net. Il
-    aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA
-    avant de pouvoir l'utiliser pour s'acheter ce bien.
-  titre.en: non-deductible expenses
-  titre.fr: charges non déductibles
 indépendant . cotisations et contributions . réduction ACRE:
   titre.en: ACRE reduction
   titre.fr: réduction ACRE
@@ -1967,20 +1961,38 @@ indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
   titre.en: ACRE rate
   titre.fr: taux ACRE
 indépendant . revenu net de cotisations:
+  résumé.en: Before taxes
+  résumé.fr: Avant impôt
+  question.en: What pre-tax income do you want to receive?
+  question.fr: Quel revenu avant impôt voulez-vous toucher ?
+  description.en: >-
+    This is the income net of contributions and expenses, before the payment of income tax.
+  description.fr: >-
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de
+    l'impôt sur le revenu.
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
 indépendant . revenu professionnel:
-  résumé.en: After contributions and expenses
-  résumé.fr: Après cotisations et charges
-  question.en: What is your professional income ?
-  question.fr: Quel est votre revenu professionnel ?
+  titre.en: Professional income
+  titre.fr: revenu professionnel (net imposable)
   description.en: |
     C'est le revenu net de cotisations du travailleur indépendant.
-  description.fr: |
+  description.fr: >
+    C'est le revenu net de cotisations
 
-    C'est le revenu net de cotisations du travailleur indépendant.
-  titre.en: Professional income
-  titre.fr: revenu professionnel
+    applicable si: auto entrepre déductibles du travailleur indépendant, qui
+    sert de base au calcul des cotisations et de l'impôt pour les indépendants.
+
+
+    Attention, **notre calcul est fait au régime de croisière**:
+
+    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait
+    relativement réduit de cotisations sociales. Il devra ensuite régulariser
+    cette situation par rapport au revenu qu'il a vraiment touché.
+
+
+    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être
+    payé* à court terme après 2 ans d'exercice.
 entreprise . catégorie d'activité:
   question.en: What is your category of activity?
   question.fr: Quelle est votre catégorie d'activité ?
@@ -2157,7 +2169,8 @@ entreprise . catégorie d'activité . libérale règlementée:
     - si: libérale règlementée
       niveau: avertissement
       message: >
-        Attention, the simulator is not yet complete for the regulated liberal professions.
+        Attention, the simulator is not yet complete for the regulated liberal
+        professions.
   contrôles.fr:
     - si: libérale règlementée
       niveau: avertissement
@@ -2245,7 +2258,11 @@ indépendant . cotisations et contributions:
   titre.fr: cotisations et contributions
 entreprise . rattachement libéral règlementé:
   description.en: >
-    The unregulated liberal companies created were linked to the regulated ones for the calculation of social security contributions. Since 2018 this is no longer the case for auto-entrepreneurs (2019 for sole proprietorships). They are now attached to the artisan-merchants, so they depend on the social security of the self-employed ("indépendant").
+    The unregulated liberal companies created were linked to the regulated ones
+    for the calculation of social security contributions. Since 2018 this is no
+    longer the case for auto-entrepreneurs (2019 for sole proprietorships). They
+    are now attached to the artisan-merchants, so they depend on the social
+    security of the self-employed ("indépendant").
   description.fr: >
     Les entreprises libérales non règlementées créées étaient rattachées aux
     règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
@@ -2320,16 +2337,6 @@ indépendant . cotisations et contributions . formation professionnelle:
 ? indépendant . cotisations et contributions . cotisations . allocations familiales
 : titre.en: family allowances
   titre.fr: allocations familiales
-indépendant . revenu total du dirigeant:
-  question.en: What is the total income of the executive?
-  question.fr: Quel est le revenu total du dirigeant ?
-  résumé.en: Spent by the company
-  résumé.fr: Dépensé par l'entreprise
-  titre.en: total income of the executive
-  titre.fr: revenu total du dirigeant
-indépendant . impôt et contributions non déductibles:
-  titre.en: taxes and non-deductible contributions
-  titre.fr: impôt et contributions non déductibles
 auto entrepreneur:
   question.en: Is the activity carried out in a auto-enterprise?
   question.fr: L'activité est-elle exercée en auto-entreprise ?
@@ -2382,8 +2389,16 @@ auto entrepreneur . plafond:
   titre.en: upper limit
   titre.fr: plafond
 auto entrepreneur . revenu net de cotisations:
+  question.en: What pre-tax income do you want to receive?
+  question.fr: Quel revenu avant impôt voulez-vous toucher ?
+  description.en: >-
+    This is the income net of contributions and expenses, before the payment of
+    income tax.
+  description.fr: >-
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de
+    l'impôt sur le revenu.
   titre.en: Auto-entrepreneur net income
-  titre.fr: Revenu net auto-entrepreneur
+  titre.fr: revenu net de cotisations
 auto entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
@@ -2454,15 +2469,17 @@ entreprise . ACCRE obtenu:
   titre.en: ACCRE obtained
   titre.fr: ACCRE obtenu
 auto entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  titre.en: >
+  titre.en: |
     "ACRE" rate
   titre.fr: taux ACRE
 auto entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
-  titre.en: >
+  titre.en: |
     "ACRE" reduction
   titre.fr: réduction ACRE
   description.en: >-
-      In some cases, this rate may reduce the amount of social security contributions paid by the auto-entrepreneur to help him/her in his/her first year of activity.
+    In some cases, this rate may reduce the amount of social security
+    contributions paid by the auto-entrepreneur to help him/her in his/her first
+    year of activity.
   description.fr: >-
     Ce taux peut dans certains cas réduire le montant des cotisations sociales
     de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
@@ -2490,7 +2507,7 @@ auto entrepreneur . impôt:
   titre.fr: impôt
 auto entrepreneur . impôt . revenu abattu:
   titre.en: reduced income
-  titre.fr: revenu abattu
+  titre.fr: revenu abattu auto-entrepreneur
 protection sociale:
   description.en: >
     Social protection in France is composed of 5 main branches: sickness,
@@ -2592,7 +2609,8 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
   titre.fr: prix d'achat du point
 protection sociale . santé:
   résumé.en: >-
-    Covers most everyday health care and 100% of serious illnesses such as hospital stays.
+    Covers most everyday health care and 100% of serious illnesses such as
+    hospital stays.
   résumé.fr: >-
     Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
     maladies graves comme les séjours à l'hôpital.
