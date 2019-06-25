@@ -13,7 +13,7 @@ import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { change, Field, formValueSelector, reduxForm } from 'redux-form'
+import { change, Field } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector
@@ -26,14 +26,8 @@ import './TargetSelection.css'
 export default compose(
 	withTranslation(),
 	withColours,
-	reduxForm({
-		form: 'conversation',
-		destroyOnUnmount: false
-	}),
 	connect(
 		state => ({
-			getTargetValue: dottedName =>
-				formValueSelector('conversation')(state, dottedName),
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
 			activeInput: state.activeTargetInput,
@@ -52,27 +46,6 @@ export default compose(
 			initialRender: true
 		}
 		componentDidMount() {
-			const props = this.props
-			const targets = props.analysis ? props.analysis.targets : []
-			// Initialize defaultValue for target that can't be computed
-			targets
-				.filter(
-					target =>
-						(!target.formule || isEmpty(target.formule)) &&
-						(!isNil(target.defaultValue) ||
-							!isNil(target.explanation?.defaultValue)) &&
-						!props.getTargetValue(target.dottedName)
-				)
-
-				.forEach(target => {
-					props.setFormValue(
-						target.dottedName,
-						!isNil(target.defaultValue)
-							? target.defaultValue
-							: target.explanation?.defaultValue
-					)
-				})
-
 			if (this.state.initialRender) {
 				this.setState({ initialRender: false })
 			}

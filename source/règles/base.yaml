@@ -2923,7 +2923,7 @@
     C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
   format: pourcentage
-  par défaut: 1
+  par défaut: 0.9
 
 - espace: entreprise
   nom: bénéfice

@@ -63,20 +63,25 @@ export let ruleDefaultsSelector = createSelector(
 	rules => collectDefaults(rules)
 )
 
-export let targetNamesSelector = state => {
-	let objectifs = state.simulation?.config.objectifs
+const parseObjectifs = objectifs => {
 	if (!objectifs || !Array.isArray(objectifs)) {
 		return null
 	}
-	const targetNames = [].concat(
+	return [].concat(
 		...objectifs.map(objectifOrGroup =>
 			typeof objectifOrGroup === 'string'
 				? [objectifOrGroup]
-				: objectifOrGroup.objectifs
+				: parseObjectifs(
+						Array.isArray(objectifOrGroup)
+							? objectifOrGroup
+							: objectifOrGroup.objectifs
+				  )
 		)
 	)
-
-	return targetNames
+}
+export let targetNamesSelector = state => {
+	let objectifs = state.simulation?.config.objectifs
+	return parseObjectifs(objectifs)
 }
 
 export let situationSelector = createDeepEqualSelector(

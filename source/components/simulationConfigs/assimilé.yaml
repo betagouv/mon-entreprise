@@ -4,10 +4,10 @@ objectifs:
     objectifs:
       - entreprise . chiffre d'affaires
       - entreprise . charges
-      - entreprise . bénéfice
-      - entreprise . résultat net
+
   - objectifs:
       - entreprise . répartition entre rémunération et bénéfice
+
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
@@ -16,6 +16,12 @@ objectifs:
       - contrat salarié . salaire . net
       - impôt . neutre
       - contrat salarié . salaire . net après impôt
+
+  - icône: 📈
+    nom: Mes bénéfices
+    objectifs:
+      - entreprise . bénéfice
+      - entreprise . résultat net
 
 questions:
   à l'affiche:
