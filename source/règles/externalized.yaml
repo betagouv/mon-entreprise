@@ -26,22 +26,34 @@ contrat salarié . indemnité kilométrique vélo . distance annuelle:
     rendre à son travail.
   titre.en: annual distance
   titre.fr: distance annuelle
-contrat salarié . indemnité kilométrique vélo . indemnité vélo active:
-  question.en: >
-    Does the employee take advantage of the kilometric bicycle allowance to go
-    to work ?
+contrat salarié . indemnité kilométrique vélo . active:
+  titre.en: active bicycle allowance
+  titre.fr: indemnité vélo active
+  question.en: >-
+    Does the employee take advantage of the bicycle mileage allowance to commute to work?
   question.fr: >-
     Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au
     travail ?
   description.en: >
-    The employer has the choice to enable his employees to take advantage of
-    this new financial aid.
-
-    What sets it appart from a salary bonus is that it is exonerated from social
-    contributions and income tax up to 200€.
+    This allowance is not mandatory at this time.
 
 
-    To reach 200€, the employee must cycle approximately 4km per day.
+    The employer has the choice to implement it in his company.
+
+
+    To benefit from the €200 compensation deducted in this calculation, the employee
+    must cycle 4km (round trip) to work each day
+    worked.
+
+
+    This allowance can be combined with the reimbursement of transport costs
+    if it is a bike trip to a transport station.
+
+
+    This allowance is exempt from social security contributions and tax on the
+    income. To pay a salary bonus equivalent to his employee without this
+    device, **the employer should pay nearly 500€ for a salary
+    median**.
   description.fr: >
     Cette indemnité n'est pour l'instant pas obligatoire.
 
@@ -63,8 +75,6 @@ contrat salarié . indemnité kilométrique vélo . indemnité vélo active:
     revenu. Pour verser une prime de salaire équivalente à son salarié sans ce
     dispositif, **l'employeur devrait débourser près de 500€ pour un salaire
     médian**.
-  titre.en: allowance enabled
-  titre.fr: indemnité vélo active
 contrat salarié . CDD . CIF:
   description.en: >-
     Contribution to the financing of individual training leave, specific to
@@ -139,7 +149,7 @@ contrat salarié . ATMP . taux réduit:
   titre.en: reduced rate for risk-free activity
   titre.fr: taux réduit pour activité sans risque
   question.en: Is the activity of the establishment or employee without risk ?
-  question.fr: L'activité de l'établissement ou du salarié est-elle sans risque ?
+  question.fr: L'activité de l'établissement ou du salarié est-elle sans aucun risque ?
   description.en: |
     This rate corresponds to:
       - small companies whose activity is not risky, for example IT consulting
@@ -473,7 +483,7 @@ contrat salarié:
     semaines consécutives dans l'année.
 
     - CDI : La signature d’un contrat de travail n’est pas obligatoire dans
-    certains cas. C’est le cas du Contrat de travail à Durée Indéterminée,
+    certains cas. C’est le cas du Contrat de travail à Durée Ind��terminée,
     considéré comme la forme normale et générale de la relation de travail entre
     un salarié et un employeur (Art. L1221-2 du Code du travail).
   titre.en: employment contract
@@ -602,7 +612,6 @@ contrat salarié . salaire . brut de base:
       message: >
         Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
         période de calcul ?
-
 contrat salarié . salaire . brut de base . équivalent temps plein:
   titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
@@ -654,8 +663,8 @@ contrat salarié . avantages en nature:
     Does the employee receive benefits in kind (housing, vehicle, telephone,
     discounts, etc.)?
   question.fr: >-
-    Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone,
-    réductions...) ?
+    Le salarié reçoit-il des avantages en nature (repas, véhicule, téléphone,
+    réductions, logement...) ?
 contrat salarié . avantages en nature . montant:
   titre.en: Benefits in kind (amount)
   titre.fr: Avantages en nature (montant)
@@ -666,9 +675,158 @@ contrat salarié . avantages en nature . montant:
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le
     revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
     atteint.
-  question.en: What is the monthly amount of benefits in kind?
-  question.fr: Quel est le montant des avantages en nature ?
+contrat salarié . avantages en nature . ntic:
+  description.en: >
+    The private use of the NICT tools made available as part of
+    the permanent professional activity constitutes an advantage in kind.
 
+    This benefit is included in the basis for calculating Security contributions
+    and unemployment insurance.
+
+    The reality of private use can result either from a written document (contract
+    work, company agreement, internal regulations, correspondence from the
+    management of the company allowing the employee to make private use of the
+    tools), or the existence of detailed invoices to establish a
+    for private use.
+
+  description.fr: >
+    L’usage privé des outils NTIC mis à disposition dans le cadre de l’activité
+    professionnelle à titre permanent est constitutif d’un avantage en nature.
+
+    Cet avantage est inclus dans la base de calcul des cotisations de Sécurité
+    sociale et d’assurance chômage.
+
+    La réalité de l’usage privé peut résulter soit d’un document écrit (contrat
+    de travail, accord d’entreprise, règlement intérieur, courrier de la
+    direction de l’entreprise autorisant le salarié à faire un usage privé des
+    outils), soit de l’existence de factures détaillées permettant d’établir une
+    utilisation privée.
+  question.en: >
+    Does the employer provide free tools from NICTs (computer, telephone, tablet, etc.)?
+  question.fr: >
+    L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur,
+    téléphone, tablette, etc.) ?
+  titre.en: nict
+  titre.fr: ntic
+contrat salarié . avantages en nature . autres:
+  question.en: >
+    Are there any other advantages in kind (housing, vehicle, discount...)?
+  question.fr: |
+    Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
+  titre.en: 'others'
+  titre.fr: autres
+contrat salarié . avantages en nature . autres . montant:
+  question.en: |
+    How much is the amount of these other benefits?
+  question.fr: |
+    Quel est le montant de ces autres avantages ?
+  suggestions.en:
+    "\U0001F697 vehicle": 260
+  suggestions.fr:
+    "\U0001F697 véhicule": 260
+  titre.en: amount
+  titre.fr: montant
+contrat salarié . avantages en nature . ntic . montant:
+  titre.en: 'NICTs tools'
+  titre.fr: outils NTIC
+  description.en: >
+    For benefits in kind such as NICTs (computers, smartphones,
+    tablets...), there is an annual flat-rate assessment corresponding to
+    10% of the purchase price. For example, for a phone bought at 850€ TTC with
+    a subscription of 30€ / month, the benefit in kind to be transferred to the newsletter
+    of pay will be:
+
+
+    ```
+
+    10% x (850€ + (30€ x 12 months)) ] / 12 months
+
+    ```
+    or 10,08€
+
+  description.fr: >
+    Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
+    tablettes...), il y a une évaluation forfaitaire annuelle correspondant à
+    10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec
+    un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin
+    de paie sera de :
+
+
+    ```
+
+    [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
+
+    ```
+     soit 10,08€
+contrat salarié . avantages en nature . ntic . coût appareils:
+  question.en: |
+    What is the total new cost of the equipment provided?
+  question.fr: |
+    Quel est le coût total neuf des appareils mis à disposition ?
+  suggestions.en:
+    "\U0001F4F1": 400
+    "\U0001F4F1✨ (high-end model)": 850
+    "\U0001F4BB": 1200
+    "\U0001F4BB + \U0001F4F1✨": 2050
+  suggestions.fr:
+    "\U0001F4F1": 400
+    "\U0001F4F1✨ (haut de gamme)": 850
+    "\U0001F4BB": 1200
+    "\U0001F4BB + \U0001F4F1✨": 2050
+  titre.en: 'devices cost'
+  titre.fr: coût appareils
+contrat salarié . avantages en nature . ntic . abonnements:
+  question.en: What is the cost of the subscription price charged by the employer?
+  question.fr: Quel est le coût de l'abonnement prix en charge par l'employeur ?
+  suggestions.fr:
+    aucun: 0
+    standard: 20
+    international: 40
+  suggestions.en:
+    none: 0
+    standard: 20
+    international: 40
+  titre.en: subscription
+  titre.fr: abonnements
+contrat salarié . avantages en nature . nourriture:
+  question.en: |
+    Does the employer provide free meals?
+  question.fr: |
+    L'employeur fournit-il gratuitement les repas ?
+  description.en: >
+    Lunch vouchers("tickets restaurants") are not considered as a benefit in kind but as a reimbursement of expenses.
+  description.fr: >
+    Les tickets restaurants ne sont pas considéré comme un avantage en nature
+    mais comme un remboursement de frais.
+  titre.en: 'food'
+  titre.fr: nourriture
+contrat salarié . avantages en nature . nourriture . montant:
+  titre.en: 'food'
+  titre.fr: nourriture
+? contrat salarié . avantages en nature . nourriture . montant forfaitaire d'un repas
+: titre.en: fixed amount of a meal
+  titre.fr: montant forfaitaire d'un repas
+contrat salarié . avantages en nature . nourriture . repas par mois:
+  question.en: |
+    How many meals per month are paid for by the employer?
+  question.fr: |
+    Combien de repas par mois sont payés par l'employeur ?
+  suggestions.en:
+    1 per day: 21
+    2 per day: 42
+  suggestions.fr:
+    1 par jour: 21
+    2 par jour: 42
+  titre.en: meal per month
+  titre.fr: repas par mois
+contrat salarié . avantages en nature . nourriture . dans la restauration:
+  question.en: >-
+    Is it for an employee working in a hotel, café, restaurant and similar?
+  question.fr: >-
+    Est-ce pour un salarié travaillant dans un hôtel, café, restaurant et
+    assimilés ?
+  titre.en:  in the catering business
+  titre.fr: dans la restauration
 contrat salarié . indemnités salarié:
   titre.en: Employee benefits
   titre.fr: indemnités salarié
@@ -702,7 +860,7 @@ contrat salarié . SMIC temps plein:
   titre.en: full-time mimimum wage (SMIC)
   titre.fr: SMIC temps plein
 SMIC horaire:
-  titre.en: 'hourly minimum wage (SMIC)'
+  titre.en: hourly minimum wage (SMIC)
   titre.fr: SMIC horaire
 contrat salarié . SMIC:
   titre.en: minimum wage (SMIC)
@@ -741,6 +899,9 @@ contrat salarié . rémunération . net imposable . base:
 contrat salarié . rémunération . net imposable . exonérations:
   titre.en: exemptions
   titre.fr: exonérations
+contrat salarié . prime d'impatriation:
+  titre.en: impatriation bonus
+  titre.fr: prime d'impatriation
 contrat salarié . salaire . net:
   titre.en: Net salary
   titre.fr: Salaire net
@@ -973,6 +1134,16 @@ entreprise . association non lucrative:
   question.fr: S'agit-il d'une association à but non lucratif ?
   titre.en: non-profit organisation
   titre.fr: association non lucrative
+entreprise . établissement bancaire:
+  description.en: >-
+    The company is a banking, financial or insurance institution. It is not subject to VAT.
+  description.fr: >-
+    L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
+    est non assujettie à la TVA.
+  question.en: Is it a banking, financial or insurance institution?
+  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  titre.en: banking institution
+  titre.fr: établissement bancaire
 établissement:
   description.en: >-
     The employee works in one of the company's establishment, identified by a
@@ -1438,12 +1609,42 @@ contrat salarié . contribution supplémentaire à l'apprentissage:
 contrat salarié . taxe d'apprentissage . csa au taux majoré:
   titre.en: CSA at the higher rate
   titre.fr: CSA au taux majoré
+contrat salarié . taxe sur les salaires . assiette de base:
+  titre.en: basis
+  titre.fr: assiette de base
 contrat salarié . taxe sur les salaires . assiette:
   titre.en: base
   titre.fr: assiette
 contrat salarié . taxe sur les salaires . barème:
   titre.en: scale
   titre.fr: barème
+contrat salarié . régime des impatriés:
+  question.en: Does the employee benefit from the impatriate scheme?
+  question.fr: Le salarié bénéficie-t-il du régime des impatriés ?
+  description.en: >
+    If you are an employee or a director with the 'assimilé-salarié' social and fiscal scheme,
+    and if you have been called upon by a foreign company to take up employment in a
+    company established in France with a link to the first or if you have
+    been directly recruited abroad by a company established in France,
+    you can benefit from the impatriate scheme.
+
+
+    In addition, you must not have been domiciled in France for tax purposes on
+    five calendar years preceding that in which he takes up his duties and set in
+    France your tax domicile as soon as you take up your duties.
+  description.fr: >
+    Si vous êtes salarié ou dirigeant assimilé-salarié, et si vous avez été
+    appelé par une entreprise étrangère à occuper un emploi dans une entreprise
+    établie en France ayant un lien avec la première ou si vous avez été
+    directement recruté à l’étranger par une entreprise établie en France, vous
+    pouvez bénéficier du régime des impatriés.
+
+
+    Vous devez en outre ne pas avoir été fiscalement domicilié en France les
+    cinq années civiles précédant celle de la prise de fonctions et fixer en
+    France votre domicile fiscal dès votre prise de fonctions.
+  titre.en: impatriate scheme
+  titre.fr: régime des impatriés
 entreprise . taxe sur les salaires . barème:
   titre.en: scale
   titre.fr: barème
@@ -1522,7 +1723,7 @@ impôt . revenu abattu par défaut:
     lump-sum allowance. However, anyone can opt for the declaration of its *real
     costs*, which will replace this default package.
   description.fr: >-
-    Dans le cas général, l'impôt est calculé après l'application d'un
+    Dans le cas général, l'impôt est calculé apr��s l'application d'un
     abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration
     de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: default reduced income
@@ -1540,6 +1741,8 @@ impôt . impôt sur le revenu:
     Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à
     5 tranches.
 
+    Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
+
 
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41
     000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
@@ -1555,6 +1758,8 @@ impôt . impôt sur le revenu après décote:
     réduire l'impôt des bas revenus.
   titre.en: income tax after discount
   titre.fr: impôt sur le revenu après décote
+impôt . CEHR:
+  titre.fr: CEHR
 impôt . impôt sur le revenu à payer:
   titre.en: income tax
   titre.fr: impôt sur le revenu
@@ -1623,27 +1828,30 @@ entreprise . chiffre d'affaires:
   résumé.en: The amount of sales made
   résumé.fr: Le montant des ventes réalisées
 entreprise . chiffre d'affaires de société:
-  titre.en: 'company turnover'
+  titre.en: company turnover
   titre.fr: chiffre d'affaires de société
 entreprise . rémunération du dirigeant:
   description.en: >
-    This is the portion of revenue after expenses that is allocated to the executive's compensation. The higher this share, the higher the executive's compensation increases, and the lower the company's profit.
+    This is the portion of revenue after expenses that is allocated to the
+    executive's compensation. The higher this share, the higher the executive's
+    compensation increases, and the lower the company's profit.
   description.fr: >
     C'est la part du chiffre d'affaires après charges qui est allouée à la
     rémunération du dirigeant. Plus cette part est élevée, plus la rémunération
     du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
   question.en: >-
-    How much of the after-charge revenue is allocated to the executive's compensation?
+    How much of the after-charge revenue is allocated to the executive's
+    compensation?
   question.fr: >-
     Quelle part du chiffre d'affaires après charge est allouée à la rémunération
     du dirigeant ?
-  titre.en: 'executive compensation'
+  titre.en: executive compensation
   titre.fr: rémunération du dirigeant
 entreprise . bénéfice:
-  titre.en: 'profit'
+  titre.en: profit
   titre.fr: bénéfice
 entreprise . résultat net:
-  résumé.en: 'What remains after corporate income tax'
+  résumé.en: What remains after corporate income tax
   résumé.fr: Ce qu'il reste après impôt sur les sociétés
   titre.en: net result
   titre.fr: résultat net
@@ -1945,6 +2153,11 @@ entreprise . catégorie d'activité . libérale règlementée:
 
     > Exemples de professions non-règlementées : développeur, historien,
     urbaniste...
+  contrôles.en:
+    - si: libérale règlementée
+      niveau: avertissement
+      message: >
+        Attention, the simulator is not yet complete for the regulated liberal professions.
   contrôles.fr:
     - si: libérale règlementée
       niveau: avertissement
@@ -2032,18 +2245,14 @@ indépendant . cotisations et contributions:
   titre.fr: cotisations et contributions
 entreprise . rattachement libéral règlementé:
   description.en: >
-    !!Les entreprises libérales non règlementées créées étaient rattachées aux
-    règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
-    plus le cas pour les auto-entrepreneur (2019 pour les entreprise
-    individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
-    donc dépendent de la sécurité sociale des indépendants.
+    The unregulated liberal companies created were linked to the regulated ones for the calculation of social security contributions. Since 2018 this is no longer the case for auto-entrepreneurs (2019 for sole proprietorships). They are now attached to the artisan-merchants, so they depend on the social security of the self-employed ("indépendant").
   description.fr: >
     Les entreprises libérales non règlementées créées étaient rattachées aux
     règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
     plus le cas pour les auto-entrepreneur (2019 pour les entreprise
     individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
     donc dépendent de la sécurité sociale des indépendants.
-  titre.en: '!!rattachement libéral règlementé'
+  titre.en: linked with regulated liberal
   titre.fr: rattachement libéral règlementé
 indépendant . cotisations et contributions . cotisations . maladie:
   titre.en: health insurance
@@ -2112,9 +2321,9 @@ indépendant . cotisations et contributions . formation professionnelle:
 : titre.en: family allowances
   titre.fr: allocations familiales
 indépendant . revenu total du dirigeant:
-  question.en: 'What is the total income of the executive?'
+  question.en: What is the total income of the executive?
   question.fr: Quel est le revenu total du dirigeant ?
-  résumé.en: 'Spent by the company'
+  résumé.en: Spent by the company
   résumé.fr: Dépensé par l'entreprise
   titre.en: total income of the executive
   titre.fr: revenu total du dirigeant
@@ -2130,7 +2339,7 @@ auto entrepreneur:
      simplify administrative management, in particular by replacing all the
      social contributions by a single monthly levy.
   description.fr: >
-    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine
+    L'auto-entreprise est une entreprise individuelle simplifi��e. À l'origine
     connu sous l'appellation « auto-entrepreneur », le régime de «
     micro-entrepreneur » est un régime de travailleur indépendant créé pour
     simplifier la gestion administrative, notamment en remplaçant toutes les
@@ -2215,10 +2424,11 @@ auto entrepreneur . cotisations et contributions . cotisations:
   titre.fr: cotisations
 ? auto entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
 : description.en: >-
-    The total amount that is allocated to the supplementary pension, useful to estimate the total amount of the retirement pension for auto-entrepreneurs
+    The total amount that is allocated to the supplementary pension, useful to
+    estimate the total amount of the retirement pension for auto-entrepreneurs
   description.fr: >-
     Le montant total qui est alloué à la retraite complémentaire, utile pour
-    caluler la retraite des auto entrepreneurs
+    estimer le montant total de la pension de retraite des auto-entrepreneurs
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
 ? auto entrepreneur . cotisations et contributions . cotisations . taux de cotisation
@@ -2244,14 +2454,15 @@ entreprise . ACCRE obtenu:
   titre.en: ACCRE obtained
   titre.fr: ACCRE obtenu
 auto entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  titre.en: '!!taux ACRE'
+  titre.en: >
+    "ACRE" rate
   titre.fr: taux ACRE
 auto entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
-  titre.en: '!!réduction ACRE'
+  titre.en: >
+    "ACRE" reduction
   titre.fr: réduction ACRE
   description.en: >-
-    !!Ce taux peut dans certains cas réduire le montant des cotisations sociales
-    de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
+      In some cases, this rate may reduce the amount of social security contributions paid by the auto-entrepreneur to help him/her in his/her first year of activity.
   description.fr: >-
     Ce taux peut dans certains cas réduire le montant des cotisations sociales
     de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
@@ -2294,7 +2505,9 @@ protection sociale:
   titre.en: social welfare
   titre.fr: protection sociale
 protection sociale . retraite:
-  résumé.en: Guarantees on average 60 to 70% of the last income from employment after age 65.
+  résumé.en: >-
+    Guarantees on average 60 to 70% of the last income from employment after age
+    65.
   résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   description.en: "All employees in France contribute throughout their working lives to benefit from a pension plan as soon as they are old enough to stop working their activity.\n\nThe pension system is currently based on the principle of the \"distribution\". This means that asset contributions finance retirement pensions.\n\n## Retirement in France in a few figures\n  - **2094 € / month**: Average standard of living for people over 65 (compared to the rest of the population, it is the highest in the OECD \U0001F947)\n  - **25 years**: the average number of years spent in retirement (the highest in the OECD)\n  - **75%**: the replacement rate as a percentage of net salary after full annuities\n\nPensions are the highest of social security contributions. It can be considered a deferred salary, since your contributions will provide you with income when you retire.\n"
   description.fr: "Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.\n\nLe système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.\n\n## La retraite en France en quelques chiffres\n  - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE \U0001F947)\n  - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE \U0001F947)\n  - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein\n\nLa retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.\n\nSimulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).\n"
@@ -2305,10 +2518,11 @@ protection sociale . retraite . base:
   titre.fr: pension de retraite de base
 protection sociale . retraite . base . taux de la pension:
   description.en: >-
-    The rate applied, with a discount or surcharge depending on the number of quarters contributed.
+    The rate applied, with a discount or surcharge depending on the number of
+    quarters contributed.
   description.fr: >-
-    Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestre
-    cotisé.
+    Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestres
+    cotisés.
   titre.en: rate of the pension
   titre.fr: taux de la pension
 protection sociale . retraite . trimestres validés par an:
@@ -2325,7 +2539,9 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
   titre.fr: barème trimestres générique
 ? protection sociale . retraite . trimestres validés par an . trimestres auto entrepreneur
 : description.en: >-
-    Minimum turnover thresholds for the validation of quarters for retirement as a self-employed entrepreneur. Below the minimum amount, you will only have access to the solidarity allowance.
+    Minimum turnover thresholds for the validation of quarters for retirement as
+    a self-employed entrepreneur. Below the minimum amount, you will only have
+    access to the solidarity allowance.
   description.fr: >-
     Les seuils de chiffre d'affaires minimum pour la validation des trimestres
     pour la retraite en auto entrepreneur. En-dessous du montant minimum, vous
@@ -2334,38 +2550,39 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
   titre.fr: trimestres auto entrepreneur
 protection sociale . revenu moyen:
   description.en: >-
-    The income used to calculate the amount of retirement pensions and daily social security allowances during a work stoppage.
+    The income used to calculate the amount of retirement pensions and daily
+    social security allowances during a work stoppage.
   description.fr: >-
     Le revenu utilisé pour le calcul du montant des pensions de retraite et des
     indemnités journalières de sécurité sociale lors d'un arrêt de travail.
-  titre.en: 'average income'
+  titre.en: average income
   titre.fr: revenu moyen
 protection sociale . retraite . mois cotisés:
-  titre.en: 'contributed months'
+  titre.en: contributed months
   titre.fr: mois cotisés
 protection sociale . retraite . complémentaire salarié:
-  titre.en: 'supplementary pension for employees'
+  titre.en: supplementary pension for employees
   titre.fr: complémentaire salarié
 protection sociale . retraite . complémentaire salarié . valeur du point:
-  titre.en: 'value of the point'
+  titre.en: value of the point
   titre.fr: valeur du point
 protection sociale . retraite . complémentaire salarié . points acquis:
-  titre.en: 'acquired points'
+  titre.en: acquired points
   titre.fr: points acquis
 protection sociale . retraite . complémentaire salarié . points acquis par mois:
-  titre.en: 'acquired points per month'
+  titre.en: acquired points per month
   titre.fr: points acquis par mois
 protection sociale . retraite . complémentaire salarié . prix d'achat du point:
-  titre.en: 'buying cost of the point'
+  titre.en: buying cost of the point
   titre.fr: prix d'achat du point
 protection sociale . retraite . complémentaire sécurité des indépendants:
-  titre.en: 'supplementary pension for self-employed'
+  titre.en: supplementary pension for self-employed
   titre.fr: complémentaire sécurité des indépendants
 ? protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point
-: titre.en: 'value of the point'
+: titre.en: value of the point
   titre.fr: valeur du point
 ? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis
-: titre.en: 'acquired points'
+: titre.en: acquired points
   titre.fr: points acquis
 ? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois
 : titre.en: acquired points per month
@@ -2375,8 +2592,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
   titre.fr: prix d'achat du point
 protection sociale . santé:
   résumé.en: >-
-    !!Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
-    maladies graves comme les séjours à l'hôpital.
+    Covers most everyday health care and 100% of serious illnesses such as hospital stays.
   résumé.fr: >-
     Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
     maladies graves comme les séjours à l'hôpital.
@@ -2386,28 +2602,26 @@ protection sociale . santé:
   titre.fr: santé
 protection sociale . santé . indemnités journalières:
   description.en: >-
-    Daily allowances are paid to you by the Health Insurance to compensate for your income during a work stoppage. They are calculated on the basis of your gross income and paid every 14 days on average.
-  description.fr: >
+    Daily allowances are paid to you by the Health Insurance to compensate for
+    your income during a work stoppage. They are calculated on the basis of your
+    gross income and paid every 14 days on average.
+  description.fr: >-
     Les indemnités journalières vous sont versées par l'Assurance Maladie pour
-    compenser
-
-    votre revenu pendant un arrêt de travail. Elles sont calculées à partir de
-    votre revenu
-
-    brut et versées tous les 14 jours en moyenne.
-  titre.en: 'Daily allowances'
+    compenser votre revenu pendant un arrêt de travail. Elles sont calculées à
+    partir de votre revenu brut et versées tous les 14 jours en moyenne.
+  titre.en: Daily allowances
   titre.fr: indemnités journalières
 protection sociale . santé . indemnités journalières . auto entrepreneur:
-  titre.en: 'auto entrepreneur'
+  titre.en: auto entrepreneur
   titre.fr: auto entrepreneur
 protection sociale . santé . indemnités journalières . indépendant:
-  titre.en: 'self employed'
+  titre.en: self employed
   titre.fr: indépendant
 protection sociale . santé . indemnités journalières . salarié:
-  titre.en: 'employee'
+  titre.en: employee
   titre.fr: salarié
 protection sociale . assurance chômage:
-  résumé.en: 'Provides income for workers looking for a new job.'
+  résumé.en: Provides income for workers looking for a new job.
   résumé.fr: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
   description.en: >
     Since 1958, the Unemployment Insurance has been protecting all private and
@@ -2454,7 +2668,8 @@ protection sociale . assurance chômage:
   titre.fr: assurance chômage
 protection sociale . famille:
   résumé.en: >
-    Provides services in support of families: childcare, housing assistance, etc.
+    Provides services in support of families: childcare, housing assistance,
+    etc.
   résumé.fr: >
     Assure des prestations en soutien aux familles : garde d'enfants, aide au
     logement...
@@ -2503,8 +2718,7 @@ protection sociale . accidents du travail et maladies professionnelles:
   titre.en: Work accidents / occupational diseases
   titre.fr: accidents du travail et maladies professionnelles
 protection sociale . formation:
-  résumé.en: >-
-    Gives employees the opportunity to take vocationnal training.
+  résumé.en: Gives employees the opportunity to take vocationnal training.
   résumé.fr: Donne aux employés la possibilité de suivre des formations professionnelles.
   description.en: >
     Vocational training enables each person, regardless of their status, to
@@ -2546,8 +2760,7 @@ protection sociale . autres:
   titre.en: other
   titre.fr: autres
 protection sociale . transport:
-  résumé.en: >-
-    Keeps the price of a public transit ticket low
+  résumé.en: Keeps the price of a public transit ticket low
   résumé.fr: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
   description.en: >
     This contribution is paid in full to the [mobility
