@@ -28,6 +28,8 @@ describe('Status guide', function() {
 		cy.get('.ui__.answer-group')
 			.contains(fr ? 'Société' : 'Limited liability company')
 			.click()
+		// The click fails randomly and unexplicablly on CI
+		cy.wait(200)
 		cy.get('.answer-group button')
 			.contains('Assimilé')
 			.click()
