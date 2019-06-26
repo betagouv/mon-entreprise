@@ -847,7 +847,6 @@
     L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
   par défaut: oui
 
-
 - espace: contrat salarié . avantages en nature
   nom: autres
   question: >
@@ -863,8 +862,6 @@
   suggestions:
     🚗 véhicule: 260
   format: euros
-
-
 
 - espace: contrat salarié . avantages en nature . ntic
   nom: montant
@@ -897,10 +894,10 @@
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
   suggestions:
-    📱 : 400
-    📱✨ (haut de gamme) : 850
-    💻  : 1200
-    💻 + 📱✨ : 2050
+    📱: 400
+    📱✨ (haut de gamme): 850
+    💻: 1200
+    💻 + 📱✨: 2050
 
 - espace: contrat salarié . avantages en nature . ntic
   nom: abonnements
@@ -912,7 +909,6 @@
     aucun: 0
     standard: 20
     international: 40
-
 
 - espace: contrat salarié . avantages en nature
   nom: nourriture
@@ -944,7 +940,6 @@
       - sinon: 4.85
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
-
 
 - espace: contrat salarié . avantages en nature . nourriture
   nom: repas par mois
@@ -1126,7 +1121,7 @@
   format: euros
   formule:
     multiplication:
-      assiette: rémunération . net de cotisations
+      assiette: rémunération . net imposable
       taux: 30%
   références:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
@@ -2602,6 +2597,7 @@
   références:
     impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
     bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
+    Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
 
 - espace: entreprise . taxe sur les salaires
   nom: barème
@@ -2716,8 +2712,17 @@
       situation:
         cotisations . assiette: 8000
       valeur attendue: 705.75
+  contrôles:
+    - si: régime des impatriés
+      niveau: information
+      message: |
+        Pour bénéficier de l'éxonération de cotisations vieillesse, il faut remplir les conditions suivantes :
+        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieilllesse
+        - De ne pas avoir été affiliés, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+        [Voir plus](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
+
   références:
-    régime des impatriés (loi PACTE): https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
+    Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
 
 - espace: contrat salarié
   nom: forfait social
@@ -2835,12 +2840,23 @@
       valeur attendue: 7162
 
 - espace: impôt
+  nom: revenu fiscal de référence
+  période: année
+  description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
+  formule:
+    somme:
+      - revenu abattu
+      - contrat salarié . prime d'impatriation
+  références:
+    Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
+
+- espace: impôt
   nom: CEHR
   période: année
   note: Attention, ce barème concerne les foyers célibataires. Pour les couples, le barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils sont individuellement deux fois moins riches.
   formule:
     barème:
-      assiette: revenu abattu
+      assiette: revenu fiscal de référence
       tranches:
         - en-dessous de: 250000
           taux: 0%
@@ -2852,6 +2868,7 @@
   références:
     contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
+    Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 - nom: impôt sur le revenu à payer
   espace: impôt
