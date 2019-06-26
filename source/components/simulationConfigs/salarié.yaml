@@ -16,6 +16,7 @@ questions:
     CDD: contrat salarié . CDD
     Impôt: impôt . méthode de calcul
     Temps partiel: contrat salarié . temps de travail . temps partiel
+    Stage: contrat salarié . stage
 
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
