@@ -41,7 +41,8 @@ module.exports = {
 				'My company in France: A step-by-step guide to start a business in France',
 			description:
 				'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
-			filename: 'infrance.html'
+			filename: 'infrance.html',
+			logo: 'https://mon-entreprise.fr/images/logo-mycompany.png'
 		}),
 		new HTMLPlugin({
 			template: 'index.html',
@@ -51,7 +52,8 @@ module.exports = {
 				"Mon-entreprise.fr : L'assistant officiel du créateur d'entreprise",
 			description:
 				'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
-			filename: 'mon-entreprise.html'
+			filename: 'mon-entreprise.html',
+			logo: 'https://mon-entreprise.fr/images/logo.png'
 		}),
 
 		new CopyPlugin([
@@ -69,8 +71,8 @@ module.exports = {
 				to: 'sitemap.infrance.en.txt'
 			},
 			{
-				from: './source/sites/mon-entreprise.fr/images',
-				to: 'static-images'
+				from: './source/images',
+				to: 'images'
 			},
 			{
 				from: './source/sites/mon-entreprise.fr/favicon',
