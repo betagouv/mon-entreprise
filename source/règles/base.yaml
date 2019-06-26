@@ -714,6 +714,31 @@
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
 - espace: contrat salarié
+  nom: stage
+  description: |
+    Un employeur qui accueille un stagiaire doit lui verser une gratification minimale. Celle-ci est en partie exonérée de cotisations sociales.
+  question: S'agit t'il d'un stage étudiant ?
+  non applicable si: assimilé salarié
+  par défaut: non
+  références:
+    Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
+
+- espace: contrat salarié . stage
+  nom: gratification minimale
+  applicable si: stage
+  période: flexible
+  formule: 15% * plafond sécurité sociale temps plein
+
+- espace: contrat salarié
+  nom: gratification exonerée d'impôt
+  applicable si: stage
+  période: flexible
+  formule:
+    le minimum de:
+      - contrat salarié . rémunération . net imposable . base
+      - SMIC
+
+- espace: contrat salarié
   nom: CDD
   question: Est-ce un contrat à durée déterminée (CDD) ?
   description: |
@@ -746,7 +771,7 @@
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   période: flexible
-  formule: rémunération . brut - indemnité kilométrique vélo
+  formule: rémunération . brut - indemnité kilométrique vélo - stage . gratification minimale
 
 - espace: contrat salarié . rémunération
   nom: brut de base
@@ -768,9 +793,18 @@
         toutes ces conditions:
           - rémunération . assiette de vérification du SMIC [mensuel] < SMIC [mensuel]
           - assimilé salarié != oui
+          - stage != oui
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
+
+    - si:
+        toutes ces conditions:
+          - stage
+          - brut de base [mensuel] < stage . gratification minimale [mensuel]
+      niveau: avertissement
+      message: |
+        La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
 
     - si:
         toutes ces conditions:
@@ -1167,6 +1201,7 @@
         somme:
           - indemnité kilométrique vélo
           - prime d'impatriation
+          - gratification exonerée d'impôt
           - heures supplémentaires défiscalisées
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
@@ -1995,6 +2030,7 @@
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
 
+  non applicable si: stage
   période: mois
   formule:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
@@ -2020,6 +2056,7 @@
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
   applicable si: cotisations . assiette <= plafond de l'assiette
+  non applicable si: stage
   période: flexible
   formule:
     le minimum de:
@@ -2103,6 +2140,7 @@
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
   période: flexible
+  non applicable si: stage
   formule:
     barème:
       assiette: cotisations . assiette
@@ -2157,13 +2195,13 @@
 
 - espace: contrat salarié
   nom: retraite complémentaire
+  non applicable si: stage
   cotisation:
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
   description: |
     Cotisation de retraite complémentaire. Remplace les cotisations AGIRC et ARRCO qui étaient avant 2019 séparées.
-
   période: flexible
   formule:
     barème:
@@ -2277,7 +2315,7 @@
     calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
-
+  non applicable si: stage
   période: flexible
   formule:
     multiplication:
@@ -2318,6 +2356,7 @@
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F20739
   période: flexible
+  non applicable si: stage
   formule:
     multiplication:
       assiette: forfait
@@ -2434,6 +2473,7 @@
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
 
   période: flexible
+  non applicable si: stage
   formule:
     multiplication:
       assiette: cotisations . assiette
