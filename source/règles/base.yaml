@@ -1120,13 +1120,16 @@
 
 - espace: contrat salarié
   nom: prime d'impatriation
+  description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
   applicable si: régime des impatriés
   période: flexible
   format: euros
   formule:
     multiplication:
-      assiette: salaire . brut de base
+      assiette: rémunération . net de cotisations
       taux: 30%
+  références:
+    Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
 
 - espace: contrat salarié . salaire
   nom: net
