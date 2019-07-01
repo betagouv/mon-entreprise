@@ -901,7 +901,7 @@
 
 - espace: contrat salarié . avantages en nature . ntic
   nom: abonnements
-  question: Quel est le coût de l'abonnement prix en charge par l'employeur ?
+  question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
   format: euros
   période: mois
   par défaut: 20
@@ -917,7 +917,7 @@
     L'employeur fournit-il gratuitement les repas ?
   par défaut: non
   description: >
-    Les tickets restaurants ne sont pas considéré comme un avantage en nature mais comme un remboursement de frais.
+    Les tickets restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
 
 - espace: contrat salarié . avantages en nature . nourriture
   nom: montant
@@ -2594,6 +2594,10 @@
     Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
 
     Vous devez en outre ne pas avoir été fiscalement domicilié en France les cinq années civiles précédant celle de la prise de fonctions et fixer en France votre domicile fiscal dès votre prise de fonctions.
+
+    Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
+
+  note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
   références:
     impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
     bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
@@ -2716,7 +2720,7 @@
     - si: régime des impatriés
       niveau: information
       message: |
-        Pour bénéficier de l'éxonération de cotisations vieillesse, il faut remplir les conditions suivantes :
+        Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
         - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieilllesse
         - De ne pas avoir été affiliés, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
         [Voir plus](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
@@ -3952,11 +3956,14 @@
   titre: pension de retraite de base
   format: euros
   période: flexible
+  non applicable si:
+    - régime des impatriés
   formule:
     multiplication:
       plafond: plafond sécurité sociale temps plein
       taux: taux de la pension
       assiette: revenu moyen
+  note: Les impatriés bénéficient d'une exonération de cotisation vieillesse. En contrepartie, ils n'acquièrent aucun droit pendant la durée d'exonération.
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F21552
 
