@@ -23,6 +23,8 @@ function explainedVariable(state = null, { type, variableName = null }) {
 	switch (type) {
 		case 'EXPLAIN_VARIABLE':
 			return variableName
+		case 'STEP_ACTION':
+			return null
 		default:
 			return state
 	}
@@ -68,40 +70,30 @@ function lang(state = i18n.language, { type, lang }) {
 
 type ConversationSteps = {|
 	+foldedSteps: Array<string>,
-	+unfoldedStep: ?string,
-	+priorityNamespace: ?string
+	+unfoldedStep: ?string
 |}
 
 function conversationSteps(
 	state: ConversationSteps = {
 		foldedSteps: [],
-		unfoldedStep: null,
-		priorityNamespace: null
+		unfoldedStep: null
 	},
 	action: Action
 ): ConversationSteps {
 	if (action.type === 'RESET_SIMULATION')
-		return { foldedSteps: [], unfoldedStep: null, priorityNamespace: null }
-	if (action.type === 'START_CONVERSATION' && action.priorityNamespace)
-		return {
-			foldedSteps: state.foldedSteps,
-			unfoldedStep: null,
-			priorityNamespace: action.priorityNamespace
-		}
+		return { foldedSteps: [], unfoldedStep: null }
 
 	if (action.type !== 'STEP_ACTION') return state
 	const { name, step } = action
 	if (name === 'fold')
 		return {
 			foldedSteps: [...state.foldedSteps, step],
-			unfoldedStep: null,
-			priorityNamespace: state.priorityNamespace
+			unfoldedStep: null
 		}
 	if (name === 'unfold') {
 		return {
 			foldedSteps: without([step], state.foldedSteps),
-			unfoldedStep: step,
-			priorityNamespace: state.priorityNamespace
+			unfoldedStep: step
 		}
 	}
 	return state

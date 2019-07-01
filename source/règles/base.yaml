@@ -13,7 +13,7 @@
     Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
   format: euros
   période: année
-  applicable si: indemnité vélo active
+  applicable si: active
   formule:
     le minimum de:
       - multiplication:
@@ -26,7 +26,7 @@
   exemples:
     - nom: active
       situation:
-        indemnité vélo active: oui
+        active: oui
       valeur attendue: 200
 
 - espace: contrat salarié . indemnité kilométrique vélo
@@ -37,7 +37,8 @@
   note: 4 km par jour sur 218 jours.
 
 - espace: contrat salarié . indemnité kilométrique vélo
-  nom: indemnité vélo active
+  nom: active
+  titre: indemnité vélo active
   question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
   description: |
     Cette indemnité n'est pour l'instant pas obligatoire.
@@ -356,7 +357,7 @@
 - espace: contrat salarié . ATMP
   nom: taux réduit
   titre: taux réduit pour activité sans risque
-  question: L'activité de l'établissement ou du salarié est-elle sans risque ?
+  question: L'activité de l'établissement ou du salarié est-elle sans aucun risque ?
   description: |
     Ce taux correspond :
     - aux petites entreprises dont l'activité n'est pas risquée, par exemple du conseil en informatique
@@ -752,12 +753,12 @@
       question: Quel est le salaire ?
       titre: salaire
       avec:
-        - entreprise . chiffre d'affaires
         - rémunération . total
         - salaire . net
         - salaire . net après impôt
         - équivalent temps plein
-        - revenu net
+        - entreprise . chiffre d'affaires
+        - entreprise . rémunération totale du dirigeant
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -792,7 +793,10 @@
   titre: Rémunération brute
   format: euros
   période: flexible
-  formule: salaire . brut + avantages en nature . montant
+  formule:
+    somme:
+      - salaire . brut
+      - avantages en nature . montant
 
 - espace: contrat salarié
   nom: avantages sociaux
@@ -812,24 +816,159 @@
   titre: Avantages en nature
   description: >
     Les avantages en nature sont constitués par la fourniture par l’employeur à ses salariés d’un bien ou service. La mise à disposition peut être gratuite ou moyennant une participation du salarié inférieure à leur valeur réelle
-  note: >
-    Les tickets restaurants ne sont pas considéré comme un avantage en nature mais comme un remboursement de frais.
-  question: Le salarié reçoit-il des avantages en nature (logement, véhicule, téléphone, réductions...) ?
+
+  question: Le salarié reçoit-il des avantages en nature (repas, véhicule, téléphone, réductions, logement...) ?
   par défaut: non
 
 - espace: contrat salarié . avantages en nature
   nom: montant
   titre: Avantages en nature (montant)
+  période: flexible
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-  question: Quel est le montant des avantages en nature ?
+
+  formule:
+    somme:
+      - autres
+      - nourriture . montant
+      - ntic . montant
+  format: euros
+
+- espace: contrat salarié . avantages en nature
+  nom: ntic
+  icônes: 💻📱
+  description: >
+    L’usage privé des outils NTIC mis à disposition dans le cadre de l’activité professionnelle à titre permanent est constitutif d’un avantage en nature.
+
+    Cet avantage est inclus dans la base de calcul des cotisations de Sécurité sociale et d’assurance chômage.
+
+    La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
+  question: >
+    L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
+  par défaut: oui
+
+- espace: contrat salarié . avantages en nature
+  nom: autres
+  question: >
+    Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
+  par défaut: non
+
+- espace: contrat salarié . avantages en nature . autres
+  nom: montant
   période: flexible
+  question: >
+    Quel est le montant de ces autres avantages ?
+  par défaut: 0
+  suggestions:
+    🚗 véhicule: 260
+  format: euros
+
+- espace: contrat salarié . avantages en nature . ntic
+  nom: montant
+  titre: outils NTIC
+  format: euros
+  période: année
+  description: |
+    Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
+
+    ```
+    [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
+    ```
+     soit 10,08€
+  formule:
+    multiplication:
+      assiette:
+        somme:
+          - coût appareils
+          - abonnements
+      taux: 10%
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
+
+- espace: contrat salarié . avantages en nature . ntic
+  nom: coût appareils
+  question: >
+    Quel est le coût total neuf des appareils mis à disposition ?
+  format: euros
+  période: aucune
+  par défaut: 800
+  # TODO : vérifier et documenter les chiffres
+  suggestions:
+    📱: 400
+    📱✨ (haut de gamme): 850
+    💻: 1200
+    💻 + 📱✨: 2050
+
+- espace: contrat salarié . avantages en nature . ntic
+  nom: abonnements
+  question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
+  format: euros
+  période: mois
+  par défaut: 20
   suggestions:
     aucun: 0
-    nourriture: 80
-    véhicule: 260
+    standard: 20
+    international: 40
+
+- espace: contrat salarié . avantages en nature
+  nom: nourriture
+  icônes: 🍝
+  question: >
+    L'employeur fournit-il gratuitement les repas ?
+  par défaut: non
+  description: >
+    Les tickets restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
+
+- espace: contrat salarié . avantages en nature . nourriture
+  nom: montant
+  titre: nourriture
+  période: flexible
   format: euros
-  par défaut: 0
+  formule:
+    multiplication:
+      assiette: montant forfaitaire d'un repas
+      facteur: repas par mois
+
+- espace: contrat salarié . avantages en nature . nourriture
+  nom: montant forfaitaire d'un repas
+  période: aucune
+  format: euros
+  formule:
+    variations:
+      - si: dans la restauration
+        alors: 3.62
+      - sinon: 4.85
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
+
+- espace: contrat salarié . avantages en nature . nourriture
+  nom: repas par mois
+  période: mois
+  question: >
+    Combien de repas par mois sont payés par l'employeur ?
+  par défaut: 21
+  format: nombre
+  suggestions:
+    1 par jour: 21
+    2 par jour: 42
+
+- espace: contrat salarié . avantages en nature . nourriture
+  nom: dans la restauration
+  par défaut: non
+  question: Est-ce pour un salarié travaillant dans un hôtel, café, restaurant et assimilés ?
+
+# - espace: contrat salarié . avantages en nature
+#   nom: montant
+#   titre: Avantages en nature (montant)
+#   description: >
+#     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+
+#     Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de : [10% x (850€ + (30€ x 12 mois)) ] / 12 mois, soit 10,08€
+
+#   période: flexible
+
+#   format: euros
+#   par défaut: 0
 
 - espace: contrat salarié
   nom: indemnités salarié
@@ -972,6 +1111,20 @@
   formule:
     somme:
       - indemnité kilométrique vélo
+      - prime d'impatriation
+
+- espace: contrat salarié
+  nom: prime d'impatriation
+  description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
+  applicable si: régime des impatriés
+  période: flexible
+  format: euros
+  formule:
+    multiplication:
+      assiette: rémunération . net imposable
+      taux: 30%
+  références:
+    Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
 
 - espace: contrat salarié . salaire
   nom: net
@@ -1502,6 +1655,12 @@
   question: S'agit-il d'une association à but non lucratif ?
   par défaut: non
 
+- espace: entreprise
+  nom: établissement bancaire
+  description: L'entreprise est un établissement bancaire, financier ou d'assurance. Elle est non assujettie à la TVA.
+  question: S'agit-il d'un établissement bancaire, financier, d'assurance ?
+  par défaut: non
+
 - nom: établissement
   description: |
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
@@ -1780,6 +1939,7 @@
 
 - espace: contrat salarié
   nom: retraite complémentaire
+  non applicable si: régime des impatriés
   cotisation:
     branche: retraite
     type de retraite: complémentaire
@@ -1817,6 +1977,7 @@
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    régime des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
 
 - espace: contrat salarié
   nom: AGS
@@ -2381,22 +2542,31 @@
       - entreprise . ratio alternants < 1%
 
 - espace: contrat salarié . taxe sur les salaires
-  nom: assiette
+  nom: assiette de base
   période: flexible
   formule:
     somme:
       - cotisations . assiette
       - prévoyance obligatoire cadre
       - complémentaire santé [employeur]
-
   références:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
+
+- espace: contrat salarié . taxe sur les salaires
+  nom: assiette
+  période: flexible
+  formule:
+    allègement:
+      assiette: assiette de base
+      abattement: prime d'impatriation
+  références:
+    bofig: http://bofip.impots.gouv.fr/bofip/6691-PGP.html
+    impots.gouv.fr: https://www.impots.gouv.fr/portail/international-particulier/le-regime-des-impatries
 
 - espace: contrat salarié . taxe sur les salaires
   nom: barème
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
-
   période: année
   formule:
     barème:
@@ -2416,12 +2586,30 @@
         assiette: 2300
       valeur attendue: 2627.97
 
+- espace: contrat salarié
+  nom: régime des impatriés
+  question: Le salarié bénéficie-t-il du régime des impatriés ?
+  par défaut: non
+  description: |
+    Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
+
+    Vous devez en outre ne pas avoir été fiscalement domicilié en France les cinq années civiles précédant celle de la prise de fonctions et fixer en France votre domicile fiscal dès votre prise de fonctions.
+
+    Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
+
+  note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
+  références:
+    impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
+    bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
+    Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
+
 - espace: entreprise . taxe sur les salaires
   nom: barème
   période: flexible
   formule: contrat salarié . taxe sur les salaires . barème * effectif
 
 - espace: entreprise . taxe sur les salaires
+  applicable si: entreprise . association non lucrative
   nom: abattement associations
   période: année
   formule: 20507
@@ -2438,17 +2626,15 @@
         taux: 75%
       abattement: abattement associations
 
-  note: |
-    Attention : l'abattement n'est valable que pour les organismes à but non lucratif.
-    Il n'est pas conditionné ici car on réserve pour l'instant la taxe sur les salaires aux associations 1901
-
 - espace: contrat salarié
   nom: taxe sur les salaires
   taxe:
     dû par: employeur
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
-  applicable si: entreprise . association non lucrative
-
+  applicable si:
+    une de ces conditions:
+      - entreprise . association non lucrative
+      - entreprise . établissement bancaire
   période: flexible
   formule: entreprise . taxe sur les salaires / entreprise . effectif
 
@@ -2498,6 +2684,7 @@
     collecteur: URSSAF
     destinataire: CNAV
     # CTP: 100
+  non applicable si: régime des impatriés
   description: Cotisation au régime de retraite de base des salariés.
   période: flexible
   formule:
@@ -2529,6 +2716,17 @@
       situation:
         cotisations . assiette: 8000
       valeur attendue: 705.75
+  contrôles:
+    - si: régime des impatriés
+      niveau: information
+      message: |
+        Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
+        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieilllesse
+        - De ne pas avoir été affiliés, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+        [Voir plus](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
+
+  références:
+    Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
 
 - espace: contrat salarié
   nom: forfait social
@@ -2568,6 +2766,9 @@
 - nom: impôt
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
+  titre: impôt sur le revenu
+  période: flexible
+  formule: impôt sur le revenu après décote
 
 - espace: impôt
   nom: revenu abattu
@@ -2646,12 +2847,23 @@
       valeur attendue: 7162
 
 - espace: impôt
+  nom: revenu fiscal de référence
+  période: année
+  description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
+  formule:
+    somme:
+      - revenu abattu
+      - contrat salarié . prime d'impatriation
+  références:
+    Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
+
+- espace: impôt
   nom: CEHR
   période: année
   note: Attention, ce barème concerne les foyers célibataires. Pour les couples, le barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils sont individuellement deux fois moins riches.
   formule:
     barème:
-      assiette: revenu abattu
+      assiette: revenu fiscal de référence
       tranches:
         - en-dessous de: 250000
           taux: 0%
@@ -2663,9 +2875,7 @@
   références:
     contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
-
-
-
+    Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 - nom: impôt sur le revenu à payer
   espace: impôt
@@ -2675,29 +2885,26 @@
   formule: impôt sur le revenu après décote + CEHR
 
 - nom: revenu net de cotisations
+  résumé: Avant impôt
   période: flexible
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   formule:
     somme:
       - contrat salarié . salaire . net
       - indépendant . revenu net de cotisations
       - auto entrepreneur . revenu net de cotisations
 
-- nom: revenu net d'impôt
-  titre: Revenu net de cotisations et d'impôt
-  période: flexible
-  formule: revenu net de cotisations - impôt . impôt sur le revenu à payer
-
-- nom: revenu net
-  titre: Revenu net
+- nom: revenu net après impôt
   format: euros
-  résumé: Après impôt sur le revenu
+  résumé: Versé sur le compte bancaire
   période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
-    Il s'agit du revenu net de cotisations et d'impôts.
+    Il s'agit du revenu net de charges, cotisations et d'impôts.
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
-  formule: revenu net d'impôt - entreprise . charges non déductibles
-
+  formule: revenu net de cotisations - impôt
 
 - espace: entreprise
   nom: année d'activité
@@ -2729,22 +2936,14 @@
 
 - espace: entreprise
   nom: chiffre d'affaires
-  titre: chiffre d'affaires H.T.
-  question: Quel est votre chiffre d'affaires envisagé (H.T.) ?
+  titre: chiffre d'affaire (H.T.)
+  question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
   période: flexible
   format: euros
-  formule:
-    variations:
-      - si: auto entrepreneur
-        alors:
-          inversion numérique:
-            avec:
-              - revenu net
-      - sinon: rémunération totale du dirigeant + charges
+  formule: rémunération totale du dirigeant + charges
 
 - espace: entreprise
-
   nom: chiffre d'affaires de société
   période: flexible
   formule:
@@ -2795,25 +2994,38 @@
 
 - espace: entreprise
   nom: rémunération totale du dirigeant
+  question: Quel montant pensez-vous dégager pour votre rémunération ?
+  résumé: Dépensé par l'entreprise
   format: euros
-  description: C'est la rémunération "super-brute" du dirigeant, qui inclut toutes les cotisations sociales à payer. C'est aussi la valeur monétaire du travail du dirigeant.
+  description:
+    C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+
+    On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.
   période: flexible
   formule:
-    somme:
-      - contrat salarié . rémunération . total
-      - indépendant . revenu total du dirigeant
-      - auto entrepreneur . base des cotisations
-
+    variations:
+      - si: indépendant
+        alors: revenu net de cotisations + indépendant . cotisations et contributions
+      - si: auto entrepreneur
+        alors:
+          inversion numérique:
+            avec:
+              - auto entrepreneur . revenu net de cotisations
+              - revenu net après impôt
+              - entreprise . chiffre d'affaires
+      - si: contrat salarié . assimilé salarié
+        alors: contrat salarié . rémunération . total
 
 - espace: entreprise
   nom: charges
   résumé: Toutes les dépenses nécessaires à l'entreprise
-  question: Quelles sont les charges H.T. de l'entreprise (hors rémunération dirigeant) ?
+  question: Quelles sont les charges de l'entreprise ?
   description: |
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto entrepreneur, elles ne sont pas déductibles : l'entrepreneur les paie avec son salaire personnel net de cotisation et de revenu.
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto entrepreneur, elles ne sont pas déductibles du chiffre d'affaire encaissé.
 
-    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe.
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto entrepreneurs en franchise de TVA)
 
     Par exemple, les charges peuvent être :
 
@@ -2830,14 +3042,6 @@
   période: flexible
   par défaut: 0
   format: euros
-
-- espace: entreprise
-  nom: charges non déductibles
-  description: |
-    Pour l'auto-entreprise, [les charges](/documentation/entreprise/charges) ne sont pas déductibles. Par exemple, un auto-entrepreneur qui achète un ordinateur pour les besoins de sa société, le fera avec son revenu net. Il aura donc payé des cotisations sociales et l'impôt sur le revenu sur son CA avant de pouvoir l'utiliser pour s'acheter ce bien.
-  applicable si: auto entrepreneur
-  formule: charges
-  période: flexible
 
 - espace: indépendant . cotisations et contributions
   nom: réduction ACRE
@@ -2865,26 +3069,30 @@
   nom: revenu net de cotisations
   formule: revenu professionnel - cotisations et contributions . CSG et CRDS [non déductible]
   période: flexible
+  résumé: Avant impôt
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  format: euros
 
 - espace: indépendant
   nom: revenu professionnel
-  résumé: Après cotisations et charges
-  question: Quel est votre revenu professionnel ?
-  période: flexible
-  format: euros
+  titre: revenu professionnel (net imposable)
   description: |
+    C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations et de l'impôt pour les indépendants.
 
-    C'est le revenu net de cotisations du travailleur indépendant.
-
-  Attention, **notre calcul est fait au régime de croisière**:
-    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment touché.
+    Attention, **notre calcul est fait au régime de croisière**:
+    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment perçu.
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
+
+  période: flexible
+  format: euros
   formule:
     inversion numérique:
       avec:
-        - revenu total du dirigeant
-        - revenu net
+        - indépendant . revenu net de cotisations
+        - entreprise . rémunération totale du dirigeant
+        - revenu net après impôt
         - entreprise . chiffre d'affaires
 
 - espace: entreprise
@@ -3108,7 +3316,7 @@
   formule:
     somme:
       - cotisations à payer
-      - CSG et CRDS [déductible]
+      - CSG et CRDS
       - formation professionnelle
   format: euros
   période: flexible
@@ -3433,25 +3641,6 @@
         1.1: 0%
         1.4: 3.1%
 
-- espace: indépendant
-  nom: revenu total du dirigeant
-  question: Quel est le revenu total du dirigeant ?
-  résumé: Dépensé par l'entreprise
-  format: euros
-  période: flexible
-  formule:
-    somme:
-      - revenu professionnel
-      - cotisations et contributions
-
-- espace: indépendant
-  nom: impôt et contributions non déductibles
-  période: flexible
-  formule:
-    somme:
-      - impôt . impôt sur le revenu à payer
-      - cotisations et contributions . CSG et CRDS [non déductible]
-
 - nom: auto entrepreneur
   icônes: 🚶
   par défaut: non
@@ -3485,15 +3674,17 @@
           toutes ces conditions:
             - entreprise . catégorie d'activité != 'libérale'
             - une de ces conditions:
-              - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
-              - entreprise . catégorie d'activité . restauration ou hébergement
+                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000
       - sinon: 70000
 
 - espace: auto entrepreneur
   nom: revenu net de cotisations
-  titre: Revenu net auto-entrepreneur
-  formule: base des cotisations - cotisations et contributions
+  résumé: Avant impôt
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  formule: entreprise . rémunération totale du dirigeant - cotisations et contributions
   période: flexible
   format: euros
 
@@ -3508,7 +3699,6 @@
   références:
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
   période: flexible
-
 
 - espace: auto entrepreneur . cotisations et contributions
   nom: taxe pour frais de chambre
@@ -3610,8 +3800,6 @@
                 - entreprise . catégorie d'activité = 'artisanale'
             alors: 3.50%
 
-
-
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux de cotisation
   description: |
@@ -3631,7 +3819,6 @@
   description: |
     Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appellait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
   par défaut: non
-
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE
@@ -3697,6 +3884,7 @@
 
 - espace: auto entrepreneur . impôt
   nom: revenu abattu
+  titre: revenu abattu auto-entrepreneur
   période: flexible
   formule: base des cotisations - abattement
 - nom: protection sociale
@@ -3755,11 +3943,13 @@
   titre: pension de retraite de base
   format: euros
   période: flexible
+  non applicable si: contrat salarié . régime des impatriés
   formule:
     multiplication:
       plafond: plafond sécurité sociale temps plein
       taux: taux de la pension
       assiette: revenu moyen
+  note: Les impatriés bénéficient d'une exonération de cotisation vieillesse. En contrepartie, ils n'acquièrent aucun droit pendant la durée d'exonération.
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F21552
 
@@ -3783,11 +3973,10 @@
   formule:
     le minimum de:
       - somme:
-        - trimestres salarié
-        - trimestres indépendant
-        - trimestres auto entrepreneur
+          - trimestres salarié
+          - trimestres indépendant
+          - trimestres auto entrepreneur
       - 4
-
 
 - nom: trimestres salarié
   période: aucune
@@ -3822,22 +4011,21 @@
             assiette: revenu moyen [annuel]
             multiplicateur: SMIC horaire
             tranches:
-            - en-dessous de: 150
-              montant: 0
-            - de: 150
-              à: 300
-              montant: 1
-            - de: 300
-              à: 450
-              montant: 2
-            - de: 450
-              à: 600
-              montant: 3
-            - au-dessus de: 600
-              montant: 4
+              - en-dessous de: 150
+                montant: 0
+              - de: 150
+                à: 300
+                montant: 1
+              - de: 300
+                à: 450
+                montant: 2
+              - de: 450
+                à: 600
+                montant: 3
+              - au-dessus de: 600
+                montant: 4
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
-
 
 - nom: trimestres auto entrepreneur
   applicable si: auto entrepreneur
@@ -3852,60 +4040,59 @@
           barème linéaire:
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
-            - en-dessous de: 2880
-              montant: 0
-            - de: 2880
-              à: 5062
-              montant: 1
-            - de: 5062
-              à: 7266
-              montant: 2
-            - de: 7266
-              à: 9675
-              montant: 3
-            - au-dessus de: 9675
-              montant: 4
+              - en-dessous de: 2880
+                montant: 0
+              - de: 2880
+                à: 5062
+                montant: 1
+              - de: 5062
+                à: 7266
+                montant: 2
+              - de: 7266
+                à: 9675
+                montant: 3
+              - au-dessus de: 9675
+                montant: 4
       - si:
           une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors:
-         barème linéaire:
+          barème linéaire:
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
-            - en-dessous de: 4137
-              montant: 0
-            - de: 4137
-              à: 7286
-              montant: 1
-            - de: 7286
-              à: 10426
-              montant: 2
-            - de: 10426
-              à: 20740
-              montant: 3
-            - au-dessus de: 20740
-              montant: 4
+              - en-dessous de: 4137
+                montant: 0
+              - de: 4137
+                à: 7286
+                montant: 1
+              - de: 7286
+                à: 10426
+                montant: 2
+              - de: 10426
+                à: 20740
+                montant: 3
+              - au-dessus de: 20740
+                montant: 4
       - sinon:
           barème linéaire:
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
-            - en-dessous de: 2412
-              montant: 0
-            - de: 2412
-              à: 4239
-              montant: 1
-            - de: 4239
-              à: 6071
-              montant: 2
-            - de: 6071
-              à: 12030
-              montant: 3
-            - au-dessus de: 12030
-              montant: 4
+              - en-dessous de: 2412
+                montant: 0
+              - de: 2412
+                à: 4239
+                montant: 1
+              - de: 4239
+                à: 6071
+                montant: 2
+              - de: 6071
+                à: 12030
+                montant: 3
+              - au-dessus de: 12030
+                montant: 4
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
-
 
 - espace: protection sociale
   nom: revenu moyen
@@ -3915,7 +4102,7 @@
   période: année
   formule:
     le maximum de:
-      - indépendant . revenu net de cotisations
+      - indépendant . revenu professionnel
       - auto entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut
 
@@ -3988,8 +4175,8 @@
     multiplication:
       assiette:
         somme:
-        - indépendant . cotisations et contributions . cotisations . retraite complémentaire
-        - auto entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+          - indépendant . cotisations et contributions . cotisations . retraite complémentaire
+          - auto entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
       facteur: 1 / prix d'achat du point
 
 - espace: protection sociale . retraite . complémentaire sécurité des indépendants
@@ -4048,7 +4235,7 @@
       - si: revenu moyen [annuel] < 3919.20
         alors: 0
       - sinon:
-          le minimum de :
+          le minimum de:
             - multiplication:
                 assiette: revenu moyen [annuel]
                 facteur: 1 / 730
@@ -4062,13 +4249,13 @@
   période: aucune
   format: euros
   formule:
-    le maximum de :
+    le maximum de:
       - 21
-      - le minimum de :
-        - multiplication:
-            assiette: revenu moyen [annuel]
-            facteur: 1 / 730
-        - 55.51
+      - le minimum de:
+          - multiplication:
+              assiette: revenu moyen [annuel]
+              facteur: 1 / 730
+          - 55.51
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
@@ -4076,8 +4263,7 @@
   nom: salarié
   période: aucune
   format: euros
-  notes:
-    Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestrielle, puis on le divise par 91.25, conformément à la fiche service-public.fr
+  notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestrielle, puis on le divise par 91.25, conformément à la fiche service-public.fr
   applicable si: contrat salarié
   formule:
     multiplication:
@@ -4087,7 +4273,6 @@
       plafond: 1.8 * contrat salarié . SMIC temps plein
   reférences:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F3053
-
 
 - nom: assurance chômage
   espace: protection sociale
@@ -4165,7 +4350,6 @@
       - 202.78
       # TODO
       # - 0.834% * plafond sécurité sociale temps plein [annuel]
-
 
   références:
     ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp

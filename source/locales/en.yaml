@@ -597,7 +597,6 @@ newsletter:
     description: |
       Subscribe to our monthly newsletter to receive <2>official advice on starting a business</2> and access new features in advance.
 S'inscrire: Register
-simulationWarning: This is an estimate based on <2>purely theoretical data</2> on turnover, charges and the single tax base without children, excluding any other income, which <5>cannot be the responsibility of the social security bodies concerned with regard to the actual declarations and calculations.</5>
 
 Renseigner mon entreprise: Find my company
 Simulations personnalisées: Customized simulations
@@ -609,11 +608,11 @@ Comparer les trois régimes: Compare the three schemes
 simulateurs:
   inversionFail: The amount entered is too small or results in an impossible situation, try another one
   warning:
-    titre: Tool under development
-    plus: (more info)
-    line1: the turnover deducted from expenses goes to 100% in the director's remuneration
-    line2: income tax is calculated for a single person without children and without other income.
-    line3: the figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
+    titre: Before starting...
+    plus: Read explanations
+    impôt: Income tax is calculated for a single person without children and without other income.
+    urssaf: The figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
+    auto-entrepreneur: Self-employed entrepreneurs cannot deduct their expenses from their turnover. Therefore, all costs related to the business must be deducted on a net basis to obtain the actual income received.
   précision:
     défaut: 'Refine the simulation by answering the following questions:'
     faible: Low accuracy
@@ -730,9 +729,9 @@ comparaisonRégimes:
     <0> Optional health and pension policies deductible</0>
     <1> Yes <1>(under certain conditions)</1></1>
     <2> Yes <1>("Madelin" Law)</1></2>
-  revenuNetApresImpots: |
+  revenuNetApresImpot: |
     <0>Net income after taxes</0>
-  revenuNetAvantImpots: |
+  revenuNetAvantImpot: |
     <0>Net contribution income<1>(before income tax)</1></0>
   retraiteEstimation:
     legend: |

@@ -22,13 +22,11 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 			variableHasFormula = variable.formule != null,
 			variableHasCond =
 				variable['applicable si'] != null ||
-				variable['non applicable si'] != null,
+				variable['non applicable si'] != null ||
+				findParentDependency(parsedRules, variable),
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
-				situationValue == null &&
-				(variableHasCond ||
-					variableHasFormula ||
-					findParentDependency(parsedRules, variable))
+				situationValue == null && (variableHasCond || variableHasFormula)
 
 		//		if (dottedName.includes('jeune va')) debugger
 
@@ -68,12 +66,9 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 
 			// SITUATION 4.2 : La condition est connue et fausse
 			if (explanation.isApplicable === false) return cacheAndNode(false, {})
+
 			// SITUATION 4.3 : La condition n'est pas connue
-			if (explanation.isApplicable == null)
-				return cacheAndNode(null, {
-					...explanation.missingVariables,
-					...(variable.question ? { [dottedName]: variableScore } : {})
-				})
+			return cacheAndNode(null, explanation.missingVariables)
 		}
 	}
 

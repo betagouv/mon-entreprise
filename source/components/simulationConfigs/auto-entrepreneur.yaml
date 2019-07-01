@@ -1,14 +1,17 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - entreprise . charges
   - auto entrepreneur . cotisations et contributions
-  - impôt . impôt sur le revenu à payer
-  - revenu net
+  - auto entrepreneur . revenu net de cotisations
+  - impôt
+  - revenu net après impôt
 
-questions à l'affiche:
-  Type d'activité: entreprise . catégorie d'activité
-  ACRE: entreprise . année d'activité
-  Charges: entreprise . charges
+questions:
+  à l'affiche:
+    Type d'activité: entreprise . catégorie d'activité
+    ACRE: entreprise . année d'activité
+    Charges: entreprise . charges
+  liste noire:
+    - entreprise . charges
 
 situation:
   auto entrepreneur: oui

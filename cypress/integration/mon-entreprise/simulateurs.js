@@ -31,13 +31,16 @@ describe('Simulateurs test', function() {
 				: 'Self-employed income simulator'
 		)
 	})
-	it('should give an estimation for the self-employed income', function() {
+	it('donne une estimation pour le revenu des indépendants', function() {
 		cy.visit(
 			fr ? '/sécurité-sociale/indépendant' : '/social-security/self-employed'
 		)
-		salaryInput(fr ? "Chiffre d'affaires" : 'Turnover').type(100000, {
-			force: true
-		})
+		salaryInput(fr ? 'Rémunération totale' : 'Director total income').type(
+			100000,
+			{
+				force: true
+			}
+		)
 		cy.contains(fr ? 'Cotisations et contributions' : 'All contributions')
 		cy.contains(fr ? "Type d'activité" : 'Activity type').click()
 		cy.contains(

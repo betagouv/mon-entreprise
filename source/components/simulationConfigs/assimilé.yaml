@@ -1,9 +1,4 @@
 objectifs:
-  - icône: 🏢
-    nom: Mon entreprise
-    objectifs:
-      - entreprise . chiffre d'affaires
-      - entreprise . charges
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
@@ -12,16 +7,28 @@ objectifs:
       - contrat salarié . salaire . net
       - impôt . neutre
       - contrat salarié . salaire . net après impôt
+  # - icône: 🏢
+  #   nom: Mon entreprise
+  #   objectifs:
+  #     - entreprise . charges
+  #     - entreprise . chiffre d'affaires
 
 questions:
-  blacklist:
-    - contrat salarié . avantages en nature . montant
+  à l'affiche:
+    ACRE: entreprise . année d'activité
+    Commune: établissement . localisation
+    Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active
+    Effectif: entreprise . effectif
+  liste noire:
+    - contrat salarié . avantages en nature
+    - entreprise . charges
     - entreprise . rémunération du dirigeant
-
-questions à l'affiche:
-  ACRE: entreprise . année d'activité
-  Commune: établissement . localisation
-  Charges: entreprise . charges
+    - entreprise . association non lucrative
+    - contrat salarié . régime des impatriés
+  non prioritaires:
+    - entreprise . établissement bancaire
+    - contrat salarié . complémentaire santé . part employeur
+    - contrat salarié . régime des impatriés
 
 situation:
   auto entrepreneur: non
