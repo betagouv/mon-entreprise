@@ -3956,8 +3956,7 @@
   titre: pension de retraite de base
   format: euros
   période: flexible
-  non applicable si:
-    - régime des impatriés
+  non applicable si: contrat salarié . régime des impatriés
   formule:
     multiplication:
       plafond: plafond sécurité sociale temps plein
