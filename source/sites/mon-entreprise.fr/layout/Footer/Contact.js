@@ -1,5 +1,5 @@
+import ContactImage from 'Images/contact.png'
 import React from 'react'
-import ContactImage from '../images/contact.png'
 const Contact = () => (
 	<div className="centeredMessage">
 		<p>

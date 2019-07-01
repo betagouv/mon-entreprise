@@ -3,6 +3,10 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import urssafLogo from 'Images/urssaf.svg'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import apecLogo from './images/apec.png'
+import cciLogo from './images/cci.png'
+import minTraLogo from './images/min-tra.jpg'
+import poleEmploiLogo from './images/pole-emploi.png'
 import './Integration.css'
 
 export default function Integration() {
@@ -63,34 +67,28 @@ export default function Integration() {
 								</article>
 								<article>
 									<a href="http://les-aides.fr/embauche">
-										<img src={require('./images/cci.png')} alt="Les-aides.fr" />
+										<img src={cciLogo} alt="Les-aides.fr" />
 										<h2>CCI de France</h2>
 									</a>
 								</article>
 
 								<article>
 									<a href="https://recruteurs.apec.fr/Recrutement/Pratique-RH/Tous-les-dossiers-Recrutement/Diagnostiquer/Vous-envisagez-de-recruter-calculez-le-cout-de-cette-embauche">
-										<img src={require('./images/apec.png')} alt="" />
+										<img src={apecLogo} alt="" />
 										<h2>APEC</h2>
 									</a>
 								</article>
 
 								<article>
 									<a href="http://travail-emploi.gouv.fr/emploi/accompagnement-des-tpe-pme/tpe-pme/article/le-simulateur-du-cout-d-embauche">
-										<img
-											src={require('./images/min-tra.jpg')}
-											alt="Ministère du travail"
-										/>
+										<img src={minTraLogo} alt="Ministère du travail" />
 										<h2>Ministère du travail</h2>
 									</a>
 								</article>
 
 								<article>
 									<a href="https://entreprise.pole-emploi.fr/cout-salarie/">
-										<img
-											src={require('./images/pole-emploi.png')}
-											alt="Pôle Emploi"
-										/>
+										<img src={poleEmploiLogo} alt="Pôle Emploi" />
 										<h2>Pôle Emploi</h2>
 									</a>
 								</article>

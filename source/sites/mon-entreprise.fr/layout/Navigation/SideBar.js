@@ -2,11 +2,11 @@
 
 import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
-import backSvg from 'Images/back.svg'
-import mobileMenuSvg from 'Images/mobile-menu.svg'
 import { compose } from 'ramda'
 import React from 'react'
 import { withRouter } from 'react-router'
+import backSvg from './back.svg'
+import mobileMenuSvg from './mobile-menu.svg'
 import './SideBar.css'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'

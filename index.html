@@ -46,6 +46,7 @@
 			content="<%= htmlWebpackPlugin.options.description %>"
 			data-react-helmet="true"
 		/>
+		<meta property="og:type" content="website" />
 		<meta
 			property="og:title"
 			content="<%= htmlWebpackPlugin.options.title %>"
@@ -54,10 +55,8 @@
 			property="og:description"
 			content="<%= htmlWebpackPlugin.options.description %>"
 		/>
-		<meta
-			property="og:image"
-			content="https://mon-entreprise.fr/static-images/logo.png"
-		/>
+
+		<meta property="og:image" content="<%= htmlWebpackPlugin.options.logo %>" />
 		<!-- data-helmet pour que React Helmet puisse écraser ce meta par défaut -->
 		<link
 			href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600|Montserrat:400,600"
