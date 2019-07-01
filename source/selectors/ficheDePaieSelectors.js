@@ -90,7 +90,7 @@ export const mergeCotisations: (
 
 const variableToCotisation = (variable: VariableWithCotisation): Cotisation => {
 	return mergeCotisations(BLANK_COTISATION, {
-		...variable,
+		...variable.explanation,
 		branche: brancheSelector(variable),
 		montant: {
 			[duParSelector(variable) === 'salarié'

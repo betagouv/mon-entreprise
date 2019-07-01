@@ -9,12 +9,14 @@ import { connect } from 'react-redux'
 import { analysisToCotisationsSelector } from 'Selectors/ficheDePaieSelectors'
 import {
 	getRuleFromAnalysis,
-	analysisWithDefaultsSelector
+	analysisWithDefaultsSelector,
+	parsedRulesSelector
 } from 'Selectors/analyseSelectors'
 import Value from 'Components/Value'
 import './PaySlip.css'
 import RuleLink from './RuleLink'
 import { Line, SalaireNetSection, SalaireBrutSection } from './PaySlipSections'
+import { findRuleByDottedName } from 'Engine/rules'
 
 type ConnectedPropTypes = ?FicheDePaie & {
 	colours: { lightestColour: string }
@@ -24,19 +26,30 @@ export default compose(
 	withColours,
 	connect(state => ({
 		cotisations: analysisToCotisationsSelector(state),
-		analysis: analysisWithDefaultsSelector(state)
+		analysis: analysisWithDefaultsSelector(state),
+		parsedRules: parsedRulesSelector(state)
 	})),
 	withLanguage
 )(
 	({
 		colours: { lightestColour },
 		cotisations,
-		analysis
+		analysis,
+		parsedRules
 	}: ConnectedPropTypes) => {
 		let getRule = getRuleFromAnalysis(analysis)
 
 		return (
-			<div className="payslip__container">
+			<div
+				className="payslip__container"
+				css={`
+					.value {
+						display: flex;
+						align-items: flex-end;
+						justify-content: flex-end;
+						padding-right: 0.2em;
+					}
+				`}>
 				<div className="payslip__hourSection">
 					<Trans i18nKey="payslip.heures">Heures travaillées par mois : </Trans>
 					<span className="montant">
@@ -58,27 +71,34 @@ export default compose(
 					<h4>
 						<Trans>Part salariale</Trans>
 					</h4>
-					{cotisations.map(([branche, cotisationList]) => (
-						<Fragment key={branche}>
-							<h5 className="payslip__cotisationTitle">
-								<RuleLink {...branche} />
-							</h5>
-							{cotisationList.map(cotisation => (
-								<Fragment key={cotisation.dottedName}>
-									<RuleLink
-										style={{ backgroundColor: lightestColour }}
-										{...cotisation}
-									/>
-									<Value style={{ backgroundColor: lightestColour }}>
-										{cotisation.montant.partPatronale}
-									</Value>
-									<Value style={{ backgroundColor: lightestColour }}>
-										{cotisation.montant.partSalariale}
-									</Value>
-								</Fragment>
-							))}
-						</Fragment>
-					))}
+					{cotisations.map(([brancheDottedName, cotisationList]) => {
+						let branche = findRuleByDottedName(parsedRules, brancheDottedName)
+						return (
+							<Fragment key={branche.dottedName}>
+								<h5 className="payslip__cotisationTitle">
+									<RuleLink {...branche} />
+								</h5>
+								{cotisationList.map(cotisation => (
+									<Fragment key={cotisation.dottedName}>
+										<RuleLink
+											style={{ backgroundColor: lightestColour }}
+											{...cotisation}
+										/>
+										<Value
+											nilValueSymbol="—"
+											style={{ backgroundColor: lightestColour }}>
+											{cotisation.montant.partPatronale}
+										</Value>
+										<Value
+											nilValueSymbol="—"
+											style={{ backgroundColor: lightestColour }}>
+											{cotisation.montant.partSalariale}
+										</Value>
+									</Fragment>
+								))}
+							</Fragment>
+						)
+					})}
 					<h5 className="payslip__cotisationTitle">
 						<Trans>Réductions</Trans>
 					</h5>
@@ -86,22 +106,24 @@ export default compose(
 						negative
 						rule={getRule('contrat salarié . réductions de cotisations')}
 					/>
-					<Value>{0}</Value>
+					<Value nilValueSymbol="—">{0}</Value>
 					{/* Total cotisation */}
 					<div className="payslip__total">
 						<Trans>Total des retenues</Trans>
 					</div>
 					<Value
+						nilValueSymbol="—"
 						{...getRule('contrat salarié . cotisations . patronales à payer')}
 						className="payslip__total"
 					/>
 					<Value
+						nilValueSymbol="—"
 						{...getRule('contrat salarié . cotisations . salariales')}
 						className="payslip__total"
 					/>
 					{/* Salaire chargé */}
 					<Line rule={getRule('contrat salarié . rémunération . total')} />
-					<Value>{0}</Value>
+					<Value nilValueSymbol="—">{0}</Value>
 				</div>
 				{/* Section salaire net */}
 				<SalaireNetSection getRule={getRule} />

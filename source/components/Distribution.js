@@ -96,7 +96,7 @@ class Distribution extends Component<Props, State> {
 															<RuleLink {...branche} />
 														</span>
 														<br />
-														{branche.shortDescription}
+														<small>{branche.summary}</small>
 													</p>
 													<ChartItemBar
 														{...{ styles, colour, montant, total }}
@@ -148,15 +148,13 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 					: { minWidth: styles.flex * 500 + 'px' })
 			}}
 		/>
-		<div>
-			<Value
-				css={`
-					font-weight: bold;
-					margin-left: 1em;
-				`}
-				numFractionDigits={0}
-				unit="€"
-				style={{ color: colour }}>
+		<div
+			css={`
+				font-weight: bold;
+				margin-left: 1em;
+				color: var(--textColourOnWhite);
+			`}>
+			<Value numFractionDigits={0} unit="€">
 				{montant}
 			</Value>
 		</div>

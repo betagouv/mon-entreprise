@@ -98,7 +98,7 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 		),
 
 		name: partialReference,
-		category: 'variable',
+		category: 'reference',
 		fragments,
 		dottedName,
 		unit: parsedRule.unit

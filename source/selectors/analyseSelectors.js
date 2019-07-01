@@ -79,7 +79,7 @@ export let targetNamesSelector = state => {
 	const secondaryTargetNames =
 		state.simulation?.config['objectifs secondaires'] || []
 
-	return [targetNames, secondaryTargetNames]
+	return [...targetNames, ...secondaryTargetNames]
 }
 
 export let situationSelector = createDeepEqualSelector(
@@ -319,8 +319,13 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}
 	let rule =
-		analysis.cache[dottedName] ||
+		analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
 		analysis.targets.find(propEq('dottedName', dottedName))
+
+	if (dottedName.includes('avanta'))
+		console.log(
+			analysis.cache[dottedName] // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
+		)
 
 	if (!rule) {
 		throw new Error(

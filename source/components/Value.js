@@ -1,6 +1,7 @@
 import React from 'react'
 import { memoizeWith } from 'ramda'
 import { serialiseUnit } from 'Engine/units'
+import withLanguage from './utils/withLanguage'
 
 const NumberFormat = memoizeWith(
 	(...args) => JSON.stringify(args),
@@ -29,44 +30,51 @@ let style = `
 		font-family: 'Courier New', Courier, monospace;
 `
 
-export default ({
-	nodeValue: value,
-	unit,
-	nilValueSymbol,
-	numFractionDigits,
-	children,
-	negative
-}) => {
-	/* Either an entire rule object is passed, or just the right attributes and the value as a JSX  child*/
-	let nodeValue = value === undefined ? children : value
-	let valueType = typeof nodeValue,
-		unitText =
-			unit !== null && (typeof unit == 'object' ? serialiseUnit(unit) : unit),
-		formattedValue =
-			valueType === 'object' ? (
-				JSON.stringify(nodeValue)
-			) : valueType === 'boolean' ? (
-				booleanTranslations[nodeValue]
-			) : unit === '€' ? (
-				numberFormatter('currency', numFractionDigits)(nodeValue)
-			) : (
-				<>
-					{numberFormatter('decimal', numFractionDigits)(nodeValue)}
-					&nbsp;
-					{unitText}
-				</>
+export default withLanguage(
+	({
+		nodeValue: value,
+		unit,
+		nilValueSymbol,
+		numFractionDigits,
+		children,
+		negative,
+		language
+	}) => {
+		/* Either an entire rule object is passed, or just the right attributes and the value as a JSX  child*/
+		let nodeValue = value === undefined ? children : value
+		let valueType = typeof nodeValue,
+			unitText =
+				unit !== null && (typeof unit == 'object' ? serialiseUnit(unit) : unit),
+			formattedValue =
+				valueType === 'object' ? (
+					JSON.stringify(nodeValue)
+				) : valueType === 'boolean' ? (
+					booleanTranslations[nodeValue]
+				) : unit === '€' ? (
+					numberFormatter('currency', numFractionDigits)(nodeValue, language)
+				) : (
+					<>
+						{numberFormatter('decimal', numFractionDigits)(nodeValue)}
+						&nbsp;
+						{unitText}
+					</>
+				)
+
+		if (
+			(nilValueSymbol !== undefined && nodeValue === 0) ||
+			Number.isNaN(nodeValue)
+		)
+			return (
+				<span css={style} className="value">
+					-
+				</span>
 			)
 
-	if (
-		(nilValueSymbol !== undefined && nodeValue === 0) ||
-		Number.isNaN(nodeValue)
-	)
-		return <span css={style}>-</span>
-
-	return nodeValue == undefined ? null : (
-		<span css={style}>
-			{negative ? '-' : ''}
-			{formattedValue}
-		</span>
-	)
-}
+		return nodeValue == undefined ? null : (
+			<span css={style} className="value">
+				{negative ? '-' : ''}
+				{formattedValue}
+			</span>
+		)
+	}
+)

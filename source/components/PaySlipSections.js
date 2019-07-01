@@ -10,30 +10,17 @@ export let SalaireBrutSection = ({ getRule }) => {
 		salaireDeBase = getRule('contrat salarié . salaire . brut de base'),
 		salaireBrut = getRule('contrat salarié . salaire . brut')
 
+	console.log('sdb', salaireDeBase)
+
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
 				<T>Salaire</T>
 			</h4>
 			{(avantagesEnNature.nodeValue !== 0 ||
-				indemnitésSalarié.nodeValue !== 0) && (
-				<>
-					<RuleLink {...salaireDeBase} />
-					<Value {...salaireDeBase} />
-				</>
-			)}
-			{avantagesEnNature.nodeValue !== 0 && (
-				<>
-					<RuleLink {...avantagesEnNature} />
-					<Value {...avantagesEnNature} />
-				</>
-			)}
-			{indemnitésSalarié.nodeValue !== 0 && (
-				<>
-					<RuleLink {...indemnitésSalarié} />
-					<Value {...indemnitésSalarié} />
-				</>
-			)}
+				indemnitésSalarié.nodeValue !== 0) && <Line rule={salaireDeBase} />}
+			{avantagesEnNature.nodeValue !== 0 && <Line rule={avantagesEnNature} />}
+			{indemnitésSalarié.nodeValue !== 0 && <Line rule={indemnitésSalarié} />}
 			<RuleLink className="payslip__brut" {...salaireBrut} />
 			<Value className="payslip__brut" {...salaireBrut} />
 		</div>

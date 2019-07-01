@@ -27,7 +27,7 @@ import {
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import InfoBulle from 'Ui/InfoBulle'
-import Montant from 'Ui/Montant'
+import Value from 'Components/Value'
 import './SchemeComparaison.css'
 
 import type { RègleAvecMontant, RègleAvecValeur } from 'Types/RegleTypes'
@@ -603,9 +603,9 @@ const RuleValueLink = withSitePaths(
 		<Link onClick={onClick} to={sitePaths.documentation.index + '/' + lien}>
 			{montant != undefined && <AnimatedTargetValue value={montant} />}
 			{valeur != undefined && (
-				<Montant numFractionDigit={0} type="decimal">
+				<Value numFractionDigit={0} unité="€">
 					{valeur}
-				</Montant>
+				</Value>
 			)}
 			{appendText && <> {appendText}</>}
 		</Link>

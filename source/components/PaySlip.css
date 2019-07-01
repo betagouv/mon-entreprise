@@ -49,14 +49,6 @@
 	grid-column-end: span 3;
 }
 
-.payslip__salarySection .montant,
-.payslip__cotisationsSection .montant {
-	display: flex;
-	align-items: flex-end;
-	justify-content: flex-end;
-	padding-right: 0.2em;
-}
-
 .payslip__salaireNet {
 	font-weight: bold;
 }
