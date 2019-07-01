@@ -64,7 +64,7 @@ describe('library', function() {
 		)
 
 		let [revenuDisponible, dividendes] = Syso.evaluate(
-			['revenu net', 'dividendes . net'],
+			['revenu net après impôt', 'dividendes . net'],
 			{
 				'contrat salarié . salaire . net après impôt': salaireNetAprèsImpôt,
 				'chiffre affaires': CA

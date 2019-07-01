@@ -2,7 +2,8 @@ titre: |
   Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise après paiement des cotisations et de l'impôt sur le revenu.
 
 objectifs:
-  - revenu net
+  - revenu net après impôt
+  - revenu net de cotisations
   - protection sociale . retraite
   - protection sociale . retraite . trimestres validés par an
   - protection sociale . santé . indemnités journalières
@@ -10,7 +11,7 @@ objectifs:
 
 questions:
   uniquement:
-    - entreprise . chiffre d'affaires
+    - entreprise . rémunération totale du dirigeant
     - entreprise . charges
     - entreprise . catégorie d'activité
     - entreprise . catégorie d'activité . service ou vente
