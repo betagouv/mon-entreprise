@@ -21,6 +21,7 @@ questions:
     - entreprise . association non lucrative
     - contrat salarié . statut JEI
     - contrat salarié . complémentaire santé . part employeur
+  liste noire:
     - contrat salarié . régime des impatriés
 
 situation:
