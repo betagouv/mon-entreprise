@@ -2,7 +2,8 @@ import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import React from 'react'
+import React, { useRef } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
@@ -29,6 +30,7 @@ export default compose(
 		showDistributionFirst: !state.conversationSteps.foldedSteps.length
 	}))
 )(function SalaryExplanation({ showDistributionFirst }) {
+	const distributionRef = useRef({})
 	return (
 		<ErrorBoundary>
 			<Animate.fromTop key={showDistributionFirst}>
@@ -39,8 +41,22 @@ export default compose(
 					</>
 				) : (
 					<>
+						<div css="text-align: center">
+							<button
+								className="ui__ small simple button"
+								onClick={() =>
+									distributionRef.current.scrollIntoView({
+										behavior: 'smooth',
+										block: 'start'
+									})
+								}>
+								{emoji('📊')} Voir la répartition des cotisations
+							</button>
+						</div>
 						<PaySlipSection />
-						<DistributionSection />
+						<div ref={distributionRef}>
+							<DistributionSection />
+						</div>
 					</>
 				)}
 				<br />
