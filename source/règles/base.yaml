@@ -2026,6 +2026,7 @@
 
 - espace: contrat salarié
   nom: APEC
+  non applicable si: assimilé salarié
   cotisation:
     branche: assurance chômage
     type de retraite: complémentaire
