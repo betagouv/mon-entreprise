@@ -88,7 +88,7 @@ export default compose(
 			controls: analysisWithDefaultsSelector(state)?.controls,
 			inversionFail: analysisWithDefaultsSelector(state)?.cache?.inversionFail,
 			key: props.language,
-			hiddenControls: state.hiddenControls
+			hiddenControls: state.simulation.hiddenControls
 		}),
 		{
 			goToQuestion,

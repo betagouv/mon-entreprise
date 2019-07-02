@@ -8,20 +8,18 @@ objectifs:
       - indépendant . revenu professionnel
       - impôt
       - revenu net après impôt
-  # - icône: 🏢
-  #   nom: Mon entreprise
-  #   objectifs:
-  #     - entreprise . charges
-  #     - entreprise . chiffre d'affaires
+  - icône: 🏢
+    nom: Mon entreprise
+    objectifs:
+      - entreprise . charges
+      - entreprise . chiffre d'affaires minimum
 
 questions:
   à l'affiche:
     Type d'activité: entreprise . catégorie d'activité
     ACRE: entreprise . année d'activité
-    Charges: entreprise . charges
   liste noire:
     - entreprise . charges
-    - entreprise . rémunération du dirigeant
 
 situation:
   indépendant: oui

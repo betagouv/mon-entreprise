@@ -668,7 +668,7 @@
 
     Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans les cas suivants:
     - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
-    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Ind��terminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
 - espace: contrat salarié
   nom: assimilé salarié
@@ -758,6 +758,7 @@
         - salaire . net après impôt
         - équivalent temps plein
         - entreprise . chiffre d'affaires
+        - entreprise . chiffre d'affaires minimum
         - entreprise . rémunération totale du dirigeant
 
   références:
@@ -1093,7 +1094,14 @@
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   période: flexible
-  formule: base - exonérations
+  formule:
+    allègement:
+      assiette: base
+      abattement:
+        somme:
+          - indemnité kilométrique vélo
+          - prime d'impatriation
+
 
 - espace: contrat salarié . rémunération . net imposable
   nom: base
@@ -1105,13 +1113,6 @@
       - CSG [non déductible]
       - CRDS
 
-- espace: contrat salarié . rémunération . net imposable
-  nom: exonérations
-  période: flexible
-  formule:
-    somme:
-      - indemnité kilométrique vélo
-      - prime d'impatriation
 
 - espace: contrat salarié
   nom: prime d'impatriation
@@ -1121,7 +1122,7 @@
   format: euros
   formule:
     multiplication:
-      assiette: rémunération . net imposable
+      assiette: rémunération . net imposable . base
       taux: 30%
   références:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
@@ -2025,6 +2026,7 @@
 
 - espace: contrat salarié
   nom: APEC
+  non applicable si: assimilé salarié
   cotisation:
     branche: assurance chômage
     type de retraite: complémentaire
@@ -2598,6 +2600,15 @@
     Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
 
   note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
+  contrôles:
+    - si: contrat salarié . régime des impatriés
+      niveau: information
+      message: |
+        Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
+        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
+        - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+
+        [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   références:
     impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
     bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
@@ -2707,6 +2718,7 @@
             - nom: plafonnée
               plafond: plafond sécurité sociale
               taux: 8.55%
+
   exemples:
     - nom: SMIC
       situation:
@@ -2716,14 +2728,6 @@
       situation:
         cotisations . assiette: 8000
       valeur attendue: 705.75
-  contrôles:
-    - si: régime des impatriés
-      niveau: information
-      message: |
-        Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
-        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieilllesse
-        - De ne pas avoir été affiliés, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
-        [Voir plus](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
 
   références:
     Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
@@ -2784,7 +2788,7 @@
 - espace: impôt
   nom: revenu abattu par défaut
   période: flexible
-  description: Dans le cas général, l'impôt est calculé apr��s l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   formule:
     allègement:
       assiette:
@@ -2936,12 +2940,20 @@
 
 - espace: entreprise
   nom: chiffre d'affaires
-  titre: chiffre d'affaire (H.T.)
+  titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
   période: flexible
   format: euros
   formule: rémunération totale du dirigeant + charges
+
+- espace: entreprise
+  nom: chiffre d'affaires minimum
+  description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
+  période: flexible
+  question: Quel est votre chiffre d'affaires minimum envisagé ?
+  format: euros
+  formule: chiffre d'affaires
 
 - espace: entreprise
   nom: chiffre d'affaires de société
@@ -3014,11 +3026,13 @@
               - auto entrepreneur . revenu net de cotisations
               - revenu net après impôt
               - entreprise . chiffre d'affaires
+              - entreprise . chiffre d'affaires minimum
       - si: contrat salarié . assimilé salarié
         alors: contrat salarié . rémunération . total
 
 - espace: entreprise
   nom: charges
+  titre: charges de fonctionnement
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
   description: |
@@ -3094,6 +3108,7 @@
         - entreprise . rémunération totale du dirigeant
         - revenu net après impôt
         - entreprise . chiffre d'affaires
+        - entreprise . chiffre d'affaires minimum
 
 - espace: entreprise
   nom: catégorie d'activité
@@ -3646,7 +3661,7 @@
   par défaut: non
   question: L'activité est-elle exercée en auto-entreprise ?
   description: |
-    L'auto-entreprise est une entreprise individuelle simplifi��e. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
+    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
 - espace: auto entrepreneur
   nom: base des cotisations

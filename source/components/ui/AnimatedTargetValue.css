@@ -13,7 +13,7 @@
 	right: 0;
 	top: -20px;
 	opacity: 0;
-	animation: evaporate 1.6s ease-out;
+	animation: evaporate 2.5s ease-out;
 	transform: scaleY(0.1);
 }
 @keyframes evaporate {

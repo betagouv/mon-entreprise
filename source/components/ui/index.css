@@ -5,9 +5,9 @@
 @import './reset.css';
 
 :root {
-	--colour: yellow;
-	--darkColour: green;
-	--textColour: red;
+	--colour: rgb(41, 117, 209);
+	--darkColour: rgb(24, 69, 123);
+	--textColour: rgb(24, 69, 123);
 }
 html:fullscreen {
 	background-color: white;

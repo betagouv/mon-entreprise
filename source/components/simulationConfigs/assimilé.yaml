@@ -7,11 +7,11 @@ objectifs:
       - contrat salarié . salaire . net
       - impôt . neutre
       - contrat salarié . salaire . net après impôt
-  # - icône: 🏢
-  #   nom: Mon entreprise
-  #   objectifs:
-  #     - entreprise . charges
-  #     - entreprise . chiffre d'affaires
+  - icône: 🏢
+    nom: Mon entreprise
+    objectifs:
+      - entreprise . charges
+      - entreprise . chiffre d'affaires minimum
 
 questions:
   à l'affiche:
