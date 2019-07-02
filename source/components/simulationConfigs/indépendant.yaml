@@ -8,11 +8,11 @@ objectifs:
       - indépendant . revenu professionnel
       - impôt
       - revenu net après impôt
-  # - icône: 🏢
-  #   nom: Mon entreprise
-  #   objectifs:
-  #     - entreprise . charges
-  #     - entreprise . chiffre d'affaires
+  - icône: 🏢
+    nom: Mon entreprise
+    objectifs:
+      - entreprise . charges
+      - entreprise . chiffre d'affaires
 
 questions:
   à l'affiche:
