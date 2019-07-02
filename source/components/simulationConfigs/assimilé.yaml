@@ -41,9 +41,7 @@ questions:
 situation:
   auto entrepreneur: non
   indépendant: non
-  contrat salarié: oui
   contrat salarié . assimilé salarié: oui
-  contrat salarié . CDD: non
   contrat salarié . temps partiel: non
   contrat salarié . ATMP . taux réduit: oui
   entreprise . association non lucrative: non
