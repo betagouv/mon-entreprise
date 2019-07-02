@@ -758,6 +758,7 @@
         - salaire . net après impôt
         - équivalent temps plein
         - entreprise . chiffre d'affaires
+        - entreprise . chiffre d'affaires minimum
         - entreprise . rémunération totale du dirigeant
 
   références:
@@ -2936,12 +2937,21 @@
 
 - espace: entreprise
   nom: chiffre d'affaires
-  titre: chiffre d'affaire (H.T.)
+  titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
   période: flexible
   format: euros
   formule: rémunération totale du dirigeant + charges
+
+- espace: entreprise
+  nom: chiffre d'affaires minimum
+  résumé: Seuil à atteindre pour être rentable
+  description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
+  période: flexible
+  question: Quel est votre chiffre d'affaires minimum envisagé ?
+  format: euros
+  formule: chiffre d'affaires
 
 - espace: entreprise
   nom: chiffre d'affaires de société
@@ -3014,11 +3024,13 @@
               - auto entrepreneur . revenu net de cotisations
               - revenu net après impôt
               - entreprise . chiffre d'affaires
+              - entreprise . chiffre d'affaires minimum
       - si: contrat salarié . assimilé salarié
         alors: contrat salarié . rémunération . total
 
 - espace: entreprise
   nom: charges
+  titre: charges de fonctionnement
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
   description: |
@@ -3094,6 +3106,7 @@
         - entreprise . rémunération totale du dirigeant
         - revenu net après impôt
         - entreprise . chiffre d'affaires
+        - entreprise . chiffre d'affaires minimum
 
 - espace: entreprise
   nom: catégorie d'activité
