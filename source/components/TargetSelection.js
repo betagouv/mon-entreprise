@@ -37,7 +37,9 @@ export default compose(
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
 			activeInput: state.activeTargetInput,
-			objectifs: state.simulation?.config.objectifs || []
+			objectifs: state.simulation?.config.objectifs || [],
+			secondaryObjectives:
+				state.simulation?.config['objectifs secondaires'] || []
 		}),
 		dispatch => ({
 			setFormValue: (field, name) =>
@@ -52,9 +54,11 @@ export default compose(
 			initialRender: true
 		}
 		getTargets() {
-			let { objectifs, analysis } = this.props
+			let { secondaryObjectives, analysis } = this.props
 			if (!analysis) return []
-			return objectifs.map(o => analysis.targets.find(t => t.dottedName === o))
+			return analysis.targets.filter(
+				t => !secondaryObjectives.includes(t.dottedName)
+			)
 		}
 		componentDidMount() {
 			const props = this.props
