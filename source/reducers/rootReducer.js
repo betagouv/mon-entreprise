@@ -98,16 +98,18 @@ function conversationSteps(
 	}
 	return state
 }
-function hiddenControls(state = [], { type, id }) {
-	if (type === 'HIDE_CONTROL') {
-		return [...state, id]
-	} else return state
-}
 
-function simulation(state = null, { type, config, url }) {
+function simulation(state = null, { type, config, url, id }) {
 	if (type === 'SET_SIMULATION') {
-		return { config, url }
-	} else return state
+		return { config, url, hiddenControls: [] }
+	}
+	if (type === 'HIDE_CONTROL' && state !== null) {
+		return { ...state, hiddenControls: [...state.hiddenControls, id] }
+	}
+	if (type === 'RESET_SIMULATION' && state !== null) {
+		return { ...state, hiddenControls: [] }
+	}
+	return state
 }
 
 const addAnswerToSituation = (dottedName, value, state) => {
@@ -156,7 +158,6 @@ export default reduceReducers(
 		previousSimulation: defaultTo(null),
 		currentExample,
 		situationBranch,
-		hiddenControls,
 		activeTargetInput,
 		inFranceApp: inFranceAppReducer
 	})
