@@ -2599,6 +2599,15 @@
     Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
 
   note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
+  contrôles:
+    - si: contrat salarié . régime des impatriés
+      niveau: information
+      message: |
+        Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
+        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieilllesse
+        - De ne pas avoir été affiliés, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+
+        [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   références:
     impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
     bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
@@ -2708,6 +2717,7 @@
             - nom: plafonnée
               plafond: plafond sécurité sociale
               taux: 8.55%
+
   exemples:
     - nom: SMIC
       situation:
@@ -2717,14 +2727,6 @@
       situation:
         cotisations . assiette: 8000
       valeur attendue: 705.75
-  contrôles:
-    - si: régime des impatriés
-      niveau: information
-      message: |
-        Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
-        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieilllesse
-        - De ne pas avoir été affiliés, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
-        [Voir plus](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
 
   références:
     Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
