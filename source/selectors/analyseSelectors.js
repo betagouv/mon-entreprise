@@ -322,11 +322,6 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 		analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
 		analysis.targets.find(propEq('dottedName', dottedName))
 
-	if (dottedName.includes('avanta'))
-		console.log(
-			analysis.cache[dottedName] // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
-		)
-
 	if (!rule) {
 		throw new Error(
 			`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`
