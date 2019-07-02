@@ -749,12 +749,13 @@
 
 - espace: contrat salarié
   nom: gratification exonerée d'impôt
+  description: |
+    Les salaires versés aux apprentis ainsi que les gratifications de stages sont exonérés d'impôt sur le revenu dans la limite d'un SMIC annuel.
+  références:
+    Article 81 bis du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029236245&cidTexte=LEGITEXT000006069577
   applicable si: stage
   période: flexible
-  formule:
-    le minimum de:
-      - contrat salarié . rémunération . net imposable . base
-      - SMIC
+  formule: SMIC
 
 - espace: contrat salarié
   nom: CDD
@@ -781,7 +782,10 @@
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   période: flexible
-  formule: rémunération . brut - indemnité kilométrique vélo - stage . gratification minimale
+  formule:
+    allègement:
+      assiette: rémunération . brut
+      abattement: indemnité kilométrique vélo + stage . gratification minimale
 
 - espace: contrat salarié . rémunération
   nom: brut de base
