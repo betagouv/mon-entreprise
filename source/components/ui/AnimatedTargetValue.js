@@ -13,32 +13,15 @@ type State = {
 }
 export default withLanguage(
 	class AnimatedTargetValue extends Component<Props, State> {
-		previousValue: ?number = null
-		timeoutId: ?TimeoutID = null
 		state = { difference: 0 }
 
 		componentDidUpdate(prevProps) {
 			if (prevProps.value === this.props.value) {
 				return
 			}
-			if (this.timeoutId) {
-				clearTimeout(this.timeoutId)
-			}
-			this.previousValue =
-				this.previousValue === null ? prevProps.value : this.previousValue
-
-			this.timeoutId = setTimeout(() => {
-				this.setState({
-					difference: (this.props.value || 0) - (this.previousValue || 0)
-				})
-				this.previousValue = null
-				this.timeoutId = null
-			}, 250)
-		}
-		componentWillUnmount() {
-			if (this.timeoutId) {
-				clearTimeout(this.timeoutId)
-			}
+			this.setState({
+				difference: (this.props.value || 0) - (prevProps.value || 0)
+			})
 		}
 		format = value => {
 			return value == null
@@ -51,17 +34,14 @@ export default withLanguage(
 				  }).format(value)
 		}
 		render() {
-			const formattedValue = this.format(this.props.value)
 			const formattedDifference = this.format(this.state.difference)
 			const shouldDisplayDifference =
 				Math.abs(this.state.difference) > 1 &&
-				formattedDifference !== formattedValue &&
 				this.props.value != null &&
-				this.state.difference < 0.5 * this.props.value &&
 				!Number.isNaN(this.props.value)
 			return (
 				<>
-					<span key={this.props.value} className="Rule-value">
+					<span className="Rule-value">
 						{shouldDisplayDifference && (
 							<Evaporate
 								style={{
