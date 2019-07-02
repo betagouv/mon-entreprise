@@ -668,7 +668,7 @@
 
     Le contrat n'est en fait pas nécessaire dans le droit français, il est possible d'employer quelqu'un sans contrat par exemple dans les cas suivants:
     - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
-    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Ind��terminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
+    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
 - espace: contrat salarié
   nom: assimilé salarié
@@ -2604,8 +2604,8 @@
       niveau: information
       message: |
         Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
-        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieilllesse
-        - De ne pas avoir été affiliés, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
+        - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
 
         [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   références:
@@ -2787,7 +2787,7 @@
 - espace: impôt
   nom: revenu abattu par défaut
   période: flexible
-  description: Dans le cas général, l'impôt est calculé apr��s l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   formule:
     allègement:
       assiette:
@@ -2948,7 +2948,6 @@
 
 - espace: entreprise
   nom: chiffre d'affaires minimum
-  résumé: Seuil à atteindre pour être rentable
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
   période: flexible
   question: Quel est votre chiffre d'affaires minimum envisagé ?
@@ -3661,7 +3660,7 @@
   par défaut: non
   question: L'activité est-elle exercée en auto-entreprise ?
   description: |
-    L'auto-entreprise est une entreprise individuelle simplifi��e. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
+    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
 - espace: auto entrepreneur
   nom: base des cotisations

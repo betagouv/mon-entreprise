@@ -33,11 +33,15 @@ export default withLanguage(function SimulateurWarning({
 						<li>
 							<T k="simulateurs.warning.impôt">
 								L'impôt sur le revenu est calculé pour un célibataire sans
-								enfant et sans autre revenu.
-							</T>{' '}
-							{simulateur == 'auto-entreprise' && language === 'fr' && (
-								<span>L'impôt libératoire n'est pas encore intégré.</span>
-							)}
+								enfant et sans autre revenu.{' '}
+								{simulateur == 'auto-entreprise' && language === 'fr' && (
+									<>
+										L'abattement forfaitaire pour les auto entrepreneur est
+										intégré. En revanche, l'option pour le versement libératoire
+										de l'impôt sur le revenu n'est pas encore présente.
+									</>
+								)}
+							</T>
 						</li>
 						<li>
 							<T k="simulateurs.warning.urssaf">
