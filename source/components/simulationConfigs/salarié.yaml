@@ -11,6 +11,7 @@ objectifs secondaires:
 
 questions:
   à l'affiche:
+    Contrat: contrat salarié
     Cadre: contrat salarié . statut cadre . choix statut cadre
     Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
     CDD: contrat salarié . CDD
@@ -30,7 +31,6 @@ questions:
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés
 situation:
-  contrat salarié: oui
   contrat salarié . assimilé salarié: non
   indépendant: non
   auto entrepreneur: non
