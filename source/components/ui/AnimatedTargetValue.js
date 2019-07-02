@@ -87,7 +87,7 @@ class Evaporate extends PureComponent<{ children: string, style: Object }> {
 		return (
 			<ReactCSSTransitionGroup
 				transitionName="evaporate"
-				transitionEnterTimeout={1600}
+				transitionEnterTimeout={2500}
 				transitionLeaveTimeout={1}>
 				<span
 					key={this.props.children}
