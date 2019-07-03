@@ -21,14 +21,13 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
 	branchAnalyseSelector,
-	analysisWithDefaultsSelector,
-	getRuleFromAnalysis
+	analysisWithDefaultsSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
 import Value from 'Components/Value'
 import './SchemeComparaison.css'
-import { encodeRuleName } from 'Engine/rules.js'
+import { encodeRuleName, getRuleFromAnalysis } from 'Engine/rules.js'
 
 type OwnProps = {
 	hideAutoEntrepreneur?: boolean,

@@ -245,3 +245,20 @@ export let findParentDependency = (rules, rule) => {
 		)
 	)(parentDependencies)
 }
+
+export let getRuleFromAnalysis = analysis => dottedName => {
+	if (!analysis) {
+		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
+	}
+	let rule =
+		analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
+		analysis.targets.find(propEq('dottedName', dottedName))
+
+	if (!rule) {
+		throw new Error(
+			`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`
+		)
+	}
+
+	return rule
+}

@@ -11,10 +11,9 @@ import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import { softCatch } from '../../utils'
 import './AnswerList.css'
-import {
-	analysisWithDefaultsSelector,
-	getRuleFromAnalysis
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+
+import { getRuleFromAnalysis } from 'Engine/rules'
 
 const AnswerList = ({
 	answers,

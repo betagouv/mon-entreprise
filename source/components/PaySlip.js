@@ -8,7 +8,6 @@ import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { analysisToCotisationsSelector } from 'Selectors/ficheDePaieSelectors'
 import {
-	getRuleFromAnalysis,
 	analysisWithDefaultsSelector,
 	parsedRulesSelector
 } from 'Selectors/analyseSelectors'
@@ -16,7 +15,7 @@ import Value from 'Components/Value'
 import './PaySlip.css'
 import RuleLink from './RuleLink'
 import { Line, SalaireNetSection, SalaireBrutSection } from './PaySlipSections'
-import { findRuleByDottedName } from 'Engine/rules'
+import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
 
 type ConnectedPropTypes = ?FicheDePaie & {
 	colours: { lightestColour: string }

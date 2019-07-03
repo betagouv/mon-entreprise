@@ -23,10 +23,8 @@ import {
 	mergeCotisations,
 	analysisToCotisations
 } from './ficheDePaieSelectors'
-import {
-	getRuleFromAnalysis,
-	analysisWithDefaultsSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { getRuleFromAnalysis } from 'Engine/rules'
 
 import type {
 	Cotisation,
@@ -34,7 +32,6 @@ import type {
 	Branche,
 	Répartition
 } from 'Types/ResultViewTypes'
-import type { RègleAvecMontant, Règle } from 'Types/RegleTypes'
 
 const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
 	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant
@@ -84,7 +81,7 @@ const brancheConcernéeParLaRéduction = [
 	'famille'
 ].map(branche => 'protection sociale . ' + branche)
 function applyReduction(
-	réduction: RègleAvecMontant,
+	réduction,
 	répartitionMap: { [Branche]: MontantPartagé }
 ): { [Branche]: MontantPartagé } {
 	const totalPatronal = pipe(
