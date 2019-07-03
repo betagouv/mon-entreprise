@@ -10,8 +10,6 @@ export let SalaireBrutSection = ({ getRule }) => {
 		salaireDeBase = getRule('contrat salarié . salaire . brut de base'),
 		salaireBrut = getRule('contrat salarié . salaire . brut')
 
-	console.log('sdb', salaireDeBase)
-
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">

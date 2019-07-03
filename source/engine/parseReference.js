@@ -45,11 +45,11 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 			? evaluateNode(cache, situation, parsedRules, variable)
 			: variable
 
-		let cacheAndNode = (nodeValue, missingVariables) => {
+		let cacheAndNode = (nodeValue, missingVariables, customExplanation) => {
 			cache[cacheName] = rewriteNode(
 				node,
 				nodeValue,
-				explanation,
+				customExplanation || explanation,
 				missingVariables
 			)
 			return cache[cacheName]
@@ -57,7 +57,13 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 		const variableScore = variable.defaultValue ? 1 : 2
 
 		// SITUATION 1 : La variable est directement renseignée
-		if (situationValue != null) return cacheAndNode(situationValue, {})
+		if (situationValue != null) {
+			return cacheAndNode(
+				situationValue,
+				{},
+				{ ...explanation, nodeValue: situationValue }
+			)
+		}
 
 		// SITUATION 2 : La variable est calculée
 		if (situationValue == null && variableHasFormula)

@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, T } from 'Components'
 import { memoizeWith } from 'ramda'
 import { serialiseUnit } from 'Engine/units'
 import withLanguage from './utils/withLanguage'
@@ -16,17 +16,14 @@ let numberFormatter = (style, numFractionDigits = 2) => (value, language) =>
 		minimumFractionDigits: numFractionDigits
 	}).format(value)
 
-let booleanTranslations = { true: '✅', false: '✘' }
+// let booleanTranslations = { true: '✅', false: '❌' }
 
-/* Or maybe this :
 let booleanTranslations = {
 	fr: { true: 'Oui', false: 'Non' },
 	en: { true: 'Yes', false: 'No' }
 }
-*/
 
 let style = `
-		border: 2px dashed chartreuse
 		font-family: 'Courier New', Courier, monospace;
 
 `
@@ -47,10 +44,12 @@ export default withLanguage(
 			unitText =
 				unit !== null && (typeof unit == 'object' ? serialiseUnit(unit) : unit),
 			formattedValue =
-				valueType === 'object' ? (
-					JSON.stringify(nodeValue)
+				valueType === 'string' ? (
+					<T>{nodeValue}</T>
+				) : valueType === 'object' ? (
+					nodeValue.nom
 				) : valueType === 'boolean' ? (
-					booleanTranslations[nodeValue]
+					booleanTranslations[language][nodeValue]
 				) : unit === '€' ? (
 					numberFormatter('currency', numFractionDigits)(nodeValue, language)
 				) : (

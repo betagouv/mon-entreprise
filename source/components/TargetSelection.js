@@ -100,7 +100,7 @@ export default compose(
 				<div id="targetSelection">
 					{(typeof objectifs[0] === 'string' ? [{ objectifs }] : objectifs).map(
 						({ icône, objectifs: groupTargets, nom }, index) => (
-							<React.Fragment key={nom}>
+							<React.Fragment key={nom || '0'}>
 								<div style={{ display: 'flex', alignItems: 'end' }}>
 									<div style={{ flex: 1 }}>
 										{nom && (

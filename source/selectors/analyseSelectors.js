@@ -305,6 +305,8 @@ export let nextStepsSelector = createSelector(
 		if (notPriority) {
 			nextSteps = sortBy(question => notPriority.indexOf(question), nextSteps)
 		}
+
+		console.log(nextSteps)
 		return nextSteps
 	}
 )
@@ -313,4 +315,3 @@ export let currentQuestionSelector = createSelector(
 	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
 	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )
-
