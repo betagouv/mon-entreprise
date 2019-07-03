@@ -2,8 +2,8 @@ période:
   titre.en: period
   titre.fr: période
 contrat salarié:
-  question.en: Employed activity ?
-  question.fr: Activité salariée ?
+  question.en: What kind of contract is it?
+  question.fr: De quel type de contrat s'agit-il ?
   description.en: >
     The contract that binds a company (via its establishment) to an individual,
     who is then his employee.
@@ -27,8 +27,54 @@ contrat salarié:
     certains cas. C’est le cas du Contrat de travail à Durée Indéterminée,
     considéré comme la forme normale et générale de la relation de travail entre
     un salarié et un employeur (Art. L1221-2 du Code du travail).
+  contrôles.en:
+    - si: CDD
+      niveau: information
+      message: >
+        Remember that a fixed-term contract (CDD) must always correspond to a
+        temporary need of the company.
+
+        [Code du travail - Article
+        L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+    - si: stage
+      niveau: avertissement
+      message: >
+        An internship agreement **is not an employment contract**, and cannot
+        not be concluded to perform a regular task corresponding to a permanent
+        position, or a temporary increase of the company's activity. [Education
+        Code - Article
+        L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+
+        In addition, a company with less than 20 employees may not accommodate
+        more than **3** trainees**, and no more than **15% of the number of
+        employees** for companies with more than 20 employees.
+  contrôles.fr:
+    - si: CDD
+      niveau: information
+      message: >
+        Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
+        temporaire de l'entreprise.
+
+        [Code du travail - Article
+        L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+    - si: stage
+      niveau: avertissement
+      message: >
+        Une convention de stage **n'est pas un contrat de travail**, et ne peut
+        pas être conclue pour réaliser une tâche régulière correspondant à un
+        poste de travail permanent, ou à un accroissement temporaire de
+        l'activité de l'entreprise. [Code de l'éducation - Article
+        L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+
+
+        Par ailleurs, une entreprise de moins de 20 salariés ne peut pas
+        accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de
+        l’effectif** pour les entreprises de plus de 20 salariés.
   titre.en: employment contract
   titre.fr: contrat salarié
+contrat salarié . CDI:
+  titre.en: CDI
+  titre.fr: CDI
 contrat salarié . indemnité kilométrique vélo:
   description.en: >-
     Employer's incitation to the use of bicycles for commuting. This financial
@@ -57,8 +103,7 @@ contrat salarié . indemnité kilométrique vélo . distance annuelle:
   titre.en: annual distance
   titre.fr: distance annuelle
 contrat salarié . indemnité kilométrique vélo . distance journalière:
-  description.en: >-
-    A low estimate of the distance an employee bikes to work.
+  description.en: A low estimate of the distance an employee bikes to work.
   description.fr: >-
     Une estimation basse de la distance parcourue à vélo par un salarié pour se
     rendre à son travail.
@@ -445,6 +490,9 @@ contrat salarié . CDD . congés non pris:
     contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4,
     donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la
     fin du contrat.
+  suggestions.en:
+    '3': 3
+    '10': 10
   suggestions.fr:
     '3': 3
     '10': 10
@@ -517,9 +565,28 @@ contrat salarié . assimilé salarié:
   question.fr: Le salarié est-il considéré comme "assimilé salarié" ?
   titre.en: Assimilated salaried
   titre.fr: assimilé salarié
+contrat salarié . stage:
+  description.en: >
+    An employer who employs an intern must pay a minimum bonus to the intern.
+    This bonus is partly exempt from social security contributions.
+  description.fr: >
+    Un employeur qui accueille un stagiaire doit lui verser une gratification
+    minimale. Celle-ci est en partie exonérée de cotisations sociales.
+  titre.en: internship
+  titre.fr: stage
+contrat salarié . stage . gratification minimale:
+  titre.en: minimum bonus
+  titre.fr: gratification minimale
+contrat salarié . stage . gratification exonérée d'impôt:
+  description.en: >
+    Les salaires versés aux apprentis ainsi que les gratifications de stages
+    sont exonérés d'impôt sur le revenu dans la limite d'un SMIC annuel.
+  description.fr: >
+    Les salaires versés aux apprentis ainsi que les gratifications de stages
+    sont exonérés d'impôt sur le revenu dans la limite d'un SMIC annuel.
+  titre.en: tax-exempt bonus
+  titre.fr: gratification exonérée d'impôt
 contrat salarié . CDD:
-  question.en: Is it a fixed-term contract (CDD) ?
-  question.fr: Est-ce un contrat à durée déterminée (CDD) ?
   description.en: The employment contract explicitly provides for an end date.
   description.fr: >
     Par défaut, faire travailler quelqu'un en France établit automatiquement un
@@ -528,21 +595,6 @@ contrat salarié . CDD:
     Certaines situations exceptionnelles permettent aux employeurs de prévoir
     une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date
     de fin.
-  contrôles.en:
-    - si: CDD
-      niveau: information
-      message: >
-        Remember that a fixed-term contract must always correspond to a
-        temporary need of the company.
-  contrôles.fr:
-    - si: CDD
-      niveau: information
-      message: >
-        Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
-        temporaire de l'entreprise.
-
-        [Code du travail - Article
-        L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
   titre.en: Fixed term (CDD)
   titre.fr: CDD
 contrat salarié . cotisations . assiette:
@@ -612,9 +664,18 @@ contrat salarié . rémunération . brut de base:
             rémunération . assiette de vérification du SMIC [mensuel] < SMIC
             [mensuel]
           - assimilé salarié != oui
+          - stage != oui
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
+    - si:
+        toutes ces conditions:
+          - stage
+          - 'brut de base [mensuel] < stage . gratification minimale [mensuel]'
+      niveau: avertissement
+      message: >
+        La rémunération du stage est inférieure à la [gratification
+        minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
     - si:
         toutes ces conditions:
           - 'brut de base [mensuel] > 10000'
@@ -638,15 +699,17 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
     SMIC: 1522
 contrat salarié . rémunération . heures supplémentaires . taux horaire:
   description.en: >-
-    The hourly rate used to calculate overtime compensation. It includes benefits in kind.
+    The hourly rate used to calculate overtime compensation. It includes
+    benefits in kind.
   description.fr: >-
     Le taux horaire utilisé pour calculer la rémunération liée au heures
     supplémentaires. Il intègre les avantages en nature.
   titre.en: hourly rate
   titre.fr: taux horaire
 contrat salarié . rémunération . assiette de vérification du SMIC:
-  description.en: |
-    This is the salary taken into account to verify that the minimum wage is reached.
+  description.en: >
+    This is the salary taken into account to verify that the minimum wage is
+    reached.
   description.fr: |
     C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
   titre.en: minimum wage verification base
@@ -663,7 +726,7 @@ contrat salarié . rémunération . brut:
 contrat salarié . rémunération . heures supplémentaires:
   titre.en: overtime compensation
   titre.fr: rémunération heures supplémentaires
-  description.en:
+  description.en: Overtime compensation
   description.fr: La rémunération relative aux heures supplémentaires
 contrat salarié . avantages sociaux:
   description.en: >-
@@ -849,7 +912,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.en: meal per month
   titre.fr: repas par mois
 entreprise . hôtel café restaurant:
-  question.en: Is the company a hotel, café, restaurant or similar?
+  question.en: 'Is the company a hotel, café, restaurant or similar?'
   question.fr: "Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilé ?"
   titre.en: hotel café restaurant
   titre.fr: hôtel café restaurant
@@ -923,8 +986,8 @@ contrat salarié . rémunération . net imposable:
 : titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires défiscalisées
 ? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut
-: titre.en:
-  titre.fr: gross cap
+: titre.en: '!!plafond brut'
+  titre.fr: plafond brut
 contrat salarié . rémunération . net imposable . base:
   titre.en: base
   titre.fr: base
@@ -990,26 +1053,41 @@ contrat salarié . rémunération . net après impôt:
 
     Pour une simulation plus complète, rendez-vous sur
     [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
-impôt . taux neutre . barème Guadeloupe Réunion Martinique:
-  titre.en: Guadeloupe/Reunion Island/Martinique scale
+? impôt . impôt sur le revenu au taux neutre . barème Guadeloupe Réunion Martinique
+: titre.en: '!!barème Guadeloupe Réunion Martinique'
   titre.fr: barème Guadeloupe Réunion Martinique
-impôt . taux neutre . barème Guyane Mayotte:
-  titre.en: Guyana/Mayotte scale
+impôt . impôt sur le revenu au taux neutre . barème Guyane Mayotte:
+  titre.en: '!!barème Guyane Mayotte'
   titre.fr: barème Guyane Mayotte
-
-impôt . taux neutre:
-  titre.en: neutral income tax
-  titre.fr: Impôt sur le revenu au taux neutre
-  description.en: >-
-    This is the scale to be applied to the monthly taxable salary to obtain the
-    tax to be paid monthly for employees who do not want to reveal their taxe
-    rate to their company (this rate may reveal, for example, significant wealth
-    income).
+impôt . impôt sur le revenu au taux neutre:
+  description.en: >
+    !!C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
+    l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
+    revenus du patrimoine importants).
   description.fr: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
     l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
     leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
+  titre.en: '!!impôt sur le revenu au taux neutre'
+  titre.fr: impôt sur le revenu au taux neutre
+impôt . taux personnalisé:
+  question.en: '!!Quel est votre taux de prélèvement à la source ?'
+  question.fr: Quel est votre taux de prélèvement à la source ?
+  description.en: >
+    !!Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur
+    :
+      - une fiche de paie
+      - un avis d'imposition
+      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+  description.fr: |
+    Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur :
+      - une fiche de paie
+      - un avis d'imposition
+      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+  titre.en: '!!taux personnalisé'
+  titre.fr: taux personnalisé
 contrat salarié . coût du travail:
   titre.en: labor cost
   titre.fr: coût du travail
@@ -1059,8 +1137,7 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   titre.en: reduction for overtime hours
   titre.fr: réduction heures supplémentaires
 ? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
-: description.en: >-
-    the effective rate of the employee's pension contributions
+: description.en: the effective rate of the employee's pension contributions
   description.fr: >-
     le taux effectif des cotisations d'assurance vieillesse à la charge du
     salarié
@@ -1122,6 +1199,9 @@ contrat salarié . aides employeur:
     Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   titre.en: deferred employer aids
   titre.fr: aides employeur
+contrat salarié . salaire:
+  titre.en: '!!salaire'
+  titre.fr: salaire
 entreprise:
   description.en: The contract binds a company and an employee
   description.fr: |
@@ -1158,17 +1238,22 @@ entreprise . effectif:
   titre.fr: effectif
 entreprise . ratio alternants:
   question.en: >-
-    What is the proportion of work-study contracts in the average workforce of the company?
+    What is the proportion of work-study contracts in the average workforce of
+    the company?
   question.fr: >-
     Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
     l'entreprise ?
   titre.en: work-study employees ratio
   titre.fr: Fraction d'alternants
   description.en: >
-    This fraction determines the additional contribution for learning for the companies concerned.
+    This fraction determines the additional contribution for learning for the
+    companies concerned.
   description.fr: >
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage
     pour les entreprises concernées.
+  suggestions.en:
+    1%: 0.01
+    5%: 0.05
   suggestions.fr:
     1%: 0.01
     5%: 0.05
@@ -1236,7 +1321,10 @@ entreprise . établissement bancaire:
   titre.fr: département
 contrat salarié . temps de travail:
   description.en: >-
-    In France, the legal basis for work is 35 hours/week. But a large number of existing provisions make it possible to vary this number. You can find them on the dedicated page [service-public.fr (french)](https://www.service-public.fr/particuliers/vosdroits/N458).
+    In France, the legal basis for work is 35 hours/week. But a large number of
+    existing provisions make it possible to vary this number. You can find them
+    on the dedicated page [service-public.fr
+    (french)](https://www.service-public.fr/particuliers/vosdroits/N458).
   description.fr: >-
     En France, la base légale du travail est de 35h/semaine. Mais un grand
     nombre de dispositions existantes permettent de faire varier ce nombre. Vous
@@ -1258,9 +1346,11 @@ contrat salarié . temps de travail . temps partiel:
   question.en: Is the contract part-time?
   question.fr: Le contrat est-il à temps partiel ?
   description.en: >
-    Two contracts at the same salary, one part-time and the other full-time, may give rise to different contribution amounts.
+    Two contracts at the same salary, one part-time and the other full-time, may
+    give rise to different contribution amounts.
 
-    For example, for capped contributions or exemptions depending on the minimum wage.
+    For example, for capped contributions or exemptions depending on the minimum
+    wage.
   description.fr: >
     Deux contrats au même salaire, l'un à temps partiel, l'autre à temps
     complet, peuvent donner lieu à des montants de cotisation différents.
@@ -1271,8 +1361,7 @@ contrat salarié . temps de travail . temps partiel:
   titre.en: part-time
   titre.fr: temps partiel
 contrat salarié . temps de travail . temps partiel . heures par semaine:
-  question.en: >-
-    What is the number of hours worked per week as part of part-time work?
+  question.en: What is the number of hours worked per week as part of part-time work?
   question.fr: >-
     Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
     partiel ?
@@ -1280,11 +1369,12 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
     - si: heures par semaine < 24
       niveau: avertissement
       message: >
-        The minimum number of hours per week is 24 and it is only possible to go lower in some cases. [More info](https://www.service-public.fr/particuliers/vosdroits/F32428).
+        The minimum number of hours per week is 24 and it is only possible to go
+        lower in some cases. [More
+        info](https://www.service-public.fr/particuliers/vosdroits/F32428).
     - si: heures par semaine >= 35
       niveau: avertissement
-      message: >-
-        Part-time work must be below the legal working time (35 hours)
+      message: Part-time work must be below the legal working time (35 hours)
   contrôles.fr:
     - si: heures par semaine < 24
       niveau: avertissement
@@ -1297,16 +1387,18 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
       message: >-
         Un temps partiel doit être en dessous de la durée de travail légale
         (35h)
-  titre.en: 'hours per week'
+  titre.en: hours per week
   titre.fr: heures par semaine
 contrat salarié . temps de travail . quotité de travail:
-  description.en: 'Working time as a proportion of legal full time.'
+  description.en: Working time as a proportion of legal full time.
   description.fr: Temps de travail en proportion du temps complet légal.
   titre.en: work share
   titre.fr: quotité de travail
 contrat salarié . temps de travail . heures supplémentaires:
   description.en: >-
-    Any hour of work performed, at the employer's request, beyond the legal 35-hour limit (or equivalent) is considered overtime. Overtime work entitles the employee to more favourable remuneration (higher hourly rate).
+    Any hour of work performed, at the employer's request, beyond the legal
+    35-hour limit (or equivalent) is considered overtime. Overtime work entitles
+    the employee to more favourable remuneration (higher hourly rate).
   description.fr: >-
     Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la
     durée légale de 35 heures (ou de la durée équivalente) est une heure
@@ -1314,8 +1406,7 @@ contrat salarié . temps de travail . heures supplémentaires:
     plus favorable (taux horaire majoré) au salarié.
   titre.en: Number of overtime hours
   titre.fr: Nombre d'heures supplémentaires
-  question.en: >-
-    How many overtime hours (not recovered in rest) are worked per month?
+  question.en: How many overtime hours (not recovered in rest) are worked per month?
   question.fr: >-
     Combien d'heures supplémentaires (non récupérées en repos) sont effectuées
     par mois ?
@@ -1327,7 +1418,6 @@ contrat salarié . temps de travail . heures supplémentaires:
     aucune: 0
     39h / semaine: 17.33
     42h / semaine: 30.33
-
   contrôles.en:
     - si:
         toutes ces conditions:
@@ -1359,14 +1449,17 @@ contrat salarié . temps de travail . heures supplémentaires:
         envoyez-nous un mail à contact@mon-entreprise.beta.gouv.fr
 contrat salarié . temps de travail . heures supplémentaires . majoration:
   description.en: >-
-    Overtime pay is subject to one or more increase rates, fixed by collective agreement or agreement of the company or establishment (or, failing that, by branch agreement or agreement). Each rate is at least set at 10%.
+    Overtime pay is subject to one or more increase rates, fixed by collective
+    agreement or agreement of the company or establishment (or, failing that, by
+    branch agreement or agreement). Each rate is at least set at 10%.
 
-    In the absence of an agreement or convention, the hourly increase rates are set at :
+    In the absence of an agreement or convention, the hourly increase rates are
+    set at :
 
-    - 25% for the first 8 hours of overtime worked in the same week (36th to 43rd hours),
+    - 25% for the first 8 hours of overtime worked in the same week (36th to
+    43rd hours),
 
     - 50% for the following hours.
-
   description.fr: >
     La rémunération des heures supplémentaires fait l'objet d'un ou plusieurs
     taux de majoration, fixés par convention ou accord collectif d'entreprise ou
@@ -1398,14 +1491,13 @@ contrat salarié . statut JEI:
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
     moins de leurs charges à de la Recherche et Développement de bénéficier de
     certaines exonérations.
-contrat salarié . exonération JEI:
-  description.en: >-
-    Exemption for the companies that obtained the JEI (young innovative company)
-    status.
+contrat salarié . statut JEI . exonération de cotisations:
+  titre.en: '!!Exonération JEI'
+  titre.fr: Exonération JEI
+  description.en: |
+    !!Exonération pour les jeunes entreprises innovantes (JEI).
   description.fr: |
     Exonération pour les jeunes entreprises innovantes (JEI).
-  titre.en: JEI exemption
-  titre.fr: exonération JEI
 contrat salarié . réduction générale:
   description.en: >-
     As part of the "liability and solidarity pact", the zero-contribution URSSAF
@@ -1526,7 +1618,7 @@ contrat salarié . complémentaire santé . part employeur:
     minimum
   question.en: What is the part of the complementary health insurance paid by the employer?
   question.fr: Quel est la part de la complémentaire santé payée par l'employeur ?
-
+  suggestions.en: '!![object Object]'
   suggestions.fr:
     50%: 0.5
     100%: 1
@@ -1896,6 +1988,93 @@ impôt:
     revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
   titre.en: income tax
   titre.fr: impôt sur le revenu
+impôt . méthode de calcul:
+  description.en: >
+    !!Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
+
+    - *Le taux personnalisé* : indiqué sur votre avis d'imposition
+
+    - *Le taux neutre* : pour un célibataire sans enfants
+
+    - *Le barème standard * : la formule "officielle" utilisée par
+    l'administration fiscale pour obtenir le taux d'imposition
+
+
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre
+    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
+    n'avez pas transmis votre taux personnalisé à l'employeur et que vous
+    souhaitez comparer les résultats du simulateur à votre fiche de paie. Le
+    barème standard vous donne un résultat plus précis que le taux neutre pour
+    un célibataire sans enfant.
+  description.fr: >
+    Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
+
+    - *Le taux personnalisé* : indiqué sur votre avis d'imposition
+
+    - *Le taux neutre* : pour un célibataire sans enfants
+
+    - *Le barème standard * : la formule "officielle" utilisée par
+    l'administration fiscale pour obtenir le taux d'imposition
+
+
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre
+    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
+    n'avez pas transmis votre taux personnalisé à l'employeur et que vous
+    souhaitez comparer les résultats du simulateur à votre fiche de paie. Le
+    barème standard vous donne un résultat plus précis que le taux neutre pour
+    un célibataire sans enfant.
+  question.en: "!!Comment souhaitez-vous calculer l'impôt sur le revenu ?"
+  question.fr: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+  titre.en: '!!méthode de calcul'
+  titre.fr: méthode de calcul
+impôt . méthode de calcul . taux neutre:
+  description.en: >-
+    !!Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez
+    connaître votre impôt à la source dans le cas où vous avez choisi de ne pas
+    communiquer à votre taux à l'employeur, le calcul au taux neutre correspond
+    à une imposition pour un célibataire sans enfants et sans autres revenus /
+    charges.
+  description.fr: >-
+    Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez
+    connaître votre impôt à la source dans le cas où vous avez choisi de ne pas
+    communiquer à votre taux à l'employeur, le calcul au taux neutre correspond
+    à une imposition pour un célibataire sans enfants et sans autres revenus /
+    charges.
+  titre.en: '!!taux neutre'
+  titre.fr: taux neutre
+impôt . méthode de calcul . taux personnalisé:
+  description.en: >-
+    !!Vous pouvez utiliser directement le taux personnalisé communiqué par
+    l'administration fiscal pour calculer votre impôt. Pour le connaître, vous
+    pouvez-vous rendre sur votre [espace fiscal
+    personnel](https://impots.gouv.fr).
+  description.fr: >-
+    Vous pouvez utiliser directement le taux personnalisé communiqué par
+    l'administration fiscal pour calculer votre impôt. Pour le connaître, vous
+    pouvez-vous rendre sur votre [espace fiscal
+    personnel](https://impots.gouv.fr).
+  titre.en: '!!taux personnalisé'
+  titre.fr: taux personnalisé
+impôt . méthode de calcul . barème standard:
+  description.en: >-
+    !!Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal
+    se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en
+    compte que l'abattement 10%, le barème et la décôte.
+  description.fr: >-
+    Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se
+    base pour calculer votre taux d'imposition. Pour l'instant, ne prend en
+    compte que l'abattement 10%, le barème et la décôte.
+  titre.en: '!!barème standard'
+  titre.fr: barème standard
+impôt . revenu imposable:
+  description.en: >
+    !!C'est le revenu à prendre en compte pour calculer l'impôt avec un taux
+    moyen d'imposition (neutre ou personnalisé).
+  description.fr: >
+    C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen
+    d'imposition (neutre ou personnalisé).
+  titre.en: '!!revenu imposable'
+  titre.fr: revenu imposable
 impôt . revenu abattu:
   description.en: >
     The tax is calculated on a reduced income: it is reduced (for example by
@@ -1947,15 +2126,15 @@ impôt . impôt sur le revenu:
     uniquement à la part de ses revenus supérieure à 72 617€.
   titre.en: income tax
   titre.fr: impôt sur le revenu
-impôt . impôt sur le revenu après décote:
+impôt . impôt sur le revenu à payer:
   description.en: >-
-    A discount is applied after the income tax rate, for reduce taxes on low
-    incomes.
+    !!Une décote est appliquée après le barème de l'impôt sur le revenu, pour
+    réduire l'impôt des bas revenus.
   description.fr: >-
     Une décote est appliquée après le barème de l'impôt sur le revenu, pour
     réduire l'impôt des bas revenus.
-  titre.en: income tax after discount
-  titre.fr: impôt sur le revenu après décote
+  titre.en: income tax
+  titre.fr: impôt sur le revenu à payer
 impôt . revenu fiscal de référence:
   description.en: >-
     The reference tax income corresponds to the household's reduced income
@@ -1970,9 +2149,6 @@ impôt . revenu fiscal de référence:
 impôt . CEHR:
   titre.en: CEHR
   titre.fr: CEHR
-impôt . impôt sur le revenu à payer:
-  titre.en: income tax
-  titre.fr: impôt sur le revenu
 revenu net de cotisations:
   résumé.en: Before taxes
   résumé.fr: Avant impôt
