@@ -36,7 +36,7 @@ export default withLanguage(function SimulateurWarning({
 								enfant et sans autre revenu.{' '}
 								{simulateur == 'auto-entreprise' && language === 'fr' && (
 									<>
-										L'abattement forfaitaire pour les auto entrepreneur est
+										L'abattement forfaitaire pour les auto-entrepreneurs est
 										intégré. En revanche, l'option pour le versement libératoire
 										de l'impôt sur le revenu n'est pas encore présente.
 									</>
