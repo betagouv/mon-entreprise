@@ -1,10 +1,9 @@
 // Reference to a variable
 import parseRule from 'Engine/parseRule'
 import React from 'react'
-import { Trans } from 'react-i18next'
-import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
+import { evaluateNode, rewriteNode } from './evaluation'
 import { getSituationValue } from './getSituationValue'
-import { Leaf, Node } from './mecanismViews/common'
+import { Leaf } from './mecanismViews/common'
 import {
 	disambiguateRuleReference,
 	findParentDependency,
