@@ -482,7 +482,7 @@ contrat salarié:
     semaines consécutives dans l'année.
 
     - CDI : La signature d’un contrat de travail n’est pas obligatoire dans
-    certains cas. C’est le cas du Contrat de travail à Durée Ind��terminée,
+    certains cas. C’est le cas du Contrat de travail à Durée Indéterminée,
     considéré comme la forme normale et générale de la relation de travail entre
     un salarié et un employeur (Art. L1221-2 du Code du travail).
   titre.en: employment contract
@@ -895,12 +895,8 @@ contrat salarié . rémunération . net imposable:
 contrat salarié . rémunération . net imposable . base:
   titre.en: base
   titre.fr: base
-contrat salarié . rémunération . net imposable . exonérations:
-  titre.en: exemptions
-  titre.fr: exonérations
 contrat salarié . prime d'impatriation:
-  description.en: >-
-    The impatriation bonus is a part of the remuneration exempt from income tax.
+  description.en: The impatriation bonus is a part of the remuneration exempt from income tax.
   description.fr: >-
     La prime d'impatriation est une partie de la rémunération exonérée d'impôt
     sur le revenu.
@@ -1654,6 +1650,43 @@ contrat salarié . régime des impatriés:
     complémentaire) à condition de justifier d'une contribution minimale versée
     par ailleurs (par exemple dans une caisse de retraite ou un fond de pension
     étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
+  contrôles.en:
+    - si: contrat salarié . régime des impatriés
+      niveau: information
+      message: >
+        To benefit from the exemption from pension contributions, you must
+        meet the following conditions:
+
+        - Be able to justify a minimum contribution paid elsewhere for a
+        pension
+
+        - Not have been affiliated, during the five calendar years preceding
+        that of their taking up their duties, to a compulsory French scheme
+        pension insurance, except for ancillary activities, of
+        seasonal or for studies.
+
+
+        [Read the text of
+        law](https://www.legifrance.gouv.fr/affichCode.do;?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
+
+  contrôles.fr:
+    - si: contrat salarié . régime des impatriés
+      niveau: information
+      message: >
+        Pour bénéficier de l'exonération de cotisations vieillesse, il faut
+        remplir les conditions suivantes :
+
+        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une
+        assurance vieillesse
+
+        - Ne pas avoir été affilié, au cours des cinq années civiles précédant
+        celle de leur prise de fonctions, à un régime français obligatoire
+        d'assurance vieillesse, sauf pour des activités accessoires, de
+        caractère saisonnier ou pour les études.
+
+
+        [Lire le texte de
+        loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   titre.en: impatriate scheme
   titre.fr: régime des impatriés
 entreprise . taxe sur les salaires . barème:
@@ -1684,23 +1717,6 @@ contrat salarié . versement transport:
 contrat salarié . vieillesse:
   description.en: Contribution to the basic pension plan of employees.
   description.fr: Cotisation au régime de retraite de base des salariés.
-  contrôles.fr:
-    - si: régime des impatriés
-      niveau: information
-      message: >
-        Pour bénéficier de l'exonération de cotisations vieillesse, il faut
-        remplir les conditions suivantes :
-
-        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une
-        assurance vieilllesse
-
-        - De ne pas avoir été affiliés, au cours des cinq années civiles
-        précédant celle de leur prise de fonctions, à un régime français
-        obligatoire d'assurance vieillesse, sauf pour des activités accessoires,
-        de caractère saisonnier ou pour les études.
-
-        [Voir
-        plus](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   titre.en: Basic pension contribution
   titre.fr: vieillesse
 contrat salarié . forfait social:
@@ -1751,9 +1767,9 @@ impôt . revenu abattu par défaut:
     lump-sum allowance. However, anyone can opt for the declaration of its *real
     costs*, which will replace this default package.
   description.fr: >-
-    Dans le cas général, l'impôt est calculé apr��s l'application d'un
-    abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration
-    de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+    Dans le cas général, l'impôt est calculé après l'application d'un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: default reduced income
   titre.fr: revenu abattu par défaut
 impôt . impôt sur le revenu:
@@ -1788,10 +1804,12 @@ impôt . impôt sur le revenu après décote:
   titre.fr: impôt sur le revenu après décote
 impôt . revenu fiscal de référence:
   description.en: >-
-    The reference tax income corresponds to the household's reduced income adjusted with a quotient mechanism and increased by a certain number of exemptions.
-    The latter are reinstated in the calculation.
+    The reference tax income corresponds to the household's reduced income
+    adjusted with a quotient mechanism and increased by a certain number of
+    exemptions. The latter are reinstated in the calculation.
   description.fr: >-
-    le revenu fiscal de référence correspond au revenu abattu du foyer ajusté  avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations.
+    le revenu fiscal de référence correspond au revenu abattu du foyer ajusté
+    avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations.
     Ces dernières sont réintégrées dans le calcul.
   titre.en: reference taxable income
   titre.fr: revenu fiscal de référence
@@ -1801,12 +1819,13 @@ impôt . impôt sur le revenu à payer:
   titre.en: income tax
   titre.fr: impôt sur le revenu
 revenu net de cotisations:
-  résumé.en: 'Before taxes'
+  résumé.en: Before taxes
   résumé.fr: Avant impôt
   question.en: What pre-tax income do you want to receive?
   question.fr: Quel revenu avant impôt voulez-vous toucher ?
   description.en: >
-    This is the income net of contributions and expenses, before the payment of income tax.
+    This is the income net of contributions and expenses, before the payment of
+    income tax.
   description.fr: >
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de
     l'impôt sur le revenu.
@@ -1865,11 +1884,21 @@ entreprise . année d'activité . régime de croisière:
   titre.fr: régime de croisière
 entreprise . chiffre d'affaires:
   titre.en: Turnover
-  titre.fr: chiffre d'affaire (H.T.)
+  titre.fr: chiffre d'affaires (H.T.)
   question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé ?
   résumé.en: The amount of sales made
   résumé.fr: Le montant des ventes réalisées
+entreprise . chiffre d'affaires minimum:
+  description.en: >-
+    The minimum amount of sales (excluding tax) to be achieved to reach the break-even point.
+  description.fr: >-
+    Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de
+    rentabilité.
+  question.en: What is your minimum planned turnover?
+  question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
+  titre.en: Minimum turnover
+  titre.fr: chiffre d'affaires minimum
 entreprise . chiffre d'affaires de société:
   titre.en: company turnover
   titre.fr: chiffre d'affaires de société
@@ -1910,8 +1939,9 @@ entreprise . rémunération totale du dirigeant:
   résumé.en: Spent by the company
   résumé.fr: Dépensé par l'entreprise
   description.en: >-
-    This is what the company spends in total for the director income.
-    This "super gross" remuneration includes all social security contributions to be paid.
+    This is what the company spends in total for the director income. This
+    "super gross" remuneration includes all social security contributions to be
+    paid.
 
     It can also be considered as the monetary value of the director's work.
   description.fr: >-
@@ -1924,6 +1954,8 @@ entreprise . rémunération totale du dirigeant:
   titre.en: Director total income
   titre.fr: rémunération totale du dirigeant
 entreprise . charges:
+  titre.en: expenses
+  titre.fr: charges de fonctionnement
   résumé.en: All the expenses necessary for the company"
   résumé.fr: Toutes les dépenses nécessaires à l'entreprise
   question.en: What are the company's expenses before tax (excluding remuneration manager)?
@@ -1991,8 +2023,6 @@ entreprise . charges:
 
     A l'inverse, un téléphone portable à moins de 500€ peut être assimilé à une
     charge sans immobilisation.
-  titre.en: expenses
-  titre.fr: charges
 indépendant . cotisations et contributions . réduction ACRE:
   titre.en: ACRE reduction
   titre.fr: réduction ACRE
@@ -2005,7 +2035,8 @@ indépendant . revenu net de cotisations:
   question.en: What pre-tax income do you want to receive?
   question.fr: Quel revenu avant impôt voulez-vous toucher ?
   description.en: >-
-    This is the income net of contributions and expenses, before the payment of income tax.
+    This is the income net of contributions and expenses, before the payment of
+    income tax.
   description.fr: >-
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de
     l'impôt sur le revenu.
@@ -2015,14 +2046,18 @@ indépendant . revenu professionnel:
   titre.en: Professional income
   titre.fr: revenu professionnel (net imposable)
   description.en: >
-    It is the net income of the self-employed person from deductible contributions that is used as the basis for calculating contributions and taxes for the self-employed.
+    It is the net income of the self-employed person from deductible
+    contributions that is used as the basis for calculating contributions and
+    taxes for the self-employed.
 
     Attention, **our calculation is valid for a standard scheme**:
 
-    The self-employed person who starts out will pay a fixed contributions during his first months. He will then have to regularize this situation in relation to the income he actually received.
+    The self-employed person who starts out will pay a fixed contributions
+    during his first months. He will then have to regularize this situation in
+    relation to the income he actually received.
 
-    This calculation should therefore be seen as *the amount that should in any case be paid* in the short term after several months of activity.
-
+    This calculation should therefore be seen as *the amount that should in any
+    case be paid* in the short term after several months of activity.
   description.fr: >
     C'est le revenu net de cotisations déductibles du travailleur indépendant,
     qui sert de base au calcul des cotisations et de l'impôt pour les
@@ -2391,7 +2426,7 @@ auto entrepreneur:
      simplify administrative management, in particular by replacing all the
      social contributions by a single monthly levy.
   description.fr: >
-    L'auto-entreprise est une entreprise individuelle simplifi��e. À l'origine
+    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine
     connu sous l'appellation « auto-entrepreneur », le régime de «
     micro-entrepreneur » est un régime de travailleur indépendant créé pour
     simplifier la gestion administrative, notamment en remplaçant toutes les
@@ -2439,7 +2474,8 @@ auto entrepreneur . revenu net de cotisations:
   question.en: What pre-tax income do you want to receive?
   question.fr: Quel revenu avant impôt voulez-vous toucher ?
   description.en: >-
-    This is the income net of contributions and expenses, before the payment of income tax.
+    This is the income net of contributions and expenses, before the payment of
+    income tax.
   description.fr: >-
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de
     l'impôt sur le revenu.
