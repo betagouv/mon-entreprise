@@ -4,6 +4,12 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 
+const HTMLPluginCommonParams = {
+	template: 'index.html',
+	inject: false,
+	production: process.env.NODE_ENV === 'production'
+}
+
 module.exports = {
 	resolve: {
 		alias: {
@@ -34,8 +40,7 @@ module.exports = {
 			MASTER: false
 		}),
 		new HTMLPlugin({
-			template: 'index.html',
-			inject: false,
+			...HTMLPluginCommonParams,
 			chunks: ['infrance'],
 			title:
 				'My company in France: A step-by-step guide to start a business in France',
@@ -45,8 +50,7 @@ module.exports = {
 			logo: 'https://mon-entreprise.fr/images/logo-mycompany.png'
 		}),
 		new HTMLPlugin({
-			template: 'index.html',
-			inject: false,
+			...HTMLPluginCommonParams,
 			chunks: ['mon-entreprise'],
 			title:
 				"Mon-entreprise.fr : L'assistant officiel du créateur d'entreprise",
