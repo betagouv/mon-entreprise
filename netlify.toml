@@ -7,11 +7,6 @@ to = "https://mycompanyinfrance.fr/:splat"
 status = 301
 
 [[redirects]]
-from = "https://mycompanyinfrance.com/*"
-to = "https://mycompanyinfrance.fr/:splat"
-status = 301
-
-[[redirects]]
 from = "https://www.mycompanyinfrance.com/*"
 to = "https://mycompanyinfrance.fr/:splat"
 status = 301

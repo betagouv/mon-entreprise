@@ -13,7 +13,10 @@
    sodipodi:docname="logo-mycompany.svg"
    width="445.11667"
    height="152.38437"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   inkscape:export-filename="/home/johan/Project/syso/source/images/logo-mycompany.png"
+   inkscape:export-xdpi="442"
+   inkscape:export-ydpi="442">
   <metadata
      id="metadata65">
     <rdf:RDF>
@@ -40,7 +43,7 @@
      id="namedview63"
      showgrid="false"
      inkscape:zoom="1.9179688"
-     inkscape:cx="295.01773"
+     inkscape:cx="172.75297"
      inkscape:cy="-113.32785"
      inkscape:window-x="1096"
      inkscape:window-y="28"
@@ -134,8 +137,7 @@
          x="177.91838"
          y="102.67209" /></text>
     <g
-       aria-label="mycompany
-infrance"
+       aria-label="mycompany infrance"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
        id="text49">
       <path
@@ -245,5 +247,5 @@ infrance"
            height="61.002033"
            x="114.1833"
            y="74.697998" /></flowRegion><flowPara
-         id="flowPara70"></flowPara></flowRoot>  </g>
+         id="flowPara70" /></flowRoot>  </g>
 </svg>

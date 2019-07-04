@@ -74,6 +74,9 @@ export default class Provider extends PureComponent {
 }`
 		document.body.appendChild(css)
 	}
+	componentWillUnmount() {
+		this.props.tracker.disconnectFromHistory()
+	}
 	render() {
 		return (
 			// If IE < 11 display nothing
