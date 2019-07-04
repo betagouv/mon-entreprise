@@ -2,16 +2,12 @@ import i18next from 'i18next'
 import queryString from 'query-string'
 import { initReactI18next } from 'react-i18next'
 import enTranslations from './locales/en.yaml'
-import { getIframeOption, parseDataAttributes } from './utils'
-
-let getFromSessionStorage = where =>
-	typeof sessionStorage !== 'undefined' ? sessionStorage[where] : null
-
-let setToSessionStorage = (where, what) =>
-	typeof sessionStorage !== 'undefined' &&
-	do {
-		sessionStorage[where] = what
-	}
+import {
+	getFromSessionStorage,
+	getIframeOption,
+	parseDataAttributes,
+	setToSessionStorage
+} from './utils'
 
 let lang =
 	getIframeOption('lang') ||

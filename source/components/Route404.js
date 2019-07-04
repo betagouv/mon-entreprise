@@ -1,7 +1,7 @@
 import { React, T } from 'Components'
-import { Link } from 'react-router-dom'
-import image from '../images/map-directions.png'
+import image from 'Images/map-directions.png'
 import emoji from 'react-easy-emoji'
+import { Link } from 'react-router-dom'
 
 export default () => (
 	<div

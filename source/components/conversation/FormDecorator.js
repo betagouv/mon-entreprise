@@ -1,11 +1,10 @@
-import classNames from 'classnames';
-import Explicable from 'Components/conversation/Explicable';
-import { compose } from 'ramda';
-import React, { Component } from 'react';
-import { withTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import { change, Field } from 'redux-form';
-import IgnoreStepButton from './IgnoreStepButton';
+import classNames from 'classnames'
+import Explicable from 'Components/conversation/Explicable'
+import { compose } from 'ramda'
+import React, { Component } from 'react'
+import { withTranslation } from 'react-i18next'
+import { connect } from 'react-redux'
+import { change, Field } from 'redux-form'
 
 export let buildValidationFunction = valueType => {
 	let validator = valueType ? valueType.validator : {},
@@ -48,7 +47,7 @@ export var FormDecorator = formType => RenderField =>
 					defaultValue,
 					fieldName,
 					inversion,
-					setFormValue,
+					setFormValue
 				} = this.props
 				let validate = buildValidationFunction(valueType)
 				let submit = cause => stepAction('fold', fieldName, cause),
@@ -63,36 +62,20 @@ export var FormDecorator = formType => RenderField =>
 					<div className={classNames('step', formType)}>
 						<div className="unfoldedHeader">
 							<div className="step-question">
-								<h1>
+								<h3>
 									{' '}
 									{this.props.question}{' '}
 									{!inversion && <Explicable dottedName={fieldName} />}
-								</h1>
+								</h3>
 								<div
 									className="step-subquestion"
 									dangerouslySetInnerHTML={{ __html: subquestion }}
 								/>
 							</div>
 						</div>
-						{defaultValue != null && (
-							<IgnoreStepButton
-								action={() => {
-									setFormValue(
-										fieldName,
-										typeof defaultValue == 'object'
-											? JSON.stringify(defaultValue)
-											: '' + defaultValue
-									)
-									submit('ignore')
-								}}
-							/>
-						)}
+
 						<fieldset>
-							<Field
-								component={RenderField}
-								name={fieldName}
-								{...stepProps}
-							/>
+							<Field component={RenderField} name={fieldName} {...stepProps} />
 						</fieldset>
 					</div>
 				)

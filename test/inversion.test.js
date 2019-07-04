@@ -198,7 +198,7 @@ describe('inversions', () => {
                 taux: 50%
 
       - nom: total
-        formule: cotisation (employeur) + cotisation (salarié)
+        formule: cotisation [employeur] + cotisation [salarié]
 
       - nom: brut
         format: euro

@@ -1,72 +1,61 @@
 import classnames from 'classnames'
 import { omit } from 'ramda'
 import React, { Component } from 'react'
-import { debounce, isIE } from '../../utils'
+import NumberFormat from 'react-number-format'
+import { debounce } from '../../utils'
 import './CurrencyInput.css'
 
-let isCurrencyPrefixed = language =>
-	!!Intl.NumberFormat(language, {
+let currencyFormat = language => ({
+	isCurrencyPrefixed: !!Intl.NumberFormat(language, {
 		style: 'currency',
 		currency: 'EUR'
 	})
 		.format(12)
-		.match(/€.*12/)
+		.match(/€.*12/),
+
+	thousandSeparator: Intl.NumberFormat(language)
+		.format(1000)
+		.charAt(1),
+
+	decimalSeparator: Intl.NumberFormat(language)
+		.format(0.1)
+		.charAt(1)
+})
 
 class CurrencyInput extends Component {
 	state = {
-		value: this.props.defaultValue
+		value: this.props.value,
+		initialValue: this.props.value
 	}
+
 	onChange = this.props.debounce
 		? debounce(this.props.debounce, this.props.onChange)
 		: this.props.onChange
-	input = React.createRef()
 
-	getSnapshotBeforeUpdate = () => {
-		if (!this.input.current) {
-			return
-		}
-		return this.input.current.selectionStart
-	}
-	componentDidMount() {
-		this.adaptInputSize()
-	}
-	adaptInputSize = () => {
-		// Because ch mesurement in IE is not consistent with other browsers, we have to apply a multiplier
-		// https://stackoverflow.com/questions/17825638/css3-ch-unit-inconsistent-between-ie9-and-other-browsers
-		const widthMultiplier = isIE() ? 1.4 : 1
-
-		if (this.input.current && isCurrencyPrefixed(this.props.language))
-			this.input.current.style.width =
-				widthMultiplier * (this.input.current.value.length + 0.2) + 'ch'
-	}
-	componentDidUpdate = (_, __, cursorPosition) => {
-		if (!this.input.current) {
-			return
-		}
-		this.input.current.selectionStart = cursorPosition
-		this.input.current.selectionEnd = cursorPosition
-		this.adaptInputSize()
-	}
-	focusInput = () => {
-		this.input.current.focus()
-	}
+	handleNextChange = false
+	value = undefined
 	handleChange = event => {
-		let value = event.target.value
-		value = value
-			.replace(/,/g, '.')
-			.replace(/[^\d.]/g, '')
-			.replace(/\.(.*)\.(.*)/g, '$1.$2')
-		this.setState({ value }, this.adaptInputSize)
-
-		if (value.endsWith('.')) {
+		// Only trigger the `onChange` event if the value has changed -- and not
+		// only its formating, we don't want to call it when a dot is added in `12.`
+		// for instance
+		if (!this.handleNextChange || !this.onChange) {
 			return
 		}
-		event.target.value = value
-
-		if (event.persist) {
-			event.persist()
+		this.handleNextChange = false
+		event.persist()
+		event.target = {
+			...event.target,
+			value: this.value
 		}
 		this.onChange(event)
+	}
+
+	// See https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#alternative-1-reset-uncontrolled-component-with-an-id-prop
+	static getDerivedStateFromProps({ value }, { initialValue }) {
+		if (value !== initialValue) {
+			return { value, initialValue: value }
+		}
+		return null
 	}
 
 	render() {
@@ -75,23 +64,43 @@ class CurrencyInput extends Component {
 			this.props
 		)
 
+		const {
+			isCurrencyPrefixed,
+			thousandSeparator,
+			decimalSeparator
+		} = currencyFormat(this.props.language)
+
+		// We display negative numbers iff this was the provided value (but we allow the user to enter them)
+		const valueHasChanged = this.state.value !== this.state.initialValue
+
+		// Autogrow the input
+		const valueLength = (this.state.value || '').toString().length
+
 		return (
 			<div
-				onClick={this.focusInput}
-				className={classnames(
-					this.props.className,
-					'currencyInput__container'
-				)}>
-				{isCurrencyPrefixed(this.props.language) && '€'}
-				<input
+				className={classnames(this.props.className, 'currencyInput__container')}
+				{...(valueLength > 5
+					? { style: { width: `${5 + (valueLength - 5) * 0.75}em` } }
+					: {})}>
+				{isCurrencyPrefixed && '€'}
+				<NumberFormat
 					{...forwardedProps}
+					thousandSeparator={thousandSeparator}
+					decimalSeparator={decimalSeparator}
+					allowNegative={!valueHasChanged}
 					className="currencyInput__input"
 					inputMode="numeric"
+					onValueChange={({ value }) => {
+						this.setState({ value })
+						this.value = value.toString().replace(/^\-/, '')
+						this.handleNextChange = true
+					}}
 					onChange={this.handleChange}
-					ref={this.input}
-					value={this.state.value}
+					value={(this.state.value || '')
+						.toString()
+						.replace('.', decimalSeparator)}
 				/>
-				{!isCurrencyPrefixed(this.props.language) && <>&nbsp;€</>}
+				{!isCurrencyPrefixed && <>&nbsp;€</>}
 			</div>
 		)
 	}

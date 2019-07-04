@@ -57,7 +57,7 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 	let // Use the default theme colour if the host page hasn't made a choice
 		colour = themeColour || '#2975D1',
 		lightColour = lightenColour(colour, 10),
-		darkColour = lightenColour(colour, -10),
+		darkColour = lightenColour(colour, -20),
 		lighterColour = lightenColour(colour, 45),
 		lightestColour = lightenColour(colour, 100),
 		darkestColour = lightenColour(colour, -100),
@@ -65,8 +65,10 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 		textColour = findContrastedTextColour(colour, true), // the 'simple' version feels better...
 		inverseTextColour = textColour === '#ffffff' ? '#000' : '#fff',
 		lightenTextColour = textColour =>
-			textColour === '#ffffff' ? 'rgba(255, 255, 255, .85)' : '#333',
-		lighterTextColour = lightenTextColour(textColour),
+			textColour === '#ffffff'
+				? 'rgba(255, 255, 255, .6)'
+				: 'rgba(0, 0, 0, .6)',
+		lighterTextColour = darkColour + '99',
 		lighterInverseTextColour = lightenTextColour(inverseTextColour),
 		textColourOnWhite = textColour === '#ffffff' ? colour : '#333'
 

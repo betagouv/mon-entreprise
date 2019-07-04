@@ -1,0 +1,207 @@
+.comparaison-grid {
+	display: grid;
+	justify-items: stretch;
+	justify-content: center;
+	grid-template-columns:
+		[row-legend] auto [assimilé-salarié] minmax(20%, 20rem)
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
+}
+.comparaison-grid.hideAutoEntrepreneur {
+	grid-template-columns:
+		[row-legend] auto [assimilé-salarié] minmax(20%, 20rem)
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] 0 [end];
+}
+
+.comparaison-grid.hideAssimiléSalarié {
+	grid-template-columns:
+		[row-legend] auto [assimilé-salarié] 0
+		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
+}
+.comparaison-grid > * {
+	border-bottom: 1px solid var(--lighterColour);
+	padding: 0.6rem 1.2rem;
+	border-right: 1px solid var(--lighterColour);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+	flex-wrap: wrap;
+}
+
+.comparaison-grid > h2 {
+	margin: 0;
+	border: none;
+	align-self: stretch;
+}
+
+.comparaison-grid > h2 img {
+	height: 1.6rem !important;
+	width: 1.6rem !important;
+}
+.comparaison-grid > .legend {
+	max-width: 15rem;
+	align-items: flex-end;
+	grid-column: row-legend;
+	text-align: right;
+}
+
+.comparaison-grid > .AS-et-indep {
+	grid-column: assimilé-salarié / auto-entrepreneur;
+}
+.comparaison-grid > .AS {
+	grid-column: assimilé-salarié;
+	min-width: 11rem;
+}
+.comparaison-grid > .indep {
+	grid-column: indépendant;
+}
+.comparaison-grid > .auto {
+	grid-column: auto-entrepreneur;
+	border-right: none;
+	min-width: 14rem;
+}
+.comparaison-grid > .all {
+	border-right: none;
+	grid-column: row-legend / end;
+}
+.comparaison-grid > .all.colored {
+	background-color: var(--lightestColour);
+}
+
+.comparaison-grid > .indep-et-auto {
+	grid-column: indépendant / end;
+	border-right: none;
+}
+.comparaison-grid > .AS-indep-et-auto {
+	grid-column: assimilé-salarié / end;
+	border-right: none;
+}
+
+.comparaison-grid.hideAutoEntrepreneur > .auto {
+	display: none;
+}
+.comparaison-grid.hideAutoEntrepreneur > .indep-et-auto {
+	border-right: 1px solid var(--lighterColour);
+}
+
+.comparaison-grid.hideAssimiléSalarié > .AS {
+	display: none;
+}
+
+.comparaison-grid > .green {
+	font-weight: bold;
+	color: limegreen;
+}
+
+.comparaison-grid > .red {
+	font-weight: bold;
+	color: red;
+}
+
+.comparaison-grid > .no-border {
+	border: none;
+}
+.comparaison-grid .button {
+	align-self: stretch;
+}
+
+@media (max-width: 800px) {
+	.comparaison-grid > * {
+		padding: 0.6rem;
+	}
+}
+@media (max-width: 600px) {
+	.comparaison-grid {
+		display: block;
+		padding: 0 0.6rem;
+	}
+
+	.comparaison-grid h2 {
+		flex-direction: column;
+	}
+	.comparaison-grid small {
+		margin-left: 0.2rem;
+	}
+
+	.comparaison-grid > *::before {
+		flex: 1;
+		text-align: left;
+		flex-shrink: 0;
+		white-space: nowrap;
+		user-select: text;
+		font-weight: normal;
+	}
+	.comparaison-grid > :not(.button)::before {
+		color: var(--darkestColour) !important;
+		opacity: 0.6;
+	}
+	.comparaison-grid > .AS::before {
+		content: 'Assimilé-salarié :';
+	}
+	.comparaison-grid > .indep::before,
+	.comparaison-grid.hideAutoEntrepreneur > .indep-et-auto::before {
+		content: 'Indépendant :';
+	}
+
+	.comparaison-grid.hideAssimiléSalarié > .AS-et-indep::before,
+	.comparaison-grid.hideAssimiléSalarié > .indep::before {
+		content: 'Entreprise individuelle :';
+	}
+
+	.comparaison-grid > .auto::before {
+		content: 'Auto-entrepreneur :';
+	}
+	.comparaison-grid > .indep-et-auto::before {
+		content: 'Indépendant / auto-entrepreneur :';
+	}
+	.comparaison-grid > .AS-et-indep::before {
+		content: 'Assimilé salarié / indépendant ';
+	}
+	.comparaison-grid > h2::before {
+		display: none;
+	}
+	.comparaison-grid > h2.AS::after,
+	.comparaison-grid:not(.hideAutoEntrepreneur) > h2.indep::after {
+		display: block;
+		font-size: 1rem;
+		margin-top: 1rem;
+		content: 'vs';
+		color: var(--lightColour);
+	}
+	.comparaison-grid > .legend {
+		justify-content: flex-start;
+		align-items: baseline;
+		text-align: left;
+	}
+	.comparaison-grid > * {
+		border: none;
+		max-width: inherit !important;
+		flex-direction: row;
+		text-align: right;
+		justify-content: right;
+	}
+	.comparaison-grid > :not(.all):not(.button) {
+		padding-left: 0;
+	}
+	.comparaison-grid > .all {
+		margin: 0 -0.6rem;
+		text-align: center;
+		justify-content: center;
+		margin-top: 2rem;
+	}
+	.comparaison-grid > .no-border > .button {
+		flex: 1;
+	}
+	.comparaison-grid > .no-border::before {
+		display: none;
+	}
+}
+@media (min-width: 600px) {
+	.comparaison-grid > h3 {
+		margin: 0;
+		font-weight: normal;
+
+		font-size: 1rem;
+	}
+}

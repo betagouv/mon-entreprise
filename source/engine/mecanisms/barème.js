@@ -1,10 +1,9 @@
-import { val } from 'Engine/traverse-common-functions'
-import { decompose } from 'Engine/mecanisms/utils'
+import { defaultNode, E, rewriteNode } from 'Engine/evaluation'
 import { mecanismVariations } from 'Engine/mecanisms'
-import { has, evolve, sum, pluck } from 'ramda'
-import { defaultNode, rewriteNode, E } from 'Engine/evaluation'
-
+import { decompose } from 'Engine/mecanisms/utils'
 import Barème from 'Engine/mecanismViews/Barème'
+import { val } from 'Engine/traverse-common-functions'
+import { evolve, has, pluck, sum } from 'ramda'
 
 export let desugarScale = recurse => tranches =>
 	tranches
@@ -18,8 +17,14 @@ export let desugarScale = recurse => tranches =>
 		.map(evolve({ taux: recurse }))
 
 // This function was also used for marginal barèmes, but now only for linear ones
-export let trancheValue = assiette => ({ de: min, à: max, taux, montant }) =>
-	Math.round(val(assiette)) >= min && (!max || Math.round(val(assiette)) <= max)
+export let trancheValue = (assiette, multiplicateur) => ({
+	de: min,
+	à: max,
+	taux,
+	montant
+}) =>
+	Math.round(val(assiette)) >= min * val(multiplicateur) &&
+	(!max || Math.round(val(assiette)) <= max * val(multiplicateur))
 		? taux != null
 			? val(assiette) * val(taux)
 			: montant

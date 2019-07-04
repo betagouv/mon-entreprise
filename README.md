@@ -15,14 +15,21 @@ Most of the documentation (including issues and the wiki) is written in french, 
 ## Run it
 
 ```
+# Clone this repo on your computer
+git clone --depth 100 git@github.com:betagouv/syso.git && cd syso
+
+# Install the Javscript dependencies through Yarn
 yarn install
 
+# Run the server
 yarn start
 ```
 
+The app runs on https://localhost:8080/mon-entreprise. The english version deployed on mycompanyinfrance.fr is at http://localhost:8080/infrance.
+
 ## Supported browsers
 
-The website will run well on modern browsers. IE 11 works, but can have visual glitches and performance issues.
+The website will run well on modern browsers. Internet Explorer is not supported anymore (it should work but with visual glitches and performance issues).
 
 This compatibility is tested thanks to [BrowserStack](http://browserstack.com/)'s free open source program.
 

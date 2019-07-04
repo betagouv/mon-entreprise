@@ -3,7 +3,7 @@ import Syso from '../source/engine/index'
 
 describe('indeps', function() {
 	it('should compute income for indépendant', function() {
-		let values = Syso.evaluate(['revenu net'], {
+		let values = Syso.evaluate(['revenu net après impôt'], {
 			"entreprise . chiffre d'affaires": 70000,
 			'entreprise . charges': 1000,
 			indépendant: 'oui',
@@ -12,6 +12,6 @@ describe('indeps', function() {
 			période: 'année'
 		})
 
-		expect(values[0]).to.be.closeTo(41513, 1)
+		expect(values[0]).to.be.closeTo(39764, 1)
 	})
 })

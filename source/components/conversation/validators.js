@@ -2,7 +2,7 @@
 
 export let number = {
 	pre: v =>
-		v
+		('' + v)
 			.replace(/,/g, '.') // commas -> dots
 			.replace(/\s/g, ''), // remove spaces
 	test: v => /^[0-9]+(\.[0-9]+)?$/.test(v),

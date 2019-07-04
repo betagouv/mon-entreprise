@@ -28,6 +28,5 @@ export type State = {
 		foldedSteps: Array<string>,
 		currentQuestion: ?string
 	},
-	activeTargetInput: TargetInput,
-	conversationStarted: boolean
+	activeTargetInput: TargetInput
 }

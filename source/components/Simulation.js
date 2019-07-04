@@ -1,121 +1,65 @@
-/* @flow */
-
-import { resetSimulation } from 'Actions/actions'
-import { React, T } from 'Components'
-import Answers from 'Components/AnswerList'
+import { T } from 'Components'
+import Controls from 'Components/Controls'
 import Conversation from 'Components/conversation/Conversation'
+import ResultReliability from 'Components/conversation/ResultReliability'
+import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
-import withColours from 'Components/utils/withColours'
-import { compose } from 'ramda'
-import emoji from 'react-easy-emoji'
+import TargetSelection from 'Components/TargetSelection'
+import React from 'react'
 import { connect } from 'react-redux'
-import {
-	nextStepsSelector,
-	noUserInputSelector
-} from 'Selectors/analyseSelectors'
+import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
+import { simulationProgressSelector } from 'Selectors/progressSelectors'
+import * as Animate from 'Ui/animate'
+import Progress from 'Ui/Progress'
 
-export default compose(
-	withColours,
-	connect(
-		state => ({
-			conversationStarted: state.conversationStarted,
-			previousAnswers: state.conversationSteps.foldedSteps,
-			noNextSteps:
-				state.conversationStarted && nextStepsSelector(state).length == 0,
-			noUserInput: noUserInputSelector(state)
-		}),
-		{ resetSimulation }
-	)
-)(
-	class Simulation extends React.Component {
-		state = {
-			displayAnswers: false
-		}
-		render() {
-			let {
-				noNextSteps,
-				previousAnswers,
-				noUserInput,
-				conversationStarted,
-				resetSimulation,
-				noFeedback,
-				showTargetsAnyway,
-				targetsTriggerConversation
-			} = this.props
-			let arePreviousAnswers = previousAnswers.length > 0,
-				displayConversation =
-					!targetsTriggerConversation || conversationStarted,
-				showTargets =
-					targetsTriggerConversation || !noUserInput || showTargetsAnyway
-			return (
+export default connect(state => ({
+	firstStepCompleted: firstStepCompletedSelector(state),
+	progress: simulationProgressSelector(state)
+}))(function Simulation({
+	firstStepCompleted,
+	explanations,
+	customEndMessages,
+	progress
+}) {
+	return (
+		<>
+			<TargetSelection />
+			{firstStepCompleted && (
 				<>
-					{this.state.displayAnswers && (
-						<Answers onClose={() => this.setState({ displayAnswers: false })} />
-					)}
-					<div
-						style={{
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'baseline'
-						}}>
-						{arePreviousAnswers ? (
-							<button
-								style={{ marginRight: '1em' }}
-								className="ui__ small  button "
-								onClick={() => this.setState({ displayAnswers: true })}>
-								<T>Voir mes réponses</T>
-							</button>
-						) : (
-							<span />
-						)}
-						{displayConversation && !noUserInput && (
-							<button
-								className="ui__ small simple skip button left"
-								onClick={() => resetSimulation()}>
-								⟲ <T>Recommencer</T>
-							</button>
-						)}
-					</div>
-
-					{displayConversation && (
-						<>
-							<Conversation
-								textColourOnWhite={this.props.colours.textColourOnWhite}
-							/>
-							{noNextSteps && (
-								<>
-									<h2>
-										{emoji('🌟')}{' '}
-										<T k="simulation-end.title">Situation complétée à 100%</T>{' '}
-									</h2>
-									<p>
-										<T k="simulation-end.text">
-											Nous n'avons plus de questions à poser, vous avez atteint
-											l'estimation la plus précise.
-										</T>
-										{this.props.customEndMessages}
-									</p>
-								</>
-							)}
-						</>
-					)}
-
-					{showTargets && this.props.targets}
-					{!noUserInput && this.props.explanation}
-					{!noUserInput && !noFeedback && (
-						<div style={{ margin: '-0.6rem' }}>
-							<PageFeedback
-								customMessage={
-									<T k="feedback.simulator">
-										Êtes-vous satisfait de ce simulateur ?
-									</T>
-								}
-								customEventName="rate simulator"
-							/>
+					<Animate.fromTop>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'space-between',
+								marginTop: '1.2rem',
+								marginBottom: '0.6rem',
+								alignItems: 'flex-end'
+							}}>
+							<ResultReliability progress={progress} />
+							<SeeAnswersButton />
 						</div>
-					)}
+						<div className="ui__ full-width choice-group">
+							<div className="ui__ container">
+								<Controls />
+								<Conversation customEndMessages={customEndMessages} />
+							</div>
+						</div>
+						{progress < 1 && (
+							<Progress progress={progress} className="ui__ full-width" />
+						)}
+						<br />
+						<PageFeedback
+							customMessage={
+								<T k="feedback.simulator">
+									Êtes-vous satisfait de ce simulateur ?
+								</T>
+							}
+							customEventName="rate simulator"
+						/>{' '}
+						{explanations}
+					</Animate.fromTop>
 				</>
-			)
-		}
-	}
-)
+			)}
+		</>
+	)
+})

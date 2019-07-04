@@ -5,9 +5,9 @@
 @import './reset.css';
 
 :root {
-	--colour: yellow;
-	--darkColour: green;
-	--textColour: red;
+	--colour: rgb(41, 117, 209);
+	--darkColour: rgb(24, 69, 123);
+	--textColour: rgb(24, 69, 123);
 }
 html:fullscreen {
 	background-color: white;
@@ -26,8 +26,9 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	flex-wrap: wrap;
-	margin: 1rem 0;
+}
+.ui__.answer-group > * {
+	margin: 0.6rem 0 0 1rem !important;
 }
 @media (min-width: 500px) {
 	.ui__.answer-group > :not(:last-child) {
@@ -45,26 +46,34 @@ button {
 	}
 }
 
+.ui__.choice-group {
+	background-color: var(--lightestColour);
+	padding: 1rem 0;
+}
+section.ui__:not(:first-of-type) {
+	margin-top: 2rem;
+}
 .ui__.container {
 	width: 100%;
-	max-width: 800px;
+	max-width: 850px;
 	margin-right: auto;
 	margin-left: auto;
 	padding-right: 0.6rem;
 	padding-left: 0.6rem;
 }
 .ui__.container .ui__.full-width {
-	margin: 0 calc((800px - 100vw) / 2);
+	--margin: calc((850px - 100vw - 0.6rem) / 2);
+	margin-right: var(--margin);
+	margin-left: var(--margin);
 }
-@media (max-width: 800px) {
+@media (max-width: 850px) {
 	.ui__.container .ui__.full-width {
-		margin: 0;
+		margin: 0 -0.6rem;
 	}
 }
 
-.ui__.notice {
-	font-size: 85%;
-	color: rgba(0, 0, 0, 0.6);
+.ui__ .colored-bg {
+	background: var(--lightestColour);
 }
 ul.ui__.no-bullet {
 	list-style: none;

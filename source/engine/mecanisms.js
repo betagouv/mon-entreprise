@@ -1,63 +1,21 @@
-import { desugarScale } from 'Engine/mecanisms/barème'
-import { decompose, devariateExplanation } from 'Engine/mecanisms/utils'
-import {
-	add,
-	any,
-	aperture,
-	curry,
-	equals,
-	evolve,
-	filter,
-	find,
-	head,
-	is,
-	isEmpty,
-	isNil,
-	keys,
-	last,
-	map,
-	max,
-	mergeWith,
-	min,
-	path,
-	pipe,
-	pluck,
-	prop,
-	propEq,
-	reduce,
-	reduced,
-	reject,
-	sort,
-	subtract,
-	toPairs
-} from 'ramda'
-import React from 'react'
-import { Trans } from 'react-i18next'
-import 'react-virtualized/styles.css'
-import {
-	bonus,
-	collectNodeMissing,
-	defaultNode,
-	evaluateArray,
-	evaluateNode,
-	evaluateObject,
-	makeJsx,
-	mergeAllMissing,
-	mergeMissing,
-	parseObject,
-	rewriteNode
-} from './evaluation'
-import Allègement from './mecanismViews/Allègement'
-import Barème from './mecanismViews/Barème'
-import BarèmeContinu from './mecanismViews/BarèmeContinu'
-import { Node, SimpleRuleLink } from './mecanismViews/common'
-import InversionNumérique from './mecanismViews/InversionNumérique'
-import Product from './mecanismViews/Product'
-import Somme from './mecanismViews/Somme'
-import Variations from './mecanismViews/Variations'
-import { disambiguateRuleReference, findRuleByDottedName } from './rules'
-import { anyNull, val } from './traverse-common-functions'
-import uniroot from './uniroot'
+import { desugarScale } from 'Engine/mecanisms/barème';
+import { decompose, devariateExplanation } from 'Engine/mecanisms/utils';
+import { add, any, aperture, curry, equals, evolve, filter, find, head, is, isEmpty, isNil, keys, last, map, max, mergeWith, min, path, pipe, pluck, prop, propEq, reduce, reduced, reject, sort, subtract, toPairs } from 'ramda';
+import React from 'react';
+import { Trans } from 'react-i18next';
+import 'react-virtualized/styles.css';
+import { bonus, collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, mergeMissing, parseObject, rewriteNode } from './evaluation';
+import Allègement from './mecanismViews/Allègement';
+import Barème from './mecanismViews/Barème';
+import BarèmeContinu from './mecanismViews/BarèmeContinu';
+import { Node, SimpleRuleLink } from './mecanismViews/common';
+import InversionNumérique from './mecanismViews/InversionNumérique';
+import Product from './mecanismViews/Product';
+import Somme from './mecanismViews/Somme';
+import Variations from './mecanismViews/Variations';
+import { disambiguateRuleReference, findRuleByDottedName } from './rules';
+import { anyNull, val } from './traverse-common-functions';
+import uniroot from './uniroot';
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export let mecanismVariations = (recurse, k, v, devariate) => {
@@ -427,7 +385,12 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		inversionCache = { parseLevel: oldCache.parseLevel + 1, op: '<' }
 		let v = evaluateNode(
 			inversionCache, // with an empty cache
-			n => (dottedName === n ? x : situationGate(n)),
+			n =>
+				dottedName === n
+					? x
+					: n === 'sys.filter'
+					? undefined
+					: situationGate(n),
 			parsedRules,
 			fixedObjectiveRule
 		)
@@ -532,10 +495,11 @@ export let mecanismReduction = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
 		abattement: defaultNode(0),
+		plafond: defaultNode(Infinity),
 		franchise: defaultNode(0)
 	}
 
-	let effect = ({ assiette, abattement, franchise, décote }) => {
+	let effect = ({ assiette, abattement, plafond, franchise, décote }) => {
 		let v_assiette = val(assiette)
 
 		if (v_assiette == null) return null
@@ -545,12 +509,12 @@ export let mecanismReduction = (recurse, k, v) => {
 				? 0
 				: décote
 				? do {
-						let plafond = val(décote.plafond),
+						let plafondDécote = val(décote.plafond),
 							taux = val(décote.taux)
 
-						v_assiette > plafond
+						v_assiette > plafondDécote
 							? v_assiette
-							: max(0, (1 + taux) * v_assiette - taux * plafond)
+							: max(0, (1 + taux) * v_assiette - taux * plafondDécote)
 				  }
 				: v_assiette
 
@@ -559,12 +523,12 @@ export let mecanismReduction = (recurse, k, v) => {
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
-				: abattement.category === 'percentage'
+				: abattement.type === 'percentage'
 				? max(
 						0,
-						montantFranchiséDécoté - val(abattement) * montantFranchiséDécoté
+						montantFranchiséDécoté - min(val(plafond), val(abattement) * montantFranchiséDécoté)
 				  )
-				: max(0, montantFranchiséDécoté - val(abattement))
+				: max(0, montantFranchiséDécoté - min(val(plafond), val(abattement)))
 			: montantFranchiséDécoté
 	}
 
@@ -651,16 +615,17 @@ export let mecanismLinearScale = (recurse, k, v) => {
 	}
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
-			assiette: false
+			assiette: false,
+			multiplicateur: defaultNode(1)
 		}
 
-	let effect = ({ assiette, tranches }) => {
+	let effect = ({ assiette, multiplicateur, tranches }) => {
 		if (val(assiette) === null) return null
 
 		let roundedAssiette = Math.round(val(assiette))
 
 		let matchedTranche = tranches.find(
-			({ de: min, à: max }) => roundedAssiette >= min && roundedAssiette <= max
+			({ de: min, à: max }) => roundedAssiette >= (val(multiplicateur) * min) && roundedAssiette <= (max * val(multiplicateur))
 		)
 
 		if (!matchedTranche) return 0
@@ -898,3 +863,11 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 export let mecanismError = (recurse, k, v) => {
 	throw new Error("Le mécanisme '" + k + "' est inconnu !" + v)
 }
+export let mecanismOnePossibility = dottedName => (recurse, k, v) => ({
+	...v,
+	'une possibilité': 'oui',
+	evaluate: (cache, situationGate, parsedRules, node) => ({
+		...node,
+		missingVariables: { [dottedName]: 1 }
+	})
+})

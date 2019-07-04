@@ -1,13 +1,35 @@
-import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext';
-import { evaluateControls } from 'Engine/controls';
-import { chain, cond, evolve, is, keys, map, mergeAll, path, pick, pipe, T } from 'ramda';
-import React from 'react';
-import { bonus, evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation';
-import { Node } from './mecanismViews/common';
-import { disambiguateRuleReference, findParentDependency, findRule, findRuleByDottedName } from './rules';
-import { anyNull, undefOrTrue, val } from './traverse-common-functions';
-import { treatNumber, treatObject, treatOther, treatString } from './treat';
-
+import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
+import { evaluateControls } from 'Engine/controls'
+import {
+	chain,
+	cond,
+	evolve,
+	is,
+	keys,
+	map,
+	mergeAll,
+	path,
+	pick,
+	pipe,
+	T
+} from 'ramda'
+import React from 'react'
+import {
+	bonus,
+	evaluateNode,
+	makeJsx,
+	mergeMissing,
+	rewriteNode
+} from './evaluation'
+import { Node } from './mecanismViews/common'
+import {
+	disambiguateRuleReference,
+	findParentDependency,
+	findRule,
+	findRuleByDottedName
+} from './rules'
+import { anyNull, undefOrTrue, val } from './traverse-common-functions'
+import { treatNumber, treatObject, treatOther, treatString } from './treat'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.

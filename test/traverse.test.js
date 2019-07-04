@@ -359,7 +359,7 @@ describe('analyse with mecanisms', function() {
 	it('should handle filtering on components', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', espace: 'top', formule: 'composed (salarié)' },
+				{ nom: 'startHere', espace: 'top', formule: 'composed [salarié]' },
 				{
 					nom: 'composed',
 					espace: 'top',
@@ -401,7 +401,7 @@ describe('analyse with mecanisms', function() {
 				{
 					nom: 'startHere',
 					espace: 'top',
-					formule: 'composed (salarié) + composed (employeur)'
+					formule: 'composed [salarié] + composed [employeur]'
 				},
 				{ nom: 'orHere', espace: 'top', formule: 'composed' },
 				{

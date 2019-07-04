@@ -1,19 +1,30 @@
 /* @flow */
 
-import { compose, defaultTo, isNil, lensPath, over, set, uniq, without } from 'ramda';
-import reduceReducers from 'reduce-reducers';
-import { combineReducers } from 'redux';
+import {
+	compose,
+	defaultTo,
+	isNil,
+	lensPath,
+	over,
+	set,
+	uniq,
+	without
+} from 'ramda'
+import reduceReducers from 'reduce-reducers'
+import { combineReducers } from 'redux'
 // $FlowFixMe
-import { reducer as formReducer } from 'redux-form';
-import i18n from '../i18n';
-import inFranceAppReducer from './inFranceAppReducer';
-import storageReducer from './storageReducer';
+import { reducer as formReducer } from 'redux-form'
+import i18n from '../i18n'
+import inFranceAppReducer from './inFranceAppReducer'
+import storageReducer from './storageReducer'
 import type { Action } from 'Types/ActionsTypes'
 
 function explainedVariable(state = null, { type, variableName = null }) {
 	switch (type) {
 		case 'EXPLAIN_VARIABLE':
 			return variableName
+		case 'STEP_ACTION':
+			return null
 		default:
 			return state
 	}
@@ -37,16 +48,6 @@ function situationBranch(state = null, { type, id }) {
 	}
 }
 
-function conversationStarted(state = false, action: Action) {
-	switch (action.type) {
-		case 'START_CONVERSATION':
-			return true
-		case 'RESET_SIMULATION':
-			return false
-		default:
-			return state
-	}
-}
 function activeTargetInput(state = null, { type, name }) {
 	switch (type) {
 		case 'SET_ACTIVE_TARGET_INPUT':
@@ -69,59 +70,46 @@ function lang(state = i18n.language, { type, lang }) {
 
 type ConversationSteps = {|
 	+foldedSteps: Array<string>,
-	+unfoldedStep: ?string,
-	+priorityNamespace: ?string
+	+unfoldedStep: ?string
 |}
 
 function conversationSteps(
 	state: ConversationSteps = {
 		foldedSteps: [],
-		unfoldedStep: null,
-		priorityNamespace: null
+		unfoldedStep: null
 	},
 	action: Action
 ): ConversationSteps {
 	if (action.type === 'RESET_SIMULATION')
-		return { foldedSteps: [], unfoldedStep: null, priorityNamespace: null }
-	if (action.type === 'START_CONVERSATION' && action.priorityNamespace)
-		return {
-			foldedSteps: state.foldedSteps,
-			unfoldedStep: null,
-			priorityNamespace: action.priorityNamespace
-		}
+		return { foldedSteps: [], unfoldedStep: null }
 
 	if (action.type !== 'STEP_ACTION') return state
 	const { name, step } = action
 	if (name === 'fold')
 		return {
 			foldedSteps: [...state.foldedSteps, step],
-			unfoldedStep: null,
-			priorityNamespace: state.priorityNamespace
+			unfoldedStep: null
 		}
 	if (name === 'unfold') {
-		// if a step had already been unfolded, bring it back !
 		return {
-			foldedSteps: [
-				...without([step], state.foldedSteps),
-				...(state.unfoldedStep ? [state.unfoldedStep] : [])
-			],
-
-			unfoldedStep: step,
-			priorityNamespace: state.priorityNamespace
+			foldedSteps: without([step], state.foldedSteps),
+			unfoldedStep: step
 		}
 	}
 	return state
 }
-function hiddenControls(state = [], { type, id }) {
-	if (type === 'HIDE_CONTROL') {
-		return [...state, id]
-	} else return state
-}
 
-function simulation(state = null, { type, config, url }) {
+function simulation(state = null, { type, config, url, id }) {
 	if (type === 'SET_SIMULATION') {
-		return { config, url }
-	} else return state
+		return { config, url, hiddenControls: [] }
+	}
+	if (type === 'HIDE_CONTROL' && state !== null) {
+		return { ...state, hiddenControls: [...state.hiddenControls, id] }
+	}
+	if (type === 'RESET_SIMULATION' && state !== null) {
+		return { ...state, hiddenControls: [] }
+	}
+	return state
 }
 
 const addAnswerToSituation = (dottedName, value, state) => {
@@ -170,8 +158,6 @@ export default reduceReducers(
 		previousSimulation: defaultTo(null),
 		currentExample,
 		situationBranch,
-		hiddenControls,
-		conversationStarted,
 		activeTargetInput,
 		inFranceApp: inFranceAppReducer
 	})

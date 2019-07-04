@@ -14,14 +14,25 @@ import {
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
-	contains,
+	defaultTo,
 	difference,
+	dissoc,
 	equals,
 	head,
 	intersection,
+	isEmpty,
 	isNil,
+	last,
+	length,
+	map,
 	mergeDeepWith,
-	pick
+	negate,
+	pick,
+	pipe,
+	sortBy,
+	split,
+	takeWhile,
+	zipWith
 } from 'ramda'
 import { getFormValues } from 'redux-form'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -52,7 +63,21 @@ export let ruleDefaultsSelector = createSelector(
 	rules => collectDefaults(rules)
 )
 
-export let targetNamesSelector = state => state.simulation?.config.objectifs
+export let targetNamesSelector = state => {
+	let objectifs = state.simulation?.config.objectifs
+	if (!objectifs || !Array.isArray(objectifs)) {
+		return null
+	}
+	const targetNames = [].concat(
+		...objectifs.map(objectifOrGroup =>
+			typeof objectifOrGroup === 'string'
+				? [objectifOrGroup]
+				: objectifOrGroup.objectifs
+		)
+	)
+
+	return targetNames
+}
 
 export let situationSelector = createDeepEqualSelector(
 	getFormValues('conversation'),
@@ -65,6 +90,11 @@ export let formattedSituationSelector = createSelector(
 )
 
 export let noUserInputSelector = createSelector(
+	[formattedSituationSelector],
+	situation => !situation || isEmpty(dissoc('période', situation))
+)
+
+export let firstStepCompletedSelector = createSelector(
 	[
 		formattedSituationSelector,
 		targetNamesSelector,
@@ -85,7 +115,7 @@ export let noUserInputSelector = createSelector(
 					findRuleByDottedName(parsedRules, targetName)?.formule &&
 					targetName in situation
 			)
-		return !(allBlockingAreAnswered || targetIsAnswered)
+		return allBlockingAreAnswered || targetIsAnswered
 	}
 )
 
@@ -189,15 +219,14 @@ export let exampleAnalysisSelector = createSelector(
 let makeAnalysisSelector = situationSelector =>
 	createDeepEqualSelector(
 		[parsedRulesSelector, targetNamesSelector, situationSelector],
-		(parsedRules, targetNames, situations) => {
-			return mapOrApply(
+		(parsedRules, targetNames, situations) =>
+			mapOrApply(
 				situation =>
 					analyseMany(parsedRules, targetNames)(dottedName => {
 						return situation[dottedName]
 					}),
 				situations
 			)
-		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
@@ -237,31 +266,47 @@ let currentMissingVariablesByTargetSelector = createSelector(
 	}
 )
 
+const similarity = rule1 => rule2 =>
+	pipe(
+		map(defaultTo('')),
+		map(split(' . ')),
+		rules => zipWith(equals, ...rules),
+		takeWhile(Boolean),
+		length,
+		negate
+	)([rule1, rule2])
+
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulation?.config.questions
+		state => state.simulation?.config.questions,
+		state => state.conversationSteps.foldedSteps
 	],
-	(mv, questions) => {
-		let nextSteps = getNextSteps(mv)
+	(
+		mv,
+		{
+			'non prioritaires': notPriority = [],
+			uniquement: only,
+			'liste noire': blacklist = []
+		} = {},
+		foldedSteps = []
+	) => {
+		let nextSteps = difference(getNextSteps(mv), foldedSteps)
 
-		if (questions && questions.blacklist) {
-			return difference(nextSteps, questions.blacklist)
+		if (only) nextSteps = intersection(nextSteps, [...only, ...notPriority])
+		if (blacklist) {
+			nextSteps = difference(nextSteps, blacklist)
 		}
-		if (questions) {
-			return intersection(nextSteps, questions)
+
+		nextSteps = sortBy(similarity(last(foldedSteps)), nextSteps)
+		if (notPriority) {
+			nextSteps = sortBy(question => notPriority.indexOf(question), nextSteps)
 		}
 		return nextSteps
 	}
 )
+
 export let currentQuestionSelector = createSelector(
-	[
-		nextStepsSelector,
-		state => state.conversationSteps.unfoldedStep,
-		state => state.conversationSteps.priorityNamespace
-	],
-	(nextSteps, unfoldedStep, priorityNamespace) =>
-		unfoldedStep ||
-		(priorityNamespace && nextSteps.find(contains(priorityNamespace))) ||
-		head(nextSteps)
+	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
+	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )

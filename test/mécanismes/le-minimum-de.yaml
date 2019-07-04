@@ -9,9 +9,26 @@
           taux: 9%
 
   exemples:
-    - nom:
-      situation:
-      valeur attendue: 0.9
+    - valeur attendue: 0.9
+      
+
+- nom: assiette
+  question: Mon assiette
+
+- test: Minimum avec variables
+  formule:
+    le minimum de:
+      - multiplication:
+          assiette: assiette
+          taux: 1%
+      - multiplication:
+          assiette: assiette
+          taux: 9%
+
+  exemples:
+    - situation:
+        assiette: 1000
+      valeur attendue: 10
 
 
 # TODO

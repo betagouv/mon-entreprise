@@ -14,7 +14,7 @@ const LOCAL_STORAGE_KEY = 'embauche.gouv.fr::persisted-simulation::v' + VERSION
 export function persistSimulation(store: Store<State, Action>) {
 	const listener = () => {
 		const state = store.getState()
-		if (!state.conversationStarted) {
+		if (!state.conversationSteps.foldedSteps.length) {
 			return
 		}
 		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, serialize(state))

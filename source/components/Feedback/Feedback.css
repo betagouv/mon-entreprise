@@ -1,8 +1,20 @@
 .feedback-page {
-	align-items: flex-start;
 	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
+	justify-content: center;
+	flex-wrap: wrap;
 	padding-top: 0.6rem;
 	padding-bottom: 0.6rem;
+	background: var(--lightestColour);
+	border-radius: 0.9rem;
+	padding: 0.6rem 1rem;
+	margin: 1rem 0;
+}
+.feedback-page button.link-button {
+	margin: 0 0.6rem;
+}
+
+@media (min-width: 1200px) {
+	.feedback-page .feedbackButtons {
+		display: inline;
+	}
 }

@@ -44,7 +44,9 @@ export const LegalNoticeContent = withTranslation()(() => (
 				<br />
 				San Francisco, CA 94107 <br />
 				Site web :&nbsp;
-				<a href="https://www.netlify.com">https://www.netlify.com</a>
+				<a href="https://www.netlify.com" target="_blank">
+					https://www.netlify.com
+				</a>
 			</Trans>
 		</p>
 		<h2>
@@ -52,8 +54,8 @@ export const LegalNoticeContent = withTranslation()(() => (
 		</h2>
 		<p>
 			<Trans i18nKey="legalNotice.contact.content">
-				<a href="mailto:contact@embauche.beta.gouv.fr">
-					contact@embauche.beta.gouv.fr
+				<a target="_blank" href="mailto:contact@mon-entreprise.beta.gouv.fr">
+					contact@mon-entreprise.beta.gouv.fr
 				</a>
 			</Trans>
 		</p>

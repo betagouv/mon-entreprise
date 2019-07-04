@@ -14,10 +14,6 @@ export type SetSimulationConfigAction = {
 	type: 'SET_SIMULATION',
 	config: Object
 }
-export type StartConversationAction = {
-	type: 'START_CONVERSATION',
-	priorityNamespace?: string
-}
 export type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
 }
@@ -32,7 +28,6 @@ export type StepAction = {
 }
 
 export type Action =
-	| StartConversationAction
 	| SetSituationBranchAction
 	| LoadPreviousSimulationAction
 	| ResetSimulationAction

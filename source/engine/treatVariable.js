@@ -9,7 +9,7 @@ import {
 } from './rules'
 import { getSituationValue } from './variables'
 
-export let treatVariable = (rules, rule, filter) => parseResult => {
+export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -22,13 +22,11 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 			variableHasFormula = variable.formule != null,
 			variableHasCond =
 				variable['applicable si'] != null ||
-				variable['non applicable si'] != null,
+				variable['non applicable si'] != null ||
+				findParentDependency(parsedRules, variable),
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =
-				situationValue == null &&
-				(variableHasCond ||
-					variableHasFormula ||
-					findParentDependency(rules, variable))
+				situationValue == null && (variableHasCond || variableHasFormula)
 
 		//		if (dottedName.includes('jeune va')) debugger
 
@@ -68,17 +66,13 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 
 			// SITUATION 4.2 : La condition est connue et fausse
 			if (explanation.isApplicable === false) return cacheAndNode(false, {})
+
 			// SITUATION 4.3 : La condition n'est pas connue
-			if (explanation.isApplicable == null)
-				return cacheAndNode(null, {
-					...explanation.missingVariables,
-					...(variable.question ? { [dottedName]: variableScore } : {})
-				})
+			return cacheAndNode(null, explanation.missingVariables)
 		}
 	}
 
-	let { fragments } = parseResult,
-		variablePartialName = fragments.join(' . '),
+	let variablePartialName = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
 
 	return {
@@ -108,9 +102,7 @@ export let treatVariable = (rules, rule, filter) => parseResult => {
 
 // TODO - the implementations of filters is really bad. It injects a hack in the situation to make the composante mecanism compute only one of its branch. It is then stored in the cache under a new key, dottedName.filter. This mecanism should just query the variable tree to get the active composante's value...
 //
-window.count = 0
 export let treatVariableTransforms = (rules, rule) => parseResult => {
-	window.count += 1
 	let evaluateTransforms = originalEval => (
 		cache,
 		situation,
@@ -133,7 +125,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		let supportedPeriods = ['mois', 'année', 'flexible']
 		if (nodeValue == null) return filteredNode
 		let ruleToTransform = findRuleByDottedName(
-			rules,
+			parsedRules,
 			filteredNode.explanation.dottedName
 		)
 
@@ -189,7 +181,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 		return result
 	}
 	let node = treatVariable(rules, rule, parseResult.filter)(
-		parseResult.variable || parseResult
+		parseResult.variable
 	)
 
 	return {

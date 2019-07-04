@@ -18,7 +18,7 @@
 	margin-top: 1.5em;
 	padding-bottom: 0.5em;
 	padding-left: 0.5em;
-	align-self: end;
+	align-self: flex-end;
 	margin-bottom: 0.5em;
 }
 .payslip__container h4:first-child {

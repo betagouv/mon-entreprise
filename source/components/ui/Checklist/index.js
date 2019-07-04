@@ -68,11 +68,11 @@ class CheckItemComponent extends Component<CheckItemProps, CheckItemState> {
 					</button>
 				</div>
 				{this.state.displayExplanations && this.props.explanations && (
-					<Animate.fadeIn>
+					<Animate.appear>
 						<div className="ui__ checklist-explanation">
 							{this.props.explanations}
 						</div>
-					</Animate.fadeIn>
+					</Animate.appear>
 				)}
 			</ScrollToElement>
 		)

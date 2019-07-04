@@ -1,6 +1,5 @@
 import FormDecorator from 'Components/conversation/FormDecorator'
 import React, { Component } from 'react'
-import { answer } from './userAnswerButtonStyle'
 
 export default FormDecorator('rhetorical-question')(
 	class RhetoricalQuestion extends Component {
@@ -13,7 +12,7 @@ export default FormDecorator('rhetorical-question')(
 
 			return (
 				<span className="answer">
-					<label key={value} className="radio" style={answer(themeColours)}>
+					<label key={value} className="radio userAnswerButton">
 						<input type="radio" {...input} onClick={submit} value={value} />
 						{text}
 					</label>

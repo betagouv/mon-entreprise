@@ -7,7 +7,7 @@ const salaryInput = inputTitle => {
 	return inputContainer.find('input')
 }
 
-describe('Landing test', function() {
+describe('Simulateurs test', function() {
 	const fr = Cypress.env('language') === 'fr'
 
 	it('should not crash', function() {
@@ -18,32 +18,35 @@ describe('Landing test', function() {
 	})
 	it('should display selection page', function() {
 		cy.visit(fr ? '/sécurité-sociale' : '/social-security')
-		cy.contains(
-			fr ? 'La rémunération du dirigeant' : "The director's remuneration"
-		).click()
+		cy.contains(fr ? 'Mon revenu' : 'My income').click()
 		cy.contains(
 			fr
 				? 'Quel régime souhaitez-vous explorer ?'
 				: 'Which social scheme would you like to explore?'
 		)
-		cy.contains(fr ? 'Indépendant' : 'Self-employed').click({ force: true })
+		cy.contains('Indépendant').click({ force: true })
 		cy.contains(
 			fr
 				? 'Simulateur de revenus pour indépendants'
 				: 'Self-employed income simulator'
 		)
 	})
-	it('should give an estimation for the self-employed income', function() {
+	it('donne une estimation pour le revenu des indépendants', function() {
 		cy.visit(
 			fr ? '/sécurité-sociale/indépendant' : '/social-security/self-employed'
 		)
-		salaryInput(fr ? "Chiffre d'affaires" : 'Turnover').type(100000, {
-			force: true
-		})
+		salaryInput(fr ? 'Rémunération totale' : 'Director total income').type(
+			100000,
+			{
+				force: true
+			}
+		)
 		cy.contains(fr ? 'Cotisations et contributions' : 'All contributions')
-		cy.contains(fr ? "Année d'activité" : 'Years of activity').click()
+		cy.contains(fr ? "Type d'activité" : 'Activity type').click()
 		cy.contains(
-			fr ? "Quel est l'âge de l'entreprise" : 'How old is the company'
+			fr
+				? "Quelle est votre catégorie d'activité"
+				: 'What is your category of activity'
 		)
 	})
 })

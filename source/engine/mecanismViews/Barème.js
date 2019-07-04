@@ -1,13 +1,13 @@
-import React from 'react'
-import { Node, NodeValuePointer, formatNumber } from './common'
-import { makeJsx } from '../evaluation'
-import { Trans } from 'react-i18next'
-import { trancheValue } from 'Engine/mecanisms/barème'
-import './Barème.css'
 import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
+import { trancheValue } from 'Engine/mecanisms/barème'
 import { identity } from 'ramda'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import { makeJsx } from '../evaluation'
+import './Barème.css'
+import { formatNumber, Node, NodeValuePointer } from './common'
 
 export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => (
 	<>

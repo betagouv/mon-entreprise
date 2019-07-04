@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
 import type { Tracker } from 'Components/utils/withTracker'
 
-type Props = { onEnd: () => void, tracker: Tracker }
+type Props = { onEnd: () => void, tracker: Tracker, onCancel: () => void }
 
 class FeedbackForm extends Component<Props> {
 	formRef: ?HTMLFormElement
@@ -23,9 +23,6 @@ class FeedbackForm extends Component<Props> {
 			// $FlowFixMe
 			body: new FormData(this.formRef)
 		})
-		this.handleClose()
-	}
-	handleClose = () => {
 		this.props.onEnd()
 	}
 
@@ -34,7 +31,7 @@ class FeedbackForm extends Component<Props> {
 			<ScrollToElement onlyIfNotVisible>
 				<div style={{ textAlign: 'end' }}>
 					<button
-						onClick={this.handleClose}
+						onClick={() => this.props.onCancel()}
 						className="ui__ link-button"
 						style={{ textDecoration: 'none', marginLeft: '0.3rem' }}
 						aria-label="close">

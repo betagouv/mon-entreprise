@@ -1,15 +1,34 @@
 objectifs:
-  - entreprise . chiffre d'affaires
-  - entreprise . charges
-  - contrat salarié . cotisations
-  - impôt . neutre
-  - contrat salarié . salaire . net après impôt
+  - icône: 👩‍💼
+    nom: Mon revenu
+    objectifs:
+      - contrat salarié . rémunération . total
+      - contrat salarié . cotisations
+      - contrat salarié . salaire . net
+      - impôt . neutre
+      - contrat salarié . salaire . net après impôt
+  - icône: 🏢
+    nom: Mon entreprise
+    objectifs:
+      - entreprise . charges
+      - entreprise . chiffre d'affaires minimum
 
 questions:
-  - entreprise . année d'activité
-
-questions à l'affiche:
-  année d'activité: entreprise . année d'activité
+  à l'affiche:
+    ACRE: entreprise . année d'activité
+    Commune: établissement . localisation
+    Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active
+    Effectif: entreprise . effectif
+  liste noire:
+    - contrat salarié . avantages en nature
+    - entreprise . charges
+    - entreprise . rémunération du dirigeant
+    - entreprise . association non lucrative
+    - contrat salarié . régime des impatriés
+  non prioritaires:
+    - entreprise . établissement bancaire
+    - contrat salarié . complémentaire santé . part employeur
+    - contrat salarié . régime des impatriés
 
 situation:
   auto entrepreneur: non
@@ -19,4 +38,5 @@ situation:
   contrat salarié . CDD: non
   contrat salarié . temps partiel: non
   contrat salarié . ATMP . taux réduit: oui
+  entreprise . association non lucrative: non
   période: année

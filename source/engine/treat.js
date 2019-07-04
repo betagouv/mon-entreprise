@@ -6,29 +6,23 @@ import barème from 'Engine/mecanisms/barème.js'
 import { Parser } from 'nearley'
 import {
 	add,
-	always,
-	cond,
-	contains,
 	curry,
 	divide,
 	equals,
 	gt,
 	gte,
-	head,
-	intersection,
 	keys,
+	without,
 	lt,
 	lte,
 	map,
 	multiply,
-	propEq,
 	propOr,
 	subtract
 } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation'
 import Grammar from './grammar.ne'
-import knownMecanisms from './known-mecanisms.yaml'
 import {
 	mecanismAllOf,
 	mecanismComplement,
@@ -44,7 +38,8 @@ import {
 	mecanismReduction,
 	mecanismSum,
 	mecanismSynchronisation,
-	mecanismVariations
+	mecanismVariations,
+	mecanismOnePossibility
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
 import { treat } from './traverse'
@@ -54,170 +49,16 @@ import {
 	treatVariableTransforms
 } from './treatVariable'
 
-let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
+export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
 export let treatString = (rules, rule) => rawNode => {
-	/* On a affaire à un string, donc à une expression infixe.
-			Elle sera traité avec le parser obtenu grâce à NearleyJs et notre grammaire `grammar.ne`.
-			On obtient un objet de type Variable (avec potentiellement un 'modifier', par exemple temporel), CalcExpression ou Comparison.
-			Cet objet est alors rebalancé à 'treat'.
-			*/
+	/* Strings correspond to infix expressions.
+	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
+	 * This function makes them prefixed operations. */
 
-	let [parseResult, ...additionnalResults] = nearley().feed(rawNode).results
+	let [parseResult] = nearley().feed(rawNode).results
 
-	if (
-		additionnalResults &&
-		additionnalResults.length > 0 &&
-		parseResult.category !== 'boolean'
-	) {
-		// booleans, 'oui' and 'non', have an exceptional resolving precedence
-		throw new Error(
-			"Attention ! L'expression <" +
-				rawNode +
-				'> ne peut être traitée de façon univoque'
-		)
-	}
-
-	if (
-		!contains(parseResult.category)([
-			'variable',
-			'calcExpression',
-			'filteredVariable',
-			'comparison',
-			'negatedVariable',
-			'percentage',
-			'boolean'
-		])
-	)
-		throw new Error(
-			"Attention ! Erreur de traitement de l'expression : " + rawNode
-		)
-
-	if (parseResult.category == 'variable')
-		return treatVariableTransforms(rules, rule)(parseResult)
-	if (parseResult.category == 'negatedVariable')
-		return treatNegatedVariable(
-			treatVariable(rules, rule)(parseResult.variable)
-		)
-
-	if (parseResult.category == 'boolean') {
-		return {
-			nodeValue: parseResult.nodeValue,
-			// eslint-disable-next-line
-			jsx: () => <span className="boolean">{rawNode}</span>
-		}
-	}
-
-	// We don't need to handle category == 'value' because YAML then returns it as
-	// numerical value, not a String: it goes to treatNumber
-	if (parseResult.category == 'percentage')
-		return {
-			nodeValue: parseResult.nodeValue,
-			category: 'percentage',
-			// eslint-disable-next-line
-			jsx: () => <span className="value">{rawNode.split('%')[0]} %</span>
-			//on ajoute l'espace nécessaire en français avant le pourcentage
-		}
-
-	if (
-		parseResult.category == 'calcExpression' ||
-		parseResult.category == 'comparison'
-	) {
-		let evaluate = (cache, situation, parsedRules, node) => {
-			let operatorFunction = {
-					'*': multiply,
-					'/': divide,
-					'+': add,
-					'-': subtract,
-					'<': lt,
-					'<=': lte,
-					'>': gt,
-					'>=': gte,
-					'=': equals,
-					'!=': (a, b) => !equals(a, b)
-				}[node.operator],
-				explanation = map(
-					curry(evaluateNode)(cache, situation, parsedRules),
-					node.explanation
-				),
-				value1 = explanation[0].nodeValue,
-				value2 = explanation[1].nodeValue,
-				nodeValue =
-					value1 == null || value2 == null
-						? null
-						: operatorFunction(value1, value2),
-				missingVariables = mergeMissing(
-					explanation[0].missingVariables,
-					explanation[1].missingVariables
-				)
-
-			return rewriteNode(node, nodeValue, explanation, missingVariables)
-		}
-
-		let explanation = parseResult.explanation.map(
-				cond([
-					[
-						propEq('category', 'variable'),
-						treatVariableTransforms(rules, rule)
-					],
-					[
-						propEq('category', 'value'),
-						node => ({
-							nodeValue: node.nodeValue,
-							// eslint-disable-next-line
-							jsx: nodeValue => <span className="value">{nodeValue}</span>
-						})
-					],
-					[
-						propEq('category', 'percentage'),
-						node => ({
-							nodeValue: node.nodeValue,
-							// eslint-disable-next-line
-							jsx: nodeValue => (
-								<span className="value">{nodeValue * 100}%</span>
-							)
-							//the best would be to display the original text before parsing, but nearley does'nt let us access it
-						})
-					]
-				])
-			),
-			operator = parseResult.operator
-		let operatorToUnicode = operator =>
-			({
-				'>=': '≥',
-				'<=': '≤',
-				'!=': '≠',
-				'*': '∗',
-				'/': '∕',
-				'-': '−'
-			}[operator] || operator)
-		let jsx = (nodeValue, explanation) => (
-			<Node
-				classes={'inlineExpression ' + parseResult.category}
-				value={nodeValue}
-				child={
-					<span className="nodeContent">
-						<span className="fa fa" />
-						{makeJsx(explanation[0])}
-						<span className="operator">
-							{operatorToUnicode(parseResult.operator)}
-						</span>
-						{makeJsx(explanation[1])}
-					</span>
-				}
-			/>
-		)
-
-		return {
-			evaluate,
-			jsx,
-			operator,
-			text: rawNode,
-			category: parseResult.category,
-			type: parseResult.category == 'calcExpression' ? 'numeric' : 'boolean',
-			explanation
-		}
-	}
+	return treatObject(rules, rule)(parseResult)
 }
 
 export let treatNumber = rawNode => ({
@@ -233,20 +74,43 @@ export let treatOther = rawNode => {
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	)
 }
+
 export let treatObject = (rules, rule, treatOptions) => rawNode => {
+	/* TODO instead of describing mecanisms in knownMecanisms.yaml, externalize the mecanisms themselves in an individual file and describe it
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 	if (mecanisms.length != 1) {
-		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet
-			Objet YAML : ${JSON.stringify(rawNode)}
-			Mécanismes implémentés correspondants : ${JSON.stringify(mecanisms)}
-			Cette liste doit avoir un et un seul élément.
-			Vérifier que le mécanisme est dans l'objet 'dispatch' et dans les'knownMecanisms.yaml'
-		`)
-	}
+	} 
+	*/
 
-	let k = head(mecanisms),
+	let attributes = keys(rawNode),
+		descriptiveAttributes = ['description', 'note', 'référence'],
+		relevantAttributes = without(descriptiveAttributes, attributes)
+	if (relevantAttributes.length !== 1)
+		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet (au-delà des attributs descriptifs tels que "description", "commentaire", etc.)
+			Objet YAML : ${JSON.stringify(rawNode)}
+			Cette liste doit avoir un et un seul élément.
+			Si vous venez tout juste d'ajouter un nouveau mécanisme, vérifier qu'il est bien intégré dans le dispatch de treat.js
+		`)
+	let k = relevantAttributes[0],
 		v = rawNode[k]
+
+	let knownOperations = {
+			'*': [multiply, '∗'],
+			'/': [divide, '∕'],
+			'+': [add],
+			'-': [subtract, '−'],
+			'<': [lt],
+			'<=': [lte, '≤'],
+			'>': [gt],
+			'>=': [gte, '≥'],
+			'=': [equals],
+			'!=': [(a, b) => !equals(a, b), '≠']
+		},
+		operationDispatch = map(
+			([f, symbol]) => mecanismOperation(f, symbol || k),
+			knownOperations
+		)
 
 	let dispatch = {
 			'une de ces conditions': mecanismOneOf,
@@ -260,17 +124,79 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,
-			'une possibilité': always({
-				...v,
-				'une possibilité': 'oui',
-				missingVariables: { [rule.dottedName]: 1 }
-			}),
+			'une possibilité': mecanismOnePossibility(rule.dottedName),
 			'inversion numérique': mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
 			variations: mecanismVariations,
-			synchronisation: mecanismSynchronisation
+			synchronisation: mecanismSynchronisation,
+			...operationDispatch,
+			'≠': () =>
+				treatNegatedVariable(treatVariable(rules, rule)(v.explanation)),
+			filter: () =>
+				treatVariableTransforms(rules, rule)({
+					filter: v.filter,
+					variable: v.explanation
+				}),
+			variable: () => treatVariableTransforms(rules, rule)({ variable: v }),
+			temporalTransform: () =>
+				treatVariableTransforms(rules, rule)({
+					variable: v.explanation,
+					temporalTransform: v.temporalTransform
+				}),
+			constant: () => ({
+				type: v.type,
+				nodeValue: v.nodeValue,
+				// eslint-disable-next-line
+				jsx: () => <span className={v.type}>{v.rawNode}</span>
+			})
 		},
 		action = propOr(mecanismError, k, dispatch)
 
 	return action(treat(rules, rule, treatOptions), k, v)
+}
+
+let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
+	let evaluate = (cache, situation, parsedRules, node) => {
+		let explanation = map(
+				curry(evaluateNode)(cache, situation, parsedRules),
+				node.explanation
+			),
+			value1 = explanation[0].nodeValue,
+			value2 = explanation[1].nodeValue,
+			nodeValue =
+				value1 == null || value2 == null
+					? null
+					: operatorFunction(value1, value2),
+			missingVariables = mergeMissing(
+				explanation[0].missingVariables,
+				explanation[1].missingVariables
+			)
+
+		return rewriteNode(node, nodeValue, explanation, missingVariables)
+	}
+
+	let explanation = v.explanation.map(recurse)
+
+	let jsx = (nodeValue, explanation) => (
+		<Node
+			classes={'inlineExpression ' + k}
+			value={nodeValue}
+			child={
+				<span className="nodeContent">
+					<span className="fa fa" />
+					{makeJsx(explanation[0])}
+					<span className="operator">{symbol}</span>
+					{makeJsx(explanation[1])}
+				</span>
+			}
+		/>
+	)
+
+	return {
+		evaluate,
+		jsx,
+		operator: symbol,
+		// is this useful ?		text: rawNode,
+		explanation
+	}
 }

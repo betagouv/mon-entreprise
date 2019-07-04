@@ -151,29 +151,6 @@ const PaySlip = ({
 				<RuleLink {...salaireNetAprèsImpôt} />
 				<Montant>{salaireNetAprèsImpôt.montant}</Montant>
 			</div>
-			<br />
-			<p className="ui__ notice">
-				<Trans i18nKey="payslip.notice">
-					Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
-					être opposable. Pour plus d&apos;informations, rendez vous sur&nbsp;
-					<a
-						alt="service-public.fr"
-						href="https://www.service-public.fr/particuliers/vosdroits/F559">
-						service-public.fr
-					</a>
-					.
-				</Trans>
-			</p>
-			<p className="ui__ notice">
-				<Trans i18nKey="payslip.disclaimer">
-					Il ne prend pour l'instant pas en compte les accords et conventions
-					collectives, ni la myriade d'aides aux entreprises. Trouvez votre
-					convention collective{' '}
-					<a href="https://socialgouv.github.io/conventions-collectives">ici</a>
-					, et explorez les aides sur&nbsp;
-					<a href="https://www.aides-entreprises.fr">aides-entreprises.fr</a>.
-				</Trans>
-			</p>
 		</div>
 	)
 }

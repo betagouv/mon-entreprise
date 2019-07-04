@@ -59,8 +59,8 @@
 }
 
 .step-question h1 {
-	font-size: 1.7rem;
-	color: rgba(0, 0, 0, 0.8);
+	font-size: 1.3rem;
+	line-height: 2.2rem;
 }
 
 .unfoldedHeader {
@@ -151,7 +151,7 @@
 
 .step.question .variant .variantLeaf {
 	display: inline-flex;
-    align-items: center;
+	align-items: center;
 }
 .step.question .variantLeaf.aucun label {
 	font-weight: 800;
@@ -161,26 +161,15 @@
 .step.question .sendWrapper {
 	float: right;
 }
-.step label.radio,
-/* A resume of what's been answered */ .resume {
-	text-align: center;
-	margin-left: 1em;
-	margin-top: 2em;
-	cursor: pointer;
-	background: none;
-	padding: 0 0.8em;
-	line-height: 1.8em;
-	border-radius: 1em;
-}
-
 .step label.radio {
 	text-align: center;
 	margin-left: 1em;
-	margin-top: 1em;
+	/* margin-top: 1em; */
 	cursor: pointer;
-	padding: 0.25em 0.85em;
-	line-height: 1.8em;
+	background: none;
 	border-radius: 1em;
+	padding: 0.25em 0.85em;
+	line-height: 1.3em;
 	font-size: 120%;
 }
 
@@ -227,6 +216,7 @@
 
 .step input.suffixed {
 	padding: 0.1em 1em 0;
+	margin: 0.6rem 0;
 	border-radius: 0.2em;
 	font-size: 120%;
 }
@@ -309,6 +299,7 @@
 
 .answer {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: flex-end;
 	align-items: center;
 }
@@ -425,5 +416,23 @@ for the appearing element to appear without stacking up below the first one */
 
 .conversationContainer {
 	flex: 1;
-	margin-bottom: 2em;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+
+.step label.userAnswerButton {
+	border: 1px solid var(--colour);
+	color: var(--textColourOnWhite);
+}
+.step label.userAnswerButton.selected {
+	background: var(--colour);
+	border: 1px solid var(--colour);
+	color: var(--textColour);
+}
+@media (hover) {
+	.step label.userAnswerButton:hover {
+		background: var(--colour);
+		border: 1px solid var(--colour);
+		color: var(--textColour);
+	}
 }
